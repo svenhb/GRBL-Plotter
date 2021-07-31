@@ -810,33 +810,6 @@ Añadir 'G54;' al encabezado G-Code para volver automáticamente a G54 antes de 
     <value>velocidad actual</value>
     <comment>groupBox_Override3</comment>
   </data>
-  <data name="englishToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Inglés</value>
-  </data>
-  <data name="deutschToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>alemán</value>
-  </data>
-  <data name="pусскийToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>ruso</value>
-  </data>
-  <data name="toolStripMenuItem4.ToolTipText" xml:space="preserve">
-    <value>Español</value>
-  </data>
-  <data name="portuguêsToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>portugués</value>
-  </data>
-  <data name="franzToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>francés</value>
-  </data>
-  <data name="chinesischToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>chino</value>
-  </data>
-  <data name="arabischToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Arábica</value>
-  </data>
-  <data name="japanischToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>japonés</value>
-  </data>
   <data name="btnStreamCheck.ToolTip" xml:space="preserve">
     <value>Esto alterna el analizador gcode de Grbl para tomar todos los bloques entrantes y procesarlos por completo, como lo haría en una operación normal, pero no mueve ninguno de los ejes, ignora las paradas y apaga el eje y el refrigerante. Esto pretende ser una forma de proporcionar al usuario una forma de verificar cómo su nuevo programa de código G funciona con el analizador y monitor de Grbl en busca de errores (y verifica si hay violaciones del límite flexible, si está habilitado).</value>
   </data>

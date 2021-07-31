@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,32 +18,41 @@
 */
 /*
  * 2020-12-18 Notifier by email or pushbullet 
- */
+ * 2021-07-15 code clean up / code quality
+*/
 
 using System;
-using System.Net.Mail;
+using System.Globalization;
 using System.IO;
 using System.Net;
+using System.Net.Mail;
 using System.Web.Script.Serialization;
 
-namespace GRBL_Plotter
+namespace GrblPlotter
 {
     public static class Notifier
     {
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
-               
-        public static void sendMessage(string message, string titleAddon="")
-        {   bool mail = Properties.Settings.Default.notifierMailEnable;
+        private static readonly CultureInfo culture = CultureInfo.InvariantCulture;
+
+        public static void SendMessage(string message)
+        { SendMessage(message,""); }
+       public static void SendMessage(string message, string titleAddon)
+        {
+            bool mail = Properties.Settings.Default.notifierMailEnable;
             bool push = Properties.Settings.Default.notifierPushbulletEnable;
-            Logger.Info("Mail:{0} Push:{1}   Msg:{2}  Addon:{3}", mail, push, message.Replace("\r\n"," | "), titleAddon);
-            if (mail)
-                sendMail(message, titleAddon);
-            if (push)
-                pushBullet(message, titleAddon);
+            if (!string.IsNullOrEmpty(message))
+            {
+                Logger.Info(culture, "Mail:{0} Push:{1}   Msg:{2}  Addon:{3}   Interval:{4}", mail, push, message.Replace("\r\n", " | "), titleAddon, Properties.Settings.Default.notifierMessageProgressInterval);
+                if (mail)
+                    SendMail(message, titleAddon);
+                if (push)
+                    PushBullet(message, titleAddon);
+            }
         }
 
-        public static string sendMail(string message, string titleAddon="")
+        public static string SendMail(string message, string titleAddon)
         {   // http://csharp.net-informations.com/communications/csharp-smtp-mail.htm
             try
             {
@@ -52,7 +61,7 @@ namespace GRBL_Plotter
 
                 mail.From = new MailAddress(Properties.Settings.Default.notifierMailSendFrom);
                 mail.To.Add(Properties.Settings.Default.notifierMailSendTo);
-                mail.Subject = Properties.Settings.Default.notifierMailSendSubject+" "+titleAddon;
+                mail.Subject = Properties.Settings.Default.notifierMailSendSubject + " " + titleAddon;
                 mail.Body = message;
 
                 SmtpServer.EnableSsl = true;
@@ -60,64 +69,85 @@ namespace GRBL_Plotter
                 SmtpServer.Credentials = new System.Net.NetworkCredential(Properties.Settings.Default.notifierMailClientUser, Properties.Settings.Default.notifierMailClientPass);
 
                 SmtpServer.Send(mail);
+                SmtpServer.Dispose();
+                mail.Dispose();
                 return "Email sent";
             }
             catch (Exception ex)
             {
                 Logger.Error(ex, " sendMail() ");
-                return ex.ToString();
+                return "Error sending email:\r\n" + ex.ToString();
+             //   throw;
             }
-        }    
+        }
 
-        public static string pushBullet(string message, string titleAddon="")
-        {   var httpWebRequest = WebRequest.Create("https://api.pushbullet.com/v2/pushes");
+        public static string PushBullet(string message, string titleAddon = "")
+        {
+            Uri newUri = new Uri("https://api.pushbullet.com/v2/pushes");
+            var httpWebRequest = WebRequest.Create(newUri);
             httpWebRequest.Headers.Add("Access-Token", Properties.Settings.Default.notifierPushbulletToken);
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "POST";
 
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-            {   string json = "";
+            {
+                string json = "";
                 string channel = Properties.Settings.Default.notifierPushbulletChannel;
                 if (channel.Length > 1)
-                {   Channel info = new Channel();
-                    info.channel_tag = channel;
-                    info.title = Properties.Settings.Default.notifierMailSendSubject + " " + titleAddon;
-                    info.body = message;
+                {
+                    Channel info = new Channel
+                    {
+                        channel_tag = channel,
+                        title = Properties.Settings.Default.notifierMailSendSubject + " " + titleAddon,
+                        body = message
+                    };
                     json = (new JavaScriptSerializer()).Serialize(info);
                 }
                 else
-                {   Note info = new Note();
-                    info.title = Properties.Settings.Default.notifierMailSendSubject + " " + titleAddon;
-                    info.body = message;
+                {
+                    Note info = new Note
+                    {
+                        title = Properties.Settings.Default.notifierMailSendSubject + " " + titleAddon,
+                        body = message
+                    };
                     json = (new JavaScriptSerializer()).Serialize(info);
                 }
                 Console.WriteLine(json);
 
                 streamWriter.Write(json);
                 streamWriter.Flush();
-//                streamWriter.Close();
+                //                streamWriter.Close();
             }
 
             try
-            {   var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            {
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                 using (StreamReader streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                {   var result = streamReader.ReadToEnd();
+                {   //var result = streamReader.ReadToEnd();
                     //return result;
                 }
-                return "Message sent";
+                return "PushBullet message sent";
+            }
+            catch (WebException ex)
+            {
+                return "Error sending PushBullet message:\r\n" + ex.ToString();
             }
             catch (Exception ex)
-            {   Logger.Error(ex, " pushBullet() ");
-                return ex.ToString();
+            {
+                Logger.Error(ex, " pushBullet() ");
+                return "Error sending PushBullet message:\r\n" + ex.ToString();
+                //   throw;
             }
         }
-        public class Note
-        {   public string type = "note";
+        internal class Note
+        {
+            public string type = "note";
             public string title = "Title here";
             public string body = "Insert body here";
         }
-        public class Channel
-        {   public string channel_tag = "channel_tag";
+        internal class Channel
+        {
+            public string channel_tag = "channel_tag";
             public string type = "note";
             public string title = "Title here";
             public string body = "Insert body here";

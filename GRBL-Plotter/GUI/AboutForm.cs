@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2018 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,16 +18,18 @@
 */
 /*
  * 2019-10-29 localization of strings
+ * 2021-07-26 code clean up / code quality
 */
 
 
 using System;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace GRBL_Plotter
+namespace GrblPlotter
 {
     public partial class AboutForm : Form
     {
@@ -37,34 +39,57 @@ namespace GRBL_Plotter
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
             InitializeComponent();
-            linkLabel2.Text = System.Windows.Forms.Application.StartupPath;
-            toolTip1.SetToolTip(linkLabel2, "Open file explorer and visit '"+ System.Windows.Forms.Application.StartupPath + "'");
-//            linkLabel3.Text = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.DataDirectory;
+            linkLabel2.Text = Datapath.AppDataFolder;   // System.Windows.Forms.Application.StartupPath;
+            toolTip1.SetToolTip(linkLabel2, "Open file explorer and visit '"+ Datapath.AppDataFolder + "'");
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start(@"https://github.com/svenhb/GRBL-Plotter");
         }
 
         private void AboutForm_Load(object sender, EventArgs e)
         {
-            lblVersion.Text = Application.ProductVersion.ToString();
+         //   lblVersion.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
+            lblVersion.Text = string.Format("{0}    {1}", System.Windows.Forms.Application.ProductVersion.ToString(), GetLinkerTimestampUtc(System.Reflection.Assembly.GetExecutingAssembly()).ToString("yyyy-MM-dd"));   //File.GetCreationTime(System.Reflection.Assembly.GetExecutingAssembly().Location)
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
-            checkUpdate.CheckVersion(true);
+            CheckUpdate.CheckVersion(true);
         }
 
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(System.Windows.Forms.Application.StartupPath);// (@"c:\test");
+            Process.Start(Datapath.AppDataFolder);// (@"c:\test");
         }
 
-        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start(@"https://GRBL-Plotter.de/?setlang=en");
+        }
+
+        public static DateTime GetLinkerTimestampUtc(System.Reflection.Assembly assembly)
+        {
+            var location = assembly.Location;
+            return GetLinkerTimestampUtc(location);
+        }
+
+        public static DateTime GetLinkerTimestampUtc(string filePath)
+        {
+            const int peHeaderOffset = 60;
+            const int linkerTimestampOffset = 8;
+            var bytes = new byte[2048];
+
+            using (var file = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            {
+                file.Read(bytes, 0, bytes.Length);
+            }
+
+            var headerPos = BitConverter.ToInt32(bytes, peHeaderOffset);
+            var secondsSince1970 = BitConverter.ToInt32(bytes, headerPos + linkerTimestampOffset);
+            var dt = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            return dt.AddSeconds(secondsSince1970);
         }
     }
 }

@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,14 +18,15 @@
 */
 /*
  * 2020-12-07 new https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.backgroundworker?view=net-5.0
+ * 2021-07-26 code clean up / code quality
 */
 
 using System.ComponentModel;
-using System.Drawing.Drawing2D;
-using System.Threading;
 using System.Windows.Forms;
 
-namespace GRBL_Plotter
+//#pragma warning disable CA1303	// Do not pass literals as localized parameters
+
+namespace GrblPlotter
 {
     public class ImportWorker : System.Windows.Forms.Form
     {
@@ -35,89 +36,96 @@ namespace GRBL_Plotter
         private System.Windows.Forms.Label resultLabel;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
 
-        MainForm mainForm = null;
+        //     MainForm mainForm = null;
 
-        public ImportWorker(MainForm handle = null)
-        {   InitializeComponent();
+        public ImportWorker()//MainForm handle = null)
+        {
+            InitializeComponent();
             InitializeBackgroundWorker();
             this.Icon = Properties.Resources.Icon;
-            mainForm = handle;
+            //        mainForm = handle;
         }
 
-        private Graphic.SourceTypes type;
+        private Graphic.SourceType type;
         private string source = "";
-        public void SetImport(Graphic.SourceTypes itype, string isource)
-        {   type = itype;
+        public void SetImport(Graphic.SourceType itype, string isource)
+        {
+            type = itype;
             source = isource;
             backgroundWorker1.RunWorkerAsync();
         }
 
         // Set up the BackgroundWorker object by attaching event handlers. 
         private void InitializeBackgroundWorker()
-        {   backgroundWorker1.DoWork +=             new DoWorkEventHandler(backgroundWorker1_DoWork);
-            backgroundWorker1.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorker1_RunWorkerCompleted);
-            backgroundWorker1.ProgressChanged +=    new ProgressChangedEventHandler(backgroundWorker1_ProgressChanged);
+        {
+            backgroundWorker1.DoWork += new DoWorkEventHandler(BackgroundWorker1_DoWork);
+            backgroundWorker1.RunWorkerCompleted += new RunWorkerCompletedEventHandler(BackgroundWorker1_RunWorkerCompleted);
+            backgroundWorker1.ProgressChanged += new ProgressChangedEventHandler(BackgroundWorker1_ProgressChanged);
         }
 
-        private void cancelAsyncButton_Click(System.Object sender, System.EventArgs e)
+        private void CancelAsyncButton_Click(System.Object sender, System.EventArgs e)
         {
             // Cancel the asynchronous operation.
             this.backgroundWorker1.CancelAsync();
         }
 
         // This event handler is where the actual, potentially time-consuming work is done.
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {   BackgroundWorker worker = sender as BackgroundWorker;
+        private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
             switch (type)
-            {   case Graphic.SourceTypes.SVG:
-                {   GCodeFromSVG.ConvertFromFile(source, worker, e); break;}
-                case Graphic.SourceTypes.DXF:
-                {   GCodeFromDXF.ConvertFromFile(source, worker, e); break;}
-                case Graphic.SourceTypes.HPGL:
-                {   GCodeFromHPGL.ConvertFromFile(source, worker, e); break;}
-                case Graphic.SourceTypes.CSV:
-                {   GCodeFromCSV.ConvertFromFile(source, worker, e); break;}
-                case Graphic.SourceTypes.Drill:
-                {   GCodeFromDrill.ConvertFromFile(source, worker, e); break;}
-                case Graphic.SourceTypes.Gerber:
-                {   GCodeFromGerber.ConvertFromFile(source, worker, e); break;}
-            }    
-//            VisuGCode.xyzSize.addDimensionXY(Graphic.actualDimension);
-//            VisuGCode.calcDrawingArea();                                // calc ruler dimension
+            {
+                case Graphic.SourceType.SVG:
+                    { GCodeFromSvg.ConvertFromFile(source, worker, e); break; }
+                case Graphic.SourceType.DXF:
+                    { GCodeFromDxf.ConvertFromFile(source, worker, e); break; }
+                case Graphic.SourceType.HPGL:
+                    { GCodeFromHpgl.ConvertFromFile(source, worker, e); break; }
+                case Graphic.SourceType.CSV:
+                    { GCodeFromCsv.ConvertFromFile(source, worker, e); break; }
+                case Graphic.SourceType.Drill:
+                    { GCodeFromDrill.ConvertFromFile(source, worker, e); break; }
+                case Graphic.SourceType.Gerber:
+                    { GCodeFromGerber.ConvertFromFile(source, worker, e); break; }
+            }
+            //            VisuGCode.xyzSize.addDimensionXY(Graphic.actualDimension);
+            //            VisuGCode.calcDrawingArea();                                // calc ruler dimension
         }
 
         // This event handler deals with the results of the background operation.
-        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             // First, handle the case where an exception was thrown.
             if (e.Error != null)
-            {   MessageBox.Show(e.Error.Message); }
+            { MessageBox.Show(e.Error.Message); }
             else if (e.Cancelled)
-            {   resultLabel.Text = "Canceled";  }
+            { resultLabel.Text = "Canceled"; }
             else
-            {   resultLabel.Text = "Finished";  }
+            { resultLabel.Text = "Finished"; }
             /* preview background path */
- //           Thread.Sleep(2000);
+            //           Thread.Sleep(2000);
             this.Close();
         }
 
         // This event handler updates the progress bar.
-        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {   int p1 = e.ProgressPercentage;
-            if (p1 < 0) {p1 = 0;}
-            if (p1 > 100) {p1 = 100;}            
-            
+        private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+       /*     int p1 = e.ProgressPercentage;
+            if (p1 < 0) { p1 = 0; }
+            if (p1 > 100) { p1 = 100; }*/
+
             this.progressBar1.Value = e.ProgressPercentage;
             if (e.UserState is MyUserState)
-            {   MyUserState state = e.UserState as MyUserState;
-                int p2 = state.Value;
-                if (p2 < 0) {p2 = 0;}
-                if (p2 > 100) {p2 = 100;}
+            {
+                MyUserState state = e.UserState as MyUserState;
+      /*          int p2 = state.Value;
+                if (p2 < 0) { p2 = 0; }
+                if (p2 > 100) { p2 = 100; }*/
                 this.progressBar2.Value = state.Value;
                 this.resultLabel.Text = state.Content;
 
-      //          if (state.Content == "show")
-     //               mainForm.updatePicturebox();                                  // resfresh view
+                //          if (state.Content == "show")
+                //               mainForm.updatePicturebox();                                  // resfresh view
             }
         }
 
@@ -144,7 +152,7 @@ namespace GRBL_Plotter
             this.cancelAsyncButton.Size = new System.Drawing.Size(256, 23);
             this.cancelAsyncButton.TabIndex = 2;
             this.cancelAsyncButton.Text = "Cancel time consuming process";
-            this.cancelAsyncButton.Click += new System.EventHandler(this.cancelAsyncButton_Click);
+            this.cancelAsyncButton.Click += new System.EventHandler(this.CancelAsyncButton_Click);
             // 
             // resultLabel
             // 

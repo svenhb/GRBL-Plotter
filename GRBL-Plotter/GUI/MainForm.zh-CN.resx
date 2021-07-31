@@ -178,7 +178,7 @@
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="cBSendJogStop.Text" xml:space="preserve">
-    <value>停止向上移动鼠标</value>
+    <value>松开鼠标停止Jog运动</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnOverrideDoor.ToolTip" xml:space="preserve">
@@ -793,33 +793,6 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
   <data name="lblStatusSpeed.Text" xml:space="preserve">
     <value>当前速度</value>
     <comment>groupBox_Override3</comment>
-  </data>
-  <data name="englishToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>英语</value>
-  </data>
-  <data name="deutschToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>德语</value>
-  </data>
-  <data name="pусскийToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>俄语</value>
-  </data>
-  <data name="toolStripMenuItem4.ToolTipText" xml:space="preserve">
-    <value>西班牙文</value>
-  </data>
-  <data name="portuguêsToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>葡萄牙语</value>
-  </data>
-  <data name="franzToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>法文</value>
-  </data>
-  <data name="chinesischToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>中文</value>
-  </data>
-  <data name="arabischToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>阿拉伯</value>
-  </data>
-  <data name="japanischToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>日本</value>
   </data>
   <data name="btnStreamCheck.ToolTip" xml:space="preserve">
     <value>这将切换Grbl的gcode解析器以获取所有传入的块并完全对其进行处理，就像在正常操作中一样，但是它不会移动任何轴，忽略停顿并关闭主轴和冷却液。 这旨在为用户提供一种使用Grbl的解析器检查其新G代码程序的运行状况并监视任何错误的方法（并检查是否违反了软限制，如果已启用）。</value>

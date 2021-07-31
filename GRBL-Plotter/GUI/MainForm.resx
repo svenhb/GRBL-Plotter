@@ -3784,7 +3784,13 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>261, 22</value>
   </data>
   <data name="cmsPicBoxReverseSelectedPath.Text" xml:space="preserve">
-    <value>Reverse / Rotate selected path</value>
+    <value>Reverse selected path</value>
+  </data>
+  <data name="cmsPicBoxRotateSelectedPath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>261, 22</value>
+  </data>
+  <data name="cmsPicBoxRotateSelectedPath.Text" xml:space="preserve">
+    <value>Rotate selected path</value>
   </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
     <value>258, 6</value>
@@ -3808,7 +3814,7 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>Copy content to Clipboard</value>
   </data>
   <data name="cmsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>262, 386</value>
+    <value>262, 408</value>
   </data>
   <data name="&gt;&gt;cmsPictureBox.Name" xml:space="preserve">
     <value>cmsPictureBox</value>
@@ -5813,7 +5819,14 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>English</value>
   </data>
   <data name="englishToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>English</value>
+    <value>الإنجليزية
+Englisch
+Inglés
+Anglais
+英語
+Inglês
+английский
+英语</value>
   </data>
   <data name="deutschToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>128, 22</value>
@@ -5822,7 +5835,15 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>Deutsch</value>
   </data>
   <data name="deutschToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>German</value>
+    <value>ألمانية
+Deutsch
+alemán
+allemand
+ドイツ人
+alemão
+Немецкий
+德语
+</value>
   </data>
   <data name="pусскийToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>128, 22</value>
@@ -5831,7 +5852,15 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>Pусский</value>
   </data>
   <data name="pусскийToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Russian</value>
+    <value>الروسية
+Russisch
+ruso
+russe
+ロシア
+russo
+русский
+俄语
+</value>
   </data>
   <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
     <value>128, 22</value>
@@ -5840,7 +5869,15 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>Español</value>
   </data>
   <data name="toolStripMenuItem4.ToolTipText" xml:space="preserve">
-    <value>Spanish</value>
+    <value>الأسبانية
+Spanisch
+Español
+Espanol
+スペイン語
+espanhol
+испанский
+西班牙文
+</value>
   </data>
   <data name="portuguêsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>128, 22</value>
@@ -5849,7 +5886,15 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>Português</value>
   </data>
   <data name="portuguêsToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Portuguese</value>
+    <value>البرتغالية
+Portugiesisch
+portugués
+Portugais
+ポルトガル語
+Português
+португальский
+葡萄牙语
+</value>
   </data>
   <data name="franzToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>128, 22</value>
@@ -5858,7 +5903,14 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>Francés</value>
   </data>
   <data name="franzToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>French</value>
+    <value>الفرنسية
+Französisch
+francés
+français
+フランス語
+francês
+французкийязык
+法文</value>
   </data>
   <data name="chinesischToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>128, 22</value>
@@ -5867,7 +5919,14 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>中国</value>
   </data>
   <data name="chinesischToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Chinese</value>
+    <value>صينى
+Chinesisch
+chino
+chinois
+中国語
+chinês
+Китайский
+中文</value>
   </data>
   <data name="arabischToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>128, 22</value>
@@ -5876,7 +5935,14 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>العربية</value>
   </data>
   <data name="arabischToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Arabic</value>
+    <value>عربى
+Arabisch
+Arábica
+arabe
+アラビア語
+árabe
+арабский
+阿拉伯</value>
   </data>
   <data name="japanischToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>128, 22</value>
@@ -5885,7 +5951,14 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>日本の</value>
   </data>
   <data name="japanischToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Japanese</value>
+    <value>اليابانية
+japanisch
+japonés
+Japonais
+日本人
+japonês
+японский язык
+日本</value>
   </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 22</value>
@@ -6023,6 +6096,9 @@ Langue
   <data name="rotate180ToolStripMenuItem.Text" xml:space="preserve">
     <value>Rotate 180°</value>
   </data>
+  <data name="toolStrip_tb_rotate.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="toolStrip_tb_rotate.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
   </data>
@@ -6038,6 +6114,9 @@ Langue
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
     <value>229, 6</value>
   </data>
+  <data name="toolStrip_tb_XY_scale.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="toolStrip_tb_XY_scale.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
   </data>
@@ -6049,6 +6128,9 @@ Langue
   </data>
   <data name="sToolStripMenuItem.Text" xml:space="preserve">
     <value>Scale XY by ...%</value>
+  </data>
+  <data name="toolStrip_tb_XY_X_scale.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
   </data>
   <data name="toolStrip_tb_XY_X_scale.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
@@ -6062,6 +6144,9 @@ Langue
   <data name="skalierenXYToolStripMenuItem.Text" xml:space="preserve">
     <value>Scale XY set X=... units</value>
   </data>
+  <data name="toolStrip_tb_XY_Y_scale.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="toolStrip_tb_XY_Y_scale.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
   </data>
@@ -6073,6 +6158,9 @@ Langue
   </data>
   <data name="skalierenXYUmXUnitsZuErreichenToolStripMenuItem.Text" xml:space="preserve">
     <value>Scale XY set Y=... units</value>
+  </data>
+  <data name="toolStrip_tb_X_scale.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
   </data>
   <data name="toolStrip_tb_X_scale.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
@@ -6089,6 +6177,9 @@ Langue
   <data name="skaliereXUmToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>G2 / G3 are not supported</value>
   </data>
+  <data name="toolStrip_tb_X_X_scale.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="toolStrip_tb_X_X_scale.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
   </data>
@@ -6104,6 +6195,9 @@ Langue
   <data name="skaliereAufXUnitsToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>G2 / G3 are not supported</value>
   </data>
+  <data name="toolStrip_tb_Y_scale.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="toolStrip_tb_Y_scale.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
   </data>
@@ -6118,6 +6212,9 @@ Langue
   </data>
   <data name="skaliereYUmToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>G2 / G3 are not supported</value>
+  </data>
+  <data name="toolStrip_tb_Y_Y_scale.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
   </data>
   <data name="toolStrip_tb_Y_Y_scale.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
@@ -6137,6 +6234,9 @@ Langue
   <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
     <value>229, 6</value>
   </data>
+  <data name="toolStrip_tb_rotary_diameter.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="toolStrip_tb_rotary_diameter.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
   </data>
@@ -6152,6 +6252,9 @@ Langue
   <data name="rotaryDimaeterToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Set Diameter of part for rotary axis</value>
   </data>
+  <data name="toolStrip_tb_X_A_scale.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="toolStrip_tb_X_A_scale.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
   </data>
@@ -6166,6 +6269,9 @@ Langue
   </data>
   <data name="skaliereXAufDrehachseToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>G2 / G3 are not supported</value>
+  </data>
+  <data name="toolStrip_tb_Y_A_scale.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
   </data>
   <data name="toolStrip_tb_Y_A_scale.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
@@ -6184,6 +6290,9 @@ Langue
   </data>
   <data name="toolStripSeparator15.Size" type="System.Drawing.Size, System.Drawing">
     <value>229, 6</value>
+  </data>
+  <data name="toolStrip_tBRadiusCompValue.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
   </data>
   <data name="toolStrip_tBRadiusCompValue.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
@@ -6299,6 +6408,9 @@ Langue
   </data>
   <data name="toolStripMenuItem1.ToolTipText" xml:space="preserve">
     <value>Show camera picture</value>
+  </data>
+  <data name="toolStrip_tb_StreamLine.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
   </data>
   <data name="toolStrip_tb_StreamLine.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
@@ -6895,6 +7007,12 @@ Langue
     <value>cmsPicBoxReverseSelectedPath</value>
   </data>
   <data name="&gt;&gt;cmsPicBoxReverseSelectedPath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmsPicBoxRotateSelectedPath.Name" xml:space="preserve">
+    <value>cmsPicBoxRotateSelectedPath</value>
+  </data>
+  <data name="&gt;&gt;cmsPicBoxRotateSelectedPath.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator10.Name" xml:space="preserve">

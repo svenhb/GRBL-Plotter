@@ -16,7 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace GRBL_Plotter
+namespace GrblPlotter
 {
     partial class AboutForm
     {
@@ -72,7 +72,7 @@ namespace GRBL_Plotter
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Black;
-            this.pictureBox1.Image = global::GRBL_Plotter.Properties.Resources.modell;
+            this.pictureBox1.Image = global::GrblPlotter.Properties.Resources.modell;
             resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
@@ -88,7 +88,7 @@ namespace GRBL_Plotter
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.TabStop = true;
             this.toolTip1.SetToolTip(this.linkLabel1, resources.GetString("linkLabel1.ToolTip"));
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // label3
             // 
@@ -105,7 +105,7 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.button2, "button2");
             this.button2.Name = "button2";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // linkLabel2
             // 
@@ -113,7 +113,7 @@ namespace GRBL_Plotter
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.TabStop = true;
             this.toolTip1.SetToolTip(this.linkLabel2, resources.GetString("linkLabel2.ToolTip"));
-            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel2_LinkClicked);
             // 
             // label4
             // 
@@ -125,7 +125,7 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.linkLabel3, "linkLabel3");
             this.linkLabel3.Name = "linkLabel3";
             this.linkLabel3.TabStop = true;
-            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
+            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel3_LinkClicked);
             // 
             // AboutForm
             // 

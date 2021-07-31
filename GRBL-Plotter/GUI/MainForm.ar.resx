@@ -851,33 +851,6 @@
     <value>لغة</value>
     <comment>Menu117</comment>
   </data>
-  <data name="englishToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>الإنجليزية</value>
-  </data>
-  <data name="deutschToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>ألمانية</value>
-  </data>
-  <data name="pусскийToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>الروسية</value>
-  </data>
-  <data name="toolStripMenuItem4.ToolTipText" xml:space="preserve">
-    <value>الأسبانية</value>
-  </data>
-  <data name="portuguêsToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>البرتغالية</value>
-  </data>
-  <data name="franzToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>الفرنسية</value>
-  </data>
-  <data name="chinesischToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>صينى</value>
-  </data>
-  <data name="arabischToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>عربى</value>
-  </data>
-  <data name="japanischToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>اليابانية</value>
-  </data>
   <data name="btnStreamCheck.ToolTip" xml:space="preserve">
     <value>يعمل هذا على تبديل المحلل اللغوي الخاص بـ Grbl لأخذ جميع الكتل الواردة ومعالجتها تمامًا ، كما هو الحال في التشغيل العادي ، لكنه لا يحرك أي من المحاور ، ويتجاهل المساكن ، ويفصل الطاقة عن المغزل والمبرد. الغرض من ذلك هو توفير وسيلة للمستخدم للتحقق من كيفية حصول برنامج G-code الجديد على محلل Grbl ومراقبته عن أي أخطاء (والتحقق من انتهاكات الحد المسموح به ، إذا كان ممكّنًا).</value>
   </data>

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,45 +21,52 @@
  * 2020-05-01 add setDimensionArc
  * 2020-07-26 fix setDimensionCircle line 371
  * 2020-09-30 Preset variable GMIZ and GMAZ with Properties.Settings.Default.importGCZUp and -Down
+ * 2021-07-27 code clean up / code quality
 */
 
+using GrblPlotter.Resources;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 using System.Globalization;
 using System.Threading;
-using System.Resources;
-using System.Reflection;
-using GRBL_Plotter.Resources;
-using Microsoft.Win32;
 
-namespace GRBL_Plotter
+//#pragma warning disable CA1304
+//#pragma warning disable CA1305
+
+namespace GrblPlotter
 {
+    [Flags]
+    public enum LogEnables { None = 0, Level1 = 1, Level2 = 2, Level3 = 4, Level4 = 8, Detailed = 16, Coordinates = 32, Properties = 64, Sort = 128, GroupAllGraphics = 256, ClipCode = 512, PathModification = 1024 }
 
-    public enum LogEnable { Level1=1, Level2=2, Level3=4, Level4=8, Detailed=16, Coordinates=32, Properties=64, Sort = 128, GroupAllGraphics = 256, ClipCode = 512, PathModification = 1024 }
-
-    public static class datapath
-    {
-        public const string fonts    = "data\\fonts";
-        public const string tools    = "\\data\\tools";
-        public const string scripts  = "\\data\\scripts";
-        public const string usecases = "\\data\\usecases";
-        public const string hotkeys  = "\\data\\hotkeys.xml";
-        public const string examples = "\\data\\examples";
-        public const string extension= "\\data\\extensions";
-        public const string buttons  = "\\data\\buttons";
-        public const string jogpath = "\\data\\jogpaths";
+    public static class Datapath
+    {   // https://stackoverflow.com/questions/66430190/how-do-i-get-access-to-c-program-files-in-c-sharp
+        public static string Application = System.Windows.Forms.Application.StartupPath;
+        public static string AppDataFolder = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.CommonAppDataPath);   // without vers.Nr
+        public static string Fonts {get => AppDataFolder + "\\data\\fonts";}
+        public static string Tools {get => AppDataFolder + "\\data\\tools";}
+        public static string Scripts {get => AppDataFolder + "\\data\\scripts";}
+        public static string Usecases {get => AppDataFolder + "\\data\\usecases";}
+        public static string Hotkeys {get => AppDataFolder + "\\data\\hotkeys.xml";}
+        public static string Examples {get => AppDataFolder + "\\data\\examples";}
+        public static string Extension {get => AppDataFolder + "\\data\\extensions";}
+        public static string Buttons {get => AppDataFolder + "\\data\\buttons";}
+        public static string Jogpath {get => AppDataFolder + "\\data\\jogpaths";}
+        public static string RecentFile {get => AppDataFolder + "\\Recent.txt";}
     }
 
-    public static class gui
+    public static class GuiVariables
     {
-        public static Dictionary<string, double> variable = new Dictionary<string, double>();
-        public static string insertVariable(string line)//, Dictionary<string, double> variable)
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
+        internal static Dictionary<string, double> variable = new Dictionary<string, double>();
+        public static string InsertVariable(string line)//, Dictionary<string, double> variable)
         {
-            if (line.Length > 5)        // min length needed to be replaceable: x#TOLX
+            if (!string.IsNullOrEmpty(line) && line.Length > 5)        // min length needed to be replaceable: x#TOLX
             {
-                int pos = 0, posold = 0;
+                int pos, posold = 0;
                 double myvalue;
                 string myvar, mykey;
                 do
@@ -67,25 +74,26 @@ namespace GRBL_Plotter
                     pos = line.IndexOf('#', posold);
                     if (pos > 0)
                     {
-                        myvalue = 0;
+                        //        myvalue = 0;
                         myvar = line.Substring(pos, 5);
                         mykey = myvar.Substring(1);
                         if (variable.ContainsKey(mykey))
-                        {   myvalue = variable[mykey];
+                        {
+                            myvalue = variable[mykey];
                             line = line.Replace(myvar, string.Format("{0:0.000}", myvalue));
                         }
-/* if variable not found, perhaps it will be processed in ControlSerialForm 
-                        else { line += " (" + mykey + " not found)"; }
-                        line = line.Replace(myvar, string.Format("{0:0.000}", myvalue));
-                        //                  addToLog("replace "+ mykey+" by "+ myvalue.ToString());
-                        */
+                        /* if variable not found, perhaps it will be processed in ControlSerialForm 
+                                                else { line += " (" + mykey + " not found)"; }
+                                                line = line.Replace(myvar, string.Format("{0:0.000}", myvalue));
+                                                //                  addToLog("replace "+ mykey+" by "+ myvalue.ToString());
+                                                */
                     }
                     posold = pos + 5;
                 } while (pos > 0);
             }
             return line.Replace(',', '.');
         }
-        public static void resetVariables()	// used in MainForm-sendCommand-376 and MainFormLoadFile-setGcodeVariables 1617
+        public static void ResetVariables()	// used in MainForm-sendCommand-376 and MainFormLoadFile-setGcodeVariables 1617
         {
             variable.Clear();
             variable.Add("GMIX", 0.0); // Graphic Minimum X
@@ -96,14 +104,14 @@ namespace GRBL_Plotter
             variable.Add("GCTY", 0.0); // Graphic Center Y
             variable.Add("GMIZ", (double)Properties.Settings.Default.importGCZDown); 	// Graphic Minimum Z
             variable.Add("GMAZ", (double)Properties.Settings.Default.importGCZUp); 		// Graphic Maximum Z
-            variable.Add("GCTZ", (double)(Properties.Settings.Default.importGCZDown + Properties.Settings.Default.importGCZUp)/2); // Graphic Center Z
-            variable.Add("GMIS", (double)Properties.Settings.Default.importGCPWMDown); 	
+            variable.Add("GCTZ", (double)(Properties.Settings.Default.importGCZDown + Properties.Settings.Default.importGCZUp) / 2); // Graphic Center Z
+            variable.Add("GMIS", (double)Properties.Settings.Default.importGCPWMDown);
             variable.Add("GMAS", (double)Properties.Settings.Default.importGCPWMUp);
             variable.Add("GZES", (double)Properties.Settings.Default.importGCPWMZero);
-            variable.Add("GCTS", (double)(Properties.Settings.Default.importGCPWMDown + Properties.Settings.Default.importGCPWMUp)/2); 
+            variable.Add("GCTS", (double)(Properties.Settings.Default.importGCPWMDown + Properties.Settings.Default.importGCPWMUp) / 2);
         }
 
-        public static void writeSettingsToRegistry()
+        public static void WriteSettingsToRegistry()
         {
             const string reg_key0 = "HKEY_CURRENT_USER\\SOFTWARE\\GRBL-Plotter";
             const string reg_key = "HKEY_CURRENT_USER\\SOFTWARE\\GRBL-Plotter\\GCodeSettings";
@@ -120,80 +128,88 @@ namespace GRBL_Plotter
                 Registry.SetValue(reg_key, "GcodeFooter", Properties.Settings.Default.importGCFooter);
                 Registry.SetValue(reg_key0, "Update", 0, RegistryValueKind.DWord);		// will be checked in MainForm-MainTimer_Tick
             }
-            catch { };//            Logger.Error(er, "writeSettingsToRegistry"); }
+            catch (Exception Ex) { Logger.Error(Ex, "WriteSettingsToRegistry "); };
         }
-        public static void writePositionToRegistry()
+        public static void WritePositionToRegistry()
         {
-//            const string reg_key0 = "HKEY_CURRENT_USER\\SOFTWARE\\GRBL-Plotter";
+            //            const string reg_key0 = "HKEY_CURRENT_USER\\SOFTWARE\\GRBL-Plotter";
             const string reg_key = "HKEY_CURRENT_USER\\SOFTWARE\\GRBL-Plotter\\Position";
             try
             {
-                Registry.SetValue(reg_key, "Work_X", grbl.posWork.X);
-                Registry.SetValue(reg_key, "Work_Y", grbl.posWork.Y);
-                Registry.SetValue(reg_key, "Work_Z", grbl.posWork.Z);
-                Registry.SetValue(reg_key, "Work_A", grbl.posWork.A);
-                Registry.SetValue(reg_key, "Work_B", grbl.posWork.B);
-                Registry.SetValue(reg_key, "Work_C", grbl.posWork.C);
-				
-                Registry.SetValue(reg_key, "Machine_X", grbl.posMachine.X);
-                Registry.SetValue(reg_key, "Machine_Y", grbl.posMachine.Y);
-                Registry.SetValue(reg_key, "Machine_Z", grbl.posMachine.Z);
-                Registry.SetValue(reg_key, "Machine_A", grbl.posMachine.A);
-                Registry.SetValue(reg_key, "Machine_B", grbl.posMachine.B);
-                Registry.SetValue(reg_key, "Machine_C", grbl.posMachine.C);
-//                Registry.SetValue(reg_key0, "Update", 0, RegistryValueKind.DWord);
+                Registry.SetValue(reg_key, "Work_X", Grbl.posWork.X);
+                Registry.SetValue(reg_key, "Work_Y", Grbl.posWork.Y);
+                Registry.SetValue(reg_key, "Work_Z", Grbl.posWork.Z);
+                Registry.SetValue(reg_key, "Work_A", Grbl.posWork.A);
+                Registry.SetValue(reg_key, "Work_B", Grbl.posWork.B);
+                Registry.SetValue(reg_key, "Work_C", Grbl.posWork.C);
+
+                Registry.SetValue(reg_key, "Machine_X", Grbl.posMachine.X);
+                Registry.SetValue(reg_key, "Machine_Y", Grbl.posMachine.Y);
+                Registry.SetValue(reg_key, "Machine_Z", Grbl.posMachine.Z);
+                Registry.SetValue(reg_key, "Machine_A", Grbl.posMachine.A);
+                Registry.SetValue(reg_key, "Machine_B", Grbl.posMachine.B);
+                Registry.SetValue(reg_key, "Machine_C", Grbl.posMachine.C);
+                //                Registry.SetValue(reg_key0, "Update", 0, RegistryValueKind.DWord);
             }
-            catch { };//            Logger.Error(er, "writeSettingsToRegistry"); }
-        }				
+            catch (Exception Ex) { Logger.Error(Ex, "WriteSettingsToRegistry "); };
+        }
     }
 
-    public struct xyzPoint
+    internal struct XyzPoint
     {
         public double X, Y, Z, A, B, C;
-        public xyzPoint(xyPoint xy, double z, double a = 0)
+        public XyzPoint(XyPoint xy, double z)
+        { X = xy.X; Y = xy.Y; Z = z; A = 0; B = 0; C = 0; }
+        public XyzPoint(XyPoint xy, double z, double a)
         { X = xy.X; Y = xy.Y; Z = z; A = a; B = 0; C = 0; }
-        public xyzPoint(double x, double y, double z, double a = 0)
+        public XyzPoint(double x, double y, double z)
+        { X = x; Y = y; Z = z; A = 0; B = 0; C = 0; }
+        public XyzPoint(double x, double y, double z, double a)
         { X = x; Y = y; Z = z; A = a; B = 0; C = 0; }
-        public xyzPoint(double x, double y, double z, double a, double b, double c)
+        public XyzPoint(double x, double y, double z, double a, double b, double c)
         { X = x; Y = y; Z = z; A = a; B = b; C = c; }
         // Overload + operator 
-        public static xyzPoint operator +(xyzPoint b, xyzPoint c)
+        public static XyzPoint operator +(XyzPoint b, XyzPoint c)
         {
-            xyzPoint a = new xyzPoint();
-            a.X = b.X + c.X;
-            a.Y = b.Y + c.Y;
-            a.Z = b.Z + c.Z;
-            a.A = b.A + c.A;
-            a.B = b.B + c.B;
-            a.C = b.C + c.C;
+            XyzPoint a = new XyzPoint
+            {
+                X = b.X + c.X,
+                Y = b.Y + c.Y,
+                Z = b.Z + c.Z,
+                A = b.A + c.A,
+                B = b.B + c.B,
+                C = b.C + c.C
+            };
             return a;
         }
-        public static xyzPoint operator -(xyzPoint b, xyzPoint c)
+        public static XyzPoint operator -(XyzPoint b, XyzPoint c)
         {
-            xyzPoint a = new xyzPoint();
-            a.X = b.X - c.X;
-            a.Y = b.Y - c.Y;
-            a.Z = b.Z - c.Z;
-            a.A = b.A - c.A;
-            a.B = b.B - c.B;
-            a.C = b.C - c.C;
+            XyzPoint a = new XyzPoint
+            {
+                X = b.X - c.X,
+                Y = b.Y - c.Y,
+                Z = b.Z - c.Z,
+                A = b.A - c.A,
+                B = b.B - c.B,
+                C = b.C - c.C
+            };
             return a;
         }
-        public static bool AlmostEqual(xyzPoint a, xyzPoint b)
+        public static bool AlmostEqual(XyzPoint a, XyzPoint b)
         {
-       //     return (Math.Abs(a.X - b.X) <= grbl.resolution) && (Math.Abs(a.Y - b.Y) <= grbl.resolution) && (Math.Abs(a.Z - b.Z) <= grbl.resolution);
-            return (gcode.isEqual(a.X, b.X) && gcode.isEqual(a.Y, b.Y) && gcode.isEqual(a.Z, b.Z));
+            //     return (Math.Abs(a.X - b.X) <= grbl.resolution) && (Math.Abs(a.Y - b.Y) <= grbl.resolution) && (Math.Abs(a.Z - b.Z) <= grbl.resolution);
+            return (Gcode.IsEqual(a.X, b.X) && Gcode.IsEqual(a.Y, b.Y) && Gcode.IsEqual(a.Z, b.Z));
         }
 
 
-        public string Print(bool singleLines, bool full=false)
+        public string Print(bool singleLines, bool full)
         {
             bool ctrl4thUse = Properties.Settings.Default.ctrl4thUse;
             string ctrl4thName = Properties.Settings.Default.ctrl4thName;
 
             if (!full)
             {
-                if (ctrl4thUse || grbl.axisA)
+                if (ctrl4thUse || Grbl.axisA)
                     if (singleLines)
                         return string.Format("X={0,9:0.000}\rY={1,9:0.000}\rZ={2,9:0.000}\r{3}={4,9:0.000}", X, Y, Z, ctrl4thName, A);
                     else
@@ -201,9 +217,9 @@ namespace GRBL_Plotter
 
                 else
                     if (singleLines)
-                        return string.Format("X={0,9:0.000}\rY={1,9:0.000}\rZ={2,9:0.000}", X, Y, Z);
-                    else
-                        return string.Format("X={0,9:0.000} Y={1,9:0.000} Z={2,9:0.000}", X, Y, Z);
+                    return string.Format("X={0,9:0.000}\rY={1,9:0.000}\rZ={2,9:0.000}", X, Y, Z);
+                else
+                    return string.Format("X={0,9:0.000} Y={1,9:0.000} Z={2,9:0.000}", X, Y, Z);
             }
             else
             {
@@ -215,27 +231,27 @@ namespace GRBL_Plotter
         }
 
     };
-    public struct xyPoint
+    internal struct XyPoint
     {
         public double X, Y;
-        public xyPoint(double x, double y)
+        public XyPoint(double x, double y)
         { X = x; Y = y; }
-        public xyPoint(System.Windows.Point xy)
+        public XyPoint(System.Windows.Point xy)
         { X = xy.X; Y = xy.Y; }
-        public xyPoint(xyPoint tmp)
+        public XyPoint(XyPoint tmp)
         { X = tmp.X; Y = tmp.Y; }
-        public xyPoint(Point tmp)
+        public XyPoint(Point tmp)
         { X = tmp.X; Y = tmp.Y; }
-        public xyPoint(xyzPoint tmp)
+        public XyPoint(XyzPoint tmp)
         { X = tmp.X; Y = tmp.Y; }
-        public static explicit operator xyPoint(Point tmp)
-        { return new xyPoint(tmp); }
-        public static explicit operator xyPoint(System.Windows.Point tmp)
-        { return new xyPoint(tmp); }
-        public static explicit operator xyPoint(xyzPoint tmp)
-        { return new xyPoint(tmp); }
-        public static explicit operator xyPoint(xyArcPoint tmp)
-        { return new xyPoint(tmp.X,tmp.Y); }
+        public static explicit operator XyPoint(Point tmp)
+        { return new XyPoint(tmp); }
+        public static explicit operator XyPoint(System.Windows.Point tmp)
+        { return new XyPoint(tmp); }
+        public static explicit operator XyPoint(XyzPoint tmp)
+        { return new XyPoint(tmp); }
+        public static explicit operator XyPoint(XyArcPoint tmp)
+        { return new XyPoint(tmp.X, tmp.Y); }
 
         public System.Windows.Point ToPointDouble()
         { return new System.Windows.Point(X, Y); }
@@ -244,13 +260,13 @@ namespace GRBL_Plotter
 
         //       public static explicit operator System.Windows.Point(xyPoint tmp) => new System.Windows.Point(tmp.X,tmp.Y);
 
-        public double DistanceTo(xyPoint anotherPoint)
+        public double DistanceTo(XyPoint anotherPoint)
         {
             double distanceCodeX = X - anotherPoint.X;
             double distanceCodeY = Y - anotherPoint.Y;
             return Math.Sqrt(distanceCodeX * distanceCodeX + distanceCodeY * distanceCodeY);
         }
-        public double AngleTo(xyPoint anotherPoint)
+        public double AngleTo(XyPoint anotherPoint)
         {
             double distanceX = anotherPoint.X - X;
             double distanceY = anotherPoint.Y - Y;
@@ -263,121 +279,140 @@ namespace GRBL_Plotter
             if (distanceY > 0) { angle = -angle; }
             return angle;
         }
-        public xyPoint Round(int decimals = 4)
-        {   X = Math.Round(X, decimals);
+        public XyPoint Round()
+        {
+            int decimals = 4;
+            X = Math.Round(X, decimals);
             Y = Math.Round(Y, decimals);
             return this;
         }
 
-        public static xyPoint Round(xyPoint tmpIn, int decimals = 4)
-        {   xyPoint tmpOut = new xyPoint();
-            tmpOut.X = Math.Round(tmpIn.X,decimals);
-            tmpOut.Y = Math.Round(tmpIn.Y, decimals);
-            return tmpOut;
-        }
+        /*    public static xyPoint Round(xyPoint tmpIn, int decimals = 4)
+            {   xyPoint tmpOut = new xyPoint();
+                tmpOut.X = Math.Round(tmpIn.X,decimals);
+                tmpOut.Y = Math.Round(tmpIn.Y, decimals);
+                return tmpOut;
+            }*/
         // Overload + operator 
-        public static xyPoint operator +(xyPoint b, xyPoint c)
-        {   xyPoint a = new xyPoint();
-            a.X = b.X + c.X;
-            a.Y = b.Y + c.Y;
+        public static XyPoint operator +(XyPoint b, XyPoint c)
+        {
+            XyPoint a = new XyPoint
+            {
+                X = b.X + c.X,
+                Y = b.Y + c.Y
+            };
             return a;
         }
         // Overload - operator 
-        public static xyPoint operator -(xyPoint b, xyPoint c)
+        public static XyPoint operator -(XyPoint b, XyPoint c)
         {
-            xyPoint a = new xyPoint();
-            a.X = b.X - c.X;
-            a.Y = b.Y - c.Y;
+            XyPoint a = new XyPoint
+            {
+                X = b.X - c.X,
+                Y = b.Y - c.Y
+            };
             return a;
         }
         // Overload * operator 
-        public static xyPoint operator *(xyPoint b, double c)
+        public static XyPoint operator *(XyPoint b, double c)
         {
-            xyPoint a = new xyPoint();
-            a.X = b.X * c;
-            a.Y = b.Y * c;
+            XyPoint a = new XyPoint
+            {
+                X = b.X * c,
+                Y = b.Y * c
+            };
             return a;
         }
         // Overload / operator 
-        public static xyPoint operator /(xyPoint b, double c)
+        public static XyPoint operator /(XyPoint b, double c)
         {
-            xyPoint a = new xyPoint();
-            a.X = b.X / c;
-            a.Y = b.Y / c;
+            XyPoint a = new XyPoint
+            {
+                X = b.X / c,
+                Y = b.Y / c
+            };
             return a;
         }
     };
-    public struct xyArcPoint
+    internal struct XyArcPoint
     {
         public double X, Y, CX, CY;
         public byte mode;
-        public xyArcPoint(double x, double y, double cx, double cy, byte m)
+        public XyArcPoint(double x, double y, double cx, double cy, byte m)
         {
             X = x; Y = y; CX = cx; CY = cy; mode = m;
         }
-        public xyArcPoint(xyPoint tmp)
+        public XyArcPoint(XyPoint tmp)
         {
             X = tmp.X; Y = tmp.Y; CX = 0; CY = 0; mode = 0;
         }
-        public xyArcPoint(Point tmp)
+        public XyArcPoint(Point tmp)
         {
             X = tmp.X; Y = tmp.Y; CX = 0; CY = 0; mode = 0;
         }
-        public xyArcPoint(xyzPoint tmp)
+        public XyArcPoint(XyzPoint tmp)
         {
             X = tmp.X; Y = tmp.Y; CX = 0; CY = 0; mode = 0;
         }
-        public xyArcPoint(xyzabcuvwPoint tmp)
+        public XyArcPoint(XyzabcuvwPoint tmp)
         {
             X = tmp.X; Y = tmp.Y; CX = 0; CY = 0; mode = 0;
         }
-        public static explicit operator xyArcPoint(Point tmp)
+        public static explicit operator XyArcPoint(Point tmp)
         {
-            return new xyArcPoint(tmp);
+            return new XyArcPoint(tmp);
         }
-        public static explicit operator xyArcPoint(xyzPoint tmp)
+        public static explicit operator XyArcPoint(XyzPoint tmp)
         {
-            return new xyArcPoint(tmp);
+            return new XyArcPoint(tmp);
         }
-        public static explicit operator xyArcPoint(xyPoint tmp)
+        public static explicit operator XyArcPoint(XyPoint tmp)
         {
-            return new xyArcPoint(tmp);
+            return new XyArcPoint(tmp);
         }
     }
+
     /// <summary>
     /// calculate overall dimensions of drawing
     /// </summary>
-    public class Dimensions
+    internal class Dimensions
     {
         public double minx, maxx, miny, maxy, minz, maxz;
         public double dimx, dimy, dimz;
 
         public Dimensions(Dimensions old)
-        {   Dimensions n = new Dimensions();
-            n.minx = old.minx; n.maxx = old.maxx; n.miny = old.miny; n.maxy = old.maxy;
-            n.minz = old.minz; n.maxz = old.maxz;
-            n.dimx = old.dimx; n.dimy = old.dimy; n.dimz = old.dimz;
+        {
+            minx = old.minx;
+            maxx = old.maxx;
+            miny = old.miny;
+            maxy = old.maxy;
+            minz = old.minz;
+            maxz = old.maxz;
+            dimx = old.dimx;
+            dimy = old.dimy;
+            dimz = old.dimz;
         }
 
         public Dimensions()
-        { resetDimension(); }
+        { ResetDimension(); }
 
-        public void addDimensionXY(Dimensions tmp)
-        {   setDimensionXY(tmp.minx, tmp.miny);
-            setDimensionXY(tmp.maxx, tmp.maxy);
-        }
-        public void setDimensionXYZ(double? x, double? y, double? z)
+        public void AddDimensionXY(Dimensions tmp)
         {
-            if (x != null) { setDimensionX((double)x); }
-            if (y != null) { setDimensionY((double)y); }
-            if (z != null) { setDimensionZ((double)z); }
+            SetDimensionXY(tmp.minx, tmp.miny);
+            SetDimensionXY(tmp.maxx, tmp.maxy);
         }
-        public void setDimensionXY(double? x, double? y)
+        public void SetDimensionXYZ(double? x, double? y, double? z)
         {
-            if (x != null) { setDimensionX((double)x); }
-            if (y != null) { setDimensionY((double)y); }
+            if (x != null) { SetDimensionX((double)x); }
+            if (y != null) { SetDimensionY((double)y); }
+            if (z != null) { SetDimensionZ((double)z); }
         }
-        public void setDimensionX(double value)
+        public void SetDimensionXY(double? x, double? y)
+        {
+            if (x != null) { SetDimensionX((double)x); }
+            if (y != null) { SetDimensionY((double)y); }
+        }
+        public void SetDimensionX(double value)
         {
             if ((value == Double.MaxValue) || (value == Double.MinValue))
                 return;
@@ -385,7 +420,7 @@ namespace GRBL_Plotter
             maxx = Math.Max(maxx, value);
             dimx = maxx - minx;
         }
-        public void setDimensionY(double value)
+        public void SetDimensionY(double value)
         {
             if ((value == Double.MaxValue) || (value == Double.MinValue))
                 return;
@@ -393,7 +428,7 @@ namespace GRBL_Plotter
             maxy = Math.Max(maxy, value);
             dimy = maxy - miny;
         }
-        public void setDimensionZ(double value)
+        public void SetDimensionZ(double value)
         {
             if ((value == Double.MaxValue) || (value == Double.MinValue))
                 return;
@@ -401,31 +436,32 @@ namespace GRBL_Plotter
             maxz = Math.Max(maxz, value);
             dimz = maxz - minz;
         }
-        public void offsetXY(double x, double y)
-        { minx += x; maxx += x; miny += y; maxy += y;}
-        public void scaleXY(double scaleX, double scaleY)
+        public void OffsetXY(double x, double y)
+        { minx += x; maxx += x; miny += y; maxy += y; }
+        public void ScaleXY(double scaleX, double scaleY)
         { minx *= scaleX; maxx *= scaleX; miny *= scaleY; maxy *= scaleY; dimx = maxx - minx; dimy = maxy - miny; }
 
-        public double getArea()
-        {   return dimx* dimy;  }
+        public double GetArea()
+        { return dimx * dimy; }
 
         // calculate min/max dimensions of a circle
-        public void setDimensionCircle(double x, double y, double radius, double startDeg, double deltaDeg)
-        {   double end = startDeg + deltaDeg;
+        public void SetDimensionCircle(double x, double y, double radius, double startDeg, double deltaDeg)
+        {
+            double end = startDeg + deltaDeg;
             double i = startDeg;
 
             if (Math.Abs(Math.Abs(deltaDeg) - 360) < 0.00001)
             {
-                setDimensionXY(x - radius, y - radius);
-                setDimensionXY(x + radius, y + radius);
+                SetDimensionXY(x - radius, y - radius);
+                SetDimensionXY(x + radius, y + radius);
             }
             else
             {
-                setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
-                setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
+                SetDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
+                SetDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
                 i = end;
-                setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
-                setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
+                SetDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
+                SetDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
 
                 for (int k = -360; k <= 360; k += 90)
                 {
@@ -434,8 +470,8 @@ namespace GRBL_Plotter
                         if ((k > startDeg) && (k < end))
                         {
                             i = k;
-                            setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
-                            setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
+                            SetDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
+                            SetDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
                         }
                     }
                     else
@@ -443,36 +479,37 @@ namespace GRBL_Plotter
                         if ((k < startDeg) && (k > end))
                         {
                             i = k;
-                            setDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
-                            setDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
+                            SetDimensionX(x + radius * Math.Cos(i / 180 * Math.PI));
+                            SetDimensionY(y + radius * Math.Sin(i / 180 * Math.PI));
                         }
                     }
                 }
             }
         }
 
-        public void setDimensionArc(xyPoint oldPos, xyPoint newPos, double i, double j, bool isG2)
+        public void SetDimensionArc(XyPoint oldPos, XyPoint newPos, double i, double j, bool isG2)
         {
             ArcProperties arcMove;
-            arcMove = gcodeMath.getArcMoveProperties(oldPos, newPos, i, j, isG2);
+            arcMove = GcodeMath.GetArcMoveProperties(oldPos, newPos, i, j, isG2);
 
             float x1 = (float)(arcMove.center.X - arcMove.radius);
             float x2 = (float)(arcMove.center.X + arcMove.radius);
             float y1 = (float)(arcMove.center.Y - arcMove.radius);
             float y2 = (float)(arcMove.center.Y + arcMove.radius);
-            float r2 = 2 * (float)arcMove.radius;
+            //   float r2 = 2 * (float)arcMove.radius;
             float aStart = (float)(arcMove.angleStart * 180 / Math.PI);
             float aDiff = (float)(arcMove.angleDiff * 180 / Math.PI);
 
-            if (gcodeMath.isEqual(oldPos, newPos))
-            {   setDimensionXY(x1, y1);
-                setDimensionXY(x2, y2);
+            if (GcodeMath.IsEqual(oldPos, newPos))
+            {
+                SetDimensionXY(x1, y1);
+                SetDimensionXY(x2, y2);
             }
             else
-                setDimensionCircle(arcMove.center.X, arcMove.center.Y, arcMove.radius, aStart, aDiff);        // calculate new dimensions
+                SetDimensionCircle(arcMove.center.X, arcMove.center.Y, arcMove.radius, aStart, aDiff);        // calculate new dimensions
         }
 
-        public void resetDimension()
+        public void ResetDimension()
         {
             minx = Double.MaxValue;
             miny = Double.MaxValue;
@@ -485,21 +522,22 @@ namespace GRBL_Plotter
             dimz = 0;
         }
 
-        public bool isXYSet()
-        { return ((minx!= Double.MaxValue)&& (miny != Double.MaxValue)&& (maxx != Double.MinValue) && (maxy != Double.MinValue)); }
-//		{	return ((dimx != 0) || (dimy != 0));}
+        public bool IsXYSet()
+        { return ((minx != Double.MaxValue) && (miny != Double.MaxValue) && (maxx != Double.MinValue) && (maxy != Double.MinValue)); }
+        //		{	return ((dimx != 0) || (dimy != 0));}
 
-        public xyPoint getCenter()
-        {   double cx = minx + ((maxx - minx) / 2);
+        public XyPoint GetCenter()
+        {
+            double cx = minx + ((maxx - minx) / 2);
             double cy = miny + ((maxy - miny) / 2);
-            return new xyPoint(cx, cy);
+            return new XyPoint(cx, cy);
         }
 
         // return string with dimensions
-        public String getXYString()
-        {   return String.Format("minX:{0:0.000} minY:{1:0.000} maxX:{2:0.000}  maxY:{3:0.000}", minx,miny, maxx, maxy); }
+        public String GetXYString()
+        { return String.Format("minX:{0:0.000} minY:{1:0.000} maxX:{2:0.000}  maxY:{3:0.000}", minx, miny, maxx, maxy); }
 
-        public String getMinMaxString()
+        public String GetMinMaxString()
         {
             string x = String.Format("X:{0,8:####0.000} |{1,8:####0.000} |{2,8:####0.000}\r\n", minx, maxx, dimx);
             string y = String.Format("Y:{0,8:####0.000} |{1,8:####0.000} |{2,8:####0.000}\r\n", miny, maxy, dimy);
@@ -512,11 +550,11 @@ namespace GRBL_Plotter
                 z = "";// z = "Z: unknown | unknown";
             return "    Min.   |   Max.  | Dimension\r\n" + x + y + z;
         }
-        public bool withinLimits(xyzPoint actualMachine, xyzPoint actualWorld)
+        public bool WithinLimits(XyzPoint actualMachine, XyzPoint actualWorld)
         {
-            return (withinLimits(actualMachine, minx - actualWorld.X, miny - actualWorld.Y) && withinLimits(actualMachine, maxx - actualWorld.X, maxy - actualWorld.Y));
+            return (WithinLimits(actualMachine, minx - actualWorld.X, miny - actualWorld.Y) && WithinLimits(actualMachine, maxx - actualWorld.X, maxy - actualWorld.Y));
         }
-        public bool withinLimits(xyzPoint actualMachine, double tstx, double tsty)
+        public static bool WithinLimits(XyzPoint actualMachine, double tstx, double tsty)
         {
             double minlx = (double)Properties.Settings.Default.machineLimitsHomeX;
             double maxlx = minlx + (double)Properties.Settings.Default.machineLimitsRangeX;
@@ -549,7 +587,7 @@ namespace GRBL_Plotter
 
     public class CmdEventArgs : EventArgs
     {
-        string command;
+        private readonly string command;
         public CmdEventArgs(string cmd)
         {
             command = cmd;
@@ -560,28 +598,28 @@ namespace GRBL_Plotter
 
     public class XYEventArgs : EventArgs
     {
-        private double angle,scale;
-        private xyPoint point;
-        string command;
-        public XYEventArgs(double a, double s, xyPoint p, string cmd)
+        private readonly double angle, scale;
+        private XyPoint point;
+        private readonly string command;
+        internal XYEventArgs(double a, double s, XyPoint p, string cmd)
         {
             angle = a;
             scale = s;
             point = p;
             command = cmd;
         }
-        public XYEventArgs(double a, double x, double y, string cmd)
+        public XYEventArgs(double angl, double px, double py, string cmd)
         {
-            angle = a;
-            point.X = x;
-            point.Y = y;
+            angle = angl;
+            point.X = px;
+            point.Y = py;
             command = cmd;
         }
         public double Angle
         { get { return angle; } }
         public double Scale
         { get { return scale; } }
-        public xyPoint Point
+        internal XyPoint Point
         { get { return point; } }
         public double PosX
         { get { return point.X; } }
@@ -591,87 +629,86 @@ namespace GRBL_Plotter
         { get { return command; } }
     }
 
-    public class XYZEventArgs : EventArgs
+    public class XyzEventArgs : EventArgs
     {
-        private double? posX, posY, posZ;
-        string command;
-        public XYZEventArgs(double? x, double? y, string cmd)
+        private readonly double? posX, posY, posZ;
+        private readonly string command;
+        public XyzEventArgs(double? px, double? py, string cmd)
         {
-            posX = x;
-            posY = y;
+            posX = px;
+            posY = py;
             posZ = null;
             command = cmd;
         }
-        public XYZEventArgs(double? x, double? y, double? z, string cmd)
+        public XyzEventArgs(double? px, double? py, double? pz, string cmd)
         {
-            posX = x;
-            posY = y;
-            posZ = z;
+            posX = px;
+            posY = py;
+            posZ = pz;
             command = cmd;
         }
         public double? PosX
-        {   get { return posX; } }
+        { get { return posX; } }
         public double? PosY
-        {   get { return posY; } }
+        { get { return posY; } }
         public double? PosZ
         { get { return posZ; } }
         public string Command
-        {   get { return command; } }
+        { get { return command; } }
     }
 
-    public static class unDo
+    public static class UnDo
     {
         private static string unDoCode = "";
-        private static string unDoAction = "";
+        //    private static string unDoAction = "";
         private static MainForm form;
-        public static void setCode(string code, string comment, MainForm mform)
+        public static void SetCode(string code, string comment, MainForm mform)
         {
-            unDoCode = code.ToString();
-            unDoAction = comment;
-            form = mform;
-            form.setUndoText("Undo '" + comment + "'");
+            if (!string.IsNullOrEmpty(code))
+            {
+                unDoCode = code.ToString();
+                //        unDoAction = comment;
+                if (mform == null) return;
+                form = mform;
+                form.SetUndoText("Undo '" + comment + "'");
+            }
         }
-        public static string getCode()
-        {   form.setUndoText("");
+        public static string GetCode()
+        {
+            form.SetUndoText("");
             return unDoCode;
         }
     }
 
-    sealed class Localization
+    public static class Localization
     {   // https://www.mycsharp.de/wbb2/thread.php?threadid=61039
 
-        private static ResourceManager resMgr;
+        //   private static ResourceManager resMgr;
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
-        public static void UpdateLanguage(string langID)
+        public static void UpdateLanguage(string langId)
         {
             try
             {
                 //Set Language  
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo(langID);
-  
-                // Init ResourceManager  
-                resMgr = new ResourceManager("ResStrings", Assembly.GetExecutingAssembly());
-  
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(langId);
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Set culture info");
+                Logger.Error(ex, "Set culture info"); //throw;
             }
         }
-  
-        public static string getString(String pattern)
+
+        public static string GetString(String pattern)
         {
-            //return resMgr.GetString(pattern);
             string tmp = " #not found# ";
             try { tmp = ResStrings.ResourceManager.GetString(pattern).Replace("\\r", Environment.NewLine); }
             catch (Exception ex)
             {
-                Logger.Error(ex, "String not found '{0}'",pattern);
+                Logger.Error(ex, "String not found '{0}'", pattern); //throw;
             }
-
-            return tmp.Replace("\\n","");
+            return tmp.Replace("\\n", "");
         }
-  
+
     }
 }

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,44 +18,44 @@
 */
 /*
  * 2020-03-11 split from MainForm.cs
- *
+ * 2021-07-02 code clean up / code quality
 */
 
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
-namespace GRBL_Plotter
-{   public partial class MainForm
+//#pragma warning disable CA1303
+//#pragma warning disable CA1305
+
+namespace GrblPlotter
+{
+    public partial class MainForm
     {
         #region simulate path
         private static int simuLine = 0;
         private static bool simuEnabled = false;
-		private static xyzPoint codeInfo = new xyzPoint();
+        private static XyzPoint codeInfo = new XyzPoint();
         private static bool simulateA = false;
 
-        private void btnSimulate_Click(object sender, EventArgs e)
+        private void BtnSimulate_Click(object sender, EventArgs e)
         {
             if ((!isStreaming) && (fCTBCode.LinesCount > 2))
             {
                 if (!simuEnabled)
-                { simuStart(Properties.Settings.Default.gui2DColorSimulation); }
+                { SimuStart(Properties.Settings.Default.gui2DColorSimulation); }
                 else
-                { simuStop(); }
+                { SimuStop(); }
             }
         }
-        private void simuStart(Color col)
+        private void SimuStart(Color col)
         {
-			label_wx.ForeColor = col;
-			label_wy.ForeColor = col;
-			label_wz.ForeColor = col;
-			label_wa.ForeColor = col;
-			label_wb.ForeColor = col;
-			label_wc.ForeColor = col;
+            label_wx.ForeColor = col;
+            label_wy.ForeColor = col;
+            label_wz.ForeColor = col;
+            label_wa.ForeColor = col;
+            label_wb.ForeColor = col;
+            label_wc.ForeColor = col;
 
             Color invers = ContrastColor(col);
             label_wx.BackColor = invers;
@@ -65,13 +65,13 @@ namespace GRBL_Plotter
             label_wb.BackColor = invers;
             label_wc.BackColor = invers;
 
-            simulateA = VisuGCode.containsTangential();
+            simulateA = VisuGCode.ContainsTangential();
             if (simulateA)
-                updateLayout();
+                UpdateWholeApplication();
 
             pbFile.Maximum = fCTBCode.LinesCount;
             fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
-            btnSimulate.Text = Localization.getString("mainSimuStop");
+            btnSimulate.Text = Localization.GetString("mainSimuStop");
             simuLine = 0;
             fCTBCodeClickedLineNow = simuLine;
             fCTBCodeClickedLineLast = simuLine;
@@ -87,18 +87,18 @@ namespace GRBL_Plotter
             VisuGCode.Simulation.Reset();
 
             double factor = 100 * VisuGCode.Simulation.dt / 50;
-            lblElapsed.Text = string.Format("{0} {1:0}%", Localization.getString("mainSimuSpeed"), factor);
+            lblElapsed.Text = string.Format("{0} {1:0}%", Localization.GetString("mainSimuSpeed"), factor);
             btnSimulatePause.Visible = true;
             lbInfo.BackColor = System.Drawing.Color.LightGreen;
         }
-        private void simuStop()
+        private void SimuStop()
         {
-			label_wx.ForeColor = Color.Black;
-			label_wy.ForeColor = Color.Black;
-			label_wz.ForeColor = Color.Black;
-			label_wa.ForeColor = Color.Black;
-			label_wb.ForeColor = Color.Black;
-			label_wc.ForeColor = Color.Black;
+            label_wx.ForeColor = Color.Black;
+            label_wy.ForeColor = Color.Black;
+            label_wz.ForeColor = Color.Black;
+            label_wa.ForeColor = Color.Black;
+            label_wb.ForeColor = Color.Black;
+            label_wc.ForeColor = Color.Black;
             Color invers = Control.DefaultBackColor;
             label_wx.BackColor = invers;
             label_wy.BackColor = invers;
@@ -108,21 +108,22 @@ namespace GRBL_Plotter
             label_wc.BackColor = invers;
 
             if (simulateA)
-            {   simulateA = false;
-                updateLayout();
+            {
+                simulateA = false;
+                UpdateWholeApplication();
             }
 
-            bool isConnected = _serial_form.serialPortOpen || grbl.grblSimulate;
+            bool isConnected = _serial_form.SerialPortOpen || Grbl.grblSimulate;
             simuEnabled = false;
             simulationTimer.Enabled = false;
-            btnSimulate.Text = Localization.getString("mainSimuStart");
+            btnSimulate.Text = Localization.GetString("mainSimuStart");
             pbFile.Value = 0;
             btnStreamStart.Enabled = isConnected;
             btnStreamStop.Enabled = isConnected;
             btnStreamCheck.Enabled = isConnected;
             btnSimulateFaster.Enabled = false;
             btnSimulateSlower.Enabled = false;
-            lblFileProgress.Text = string.Format("{0} {1:0.0}%", Localization.getString("mainProgress"), 0);
+            lblFileProgress.Text = string.Format("{0} {1:0.0}%", Localization.GetString("mainProgress"), 0);
             lblElapsed.Text = "Time";
             btnSimulatePause.Visible = false;
             lbInfo.BackColor = System.Drawing.SystemColors.Control;
@@ -130,30 +131,32 @@ namespace GRBL_Plotter
             pictureBox1.Invalidate();
         }
 
-        private void simulationTimer_Tick(object sender, EventArgs e)
+        private void SimulationTimer_Tick(object sender, EventArgs e)
         {
             simuLine = VisuGCode.Simulation.Next(ref codeInfo);
-			
-            if ((simuLine >= 0) && (simuLine < fCTBCode.Lines.Count()))
-                lbInfo.Text = string.Format("Line {0}: {1}",(simuLine+1), fCTBCode.Lines[simuLine] );
+
+            if ((simuLine >= 0) && (simuLine < fCTBCode.Lines.Count))
+                lbInfo.Text = string.Format("Line {0}: {1}", (simuLine + 1), fCTBCode.Lines[simuLine]);
             else
                 lbInfo.Text = string.Format("Line {0}", (simuLine + 1));
 
             if (simuLine >= 0)
-            {   fCTBCode.Selection = fCTBCode.GetLine(simuLine);
+            {
+                fCTBCode.Selection = fCTBCode.GetLine(simuLine);
                 fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
                 fCTBCode.BookmarkLine(simuLine);
                 fCTBCode.DoCaretVisible();
                 fCTBCodeClickedLineLast = simuLine;
                 pictureBox1.Invalidate(); // avoid too much events
-				
-				label_wx.Text = string.Format("{0:0.000}", codeInfo.X);
-				label_wy.Text = string.Format("{0:0.000}", codeInfo.Y);
-				label_wz.Text = string.Format("{0:0.000}", codeInfo.Z);
-				label_wa.Text = string.Format("{0:0.0}", codeInfo.A*180/Math.PI);
+
+                label_wx.Text = string.Format("{0:0.000}", codeInfo.X);
+                label_wy.Text = string.Format("{0:0.000}", codeInfo.Y);
+                label_wz.Text = string.Format("{0:0.000}", codeInfo.Z);
+                label_wa.Text = string.Format("{0:0.0}", codeInfo.A * 180 / Math.PI);
             }
             else
-            {   simuStop();
+            {
+                SimuStop();
                 simuLine = 0;   // Math.Abs(simuLine);
                 VisuGCode.Simulation.Reset();
                 FastColoredTextBoxNS.Range mySelection = fCTBCode.Range;
@@ -174,28 +177,28 @@ namespace GRBL_Plotter
                 return;
             }
             pbFile.Value = simuLine;
-            lblFileProgress.Text = string.Format("{0} {1:0.0}%", Localization.getString("mainProgress"), (100 * simuLine / (fCTBCode.LinesCount - 2)));
+            lblFileProgress.Text = string.Format("{0} {1:0.0}%", Localization.GetString("mainProgress"), (100 * simuLine / (fCTBCode.LinesCount - 2)));
             pictureBox1.Invalidate();
         }
 
-        private void btnSimulateFaster_Click(object sender, EventArgs e)
+        private void BtnSimulateFaster_Click(object sender, EventArgs e)
         {
             VisuGCode.Simulation.dt *= 2;
             if (VisuGCode.Simulation.dt > 102400)
                 VisuGCode.Simulation.dt = 102400;
             double factor = 100 * VisuGCode.Simulation.dt / 50;
-            lblElapsed.Text = string.Format("{0} {1:0}%", Localization.getString("mainSimuSpeed"), factor);
+            lblElapsed.Text = string.Format("{0} {1:0}%", Localization.GetString("mainSimuSpeed"), factor);
         }
 
-        private void btnSimulateSlower_Click(object sender, EventArgs e)
+        private void BtnSimulateSlower_Click(object sender, EventArgs e)
         {
             VisuGCode.Simulation.dt /= 2;
             if (VisuGCode.Simulation.dt < 25)
                 VisuGCode.Simulation.dt = 25;
             double factor = 100 * VisuGCode.Simulation.dt / 50;
-            lblElapsed.Text = string.Format("{0} {1:0}%", Localization.getString("mainSimuSpeed"), factor);
+            lblElapsed.Text = string.Format("{0} {1:0}%", Localization.GetString("mainSimuSpeed"), factor);
         }
-        private void btnSimulatePause_Click(object sender, EventArgs e)
+        private void BtnSimulatePause_Click(object sender, EventArgs e)
         {
             bool tmp = simulationTimer.Enabled;
             simulationTimer.Enabled = !tmp;

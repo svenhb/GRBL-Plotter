@@ -794,33 +794,6 @@ Ajouter 'G54;' to G-Code header pour revenir automatiquement à G54 avant de dif
     <value>vitesse actuelle</value>
     <comment>groupBox_Override3</comment>
   </data>
-  <data name="englishToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Anglais</value>
-  </data>
-  <data name="deutschToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>allemand</value>
-  </data>
-  <data name="pусскийToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>russe</value>
-  </data>
-  <data name="toolStripMenuItem4.ToolTipText" xml:space="preserve">
-    <value>Espanol</value>
-  </data>
-  <data name="portuguêsToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Portugais</value>
-  </data>
-  <data name="franzToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>français</value>
-  </data>
-  <data name="chinesischToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>chinois</value>
-  </data>
-  <data name="arabischToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>arabe</value>
-  </data>
-  <data name="japanischToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Japonais</value>
-  </data>
   <data name="btnStreamCheck.ToolTip" xml:space="preserve">
     <value>Cela bascule l'analyseur gcode du Grbl pour prendre tous les blocs entrants et les traiter complètement, comme il le ferait en fonctionnement normal, mais il ne déplace aucun des axes, ignore les arrêts et éteint la broche et le liquide de refroidissement. Ceci est destiné à fournir à l'utilisateur un moyen de vérifier comment son nouveau programme G-code se comporte avec l'analyseur de Grbl et de surveiller les erreurs (et vérifie les violations de limites logicielles, s'il est activé).</value>
   </data>

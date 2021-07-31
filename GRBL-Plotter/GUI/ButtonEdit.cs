@@ -22,39 +22,38 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
-namespace GRBL_Plotter.GUI
+//#pragma warning disable CA1307
+
+namespace GrblPlotter.GUI
 {
     public partial class ButtonEdit : Form
     {
-        private int index = 0;
+        private readonly int index = 0;
         private Color btnColor = SystemColors.Control;
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
-
-        public ButtonEdit(int i)
+        public ButtonEdit(int indx)
         {
             InitializeComponent();
             this.Icon = Properties.Resources.Icon;
 
-            index = i;
+            index = indx;
             if ((index >= 1) && (index <= 32))
             {
                 string txt = Properties.Settings.Default["guiCustomBtn" + index.ToString()].ToString();
-                extractButtonInfo(txt);
+                ExtractButtonInfo(txt);
             }
-            fillComboBoxPreset(Application.StartupPath + datapath.buttons);
+            FillComboBoxPreset(Datapath.Buttons);
         }
-        private void extractButtonInfo(string txt)
+        private void ExtractButtonInfo(string txt)
         {
             string[] values = txt.Split('|');
             if (values.Length > 1)
@@ -69,15 +68,15 @@ namespace GRBL_Plotter.GUI
             if ((values.Length > 2) && (values[2].Length > 3))
                 btnColor = ColorTranslator.FromHtml(values[2]);
 
-            setButtonColors(btnSetColor, btnColor);
+            SetButtonColors(btnSetColor, btnColor);
             lblColor.Text = ColorTranslator.ToHtml(btnColor);
         }
 
-        private Dictionary<int, string> presetButtonText = new Dictionary<int, string>();
-        private void fillComboBoxPreset(string Root)
+        private readonly Dictionary<int, string> presetButtonText = new Dictionary<int, string>();
+        private void FillComboBoxPreset(string Root)
         {
             presetButtonText.Clear();
-            List<string> FileArray = new List<string>();
+            //  List<string> FileArray = new List<string>();
             try
             {
                 string[] Files = System.IO.Directory.GetFiles(Root);
@@ -86,21 +85,22 @@ namespace GRBL_Plotter.GUI
                 {
                     if (Files[i].ToLower().EndsWith("ini"))
                     {
-                        string value = getContent(Files[i]);
-//                        Logger.Trace("Fill {0}   {1}", Files[i], value);
+                        string value = GetContent(Files[i]);
+                        //                        Logger.Trace("Fill {0}   {1}", Files[i], value);
                         if (value.Length > 1)
                         {
                             cBPresets.Items.Add(Path.GetFileName(Files[i]));
-                            presetButtonText.Add(cBPresets.Items.Count-1,value);
+                            presetButtonText.Add(cBPresets.Items.Count - 1, value);
                         }
                     }
                 }
             }
-            catch //(Exception Ex)
-            {   //throw (Ex);
+            catch (Exception Ex)
+            {
+                Logger.Error(Ex, "FillComboBoxPreset ");//throw;
             }
         }
-        private string getContent(string file)
+        private static string GetContent(string file)
         {
             if (File.Exists(file))
             {
@@ -108,45 +108,49 @@ namespace GRBL_Plotter.GUI
                 foreach (string s in readText)
                 {
                     if (s.StartsWith("Button"))
-                    {   if(s.Contains('='))
-                        { return s.Substring(s.IndexOf('=')+1); }
+                    {
+                        if (s.Contains('='))
+                        { return s.Substring(s.IndexOf('=') + 1); }
                     }
                 }
             }
             return "";
         }
-        private void cBPresets_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbPresets_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (presetButtonText.ContainsKey(cBPresets.SelectedIndex))
-                extractButtonInfo(presetButtonText[cBPresets.SelectedIndex]);
+                ExtractButtonInfo(presetButtonText[cBPresets.SelectedIndex]);
         }
 
-        private void btnApply_Click(object sender, EventArgs e)
+        private void BtnApply_Click(object sender, EventArgs e)
         {
-            string value = tBTitle.Text + "|" + tBCode.Text.Replace("|", ",").Replace("\n", ";").Replace("\r", "")+"|"+ ColorTranslator.ToHtml(btnColor);
+            string value = tBTitle.Text + "|" + tBCode.Text.Replace("|", ",").Replace("\n", ";").Replace("\r", "") + "|" + ColorTranslator.ToHtml(btnColor);
             Properties.Settings.Default["guiCustomBtn" + index.ToString()] = value;
             Properties.Settings.Default.Save();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {   Close();   }
+        private void BtnCancel_Click(object sender, EventArgs e)
+        { Close(); }
 
-        private void btnDelete_Click(object sender, EventArgs e)
-        {   tBTitle.Clear();
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            tBTitle.Clear();
             tBCode.Clear();
             btnColor = Control.DefaultBackColor;
-            setButtonColors(btnSetColor, btnColor);
+            SetButtonColors(btnSetColor, btnColor);
             btnSetColor.UseVisualStyleBackColor = true;
             lblColor.Text = ColorTranslator.ToHtml(btnColor);
         }
-        private void setButtonColors(Button btn, Color col)
-        {   btn.BackColor = col;
+        private static void SetButtonColors(Button btn, Color col)
+        {
+            btn.BackColor = col;
             btn.ForeColor = ContrastColor(col);
             if (col == Control.DefaultBackColor)
                 btn.UseVisualStyleBackColor = true;
         }
-        private Color ContrastColor(Color color)
-        {   int d = 0;
+        private static Color ContrastColor(Color color)
+        {
+            int d;
             // Counting the perceptive luminance - human eye favors green color... 
             double a = 1 - (0.299 * color.R + 0.587 * color.G + 0.114 * color.B) / 255;
             if (a < 0.5)
@@ -155,23 +159,25 @@ namespace GRBL_Plotter.GUI
                 d = 255; // dark colors - white font
             return Color.FromArgb(d, d, d);
         }
-        private void applyColor(Button btn)
+        private void ApplyColor(Button btn)
         {
             if (colorDialog1.ShowDialog() == DialogResult.OK)
-            {   setButtonColors(btn, colorDialog1.Color);
+            {
+                SetButtonColors(btn, colorDialog1.Color);
                 btnColor = colorDialog1.Color;
                 lblColor.Text = ColorTranslator.ToHtml(btnColor);
             }
         }
 
-        private void btnSetColor_Click(object sender, EventArgs e)
+        private void BtnSetColor_Click(object sender, EventArgs e)
         {
-            applyColor(btnSetColor);
+            ApplyColor(btnSetColor);
         }
 
-        private void btnResetColor_Click(object sender, EventArgs e)
-        {   btnColor = Control.DefaultBackColor;
-            setButtonColors(btnSetColor, btnColor);
+        private void BtnResetColor_Click(object sender, EventArgs e)
+        {
+            btnColor = Control.DefaultBackColor;
+            SetButtonColors(btnSetColor, btnColor);
             btnSetColor.UseVisualStyleBackColor = true;
             lblColor.Text = ColorTranslator.ToHtml(btnColor);
         }

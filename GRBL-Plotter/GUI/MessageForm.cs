@@ -1,13 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
+    This file is part of the GRBL-Plotter application.
+   
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+/* 
+ * 2021-07-02 code clean up / code quality
+*/
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
-namespace GRBL_Plotter
+namespace GrblPlotter
 {
     public partial class MessageForm : Form
     {
@@ -16,7 +33,7 @@ namespace GRBL_Plotter
             InitializeComponent();
         }
 
-        public void showMessage(string headline, string text, int mode)
+        public void ShowMessage(string headline, string text, int mode)
         {
             if (mode == 1)
             {
@@ -36,32 +53,32 @@ namespace GRBL_Plotter
                 this.Height = tBInfo.Height + 45;
                 btnClose.Top = tBInfo.Height + 10;
                 btnClose.Left = this.Width / 2 - 37;
-                this.Width  = 600;
-              this.Height = 600;
-              this.Top = 0;
-              this.Left = 400;
+                this.Width = 600;
+                this.Height = 600;
+                this.Top = 0;
+                this.Left = 400;
             }
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void BtnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
         private void MessageForm_SizeChanged(object sender, EventArgs e)
         {
-            tBInfo.Width  = this.Width - 26;
-            tBInfo.Height = this.Height- 75;
+            tBInfo.Width = this.Width - 26;
+            tBInfo.Height = this.Height - 75;
             btnClose.Left = this.Width / 2 - 45;
             btnClose.Top = this.Height - 65;
         }
 
         private void MessageForm_Load(object sender, EventArgs e)
         {
-          /*  this.Width  = 600;
-            this.Height = 600;
-            this.Top = 0;
-            this.Left = 400;*/
+            /*  this.Width  = 600;
+              this.Height = 600;
+              this.Top = 0;
+              this.Left = 400;*/
         }
     }
 }

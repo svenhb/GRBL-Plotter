@@ -1,4 +1,4 @@
-﻿namespace GRBL_Plotter
+﻿namespace GrblPlotter
 {
     partial class MessageForm
     {
@@ -44,7 +44,7 @@
             this.btnClose.TabIndex = 0;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // tBInfo
             // 

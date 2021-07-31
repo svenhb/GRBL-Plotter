@@ -19,33 +19,36 @@
 /*
  * 2020-03-11 split from MainForm.cs
  * 2021-02-06 add gamePad PointOfViewController0
- *
+ * 2021-07-26 code clean up / code quality
 */
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
-namespace GRBL_Plotter
-{   public partial class MainForm : Form
+//#pragma warning disable CA1305
+//#pragma warning disable CA1307
+
+namespace GrblPlotter
+{
+    public partial class MainForm : Form
     {
         #region gamePad
 
         //        private bool gamePadSendCmd = false;
         private string gamePadSendString = "";
         //        private int gamePadRepitition = 0;
-        private void gamePadTimer_Tick(object sender, EventArgs e)
+        private void GamePadTimer_Tick(object sender, EventArgs e)
         {   //if (true)
-            processGamePadNew();
+            ProcessGamePadNew();
             //            else
             //                processGamePadOld();
         }
 
         //        private static Stopwatch gamePadWatch = new Stopwatch();
-        Dictionary<string, int> gamePadValue = new Dictionary<string, int>();
-        private void processGamePadNew()
+        private Dictionary<string, int> gamePadValue = new Dictionary<string, int>();
+        private void ProcessGamePadNew()
         {
             string command = "";
             try
@@ -58,7 +61,7 @@ namespace GRBL_Plotter
                     if (datas.Length > 0)   // no trigger if no change in data
                     {
                         bool doJog = false;
-                        var property = Properties.Settings.Default;
+                        //   var property = Properties.Settings.Default;
                         foreach (var state in datas)
                         {
                             string offset = state.Offset.ToString();        // execute gPButtonsx strings
@@ -69,12 +72,12 @@ namespace GRBL_Plotter
                                 {
                                     command = Properties.Settings.Default["gamePad" + offset].ToString();        // gP
                                     if (command.IndexOf('#') >= 0)
-                                    { processSpecialCommands(command); }
+                                    { ProcessSpecialCommands(command); }
                                     else
-                                    { processCommands(command); }
+                                    { ProcessCommands(command); }
                                 }
-                                catch (Exception)
-                                { }
+                                catch (Exception Ex)
+                                { Logger.Error(Ex, "ProcessGamePadNew "); throw; }
                                 return;
                             }
                             else if (offset.IndexOf("PointOfViewControllers0") >= 0)
@@ -89,9 +92,9 @@ namespace GRBL_Plotter
                                 else if (value == 27000) { command = Properties.Settings.Default.gamePadPOVC06; } // left
                                 else if (value == 31500) { command = Properties.Settings.Default.gamePadPOVC07; } // up-left
                                 if (command.IndexOf('#') >= 0)
-                                { processSpecialCommands(command); }
+                                { ProcessSpecialCommands(command); }
                                 else
-                                { processCommands(command); }
+                                { ProcessCommands(command); }
                             }
 
                             else if ((offset == "X") || (offset == "Y") || (offset == "Z") || (offset == "RotationZ"))
@@ -122,9 +125,9 @@ namespace GRBL_Plotter
                                 if ((gamePadValue[key] <= 0) || (gamePadValue[key] >= 65535))
                                     jval = 32767;
                                 maxValue = Math.Max(maxValue, jval);
-                                axis = gamePadGetAssignedAxis(key);
-                                maxSpeed = Math.Max(maxSpeed, grbl.getSetting(110 + getGrblSetupOffset(axis)));
-                                minAxisSteps = Math.Min(minAxisSteps, grbl.getSetting(100 + getGrblSetupOffset(axis)));
+                                axis = GamePadGetAssignedAxis(key);
+                                maxSpeed = Math.Max(maxSpeed, Grbl.GetSetting(110 + GetGrblSetupOffset(axis)));
+                                minAxisSteps = Math.Min(minAxisSteps, Grbl.GetSetting(100 + GetGrblSetupOffset(axis)));
                             }
 
                             if (maxValue > deadzone)            // send move-command if any value is > limit; otherwise send jog-cancel
@@ -141,8 +144,8 @@ namespace GRBL_Plotter
                                     jval = Math.Abs(gamePadValue[key] - center);
                                     if ((gamePadValue[key] <= 0) || (gamePadValue[key] >= 65535))
                                         jval = 32767;
-                                    axis = gamePadGetAssignedAxis(key);
-                                    invert = gamePadGetAssignedDir(key);
+                                    axis = GamePadGetAssignedAxis(key);
+                                    invert = GamePadGetAssignedDir(key);
                                     // step width must be a bit longer to avoid finishing move within timer-interval
                                     stepWidth = 1.2f * feedRate * jdir * invert * gamePadTimer.Interval / 60000; // s = v * dt   20% longer
                                     stepWidth *= jval / maxValue;
@@ -159,25 +162,25 @@ namespace GRBL_Plotter
                                     }
                                 }
 
-                                if (_serial_form.getFreeBuffer() >= 99)
+                                if (_serial_form.GetFreeBuffer() >= 99)
                                 {
                                     gamePadSendString = "G91" + gamePadSendString;
-                                    if (grbl.isMarlin) gamePadSendString += ";";
+                                    if (Grbl.isMarlin) gamePadSendString += ";";
                                     gamePadSendString += string.Format("F{0:0}", feedRate);
-                                    sendCommands(gamePadSendString.Replace(",", "."), true);
+                                    SendCommands(gamePadSendString.Replace(",", "."), true);
                                 }
                             }
                             else
                             {
-                                sendRealtimeCommand(133); // Stop jogging
+                                SendRealtimeCommand(133); // Stop jogging
                                 gamePadSendString = "";
                             }
                         }
                     }   // end if datalength
                     else
                     {   // if (datas.Length > 0)
-                        if ((gamePadSendString.Length > 0) && (_serial_form.getFreeBuffer() >= 99))     // keep sending commands if joystick is still on full speed
-                        { sendCommands(gamePadSendString.Replace(",", "."), true); }
+                        if ((gamePadSendString.Length > 0) && (_serial_form.GetFreeBuffer() >= 99))     // keep sending commands if joystick is still on full speed
+                        { SendCommands(gamePadSendString.Replace(",", "."), true); }
                     }
                 }
                 else
@@ -192,7 +195,7 @@ namespace GRBL_Plotter
                 catch { gamePadTimer.Interval = 5000; }
             }
         }
-        private static string gamePadGetAssignedAxis(string offset)
+        private static string GamePadGetAssignedAxis(string offset)
         {
             var prop = Properties.Settings.Default;
             if (offset == "X") { return prop.gamePadXAxis; }
@@ -201,7 +204,7 @@ namespace GRBL_Plotter
             if (offset == "RotationZ") { return prop.gamePadRAxis; }
             return "X";
         }
-        private static int gamePadGetAssignedDir(string offset)
+        private static int GamePadGetAssignedDir(string offset)
         {
             var prop = Properties.Settings.Default;
             if (offset == "X") { return prop.gamePadXInvert ? -1 : 1; }
@@ -210,7 +213,7 @@ namespace GRBL_Plotter
             if (offset == "RotationZ") { return prop.gamePadRInvert ? -1 : 1; }
             return 1;
         }
-        private static int getGrblSetupOffset(string axis)
+        private static int GetGrblSetupOffset(string axis)
         {
             if (axis == "X") return 0;
             if (axis == "Y") return 1;

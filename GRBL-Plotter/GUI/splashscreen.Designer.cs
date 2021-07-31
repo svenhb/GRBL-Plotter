@@ -1,6 +1,6 @@
-﻿namespace GRBL_Plotter.GUI
+﻿namespace GrblPlotter.GUI
 {
-    partial class splashscreen
+    partial class Splashscreen
     {
         /// <summary>
         /// Required designer variable.
@@ -40,11 +40,11 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
             // 
-            // splashscreen
+            // Splashscreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::GRBL_Plotter.Properties.Resources.modell;
+            this.BackgroundImage = global::GrblPlotter.Properties.Resources.modell;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(320, 320);
             this.Controls.Add(this.label1);
@@ -54,11 +54,11 @@
             this.MaximumSize = new System.Drawing.Size(320, 320);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(320, 0);
-            this.Name = "splashscreen";
+            this.Name = "Splashscreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "splashscreen";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.splashscreen_Load);
+            this.Load += new System.EventHandler(this.Splashscreen_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

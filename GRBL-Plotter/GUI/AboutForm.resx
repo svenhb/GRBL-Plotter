@@ -184,7 +184,7 @@
     <value>2</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>© 2015-2020 svenhb@web.de</value>
+    <value>© 2015-2021 svenhb@web.de</value>
   </data>
   <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopCenter</value>
@@ -201,9 +201,6 @@
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="linkLabel1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -211,14 +208,17 @@
     <value>12, 254</value>
   </data>
   <data name="linkLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>144, 13</value>
+    <value>142, 13</value>
   </data>
   <data name="linkLabel1.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
   <data name="linkLabel1.Text" xml:space="preserve">
-    <value>Visit GRBL-Plotter on GitHUb</value>
+    <value>Visit GRBL-Plotter on GitHub</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="linkLabel1.ToolTip" xml:space="preserve">
     <value>Open brower and visit 'https://github.com/svenhb/GRBL-Plotter'</value>
   </data>
@@ -322,7 +322,7 @@
     <value>9</value>
   </data>
   <data name="linkLabel2.Text" xml:space="preserve">
-    <value>Startup path</value>
+    <value>Data path</value>
   </data>
   <data name="linkLabel2.ToolTip" xml:space="preserve">
     <value>Open Folder</value>
@@ -346,13 +346,13 @@
     <value>12, 273</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 13</value>
+    <value>61, 13</value>
   </data>
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Startup Path: </value>
+    <value>Data Path: </value>
   </data>
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>
@@ -366,9 +366,6 @@
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="linkLabel3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>

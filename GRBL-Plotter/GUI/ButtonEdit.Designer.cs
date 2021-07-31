@@ -1,4 +1,4 @@
-﻿namespace GRBL_Plotter.GUI
+﻿namespace GrblPlotter.GUI
 {
     partial class ButtonEdit
     {
@@ -51,7 +51,7 @@
             resources.ApplyResources(this.btnCancel, "btnCancel");
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // btnApply
             // 
@@ -59,7 +59,7 @@
             resources.ApplyResources(this.btnApply, "btnApply");
             this.btnApply.Name = "btnApply";
             this.btnApply.UseVisualStyleBackColor = true;
-            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
+            this.btnApply.Click += new System.EventHandler(this.BtnApply_Click);
             // 
             // tBTitle
             // 
@@ -96,14 +96,14 @@
             resources.ApplyResources(this.btnSetColor, "btnSetColor");
             this.btnSetColor.Name = "btnSetColor";
             this.btnSetColor.UseVisualStyleBackColor = true;
-            this.btnSetColor.Click += new System.EventHandler(this.btnSetColor_Click);
+            this.btnSetColor.Click += new System.EventHandler(this.BtnSetColor_Click);
             // 
             // btnDelete
             // 
             resources.ApplyResources(this.btnDelete, "btnDelete");
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // lblColor
             // 
@@ -115,14 +115,14 @@
             resources.ApplyResources(this.btnResetColor, "btnResetColor");
             this.btnResetColor.Name = "btnResetColor";
             this.btnResetColor.UseVisualStyleBackColor = true;
-            this.btnResetColor.Click += new System.EventHandler(this.btnResetColor_Click);
+            this.btnResetColor.Click += new System.EventHandler(this.BtnResetColor_Click);
             // 
             // cBPresets
             // 
             this.cBPresets.FormattingEnabled = true;
             resources.ApplyResources(this.cBPresets, "cBPresets");
             this.cBPresets.Name = "cBPresets";
-            this.cBPresets.SelectedIndexChanged += new System.EventHandler(this.cBPresets_SelectedIndexChanged);
+            this.cBPresets.SelectedIndexChanged += new System.EventHandler(this.CbPresets_SelectedIndexChanged);
             // 
             // ButtonEdit
             // 
