@@ -28,26 +28,30 @@
  * 2020-08-08   #145
  * 2021-01-16   StreamEventArgs : EventArgs -> switch from float to int for codeFinish, buffFinish %
  * 2021-05-01   return last index of splitted error, to catch "error: Invalid gcode ID:24" line 417
+ * 2021-07-26 code clean up / code quality
 */
 
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
-using System.Windows.Forms;
 
-namespace GRBL_Plotter
+//#pragma warning disable CA1304
+//#pragma warning disable CA1305
+//#pragma warning disable CA1307
+
+namespace GrblPlotter
 {
-    public static class grbl
+    internal static class Grbl
     {       // need to have global access to this data?
-        public static xyzPoint posWCO     = new xyzPoint(0, 0, 0);
-        public static xyzPoint posWork    = new xyzPoint(0, 0, 0);
-        public static xyzPoint posMachine = new xyzPoint(0, 0, 0);
+        internal static XyzPoint posWCO = new XyzPoint(0, 0, 0);
+        internal static XyzPoint posWork = new XyzPoint(0, 0, 0);
+        internal static XyzPoint posMachine = new XyzPoint(0, 0, 0);
         public static bool posChanged = true;
         public static bool wcoChanged = true;
 
         public static bool isVersion_0 = true;  // note if grbl version <=0.9 or >=1.1
-        public static bool isMarlin = false;  
+        public static bool isMarlin = false;
 
         public static int axisCount = 0;
         public static bool axisA = false;       // axis A available?
@@ -61,28 +65,25 @@ namespace GRBL_Plotter
         public static short lastErrorNr = 0;
 
         public static bool grblSimulate = false;
-        private static Dictionary<int, float> settings = new Dictionary<int, float>();    // keep $$-settings
-        private static Dictionary<string, xyzPoint> coordinates = new Dictionary<string, xyzPoint>();    // keep []-settings
+        private static readonly Dictionary<int, float> settings = new Dictionary<int, float>();    // keep $$-settings
+        private static readonly Dictionary<string, XyzPoint> coordinates = new Dictionary<string, XyzPoint>();    // keep []-settings
 
-        private static xyzPoint _posMarker = new xyzPoint(0, 0, 0);
+        private static XyzPoint _posMarker = new XyzPoint(0, 0, 0);
         private static double _posMarkerAngle = 0;
-        private static xyzPoint _posMarkerOld = new xyzPoint(0, 0, 0);
-        public static xyzPoint posMarker
-        {   get
-            {   return _posMarker;  }
+        //      private static XyzPoint _posMarkerOld = new XyzPoint(0, 0, 0);
+        internal static XyzPoint PosMarker
+        {
+            get
+            { return _posMarker; }
             set
-            {   _posMarkerOld = _posMarker;
+            {
+                //    _posMarkerOld = _posMarker;
                 _posMarker = value;
             }
         }
-        public static xyzPoint posMarkerOld
-        {   get
-            {   return _posMarkerOld; }
-            set
-            {   _posMarkerOld = value; }
-        }
-        public static double posMarkerAngle
-        {   get
+        public static double PosMarkerAngle
+        {
+            get
             { return _posMarkerAngle; }
             set
             { _posMarkerAngle = value; }
@@ -97,31 +98,31 @@ namespace GRBL_Plotter
         //        public static bool isVers0 = true;
         //        public List<string> GRBLSettings = new List<string>();  // keep $$ settings
 
-        public static double resolution = 0.000001;
+        //    public static double resolution = 0.000001;
 
         public static Dictionary<string, string> messageAlarmCodes = new Dictionary<string, string>();
         public static Dictionary<string, string> messageErrorCodes = new Dictionary<string, string>();
         public static Dictionary<string, string> messageSettingCodes = new Dictionary<string, string>();
-        private static sConvert[] statusConvert = new sConvert[11];
+        private static readonly StatConvert[] statusConvert = new StatConvert[11];
 
-        public static void init()   // initialize lists
+        public static void Init()   // initialize lists
         {
-            setMessageString(ref messageAlarmCodes, Properties.Resources.alarm_codes_en_US);
-            setMessageString(ref messageErrorCodes, Properties.Resources.error_codes_en_US);
-            setMessageString(ref messageSettingCodes, Properties.Resources.setting_codes_en_US);
+            SetMessageString(ref messageAlarmCodes, Properties.Resources.alarm_codes_en_US);
+            SetMessageString(ref messageErrorCodes, Properties.Resources.error_codes_en_US);
+            SetMessageString(ref messageSettingCodes, Properties.Resources.setting_codes_en_US);
 
             //    public enum grblState { idle, run, hold, jog, alarm, door, check, home, sleep, probe, unknown };
-            statusConvert[0].msg = "Idle";  statusConvert[0].text = Localization.getString("grblIdle");  statusConvert[0].state = grblState.idle; statusConvert[0].color = Color.Lime;
-            statusConvert[1].msg = "Run";   statusConvert[1].text = Localization.getString("grblRun");   statusConvert[1].state = grblState.run;  statusConvert[1].color = Color.Yellow;
-            statusConvert[2].msg = "Hold";  statusConvert[2].text = Localization.getString("grblHold");  statusConvert[2].state = grblState.hold; statusConvert[2].color = Color.YellowGreen;
-            statusConvert[3].msg = "Jog";   statusConvert[3].text = Localization.getString("grblJog");   statusConvert[3].state = grblState.jog;  statusConvert[3].color = Color.LightGreen;
-            statusConvert[4].msg = "Alarm"; statusConvert[4].text = Localization.getString("grblAlarm"); statusConvert[4].state = grblState.alarm;statusConvert[4].color = Color.Red;
-            statusConvert[5].msg = "Door";  statusConvert[5].text = Localization.getString("grblDoor");  statusConvert[5].state = grblState.door; statusConvert[5].color = Color.Orange;
-            statusConvert[6].msg = "Check"; statusConvert[6].text = Localization.getString("grblCheck"); statusConvert[6].state = grblState.check;statusConvert[6].color = Color.Orange;
-            statusConvert[7].msg = "Home";  statusConvert[7].text = Localization.getString("grblHome");  statusConvert[7].state = grblState.home; statusConvert[7].color = Color.Magenta;
-            statusConvert[8].msg = "Sleep"; statusConvert[8].text = Localization.getString("grblSleep"); statusConvert[8].state = grblState.sleep;statusConvert[8].color = Color.Yellow;
-            statusConvert[9].msg = "Probe"; statusConvert[9].text = Localization.getString("grblProbe"); statusConvert[9].state = grblState.probe;statusConvert[9].color = Color.LightBlue;
-            statusConvert[10].msg = "Marlin"; statusConvert[10].text = "Marlin mode"; statusConvert[10].state = grblState.Marlin; statusConvert[10].color = Color.Yellow;
+            statusConvert[0].msg = "Idle"; statusConvert[0].text = Localization.GetString("grblIdle"); statusConvert[0].state = GrblState.idle; statusConvert[0].color = Color.Lime;
+            statusConvert[1].msg = "Run"; statusConvert[1].text = Localization.GetString("grblRun"); statusConvert[1].state = GrblState.run; statusConvert[1].color = Color.Yellow;
+            statusConvert[2].msg = "Hold"; statusConvert[2].text = Localization.GetString("grblHold"); statusConvert[2].state = GrblState.hold; statusConvert[2].color = Color.YellowGreen;
+            statusConvert[3].msg = "Jog"; statusConvert[3].text = Localization.GetString("grblJog"); statusConvert[3].state = GrblState.jog; statusConvert[3].color = Color.LightGreen;
+            statusConvert[4].msg = "Alarm"; statusConvert[4].text = Localization.GetString("grblAlarm"); statusConvert[4].state = GrblState.alarm; statusConvert[4].color = Color.Red;
+            statusConvert[5].msg = "Door"; statusConvert[5].text = Localization.GetString("grblDoor"); statusConvert[5].state = GrblState.door; statusConvert[5].color = Color.Orange;
+            statusConvert[6].msg = "Check"; statusConvert[6].text = Localization.GetString("grblCheck"); statusConvert[6].state = GrblState.check; statusConvert[6].color = Color.Orange;
+            statusConvert[7].msg = "Home"; statusConvert[7].text = Localization.GetString("grblHome"); statusConvert[7].state = GrblState.home; statusConvert[7].color = Color.Magenta;
+            statusConvert[8].msg = "Sleep"; statusConvert[8].text = Localization.GetString("grblSleep"); statusConvert[8].state = GrblState.sleep; statusConvert[8].color = Color.Yellow;
+            statusConvert[9].msg = "Probe"; statusConvert[9].text = Localization.GetString("grblProbe"); statusConvert[9].state = GrblState.probe; statusConvert[9].color = Color.LightBlue;
+            statusConvert[10].msg = "Marlin"; statusConvert[10].text = "Marlin mode"; statusConvert[10].state = GrblState.Marlin; statusConvert[10].color = Color.Yellow;
 
             settings.Clear();
             coordinates.Clear();
@@ -138,48 +139,56 @@ namespace GRBL_Plotter
         }
 
         // store grbl settings https://github.com/gnea/grbl/wiki/Grbl-v1.1-Configuration#grbl-settings
-        public static void setSettings(int id, string value)
-        {   float tmp = 0;
-            if (float.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out tmp))
-            {   if (settings.ContainsKey(id))
+        public static void SetSettings(int id, string value)
+        {
+            //     float tmp;
+            if (float.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out float tmp))
+            {
+                if (settings.ContainsKey(id))
                     settings[id] = tmp;
                 else
                     settings.Add(id, tmp);
             }
         }
-        public static float getSetting(int key)
-        {   if (settings.ContainsKey(key))
+        public static float GetSetting(int key)
+        {
+            if (settings.ContainsKey(key))
                 return settings[key];
             else
                 return -1;
         }
 
         // store gcode parameters https://github.com/gnea/grbl/wiki/Grbl-v1.1-Commands#---view-gcode-parameters
-        public static void setCoordinates(string id, string value, string info)
-        {   xyzPoint tmp = new xyzPoint();
+        public static void SetCoordinates(string id, string value, string info)
+        {
+            XyzPoint tmp = new XyzPoint();
             string allowed = "PRBG54G55G56G57G58G59G28G30G92TLO";
             if (allowed.Contains(id))
-            {   getPosition(0,"abc:" + value, ref tmp);   // parse string [PRB:-155.000,-160.000,-28.208:1]
+            {
+                GetPosition(0, "abc:" + value, ref tmp);   // parse string [PRB:-155.000,-160.000,-28.208:1]
                 if (coordinates.ContainsKey(id))
                     coordinates[id] = tmp;
                 else
                     coordinates.Add(id, tmp);
 
                 if ((info.Length > 0) && (id == "PRB"))
-                {   xyzPoint tmp2 = new xyzPoint();
-                    tmp2 = coordinates["PRB"];
+                {
+                    XyzPoint tmp2 = coordinates["PRB"];
                     tmp2.A = info == "1" ? 1 : 0;
                     coordinates["PRB"] = tmp2;
                 }
             }
         }
 
-        public static string displayCoord(string key)
-        {   if (coordinates.ContainsKey(key))
-            {   if (key == "TLO")
+        public static string DisplayCoord(string key)
+        {
+            if (coordinates.ContainsKey(key))
+            {
+                if (key == "TLO")
                     return String.Format("                  {0,8:###0.000}", coordinates[key].Z);
                 else
-                {   string coordString = String.Format("{0,8:###0.000} {1,8:###0.000} {2,8:###0.000}", coordinates[key].X, coordinates[key].Y, coordinates[key].Z);
+                {
+                    string coordString = String.Format("{0,8:###0.000} {1,8:###0.000} {2,8:###0.000}", coordinates[key].X, coordinates[key].Y, coordinates[key].Z);
                     if (axisA) coordString = String.Format("{0} {1,8:###0.000}", coordString, coordinates[key].A);
                     if (axisB) coordString = String.Format("{0} {1,8:###0.000}", coordString, coordinates[key].B);
                     if (axisC) coordString = String.Format("{0} {1,8:###0.000}", coordString, coordinates[key].C);
@@ -189,22 +198,26 @@ namespace GRBL_Plotter
             else
                 return "no data";
         }
-        public static xyzPoint getCoord(string key)
-        {   if (coordinates.ContainsKey(key))
+        internal static XyzPoint GetCoord(string key)
+        {
+            if (coordinates.ContainsKey(key))
                 return coordinates[key];
-            return new xyzPoint();
+            return new XyzPoint();
         }
 
-        public static bool getPRBStatus()
-        {   if (coordinates.ContainsKey("PRB"))
-            {   return (coordinates["PRB"].A==0.0)? false:true;    }
+        public static bool GetPRBStatus()
+        {
+            if (coordinates.ContainsKey("PRB"))
+            { return coordinates["PRB"].A != 0.0; }
             return false;
         }
 
-        private static void setMessageString(ref Dictionary<string, string> myDict, string resource)
-        {   string[] tmp = resource.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+        private static void SetMessageString(ref Dictionary<string, string> myDict, string resource)
+        {
+            string[] tmp = resource.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
             foreach (string s in tmp)
-            {   string[] col = s.Split(new[] { "\",\"" }, StringSplitOptions.None);
+            {
+                string[] col = s.Split(new[] { "\",\"" }, StringSplitOptions.None);
                 string message = col[col.Length - 1].Trim('"');
                 myDict.Add(col[0].Trim('"'), message);
             }
@@ -214,64 +227,74 @@ namespace GRBL_Plotter
         /// parse single gcode line to set parser state
         /// </summary>
         private static bool getTLO = false;
-        public static void updateParserState(int serNr, string line, ref pState myParserState)
+        public static void UpdateParserState(int serNr, string line, ref ParsState myParserState)
         {
             char cmd = '\0';
             string num = "";
             bool comment = false;
-            double value = 0;
-			bool TLO = getTLO;
+            double value;
+            bool TLO = getTLO;
             getTLO = false;
             myParserState.changed = false;
 
             if (!(line.StartsWith("$") || line.StartsWith("("))) //do not parse grbl commands
-            {   try
-                {   foreach (char c in line)
-                    {   if (c == ';')
+            {
+                try
+                {
+                    foreach (char c in line)
+                    {
+                        if (c == ';')
                             break;
                         if (c == '(')
                             comment = true;
                         if (!comment)
-                        {   if (Char.IsLetter(c))
-                            {   if (cmd != '\0')
-                                {   value = 0;
+                        {
+                            if (Char.IsLetter(c))
+                            {
+                                if (cmd != '\0')
+                                {
+                                    value = 0;
                                     if (num.Length > 0)
-                                    {   try { value = double.Parse(num, System.Globalization.NumberFormatInfo.InvariantInfo); }
+                                    {
+                                        try { value = double.Parse(num, System.Globalization.NumberFormatInfo.InvariantInfo); }
                                         catch { }
                                     }
-                                    try { setParserState(cmd, value, ref myParserState); }
+                                    try { SetParserState(cmd, value, ref myParserState); }
                                     catch { }
                                 }
                                 cmd = c;
                                 num = "";
                             }
                             else if (Char.IsNumber(c) || c == '.' || c == '-')
-                            {   num += c;  }
+                            { num += c; }
                         }
                         if (c == ')')
                         { comment = false; }
                     }
                     if (cmd != '\0')
-                    {   try { setParserState(cmd, double.Parse(num, System.Globalization.NumberFormatInfo.InvariantInfo), ref myParserState); }
+                    {
+                        try { SetParserState(cmd, double.Parse(num, System.Globalization.NumberFormatInfo.InvariantInfo), ref myParserState); }
                         catch { }
                     }
                 }
                 catch { }
             }
-			if (serNr != 1)
-				getTLO = TLO;	// restore value;
+            if (serNr != 1)
+                getTLO = TLO;	// restore value;
         }
 
         /// <summary>
         /// set parser state
         /// </summary>
-        private static void setParserState(char cmd, double value, ref pState myParserState)
+        private static void SetParserState(char cmd, double value, ref ParsState myParserState)
         {
-//            myParserState.changed = false;
+            //            myParserState.changed = false;
             switch (Char.ToUpper(cmd))
-            {   case 'G':
+            {
+                case 'G':
                     if (value <= 3)
-                    {   myParserState.motion = (byte)value;
+                    {
+                        myParserState.motion = (byte)value;
                         break;
                     }
                     if ((value >= 17) && (value <= 19))
@@ -289,7 +312,7 @@ namespace GRBL_Plotter
                     else if ((value == 93) || (value == 94))
                         myParserState.feed_rate = (byte)value;
                     myParserState.changed = true;
-//                    MessageBox.Show("set parser state "+cmd + "  " + value.ToString()+ "  "+ myParserState.TLOactive.ToString());
+                    //                    MessageBox.Show("set parser state "+cmd + "  " + value.ToString()+ "  "+ myParserState.TLOactive.ToString());
                     break;
                 case 'M':
                     if ((value <= 2) || (value == 30))
@@ -322,19 +345,22 @@ namespace GRBL_Plotter
         }
         // check https://github.com/gnea/grbl/wiki/Grbl-v1.1-Commands#g---view-gcode-parser-state
         public static int[] unknownG = { 41, 64, 81, 83 };
-        public static grblState parseStatus(string status)    // {idle, run, hold, home, alarm, check, door}
-        {   for (int i = 0; i < statusConvert.Length; i++)
-            {   if (status.StartsWith(statusConvert[i].msg))     // status == statusConvert[i].msg
+        public static GrblState ParseStatus(string status)    // {idle, run, hold, home, alarm, check, door}
+        {
+            for (int i = 0; i < statusConvert.Length; i++)
+            {
+                if (status.StartsWith(statusConvert[i].msg))     // status == statusConvert[i].msg
                     return statusConvert[i].state;
             }
-            return grblState.unknown;
+            return GrblState.unknown;
         }
-        public static string statusToText(grblState state)
+        public static string StatusToText(GrblState state)
         {
             for (int i = 0; i < statusConvert.Length; i++)
             {
                 if (state == statusConvert[i].state)
-                { if (Properties.Settings.Default.grblTranslateMessage)
+                {
+                    if (Properties.Settings.Default.grblTranslateMessage)
                         return statusConvert[i].text;
                     else
                         return statusConvert[i].state.ToString();
@@ -342,7 +368,7 @@ namespace GRBL_Plotter
             }
             return "Unknown";
         }
-        public static Color grblStateColor(grblState state)
+        public static Color GrblStateColor(GrblState state)
         {
             for (int i = 0; i < statusConvert.Length; i++)
             {
@@ -351,19 +377,21 @@ namespace GRBL_Plotter
             }
             return Color.Fuchsia;
         }
-        public static bool getBufferSize(int serNr, string text)
-        {   if (bufferSize <= 0)    // only get if not done already
-            {   string[] dataValue = text.Split(',');
-				int tmp=-1;
+        public static bool GetBufferSize(string text)
+        {
+            if (bufferSize <= 0)    // only get if not done already
+            {
+                string[] dataValue = text.Split(',');
+                int tmp = -1;
                 if (dataValue.Length > 1)
                 { int.TryParse(dataValue[1], NumberStyles.Any, CultureInfo.InvariantCulture, out tmp); }
-				if (tmp > 0)
-					bufferSize = tmp;				
+                if (tmp > 0)
+                    bufferSize = tmp;
                 return true;
             }
             return false;
         }
-        public static int getPosition(int serNr, string text, ref xyzPoint position)
+        internal static int GetPosition(int serNr, string text, ref XyzPoint position)
         {
             string[] dataField = text.Split(':');
             if (dataField.Length <= 1)
@@ -385,42 +413,46 @@ namespace GRBL_Plotter
                 axisCountLocal = 3;
             }
             if (dataValue.Length > 3)
-            {   Double.TryParse(dataValue[3], NumberStyles.Any, CultureInfo.InvariantCulture, out position.A);
+            {
+                Double.TryParse(dataValue[3], NumberStyles.Any, CultureInfo.InvariantCulture, out position.A);
                 axisCountLocal++;
-				if (serNr == 1)	axisA = true;
+                if (serNr == 1) axisA = true;
             }
             if (dataValue.Length > 4)
-            {   Double.TryParse(dataValue[4], NumberStyles.Any, CultureInfo.InvariantCulture, out position.B);
+            {
+                Double.TryParse(dataValue[4], NumberStyles.Any, CultureInfo.InvariantCulture, out position.B);
                 axisCountLocal++;
-				if (serNr == 1)	axisB = true;
+                if (serNr == 1) axisB = true;
             }
             if (dataValue.Length > 5)
-            {   Double.TryParse(dataValue[5], NumberStyles.Any, CultureInfo.InvariantCulture, out position.C);
+            {
+                Double.TryParse(dataValue[5], NumberStyles.Any, CultureInfo.InvariantCulture, out position.C);
                 axisCountLocal++;
-				if (serNr == 1)	axisC = true;
+                if (serNr == 1) axisC = true;
             }
-			if (serNr == 1)	
-				axisCount = axisCountLocal;
-			return axisCountLocal;
+            if (serNr == 1)
+                axisCount = axisCountLocal;
+            return axisCountLocal;
             //axisA = true; axisB = true; axisC = true;     // for test only
         }
 
-        public static string getSettingDescription(string msgNr)
-        {   string msg = " no information found '" + msgNr + "'";
-            try { msg = grbl.messageSettingCodes[msgNr]; }
+        public static string GetSettingDescription(string msgNr)
+        {
+            string msg = " no information found '" + msgNr + "'";
+            try { msg = Grbl.messageSettingCodes[msgNr]; }
             catch { }
             return msg;
         }
-        public static string getMsgNr(string msg)
+        public static string GetMsgNr(string msg)
         {
             string[] tmp = msg.Split(':');
             if (tmp.Length > 1)
-            {   return tmp[tmp.Length-1].Trim(); }      // 2021-05-01 change from [1]
+            { return tmp[tmp.Length - 1].Trim(); }      // 2021-05-01 change from [1]
             return "";
         }
-        public static string getErrorDescription(string rxString)
+        public static string GetErrorDescription(string rxString)
         {   //string[] tmp = rxString.Split(':');
-            string msgNr = getMsgNr(rxString);
+            string msgNr = GetMsgNr(rxString);
             if (msgNr.Length >= 1)
             {
                 string msg = " no information found for error-nr. '" + msgNr + "'";
@@ -428,7 +460,7 @@ namespace GRBL_Plotter
                 {
                     if (messageErrorCodes.ContainsKey(msgNr))
                     {
-                        msg = grbl.messageErrorCodes[msgNr];
+                        msg = Grbl.messageErrorCodes[msgNr];
                         //int errnr = Convert.ToInt16(tmp[1].Trim());
                         lastErrorNr = 0;
                         lastMessage = rxString + " " + msg;
@@ -446,31 +478,20 @@ namespace GRBL_Plotter
                 return " no info ";
             }
         }
-        public static bool errorBecauseOfBadCode(string rxString)
-        {   string[] tmp = rxString.Split(':');
-            try {   int[] notByGCode = {3,5,6,7,8,9,10,12,13,14,15,16,17,18,19};
-                //int errnr = Convert.ToInt16(tmp[1].Trim());
-                    short errnr = 0;
-                     if (!short.TryParse(tmp[1], NumberStyles.Any, CultureInfo.InvariantCulture, out errnr))
-                        return true;
-                    if (Array.Exists(notByGCode, element => element == errnr))
-                        return false; 
-                    else
-                        return true;
-                }
-            catch { }
-            return true;
-        }
-        public static string getAlarmDescription(string rxString)
-        {   string[] tmp = rxString.Split(':');
+
+        public static string GetAlarmDescription(string rxString)
+        {
+            string[] tmp = rxString.Split(':');
             string msg = " no information found for alarm-nr. '" + tmp[1] + "'";
-            try {   if (messageAlarmCodes.ContainsKey(tmp[1].Trim()))
-                        msg = grbl.messageAlarmCodes[tmp[1].Trim()];
-                }
+            try
+            {
+                if (messageAlarmCodes.ContainsKey(tmp[1].Trim()))
+                    msg = Grbl.messageAlarmCodes[tmp[1].Trim()];
+            }
             catch { }
             return msg;
         }
-        public static string getRealtimeDescription(int id)
+        public static string GetRealtimeDescription(int id)
         {
             switch (id)
             {
@@ -524,40 +545,40 @@ namespace GRBL_Plotter
         }
     }
 
-    public enum grblState { idle, run, hold, jog, alarm, door, check, home, sleep, probe, reset, unknown, Marlin, notConnected };
-    public enum grblStreaming { ok, error, reset, finish, pause, waitidle, toolchange, stop, lasermode, waitstop };
+    internal enum GrblState { idle, run, hold, jog, alarm, door, check, home, sleep, probe, reset, unknown, Marlin, notConnected };
+    internal enum GrblStreaming { ok, error, reset, finish, pause, waitidle, toolchange, stop, lasermode, waitstop };
 
-    public struct sConvert
+    internal struct StatConvert
     {
         public string msg;
         public string text;
-        public grblState state;
+        internal GrblState state;
         public Color color;
     };
 
-    public class pState
+    internal class ParsState
     {
-        public bool changed=false;
-        public int motion=0;           // {G0,G1,G2,G3,G38.2,G80} 
-        public int feed_rate=94;       // {G93,G94} 
-        public int units=21;           // {G20,G21} 
-        public int distance=90;        // {G90,G91} 
-                                        // uint8_t distance_arc; // {G91.1} NOTE: Don't track. Only default supported. 
-        public int plane_select=17;    // {G17,G18,G19} 
-                                        // uint8_t cutter_comp;  // {G40} NOTE: Don't track. Only default supported. 
-        public double tool_length=0;       // {G43.1,G49} 
-        public int coord_select=54;    // {G54,G55,G56,G57,G58,G59} 
-                                        // uint8_t control;      // {G61} NOTE: Don't track. Only default supported. 
-        public int program_flow=0;    // {M0,M1,M2,M30} 
-        public int coolant=9;         // {M7,M8,M9} 
-        public int spindle=5;         // {M3,M4,M5} 
-        public bool toolchange=false;
-        public int tool=0;            // tool number
-        public double FR=0;           // feedrate
-        public double SS=0;           // spindle speed
+        public bool changed = false;
+        public int motion = 0;           // {G0,G1,G2,G3,G38.2,G80} 
+        public int feed_rate = 94;       // {G93,G94} 
+        public int units = 21;           // {G20,G21} 
+        public int distance = 90;        // {G90,G91} 
+                                         // uint8_t distance_arc; // {G91.1} NOTE: Don't track. Only default supported. 
+        public int plane_select = 17;    // {G17,G18,G19} 
+                                         // uint8_t cutter_comp;  // {G40} NOTE: Don't track. Only default supported. 
+        public double tool_length = 0;       // {G43.1,G49} 
+        public int coord_select = 54;    // {G54,G55,G56,G57,G58,G59} 
+                                         // uint8_t control;      // {G61} NOTE: Don't track. Only default supported. 
+        public int program_flow = 0;    // {M0,M1,M2,M30} 
+        public int coolant = 9;         // {M7,M8,M9} 
+        public int spindle = 5;         // {M3,M4,M5} 
+        public bool toolchange = false;
+        public int tool = 0;            // tool number
+        public double FR = 0;           // feedrate
+        public double SS = 0;           // spindle speed
         public bool TLOactive = false;// Tool length offset
 
-        public void reset()
+        public void Reset()
         {
             motion = 0; plane_select = 17; units = 21;
             coord_select = 54; distance = 90; feed_rate = 94;
@@ -569,23 +590,25 @@ namespace GRBL_Plotter
 
     };
 
-    public class mState
-    {   public string Bf, Ln, FS, Pn, Ov, A;
-        public mState(string bf, string ln, string fs, string pn, string ov, string a)
-        { Bf = bf; Ln = ln; FS = fs; Pn = pn; Ov = ov; A = a; }
-        public mState()
+    internal class ModState
+    {
+        public string Bf, Ln, FS, Pn, Ov, A;
+        /*   public ModState(string bf, string ln, string fs, string pn, string ov, string a)
+           { Bf = bf; Ln = ln; FS = fs; Pn = pn; Ov = ov; A = a; }*/
+        public ModState()
         { Clear(); }
         public void Clear()
-        {   Bf = ""; Ln = ""; FS = ""; Pn = ""; Ov = ""; A = ""; }
+        { Bf = ""; Ln = ""; FS = ""; Pn = ""; Ov = ""; A = ""; }
     };
 
     public class StreamEventArgs : EventArgs
     {
-        private int codeFinish, buffFinish;
-        private int codeLineSent;
-        private int codeLineConfirmed;
-        private grblStreaming status;
-        public StreamEventArgs(int c1, int c2, int a1, int a2, grblStreaming stat)
+        private readonly int codeFinish;
+        private readonly int buffFinish;
+        private readonly int codeLineSent;
+        private readonly int codeLineConfirmed;
+        private readonly GrblStreaming status;
+        internal StreamEventArgs(int c1, int c2, int a1, int a2, GrblStreaming stat)
         {
             codeLineSent = c1;
             codeLineConfirmed = c2;
@@ -601,18 +624,18 @@ namespace GRBL_Plotter
         { get { return codeFinish; } }
         public int BuffProgress
         { get { return buffFinish; } }
-        public grblStreaming Status
+        internal GrblStreaming Status
         { get { return status; } }
     }
 
     public class PosEventArgs : EventArgs
     {
-        private xyzPoint posWorld, posMachine;
-        private grblState status;
-        private mState statMsg;
-        private pState lastCmd;
-        private string raw;
-        public PosEventArgs(xyzPoint world, xyzPoint machine, grblState stat, mState msg, pState last, string sraw)
+        private XyzPoint posWorld, posMachine;
+        private readonly GrblState status;
+        private readonly ModState statMsg;
+        private readonly ParsState lastCmd;
+        private readonly string raw;
+        internal PosEventArgs(XyzPoint world, XyzPoint machine, GrblState stat, ModState msg, ParsState last, string sraw)
         {
             posWorld = world;
             posMachine = machine;
@@ -621,15 +644,15 @@ namespace GRBL_Plotter
             lastCmd = last;
             raw = sraw;
         }
-        public xyzPoint PosWorld
+        internal XyzPoint PosWorld
         { get { return posWorld; } }
-        public xyzPoint PosMachine
+        internal XyzPoint PosMachine
         { get { return posMachine; } }
-        public grblState Status
+        internal GrblState Status
         { get { return status; } }
-        public mState StatMsg
+        internal ModState StatMsg
         { get { return statMsg; } }
-        public pState parserState
+        internal ParsState ParserState
         { get { return lastCmd; } }
         public string Raw
         { get { return raw; } }

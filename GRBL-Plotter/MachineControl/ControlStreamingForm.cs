@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2017 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,12 +16,17 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
+/*
+ * 2021-07-12 code clean up / code quality
+ */
+ 
 using System;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace GRBL_Plotter
+#pragma warning disable CA1305
+
+namespace GrblPlotter
 {
     public partial class ControlStreamingForm : Form
     {
@@ -49,68 +54,69 @@ namespace GRBL_Plotter
             lblOverrideFRValue.Text = tBOverrideFR.Value.ToString();
             lblOverrideSSValue.Text = tBOverrideSS.Value.ToString();
         }
-        private void nUDOverrideFRTop_ValueChanged(object sender, EventArgs e)
+        private void NudOverrideFRTop_ValueChanged(object sender, EventArgs e)
         {   tBOverrideFR.Maximum = (int)nUDOverrideFRTop.Value;  }
-        private void nUDOverrideFRBtm_ValueChanged(object sender, EventArgs e)
+        private void NudOverrideFRBtm_ValueChanged(object sender, EventArgs e)
         {   tBOverrideFR.Minimum = (int)nUDOverrideFRBtm.Value;  }
-        private void nUDOverrideSSTop_ValueChanged(object sender, EventArgs e)
+        private void NudOverrideSSTop_ValueChanged(object sender, EventArgs e)
         {   tBOverrideSS.Maximum = (int)nUDOverrideSSTop.Value;  }
-        private void nUDOverrideSSBtm_ValueChanged(object sender, EventArgs e)
+        private void NudOverrideSSBtm_ValueChanged(object sender, EventArgs e)
         {   tBOverrideSS.Minimum = (int)nUDOverrideSSBtm.Value;  }
 
-        public void tBOverrideFR_Scroll(object sender, EventArgs e)
+        public void TbOverrideFRScroll(object sender, EventArgs e)
         {
             lblOverrideFRValue.Text = tBOverrideFR.Value.ToString();
         }
 
-        public void tBOverrideSS_Scroll(object sender, EventArgs e)
+        public void TbOverrideSSScroll(object sender, EventArgs e)
         {
             lblOverrideSSValue.Text = tBOverrideSS.Value.ToString();
         }
 
-        public void show_value_FR(string val)
+        public void ShowValueFR(string val)
         { lblFRValue.Text = val; }
-        public void show_value_SS(string val)
+        public void ShowValueSS(string val)
         { lblSSValue.Text = val; }
 
-        private void tBOverrideFR_MouseUp(object sender, MouseEventArgs e)
+        private void TbOverrideFR_MouseUp(object sender, MouseEventArgs e)
         {
             if (cBOverrideFREnable.Checked)
-                OnRaiseOverrideEvent(new OverrideEventArgs(overrideSource.feedRate, (float)tBOverrideFR.Value, cBOverrideFREnable.Checked));
+                OnRaiseOverrideEvent(new OverrideEventArgs(OverrideSource.feedRate, (float)tBOverrideFR.Value, cBOverrideFREnable.Checked));
         }
-        private void tBOverrideFR_KeyUp(object sender, KeyEventArgs e)
+        private void TbOverrideFR_KeyUp(object sender, KeyEventArgs e)
         {
             if (cBOverrideFREnable.Checked)
-                OnRaiseOverrideEvent(new OverrideEventArgs(overrideSource.feedRate, (float)tBOverrideFR.Value, cBOverrideFREnable.Checked));
+                OnRaiseOverrideEvent(new OverrideEventArgs(OverrideSource.feedRate, (float)tBOverrideFR.Value, cBOverrideFREnable.Checked));
         }
-        private void tBOverrideSS_MouseUp(object sender, MouseEventArgs e)
+        private void TbOverrideSS_MouseUp(object sender, MouseEventArgs e)
         {
             if (cBOverrideSSEnable.Checked)
-                OnRaiseOverrideEvent(new OverrideEventArgs(overrideSource.spindleSpeed, (float)tBOverrideSS.Value, cBOverrideSSEnable.Checked));
+                OnRaiseOverrideEvent(new OverrideEventArgs(OverrideSource.spindleSpeed, (float)tBOverrideSS.Value, cBOverrideSSEnable.Checked));
         }
-        private void tBOverrideSS_KeyUp(object sender, KeyEventArgs e)
+        private void TbOverrideSS_KeyUp(object sender, KeyEventArgs e)
         {
             if (cBOverrideSSEnable.Checked)
-                OnRaiseOverrideEvent(new OverrideEventArgs(overrideSource.spindleSpeed, (float)tBOverrideSS.Value, cBOverrideSSEnable.Checked));
+                OnRaiseOverrideEvent(new OverrideEventArgs(OverrideSource.spindleSpeed, (float)tBOverrideSS.Value, cBOverrideSSEnable.Checked));
         }
 
-        private void cBOverrideFREnable_CheckedChanged(object sender, EventArgs e)
+        private void CbOverrideFREnable_CheckedChanged(object sender, EventArgs e)
         {
-            OnRaiseOverrideEvent(new OverrideEventArgs(overrideSource.feedRate,(float)tBOverrideFR.Value, cBOverrideFREnable.Checked));
+            OnRaiseOverrideEvent(new OverrideEventArgs(OverrideSource.feedRate,(float)tBOverrideFR.Value, cBOverrideFREnable.Checked));
         }
-        private void cBOverrideSSEnable_CheckedChanged(object sender, EventArgs e)
+        private void CbOverrideSSEnable_CheckedChanged(object sender, EventArgs e)
         {
-            OnRaiseOverrideEvent(new OverrideEventArgs(overrideSource.spindleSpeed, (float)tBOverrideSS.Value, cBOverrideSSEnable.Checked));
+            OnRaiseOverrideEvent(new OverrideEventArgs(OverrideSource.spindleSpeed, (float)tBOverrideSS.Value, cBOverrideSSEnable.Checked));
         }
 
         public event EventHandler<OverrideEventArgs> RaiseOverrideEvent;
         protected virtual void OnRaiseOverrideEvent(OverrideEventArgs e)
         {
-            EventHandler<OverrideEventArgs> handler = RaiseOverrideEvent;
+			RaiseOverrideEvent?.Invoke(this, e);
+        /*    EventHandler<OverrideEventArgs> handler = RaiseOverrideEvent;
             if (handler != null)
             {
                 handler(this, e);
-            }
+            }*/
         }
 
         private void ControlStreamingForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -118,20 +124,20 @@ namespace GRBL_Plotter
             Properties.Settings.Default.locationStreamForm = Location;
         }
     }
-    public enum overrideSource { spindleSpeed, feedRate};
+    public enum OverrideSource { spindleSpeed, feedRate};
 
     public class OverrideEventArgs : EventArgs
     {
-        private overrideSource source;
-        private float value;
-        private bool enable;
-        public OverrideEventArgs(overrideSource in_source, float in_value, bool in_enable)
+        private readonly OverrideSource source;
+        private readonly float value;
+        private readonly bool enable;
+        public OverrideEventArgs(OverrideSource inSource, float inValue, bool inEnable)
         {
-            source = in_source;
-            value = in_value;
-            enable = in_enable;
+            source = inSource;
+            value = inValue;
+            enable = inEnable;
         }
-        public overrideSource Source
+        public OverrideSource Source
         { get { return source; } }
         public float Value
         { get { return value; } }

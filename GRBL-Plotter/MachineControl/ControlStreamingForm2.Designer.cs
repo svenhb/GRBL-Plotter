@@ -1,4 +1,4 @@
-﻿namespace GRBL_Plotter
+﻿namespace GrblPlotter
 {
     partial class ControlStreamingForm2
     {
@@ -119,7 +119,7 @@
             this.btnOverrideFR0.TabIndex = 12;
             this.btnOverrideFR0.Text = "set 100%";
             this.btnOverrideFR0.UseVisualStyleBackColor = true;
-            this.btnOverrideFR0.Click += new System.EventHandler(this.btnOverrideFR0_Click);
+            this.btnOverrideFR0.Click += new System.EventHandler(this.BtnOverrideFR0_Click);
             // 
             // btnOverrideFR4
             // 
@@ -129,7 +129,7 @@
             this.btnOverrideFR4.TabIndex = 11;
             this.btnOverrideFR4.Text = "-10%";
             this.btnOverrideFR4.UseVisualStyleBackColor = true;
-            this.btnOverrideFR4.Click += new System.EventHandler(this.btnOverrideFR4_Click);
+            this.btnOverrideFR4.Click += new System.EventHandler(this.BtnOverrideFR4_Click);
             // 
             // btnOverrideFR3
             // 
@@ -139,7 +139,7 @@
             this.btnOverrideFR3.TabIndex = 10;
             this.btnOverrideFR3.Text = "-1%";
             this.btnOverrideFR3.UseVisualStyleBackColor = true;
-            this.btnOverrideFR3.Click += new System.EventHandler(this.btnOverrideFR3_Click);
+            this.btnOverrideFR3.Click += new System.EventHandler(this.BtnOverrideFR3_Click);
             // 
             // label1
             // 
@@ -158,7 +158,7 @@
             this.btnOverrideFR2.TabIndex = 8;
             this.btnOverrideFR2.Text = "+1%";
             this.btnOverrideFR2.UseVisualStyleBackColor = true;
-            this.btnOverrideFR2.Click += new System.EventHandler(this.btnOverrideFR2_Click);
+            this.btnOverrideFR2.Click += new System.EventHandler(this.BtnOverrideFR2_Click);
             // 
             // btnOverrideFR1
             // 
@@ -168,7 +168,7 @@
             this.btnOverrideFR1.TabIndex = 7;
             this.btnOverrideFR1.Text = "+10%";
             this.btnOverrideFR1.UseVisualStyleBackColor = true;
-            this.btnOverrideFR1.Click += new System.EventHandler(this.btnOverrideFR1_Click);
+            this.btnOverrideFR1.Click += new System.EventHandler(this.BtnOverrideFR1_Click);
             // 
             // lblOverrideFRValue
             // 
@@ -235,7 +235,7 @@
             this.btnOverrideSS0.TabIndex = 12;
             this.btnOverrideSS0.Text = "set 100%";
             this.btnOverrideSS0.UseVisualStyleBackColor = true;
-            this.btnOverrideSS0.Click += new System.EventHandler(this.btnOverrideSS0_Click);
+            this.btnOverrideSS0.Click += new System.EventHandler(this.BtnOverrideSS0_Click);
             // 
             // btnOverrideSS4
             // 
@@ -245,7 +245,7 @@
             this.btnOverrideSS4.TabIndex = 11;
             this.btnOverrideSS4.Text = "-10%";
             this.btnOverrideSS4.UseVisualStyleBackColor = true;
-            this.btnOverrideSS4.Click += new System.EventHandler(this.btnOverrideSS4_Click);
+            this.btnOverrideSS4.Click += new System.EventHandler(this.BtnOverrideSS4_Click);
             // 
             // btnOverrideSS3
             // 
@@ -255,7 +255,7 @@
             this.btnOverrideSS3.TabIndex = 10;
             this.btnOverrideSS3.Text = "-1%";
             this.btnOverrideSS3.UseVisualStyleBackColor = true;
-            this.btnOverrideSS3.Click += new System.EventHandler(this.btnOverrideSS3_Click);
+            this.btnOverrideSS3.Click += new System.EventHandler(this.BtnOverrideSS3_Click);
             // 
             // label7
             // 
@@ -274,7 +274,7 @@
             this.btnOverrideSS2.TabIndex = 8;
             this.btnOverrideSS2.Text = "+1%";
             this.btnOverrideSS2.UseVisualStyleBackColor = true;
-            this.btnOverrideSS2.Click += new System.EventHandler(this.btnOverrideSS2_Click);
+            this.btnOverrideSS2.Click += new System.EventHandler(this.BtnOverrideSS2_Click);
             // 
             // btnOverrideSS1
             // 
@@ -284,7 +284,7 @@
             this.btnOverrideSS1.TabIndex = 7;
             this.btnOverrideSS1.Text = "+10%";
             this.btnOverrideSS1.UseVisualStyleBackColor = true;
-            this.btnOverrideSS1.Click += new System.EventHandler(this.btnOverrideSS1_Click);
+            this.btnOverrideSS1.Click += new System.EventHandler(this.BtnOverrideSS1_Click);
             // 
             // lblOverrideSSValue
             // 
@@ -304,7 +304,7 @@
             this.btnToggleSS.Text = "Toggle Spindle Stop";
             this.toolTip1.SetToolTip(this.btnToggleSS, resources.GetString("btnToggleSS.ToolTip"));
             this.btnToggleSS.UseVisualStyleBackColor = true;
-            this.btnToggleSS.Click += new System.EventHandler(this.btnToggleSS_Click);
+            this.btnToggleSS.Click += new System.EventHandler(this.BtnToggleSS_Click);
             // 
             // groupBox3
             // 
@@ -327,7 +327,7 @@
             this.btnToggleMC.Text = "Toggle Mist Coolant";
             this.toolTip1.SetToolTip(this.btnToggleMC, resources.GetString("btnToggleMC.ToolTip"));
             this.btnToggleMC.UseVisualStyleBackColor = true;
-            this.btnToggleMC.Click += new System.EventHandler(this.btnToggleMC_Click);
+            this.btnToggleMC.Click += new System.EventHandler(this.BtnToggleMC_Click);
             // 
             // btnToggleFC
             // 
@@ -338,7 +338,7 @@
             this.btnToggleFC.Text = "Toggle Flood Coolant";
             this.toolTip1.SetToolTip(this.btnToggleFC, resources.GetString("btnToggleFC.ToolTip"));
             this.btnToggleFC.UseVisualStyleBackColor = true;
-            this.btnToggleFC.Click += new System.EventHandler(this.btnToggleFC_Click);
+            this.btnToggleFC.Click += new System.EventHandler(this.BtnToggleFC_Click);
             // 
             // btnOverrideSD
             // 
@@ -349,7 +349,7 @@
             this.btnOverrideSD.Text = "Safety Door";
             this.toolTip1.SetToolTip(this.btnOverrideSD, resources.GetString("btnOverrideSD.ToolTip"));
             this.btnOverrideSD.UseVisualStyleBackColor = true;
-            this.btnOverrideSD.Click += new System.EventHandler(this.btnOverrideSD_Click);
+            this.btnOverrideSD.Click += new System.EventHandler(this.BtnOverrideSD_Click);
             // 
             // ControlStreamingForm2
             // 

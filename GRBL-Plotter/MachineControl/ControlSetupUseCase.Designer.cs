@@ -1,4 +1,4 @@
-﻿namespace GRBL_Plotter
+﻿namespace GrblPlotter
 {
     partial class ControlSetupUseCase
     {
@@ -50,14 +50,14 @@
             this.lBUseCase.FormattingEnabled = true;
             resources.ApplyResources(this.lBUseCase, "lBUseCase");
             this.lBUseCase.Name = "lBUseCase";
-            this.lBUseCase.SelectedIndexChanged += new System.EventHandler(this.lBUseCase_SelectedIndexChanged);
+            this.lBUseCase.SelectedIndexChanged += new System.EventHandler(this.LbUseCase_SelectedIndexChanged);
             // 
             // btnLoad
             // 
             resources.ApplyResources(this.btnLoad, "btnLoad");
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.UseVisualStyleBackColor = true;
-            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            this.btnLoad.Click += new System.EventHandler(this.BtnLoad_Click);
             // 
             // btnOk
             // 
@@ -65,7 +65,7 @@
             resources.ApplyResources(this.btnOk, "btnOk");
             this.btnOk.Name = "btnOk";
             this.btnOk.UseVisualStyleBackColor = false;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            this.btnOk.Click += new System.EventHandler(this.BtnOk_Click);
             // 
             // tBSetup
             // 
@@ -81,16 +81,16 @@
             // lblLastUseCase
             // 
             resources.ApplyResources(this.lblLastUseCase, "lblLastUseCase");
-            this.lblLastUseCase.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "useCaseLastLoaded", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.lblLastUseCase.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "useCaseLastLoaded", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.lblLastUseCase.Name = "lblLastUseCase";
-            this.lblLastUseCase.Text = global::GRBL_Plotter.Properties.Settings.Default.useCaseLastLoaded;
+            this.lblLastUseCase.Text = global::GrblPlotter.Properties.Settings.Default.useCaseLastLoaded;
             // 
             // cBshowImportDialog
             // 
             resources.ApplyResources(this.cBshowImportDialog, "cBshowImportDialog");
-            this.cBshowImportDialog.Checked = global::GRBL_Plotter.Properties.Settings.Default.importShowUseCaseDialog;
+            this.cBshowImportDialog.Checked = global::GrblPlotter.Properties.Settings.Default.importShowUseCaseDialog;
             this.cBshowImportDialog.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBshowImportDialog.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "importShowUseCaseDialog", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBshowImportDialog.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importShowUseCaseDialog", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cBshowImportDialog.Name = "cBshowImportDialog";
             this.cBshowImportDialog.UseVisualStyleBackColor = true;
             // 

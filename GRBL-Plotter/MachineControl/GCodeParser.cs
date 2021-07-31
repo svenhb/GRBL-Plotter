@@ -23,55 +23,62 @@
  * 2021-01-06 find parsing problem
  * 2021-01-24 extend actualPos to xyzPoint
  * 2021-03-26 add wasSetF/S/XY/Z
- */ 
+ * 2021-07-26 code clean up / code quality
+ * 2021-07-29 line 306 add G28 to ismachineCoordG53 = true;
+*/
 
 
 using System;
-using System.Windows.Forms;
 
-namespace GRBL_Plotter
+//#pragma warning disable CA1304
+//#pragma warning disable CA1305
+//#pragma warning disable CA1307
+
+namespace GrblPlotter
 {
     /// <summary>
     /// Hold absolute work coordinate for given linenumber of GCode program
     /// </summary>
-    class coordByLine
-    {   public int lineNumber;          // line number in fCTBCode
+    internal class CoordByLine
+    {
+        public int lineNumber;          // line number in fCTBCode
         public int figureNumber;
-        public xyzPoint actualPos;       // accumulates position
+        internal XyzPoint actualPos;       // accumulates position
         public double alpha;            // angle between old and this position
         public double distance;         // distance to specific point
         public bool isArc;
 
-        public coordByLine(int line, int figure, xyzPoint p, double a, bool isarc)
+        internal CoordByLine(int line, int figure, XyzPoint p, double a, bool isarc)
         { lineNumber = line; figureNumber = figure; actualPos = p; alpha = a; distance = -1; isArc = isarc; }
 
-        public coordByLine(int line, int figure, xyzPoint p, double a, double dist)
+        internal CoordByLine(int line, int figure, XyzPoint p, double a, double dist)
         { lineNumber = line; figureNumber = figure; actualPos = p; alpha = a; distance = dist; isArc = false; }
 
-        public void calcDistance(xyPoint tmp)
-        {   xyPoint delta = new xyPoint(tmp - (xyPoint)actualPos);
+        internal void CalcDistance(XyPoint tmp)
+        {
+            XyPoint delta = new XyPoint(tmp - (XyPoint)actualPos);
             distance = Math.Sqrt(delta.X * delta.X + delta.Y * delta.Y);
         }
     }
 
-    public struct xyzabcuvwPoint
+    internal struct XyzabcuvwPoint
     {
-        public double X, Y, Z, A,B,C,U,V,W;
-        public xyzabcuvwPoint(xyzPoint tmp)
-        { X = tmp.X; Y = tmp.Y; Z = tmp.Z;  A = tmp.A; B = 0;C = 0;U = 0;V = 0;W = 0; }
+        public double X, Y, Z, A, B, C, U, V, W;
+        public XyzabcuvwPoint(XyzPoint tmp)
+        { X = tmp.X; Y = tmp.Y; Z = tmp.Z; A = tmp.A; B = 0; C = 0; U = 0; V = 0; W = 0; }
 
-        public static explicit operator xyPoint(xyzabcuvwPoint tmp)
-        { return new xyPoint(tmp.X,tmp.Y); }
-        public static explicit operator xyzPoint(xyzabcuvwPoint tmp)
-        { return new xyzPoint(tmp.X, tmp.Y, tmp.Z, tmp.A, tmp.B, tmp.C); }
-        public static explicit operator xyArcPoint(xyzabcuvwPoint tmp)
-        { return new xyArcPoint(tmp.X, tmp.Y,0 ,0 ,0); }
+        public static explicit operator XyPoint(XyzabcuvwPoint tmp)
+        { return new XyPoint(tmp.X, tmp.Y); }
+        public static explicit operator XyzPoint(XyzabcuvwPoint tmp)
+        { return new XyzPoint(tmp.X, tmp.Y, tmp.Z, tmp.A, tmp.B, tmp.C); }
+        public static explicit operator XyArcPoint(XyzabcuvwPoint tmp)
+        { return new XyArcPoint(tmp.X, tmp.Y, 0, 0, 0); }
     }
 
     /// <summary>
     /// Hold parsed GCode line and absolute work coordinate for given linenumber of GCode program
     /// </summary>
-    class gcodeByLine
+    class GcodeByLine
     {   // ModalGroups
         public int lineNumber;          // line number in fCTBCode
         public int nNumber;             // n number in GCode if given
@@ -83,31 +90,31 @@ namespace GRBL_Plotter
         public bool isSubroutine;
         public bool isSetCoordinateSystem;  // don't process x,y,z if set coordinate system
         public bool isNoMove;               // don't process x,y,z if G10, G17, G43...
-		
-		public bool wasSetF;
-		public bool wasSetS;
-		public bool wasSetXY;
-		public bool wasSetZ;
+
+        public bool wasSetF;
+        public bool wasSetS;
+        public bool wasSetXY;
+        public bool wasSetZ;
 
         public byte spindleState;       // M3,4,5
         public byte coolantState;       // M7,8,9
         public int spindleSpeed;        // actual spindle spped
         public int feedRate;            // actual feed rate
         public double? x, y, z, a, b, c, u, v, w, i, j; // current parameters
-        public xyzabcuvwPoint actualPos;      // accumulates position
+        public XyzabcuvwPoint actualPos;      // accumulates position
         public double alpha;            // angle between old and this position
         public double distance;         // distance to specific point
         public string otherCode;
-        public string info;
+        //    public string info;
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
-        public gcodeByLine()
-        {   resetAll(); }
-        public gcodeByLine(gcodeByLine tmp)
+        public GcodeByLine()
+        { ResetAll(); }
+        public GcodeByLine(GcodeByLine tmp)
         {
-            resetAll();
+            ResetAll();
             lineNumber = tmp.lineNumber; nNumber = tmp.nNumber; figureNumber = tmp.figureNumber; codeLine = tmp.codeLine;
             motionMode = tmp.motionMode; isdistanceModeG90 = tmp.isdistanceModeG90; ismachineCoordG53 = tmp.ismachineCoordG53;
             isSubroutine = tmp.isSubroutine; spindleState = tmp.spindleState; coolantState = tmp.coolantState;
@@ -117,40 +124,43 @@ namespace GRBL_Plotter
             isSetCoordinateSystem = tmp.isSetCoordinateSystem; isNoMove = tmp.isNoMove; otherCode = tmp.otherCode;
         }
 
-        public string listData()
+        public string ListData()
         { return string.Format("{0} mode {1} figure {2}\r", lineNumber, motionMode, figureNumber); }
 
         /// <summary>
         /// Reset coordinates and set G90, M5, M9
         /// </summary>
-        public void resetAll()
+        public void ResetAll()
         {
             lineNumber = 0; nNumber = -1; figureNumber = 0; codeLine = "";
             motionMode = 0; isdistanceModeG90 = true; ismachineCoordG53 = false; isSubroutine = false;
             isSetCoordinateSystem = false; isNoMove = false; spindleState = 5; coolantState = 9; spindleSpeed = 0; feedRate = 0;
 
-			wasSetF = wasSetS = wasSetXY = wasSetZ = false;
+            wasSetF = wasSetS = wasSetXY = wasSetZ = false;
 
             actualPos.X = 0; actualPos.Y = 0; actualPos.Z = 0; actualPos.A = 0; actualPos.B = 0; actualPos.C = 0;
             actualPos.U = 0; actualPos.V = 0; actualPos.W = 0;
-            distance = -1; otherCode = ""; info = ""; alpha = 0;
+            distance = -1; otherCode = ""; alpha = 0;//info = "";
 
             x = y = z = a = b = c = u = v = w = i = j = null;
-                 
-            resetCoordinates();
+
+            ResetCoordinates();
         }
-        public void resetAll(xyzPoint tmp)
-        {   resetAll();
-            actualPos = new xyzabcuvwPoint( tmp);
+        public void ResetAll(XyzPoint tmp)
+        {
+            ResetAll();
+            actualPos = new XyzabcuvwPoint(tmp);
         }
         /// <summary>
         /// Reset coordinates
         /// </summary>
-        public void resetCoordinates()
-        {   x = null; y = null; z = null; a = null; b = null; c = null; u = null; v = null; w = null; i = null; j = null;
+        public void ResetCoordinates()
+        {
+            x = null; y = null; z = null; a = null; b = null; c = null; u = null; v = null; w = null; i = null; j = null;
         }
-        public void presetParsing(int lineNr, string line)
-        {   resetCoordinates();
+        public void PresetParsing(int lineNr, string line)
+        {
+            ResetCoordinates();
             ismachineCoordG53 = false; isSubroutine = false;
             otherCode = "";
             lineNumber = lineNr;
@@ -161,81 +171,81 @@ namespace GRBL_Plotter
         /// <summary>
         /// parse gcode line
         /// </summary>
-        public void parseLine(int lineNr, string line, ref modalGroup modalState)
+        public void ParseLine(int lineNr, string line, ref ModalGroup modalState)
         {
-            presetParsing(lineNr,line);
+            PresetParsing(lineNr, line);
             char cmd = '\0';
             string num = "";
             bool comment = false;
-            double value = 0;
+            double value;
             line = line.ToUpper().Trim();   // 2020-07-26
             isSetCoordinateSystem = false;
             isNoMove = false;
-			wasSetF = wasSetS = wasSetXY = wasSetZ = false;
+            wasSetF = wasSetS = wasSetXY = wasSetZ = false;
             #region parse
             if ((!(line.StartsWith("$") || line.StartsWith("("))) && (line.Length > 1))//do not parse grbl comments
             {
                 try
                 {
-                    foreach (char c in line)
+                    foreach (char cil in line)
                     {
-                        if (c == ';')                                   // comment?
+                        if (cil == ';')                                   // comment?
                             break;
-                        if (c == '(')                                   // comment starts
-                        {   comment = true;  }
+                        if (cil == '(')                                   // comment starts
+                        { comment = true; }
                         if (!comment)
                         {
-                            if (Char.IsLetter(c))                       // if char is letter
+                            if (Char.IsLetter(cil))                       // if char is letter
                             {
                                 if (cmd != '\0')                        // and command is set
                                 {
                                     if (double.TryParse(num, System.Globalization.NumberStyles.Float, System.Globalization.NumberFormatInfo.InvariantInfo, out value))
-                                        parseGCodeToken(cmd, value, ref modalState);
+                                        ParseGCodeToken(cmd, value, ref modalState);
                                 }
-                                cmd = c;                                // char is a command
+                                cmd = cil;                                // char is a command
                                 num = "";
                             }
-                            else if (Char.IsNumber(c) || c == '.' || c == '-')  // char is not letter but number
+                            else if (Char.IsNumber(cil) || cil == '.' || cil == '-')  // char is not letter but number
                             {
-                                num += c;
+                                num += cil;
                             }
                         }
 
-                        if (c == ')')                                   // comment ends
-                        {   comment = false;  }
+                        if (cil == ')')                                   // comment ends
+                        { comment = false; }
                     }
                     if (cmd != '\0')                                    // finally after for-each process final command and number
                     {   //Logger.Trace("parseLine {0}  {1}",cmd, num);
                         if (double.TryParse(num, System.Globalization.NumberStyles.Float, System.Globalization.NumberFormatInfo.InvariantInfo, out value))
-                            parseGCodeToken(cmd, value, ref modalState);
+                            ParseGCodeToken(cmd, value, ref modalState);
                     }
                 }
                 catch (Exception er) { Logger.Error(er, "parseLine"); }
             }
             #endregion
             if (isSetCoordinateSystem)
-                resetCoordinates();
+                ResetCoordinates();
         }
 
         /// <summary>
         /// fill current gcode line structure
         /// </summary>
-        private void parseGCodeToken(char cmd, double value, ref modalGroup modalState)
+        private void ParseGCodeToken(char cmd, double value, ref ModalGroup modalState)
         {
-//            Logger.Trace("parseGCodeToken {0}  {1}",cmd, value);
+            //            Logger.Trace("parseGCodeToken {0}  {1}",cmd, value);
             switch (Char.ToUpper(cmd))
             {
                 case 'X':
                     x = value;
-					wasSetXY = true;
+                    wasSetXY = true;
                     break;
                 case 'Y':
                     y = value;
-					wasSetXY = true;
+                    wasSetXY = true;
                     break;
                 case 'Z':
                     z = value;
-					wasSetZ = true;
+                    wasSetZ = true;
                     break;
                 case 'A':
                     a = value;
@@ -266,20 +276,22 @@ namespace GRBL_Plotter
                     break;
                 case 'F':
                     modalState.feedRate = feedRate = (int)value;
-					wasSetF = true;
+                    wasSetF = true;
                     break;
                 case 'S':
                     modalState.spindleSpeed = spindleSpeed = (int)value;
-					wasSetS = true;
+                    wasSetS = true;
                     break;
                 case 'G':
                     if (value <= 3)                                 // Motion Mode 0-3 c
-                    {   modalState.motionMode = motionMode = (byte)value;
+                    {
+                        modalState.motionMode = motionMode = (byte)value;
                         if (value >= 2)
                             modalState.containsG2G3 = true;
                     }
                     else
-                    {   otherCode += "G"+((int)value).ToString()+" ";
+                    {
+                        otherCode += "G" + ((int)value).ToString() + " ";
                     }
 
                     if (value == 10)
@@ -291,7 +303,7 @@ namespace GRBL_Plotter
                     else if ((value >= 43) && (value < 53))
                     { isNoMove = true; }
 
-                    else if (value == 53)                                // move in machine coord.
+                    else if ((value == 53) || (value == 28))          		// move in machine coord.
                     { ismachineCoordG53 = true; }
 
                     else if ((value >= 54) && (value <= 59))             // Coordinate System Select
@@ -311,9 +323,9 @@ namespace GRBL_Plotter
                     if ((value < 3) || (value == 30))                   // Program Mode 0, 1 ,2 ,30
                     { modalState.programMode = (byte)value; }
                     else if (value >= 3 && value <= 5)                   // Spindle State
-                    {   modalState.spindleState = spindleState = (byte)value; }
+                    { modalState.spindleState = spindleState = (byte)value; }
                     else if (value >= 7 && value <= 9)                   // Coolant State
-                    {   modalState.coolantState = coolantState = (byte)value;                    }
+                    { modalState.coolantState = coolantState = (byte)value; }
                     modalState.mWord = (byte)value;
                     if ((value < 3) || (value > 9))
                         otherCode += "M" + ((int)value).ToString() + " ";
@@ -337,7 +349,7 @@ namespace GRBL_Plotter
         }
     };
 
-    class modalGroup
+    internal class ModalGroup
     {
         public byte motionMode;           // G0, G1, G2, G3, //G38.2, G38.3, G38.4, G38.5, G80
         public byte coordinateSystem;     // G54, G55, G56, G57, G58, G59
@@ -360,11 +372,12 @@ namespace GRBL_Plotter
         public bool isdistanceModeG90;
         public bool containsG91;
 
-        public modalGroup()     // reset state
-        { reset(); }
+        public ModalGroup()     // reset state
+        { Reset(); }
 
-        public void reset()
-        {   motionMode = 0;             // G0, G1, G2, G3, G38.2, G38.3, G38.4, G38.5, G80
+        public void Reset()
+        {
+            motionMode = 0;             // G0, G1, G2, G3, G38.2, G38.3, G38.4, G38.5, G80
             coordinateSystem = 54;      // G54, G55, G56, G57, G58, G59
             planeSelect = 17;           // G17, G18, G19
             distanceMode = 90;          // G90, G91
@@ -385,8 +398,9 @@ namespace GRBL_Plotter
             isdistanceModeG90 = true;
             containsG91 = false;
         }
-        public void resetSubroutine()
-        {   mWord = 0;
+        public void ResetSubroutine()
+        {
+            mWord = 0;
             pWord = 0;
             oWord = 0;
             lWord = 1;
@@ -394,47 +408,50 @@ namespace GRBL_Plotter
     }
 
     struct ArcProperties
-    {   public double angleStart, angleEnd, angleDiff, radius;
-        public xyPoint center;
+    {
+        public double angleStart, angleEnd, angleDiff, radius;
+        public XyPoint center;
     };
 
-    class gcodeMath
-    {   private static double precision = 0.00001;
+    internal static class GcodeMath
+    {
+        internal static double precision = 0.00001;
 
-        public static bool isEqual(System.Windows.Point a, System.Windows.Point b)
-        {   return ((Math.Abs(a.X - b.X) < precision) && (Math.Abs(a.Y - b.Y) < precision));    }
-        public static bool isEqual(xyPoint a, xyPoint b)
-        {   return ((Math.Abs(a.X - b.X) < precision) && (Math.Abs(a.Y - b.Y) < precision));    }
+        internal static bool IsEqual(System.Windows.Point a, System.Windows.Point b)
+        { return ((Math.Abs(a.X - b.X) < precision) && (Math.Abs(a.Y - b.Y) < precision)); }
+        internal static bool IsEqual(XyPoint a, XyPoint b)
+        { return ((Math.Abs(a.X - b.X) < precision) && (Math.Abs(a.Y - b.Y) < precision)); }
 
-        public static double distancePointToPoint(System.Windows.Point a, System.Windows.Point b)
-        {   return Math.Sqrt(((a.X - b.X) * (a.X - b.X)) + ((a.Y - b.Y) * (a.Y - b.Y)));        }
-        public static double distancePointToPoint(xyPoint a, xyPoint b)
+        internal static double DistancePointToPoint(System.Windows.Point a, System.Windows.Point b)
+        { return Math.Sqrt(((a.X - b.X) * (a.X - b.X)) + ((a.Y - b.Y) * (a.Y - b.Y))); }
+        internal static double DistancePointToPoint(XyPoint a, XyPoint b)
         { return Math.Sqrt(((a.X - b.X) * (a.X - b.X)) + ((a.Y - b.Y) * (a.Y - b.Y))); }
 
-        public static ArcProperties getArcMoveProperties(System.Windows.Point pOld, System.Windows.Point pNew, System.Windows.Point centerIJ, bool isG2)
-        { return getArcMoveProperties(new xyPoint(pOld), new xyPoint(pNew), centerIJ.X, centerIJ.Y, isG2); }
-        public static ArcProperties getArcMoveProperties(xyPoint pOld, xyPoint pNew, xyPoint center, bool isG2)
-        {   return getArcMoveProperties(pOld, pNew, pOld.X - center.X, pOld.Y - center.Y, isG2);}
+        internal static ArcProperties GetArcMoveProperties(System.Windows.Point pOld, System.Windows.Point pNew, System.Windows.Point centerIJ, bool isG2)
+        { return GetArcMoveProperties(new XyPoint(pOld), new XyPoint(pNew), centerIJ.X, centerIJ.Y, isG2); }
+        internal static ArcProperties GetArcMoveProperties(XyPoint pOld, XyPoint pNew, XyPoint center, bool isG2)
+        { return GetArcMoveProperties(pOld, pNew, pOld.X - center.X, pOld.Y - center.Y, isG2); }
 
-        public static ArcProperties getArcMoveProperties(xyPoint pOld, xyPoint pNew, double? I, double? J, bool isG2)
+        internal static ArcProperties GetArcMoveProperties(XyPoint pOld, XyPoint pNew, double? I, double? J, bool isG2)
         {
-            ArcProperties tmp = getArcMoveAngle(pOld, pNew, I, J);
+            ArcProperties tmp = GetArcMoveAngle(pOld, pNew, I, J);
             if (!isG2) { tmp.angleDiff = Math.Abs(tmp.angleEnd - tmp.angleStart + 2 * Math.PI); }
             if (tmp.angleDiff > (2 * Math.PI)) { tmp.angleDiff -= (2 * Math.PI); }
             if (tmp.angleDiff < (-2 * Math.PI)) { tmp.angleDiff += (2 * Math.PI); }
 
             if ((pOld.X == pNew.X) && (pOld.Y == pNew.Y))
-            {   if (isG2) { tmp.angleDiff = -2 * Math.PI; }
+            {
+                if (isG2) { tmp.angleDiff = -2 * Math.PI; }
                 else { tmp.angleDiff = 2 * Math.PI; }
             }
             return tmp;
         }
 
-        public static ArcProperties getArcMoveAngle(xyPoint pOld, xyPoint pNew, double? I, double? J)
+        internal static ArcProperties GetArcMoveAngle(XyPoint pOld, XyPoint pNew, double? I, double? J)
         {
             ArcProperties tmp;
-			if (I==null) {I=0;}
-			if (J==null) {J=0;}
+            if (I == null) { I = 0; }
+            if (J == null) { J = 0; }
             double i = (double)I;
             double j = (double)J;
             tmp.radius = Math.Sqrt(i * i + j * j);  // get radius of circle
@@ -460,15 +477,15 @@ namespace GRBL_Plotter
             return tmp;
         }
 
-        public static double getAlpha(System.Windows.Point pOld, double P2x, double P2y)
-        { return getAlpha(pOld.X, pOld.Y, P2x, P2y); }
-        public static double getAlpha(System.Windows.Point pOld, System.Windows.Point pNew)
-        { return getAlpha(pOld.X, pOld.Y, pNew.X, pNew.Y); }
-        public static double getAlpha(xyPoint pOld, xyPoint pNew)
-        {   return getAlpha(pOld.X, pOld.Y, pNew.X, pNew.Y); }
-        public static double getAlpha(double P1x, double P1y, double P2x, double P2y)
+        internal static double GetAlpha(System.Windows.Point pOld, double P2x, double P2y)
+        { return GetAlpha(pOld.X, pOld.Y, P2x, P2y); }
+        internal static double GetAlpha(System.Windows.Point pOld, System.Windows.Point pNew)
+        { return GetAlpha(pOld.X, pOld.Y, pNew.X, pNew.Y); }
+        internal static double GetAlpha(XyPoint pOld, XyPoint pNew)
+        { return GetAlpha(pOld.X, pOld.Y, pNew.X, pNew.Y); }
+        internal static double GetAlpha(double P1x, double P1y, double P2x, double P2y)
         {
-            double s = 1, a = 0;
+            double s, a;
             double dx = P2x - P1x;
             double dy = P2y - P1y;
             if (dx == 0)
@@ -499,19 +516,21 @@ namespace GRBL_Plotter
             return a;
         }
 
-        public static double cutAngle=0, cutAngleLast=0, angleOffset = 0;
-        public static void resetAngles()
-        {   angleOffset = cutAngle = cutAngleLast = 0.0;  }
-        public static double getAngle(System.Windows.Point a, System.Windows.Point b, double offset, int dir)
-        {   return monitorAngle(getAlpha(a, b) + offset, dir);  }
-        private static double monitorAngle(double angle, int direction)		// take care of G2 cw G3 ccw direction
-        {   double diff = angle - cutAngleLast + angleOffset;
+        internal static double cutAngle = 0, cutAngleLast = 0, angleOffset = 0;
+        internal static void ResetAngles()
+        { angleOffset = cutAngle = cutAngleLast = 0.0; }
+        internal static double GetAngle(System.Windows.Point a, System.Windows.Point b, double offset, int dir)
+        { return MonitorAngle(GetAlpha(a, b) + offset, dir); }
+        internal static double MonitorAngle(double angle, int direction)		// take care of G2 cw G3 ccw direction
+        {
+            double diff = angle - cutAngleLast + angleOffset;
             if (direction == 2)
             { if (diff > 0) { angleOffset -= 2 * Math.PI; } }    // clock wise, more negative
             else if (direction == 3)
-            {   if (diff < 0) { angleOffset += 2 * Math.PI; } }    // counter clock wise, more positive
+            { if (diff < 0) { angleOffset += 2 * Math.PI; } }    // counter clock wise, more positive
             else
-            {   if (diff > Math.PI)
+            {
+                if (diff > Math.PI)
                     angleOffset -= 2 * Math.PI;
                 if (diff < -Math.PI)
                     angleOffset += 2 * Math.PI;

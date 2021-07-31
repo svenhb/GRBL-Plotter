@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using Microsoft.Win32.SafeHandles;
 
-namespace GRBL_Plotter
+namespace GrblPlotter
 {
 
 
@@ -211,13 +211,13 @@ namespace GRBL_Plotter
                                         StringBuilder lpBuffer, int nSize, IntPtr arguments);
 
         [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-        internal static extern bool GetCommState(SafeFileHandle hFile, ref GRBL_Plotter.SerialPortFixer.Dcb lpDcb);
+        internal static extern bool GetCommState(SafeFileHandle hFile, ref GrblPlotter.SerialPortFixer.Dcb lpDcb);
 
         [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-        internal static extern bool SetCommState(SafeFileHandle hFile, ref GRBL_Plotter.SerialPortFixer.Dcb lpDcb);
+        internal static extern bool SetCommState(SafeFileHandle hFile, ref GrblPlotter.SerialPortFixer.Dcb lpDcb);
 
         [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-        internal static extern bool ClearCommError(SafeFileHandle hFile, ref int lpErrors, ref GRBL_Plotter.SerialPortFixer.Comstat lpStat);
+        internal static extern bool ClearCommError(SafeFileHandle hFile, ref int lpErrors, ref GrblPlotter.SerialPortFixer.Comstat lpStat);
 
         [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
         internal static extern SafeFileHandle CreateFile(string lpFileName, int dwDesiredAccess, int dwShareMode,

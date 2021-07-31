@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2017 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,12 +16,15 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+/*
+ * 2021-07-12 code clean up / code quality
+ */
 
 using System;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace GRBL_Plotter
+namespace GrblPlotter
 {
     public partial class ControlStreamingForm2 : Form
     {
@@ -29,65 +32,72 @@ namespace GRBL_Plotter
         {
             InitializeComponent();
         }
-        public void showOverrideValues(string val)  // get values from Ov Message
+        public void ShowOverrideValues(string val)  // get values from Ov Message
         {
-            string[] value = val.Split(',');
-            if (value.Length > 2)
+            if (!string.IsNullOrEmpty(val))
             {
-                lblOverrideFRValue.Text = value[0];
-                lblOverrideSSValue.Text = value[2];
+                string[] value = val.Split(',');
+                if (value.Length > 2)
+                {
+                    lblOverrideFRValue.Text = value[0];
+                    lblOverrideSSValue.Text = value[2];
+                }
             }
         }
-        public void showActualValues(string val)    // get values from FS Message
+        public void ShowActualValues(string val)    // get values from FS Message
         {
-            string[] value = val.Split(',');
-            if (value.Length > 1)
+            if (!string.IsNullOrEmpty(val))
             {
-                lblFRValue.Text = value[0];
-                lblSSValue.Text = value[1];
+                string[] value = val.Split(',');
+                if (value.Length > 1)
+                {
+                    lblFRValue.Text = value[0];
+                    lblSSValue.Text = value[1];
+                }
             }
         }
 
-        private void btnOverrideFR0_Click(object sender, EventArgs e)
-        { OnRaiseOverrideEvent(new OverrideMsgArgs(144)); }     // 0x90 : Set 100% of programmed rate.    
-        private void btnOverrideFR1_Click(object sender, EventArgs e)
-        { OnRaiseOverrideEvent(new OverrideMsgArgs(145)); }     // 0x91 : Increase 10%        
-        private void btnOverrideFR4_Click(object sender, EventArgs e)
-        { OnRaiseOverrideEvent(new OverrideMsgArgs(146)); }     // 0x92 : Decrease 10%   
-        private void btnOverrideFR2_Click(object sender, EventArgs e)
-        { OnRaiseOverrideEvent(new OverrideMsgArgs(147)); }     // 0x93 : Increase 1%   
-        private void btnOverrideFR3_Click(object sender, EventArgs e)
-        { OnRaiseOverrideEvent(new OverrideMsgArgs(148)); }     // 0x94 : Decrease 1%   
+        private void BtnOverrideFR0_Click(object sender, EventArgs e)
+        { OnRaiseOverrideEvent(new OverrideMsgEventArgs(144)); }     // 0x90 : Set 100% of programmed rate.    
+        private void BtnOverrideFR1_Click(object sender, EventArgs e)
+        { OnRaiseOverrideEvent(new OverrideMsgEventArgs(145)); }     // 0x91 : Increase 10%        
+        private void BtnOverrideFR4_Click(object sender, EventArgs e)
+        { OnRaiseOverrideEvent(new OverrideMsgEventArgs(146)); }     // 0x92 : Decrease 10%   
+        private void BtnOverrideFR2_Click(object sender, EventArgs e)
+        { OnRaiseOverrideEvent(new OverrideMsgEventArgs(147)); }     // 0x93 : Increase 1%   
+        private void BtnOverrideFR3_Click(object sender, EventArgs e)
+        { OnRaiseOverrideEvent(new OverrideMsgEventArgs(148)); }     // 0x94 : Decrease 1%   
 
-        private void btnOverrideSS0_Click(object sender, EventArgs e)
-        { OnRaiseOverrideEvent(new OverrideMsgArgs(153)); }     // 0x99 : Set 100% of programmed spindle speed    
-        private void btnOverrideSS1_Click(object sender, EventArgs e)
-        { OnRaiseOverrideEvent(new OverrideMsgArgs(154)); }     // 0x9A : Increase 10%        
-        private void btnOverrideSS4_Click(object sender, EventArgs e)
-        { OnRaiseOverrideEvent(new OverrideMsgArgs(155)); }     // 0x9B : Decrease 10%   
-        private void btnOverrideSS2_Click(object sender, EventArgs e)
-        { OnRaiseOverrideEvent(new OverrideMsgArgs(156)); }     // 0x9C : Increase 1%   
-        private void btnOverrideSS3_Click(object sender, EventArgs e)
-        { OnRaiseOverrideEvent(new OverrideMsgArgs(157)); }     // 0x9D : Decrease 1%   
+        private void BtnOverrideSS0_Click(object sender, EventArgs e)
+        { OnRaiseOverrideEvent(new OverrideMsgEventArgs(153)); }     // 0x99 : Set 100% of programmed spindle speed    
+        private void BtnOverrideSS1_Click(object sender, EventArgs e)
+        { OnRaiseOverrideEvent(new OverrideMsgEventArgs(154)); }     // 0x9A : Increase 10%        
+        private void BtnOverrideSS4_Click(object sender, EventArgs e)
+        { OnRaiseOverrideEvent(new OverrideMsgEventArgs(155)); }     // 0x9B : Decrease 10%   
+        private void BtnOverrideSS2_Click(object sender, EventArgs e)
+        { OnRaiseOverrideEvent(new OverrideMsgEventArgs(156)); }     // 0x9C : Increase 1%   
+        private void BtnOverrideSS3_Click(object sender, EventArgs e)
+        { OnRaiseOverrideEvent(new OverrideMsgEventArgs(157)); }     // 0x9D : Decrease 1%   
 
-        private void btnToggleSS_Click(object sender, EventArgs e)
-        { OnRaiseOverrideEvent(new OverrideMsgArgs(158)); }     // 0x9E : Toggle Spindle Stop
-        private void btnToggleFC_Click(object sender, EventArgs e)
-        { OnRaiseOverrideEvent(new OverrideMsgArgs(160)); }     // 0xA0 : Toggle Flood Coolant
-        private void btnToggleMC_Click(object sender, EventArgs e)
-        { OnRaiseOverrideEvent(new OverrideMsgArgs(161)); }     // 0xA1 : Toggle Mist Coolant
+        private void BtnToggleSS_Click(object sender, EventArgs e)
+        { OnRaiseOverrideEvent(new OverrideMsgEventArgs(158)); }     // 0x9E : Toggle Spindle Stop
+        private void BtnToggleFC_Click(object sender, EventArgs e)
+        { OnRaiseOverrideEvent(new OverrideMsgEventArgs(160)); }     // 0xA0 : Toggle Flood Coolant
+        private void BtnToggleMC_Click(object sender, EventArgs e)
+        { OnRaiseOverrideEvent(new OverrideMsgEventArgs(161)); }     // 0xA1 : Toggle Mist Coolant
 
-        private void btnOverrideSD_Click(object sender, EventArgs e)
-        { OnRaiseOverrideEvent(new OverrideMsgArgs(132)); }     // 
+        private void BtnOverrideSD_Click(object sender, EventArgs e)
+        { OnRaiseOverrideEvent(new OverrideMsgEventArgs(132)); }     // 
 
-        public event EventHandler<OverrideMsgArgs> RaiseOverrideEvent;
-        protected virtual void OnRaiseOverrideEvent(OverrideMsgArgs e)
+        public event EventHandler<OverrideMsgEventArgs> RaiseOverrideEvent;
+        protected virtual void OnRaiseOverrideEvent(OverrideMsgEventArgs e)
         {
-            EventHandler<OverrideMsgArgs> handler = RaiseOverrideEvent;
+			RaiseOverrideEvent?.Invoke(this, e);
+       /*     EventHandler<OverrideMsgEventArgs> handler = RaiseOverrideEvent;
             if (handler != null)
             {
                 handler(this, e);
-            }
+            }*/
         }
 
         private void ControlStreamingForm2_Load(object sender, EventArgs e)
@@ -103,10 +113,10 @@ namespace GRBL_Plotter
         }
     }
 
-    public class OverrideMsgArgs : EventArgs
+    public class OverrideMsgEventArgs : EventArgs
     {
-        private int Msg;
-        public OverrideMsgArgs(int msg)
+        private readonly int Msg;
+        public OverrideMsgEventArgs(int msg)
         {
             Msg=msg;
         }

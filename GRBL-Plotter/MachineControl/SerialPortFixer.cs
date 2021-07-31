@@ -21,7 +21,9 @@ using System.IO;
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
 
-namespace GRBL_Plotter
+#pragma warning disable CA1303
+
+namespace GrblPlotter
 {
     public class SerialPortFixer : IDisposable
     {
@@ -87,7 +89,7 @@ namespace GRBL_Plotter
             {
                 hFile.Close();
                 m_Handle = null;
-                throw;
+       //         throw;
             }
         }
 /*

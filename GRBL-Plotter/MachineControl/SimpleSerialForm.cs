@@ -19,31 +19,35 @@
 /* 2021-01-15 First version
  * 2021-01-19 dont apply .toUpper for send box - line 95 
  * 2021-04-06 log RX and TX
- */
+ * 2021-07-26 code clean up / code quality
+*/
 
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace GRBL_Plotter
+//#pragma warning disable CA1303
+//#pragma warning disable CA1305
+
+namespace GrblPlotter
 {
     public partial class SimpleSerialForm : Form
     {
-        public bool serialPortOpen { get; private set; } = false;
-        public bool busy { get; private set; } = false;
+        public bool SerialPortOpen { get; private set; } = false;
+        public bool Busy { get; private set; } = false;
 
-        private System.Timers.Timer timerSerial = new System.Timers.Timer();
-        private int timerReload = 100;
-        
+        private readonly System.Timers.Timer timerSerial = new System.Timers.Timer();
+        private readonly int timerReload = 100;
+
         private bool flag_closeForm = false;
         private int countMinimizeForm = 0;              // timer to minimize form
         private int countShutdown = 0;
         private int countTimeOut = 0;
         private int countTimeOutMax = 10;               // busy time out in seconds
 
-// Note: receive-event waits for line-end char, if missing -> timeout exception
-// to allow test hardware RX-Pin connected to TX-Pin line-end chars should be same
+        // Note: receive-event waits for line-end char, if missing -> timeout exception
+        // to allow test hardware RX-Pin connected to TX-Pin line-end chars should be same
         private const string lineEndRX = "\n";          // grbl accepts '\n' or '\r', but marlin just sends '\n'
         private const string lineEndTX = "\r\n";        // grbl accepts '\n' or '\r' and sends "\r\n", but Marlin sends '\n'
 
@@ -57,73 +61,77 @@ namespace GRBL_Plotter
         public SimpleSerialForm()
         {
             InitializeComponent();
-            timerSerial.Elapsed += timerSerial_Tick;
+            timerSerial.Elapsed += TimerSerial_Tick;
             timerSerial.Interval = timerReload;
             timerSerial.Enabled = true;
             timerSerial.Start();
         }
 
 
-        private void btnScanPort_Click(object sender, EventArgs e)
-        { refreshPorts(); }
+        private void BtnScanPort_Click(object sender, EventArgs e)
+        { RefreshPorts(); }
 
-        private void btnOpenPort_Click(object sender, EventArgs e)
+        private void BtnOpenPort_Click(object sender, EventArgs e)
         {
             if (serialPort.IsOpen)
-                closePort();
+                ClosePort();
             else
-                openPort();
-            updateControls();
+                OpenPort();
+            UpdateControls();
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void BtnClear_Click(object sender, EventArgs e)
         { rtbLog.Clear(); }
-        private void tbCommand_KeyPress(object sender, KeyPressEventArgs e)
+        private void TbCommand_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar != (char)13) return;
-            btnSend_Click(sender, e);
+            BtnSend_Click(sender, e);
         }
-        private void btnSend_Click(object sender, EventArgs e)
-        { sendCommand(); }
-        private void sendCommand()
+        private void BtnSend_Click(object sender, EventArgs e)
+        { SendCommand(); }
+        private void SendCommand()
         {
             {
                 string cmd = cBCommand.Text;    //.ToUpper();
-                send(cmd.Trim());
+                Send(cmd.Trim());
                 cBCommand.Items.Remove(cBCommand.SelectedItem);
                 cBCommand.Items.Insert(0, cmd);
                 cBCommand.Text = cmd;
             }
         }
 
-        public void send(string data)
+        public void Send(string data)
         {
-            if (serialPort.IsOpen)
+            if (serialPort.IsOpen && !string.IsNullOrEmpty(data))
             {
                 serialPort.Write(data.Trim() + lineEndTX);      // send single command via form
-                busy = true;
+                Busy = true;
                 countTimeOut = (int)(countTimeOutMax * 1000 / timerSerial.Interval);
                 string sndTXT = string.Format("> {0,-10} | > set busy flag:{1,4:G} | {2}", data.Trim(), countTimeOut.ToString(), DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"));
-                addToLog(sndTXT);
-                Logger.Trace("send {0}",sndTXT);
+                AddToLog(sndTXT);
+                Logger.Trace("send {0}", sndTXT);
             }
         }
-        
+
         /**************************************************************************
          * Timer to retry sending data   timerSerial.Interval = timerReload;
          **************************************************************************/
-        private void timerSerial_Tick(object sender, EventArgs e)
-        {   if (countMinimizeForm > 0)							// minimize form after connection - if enabled (then set start value)
-            {   if ((--countMinimizeForm == 0) && serialPort.IsOpen)
-                {   this.WindowState = FormWindowState.Minimized;
+        private void TimerSerial_Tick(object sender, EventArgs e)
+        {
+            if (countMinimizeForm > 0)							// minimize form after connection - if enabled (then set start value)
+            {
+                if ((--countMinimizeForm == 0) && serialPort.IsOpen)
+                {
+                    this.WindowState = FormWindowState.Minimized;
                 }
             }
 
             if (countTimeOut > 0)
-            {   if (--countTimeOut == 0)
+            {
+                if (--countTimeOut == 0)
                 {
-                    busy = false;
-                    addToLog("Busy time out: didn't receive '" + readyString + "' within " + countTimeOutMax.ToString() + " sec.\r\n");
+                    Busy = false;
+                    AddToLog("Busy time out: didn't receive '" + readyString + "' within " + countTimeOutMax.ToString() + " sec.\r\n");
                     Logger.Trace("3rd serial time-out: reset busy signal after {0} sec", countTimeOutMax.ToString());
                 }
             }
@@ -144,9 +152,9 @@ namespace GRBL_Plotter
         //https://stackoverflow.com/questions/10871339/terminating-a-form-while-com-datareceived-event-keeps-fireing-c-sharp
         //https://stackoverflow.com/questions/1696521/c-proper-way-to-close-serialport-with-winforms/3176959
 
-        public delegate void InvokeDelegate();
+        internal delegate void InvokeDeleg();
 
-        private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        private void SerialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             while ((serialPort.IsOpen) && (serialPort.BytesToRead > 0))// && !blockSend)
             {
@@ -155,39 +163,40 @@ namespace GRBL_Plotter
                 {
                     rxString = serialPort.ReadTo(lineEndRX).Trim();  //read line from grbl, discard CR LF
                     isDataProcessing = true;
-                    this.BeginInvoke(new EventHandler(processMessages));        //tigger rx process 2020-09-16 change from Invoke to BeginInvoke
+                    this.BeginInvoke(new EventHandler(ProcessMessages));        //tigger rx process 2020-09-16 change from Invoke to BeginInvoke
                     while ((serialPort.IsOpen) && isDataProcessing)// && !blockSend)   //wait previous data line processed done
                     { }
                 }
                 catch (TimeoutException err1)
                 {
                     Logger.Error(err1, "TimeoutException");
-                    addToLog("Error reading line from serial port - correct baud rate? Missing line-end?");
+                    AddToLog("Error reading line from serial port - correct baud rate? Missing line-end?");
                     rxString = serialPort.ReadExisting().Trim();
-                    Logger.Error("ReadExisting '{0}'",rxString);
-                    addToLog(rxString);
-          //          this.BeginInvoke(new EventHandler(closePort));    //closePort();
+                    Logger.Error("ReadExisting '{0}'", rxString);
+                    AddToLog(rxString);
+                    //          this.BeginInvoke(new EventHandler(closePort));    //closePort();
                 }
                 catch (Exception err)
                 {
-                    addToLog("Close port ");
+                    AddToLog("Close port ");
                     Logger.Error(err, " -DataReceived- Close port ");
-         //           this.BeginInvoke(new EventHandler(closePort));    //closePort();
+                    //           this.BeginInvoke(new EventHandler(closePort));    //closePort();
+                    throw;
                 }
             }
         }
 
-        private void processMessages(object sender, EventArgs e)	// https://github.com/gnea/grbl/wiki/Grbl-v1.1-Interface#message-summary
+        private void ProcessMessages(object sender, EventArgs e)	// https://github.com/gnea/grbl/wiki/Grbl-v1.1-Interface#message-summary
         {
-            if (rxString == "") { isDataProcessing = false; return; }     // unlock serialPort1_DataReceived
+            if (string.IsNullOrEmpty(rxString)) { isDataProcessing = false; return; }     // unlock serialPort1_DataReceived
             if (countShutdown > 0) { isDataProcessing = false; return; }
 
             if (rxString.Contains(readyString))
-            {   busy = false; countTimeOut = 0; addToLog(string.Format("< {0,-10} | {1,-20} | {2}", rxString, "> clear busy flag!", DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")));  }
+            { Busy = false; countTimeOut = 0; AddToLog(string.Format("< {0,-10} | {1,-20} | {2}", rxString, "> clear busy flag!", DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"))); }
             else
-                addToLog(string.Format("< {0,-35} | {1}", rxString, DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")));
+                AddToLog(string.Format("< {0,-35} | {1}", rxString, DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")));
 
-            Logger.Trace("3rd serial RX '{0}'   busy:{1}", rxString, busy);
+            Logger.Trace("3rd serial RX '{0}'   busy:{1}", rxString, Busy);
             isDataProcessing = false;                   // unlock serialPort1_DataReceived
         }
 
@@ -196,12 +205,12 @@ namespace GRBL_Plotter
 
 
         #region serialPort
-        private bool refreshPorts()
+        private bool RefreshPorts()
         {
             List<String> tList = new List<String>();
             cbPort.Items.Clear();
             foreach (string s in System.IO.Ports.SerialPort.GetPortNames()) tList.Add(s);
-            if (tList.Count < 1) logError("! No serial ports found", null);
+            if (tList.Count < 1) LogError("! No serial ports found", null);
             else
             {
                 tList.Sort();
@@ -209,11 +218,11 @@ namespace GRBL_Plotter
             }
             return tList.Contains(cbPort.Text);
         }
-        private void openPort()
+        private void OpenPort()
         {
             try
             {
-                Logger.Info("openPort {0} {1}", cbPort.Text, cbBaud.Text);
+                Logger.Info("OpenPort {0} {1}", cbPort.Text, cbBaud.Text);
                 serialPort.PortName = cbPort.Text;
                 serialPort.DataBits = 8;
                 serialPort.BaudRate = Convert.ToInt32(cbBaud.Text);
@@ -222,21 +231,23 @@ namespace GRBL_Plotter
                 serialPort.Handshake = System.IO.Ports.Handshake.None;
                 serialPort.DtrEnable = false;
                 rtbLog.Clear();
-                if (refreshPorts())
+                if (RefreshPorts())
                 {
                     if (Properties.Settings.Default.ctrlUseSerialPortFixer)
                     {
                         try
                         { SerialPortFixer.Execute(cbPort.Text); }
                         catch (Exception err)
-                        { Logger.Error(err, " -SerialPortFixer-"); }
+                        {
+                            Logger.Error(err, "Error SerialPortFixer: "); //throw;
+                        }
                     }
                     serialPort.Open();
                     serialPort.DiscardOutBuffer();
                     serialPort.DiscardInBuffer();
 
-                    addToLog("* Open " + cbPort.Text + "\r\n");
-                    btnOpenPort.Text = Localization.getString("serialClose");  // "Close";
+                    AddToLog("* Open " + cbPort.Text + "\r\n");
+                    btnOpenPort.Text = Localization.GetString("serialClose");  // "Close";
 
                     if (Properties.Settings.Default.serialMinimize)
                         countMinimizeForm = (int)(3000 / timerSerial.Interval); 	// minimize window after 3 sec.
@@ -245,70 +256,73 @@ namespace GRBL_Plotter
                 }
                 else
                 {
-                    addToLog("* " + cbPort.Text + " not available\r\n");
+                    AddToLog("* " + cbPort.Text + " not available\r\n");
                     Logger.Warn("Port {1} not available", cbPort.Text);
                 }
-                serialPortOpen = serialPort.IsOpen;
-                updateControls();
+                SerialPortOpen = serialPort.IsOpen;
+                UpdateControls();
             }
             catch (Exception err)
             {
-                Logger.Error(err, " -openPort-");
+                Logger.Error(err, "Error OpenPort: ");
                 countMinimizeForm = 0;
-                logError("! Opening port", err);
-                serialPortOpen = false;
-                updateControls();
+                LogError("! Opening port", err);
+                SerialPortOpen = false;
+                UpdateControls();
+                //    throw;
             }
         }
-        private void closePort(object sender, EventArgs e)
-        { closePort(); }
-        public void closePort()
+        private void ClosePort(object sender, EventArgs e)
+        { ClosePort(); }
+        public void ClosePort()
         {
             try
             {
                 if (serialPort.IsOpen)
                 {
-                    Logger.Info(" closePort ");
+                    Logger.Info("ClosePort ");
                     serialPort.Close();
                 }
                 serialPort.Dispose();
-                saveSettings();
+                SaveSettings();
                 if (!flag_closeForm)
-                {   addToLog("\r* Close \r");
-                    btnOpenPort.Text = Localization.getString("serialOpen");  // "Open";
-                    updateControls();
+                {
+                    AddToLog("\r* Close \r");
+                    btnOpenPort.Text = Localization.GetString("serialOpen");  // "Open";
+                    UpdateControls();
                 }
                 timerSerial.Interval = 1000;
             }
             catch (Exception err)
             {
-                Logger.Error(err, " -closePort- ");
-                logError("! Closing port", err);
+                Logger.Error(err, "Error ClosePort: ");
+                LogError("! Closing port", err);
                 if (!flag_closeForm)
-                { updateControls(); }
+                { UpdateControls(); }
                 timerSerial.Enabled = false;
+                //    throw;
             }
-            serialPortOpen = false;
+            SerialPortOpen = false;
         }
         #endregion
-        private void updateControls()
+        private void UpdateControls()
         {
             bool isConnected = serialPort.IsOpen;
-            serialPortOpen = isConnected;
+            SerialPortOpen = isConnected;
         }
-        private void logError(string message, Exception error)
+        private void LogError(string message, Exception error)
         {
             string textmsg = "\r\n[ERROR]: " + message + ". ";
             if (error != null) textmsg += error.Message;
             textmsg += "\r\n";
-            addToLog(textmsg);
+            AddToLog(textmsg);
         }
         delegate void addToLogCallback(string text);
-        public void addToLog(string text)
+        public void AddToLog(string text)
         {
             if (this.InvokeRequired == true)
             {
-                addToLogCallback callback = new addToLogCallback(addToLog);
+                addToLogCallback callback = new addToLogCallback(AddToLog);
                 this.Invoke(callback, new object[] { text });
             }
             else
@@ -318,21 +332,24 @@ namespace GRBL_Plotter
                     rtbLog.AppendText(text + "\r");
                     rtbLog.ScrollToCaret();
                 }
-                catch { }
+                catch
+                {
+                    // throw;
+                }
             }
         }
 
         private void SerialForm_Load(object sender, EventArgs e)
         {
             this.Icon = Properties.Resources.Icon;
-            Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
-            updateControls();       // disable controls
-            loadSettings();         // set last COM and Baud
-            refreshPorts();         // scan for COMs
-            openPort();             // open COM
+            //   Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
+            UpdateControls();       // disable controls
+            LoadSettings();         // set last COM and Baud
+            RefreshPorts();         // scan for COMs
+            OpenPort();             // open COM
         }
 
-        private void loadSettings()
+        private void LoadSettings()
         {
             Logger.Trace("loadSettings '{0}' '{1}' '{2}' '{3}'", Properties.Settings.Default.serialPort3, Properties.Settings.Default.serialBaud3, Properties.Settings.Default.serial3Ready, Properties.Settings.Default.serial3Timeout);
             try
@@ -350,11 +367,12 @@ namespace GRBL_Plotter
             }
             catch (Exception e)
             {
-                Logger.Error(e, " -loadSettings-");
-                logError("! Loading settings", e);
+                Logger.Error(e, "Error LoadSettings: ");
+                LogError("! Loading settings", e);
+                //    throw;
             }
         }
-        private void saveSettings()
+        private void SaveSettings()
         {
             Logger.Trace("saveSettings {0} {1} {2} {3}", cbPort.Text, cbBaud.Text, tBMessageReady.Text, nUDTimeout.Value);
             try
@@ -368,12 +386,13 @@ namespace GRBL_Plotter
             }
             catch (Exception e)
             {
-                Logger.Error(e, " -saveSettings-");
-                logError("! Saving settings", e);
+                Logger.Error(e, "Error SaveSettings: ");
+                LogError("! Saving settings", e);
+                //    throw;
             }
         }
 
-        private void nUDTimeout_ValueChanged(object sender, EventArgs e)
+        private void NudTimeout_ValueChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.serial3Timeout = countTimeOutMax = (int)nUDTimeout.Value;
             Properties.Settings.Default.Save();
@@ -382,15 +401,15 @@ namespace GRBL_Plotter
         private void SimpleSerialForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Logger.Trace("====== Try closing SimpleSerialForm ");
-            serialPort.DataReceived -= (this.serialPort1_DataReceived); // stop receiving data
-            saveSettings();
-            closePort();
+            serialPort.DataReceived -= (this.SerialPort1_DataReceived); // stop receiving data
+            SaveSettings();
+            ClosePort();
             countShutdown = 3;
             flag_closeForm = true;
             e.Cancel = false;
         }
 
-        private void tBMessageReady_TextChanged(object sender, EventArgs e)
+        private void TbMessageReady_TextChanged(object sender, EventArgs e)
         {
             readyString = Properties.Settings.Default.serial3Ready = tBMessageReady.Text;
             Properties.Settings.Default.Save();

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,17 +19,20 @@
 /*
  * 2019-10-25 remove icon to reduce resx size, load icon on run-time
  * 2019-12-07 show current settings on start up MyIni.showIniSettings(true)
- * 2020-08-10
+ * 2021-07-25 code clean up
 */
 
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Windows.Forms;
 
-namespace GRBL_Plotter
+//#pragma warning disable CA1303
+//#pragma warning disable CA1304
+//#pragma warning disable CA1305
+//#pragma warning disable CA1307
+
+namespace GrblPlotter
 {
     public partial class ControlSetupUseCase : Form
     {
@@ -39,25 +42,27 @@ namespace GRBL_Plotter
         public string ReturnValue1 { get; set; }
 
         public ControlSetupUseCase()
-        {   InitializeComponent();
+        {
+            InitializeComponent();
             this.Icon = Properties.Resources.Icon;
         }
 
         private void ControlSetupUseCase_Load(object sender, EventArgs e)
-        {   fillUseCaseFileList(Application.StartupPath + datapath.usecases);
+        {
+            FillUseCaseFileList(Datapath.Usecases);
             tBUseCaseInfo.Text += "\r\n\r\nLast loaded: " + Properties.Settings.Default.useCaseLastLoaded;
-            tBSetup.Text = "Last loaded: "+ Properties.Settings.Default.useCaseLastLoaded+"\r\n";
-            string path = Application.StartupPath + datapath.usecases + "\\" + lBUseCase.Text;
+            tBSetup.Text = "Last loaded: " + Properties.Settings.Default.useCaseLastLoaded + "\r\n";
+            string path = Datapath.Usecases + "\\" + lBUseCase.Text;
             var MyIni = new IniFile(path);
-            tBSetup.Text += "Actually Set:\r\n" + MyIni.showIniSettings(true);
+            tBSetup.Text += "Actually Set:\r\n" + MyIni.ShowIniSettings(true);
             tBSetup.Select(0, 0);
         }
-        private void btnLoad_Click(object sender, EventArgs e)
+        private void BtnLoad_Click(object sender, EventArgs e)
         {
             ReturnValue1 = "";
-            if (lBUseCase.Text == "")
+            if (string.IsNullOrEmpty(lBUseCase.Text))
                 return;
-            string path = Application.StartupPath + datapath.usecases + "\\" + lBUseCase.Text;
+            string path = Datapath.Usecases + "\\" + lBUseCase.Text;
             var MyIni = new IniFile(path);
             Logger.Trace("▄▄▄▄▄▄▄ Load use case: '{0}'", path);
             MyIni.ReadAll();    // ReadImport();
@@ -65,10 +70,10 @@ namespace GRBL_Plotter
             lblLastUseCase.Text = Path.GetFileName(path);
 
             bool laseruse = Properties.Settings.Default.importGCSpindleToggleLaser;
-            float lasermode = grbl.getSetting(32);
+            float lasermode = Grbl.GetSetting(32);
 
             if (lasermode >= 0)
-            {   
+            {
                 if ((lasermode > 0) && !laseruse)
                 {
                     DialogResult dialogResult = MessageBox.Show("grbl laser mode ($32) is activated, \r\nbut not recommended\r\n\r\n Press 'Yes' to fix this", "Attention", MessageBoxButtons.YesNo);
@@ -86,35 +91,38 @@ namespace GRBL_Plotter
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
-        private void btnOk_Click(object sender, EventArgs e)
+        private void BtnOk_Click(object sender, EventArgs e)
         {
             ReturnValue1 = "";
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
-        private void fillUseCaseFileList(string Root)
+        private void FillUseCaseFileList(string Root)
         {
-            List<string> FileArray = new List<string>();
+            //   List<string> FileArray = new List<string>();
             try
-            {   string[] Files = System.IO.Directory.GetFiles(Root);
+            {
+                string[] Files = System.IO.Directory.GetFiles(Root);
                 lBUseCase.Items.Clear();
                 for (int i = 0; i < Files.Length; i++)
-                {   if (Files[i].ToLower().EndsWith("ini"))
+                {
+                    if (Files[i].ToLower().EndsWith("ini"))
                         lBUseCase.Items.Add(Path.GetFileName(Files[i]));
                 }
             }
             catch //(Exception Ex)
-            {   //throw (Ex);
+            {
+                Logger.Error("FillUseCaseFileList no files in {0}", Root);
             }
         }
 
-        private void lBUseCase_SelectedIndexChanged(object sender, EventArgs e)
+        private void LbUseCase_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string path = Application.StartupPath + datapath.usecases +"\\" + lBUseCase.Text;
+            string path = Datapath.Usecases + "\\" + lBUseCase.Text;
             var MyIni = new IniFile(path);
             tBUseCaseInfo.Text = MyIni.ReadUseCaseInfo();
-            tBSetup.Text = MyIni.showIniSettings();
+            tBSetup.Text = MyIni.ShowIniSettings();
             btnLoad.BackColor = System.Drawing.Color.LightGreen;
         }
     }

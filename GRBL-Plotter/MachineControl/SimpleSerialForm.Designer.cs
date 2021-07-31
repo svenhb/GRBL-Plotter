@@ -1,4 +1,4 @@
-﻿namespace GRBL_Plotter
+﻿namespace GrblPlotter
 {
     partial class SimpleSerialForm
     {
@@ -16,6 +16,7 @@
             if (disposing && (components != null))
             {
                 components.Dispose();
+				timerSerial.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -54,7 +55,7 @@
             this.btnScanPort.TabIndex = 7;
             this.btnScanPort.Text = "Scan Ports";
             this.btnScanPort.UseVisualStyleBackColor = true;
-            this.btnScanPort.Click += new System.EventHandler(this.btnScanPort_Click);
+            this.btnScanPort.Click += new System.EventHandler(this.BtnScanPort_Click);
             // 
             // btnOpenPort
             // 
@@ -65,7 +66,7 @@
             this.btnOpenPort.TabIndex = 6;
             this.btnOpenPort.Text = "Open";
             this.btnOpenPort.UseVisualStyleBackColor = true;
-            this.btnOpenPort.Click += new System.EventHandler(this.btnOpenPort_Click);
+            this.btnOpenPort.Click += new System.EventHandler(this.BtnOpenPort_Click);
             // 
             // cbBaud
             // 
@@ -98,7 +99,7 @@
             this.serialPort.ReadBufferSize = 2048;
             this.serialPort.ReadTimeout = 3000;
             this.serialPort.WriteTimeout = 3000;
-            this.serialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
+            this.serialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.SerialPort1_DataReceived);
             // 
             // rtbLog
             // 
@@ -117,7 +118,7 @@
             this.cBCommand.Name = "cBCommand";
             this.cBCommand.Size = new System.Drawing.Size(137, 21);
             this.cBCommand.TabIndex = 19;
-            this.cBCommand.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCommand_KeyPress);
+            this.cBCommand.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbCommand_KeyPress);
             // 
             // btnSend
             // 
@@ -128,7 +129,7 @@
             this.btnSend.TabIndex = 18;
             this.btnSend.Text = "Send";
             this.btnSend.UseVisualStyleBackColor = true;
-            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
+            this.btnSend.Click += new System.EventHandler(this.BtnSend_Click);
             // 
             // btnClear
             // 
@@ -139,7 +140,7 @@
             this.btnClear.TabIndex = 17;
             this.btnClear.Text = "Clear Log";
             this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // label1
             // 
@@ -158,7 +159,7 @@
             this.tBMessageReady.TabIndex = 21;
             this.tBMessageReady.Text = "ready";
             this.tBMessageReady.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tBMessageReady.TextChanged += new System.EventHandler(this.tBMessageReady_TextChanged);
+            this.tBMessageReady.TextChanged += new System.EventHandler(this.TbMessageReady_TextChanged);
             // 
             // label2
             // 
@@ -186,7 +187,7 @@
             0,
             0,
             0});
-            this.nUDTimeout.ValueChanged += new System.EventHandler(this.nUDTimeout_ValueChanged);
+            this.nUDTimeout.ValueChanged += new System.EventHandler(this.NudTimeout_ValueChanged);
             // 
             // SimpleSerialForm
             // 
