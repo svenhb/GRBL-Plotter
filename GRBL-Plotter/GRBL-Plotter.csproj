@@ -1,20 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{8079D7D8-2B91-4A22-A13E-7E5AC5A9E5FC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GRBL_Plotter</RootNamespace>
+    <RootNamespace>GrblPlotter</RootNamespace>
     <AssemblyName>GRBL-Plotter</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>D:\Projekte\_Software\Programmierung_CSharp\GRBL-Plotter\publish\</PublishUrl>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>..\publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -24,11 +25,12 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
+    <TargetCulture>en</TargetCulture>
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>4</ApplicationRevision>
-    <ApplicationVersion>1.5.8.4</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.6.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -38,7 +40,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -46,6 +48,7 @@
     <Prefer32Bit>false</Prefer32Bit>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CodeAnalysisRuleSet>ExtendedDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -59,7 +62,8 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>GRBL_Plotter.Program</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
@@ -72,7 +76,7 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -84,6 +88,9 @@
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
@@ -150,11 +157,11 @@
   <ItemGroup>
     <Compile Include="GCodeCreation\CreateFromForm\BarcodeLib.cs" />
     <Compile Include="GCodeCreation\CreateFromForm\BarcodeLibSymbologies.cs" />
-    <Compile Include="GCodeCreation\CreateFromForm\GCodeForBarcode.cs">
+    <Compile Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GCodeCreation\CreateFromForm\GCodeForBarcode.Designer.cs">
-      <DependentUpon>GCodeForBarcode.cs</DependentUpon>
+    <Compile Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.Designer.cs">
+      <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
     </Compile>
     <Compile Include="GCodeCreation\graphicClasses.cs" />
     <Compile Include="GCodeCreation\graphicRelatedHatchFill.cs" />
@@ -162,10 +169,10 @@
     <Compile Include="GCodeCreation\graphicWorker.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GCodeCreation\ImportFromFile\GCodeFromCSV.cs" />
+    <Compile Include="GCodeCreation\ImportFromFile\GCodeFromCsv.cs" />
     <Compile Include="GCodeCreation\graphicRelated.cs" />
     <Compile Include="GCodeCreation\ImportFromFile\GCodeFromGerber.cs" />
-    <Compile Include="GCodeCreation\xmlMarker.cs" />
+    <Compile Include="GCodeCreation\XmlMarker.cs" />
     <Compile Include="GUI\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,12 +183,12 @@
     <Compile Include="GCodeCreation\CreateFromForm\AForge_Imaging_Filter_RemoveArtefact.cs" />
     <Compile Include="GCodeCreation\CreateFromForm\GCodeFromFontHershey.cs" />
     <Compile Include="GCodeCreation\CreateFromForm\GCodeFromFont.cs" />
-    <Compile Include="GCodeCreation\ImportFromFile\GCodeFromHPGL.cs" />
+    <Compile Include="GCodeCreation\ImportFromFile\GCodeFromHpgl.cs" />
     <Compile Include="GCodeCreation\CreateFromForm\GCodeFromImageCreate.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GCodeCreation\CreateFromForm\GCodeFromImageOutline.cs" />
-    <Compile Include="GCodeCreation\importMath.cs" />
+    <Compile Include="GCodeCreation\ImportMath.cs" />
     <Compile Include="GCodeCreation\graphic2GCode.cs" />
     <Compile Include="GUI\ButtonEdit.cs">
       <SubType>Form</SubType>
@@ -212,6 +219,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\MainFormStreaming.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\MainFormUpdate.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
@@ -267,7 +278,11 @@
     <Compile Include="MachineControl\ControlSetupUseCase.Designer.cs">
       <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
     </Compile>
+    <Compile Include="MachineControl\GCode2DViewpaths.cs" />
+    <Compile Include="MachineControl\GCodeAnalyze.cs" />
     <Compile Include="MachineControl\GCodeParser.cs" />
+    <Compile Include="MachineControl\GCodeSimulate.cs" />
+    <Compile Include="MachineControl\GCodeSynthesize.cs" />
     <Compile Include="MachineControl\GCodeTransform.cs" />
     <Compile Include="MachineControl\GCodeVisuWorker.cs">
       <SubType>Form</SubType>
@@ -299,7 +314,7 @@
     <Compile Include="MachineControl\ControlHeightMap.Designer.cs">
       <DependentUpon>ControlHeightMap.cs</DependentUpon>
     </Compile>
-    <Compile Include="GCodeCreation\ImportFromFile\GCodeFromDXF.cs" />
+    <Compile Include="GCodeCreation\ImportFromFile\GCodeFromDxf.cs" />
     <Compile Include="GCodeCreation\gcodeRelated.cs" />
     <Compile Include="MachineControl\grblRelated.cs" />
     <Compile Include="MachineControl\IniFile.cs" />
@@ -372,8 +387,8 @@
     <Compile Include="MachineControl\ControlStreamingForm2.Designer.cs">
       <DependentUpon>ControlStreamingForm2.cs</DependentUpon>
     </Compile>
-    <Compile Include="GCodeCreation\toolTable.cs" />
-    <Compile Include="GCodeCreation\ImportFromFile\GCodeFromSVG.cs" />
+    <Compile Include="GCodeCreation\ToolTable.cs" />
+    <Compile Include="GCodeCreation\ImportFromFile\GCodeFromSvg.cs" />
     <Compile Include="GCodeCreation\CreateFromForm\GCodeFromText.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -386,7 +401,7 @@
     <Compile Include="GCodeCreation\CreateFromForm\GCodeFromShape.Designer.cs">
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </Compile>
-    <Compile Include="MachineControl\checkUpdate.cs" />
+    <Compile Include="MachineControl\CheckUpdate.cs" />
     <Compile Include="Resources\ResStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -683,12 +698,12 @@
     <Content Include="data\buttons\usecase_simple_z.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\app.manifest" />
     <None Include="Resources\LeadInOut.png" />
     <None Include="Resources\rndOff.png" />
     <None Include="Resources\rndOn.png" />
     <None Include="data\buttons\Pen_down_up_Z.ini" />
     <None Include="data\usecases\example_micro_plotter.ini" />
-    <None Include="Pen_down_up_Z.ini" />
     <None Include="Resources\qrcode.png" />
     <None Include="Resources\logo.png" />
     <None Include="Resources\tlOn.png" />
@@ -717,32 +732,32 @@
     <Content Include="Resources\efOn7.png" />
     <Content Include="Resources\efOn8.png" />
     <Content Include="Resources\efOn9.png" />
-    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForBarcode.ar.resx">
-      <DependentUpon>GCodeForBarcode.cs</DependentUpon>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.ar.resx">
+      <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForBarcode.de-DE.resx">
-      <DependentUpon>GCodeForBarcode.cs</DependentUpon>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.de-DE.resx">
+      <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForBarcode.es.resx">
-      <DependentUpon>GCodeForBarcode.cs</DependentUpon>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.es.resx">
+      <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForBarcode.fr.resx">
-      <DependentUpon>GCodeForBarcode.cs</DependentUpon>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.fr.resx">
+      <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForBarcode.ja.resx">
-      <DependentUpon>GCodeForBarcode.cs</DependentUpon>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.ja.resx">
+      <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForBarcode.pt.resx">
-      <DependentUpon>GCodeForBarcode.cs</DependentUpon>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.pt.resx">
+      <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForBarcode.resx">
-      <DependentUpon>GCodeForBarcode.cs</DependentUpon>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.resx">
+      <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForBarcode.ru.resx">
-      <DependentUpon>GCodeForBarcode.cs</DependentUpon>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.ru.resx">
+      <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForBarcode.zh-CN.resx">
-      <DependentUpon>GCodeForBarcode.cs</DependentUpon>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.zh-CN.resx">
+      <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\AboutForm.ar.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
@@ -909,7 +924,31 @@
     <EmbeddedResource Include="MachineControl\ControlHeightMap.zh-CN.resx">
       <DependentUpon>ControlHeightMap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlJogPathCreator.ar.resx">
+      <DependentUpon>ControlJogPathCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlJogPathCreator.de-DE.resx">
+      <DependentUpon>ControlJogPathCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlJogPathCreator.es.resx">
+      <DependentUpon>ControlJogPathCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlJogPathCreator.fr.resx">
+      <DependentUpon>ControlJogPathCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlJogPathCreator.ja.resx">
+      <DependentUpon>ControlJogPathCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlJogPathCreator.pt.resx">
+      <DependentUpon>ControlJogPathCreator.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlJogPathCreator.resx">
+      <DependentUpon>ControlJogPathCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlJogPathCreator.ru.resx">
+      <DependentUpon>ControlJogPathCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlJogPathCreator.zh-CN.resx">
       <DependentUpon>ControlJogPathCreator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlLaser.ar.resx">
@@ -1291,7 +1330,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
-    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1431,17 +1469,20 @@
   <ItemGroup>
     <PublishFile Include="data\hotkeys.xml">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

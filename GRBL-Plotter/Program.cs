@@ -26,7 +26,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GRBL_Plotter
+namespace GrblPlotter
 {
     static class Program
     {
@@ -38,8 +38,8 @@ namespace GRBL_Plotter
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            bool newInstance;
-            using (var mutex = new Mutex(true, "Deine_Anwendung", out newInstance))
+      //      bool newInstance;
+            using (var mutex = new Mutex(true, "Deine_Anwendung", out bool newInstance))
             {
                 if (newInstance)
                     Application.Run(new MainForm());
