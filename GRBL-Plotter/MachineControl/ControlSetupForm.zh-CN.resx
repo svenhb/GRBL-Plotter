@@ -171,11 +171,11 @@
     <comment>Form</comment>
   </data>
   <data name="cBImportDXFSwitchWhite.Text" xml:space="preserve">
-    <value>处理白色如黑色</value>
+    <value>处理笔色白为黑</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFSwitchWhite.ToolTip" xml:space="preserve">
-    <value>DXF格式使用从0到255的颜色索引。该索引将用作工具编号。</value>
+    <value>LibreCAD 在黑色背景上显示白色笔颜色。但真正的笔色是黑色的。</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFIndexToolNr.Text" xml:space="preserve">

@@ -21,16 +21,21 @@
  * 2019-10-25 remove icon to reduce resx size, load icon on run-time
  * 2019-11-10 add .Replace(',', '.')
  * 2021-04-09 split finish commands
+ * 2021-07-02 code clean up / code quality
 */
 
 using System;
 using System.Windows.Forms;
 
-namespace GRBL_Plotter
+#pragma warning disable CA1303	// Do not pass literals as localized parameters
+#pragma warning disable CA1305
+#pragma warning disable CA1307
+
+namespace GrblPlotter
 {
     public partial class ControlLaser : Form
     {
-        public string gcode;
+        internal string gcode;
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -42,43 +47,43 @@ namespace GRBL_Plotter
             InitializeComponent();
         }
 
-        private void runDelay()
+        private void RunDelay()
         {   if (nUDMotionDelay.Value > 0)
-            {   sendCommandEvent(new CmdEventArgs("(++++++++++ Delay)"));
-                sendCommandEvent(new CmdEventArgs((string.Format("G1 M3 S{0} F100", nUDMotionDelayPower.Value).Replace(',', '.'))));
-                sendCommandEvent(new CmdEventArgs((string.Format("G4 P{0}", nUDMotionDelay.Value).Replace(',', '.'))));
+            {   SendCommandEvent(new CmdEventArgs("(++++++++++ Delay)"));
+                SendCommandEvent(new CmdEventArgs((string.Format("G1 M3 S{0} F100", nUDMotionDelayPower.Value).Replace(',', '.'))));
+                SendCommandEvent(new CmdEventArgs((string.Format("G4 P{0}", nUDMotionDelay.Value).Replace(',', '.'))));
             }
         }
 
-        private void finish(bool useZ=false)
+        private void Finish(bool useZ=false)
         {
-            sendCommandEvent(new CmdEventArgs("(++++++++++ Move back to start pos.)"));
+            SendCommandEvent(new CmdEventArgs("(++++++++++ Move back to start pos.)"));
             if (useZ)
-                sendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0 Z0 M5")));
+                SendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0 Z0 M5")));
             else
-            {   sendCommandEvent(new CmdEventArgs(string.Format("S0 G4 P0.5")));
-                sendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0")));
-                sendCommandEvent(new CmdEventArgs(string.Format("M5")));
+            {   SendCommandEvent(new CmdEventArgs(string.Format("S0 G4 P0.5")));
+                SendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0")));
+                SendCommandEvent(new CmdEventArgs(string.Format("M5")));
             }
 
             if (nUDMotionY.Value != 0)
-            {   sendCommandEvent(new CmdEventArgs((string.Format("G91 G0 Y{0}", nUDMotionY.Value).Replace(',', '.'))));
-                sendCommandEvent(new CmdEventArgs("G90"));
+            {   SendCommandEvent(new CmdEventArgs((string.Format("G91 G0 Y{0}", nUDMotionY.Value).Replace(',', '.'))));
+                SendCommandEvent(new CmdEventArgs("G90"));
             }
         }
 
-        private void btnScanZ_Click(object sender, EventArgs e)
+        private void BtnScanZ_Click(object sender, EventArgs e)
         {   string m = rBM3.Checked ? "3" : "4";
-            sendCommandEvent(new CmdEventArgs("(++++++++++ Scan Z)"));
-            sendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0 Z0")));
-            runDelay();
-            sendCommandEvent(new CmdEventArgs((string.Format("G0 Z{0} M{1} S0", nUDMotionZ.Value, m).Replace(',', '.'))));
-            sendCommandEvent(new CmdEventArgs((string.Format("S{0}", nUDMotionPower.Value).Replace(',', '.'))));
-            sendCommandEvent(new CmdEventArgs((string.Format("G1 X{0} Z{1} F{2}", nUDMotionX.Value, -nUDMotionZ.Value, nUDMotionSpeed.Value).Replace(',', '.'))));
-            finish(true);
+            SendCommandEvent(new CmdEventArgs("(++++++++++ Scan Z)"));
+            SendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0 Z0")));
+            RunDelay();
+            SendCommandEvent(new CmdEventArgs((string.Format("G0 Z{0} M{1} S0", nUDMotionZ.Value, m).Replace(',', '.'))));
+            SendCommandEvent(new CmdEventArgs((string.Format("S{0}", nUDMotionPower.Value).Replace(',', '.'))));
+            SendCommandEvent(new CmdEventArgs((string.Format("G1 X{0} Z{1} F{2}", nUDMotionX.Value, -nUDMotionZ.Value, nUDMotionSpeed.Value).Replace(',', '.'))));
+            Finish(true);
         }
 
-        private void btnScanSpeed_Click(object sender, EventArgs e)
+        private void BtnScanSpeed_Click(object sender, EventArgs e)
         {
             string m = rBM3.Checked ? "3" : "4";
             decimal rangeSpeed = nUDSpeedMax.Value - nUDSpeedMin.Value;
@@ -87,24 +92,24 @@ namespace GRBL_Plotter
 
             decimal steps = Math.Abs(rangeSpeed / nUDSpeedStep.Value)+1;
             decimal xWidth = nUDMotionX.Value / steps;
-            sendCommandEvent(new CmdEventArgs("(++++++++++ Scan Speed)"));
-            sendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0")));
-            runDelay();
-            sendCommandEvent(new CmdEventArgs((string.Format("G91 M{0} S{1}", m, nUDSpeedPower.Value).Replace(',', '.'))));
+            SendCommandEvent(new CmdEventArgs("(++++++++++ Scan Speed)"));
+            SendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0")));
+            RunDelay();
+            SendCommandEvent(new CmdEventArgs((string.Format("G91 M{0} S{1}", m, nUDSpeedPower.Value).Replace(',', '.'))));
             if (rangeSpeed > 0)     // bottom - up
             {
                 for (decimal actSpeed = nUDSpeedMin.Value; actSpeed <= nUDSpeedMax.Value; actSpeed += nUDSpeedStep.Value)   // bottom - up
-                    sendCommandEvent(new CmdEventArgs((string.Format("G1 X{0} F{1}", GRBL_Plotter.gcode.frmtNum(xWidth), actSpeed).Replace(',', '.'))));
+                    SendCommandEvent(new CmdEventArgs((string.Format("G1 X{0} F{1}", GrblPlotter.Gcode.FrmtNum(xWidth), actSpeed).Replace(',', '.'))));
             }
             else
             {
                 for (decimal actSpeed = nUDSpeedMin.Value; actSpeed >= nUDSpeedMax.Value; actSpeed -= nUDSpeedStep.Value)   // top - down
-                    sendCommandEvent(new CmdEventArgs((string.Format("G1 X{0} F{1}", GRBL_Plotter.gcode.frmtNum(xWidth), actSpeed).Replace(',', '.'))));
+                    SendCommandEvent(new CmdEventArgs((string.Format("G1 X{0} F{1}", GrblPlotter.Gcode.FrmtNum(xWidth), actSpeed).Replace(',', '.'))));
             }
-            finish();
+            Finish();
         }
 
-        private void btnScanPower_Click(object sender, EventArgs e)
+        private void BtnScanPower_Click(object sender, EventArgs e)
         {
             string m = rBM3.Checked ? "3" : "4";
             decimal rangePower = nUDPowerMax.Value - nUDPowerMin.Value;
@@ -113,58 +118,58 @@ namespace GRBL_Plotter
 
             decimal steps = Math.Abs(rangePower / nUDPowerStep.Value) +1;
             decimal xWidth = nUDMotionX.Value / steps;
-            sendCommandEvent(new CmdEventArgs("(++++++++++ Scan Power)"));
-            sendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0")));
-            runDelay();
-            sendCommandEvent(new CmdEventArgs(string.Format("G91 M{0} S0 F{1}", m, nUDPowerSpeed.Value)));
+            SendCommandEvent(new CmdEventArgs("(++++++++++ Scan Power)"));
+            SendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0")));
+            RunDelay();
+            SendCommandEvent(new CmdEventArgs(string.Format("G91 M{0} S0 F{1}", m, nUDPowerSpeed.Value)));
             if (rangePower > 0)     // bottom - up
             {
                 for (decimal actPower = nUDPowerMin.Value; actPower <= nUDPowerMax.Value; actPower += nUDPowerStep.Value)   // bottom - up
-                    sendCommandEvent(new CmdEventArgs((string.Format("G1 X{0} S{1}", GRBL_Plotter.gcode.frmtNum(xWidth), actPower).Replace(',', '.'))));
+                    SendCommandEvent(new CmdEventArgs((string.Format("G1 X{0} S{1}", GrblPlotter.Gcode.FrmtNum(xWidth), actPower).Replace(',', '.'))));
             }
             else
             {
                 for (decimal actPower = nUDPowerMin.Value; actPower >= nUDPowerMax.Value; actPower -= nUDPowerStep.Value)   // top - down
-                    sendCommandEvent(new CmdEventArgs((string.Format("G1 X{0} S{1}", GRBL_Plotter.gcode.frmtNum(xWidth), actPower).Replace(',', '.'))));
+                    SendCommandEvent(new CmdEventArgs((string.Format("G1 X{0} S{1}", GrblPlotter.Gcode.FrmtNum(xWidth), actPower).Replace(',', '.'))));
             }
 
-            finish();
+            Finish();
         }
 
-        private void btnScanTool_Click(object sender, EventArgs e)
+        private void BtnScanTool_Click(object sender, EventArgs e)
         {
             string m = rBM3.Checked ? "3" : "4";
-            sendCommandEvent(new CmdEventArgs("(++++++++++ Try Tool )"));
-            sendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0")));
-            runDelay();
-            sendCommandEvent(new CmdEventArgs((string.Format("G0 M{0} S0", m).Replace(',', '.'))));
-            sendCommandEvent(new CmdEventArgs((string.Format("S{0}", tool_spindle).Replace(',', '.'))));
-            sendCommandEvent(new CmdEventArgs((string.Format("G1 X{0} F{1}", nUDMotionX.Value, tool_xyfeed).Replace(',', '.'))));
-            finish();
+            SendCommandEvent(new CmdEventArgs("(++++++++++ Try Tool )"));
+            SendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0")));
+            RunDelay();
+            SendCommandEvent(new CmdEventArgs((string.Format("G0 M{0} S0", m).Replace(',', '.'))));
+            SendCommandEvent(new CmdEventArgs((string.Format("S{0}", tool_spindle).Replace(',', '.'))));
+            SendCommandEvent(new CmdEventArgs((string.Format("G1 X{0} F{1}", nUDMotionX.Value, tool_xyfeed).Replace(',', '.'))));
+            Finish();
         }
 
 
 
-        private void cBLaserMode_CheckedChanged(object sender, EventArgs e)
+        private void CbLaserMode_CheckedChanged(object sender, EventArgs e)
         {
-            if (grbl.getSetting(32) > 0)
-            { gcode = "$32=0"; grbl.setSettings(32, "0"); }
+            if (Grbl.GetSetting(32) > 0)
+            { gcode = "$32=0"; Grbl.SetSettings(32, "0"); }
             else
-            { gcode = "$32=1"; grbl.setSettings(32, "1"); }
-            sendCommandEvent(new CmdEventArgs(gcode));
-            refreshValues();
+            { gcode = "$32=1"; Grbl.SetSettings(32, "1"); }
+            SendCommandEvent(new CmdEventArgs(gcode));
+            RefreshValues();
         }
 
-        private void refreshValues()
+        private void RefreshValues()
         {
-            lblInfo.Text = string.Format("Max spindle speed: $30={0}; Min spindle speed: $31={1}; Laser Mode: $32={2}", grbl.getSetting(30), grbl.getSetting(31), grbl.getSetting(32));
-            cBLaserMode.CheckedChanged -= cBLaserMode_CheckedChanged;
-            cBLaserMode.Checked = (grbl.getSetting(32) > 0) ? true : false;
-            cBLaserMode.CheckedChanged += cBLaserMode_CheckedChanged;
+            lblInfo.Text = string.Format("Max spindle speed: $30={0}; Min spindle speed: $31={1}; Laser Mode: $32={2}", Grbl.GetSetting(30), Grbl.GetSetting(31), Grbl.GetSetting(32));
+            cBLaserMode.CheckedChanged -= CbLaserMode_CheckedChanged;
+            cBLaserMode.Checked = (Grbl.GetSetting(32) > 0) ? true : false;
+            cBLaserMode.CheckedChanged += CbLaserMode_CheckedChanged;
         }
 
         public event EventHandler<CmdEventArgs> RaiseCmdEvent;
-        protected virtual void sendCommandEvent(CmdEventArgs e)
+        protected virtual void SendCommandEvent(CmdEventArgs e)
         {
             EventHandler<CmdEventArgs> handler = RaiseCmdEvent;
             if (handler != null)
@@ -180,40 +185,40 @@ namespace GRBL_Plotter
 
         private void ControlLaser_Load(object sender, EventArgs e)
         {
-            btnToolUpdate_Click(sender, e);
-            refreshValues();
+            BtnToolUpdate_Click(sender, e);
+            RefreshValues();
         }
 
         float tool_xyfeed;
         float tool_spindle;
-        private void cBTool_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbTool_SelectedIndexChanged(object sender, EventArgs e)
         {
             string tmp = cBTool.SelectedItem.ToString();
             if (tmp.IndexOf(")") > 0)
             {
                 int tnr = int.Parse(tmp.Substring(0, tmp.IndexOf(")")));
                 Properties.Settings.Default.importGCToolDefNr = tnr;
-                tprop = toolTable.getToolProperties(tnr);
-                tool_xyfeed = tprop.feedXY;
-                tool_spindle = tprop.spindleSpeed;
+                tprop = ToolTable.GetToolProperties(tnr);
+                tool_xyfeed = tprop.FeedXY;
+                tool_spindle = tprop.SpindleSpeed;
                 lblToolProp.Text = string.Format("XY-Feed F={0}, Laser pow. S={1}", tool_xyfeed, tool_spindle);
             }
         }
 
-        toolProp tprop;
-        private void btnToolUpdate_Click(object sender, EventArgs e)
+        ToolProp tprop;
+        private void BtnToolUpdate_Click(object sender, EventArgs e)
         {
-            int toolCount = toolTable.init();
-            toolProp tmpTool;
+            int toolCount = ToolTable.Init();
+            ToolProp tmpTool;
             cBTool.Items.Clear();
             for (int i = 1; i < toolCount; i++)
             {
-                tmpTool = toolTable.getToolProperties(i);
-                cBTool.Items.Add(i.ToString() + ") " + tmpTool.name);
+                tmpTool = ToolTable.GetToolProperties(i);
+                cBTool.Items.Add(i.ToString() + ") " + tmpTool.Name);
             }
             cBTool.SelectedIndex = 0;
-            tprop = toolTable.getToolProperties(1);
-            cBTool_SelectedIndexChanged(sender, e);
+            tprop = ToolTable.GetToolProperties(1);
+            CbTool_SelectedIndexChanged(sender, e);
         }
     }
 }

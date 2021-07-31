@@ -223,7 +223,7 @@ Abschließend wird die Mitte angefahren</value>
     <value>Der Korrekturwinkel wird anhand der vertikalen (X-Messung) oder horizontalen Kante (Y-Messung) des Werkstücks berechnet</value>
   </data>
   <data name="label20.Text" xml:space="preserve">
-    <value>Gemessener Korrekturwinkel:</value>
+    <value>Gemessener Korrekturwinkel</value>
   </data>
   <data name="label19.Text" xml:space="preserve">
     <value>Wählen Sie die Kante für die zu erkennende Ecke aus.
@@ -251,7 +251,7 @@ Sondenkante ein zweites Mal an einer anderen Position, um den Winkel zu bestimme
     <value>Kantenfinder</value>
   </data>
   <data name="tabPage2.Text" xml:space="preserve">
-    <value>Mitenfinder</value>
+    <value>Mittenfinder</value>
   </data>
   <data name="btnSaveTL.Text" xml:space="preserve">
     <value>Fahre Z zur sicheren Position </value>
@@ -315,13 +315,10 @@ Setzen Sie die Werkzeugspitze wie bei der Kantenerkennung auf die linke Seite de
     <value>Koordinaten</value>
   </data>
   <data name="rBProbeCoord1.Text" xml:space="preserve">
-    <value>Verwendung von G10 L2 P0 - setzen der Koordinate (G54-G59)</value>
+    <value>Verwende G10 L2 P0 - setzen der Koordinate (G54-G59)</value>
   </data>
   <data name="rBProbeCoord2.Text" xml:space="preserve">
-    <value>Verwendung von G92</value>
-  </data>
-  <data name="btnProbeCoordClear.Text" xml:space="preserve">
-    <value>G92 zurücksetzen</value>
+    <value>Verwende G92</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Abtastung und Werkzeuglängenkorrektur</value>

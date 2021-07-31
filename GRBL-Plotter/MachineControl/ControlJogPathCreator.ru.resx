@@ -153,9 +153,6 @@
   <data name="btnJogStart.Text" xml:space="preserve">
     <value>Отправить путь изгиба</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Скорость подачи</value>
-  </data>
   <data name="cBSnap.Text" xml:space="preserve">
     <value>Привязать к растру</value>
   </data>

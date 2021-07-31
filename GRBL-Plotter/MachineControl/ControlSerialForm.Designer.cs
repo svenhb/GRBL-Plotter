@@ -16,7 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace GRBL_Plotter
+namespace GrblPlotter
 {
     partial class ControlSerialForm
     {
@@ -34,6 +34,7 @@ namespace GRBL_Plotter
             if (disposing && (components != null))
             {
                 components.Dispose();
+				timerSerial.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -123,7 +124,7 @@ namespace GRBL_Plotter
             this.btnOpenPort.Name = "btnOpenPort";
             this.toolTipSerial.SetToolTip(this.btnOpenPort, resources.GetString("btnOpenPort.ToolTip"));
             this.btnOpenPort.UseVisualStyleBackColor = true;
-            this.btnOpenPort.Click += new System.EventHandler(this.btnOpenPort_Click);
+            this.btnOpenPort.Click += new System.EventHandler(this.BtnOpenPort_Click);
             // 
             // btnScanPort
             // 
@@ -131,7 +132,7 @@ namespace GRBL_Plotter
             this.btnScanPort.Name = "btnScanPort";
             this.toolTipSerial.SetToolTip(this.btnScanPort, resources.GetString("btnScanPort.ToolTip"));
             this.btnScanPort.UseVisualStyleBackColor = true;
-            this.btnScanPort.Click += new System.EventHandler(this.btnScanPort_Click);
+            this.btnScanPort.Click += new System.EventHandler(this.BtnScanPort_Click);
             // 
             // serialPort
             // 
@@ -139,7 +140,7 @@ namespace GRBL_Plotter
             this.serialPort.ReadBufferSize = 2048;
             this.serialPort.ReadTimeout = 3000;
             this.serialPort.WriteTimeout = 3000;
-            this.serialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
+            this.serialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.SerialPort1_DataReceived);
             // 
             // rtbLog
             // 
@@ -160,19 +161,19 @@ namespace GRBL_Plotter
             // 
             this.pasteCodeFromClipboardToolStripMenuItem.Name = "pasteCodeFromClipboardToolStripMenuItem";
             resources.ApplyResources(this.pasteCodeFromClipboardToolStripMenuItem, "pasteCodeFromClipboardToolStripMenuItem");
-            this.pasteCodeFromClipboardToolStripMenuItem.Click += new System.EventHandler(this.pasteCodeFromClipboardToolStripMenuItem_Click);
+            this.pasteCodeFromClipboardToolStripMenuItem.Click += new System.EventHandler(this.PasteCodeFromClipboardToolStripMenuItem_Click);
             // 
             // copySelectionToClipboardToolStripMenuItem
             // 
             this.copySelectionToClipboardToolStripMenuItem.Name = "copySelectionToClipboardToolStripMenuItem";
             resources.ApplyResources(this.copySelectionToClipboardToolStripMenuItem, "copySelectionToClipboardToolStripMenuItem");
-            this.copySelectionToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copySelectionToClipboardToolStripMenuItem_Click);
+            this.copySelectionToClipboardToolStripMenuItem.Click += new System.EventHandler(this.CopySelectionToClipboardToolStripMenuItem_Click);
             // 
             // selectAllToolStripMenuItem
             // 
             this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
             resources.ApplyResources(this.selectAllToolStripMenuItem, "selectAllToolStripMenuItem");
-            this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
+            this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.SelectAllToolStripMenuItem_Click);
             // 
             // btnClear
             // 
@@ -180,7 +181,7 @@ namespace GRBL_Plotter
             this.btnClear.Name = "btnClear";
             this.toolTipSerial.SetToolTip(this.btnClear, resources.GetString("btnClear.ToolTip"));
             this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // btnSend
             // 
@@ -188,7 +189,7 @@ namespace GRBL_Plotter
             this.btnSend.Name = "btnSend";
             this.toolTipSerial.SetToolTip(this.btnSend, resources.GetString("btnSend.ToolTip"));
             this.btnSend.UseVisualStyleBackColor = true;
-            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
+            this.btnSend.Click += new System.EventHandler(this.BtnSend_Click);
             // 
             // btnGRBLCommand0
             // 
@@ -196,7 +197,7 @@ namespace GRBL_Plotter
             this.btnGRBLCommand0.Name = "btnGRBLCommand0";
             this.toolTipSerial.SetToolTip(this.btnGRBLCommand0, resources.GetString("btnGRBLCommand0.ToolTip"));
             this.btnGRBLCommand0.UseVisualStyleBackColor = true;
-            this.btnGRBLCommand0.Click += new System.EventHandler(this.btnGRBLCommand0_Click);
+            this.btnGRBLCommand0.Click += new System.EventHandler(this.BtnGRBLCommand0_Click);
             // 
             // btnGRBLCommand1
             // 
@@ -204,7 +205,7 @@ namespace GRBL_Plotter
             this.btnGRBLCommand1.Name = "btnGRBLCommand1";
             this.toolTipSerial.SetToolTip(this.btnGRBLCommand1, resources.GetString("btnGRBLCommand1.ToolTip"));
             this.btnGRBLCommand1.UseVisualStyleBackColor = true;
-            this.btnGRBLCommand1.Click += new System.EventHandler(this.btnGRBLCommand1_Click);
+            this.btnGRBLCommand1.Click += new System.EventHandler(this.BtnGRBLCommand1_Click);
             // 
             // btnGRBLCommand2
             // 
@@ -212,7 +213,7 @@ namespace GRBL_Plotter
             this.btnGRBLCommand2.Name = "btnGRBLCommand2";
             this.toolTipSerial.SetToolTip(this.btnGRBLCommand2, resources.GetString("btnGRBLCommand2.ToolTip"));
             this.btnGRBLCommand2.UseVisualStyleBackColor = true;
-            this.btnGRBLCommand2.Click += new System.EventHandler(this.btnGRBLCommand2_Click);
+            this.btnGRBLCommand2.Click += new System.EventHandler(this.BtnGRBLCommand2_Click);
             // 
             // btnGRBLCommand3
             // 
@@ -220,7 +221,7 @@ namespace GRBL_Plotter
             this.btnGRBLCommand3.Name = "btnGRBLCommand3";
             this.toolTipSerial.SetToolTip(this.btnGRBLCommand3, resources.GetString("btnGRBLCommand3.ToolTip"));
             this.btnGRBLCommand3.UseVisualStyleBackColor = true;
-            this.btnGRBLCommand3.Click += new System.EventHandler(this.btnGRBLCommand3_Click);
+            this.btnGRBLCommand3.Click += new System.EventHandler(this.BtnGRBLCommand3_Click);
             // 
             // btnGRBLCommand4
             // 
@@ -228,7 +229,7 @@ namespace GRBL_Plotter
             this.btnGRBLCommand4.Name = "btnGRBLCommand4";
             this.toolTipSerial.SetToolTip(this.btnGRBLCommand4, resources.GetString("btnGRBLCommand4.ToolTip"));
             this.btnGRBLCommand4.UseVisualStyleBackColor = true;
-            this.btnGRBLCommand4.Click += new System.EventHandler(this.btnGRBLCommand4_Click);
+            this.btnGRBLCommand4.Click += new System.EventHandler(this.BtnGRBLCommand4_Click);
             // 
             // lblSrPos
             // 
@@ -314,7 +315,7 @@ namespace GRBL_Plotter
             this.btnCheckGRBL.Name = "btnCheckGRBL";
             this.toolTipSerial.SetToolTip(this.btnCheckGRBL, resources.GetString("btnCheckGRBL.ToolTip"));
             this.btnCheckGRBL.UseVisualStyleBackColor = true;
-            this.btnCheckGRBL.Click += new System.EventHandler(this.btnCheckGRBL_Click);
+            this.btnCheckGRBL.Click += new System.EventHandler(this.BtnCheckGRBL_Click);
             // 
             // btnGRBLReset
             // 
@@ -322,7 +323,7 @@ namespace GRBL_Plotter
             this.btnGRBLReset.Name = "btnGRBLReset";
             this.toolTipSerial.SetToolTip(this.btnGRBLReset, resources.GetString("btnGRBLReset.ToolTip"));
             this.btnGRBLReset.UseVisualStyleBackColor = true;
-            this.btnGRBLReset.Click += new System.EventHandler(this.btnGRBLReset_Click);
+            this.btnGRBLReset.Click += new System.EventHandler(this.BtnGRBLReset_Click);
             // 
             // btnGRBLHardReset
             // 
@@ -330,7 +331,7 @@ namespace GRBL_Plotter
             this.btnGRBLHardReset.Name = "btnGRBLHardReset";
             this.toolTipSerial.SetToolTip(this.btnGRBLHardReset, resources.GetString("btnGRBLHardReset.ToolTip"));
             this.btnGRBLHardReset.UseVisualStyleBackColor = true;
-            this.btnGRBLHardReset.Click += new System.EventHandler(this.btnGRBLHardReset_Click);
+            this.btnGRBLHardReset.Click += new System.EventHandler(this.BtnGRBLHardReset_Click);
             // 
             // btnGRBLCmndParser
             // 
@@ -338,7 +339,7 @@ namespace GRBL_Plotter
             this.btnGRBLCmndParser.Name = "btnGRBLCmndParser";
             this.toolTipSerial.SetToolTip(this.btnGRBLCmndParser, resources.GetString("btnGRBLCmndParser.ToolTip"));
             this.btnGRBLCmndParser.UseVisualStyleBackColor = true;
-            this.btnGRBLCmndParser.Click += new System.EventHandler(this.btnGRBLCmndParser_Click);
+            this.btnGRBLCmndParser.Click += new System.EventHandler(this.BtnGRBLCmndParser_Click);
             // 
             // btnGRBLCmndBuild
             // 
@@ -346,7 +347,7 @@ namespace GRBL_Plotter
             this.btnGRBLCmndBuild.Name = "btnGRBLCmndBuild";
             this.toolTipSerial.SetToolTip(this.btnGRBLCmndBuild, resources.GetString("btnGRBLCmndBuild.ToolTip"));
             this.btnGRBLCmndBuild.UseVisualStyleBackColor = true;
-            this.btnGRBLCmndBuild.Click += new System.EventHandler(this.btnGRBLCmndBuild_Click);
+            this.btnGRBLCmndBuild.Click += new System.EventHandler(this.BtnGRBLCmndBuild_Click);
             // 
             // cBStatus
             // 
@@ -378,7 +379,7 @@ namespace GRBL_Plotter
             resources.GetString("cBCommand.Items4")});
             resources.ApplyResources(this.cBCommand, "cBCommand");
             this.cBCommand.Name = "cBCommand";
-            this.cBCommand.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCommand_KeyPress);
+            this.cBCommand.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbCommand_KeyPress);
             // 
             // groupBox1
             // 
@@ -415,7 +416,7 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.btnCheckGRBLResult, "btnCheckGRBLResult");
             this.btnCheckGRBLResult.Name = "btnCheckGRBLResult";
             this.btnCheckGRBLResult.UseVisualStyleBackColor = true;
-            this.btnCheckGRBLResult.Click += new System.EventHandler(this.btnCheckGRBLResult_Click);
+            this.btnCheckGRBLResult.Click += new System.EventHandler(this.BtnCheckGRBLResult_Click);
             // 
             // cBTelnet
             // 

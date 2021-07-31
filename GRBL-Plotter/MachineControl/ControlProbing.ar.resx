@@ -242,7 +242,7 @@ Z up = Z start + Z probing
     <value>دقق الحركة</value>
   </data>
   <data name="label20.Text" xml:space="preserve">
-    <value>زاوية تصحيح قياس:</value>
+    <value>زاوية تصحيح قياس</value>
   </data>
   <data name="label19.Text" xml:space="preserve">
     <value>حدد حافة الزاوية للكشف عنها.

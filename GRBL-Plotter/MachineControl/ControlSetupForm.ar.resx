@@ -175,11 +175,11 @@
     <comment>ok</comment>
   </data>
   <data name="cBImportDXFSwitchWhite.Text" xml:space="preserve">
-    <value>التعامل مع الأبيض والأسود</value>
+    <value>التعامل مع قلم أبيض وأسود</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFSwitchWhite.ToolTip" xml:space="preserve">
-    <value>يستخدم تنسيق DXF فهرس الألوان من 0 إلى 255. سيتم استخدام هذا الفهرس كرقم أداة.</value>
+    <value>يظهر LibreCAD لون القلم الأبيض على خلفية سوداء. لكن لون القلم الحقيقي أسود.</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFIndexToolNr.Text" xml:space="preserve">

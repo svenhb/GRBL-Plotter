@@ -124,7 +124,7 @@
     <value>Pfad komplett löschen</value>
   </data>
   <data name="btnUndo.Text" xml:space="preserve">
-    <value>Zuletzt rückgängig machen</value>
+    <value>Rückgängig</value>
   </data>
   <data name="btnLoad.Text" xml:space="preserve">
     <value>Pfad laden</value>
@@ -153,11 +153,8 @@
   <data name="btnJogStart.Text" xml:space="preserve">
     <value>Jog-Pfad senden</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Vorschubgeschwindigkeit</value>
-  </data>
   <data name="cBSnap.Text" xml:space="preserve">
-    <value>Raster einrasten</value>
+    <value>Auf Raster einrasten</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Jog Path Creator</value>

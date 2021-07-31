@@ -153,9 +153,6 @@
   <data name="btnJogStart.Text" xml:space="preserve">
     <value>Enviar ruta Jog</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>DETENER</value>
-  </data>
   <data name="cBSnap.Text" xml:space="preserve">
     <value>Ajustar ráster</value>
   </data>

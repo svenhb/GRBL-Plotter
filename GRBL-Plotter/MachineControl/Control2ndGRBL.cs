@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,28 +18,31 @@
 */
 /*
  * 2019-08-15 add logger
+ * 2021-07-26 code clean up / code quality
 */
 
 using System;
-using System.Windows.Forms;
-using virtualJoystick;
+using System.Drawing;
 using System.Globalization;
 using System.Threading;
-using System.Drawing;
+using System.Windows.Forms;
+using virtualJoystick;
 
-namespace GRBL_Plotter
+//#pragma warning disable CA1305
+
+namespace GrblPlotter
 {
     public partial class Control2ndGRBL : Form
     {
         ControlSerialForm _serial_form2;
-        private xyzPoint posMachine = new xyzPoint(0, 0, 0);
-        private xyzPoint posWorld = new xyzPoint(0, 0, 0);
-        private xyzPoint posProbe = new xyzPoint(0, 0, 0);
-        private grblState machineStatus;
-        private double[] joystickXYStep = { 0, 1, 2, 3, 4, 5 };
-        private double[] joystickZStep = { 0, 1, 2, 3, 4, 5 };
-        private double[] joystickXYSpeed = { 0, 1, 2, 3, 4, 5 };
-        private double[] joystickZSpeed = { 0, 1, 2, 3, 4, 5 };
+        private XyzPoint posMachine = new XyzPoint(0, 0, 0);
+        private XyzPoint posWorld = new XyzPoint(0, 0, 0);
+        //     private XyzPoint posProbe = new XyzPoint(0, 0, 0);
+        private GrblState machineStatus;
+        private readonly double[] joystickXYStep = { 0, 1, 2, 3, 4, 5 };
+        private readonly double[] joystickZStep = { 0, 1, 2, 3, 4, 5 };
+        private readonly double[] joystickXYSpeed = { 0, 1, 2, 3, 4, 5 };
+        private readonly double[] joystickZSpeed = { 0, 1, 2, 3, 4, 5 };
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -51,11 +54,12 @@ namespace GRBL_Plotter
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
             InitializeComponent();
-            set2ndSerial(handle);
+            Set2ndSerial(handle);
         }
 
-        public void set2ndSerial(ControlSerialForm handle = null)
-        {   _serial_form2 = handle;
+        public void Set2ndSerial(ControlSerialForm handle)
+        {
+            _serial_form2 = handle;
             if (handle != null)
             {
                 _serial_form2.RaisePosEvent += OnRaisePosEvent;
@@ -64,20 +68,21 @@ namespace GRBL_Plotter
         }
 
         // send command via serial form
-        private void sendRealtimeCommand(byte cmd)
-        { if (_serial_form2.serialPortOpen)
-                _serial_form2.realtimeCommand(cmd);
+        private void SendRealtimeCommand(byte cmd)
+        {
+            if (_serial_form2.SerialPortOpen)
+                _serial_form2.RealtimeCommand(cmd);
         }
 
         // send command via serial form
-        private void sendCommand(string txt, bool jogging = false)
+        private void SendCommand(string txt, bool jogging = false)
         {
-            if (_serial_form2.serialPortOpen)
+            if (_serial_form2.SerialPortOpen)
             {
-                if ((jogging) && (_serial_form2.isGrblVers0 == false))
+                if ((jogging) && (_serial_form2.IsGrblVers0 == false))
                     txt = "$J=" + txt;
-                _serial_form2.requestSend(txt);
-                btnJogStop.Visible = !_serial_form2.isGrblVers0;
+                _serial_form2.RequestSend(txt);
+                btnJogStop.Visible = !_serial_form2.IsGrblVers0;
             }
         }
 
@@ -94,78 +99,82 @@ namespace GRBL_Plotter
             label_wx.Text = string.Format("{0:0.000}", posWorld.X);
             label_wy.Text = string.Format("{0:0.000}", posWorld.Y);
             label_wz.Text = string.Format("{0:0.000}", posWorld.Z);
-            label_status.Text = grbl.statusToText(machineStatus);
-            label_status.BackColor = grbl.grblStateColor(machineStatus);
+            label_status.Text = Grbl.StatusToText(machineStatus);
+            label_status.BackColor = Grbl.GrblStateColor(machineStatus);
         }
 
-        private void btnHome_Click(object sender, EventArgs e)
-        { sendCommand("$H"); }
-        private void btnZeroX_Click(object sender, EventArgs e)
-        { sendCommand("G92 X0"); }
-        private void btnZeroY_Click(object sender, EventArgs e)
-        { sendCommand("G92 Y0"); }
-        private void btnZeroZ_Click(object sender, EventArgs e)
-        { sendCommand("G92 Z0"); }
-        private void btnJogX_Click(object sender, EventArgs e)
-        { sendCommand("G90 X0 F" + joystickXYSpeed[5].ToString(), true); }
-        private void btnJogY_Click(object sender, EventArgs e)
-        { sendCommand("G90 Y0 F" + joystickXYSpeed[5].ToString(), true); }
-        private void btnJogZ_Click(object sender, EventArgs e)
-        { sendCommand("G90 Z0 F" + joystickZSpeed[5].ToString(), true); }
-        private void btnJogStop_Click(object sender, EventArgs e)
-        { sendRealtimeCommand(133); }    //0x85
+        private void BtnHome_Click(object sender, EventArgs e)
+        { SendCommand("$H"); }
+        private void BtnZeroX_Click(object sender, EventArgs e)
+        { SendCommand("G92 X0"); }
+        private void BtnZeroY_Click(object sender, EventArgs e)
+        { SendCommand("G92 Y0"); }
+        private void BtnZeroZ_Click(object sender, EventArgs e)
+        { SendCommand("G92 Z0"); }
+        private void BtnJogX_Click(object sender, EventArgs e)
+        { SendCommand("G90 X0 F" + joystickXYSpeed[5].ToString(), true); }
+        private void BtnJogY_Click(object sender, EventArgs e)
+        { SendCommand("G90 Y0 F" + joystickXYSpeed[5].ToString(), true); }
+        private void BtnJogZ_Click(object sender, EventArgs e)
+        { SendCommand("G90 Z0 F" + joystickZSpeed[5].ToString(), true); }
+        private void BtnJogStop_Click(object sender, EventArgs e)
+        { SendRealtimeCommand(133); }    //0x85
 
-        private void btnReset_Click(object sender, EventArgs e)
-        {   _serial_form2.grblReset();
+        private void BtnReset_Click(object sender, EventArgs e)
+        {
+            _serial_form2.GrblReset(true);  // savePos
         }
-        private void btnFeedHold_Click(object sender, EventArgs e)
-        {   sendRealtimeCommand((byte)'!');
+        private void BtnFeedHold_Click(object sender, EventArgs e)
+        {
+            SendRealtimeCommand((byte)'!');
         }
-        private void btnResume_Click(object sender, EventArgs e)
-        {   sendRealtimeCommand((byte)'~');
+        private void BtnResume_Click(object sender, EventArgs e)
+        {
+            SendRealtimeCommand((byte)'~');
         }
-        private void btnKillAlarm_Click(object sender, EventArgs e)
-        {   sendCommand("$X");
+        private void BtnKillAlarm_Click(object sender, EventArgs e)
+        {
+            SendCommand("$X");
         }
 
-        private void virtualJoystickXY_Enter(object sender, EventArgs e)
-        { if (_serial_form2.isGrblVers0) sendCommand("G91G1F100"); }
-        private void virtualJoystickXY_Leave(object sender, EventArgs e)
-        { if (_serial_form2.isGrblVers0) sendCommand("G90"); }
-        private void virtualJoystickX_JoyStickEvent(object sender, JogEventArgs e)
+        private void VirtualJoystickXY_Enter(object sender, EventArgs e)
+        { if (_serial_form2.IsGrblVers0) SendCommand("G91G1F100"); }
+        private void VirtualJoystickXY_Leave(object sender, EventArgs e)
+        { if (_serial_form2.IsGrblVers0) SendCommand("G90"); }
+        private void VirtualJoystickX_JoyStickEvent(object sender, JogEventArgs e)
         {
             int indexZ = Math.Abs(e.JogPosY);
             int dirZ = Math.Sign(e.JogPosY);
             int speed = (int)joystickXYSpeed[indexZ];
-            String strZ = gcode.frmtNum(joystickXYStep[indexZ] * dirZ);
+            String strZ = Gcode.FrmtNum(joystickXYStep[indexZ] * dirZ);
             if (speed > 0)
             {
                 String s = String.Format("G91 X{0} F{1}", strZ, speed).Replace(',', '.');
-                sendCommand(s, true);
+                SendCommand(s, true);
             }
         }
-        private void virtualJoystickY_JoyStickEvent(object sender, JogEventArgs e)
+        private void VirtualJoystickY_JoyStickEvent(object sender, JogEventArgs e)
         {
             int indexZ = Math.Abs(e.JogPosY);
             int dirZ = Math.Sign(e.JogPosY);
             int speed = (int)joystickXYSpeed[indexZ];
-            String strZ = gcode.frmtNum(joystickXYStep[indexZ] * dirZ);
+            String strZ = Gcode.FrmtNum(joystickXYStep[indexZ] * dirZ);
             if (speed > 0)
             {
                 String s = String.Format("G91 Y{0} F{1}", strZ, speed).Replace(',', '.');
-                sendCommand(s, true);
+                SendCommand(s, true);
             }
         }
-        private void virtualJoystickZ_JoyStickEvent(object sender, JogEventArgs e)
+        private void VirtualJoystickZ_JoyStickEvent(object sender, JogEventArgs e)
         {
             int indexZ = Math.Abs(e.JogPosY);
             int dirZ = Math.Sign(e.JogPosY);
             int speed = (int)joystickZSpeed[indexZ];
-            String strZ = gcode.frmtNum(joystickZStep[indexZ] * dirZ);
+            String strZ = Gcode.FrmtNum(joystickZStep[indexZ] * dirZ);
             if (speed > 0)
             {
                 String s = String.Format("G91 Z{0} F{1}", strZ, speed).Replace(',', '.');
-                sendCommand(s, true);
+                SendCommand(s, true);
             }
         }
 
@@ -195,7 +204,7 @@ namespace GRBL_Plotter
             virtualJoystickY.JoystickLabel = joystickXYStep;
             virtualJoystickZ.JoystickLabel = joystickZStep;
 
-            btnJogStop.Visible = !_serial_form2.isGrblVers0;
+            btnJogStop.Visible = !_serial_form2.IsGrblVers0;
 
             Location = Properties.Settings.Default.location2ndGRBLForm;
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;

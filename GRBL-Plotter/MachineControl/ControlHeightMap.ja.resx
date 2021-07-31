@@ -288,4 +288,50 @@
     <value>操作</value>
     <comment>GroupBox</comment>
   </data>
+  <data name="saveMapAsOBJToolStripMenuItem.Text" xml:space="preserve">
+    <value>マップをOBJとして保存</value>
+  </data>
+  <data name="btnZoomZ.Text" xml:space="preserve">
+    <value>Z 变焦</value>
+  </data>
+  <data name="BtnMoveUR.Text" xml:space="preserve">
+    <value>🡵に移動します</value>
+  </data>
+  <data name="BtnMoveLL.Text" xml:space="preserve">
+    <value>🡷に移動します</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>スキャンする領域</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>XY送り速度</value>
+  </data>
+  <data name="CbUseG1.Text" xml:space="preserve">
+    <value>XY移動にはG1を使用します（それ以外の場合はG0）</value>
+  </data>
+  <data name="RbProbingDiy.Text" xml:space="preserve">
+    <value>DIYコントロールから</value>
+  </data>
+  <data name="LblConnected.Text" xml:space="preserve">
+    <value>DIYコントロールが接続されていません</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>DIY-Controlから最後に受信した「（PRB：Zxxx）」Z値を深度情報として使用します。
+（xxx = Z値）</value>
+  </data>
+  <data name="RbProbingZ.Text" xml:space="preserve">
+    <value>Z軸を使用（G38.3Z）</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>プロービング、Z値のソースを選択</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>プロービング</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>結果の操作</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>出力</value>
+  </data>
 </root>

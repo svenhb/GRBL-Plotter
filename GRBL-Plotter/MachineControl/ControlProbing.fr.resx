@@ -273,7 +273,7 @@ Enfin déplacer au centre</value>
     <value>L'angle de correction sera calculé à partir de la verticale de la pièce à usiner (palpage X) ou horizontale (palpage Y)</value>
   </data>
   <data name="label20.Text" xml:space="preserve">
-    <value>Angle de correction mesuré:</value>
+    <value>Angle de correction mesuré</value>
   </data>
   <data name="btnSaveTL.Text" xml:space="preserve">
     <value>Conduire Z en position de sécurité</value>

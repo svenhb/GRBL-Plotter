@@ -195,11 +195,11 @@
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFSwitchWhite.Text" xml:space="preserve">
-    <value>Ручка белая как черная</value>
+    <value>Ручка ручка-цвет белый как черный</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFSwitchWhite.ToolTip" xml:space="preserve">
-    <value>Формат DXF использует индекс цвета от 0 до 255. Этот индекс будет использоваться как номер инструмента.</value>
+    <value>LibreCAD показывает белый цвет пера на черном фоне. Но настоящий цвет пера - черный.</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFIndexToolNr.Text" xml:space="preserve">

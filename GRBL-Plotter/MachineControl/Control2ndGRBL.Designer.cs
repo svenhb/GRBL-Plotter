@@ -1,4 +1,4 @@
-﻿namespace GRBL_Plotter
+﻿namespace GrblPlotter
 {
     partial class Control2ndGRBL
     {
@@ -79,21 +79,21 @@
             resources.ApplyResources(this.btnJogZeroZ, "btnJogZeroZ");
             this.btnJogZeroZ.Name = "btnJogZeroZ";
             this.btnJogZeroZ.UseVisualStyleBackColor = true;
-            this.btnJogZeroZ.Click += new System.EventHandler(this.btnJogZ_Click);
+            this.btnJogZeroZ.Click += new System.EventHandler(this.BtnJogZ_Click);
             // 
             // btnJogZeroY
             // 
             resources.ApplyResources(this.btnJogZeroY, "btnJogZeroY");
             this.btnJogZeroY.Name = "btnJogZeroY";
             this.btnJogZeroY.UseVisualStyleBackColor = true;
-            this.btnJogZeroY.Click += new System.EventHandler(this.btnJogY_Click);
+            this.btnJogZeroY.Click += new System.EventHandler(this.BtnJogY_Click);
             // 
             // btnJogZeroX
             // 
             resources.ApplyResources(this.btnJogZeroX, "btnJogZeroX");
             this.btnJogZeroX.Name = "btnJogZeroX";
             this.btnJogZeroX.UseVisualStyleBackColor = true;
-            this.btnJogZeroX.Click += new System.EventHandler(this.btnJogX_Click);
+            this.btnJogZeroX.Click += new System.EventHandler(this.BtnJogX_Click);
             // 
             // virtualJoystickY
             // 
@@ -110,9 +110,9 @@
             this.virtualJoystickY.JoystickRaster = 5;
             this.virtualJoystickY.JoystickStanby = System.Drawing.Color.Orange;
             this.virtualJoystickY.Name = "virtualJoystickY";
-            this.virtualJoystickY.JoyStickEvent += new virtualJoystick.JogEventHandler(this.virtualJoystickY_JoyStickEvent);
-            this.virtualJoystickY.Enter += new System.EventHandler(this.virtualJoystickXY_Enter);
-            this.virtualJoystickY.Leave += new System.EventHandler(this.virtualJoystickXY_Leave);
+            this.virtualJoystickY.JoyStickEvent += new virtualJoystick.JogEventHandler(this.VirtualJoystickY_JoyStickEvent);
+            this.virtualJoystickY.Enter += new System.EventHandler(this.VirtualJoystickXY_Enter);
+            this.virtualJoystickY.Leave += new System.EventHandler(this.VirtualJoystickXY_Leave);
             // 
             // virtualJoystickX
             // 
@@ -129,9 +129,9 @@
             this.virtualJoystickX.JoystickRaster = 5;
             this.virtualJoystickX.JoystickStanby = System.Drawing.Color.Orange;
             this.virtualJoystickX.Name = "virtualJoystickX";
-            this.virtualJoystickX.JoyStickEvent += new virtualJoystick.JogEventHandler(this.virtualJoystickX_JoyStickEvent);
-            this.virtualJoystickX.Enter += new System.EventHandler(this.virtualJoystickXY_Enter);
-            this.virtualJoystickX.Leave += new System.EventHandler(this.virtualJoystickXY_Leave);
+            this.virtualJoystickX.JoyStickEvent += new virtualJoystick.JogEventHandler(this.VirtualJoystickX_JoyStickEvent);
+            this.virtualJoystickX.Enter += new System.EventHandler(this.VirtualJoystickXY_Enter);
+            this.virtualJoystickX.Leave += new System.EventHandler(this.VirtualJoystickXY_Leave);
             // 
             // btnJogStop
             // 
@@ -139,7 +139,7 @@
             resources.ApplyResources(this.btnJogStop, "btnJogStop");
             this.btnJogStop.Name = "btnJogStop";
             this.btnJogStop.UseVisualStyleBackColor = false;
-            this.btnJogStop.Click += new System.EventHandler(this.btnJogStop_Click);
+            this.btnJogStop.Click += new System.EventHandler(this.BtnJogStop_Click);
             // 
             // virtualJoystickZ
             // 
@@ -156,37 +156,37 @@
             this.virtualJoystickZ.JoystickRaster = 5;
             this.virtualJoystickZ.JoystickStanby = System.Drawing.Color.Orange;
             this.virtualJoystickZ.Name = "virtualJoystickZ";
-            this.virtualJoystickZ.JoyStickEvent += new virtualJoystick.JogEventHandler(this.virtualJoystickZ_JoyStickEvent);
-            this.virtualJoystickZ.Enter += new System.EventHandler(this.virtualJoystickXY_Enter);
-            this.virtualJoystickZ.Leave += new System.EventHandler(this.virtualJoystickXY_Leave);
+            this.virtualJoystickZ.JoyStickEvent += new virtualJoystick.JogEventHandler(this.VirtualJoystickZ_JoyStickEvent);
+            this.virtualJoystickZ.Enter += new System.EventHandler(this.VirtualJoystickXY_Enter);
+            this.virtualJoystickZ.Leave += new System.EventHandler(this.VirtualJoystickXY_Leave);
             // 
             // btnKillAlarm
             // 
             resources.ApplyResources(this.btnKillAlarm, "btnKillAlarm");
             this.btnKillAlarm.Name = "btnKillAlarm";
             this.btnKillAlarm.UseVisualStyleBackColor = true;
-            this.btnKillAlarm.Click += new System.EventHandler(this.btnKillAlarm_Click);
+            this.btnKillAlarm.Click += new System.EventHandler(this.BtnKillAlarm_Click);
             // 
             // btnFeedHold
             // 
             resources.ApplyResources(this.btnFeedHold, "btnFeedHold");
             this.btnFeedHold.Name = "btnFeedHold";
             this.btnFeedHold.UseVisualStyleBackColor = true;
-            this.btnFeedHold.Click += new System.EventHandler(this.btnFeedHold_Click);
+            this.btnFeedHold.Click += new System.EventHandler(this.BtnFeedHold_Click);
             // 
             // btnResume
             // 
             resources.ApplyResources(this.btnResume, "btnResume");
             this.btnResume.Name = "btnResume";
             this.btnResume.UseVisualStyleBackColor = true;
-            this.btnResume.Click += new System.EventHandler(this.btnResume_Click);
+            this.btnResume.Click += new System.EventHandler(this.BtnResume_Click);
             // 
             // btnReset
             // 
             resources.ApplyResources(this.btnReset, "btnReset");
             this.btnReset.Name = "btnReset";
             this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            this.btnReset.Click += new System.EventHandler(this.BtnReset_Click);
             // 
             // groupBox2
             // 
@@ -214,7 +214,7 @@
             resources.ApplyResources(this.btnHome, "btnHome");
             this.btnHome.Name = "btnHome";
             this.btnHome.UseVisualStyleBackColor = true;
-            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
+            this.btnHome.Click += new System.EventHandler(this.BtnHome_Click);
             // 
             // label5
             // 
@@ -231,7 +231,7 @@
             resources.ApplyResources(this.btnZeroZ, "btnZeroZ");
             this.btnZeroZ.Name = "btnZeroZ";
             this.btnZeroZ.UseVisualStyleBackColor = true;
-            this.btnZeroZ.Click += new System.EventHandler(this.btnZeroZ_Click);
+            this.btnZeroZ.Click += new System.EventHandler(this.BtnZeroZ_Click);
             // 
             // label3
             // 
@@ -243,7 +243,7 @@
             resources.ApplyResources(this.btnZeroY, "btnZeroY");
             this.btnZeroY.Name = "btnZeroY";
             this.btnZeroY.UseVisualStyleBackColor = true;
-            this.btnZeroY.Click += new System.EventHandler(this.btnZeroY_Click);
+            this.btnZeroY.Click += new System.EventHandler(this.BtnZeroY_Click);
             // 
             // label2
             // 
@@ -255,7 +255,7 @@
             resources.ApplyResources(this.btnZeroX, "btnZeroX");
             this.btnZeroX.Name = "btnZeroX";
             this.btnZeroX.UseVisualStyleBackColor = true;
-            this.btnZeroX.Click += new System.EventHandler(this.btnZeroX_Click);
+            this.btnZeroX.Click += new System.EventHandler(this.BtnZeroX_Click);
             // 
             // label_status
             // 

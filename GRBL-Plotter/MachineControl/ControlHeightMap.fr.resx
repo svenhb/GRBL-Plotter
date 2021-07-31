@@ -239,7 +239,7 @@
     <comment>ToolTip</comment>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Lire le profil de hauteur</value>
+    <value>Balayage de surface</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Taille de grille X et Y</value>
@@ -260,5 +260,49 @@
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Vitesse de palpage Z</value>
+  </data>
+  <data name="saveMapAsOBJToolStripMenuItem.Text" xml:space="preserve">
+    <value>Enregistrer sous OBJ</value>
+  </data>
+  <data name="gB_Manipulation.Text" xml:space="preserve">
+    <value>Manipulation</value>
+    <comment>GroupBox</comment>
+  </data>
+  <data name="lblInfo.Text" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Zone à scanner</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Vitesse d'avance XY</value>
+  </data>
+  <data name="CbUseG1.Text" xml:space="preserve">
+    <value>Utilisez G1 pour le mouvement XY (sinon G0)</value>
+  </data>
+  <data name="RbProbingDiy.Text" xml:space="preserve">
+    <value>De DIY-Control</value>
+  </data>
+  <data name="LblConnected.Text" xml:space="preserve">
+    <value>Contrôle DIY non connecté</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Utilise la dernière valeur Z "(PRB:Zxxx)" reçue de DIY-Control comme information de profondeur.
+(xxx = valeur Z)</value>
+  </data>
+  <data name="RbProbingZ.Text" xml:space="preserve">
+    <value>Utilisation de l'axe Z (G38.3Z)</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Sondage, sélectionnez la source pour la valeur Z</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Sondage</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Manipulation des résultats</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Production</value>
   </data>
 </root>

@@ -243,7 +243,7 @@
     <comment>GroupBox</comment>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>读取身高档案</value>
+    <value>表面扫描</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>网格尺寸X和Y（混搭宽度）</value>
@@ -264,5 +264,74 @@
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>探测速度Z</value>
+  </data>
+  <data name="saveMapAsOBJToolStripMenuItem.Text" xml:space="preserve">
+    <value>另存为OBJ</value>
+  </data>
+  <data name="BtnMoveUR.Text" xml:space="preserve">
+    <value>移到🡵</value>
+  </data>
+  <data name="BtnMoveLL.Text" xml:space="preserve">
+    <value>移步🡷</value>
+  </data>
+  <data name="btnOffset.Text" xml:space="preserve">
+    <value>设置最大值值 = 0.0</value>
+    <comment>Button</comment>
+  </data>
+  <data name="lblProgress.Text" xml:space="preserve">
+    <value>完成的</value>
+  </data>
+  <data name="lblMin.Text" xml:space="preserve">
+    <value>分钟</value>
+  </data>
+  <data name="lblMax.Text" xml:space="preserve">
+    <value>最大限度</value>
+  </data>
+  <data name="lblMid.Text" xml:space="preserve">
+    <value>中</value>
+  </data>
+  <data name="btnOffsetZ.Text" xml:space="preserve">
+    <value>Z 偏移</value>
+    <comment>Button</comment>
+  </data>
+  <data name="btnZoomZ.Text" xml:space="preserve">
+    <value>Z 变焦</value>
+  </data>
+  <data name="lblInfo.Text" xml:space="preserve">
+    <value>信息</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>扫描区域</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>XY 进给率</value>
+  </data>
+  <data name="CbUseG1.Text" xml:space="preserve">
+    <value>使用 G1 进行 XY 移动（否则为 G0）</value>
+  </data>
+  <data name="RbProbingDiy.Text" xml:space="preserve">
+    <value>来自 DIY-Control</value>
+  </data>
+  <data name="LblConnected.Text" xml:space="preserve">
+    <value>DIY 控制未连接</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>使用上次从 DIY-Control 接收到的“(PRB:Zxxx)”Z 值作为深度信息。
+（xxx = Z 值）</value>
+  </data>
+  <data name="RbProbingZ.Text" xml:space="preserve">
+    <value>使用 Z 轴 (G38.3Z)</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>探测，选择 Z 值的来源</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>探测</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>结果操作</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>输出</value>
   </data>
 </root>

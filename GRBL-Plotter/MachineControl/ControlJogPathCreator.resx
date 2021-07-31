@@ -171,114 +171,6 @@
   <data name="&gt;&gt;btnUndo.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="&gt;&gt;cBSnap.Name" xml:space="preserve">
-    <value>cBSnap</value>
-  </data>
-  <data name="&gt;&gt;cBSnap.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBSnap.Parent" xml:space="preserve">
-    <value>gBPathCreator</value>
-  </data>
-  <data name="&gt;&gt;cBSnap.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnLoad.Name" xml:space="preserve">
-    <value>btnLoad</value>
-  </data>
-  <data name="&gt;&gt;btnLoad.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnLoad.Parent" xml:space="preserve">
-    <value>gBPathCreator</value>
-  </data>
-  <data name="&gt;&gt;btnLoad.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnSave.Name" xml:space="preserve">
-    <value>btnSave</value>
-  </data>
-  <data name="&gt;&gt;btnSave.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnSave.Parent" xml:space="preserve">
-    <value>gBPathCreator</value>
-  </data>
-  <data name="&gt;&gt;btnSave.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnRotate.Name" xml:space="preserve">
-    <value>btnRotate</value>
-  </data>
-  <data name="&gt;&gt;btnRotate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnRotate.Parent" xml:space="preserve">
-    <value>gBPathCreator</value>
-  </data>
-  <data name="&gt;&gt;btnRotate.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;nUDRaster.Name" xml:space="preserve">
-    <value>nUDRaster</value>
-  </data>
-  <data name="&gt;&gt;nUDRaster.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDRaster.Parent" xml:space="preserve">
-    <value>gBPathCreator</value>
-  </data>
-  <data name="&gt;&gt;nUDRaster.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;btnDelete.Name" xml:space="preserve">
-    <value>btnDelete</value>
-  </data>
-  <data name="&gt;&gt;btnDelete.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnDelete.Parent" xml:space="preserve">
-    <value>gBPathCreator</value>
-  </data>
-  <data name="&gt;&gt;btnDelete.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>gBPathCreator</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="gBPathCreator.Location" type="System.Drawing.Point, System.Drawing">
-    <value>458, 6</value>
-  </data>
-  <data name="gBPathCreator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 210</value>
-  </data>
-  <data name="gBPathCreator.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="gBPathCreator.Text" xml:space="preserve">
-    <value>Path creator</value>
-  </data>
-  <data name="&gt;&gt;gBPathCreator.Name" xml:space="preserve">
-    <value>gBPathCreator</value>
-  </data>
-  <data name="&gt;&gt;gBPathCreator.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gBPathCreator.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;gBPathCreator.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="cBSnap.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -390,9 +282,6 @@
   <data name="&gt;&gt;btnRotate.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="nUDRaster.Location" type="System.Drawing.Point, System.Drawing">
     <value>92, 14</value>
   </data>
@@ -480,137 +369,29 @@
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
+  <data name="gBPathCreator.Location" type="System.Drawing.Point, System.Drawing">
+    <value>458, 6</value>
   </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="gBPathCreator.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 210</value>
   </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>gBJogParameter</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>gBJogParameter</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;tBCodeEnd.Name" xml:space="preserve">
-    <value>tBCodeEnd</value>
-  </data>
-  <data name="&gt;&gt;tBCodeEnd.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tBCodeEnd.Parent" xml:space="preserve">
-    <value>gBJogParameter</value>
-  </data>
-  <data name="&gt;&gt;tBCodeEnd.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;tBCodeStart.Name" xml:space="preserve">
-    <value>tBCodeStart</value>
-  </data>
-  <data name="&gt;&gt;tBCodeStart.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tBCodeStart.Parent" xml:space="preserve">
-    <value>gBJogParameter</value>
-  </data>
-  <data name="&gt;&gt;tBCodeStart.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;btnExport.Name" xml:space="preserve">
-    <value>btnExport</value>
-  </data>
-  <data name="&gt;&gt;btnExport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnExport.Parent" xml:space="preserve">
-    <value>gBJogParameter</value>
-  </data>
-  <data name="&gt;&gt;btnExport.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;btnJogStop.Name" xml:space="preserve">
-    <value>btnJogStop</value>
-  </data>
-  <data name="&gt;&gt;btnJogStop.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnJogStop.Parent" xml:space="preserve">
-    <value>gBJogParameter</value>
-  </data>
-  <data name="&gt;&gt;btnJogStop.ZOrder" xml:space="preserve">
+  <data name="gBPathCreator.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;btnJogStart.Name" xml:space="preserve">
-    <value>btnJogStart</value>
+  <data name="gBPathCreator.Text" xml:space="preserve">
+    <value>Path creator</value>
   </data>
-  <data name="&gt;&gt;btnJogStart.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;gBPathCreator.Name" xml:space="preserve">
+    <value>gBPathCreator</value>
   </data>
-  <data name="&gt;&gt;btnJogStart.Parent" xml:space="preserve">
-    <value>gBJogParameter</value>
-  </data>
-  <data name="&gt;&gt;btnJogStart.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>gBJogParameter</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;nUDFeedrate.Name" xml:space="preserve">
-    <value>nUDFeedrate</value>
-  </data>
-  <data name="&gt;&gt;nUDFeedrate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDFeedrate.Parent" xml:space="preserve">
-    <value>gBJogParameter</value>
-  </data>
-  <data name="&gt;&gt;nUDFeedrate.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="gBJogParameter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>458, 221</value>
-  </data>
-  <data name="gBJogParameter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 235</value>
-  </data>
-  <data name="gBJogParameter.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="gBJogParameter.Text" xml:space="preserve">
-    <value>Jog parameter</value>
-  </data>
-  <data name="&gt;&gt;gBJogParameter.Name" xml:space="preserve">
-    <value>gBJogParameter</value>
-  </data>
-  <data name="&gt;&gt;gBJogParameter.Type" xml:space="preserve">
+  <data name="&gt;&gt;gBPathCreator.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;gBJogParameter.Parent" xml:space="preserve">
+  <data name="&gt;&gt;gBPathCreator.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;gBJogParameter.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;gBPathCreator.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -876,12 +657,30 @@
   <data name="&gt;&gt;nUDFeedrate.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
+  <data name="gBJogParameter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>458, 221</value>
+  </data>
+  <data name="gBJogParameter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 235</value>
+  </data>
+  <data name="gBJogParameter.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="gBJogParameter.Text" xml:space="preserve">
+    <value>Jog parameter</value>
+  </data>
+  <data name="&gt;&gt;gBJogParameter.Name" xml:space="preserve">
+    <value>gBJogParameter</value>
+  </data>
+  <data name="&gt;&gt;gBJogParameter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gBJogParameter.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;gBJogParameter.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -906,4 +705,16 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="btnJogStop.Text" xml:space="preserve">
+    <value />
+  </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>de-DE</value>
+  </metadata>
 </root>

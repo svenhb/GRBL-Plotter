@@ -16,7 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-namespace GRBL_Plotter
+namespace GrblPlotter
 {
     partial class ControlCameraForm
     {
@@ -121,13 +121,13 @@ namespace GRBL_Plotter
             this.pictureBoxVideo.Cursor = System.Windows.Forms.Cursors.Cross;
             this.pictureBoxVideo.Name = "pictureBoxVideo";
             this.pictureBoxVideo.TabStop = false;
-            this.pictureBoxVideo.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxVideo_Paint);
-            this.pictureBoxVideo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBoxVideo_Click);
-            this.pictureBoxVideo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBoxVideo_MouseDown);
-            this.pictureBoxVideo.MouseEnter += new System.EventHandler(this.pictureBoxVideo_MouseEnter);
-            this.pictureBoxVideo.MouseLeave += new System.EventHandler(this.pictureBoxVideo_MouseLeave);
-            this.pictureBoxVideo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBoxVideo_MouseUp);
-            this.pictureBoxVideo.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.pictureBoxVideo_MouseWheel);
+            this.pictureBoxVideo.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBoxVideo_Paint);
+            this.pictureBoxVideo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBoxVideo_Click);
+            this.pictureBoxVideo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBoxVideo_MouseDown);
+            this.pictureBoxVideo.MouseEnter += new System.EventHandler(this.PictureBoxVideo_MouseEnter);
+            this.pictureBoxVideo.MouseLeave += new System.EventHandler(this.PictureBoxVideo_MouseLeave);
+            this.pictureBoxVideo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PictureBoxVideo_MouseUp);
+            this.pictureBoxVideo.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.PictureBoxVideo_MouseWheel);
             // 
             // cmsPictureBox
             // 
@@ -144,13 +144,13 @@ namespace GRBL_Plotter
             // 
             this.moveMarkerToCenterToolStripMenuItem.Name = "moveMarkerToCenterToolStripMenuItem";
             resources.ApplyResources(this.moveMarkerToCenterToolStripMenuItem, "moveMarkerToCenterToolStripMenuItem");
-            this.moveMarkerToCenterToolStripMenuItem.Click += new System.EventHandler(this.teachpoint1_process_Click);
+            this.moveMarkerToCenterToolStripMenuItem.Click += new System.EventHandler(this.Teachpoint1_process_Click);
             // 
             // compensateAngleToolStripMenuItem
             // 
             this.compensateAngleToolStripMenuItem.Name = "compensateAngleToolStripMenuItem";
             resources.ApplyResources(this.compensateAngleToolStripMenuItem, "compensateAngleToolStripMenuItem");
-            this.compensateAngleToolStripMenuItem.Click += new System.EventHandler(this.teachpoint2_process_Click);
+            this.compensateAngleToolStripMenuItem.Click += new System.EventHandler(this.Teachpoint2_process_Click);
             // 
             // toolStripSeparator1
             // 
@@ -163,7 +163,7 @@ namespace GRBL_Plotter
             this.showOverlayGraphicsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.showOverlayGraphicsToolStripMenuItem.Name = "showOverlayGraphicsToolStripMenuItem";
             resources.ApplyResources(this.showOverlayGraphicsToolStripMenuItem, "showOverlayGraphicsToolStripMenuItem");
-            this.showOverlayGraphicsToolStripMenuItem.Click += new System.EventHandler(this.showOverlayGraphicsToolStripMenuItem_Click);
+            this.showOverlayGraphicsToolStripMenuItem.Click += new System.EventHandler(this.ShowOverlayGraphicsToolStripMenuItem_Click);
             // 
             // nUDCameraZoom
             // 
@@ -185,7 +185,7 @@ namespace GRBL_Plotter
             0,
             0,
             0});
-            this.nUDCameraZoom.ValueChanged += new System.EventHandler(this.nUDCameraZoom_ValueChanged);
+            this.nUDCameraZoom.ValueChanged += new System.EventHandler(this.NudCameraZoom_ValueChanged);
             // 
             // label3
             // 
@@ -229,7 +229,7 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.toolStripTextBox1, "toolStripTextBox1");
             this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBox1_KeyUp);
+            this.toolStripTextBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ToolStripTextBox1_KeyUp);
             // 
             // teachScalingToolStripMenuItem
             // 
@@ -246,7 +246,7 @@ namespace GRBL_Plotter
             // 
             this.upperPositionToolStripMenuItem.Name = "upperPositionToolStripMenuItem";
             resources.ApplyResources(this.upperPositionToolStripMenuItem, "upperPositionToolStripMenuItem");
-            this.upperPositionToolStripMenuItem.Click += new System.EventHandler(this.upperPositionToolStripMenuItem_Click);
+            this.upperPositionToolStripMenuItem.Click += new System.EventHandler(this.UpperPositionToolStripMenuItem_Click);
             // 
             // teachRadiusTopToolStripMenuItem
             // 
@@ -259,13 +259,13 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.toolStripTextBox2, "toolStripTextBox2");
             this.toolStripTextBox2.Name = "toolStripTextBox2";
-            this.toolStripTextBox2.TextChanged += new System.EventHandler(this.toolStripTextBox2_TextChanged);
+            this.toolStripTextBox2.TextChanged += new System.EventHandler(this.ToolStripTextBox2_TextChanged);
             // 
             // lowerPositionToolStripMenuItem
             // 
             this.lowerPositionToolStripMenuItem.Name = "lowerPositionToolStripMenuItem";
             resources.ApplyResources(this.lowerPositionToolStripMenuItem, "lowerPositionToolStripMenuItem");
-            this.lowerPositionToolStripMenuItem.Click += new System.EventHandler(this.lowerPositionToolStripMenuItem_Click);
+            this.lowerPositionToolStripMenuItem.Click += new System.EventHandler(this.LowerPositionToolStripMenuItem_Click);
             // 
             // teachRadiusBottomToolStripMenuItem
             // 
@@ -278,8 +278,8 @@ namespace GRBL_Plotter
             // 
             resources.ApplyResources(this.toolStripTextBox3, "toolStripTextBox3");
             this.toolStripTextBox3.Name = "toolStripTextBox3";
-            this.toolStripTextBox3.Leave += new System.EventHandler(this.toolStripTextBox3_Leave);
-            this.toolStripTextBox3.TextChanged += new System.EventHandler(this.toolStripTextBox3_TextChanged);
+            this.toolStripTextBox3.Leave += new System.EventHandler(this.ToolStripTextBox3_Leave);
+            this.toolStripTextBox3.TextChanged += new System.EventHandler(this.ToolStripTextBox3_TextChanged);
             // 
             // teachOffsetToolStripMenuItem
             // 
@@ -293,7 +293,7 @@ namespace GRBL_Plotter
             // 
             this.teachToolStripMenuItem.Name = "teachToolStripMenuItem";
             resources.ApplyResources(this.teachToolStripMenuItem, "teachToolStripMenuItem");
-            this.teachToolStripMenuItem.Click += new System.EventHandler(this.teachToolStripMenuItem_Click);
+            this.teachToolStripMenuItem.Click += new System.EventHandler(this.TeachToolStripMenuItem_Click);
             // 
             // colorsToolStripMenuItem
             // 
@@ -307,13 +307,13 @@ namespace GRBL_Plotter
             // 
             this.textToolStripMenuItem.Name = "textToolStripMenuItem";
             resources.ApplyResources(this.textToolStripMenuItem, "textToolStripMenuItem");
-            this.textToolStripMenuItem.Click += new System.EventHandler(this.textToolStripMenuItem_Click);
+            this.textToolStripMenuItem.Click += new System.EventHandler(this.TextToolStripMenuItem_Click);
             // 
             // crossHairsToolStripMenuItem
             // 
             this.crossHairsToolStripMenuItem.Name = "crossHairsToolStripMenuItem";
             resources.ApplyResources(this.crossHairsToolStripMenuItem, "crossHairsToolStripMenuItem");
-            this.crossHairsToolStripMenuItem.Click += new System.EventHandler(this.crossHairsToolStripMenuItem_Click);
+            this.crossHairsToolStripMenuItem.Click += new System.EventHandler(this.CrossHairsToolStripMenuItem_Click);
             // 
             // setZeroToolStripMenuItem
             // 
@@ -328,13 +328,13 @@ namespace GRBL_Plotter
             // 
             this.teachZeroPositionToolStripMenuItem.Name = "teachZeroPositionToolStripMenuItem";
             resources.ApplyResources(this.teachZeroPositionToolStripMenuItem, "teachZeroPositionToolStripMenuItem");
-            this.teachZeroPositionToolStripMenuItem.Click += new System.EventHandler(this.btnSetOffsetZero_Click);
+            this.teachZeroPositionToolStripMenuItem.Click += new System.EventHandler(this.BtnSetOffsetZero_Click);
             // 
             // teachMarkerPositionToolStripMenuItem
             // 
             this.teachMarkerPositionToolStripMenuItem.Name = "teachMarkerPositionToolStripMenuItem";
             resources.ApplyResources(this.teachMarkerPositionToolStripMenuItem, "teachMarkerPositionToolStripMenuItem");
-            this.teachMarkerPositionToolStripMenuItem.Click += new System.EventHandler(this.btnSetOffsetMarker_Click);
+            this.teachMarkerPositionToolStripMenuItem.Click += new System.EventHandler(this.BtnSetOffsetMarker_Click);
             // 
             // btnApplyAngle
             // 
@@ -342,7 +342,7 @@ namespace GRBL_Plotter
             this.btnApplyAngle.Name = "btnApplyAngle";
             this.toolTip1.SetToolTip(this.btnApplyAngle, resources.GetString("btnApplyAngle.ToolTip"));
             this.btnApplyAngle.UseVisualStyleBackColor = true;
-            this.btnApplyAngle.Click += new System.EventHandler(this.btnApplyAngle_Click);
+            this.btnApplyAngle.Click += new System.EventHandler(this.BtnApplyAngle_Click);
             // 
             // btnCamCoordTool
             // 
@@ -351,7 +351,7 @@ namespace GRBL_Plotter
             this.btnCamCoordTool.Name = "btnCamCoordTool";
             this.toolTip1.SetToolTip(this.btnCamCoordTool, resources.GetString("btnCamCoordTool.ToolTip"));
             this.btnCamCoordTool.UseVisualStyleBackColor = false;
-            this.btnCamCoordTool.Click += new System.EventHandler(this.btnCamCoordTool_Click);
+            this.btnCamCoordTool.Click += new System.EventHandler(this.BtnCamCoordTool_Click);
             // 
             // cBCamCoordMove
             // 
@@ -372,7 +372,7 @@ namespace GRBL_Plotter
             this.btnCamCoordCam.Name = "btnCamCoordCam";
             this.toolTip1.SetToolTip(this.btnCamCoordCam, resources.GetString("btnCamCoordCam.ToolTip"));
             this.btnCamCoordCam.UseVisualStyleBackColor = true;
-            this.btnCamCoordCam.Click += new System.EventHandler(this.btnCamCoordCam_Click);
+            this.btnCamCoordCam.Click += new System.EventHandler(this.BtnCamCoordCam_Click);
             // 
             // lblOffset
             // 
@@ -422,7 +422,7 @@ namespace GRBL_Plotter
             resources.ApplyResources(this.cBShapeDetection, "cBShapeDetection");
             this.cBShapeDetection.Name = "cBShapeDetection";
             this.cBShapeDetection.UseVisualStyleBackColor = true;
-            this.cBShapeDetection.CheckedChanged += new System.EventHandler(this.cBShapeDetection_CheckedChanged);
+            this.cBShapeDetection.CheckedChanged += new System.EventHandler(this.CbShapeDetection_CheckedChanged);
             // 
             // groupBox4
             // 
@@ -451,27 +451,27 @@ namespace GRBL_Plotter
             resources.GetString("comboBox1.Items3")});
             resources.ApplyResources(this.comboBox1, "comboBox1");
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
             // 
             // btnAutoCenter
             // 
             resources.ApplyResources(this.btnAutoCenter, "btnAutoCenter");
             this.btnAutoCenter.Name = "btnAutoCenter";
             this.btnAutoCenter.UseVisualStyleBackColor = true;
-            this.btnAutoCenter.Click += new System.EventHandler(this.btnAutoCenter_Click);
+            this.btnAutoCenter.Click += new System.EventHandler(this.BtnAutoCenter_Click);
             // 
             // resetOffsetG921ToolStripMenuItem
             // 
             this.resetOffsetG921ToolStripMenuItem.Name = "resetOffsetG921ToolStripMenuItem";
             resources.ApplyResources(this.resetOffsetG921ToolStripMenuItem, "resetOffsetG921ToolStripMenuItem");
-            this.resetOffsetG921ToolStripMenuItem.Click += new System.EventHandler(this.resetOffsetG921ToolStripMenuItem_Click);
+            this.resetOffsetG921ToolStripMenuItem.Click += new System.EventHandler(this.ResetOffsetG921ToolStripMenuItem_Click);
             // 
             // cBRotateArround0
             // 
             resources.ApplyResources(this.cBRotateArround0, "cBRotateArround0");
-            this.cBRotateArround0.Checked = global::GRBL_Plotter.Properties.Settings.Default.cameraRotateArround0;
+            this.cBRotateArround0.Checked = global::GrblPlotter.Properties.Settings.Default.cameraRotateArround0;
             this.cBRotateArround0.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBRotateArround0.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "cameraRotateArround0", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBRotateArround0.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "cameraRotateArround0", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cBRotateArround0.Name = "cBRotateArround0";
             this.cBRotateArround0.UseVisualStyleBackColor = true;
             // 
@@ -490,9 +490,9 @@ namespace GRBL_Plotter
             this.MainMenuStrip = this.menuStripCamera;
             this.MaximizeBox = false;
             this.Name = "ControlCameraForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.camera_form_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.camera_form_FormClosed);
-            this.Load += new System.EventHandler(this.camera_form_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Camera_form_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Camera_form_FormClosed);
+            this.Load += new System.EventHandler(this.Camera_form_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ControlCameraForm_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ControlCameraForm_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVideo)).EndInit();

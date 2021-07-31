@@ -242,7 +242,7 @@ Z up = Z start + Zプローブ
     <value>プローブの動き</value>
   </data>
   <data name="label20.Text" xml:space="preserve">
-    <value>測定された補正角度：</value>
+    <value>測定された補正角度</value>
   </data>
   <data name="label19.Text" xml:space="preserve">
     <value>検出するコーナーのエッジを選択します。

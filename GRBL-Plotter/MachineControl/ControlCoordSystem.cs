@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2019 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,13 +21,16 @@
  * 2019-08-15 add logger
  * 2019-10-25 remove icon to reduce resx size, load icon on run-time
  * 2019-11-10 add .Replace(',', '.')
+ * 2021-07-02 code clean up / code quality
 */
 
 using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace GRBL_Plotter
+#pragma warning disable CA1305
+
+namespace GrblPlotter
 {
     public partial class ControlCoordSystem : Form
     {
@@ -41,7 +44,7 @@ namespace GRBL_Plotter
             InitializeComponent();
         }
         private void ControlCoordSystem_Load(object sender, EventArgs e)
-        {   refreshValues(true);
+        {   RefreshValues(true);
             Location = Properties.Settings.Default.locationCntrlCoordForm;
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { CenterToScreen(); }
@@ -52,14 +55,14 @@ namespace GRBL_Plotter
             Properties.Settings.Default.locationCntrlCoordForm = Location;
         }
 
-        public void updateTLO(bool TLOactive, double TLOvalue)
-        {   if (TLOactive)
+        public void UpdateTLO(bool tlOactive, double tlOvalue)
+        {   if (tlOactive)
                 lblTLO.BackColor = Color.Lime; 
             else
                 lblTLO.BackColor = SystemColors.Control;     
-            lblTLO.Text= String.Format("                  {0,8:###0.000}", TLOvalue);
+            lblTLO.Text= String.Format("                  {0,8:###0.000}", tlOvalue);
         }
-        public void markActiveCoordSystem(string cmd)
+        public void MarkActiveCoordSystem(string cmd)
         {   if (cmd == "G54") lblOffset1.BackColor = btnSelect1.BackColor = Color.Lime; else lblOffset1.BackColor = btnSelect1.BackColor = SystemColors.Control;
             if (cmd == "G55") lblOffset2.BackColor = btnSelect2.BackColor = Color.Lime; else lblOffset2.BackColor = btnSelect2.BackColor = SystemColors.Control;
             if (cmd == "G56") lblOffset3.BackColor = btnSelect3.BackColor = Color.Lime; else lblOffset3.BackColor = btnSelect3.BackColor = SystemColors.Control;
@@ -69,113 +72,114 @@ namespace GRBL_Plotter
         }
 
         int delay = 0;
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)
         {   if (delay > 0)
                 delay--;
             else
-            {   showValues();
+            {   ShowValues();
                 timer1.Stop();
             }
         }
 
-        public void showValues()
+        public void ShowValues()
         {
             Logger.Info("Update values");
-            lblOffset1.Text = grbl.displayCoord("G54");
-            lblOffset2.Text = grbl.displayCoord("G55");
-            lblOffset3.Text = grbl.displayCoord("G56");
-            lblOffset4.Text = grbl.displayCoord("G57");
-            lblOffset5.Text = grbl.displayCoord("G58");
-            lblOffset6.Text = grbl.displayCoord("G59");
-            lblG28.Text = grbl.displayCoord("G28");
-            lblG30.Text = grbl.displayCoord("G30");
-            lblG92.Text = grbl.displayCoord("G92");
-            lblPRB.Text = grbl.displayCoord("PRB");
-            if (grbl.getPRBStatus() == true)
+            lblOffset1.Text = Grbl.DisplayCoord("G54");
+            lblOffset2.Text = Grbl.DisplayCoord("G55");
+            lblOffset3.Text = Grbl.DisplayCoord("G56");
+            lblOffset4.Text = Grbl.DisplayCoord("G57");
+            lblOffset5.Text = Grbl.DisplayCoord("G58");
+            lblOffset6.Text = Grbl.DisplayCoord("G59");
+            lblG28.Text = Grbl.DisplayCoord("G28");
+            lblG30.Text = Grbl.DisplayCoord("G30");
+            lblG92.Text = Grbl.DisplayCoord("G92");
+            lblPRB.Text = Grbl.DisplayCoord("PRB");
+            if (Grbl.GetPRBStatus() == true)
                 lblPRB.BackColor = Color.Lime;
             else
                 lblPRB.BackColor = SystemColors.Control;
 
-            lblTLO.Text = grbl.displayCoord("TLO");
+            lblTLO.Text = Grbl.DisplayCoord("TLO");
 
-            resizeForm(grbl.axisCount-3);
+            ResizeForm(Grbl.axisCount-3);
         }
 
-        private void btnSelect1_Click(object sender, EventArgs e) { sendCmd("G54"); }
-        private void btnSelect2_Click(object sender, EventArgs e) { sendCmd("G55"); }
-        private void btnSelect3_Click(object sender, EventArgs e) { sendCmd("G56"); }
-        private void btnSelect4_Click(object sender, EventArgs e) { sendCmd("G57"); }
-        private void btnSelect5_Click(object sender, EventArgs e) { sendCmd("G58"); }
-        private void btnSelect6_Click(object sender, EventArgs e) { sendCmd("G59"); }
+        private void BtnSelect1_Click(object sender, EventArgs e) { SendCmd("G54"); }
+        private void BtnSelect2_Click(object sender, EventArgs e) { SendCmd("G55"); }
+        private void BtnSelect3_Click(object sender, EventArgs e) { SendCmd("G56"); }
+        private void BtnSelect4_Click(object sender, EventArgs e) { SendCmd("G57"); }
+        private void BtnSelect5_Click(object sender, EventArgs e) { SendCmd("G58"); }
+        private void BtnSelect6_Click(object sender, EventArgs e) { SendCmd("G59"); }
 
-        private void sendCmd(string cmd)
-        {   markActiveCoordSystem(cmd);
-            sendCommandEvent(new CmdEventArgs(cmd.Replace(',', '.'))); 
+        private void SendCmd(string cmd)
+        {   MarkActiveCoordSystem(cmd);
+            SendCommandEvent(new CmdEventArgs(cmd.Replace(',', '.'))); 
         }
-        private void btnSet1_Click(object sender, EventArgs e) { setCoord(1,grbl.posWork); }
-        private void btnSet2_Click(object sender, EventArgs e) { setCoord(2,grbl.posWork); }
-        private void btnSet3_Click(object sender, EventArgs e) { setCoord(3,grbl.posWork); }
-        private void btnSet4_Click(object sender, EventArgs e) { setCoord(4,grbl.posWork); }
-        private void btnSet5_Click(object sender, EventArgs e) { setCoord(5,grbl.posWork); }
-        private void btnSet6_Click(object sender, EventArgs e) { setCoord(6,grbl.posWork); }
+        private void BtnSet1_Click(object sender, EventArgs e) { SetCoord(1,Grbl.posWork); }
+        private void BtnSet2_Click(object sender, EventArgs e) { SetCoord(2,Grbl.posWork); }
+        private void BtnSet3_Click(object sender, EventArgs e) { SetCoord(3,Grbl.posWork); }
+        private void BtnSet4_Click(object sender, EventArgs e) { SetCoord(4,Grbl.posWork); }
+        private void BtnSet5_Click(object sender, EventArgs e) { SetCoord(5,Grbl.posWork); }
+        private void BtnSet6_Click(object sender, EventArgs e) { SetCoord(6,Grbl.posWork); }
 
-        private void btnSetM1_Click(object sender, EventArgs e) { setCoord(1, grbl.posMarker); }
-        private void btnSetM2_Click(object sender, EventArgs e) { setCoord(2, grbl.posMarker); }
-        private void btnSetM3_Click(object sender, EventArgs e) { setCoord(3, grbl.posMarker); }
-        private void btnSetM4_Click(object sender, EventArgs e) { setCoord(4, grbl.posMarker); }
-        private void btnSetM5_Click(object sender, EventArgs e) { setCoord(5, grbl.posMarker); }
-        private void btnSetM6_Click(object sender, EventArgs e) { setCoord(6, grbl.posMarker); }
+        private void BtnSetM1_Click(object sender, EventArgs e) { SetCoord(1, Grbl.PosMarker); }
+        private void BtnSetM2_Click(object sender, EventArgs e) { SetCoord(2, Grbl.PosMarker); }
+        private void BtnSetM3_Click(object sender, EventArgs e) { SetCoord(3, Grbl.PosMarker); }
+        private void BtnSetM4_Click(object sender, EventArgs e) { SetCoord(4, Grbl.PosMarker); }
+        private void BtnSetM5_Click(object sender, EventArgs e) { SetCoord(5, Grbl.PosMarker); }
+        private void BtnSetM6_Click(object sender, EventArgs e) { SetCoord(6, Grbl.PosMarker); }
 
-        private void btnSetC1_Click(object sender, EventArgs e) { setCoord(1); }
-        private void btnSetC2_Click(object sender, EventArgs e) { setCoord(2); }
-        private void btnSetC3_Click(object sender, EventArgs e) { setCoord(3); }
-        private void btnSetC4_Click(object sender, EventArgs e) { setCoord(4); }
-        private void btnSetC5_Click(object sender, EventArgs e) { setCoord(5); }
-        private void btnSetC6_Click(object sender, EventArgs e) { setCoord(6); }
+        private void BtnSetC1_Click(object sender, EventArgs e) { SetCoord(1); }
+        private void BtnSetC2_Click(object sender, EventArgs e) { SetCoord(2); }
+        private void BtnSetC3_Click(object sender, EventArgs e) { SetCoord(3); }
+        private void BtnSetC4_Click(object sender, EventArgs e) { SetCoord(4); }
+        private void BtnSetC5_Click(object sender, EventArgs e) { SetCoord(5); }
+        private void BtnSetC6_Click(object sender, EventArgs e) { SetCoord(6); }
 
-        private void btnG28Move_Click(object sender, EventArgs e) { sendCommandEvent(new CmdEventArgs("G28")); }
-        private void btnG28Set_Click(object sender, EventArgs e) { sendCommandEvent(new CmdEventArgs("G28.1")); refreshValues(); }
-        private void btnG30Move_Click(object sender, EventArgs e) { sendCommandEvent(new CmdEventArgs("G30")); }
-        private void btnG30Set_Click(object sender, EventArgs e) { sendCommandEvent(new CmdEventArgs("G30.1")); refreshValues(); }
-        private void btnG92Off_Click(object sender, EventArgs e) { sendCommandEvent(new CmdEventArgs("G92.1")); refreshValues(); }
-        private void btnG43_Click(object sender, EventArgs e)
+        private void BtnG28Move_Click(object sender, EventArgs e) { SendCommandEvent(new CmdEventArgs("G28")); }
+        private void BtnG28Set_Click(object sender, EventArgs e) { SendCommandEvent(new CmdEventArgs("G28.1")); RefreshValues(); }
+        private void BtnG30Move_Click(object sender, EventArgs e) { SendCommandEvent(new CmdEventArgs("G30")); }
+        private void BtnG30Set_Click(object sender, EventArgs e) { SendCommandEvent(new CmdEventArgs("G30.1")); RefreshValues(); }
+        private void BtnG92Off_Click(object sender, EventArgs e) { SendCommandEvent(new CmdEventArgs("G92.1")); RefreshValues(); }
+        private void BtnG43_Click(object sender, EventArgs e)
         {   lblTLO.BackColor = Color.Lime;
-            sendCommandEvent(new CmdEventArgs((string.Format("G43.1 Z{0:0.000}", grbl.posWork.Z).Replace(',', '.')))); refreshValues();
+            SendCommandEvent(new CmdEventArgs((string.Format("G43.1 Z{0:0.000}", Grbl.posWork.Z).Replace(',', '.')))); RefreshValues();
         }
-        private void btnG49_Click(object sender, EventArgs e)
+        private void BtnG49_Click(object sender, EventArgs e)
         {   lblTLO.BackColor = SystemColors.Control;
-            sendCommandEvent(new CmdEventArgs("G49")); refreshValues();
+            SendCommandEvent(new CmdEventArgs("G49")); RefreshValues();
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e) { refreshValues(); }
+        private void BtnUpdate_Click(object sender, EventArgs e) { RefreshValues(); }
 
-        private void setCoord(int nr, xyPoint tmp)
+    /*    private void SetCoord(int nr, XyPoint tmp)
         {   string cmd = String.Format("G10 L2 P{0} X{1:0.000} Y{2:0.000}", nr, tmp.X, tmp.Y);
-            sendCommandEvent(new CmdEventArgs(cmd.Replace(',', '.')));
+            SendCommandEvent(new CmdEventArgs(cmd.Replace(',', '.')));
 //            refreshValues();
-        }    
+        }  */  
 
-        private void setCoord(int nr, xyzPoint tmp=new xyzPoint())
+        private void SetCoord(int nr, XyzPoint tmp=new XyzPoint())
         {   string cmd = String.Format("G10 L2 P{0} X{1:0.000} Y{2:0.000} Z{3:0.000}", nr, tmp.X, tmp.Y, tmp.Z);
-            if (grbl.axisA) cmd = String.Format("{0} A{1:0.000}", cmd, tmp.A);
-            if (grbl.axisB) cmd = String.Format("{0} B{1:0.000}", cmd, tmp.B);
-            if (grbl.axisC) cmd = String.Format("{0} C{1:0.000}", cmd, tmp.C);
-            sendCommandEvent(new CmdEventArgs(cmd.Replace(',', '.')));
+            if (Grbl.axisA) cmd = String.Format("{0} A{1:0.000}", cmd, tmp.A);
+            if (Grbl.axisB) cmd = String.Format("{0} B{1:0.000}", cmd, tmp.B);
+            if (Grbl.axisC) cmd = String.Format("{0} C{1:0.000}", cmd, tmp.C);
+            SendCommandEvent(new CmdEventArgs(cmd.Replace(',', '.')));
 //            refreshValues();
         }
-
-        public void refreshValues(bool init=false)
+        public void RefreshValues()
+        {   RefreshValues(false); }
+        public void RefreshValues(bool init)
         {
             Logger.Info("Ask refresh");
-            sendCommandEvent(new CmdEventArgs("$#"));
+            SendCommandEvent(new CmdEventArgs("$#"));
             delay = 5;
             timer1.Enabled = true;
             timer1.Start();
             if (init)
-                sendCommandEvent(new CmdEventArgs("$G"));
+                SendCommandEvent(new CmdEventArgs("$G"));
         }
 
-        private void resizeForm(int add)
+        private void ResizeForm(int add)
         {   if (add < 0) add = 0;
             if (add > 3) add = 3;
             int newWidth = 70 * add;
@@ -185,13 +189,10 @@ namespace GRBL_Plotter
         }
 
         public event EventHandler<CmdEventArgs> RaiseCmdEvent;
-        protected virtual void sendCommandEvent(CmdEventArgs e)
+        protected virtual void SendCommandEvent(CmdEventArgs e)
         {
             EventHandler<CmdEventArgs> handler = RaiseCmdEvent;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            handler?.Invoke(this, e);
         }
     }
 

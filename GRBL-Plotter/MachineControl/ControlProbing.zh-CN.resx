@@ -273,7 +273,7 @@ Z up = Z start + Z探测
     <value>通过工件的垂直（X探测）或水平边缘（Y探测）计算校正角</value>
   </data>
   <data name="label20.Text" xml:space="preserve">
-    <value>实测校正角：</value>
+    <value>实测校正角</value>
   </data>
   <data name="btnSaveTL.Text" xml:space="preserve">
     <value>将Z驱动到安全位置</value>

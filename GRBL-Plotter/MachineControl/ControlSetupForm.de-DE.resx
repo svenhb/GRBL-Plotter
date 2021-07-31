@@ -163,12 +163,11 @@ wähle Eigenschaften auf dem nächsten Tab.</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFSwitchWhite.Text" xml:space="preserve">
-    <value>Weiß als Schwarz verarbeiten</value>
+    <value>Behandelt die Stiftfarbe Weiß als Schwarz</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFSwitchWhite.ToolTip" xml:space="preserve">
-    <value>In LibreCAD wird standardmäßig mit weißem Stift auf schwarzen Grund gezeichnet.
-Beim Plotten soll es aber ein schwarzer Stift sein...</value>
+    <value>LibreCAD zeigt weiße Stiftfarbe auf schwarzem Hintergrund. Aber echte Stiftfarbe ist schwarz.</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFIndexToolNr.Text" xml:space="preserve">

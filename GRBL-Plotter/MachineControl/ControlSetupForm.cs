@@ -28,29 +28,33 @@
  * 2020-07-23 hide logging
  * 2021-02-06 add gamePad PointOfViewController0
  * 2021-03-28 btnDeleteToolTable_Click only delete if a file is selected
+ * 2021-07-26 code clean up / code quality
 */
 
 using System;
-using System.Drawing;
-using System.Windows.Forms;
-using System.Globalization;
-using System.Threading;
 using System.Diagnostics;
+using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Text;
-using System.Collections.Generic;
-//using System.Windows.Input;
+using System.Threading;
+using System.Windows.Forms;
 
-namespace GRBL_Plotter
+//#pragma warning disable CA1303
+//#pragma warning disable CA1304
+//#pragma warning disable CA1305
+//#pragma warning disable CA1307
+
+namespace GrblPlotter
 {
     public partial class ControlSetupForm : Form
     {
-        private Color inactive = Color.WhiteSmoke;
-        public bool settingsReloaded = false;
+        private readonly Color inactive = Color.WhiteSmoke;
+        internal bool settingsReloaded = false;
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
-  //      private const string toolTableDefaultName = "current.csv";
+        //      private const string toolTableDefaultName = "current.csv";
 
         public ControlSetupForm()
         {
@@ -62,20 +66,25 @@ namespace GRBL_Plotter
             InitializeComponent();
         }
 
-        public void setLastLoadedFile(string text)
+        public void SetLastLoadedFile(string text)
         { toolTip1.SetToolTip(btnReloadFile, text); }
 
         private string defaultToolList = "tools.csv";
         private void SetupForm_Load(object sender, EventArgs e)
         {
-            defaultToolList = System.Windows.Forms.Application.StartupPath + datapath.tools + "\\" + toolTable.defaultFileName;
+            string tpath = Datapath.Tools;
+            if (!System.IO.Directory.Exists(tpath))
+                System.IO.Directory.CreateDirectory(tpath);
+
+            defaultToolList = tpath + "\\" + ToolTable.DefaultFileName;
+
             if ((!ImportCSVToDgv(defaultToolList)) || (dGVToolList.Rows.Count == 1))
             {
-                string[] tmp = toolTable.defaultTool;  // { "1", "000000", "Black", "0.0", "0.0", "0.0", "3.0", "500" };
+                string[] tmp = ToolTable.defaultTool;  // { "1", "000000", "Black", "0.0", "0.0", "0.0", "3.0", "500" };
                 dGVToolList.Rows.Add(tmp);
             }
-            fillToolTableFileList(Application.StartupPath + datapath.tools);
-            fillUseCaseFileList(Application.StartupPath + datapath.usecases);
+            FillToolTableFileList(Datapath.Tools);
+            FillUseCaseFileList(Datapath.Usecases);
             lblToolListLoaded.Text = Properties.Settings.Default.toolTableLastLoaded;
 
             string text;
@@ -84,10 +93,11 @@ namespace GRBL_Plotter
             int row = 0;
             for (int i = 1; i <= 32; i++)
             {
-                parts = new string[] { " "," "," "," " };
+                parts = new string[] { " ", " ", " ", " " };
                 text = Properties.Settings.Default["guiCustomBtn" + i.ToString()].ToString();
                 if (text.IndexOf('|') > 0)
-                {   string[] tmp = text.Split('|');
+                {
+                    string[] tmp = text.Split('|');
                     for (int k = 0; k < tmp.Length; k++)
                         parts[k] = tmp[k];
                 }
@@ -98,27 +108,27 @@ namespace GRBL_Plotter
                 dGVCustomBtn.Rows[row].Cells[2].Value = parts[1];
                 dGVCustomBtn.Rows[row].Cells[3].Value = parts[2];
                 row++;
-             }
+            }
 
-         //   lvCustomButtons.Items[0].Selected = true;
-            setButtonColors(btnColorBackground, Properties.Settings.Default.gui2DColorBackground);
-            setButtonColors(btnColorRuler, Properties.Settings.Default.gui2DColorRuler);
-            setButtonColors(btnColorPenUp, Properties.Settings.Default.gui2DColorPenUp);
-            setButtonColors(btnColorPenDown, Properties.Settings.Default.gui2DColorPenDown);
-			setButtonColors(btnColorRotaryInfo, Properties.Settings.Default.gui2DColorRotaryInfo);
-            setButtonColors(btnColorTool, Properties.Settings.Default.gui2DColorTool);
-            setButtonColors(btnColorMarker, Properties.Settings.Default.gui2DColorMarker);
-            setButtonColors(btnColorHeightMap, Properties.Settings.Default.gui2DColorHeightMap);
-            setButtonColors(btnColorMachineLimit, Properties.Settings.Default.gui2DColorMachineLimit);
-            setButtonColors(btnColorSimulation, Properties.Settings.Default.gui2DColorSimulation);
+            //   lvCustomButtons.Items[0].Selected = true;
+            SetButtonColors(btnColorBackground, Properties.Settings.Default.gui2DColorBackground);
+            SetButtonColors(btnColorRuler, Properties.Settings.Default.gui2DColorRuler);
+            SetButtonColors(btnColorPenUp, Properties.Settings.Default.gui2DColorPenUp);
+            SetButtonColors(btnColorPenDown, Properties.Settings.Default.gui2DColorPenDown);
+            SetButtonColors(btnColorRotaryInfo, Properties.Settings.Default.gui2DColorRotaryInfo);
+            SetButtonColors(btnColorTool, Properties.Settings.Default.gui2DColorTool);
+            SetButtonColors(btnColorMarker, Properties.Settings.Default.gui2DColorMarker);
+            SetButtonColors(btnColorHeightMap, Properties.Settings.Default.gui2DColorHeightMap);
+            SetButtonColors(btnColorMachineLimit, Properties.Settings.Default.gui2DColorMachineLimit);
+            SetButtonColors(btnColorSimulation, Properties.Settings.Default.gui2DColorSimulation);
             nUDImportDecPlaces.Value = Properties.Settings.Default.importGCDecPlaces;
 
             Location = Properties.Settings.Default.locationSetForm;
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { CenterToScreen(); }
 
-//			rBimportGraphicClip0.Checked = Properties.Settings.Default.importGraphicClip;
-			rBImportGraphicClip1.Checked = !Properties.Settings.Default.importGraphicClip;
+            //			rBimportGraphicClip0.Checked = Properties.Settings.Default.importGraphicClip;
+            rBImportGraphicClip1.Checked = !Properties.Settings.Default.importGraphicClip;
 
 
             int group = Properties.Settings.Default.importGroupItem;
@@ -163,60 +173,60 @@ namespace GRBL_Plotter
             else
                 cBImportSVG_DPI_72.Checked = true;
 
-            lblFilePath.Text = System.Windows.Forms.Application.StartupPath;
+            lblFilePath.Text = Datapath.AppDataFolder;
 
-            hsFilterScrollSetLabels();
+            HsFilterScrollSetLabels();
 
-            setLabelParameterSet(1, Properties.Settings.Default.camShapeSet1);
-            setLabelParameterSet(2, Properties.Settings.Default.camShapeSet2);
-            setLabelParameterSet(3, Properties.Settings.Default.camShapeSet3);
-            setLabelParameterSet(4, Properties.Settings.Default.camShapeSet4);
+            SetLabelParameterSet(1, Properties.Settings.Default.camShapeSet1);
+            SetLabelParameterSet(2, Properties.Settings.Default.camShapeSet2);
+            SetLabelParameterSet(3, Properties.Settings.Default.camShapeSet3);
+            SetLabelParameterSet(4, Properties.Settings.Default.camShapeSet4);
 
-            cBImportGCTool_CheckedChanged(sender, e);
+            CbImportGCTool_CheckedChanged(sender, e);
 
-            dGVToolList.SortCompare += new DataGridViewSortCompareEventHandler(this.dGV_SortColor);
+            dGVToolList.SortCompare += new DataGridViewSortCompareEventHandler(this.DgvSortColor);
 
-            listHotkeys();
+            ListHotkeys();
             lblJoystickSize.Text = hScrollBar1.Value.ToString();
 
             cBoxPollInterval.SelectedIndex = Properties.Settings.Default.grblPollIntervalIndex;
 
-            checkVisibility();
-            cBImportSVGGroup_CheckedChanged(sender, e);
-            cBToolTableUse_CheckedChanged(sender, e);
-            cBImportSVGResize_CheckedChanged(sender, e);
-            cBImportGCUsePWM_CheckedChanged(sender, e);
-            cBImportGCUseIndividual_CheckedChanged(sender, e);
-            cBImportGCDragKnife_CheckedChanged(sender, e);
-            cBImportGCLineSegments_CheckedChanged(sender, e);
-            cBImportGCNoArcs_CheckedChanged(sender, e);
-            cBImportGCTangential_CheckStateChanged(sender, e);
-            cBImportGraphicHatchFill_CheckStateChanged(sender, e);
-            cBPathOverlapEnable_CheckStateChanged(sender, e);
+            CheckVisibility();
+            CbImportSVGGroup_CheckedChanged(sender, e);
+            CbToolTableUse_CheckedChanged(sender, e);
+            CbImportSVGResize_CheckedChanged(sender, e);
+            CbImportGCUsePWM_CheckedChanged(sender, e);
+            CbImportGCUseIndividual_CheckedChanged(sender, e);
+            CbImportGCDragKnife_CheckedChanged(sender, e);
+            CbImportGCLineSegments_CheckedChanged(sender, e);
+            CbImportGCNoArcs_CheckedChanged(sender, e);
+            CbImportGCTangential_CheckStateChanged(sender, e);
+            CbImportGraphicHatchFill_CheckStateChanged(sender, e);
+            CbPathOverlapEnable_CheckStateChanged(sender, e);
 
             uint val = Properties.Settings.Default.importLoggerSettings;
-            cBLogLevel1.Checked = (val & (uint)LogEnable.Level1) > 0;
-            cBLogLevel2.Checked = (val & (uint)LogEnable.Level2) > 0;
-            cBLogLevel3.Checked = (val & (uint)LogEnable.Level3) > 0;
-            cBLogLevel4.Checked = (val & (uint)LogEnable.Level4) > 0;
-            cBLog0.Checked = (val & (uint)LogEnable.Detailed) > 0;
-            cBLog1.Checked = (val & (uint)LogEnable.Coordinates) > 0;
-            cBLog2.Checked = (val & (uint)LogEnable.Properties) > 0;
-            cBLog3.Checked = (val & (uint)LogEnable.Sort) > 0;
-            cBLog4.Checked = (val & (uint)LogEnable.GroupAllGraphics) > 0;
-            cBLog5.Checked = (val & (uint)LogEnable.ClipCode) > 0;
-            cBLog6.Checked = (val & (uint)LogEnable.PathModification) > 0;
+            cBLogLevel1.Checked = (val & (uint)LogEnables.Level1) > 0;
+            cBLogLevel2.Checked = (val & (uint)LogEnables.Level2) > 0;
+            cBLogLevel3.Checked = (val & (uint)LogEnables.Level3) > 0;
+            cBLogLevel4.Checked = (val & (uint)LogEnables.Level4) > 0;
+            cBLog0.Checked = (val & (uint)LogEnables.Detailed) > 0;
+            cBLog1.Checked = (val & (uint)LogEnables.Coordinates) > 0;
+            cBLog2.Checked = (val & (uint)LogEnables.Properties) > 0;
+            cBLog3.Checked = (val & (uint)LogEnables.Sort) > 0;
+            cBLog4.Checked = (val & (uint)LogEnables.GroupAllGraphics) > 0;
+            cBLog5.Checked = (val & (uint)LogEnables.ClipCode) > 0;
+            cBLog6.Checked = (val & (uint)LogEnables.PathModification) > 0;
 
-            checkZEngraveExceed();
-			
-			rBStreanProtocoll2.Checked = !Properties.Settings.Default.grblStreamingProtocol1;
+            CheckZEngraveExceed();
+
+            rBStreanProtocoll2.Checked = !Properties.Settings.Default.grblStreamingProtocol1;
 
             PWMIncValue = (int)Properties.Settings.Default.setupPWMIncrement;
             btnPWMInc.Text = "Inc. " + PWMIncValue.ToString();
-            setPWMIncValues(PWMIncValue);
+            SetPWMIncValues(PWMIncValue);
         }
 
-        private void saveSettings()
+        private void SaveSettings()
         {
             for (int i = 1; i <= 32; i++)
             {
@@ -231,52 +241,52 @@ namespace GRBL_Plotter
             Properties.Settings.Default.Save();
 
             ExportDgvToCSV(defaultToolList);
-            toolTable.init();
+            ToolTable.Init();
         }
-        
-        private void btnApplyChangings_Click(object sender, EventArgs e)
-        {   saveSettings();  }
 
-        private void btnColorBackground_Click(object sender, EventArgs e)
-        { applyColor(btnColorBackground, "gui2DColorBackground"); }
-        private void btnColorRuler_Click(object sender, EventArgs e)
-        { applyColor(btnColorRuler, "gui2DColorRuler"); }
-        private void btnColorPenUp_Click(object sender, EventArgs e)
-        { applyColor(btnColorPenUp, "gui2DColorPenUp"); }
-        private void btnColorPenDown_Click(object sender, EventArgs e)
-        { applyColor(btnColorPenDown, "gui2DColorPenDown"); }
-        private void btnColorRotaryInfo_Click(object sender, EventArgs e)
-        { applyColor(btnColorRotaryInfo, "gui2DColorRotaryInfo"); }
-        private void btnColorTool_Click(object sender, EventArgs e)
-        { applyColor(btnColorTool, "gui2DColorTool"); }
-        private void btnColorMarker_Click(object sender, EventArgs e)
-        { applyColor(btnColorMarker, "gui2DColorMarker"); }
-        private void btnColorHeightMap_Click(object sender, EventArgs e)
-        { applyColor(btnColorHeightMap, "gui2DColorHeightMap"); }
-        private void btnColorMachineLimit_Click(object sender, EventArgs e)
-        { applyColor(btnColorMachineLimit, "gui2DColorMachineLimit"); }
-        private void btnColorSimulation_Click(object sender, EventArgs e)
-        { applyColor(btnColorSimulation, "gui2DColorSimulation"); }
+        private void BtnApplyChangings_Click(object sender, EventArgs e)
+        { SaveSettings(); }
 
-        private void applyColor(Button btn, string settings)
+        private void BtnColorBackground_Click(object sender, EventArgs e)
+        { ApplyColor(btnColorBackground, "gui2DColorBackground"); }
+        private void BtnColorRuler_Click(object sender, EventArgs e)
+        { ApplyColor(btnColorRuler, "gui2DColorRuler"); }
+        private void BtnColorPenUp_Click(object sender, EventArgs e)
+        { ApplyColor(btnColorPenUp, "gui2DColorPenUp"); }
+        private void BtnColorPenDown_Click(object sender, EventArgs e)
+        { ApplyColor(btnColorPenDown, "gui2DColorPenDown"); }
+        private void BtnColorRotaryInfo_Click(object sender, EventArgs e)
+        { ApplyColor(btnColorRotaryInfo, "gui2DColorRotaryInfo"); }
+        private void BtnColorTool_Click(object sender, EventArgs e)
+        { ApplyColor(btnColorTool, "gui2DColorTool"); }
+        private void BtnColorMarker_Click(object sender, EventArgs e)
+        { ApplyColor(btnColorMarker, "gui2DColorMarker"); }
+        private void BtnColorHeightMap_Click(object sender, EventArgs e)
+        { ApplyColor(btnColorHeightMap, "gui2DColorHeightMap"); }
+        private void BtnColorMachineLimit_Click(object sender, EventArgs e)
+        { ApplyColor(btnColorMachineLimit, "gui2DColorMachineLimit"); }
+        private void BtnColorSimulation_Click(object sender, EventArgs e)
+        { ApplyColor(btnColorSimulation, "gui2DColorSimulation"); }
+
+        private void ApplyColor(Button btn, string settings)
         {
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
-                setButtonColors(btn, colorDialog1.Color);
+                SetButtonColors(btn, colorDialog1.Color);
                 Properties.Settings.Default[settings] = colorDialog1.Color;
-                saveSettings();
+                SaveSettings();
             }
         }
-        private void setButtonColors(Button btn, Color col)
+        private static void SetButtonColors(Button btn, Color col)
         {
             btn.BackColor = col;
             btn.ForeColor = ContrastColor(col);
         }
-        private Color ContrastColor(Color color)
+        private static Color ContrastColor(Color myColor)
         {
-            int d = 0;
+            int d;
             // Counting the perceptive luminance - human eye favors green color... 
-            double a = 1 - (0.299 * color.R + 0.587 * color.G + 0.114 * color.B) / 255;
+            double a = 1 - (0.299 * myColor.R + 0.587 * myColor.G + 0.114 * myColor.B) / 255;
             if (a < 0.5)
                 d = 0; // bright colors - black font
             else
@@ -284,25 +294,25 @@ namespace GRBL_Plotter
             return Color.FromArgb(d, d, d);
         }
 
-        private void btnReloadFile_Click(object sender, EventArgs e)
+        private void BtnReloadFile_Click(object sender, EventArgs e)
         {
-            saveSettings();
+            SaveSettings();
         }
 
         private void SetupForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Logger.Trace("++++++ ControlSetupForm STOP ++++++");
             Properties.Settings.Default.locationSetForm = Location;
-            saveSettings();
+            SaveSettings();
         }
 
-        private void nUDImportDecPlaces_ValueChanged(object sender, EventArgs e)
+        private void NudImportDecPlaces_ValueChanged(object sender, EventArgs e)
         {
-            saveSettings();
-            gcode.setDecimalPlaces((int)nUDImportDecPlaces.Value);
+            SaveSettings();
+            Gcode.SetDecimalPlaces((int)nUDImportDecPlaces.Value);
         }
 
-        private void btnJoyXYCalc_Click(object sender, EventArgs e)
+        private void BtnJoyXYCalc_Click(object sender, EventArgs e)
         {
             double time = 0.5;
             double correct = 1;
@@ -313,7 +323,7 @@ namespace GRBL_Plotter
             nUDJoyXYSpeed5.Value = (decimal)((double)nUDJoyXYStep5.Value / time * 60 * correct);
         }
 
-        private void btnJoyZCalc_Click(object sender, EventArgs e)
+        private void BtnJoyZCalc_Click(object sender, EventArgs e)
         {
             double time = 0.5;
             double correct = 1;
@@ -325,40 +335,49 @@ namespace GRBL_Plotter
         }
 
 
-        private void linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {   LinkLabel clickedLink = sender as LinkLabel;
-            Process.Start(clickedLink.Tag.ToString()); }
+        private void LinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            LinkLabel clickedLink = sender as LinkLabel;
+            Process.Start(clickedLink.Tag.ToString());
+        }
 
-        private void tabPage24_Enter(object sender, EventArgs e)
-        {   timer1.Enabled = true;
+        private void TabPage24_Enter(object sender, EventArgs e)
+        {
+            timer1.Enabled = true;
             try { ControlGamePad.Initialize(); timer1.Interval = 200; }
-            catch { }
+            catch { }//            throw; }
         }
 
-        private void tabPage24_Leave(object sender, EventArgs e)
-        {   timer1.Enabled = false;
+        private void TabPage24_Leave(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)
         {
             try
-            {   if (ControlGamePad.gamePad != null)
-                {   ControlGamePad.gamePad.Poll();
+            {
+                if (ControlGamePad.gamePad != null)
+                {
+                    ControlGamePad.gamePad.Poll();
                     var datas = ControlGamePad.gamePad.GetBufferedData();
-               //     lblgp.Text = "";
+                    //     lblgp.Text = "";
                     foreach (var state in datas)
                     {
                         lblgp.Text = state.Offset + " Value: " + state.Value.ToString() + " Hex: " + state.Value.ToString("X4");// + " | ";
-                        processGamepad(state);
+                        ProcessGamepad(state);
                     }
                 }
             }
             catch
-            {   try { ControlGamePad.Initialize(); timer1.Interval = 200; }
+            {
+                try { ControlGamePad.Initialize(); timer1.Interval = 200; }
                 catch { timer1.Interval = 5000; }
+                // throw; }
+                // throw;
             }
         }
-        private void processGamepad(SharpDX.DirectInput.JoystickUpdate state)
+        private void ProcessGamepad(SharpDX.DirectInput.JoystickUpdate state)
         {
             string offset = state.Offset.ToString();
             int value = state.Value;
@@ -385,18 +404,19 @@ namespace GRBL_Plotter
             }
 
             else if (offset == "X")
-            { trackBarX.Value = value; lblValX.Text = gamePadGetValue(value); lblValX.BackColor = gamePadGetColor(value); }
+            { trackBarX.Value = value; lblValX.Text = GamePadGetValue(value); lblValX.BackColor = GamePadGetColor(value); }
             else if (offset == "Y")
-            { trackBarY.Value = value; lblValY.Text = gamePadGetValue(value); lblValY.BackColor = gamePadGetColor(value); }
+            { trackBarY.Value = value; lblValY.Text = GamePadGetValue(value); lblValY.BackColor = GamePadGetColor(value); }
             else if (offset == "Z")
-            { trackBarZ.Value = value; lblValZ.Text = gamePadGetValue(value); lblValZ.BackColor = gamePadGetColor(value); }
+            { trackBarZ.Value = value; lblValZ.Text = GamePadGetValue(value); lblValZ.BackColor = GamePadGetColor(value); }
             else if (offset == "RotationZ")
-            { trackBarR.Value = value; lblValR.Text = gamePadGetValue(value); lblValR.BackColor = gamePadGetColor(value); }
+            { trackBarR.Value = value; lblValR.Text = GamePadGetValue(value); lblValR.BackColor = GamePadGetColor(value); }
         }
-        private string gamePadGetValue(int value)
+        private string GamePadGetValue(int value)
         { return (value - nUDOffset.Value).ToString(); }
-        private Color gamePadGetColor(int value)
-        {   int center = (int)Math.Abs(value - nUDOffset.Value);
+        private Color GamePadGetColor(int value)
+        {
+            int center = (int)Math.Abs(value - nUDOffset.Value);
             Color tmp = Color.Transparent;
             if (center <= 5)
                 return tmp;
@@ -409,9 +429,9 @@ namespace GRBL_Plotter
             return tmp;
         }
 
-        private void hsFilterScroll(object sender, ScrollEventArgs e)
-        { hsFilterScrollSetLabels(); }
-        private void hsFilterScrollSetLabels()
+        private void HsFilterScroll(object sender, ScrollEventArgs e)
+        { HsFilterScrollSetLabels(); }
+        private void HsFilterScrollSetLabels()
         {
             lblFilterRed1.Text = hSFilterRed1.Value.ToString();
             lblFilterRed2.Text = hSFilterRed2.Value.ToString();
@@ -421,30 +441,30 @@ namespace GRBL_Plotter
             lblFilterBlue2.Text = hSFilterBlue2.Value.ToString();
         }
 
-        private void btnShapeSetSave_Click(object sender, EventArgs e)
+        private void BtnShapeSetSave_Click(object sender, EventArgs e)
         {
             Button clickedButton = sender as Button;
             int btnSetIndex = Convert.ToUInt16(clickedButton.Name.Substring("btnShapeSetSave".Length));
             //          MessageBox.Show(index.ToString());
-            if (btnSetIndex == 1) { Properties.Settings.Default.camShapeSet1 = shapeSetSave(tBShapeSet1.Text); }
-            if (btnSetIndex == 2) { Properties.Settings.Default.camShapeSet2 = shapeSetSave(tBShapeSet2.Text); }
-            if (btnSetIndex == 3) { Properties.Settings.Default.camShapeSet3 = shapeSetSave(tBShapeSet3.Text); }
-            if (btnSetIndex == 4) { Properties.Settings.Default.camShapeSet4 = shapeSetSave(tBShapeSet4.Text); }
+            if (btnSetIndex == 1) { Properties.Settings.Default.camShapeSet1 = ShapeSetSave(tBShapeSet1.Text); }
+            if (btnSetIndex == 2) { Properties.Settings.Default.camShapeSet2 = ShapeSetSave(tBShapeSet2.Text); }
+            if (btnSetIndex == 3) { Properties.Settings.Default.camShapeSet3 = ShapeSetSave(tBShapeSet3.Text); }
+            if (btnSetIndex == 4) { Properties.Settings.Default.camShapeSet4 = ShapeSetSave(tBShapeSet4.Text); }
             Properties.Settings.Default.Save();
         }
 
-        private void btnShapeSetLoad_Click(object sender, EventArgs e)
+        private void BtnShapeSetLoad_Click(object sender, EventArgs e)
         {
             Button clickedButton = sender as Button;
             int btnLoadIndex = Convert.ToUInt16(clickedButton.Name.Substring("btnShapeSetLoad".Length));
             //           MessageBox.Show(index.ToString());
-            if (btnLoadIndex == 1) { tBShapeSet1.Text = shapeSetLoad(Properties.Settings.Default.camShapeSet1); }
-            if (btnLoadIndex == 2) { tBShapeSet2.Text = shapeSetLoad(Properties.Settings.Default.camShapeSet2); }
-            if (btnLoadIndex == 3) { tBShapeSet3.Text = shapeSetLoad(Properties.Settings.Default.camShapeSet3); }
-            if (btnLoadIndex == 4) { tBShapeSet4.Text = shapeSetLoad(Properties.Settings.Default.camShapeSet4); }
+            if (btnLoadIndex == 1) { tBShapeSet1.Text = ShapeSetLoad(Properties.Settings.Default.camShapeSet1); }
+            if (btnLoadIndex == 2) { tBShapeSet2.Text = ShapeSetLoad(Properties.Settings.Default.camShapeSet2); }
+            if (btnLoadIndex == 3) { tBShapeSet3.Text = ShapeSetLoad(Properties.Settings.Default.camShapeSet3); }
+            if (btnLoadIndex == 4) { tBShapeSet4.Text = ShapeSetLoad(Properties.Settings.Default.camShapeSet4); }
         }
 
-        private String shapeSetSave(string head)
+        private String ShapeSetSave(string head)
         {
             string txt = head + "|";
             txt += hSFilterRed1.Value.ToString() + "|";
@@ -464,7 +484,7 @@ namespace GRBL_Plotter
             return txt;
         }
 
-        private string shapeSetLoad(string txt)
+        private string ShapeSetLoad(string txt)
         {
             string[] value = txt.Split('|');
             int i = 1;
@@ -476,21 +496,21 @@ namespace GRBL_Plotter
                 hSFilterGreen2.Value = Convert.ToInt16(value[i++]);
                 hSFilterBlue1.Value = Convert.ToInt16(value[i++]);
                 hSFilterBlue2.Value = Convert.ToInt16(value[i++]);
-                cBFilterOuside.Checked = (value[i++] == "True") ? true : false;
-                cBShapeCircle.Checked = (value[i++] == "True") ? true : false;
-                cBShapeRect.Checked = (value[i++] == "True") ? true : false;
+                cBFilterOuside.Checked = (value[i++] == "True");
+                cBShapeCircle.Checked = (value[i++] == "True");
+                cBShapeRect.Checked = (value[i++] == "True");
                 nUDShapeSizeMin.Value = Convert.ToDecimal(value[i++]);
                 nUDShapeSizeMax.Value = Convert.ToDecimal(value[i++]);
                 nUDShapeDistMin.Value = Convert.ToDecimal(value[i++]);
                 nUDShapeDistMax.Value = Convert.ToDecimal(value[i++]);
-                hsFilterScrollSetLabels();
+                HsFilterScrollSetLabels();
                 return value[0];
             }
-            catch { }
+            catch { }// throw; }
             return "not set";
         }
 
-        private void setLabelParameterSet(int lblSetIndex, string txt)
+        private void SetLabelParameterSet(int lblSetIndex, string txt)
         {
             if (lblSetIndex == 1) { tBShapeSet1.Text = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
             if (lblSetIndex == 2) { tBShapeSet2.Text = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
@@ -500,23 +520,25 @@ namespace GRBL_Plotter
 
         private void ExportDgvToCSV(string file)
         {
-// fields: ToolNr,color,name,X,Y,Z,diameter,XYspeed,Z - speed,Z - save,Z - depth,Z - step, spindleSpeed, overlap, gcode
-            int[] cellWidth  = {3,7,-20,5,5,5,5,4,4,5,4,4,5,6,4,1,1,1, 1, 1, 1 };
-            string format = "{0,2}";
+            // fields: ToolNr,color,name,X,Y,Z,diameter,XYspeed,Z - speed,Z - save,Z - depth,Z - step, spindleSpeed, overlap, gcode
+            int[] cellWidth = { 3, 7, -20, 5, 5, 5, 5, 4, 4, 5, 4, 4, 5, 6, 4, 1, 1, 1, 1, 1, 1 };
+            string format;
             var csv = new StringBuilder();
             csv.AppendLine("# T-Nr; Color; T-Name; ExPosX; ExPosY; ExPosZ; ExPosA; T-Diameter; XY-Feed; Z-Feed; Z-Save; Z-Deepth; Z-Step; Spindle-Spd; Step-over %, GCode");
             foreach (DataGridViewRow dgvR in dGVToolList.Rows)
             {
-    //            Logger.Trace("ExportDgvToCSV row {0}", dgvR.ToString());
+                //            Logger.Trace("ExportDgvToCSV row {0}", dgvR.ToString());
                 bool firstColumn = true;
                 if (dgvR.Cells[0].Value != null)
-                {   for (int j = 0; j < dGVToolList.Columns.Count; ++j)
-                    {   object val = dgvR.Cells[j].Value;
-          //              Logger.Trace("ExportDgvToCSV cell {0} {1}   {2}", j, val, cellWidth[j].ToString());
+                {
+                    for (int j = 0; j < dGVToolList.Columns.Count; ++j)
+                    {
+                        object val = dgvR.Cells[j].Value;
+                        //              Logger.Trace("ExportDgvToCSV cell {0} {1}   {2}", j, val, cellWidth[j].ToString());
                         if (!firstColumn)
                             csv.Append(',');                            // csv delimiter
                         if (val == null)
-                            csv.Append(toolTable.defaultTool[j]);       // fill with default value
+                            csv.Append(ToolTable.defaultTool[j]);       // fill with default value
                         else
                         {
                             format = "{0," + cellWidth[j].ToString() + "}";
@@ -529,9 +551,12 @@ namespace GRBL_Plotter
                 }
             }
             Logger.Trace("Save Tool Table {0}", file);
-            File.WriteAllText(file, csv.ToString());
+            try
+            { File.WriteAllText(file, csv.ToString()); }
+            catch
+            { MessageBox.Show("Could not write " + file, "Error"); }
             dGVToolList.DefaultCellStyle.NullValue = dGVToolList.Columns.Count;
-            fillToolTableFileList(Application.StartupPath + datapath.tools);
+            FillToolTableFileList(Datapath.Tools);
         }
 
         private bool ImportCSVToDgv(string file)
@@ -553,23 +578,27 @@ namespace GRBL_Plotter
                     {
                         col = s.Split(',');
                         dGVToolList.Rows.Add();
-                        for (int j = 0; j < toolTable.defaultTool.Length; ++j)
-                        {   if (j < col.Length)
+                        for (int j = 0; j < ToolTable.defaultTool.Length; ++j)
+                        {
+                            if (j < col.Length)
                             {
                                 tmp = col[j].Trim();
                                 dGVToolList.Rows[row].Cells[j].Value = tmp;  // fill up empty cells
                             }
                             else
-                                dGVToolList.Rows[row].Cells[j].Value = toolTable.defaultTool[j];
+                                dGVToolList.Rows[row].Cells[j].Value = ToolTable.defaultTool[j];
                         }
                         try
-                        {   long clr = Convert.ToInt32(col[1].Trim().Substring(0,6), 16) | 0xff000000;
+                        {
+                            long clr = Convert.ToInt32(col[1].Trim().Substring(0, 6), 16) | 0xff000000;
                             dGVToolList.Rows[row].DefaultCellStyle.BackColor = Color.FromArgb((int)clr);
                             dGVToolList.Rows[row].DefaultCellStyle.ForeColor = ContrastColor(Color.FromArgb((int)clr));
                         }
                         catch
-                        {   dGVToolList.Rows[row].DefaultCellStyle.BackColor = Color.White;
+                        {
+                            dGVToolList.Rows[row].DefaultCellStyle.BackColor = Color.White;
                             dGVToolList.Rows[row].DefaultCellStyle.ForeColor = Color.Black;
+                            // throw;
                         }
                     }
                     row++;
@@ -579,61 +608,67 @@ namespace GRBL_Plotter
             return false;
         }
 
-        private void dGVToolList_CellLeave(object sender, DataGridViewCellEventArgs e)
+        private void DgvToolList_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
             // change color if changed
             object val = dGVToolList.Rows[e.RowIndex].Cells[1].Value;
             if ((val != null) && (e.ColumnIndex == 1))
-            {   string color = val.ToString();
-                if (color.Length > 6)
-                {   dGVToolList.Rows[e.RowIndex].Cells[1].Value = color.Substring(0, 6); }
+            {
+                string myColor = val.ToString();
+                if (myColor.Length > 6)
+                { dGVToolList.Rows[e.RowIndex].Cells[1].Value = myColor.Substring(0, 6); }
                 try
-                {   long clr = Convert.ToInt32(color.Substring(0, 6), 16) | 0xff000000;
+                {
+                    long clr = Convert.ToInt32(myColor.Substring(0, 6), 16) | 0xff000000;
                     dGVToolList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb((int)clr);
                     dGVToolList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = ContrastColor(Color.FromArgb((int)clr));
                 }
                 catch
-                {   dGVToolList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                {
+                    dGVToolList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
                     dGVToolList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+                    //  throw;
                 }
             }
-    //        if (dGVToolList.Rows.Count > 1)
-   //             ExportDgvToCSV(defaultToolList);
+            //        if (dGVToolList.Rows.Count > 1)
+            //             ExportDgvToCSV(defaultToolList);
 
             Properties.Settings.Default.toolTableOriginal = false;
             lblToolListChanged.Text = "Changed List should be saved \r\nvia 'Save tool table'";
             lblToolListChanged.BackColor = Color.Yellow;
         }
-        private void btnReNumberTools_Click(object sender, EventArgs e)
-        {   int number = 1;
+        private void BtnReNumberTools_Click(object sender, EventArgs e)
+        {
+            int number = 1;
             foreach (DataGridViewRow dgvR in dGVToolList.Rows)
-            {   dgvR.Cells[0].Value = number++;
+            {
+                dgvR.Cells[0].Value = number++;
             }
         }
 
-        private void btnUp_Click(object sender, EventArgs e)
+        private void BtnUp_Click(object sender, EventArgs e)
         {
             DataGridView dgv = dGVToolList;
             try
             {
-                int totalRows = dgv.Rows.Count;
+                //  int totalRows = dgv.Rows.Count;
                 // get index of the row for the selected cell
                 int rowIndex = dgv.SelectedCells[0].OwningRow.Index;
                 if (rowIndex == 0)
                     return;
                 // get index of the column for the selected cell
-                int colIndex = dgv.SelectedCells[0].OwningColumn.Index;
+                //   int colIndex = dgv.SelectedCells[0].OwningColumn.Index;
                 DataGridViewRow selectedRow = dgv.Rows[rowIndex];
                 dgv.Rows.Remove(selectedRow);
                 dgv.Rows.Insert(rowIndex - 1, selectedRow);
                 dgv.ClearSelection();
-//                dgv.Rows[rowIndex - 1].Cells[colIndex].Selected = true;
+                //                dgv.Rows[rowIndex - 1].Cells[colIndex].Selected = true;
                 dgv.Rows[rowIndex - 1].Selected = true;
             }
-            catch { }
+            catch { }// throw; }
         }
 
-        private void btnDown_Click(object sender, EventArgs e)
+        private void BtnDown_Click(object sender, EventArgs e)
         {
             DataGridView dgv = dGVToolList;
             try
@@ -644,18 +679,19 @@ namespace GRBL_Plotter
                 if (rowIndex == totalRows - 1)
                     return;
                 // get index of the column for the selected cell
-                int colIndex = dgv.SelectedCells[0].OwningColumn.Index;
+                //   int colIndex = dgv.SelectedCells[0].OwningColumn.Index;
                 DataGridViewRow selectedRow = dgv.Rows[rowIndex];
                 dgv.Rows.Remove(selectedRow);
                 dgv.Rows.Insert(rowIndex + 1, selectedRow);
                 dgv.ClearSelection();
-  //              dgv.Rows[rowIndex + 1].Cells[colIndex].Selected = true;
+                //              dgv.Rows[rowIndex + 1].Cells[colIndex].Selected = true;
                 dgv.Rows[rowIndex + 1].Selected = true;
             }
             catch { }
+            // throw; }
         }
 
-        private void dGV_SortColor(object sender, DataGridViewSortCompareEventArgs e)
+        private void DgvSortColor(object sender, DataGridViewSortCompareEventArgs e)
         {
             if (e.Column.Index != 1) return;
             long lcolor1 = Convert.ToInt32(e.CellValue1.ToString().ToUpper().Substring(0, 6), 16) | 0xff000000;
@@ -667,36 +703,42 @@ namespace GRBL_Plotter
             e.SortResult = brighness1.CompareTo(brighness2);
             e.Handled = true;
         }
-        private void btnToolExport_Click(object sender, EventArgs e)
+        private void BtnToolExport_Click(object sender, EventArgs e)
         {
             // Displays a SaveFileDialog so the user can save the List
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.InitialDirectory = importPath;
-            saveFileDialog1.Filter = "CSV File|*.csv";
-            saveFileDialog1.Title = "Save Tool List as CSV";
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog
+            {
+                InitialDirectory = importPath,
+                Filter = "CSV File|*.csv",
+                Title = "Save Tool List as CSV"
+            };
             saveFileDialog1.ShowDialog();
             // If the file name is not an empty string open it for saving.  
-            if (saveFileDialog1.FileName != "")
+            if (!string.IsNullOrEmpty(saveFileDialog1.FileName))
             {
                 ExportDgvToCSV(saveFileDialog1.FileName);
             }
-            fillToolTableFileList(Application.StartupPath + datapath.tools);
+            FillToolTableFileList(Datapath.Tools);
+            saveFileDialog1.Dispose();
         }
 
-        private static string importPath = Application.StartupPath + datapath.tools;
-        private void btnToolImport_Click(object sender, EventArgs e)
+        private static readonly string importPath = Datapath.Tools;
+        private void BtnToolImport_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.InitialDirectory = importPath;
-            openFileDialog1.Filter = "CSV File|*.csv";
-            openFileDialog1.Title = "Load Tool List";
+            OpenFileDialog openFileDialog1 = new OpenFileDialog
+            {
+                InitialDirectory = importPath,
+                Filter = "CSV File|*.csv",
+                Title = "Load Tool List"
+            };
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                loadToolList(openFileDialog1.FileName);
+                LoadToolList(openFileDialog1.FileName);
             }
+            openFileDialog1.Dispose();
         }
-        private void loadToolList(string filename)
-        {   
+        private void LoadToolList(string filename)
+        {
             ImportCSVToDgv(filename);
             Properties.Settings.Default.toolTableOriginal = true;
             Properties.Settings.Default.toolTableLastLoaded = Path.GetFileName(filename);
@@ -705,108 +747,109 @@ namespace GRBL_Plotter
             lblToolListChanged.BackColor = Color.Transparent;
             ExportDgvToCSV(defaultToolList);
         }
-        private void btnLoadToolTable_Click(object sender, EventArgs e)
+        private void BtnLoadToolTable_Click(object sender, EventArgs e)
         {
-            if (lbFiles.Text == "")
+            if (string.IsNullOrEmpty(lbFiles.Text))
             {
                 MessageBox.Show("No file selected...", "Attention");
                 return;
             }
-            string path = Application.StartupPath + datapath.tools + "\\" + lbFiles.Text;
+            string path = Datapath.Tools + "\\" + lbFiles.Text;
             if (path.StartsWith("laser"))
                 cBToolLaser.Checked = true;
             //           MessageBox.Show(path);
-            loadToolList(path);
+            LoadToolList(path);
         }
-        private void btnDeleteToolTable_Click(object sender, EventArgs e)
+        private void BtnDeleteToolTable_Click(object sender, EventArgs e)
         {
-            string path = Application.StartupPath + datapath.tools + "\\" + lbFiles.Text;
-            Logger.Info("DeleteToolTable '{0}'",path);
-            if (lbFiles.Text != string.Empty)
-            {   File.Delete(path);
-                fillToolTableFileList(Application.StartupPath + datapath.tools);
+            string path = Datapath.Tools + "\\" + lbFiles.Text;
+            Logger.Info("DeleteToolTable '{0}'", path);
+            if (!string.IsNullOrEmpty(lbFiles.Text))
+            {
+                File.Delete(path);
+                FillToolTableFileList(Datapath.Tools);
             }
         }
 
-        public string commandToSend = "";
-        private void btnMoveToolXY_Click(object sender, EventArgs e)
+        internal string commandToSend = "";
+        private void BtnMoveToolXY_Click(object sender, EventArgs e)
         {
             float xoff = (float)nUDToolOffsetX.Value;
             float yoff = (float)nUDToolOffsetY.Value;
-      /*      if (dGVToolList.CurrentRow.Cells[3].Value == null)
-            {
-                MessageBox.Show("No valid position");
-                return;
-            }*/
+            /*      if (dGVToolList.CurrentRow.Cells[3].Value == null)
+                  {
+                      MessageBox.Show("No valid position");
+                      return;
+                  }*/
             string sx = dGVToolList.CurrentRow.Cells[3].Value.ToString();
             string sy = dGVToolList.CurrentRow.Cells[4].Value.ToString();
             string sz = dGVToolList.CurrentRow.Cells[5].Value.ToString();
-            float x=0, y=0, z=0;
+            //     float x, y;//, z=0;
             if ((sx.Length < 1) || (sy.Length < 1) || (sz.Length < 1))
             {
                 MessageBox.Show("No valid position");
                 return;
             }
-            try
+
+            if (float.TryParse(sx, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out float x) && float.TryParse(sy, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out float y))
             {
-                x = float.Parse(sx, System.Globalization.NumberFormatInfo.InvariantInfo);
-                y = float.Parse(sy, System.Globalization.NumberFormatInfo.InvariantInfo);
-                z = float.Parse(sz, System.Globalization.NumberFormatInfo.InvariantInfo);
+                x += xoff; y += yoff;
+                DialogResult result = MessageBox.Show("Are you sure to move to machine XY-position " + x.ToString() + ":" + y.ToString() + " ?\r\n", "Attention", MessageBoxButtons.YesNo);
+                commandToSend = "";
+                if (result == DialogResult.Yes)
+                {
+                    commandToSend = String.Format("G53 G91 G0 X{0} Y{1}", x, y).Replace(',', '.');
+                    if (Grbl.isMarlin)
+                        commandToSend = String.Format("G53;G91;G0 X{0} Y{1}", x, y).Replace(',', '.');
+                }
             }
-            catch { MessageBox.Show("No valid position"); return; }
-            x = x + xoff; y = y + yoff;
-            DialogResult result = MessageBox.Show("Are you sure to move to machine XY-position "+x.ToString()+":"+y.ToString()+" ?\r\n", "Attention", MessageBoxButtons.YesNo);
-            commandToSend = "";
-            if (result == DialogResult.Yes)
-            {   commandToSend = String.Format("G53 G91 G0 X{0} Y{1}",x,y).Replace(',', '.');
-                if (grbl.isMarlin)
-                    commandToSend = String.Format("G53;G91;G0 X{0} Y{1}", x, y).Replace(',', '.');
-            }
+            else { MessageBox.Show("No valid position"); return; }
         }
 
-        private void lbl_1_Click(object sender, EventArgs e)
-        {  showFileContent(tBToolChangeScriptPut);        }
-        private void lbl_2_Click(object sender, EventArgs e)
-        { showFileContent(tBToolChangeScriptSelect); }
-        private void lbl_3_Click(object sender, EventArgs e)
-        { showFileContent(tBToolChangeScriptGet); }
-        private void lbl_4_Click(object sender, EventArgs e)
-        { showFileContent(tBToolChangeScriptProbe); }
+        private void Lbl1_Click(object sender, EventArgs e)
+        { ShowFileContent(tBToolChangeScriptPut); }
+        private void Lbl2_Click(object sender, EventArgs e)
+        { ShowFileContent(tBToolChangeScriptSelect); }
+        private void Lbl3_Click(object sender, EventArgs e)
+        { ShowFileContent(tBToolChangeScriptGet); }
+        private void Lbl4_Click(object sender, EventArgs e)
+        { ShowFileContent(tBToolChangeScriptProbe); }
 
-        private void showFileContent(TextBox tmp)
+        private static void ShowFileContent(TextBox tmp)
         {
             if (File.Exists(tmp.Text))
-            {   MessageBox.Show("Current directory: " + Directory.GetCurrentDirectory() + "\r\nFile: '" + tmp.Text+ "'\r\n\r\n" + File.ReadAllText(tmp.Text).Replace('\t',' '), "File content of " + tmp.Text);
+            {
+                MessageBox.Show("Current directory: " + Directory.GetCurrentDirectory() + "\r\nFile: '" + tmp.Text + "'\r\n\r\n" + File.ReadAllText(tmp.Text).Replace('\t', ' '), "File content of " + tmp.Text);
             }
             else
                 MessageBox.Show("Current directory: " + Directory.GetCurrentDirectory() + "\r\nFile: '" + tmp.Text + "' not found", "File content");
         }
 
-        private void btnShowScriptSub_Click(object sender, EventArgs e)
-        {  showFileContent(tBImportGCSubroutine);   }
+        private void BtnShowScriptSub_Click(object sender, EventArgs e)
+        { ShowFileContent(tBImportGCSubroutine); }
 
-        private void cBImportGCTool_CheckedChanged(object sender, EventArgs e)
+        private void CbImportGCTool_CheckedChanged(object sender, EventArgs e)
         {
-            highlight_PenOptions_Click(sender, e);
-            checkVisibility();
+            HighlightPenOptions_Click(sender, e);
+            CheckVisibility();
         }
 
-        private void highlight_PenOptions_Click(object sender, EventArgs e)
+        private void HighlightPenOptions_Click(object sender, EventArgs e)
         {
             if (cBImportSVGRepeat.Checked)
                 cBImportSVGRepeat.BackColor = Color.Yellow;
             else
                 cBImportSVGRepeat.BackColor = Color.Transparent;
 
-            if ( cBImportGraphicTile.Checked)
+            if (cBImportGraphicTile.Checked)
                 gBClipping.BackColor = Color.Yellow;
             else
                 gBClipping.BackColor = Color.WhiteSmoke;
 
             if (cBDashedLine1.Checked)
-            {   cBDashedLine1.BackColor = cBDashedLine2.BackColor = Color.Yellow; }
+            { cBDashedLine1.BackColor = cBDashedLine2.BackColor = Color.Yellow; }
             else
-            {   cBDashedLine1.BackColor = cBDashedLine2.BackColor = Color.Transparent; }
+            { cBDashedLine1.BackColor = cBDashedLine2.BackColor = Color.Transparent; }
 
             if (cBImportPenWidthToZ.Checked)
                 cBImportPenWidthToZ.BackColor = Color.Yellow;
@@ -848,7 +891,7 @@ namespace GRBL_Plotter
             else
             { tab1_2gB6.BackColor = cBImportGCUseIndividual2.BackColor = inactive; }
 
-            if(cBImportGCNoArcs.Checked)
+            if (cBImportGCNoArcs.Checked)
                 cBImportGCNoArcs.BackColor = Color.Yellow;
             else
                 cBImportGCNoArcs.BackColor = Color.Transparent;
@@ -859,12 +902,14 @@ namespace GRBL_Plotter
                 tab1_3gB2.BackColor = inactive;
 
             if (cBImportGCTangential.Checked)
-            {   tab1_3gB5.BackColor = Color.Yellow;
-				if (cBImportGCZIncEnable.Checked)
-				{	MessageBox.Show("Tangential axis doesn't work with Z-Axis 'Use several passes'.\r\nThis option will be disabled");
-					cBImportGCZIncEnable.Checked=false;
-				}
-			}
+            {
+                tab1_3gB5.BackColor = Color.Yellow;
+                if (cBImportGCZIncEnable.Checked)
+                {
+                    MessageBox.Show("Tangential axis doesn't work with Z-Axis 'Use several passes'.\r\nThis option will be disabled");
+                    cBImportGCZIncEnable.Checked = false;
+                }
+            }
             else
                 tab1_3gB5.BackColor = inactive;
 
@@ -873,7 +918,7 @@ namespace GRBL_Plotter
             else
                 gBHatchFill.BackColor = inactive;
 
-            if(cBimportGraphicAddFrameEnable.Checked)
+            if (cBimportGraphicAddFrameEnable.Checked)
                 gBPathAddOn1.BackColor = Color.Yellow;
             else
                 gBPathAddOn1.BackColor = inactive;
@@ -889,65 +934,66 @@ namespace GRBL_Plotter
                 gBPathAddOn3.BackColor = inactive;
         }
 
-        private void btnFileDialogTT1_Click(object sender, EventArgs e)
+        private void BtnFileDialogTT1_Click(object sender, EventArgs e)
         {
             Button clickedButton = sender as Button;
-//            MessageBox.Show(clickedButton.Name);
+            //            MessageBox.Show(clickedButton.Name);
             if (clickedButton.Name.IndexOf("TT1") > 0)
-                setFilePath(tBToolChangeScriptPut);
+                SetFilePath(tBToolChangeScriptPut);
             else if (clickedButton.Name.IndexOf("TT2") > 0)
-                setFilePath(tBToolChangeScriptSelect);
+                SetFilePath(tBToolChangeScriptSelect);
             else if (clickedButton.Name.IndexOf("TT3") > 0)
-                setFilePath(tBToolChangeScriptGet);
+                SetFilePath(tBToolChangeScriptGet);
             else if (clickedButton.Name.IndexOf("TT4") > 0)
-                setFilePath(tBToolChangeScriptProbe);
+                SetFilePath(tBToolChangeScriptProbe);
             else if (clickedButton.Name.IndexOf("SubR") > 0)
-                setFilePath(tBImportGCSubroutine);
+                SetFilePath(tBImportGCSubroutine);
         }
-        private void setFilePath(TextBox tmp)
-        { 
+        private void SetFilePath(TextBox tmp)
+        {
             OpenFileDialog opnDlg = new OpenFileDialog();
-            string ipath = makeAbsolutePath(tmp.Text);
-            opnDlg.InitialDirectory = ipath.Substring(0,ipath.LastIndexOf("\\"));
+            string ipath = MakeAbsolutePath(tmp.Text);
+            opnDlg.InitialDirectory = ipath.Substring(0, ipath.LastIndexOf("\\"));
             opnDlg.Filter = "GCode (*.nc)|*.nc|All Files (*.*)|*.*";
-//            MessageBox.Show(opnDlg.InitialDirectory+"\r\n"+ Application.StartupPath);
+            //            MessageBox.Show(opnDlg.InitialDirectory+"\r\n"+ Application.StartupPath);
             if (opnDlg.ShowDialog(this) == DialogResult.OK)
             {
                 FileInfo f = new FileInfo(opnDlg.FileName);
-                string path = "";
-                if (f.DirectoryName == Application.StartupPath)
+                string path;
+                if (f.DirectoryName == Datapath.AppDataFolder)
                     path = f.Name;  // only file name
-                else if (f.DirectoryName.StartsWith(Application.StartupPath))
-                    path = f.FullName.Replace(Application.StartupPath, ".");
+                else if (f.DirectoryName.StartsWith(Datapath.AppDataFolder))
+                    path = f.FullName.Replace(Datapath.AppDataFolder, ".");
                 else
                     path = f.FullName;  // Full path
                 if (path.StartsWith(@".\"))
                     path = path.Substring(2);
                 tmp.Text = path;
             }
+            opnDlg.Dispose();
         }
-        private static string makeAbsolutePath(string iFilename)
+        private static string MakeAbsolutePath(string iFilename)
         {
-            string iNewFilename = "";
-            if ((iFilename == "") || (!File.Exists(iFilename)))
-                iFilename = Application.StartupPath;
+            string iNewFilename;
+            if (string.IsNullOrEmpty(iFilename) || (!File.Exists(iFilename)))
+                iFilename = Datapath.AppDataFolder;
 
             // Get full name considering relative path
             FileInfo f = new FileInfo(iFilename);
 
-            if (iFilename == Application.StartupPath)
-                iNewFilename = Application.StartupPath;
-            else if (!(iFilename.StartsWith(".") || iFilename.StartsWith("\\")) && !f.DirectoryName.StartsWith(Application.StartupPath))  // File in child folder
-                iNewFilename = Application.StartupPath + "\\"
+            if (iFilename == Datapath.AppDataFolder)
+                iNewFilename = Datapath.AppDataFolder;
+            else if (!(iFilename.StartsWith(".") || iFilename.StartsWith("\\")) && !f.DirectoryName.StartsWith(Datapath.AppDataFolder))  // File in child folder
+                iNewFilename = Datapath.AppDataFolder + "\\"
                              + iFilename.Substring(1);  // leave period out of string
             else if (iFilename.StartsWith(".\\"))       // File in child folder
-                iNewFilename = Application.StartupPath
-                             + iFilename.Substring(1) ; // leave period out of string
+                iNewFilename = Datapath.AppDataFolder
+                             + iFilename.Substring(1); // leave period out of string
             else if (!iFilename.Contains("\\"))         // Consider file in StartupPath
-                iNewFilename = Application.StartupPath
-                             + "\\" + iFilename ;
+                iNewFilename = Datapath.AppDataFolder
+                             + "\\" + iFilename;
             else
-                iNewFilename = f.FullName ; // keep full path
+                iNewFilename = f.FullName; // keep full path
 
             return iNewFilename;
         }
@@ -962,18 +1008,20 @@ namespace GRBL_Plotter
             dGVToolList.Height = y - 64;
         }
 
-        private void tB_KeyPad_KeyDown(object sender, KeyEventArgs e)
+        private void TbKeyPad_KeyDown(object sender, KeyEventArgs e)
         {
             TextBox clickedTB = sender as TextBox;
             clickedTB.Text = e.KeyData.ToString();
             Clipboard.SetText(e.KeyData.ToString());
         }
 
-        private void listHotkeys()
-        {   tBHotkeyList.Clear();
-            string fileName = Application.StartupPath + datapath.hotkeys;
+        private void ListHotkeys()
+        {
+            tBHotkeyList.Clear();
+            string fileName = Datapath.Hotkeys;
             if (!File.Exists(fileName))
-            {   tBHotkeyList.Text = "File 'hotkeys.xml' not found, no hotkeys set!";
+            {
+                tBHotkeyList.Text = "File 'hotkeys.xml' not found, no hotkeys set!";
                 Logger.Error("File 'hotkeys.xml' not found in ", fileName);
                 return;
             }
@@ -981,68 +1029,73 @@ namespace GRBL_Plotter
             tBHotkeyList.Text = tmp;
             lblPathHotkeys.Text = fileName;
         }
-        private void btnOpenHotkeys_Click(object sender, EventArgs e)
-        {   Process.Start("notepad.exe", lblPathHotkeys.Text);  }
+        private void BtnOpenHotkeys_Click(object sender, EventArgs e)
+        { Process.Start("notepad.exe", lblPathHotkeys.Text); }
 
-        private void btnHotkeyRefresh_Click(object sender, EventArgs e)
-        {   listHotkeys(); }
+        private void BtnHotkeyRefresh_Click(object sender, EventArgs e)
+        { ListHotkeys(); }
 
-        private void btnMachineRangeGet_Click(object sender, EventArgs e)
-        {   if (grbl.getSetting(130) < 0)
-                MessageBox.Show("No information available - please connect grbl-controller","Attention!");
+        private void BtnMachineRangeGet_Click(object sender, EventArgs e)
+        {
+            if (Grbl.GetSetting(130) < 0)
+                MessageBox.Show("No information available - please connect grbl-controller", "Attention!");
             else
-            {   nUDMachineRangeX.Value = (decimal)grbl.getSetting(130);
-                nUDMachineRangeY.Value = (decimal)grbl.getSetting(131);
-                nUDMachineRangeZ.Value = (decimal)grbl.getSetting(132);
+            {
+                nUDMachineRangeX.Value = (decimal)Grbl.GetSetting(130);
+                nUDMachineRangeY.Value = (decimal)Grbl.GetSetting(131);
+                nUDMachineRangeZ.Value = (decimal)Grbl.GetSetting(132);
             }
         }
 
-        private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
-        {   lblJoystickSize.Text = hScrollBar1.Value.ToString();
+        private void HscrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+            lblJoystickSize.Text = hScrollBar1.Value.ToString();
         }
 
-        private void cBGPEnable_CheckedChanged(object sender, EventArgs e)
-        {   if (cBGPEnable.Checked)
+        private void CbGPEnable_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cBGPEnable.Checked)
             {
                 try { ControlGamePad.Initialize(); }
-                catch { }
+                catch { }// throw; }
             }
         }
 
-        private void cBsimulation_CheckedChanged(object sender, EventArgs e)
-        {   grbl.grblSimulate = cBsimulation.Checked;
-            grbl.axisA = true;
-            grbl.axisB = true;
-            grbl.axisC = true;
+        private void Cbsimulation_CheckedChanged(object sender, EventArgs e)
+        {
+            Grbl.grblSimulate = cBsimulation.Checked;
+            Grbl.axisA = true;
+            Grbl.axisB = true;
+            Grbl.axisC = true;
         }
 
-        private void cBoxPollInterval_SelectedIndexChanged(object sender, EventArgs e)
+        private void CboxPollInterval_SelectedIndexChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.grblPollIntervalIndex = cBoxPollInterval.SelectedIndex;
         }
 
-        private void btnCheckSpindle_Click(object sender, EventArgs e)
+        private void BtnCheckSpindle_Click(object sender, EventArgs e)
         {
-            if (grbl.getSetting(30) < 0)
+            if (Grbl.GetSetting(30) < 0)
                 MessageBox.Show("No information available - please connect grbl-controller", "Attention!");
             else
             {
                 string tmp = "";
-                tmp += string.Format("Current grbl Settings:\rMax spindle speed:\t$30={0}\rMin spindle speed:\t$31={1}\rLaser Mode:\t\t$32={2}", grbl.getSetting(30), grbl.getSetting(31), grbl.getSetting(32));
-                MessageBox.Show(tmp,"Information");
+                tmp += string.Format("Current grbl Settings:\rMax spindle speed:\t$30={0}\rMin spindle speed:\t$31={1}\rLaser Mode:\t\t$32={2}", Grbl.GetSetting(30), Grbl.GetSetting(31), Grbl.GetSetting(32));
+                MessageBox.Show(tmp, "Information");
             }
         }
 
-        private void rBImportSVGGroupItem0_CheckedChanged(object sender, EventArgs e)
+        private void RbImportSVGGroupItem0_CheckedChanged(object sender, EventArgs e)
         {
-            int group = Properties.Settings.Default.importGroupItem;
+            //   int group = Properties.Settings.Default.importGroupItem;
             if (rBImportSVGGroupItem1.Checked) Properties.Settings.Default.importGroupItem = 1;
             if (rBImportSVGGroupItem2.Checked) Properties.Settings.Default.importGroupItem = 2;
             if (rBImportSVGGroupItem3.Checked) Properties.Settings.Default.importGroupItem = 3;
             if (rBImportSVGGroupItem4.Checked) Properties.Settings.Default.importGroupItem = 4;
         }
 
-        private void rBImportSVGSort0_CheckedChanged(object sender, EventArgs e)
+        private void RbImportSVGSort0_CheckedChanged(object sender, EventArgs e)
         {
             if (rBImportSVGSort0.Checked)
                 Properties.Settings.Default.importGroupSort = 0;
@@ -1056,40 +1109,42 @@ namespace GRBL_Plotter
                 Properties.Settings.Default.importGroupSort = 4;
         }
 
-        private void dGVToolList_SelectionChanged(object sender, EventArgs e)
+        private void DgvToolList_SelectionChanged(object sender, EventArgs e)
         {
             bool enabled = (dGVToolList.SelectedRows.Count > 0);
             btnUp.Visible = enabled;
             btnDown.Visible = enabled;
         }
 
-        private void fillToolTableFileList(string Root)
+        private void FillToolTableFileList(string Root)
         {
-            List<string> FileArray = new List<string>();
+            //   List<string> FileArray = new List<string>();
             try
             {
                 string[] Files = System.IO.Directory.GetFiles(Root);
-                string[] Folders = System.IO.Directory.GetDirectories(Root);
+                //   string[] Folders = System.IO.Directory.GetDirectories(Root);
 
                 lbFiles.Items.Clear();
                 for (int i = 0; i < Files.Length; i++)
                 {
                     if (Files[i].ToLower().EndsWith("csv"))
-                    {   string name = Path.GetFileName(Files[i]);
-                        if (name != toolTable.defaultFileName)
+                    {
+                        string name = Path.GetFileName(Files[i]);
+                        if (name != ToolTable.DefaultFileName)
                             lbFiles.Items.Add(name);
                     }
                 }
             }
             catch //Exception Ex)
             {
+                // throw;
                 //throw (Ex);
             }
         }
 
 
 
-        private void cBToolLaser_CheckedChanged(object sender, EventArgs e)
+        private void CbToolLaser_CheckedChanged(object sender, EventArgs e)
         {
             bool enabled = !cBToolLaser.Checked;
             tab2gB2lbl1.Visible = enabled;
@@ -1110,40 +1165,44 @@ namespace GRBL_Plotter
             dGVToolList.Columns[13].Visible = enabled;
         }
 
-        private void cBImportSVGGroup_CheckedChanged(object sender, EventArgs e)
-        {   bool enable = cBImportSVGGroup.Checked;
+        private void CbImportSVGGroup_CheckedChanged(object sender, EventArgs e)
+        {
+            bool enable = cBImportSVGGroup.Checked;
             tab1_1_4gB2.Enabled = enable;
             tab1_1_4gB3.Enabled = enable;
         }
 
-        private void cBToolTableUse_CheckedChanged(object sender, EventArgs e)
-        {   bool enable = cBToolTableUse.Checked;
+        private void CbToolTableUse_CheckedChanged(object sender, EventArgs e)
+        {
+            bool enable = cBToolTableUse.Checked;
             cBImportGCTTSSpeed.Enabled = enable;
             cBImportGCTTXYFeed.Enabled = enable;
             cBImportGCTTZAxis.Enabled = (enable && cBImportGCUseZ.Checked);
-            checkVisibility();
+            CheckVisibility();
             if (cBToolTableUse.Checked)
                 tab1_1gB5.BackColor = Color.Yellow;
             else
                 tab1_1gB5.BackColor = Color.WhiteSmoke;
         }
 
-        private void cBImportSVGResize_CheckedChanged(object sender, EventArgs e)
-        {   bool enable = cBImportSVGResize.Checked;
+        private void CbImportSVGResize_CheckedChanged(object sender, EventArgs e)
+        {
+            bool enable = cBImportSVGResize.Checked;
             nUDSVGScale.Enabled = enable;
             lblSVGScale.Enabled = enable;
         }
 
-        private void checkVisibility()
-        {   bool optionUseZ = cBImportGCUseZ.Checked;
-            bool optionUseTTVal = cBToolTableUse.Checked;
+        private void CheckVisibility()
+        {
+            bool optionUseZ = cBImportGCUseZ.Checked;
+            //   bool optionUseTTVal = cBToolTableUse.Checked;
 
             bool enable = cBToolTableUse.Checked;
             cBImportGCTTSSpeed.Enabled = enable;
             cBImportGCTTXYFeed.Enabled = enable;
-     //       cBImportGCTTZDeepth.Enabled = (enable && cBImportGCUseZ.Checked);
+            //       cBImportGCTTZDeepth.Enabled = (enable && cBImportGCUseZ.Checked);
             cBImportGCTTZAxis.Enabled = (enable && cBImportGCUseZ.Checked);
-     //       cBImportGCTTZIncrement.Enabled = (enable && cBImportGCUseZ.Checked && cBImportGCZIncEnable.Checked);
+            //       cBImportGCTTZIncrement.Enabled = (enable && cBImportGCUseZ.Checked && cBImportGCZIncEnable.Checked);
             cBToolTableDefault.Enabled = enable;
             numericUpDown2.Enabled = cBToolTableDefault.Checked && enable;
 
@@ -1155,9 +1214,9 @@ namespace GRBL_Plotter
             nUDImportGCZUp.Enabled = (optionUseZ && !(cBImportGCTTZAxis.Checked && cBImportGCTTZAxis.Enabled));
             nUDImportGCZDown.Enabled = (optionUseZ && !(cBImportGCTTZAxis.Checked && cBImportGCTTZAxis.Enabled));
             cBImportGCZIncEnable.Enabled = optionUseZ;
-//			if (cBImportGCTangential.Checked)
-//			{	cBImportGCZIncEnable.Enabled = false; cBImportGCZIncEnable.Checked=false; }
-            tab1_2lbl35.Enabled = (optionUseZ && cBImportGCZIncEnable.Checked );
+            //			if (cBImportGCTangential.Checked)
+            //			{	cBImportGCZIncEnable.Enabled = false; cBImportGCZIncEnable.Checked=false; }
+            tab1_2lbl35.Enabled = (optionUseZ && cBImportGCZIncEnable.Checked);
             cBImportGCZIncStartZero.Enabled = (optionUseZ && cBImportGCZIncEnable.Checked);
             nUDImportGCZIncrement.Enabled = (optionUseZ && !(cBImportGCTTZAxis.Checked && cBImportGCTTZAxis.Enabled) && cBImportGCZIncEnable.Checked);
 
@@ -1165,8 +1224,9 @@ namespace GRBL_Plotter
             nUDImportGCSSpeed.Enabled = !(cBImportGCTTSSpeed.Checked && cBImportGCTTSSpeed.Enabled);
         }
 
-        private void cBImportGCUsePWM_CheckedChanged(object sender, EventArgs e)
-        {   bool enable = cBImportGCUsePWM.Checked;
+        private void CbImportGCUsePWM_CheckedChanged(object sender, EventArgs e)
+        {
+            bool enable = cBImportGCUsePWM.Checked;
             //tab1_2lbl41.Enabled = enable;
             //tab1_2lbl42.Enabled = enable;
             //tab1_2lbl43.Enabled = enable;
@@ -1181,19 +1241,20 @@ namespace GRBL_Plotter
             btnGCPWMDown.Enabled = enable;
             cBImportGCPWMSkipM30.Enabled = enable;
             cBImportGCPWMSendCode.Enabled = enable;
-            highlight_PenOptions_Click(sender, e);
+            HighlightPenOptions_Click(sender, e);
         }
 
-        private void cBImportGCUseIndividual_CheckedChanged(object sender, EventArgs e)
-        {   bool enable = cBImportGCUseIndividual.Checked;
+        private void CbImportGCUseIndividual_CheckedChanged(object sender, EventArgs e)
+        {
+            bool enable = cBImportGCUseIndividual.Checked;
             tab1_2lbl61.Enabled = enable;
             tab1_2lbl62.Enabled = enable;
             tBImportGCIPU.Enabled = enable;
             tBImportGCIPD.Enabled = enable;
-            highlight_PenOptions_Click(sender, e);
+            HighlightPenOptions_Click(sender, e);
         }
 
-        private void cBImportGCDragKnife_CheckedChanged(object sender, EventArgs e)
+        private void CbImportGCDragKnife_CheckedChanged(object sender, EventArgs e)
         {
             bool enable = cBImportGCDragKnife.Checked;
             nUDImportGCDragKnifeLength.Enabled = enable;
@@ -1202,10 +1263,10 @@ namespace GRBL_Plotter
             cBImportGCDragKnifePercent.Enabled = enable;
             lblDrag1.Enabled = enable;
             lblDrag2.Enabled = enable;
-			highlight_PenOptions_Click(sender, e); 
+            HighlightPenOptions_Click(sender, e);
         }
 
-        private void cBImportGCLineSegments_CheckedChanged(object sender, EventArgs e)
+        private void CbImportGCLineSegments_CheckedChanged(object sender, EventArgs e)
         {
             bool enable = cBImportGCLineSegments.Checked;
             nUDImportGCLineSegment.Enabled = enable;
@@ -1217,19 +1278,19 @@ namespace GRBL_Plotter
             tBImportGCSubroutine.Enabled = enable;
         }
 
-        private void cBImportGCNoArcs_CheckedChanged(object sender, EventArgs e)
+        private void CbImportGCNoArcs_CheckedChanged(object sender, EventArgs e)
         {
-//            nUDImportGCSegment.Enabled = cBImportGCNoArcs.Checked;
-            highlight_PenOptions_Click(sender, e);
+            //            nUDImportGCSegment.Enabled = cBImportGCNoArcs.Checked;
+            HighlightPenOptions_Click(sender, e);
         }
 
-        private void fillUseCaseFileList(string Root)
+        private void FillUseCaseFileList(string Root)
         {
-            List<string> FileArray = new List<string>();
+            //  List<string> FileArray = new List<string>();
             try
             {
                 string[] Files = System.IO.Directory.GetFiles(Root);
-                string[] Folders = System.IO.Directory.GetDirectories(Root);
+                //     string[] Folders = System.IO.Directory.GetDirectories(Root);
 
                 lBUseCase.Items.Clear();
                 for (int i = 0; i < Files.Length; i++)
@@ -1240,72 +1301,81 @@ namespace GRBL_Plotter
             }
             catch //(Exception Ex)
             {
+                //throw;
                 //throw (Ex);
             }
         }
 
-        
-        private void btnLoadUseCase_Click(object sender, EventArgs e)
+
+        private void BtnLoadUseCase_Click(object sender, EventArgs e)
         {
-            if (lBUseCase.Text != "")
-            {   string path = Application.StartupPath + datapath.usecases + "\\" + lBUseCase.Text;
+            if (!string.IsNullOrEmpty(lBUseCase.Text))
+            {
+                string path = Datapath.Usecases + "\\" + lBUseCase.Text;
                 var MyIni = new IniFile(path);
                 Logger.Trace("Load Use Case   {0}", path);
 
                 MyIni.ReadAll();   // ReadImport();
-                fillUseCaseFileList(Application.StartupPath + datapath.usecases );
+                FillUseCaseFileList(Datapath.Usecases);
                 Properties.Settings.Default.useCaseLastLoaded = lBUseCase.Text;
                 lblLastUseCase.Text = lBUseCase.Text;
 
-                dGVToolList.CellEndEdit -= new DataGridViewCellEventHandler(dGVToolList_CellLeave);
-                dGVToolList.CellLeave   -= new DataGridViewCellEventHandler(dGVToolList_CellLeave);
+                dGVToolList.CellEndEdit -= new DataGridViewCellEventHandler(DgvToolList_CellLeave);
+                dGVToolList.CellLeave -= new DataGridViewCellEventHandler(DgvToolList_CellLeave);
                 ImportCSVToDgv(defaultToolList);
-                dGVToolList.CellEndEdit += new DataGridViewCellEventHandler(dGVToolList_CellLeave);
-                dGVToolList.CellLeave   += new DataGridViewCellEventHandler(dGVToolList_CellLeave);
+                dGVToolList.CellEndEdit += new DataGridViewCellEventHandler(DgvToolList_CellLeave);
+                dGVToolList.CellLeave += new DataGridViewCellEventHandler(DgvToolList_CellLeave);
 
                 lblToolListLoaded.Text = Properties.Settings.Default.toolTableLastLoaded;
                 if (Properties.Settings.Default.toolTableOriginal)
-                {   lblToolListChanged.Text = "orginal";
+                {
+                    lblToolListChanged.Text = "orginal";
                     lblToolListChanged.BackColor = Color.Transparent;
                 }
             }
         }
 
-        private void btnUseCaseSave_Click(object sender, EventArgs e)
+        private void BtnUseCaseSave_Click(object sender, EventArgs e)
         {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.InitialDirectory = Application.StartupPath + datapath.usecases;
-            sfd.Filter = "Use cases (*.ini)|*.ini";
-            sfd.FileName = "new_use_case.ini";
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                InitialDirectory = Datapath.Usecases,
+                Filter = "Use cases (*.ini)|*.ini",
+                FileName = "new_use_case.ini"
+            };
+            sfd.Dispose();
             if (sfd.ShowDialog() == DialogResult.OK)
-            {   if (File.Exists(sfd.FileName))
+            {
+                if (File.Exists(sfd.FileName))
                     File.Delete(sfd.FileName);
                 var MyIni = new IniFile(sfd.FileName);
                 MyIni.WriteImport();
             }
-            fillUseCaseFileList(Application.StartupPath + datapath.usecases);
+            FillUseCaseFileList(Datapath.Usecases);
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
-        {   File.Delete(Application.StartupPath + datapath.usecases + "\\" + lBUseCase.Text);
-            fillUseCaseFileList(Application.StartupPath + datapath.usecases);
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            File.Delete(Datapath.Usecases + "\\" + lBUseCase.Text);
+            FillUseCaseFileList(Datapath.Usecases);
         }
 
-        private void lBUseCase_SelectedIndexChanged(object sender, EventArgs e)
-        {   string path = Application.StartupPath + datapath.usecases + "\\" + lBUseCase.Text;
+        private void LbUseCase_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string path = Datapath.Usecases + "\\" + lBUseCase.Text;
             var MyIni = new IniFile(path);
             tBUseCaseSetting2.Text = MyIni.ReadUseCaseInfo();
-            tBUseCaseSetting1.Text = MyIni.showIniSettings(); ;
+            tBUseCaseSetting1.Text = MyIni.ShowIniSettings(); ;
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             bool show = (tabControl_Level1.SelectedIndex == 0);
             btnReloadFile.Visible = show;
             cBshowImportDialog.Visible = show;
         }
 
-        private void cBImportGCTangential_CheckStateChanged(object sender, EventArgs e)
+        private void CbImportGCTangential_CheckStateChanged(object sender, EventArgs e)
         {
             bool enable = cBImportGCTangential.Checked;
             lblDImportGCTangential1.Enabled = enable;
@@ -1318,15 +1388,17 @@ namespace GRBL_Plotter
             nUDImportGCTangentialUnits.Enabled = enable;
             cBImportGCTangentialRange.Enabled = enable;
             if (cBImportGCTangentialRange.Checked && enable)
-            {   cBImportGCNoArcs.Checked = true;   }
-            highlight_PenOptions_Click(sender, e); }
-
-        private void cBImportGCTangentialRange_CheckStateChanged(object sender, EventArgs e)
-        {   if (cBImportGCTangentialRange.Checked)
-            {   cBImportGCNoArcs.Checked = true;   }
-            highlight_PenOptions_Click(sender, e);
+            { cBImportGCNoArcs.Checked = true; }
+            HighlightPenOptions_Click(sender, e);
         }
-        private void cBImportGraphicHatchFill_CheckStateChanged(object sender, EventArgs e)
+
+        private void CbImportGCTangentialRange_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (cBImportGCTangentialRange.Checked)
+            { cBImportGCNoArcs.Checked = true; }
+            HighlightPenOptions_Click(sender, e);
+        }
+        private void CbImportGraphicHatchFill_CheckStateChanged(object sender, EventArgs e)
         {
             bool enable = cBImportGraphicHatchFill.Checked;
             lblHatchFill1.Enabled = enable;
@@ -1341,33 +1413,33 @@ namespace GRBL_Plotter
 
             if (enable)
             { cBImportGCNoArcs.Checked = true; }
-            highlight_PenOptions_Click(sender, e);
+            HighlightPenOptions_Click(sender, e);
         }
 
-        private void cBLog1_CheckedChanged(object sender, EventArgs e)
+        private void CbLog1_CheckedChanged(object sender, EventArgs e)
         {
             uint val = 0;
-            val += cBLogLevel1.Checked ? (uint)LogEnable.Level1 : 0;
-            val += cBLogLevel2.Checked ? (uint)LogEnable.Level2 : 0;
-            val += cBLogLevel3.Checked ? (uint)LogEnable.Level3 : 0;
-            val += cBLogLevel4.Checked ? (uint)LogEnable.Level4 : 0;
-            val += cBLog0.Checked ? (uint)LogEnable.Detailed : 0;
-            val += cBLog1.Checked ? (uint)LogEnable.Coordinates : 0;
-            val += cBLog2.Checked ? (uint)LogEnable.Properties : 0;
-            val += cBLog3.Checked ? (uint)LogEnable.Sort : 0;
-            val += cBLog4.Checked ? (uint)LogEnable.GroupAllGraphics : 0;
-            val += cBLog5.Checked ? (uint)LogEnable.ClipCode : 0;
-            val += cBLog6.Checked ? (uint)LogEnable.PathModification : 0;
+            val += cBLogLevel1.Checked ? (uint)LogEnables.Level1 : 0;
+            val += cBLogLevel2.Checked ? (uint)LogEnables.Level2 : 0;
+            val += cBLogLevel3.Checked ? (uint)LogEnables.Level3 : 0;
+            val += cBLogLevel4.Checked ? (uint)LogEnables.Level4 : 0;
+            val += cBLog0.Checked ? (uint)LogEnables.Detailed : 0;
+            val += cBLog1.Checked ? (uint)LogEnables.Coordinates : 0;
+            val += cBLog2.Checked ? (uint)LogEnables.Properties : 0;
+            val += cBLog3.Checked ? (uint)LogEnables.Sort : 0;
+            val += cBLog4.Checked ? (uint)LogEnables.GroupAllGraphics : 0;
+            val += cBLog5.Checked ? (uint)LogEnables.ClipCode : 0;
+            val += cBLog6.Checked ? (uint)LogEnables.PathModification : 0;
 
             Properties.Settings.Default.importLoggerSettings = val;
         }
 
-        private void cBExtendedLogging_CheckStateChanged(object sender, EventArgs e)
+        private void CbExtendedLogging_CheckStateChanged(object sender, EventArgs e)
         {
             gBLoggingOptions.Visible = cBExtendedLogging.Checked;
         }
 
-        private void cBImportGraphicTile_CheckedChanged(object sender, EventArgs e)
+        private void CbImportGraphicTile_CheckedChanged(object sender, EventArgs e)
         {
             if (cBImportGraphicTile.Checked)
                 gBClipping.BackColor = Color.Yellow;
@@ -1375,7 +1447,7 @@ namespace GRBL_Plotter
                 gBClipping.BackColor = Color.WhiteSmoke;
         }
 
-        private void cBPathOverlapEnable_CheckStateChanged(object sender, EventArgs e)
+        private void CbPathOverlapEnable_CheckStateChanged(object sender, EventArgs e)
         {
             bool enable = cBPathOverlapEnable.Checked;
             nUDPathOverlapValue.Enabled = enable;
@@ -1386,74 +1458,83 @@ namespace GRBL_Plotter
 
         }
 
-        private void btnReloadSettings_Click(object sender, EventArgs e)
-        {	settingsReloaded = true;
+        private void BtnReloadSettings_Click(object sender, EventArgs e)
+        {
+            settingsReloaded = true;
             Logger.Info("+++++ Set default settings +++++");
             Properties.Settings.Default.ctrlUpgradeRequired = false;
             Properties.Settings.Default.Reset();
             SetupForm_Load(sender, e);
             btnApplyChangings.PerformClick();
-            saveSettings();
+            SaveSettings();
         }
 
-        private void lblEnableLogging_Click(object sender, EventArgs e)
-        {   groupBox3.Visible = true;    }
+        private void LblEnableLogging_Click(object sender, EventArgs e)
+        { groupBox3.Visible = true; }
 
-        private void checkZEngraveExceed()
-        {   lblImportPenWidthToZWarning.Visible = (nUDImportGCZDown.Value > Math.Min(nUDImportPenWidthToZMax.Value, nUDImportPenWidthToZMin.Value));    }
+        private void CheckZEngraveExceed()
+        { lblImportPenWidthToZWarning.Visible = (nUDImportGCZDown.Value > Math.Min(nUDImportPenWidthToZMax.Value, nUDImportPenWidthToZMin.Value)); }
 
-        private void nUDImportPenWidthToZMin_ValueChanged(object sender, EventArgs e)
+        private void NudImportPenWidthToZMin_ValueChanged(object sender, EventArgs e)
         {
-            checkZEngraveExceed();
+            CheckZEngraveExceed();
         }
 
-        private void btn_notifierMail_Test_Click(object sender, EventArgs e)
+        private void BtnNotifierMail_Test_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Notifier.sendMail("Mail sent via GRBL-Plotter [Setup - Program behavior - Notifier] at "+ DateTime.Now.ToString("yyyy-dd-MM h:mm:ss")));    // in Notifier.cs
+            MessageBox.Show(Notifier.SendMail("Mail sent via GRBL-Plotter [Setup - Program behavior - Notifier] at " + DateTime.Now.ToString("yyyy-dd-MM h:mm:ss"), "Email"));    // in Notifier.cs
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Notifier.pushBullet("Note sent via GRBL-Plotter [Setup - Program behavior - Notifier] at " + DateTime.Now.ToString("yyyy-dd-MM h:mm:ss")));    // in Notifier.cs
+            if (tbNotifierPBToken.Text.Length > 5)
+                MessageBox.Show(Notifier.PushBullet("Note sent via GRBL-Plotter [Setup - Program behavior - Notifier] at " + DateTime.Now.ToString("yyyy-dd-MM h:mm:ss"), "Pushbullet"));    // in Notifier.cs
+            else
+                MessageBox.Show("Please enter a valid API access token");
         }
 
-        private void nUDImportGCPWMUp_ValueChanged(object sender, EventArgs e)      // send PWM Pen up code
-        {   btnGCPWMUp.PerformClick();   }
-        private void nUDImportGCPWMDown_ValueChanged(object sender, EventArgs e)    // send PWM Pen up code
-        {   btnGCPWMDown.PerformClick(); }
-        private void nUDImportGCPWMZero_ValueChanged(object sender, EventArgs e)
-        {   btnGCPWMZero.PerformClick(); }
-        private void nUDImportGCPWMP93_ValueChanged(object sender, EventArgs e)
-        {   if (cBImportGCUsePWM.Enabled && cBImportGCPWMSendCode.Checked)
+        private void NudImportGCPWMUp_ValueChanged(object sender, EventArgs e)      // send PWM Pen up code
+        { btnGCPWMUp.PerformClick(); }
+        private void NudImportGCPWMDown_ValueChanged(object sender, EventArgs e)    // send PWM Pen up code
+        { btnGCPWMDown.PerformClick(); }
+        private void NudImportGCPWMZero_ValueChanged(object sender, EventArgs e)
+        { btnGCPWMZero.PerformClick(); }
+        private void NudImportGCPWMP93_ValueChanged(object sender, EventArgs e)
+        {
+            if (cBImportGCUsePWM.Enabled && cBImportGCPWMSendCode.Checked)
             { commandToSend = String.Format("M{0} S{1}\r\n", "3", nUDImportGCPWMP93.Value); }
         }
-        private void nUDImportGCPWMP94_ValueChanged(object sender, EventArgs e)
-        {   if (cBImportGCUsePWM.Enabled && cBImportGCPWMSendCode.Checked)
+        private void NudImportGCPWMP94_ValueChanged(object sender, EventArgs e)
+        {
+            if (cBImportGCUsePWM.Enabled && cBImportGCPWMSendCode.Checked)
             { commandToSend = String.Format("M{0} S{1}\r\n", "3", nUDImportGCPWMP94.Value); }
         }
 
         // Event handler must be assigned in GRBL-Plotter\GUI\MainForm.cs\MainFormOtherForms.cs - (483, 29) : _setup_form.btnGCPWMDown.Click += moveToPickup;
-        private void btnGCPWMUp_Click(object sender, EventArgs e)
-        {   setZeroMinMax();
+        private void BtnGCPWMUp_Click(object sender, EventArgs e)
+        {
+            SetZeroMinMax();
             if (cBImportGCUsePWM.Enabled && cBImportGCPWMSendCode.Checked)
             { commandToSend = String.Format("M{0} S{1}\r\n", "3", nUDImportGCPWMUp.Value); }
         }
-        private void btnGCPWMDown_Click(object sender, EventArgs e)
-        {   setZeroMinMax();
+        private void BtnGCPWMDown_Click(object sender, EventArgs e)
+        {
+            SetZeroMinMax();
             if (cBImportGCUsePWM.Enabled && cBImportGCPWMSendCode.Checked)
             { commandToSend = String.Format("M{0} S{1}\r\n", "3", nUDImportGCPWMDown.Value); }
         }
-        private void btnGCPWMZero_Click(object sender, EventArgs e)
-        {   if (cBImportGCUsePWM.Enabled && cBImportGCPWMSendCode.Checked)
+        private void BtnGCPWMZero_Click(object sender, EventArgs e)
+        {
+            if (cBImportGCUsePWM.Enabled && cBImportGCPWMSendCode.Checked)
             { commandToSend = String.Format("M{0} S{1}\r\n", "3", nUDImportGCPWMZero.Value); }
         }
-        private void setZeroMinMax()
+        private void SetZeroMinMax()
         {   //nUDImportGCPWMZero.Value = (nUDImportGCPWMUp.Value + nUDImportGCPWMDown.Value) / 2;
             nUDImportGCPWMZero.Maximum = Math.Max(nUDImportGCPWMUp.Value, nUDImportGCPWMDown.Value);
             nUDImportGCPWMZero.Minimum = Math.Min(nUDImportGCPWMUp.Value, nUDImportGCPWMDown.Value);
         }
 
-        private void cBImportGCPWMSendCode_CheckedChanged(object sender, EventArgs e)
+        private void CbImportGCPWMSendCode_CheckedChanged(object sender, EventArgs e)
         {
             Color tmpColor = Control.DefaultBackColor; //SystemColors.Window;
             if (cBImportGCPWMSendCode.Checked)
@@ -1469,11 +1550,11 @@ namespace GRBL_Plotter
             cBImportGCPWMSendCode.BackColor = tmpColor;
         }
 
-        private void lblInfoPWM_Click(object sender, EventArgs e)
-        {   MessageBox.Show(toolTip1.GetToolTip(lblInfoPWM),"Info"); }
+        private void LblInfoPWM_Click(object sender, EventArgs e)
+        { MessageBox.Show(toolTip1.GetToolTip(lblInfoPWM), "Info"); }
 
         private int PWMIncValue = 1;
-        private void btnPWMInc_Click(object sender, EventArgs e)
+        private void BtnPWMInc_Click(object sender, EventArgs e)
         {
             if (PWMIncValue <= 1)
             { PWMIncValue = 10; }
@@ -1482,10 +1563,10 @@ namespace GRBL_Plotter
             else if (PWMIncValue >= 100)
             { PWMIncValue = 1; }
             btnPWMInc.Text = "Inc. " + PWMIncValue.ToString();
-            setPWMIncValues(PWMIncValue);
+            SetPWMIncValues(PWMIncValue);
             Properties.Settings.Default.setupPWMIncrement = PWMIncValue;
         }
-        private void setPWMIncValues(int inc)
+        private void SetPWMIncValues(int inc)
         {
             nUDImportGCPWMUp.Increment = inc;
             nUDImportGCPWMZero.Increment = inc;
@@ -1493,7 +1574,7 @@ namespace GRBL_Plotter
         }
 
         private bool pwmAdvanced = false;
-        private void btnPWMAdvanced_Click(object sender, EventArgs e)
+        private void BtnPWMAdvanced_Click(object sender, EventArgs e)
         {
             pwmAdvanced = !pwmAdvanced;
             lblPWMP91.Visible = lblPWMP93.Visible = lblPWMP94.Visible = pwmAdvanced;

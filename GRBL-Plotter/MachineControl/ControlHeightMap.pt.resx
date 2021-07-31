@@ -137,7 +137,7 @@
     <comment>ToolTip</comment>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Digitalização de superfície</value>
+    <value>Varredura de superfície</value>
   </data>
   <data name="btnStartHeightScan.Text" xml:space="preserve">
     <value>Gerar mapa de altura</value>
@@ -264,5 +264,45 @@
   <data name="gB_Manipulation.Text" xml:space="preserve">
     <value>Manipulação</value>
     <comment>GroupBox</comment>
+  </data>
+  <data name="saveMapAsOBJToolStripMenuItem.Text" xml:space="preserve">
+    <value>Salvar mapa como OBJ</value>
+  </data>
+  <data name="lblInfo.Text" xml:space="preserve">
+    <value>Informações</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Área para escanear</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Taxa de alimentação XY</value>
+  </data>
+  <data name="CbUseG1.Text" xml:space="preserve">
+    <value>Use G1 para movimento XY (senão G0)</value>
+  </data>
+  <data name="RbProbingDiy.Text" xml:space="preserve">
+    <value>Do DIY-Control</value>
+  </data>
+  <data name="LblConnected.Text" xml:space="preserve">
+    <value>Controle DIY não conectado</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Usa o valor Z "(PRB: Zxxx)" recebido pela última vez do DIY-Control como informação de profundidade.
+(xxx = valor Z)</value>
+  </data>
+  <data name="RbProbingZ.Text" xml:space="preserve">
+    <value>Usando o eixo Z (G38.3Z)</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Sondagem, selecione a fonte para o valor Z</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Sondagem</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Manipulação de resultados</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Saída</value>
   </data>
 </root>

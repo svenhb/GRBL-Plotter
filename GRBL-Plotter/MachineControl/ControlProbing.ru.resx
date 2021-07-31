@@ -273,7 +273,7 @@ Z up = Z начало + Z зондирование
     <value>Угол коррекции будет рассчитываться по вертикали (зондирование Х) или горизонтальному краю (зондирование Y) заготовки</value>
   </data>
   <data name="label20.Text" xml:space="preserve">
-    <value>Измеренный угол коррекции:</value>
+    <value>Измеренный угол коррекции</value>
   </data>
   <data name="btnSaveTL.Text" xml:space="preserve">
     <value>Переведите Z в безопасное положение</value>

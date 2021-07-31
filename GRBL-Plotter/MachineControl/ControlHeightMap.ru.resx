@@ -243,7 +243,7 @@
     <comment>GroupBox</comment>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Читать профиль высоты</value>
+    <value>Сканирование поверхности</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Размер сетки X и Y</value>
@@ -264,5 +264,71 @@
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Скорость зондирования Z</value>
+  </data>
+  <data name="saveMapAsOBJToolStripMenuItem.Text" xml:space="preserve">
+    <value>Сохранить как OBJ</value>
+  </data>
+  <data name="BtnMoveUR.Text" xml:space="preserve">
+    <value>Перейти к 🡵</value>
+  </data>
+  <data name="BtnMoveLL.Text" xml:space="preserve">
+    <value>Перейти к 🡷</value>
+  </data>
+  <data name="btnOffset.Text" xml:space="preserve">
+    <value>установить макс. значение = 0,0</value>
+    <comment>Button</comment>
+  </data>
+  <data name="lblProgress.Text" xml:space="preserve">
+    <value>Законченный</value>
+  </data>
+  <data name="lblMin.Text" xml:space="preserve">
+    <value>мин</value>
+  </data>
+  <data name="lblMax.Text" xml:space="preserve">
+    <value>Максимум</value>
+  </data>
+  <data name="lblMid.Text" xml:space="preserve">
+    <value>середина</value>
+  </data>
+  <data name="btnOffsetZ.Text" xml:space="preserve">
+    <value>Смещение Z</value>
+    <comment>Button</comment>
+  </data>
+  <data name="lblInfo.Text" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Область для сканирования</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>XY скорость подачи</value>
+  </data>
+  <data name="CbUseG1.Text" xml:space="preserve">
+    <value>Используйте G1 для перемещения XY (иначе G0)</value>
+  </data>
+  <data name="RbProbingDiy.Text" xml:space="preserve">
+    <value>От DIY-Control</value>
+  </data>
+  <data name="LblConnected.Text" xml:space="preserve">
+    <value>DIY Control не подключен</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Использует последнее полученное значение Z "(PRB: Zxxx)" от DIY-Control в качестве информации о глубине.
+(xxx = значение Z)</value>
+  </data>
+  <data name="RbProbingZ.Text" xml:space="preserve">
+    <value>Использование оси Z (G38.3Z)</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Зондирование, выберите источник для значения Z</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Зондирование</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Манипуляция результатом</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Выход</value>
   </data>
 </root>

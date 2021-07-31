@@ -16,59 +16,58 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-/*  2021-01-13 First version
- *  2021-01-23 Bug fix create jog path - wrong size
- *
+/* 2021-01-13 First version
+ * 2021-01-23 Bug fix create jog path - wrong size
+ * 2021-07-26 code clean up / code quality
  */
- 
+
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace GRBL_Plotter
+//#pragma warning disable CA1303	// Do not pass literals as localized parameters
+//#pragma warning disable CA1305
+
+namespace GrblPlotter
 {
     public partial class ControlJogPathCreator : Form
     {
-        private GraphicsPath grid = new GraphicsPath();
-        private GraphicsPath ruler = new GraphicsPath();
-        private GraphicsPath actualLine = new GraphicsPath();
-        private GraphicsPath rubberBand = new GraphicsPath();
-        private GraphicsPath jogPath = new GraphicsPath();
-        private GraphicsPath startIcon = new GraphicsPath();
-        private Pen penGrid = new Pen(Color.LightGray, 0.1F);
-        private Pen penRuler = new Pen(Color.Blue, 0.1F);
-        private Pen penActualLine = new Pen(Color.Red, 0.2F);
-        private Pen penRubberBand = new Pen(Color.Red, 0.1F);
-        private Pen penjogPath = new Pen(Color.Black, 0.2F);
-        private Pen penStartIcon = new Pen(Color.Blue, 0.2F);
+        private readonly GraphicsPath grid = new GraphicsPath();
+        private readonly GraphicsPath ruler = new GraphicsPath();
+        private readonly GraphicsPath actualLine = new GraphicsPath();
+        private readonly GraphicsPath rubberBand = new GraphicsPath();
+        private readonly GraphicsPath jogPath = new GraphicsPath();
+        private readonly GraphicsPath startIcon = new GraphicsPath();
+        private readonly Pen penGrid = new Pen(Color.LightGray, 0.1F);
+        private readonly Pen penRuler = new Pen(Color.Blue, 0.1F);
+        private readonly Pen penActualLine = new Pen(Color.Red, 0.2F);
+        private readonly Pen penRubberBand = new Pen(Color.Red, 0.1F);
+        private readonly Pen penjogPath = new Pen(Color.Black, 0.2F);
+        private readonly Pen penStartIcon = new Pen(Color.Blue, 0.2F);
 
         private PointF posMoveStart, posMoveTmp, posMoveEnd, lastSet;
         private PointF moveTranslation = new PointF(0, 0);
         private PointF moveTranslationOld = new PointF(0, 0);
-        private PointF moveTranslationStart = new PointF(0, 0);
+        //     private PointF moveTranslationStart = new PointF(0, 0);
         private PointF picAbsPos = new PointF(0, 0);
 
-        private drawingProperties drawingSize = new drawingProperties();
-        private Matrix pBoxTransform = new Matrix();
+        private DrawingProperties drawingSize = new DrawingProperties();
+        private readonly Matrix pBoxTransform = new Matrix();
         private Matrix pBoxOrig = new Matrix();			// to restore e.Graphics.Transform
-        private float scrollZoomFactor = 1.2f; // zoom factor   
+        private readonly float scrollZoomFactor = 1.2f; // zoom factor   
         private float zoomFactor = 1f;
 
         private bool showDimension = false;
 
         private string joggcode = "";
-        public string jogGCode
+        public string JogGCode
         { get { return joggcode; } }
-        private static StringBuilder gcodeString = new StringBuilder();
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -84,59 +83,62 @@ namespace GRBL_Plotter
             this.Icon = Properties.Resources.Icon;
             penjogPath.StartCap = LineCap.Round;
             penjogPath.EndCap = LineCap.Triangle;
-            drawingSize.setX(-10, 100);
-            drawingSize.setY(-10, 100);
+            drawingSize.SetX(-10, 100);
+            drawingSize.SetY(-10, 100);
             jogPath.StartFigure();
-            jogPath.AddLine(10,10,10,30);
-            jogPath.AddLine(10,30,30,30);
-            jogPath.AddLine(30,30,30,10);
+            jogPath.AddLine(10, 10, 10, 30);
+            jogPath.AddLine(10, 30, 30, 30);
+            jogPath.AddLine(30, 30, 30, 10);
             jogPath.AddLine(30, 10, 10, 10);
             lastSet = new PointF(10, 10);
 
-            VisuGCode.createRuler(ruler, drawingSize);
-            createGrid(grid, drawingSize, (float)nUDRaster.Value);            
+            VisuGCode.CreateRuler(ruler, drawingSize);
+            CreateGrid(grid, drawingSize, (float)nUDRaster.Value);
         }
-        private void logDrawingSize(drawingProperties dS)
-        { Logger.Trace("logDrawingSize {0} {1} {2} {3}", dS.minX, dS.minY, dS.maxX, dS.maxY); }
-        private void createGridView()
+        //     private void LogDrawingSize(drawingProperties dS)
+        //    { Logger.Trace("logDrawingSize {0} {1} {2} {3}", dS.minX, dS.minY, dS.maxX, dS.maxY); }
+        private void CreateGridView()
         {
-            drawingProperties tmp = new drawingProperties();
-            PointF ul = getGraphicCoordinateFromPictureBox(new Point(0,0));
-            PointF lr = getGraphicCoordinateFromPictureBox(new Point(pictureBox1.Width,pictureBox1.Height));
-            tmp.setX((float)Math.Round(ul.X), (float)Math.Round(lr.X));
-            tmp.setY((float)Math.Round(ul.Y), (float)Math.Round(lr.Y));
-            VisuGCode.createRuler(ruler, tmp);
-            createGrid(grid, tmp, (float)nUDRaster.Value);
+            DrawingProperties tmp = new DrawingProperties();
+            PointF ul = GetGraphicCoordinateFromPictureBox(new Point(0, 0));
+            PointF lr = GetGraphicCoordinateFromPictureBox(new Point(pictureBox1.Width, pictureBox1.Height));
+            tmp.SetX((float)Math.Round(ul.X), (float)Math.Round(lr.X));
+            tmp.SetY((float)Math.Round(ul.Y), (float)Math.Round(lr.Y));
+            VisuGCode.CreateRuler(ruler, tmp);
+            CreateGrid(grid, tmp, (float)nUDRaster.Value);
         }
-        private void createGrid(GraphicsPath path, drawingProperties dS, float raster)
-        {   path.Reset();
+        private static void CreateGrid(GraphicsPath path, DrawingProperties dS, float raster)
+        {
+            path.Reset();
             float minX = (float)Math.Round(dS.minX / raster) * raster;
             float minY = (float)Math.Round(dS.minY / raster) * raster;
             for (float x = minX; x < (dS.maxX); x += raster)
-            {   path.StartFigure();
+            {
+                path.StartFigure();
                 path.AddLine(x, dS.minY, x, dS.maxY);
             }
             for (float y = minY; y < (dS.maxY); y += raster)
-            {   path.StartFigure();
+            {
+                path.StartFigure();
                 path.AddLine(dS.minX, y, dS.maxX, y);
             }
         }
 
-        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        private void PictureBox1_Paint(object sender, PaintEventArgs e)
         {
             int offX = +5, offY = -10;
-            if (pictureBox1.PointToClient(MousePosition).X > (pictureBox1.Width / 2))  { offX = -75; }
+            if (pictureBox1.PointToClient(MousePosition).X > (pictureBox1.Width / 2)) { offX = -75; }
             if (pictureBox1.PointToClient(MousePosition).Y > (pictureBox1.Height / 2)) { offY = -30; }
             Point stringpos = new Point(pictureBox1.PointToClient(MousePosition).X + offX, pictureBox1.PointToClient(MousePosition).Y + offY);
 
-            picAbsPos = getGraphicCoordinateFromPictureBox(pictureBox1.PointToClient(MousePosition), true);
+            picAbsPos = GetGraphicCoordinateFromPictureBox(pictureBox1.PointToClient(MousePosition), true);
 
             pBoxOrig = e.Graphics.Transform;
-            try { e.Graphics.Transform = pBoxTransform; } catch { }
+            try { e.Graphics.Transform = pBoxTransform; } catch (Exception ex) { Logger.Error(ex, "PictureBox1_Paint "); throw; }
             float picScaling = Math.Min(pictureBox1.Width / drawingSize.rangeX, pictureBox1.Height / drawingSize.rangeY);               // calculate scaling px/unit
             e.Graphics.ScaleTransform(picScaling, -picScaling);           // apply scaling (flip Y)
-            e.Graphics.TranslateTransform(-drawingSize.minX, (-drawingSize.rangeY- drawingSize.minY));       // apply offset
-            
+            e.Graphics.TranslateTransform(-drawingSize.minX, (-drawingSize.rangeY - drawingSize.minY));       // apply offset
+
             e.Graphics.DrawPath(penGrid, grid);
             e.Graphics.DrawPath(penRuler, ruler);
             e.Graphics.DrawPath(penActualLine, actualLine);
@@ -144,50 +146,54 @@ namespace GRBL_Plotter
             e.Graphics.DrawPath(penStartIcon, startIcon);
             e.Graphics.DrawPath(penjogPath, jogPath);
 
-/* Show labels */            
+            /* Show labels */
             e.Graphics.Transform = pBoxOrig;
+            Font myFont = new Font("Lucida Console", 8);
             if (showDimension)
-                e.Graphics.DrawString(String.Format("Dimension:\r\nX:{0,7:0.000}\r\nY:{1,7:0.000}", 
-                                Math.Abs(picAbsPos.X - posMoveStart.X), Math.Abs(picAbsPos.Y - posMoveStart.Y)), new Font("Lucida Console", 8), Brushes.Black, stringpos);
+                e.Graphics.DrawString(String.Format("Dimension:\r\nX:{0,7:0.000}\r\nY:{1,7:0.000}",
+                                 Math.Abs(picAbsPos.X - posMoveStart.X), Math.Abs(picAbsPos.Y - posMoveStart.Y)), myFont, Brushes.Black, stringpos);
             else
-                e.Graphics.DrawString(String.Format("Pos:\r\nX:{0,7:0.000}\r\nY:{1,7:0.000}", picAbsPos.X, picAbsPos.Y), new Font("Lucida Console", 8), Brushes.Black, stringpos);
-
+                e.Graphics.DrawString(String.Format("Pos:\r\nX:{0,7:0.000}\r\nY:{1,7:0.000}", picAbsPos.X, picAbsPos.Y), myFont, Brushes.Black, stringpos);
+            myFont.Dispose();
         }
-        
-        private PointF getGraphicCoordinateFromPictureBox(Point location, bool snapToGrid = false)
-        {   float offsetX = 0;
-            float offsetY = 0;
-            try { offsetX = pBoxTransform.OffsetX; offsetY = pBoxTransform.OffsetY; } catch { } // pBoxTransform.Dispose  too early
-            float relposX = (location.X - offsetX)  / pictureBox1.Width   / zoomFactor;    // normalization to 1
-            float relposY = (location.Y - offsetY)  / pictureBox1.Height  / zoomFactor;   // normalization to 1
-            PointF tmp = new PointF(0,0);
-            tmp.X = relposX * drawingSize.rangeX + drawingSize.minX;              // calc. real graphics pos
-            tmp.Y = drawingSize.rangeY - relposY * drawingSize.rangeY + drawingSize.minY;    // invert Y
+
+        private PointF GetGraphicCoordinateFromPictureBox(Point location, bool snapToGrid = false)
+        {
+            float offsetX;// = 0;
+            float offsetY;// = 0;
+            try { offsetX = pBoxTransform.OffsetX; offsetY = pBoxTransform.OffsetY; } catch (Exception ex) { Logger.Error(ex, "GetGraphicCoordinateFromPictureBox "); throw; } // pBoxTransform.Dispose  too early
+            float relposX = (location.X - offsetX) / pictureBox1.Width / zoomFactor;    // normalization to 1
+            float relposY = (location.Y - offsetY) / pictureBox1.Height / zoomFactor;   // normalization to 1
+            PointF tmp = new PointF(0, 0)
+            {
+                X = relposX * drawingSize.rangeX + drawingSize.minX,              // calc. real graphics pos
+                Y = drawingSize.rangeY - relposY * drawingSize.rangeY + drawingSize.minY    // invert Y
+            };
             if (snapToGrid && cBSnap.Checked)
-            { tmp.X = snap(tmp.X, (float)nUDRaster.Value); tmp.Y = snap(tmp.Y, (float)nUDRaster.Value); }
+            { tmp.X = Snap(tmp.X, (float)nUDRaster.Value); tmp.Y = Snap(tmp.Y, (float)nUDRaster.Value); }
             return tmp;
         }
-        
-        private float snap(float x, float raster)
+
+        private static float Snap(float x, float raster)
         { return (float)Math.Round((x / raster)) * raster; }
 
-        private Point snap(Point xy, int raster)
-        {
-            int x = (int)Math.Round((double)(xy.X / raster)) * raster;
-            int y = (int)Math.Round((double)(xy.Y / raster)) * raster;
-            return new Point(x, y);
-        }
+        /*      private Point Snap(Point xy, int raster)
+              {
+                  int x = (int)Math.Round((double)(xy.X / raster)) * raster;
+                  int y = (int)Math.Round((double)(xy.Y / raster)) * raster;
+                  return new Point(x, y);
+              }*/
 
-        private Point toPoint(PointF tmp)
+        private static Point ToPoint(PointF tmp)
         { return new Point((int)tmp.X, (int)tmp.Y); }
 
 
-#region mouse action
-        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+        #region mouse action
+        private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
                 //                posMoveEnd = picAbsPos;//getPicBoxOffset(e.Location, drawingSize);  //snap(e.Location, 10); ;
-                posMoveEnd = getGraphicCoordinateFromPictureBox(e.Location, true);
+                posMoveEnd = GetGraphicCoordinateFromPictureBox(e.Location, true);
             if (jogPath.PointCount == 0)
             {
                 startIcon.AddEllipse(posMoveStart.X - 0.5F, posMoveStart.Y - 0.5F, 1, 1);
@@ -199,12 +205,13 @@ namespace GRBL_Plotter
             showDimension = false;
         }
 
-        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            posMoveTmp = getGraphicCoordinateFromPictureBox(e.Location, true);
+            posMoveTmp = GetGraphicCoordinateFromPictureBox(e.Location, true);
             /* draw line */
             if (e.Button == MouseButtons.Left)
-            {   posMoveEnd = posMoveTmp;
+            {
+                posMoveEnd = posMoveTmp;
                 if (jogPath.PointCount > 0)
                 {
                     rubberBand.Reset();
@@ -215,8 +222,8 @@ namespace GRBL_Plotter
             else if (e.Button == MouseButtons.Middle)
             {
                 moveTranslation = new PointF(e.X, e.Y);
-                moveTranslation.X = moveTranslation.X - moveTranslationOld.X ;  // calc delta move
-                moveTranslation.Y = moveTranslation.Y - moveTranslationOld.Y ;  // calc delta move
+                moveTranslation.X -= moveTranslationOld.X;  // calc delta move
+                moveTranslation.Y -= moveTranslationOld.Y;  // calc delta move
                 pBoxTransform.Translate(moveTranslation.X / zoomFactor, moveTranslation.Y / zoomFactor);
                 moveTranslationOld = new PointF(e.X, e.Y);
             }
@@ -236,50 +243,53 @@ namespace GRBL_Plotter
             pictureBox1.Invalidate();
         }
 
-        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                posMoveStart = getGraphicCoordinateFromPictureBox(e.Location, true);    // picAbsPos;//getPicBoxOffset(e.Location, drawingSize); //snap(e.Location, 10);
+                posMoveStart = GetGraphicCoordinateFromPictureBox(e.Location, true);    // picAbsPos;//getPicBoxOffset(e.Location, drawingSize); //snap(e.Location, 10);
                 posMoveTmp = posMoveStart;
                 posMoveEnd = posMoveStart;
             }
-            if (e.Button == MouseButtons.Middle)
-            { moveTranslationStart = e.Location; }
+            //     if (e.Button == MouseButtons.Middle)
+            //     { moveTranslationStart = e.Location; }
             showDimension = true;
         }
-        
-        private void pictureBox1_MouseLeave(object sender, EventArgs e)
+
+        private void PictureBox1_MouseLeave(object sender, EventArgs e)
         { rubberBand.Reset(); pictureBox1.Invalidate(); }
 
-        private void pictureBox1_MouseWheel(object sender, MouseEventArgs e)
+        private void PictureBox1_MouseWheel(object sender, MouseEventArgs e)
         {   //if ((pictureBox1.Focused == true) && (e.Delta != 0))
-            {   ZoomScroll(e.Location, e.Delta);    }
+            { ZoomScroll(e.Location, e.Delta); }
         }
         private void ZoomScroll(Point location, int zoomIn)
         {
             if (zoomIn != 0)
-            {   if (zoomIn > 0)
-                {   if (zoomFactor < 100)
-                    {   zoomFactor *= scrollZoomFactor;     }
+            {
+                if (zoomIn > 0)
+                {
+                    if (zoomFactor < 100)
+                    { zoomFactor *= scrollZoomFactor; }
                 }
                 else if (zoomIn < 0)
-                {   if (zoomFactor > 0.1)
-                    {   zoomFactor *= 1/scrollZoomFactor;   }
+                {
+                    if (zoomFactor > 0.1)
+                    { zoomFactor *= 1 / scrollZoomFactor; }
                 }
-                PointF locationO =  getPicBoxOffset(location, drawingSize);
+                PointF locationO = GetPicBoxOffset(location, drawingSize);
                 pBoxTransform.Reset();
-                pBoxTransform.Translate(locationO.X , locationO.Y );
+                pBoxTransform.Translate(locationO.X, locationO.Y);
                 pBoxTransform.Scale(zoomFactor, zoomFactor);
-                createGridView();
+                CreateGridView();
             }
-            
-            if (Math.Round(zoomFactor,2) == 1.00)
-            {   pBoxTransform.Reset(); zoomFactor = 1;   }
+
+            if (Math.Round(zoomFactor, 2) == 1.00)
+            { pBoxTransform.Reset(); zoomFactor = 1; }
 
             pictureBox1.Invalidate();
         }
-        private PointF getPicBoxOffset(Point mouseLocation, drawingProperties dS)
+        private PointF GetPicBoxOffset(Point mouseLocation, DrawingProperties dS)
         {   // backwards calculation to keep real coordinates on mouse-pos. on zoom-in -out
             float ratioVisu = dS.rangeX / dS.rangeY;
             float ratioPic = pictureBox1.Width / pictureBox1.Height;
@@ -287,25 +297,27 @@ namespace GRBL_Plotter
             if (ratioVisu > ratioPic)
                 maxposY = dS.rangeX * pictureBox1.Height / pictureBox1.Width;
 
-            float relposX = (          picAbsPos.X - dS.minX) / dS.rangeX;
+            float relposX = (picAbsPos.X - dS.minX) / dS.rangeX;
             float relposY = (maxposY - picAbsPos.Y + dS.minY) / dS.rangeY;
 
             if (ratioVisu > ratioPic)
                 relposY = relposY * ratioPic / ratioVisu;
             else
                 relposX = relposX * ratioVisu / ratioPic;
-          
-            PointF picOffset = new PointF();
-            picOffset.X = mouseLocation.X - (relposX * zoomFactor * pictureBox1.Width);
-            picOffset.Y = mouseLocation.Y - (relposY * zoomFactor * pictureBox1.Height);
+
+            PointF picOffset = new PointF
+            {
+                X = mouseLocation.X - (relposX * zoomFactor * pictureBox1.Width),
+                Y = mouseLocation.Y - (relposY * zoomFactor * pictureBox1.Height)
+            };
             return picOffset;
         }
 
-#endregion
+        #endregion
 
 
-#region controls
-        private void btnUndo_Click(object sender, EventArgs e)
+        #region controls
+        private void BtnUndo_Click(object sender, EventArgs e)
         {
             List<PointF> list = jogPath.PathData.Points.ToList<PointF>();
             list.RemoveAt(list.Count - 1);
@@ -313,7 +325,7 @@ namespace GRBL_Plotter
             actualLine.Reset();
             jogPath.Reset();
             jogPath.AddLines(list.ToArray());
-            lastSet = toPoint(list[list.Count - 1]);
+            lastSet = ToPoint(list[list.Count - 1]);
             if (jogPath.PointCount > 0)
             { rubberBand.AddLine(lastSet, posMoveTmp); }
 
@@ -322,7 +334,7 @@ namespace GRBL_Plotter
             pictureBox1.Invalidate();
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void BtnDelete_Click(object sender, EventArgs e)
         {
             rubberBand.Reset();
             actualLine.Reset();
@@ -332,16 +344,16 @@ namespace GRBL_Plotter
             pictureBox1.Invalidate();
         }
 
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        private void NumericUpDown2_ValueChanged(object sender, EventArgs e)
         {
-            createGrid(grid, drawingSize, (float)nUDRaster.Value);
+            CreateGrid(grid, drawingSize, (float)nUDRaster.Value);
             pictureBox1.Invalidate();
         }
 
-        private void btnRotate_Click(object sender, EventArgs e)
+        private void BtnRotate_Click(object sender, EventArgs e)
         {
-            float centerX = snap(jogPath.GetBounds().Left + jogPath.GetBounds().Width / 2, 10);
-            float centerY = snap(jogPath.GetBounds().Top + jogPath.GetBounds().Height / 2, 10);
+            float centerX = Snap(jogPath.GetBounds().Left + jogPath.GetBounds().Width / 2, 10);
+            float centerY = Snap(jogPath.GetBounds().Top + jogPath.GetBounds().Height / 2, 10);
             Matrix translateMatrix = new Matrix();
             translateMatrix.RotateAt(90, new PointF(centerX, centerY));
             jogPath.Transform(translateMatrix);
@@ -349,9 +361,10 @@ namespace GRBL_Plotter
             rubberBand.Transform(translateMatrix);
             startIcon.Transform(translateMatrix);
             pictureBox1.Invalidate();
+            translateMatrix.Dispose();
         }
 
-        private void btnJogStart_Click(object sender, EventArgs e)
+        private void BtnJogStart_Click(object sender, EventArgs e)
         {
             float x, y, factor = 1;
             float lastX = 0, lastY = 0;
@@ -362,42 +375,43 @@ namespace GRBL_Plotter
             foreach (PointF pnt in list)
             {
                 if (i++ == 0)
-                {   lastX = pnt.X * factor; lastY = pnt.Y * factor; }
+                { lastX = pnt.X * factor; lastY = pnt.Y * factor; }
                 else
-                {   x = (pnt.X * factor) - lastX;
+                {
+                    x = (pnt.X * factor) - lastX;
                     y = (pnt.Y * factor) - lastY;
                     lastX = (pnt.X * factor); lastY = (pnt.Y * factor);
                     if ((x != 0) || (y != 0))
                         joggcode += String.Format("G91 X{0:0.00} Y{1:0.00} F{2};", x, y, nUDFeedrate.Value).Replace(',', '.');
                 }
             }
-//            joggcode += tBCodeEnd.Text;
+            //            joggcode += tBCodeEnd.Text;
         }
 
         private void ControlJogPathCreator_SizeChanged(object sender, EventArgs e)
         {
             int hor = this.Width - 180;
             int ver = this.Height - 45;
-            pictureBox1.Width = pictureBox1.Height = Math.Min(hor,ver);
+            pictureBox1.Width = pictureBox1.Height = Math.Min(hor, ver);
             gBJogParameter.Left = this.Width - 172;
             gBPathCreator.Left = this.Width - 172;
             pictureBox1.Invalidate();
         }
 
-        private void btnExport_Click(object sender, EventArgs e)
+        private void BtnExport_Click(object sender, EventArgs e)
         {
-            Graphic.Init(Graphic.SourceTypes.CSV, "", null, null);
+            Graphic.Init(Graphic.SourceType.CSV, "", null, null);
             Graphic.SetHeaderInfo("From Jog path creator");
             Graphic.SetGeometry("Line");
 
             GraphicsPathIterator pathIterator = new GraphicsPathIterator(jogPath);
             pathIterator.Rewind();
-            int pointcnt = 0;
+            int pointcnt;
             for (int i = 0; i < pathIterator.SubpathCount; i++)
             {
-                int strIdx, endIdx;
-                bool bClosedCurve;
-                pathIterator.NextSubpath(out strIdx, out endIdx, out bClosedCurve);
+                //      int strIdx, endIdx;
+                //      bool bClosedCurve;
+                pathIterator.NextSubpath(out int strIdx, out int endIdx, out bool _);
 
                 lastSet = jogPath.PathPoints[endIdx];
 
@@ -408,41 +422,46 @@ namespace GRBL_Plotter
                     if (pointcnt++ == 0)
                     { Graphic.StartPath(new System.Windows.Point(jogPath.PathPoints[k].X, jogPath.PathPoints[k].Y)); }
                     else
-                    { Graphic.AddLine(new System.Windows.Point(jogPath.PathPoints[k].X, jogPath.PathPoints[k].Y));      }
+                    { Graphic.AddLine(new System.Windows.Point(jogPath.PathPoints[k].X, jogPath.PathPoints[k].Y)); }
                 }
                 Graphic.StopPath();
             }
             Graphic.CreateGCode();
             joggcode = Graphic.GCode.ToString();
+            pathIterator.Dispose();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void BtnSave_Click(object sender, EventArgs e)
         {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.InitialDirectory = Application.StartupPath + datapath.jogpath;
-            sfd.Filter = "Jog paths (*.xml)|*.xml";
-            sfd.FileName = "JogPath.xml";
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                InitialDirectory = Datapath.Jogpath,
+                Filter = "Jog paths (*.xml)|*.xml",
+                FileName = "JogPath.xml"
+            };
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 if (File.Exists(sfd.FileName))
                     File.Delete(sfd.FileName);
 
-                XmlWriterSettings set = new XmlWriterSettings();
-                set.Indent = true;
+                XmlWriterSettings set = new XmlWriterSettings
+                {
+                    Indent = true
+                };
                 XmlWriter w = XmlWriter.Create(sfd.FileName, set);
                 w.WriteStartDocument();
                 w.WriteStartElement("view");
                 w.WriteAttributeString("raster", nUDRaster.Value.ToString());
-                
-                GraphicsPathIterator pathIterator =  new GraphicsPathIterator(jogPath);  
-                pathIterator.Rewind();                 
+
+                GraphicsPathIterator pathIterator = new GraphicsPathIterator(jogPath);
+                pathIterator.Rewind();
                 // https://www.c-sharpcorner.com/UploadFile/mahesh/understanding-and-using-graphics-paths-in-gdi/
-                for (int i = 0; i < pathIterator.SubpathCount; i++)  
-                {  
-                    int strIdx, endIdx;  
-                    bool bClosedCurve;  
-                    pathIterator.NextSubpath(out strIdx, out endIdx, out bClosedCurve);  
-            
+                for (int i = 0; i < pathIterator.SubpathCount; i++)
+                {
+                    //     int strIdx, endIdx;
+                    //     bool bClosedCurve;
+                    pathIterator.NextSubpath(out int strIdx, out int endIdx, out _);
+
                     w.WriteStartElement("path");
                     w.WriteAttributeString("id", i.ToString());
                     for (int k = strIdx; k <= endIdx; k++)
@@ -453,27 +472,33 @@ namespace GRBL_Plotter
                         w.WriteEndElement();
                     }
                     w.WriteEndElement();
-                }  
+                }
                 w.WriteEndElement();
                 w.Close();
+                pathIterator.Dispose();
             }
+            sfd.Dispose();
         }
 
-        private void btnLoad_Click(object sender, EventArgs e)
+        private XmlReaderSettings settings = new XmlReaderSettings()
+        { DtdProcessing = DtdProcessing.Prohibit };
+        private void BtnLoad_Click(object sender, EventArgs e)
         {
-            OpenFileDialog sfd = new OpenFileDialog();
-            sfd.InitialDirectory = Application.StartupPath + datapath.jogpath;
-            sfd.Filter = "Jog paths (*.xml)|*.xml";
+            OpenFileDialog sfd = new OpenFileDialog
+            {
+                InitialDirectory = Datapath.Jogpath,
+                Filter = "Jog paths (*.xml)|*.xml"
+            };
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                XmlReader reader = XmlReader.Create(sfd.FileName);
+                XmlReader reader = XmlReader.Create(sfd.FileName, settings);
                 float x1 = -1, y1 = -1, x2 = -1, y2 = -1;
 
                 jogPath.Reset();
                 rubberBand.Reset();
                 actualLine.Reset();
                 startIcon.Reset();
-                
+
                 while (reader.Read())
                 {
                     if (!reader.IsStartElement())
@@ -502,24 +527,25 @@ namespace GRBL_Plotter
                 }
                 reader.Close();
                 lastSet = new PointF(x1, y1);
-                
+
                 RectangleF dim = jogPath.GetBounds();
                 float maxX = dim.Left + dim.Width + 10;
                 float maxY = dim.Top + dim.Height + 10;
-                float a = Math.Max(maxX,maxY);
-                drawingSize.setX(-10, a);
-                drawingSize.setY(-10, a);
-                VisuGCode.createRuler(ruler, drawingSize);
-                createGrid(grid, drawingSize, (float)nUDRaster.Value);            
+                float a = Math.Max(maxX, maxY);
+                drawingSize.SetX(-10, a);
+                drawingSize.SetY(-10, a);
+                VisuGCode.CreateRuler(ruler, drawingSize);
+                CreateGrid(grid, drawingSize, (float)nUDRaster.Value);
 
-                pBoxTransform.Reset(); 
-                zoomFactor = 1;  
+                pBoxTransform.Reset();
+                zoomFactor = 1;
 
                 pictureBox1.Invalidate();
             }
+            sfd.Dispose();
         }
-        
-  #endregion      
-        
+
+        #endregion
+
     }
 }

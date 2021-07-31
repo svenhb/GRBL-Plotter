@@ -167,11 +167,11 @@ Les autres paramètres seront généralement enregistrés lors des modifications
     <comment>Form</comment>
   </data>
   <data name="cBImportDXFSwitchWhite.Text" xml:space="preserve">
-    <value>Poignée blanche comme noire</value>
+    <value>Poignée de couleur blanche comme noire</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFSwitchWhite.ToolTip" xml:space="preserve">
-    <value>Le format DXF utilise un index de couleur compris entre 0 et 255. Cet index sera utilisé comme numéro d’outil.</value>
+    <value>LibreCAD affiche la couleur du stylo blanc sur fond noir. Mais la vraie couleur du stylo est le noir.</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFIndexToolNr.Text" xml:space="preserve">

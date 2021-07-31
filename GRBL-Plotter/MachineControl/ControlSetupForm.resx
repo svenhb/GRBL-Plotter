@@ -998,11 +998,11 @@
     <value>8</value>
   </data>
   <data name="cBImportDXFSwitchWhite.Text" xml:space="preserve">
-    <value>Handle white as black</value>
+    <value>Handle pen-color white as black</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFSwitchWhite.ToolTip" xml:space="preserve">
-    <value>The DXF format uses color index from 0 to 255. This index will be used as tool number.</value>
+    <value>LibreCAD shows white pen color on black background. But real pen-color is black.</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="&gt;&gt;cBImportDXFSwitchWhite.Name" xml:space="preserve">
@@ -1184,7 +1184,6 @@
   </data>
   <data name="cBImportSVG_DPI_72.Text" xml:space="preserve">
     <value>72 dpi</value>
-    <comment>ok</comment>
   </data>
   <data name="cBImportSVG_DPI_72.ToolTip" xml:space="preserve">
     <value>72 dpi is used by Adobe Illustrator</value>
@@ -1219,7 +1218,6 @@
   </data>
   <data name="cBImportSVG_DPI_96.Text" xml:space="preserve">
     <value>96 dpi</value>
-    <comment>ok</comment>
   </data>
   <data name="cBImportSVG_DPI_96.ToolTip" xml:space="preserve">
     <value>96 dpi is the default scaling</value>
@@ -2067,9 +2065,6 @@ then add nodes via 'Extensions - Modify Path - Add nodes' to distribute addition
   <data name="cBImportSVGComments.ToolTip" xml:space="preserve">
     <value>Add graphics related comments to the GCode</value>
     <comment>TabPage1_1</comment>
-  </data>
-  <data name="cBImportSVGComments.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;cBImportSVGComments.Name" xml:space="preserve">
     <value>cBImportSVGComments</value>
@@ -4121,19 +4116,15 @@ Usefull for laser cutter.</value>
   </data>
   <data name="cBoxImportGCTangentialName.Items" xml:space="preserve">
     <value>A</value>
-    <comment>ok</comment>
   </data>
   <data name="cBoxImportGCTangentialName.Items1" xml:space="preserve">
     <value>B</value>
-    <comment>ok</comment>
   </data>
   <data name="cBoxImportGCTangentialName.Items2" xml:space="preserve">
     <value>C</value>
-    <comment>ok</comment>
   </data>
   <data name="cBoxImportGCTangentialName.Items3" xml:space="preserve">
     <value>Z</value>
-    <comment>ok</comment>
   </data>
   <data name="cBoxImportGCTangentialName.Location" type="System.Drawing.Point, System.Drawing">
     <value>229, 38</value>
@@ -5940,7 +5931,6 @@ select items on next page 'G-Code generation'</value>
   </data>
   <data name="btnCheckSpindle.Text" xml:space="preserve">
     <value>?</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;btnCheckSpindle.Name" xml:space="preserve">
     <value>btnCheckSpindle</value>
@@ -6788,7 +6778,6 @@ No need to set this words</value>
   </data>
   <data name="label67.Text" xml:space="preserve">
     <value>P92</value>
-    <comment>ok</comment>
   </data>
   <data name="label67.ToolTip" xml:space="preserve">
     <value>Number of subroutine 'Pen down'</value>
@@ -6823,7 +6812,6 @@ No need to set this words</value>
   </data>
   <data name="label64.Text" xml:space="preserve">
     <value>P90</value>
-    <comment>ok</comment>
   </data>
   <data name="label64.ToolTip" xml:space="preserve">
     <value>Number of subroutine 'Pen up'</value>
@@ -7336,7 +7324,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="lblPWMP94.Text" xml:space="preserve">
     <value>P94</value>
-    <comment>ok</comment>
   </data>
   <data name="lblPWMP94.ToolTip" xml:space="preserve">
     <value>Number of subroutine</value>
@@ -7456,7 +7443,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="lblPWMP93.Text" xml:space="preserve">
     <value>P93</value>
-    <comment>ok</comment>
   </data>
   <data name="lblPWMP93.ToolTip" xml:space="preserve">
     <value>Number of subroutine</value>
@@ -7518,7 +7504,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="lblPWMP92.Text" xml:space="preserve">
     <value>P92</value>
-    <comment>ok</comment>
   </data>
   <data name="lblPWMP92.ToolTip" xml:space="preserve">
     <value>Number of subroutine 'Pen down'</value>
@@ -7584,7 +7569,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="lblPWMP91.Text" xml:space="preserve">
     <value>P91</value>
-    <comment>ok</comment>
   </data>
   <data name="lblPWMP91.ToolTip" xml:space="preserve">
     <value>Number of subroutine</value>
@@ -7719,7 +7703,6 @@ Not usable with other pen up/down options!</value>
   </data>
   <data name="lblPWMP90.Text" xml:space="preserve">
     <value>P90</value>
-    <comment>ok</comment>
   </data>
   <data name="lblPWMP90.ToolTip" xml:space="preserve">
     <value>Number of subroutine 'Pen up'</value>
@@ -7930,7 +7913,6 @@ Only needed for lead-in operation</value>
   </data>
   <data name="lblInfoPWM.Text" xml:space="preserve">
     <value>?</value>
-    <comment>ok</comment>
   </data>
   <data name="lblInfoPWM.ToolTip" xml:space="preserve">
     <value>Possible max. value is set via $30 (default=1000), min via $31 (default=0).
@@ -9101,7 +9083,6 @@ Note: Don't use 'Sort objects by pen index'</value>
   </data>
   <data name="btnFileDialogSubR.Text" xml:space="preserve">
     <value>...</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;btnFileDialogSubR.Name" xml:space="preserve">
     <value>btnFileDialogSubR</value>
@@ -10265,7 +10246,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="Column4.HeaderText" xml:space="preserve">
     <value>Pos. X</value>
-    <comment>ok</comment>
   </data>
   <data name="Column4.ToolTipText" xml:space="preserve">
     <value>Exchange position X</value>
@@ -10276,7 +10256,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="Column5.HeaderText" xml:space="preserve">
     <value>Pos. Y</value>
-    <comment>ok</comment>
   </data>
   <data name="Column5.ToolTipText" xml:space="preserve">
     <value>Exchange position Y</value>
@@ -10287,7 +10266,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="Column6.HeaderText" xml:space="preserve">
     <value>Pos. Z</value>
-    <comment>ok</comment>
   </data>
   <data name="Column6.ToolTipText" xml:space="preserve">
     <value>Exchange position Z</value>
@@ -10298,7 +10276,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="Column16.HeaderText" xml:space="preserve">
     <value>Pos. A</value>
-    <comment>ok</comment>
   </data>
   <data name="Column16.ToolTipText" xml:space="preserve">
     <value>Exchange position A</value>
@@ -10320,7 +10297,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="Column8.HeaderText" xml:space="preserve">
     <value>XY Spd</value>
-    <comment>ok</comment>
   </data>
   <data name="Column8.ToolTipText" xml:space="preserve">
     <value>Feedrate for XY moves</value>
@@ -10611,7 +10587,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="btnFileDialogTT4.Text" xml:space="preserve">
     <value>...</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;btnFileDialogTT4.Name" xml:space="preserve">
     <value>btnFileDialogTT4</value>
@@ -10639,7 +10614,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="btnFileDialogTT3.Text" xml:space="preserve">
     <value>...</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;btnFileDialogTT3.Name" xml:space="preserve">
     <value>btnFileDialogTT3</value>
@@ -10667,7 +10641,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="btnFileDialogTT2.Text" xml:space="preserve">
     <value>...</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;btnFileDialogTT2.Name" xml:space="preserve">
     <value>btnFileDialogTT2</value>
@@ -10695,7 +10668,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="btnFileDialogTT1.Text" xml:space="preserve">
     <value>...</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;btnFileDialogTT1.Name" xml:space="preserve">
     <value>btnFileDialogTT1</value>
@@ -11128,7 +11100,6 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="lblEnableLogging.Text" xml:space="preserve">
     <value>     </value>
-    <comment>log</comment>
   </data>
   <data name="&gt;&gt;lblEnableLogging.Name" xml:space="preserve">
     <value>lblEnableLogging</value>
@@ -11159,11 +11130,9 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="cBLogLevel4.Text" xml:space="preserve">
     <value>GUI / COM</value>
-    <comment>log</comment>
   </data>
   <data name="cBLogLevel4.ToolTip" xml:space="preserve">
     <value>gcode</value>
-    <comment>log</comment>
   </data>
   <data name="&gt;&gt;cBLogLevel4.Name" xml:space="preserve">
     <value>cBLogLevel4</value>
@@ -11194,11 +11163,9 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="cBLogLevel3.Text" xml:space="preserve">
     <value>g2GCode</value>
-    <comment>log</comment>
   </data>
   <data name="cBLogLevel3.ToolTip" xml:space="preserve">
     <value>graphic to gcode</value>
-    <comment>log</comment>
   </data>
   <data name="&gt;&gt;cBLogLevel3.Name" xml:space="preserve">
     <value>cBLogLevel3</value>
@@ -11229,11 +11196,9 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="cBLogLevel2.Text" xml:space="preserve">
     <value>graphic</value>
-    <comment>log</comment>
   </data>
   <data name="cBLogLevel2.ToolTip" xml:space="preserve">
     <value>graphic related</value>
-    <comment>log</comment>
   </data>
   <data name="&gt;&gt;cBLogLevel2.Name" xml:space="preserve">
     <value>cBLogLevel2</value>
@@ -11264,11 +11229,9 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="cBLogLevel1.Text" xml:space="preserve">
     <value>Import</value>
-    <comment>log</comment>
   </data>
   <data name="cBLogLevel1.ToolTip" xml:space="preserve">
     <value>SVG, DXF, etc.</value>
-    <comment>log</comment>
   </data>
   <data name="&gt;&gt;cBLogLevel1.Name" xml:space="preserve">
     <value>cBLogLevel1</value>
@@ -11330,7 +11293,6 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="cBLog3.Text" xml:space="preserve">
     <value>Sort and Merge | StartStop</value>
-    <comment>log</comment>
   </data>
   <data name="&gt;&gt;cBLog3.Name" xml:space="preserve">
     <value>cBLog3</value>
@@ -11361,7 +11323,6 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="cBLog0.Text" xml:space="preserve">
     <value>Details | RX-Status</value>
-    <comment>log</comment>
   </data>
   <data name="&gt;&gt;cBLog0.Name" xml:space="preserve">
     <value>cBLog0</value>
@@ -11392,7 +11353,6 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="cBLog1.Text" xml:space="preserve">
     <value>Coordinates | RX</value>
-    <comment>log</comment>
   </data>
   <data name="&gt;&gt;cBLog1.Name" xml:space="preserve">
     <value>cBLog1</value>
@@ -11423,7 +11383,6 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="cBLog6.Text" xml:space="preserve">
     <value>Path Modification | GUI-Detailed</value>
-    <comment>log</comment>
   </data>
   <data name="&gt;&gt;cBLog6.Name" xml:space="preserve">
     <value>cBLog6</value>
@@ -11454,7 +11413,6 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="cBLog2.Text" xml:space="preserve">
     <value>Properties | TX</value>
-    <comment>log</comment>
   </data>
   <data name="&gt;&gt;cBLog2.Name" xml:space="preserve">
     <value>cBLog2</value>
@@ -11485,7 +11443,6 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="cBLog5.Text" xml:space="preserve">
     <value>Clipping / Tiling | GUI-Streaming</value>
-    <comment>log</comment>
   </data>
   <data name="&gt;&gt;cBLog5.Name" xml:space="preserve">
     <value>cBLog5</value>
@@ -11516,7 +11473,6 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="cBLog4.Text" xml:space="preserve">
     <value>Grouping</value>
-    <comment>log</comment>
   </data>
   <data name="&gt;&gt;cBLog4.Name" xml:space="preserve">
     <value>cBLog4</value>
@@ -11541,7 +11497,6 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="gBLoggingOptions.Text" xml:space="preserve">
     <value>Logging options</value>
-    <comment>log</comment>
   </data>
   <data name="&gt;&gt;gBLoggingOptions.Name" xml:space="preserve">
     <value>gBLoggingOptions</value>
@@ -11566,7 +11521,6 @@ Remove 'M6' from send queue, because grbl can't handle this command.</value>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>Logging</value>
-    <comment>log</comment>
   </data>
   <data name="groupBox3.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -12685,31 +12639,24 @@ Note machine coordinates</value>
   </data>
   <data name="comboBox1.Items" xml:space="preserve">
     <value>A</value>
-    <comment>ok</comment>
   </data>
   <data name="comboBox1.Items1" xml:space="preserve">
     <value>B</value>
-    <comment>ok</comment>
   </data>
   <data name="comboBox1.Items2" xml:space="preserve">
     <value>C</value>
-    <comment>ok</comment>
   </data>
   <data name="comboBox1.Items3" xml:space="preserve">
     <value>E</value>
-    <comment>ok</comment>
   </data>
   <data name="comboBox1.Items4" xml:space="preserve">
     <value>U</value>
-    <comment>ok</comment>
   </data>
   <data name="comboBox1.Items5" xml:space="preserve">
     <value>V</value>
-    <comment>ok</comment>
   </data>
   <data name="comboBox1.Items6" xml:space="preserve">
     <value>W</value>
-    <comment>ok</comment>
   </data>
   <data name="comboBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>279, 12</value>
@@ -13347,7 +13294,6 @@ Note machine coordinates</value>
   </data>
   <data name="rBRotaryX.Text" xml:space="preserve">
     <value>X</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;rBRotaryX.Name" xml:space="preserve">
     <value>rBRotaryX</value>
@@ -13708,7 +13654,6 @@ After the pause, parser state will be restored and streamin continued.</value>
   </data>
   <data name="tab4gB6.Text" xml:space="preserve">
     <value>Special</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;tab4gB6.Name" xml:space="preserve">
     <value>tab4gB6</value>
@@ -13871,23 +13816,18 @@ Saves CPU load, disables zooming during streaming</value>
   </data>
   <data name="cBoxPollInterval.Items" xml:space="preserve">
     <value>  2 Hz - slow</value>
-    <comment>ok</comment>
   </data>
   <data name="cBoxPollInterval.Items1" xml:space="preserve">
     <value>  4 Hz</value>
-    <comment>ok</comment>
   </data>
   <data name="cBoxPollInterval.Items2" xml:space="preserve">
     <value>  5 Hz - default</value>
-    <comment>ok</comment>
   </data>
   <data name="cBoxPollInterval.Items3" xml:space="preserve">
     <value>  8 Hz</value>
-    <comment>ok</comment>
   </data>
   <data name="cBoxPollInterval.Items4" xml:space="preserve">
     <value>10 Hz - maximum</value>
-    <comment>ok</comment>
   </data>
   <data name="cBoxPollInterval.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 48</value>
@@ -14305,7 +14245,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="tBShapeSet4.Text" xml:space="preserve">
     <value>123</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;tBShapeSet4.Name" xml:space="preserve">
     <value>tBShapeSet4</value>
@@ -14386,7 +14325,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="tab10gB7.Text" xml:space="preserve">
     <value>Parameter set 4</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;tab10gB7.Name" xml:space="preserve">
     <value>tab10gB7</value>
@@ -14411,7 +14349,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="tBShapeSet3.Text" xml:space="preserve">
     <value>123</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;tBShapeSet3.Name" xml:space="preserve">
     <value>tBShapeSet3</value>
@@ -14492,7 +14429,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="tab10gB6.Text" xml:space="preserve">
     <value>Parameter set 3</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;tab10gB6.Name" xml:space="preserve">
     <value>tab10gB6</value>
@@ -14517,7 +14453,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="tBShapeSet2.Text" xml:space="preserve">
     <value>123</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;tBShapeSet2.Name" xml:space="preserve">
     <value>tBShapeSet2</value>
@@ -14598,7 +14533,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="tab10gB5.Text" xml:space="preserve">
     <value>Parameter set 2</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;tab10gB5.Name" xml:space="preserve">
     <value>tab10gB5</value>
@@ -14647,7 +14581,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="tBShapeSet1.Text" xml:space="preserve">
     <value>123</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;tBShapeSet1.Name" xml:space="preserve">
     <value>tBShapeSet1</value>
@@ -14728,7 +14661,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="tab10gB4.Text" xml:space="preserve">
     <value>Parameter set 1</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;tab10gB4.Name" xml:space="preserve">
     <value>tab10gB4</value>
@@ -14790,7 +14722,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="lblFilterBlue2.Text" xml:space="preserve">
     <value>1</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;lblFilterBlue2.Name" xml:space="preserve">
     <value>lblFilterBlue2</value>
@@ -14821,7 +14752,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="lblFilterGreen2.Text" xml:space="preserve">
     <value>1</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;lblFilterGreen2.Name" xml:space="preserve">
     <value>lblFilterGreen2</value>
@@ -14852,7 +14782,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="lblFilterRed2.Text" xml:space="preserve">
     <value>1</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;lblFilterRed2.Name" xml:space="preserve">
     <value>lblFilterRed2</value>
@@ -14883,7 +14812,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="lblFilterBlue1.Text" xml:space="preserve">
     <value>1</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;lblFilterBlue1.Name" xml:space="preserve">
     <value>lblFilterBlue1</value>
@@ -14914,7 +14842,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="lblFilterGreen1.Text" xml:space="preserve">
     <value>1</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;lblFilterGreen1.Name" xml:space="preserve">
     <value>lblFilterGreen1</value>
@@ -14945,7 +14872,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="lblFilterRed1.Text" xml:space="preserve">
     <value>1</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;lblFilterRed1.Name" xml:space="preserve">
     <value>lblFilterRed1</value>
@@ -15286,7 +15212,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="tab10gB3lbl6.Text" xml:space="preserve">
     <value>%</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;tab10gB3lbl6.Name" xml:space="preserve">
     <value>tab10gB3lbl6</value>
@@ -15820,7 +15745,6 @@ Or assign a filename containing GCode. </value>
   </data>
   <data name="groupBox18.Text" xml:space="preserve">
     <value>Pushbullet</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;groupBox18.Name" xml:space="preserve">
     <value>groupBox18</value>
@@ -16739,7 +16663,6 @@ Relative file path starts from here:</value>
   </data>
   <data name="lblFilePath.Text" xml:space="preserve">
     <value>label47</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;lblFilePath.Name" xml:space="preserve">
     <value>lblFilePath</value>
@@ -17269,7 +17192,6 @@ Relative file path starts from here:</value>
   </data>
   <data name="lblPOVC07.Text" xml:space="preserve">
     <value>↖</value>
-    <comment>ok</comment>
   </data>
   <data name="lblPOVC07.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -17303,7 +17225,6 @@ Relative file path starts from here:</value>
   </data>
   <data name="lblPOVC06.Text" xml:space="preserve">
     <value>←</value>
-    <comment>ok</comment>
   </data>
   <data name="lblPOVC06.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -17337,7 +17258,6 @@ Relative file path starts from here:</value>
   </data>
   <data name="lblPOVC05.Text" xml:space="preserve">
     <value>↙</value>
-    <comment>ok</comment>
   </data>
   <data name="lblPOVC05.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -17371,7 +17291,6 @@ Relative file path starts from here:</value>
   </data>
   <data name="lblPOVC04.Text" xml:space="preserve">
     <value>↓</value>
-    <comment>ok</comment>
   </data>
   <data name="lblPOVC04.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -17405,7 +17324,6 @@ Relative file path starts from here:</value>
   </data>
   <data name="lblPOVC03.Text" xml:space="preserve">
     <value>↘</value>
-    <comment>ok</comment>
   </data>
   <data name="lblPOVC03.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -17439,7 +17357,6 @@ Relative file path starts from here:</value>
   </data>
   <data name="lblPOVC02.Text" xml:space="preserve">
     <value>→</value>
-    <comment>ok</comment>
   </data>
   <data name="lblPOVC02.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -17473,7 +17390,6 @@ Relative file path starts from here:</value>
   </data>
   <data name="lblPOVC01.Text" xml:space="preserve">
     <value>↗</value>
-    <comment>ok</comment>
   </data>
   <data name="lblPOVC01.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -17507,7 +17423,6 @@ Relative file path starts from here:</value>
   </data>
   <data name="label49.Text" xml:space="preserve">
     <value>PointOfViewController0</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;label49.Name" xml:space="preserve">
     <value>label49</value>
@@ -17538,7 +17453,6 @@ Relative file path starts from here:</value>
   </data>
   <data name="lblPOVC00.Text" xml:space="preserve">
     <value>↑</value>
-    <comment>ok</comment>
   </data>
   <data name="lblPOVC00.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -18027,13 +17941,13 @@ Move joystick after changing the offset.</value>
     <value>7, 14</value>
   </data>
   <data name="cBGPEnable.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 17</value>
+    <value>176, 17</value>
   </data>
   <data name="cBGPEnable.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="cBGPEnable.Text" xml:space="preserve">
-    <value>Enable GamePad control in GUI</value>
+    <value>Enable Gamepad control in GUI</value>
     <comment>TabPage7</comment>
   </data>
   <data name="&gt;&gt;cBGPEnable.Name" xml:space="preserve">
@@ -18297,7 +18211,7 @@ Move joystick after changing the offset.</value>
     <value>18</value>
   </data>
   <data name="tab7gB1lbl1.Text" xml:space="preserve">
-    <value>Press buttons on your GamePad to check button assignment.
+    <value>Press buttons on your Gamepad to check button assignment.
 
 Assign regular GCode (check rules of 'Custom Buttons') or special functions inside editboxes.
 
@@ -18315,7 +18229,7 @@ Special functions (starts with #):
 Assign Axis and direction invert
 Refresh interval = 50ms.
 
-Setup window must be closed to use GamePad in GUI.
+Setup window must be closed to use Gamepad in GUI.
 </value>
     <comment>ok</comment>
   </data>
@@ -18662,7 +18576,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>5</value>
   </data>
   <data name="lblgp.Text" xml:space="preserve">
-    <value>Message from GamePad</value>
+    <value>Message from Gamepad</value>
     <comment>TabPage7</comment>
   </data>
   <data name="&gt;&gt;lblgp.Name" xml:space="preserve">
@@ -18694,7 +18608,6 @@ Setup window must be closed to use GamePad in GUI.
   </data>
   <data name="label44.Text" xml:space="preserve">
     <value>R</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;label44.Name" xml:space="preserve">
     <value>label44</value>
@@ -18756,7 +18669,6 @@ Setup window must be closed to use GamePad in GUI.
   </data>
   <data name="label43.Text" xml:space="preserve">
     <value>Z</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;label43.Name" xml:space="preserve">
     <value>label43</value>
@@ -18818,7 +18730,6 @@ Setup window must be closed to use GamePad in GUI.
   </data>
   <data name="label42.Text" xml:space="preserve">
     <value>Y</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;label42.Name" xml:space="preserve">
     <value>label42</value>
@@ -18849,7 +18760,6 @@ Setup window must be closed to use GamePad in GUI.
   </data>
   <data name="label41.Text" xml:space="preserve">
     <value>X</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;label41.Name" xml:space="preserve">
     <value>label41</value>
@@ -18942,7 +18852,6 @@ Setup window must be closed to use GamePad in GUI.
   </data>
   <data name="lblButtons15.Text" xml:space="preserve">
     <value>Button 15</value>
-    <comment>ok</comment>
   </data>
   <data name="lblButtons15.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -18976,7 +18885,6 @@ Setup window must be closed to use GamePad in GUI.
   </data>
   <data name="lblButtons0.Text" xml:space="preserve">
     <value>Button 0</value>
-    <comment>ok</comment>
   </data>
   <data name="lblButtons0.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -19010,7 +18918,6 @@ Setup window must be closed to use GamePad in GUI.
   </data>
   <data name="lblButtons14.Text" xml:space="preserve">
     <value>Button 14</value>
-    <comment>ok</comment>
   </data>
   <data name="lblButtons14.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -19065,7 +18972,6 @@ Setup window must be closed to use GamePad in GUI.
   </data>
   <data name="lblButtons13.Text" xml:space="preserve">
     <value>Button 13</value>
-    <comment>ok</comment>
   </data>
   <data name="lblButtons13.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -19099,7 +19005,6 @@ Setup window must be closed to use GamePad in GUI.
   </data>
   <data name="lblButtons1.Text" xml:space="preserve">
     <value>Button 1</value>
-    <comment>ok</comment>
   </data>
   <data name="lblButtons1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -19133,7 +19038,6 @@ Setup window must be closed to use GamePad in GUI.
   </data>
   <data name="lblButtons12.Text" xml:space="preserve">
     <value>Button 12</value>
-    <comment>ok</comment>
   </data>
   <data name="lblButtons12.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -19167,7 +19071,6 @@ Setup window must be closed to use GamePad in GUI.
   </data>
   <data name="lblButtons2.Text" xml:space="preserve">
     <value>Button 2</value>
-    <comment>ok</comment>
   </data>
   <data name="lblButtons2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -19201,7 +19104,6 @@ Setup window must be closed to use GamePad in GUI.
   </data>
   <data name="lblButtons11.Text" xml:space="preserve">
     <value>Button 11</value>
-    <comment>ok</comment>
   </data>
   <data name="lblButtons11.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -19235,7 +19137,6 @@ Setup window must be closed to use GamePad in GUI.
   </data>
   <data name="lblButtons3.Text" xml:space="preserve">
     <value>Button 3</value>
-    <comment>ok</comment>
   </data>
   <data name="lblButtons3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -19269,7 +19170,6 @@ Setup window must be closed to use GamePad in GUI.
   </data>
   <data name="lblButtons10.Text" xml:space="preserve">
     <value>Button 10</value>
-    <comment>ok</comment>
   </data>
   <data name="lblButtons10.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -19303,7 +19203,6 @@ Setup window must be closed to use GamePad in GUI.
   </data>
   <data name="lblButtons4.Text" xml:space="preserve">
     <value>Button 4</value>
-    <comment>ok</comment>
   </data>
   <data name="lblButtons4.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -19337,7 +19236,6 @@ Setup window must be closed to use GamePad in GUI.
   </data>
   <data name="lblButtons9.Text" xml:space="preserve">
     <value>Button 9</value>
-    <comment>ok</comment>
   </data>
   <data name="lblButtons9.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -19371,7 +19269,6 @@ Setup window must be closed to use GamePad in GUI.
   </data>
   <data name="lblButtons5.Text" xml:space="preserve">
     <value>Button 5</value>
-    <comment>ok</comment>
   </data>
   <data name="lblButtons5.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -19405,7 +19302,6 @@ Setup window must be closed to use GamePad in GUI.
   </data>
   <data name="lblButtons8.Text" xml:space="preserve">
     <value>Button 8</value>
-    <comment>ok</comment>
   </data>
   <data name="lblButtons8.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -19439,7 +19335,6 @@ Setup window must be closed to use GamePad in GUI.
   </data>
   <data name="lblButtons6.Text" xml:space="preserve">
     <value>Button 6</value>
-    <comment>ok</comment>
   </data>
   <data name="lblButtons6.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -19473,7 +19368,6 @@ Setup window must be closed to use GamePad in GUI.
   </data>
   <data name="lblButtons7.Text" xml:space="preserve">
     <value>Button 7</value>
-    <comment>ok</comment>
   </data>
   <data name="lblButtons7.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -19500,7 +19394,7 @@ Setup window must be closed to use GamePad in GUI.
     <value>17</value>
   </data>
   <data name="tab7gB1.Text" xml:space="preserve">
-    <value>GamePad Button assignment</value>
+    <value>Gamepad Button assignment</value>
     <comment>ok</comment>
   </data>
   <data name="&gt;&gt;tab7gB1.Name" xml:space="preserve">
@@ -19860,7 +19754,6 @@ Step width Speed</value>
   </data>
   <data name="lblJoystickSize.Text" xml:space="preserve">
     <value>160</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;lblJoystickSize.Name" xml:space="preserve">
     <value>lblJoystickSize</value>
@@ -20276,7 +20169,6 @@ Step width  Speed</value>
   </data>
   <data name="label24.Text" xml:space="preserve">
     <value>Pos 5</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;label24.Name" xml:space="preserve">
     <value>label24</value>
@@ -20307,7 +20199,6 @@ Step width  Speed</value>
   </data>
   <data name="label23.Text" xml:space="preserve">
     <value>Pos 4</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;label23.Name" xml:space="preserve">
     <value>label23</value>
@@ -20338,7 +20229,6 @@ Step width  Speed</value>
   </data>
   <data name="label22.Text" xml:space="preserve">
     <value>Pos 3</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;label22.Name" xml:space="preserve">
     <value>label22</value>
@@ -20369,7 +20259,6 @@ Step width  Speed</value>
   </data>
   <data name="label21.Text" xml:space="preserve">
     <value>Pos 2</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;label21.Name" xml:space="preserve">
     <value>label21</value>
@@ -20400,7 +20289,6 @@ Step width  Speed</value>
   </data>
   <data name="label20.Text" xml:space="preserve">
     <value>Pos 1</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;label20.Name" xml:space="preserve">
     <value>label20</value>
@@ -21824,7 +21712,6 @@ Step width  Speed</value>
   </data>
   <data name="linkLabel19.Text" xml:space="preserve">
     <value>SquiggleCam</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;linkLabel19.Name" xml:space="preserve">
     <value>linkLabel19</value>
@@ -21886,7 +21773,6 @@ Step width  Speed</value>
   </data>
   <data name="linkLabel18.Text" xml:space="preserve">
     <value>StippleGen</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;linkLabel18.Name" xml:space="preserve">
     <value>linkLabel18</value>
@@ -22215,7 +22101,6 @@ Step width  Speed</value>
   </data>
   <data name="linkLabel17.Text" xml:space="preserve">
     <value>https://drawingbots.net/knowledge/tools</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;linkLabel17.Name" xml:space="preserve">
     <value>linkLabel17</value>
@@ -22535,7 +22420,6 @@ Step width  Speed</value>
   </data>
   <data name="linkLabel6.Text" xml:space="preserve">
     <value>clipartof</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;linkLabel6.Name" xml:space="preserve">
     <value>linkLabel6</value>
@@ -22566,7 +22450,6 @@ Step width  Speed</value>
   </data>
   <data name="linkLabel5.Text" xml:space="preserve">
     <value>cliparts101</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;linkLabel5.Name" xml:space="preserve">
     <value>linkLabel5</value>
@@ -22597,7 +22480,6 @@ Step width  Speed</value>
   </data>
   <data name="linkLabel4.Text" xml:space="preserve">
     <value>clker</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;linkLabel4.Name" xml:space="preserve">
     <value>linkLabel4</value>
@@ -22628,7 +22510,6 @@ Step width  Speed</value>
   </data>
   <data name="linkLabel3.Text" xml:space="preserve">
     <value>simplemaps</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;linkLabel3.Name" xml:space="preserve">
     <value>linkLabel3</value>
@@ -22659,7 +22540,6 @@ Step width  Speed</value>
   </data>
   <data name="linkLabel2.Text" xml:space="preserve">
     <value>publicdomainvectors</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;linkLabel2.Name" xml:space="preserve">
     <value>linkLabel2</value>
@@ -22690,7 +22570,6 @@ Step width  Speed</value>
   </data>
   <data name="linkLabel1.Text" xml:space="preserve">
     <value>openclipart</value>
-    <comment>ok</comment>
   </data>
   <data name="&gt;&gt;linkLabel1.Name" xml:space="preserve">
     <value>linkLabel1</value>
@@ -22879,9 +22758,6 @@ Other settings will be stored on change, usually.</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>884, 411</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 150</value>

@@ -143,7 +143,7 @@
     <comment>ToolTip</comment>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>مسح السطح</value>
+    <value>انتاج |</value>
   </data>
   <data name="btnStartHeightScan.Text" xml:space="preserve">
     <value>توليد خريطة الارتفاع</value>
@@ -287,5 +287,51 @@
   <data name="gB_Manipulation.Text" xml:space="preserve">
     <value>بمعالجة</value>
     <comment>GroupBox</comment>
+  </data>
+  <data name="saveMapAsOBJToolStripMenuItem.Text" xml:space="preserve">
+    <value>حفظ الخريطة باسم OBJ</value>
+  </data>
+  <data name="btnZoomZ.Text" xml:space="preserve">
+    <value>تكبير Z</value>
+  </data>
+  <data name="BtnMoveUR.Text" xml:space="preserve">
+    <value>انتقل إلى 🡵</value>
+  </data>
+  <data name="BtnMoveLL.Text" xml:space="preserve">
+    <value>انتقل إلى 🡷</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>منطقة للمسح</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>معدل التغذية XY</value>
+  </data>
+  <data name="CbUseG1.Text" xml:space="preserve">
+    <value>استخدم G1 من أجل XY move (عدا G0)</value>
+  </data>
+  <data name="RbProbingDiy.Text" xml:space="preserve">
+    <value>من DIY التحكم</value>
+  </data>
+  <data name="LblConnected.Text" xml:space="preserve">
+    <value>التحكم الذاتي غير متصل</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>الاستخدامات التي تم تلقيها مؤخرًا "(PRB: Zxxx)" قيمة Z من DIY-Control كمعلومات عمق.
+(xxx = قيمة Z)</value>
+  </data>
+  <data name="RbProbingZ.Text" xml:space="preserve">
+    <value>(xxx = قيمة Z)</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>باستخدام المحور Z (G38.3Z)</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>استقصاء ، حدد مصدرًا لقيمة Z.</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>سبر</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>التلاعب بالنتيجة</value>
   </data>
 </root>

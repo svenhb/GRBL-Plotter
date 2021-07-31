@@ -1,4 +1,4 @@
-﻿namespace GRBL_Plotter
+﻿namespace GrblPlotter
 {
     partial class ControlJogPathCreator
     {
@@ -79,19 +79,19 @@
             resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
-            this.pictureBox1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
-            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
-            this.pictureBox1.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseWheel);
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBox1_Paint);
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseDown);
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.PictureBox1_MouseLeave);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseMove);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseUp);
+            this.pictureBox1.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseWheel);
             // 
             // btnUndo
             // 
             resources.ApplyResources(this.btnUndo, "btnUndo");
             this.btnUndo.Name = "btnUndo";
             this.btnUndo.UseVisualStyleBackColor = true;
-            this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
+            this.btnUndo.Click += new System.EventHandler(this.BtnUndo_Click);
             // 
             // gBPathCreator
             // 
@@ -120,25 +120,25 @@
             resources.ApplyResources(this.btnLoad, "btnLoad");
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.UseVisualStyleBackColor = true;
-            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            this.btnLoad.Click += new System.EventHandler(this.BtnLoad_Click);
             // 
             // btnSave
             // 
             resources.ApplyResources(this.btnSave, "btnSave");
             this.btnSave.Name = "btnSave";
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // btnRotate
             // 
             resources.ApplyResources(this.btnRotate, "btnRotate");
             this.btnRotate.Name = "btnRotate";
             this.btnRotate.UseVisualStyleBackColor = true;
-            this.btnRotate.Click += new System.EventHandler(this.btnRotate_Click);
+            this.btnRotate.Click += new System.EventHandler(this.BtnRotate_Click);
             // 
             // nUDRaster
             // 
-            this.nUDRaster.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "createJogPathRaster", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDRaster.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "createJogPathRaster", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.nUDRaster.DecimalPlaces = 1;
             resources.ApplyResources(this.nUDRaster, "nUDRaster");
             this.nUDRaster.Minimum = new decimal(new int[] {
@@ -148,8 +148,8 @@
             65536});
             this.nUDRaster.Name = "nUDRaster";
             this.toolTip1.SetToolTip(this.nUDRaster, resources.GetString("nUDRaster.ToolTip"));
-            this.nUDRaster.Value = global::GRBL_Plotter.Properties.Settings.Default.createJogPathRaster;
-            this.nUDRaster.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
+            this.nUDRaster.Value = global::GrblPlotter.Properties.Settings.Default.createJogPathRaster;
+            this.nUDRaster.ValueChanged += new System.EventHandler(this.NumericUpDown2_ValueChanged);
             // 
             // btnDelete
             // 
@@ -157,7 +157,7 @@
             this.btnDelete.Name = "btnDelete";
             this.toolTip1.SetToolTip(this.btnDelete, resources.GetString("btnDelete.ToolTip"));
             this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // label1
             // 
@@ -197,10 +197,10 @@
             // 
             // tBCodeStart
             // 
-            this.tBCodeStart.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "createJogPathCodeStart", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tBCodeStart.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "createJogPathCodeStart", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.tBCodeStart, "tBCodeStart");
             this.tBCodeStart.Name = "tBCodeStart";
-            this.tBCodeStart.Text = global::GRBL_Plotter.Properties.Settings.Default.createJogPathCodeStart;
+            this.tBCodeStart.Text = global::GrblPlotter.Properties.Settings.Default.createJogPathCodeStart;
             this.toolTip1.SetToolTip(this.tBCodeStart, resources.GetString("tBCodeStart.ToolTip"));
             // 
             // btnExport
@@ -209,15 +209,15 @@
             this.btnExport.Name = "btnExport";
             this.toolTip1.SetToolTip(this.btnExport, resources.GetString("btnExport.ToolTip"));
             this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
             // 
             // btnJogStop
             // 
             this.btnJogStop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnJogStop.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GRBL_Plotter.Properties.Settings.Default, "createJogPathCodeEnd", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.btnJogStop.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "createJogPathCodeEnd", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.btnJogStop, "btnJogStop");
             this.btnJogStop.Name = "btnJogStop";
-            this.btnJogStop.Text = global::GRBL_Plotter.Properties.Settings.Default.createJogPathCodeEnd;
+            this.btnJogStop.Text = global::GrblPlotter.Properties.Settings.Default.createJogPathCodeEnd;
             this.toolTip1.SetToolTip(this.btnJogStop, resources.GetString("btnJogStop.ToolTip"));
             this.btnJogStop.UseVisualStyleBackColor = false;
             // 
@@ -228,7 +228,7 @@
             this.btnJogStart.Name = "btnJogStart";
             this.toolTip1.SetToolTip(this.btnJogStart, resources.GetString("btnJogStart.ToolTip"));
             this.btnJogStart.UseVisualStyleBackColor = false;
-            this.btnJogStart.Click += new System.EventHandler(this.btnJogStart_Click);
+            this.btnJogStart.Click += new System.EventHandler(this.BtnJogStart_Click);
             // 
             // label2
             // 
@@ -237,7 +237,7 @@
             // 
             // nUDFeedrate
             // 
-            this.nUDFeedrate.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GRBL_Plotter.Properties.Settings.Default, "createJogPathFeedrate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDFeedrate.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "createJogPathFeedrate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.nUDFeedrate.Increment = new decimal(new int[] {
             50,
             0,
@@ -256,7 +256,7 @@
             0});
             this.nUDFeedrate.Name = "nUDFeedrate";
             this.toolTip1.SetToolTip(this.nUDFeedrate, resources.GetString("nUDFeedrate.ToolTip"));
-            this.nUDFeedrate.Value = global::GRBL_Plotter.Properties.Settings.Default.createJogPathFeedrate;
+            this.nUDFeedrate.Value = global::GrblPlotter.Properties.Settings.Default.createJogPathFeedrate;
             // 
             // ControlJogPathCreator
             // 
@@ -287,15 +287,15 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox gBJogParameter;
-        public System.Windows.Forms.Button btnJogStop;
-        public System.Windows.Forms.Button btnJogStart;
+        internal System.Windows.Forms.Button btnJogStop;
+        internal System.Windows.Forms.Button btnJogStart;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown nUDFeedrate;
         private System.Windows.Forms.NumericUpDown nUDRaster;
         private System.Windows.Forms.Button btnRotate;
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Button btnSave;
-        public System.Windows.Forms.Button btnExport;
+        internal System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.CheckBox cBSnap;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label label4;

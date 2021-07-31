@@ -153,9 +153,6 @@
   <data name="btnJogStart.Text" xml:space="preserve">
     <value>Enviar caminho de jog</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Taxa de alimentação</value>
-  </data>
   <data name="cBSnap.Text" xml:space="preserve">
     <value>Snap on raster</value>
   </data>

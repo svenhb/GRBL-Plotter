@@ -167,11 +167,11 @@ Otras configuraciones se almacenarán en el cambio, por lo general.</value>
     <comment>Form</comment>
   </data>
   <data name="cBImportDXFSwitchWhite.Text" xml:space="preserve">
-    <value>Manejar blanco como negro</value>
+    <value>Manejar el color de la pluma blanco como negro</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFSwitchWhite.ToolTip" xml:space="preserve">
-    <value>El formato DXF usa un índice de color de 0 a 255. Este índice se usará como número de herramienta.</value>
+    <value>LibreCAD muestra un lápiz de color blanco sobre fondo negro. Pero el color real de la pluma es el negro.</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFIndexToolNr.Text" xml:space="preserve">

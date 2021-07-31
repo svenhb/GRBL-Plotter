@@ -282,9 +282,53 @@ Achtung, das Höhenprofil sollte vorher gespeichert werden!</value>
     <comment>ToolTip</comment>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Höhenprofil einlesen</value>
+    <value>Oberflächenscan</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Gittergröße X und Y</value>
+  </data>
+  <data name="saveMapAsOBJToolStripMenuItem.Text" xml:space="preserve">
+    <value>Speichere Höhenprofil als OBJ</value>
+  </data>
+  <data name="gB_Manipulation.Text" xml:space="preserve">
+    <value>Manipulation</value>
+    <comment>GroupBox</comment>
+  </data>
+  <data name="lblInfo.Text" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Zu scannender Bereich</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>XY-Vorschubgeschwindigkeit</value>
+  </data>
+  <data name="CbUseG1.Text" xml:space="preserve">
+    <value>G1 für XY-Bewegung (sonst G0)</value>
+  </data>
+  <data name="RbProbingDiy.Text" xml:space="preserve">
+    <value>Von DIY-Steuerung</value>
+  </data>
+  <data name="LblConnected.Text" xml:space="preserve">
+    <value>DIY-Steuerung nicht verbunden</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Verwendet den zuletzt empfangenen "(PRB:Zxxx)" Z-Wert von DIY-Control als Tiefeninformation.
+(xxx = Z-Wert)</value>
+  </data>
+  <data name="RbProbingZ.Text" xml:space="preserve">
+    <value>Verwendung der Z-Achse (G38.3Z)</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Antasten, Quelle für Z-Wert auswählen</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Sondierung</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Ergebnismanipulation</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Ausgabe</value>
   </data>
 </root>

@@ -273,7 +273,7 @@ Finalmente mover al centro</value>
     <value>El ángulo de corrección se calculará de forma vertical (sondeo X) u borde horizontal (sondeo Y) de la pieza de trabajo</value>
   </data>
   <data name="label20.Text" xml:space="preserve">
-    <value>Ángulo de corrección medido:</value>
+    <value>Ángulo de corrección medido</value>
   </data>
   <data name="btnSaveTL.Text" xml:space="preserve">
     <value>Conduzca Z a la posición segura</value>

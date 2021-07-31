@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,21 +19,24 @@
 /* https://stackoverflow.com/questions/3929764/taking-input-from-a-joystick-with-c-sharp-net
  * 
  * 2020-09-02 check joystickGuid before Instantiate the joystick
- * */
+ * 2021-07-26 code clean up / code quality
+*/
 
-using System;
 using SharpDX.DirectInput;
+using System;
 
-namespace GRBL_Plotter
+//#pragma warning disable CA1305
+
+namespace GrblPlotter
 {
-    class ControlGamePad
+    public static class ControlGamePad
     {
-        public static Joystick gamePad;
+        internal static Joystick gamePad;
         public static bool Initialize()
         {
             // Initialize DirectInput
             var directInput = new DirectInput();
-            var logstring = "";
+            //     var logstring="";
             // Find a Joystick Guid
             var joystickGuid = Guid.Empty;
 
@@ -48,27 +51,29 @@ namespace GRBL_Plotter
             // If Joystick not found, throws an error
             if (joystickGuid == Guid.Empty)
             {
-                logstring += ("No joystick/Gamepad found.");
+                //        logstring += ("No joystick/Gamepad found.");
             }
-			else
-			{
-				// Instantiate the joystick
-				gamePad = new Joystick(directInput, joystickGuid);
+            else
+            {
+                // Instantiate the joystick
+                gamePad = new Joystick(directInput, joystickGuid);
 
-				// Query all suported ForceFeedback effects
-				var allEffects = gamePad.GetEffects();
-				foreach (var effectInfo in allEffects)
-					logstring += string.Format("Effect available {0}", effectInfo.Name);
+                // Query all suported ForceFeedback effects
+                //	var allEffects = gamePad.GetEffects();
+                //	foreach (var effectInfo in allEffects)
+                //		logstring += string.Format("Effect available {0}", effectInfo.Name);
 
-				// Set BufferSize in order to use buffered data.
-				gamePad.Properties.BufferSize = 128;
+                // Set BufferSize in order to use buffered data.
+                gamePad.Properties.BufferSize = 128;
 
-				// Acquire the joystick
-				gamePad.Acquire();
-				
-				return true;
-			}
-			return false;
+                // Acquire the joystick
+                gamePad.Acquire();
+
+                directInput.Dispose();
+                return true;
+            }
+            directInput.Dispose();
+            return false;
         }
     }
 }

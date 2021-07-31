@@ -167,7 +167,7 @@ Se o valor for&gt; raio do arco, o valor será diminuído automaticamente.</valu
     <comment>TabPage8</comment>
   </data>
   <data name="cBImportDXFSwitchWhite.ToolTip" xml:space="preserve">
-    <value>O formato DXF usa o índice de cores de 0 a 255. Este índice + 1 será usado como número da ferramenta.</value>
+    <value>LibreCAD mostra a cor da caneta branca em fundo preto. Mas a verdadeira cor da caneta é preta.</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFIndexToolNr.Text" xml:space="preserve">
@@ -587,7 +587,7 @@ Nota: Não use 'Classificar objetos por índice de caneta'</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFSwitchWhite.Text" xml:space="preserve">
-    <value>Lidar com branco como preto</value>
+    <value>Lidar com a cor da caneta branca como preta</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGNodesOnly.ToolTip" xml:space="preserve">

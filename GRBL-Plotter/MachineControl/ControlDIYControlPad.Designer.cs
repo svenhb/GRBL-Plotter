@@ -1,6 +1,6 @@
-﻿namespace GRBL_Plotter
+﻿namespace GrblPlotter
 {
-    partial class ControlDIYControlPad
+    partial class ControlDiyControlPad
     {
         /// <summary>
         /// Required designer variable.
@@ -51,7 +51,7 @@
             this.btnScanPort.Text = "Scan Ports";
             this.toolTip1.SetToolTip(this.btnScanPort, "Scan for free ports");
             this.btnScanPort.UseVisualStyleBackColor = true;
-            this.btnScanPort.Click += new System.EventHandler(this.btnScanPort_Click);
+            this.btnScanPort.Click += new System.EventHandler(this.BtnScanPort_Click);
             // 
             // btnOpenPort
             // 
@@ -63,7 +63,7 @@
             this.btnOpenPort.Text = "Open";
             this.toolTip1.SetToolTip(this.btnOpenPort, "Open selected COM port with selected speed");
             this.btnOpenPort.UseVisualStyleBackColor = true;
-            this.btnOpenPort.Click += new System.EventHandler(this.btnOpenPort_Click);
+            this.btnOpenPort.Click += new System.EventHandler(this.BtnOpenPort_Click);
             // 
             // cbBaud
             // 
@@ -104,14 +104,14 @@
             // serialPort
             // 
             this.serialPort.RtsEnable = true;
-            this.serialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort_DataReceived);
+            this.serialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.SerialPort_DataReceived);
             // 
             // cBFeedback
             // 
             this.cBFeedback.AutoSize = true;
-            this.cBFeedback.Checked = global::GRBL_Plotter.Properties.Settings.Default.ctrlDIYShowFeedback;
+            this.cBFeedback.Checked = global::GrblPlotter.Properties.Settings.Default.ctrlDIYShowFeedback;
             this.cBFeedback.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBFeedback.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GRBL_Plotter.Properties.Settings.Default, "ctrlDIYShowFeedback", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBFeedback.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "ctrlDIYShowFeedback", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cBFeedback.Location = new System.Drawing.Point(2, 25);
             this.cBFeedback.Name = "cBFeedback";
             this.cBFeedback.Size = new System.Drawing.Size(164, 17);
@@ -137,7 +137,7 @@
             this.btnSimulate.Text = "Simulate RX";
             this.btnSimulate.UseVisualStyleBackColor = true;
             this.btnSimulate.Visible = false;
-            this.btnSimulate.Click += new System.EventHandler(this.btnSimulate_Click);
+            this.btnSimulate.Click += new System.EventHandler(this.BtnSimulate_Click);
             // 
             // ControlDIYControlPad
             // 

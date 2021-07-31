@@ -117,70 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 13</value>
-  </data>
-  <data name="label15.Text" xml:space="preserve">
-    <value>Sek. mit S</value>
-  </data>
-  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>151, 16</value>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 13</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Fahre X von 0 bis</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>Delay vor dem Start</value>
   </data>
-  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>406, 16</value>
-  </data>
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 13</value>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Sek. mit S</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
     <value>bewege Y um</value>
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 13</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Fahre X von 0 bis</value>
-  </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Bewegung mit welcher der Scan ausgeführt wird</value>
-  </data>
-  <data name="lblText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>382, 13</value>
   </data>
   <data name="lblText.Text" xml:space="preserve">
     <value>Setup: setze $30 auf einen Wert, welcher zu 100% Laserenergie führt bei S100.
 </value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Scanne Z um den besten Laserfokus zu finden, mit konstanter Geschwindigkeit</value>
-  </data>
-  <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>166, 16</value>
-  </data>
-  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 13</value>
-  </data>
-  <data name="label12.Text" xml:space="preserve">
-    <value>mit Geschw. F</value>
-  </data>
-  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>296, 16</value>
-  </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 13</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>mit Laserenergie S</value>
-  </data>
-  <data name="nUDMotionSpeed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>243, 14</value>
   </data>
   <data name="btnScanZ.Text" xml:space="preserve">
     <value>Starte Scan</value>
@@ -188,107 +142,65 @@
   <data name="label2.Text" xml:space="preserve">
     <value>Z von plus zu minus</value>
   </data>
-  <data name="nUDMotionPower.Location" type="System.Drawing.Point, System.Drawing">
-    <value>394, 14</value>
+  <data name="label12.Text" xml:space="preserve">
+    <value>mit Geschw. F</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Scanne X Geschwindigkeit mit konstanter Laserenergie (ohne Z Achse)</value>
+  <data name="label8.Text" xml:space="preserve">
+    <value>mit Laserenergie S</value>
   </data>
-  <data name="nUDSpeedStep.Location" type="System.Drawing.Point, System.Drawing">
-    <value>243, 14</value>
-  </data>
-  <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
-    <value>192, 16</value>
-  </data>
-  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 13</value>
-  </data>
-  <data name="label13.Text" xml:space="preserve">
-    <value>Schrittw.</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Scanne Z um den besten Laserfokus zu finden, mit konstanter Geschwindigkeit</value>
   </data>
   <data name="btnScanSpeed.Text" xml:space="preserve">
     <value>Starte Scan</value>
   </data>
-  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>296, 16</value>
-  </data>
-  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 13</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>mit Laserenergie S</value>
-  </data>
-  <data name="nUDSpeedPower.Location" type="System.Drawing.Point, System.Drawing">
-    <value>394, 14</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 13</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Von F</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>bis F</value>
   </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 13</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Von F</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Scanne Laserenergie bei konstanter Geschwindigkeit (ohne Z Achse)</value>
-  </data>
-  <data name="nUDPowerStep.Location" type="System.Drawing.Point, System.Drawing">
-    <value>243, 14</value>
-  </data>
-  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>192, 16</value>
-  </data>
-  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 13</value>
-  </data>
-  <data name="label14.Text" xml:space="preserve">
+  <data name="label13.Text" xml:space="preserve">
     <value>Schrittw.</value>
   </data>
-  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 13</value>
+  <data name="label10.Text" xml:space="preserve">
+    <value>mit Laserenergie S</value>
   </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>mit Geschwind. F</value>
-  </data>
-  <data name="nUDPowerSpeed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>394, 14</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 13</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>bis S</value>
-  </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 13</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Von S</value>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Scanne X Geschwindigkeit mit konstanter Laserenergie (ohne Z Achse)</value>
   </data>
   <data name="btnScanPower.Text" xml:space="preserve">
     <value>Starte Scan</value>
   </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Von S</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>bis S</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Schrittw.</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>mit Geschwind. F</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Scanne Laserenergie bei konstanter Geschwindigkeit (ohne Z Achse)</value>
+  </data>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Lasereinstellung die unten genutzt werden</value>
   </data>
-  <data name="groupBox6.Text" xml:space="preserve">
-    <value>Werte aus Werkzeugtabelle</value>
-  </data>
   <data name="btnToolUpdate.Text" xml:space="preserve">
     <value>Update Werkzgl.</value>
-  </data>
-  <data name="lblToolProp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 13</value>
   </data>
   <data name="lblToolProp.Text" xml:space="preserve">
     <value>XY-Feed (F) und Lasere. (S) von Wkzgl.</value>
   </data>
   <data name="btnScanTool.Text" xml:space="preserve">
     <value>Starte Scan</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Werte aus Werkzeugtabelle</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Laserjustage</value>

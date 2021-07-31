@@ -1,4 +1,4 @@
-﻿namespace GRBL_Plotter
+﻿namespace GrblPlotter
 {
     partial class ControlCoordSystem
     {
@@ -118,7 +118,7 @@
             this.btnSelect6.TabIndex = 5;
             this.btnSelect6.Text = "6) G59";
             this.btnSelect6.UseVisualStyleBackColor = true;
-            this.btnSelect6.Click += new System.EventHandler(this.btnSelect6_Click);
+            this.btnSelect6.Click += new System.EventHandler(this.BtnSelect6_Click);
             // 
             // btnSelect5
             // 
@@ -128,7 +128,7 @@
             this.btnSelect5.TabIndex = 4;
             this.btnSelect5.Text = "5) G58";
             this.btnSelect5.UseVisualStyleBackColor = true;
-            this.btnSelect5.Click += new System.EventHandler(this.btnSelect5_Click);
+            this.btnSelect5.Click += new System.EventHandler(this.BtnSelect5_Click);
             // 
             // btnSelect4
             // 
@@ -138,7 +138,7 @@
             this.btnSelect4.TabIndex = 3;
             this.btnSelect4.Text = "4) G57";
             this.btnSelect4.UseVisualStyleBackColor = true;
-            this.btnSelect4.Click += new System.EventHandler(this.btnSelect4_Click);
+            this.btnSelect4.Click += new System.EventHandler(this.BtnSelect4_Click);
             // 
             // btnSelect3
             // 
@@ -148,7 +148,7 @@
             this.btnSelect3.TabIndex = 2;
             this.btnSelect3.Text = "3) G56";
             this.btnSelect3.UseVisualStyleBackColor = true;
-            this.btnSelect3.Click += new System.EventHandler(this.btnSelect3_Click);
+            this.btnSelect3.Click += new System.EventHandler(this.BtnSelect3_Click);
             // 
             // btnSelect2
             // 
@@ -158,7 +158,7 @@
             this.btnSelect2.TabIndex = 1;
             this.btnSelect2.Text = "2) G55";
             this.btnSelect2.UseVisualStyleBackColor = true;
-            this.btnSelect2.Click += new System.EventHandler(this.btnSelect2_Click);
+            this.btnSelect2.Click += new System.EventHandler(this.BtnSelect2_Click);
             // 
             // btnSelect1
             // 
@@ -168,7 +168,7 @@
             this.btnSelect1.TabIndex = 0;
             this.btnSelect1.Text = "1) G54";
             this.btnSelect1.UseVisualStyleBackColor = true;
-            this.btnSelect1.Click += new System.EventHandler(this.btnSelect1_Click);
+            this.btnSelect1.Click += new System.EventHandler(this.BtnSelect1_Click);
             // 
             // label1
             // 
@@ -278,7 +278,7 @@
             this.btnSetW6.TabIndex = 5;
             this.btnSetW6.Text = "set 6";
             this.btnSetW6.UseVisualStyleBackColor = true;
-            this.btnSetW6.Click += new System.EventHandler(this.btnSet6_Click);
+            this.btnSetW6.Click += new System.EventHandler(this.BtnSet6_Click);
             // 
             // btnSetW5
             // 
@@ -288,7 +288,7 @@
             this.btnSetW5.TabIndex = 4;
             this.btnSetW5.Text = "set 5";
             this.btnSetW5.UseVisualStyleBackColor = true;
-            this.btnSetW5.Click += new System.EventHandler(this.btnSet5_Click);
+            this.btnSetW5.Click += new System.EventHandler(this.BtnSet5_Click);
             // 
             // btnSetW4
             // 
@@ -298,7 +298,7 @@
             this.btnSetW4.TabIndex = 3;
             this.btnSetW4.Text = "set 4";
             this.btnSetW4.UseVisualStyleBackColor = true;
-            this.btnSetW4.Click += new System.EventHandler(this.btnSet4_Click);
+            this.btnSetW4.Click += new System.EventHandler(this.BtnSet4_Click);
             // 
             // btnSetW3
             // 
@@ -308,7 +308,7 @@
             this.btnSetW3.TabIndex = 2;
             this.btnSetW3.Text = "set 3";
             this.btnSetW3.UseVisualStyleBackColor = true;
-            this.btnSetW3.Click += new System.EventHandler(this.btnSet3_Click);
+            this.btnSetW3.Click += new System.EventHandler(this.BtnSet3_Click);
             // 
             // btnSetW2
             // 
@@ -318,7 +318,7 @@
             this.btnSetW2.TabIndex = 1;
             this.btnSetW2.Text = "set 2";
             this.btnSetW2.UseVisualStyleBackColor = true;
-            this.btnSetW2.Click += new System.EventHandler(this.btnSet2_Click);
+            this.btnSetW2.Click += new System.EventHandler(this.BtnSet2_Click);
             // 
             // btnSetW1
             // 
@@ -328,11 +328,11 @@
             this.btnSetW1.TabIndex = 0;
             this.btnSetW1.Text = "set 1";
             this.btnSetW1.UseVisualStyleBackColor = true;
-            this.btnSetW1.Click += new System.EventHandler(this.btnSet1_Click);
+            this.btnSetW1.Click += new System.EventHandler(this.BtnSet1_Click);
             // 
             // timer1
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // groupBox4
             // 
@@ -357,7 +357,7 @@
             this.btnSetM6.TabIndex = 5;
             this.btnSetM6.Text = "set 6";
             this.btnSetM6.UseVisualStyleBackColor = true;
-            this.btnSetM6.Click += new System.EventHandler(this.btnSetM6_Click);
+            this.btnSetM6.Click += new System.EventHandler(this.BtnSetM6_Click);
             // 
             // btnSetM5
             // 
@@ -367,7 +367,7 @@
             this.btnSetM5.TabIndex = 4;
             this.btnSetM5.Text = "set 5";
             this.btnSetM5.UseVisualStyleBackColor = true;
-            this.btnSetM5.Click += new System.EventHandler(this.btnSetM5_Click);
+            this.btnSetM5.Click += new System.EventHandler(this.BtnSetM5_Click);
             // 
             // btnSetM4
             // 
@@ -377,7 +377,7 @@
             this.btnSetM4.TabIndex = 3;
             this.btnSetM4.Text = "set 4";
             this.btnSetM4.UseVisualStyleBackColor = true;
-            this.btnSetM4.Click += new System.EventHandler(this.btnSetM4_Click);
+            this.btnSetM4.Click += new System.EventHandler(this.BtnSetM4_Click);
             // 
             // btnSetM3
             // 
@@ -387,7 +387,7 @@
             this.btnSetM3.TabIndex = 2;
             this.btnSetM3.Text = "set 3";
             this.btnSetM3.UseVisualStyleBackColor = true;
-            this.btnSetM3.Click += new System.EventHandler(this.btnSetM3_Click);
+            this.btnSetM3.Click += new System.EventHandler(this.BtnSetM3_Click);
             // 
             // btnSetM2
             // 
@@ -397,7 +397,7 @@
             this.btnSetM2.TabIndex = 1;
             this.btnSetM2.Text = "set 2";
             this.btnSetM2.UseVisualStyleBackColor = true;
-            this.btnSetM2.Click += new System.EventHandler(this.btnSetM2_Click);
+            this.btnSetM2.Click += new System.EventHandler(this.BtnSetM2_Click);
             // 
             // btnSetM1
             // 
@@ -407,7 +407,7 @@
             this.btnSetM1.TabIndex = 0;
             this.btnSetM1.Text = "set 1";
             this.btnSetM1.UseVisualStyleBackColor = true;
-            this.btnSetM1.Click += new System.EventHandler(this.btnSetM1_Click);
+            this.btnSetM1.Click += new System.EventHandler(this.BtnSetM1_Click);
             // 
             // groupBox5
             // 
@@ -432,7 +432,7 @@
             this.btnSetC6.TabIndex = 5;
             this.btnSetC6.Text = "clear 6";
             this.btnSetC6.UseVisualStyleBackColor = true;
-            this.btnSetC6.Click += new System.EventHandler(this.btnSetC6_Click);
+            this.btnSetC6.Click += new System.EventHandler(this.BtnSetC6_Click);
             // 
             // btnSetC5
             // 
@@ -442,7 +442,7 @@
             this.btnSetC5.TabIndex = 4;
             this.btnSetC5.Text = "clear 5";
             this.btnSetC5.UseVisualStyleBackColor = true;
-            this.btnSetC5.Click += new System.EventHandler(this.btnSetC5_Click);
+            this.btnSetC5.Click += new System.EventHandler(this.BtnSetC5_Click);
             // 
             // btnSetC4
             // 
@@ -452,7 +452,7 @@
             this.btnSetC4.TabIndex = 3;
             this.btnSetC4.Text = "clear 4";
             this.btnSetC4.UseVisualStyleBackColor = true;
-            this.btnSetC4.Click += new System.EventHandler(this.btnSetC4_Click);
+            this.btnSetC4.Click += new System.EventHandler(this.BtnSetC4_Click);
             // 
             // btnSetC3
             // 
@@ -462,7 +462,7 @@
             this.btnSetC3.TabIndex = 2;
             this.btnSetC3.Text = "clear 3";
             this.btnSetC3.UseVisualStyleBackColor = true;
-            this.btnSetC3.Click += new System.EventHandler(this.btnSetC3_Click);
+            this.btnSetC3.Click += new System.EventHandler(this.BtnSetC3_Click);
             // 
             // btnSetC2
             // 
@@ -472,7 +472,7 @@
             this.btnSetC2.TabIndex = 1;
             this.btnSetC2.Text = "clear 2";
             this.btnSetC2.UseVisualStyleBackColor = true;
-            this.btnSetC2.Click += new System.EventHandler(this.btnSetC2_Click);
+            this.btnSetC2.Click += new System.EventHandler(this.BtnSetC2_Click);
             // 
             // btnSetC1
             // 
@@ -482,7 +482,7 @@
             this.btnSetC1.TabIndex = 0;
             this.btnSetC1.Text = "clear 1";
             this.btnSetC1.UseVisualStyleBackColor = true;
-            this.btnSetC1.Click += new System.EventHandler(this.btnSetC1_Click);
+            this.btnSetC1.Click += new System.EventHandler(this.BtnSetC1_Click);
             // 
             // gB_G28
             // 
@@ -517,7 +517,7 @@
             this.btnG30Set.TabIndex = 9;
             this.btnG30Set.Text = "G30.1 set";
             this.btnG30Set.UseVisualStyleBackColor = true;
-            this.btnG30Set.Click += new System.EventHandler(this.btnG30Set_Click);
+            this.btnG30Set.Click += new System.EventHandler(this.BtnG30Set_Click);
             // 
             // btnG30Move
             // 
@@ -527,7 +527,7 @@
             this.btnG30Move.TabIndex = 8;
             this.btnG30Move.Text = "G30 move to";
             this.btnG30Move.UseVisualStyleBackColor = true;
-            this.btnG30Move.Click += new System.EventHandler(this.btnG30Move_Click);
+            this.btnG30Move.Click += new System.EventHandler(this.BtnG30Move_Click);
             // 
             // lblG28
             // 
@@ -547,7 +547,7 @@
             this.btnG28Set.TabIndex = 7;
             this.btnG28Set.Text = "G28.1 set";
             this.btnG28Set.UseVisualStyleBackColor = true;
-            this.btnG28Set.Click += new System.EventHandler(this.btnG28Set_Click);
+            this.btnG28Set.Click += new System.EventHandler(this.BtnG28Set_Click);
             // 
             // btnG28Move
             // 
@@ -557,7 +557,7 @@
             this.btnG28Move.TabIndex = 6;
             this.btnG28Move.Text = "G28 move to";
             this.btnG28Move.UseVisualStyleBackColor = true;
-            this.btnG28Move.Click += new System.EventHandler(this.btnG28Move_Click);
+            this.btnG28Move.Click += new System.EventHandler(this.BtnG28Move_Click);
             // 
             // gB_G92
             // 
@@ -578,7 +578,7 @@
             this.btnG92Off.TabIndex = 11;
             this.btnG92Off.Text = "G92.1 - turn off G92 offsets and reset";
             this.btnG92Off.UseVisualStyleBackColor = true;
-            this.btnG92Off.Click += new System.EventHandler(this.btnG92Off_Click);
+            this.btnG92Off.Click += new System.EventHandler(this.BtnG92Off_Click);
             // 
             // lblG92
             // 
@@ -607,7 +607,7 @@
             this.btnUpdate.TabIndex = 11;
             this.btnUpdate.Text = "Update values";
             this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.btnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // gB_G38
             // 
@@ -631,7 +631,7 @@
             this.btnG49.TabIndex = 15;
             this.btnG49.Text = "G49 cancel TLO";
             this.btnG49.UseVisualStyleBackColor = true;
-            this.btnG49.Click += new System.EventHandler(this.btnG49_Click);
+            this.btnG49.Click += new System.EventHandler(this.BtnG49_Click);
             // 
             // btnG43
             // 
@@ -642,7 +642,7 @@
             this.btnG43.Text = "G43.1 set TLO";
             this.toolTip1.SetToolTip(this.btnG43, "Set TLO with current work coordinate");
             this.btnG43.UseVisualStyleBackColor = true;
-            this.btnG43.Click += new System.EventHandler(this.btnG43_Click);
+            this.btnG43.Click += new System.EventHandler(this.BtnG43_Click);
             // 
             // label3
             // 
@@ -692,7 +692,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(680, 470);
+            this.MaximumSize = new System.Drawing.Size(470, 470);
             this.MinimumSize = new System.Drawing.Size(470, 470);
             this.Name = "ControlCoordSystem";
             this.Text = "Control Coordinate System";

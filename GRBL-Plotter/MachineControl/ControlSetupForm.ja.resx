@@ -175,11 +175,11 @@
     <comment>ok</comment>
   </data>
   <data name="cBImportDXFSwitchWhite.Text" xml:space="preserve">
-    <value>白を黒として扱う</value>
+    <value>ペンカラーの白を黒として処理します</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFSwitchWhite.ToolTip" xml:space="preserve">
-    <value>DXF形式は、0〜255のカラーインデックスを使用します。このインデックスは、ツール番号として使用されます。</value>
+    <value>LibreCADは、黒い背景に白いペンの色を表示します。しかし、実際のペンの色は黒です。</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportDXFIndexToolNr.Text" xml:space="preserve">
