@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1">
-  <assemblyIdentity version="0.1.0.0" name="MyApplication.app" />
+  <assemblyIdentity version="1.0.0.0" name="MyApplication.app" />
   <trustInfo xmlns="urn:schemas-microsoft-com:asm.v2">
     <security>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
@@ -19,15 +19,15 @@
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
       </requestedPrivileges>
       <applicationRequestMinimum>
+        <PermissionSet class="System.Security.PermissionSet" version="1" Unrestricted="true" ID="Custom" SameSite="site" />
         <defaultAssemblyRequest permissionSetReference="Custom" />
-        <PermissionSet class="System.Security.PermissionSet" version="1" ID="Custom" SameSite="site" Unrestricted="true" />
       </applicationRequestMinimum>
     </security>
   </trustInfo>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
     <application>
       <!-- Eine Liste der Windows-Versionen, unter denen diese Anwendung getestet
-           und für die sie entwickelt wurde. Wenn Sie die Auskommentierung der entsprechenden Elemente aufheben, 
+           und für die sie entwickelt wurde. Wenn Sie die Auskommentierung der entsprechenden Elemente aufheben,
            wird von Windows automatisch die kompatibelste Umgebung ausgewählt. -->
       <!-- Windows Vista -->
       <!--<supportedOS Id="{e2011457-1546-43c5-a5fe-008deee3d3f0}" />-->
@@ -42,13 +42,16 @@
     </application>
   </compatibility>
   <!-- Gibt an, dass die Anwendung mit DPI-Werten kompatibel ist und von Windows nicht automatisch auf höhere
-       DPI-Werte skaliert wird. WPF-Anwendungen (Windows Presentation Foundation) sind automatisch mit DPI-Werten kompatibel und müssen sich nicht  
-       anmelden. Für Windows Forms-Anwendungen für .NET Framework 4.6, die sich für diese Einstellung anmelden, muss 
-       auch die Einstellung "'EnableWindowsFormsHighDpiAutoResizing" in der "app.config" auf "true" festgelegt werden. -->
+       DPI-Werte skaliert wird. WPF-Anwendungen (Windows Presentation Foundation) sind automatisch mit DPI-Werten kompatibel, eine Aktivierung 
+       ist nicht erforderlich. Für Windows Forms-Anwendungen für .NET Framework 4.6, die diese Einstellung aktivieren, muss 
+       auch die Einstellung "'EnableWindowsFormsHighDpiAutoResizing" in der Datei "app.config" auf TRUE festgelegt werden. 
+       
+       Hierdurch können für die Anwendung lange Pfade verwendet werden. Weitere Informationen finden Sie unter https://docs.microsoft.com/windows/win32/fileio/maximum-file-path-limitation.-->
   <!--
   <application xmlns="urn:schemas-microsoft-com:asm.v3">
     <windowsSettings>
       <dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">true</dpiAware>
+      <longPathAware xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">true</longPathAware>
     </windowsSettings>
   </application>
   -->

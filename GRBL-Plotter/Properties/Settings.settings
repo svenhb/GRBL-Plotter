@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GRBL_Plotter.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GrblPlotter.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="cameraColorCross" Type="System.Drawing.Color" Scope="User">
@@ -226,6 +226,12 @@
     </Setting>
     <Setting Name="createTextFontText" Type="System.String" Scope="User">
       <Value Profile="(Default)">Test</Value>
+    </Setting>
+    <Setting Name="createTextLineBreak" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="createTextLineBreakEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="createTextLineDistance" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">15</Value>
@@ -573,7 +579,7 @@
       <Value Profile="(Default)">⚠ Hard RESET|#HRST|fuchsia</Value>
     </Setting>
     <Setting Name="guiCustomBtn13" Type="System.String" Scope="User">
-      <Value Profile="(Default)">⚙ Usecase Simple Z|data\usecases\import_simple_z.ini|#FFFF80</Value>
+      <Value Profile="(Default)"> |</Value>
     </Setting>
     <Setting Name="guiCustomBtn14" Type="System.String" Scope="User">
       <Value Profile="(Default)"> | </Value>
@@ -791,11 +797,20 @@
     <Setting Name="heightMapProbeDepth" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">-5</Value>
     </Setting>
+    <Setting Name="heightMapProbeG1" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="heightMapProbeHeight" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="heightMapProbeSpeed" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">400</Value>
+    </Setting>
+    <Setting Name="heightMapProbeSpeedXY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1200</Value>
+    </Setting>
+    <Setting Name="heightMapProbeUseZ" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="heightMapX1" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -974,6 +989,12 @@
     <Setting Name="importGCPWMDlyDown" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.5</Value>
     </Setting>
+    <Setting Name="importGCPWMDlyP93" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
+    <Setting Name="importGCPWMDlyP94" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
     <Setting Name="importGCPWMDlyUp" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.5</Value>
     </Setting>
@@ -983,8 +1004,20 @@
     <Setting Name="importGCPWMEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importGCPWMP93" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importGCPWMP94" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
     <Setting Name="importGCPWMSkipM30" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCPWMTextP93" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Far up</Value>
+    </Setting>
+    <Setting Name="importGCPWMTextP94" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Down stir</Value>
     </Setting>
     <Setting Name="importGCPWMUp" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">20</Value>
@@ -1021,6 +1054,9 @@
     </Setting>
     <Setting Name="importGCSubFirst" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCSubPenUpDown" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="importGCSubroutine" Type="System.String" Scope="User">
       <Value Profile="(Default)">data\scripts\script_v1583_brush_refresh.nc</Value>
@@ -1211,6 +1247,9 @@
     <Setting Name="importGraphicSortDistanceAllowRotate" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="importGraphicTileAddOnX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
     <Setting Name="importGraphicTileX" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">200</Value>
     </Setting>
@@ -1228,6 +1267,9 @@
     </Setting>
     <Setting Name="importGroupSortInvert" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importImage2DViewHideZero" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="importImageGrayAsZ" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -1692,38 +1734,11 @@
       <Value Profile="(Default)">$J=G91 X-1.000 Y1.000 F100
 </Value>
     </Setting>
-    <Setting Name="importImage2DViewHideZero" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+    <Setting Name="locationSerForm4" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
     </Setting>
-    <Setting Name="importGraphicTileAddOnX" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="importGCSubPenUpDown" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="createTextLineBreak" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">100</Value>
-    </Setting>
-    <Setting Name="createTextLineBreakEnable" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="importGCPWMP93" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">1</Value>
-    </Setting>
-    <Setting Name="importGCPWMP94" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">15</Value>
-    </Setting>
-    <Setting Name="importGCPWMTextP93" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Far up</Value>
-    </Setting>
-    <Setting Name="importGCPWMTextP94" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Down stir</Value>
-    </Setting>
-    <Setting Name="importGCPWMDlyP93" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0.5</Value>
-    </Setting>
-    <Setting Name="importGCPWMDlyP94" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0.5</Value>
+    <Setting Name="zneutest" Type="System.String" Scope="User">
+      <Value Profile="(Default)">test</Value>
     </Setting>
   </Settings>
 </SettingsFile>
