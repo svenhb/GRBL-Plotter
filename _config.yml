@@ -1,1 +1,1 @@
-exclude             : ["Firmware/"]
+exclude : ["Firmware","Firmware/","Firmware/_XLoader"]
