@@ -2,6 +2,15 @@
 Needs to be read from the bottom up ;-)  
  
  
+### 2021-07 Version 1.6.0.x 
+- Switch to Visual Studio 2019
+- Tried to get rid of all of the visual studio's warnings - with moderate success
+- New installer via Inno Setup
+- Old: same location as application folder.
+New: depending on user privileges during installation:
+Administrator: "C:\ProgramData\GrblPlotter\GRBL-Plotter"
+User : "C:\Users\John.Doe\AppData\Roaming\GRBL-Plotter\GRBL-Plotter"
+ 
 ### 2021-03 Version 1.5.8.x
 - Improoved halftone processing 
 - Probing dialog: avoid crash into touch plate by keeping "Save distance" higher than "Touch plate dimension" #196 
