@@ -36,14 +36,11 @@ namespace GrblPlotter
         private System.Windows.Forms.Label resultLabel;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
 
-        //     MainForm mainForm = null;
-
-        public ImportWorker()//MainForm handle = null)
+        public ImportWorker()
         {
             InitializeComponent();
             InitializeBackgroundWorker();
             this.Icon = Properties.Resources.Icon;
-            //        mainForm = handle;
         }
 
         private Graphic.SourceType type;
@@ -88,8 +85,6 @@ namespace GrblPlotter
                 case Graphic.SourceType.Gerber:
                     { GCodeFromGerber.ConvertFromFile(source, worker, e); break; }
             }
-            //            VisuGCode.xyzSize.addDimensionXY(Graphic.actualDimension);
-            //            VisuGCode.calcDrawingArea();                                // calc ruler dimension
         }
 
         // This event handler deals with the results of the background operation.
@@ -110,22 +105,12 @@ namespace GrblPlotter
         // This event handler updates the progress bar.
         private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-       /*     int p1 = e.ProgressPercentage;
-            if (p1 < 0) { p1 = 0; }
-            if (p1 > 100) { p1 = 100; }*/
-
             this.progressBar1.Value = e.ProgressPercentage;
             if (e.UserState is MyUserState)
             {
                 MyUserState state = e.UserState as MyUserState;
-      /*          int p2 = state.Value;
-                if (p2 < 0) { p2 = 0; }
-                if (p2 > 100) { p2 = 100; }*/
                 this.progressBar2.Value = state.Value;
                 this.resultLabel.Text = state.Content;
-
-                //          if (state.Content == "show")
-                //               mainForm.updatePicturebox();                                  // resfresh view
             }
         }
 

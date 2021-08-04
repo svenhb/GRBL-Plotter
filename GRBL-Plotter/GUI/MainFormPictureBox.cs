@@ -360,25 +360,25 @@ namespace GrblPlotter
                         NewCodeEnd();
                     if (Panel.ModifierKeys == Keys.Alt)
                     {
-                        line = VisuGCode.SetPosMarkerNearBy(picAbsPos, false);           // find line with coord nearby, mark / unmark figure
+                        line = VisuGCode.SetPosMarkerNearBy(picAbsPos, false);           // Keys.Alt find line with coord nearby, mark / unmark figure
                         fCTBCodeClickedLineNow = line;
                         FindFigureMarkSelection(XmlMarkerType.Line, line, (fold > 0));    // collapse=true
                     }
                     else if (Panel.ModifierKeys == Keys.Control)
                     {
-                        line = VisuGCode.SetPosMarkerNearBy(picAbsPos, false);           // find line with coord nearby, mark / unmark figure
+                        line = VisuGCode.SetPosMarkerNearBy(picAbsPos, false);           // Keys.Control find line with coord nearby, mark / unmark figure
                         fCTBCodeClickedLineNow = line;
                         FindFigureMarkSelection(XmlMarkerType.Group, line, (fold > 0));
                     }
                     else if (Panel.ModifierKeys == Keys.Shift)
                     {
-                        line = VisuGCode.SetPosMarkerNearBy(picAbsPos, false);           // find line with coord nearby, mark / unmark figure
+                        line = VisuGCode.SetPosMarkerNearBy(picAbsPos, false);           // Keys.Shift find line with coord nearby, mark / unmark figure
                         fCTBCodeClickedLineNow = line;
                         FindFigureMarkSelection(XmlMarkerType.Tile, line, (fold > 0));
                     }
                     else
                     {
-                        line = VisuGCode.SetPosMarkerNearBy(picAbsPos);                 // find line with coord nearby, mark / unmark figure
+                        line = VisuGCode.SetPosMarkerNearBy(picAbsPos, true);                 // find line with coord nearby, mark / unmark figure
                         fCTBCodeClickedLineNow = line;
                         FindFigureMarkSelection(XmlMarkerType.Figure, line, (fold > 0));
                     }

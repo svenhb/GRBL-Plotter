@@ -6464,25 +6464,25 @@ Langue
     <value>&amp;Machine control</value>
   </data>
   <data name="toolStripViewRuler.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="toolStripViewRuler.Text" xml:space="preserve">
     <value>Ruler</value>
   </data>
   <data name="toolStripViewInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="toolStripViewInfo.Text" xml:space="preserve">
     <value>Info</value>
   </data>
   <data name="toolStripViewPenUp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="toolStripViewPenUp.Text" xml:space="preserve">
     <value>Pen-Up path</value>
   </data>
   <data name="toolStripViewMachineFix.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="toolStripViewMachineFix.Text" xml:space="preserve">
     <value>Fixed Machine area</value>
@@ -6491,7 +6491,7 @@ Langue
     <value>Limit and offset can be set via 'Setup' - 'Control' -  'Maschine area'</value>
   </data>
   <data name="toolStripViewMachine.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="toolStripViewMachine.Text" xml:space="preserve">
     <value>Machine limits</value>
@@ -6500,13 +6500,13 @@ Langue
     <value>Limit and offset can be set via 'Setup' - 'Control' -  'Maschine area'</value>
   </data>
   <data name="toolStripViewDimension.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="toolStripViewDimension.Text" xml:space="preserve">
     <value>G-Code Dimension</value>
   </data>
   <data name="toolStripViewTool.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="toolStripViewTool.Text" xml:space="preserve">
     <value>Tool table</value>
@@ -6515,7 +6515,7 @@ Langue
     <value>Limit and offset can be set via 'Setup' - 'Tool change setup' -  'Tool table'</value>
   </data>
   <data name="toolStripViewBackground.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="toolStripViewBackground.Text" xml:space="preserve">
     <value>Background</value>

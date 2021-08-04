@@ -602,10 +602,14 @@ namespace GrblPlotter
                 }
                 if (XmlMarker.GetFigure(clickedLine))
                 {
-                    EnableBlockCommands(SetTextSelection(XmlMarker.lastFigure.LineStart, XmlMarker.lastFigure.LineEnd));
-                    VisuGCode.SetPosMarkerLine(fCTBCodeClickedLineNow, false);		//!isStreaming);	// 2020-08-24 don't highlight in setPosMarkerLine - was done (or deselect) before in setPosMarkerNearBy
-                    StatusStripSet(2, string.Format("Marked: {0}", fCTBCode.Lines[XmlMarker.lastFigure.LineStart]), highlight);
-                    fCTBCode.Invalidate();
+                    int figStart = XmlMarker.lastFigure.LineStart;
+                    if (figStart < fCTBCode.LinesCount)
+                    {
+                        EnableBlockCommands(SetTextSelection(XmlMarker.lastFigure.LineStart, XmlMarker.lastFigure.LineEnd));
+                        VisuGCode.SetPosMarkerLine(fCTBCodeClickedLineNow, false);      //!isStreaming);	// 2020-08-24 don't highlight in setPosMarkerLine - was done (or deselect) before in setPosMarkerNearBy
+                        StatusStripSet(2, string.Format("Marked: {0}", fCTBCode.Lines[XmlMarker.lastFigure.LineStart]), highlight);
+                        fCTBCode.Invalidate();
+                    }
                 }
                 if (XmlMarker.lastFigure.LineStart < fCTBCode.LinesCount)
                 { if (expand) fCTBCode.ExpandFoldedBlock(XmlMarker.lastFigure.LineStart); }   // if 2021-03-28
@@ -647,6 +651,10 @@ namespace GrblPlotter
         }
         private bool SetTextSelection(int start, int end)
         {
+            if (start < 0) start = 0; if (start > fCTBCode.LinesCount) start = 0;
+            if (end < 0) end = 0;
+            if (end >= fCTBCode.LinesCount) end = fCTBCode.LinesCount - 1;
+
             Place selStart, selEnd;
             selStart.iLine = start;
             selStart.iChar = 0;
@@ -662,11 +670,6 @@ namespace GrblPlotter
             fCTBCode.SelectionColor = Color.Red;
             return true;
         }
-        /*    private Range SetRange(int start, int end)
-            {
-                Range mySelection = new Range(fCTBCode, 0, start, fCTBCode.Lines[end].Length, end);
-                return mySelection;
-            }*/
 
         private bool deleteMarkedCode = false;
         private void DeletenotMarkToolStripMenuItem_Click(object sender, EventArgs e)

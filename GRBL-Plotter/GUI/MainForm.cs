@@ -174,7 +174,10 @@ namespace GrblPlotter
 
             Grbl.Init();                    // load and set grbl messages in grblRelated.cs
             ToolTable.Init();               // fill structure in ToolTable.cs
-            GuiVariables.ResetVariables();	// set variables in MainFormObjects.cs					
+            GuiVariables.ResetVariables();	// set variables in MainFormObjects.cs			
+		// T E S T	
+			Graphic.Init(Graphic.SourceType.SVG, "", null, null);	// load class for faster 1st import
+			VisuGCode.GetGCodeLines(fCTBCode.Lines, null, null); 
         }
 		
         // initialize Main form

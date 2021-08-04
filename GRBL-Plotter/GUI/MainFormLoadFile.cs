@@ -38,6 +38,7 @@
  * 2021-03-28 btnSaveFile_Click save last path
  * 2021-05-18 line 250 check parser result
  * 2021-07-14 code clean up / code quality
+ * 2021-08-03 remove root from MRU save path line 105
 */
 
 using System;
@@ -100,6 +101,10 @@ namespace GrblPlotter
             saveName = Path.GetFileNameWithoutExtension(path);
             toolStripMenuItem2.DropDownItems.Clear();
             LoadRecentList(); //load list from file
+			
+			if (path.StartsWith(Datapath.AppDataFolder))
+			{	path = path.Substring(Datapath.AppDataFolder.Length+1);}
+			
             if (MRUlist.Contains(path)) //prevent duplication on recent list
                 MRUlist.Remove(path);
 
@@ -224,27 +229,26 @@ namespace GrblPlotter
             if (objectCount <= maxObjects)
             {
                 if (imported) SetFctbCodeText(Graphic.GCode.ToString());    // newCodeEnd
-                VisuGCode.GetGCodeLines(fCTBCode.Lines, null, null);                    // get code path
+                VisuGCode.GetGCodeLines(fCTBCode.Lines, null, null);     	// get code path
             }
             else
             {
-                using (VisuWorker f = new VisuWorker())
+                using (VisuWorker f = new VisuWorker())					// GCodeVisuWorker.cs
                 {
                     if (!imported)
                     { f.SetTmpGCode(fCTBCode.Lines); }
                     else
-                    { f.SetTmpGCode(); }
-                    f.ShowDialog(this);
+                    { f.SetTmpGCode(); }								// take code from Graphic.GCode.ToString()
+                    f.ShowDialog(this);									// perform VisuGCode.GetGCodeLines via worker
                     fCTBCode.Text = "PLEASE WAIT !!!\r\nDisplaying a large number of lines\r\ntakes some seconds.";
                 }
             }
             VisuGCode.CalcDrawingArea();                                // calc ruler dimension
-                                                                        //  if (ToolTable.GetToolCordinates()!=null)
-            VisuGCode.DrawMachineLimit();// ToolTable.GetToolCordinates());
+            VisuGCode.DrawMachineLimit();
 
-            if (loadTimerStep > 0)
+            if (loadTimerStep > 0)				// will be set in StartConvert if CodeSize > 250kb (showProgress = true)
             {
-                loadTimerStep++;
+                loadTimerStep++;				// will perform SetFctbCodeText(Graphic.GCode.ToString()) in LoadTimer_tick
                 loadTimer.Stop();
                 loadTimer.Start();
             }
@@ -252,7 +256,7 @@ namespace GrblPlotter
             StatusStripClear(0);
             Update_GCode_Depending_Controls();                          // update GUI controls
             timerUpdateControlSource = "newCodeEnd";
-            UpdateControlEnables();                                           // update control enable 
+            UpdateControlEnables();                                   	// update control enable 
             lbInfo.BackColor = SystemColors.Control;
             this.Cursor = Cursors.Default;
 
