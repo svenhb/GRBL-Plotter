@@ -823,7 +823,8 @@ namespace GrblPlotter
             {
                 if (Properties.Settings.Default.importRepeatEnableAll)
                 {
-                    header.Append(finalGcodeString);
+					Logger.Trace("FinalGCode() importRepeatEnableAll {0}",Properties.Settings.Default.importRepeatCnt);
+					header.Append(finalGcodeString);
                     header.Append(footer);
                     for (int i = 0; i < Properties.Settings.Default.importRepeatCnt; i++)
                     { output.AppendFormat("(----- Repeate All {0} of {1} ---------)\r\n", (i + 1), Properties.Settings.Default.importRepeatCnt); output.Append(header); output.AppendLine("(----------------------------------)\r\n"); }
@@ -831,6 +832,7 @@ namespace GrblPlotter
                 }
                 else
                 {
+					Logger.Trace("FinalGCode() !importRepeatEnableAll {0}", Properties.Settings.Default.importRepeatCnt);
                     for (int i = 0; i < Properties.Settings.Default.importRepeatCnt; i++)
                     { output.AppendFormat("(----- Repeate code {0} of {1} --------)\r\n", (i + 1), Properties.Settings.Default.importRepeatCnt); output.Append(finalGcodeString); output.AppendLine("(----------------------------------)\r\n"); }
                     header.Append(output);

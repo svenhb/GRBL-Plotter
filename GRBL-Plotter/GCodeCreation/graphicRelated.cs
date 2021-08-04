@@ -513,6 +513,10 @@ namespace GrblPlotter
 
         public static bool CreateGCode()//Final(BackgroundWorker backgroundWorker, DoWorkEventArgs e)
         {
+            if (actualPath.Path.Count == 0)
+                return Graphic2GCode.CreateGCode(completeGraphic, headerInfo, graphicInformation); // Graphic.Gcode will be filled, return true
+       //     return true;
+
             if (actualPath.Path.Count > 1)
                 StopPath("in CreateCode");  // save previous path
 
