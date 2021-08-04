@@ -27,6 +27,7 @@
  * 2020-07-10 clean up
  * 2021-02-13 line 125 return if no font found
  * 2021-07-02 code clean up / code quality
+ * 2021-08-03 bug fix file not found line 148
 */
 
 using System;
@@ -34,7 +35,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Forms;
@@ -67,18 +67,18 @@ namespace GrblPlotter
         public static bool GCPauseChar { get; set; }
         public static bool GCConnectLetter { get; set; }
 
-        private static double gcLetterSpacing = 3;  
-        private static double gcWordSpacing = 6.75; 
+        private static double gcLetterSpacing = 3;
+        private static double gcWordSpacing = 6.75;
 
         private static double offsetX = 0;
         private static double offsetY = 0;
         private static bool useLFF = false;
         private static bool isSameWord = false;
-        
+
         private static readonly XNamespace nspace = "http://www.w3.org/2000/svg";
         private static XElement svgCode;
         private static bool useSVGFile = false;
-        
+
         internal class GlobalSettings
         {
             internal string FontName { get; set; }     //font-family="EMS Allure"
@@ -88,7 +88,7 @@ namespace GrblPlotter
             internal double CapHeight { get; set; }    //cap-height="500"
             internal double XHeight { get; set; }      //x-height="300"     
             public GlobalSettings()
-            {FontName=""; UnitsPerEM = 1000;Descent=800;Descent=-200;CapHeight=500;XHeight=300;}
+            { FontName = ""; UnitsPerEM = 1000; Descent = 800; Descent = -200; CapHeight = 500; XHeight = 300; }
         }
         private static readonly GlobalSettings SVGFontProp = new GlobalSettings();
 
@@ -97,9 +97,9 @@ namespace GrblPlotter
             public double X { get; set; }
             public string D { get; set; }
             public Glyph()
-            {X=0;D="";}
+            { X = 0; D = ""; }
             public Glyph(double tx, string td)
-            {X=tx;D=td;}
+            { X = tx; D = td; }
         }
         private static Dictionary<string, Glyph> svgGlyphs = new Dictionary<string, Glyph>();
 
@@ -109,10 +109,11 @@ namespace GrblPlotter
         public static string[] FontFileName()
         {
             if (Directory.Exists(Datapath.Fonts))
-            {   List<string> tmp = new List<string>(Directory.GetFiles(Datapath.Fonts, "*.*", SearchOption.AllDirectories));
-                for (int k = tmp.Count-1; k >= 0; k--)
+            {
+                List<string> tmp = new List<string>(Directory.GetFiles(Datapath.Fonts, "*.*", SearchOption.AllDirectories));
+                for (int k = tmp.Count - 1; k >= 0; k--)
                 {
-                    tmp[k] = tmp[k].Substring(Datapath.Fonts.Length+1);
+                    tmp[k] = tmp[k].Substring(Datapath.Fonts.Length + 1);
                     if (!(tmp[k].EndsWith("lff") || tmp[k].EndsWith("svg")))
                     { tmp.RemoveAt(k); }
                 }
@@ -124,36 +125,37 @@ namespace GrblPlotter
         {
             GCFontName = "standard"; GCText = ""; GCFont = 0; GCAttachPoint = 7;
             GCHeight = 0; GCWidth = 0; GCAngleRad = 0; GCSpacing = 1; GCOffX = 0; GCOffY = 0;
-            GCPauseLine = false; GCPauseWord = false; GCPauseChar = false; 
+            GCPauseLine = false; GCPauseWord = false; GCPauseChar = false;
             useLFF = false; GCLineDistance = 1.5; GCFontDistance = 0;
             useSVGFile = true;
         }
 
-        public static void GetCode(double pageWidth) 
-        {   
+        public static void GetCode(double pageWidth)
+        {
             double scale = GCHeight / 21;
             double letterWidth = GCHeight * 1.1;    // scale * 25;
 
             string tmp1 = GCText.Replace('\r', '|');
 
             Logger.Trace("Create GCode, text length {0}, font '{1}', Text '{2}'", GCText.Length, GCFontName, tmp1.Replace('\n', ' '));
-            string[] fileContent=new string[] { "" };
+            string[] fileContent = new string[] { "" };
 
             useSVGFile = false;
             useLFF = false;
 
             string fileName = "";
-            if (GCFontName.IndexOf(@"\fonts\") < 0)     // file path included?
-			{	if (GCFontName.ToLower().EndsWith(".svg"))
-					fileName = Datapath.Fonts + "\\svg\\" + GCFontName;
-				else if (GCFontName.ToLower().EndsWith(".lff"))    // file path included?
-					fileName = Datapath.Fonts + "\\lff\\" + GCFontName;
-			}
+            if (GCFontName.IndexOf(@"\fonts\") < 0)                 // file path included?
+            {
+                fileName = Datapath.Fonts + "\\" + GCFontName;          // don't add + "\\lff\\" +
+            }
             if (!string.IsNullOrEmpty(GCFontName))
-            {   if (File.Exists(fileName))
-                {   Graphic.SetHeaderInfo(" Font from file: "+fileName);
+            {
+                if (File.Exists(fileName))
+                {
+                    Graphic.SetHeaderInfo(" Font from file: " + fileName);
                     if (fileName.ToLower().EndsWith(".svg"))
-                    {   LoadSVGFont(fileName);
+                    {
+                        LoadSVGFont(fileName);
                         scale = GCHeight / (21 * 31.52);
                         letterWidth = GCHeight * 1.1;    //scale * 700;
                     }
@@ -166,8 +168,10 @@ namespace GrblPlotter
                         offsetY = 0;
                         GCLineDistance = 1.667 * GCSpacing;
                         foreach (string line in fileContent)
-                        {   if (line.IndexOf("LetterSpacing") >= 0)
-                            {   string[] tmp = line.Split(':');
+                        {
+                            if (line.IndexOf("LetterSpacing") >= 0)
+                            {
+                                string[] tmp = line.Split(':');
                                 gcLetterSpacing = double.Parse(tmp[1].Trim(), CultureInfo.InvariantCulture.NumberFormat);//Convert.ToDouble(tmp[1].Trim());
                             }
                             if (line.IndexOf("WordSpacing") >= 0)
@@ -179,7 +183,8 @@ namespace GrblPlotter
                     }
                 }
                 else
-                {   if (!HersheyFonts.ContainsKey(GCFontName))
+                {
+                    if (!HersheyFonts.ContainsKey(GCFontName))
                     {
                         string info = string.Format(" Font '{0}' or file '{1}' not found", GCFontName, fileName);
                         Logger.Error(info);
@@ -187,7 +192,7 @@ namespace GrblPlotter
                         return;
                     }
                     else
-                    {   Graphic.SetHeaderInfo(" Font from array: " + GCFontName); }
+                    { Graphic.SetHeaderInfo(" Font from array: " + GCFontName); }
                 }
             }
             bool centerLine = false;
@@ -211,23 +216,24 @@ namespace GrblPlotter
                 List<string> newLines = new List<string>();
                 string oneLine = "";
                 string[] words = GCText.Split(' ');
-                double hScale = letterWidth + GCFontDistance; 
+                double hScale = letterWidth + GCFontDistance;
                 double space = 0;
-                int charCount=0;
+                int charCount = 0;
                 Logger.Trace("scale:{0}  hscale:{1}", scale, hScale);
 
                 if (words.Length > 0)
                 {
                     for (int w = 0; w < words.Length; w++)
-                    {   oneLine += words[w].TrimStart();
+                    {
+                        oneLine += words[w].TrimStart();
                         charCount += words[w].Length;
                         if (oneLine.Contains("\n"))
                         {
                             string[] wordLine = oneLine.Split('\n');
                             for (int k = 0; k < wordLine.Length - 1; k++)
-                            {   newLines.Add(wordLine[k].Trim()); }         // add complete lines
+                            { newLines.Add(wordLine[k].Trim()); }         // add complete lines
 
-                            oneLine = wordLine[wordLine.Length-1];          // keep last line
+                            oneLine = wordLine[wordLine.Length - 1];          // keep last line
                             charCount = oneLine.Length;
                             space = 0;
                         }
@@ -282,9 +288,9 @@ namespace GrblPlotter
                     char actualChar = actualLine[txtIndex];
                     int chrIndex = (int)actualChar - 32;
                     int chrIndexLFF = (int)actualChar;
-                    Graphic.SetPathId(lineIndex+"-"+txtIndex);
+                    Graphic.SetPathId(lineIndex + "-" + txtIndex);
 
-                    if (txtIndex==0)    //actualChar == '\n')                       // next line
+                    if (txtIndex == 0)    //actualChar == '\n')                       // next line
                     {
                         offsetX = 0;
                         if (centerLine)
@@ -338,75 +344,82 @@ namespace GrblPlotter
                 }
             }
             if (!useLFF)
-            {   GcodePenUp("getCode"); }
+            { GcodePenUp("getCode"); }
         }
 
         // http://forum.librecad.org/Some-questions-about-the-LFF-fonts-td5715159.html
 
         private static void LoadSVGFont(string fileName)
-        {   
+        {
             svgCode = XElement.Load(fileName, LoadOptions.None);    // PreserveWhitespace);
             XElement svgFont;
 
-            /* get global settings*/ 
+            /* get global settings*/
             if ((svgCode.Element(nspace + "defs") != null) && (svgCode.Element(nspace + "defs").Element(nspace + "font") != null))
-            {   svgFont = svgCode.Element(nspace + "defs").Element(nspace + "font");
+            {
+                svgFont = svgCode.Element(nspace + "defs").Element(nspace + "font");
                 if (svgFont.Element(nspace + "font-face") != null)
-                {   XElement ff = svgFont.Element(nspace + "font-face");
+                {
+                    XElement ff = svgFont.Element(nspace + "font-face");
                     if (ff.Attribute("font-family") != null)
-                    {   SVGFontProp.FontName = ff.Attribute("font-family").Value;}
+                    { SVGFontProp.FontName = ff.Attribute("font-family").Value; }
                     if (ff.Attribute("units-per-em") != null)
-                    {   SVGFontProp.UnitsPerEM = double.Parse(ff.Attribute("units-per-em").Value, NumberFormatInfo.InvariantInfo);}
+                    { SVGFontProp.UnitsPerEM = double.Parse(ff.Attribute("units-per-em").Value, NumberFormatInfo.InvariantInfo); }
                     if (ff.Attribute("x-height") != null)
-                    {   SVGFontProp.XHeight = double.Parse(ff.Attribute("x-height").Value, NumberFormatInfo.InvariantInfo);}
+                    { SVGFontProp.XHeight = double.Parse(ff.Attribute("x-height").Value, NumberFormatInfo.InvariantInfo); }
                     if (ff.Attribute("ascent") != null)
-                    {   SVGFontProp.Ascent = double.Parse(ff.Attribute("ascent").Value, NumberFormatInfo.InvariantInfo);}
+                    { SVGFontProp.Ascent = double.Parse(ff.Attribute("ascent").Value, NumberFormatInfo.InvariantInfo); }
                     if (ff.Attribute("descent") != null)
-                    {   SVGFontProp.Descent = double.Parse(ff.Attribute("descent").Value, NumberFormatInfo.InvariantInfo);}
+                    { SVGFontProp.Descent = double.Parse(ff.Attribute("descent").Value, NumberFormatInfo.InvariantInfo); }
                     if (ff.Attribute("cap-height") != null)
-                    {   SVGFontProp.CapHeight = double.Parse(ff.Attribute("cap-height").Value, NumberFormatInfo.InvariantInfo);}
-               }
+                    { SVGFontProp.CapHeight = double.Parse(ff.Attribute("cap-height").Value, NumberFormatInfo.InvariantInfo); }
+                }
             }
             else
-            {   Logger.Error("loadSVGFont - Elements defs and font not found");
+            {
+                Logger.Error("loadSVGFont - Elements defs and font not found");
                 return;
             }
-            
+
             /* fill dictionary */
             svgGlyphs = new Dictionary<string, Glyph>();
             double x = 0; string d = "";
-            int cntChar=0;
+            int cntChar = 0;
             foreach (var glyphElement in svgFont.Elements(nspace + "glyph"))
-            {   if (glyphElement != null)
-                {   if ((glyphElement.Attribute("unicode") != null))    // && (glyphElement.Attribute("unicode").Value == actualChar)
-                    {   string uniChar = glyphElement.Attribute("unicode").Value;
-                        
+            {
+                if (glyphElement != null)
+                {
+                    if ((glyphElement.Attribute("unicode") != null))    // && (glyphElement.Attribute("unicode").Value == actualChar)
+                    {
+                        string uniChar = glyphElement.Attribute("unicode").Value;
+
                         if (glyphElement.Attribute("horiz-adv-x") != null)
-                        {   x = double.Parse(glyphElement.Attribute("horiz-adv-x").Value, NumberFormatInfo.InvariantInfo);  }
-                        
+                        { x = double.Parse(glyphElement.Attribute("horiz-adv-x").Value, NumberFormatInfo.InvariantInfo); }
+
                         if (glyphElement.Attribute("d") != null)
-                        {   d = glyphElement.Attribute("d").Value; }
+                        { d = glyphElement.Attribute("d").Value; }
 
                         if (!svgGlyphs.ContainsKey(uniChar))
                             svgGlyphs.Add(uniChar, new Glyph(x, d));
                         else
-                            Logger.Trace("loadSVGFont key already added: '{0}'",uniChar);
+                            Logger.Trace("loadSVGFont key already added: '{0}'", uniChar);
                         cntChar++;
                     }
                 }
             }
 
             /* missing glyph */
-            x=0; d="";
+            x = 0; d = "";
             if (svgFont.Element(nspace + "missing-glyph") != null)
-            {   if (svgFont.Element(nspace + "missing-glyph").Attribute("horiz-adv-x") != null)
-                {   x = double.Parse(svgFont.Element(nspace + "missing-glyph").Attribute("horiz-adv-x").Value, NumberFormatInfo.InvariantInfo);   }      
+            {
+                if (svgFont.Element(nspace + "missing-glyph").Attribute("horiz-adv-x") != null)
+                { x = double.Parse(svgFont.Element(nspace + "missing-glyph").Attribute("horiz-adv-x").Value, NumberFormatInfo.InvariantInfo); }
                 if (svgFont.Element(nspace + "missing-glyph").Attribute("d") != null)
-                {   d = svgFont.Element(nspace + "missing-glyph").Attribute("d").Value;       }
-                svgGlyphs.Add("missing-glyph", new Glyph(x,d));                        
+                { d = svgFont.Element(nspace + "missing-glyph").Attribute("d").Value; }
+                svgGlyphs.Add("missing-glyph", new Glyph(x, d));
             }
 
-            Logger.Trace("loadSVGFont: '{0}'  chars:{1}",fileName,cntChar);
+            Logger.Trace("loadSVGFont: '{0}'  chars:{1}", fileName, cntChar);
             useSVGFile = true;
         }
 
@@ -415,7 +428,7 @@ namespace GrblPlotter
             // <missing-glyph horiz-adv-x="378" />
             // <glyph unicode="!" glyph-name="exclam" horiz-adv-x="359" d="M 444 665 L 403 592 L 295 362 L 232 214 M 204 63 L 182 40.9" />
             //Logger.Trace("drawLetterSVGFont");
-            scale = GCHeight/ (21*31.52);   //=661.92 factor_Em2Px = 150; scale = 0.0254    *1000 = 25,4
+            scale = GCHeight / (21 * 31.52);   //=661.92 factor_Em2Px = 150; scale = 0.0254    *1000 = 25,4
 
             Glyph tmpGlyph = null;
             if (svgGlyphs.ContainsKey(actualCharString))
@@ -429,33 +442,36 @@ namespace GrblPlotter
                 tmpGlyph = svgGlyphs["missing-glyph"];
             }
             else
-            {   Logger.Error("Glyph not found");
+            {
+                Logger.Error("Glyph not found");
                 return;
             }
 
-     //       var tmpX = offsetX;// + tmpGlyph.x * scale;
+            //       var tmpX = offsetX;// + tmpGlyph.x * scale;
             if (tmpGlyph.D.Length > 0)
             {
                 string separators = @"(?=[A-Za-z])";
-                var tokens = Regex.Split(tmpGlyph.D, separators).Where(t => !string.IsNullOrEmpty(t));                
+                var tokens = Regex.Split(tmpGlyph.D, separators).Where(t => !string.IsNullOrEmpty(t));
                 int token_cnt = 0;
                 foreach (string token in tokens)
-                {   DrawToken(token, offsetX + GCOffX, offsetY + GCOffY, scale, token_cnt++, false); }
-            }                  
+                { DrawToken(token, offsetX + GCOffX, offsetY + GCOffY, scale, token_cnt++, false); }
+            }
             offsetX += tmpGlyph.X * scale + GCFontDistance; //double.Parse(svgsplit[1]) * scale + gcFontDistance;
             isSameWord = true;
         }
 
-        private static double DrawLetterLFF(ref string[] txtFont, int index, double scale, bool isCopy=false)
+        private static double DrawLetterLFF(ref string[] txtFont, int index, double scale, bool isCopy = false)
         {
             int lineIndex;
             double maxX = 0;
             //char[] charsToTrim = { '#' };
 
             if (index <= 32)
-            {   offsetX += gcWordSpacing * scale;
+            {
+                offsetX += gcWordSpacing * scale;
                 if (GCPauseWord)
-                {   GcodePause();//"Pause before word");
+                {
+                    GcodePause();//"Pause before word");
                 }
             }
             else
@@ -466,11 +482,12 @@ namespace GrblPlotter
                     {
                         string nrString = txtFont[lineIndex].Substring(1, txtFont[lineIndex].IndexOf(']') - 1);
                         nrString = nrString.Trim('#');// charsToTrim);
-                        int chrIndex=0;
+                        int chrIndex = 0;
                         try
-                        {  chrIndex = Convert.ToInt32(nrString, 16);
+                        {
+                            chrIndex = Convert.ToInt32(nrString, 16);
                         }
-                        catch { MessageBox.Show("Line "+ txtFont[lineIndex]+"  Found "+nrString); }
+                        catch { MessageBox.Show("Line " + txtFont[lineIndex] + "  Found " + nrString); }
                         if (chrIndex == index)                                              // found char
                         {
                             charXOld = -1; charYOld = -1;
@@ -500,34 +517,39 @@ namespace GrblPlotter
             return maxX;
         }
 
-        private static double charX, charY, charXOld=0, charYOld=0;
+        private static double charX, charY, charXOld = 0, charYOld = 0;
 
         private static double DrawTokenLFF(string txtPath, double offX, double offY, double scale)
-        {   string[] points = txtPath.Split(';');
+        {
+            string[] points = txtPath.Split(';');
             int cnt = 0;
-            double xx,yy,x,y,xOld=0,yOld=0,bulge=0,maxX = 0;
+            double xx, yy, x, y, xOld = 0, yOld = 0, bulge = 0, maxX = 0;
             foreach (string point in points)
-            {   string[] scoord = point.Split(',');
+            {
+                string[] scoord = point.Split(',');
                 charX = double.Parse(scoord[0], CultureInfo.InvariantCulture.NumberFormat);
-                xx = charX * scale ;
+                xx = charX * scale;
                 maxX = Math.Max(maxX, xx);
                 xx += offX;
-                charY = double.Parse(scoord[1], CultureInfo.InvariantCulture.NumberFormat); 
+                charY = double.Parse(scoord[1], CultureInfo.InvariantCulture.NumberFormat);
                 yy = charY * scale + offY;
                 if (GCAngleRad == 0)
                 { x = xx + GCOffX; y = yy + GCOffY; }
                 else
-                {   x = xx * Math.Cos(GCAngleRad) - yy * Math.Sin(GCAngleRad) + GCOffX;
+                {
+                    x = xx * Math.Cos(GCAngleRad) - yy * Math.Sin(GCAngleRad) + GCOffX;
                     y = xx * Math.Sin(GCAngleRad) + yy * Math.Cos(GCAngleRad) + GCOffY;
                 }
 
                 if (scoord.Length > 2)
-                {   if (scoord[2].IndexOf('A')>=0)
-                        bulge = double.Parse(scoord[2].Substring(1), CultureInfo.InvariantCulture.NumberFormat); 
+                {
+                    if (scoord[2].IndexOf('A') >= 0)
+                        bulge = double.Parse(scoord[2].Substring(1), CultureInfo.InvariantCulture.NumberFormat);
                     AddRoundCorner(bulge, xOld, yOld, x, y);
                 }
                 else if (cnt == 0)
-                {   if ((charX != charXOld) || (charY != charYOld))
+                {
+                    if ((charX != charXOld) || (charY != charYOld))
                     {
                         GcodePenUp("drawTokenLFF");
                         GcodeMove(0, (float)x, (float)y);
@@ -552,9 +574,11 @@ namespace GrblPlotter
             tmpX = offsetX - double.Parse(svgsplit[0], NumberFormatInfo.InvariantInfo) * scale;
             int token_cnt = 0;
             foreach (string token in tokens)
-            {   if (token.StartsWith("M") || token.StartsWith("L"))
-                {   DrawToken(token, tmpX + GCOffX, offsetY + GCOffY, scale, token_cnt++, true);
-//                    Logger.Trace("token:{0}  x:{1}  y:{2}  cnt:{3}", token, (tmpX + gcOffX), (offsetY + gcOffY), token_cnt);
+            {
+                if (token.StartsWith("M") || token.StartsWith("L"))
+                {
+                    DrawToken(token, tmpX + GCOffX, offsetY + GCOffY, scale, token_cnt++, true);
+                    //                    Logger.Trace("token:{0}  x:{1}  y:{2}  cnt:{3}", token, (tmpX + gcOffX), (offsetY + gcOffY), token_cnt);
                 }
             }
             offsetX = tmpX + double.Parse(svgsplit[1], NumberFormatInfo.InvariantInfo) * scale + GCFontDistance; //double.Parse(svgsplit[1]) * scale + gcFontDistance;
@@ -574,39 +598,47 @@ namespace GrblPlotter
             double[] floatArgs = splitArgs.Select(arg => double.Parse(arg, NumberFormatInfo.InvariantInfo) * scale).ToArray();
             double y;
             if (cmd == 'M')
-            {   if (GCConnectLetter && isSameWord && (tnr == 0))
-                {   for (int i = 0; i < floatArgs.Length; i += 2)
-                    {   y = invertY ? -floatArgs[i + 1] : floatArgs[i + 1];
+            {
+                if (GCConnectLetter && isSameWord && (tnr == 0))
+                {
+                    for (int i = 0; i < floatArgs.Length; i += 2)
+                    {
+                        y = invertY ? -floatArgs[i + 1] : floatArgs[i + 1];
                         GcodeMove(1, (float)(offX + floatArgs[i]), (float)(offY + y));  // G 1
                     }
                 }
                 else
-                {   GcodePenUp("drawToken");
+                {
+                    GcodePenUp("drawToken");
                     for (int i = 0; i < floatArgs.Length; i += 2)
-                    {   y = invertY ? -floatArgs[i + 1] : floatArgs[i + 1];
+                    {
+                        y = invertY ? -floatArgs[i + 1] : floatArgs[i + 1];
                         GcodeMove(0, (float)(offX + floatArgs[i]), (float)(offY + y));  // G 0
                     }
                 }
             }
             if (cmd == 'L')
-            {   for (int i = 0; i < floatArgs.Length; i += 2)
-                {   y = invertY ? -floatArgs[i + 1] : floatArgs[i + 1];
+            {
+                for (int i = 0; i < floatArgs.Length; i += 2)
+                {
+                    y = invertY ? -floatArgs[i + 1] : floatArgs[i + 1];
                     GcodeMove(1, (float)(offX + floatArgs[i]), (float)(offY + y));
                 }
             }
         }
 
         private static void GcodeMove(int gnr, float x, float y)//, string cmd = "")
-        {   if (gnr == 0)
-				Graphic.StartPath(new Point(x, y));
-			else
-				Graphic.AddLine(new Point(x, y));
+        {
+            if (gnr == 0)
+                Graphic.StartPath(new Point(x, y));
+            else
+                Graphic.AddLine(new Point(x, y));
         }
 
         private static void GcodePenUp(string cmt)
-        {  	Graphic.StopPath(cmt);  }
+        { Graphic.StopPath(cmt); }
         private static void GcodePause()//string cmt)
-        {   Graphic.OptionInsertPause();	}     
+        { Graphic.OptionInsertPause(); }
 
         private static void AddRoundCorner(double bulge, double p1x, double p1y, double p2x, double p2y)
         {
@@ -626,7 +658,7 @@ namespace GrblPlotter
             double alpha = (Math.PI - angle) / 2;
             double ratio = distance * Math.Sin(alpha) / Math.Sin(angle);
             if (angle == Math.PI)
-                ratio = distance/2;
+                ratio = distance / 2;
 
             double xc, yc, direction;
 
@@ -641,15 +673,17 @@ namespace GrblPlotter
             double part = Math.Sqrt(Math.Pow(2 * ratio / distance, 2) - 1);
 
             if (!girou)
-            {   xc = ((p1x + p2x) / 2) - direction * ((p1y - p2y) / 2) * part;
+            {
+                xc = ((p1x + p2x) / 2) - direction * ((p1y - p2y) / 2) * part;
                 yc = ((p1y + p2y) / 2) + direction * ((p1x - p2x) / 2) * part;
             }
             else
-            {   xc = ((p1x + p2x) / 2) + direction * ((p1y - p2y) / 2) * part;
+            {
+                xc = ((p1x + p2x) / 2) + direction * ((p1y - p2y) / 2) * part;
                 yc = ((p1y + p2y) / 2) - direction * ((p1x - p2x) / 2) * part;
             }
 
-            Graphic.AddArc(isg2, p2x, p2y, (xc - p1x), (yc - p1y));	
+            Graphic.AddArc(isg2, p2x, p2y, (xc - p1x), (yc - p1y));
         }
     }
 }
