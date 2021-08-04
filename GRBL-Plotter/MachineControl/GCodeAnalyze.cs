@@ -267,7 +267,8 @@ namespace GrblPlotter
 
             int progressSub;
             int progressSubOld = 0;
-
+            int count2 = 0;
+			
             /*********************************************************************/
             for (int lineNr = 0; lineNr < GCode.Length; lineNr++)   // go through all gcode lines
             {
@@ -324,7 +325,8 @@ namespace GrblPlotter
                 }
 
                 if (singleLine.Contains("<"))
-                { ProcessXmlTagStart(GCode[lineNr], lineNr); }        // Original line transferred because of uppercase lowercase
+                { 	ProcessXmlTagStart(GCode[lineNr], lineNr);
+                }        // Original line transferred because of uppercase lowercase
 
                 // collect halftone data
                 if (halfToneEnable)   // S or Z are calculated from gray-value - range 0-255
@@ -332,7 +334,7 @@ namespace GrblPlotter
 
 
                 if ((modal.mWord == 98) && processSubs)
-                { newLine.codeLine = "(" + GCode[lineNr] + ")"; }
+                { 	newLine.codeLine = "(" + GCode[lineNr] + ")"; }
                 else
                 {
                     if (processSubs && programEnd)
@@ -366,12 +368,13 @@ namespace GrblPlotter
                 else
                     newLine.alpha = 0;
 
+                isArc = ((newLine.motionMode == 2) || (newLine.motionMode == 3));
+
+                coordList.Add(new CoordByLine(lineNr, newLine.figureNumber, (XyzPoint)oldLine.actualPos, (XyzPoint)newLine.actualPos, newLine.motionMode, newLine.alpha, isArc));
+
                 oldLine = new GcodeByLine(newLine);       		// get copy of newLine      
                 gcodeList.Add(new GcodeByLine(newLine));    	// add parsed line to list
                 simuList.Add(new GcodeByLine(newLine));         // add parsed line to list
-
-                isArc = ((newLine.motionMode == 2) || (newLine.motionMode == 3));
-                coordList.Add(new CoordByLine(lineNr, newLine.figureNumber, (XyzPoint)newLine.actualPos, newLine.alpha, isArc));
 
                 if (updateFigureLineNeeded && xyPosChanged)
                 {
@@ -393,7 +396,8 @@ namespace GrblPlotter
                 }
 
                 if (singleLine.Contains("</"))
-                { ProcessXmlTagEnd(GCode[lineNr], lineNr); }        // Original line transferred because of uppercase lowercase
+                { ProcessXmlTagEnd(GCode[lineNr], lineNr);
+                }        // Original line transferred because of uppercase lowercase
 
             }   // finish reading lines
             /*********************************************************************/
@@ -485,7 +489,7 @@ namespace GrblPlotter
                     if (!newLine.ismachineCoordG53)
                     {
                         isArc = ((newLine.motionMode == 2) || (newLine.motionMode == 3));
-                        coordList.Add(new CoordByLine(subLineNr, newLine.figureNumber, (XyzPoint)newLine.actualPos, newLine.alpha, isArc));
+                        coordList.Add(new CoordByLine(subLineNr, newLine.figureNumber, (XyzPoint)oldLine.actualPos,(XyzPoint)newLine.actualPos, newLine.motionMode, newLine.alpha, isArc));
                         if (((newLine.motionMode > 0) || (newLine.z != null)) && !((newLine.x == Grbl.posWork.X) && (newLine.y == Grbl.posWork.Y)))
                             xyzSize.SetDimensionXYZ(newLine.actualPos.X, newLine.actualPos.Y, newLine.actualPos.Z);             // calculate max dimensions
                     }                                                                                                       // add data to drawing path
@@ -702,7 +706,6 @@ namespace GrblPlotter
 
             if (width >= 0)
             {
-                //Logger.Trace("set path width:{0}  line:{1}  code:{2}   lastS:{3}  diff:{4}  width:{5}",width, lineNr, GCode[lineNr],  lastS, diff, showHalftoneWidth);
                 if (showHalftonePath.ContainsKey(width))                        // if pen-width was used before, continue path
                 {
                     int index = showHalftonePath[width];

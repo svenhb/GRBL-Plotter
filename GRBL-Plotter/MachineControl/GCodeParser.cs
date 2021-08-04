@@ -25,6 +25,7 @@
  * 2021-03-26 add wasSetF/S/XY/Z
  * 2021-07-26 code clean up / code quality
  * 2021-07-29 line 306 add G28 to ismachineCoordG53 = true;
+ * 2021-08-02 calc distance to line
 */
 
 
@@ -43,22 +44,70 @@ namespace GrblPlotter
     {
         public int lineNumber;          // line number in fCTBCode
         public int figureNumber;
+        public int actualG;
         internal XyzPoint actualPos;       // accumulates position
+        internal XyzPoint lastPos;       // accumulates position
         public double alpha;            // angle between old and this position
         public double distance;         // distance to specific point
         public bool isArc;
 
-        internal CoordByLine(int line, int figure, XyzPoint p, double a, bool isarc)
-        { lineNumber = line; figureNumber = figure; actualPos = p; alpha = a; distance = -1; isArc = isarc; }
+        internal CoordByLine(int line, int figure, XyzPoint pOld, XyzPoint pNew, int g, double a, bool isarc)
+        { lineNumber = line; figureNumber = figure; lastPos = pOld; actualPos = pNew; actualG = g; alpha = a; distance = -1; isArc = isarc; }
 
-        internal CoordByLine(int line, int figure, XyzPoint p, double a, double dist)
-        { lineNumber = line; figureNumber = figure; actualPos = p; alpha = a; distance = dist; isArc = false; }
+        internal CoordByLine(int line, int figure, XyzPoint pOld, XyzPoint pNew, int g, double a, double dist)
+        { lineNumber = line; figureNumber = figure; lastPos = pOld; actualPos = pNew; actualG = g; alpha = a; distance = dist; isArc = false; }
 
         internal void CalcDistance(XyPoint tmp)
         {
             XyPoint delta = new XyPoint(tmp - (XyPoint)actualPos);
-            distance = Math.Sqrt(delta.X * delta.X + delta.Y * delta.Y);
+            double distancePoint = Math.Sqrt(delta.X * delta.X + delta.Y * delta.Y);
+            double distanceLine = -1;
+            if (actualG == 1)
+                distanceLine = CalcDistanceToLine(tmp);
+            if (distanceLine >= 0)
+                distance = Math.Min(distancePoint, distanceLine);
+            else
+                distance = distancePoint;
         }
+
+        //https://stackoverflow.com/questions/34171073/how-do-i-detect-click-on-a-line-in-windows-forms
+        //https://forums.codeguru.com/showthread.php?412856-How-do-I-recognize-a-mouse-click-on-a-line
+
+        internal double CalcDistanceToLine(XyPoint tmp)	//
+        {
+            if ((Math.Abs(lastPos.X - actualPos.X) < 1) && (Math.Abs(lastPos.Y - actualPos.Y) < 1))
+                return -1;  // if too short
+            if ((tmp.X <= Math.Max(lastPos.X, actualPos.X)) && (tmp.X >= Math.Min(lastPos.X, actualPos.X)) ||
+                (tmp.Y <= Math.Max(lastPos.Y, actualPos.Y)) && (tmp.Y >= Math.Min(lastPos.Y, actualPos.Y)))
+            {
+                XyPoint da = new XyPoint(tmp - (XyPoint)lastPos);
+                double a = Math.Sqrt(da.X * da.X + da.Y * da.Y);
+                XyPoint db = new XyPoint(tmp - (XyPoint)actualPos);
+                double b = Math.Sqrt(db.X * db.X + db.Y * db.Y);
+                XyPoint dc = new XyPoint((XyPoint)actualPos - (XyPoint)lastPos);
+                double c = Math.Sqrt(dc.X * dc.X + dc.Y * dc.Y);
+                if (c <= 0) return -1;
+                double s = (a + b + c) / 2;
+                double h = 2 / c * Math.Sqrt(s * (s - a) * (s - b) * (s - c));
+                return h;
+            }
+            else
+                return -1;
+        }
+
+        internal double CalcDistanceToLine1(XyPoint tmp)
+        {
+            double DelX = actualPos.X - lastPos.X;
+            double DelY = actualPos.Y - lastPos.Y;
+            double D = Math.Sqrt(DelX * DelX + DelY * DelY);
+            if (D < 0.1) return -1;
+
+            double Ratio = (double)((tmp.X - lastPos.X) * DelX + (tmp.Y - lastPos.Y) * DelY) / (DelX * DelX + DelY * DelY);
+            if (Ratio * (1 - Ratio) < 0)
+                return -1;
+            return (double)Math.Abs(DelX * (tmp.Y - lastPos.Y) - DelY * (tmp.X - lastPos.X)) / D;
+        }
+
     }
 
     internal struct XyzabcuvwPoint

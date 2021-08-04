@@ -243,7 +243,7 @@ namespace GrblPlotter
                 }
 
                 isArc = ((gcline.motionMode == 2) || (gcline.motionMode == 3));
-                coordList.Add(new CoordByLine(iCode, gcline.figureNumber, (XyzPoint)gcline.actualPos, gcline.alpha, isArc));
+                coordList.Add(new CoordByLine(iCode, gcline.figureNumber, (XyzPoint)gcline.actualPos,  (XyzPoint)gcline.actualPos, gcline.motionMode, gcline.alpha, isArc));
             }
             return newCode.ToString().Replace(',', '.');
         }

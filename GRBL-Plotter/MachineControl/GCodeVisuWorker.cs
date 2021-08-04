@@ -21,11 +21,12 @@
  * 2021-07-08 code clean up / code quality
 */
 
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 
-#pragma warning disable CA1303
+//pragma warning disable CA1303
 
 namespace GrblPlotter
 {
@@ -36,6 +37,9 @@ namespace GrblPlotter
 		private System.Windows.Forms.ProgressBar progressBar2;
 		private System.Windows.Forms.Label resultLabel;
 		private System.ComponentModel.BackgroundWorker backgroundWorker1;
+
+		// This event handler is where the actual, potentially time-consuming work is done.
+		internal IList<string> tmpGCode = new List<string>();
 
 		public VisuWorker()
 		{   InitializeComponent();
@@ -56,7 +60,8 @@ namespace GrblPlotter
 			backgroundWorker1.RunWorkerAsync();
 		}
 		public void SetTmpGCode()
-		{   tmpGCode = Graphic.GCode.ToString().Split(System.Environment.NewLine.ToCharArray());
+		{   tmpGCode = Graphic.GCode.ToString().Split(System.Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+        //    System.IO.File.WriteAllText(Datapath.AppDataFolder + "\\visuworker.nc", Graphic.GCode.ToString()); // clear file
 			backgroundWorker1.RunWorkerAsync();
 		}
 
@@ -66,8 +71,6 @@ namespace GrblPlotter
 			this.backgroundWorker1.CancelAsync();
 		}
 
-		// This event handler is where the actual, potentially time-consuming work is done.
-		internal IList<string> tmpGCode = new List<string>();
 		private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
 		{
 			BackgroundWorker worker = sender as BackgroundWorker;

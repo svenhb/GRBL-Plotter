@@ -178,8 +178,10 @@ namespace GrblPlotter
                         CreateMarkerPath(showCenter, center, (XyPoint)coordList[line].actualPos);// line-1
                         figureNr = coordList[line].figureNumber;
                         if ((figureNr != lastFigureNumber) && (markFigure))
+                        {
                             MarkSelectedFigure(figureNr);
-                        lastFigureNumber = figureNr;
+                            lastFigureNumber = figureNr;
+                        }
                     }
                     else
                     {
@@ -201,8 +203,10 @@ namespace GrblPlotter
                                 CreateMarkerPath(showCenter, center, last);
                                 figureNr = coordList[line].figureNumber;
                                 if ((figureNr != lastFigureNumber) && (markFigure))
+                                {
                                     MarkSelectedFigure(figureNr);
-                                lastFigureNumber = figureNr;
+                                    lastFigureNumber = figureNr;
+                                }
 
                                 break;
                             }
@@ -214,10 +218,11 @@ namespace GrblPlotter
             catch (Exception er) { Logger.Error(er, " setPosMarkerLine"); }
         }
 
+
         /// <summary>
         /// find gcode line with xy-coordinates near by given coordinates
         /// </summary>
-        internal static int SetPosMarkerNearBy(XyPoint pos, bool toggleHighlight = true)
+        internal static int SetPosMarkerNearBy(XyPoint pos, bool toggleHighlight)
         {
             if (logDetailed) Logger.Trace(" setPosMarkerNearBy x:{0:0.00} y:{1:0.00}", pos.X, pos.Y);
             List<CoordByLine> tmpList = new List<CoordByLine>();     // get all coordinates (also subroutines)
@@ -226,17 +231,29 @@ namespace GrblPlotter
             bool showCenter = false;
 
             /* fill list with coordByLine with actual distance to given point */
-            foreach (CoordByLine gcline in coordList)
+            double minDist = double.MaxValue;
+            foreach (CoordByLine gcline in coordList)	// from actual figures
             {
-                gcline.CalcDistance(pos);       // calculate distance work coordinates
-                tmpList.Add(gcline);            // add to new list
+                if (gcline.figureNumber >= 0)
+                {
+                    gcline.CalcDistance(pos);       // calculate distance work coordinates
+                    if (gcline.distance < minDist)
+                    {
+                        minDist = gcline.distance;
+                        tmpList.Add(gcline);            // add to new list
+                    }
+                }
             }
-            if (Properties.Settings.Default.guiBackgroundShow && (coordListLandMark.Count > 1))
+            if (Properties.Settings.Default.guiBackgroundShow && (coordListLandMark.Count > 0))
             {
-                foreach (CoordByLine gcline in coordListLandMark)
+                foreach (CoordByLine gcline in coordListLandMark)	// from background figures
                 {
                     gcline.CalcDistance(pos + (XyPoint)Grbl.posWCO);      // calculate distance machine coordinates
-                    tmpList.Add(new CoordByLine(0, gcline.figureNumber, gcline.actualPos - Grbl.posWCO, gcline.alpha, gcline.distance)); // add as work coord.
+                    if (gcline.distance < minDist)
+                    {
+                        minDist = gcline.distance;
+                        tmpList.Add(new CoordByLine(0, gcline.figureNumber, gcline.lastPos - Grbl.posWCO, gcline.actualPos - Grbl.posWCO, gcline.actualG, gcline.alpha, gcline.distance)); // add as work coord.
+                    }
                 }
             }
 
@@ -257,7 +274,6 @@ namespace GrblPlotter
                 }
             }
 
-            /* highlight */
             CreateMarkerPath(showCenter, center);
             if ((figureNr != lastFigureNumber) || !toggleHighlight)
             {
@@ -266,7 +282,7 @@ namespace GrblPlotter
             }
             else
             {
-                MarkSelectedFigure(-1);  // deselcet
+                MarkSelectedFigure(-1);  // deselect
                 lastFigureNumber = -1;
             }
 

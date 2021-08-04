@@ -228,7 +228,7 @@ namespace GrblPlotter
 
                     ArcProperties arcMove;
                     arcMove = GcodeMath.GetArcMoveProperties((XyPoint)oldL.actualPos, (XyPoint)newL.actualPos, newL.i, newL.j, (newL.motionMode == 2));
-                    centerList.Add(new CoordByLine(newL.lineNumber, figureCount, new XyzPoint(arcMove.center, 0), 0, true));
+                    centerList.Add(new CoordByLine(newL.lineNumber, figureCount, new XyzPoint(arcMove.center, 0), new XyzPoint(arcMove.center, 0), newL.motionMode, 0, true));
 
                     newL.distance = Math.Abs(arcMove.radius * arcMove.angleDiff);
 
@@ -381,7 +381,7 @@ namespace GrblPlotter
             foreach (CoordByLine gcline in coordList)        // copy coordList and add WCO
             {
                 isArc = ((newLine.motionMode == 2) || (newLine.motionMode == 3));
-                coordListLandMark.Add(new CoordByLine(0, -1, gcline.actualPos + Grbl.posWCO, gcline.alpha, isArc));
+                coordListLandMark.Add(new CoordByLine(0, -1, gcline.lastPos + Grbl.posWCO,  gcline.actualPos + Grbl.posWCO, gcline.actualG, gcline.alpha, isArc));
             }
             origWCOLandMark = (XyPoint)Grbl.posWCO;
         }
