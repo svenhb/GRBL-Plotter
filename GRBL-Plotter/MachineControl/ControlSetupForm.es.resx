@@ -2714,4 +2714,55 @@ El rango utilizable real sería $ 30 = 31, $ 31 = 0.</value>
     <value>Individual</value>
     <comment>ok</comment>
   </data>
+  <data name="label62.Text" xml:space="preserve">
+    <value>Espesor del material</value>
+  </data>
+  <data name="label60.Text" xml:space="preserve">
+    <value>Ángulo de la herramienta</value>
+  </data>
+  <data name="groupBox22.Text" xml:space="preserve">
+    <value>Herramienta en V</value>
+  </data>
+  <data name="label57.Text" xml:space="preserve">
+    <value>Alimentar después de terminar una forma</value>
+  </data>
+  <data name="label54.Text" xml:space="preserve">
+    <value>Altura Z para cortar antes / después de una forma (si Z está habilitado)</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNotchLift.Text" xml:space="preserve">
+    <value>Levante la herramienta después de la muesca</value>
+  </data>
+  <data name="label59.Text" xml:space="preserve">
+    <value>Altura Z para grabado de muescas (si Z está habilitado)</value>
+  </data>
+  <data name="label53.Text" xml:space="preserve">
+    <value>Min. distancia de una muesca a otra en las curvas</value>
+  </data>
+  <data name="label52.Text" xml:space="preserve">
+    <value>Longitud de la muesca (ancho de la piedra de trabajo)</value>
+  </data>
+  <data name="groupBox20.Text" xml:space="preserve">
+    <value>Propiedades de la muesca</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedInvert.Text" xml:space="preserve">
+    <value>Invertir la dirección de alimentación</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedX.Text" xml:space="preserve">
+    <value>Alimentación en el eje X, muesca en el eje Y</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedY.Text" xml:space="preserve">
+    <value>Alimentación en el eje Y, muesca en el eje X</value>
+  </data>
+  <data name="groupBox19.Text" xml:space="preserve">
+    <value>Dirección de avance y muesca</value>
+  </data>
+  <data name="cBImportGraphicDevelopEnable.Text" xml:space="preserve">
+    <value>Aplicar el desarrollo de la figura</value>
+  </data>
+  <data name="gBDevelop.Text" xml:space="preserve">
+    <value>Convierta el contorno de una forma 2D en un desarrollo</value>
+  </data>
+  <data name="tabPage30.Text" xml:space="preserve">
+    <value>Conversión especial</value>
+  </data>
 </root>

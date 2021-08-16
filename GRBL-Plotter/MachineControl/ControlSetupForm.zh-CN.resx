@@ -2950,4 +2950,55 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <value>个人</value>
     <comment>ok</comment>
   </data>
+  <data name="label62.Text" xml:space="preserve">
+    <value>材料厚度</value>
+  </data>
+  <data name="label60.Text" xml:space="preserve">
+    <value>刀具角度</value>
+  </data>
+  <data name="groupBox22.Text" xml:space="preserve">
+    <value>V工具</value>
+  </data>
+  <data name="label57.Text" xml:space="preserve">
+    <value>完成形状后进料</value>
+  </data>
+  <data name="label54.Text" xml:space="preserve">
+    <value>在形状之前/之后切割的 Z 高度（如果启用了 Z）</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNotchLift.Text" xml:space="preserve">
+    <value>凹口后提起工具</value>
+  </data>
+  <data name="label59.Text" xml:space="preserve">
+    <value>凹口雕刻的 Z 高度（如果启用 Z）</value>
+  </data>
+  <data name="label53.Text" xml:space="preserve">
+    <value>最小。曲线中凹口到凹口的距离</value>
+  </data>
+  <data name="label52.Text" xml:space="preserve">
+    <value>缺口长度（工件宽度）</value>
+  </data>
+  <data name="groupBox20.Text" xml:space="preserve">
+    <value>缺口特性</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedInvert.Text" xml:space="preserve">
+    <value>反转进给方向</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedX.Text" xml:space="preserve">
+    <value>X 轴进给，Y 轴开槽</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedY.Text" xml:space="preserve">
+    <value>Y轴进给，X轴开槽</value>
+  </data>
+  <data name="groupBox19.Text" xml:space="preserve">
+    <value>进给和缺口方向</value>
+  </data>
+  <data name="cBImportGraphicDevelopEnable.Text" xml:space="preserve">
+    <value>应用图形开发</value>
+  </data>
+  <data name="gBDevelop.Text" xml:space="preserve">
+    <value>将 2D 形状的轮廓转换为开发</value>
+  </data>
+  <data name="tabPage30.Text" xml:space="preserve">
+    <value>特殊转换</value>
+  </data>
 </root>

@@ -2969,4 +2969,55 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
     <value>فردي</value>
     <comment>ok</comment>
   </data>
+  <data name="label62.Text" xml:space="preserve">
+    <value>سمك المادة</value>
+  </data>
+  <data name="label60.Text" xml:space="preserve">
+    <value>زاوية الأداة</value>
+  </data>
+  <data name="groupBox22.Text" xml:space="preserve">
+    <value>أداة V</value>
+  </data>
+  <data name="label57.Text" xml:space="preserve">
+    <value>تغذية بعد الانتهاء من الشكل</value>
+  </data>
+  <data name="label54.Text" xml:space="preserve">
+    <value>ارتفاع Z للقطع قبل / بعد الشكل (إذا تم تمكين Z)</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNotchLift.Text" xml:space="preserve">
+    <value>أداة الرفع بعد الشق</value>
+  </data>
+  <data name="label59.Text" xml:space="preserve">
+    <value>ارتفاع Z لنقش القطع (إذا تم تمكين Z)</value>
+  </data>
+  <data name="label53.Text" xml:space="preserve">
+    <value>دقيقة. المسافة من الشق إلى الشق في المنحنيات</value>
+  </data>
+  <data name="label52.Text" xml:space="preserve">
+    <value>طول الشق (عرض رأس العمل)</value>
+  </data>
+  <data name="groupBox20.Text" xml:space="preserve">
+    <value>خصائص الشق</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedInvert.Text" xml:space="preserve">
+    <value>عكس اتجاه التغذية</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedX.Text" xml:space="preserve">
+    <value>التغذية على المحور X ، الشق على المحور Y.</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedY.Text" xml:space="preserve">
+    <value>تتغذى على المحور Y ، الشق على المحور X.</value>
+  </data>
+  <data name="groupBox19.Text" xml:space="preserve">
+    <value>اتجاه التغذية والشق</value>
+  </data>
+  <data name="cBImportGraphicDevelopEnable.Text" xml:space="preserve">
+    <value>تطبيق تطوير الشكل</value>
+  </data>
+  <data name="gBDevelop.Text" xml:space="preserve">
+    <value>تحويل مخطط الشكل ثنائي الأبعاد إلى تطوير</value>
+  </data>
+  <data name="tabPage30.Text" xml:space="preserve">
+    <value>تحويل خاص</value>
+  </data>
 </root>

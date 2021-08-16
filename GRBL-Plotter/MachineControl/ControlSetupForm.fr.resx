@@ -2714,4 +2714,55 @@ La plage utilisable réelle serait 30 $ = 31, 31 $ = 0.</value>
     <value>Individuel</value>
     <comment>ok</comment>
   </data>
+  <data name="label62.Text" xml:space="preserve">
+    <value>Épaisseur de matériau</value>
+  </data>
+  <data name="label60.Text" xml:space="preserve">
+    <value>Angle d'outil</value>
+  </data>
+  <data name="groupBox22.Text" xml:space="preserve">
+    <value>Outil en V</value>
+  </data>
+  <data name="label57.Text" xml:space="preserve">
+    <value>Nourrir après avoir terminé une forme</value>
+  </data>
+  <data name="label54.Text" xml:space="preserve">
+    <value>Hauteur Z pour la coupe avant/après une forme (si Z est activé)</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNotchLift.Text" xml:space="preserve">
+    <value>Soulever l'outil après l'encoche</value>
+  </data>
+  <data name="label59.Text" xml:space="preserve">
+    <value>Hauteur Z pour la gravure d'encoche (si Z est activé)</value>
+  </data>
+  <data name="label53.Text" xml:space="preserve">
+    <value>Min. distance d'entaille à entaille dans les courbes</value>
+  </data>
+  <data name="label52.Text" xml:space="preserve">
+    <value>Longueur de l'encoche (largeur de la pièce)</value>
+  </data>
+  <data name="groupBox20.Text" xml:space="preserve">
+    <value>Propriétés de l'encoche</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedInvert.Text" xml:space="preserve">
+    <value>Inverser le sens d'avance</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedX.Text" xml:space="preserve">
+    <value>Avance sur l'axe X, encoche sur l'axe Y</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedY.Text" xml:space="preserve">
+    <value>Avance sur l'axe Y, encoche sur l'axe X</value>
+  </data>
+  <data name="groupBox19.Text" xml:space="preserve">
+    <value>Direction pour l'alimentation et l'encoche</value>
+  </data>
+  <data name="cBImportGraphicDevelopEnable.Text" xml:space="preserve">
+    <value>Appliquer le développement de la figure</value>
+  </data>
+  <data name="gBDevelop.Text" xml:space="preserve">
+    <value>Convertir le contour d'une forme 2D en un développement</value>
+  </data>
+  <data name="tabPage30.Text" xml:space="preserve">
+    <value>Transformation spéciale</value>
+  </data>
 </root>

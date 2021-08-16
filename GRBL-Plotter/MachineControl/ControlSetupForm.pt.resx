@@ -2723,4 +2723,55 @@ O intervalo utilizável real seria $ 30 = 31, $ 31 = 0.</value>
     <value>Individual</value>
     <comment>ok</comment>
   </data>
+  <data name="label62.Text" xml:space="preserve">
+    <value>Espessura do material</value>
+  </data>
+  <data name="label60.Text" xml:space="preserve">
+    <value>Ângulo da ferramenta</value>
+  </data>
+  <data name="groupBox22.Text" xml:space="preserve">
+    <value>V-Tool</value>
+  </data>
+  <data name="label57.Text" xml:space="preserve">
+    <value>Alimente depois de terminar uma forma</value>
+  </data>
+  <data name="label54.Text" xml:space="preserve">
+    <value>Altura Z para corte antes / depois de uma forma (se Z estiver habilitado)</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNotchLift.Text" xml:space="preserve">
+    <value>Ferramenta de levantamento após entalhe</value>
+  </data>
+  <data name="label59.Text" xml:space="preserve">
+    <value>Altura Z para gravação de entalhe (se Z estiver ativado)</value>
+  </data>
+  <data name="label53.Text" xml:space="preserve">
+    <value>Min. distância de entalhe a entalhe nas curvas</value>
+  </data>
+  <data name="label52.Text" xml:space="preserve">
+    <value>Comprimento do entalhe (largura do tempero)</value>
+  </data>
+  <data name="groupBox20.Text" xml:space="preserve">
+    <value>Propriedades de entalhe</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedInvert.Text" xml:space="preserve">
+    <value>Inverter direção de alimentação</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedX.Text" xml:space="preserve">
+    <value>Alimentação no eixo X, entalhe no eixo Y</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedY.Text" xml:space="preserve">
+    <value>Alimentação no eixo Y, entalhe no eixo X</value>
+  </data>
+  <data name="groupBox19.Text" xml:space="preserve">
+    <value>Direção para alimentação e entalhe</value>
+  </data>
+  <data name="cBImportGraphicDevelopEnable.Text" xml:space="preserve">
+    <value>Aplicar o desenvolvimento da figura</value>
+  </data>
+  <data name="gBDevelop.Text" xml:space="preserve">
+    <value>Converta o contorno de uma forma 2D em um desenvolvimento</value>
+  </data>
+  <data name="tabPage30.Text" xml:space="preserve">
+    <value>Conversão especial</value>
+  </data>
 </root>

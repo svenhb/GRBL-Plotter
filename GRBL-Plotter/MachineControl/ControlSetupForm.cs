@@ -173,6 +173,11 @@ namespace GrblPlotter
             else
                 cBImportSVG_DPI_72.Checked = true;
 
+            if (Properties.Settings.Default.importGraphicDevelopmentFeedX)
+                rBImportGraphicDevelopFeedX.Checked = true;
+            else
+                rBImportGraphicDevelopFeedY.Checked = true;
+
             lblFilePath.Text = Datapath.AppDataFolder;
 
             HsFilterScrollSetLabels();
@@ -932,6 +937,11 @@ namespace GrblPlotter
                 gBPathAddOn3.BackColor = Color.Yellow;
             else
                 gBPathAddOn3.BackColor = inactive;
+
+            if (cBImportGraphicDevelopEnable.Checked)
+                gBDevelop.BackColor = Color.Yellow;
+            else
+                gBDevelop.BackColor = Color.WhiteSmoke;
         }
 
         private void BtnFileDialogTT1_Click(object sender, EventArgs e)
@@ -1581,6 +1591,14 @@ namespace GrblPlotter
             btnGCPWMZero.Visible = tBImportGCPWMTextP93.Visible = tBImportGCPWMTextP94.Visible = pwmAdvanced;
             nUDImportGCPWMZero.Visible = nUDImportGCPWMP93.Visible = nUDImportGCPWMP94.Visible = pwmAdvanced;
             nUDImportGCDlyP93.Visible = nUDImportGCDlyP94.Visible = pwmAdvanced;
+        }
+
+        private void CbImportGraphicDevelopEnable_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cBImportGraphicDevelopEnable.Checked)
+                gBDevelop.BackColor = Color.Yellow;
+            else
+                gBDevelop.BackColor = Color.WhiteSmoke;
         }
     }
 }

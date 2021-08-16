@@ -2838,4 +2838,55 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
     <value>Физическое лицо</value>
     <comment>ok</comment>
   </data>
+  <data name="label62.Text" xml:space="preserve">
+    <value>Толщина материала</value>
+  </data>
+  <data name="label60.Text" xml:space="preserve">
+    <value>Угол инструмента</value>
+  </data>
+  <data name="groupBox22.Text" xml:space="preserve">
+    <value>V-инструмент</value>
+  </data>
+  <data name="label57.Text" xml:space="preserve">
+    <value>Подача после завершения формы</value>
+  </data>
+  <data name="label54.Text" xml:space="preserve">
+    <value>Z-Высота для обрезки до / после формы (если Z включен)</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNotchLift.Text" xml:space="preserve">
+    <value>Поднимите инструмент после надреза</value>
+  </data>
+  <data name="label59.Text" xml:space="preserve">
+    <value>Высота по Z для гравировки надреза (если Z включен)</value>
+  </data>
+  <data name="label53.Text" xml:space="preserve">
+    <value>Мин. расстояние от выемки до выемки в кривых</value>
+  </data>
+  <data name="label52.Text" xml:space="preserve">
+    <value>Длина надреза (ширина заготовки)</value>
+  </data>
+  <data name="groupBox20.Text" xml:space="preserve">
+    <value>Свойства надреза</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedInvert.Text" xml:space="preserve">
+    <value>Инвертировать направление подачи</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedX.Text" xml:space="preserve">
+    <value>Подача по оси X, выемка по оси Y</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedY.Text" xml:space="preserve">
+    <value>Подача по оси Y, выемка по оси X</value>
+  </data>
+  <data name="groupBox19.Text" xml:space="preserve">
+    <value>Направление подачи и надреза</value>
+  </data>
+  <data name="cBImportGraphicDevelopEnable.Text" xml:space="preserve">
+    <value>Применить развитие фигуры</value>
+  </data>
+  <data name="gBDevelop.Text" xml:space="preserve">
+    <value>Преобразование контура 2D-формы в развертку</value>
+  </data>
+  <data name="tabPage30.Text" xml:space="preserve">
+    <value>Специальная конверсия</value>
+  </data>
 </root>

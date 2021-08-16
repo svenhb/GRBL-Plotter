@@ -2970,4 +2970,55 @@ https://github.com/cprezzi/grbl-servoのGrbl-version'grbl_v1.1f_Servo.hex '、
     <value>個人</value>
     <comment>ok</comment>
   </data>
+  <data name="label62.Text" xml:space="preserve">
+    <value>材料の厚さ</value>
+  </data>
+  <data name="label60.Text" xml:space="preserve">
+    <value>工具角度</value>
+  </data>
+  <data name="groupBox22.Text" xml:space="preserve">
+    <value>Vツール</value>
+  </data>
+  <data name="label57.Text" xml:space="preserve">
+    <value>形状仕上げ後の送り</value>
+  </data>
+  <data name="label54.Text" xml:space="preserve">
+    <value>Z-シェイプの前後のカットの高さ（Zが有効になっている場合）</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNotchLift.Text" xml:space="preserve">
+    <value>ノッチ後のリフトツール</value>
+  </data>
+  <data name="label59.Text" xml:space="preserve">
+    <value>Z-ノッチ彫刻の高さ（Zが有効になっている場合）</value>
+  </data>
+  <data name="label53.Text" xml:space="preserve">
+    <value>最小カーブのノッチからノッチまでの距離</value>
+  </data>
+  <data name="label52.Text" xml:space="preserve">
+    <value>切り欠きの長さ（ワークピース幅）</value>
+  </data>
+  <data name="groupBox20.Text" xml:space="preserve">
+    <value>ノッチプロパティ</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedInvert.Text" xml:space="preserve">
+    <value>送り方向を反転</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedX.Text" xml:space="preserve">
+    <value>X軸にフィード、Y軸にノッチ</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedY.Text" xml:space="preserve">
+    <value>Y軸にフィード、X軸にノッチ</value>
+  </data>
+  <data name="groupBox19.Text" xml:space="preserve">
+    <value>フィードとノッチの方向</value>
+  </data>
+  <data name="cBImportGraphicDevelopEnable.Text" xml:space="preserve">
+    <value>図の開発を適用します</value>
+  </data>
+  <data name="gBDevelop.Text" xml:space="preserve">
+    <value>2D形状の輪郭を展開に変換します</value>
+  </data>
+  <data name="tabPage30.Text" xml:space="preserve">
+    <value>特別な変換</value>
+  </data>
 </root>

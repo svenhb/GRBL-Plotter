@@ -2660,4 +2660,55 @@ Der tatsächlich nutzbare Bereich wäre $ 30 = 31, $ 31 = 0.</value>
     <value>Individuell</value>
     <comment>ok</comment>
   </data>
+  <data name="label62.Text" xml:space="preserve">
+    <value>Materialstärke</value>
+  </data>
+  <data name="label60.Text" xml:space="preserve">
+    <value>Werkzeugwinkel</value>
+  </data>
+  <data name="groupBox22.Text" xml:space="preserve">
+    <value>V-Werkzeug</value>
+  </data>
+  <data name="label57.Text" xml:space="preserve">
+    <value>Vorschub nach Fertigstellung einer Form</value>
+  </data>
+  <data name="label54.Text" xml:space="preserve">
+    <value>Z-Höhe für Schnitt vor/nach einer Form (wenn Z aktiviert ist)</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNotchLift.Text" xml:space="preserve">
+    <value>Werkzeug nach Kerbe anheben</value>
+  </data>
+  <data name="label59.Text" xml:space="preserve">
+    <value>Z-Höhe für Kerbgravur (wenn Z aktiviert ist)</value>
+  </data>
+  <data name="label53.Text" xml:space="preserve">
+    <value>Mindest. Abstand von Kerbe zu Kerbe in Kurven</value>
+  </data>
+  <data name="label52.Text" xml:space="preserve">
+    <value>Länge der Kerbe (Werkstückbreite)</value>
+  </data>
+  <data name="groupBox20.Text" xml:space="preserve">
+    <value>Kerbeigenschaften</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedInvert.Text" xml:space="preserve">
+    <value>Vorschubrichtung umkehren</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedX.Text" xml:space="preserve">
+    <value>Vorschub auf X-Achse, Kerbe auf Y-Achse</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedY.Text" xml:space="preserve">
+    <value>Vorschub auf Y-Achse, Kerbe auf X-Achse</value>
+  </data>
+  <data name="groupBox19.Text" xml:space="preserve">
+    <value>Richtung für Vorschub und Kerbe</value>
+  </data>
+  <data name="cBImportGraphicDevelopEnable.Text" xml:space="preserve">
+    <value>Entwicklung der Figur anwenden</value>
+  </data>
+  <data name="gBDevelop.Text" xml:space="preserve">
+    <value>Wandeln Sie den Umriss einer 2D-Form in eine Entwicklung um</value>
+  </data>
+  <data name="tabPage30.Text" xml:space="preserve">
+    <value>Sonderumbau</value>
+  </data>
 </root>

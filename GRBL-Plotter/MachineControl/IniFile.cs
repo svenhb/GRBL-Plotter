@@ -32,6 +32,7 @@
  * 2021-01-27 add missing settings
  * 2021-02-06 add gamePad PointOfViewController0
  * 2021-04-19 add importGCSubPenUpDown
+ * 2021-08-08 add GCode conversion - shape development
 */
 
 using System;
@@ -288,6 +289,19 @@ namespace GrblPlotter
                 Write("XY Feedrate from TT", setup.importGCTTXYFeed.ToString(), "GCode generation");
                 Write("Spindle Speed from TT", setup.importGCTTSSpeed.ToString(), "GCode generation");
                 Write("Z Values from TT", setup.importGCTTZAxis.ToString(), "GCode generation");
+            }
+
+            section = "GCode conversion";
+            if (setup.importGraphicDevelopmentEnable || all)
+            {
+                Write("Develop enable", setup.importGraphicDevelopmentEnable.ToString(), section);
+                Write("Develop feed X", setup.importGraphicDevelopmentFeedX.ToString(), section);
+                Write("Develop feed invert", setup.importGraphicDevelopmentFeedInvert.ToString(), section);
+                Write("Develop notch length", setup.importGraphicDevelopmentNotchWidth.ToString(), section);
+                Write("Develop notch distance", setup.importGraphicDevelopmentNotchDistance.ToString(), section);
+                Write("Develop notch Z engrave", setup.importGraphicDevelopmentNotchZNotch.ToString(), section);
+                Write("Develop notch Z cut", setup.importGraphicDevelopmentNotchZCut.ToString(), section);
+                Write("Develop feed after", setup.importGraphicDevelopmentFeedAfter.ToString(), section);
             }
 
             section = "GCode generation";
@@ -675,6 +689,8 @@ namespace GrblPlotter
 
             setup.importGCCompress = false;
             setup.importGCRelative = false;
+
+            setup.importGraphicDevelopmentEnable = false;
         }
         public void ReadImport()
         {
@@ -802,6 +818,16 @@ namespace GrblPlotter
             if (SetVariable(ref tmpbool, section, "Tool table enable")) { setup.importGCToolTableUse = tmpbool; }
             if (SetVariable(ref tmpbool, section, "Tool table default enable")) { setup.importGCToolDefNrUse = tmpbool; }
             if (SetVariable(ref tmpbool, section, "Tool table default number")) { setup.importGCToolDefNr = tmpdeci; }
+
+            section = "GCode conversion";
+            if (SetVariable(ref tmpbool, section, "Develop enable")) { setup.importGraphicDevelopmentEnable = tmpbool; }
+            if (SetVariable(ref tmpbool, section, "Develop feed X")) { setup.importGraphicDevelopmentFeedX = tmpbool; }
+            if (SetVariable(ref tmpbool, section, "Develop feed invert")) { setup.importGraphicDevelopmentFeedInvert = tmpbool; }
+            if (SetVariable(ref tmpdeci, section, "Develop notch length")) { setup.importGraphicDevelopmentNotchWidth = tmpdeci; }
+            if (SetVariable(ref tmpdeci, section, "Develop notch distance")) { setup.importGraphicDevelopmentNotchDistance = tmpdeci; }
+            if (SetVariable(ref tmpdeci, section, "Develop notch Z engrave")) { setup.importGraphicDevelopmentNotchZNotch = tmpdeci; }
+            if (SetVariable(ref tmpdeci, section, "Develop notch Z cut")) { setup.importGraphicDevelopmentNotchZCut = tmpdeci; }
+            if (SetVariable(ref tmpdeci, section, "Develop feed after")) { setup.importGraphicDevelopmentFeedAfter = tmpdeci; }
 
             section = "GCode generation";
             if (SetVariable(ref tmpdeci, section, "Dec Places")) { setup.importGCDecPlaces = tmpdeci; }
