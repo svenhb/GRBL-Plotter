@@ -65,6 +65,7 @@
  * 2021-07-14 code clean up / code quality
  * 2021-07-28 handle black as white line 359 : index 7 <=> 0
  * 2021-07-30 bug fix: AddRoundCorner if distance=0 -> no arc
+ * 2021-08-16 use Z information - not for point, spline, text
 */
 
 using DXFLib;
@@ -107,6 +108,8 @@ namespace GrblPlotter //DXFImporter
         private static readonly string dxfColorFill = "";
         private static string dxfColorHex = "";
         private static bool nodesOnly = false;              // if true only do pen-down -up on given coordinates
+        private static bool useZ = false;
+        private static double lastSetZ = 0;
         private static Point lastUsedCoord = new Point();
 
         private static readonly Dictionary<string, int> layerColor = new Dictionary<string, int>();
@@ -206,6 +209,8 @@ namespace GrblPlotter //DXFImporter
             Logger.Trace(" logEnable:{0}  logPosition:{1}", logEnable, logPosition);
 
             nodesOnly = Properties.Settings.Default.importSVGNodesOnly;
+            useZ = Properties.Settings.Default.importDXFUseZ;
+            lastSetZ = 0;
             ConversionInfo = "";
             shapeCounter = 0;
             ConversionInfo = "";
@@ -453,17 +458,17 @@ namespace GrblPlotter //DXFImporter
                             DXFStartPath(position);//, "Start LWPolyLine - Nr pts " + lp.VertexCount.ToString( ));
                         }
                         else { GCodeDotOnly(position); }//, "Start LWPolyLine"); }
-                        if (logPosition) Logger.Trace("Start LWPolyLine {0}", lp.VertexCount);
+                        if (logPosition) Logger.Trace("Start LWPolyLine count:{0} X:{1:0.000} Y:{2:0.000} Z:{3:0.000}", lp.VertexCount, position.X, position.Y, position.Z);
                     }
 
                     if ((!roundcorner) && (i > 0))
                     {
-                        if (logPosition) Logger.Trace(" dxfMoveTo {0}", i);
+                        if (logPosition) Logger.Trace(" dxfMoveTo index:{0} X:{1:0.000} Y:{2:0.000} Z:{3:0.000}", i, position.X, position.Y, position.Z);
                         DXFMoveTo(position, "");
                     }
                     if (bulge != 0)
                     {
-                        if (logPosition) Logger.Trace(" addRoundCorner {0}", i);
+                        if (logPosition) Logger.Trace(" addRoundCorner index:{0} val1X:{1:0.000} val1Y:{2:0.000} val2X:{3:0.000} val2Y:{4:0.000}", i, lp.Elements[i].Vertex.X, lp.Elements[i].Vertex.Y, lp.Elements[i + 1].Vertex.X, lp.Elements[i + 1].Vertex.Y);
 
                         if (i < (lp.VertexCount - 1))
                             AddRoundCorner(lp.Elements[i], lp.Elements[i + 1], offset, offsetAngle);
@@ -479,6 +484,7 @@ namespace GrblPlotter //DXFImporter
                 if (lp.Flags == DXFLWPolyLine.FlagsEnum.closed)
                 {
                     position = ApplyOffsetAndAngle(lp.Elements[0].Vertex, offset, offsetAngle); // move to start position
+                    if (logPosition) Logger.Trace(" LWPolyLine close X:{0:0.000}  Y:{1:0.000}", position.X, position.Y);
                     DXFMoveTo(position, "End LWPolyLine " + lp.Flags.ToString());
                 }
                 DXFStopPath();
@@ -511,8 +517,11 @@ namespace GrblPlotter //DXFImporter
                             index++;
                         }
                 }
-                if ((lp.Flags > 0))
-                    DXFMoveTo(tmp, "End PolyLine " + lp.Flags.ToString());
+                if (lp.Flags == DXFPolyLine.FlagsEnum.closed) //if ((lp.Flags > 0))
+                {
+                    if (logPosition) Logger.Trace("Close path Flags:{0}", lp.Flags);
+                    DXFMoveTo(tmp, "End PolyLine " + lp.Flags.ToString()); 
+                }
                 DXFStopPath();
             }
             #endregion
@@ -523,7 +532,7 @@ namespace GrblPlotter //DXFImporter
                 DXFLine line = (DXFLine)entity;
                 position = ApplyOffsetAndAngle(line.Start, offset, offsetAngle);
                 tmp = ApplyOffsetAndAngle(line.End, offset, offsetAngle);
-                if (logPosition) Logger.Trace(" Line from: {0};{1}  To: {2};{3}", position.X, position.Y, tmp.X, tmp.Y);
+                if (logPosition) Logger.Trace(" Line from: {0:0.000};{1:0.000}  To: {2:0.000};{3:0.000}", position.X, position.Y, tmp.X, tmp.Y);
                 if (!nodesOnly)
                 {
                     DXFStartPath(position);//, "Start Line");
@@ -541,6 +550,7 @@ namespace GrblPlotter //DXFImporter
             else if (entity.GetType() == typeof(DXFSpline))
             {   // from Inkscape DXF import - modified
                 // https://gitlab.com/inkscape/extensions/blob/master/dxf_input.py#L106
+                // https://help.autodesk.com/view/OARX/2021/ENU/?guid=GUID-235B22E0-A567-4CF6-92D3-38A2306D73F3
                 Graphic.SetGeometry("Spline");
                 DXFSpline spline = (DXFSpline)entity;
                 index = 0;
@@ -548,7 +558,8 @@ namespace GrblPlotter //DXFImporter
       //          cmt = "Start Spline " + spline.KnotValues.Count.ToString() + " " + spline.ControlPoints.Count.ToString() + " " + spline.FitPoints.Count.ToString();
                 int knots = spline.KnotCount;
                 int ctrls = spline.ControlPointCount;
-                if (logPosition) Logger.Trace(" Spline ControlPointCnt: {0} KnotsCount: {1}", ctrls, knots);
+                //spline.Flags
+                if (logPosition) Logger.Trace(" Spline ControlPointCnt: {0} KnotsCount: {1} Flags: {2}", ctrls, knots, spline.Flags);
 
                 if ((ctrls > 3) && (knots == ctrls + 4))    //  # cubic
                 {
@@ -652,7 +663,7 @@ namespace GrblPlotter //DXFImporter
                 if (logPosition) Logger.Trace(" Circle center: {0:0.000};{1:0.000}  R: {2:0.000}", position.X, position.Y, circle.Radius);
                 if (!nodesOnly)
                 {
-                    DXFStartPath((double)position.X + circle.Radius, (double)position.Y);//, "Start Circle");
+                    DXFStartPath((double)position.X + circle.Radius, (double)position.Y, (double)position.Z);//, "Start Circle");
                     Graphic.SetGeometry("Circle");
                     Graphic.AddCircle((double)position.X, (double)position.Y, circle.Radius);
                 }
@@ -693,7 +704,7 @@ namespace GrblPlotter //DXFImporter
                     double endY = (double)(Y + R * Math.Sin(endA));
 
                     if (logEnable) Logger.Trace(" Arc center: {0:0.000};{1:0.000}  R: {2:0.000}  start:{3:0.0}   end:{4:0.0}", X, Y, R, arc.StartAngle, arc.EndAngle);
-                    DXFStartPath(startX, startY);//, "Start Arc");
+                    DXFStartPath(startX, startY, (double)arc.Center.Z);//, "Start Arc");
                     Graphic.AddArc(false, endX, endY, X - startX, Y - startY);//, "Arc");
                     DXFStopPath();
                 }
@@ -731,7 +742,7 @@ namespace GrblPlotter //DXFImporter
                     else if (entry.GroupCode == 44) { GCodeFromFont.GCSpacing = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
                     else if (entry.GroupCode == 7)
                     {
-                        GCodeFromFont.GCFontName = entry.Value.ToString();
+                        GCodeFromFont.GCFontName = "lff\\" + entry.Value.ToString();
                         if (!GCodeFromFont.GCFontName.ToLower().EndsWith("lff"))
                         { GCodeFromFont.GCFontName += ".lff"; }
                     }
@@ -746,7 +757,7 @@ namespace GrblPlotter //DXFImporter
                 GCodeFromFont.GCOffY = (double)tmp.Y;
 
                 GCodeFromFont.GCAngleRad = (angle + offsetAngle) * Math.PI / 180;
-                if (logEnable) Logger.Trace(" Text: {0} X{1:0.00} Y{2:0.00} a{3:0.00} oa{4:0.00}", GCodeFromFont.GCText, GCodeFromFont.GCOffX, GCodeFromFont.GCOffY, angle, offsetAngle);
+                if (logEnable) Logger.Trace(" Font:{0} Text: {1} X{2:0.00} Y{3:0.00} a{4:0.00} oa{5:0.00}", GCodeFromFont.GCFontName, GCodeFromFont.GCText, GCodeFromFont.GCOffX, GCodeFromFont.GCOffY, angle, offsetAngle);
                 GCodeFromFont.GetCode(0);   // no page break
             }
             #endregion
@@ -792,13 +803,13 @@ namespace GrblPlotter //DXFImporter
                 yt = w * rm * (float)Math.Sin(a2);
                 float x2 = (float)(xt * Math.Cos(a) - yt * Math.Sin(a));
                 float y2 = (float)(xt * Math.Sin(a) + yt * Math.Cos(a));
-                DXFStartPath(xc + x1, yc - y1);//, "Start Ellipse 1");
+                DXFStartPath(xc + x1, yc - y1, (double)ellipse.Center.Z);//, "Start Ellipse 1");
                 ImportMath.CalcArc(xc + x1, yc - y1, rm, w * rm, (float)(-180.0 * a / Math.PI), large, 0, (xc + x2), (yc - y2), DXFMoveTo);
                 //  path = 'M %f,%f A %f,%f %f %d 0 %f,%f' % (xc + x1, yc - y1, rm, w* rm, -180.0 * a / math.pi, large, xc + x2, yc - y2)
             }
             else
             {
-                DXFStartPath(xc + xm, yc + ym);//, "Start Ellipse 2");
+                DXFStartPath(xc + xm, yc + ym, (double)ellipse.Center.Z);//, "Start Ellipse 2");
                 ImportMath.CalcArc(xc + xm, yc + ym, rm, w * rm, (float)(-180.0 * a / Math.PI), 1, 0, xc - xm, yc - ym, DXFMoveTo);
                 ImportMath.CalcArc(xc - xm, yc - ym, rm, w * rm, (float)(-180.0 * a / Math.PI), 1, 0, xc + xm, yc + ym, DXFMoveTo);
                 //    path = 'M %f,%f A %f,%f %f 1 0 %f,%f %f,%f %f 1 0 %f,%f z' % (xc + xm, yc - ym, rm, w* rm, -180.0 * a / math.pi, xc - xm, yc + ym, rm, w* rm, -180.0 * a / math.pi, xc + xm, yc - ym)
@@ -813,6 +824,7 @@ namespace GrblPlotter //DXFImporter
             double offsetAngle = Math.PI * offsetAngleDegree / 180;
             tmp.X = location.X * Math.Cos(offsetAngle) - location.Y * Math.Sin(offsetAngle) + offset.X;
             tmp.Y = location.X * Math.Sin(offsetAngle) + location.Y * Math.Cos(offsetAngle) + offset.Y;
+            tmp.Z = location.Z;
             return tmp;
         }
 
@@ -931,7 +943,7 @@ namespace GrblPlotter //DXFImporter
         { GCodeDotOnly((double)tmp.X, (double)tmp.Y); }//, cmt); }
         private static void GCodeDotOnly(double x, double y)//, string cmt)
         {
-            DXFStartPath(x, y);//, cmt);
+            DXFStartPath(x, y, 0);//, cmt);
             Graphic.SetGeometry("Point");
             Graphic.AddDot(x, y);//, cmt);
         }
@@ -942,28 +954,39 @@ namespace GrblPlotter //DXFImporter
         private static void DXFStartPath(DXFPoint tmp)//, string cmt = "")
         {
             Point coord = TranslateXY((float)tmp.X, (float)tmp.Y);
-            DXFStartTrsanslatedPath(coord);//, cmt);
+            DXFStartTrsanslatedPath(coord, (double)tmp.Z);//, cmt);
         }
-        private static void DXFStartPath(double x, double y)//, string cmt = "")
+        private static void DXFStartPath(double x, double y, double z)//, string cmt = "")
         {
             Point coord = TranslateXY((float)x, (float)y);
-            DXFStartTrsanslatedPath(coord);//, cmt);
+            DXFStartTrsanslatedPath(coord, z);//, cmt);
         }
-        private static void DXFStartTrsanslatedPath(Point coord)//, string cmt)
+        private static void DXFStartTrsanslatedPath(Point coord, double z)//, string cmt)
         {
             if (!GcodeMath.IsEqual(coord, lastUsedCoord))
             {
                 if (requestStopPath)
                 { DXFStopPath(); requestStopPath = false; }   // stop previous path
-                Graphic.StartPath(coord);                  // start next path
+                if (useZ)
+                    Graphic.StartPath(coord,z);                  // start next path
+                else
+                    Graphic.StartPath(coord);                  // start next path
+                if (logPosition) Logger.Trace("DXFStartTrsanslatedPath !equal X:{0:0.000} Y:{1:0.000} Z:{2:0.000} useZ:{3}", coord.X, coord.Y, z, useZ);
             }
             else
             {
                 if (requestStopPath)
                 { requestStopPath = false; }  // skip stop
                 else
-                    Graphic.StartPath(coord);                  // start next path
+                {
+                    if (useZ)
+                        Graphic.StartPath(coord, z);                  // start next path
+                    else
+                        Graphic.StartPath(coord);                  // start next path
+                    if (logPosition) Logger.Trace("DXFStartTrsanslatedPath  equal X:{0:0.000} Y:{1:0.000} Z:{2:0.000} useZ:{3}", coord.X, coord.Y, z, useZ);
+                }
             }
+            lastSetZ = z;
             lastUsedCoord = coord;
         }
 
@@ -979,13 +1002,13 @@ namespace GrblPlotter //DXFImporter
         /// </summary>
         private static void DXFMoveTo(DXFPoint tmp, string cmt)
         {
-            DXFMoveTo((double)tmp.X, (double)tmp.Y, cmt);
+            DXFMoveTo((double)tmp.X, (double)tmp.Y, (double)tmp.Z, cmt);
         }
 
-        private static void DXFMoveTo(double x, double y, string cmt)
+        private static void DXFMoveTo(double x, double y, double z, string cmt)
         {
             System.Windows.Point coord = new System.Windows.Point(x, y);
-            DXFMoveTo(coord, cmt);
+            DXFMoveTo(coord, z, cmt);
         }
         /// <summary>
         /// Insert G1 gcode command
@@ -999,13 +1022,22 @@ namespace GrblPlotter //DXFImporter
         /// </summary>
         private static void DXFMoveTo(System.Windows.Point orig, string cmt)
         {
+            DXFMoveTo(orig, lastSetZ, cmt);
+        }
+        private static void DXFMoveTo(System.Windows.Point orig, double Z, string cmt)
+        {
             System.Windows.Point coord = TranslateXY(orig);
-            if (logPosition) Logger.Trace(" DXFMoveTo nodesOnly {0}", nodesOnly);
+            //if (logPosition) Logger.Trace(" DXFMoveTo nodesOnly {0}", nodesOnly);
             if (!nodesOnly)
-                Graphic.AddLine(coord);//, cmt);
+            {   if (useZ)
+                    Graphic.AddLine(coord, Z);
+                else
+                    Graphic.AddLine(coord);
+            }
             else
                 GCodeDotOnly(coord.X, coord.Y);//, "");
 
+            if (logPosition) Logger.Trace("DXFMoveTo X:{0:0.000} Y:{1:0.000} Z:{2:0.000} useZ:{3}", coord.X, coord.Y, Z, useZ);
             lastUsedCoord = coord;
         }
 
