@@ -30,6 +30,7 @@
  * 2020-04-13 add splitArc to support tangential axis
  * 2021-01-16 bug fix: code from tiles without grouping are generated multiple times -> line 264 add gcodeString.Clear(); 
  * 2021-07-14 code clean up / code quality
+ * 2021-08-08 if graphicInfo.OptionSpecialDevelop get Z from path
 */
 
 using System;
@@ -54,6 +55,8 @@ namespace GrblPlotter
         private static bool comments = false;
         private static bool pauseBeforePath = false;
         private static bool pauseBeforePenDown = false;
+
+        private static bool useAlternitveZ = false;
 
         private static bool figureEnable = true;
 
@@ -102,6 +105,8 @@ namespace GrblPlotter
             FigureEndTagWasSet = true;
             Gcode.Setup(true);  // convertGraphics=true (repeat, inser sub)                              // initialize GCode creation (get stored settings for export)
             pathInfo = new PathInformation();
+
+            useAlternitveZ = Properties.Settings.Default.importDepthFromWidthRamp;
         }
 
         /// <summary>
@@ -303,6 +308,8 @@ namespace GrblPlotter
             figureEnable = graphicInfo.FigureEnable;
             float origZ = Gcode.GcodeZDown;
 
+            useAlternitveZ = Properties.Settings.Default.importDepthFromWidthRamp || ((graphicInfo.SourceType == SourceType.DXF) && Properties.Settings.Default.importDXFUseZ);
+
             /* Create Dot */
             if (pathObject is ItemDot DotData)
             {   //ItemDot DotData = (ItemDot)pathObject;
@@ -343,6 +350,11 @@ namespace GrblPlotter
                     if (logEnable) Logger.Trace(culture, "--ProcessPathObject: Empty path ID:{0}", PathData.Info.Id);
                     return;
                 }
+                if (graphicInfo.OptionSpecialDevelop || ((graphicInfo.SourceType == SourceType.DXF) && Properties.Settings.Default.importDXFUseZ))
+                {   Gcode.GcodeZDown = (float)PathData.Path[0].Depth;
+                  //  Logger.Info("ProcessPathObject OptionSpecialDevelop start Z:{0:0.000}", PathData.Path[0].Depth);
+                }
+
                 pathObject.FigureId = StartPath(PathData, toolNr, toolCmt, "PD");
                 PathDashArray = new double[PathData.DashArray.Length];
                 PathData.DashArray.CopyTo(PathDashArray, 0);
@@ -364,6 +376,12 @@ namespace GrblPlotter
                         if (logEnable) Logger.Trace("--ProcessPathObject: penWidth:{0:0.00}  -> setZ:{1:0.00}", entity.Depth, newZ);
                     }
 
+                    if (graphicInfo.OptionSpecialDevelop || ((graphicInfo.SourceType == SourceType.DXF) && Properties.Settings.Default.importDXFUseZ))
+                    {
+                        newZ = Gcode.GcodeZDown = (float)entity.Depth;
+            //            Logger.Info("ProcessPathObject OptionSpecialDevelop index Z:{0:0.000}", newZ);
+                    }
+
                     /* Create Line */
                     if (entity is GCodeLine)
                         MoveTo(entity.MoveTo, newZ, entity.Angle, "");
@@ -371,7 +389,7 @@ namespace GrblPlotter
                     {
                         /* Create Arc */
                         //GCodeArc ArcData = (GCodeArc)entity;
-                        Arc(ArcData.IsCW, ArcData.MoveTo, ArcData.CenterIJ, newZ, ArcData.AngleStart, ArcData.Angle);//, "");// entity.comment);
+                        Arc(ArcData.IsCW, ArcData.MoveTo, ArcData.CenterIJ, ArcData.AngleStart, ArcData.Angle);//, "");// entity.comment);
                     }
                 }
                 /* create ramp on pen up */
@@ -592,12 +610,12 @@ namespace GrblPlotter
         /// </summary>
         private static void MoveTo(Point coordxy, double newZ, double tangAngle, string cmt)
         {
-            if (!Properties.Settings.Default.importDepthFromWidthRamp)
+            if (!useAlternitveZ)    //Properties.Settings.Default.importDepthFromWidthRamp)
                 PenDown(cmt);   //  + " moveto"                      // also process tangetial axis
             double setangle = 180 * tangAngle / Math.PI;
             if (logCoordinates) Logger.Trace(" MoveTo X{0:0.000} Y{1:0.000} A{2:0.00}", coordxy.X, coordxy.Y, setangle);
             Gcode.SetTangential(gcodeString, setangle, true);
-            if (Properties.Settings.Default.importDepthFromWidthRamp)
+            if (useAlternitveZ) //Properties.Settings.Default.importDepthFromWidthRamp|| Properties.Settings.Default.importDXFUseZ)
                 Gcode.Move(gcodeString, 1, (float)coordxy.X, (float)coordxy.Y, (float)newZ, true, cmt);
             else
                 MoveToDashed(coordxy, cmt);
@@ -770,17 +788,17 @@ namespace GrblPlotter
             }
         }
 
-        private static void Arc(bool isG2, Point endPos, Point centerPos, double newZ, double tangStart, double tangEnd)//, string cmt)
+        private static void Arc(bool isG2, Point endPos, Point centerPos, double tangStart, double tangEnd)//, string cmt) remove newZ
         {
             int gnr = 2; if (!isG2) { gnr = 3; }
-            Arc(gnr, endPos.X, endPos.Y, centerPos.X, centerPos.Y, newZ, tangStart, tangEnd, "");
+            Arc(gnr, endPos.X, endPos.Y, centerPos.X, centerPos.Y, tangStart, tangEnd, "");
         }
         /*    private static void Arc(bool isG2, xyPoint endPos, xyPoint centerPos, double newZ, double tangStart, double tangEnd)//, string cmt)
             {   int gnr = 2; if (!isG2) { gnr = 3; }
                 Arc(gnr, endPos.X, endPos.Y, centerPos.X, centerPos.Y, newZ, tangStart, tangEnd, "");
 
             }*/
-        private static void Arc(int gnr, double x, double y, double i, double j, double newZ, double tangStartRad, double tangEndRad, string cmt = "")
+        private static void Arc(int gnr, double x, double y, double i, double j, double tangStartRad, double tangEndRad, string cmt = "")// remove newZ 2021-08-09
         {
             Point coordxy = new Point(x, y);
             Point center = new Point(lastGC.X + i, lastGC.Y + j);

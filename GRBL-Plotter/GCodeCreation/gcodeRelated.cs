@@ -556,6 +556,7 @@ namespace GrblPlotter
             if (gcodeZApply)
             {
                 if (gcodeComments) tmpString.AppendFormat("({0})\r\n", "Pen down: Z-Axis");
+                penDownApplied = true;
                 if (repeatZ)
                 {
                     figureString.Clear();   // Router down: a new figure will start
@@ -580,7 +581,7 @@ namespace GrblPlotter
                         }
                         gcodeTime += Math.Abs((GcodeZUp - GcodeZDown) / GcodeZFeed);
                         gcodeLines++;
-						penDownApplied = true;
+//						penDownApplied = true;
                     }
                 }
                 lastg = 1; lastf = GcodeZFeed;

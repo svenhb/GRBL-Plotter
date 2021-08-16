@@ -26,7 +26,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 
-#pragma warning disable CA1305
+//#pragma warning disable CA1305
 
 namespace GrblPlotter
 {

@@ -152,7 +152,7 @@ namespace GrblPlotter
             var b = GetBezierApproximation(points, (int)Properties.Settings.Default.importBezierLineSegmentsCnt);
             if (moveTo != null)
                 for (int i = 1; i < b.Points.Count; i++)
-                moveTo(b.Points[i], cmt);
+                    moveTo(b.Points[i], cmt);
         }
 
         /// <summary>
@@ -162,6 +162,7 @@ namespace GrblPlotter
         private static Point[] points;
         public static PolyLineSegment GetBezierApproximation(Point[] controlPoints, int outputSegmentCount)
         {
+     //       return BezierTools.FlattenTo(controlPoints).ToArray();
             Point[] points = new Point[outputSegmentCount + 1];
             if (controlPoints!=null)
                 for (int i = 0; i <= outputSegmentCount; i++)

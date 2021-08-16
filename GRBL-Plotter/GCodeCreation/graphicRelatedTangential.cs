@@ -26,8 +26,8 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 
-#pragma warning disable CA1303	// Do not pass literals as localized parameters
-#pragma warning disable CA1305
+//#pragma warning disable CA1303	// Do not pass literals as localized parameters
+//#pragma warning disable CA1305
 
 namespace GrblPlotter
 {

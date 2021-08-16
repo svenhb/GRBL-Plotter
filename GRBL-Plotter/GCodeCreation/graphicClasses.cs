@@ -30,7 +30,7 @@ using System.Linq;
 using System.Windows;
 using System.Globalization;
 
-#pragma warning disable CA1305
+//#pragma warning disable CA1305
 
 namespace GrblPlotter
 {
@@ -56,30 +56,40 @@ namespace GrblPlotter
             public SourceType SourceType { get; set; }       // public enum SourceTypes  { none, DXF, SVG, HPGL, CSV };
             public GroupOption GroupOption { get; set; }     // public enum GroupOptions { none=0, ByColor= 1, ByWidth=2, ByLayer=3, ByTile=4};
             public SortOption SortOption { get; set; }       // public enum SortOptions  { none=0, ByToolNr=1, ByCodeSize=2, ByGraphicDimension=3};
-            public bool GroupEnable { get; set; }
-            public bool FigureEnable { get; set; }
+			
             public bool ReProcess { get; set; }
-            public bool ApplyHatchFill { get; set; }
             public bool PauseBeforePath { get; set; }
             public double PenWidthMin { get; set; }
             public double PenWidthMax { get; set; }
             public double DotZMin { get; set; }
             public double DotZMax { get; set; }
 
-            public bool ConvertArcToLine { get; set; }
-            public bool OptionZFromWidth { get; set; }
-            public bool OptionDotFromCircle { get; set; }		// will be processed in GCodeFromSVG 702
-            public bool OptionZFromRadius { get; set; }			// will select GCodeDotOnlyWithZ or GCodeDotOnly
-            public bool OptionRepeatCode { get; set; }
+            public bool ApplyHatchFill { get; set; }		// Format related SVG
+
+            public bool OptionOffsetCode { get; set; }		// General options, Graphics import general
             public bool OptionSortCode { get; set; }
-            public bool OptionOffsetCode { get; set; }
-            public bool OptionHatchFill { get; set; }
-            public bool OptionClipCode { get; set; }
-            public bool OptionNodesOnly { get; set; }
+            public bool ConvertArcToLine { get; set; }
+
+            public bool OptionNodesOnly { get; set; }		// General options, Path interpretation
+            public bool OptionZFromWidth { get; set; }
+            public bool OptionDotFromCircle { get; set; }	// will be processed in GCodeFromSVG 702
+            public bool OptionZFromRadius { get; set; }		// will select GCodeDotOnlyWithZ or GCodeDotOnly
+            public bool OptionRepeatCode { get; set; }
+
+			public bool OptionRampOnPenDown { get; set; }	// Path add ons
+						
+            public bool OptionDragTool { get; set; }		// Path modifications
             public bool OptionTangentialAxis { get; set; }
-            public bool OptionDragTool { get; set; }
+            public bool OptionHatchFill { get; set; }			
             public bool OptionExtendPath { get; set; }
+			
+            public bool OptionClipCode { get; set; }		// Clipping
+
+            public bool GroupEnable { get; set; }			// Grouping and tools
+            public bool FigureEnable { get; set; }
             public bool OptionFeedFromToolTable { get; set; }
+			
+            public bool OptionSpecialDevelop { get; set; }	// Special conversion
 
             public GraphicInformationClass()
             {
@@ -91,29 +101,36 @@ namespace GrblPlotter
 				GroupEnable = Properties.Settings.Default.importGroupObjects;
 				FigureEnable = true;
 				ReProcess = false;
-				ApplyHatchFill = Properties.Settings.Default.importSVGApplyFill;
-				PauseBeforePath = Properties.Settings.Default.importPauseElement;
 				PenWidthMin = 999999;
 				PenWidthMax = 0;
                 DotZMin = 999999;
                 DotZMax = 0;
 
-                OptionZFromWidth = Properties.Settings.Default.importDepthFromWidth;
-                OptionDotFromCircle = Properties.Settings.Default.importSVGCircleToDot;
-                OptionZFromRadius = Properties.Settings.Default.importSVGCircleToDotZ;
-                OptionRepeatCode = Properties.Settings.Default.importRepeatEnable;
-				OptionSortCode = Properties.Settings.Default.importGraphicSortDistance;
-				OptionOffsetCode = Properties.Settings.Default.importGraphicOffsetOrigin;
-                OptionHatchFill = Properties.Settings.Default.importGraphicHatchFillEnable;
-                OptionClipCode = Properties.Settings.Default.importGraphicClipEnable;
-				OptionNodesOnly = Properties.Settings.Default.importSVGNodesOnly;
-				OptionTangentialAxis = Properties.Settings.Default.importGCTangentialEnable;
-				OptionDragTool = Properties.Settings.Default.importGCDragKnifeEnable;
-				OptionExtendPath = Properties.Settings.Default.importGraphicExtendPathEnable;
-				OptionFeedFromToolTable = Properties.Settings.Default.importGCToolTableUse;
+                OptionSpecialDevelop = Properties.Settings.Default.importGraphicDevelopmentEnable;
+                if (OptionSpecialDevelop)
+                {   ResetOptions(true); }
+                else
+                {
+					ApplyHatchFill = Properties.Settings.Default.importSVGApplyFill;
+					OptionZFromWidth = Properties.Settings.Default.importDepthFromWidth;
+                    OptionDotFromCircle = Properties.Settings.Default.importSVGCircleToDot;
+                    OptionZFromRadius = Properties.Settings.Default.importSVGCircleToDotZ;
+                    OptionRepeatCode = Properties.Settings.Default.importRepeatEnable;
+                    OptionHatchFill = Properties.Settings.Default.importGraphicHatchFillEnable;
+                    OptionClipCode = Properties.Settings.Default.importGraphicClipEnable;
+                    OptionNodesOnly = Properties.Settings.Default.importSVGNodesOnly;
+                    OptionTangentialAxis = Properties.Settings.Default.importGCTangentialEnable;
+                    OptionDragTool = Properties.Settings.Default.importGCDragKnifeEnable;
+                    OptionExtendPath = Properties.Settings.Default.importGraphicExtendPathEnable;
+					OptionRampOnPenDown = Properties.Settings.Default.importGraphicLeadInEnable;
+                }
+				PauseBeforePath = Properties.Settings.Default.importPauseElement;
+                OptionOffsetCode = Properties.Settings.Default.importGraphicOffsetOrigin;
+                OptionSortCode = Properties.Settings.Default.importGraphicSortDistance;
+                OptionFeedFromToolTable = Properties.Settings.Default.importGCToolTableUse;
 
                 ConvertArcToLine = Properties.Settings.Default.importGCNoArcs || OptionClipCode || OptionDragTool || OptionHatchFill;// only for SVG: || ApplyHatchFill;
-                ConvertArcToLine = ConvertArcToLine || Properties.Settings.Default.importGraphicLeadInEnable;
+                ConvertArcToLine = ConvertArcToLine || OptionSpecialDevelop || OptionRampOnPenDown;
             }
             public void ResetOptions(bool enableFigures)
 			{   FigureEnable = enableFigures;
@@ -130,6 +147,7 @@ namespace GrblPlotter
 				OptionTangentialAxis = false;
 				OptionDragTool = false;
 				OptionExtendPath = false;
+				OptionRampOnPenDown = false;
 			}
             public void SetGroup(GroupOption group, SortOption sort)
             {   GroupEnable = true;
@@ -138,12 +156,13 @@ namespace GrblPlotter
             }
 			
 			public void SetPenWidth(string width)
-			{	double nr;
-				if (double.TryParse(width, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out nr))
-				{	PenWidthMin = Math.Min(PenWidthMin, nr);
-					PenWidthMax = Math.Max(PenWidthMax, nr);
-				}
-			}
+			{
+                if (double.TryParse(width, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out double nr))
+                {
+                    PenWidthMin = Math.Min(PenWidthMin, nr);
+                    PenWidthMax = Math.Max(PenWidthMax, nr);
+                }
+            }
             public void SetDotZ(double dz)
             {
                     DotZMin = Math.Min(DotZMin, dz);
@@ -153,6 +172,7 @@ namespace GrblPlotter
             public string ListOptions()
             {
                 string importOptions = "";
+                if (OptionSpecialDevelop) importOptions += "<Special conversion!> ";
                 if (ConvertArcToLine) importOptions += "<Arc to Line> ";
                 if (OptionZFromWidth) importOptions += "<Depth from width> ";
                 if (OptionDotFromCircle) importOptions += "<Dot from circle> ";
@@ -174,6 +194,7 @@ namespace GrblPlotter
                 if (OptionDragTool) importOptions += "<Drag knife> ";
                 if (OptionExtendPath) importOptions += "<Extend path> ";
                 if (OptionFeedFromToolTable) importOptions += "<Tool parameters from tool table> ";
+				if (OptionRampOnPenDown)importOptions += "<Ramp on pen-down> ";
 
                 return importOptions;
             }
@@ -395,10 +416,10 @@ namespace GrblPlotter
 
                     foreach (GCodeMotion motion in ((ItemPath)this).Path)
                     {
-                        if (motion is GCodeLine)
-                        { n.AddMotion(new GCodeLine((GCodeLine)motion)); }
-                        else if (motion is GCodeArc)
-                        { n.AddMotion(new GCodeArc((GCodeArc)motion)); }
+                        if (motion is GCodeLine line)
+                        { n.AddMotion(new GCodeLine(line)); }
+                        else if (motion is GCodeArc arc)
+                        { n.AddMotion(new GCodeArc(arc)); }
                     }
                     n._pathLength = this._pathLength;
                     n._distance = this._distance;
@@ -528,6 +549,18 @@ namespace GrblPlotter
                 Path = new List<GCodeMotion>();
                 Dimension = new Dimensions();
                 GCodeMotion motion = new GCodeLine(tmp);
+                Dimension.SetDimensionXY(tmp.X, tmp.Y);
+                Path.Add(motion);
+                Start = End = tmp;
+            }
+            public ItemPath(Point tmp, double dz)
+            {
+                IsReversed = false;
+                Distance = 0;
+                PathLength = 0;
+                Path = new List<GCodeMotion>();
+                Dimension = new Dimensions();
+                GCodeMotion motion = new GCodeLine(tmp, dz);
                 Dimension.SetDimensionXY(tmp.X, tmp.Y);
                 Path.Add(motion);
                 Start = End = tmp;
