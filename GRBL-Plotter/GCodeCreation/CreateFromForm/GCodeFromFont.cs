@@ -28,6 +28,7 @@
  * 2021-02-13 line 125 return if no font found
  * 2021-07-02 code clean up / code quality
  * 2021-08-03 bug fix file not found line 148
+ * 2021-08-06 default GCFontName = "lff\\standard.lff"; becausee of DXF Text import
 */
 
 using System;
@@ -40,10 +41,10 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
-#pragma warning disable CA1303	// Do not pass literals as localized parameters
-#pragma warning disable CA1304
-#pragma warning disable CA1305
-#pragma warning disable CA1307
+//#pragma warning disable CA1303	// Do not pass literals as localized parameters
+//#pragma warning disable CA1304
+//#pragma warning disable CA1305
+//#pragma warning disable CA1307
 
 namespace GrblPlotter
 {
@@ -123,7 +124,7 @@ namespace GrblPlotter
         }
         public static void Reset()
         {
-            GCFontName = "standard"; GCText = ""; GCFont = 0; GCAttachPoint = 7;
+            GCFontName = "lff\\standard.lff"; GCText = ""; GCFont = 0; GCAttachPoint = 7;
             GCHeight = 0; GCWidth = 0; GCAngleRad = 0; GCSpacing = 1; GCOffX = 0; GCOffY = 0;
             GCPauseLine = false; GCPauseWord = false; GCPauseChar = false;
             useLFF = false; GCLineDistance = 1.5; GCFontDistance = 0;

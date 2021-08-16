@@ -19,8 +19,8 @@
                 PathBackground.Dispose();
 				picBevelOff.Dispose();
 				picBevelOn.Dispose();
-				cBold.Dispose();
-				cBnow.Dispose();
+		//		cBold.Dispose();
+		//		cBnow.Dispose();
             }
             base.Dispose(disposing);
         }

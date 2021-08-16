@@ -36,8 +36,8 @@ using System.Threading;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
-#pragma warning disable CA1303	// Do not pass literals as localized parameters
-#pragma warning disable CA1307
+//#pragma warning disable CA1303	// Do not pass literals as localized parameters
+//#pragma warning disable CA1307
 #pragma warning disable IDE0059
 
 namespace GrblPlotter
