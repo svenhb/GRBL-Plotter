@@ -29,8 +29,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.6.0.1</ApplicationVersion>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.6.0.2</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -165,6 +165,7 @@
     </Compile>
     <Compile Include="GCodeCreation\graphicClasses.cs" />
     <Compile Include="GCodeCreation\graphicRelatedHatchFill.cs" />
+    <Compile Include="GCodeCreation\graphicRelatedSpecial.cs" />
     <Compile Include="GCodeCreation\graphicRelatedTangential.cs" />
     <Compile Include="GCodeCreation\graphicWorker.cs">
       <SubType>Form</SubType>
