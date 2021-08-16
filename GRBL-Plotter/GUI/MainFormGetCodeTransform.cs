@@ -124,7 +124,7 @@ namespace GrblPlotter
             {
                 SimuStop();
                 VisuGCode.ClearHeightMap();
-                NewCodeStart();
+                NewCodeStart();     // GetGCodeFromHeightMap
                 SetFctbCodeText(_heightmap_form.scanCode.ToString().Replace(',', '.'));
                 SetLastLoadedFile("from height map", "");
                 NewCodeEnd();
@@ -142,7 +142,7 @@ namespace GrblPlotter
             {
                 importOptions = "";
                 SimuStop();
-                NewCodeStart(false);                        // don't clear graphics
+                NewCodeStart(false);                        // GetGCodeFromText
                 SetFctbCodeText(Graphic.GCode.ToString());  // getGCodeFromText
                 SetLastLoadedFile("from text", "");
                 NewCodeEnd();
@@ -166,11 +166,12 @@ namespace GrblPlotter
             if (!isStreaming)
             {
                 SimuStop();
-                NewCodeStart();
+                NewCodeStart(false);            // GetGCodeFromShape
                 VisuGCode.pathBackground = (GraphicsPath)_shape_form.PathBackground.Clone();
                 SetFctbCodeText(_shape_form.ShapeGCode);
                 SetLastLoadedFile("from shape", "");
                 NewCodeEnd();
+                FoldCode();
                 Properties.Settings.Default.counterImportShape += 1;
             }
             else
@@ -183,7 +184,7 @@ namespace GrblPlotter
             if (!isStreaming)
             {
                 SimuStop();
-                NewCodeStart(false);                        // don't clear graphics
+                NewCodeStart(false);                        // GetGCodeFromBarcode
                 SetFctbCodeText(Graphic.GCode.ToString());  // getGCodeFromBarcode
                 SetLastLoadedFile("from barcode", "");
                 NewCodeEnd();
@@ -202,7 +203,7 @@ namespace GrblPlotter
             if (!isStreaming)
             {
                 SimuStop();
-                NewCodeStart();
+                NewCodeStart(false);             // GetGCodeFromImage
                 SetFctbCodeText(_image_form.ImageGCode);
                 if (Properties.Settings.Default.importImageResoApply)
                     penDown.Width = (float)Properties.Settings.Default.importImageReso;
@@ -233,7 +234,7 @@ namespace GrblPlotter
             {
                 SimuStop();
                 importOptions = "";
-                NewCodeStart();
+                NewCodeStart();             // GetGCodeJogCreator2
                 SetFctbCodeText(_jogPathCreator_form.JogGCode);
                 SetLastLoadedFile("from jog path creator", "");
                 NewCodeEnd();

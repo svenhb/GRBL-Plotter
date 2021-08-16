@@ -310,7 +310,15 @@ namespace GrblPlotter
             }
             pictureBox1.Invalidate();
         }
-
+        private void MoveView(double x, double y)
+        {
+            x = x * 10 * zoomFactor;
+            y = y * 10 * zoomFactor;
+            posIsMoving = false;                            // move view
+            moveTranslation = new XyPoint(x, y);  // calc delta move
+            pBoxTransform.Translate((float)moveTranslation.X / zoomFactor, (float)moveTranslation.Y / zoomFactor);
+            moveTranslationOld = new XyPoint(x, y);
+        }
         private static MouseButtons _lastButtonUp = MouseButtons.None;
         private static int previousClick = SystemInformation.DoubleClickTime;
         private void PictureBox1_MouseUp(object sender, MouseEventArgs e)

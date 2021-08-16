@@ -121,11 +121,12 @@ namespace GrblPlotter
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
 			
-            Logger.Info(culture, "###### START GRBL-Plotter Ver. {0}  Language: {1} ######", Application.ProductVersion, ci);
+            Logger.Info(culture, "###### START GRBL-Plotter Ver. {0}  Language: {1}   OS: {2} ######", Application.ProductVersion, ci, System.Environment.OSVersion);
             UpdateLogging();			// set logging flags
 			
-            InitializeComponent();		// controls
-			
+            InitializeComponent();      // controls
+            RemoveCursorNavigation(this.Controls);
+
             Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException);
             AppDomain currentDomain = AppDomain.CurrentDomain;
             currentDomain.UnhandledException += new UnhandledExceptionEventHandler(Application_UnhandledException);
@@ -147,7 +148,9 @@ namespace GrblPlotter
 
 			CustomButtonsSetEvents();		// for buttons 17 to 32
 			SetMenuShortCuts();				// Add shortcuts to menu items
-            LoadRecentList();				// open Recent.txt and fill menu
+            LoadRecentList();               // open Recent.txt and fill menu
+            toolStripViewPenUp.Checked = Properties.Settings.Default.gui2DPenUpShow;	//2021-08-09
+
             if (MRUlist.Count > 0)			// add recent list to gui menu
             {	
                 foreach (string item in MRUlist)
@@ -176,8 +179,8 @@ namespace GrblPlotter
             ToolTable.Init();               // fill structure in ToolTable.cs
             GuiVariables.ResetVariables();	// set variables in MainFormObjects.cs			
 		// T E S T	
-			Graphic.Init(Graphic.SourceType.SVG, "", null, null);	// load class for faster 1st import
-			VisuGCode.GetGCodeLines(fCTBCode.Lines, null, null); 
+		//	Graphic.Init(Graphic.SourceType.SVG, "", null, null);	// load class for faster 1st import
+		//	VisuGCode.GetGCodeLines(fCTBCode.Lines, null, null); 
         }
 		
         // initialize Main form
@@ -568,7 +571,7 @@ namespace GrblPlotter
                 }
                 SetButtonColors(btn, btnColor);
 
-                if (parts[1].Length > 0)
+                if (parts[1].Length > 1)
                 {
                     if ((parts[1].Length > 4) && File.Exists(parts[1]))
                     {
@@ -1312,6 +1315,23 @@ namespace GrblPlotter
             Clipboard.SetImage(img);
             img.Dispose();
             g.Dispose();
+        }
+
+        private void MainForm_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+    /*        if (pictureBox1.Focused)
+            {
+                if ((e.KeyCode == Keys.Right) || (e.KeyCode == Keys.NumPad6))
+                { MoveView(-1, 0); }
+                else if ((e.KeyCode == Keys.Left) || (e.KeyCode == Keys.NumPad4))
+                { MoveView(1, 0); }
+                else if ((e.KeyCode == Keys.Up) || (e.KeyCode == Keys.NumPad8))
+                { MoveView(0, 1); }
+                else if ((e.KeyCode == Keys.Down) || (e.KeyCode == Keys.NumPad2))
+                { MoveView(0, -1); }
+            }*/
+            if (pictureBox1.Focused && ((e.KeyCode == Keys.Right) || (e.KeyCode == Keys.Left) || (e.KeyCode == Keys.Up) || (e.KeyCode == Keys.Down)))
+            { e.IsInputKey = true; }
         }
     }
 }

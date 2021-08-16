@@ -47,6 +47,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Net;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
@@ -228,8 +229,11 @@ namespace GrblPlotter
 
             if (objectCount <= maxObjects)
             {
-                if (imported) SetFctbCodeText(Graphic.GCode.ToString());    // newCodeEnd
-                VisuGCode.GetGCodeLines(fCTBCode.Lines, null, null);     	// get code path
+                if (Graphic.GCode != null)
+                {
+                    if (imported) SetFctbCodeText(Graphic.GCode.ToString());    // newCodeEnd
+                    VisuGCode.GetGCodeLines(fCTBCode.Lines, null, null);        // get code path
+                }
             }
             else
             {
@@ -322,6 +326,12 @@ namespace GrblPlotter
 
         private bool LoadFile(string fileName)
         {
+            if (fileName.StartsWith("http"))
+            {
+                tBURL.Text = fileName;
+                return true;
+            }
+
             Logger.Info("LoadFile ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
             String ext = Path.GetExtension(fileName).ToLower();
             MainTimer.Stop();
@@ -363,12 +373,8 @@ namespace GrblPlotter
                 Logger.Error(" loadFile not allowed during streaming {0} ", fileName);
                 return false;
             }
-            if (fileName.IndexOf("http") >= 0)
-            {
-                tBURL.Text = fileName;
-                return true;
-            }
-            else
+
+
             {
                 if (!File.Exists(fileName))
                 {
@@ -488,6 +494,30 @@ namespace GrblPlotter
         }
         private void TbURL_TextChanged(object sender, EventArgs e)
         {
+            var url = tBURL.Text;
+            if (!url.StartsWith("http"))
+            {
+                Logger.Error("TbURL_TextChanged URL not valid:{0}", url);
+                return;
+            }
+            HttpWebResponse response = null;
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = "HEAD";
+            try
+            { response = (HttpWebResponse)request.GetResponse(); }
+            catch (WebException ex)
+            {
+                Logger.Error("TbURL_TextChanged URL not valid:{0}", url);
+                return;
+            }
+            finally
+            {
+                if (response != null)
+                {
+                    response.Close();
+                }
+            }
+
             var parts = tBURL.Text.Split('.');
             string ext = parts[parts.Length - 1].ToLower();   // get extension
             importOptions = "";                                                  //   String ext = Path.GetExtension(fileName).ToLower();
@@ -496,6 +526,7 @@ namespace GrblPlotter
             Logger.Info("LoadFile URL ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
             MainTimer.Stop();
             MainTimer.Start();
+
 
             StatusStripSet(1, string.Format("[{0}: {1}]", Localization.GetString("statusStripeFileLoad"), tBURL.Text), Color.Lime);
             StatusStripSet(2, "Press 'Space bar' to toggle PenUp path", Color.Lime);
@@ -612,7 +643,7 @@ namespace GrblPlotter
         {
             Logger.Info("StartConvert type:{0}  source:{1}", type.ToString(), source);
             UseCaseDialog();
-            NewCodeStart();
+            NewCodeStart();             // StartConvert
             StatusStripSet(0, "Start import of vector graphic, read graphic elements, process options", Color.Yellow);
             Application.DoEvents();
             string conversionInfo = "";
@@ -699,7 +730,7 @@ namespace GrblPlotter
             lbInfo.Text = type.ToString() + "-Code loaded";
             ShowImportOptions();
 
-            if (conversionInfo.Length > 1)
+            if (!string.IsNullOrEmpty(conversionInfo) && (conversionInfo.Length > 1))
             {
                 stopwatch.Stop();
                 TimeSpan ts = stopwatch.Elapsed;
@@ -779,7 +810,7 @@ namespace GrblPlotter
             Logger.Trace(" LoadGCode");
             if (File.Exists(tbFile.Text))
             {
-                NewCodeStart();
+                NewCodeStart();             // LoadGcode
                 fCTBCode.OpenFile(tbFile.Text);
 
                 if (_serial_form.IsLasermode && Properties.Settings.Default.ctrlReplaceEnable)
@@ -960,6 +991,27 @@ namespace GrblPlotter
         // Ctrl-V to paste graphics
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
+            if (pictureBox1.Focused)
+            {   if (e.KeyCode == Keys.Space)    // space = hide pen-up path
+                {
+                    showPathPenUp = !showPathPenUp; // false;
+                    StatusStripSet(2, "Toggle PenUp path", Color.Lime);
+                    pictureBox1.Invalidate();
+                    e.SuppressKeyPress = true;
+                }
+
+                else if (e.KeyCode == Keys.E)
+                {   expandGCode = !expandGCode; }
+
+                else if ((e.KeyCode == Keys.Right) || (e.KeyCode == Keys.NumPad6))
+                {   MoveView(-1,0); }
+                else if ((e.KeyCode == Keys.Left) || (e.KeyCode == Keys.NumPad4))
+                { MoveView(1, 0); }
+                else if ((e.KeyCode == Keys.Up) || (e.KeyCode == Keys.NumPad8))
+                { MoveView(0, 1); }
+                else if ((e.KeyCode == Keys.Down) || (e.KeyCode == Keys.NumPad2))
+                { MoveView(0, -1); }
+            }
             if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)         // ctrl V = paste
             {
                 LoadFromClipboard();
@@ -968,16 +1020,7 @@ namespace GrblPlotter
                 e.Handled = true;
                 return;
             }
-            else if ((e.KeyCode == Keys.Space) && (pictureBox1.Focused))    // space = hide pen-up path
-            {
-                showPathPenUp = !showPathPenUp; // false;
-                StatusStripSet(2, "Toggle PenUp path", Color.Lime);
-                pictureBox1.Invalidate();
-                e.SuppressKeyPress = true;
-            }
 
-            else if ((e.KeyCode == Keys.E) && (pictureBox1.Focused))
-            { expandGCode = !expandGCode; }
 
             else if (e.KeyCode == Keys.NumLock)
             {
@@ -1013,7 +1056,7 @@ namespace GrblPlotter
         private void LoadFromClipboard(string text = "")
         {
             //         Logger.Info(" loadFromClipboard");
-            NewCodeStart();
+            NewCodeStart();         // LoadFromClipboard
             importOptions = "";
             bool fromClipboard = true;
             if (text.Length > 1)
@@ -1028,9 +1071,16 @@ namespace GrblPlotter
                 string source = "Textfile";
                 string checkContent = "";
                 if (fromClipboard)
-                { checkContent = (String)iData.GetData(DataFormats.Text); source = "Clipboard"; }
+                {   checkContent = (String)iData.GetData(DataFormats.Text); source = "Clipboard"; }
                 else
                     checkContent = text;
+
+                if (checkContent.StartsWith("http"))
+                {
+                    tBURL.Text = checkContent;
+                    return;
+                }
+                
                 string[] checkLines = checkContent.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
                 int posSVG = checkContent.IndexOf("<svg ");
                 if ((posSVG >= 0) && (posSVG < 200))
@@ -1052,7 +1102,7 @@ namespace GrblPlotter
                         txt = txt.Replace("<svg", "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" ");
 
                     UseCaseDialog();
-                    NewCodeStart();
+                    NewCodeStart();             // LoadFromClipboard 2
                     GCodeFromSvg.ConvertFromText(txt.Trim((char)0x00), true);    // replaceUnitByPixel = true,  import as mm
                     SetFctbCodeText(Graphic.GCode.ToString());      // loadFromClipboard
                     Properties.Settings.Default.counterImportSVG += 1;
@@ -1081,7 +1131,7 @@ namespace GrblPlotter
                         txt += checkContent;
 
                     UseCaseDialog();
-                    NewCodeStart();
+                    NewCodeStart();                 // LoadFromClipboard 3
                     GCodeFromDxf.ConvertFromText(txt);
                     SetFctbCodeText(Graphic.GCode.ToString());      // loadFromClipboard
 
@@ -1097,7 +1147,7 @@ namespace GrblPlotter
                 }
                 else
                 {
-                    NewCodeStart();
+                    NewCodeStart();                 // LoadFromClipboard 4
                     if (fromClipboard)
                         fCTBCode.Text = (String)iData.GetData(DataFormats.Text);
                     else
@@ -1122,7 +1172,7 @@ namespace GrblPlotter
                 string txt = System.Text.Encoding.Default.GetString(bytes);
 
                 UseCaseDialog();
-                NewCodeStart();
+                NewCodeStart();                 // LoadFromClipboard 5
                 GCodeFromSvg.ConvertFromText(txt, false);       // replaceUnitByPixel = false
                 SetFctbCodeText(Graphic.GCode.ToString());      // loadFromClipboard
 
@@ -1172,7 +1222,8 @@ namespace GrblPlotter
         {
             try
             {
-                Properties.Settings.Default.guiLastFileLoaded = tbFile.Text;
+        //        Properties.Settings.Default.gui2DPenUpShow = toolStripViewPenUp.Checked;	//2021-08-09
+				Properties.Settings.Default.guiLastFileLoaded = tbFile.Text;
                 Properties.Settings.Default.Save();
             }
             catch (Exception e)

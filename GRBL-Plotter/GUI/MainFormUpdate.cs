@@ -115,6 +115,15 @@ namespace GrblPlotter
             SplitContainer1_SplitterMoved(null, null);
         }
 
+        private void RemoveCursorNavigation(Control.ControlCollection controls)
+        {
+            foreach (Control ctrl in controls)
+            {
+                ctrl.PreviewKeyDown += new PreviewKeyDownEventHandler(MainForm_PreviewKeyDown);
+                RemoveCursorNavigation(ctrl.Controls);
+            }
+        }
+
         private void SetMenuShortCuts()
         {
             loadToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.O;
