@@ -1740,5 +1740,38 @@
     <Setting Name="zneutest" Type="System.String" Scope="User">
       <Value Profile="(Default)">test</Value>
     </Setting>
+    <Setting Name="importGraphicDevelopmentEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGraphicDevelopmentFeedX" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGraphicDevelopmentFeedInvert" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGraphicDevelopmentNotchWidth" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="importGraphicDevelopmentNotchDistance" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="importGraphicDevelopmentNotchZCut" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-1.5</Value>
+    </Setting>
+    <Setting Name="importGraphicDevelopmentFeedAfter" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="importGraphicDevelopmentNotchZNotch" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-1</Value>
+    </Setting>
+    <Setting Name="importGraphicDevelopmentNotchLift" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGraphicDevelopmentToolAngle" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">90</Value>
+    </Setting>
+    <Setting Name="importDXFUseZ" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

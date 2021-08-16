@@ -6963,5 +6963,137 @@ namespace GrblPlotter.Properties {
                 this["zneutest"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGraphicDevelopmentEnable {
+            get {
+                return ((bool)(this["importGraphicDevelopmentEnable"]));
+            }
+            set {
+                this["importGraphicDevelopmentEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importGraphicDevelopmentFeedX {
+            get {
+                return ((bool)(this["importGraphicDevelopmentFeedX"]));
+            }
+            set {
+                this["importGraphicDevelopmentFeedX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGraphicDevelopmentFeedInvert {
+            get {
+                return ((bool)(this["importGraphicDevelopmentFeedInvert"]));
+            }
+            set {
+                this["importGraphicDevelopmentFeedInvert"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public decimal importGraphicDevelopmentNotchWidth {
+            get {
+                return ((decimal)(this["importGraphicDevelopmentNotchWidth"]));
+            }
+            set {
+                this["importGraphicDevelopmentNotchWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public decimal importGraphicDevelopmentNotchDistance {
+            get {
+                return ((decimal)(this["importGraphicDevelopmentNotchDistance"]));
+            }
+            set {
+                this["importGraphicDevelopmentNotchDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1.5")]
+        public decimal importGraphicDevelopmentNotchZCut {
+            get {
+                return ((decimal)(this["importGraphicDevelopmentNotchZCut"]));
+            }
+            set {
+                this["importGraphicDevelopmentNotchZCut"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public decimal importGraphicDevelopmentFeedAfter {
+            get {
+                return ((decimal)(this["importGraphicDevelopmentFeedAfter"]));
+            }
+            set {
+                this["importGraphicDevelopmentFeedAfter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public decimal importGraphicDevelopmentNotchZNotch {
+            get {
+                return ((decimal)(this["importGraphicDevelopmentNotchZNotch"]));
+            }
+            set {
+                this["importGraphicDevelopmentNotchZNotch"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importGraphicDevelopmentNotchLift {
+            get {
+                return ((bool)(this["importGraphicDevelopmentNotchLift"]));
+            }
+            set {
+                this["importGraphicDevelopmentNotchLift"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("90")]
+        public decimal importGraphicDevelopmentToolAngle {
+            get {
+                return ((decimal)(this["importGraphicDevelopmentToolAngle"]));
+            }
+            set {
+                this["importGraphicDevelopmentToolAngle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importDXFUseZ {
+            get {
+                return ((bool)(this["importDXFUseZ"]));
+            }
+            set {
+                this["importDXFUseZ"] = value;
+            }
+        }
     }
 }
