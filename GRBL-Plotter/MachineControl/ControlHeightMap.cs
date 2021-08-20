@@ -861,6 +861,19 @@ namespace GrblPlotter
 
         }
 
+        private void BtnPosFromCodeDimension_Click(object sender, EventArgs e)
+        {
+            if (GuiVariables.variable["GMIX"] != GuiVariables.variable["GMAX"])
+            {   nUDX1.Value = (decimal)(CbRoundUp.Checked ? Math.Floor(GuiVariables.variable["GMIX"]) : GuiVariables.variable["GMIX"]);
+                nUDX2.Value = (decimal)(CbRoundUp.Checked ? Math.Ceiling(GuiVariables.variable["GMAX"]) : GuiVariables.variable["GMAX"]);
+            }
+            if (GuiVariables.variable["GMIY"] != GuiVariables.variable["GMAY"])
+            {
+                nUDY1.Value = (decimal)(CbRoundUp.Checked ? Math.Floor(GuiVariables.variable["GMIY"]) : GuiVariables.variable["GMIY"]);
+                nUDY2.Value = (decimal)(CbRoundUp.Checked ? Math.Ceiling(GuiVariables.variable["GMAY"]) : GuiVariables.variable["GMAY"]);
+            }
+        }
+
         private void MoveXYZ(StringBuilder tmpCode, int ix, int iy)
         {
             Vector2 tmp = Map.GetCoordinates(ix, iy);
@@ -1418,7 +1431,7 @@ namespace GrblPlotter
         }
     }
 
-    internal struct Vector2 : IEquatable<Vector2>
+    public struct Vector2 : IEquatable<Vector2>
     {
 
         private double x;
@@ -1449,6 +1462,17 @@ namespace GrblPlotter
             set { y = value; }
         }
 
+        public float Length()
+        {
+            return (float)Math.Sqrt(x*x+y*y);
+        }
+
+        public static float Distance(Vector2 a, Vector2 b)
+        {
+            double dx = a.X - b.X;
+            double dy = a.Y - b.Y;
+            return (float)Math.Sqrt(dx * dx + dy * dy);
+        }
         public static Vector2 operator +(Vector2 v1, Vector2 v2)
         {
             return
