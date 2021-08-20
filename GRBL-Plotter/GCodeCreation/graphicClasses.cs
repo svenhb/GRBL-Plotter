@@ -64,6 +64,8 @@ namespace GrblPlotter
             public double DotZMin { get; set; }
             public double DotZMax { get; set; }
 
+            public bool DxfImportZ { get; set; }
+
             public bool ApplyHatchFill { get; set; }		// Format related SVG
 
             public bool OptionOffsetCode { get; set; }		// General options, Graphics import general
@@ -105,13 +107,14 @@ namespace GrblPlotter
 				PenWidthMax = 0;
                 DotZMin = 999999;
                 DotZMax = 0;
+                DxfImportZ = false;
 
                 OptionSpecialDevelop = Properties.Settings.Default.importGraphicDevelopmentEnable;
                 if (OptionSpecialDevelop)
                 {   ResetOptions(true); }
                 else
                 {
-					ApplyHatchFill = Properties.Settings.Default.importSVGApplyFill;
+                    ApplyHatchFill = Properties.Settings.Default.importSVGApplyFill;
 					OptionZFromWidth = Properties.Settings.Default.importDepthFromWidth;
                     OptionDotFromCircle = Properties.Settings.Default.importSVGCircleToDot;
                     OptionZFromRadius = Properties.Settings.Default.importSVGCircleToDotZ;
@@ -133,7 +136,9 @@ namespace GrblPlotter
                 ConvertArcToLine = ConvertArcToLine || OptionSpecialDevelop || OptionRampOnPenDown;
             }
             public void ResetOptions(bool enableFigures)
-			{   FigureEnable = enableFigures;
+			{
+                DxfImportZ = false;
+                FigureEnable = enableFigures;
 				OptionZFromWidth = false;
 				OptionDotFromCircle = false;
                 OptionZFromRadius = false;
@@ -172,6 +177,7 @@ namespace GrblPlotter
             public string ListOptions()
             {
                 string importOptions = "";
+                if (DxfImportZ) importOptions += "<DXF Z> ";
                 if (OptionSpecialDevelop) importOptions += "<Special conversion!> ";
                 if (ConvertArcToLine) importOptions += "<Arc to Line> ";
                 if (OptionZFromWidth) importOptions += "<Depth from width> ";

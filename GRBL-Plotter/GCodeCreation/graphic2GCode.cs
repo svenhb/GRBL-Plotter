@@ -308,7 +308,7 @@ namespace GrblPlotter
             figureEnable = graphicInfo.FigureEnable;
             float origZ = Gcode.GcodeZDown;
 
-            useAlternitveZ = Properties.Settings.Default.importDepthFromWidthRamp || ((graphicInfo.SourceType == SourceType.DXF) && Properties.Settings.Default.importDXFUseZ);
+            useAlternitveZ = Properties.Settings.Default.importDepthFromWidthRamp || graphicInfo.DxfImportZ;
 
             /* Create Dot */
             if (pathObject is ItemDot DotData)
@@ -350,7 +350,7 @@ namespace GrblPlotter
                     if (logEnable) Logger.Trace(culture, "--ProcessPathObject: Empty path ID:{0}", PathData.Info.Id);
                     return;
                 }
-                if (graphicInfo.OptionSpecialDevelop || ((graphicInfo.SourceType == SourceType.DXF) && Properties.Settings.Default.importDXFUseZ))
+                if (graphicInfo.OptionSpecialDevelop || graphicInfo.DxfImportZ)
                 {   Gcode.GcodeZDown = (float)PathData.Path[0].Depth;
                   //  Logger.Info("ProcessPathObject OptionSpecialDevelop start Z:{0:0.000}", PathData.Path[0].Depth);
                 }
@@ -376,7 +376,7 @@ namespace GrblPlotter
                         if (logEnable) Logger.Trace("--ProcessPathObject: penWidth:{0:0.00}  -> setZ:{1:0.00}", entity.Depth, newZ);
                     }
 
-                    if (graphicInfo.OptionSpecialDevelop || ((graphicInfo.SourceType == SourceType.DXF) && Properties.Settings.Default.importDXFUseZ))
+                    if (graphicInfo.OptionSpecialDevelop || graphicInfo.DxfImportZ)
                     {
                         newZ = Gcode.GcodeZDown = (float)entity.Depth;
             //            Logger.Info("ProcessPathObject OptionSpecialDevelop index Z:{0:0.000}", newZ);

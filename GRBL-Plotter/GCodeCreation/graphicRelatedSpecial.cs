@@ -87,6 +87,7 @@ namespace GrblPlotter
                     startIndex = 1;
                     if (item.IsClosed) { startIndex = 0; }         // last point = first point
 
+                    Logger.Info("  Start isClosed:{0} startIndex:{1}  count:{2}", item.IsClosed, startIndex, item.Path.Count);
                     for (int i = startIndex; i < item.Path.Count; i++)      				// go through path objects
                     {
                         if (i == 0) { pStart = item.Path[item.Path.Count - 2].MoveTo; }	// if closedPath take account of 1st angle by using penultimate point
@@ -95,7 +96,7 @@ namespace GrblPlotter
                         if (i < (item.Path.Count - 1))
                             pNext = item.Path[i + 1].MoveTo;
                         else
-                            pNext = item.Path[0].MoveTo;
+                            pNext = item.Path[i - item.Path.Count + 2].MoveTo;
 
                         /* Process Line */
                         if (item.Path[i] is GCodeLine)
@@ -106,15 +107,21 @@ namespace GrblPlotter
                             angle2 = GcodeMath.GetAlpha(pNow, pNext);
                             angleDiff = 180 * (angle2 - angle1) / Math.PI;
                             double angleDiffOrig = angleDiff;
+                //            Logger.Info("i:{6} of {7} p1.x:{0:0.00} p1.y:{1:0.00} p2.x:{2:0.00} p2.y:{3:0.00} p3.x:{4:0.00} p3.y:{5:0.00}", pStart.X, pStart.Y, pNow.X, pNow.Y, pNext.X, pNext.Y, i, item.Path.Count);
+                //            Logger.Info("angle1:{0:0.00}  angle2:{1:0.00}  diff:{2:0.00}", 180*angle1 / Math.PI, 180 * angle2 / Math.PI, angleDiffOrig);
 
-                            if (angleDiff < -180) { angleDiff += 360; }
+                            while (angleDiff < -180) { angleDiff += 360; }
                             angleDiff = Math.Abs(angleDiff);
-                            if (angleDiff > 180) { angleDiff -= 180; }
+                            while (angleDiff > 360) { angleDiff -= 360; }
+                            if (angleDiff > 180) { angleDiff = 360- angleDiff; }
+                            if (angleDiff < 0) { angleDiff *= -1; }
+
+                            double notchAngle =  angleDiff;
 
                             // tool angle a allows a bending angle of 180° - a
-                            if (angleDiff < 180)
+                            if (angleDiff > toolAngle)//< 180)
                             {
-                                neededDistance = Math.Round(2 * Math.Abs(zNotch) * Math.Tan(Math.PI * angleDiff / 360), 1); // needed width of notch at needed bend angle and notch depth
+                                neededDistance = Math.Round(2 * Math.Abs(zNotch) * Math.Tan(Math.PI * notchAngle / 360), 1); // needed width of notch at needed bend angle and notch depth
                             }
                             else
                                 neededDistance = toolDistance;
@@ -128,7 +135,7 @@ namespace GrblPlotter
                                 {
                                     ProcessCurve();             // add notches, distributed over accumulated length			
                                 }
-                                Logger.Info("Add notch-distance:{0:0.000}, angle:{1:0.000},  orig:{2:0.000}, isClosed:{3}", distance, angleDiff, angleDiffOrig, item.IsClosed);
+                //                Logger.Info("Add notch-distance:{0:0.000}, angle:{1:0.000}, orig:{2:0.000}, isClosed:{3}", distance, notchAngle, angleDiffOrig, item.IsClosed);
 
                                 if (!item.IsClosed)
                                 {
@@ -140,33 +147,38 @@ namespace GrblPlotter
                                                                 //        if (!applyZUp) { tmpItemPath.Add(actualXY, zNotch, 0); } //2021-08-10
 
                                 if (angleDiff <= toolAngle)
-                                {
+                                {   // notch on edge
                                     if (!applyZUp) { tmpItemPath.Add(actualXY, zNotch, 0); }    //2021-08-10
                                     AddNotchPath(zNotch, applyZUp);     // notch width is ok
                                 }
                                 else		// multiple notches will be applied on pos and negative angle - nobody knows if notches are needed inside or outside the shape
                                 {
-                                    int addNotches = (int)Math.Round(2 * neededDistance / toolDistance);
+                                    int addNotches = (int)Math.Floor(2 * neededDistance / toolDistance);
                                     double addStep = (neededDistance - toolDistance) / addNotches;
 
-                                    Logger.Info("AddNotches cnt:{0}, step:{1:0.000}, target-angle:{2:0.00}, target-distance:{3:0.00}", addNotches, addStep, angleDiff, neededDistance);
+                     //               Logger.Info("toolDistance:{0:0.00} neededDistance:{1:0.00}  cnt:{2}  addStep:{3:0.00}", toolDistance, neededDistance, addNotches, addStep);
+                    //                Logger.Info("AddNotches cnt:{0}, step:{1:0.000}, target-angle:{2:0.00}, target-distance:{3:0.00}", addNotches, addStep, angleDiff, neededDistance);
 
+                                    // notch before edge
                                     if (i > 0)								// don't move backwards for start notch
                                     {
+                     //                   Logger.Info(" i:{0} multiple notches before:{1:0.00}",i, addStep * addNotches / 2);
                                         AddFeedXY(-addStep * addNotches / 2);
                                         if (!applyZUp) { tmpItemPath.Add(actualXY, zNotch, 0); }
                                         AddNotchPath(zNotch, applyZUp);
                                         for (int k = 0; k < (addNotches / 2); k++)          // from minus to 0
                                         {
+                     //                       Logger.Info(" i:{0} multiple notches after k:{1}", i, k);
                                             AddFeedXY(addStep);
                                             if (!applyZUp) { tmpItemPath.Add(actualXY, zNotch, 0); }
                                             AddNotchPath(zNotch, applyZUp);
                                         }
                                     }
 
-
+                                    // notch behind edge
                                     if (i < (item.Path.Count - 1))			// don't move further than distance length on last point
                                     {
+                     //                   Logger.Info(" i:{0} multiple notches after cnt:{1}", i, addNotches);
                                         double tmpTooFar = 0;
                                         for (int k = (addNotches / 2); k < addNotches; k++) // from 0 to plus
                                         {
@@ -176,7 +188,6 @@ namespace GrblPlotter
                                             tmpTooFar += addStep;
                                         }
                                         AddFeedXY(-tmpTooFar);
-                                        Logger.Info("hinter {0} of {1}", i, item.Path.Count);
                                     }
                                 }
                             }
@@ -208,20 +219,26 @@ namespace GrblPlotter
                 {
                     if (!applyZUp && (tmpItemPath.Path.Count > 1))     // finish last path
                     {
-                        tmpItemPath.Add(actualXY, deepth, 0);   // add line to path
                         tmpItemPath.Info.CopyData(pathInfo);    // add info to path
+                        tmpItemPath.Add(actualXY, deepth, 0);   // add line to path
                         developGraphic.Add(tmpItemPath);        // add path to graphic
                     }
                     tmpItemPath = new ItemPath(actualXY, deepth);   // start new path
                     AddNotchXY();                           // calc new actualXY
-                    tmpItemPath.Add(actualXY, deepth, 0);   // add line to path
                     tmpItemPath.Info.CopyData(pathInfo);    // add info to path
+                    tmpItemPath.Add(actualXY, deepth, 0);   // add line to path
                     developGraphic.Add(tmpItemPath);        // add path to graphic
+                    if (!applyZUp)
+                    {
+                        tmpItemPath = new ItemPath(actualXY, deepth);   // start new path
+                        tmpItemPath.Info.CopyData(pathInfo);    // add info to path
+                    }
                 }
                 else
                 {
                     AddNotchXY();                           // calc new actualXY
                     tmpItemPath.Add(actualXY, deepth, 0);   // add line to path
+                    tmpItemPath.Path[0].Depth = deepth;
                 }
             }
 
@@ -234,7 +251,6 @@ namespace GrblPlotter
                 { actualXY.Y = actualNotchPos; }
                 else
                 { actualXY.X = actualNotchPos; }
-                //		Logger.Info("AddNotchXY X:{0:0.000} Y:{1:0.000}", actualXY.X, actualXY.Y);
             }
 
             void AddFeedXY(double s)
@@ -251,7 +267,6 @@ namespace GrblPlotter
             {
                 int cntNeededNotches = (int)Math.Round(distAccumulated / notchDistance);
                 double notchFeedUse = distAccumulated / cntNeededNotches;
-                //		Logger.Info("ProcessCurve distance:{0:0.000} cnt:{1:0.000} feed:{2:0.000}", distAccumulated, cntNeededNotches, notchFeedUse);
 
                 for (int cnt = 0; cnt < cntNeededNotches; cnt++)
                 {

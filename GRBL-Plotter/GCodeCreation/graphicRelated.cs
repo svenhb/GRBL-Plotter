@@ -97,7 +97,6 @@ namespace GrblPlotter
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
-        //        private static readonly CultureInfo culture = CultureInfo.InvariantCulture;
 
         private static uint logFlags = 0;
         private static bool logEnable = false;
@@ -185,6 +184,8 @@ namespace GrblPlotter
                 SourceType = type,
                 FilePath = filePath
             };          // get Default settings
+            graphicInformation.DxfImportZ = (graphicInformation.SourceType == SourceType.DXF) && Properties.Settings.Default.importDXFUseZ;
+
             if (type == SourceType.SVG)
             { graphicInformation.ApplyHatchFill = graphicInformation.ApplyHatchFill || Properties.Settings.Default.importSVGApplyFill; }    // no G2/G3 if hatch fill
 
@@ -575,7 +576,7 @@ namespace GrblPlotter
 /* remove short moves*/
             if (!cancelByWorker && Properties.Settings.Default.importRemoveShortMovesEnable)
             {
-                if (!((graphicInformation.SourceType == SourceType.DXF) && Properties.Settings.Default.importDXFUseZ))
+                if (!graphicInformation.DxfImportZ)
                 {
                     Logger.Info("CreateGCode() - remove short moves");
                     if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Remove short moves" });
