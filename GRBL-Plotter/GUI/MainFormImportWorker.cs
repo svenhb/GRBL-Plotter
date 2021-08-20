@@ -105,7 +105,9 @@ namespace GrblPlotter
         // This event handler updates the progress bar.
         private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            this.progressBar1.Value = e.ProgressPercentage;
+            int pVal = e.ProgressPercentage;
+            if (pVal > 100) pVal = 100;
+            this.progressBar1.Value = pVal;
             if (e.UserState is MyUserState)
             {
                 MyUserState state = e.UserState as MyUserState;
