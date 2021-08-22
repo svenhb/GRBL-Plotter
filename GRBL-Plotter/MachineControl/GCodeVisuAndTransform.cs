@@ -260,6 +260,12 @@ namespace GrblPlotter
             /* sort list by distance, get associated linenr. */
             int line = 0;
             List<CoordByLine> SortedList = tmpList.OrderBy(o => o.distance).ToList();
+            if (SortedList.Count == 0)
+            {
+                Logger.Error("SetPosMarkerNearBy SortedList = 0");
+                return 0; 
+            }
+
             Grbl.PosMarker = SortedList[line].actualPos;
             Grbl.PosMarkerAngle = SortedList[line].alpha;
             figureNr = SortedList[line].figureNumber;
@@ -306,6 +312,9 @@ namespace GrblPlotter
 
         public static void MarkSelectedGroup(int start)
         {
+            if (start <= 0) return;
+            if (start >= (gcodeList.Count - 1)) return;
+            
             List<int> figures = new List<int>();
             int figNr;
 
