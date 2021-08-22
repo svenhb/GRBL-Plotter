@@ -209,11 +209,9 @@ namespace GrblPlotter
         private void NewCodeEnd(bool imported = false)
         {
             int objectCount = Graphic.GetObjectCount();
-            Logger.Trace("---- newCodeEnd ++++");
-
             if (!imported) objectCount = 0;     // no extra handling for GCode
-
             int maxObjects = 20000;
+            Logger.Trace("---- newCodeEnd objectCount:{0} max:{1} ++++ ", objectCount, maxObjects);
 
             if (objectCount > maxObjects)
                 StatusStripSet(0, "Display GCode, huge amount of objects (" + objectCount.ToString() + ") - takes more time", Color.Fuchsia);
@@ -229,11 +227,12 @@ namespace GrblPlotter
 
             if (objectCount <= maxObjects)
             {
-                if (Graphic.GCode != null)
+
+                if (imported &&(Graphic.GCode != null))
                 {
-                    if (imported) SetFctbCodeText(Graphic.GCode.ToString());    // newCodeEnd
-                    VisuGCode.GetGCodeLines(fCTBCode.Lines, null, null);        // get code path
+                    SetFctbCodeText(Graphic.GCode.ToString());    // newCodeEnd
                 }
+                VisuGCode.GetGCodeLines(fCTBCode.Lines, null, null);        // get code path
             }
             else
             {
@@ -850,12 +849,12 @@ namespace GrblPlotter
                             }
                         }
                         else
-                            Logger.Trace("loadGcode() check XML lineNr=0");
+                            Logger.Trace("LoadGcode() check XML lineNr=0");
                     }
                 }
                 //               else
                 //                    SaveRecentFile(tbFile.Text);
-                Logger.Trace(" loadGCode end");
+                Logger.Trace(" LoadGCode end");
             }
         }
 
