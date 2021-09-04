@@ -556,7 +556,7 @@ namespace GrblPlotter //DXFImporter
                 DXFPoint last = ApplyOffsetAndAngle(spline.ControlPoints[0], offset, offsetAngle);
                 //          cmt = "Start Spline " + spline.KnotValues.Count.ToString() + " " + spline.ControlPoints.Count.ToString() + " " + spline.FitPoints.Count.ToString();
                 int knots = spline.KnotCount;
-                int ctrls = spline.ControlPointCount;
+                int ctrls = spline.ControlPoints.Count;//spline.ControlPointCount;
                 //spline.Flags
                 if (logPosition|| newAlgorythm) Logger.Trace(" Spline ControlPointCnt: {0} KnotsCount: {1} Flags: {2}", ctrls, knots, spline.Flags);
 
@@ -575,13 +575,23 @@ namespace GrblPlotter //DXFImporter
                                 new Vector2((double)spline.ControlPoints[i + 2].X, (double)spline.ControlPoints[i + 2].Y),
                                 new Vector2((double)spline.ControlPoints[i + 3].X, (double)spline.ControlPoints[i + 3].Y));
 
-                            List<ImportMath.BiArc> biarcs = ImportMath.Algorithm.ApproxCubicBezier(cbp, 5, 1f);
+                            for (int k = 0; k < 4; k++)
+                            { Logger.Trace("  Vector:{0} X:{1:0.000}  Y:{2:0.000}", k, (double)spline.ControlPoints[i + k].X, (double)spline.ControlPoints[i + k].Y);}
 
-                            Logger.Trace("  i:{0}  biarcs:{1}", i, biarcs.Count);
-                            foreach (var biarc in biarcs)
+                            if ((spline.ControlPoints[i + 1].X == spline.ControlPoints[i + 2].X) && (spline.ControlPoints[i + 1].Y == spline.ControlPoints[i + 2].Y)&&
+                                (spline.ControlPoints[i + 1].X == spline.ControlPoints[i + 3].X) && (spline.ControlPoints[i + 1].Y == spline.ControlPoints[i + 3].Y))
                             {
-                                DrawArc(biarc.A1);
-                                DrawArc(biarc.A2);
+                                Logger.Trace("  Vector 1=2=3");
+                            }
+                            else
+                            {
+                                List<ImportMath.BiArc> biarcs = ImportMath.Algorithm.ApproxCubicBezier(cbp, 5, 1f);
+                                Logger.Trace("  i:{0}  biarcs:{1}", i, biarcs.Count);
+                                foreach (var biarc in biarcs)
+                                {
+                                    DrawArc(biarc.A1);
+                                    DrawArc(biarc.A2);
+                                }
                             }
                         }
                         void DrawArc(ImportMath.Arc arc)
@@ -1069,7 +1079,6 @@ namespace GrblPlotter //DXFImporter
         {
             System.Windows.Point coord = TranslateXY(orig);
             if (logPosition) Logger.Trace("DXFMoveTo");
-            //if (logPosition) Logger.Trace(" DXFMoveTo nodesOnly {0}", nodesOnly);
             if (!nodesOnly)
             {
                 if (useZ && (z != null))
