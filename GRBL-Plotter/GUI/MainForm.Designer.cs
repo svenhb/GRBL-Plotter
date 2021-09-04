@@ -936,7 +936,7 @@ namespace GrblPlotter
             this.btnStreamStart.Name = "btnStreamStart";
             this.toolTip1.SetToolTip(this.btnStreamStart, resources.GetString("btnStreamStart.ToolTip"));
             this.btnStreamStart.UseVisualStyleBackColor = true;
-            this.btnStreamStart.Click += new System.EventHandler(this.BtnStreamStart_Click);
+            this.btnStreamStart.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnStreamStart_Click);
             // 
             // tbFile
             // 

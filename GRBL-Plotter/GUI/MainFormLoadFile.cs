@@ -52,11 +52,6 @@ using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 
-//#pragma warning disable CA1303
-//#pragma warning disable CA1304
-//#pragma warning disable CA1305
-//#pragma warning disable CA1307
-
 namespace GrblPlotter
 {
     public partial class MainForm : Form
@@ -624,7 +619,13 @@ namespace GrblPlotter
                     else
                     {
                         if (lastLoadFile.Contains("Nothing"))
-                        { LoadFile(MRUlist[0]); }
+                        {
+                            string mypath = MRUlist[0];
+                            if (!Path.IsPathRooted(mypath))
+                            {
+                                mypath = Path.Combine(Datapath.AppDataFolder, mypath);
+                            }
+                            LoadFile(mypath); }
                         else
                         { LoadFile(lastLoadFile); }
                     }
@@ -1521,7 +1522,7 @@ namespace GrblPlotter
                     FctbCodeMarkLine();
                     _serial_form.parserStateGC = parserState;
                     _serial_form.posPause = tmp;
-                    StartStreaming(codeLine);
+                    StartStreaming(codeLine, fCTBCode.LinesCount-1);
                 }
                 return codeLine;
             }

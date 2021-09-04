@@ -68,9 +68,6 @@ using System.Threading;
 using System.Windows.Forms;
 using virtualJoystick;
 
-//#pragma warning disable CA1303	// Do not pass literals as localized parameters
-//#pragma warning disable CA1307
-
 namespace GrblPlotter
 {
     public partial class MainForm : Form
@@ -1039,7 +1036,7 @@ namespace GrblPlotter
             //            Logger.Trace("processSpecialCommands");
             bool commandFound = false;
 //#pragma warning disable CA1307
-            if (command.ToLower(culture).IndexOf("#start") >= 0) { BtnStreamStart_Click(this, EventArgs.Empty); commandFound = true; }
+            if (command.ToLower(culture).IndexOf("#start") >= 0) { BtnStreamStart_Click(this, null); commandFound = true; }
             else if (command.ToLower(culture).IndexOf("#stop") >= 0) { BtnStreamStop_Click(this, EventArgs.Empty); commandFound = true; }
             else if (command.ToLower(culture).IndexOf("#f100") >= 0) { SendRealtimeCommand(144); commandFound = true; }
             else if (command.ToLower(culture).IndexOf("#f+10") >= 0) { SendRealtimeCommand(145); commandFound = true; }
@@ -1077,7 +1074,7 @@ namespace GrblPlotter
            //     int lineNr; ;
                 if (int.TryParse(toolStrip_tb_StreamLine.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out int lineNr))
                 {
-                    StartStreaming(lineNr);      // 1142
+                    StartStreaming(lineNr, fCTBCode.LinesCount-1);      // 1142
                 }
                 else
                 {

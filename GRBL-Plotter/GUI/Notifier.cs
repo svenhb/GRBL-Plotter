@@ -19,6 +19,7 @@
 /*
  * 2020-12-18 Notifier by email or pushbullet 
  * 2021-07-15 code clean up / code quality
+ * 2021-08-29 SendMessage async: https://docs.microsoft.com/de-de/dotnet/api/system.threading.tasks.task?view=netframework-4.0
 */
 
 using System;
@@ -26,6 +27,7 @@ using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
+using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 
 namespace GrblPlotter
@@ -38,7 +40,7 @@ namespace GrblPlotter
 
         public static void SendMessage(string message)
         { SendMessage(message,""); }
-       public static void SendMessage(string message, string titleAddon)
+        public static void SendMessage(string message, string titleAddon)
         {
             bool mail = Properties.Settings.Default.notifierMailEnable;
             bool push = Properties.Settings.Default.notifierPushbulletEnable;
@@ -46,9 +48,22 @@ namespace GrblPlotter
             {
                 Logger.Info(culture, "Mail:{0} Push:{1}   Msg:{2}  Addon:{3}   Interval:{4}", mail, push, message.Replace("\r\n", " | "), titleAddon, Properties.Settings.Default.notifierMessageProgressInterval);
                 if (mail)
-                    SendMail(message, titleAddon);
-                if (push)
-                    PushBullet(message, titleAddon);
+                {
+                    Task tm = Task.Factory.StartNew(() =>
+                    {
+                        SendMail(message, titleAddon);
+                    });
+                    tm.Wait();
+                }
+
+                if (push) 
+                { 
+                    Task tp = Task.Factory.StartNew(() =>
+                    {
+                        PushBullet(message, titleAddon);
+                    });
+                    tp.Wait();
+                }
             }
         }
 

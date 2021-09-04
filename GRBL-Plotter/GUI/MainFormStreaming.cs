@@ -23,15 +23,14 @@
  * 2020-12-23 adjust notifier handling: only notify if estimated process time > notifier intervall
  * 2021-03-05 line 118 error handling
  * 2021-07-02 code clean up / code quality
+ * 2021-09-03 BtnStreamStart_Click switch from click to mouseUp event
 */
 
+using GrblPlotter.GUI;
 using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-
-//#pragma warning disable CA1303
-//#pragma warning disable CA1305
 
 namespace GrblPlotter
 {
@@ -306,13 +305,55 @@ namespace GrblPlotter
                 f.ShowMessage(Localization.GetString("mainToolChange"), msg, 1);
                 var result = f.ShowDialog(this);
                 if (result == DialogResult.Yes)
-                { StartStreaming(); }
+                { StartStreaming(0, fCTBCode.LinesCount - 1); }
             }
         }
-        private void BtnStreamStart_Click(object sender, EventArgs e)
-        { UpdateLogging(); StartStreaming(); }
+        //     private void BtnStreamStart_Click(object sender, EventArgs e)
+        private void BtnStreamStart_Click(object sender, MouseEventArgs e)
+        {
+            UpdateLogging();
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            { StreamSection(); }
+            else
+            { StartStreaming(0, fCTBCode.LinesCount - 1); }
+        }
+
+        private void StreamSection()
+        {
+            int lineStart = fCTBCodeClickedLineNow;
+            int lineEnd = fCTBCode.LinesCount;
+            int selStart = fCTBCode.Selection.FromLine;
+            int selEnd = fCTBCode.Selection.ToLine;
+            if (selStart < selEnd)
+            {
+                lineStart = selStart;
+                lineEnd = selEnd;
+            }
+
+            using (MainFormStreamSection f = new MainFormStreamSection())
+            {
+                f.LineMax = fCTBCode.LinesCount - 1;
+                f.LineStart = lineStart + 1;    // Editor starts at 1
+                f.LineEnd = lineEnd + 1;        // Editor starts at 1
+                f.Parser = VisuGCode.GetParserState(lineStart);
+                f.Position = VisuGCode.GetActualPosition(f.LineStart);
+                var result = f.ShowDialog(this);
+                if (result == DialogResult.OK)
+                {
+                    fCTBCodeClickedLineNow = f.LineStart;
+                    string parserState = VisuGCode.GetParserState(f.LineStart - 1);
+                    XyzPoint tmpPos = VisuGCode.GetActualPosition(f.LineStart - 1); ;
+                    Logger.Info("StreamSection start:{0} stop:{1}  state:{2} posX:{0:0.000} posY:{0:0.000} posZ:{0:0.000}", f.LineStart, f.LineEnd, parserState, tmpPos.X, tmpPos.Y, tmpPos.Z);
+                    FctbCodeMarkLine();
+                    _serial_form.parserStateGC = parserState;   //   <Parser State="G1 G54 G17 G21 G90 G94 M3 M9 T0 F1000 S10000" />
+                    _serial_form.posPause = tmpPos;
+                    StartStreaming(f.LineStart, f.LineEnd);
+                }
+            }
+        }
+
         // if startline > 0 start with pause
-        private void StartStreaming(int startLine = 0)
+        private void StartStreaming(int startLine, int endLine)
         {
             Logger.Trace("startStreaming serialPortOpen:{0} ", _serial_form.SerialPortOpen);
             isStreamingRequestStop = false;
@@ -324,7 +365,7 @@ namespace GrblPlotter
                 if (!isStreaming)
                 {
                     ClearErrorLines();
-                    Logger.Info("Start streaming at line:{0}  showProgress:{1}  backgroundImage:{2}", startLine, Properties.Settings.Default.guiProgressShow, Properties.Settings.Default.guiBackgroundImageEnable);
+                    Logger.Info("Start streaming at line:{0} to line:{1} showProgress:{2}  backgroundImage:{3}", startLine, endLine, Properties.Settings.Default.guiProgressShow, Properties.Settings.Default.guiBackgroundImageEnable);
                     ExpandCodeBlocksToolStripMenuItem_Click(null, null);
                     VisuGCode.ProcessedPath.ProcessedPathClear();
                     MainTimer.Stop();
@@ -363,7 +404,7 @@ namespace GrblPlotter
                     SaveRecentFile(fileLastProcessed + ".nc");
 
                     lblElapsed.Text = "Time " + elapsed.ToString(@"hh\:mm\:ss");
-                    _serial_form.StartStreaming(fCTBCode.Lines, startLine, false);  // no check
+                    _serial_form.StartStreaming(fCTBCode.Lines, startLine, endLine, false);  // no check
                     btnStreamStart.Image = Properties.Resources.btn_pause;
                     btnStreamCheck.Enabled = false;
                     OnPaint_setBackground();                // Generante a background-image for pictureBox to avoid frequent drawing of pen-up/down paths
@@ -407,7 +448,7 @@ namespace GrblPlotter
                 SetInfoLabel(Localization.GetString("mainInfoCheckCode"), SystemColors.Control);
                 for (int i = 0; i < fCTBCode.LinesCount; i++)
                     fCTBCode.UnbookmarkLine(i);
-                _serial_form.StartStreaming(fCTBCode.Lines, 0, true);
+                _serial_form.StartStreaming(fCTBCode.Lines, 0, fCTBCode.LinesCount -1, true);
                 btnStreamStart.Enabled = false;
                 OnPaint_setBackground();
             }
