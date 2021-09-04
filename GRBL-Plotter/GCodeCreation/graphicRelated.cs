@@ -34,6 +34,7 @@
  * 2021-07-14 code clean up / code quality
  * 2021-07-30 check coordinates for NaN in StartPath, AddLine, AddDot, AddCircle, AddArc
  * 2021-08-06 line 467 SetGeometry activate setNewId=true, before: multiple lines within one figure
+ * 2021-09-02 add viewOffset for tiles
 */
 
 using System;
@@ -1079,6 +1080,7 @@ namespace GrblPlotter
 
             string tileID;
             string tileCommand;
+			Point tileOffset = new Point();
 
             bool doTilingNotClipping = !Properties.Settings.Default.importGraphicClip;
 
@@ -1113,6 +1115,8 @@ namespace GrblPlotter
 
             int tileShowNr = 1;
 
+		//	bool applyOffset = Properties.Settings.Default.importGraphicClipOffsetX;
+			
             for (int indexY = 0; indexY < tilesY; indexY++)
             {
                 for (int indexX = 0; indexX < tilesX; indexX++)
@@ -1123,7 +1127,10 @@ namespace GrblPlotter
                     clipMax.Y = (indexY + 1) * tileSizeY + addOnY;
                     tileNr++;
 
-
+				//	if ()
+					tileOffset.X = indexX * tileSizeX;
+					tileOffset.Y = indexY * tileSizeY;
+			
                     if (doTilingNotClipping)
                     {                                                       // Add micro-offset to avoid double consideration of points on clip-border
                         if (clipMin.X > 0) clipMin.X += 0.00001;
@@ -1266,7 +1273,7 @@ namespace GrblPlotter
 
                     SortByDistance(finalPathList);                 // sort objects of current tile
 
-                    tiledGraphic.Add(new TileObject(tileID, tileCommand));          // new 2020-12-14
+                    tiledGraphic.Add(new TileObject(tileID, tileCommand, tileOffset));          // new 2020-12-14
                     foreach (PathObject tile in finalPathList)      // add tile to full graphic
                     {
                         tileGraphicAll.Add(tile);

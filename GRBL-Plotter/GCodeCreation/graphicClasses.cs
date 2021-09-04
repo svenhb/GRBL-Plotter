@@ -22,6 +22,7 @@
  * 2021-01-22 ListOptions() add frame and multiply
  * 2021-07-02 code clean up / code quality
  * 2021-07-30 check ApplyHatchFill not in constructor (it's only needed for SourceType.SVG)
+ * 2021-09-02 add Offset to TileObject
 */
 
 using System;
@@ -213,6 +214,7 @@ namespace GrblPlotter
         {
             public string Key { get; set; }     // value of collected penColor, penWidth, Layer or TileNr
             public string TileRelatedGCode { get; set; }
+			public Point Offset { get; set; }
             public List<GroupObject> Tile { get; set; }      // either collect groups 
             public List<PathObject> GroupPath { get; set; }  // or paths
             protected int TileId{ get; set; }		// track GCode group-id
@@ -224,12 +226,13 @@ namespace GrblPlotter
                 TileRelatedGCode = "";
 				TileId = -1;
             }
-            public TileObject(string tmpKey, string comand)//, PathObject pathObject)
+            public TileObject(string tmpKey, string comand, Point offset)//, PathObject pathObject)
             {
                 Key = tmpKey;
                 TileRelatedGCode = comand;
 				TileId = -1;
-
+				Offset = offset;
+				
                 Tile = new List<GroupObject>();
                 GroupPath = new List<PathObject>();
         //        groupPath = new List<PathObject>();

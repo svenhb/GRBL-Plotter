@@ -18,14 +18,13 @@
 */
 /*
  * 2021-08-10 new
+ * 2021-09-03 add "no curve" option
 */
 
 
 using System;
 using System.Collections.Generic;
 using System.Windows;
-
-//#pragma warning disable CA1305
 
 namespace GrblPlotter
 {
@@ -36,6 +35,8 @@ namespace GrblPlotter
         {
             bool feedIsX = Properties.Settings.Default.importGraphicDevelopmentFeedX;   // axis which follows circumference - material feed
             bool feedInvert = Properties.Settings.Default.importGraphicDevelopmentFeedInvert;
+            bool noCurve = Properties.Settings.Default.importGraphicDevelopmentNoCurve; 
+			
             double notchWidth = (double)Properties.Settings.Default.importGraphicDevelopmentNotchWidth;
             double notchDistance = (double)Properties.Settings.Default.importGraphicDevelopmentNotchDistance;   // feed after angle process
             double limit = notchDistance;   // if line length is < limit, accumulate lengths and disribute notches then
@@ -107,8 +108,6 @@ namespace GrblPlotter
                             angle2 = GcodeMath.GetAlpha(pNow, pNext);
                             angleDiff = 180 * (angle2 - angle1) / Math.PI;
                             double angleDiffOrig = angleDiff;
-                //            Logger.Info("i:{6} of {7} p1.x:{0:0.00} p1.y:{1:0.00} p2.x:{2:0.00} p2.y:{3:0.00} p3.x:{4:0.00} p3.y:{5:0.00}", pStart.X, pStart.Y, pNow.X, pNow.Y, pNext.X, pNext.Y, i, item.Path.Count);
-                //            Logger.Info("angle1:{0:0.00}  angle2:{1:0.00}  diff:{2:0.00}", 180*angle1 / Math.PI, 180 * angle2 / Math.PI, angleDiffOrig);
 
                             while (angleDiff < -180) { angleDiff += 360; }
                             angleDiff = Math.Abs(angleDiff);
@@ -135,7 +134,6 @@ namespace GrblPlotter
                                 {
                                     ProcessCurve();             // add notches, distributed over accumulated length			
                                 }
-                //                Logger.Info("Add notch-distance:{0:0.000}, angle:{1:0.000}, orig:{2:0.000}, isClosed:{3}", distance, notchAngle, angleDiffOrig, item.IsClosed);
 
                                 if (!item.IsClosed)
                                 {
@@ -144,7 +142,6 @@ namespace GrblPlotter
                                 }
 
                                 AddFeedXY(distance);            // move to next notch
-                                                                //        if (!applyZUp) { tmpItemPath.Add(actualXY, zNotch, 0); } //2021-08-10
 
                                 if (angleDiff <= toolAngle)
                                 {   // notch on edge
@@ -156,19 +153,16 @@ namespace GrblPlotter
                                     int addNotches = (int)Math.Floor(2 * neededDistance / toolDistance);
                                     double addStep = (neededDistance - toolDistance) / addNotches;
 
-                     //               Logger.Info("toolDistance:{0:0.00} neededDistance:{1:0.00}  cnt:{2}  addStep:{3:0.00}", toolDistance, neededDistance, addNotches, addStep);
-                    //                Logger.Info("AddNotches cnt:{0}, step:{1:0.000}, target-angle:{2:0.00}, target-distance:{3:0.00}", addNotches, addStep, angleDiff, neededDistance);
-
                                     // notch before edge
                                     if (i > 0)								// don't move backwards for start notch
                                     {
-                     //                   Logger.Info(" i:{0} multiple notches before:{1:0.00}",i, addStep * addNotches / 2);
+                                        //                   Logger.Info(" i:{0} multiple notches before:{1:0.00}",i, addStep * addNotches / 2);
                                         AddFeedXY(-addStep * addNotches / 2);
                                         if (!applyZUp) { tmpItemPath.Add(actualXY, zNotch, 0); }
                                         AddNotchPath(zNotch, applyZUp);
                                         for (int k = 0; k < (addNotches / 2); k++)          // from minus to 0
                                         {
-                     //                       Logger.Info(" i:{0} multiple notches after k:{1}", i, k);
+                                            //                       Logger.Info(" i:{0} multiple notches after k:{1}", i, k);
                                             AddFeedXY(addStep);
                                             if (!applyZUp) { tmpItemPath.Add(actualXY, zNotch, 0); }
                                             AddNotchPath(zNotch, applyZUp);
@@ -178,7 +172,6 @@ namespace GrblPlotter
                                     // notch behind edge
                                     if (i < (item.Path.Count - 1))			// don't move further than distance length on last point
                                     {
-                     //                   Logger.Info(" i:{0} multiple notches after cnt:{1}", i, addNotches);
                                         double tmpTooFar = 0;
                                         for (int k = (addNotches / 2); k < addNotches; k++) // from 0 to plus
                                         {
@@ -260,19 +253,25 @@ namespace GrblPlotter
                 { actualXY.X += s; }
                 else
                 { actualXY.Y += s; }
-                //		Logger.Info("AddFeedXY X:{0:0.000} Y:{1:0.000}", actualXY.X, actualXY.Y);
             }
 
             void ProcessCurve()
             {
-                int cntNeededNotches = (int)Math.Round(distAccumulated / notchDistance);
-                double notchFeedUse = distAccumulated / cntNeededNotches;
-
-                for (int cnt = 0; cnt < cntNeededNotches; cnt++)
+                if (noCurve)
                 {
-                    AddFeedXY(notchFeedUse);
-                    if (!applyZUp) { tmpItemPath.Add(actualXY, zNotch, 0); }
+                    AddFeedXY(distAccumulated); if (!applyZUp) { tmpItemPath.Add(actualXY, zNotch, 0); }
                     AddNotchPath(zNotch, applyZUp);
+                }
+                else
+                {
+                    int cntNeededNotches = (int)Math.Round(distAccumulated / notchDistance);
+                    double notchFeedUse = distAccumulated / cntNeededNotches;
+                    for (int cnt = 0; cnt < cntNeededNotches; cnt++)
+                    {
+                        AddFeedXY(notchFeedUse);
+                        if (!applyZUp) { tmpItemPath.Add(actualXY, zNotch, 0); }
+                        AddNotchPath(zNotch, applyZUp);
+                    }
                 }
                 distAccumulated = 0;
             }

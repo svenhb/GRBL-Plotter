@@ -31,6 +31,8 @@
  * 2021-01-16 bug fix: code from tiles without grouping are generated multiple times -> line 264 add gcodeString.Clear(); 
  * 2021-07-14 code clean up / code quality
  * 2021-08-08 if graphicInfo.OptionSpecialDevelop get Z from path
+ * 2021-08-26 line 220, 290 use tool colors if tools are used
+ * 2021-09-02 CreateGCode-TileObject add XML-Tag OffsetX,-Y
 */
 
 using System;
@@ -57,6 +59,7 @@ namespace GrblPlotter
         private static bool pauseBeforePenDown = false;
 
         private static bool useAlternitveZ = false;
+        private static bool useToolTable = false;
 
         private static bool figureEnable = true;
 
@@ -107,6 +110,8 @@ namespace GrblPlotter
             pathInfo = new PathInformation();
 
             useAlternitveZ = Properties.Settings.Default.importDepthFromWidthRamp;
+
+            useToolTable = Properties.Settings.Default.importGCToolTableUse;
         }
 
         /// <summary>
@@ -131,10 +136,11 @@ namespace GrblPlotter
 
             if (graphicInfo == null) return false;
             if (tiledGraphic == null) return false;
-
+			double offsetX, offsetY;
+			
             foreach (TileObject tileObject in tiledGraphic)
             {
-                xmlTag = string.Format(culture, "{0} Id=\"{1}\" Pos=\"{2}\">", XmlMarker.TileStart, iDToSet, tileObject.Key);
+                xmlTag = string.Format(culture, "{0} Id=\"{1}\" Pos=\"{2}\" OffsetX=\"{3:0.000}\"  OffsetY=\"{4:0.000}\">", XmlMarker.TileStart, iDToSet, tileObject.Key, tileObject.Offset.X, tileObject.Offset.Y);
                 Gcode.Comment(finalGcodeString, xmlTag);
                 if (logEnable) Logger.Trace(culture, "-CreateGCode {0} ", xmlTag);
 
@@ -213,6 +219,14 @@ namespace GrblPlotter
                 foreach (PathObject pathObject in groupObject.GroupPath)
                 {
                     if (logEnable) Logger.Trace(culture, " ProcessPathObject id:{0} ", pathObject.Info.Id);
+
+                    if (useToolTable)                                                   // 2021-08-26 #217
+                    {   int toolToUse = groupObject.ToolNr;
+                        if (Properties.Settings.Default.importGCToolDefNrUse)
+                            toolToUse = (int)Properties.Settings.Default.importGCToolDefNr;
+                        string toolColor = ToolTable.GetToolColor(toolToUse);  
+                        pathObject.Info.GroupAttributes[(int)GroupOption.ByColor] = toolColor;
+                    }
                     ProcessPathObject(pathObject, graphicInfo, -1, "");	// create Dot or Path GCode, but no tool change
                 }
                 PenUp(" CreateGCode 1", true);      // set xmlMarker.figureEnd
@@ -274,11 +288,14 @@ namespace GrblPlotter
 
                 // real tool to use: default or from graphic	   
                 int toolToUse = toolNr;
-                if (Properties.Settings.Default.importGCToolTableUse && Properties.Settings.Default.importGCToolDefNrUse)
+                if (useToolTable && Properties.Settings.Default.importGCToolDefNrUse)
                     toolToUse = (int)Properties.Settings.Default.importGCToolDefNr;
 
                 toolName = ToolTable.GetToolName(toolToUse);
-                toolColor = ToolTable.GetToolColor(toolNr);
+                toolColor = ToolTable.GetToolColor(toolToUse);          // 2021-08-26 before toolNr
+
+                if (useToolTable)                                       // 2021-08-26 #217
+                    pathObject.Info.GroupAttributes[(int)GroupOption.ByColor] = toolColor;
 
                 if (logEnable) Logger.Trace("CreateGCode2  toolNr:{0}  name:{1}", toolToUse, toolName);
                 // add tool change after <Figure tag	   

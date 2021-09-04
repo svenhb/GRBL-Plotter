@@ -22,6 +22,7 @@
  * 2020-08-04 add figureNr, penWidth
  * 2020-12-16 add Tile
  * 2021-07-02 code clean up / code quality
+ * 2021-09-02 read XML attribute OffsetX, -Y
 */
 
 using System;
@@ -68,6 +69,7 @@ namespace GrblPlotter
             public int LineEnd { get; set; }             // line nr. in editor
             public XyPoint PosStart { get; set; }        // xy position
             public XyPoint PosEnd { get; set; }
+            public XyPoint Offset { get; set; }
             public double Distance { get; set; }
             public bool Reverse { get; set; }
             public int FigureNr { get; set; }
@@ -385,6 +387,8 @@ namespace GrblPlotter
             tmp.PenWidth = tmp.PathLength = tmp.PathArea = -1;
             tmp.Geometry = tmp.Layer = tmp.Type = tmp.PenColor = tmp.ToolName = "";
             tmp.FigureNr = figNr;
+            tmp.Offset = new XyPoint();
+
             //            if (gcode.loggerTrace) Logger.Trace("setBlockData {0}", element);
             if (element.Contains("Id")) { tmp.Id = GetAttributeValueNumber(element, "Id"); }
             if (element.Contains("ToolNr")) { tmp.ToolNr = GetAttributeValueNumber(element, "ToolNr"); }
@@ -399,8 +403,9 @@ namespace GrblPlotter
             if (element.Contains("Geometry")) { tmp.Geometry = GetAttributeValue(element, "Geometry"); }
             if (element.Contains("PenColor")) { tmp.PenColor = GetAttributeValue(element, "PenColor"); }
             if (element.Contains("PenWidth")) { tmp.PenWidth = GetAttributeValueDouble(element, "PenWidth"); }
-            //          if (element.Contains("ToolName")) { tmp.toolName = getAttributeValue(element, "ToolName"); }
-            //            Logger.Trace("   setBlockData finish");
+            if (element.Contains("OffsetX")) { XyPoint tmpPoint = tmp.Offset; tmpPoint.X = GetAttributeValueDouble(element, "OffsetX"); tmp.Offset = tmpPoint; }
+            if (element.Contains("OffsetY")) { XyPoint tmpPoint = tmp.Offset; tmpPoint.Y = GetAttributeValueDouble(element, "OffsetY"); tmp.Offset = tmpPoint; }
+			
             return tmp;
         }
 
@@ -679,7 +684,8 @@ namespace GrblPlotter
             if (element != null)
             {
                 tmpTile = SetBlockData(lineStart, element, figureNR);
-                if (logEnable) Logger.Trace("AddTile ");
+                if (logEnable) 
+                    Logger.Trace("AddTile line:{0}  figNr:{1}  xml:{2}",lineStart, figureNR, element);
             }
         }
 

@@ -24,6 +24,7 @@
  * 2020-09-24 add indexWidth()
  * 2021-03-26 add getColorWidth()
  * 2021-07-26 code clean up / code quality
+ * 2021-08-26 GetToolColor remove leading '#'
 */
 
 using System;
@@ -121,7 +122,7 @@ namespace GrblPlotter
             foreach (ToolProp tool in toolTableArray)
             {
                 if (index == tool.Toolnr)
-                    return ColorTranslator.ToHtml(tool.Color);
+                    return ColorTranslator.ToHtml(tool.Color).Substring(1); // 2021-08-26 remove '#'
             }
             return "not defined";
         }

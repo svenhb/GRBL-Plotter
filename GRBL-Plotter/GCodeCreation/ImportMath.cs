@@ -525,10 +525,10 @@ namespace GrblPlotter
                 var sweepAngle2 = Math.Atan2(endVector2.Y, endVector2.X) - startAngle2;
 
                 // Adjust angles according to the orientation of the curve
-                if (cw && sweepAngle1 < 0) sweepAngle1 = 2 * Math.PI + sweepAngle1;
-                if (!cw && sweepAngle1 > 0) sweepAngle1 = sweepAngle1 - 2 * Math.PI;
-                if (cw && sweepAngle2 < 0) sweepAngle2 = 2 * Math.PI + sweepAngle2;
-                if (!cw && sweepAngle2 > 0) sweepAngle2 = sweepAngle2 - 2 * Math.PI;
+                if (cw && sweepAngle1 < 0) sweepAngle1 += 2 * Math.PI;      // 2 * Math.PI + sweepAngle1;
+                if (!cw && sweepAngle1 > 0) sweepAngle1 -= 2 * Math.PI;     // sweepAngle1 - 2 * Math.PI;
+                if (cw && sweepAngle2 < 0) sweepAngle2 += 2 * Math.PI;      // 2 * Math.PI + sweepAngle2;
+                if (!cw && sweepAngle2 > 0) sweepAngle2 -= 2 * Math.PI;     // sweepAngle2 - 2 * Math.PI;
 
                 A1 = new Arc(C1, r1, (float)startAngle1, (float)sweepAngle1, P1, T);
                 A2 = new Arc(C2, r2, (float)startAngle2, (float)sweepAngle2, T, P2);
