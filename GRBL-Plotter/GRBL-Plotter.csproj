@@ -29,8 +29,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>5</ApplicationRevision>
-    <ApplicationVersion>1.6.0.5</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.6.1.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -222,6 +222,12 @@
     <Compile Include="GUI\MainFormStreaming.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\MainFormStreamSection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\MainFormStreamSection.Designer.cs">
+      <DependentUpon>MainFormStreamSection.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\MainFormUpdate.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -855,6 +861,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ButtonEdit.resx">
       <DependentUpon>ButtonEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MainFormStreamSection.resx">
+      <DependentUpon>MainFormStreamSection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\splashscreen.resx">
       <DependentUpon>splashscreen.cs</DependentUpon>
