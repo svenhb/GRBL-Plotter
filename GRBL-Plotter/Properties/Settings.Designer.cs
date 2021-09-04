@@ -7095,5 +7095,29 @@ namespace GrblPlotter.Properties {
                 this["importDXFUseZ"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGraphicClipShowOrigPosition {
+            get {
+                return ((bool)(this["importGraphicClipShowOrigPosition"]));
+            }
+            set {
+                this["importGraphicClipShowOrigPosition"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGraphicDevelopmentNoCurve {
+            get {
+                return ((bool)(this["importGraphicDevelopmentNoCurve"]));
+            }
+            set {
+                this["importGraphicDevelopmentNoCurve"] = value;
+            }
+        }
     }
 }
