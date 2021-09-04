@@ -317,7 +317,7 @@
 (xxx = значение Z)</value>
   </data>
   <data name="RbProbingZ.Text" xml:space="preserve">
-    <value>Использование оси Z (G38.3Z)</value>
+    <value>Ось Z (G38.3Z)</value>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
     <value>Зондирование, выберите источник для значения Z</value>
@@ -330,5 +330,11 @@
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>Выход</value>
+  </data>
+  <data name="CbRoundUp.Text" xml:space="preserve">
+    <value>Округлять</value>
+  </data>
+  <data name="BtnPosFromCodeDimension.Text" xml:space="preserve">
+    <value>Размеры из загруженного GCode</value>
   </data>
 </root>

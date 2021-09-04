@@ -138,7 +138,8 @@ namespace GrblPlotter
 
         // analyse each GCode line and track actual position and modes for each code line
         private static List<GcodeByLine> gcodeList = new List<GcodeByLine>();        // keep original program
-        private static List<GcodeByLine> simuList;         // as gcodeList but resolved subroutines
+  //      private static List<GcodeByLine> simuList;         // as gcodeList but resolved subroutines
+        private static List<SimuCoordByLine> simuList;         // as gcodeList but resolved subroutines
         private static List<CoordByLine> coordList;        // get all coordinates (also subroutines)
         private static List<CoordByLine> centerList;       // get center of arcs
 

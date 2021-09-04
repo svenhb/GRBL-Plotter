@@ -2971,7 +2971,7 @@ https://github.com/cprezzi/grbl-servoのGrbl-version'grbl_v1.1f_Servo.hex '、
     <comment>ok</comment>
   </data>
   <data name="label62.Text" xml:space="preserve">
-    <value>材料の厚さ</value>
+    <value>注：ツールテーブルがアクティブになっている場合、図の元の色は使用されているツールの色に置き換えられます</value>
   </data>
   <data name="label60.Text" xml:space="preserve">
     <value>工具角度</value>
@@ -3020,5 +3020,46 @@ https://github.com/cprezzi/grbl-servoのGrbl-version'grbl_v1.1f_Servo.hex '、
   </data>
   <data name="tabPage30.Text" xml:space="preserve">
     <value>特別な変換</value>
+  </data>
+  <data name="cBImportDXFUseZ.Text" xml:space="preserve">
+    <value>Z情報をインポートする</value>
+  </data>
+  <data name="tab1_3lbl34.Text" xml:space="preserve">
+    <value>Z&gt; 0でのS</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="Column4.HeaderText" xml:space="preserve">
+    <value>位置X</value>
+  </data>
+  <data name="Column5.HeaderText" xml:space="preserve">
+    <value>位置Y</value>
+  </data>
+  <data name="Column6.HeaderText" xml:space="preserve">
+    <value>位置Z</value>
+  </data>
+  <data name="Column16.HeaderText" xml:space="preserve">
+    <value>位置A</value>
+  </data>
+  <data name="Column7.HeaderText" xml:space="preserve">
+    <value>ツールØ</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column8.HeaderText" xml:space="preserve">
+    <value>XY速度</value>
+  </data>
+  <data name="tab4gB6.Text" xml:space="preserve">
+    <value>特別な</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.Text" xml:space="preserve">
+    <value>元のタイル位置を表示する</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.ToolTip" xml:space="preserve">
+    <value>元のタイル位置を表示する</value>
+  </data>
+  <data name="cBImportGraphicClipOffsetApply.ToolTip" xml:space="preserve">
+    <value>タイルの原点を0に設定します; 0</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
+    <value>カーブなし</value>
   </data>
 </root>

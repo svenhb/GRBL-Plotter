@@ -46,8 +46,8 @@ namespace GrblPlotter
             private static double remainingStep = 10;
             private static bool isIntermediate = false;
             private static double distance = 0;
-            private static GcodeByLine codeLast = new GcodeByLine();
-            private static GcodeByLine codeNext = new GcodeByLine();
+            private static SimuCoordByLine codeLast = new SimuCoordByLine();
+            private static SimuCoordByLine codeNext = new SimuCoordByLine();
             private static bool isTangentialZ = false;
             private static bool isPenDownOld = false;
             private static bool isPenDownNow = false;
@@ -74,7 +74,7 @@ namespace GrblPlotter
                 remainingStep = stepWidth = 10;
                 lastPosMarker = posXY = Grbl.PosMarker = new XyzPoint();
                  Grbl.PosMarkerAngle = 0;//posAngle =
-                codeNext = new GcodeByLine(simuList[lineNr]);
+                codeNext = new SimuCoordByLine(simuList[lineNr]);
                 CreateMarkerPath();
                 isTangentialZ = (tangentialAxisName == "Z");
                 pathSimulation.Reset();
@@ -276,8 +276,8 @@ namespace GrblPlotter
                 lineNr++;
                 if (lineNr >= simuList.Count)
                     return false;
-                codeLast = new GcodeByLine(codeNext);
-                codeNext = new GcodeByLine(simuList[lineNr]);
+                codeLast = new SimuCoordByLine(codeNext);
+                codeNext = new SimuCoordByLine(simuList[lineNr]);
                 if (codeNext.codeLine.Contains("M30"))          // program end
                     return false;
                 UpdateFeedRate();
@@ -521,8 +521,8 @@ namespace GrblPlotter
             }
             private static PointF ToPointF(XyzPoint tmp)
             { return new PointF((float)tmp.X, (float)tmp.Y); }
-            private static PointF ToPointF(XyzabcuvwPoint tmp)
-            { return new PointF((float)tmp.X, (float)tmp.Y); }
+    //        private static PointF ToPointF(XyzabcuvwPoint tmp)
+    //       { return new PointF((float)tmp.X, (float)tmp.Y); }
 
             private static bool PointOnArc(ArcProperties arcMove1, ArcProperties arcMove2, PointF xp)
             {

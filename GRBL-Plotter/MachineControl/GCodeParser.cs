@@ -26,14 +26,11 @@
  * 2021-07-26 code clean up / code quality
  * 2021-07-29 line 306 add G28 to ismachineCoordG53 = true;
  * 2021-08-02 calc distance to line
+ * 2021-09-04 new struct to store simulation data: SimuCoordByLine
 */
 
 
 using System;
-
-//#pragma warning disable CA1304
-//#pragma warning disable CA1305
-//#pragma warning disable CA1307
 
 namespace GrblPlotter
 {
@@ -128,13 +125,26 @@ namespace GrblPlotter
     /// Hold parsed GCode line and absolute work coordinate for given linenumber of GCode program
     /// </summary>
     class GcodeByLine
-    {   // ModalGroups
-        public int lineNumber;          // line number in fCTBCode
+    {   public int lineNumber;          // line number in fCTBCode
         public int nNumber;             // n number in GCode if given
         public int figureNumber;
         public string codeLine;         // copy of original gcode line
+        public double? x, y, z, a, b, c, u, v, w, i, j; // current parameters
+        public XyzabcuvwPoint actualPos;      // accumulates position
+
+        // ModalGroups <Parser State="G1 G54 G17 G21 G90 G94 M3 M9 T0 F1000 S10000" />
         public byte motionMode;         // G0,1,2,3
+        public byte coordSystem;        // Coordinate System Modes: G54, G55, G56, G57, G58, G59
+        public byte planeSelect;        // G17,18,19
+        public bool isunitModeG21;      // G20,21
         public bool isdistanceModeG90;  // G90,91
+        public bool isfeedrateModeG94;  // Feed Rate Modes: G93, G94
+        public byte spindleState;       // M3,4,5
+        public byte coolantState;       // M7,8,9
+        public byte toolNumber;         // T0
+        public int feedRate;            // actual feed rate
+        public int spindleSpeed;        // actual spindle speed
+
         public bool ismachineCoordG53;  // don't apply transform to machine coordinates
         public bool isSubroutine;
         public bool isSetCoordinateSystem;  // don't process x,y,z if set coordinate system
@@ -145,12 +155,6 @@ namespace GrblPlotter
         public bool wasSetXY;
         public bool wasSetZ;
 
-        public byte spindleState;       // M3,4,5
-        public byte coolantState;       // M7,8,9
-        public int spindleSpeed;        // actual spindle spped
-        public int feedRate;            // actual feed rate
-        public double? x, y, z, a, b, c, u, v, w, i, j; // current parameters
-        public XyzabcuvwPoint actualPos;      // accumulates position
         public double alpha;            // angle between old and this position
         public double distance;         // distance to specific point
         public string otherCode;
@@ -165,12 +169,20 @@ namespace GrblPlotter
         {
             ResetAll();
             lineNumber = tmp.lineNumber; nNumber = tmp.nNumber; figureNumber = tmp.figureNumber; codeLine = tmp.codeLine;
-            motionMode = tmp.motionMode; isdistanceModeG90 = tmp.isdistanceModeG90; ismachineCoordG53 = tmp.ismachineCoordG53;
-            isSubroutine = tmp.isSubroutine; spindleState = tmp.spindleState; coolantState = tmp.coolantState;
-            spindleSpeed = tmp.spindleSpeed; feedRate = tmp.feedRate;
             x = tmp.x; y = tmp.y; z = tmp.z; i = tmp.i; j = tmp.j; a = tmp.a; b = tmp.b; c = tmp.c; u = tmp.u; v = tmp.v; w = tmp.w;
-            actualPos = tmp.actualPos; distance = tmp.distance; alpha = tmp.alpha;
-            isSetCoordinateSystem = tmp.isSetCoordinateSystem; isNoMove = tmp.isNoMove; otherCode = tmp.otherCode;
+            actualPos = tmp.actualPos;
+            motionMode = tmp.motionMode; coordSystem = tmp.coordSystem; planeSelect = tmp.planeSelect;
+            isunitModeG21 = tmp.isunitModeG21; isdistanceModeG90 = tmp.isdistanceModeG90; isfeedrateModeG94 = tmp.isfeedrateModeG94;
+            spindleState = tmp.spindleState; coolantState = tmp.coolantState; toolNumber = tmp.toolNumber;
+            feedRate = tmp.feedRate; spindleSpeed = tmp.spindleSpeed;
+
+            ismachineCoordG53 = tmp.ismachineCoordG53; isSubroutine = tmp.isSubroutine;
+            isSetCoordinateSystem = tmp.isSetCoordinateSystem; isNoMove = tmp.isNoMove;
+
+            wasSetF = tmp.wasSetF; wasSetS = tmp.wasSetS; wasSetXY = tmp.wasSetXY; wasSetZ = tmp.wasSetZ;
+
+            distance = tmp.distance; alpha = tmp.alpha;
+            otherCode = tmp.otherCode;
         }
 
         public string ListData()
@@ -182,16 +194,17 @@ namespace GrblPlotter
         public void ResetAll()
         {
             lineNumber = 0; nNumber = -1; figureNumber = 0; codeLine = "";
-            motionMode = 0; isdistanceModeG90 = true; ismachineCoordG53 = false; isSubroutine = false;
-            isSetCoordinateSystem = false; isNoMove = false; spindleState = 5; coolantState = 9; spindleSpeed = 0; feedRate = 0;
-
-            wasSetF = wasSetS = wasSetXY = wasSetZ = false;
-
+            x = y = z = a = b = c = u = v = w = i = j = null;
             actualPos.X = 0; actualPos.Y = 0; actualPos.Z = 0; actualPos.A = 0; actualPos.B = 0; actualPos.C = 0;
             actualPos.U = 0; actualPos.V = 0; actualPos.W = 0;
-            distance = -1; otherCode = ""; alpha = 0;//info = "";
+            motionMode = 0; coordSystem = 54; planeSelect = 17; isunitModeG21 = true;
+            isdistanceModeG90 = true; isfeedrateModeG94 = true; spindleState = 5; coolantState = 9;
+            toolNumber = 0; feedRate = 0; spindleSpeed = 0; 
+            ismachineCoordG53 = false; isSubroutine = false;
+            isSetCoordinateSystem = false; isNoMove = false;   
 
-            x = y = z = a = b = c = u = v = w = i = j = null;
+            wasSetF = wasSetS = wasSetXY = wasSetZ = false;
+            distance = -1; otherCode = ""; alpha = 0;//info = "";
 
             ResetCoordinates();
         }
@@ -346,8 +359,13 @@ namespace GrblPlotter
                     if (value == 10)
                     { isSetCoordinateSystem = true; isNoMove = true; }
 
-                    else if ((value == 20) || (value == 21))             // Units Mode
-                    { modalState.unitsMode = (byte)value; isNoMove = true; }
+                    else if ((value == 17) || (value == 18) || (value == 19))   // planeSelect
+                    { modalState.planeSelect = planeSelect = (byte)value;  }
+
+                    else if ((value == 20) || (value == 21))                    // Units Mode
+                    {   modalState.unitsMode = (byte)value; isNoMove = true;
+                        isunitModeG21 = (value == 20);
+                    }
 
                     else if ((value >= 43) && (value < 53))
                     { isNoMove = true; }
@@ -356,7 +374,7 @@ namespace GrblPlotter
                     { ismachineCoordG53 = true; }
 
                     else if ((value >= 54) && (value <= 59))             // Coordinate System Select
-                    { modalState.coordinateSystem = (byte)value; isNoMove = true; }
+                    { modalState.coordinateSystem = coordSystem = (byte)value; isNoMove = true; }
 
                     else if (value == 90)                                // Distance Mode
                     { modalState.distanceMode = (byte)value; modalState.isdistanceModeG90 = true; }
@@ -366,7 +384,9 @@ namespace GrblPlotter
                         modalState.containsG91 = true;
                     }
                     else if ((value == 93) || (value == 94))             // Feed Rate Mode
-                    { modalState.feedRateMode = (byte)value; }
+                    {   modalState.feedRateMode = (byte)value;
+                        isfeedrateModeG94 = (value == 94);
+                    }
                     break;
                 case 'M':
                     if ((value < 3) || (value == 30))                   // Program Mode 0, 1 ,2 ,30
@@ -380,7 +400,7 @@ namespace GrblPlotter
                         otherCode += "M" + ((int)value).ToString() + " ";
                     break;
                 case 'T':
-                    modalState.tool = (byte)value;
+                    modalState.tool = toolNumber = (byte)value;
                     otherCode += "T" + ((int)value).ToString() + " ";
                     break;
                 case 'P':
@@ -397,6 +417,31 @@ namespace GrblPlotter
             isdistanceModeG90 = modalState.isdistanceModeG90;
         }
     };
+
+    internal struct SimuCoordByLine
+    {
+        public int lineNumber;          // line number in fCTBCode
+        public XyzPoint actualPos;
+        public double? i, j, z;
+        public double alpha;            // angle between old and this position
+        public byte motionMode;
+        public int feedRate;            // actual feed rate
+        public string codeLine;         // copy of original gcode line
+
+        public SimuCoordByLine(GcodeByLine tmp)
+        {   lineNumber = tmp.lineNumber; actualPos = (XyzPoint)tmp.actualPos;
+            i = tmp.i; j = tmp.j; z = tmp.z; alpha = 0;
+            motionMode = tmp.motionMode; feedRate = tmp.feedRate; 
+            codeLine = tmp.codeLine;
+        }
+        public SimuCoordByLine(SimuCoordByLine tmp)
+        {   lineNumber = tmp.lineNumber; actualPos = (XyzPoint)tmp.actualPos;
+            i = tmp.i; j = tmp.j; z = tmp.z; alpha = 0; 
+            motionMode = tmp.motionMode; feedRate = tmp.feedRate;
+            codeLine = tmp.codeLine;
+        }
+    }
+
 
     internal class ModalGroup
     {

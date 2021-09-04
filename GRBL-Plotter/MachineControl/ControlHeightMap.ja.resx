@@ -320,7 +320,7 @@
 （xxx = Z値）</value>
   </data>
   <data name="RbProbingZ.Text" xml:space="preserve">
-    <value>Z軸を使用（G38.3Z）</value>
+    <value>Z軸（G38.3Z）</value>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
     <value>プロービング、Z値のソースを選択</value>
@@ -333,5 +333,11 @@
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>出力</value>
+  </data>
+  <data name="CbRoundUp.Text" xml:space="preserve">
+    <value>切り上げする</value>
+  </data>
+  <data name="BtnPosFromCodeDimension.Text" xml:space="preserve">
+    <value>ロードされたGCodeからの寸法</value>
   </data>
 </root>

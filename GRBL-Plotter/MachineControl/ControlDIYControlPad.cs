@@ -21,16 +21,13 @@
  * 2019-08-15 add logger, line 120 replace .Invoke by .BeginInvoke
  * 2019-10-31 add SerialPortFixer http://zachsaw.blogspot.com/2010/07/serialport-ioexception-workaround-in-c.html
  * 2021-07-22 code clean up / code quality
+ * 2021-09-01 line 145 new loop: for (int i = 0; i < rxBuff.Length; i++) // old foreach (byte rxTmpChart in rxBuff)
 */
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-
-//#pragma warning disable CA1303
-//#pragma warning disable CA1305
-//#pragma warning disable CA1307
 
 namespace GrblPlotter
 {
@@ -141,9 +138,9 @@ namespace GrblPlotter
                 {
                     byte[] rxBuff = new byte[serialPort.BytesToRead];
                     serialPort.Read(rxBuff, 0, serialPort.BytesToRead);
-                    foreach (byte rxTmpChart in rxBuff)
+                    for (int i = 0; i < rxBuff.Length; i++) // old foreach (byte rxTmpChart in rxBuff)
                     {
-                        rxTmpChar = rxTmpChart;
+                        rxTmpChar = rxBuff[i];  // rxTmpChart;
                         if ((rxTmpChar > 0x7F) || (isRealTimeCmd.Contains(rxTmpChar)))  // is real time cmd ?
                         {
                             rxChar = rxTmpChar;

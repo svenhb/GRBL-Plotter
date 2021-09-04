@@ -291,7 +291,7 @@
 (xxx = valor Z)</value>
   </data>
   <data name="RbProbingZ.Text" xml:space="preserve">
-    <value>Usando el eje Z (G38.3Z)</value>
+    <value>Eje Z (G38.3Z)</value>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
     <value>Sondeo, seleccione la fuente para el valor Z</value>
@@ -304,5 +304,11 @@
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>Producción</value>
+  </data>
+  <data name="CbRoundUp.Text" xml:space="preserve">
+    <value>Redondeo</value>
+  </data>
+  <data name="BtnPosFromCodeDimension.Text" xml:space="preserve">
+    <value>Dimensiones de GCode cargado</value>
   </data>
 </root>

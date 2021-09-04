@@ -1121,7 +1121,7 @@ Não pode ser utilizado com outras opções de caneta para cima / baixo!</value>
     <comment>Form</comment>
   </data>
   <data name="btnColorPenUp.Text" xml:space="preserve">
-    <value>Pin up</value>
+    <value>Pen Up</value>
     <comment>TabPage8</comment>
   </data>
   <data name="cB4thUse.Text" xml:space="preserve">
@@ -2724,7 +2724,7 @@ O intervalo utilizável real seria $ 30 = 31, $ 31 = 0.</value>
     <comment>ok</comment>
   </data>
   <data name="label62.Text" xml:space="preserve">
-    <value>Espessura do material</value>
+    <value>Nota: Se a tabela de ferramentas estiver ativada, as cores originais das figuras são substituídas pelas cores das ferramentas utilizadas</value>
   </data>
   <data name="label60.Text" xml:space="preserve">
     <value>Ângulo da ferramenta</value>
@@ -2773,5 +2773,23 @@ O intervalo utilizável real seria $ 30 = 31, $ 31 = 0.</value>
   </data>
   <data name="tabPage30.Text" xml:space="preserve">
     <value>Conversão especial</value>
+  </data>
+  <data name="cBImportDXFUseZ.Text" xml:space="preserve">
+    <value>Importar informações Z</value>
+  </data>
+  <data name="tab4gB6.Text" xml:space="preserve">
+    <value>Especial</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.Text" xml:space="preserve">
+    <value>Mostrar a posição original do bloco</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.ToolTip" xml:space="preserve">
+    <value>Mostrar a posição original do bloco</value>
+  </data>
+  <data name="cBImportGraphicClipOffsetApply.ToolTip" xml:space="preserve">
+    <value>Defina a origem dos ladrilhos como 0; 0</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
+    <value>Sem curva</value>
   </data>
 </root>

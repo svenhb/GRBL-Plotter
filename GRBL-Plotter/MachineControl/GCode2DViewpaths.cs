@@ -22,6 +22,7 @@
 /* 
  * 2021-07-08 split code from GCodeVisuAndTransform
  * 2021-07-27 code clean up / code quality
+ * 2021-09-02 CreateDrawingPathFromGCode add viewOffset for tiles
 */
 
 using System;
@@ -78,7 +79,7 @@ namespace GrblPlotter
         /// <summary>
         /// add segement to drawing path 'PenUp' or 'PenDown' from old-xyz to new-xyz
         /// </summary>
-        private static bool CreateDrawingPathFromGCode(GcodeByLine newL, GcodeByLine oldL)
+        private static bool CreateDrawingPathFromGCode(GcodeByLine newL, GcodeByLine oldL, PointF viewOffset)
         {
             bool passLimit = false;
             bool zUp, zDown;
@@ -197,9 +198,9 @@ namespace GrblPlotter
                                 xyzSize.SetDimensionX(newR);
                             }
                         }
-                        path.AddLine((float)oldL.actualPos.X, (float)oldL.actualPos.Y, (float)newL.actualPos.X, (float)newL.actualPos.Y);
+                        path.AddLine((float)oldL.actualPos.X + viewOffset.X, (float)oldL.actualPos.Y + viewOffset.Y, (float)newL.actualPos.X + viewOffset.X, (float)newL.actualPos.Y + viewOffset.Y);	// 2021-09-02
                         if ((path == pathPenDown) && (pathActualDown != null))
-                            pathActualDown.AddLine((float)oldL.actualPos.X, (float)oldL.actualPos.Y, (float)newL.actualPos.X, (float)newL.actualPos.Y);
+                            pathActualDown.AddLine((float)oldL.actualPos.X + viewOffset.X, (float)oldL.actualPos.Y + viewOffset.Y, (float)newL.actualPos.X + viewOffset.X, (float)newL.actualPos.Y + viewOffset.Y);
                         onlyZ = 0;  // x or y has changed
                     }
                     if (newL.actualPos.Z != oldL.actualPos.Z)  //else
@@ -213,8 +214,10 @@ namespace GrblPlotter
                         { markerSize /= 25.4F; }
                         CreateMarker(pathPenDown, (XyPoint)newL.actualPos, markerSize, 1, false);       // draw cross
                         if ((path == pathPenDown) && (pathActualDown != null))
-                            CreateMarker(pathActualDown, (XyPoint)newL.actualPos, markerSize, 1, false);       // draw cross
-                        CreateMarker(pathPenUp, (XyPoint)newL.actualPos, markerSize, 4, false);       // draw circle
+                        { 	XyPoint tmpPoint = new XyPoint(newL.actualPos.X + viewOffset.X, newL.actualPos.Y + viewOffset.Y);
+							CreateMarker(pathActualDown, tmpPoint, markerSize, 1, false);       		// draw cross
+						}
+                        CreateMarker(pathPenUp, (XyPoint)newL.actualPos, markerSize, 4, false);       	// draw circle
                         path = pathPenUp;
                         onlyZ = 0;
                         //       passLimit = false;
@@ -240,17 +243,17 @@ namespace GrblPlotter
 
                     if ((aDiff < 0.1) && (arcMove.radius > 1000))
                     {   // just draw a line
-                        path.AddLine((float)oldL.actualPos.X, (float)oldL.actualPos.Y, (float)newL.actualPos.X, (float)newL.actualPos.Y);
+                        path.AddLine((float)oldL.actualPos.X + viewOffset.X, (float)oldL.actualPos.Y + viewOffset.Y, (float)newL.actualPos.X + viewOffset.X, (float)newL.actualPos.Y + viewOffset.Y);
                         if ((path == pathPenDown) && (pathActualDown != null))
-                            pathActualDown.AddLine((float)oldL.actualPos.X, (float)oldL.actualPos.Y, (float)newL.actualPos.X, (float)newL.actualPos.Y);
+                            pathActualDown.AddLine((float)oldL.actualPos.X + viewOffset.X, (float)oldL.actualPos.Y + viewOffset.Y, (float)newL.actualPos.X + viewOffset.X, (float)newL.actualPos.Y + viewOffset.Y);
                     }
                     else
                     {   // Draw real arc
                         if (arcMove.radius > 0)
                         {
-                            path.AddArc((float)x1, (float)y1, (float)r2, (float)r2, (float)aStart, (float)aDiff);
+                            path.AddArc((float)x1 + viewOffset.X, (float)y1 + viewOffset.Y, (float)r2, (float)r2, (float)aStart, (float)aDiff);
                             if ((path == pathPenDown) && (pathActualDown != null))
-                                pathActualDown.AddArc((float)x1, (float)y1, (float)r2, (float)r2, (float)aStart, (float)aDiff);
+                                pathActualDown.AddArc((float)x1 + viewOffset.X, (float)y1 + viewOffset.Y, (float)r2, (float)r2, (float)aStart, (float)aDiff);
                         }
                         else
                         {

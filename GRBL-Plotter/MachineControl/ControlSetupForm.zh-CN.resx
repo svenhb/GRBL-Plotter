@@ -2951,7 +2951,7 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <comment>ok</comment>
   </data>
   <data name="label62.Text" xml:space="preserve">
-    <value>材料厚度</value>
+    <value>注意：如果工具表被激活，图形的原始颜色将被使用的工具颜色替换</value>
   </data>
   <data name="label60.Text" xml:space="preserve">
     <value>刀具角度</value>
@@ -3000,5 +3000,46 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   </data>
   <data name="tabPage30.Text" xml:space="preserve">
     <value>特殊转换</value>
+  </data>
+  <data name="cBImportDXFUseZ.Text" xml:space="preserve">
+    <value>导入 Z 信息</value>
+  </data>
+  <data name="tab1_3lbl34.Text" xml:space="preserve">
+    <value>S 在 Z &gt; 0</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="Column4.HeaderText" xml:space="preserve">
+    <value>位置X</value>
+  </data>
+  <data name="Column5.HeaderText" xml:space="preserve">
+    <value>位置是</value>
+  </data>
+  <data name="Column6.HeaderText" xml:space="preserve">
+    <value>位置Z</value>
+  </data>
+  <data name="Column16.HeaderText" xml:space="preserve">
+    <value>位置A</value>
+  </data>
+  <data name="Column7.HeaderText" xml:space="preserve">
+    <value>工具Ø</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column8.HeaderText" xml:space="preserve">
+    <value>XY速度</value>
+  </data>
+  <data name="tab4gB6.Text" xml:space="preserve">
+    <value>特别的</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.Text" xml:space="preserve">
+    <value>显示原始图块位置</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.ToolTip" xml:space="preserve">
+    <value>显示原始图块位置</value>
+  </data>
+  <data name="cBImportGraphicClipOffsetApply.ToolTip" xml:space="preserve">
+    <value>将瓷砖的原点设置为 0；0</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
+    <value>无曲线</value>
   </data>
 </root>

@@ -129,7 +129,7 @@
     <comment>Button</comment>
   </data>
   <data name="btnPosUR.ToolTip" xml:space="preserve">
-    <value>Holen Sie sich die aktuelle Maschinenposition und stellen Sie die Koordinaten oben rechts ein</value>
+    <value>Aktuelle Maschinenposition für oben rechts verwenden</value>
     <comment>ToolTip</comment>
   </data>
   <data name="btnPosLL.Text" xml:space="preserve">
@@ -137,7 +137,7 @@
     <comment>Button</comment>
   </data>
   <data name="btnPosLL.ToolTip" xml:space="preserve">
-    <value>Holen Sie sich die aktuelle Maschinenposition und stellen Sie die Koordinaten links unten ein</value>
+    <value>Aktuelle Maschinenposition für links unten verwenden</value>
     <comment>ToolTip</comment>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
@@ -245,7 +245,7 @@
     <comment>CheckBox</comment>
   </data>
   <data name="cBGray.ToolTip" xml:space="preserve">
-    <value>Zeigen Sie das Ergebnisbild in Graustufen an, um es als Höhenkartenbild zu verwenden</value>
+    <value>Zeige das Ergebnisbild in Graustufen an, um es als Höhenkartenbild zu verwenden</value>
     <comment>ToolTip</comment>
   </data>
   <data name="btnOffsetZ.ToolTip" xml:space="preserve">
@@ -285,7 +285,7 @@ Achtung, das Höhenprofil sollte vorher gespeichert werden!</value>
     <value>Oberflächenscan</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>Gittergröße X und Y</value>
+    <value>Rastergröße X und Y</value>
   </data>
   <data name="saveMapAsOBJToolStripMenuItem.Text" xml:space="preserve">
     <value>Speichere Höhenprofil als OBJ</value>
@@ -301,7 +301,7 @@ Achtung, das Höhenprofil sollte vorher gespeichert werden!</value>
     <value>Zu scannender Bereich</value>
   </data>
   <data name="label11.Text" xml:space="preserve">
-    <value>XY-Vorschubgeschwindigkeit</value>
+    <value>XY-Vorschub</value>
   </data>
   <data name="CbUseG1.Text" xml:space="preserve">
     <value>G1 für XY-Bewegung (sonst G0)</value>
@@ -317,18 +317,24 @@ Achtung, das Höhenprofil sollte vorher gespeichert werden!</value>
 (xxx = Z-Wert)</value>
   </data>
   <data name="RbProbingZ.Text" xml:space="preserve">
-    <value>Verwendung der Z-Achse (G38.3Z)</value>
+    <value>Z-Achse (G38.3Z)</value>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
     <value>Antasten, Quelle für Z-Wert auswählen</value>
   </data>
   <data name="tabPage2.Text" xml:space="preserve">
-    <value>Sondierung</value>
+    <value>Sondieren</value>
   </data>
   <data name="tabPage3.Text" xml:space="preserve">
     <value>Ergebnismanipulation</value>
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>Ausgabe</value>
+  </data>
+  <data name="CbRoundUp.Text" xml:space="preserve">
+    <value>Aufrunden</value>
+  </data>
+  <data name="BtnPosFromCodeDimension.Text" xml:space="preserve">
+    <value>Abmessungen aus geladenem GCode</value>
   </data>
 </root>

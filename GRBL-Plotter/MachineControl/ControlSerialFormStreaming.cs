@@ -85,11 +85,10 @@ namespace GrblPlotter
 *  initialize streaming
 *  if startAtLine > 0 start with pause
 ****************************************************************************/
-        public void StartStreaming(IList<string> gCodeList, int startAtLine, bool check)
+        public void StartStreaming(IList<string> gCodeList, int startAtLine, int stopAtLine, bool check)
         {
             grblCharacterCounting = Properties.Settings.Default.grblStreamingProtocol1 && !isMarlin;
-            Logger.Info("Ser:{0} startStreaming at line:{1} ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼", iamSerial, startAtLine);
-//            if (logEnable) LogPos.Info("(----- Start streaming {0} -----)", getTimeStampString());
+            Logger.Info("Ser:{0} startStreaming at line:{1} to line:{2} ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼", iamSerial, startAtLine, stopAtLine);
             if (grblCharacterCounting)
                 Logger.Info("Streaming Protocol: Character-Counting");
             else
@@ -170,8 +169,9 @@ namespace GrblPlotter
 
             bool useSubroutine = false;
             for (int i = startAtLine; i < gCode.Length; i++)
+    //        for (int i = startAtLine; i <= stopAtLine; i++)
             {
-                if (gCode[i].Contains("O"))     // find and store subroutines
+                if (gCode[i].Contains("O"))     // find and store subroutines - nothing else
                 {
                     int cmdONr = Gcode.GetCodeNrFromGCode('O', gCode[i]);
                     if (cmdONr <= 0)
@@ -214,14 +214,14 @@ namespace GrblPlotter
 #endregion
             lock (sendDataLock)
             {
-                //string[] gCode = gCodeList.ToArray<string>();
-                //string tmp;
                 double pWord, lWord;//, oWord;
-//                string subline;
                 bool tmpToolInSpindle = ToolInSpindle;
                 int cmdTNr = -1;
                 bool foundM30 = false;
-                for (int i = startAtLine; i < gCode.Length; i++)
+                //            for (int i = startAtLine; i < gCode.Length; i++)    // now copy code, replace subroutines
+                if (stopAtLine >= gCode.Length)
+                    stopAtLine = gCode.Length - 1;
+                for (int i = startAtLine; i <= stopAtLine; i++)    // now copy code, replace subroutines
                 {
                     tmp = CleanUpCodeLine(gCode[i]);
                     if ((!string.IsNullOrEmpty(tmp)) && (tmp[0] != ';'))//trim lines and remove all empty lines and comment lines
@@ -291,10 +291,10 @@ namespace GrblPlotter
                 }
                 if (!foundM30)
                 {   //if (!skipM30)
-                    streamingBuffer.Add("M30", gCode.Length - 1);    // add end
+                    streamingBuffer.Add("M30", stopAtLine);    // add end
                 }
-                streamingBuffer.Add("($END)", gCode.Length - 1);        // add gcode line to list to send
-                streamingBuffer.Add("()", gCode.Length - 1);            // add gcode line to list to send
+                streamingBuffer.Add("($END)", stopAtLine);        // add gcode line to list to send
+                streamingBuffer.Add("()", stopAtLine);            // add gcode line to list to send
             }   // lock
             timerSerial.Start();
 
@@ -449,25 +449,15 @@ namespace GrblPlotter
                     RequestSend(string.Format("G0 Z{0:0.000}", posPause.Z).Replace(',', '.'));                      // restore last position
                 }
 				
-                AddToLog("[Start streaming - no echo]");
-                AddToLog("[Restore Settings: "+ parserStateGC+" ]");
+                AddToLog(string.Format("[Start streaming line:{0} - no echo]", streamingBuffer.GetSentLineNr()));
+         //       AddToLog("[Restore Settings: "+ parserStateGC+" ]");
                 Logger.Info("pauseStreaming start streaming ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼");
                 streamingStateNow = GrblStreaming.ok;
-        //        lineStreamingPause = -1;				// save line were M0 appeared for main GUI to show notification
 
-       //         string parserStateGC_wo_M = "";
-       //         if (parserStateGC.Contains("M"))
-       //             parserStateGC_wo_M=parserStateGC.Substring(parserStateGC.IndexOf("M") - 1);
 				if (parserStateGC.Length > 0)
 				{
-        //            if (IsGrblVers0)
-		//			{   AddToLog("[Restore Settings woM: " + parserStateGC_wo_M + " ]");    // [G0 G54 G17 G21 G90 G94 M0 M5 M9 T0 F0. S0.]
-        //                RequestSend(parserStateGC_wo_M);           
-		//			}
-		//			else
-					{	AddToLog("[Restore Settings: " + parserStateGC + " ]");     // [GC:G0 G54 G17 G21 G90 G94 M5 M9 T0 F0.0 S0]
-                        RequestSend(parserStateGC);          
-					}
+					AddToLog("[Restore Settings: " + parserStateGC + " ]");     // [GC:G0 G54 G17 G21 G90 G94 M5 M9 T0 F0.0 S0]
+                    RequestSend(parserStateGC);          
 				}
 
                 waitForIdle = false;
@@ -476,7 +466,6 @@ namespace GrblPlotter
                 isStreamingRequestPause = false;
 
                 PreProcessStreaming();
- //               processSend();
             }
             UpdateControls();
         }   // pauseStreaming
@@ -752,7 +741,7 @@ namespace GrblPlotter
         {
             countPreventEvent = 0; countPreventOutput = 0;
 
-            AddToLog("\r[Streaming finish]");
+            AddToLog(string.Format("\r[Streaming finish line:{0}]", streamingBuffer.GetConfirmedLineNr()));
             Logger.Info("streamingFinish ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲");
             SendStreamEvent(streamingStateNow);     // streaming in streamingFinish()
             streamingStateNow = GrblStreaming.finish;

@@ -1124,7 +1124,7 @@ O asigne un nombre de archivo que contenga G-Code.</value>
     <comment>TabPage2</comment>
   </data>
   <data name="btnColorPenUp.Text" xml:space="preserve">
-    <value>Pin up</value>
+    <value>Pen Up</value>
     <comment>TabPage8</comment>
   </data>
   <data name="cB4thUse.Text" xml:space="preserve">
@@ -2715,7 +2715,7 @@ El rango utilizable real sería $ 30 = 31, $ 31 = 0.</value>
     <comment>ok</comment>
   </data>
   <data name="label62.Text" xml:space="preserve">
-    <value>Espesor del material</value>
+    <value>Nota: Si la tabla de herramientas está activada, los colores originales de las figuras se reemplazan por los colores de herramientas utilizados.</value>
   </data>
   <data name="label60.Text" xml:space="preserve">
     <value>Ángulo de la herramienta</value>
@@ -2764,5 +2764,23 @@ El rango utilizable real sería $ 30 = 31, $ 31 = 0.</value>
   </data>
   <data name="tabPage30.Text" xml:space="preserve">
     <value>Conversión especial</value>
+  </data>
+  <data name="cBImportDXFUseZ.Text" xml:space="preserve">
+    <value>Importar información Z</value>
+  </data>
+  <data name="tab4gB6.Text" xml:space="preserve">
+    <value>Especial</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.Text" xml:space="preserve">
+    <value>Mostrar la posición original del mosaico</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.ToolTip" xml:space="preserve">
+    <value>Mostrar la posición original del mosaico</value>
+  </data>
+  <data name="cBImportGraphicClipOffsetApply.ToolTip" xml:space="preserve">
+    <value>Establece el origen de los mosaicos en 0; 0</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
+    <value>Sin curva</value>
   </data>
 </root>

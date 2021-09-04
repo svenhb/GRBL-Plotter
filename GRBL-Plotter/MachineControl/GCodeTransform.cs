@@ -36,9 +36,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
-#pragma warning disable CA1303
-#pragma warning disable CA1305
-
 namespace GrblPlotter
 {
     internal static partial class VisuGCode
@@ -469,7 +466,7 @@ namespace GrblPlotter
                 if (P2.mode <= 1)   // is a line
                 {
                     a2 = GetAlphaLine(P1, P2);
-                    a3 = a2;
+            //        a3 = a2;
                     CalcOffsetLine(ref S2off, P1, P2, a2 + Math.PI / 2, distance); // offset by 90°
                 }
                 else
@@ -477,12 +474,12 @@ namespace GrblPlotter
                     a2 = GetAlphaCenterToPoint(P2, P1);   // from center to start
                     a3 = GetAlphaCenterToPoint(P2, P2);   // from center to end
                     double usea2 = a2, usea3 = a3;
-                    a2 -= Math.PI / 2; a3 -= Math.PI / 2;   // tangente
+                    a2 -= Math.PI / 2; //a3 -= Math.PI / 2;   // tangente
 
                     if (P2.mode == 3)
                     {
                         usea2 += Math.PI; usea3 += Math.PI;     // add 180°
-                        a2 += Math.PI; a3 += Math.PI;        // tangente reverse
+                        a2 += Math.PI; //a3 += Math.PI;        // tangente reverse
                     }
 
                     S2off[0] = CalcOffsetPoint(P1, usea2, distance); // extend radius
@@ -495,7 +492,7 @@ namespace GrblPlotter
                 if (logenable) Logger.Trace(" getPointOffsets P1-P2: P2mode: {0} S1offX {1:0.000} S1offX {2:0.000} S1offX {3:0.000} S1offX {4:0.000}", P2.mode, S2off[0].X, S2off[0].Y, S2off[1].X, S2off[1].Y);
 
                 if ((P1.mode == P2.mode) && (P1.X == P2.X) && (P1.Y == P2.Y))
-                { a2 = a0; a3 = a1; }
+                { a2 = a0; }//                a3 = a1; }
 
                 // compare angle of both lines P0-P1 and P1-P2
                 adelta = a2 - a1;
@@ -725,9 +722,11 @@ namespace GrblPlotter
             { return CalcOffsetPoint(new XyPoint(P.X, P.Y), angle, radius); }
             private static XyPoint CalcOffsetPoint(XyPoint P, double angle, double radius)
             {
-                XyPoint tmp = new XyPoint();
-                tmp.X = P.X + Math.Cos(angle) * radius;
-                tmp.Y = P.Y + Math.Sin(angle) * radius;
+                XyPoint tmp = new XyPoint
+                {
+                    X = P.X + Math.Cos(angle) * radius,
+                    Y = P.Y + Math.Sin(angle) * radius
+                };
                 return tmp;
             }
             private static double GetA2minusB2(double a, double b)

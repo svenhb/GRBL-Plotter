@@ -320,7 +320,7 @@
 （xxx = Z 值）</value>
   </data>
   <data name="RbProbingZ.Text" xml:space="preserve">
-    <value>使用 Z 轴 (G38.3Z)</value>
+    <value>Z轴（G38.3Z）</value>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
     <value>探测，选择 Z 值的来源</value>
@@ -333,5 +333,11 @@
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>输出</value>
+  </data>
+  <data name="CbRoundUp.Text" xml:space="preserve">
+    <value>围捕</value>
+  </data>
+  <data name="BtnPosFromCodeDimension.Text" xml:space="preserve">
+    <value>已加载 GCode 的尺寸</value>
   </data>
 </root>

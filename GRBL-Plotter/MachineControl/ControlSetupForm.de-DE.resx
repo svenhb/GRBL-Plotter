@@ -2452,7 +2452,7 @@ Pushbullet: Aus Sicherheitsgründen sollten Sie ein "Papierkorb" -Konto verwende
     <comment>ok</comment>
   </data>
   <data name="btnGCPWMZero.Text" xml:space="preserve">
-    <value>Pen Zero</value>
+    <value>Stift null Pos.</value>
     <comment>ok</comment>
   </data>
   <data name="btnGCPWMZero.ToolTip" xml:space="preserve">
@@ -2473,7 +2473,7 @@ Der tatsächlich nutzbare Bereich wäre $ 30 = 31, $ 31 = 0.</value>
     <comment>ok</comment>
   </data>
   <data name="btnGCPWMDown.Text" xml:space="preserve">
-    <value>Stift runter</value>
+    <value>Stift unten</value>
     <comment>ok</comment>
   </data>
   <data name="btnGCPWMDown.ToolTip" xml:space="preserve">
@@ -2481,7 +2481,7 @@ Der tatsächlich nutzbare Bereich wäre $ 30 = 31, $ 31 = 0.</value>
     <comment>ok</comment>
   </data>
   <data name="btnGCPWMUp.Text" xml:space="preserve">
-    <value>Pen Up</value>
+    <value>Stift oben</value>
     <comment>ok</comment>
   </data>
   <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
@@ -2661,7 +2661,7 @@ Der tatsächlich nutzbare Bereich wäre $ 30 = 31, $ 31 = 0.</value>
     <comment>ok</comment>
   </data>
   <data name="label62.Text" xml:space="preserve">
-    <value>Materialstärke</value>
+    <value>Hinweis: Bei aktivierter Werkzeugtabelle werden die Originalfarben der Figuren durch die verwendeten Werkzeugfarben ersetzt</value>
   </data>
   <data name="label60.Text" xml:space="preserve">
     <value>Werkzeugwinkel</value>
@@ -2703,12 +2703,27 @@ Der tatsächlich nutzbare Bereich wäre $ 30 = 31, $ 31 = 0.</value>
     <value>Richtung für Vorschub und Kerbe</value>
   </data>
   <data name="cBImportGraphicDevelopEnable.Text" xml:space="preserve">
-    <value>Entwicklung der Figur anwenden</value>
+    <value>Abwicklung anwenden</value>
   </data>
   <data name="gBDevelop.Text" xml:space="preserve">
-    <value>Wandeln Sie den Umriss einer 2D-Form in eine Entwicklung um</value>
+    <value>Wandel den Umriss einer 2D-Form in eine Abwicklung um</value>
   </data>
   <data name="tabPage30.Text" xml:space="preserve">
-    <value>Sonderumbau</value>
+    <value>Spezielle Konvertierung</value>
+  </data>
+  <data name="cBImportDXFUseZ.Text" xml:space="preserve">
+    <value>Z-Informationen importieren</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.Text" xml:space="preserve">
+    <value>Ursprüngliche Kachelposition anzeigen</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.ToolTip" xml:space="preserve">
+    <value>Ursprüngliche Kachelposition anzeigen</value>
+  </data>
+  <data name="cBImportGraphicClipOffsetApply.ToolTip" xml:space="preserve">
+    <value>Setze den Ursprung der Kacheln auf 0;0</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
+    <value>Keine Kurve</value>
   </data>
 </root>

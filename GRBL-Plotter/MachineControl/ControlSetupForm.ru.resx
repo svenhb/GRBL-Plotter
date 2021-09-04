@@ -2839,7 +2839,7 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
     <comment>ok</comment>
   </data>
   <data name="label62.Text" xml:space="preserve">
-    <value>Толщина материала</value>
+    <value>Примечание: если таблица инструментов активирована, исходные цвета фигур заменяются используемыми цветами инструментов.</value>
   </data>
   <data name="label60.Text" xml:space="preserve">
     <value>Угол инструмента</value>
@@ -2888,5 +2888,63 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   </data>
   <data name="tabPage30.Text" xml:space="preserve">
     <value>Специальная конверсия</value>
+  </data>
+  <data name="cBImportDXFUseZ.Text" xml:space="preserve">
+    <value>Импортировать информацию Z</value>
+  </data>
+  <data name="tab1_3lbl34.Text" xml:space="preserve">
+    <value>S при Z&gt; 0</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3lbl33.Text" xml:space="preserve">
+    <value>Минимум S при максимуме Z</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3lbl32.Text" xml:space="preserve">
+    <value>Максимум S при минимуме Z</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="lblToolListLoaded.Text" xml:space="preserve">
+    <value>пустой</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column3.HeaderText" xml:space="preserve">
+    <value>Имя</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column4.HeaderText" xml:space="preserve">
+    <value>Поз. X</value>
+  </data>
+  <data name="Column5.HeaderText" xml:space="preserve">
+    <value>Поз. Y</value>
+  </data>
+  <data name="Column6.HeaderText" xml:space="preserve">
+    <value>Поз. Z</value>
+  </data>
+  <data name="Column16.HeaderText" xml:space="preserve">
+    <value>Поз. A</value>
+  </data>
+  <data name="Column7.HeaderText" xml:space="preserve">
+    <value>Ø инструмента</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="tab5gB4.Text" xml:space="preserve">
+    <value>'Лазерный режим'</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab4gB6.Text" xml:space="preserve">
+    <value>Особый</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.Text" xml:space="preserve">
+    <value>Показать исходное положение плитки</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.ToolTip" xml:space="preserve">
+    <value>Показать исходное положение плитки</value>
+  </data>
+  <data name="cBImportGraphicClipOffsetApply.ToolTip" xml:space="preserve">
+    <value>Установите исходную точку плиток на 0; 0</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
+    <value>Нет кривой</value>
   </data>
 </root>

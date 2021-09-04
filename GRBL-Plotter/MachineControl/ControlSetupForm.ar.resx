@@ -2970,7 +2970,7 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
     <comment>ok</comment>
   </data>
   <data name="label62.Text" xml:space="preserve">
-    <value>سمك المادة</value>
+    <value>ملاحظة: إذا تم تنشيط جدول الأدوات ، يتم استبدال الألوان الأصلية للأشكال بألوان الأداة المستخدمة</value>
   </data>
   <data name="label60.Text" xml:space="preserve">
     <value>زاوية الأداة</value>
@@ -3019,5 +3019,23 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   </data>
   <data name="tabPage30.Text" xml:space="preserve">
     <value>تحويل خاص</value>
+  </data>
+  <data name="cBImportDXFUseZ.Text" xml:space="preserve">
+    <value>استيراد معلومات Z</value>
+  </data>
+  <data name="tab4gB6.Text" xml:space="preserve">
+    <value>مميز</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.Text" xml:space="preserve">
+    <value>إظهار موضع البلاط الأصلي</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.ToolTip" xml:space="preserve">
+    <value>إظهار موضع البلاط الأصلي</value>
+  </data>
+  <data name="cBImportGraphicClipOffsetApply.ToolTip" xml:space="preserve">
+    <value>اضبط أصل المربعات على 0 ؛ 0</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
+    <value>لا يوجد منحنى</value>
   </data>
 </root>

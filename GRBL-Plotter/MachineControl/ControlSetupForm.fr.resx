@@ -1124,7 +1124,7 @@ Ou assignez un nom de fichier contenant G-Code.</value>
     <comment>TabPage2</comment>
   </data>
   <data name="btnColorPenUp.Text" xml:space="preserve">
-    <value>Pin up</value>
+    <value>Pen Up</value>
     <comment>TabPage8</comment>
   </data>
   <data name="cB4thUse.Text" xml:space="preserve">
@@ -2715,7 +2715,7 @@ La plage utilisable réelle serait 30 $ = 31, 31 $ = 0.</value>
     <comment>ok</comment>
   </data>
   <data name="label62.Text" xml:space="preserve">
-    <value>Épaisseur de matériau</value>
+    <value>Remarque : Si la table d'outils est activée, les couleurs d'origine des figures sont remplacées par les couleurs d'outils utilisées</value>
   </data>
   <data name="label60.Text" xml:space="preserve">
     <value>Angle d'outil</value>
@@ -2764,5 +2764,23 @@ La plage utilisable réelle serait 30 $ = 31, 31 $ = 0.</value>
   </data>
   <data name="tabPage30.Text" xml:space="preserve">
     <value>Transformation spéciale</value>
+  </data>
+  <data name="cBImportDXFUseZ.Text" xml:space="preserve">
+    <value>Importer les informations Z</value>
+  </data>
+  <data name="tab4gB6.Text" xml:space="preserve">
+    <value>Spécial</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.Text" xml:space="preserve">
+    <value>Afficher la position d'origine de la tuile</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.ToolTip" xml:space="preserve">
+    <value>Afficher la position d'origine de la tuile</value>
+  </data>
+  <data name="cBImportGraphicClipOffsetApply.ToolTip" xml:space="preserve">
+    <value>Définissez l'origine des tuiles sur 0 ; 0</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
+    <value>Pas de courbe</value>
   </data>
 </root>

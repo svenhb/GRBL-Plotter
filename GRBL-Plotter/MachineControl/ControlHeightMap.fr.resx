@@ -291,7 +291,7 @@
 (xxx = valeur Z)</value>
   </data>
   <data name="RbProbingZ.Text" xml:space="preserve">
-    <value>Utilisation de l'axe Z (G38.3Z)</value>
+    <value>Axe Z (G38.3Z)</value>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
     <value>Sondage, sélectionnez la source pour la valeur Z</value>
@@ -304,5 +304,11 @@
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>Production</value>
+  </data>
+  <data name="CbRoundUp.Text" xml:space="preserve">
+    <value>Rassembler</value>
+  </data>
+  <data name="BtnPosFromCodeDimension.Text" xml:space="preserve">
+    <value>Dimensions du GCode chargé</value>
   </data>
 </root>

@@ -139,7 +139,7 @@
             this.btnSimulate.Visible = false;
             this.btnSimulate.Click += new System.EventHandler(this.BtnSimulate_Click);
             // 
-            // ControlDIYControlPad
+            // ControlDiyControlPad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -154,8 +154,8 @@
             this.Controls.Add(this.cbPort);
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(300, 300);
-            this.Name = "ControlDIYControlPad";
-            this.Text = "ControlDIYControlPad";
+            this.Name = "ControlDiyControlPad";
+            this.Text = "DIY Control";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ControlDIYControlPad_FormClosing);
             this.Load += new System.EventHandler(this.ControlDIYControlPad_Load);
             this.Resize += new System.EventHandler(this.ControlDIYControlPad_Resize);

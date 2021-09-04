@@ -4763,6 +4763,39 @@ Z-axis will be moved down</value>
   <data name="&gt;&gt;cBImportGraphicTile.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="cBImportGraphicClipShowOrigPosition.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>202, 16</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 17</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.Text" xml:space="preserve">
+    <value>Show orig. tile position</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.ToolTip" xml:space="preserve">
+    <value>Show original positions of figures</value>
+  </data>
+  <data name="&gt;&gt;cBImportGraphicClipShowOrigPosition.Name" xml:space="preserve">
+    <value>cBImportGraphicClipShowOrigPosition</value>
+  </data>
+  <data name="&gt;&gt;cBImportGraphicClipShowOrigPosition.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBImportGraphicClipShowOrigPosition.Parent" xml:space="preserve">
+    <value>groupBox7</value>
+  </data>
+  <data name="&gt;&gt;cBImportGraphicClipShowOrigPosition.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="label51.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -4791,7 +4824,7 @@ Z-axis will be moved down</value>
     <value>groupBox7</value>
   </data>
   <data name="&gt;&gt;label51.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="nUDImportGraphicTileClipAddOnX.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 36</value>
@@ -4815,7 +4848,7 @@ Z-axis will be moved down</value>
     <value>groupBox7</value>
   </data>
   <data name="&gt;&gt;nUDImportGraphicTileClipAddOnX.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="cBImportGraphicClipSkipCode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4845,7 +4878,7 @@ Z-axis will be moved down</value>
     <value>groupBox7</value>
   </data>
   <data name="&gt;&gt;cBImportGraphicClipSkipCode.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="label34.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -4874,7 +4907,7 @@ Z-axis will be moved down</value>
     <value>groupBox7</value>
   </data>
   <data name="&gt;&gt;label34.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="label11.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4908,7 +4941,7 @@ E.g. 'M0' to pause for manual paper move, or '(^2 G91 X100)' to move X of 2nd gr
     <value>groupBox7</value>
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="textBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 75</value>
@@ -4929,7 +4962,7 @@ E.g. 'M0' to pause for manual paper move, or '(^2 G91 X100)' to move X of 2nd gr
     <value>groupBox7</value>
   </data>
   <data name="&gt;&gt;textBox2.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="cBImportGraphicClipOffsetApply.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4941,12 +4974,15 @@ E.g. 'M0' to pause for manual paper move, or '(^2 G91 X100)' to move X of 2nd gr
     <value>6, 16</value>
   </data>
   <data name="cBImportGraphicClipOffsetApply.Size" type="System.Drawing.Size, System.Drawing">
-    <value>210, 17</value>
+    <value>133, 17</value>
   </data>
   <data name="cBImportGraphicClipOffsetApply.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
   <data name="cBImportGraphicClipOffsetApply.Text" xml:space="preserve">
+    <value>Set origin of tiles to 0;0</value>
+  </data>
+  <data name="cBImportGraphicClipOffsetApply.ToolTip" xml:space="preserve">
     <value>Set origin of clipped region / tiles to 0;0</value>
   </data>
   <data name="&gt;&gt;cBImportGraphicClipOffsetApply.Name" xml:space="preserve">
@@ -4959,13 +4995,13 @@ E.g. 'M0' to pause for manual paper move, or '(^2 G91 X100)' to move X of 2nd gr
     <value>groupBox7</value>
   </data>
   <data name="&gt;&gt;cBImportGraphicClipOffsetApply.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="groupBox7.Location" type="System.Drawing.Point, System.Drawing">
     <value>17, 107</value>
   </data>
   <data name="groupBox7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>377, 151</value>
+    <value>377, 159</value>
   </data>
   <data name="groupBox7.TabIndex" type="System.Int32, mscorlib">
     <value>29</value>
@@ -5033,6 +5069,33 @@ E.g. 'M0' to pause for manual paper move, or '(^2 G91 X100)' to move X of 2nd gr
   <data name="&gt;&gt;tabPage18.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="label62.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label62.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 84</value>
+  </data>
+  <data name="label62.Size" type="System.Drawing.Size, System.Drawing">
+    <value>405, 74</value>
+  </data>
+  <data name="label62.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="label62.Text" xml:space="preserve">
+    <value>Note: If the tool table is activated, the original colors of the figures are replaced by the tool colors used</value>
+  </data>
+  <data name="&gt;&gt;label62.Name" xml:space="preserve">
+    <value>label62</value>
+  </data>
+  <data name="&gt;&gt;label62.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label62.Parent" xml:space="preserve">
+    <value>tab1_1gB5</value>
+  </data>
+  <data name="&gt;&gt;label62.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="numericUpDown2.Location" type="System.Drawing.Point, System.Drawing">
     <value>368, 51</value>
   </data>
@@ -5055,7 +5118,7 @@ E.g. 'M0' to pause for manual paper move, or '(^2 G91 X100)' to move X of 2nd gr
     <value>tab1_1gB5</value>
   </data>
   <data name="&gt;&gt;numericUpDown2.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="cBToolTableDefault.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5085,7 +5148,7 @@ E.g. 'M0' to pause for manual paper move, or '(^2 G91 X100)' to move X of 2nd gr
     <value>tab1_1gB5</value>
   </data>
   <data name="&gt;&gt;cBToolTableDefault.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="cBToolTableUse.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5116,13 +5179,13 @@ select items on next page 'G-Code generation'</value>
     <value>tab1_1gB5</value>
   </data>
   <data name="&gt;&gt;cBToolTableUse.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="tab1_1gB5.Location" type="System.Drawing.Point, System.Drawing">
     <value>426, 6</value>
   </data>
   <data name="tab1_1gB5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>414, 77</value>
+    <value>414, 166</value>
   </data>
   <data name="tab1_1gB5.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -5616,9 +5679,6 @@ select items on next page 'G-Code generation'</value>
   <data name="&gt;&gt;tabPage19.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="label60.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="label60.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -5626,7 +5686,7 @@ select items on next page 'G-Code generation'</value>
     <value>54, 21</value>
   </data>
   <data name="label60.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 13</value>
+    <value>91, 51</value>
   </data>
   <data name="label60.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -5671,10 +5731,10 @@ select items on next page 'G-Code generation'</value>
     <value>1</value>
   </data>
   <data name="groupBox22.Location" type="System.Drawing.Point, System.Drawing">
-    <value>214, 40</value>
+    <value>257, 40</value>
   </data>
   <data name="groupBox22.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 75</value>
+    <value>151, 75</value>
   </data>
   <data name="groupBox22.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -5778,6 +5838,36 @@ select items on next page 'G-Code generation'</value>
   <data name="&gt;&gt;label54.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="cBDImportGraphicDevelopNoCurve.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNoCurve.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNoCurve.Location" type="System.Drawing.Point, System.Drawing">
+    <value>319, 39</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNoCurve.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 17</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNoCurve.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
+    <value>No curve</value>
+  </data>
+  <data name="&gt;&gt;cBDImportGraphicDevelopNoCurve.Name" xml:space="preserve">
+    <value>cBDImportGraphicDevelopNoCurve</value>
+  </data>
+  <data name="&gt;&gt;cBDImportGraphicDevelopNoCurve.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBDImportGraphicDevelopNoCurve.Parent" xml:space="preserve">
+    <value>groupBox20</value>
+  </data>
+  <data name="&gt;&gt;cBDImportGraphicDevelopNoCurve.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="cBDImportGraphicDevelopNotchLift.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -5806,7 +5896,7 @@ select items on next page 'G-Code generation'</value>
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;cBDImportGraphicDevelopNotchLift.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="label59.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5836,7 +5926,7 @@ select items on next page 'G-Code generation'</value>
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;label59.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="nUDImportGraphicDevelopNotchZNotch.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 63</value>
@@ -5860,7 +5950,7 @@ select items on next page 'G-Code generation'</value>
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;nUDImportGraphicDevelopNotchZNotch.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="nUDImportGraphicDevelopNotchWidth.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 19</value>
@@ -5884,7 +5974,7 @@ select items on next page 'G-Code generation'</value>
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;nUDImportGraphicDevelopNotchWidth.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="label53.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5914,7 +6004,7 @@ select items on next page 'G-Code generation'</value>
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;label53.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="label52.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5944,7 +6034,7 @@ select items on next page 'G-Code generation'</value>
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;label52.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="nUDImportGraphicDevelopNotchDistance.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 41</value>
@@ -5968,7 +6058,7 @@ select items on next page 'G-Code generation'</value>
     <value>groupBox20</value>
   </data>
   <data name="&gt;&gt;nUDImportGraphicDevelopNotchDistance.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="groupBox20.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 121</value>
@@ -6112,7 +6202,7 @@ select items on next page 'G-Code generation'</value>
     <value>6, 40</value>
   </data>
   <data name="groupBox19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>202, 75</value>
+    <value>245, 75</value>
   </data>
   <data name="groupBox19.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -8151,7 +8241,7 @@ Not usable with other pen up/down options!</value>
     <value>NoControl</value>
   </data>
   <data name="btnPWMInc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>166, 170</value>
+    <value>166, 165</value>
   </data>
   <data name="btnPWMInc.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 20</value>
@@ -8354,7 +8444,7 @@ Real usable range would be $30=31, $31=0.</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportGCPWMSendCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 182</value>
+    <value>9, 190</value>
   </data>
   <data name="cBImportGCPWMSendCode.Size" type="System.Drawing.Size, System.Drawing">
     <value>145, 17</value>
@@ -22777,9 +22867,6 @@ Other settings will be stored on change, usually.</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>884, 411</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 150</value>
