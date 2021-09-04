@@ -430,13 +430,13 @@ namespace GrblPlotter
 
         public SimuCoordByLine(GcodeByLine tmp)
         {   lineNumber = tmp.lineNumber; actualPos = (XyzPoint)tmp.actualPos;
-            i = tmp.i; j = tmp.j; z = tmp.z; alpha = 0;
+            i = tmp.i; j = tmp.j; z = tmp.z; alpha = tmp.alpha;
             motionMode = tmp.motionMode; feedRate = tmp.feedRate; 
             codeLine = tmp.codeLine;
         }
         public SimuCoordByLine(SimuCoordByLine tmp)
         {   lineNumber = tmp.lineNumber; actualPos = (XyzPoint)tmp.actualPos;
-            i = tmp.i; j = tmp.j; z = tmp.z; alpha = 0; 
+            i = tmp.i; j = tmp.j; z = tmp.z; alpha = tmp.alpha;
             motionMode = tmp.motionMode; feedRate = tmp.feedRate;
             codeLine = tmp.codeLine;
         }

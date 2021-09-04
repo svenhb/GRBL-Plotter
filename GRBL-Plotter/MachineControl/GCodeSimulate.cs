@@ -21,7 +21,8 @@
 */
 /* 
  * 2021-07-09 split code from GCodeTransform
-*/
+ * 2021-09-04 new struct to store simulation data: SimuCoordByLine in simuList
+ */
 
 using System;
 using System.Drawing;
@@ -39,7 +40,6 @@ namespace GrblPlotter
             private static XyzPoint posXY = new XyzPoint();
             private static double posZ = 0;
             private static double posA = 0;
-      //      private static double posAngle = 0;
             private static float feedRate = 1000;
             private const float feedRateRapid = 2000;
             private static double stepWidth = 10;
@@ -152,7 +152,6 @@ namespace GrblPlotter
                     }
                     // remainingStep < 0 calc intermediate steps
                     posXY = (XyzPoint)codeLast.actualPos;
-             //       posAngle = codeLast.alpha;
                     posZ = codeLast.actualPos.Z;
                     posA = codeLast.alpha;
                     diff.XY = ((XyPoint)codeLast.actualPos).DistanceTo((XyPoint)codeNext.actualPos);
@@ -199,7 +198,6 @@ namespace GrblPlotter
                     double deltaX = codeNext.actualPos.X - posXY.X;     // get remaining distance
                     double deltaY = codeNext.actualPos.Y - posXY.Y;
                     double deltaZ = codeNext.actualPos.Z - posZ;
-                    //           double deltaA = codeNext.alpha - posA;
                     double dX = 0, dY = 0, dZ = 0, aStep = 10;
                     if (deltaS != 0)
                     {
@@ -291,13 +289,6 @@ namespace GrblPlotter
                 return true;
             }
 
-            /*      internal static XyPoint getLinePos(int lineNr)
-                  {
-                      if (lineNr >= simuList.Count)
-                          return new XyPoint();
-                      return (XyPoint)simuList[lineNr].actualPos;
-                  }*/
-
             private static void UpdateFeedRate()
             {
                 feedRate = codeNext.feedRate;
@@ -346,12 +337,9 @@ namespace GrblPlotter
                     if (isG2G3)
                     {
                         float x1 = (float)(arcMove.center.X - arcMove.radius);
-                        //        float x2 = (float)(arcMove.center.X + arcMove.radius);
                         float y1 = (float)(arcMove.center.Y - arcMove.radius);
-                        //        float y2 = (float)(arcMove.center.Y + arcMove.radius);
                         float r2 = 2 * (float)arcMove.radius;
 
-                        //                        Logger.Debug("x1:{0:0.00} y1:{1:0.00} r2:{2:0.00} start:{3:0.00} now:{4} sweep:{5:0.00}",x1, y1, r2,drawAngleOld, drawAngleNow, (drawAngleNow- drawAngleOld));
                         if (r2 > 0)
                             pathSimulation.AddArc(x1, y1, r2, r2, drawAngleOld, (drawAngleNow - drawAngleOld));
                         lastPosMarker = moveto;
@@ -383,7 +371,6 @@ namespace GrblPlotter
             private static XyzPoint lastPos = new XyzPoint();
             private static XyzPoint lastGCodePos = new XyzPoint();
             private static int lastLine = 0;
-            //      private static int currentLine = 0;
             private static int maxLine = 0;
             private static byte lastMode = 0;
 
@@ -399,7 +386,6 @@ namespace GrblPlotter
             public static void ProcessedPathLine(int line)		// 
             {
                 maxLine = line;
-                //                Logger.Trace("  processedPathLine  {0} ", line);
             }
 
             private static int GetNextXYIndex(int start)
@@ -414,8 +400,6 @@ namespace GrblPlotter
 
             internal static void ProcessedPathDraw(XyzPoint newPos)
             {
-                //                Logger.Trace("drawProcessedPath  {0:0.00}  {1:0.00}  {2:0.00}", newPos.X, newPos.Y, newPos.Z);
-                //      int i = 0;
                 int iStart, iEnd;
                 bool onTrack = false;
 
@@ -435,45 +419,37 @@ namespace GrblPlotter
                     if ((lastMode == 0) && (simuList[iStart].motionMode > 0))
                     { Simulation.pathSimulation.StartFigure(); }
 
-                    //                    Logger.Trace("  lastGCodePos x:{0:0.00} y:{1:0.00}  newPos x:{2:0.00} y:{3:0.00}   codePos iEnd:{4}  x:{5:0.00} y:{6:0.00}", lastGCodePos.X, lastGCodePos.Y, newPos.X, newPos.Y, iEnd, simuList[iEnd].actualPos.X, simuList[iEnd].actualPos.Y);
                     if (simuList[iEnd].motionMode > 1)
                     {
                         ArcProperties arcMove1, arcMove2;
                         arcMove1 = GcodeMath.GetArcMoveProperties((XyPoint)simuList[iStart].actualPos, (XyPoint)simuList[iEnd].actualPos, simuList[iEnd].i, simuList[iEnd].j, (simuList[iEnd].motionMode == 2));
                         arcMove2 = GcodeMath.GetArcMoveProperties((XyPoint)simuList[iStart].actualPos, (XyPoint)newPos, simuList[iEnd].i, simuList[iEnd].j, (simuList[iEnd].motionMode == 2));
                         onTrack = PointOnArc(arcMove1, arcMove2, ToPointF(newPos));
-                        //                        Logger.Trace(" arc ontrack iStart:{0}  iEnd:{1}  onTrack:{2}", iStart, iEnd, onTrack);
                     }
                     else if (simuList[iEnd].motionMode == 1)
                     {
                         onTrack = PointOnLine(ToPointF(simuList[iStart].actualPos), ToPointF(simuList[iEnd].actualPos), ToPointF(newPos));
-                        //      Logger.Trace(" line ontrack i{0} x:{1:0.00} y:{2:0.00} {3}", i, simuList[i].actualPos.X, simuList[i].actualPos.Y, onTrack);
                     }
 
                     if (onTrack)
                     {   // newPos is on line towards next GCode command
-                        //                       Logger.Trace(" drawProcessedPath  true iStart:{0} iEnd:{1}  {2:0.00}  {3:0.00}  {4:0.00}",iStart, iEnd, newPos.X, newPos.Y, newPos.Z);
                         indexLastSucess = iStart;
                         for (int k = lastLine + 1; k < iEnd; k++)
                         {
                             if ((lastGCodePos.X == simuList[k].actualPos.X) && (lastGCodePos.Y == simuList[k].actualPos.Y) && (simuList[k].motionMode < 2))
                             {
                                 lastMode = simuList[k].motionMode;
-                                //                                Logger.Trace("  same pos {0}",k);
                                 continue;
                             }
 
-                            //                            Logger.Trace(" drawProcessedPath  k:{0} x:{1:0.00}  y:{2:0.00} mode:{3}", k, simuList[k].actualPos.X, simuList[k].actualPos.Y, simuList[k].motionMode);
                             if (simuList[k].motionMode == 0)
                             {
                                 lastGCodePos = new XyzPoint(simuList[k].actualPos.X, simuList[k].actualPos.Y, simuList[k].actualPos.Z);
                                 Simulation.pathSimulation.StartFigure();
-                                //                                Logger.Trace("  startFigure");
                             }
                             else if (simuList[k].motionMode == 1)
                             {
                                 Simulation.pathSimulation.AddLine(ToPointF(lastGCodePos), ToPointF(simuList[k].actualPos));
-                                //                                Logger.Trace(" AddLine x:{0:0.00}  y:{1:0.00} to x:{2:0.00}  y:{3:0.00}", lastGCodePos.X, lastGCodePos.Y, simuList[k].actualPos.X, simuList[k].actualPos.Y);
                             }
                             else if (simuList[k].motionMode >= 2)
                             {
@@ -481,16 +457,13 @@ namespace GrblPlotter
                                 arcMove = GcodeMath.GetArcMoveProperties((XyPoint)lastGCodePos, (XyPoint)simuList[k].actualPos, simuList[k].i, simuList[k].j, (simuList[k].motionMode == 2));
 
                                 float x1 = (float)(arcMove.center.X - arcMove.radius);
-                                //         float x2 = (float)(arcMove.center.X + arcMove.radius);
                                 float y1 = (float)(arcMove.center.Y - arcMove.radius);
-                                //         float y2 = (float)(arcMove.center.Y + arcMove.radius);
                                 float r2 = 2 * (float)arcMove.radius;
                                 float aStart = (float)(arcMove.angleStart * 180 / Math.PI);
                                 float aDiff = (float)(arcMove.angleDiff * 180 / Math.PI);
                                 if (arcMove.radius > 0)
                                 {
                                     Simulation.pathSimulation.AddArc(x1, y1, r2, r2, aStart, aDiff);
-                                    //                                    Logger.Trace(" AddArc x:{0:0.00}  y:{1:0.00} r:{2:0.00}  ", x1, y1, r2);
                                 }
                             }
                             lastGCodePos = new XyzPoint(simuList[k].actualPos.X, simuList[k].actualPos.Y, simuList[k].actualPos.Z);
@@ -500,14 +473,11 @@ namespace GrblPlotter
                         if (simuList[iEnd].motionMode == 1)
                         {
                             Simulation.pathSimulation.AddLine(ToPointF(lastGCodePos), ToPointF(newPos));
-                            //                            Logger.Trace("   AddLine newPos  i:{0}  x:{1:0.00}  y:{2:0.00} to x:{3:0.00}  y:{4:0.00}", iEnd, lastGCodePos.X, lastGCodePos.Y, newPos.X, newPos.Y);
                         }
                         else if (simuList[iEnd].motionMode > 1)
                         {
                             Simulation.pathSimulation.AddLine(ToPointF(lastPos), ToPointF(newPos));
-                            //                            Logger.Trace("   AddArc newPos  i:{0}  x:{1:0.00}  y:{2:0.00} to x:{3:0.00}  y:{4:0.00}", iEnd, lastPos.X, lastPos.Y, newPos.X, newPos.Y);
                         }
-                        //      if (i > 1)
                         lastLine = iStart;		//200720
                         lastMode = simuList[iStart].motionMode;
                         lastPos = newPos;
@@ -521,15 +491,12 @@ namespace GrblPlotter
             }
             private static PointF ToPointF(XyzPoint tmp)
             { return new PointF((float)tmp.X, (float)tmp.Y); }
-    //        private static PointF ToPointF(XyzabcuvwPoint tmp)
-    //       { return new PointF((float)tmp.X, (float)tmp.Y); }
 
             private static bool PointOnArc(ArcProperties arcMove1, ArcProperties arcMove2, PointF xp)
             {
                 double dx = arcMove1.center.X - xp.X;
                 double dy = arcMove1.center.Y - xp.Y;
                 double r = Math.Sqrt(dx * dx + dy * dy);
-                //                Logger.Trace("   pointOnArc  origR:{0:0.00}  xpR:{1:0.00}  aStart:{2:0.00} aEnd:{3:0.00}  xpEnd:{4:0.00}", arcMove1.radius, r, arcMove1.angleStart, arcMove1.angleEnd, arcMove2.angleEnd);
 
                 if (!IsEqual(r, arcMove1.radius))
                     return false;
@@ -549,14 +516,12 @@ namespace GrblPlotter
             {
                 if ((xp.X < Math.Min(p1.X, p2.X)) || (xp.X > Math.Max(p1.X, p2.X)))
                 {
-                    //          Logger.Trace("  pointOnLine false ((xp.X < p1.X) || (xp.X > p2.X))  p1:{0:0.00}  xp:{1:0.00}  p2:{2:0.00}", p1.X, xp.X, p2.X);
                     if (IsEqual(xp.X, Math.Min(p1.X, p2.X))) return true;
                     if (IsEqual(xp.X, Math.Max(p1.X, p2.X))) return true;
                     return false;
                 }
                 if ((xp.Y < Math.Min(p1.Y, p2.Y)) || (xp.Y > Math.Max(p1.Y, p2.Y)))
                 {
-                    //             Logger.Trace("  pointOnLine false ((xp.Y < p1.Y) || (xp.Y > p2.Y))  p1:{0:0.00}  xp:{1:0.00}  p2:{2:0.00}", p1.Y, xp.Y, p2.Y);
                     if (IsEqual(xp.Y, Math.Min(p1.Y, p2.Y))) return true;
                     if (IsEqual(xp.Y, Math.Max(p1.Y, p2.Y))) return true;
                     return false;
@@ -565,25 +530,16 @@ namespace GrblPlotter
                 double dy = p2.Y - p1.Y;
                 if (IsEqual(dx, 0))
                 {
-                    //              Logger.Trace("  pointOnLine  (isEqual(dx, 0))");
                     return (IsEqual(p1.X, xp.X));
                 }
                 if (IsEqual(dy, 0))
                 {
-                    //             Logger.Trace("  pointOnLine  (isEqual(dy, 0))");
                     return (IsEqual(p1.Y, xp.Y));
                 }
 
                 double m = dy / dx;
                 double b = p1.Y - (m * p1.X);
                 double y = m * xp.X + b;
-
-                /*                Logger.Trace("  pointOnLine  p1 x:{0:0.00}  y:{1:0.00}", p1.X, p1.Y);
-                                Logger.Trace("  pointOnLine  p2 x:{0:0.00}  y:{1:0.00}", p2.X, p2.Y);
-                                Logger.Trace("  pointOnLine  xp x:{0:0.00}  y:{1:0.00}", xp.X, xp.Y);
-                                Logger.Trace("  pointOnLine  grbl x:{0:0.000}  y:{1:0.000}", grbl.posWork.X, grbl.posWork.Y);
-                                Logger.Trace("  pointOnLine  isEqual(y, xp.Y) y:{0:0.00}  xp.Y:{1:0.00}",y,xp.Y);
-                */
                 return (IsEqual(y, xp.Y));
             }
             private static bool IsEqual(double a, double b, double max = 0.1)
@@ -592,8 +548,6 @@ namespace GrblPlotter
                     return true;
                 return false;
             }
-
         }
-
     }
 }
