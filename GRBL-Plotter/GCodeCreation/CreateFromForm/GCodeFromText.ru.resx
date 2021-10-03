@@ -186,4 +186,16 @@
   <data name="label3.Text" xml:space="preserve">
     <value>Инструмент:</value>
   </data>
+  <data name="RbAlign3.Text" xml:space="preserve">
+    <value>Направо</value>
+  </data>
+  <data name="RbAlign2.Text" xml:space="preserve">
+    <value>центр</value>
+  </data>
+  <data name="RbAlign1.Text" xml:space="preserve">
+    <value>Левый</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Выравнивание линии</value>
+  </data>
 </root>

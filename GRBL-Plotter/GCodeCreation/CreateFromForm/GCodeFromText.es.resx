@@ -183,4 +183,16 @@
   <data name="cBLineBreak.ToolTip" xml:space="preserve">
     <value>Calcula la longitud de la palabra y agrega un salto de línea después de la longitud especificada</value>
   </data>
+  <data name="RbAlign3.Text" xml:space="preserve">
+    <value>A la derecha</value>
+  </data>
+  <data name="RbAlign2.Text" xml:space="preserve">
+    <value>centrar</value>
+  </data>
+  <data name="RbAlign1.Text" xml:space="preserve">
+    <value>Izquierda</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Alineación de línea</value>
+  </data>
 </root>

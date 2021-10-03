@@ -189,4 +189,16 @@
   <data name="cBLineBreak.ToolTip" xml:space="preserve">
     <value>語長を推定し、指定された長さの後に改行を追加します</value>
   </data>
+  <data name="RbAlign3.Text" xml:space="preserve">
+    <value>右の方へ</value>
+  </data>
+  <data name="RbAlign2.Text" xml:space="preserve">
+    <value>中心</value>
+  </data>
+  <data name="RbAlign1.Text" xml:space="preserve">
+    <value>左</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>ラインアライメント</value>
+  </data>
 </root>

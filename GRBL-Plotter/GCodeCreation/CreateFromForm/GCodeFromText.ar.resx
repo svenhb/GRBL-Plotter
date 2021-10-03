@@ -189,4 +189,16 @@
   <data name="cBLineBreak.ToolTip" xml:space="preserve">
     <value>تقدير طول الكلمة وإضافة فاصل أسطر بعد الطول المحدد</value>
   </data>
+  <data name="RbAlign3.Text" xml:space="preserve">
+    <value>إلى اليمين</value>
+  </data>
+  <data name="RbAlign2.Text" xml:space="preserve">
+    <value>المركز</value>
+  </data>
+  <data name="RbAlign1.Text" xml:space="preserve">
+    <value>اليسار</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>محاذاة الخط</value>
+  </data>
 </root>

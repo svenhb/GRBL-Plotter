@@ -183,4 +183,16 @@
   <data name="cBLineBreak.ToolTip" xml:space="preserve">
     <value>Estime la longueur du mot et ajoute un saut de ligne après la longueur spécifiée</value>
   </data>
+  <data name="RbAlign3.Text" xml:space="preserve">
+    <value>À droite</value>
+  </data>
+  <data name="RbAlign2.Text" xml:space="preserve">
+    <value>centre</value>
+  </data>
+  <data name="RbAlign1.Text" xml:space="preserve">
+    <value>La gauche</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Alignement de ligne</value>
+  </data>
 </root>

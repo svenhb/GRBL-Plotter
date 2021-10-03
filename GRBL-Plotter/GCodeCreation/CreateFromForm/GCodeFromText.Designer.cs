@@ -84,6 +84,10 @@ namespace GrblPlotter
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.RbAlign1 = new System.Windows.Forms.RadioButton();
+            this.RbAlign2 = new System.Windows.Forms.RadioButton();
+            this.RbAlign3 = new System.Windows.Forms.RadioButton();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLineBreak)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDFontLine)).BeginInit();
@@ -118,6 +122,10 @@ namespace GrblPlotter
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.RbAlign3);
+            this.groupBox3.Controls.Add(this.RbAlign2);
+            this.groupBox3.Controls.Add(this.RbAlign1);
+            this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.nUDLineBreak);
             this.groupBox3.Controls.Add(this.cBLineBreak);
             this.groupBox3.Controls.Add(this.nUDFontLine);
@@ -415,6 +423,33 @@ namespace GrblPlotter
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.BtnLoadGraphic_Click);
             // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // RbAlign1
+            // 
+            resources.ApplyResources(this.RbAlign1, "RbAlign1");
+            this.RbAlign1.Checked = true;
+            this.RbAlign1.Name = "RbAlign1";
+            this.RbAlign1.TabStop = true;
+            this.RbAlign1.UseVisualStyleBackColor = true;
+            // 
+            // RbAlign2
+            // 
+            resources.ApplyResources(this.RbAlign2, "RbAlign2");
+            this.RbAlign2.Name = "RbAlign2";
+            this.RbAlign2.TabStop = true;
+            this.RbAlign2.UseVisualStyleBackColor = true;
+            // 
+            // RbAlign3
+            // 
+            resources.ApplyResources(this.RbAlign3, "RbAlign3");
+            this.RbAlign3.Name = "RbAlign3";
+            this.RbAlign3.TabStop = true;
+            this.RbAlign3.UseVisualStyleBackColor = true;
+            // 
             // GCodeFromText
             // 
             resources.ApplyResources(this, "$this");
@@ -480,5 +515,9 @@ namespace GrblPlotter
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.NumericUpDown nUDLineBreak;
         private System.Windows.Forms.CheckBox cBLineBreak;
+        private System.Windows.Forms.RadioButton RbAlign3;
+        private System.Windows.Forms.RadioButton RbAlign2;
+        private System.Windows.Forms.RadioButton RbAlign1;
+        private System.Windows.Forms.Label label4;
     }
 }

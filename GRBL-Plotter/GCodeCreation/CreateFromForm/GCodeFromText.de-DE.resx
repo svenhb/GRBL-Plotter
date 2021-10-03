@@ -178,4 +178,16 @@ in Setup SVG-Import </value>
   <data name="cBLineBreak.ToolTip" xml:space="preserve">
     <value>Schätzt die Wortlänge und fügt nach der angegebenen Länge einen Zeilenumbruch hinzu</value>
   </data>
+  <data name="RbAlign3.Text" xml:space="preserve">
+    <value>rechts</value>
+  </data>
+  <data name="RbAlign2.Text" xml:space="preserve">
+    <value>mitte</value>
+  </data>
+  <data name="RbAlign1.Text" xml:space="preserve">
+    <value>links</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Zeilenausrichtung</value>
+  </data>
 </root>

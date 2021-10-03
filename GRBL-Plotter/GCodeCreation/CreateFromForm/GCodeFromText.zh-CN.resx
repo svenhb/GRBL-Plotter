@@ -186,4 +186,16 @@
   <data name="label3.Text" xml:space="preserve">
     <value>工具：</value>
   </data>
+  <data name="RbAlign3.Text" xml:space="preserve">
+    <value>向右</value>
+  </data>
+  <data name="RbAlign2.Text" xml:space="preserve">
+    <value>中央</value>
+  </data>
+  <data name="RbAlign1.Text" xml:space="preserve">
+    <value>剩下</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>线对齐</value>
+  </data>
 </root>

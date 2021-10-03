@@ -183,4 +183,16 @@
   <data name="cBLineBreak.ToolTip" xml:space="preserve">
     <value>Estima o comprimento da palavra e adiciona uma quebra de linha após o comprimento especificado</value>
   </data>
+  <data name="RbAlign3.Text" xml:space="preserve">
+    <value>Para a direita</value>
+  </data>
+  <data name="RbAlign2.Text" xml:space="preserve">
+    <value>Centro</value>
+  </data>
+  <data name="RbAlign1.Text" xml:space="preserve">
+    <value>Deixou</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Alinhamento de linha</value>
+  </data>
 </root>

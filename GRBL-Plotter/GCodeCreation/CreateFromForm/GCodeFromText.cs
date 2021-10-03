@@ -24,6 +24,7 @@
  * 2020-12-09 line 127 no return of Gcode, must be picked up at Graphic.GCode
  * 2021-02-24 adapations for SVG-Font files
  * 2021-07-26 code clean up / code quality
+ * 2021-09-10 add radioButtons to select line alignment: left, center, right line 168
 */
 
 using System;
@@ -33,7 +34,6 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 
-//#pragma warning disable CA1307
 
 // http://imajeenyus.com/computer/20150110_single_line_fonts/
 // Hershey code from: http://www.evilmadscientist.com/2011/hershey-text-an-inkscape-extension-for-engraving-fonts/
@@ -152,6 +152,7 @@ namespace GrblPlotter
             GCodeFromFont.GCPauseLine = cBPauseLine.Checked;
             GCodeFromFont.GCConnectLetter = cBConnectLetter.Checked;
 
+            VisuGCode.pathBackground.Reset();
             Graphic.CleanUp();
             Graphic.Init(Graphic.SourceType.Text, "", null, null);
             Graphic.graphicInformation.OptionNodesOnly = false;
@@ -162,7 +163,13 @@ namespace GrblPlotter
                 GCodeFromFont.GetCode((double)nUDLineBreak.Value);      // do automatic page break
             else
                 GCodeFromFont.GetCode(0);   // no page break
-            Graphic.CreateGCode();      // result is saved as stringbuilder in Graphic.GCode;
+			
+            if (RbAlign2.Checked)
+			    Graphic.AlignLines(1);		// 0=left, 1=center, 2=right
+            else if (RbAlign3.Checked)
+                Graphic.AlignLines(2);		// 0=left, 1=center, 2=right
+
+            Graphic.CreateGCode();      	// result is saved as stringbuilder in Graphic.GCode;
         }
 
         // adapt line distance depending on font size

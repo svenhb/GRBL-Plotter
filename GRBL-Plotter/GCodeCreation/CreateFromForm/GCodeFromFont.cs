@@ -29,6 +29,7 @@
  * 2021-07-02 code clean up / code quality
  * 2021-08-03 bug fix file not found line 148
  * 2021-08-06 default GCFontName = "lff\\standard.lff"; becausee of DXF Text import
+ * 2021-09-10 add Graphic.SetAuxInfo(lineIndex) in line 290
 */
 
 using System;
@@ -41,23 +42,18 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
-//#pragma warning disable CA1303	// Do not pass literals as localized parameters
-//#pragma warning disable CA1304
-//#pragma warning disable CA1305
-//#pragma warning disable CA1307
-
 namespace GrblPlotter
 {
     public static partial class GCodeFromFont
     {
         public static string GCFontName { get; set; }
-        public static string GCText { get; set; }       // text to convert
-        public static int GCFont { get; set; }           // text to convert
-        public static int GCAttachPoint { get; set; }   // origin of text 1 = Top left; 2 = Top center; 3 = Top right; etc
-        public static double GCHeight { get; set; }     // desired Text height
-        public static double GCWidth { get; set; }       // desired Text width
+        public static string GCText { get; set; }       	// text to convert
+        public static int GCFont { get; set; }           	// text to convert
+        public static int GCAttachPoint { get; set; }   	// origin of text 1 = Top left; 2 = Top center; 3 = Top right; etc
+        public static double GCHeight { get; set; }     	// desired Text height
+        public static double GCWidth { get; set; }       	// desired Text width
         public static double GCAngleRad { get; set; }
-        public static double GCSpacing { get; set; }    // Percentage of default (3-on-5) line spacing to be applied. Valid values range from 0.25 to 4.00.
+        public static double GCSpacing { get; set; }    	// Percentage of default (3-on-5) line spacing to be applied. Valid values range from 0.25 to 4.00.
         public static double GCOffX { get; set; }
         public static double GCOffY { get; set; }
         public static double GCLineDistance { get; set; }
@@ -67,6 +63,8 @@ namespace GrblPlotter
         public static bool GCPauseWord { get; set; }
         public static bool GCPauseChar { get; set; }
         public static bool GCConnectLetter { get; set; }
+
+    //    public static int GCTextAlign { get; set; }   
 
         private static double gcLetterSpacing = 3;
         private static double gcWordSpacing = 6.75;
@@ -290,7 +288,8 @@ namespace GrblPlotter
                     int chrIndex = (int)actualChar - 32;
                     int chrIndexLFF = (int)actualChar;
                     Graphic.SetPathId(lineIndex + "-" + txtIndex);
-
+					Graphic.SetAuxInfo(lineIndex);									// to center lines later - if needed
+					
                     if (txtIndex == 0)    //actualChar == '\n')                       // next line
                     {
                         offsetX = 0;
