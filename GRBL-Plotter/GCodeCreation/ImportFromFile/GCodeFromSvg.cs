@@ -74,6 +74,7 @@
  * 2020-12-08 add BackgroundWorker updates
  * 2021-03-25 line 613 GetStyleProperty include ':' to check property
  * 2021-07-31 code clean up / code quality
+ * 2021-09-21 also read inkscape:label
 */
 
 using System;
@@ -88,9 +89,6 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media;
 using System.Xml.Linq;
-
-//#pragma warning disable CA1303	// Do not pass literals as localized parameters
-//#pragma warning disable CA1307	// Specify StringComparison for clarity
 
 namespace GrblPlotter
 {
@@ -284,6 +282,7 @@ namespace GrblPlotter
         /// </summary>
         private static float svgWidthPx, svgHeightPx, svgStrokeWidthScale = 1;
         private static readonly XNamespace nspace = "http://www.w3.org/2000/svg";
+        private static readonly XNamespace inkscape = "http://www.inkscape.org/namespaces/inkscape";
         private static void ParseGlobals(XElement svgCode)
         {   // One px unit is defined to be equal to one user unit. Thus, a length of "5px" is the same as a length of "5".
             if (logEnable) Logger.Debug("parseGlobals");
@@ -436,6 +435,9 @@ namespace GrblPlotter
             {
                 if (level == 1)
                 {
+                    if (groupElement.Attribute(inkscape + "label") != null)
+                        Graphic.SetLabel(groupElement.Attribute(inkscape + "label").Value);
+
                     if (groupElement.Attribute("id") != null)
                         Graphic.SetLayer(groupElement.Attribute("id").Value);	// top level group-id = layer
                     else
