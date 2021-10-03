@@ -2947,4 +2947,22 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
     <value>Нет кривой</value>
   </data>
+  <data name="btnColorDimension.Text" xml:space="preserve">
+    <value>Измерение</value>
+  </data>
+  <data name="btnColorBackgroundPath.Text" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="checkBox9.Text" xml:space="preserve">
+    <value>Сохраните G-код как unicode UTF-16 (иначе ASCII)</value>
+  </data>
+  <data name="LblImportGraphicDevelopNotchDistance.Text" xml:space="preserve">
+    <value>Мин. расстояние от выемки до выемки в кривых</value>
+  </data>
+  <data name="LblCameraFiducial.Text" xml:space="preserve">
+    <value>Имя графического слоя или рисунка для реперных знаков</value>
+  </data>
+  <data name="groupBox23.Text" xml:space="preserve">
+    <value>Реперные знаки</value>
+  </data>
 </root>

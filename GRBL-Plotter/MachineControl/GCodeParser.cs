@@ -54,12 +54,13 @@ namespace GrblPlotter
         internal CoordByLine(int line, int figure, XyzPoint pOld, XyzPoint pNew, int g, double a, double dist)
         { lineNumber = line; figureNumber = figure; lastPos = pOld; actualPos = pNew; actualG = g; alpha = a; distance = dist; isArc = false; }
 
-        internal void CalcDistance(XyPoint tmp)
+        internal void CalcDistance(XyPoint tmp, bool checkDistanceToLine = true)
         {
+           // bool checkDistanceToLine = true;
             XyPoint delta = new XyPoint(tmp - (XyPoint)actualPos);
             double distancePoint = Math.Sqrt(delta.X * delta.X + delta.Y * delta.Y);
             double distanceLine = -1;
-            if (actualG == 1)
+            if (checkDistanceToLine && (actualG == 1))
                 distanceLine = CalcDistanceToLine(tmp);
             if (distanceLine >= 0)
                 distance = Math.Min(distancePoint, distanceLine);
@@ -107,6 +108,43 @@ namespace GrblPlotter
 
     }
 
+	internal struct CenterByLine
+	{   public int lineNumber;          // line number in fCTBCode
+        public int figureNumber;
+        public XyzPoint center;
+        public XyzPoint actualPos;
+        public double alpha;
+
+        public CenterByLine(int linenr, int fig, XyzPoint cent, XyzPoint coord, double a)
+		{	lineNumber = linenr; figureNumber = fig; center=cent; actualPos = coord; alpha = a; }
+        public double CalcDistance(XyPoint tmp)
+        {
+            double a = center.X - tmp.X;
+            double b = center.Y - tmp.Y;
+            return Math.Sqrt(a*a +b*b); 
+        }
+
+    }
+    internal struct DistanceByLine
+    {
+        public int lineNumber;          // line number in fCTBCode
+        public int figureNumber;
+        public double distance;
+        public XyzPoint actualPos;
+        public double alpha;
+        public bool isArc;
+
+        public DistanceByLine(int x)
+        { lineNumber = x; figureNumber = x; actualPos = new XyzPoint(); alpha = 0; distance = 0; isArc = false; }
+        public DistanceByLine(CoordByLine tmp, double dist)
+        { lineNumber = tmp.lineNumber; figureNumber = tmp.figureNumber ; actualPos = tmp.actualPos; alpha = tmp.alpha; distance = dist; isArc = tmp.isArc; }
+        public DistanceByLine(CenterByLine tmp, double dist)
+        { lineNumber = tmp.lineNumber; figureNumber = tmp.figureNumber; actualPos = tmp.center; alpha = tmp.alpha; distance = dist; isArc = true; }
+        public DistanceByLine(int lnr, int fnr, XyzPoint apos, double a, double dist, bool ia)
+        { lineNumber = lnr; figureNumber = fnr; actualPos = apos; alpha = a; distance = dist; isArc = ia; }
+    }
+
+
     internal struct XyzabcuvwPoint
     {
         public double X, Y, Z, A, B, C, U, V, W;
@@ -125,7 +163,8 @@ namespace GrblPlotter
     /// Hold parsed GCode line and absolute work coordinate for given linenumber of GCode program
     /// </summary>
     class GcodeByLine
-    {   public int lineNumber;          // line number in fCTBCode
+    {
+        public int lineNumber;          // line number in fCTBCode
         public int nNumber;             // n number in GCode if given
         public int figureNumber;
         public string codeLine;         // copy of original gcode line
@@ -186,7 +225,7 @@ namespace GrblPlotter
         }
 
         public string ListData()
-        { return string.Format("{0} mode {1} figure {2}\r", lineNumber, motionMode, figureNumber); }
+        { return string.Format("{0} mode {1} figure {2}  {3}", lineNumber, motionMode, figureNumber, codeLine); }
 
         /// <summary>
         /// Reset coordinates and set G90, M5, M9
@@ -199,9 +238,9 @@ namespace GrblPlotter
             actualPos.U = 0; actualPos.V = 0; actualPos.W = 0;
             motionMode = 0; coordSystem = 54; planeSelect = 17; isunitModeG21 = true;
             isdistanceModeG90 = true; isfeedrateModeG94 = true; spindleState = 5; coolantState = 9;
-            toolNumber = 0; feedRate = 0; spindleSpeed = 0; 
+            toolNumber = 0; feedRate = 0; spindleSpeed = 0;
             ismachineCoordG53 = false; isSubroutine = false;
-            isSetCoordinateSystem = false; isNoMove = false;   
+            isSetCoordinateSystem = false; isNoMove = false;
 
             wasSetF = wasSetS = wasSetXY = wasSetZ = false;
             distance = -1; otherCode = ""; alpha = 0;//info = "";
@@ -360,10 +399,11 @@ namespace GrblPlotter
                     { isSetCoordinateSystem = true; isNoMove = true; }
 
                     else if ((value == 17) || (value == 18) || (value == 19))   // planeSelect
-                    { modalState.planeSelect = planeSelect = (byte)value;  }
+                    { modalState.planeSelect = planeSelect = (byte)value; }
 
                     else if ((value == 20) || (value == 21))                    // Units Mode
-                    {   modalState.unitsMode = (byte)value; isNoMove = true;
+                    {
+                        modalState.unitsMode = (byte)value; isNoMove = true;
                         isunitModeG21 = (value == 20);
                     }
 
@@ -384,7 +424,8 @@ namespace GrblPlotter
                         modalState.containsG91 = true;
                     }
                     else if ((value == 93) || (value == 94))             // Feed Rate Mode
-                    {   modalState.feedRateMode = (byte)value;
+                    {
+                        modalState.feedRateMode = (byte)value;
                         isfeedrateModeG94 = (value == 94);
                     }
                     break;
@@ -422,20 +463,29 @@ namespace GrblPlotter
     {
         public int lineNumber;          // line number in fCTBCode
         public XyzPoint actualPos;
+        public XyzPoint actualOffset;
         public double? i, j, z;
         public double alpha;            // angle between old and this position
         public byte motionMode;
         public int feedRate;            // actual feed rate
         public string codeLine;         // copy of original gcode line
 
-        public SimuCoordByLine(GcodeByLine tmp)
-        {   lineNumber = tmp.lineNumber; actualPos = (XyzPoint)tmp.actualPos;
+        public SimuCoordByLine(GcodeByLine tmp, System.Drawing.PointF offset)
+        {
+            lineNumber = tmp.lineNumber; actualPos = (XyzPoint)tmp.actualPos;
+            actualOffset = new XyzPoint
+            {
+                X = offset.X,
+                Y = offset.Y
+            };
             i = tmp.i; j = tmp.j; z = tmp.z; alpha = tmp.alpha;
-            motionMode = tmp.motionMode; feedRate = tmp.feedRate; 
+            motionMode = tmp.motionMode; feedRate = tmp.feedRate;
             codeLine = tmp.codeLine;
         }
         public SimuCoordByLine(SimuCoordByLine tmp)
-        {   lineNumber = tmp.lineNumber; actualPos = (XyzPoint)tmp.actualPos;
+        {
+            lineNumber = tmp.lineNumber; actualPos = (XyzPoint)tmp.actualPos;
+            actualOffset = tmp.actualOffset;
             i = tmp.i; j = tmp.j; z = tmp.z; alpha = tmp.alpha;
             motionMode = tmp.motionMode; feedRate = tmp.feedRate;
             codeLine = tmp.codeLine;

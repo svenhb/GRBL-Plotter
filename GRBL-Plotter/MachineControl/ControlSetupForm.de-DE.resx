@@ -2726,4 +2726,22 @@ Der tatsächlich nutzbare Bereich wäre $ 30 = 31, $ 31 = 0.</value>
   <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
     <value>Keine Kurve</value>
   </data>
+  <data name="btnColorDimension.Text" xml:space="preserve">
+    <value>Abmessungen</value>
+  </data>
+  <data name="btnColorBackgroundPath.Text" xml:space="preserve">
+    <value>Infopfad</value>
+  </data>
+  <data name="checkBox9.Text" xml:space="preserve">
+    <value>G-Code als Unicode UTF-16 speichern (ansonsten ASCII)</value>
+  </data>
+  <data name="LblImportGraphicDevelopNotchDistance.Text" xml:space="preserve">
+    <value>Mindest. Abstand von Kerbe zu Kerbe in Kurven</value>
+  </data>
+  <data name="LblCameraFiducial.Text" xml:space="preserve">
+    <value>Name der Grafikebene oder Figur für Passermarken</value>
+  </data>
+  <data name="groupBox23.Text" xml:space="preserve">
+    <value>Passermarken</value>
+  </data>
 </root>

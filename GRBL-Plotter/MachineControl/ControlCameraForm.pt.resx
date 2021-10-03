@@ -153,10 +153,7 @@
     <value>Câmera</value>
   </data>
   <data name="btnCamCoordTool.Text" xml:space="preserve">
-    <value>Ferramenta coord.</value>
-  </data>
-  <data name="teachZeroPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Defina XY = 0; 0 com o ponteiro do mouse e clique com o botão esquerdo</value>
+    <value>G54 Tool coord.</value>
   </data>
   <data name="toolStripTextBox1.ToolTipText" xml:space="preserve">
     <value>Girar imagem de vídeo - inserir ângulo</value>
@@ -177,14 +174,8 @@
 4) Ensine a posição real como deslocamento
 </value>
   </data>
-  <data name="setZeroToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Definir zero de coordenadas com deslocamento da câmera</value>
-  </data>
   <data name="btnCamCoordCam.ToolTip" xml:space="preserve">
     <value>Mover a posição atual da câmera abaixo de Ferramenta</value>
-  </data>
-  <data name="teachZeroPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Defina XY = 0; 0</value>
   </data>
   <data name="lblCenterPos.Text" xml:space="preserve">
     <value>Nenhuma forma encontrada</value>
@@ -216,20 +207,11 @@
   <data name="camSourceToolStripMenuItem.Text" xml:space="preserve">
     <value>Fonte de Vídeo</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Deslocamento / Movimento da Câmera</value>
-  </data>
   <data name="setRotationAngleToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Girar imagem de vídeo - inserir ângulo</value>
   </data>
-  <data name="setZeroToolStripMenuItem.Text" xml:space="preserve">
-    <value>Definir deslocamento do sistema de coordenadas</value>
-  </data>
   <data name="teachToolStripMenuItem.Text" xml:space="preserve">
     <value>Ensinar deslocamento da câmera</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Câmera</value>
   </data>
   <data name="compensateAngleToolStripMenuItem.Text" xml:space="preserve">
     <value>Compensar ângulo e escala</value>
@@ -248,12 +230,6 @@ Pressione o botão para transformar o código G com o ângulo medido.
   <data name="lowerPositionToolStripMenuItem.Text" xml:space="preserve">
     <value>Ensinar Posição Inferior</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>A medida</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Alinhamento automático</value>
-  </data>
   <data name="teachOffsetToolStripMenuItem.Text" xml:space="preserve">
     <value>Teach Offset</value>
   </data>
@@ -269,10 +245,182 @@ Pressione o botão para transformar o código G com o ângulo medido.
   <data name="camSourceToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Selecione a fonte da câmera.</value>
   </data>
-  <data name="moveMarkerToCenterToolStripMenuItem.Text" xml:space="preserve">
-    <value>Definir pos. Atual ao marcador pos.</value>
+  <data name="cameraMountToolStripMenuItem.Text" xml:space="preserve">
+    <value>Montagem de câmera</value>
   </data>
-  <data name="teachMarkerPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Defina XY = posição do marcador</value>
+  <data name="distortionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Correção de distorção</value>
+  </data>
+  <data name="teachRadiusToolStripMenuItem.Text" xml:space="preserve">
+    <value>Raio de ensino</value>
+  </data>
+  <data name="setTeachRadiusToolStripMenuItem.Text" xml:space="preserve">
+    <value>Definir raio de ensino</value>
+  </data>
+  <data name="teachScaling2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Escala de ensino</value>
+  </data>
+  <data name="toolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Definir orign de coordenada</value>
+  </data>
+  <data name="textToolStripMenuItem.Text" xml:space="preserve">
+    <value>Texto</value>
+  </data>
+  <data name="setToolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Clique para definir</value>
+  </data>
+  <data name="resetAndTeachToolStripMenuItem.Text" xml:space="preserve">
+    <value>Reiniciar e ensinar</value>
+  </data>
+  <data name="cBRotateArround0.Text" xml:space="preserve">
+    <value>Girar ao redor 0; 0</value>
+  </data>
+  <data name="penupPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Caminho de caneta</value>
+  </data>
+  <data name="machineLimitsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Limites da máquina</value>
+  </data>
+  <data name="dimensionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dimensão Código G</value>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>Visualizar</value>
+  </data>
+  <data name="menuStripCamera.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="cBCamCoordMove.Text" xml:space="preserve">
+    <value>Mover o palco</value>
+  </data>
+  <data name="lblAngle.Text" xml:space="preserve">
+    <value>0,00 °</value>
+  </data>
+  <data name="btnCamCoordCam.Text" xml:space="preserve">
+    <value>G59 Camera coord</value>
+  </data>
+  <data name="TbSetPoints.Text" xml:space="preserve">
+    <value>Coordenadas fiduciais:</value>
+  </data>
+  <data name="TbSetPoints.ToolTip" xml:space="preserve">
+    <value>Coordenadas fiduciais: Apenas a 1ª e a 2ª serão utilizadas.
+Obtenha as coordenadas fiduciais do gráfico importado ou colete-as manualmente:
+Ctrl-clique para marcar,
+"a" para anexar à lista,
+"c" para limpar a lista.</value>
+  </data>
+  <data name="TbRealPoints.Text" xml:space="preserve">
+    <value>Coordenadas atribuídas:</value>
+  </data>
+  <data name="TbRealPoints.ToolTip" xml:space="preserve">
+    <value>Coordenadas atribuídas:
+Acumule pontos manualmente:
+Clique com a tecla Shift para adicionar um ponto,
+Shift - "c" para limpar a lista</value>
+  </data>
+  <data name="btnAutoCenter.ToolTip" xml:space="preserve">
+    <value>Adicione a posição aos "Pontos atribuídos" e mova a ferramenta</value>
+  </data>
+  <data name="GbZoom.Text" xml:space="preserve">
+    <value>Câmera</value>
+  </data>
+  <data name="BtnSetOffsetZero.Text" xml:space="preserve">
+    <value>Defina XY = 0; 0</value>
+  </data>
+  <data name="BtnSetOffsetMarker.Text" xml:space="preserve">
+    <value>Definir XY = Marcador</value>
+  </data>
+  <data name="GbOffset.Text" xml:space="preserve">
+    <value>Deslocamento / movimento da câmera</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Clique com o botão direito para ver o ponto de rotação, mantenha pressionado, solte no ângulo desejado</value>
+  </data>
+  <data name="CbScale.Text" xml:space="preserve">
+    <value>Também escala</value>
+  </data>
+  <data name="GbMeasure.Text" xml:space="preserve">
+    <value>Ângulo de medição</value>
+  </data>
+  <data name="BtnStartAutomatic.Text" xml:space="preserve">
+    <value>Iniciar correção fiducial automática</value>
+  </data>
+  <data name="cBShapeShowFilter.Text" xml:space="preserve">
+    <value>Mostrar filtros aplicados</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>Também escala na rotação</value>
+  </data>
+  <data name="CbUseShapeRecognition.Text" xml:space="preserve">
+    <value>Use o reconhecimento de forma</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Modo automático</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>A forma próxima ao marcador é vermelha</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Os filtros podem ser configurados em [Configuração - Comportamento do programa - Câmera]</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Reconhecimento de forma</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Modo manual</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Definir compensações</value>
+  </data>
+  <data name="setWork00ToHereToolStripMenuItem.Text" xml:space="preserve">
+    <value>Defina a coordenada de trabalho 0; 0 aqui</value>
+  </data>
+  <data name="FiducialAddCoordinateIn2DViewToolStripMenuItem.Text" xml:space="preserve">
+    <value>Adicionar coordenada fiducial da vista 2D à lista fiducial</value>
+  </data>
+  <data name="FiducialRemoveLastToolStripMenuItem.Text" xml:space="preserve">
+    <value>Remova o último fiducial</value>
+  </data>
+  <data name="FiducialListClearToolStripMenuItem.Text" xml:space="preserve">
+    <value>Limpar lista fiducial</value>
+  </data>
+  <data name="ReferenceAddPointInImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Adicionar ponto de referência da imagem à lista atribuída</value>
+  </data>
+  <data name="ReferenceRemoveLastPointToolStripMenuItem.Text" xml:space="preserve">
+    <value>Remover o último ponto de referência</value>
+  </data>
+  <data name="ReferenceClearListToolStripMenuItem.Text" xml:space="preserve">
+    <value>Limpar lista de pontos de referência (atribuídos)</value>
+  </data>
+  <data name="setWork00ToHereToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Define a origem da coordenada de trabalho para a posição clicada na vista 2D</value>
+  </data>
+  <data name="compensateAngleToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Aplica o ângulo marcado em amarelo ao código G</value>
+  </data>
+  <data name="FiducialAddCoordinateIn2DViewToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Adicione coordenadas fiduciais da posição clicada, dentro da vista 2D, para a lista fiducial</value>
+  </data>
+  <data name="FiducialRemoveLastToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Remover o último fiducial adicionado da lista fiducial</value>
+  </data>
+  <data name="FiducialListClearToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Limpar lista fiducial</value>
+  </data>
+  <data name="ReferenceAddPointInImageToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Adicione o ponto de referência da posição clicada, dentro da imagem, à lista atribuída</value>
+  </data>
+  <data name="ReferenceRemoveLastPointToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Remova o último ponto de referência adicionado da lista atribuída</value>
+  </data>
+  <data name="ReferenceClearListToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Limpar lista de pontos de referência (atribuídos)</value>
+  </data>
+  <data name="showOverlayGraphicsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Mostrar gráficos de sobreposição (régua, caminho da caneta, etc.)</value>
+  </data>
+  <data name="setMachinePositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Clique para obter o deslocamento da máquina grbl na origem</value>
   </data>
 </root>

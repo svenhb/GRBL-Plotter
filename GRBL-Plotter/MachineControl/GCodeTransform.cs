@@ -32,7 +32,6 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
@@ -40,29 +39,22 @@ namespace GrblPlotter
 {
     internal static partial class VisuGCode
     {
-        internal static XyPoint GetCenterOfMarkedFigure()
-        {
-            RectangleF selectionBounds = pathMarkSelection.GetBounds();
-            float centerX = selectionBounds.X + selectionBounds.Width / 2;
-            float centerY = selectionBounds.Y + selectionBounds.Height / 2;
-            return new XyPoint((double)centerX, (double)centerY);
-        }
-    /*    public static double GetWidthOfMarkedFigure()
-        {
-            RectangleF selectionBounds = pathMarkSelection.GetBounds();
-            return (double)selectionBounds.Width;
-        }
-        public static double GetHeightOfMarkedFigure()
-        {
-            RectangleF selectionBounds = pathMarkSelection.GetBounds();
-            return (double)selectionBounds.Height;
-        }*/
+        public enum Translate { None, ScaleX, ScaleY, Offset1, Offset2, Offset3, Offset4, Offset5, Offset6, Offset7, Offset8, Offset9, MirrorX, MirrorY, MirrorRotary };
+
         private static bool XyMove(GcodeByLine tmp)
         { return ((tmp.x != null) || (tmp.y != null)); }
 
         private static bool SameXYPos(GcodeByLine tmp1, GcodeByLine tmp2)
         {
             return ((tmp1.x == tmp2.x) && (tmp1.y == tmp2.y) && (tmp1.z == tmp2.z));
+        }
+
+        internal static XyPoint GetCenterOfMarkedFigure()
+        {
+            RectangleF selectionBounds = pathMarkSelection.GetBounds();
+            float centerX = selectionBounds.X + selectionBounds.Width / 2;
+            float centerY = selectionBounds.Y + selectionBounds.Height / 2;
+            return new XyPoint((double)centerX, (double)centerY);
         }
 
         /// <summary>
@@ -162,17 +154,281 @@ namespace GrblPlotter
             return CreateGCodeProg();
         }
 
-        public static string CutOutFigure()
+        /// <summary>
+        /// rotate and scale arround offset
+        /// </summary>
+        internal static string TransformGCodeRotate(double angle, double scale, XyPoint offset, bool calcCenter = true)
         {
+            Logger.Debug("Rotate angle: {0}", angle);
+            if (gcodeList == null) return "";
+            XyPoint centerOfFigure = xyzSize.GetCenter();
             if (lastFigureNumber > 0)
+                centerOfFigure = GetCenterOfMarkedFigure();
+
+            if (calcCenter)
+                offset = centerOfFigure;
+
+            double? newvalx, newvaly, newvali, newvalj;
+            oldLine.ResetAll(Grbl.posWork);         // reset coordinates and parser modes
+            ClearDrawingPath();                    // reset path, dimensions
+            bool offsetApplied = false;
+            double lastAbsPosX = 0;
+            double lastAbsPosY = 0;
+
+            foreach (GcodeByLine gcline in gcodeList)
             {
-                for (int i = gcodeList.Count - 1; i >= 0; i--)
+                // if only a single figure is marked to be rotated
+                // and motion mode is 91, the relative position to the next (not rotated) figure must be adapted
+                if ((lastFigureNumber > 0) && (gcline.figureNumber != lastFigureNumber))
                 {
-                    if ((gcodeList[i].figureNumber != -1) && (gcodeList[i].figureNumber != lastFigureNumber))
-                    { gcodeList.RemoveAt(i); }
+                    if (!gcline.isdistanceModeG90 && offsetApplied)         // correct relative movement of next figure
+                    {
+                        if ((gcline.motionMode == 0) && ((gcline.x != null) || (gcline.y != null)))
+                        {
+                            gcline.x = gcline.actualPos.X - lastAbsPosX;
+                            gcline.y = gcline.actualPos.Y - lastAbsPosY;
+                            offsetApplied = false;
+                        }
+                    }
+                    continue;
+                }
+
+                if (!gcline.ismachineCoordG53)
+                {
+                    if ((gcline.x != null) || (gcline.y != null))
+                    {
+
+                        newvalx = (gcline.actualPos.X - offset.X) * Math.Cos(angle * Math.PI / 180) - (gcline.actualPos.Y - offset.Y) * Math.Sin(angle * Math.PI / 180);
+                        newvaly = (gcline.actualPos.X - offset.X) * Math.Sin(angle * Math.PI / 180) + (gcline.actualPos.Y - offset.Y) * Math.Cos(angle * Math.PI / 180);
+                        if (gcline.isdistanceModeG90)	// absolute
+                        {
+                            //                            newvalx = (gcline.actualPos.X - offset.X) * Math.Cos(angle * Math.PI / 180) - (gcline.actualPos.Y - offset.Y) * Math.Sin(angle * Math.PI / 180);
+                            //                            newvaly = (gcline.actualPos.X - offset.X) * Math.Sin(angle * Math.PI / 180) + (gcline.actualPos.Y - offset.Y) * Math.Cos(angle * Math.PI / 180);
+                            gcline.x = (newvalx * scale) + offset.X;
+                            gcline.y = (newvaly * scale) + offset.Y;
+                        }
+                        else
+                        {
+                            if ((gcline.motionMode == 0) && !offsetApplied)
+                            {
+                                //                                newvalx = (gcline.actualPos.X - offset.X) * Math.Cos(angle * Math.PI / 180) - (gcline.actualPos.Y - offset.Y) * Math.Sin(angle * Math.PI / 180);
+                                //                                newvaly = (gcline.actualPos.X - offset.X) * Math.Sin(angle * Math.PI / 180) + (gcline.actualPos.Y - offset.Y) * Math.Cos(angle * Math.PI / 180);
+                                gcline.x = gcline.x + ((newvalx * scale) + offset.X) - gcline.actualPos.X;
+                                gcline.y = gcline.y + ((newvaly * scale) + offset.Y) - gcline.actualPos.Y;
+                                if ((gcline.x != null) && (gcline.y != null))
+                                    offsetApplied = true;
+                            }
+                            else
+                            {
+                                //  newvalx = gcline.x * Math.Cos(angle * Math.PI / 180) - gcline.y * Math.Sin(angle * Math.PI / 180);
+                                //  newvaly = gcline.x * Math.Sin(angle * Math.PI / 180) + gcline.y * Math.Cos(angle * Math.PI / 180);
+                                gcline.x = gcline.x * Math.Cos(angle * Math.PI / 180) - gcline.y * Math.Sin(angle * Math.PI / 180);//newvalx;
+                                gcline.y = gcline.x * Math.Sin(angle * Math.PI / 180) + gcline.y * Math.Cos(angle * Math.PI / 180);//newvaly;
+                            }
+                            //                            newvalx = (gcline.actualPos.X - offset.X) * Math.Cos(angle * Math.PI / 180) - (gcline.actualPos.Y - offset.Y) * Math.Sin(angle * Math.PI / 180);
+                            //                            newvaly = (gcline.actualPos.X - offset.X) * Math.Sin(angle * Math.PI / 180) + (gcline.actualPos.Y - offset.Y) * Math.Cos(angle * Math.PI / 180);
+                            lastAbsPosX = ((double)newvalx * scale) + offset.X; //gcline.actualPos.X;
+                            lastAbsPosY = ((double)newvaly * scale) + offset.Y; //gcline.actualPos.Y;
+                        }
+                    }
+                    if ((gcline.i != null) || (gcline.j != null))
+                    {
+                        newvali = (double)gcline.i * Math.Cos(angle * Math.PI / 180) - (double)gcline.j * Math.Sin(angle * Math.PI / 180);
+                        newvalj = (double)gcline.i * Math.Sin(angle * Math.PI / 180) + (double)gcline.j * Math.Cos(angle * Math.PI / 180);
+                        gcline.i = newvali * scale;
+                        gcline.j = newvalj * scale;
+                    }
+                    if (tangentialAxisEnable)
+                    {
+                        if ((tangentialAxisName == "C") && (gcline.c != null)) { gcline.c += angle; }
+                        else if ((tangentialAxisName == "B") && (gcline.b != null)) { gcline.b += angle; }
+                        else if ((tangentialAxisName == "A") && (gcline.a != null)) { gcline.a += angle; }
+                        else if ((tangentialAxisName == "Z") && (gcline.z != null)) { gcline.z += angle; }
+                    }
+
+                    //       calcAbsPosition(gcline, oldLine);
+                    //       oldLine = new gcodeByLine(gcline);   // get copy of newLine
                 }
             }
+            //			pathBackground.Reset();
             return CreateGCodeProg();
+        }
+
+        /// <summary>
+        /// scale x and y seperatly in %
+        /// </summary>
+        public static string TransformGCodeScale(double scaleX, double scaleY)
+        {
+            Logger.Debug("Scale scaleX: {0}, scale Y: {1}", scaleX, scaleY);
+            if (gcodeList == null) return "";
+            XyPoint centerOfFigure = xyzSize.GetCenter();
+            if (lastFigureNumber > 0)
+                centerOfFigure = GetCenterOfMarkedFigure();
+            double factor_x = scaleX / 100;
+            double factor_y = scaleY / 100;
+            bool offsetApplied = false;
+            double lastAbsPosX = 0;
+            double lastAbsPosY = 0;
+
+            oldLine.ResetAll(Grbl.posWork);         // reset coordinates and parser modes
+            ClearDrawingPath();                    // reset path, dimensions
+            foreach (GcodeByLine gcline in gcodeList)
+            {
+                if ((lastFigureNumber > 0) && (gcline.figureNumber != lastFigureNumber))
+                {
+                    if (!gcline.isdistanceModeG90 && offsetApplied)         // correct relative movement of next figure
+                    {
+                        if ((gcline.motionMode == 0) && ((gcline.x != null) || (gcline.y != null)))
+                        {
+                            gcline.x = gcline.actualPos.X - lastAbsPosX;
+                            gcline.y = gcline.actualPos.Y - lastAbsPosY;
+                            offsetApplied = false;
+                        }
+                    }
+                    continue;
+                }
+
+                if (!gcline.ismachineCoordG53)
+                {
+                    if (gcline.isdistanceModeG90)           // absolute move: apply offset to any XY position
+                    {
+                        if (gcline.x != null)
+                            gcline.x = gcline.x * factor_x - centerOfFigure.X * (factor_x - 1);
+                        if (gcline.y != null)
+                            gcline.y = gcline.y * factor_y - centerOfFigure.Y * (factor_y - 1);
+                    }
+                    else
+                    {   //if (!offsetApplied)                 // relative move: apply offset only once
+                        if ((gcline.motionMode == 0) && !offsetApplied)
+                        {
+                            if (gcline.x != null)
+                                gcline.x -= (centerOfFigure.X - gcline.actualPos.X) * (factor_x - 1);
+                            if (gcline.y != null)
+                                gcline.y -= (centerOfFigure.Y - gcline.actualPos.Y) * (factor_y - 1);
+                            if ((gcline.x != null) && (gcline.y != null))
+                                offsetApplied = true;
+                        }
+                        else
+                        {
+                            if (gcline.x != null)
+                                gcline.x *= factor_x;
+                            if (gcline.y != null)
+                                gcline.y *= factor_y;
+                        }
+                        lastAbsPosX = gcline.actualPos.X * factor_x - centerOfFigure.X * (factor_x - 1);
+                        lastAbsPosY = gcline.actualPos.Y * factor_y - centerOfFigure.Y * (factor_y - 1);
+                    }
+
+                    if (gcline.i != null)
+                        gcline.i *= factor_x;
+                    if (gcline.j != null)
+                        gcline.j *= factor_y;
+
+                    CalcAbsPosition(gcline, oldLine);
+                    oldLine = new GcodeByLine(gcline);   // get copy of newLine
+                }
+            }
+            pathBackground.Reset();
+            return CreateGCodeProg();
+        }
+
+        public static string TransformGCodeOffset(double tx, double ty, Translate shiftToZero)
+        {
+            Logger.Debug("Transform X: {0}, Y: {1}, Offset: {2}", tx, ty, shiftToZero);
+            if (gcodeList == null) return "";
+            if ((lastFigureNumber <= 0) || (!(shiftToZero == Translate.None)))
+            { pathMarkSelection.Reset(); lastFigureNumber = -1; }
+            double offsetX = 0;
+            double offsetY = 0;
+            bool offsetApplied = false;
+            bool noInsertNeeded = false;
+
+            oldLine.ResetAll(Grbl.posWork);         // reset coordinates and parser modes
+
+            GetTransaltionOffset(ref offsetX, ref offsetY, tx, ty, shiftToZero);
+
+            if (modal.containsG91)    // relative move: insert rapid movement before pen down, to be able applying offset
+            {
+                newLine.ResetAll();
+                int i, k;
+                bool foundG91 = false;
+                for (i = 0; i < gcodeList.Count; i++)       // find first relative move
+                {
+                    if ((!gcodeList[i].isdistanceModeG90) && (!gcodeList[i].isSubroutine) && (gcodeList[i].motionMode == 0) && (gcodeList[i].z != null))
+                    { foundG91 = true; break; }
+                }
+                if (foundG91)
+                {
+                    for (k = i + 1; k < gcodeList.Count; k++)   // find G0 x y
+                    {
+                        if ((gcodeList[k].motionMode == 0) && (gcodeList[k].x != null) && (gcodeList[k].y != null))
+                        { noInsertNeeded = true; break; }
+                        if (gcodeList[k].motionMode > 0)
+                            break;
+                    }
+                    if (!noInsertNeeded)
+                    {
+                        if ((gcodeList[i + 1].motionMode != 0) || ((gcodeList[i + 1].motionMode == 0) && ((gcodeList[i + 1].x == null) || (gcodeList[i + 1].y == null))))
+                        {
+                            if ((!noInsertNeeded) && (!gcodeList[i + 1].ismachineCoordG53))
+                            {
+                                ModalGroup tmp = new ModalGroup();
+                                newLine.ParseLine(i, "G0 X0 Y0 (Insert offset movement)", ref tmp);
+                                gcodeList.Insert(i + 1, newLine);
+                            }
+                        }
+                    }
+                }
+            }
+            bool hide_code = false; ;
+            foreach (GcodeByLine gcline in gcodeList)
+            {
+                if (gcline.codeLine.Contains("%START_HIDECODE")) { hide_code = true; }
+                if (gcline.codeLine.Contains("%STOP_HIDECODE")) { hide_code = false; }
+                if ((!hide_code) && (!gcline.isSubroutine) && (!gcline.ismachineCoordG53) && (gcline.codeLine.IndexOf("(Setup - GCode") < 1)) // ignore coordinates from setup footer
+                {
+                    if ((lastFigureNumber > 0) && (gcline.figureNumber != lastFigureNumber))    // 2019-11-30
+                    { continue; }
+
+                    if (gcline.isdistanceModeG90)           // absolute move: apply offset to any XY position
+                    {
+                        if (gcline.x != null)
+                            gcline.x -= offsetX;      // apply offset
+                        if (gcline.y != null)
+                            gcline.y -= offsetY;      // apply offset
+                    }
+                    else
+                    {
+                        if (!offsetApplied)                 // relative move: apply offset only once
+                        {
+                            if (gcline.motionMode == 0)
+                            {
+                                gcline.x -= offsetX;
+                                gcline.y -= offsetY;
+                                if ((gcline.x != null) && (gcline.y != null))
+                                    offsetApplied = true;
+                            }
+                        }
+                    }
+                    CalcAbsPosition(gcline, oldLine);
+                    oldLine = new GcodeByLine(gcline);   // get copy of newLine
+                }
+            }
+            pathBackground.Reset();
+            return CreateGCodeProg();
+        }
+        private static void GetTransaltionOffset(ref double offsetX, ref double offsetY, double tx, double ty, Translate shiftToZero)
+        {
+            if (shiftToZero == Translate.Offset1) { offsetX = tx + xyzSize.minx; offsetY = ty + xyzSize.miny + xyzSize.dimy; }
+            if (shiftToZero == Translate.Offset2) { offsetX = tx + xyzSize.minx + xyzSize.dimx / 2; offsetY = ty + xyzSize.miny + xyzSize.dimy; }
+            if (shiftToZero == Translate.Offset3) { offsetX = tx + xyzSize.minx + xyzSize.dimx; offsetY = ty + xyzSize.miny + xyzSize.dimy; }
+            if (shiftToZero == Translate.Offset4) { offsetX = tx + xyzSize.minx; offsetY = ty + xyzSize.miny + xyzSize.dimy / 2; }
+            if (shiftToZero == Translate.Offset5) { offsetX = tx + xyzSize.minx + xyzSize.dimx / 2; offsetY = ty + xyzSize.miny + xyzSize.dimy / 2; }
+            if (shiftToZero == Translate.Offset6) { offsetX = tx + xyzSize.minx + xyzSize.dimx; offsetY = ty + xyzSize.miny + xyzSize.dimy / 2; }
+            if (shiftToZero == Translate.Offset7) { offsetX = tx + xyzSize.minx; offsetY = ty + xyzSize.miny; }
+            if (shiftToZero == Translate.Offset8) { offsetX = tx + xyzSize.minx + xyzSize.dimx / 2; offsetY = ty + xyzSize.miny; }
+            if (shiftToZero == Translate.Offset9) { offsetX = tx + xyzSize.minx + xyzSize.dimx; offsetY = ty + xyzSize.miny; }
+            if (shiftToZero == Translate.None) { offsetX = tx; offsetY = ty; }
         }
 
         public static string TransformGCodeRadiusCorrection(double radius)
@@ -349,8 +605,8 @@ namespace GrblPlotter
             if (isArc && !isFullCircle)   // replace arc by line, if start and end-point are too close
             {
                 double dist = offset[0].DistanceTo(offset[1]);
-           //     double a1 = offset[0].AngleTo(offset[1]);
-          //      double a2 = ((XyPoint)p1).AngleTo((XyPoint)p2);
+                //     double a1 = offset[0].AngleTo(offset[1]);
+                //      double a2 = ((XyPoint)p1).AngleTo((XyPoint)p2);
                 if (dist < 0.1)
                 {
                     gcodeList[act].motionMode = 1;
@@ -424,7 +680,7 @@ namespace GrblPlotter
             private static readonly bool logenable = ((uint)Properties.Settings.Default.importLoggerSettings & 32) > 0;
 
             // get two connected lines and calc offsetted points
-			// P0 start of 1st line, P1 end of first / start of 2nd line, P2 end of 2nd line
+            // P0 start of 1st line, P1 end of first / start of 2nd line, P2 end of 2nd line
             internal static int GetPointOffsets(ref XyPoint[] offset, XyArcPoint P0, XyArcPoint P1, XyArcPoint P2, double distance, bool isEnd)
             {
                 XyPoint[] S1off = new XyPoint[2];
@@ -466,7 +722,7 @@ namespace GrblPlotter
                 if (P2.mode <= 1)   // is a line
                 {
                     a2 = GetAlphaLine(P1, P2);
-            //        a3 = a2;
+                    //        a3 = a2;
                     CalcOffsetLine(ref S2off, P1, P2, a2 + Math.PI / 2, distance); // offset by 90°
                 }
                 else
@@ -531,7 +787,7 @@ namespace GrblPlotter
                     else
                     {
                         double m = ((S2off[0].X - S1off[0].X) * (S2off[0].Y - S2off[1].Y) - (S2off[0].X - S2off[1].X) * (S2off[0].Y - S1off[0].Y)) / d;
-            //            double n = ((S1off[1].X - S1off[0].X) * (S2off[0].X - S1off[0].X) - (S2off[0].Y - S1off[0].Y) * (S1off[1].Y - S1off[0].Y)) / d;
+                        //            double n = ((S1off[1].X - S1off[0].X) * (S2off[0].X - S1off[0].X) - (S2off[0].Y - S1off[0].Y) * (S1off[1].Y - S1off[0].Y)) / d;
                         offset[1].X = S1off[0].X + m * (S1off[1].X - S1off[0].X);
                         offset[1].Y = S1off[0].Y + m * (S1off[1].Y - S1off[0].Y);
                         offset[2] = offset[1];
@@ -574,7 +830,7 @@ namespace GrblPlotter
                     {
                         double c = Math.Sqrt(dx * dx + dy * dy);
                         double a = (newRadius2 * newRadius2 - newRadius1 * newRadius1 - c * c) / (-2 * c);
-              //          double m = dy / dx;
+                        //          double m = dy / dx;
                         double angle = GetAlphaCenterToCenter(P1, P2);
                         XyPoint aP = CalcOffsetPoint(new XyPoint(P1.CX, P1.CY), angle, a);
                         angle += Math.PI / 2;
@@ -731,8 +987,8 @@ namespace GrblPlotter
             }
             private static double GetA2minusB2(double a, double b)
             { return (a * a - b * b); }
-       //     private static double getRoot(double radius, double b)
-      //      { return Math.Sqrt(radius * radius - b * b); }
+            //     private static double getRoot(double radius, double b)
+            //      { return Math.Sqrt(radius * radius - b * b); }
 
             private static double GetAlphaLine(XyArcPoint P1, XyArcPoint P2)
             { return GetAlpha(P1.X, P1.Y, P2.X, P2.Y); }

@@ -3038,4 +3038,22 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
     <value>لا يوجد منحنى</value>
   </data>
+  <data name="btnColorDimension.Text" xml:space="preserve">
+    <value>البعد</value>
+  </data>
+  <data name="btnColorBackgroundPath.Text" xml:space="preserve">
+    <value>مسار المعلومات</value>
+  </data>
+  <data name="checkBox9.Text" xml:space="preserve">
+    <value>احفظ G-Code كـ unicode UTF-16 (وإلا ASCII)</value>
+  </data>
+  <data name="LblImportGraphicDevelopNotchDistance.Text" xml:space="preserve">
+    <value>دقيقة. المسافة من الشق إلى الشق في المنحنيات</value>
+  </data>
+  <data name="LblCameraFiducial.Text" xml:space="preserve">
+    <value>اسم الطبقة الرسومية أو الشكل للائتمانات</value>
+  </data>
+  <data name="groupBox23.Text" xml:space="preserve">
+    <value>إيمانيات</value>
+  </data>
 </root>

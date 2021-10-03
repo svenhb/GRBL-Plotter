@@ -1000,7 +1000,7 @@ namespace GrblPlotter
                     }
                     else
                     {
-                        AddToLog("!!! Port is closed !!!");
+                        AddToLog(line + " !!! Port is closed !!! ");
                         ResetStreaming();   // ALARM
                         break;
                     }

@@ -112,6 +112,8 @@ namespace GrblPlotter
 
             //   lvCustomButtons.Items[0].Selected = true;
             SetButtonColors(btnColorBackground, Properties.Settings.Default.gui2DColorBackground);
+            SetButtonColors(btnColorBackgroundPath, Properties.Settings.Default.gui2DColorBackgroundPath);
+            SetButtonColors(btnColorDimension, Properties.Settings.Default.gui2DColorDimension);
             SetButtonColors(btnColorRuler, Properties.Settings.Default.gui2DColorRuler);
             SetButtonColors(btnColorPenUp, Properties.Settings.Default.gui2DColorPenUp);
             SetButtonColors(btnColorPenDown, Properties.Settings.Default.gui2DColorPenDown);
@@ -177,6 +179,9 @@ namespace GrblPlotter
                 rBImportGraphicDevelopFeedX.Checked = true;
             else
                 rBImportGraphicDevelopFeedY.Checked = true;
+
+            NudImportGraphicDevelopNotchDistance.Enabled = !Properties.Settings.Default.importGraphicDevelopmentNoCurve;
+            LblImportGraphicDevelopNotchDistance.Enabled = !Properties.Settings.Default.importGraphicDevelopmentNoCurve;
 
             lblFilePath.Text = Datapath.AppDataFolder;
 
@@ -254,6 +259,10 @@ namespace GrblPlotter
 
         private void BtnColorBackground_Click(object sender, EventArgs e)
         { ApplyColor(btnColorBackground, "gui2DColorBackground"); }
+        private void BtnColorBackgroundPath_Click(object sender, EventArgs e)
+        { ApplyColor(btnColorBackgroundPath, "gui2DColorBackgroundPath"); }
+        private void BtnColorDimension_Click(object sender, EventArgs e)
+        { ApplyColor(btnColorDimension, "gui2DColorDimension"); }
         private void BtnColorRuler_Click(object sender, EventArgs e)
         { ApplyColor(btnColorRuler, "gui2DColorRuler"); }
         private void BtnColorPenUp_Click(object sender, EventArgs e)
@@ -517,6 +526,8 @@ namespace GrblPlotter
 
         private void SetLabelParameterSet(int lblSetIndex, string txt)
         {
+            if (txt.IndexOf('|') < 1)
+                txt = "";
             if (lblSetIndex == 1) { tBShapeSet1.Text = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
             if (lblSetIndex == 2) { tBShapeSet2.Text = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
             if (lblSetIndex == 3) { tBShapeSet3.Text = (txt.Length == 0) ? "not set" : txt.Substring(0, txt.IndexOf('|')); }
@@ -1599,6 +1610,12 @@ namespace GrblPlotter
                 gBDevelop.BackColor = Color.Yellow;
             else
                 gBDevelop.BackColor = Color.WhiteSmoke;
+        }
+
+        private void CbImportGraphicDevelopNoCurve_CheckedChanged(object sender, EventArgs e)
+        {
+            NudImportGraphicDevelopNotchDistance.Enabled = !CbImportGraphicDevelopNoCurve.Checked;
+            LblImportGraphicDevelopNotchDistance.Enabled = !CbImportGraphicDevelopNoCurve.Checked;
         }
     }
 }

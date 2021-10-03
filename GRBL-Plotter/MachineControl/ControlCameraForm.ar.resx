@@ -151,10 +151,7 @@
     <value>الة تصوير</value>
   </data>
   <data name="btnCamCoordTool.Text" xml:space="preserve">
-    <value>أداة التنسيق.</value>
-  </data>
-  <data name="teachZeroPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Set XY = 0؛ 0 مع مؤشر الماوس والنقر الأيسر</value>
+    <value>تنسيق أداة G54.</value>
   </data>
   <data name="toolStripTextBox1.ToolTipText" xml:space="preserve">
     <value>تدوير صورة الفيديو - أدخل زاوية</value>
@@ -174,14 +171,8 @@
 3) تحرك حتى علامة في وسط عرض الكاميرا
 4) تعليم الموقف الفعلي كما إزاحة</value>
   </data>
-  <data name="setZeroToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>ضبط تنسيق الصفر مع إزاحة الكاميرا</value>
-  </data>
   <data name="btnCamCoordCam.ToolTip" xml:space="preserve">
     <value>حرك موضع الكاميرا الحالي أسفل الأداة</value>
-  </data>
-  <data name="teachZeroPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>مجموعة XY = 0 ؛ 0</value>
   </data>
   <data name="lblCenterPos.Text" xml:space="preserve">
     <value>لم يتم العثور على الشكل</value>
@@ -213,20 +204,11 @@
   <data name="camSourceToolStripMenuItem.Text" xml:space="preserve">
     <value>مصدر الفيديو</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>إزاحة الكاميرا / الحركة</value>
-  </data>
   <data name="setRotationAngleToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>تدوير صورة الفيديو - أدخل زاوية</value>
   </data>
-  <data name="setZeroToolStripMenuItem.Text" xml:space="preserve">
-    <value>تعيين تنسيق نظام الإزاحة</value>
-  </data>
   <data name="teachToolStripMenuItem.Text" xml:space="preserve">
     <value>تعليم إزاحة الكاميرا</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>الة تصوير</value>
   </data>
   <data name="compensateAngleToolStripMenuItem.Text" xml:space="preserve">
     <value>تعويض زاوية وحجم</value>
@@ -236,7 +218,7 @@
 اضغط على الزر لتحويل G-Code بزاوية مقاسة.</value>
   </data>
   <data name="btnCamCoordCam.Text" xml:space="preserve">
-    <value>كام التنسيق</value>
+    <value>تنسيق الكاميرا G59</value>
   </data>
   <data name="crossHairsToolStripMenuItem.Text" xml:space="preserve">
     <value>الصليب الشعر</value>
@@ -248,13 +230,7 @@
     <value>تعليم الموقف الأدنى</value>
   </data>
   <data name="cBCamCoordMove.Text" xml:space="preserve">
-    <value>تحريك المرحلة</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>قياس</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>محاذاة السيارات</value>
+    <value>مرحلة الانتقال</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>تكبير</value>
@@ -274,10 +250,179 @@
   <data name="camSourceToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>حدد مصدر الكاميرا.</value>
   </data>
-  <data name="moveMarkerToCenterToolStripMenuItem.Text" xml:space="preserve">
-    <value>تعيين نقاط البيع الفعلية. لوضع علامة نقاط البيع.</value>
+  <data name="cameraMountToolStripMenuItem.Text" xml:space="preserve">
+    <value>جبل الكاميرا</value>
   </data>
-  <data name="teachMarkerPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>تعيين XY = موقف ماركر</value>
+  <data name="distortionToolStripMenuItem.Text" xml:space="preserve">
+    <value>تصحيح التشويه</value>
+  </data>
+  <data name="teachRadiusToolStripMenuItem.Text" xml:space="preserve">
+    <value>علم الشعاع</value>
+  </data>
+  <data name="setTeachRadiusToolStripMenuItem.Text" xml:space="preserve">
+    <value>تعيين نصف قطر التدريس</value>
+  </data>
+  <data name="teachScaling2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>تعليم القياس</value>
+  </data>
+  <data name="toolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>تحديد أصل الإحداثيات</value>
+  </data>
+  <data name="textToolStripMenuItem.Text" xml:space="preserve">
+    <value>نص</value>
+  </data>
+  <data name="setToolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>انقر للتعيين</value>
+  </data>
+  <data name="resetAndTeachToolStripMenuItem.Text" xml:space="preserve">
+    <value>إعادة تعيين وتعليم</value>
+  </data>
+  <data name="cBRotateArround0.Text" xml:space="preserve">
+    <value>تدوير حول 0 ؛ 0</value>
+  </data>
+  <data name="simulateCameraToolStripMenuItem.Text" xml:space="preserve">
+    <value>محاكاة الكاميرا</value>
+  </data>
+  <data name="penupPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>مسار القلم</value>
+  </data>
+  <data name="machineLimitsToolStripMenuItem.Text" xml:space="preserve">
+    <value>حدود الماكينة</value>
+  </data>
+  <data name="dimensionToolStripMenuItem.Text" xml:space="preserve">
+    <value>البعد G- كود</value>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>رأي</value>
+  </data>
+  <data name="menuStripCamera.Text" xml:space="preserve">
+    <value>القائمة</value>
+  </data>
+  <data name="lblAngle.Text" xml:space="preserve">
+    <value>0.00 درجة</value>
+  </data>
+  <data name="TbSetPoints.Text" xml:space="preserve">
+    <value>الإحداثيات الإيمانية:</value>
+  </data>
+  <data name="TbSetPoints.ToolTip" xml:space="preserve">
+    <value>الإحداثيات الإيمانية: سيتم استخدام الإحداثيات الأولى والثانية فقط.
+احصل على إحداثيات fiducials من الرسوم المستوردة ، أو اجمعها يدويًا:
+Ctrl- انقر لتحديد ،
+"أ" للإلحاق بالقائمة ،
+"ج" لمسح القائمة.</value>
+  </data>
+  <data name="TbRealPoints.Text" xml:space="preserve">
+    <value>المنسقين المعينين:</value>
+  </data>
+  <data name="TbRealPoints.ToolTip" xml:space="preserve">
+    <value>المنسقين المعينين:
+اجمع النقاط يدويًا:
+انقر مع الضغط على مفتاح Shift لإضافة نقطة ،
+التحول - "ج" لمسح القائمة</value>
+  </data>
+  <data name="btnAutoCenter.ToolTip" xml:space="preserve">
+    <value>أضف موضعًا إلى "النقاط المخصصة" وأداة النقل</value>
+  </data>
+  <data name="GbZoom.Text" xml:space="preserve">
+    <value>الة تصوير</value>
+  </data>
+  <data name="BtnSetOffsetZero.Text" xml:space="preserve">
+    <value>تعيين XY = 0 ؛ 0</value>
+  </data>
+  <data name="BtnSetOffsetMarker.Text" xml:space="preserve">
+    <value>تعيين XY = علامة</value>
+  </data>
+  <data name="GbOffset.Text" xml:space="preserve">
+    <value>حركة / إزاحة الكاميرا</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>انقر Rigth للحصول على نقطة الدوران ، واستمر في الضغط ، ثم حرر الزاوية المرغوبة</value>
+  </data>
+  <data name="CbScale.Text" xml:space="preserve">
+    <value>مقياس أيضا</value>
+  </data>
+  <data name="GbMeasure.Text" xml:space="preserve">
+    <value>قياس الزاوية</value>
+  </data>
+  <data name="BtnStartAutomatic.Text" xml:space="preserve">
+    <value>ابدأ التصحيح الإيماني التلقائي</value>
+  </data>
+  <data name="cBShapeShowFilter.Text" xml:space="preserve">
+    <value>إظهار عوامل التصفية المطبقة</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>مقياس أيضًا عند الدوران</value>
+  </data>
+  <data name="CbUseShapeRecognition.Text" xml:space="preserve">
+    <value>استخدم التعرف على الشكل</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>الوضع التلقائي</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>الشكل القريب من العلامة أحمر</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>يمكن إعداد المرشحات في [الإعداد - سلوك البرنامج - الكاميرا]</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>التعرف على الشكل</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>الوضع اليدوي</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>مقاصة تعويضات</value>
+  </data>
+  <data name="setWork00ToHereToolStripMenuItem.Text" xml:space="preserve">
+    <value>اضبط تنسيق العمل 0 ؛ 0 هنا</value>
+  </data>
+  <data name="FiducialAddCoordinateIn2DViewToolStripMenuItem.Text" xml:space="preserve">
+    <value>إضافة تنسيق إيماني من عرض ثنائي الأبعاد إلى قائمة إيمانية</value>
+  </data>
+  <data name="FiducialRemoveLastToolStripMenuItem.Text" xml:space="preserve">
+    <value>إزالة إيمانية الماضي</value>
+  </data>
+  <data name="FiducialListClearToolStripMenuItem.Text" xml:space="preserve">
+    <value>قائمة إيمانية واضحة</value>
+  </data>
+  <data name="ReferenceAddPointInImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>أضف نقطة مرجعية من الصورة إلى القائمة المعينة</value>
+  </data>
+  <data name="ReferenceRemoveLastPointToolStripMenuItem.Text" xml:space="preserve">
+    <value>إزالة آخر نقطة مرجعية</value>
+  </data>
+  <data name="ReferenceClearListToolStripMenuItem.Text" xml:space="preserve">
+    <value>مسح قائمة النقاط المرجعية (المعينة)</value>
+  </data>
+  <data name="setWork00ToHereToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>يضبط أصل تنسيق العمل إلى الموضع الذي تم النقر فوقه في العرض ثنائي الأبعاد</value>
+  </data>
+  <data name="compensateAngleToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>يطبق الزاوية المميزة باللون الأصفر على كود G.</value>
+  </data>
+  <data name="FiducialAddCoordinateIn2DViewToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>أضف الإحداثيات الموثوقة للموضع الذي تم النقر فوقه ، داخل العرض ثنائي الأبعاد ، إلى القائمة الموثوقة</value>
+  </data>
+  <data name="FiducialRemoveLastToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>إزالة الأخيرة المضافة من القائمة الائتمانية</value>
+  </data>
+  <data name="FiducialListClearToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>قائمة إيمانية واضحة</value>
+  </data>
+  <data name="ReferenceAddPointInImageToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>أضف نقطة مرجعية للموضع الذي تم النقر فوقه ، داخل الصورة ، إلى القائمة المعينة</value>
+  </data>
+  <data name="ReferenceRemoveLastPointToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>إزالة آخر نقطة مرجعية مضافة من القائمة المعينة</value>
+  </data>
+  <data name="ReferenceClearListToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>مسح قائمة النقاط المرجعية (المعينة)</value>
+  </data>
+  <data name="showOverlayGraphicsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>إظهار رسومات التراكب (المسطرة ، مسار القلم ، إلخ.)</value>
+  </data>
+  <data name="setMachinePositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>انقر للحصول على إزاحة آلة grbl في الأصل</value>
   </data>
 </root>

@@ -33,6 +33,7 @@
  * 2021-02-06 add gamePad PointOfViewController0
  * 2021-04-19 add importGCSubPenUpDown
  * 2021-08-08 add GCode conversion - shape development
+ * 2021-09-10 add new properties 2DView colors
 */
 
 using System;
@@ -43,9 +44,6 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
-
-//#pragma warning disable CA1303
-//#pragma warning disable CA1305
 
 namespace GrblPlotter
 {
@@ -264,6 +262,7 @@ namespace GrblPlotter
                 Write("Clipping offset y", setup.importGraphicClipOffsetY.ToString(), section);
                 Write("Clipping", setup.importGraphicClip.ToString(), section);
                 Write("Clipping tile offset", setup.importGraphicClipOffsetApply.ToString(), section);
+                Write("Clipping tile show orig pos", setup.importGraphicClipShowOrigPosition.ToString(), section);
                 Write("Clipping tile command", setup.importGraphicClipGCode.ToString(), section);
                 Write("Clipping tile skip 1st", setup.importGraphicClipSkipCode.ToString(), section);
             }
@@ -500,17 +499,27 @@ namespace GrblPlotter
             Write("A4 Step", setup.guiJoystickAStep4.ToString(), section);
             Write("A5 Step", setup.guiJoystickAStep5.ToString(), section);
 
-            section = "Camera";
-            Write("Index", setup.cameraIndex.ToString(), section);
-            Write("Rotation", setup.cameraRotation.ToString(), section);
+            section = "Camera Fix";
+            Write("Index", setup.cameraIndexFix.ToString(), section);
+            Write("Rotation", setup.cameraRotationFix.ToString(), section);
+            Write("Radius Fix", setup.cameraTeachRadiusFix.ToString(), section);
+            Write("Scaling Fix", setup.cameraScalingFix.ToString(), section);
+            Write("Offset X", setup.cameraZeroFixX.ToString(), section);
+            Write("Offset Y", setup.cameraZeroFixY.ToString(), section);
+
+            section = "Camera Xy";
+            Write("Index", setup.cameraIndexXy.ToString(), section);
+            Write("Rotation", setup.cameraRotationXy.ToString(), section);
             Write("Top Pos", setup.cameraPosTop.ToString(), section);
-            Write("Top Radius", setup.cameraTeachRadiusTop.ToString(), section);
-            Write("Top Scaling", setup.cameraScalingTop.ToString(), section);
+            Write("Top Radius", setup.cameraTeachRadiusXyzTop.ToString(), section);
+            Write("Top Scaling", setup.cameraScalingXyzTop.ToString(), section);
             Write("Bottom Pos", setup.cameraPosBot.ToString(), section);
-            Write("Bottom Radius", setup.cameraTeachRadiusBot.ToString(), section);
-            Write("Bottom Scaling", setup.cameraScalingBot.ToString(), section);
+            Write("Bottom Radius", setup.cameraTeachRadiusXyzBot.ToString(), section);
+            Write("Bottom Scaling", setup.cameraScalingXyzBot.ToString(), section);
             Write("X Tool Offset", setup.cameraToolOffsetX.ToString(), section);
             Write("Y Tool Offset", setup.cameraToolOffsetY.ToString(), section);
+            Write("Radius Xy", setup.cameraTeachRadiusXy.ToString(), section);
+            Write("Scaling Xy", setup.cameraScalingXy.ToString(), section);
 
             section = "GamePad";
             Write("gamePadButtons0", setup.gamePadButtons0.ToString(), section);
@@ -571,6 +580,8 @@ namespace GrblPlotter
             Write("PenDown Color Mode", setup.gui2DColorPenDownModeEnable.ToString(), section);
 
             Write("Color Background", ColorTranslator.ToHtml(setup.gui2DColorBackground), section);
+            Write("Color Background Path", ColorTranslator.ToHtml(setup.gui2DColorBackgroundPath), section);
+            Write("Color Dimension", ColorTranslator.ToHtml(setup.gui2DColorDimension), section);
             Write("Color Ruler", ColorTranslator.ToHtml(setup.gui2DColorRuler), section);
             Write("Color Tool", ColorTranslator.ToHtml(setup.gui2DColorTool), section);
             Write("Color Marker", ColorTranslator.ToHtml(setup.gui2DColorMarker), section);
@@ -804,6 +815,7 @@ namespace GrblPlotter
             if (SetVariable(ref tmpdeci, section, "Clipping offset y")) { setup.importGraphicClipOffsetY = tmpdeci; }
             if (SetVariable(ref tmpbool, section, "Clipping")) { setup.importGraphicClip = tmpbool; }
             if (SetVariable(ref tmpbool, section, "Clipping tile offset")) { setup.importGraphicClipOffsetApply = tmpbool; }
+            if (SetVariable(ref tmpbool, section, "Clipping tile show orig pos")) { setup.importGraphicClipShowOrigPosition = tmpbool; }
             if (SetVariable(ref tmpstr, section, "Clipping tile command")) { setup.importGraphicClipGCode = tmpstr; }
             if (SetVariable(ref tmpbool, section, "Clipping tile skip 1st")) { setup.importGraphicClipSkipCode = tmpbool; }
 
@@ -1067,17 +1079,27 @@ namespace GrblPlotter
             if (SetVariable(ref tmpdeci, section, "A4 Speed")) { setup.guiJoystickASpeed4 = tmpdeci; }
             if (SetVariable(ref tmpdeci, section, "A5 Speed")) { setup.guiJoystickASpeed5 = tmpdeci; }
 
-            section = "Camera";
-            if (SetVariable(ref tmpint, section, "Index")) { setup.cameraIndex = Convert.ToByte(tmpint); }
-            if (SetVariable(ref tmpdouble, section, "Rotation")) { setup.cameraRotation = tmpdouble; }
+            section = "Camera Fix";
+            if (SetVariable(ref tmpint, section, "Index")) { setup.cameraIndexFix = Convert.ToByte(tmpint); }
+            if (SetVariable(ref tmpdouble, section, "Rotation")) { setup.cameraRotationFix = tmpdouble; }
+            if (SetVariable(ref tmpdouble, section, "Radius Fix")) { setup.cameraTeachRadiusFix = tmpdouble; }
+            if (SetVariable(ref tmpdouble, section, "Scaling Fix")) { setup.cameraScalingFix = tmpdouble; }
+            if (SetVariable(ref tmpdouble, section, "Offset X")) { setup.cameraZeroFixX = tmpdouble; }
+            if (SetVariable(ref tmpdouble, section, "Offset Y")) { setup.cameraZeroFixY = tmpdouble; }
+
+            section = "Camera Xy";
+            if (SetVariable(ref tmpint, section, "Index")) { setup.cameraIndexXy = Convert.ToByte(tmpint); }
+            if (SetVariable(ref tmpdouble, section, "Rotation")) { setup.cameraRotationXy = tmpdouble; }
             if (SetVariable(ref tmpdouble, section, "Top Pos")) { setup.cameraPosTop = tmpdouble; }
-            if (SetVariable(ref tmpdouble, section, "Top Radius")) { setup.cameraTeachRadiusTop = tmpdouble; }
-            if (SetVariable(ref tmpdouble, section, "Top Scaling")) { setup.cameraScalingTop = tmpdouble; }
+            if (SetVariable(ref tmpdouble, section, "Top Radius")) { setup.cameraTeachRadiusXyzTop = tmpdouble; }
+            if (SetVariable(ref tmpdouble, section, "Top Scaling")) { setup.cameraScalingXyzTop = tmpdouble; }
             if (SetVariable(ref tmpdouble, section, "Bottom Pos")) { setup.cameraPosBot = tmpdouble; }
-            if (SetVariable(ref tmpdouble, section, "Bottom Radius")) { setup.cameraTeachRadiusBot = tmpdouble; }
-            if (SetVariable(ref tmpdouble, section, "Bottom Scaling")) { setup.cameraScalingBot = tmpdouble; }
+            if (SetVariable(ref tmpdouble, section, "Bottom Radius")) { setup.cameraTeachRadiusXyzBot = tmpdouble; }
+            if (SetVariable(ref tmpdouble, section, "Bottom Scaling")) { setup.cameraScalingXyzBot = tmpdouble; }
             if (SetVariable(ref tmpdouble, section, "X Tool Offset")) { setup.cameraToolOffsetX = tmpdouble; }
             if (SetVariable(ref tmpdouble, section, "Y Tool Offset")) { setup.cameraToolOffsetY = tmpdouble; }
+            if (SetVariable(ref tmpdouble, section, "Radius Xy")) { setup.cameraTeachRadiusXy = tmpdouble; }
+            if (SetVariable(ref tmpdouble, section, "Scaling Xy")) { setup.cameraScalingXy = tmpdouble; }
 
             section = "GamePad";
             if (SetVariable(ref tmpstr, section, "gamePadButtons0")) { setup.gamePadButtons0 = tmpstr; }
@@ -1136,6 +1158,8 @@ namespace GrblPlotter
             if (SetVariable(ref tmpdeci, section, "Width Simulation")) { setup.gui2DWidthSimulation = tmpdeci; }
 
             if (SetVariable(ref tmpcolor, section, "Color Background")) { setup.gui2DColorBackground = tmpcolor; }
+            if (SetVariable(ref tmpcolor, section, "Color Background Path")) { setup.gui2DColorBackgroundPath = tmpcolor; }
+            if (SetVariable(ref tmpcolor, section, "Color Dimension")) { setup.gui2DColorDimension = tmpcolor; }
             if (SetVariable(ref tmpcolor, section, "Color Ruler")) { setup.gui2DColorRuler = tmpcolor; }
             if (SetVariable(ref tmpcolor, section, "Color Tool")) { setup.gui2DColorTool = tmpcolor; }
             if (SetVariable(ref tmpcolor, section, "Color Marker")) { setup.gui2DColorMarker = tmpcolor; }

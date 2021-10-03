@@ -151,10 +151,7 @@
     <value>カメラ</value>
   </data>
   <data name="btnCamCoordTool.Text" xml:space="preserve">
-    <value>ツール座標。</value>
-  </data>
-  <data name="teachZeroPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>XY = 0に設定します。 マウスポインターと左クリックで0</value>
+    <value>G54ツール座標。</value>
   </data>
   <data name="toolStripTextBox1.ToolTipText" xml:space="preserve">
     <value>ビデオ画像を回転-角度を入力</value>
@@ -174,14 +171,8 @@
 3）マーカーがカメラビューの中央に来るまで移動する
 4）実際の位置をオフセットとして教える</value>
   </data>
-  <data name="setZeroToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>カメラオフセットで座標ゼロを設定</value>
-  </data>
   <data name="btnCamCoordCam.ToolTip" xml:space="preserve">
     <value>現在のカメラ位置をツールの下に移動</value>
-  </data>
-  <data name="teachZeroPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>XY = 0; 0に設定</value>
   </data>
   <data name="lblCenterPos.Text" xml:space="preserve">
     <value>形状が見つかりません</value>
@@ -213,20 +204,11 @@
   <data name="camSourceToolStripMenuItem.Text" xml:space="preserve">
     <value>ビデオソース</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>カメラのオフセット/動き</value>
-  </data>
   <data name="setRotationAngleToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>ビデオ画像を回転-角度を入力</value>
   </data>
-  <data name="setZeroToolStripMenuItem.Text" xml:space="preserve">
-    <value>座標系オフセットを設定</value>
-  </data>
   <data name="teachToolStripMenuItem.Text" xml:space="preserve">
     <value>カメラオフセットを教える</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>カメラ</value>
   </data>
   <data name="compensateAngleToolStripMenuItem.Text" xml:space="preserve">
     <value>角度とスケールを補正する</value>
@@ -236,7 +218,7 @@
 ボタンを押して、測定された角度でGコードを変換します。</value>
   </data>
   <data name="btnCamCoordCam.Text" xml:space="preserve">
-    <value>カムコーデ</value>
+    <value>G59カメラ座標</value>
   </data>
   <data name="crossHairsToolStripMenuItem.Text" xml:space="preserve">
     <value>十字線</value>
@@ -248,13 +230,7 @@
     <value>低い位置を教える</value>
   </data>
   <data name="cBCamCoordMove.Text" xml:space="preserve">
-    <value>移動ステージ</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>測定する</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>オートアライメント</value>
+    <value>ステージを移動</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>ズーム</value>
@@ -274,10 +250,179 @@
   <data name="camSourceToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>カメラソースを選択します。</value>
   </data>
-  <data name="moveMarkerToCenterToolStripMenuItem.Text" xml:space="preserve">
-    <value>実際の位置を設定します。 マーカー位置へ</value>
+  <data name="cameraMountToolStripMenuItem.Text" xml:space="preserve">
+    <value>カメラマウント</value>
   </data>
-  <data name="teachMarkerPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>XY =マーカーの位置を設定</value>
+  <data name="distortionToolStripMenuItem.Text" xml:space="preserve">
+    <value>歪み補正</value>
+  </data>
+  <data name="teachRadiusToolStripMenuItem.Text" xml:space="preserve">
+    <value>半径を教える</value>
+  </data>
+  <data name="setTeachRadiusToolStripMenuItem.Text" xml:space="preserve">
+    <value>ティーチ半径を設定する</value>
+  </data>
+  <data name="teachScaling2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>スケーリングを教える</value>
+  </data>
+  <data name="toolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>座標orignを設定します</value>
+  </data>
+  <data name="textToolStripMenuItem.Text" xml:space="preserve">
+    <value>文章</value>
+  </data>
+  <data name="setToolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>クリックして設定</value>
+  </data>
+  <data name="resetAndTeachToolStripMenuItem.Text" xml:space="preserve">
+    <value>リセットして教える</value>
+  </data>
+  <data name="cBRotateArround0.Text" xml:space="preserve">
+    <value>0; 0を中心に回転します</value>
+  </data>
+  <data name="simulateCameraToolStripMenuItem.Text" xml:space="preserve">
+    <value>カメラをシミュレートする</value>
+  </data>
+  <data name="penupPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>ペンアップパス</value>
+  </data>
+  <data name="machineLimitsToolStripMenuItem.Text" xml:space="preserve">
+    <value>機械の制限</value>
+  </data>
+  <data name="dimensionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Gコードの寸法</value>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>意見</value>
+  </data>
+  <data name="menuStripCamera.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="lblAngle.Text" xml:space="preserve">
+    <value>0.00°</value>
+  </data>
+  <data name="TbSetPoints.Text" xml:space="preserve">
+    <value>基準座標：</value>
+  </data>
+  <data name="TbSetPoints.ToolTip" xml:space="preserve">
+    <value>基準座標：1番目と2番目のみが使用されます。
+インポートしたグラフィックから基準座標を取得するか、手動で収集します。
+Ctrl-クリックしてマーク、
+リストに追加する「a」、
+リストをクリアするには「c」。</value>
+  </data>
+  <data name="TbRealPoints.Text" xml:space="preserve">
+    <value>割り当てられたコーディネーター：</value>
+  </data>
+  <data name="TbRealPoints.ToolTip" xml:space="preserve">
+    <value>割り当てられたコーディネーター：
+手動でポイントを収集します。
+Shiftキーを押しながらクリックしてポイントを追加し、
+Shift- "c"でリストをクリア</value>
+  </data>
+  <data name="btnAutoCenter.ToolTip" xml:space="preserve">
+    <value>「割り当てられたポイント」に位置を追加し、ツールを移動します</value>
+  </data>
+  <data name="GbZoom.Text" xml:space="preserve">
+    <value>カメラ</value>
+  </data>
+  <data name="BtnSetOffsetZero.Text" xml:space="preserve">
+    <value>XY = 0; 0に設定します</value>
+  </data>
+  <data name="BtnSetOffsetMarker.Text" xml:space="preserve">
+    <value>XY =マーカーを設定します</value>
+  </data>
+  <data name="GbOffset.Text" xml:space="preserve">
+    <value>カメラのオフセット/動き</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>回転点を右クリックし、押し続け、希望の角度で放します</value>
+  </data>
+  <data name="CbScale.Text" xml:space="preserve">
+    <value>また、スケール</value>
+  </data>
+  <data name="GbMeasure.Text" xml:space="preserve">
+    <value>角度を測定する</value>
+  </data>
+  <data name="BtnStartAutomatic.Text" xml:space="preserve">
+    <value>自動基準修正を開始します</value>
+  </data>
+  <data name="cBShapeShowFilter.Text" xml:space="preserve">
+    <value>適用されたフィルターを表示する</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>また、回転に合わせて拡大縮小します</value>
+  </data>
+  <data name="CbUseShapeRecognition.Text" xml:space="preserve">
+    <value>形状認識を使用する</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>自動モード</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>マーカーに近い形状は赤</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>フィルタは[設定-プログラムの動作-カメラ]で設定できます</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>形状認識</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>手動モード</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>オフセットを設定する</value>
+  </data>
+  <data name="setWork00ToHereToolStripMenuItem.Text" xml:space="preserve">
+    <value>ここで作業座標0; 0を設定します</value>
+  </data>
+  <data name="FiducialAddCoordinateIn2DViewToolStripMenuItem.Text" xml:space="preserve">
+    <value>2Dビューから基準リストに基準座標を追加します</value>
+  </data>
+  <data name="FiducialRemoveLastToolStripMenuItem.Text" xml:space="preserve">
+    <value>最後の基準を削除します</value>
+  </data>
+  <data name="FiducialListClearToolStripMenuItem.Text" xml:space="preserve">
+    <value>基準リストをクリアする</value>
+  </data>
+  <data name="ReferenceAddPointInImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>画像から割り当てられたリストに参照点を追加します</value>
+  </data>
+  <data name="ReferenceRemoveLastPointToolStripMenuItem.Text" xml:space="preserve">
+    <value>最後の参照点を削除します</value>
+  </data>
+  <data name="ReferenceClearListToolStripMenuItem.Text" xml:space="preserve">
+    <value>基準点（割り当て済み）リストをクリアする</value>
+  </data>
+  <data name="setWork00ToHereToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>作業座標の原点を2Dビューでクリックした位置に設定します</value>
+  </data>
+  <data name="compensateAngleToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>黄色でマークされた角度をGコードに適用します</value>
+  </data>
+  <data name="FiducialAddCoordinateIn2DViewToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>2Dビュー内のクリックされた位置の基準座標を基準リストに追加します</value>
+  </data>
+  <data name="FiducialRemoveLastToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>最後に追加した基準を基準リストから削除します</value>
+  </data>
+  <data name="FiducialListClearToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>基準リストをクリアする</value>
+  </data>
+  <data name="ReferenceAddPointInImageToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>画像内のクリックされた位置の参照点を割り当てられたリストに追加します</value>
+  </data>
+  <data name="ReferenceRemoveLastPointToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>割り当てられたリストから最後に追加された参照点を削除します</value>
+  </data>
+  <data name="ReferenceClearListToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>基準点（割り当て済み）リストをクリアする</value>
+  </data>
+  <data name="showOverlayGraphicsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>オーバーレイグラフィックを表示する（ルーラー、ペンダウンパスなど）</value>
+  </data>
+  <data name="setMachinePositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>クリックして、原点でのgrblマシンオフセットを取得します</value>
   </data>
 </root>

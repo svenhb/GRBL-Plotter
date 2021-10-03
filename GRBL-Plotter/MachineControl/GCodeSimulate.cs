@@ -22,6 +22,7 @@
 /* 
  * 2021-07-09 split code from GCodeTransform
  * 2021-09-04 new struct to store simulation data: SimuCoordByLine in simuList
+ * 2021-09-07 take care of tile-offset in ProcessedPathDraw
  */
 
 using System;
@@ -73,7 +74,7 @@ namespace GrblPlotter
                 distance = 0; dt = 50; posZ = 0; posA = 0;
                 remainingStep = stepWidth = 10;
                 lastPosMarker = posXY = Grbl.PosMarker = new XyzPoint();
-                 Grbl.PosMarkerAngle = 0;//posAngle =
+                Grbl.PosMarkerAngle = 0;//posAngle =
                 codeNext = new SimuCoordByLine(simuList[lineNr]);
                 CreateMarkerPath();
                 isTangentialZ = (tangentialAxisName == "Z");
@@ -81,12 +82,8 @@ namespace GrblPlotter
                 MarkSelectedFigure(-1);
                 isPenDownOld = isPenDownNow = false;
             }
-            /*       public static void setDt(int tmp)
-                   { dt = tmp; }*/
             public static double GetZ()
             { return posZ; }
-            /*     public static double getA()
-                 { return posA; }*/
             internal static int Next(ref XyzPoint coord)
             {
                 if (isIntermediate)
@@ -373,6 +370,8 @@ namespace GrblPlotter
             private static int lastLine = 0;
             private static int maxLine = 0;
             private static byte lastMode = 0;
+			public static System.Windows.Point offset2DView;
+            public static System.Windows.Point offset2DViewOld;
 
             private static int indexLastSucess = 0;
 
@@ -381,11 +380,20 @@ namespace GrblPlotter
                 Simulation.pathSimulation.Reset();
                 lastLine = maxLine = indexLastSucess = 0;//currentLine
                 lastPos = Grbl.posWork;
+                VisuGCode.ProcessedPath.offset2DView = new System.Windows.Point();
             }
 
             public static void ProcessedPathLine(int line)		// 
             {
                 maxLine = line;
+      /*          if (line < simuList.Count)
+                {
+                    offset2DView = new System.Windows.Point(simuList[line].actualOffset.X, simuList[line].actualOffset.Y);
+                    //         Logger.Trace("ProcessedPathLine line:{0} x:{1}  y:{2}", line, offset2DView.X, offset2DView.Y);
+                    if (!offset2DView.Equals(offset2DViewOld))
+                        Simulation.pathSimulation.Reset();
+                    offset2DViewOld = offset2DView;
+                }*/
             }
 
             private static int GetNextXYIndex(int start)
@@ -409,6 +417,9 @@ namespace GrblPlotter
                 if ((simuList == null) || (simuList.Count == 0) || ((maxLine + 1) >= simuList.Count))
                     return;
 
+                XyzPoint newPosOffset = new XyzPoint(newPos);
+                XyzPoint newPosOriginal = new XyzPoint(newPos);
+   //             XyzPoint newPosOffsetPaint = new XyzPoint(newPos);
                 for (iStart = lastLine; iStart < maxLine; iStart++)
                 {
                     iEnd = iStart + 1;
@@ -419,22 +430,28 @@ namespace GrblPlotter
                     if ((lastMode == 0) && (simuList[iStart].motionMode > 0))
                     { Simulation.pathSimulation.StartFigure(); }
 
+                    newPosOffset.X = newPos.X + simuList[iEnd].actualOffset.X;
+                    newPosOffset.Y = newPos.Y + simuList[iEnd].actualOffset.Y;
+        //            newPosOriginal.X = newPos.X;
+        //            newPosOriginal.Y = newPos.Y;
+
                     if (simuList[iEnd].motionMode > 1)
                     {
                         ArcProperties arcMove1, arcMove2;
                         arcMove1 = GcodeMath.GetArcMoveProperties((XyPoint)simuList[iStart].actualPos, (XyPoint)simuList[iEnd].actualPos, simuList[iEnd].i, simuList[iEnd].j, (simuList[iEnd].motionMode == 2));
-                        arcMove2 = GcodeMath.GetArcMoveProperties((XyPoint)simuList[iStart].actualPos, (XyPoint)newPos, simuList[iEnd].i, simuList[iEnd].j, (simuList[iEnd].motionMode == 2));
-                        onTrack = PointOnArc(arcMove1, arcMove2, ToPointF(newPos));
+                        arcMove2 = GcodeMath.GetArcMoveProperties((XyPoint)simuList[iStart].actualPos, (XyPoint)newPosOffset, simuList[iEnd].i, simuList[iEnd].j, (simuList[iEnd].motionMode == 2));
+                        onTrack = PointOnArc(arcMove1, arcMove2, ToPointF(newPosOffset));
                     }
                     else if (simuList[iEnd].motionMode == 1)
                     {
-                        onTrack = PointOnLine(ToPointF(simuList[iStart].actualPos), ToPointF(simuList[iEnd].actualPos), ToPointF(newPos));
+                        onTrack = PointOnLine(ToPointF(simuList[iStart].actualPos), ToPointF(simuList[iEnd].actualPos), ToPointF(newPosOffset));
                     }
 
                     if (onTrack)
                     {   // newPos is on line towards next GCode command
                         indexLastSucess = iStart;
-                        for (int k = lastLine + 1; k < iEnd; k++)
+      //                  for (int k = lastLine + 1; k < iEnd; k++)
+                        for (int k = lastLine + 1; k < maxLine; k++)	// 2021-09-21
                         {
                             if ((lastGCodePos.X == simuList[k].actualPos.X) && (lastGCodePos.Y == simuList[k].actualPos.Y) && (simuList[k].motionMode < 2))
                             {
@@ -472,14 +489,23 @@ namespace GrblPlotter
 
                         if (simuList[iEnd].motionMode == 1)
                         {
-                            Simulation.pathSimulation.AddLine(ToPointF(lastGCodePos), ToPointF(newPos));
+                    //        Simulation.pathSimulation.AddLine(ToPointF(lastGCodePos), ToPointF(newPosOffset));
+                            Simulation.pathSimulation.AddLine(ToPointF(lastGCodePos), ToPointF(newPosOriginal));
                         }
                         else if (simuList[iEnd].motionMode > 1)
                         {
-                            Simulation.pathSimulation.AddLine(ToPointF(lastPos), ToPointF(newPos));
-                        }
+                            Simulation.pathSimulation.AddLine(ToPointF(lastPos), ToPointF(newPosOriginal));
+                    //        Simulation.pathSimulation.AddLine(ToPointF(lastPos), ToPointF(newPosOffset));
+                       }
                         lastLine = iStart;		//200720
                         lastMode = simuList[iStart].motionMode;
+                        //		offset2DView = ToPointF(simuList[iStart].actualOffset);
+                        offset2DView = new System.Windows.Point(simuList[iStart].actualOffset.X, simuList[iStart].actualOffset.Y);
+                        //         Logger.Trace("ProcessedPathLine line:{0} x:{1}  y:{2}", line, offset2DView.X, offset2DView.Y);
+                        if (!offset2DView.Equals(offset2DViewOld))
+                            Simulation.pathSimulation.Reset();
+                        offset2DViewOld = offset2DView;
+
                         lastPos = newPos;
                         indexLastSucess = iStart;
                         break;

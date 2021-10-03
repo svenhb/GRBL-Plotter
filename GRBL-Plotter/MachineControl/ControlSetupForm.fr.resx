@@ -2783,4 +2783,16 @@ La plage utilisable réelle serait 30 $ = 31, 31 $ = 0.</value>
   <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
     <value>Pas de courbe</value>
   </data>
+  <data name="checkBox9.Text" xml:space="preserve">
+    <value>Enregistrer le G-Code au format unicode UTF-16 (sinon ASCII)</value>
+  </data>
+  <data name="LblImportGraphicDevelopNotchDistance.Text" xml:space="preserve">
+    <value>Min. distance d'entaille à entaille dans les courbes</value>
+  </data>
+  <data name="LblCameraFiducial.Text" xml:space="preserve">
+    <value>Nom de la couche graphique ou de la figure pour les repères</value>
+  </data>
+  <data name="groupBox23.Text" xml:space="preserve">
+    <value>Fiduciaires</value>
+  </data>
 </root>

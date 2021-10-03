@@ -2783,4 +2783,16 @@ El rango utilizable real sería $ 30 = 31, $ 31 = 0.</value>
   <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
     <value>Sin curva</value>
   </data>
+  <data name="checkBox9.Text" xml:space="preserve">
+    <value>Guarde el código G como unicode UTF-16 (de lo contrario, ASCII)</value>
+  </data>
+  <data name="LblImportGraphicDevelopNotchDistance.Text" xml:space="preserve">
+    <value>Min. distancia de muesca a muesca en curvas</value>
+  </data>
+  <data name="LblCameraFiducial.Text" xml:space="preserve">
+    <value>Nombre de la capa gráfica o figura para fiduciales</value>
+  </data>
+  <data name="groupBox23.Text" xml:space="preserve">
+    <value>Fiduciales</value>
+  </data>
 </root>

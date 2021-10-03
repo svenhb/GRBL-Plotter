@@ -2792,4 +2792,16 @@ O intervalo utilizável real seria $ 30 = 31, $ 31 = 0.</value>
   <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
     <value>Sem curva</value>
   </data>
+  <data name="checkBox9.Text" xml:space="preserve">
+    <value>Salve o código G como unicode UTF-16 (caso contrário, ASCII)</value>
+  </data>
+  <data name="LblImportGraphicDevelopNotchDistance.Text" xml:space="preserve">
+    <value>Min. distância de entalhe a entalhe nas curvas</value>
+  </data>
+  <data name="LblCameraFiducial.Text" xml:space="preserve">
+    <value>Nome da camada gráfica ou figura para fiducials</value>
+  </data>
+  <data name="groupBox23.Text" xml:space="preserve">
+    <value>Fiducials</value>
+  </data>
 </root>

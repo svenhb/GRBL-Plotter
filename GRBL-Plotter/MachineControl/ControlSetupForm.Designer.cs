@@ -275,14 +275,14 @@ namespace GrblPlotter
             this.nUDImportGraphicDevelopFeedAfter = new System.Windows.Forms.NumericUpDown();
             this.label54 = new System.Windows.Forms.Label();
             this.groupBox20 = new System.Windows.Forms.GroupBox();
-            this.cBDImportGraphicDevelopNoCurve = new System.Windows.Forms.CheckBox();
+            this.CbImportGraphicDevelopNoCurve = new System.Windows.Forms.CheckBox();
             this.cBDImportGraphicDevelopNotchLift = new System.Windows.Forms.CheckBox();
             this.label59 = new System.Windows.Forms.Label();
             this.nUDImportGraphicDevelopNotchZNotch = new System.Windows.Forms.NumericUpDown();
             this.nUDImportGraphicDevelopNotchWidth = new System.Windows.Forms.NumericUpDown();
-            this.label53 = new System.Windows.Forms.Label();
+            this.LblImportGraphicDevelopNotchDistance = new System.Windows.Forms.Label();
             this.label52 = new System.Windows.Forms.Label();
-            this.nUDImportGraphicDevelopNotchDistance = new System.Windows.Forms.NumericUpDown();
+            this.NudImportGraphicDevelopNotchDistance = new System.Windows.Forms.NumericUpDown();
             this.nUDImportGraphicDevelopNotchZCut = new System.Windows.Forms.NumericUpDown();
             this.groupBox19 = new System.Windows.Forms.GroupBox();
             this.rBImportGraphicDevelopFeedInvert = new System.Windows.Forms.CheckBox();
@@ -491,6 +491,7 @@ namespace GrblPlotter
             this.cBLog5 = new System.Windows.Forms.CheckBox();
             this.cBLog4 = new System.Windows.Forms.CheckBox();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.checkBox9 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.cBcheckupdate = new System.Windows.Forms.CheckBox();
             this.tab5gB3 = new System.Windows.Forms.GroupBox();
@@ -581,6 +582,9 @@ namespace GrblPlotter
             this.cBflowControl = new System.Windows.Forms.CheckBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tab10gB1 = new System.Windows.Forms.GroupBox();
+            this.groupBox23 = new System.Windows.Forms.GroupBox();
+            this.TbCameraFiducialName = new System.Windows.Forms.TextBox();
+            this.LblCameraFiducial = new System.Windows.Forms.Label();
             this.tab10lbl1 = new System.Windows.Forms.Label();
             this.tab10gB7 = new System.Windows.Forms.GroupBox();
             this.tBShapeSet4 = new System.Windows.Forms.TextBox();
@@ -820,6 +824,7 @@ namespace GrblPlotter
             this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.cB2DViewFigureId = new System.Windows.Forms.CheckBox();
             this.cB2DViewDirectionArrow = new System.Windows.Forms.CheckBox();
+            this.cBKeepPenWidth = new System.Windows.Forms.CheckBox();
             this.btnReloadSettings = new System.Windows.Forms.Button();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.cBFCTBBlockExpandKeepLastOpen = new System.Windows.Forms.CheckBox();
@@ -829,10 +834,11 @@ namespace GrblPlotter
             this.tBPasteSpecial = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.tab8gB2 = new System.Windows.Forms.GroupBox();
+            this.btnColorDimension = new System.Windows.Forms.Button();
+            this.btnColorBackgroundPath = new System.Windows.Forms.Button();
             this.cBColorModeEnable = new System.Windows.Forms.CheckBox();
             this.nUDSimulation = new System.Windows.Forms.NumericUpDown();
             this.btnColorSimulation = new System.Windows.Forms.Button();
-            this.cBKeepPenWidth = new System.Windows.Forms.CheckBox();
             this.nUDRotaryInfo = new System.Windows.Forms.NumericUpDown();
             this.btnColorRotaryInfo = new System.Windows.Forms.Button();
             this.btnColorMachineLimit = new System.Windows.Forms.Button();
@@ -974,7 +980,7 @@ namespace GrblPlotter
             this.groupBox20.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicDevelopNotchZNotch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicDevelopNotchWidth)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicDevelopNotchDistance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudImportGraphicDevelopNotchDistance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicDevelopNotchZCut)).BeginInit();
             this.groupBox19.SuspendLayout();
             this.tabPage10.SuspendLayout();
@@ -1063,6 +1069,7 @@ namespace GrblPlotter
             this.tab4gB4.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tab10gB1.SuspendLayout();
+            this.groupBox23.SuspendLayout();
             this.tab10gB7.SuspendLayout();
             this.tab10gB6.SuspendLayout();
             this.tab10gB5.SuspendLayout();
@@ -3228,6 +3235,11 @@ namespace GrblPlotter
             0,
             0,
             0});
+            this.numericUpDown14.Minimum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
             this.numericUpDown14.Name = "numericUpDown14";
             this.numericUpDown14.Value = global::GrblPlotter.Properties.Settings.Default.importGraphicDevelopmentToolAngle;
             // 
@@ -3255,25 +3267,26 @@ namespace GrblPlotter
             // 
             // groupBox20
             // 
-            this.groupBox20.Controls.Add(this.cBDImportGraphicDevelopNoCurve);
+            this.groupBox20.Controls.Add(this.CbImportGraphicDevelopNoCurve);
             this.groupBox20.Controls.Add(this.cBDImportGraphicDevelopNotchLift);
             this.groupBox20.Controls.Add(this.label59);
             this.groupBox20.Controls.Add(this.nUDImportGraphicDevelopNotchZNotch);
             this.groupBox20.Controls.Add(this.nUDImportGraphicDevelopNotchWidth);
-            this.groupBox20.Controls.Add(this.label53);
+            this.groupBox20.Controls.Add(this.LblImportGraphicDevelopNotchDistance);
             this.groupBox20.Controls.Add(this.label52);
-            this.groupBox20.Controls.Add(this.nUDImportGraphicDevelopNotchDistance);
+            this.groupBox20.Controls.Add(this.NudImportGraphicDevelopNotchDistance);
             resources.ApplyResources(this.groupBox20, "groupBox20");
             this.groupBox20.Name = "groupBox20";
             this.groupBox20.TabStop = false;
             // 
-            // cBDImportGraphicDevelopNoCurve
+            // CbImportGraphicDevelopNoCurve
             // 
-            resources.ApplyResources(this.cBDImportGraphicDevelopNoCurve, "cBDImportGraphicDevelopNoCurve");
-            this.cBDImportGraphicDevelopNoCurve.Checked = global::GrblPlotter.Properties.Settings.Default.importGraphicDevelopmentNoCurve;
-            this.cBDImportGraphicDevelopNoCurve.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGraphicDevelopmentNoCurve", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBDImportGraphicDevelopNoCurve.Name = "cBDImportGraphicDevelopNoCurve";
-            this.cBDImportGraphicDevelopNoCurve.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.CbImportGraphicDevelopNoCurve, "CbImportGraphicDevelopNoCurve");
+            this.CbImportGraphicDevelopNoCurve.Checked = global::GrblPlotter.Properties.Settings.Default.importGraphicDevelopmentNoCurve;
+            this.CbImportGraphicDevelopNoCurve.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGraphicDevelopmentNoCurve", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbImportGraphicDevelopNoCurve.Name = "CbImportGraphicDevelopNoCurve";
+            this.CbImportGraphicDevelopNoCurve.UseVisualStyleBackColor = true;
+            this.CbImportGraphicDevelopNoCurve.CheckedChanged += new System.EventHandler(this.CbImportGraphicDevelopNoCurve_CheckedChanged);
             // 
             // cBDImportGraphicDevelopNotchLift
             // 
@@ -3330,33 +3343,33 @@ namespace GrblPlotter
             this.nUDImportGraphicDevelopNotchWidth.Name = "nUDImportGraphicDevelopNotchWidth";
             this.nUDImportGraphicDevelopNotchWidth.Value = global::GrblPlotter.Properties.Settings.Default.importGraphicDevelopmentNotchWidth;
             // 
-            // label53
+            // LblImportGraphicDevelopNotchDistance
             // 
-            resources.ApplyResources(this.label53, "label53");
-            this.label53.Name = "label53";
+            resources.ApplyResources(this.LblImportGraphicDevelopNotchDistance, "LblImportGraphicDevelopNotchDistance");
+            this.LblImportGraphicDevelopNotchDistance.Name = "LblImportGraphicDevelopNotchDistance";
             // 
             // label52
             // 
             resources.ApplyResources(this.label52, "label52");
             this.label52.Name = "label52";
             // 
-            // nUDImportGraphicDevelopNotchDistance
+            // NudImportGraphicDevelopNotchDistance
             // 
-            this.nUDImportGraphicDevelopNotchDistance.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGraphicDevelopmentNotchDistance", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGraphicDevelopNotchDistance.DecimalPlaces = 1;
-            resources.ApplyResources(this.nUDImportGraphicDevelopNotchDistance, "nUDImportGraphicDevelopNotchDistance");
-            this.nUDImportGraphicDevelopNotchDistance.Maximum = new decimal(new int[] {
+            this.NudImportGraphicDevelopNotchDistance.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGraphicDevelopmentNotchDistance", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.NudImportGraphicDevelopNotchDistance.DecimalPlaces = 1;
+            resources.ApplyResources(this.NudImportGraphicDevelopNotchDistance, "NudImportGraphicDevelopNotchDistance");
+            this.NudImportGraphicDevelopNotchDistance.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.nUDImportGraphicDevelopNotchDistance.Minimum = new decimal(new int[] {
+            this.NudImportGraphicDevelopNotchDistance.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             65536});
-            this.nUDImportGraphicDevelopNotchDistance.Name = "nUDImportGraphicDevelopNotchDistance";
-            this.nUDImportGraphicDevelopNotchDistance.Value = global::GrblPlotter.Properties.Settings.Default.importGraphicDevelopmentNotchDistance;
+            this.NudImportGraphicDevelopNotchDistance.Name = "NudImportGraphicDevelopNotchDistance";
+            this.NudImportGraphicDevelopNotchDistance.Value = global::GrblPlotter.Properties.Settings.Default.importGraphicDevelopmentNotchDistance;
             // 
             // nUDImportGraphicDevelopNotchZCut
             // 
@@ -5352,11 +5365,21 @@ namespace GrblPlotter
             // groupBox11
             // 
             this.groupBox11.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox11.Controls.Add(this.checkBox9);
             this.groupBox11.Controls.Add(this.checkBox2);
             this.groupBox11.Controls.Add(this.cBcheckupdate);
             resources.ApplyResources(this.groupBox11, "groupBox11");
             this.groupBox11.Name = "groupBox11";
             this.groupBox11.TabStop = false;
+            // 
+            // checkBox9
+            // 
+            resources.ApplyResources(this.checkBox9, "checkBox9");
+            this.checkBox9.Checked = global::GrblPlotter.Properties.Settings.Default.FCTBSaveAsUTF16;
+            this.checkBox9.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox9.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "FCTBSaveAsUTF16", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox9.Name = "checkBox9";
+            this.checkBox9.UseVisualStyleBackColor = true;
             // 
             // checkBox2
             // 
@@ -6213,6 +6236,7 @@ namespace GrblPlotter
             // tab10gB1
             // 
             this.tab10gB1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tab10gB1.Controls.Add(this.groupBox23);
             this.tab10gB1.Controls.Add(this.tab10lbl1);
             this.tab10gB1.Controls.Add(this.tab10gB7);
             this.tab10gB1.Controls.Add(this.tab10gB6);
@@ -6224,6 +6248,26 @@ namespace GrblPlotter
             resources.ApplyResources(this.tab10gB1, "tab10gB1");
             this.tab10gB1.Name = "tab10gB1";
             this.tab10gB1.TabStop = false;
+            // 
+            // groupBox23
+            // 
+            this.groupBox23.Controls.Add(this.TbCameraFiducialName);
+            this.groupBox23.Controls.Add(this.LblCameraFiducial);
+            resources.ApplyResources(this.groupBox23, "groupBox23");
+            this.groupBox23.Name = "groupBox23";
+            this.groupBox23.TabStop = false;
+            // 
+            // TbCameraFiducialName
+            // 
+            this.TbCameraFiducialName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "importFiducialLabel", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.TbCameraFiducialName, "TbCameraFiducialName");
+            this.TbCameraFiducialName.Name = "TbCameraFiducialName";
+            this.TbCameraFiducialName.Text = global::GrblPlotter.Properties.Settings.Default.importFiducialLabel;
+            // 
+            // LblCameraFiducial
+            // 
+            resources.ApplyResources(this.LblCameraFiducial, "LblCameraFiducial");
+            this.LblCameraFiducial.Name = "LblCameraFiducial";
             // 
             // tab10lbl1
             // 
@@ -6413,6 +6457,7 @@ namespace GrblPlotter
             resources.ApplyResources(this.hSFilterBlue2, "hSFilterBlue2");
             this.hSFilterBlue2.Maximum = 264;
             this.hSFilterBlue2.Name = "hSFilterBlue2";
+            this.hSFilterBlue2.SmallChange = 5;
             this.hSFilterBlue2.Value = global::GrblPlotter.Properties.Settings.Default.camFilterBlue2;
             this.hSFilterBlue2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.HsFilterScroll);
             // 
@@ -6427,6 +6472,7 @@ namespace GrblPlotter
             resources.ApplyResources(this.hSFilterBlue1, "hSFilterBlue1");
             this.hSFilterBlue1.Maximum = 264;
             this.hSFilterBlue1.Name = "hSFilterBlue1";
+            this.hSFilterBlue1.SmallChange = 5;
             this.hSFilterBlue1.Value = global::GrblPlotter.Properties.Settings.Default.camFilterBlue1;
             this.hSFilterBlue1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.HsFilterScroll);
             // 
@@ -6436,6 +6482,7 @@ namespace GrblPlotter
             resources.ApplyResources(this.hSFilterGreen2, "hSFilterGreen2");
             this.hSFilterGreen2.Maximum = 264;
             this.hSFilterGreen2.Name = "hSFilterGreen2";
+            this.hSFilterGreen2.SmallChange = 5;
             this.hSFilterGreen2.Value = global::GrblPlotter.Properties.Settings.Default.camFilterGreen2;
             this.hSFilterGreen2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.HsFilterScroll);
             // 
@@ -6450,6 +6497,7 @@ namespace GrblPlotter
             resources.ApplyResources(this.hSFilterGreen1, "hSFilterGreen1");
             this.hSFilterGreen1.Maximum = 264;
             this.hSFilterGreen1.Name = "hSFilterGreen1";
+            this.hSFilterGreen1.SmallChange = 5;
             this.hSFilterGreen1.Value = global::GrblPlotter.Properties.Settings.Default.camFilterGreen1;
             this.hSFilterGreen1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.HsFilterScroll);
             // 
@@ -6459,6 +6507,7 @@ namespace GrblPlotter
             resources.ApplyResources(this.hSFilterRed2, "hSFilterRed2");
             this.hSFilterRed2.Maximum = 264;
             this.hSFilterRed2.Name = "hSFilterRed2";
+            this.hSFilterRed2.SmallChange = 5;
             this.hSFilterRed2.Value = global::GrblPlotter.Properties.Settings.Default.camFilterRed2;
             this.hSFilterRed2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.HsFilterScroll);
             // 
@@ -6473,6 +6522,7 @@ namespace GrblPlotter
             resources.ApplyResources(this.hSFilterRed1, "hSFilterRed1");
             this.hSFilterRed1.Maximum = 264;
             this.hSFilterRed1.Name = "hSFilterRed1";
+            this.hSFilterRed1.SmallChange = 5;
             this.hSFilterRed1.Value = global::GrblPlotter.Properties.Settings.Default.camFilterRed1;
             this.hSFilterRed1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.HsFilterScroll);
             // 
@@ -6497,11 +6547,6 @@ namespace GrblPlotter
             // nUDShapeSizeMax
             // 
             this.nUDShapeSizeMax.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "camShapeSizeMax", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDShapeSizeMax.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             resources.ApplyResources(this.nUDShapeSizeMax, "nUDShapeSizeMax");
             this.nUDShapeSizeMax.Maximum = new decimal(new int[] {
             500,
@@ -6570,11 +6615,6 @@ namespace GrblPlotter
             // nUDShapeSizeMin
             // 
             this.nUDShapeSizeMin.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "camShapeSizeMin", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDShapeSizeMin.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             resources.ApplyResources(this.nUDShapeSizeMin, "nUDShapeSizeMin");
             this.nUDShapeSizeMin.Maximum = new decimal(new int[] {
             500,
@@ -8433,6 +8473,7 @@ namespace GrblPlotter
             // 
             this.groupBox14.Controls.Add(this.cB2DViewFigureId);
             this.groupBox14.Controls.Add(this.cB2DViewDirectionArrow);
+            this.groupBox14.Controls.Add(this.cBKeepPenWidth);
             resources.ApplyResources(this.groupBox14, "groupBox14");
             this.groupBox14.Name = "groupBox14";
             this.groupBox14.TabStop = false;
@@ -8454,6 +8495,14 @@ namespace GrblPlotter
             this.cB2DViewDirectionArrow.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "gui2DPenUpArrow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cB2DViewDirectionArrow.Name = "cB2DViewDirectionArrow";
             this.cB2DViewDirectionArrow.UseVisualStyleBackColor = true;
+            // 
+            // cBKeepPenWidth
+            // 
+            resources.ApplyResources(this.cBKeepPenWidth, "cBKeepPenWidth");
+            this.cBKeepPenWidth.Checked = global::GrblPlotter.Properties.Settings.Default.gui2DKeepPenWidth;
+            this.cBKeepPenWidth.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "gui2DKeepPenWidth", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBKeepPenWidth.Name = "cBKeepPenWidth";
+            this.cBKeepPenWidth.UseVisualStyleBackColor = true;
             // 
             // btnReloadSettings
             // 
@@ -8516,10 +8565,11 @@ namespace GrblPlotter
             // 
             // tab8gB2
             // 
+            this.tab8gB2.Controls.Add(this.btnColorDimension);
+            this.tab8gB2.Controls.Add(this.btnColorBackgroundPath);
             this.tab8gB2.Controls.Add(this.cBColorModeEnable);
             this.tab8gB2.Controls.Add(this.nUDSimulation);
             this.tab8gB2.Controls.Add(this.btnColorSimulation);
-            this.tab8gB2.Controls.Add(this.cBKeepPenWidth);
             this.tab8gB2.Controls.Add(this.nUDRotaryInfo);
             this.tab8gB2.Controls.Add(this.btnColorRotaryInfo);
             this.tab8gB2.Controls.Add(this.btnColorMachineLimit);
@@ -8541,6 +8591,20 @@ namespace GrblPlotter
             resources.ApplyResources(this.tab8gB2, "tab8gB2");
             this.tab8gB2.Name = "tab8gB2";
             this.tab8gB2.TabStop = false;
+            // 
+            // btnColorDimension
+            // 
+            resources.ApplyResources(this.btnColorDimension, "btnColorDimension");
+            this.btnColorDimension.Name = "btnColorDimension";
+            this.btnColorDimension.UseVisualStyleBackColor = true;
+            this.btnColorDimension.Click += new System.EventHandler(this.BtnColorDimension_Click);
+            // 
+            // btnColorBackgroundPath
+            // 
+            resources.ApplyResources(this.btnColorBackgroundPath, "btnColorBackgroundPath");
+            this.btnColorBackgroundPath.Name = "btnColorBackgroundPath";
+            this.btnColorBackgroundPath.UseVisualStyleBackColor = true;
+            this.btnColorBackgroundPath.Click += new System.EventHandler(this.BtnColorBackgroundPath_Click);
             // 
             // cBColorModeEnable
             // 
@@ -8582,14 +8646,6 @@ namespace GrblPlotter
             this.btnColorSimulation.Name = "btnColorSimulation";
             this.btnColorSimulation.UseVisualStyleBackColor = true;
             this.btnColorSimulation.Click += new System.EventHandler(this.BtnColorSimulation_Click);
-            // 
-            // cBKeepPenWidth
-            // 
-            resources.ApplyResources(this.cBKeepPenWidth, "cBKeepPenWidth");
-            this.cBKeepPenWidth.Checked = global::GrblPlotter.Properties.Settings.Default.gui2DKeepPenWidth;
-            this.cBKeepPenWidth.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "gui2DKeepPenWidth", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBKeepPenWidth.Name = "cBKeepPenWidth";
-            this.cBKeepPenWidth.UseVisualStyleBackColor = true;
             // 
             // nUDRotaryInfo
             // 
@@ -9244,7 +9300,7 @@ namespace GrblPlotter
             this.groupBox20.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicDevelopNotchZNotch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicDevelopNotchWidth)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicDevelopNotchDistance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudImportGraphicDevelopNotchDistance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicDevelopNotchZCut)).EndInit();
             this.groupBox19.ResumeLayout(false);
             this.groupBox19.PerformLayout();
@@ -9369,6 +9425,8 @@ namespace GrblPlotter
             this.tabPage4.ResumeLayout(false);
             this.tab10gB1.ResumeLayout(false);
             this.tab10gB1.PerformLayout();
+            this.groupBox23.ResumeLayout(false);
+            this.groupBox23.PerformLayout();
             this.tab10gB7.ResumeLayout(false);
             this.tab10gB7.PerformLayout();
             this.tab10gB6.ResumeLayout(false);
@@ -10296,8 +10354,8 @@ namespace GrblPlotter
         private System.Windows.Forms.CheckBox rBImportGraphicDevelopFeedInvert;
         private System.Windows.Forms.RadioButton rBImportGraphicDevelopFeedX;
         private System.Windows.Forms.RadioButton rBImportGraphicDevelopFeedY;
-        private System.Windows.Forms.Label label53;
-        private System.Windows.Forms.NumericUpDown nUDImportGraphicDevelopNotchDistance;
+        private System.Windows.Forms.Label LblImportGraphicDevelopNotchDistance;
+        private System.Windows.Forms.NumericUpDown NudImportGraphicDevelopNotchDistance;
         private System.Windows.Forms.GroupBox groupBox20;
         private System.Windows.Forms.Label label57;
         private System.Windows.Forms.NumericUpDown nUDImportGraphicDevelopFeedAfter;
@@ -10312,6 +10370,12 @@ namespace GrblPlotter
         private System.Windows.Forms.CheckBox cBImportDXFUseZ;
         private System.Windows.Forms.Label label62;
         private System.Windows.Forms.CheckBox cBImportGraphicClipShowOrigPosition;
-        private System.Windows.Forms.CheckBox cBDImportGraphicDevelopNoCurve;
+        private System.Windows.Forms.CheckBox CbImportGraphicDevelopNoCurve;
+        private System.Windows.Forms.Button btnColorDimension;
+        private System.Windows.Forms.Button btnColorBackgroundPath;
+        private System.Windows.Forms.CheckBox checkBox9;
+        private System.Windows.Forms.GroupBox groupBox23;
+        private System.Windows.Forms.TextBox TbCameraFiducialName;
+        private System.Windows.Forms.Label LblCameraFiducial;
     }
 }

@@ -23,6 +23,8 @@
  * 2021-07-27 split code from GCodeVisuAndTransform
  * 2021-09-02 CreateDrawingPathFromGCode add viewOffset for tiles
  * 2021-09-04 new struct to store simulation data: SimuCoordByLine in simuList
+ * 2021-09-21 collect fiducials
+ * 2021-09-29 add fiducialDimension
 */
 
 using System;
@@ -45,6 +47,7 @@ namespace GrblPlotter
             public Color color = Color.White;
             public float width = 0;
             public Pen pen;
+			public PointF offsetView;
             public PathData()
             {
                 path = new GraphicsPath();
@@ -52,11 +55,9 @@ namespace GrblPlotter
                 width = (float)Properties.Settings.Default.gui2DWidthPenDown;
                 pen = new Pen(color, width);
             }
-            public PathData(string pencolor, double penwidth)
+            public PathData(string pencolor, double penwidth, PointF offset)
             {
                 path = new GraphicsPath();
-                //     uint clr;
-                //                Logger.Trace("pathData color:{0}  width:{1}",pencolor,penwidth);
                 if (string.IsNullOrEmpty(pencolor))
                 { color = Properties.Settings.Default.gui2DColorPenDown; }
                 else if (UInt32.TryParse(pencolor, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out uint clr))  // try Hex code #00ff00
@@ -70,17 +71,19 @@ namespace GrblPlotter
                     if (color == System.Drawing.Color.FromArgb(0))
                     { color = Properties.Settings.Default.gui2DColorPenDown; }
                 }
-                SetPathData(color, penwidth);
+                SetPathData(color, penwidth, offset);
             }
-            public PathData(Color color, double penwidth)
+            public PathData(Color color, double penwidth, PointF offset)
             {
-                SetPathData(color, penwidth);
+                SetPathData(color, penwidth, offset);
             }
 
-            public void SetPathData(Color colr, double penwidth)
+            public void SetPathData(Color colr, double penwidth, PointF offset)
             {
                 path = new GraphicsPath();
                 width = (float)penwidth;
+				offsetView = offset;
+
                 if (width <= 0)
                     width = (float)Properties.Settings.Default.gui2DWidthPenDown;
                 pen = new Pen(colr, width)
@@ -134,14 +137,47 @@ namespace GrblPlotter
         private static bool xyPosChanged;
         private static bool figureActive = false;
         private static bool tileActive = false;
+		internal static bool ShiftTilePaths { get; set; }
+		
         private static bool tangentialAxisEnable = false;
         private static string tangentialAxisName = "C";
+
+        internal static double gcodeMinutes = 0;
+        internal static double gcodeDistance = 0;
 
         public static string errorString = "";
         private static int error33cnt;
 
         private static bool halfToneEnable = false;
-		private static PointF offset2DView = new PointF();
+        private static PointF offset2DView = new PointF();
+
+        internal static double feedXmax = 5000;		// to calculate processing time CalculateProcessTime
+        internal static double feedYmax = 5000;
+        internal static double feedZmax = 5000;
+        internal static double feedAmax = 5000;
+        internal static double feedBmax = 5000;
+        internal static double feedCmax = 5000;
+        internal static double feedDefault = 5000;
+
+        // analyse each GCode line and track actual position and modes for each code line
+        private static List<GcodeByLine> gcodeList = new List<GcodeByLine>();        // keep original program                                                                                     //      private static List<GcodeByLine> simuList;         // as gcodeList but resolved subroutines
+        private static List<SimuCoordByLine> simuList = new List<SimuCoordByLine>();         // as gcodeList but resolved subroutines
+        private static List<CoordByLine> coordList;        // get all coordinates (also subroutines)
+        private static List<CenterByLine> centerList; 
+
+		internal static List<XyPoint> fiducialsCenter = new List<XyPoint>();
+		private static bool fiducialEnable = false;
+		private static Dimensions fiducialDimension = new Dimensions();
+        private static  string fiducialLabel = "Fiducials";
+		
+		internal static bool largeDataAmount=false;
+		
+        private static GcodeByLine oldLine = new GcodeByLine();    // actual parsed line
+        private static readonly GcodeByLine newLine = new GcodeByLine();    // last parsed line
+
+        private static ModalGroup modal = new ModalGroup();        // keep modal states and helper variables
+
+        private static readonly Dictionary<double, int> showHalftonePath = new Dictionary<double, int>();    // assignment penWidth to pathIndex
 
         // HalfTone: store F, S, Z values for pen-width calculation
         private static class HalfTone
@@ -207,19 +243,21 @@ namespace GrblPlotter
 
         private static void ResetGlobalObjects()
         {
-
             gcodeList = new List<GcodeByLine>();    // needed for code transformations
-  //          simuList = new List<GcodeByLine>();    	// needed for simulation
             simuList = new List<SimuCoordByLine>();    	// needed for simulation
             coordList = new List<CoordByLine>();    // needed to find GCode-line by coordiante
-            centerList = new List<CoordByLine>();  	// center coordinates of arcs
+            centerList = new List<CenterByLine>();  	// center coordinates of arcs
             pathInfoMarker = new List<PathInfo>();
+			fiducialsCenter = new List<XyPoint>();
+			fiducialEnable = false;
+			fiducialLabel = Properties.Settings.Default.importFiducialLabel;
+			
             modal = new ModalGroup();               // clear
             XmlMarker.Reset();                      // reset lists, holding marker line numbers
             oldLine.ResetAll(Grbl.posWork);         // reset coordinates and parser modes, set initial pos
             newLine.ResetAll();                     // reset coordinates and parser modes
 
-            ClearDrawingPath();                    // reset path, dimensions
+            ClearDrawingPath();                    	// reset paths, dimensions
             HalfTone.Reset();
             showHalftonePath.Clear();
 
@@ -227,20 +265,22 @@ namespace GrblPlotter
             lastFigureNumber = -1;
             pathActualDown = null;
 
+			largeDataAmount=false;
+
             figureActive = false;
-			tileActive = false;
+            tileActive = false;
+			ShiftTilePaths = false;
+			
             gcodeMinutes = 0;
             gcodeDistance = 0;
-            //    figureCount = 1;                        // will be inc. in createDrawingPathFromGCode
             tangentialAxisEnable = false;
             halfToneEnable = false;
             errorString = "";
             error33cnt = 0;
-			offset2DView = new PointF();
+            VisuGCode.ProcessedPath.offset2DView = new System.Windows.Point();
+            offset2DView = new PointF();
 
-            //     lastXYG123Position = (XyPoint)grbl.posWork;          // first position is current tool position
             lastSubroutine = new int[] { 0, 0, 0 };
-
         }
 
         /// <summary>
@@ -259,6 +299,14 @@ namespace GrblPlotter
             int countZ = 0;
             int lastMotion = 0;
 
+			if (oldCode.Count > 100000)	// huge amount of code, reduce time consuming functionality
+			{	Logger.Info("!!!!! Huge amount of code, reduce time consuming functionality !!!!!");
+				showArrow = false;
+				showId = false;
+				showColors = false;
+				largeDataAmount=true;
+			}
+
             if (showColors)
                 ToolTable.Init();
 
@@ -269,7 +317,7 @@ namespace GrblPlotter
 
             int progressSub;
             int progressSubOld = 0;
-			
+
             /*********************************************************************/
             for (int lineNr = 0; lineNr < GCode.Length; lineNr++)   // go through all gcode lines
             {
@@ -297,7 +345,7 @@ namespace GrblPlotter
 
                 countZ = HalfTone.UpdateFSZ(countZ);    // use Z, S or F to find tool/color in tool table, if not found, don't switch color
 
-                if (showColors && (figureMarkerCount == 0))  // if no XML-Tags found...
+                if (!largeDataAmount && showColors && (figureMarkerCount == 0))  // if no XML-Tags found...
                 {
                     // try to colorize tool-path with tool-table settings, even if no xml-tags available
                     if (newLine.wasSetXY && (lastMotion == 0) && (modal.motionMode > 0))// else if G1/2/3 XY F				
@@ -313,7 +361,7 @@ namespace GrblPlotter
                         if (countZ == 0)
                             HalfTone.lastZ = double.MaxValue;
                         penProp = ToolTable.FindToolByFSZ(HalfTone.lastF, HalfTone.lastS, HalfTone.lastZ, penProp);
-                        PathData tmp = new PathData(penProp.Color, penProp.Diameter);
+                        PathData tmp = new PathData(penProp.Color, penProp.Diameter, offset2DView);
                         pathObject.Add(tmp);
                         pathActualDown = pathObject[pathObject.Count - 1].path;
                         log += string.Format("Set tool nr:{0} color:{1} figureMarkerCount:{2}", penProp.Toolnr, ColorTranslator.ToHtml(penProp.Color), figureMarkerCount);
@@ -325,7 +373,8 @@ namespace GrblPlotter
                 }
 
                 if (singleLine.Contains("<"))
-                { 	ProcessXmlTagStart(GCode[lineNr], lineNr);
+                {
+                    ProcessXmlTagStart(GCode[lineNr], lineNr);
                 }        // Original line transferred because of uppercase lowercase
 
                 // collect halftone data
@@ -334,7 +383,7 @@ namespace GrblPlotter
 
 
                 if ((modal.mWord == 98) && processSubs)
-                { 	newLine.codeLine = "(" + GCode[lineNr] + ")"; }
+                { newLine.codeLine = "(" + GCode[lineNr] + ")"; }
                 else
                 {
                     if (processSubs && programEnd)
@@ -370,25 +419,38 @@ namespace GrblPlotter
 
                 isArc = ((newLine.motionMode == 2) || (newLine.motionMode == 3));
 
-                if (tileActive && Properties.Settings.Default.importGraphicClipShowOrigPosition)	// tiles are shifted in 2D view
-				{	XyzPoint tmpOldLine = new XyzPoint(oldLine.actualPos.X + offset2DView.X, oldLine.actualPos.Y + offset2DView.Y, oldLine.actualPos.Z);
-					XyzPoint tmpNewLine = new XyzPoint(newLine.actualPos.X + offset2DView.X, newLine.actualPos.Y + offset2DView.Y, newLine.actualPos.Z);
-					coordList.Add(new CoordByLine(lineNr, newLine.figureNumber, tmpOldLine, tmpNewLine, newLine.motionMode, newLine.alpha, isArc));
-				}
-				else
-					coordList.Add(new CoordByLine(lineNr, newLine.figureNumber, (XyzPoint)oldLine.actualPos, (XyzPoint)newLine.actualPos, newLine.motionMode, newLine.alpha, isArc));
+                // tiles are shifted in 2D view
+                if (tileActive && Properties.Settings.Default.importGraphicClipShowOrigPosition && Properties.Settings.Default.importGraphicClipOffsetApply)
+                {
+                    XyzPoint tmpOldLine = new XyzPoint(oldLine.actualPos.X + offset2DView.X, oldLine.actualPos.Y + offset2DView.Y, oldLine.actualPos.Z);
+                    XyzPoint tmpNewLine = new XyzPoint(newLine.actualPos.X + offset2DView.X, newLine.actualPos.Y + offset2DView.Y, newLine.actualPos.Z);
+                    CoordByLine tmpLine = new CoordByLine(lineNr, newLine.figureNumber, tmpOldLine, tmpNewLine, newLine.motionMode, newLine.alpha, isArc);
+                    coordList.Add(tmpLine);
+
+                    GcodeByLine stmpLine = new GcodeByLine(newLine);
+                    stmpLine.actualPos.X = newLine.actualPos.X + offset2DView.X;
+                    stmpLine.actualPos.Y = newLine.actualPos.Y + offset2DView.Y;
+                    simuList.Add(new SimuCoordByLine(stmpLine, offset2DView));         // add parsed line to list
+                }
+                else
+                {
+                    coordList.Add(new CoordByLine(lineNr, newLine.figureNumber, (XyzPoint)oldLine.actualPos, (XyzPoint)newLine.actualPos, newLine.motionMode, newLine.alpha, isArc));
+                    simuList.Add(new SimuCoordByLine(newLine, new PointF()));         // add parsed line to list
+                }
 
                 oldLine = new GcodeByLine(newLine);       		// get copy of newLine      
                 gcodeList.Add(new GcodeByLine(newLine));    	// add parsed line to list
-  //              simuList.Add(new GcodeByLine(newLine));         // add parsed line to list
-                simuList.Add(new SimuCoordByLine(newLine));         // add parsed line to list
 
-                if (updateFigureLineNeeded && xyPosChanged)
+                if (updateFigureLineNeeded)
                 {
-                    updateFigureLineNeeded = false;
-                    XmlMarker.tmpFigure.PosStart = (XyPoint)newLine.actualPos;
-                    coordList[XmlMarker.tmpFigure.LineStart].actualPos = (XyzPoint)newLine.actualPos;
-                    coordList[XmlMarker.tmpFigure.LineStart].alpha = newLine.alpha;
+                    coordList[XmlMarker.tmpFigure.LineStart].actualG = 0;
+                    if (xyPosChanged)
+                    {
+                        updateFigureLineNeeded = false;
+                        XmlMarker.tmpFigure.PosStart = (XyPoint)newLine.actualPos;
+                        coordList[XmlMarker.tmpFigure.LineStart].actualPos = (XyzPoint)newLine.actualPos;
+                        coordList[XmlMarker.tmpFigure.LineStart].alpha = newLine.alpha;
+                    } 
                 }
 
                 if ((modal.mWord == 30) || (modal.mWord == 2)) { programEnd = true; }
@@ -401,7 +463,8 @@ namespace GrblPlotter
                 }
 
                 if (singleLine.Contains("</"))
-                { ProcessXmlTagEnd(GCode[lineNr], lineNr);
+                {
+                    ProcessXmlTagEnd(GCode[lineNr], lineNr);
                 }        // Original line transferred because of uppercase lowercase
 
             }   // finish reading lines
@@ -490,11 +553,11 @@ namespace GrblPlotter
 
                     if (processSubs)
                         gcodeList.Add(new GcodeByLine(newLine));      // add parsed line to list
-                    simuList.Add(new SimuCoordByLine(newLine));      // add parsed line to list
+                    simuList.Add(new SimuCoordByLine(newLine, new PointF()));      // add parsed line to list
                     if (!newLine.ismachineCoordG53)
                     {
                         isArc = ((newLine.motionMode == 2) || (newLine.motionMode == 3));
-                        coordList.Add(new CoordByLine(subLineNr, newLine.figureNumber, (XyzPoint)oldLine.actualPos,(XyzPoint)newLine.actualPos, newLine.motionMode, newLine.alpha, isArc));
+                        coordList.Add(new CoordByLine(subLineNr, newLine.figureNumber, (XyzPoint)oldLine.actualPos, (XyzPoint)newLine.actualPos, newLine.motionMode, newLine.alpha, isArc));
                         if (((newLine.motionMode > 0) || (newLine.z != null)) && !((newLine.x == Grbl.posWork.X) && (newLine.y == Grbl.posWork.Y)))
                             xyzSize.SetDimensionXYZ(newLine.actualPos.X, newLine.actualPos.Y, newLine.actualPos.Z);             // calculate max dimensions
                     }                                                                                                       // add data to drawing path
@@ -509,21 +572,6 @@ namespace GrblPlotter
         /// Calc. absolute positions and set object dimension: xyzSize.setDimension.
         /// Return if X,Y or Z changed
         /// </summary>
-
-        private static bool CalcAxisPosition(ref double newActualPos, double? newPos, double oldActualPos, bool modeAbsolute)
-        {
-            if (newPos != null)
-            {
-                if (modeAbsolute) { newActualPos = (double)newPos; }
-                else { newActualPos = oldActualPos + (double)newPos; }
-                return true;
-            }
-            else
-                newActualPos = oldActualPos;
-            return false;
-        }
-
-
         private static bool CalcAbsPosition(GcodeByLine newLine, GcodeByLine oldLine)
         {
             bool posChanged = false;
@@ -574,6 +622,18 @@ namespace GrblPlotter
                 posChanged = true;
             }
             return posChanged;
+        }
+        private static bool CalcAxisPosition(ref double newActualPos, double? newPos, double oldActualPos, bool modeAbsolute)
+        {
+            if (newPos != null)
+            {
+                if (modeAbsolute) { newActualPos = (double)newPos; }
+                else { newActualPos = oldActualPos + (double)newPos; }
+                return true;
+            }
+            else
+                newActualPos = oldActualPos;
+            return false;
         }
 
         private static void CheckError33(GcodeByLine newLine, GcodeByLine oldLine)
@@ -633,29 +693,33 @@ namespace GrblPlotter
             gcodeMinutes += distanceAll / feed;
         }
 
-
         private static void ProcessXmlTagStart(string line, int lineNr)
         {  // XML-Tag available!
-/* Process Tile marker */
+            /* Process Tile marker */
             if (line.Contains(XmlMarker.TileStart))                   // check if marker available
-            { 	XmlMarker.AddTile(lineNr, line, figureMarkerCount);
-                if (Properties.Settings.Default.importGraphicClipShowOrigPosition)
+            {
+                XmlMarker.AddTile(lineNr, line, figureMarkerCount);
+                if (Properties.Settings.Default.importGraphicClipShowOrigPosition && Properties.Settings.Default.importGraphicClipOffsetApply)
                 {
                     offset2DView.X = (float)XmlMarker.tmpTile.Offset.X;
                     offset2DView.Y = (float)XmlMarker.tmpTile.Offset.Y;
+					ShiftTilePaths = true;
                 }
-				tileActive = true;
-			}
-/* Process Group marker */
+                tileActive = true;
+            }
+            /* Process Group marker */
             else if (line.Contains(XmlMarker.GroupStart))                   // check if marker available
             {
                 string clean = line.Replace("'", "\"");
                 figureMarkerCount++;
                 XmlMarker.AddGroup(lineNr, clean, figureMarkerCount);
                 figureActive = true;
-                if (logCoordinates) Logger.Trace(" Set Group  figureMarkerCount:{0}  {1}", figureMarkerCount, line);
+                if (logCoordinates) {Logger.Trace(" Set Group  figureMarkerCount:{0}  {1}", figureMarkerCount, line);}
+				if (XmlMarker.tmpGroup.Layer.IndexOf(fiducialLabel) >= 0) 
+                {   //fiducialEnable=true; 
+                }
             }
-/* Process Figure marker */
+            /* Process Figure marker */
             else if (line.Contains(XmlMarker.FigureStart))                  // check if marker available
             {
                 if (!figureActive)
@@ -666,9 +730,14 @@ namespace GrblPlotter
                 string clean = line.Replace("'", "\"");
                 XmlMarker.AddFigure(lineNr, clean, figureMarkerCount);
                 if (logCoordinates) Logger.Trace(" Set Figure figureMarkerCount:{0}  {1}", figureMarkerCount, line);
+
+                fiducialDimension = new Dimensions();
+                if (XmlMarker.tmpFigure.Layer.IndexOf(fiducialLabel) >= 0) 
+                {   fiducialEnable = true;  }
+
                 if (Properties.Settings.Default.gui2DColorPenDownModeEnable && Graphic.SizeOk())    // enable color mode
                 {
-                    PathData tmp = new PathData(XmlMarker.tmpFigure.PenColor, XmlMarker.tmpFigure.PenWidth);      // set color, width, pendownpath
+                    PathData tmp = new PathData(XmlMarker.tmpFigure.PenColor, XmlMarker.tmpFigure.PenWidth, offset2DView);      // set color, width, pendownpath
                                                                                                                   //Logger.Trace("pathObject  {0}   {1}", xmlMarker.tmpFigure.penColor, xmlMarker.tmpFigure.penWidth);
                     pathObject.Add(tmp);
                     pathActualDown = pathObject[pathObject.Count - 1].path;
@@ -702,10 +771,26 @@ namespace GrblPlotter
                 XmlMarker.tmpFigure.PosEnd = (XyPoint)newLine.actualPos;
                 XmlMarker.FinishFigure(lineNr);
                 pathActualDown = null;
+				if (fiducialEnable)
+				{	if(fiducialDimension.IsXYSet())
+					{
+                        XyPoint tmpFiducial = fiducialDimension.GetCenter();
+                        if (fiducialsCenter.Count > 0)
+                        {   if (!fiducialsCenter[fiducialsCenter.Count - 1].Equals(tmpFiducial))
+                            { fiducialsCenter.Add(fiducialDimension.GetCenter()); } // avoid same coordinates
+                        }
+                        else
+                            fiducialsCenter.Add(fiducialDimension.GetCenter());
+                        Logger.Trace("Set fiducial add dim {0} {1} ", fiducialDimension.GetCenter().X, fiducialDimension.GetCenter().Y);
+                    }
+                }
+                fiducialEnable = false;
             }
             /* Process Group end */
             else if (line.Contains(XmlMarker.GroupEnd))                    // check if marker available
-            { XmlMarker.FinishGroup(lineNr); }
+            {   XmlMarker.FinishGroup(lineNr); 
+                //fiducialEnable = false;
+            }
             /* Process Tile end */
             else if (line.Contains(XmlMarker.TileEnd))                    // check if marker available
             { XmlMarker.FinishTile(lineNr); }
@@ -725,7 +810,7 @@ namespace GrblPlotter
                 }
                 else
                 {
-                    PathData tmp = new PathData(XmlMarker.tmpFigure.PenColor, width);      // set color, width, pendownpath                                                                                                                            //Logger.Trace("pathObject  {0}   {1}", xmlMarker.tmpFigure.penColor, xmlMarker.tmpFigure.penWidth);
+                    PathData tmp = new PathData(XmlMarker.tmpFigure.PenColor, width, offset2DView);      // set color, width, pendownpath                                                                                                                            //Logger.Trace("pathObject  {0}   {1}", xmlMarker.tmpFigure.penColor, xmlMarker.tmpFigure.penWidth);
                     pathObject.Add(tmp);
                     pathActualDown = pathObject[pathObject.Count - 1].path;
                     showHalftonePath.Add(width, pathObject.Count - 1);          // store new pen-width with according index
@@ -760,13 +845,12 @@ namespace GrblPlotter
                 }
                 AddArrow(pathPenUp, tmp, showArrow, showId);
             }
-
         }
 
         public static string GetParserState(int lineNr)
         {
             if ((lineNr < 0) || (lineNr >= gcodeList.Count))
-            { Logger.Error("GetParserState lineNr:{0}",lineNr); return ""; }
+            { Logger.Error("GetParserState lineNr:{0}", lineNr); return ""; }
 
             string state = "";
             for (int i = 0; 1 < gcodeList.Count; i++)
@@ -776,7 +860,7 @@ namespace GrblPlotter
                     state += string.Format("G{0} G{1} G{2} ", gcodeList[i].motionMode, gcodeList[i].coordSystem, gcodeList[i].planeSelect);
                     state += string.Format("G{0} G{1} G{2} ", (gcodeList[i].isunitModeG21 ? "21" : "20"), (gcodeList[i].isdistanceModeG90 ? "90" : "91"), (gcodeList[i].isfeedrateModeG94 ? "94" : "93"));
                     state += string.Format("M{0} M{1} ", gcodeList[i].spindleState, gcodeList[i].coolantState);
-                    state += string.Format("T{0} F{1} S{2}", gcodeList[i].toolNumber, gcodeList[i].feedRate, gcodeList[i].spindleSpeed);                
+                    state += string.Format("T{0} F{1} S{2}", gcodeList[i].toolNumber, gcodeList[i].feedRate, gcodeList[i].spindleSpeed);
                     break;
                 }
             }
@@ -789,7 +873,7 @@ namespace GrblPlotter
 
             for (int i = 0; i < gcodeList.Count; i++)
             {
-                if (gcodeList[i].lineNumber == lineNr) 
+                if (gcodeList[i].lineNumber == lineNr)
                 {
                     return (XyzPoint)gcodeList[i].actualPos;
                     break;

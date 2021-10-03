@@ -56,6 +56,7 @@
  * 2021-01-23 add trgEvent to "sendStreamEvent" in time with the status query
  * 2021-04-27 IOEception add more closings line 333+
  * 2021-07-14 code clean up / code quality
+ * 2021-09-29 reduce polling frequency on missing reports line 376
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -67,10 +68,6 @@ using System.Drawing;
 using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
-
-//#pragma warning disable CA1303
-//#pragma warning disable CA1304
-//#pragma warning disable CA1305
 
 namespace GrblPlotter
 {
@@ -371,7 +368,9 @@ namespace GrblPlotter
                 {
                     if (Math.Abs(rtsrResponse) > 10)
                     {
-                        if (resetProcessed) lastError = string.Format("Missing {0} Real-time Status Reports per 10 seconds", rtsrResponse);
+                        if (resetProcessed) lastError = string.Format("Missing {0} Real-time Status Reports per 10 seconds. Interval:{1}", rtsrResponse, timerSerial.Interval);
+						timerSerial.Interval += 200;	// reduce polling frequency
+						
                         if (iamSerial == 1)
                             Grbl.lastMessage = lastError;
                         if (resetProcessed) AddToLog("\r\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");

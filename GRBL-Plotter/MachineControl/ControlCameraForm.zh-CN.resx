@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="moveMarkerToCenterToolStripMenuItem.Text" xml:space="preserve">
-    <value>将当前位置设置为标记位置。</value>
-  </data>
   <data name="compensateAngleToolStripMenuItem.Text" xml:space="preserve">
     <value>补偿角度和比例</value>
   </data>
@@ -180,15 +177,6 @@
   <data name="setupToolStripMenuItem.Text" xml:space="preserve">
     <value>设定</value>
   </data>
-  <data name="teachMarkerPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>设置XY =标记位置</value>
-  </data>
-  <data name="setZeroToolStripMenuItem.Text" xml:space="preserve">
-    <value>设置坐标系偏移</value>
-  </data>
-  <data name="setZeroToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>将相机坐标设为零</value>
-  </data>
   <data name="btnApplyAngle.Text" xml:space="preserve">
     <value>将角度应用于GCode</value>
   </data>
@@ -208,20 +196,11 @@
   <data name="btnCamCoordCam.ToolTip" xml:space="preserve">
     <value>将当前相机位置移到工具下方</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>相机</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>相机偏移/移动</value>
-  </data>
   <data name="lblCenterPos.Text" xml:space="preserve">
     <value>找不到形状</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>角</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>措施</value>
   </data>
   <data name="cBShapeDetection.Text" xml:space="preserve">
     <value>形状识别</value>
@@ -231,9 +210,6 @@
   </data>
   <data name="btnAutoCenter.Text" xml:space="preserve">
     <value>中心红色圆圈</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>自动对齐</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>相机</value>
@@ -265,7 +241,188 @@
   <data name="toolStripTextBox3.ToolTipText" xml:space="preserve">
     <value>以GRBL单位（毫米或英寸）</value>
   </data>
-  <data name="teachZeroPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>设置XY = 0;用鼠标指针设置0并单击鼠标左键</value>
+  <data name="cameraMountToolStripMenuItem.Text" xml:space="preserve">
+    <value>相机支架</value>
+  </data>
+  <data name="distortionToolStripMenuItem.Text" xml:space="preserve">
+    <value>失真校正</value>
+  </data>
+  <data name="teachRadiusToolStripMenuItem.Text" xml:space="preserve">
+    <value>示教半径</value>
+  </data>
+  <data name="setTeachRadiusToolStripMenuItem.Text" xml:space="preserve">
+    <value>设置示教半径</value>
+  </data>
+  <data name="teachScaling2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>教缩放</value>
+  </data>
+  <data name="toolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>设置坐标原点</value>
+  </data>
+  <data name="textToolStripMenuItem.Text" xml:space="preserve">
+    <value>文本</value>
+  </data>
+  <data name="setToolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>点击设置</value>
+  </data>
+  <data name="resetAndTeachToolStripMenuItem.Text" xml:space="preserve">
+    <value>重置和教导</value>
+  </data>
+  <data name="cBRotateArround0.Text" xml:space="preserve">
+    <value>旋转 0;0</value>
+  </data>
+  <data name="simulateCameraToolStripMenuItem.Text" xml:space="preserve">
+    <value>模拟相机</value>
+  </data>
+  <data name="penupPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>上笔路径</value>
+  </data>
+  <data name="machineLimitsToolStripMenuItem.Text" xml:space="preserve">
+    <value>机器限制</value>
+  </data>
+  <data name="dimensionToolStripMenuItem.Text" xml:space="preserve">
+    <value>G 代码维度</value>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>看法</value>
+  </data>
+  <data name="menuStripCamera.Text" xml:space="preserve">
+    <value>菜单条1</value>
+  </data>
+  <data name="btnCamCoordTool.Text" xml:space="preserve">
+    <value>G54 工具坐标。</value>
+  </data>
+  <data name="cBCamCoordMove.Text" xml:space="preserve">
+    <value>移动舞台</value>
+  </data>
+  <data name="lblAngle.Text" xml:space="preserve">
+    <value>0.00°</value>
+  </data>
+  <data name="btnCamCoordCam.Text" xml:space="preserve">
+    <value>G59 相机坐标</value>
+  </data>
+  <data name="TbSetPoints.Text" xml:space="preserve">
+    <value>基准坐标：</value>
+  </data>
+  <data name="TbSetPoints.ToolTip" xml:space="preserve">
+    <value>基准坐标：仅使用第 1 个和第 2 个坐标。
+从导入的图形中获取基准坐标，或手动收集它们：
+Ctrl-单击标记，
+“a”附加到列表，
+“c”清除列表。</value>
+  </data>
+  <data name="TbRealPoints.Text" xml:space="preserve">
+    <value>指定坐标：</value>
+  </data>
+  <data name="TbRealPoints.ToolTip" xml:space="preserve">
+    <value>指定坐标：
+手动收集积分：
+Shift-单击添加点，
+Shift -"c" 清除列表</value>
+  </data>
+  <data name="btnAutoCenter.ToolTip" xml:space="preserve">
+    <value>将位置添加到“指定点”并移动工具</value>
+  </data>
+  <data name="GbZoom.Text" xml:space="preserve">
+    <value>相机</value>
+  </data>
+  <data name="BtnSetOffsetZero.Text" xml:space="preserve">
+    <value>设置 XY = 0;0</value>
+  </data>
+  <data name="BtnSetOffsetMarker.Text" xml:space="preserve">
+    <value>设置 XY = 标记</value>
+  </data>
+  <data name="GbOffset.Text" xml:space="preserve">
+    <value>相机偏移/移动</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>右键单击旋转点，按住，在所需角度释放</value>
+  </data>
+  <data name="CbScale.Text" xml:space="preserve">
+    <value>也规模</value>
+  </data>
+  <data name="GbMeasure.Text" xml:space="preserve">
+    <value>测量角度</value>
+  </data>
+  <data name="BtnStartAutomatic.Text" xml:space="preserve">
+    <value>启动自动基准校正</value>
+  </data>
+  <data name="cBShapeShowFilter.Text" xml:space="preserve">
+    <value>显示应用的过滤器</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>也在旋转时缩放</value>
+  </data>
+  <data name="CbUseShapeRecognition.Text" xml:space="preserve">
+    <value>使用形状识别</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>自动模式</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>靠近标记的形状是红色的</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>过滤器可以在[设置-程序行为-相机]中设置</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>形状识别</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>手动模式</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>设置偏移量</value>
+  </data>
+  <data name="setWork00ToHereToolStripMenuItem.Text" xml:space="preserve">
+    <value>在这里设置工作坐标 0;0</value>
+  </data>
+  <data name="FiducialAddCoordinateIn2DViewToolStripMenuItem.Text" xml:space="preserve">
+    <value>将 2D 视图中的基准坐标添加到基准列表</value>
+  </data>
+  <data name="FiducialRemoveLastToolStripMenuItem.Text" xml:space="preserve">
+    <value>删除最后一个基准</value>
+  </data>
+  <data name="FiducialListClearToolStripMenuItem.Text" xml:space="preserve">
+    <value>清除基准列表</value>
+  </data>
+  <data name="ReferenceAddPointInImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>将图像中的参考点添加到指定列表</value>
+  </data>
+  <data name="ReferenceRemoveLastPointToolStripMenuItem.Text" xml:space="preserve">
+    <value>删除最后一个参考点</value>
+  </data>
+  <data name="ReferenceClearListToolStripMenuItem.Text" xml:space="preserve">
+    <value>清除参考点（已分配）列表</value>
+  </data>
+  <data name="setWork00ToHereToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>将工作坐标的原点设置为 2D 视图中的单击位置</value>
+  </data>
+  <data name="compensateAngleToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>将黄色标记的角度应用于 G 代码</value>
+  </data>
+  <data name="FiducialAddCoordinateIn2DViewToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>在 2D 视图中将单击位置的基准坐标添加到基准列表</value>
+  </data>
+  <data name="FiducialRemoveLastToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>从基准列表中删除最后添加的基准</value>
+  </data>
+  <data name="FiducialListClearToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>清除基准列表</value>
+  </data>
+  <data name="ReferenceAddPointInImageToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>将图像内点击位置的参考点添加到指定列表中</value>
+  </data>
+  <data name="ReferenceRemoveLastPointToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>从指定列表中删除最后添加的参考点</value>
+  </data>
+  <data name="ReferenceClearListToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>清除参考点（已分配）列表</value>
+  </data>
+  <data name="showOverlayGraphicsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>显示叠加图形（标尺、下笔路径等）</value>
+  </data>
+  <data name="setMachinePositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>单击以获取原点处的 grbl 机器偏移量</value>
   </data>
 </root>

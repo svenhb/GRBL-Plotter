@@ -23,16 +23,17 @@
  * 2021-07-09 split code from GCodeVisuAndTransform
 */
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-
-#pragma warning disable CA1305
-#pragma warning disable CA1307
 
 namespace GrblPlotter
 {
     internal static partial class VisuGCode
     {
+        public enum ConvertMode { Nothing, RemoveZ, ConvertZToS };
 
+        private static float heightMapGridWidth = 100;
 
         public static string ReplaceG23()
         { return CreateGCodeProg(true, false, false, ConvertMode.Nothing); }   // createGCodeProg(bool replaceG23, bool splitMoves, bool applyNewZ, bool removeZ, HeightMap Map=null)
@@ -41,6 +42,24 @@ namespace GrblPlotter
         { return CreateGCodeProg(false, false, false, ConvertMode.ConvertZToS); }   // createGCodeProg(bool replaceG23, bool splitMoves, bool applyNewZ, bool removeZ, HeightMap Map=null)
         public static string RemoveZ()
         { return CreateGCodeProg(false, false, false, ConvertMode.RemoveZ); }   // createGCodeProg(bool replaceG23, bool splitMoves, bool applyNewZ, bool removeZ, HeightMap Map=null)
+
+        /// <summary>
+        /// apply new z-value to all gcode coordinates
+        /// </summary>
+        internal static string ApplyHeightMap(HeightMap Map)//IList<string> oldCode,
+        {
+            heightMapGridWidth = (float)Map.GridX;
+            //getGCodeLines(oldCode, null, null, true);                // read gcode and process subroutines
+            IList<string> tmp = CreateGCodeProg(true, true, false, ConvertMode.Nothing).Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList();      // split lines and arcs createGCodeProg(bool replaceG23, bool applyNewZ, bool removeZ, HeightMap Map=null)
+            GetGCodeLines(tmp, null, null, false);                  // reload code
+            return CreateGCodeProg(false, false, true, ConvertMode.Nothing, Map);        // apply new Z-value;
+        }
+
+        /// <summary>
+        /// undo height map (reload saved backup)
+        /// </summary>
+        public static void ClearHeightMap()
+        { pathHeightMap.Reset(); }
 
         /// <summary>
         /// Generate GCode from given coordinates in GCodeList
@@ -113,12 +132,12 @@ namespace GrblPlotter
                             if (gcline.z != null)
                             {
                                 if ((gcline.x != null) || (gcline.y != null))
-                                { Gcode.SplitLineZ(newCode, gcline.nNumber, gcline.motionMode, (float)lastActualX, (float)lastActualY, (float)lastActualZ, (float)gcline.actualPos.X, (float)gcline.actualPos.Y, (float)gcline.actualPos.Z, maxStep, true, gcline.codeLine); }
+                                { Gcode.SplitLineZ(newCode, gcline.nNumber, gcline.motionMode, (float)lastActualX, (float)lastActualY, (float)lastActualZ, (float)gcline.actualPos.X, (float)gcline.actualPos.Y, (float)gcline.actualPos.Z, heightMapGridWidth, true, gcline.codeLine); }
                                 else
                                 { newCode.AppendLine(gcline.codeLine.Trim('\r', '\n')); }
                             }
                             else
-                                Gcode.SplitLine(newCode, gcline.nNumber, gcline.motionMode, (float)lastActualX, (float)lastActualY, (float)gcline.actualPos.X, (float)gcline.actualPos.Y, maxStep, true, gcline.codeLine);
+                                Gcode.SplitLine(newCode, gcline.nNumber, gcline.motionMode, (float)lastActualX, (float)lastActualY, (float)gcline.actualPos.X, (float)gcline.actualPos.Y, heightMapGridWidth, true, gcline.codeLine);
                         }
                         else
                         { newCode.AppendLine(gcline.codeLine.Trim('\r', '\n')); }
@@ -243,7 +262,7 @@ namespace GrblPlotter
                 }
 
                 isArc = ((gcline.motionMode == 2) || (gcline.motionMode == 3));
-                coordList.Add(new CoordByLine(iCode, gcline.figureNumber, (XyzPoint)gcline.actualPos,  (XyzPoint)gcline.actualPos, gcline.motionMode, gcline.alpha, isArc));
+                coordList.Add(new CoordByLine(iCode, gcline.figureNumber, (XyzPoint)gcline.actualPos, (XyzPoint)gcline.actualPos, gcline.motionMode, gcline.alpha, isArc));
             }
             return newCode.ToString().Replace(',', '.');
         }

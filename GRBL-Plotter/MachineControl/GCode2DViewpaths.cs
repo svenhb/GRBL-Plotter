@@ -23,6 +23,8 @@
  * 2021-07-08 split code from GCodeVisuAndTransform
  * 2021-07-27 code clean up / code quality
  * 2021-09-02 CreateDrawingPathFromGCode add viewOffset for tiles
+ * 2021-09-29 update fiducialDimension
+ * 2021-09-30 take care for inch:  if (!Properties.Settings.Default.importUnitmm || (modal.unitsMode == 20))
 */
 
 using System;
@@ -30,12 +32,22 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
-//#pragma warning disable CA1305
-
 namespace GrblPlotter
 {
+    internal struct DrawingProperties
+    {
+        public float minX, minY, maxX, maxY, rangeX, rangeY;
+        public void DrawingProperty()
+        { minX = 0; minY = 0; maxX = 0; maxY = 0; rangeX = 0; rangeY = 0; }
+        public void SetX(float min, float max)
+        { minX = Math.Min(min, max); maxX = Math.Max(min, max); rangeX = maxX - minX; }
+        public void SetY(float min, float max)
+        { minY = Math.Min(min, max); maxY = Math.Max(min, max); rangeY = maxY - minY; }
+    };
     internal static partial class VisuGCode
     {
+        internal static DrawingProperties drawingSize = new DrawingProperties();
+
         internal static GraphicsPath pathPenUp = new GraphicsPath();
         internal static GraphicsPath pathPenDown = new GraphicsPath();
         internal static GraphicsPath pathRuler = new GraphicsPath();
@@ -109,7 +121,7 @@ namespace GrblPlotter
                         double tmpAngle = GcodeMath.GetAlpha(lastXYG123Position, (XyPoint)newL.actualPos);
                         tempPathInfo = new PathInfo
                         {
-                            position = new PointF((float)newL.actualPos.X, (float)newL.actualPos.Y),
+                            position = new PointF((float)newL.actualPos.X + viewOffset.X, (float)newL.actualPos.Y + viewOffset.Y),
                             angleArrow = tmpAngle,
                             angleFigure = tmpAngle
                         };
@@ -198,9 +210,17 @@ namespace GrblPlotter
                                 xyzSize.SetDimensionX(newR);
                             }
                         }
-                        path.AddLine((float)oldL.actualPos.X + viewOffset.X, (float)oldL.actualPos.Y + viewOffset.Y, (float)newL.actualPos.X + viewOffset.X, (float)newL.actualPos.Y + viewOffset.Y);	// 2021-09-02
+                        path.AddLine((float)oldL.actualPos.X + viewOffset.X, (float)oldL.actualPos.Y + viewOffset.Y, (float)newL.actualPos.X + viewOffset.X, (float)newL.actualPos.Y + viewOffset.Y);   // 2021-09-02
+
                         if ((path == pathPenDown) && (pathActualDown != null))
+                        {
                             pathActualDown.AddLine((float)oldL.actualPos.X + viewOffset.X, (float)oldL.actualPos.Y + viewOffset.Y, (float)newL.actualPos.X + viewOffset.X, (float)newL.actualPos.Y + viewOffset.Y);
+                            if (fiducialEnable)
+                            {
+                                fiducialDimension.SetDimensionXY((XyPoint)oldL.actualPos); fiducialDimension.SetDimensionXY((XyPoint)newL.actualPos);
+//                                Logger.Trace("Set fiducial dim line {0} {1}  {2} {3}", oldL.actualPos.X, oldL.actualPos.Y, newL.actualPos.X, newL.actualPos.Y);
+                            }
+                        }
                         onlyZ = 0;  // x or y has changed
                     }
                     if (newL.actualPos.Z != oldL.actualPos.Z)  //else
@@ -210,16 +230,21 @@ namespace GrblPlotter
                     if ((onlyZ > 1) && (passLimit) && (path == pathPenUp) || (oldL.codeLine.Contains("DOT")))  // pen moved from -z to +z
                     {
                         float markerSize = 1;
-                        if (!Properties.Settings.Default.importUnitmm)
+                        if (!Properties.Settings.Default.importUnitmm || (modal.unitsMode == 20))
                         { markerSize /= 25.4F; }
                         CreateMarker(pathPenDown, (XyPoint)newL.actualPos, markerSize, 1, false);       // draw cross
                         if ((path == pathPenDown) && (pathActualDown != null))
-                        { 	XyPoint tmpPoint = new XyPoint(newL.actualPos.X + viewOffset.X, newL.actualPos.Y + viewOffset.Y);
-							CreateMarker(pathActualDown, tmpPoint, markerSize, 1, false);       		// draw cross
-						}
+                        {
+                            XyPoint tmpPoint = new XyPoint(newL.actualPos.X + viewOffset.X, newL.actualPos.Y + viewOffset.Y);
+                            CreateMarker(pathActualDown, tmpPoint, markerSize, 1, false);               // draw cross
+                        }
                         CreateMarker(pathPenUp, (XyPoint)newL.actualPos, markerSize, 4, false);       	// draw circle
                         path = pathPenUp;
                         onlyZ = 0;
+						if (fiducialEnable) 
+                        {   fiducialsCenter.Add((XyPoint)newL.actualPos);
+            //                Logger.Trace("Set fiducial add point {0} {1}  ", newL.actualPos.X, newL.actualPos.Y);
+                        }
                         //       passLimit = false;
                     }
                 }
@@ -231,8 +256,10 @@ namespace GrblPlotter
 
                     ArcProperties arcMove;
                     arcMove = GcodeMath.GetArcMoveProperties((XyPoint)oldL.actualPos, (XyPoint)newL.actualPos, newL.i, newL.j, (newL.motionMode == 2));
-                    centerList.Add(new CoordByLine(newL.lineNumber, figureCount, new XyzPoint(arcMove.center, 0), new XyzPoint(arcMove.center, 0), newL.motionMode, 0, true));
-
+             //       centerList.Add(new CoordByLine(newL.lineNumber, figureCount, new XyzPoint(arcMove.center, 0), new XyzPoint(arcMove.center, 0), newL.motionMode, 0, true));
+                    centerList.Add(new CenterByLine(newL.lineNumber, newL.figureNumber, new XyzPoint(arcMove.center, newL.actualPos.Z), (XyzPoint)newL.actualPos, newL.alpha));
+					if (fiducialEnable) {fiducialsCenter.Add(arcMove.center);}
+					
                     newL.distance = Math.Abs(arcMove.radius * arcMove.angleDiff);
 
                     double x1 = (arcMove.center.X - arcMove.radius);
@@ -264,7 +291,7 @@ namespace GrblPlotter
                         if (pathInfoMarker.Count > 0)       // will be overwritten if G2/G3
                         {
                             PathInfo tmpPathInfo = pathInfoMarker[pathInfoMarker.Count - 1];
-                            tmpPathInfo.angleFigure = GcodeMath.GetAlpha(figurePoint0, new XyPoint(arcMove.center.X, arcMove.center.Y)) + ((newL.motionMode == 2) ? (Math.PI / 2) : -(Math.PI / 2));
+                            tmpPathInfo.angleFigure = GcodeMath.GetAlpha(figurePoint0, new XyPoint(arcMove.center.X + viewOffset.X, arcMove.center.Y + viewOffset.Y)) + ((newL.motionMode == 2) ? (Math.PI / 2) : -(Math.PI / 2));
                             pathInfoMarker[pathInfoMarker.Count - 1] = tmpPathInfo;
                         }
 
@@ -303,12 +330,12 @@ namespace GrblPlotter
             pathMachineLimit.StartFigure();
             pathMachineLimit.AddRectangle(pathRect1);
             pathMachineLimit.AddRectangle(pathRect2);
-            /*        pathMachineLimit.AddRectangle(pathRect3);
-
-                    pathMachineLimit.Transform(matrix);
-                    pathMachineLimit.AddString("Set limitation in setup", new FontFamily("Arial"), (int)FontStyle.Regular, rx/20, new Point((int)x1,(int)-(y1-10)), StringFormat.GenericDefault);
-                    pathMachineLimit.Transform(matrix);
-                    */
+            /*        
+				pathMachineLimit.AddRectangle(pathRect3);
+				pathMachineLimit.Transform(matrix);
+				pathMachineLimit.AddString("Set limitation in setup", new FontFamily("Arial"), (int)FontStyle.Regular, rx/20, new Point((int)x1,(int)-(y1-10)), StringFormat.GenericDefault);
+				pathMachineLimit.Transform(matrix);
+			*/
             pathToolTable.Reset();
             if ((ToolTable.toolTableArray != null) && (ToolTable.toolTableArray.Count > 1))
             {
@@ -340,7 +367,6 @@ namespace GrblPlotter
             origWCOMachineLimit = (XyPoint)Grbl.posWCO;
         }
 
-        private static float maxStep = 100;
         /// <summary>
         /// create height map path in work coordinates
         /// </summary>
@@ -384,7 +410,7 @@ namespace GrblPlotter
             foreach (CoordByLine gcline in coordList)        // copy coordList and add WCO
             {
                 isArc = ((newLine.motionMode == 2) || (newLine.motionMode == 3));
-                coordListLandMark.Add(new CoordByLine(0, -1, gcline.lastPos + Grbl.posWCO,  gcline.actualPos + Grbl.posWCO, gcline.actualG, gcline.alpha, isArc));
+                coordListLandMark.Add(new CoordByLine(0, -1, gcline.lastPos + Grbl.posWCO, gcline.actualPos + Grbl.posWCO, gcline.actualG, gcline.alpha, isArc));
             }
             origWCOLandMark = (XyPoint)Grbl.posWCO;
         }
@@ -540,7 +566,7 @@ namespace GrblPlotter
             int show_short = 500;
             int show_smallest = 200;
             float length1 = 1F, length2 = 2F, length3 = 3F, length5 = 5F;
-            if (!Properties.Settings.Default.importUnitmm)
+            if (!Properties.Settings.Default.importUnitmm || (modal.unitsMode == 20))
             {
                 divider = 16;
                 divider_long = divider;
@@ -643,6 +669,108 @@ namespace GrblPlotter
             }
         }
 
+        private static void MarkPath(GraphicsPath path, float x, float y, int type)
+        {
+            float markerSize = 1;
+            if (!Properties.Settings.Default.importUnitmm || (modal.unitsMode == 20))
+            { markerSize /= 25.4F; }
+            CreateMarker(path, x, y, markerSize, type, false);    // draw circle
+        }
+
+        // setup drawing area 
+        public static void CalcDrawingArea()
+        {
+            double extend = 1.01;                                                       // extend dimension a little bit
+            double roundTo = 5;                                                         // round-up dimensions
+            if (!Properties.Settings.Default.importUnitmm || (modal.unitsMode == 20))
+            { roundTo = 0.25; }
+
+            if ((xyzSize.dimx == 0) && (xyzSize.dimy == 0))
+            {
+                xyzSize.SetDimensionXY(G0Size.minx, G0Size.miny);
+                xyzSize.SetDimensionXY(G0Size.maxx, G0Size.maxy);
+                Logger.Info("xyz-Dimension=0, use G0-Dimension dim-x {0} dim-y {1}", G0Size.dimx, G0Size.dimy);
+            }
+
+            if ((xyzSize.miny == 0) && (xyzSize.maxy == 0))
+            { xyzSize.miny = -1; xyzSize.maxy = 1; }
+
+            drawingSize.minX = (float)(Math.Floor(xyzSize.minx * extend / roundTo) * roundTo);                  // extend dimensions
+            if (drawingSize.minX >= 0) { drawingSize.minX = (float)-roundTo; }                                          // be sure to show 0;0 position
+            drawingSize.maxX = (float)(Math.Ceiling(xyzSize.maxx * extend / roundTo) * roundTo);
+            drawingSize.minY = (float)(Math.Floor(xyzSize.miny * extend / roundTo) * roundTo);
+            if (drawingSize.minY >= 0) { drawingSize.minY = (float)-roundTo; }
+            drawingSize.maxY = (float)(Math.Ceiling(xyzSize.maxy * extend / roundTo) * roundTo);
+
+            //           createRuler(pathRuler, drawingSize.minX, drawingSize.maxX, drawingSize.minY, drawingSize.maxY);
+            CreateRuler(pathRuler, drawingSize);
+
+            CreateMarkerPath();
+
+            CreateDimensionBox();
+        }
+
+        public static void CreateDimensionBox()
+        {
+            pathDimension.Reset();
+            pathDimension.StartFigure();
+            pathDimension.AddLine((float)xyzSize.minx, (float)xyzSize.miny, (float)xyzSize.minx, (float)xyzSize.maxy);
+            pathDimension.AddLine((float)xyzSize.minx, (float)xyzSize.maxy, (float)xyzSize.maxx, (float)xyzSize.maxy);
+            pathDimension.AddLine((float)xyzSize.maxx, (float)xyzSize.maxy, (float)xyzSize.maxx, (float)xyzSize.miny);
+            pathDimension.CloseFigure();
+        }
+
+
+        public static void CreateMarkerPath()
+        { CreateMarkerPath(false, new XyPoint(0, 0)); }
+
+        internal static void CreateMarkerPath(bool showCenter, XyPoint center)
+        { CreateMarkerPath(showCenter, center, center); }
+        internal static void CreateMarkerPath(bool showCenter, XyPoint center, XyPoint last)
+        {
+            float msize = (float)Math.Sqrt(xyzSize.dimx * xyzSize.dimx + xyzSize.dimy * xyzSize.dimy) / 40f;
+            msize = Math.Max(msize, 2);
+            //            createMarker(pathTool,   (xyPoint)grbl.posWork, msize, 2);
+
+            if (tangentialAxisEnable)
+            {
+                double posAngle = 0;
+                double factor = Math.PI / ((double)Properties.Settings.Default.importGCTangentialTurn / 2);
+                if (tangentialAxisName == "C") { posAngle = factor * Grbl.posWork.C; }
+                else if (tangentialAxisName == "B") { posAngle = factor * Grbl.posWork.B; }
+                else if (tangentialAxisName == "A") { posAngle = factor * Grbl.posWork.A; }
+                else if (tangentialAxisName == "Z") { posAngle = factor * Grbl.posWork.Z; }
+                CreateMarkerArrow(pathTool, msize, (XyPoint)Grbl.posWork, posAngle, 1);
+                CreateMarkerArrow(pathMarker, msize, (XyPoint)Grbl.PosMarker, Grbl.PosMarkerAngle * 360 / (double)Properties.Settings.Default.importGCTangentialTurn);
+            }
+            else
+            {
+                CreateMarker(pathTool, (XyPoint)Grbl.posWork, msize, 2);
+                CreateMarker(pathMarker, (XyPoint)Grbl.PosMarker, msize, 3);
+            }
+
+            if (showCenter)
+            {
+                CreateMarker(pathMarker, center, msize, 0, false);
+                pathMarker.StartFigure(); pathMarker.AddLine((float)last.X, (float)last.Y, (float)center.X, (float)center.Y);
+                pathMarker.StartFigure(); pathMarker.AddLine((float)center.X, (float)center.Y, (float)Grbl.PosMarker.X, (float)Grbl.PosMarker.Y);
+            }
+            if (Properties.Settings.Default.ctrl4thUse)
+            {
+                float scale = (float)Properties.Settings.Default.rotarySubstitutionDiameter * (float)Math.PI / 360;
+                if (Properties.Settings.Default.ctrl4thInvert)
+                    scale *= -1;
+
+                if (Properties.Settings.Default.ctrl4thOverX)
+                {
+                    CreateMarker(pathTool, (float)Grbl.posWork.X, (float)Grbl.posWork.A * scale, msize, 2);
+                }
+                else
+                {
+                    CreateMarker(pathTool, (float)Grbl.posWork.A * scale, (float)Grbl.posWork.Y, msize, 2);
+                }
+            }
+        }
 
 
     }

@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="moveMarkerToCenterToolStripMenuItem.Text" xml:space="preserve">
-    <value>Установить текущую позицию в качестве маркера поз.</value>
-  </data>
   <data name="compensateAngleToolStripMenuItem.Text" xml:space="preserve">
     <value>Компенсировать угол и масштаб</value>
   </data>
@@ -180,15 +177,6 @@
   <data name="setupToolStripMenuItem.Text" xml:space="preserve">
     <value>Настроить</value>
   </data>
-  <data name="teachMarkerPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Установить XY = положение маркера</value>
-  </data>
-  <data name="setZeroToolStripMenuItem.Text" xml:space="preserve">
-    <value>Установить смещение системы координат</value>
-  </data>
-  <data name="setZeroToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Установить координату ноль со смещением камеры</value>
-  </data>
   <data name="btnApplyAngle.Text" xml:space="preserve">
     <value>Применить угол к GCode</value>
   </data>
@@ -208,20 +196,11 @@
   <data name="btnCamCoordCam.ToolTip" xml:space="preserve">
     <value>Переместить текущую позицию камеры ниже инструмента</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>камера</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Смещение камеры / движение</value>
-  </data>
   <data name="lblCenterPos.Text" xml:space="preserve">
     <value>Форма не найдена</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>угол</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Мера</value>
   </data>
   <data name="cBShapeDetection.Text" xml:space="preserve">
     <value>Распознавание формы</value>
@@ -231,9 +210,6 @@
   </data>
   <data name="btnAutoCenter.Text" xml:space="preserve">
     <value>Центр красный круг</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Автоматическое выравнивание</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>камера</value>
@@ -265,7 +241,188 @@
   <data name="toolStripTextBox3.ToolTipText" xml:space="preserve">
     <value>в единицах GRBL (мм или дюйм)</value>
   </data>
-  <data name="teachZeroPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Установите XY = 0; 0 с помощью указателя мыши и щелчка левой кнопкой мыши</value>
+  <data name="cameraMountToolStripMenuItem.Text" xml:space="preserve">
+    <value>Крепление камеры</value>
+  </data>
+  <data name="distortionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Коррекция искажений</value>
+  </data>
+  <data name="teachRadiusToolStripMenuItem.Text" xml:space="preserve">
+    <value>Обучить радиус</value>
+  </data>
+  <data name="setTeachRadiusToolStripMenuItem.Text" xml:space="preserve">
+    <value>Установить радиус обучения</value>
+  </data>
+  <data name="teachScaling2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Научите масштабированию</value>
+  </data>
+  <data name="toolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Установить начало координат</value>
+  </data>
+  <data name="textToolStripMenuItem.Text" xml:space="preserve">
+    <value>Текст</value>
+  </data>
+  <data name="setToolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Нажмите, чтобы установить</value>
+  </data>
+  <data name="resetAndTeachToolStripMenuItem.Text" xml:space="preserve">
+    <value>Сбросить и научить</value>
+  </data>
+  <data name="cBRotateArround0.Text" xml:space="preserve">
+    <value>Повернуть вокруг 0; 0</value>
+  </data>
+  <data name="simulateCameraToolStripMenuItem.Text" xml:space="preserve">
+    <value>Имитация камеры</value>
+  </data>
+  <data name="penupPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Путь вверх</value>
+  </data>
+  <data name="machineLimitsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ограничения машины</value>
+  </data>
+  <data name="dimensionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Размер G-кода</value>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>Вид</value>
+  </data>
+  <data name="menuStripCamera.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="btnCamCoordTool.Text" xml:space="preserve">
+    <value>G54 Координата инструмента.</value>
+  </data>
+  <data name="cBCamCoordMove.Text" xml:space="preserve">
+    <value>Переместить этап</value>
+  </data>
+  <data name="lblAngle.Text" xml:space="preserve">
+    <value>0,00 °</value>
+  </data>
+  <data name="btnCamCoordCam.Text" xml:space="preserve">
+    <value>G59 Координатор камеры</value>
+  </data>
+  <data name="TbSetPoints.Text" xml:space="preserve">
+    <value>Реперные координаты:</value>
+  </data>
+  <data name="TbSetPoints.ToolTip" xml:space="preserve">
+    <value>Реперные координаты: будут использоваться только 1-я и 2-я координаты.
+Получите координаты реперных точек из импортированной графики или соберите их вручную:
+Ctrl-щелчок, чтобы отметить,
+"a" добавить в список,
+«c», чтобы очистить список.</value>
+  </data>
+  <data name="TbRealPoints.Text" xml:space="preserve">
+    <value>Назначенные координаторы:</value>
+  </data>
+  <data name="TbRealPoints.ToolTip" xml:space="preserve">
+    <value>Назначенные координаторы:
+Набирать баллы вручную:
+Shift-щелчок, чтобы добавить точку,
+Shift - «c», чтобы очистить список</value>
+  </data>
+  <data name="btnAutoCenter.ToolTip" xml:space="preserve">
+    <value>Добавьте позицию в «Назначенные точки» и переместите инструмент</value>
+  </data>
+  <data name="GbZoom.Text" xml:space="preserve">
+    <value>Камера</value>
+  </data>
+  <data name="BtnSetOffsetZero.Text" xml:space="preserve">
+    <value>Установите XY = 0; 0</value>
+  </data>
+  <data name="BtnSetOffsetMarker.Text" xml:space="preserve">
+    <value>Установить XY = маркер</value>
+  </data>
+  <data name="GbOffset.Text" xml:space="preserve">
+    <value>Смещение / перемещение камеры</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Щелкните правой кнопкой мыши для точки поворота, удерживайте нажатой, отпустите под нужным углом</value>
+  </data>
+  <data name="CbScale.Text" xml:space="preserve">
+    <value>Также масштабировать</value>
+  </data>
+  <data name="GbMeasure.Text" xml:space="preserve">
+    <value>Угол измерения</value>
+  </data>
+  <data name="BtnStartAutomatic.Text" xml:space="preserve">
+    <value>Начать автоматическую коррекцию реперных точек</value>
+  </data>
+  <data name="cBShapeShowFilter.Text" xml:space="preserve">
+    <value>Показать примененные фильтры</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>Также масштабируется при вращении</value>
+  </data>
+  <data name="CbUseShapeRecognition.Text" xml:space="preserve">
+    <value>Распознавание формы</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Автоматический режим</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Форма рядом с маркером красная</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Фильтры можно настроить в [Настройка - Поведение программы - Камера].</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Распознавание формы</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Ручной режим</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Установить смещения</value>
+  </data>
+  <data name="setWork00ToHereToolStripMenuItem.Text" xml:space="preserve">
+    <value>Задайте здесь рабочую координату 0; 0</value>
+  </data>
+  <data name="FiducialAddCoordinateIn2DViewToolStripMenuItem.Text" xml:space="preserve">
+    <value>Добавить реперные координаты из 2D-вида в список реперных точек</value>
+  </data>
+  <data name="FiducialRemoveLastToolStripMenuItem.Text" xml:space="preserve">
+    <value>Удалить последний реперный знак</value>
+  </data>
+  <data name="FiducialListClearToolStripMenuItem.Text" xml:space="preserve">
+    <value>Очистить список реперных точек</value>
+  </data>
+  <data name="ReferenceAddPointInImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Добавить контрольную точку из изображения в назначенный список</value>
+  </data>
+  <data name="ReferenceRemoveLastPointToolStripMenuItem.Text" xml:space="preserve">
+    <value>Удалить последнюю контрольную точку</value>
+  </data>
+  <data name="ReferenceClearListToolStripMenuItem.Text" xml:space="preserve">
+    <value>Очистить список контрольных точек (назначенных)</value>
+  </data>
+  <data name="setWork00ToHereToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Устанавливает начало координат заготовки в положение щелчка в 2D-виде</value>
+  </data>
+  <data name="compensateAngleToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Применяет желтый отмеченный угол к G-коду</value>
+  </data>
+  <data name="FiducialAddCoordinateIn2DViewToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Добавить реперные координаты точки щелчка внутри 2D-вида в список реперных точек.</value>
+  </data>
+  <data name="FiducialRemoveLastToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Удалить последний добавленный реперный знак из списка реперных точек</value>
+  </data>
+  <data name="FiducialListClearToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Очистить список реперных точек</value>
+  </data>
+  <data name="ReferenceAddPointInImageToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Добавить контрольную точку места щелчка внутри изображения в назначенный список</value>
+  </data>
+  <data name="ReferenceRemoveLastPointToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Удалить последнюю добавленную контрольную точку из назначенного списка</value>
+  </data>
+  <data name="ReferenceClearListToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Очистить список контрольных точек (назначенных)</value>
+  </data>
+  <data name="showOverlayGraphicsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Mostrar gráficos de sobreposição (régua, caminho da caneta, etc.)</value>
+  </data>
+  <data name="setMachinePositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Нажмите, чтобы получить машинное смещение grbl в исходной точке</value>
   </data>
 </root>
