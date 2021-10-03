@@ -30,7 +30,7 @@
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.6.1.0</ApplicationVersion>
+    <ApplicationVersion>1.6.2.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -163,15 +163,16 @@
     <Compile Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.Designer.cs">
       <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
     </Compile>
-    <Compile Include="GCodeCreation\graphicClasses.cs" />
-    <Compile Include="GCodeCreation\graphicRelatedHatchFill.cs" />
-    <Compile Include="GCodeCreation\graphicRelatedSpecial.cs" />
-    <Compile Include="GCodeCreation\graphicRelatedTangential.cs" />
-    <Compile Include="GCodeCreation\graphicWorker.cs">
+    <Compile Include="GCodeCreation\GraphicClasses.cs" />
+    <Compile Include="GCodeCreation\GraphicGenerateMisc.cs" />
+    <Compile Include="GCodeCreation\GraphicGenerateHatchFill.cs" />
+    <Compile Include="GCodeCreation\GraphicGenerateSpecial.cs" />
+    <Compile Include="GCodeCreation\GraphicGenerateTangential.cs" />
+    <Compile Include="GCodeCreation\GraphicWorker.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GCodeCreation\ImportFromFile\GCodeFromCsv.cs" />
-    <Compile Include="GCodeCreation\graphicRelated.cs" />
+    <Compile Include="GCodeCreation\GraphicCollectData.cs" />
     <Compile Include="GCodeCreation\ImportFromFile\GCodeFromGerber.cs" />
     <Compile Include="GCodeCreation\XmlMarker.cs" />
     <Compile Include="GUI\AboutForm.cs">
@@ -190,7 +191,7 @@
     </Compile>
     <Compile Include="GCodeCreation\CreateFromForm\GCodeFromImageOutline.cs" />
     <Compile Include="GCodeCreation\ImportMath.cs" />
-    <Compile Include="GCodeCreation\graphic2GCode.cs" />
+    <Compile Include="GCodeCreation\Graphic2GCode.cs" />
     <Compile Include="GUI\ButtonEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -234,11 +235,14 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\Notifier.cs" />
-    <Compile Include="GUI\splashscreen.cs">
+    <Compile Include="GUI\Splashscreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\splashscreen.Designer.cs">
-      <DependentUpon>splashscreen.cs</DependentUpon>
+    <Compile Include="GUI\Splashscreen.Designer.cs">
+      <DependentUpon>Splashscreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MachineControl\ControlCameraFormMisc.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="MachineControl\ControlCoordSystem.cs">
       <SubType>Form</SubType>
@@ -322,8 +326,8 @@
       <DependentUpon>ControlHeightMap.cs</DependentUpon>
     </Compile>
     <Compile Include="GCodeCreation\ImportFromFile\GCodeFromDxf.cs" />
-    <Compile Include="GCodeCreation\gcodeRelated.cs" />
-    <Compile Include="MachineControl\grblRelated.cs" />
+    <Compile Include="GCodeCreation\Graphic2GCodeRelated.cs" />
+    <Compile Include="MachineControl\GrblRelated.cs" />
     <Compile Include="MachineControl\IniFile.cs" />
     <Compile Include="MachineControl\GCodeVisuAndTransform.cs" />
     <Compile Include="GCodeCreation\CreateFromForm\GCodeFromImage.cs">
@@ -414,6 +418,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResStrings.resx</DependentUpon>
     </Compile>
+    <Content Include="data\examples\exampleFrameFix.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\examples\exampleFrameXy.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\examples\graphic_fiducial_circle.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\extensions\GCode_Conic_Spiral.hta">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -865,8 +878,8 @@
     <EmbeddedResource Include="GUI\MainFormStreamSection.resx">
       <DependentUpon>MainFormStreamSection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\splashscreen.resx">
-      <DependentUpon>splashscreen.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\Splashscreen.resx">
+      <DependentUpon>Splashscreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\Control2ndGRBL.de-DE.resx">
       <DependentUpon>Control2ndGRBL.cs</DependentUpon>
