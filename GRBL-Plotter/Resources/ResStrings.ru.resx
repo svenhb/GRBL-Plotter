@@ -354,4 +354,49 @@
   <data name="statusStripeCheckUpdate" xml:space="preserve">
     <value>«Проверить новую версию GRBL-Plotter на GitHub» - можно отключить в [Настройка - Управление программой]</value>
   </data>
+  <data name="cameraMountFix" xml:space="preserve">
+    <value>Исправить установленную камеру</value>
+  </data>
+  <data name="cameraMountXy" xml:space="preserve">
+    <value>Камера установлена ​​на платформе XY</value>
+  </data>
+  <data name="cameraMountXyz" xml:space="preserve">
+    <value>Камера установлена ​​на оси Z</value>
+  </data>
+  <data name="cameraSetRadius" xml:space="preserve">
+    <value>Установить радиус</value>
+  </data>
+  <data name="cameraScaling" xml:space="preserve">
+    <value>Масштабирование</value>
+  </data>
+  <data name="cameraTeachRadius" xml:space="preserve">
+    <value>Установите радиус окружности обучения</value>
+  </data>
+  <data name="cameraForUpperPos" xml:space="preserve">
+    <value>для верхнего положения камеры</value>
+  </data>
+  <data name="cameraForLowerPos" xml:space="preserve">
+    <value>для нижнего положения камеры</value>
+  </data>
+  <data name="cameraQuit" xml:space="preserve">
+    <value>Нажмите «ESC», чтобы завершить обучение.</value>
+  </data>
+  <data name="cameraSetMount" xml:space="preserve">
+    <value>Установка крепления камеры</value>
+  </data>
+  <data name="cameraSetCrossHairs" xml:space="preserve">
+    <value>Щелкните, чтобы установить положение перекрестия</value>
+  </data>
+  <data name="cameraSetDistortion" xml:space="preserve">
+    <value>Отметьте четыре угла искаженного прямоугольника (соотношение 4: 3). Для отмены нажмите ESC.</value>
+  </data>
+  <data name="cameraNoCamera" xml:space="preserve">
+    <value>Источник камеры не найден. Закройте и откройте это окно после подключения камеры.</value>
+  </data>
+  <data name="cameraNextClick" xml:space="preserve">
+    <value>Следующим щелчком мыши устанавливается масштабирование \ r \ n обзора камеры.</value>
+  </data>
+  <data name="cameraDistortionMarker" xml:space="preserve">
+    <value>Маркер искажения</value>
+  </data>
 </root>

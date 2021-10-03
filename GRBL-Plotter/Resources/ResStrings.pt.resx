@@ -354,4 +354,49 @@
   <data name="statusStripeCheckUpdate" xml:space="preserve">
     <value>'Verificar se há nova versão do GRBL-Plotter no GitHub' - pode ser desativado em [Setup - Program control]</value>
   </data>
+  <data name="cameraMountFix" xml:space="preserve">
+    <value>Fixar câmera montada</value>
+  </data>
+  <data name="cameraMountXy" xml:space="preserve">
+    <value>Câmera montada na plataforma XY</value>
+  </data>
+  <data name="cameraMountXyz" xml:space="preserve">
+    <value>Câmera montada no eixo Z</value>
+  </data>
+  <data name="cameraSetRadius" xml:space="preserve">
+    <value>Definir raio</value>
+  </data>
+  <data name="cameraScaling" xml:space="preserve">
+    <value>Dimensionamento</value>
+  </data>
+  <data name="cameraTeachRadius" xml:space="preserve">
+    <value>Defina o raio do círculo de aprendizagem</value>
+  </data>
+  <data name="cameraForUpperPos" xml:space="preserve">
+    <value>para a posição superior da câmera</value>
+  </data>
+  <data name="cameraForLowerPos" xml:space="preserve">
+    <value>para a posição mais baixa da câmera</value>
+  </data>
+  <data name="cameraQuit" xml:space="preserve">
+    <value>Pressione 'ESC' para encerrar o ensino.</value>
+  </data>
+  <data name="cameraSetMount" xml:space="preserve">
+    <value>Configurando o suporte da câmera</value>
+  </data>
+  <data name="cameraSetCrossHairs" xml:space="preserve">
+    <value>Clique para definir a posição da cruz</value>
+  </data>
+  <data name="cameraSetDistortion" xml:space="preserve">
+    <value>Marque os quatro cantos do retângulo distorcido (proporção 4: 3). Pressione ESC para cancelar.</value>
+  </data>
+  <data name="cameraNoCamera" xml:space="preserve">
+    <value>Nenhuma fonte de câmera encontrada. Feche e abra esta janela após conectar uma câmera.</value>
+  </data>
+  <data name="cameraNextClick" xml:space="preserve">
+    <value>Com o próximo clique, a escala \ r \ n da visão da câmera é definida</value>
+  </data>
+  <data name="cameraDistortionMarker" xml:space="preserve">
+    <value>Marcador de distorção</value>
+  </data>
 </root>

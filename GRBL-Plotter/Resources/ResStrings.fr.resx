@@ -348,4 +348,49 @@
   <data name="statusStripeCheckUpdate" xml:space="preserve">
     <value>'Vérifier la nouvelle version de GRBL-Plotter sur GitHub' - peut être désactivé dans [Configuration - Contrôle de programme]</value>
   </data>
+  <data name="cameraMountFix" xml:space="preserve">
+    <value>Caméra montée fixe</value>
+  </data>
+  <data name="cameraMountXy" xml:space="preserve">
+    <value>Caméra montée sur plate-forme XY</value>
+  </data>
+  <data name="cameraMountXyz" xml:space="preserve">
+    <value>Caméra montée sur l'axe Z</value>
+  </data>
+  <data name="cameraSetRadius" xml:space="preserve">
+    <value>Définir le rayon</value>
+  </data>
+  <data name="cameraScaling" xml:space="preserve">
+    <value>Mise à l'échelle</value>
+  </data>
+  <data name="cameraTeachRadius" xml:space="preserve">
+    <value>Définir le rayon du cercle d'apprentissage</value>
+  </data>
+  <data name="cameraForUpperPos" xml:space="preserve">
+    <value>pour la position supérieure de la caméra</value>
+  </data>
+  <data name="cameraForLowerPos" xml:space="preserve">
+    <value>pour position basse de la caméra</value>
+  </data>
+  <data name="cameraQuit" xml:space="preserve">
+    <value>Appuyez sur 'ESC' pour terminer l'apprentissage.</value>
+  </data>
+  <data name="cameraSetMount" xml:space="preserve">
+    <value>Réglage du support de caméra</value>
+  </data>
+  <data name="cameraSetCrossHairs" xml:space="preserve">
+    <value>Cliquez pour définir la position du réticule</value>
+  </data>
+  <data name="cameraSetDistortion" xml:space="preserve">
+    <value>Marquez les quatre coins du rectangle déformé (rapport 4 : 3). Appuyez sur ESC pour annuler.</value>
+  </data>
+  <data name="cameraNoCamera" xml:space="preserve">
+    <value>Aucune source de caméra trouvée. Fermez et ouvrez cette fenêtre après avoir connecté une caméra.</value>
+  </data>
+  <data name="cameraNextClick" xml:space="preserve">
+    <value>Avec le clic suivant, la mise à l'échelle \ r \ n de la vue de la caméra est définie</value>
+  </data>
+  <data name="cameraDistortionMarker" xml:space="preserve">
+    <value>Marqueur de distorsion</value>
+  </data>
 </root>

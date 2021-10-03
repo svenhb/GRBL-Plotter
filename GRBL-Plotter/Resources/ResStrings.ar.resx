@@ -354,4 +354,49 @@
   <data name="statusStripeCheckUpdate" xml:space="preserve">
     <value>"التحقق من إصدار GRBL-Plotter الجديد على GitHub" - يمكن تعطيله في [الإعداد - التحكم في البرنامج]</value>
   </data>
+  <data name="cameraMountFix" xml:space="preserve">
+    <value>إصلاح الكاميرا المثبتة</value>
+  </data>
+  <data name="cameraMountXy" xml:space="preserve">
+    <value>تم تركيب الكاميرا على منصة XY</value>
+  </data>
+  <data name="cameraMountXyz" xml:space="preserve">
+    <value>الكاميرا مُثبَّتة على المحور Z.</value>
+  </data>
+  <data name="cameraSetRadius" xml:space="preserve">
+    <value>تعيين نصف القطر</value>
+  </data>
+  <data name="cameraScaling" xml:space="preserve">
+    <value>تحجيم</value>
+  </data>
+  <data name="cameraTeachRadius" xml:space="preserve">
+    <value>حدد دائرة نصف قطرها للتدريس</value>
+  </data>
+  <data name="cameraForUpperPos" xml:space="preserve">
+    <value>لموضع الكاميرا العلوي</value>
+  </data>
+  <data name="cameraForLowerPos" xml:space="preserve">
+    <value>لوضع الكاميرا السفلي</value>
+  </data>
+  <data name="cameraQuit" xml:space="preserve">
+    <value>اضغط على "ESC" لإنهاء التدريس.</value>
+  </data>
+  <data name="cameraSetMount" xml:space="preserve">
+    <value>ضبط تركيب الكاميرا</value>
+  </data>
+  <data name="cameraSetCrossHairs" xml:space="preserve">
+    <value>انقر لتعيين موضع التقاطع</value>
+  </data>
+  <data name="cameraSetDistortion" xml:space="preserve">
+    <value>حدد الزوايا الأربع للمستطيل المشوه (نسبة 4: 3). اضغط على ESC للإلغاء.</value>
+  </data>
+  <data name="cameraNoCamera" xml:space="preserve">
+    <value>لم يتم العثور على مصدر الكاميرا. أغلق هذه النافذة وافتحها بعد توصيل الكاميرا.</value>
+  </data>
+  <data name="cameraNextClick" xml:space="preserve">
+    <value>مع النقر التالي ، تم تعيين مقياس \ r \ n عرض الكاميرا</value>
+  </data>
+  <data name="cameraDistortionMarker" xml:space="preserve">
+    <value>علامة تشويه</value>
+  </data>
 </root>

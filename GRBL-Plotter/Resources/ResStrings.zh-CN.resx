@@ -354,4 +354,49 @@
   <data name="statusStripeCheckUpdate" xml:space="preserve">
     <value>“在GitHub上检查新的GRBL-Plotter版本”-可以在[设置-程序控制]中禁用</value>
   </data>
+  <data name="cameraMountFix" xml:space="preserve">
+    <value>固定安装的摄像头</value>
+  </data>
+  <data name="cameraMountXy" xml:space="preserve">
+    <value>安装在 XY 平台上的相机</value>
+  </data>
+  <data name="cameraMountXyz" xml:space="preserve">
+    <value>安装在 Z 轴上的相机</value>
+  </data>
+  <data name="cameraSetRadius" xml:space="preserve">
+    <value>设置半径</value>
+  </data>
+  <data name="cameraScaling" xml:space="preserve">
+    <value>缩放</value>
+  </data>
+  <data name="cameraTeachRadius" xml:space="preserve">
+    <value>设置示教圆半径</value>
+  </data>
+  <data name="cameraForUpperPos" xml:space="preserve">
+    <value>用于上部相机位置</value>
+  </data>
+  <data name="cameraForLowerPos" xml:space="preserve">
+    <value>用于较低的相机位置</value>
+  </data>
+  <data name="cameraQuit" xml:space="preserve">
+    <value>按“ESC”结束示教。</value>
+  </data>
+  <data name="cameraSetMount" xml:space="preserve">
+    <value>设置相机支架</value>
+  </data>
+  <data name="cameraSetCrossHairs" xml:space="preserve">
+    <value>单击以设置十字准线位置</value>
+  </data>
+  <data name="cameraSetDistortion" xml:space="preserve">
+    <value>标记扭曲矩形的四个角（比例为 4:3）。按 ESC 取消。</value>
+  </data>
+  <data name="cameraNoCamera" xml:space="preserve">
+    <value>找不到相机来源。连接相机后关闭并打开此窗口。</value>
+  </data>
+  <data name="cameraNextClick" xml:space="preserve">
+    <value>下一次单击设置相机视图的缩放\ r \ n</value>
+  </data>
+  <data name="cameraDistortionMarker" xml:space="preserve">
+    <value>失真标记</value>
+  </data>
 </root>

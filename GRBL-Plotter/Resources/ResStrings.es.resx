@@ -354,4 +354,49 @@
   <data name="statusStripeCheckUpdate" xml:space="preserve">
     <value>'Buscar nueva versión de GRBL-Plotter en GitHub': se puede desactivar en [Configuración - Control de programa]</value>
   </data>
+  <data name="cameraMountFix" xml:space="preserve">
+    <value>Arreglar la cámara montada</value>
+  </data>
+  <data name="cameraMountXy" xml:space="preserve">
+    <value>Cámara montada en plataforma XY</value>
+  </data>
+  <data name="cameraMountXyz" xml:space="preserve">
+    <value>Cámara montada en el eje Z</value>
+  </data>
+  <data name="cameraSetRadius" xml:space="preserve">
+    <value>Establecer radio</value>
+  </data>
+  <data name="cameraScaling" xml:space="preserve">
+    <value>Escalada</value>
+  </data>
+  <data name="cameraTeachRadius" xml:space="preserve">
+    <value>Establecer el radio del círculo de aprendizaje</value>
+  </data>
+  <data name="cameraForUpperPos" xml:space="preserve">
+    <value>para la posición superior de la cámara</value>
+  </data>
+  <data name="cameraForLowerPos" xml:space="preserve">
+    <value>para la posición más baja de la cámara</value>
+  </data>
+  <data name="cameraQuit" xml:space="preserve">
+    <value>Presione 'ESC' para finalizar la enseñanza.</value>
+  </data>
+  <data name="cameraSetMount" xml:space="preserve">
+    <value>Configuración del soporte de la cámara</value>
+  </data>
+  <data name="cameraSetCrossHairs" xml:space="preserve">
+    <value>Haga clic para establecer la posición de la cruz</value>
+  </data>
+  <data name="cameraSetDistortion" xml:space="preserve">
+    <value>Marque las cuatro esquinas del rectángulo distorsionado (proporción 4: 3). Presione ESC para cancelar.</value>
+  </data>
+  <data name="cameraNoCamera" xml:space="preserve">
+    <value>No se encontró ninguna fuente de cámara. Cierre y abra esta ventana después de conectar una cámara.</value>
+  </data>
+  <data name="cameraNextClick" xml:space="preserve">
+    <value>Con el siguiente clic, se establece la escala \ r \ n de la vista de la cámara</value>
+  </data>
+  <data name="cameraDistortionMarker" xml:space="preserve">
+    <value>Marcador de distorsión</value>
+  </data>
 </root>

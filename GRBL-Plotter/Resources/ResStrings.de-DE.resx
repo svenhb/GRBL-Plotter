@@ -288,4 +288,49 @@
   <data name="statusStripeCheckUpdate" xml:space="preserve">
     <value>'Auf GitHub nach neuer GRBL-Plotter-Version suchen' - kann in [Setup - Programmsteuerung] deaktiviert werden.</value>
   </data>
+  <data name="cameraMountFix" xml:space="preserve">
+    <value>Fix montierte Kamera</value>
+  </data>
+  <data name="cameraMountXy" xml:space="preserve">
+    <value>Kamera auf XY-Plattform montiert</value>
+  </data>
+  <data name="cameraMountXyz" xml:space="preserve">
+    <value>Kamera auf Z-Achse montiert</value>
+  </data>
+  <data name="cameraSetRadius" xml:space="preserve">
+    <value>Gesetzter Radius</value>
+  </data>
+  <data name="cameraScaling" xml:space="preserve">
+    <value>Skalierung</value>
+  </data>
+  <data name="cameraTeachRadius" xml:space="preserve">
+    <value>Setze Kreisradius von einlernen</value>
+  </data>
+  <data name="cameraForUpperPos" xml:space="preserve">
+    <value>für obere Kameraposition</value>
+  </data>
+  <data name="cameraForLowerPos" xml:space="preserve">
+    <value>für untere Kameraposition</value>
+  </data>
+  <data name="cameraQuit" xml:space="preserve">
+    <value>Drücke 'ESC', um das Teachen zu beenden.</value>
+  </data>
+  <data name="cameraSetMount" xml:space="preserve">
+    <value>Setzen der Kamerabefestigung</value>
+  </data>
+  <data name="cameraSetCrossHairs" xml:space="preserve">
+    <value>Klicke, um die Fadenkreuzposition zu setzen</value>
+  </data>
+  <data name="cameraSetDistortion" xml:space="preserve">
+    <value>Markiere die vier Ecken des verzerrten Rechtecks (Verhältnis 4:3). Drücke ESC, um abzubrechen.</value>
+  </data>
+  <data name="cameraNoCamera" xml:space="preserve">
+    <value>Keine Kameraquelle gefunden. Schließen und öffnen Sie dieses Fenster, nachdem Sie eine Kamera angeschlossen haben.</value>
+  </data>
+  <data name="cameraNextClick" xml:space="preserve">
+    <value>Beim nächsten Klick wird die Skalierung \r\n der Kameraansicht gesetzt</value>
+  </data>
+  <data name="cameraDistortionMarker" xml:space="preserve">
+    <value>Verzerrungsmarker</value>
+  </data>
 </root>

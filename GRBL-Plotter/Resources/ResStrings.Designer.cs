@@ -61,6 +61,51 @@ namespace GrblPlotter.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fix mounted camera.
+        /// </summary>
+        public static string cameraMountFix {
+            get {
+                return ResourceManager.GetString("cameraMountFix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Camera mounted on XY platform.
+        /// </summary>
+        public static string cameraMountXy {
+            get {
+                return ResourceManager.GetString("cameraMountXy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Camera mounted on Z axis.
+        /// </summary>
+        public static string cameraMountXyz {
+            get {
+                return ResourceManager.GetString("cameraMountXyz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to scaling.
+        /// </summary>
+        public static string cameraScaling {
+            get {
+                return ResourceManager.GetString("cameraScaling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set radius.
+        /// </summary>
+        public static string cameraSetRadius {
+            get {
+                return ResourceManager.GetString("cameraSetRadius", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Alarm.
         /// </summary>
         public static string grblAlarm {
@@ -768,15 +813,6 @@ namespace GrblPlotter.Resources {
         public static string statusStripeUpKeys {
             get {
                 return ResourceManager.GetString("statusStripeUpKeys", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
     }

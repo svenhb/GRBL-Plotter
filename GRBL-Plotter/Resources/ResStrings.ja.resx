@@ -354,4 +354,49 @@
   <data name="statusStripeCheckUpdate" xml:space="preserve">
     <value>「GitHubで新しいGRBL-Plotterリリースを確認する」-[設定-プログラム制御]で無効にできます</value>
   </data>
+  <data name="cameraMountFix" xml:space="preserve">
+    <value>マウントされたカメラを修正する</value>
+  </data>
+  <data name="cameraMountXy" xml:space="preserve">
+    <value>XYプラットフォームに取り付けられたカメラ</value>
+  </data>
+  <data name="cameraMountXyz" xml:space="preserve">
+    <value>Z軸に取り付けられたカメラ</value>
+  </data>
+  <data name="cameraSetRadius" xml:space="preserve">
+    <value>半径を設定する</value>
+  </data>
+  <data name="cameraScaling" xml:space="preserve">
+    <value>スケーリング</value>
+  </data>
+  <data name="cameraTeachRadius" xml:space="preserve">
+    <value>ティーチインの円半径を設定します</value>
+  </data>
+  <data name="cameraForUpperPos" xml:space="preserve">
+    <value>上部カメラ位置用</value>
+  </data>
+  <data name="cameraForLowerPos" xml:space="preserve">
+    <value>下のカメラ位置用</value>
+  </data>
+  <data name="cameraQuit" xml:space="preserve">
+    <value>「ESC」を押してティーチングを終了します。</value>
+  </data>
+  <data name="cameraSetMount" xml:space="preserve">
+    <value>カメラマウントの設定</value>
+  </data>
+  <data name="cameraSetCrossHairs" xml:space="preserve">
+    <value>クリックして十字線の位置を設定します</value>
+  </data>
+  <data name="cameraSetDistortion" xml:space="preserve">
+    <value>歪んだ長方形の四隅に印を付けます（比率4：3）。 ESCを押してキャンセルします。</value>
+  </data>
+  <data name="cameraNoCamera" xml:space="preserve">
+    <value>カメラソースが見つかりません。カメラを接続した後、このウィンドウを閉じて開きます。</value>
+  </data>
+  <data name="cameraNextClick" xml:space="preserve">
+    <value>次のクリックで、カメラビューのスケーリング\ r \ nが設定されます</value>
+  </data>
+  <data name="cameraDistortionMarker" xml:space="preserve">
+    <value>歪みマーカー</value>
+  </data>
 </root>

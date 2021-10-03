@@ -354,7 +354,49 @@
   <data name="statusStripeCheckUpdate" xml:space="preserve">
     <value>'Check for new GRBL-Plotter release on GitHub' - can be disabled in [Setup - Program control] </value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
+  <data name="cameraMountFix" xml:space="preserve">
+    <value>Fix mounted camera</value>
+  </data>
+  <data name="cameraMountXy" xml:space="preserve">
+    <value>Camera mounted on XY platform</value>
+  </data>
+  <data name="cameraMountXyz" xml:space="preserve">
+    <value>Camera mounted on Z axis</value>
+  </data>
+  <data name="cameraSetRadius" xml:space="preserve">
+    <value>Set radius</value>
+  </data>
+  <data name="cameraScaling" xml:space="preserve">
+    <value>scaling</value>
+  </data>
+  <data name="cameraTeachRadius" xml:space="preserve">
+    <value>Teach circle radius of</value>
+  </data>
+  <data name="cameraForUpperPos" xml:space="preserve">
+    <value>for upper camera position</value>
+  </data>
+  <data name="cameraForLowerPos" xml:space="preserve">
+    <value>for lower camera position</value>
+  </data>
+  <data name="cameraQuit" xml:space="preserve">
+    <value>Press 'ESC' to quit teaching.</value>
+  </data>
+  <data name="cameraSetMount" xml:space="preserve">
+    <value>Set camera mounting to</value>
+  </data>
+  <data name="cameraSetCrossHairs" xml:space="preserve">
+    <value>Click to set cross hairs position</value>
+  </data>
+  <data name="cameraSetDistortion" xml:space="preserve">
+    <value>Teach four edges of the distorted rectangle (ratio 4:3). Press ESC to abort.</value>
+  </data>
+  <data name="cameraNoCamera" xml:space="preserve">
+    <value>No camera source found. Close and open this window after connecting a camera.</value>
+  </data>
+  <data name="cameraNextClick" xml:space="preserve">
+    <value>Next click will teach scaling\r\n of camera view to</value>
+  </data>
+  <data name="cameraDistortionMarker" xml:space="preserve">
+    <value>Distortion marker</value>
   </data>
 </root>
