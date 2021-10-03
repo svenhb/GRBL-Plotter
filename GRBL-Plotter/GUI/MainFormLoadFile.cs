@@ -39,6 +39,7 @@
  * 2021-05-18 line 250 check parser result
  * 2021-07-14 code clean up / code quality
  * 2021-08-03 remove root from MRU save path line 105
+ * 2021-10-01 disable showPaths during code-load line 230
 */
 
 using System;
@@ -194,9 +195,13 @@ namespace GrblPlotter
             SetEditMode(false);
 
             VisuGCode.MarkSelectedFigure(-1);           // hide highlight
-            VisuGCode.pathBackground.Reset();
+    //        VisuGCode.pathBackground.Reset();
             Grbl.PosMarker = new XyzPoint(0, 0, 0);
-            if (cleanupGraphic) Graphic.CleanUp();  // clear old data
+            if (cleanupGraphic)
+            {
+                VisuGCode.pathBackground.Reset();
+                Graphic.CleanUp();  // clear old data
+            }
             StatusStripSet(0, "Start import", Color.LightYellow);
             Application.DoEvents();
         }
@@ -204,8 +209,13 @@ namespace GrblPlotter
         private void NewCodeEnd(bool imported = false)
         {
             int objectCount = Graphic.GetObjectCount();
-            if (!imported) objectCount = 0;     // no extra handling for GCode
             int maxObjects = 20000;
+            if (!imported)
+            {
+                objectCount = fCTBCode.LinesCount;     // no extra handling for GCode
+                maxObjects = 100000;
+                showPaths = false;	// don't process graphic-paths in onPaint event
+            }
             Logger.Trace("---- newCodeEnd objectCount:{0} max:{1} ++++ ", objectCount, maxObjects);
 
             if (objectCount > maxObjects)
@@ -219,7 +229,7 @@ namespace GrblPlotter
             { FctbCheckUnknownCode(); }                              // check code
 
             Logger.Info("Object count:{0} KB  maxObjects:{1} KB  Process Gcode lines-showProgress:{2}", objectCount, maxObjects, (objectCount > maxObjects));
-
+			
             if (objectCount <= maxObjects)
             {
 
@@ -238,11 +248,14 @@ namespace GrblPlotter
                     else
                     { f.SetTmpGCode(); }								// take code from Graphic.GCode.ToString()
                     f.ShowDialog(this);									// perform VisuGCode.GetGCodeLines via worker
-                    fCTBCode.Text = "PLEASE WAIT !!!\r\nDisplaying a large number of lines\r\ntakes some seconds.";
+                    if (imported) { fCTBCode.Text = "PLEASE WAIT !!!\r\nDisplaying a large number of lines\r\ntakes some seconds."; }
                 }
             }
+			
+            fCTBCode.Refresh();
             VisuGCode.CalcDrawingArea();                                // calc ruler dimension
             VisuGCode.DrawMachineLimit();
+			showPaths = true;
 
             if (loadTimerStep > 0)				// will be set in StartConvert if CodeSize > 250kb (showProgress = true)
             {
@@ -755,6 +768,8 @@ namespace GrblPlotter
             NewCodeEnd(true);               // code was imported, no need to check for bad GCode
             FoldCode();
             UpdateControlEnables();
+			if (_camera_form != null)
+			{	_camera_form.NewDrawing();}
             Logger.Trace("foldCode");
         }
 
@@ -811,6 +826,8 @@ namespace GrblPlotter
             if (File.Exists(tbFile.Text))
             {
                 NewCodeStart();             // LoadGcode
+                fCTBCode.Text = "PLEASE WAIT !!!\r\nDisplaying a large number of lines\r\ntakes some seconds.";
+                fCTBCode.Refresh();
                 fCTBCode.OpenFile(tbFile.Text);
 
                 if (_serial_form.IsLasermode && Properties.Settings.Default.ctrlReplaceEnable)
@@ -840,7 +857,7 @@ namespace GrblPlotter
                             {
                                 LoadStreamingStatus(true);                            //do something
                                 timerUpdateControlSource = "loadGcode";
-                                UpdateControlEnables(true);
+                                UpdateControlEnables(); // true
                                 btnStreamStart.Image = Properties.Resources.btn_play;
                                 //                                btnStreamStart.Enabled = _serial_form.serialPortOpen;
                                 isStreamingPause = true;
@@ -873,9 +890,11 @@ namespace GrblPlotter
             };
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                //   string txt = fCTBCode.Text;
-                //File.WriteAllText(sfd.FileName, txt);
-                fCTBCode.SaveToFile(sfd.FileName, Encoding.Unicode);
+                if (Properties.Settings.Default.FCTBSaveAsUTF16)
+                    fCTBCode.SaveToFile(sfd.FileName, Encoding.Unicode);
+                else
+                    fCTBCode.SaveToFile(sfd.FileName, Encoding.ASCII);
+
                 Logger.Info("Save GCode as {0}", sfd.FileName);
                 Properties.Settings.Default.guiPathSaveCode = sfd.FileName;
                 Properties.Settings.Default.Save();

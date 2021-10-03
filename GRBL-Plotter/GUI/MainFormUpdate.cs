@@ -19,7 +19,7 @@
 /* MainFormUpdate
  * Update controls etc.
  * 2021-07-26 new
- *
+ * 2021-09-19 line 389 change order of virtualJoystickXY.Enabled
 */
 
 using Microsoft.Win32;
@@ -379,14 +379,14 @@ namespace GrblPlotter
             UpdateCustomButtons(true);  // isConnected && (!isStreaming || allowControl)
 
             allowControl = isStreamingPause;
-            Logger.Trace("updateControls isConnected:{0} isStreaming:{1} allowControl:{2} source:{3}", isConnected, isStreaming, allowControl, timerUpdateControlSource);
+            Logger.Trace("updateControls isConnected:{0} isStreaming:{1} streamingAllowControl:{2} source:{3}", isConnected, isStreaming, allowControl, timerUpdateControlSource);
             timerUpdateControlSource = "";
 
-            virtualJoystickXY.Enabled = isConnected && (!isStreaming || allowControl);
-            virtualJoystickZ.Enabled = isConnected && (!isStreaming || allowControl);
-            virtualJoystickA.Enabled = isConnected && (!isStreaming || allowControl);
-            virtualJoystickB.Enabled = isConnected && (!isStreaming || allowControl);
             virtualJoystickC.Enabled = isConnected && (!isStreaming || allowControl);
+            virtualJoystickB.Enabled = isConnected && (!isStreaming || allowControl);
+            virtualJoystickA.Enabled = isConnected && (!isStreaming || allowControl);
+            virtualJoystickZ.Enabled = isConnected && (!isStreaming || allowControl);
+            virtualJoystickXY.Enabled = isConnected && (!isStreaming || allowControl);
             btnHome.Enabled = isConnected & !isStreaming | allowControl;
             btnZeroX.Enabled = isConnected & !isStreaming | allowControl;
             btnZeroY.Enabled = isConnected & !isStreaming | allowControl;

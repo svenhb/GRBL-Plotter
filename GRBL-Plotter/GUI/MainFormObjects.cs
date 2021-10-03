@@ -158,6 +158,8 @@ namespace GrblPlotter
     internal struct XyzPoint
     {
         public double X, Y, Z, A, B, C;
+        public XyzPoint(XyzPoint xy)
+        { X = xy.X; Y = xy.Y; Z = xy.Z; A = xy.A; B = xy.B; C = xy.C; }
         public XyzPoint(XyPoint xy, double z)
         { X = xy.X; Y = xy.Y; Z = z; A = 0; B = 0; C = 0; }
         public XyzPoint(XyPoint xy, double z, double a)
@@ -407,6 +409,9 @@ namespace GrblPlotter
             if (y != null) { SetDimensionY((double)y); }
             if (z != null) { SetDimensionZ((double)z); }
         }
+		
+        public void SetDimensionXY(XyPoint tmp)
+		{	SetDimensionXY(tmp.X, tmp.Y);}
         public void SetDimensionXY(double? x, double? y)
         {
             if (x != null) { SetDimensionX((double)x); }
@@ -528,9 +533,14 @@ namespace GrblPlotter
 
         public XyPoint GetCenter()
         {
-            double cx = minx + ((maxx - minx) / 2);
-            double cy = miny + ((maxy - miny) / 2);
-            return new XyPoint(cx, cy);
+            if (IsXYSet())
+            {
+                double cx = minx + ((maxx - minx) / 2);
+                double cy = miny + ((maxy - miny) / 2);
+                return new XyPoint(cx, cy);
+            }
+            else
+                return new XyPoint();
         }
 
         // return string with dimensions

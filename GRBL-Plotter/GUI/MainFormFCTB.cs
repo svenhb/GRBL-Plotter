@@ -34,6 +34,7 @@
  * 2021-03-06 disabled line 372
  * 2021-03-26 highlight 'tool-table'
  * 2021-07-14 code clean up / code quality
+ * 2021-09-30 abort FindFigureMarkSelection if XmlMarker.GetFigureCount()==0
 */
 
 using FastColoredTextBoxNS;
@@ -79,7 +80,7 @@ namespace GrblPlotter
 
         private void FctbCode_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
         {
-            if (Gcode.LoggerTrace) Logger.Trace("Event  fCTBCode_TextChanged  manualEdit:{0}", manualEdit);
+    //        if (Gcode.LoggerTrace) Logger.Trace("Event  fCTBCode_TextChanged  manualEdit:{0}", manualEdit);
             e.ChangedRange.ClearStyle(StyleComment, ErrorStyle);
             e.ChangedRange.SetStyle(StyleTT, "(tool-table)|(PU)|(PD)", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(Style2nd, "\\(\\^[23].*", System.Text.RegularExpressions.RegexOptions.Compiled);
@@ -529,6 +530,13 @@ namespace GrblPlotter
         private static XmlMarkerType markedBlockType = XmlMarkerType.None;
         private void FindFigureMarkSelection(XmlMarkerType marker, int clickedLine, bool collapse = true)   // called by click on figure in 2D view
         {
+		/*	if (XmlMarker.GetFigureCount()==0)	// no figure = no other XMLs	 && (GetGroupCount()==0) && (GetTileCount()==0))
+			{   fCTBCodeClickedLineNow = clickedLine;
+				fCTBCode.DoCaretVisible();
+				this.Invalidate();
+				return;
+			}
+*/
             if (Properties.Settings.Default.FCTBBlockExpandKeepLastOpen)
                 collapse = false;
             bool expand = expandGCode;

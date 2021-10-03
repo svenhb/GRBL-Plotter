@@ -20,14 +20,13 @@
  * 2020-09-18 split file
  * 2020-12-28 add Marlin support (replace commands)
  * 2021-07-02 code clean up / code quality
+ * 2021-09-29 update Grbl.Status line 60
+ * 2021-09-30 no VisuGCode.ProcessedPath.ProcessedPathDraw if VisuGCode.largeDataAmount
 */
 
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-
-//#pragma warning disable CA1303
-//#pragma warning disable CA1305
 
 namespace GrblPlotter
 {
@@ -40,8 +39,6 @@ namespace GrblPlotter
         private string lastLabelInfoText = "";
         private bool updateDrawingPath = false;
         private GrblState machineStatus;
-        //    private mState machineStatusMessage;
-        //   private pState machineParserState;
 
         private string actualFR = "";
         private string actualSS = "";
@@ -56,9 +53,7 @@ namespace GrblPlotter
         private void OnRaisePosEvent(object sender, PosEventArgs e)
         {
             //  if (logPosEvent)  Logger.Trace("OnRaisePosEvent  {0}  connect {1}  status {2}", e.Status.ToString(), _serial_form.serialPortOpen, e.Status.ToString());
-            machineStatus = e.Status;
-            //        machineStatusMessage = e.StatMsg;
-            //       machineParserState = e.parserState; 
+            Grbl.Status = machineStatus = e.Status;
 
             /***** Restore saved position after reset and set initial feed rate: *****/
             if (ResetDetected || (e.Status == GrblState.reset))
@@ -93,7 +88,7 @@ namespace GrblPlotter
                 CheckMachineLimit();
                 Grbl.wcoChanged = false;
             }
-            if (((isStreaming || isStreamingRequestStop)) && Properties.Settings.Default.guiProgressShow)
+            if (((isStreaming || isStreamingRequestStop)) && Properties.Settings.Default.guiProgressShow && !VisuGCode.largeDataAmount)
                 VisuGCode.ProcessedPath.ProcessedPathDraw(Grbl.posWork);
 
 

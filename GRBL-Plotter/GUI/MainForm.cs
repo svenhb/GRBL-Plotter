@@ -326,6 +326,16 @@ namespace GrblPlotter
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Logger.Info(culture, "###+++ GRBL-Plotter FormClosed +++###", Application.ProductVersion);
+            if (System.Windows.Forms.Application.MessageLoop)
+            {
+                // Use this since we are a WinForms app
+                System.Windows.Forms.Application.Exit(); 
+            }
+            else
+            {
+                // Use this since we are a console app
+                System.Environment.Exit(1);
+            }
         }
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -675,6 +685,7 @@ namespace GrblPlotter
             int speed = (int)Math.Max(joystickXYSpeed[indexX], joystickXYSpeed[indexY]);
             String strX = Gcode.FrmtNum(joystickXYStep[indexX] * dirX);
             String strY = Gcode.FrmtNum(joystickXYStep[indexY] * dirY);
+            Logger.Error("VirtualJoystickXY_move speed==0  x:{0}  y:{1}", index_X, index_Y);
             if (speed > 0)
             {
                 if (Properties.Settings.Default.machineLimitsAlarm && Properties.Settings.Default.machineLimitsShow)
@@ -892,7 +903,7 @@ namespace GrblPlotter
             Logger.Trace("FeedHold");
             signalResume = 1;
             timerUpdateControlSource = "grblFeedHold";
-            UpdateControlEnables(true);	// overwrite streaming
+            UpdateControlEnables();	// true overwrite streaming
         }
         private void BtnResume_Click(object sender, EventArgs e)
         { GrblResume(); StatusStripClear(); }

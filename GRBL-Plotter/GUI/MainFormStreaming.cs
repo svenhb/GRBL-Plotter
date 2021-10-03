@@ -136,8 +136,8 @@ namespace GrblPlotter
             if (_diyControlPad != null)
                 _diyControlPad.SendFeedback("[" + e.Status.ToString() + "]");
 
-            if (Properties.Settings.Default.guiProgressShow)
-                VisuGCode.ProcessedPath.ProcessedPathLine(e.CodeLineConfirmed);
+        //    if (Properties.Settings.Default.guiProgressShow)
+            VisuGCode.ProcessedPath.ProcessedPathLine(e.CodeLineConfirmed);		// in GCodeSimulate.cs
 
             if (logStreaming) Logger.Trace("OnRaiseStreamEvent  {0}  line {1} ", e.Status.ToString(), e.CodeLineSent);
 

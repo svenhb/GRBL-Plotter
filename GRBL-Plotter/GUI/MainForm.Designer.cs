@@ -1746,6 +1746,7 @@ namespace GrblPlotter
             this.copyContentTroClipboardToolStripMenuItem});
             this.cmsPictureBox.Name = "cmsPictureBox";
             resources.ApplyResources(this.cmsPictureBox, "cmsPictureBox");
+            this.cmsPictureBox.Opening += new System.ComponentModel.CancelEventHandler(this.CmsPictureBox_Opening);
             // 
             // unDo2ToolStripMenuItem
             // 

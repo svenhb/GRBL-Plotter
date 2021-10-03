@@ -29,15 +29,16 @@
  * 2020-09-04 move initial view to lower edge - add maxposY
  * 2021-03-28 pictureBox1_MouseDown: only expand block (findFigureMarkSelection) if enabled
  * 2021-07-14 code clean up / code quality
+ * 2021-09-06 also allow right mouse-btn to move view in PictureBox1_MouseMove
+ * 2021-09-08 color-selector for BackgroundPath and Dimension
+ * 2021-09-16 show pathPenDown OR pathObject (not both). Apply tileOffset during progress
+ * 2021-09-30 line 243 take care of VisuGCode.largeDataAmount
 */
 
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-
-//#pragma warning disable CA1303
-//#pragma warning disable CA1305
 
 namespace GrblPlotter
 {
@@ -53,11 +54,15 @@ namespace GrblPlotter
         private readonly Pen penTool = new Pen(Color.Black, 0.5F);
         private readonly Pen penMarker = new Pen(Color.DeepPink, 1F);
         private readonly Pen penLandMark = new Pen(Color.DarkGray, 1F);
+        private readonly Pen penBackgroundPath = new Pen(Color.DarkGray, 1F);
+        private readonly Pen penDimension = new Pen(Color.DarkGray, 1F);
         //        private Brushes brushLandMark = new Brushes();
         private readonly Pen penSimulation = new Pen(Color.Blue, 0.4F);
         //       SolidBrush machineLimit = new SolidBrush(Color.Red);
         private HatchBrush brushMachineLimit = new HatchBrush(HatchStyle.Horizontal, Color.Yellow);
         private readonly SolidBrush brushBackground = new SolidBrush(Color.White);
+        private readonly SolidBrush brushBackgroundPath = new SolidBrush(Color.DarkGray);
+
         private XyPoint picAbsPos = new XyPoint(0, 0);
         private Bitmap picBoxBackround;
         private bool showPicBoxBgImage = false;
@@ -69,8 +74,10 @@ namespace GrblPlotter
         private XyPoint moveTranslation = new XyPoint(0, 0);
         private XyPoint moveTranslationOld = new XyPoint(0, 0);
         private bool posIsMoving = false;
-		
-		private readonly Font myFont7 = new Font("Lucida Console", 7);
+        private bool mouseWasMoved = false;
+        private Point mouseDownPos = new Point();
+        private Point mouseMovePos = new Point();
+        private readonly Font myFont7 = new Font("Lucida Console", 7);
 		private readonly Font myFont8 = new Font("Lucida Console", 8);
 
         private readonly object lockObject = new object();
@@ -208,6 +215,7 @@ namespace GrblPlotter
                 penTool.Width = (float)Properties.Settings.Default.gui2DWidthTool * factorWidth;
                 penMarker.Width = (float)Properties.Settings.Default.gui2DWidthMarker * factorWidth;
                 penLandMark.Width = 2 * (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
+                penDimension.Width = 2 * (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
                 penSimulation.Width = (float)Properties.Settings.Default.gui2DWidthSimulation * factorWidth;
 
 
@@ -215,32 +223,44 @@ namespace GrblPlotter
                     e.FillPath(brushMachineLimit, VisuGCode.pathMachineLimit);
                 if (Properties.Settings.Default.gui2DToolTableShow)
                     e.DrawPath(penTool, VisuGCode.pathToolTable);
-                if (Properties.Settings.Default.guiBackgroundShow)
+                if (Properties.Settings.Default.guiBackgroundShow && !VisuGCode.ShiftTilePaths)
                 {
-                    e.DrawPath(penLandMark, VisuGCode.pathBackground);
+                    e.DrawPath(penBackgroundPath, VisuGCode.pathBackground);
 
-                    e.DrawPath(penLandMark, Graphic.pathBackground);
-                    e.FillPath(Brushes.Gray, Graphic.pathBackground);
+                    e.DrawPath(penBackgroundPath, Graphic.pathBackground);
+                    e.FillPath(brushBackgroundPath, Graphic.pathBackground);
                 }
                 if (Properties.Settings.Default.guiDimensionShow)
-                    e.DrawPath(penLandMark, VisuGCode.pathDimension);
-
+                    e.DrawPath(penDimension, VisuGCode.pathDimension);
 
                 e.DrawPath(penHeightMap, VisuGCode.pathHeightMap);
 
                 if (Properties.Settings.Default.gui2DRulerShow)
                     e.DrawPath(penRuler, VisuGCode.pathRuler);
 
-                e.DrawPath(penDown, VisuGCode.pathPenDown);
-
-                if (Properties.Settings.Default.gui2DColorPenDownModeEnable)    // Show PenDown path in colors from imported graphics
+                if (Properties.Settings.Default.gui2DColorPenDownModeEnable && !VisuGCode.largeDataAmount)    // Show PenDown path in colors from imported graphics
                 {
                     if (VisuGCode.pathObject.Count > 0)
-                    {
-                        foreach (VisuGCode.PathData tmpPath in VisuGCode.pathObject)
-                        { e.DrawPath(tmpPath.pen, tmpPath.path); }
-                    }
+                    {	if (VisuGCode.ShiftTilePaths)
+						{	// GCodeSimulate.cs VisuGCode.ProcessedPath.offset2DView updated via 
+							// MainFormStreaming.cs VisuGCode.ProcessedPath.ProcessedPathLine(e.CodeLineConfirmed);	
+							foreach (VisuGCode.PathData tmpPath in VisuGCode.pathObject)
+							{ 	
+								e.TranslateTransform(-(float)VisuGCode.ProcessedPath.offset2DView.X, -(float)VisuGCode.ProcessedPath.offset2DView.Y);       // apply offset
+								e.DrawPath(tmpPath.pen, tmpPath.path); 
+								e.TranslateTransform((float)VisuGCode.ProcessedPath.offset2DView.X, (float)VisuGCode.ProcessedPath.offset2DView.Y);       // remove offset
+							}
+						}
+						else
+						{
+							foreach (VisuGCode.PathData tmpPath in VisuGCode.pathObject)
+							{ e.DrawPath(tmpPath.pen, tmpPath.path); }
+						}
+					}
                 }
+                else 
+                    e.DrawPath(penDown, VisuGCode.pathPenDown);
+
 
                 if (Properties.Settings.Default.ctrl4thUse)
                     e.DrawPath(penRotary, VisuGCode.pathRotaryInfo);
@@ -284,7 +304,8 @@ namespace GrblPlotter
 
         private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Middle)
+            mouseMovePos = e.Location;
+            if ((e.Button == MouseButtons.Middle) || (e.Button == MouseButtons.Right))
             {
                 XyPoint diff = posMoveEnd - posMoveTmp;
                 posMoveTmp = posMoveEnd;
@@ -298,6 +319,7 @@ namespace GrblPlotter
                 }
                 else
                 {
+                    if (PointDistance(mouseMovePos,mouseDownPos) > 20) mouseWasMoved = true;
                     posIsMoving = false;                            // move view
                     moveTranslation = new XyPoint(e.X, e.Y) - moveTranslationOld;  // calc delta move
                     pBoxTransform.Translate((float)moveTranslation.X / zoomFactor, (float)moveTranslation.Y / zoomFactor);
@@ -309,6 +331,12 @@ namespace GrblPlotter
                 StatusStripSet(2, string.Format("{0} X:{1:0.00}  Y:{2:0.00}", Localization.GetString("statusStripeSelectionMoved"), (posMoveEnd.X - posMoveStart.X), (posMoveEnd.Y - posMoveStart.Y)), Color.Yellow);
             }
             pictureBox1.Invalidate();
+        }
+        private int PointDistance(Point a, Point b)
+        {
+            int x = a.X - b.X;
+            int y = a.Y - b.Y;
+            return (int)Math.Sqrt(x*x + y*y);
         }
         private void MoveView(double x, double y)
         {
@@ -346,15 +374,18 @@ namespace GrblPlotter
         private bool expandGCode = true;
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
+            mouseDownPos = e.Location;
             if (logDetailed) Logger.Trace("pictureBox1_MouseDown e.x:{0} y:{1}  absPos-x:{2:0.00} y:{3:0.00}", e.X, e.Y, picAbsPos.X, picAbsPos.Y);
             pictureBox1.Focus();
             moveTranslationOld = new XyPoint(e.X, e.Y);
             allowZoom = false;
+            mouseWasMoved = false;
             if (e.Button == MouseButtons.Left)
             {
                 if ((fCTBCode.LinesCount > 2) && !posIsMoving)
                 {
                     int line;
+                    DistanceByLine marker;
                     posMoveStart = picAbsPos;
                     posMoveTmp = posMoveStart;
                     posMoveEnd = posMoveStart;
@@ -368,28 +399,34 @@ namespace GrblPlotter
                         NewCodeEnd();
                     if (Panel.ModifierKeys == Keys.Alt)
                     {
-                        line = VisuGCode.SetPosMarkerNearBy(picAbsPos, false);           // Keys.Alt find line with coord nearby, mark / unmark figure
+                        marker = VisuGCode.SetPosMarkerNearBy(picAbsPos, false);           // Keys.Alt find line with coord nearby, mark / unmark figure
+                        line = marker.lineNumber;
                         fCTBCodeClickedLineNow = line;
                         FindFigureMarkSelection(XmlMarkerType.Line, line, (fold > 0));    // collapse=true
                     }
                     else if (Panel.ModifierKeys == Keys.Control)
                     {
-                        line = VisuGCode.SetPosMarkerNearBy(picAbsPos, false);           // Keys.Control find line with coord nearby, mark / unmark figure
+                        marker = VisuGCode.SetPosMarkerNearBy(picAbsPos, false);           // Keys.Control find line with coord nearby, mark / unmark figure
+                        line = marker.lineNumber;
                         fCTBCodeClickedLineNow = line;
                         FindFigureMarkSelection(XmlMarkerType.Group, line, (fold > 0));
                     }
                     else if (Panel.ModifierKeys == Keys.Shift)
                     {
-                        line = VisuGCode.SetPosMarkerNearBy(picAbsPos, false);           // Keys.Shift find line with coord nearby, mark / unmark figure
+                        marker = VisuGCode.SetPosMarkerNearBy(picAbsPos, false);           // Keys.Shift find line with coord nearby, mark / unmark figure
+                        line = marker.lineNumber;
                         fCTBCodeClickedLineNow = line;
                         FindFigureMarkSelection(XmlMarkerType.Tile, line, (fold > 0));
                     }
                     else
                     {
-                        line = VisuGCode.SetPosMarkerNearBy(picAbsPos, true);                 // find line with coord nearby, mark / unmark figure
+                        marker = VisuGCode.SetPosMarkerNearBy(picAbsPos, true);                 // find line with coord nearby, mark / unmark figure
+                        line = marker.lineNumber;
                         fCTBCodeClickedLineNow = line;
                         FindFigureMarkSelection(XmlMarkerType.Figure, line, (fold > 0));
                     }
+                    Grbl.PosMarker = marker.actualPos;
+                    VisuGCode.CreateMarkerPath();
 
                     cmsPicBoxMoveToMarkedPosition.ToolTipText = "Work X: " + Grbl.PosMarker.X.ToString() + "   Y: " + Grbl.PosMarker.Y.ToString();
                     EnableBlockCommands(VisuGCode.GetHighlightStatus() > 0);
@@ -508,6 +545,9 @@ namespace GrblPlotter
             penTool.Color = Properties.Settings.Default.gui2DColorTool;
             penMarker.Color = Properties.Settings.Default.gui2DColorMarker;
             penSimulation.Color = Properties.Settings.Default.gui2DColorSimulation;
+			penBackgroundPath.Color = Properties.Settings.Default.gui2DColorBackgroundPath;
+            brushBackgroundPath.Color = Properties.Settings.Default.gui2DColorBackgroundPath;
+            penDimension.Color = Properties.Settings.Default.gui2DColorDimension;
 
             float factorWidth = 1;
             if (!Properties.Settings.Default.importUnitmm) factorWidth = 0.0393701f;
@@ -518,6 +558,8 @@ namespace GrblPlotter
             penUp.Width = (float)Properties.Settings.Default.gui2DWidthPenUp * factorWidth;
             penUp.LineJoin = LineJoin.Round;
             penDown.LineJoin = LineJoin.Round;
+            penDown.StartCap = LineCap.Round;
+            penDown.EndCap = LineCap.Round;
             penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
 
             penRotary.Width = (float)Properties.Settings.Default.gui2DWidthRotaryInfo * factorWidth;
@@ -528,6 +570,10 @@ namespace GrblPlotter
             penMarker.LineJoin = LineJoin.Round;
             penLandMark.LineJoin = LineJoin.Round;
             penLandMark.Width = 2 * (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
+            penDimension.LineJoin = LineJoin.Round;
+            penDimension.Width = 2 * (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
+            penBackgroundPath.LineJoin = LineJoin.Round;
+            penBackgroundPath.Width = 2 * (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
             penSimulation.Width = (float)Properties.Settings.Default.gui2DWidthSimulation * factorWidth;
             penSimulation.LineJoin = LineJoin.Round;
 
@@ -591,6 +637,7 @@ namespace GrblPlotter
         private void CmsPicBoxDeletePath_Click(object sender, EventArgs e)
         {
             UnDo.SetCode(fCTBCode.Text, cmsPicBoxDeletePath.Text, this);
+            Logger.Trace("▌ cmsPicBoxDeletePath figureIsMarked:{0}", figureIsMarked);
             if (figureIsMarked)
             {
                 resetView = true;
@@ -606,30 +653,32 @@ namespace GrblPlotter
                 return;
             TransformStart(cmsPicBoxCropSelectedPath.Text);//, false);
 
+            Logger.Trace("▌ cmsPicBoxCropSelectedPath groupCnt:{0} figureCnt:{1}", XmlMarker.GetGroupCount(), XmlMarker.GetFigureCount());
+
             if ((XmlMarker.GetGroupCount() > 0) && (markedBlockType == XmlMarkerType.Group))
             {
                 if (XmlMarker.GetGroup(fCTBCodeClickedLineNow, 10))    // get range group+1-start to group+n-end
                 {
                     SetTextSelection(XmlMarker.lastGroup.LineStart, XmlMarker.lastGroup.LineEnd);
-                    fCTBCode.SelectedText = "";
+                    fCTBCode.SelectedText = "( Figure removed )\r\n";
                 }
                 if (XmlMarker.GetGroup(fCTBCodeClickedLineNow, -10))    // get range group0-start to group-1-end
                 {
                     SetTextSelection(XmlMarker.lastGroup.LineStart, XmlMarker.lastGroup.LineEnd);
-                    fCTBCode.SelectedText = "";
+                    fCTBCode.SelectedText = "( Figure removed )\r\n";
                 }
             }
             else if ((XmlMarker.GetFigureCount() > 0) && (markedBlockType == XmlMarkerType.Figure))
             {
                 if (XmlMarker.GetFigure(fCTBCodeClickedLineNow, 10))    // get range group+1-start to group+n-end
                 {
-                    SetTextSelection(XmlMarker.lastGroup.LineStart, XmlMarker.lastGroup.LineEnd);
-                    fCTBCode.SelectedText = "";
+                    SetTextSelection(XmlMarker.lastFigure.LineStart, XmlMarker.lastFigure.LineEnd);
+                    fCTBCode.SelectedText = "( Figure removed )\r\n";
                 }
                 if (XmlMarker.GetFigure(fCTBCodeClickedLineNow, -10))    // get range group0-start to group-1-end
                 {
-                    SetTextSelection(XmlMarker.lastGroup.LineStart, XmlMarker.lastGroup.LineEnd);
-                    fCTBCode.SelectedText = "";
+                    SetTextSelection(XmlMarker.lastFigure.LineStart, XmlMarker.lastFigure.LineEnd);
+                    fCTBCode.SelectedText = "( Figure removed )\r\n";
                 }
             }
             else
@@ -640,6 +689,7 @@ namespace GrblPlotter
         private void CmsPicBoxMoveSelectedPathInCode_Click(object sender, EventArgs e)
         {
             TransformStart(cmsPicBoxMoveSelectedPathInCode.Text);
+            Logger.Trace("▌ cmsPicBoxMoveSelectedPathInCode dX:{0:0.000} dY:{1:0.000}", (posMoveEnd.X - posMoveStart.X), (posMoveEnd.Y - posMoveStart.Y));
             zoomFactor = 1;
             fCTBCode.Text = VisuGCode.TransformGCodeOffset(-(posMoveEnd.X - posMoveStart.X), -(posMoveEnd.Y - posMoveStart.Y), VisuGCode.Translate.None);
             fCTBCodeClickedLineNow = fCTBCodeClickedLineLast;
@@ -662,7 +712,7 @@ namespace GrblPlotter
 					VisuGCode.MarkSelectedFigure(-1);           // hide highlight
                     VisuGCode.pathBackground.Reset();
 					
-					if (logEnable) Logger.Trace("Reverse path figureNr:{0}  figureOrder:{1}  GroupIdOrder:{2}", XmlMarker.lastFigure.FigureNr, string.Join(",", XmlMarker.GetFigureIdOrder()), string.Join(",", XmlMarker.GetGroupIdOrder()));
+					if (logEnable) Logger.Trace("▌ Reverse path figureNr:{0}  figureOrder:{1}  GroupIdOrder:{2}", XmlMarker.lastFigure.FigureNr, string.Join(",", XmlMarker.GetFigureIdOrder()), string.Join(",", XmlMarker.GetGroupIdOrder()));
                     Graphic.ReDoReversePath(XmlMarker.lastFigure.FigureNr, posMoveStart, XmlMarker.GetFigureIdOrder(), XmlMarker.GetGroupIdOrder(),true);
                     SetFctbCodeText(Graphic.GCode.ToString());      // cmsPicBoxReverseSelectedPath_Click
                     NewCodeEnd();
@@ -681,7 +731,7 @@ namespace GrblPlotter
 					VisuGCode.MarkSelectedFigure(-1);           // hide highlight
 					VisuGCode.pathBackground.Reset();
 					
-					if (logEnable) Logger.Trace("Reverse path figureNr:{0}  figureOrder:{1}  GroupIdOrder:{2}", XmlMarker.lastFigure.FigureNr, string.Join(",", XmlMarker.GetFigureIdOrder()), string.Join(",", XmlMarker.GetGroupIdOrder()));
+					if (logEnable) Logger.Trace("▌ Rotate path figureNr:{0}  figureOrder:{1}  GroupIdOrder:{2}", XmlMarker.lastFigure.FigureNr, string.Join(",", XmlMarker.GetFigureIdOrder()), string.Join(",", XmlMarker.GetGroupIdOrder()));
                     Graphic.ReDoReversePath(XmlMarker.lastFigure.FigureNr, posMoveStart, XmlMarker.GetFigureIdOrder(), XmlMarker.GetGroupIdOrder(), false);
                     SetFctbCodeText(Graphic.GCode.ToString());      // cmsPicBoxReverseSelectedPath_Click
                     NewCodeEnd();
@@ -701,6 +751,9 @@ namespace GrblPlotter
 
         #endregion
 
-
+        private void CmsPictureBox_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = mouseWasMoved;
+        }
     }
 }

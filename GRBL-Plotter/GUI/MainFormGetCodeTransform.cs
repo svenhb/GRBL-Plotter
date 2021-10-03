@@ -30,10 +30,6 @@ using System.Drawing.Drawing2D;
 using System.Text;
 using System.Windows.Forms;
 
-//#pragma warning disable CA1303
-//#pragma warning disable CA1305
-//#pragma warning disable CA1307
-
 namespace GrblPlotter
 {
     public partial class MainForm : Form
@@ -294,7 +290,7 @@ namespace GrblPlotter
                         s = String.Format(cmd + " X{0} Y{1}", realStepX, realStepY).Replace(',', '.');
                         SendCommand(s);
                     }
-                    else if ((cmd.Trim().IndexOf("G90") == 0) || (cmd.Trim().IndexOf("G91") == 0))      // no G0 G1, then jogging
+                    else if ((cmd.Trim().IndexOf("G90") >= 0) || (cmd.Trim().IndexOf("G91") == 0))      // no G0 G1, then jogging
                     {
                         speed = 100 + (int)Math.Sqrt(realStepX * realStepX + realStepY * realStepY) * 120;
                         s = String.Format("{0} X{1} Y{2} F{3}", cmd, realStepX, realStepY, speed).Replace(',', '.');
@@ -329,16 +325,17 @@ namespace GrblPlotter
 
         private void TransformEnd()
         {
-            VisuGCode.GetGCodeLines(fCTBCode.Lines, null, null);                    // get code path
-            VisuGCode.CalcDrawingArea();                                 // calc ruler dimension
-            VisuGCode.DrawMachineLimit();// ToolTable.GetToolCordinates());
+            VisuGCode.GetGCodeLines(fCTBCode.Lines, null, null);        // get code path
+            VisuGCode.CalcDrawingArea();                                // calc ruler dimension
+            VisuGCode.DrawMachineLimit();
             pictureBox1.Invalidate();                                   // resfresh view
             Update_GCode_Depending_Controls();                          // update GUI controls
             timerUpdateControlSource = "transformEnd";
-            UpdateControlEnables();                                           // update control enable 
+            UpdateControlEnables();                                     // update control enable 
             EnableCmsCodeBlocks(VisuGCode.CodeBlocksAvailable());
             this.Cursor = Cursors.Default;
             SetEditMode(false);
+            resetView = false;
         }
 
         private void BtnOffsetApply_Click(object sender, EventArgs e)
@@ -668,7 +665,7 @@ namespace GrblPlotter
         {
             if (e.KeyValue == (char)13)
             {
-                double radius = Properties.Settings.Default.crcValue;
+                double radius;
                 if (Double.TryParse(toolStrip_tBRadiusCompValue.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out radius))
                 {
                     Properties.Settings.Default.crcValue = radius;
@@ -689,6 +686,7 @@ namespace GrblPlotter
                 }
                 else
                 {
+                    radius = Properties.Settings.Default.crcValue;
                     MessageBox.Show(Localization.GetString("mainParseError"), Localization.GetString("mainAttention"));
                     toolStrip_tBRadiusCompValue.Text = string.Format("{0:0.000}", radius);
                 }
