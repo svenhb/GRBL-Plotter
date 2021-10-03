@@ -23,13 +23,14 @@
  * 2021-07-02 code clean up / code quality
  * 2021-07-30 check ApplyHatchFill not in constructor (it's only needed for SourceType.SVG)
  * 2021-09-02 add Offset to TileObject
+ * 2021-09-21 add new GroupOption 'Label'
 */
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
-using System.Globalization;
 
 //#pragma warning disable CA1305
 
@@ -47,9 +48,9 @@ namespace GrblPlotter
         /// General information about imported graphic
         /// </summary>		
         public enum SourceType { none, DXF, SVG, HPGL, CSV, Drill, Gerber, Text, Barcode };
-        public enum GroupOption { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByType = 4, ByTile = 5, ByFill = 6};
+        public enum GroupOption { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByType = 4, ByTile = 5, ByFill = 6, Label = 7 };
         public enum SortOption { none = 0, ByProperty = 1, ByToolNr = 2, ByCodeSize = 3, ByGraphicDimension = 4 };
-		public enum CreationOption { none = 0, AddPause = 1, AddPauseBeforePath = 2};
+        public enum CreationOption { none = 0, AddPause = 1, AddPauseBeforePath = 2 };
         internal class GraphicInformationClass
         {
             public string Title { get; set; }
@@ -57,7 +58,7 @@ namespace GrblPlotter
             public SourceType SourceType { get; set; }       // public enum SourceTypes  { none, DXF, SVG, HPGL, CSV };
             public GroupOption GroupOption { get; set; }     // public enum GroupOptions { none=0, ByColor= 1, ByWidth=2, ByLayer=3, ByTile=4};
             public SortOption SortOption { get; set; }       // public enum SortOptions  { none=0, ByToolNr=1, ByCodeSize=2, ByGraphicDimension=3};
-			
+
             public bool ReProcess { get; set; }
             public bool PauseBeforePath { get; set; }
             public double PenWidthMin { get; set; }
@@ -79,19 +80,19 @@ namespace GrblPlotter
             public bool OptionZFromRadius { get; set; }		// will select GCodeDotOnlyWithZ or GCodeDotOnly
             public bool OptionRepeatCode { get; set; }
 
-			public bool OptionRampOnPenDown { get; set; }	// Path add ons
-						
+            public bool OptionRampOnPenDown { get; set; }   // Path add ons
+
             public bool OptionDragTool { get; set; }		// Path modifications
             public bool OptionTangentialAxis { get; set; }
-            public bool OptionHatchFill { get; set; }			
+            public bool OptionHatchFill { get; set; }
             public bool OptionExtendPath { get; set; }
-			
+
             public bool OptionClipCode { get; set; }		// Clipping
 
             public bool GroupEnable { get; set; }			// Grouping and tools
             public bool FigureEnable { get; set; }
             public bool OptionFeedFromToolTable { get; set; }
-			
+
             public bool OptionSpecialDevelop { get; set; }	// Special conversion
 
             public GraphicInformationClass()
@@ -100,23 +101,23 @@ namespace GrblPlotter
                 FilePath = "";
                 SourceType = SourceType.none;		// from where comes the data?
                 GroupOption = (GroupOption)Properties.Settings.Default.importGroupItem;	//GroupOption.ByColor;
-                SortOption = (SortOption)Properties.Settings.Default.importGroupSort;	//SortOption.ByToolNr;
-				GroupEnable = Properties.Settings.Default.importGroupObjects;
-				FigureEnable = true;
-				ReProcess = false;
-				PenWidthMin = 999999;
-				PenWidthMax = 0;
+                SortOption = (SortOption)Properties.Settings.Default.importGroupSort;   //SortOption.ByToolNr;
+                GroupEnable = Properties.Settings.Default.importGroupObjects;
+                FigureEnable = true;
+                ReProcess = false;
+                PenWidthMin = 999999;
+                PenWidthMax = 0;
                 DotZMin = 999999;
                 DotZMax = 0;
                 DxfImportZ = false;
 
                 OptionSpecialDevelop = Properties.Settings.Default.importGraphicDevelopmentEnable;
                 if (OptionSpecialDevelop)
-                {   ResetOptions(true); }
+                { ResetOptions(true); }
                 else
                 {
                     ApplyHatchFill = Properties.Settings.Default.importSVGApplyFill;
-					OptionZFromWidth = Properties.Settings.Default.importDepthFromWidth;
+                    OptionZFromWidth = Properties.Settings.Default.importDepthFromWidth;
                     OptionDotFromCircle = Properties.Settings.Default.importSVGCircleToDot;
                     OptionZFromRadius = Properties.Settings.Default.importSVGCircleToDotZ;
                     OptionRepeatCode = Properties.Settings.Default.importRepeatEnable;
@@ -126,9 +127,9 @@ namespace GrblPlotter
                     OptionTangentialAxis = Properties.Settings.Default.importGCTangentialEnable;
                     OptionDragTool = Properties.Settings.Default.importGCDragKnifeEnable;
                     OptionExtendPath = Properties.Settings.Default.importGraphicExtendPathEnable;
-					OptionRampOnPenDown = Properties.Settings.Default.importGraphicLeadInEnable;
+                    OptionRampOnPenDown = Properties.Settings.Default.importGraphicLeadInEnable;
                 }
-				PauseBeforePath = Properties.Settings.Default.importPauseElement;
+                PauseBeforePath = Properties.Settings.Default.importPauseElement;
                 OptionOffsetCode = Properties.Settings.Default.importGraphicOffsetOrigin;
                 OptionSortCode = Properties.Settings.Default.importGraphicSortDistance;
                 OptionFeedFromToolTable = Properties.Settings.Default.importGCToolTableUse;
@@ -137,32 +138,33 @@ namespace GrblPlotter
                 ConvertArcToLine = ConvertArcToLine || OptionSpecialDevelop || OptionRampOnPenDown;
             }
             public void ResetOptions(bool enableFigures)
-			{
+            {
                 DxfImportZ = false;
                 FigureEnable = enableFigures;
-				OptionZFromWidth = false;
-				OptionDotFromCircle = false;
+                OptionZFromWidth = false;
+                OptionDotFromCircle = false;
                 OptionZFromRadius = false;
                 OptionRepeatCode = false;
-				OptionSortCode = false;
-				OptionOffsetCode = false;
+                OptionSortCode = false;
+                OptionOffsetCode = false;
                 ApplyHatchFill = false;
                 OptionHatchFill = false;
                 OptionClipCode = false;
-				OptionNodesOnly = false;	
-				OptionTangentialAxis = false;
-				OptionDragTool = false;
-				OptionExtendPath = false;
-				OptionRampOnPenDown = false;
-			}
+                OptionNodesOnly = false;
+                OptionTangentialAxis = false;
+                OptionDragTool = false;
+                OptionExtendPath = false;
+                OptionRampOnPenDown = false;
+            }
             public void SetGroup(GroupOption group, SortOption sort)
-            {   GroupEnable = true;
+            {
+                GroupEnable = true;
                 GroupOption = group;
                 SortOption = sort;
             }
-			
-			public void SetPenWidth(string width)
-			{
+
+            public void SetPenWidth(string width)
+            {
                 if (double.TryParse(width, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out double nr))
                 {
                     PenWidthMin = Math.Min(PenWidthMin, nr);
@@ -171,8 +173,8 @@ namespace GrblPlotter
             }
             public void SetDotZ(double dz)
             {
-                    DotZMin = Math.Min(DotZMin, dz);
-                    DotZMax = Math.Max(DotZMax, dz);
+                DotZMin = Math.Min(DotZMin, dz);
+                DotZMax = Math.Max(DotZMax, dz);
             }
 
             public string ListOptions()
@@ -201,7 +203,7 @@ namespace GrblPlotter
                 if (OptionDragTool) importOptions += "<Drag knife> ";
                 if (OptionExtendPath) importOptions += "<Extend path> ";
                 if (OptionFeedFromToolTable) importOptions += "<Tool parameters from tool table> ";
-				if (OptionRampOnPenDown)importOptions += "<Ramp on pen-down> ";
+                if (OptionRampOnPenDown) importOptions += "<Ramp on pen-down> ";
 
                 return importOptions;
             }
@@ -214,35 +216,35 @@ namespace GrblPlotter
         {
             public string Key { get; set; }     // value of collected penColor, penWidth, Layer or TileNr
             public string TileRelatedGCode { get; set; }
-			public Point Offset { get; set; }
+            public Point Offset { get; set; }
             public List<GroupObject> Tile { get; set; }      // either collect groups 
             public List<PathObject> GroupPath { get; set; }  // or paths
-            protected int TileId{ get; set; }		// track GCode group-id
+            protected int TileId { get; set; }		// track GCode group-id
 
             public TileObject()
             {
                 Tile = new List<GroupObject>();
                 GroupPath = new List<PathObject>();
                 TileRelatedGCode = "";
-				TileId = -1;
+                TileId = -1;
             }
             public TileObject(string tmpKey, string comand, Point offset)//, PathObject pathObject)
             {
                 Key = tmpKey;
                 TileRelatedGCode = comand;
-				TileId = -1;
-				Offset = offset;
-				
+                TileId = -1;
+                Offset = offset;
+
                 Tile = new List<GroupObject>();
                 GroupPath = new List<PathObject>();
-        //        groupPath = new List<PathObject>();
-        //        groupPath.Add(pathObject);
+                //        groupPath = new List<PathObject>();
+                //        groupPath.Add(pathObject);
             }
-			
-          /*  public int TileId             // Tile Id from graphic2Gcode?
-            {   get { return TileId; }
-                set { TileId = value; }
-            }*/
+
+            /*  public int TileId             // Tile Id from graphic2Gcode?
+              {   get { return TileId; }
+                  set { TileId = value; }
+              }*/
         }
 
         /// <summary>
@@ -265,7 +267,7 @@ namespace GrblPlotter
                 PathDimension = new Dimensions();
                 GroupPath = new List<PathObject>();
                 GroupRelatedGCode = "";
-				GroupIdObject = -1;
+                GroupIdObject = -1;
             }
             public GroupObject(string tmpKey, int tnr, string tname, PathObject pathObject)
             {
@@ -276,10 +278,12 @@ namespace GrblPlotter
                 PathDimension = new Dimensions();
                 if (pathObject != null)
                     PathDimension.AddDimensionXY(pathObject.Dimension);
-				GroupIdObject = -1;
+                GroupIdObject = -1;
 
-                GroupPath = new List<PathObject>();
-                GroupPath.Add(pathObject);
+                GroupPath = new List<PathObject>
+                {
+                    pathObject
+                };
                 AddInfo(pathObject);
             }
             public GroupObject(GroupObject tmp)
@@ -297,7 +301,7 @@ namespace GrblPlotter
                     GroupPath = new List<PathObject>();
                     foreach (PathObject tmpPath in tmp.GroupPath)
                     { GroupPath.Add(tmpPath); }
-                }                          
+                }
             }
 
             public void AddInfo(PathObject pathObject)
@@ -309,9 +313,10 @@ namespace GrblPlotter
                     PathArea = PathDimension.GetArea();
                 }
             }
-			
+
             public int GroupId             // Group Id from graphic2Gcode
-            {   get { return GroupIdObject; }
+            {
+                get { return GroupIdObject; }
                 set { GroupIdObject = value; }
             }
         }
@@ -323,32 +328,34 @@ namespace GrblPlotter
         {
             public int Id { get; set; }                 //
             public List<string> GroupAttributes { get; set; }    // to use with 	public enum GroupOption { none=0, ByColor= 1, ByWidth=2, ByLayer=3, ByTile=4};
-            public int PenColorId { get; set; }        //
+            public int PenColorId { get; set; }        	//
             public string PathId { get; set; }          // 
-            public string PathGeometry { get; set; }   // figure information
-                                                       //            public string pathComment;      // figure information
+            public string PathGeometry { get; set; }   	// figure information
+            public int AuxInfo { get; set; }        	//
 
             public PathInformation Copy()
-            { PathInformation n = new PathInformation();
+            {
+                PathInformation n = new PathInformation();
                 n.CopyData(this);
                 return n;
             }
             public PathInformation()
             {
-                Id = PenColorId = 0; // toolNr = codeSize = codeArea = 0;
+                Id = PenColorId = AuxInfo = 0; // toolNr = codeSize = codeArea = 0;
                 PathGeometry = PathId = "";// pathComment = "";
-                GroupAttributes = new List<string>(new string[] { "", "", "", "", "", "", "" });        // to use with 		public enum GroupOption { none=0, ByColor= 1, ByWidth=2, ByLayer=3, ByTile=4};
+                GroupAttributes = new List<string>(new string[] { "", "", "", "", "", "", "" , ""});        // to use with 		public enum GroupOption { none=0, ByColor= 1, ByWidth=2, ByLayer=3, ByTile=4};
             }
             public void CopyData(PathInformation tmp)
             {
                 if (tmp != null)
-                {   Id = tmp.Id; //groupId = tmp.groupId;
-                    PenColorId = tmp.PenColorId; PathId = tmp.PathId;
+                {
+                    Id = tmp.Id; //groupId = tmp.groupId;
+                    PenColorId = tmp.PenColorId; PathId = tmp.PathId; AuxInfo = tmp.AuxInfo;
                     PathGeometry = tmp.PathGeometry; //pathComment = tmp.pathComment;
                                                      //                groupAttributes = tmp.groupAttributes.ToList();
                     for (int i = 0; i < GroupAttributes.Count; i++)
                         GroupAttributes[i] = tmp.GroupAttributes[i];
-                } 
+                }
             }
             public bool IsSameAs(PathInformation tmp)
             {
@@ -357,6 +364,7 @@ namespace GrblPlotter
                     if (Id != tmp.Id) return false;
                     if (PenColorId != tmp.PenColorId) return false;
                     if (PathId != tmp.PathId) return false;
+                    if (AuxInfo != tmp.AuxInfo) return false;
                     if (PathGeometry != tmp.PathGeometry) return false;
                     //				if (pathComment != tmp.pathComment)	return false;
                     if (GroupAttributes.SequenceEqual(tmp.GroupAttributes)) return true;
@@ -372,11 +380,12 @@ namespace GrblPlotter
                 }
                 return false;
             }
-			
-			public string List()
-			{	string attr = string.Format("Attr[0]:'{0}', AttrColor:'{1}', AttrWidth:'{2}', AttrLayer:'{3}', AttrTile:'{4}', AttrType:'{5}'", this.GroupAttributes[0], this.GroupAttributes[1], this.GroupAttributes[2], this.GroupAttributes[3], this.GroupAttributes[4], this.GroupAttributes[5]);
-				return string.Format("Id:{0}, pathId:{1}, penColorId:{2}, PathGeo:{3}, {4}",this.Id, this.PathId, this.PenColorId, this.PathGeometry, attr);
-			}
+
+            public string List()
+            {
+                string attr = string.Format("Attr[0]:'{0}', AttrColor:'{1}', AttrWidth:'{2}', AttrLayer:'{3}', AttrTile:'{4}', AttrType:'{5}'", this.GroupAttributes[0], this.GroupAttributes[1], this.GroupAttributes[2], this.GroupAttributes[3], this.GroupAttributes[4], this.GroupAttributes[5]);
+                return string.Format("Id:{0}, pathId:{1}, penColorId:{2}, PathGeo:{3}, AuxInfo:{4}   {5}", this.Id, this.PathId, this.PenColorId, this.PathGeometry, this.AuxInfo, attr);
+            }
         };
 
         /// <summary>
@@ -511,19 +520,23 @@ namespace GrblPlotter
             private double optionalZ = 0;
             private bool useZ = false;
             public bool UseZ
-            {   get { return useZ; }
+            {
+                get { return useZ; }
                 set { useZ = value; }
             }
             public double OptZ
-            {   get { return optionalZ; }
+            {
+                get { return optionalZ; }
                 set { optionalZ = value; }
             }
             public ItemDot(double dz, double dy)
-            {   Start = End = new Point(dz, dy); useZ = false;
+            {
+                Start = End = new Point(dz, dy); useZ = false;
                 Dimension.SetDimensionXY(dz, dy);
             }
             public ItemDot(double dx, double dy, double dz)
-            {   Start = End = new Point(dx, dy);
+            {
+                Start = End = new Point(dx, dy);
                 optionalZ = dz; useZ = true;
                 Dimension.SetDimensionXY(dx, dy);
             }
@@ -540,19 +553,22 @@ namespace GrblPlotter
             public List<GCodeMotion> Path;
 
             public bool Reversed
-            {   get { return IsReversed; }
+            {
+                get { return IsReversed; }
                 set { IsReversed = value; }
             }
-				
+
             public ItemPath()
-            {   IsReversed = false;
+            {
+                IsReversed = false;
                 Distance = 0;
                 PathLength = 0;
                 Path = new List<GCodeMotion>();
                 Dimension = new Dimensions();
             }
             public ItemPath(Point tmp)
-            {   IsReversed = false;
+            {
+                IsReversed = false;
                 Distance = 0;
                 PathLength = 0;
                 Path = new List<GCodeMotion>();
@@ -586,7 +602,8 @@ namespace GrblPlotter
             }
 
             public void Add(Point tmp, double dz, double ang)
-            {   GCodeMotion motion = new GCodeLine(tmp, dz, ang);
+            {
+                GCodeMotion motion = new GCodeLine(tmp, dz, ang);
                 Dimension.SetDimensionXY(tmp.X, tmp.Y);
                 Path.Add(motion);
                 PathLength += PointDistance(End, tmp);    // distance from last to current point
@@ -596,7 +613,7 @@ namespace GrblPlotter
             }
 
             public void AddArc(GCodeArc arc, double dz, double angStart, double angEnd)
-            { 	if(arc!=null) AddArc(arc.MoveTo, arc.CenterIJ, arc.IsCW, dz, angStart, angEnd); }
+            { if (arc != null) AddArc(arc.MoveTo, arc.CenterIJ, arc.IsCW, dz, angStart, angEnd); }
             public void AddArc(Point tmp, Point centerIJ, bool isCW, double dz, double angStart, double angEnd)
             {
                 GCodeMotion motion;
@@ -680,7 +697,8 @@ namespace GrblPlotter
                     IsClosed = true;
             }
             private static double PointDistance(Point a, Point b)
-            {   double dx = a.X - b.X;
+            {
+                double dx = a.X - b.X;
                 double dy = a.Y - b.Y;
                 return Math.Sqrt(dx * dx + dy * dy);
             }
@@ -693,23 +711,24 @@ namespace GrblPlotter
         /// Collect graphic-object data
         /// </summary>		
         internal abstract class GCodeMotion
-        {   public Point MoveTo { get; set; }     // coordinate to move
+        {
+            public Point MoveTo { get; set; }     // coordinate to move
             public double Depth { get; set; }     // individual z value
             public double Angle { get; set; }     // angle of movement lastPoint to "moveTo"
-        /*    public Point MoveTo
-            {   get { return MoveTo; }
-                set { MoveTo = value; }
-            }*/
-        /*    public double Depth
-            {   get { return Depth; }
-                set { Depth = value; }
-            }*/
-         /*   public double Angle
-            {   get { return Angle; }
-                set { Angle = value; }
-            }*/
+            /*    public Point MoveTo
+                {   get { return MoveTo; }
+                    set { MoveTo = value; }
+                }*/
+            /*    public double Depth
+                {   get { return Depth; }
+                    set { Depth = value; }
+                }*/
+            /*   public double Angle
+               {   get { return Angle; }
+                   set { Angle = value; }
+               }*/
             protected GCodeMotion()
-            { 	MoveTo = new Point(); }
+            { MoveTo = new Point(); }
 
             protected GCodeMotion(GCodeMotion old)
             {
@@ -730,9 +749,9 @@ namespace GrblPlotter
             public GCodeLine(Point tmp)
             { MoveTo = tmp; Depth = 0; }
             public GCodeLine(Point tmp, double dz)
-            { MoveTo = tmp; Depth = dz;}
+            { MoveTo = tmp; Depth = dz; }
             public GCodeLine(Point tmp, double dz, double ang)
-            { MoveTo = tmp; Depth = dz; Angle = ang;}
+            { MoveTo = tmp; Depth = dz; Angle = ang; }
 
             public GCodeLine(GCodeLine old)     // Copy
             {
@@ -749,23 +768,27 @@ namespace GrblPlotter
         /// Collect Arc-specific data
         /// </summary>		
         internal class GCodeArc : GCodeMotion
-        {   private Point center;
+        {
+            private Point center;
             private double angleStart;  // angle of start position of arc
             private bool iscw;          // direction clock-wise
             public Point CenterIJ
-            {   get { return center; }
+            {
+                get { return center; }
                 set { center = value; }
             }
             public double AngleStart
-            {   get { return angleStart; }
+            {
+                get { return angleStart; }
                 set { angleStart = value; }
             }
             public bool IsCW
-            {   get { return iscw; }
+            {
+                get { return iscw; }
                 set { iscw = value; }
             }
             public GCodeArc(Point tmp, Point centIJ, bool isCW, double dz)
-            { MoveTo = tmp; CenterIJ = centIJ; iscw = isCW; Depth = dz;}
+            { MoveTo = tmp; CenterIJ = centIJ; iscw = isCW; Depth = dz; }
             public GCodeArc(Point tmp, Point centIJ, bool isCW, double dz, double angStart, double angEnd)
             { MoveTo = tmp; CenterIJ = centIJ; iscw = isCW; Depth = dz; angleStart = angStart; Angle = angEnd; }
 
