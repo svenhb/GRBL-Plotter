@@ -6,9 +6,54 @@
       <Value Profile="(Default)">Yellow</Value>
     </Setting>
     <Setting Name="cameraColorText" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Lime</Value>
+      <Value Profile="(Default)">DimGray</Value>
     </Setting>
-    <Setting Name="cameraIndex" Type="System.Byte" Scope="User">
+    <Setting Name="cameraDistortionEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="cameraDistortionFixP0" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">64, 53</Value>
+    </Setting>
+    <Setting Name="cameraDistortionFixP1" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">579, 43</Value>
+    </Setting>
+    <Setting Name="cameraDistortionFixP2" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">602, 436</Value>
+    </Setting>
+    <Setting Name="cameraDistortionFixP3" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">33, 433</Value>
+    </Setting>
+    <Setting Name="cameraDistortionXyP0" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="cameraDistortionXyP1" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">640, 0</Value>
+    </Setting>
+    <Setting Name="cameraDistortionXyP2" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">640, 480</Value>
+    </Setting>
+    <Setting Name="cameraDistortionXyP3" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 480</Value>
+    </Setting>
+    <Setting Name="cameraFilterIndexFix" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="cameraFilterIndexXy" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="cameraIndexFix" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="cameraIndexNameFix" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="cameraIndexNameXy" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="cameraIndexXy" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="cameraMount" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="cameraPosBot" Type="System.Double" Scope="User">
@@ -20,19 +65,49 @@
     <Setting Name="cameraRotateArround0" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="cameraRotation" Type="System.Double" Scope="User">
+    <Setting Name="cameraRotationFix" Type="System.Double" Scope="User">
       <Value Profile="(Default)">180</Value>
     </Setting>
-    <Setting Name="cameraScalingBot" Type="System.Double" Scope="User">
+    <Setting Name="cameraRotationXy" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="cameraScaleOnRotate" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="cameraScalingFix" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">2.274</Value>
+    </Setting>
+    <Setting Name="cameraScalingXy" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="cameraScalingXyzBot" Type="System.Double" Scope="User">
       <Value Profile="(Default)">15</Value>
     </Setting>
-    <Setting Name="cameraScalingTop" Type="System.Double" Scope="User">
+    <Setting Name="cameraScalingXyzTop" Type="System.Double" Scope="User">
       <Value Profile="(Default)">20</Value>
     </Setting>
-    <Setting Name="cameraTeachRadiusBot" Type="System.Double" Scope="User">
+    <Setting Name="cameraShowPathDimension" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="cameraShowPathLimits" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="cameraShowPathPenUp" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="cameraSimulateImage" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="cameraTeachRadiusFix" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">200</Value>
+    </Setting>
+    <Setting Name="cameraTeachRadiusXy" Type="System.Double" Scope="User">
       <Value Profile="(Default)">20</Value>
     </Setting>
-    <Setting Name="cameraTeachRadiusTop" Type="System.Double" Scope="User">
+    <Setting Name="cameraTeachRadiusXyzBot" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="cameraTeachRadiusXyzTop" Type="System.Double" Scope="User">
       <Value Profile="(Default)">30</Value>
     </Setting>
     <Setting Name="cameraToolOffsetX" Type="System.Double" Scope="User">
@@ -40,6 +115,12 @@
     </Setting>
     <Setting Name="cameraToolOffsetY" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="cameraZeroFixX" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">96</Value>
+    </Setting>
+    <Setting Name="cameraZeroFixY" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">420</Value>
     </Setting>
     <Setting Name="camFilterBlue1" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -74,26 +155,23 @@
     <Setting Name="camShapeRect" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="camShapeSet1" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Paper|0|100|0|100|0|100|True|True|True|20|200|0.5|1|</Value>
-    </Setting>
     <Setting Name="camShapeSet2" Type="System.String" Scope="User">
-      <Value Profile="(Default)">PCB|0|150|0|150|0|150|False|False|True|20|100|0.5|1|</Value>
+      <Value Profile="(Default)">Paper|0|100|0|100|0|100|True|True|True|5|50|0.5|1|</Value>
     </Setting>
     <Setting Name="camShapeSet3" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Wood|0|106|0|237|123|246|True|True|False|10|100|0.5|2.0|</Value>
+      <Value Profile="(Default)">PCB|0|150|0|150|0|150|False|False|True|1|6|0.5|1|</Value>
     </Setting>
     <Setting Name="camShapeSet4" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Wood|0|106|0|237|123|246|True|True|False|5|20|0.5|2.0|</Value>
     </Setting>
     <Setting Name="camShapeSize" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="camShapeSizeMax" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">100</Value>
+      <Value Profile="(Default)">15</Value>
     </Setting>
     <Setting Name="camShapeSizeMin" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">20</Value>
+      <Value Profile="(Default)">8</Value>
     </Setting>
     <Setting Name="convertZtoSMax" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1000</Value>
@@ -326,6 +404,9 @@
     <Setting Name="FCTBLineInterval" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="FCTBSaveAsUTF16" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="flowCheckRegistryChange" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -401,6 +482,10 @@
     <Setting Name="gamePadEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="gamePadPOVC00" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$J=G91 Y1.000 F100
+</Value>
+    </Setting>
     <Setting Name="gamePadPOVC01" Type="System.String" Scope="User">
       <Value Profile="(Default)">$J=G91 X1.000 Y1.000 F100</Value>
     </Setting>
@@ -412,6 +497,18 @@
     </Setting>
     <Setting Name="gamePadPOVC04" Type="System.String" Scope="User">
       <Value Profile="(Default)">$J=G91 Y-1.000 F100</Value>
+    </Setting>
+    <Setting Name="gamePadPOVC05" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$J=G91 X-1.000 Y-1.000 F100
+</Value>
+    </Setting>
+    <Setting Name="gamePadPOVC06" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$J=G91 X-1.000 F100
+</Value>
+    </Setting>
+    <Setting Name="gamePadPOVC07" Type="System.String" Scope="User">
+      <Value Profile="(Default)">$J=G91 X-1.000 Y1.000 F100
+</Value>
     </Setting>
     <Setting Name="gamePadRAxis" Type="System.String" Scope="User">
       <Value Profile="(Default)">A</Value>
@@ -478,6 +575,12 @@
     </Setting>
     <Setting Name="gui2DColorBackground" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">224, 224, 224</Value>
+    </Setting>
+    <Setting Name="gui2DColorBackgroundPath" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">100, 100, 100</Value>
+    </Setting>
+    <Setting Name="gui2DColorDimension" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">150, 150, 150</Value>
     </Setting>
     <Setting Name="gui2DColorHeightMap" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Yellow</Value>
@@ -935,6 +1038,12 @@
     <Setting Name="importDXFToolIndex" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importDXFUseZ" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importFiducialLabel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">fiducial</Value>
+    </Setting>
     <Setting Name="importGCAddComments" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -1181,8 +1290,44 @@
     <Setting Name="importGraphicClipOffsetY" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="importGraphicClipShowOrigPosition" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="importGraphicClipSkipCode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGraphicDevelopmentEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGraphicDevelopmentFeedAfter" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="importGraphicDevelopmentFeedInvert" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGraphicDevelopmentFeedX" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGraphicDevelopmentNoCurve" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGraphicDevelopmentNotchDistance" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="importGraphicDevelopmentNotchLift" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGraphicDevelopmentNotchWidth" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="importGraphicDevelopmentNotchZCut" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-1.5</Value>
+    </Setting>
+    <Setting Name="importGraphicDevelopmentNotchZNotch" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-1</Value>
+    </Setting>
+    <Setting Name="importGraphicDevelopmentToolAngle" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">90</Value>
     </Setting>
     <Setting Name="importGraphicExtendPathEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -1460,6 +1605,9 @@
     <Setting Name="locationSerForm3" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">250, 50</Value>
     </Setting>
+    <Setting Name="locationSerForm4" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
     <Setting Name="locationSetForm" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">-30, 0</Value>
     </Setting>
@@ -1718,66 +1866,17 @@
     <Setting Name="useCaseLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">?</Value>
     </Setting>
-    <Setting Name="gamePadPOVC00" Type="System.String" Scope="User">
-      <Value Profile="(Default)">$J=G91 Y1.000 F100
-</Value>
+    <Setting Name="cameraFilterIndex" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="gamePadPOVC05" Type="System.String" Scope="User">
-      <Value Profile="(Default)">$J=G91 X-1.000 Y-1.000 F100
-</Value>
+    <Setting Name="camShapeSet1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Fiducials|0|90|0|90|0|120|False|True|False|8|14|2|2|</Value>
     </Setting>
-    <Setting Name="gamePadPOVC06" Type="System.String" Scope="User">
-      <Value Profile="(Default)">$J=G91 X-1.000 F100
-</Value>
+    <Setting Name="cameraZeroFixMachineX" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="gamePadPOVC07" Type="System.String" Scope="User">
-      <Value Profile="(Default)">$J=G91 X-1.000 Y1.000 F100
-</Value>
-    </Setting>
-    <Setting Name="locationSerForm4" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
-    </Setting>
-    <Setting Name="zneutest" Type="System.String" Scope="User">
-      <Value Profile="(Default)">test</Value>
-    </Setting>
-    <Setting Name="importGraphicDevelopmentEnable" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="importGraphicDevelopmentFeedX" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="importGraphicDevelopmentFeedInvert" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="importGraphicDevelopmentNotchWidth" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">100</Value>
-    </Setting>
-    <Setting Name="importGraphicDevelopmentNotchDistance" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">5</Value>
-    </Setting>
-    <Setting Name="importGraphicDevelopmentNotchZCut" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">-1.5</Value>
-    </Setting>
-    <Setting Name="importGraphicDevelopmentFeedAfter" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">2</Value>
-    </Setting>
-    <Setting Name="importGraphicDevelopmentNotchZNotch" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">-1</Value>
-    </Setting>
-    <Setting Name="importGraphicDevelopmentNotchLift" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="importGraphicDevelopmentToolAngle" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">90</Value>
-    </Setting>
-    <Setting Name="importDXFUseZ" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="importGraphicClipShowOrigPosition" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="importGraphicDevelopmentNoCurve" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+    <Setting Name="cameraZeroFixMachineY" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>
