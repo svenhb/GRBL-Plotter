@@ -468,7 +468,7 @@ namespace GrblPlotter
 
                         teachPoint2 = (XyPoint)VisuGCode.fiducialsCenter[1];
                         Grbl.PosMarker = new XyzPoint((XyPoint)VisuGCode.fiducialsCenter[1], 0);
-                        SetToolStrip(Color.Lime, string.Format("Fiducial detection: 2) TP2/mm X:{0:0.00} Y:{1:0.00}  TP2/px X:{0:0.00} Y:{1:0.00}", teachPoint2.X, teachPoint2.Y, refPointInPx.X, refPointInPx.Y), true);
+                        SetToolStrip(Color.Lime, string.Format("Fiducial detection: 2) TP2/mm X:{0:0.00} Y:{1:0.00}  TP2/px X:{2:0.00} Y:{3:0.00}", teachPoint2.X, teachPoint2.Y, refPointInPx.X, refPointInPx.Y), true);
                         if (showLog) Logger.Trace("Fiducial detection: 2) picPx   X:{0:0.00} Y:{1:0.00}", refPointInPx.X, refPointInPx.Y);
 
                         VisuGCode.CreateMarkerPath();
@@ -533,10 +533,10 @@ namespace GrblPlotter
                             realPos2 = realPoints[1];
 
 
-                        double angle1 = teachPoint1.AngleTo(teachPoint2);
+                        double angle1 = teachPoint1.AngleTo(teachPoint2);       // coordinates from graphics in 2D-view
                         double dist1 = teachPoint1.DistanceTo(teachPoint2);
-                        double angle2 = realPos1.AngleTo(realPos2);
-                        double dist2 = realPos1.DistanceTo(realPos2);
+                        double angle2 = teachPoint1.AngleTo(realPos2);          // realPos1 was shifted to teachPoint1
+                        double dist2 = teachPoint1.DistanceTo(realPos2);
                         double angleResult = angle1 - angle2;
                         double scale = dist2 / dist1;
                         if (!Properties.Settings.Default.cameraScaleOnRotate) { scale = 1; }

@@ -692,7 +692,7 @@ namespace GrblPlotter
                             if ((int)CameraMount > 0)
                                 OnRaiseXYEvent(new XYEventArgs(0, 1, realPosition, "G91")); // move relative and slow	-	MainFormGetCodeTransform.cs
                             else
-                                OnRaiseXYEvent(new XYEventArgs(0, 1, realPosition, "G53 G90")); // move absolute machine
+                                OnRaiseXYEvent(new XYEventArgs(0, 1, realPosition, "G91")); // move absolute work
                         }
                         break;
                     }

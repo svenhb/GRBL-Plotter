@@ -450,8 +450,8 @@ namespace GrblPlotter
                     if (onTrack)
                     {   // newPos is on line towards next GCode command
                         indexLastSucess = iStart;
-      //                  for (int k = lastLine + 1; k < iEnd; k++)
-                        for (int k = lastLine + 1; k < maxLine; k++)	// 2021-09-21
+                        for (int k = lastLine + 1; k < iEnd; k++)
+      //                  for (int k = lastLine + 1; k < maxLine; k++)	// 2021-09-21
                         {
                             if ((lastGCodePos.X == simuList[k].actualPos.X) && (lastGCodePos.Y == simuList[k].actualPos.Y) && (simuList[k].motionMode < 2))
                             {
