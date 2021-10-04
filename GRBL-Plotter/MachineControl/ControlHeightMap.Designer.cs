@@ -35,6 +35,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlHeightMapForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.CbRoundUp = new System.Windows.Forms.CheckBox();
+            this.BtnPosFromCodeDimension = new System.Windows.Forms.Button();
             this.BtnMoveUR = new System.Windows.Forms.Button();
             this.BtnMoveLL = new System.Windows.Forms.Button();
             this.nUDDeltaY = new System.Windows.Forms.NumericUpDown();
@@ -143,6 +145,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.CbRoundUp);
+            this.groupBox1.Controls.Add(this.BtnPosFromCodeDimension);
             this.groupBox1.Controls.Add(this.BtnMoveUR);
             this.groupBox1.Controls.Add(this.BtnMoveLL);
             this.groupBox1.Controls.Add(this.nUDDeltaY);
@@ -164,6 +168,21 @@
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
+            // 
+            // CbRoundUp
+            // 
+            resources.ApplyResources(this.CbRoundUp, "CbRoundUp");
+            this.CbRoundUp.Checked = true;
+            this.CbRoundUp.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CbRoundUp.Name = "CbRoundUp";
+            this.CbRoundUp.UseVisualStyleBackColor = true;
+            // 
+            // BtnPosFromCodeDimension
+            // 
+            resources.ApplyResources(this.BtnPosFromCodeDimension, "BtnPosFromCodeDimension");
+            this.BtnPosFromCodeDimension.Name = "BtnPosFromCodeDimension";
+            this.BtnPosFromCodeDimension.UseVisualStyleBackColor = true;
+            this.BtnPosFromCodeDimension.Click += new System.EventHandler(this.BtnPosFromCodeDimension_Click);
             // 
             // BtnMoveUR
             // 
@@ -1056,5 +1075,7 @@
         private System.Windows.Forms.Label LblConnected;
         private System.Windows.Forms.Button BtnMoveUR;
         private System.Windows.Forms.Button BtnMoveLL;
+        private System.Windows.Forms.Button BtnPosFromCodeDimension;
+        private System.Windows.Forms.CheckBox CbRoundUp;
     }
 }
