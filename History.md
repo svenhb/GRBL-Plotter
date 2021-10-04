@@ -2,6 +2,27 @@
 Needs to be read from the bottom up ;-)  
  
  
+### 2021-10 Version 1.6.2.x 
+Reworking of the camera form https://grbl-plotter.de/index.php?id=form-camera&setlang=en:
+Different camera mountings:
+* Fix mount above working area -> fix scaling, fix XY offset
+* Mount on XY platform -> fix scaling but variable XY offset
+* Mount on Z axis of XY platform -> scaling depends on Z position - sorry, could not be testet
+Add quadrilateral transformation to remove distortion caused by camera angle
+
+* Automatic fiducial correction https://grbl-plotter.de/index.php?id=fiducial-correction&setlang=en
+* GCode import: take care of G20 inch, large files 100000 lines -> disable some functionality
+* Graphics import: huge amount 1000 paths -> disable figureXMLs
+* Text creation form - add center alignment
+
+
+### 2021-09 Version 1.6.1.x 
+* #214 Stream selected figure, group or define individual start, stop lines -> right click on stream-button
+* #217 2D-View figure color: If Tool table is in use, replace figure colors (original from graphic) by assigned tool colors.
+* 2D-View display of tiles: new option: show correct tile position in 2D-view, even if offset of tiles is 0
+* #220 Add option to avoid notches in curves
+ 
+ 
 ### 2021-07 Version 1.6.0.x 
 - Switch to Visual Studio 2019
 - Tried to get rid of all of the visual studio's warnings - with moderate success
