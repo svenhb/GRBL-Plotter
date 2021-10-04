@@ -4,6 +4,12 @@ Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windo
 Geschrieben in C# VisualStudio 2019.  
 Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WK8ATWHC872JU)   
   
+### Neu in Version 1.6.2.x 
+* Überarbeitung der Kamerafunktion, Kamera über Arbeitsfläche, Kamera auf XY Platform - beweglich
+* Automatische Passmarkenkorrektur
+* Laden von GCode: Berücksichtigung von G20 (inch), bei großen Dateien (>100000 Zeilen) werden einige Funktionen disabled (Zeitersparnis)
+* Import von Grafiken: bei einer großen Anzahl von Objekten (>1000) werden keine Figure-XML Tags erzeugt. (Zeitersparnis)
+
 ### Neu in Version 1.6.1.x 
 * Abwicklung von Objekten 
 * Streamen von selektierten Figuren oder Gruppen
