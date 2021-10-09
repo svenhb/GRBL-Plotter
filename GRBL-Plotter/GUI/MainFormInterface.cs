@@ -88,7 +88,8 @@ namespace GrblPlotter
                 CheckMachineLimit();
                 Grbl.wcoChanged = false;
             }
-            if (((isStreaming || isStreamingRequestStop)) && Properties.Settings.Default.guiProgressShow && !VisuGCode.largeDataAmount)
+            //         if (((isStreaming || isStreamingRequestStop)) && Properties.Settings.Default.guiProgressShow && !VisuGCode.largeDataAmount)
+            if (isStreaming && Properties.Settings.Default.guiProgressShow && !VisuGCode.largeDataAmount)
                 VisuGCode.ProcessedPath.ProcessedPathDraw(Grbl.posWork);
 
 
