@@ -23,6 +23,7 @@
  * 2021-07-09 split code from GCodeTransform
  * 2021-09-04 new struct to store simulation data: SimuCoordByLine in simuList
  * 2021-09-07 take care of tile-offset in ProcessedPathDraw
+ * 2021-10-09 improove processedPath (remove glitches)
  */
 
 using System;
@@ -369,12 +370,13 @@ namespace GrblPlotter
             private static XyzPoint lastGCodePos = new XyzPoint();
             private static int lastLine = 0;
             private static int maxLine = 0;
-            private static byte lastMode = 0;
+            private static float tolerance = 0.1f;              // to assume two values as same
 			public static System.Windows.Point offset2DView;
             public static System.Windows.Point offset2DViewOld;
 
             private static int indexLastSucess = 0;
-
+			private static readonly bool logProgress = false;
+			
             public static void ProcessedPathClear()
             {
                 Simulation.pathSimulation.Reset();
@@ -386,89 +388,103 @@ namespace GrblPlotter
             public static void ProcessedPathLine(int line)		// 
             {
                 maxLine = line;
-      /*          if (line < simuList.Count)
-                {
-                    offset2DView = new System.Windows.Point(simuList[line].actualOffset.X, simuList[line].actualOffset.Y);
-                    //         Logger.Trace("ProcessedPathLine line:{0} x:{1}  y:{2}", line, offset2DView.X, offset2DView.Y);
-                    if (!offset2DView.Equals(offset2DViewOld))
-                        Simulation.pathSimulation.Reset();
-                    offset2DViewOld = offset2DView;
-                }*/
             }
 
             private static int GetNextXYIndex(int start)
             {
                 for (int i = start; i < simuList.Count; i++)
                 {
-                    if ((simuList[i].actualPos.X != simuList[start].actualPos.X) || (simuList[i].actualPos.Y != simuList[start].actualPos.Y))
+					if (!IsSameXYPos(start, i))
                         return i;
                 }
                 return start + 1;
             }
+			private static bool IsSameXYPos(int a, int b)
+			{
+                if (!IsSameXYPos(simuList[a].actualPos, simuList[b].actualPos))
+                    return false;	
+                if ((simuList[a].motionMode == 0) && (simuList[b].motionMode > 1))
+                    return false;   // same pos but diff motionMode -> full circle?
+                return true;
+			}
+            private static bool IsSameXYPos(XyzPoint a, XyzPoint b)
+            {                
+                if ((Math.Abs(a.X - b.X) > tolerance) || (Math.Abs(a.Y - b.Y) > tolerance))
+                    return false;
+                return true;
+            }
 
-            internal static void ProcessedPathDraw(XyzPoint newPos)
+
+            internal static void ProcessedPathDraw(XyzPoint newPos)			// called by OnRaisePosEvent in MainFormInterface.cs during streaming
             {
                 int iStart, iEnd;
                 bool onTrack = false;
 
-                if ((lastPos.X == newPos.X) && (lastPos.Y == newPos.Y))
+                if ((lastPos.X == newPos.X) && (lastPos.Y == newPos.Y))		// no change in grbl position - nothing to do
                     return;
 
-                if ((simuList == null) || (simuList.Count == 0) || ((maxLine + 1) >= simuList.Count))
+                if ((simuList == null) || (simuList.Count == 0) || ((maxLine + 1) >= simuList.Count))	
                     return;
 
-                XyzPoint newPosOffset = new XyzPoint(newPos);
-                XyzPoint newPosOriginal = new XyzPoint(newPos);
-   //             XyzPoint newPosOffsetPaint = new XyzPoint(newPos);
-                for (iStart = lastLine; iStart < maxLine; iStart++)
+                XyzPoint newPosTileOffseted;
+                XyzPoint tileOffset;
+
+                if (logProgress) Logger.Trace("Processed path lastLine:{0,2}", lastLine);
+                for (iStart = lastLine; iStart < maxLine; iStart++)			            // find two consecutive command lines
                 {
-                    iEnd = iStart + 1;
-                    if (simuList[iEnd].motionMode <= 1)
-                        iEnd = GetNextXYIndex(iStart);
                     onTrack = false;
+                    iEnd = iStart + 1;
+                    if ((simuList[iEnd].motionMode < 1) || IsSameXYPos(iStart, iEnd))	// no change in position or motionMode? Try next line
+                    {
+                        iEnd = GetNextXYIndex(iEnd);
+                        iStart = iEnd - 1;
+                    }
 
-                    if ((lastMode == 0) && (simuList[iStart].motionMode > 0))
+                    if ((simuList[iStart].motionMode == 0) && (simuList[iEnd].motionMode > 0))  // new figure starts
                     { Simulation.pathSimulation.StartFigure(); }
 
-                    newPosOffset.X = newPos.X + simuList[iEnd].actualOffset.X;
-                    newPosOffset.Y = newPos.Y + simuList[iEnd].actualOffset.Y;
-        //            newPosOriginal.X = newPos.X;
-        //            newPosOriginal.Y = newPos.Y;
+                    // simuList contains the, in 2D-view, visible coordinates - for tiles also out of working coordinates - needs to be corrected:
+                    tileOffset = simuList[iEnd].actualOffset;
+                    newPosTileOffseted = newPos + tileOffset;       // shift simuList-Coordinate to working-coordinates
 
-                    if (simuList[iEnd].motionMode > 1)
+                    if (simuList[iEnd].motionMode > 1)			    // check if newPos is on track of an arc
                     {
                         ArcProperties arcMove1, arcMove2;
                         arcMove1 = GcodeMath.GetArcMoveProperties((XyPoint)simuList[iStart].actualPos, (XyPoint)simuList[iEnd].actualPos, simuList[iEnd].i, simuList[iEnd].j, (simuList[iEnd].motionMode == 2));
-                        arcMove2 = GcodeMath.GetArcMoveProperties((XyPoint)simuList[iStart].actualPos, (XyPoint)newPosOffset, simuList[iEnd].i, simuList[iEnd].j, (simuList[iEnd].motionMode == 2));
-                        onTrack = PointOnArc(arcMove1, arcMove2, ToPointF(newPosOffset));
+                        arcMove2 = GcodeMath.GetArcMoveProperties((XyPoint)simuList[iStart].actualPos, (XyPoint)newPosTileOffseted, simuList[iEnd].i, simuList[iEnd].j, (simuList[iEnd].motionMode == 2));
+                        onTrack = PointOnArc(arcMove1, arcMove2, ToPointF(newPosTileOffseted));
                     }
-                    else if (simuList[iEnd].motionMode == 1)
+                    else if (simuList[iEnd].motionMode == 1)				// check if newPos is on track of a line
                     {
-                        onTrack = PointOnLine(ToPointF(simuList[iStart].actualPos), ToPointF(simuList[iEnd].actualPos), ToPointF(newPosOffset));
+                        onTrack = PointOnLine(ToPointF(simuList[iStart].actualPos), ToPointF(simuList[iEnd].actualPos), ToPointF(newPosTileOffseted));
                     }
 
-                    if (onTrack)
-                    {   // newPos is on line towards next GCode command
-                        indexLastSucess = iStart;
-                        for (int k = lastLine + 1; k < iEnd; k++)
-      //                  for (int k = lastLine + 1; k < maxLine; k++)	// 2021-09-21
-                        {
-                            if ((lastGCodePos.X == simuList[k].actualPos.X) && (lastGCodePos.Y == simuList[k].actualPos.Y) && (simuList[k].motionMode < 2))
-                            {
-                                lastMode = simuList[k].motionMode;
-                                continue;
-                            }
+					if (logProgress) Logger.Trace("Processed path iStart:{0,2}  iStart.X:{1,2:0.0} Y:{2,2:0.0}  iEnd:{3,2}  iEnd.X:{4,2:0.0} Y:{5,2:0.0}  newPos X:{6,2:0.0} Y:{7,2:0.0}  onTrack:{8}", iStart, simuList[iStart].actualPos.X, simuList[iStart].actualPos.Y, iEnd, simuList[iEnd].actualPos.X, simuList[iEnd].actualPos.Y, newPos.X, newPos.Y, onTrack);
+					
+                    if (IsSameXYPos(simuList[iEnd].actualPos, newPosTileOffseted))
+                    { lastPos = newPos; }
 
-                            if (simuList[k].motionMode == 0)
+                    if (onTrack)			// two consecutive command lines found (where newPos is in-between) - were lines skipped?
+                    {   
+                        indexLastSucess = iStart;
+						for (int k = lastLine + 1; k <= iStart; k++)	// were lines skipped?
+                        {
+							// no movement - nothing to do - except probably full circle
+                            if ((lastGCodePos.X == simuList[k].actualPos.X) && (lastGCodePos.Y == simuList[k].actualPos.Y) && (simuList[k].motionMode < 2))
+                            {   continue;  }
+
+							// draw skipped lines
+                            if (simuList[k].motionMode == 0)		// new path
                             {
                                 lastGCodePos = new XyzPoint(simuList[k].actualPos.X, simuList[k].actualPos.Y, simuList[k].actualPos.Z);
                                 Simulation.pathSimulation.StartFigure();
                             }
-                            else if (simuList[k].motionMode == 1)
+                            else if (simuList[k].motionMode == 1)	// line
                             {
-                                Simulation.pathSimulation.AddLine(ToPointF(lastGCodePos), ToPointF(simuList[k].actualPos));
+                                Simulation.pathSimulation.AddLine(ToPointF(lastGCodePos - tileOffset), ToPointF(simuList[k].actualPos - tileOffset));
+                                if (logProgress) Logger.Trace("...for k AddLine lastGCodePos.X:{0,2:0.0} Y:{1,2:0.0}  k:{2,2}  k.X:{3,2:0.0} Y:{4,2:0.0} ", lastGCodePos.X, lastGCodePos.Y, k, simuList[k].actualPos.X, simuList[k].actualPos.Y);
                             }
-                            else if (simuList[k].motionMode >= 2)
+                            else if (simuList[k].motionMode >= 2)	// arc
                             {
                                 ArcProperties arcMove;
                                 arcMove = GcodeMath.GetArcMoveProperties((XyPoint)lastGCodePos, (XyPoint)simuList[k].actualPos, simuList[k].i, simuList[k].j, (simuList[k].motionMode == 2));
@@ -481,28 +497,27 @@ namespace GrblPlotter
                                 if (arcMove.radius > 0)
                                 {
                                     Simulation.pathSimulation.AddArc(x1, y1, r2, r2, aStart, aDiff);
+                                    if (logProgress) Logger.Trace("...for k AddArc lastGCodePos.X:{0,2:0.0} Y:{1,2:0.0}  k:{2,2}  k.X:{3,2:0.0} Y:{4,2:0.0} ", lastGCodePos.X, lastGCodePos.Y, k, simuList[k].actualPos.X, simuList[k].actualPos.Y);
                                 }
                             }
                             lastGCodePos = new XyzPoint(simuList[k].actualPos.X, simuList[k].actualPos.Y, simuList[k].actualPos.Z);
                         }
 
 
-                        if (simuList[iEnd].motionMode == 1)
+                        if (simuList[iEnd].motionMode == 1)	// draw path-line between last grblPos and actual newPos
                         {
-                    //        Simulation.pathSimulation.AddLine(ToPointF(lastGCodePos), ToPointF(newPosOffset));
-                            Simulation.pathSimulation.AddLine(ToPointF(lastGCodePos), ToPointF(newPosOriginal));
+                            Simulation.pathSimulation.AddLine(ToPointF(lastGCodePos - tileOffset), ToPointF(newPos));
                         }
-                        else if (simuList[iEnd].motionMode > 1)
+                        else if (simuList[iEnd].motionMode > 1) 	// draw path-arc between last grblPos and actual newPos
                         {
-                            Simulation.pathSimulation.AddLine(ToPointF(lastPos), ToPointF(newPosOriginal));
-                    //        Simulation.pathSimulation.AddLine(ToPointF(lastPos), ToPointF(newPosOffset));
-                       }
-                        lastLine = iStart;		//200720
-                        lastMode = simuList[iStart].motionMode;
-                        //		offset2DView = ToPointF(simuList[iStart].actualOffset);
+                            Simulation.pathSimulation.AddLine(ToPointF(lastPos - tileOffset), ToPointF(newPos));
+                        }
+
+                        lastLine = iStart;		
+
                         offset2DView = new System.Windows.Point(simuList[iStart].actualOffset.X, simuList[iStart].actualOffset.Y);
-                        //         Logger.Trace("ProcessedPathLine line:{0} x:{1}  y:{2}", line, offset2DView.X, offset2DView.Y);
-                        if (!offset2DView.Equals(offset2DViewOld))
+
+                        if (!offset2DView.Equals(offset2DViewOld))	// special case tiles - new tile, reset simulation-path
                             Simulation.pathSimulation.Reset();
                         offset2DViewOld = offset2DView;
 
@@ -540,33 +555,29 @@ namespace GrblPlotter
 
             private static bool PointOnLine(PointF p1, PointF p2, PointF xp)
             {
-                if ((xp.X < Math.Min(p1.X, p2.X)) || (xp.X > Math.Max(p1.X, p2.X)))
+                if ((xp.X < Math.Min(p1.X-tolerance, p2.X-tolerance)) || (xp.X > Math.Max(p1.X+tolerance, p2.X+tolerance)))
                 {
-                    if (IsEqual(xp.X, Math.Min(p1.X, p2.X))) return true;
-                    if (IsEqual(xp.X, Math.Max(p1.X, p2.X))) return true;
                     return false;
                 }
-                if ((xp.Y < Math.Min(p1.Y, p2.Y)) || (xp.Y > Math.Max(p1.Y, p2.Y)))
+                if ((xp.Y < Math.Min(p1.Y-tolerance, p2.Y-tolerance)) || (xp.Y > Math.Max(p1.Y+tolerance, p2.Y+tolerance)))
                 {
-                    if (IsEqual(xp.Y, Math.Min(p1.Y, p2.Y))) return true;
-                    if (IsEqual(xp.Y, Math.Max(p1.Y, p2.Y))) return true;
                     return false;
                 }
                 double dx = p2.X - p1.X;
                 double dy = p2.Y - p1.Y;
-                if (IsEqual(dx, 0))
+                if (IsEqual(dx, 0, tolerance))
                 {
-                    return (IsEqual(p1.X, xp.X));
+                    return (IsEqual(p1.X, xp.X, tolerance));
                 }
-                if (IsEqual(dy, 0))
+                if (IsEqual(dy, 0, tolerance))
                 {
-                    return (IsEqual(p1.Y, xp.Y));
+                    return (IsEqual(p1.Y, xp.Y, tolerance));
                 }
 
                 double m = dy / dx;
                 double b = p1.Y - (m * p1.X);
                 double y = m * xp.X + b;
-                return (IsEqual(y, xp.Y));
+                return (IsEqual(y, xp.Y, tolerance));
             }
             private static bool IsEqual(double a, double b, double max = 0.1)
             {
