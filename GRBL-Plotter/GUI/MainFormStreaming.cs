@@ -403,8 +403,36 @@ namespace GrblPlotter
                     File.Delete(fileName + ".xml");
                     SaveRecentFile(fileLastProcessed + ".nc");
 
+                    bool removeFiducials = (Properties.Settings.Default.importFiducialSkipCode && (VisuGCode.fiducialsCenter.Count > 0));
+                    if (removeFiducials)	// copy code
+					{
+						UnDo.SetCode(fCTBCode.Text, "remove fiducials", this);
+                        string fiducialLabel = Properties.Settings.Default.importFiducialLabel;
+                        fCTBCode.TextChanged -= FctbCode_TextChanged;       // disable textChanged events
+                        foreach (XmlMarker.BlockData tmp in XmlMarker.listFigures)
+						{
+                            if (tmp.Layer.IndexOf(fiducialLabel) >= 0)
+                            {
+                                Logger.Info("StartStreaming fiducials: exclude line:{0} to:{1}", tmp.LineStart, tmp.LineEnd);
+                                for (int lnr=tmp.LineStart; lnr <= tmp.LineEnd; lnr++)								
+								{
+                                    Logger.Trace(" - {0}", fCTBCode.GetLineText(lnr));
+                                    fCTBCode.Selection = fCTBCode.GetLine(lnr);
+                                    fCTBCode.SelectedText = "(" + fCTBCode.GetLineText(lnr) + ")";  // remove fiducial code
+                                }
+							}							
+						}
+                        fCTBCode.TextChanged += FctbCode_TextChanged;       // enable textChanged events
+                    }	
+
                     lblElapsed.Text = "Time " + elapsed.ToString(@"hh\:mm\:ss");
                     _serial_form.StartStreaming(fCTBCode.Lines, startLine, endLine, false);  // no check
+					
+					if (removeFiducials)	// restore original code with fiducials
+					{
+						fCTBCode.Text = UnDo.GetCode();
+					}
+					
                     btnStreamStart.Image = Properties.Resources.btn_pause;
                     btnStreamCheck.Enabled = false;
                     OnPaint_setBackground();                // Generante a background-image for pictureBox to avoid frequent drawing of pen-up/down paths

@@ -868,8 +868,13 @@ namespace GrblPlotter
                         }
                         else
                             Logger.Trace("LoadGcode() check XML lineNr=0");
+
                     }
+                    StatusStripSet(1, "Load last processed G-Code - no import options applied!", Color.Yellow);
                 }
+                else
+                    StatusStripSet(1, "Load G-Code - no import options applied!", Color.Yellow);
+
                 //               else
                 //                    SaveRecentFile(tbFile.Text);
                 Logger.Trace(" LoadGCode end");

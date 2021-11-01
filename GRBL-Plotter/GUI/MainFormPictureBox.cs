@@ -81,6 +81,8 @@ namespace GrblPlotter
 		private readonly Font myFont8 = new Font("Lucida Console", 8);
 
         private readonly object lockObject = new object();
+        private bool shiftedDisplay = false;
+
         private void PictureBox1_Paint(object sender, PaintEventArgs e)
         {
             double minx = VisuGCode.drawingSize.minX;                  // extend dimensions
@@ -142,10 +144,19 @@ namespace GrblPlotter
                     {
                         lock (lockObject)
                         {
+                            shiftedDisplay = false;
                             if (!showPicBoxBgImage)
                                 OnPaint_drawToolPath(e.Graphics);   // draw real path if background image is not shown
+
                             e.Graphics.DrawPath(penTool, VisuGCode.pathTool);
-                            e.Graphics.DrawPath(penMarker, VisuGCode.pathMarker);
+
+                            if (shiftedDisplay)
+                            {   e.Graphics.TranslateTransform(-(float)VisuGCode.ProcessedPath.offset2DView.X, -(float)VisuGCode.ProcessedPath.offset2DView.Y);       // apply offset
+                                e.Graphics.DrawPath(penMarker, VisuGCode.pathMarker);
+                                e.Graphics.TranslateTransform((float)VisuGCode.ProcessedPath.offset2DView.X, (float)VisuGCode.ProcessedPath.offset2DView.Y);       // remove offset
+                            }
+                            else
+                                e.Graphics.DrawPath(penMarker, VisuGCode.pathMarker);
                         }
                         e.Graphics.Transform = pBoxOrig;
                         if (Properties.Settings.Default.machineLimitsShow)
@@ -242,25 +253,28 @@ namespace GrblPlotter
                 {
                     if (VisuGCode.pathObject.Count > 0)
                     {	if (VisuGCode.ShiftTilePaths)
-						{	// GCodeSimulate.cs VisuGCode.ProcessedPath.offset2DView updated via 
-							// MainFormStreaming.cs VisuGCode.ProcessedPath.ProcessedPathLine(e.CodeLineConfirmed);	
-							foreach (VisuGCode.PathData tmpPath in VisuGCode.pathObject)
-							{ 	
-								e.TranslateTransform(-(float)VisuGCode.ProcessedPath.offset2DView.X, -(float)VisuGCode.ProcessedPath.offset2DView.Y);       // apply offset
-								e.DrawPath(tmpPath.pen, tmpPath.path); 
-								e.TranslateTransform((float)VisuGCode.ProcessedPath.offset2DView.X, (float)VisuGCode.ProcessedPath.offset2DView.Y);       // remove offset
-							}
-						}
-						else
-						{
-							foreach (VisuGCode.PathData tmpPath in VisuGCode.pathObject)
-							{ e.DrawPath(tmpPath.pen, tmpPath.path); }
-						}
-					}
+                        {
+                            // GCodeSimulate.cs VisuGCode.ProcessedPath.offset2DView updated via 
+                            // MainFormStreaming.cs VisuGCode.ProcessedPath.ProcessedPathLine(e.CodeLineConfirmed);	
+                            // VisuGCode.ProcessedPath.offset2DView depends on importGraphicClipShowOrigPositionShiftTileProcessed
+                            shiftedDisplay = true;
+                        }
+                        if (shiftedDisplay)
+                            e.TranslateTransform(-(float)VisuGCode.ProcessedPath.offset2DView.X, -(float)VisuGCode.ProcessedPath.offset2DView.Y);       // apply offset
+
+						foreach (VisuGCode.PathData tmpPath in VisuGCode.pathObject)
+						{ e.DrawPath(tmpPath.pen, tmpPath.path); }
+
+                        if (shiftedDisplay)
+                            e.TranslateTransform((float)VisuGCode.ProcessedPath.offset2DView.X, (float)VisuGCode.ProcessedPath.offset2DView.Y);       // remove offset
+                    }
                 }
                 else 
                     e.DrawPath(penDown, VisuGCode.pathPenDown);
 
+
+                if (shiftedDisplay)
+                    e.TranslateTransform(-(float)VisuGCode.ProcessedPath.offset2DView.X, -(float)VisuGCode.ProcessedPath.offset2DView.Y);       // apply offset
 
                 if (Properties.Settings.Default.ctrl4thUse)
                     e.DrawPath(penRotary, VisuGCode.pathRotaryInfo);
@@ -274,6 +288,9 @@ namespace GrblPlotter
                     e.DrawPath(penUp, VisuGCode.pathPenUp);
 
                 e.DrawPath(penSimulation, VisuGCode.Simulation.pathSimulation);
+
+                if (shiftedDisplay)
+                    e.TranslateTransform((float)VisuGCode.ProcessedPath.offset2DView.X, (float)VisuGCode.ProcessedPath.offset2DView.Y);       // remove offset
             }
             catch (Exception Ex){ Logger.Error(Ex, "OnPaint_drawToolPath "); throw; }
         }

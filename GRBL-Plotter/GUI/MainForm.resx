@@ -133,7 +133,7 @@
     <value>1</value>
   </data>
   <data name="fCTBCode.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
-    <value>214, 12</value>
+    <value>191, 12</value>
   </data>
   <metadata name="cmsFCTB.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>123, 56</value>
@@ -6581,10 +6581,10 @@ Langue
     <value>223, 56</value>
   </metadata>
   <data name="toolStripStatusLabel0.Size" type="System.Drawing.Size, System.Drawing">
-    <value>494, 17</value>
+    <value>576, 17</value>
   </data>
   <data name="toolStripStatusLabel0.Text" xml:space="preserve">
-    <value>[ Load file via drag and drop or file open dialog. Or select 'Reload File' to open last used file. ]</value>
+    <value>[ Load file via drag and drop to 2D-view or select 'Reload File' (right click on 2D-view) to open last used file. ]</value>
   </data>
   <data name="toolStripStatusLabel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>0, 17</value>

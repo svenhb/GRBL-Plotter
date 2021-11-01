@@ -124,10 +124,10 @@
     <value>Abbrechen</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Beginnen Sie mit dem Streaming bei line</value>
+    <value>Beginne das Streaming bei Zeile</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Stoppen Sie das Streaming an der Linie</value>
+    <value>Stoppe das Streaming bei Zeile</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Nachdem Sie auf Start gedrückt haben, werden die Daten geladen und das Streaming bleibt im Pause-Modus, drücken Sie erneut auf Start (Linksklick), um fortzufahren.</value>
@@ -139,6 +139,6 @@
     <value>Position</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Stream-Abschnitt von GCode</value>
+    <value>Stream Abschnitt von GCode</value>
   </data>
 </root>
