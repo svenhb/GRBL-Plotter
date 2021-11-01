@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GrblPlotter.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
@@ -34,6 +34,9 @@
     </Setting>
     <Setting Name="cameraDistortionXyP3" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">0, 480</Value>
+    </Setting>
+    <Setting Name="cameraFilterIndex" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="cameraFilterIndexFix" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -116,6 +119,12 @@
     <Setting Name="cameraToolOffsetY" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="cameraZeroFixMachineX" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="cameraZeroFixMachineY" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
     <Setting Name="cameraZeroFixX" Type="System.Double" Scope="User">
       <Value Profile="(Default)">96</Value>
     </Setting>
@@ -154,6 +163,9 @@
     </Setting>
     <Setting Name="camShapeRect" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="camShapeSet1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Fiducials|0|90|0|90|0|120|False|True|False|8|14|2|2|</Value>
     </Setting>
     <Setting Name="camShapeSet2" Type="System.String" Scope="User">
       <Value Profile="(Default)">Paper|0|100|0|100|0|100|True|True|True|5|50|0.5|1|</Value>
@@ -483,8 +495,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="gamePadPOVC00" Type="System.String" Scope="User">
-      <Value Profile="(Default)">$J=G91 Y1.000 F100
-</Value>
+      <Value Profile="(Default)">$J=G91 Y1.000 F100</Value>
     </Setting>
     <Setting Name="gamePadPOVC01" Type="System.String" Scope="User">
       <Value Profile="(Default)">$J=G91 X1.000 Y1.000 F100</Value>
@@ -499,16 +510,13 @@
       <Value Profile="(Default)">$J=G91 Y-1.000 F100</Value>
     </Setting>
     <Setting Name="gamePadPOVC05" Type="System.String" Scope="User">
-      <Value Profile="(Default)">$J=G91 X-1.000 Y-1.000 F100
-</Value>
+      <Value Profile="(Default)">$J=G91 X-1.000 Y-1.000 F100</Value>
     </Setting>
     <Setting Name="gamePadPOVC06" Type="System.String" Scope="User">
-      <Value Profile="(Default)">$J=G91 X-1.000 F100
-</Value>
+      <Value Profile="(Default)">$J=G91 X-1.000 F100</Value>
     </Setting>
     <Setting Name="gamePadPOVC07" Type="System.String" Scope="User">
-      <Value Profile="(Default)">$J=G91 X-1.000 Y1.000 F100
-</Value>
+      <Value Profile="(Default)">$J=G91 X-1.000 Y1.000 F100</Value>
     </Setting>
     <Setting Name="gamePadRAxis" Type="System.String" Scope="User">
       <Value Profile="(Default)">A</Value>
@@ -1044,6 +1052,9 @@
     <Setting Name="importFiducialLabel" Type="System.String" Scope="User">
       <Value Profile="(Default)">fiducial</Value>
     </Setting>
+    <Setting Name="importFiducialSkipCode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="importGCAddComments" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -1069,7 +1080,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGCFooter" Type="System.String" Scope="User">
-      <Value Profile="(Default)">M30</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="importGCHeader" Type="System.String" Scope="User">
       <Value Profile="(Default)">G54; </Value>
@@ -1292,6 +1303,9 @@
     </Setting>
     <Setting Name="importGraphicClipShowOrigPosition" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGraphicClipShowOrigPositionShiftTileProcessed" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="importGraphicClipSkipCode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -1865,18 +1879,6 @@
     </Setting>
     <Setting Name="useCaseLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">?</Value>
-    </Setting>
-    <Setting Name="cameraFilterIndex" Type="System.String" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="camShapeSet1" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Fiducials|0|90|0|90|0|120|False|True|False|8|14|2|2|</Value>
-    </Setting>
-    <Setting Name="cameraZeroFixMachineX" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="cameraZeroFixMachineY" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>
