@@ -90,7 +90,7 @@ namespace GrblPlotter
             public string Type { get; set; }
         };
 
-        private static readonly List<BlockData> listFigures = new List<BlockData>();
+        internal static readonly List<BlockData> listFigures = new List<BlockData>();
         private static readonly List<BlockData> listGroups = new List<BlockData>();
         private static readonly List<BlockData> listTiles = new List<BlockData>();
 
@@ -148,13 +148,13 @@ namespace GrblPlotter
                 case SortOption.Layer:
                     if (reverse) listGroups.Sort((x, y) => y.Layer.CompareTo(x.Layer));
                     else listGroups.Sort((x, y) => x.Layer.CompareTo(y.Layer));
-                    CortFigureById(reverse);
+                    SortFigureById(reverse);
                     return;
 
                 case SortOption.Type:
                     if (reverse) listFigures.Sort((x, y) => y.Type.CompareTo(x.Type));
                     else listFigures.Sort((x, y) => x.Type.CompareTo(y.Type));
-                    CortFigureById(reverse);
+                    SortFigureById(reverse);
                     return;
 
                 case SortOption.Geometry:
@@ -169,7 +169,7 @@ namespace GrblPlotter
 
                 case SortOption.ToolName:
                     if (listGroups.Count > 0)
-                    { SortGroupByToolName(reverse); CortFigureById(reverse); }
+                    { SortGroupByToolName(reverse); SortFigureById(reverse); }
                     else
                         SortFigureByToolName(reverse);
                     return;
@@ -177,13 +177,13 @@ namespace GrblPlotter
                 case SortOption.CodeSize:
                     if (reverse) listGroups.Sort((x, y) => y.CodeSize.CompareTo(x.CodeSize));
                     else listGroups.Sort((x, y) => x.CodeSize.CompareTo(y.CodeSize));
-                    CortFigureById(reverse);
+                    SortFigureById(reverse);
                     return;
 
                 case SortOption.CodeArea:
                     if (reverse) listGroups.Sort((x, y) => y.CodeArea.CompareTo(x.CodeArea));
                     else listGroups.Sort((x, y) => x.CodeArea.CompareTo(y.CodeArea));
-                    CortFigureById(reverse);
+                    SortFigureById(reverse);
                     return;
 
                 case SortOption.Distance:
@@ -201,7 +201,7 @@ namespace GrblPlotter
                if (reverse) { listFigures.Sort((x, y) => y.id.CompareTo(x.id)); listGroups.Sort((x, y) => y.id.CompareTo(x.id)); }
                else { listFigures.Sort((x, y) => x.id.CompareTo(y.id)); listGroups.Sort((x, y) => x.id.CompareTo(y.id)); }
            }*/
-        public static void CortFigureById(bool reverse)
+        public static void SortFigureById(bool reverse)
         {
             if (reverse) { listFigures.Sort((x, y) => y.Id.CompareTo(x.Id)); }
             else { listFigures.Sort((x, y) => x.Id.CompareTo(y.Id)); }

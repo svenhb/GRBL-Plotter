@@ -18,6 +18,7 @@
 */
 /*
  * 2021-09-10 split from graphicRelated
+ * 2021-10-29 bugfix in RemoveIntermediateSteps
 */
 
 using System;
@@ -64,7 +65,7 @@ namespace GrblPlotter
 
                             if (PathData.Path[i] is GCodeLine)
                             {
-                                if (logDetailed) Logger.Trace("    createGraphicsPath - AddLine {0:0.00} {1:0.00} {2:0.00} {3:0.00}", (float)PathData.Path[i - 1].MoveTo.X, (float)PathData.Path[i - 1].MoveTo.Y, (float)PathData.Path[i].MoveTo.X, (float)PathData.Path[i].MoveTo.Y);
+                                if (logDetailed) Logger.Trace("    createGraphicsPath - AddLine {0,7:0.00} {1,7:0.00}  {2,7:0.00} {3,7:0.00}", (float)PathData.Path[i - 1].MoveTo.X, (float)PathData.Path[i - 1].MoveTo.Y, (float)PathData.Path[i].MoveTo.X, (float)PathData.Path[i].MoveTo.Y);
                                 try
                                 { path.AddLine((float)PathData.Path[i - 1].MoveTo.X, (float)PathData.Path[i - 1].MoveTo.Y, (float)PathData.Path[i].MoveTo.X, (float)PathData.Path[i].MoveTo.Y); }
                                 catch (Exception err)
@@ -87,7 +88,7 @@ namespace GrblPlotter
                                 float aDiff = (float)(arcMove.angleDiff * 180 / Math.PI);
                                 if (arcMove.radius > equalPrecision)
                                 {
-                                    if (logDetailed) Logger.Trace("    createGraphicsPath - AddArc {0:0.00} {1:0.00} {2:0.00} {3:0.00} {4:0.00} {5:0.00}", x1, y1, r2, r2, aStart, aDiff);
+                                    if (logDetailed) Logger.Trace("    createGraphicsPath - AddArc  {0,7:0.00} {1,7:0.00}  {2,7:0.00} {3,7:0.00} {4:0.00} {5:0.00}", x1, y1, r2, r2, aStart, aDiff);
                                     try
                                     { path.AddArc(x1, y1, r2, r2, aStart, aDiff); }
                                     catch (Exception err)
@@ -118,7 +119,7 @@ namespace GrblPlotter
 
         private static bool GroupAllGraphics(List<PathObject> completeGraphic, List<GroupObject> groupedGraphicLocal, GraphicInformationClass graphicInformation, bool preventReversal = false)
         {
-            //  groupedGraphicLocal = new List<GroupObject>();   // loacl 2020-12-14
+            //  groupedGraphicLocal = new List<GroupObject>();   // local 2020-12-14
             //  groupedGraphicLocal = groupedGraphic;
             bool log = logEnable && ((logFlags & (uint)LogEnables.GroupAllGraphics) > 0);
             keyToIndex = new Dictionary<string, int>();
@@ -278,7 +279,7 @@ namespace GrblPlotter
                     length = 0;
                 }
                 coordByLine = string.Format("x1:{0,6:0.00} y1:{1,6:0.00}  x2:{2,6:0.00} y2:{3,6:0.00}  reversed:{4}", graphicItem.Start.X, graphicItem.Start.Y, graphicItem.End.X, graphicItem.End.Y, reversed);
-                info = string.Format(" color:'{0}' width:'{1}' layer:'{2}' length:'{3}'", graphicItem.Info.GroupAttributes[1], graphicItem.Info.GroupAttributes[2], graphicItem.Info.GroupAttributes[3], length);   // index 0 not used
+                info = string.Format(" color:'{0}' width:'{1}' layer:'{2}' length:'{3:0.00}'", graphicItem.Info.GroupAttributes[1], graphicItem.Info.GroupAttributes[2], graphicItem.Info.GroupAttributes[3], length);   // index 0 not used
                 if (logEnable) Logger.Trace("    graphicItem Id:{0,3} pathId:{1,-12} Geo:{2,-8}  {3}   Points:{4,3}  Coord:{5}", graphicItem.Info.Id, graphicItem.Info.PathId, graphicItem.Info.PathGeometry, info, cnt, coordByLine);
 
                 if (logCoordinates)
@@ -384,8 +385,8 @@ namespace GrblPlotter
 
                     if (doTilingNotClipping)
                     {                                                       // Add micro-offset to avoid double consideration of points on clip-border
-                        if (clipMin.X > 0) clipMin.X += 0.00001;
-                        if (clipMin.Y > 0) clipMin.Y += 0.00001;
+                        if (clipMin.X > 0) { clipMin.X -= 0.0001; }         // 2021-10-29 bugfix change from + to -
+                        if (clipMin.Y > 0) { clipMin.Y -= 0.0001; }
 
                         pathBackground.StartFigure();
                         pathBackground.Transform(matrix);
@@ -459,13 +460,13 @@ namespace GrblPlotter
                                 origEnd = item.Path[i].MoveTo;
                                 pEnd = new Point(origEnd.X, origEnd.Y);
 
-                                if (ClipLine(ref pStart, ref pEnd, clipMin, clipMax))
+                                if (ClipLine(ref pStart, ref pEnd, clipMin, clipMax))   // true: line needs to be clipped
                                 {
                                     if (origStart != pStart)		// path was clipped, store old path, start new path, becaue pen-up/down is needed
                                     {
                                         if (tilePath.Path.Count > 1)
-                                            finalPathList.Add(tilePath);                   	// save prev path
-                                        tilePath = new ItemPath(new Point(pStart.X, pStart.Y));  	// start new path with clipped start position
+                                            finalPathList.Add(tilePath);                   	    // save prev path
+                                        tilePath = new ItemPath(new Point(pStart.X, pStart.Y)); // start new path with clipped start position
                                         tilePath.Info.CopyData(graphicItem.Info);               // preset global info for GROUP
                                                                                                 //                           tilePath.Info.clipInfo = string.Format("{0}_X{1}_Y{2}", tileNr, indexX, indexY);
                                         tilePath.Info.SetGroupAttribute((int)GroupOption.ByTile, tileID);// string.Format("{0}_X{1}_Y{2}", tileNr, indexX, indexY));
@@ -483,13 +484,13 @@ namespace GrblPlotter
                                     if (origEnd != pEnd)			// path was clipped, store old path, start new path, becaue pen-up/down is needed
                                     {
                                         if (tilePath.Path.Count > 1)
-                                        { finalPathList.Add(tilePath); tilePath = new ItemPath(); }            // save prev path, clipped end position already added     
+                                        { finalPathList.Add(tilePath); tilePath = new ItemPath(); } // save prev path, clipped end position already added     
 
-                                        if (pStart != pEnd)							// clipped path has a length, start new...
+                                        if (pStart != pEnd)		    // clipped path has a length, start new...
                                         {
                                             tilePath = new ItemPath();
-                                            tilePath.Info.CopyData(graphicItem.Info);              // preset global info for GROUP
-                                                                                                   //							tilePath.Info.clipInfo = string.Format("{0}_X{1}_Y{2}", tileNr, indexX, indexY);
+                                            tilePath.Info.CopyData(graphicItem.Info);               // preset global info for GROUP
+                                                                                                    //							tilePath.Info.clipInfo = string.Format("{0}_X{1}_Y{2}", tileNr, indexX, indexY);
                                             tilePath.Info.SetGroupAttribute((int)GroupOption.ByTile, tileID);  // string.Format("{0}_X{1}_Y{2}", tileNr, indexX, indexY));
                                             if (actualDashArray.Length > 0)
                                             {
@@ -683,13 +684,16 @@ namespace GrblPlotter
                             }
                             else
                             {
-                                isLineNow = false;
+                                angleNow = angleLast + 1;
+								isLineNow = false;
                             }
 
-                            if (isLineNow && isLineLast && IsEqual(angleNow, angleLast))
-                            {
-                                PathData.Path.RemoveAt(i + 1);
-                                removed++;
+                            if (isLineNow && isLineLast && IsEqual(angleNow, angleLast))	
+                            {	
+								if (((i+2) < PathData.Path.Count) && (PathData.Path[i+2] is GCodeLine))	// don't delete if start-point for arc
+                                {	PathData.Path.RemoveAt(i + 1);
+									removed++;
+								}
                             }
                             lastPoint = PathData.Path[i].MoveTo;
                             isLineLast = isLineNow;
