@@ -583,6 +583,7 @@ namespace GrblPlotter
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tab10gB1 = new System.Windows.Forms.GroupBox();
             this.groupBox23 = new System.Windows.Forms.GroupBox();
+            this.CbCameraFiducialSkip = new System.Windows.Forms.CheckBox();
             this.TbCameraFiducialName = new System.Windows.Forms.TextBox();
             this.LblCameraFiducial = new System.Windows.Forms.Label();
             this.tab10lbl1 = new System.Windows.Forms.Label();
@@ -896,6 +897,7 @@ namespace GrblPlotter
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.cBshowImportDialog = new System.Windows.Forms.CheckBox();
+            this.cBImportGraphicClipShowOrigPositionShift = new System.Windows.Forms.CheckBox();
             this.tabControl_Level1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl1_Level2.SuspendLayout();
@@ -2924,6 +2926,7 @@ namespace GrblPlotter
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.cBImportGraphicClipShowOrigPositionShift);
             this.groupBox7.Controls.Add(this.cBImportGraphicClipShowOrigPosition);
             this.groupBox7.Controls.Add(this.label51);
             this.groupBox7.Controls.Add(this.nUDImportGraphicTileClipAddOnX);
@@ -6251,11 +6254,20 @@ namespace GrblPlotter
             // 
             // groupBox23
             // 
+            this.groupBox23.Controls.Add(this.CbCameraFiducialSkip);
             this.groupBox23.Controls.Add(this.TbCameraFiducialName);
             this.groupBox23.Controls.Add(this.LblCameraFiducial);
             resources.ApplyResources(this.groupBox23, "groupBox23");
             this.groupBox23.Name = "groupBox23";
             this.groupBox23.TabStop = false;
+            // 
+            // CbCameraFiducialSkip
+            // 
+            this.CbCameraFiducialSkip.Checked = global::GrblPlotter.Properties.Settings.Default.importFiducialSkipCode;
+            this.CbCameraFiducialSkip.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importFiducialSkipCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.CbCameraFiducialSkip, "CbCameraFiducialSkip");
+            this.CbCameraFiducialSkip.Name = "CbCameraFiducialSkip";
+            this.CbCameraFiducialSkip.UseVisualStyleBackColor = true;
             // 
             // TbCameraFiducialName
             // 
@@ -9176,6 +9188,16 @@ namespace GrblPlotter
             this.cBshowImportDialog.Name = "cBshowImportDialog";
             this.cBshowImportDialog.UseVisualStyleBackColor = true;
             // 
+            // cBImportGraphicClipShowOrigPositionShift
+            // 
+            resources.ApplyResources(this.cBImportGraphicClipShowOrigPositionShift, "cBImportGraphicClipShowOrigPositionShift");
+            this.cBImportGraphicClipShowOrigPositionShift.Checked = global::GrblPlotter.Properties.Settings.Default.importGraphicClipShowOrigPositionShiftTileProcessed;
+            this.cBImportGraphicClipShowOrigPositionShift.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBImportGraphicClipShowOrigPositionShift.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGraphicClipShowOrigPositionShiftTileProcessed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGraphicClipShowOrigPositionShift.Name = "cBImportGraphicClipShowOrigPositionShift";
+            this.toolTip1.SetToolTip(this.cBImportGraphicClipShowOrigPositionShift, resources.GetString("cBImportGraphicClipShowOrigPositionShift.ToolTip"));
+            this.cBImportGraphicClipShowOrigPositionShift.UseVisualStyleBackColor = true;
+            // 
             // ControlSetupForm
             // 
             resources.ApplyResources(this, "$this");
@@ -10377,5 +10399,7 @@ namespace GrblPlotter
         private System.Windows.Forms.GroupBox groupBox23;
         private System.Windows.Forms.TextBox TbCameraFiducialName;
         private System.Windows.Forms.Label LblCameraFiducial;
+        private System.Windows.Forms.CheckBox CbCameraFiducialSkip;
+        private System.Windows.Forms.CheckBox cBImportGraphicClipShowOrigPositionShift;
     }
 }

@@ -4925,6 +4925,39 @@ Z-axis will be moved down</value>
   <data name="&gt;&gt;cBImportGraphicTile.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 54</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.Size" type="System.Drawing.Size, System.Drawing">
+    <value>198, 17</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.Text" xml:space="preserve">
+    <value>Moves the tiles to the 0; 0 origin while streaming</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.ToolTip" xml:space="preserve">
+    <value>Moves the tiles to the origin 0; 0 during streaming in order to adapt them to the grbl tool position</value>
+  </data>
+  <data name="&gt;&gt;cBImportGraphicClipShowOrigPositionShift.Name" xml:space="preserve">
+    <value>cBImportGraphicClipShowOrigPositionShift</value>
+  </data>
+  <data name="&gt;&gt;cBImportGraphicClipShowOrigPositionShift.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBImportGraphicClipShowOrigPositionShift.Parent" xml:space="preserve">
+    <value>groupBox7</value>
+  </data>
+  <data name="&gt;&gt;cBImportGraphicClipShowOrigPositionShift.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="cBImportGraphicClipShowOrigPosition.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -4932,7 +4965,7 @@ Z-axis will be moved down</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportGraphicClipShowOrigPosition.Location" type="System.Drawing.Point, System.Drawing">
-    <value>202, 16</value>
+    <value>22, 36</value>
   </data>
   <data name="cBImportGraphicClipShowOrigPosition.Size" type="System.Drawing.Size, System.Drawing">
     <value>131, 17</value>
@@ -4956,7 +4989,7 @@ Z-axis will be moved down</value>
     <value>groupBox7</value>
   </data>
   <data name="&gt;&gt;cBImportGraphicClipShowOrigPosition.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="label51.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4965,7 +4998,7 @@ Z-axis will be moved down</value>
     <value>NoControl</value>
   </data>
   <data name="label51.Location" type="System.Drawing.Point, System.Drawing">
-    <value>66, 38</value>
+    <value>67, 96</value>
   </data>
   <data name="label51.Size" type="System.Drawing.Size, System.Drawing">
     <value>172, 13</value>
@@ -4987,10 +5020,10 @@ Z-axis will be moved down</value>
     <value>groupBox7</value>
   </data>
   <data name="&gt;&gt;label51.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="nUDImportGraphicTileClipAddOnX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 36</value>
+    <value>7, 94</value>
   </data>
   <data name="nUDImportGraphicTileClipAddOnX.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 20</value>
@@ -5011,7 +5044,7 @@ Z-axis will be moved down</value>
     <value>groupBox7</value>
   </data>
   <data name="&gt;&gt;nUDImportGraphicTileClipAddOnX.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="cBImportGraphicClipSkipCode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5020,7 +5053,7 @@ Z-axis will be moved down</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportGraphicClipSkipCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>155, 58</value>
+    <value>559, 19</value>
   </data>
   <data name="cBImportGraphicClipSkipCode.Size" type="System.Drawing.Size, System.Drawing">
     <value>162, 17</value>
@@ -5042,16 +5075,16 @@ Z-axis will be moved down</value>
     <value>groupBox7</value>
   </data>
   <data name="&gt;&gt;cBImportGraphicClipSkipCode.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="label34.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label34.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 98</value>
+    <value>410, 59</value>
   </data>
   <data name="label34.Size" type="System.Drawing.Size, System.Drawing">
-    <value>365, 53</value>
+    <value>395, 89</value>
   </data>
   <data name="label34.TabIndex" type="System.Int32, mscorlib">
     <value>31</value>
@@ -5072,7 +5105,7 @@ Z-axis will be moved down</value>
     <value>groupBox7</value>
   </data>
   <data name="&gt;&gt;label34.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="label11.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5081,7 +5114,7 @@ Z-axis will be moved down</value>
     <value>NoControl</value>
   </data>
   <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 59</value>
+    <value>410, 20</value>
   </data>
   <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 13</value>
@@ -5108,13 +5141,13 @@ E.g. 'M0' to pause for manual paper move, or '(^2 G91 X100)' to move X of 2nd gr
     <value>groupBox7</value>
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="textBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 75</value>
+    <value>411, 36</value>
   </data>
   <data name="textBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>364, 20</value>
+    <value>394, 20</value>
   </data>
   <data name="textBox2.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -5129,7 +5162,7 @@ E.g. 'M0' to pause for manual paper move, or '(^2 G91 X100)' to move X of 2nd gr
     <value>groupBox7</value>
   </data>
   <data name="&gt;&gt;textBox2.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="cBImportGraphicClipOffsetApply.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5163,13 +5196,13 @@ E.g. 'M0' to pause for manual paper move, or '(^2 G91 X100)' to move X of 2nd gr
     <value>groupBox7</value>
   </data>
   <data name="&gt;&gt;cBImportGraphicClipOffsetApply.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="groupBox7.Location" type="System.Drawing.Point, System.Drawing">
     <value>17, 107</value>
   </data>
   <data name="groupBox7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>377, 159</value>
+    <value>811, 159</value>
   </data>
   <data name="groupBox7.TabIndex" type="System.Int32, mscorlib">
     <value>29</value>
@@ -5190,7 +5223,7 @@ E.g. 'M0' to pause for manual paper move, or '(^2 G91 X100)' to move X of 2nd gr
     <value>6, 6</value>
   </data>
   <data name="gBClipping.Size" type="System.Drawing.Size, System.Drawing">
-    <value>400, 272</value>
+    <value>834, 272</value>
   </data>
   <data name="gBClipping.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -14953,6 +14986,30 @@ Or assign a filename containing GCode. </value>
   <data name="&gt;&gt;tabPage25.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="CbCameraFiducialSkip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 89</value>
+  </data>
+  <data name="CbCameraFiducialSkip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 40</value>
+  </data>
+  <data name="CbCameraFiducialSkip.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="CbCameraFiducialSkip.Text" xml:space="preserve">
+    <value>Skip the G code of the fiducial points while streaming</value>
+  </data>
+  <data name="&gt;&gt;CbCameraFiducialSkip.Name" xml:space="preserve">
+    <value>CbCameraFiducialSkip</value>
+  </data>
+  <data name="&gt;&gt;CbCameraFiducialSkip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbCameraFiducialSkip.Parent" xml:space="preserve">
+    <value>groupBox23</value>
+  </data>
+  <data name="&gt;&gt;CbCameraFiducialSkip.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="TbCameraFiducialName.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 63</value>
   </data>
@@ -14972,7 +15029,7 @@ Or assign a filename containing GCode. </value>
     <value>groupBox23</value>
   </data>
   <data name="&gt;&gt;TbCameraFiducialName.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="LblCameraFiducial.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 15</value>
@@ -14996,13 +15053,13 @@ Or assign a filename containing GCode. </value>
     <value>groupBox23</value>
   </data>
   <data name="&gt;&gt;LblCameraFiducial.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="groupBox23.Location" type="System.Drawing.Point, System.Drawing">
     <value>605, 19</value>
   </data>
   <data name="groupBox23.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 100</value>
+    <value>234, 135</value>
   </data>
   <data name="groupBox23.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -21565,7 +21622,7 @@ Step width  Speed</value>
     <value>NoControl</value>
   </data>
   <data name="btnReloadSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>678, 257</value>
+    <value>678, 11</value>
   </data>
   <data name="btnReloadSettings.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 23</value>

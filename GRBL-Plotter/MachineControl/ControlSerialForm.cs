@@ -57,6 +57,7 @@
  * 2021-04-27 IOEception add more closings line 333+
  * 2021-07-14 code clean up / code quality
  * 2021-09-29 reduce polling frequency on missing reports line 376
+ * 2021-10-24 handle serial port System.TimeoutException -> close port
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -78,6 +79,7 @@ namespace GrblPlotter
         SimpleSerialForm _serial_form3;
 
         public bool SerialPortOpen { get; private set; } = false;
+		private bool serialPortError = false;
 
         private readonly System.Timers.Timer timerSerial = new System.Timers.Timer();
 
@@ -334,34 +336,45 @@ namespace GrblPlotter
                 }
             }
 
-            if (SerialPortOpen = serialPort.IsOpen)
+            SerialPortOpen = serialPort.IsOpen;
+			if (SerialPortOpen && !serialPortError)
             {
                 try
                 {
-                    if (isMarlin)
-                    {
-                        if (!isStreaming) { serialPort.Write("M114" + lineEndTXgrbl); getMarlinPositionWasSent = true; }    // marlin pos request
-                        updateMarlinPosition = true;
-                    }
-                    else
-                    {
-                        var dataArray = new byte[] { Convert.ToByte('?') };
-                        serialPort.Write(dataArray, 0, 1);
-                        rtsrResponse++;     						// real time status report was sent  / will be decreased in processGrblMessages()                  
-                    }
+			//		if (resetProcessed)		// only poll status if reset was successfully recognized
+					{	if (isMarlin)
+						{
+							if (!isStreaming) { serialPort.Write("M114" + lineEndTXgrbl); getMarlinPositionWasSent = true; }    // marlin pos request
+							updateMarlinPosition = true;
+						}
+						else
+						{
+							var dataArray = new byte[] { Convert.ToByte('?') };
+							if (!serialPortError)
+							{	rtsrResponse++;     						// real time status report was sent  / will be decreased in processGrblMessages()                  
+								serialPort.Write(dataArray, 0, 1);
+							}
+						}
+					}
+                }
+                catch (TimeoutException err)
+                {
+					serialPortError = true;
+                    Logger.Error(err, "Ser:{0} GRBL status could not be queried (send ?) TimeoutException rtsrResponse:{1}", iamSerial, rtsrResponse);
+                    LogError("! GRBL status could not be queried", err);
+                    ResetStreaming();
+                    ClosePort();            
                 }
                 catch (InvalidOperationException err)
                 {
+					serialPortError = true;
                     Logger.Error(err, "Ser:{0} GRBL status could not be queried (send ?) or (send M114) in TimerSerial_Tick", iamSerial);
                     LogError("! GRBL status could not be queried", err);
                     ResetStreaming();
-                    serialPort.Close();
-                    ClosePort();            // added 2021-04-27
-            //        throw;
+                    ClosePort();           
                 }
 				catch (Exception err)
 				{   Logger.Error(err, "Ser:{0} unknown error in TimerSerial_Tick", iamSerial);
-				 //   throw;
 				}
 
                 if (!isMarlin && !isHoming && (countMissingStatusReport-- <= 0))
@@ -393,9 +406,9 @@ namespace GrblPlotter
                     { BtnCheckGRBL_Click(sender, e); }			// calculate if grbl-setup is ok (30 kHz pin frequency)
                 }
 
-                if (!resetProcessed && (axisCount > 0))
+                if (!resetProcessed && (axisCount > 0))			// to get axis count, a status must be received
                 {
-                    if (countStateReset > 0)
+                    if (countStateReset > 0)					// set in StateReset to 10
                     {
                         countStateReset--;
 
@@ -556,9 +569,11 @@ namespace GrblPlotter
         private void OpenPort()
         {
             rxErrorCount = 0;
+			bool errorOnOpen = false;
+			serialPortError = false;
             try
             {
-                Logger.Info("Ser:{0}, openPort {1} {2}", iamSerial, cbPort.Text, cbBaud.Text);
+                Logger.Info("Ser:{0}, ==== openPort {1} {2} ======", iamSerial, cbPort.Text, cbBaud.Text);
                 serialPort.PortName = actualPort = cbPort.Text;
                 serialPort.DataBits = 8;
                 serialPort.BaudRate = Convert.ToInt32(cbBaud.Text);
@@ -566,17 +581,34 @@ namespace GrblPlotter
                 serialPort.StopBits = System.IO.Ports.StopBits.One;
                 serialPort.Handshake = System.IO.Ports.Handshake.None;
                 serialPort.DtrEnable = false;
+				serialPort.ReadTimeout = 500;
+				serialPort.WriteTimeout = 500;		
+				
                 rtbLog.Clear();
-                if (RefreshPorts())
+                if (RefreshPorts())				// check if last used port is listed
                 {
                     if (Properties.Settings.Default.ctrlUseSerialPortFixer)
                     {
                         try
-                        { SerialPortFixer.Execute(cbPort.Text); }
+                        { 	SerialPortFixer.Execute(cbPort.Text); }
                         catch (Exception err)
-                        { Logger.Error(err, "Ser:{0} -SerialPortFixer-", iamSerial);// throw;
+                        { 	Logger.Error(err, "Ser:{0} -SerialPortFixer-", iamSerial);// throw;
+							errorOnOpen = true;
+							serialPortError = true;
                         }
                     }
+                }
+                else
+                {	errorOnOpen = true; }
+			
+				if (errorOnOpen)				// last used port is not available
+                {   AddToLog("* " + cbPort.Text + " not available\r\n");
+                    Logger.Warn("Ser:{0}, Port {1} not available", iamSerial, cbPort.Text);
+                    if (iamSerial == 1)
+                        Grbl.lastMessage = "Open COM Port: " + cbPort.Text + " failed";
+                }
+				else							// last used port is available
+				{
                     serialPort.Open();
                     serialPort.DiscardOutBuffer();
                     serialPort.DiscardInBuffer();
@@ -587,13 +619,14 @@ namespace GrblPlotter
                     btnOpenPort.Text = Localization.GetString("serialClose");  // "Close";
                     isDataProcessing = true;
                     if (iamSerial == 1)
-                        Grbl.Clear();
+                        Grbl.Clear();			// reset internal grbl variables
 
                     if (Properties.Settings.Default.serialMinimize)
                         countMinimizeForm = (int)(3000 / timerSerial.Interval); 	// minimize window after 5 sec.
 
                     timerSerial.Interval = Grbl.pollInterval;       		// timerReload;
                     countMissingStatusReport = (int)(2000 / timerSerial.Interval);
+					timerSerial.Enabled = true;
 
                     countPreventOutput = 0; countPreventEvent = 0;
                     IsHeightProbing = false;
@@ -602,17 +635,10 @@ namespace GrblPlotter
                         Grbl.grblSimulate = false;
                         AddToLog("* Stop simulation\r\n");
                     }
-                    GrblReset(false);   // don't savePos
+                    GrblReset(false);   		// reset controller, don't savePos, wait for reset response
 
-                    OnRaisePosEvent(new PosEventArgs(posWork, posMachine, GrblState.unknown, machineState, mParserState, ""));// lastCmd));
-                }
-                else
-                {
-                    AddToLog("* " + cbPort.Text + " not available\r\n");
-                    Logger.Warn("Ser:{0}, Port {1} not available", iamSerial, cbPort.Text);
-                    if (iamSerial == 1)
-                        Grbl.lastMessage = "Open COM Port: " + cbPort.Text + " failed";
-                }
+                    OnRaisePosEvent(new PosEventArgs(posWork, posMachine, GrblState.unknown, machineState, mParserState, ""));// lastCmd));					
+				}
                 SerialPortOpen = serialPort.IsOpen;
                 UpdateControls();
             }
@@ -654,7 +680,6 @@ namespace GrblPlotter
                 if (!flag_closeForm)
                 { UpdateControls(); }
                 timerSerial.Enabled = false;
-          //      throw;
             }
             SerialPortOpen = false;
             OnRaisePosEvent(new PosEventArgs(posWork, posMachine, GrblState.unknown, machineState, mParserState, ""));// lastCmd));
@@ -665,9 +690,29 @@ namespace GrblPlotter
         //Send reset sentence
         private void JustgrblReset()
         {
+			resetProcessed = false;
             var dataArray = new byte[] { 24 };//Ctrl-X
             if (serialPort.IsOpen)
-            { serialPort.Write(dataArray, 0, 1); }
+            { 	try
+				{	serialPort.Write(dataArray, 0, 1); }
+                catch (TimeoutException err)
+                {
+                    Logger.Error(err, "Ser:{0} Error sending reset (Ctrl-X)", iamSerial);
+                    ResetStreaming();
+					serialPortError = true;
+					timerSerial.Enabled = false;
+                    ClosePort();          
+                    LogError("! Error sending reset (Ctrl-X)", err);
+                }
+				catch (Exception err)
+				{
+                    Logger.Error(err, "Ser:{0} Error sending reset (Ctrl-X)", iamSerial);
+					LogError("! Closing port", err);
+					if (!flag_closeForm)
+					{ UpdateControls(); }
+					timerSerial.Enabled = false;
+				}
+			}
         }
 
         public void GrblReset(bool savePos)      //Stop/reset button
@@ -712,6 +757,7 @@ namespace GrblPlotter
 
         public void GrblHardReset()      //Stop/reset button
         {
+			resetProcessed = false;
             bool savePos = true;
             isMarlin = false;
             Grbl.isMarlin = false;
@@ -891,7 +937,9 @@ namespace GrblPlotter
         private void BtnOpenPort_Click(object sender, EventArgs e)
         {
             if (serialPort.IsOpen)
-                ClosePort();
+            {   ClosePort();
+				serialPortError = false;
+			}
             else
                 OpenPort();
             UpdateControls();

@@ -32,6 +32,7 @@
  * 2021-03-05 add reset info to logger, check index-range in processGrblRealTimeStatus line 349
  * 2021-03-26 sendTo3rdCOM find 1st ')' not last
  * 2021-04-12 line 876 only send setup-command '$...' if system is IDLE
+ * 2021-10-14 grbl 0.9 fix $10=3
  */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -42,11 +43,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-
-//#pragma warning disable CA1303
-//#pragma warning disable CA1304
-//#pragma warning disable CA1305
-//#pragma warning disable CA1307
 
 namespace GrblPlotter
 {
@@ -377,20 +373,32 @@ namespace GrblPlotter
             if (IsGrblVers0)
                 splitAt = ',';
             string[] dataField = text.Split(splitAt);
-            if (dataField.Length <= 2)
+            if (dataField.Length < 1)   //<= 2)
             {
                 Logger.Error("processGrblRealTimeStatus dataField.Length<=2: '{0}'", text);
                 return;
             }
-
             string status = dataField[0].Trim(' ');
+
             if (IsGrblVers0)	//	handle old format from grbl vers. 0.9
             {
-                if (dataField.Length > 3)
-                    Grbl.GetPosition(iamSerial, dataField[1] + "," + dataField[2] + "," + dataField[3] + " ", ref posMachine);
-                if (dataField.Length > 6)
+                if (dataField.Length > 3)   // get 1st part
+                {   if (dataField[1].StartsWith("WPos"))
+                    {
+                        Grbl.GetPosition(iamSerial, dataField[1] + "," + dataField[2] + "," + dataField[3] + " ", ref posWork);
+                        posMachine = posWork + posWCO;
+                    }
+                    else
+                    {
+                        Grbl.GetPosition(iamSerial, dataField[1] + "," + dataField[2] + "," + dataField[3] + " ", ref posMachine);
+                        posWork = posMachine - posWCO;
+                    }
+                }
+                if (dataField.Length > 6)   // get 2nd part -index 1-3 = posMachine
+                {
                     Grbl.GetPosition(iamSerial, dataField[4] + "," + dataField[5] + "," + dataField[6] + " ", ref posWork);
-                posWCO = posMachine - posWork;
+                    posWCO = posMachine - posWork;
+                }
             }
             else
             {
@@ -525,8 +533,12 @@ namespace GrblPlotter
             Logger.Info("grbl reset: '{0}'  isGrblVers0:{1}  isMarlin:{2}", rxStringTmp, IsGrblVers0, isMarlin);
 
             AddToLog("* Read grbl settings, hide response from '$$', '$#'");
+//            ReadSettings();
+            if (Grbl.isVersion_0)
+                RequestSend("$10=3");   // grbl v 0.9 get WPos and MPos
+            else
+                RequestSend("$10=2");   // grbl v 1.1 Enable WPos: Disable MPos: Enabled Buf:
             ReadSettings();
-            RequestSend("$10=2"); //if (grbl.getSetting(10) != 2) { requestSend("$10=2"); } // to get buffer size
             return;
         }
         private void ProcessWelcomeMessage()

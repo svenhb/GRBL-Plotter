@@ -3080,4 +3080,16 @@ https://github.com/cprezzi/grbl-servoのGrbl-version'grbl_v1.1f_Servo.hex '、
   <data name="groupBox23.Text" xml:space="preserve">
     <value>基準</value>
   </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.Text" xml:space="preserve">
+    <value>ストリーミング中にタイルを0; 0の原点に移動します</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.ToolTip" xml:space="preserve">
+    <value>タイルをgrblツールの位置に適合させるために、ストリーミング中にタイルを原点0; 0に移動します。</value>
+  </data>
+  <data name="CbImportGraphicDevelopNoCurve.Text" xml:space="preserve">
+    <value>カーブなし</value>
+  </data>
+  <data name="CbCameraFiducialSkip.Text" xml:space="preserve">
+    <value>ストリーミング中に基準点のGコードをスキップする</value>
+  </data>
 </root>

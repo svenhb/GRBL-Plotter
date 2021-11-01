@@ -2795,4 +2795,16 @@ La plage utilisable réelle serait 30 $ = 31, 31 $ = 0.</value>
   <data name="groupBox23.Text" xml:space="preserve">
     <value>Fiduciaires</value>
   </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.Text" xml:space="preserve">
+    <value>Déplace les tuiles vers l'origine 0 ; 0 pendant le streaming</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.ToolTip" xml:space="preserve">
+    <value>Déplace les tuiles à l'origine 0; 0 pendant le streaming afin de les adapter à la position de l'outil grbl</value>
+  </data>
+  <data name="CbImportGraphicDevelopNoCurve.Text" xml:space="preserve">
+    <value>Pas de courbe</value>
+  </data>
+  <data name="CbCameraFiducialSkip.Text" xml:space="preserve">
+    <value>Ignorez le code G des points de repère lors du streaming</value>
+  </data>
 </root>

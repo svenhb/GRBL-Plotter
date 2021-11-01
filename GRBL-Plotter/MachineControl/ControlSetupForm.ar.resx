@@ -3056,4 +3056,16 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="groupBox23.Text" xml:space="preserve">
     <value>إيمانيات</value>
   </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.Text" xml:space="preserve">
+    <value>ينقل المربعات إلى الأصل 0 ؛ 0 أثناء التدفق</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.ToolTip" xml:space="preserve">
+    <value>ينقل المربعات إلى الأصل 0 ؛ 0 أثناء التدفق لتكييفها مع موضع أداة grbl</value>
+  </data>
+  <data name="CbImportGraphicDevelopNoCurve.Text" xml:space="preserve">
+    <value>لا يوجد منحنى</value>
+  </data>
+  <data name="CbCameraFiducialSkip.Text" xml:space="preserve">
+    <value>تخطي رمز G للنقاط الإئتمانية أثناء البث</value>
+  </data>
 </root>

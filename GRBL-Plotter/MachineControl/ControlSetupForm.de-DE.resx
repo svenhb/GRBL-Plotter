@@ -2744,4 +2744,16 @@ Der tatsächlich nutzbare Bereich wäre $ 30 = 31, $ 31 = 0.</value>
   <data name="groupBox23.Text" xml:space="preserve">
     <value>Passermarken</value>
   </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.Text" xml:space="preserve">
+    <value>Verschiebt die Kacheln während des Streamens auf den Ursprung 0;0</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.ToolTip" xml:space="preserve">
+    <value>Verschiebt die Kacheln während des Streamens auf den Ursprung 0;0, um sie der grbl Werkzeugposition anzupassen</value>
+  </data>
+  <data name="CbImportGraphicDevelopNoCurve.Text" xml:space="preserve">
+    <value>Keine Kurve</value>
+  </data>
+  <data name="CbCameraFiducialSkip.Text" xml:space="preserve">
+    <value>Überspringe den G-Code der Bezugspunkte beim Streamen</value>
+  </data>
 </root>

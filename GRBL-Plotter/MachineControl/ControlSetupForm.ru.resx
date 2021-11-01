@@ -2965,4 +2965,16 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   <data name="groupBox23.Text" xml:space="preserve">
     <value>Реперные знаки</value>
   </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.Text" xml:space="preserve">
+    <value>Перемещает плитки в начало координат 0; 0 во время потоковой передачи</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.ToolTip" xml:space="preserve">
+    <value>Перемещает плитки в начало координат 0; 0 во время потоковой передачи, чтобы адаптировать их к позиции инструмента grbl</value>
+  </data>
+  <data name="CbImportGraphicDevelopNoCurve.Text" xml:space="preserve">
+    <value>Нет кривой</value>
+  </data>
+  <data name="CbCameraFiducialSkip.Text" xml:space="preserve">
+    <value>Пропустить код G реперных точек во время потоковой передачи</value>
+  </data>
 </root>

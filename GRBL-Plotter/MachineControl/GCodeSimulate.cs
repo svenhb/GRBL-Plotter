@@ -24,6 +24,7 @@
  * 2021-09-04 new struct to store simulation data: SimuCoordByLine in simuList
  * 2021-09-07 take care of tile-offset in ProcessedPathDraw
  * 2021-10-09 improove processedPath (remove glitches)
+ * 2021-10-29 add option to shift processed tile path to work area - importGraphicClipShowOrigPositionShiftTileProcessed
  */
 
 using System;
@@ -515,10 +516,12 @@ namespace GrblPlotter
 
                         lastLine = iStart;		
 
-                        offset2DView = new System.Windows.Point(simuList[iStart].actualOffset.X, simuList[iStart].actualOffset.Y);
+						if (Properties.Settings.Default.importGraphicClipShowOrigPositionShiftTileProcessed)
+						{	offset2DView = new System.Windows.Point(simuList[iStart].actualOffset.X, simuList[iStart].actualOffset.Y);
 
-                        if (!offset2DView.Equals(offset2DViewOld))	// special case tiles - new tile, reset simulation-path
-                            Simulation.pathSimulation.Reset();
+							if (!offset2DView.Equals(offset2DViewOld))	// special case tiles - new tile, reset simulation-path
+								Simulation.pathSimulation.Reset();
+						}
                         offset2DViewOld = offset2DView;
 
                         lastPos = newPos;

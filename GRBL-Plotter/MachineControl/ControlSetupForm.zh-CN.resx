@@ -3060,4 +3060,16 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   <data name="groupBox23.Text" xml:space="preserve">
     <value>基准点</value>
   </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.Text" xml:space="preserve">
+    <value>流式传输时将图块移动到 0; 0 原点</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.ToolTip" xml:space="preserve">
+    <value>将图块移动到原点 0；在流式传输期间为 0 以使它们适应 grbl 工具位置</value>
+  </data>
+  <data name="CbImportGraphicDevelopNoCurve.Text" xml:space="preserve">
+    <value>无曲线</value>
+  </data>
+  <data name="CbCameraFiducialSkip.Text" xml:space="preserve">
+    <value>流式传输时跳过基准点的 G 代码</value>
+  </data>
 </root>

@@ -351,7 +351,7 @@ namespace GrblPlotter
                     if (newLine.wasSetXY && (lastMotion == 0) && (modal.motionMode > 0))// else if G1/2/3 XY F				
                     {
                         string log = string.Format("Line {0} ", (newLine.lineNumber + 1));
-                        log += string.Format("F:{0} S:{1} Z:{2} ", HalfTone.lastF, HalfTone.lastS, HalfTone.lastZ);
+                        log += string.Format("F:{0} S:{1} Z:{2:0.000} ", HalfTone.lastF, HalfTone.lastS, HalfTone.lastZ);
                         ToolProp penProp = new ToolProp
                         {
                             Color = Properties.Settings.Default.gui2DColorPenDown,    // Color.Pink;

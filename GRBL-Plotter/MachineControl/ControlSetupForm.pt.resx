@@ -2804,4 +2804,16 @@ O intervalo utilizável real seria $ 30 = 31, $ 31 = 0.</value>
   <data name="groupBox23.Text" xml:space="preserve">
     <value>Fiducials</value>
   </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.Text" xml:space="preserve">
+    <value>Move os blocos para a origem 0; 0 durante o streaming</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.ToolTip" xml:space="preserve">
+    <value>Move os blocos para a origem 0; 0 durante o streaming para adaptá-los à posição da ferramenta grbl</value>
+  </data>
+  <data name="CbImportGraphicDevelopNoCurve.Text" xml:space="preserve">
+    <value>Sem curva</value>
+  </data>
+  <data name="CbCameraFiducialSkip.Text" xml:space="preserve">
+    <value>Ignore o código G dos pontos fiduciais durante a transmissão</value>
+  </data>
 </root>

@@ -2795,4 +2795,16 @@ El rango utilizable real sería $ 30 = 31, $ 31 = 0.</value>
   <data name="groupBox23.Text" xml:space="preserve">
     <value>Fiduciales</value>
   </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.Text" xml:space="preserve">
+    <value>Mueve los mosaicos al origen 0; 0 durante la transmisión</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.ToolTip" xml:space="preserve">
+    <value>Mueve los mosaicos al origen 0; 0 durante la transmisión para adaptarlos a la posición de la herramienta grbl</value>
+  </data>
+  <data name="CbImportGraphicDevelopNoCurve.Text" xml:space="preserve">
+    <value>Sin curva</value>
+  </data>
+  <data name="CbCameraFiducialSkip.Text" xml:space="preserve">
+    <value>Omita el código G de los puntos fiduciales mientras transmite</value>
+  </data>
 </root>
