@@ -29,8 +29,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.6.2.0</ApplicationVersion>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.6.2.2</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -869,13 +869,58 @@
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromText.zh-CN.resx">
       <DependentUpon>GCodeFromText.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ButtonEdit.ar.resx">
+      <DependentUpon>ButtonEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\ButtonEdit.de-DE.resx">
+      <DependentUpon>ButtonEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ButtonEdit.es.resx">
+      <DependentUpon>ButtonEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ButtonEdit.fr.resx">
+      <DependentUpon>ButtonEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ButtonEdit.ja.resx">
+      <DependentUpon>ButtonEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ButtonEdit.pt.resx">
       <DependentUpon>ButtonEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ButtonEdit.resx">
       <DependentUpon>ButtonEdit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ButtonEdit.ru.resx">
+      <DependentUpon>ButtonEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ButtonEdit.zh-CN.resx">
+      <DependentUpon>ButtonEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MainFormStreamSection.ar.resx">
+      <DependentUpon>MainFormStreamSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MainFormStreamSection.de-DE.resx">
+      <DependentUpon>MainFormStreamSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MainFormStreamSection.es.resx">
+      <DependentUpon>MainFormStreamSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MainFormStreamSection.fr.resx">
+      <DependentUpon>MainFormStreamSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MainFormStreamSection.ja.resx">
+      <DependentUpon>MainFormStreamSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MainFormStreamSection.pt.resx">
+      <DependentUpon>MainFormStreamSection.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\MainFormStreamSection.resx">
+      <DependentUpon>MainFormStreamSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MainFormStreamSection.ru.resx">
+      <DependentUpon>MainFormStreamSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MainFormStreamSection.zh-CN.resx">
       <DependentUpon>MainFormStreamSection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Splashscreen.resx">
