@@ -66,6 +66,7 @@
  * 2021-07-28 handle black as white line 359 : index 7 <=> 0
  * 2021-07-30 bug fix: AddRoundCorner if distance=0 -> no arc
  * 2021-08-16 use Z information - not for point, spline, text
+ * 2021-10-29 logger output format
 */
 
 using DXFLib;
@@ -271,7 +272,8 @@ namespace GrblPlotter //DXFImporter
             countDXFEntities = doc.Entities.Count;
             countDXFBlocks = doc.Blocks.Count;
             countDXFEntity = 0;
-
+            
+            Logger.Info(" AutoCADVersion:{0}", doc.Header.AutoCADVersion);
             Logger.Info(" Amount Layers:{0}  Entities:{1}  Blocks:{2}", countDXFLayers, countDXFEntities, countDXFBlocks);
             if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = 10, Content = "Read DXF vector data of " + countDXFEntities.ToString() + " elements" });
 
@@ -455,17 +457,17 @@ namespace GrblPlotter //DXFImporter
                             DXFStartPath(position);//, "Start LWPolyLine - Nr pts " + lp.VertexCount.ToString( ));
                         }
                         else { GCodeDotOnly(position); }//, "Start LWPolyLine"); }
-                        if (logPosition) Logger.Trace("Start LWPolyLine count:{0} X:{1:0.000} Y:{2:0.000} Z:{3:0.000}", lp.VertexCount, position.X, position.Y, position.Z);
+                        if (logPosition) Logger.Trace("Start DXFLWPolyLine count:{0} X:{1:0.000} Y:{2:0.000} Z:{3:0.000}", lp.VertexCount, position.X, position.Y, position.Z);
                     }
 
                     if ((!roundcorner) && (i > 0))
                     {
-                        if (logPosition) Logger.Trace(" dxfMoveTo index:{0} X:{1:0.000} Y:{2:0.000} Z:{3:0.000}", i, position.X, position.Y, position.Z);
+                        if (logPosition) Logger.Trace("PolyLine moveTo index:{0} X:{1:0.000} Y:{2:0.000} Z:{3:0.000}", i, position.X, position.Y, position.Z);
                         DXFMoveTo(position, "");
                     }
                     if (bulge != 0)
                     {
-                        if (logPosition) Logger.Trace(" addRoundCorner index:{0} val1X:{1:0.000} val1Y:{2:0.000} val2X:{3:0.000} val2Y:{4:0.000}", i, lp.Elements[i].Vertex.X, lp.Elements[i].Vertex.Y, lp.Elements[i + 1].Vertex.X, lp.Elements[i + 1].Vertex.Y);
+                        if (logPosition) Logger.Trace("PolyLine bulge  index:{0} val1X:{1:0.000} val1Y:{2:0.000} val2X:{3:0.000} val2Y:{4:0.000}", i, lp.Elements[i].Vertex.X, lp.Elements[i].Vertex.Y, lp.Elements[i + 1].Vertex.X, lp.Elements[i + 1].Vertex.Y);
 
                         if (i < (lp.VertexCount - 1))
                             AddRoundCorner(lp.Elements[i], lp.Elements[i + 1], offset, offsetAngle);
@@ -506,6 +508,7 @@ namespace GrblPlotter //DXFImporter
                                 {
                                     tmp = position;
                                     DXFStartPath(position);//, "Start PolyLine");
+									if (logPosition) Logger.Trace("Start DXFPolyLine count:{0} X:{1:0.000} Y:{2:0.000} Z:{3:0.000}", lp.Children.Count, position.X, position.Y, position.Z);
                                 }
                                 else
                                     DXFMoveTo(position, "");
@@ -922,11 +925,11 @@ namespace GrblPlotter //DXFImporter
                 ratio = distance / 2;
 
             double xc, yc, direction;
-            if (logPosition) Logger.Trace(" addRoundCorner p1x:{0:0.000} p1y:{1:0.000} p2x:{2:0.000} p2y:{3:0.000} distance:{4:0.000} alpha:{5:0.000} ratio:{6:0.000} ", p1x, p1y, p2x, p2y, distance, alpha, ratio);
+            if (logPosition) Logger.Trace(" AddRoundCorner p1x:{0:0.00} p1y:{1:0.00}  p2x:{2:0.00} p2y:{3:0.00} distance:{4:0.00} alpha:{5:0.00} ratio:{6:0.00} ", p1x, p1y, p2x, p2y, distance, alpha, ratio);
             if (distance == 0)  // no round off needed
             {
                 Graphic.AddLine(new Point((p2x + (double)offset.X), (p2y + (double)offset.Y)));
-                if (logPosition) Logger.Trace(" addRoundCorner distance=0, make straight move");
+                if (logPosition) Logger.Trace(" AddRoundCorner distance=0, make straight move");
                 return;
             }
 
@@ -1029,7 +1032,7 @@ namespace GrblPlotter //DXFImporter
                     Graphic.StartPath(coord, z);                  // start next path
                 else
                     Graphic.StartPath(coord);                  // start next path
-                if (logPosition) Logger.Trace("DXFStartTrsanslatedPath !equal X:{0:0.000} Y:{1:0.000} Z:{2:0.000} useZ:{3}", coord.X, coord.Y, z, useZ);
+                if (logPosition) Logger.Trace("DXFStartTrsanslatedPath !equal X:{0:0.00} Y:{1:0.00} Z:{2:0.00} useZ:{3}", coord.X, coord.Y, z, useZ);
             }
             else
             {
@@ -1041,7 +1044,7 @@ namespace GrblPlotter //DXFImporter
                         Graphic.StartPath(coord, z);                  // start next path
                     else
                         Graphic.StartPath(coord);                  // start next path
-                    if (logPosition) Logger.Trace("DXFStartTrsanslatedPath  equal X:{0:0.000} Y:{1:0.000} Z:{2:0.000} useZ:{3}", coord.X, coord.Y, z, useZ);
+                    if (logPosition) Logger.Trace("DXFStartTrsanslatedPath  equal X:{0:0.00} Y:{1:0.00} Z:{2:0.00} useZ:{3}", coord.X, coord.Y, z, useZ);
                 }
             }
             lastSetZ = z;
@@ -1078,7 +1081,7 @@ namespace GrblPlotter //DXFImporter
         private static void DXFMoveTo(System.Windows.Point orig, double? z, string cmt)
         {
             System.Windows.Point coord = TranslateXY(orig);
-            if (logPosition) Logger.Trace("DXFMoveTo");
+            if (logPosition) Logger.Trace(" DXFMoveTo   X:{0:0.00} Y:{1:0.00} Z:{2:0.00} useZ:{3}", coord.X, coord.Y, z, useZ);
             if (!nodesOnly)
             {
                 if (useZ && (z != null))
@@ -1089,7 +1092,6 @@ namespace GrblPlotter //DXFImporter
             else
                 GCodeDotOnly(coord.X, coord.Y);//, "");
 
-            if (logPosition) Logger.Trace("DXFMoveTo X:{0:0.000} Y:{1:0.000} Z:{2:0.000} useZ:{3}", coord.X, coord.Y, z, useZ);
             lastUsedCoord = coord;
         }
 
