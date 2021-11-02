@@ -67,6 +67,7 @@
  * 2021-07-30 bug fix: AddRoundCorner if distance=0 -> no arc
  * 2021-08-16 use Z information - not for point, spline, text
  * 2021-10-29 logger output format
+ * 2021-11-02 add DXFText (before just DXFMText)
 */
 
 using DXFLib;
@@ -777,6 +778,45 @@ namespace GrblPlotter //DXFImporter
             {   // https://www.autodesk.com/techpubs/autocad/acad2000/dxf/mtext_dxf_06.htm
                 Graphic.SetGeometry("Text");
                 DXFMText txt = (DXFMText)entity;
+                //          xyPoint origin = new xyPoint(0, 0);
+                GCodeFromFont.Reset();
+                double angle = 0;
+                foreach (var entry in txt.Entries)
+                {
+                    if (entry.GroupCode == 1) { GCodeFromFont.GCText = entry.Value.ToString(); }
+                    else if (entry.GroupCode == 40) { GCodeFromFont.GCHeight = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
+                    else if (entry.GroupCode == 41) { GCodeFromFont.GCWidth = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
+                    else if (entry.GroupCode == 71) { GCodeFromFont.GCAttachPoint = Convert.ToInt16(entry.Value); }
+                    else if (entry.GroupCode == 10) { GCodeFromFont.GCOffX = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
+                    else if (entry.GroupCode == 20) { GCodeFromFont.GCOffY = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
+                    else if (entry.GroupCode == 50) { angle = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }// + offsetAngle)* Math.PI / 180; } 
+                    else if (entry.GroupCode == 44) { GCodeFromFont.GCSpacing = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
+                    else if (entry.GroupCode == 7)
+                    {
+                        GCodeFromFont.GCFontName = "lff\\" + entry.Value.ToString();
+                        if (!GCodeFromFont.GCFontName.ToLower().EndsWith("lff"))
+                        { GCodeFromFont.GCFontName += ".lff"; }
+                    }
+                }
+                tmp = new DXFPoint
+                {
+                    X = GCodeFromFont.GCOffX,
+                    Y = GCodeFromFont.GCOffY
+                };
+                tmp = ApplyOffsetAndAngle(tmp, offset, offsetAngle);
+                GCodeFromFont.GCOffX = (double)tmp.X;
+                GCodeFromFont.GCOffY = (double)tmp.Y;
+
+                GCodeFromFont.GCAngleRad = (angle + offsetAngle) * Math.PI / 180;
+                if (logEnable) Logger.Trace(" Font:{0} Text: {1} X{2:0.00} Y{3:0.00} a{4:0.00} oa{5:0.00}", GCodeFromFont.GCFontName, GCodeFromFont.GCText, GCodeFromFont.GCOffX, GCodeFromFont.GCOffY, angle, offsetAngle);
+                GCodeFromFont.GetCode(0);   // no page break
+            }
+            #endregion
+            #region DXFText
+            else if (entity.GetType() == typeof(DXFText))
+            {   // https://www.autodesk.com/techpubs/autocad/acad2000/dxf/mtext_dxf_06.htm
+                Graphic.SetGeometry("Text");
+                DXFText txt = (DXFText)entity;
                 //          xyPoint origin = new xyPoint(0, 0);
                 GCodeFromFont.Reset();
                 double angle = 0;
