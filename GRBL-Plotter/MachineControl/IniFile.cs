@@ -34,6 +34,7 @@
  * 2021-04-19 add importGCSubPenUpDown
  * 2021-08-08 add GCode conversion - shape development
  * 2021-09-10 add new properties 2DView colors
+ * 2021-11-02 add new properties fiducials
 */
 
 using System;
@@ -263,6 +264,7 @@ namespace GrblPlotter
                 Write("Clipping", setup.importGraphicClip.ToString(), section);
                 Write("Clipping tile offset", setup.importGraphicClipOffsetApply.ToString(), section);
                 Write("Clipping tile show orig pos", setup.importGraphicClipShowOrigPosition.ToString(), section);
+                Write("Clipping tile move while streaming", setup.importGraphicClipShowOrigPositionShiftTileProcessed.ToString(), section);
                 Write("Clipping tile command", setup.importGraphicClipGCode.ToString(), section);
                 Write("Clipping tile skip 1st", setup.importGraphicClipSkipCode.ToString(), section);
             }
@@ -520,6 +522,15 @@ namespace GrblPlotter
             Write("Y Tool Offset", setup.cameraToolOffsetY.ToString(), section);
             Write("Radius Xy", setup.cameraTeachRadiusXy.ToString(), section);
             Write("Scaling Xy", setup.cameraScalingXy.ToString(), section);
+
+            section = "Camera Misc";
+            Write("Fiducial Name", setup.importFiducialLabel.ToString(), section);
+            Write("Fiducial Skip", setup.importFiducialSkipCode.ToString(), section);
+            Write("Parameter Set 1", setup.camShapeSet1.ToString(), section);
+            Write("Parameter Set 2", setup.camShapeSet2.ToString(), section);
+            Write("Parameter Set 3", setup.camShapeSet3.ToString(), section);
+            Write("Parameter Set 4", setup.camShapeSet4.ToString(), section);
+
 
             section = "GamePad";
             Write("gamePadButtons0", setup.gamePadButtons0.ToString(), section);
@@ -816,6 +827,7 @@ namespace GrblPlotter
             if (SetVariable(ref tmpbool, section, "Clipping")) { setup.importGraphicClip = tmpbool; }
             if (SetVariable(ref tmpbool, section, "Clipping tile offset")) { setup.importGraphicClipOffsetApply = tmpbool; }
             if (SetVariable(ref tmpbool, section, "Clipping tile show orig pos")) { setup.importGraphicClipShowOrigPosition = tmpbool; }
+            if (SetVariable(ref tmpbool, section, "Clipping tile move while streaming")) { setup.importGraphicClipShowOrigPositionShiftTileProcessed = tmpbool; }
             if (SetVariable(ref tmpstr, section, "Clipping tile command")) { setup.importGraphicClipGCode = tmpstr; }
             if (SetVariable(ref tmpbool, section, "Clipping tile skip 1st")) { setup.importGraphicClipSkipCode = tmpbool; }
 
@@ -1100,6 +1112,15 @@ namespace GrblPlotter
             if (SetVariable(ref tmpdouble, section, "Y Tool Offset")) { setup.cameraToolOffsetY = tmpdouble; }
             if (SetVariable(ref tmpdouble, section, "Radius Xy")) { setup.cameraTeachRadiusXy = tmpdouble; }
             if (SetVariable(ref tmpdouble, section, "Scaling Xy")) { setup.cameraScalingXy = tmpdouble; }
+
+            section = "Camera Misc";
+            if (SetVariable(ref tmpstr, section, "Fiducial Name")) { setup.importFiducialLabel = tmpstr; }
+            if (SetVariable(ref tmpbool, section, "Fiducial Skip")) { setup.importFiducialSkipCode = tmpbool; }
+            if (SetVariable(ref tmpstr, section, "Parameter Set 1")) { setup.camShapeSet1 = tmpstr; }
+            if (SetVariable(ref tmpstr, section, "Parameter Set 2")) { setup.camShapeSet2 = tmpstr; }
+            if (SetVariable(ref tmpstr, section, "Parameter Set 3")) { setup.camShapeSet3 = tmpstr; }
+            if (SetVariable(ref tmpstr, section, "Parameter Set 4")) { setup.camShapeSet4 = tmpstr; }
+
 
             section = "GamePad";
             if (SetVariable(ref tmpstr, section, "gamePadButtons0")) { setup.gamePadButtons0 = tmpstr; }
