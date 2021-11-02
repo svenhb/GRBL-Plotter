@@ -287,10 +287,10 @@ namespace GrblPlotter
                 if (!(showPathPenUp ^ toolStripViewPenUp.Checked))  //Properties.Settings.Default.gui2DPenUpShow))
                     e.DrawPath(penUp, VisuGCode.pathPenUp);
 
-                e.DrawPath(penSimulation, VisuGCode.Simulation.pathSimulation);
-
                 if (shiftedDisplay)
                     e.TranslateTransform((float)VisuGCode.ProcessedPath.offset2DView.X, (float)VisuGCode.ProcessedPath.offset2DView.Y);       // remove offset
+
+                e.DrawPath(penSimulation, VisuGCode.Simulation.pathSimulation);
             }
             catch (Exception Ex){ Logger.Error(Ex, "OnPaint_drawToolPath "); throw; }
         }
