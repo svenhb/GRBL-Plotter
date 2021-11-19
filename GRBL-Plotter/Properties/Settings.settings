@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version='1.0' encoding='utf-8'?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GrblPlotter.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
@@ -569,6 +569,21 @@
     <Setting Name="grblLastOffsetZ" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="grblDescriptionD0" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D0</Value>
+    </Setting>
+    <Setting Name="grblDescriptionD1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D1</Value>
+    </Setting>
+    <Setting Name="grblDescriptionD2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D2</Value>
+    </Setting>
+    <Setting Name="grblDescriptionD3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D3</Value>
+    </Setting>
+    <Setting Name="grblDescriptionDxEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="grblPollIntervalIndex" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
@@ -640,6 +655,15 @@
     </Setting>
     <Setting Name="gui2DToolTableShow" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="gui2DShowVertexEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="gui2DShowVertexType" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="gui2DShowVertexSize" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
     </Setting>
     <Setting Name="gui2DWidthHeightMap" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.2</Value>
@@ -880,6 +904,12 @@
     </Setting>
     <Setting Name="guiLastFileLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\</Value>
+    </Setting>
+    <Setting Name="guiLastStart" Type="System.Int64" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="guiLastEnd" Type="System.Int64" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="guiPathSaveCode" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -1879,6 +1909,9 @@
     </Setting>
     <Setting Name="useCaseLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">?</Value>
+    </Setting>
+    <Setting Name="guiLastEndReason" Type="System.String" Scope="User">
+      <Value Profile="(Default)">-</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -2293,6 +2293,66 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D0")]
+        public string grblDescriptionD0 {
+            get {
+                return ((string)(this["grblDescriptionD0"]));
+            }
+            set {
+                this["grblDescriptionD0"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D1")]
+        public string grblDescriptionD1 {
+            get {
+                return ((string)(this["grblDescriptionD1"]));
+            }
+            set {
+                this["grblDescriptionD1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D2")]
+        public string grblDescriptionD2 {
+            get {
+                return ((string)(this["grblDescriptionD2"]));
+            }
+            set {
+                this["grblDescriptionD2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D3")]
+        public string grblDescriptionD3 {
+            get {
+                return ((string)(this["grblDescriptionD3"]));
+            }
+            set {
+                this["grblDescriptionD3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool grblDescriptionDxEnable {
+            get {
+                return ((bool)(this["grblDescriptionDxEnable"]));
+            }
+            set {
+                this["grblDescriptionDxEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int grblPollIntervalIndex {
             get {
@@ -2576,6 +2636,42 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["gui2DToolTableShow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool gui2DShowVertexEnable {
+            get {
+                return ((bool)(this["gui2DShowVertexEnable"]));
+            }
+            set {
+                this["gui2DShowVertexEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal gui2DShowVertexType {
+            get {
+                return ((decimal)(this["gui2DShowVertexType"]));
+            }
+            set {
+                this["gui2DShowVertexType"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public decimal gui2DShowVertexSize {
+            get {
+                return ((decimal)(this["gui2DShowVertexSize"]));
+            }
+            set {
+                this["gui2DShowVertexSize"] = value;
             }
         }
         
@@ -3541,6 +3637,30 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["guiLastFileLoaded"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public long guiLastStart {
+            get {
+                return ((long)(this["guiLastStart"]));
+            }
+            set {
+                this["guiLastStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public long guiLastEnd {
+            get {
+                return ((long)(this["guiLastEnd"]));
+            }
+            set {
+                this["guiLastEnd"] = value;
             }
         }
         
@@ -7537,6 +7657,18 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["useCaseLastLoaded"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-")]
+        public string guiLastEndReason {
+            get {
+                return ((string)(this["guiLastEndReason"]));
+            }
+            set {
+                this["guiLastEndReason"] = value;
             }
         }
     }
