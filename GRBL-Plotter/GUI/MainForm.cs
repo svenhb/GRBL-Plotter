@@ -52,6 +52,9 @@
  * 2021-02-24 save Pen up/down buttons visibillity status
  * 2021-05-19 processCommands line 975 also load ini file
  * 2021-07-14 code clean up / code quality
+ * 2021-11-11 track prog-start and -end
+ * 2021-11-17 show path-nodes gui2DShowVertexEnable - will be switched off on prog-start - line 146
+ * 2021-11-18 add processing of accessory D0-D3 from grbl-Mega-5X - line 976
 */
 
 using GrblPlotter.GUI;
@@ -134,12 +137,22 @@ namespace GrblPlotter
             _splashscreen = new Splashscreen();		// shows splash screen
             _splashscreen.Show();                   // will be closed if SplashScreenTimer >= 1500
 
-            if (Properties.Settings.Default.ctrlUpgradeRequired)	// check if update of settings are needed
+            if (Properties.Settings.Default.ctrlUpgradeRequired)		// check if update of settings are needed
             {
                 Logger.Info("MainForm_Load - Properties.Settings.Default.ctrlUpgradeRequired");
                 Properties.Settings.Default.Upgrade();
                 Properties.Settings.Default.ctrlUpgradeRequired = false;
                 Properties.Settings.Default.Save();
+            }
+			
+			Properties.Settings.Default.gui2DShowVertexEnable = false;	// don't show vertex / path-nodes on program start
+			
+            if (Properties.Settings.Default.flowCheckRegistryChange)	// don't load from clipboard on program start
+            {
+                const string reg_key = "HKEY_CURRENT_USER\\SOFTWARE\\GRBL-Plotter";
+                try
+                {   Registry.SetValue(reg_key, "update", 0);}
+                catch (Exception er) { Logger.Error(er, "MainForm Reading reg-key update "); }
             }
 
             CustomButtonsSetEvents();       // for buttons 17 to 32
@@ -236,6 +249,8 @@ namespace GrblPlotter
                 SplashScreenTimer.Start();
                 ResetStreaming(false);
                 timerUpdateControls = true;
+                Properties.Settings.Default.guiLastStart = DateTime.Now.Ticks;
+                Properties.Settings.Default.guiLastEndReason = "";
             }
             else
             {
@@ -259,10 +274,13 @@ namespace GrblPlotter
                 _splashscreen.Dispose();
             }
             Exception ex = e.Exception;
-            Logger.Error(ex, "Application_ThreadException");
+            Logger.Error(ex, "Application_ThreadException: ");
             MessageBox.Show(ex.Message + "\r\n\r\n" + GetAllFootprints(ex) + "\r\n\r\nCheck " + Datapath.AppDataFolder + "\\logfile.txt", "Main Form Thread exception");
             if (MessageBox.Show(Localization.GetString("mainQuit"), Localization.GetString("mainProblem"), MessageBoxButtons.YesNo) == DialogResult.Yes)
-            { Application.Exit(); }
+            { 	Properties.Settings.Default.guiLastEnd = DateTime.Now.Ticks;
+				Properties.Settings.Default.guiLastEndReason += "ThreadException: " + GetAllFootprints(ex);
+				Application.Exit(); 
+			}
         }
         private void Application_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
@@ -275,10 +293,13 @@ namespace GrblPlotter
             if (e.ExceptionObject != null)
             {
                 Exception ex = (Exception)e.ExceptionObject;
-                Logger.Error(ex, "UnhandledException - Quit GRBL Plotter?");
+                Logger.Error(ex, "UnhandledException - Quit GRBL Plotter? ");
                 MessageBox.Show(ex.Message + "\r\n\r\n" + GetAllFootprints(ex) + "\r\n\r\nCheck " + Datapath.AppDataFolder + "\\logfile.txt", "Main Form Application exception");
                 if (MessageBox.Show(Localization.GetString("mainQuit") + "\r\n\r\nCheck " + Datapath.AppDataFolder + "\\logfile.txt", Localization.GetString("mainProblem"), MessageBoxButtons.YesNo) == DialogResult.Yes)
-                { Application.Exit(); }
+                { 	Properties.Settings.Default.guiLastEnd = DateTime.Now.Ticks;
+					Properties.Settings.Default.guiLastEndReason += "UnhandledException: " + GetAllFootprints(ex);
+					Application.Exit(); 
+				}
             }
         }
         public static string GetAllFootprints(Exception exept)
@@ -304,10 +325,6 @@ namespace GrblPlotter
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {   // Note all other forms will be closed, before reaching following code...
             Logger.Info("###### FormClosing ");
-            //_jogPathCreator_form.Close();
-            //
-            //if (_serial_form2 != null) { _serial_form2.closePort(); _serial_form2.Close(); }
-            //if (_serial_form3 != null) { _serial_form3.closePort(); _serial_form3.Close(); }
 
             Properties.Settings.Default.mainFormWinState = WindowState;
             WindowState = FormWindowState.Normal;
@@ -316,6 +333,8 @@ namespace GrblPlotter
             ControlPowerSaving.EnableStandby();
             Properties.Settings.Default.mainFormSplitDistance = splitContainer1.SplitterDistance;
 
+			Properties.Settings.Default.guiLastEnd = DateTime.Now.Ticks;
+			Properties.Settings.Default.guiLastEndReason += "END";
             SaveSettings();
             Logger.Info(culture, "###### GRBL-Plotter STOP ######", Application.ProductVersion);
         }
@@ -346,15 +365,6 @@ namespace GrblPlotter
         private void SendRealtimeCommand(byte cmd)
         { _serial_form.RealtimeCommand(cmd); }
 
-        // send command via serial form
-        /*     private void SendCommand2(string txt)
-             {
-                 if (!_serial_form.requestSend(txt, true))     // check if COM is still open
-                     updateControls();
-
-                 if ((txt.Contains("G92") || txt.Contains("G10") || txt.Contains("G43")) && (_coordSystem_form != null))
-                     _coordSystem_form.refreshValues();//_serial_form.requestSend("$#");
-             }*/
 
         private void SendCommands(string txt, bool jogging = false)
         {
@@ -462,7 +472,6 @@ namespace GrblPlotter
             {
                 if (updateDrawingPath && VisuGCode.ContainsG91Command())
                 {
-                    //redrawGCodePath();
                     pictureBox1.Invalidate(); // will be called by parent function
                 }
                 updateDrawingPath = false;
@@ -511,8 +520,7 @@ namespace GrblPlotter
             if (delayedSend > 0)
             {
                 if (delayedSend-- == 1)
-                {  // _serial_form.addToLog("* Code from [Setup - Flow control]");
-                    _serial_form.AddToLog("* Code after pause/stop: " + Properties.Settings.Default.flowControlText + " [Setup - Program behavior - Flow control]");
+                {   _serial_form.AddToLog("* Code after pause/stop: " + Properties.Settings.Default.flowControlText + " [Setup - Program behavior - Flow control]");
                     ProcessCommands(Properties.Settings.Default.flowControlText);
                 }
             }
@@ -544,10 +552,6 @@ namespace GrblPlotter
             }
             mainTimerCount++;
         }
-
-
-
-
 
         #region GUI Objects
 
@@ -703,8 +707,6 @@ namespace GrblPlotter
                             return;
                     }
                 }
-                //if ((e.JogPosX == 0) && (e.JogPosY == 0))
-                //    s = String.Format("(stop)");// sendRealtimeCommand(133); 
                 String s = "G91 ";
                 if (Grbl.isMarlin) { s += ";G1 "; }
                 if (index_X == 0)
@@ -932,8 +934,6 @@ namespace GrblPlotter
         }
         #endregion
 
-        //        public GCodeVisuAndTransform visuGCode = new GCodeVisuAndTransform();
-
         private void CbTool_CheckedChanged(object sender, EventArgs e)
         { _serial_form.ToolInSpindle = cBTool.Checked; }
 
@@ -973,6 +973,16 @@ namespace GrblPlotter
         private void BtnOverrideMist_Click(object sender, EventArgs e)
         { SendRealtimeCommand(161); }     // 0xA1 : Toggle Mist Coolant 
 
+        private void BtnOverrideD0_Click(object sender, EventArgs e)
+        { if(BtnOverrideD0.Tag == "off") SendCommand("M64 P0"); else SendCommand("M65 P0"); }
+        private void BtnOverrideD1_Click(object sender, EventArgs e)
+        { if(BtnOverrideD1.Tag == "off") SendCommand("M64 P1"); else SendCommand("M65 P1"); }
+        private void BtnOverrideD2_Click(object sender, EventArgs e)
+        { if(BtnOverrideD2.Tag == "off") SendCommand("M64 P2"); else SendCommand("M65 P2"); }
+        private void BtnOverrideD3_Click(object sender, EventArgs e)
+        { if(BtnOverrideD3.Tag == "off") SendCommand("M64 P3"); else SendCommand("M65 P3"); }
+
+
         private void BtnOverrideDoor_Click(object sender, EventArgs e)
         { SendRealtimeCommand(132); }     // 0x84 : Safety Door  
 
@@ -981,12 +991,7 @@ namespace GrblPlotter
         {
             if (command.Length <= 1)
                 return;
-            /*          if (!_serial_form.serialPortOpen)
-                      {   _serial_form.addToLog("serial port is closed");
-                          return;
-                      }*/
             string[] commands = { };
-            //            Logger.Trace("processCommands");
 
             if (!command.StartsWith("(") && command.Contains('\\') && (!isStreaming || isStreamingPause))
             {
@@ -998,7 +1003,6 @@ namespace GrblPlotter
                         Logger.Info(culture, "Load INI: '{0}'", command);
                         MyIni.ReadAll();    // ReadImport();
                         timerUpdateControlSource = "loadFile";
-                        //UpdateControlEnables();
                         UpdateWholeApplication();
                         StatusStripSet(2, "INI File '" + command + "' loaded", Color.Lime);
                         return;
@@ -1042,9 +1046,7 @@ namespace GrblPlotter
         }
         private bool ProcessSpecialCommands(string command)
         {
-            //            Logger.Trace("processSpecialCommands");
             bool commandFound = false;
-            //#pragma warning disable CA1307
             if (command.ToLower(culture).IndexOf("#start") >= 0) { BtnStreamStart_Click(this, null); commandFound = true; }
             else if (command.ToLower(culture).IndexOf("#stop") >= 0) { BtnStreamStop_Click(this, EventArgs.Empty); commandFound = true; }
             else if (command.ToLower(culture).IndexOf("#f100") >= 0) { SendRealtimeCommand(144); commandFound = true; }
@@ -1062,8 +1064,6 @@ namespace GrblPlotter
             else if (command.ToLower(culture).IndexOf("#feedhold") >= 0) { GrblFeedHold(); commandFound = true; }
             else if (command.ToLower(culture).IndexOf("#resume") >= 0) { GrblResume(); commandFound = true; }
             else if (command.ToLower(culture).IndexOf("#killalarm") >= 0) { GrblKillAlarm(); commandFound = true; }
-            //#pragma warning restore CA1307
-
             return commandFound;
         }
 
@@ -1080,7 +1080,6 @@ namespace GrblPlotter
         {
             if (e.KeyValue == (char)13)
             {
-                //     int lineNr; ;
                 if (int.TryParse(toolStrip_tb_StreamLine.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out int lineNr))
                 {
                     StartStreaming(lineNr, fCTBCode.LinesCount - 1);      // 1142
@@ -1108,12 +1107,6 @@ namespace GrblPlotter
             pictureBox1.Invalidate();                                   // resfresh view
         }
 
-        /*     private void logToolStripMenuItem_Click(object sender, EventArgs e)
-             {
-         //        MessageBox.Show(log.get());
-         //        log.clear();
-             }*/
-
         private void MainForm_Resize(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Normal)
@@ -1135,8 +1128,6 @@ namespace GrblPlotter
             int zCount = 1;
             Logger.Trace("resizeJoystick() visible:  A:{0} B:{1} C:{2}", Grbl.axisA, Grbl.axisB, Grbl.axisC);
 
-            // grbl.axisB = true;
-            // grbl.axisC = true;
             if (ctrl4thAxis || Grbl.axisA) zCount = 2;
             if (Grbl.axisB) { zCount = 3; zRatio = 25; }
             if (Grbl.axisC) { zCount = 4; zRatio = 25; }
@@ -1186,7 +1177,6 @@ namespace GrblPlotter
             virtualJoystickA.Invalidate();
             virtualJoystickB.Invalidate();
             virtualJoystickC.Invalidate();
-            //            toolStripStatusLabel1.Text = string.Format("[Resize Form XY:{0} Z:{1} A:{2} B:{3} C:{4} spaceX:{5}]", xyWidth, zWidth, aWidth, bWidth, cWidth, spaceX);
         }
 
 
@@ -1202,7 +1192,24 @@ namespace GrblPlotter
             btnSimulatePause.Left = 158 + add;
             gBOverrideFRGB.Width = 284 + add;
             gBOverrideSSGB.Width = 284 + add;
+
             gBOverrideASGB.Width = 284 + add;
+            int btnSpindleW = (279 + add) / 7; 
+            btnOverrideSpindle.Width = 3* btnSpindleW;
+            btnOverrideFlood.Width = 2 * btnSpindleW;
+            btnOverrideMist.Width = 2 * btnSpindleW;
+            btnOverrideFlood.Left = 3 + 3 * btnSpindleW;
+            btnOverrideMist.Left = (281 + add) - 2 * btnSpindleW;
+            if (Properties.Settings.Default.grblDescriptionDxEnable)
+            {   int btnwidth = (278 + add) / 4;
+                BtnOverrideD0.Width = btnwidth;
+                BtnOverrideD1.Width = btnwidth;
+                BtnOverrideD2.Width = btnwidth;
+                BtnOverrideD3.Width = btnwidth;
+                BtnOverrideD1.Left = 3 + btnwidth;
+                BtnOverrideD2.Left = 4 + 2 * btnwidth;
+                BtnOverrideD3.Left = (281 + add) - btnwidth;
+            }
             gBOverrideRGB.Width = 284 + add;
 
             lbInfo.Width = 280 + add;
@@ -1217,7 +1224,18 @@ namespace GrblPlotter
             if (gBoxOverrideBig)
                 gBoxOverride.Height = 15;
             else
-                gBoxOverride.Height = 175;
+            {
+                if (Properties.Settings.Default.grblDescriptionDxEnable)
+                {
+                    gBoxOverride.Height = 200;  // 175
+                    gBOverrideASGB.Height = 62;
+                } 
+                else
+                {
+                    gBoxOverride.Height = 175;  
+                    gBOverrideASGB.Height = 37;
+                }
+            }
             gBoxOverrideBig = !gBoxOverrideBig;
         }
 
@@ -1255,7 +1273,6 @@ namespace GrblPlotter
         {
             if (nr == 0)
             {
-                //                toolStripStatusLabel0.Text = "[ " + text + " ]";
                 if (this.toolStripStatusLabel0.GetCurrentParent().InvokeRequired)
                 { this.toolStripStatusLabel0.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { this.toolStripStatusLabel0.Text = "[ " + text + " ]"; }); }
                 else
@@ -1265,33 +1282,19 @@ namespace GrblPlotter
             else if (nr == 1)
 
             {
-                //                toolStripStatusLabel1.Text = "[ " + text + " ]";
                 if (this.toolStripStatusLabel1.GetCurrentParent().InvokeRequired)
                 { this.toolStripStatusLabel1.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { this.toolStripStatusLabel1.Text = "[ " + text + " ]"; toolStripStatusLabel1.BackColor = color; }); }
                 else
                 { this.toolStripStatusLabel1.Text = "[ " + text + " ]"; toolStripStatusLabel1.BackColor = color; }
-                //               toolStripStatusLabel1.BackColor = color;
             }
             else if (nr == 2)
             {
-                //                toolStripStatusLabel2.Text = "[ " + text + " ]";
                 if (this.toolStripStatusLabel2.GetCurrentParent().InvokeRequired)
                 { this.toolStripStatusLabel2.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { this.toolStripStatusLabel2.Text = "[ " + text + " ]"; toolStripStatusLabel2.BackColor = color; }); }
                 else
                 { this.toolStripStatusLabel2.Text = "[ " + text + " ]"; toolStripStatusLabel2.BackColor = color; }
-                //        toolStripStatusLabel2.BackColor = color;
             }
-            //            Logger.Trace("statusStripSet nr {0} text {1}", nr, text);
         }
-        /*     private void StatusStripSetToolTip(int nr, string text)
-             {
-                 if (nr == 0)
-                 {   toolStripStatusLabel0.ToolTipText = text; }
-                 else if (nr == 1)
-                 {   toolStripStatusLabel1.ToolTipText = text; }
-                 else if (nr == 2)
-                 {   toolStripStatusLabel2.ToolTipText = text; }
-             }*/
 
         private void StatusStripClear(int nr1, int nr2 = -1)//, string rem="")
         {
@@ -1301,7 +1304,6 @@ namespace GrblPlotter
             { toolStripStatusLabel1.Text = ""; toolStripStatusLabel1.BackColor = SystemColors.Control; toolStripStatusLabel1.ToolTipText = ""; }
             if ((nr1 == 2) || (nr2 == 2))
             { toolStripStatusLabel2.Text = ""; toolStripStatusLabel2.BackColor = SystemColors.Control; toolStripStatusLabel2.ToolTipText = ""; }
-            //            Logger.Trace("statusStripClear {0} {1} {2}",nr1,nr2, rem);
         }
         private void StatusStripClear()
         {
@@ -1325,17 +1327,6 @@ namespace GrblPlotter
 
         private void MainForm_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            /*        if (pictureBox1.Focused)
-                    {
-                        if ((e.KeyCode == Keys.Right) || (e.KeyCode == Keys.NumPad6))
-                        { MoveView(-1, 0); }
-                        else if ((e.KeyCode == Keys.Left) || (e.KeyCode == Keys.NumPad4))
-                        { MoveView(1, 0); }
-                        else if ((e.KeyCode == Keys.Up) || (e.KeyCode == Keys.NumPad8))
-                        { MoveView(0, 1); }
-                        else if ((e.KeyCode == Keys.Down) || (e.KeyCode == Keys.NumPad2))
-                        { MoveView(0, -1); }
-                    }*/
             if (pictureBox1.Focused && ((e.KeyCode == Keys.Right) || (e.KeyCode == Keys.Left) || (e.KeyCode == Keys.Up) || (e.KeyCode == Keys.Down)))
             { e.IsInputKey = true; }
         }

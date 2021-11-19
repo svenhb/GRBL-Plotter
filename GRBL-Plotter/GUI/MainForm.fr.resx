@@ -1005,4 +1005,16 @@ Ajouter 'G54;' to G-Code header pour revenir automatiquement à G54 avant de dif
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Sortie</value>
   </data>
+  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
+    <value>Affiche l'état de la broche D3 (grbl-Mega-5X), en cliquant sur envoyer 'M64 P3 (on)' ou 'M65 P3 (off)' selon l'état</value>
+  </data>
+  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
+    <value>Affiche l'état de la broche D2 (grbl-Mega-5X), en cliquant sur envoyer 'M64 P2 (on)' ou 'M65 P2 (off)' selon l'état</value>
+  </data>
+  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
+    <value>Affiche l'état de la broche D1 (grbl-Mega-5X), en cliquant sur envoyer 'M64 P1 (on)' ou 'M65 P1 (off)' selon l'état</value>
+  </data>
+  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
+    <value>Affiche l'état de la broche D0 (grbl-Mega-5X), en cliquant sur envoyer 'M64 P0 (on)' ou 'M65 P0 (off)' selon l'état</value>
+  </data>
 </root>

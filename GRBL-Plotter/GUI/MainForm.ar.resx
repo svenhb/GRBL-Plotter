@@ -1058,4 +1058,16 @@
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>خروج</value>
   </data>
+  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
+    <value>يعرض حالة D3 pin (grbl-Mega-5X) ، عند النقر فوق إرسال "M64 P3 (تشغيل)" أو "M65 P3 (إيقاف)" اعتمادًا على الحالة</value>
+  </data>
+  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
+    <value>يعرض حالة D2 pin (grbl-Mega-5X) ، عند النقر فوق إرسال "M64 P2 (تشغيل)" أو "M65 P2 (إيقاف)" اعتمادًا على الحالة</value>
+  </data>
+  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
+    <value>يعرض حالة D1 pin (grbl-Mega-5X) ، عند النقر فوق إرسال "M64 P1 (تشغيل)" أو "M65 P1 (إيقاف)" اعتمادًا على الحالة</value>
+  </data>
+  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
+    <value>يعرض حالة D0 pin (grbl-Mega-5X) ، عند النقر فوق إرسال "M64 P0 (on)" أو "M65 P0 (off)" اعتمادًا على الحالة</value>
+  </data>
 </root>

@@ -40,6 +40,8 @@
  * 2021-07-14 code clean up / code quality
  * 2021-08-03 remove root from MRU save path line 105
  * 2021-10-01 disable showPaths during code-load line 230
+ * 2021-11-11 track prog-start and -end
+ * 2021-11-17 LoadExtensionList - don't list pictures png, jpg
 */
 
 using System;
@@ -80,7 +82,7 @@ namespace GrblPlotter
         private void BtnOpenFile_Click(object sender, EventArgs e)
         {
             openFileDialog1.FileName = "";
-            openFileDialog1.Filter = loadFilter;// "gcode files (*.nc, *.cnc, *.ngc, *.gcode)|*.nc;*.cnc;*.ngc;*.gcode|SVG files (*.svg)|*.svg|DXF files (*.dxf)|*.dxf|Drill files (*.drd, *.drl, *.dri)|*.drd;*.drl;*.dri|All files (*.*)|*.*";
+            openFileDialog1.Filter = loadFilter;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 LoadFile(openFileDialog1.FileName);
@@ -943,6 +945,8 @@ namespace GrblPlotter
             if (MessageBox.Show("Restart now?", "Attention", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 Logger.Info("  tryRestart()");
+				Properties.Settings.Default.guiLastEnd = DateTime.Now.Ticks;
+				Properties.Settings.Default.guiLastEndReason += "Language change;";
                 Application.Restart();
                 Application.ExitThread();  // 20200716
             }
@@ -1586,7 +1590,7 @@ namespace GrblPlotter
                     foreach (string item in fileEntries)
                     {
                         string file = Path.GetFileName(item);
-                        if (!file.StartsWith("_"))
+                        if (!(file.StartsWith("_") || file.ToLower().EndsWith("png") || file.ToLower().EndsWith("jpg")))
                         {
                             ToolStripMenuItem fileExtension = new ToolStripMenuItem(file, null, ExtensionFile_click);
                             startExtensionToolStripMenuItem.DropDownItems.Add(fileExtension);

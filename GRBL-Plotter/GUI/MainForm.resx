@@ -133,7 +133,7 @@
     <value>1</value>
   </data>
   <data name="fCTBCode.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
-    <value>191, 12</value>
+    <value>214, 12</value>
   </data>
   <metadata name="cmsFCTB.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>123, 56</value>
@@ -460,7 +460,7 @@
     <value>Tab=IndentIncrease, Escape=ClearHints, PgUp=GoPageUp, PgDn=GoPageDown, End=GoEnd, Home=GoHome, Left=GoLeft, Up=GoUp, Right=GoRight, Down=GoDown, Ins=ReplaceMode, Del=DeleteCharRight, F3=FindNext, Shift+Tab=IndentDecrease, Shift+PgUp=GoPageUpWithSelection, Shift+PgDn=GoPageDownWithSelection, Shift+End=GoEndWithSelection, Shift+Home=GoHomeWithSelection, Shift+Left=GoLeftWithSelection, Shift+Up=GoUpWithSelection, Shift+Right=GoRightWithSelection, Shift+Down=GoDownWithSelection, Shift+Ins=Paste, Shift+Del=Cut, Ctrl+Back=ClearWordLeft, Ctrl+Space=AutocompleteMenu, Ctrl+End=GoLastLine, Ctrl+Home=GoFirstLine, Ctrl+Ins=Copy, Ctrl+Del=ClearWordRight, Ctrl+0=ZoomNormal, Ctrl+A=SelectAll, Ctrl+B=BookmarkLine, Ctrl+C=Copy, Ctrl+E=MacroExecute, Ctrl+F=FindDialog, Ctrl+G=GoToDialog, Ctrl+H=ReplaceDialog, Ctrl+I=AutoIndentChars, Ctrl+M=MacroRecord, Ctrl+N=GoNextBookmark, Ctrl+R=Redo, Ctrl+U=UpperCase, Ctrl+V=Paste, Ctrl+X=Cut, Ctrl+Z=Undo, Ctrl+Add=ZoomIn, Ctrl+Subtract=ZoomOut, Ctrl+Shift+End=GoLastLineWithSelection, Ctrl+Shift+Home=GoFirstLineWithSelection, Ctrl+Shift+B=UnbookmarkLine, Ctrl+Shift+C=CommentSelected, Ctrl+Shift+N=GoPrevBookmark, Ctrl+Shift+U=LowerCase, Alt+Back=Undo, Alt+Up=MoveSelectedLinesUp, Alt+Down=MoveSelectedLinesDown, Alt+F=FindChar</value>
   </data>
   <data name="fCTBCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 391</value>
+    <value>3, 416</value>
   </data>
   <data name="fCTBCode.ServiceColors" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
@@ -481,7 +481,7 @@
 </value>
   </data>
   <data name="fCTBCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>332, 155</value>
+    <value>332, 130</value>
   </data>
   <data name="fCTBCode.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -1420,7 +1420,7 @@
     <value>Fill</value>
   </data>
   <data name="gBoxDimension.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 300</value>
+    <value>3, 325</value>
   </data>
   <data name="gBoxDimension.Size" type="System.Drawing.Size, System.Drawing">
     <value>332, 85</value>
@@ -1638,6 +1638,174 @@
   <data name="&gt;&gt;gBOverrideRGB.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="BtnOverrideD3.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="BtnOverrideD3.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="BtnOverrideD3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnOverrideD3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>208, 37</value>
+  </data>
+  <data name="BtnOverrideD3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 20</value>
+  </data>
+  <data name="BtnOverrideD3.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="BtnOverrideD3.Text" xml:space="preserve">
+    <value>D3</value>
+  </data>
+  <data name="BtnOverrideD3.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopLeft</value>
+  </data>
+  <data name="BtnOverrideD3.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>TextBeforeImage</value>
+  </data>
+  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
+    <value>Shows status of D3 pin (grbl-Mega-5X), on click send 'M64 P3 (on)' or 'M65 P3 (off)' depending on status</value>
+  </data>
+  <data name="&gt;&gt;BtnOverrideD3.Name" xml:space="preserve">
+    <value>BtnOverrideD3</value>
+  </data>
+  <data name="&gt;&gt;BtnOverrideD3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnOverrideD3.Parent" xml:space="preserve">
+    <value>gBOverrideASGB</value>
+  </data>
+  <data name="&gt;&gt;BtnOverrideD3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="BtnOverrideD2.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="BtnOverrideD2.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="BtnOverrideD2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnOverrideD2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>140, 37</value>
+  </data>
+  <data name="BtnOverrideD2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 20</value>
+  </data>
+  <data name="BtnOverrideD2.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="BtnOverrideD2.Text" xml:space="preserve">
+    <value>D2</value>
+  </data>
+  <data name="BtnOverrideD2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopLeft</value>
+  </data>
+  <data name="BtnOverrideD2.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>TextBeforeImage</value>
+  </data>
+  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
+    <value>Shows status of D2 pin (grbl-Mega-5X), on click send 'M64 P2 (on)' or 'M65 P2 (off)' depending on status</value>
+  </data>
+  <data name="&gt;&gt;BtnOverrideD2.Name" xml:space="preserve">
+    <value>BtnOverrideD2</value>
+  </data>
+  <data name="&gt;&gt;BtnOverrideD2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnOverrideD2.Parent" xml:space="preserve">
+    <value>gBOverrideASGB</value>
+  </data>
+  <data name="&gt;&gt;BtnOverrideD2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="BtnOverrideD1.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="BtnOverrideD1.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="BtnOverrideD1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnOverrideD1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>71, 37</value>
+  </data>
+  <data name="BtnOverrideD1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 20</value>
+  </data>
+  <data name="BtnOverrideD1.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="BtnOverrideD1.Text" xml:space="preserve">
+    <value>D1</value>
+  </data>
+  <data name="BtnOverrideD1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopLeft</value>
+  </data>
+  <data name="BtnOverrideD1.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>TextBeforeImage</value>
+  </data>
+  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
+    <value>Shows status of D1 pin (grbl-Mega-5X), on click send 'M64 P1 (on)' or 'M65 P1 (off)' depending on status</value>
+  </data>
+  <data name="&gt;&gt;BtnOverrideD1.Name" xml:space="preserve">
+    <value>BtnOverrideD1</value>
+  </data>
+  <data name="&gt;&gt;BtnOverrideD1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnOverrideD1.Parent" xml:space="preserve">
+    <value>gBOverrideASGB</value>
+  </data>
+  <data name="&gt;&gt;BtnOverrideD1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="BtnOverrideD0.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="BtnOverrideD0.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="BtnOverrideD0.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnOverrideD0.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 37</value>
+  </data>
+  <data name="BtnOverrideD0.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 20</value>
+  </data>
+  <data name="BtnOverrideD0.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="BtnOverrideD0.Text" xml:space="preserve">
+    <value>D0</value>
+  </data>
+  <data name="BtnOverrideD0.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopLeft</value>
+  </data>
+  <data name="BtnOverrideD0.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>TextBeforeImage</value>
+  </data>
+  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
+    <value>Shows status of D0 pin (grbl-Mega-5X), on click send 'M64 P0 (on)' or 'M65 P0 (off)' depending on status</value>
+  </data>
+  <data name="&gt;&gt;BtnOverrideD0.Name" xml:space="preserve">
+    <value>BtnOverrideD0</value>
+  </data>
+  <data name="&gt;&gt;BtnOverrideD0.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnOverrideD0.Parent" xml:space="preserve">
+    <value>gBOverrideASGB</value>
+  </data>
+  <data name="&gt;&gt;BtnOverrideD0.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="btnOverrideSpindle.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
   </data>
@@ -1648,7 +1816,7 @@
     <value>2, 14</value>
   </data>
   <data name="btnOverrideSpindle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 23</value>
+    <value>115, 20</value>
   </data>
   <data name="btnOverrideSpindle.TabIndex" type="System.Int32, mscorlib">
     <value>39</value>
@@ -1672,7 +1840,7 @@
     <value>gBOverrideASGB</value>
   </data>
   <data name="&gt;&gt;btnOverrideSpindle.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>4</value>
   </data>
   <data name="btnOverrideMist.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
@@ -1684,7 +1852,7 @@
     <value>203, 14</value>
   </data>
   <data name="btnOverrideMist.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>75, 20</value>
   </data>
   <data name="btnOverrideMist.TabIndex" type="System.Int32, mscorlib">
     <value>41</value>
@@ -1708,7 +1876,7 @@
     <value>gBOverrideASGB</value>
   </data>
   <data name="&gt;&gt;btnOverrideMist.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>5</value>
   </data>
   <data name="btnOverrideFlood.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
@@ -1720,7 +1888,7 @@
     <value>121, 14</value>
   </data>
   <data name="btnOverrideFlood.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>75, 20</value>
   </data>
   <data name="btnOverrideFlood.TabIndex" type="System.Int32, mscorlib">
     <value>40</value>
@@ -1741,13 +1909,13 @@
     <value>gBOverrideASGB</value>
   </data>
   <data name="&gt;&gt;btnOverrideFlood.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>6</value>
   </data>
   <data name="gBOverrideASGB.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 133</value>
   </data>
   <data name="gBOverrideASGB.Size" type="System.Drawing.Size, System.Drawing">
-    <value>284, 40</value>
+    <value>284, 62</value>
   </data>
   <data name="gBOverrideASGB.TabIndex" type="System.Int32, mscorlib">
     <value>42</value>
@@ -2338,7 +2506,7 @@
     <value>3, 119</value>
   </data>
   <data name="gBoxOverride.Size" type="System.Drawing.Size, System.Drawing">
-    <value>332, 175</value>
+    <value>332, 200</value>
   </data>
   <data name="gBoxOverride.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>

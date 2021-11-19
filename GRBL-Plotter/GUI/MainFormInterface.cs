@@ -22,6 +22,7 @@
  * 2021-07-02 code clean up / code quality
  * 2021-09-29 update Grbl.Status line 60
  * 2021-09-30 no VisuGCode.ProcessedPath.ProcessedPathDraw if VisuGCode.largeDataAmount
+ * 2021-11-18 add processing of accessory D0-D3 from grbl-Mega-5X - line 139
 */
 
 using System;
@@ -114,6 +115,7 @@ namespace GrblPlotter
             cBSpindle.CheckedChanged -= CbSpindle_CheckedChanged;   // disable event-handler
             cBCoolant.CheckedChanged -= CbCoolant_CheckedChanged;
 
+            /***** if no Accessory State character is given, no accessory is set and D is 0000 *****/
             if (StatMsg.A.Contains("S"))
             {
                 btnOverrideSpindle.Image = Properties.Resources.led_on;   // Spindle on CW
@@ -135,10 +137,36 @@ namespace GrblPlotter
             if (StatMsg.A.Contains("M")) { btnOverrideMist.Image = Properties.Resources.led_on; } // Mist on
             else { btnOverrideMist.Image = Properties.Resources.led_off; }
 
+            if (Properties.Settings.Default.grblDescriptionDxEnable)
+            {
+                if (StatMsg.A.Contains("D"))
+                {
+                    string digits = StatMsg.A.Substring(StatMsg.A.IndexOf("D") + 1, 4);     // Digital pins in order '3210'
+                    if (digits.Length == 4)
+                    {
+                        SetAccessoryButton(BtnOverrideD3, (digits[0] == '1'));
+                        SetAccessoryButton(BtnOverrideD2, (digits[1] == '1'));
+                        SetAccessoryButton(BtnOverrideD1, (digits[2] == '1'));
+                        SetAccessoryButton(BtnOverrideD0, (digits[3] == '1'));
+                    }
+                }
+                else
+                {
+                    SetAccessoryButton(BtnOverrideD3, false);
+                    SetAccessoryButton(BtnOverrideD2, false);
+                    SetAccessoryButton(BtnOverrideD1, false);
+                    SetAccessoryButton(BtnOverrideD0, false);
+                }
+            }
             cBCoolant.CheckedChanged += CbCoolant_CheckedChanged;   // enable even-handler
             cBSpindle.CheckedChanged += CbSpindle_CheckedChanged;
         }
-
+        private void SetAccessoryButton(Button Btn, bool setOn)
+        {   if (setOn)
+            { Btn.Image = Properties.Resources.led_on; Btn.Tag = "on"; }
+            else 
+            { Btn.Image = Properties.Resources.led_off; ; Btn.Tag = "off"; }
+        }
         private void ProcessOverrideValues(string txt)
         {
             if (_streaming_form2 != null)

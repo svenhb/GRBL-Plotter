@@ -1055,4 +1055,16 @@ Grblのバッファーにモーションがキューイングされていて準�
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>出口</value>
   </data>
+  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
+    <value>D3ピン（grbl-Mega-5X）のステータスを表示します。クリックすると、ステータスに応じて「M64 P3（オン）」または「M65P3（オフ）」を送信します。</value>
+  </data>
+  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
+    <value>D2ピン（grbl-Mega-5X）のステータスを表示します。クリックすると、ステータスに応じて「M64 P2（オン）」または「M65P2（オフ）」を送信します。</value>
+  </data>
+  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
+    <value>D1ピン（grbl-Mega-5X）のステータスを表示します。クリックすると、ステータスに応じて「M64 P1（オン）」または「M65P1（オフ）」を送信します。</value>
+  </data>
+  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
+    <value>D0ピン（grbl-Mega-5X）のステータスを表示します。クリックすると、ステータスに応じて「M64 P0（オン）」または「M65P0（オフ）」を送信します。</value>
+  </data>
 </root>

@@ -1032,4 +1032,16 @@ Adicione 'G54;' ao cabeçalho do código G para retornar automaticamente ao G54
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Saída</value>
   </data>
+  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
+    <value>Mostra o status do pino D3 (grbl-Mega-5X), ao clicar em enviar 'M64 P3 (ligado)' ou 'M65 P3 (desligado)' dependendo do status</value>
+  </data>
+  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
+    <value>Mostra o status do pino D2 (grbl-Mega-5X), ao clicar em enviar 'M64 P2 (ligado)' ou 'M65 P2 (desligado)' dependendo do status</value>
+  </data>
+  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
+    <value>Mostra o status do pino D1 (grbl-Mega-5X), ao clicar em enviar 'M64 P1 (ligado)' ou 'M65 P1 (desligado)' dependendo do status</value>
+  </data>
+  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
+    <value>Mostra o status do pino D0 (grbl-Mega-5X), ao clicar em enviar 'M64 P0 (ligado)' ou 'M65 P0 (desligado)' dependendo do status</value>
+  </data>
 </root>

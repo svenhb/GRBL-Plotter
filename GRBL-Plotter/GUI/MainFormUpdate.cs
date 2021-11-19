@@ -20,6 +20,7 @@
  * Update controls etc.
  * 2021-07-26 new
  * 2021-09-19 line 389 change order of virtualJoystickXY.Enabled
+ * 2021-11-18 add processing of accessory D0-D3 from grbl-Mega-5X - line 210
 */
 
 using Microsoft.Win32;
@@ -33,11 +34,6 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
-
-//#pragma warning disable CA1303
-//#pragma warning disable CA1304
-//#pragma warning disable CA1305
-//#pragma warning disable CA1307
 
 namespace GrblPlotter
 {
@@ -210,6 +206,17 @@ namespace GrblPlotter
             GuiVariables.variable["GZES"] = (double)Properties.Settings.Default.importGCPWMZero;
             GuiVariables.variable["GCTS"] = (double)(Properties.Settings.Default.importGCPWMDown + Properties.Settings.Default.importGCPWMUp) / 2;
             GuiVariables.WriteSettingsToRegistry();	// for use within external scripts
+
+// override buttons D0-D3 descriptions
+			if (Properties.Settings.Default.grblDescriptionDxEnable)
+			{	BtnOverrideD0.Visible = BtnOverrideD1.Visible = BtnOverrideD2.Visible = BtnOverrideD3.Visible = true;
+				BtnOverrideD0.Text = Properties.Settings.Default.grblDescriptionD0;
+				BtnOverrideD1.Text = Properties.Settings.Default.grblDescriptionD1;
+				BtnOverrideD2.Text = Properties.Settings.Default.grblDescriptionD2;
+				BtnOverrideD3.Text = Properties.Settings.Default.grblDescriptionD3;
+			}
+			else
+			{	BtnOverrideD0.Visible = BtnOverrideD1.Visible = BtnOverrideD2.Visible = BtnOverrideD3.Visible = false;}
         }   // end load settings
 
         private void GuiEnableAxisABC()

@@ -1021,4 +1021,16 @@ Añadir 'G54;' al encabezado G-Code para volver automáticamente a G54 antes de 
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Salida</value>
   </data>
+  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
+    <value>Muestra el estado del pin D3 (grbl-Mega-5X), al hacer clic en enviar 'M64 P3 (encendido)' o 'M65 P3 (apagado)' según el estado</value>
+  </data>
+  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
+    <value>Muestra el estado del pin D2 (grbl-Mega-5X), al hacer clic en enviar 'M64 P2 (encendido)' o 'M65 P2 (apagado)' según el estado</value>
+  </data>
+  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
+    <value>Muestra el estado del pin D1 (grbl-Mega-5X), al hacer clic en enviar 'M64 P1 (encendido)' o 'M65 P1 (apagado)' según el estado</value>
+  </data>
+  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
+    <value>Muestra el estado del pin D0 (grbl-Mega-5X), al hacer clic en enviar 'M64 P0 (encendido)' o 'M65 P0 (apagado)' según el estado</value>
+  </data>
 </root>

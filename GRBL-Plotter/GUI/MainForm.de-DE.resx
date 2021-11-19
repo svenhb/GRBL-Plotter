@@ -981,4 +981,16 @@ Fügen Sie 'G54;' to G-Code-Header, um vor dem Streaming von G-Code automatisch 
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Beenden</value>
   </data>
+  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
+    <value>Zeigt den Status des D3-Pins (grbl-Mega-5X), beim Klicken senden Sie 'M64 P3 (on)' oder 'M65 P3 (off)' je nach Status</value>
+  </data>
+  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
+    <value>Zeigt den Status des D2-Pins (grbl-Mega-5X), beim Klicken senden Sie 'M64 P2 (on)' oder 'M65 P2 (off)' je nach Status</value>
+  </data>
+  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
+    <value>Zeigt den Status des D1-Pins (grbl-Mega-5X), beim Klicken senden Sie 'M64 P1 (on)' oder 'M65 P1 (off)' je nach Status</value>
+  </data>
+  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
+    <value>Zeigt den Status des D0-Pins (grbl-Mega-5X), beim Klicken senden Sie 'M64 P0 (on)' oder 'M65 P0 (off)' je nach Status</value>
+  </data>
 </root>

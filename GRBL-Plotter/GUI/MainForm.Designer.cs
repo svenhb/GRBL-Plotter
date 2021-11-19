@@ -192,6 +192,10 @@ namespace GrblPlotter
             this.lblOverrideRapidValue = new System.Windows.Forms.Label();
             this.btnOverrideRapid1 = new System.Windows.Forms.Button();
             this.gBOverrideASGB = new System.Windows.Forms.GroupBox();
+            this.BtnOverrideD3 = new System.Windows.Forms.Button();
+            this.BtnOverrideD2 = new System.Windows.Forms.Button();
+            this.BtnOverrideD1 = new System.Windows.Forms.Button();
+            this.BtnOverrideD0 = new System.Windows.Forms.Button();
             this.btnOverrideSpindle = new System.Windows.Forms.Button();
             this.btnOverrideMist = new System.Windows.Forms.Button();
             this.btnOverrideFlood = new System.Windows.Forms.Button();
@@ -1133,12 +1137,56 @@ namespace GrblPlotter
             // 
             // gBOverrideASGB
             // 
+            this.gBOverrideASGB.Controls.Add(this.BtnOverrideD3);
+            this.gBOverrideASGB.Controls.Add(this.BtnOverrideD2);
+            this.gBOverrideASGB.Controls.Add(this.BtnOverrideD1);
+            this.gBOverrideASGB.Controls.Add(this.BtnOverrideD0);
             this.gBOverrideASGB.Controls.Add(this.btnOverrideSpindle);
             this.gBOverrideASGB.Controls.Add(this.btnOverrideMist);
             this.gBOverrideASGB.Controls.Add(this.btnOverrideFlood);
             resources.ApplyResources(this.gBOverrideASGB, "gBOverrideASGB");
             this.gBOverrideASGB.Name = "gBOverrideASGB";
             this.gBOverrideASGB.TabStop = false;
+            // 
+            // BtnOverrideD3
+            // 
+            resources.ApplyResources(this.BtnOverrideD3, "BtnOverrideD3");
+            this.BtnOverrideD3.Image = global::GrblPlotter.Properties.Resources.led_off;
+            this.BtnOverrideD3.Name = "BtnOverrideD3";
+            this.BtnOverrideD3.Tag = "off";
+            this.toolTip1.SetToolTip(this.BtnOverrideD3, resources.GetString("BtnOverrideD3.ToolTip"));
+            this.BtnOverrideD3.UseVisualStyleBackColor = true;
+            this.BtnOverrideD3.Click += new System.EventHandler(this.BtnOverrideD3_Click);
+            // 
+            // BtnOverrideD2
+            // 
+            resources.ApplyResources(this.BtnOverrideD2, "BtnOverrideD2");
+            this.BtnOverrideD2.Image = global::GrblPlotter.Properties.Resources.led_off;
+            this.BtnOverrideD2.Name = "BtnOverrideD2";
+            this.BtnOverrideD2.Tag = "off";
+            this.toolTip1.SetToolTip(this.BtnOverrideD2, resources.GetString("BtnOverrideD2.ToolTip"));
+            this.BtnOverrideD2.UseVisualStyleBackColor = true;
+            this.BtnOverrideD2.Click += new System.EventHandler(this.BtnOverrideD2_Click);
+            // 
+            // BtnOverrideD1
+            // 
+            resources.ApplyResources(this.BtnOverrideD1, "BtnOverrideD1");
+            this.BtnOverrideD1.Image = global::GrblPlotter.Properties.Resources.led_off;
+            this.BtnOverrideD1.Name = "BtnOverrideD1";
+            this.BtnOverrideD1.Tag = "off";
+            this.toolTip1.SetToolTip(this.BtnOverrideD1, resources.GetString("BtnOverrideD1.ToolTip"));
+            this.BtnOverrideD1.UseVisualStyleBackColor = true;
+            this.BtnOverrideD1.Click += new System.EventHandler(this.BtnOverrideD1_Click);
+            // 
+            // BtnOverrideD0
+            // 
+            resources.ApplyResources(this.BtnOverrideD0, "BtnOverrideD0");
+            this.BtnOverrideD0.Image = global::GrblPlotter.Properties.Resources.led_off;
+            this.BtnOverrideD0.Name = "BtnOverrideD0";
+            this.BtnOverrideD0.Tag = "off";
+            this.toolTip1.SetToolTip(this.BtnOverrideD0, resources.GetString("BtnOverrideD0.ToolTip"));
+            this.BtnOverrideD0.UseVisualStyleBackColor = true;
+            this.BtnOverrideD0.Click += new System.EventHandler(this.BtnOverrideD0_Click);
             // 
             // btnOverrideSpindle
             // 
@@ -3413,6 +3461,10 @@ namespace GrblPlotter
         private System.Windows.Forms.ToolStripMenuItem createJogPathToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem control3rdGRBLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cmsPicBoxRotateSelectedPath;
+        private System.Windows.Forms.Button BtnOverrideD3;
+        private System.Windows.Forms.Button BtnOverrideD2;
+        private System.Windows.Forms.Button BtnOverrideD1;
+        private System.Windows.Forms.Button BtnOverrideD0;
     }
 }
 

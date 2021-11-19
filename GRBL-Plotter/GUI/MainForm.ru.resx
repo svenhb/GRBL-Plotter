@@ -1029,4 +1029,16 @@
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Выход</value>
   </data>
+  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
+    <value>Показывает состояние контакта D3 (grbl-Mega-5X), при нажатии отправляется 'M64 P3 (on)' или 'M65 P3 (off)' в зависимости от статуса</value>
+  </data>
+  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
+    <value>Показывает состояние контакта D2 (grbl-Mega-5X), при нажатии отправляется «M64 P2 (вкл.)» Или «M65 P2 (выкл.)» В зависимости от статуса</value>
+  </data>
+  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
+    <value>Показывает состояние вывода D1 (grbl-Mega-5X), при нажатии отправляется 'M64 P1 (on)' или 'M65 P1 (off)' в зависимости от статуса</value>
+  </data>
+  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
+    <value>Показывает состояние вывода D0 (grbl-Mega-5X), при нажатии отправляется 'M64 P0 (on)' или 'M65 P0 (off)' в зависимости от статуса</value>
+  </data>
 </root>

@@ -1039,4 +1039,16 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>走</value>
   </data>
+  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
+    <value>显示 D3 引脚 (grbl-Mega-5X) 的状态，根据状态点击发送“M64 P3（开）”或“M65 P3（关）”</value>
+  </data>
+  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
+    <value>显示 D2 引脚 (grbl-Mega-5X) 的状态，根据状态点击发送“M64 P2（开）”或“M65 P2（关）”</value>
+  </data>
+  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
+    <value>显示 D1 引脚 (grbl-Mega-5X) 的状态，根据状态点击发送“M64 P1（开）”或“M65 P1（关）”</value>
+  </data>
+  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
+    <value>显示 D0 引脚 (grbl-Mega-5X) 的状态，根据状态点击发送“M64 P0（开）”或“M65 P0（关）”</value>
+  </data>
 </root>
