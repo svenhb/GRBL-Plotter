@@ -2807,4 +2807,10 @@ La plage utilisable réelle serait 30 $ = 31, 31 $ = 0.</value>
   <data name="CbCameraFiducialSkip.Text" xml:space="preserve">
     <value>Ignorez le code G des points de repère lors du streaming</value>
   </data>
+  <data name="LblShowVertex.Text" xml:space="preserve">
+    <value>Type et taille du marqueur de nœud de chemin</value>
+  </data>
+  <data name="CbShowVertexEnable.Text" xml:space="preserve">
+    <value>Affiche les nœuds de chemin de plume vers le bas</value>
+  </data>
 </root>

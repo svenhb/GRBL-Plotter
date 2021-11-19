@@ -30,6 +30,7 @@
  * 2021-05-01 return last index of splitted error, to catch "error: Invalid gcode ID:24" line 417
  * 2021-07-26 code clean up / code quality
  * 2021-09-29 add Status
+ * 2021-11-03 support VoidMicro controller: https://github.com/arkypita/LaserGRBL/issues/1640
 */
 
 using System;
@@ -75,10 +76,7 @@ namespace GrblPlotter
             get
             { return _posMarker; }
             set
-            {
-                //    _posMarkerOld = _posMarker;
-                _posMarker = value;
-            }
+            { _posMarker = value;     }
         }
         public static double PosMarkerAngle
         {
@@ -130,7 +128,6 @@ namespace GrblPlotter
         // store grbl settings https://github.com/gnea/grbl/wiki/Grbl-v1.1-Configuration#grbl-settings
         public static void SetSettings(int id, string value)
         {
-            //     float tmp;
             if (float.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out float tmp))
             {
                 if (settings.ContainsKey(id))
@@ -277,7 +274,6 @@ namespace GrblPlotter
         /// </summary>
         private static void SetParserState(char cmd, double value, ref ParsState myParserState)
         {
-            //            myParserState.changed = false;
             switch (Char.ToUpper(cmd))
             {
                 case 'G':
@@ -393,6 +389,13 @@ namespace GrblPlotter
                 Double.TryParse(dataValue[0], NumberStyles.Any, CultureInfo.InvariantCulture, out position.Z);
                 position.X = 0;
                 position.Y = 0;
+            }
+            if (dataValue.Length == 2)	// 2021-11-03 just two coordinates
+            {
+                Double.TryParse(dataValue[0], NumberStyles.Any, CultureInfo.InvariantCulture, out position.X);
+                Double.TryParse(dataValue[1], NumberStyles.Any, CultureInfo.InvariantCulture, out position.Y);
+                position.Z = 0;
+                axisCountLocal = 2;
             }
             if (dataValue.Length > 2)
             {

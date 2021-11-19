@@ -2807,4 +2807,10 @@ El rango utilizable real sería $ 30 = 31, $ 31 = 0.</value>
   <data name="CbCameraFiducialSkip.Text" xml:space="preserve">
     <value>Omita el código G de los puntos fiduciales mientras transmite</value>
   </data>
+  <data name="LblShowVertex.Text" xml:space="preserve">
+    <value>Tipo y tamaño del marcador de nodo de ruta</value>
+  </data>
+  <data name="CbShowVertexEnable.Text" xml:space="preserve">
+    <value>Muestra los nodos de ruta de pluma hacia abajo</value>
+  </data>
 </root>

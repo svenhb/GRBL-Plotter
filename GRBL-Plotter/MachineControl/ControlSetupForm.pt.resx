@@ -2816,4 +2816,10 @@ O intervalo utilizável real seria $ 30 = 31, $ 31 = 0.</value>
   <data name="CbCameraFiducialSkip.Text" xml:space="preserve">
     <value>Ignore o código G dos pontos fiduciais durante a transmissão</value>
   </data>
+  <data name="LblShowVertex.Text" xml:space="preserve">
+    <value>Tipo e tamanho do marcador do nó do caminho</value>
+  </data>
+  <data name="CbShowVertexEnable.Text" xml:space="preserve">
+    <value>Exibe os nós do caminho da caneta</value>
+  </data>
 </root>

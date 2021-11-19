@@ -2756,4 +2756,10 @@ Der tatsächlich nutzbare Bereich wäre $ 30 = 31, $ 31 = 0.</value>
   <data name="CbCameraFiducialSkip.Text" xml:space="preserve">
     <value>Überspringe den G-Code der Bezugspunkte beim Streamen</value>
   </data>
+  <data name="LblShowVertex.Text" xml:space="preserve">
+    <value>Typ und Größe der Pfadknotenmarker</value>
+  </data>
+  <data name="CbShowVertexEnable.Text" xml:space="preserve">
+    <value>Zeigt die Stift-unten Pfadknoten an</value>
+  </data>
 </root>

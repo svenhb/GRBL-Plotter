@@ -3068,4 +3068,10 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="CbCameraFiducialSkip.Text" xml:space="preserve">
     <value>تخطي رمز G للنقاط الإئتمانية أثناء البث</value>
   </data>
+  <data name="LblShowVertex.Text" xml:space="preserve">
+    <value>اكتب وحجم علامة عقدة المسار</value>
+  </data>
+  <data name="CbShowVertexEnable.Text" xml:space="preserve">
+    <value>يعرض عقد مسار القلم لأسفل</value>
+  </data>
 </root>

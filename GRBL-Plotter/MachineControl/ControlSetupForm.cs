@@ -284,6 +284,8 @@ namespace GrblPlotter
 
         private void ApplyColor(Button btn, string settings)
         {
+            colorDialog1.AnyColor = true;
+            colorDialog1.Color = (Color)Properties.Settings.Default[settings];
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
                 SetButtonColors(btn, colorDialog1.Color);

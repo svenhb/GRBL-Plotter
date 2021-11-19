@@ -25,6 +25,7 @@
  * 2021-09-02 CreateDrawingPathFromGCode add viewOffset for tiles
  * 2021-09-29 update fiducialDimension
  * 2021-09-30 take care for inch:  if (!Properties.Settings.Default.importUnitmm || (modal.unitsMode == 20))
+ * 2021-11-18 show path-nodes gui2DShowVertexEnable - will be switched off on prog-start	 
 */
 
 using System;
@@ -211,10 +212,20 @@ namespace GrblPlotter
                             }
                         }
                         path.AddLine((float)oldL.actualPos.X + viewOffset.X, (float)oldL.actualPos.Y + viewOffset.Y, (float)newL.actualPos.X + viewOffset.X, (float)newL.actualPos.Y + viewOffset.Y);   // 2021-09-02
+                        if (Properties.Settings.Default.gui2DShowVertexEnable && !largeDataAmount)
+                        {
+                            CreateMarker(path, (float)oldL.actualPos.X + viewOffset.X, (float)oldL.actualPos.Y + viewOffset.Y, (float)Properties.Settings.Default.gui2DShowVertexSize, (int)Properties.Settings.Default.gui2DShowVertexType, false);
+                            path.StartFigure();
+                        }
 
                         if ((path == pathPenDown) && (pathActualDown != null))
                         {
                             pathActualDown.AddLine((float)oldL.actualPos.X + viewOffset.X, (float)oldL.actualPos.Y + viewOffset.Y, (float)newL.actualPos.X + viewOffset.X, (float)newL.actualPos.Y + viewOffset.Y);
+                            if (Properties.Settings.Default.gui2DShowVertexEnable && !largeDataAmount)
+                            {
+                                CreateMarker(pathActualDown, (float)oldL.actualPos.X + viewOffset.X, (float)oldL.actualPos.Y + viewOffset.Y, (float)Properties.Settings.Default.gui2DShowVertexSize, (int)Properties.Settings.Default.gui2DShowVertexType, false);
+                                pathActualDown.StartFigure();
+                            }
                             if (fiducialEnable)
                             {
                                 fiducialDimension.SetDimensionXY((XyPoint)oldL.actualPos); fiducialDimension.SetDimensionXY((XyPoint)newL.actualPos);
@@ -662,7 +673,7 @@ namespace GrblPlotter
                     path.AddLine(centerX - dimension, centerY, centerX, centerY - dimension);
                     path.CloseFigure();
                 }
-                else
+                else							// circle
                 {
                     path.StartFigure(); path.AddArc(centerX - dimension, centerY - dimension, 2 * dimension, 2 * dimension, 0, 360);
                 }

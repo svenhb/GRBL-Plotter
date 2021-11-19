@@ -306,7 +306,9 @@ namespace GrblPlotter
 				showColors = false;
 				largeDataAmount=true;
 			}
-
+			else if (Properties.Settings.Default.gui2DShowVertexEnable)
+			{	Logger.Info("!!!!! Show path-node markers, type:{0}  size:{1} !!!!!",Properties.Settings.Default.gui2DShowVertexType, Properties.Settings.Default.gui2DShowVertexSize);}
+				
             if (showColors)
                 ToolTable.Init();
 

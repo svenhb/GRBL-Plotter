@@ -22,6 +22,7 @@
  * 2020-05-06 add Logger.Info
  * 2021-05-06 new method to get unique id
  * 2021-07-26 code clean up / code quality
+ * 2021-11-11 track prog-start and -end
 */
 
 using System;
@@ -31,9 +32,6 @@ using System.Management;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-
-//#pragma warning disable CA1303	// Do not pass literals as localized parameters
-//#pragma warning disable CA1307
 
 namespace GrblPlotter
 {
@@ -81,6 +79,7 @@ namespace GrblPlotter
                 get += "&langori=" + ci.Name;
                 get += "&import=" + GetCounters(CounterType.import);
                 get += "&usage=" + GetCounters(CounterType.usage);
+                get += "&error=" + GetError();
                 if (!Properties.Settings.Default.guiCheckUpdateURL.StartsWith("http"))
                 {
                     Properties.Settings.Default.guiCheckUpdateURL = "https://GRBL-Plotter.de";
@@ -96,6 +95,22 @@ namespace GrblPlotter
 
         }
 
+        private static string GetError()
+		{
+            if (Properties.Settings.Default.guiLastStart == 0)
+                Properties.Settings.Default.guiLastStart = DateTime.Now.Ticks;
+            if (Properties.Settings.Default.guiLastEnd == 0)
+                Properties.Settings.Default.guiLastEnd = DateTime.Now.Ticks;
+
+            long diff = Properties.Settings.Default.guiLastEnd - Properties.Settings.Default.guiLastStart;
+		//	var days = Math.Floor((decimal)(diff/(24*60*60*10000000L))); // Math.floor() rounds a number downwards to the nearest whole integer, which in this case is the value representing the day
+			var hours = Math.Round((decimal)((diff/(60*60*10000000L))) ); // % 24) Math.round() rounds the number up or down
+			var mins = Math.Round((decimal)((diff/(60*10000000))) % 60);
+            string output = string.Format("{0:00}:{1:00}-{2}",hours, mins, Properties.Settings.Default.guiLastEndReason);
+    //        Logger.Info("{0}  {1}  {2}", diff, Properties.Settings.Default.guiLastStart, Properties.Settings.Default.guiLastEnd);
+            Logger.Info(output);
+            return output;
+		}
 
         private static string GetCounters(CounterType type)
         {
