@@ -38,6 +38,7 @@
  * 2021-09-09 add AlignLines
  * 2021-09-21 new GroupOption 'Label' SetLabel
  * 0221-09-30 setgraphicInformation.FigureEnable = false - if to many figures
+ * 2021-11-16 bugfix RemoveIntermediateSteps <- include RemoveShortMoves
 */
 
 using System;

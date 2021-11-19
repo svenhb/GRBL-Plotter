@@ -19,6 +19,7 @@
 /*
  * 2021-09-10 split from graphicRelated
  * 2021-10-29 bugfix in RemoveIntermediateSteps
+ * 2021-11-16 bugfix RemoveIntermediateSteps, RemoveShortMoves
 */
 
 using System;
@@ -659,6 +660,7 @@ namespace GrblPlotter
         #endregion
 
 
+        #region remove short moves
 
         private static void RemoveIntermediateSteps(List<PathObject> graphicToImprove)
         {
@@ -673,6 +675,7 @@ namespace GrblPlotter
                     double angleLast = 0;
                     bool isLineNow = false;
                     bool isLineLast = false;
+					bool removeMinDistance;
                     if (PathData.Path.Count > 2)
                     {
                         for (int i = (PathData.Path.Count - 2); i >= 0; i--)
@@ -680,24 +683,30 @@ namespace GrblPlotter
                             if (PathData.Path[i] is GCodeLine)
                             {
                                 angleNow = GcodeMath.GetAlpha(PathData.Path[i].MoveTo, lastPoint);
+                                PathData.Path[i].Angle = angleNow;
                                 isLineNow = true;
                             }
                             else
                             {
+                                PathData.Path[i].Angle = angleNow;
                                 angleNow = angleLast + 1;
-								isLineNow = false;
+                                isLineNow = false;
                             }
 
-                            if (isLineNow && isLineLast && IsEqual(angleNow, angleLast))	
-                            {	
-								if (((i+2) < PathData.Path.Count) && (PathData.Path[i+2] is GCodeLine))	// don't delete if start-point for arc
-                                {	PathData.Path.RemoveAt(i + 1);
-									removed++;
-								}
+                            if (isLineNow && isLineLast && IsEqual(angleNow, angleLast))    
+                            {
+                                if (((i + 2) < PathData.Path.Count) && (PathData.Path[i + 2] is GCodeLine))	// don't delete if start-point for arc
+                                {
+                                    PathData.Path.RemoveAt(i + 1);
+                                    removed++;
+                                }
+                            }
+                            else
+                            {
+                                angleLast = angleNow;
                             }
                             lastPoint = PathData.Path[i].MoveTo;
                             isLineLast = isLineNow;
-                            angleLast = angleNow;
                         }
                     }
                 }
@@ -705,7 +714,6 @@ namespace GrblPlotter
             if (logEnable) Logger.Trace("...RemoveIntermediateSteps removed:{0} --------------------------------------", removed);
         }
 
-        #region remove short moves
         private static void RemoveShortMoves(List<PathObject> graphicToImprove, double minDistance)
         {
             if (logEnable) Logger.Trace("...RemoveShortMoves before min X:{0:0.00} Y:{1:0.00} --------------------------------------", actualDimension.minx, actualDimension.miny);
@@ -713,25 +721,23 @@ namespace GrblPlotter
             {
                 if (item is ItemPath PathData)
                 {
-                    //ItemPath PathData = (ItemPath)item;
-                    Point lastPoint = PathData.End;
+                    Point lastPoint = PathData.Path[PathData.Path.Count-1].MoveTo;  // PathData.End;
+                    double lastAngle = PathData.Path[PathData.Path.Count - 1].Angle;
                     double distance;
-                    if (PathData.Path.Count > 5)
+                    if (PathData.Path.Count > 3)
                     {
-                        for (int i = (PathData.Path.Count - 2); i > 1; i--)
+                        for (int i = (PathData.Path.Count - 2); i > 0; i--)
                         {
                             if (PathData.Path[i] is GCodeLine)
-                                distance = Math.Sqrt(PointDistanceSquared(lastPoint, PathData.Path[i].MoveTo));
+                                distance = Math.Sqrt(PointDistanceSquared(PathData.Path[i].MoveTo, lastPoint));
                             else
-                            {
                                 distance = minDistance;
-                                //                CircleDistanceSquared(lastPoint, PathData.path[i]);
-                                //                distance = PathData.path[i].distance;
-                            }
 
-                            if (distance < minDistance)
+                            if ((distance < minDistance) && (Math.Abs(lastAngle - PathData.Path[i].Angle) < 0.5))   // < 30°
                             { PathData.Path.RemoveAt(i); }
-                            else { lastPoint = PathData.Path[i].MoveTo; }
+
+                            lastPoint = PathData.Path[i].MoveTo; 
+                            lastAngle = PathData.Path[i].Angle; 
                         }
                     }
                 }
