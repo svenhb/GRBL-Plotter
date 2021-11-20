@@ -1,0 +1,402 @@
+<!--    Name:        GCode_Knock_in_Nut_Recess.hta
+        Version:     2021-11-19
+        Function:    Milling a recess for a knock-in nut 
+		
+// 2021-11-19 Initial version from nut recess
+		
+Enabled Active X in the broswer security settings.
+In IE9:
+a) Go to Tools ->Internet Options
+b) Select security tab
+c) Click on Trusted Sites (or Local Intranet depending on whether your site is trusted or not)
+d) Click on Custom Level
+e) Ensure that "Initialize and script active x controls is not marked safe for scripting" is enabled.		
+-->
+
+<html>
+<head>
+<hta:application id="hta" 
+    applicationname="GCode_Nut_Recess"
+    caption="yes" 
+    contextmenu="yes"
+    innerborder="no"
+    navigable="yes" 
+    scroll="no"
+    scrollflat="yes" 
+    selection="yes"
+    singleinstance="yes"
+    sysmenu="yes" 
+    windowState="normal" >
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>GCode Knock-in Nut Recess</title>
+<script type="text/javascript" src="_script_functions.js"></script>
+
+<script type="text/javascript">
+<!--
+
+var base_d = 20;
+var base_t = 1;
+var cylinder_d = 8;
+var cylinder_t = 10;
+var spike_d = 3;
+var spike_t = 5;
+
+var d_cutter = 2.2;		// cutter diameter
+var z_drill = 2;
+var d_drill = 2;
+var z_save =  2;		// save Z height
+var z_inc = 2;			// Z increment per turn
+
+var dir_cw = false;		// clock wise direction?
+var use_offset = false;	// use work-pos as center coordinate?
+var offset_x = 0;
+var offset_y = 0;
+
+var header = "G90 G21 ";	// use mm
+var footer = "M30 ";	// program end
+
+var finalGCode = "";
+var headerCode = ""
+var copyCode = "";
+var lineCounter= 0;
+var last_gnr=0;		// needed in write_GCodeLine_XY
+
+function OnLoad()
+{   var xx=560;
+    var yy=1000;
+    try { window.resizeTo(xx,yy);}         catch(err){}
+    try { window.moveTo(screen.width - xx, 0);}     catch(err){}
+	preselect_OnClick();
+	setInterval("poll_positions()", 500);
+}
+
+function poll_positions()
+{	read_GRBL_Plotter_Settings();	// in _script_functions.js
+	html_position.innerText = "Actual work position: X:"+GRBL_Plt_work_x+" Y:"+GRBL_Plt_work_y;
+}
+
+
+var startTime = new Date();
+function start_OnClick()
+{   html_info.innerText = "";
+	startTime = new Date();
+
+	read_GRBL_Plotter_Settings();	// in _script_functions.js
+	read_SettingsFromForm();
+	create_GCode();
+
+	var endTime = new Date();
+	var timeDiff = (endTime - startTime)/1000; //in s
+
+	copyCode = headerCode + finalGCode;
+	codeForm.result.value = copyCode;
+	setTimeout(copy_content,500);	// delayed copy to force <textarea> to show content
+}
+
+function copy_content()
+{	codeForm.result.select();
+	document.execCommand('copy');
+	set_GRBL_Plotter_Update();		// in _script_functions.js
+	
+	endTime = new Date();
+	timeDiff = (endTime - startTime)/1000; //in s
+	codeForm.result.value += "( Elapsed time:"+timeDiff+" after copy to clipboard )\r\n";
+}
+
+function create_GCode()
+{	headerCode  = "( GCode Knock-in Nut Recess by GRBL-Plotter )\r\n";
+	headerCode  += "( Cutter diameter: "+d_cutter+" )\r\n";
+	headerCode  += "( Z increment:     "+z_inc+" )\r\n";
+	headerCode  += "( Feedrates:   XY: "+GRBL_Plt_feedrate_xy+"   Z: "+GRBL_Plt_feedrate_z+" )\r\n";
+	headerCode  += "( Selection: "+codeForm.preselect[codeForm.preselect.selectedIndex].text+" )\r\n";
+	headerCode  += "( A Overall diameter: "+base_d+" )\r\n";
+	headerCode  += "( B Total height:     "+cylinder_t+" )\r\n";
+	headerCode  += "( C Barrel diameter:  "+cylinder_d+" )\r\n";
+	headerCode  += "( D Flange thickness: "+base_t+" )\r\n";
+	headerCode  += "( E Prong diameter:   "+spike_d+" )\r\n";
+	headerCode  += "( F Prong height:     "+spike_t+" )\r\n";
+	if ((codeForm.drill_enable.checked) && (z_drill > cylinder_t))
+		headerCode  += "( Drill hole, dimaeter: "+d_drill+" depth: "+z_drill+" )\r\n";
+
+	var r = d_cutter/2;
+	var z;
+	
+	offset_x = 0;
+	offset_y = 0;
+	if (use_offset)
+	{	offset_x = parseFloat(GRBL_Plt_work_x);
+	    offset_y = parseFloat(GRBL_Plt_work_y);
+	}
+
+	finalGCode  = header + "(internal header data)\r\n";
+	finalGCode += GRBL_Plt_header + "(header from GRBL-Plotter)\r\n";
+	lineCounter= 5;
+	finalGCode += PenUp();
+	finalGCode += "M3 S" + GRBL_Plt_spindle_speed + " (Spindle on)\r\n";
+	finalGCode += "G4 P" + GRBL_Plt_spindle_delay + " (Delay)\r\n";
+
+/***** base *****/
+	finalGCode += G0(0, 0);
+	finalGCode += PenDown(0);
+	z = z_inc;
+	if (z > base_t) z = base_t;
+	finalGCode += "(<Figure Type=\"Base\" Size=\""+base_d+"\" Depth=\""+base_t+"\" D_Cutter=\""+d_cutter+"\">)\r\n";
+	while (z <= base_t)
+	{	
+		finalGCode += "(<Pass Z=\""+(-z)+"\">)\r\n";
+		finalGCode += PocketCircleZ(base_d, z, 0, 0);
+		if (z >= base_t) break;		
+		z += z_inc;
+		if (z > base_t) z = base_t;
+		finalGCode += "(</Pass>)\r\n";
+	}
+	finalGCode += "(</Figure>)\r\n";
+	
+/***** cylinder *****/
+    z = base_t + z_inc;
+	if (z > cylinder_t) z = cylinder_t;
+	finalGCode += "(<Figure Type=\"Cylinder\" Size=\""+cylinder_d+"\" Depth=\""+cylinder_t+"\" D_Cutter=\""+d_cutter+"\">)\r\n";
+    finalGCode += G0(0, 0);
+	finalGCode += PenDown(-base_t);
+
+	while (z <= cylinder_t)
+	{	
+		finalGCode += "(<Pass Z=\""+(-z)+"\">)\r\n";
+		finalGCode += PocketCircleZ(cylinder_d, z, 0, 0);
+		if (z >= cylinder_t) break;	
+		z += z_inc;
+		if (z > cylinder_t) z = cylinder_t;
+		finalGCode += "(</Pass>)\r\n";
+	}
+	finalGCode += "(</Figure>)\r\n";
+		
+/***** drill *****/
+	if ((codeForm.drill_enable.checked) && (z_drill > cylinder_t))
+    {
+        z = cylinder_t + z_inc;
+		if (z > z_drill) z = z_drill;
+		r = (d_drill - d_cutter) / 2;
+		if (r < 0)
+			r=0;
+		finalGCode += "(<Figure Type=\"Drill\" Diameter=\""+d_drill+"\" Depth=\""+z_drill+"\" D_Cutter=\""+d_cutter+"\">)\r\n";
+        finalGCode += G0(0, 0);
+		finalGCode += PenDown(-cylinder_t);
+
+		while (z <= z_drill)
+		{	
+			finalGCode += PocketCircleZ(d_drill, z, 0, 0);
+			if (z >= z_drill) break;		
+			z += z_inc;
+			if (z > z_drill) z = z_drill;		
+		}	
+		finalGCode += "(</Figure>)\r\n";
+	}
+	
+/***** spikes *****/
+	for (a=0; a < 4; a++)
+	{	z = z_inc;
+		if (z > spike_t) z = spike_t;
+		finalGCode += "(<Figure Type=\"Spike_"+a+"\" Size=\""+spike_d+"\" Depth=\""+spike_t+"\" D_Cutter=\""+d_cutter+"\">)\r\n";
+		finalGCode += PenUp();
+		
+		spikeX = (base_d - spike_d)/2 * Math.cos(a * Math.PI/2);
+		spikeY = (base_d - spike_d)/2 * Math.sin(a * Math.PI/2);
+        finalGCode += G0(spikeX, spikeY);
+        finalGCode += PenDown(0);
+		while (z <= spike_t)
+		{	
+			finalGCode += "(<Pass Z=\""+(-z)+"\">)\r\n";
+			finalGCode += PocketCircleZ(spike_d, z, spikeX, spikeY);
+			if (z >= spike_t) break;			
+			z += z_inc;
+			if (z > spike_t) z = spike_t;
+			finalGCode += "(</Pass>)\r\n";
+		}
+		finalGCode += "(</Figure>)\r\n";
+	}
+
+	finalGCode += PenUp();
+		
+	finalGCode += "M5 (Spindle off)\r\n";
+	finalGCode += GRBL_Plt_footer + "(footer from GRBL-Plotter)\r\n";;
+	finalGCode += footer + "(internal footer data)\r\n";;
+}
+
+function PocketCircleZ(finalD, finalZ, centerX, centerY)
+{	tmpCode="";
+	if (finalD <= d_cutter)
+	{	tmpCode += G1(centerX,centerY);				// smallest drill is d_cutter
+		tmpCode += PenDown(-finalZ);	
+	}
+	else if (finalD <= (d_cutter*2))
+	{	r = (finalD - d_cutter)/2;
+        tmpCode += G1(centerX + r, centerY);
+        tmpCode +=G2Z(centerX + r, centerY, -r, 0, -finalZ);				// just one circle is enough
+	}
+	else
+	{	r = d_cutter/2 * 0.75;
+		tmpCode += G1(r,0);
+		tmpCode += G2Z(r,0,-r,0,-finalZ);				
+		tmpCode += spiralIn2Out(d_cutter/2, (finalD - d_cutter)/2 - (d_cutter/2 * 0.1), (d_cutter/2 * 0.75), 0);
+		r = (finalD - d_cutter)/2;					// final outer circle
+		tmpCode += G1(r+centerX, centerY);	
+		tmpCode += G2(r+centerX, centerY, -r, 0);		
+	}
+	return tmpCode;
+}
+
+// remove inner material after each turn
+function spiralIn2Out(r_in, r_end, inc_radius, a_start)
+{
+	var r = r_in;
+	var a_step = 0.5;
+	var a = a_start;
+	var code = "";
+	while (r < r_end)
+	{
+		code += write_GCodeLine_XY(1, r, a);
+		a_step = Math.asin(1/r);
+		r_step = inc_radius*a_step/(2*Math.PI);
+		
+		a -= a_step;
+		r += r_step;
+	}
+	return code;
+}
+
+function G0(x,y)
+{	last_gnr=0; lineCounter++;
+	return "G0 X" + (x + offset_x).toFixed(GRBL_Plt_decimals) + " Y" + (y + offset_y).toFixed(GRBL_Plt_decimals) + "\r\n";
+}
+function PenDown(z)
+{	last_gnr=0; lineCounter++;
+	return "G1 Z" + z.toFixed(GRBL_Plt_decimals) + " F" + GRBL_Plt_feedrate_z + "\r\n";		// Tool down
+}
+function PenUp()
+{	last_gnr=0; lineCounter++;
+	return "G0 Z" + z_save.toFixed(GRBL_Plt_decimals) + "\r\n";
+}
+function G1(x,y)
+{	last_gnr=1; lineCounter++;
+	return "G1 X" + (x + offset_x).toFixed(GRBL_Plt_decimals) + " Y" + (y + offset_y).toFixed(GRBL_Plt_decimals) + " F" + GRBL_Plt_feedrate_xy + "\r\n";
+}
+function G2(x,y,i,j)
+{	last_gnr=2; lineCounter++;
+	return "G2 X" + (x + offset_x).toFixed(GRBL_Plt_decimals) + " Y" + (y + offset_y).toFixed(GRBL_Plt_decimals) + " I" + i.toFixed(GRBL_Plt_decimals) + " J" + j.toFixed(GRBL_Plt_decimals) + " F" + GRBL_Plt_feedrate_xy + "\r\n";
+}
+function G2Z(x,y,i,j,z)
+{	last_gnr=2; lineCounter++;
+	return "G2 X" + (x + offset_x).toFixed(GRBL_Plt_decimals) + " Y" + (y + offset_y).toFixed(GRBL_Plt_decimals) + " I" + i.toFixed(GRBL_Plt_decimals) + " J" + j.toFixed(GRBL_Plt_decimals)+ " Z" + z.toFixed(GRBL_Plt_decimals) + " F" + GRBL_Plt_feedrate_xy + "\r\n";
+}
+function G3(x,y,i,j)
+{	last_gnr=2; lineCounter++;
+	return "G3 X" + (x + offset_x).toFixed(GRBL_Plt_decimals) + " Y" + (y + offset_y).toFixed(GRBL_Plt_decimals) + " I" + i.toFixed(GRBL_Plt_decimals) + " J" + j.toFixed(GRBL_Plt_decimals) + " F" + GRBL_Plt_feedrate_xy + "\r\n";
+}
+
+var last_gnr=0;
+function write_GCodeLine_XY(gnr, r, a)
+{	var x1 = r * Math.cos(a);
+	var y1 = r * Math.sin(a);
+	if (dir_cw)
+		y1= -y1;
+	var gmode = "";
+	var feed = "";
+	if ((gnr == 1) && (gnr != last_gnr))
+	{	gmode = "G" + gnr + " ";
+		feed = " F" + GRBL_Plt_feedrate_xy;
+	}
+	last_gnr = gnr; lineCounter++;
+	return gmode + "X" + (x1 + offset_x).toFixed(GRBL_Plt_decimals) + " Y" + (y1 + offset_y).toFixed(GRBL_Plt_decimals) + feed + "\r\n";
+}
+
+function read_SettingsFromForm()
+{	
+	base_d = Math.abs(parseFloat(codeForm.base_d.value));
+	base_t = Math.abs(parseFloat(codeForm.base_t.value));
+	cylinder_d = Math.abs(parseFloat(codeForm.cylinder_d.value));
+	cylinder_t = Math.abs(parseFloat(codeForm.cylinder_t.value));
+	spike_d = Math.abs(parseFloat(codeForm.spike_d.value));
+	spike_t = Math.abs(parseFloat(codeForm.spike_t.value));
+
+	d_cutter = 	Math.abs(parseFloat(codeForm.d_cutter.value));
+	z_inc = 	Math.abs(parseFloat(codeForm.z_inc.value));
+	z_drill = 	Math.abs(parseFloat(codeForm.drill_max.value));
+	d_drill =  	Math.abs(parseFloat(codeForm.d_drill.value));
+	use_offset = codeForm.offset_enable.checked
+}
+
+function preselect_OnClick()
+{	var txt = codeForm.preselect.value;
+	sval = txt.split(";");
+	codeForm.d_drill.value = sval[0];
+	codeForm.base_d.value = sval[1];
+	codeForm.cylinder_t.value = sval[2];
+	codeForm.cylinder_d.value = sval[3];
+	codeForm.base_t.value = sval[4];
+	codeForm.spike_d.value = sval[5];
+	codeForm.spike_t.value = sval[6];
+}
+
+//-->
+</script>
+<style type="text/css">
+body {margin:1px; }
+div, td, textarea { font-size:12px;  }
+select, input { font-size:12px;  }
+</style>
+
+</head>
+<body bgcolor="#F0F0F0" OnLoad='OnLoad();' style="margin:0;">
+<basefont face="arial, verdana, sans-serif" >
+<form name="codeForm">
+
+<table width='100%'>
+<tr>
+  <td valign="top"><table border>
+    <tr><th colspan="3"><b>GCode Knock-in Nut Recess</b></th></tr>
+	<tr><td colspan="3">Mills a recess for a Knock_-n nut.<br>Following settings will be taken from GRBL-Plotter:<br>
+	decimal places, XY feedrate, Z feedrate, GCode header, GCode footer.<br>
+	GCode can be checked in 3D online on <a href="https://ncviewer.com/" target="_blank">https://ncviewer.com/</a><br>- click 'New File', 'Paste (ctrl-V)' and 'PLOT'.<br>
+	Or <a href="https://nraynaud.github.io/webgcode/" target="_blank">https://nraynaud.github.io/webgcode/</a></td></tr>
+    <tr><td colspan="3" ><b><font color="red">Usage of the script and the generated GCode is on your own risk!</font></b></td></tr>
+	<tr><td width="30%">Preselection</td><td colspan="2"><select name="preselect" onchange="preselect_OnClick();">
+			<option value=" 4.5;20.0; 8;6.0;1.3;3.5;5.5">Knock-in Nut M4</option>
+			<option value=" 5.5;20.0; 8;6.6;1.3;3.5;6.0">Knock-in Nut M5</option>
+			<option value=" 6.5;19.5;10;7.5;1.5;3.5;7.0">Knock-in Nut M6</option>
+			<option value=" 8.5;22.0;10;9.5;1.8;3.5;8.5">Knock-in Nut M8</option>
+			<option value="10.5;24.0;12; 12;2.0;3.5;8.5">Knock-in Nut M10</option>
+		</select>		
+	</td></tr>
+
+	<tr><td colspan="2"><b>Knock-in Nut</b></td><td rowspan="7"><image src="GCode_Knock_in_Nut_Recess.png" width="300px"></td></tr>
+	<tr><td width="30%">A) Overall diameter</td><td><input type="text" name="base_d" value="20" size="4" style="text-align:right;"></td></tr>
+	<tr><td width="30%">B) Total height</td><td><input type="text" name="cylinder_t" value="10" size="4" style="text-align:right;"></td></tr>
+	<tr><td width="30%">C) Barrel diameter</td><td><input type="text" name="cylinder_d" value="8" size="4" style="text-align:right;"></td></tr>
+	<tr><td width="30%">D) Flange thickness</td><td><input type="text" name="base_t" value="1" size="4" style="text-align:right;"></td></tr>
+	<tr><td width="30%">E) Prong diameter</td><td><input type="text" name="spike_d" value="3" size="4" style="text-align:right;"></td></tr>
+	<tr><td width="30%">F) Prong height</td><td><input type="text" name="spike_t" value="5" size="4" style="text-align:right;"></td></tr>
+
+	<tr><td>Drill screw hole</td><td colspan="2"><input type="checkbox" id="drill_enable" name="drill_enable" value=""> 
+		<input type="text" name="d_drill" value="3.2" size="4" style="text-align:right;">Diameter   
+		<input type="text" name="drill_max" value="10" size="4" style="text-align:right;">Final depth</td></tr>
+			
+	<tr><td>Cutter diameter</td><td colspan="2"><input type="text" name="d_cutter" value="2.2" size="4" style="text-align:right;"></td></tr>
+	<tr><td>Z increment</td><td colspan="2"><input type="text" name="z_inc" value="1" size="4" style="text-align:right;"></td></tr>
+
+	<tr><td rowspan="2">Offset center</td><td colspan="2"><input type="checkbox" id="offset_enable" name="offset_enable" value="">Offset to current work position</td></tr>
+	<tr><td colspan="2" id='html_position'></td></tr>
+
+	<tr><td colspan="3"><input name="btn_start" type="BUTTON" value="Create GCode and copy to clipboard (paste in GRBL-Plotter via CTRL-V)" onclick="start_OnClick();" style="width:520px";></td></tr>
+    <tr><td colspan="3" id='html_info'></td></tr>
+    <tr><td colspan="3"><textarea autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" name="result" wrap="off" cols="66" rows="22" readonly>
+	</textarea></td></tr>
+    <tr><td><b>Status </b></td><td colspan="2" id='html_status'></td></tr>
+  </table></td>
+</tr>
+<tr><td><font size="-2">SH 19.11.2021</font></td></tr>
+</table>  
+
+</form>
+</body>
+</html>
