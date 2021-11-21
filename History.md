@@ -2,6 +2,13 @@
 Needs to be read from the bottom up ;-)  
  
  
+### 2021-11 Version 1.6.3.x 
+* option to show path-nodes (vertices) (=gcode coordinates) of graphics in 2D view (will be switched off on each program start to save recources) - [File - Setup - Program appearance - 2D-View]
+* show status of D0-D3 of grbl-Mega-5X enable and set description: [File - Setup - Program behavior - Program start - Pin description]
+* new extension "knock-in nut recess" [G-Code Creation - Extensions]
+* support VoidMicro controller with just two grbl-axis - not tested, feedback is welcome
+* Bugfix: remove short moves
+ 
 ### 2021-10 Version 1.6.2.x 
 Reworking of the camera form https://grbl-plotter.de/index.php?id=form-camera&setlang=en:
 Different camera mountings:
