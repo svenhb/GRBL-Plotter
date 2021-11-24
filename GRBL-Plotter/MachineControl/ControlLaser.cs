@@ -22,20 +22,18 @@
  * 2019-11-10 add .Replace(',', '.')
  * 2021-04-09 split finish commands
  * 2021-07-02 code clean up / code quality
+ * 2021-11-23 set default for tprop
 */
 
 using System;
 using System.Windows.Forms;
-
-#pragma warning disable CA1303	// Do not pass literals as localized parameters
-#pragma warning disable CA1305
-#pragma warning disable CA1307
 
 namespace GrblPlotter
 {
     public partial class ControlLaser : Form
     {
         internal string gcode;
+        private ToolProp tprop = new ToolProp();
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -48,32 +46,37 @@ namespace GrblPlotter
         }
 
         private void RunDelay()
-        {   if (nUDMotionDelay.Value > 0)
-            {   SendCommandEvent(new CmdEventArgs("(++++++++++ Delay)"));
+        {
+            if (nUDMotionDelay.Value > 0)
+            {
+                SendCommandEvent(new CmdEventArgs("(++++++++++ Delay)"));
                 SendCommandEvent(new CmdEventArgs((string.Format("G1 M3 S{0} F100", nUDMotionDelayPower.Value).Replace(',', '.'))));
                 SendCommandEvent(new CmdEventArgs((string.Format("G4 P{0}", nUDMotionDelay.Value).Replace(',', '.'))));
             }
         }
 
-        private void Finish(bool useZ=false)
+        private void Finish(bool useZ = false)
         {
             SendCommandEvent(new CmdEventArgs("(++++++++++ Move back to start pos.)"));
             if (useZ)
                 SendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0 Z0 M5")));
             else
-            {   SendCommandEvent(new CmdEventArgs(string.Format("S0 G4 P0.5")));
+            {
+                SendCommandEvent(new CmdEventArgs(string.Format("S0 G4 P0.5")));
                 SendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0")));
                 SendCommandEvent(new CmdEventArgs(string.Format("M5")));
             }
 
             if (nUDMotionY.Value != 0)
-            {   SendCommandEvent(new CmdEventArgs((string.Format("G91 G0 Y{0}", nUDMotionY.Value).Replace(',', '.'))));
+            {
+                SendCommandEvent(new CmdEventArgs((string.Format("G91 G0 Y{0}", nUDMotionY.Value).Replace(',', '.'))));
                 SendCommandEvent(new CmdEventArgs("G90"));
             }
         }
 
         private void BtnScanZ_Click(object sender, EventArgs e)
-        {   string m = rBM3.Checked ? "3" : "4";
+        {
+            string m = rBM3.Checked ? "3" : "4";
             SendCommandEvent(new CmdEventArgs("(++++++++++ Scan Z)"));
             SendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0 Z0")));
             RunDelay();
@@ -90,7 +93,7 @@ namespace GrblPlotter
             if (rangeSpeed == 0)
             { MessageBox.Show("There is no differnece between 'from' and 'to speed."); return; }
 
-            decimal steps = Math.Abs(rangeSpeed / nUDSpeedStep.Value)+1;
+            decimal steps = Math.Abs(rangeSpeed / nUDSpeedStep.Value) + 1;
             decimal xWidth = nUDMotionX.Value / steps;
             SendCommandEvent(new CmdEventArgs("(++++++++++ Scan Speed)"));
             SendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0")));
@@ -116,7 +119,7 @@ namespace GrblPlotter
             if (rangePower == 0)
             { MessageBox.Show("There is no differnece between 'from' and 'to power."); return; }
 
-            decimal steps = Math.Abs(rangePower / nUDPowerStep.Value) +1;
+            decimal steps = Math.Abs(rangePower / nUDPowerStep.Value) + 1;
             decimal xWidth = nUDMotionX.Value / steps;
             SendCommandEvent(new CmdEventArgs("(++++++++++ Scan Power)"));
             SendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0")));
@@ -205,7 +208,6 @@ namespace GrblPlotter
             }
         }
 
-        ToolProp tprop;
         private void BtnToolUpdate_Click(object sender, EventArgs e)
         {
             int toolCount = ToolTable.Init();

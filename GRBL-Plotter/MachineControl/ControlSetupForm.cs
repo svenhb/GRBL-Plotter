@@ -29,6 +29,7 @@
  * 2021-02-06 add gamePad PointOfViewController0
  * 2021-03-28 btnDeleteToolTable_Click only delete if a file is selected
  * 2021-07-26 code clean up / code quality
+ * 2021-11-23 line 79 add try/catch
 */
 
 using System;
@@ -73,9 +74,17 @@ namespace GrblPlotter
         private void SetupForm_Load(object sender, EventArgs e)
         {
             string tpath = Datapath.Tools;
-            if (!System.IO.Directory.Exists(tpath))
-                System.IO.Directory.CreateDirectory(tpath);
-
+			try
+            {	if (!System.IO.Directory.Exists(tpath))
+					System.IO.Directory.CreateDirectory(tpath);
+			}
+			catch (Exception err){ 
+				Properties.Settings.Default.guiLastEndReason += "Error creating path:"+tpath;
+				Datapath.AppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+				MessageBox.Show("Path does not exist and could not be created: "+tpath+"\r\nPath will be modified to "+ Datapath.AppDataFolder, "Error");
+				Logger.Error(err,"SetupForm_Load path nok:{0}, changed to: {1}",tpath, Datapath.AppDataFolder);
+				tpath = Datapath.Tools;
+			}
             defaultToolList = tpath + "\\" + ToolTable.DefaultFileName;
 
             if ((!ImportCSVToDgv(defaultToolList)) || (dGVToolList.Rows.Count == 1))

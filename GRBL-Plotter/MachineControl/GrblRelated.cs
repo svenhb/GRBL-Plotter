@@ -67,6 +67,7 @@ namespace GrblPlotter
         public static bool grblSimulate = false;
         private static readonly Dictionary<int, float> settings = new Dictionary<int, float>();    // keep $$-settings
         private static readonly Dictionary<string, XyzPoint> coordinates = new Dictionary<string, XyzPoint>();    // keep []-settings
+        private static readonly Dictionary<string, string> messages = new Dictionary<string, string>();  
 
         private static XyzPoint _posMarker = new XyzPoint(0, 0, 0);
         private static double _posMarkerAngle = 0;
@@ -144,6 +145,7 @@ namespace GrblPlotter
                 return -1;
         }
 
+        /***** processGrblFeedbackMessage *****/
         // store gcode parameters https://github.com/gnea/grbl/wiki/Grbl-v1.1-Commands#---view-gcode-parameters
         public static void SetCoordinates(string id, string value, string info)
         {
@@ -428,6 +430,17 @@ namespace GrblPlotter
             //axisA = true; axisB = true; axisC = true;     // for test only
         }
 
+        internal static void GetOtherFeedbackMessage(string[] dataField)
+        {
+            string tmp = string.Join(":",dataField);
+            if (messages.ContainsKey(dataField[0]))
+                messages[dataField[0]] = tmp;
+            else
+                messages.Add(dataField[0], tmp);
+        }
+
+
+
         public static string GetSettingDescription(string msgNr)
         {
             string msg = " no information found '" + msgNr + "'";
@@ -474,6 +487,8 @@ namespace GrblPlotter
         public static string GetAlarmDescription(string rxString)
         {
             string[] tmp = rxString.Split(':');
+            if (tmp.Length <= 1) return "no info " + tmp;
+
             string msg = " no information found for alarm-nr. '" + tmp[1] + "'";
             try
             {

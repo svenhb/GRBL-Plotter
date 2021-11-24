@@ -33,6 +33,7 @@
  * 2021-03-26 sendTo3rdCOM find 1st ')' not last
  * 2021-04-12 line 876 only send setup-command '$...' if system is IDLE
  * 2021-10-14 grbl 0.9 fix $10=3
+ * 2021-11-23 line 446 check dataField.Length, line 793 add if (serialPort.IsOpen) 
  */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -383,7 +384,8 @@ namespace GrblPlotter
             if (IsGrblVers0)	//	handle old format from grbl vers. 0.9
             {
                 if (dataField.Length > 3)   // get 1st part
-                {   if (dataField[1].StartsWith("WPos"))
+                {
+                    if (dataField[1].StartsWith("WPos"))
                     {
                         Grbl.GetPosition(iamSerial, dataField[1] + "," + dataField[2] + "," + dataField[3] + " ", ref posWork);
                         posMachine = posWork + posWCO;
@@ -441,15 +443,18 @@ namespace GrblPlotter
                         }
                     }
                 }
-                if (dataField[1].IndexOf("MPos") >= 0)
+                if (dataField.Length >= 2)
                 {
-                    axisCount = Grbl.GetPosition(iamSerial, dataField[1], ref posMachine);
-                    posWork = posMachine - posWCO;
-                }
-                else
-                {
-                    axisCount = Grbl.GetPosition(iamSerial, dataField[1], ref posWork);
-                    posMachine = posWork + posWCO;
+                    if (dataField[1].IndexOf("MPos") >= 0)
+                    {
+                        axisCount = Grbl.GetPosition(iamSerial, dataField[1], ref posMachine);
+                        posWork = posMachine - posWCO;
+                    }
+                    else
+                    {
+                        axisCount = Grbl.GetPosition(iamSerial, dataField[1], ref posWork);
+                        posMachine = posWork + posWCO;
+                    }
                 }
             }   // if (isGrblVers0)
             grblStateNow = Grbl.ParseStatus(status);            // get actual state
@@ -533,7 +538,7 @@ namespace GrblPlotter
             Logger.Info("grbl reset: '{0}'  isGrblVers0:{1}  isMarlin:{2}", rxStringTmp, IsGrblVers0, isMarlin);
 
             AddToLog("* Read grbl settings, hide response from '$$', '$#'");
-//            ReadSettings();
+            //            ReadSettings();
             if (Grbl.isVersion_0)
                 RequestSend("$10=3");   // grbl v 0.9 get WPos and MPos
             else
@@ -569,6 +574,7 @@ namespace GrblPlotter
             countPreventOutput = 10; countPreventEvent = 10;
             RequestSend("$$");  // get setup
             RequestSend("$#");  // get parameter
+            RequestSend("$I");  // get infos
         }
 
         /****************************************************************
@@ -584,7 +590,9 @@ namespace GrblPlotter
                 string info = "";
                 if (dataField.Length > 2)
                     info = dataField[2];
-                Grbl.SetCoordinates(dataField[0], dataField[1], info);    // store gcode parameters https://github.com/gnea/grbl/wiki/Grbl-v1.1-Commands#---view-gcode-parameters
+                // store gcode parameters https://github.com/gnea/grbl/wiki/Grbl-v1.1-Commands#---view-gcode-parameters
+                // store coordinates of PRB,G54,G55,G56,G57,G58,G59,G28,G30,G92,TLO
+                Grbl.SetCoordinates(dataField[0], dataField[1], info);
             }
             if (dataField[0].IndexOf("GC") >= 0)            // handle G-Code parser state [GC:G0 G54 G17 G21 G90 G94 M5 M9 T0 F0.0 S0]
             {
@@ -615,14 +623,24 @@ namespace GrblPlotter
 
             else if (dataField[0].IndexOf("MSG") >= 0) //[MSG:Pgm End]
             {
-                if (dataField[1].IndexOf("Pgm End") >= 0)
-                {
-                    if ((isStreaming) || (IsHeightProbing))
-                    {
-                        //          streamingFinish();
-                        //           requestSend("$G");
-                    }
-                }
+                Grbl.GetOtherFeedbackMessage(dataField);
+            }
+            // [VER:], [AXS:] and [OPT:]: Indicates build info data from a $I user query. 
+            // https://github.com/fra589/grbl-Mega-5X/wiki/grbl-Mega-5X-v1.2-interface#feedback-messages
+            else if (dataField[0].IndexOf("VER") >= 0)
+            {
+                Grbl.GetOtherFeedbackMessage(dataField);
+                Logger.Info("Feedback> {0} ", rxString);
+            }
+            else if (dataField[0].IndexOf("OPT") >= 0)
+            {
+                Grbl.GetOtherFeedbackMessage(dataField);
+                Logger.Info("Feedback> {0} ", rxString);
+            }
+            else if (dataField[0].IndexOf("AXS") >= 0)
+            {
+                Grbl.GetOtherFeedbackMessage(dataField);
+                Logger.Info("Feedback> {0} ", rxString);
             }
         }
 
@@ -700,7 +718,7 @@ namespace GrblPlotter
             countMissingStatusReport = (int)(10000 / timerSerial.Interval);
 
             string[] splt = rxStringTmp.Split('=');
-      //      int id;
+            //      int id;
             if (int.TryParse(splt[0].Substring(1), out int id))
             {
                 if (!IsGrblVers0)
@@ -772,7 +790,12 @@ namespace GrblPlotter
                     {
                         if (tmp == "$#") countPreventEvent = 5;                  // no response echo for parser state
                         if (tmp == "$H") { isHoming = true; AddToLog("Homing"); Logger.Info("requestSend Start Homing"); }
-                        if (tmp == "$X") { serialPort.Write(tmp + lineEndTXgrbl); return serialPort.IsOpen; }
+                        if (tmp == "$X")
+                        {
+                            if (serialPort.IsOpen)
+                                serialPort.Write(tmp + lineEndTXgrbl);
+                            return serialPort.IsOpen;
+                        }
                         lock (sendDataLock)
                         {
                             sendBuffer.Add(tmp, lineNr);
@@ -1080,7 +1103,7 @@ namespace GrblPlotter
                 if (!Grbl.grblSimulate)
                     LogError("! Sending line", err);
                 UpdateControls();
-            //    throw;
+                //    throw;
             }
             if (logTransmit) Logger.Trace("Ser:{0} TX '{1}'", iamSerial, data);
         }

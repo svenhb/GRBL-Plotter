@@ -138,19 +138,23 @@ namespace GrblPlotter
         }
         private byte GetMatchingCamIndex(byte index, string camName)
         {
-            if (camName != videosources[index].Name)
+            try
             {
-                Logger.Error("GetMatchingCamIndex camIndex:{0}  assosiatedName:'{1}'  storedName:'{2}'", index, videosources[index].Name, camName);
-                for (byte i = 0; i < videosources.Count; i++)
+                if (camName != videosources[index].Name)
                 {
-                    if (camName == videosources[i].Name)
+                    Logger.Error("GetMatchingCamIndex camIndex:{0}  assosiatedName:'{1}'  storedName:'{2}'", index, videosources[index].Name, camName);
+                    for (byte i = 0; i < videosources.Count; i++)
                     {
-                        return i;
-                        break;
+                        if (camName == videosources[i].Name)
+                        {
+                            return i;
+                            break;
+                        }
                     }
                 }
+                return index;
             }
-            return index;
+            catch (Exception err) { Logger.Error(err, "GetMatchingCamIndex "); return index; }
         }
         private void SetPens()
         {

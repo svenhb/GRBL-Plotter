@@ -354,11 +354,12 @@ namespace GrblPlotter
                     {
                         string log = string.Format("Line {0} ", (newLine.lineNumber + 1));
                         log += string.Format("F:{0} S:{1} Z:{2:0.000} ", HalfTone.lastF, HalfTone.lastS, HalfTone.lastZ);
-                        ToolProp penProp = new ToolProp
-                        {
-                            Color = Properties.Settings.Default.gui2DColorPenDown,    // Color.Pink;
-                            Diameter = (float)Properties.Settings.Default.gui2DWidthPenDown
-                        };
+                        ToolProp penProp = new ToolProp(1, Properties.Settings.Default.gui2DColorPenDown, "PenDown");
+                        /*{
+                             Color = Properties.Settings.Default.gui2DColorPenDown,    // Color.Pink;
+                             Diameter = (float)Properties.Settings.Default.gui2DWidthPenDown
+                         };*/
+                        penProp.Diameter = (float)Properties.Settings.Default.gui2DWidthPenDown;
 
                         if (countZ == 0)
                             HalfTone.lastZ = double.MaxValue;
@@ -443,7 +444,7 @@ namespace GrblPlotter
                 oldLine = new GcodeByLine(newLine);       		// get copy of newLine      
                 gcodeList.Add(new GcodeByLine(newLine));    	// add parsed line to list
 
-                if (updateFigureLineNeeded)
+                if (updateFigureLineNeeded) // f (line.Contains(XmlMarker.FigureStart)) 
                 {
                     coordList[XmlMarker.tmpFigure.LineStart].actualG = 0;
                     if (xyPosChanged)
@@ -471,7 +472,6 @@ namespace GrblPlotter
 
             }   // finish reading lines
             /*********************************************************************/
-
             if (showArrow || showId)
             {
                 ModifyPenUpPath(worker, e, ref progressSubOld, progressMainFactor, showArrow, showId);
@@ -740,7 +740,6 @@ namespace GrblPlotter
                 if (Properties.Settings.Default.gui2DColorPenDownModeEnable && Graphic.SizeOk())    // enable color mode
                 {
                     PathData tmp = new PathData(XmlMarker.tmpFigure.PenColor, XmlMarker.tmpFigure.PenWidth, offset2DView);      // set color, width, pendownpath
-                                                                                                                  //Logger.Trace("pathObject  {0}   {1}", xmlMarker.tmpFigure.penColor, xmlMarker.tmpFigure.penWidth);
                     pathObject.Add(tmp);
                     pathActualDown = pathObject[pathObject.Count - 1].path;
                 }
@@ -812,7 +811,7 @@ namespace GrblPlotter
                 }
                 else
                 {
-                    PathData tmp = new PathData(XmlMarker.tmpFigure.PenColor, width, offset2DView);      // set color, width, pendownpath                                                                                                                            //Logger.Trace("pathObject  {0}   {1}", xmlMarker.tmpFigure.penColor, xmlMarker.tmpFigure.penWidth);
+                    PathData tmp = new PathData(XmlMarker.tmpFigure.PenColor, width, offset2DView);      // set color, width, pendownpath                                                                                                                           
                     pathObject.Add(tmp);
                     pathActualDown = pathObject[pathObject.Count - 1].path;
                     showHalftonePath.Add(width, pathObject.Count - 1);          // store new pen-width with according index
