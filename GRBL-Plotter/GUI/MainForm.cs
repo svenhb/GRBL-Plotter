@@ -276,9 +276,10 @@ namespace GrblPlotter
             Exception ex = e.Exception;
             Logger.Error(ex, "Application_ThreadException: ");
             MessageBox.Show(ex.Message + "\r\n\r\n" + GetAllFootprints(ex) + "\r\n\r\nCheck " + Datapath.AppDataFolder + "\\logfile.txt", "Main Form Thread exception");
+            Properties.Settings.Default.guiLastEndReason += "ThreadException: " + GetAllFootprints(ex, false) + "---";
             if (MessageBox.Show(Localization.GetString("mainQuit"), Localization.GetString("mainProblem"), MessageBoxButtons.YesNo) == DialogResult.Yes)
             { 	Properties.Settings.Default.guiLastEnd = DateTime.Now.Ticks;
-				Properties.Settings.Default.guiLastEndReason += "ThreadException: " + GetAllFootprints(ex);
+				//Properties.Settings.Default.guiLastEndReason += "ThreadException: " + GetAllFootprints(ex);
 				Application.Exit(); 
 			}
         }
@@ -295,27 +296,31 @@ namespace GrblPlotter
                 Exception ex = (Exception)e.ExceptionObject;
                 Logger.Error(ex, "UnhandledException - Quit GRBL Plotter? ");
                 MessageBox.Show(ex.Message + "\r\n\r\n" + GetAllFootprints(ex) + "\r\n\r\nCheck " + Datapath.AppDataFolder + "\\logfile.txt", "Main Form Application exception");
+                Properties.Settings.Default.guiLastEndReason += "UnhandledException: " + GetAllFootprints(ex, false) +"---";
                 if (MessageBox.Show(Localization.GetString("mainQuit") + "\r\n\r\nCheck " + Datapath.AppDataFolder + "\\logfile.txt", Localization.GetString("mainProblem"), MessageBoxButtons.YesNo) == DialogResult.Yes)
                 { 	Properties.Settings.Default.guiLastEnd = DateTime.Now.Ticks;
-					Properties.Settings.Default.guiLastEndReason += "UnhandledException: " + GetAllFootprints(ex);
+					//Properties.Settings.Default.guiLastEndReason += "UnhandledException: " + GetAllFootprints(ex);
 					Application.Exit(); 
 				}
             }
         }
-        public static string GetAllFootprints(Exception exept)
+        public static string GetAllFootprints(Exception exept, bool full=true)
         {
             var st = new StackTrace(exept, true);
             var frames = st.GetFrames();
             var traceString = new StringBuilder();
+            traceString.Append("Exept: " + exept.Message);
 
             foreach (var frame in frames)
             {
                 if (frame.GetFileLineNumber() < 1)
                     continue;
 
-                traceString.Append("File: " + frame.GetFileName());
+                traceString.Append(", File: " + frame.GetFileName());
                 traceString.Append(", Method:" + frame.GetMethod().Name);
                 traceString.Append(", LineNumber: " + frame.GetFileLineNumber());
+                if (!full) 
+                    break;
                 traceString.Append("  -->  ");
             }
             return traceString.ToString();

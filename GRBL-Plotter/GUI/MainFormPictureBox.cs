@@ -249,9 +249,9 @@ namespace GrblPlotter
                 if (Properties.Settings.Default.gui2DRulerShow)
                     e.DrawPath(penRuler, VisuGCode.pathRuler);
 
-                if (Properties.Settings.Default.gui2DColorPenDownModeEnable && !VisuGCode.largeDataAmount)    // Show PenDown path in colors from imported graphics
+                if (Properties.Settings.Default.gui2DColorPenDownModeEnable && (!VisuGCode.largeDataAmount) && (VisuGCode.pathObject.Count > 0) && (VisuGCode.pathObject[0].path.PointCount > 0))    // Show PenDown path in colors from imported graphics
                 {
-                    if (VisuGCode.pathObject.Count > 0)
+                    //if (VisuGCode.pathObject.Count > 0)
                     {	if (VisuGCode.ShiftTilePaths)
                         {
                             // GCodeSimulate.cs VisuGCode.ProcessedPath.offset2DView updated via 

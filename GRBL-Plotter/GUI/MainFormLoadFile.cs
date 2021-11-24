@@ -42,6 +42,7 @@
  * 2021-10-01 disable showPaths during code-load line 230
  * 2021-11-11 track prog-start and -end
  * 2021-11-17 LoadExtensionList - don't list pictures png, jpg
+ * 2021-11-23 line 192 add try/catch
 */
 
 using System;
@@ -189,10 +190,12 @@ namespace GrblPlotter
 
             pictureBox1.Invalidate();                   // resfresh view
 
-            fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
+			try {	fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);}
+			catch (Exception err) {	Logger.Error(err, "NewCodeStart - fCTBCode.UnbookmarkLine({0}) ",fCTBCodeClickedLineLast);}
             fCTBCodeClickedLineNow = 0;
             fCTBCodeClickedLineLast = 0;
             fCTBCode.Clear();
+            ClearErrorLines();
 
             SetEditMode(false);
 
@@ -231,7 +234,8 @@ namespace GrblPlotter
             { FctbCheckUnknownCode(); }                              // check code
 
             Logger.Info("Object count:{0} KB  maxObjects:{1} KB  Process Gcode lines-showProgress:{2}", objectCount, maxObjects, (objectCount > maxObjects));
-			
+        //    ClearErrorLines();
+
             if (objectCount <= maxObjects)
             {
 
@@ -1478,35 +1482,39 @@ namespace GrblPlotter
         static readonly object lockSaveAction = new object();
         private void SaveStreamingStatus(int lineNr)
         {
-            lock (lockSaveAction)
+            try
             {
-                string fileName = Datapath.AppDataFolder + "\\" + fileLastProcessed + ".xml";  //System.Environment.CurrentDirectory
-                XmlWriterSettings set = new XmlWriterSettings
+                lock (lockSaveAction)
                 {
-                    Indent = true
-                };
-                XmlWriter content = XmlWriter.Create(fileName, set);
-                content.WriteStartDocument();
-                content.WriteStartElement("GCode");
-                content.WriteAttributeString("lineNr", lineNr.ToString());
-                if (lineNr > 0)
-                    content.WriteAttributeString("lineContent", fCTBCode.Lines[lineNr - 1]);
-                else
-                    content.WriteAttributeString("lineContent", fCTBCode.Lines[0]);
+                    string fileName = Datapath.AppDataFolder + "\\" + fileLastProcessed + ".xml";  //System.Environment.CurrentDirectory
+                    XmlWriterSettings set = new XmlWriterSettings
+                    {
+                        Indent = true
+                    };
+                    XmlWriter content = XmlWriter.Create(fileName, set);
+                    content.WriteStartDocument();
+                    content.WriteStartElement("GCode");
+                    content.WriteAttributeString("lineNr", lineNr.ToString());
+                    if (lineNr > 0)
+                        content.WriteAttributeString("lineContent", fCTBCode.Lines[lineNr - 1]);
+                    else
+                        content.WriteAttributeString("lineContent", fCTBCode.Lines[0]);
 
-                content.WriteStartElement("WPos");
-                content.WriteAttributeString("X", Grbl.posWork.X.ToString().Replace(',', '.'));
-                content.WriteAttributeString("Y", Grbl.posWork.Y.ToString().Replace(',', '.'));
-                content.WriteAttributeString("Z", Grbl.posWork.Z.ToString().Replace(',', '.'));
-                content.WriteEndElement();
+                    content.WriteStartElement("WPos");
+                    content.WriteAttributeString("X", Grbl.posWork.X.ToString().Replace(',', '.'));
+                    content.WriteAttributeString("Y", Grbl.posWork.Y.ToString().Replace(',', '.'));
+                    content.WriteAttributeString("Z", Grbl.posWork.Z.ToString().Replace(',', '.'));
+                    content.WriteEndElement();
 
-                content.WriteStartElement("Parser");
-                content.WriteAttributeString("State", _serial_form.parserStateGC);
-                content.WriteEndElement();
+                    content.WriteStartElement("Parser");
+                    content.WriteAttributeString("State", _serial_form.parserStateGC);
+                    content.WriteEndElement();
 
-                content.WriteEndElement();
-                content.Close();
+                    content.WriteEndElement();
+                    content.Close();
+                }
             }
+            catch (Exception err) { Logger.Error(err, "SaveStreamingStatus failed "); }
         }
 
         private int LoadStreamingStatus(bool setPause = false)

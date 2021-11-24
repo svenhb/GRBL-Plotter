@@ -24,6 +24,7 @@
  * 2021-03-05 line 118 error handling
  * 2021-07-02 code clean up / code quality
  * 2021-09-03 BtnStreamStart_Click switch from click to mouseUp event
+ * 2021-11-23 line 121, 403, 406 add try/catch
 */
 
 using GrblPlotter.GUI;
@@ -55,26 +56,30 @@ namespace GrblPlotter
         /***** thread save update *****/
         private void UpdateProgressBar(int codeProgress, int buffProgress)
         {
-            int cPrgs = codeProgress;
-            if (cPrgs < 0) cPrgs = 0; if (cPrgs > 100) cPrgs = 100;
-            int bPrgs = buffProgress;
-            if (bPrgs < 0) bPrgs = 0; if (bPrgs > 100) bPrgs = 100;
+            try
+            {
+                int cPrgs = codeProgress;
+                if (cPrgs < 0) cPrgs = 0; if (cPrgs > 100) cPrgs = 100;
+                int bPrgs = buffProgress;
+                if (bPrgs < 0) bPrgs = 0; if (bPrgs > 100) bPrgs = 100;
 
-            if (this.pbFile.InvokeRequired)
-            { this.pbFile.BeginInvoke((MethodInvoker)delegate () { this.pbFile.Value = cPrgs; }); }
-            else
-            { this.pbFile.Value = cPrgs; }
+                if (this.pbFile.InvokeRequired)
+                { this.pbFile.BeginInvoke((MethodInvoker)delegate () { this.pbFile.Value = cPrgs; }); }
+                else
+                { this.pbFile.Value = cPrgs; }
 
-            if (this.pbBuffer.InvokeRequired)
-            { this.pbBuffer.BeginInvoke((MethodInvoker)delegate () { this.pbBuffer.Value = bPrgs; }); }
-            else
-            { this.pbBuffer.Value = bPrgs; }
+                if (this.pbBuffer.InvokeRequired)
+                { this.pbBuffer.BeginInvoke((MethodInvoker)delegate () { this.pbBuffer.Value = bPrgs; }); }
+                else
+                { this.pbBuffer.Value = bPrgs; }
 
-            string txt = string.Format("Progress {0}%", codeProgress);
-            if (this.lblFileProgress.InvokeRequired)
-            { this.lblFileProgress.BeginInvoke((MethodInvoker)delegate () { this.lblFileProgress.Text = txt; }); }
-            else
-            { this.lblFileProgress.Text = txt; }
+                string txt = string.Format("Progress {0}%", codeProgress);
+                if (this.lblFileProgress.InvokeRequired)
+                { this.lblFileProgress.BeginInvoke((MethodInvoker)delegate () { this.lblFileProgress.Text = txt; }); }
+                else
+                { this.lblFileProgress.Text = txt; }
+            }
+            catch (Exception err) { Logger.Error(err, "UpdateProgressBar "); }
         }
 
         private static string GetTimeStampString()
@@ -114,7 +119,9 @@ namespace GrblPlotter
             if (actualCodeLine < 0) actualCodeLine = 0;
             if (e.CodeLineSent > fCTBCode.LinesCount)
                 actualCodeLine = fCTBCode.LinesCount - 1;
-            fCTBCode.Selection = fCTBCode.GetLine(actualCodeLine);
+			try
+            {	fCTBCode.Selection = fCTBCode.GetLine(actualCodeLine);}
+			catch (Exception err) {	Logger.Error(err,"OnRaiseStreamEvent - fCTBCode.Selection = fCTBCode.GetLine(actualCodeLine)");}
 
             fCTBCodeClickedLineNow = e.CodeLineSent - 1;// - 1;
             FctbCodeMarkLine();         // set Bookmark and marker in 2D-View
@@ -399,9 +406,20 @@ namespace GrblPlotter
                     //save gcode
                     string fileName = Datapath.AppDataFolder + "\\" + fileLastProcessed;
                     string txt = fCTBCode.Text;
-                    File.WriteAllText(fileName + ".nc", txt);
-                    File.Delete(fileName + ".xml");
-                    SaveRecentFile(fileLastProcessed + ".nc");
+
+                    try { 
+						File.WriteAllText(fileName + ".nc", txt);
+						if (File.Exists(fileName + ".xml")) 
+                            File.Delete(fileName + ".xml"); 
+					    SaveRecentFile(fileLastProcessed + ".nc");
+					}
+                    catch (Exception err) { 
+						Properties.Settings.Default.guiLastEndReason += "StartStreaming: "+Datapath.AppDataFolder;
+						Datapath.AppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+						MessageBox.Show("Path does not exist and could not be created: "+fileName+"\r\nPath will be modified to "+ Datapath.AppDataFolder, "Error");
+						Logger.Error(err, "StartStreaming fileName: {0}, new Datapath.AppDataFolder: {1} ",fileName, Datapath.AppDataFolder); 
+						fileName = Datapath.AppDataFolder + "\\" + fileLastProcessed;
+					}
 
                     bool removeFiducials = (Properties.Settings.Default.importFiducialSkipCode && (VisuGCode.fiducialsCenter.Count > 0));
                     if (removeFiducials)	// copy code

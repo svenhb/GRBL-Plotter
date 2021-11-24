@@ -21,19 +21,15 @@
  * 2021-07-26 new
  * 2021-09-19 line 389 change order of virtualJoystickXY.Enabled
  * 2021-11-18 add processing of accessory D0-D3 from grbl-Mega-5X - line 210
+ * 2021-11-22 change reg-key to get data-path from installation
 */
 
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
-using System.Globalization;
-using System.IO;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using System.Xml;
 
 namespace GrblPlotter
 {
@@ -61,33 +57,43 @@ namespace GrblPlotter
 
         private void GetAppDataPath()
         {   // default: System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.CommonAppDataPath); 
-            const string reg_key = "\\SOFTWARE\\GRBL-Plotter";
-            string newPath1="", newPath2 = "";
+            const string reg_key_user = "HKEY_CURRENT_USER\\SOFTWARE\\GRBL-Plotter";
+            const string reg_key_admin = "HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\GRBL-Plotter";
+            const string reg_key_admin2 = "HKEY_LOCAL_MACHINE\\SOFTWARE\\GRBL-Plotter";
+            string newPathUser = "", newPathAdmin = "", newPathAdmin2 = "";
             try
-            {   newPath1 = (string)Registry.GetValue("HKEY_LOCAL_MACHINE" + reg_key, "DataPath", 0); }   // if installed via admin, regkey is in HKLM
+            {   newPathUser = (string)Registry.GetValue(reg_key_user, "DataPath", 0);  }
+            catch { }
+            try
+            {   newPathAdmin = (string)Registry.GetValue(reg_key_admin, "DataPath", 0); }
+            catch { }
+            try
+            {   newPathAdmin2 = (string)Registry.GetValue(reg_key_admin2, "DataPath", 0); }
+            catch { }
 
-            catch { }
-            try
-            {   newPath2 = (string)Registry.GetValue("HKEY_CURRENT_USER" + reg_key, "DataPath", 0); }  // if installed via user, regkey is in HKCU
-            catch { }
-            
-            if (!string.IsNullOrEmpty(newPath1))
-            {   // regkey is set during regular setup
-                Datapath.AppDataFolder = newPath1;                   // get path from registry
-                NLog.LogManager.Configuration.Variables["basedir"] = newPath1;
-                Logger.Info("GetAppDataPath from HKEY_LOCAL_MACHINE: {0}", newPath1);
+            if (!string.IsNullOrEmpty(newPathUser))
+            {
+                Datapath.AppDataFolder = newPathUser;                   // get path from registry
+                NLog.LogManager.Configuration.Variables["basedir"] = newPathUser;
+                Logger.Info("GetAppDataPath from {0}: {1}", reg_key_user, newPathUser);
             }
-            else if (!string.IsNullOrEmpty(newPath2))
-            {   // regkey is set during regular setup
-                Datapath.AppDataFolder = newPath2;                   // get path from registry
-                NLog.LogManager.Configuration.Variables["basedir"] = newPath2;
-                Logger.Info("GetAppDataPath from HKEY_CURRENT_USER: {0}", newPath2);
+            else if (!string.IsNullOrEmpty(newPathAdmin))
+            {
+                Datapath.AppDataFolder = newPathAdmin;                   // get path from registry
+                NLog.LogManager.Configuration.Variables["basedir"] = newPathAdmin;
+                Logger.Info("GetAppDataPath from {0}: {1}", reg_key_admin, newPathAdmin);
+            }
+            else if (!string.IsNullOrEmpty(newPathAdmin2))
+            {
+                Datapath.AppDataFolder = newPathAdmin2;                   // get path from registry
+                NLog.LogManager.Configuration.Variables["basedir"] = newPathAdmin2;
+                Logger.Info("GetAppDataPath from {0}: {1}", reg_key_admin2, newPathAdmin2);
             }
             else // no setup?
             {
-                newPath1 = Datapath.AppDataFolder = Datapath.Application;      // use application path
-                NLog.LogManager.Configuration.Variables["basedir"] = newPath1;
-                Logger.Info("GetAppDataPath Application.StartupPath: {0}", newPath1);
+                newPathUser = Datapath.AppDataFolder = Datapath.Application;      // use application path
+                NLog.LogManager.Configuration.Variables["basedir"] = newPathUser;
+                Logger.Info("GetAppDataPath Application.StartupPath: {0}", newPathUser);
             }
         }
 
@@ -105,9 +111,9 @@ namespace GrblPlotter
                 splitContainer1.SplitterDistance = splitDist;
 
             this.Text = string.Format("{0} Ver.:{1}", appName, System.Windows.Forms.Application.ProductVersion.ToString(culture));
-//            this.Text = string.Format("{0} Ver. {1}  Date {2}", appName, System.Windows.Forms.Application.ProductVersion.ToString(culture), File.GetCreationTime(System.Reflection.Assembly.GetExecutingAssembly().Location).ToString("yyyy-mm-dd hh:mm:ss"));
+            //            this.Text = string.Format("{0} Ver. {1}  Date {2}", appName, System.Windows.Forms.Application.ProductVersion.ToString(culture), File.GetCreationTime(System.Reflection.Assembly.GetExecutingAssembly().Location).ToString("yyyy-mm-dd hh:mm:ss"));
             toolTip1.SetToolTip(this, this.Text);
-			
+
             SplitContainer1_SplitterMoved(null, null);
         }
 
@@ -162,13 +168,13 @@ namespace GrblPlotter
         private void UpdateWholeApplication()	// after ini file, setup change, update controls
         {	// Update everything which could be changed via Setup or INI-file
             Logger.Info("UpdateWholeApplication");
-			UpdateLogging();
+            UpdateLogging();
 
             fCTBCode.BookmarkColor = Properties.Settings.Default.gui2DColorMarker; ;
             fCTBCode.LineInterval = (int)Properties.Settings.Default.FCTBLineInterval;
             tbFile.Text = Properties.Settings.Default.guiLastFileLoaded;
-			
-			CustomButtonsFillWithContent();		// fill and resize custom buttons			
+
+            CustomButtonsFillWithContent();		// fill and resize custom buttons			
             GraphicPropertiesSetup();			// pen / brush colors
             MenuTranslateSetup();				// set rotary info in menu item 'translate'
 
@@ -176,9 +182,9 @@ namespace GrblPlotter
             virtualJoystickA.Visible |= ctrl4thAxis || Grbl.axisA;
             virtualJoystickA.JoystickText = ctrl4thName;
             JoystickSetup();					// Joystick step and speed
-            JoystickResize();					// relative size
+            JoystickResize();                   // relative size
 
-// 2-D view settings
+            // 2-D view settings
             toolStripViewMachine.Checked = Properties.Settings.Default.machineLimitsShow;
             toolStripViewTool.Checked = Properties.Settings.Default.gui2DToolTableShow;
             toolStripViewMachineFix.Checked = Properties.Settings.Default.machineLimitsFix;
@@ -188,7 +194,7 @@ namespace GrblPlotter
             else
                 cBSpindle.Text = "Spindle CCW";
 
-// grbl communication
+            // grbl communication
             int[] interval = new int[] { 500, 250, 200, 125, 100 };
             int index = Properties.Settings.Default.grblPollIntervalIndex;
             if ((index >= 0) && (index < 5))
@@ -198,29 +204,30 @@ namespace GrblPlotter
             CheckMachineLimit();
             LoadHotkeys();
 
-// changed PWM settings			
-            toolTip1.SetToolTip(btnPenUp,   string.Format("send 'M3 S{0}'", Properties.Settings.Default.importGCPWMUp));
+            // changed PWM settings			
+            toolTip1.SetToolTip(btnPenUp, string.Format("send 'M3 S{0}'", Properties.Settings.Default.importGCPWMUp));
             toolTip1.SetToolTip(btnPenDown, string.Format("send 'M3 S{0}'", Properties.Settings.Default.importGCPWMDown));
             GuiVariables.variable["GMIS"] = (double)Properties.Settings.Default.importGCPWMDown;
             GuiVariables.variable["GMAS"] = (double)Properties.Settings.Default.importGCPWMUp;
             GuiVariables.variable["GZES"] = (double)Properties.Settings.Default.importGCPWMZero;
             GuiVariables.variable["GCTS"] = (double)(Properties.Settings.Default.importGCPWMDown + Properties.Settings.Default.importGCPWMUp) / 2;
-            GuiVariables.WriteSettingsToRegistry();	// for use within external scripts
+            GuiVariables.WriteSettingsToRegistry(); // for use within external scripts
 
-// override buttons D0-D3 descriptions
-			if (Properties.Settings.Default.grblDescriptionDxEnable)
-			{	BtnOverrideD0.Visible = BtnOverrideD1.Visible = BtnOverrideD2.Visible = BtnOverrideD3.Visible = true;
-				BtnOverrideD0.Text = Properties.Settings.Default.grblDescriptionD0;
-				BtnOverrideD1.Text = Properties.Settings.Default.grblDescriptionD1;
-				BtnOverrideD2.Text = Properties.Settings.Default.grblDescriptionD2;
-				BtnOverrideD3.Text = Properties.Settings.Default.grblDescriptionD3;
-			}
-			else
-			{	BtnOverrideD0.Visible = BtnOverrideD1.Visible = BtnOverrideD2.Visible = BtnOverrideD3.Visible = false;}
+            // override buttons D0-D3 descriptions
+            if (Properties.Settings.Default.grblDescriptionDxEnable)
+            {
+                BtnOverrideD0.Visible = BtnOverrideD1.Visible = BtnOverrideD2.Visible = BtnOverrideD3.Visible = true;
+                BtnOverrideD0.Text = Properties.Settings.Default.grblDescriptionD0;
+                BtnOverrideD1.Text = Properties.Settings.Default.grblDescriptionD1;
+                BtnOverrideD2.Text = Properties.Settings.Default.grblDescriptionD2;
+                BtnOverrideD3.Text = Properties.Settings.Default.grblDescriptionD3;
+            }
+            else
+            { BtnOverrideD0.Visible = BtnOverrideD1.Visible = BtnOverrideD2.Visible = BtnOverrideD3.Visible = false; }
         }   // end load settings
 
         private void GuiEnableAxisABC()
-        { 
+        {
             ctrl4thAxis = Properties.Settings.Default.ctrl4thUse;
             ctrl4thName = Properties.Settings.Default.ctrl4thName;
             label_a.Visible = ctrl4thAxis || Grbl.axisA || simulateA;
@@ -280,7 +287,8 @@ namespace GrblPlotter
             }
         }
         private void MenuTranslateSetup()
-        {   skaliereXAufDrehachseToolStripMenuItem.Enabled = false;
+        {
+            skaliereXAufDrehachseToolStripMenuItem.Enabled = false;
             skaliereXAufDrehachseToolStripMenuItem.BackColor = SystemColors.Control;
             skaliereXAufDrehachseToolStripMenuItem.ToolTipText = "Enable rotary axis in Setup - Control";
             skaliereAufXUnitsToolStripMenuItem.BackColor = SystemColors.Control;
@@ -448,10 +456,10 @@ namespace GrblPlotter
         }
 
 
-#region Custom Buttons
+        #region Custom Buttons
 
-		private void CustomButtonsFillWithContent()
-		{
+        private void CustomButtonsFillWithContent()
+        {
             int customButtonUse = 0;
             SetCustomButton(btnCustom1, Properties.Settings.Default.guiCustomBtn1);//, 1);
             SetCustomButton(btnCustom2, Properties.Settings.Default.guiCustomBtn2);//, 2);
@@ -515,9 +523,9 @@ namespace GrblPlotter
                     }
                 }
             }
-			
-		}
-		
+
+        }
+
         private void UpdateCustomButtons(bool enable)	//CustomButtonsEnable
         {
             btnCustom1.Enabled = enable;
@@ -543,10 +551,10 @@ namespace GrblPlotter
             }
         }
 
-		// store button information for buttons 17 to 32 (1-16 already setup manually)
+        // store button information for buttons 17 to 32 (1-16 already setup manually)
         private readonly Dictionary<int, Button> CustomButtons17 = new Dictionary<int, Button>();
-		private void CustomButtonsSetEvents()
-		{
+        private void CustomButtonsSetEvents()
+        {
             CustomButtons17.Clear();
             for (int i = 17; i <= 32; i++)
             {
@@ -560,12 +568,12 @@ namespace GrblPlotter
                 CustomButtons17.Add(i, b);
                 SetCustomButton(b, Properties.Settings.Default["guiCustomBtn" + i.ToString(culture)].ToString());//, i);
                 flowLayoutPanel1.Controls.Add(b);
-            }			
-		}
+            }
+        }
 
-#endregion
-	
-	
+        #endregion
+
+
         internal static void SetGcodeVariables()	// applied in MainForm.cs, defined in MainFormObjects.cs
         {
             GuiVariables.variable["GMIX"] = VisuGCode.xyzSize.minx;

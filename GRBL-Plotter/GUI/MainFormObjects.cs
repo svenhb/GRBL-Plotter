@@ -22,6 +22,8 @@
  * 2020-07-26 fix setDimensionCircle line 371
  * 2020-09-30 Preset variable GMIZ and GMAZ with Properties.Settings.Default.importGCZUp and -Down
  * 2021-07-27 code clean up / code quality
+ * 2021-11-22 change AppDataFolder start-path
+ * 2021-11-23 line 688 add check (form != null)
 */
 
 using GrblPlotter.Resources;
@@ -32,9 +34,6 @@ using System.Drawing;
 using System.Globalization;
 using System.Threading;
 
-//#pragma warning disable CA1304
-//#pragma warning disable CA1305
-
 namespace GrblPlotter
 {
     [Flags]
@@ -43,17 +42,20 @@ namespace GrblPlotter
     public static class Datapath
     {   // https://stackoverflow.com/questions/66430190/how-do-i-get-access-to-c-program-files-in-c-sharp
         public static string Application = System.Windows.Forms.Application.StartupPath;
-        public static string AppDataFolder = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.CommonAppDataPath);   // without vers.Nr
-        public static string Fonts {get => AppDataFolder + "\\data\\fonts";}
-        public static string Tools {get => AppDataFolder + "\\data\\tools";}
-        public static string Scripts {get => AppDataFolder + "\\data\\scripts";}
-        public static string Usecases {get => AppDataFolder + "\\data\\usecases";}
-        public static string Hotkeys {get => AppDataFolder + "\\data\\hotkeys.xml";}
-        public static string Examples {get => AppDataFolder + "\\data\\examples";}
-        public static string Extension {get => AppDataFolder + "\\data\\extensions";}
-        public static string Buttons {get => AppDataFolder + "\\data\\buttons";}
-        public static string Jogpath {get => AppDataFolder + "\\data\\jogpaths";}
-        public static string RecentFile {get => AppDataFolder + "\\Recent.txt";}
+        //        public static string AppDataFolder = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.CommonAppDataPath);   // without vers.Nr
+        // https://stackoverflow.com/questions/10563148/where-is-the-correct-place-to-store-my-application-specific-data#:~:text=AppData%20(maps%20to%20C%3A%5C,their%20save%20games%20into%20Environment.
+        // https://docs.microsoft.com/en-us/dotnet/api/system.environment.specialfolder?view=netframework-4.7.2
+        public static string AppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);   // will be changed by MainFormUpdate()-GetAppDataPath
+        public static string Fonts { get => AppDataFolder + "\\data\\fonts"; }
+        public static string Tools { get => AppDataFolder + "\\data\\tools"; }
+        public static string Scripts { get => AppDataFolder + "\\data\\scripts"; }
+        public static string Usecases { get => AppDataFolder + "\\data\\usecases"; }
+        public static string Hotkeys { get => AppDataFolder + "\\data\\hotkeys.xml"; }
+        public static string Examples { get => AppDataFolder + "\\data\\examples"; }
+        public static string Extension { get => AppDataFolder + "\\data\\extensions"; }
+        public static string Buttons { get => AppDataFolder + "\\data\\buttons"; }
+        public static string Jogpath { get => AppDataFolder + "\\data\\jogpaths"; }
+        public static string RecentFile { get => AppDataFolder + "\\Recent.txt"; }
     }
 
     public static class GuiVariables
@@ -409,9 +411,9 @@ namespace GrblPlotter
             if (y != null) { SetDimensionY((double)y); }
             if (z != null) { SetDimensionZ((double)z); }
         }
-		
+
         public void SetDimensionXY(XyPoint tmp)
-		{	SetDimensionXY(tmp.X, tmp.Y);}
+        { SetDimensionXY(tmp.X, tmp.Y); }
         public void SetDimensionXY(double? x, double? y)
         {
             if (x != null) { SetDimensionX((double)x); }
@@ -685,7 +687,8 @@ namespace GrblPlotter
         }
         public static string GetCode()
         {
-            form.SetUndoText("");
+            if (form != null)
+				form.SetUndoText("");
             return unDoCode;
         }
     }
