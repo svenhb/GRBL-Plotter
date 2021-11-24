@@ -1,0 +1,996 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="fCTBCode.Text" xml:space="preserve">
+    <value>(Paste G-Code hier oder lade eine Datei)</value>
+    <comment>Editor</comment>
+  </data>
+  <data name="cmsCodeSelect.Text" xml:space="preserve">
+    <value>Alles auswählen</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsCodeCopy.Text" xml:space="preserve">
+    <value>In die Zwischenablage kopieren</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsCodePaste.Text" xml:space="preserve">
+    <value>Einfügen aus der Zwischenablage</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsCodePasteSpecial1.Text" xml:space="preserve">
+    <value>Fügen Sie 'PenUp' ein</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsCodePasteSpecial2.Text" xml:space="preserve">
+    <value>Fügen Sie 'PenDown' ein</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsFindDialog.Text" xml:space="preserve">
+    <value>'Finden' Dialog</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsReplaceDialog.Text" xml:space="preserve">
+    <value>'Ersetzen' Dialog</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsCodeSendLine.Text" xml:space="preserve">
+    <value>Sende Codezeile</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsCommentOut.Text" xml:space="preserve">
+    <value>Auskommentieren von unbekannten G-Code</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsUpdate2DView.Text" xml:space="preserve">
+    <value>Update 2D Ansicht</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="btnStreamStop.ToolTip" xml:space="preserve">
+    <value>Stoppt die Übertragung</value>
+    <comment>groupBox_Streaming</comment>
+  </data>
+  <data name="lblElapsed.Text" xml:space="preserve">
+    <value>Dauer</value>
+    <comment>groupBox_Streaming</comment>
+  </data>
+  <data name="lblFileProgress.Text" xml:space="preserve">
+    <value>Fortschritt</value>
+    <comment>groupBox_Streaming</comment>
+  </data>
+  <data name="btnStreamStart.ToolTip" xml:space="preserve">
+    <value>Sende den G-Code aus dem Editor an GRBL</value>
+    <comment>groupBox_Streaming</comment>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Nullpunkt XY</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="btnOffsetApply.Text" xml:space="preserve">
+    <value>Offset setzen</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="lbDimension.Text" xml:space="preserve">
+    <value>Abmessungen</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="btnJogStop.ToolTip" xml:space="preserve">
+    <value>Abbruch der jetzigen Jogging-Bewegung</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnResume.ToolTip" xml:space="preserve">
+    <value>~ : Cycle Start / Resume (Zyklus Start / Fortsetzen)
+Fortsetzung bei den Zuständen 'Feed Hold',  Sicherheitstür- / Parkzustand (bei geschlossener Tür) und M0-Programmpause.
+Befehl wird sonst ignoriert.
+Wenn die Park-Option aktiviert ist und die Sicherheitstür wieder geschlossen ist, wird Grbl die Spindel und das Kühlmittel wieder freigeben, 
+sich zur Ausgangsposition bewegen und dann den Ablauf fortsetzen.
+Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfügung.</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnFeedHold.ToolTip" xml:space="preserve">
+    <value>! Feed Hold
+Setzt Grbl in einen Suspend- oder HOLD-Zustand. Bei Bewegung bewegt sich die Maschine bis zum Stillstand und wird dann ausgesetzt.
+Befehl wird ausgeführt, wenn Grbl in einem IDLE-, RUN- oder JOG-Zustand ist. Andernfalls wird er ignoriert.
+Beim Joggen wird die Jogbewegung abgebrochen und alle verbleibenden Jogbewegungen im Planerpuffer gelöscht. 
+Der Zustand kehrt von JOG zu IDLE oder DOOR zurück, wenn er während des aktiven Haltes als scharf erkannt wurde.
+'Feed Hold' deaktiviert die Spindel oder das Kühlmittel nicht. Nur Bewegung.
+Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfügung.</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnKillAlarm.ToolTip" xml:space="preserve">
+    <value>$X - Kill alarm lock
+Grbl's Alarm-Modus ist ein Zustand, wenn etwas kritisch falsch gegangen ist, wie eine harte Grenze oder ein Abbruch während eines Zyklus, 
+oder wenn Grbl seine Position nicht kennt. Wenn Sie Homing aktiviert haben und den Arduino einschalten, tritt Grbl in den Alarmzustand ein, 
+da es seine Position nicht kennt. 
+Im Alarmmodus werden alle G-Code-Befehle gesperrt, bis der Referenzzyklus '$ H' ausgeführt wurde. 
+Oder wenn ein Benutzer die Alarmsperre außer Kraft setzen muss, um ihre Achsen von ihren Endschaltern zu verschieben, 
+wird die '$ X' - Kill alarm lock die Sperren außer Kraft setzen und die G-Code-Funktionen wieder aktivieren.
+
+Aber vorsichtig! Dies sollte nur in Notfallsituationen angewendet werden. Die Position ist wahrscheinlich verloren gegangen, 
+und Grbl ist nicht dort wo Sie denken, dass es ist. 
+Es wird empfohlen den G91 Inkremental-Modus zu wählen, um kleine Fahrbewegungen zu machen. 
+Führen Sie danach einen Referenzzyklus aus oder restten sie GRBL.</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnReset.ToolTip" xml:space="preserve">
+    <value>0x18 (ctrl-x): Soft-Reset
+Stoppt sofort und setzt GRBL zurück ohne die Stromversorgung unterbrechen zu müssen.
+Akzeptiert und führt diesen Befehl zu jeder Zeit aus.
+Beim Rücksetzen während der Fahrt wird Grbl einen Alarm auslösen, um anzuzeigen, dass die aktuelle Position verloren gehen kann.
+Wenn das Rücksetzen nicht während der Bewegung erfolgt, wird die Position beibehalten und ein erneutes Referenzieren ist nicht erforderlich.
+Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfügung.</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="deletenotMarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>Markiere  Code (kein Löschen)</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Benutzerdefinierte Buttons</value>
+    <comment>groupBox_Custom</comment>
+  </data>
+  <data name="btnZeroC.Text" xml:space="preserve">
+    <value>C nullen</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroB.Text" xml:space="preserve">
+    <value>B nullen</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroA.Text" xml:space="preserve">
+    <value>A nullen</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroA.ToolTip" xml:space="preserve">
+    <value>Setze Work Koordinate auf Null
+</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroXYZ.Text" xml:space="preserve">
+    <value>XYZ nullen</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroXYZ.ToolTip" xml:space="preserve">
+    <value>Setze Work Koordinate X,Y,Z auf Null
+</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroXY.Text" xml:space="preserve">
+    <value>XY nullen</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroXY.ToolTip" xml:space="preserve">
+    <value>Setze Work Koordinate X,Y auf Null
+</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroZ.Text" xml:space="preserve">
+    <value>Z nullen</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroZ.ToolTip" xml:space="preserve">
+    <value>Setze Work Koordinate X auf Null</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroY.Text" xml:space="preserve">
+    <value>Y nullen</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroY.ToolTip" xml:space="preserve">
+    <value>Setze Work Koordinate Y auf Null
+</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroX.Text" xml:space="preserve">
+    <value>X nullen</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroX.ToolTip" xml:space="preserve">
+    <value>Setze Work Koordinate X auf Null</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Datei</value>
+    <comment>Menu11</comment>
+  </data>
+  <data name="loadToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Datei öffnen</value>
+    <comment>Menu111</comment>
+  </data>
+  <data name="loadToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Öffne G-Code oder SVG Datei</value>
+    <comment>Menu111</comment>
+  </data>
+  <data name="toolStripMenuItem2.Text" xml:space="preserve">
+    <value>Zuletzt geöffnete Dateien</value>
+    <comment>Menu112</comment>
+  </data>
+  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Speichere G-Code</value>
+    <comment>Menu113</comment>
+  </data>
+  <data name="saveToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Speichere  G-Code aus dem Editor in eine Datei</value>
+    <comment>Menu113</comment>
+  </data>
+  <data name="setupToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Einstellungen</value>
+    <comment>Menu114</comment>
+  </data>
+  <data name="saveMachineParametersToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Exportiere Maschinen Einstellungen</value>
+    <comment>Menu115</comment>
+  </data>
+  <data name="saveMachineParametersToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Exportiere Programmeinstellungen (Button Definitionen, Joystick Parameter) in eine INI-Datei</value>
+    <comment>Menu115</comment>
+  </data>
+  <data name="loadMachineParametersToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Importiere Maschinen Einstellungen</value>
+    <comment>Menu116</comment>
+  </data>
+  <data name="loadMachineParametersToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Importiere Programmeinstellungen (Button Definitionen, Joystick Parameter) aus einer INI-Datei</value>
+    <comment>Menu116</comment>
+  </data>
+  <data name="toolStripMenuItem3.Text" xml:space="preserve">
+    <value>Spracheinstellung</value>
+    <comment>Menu117</comment>
+  </data>
+  <data name="createGCodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>G-Code &amp;erzeugen</value>
+    <comment>Menu12</comment>
+  </data>
+  <data name="textWizzardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Erzeuge &amp;Text</value>
+    <comment>Menu121</comment>
+  </data>
+  <data name="textWizzardToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Einfache Texterstellung mit Hershey Fonts</value>
+    <comment>Menu121</comment>
+  </data>
+  <data name="imageToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Bild umwandeln</value>
+    <comment>Menu122</comment>
+  </data>
+  <data name="createSimpleShapesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Erzeuge einfache &amp;Formen</value>
+    <comment>Menu123</comment>
+  </data>
+  <data name="createSimpleShapesToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Kreis oder Rechteck, optional mit abgerundenten Ecken, optional als Tasche</value>
+    <comment>Menu123</comment>
+  </data>
+  <data name="gCodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>G-Code transformieren</value>
+    <comment>Menu13</comment>
+  </data>
+  <data name="mirrorXToolStripMenuItem.Text" xml:space="preserve">
+    <value>Spiegeln X (&amp;horizontal)</value>
+    <comment>Menu131</comment>
+  </data>
+  <data name="mirrorYToolStripMenuItem.Text" xml:space="preserve">
+    <value>Spiegeln Y (&amp;vertikal)</value>
+    <comment>Menu131</comment>
+  </data>
+  <data name="rotate90ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Drehen um +90° (gegen Uhrzeiger)</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="rotate90ToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Drehen um -90° (Uhrzeiger)</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="rotateFreeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Drehen um ...°</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="sToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skaliere XY um ...%</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skalierenXYToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skaliere XY auf X=... units</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skalierenXYUmXUnitsZuErreichenToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skaliere XY auf Y=... units</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereXUmToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skaliere X um ...%</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereAufXUnitsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skaliere X auf X=... units</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereYUmToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skaliere Y um ...%</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereAufYUnitsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skaliere Y auf Y= ... units</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="rotaryDimaeterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Durchmesser der Drehachse</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="rotaryDimaeterToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Gebe den Durchmesser des Drehachsenwerkstücks an</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="skaliereXAufDrehachseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skaliere X auf ...° (Drehachse)</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereYAufDrehachseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skaliere Y auf ...° (Drehachse)</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="toolStrip_RadiusComp.Text" xml:space="preserve">
+    <value>Radiuskompensation</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="ersetzteG23DurchLinienToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ersetzte G2/3 durch Linien</value>
+    <comment>Menu134</comment>
+  </data>
+  <data name="convertZToSspindleSpeedToolStripMenuItem.Text" xml:space="preserve">
+    <value>Konvertiere Z zu S (Spindle Speed)</value>
+    <comment>Menu134</comment>
+  </data>
+  <data name="convertZToSspindleSpeedToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Setze maximale Spindle speed für minimum Z in 
+[Einstellungen - Grafik Import - G-Code Modifikation]</value>
+    <comment>Menu134</comment>
+  </data>
+  <data name="removeAnyZMoveToolStripMenuItem.Text" xml:space="preserve">
+    <value>Entferne jede Z Bewegung</value>
+    <comment>Menu134</comment>
+  </data>
+  <data name="machineToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Maschine</value>
+    <comment>Menu14</comment>
+  </data>
+  <data name="heightMapToolStripMenuItem.Text" xml:space="preserve">
+    <value>Höhenprofil aufnehmen</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="coordinateSystemsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Koordinatensysteme</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
+    <value>DIY Steuerung</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="setupToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Öffne serielles Fenster für DIY Steuerung</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="toolStripMenuItem1.Text" xml:space="preserve">
+    <value>Kamera</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="toolStripMenuItem1.ToolTipText" xml:space="preserve">
+    <value>Zeigt das Kamerabild einer angeschlossenen WebCam</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="controlStreamingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Steuerung des Streamings</value>
+    <comment>Menu142</comment>
+  </data>
+  <data name="controlStreamingToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Überschreibe Fahrgeschwindigkeit (Feed rate) und Drehzahl (Spindle speed)</value>
+    <comment>Menu142</comment>
+  </data>
+  <data name="control2ndGRBLToolStripMenuItem.Text" xml:space="preserve">
+    <value>Steuerung 2ter GRBL</value>
+    <comment>Menu142</comment>
+  </data>
+  <data name="control2ndGRBLToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Öffnet eine einfaches Fenster zur Steuerung eines zweiten GRBL-Controllers</value>
+    <comment>Menu142</comment>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ansicht</value>
+    <comment>Menu15</comment>
+  </data>
+  <data name="toolStripViewMachineFix.Text" xml:space="preserve">
+    <value>Machinenbereich fixiert</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewMachineFix.ToolTipText" xml:space="preserve">
+    <value>Grenzen und Offset werden über 'Einstellungen' - 'Steuerung' -  'Maschinen Arbeitsbereich' gesetzt</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewMachine.Text" xml:space="preserve">
+    <value>Maschinengrenze</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewMachine.ToolTipText" xml:space="preserve">
+    <value>Grenzen und Offset werden über 'Einstellungen' - 'Steuerung' -  'Maschinen Arbeitsbereich' gesetzt</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewTool.Text" xml:space="preserve">
+    <value>Werkzeugpositionen</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewTool.ToolTipText" xml:space="preserve">
+    <value>Grenzen und Offset werden über 'Einstellungen' - 'Werkzeugwechsel' -  'Werkzeugliste' gesetzt
+</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewBackground.Text" xml:space="preserve">
+    <value>Hintergrund</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
+    <value>Über...</value>
+    <comment>Menu16</comment>
+  </data>
+  <data name="btnOverrideSpindle.ToolTip" xml:space="preserve">
+    <value>Funktioniert nur im HOLD-Zustand</value>
+    <comment>groupBox_Override2</comment>
+  </data>
+  <data name="btnOverrideMist.ToolTip" xml:space="preserve">
+    <value>M7 ist möglicherweise in grbl nicht aktiviert</value>
+    <comment>groupBox_Override2</comment>
+  </data>
+  <data name="btnOverrideDoor.ToolTip" xml:space="preserve">
+    <value>Obwohl dieser Befehl normalerweise mit einem Eingangspin verbunden ist, um das Öffnen einer Schutztür zu erkennen, kann eine grafische Benutzeroberfläche mit diesem Befehl das Verhalten der Schutztür festlegen.
+Hängt sofort in einem TÜR-Zustand an und deaktiviert die Spindel und das Kühlmittel. Wenn die Maschine in Bewegung ist, wird sie bis zum Stillstand abgebremst und dann angehalten.
+Wenn sie während der Referenzfahrt ausgeführt werden, stoppt Grbl stattdessen die Bewegung und löst einen Referenzalarm aus.
+Wenn bereits ein Suspend-Status oder ein HOLD-Status vorliegt, wird dieser durch den DOOR-Status ersetzt.
+Wenn die Option zum Kompilieren des Parkens aktiviert ist, parkt Grbl die Spindel an einer angegebenen Position.
+Der Befehl wird ausgeführt, wenn sich Grbl im Status IDLE, HOLD, RUN, HOMING oder JOG befindet. Es wird sonst ignoriert.
+Beim Tippen bricht eine Schutztür das Tippen und alle anstehenden Bewegungen im Planerpuffer ab. Wenn die Schutztür geschlossen und wieder aufgenommen wird, kehrt Grbl in den Leerlaufzustand zurück.
+Ein Eingangspin ist verfügbar, um eine Schaltfläche oder einen Schalter anzuschließen, sofern diese Option zur Kompilierungszeit aktiviert ist.</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnHome.ToolTip" xml:space="preserve">
+    <value>Referenzfahrt starten (falls in GRBL aktiviert)</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="cmsEditorHotkeys.Text" xml:space="preserve">
+    <value>Editor-Hotkeys anzeigen</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="gBoxDimension.Text" xml:space="preserve">
+    <value>G-Code Dimension</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="lblStatusFeed.ToolTip" xml:space="preserve">
+    <value>Tatsächliche Vorschubgeschwindigkeit in mm / min oder Zoll / min (abhängig von 13 USD)</value>
+    <comment>groupBox_Override3</comment>
+  </data>
+  <data name="lblStatusSpeed.ToolTip" xml:space="preserve">
+    <value>Tatsächliche Spindeldrehzahl in U / min</value>
+    <comment>groupBox_Override3</comment>
+  </data>
+  <data name="deletenotMarkToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Zum Umschalten klicken</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="lblCurrentG.ToolTip" xml:space="preserve">
+    <value>Standardkoordinatensystem = G54
+Kamerakoordinatensystem = G59
+Fügen Sie 'G54;' to G-Code-Header, um vor dem Streaming von G-Code automatisch zu G54 zurückzukehren</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="mirrorRotaryToolStripMenuItem.Text" xml:space="preserve">
+    <value>Drehachse spiegeln</value>
+    <comment>Menu131</comment>
+  </data>
+  <data name="rotate180ToolStripMenuItem.Text" xml:space="preserve">
+    <value>180 ° drehen</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="virtualJoystickA.ToolTip" xml:space="preserve">
+    <value>4. Achse bewegen</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="virtualJoystickXY.ToolTip" xml:space="preserve">
+    <value>Jog-XY-Achse</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="virtualJoystickZ.ToolTip" xml:space="preserve">
+    <value>Jog-Z-Achse</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="virtualJoystickB.ToolTip" xml:space="preserve">
+    <value>4. Achse bewegen</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="virtualJoystickC.ToolTip" xml:space="preserve">
+    <value>4. Achse bewegen</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="unDo2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Letzte Aktion rückgängig machen</value>
+    <comment>Menu131</comment>
+  </data>
+  <data name="tBURL.Text" xml:space="preserve">
+    <value>Fügen Sie hier die URL der SVG / DXF-Datei ein</value>
+    <comment>2DView</comment>
+  </data>
+  <data name="unDoToolStripMenuItem.Text" xml:space="preserve">
+    <value>Letzte Aktion rückgängig machen</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="skaliereXUmToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 werden nicht unterstützt</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereAufXUnitsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 werden nicht unterstützt</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereYUmToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 werden nicht unterstützt</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereAufYUnitsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 werden nicht unterstützt</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereXAufDrehachseToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 werden nicht unterstützt</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereYAufDrehachseToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 werden nicht unterstützt</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="toolStrip_tb_StreamLine.ToolTipText" xml:space="preserve">
+    <value>Markierte Zeile</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="startStreamingAtLineToolStripMenuItem.Text" xml:space="preserve">
+    <value>Starten Sie das Streaming ab Zeile</value>
+  </data>
+  <data name="startStreamingAtLineToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Legen Sie hier die Startzeile fest, wenn G-Code nicht bei Zeile 0 beginnen darf</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="gBoxOverride.Text" xml:space="preserve">
+    <value>Übersteuerungen (nur Grbl 1.1) - Klicken zum Vergrößern / Verkleinern</value>
+    <comment>groupBox_Override3</comment>
+  </data>
+  <data name="btnOverrideDoor.Text" xml:space="preserve">
+    <value>Tür</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="probingToolLengthToolStripMenuItem.Text" xml:space="preserve">
+    <value>Abtasten / Werkzeuglänge</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="surfaceScanHeightMapToolStripMenuItem.Text" xml:space="preserve">
+    <value>Oberflächenscan / Höhenprofil</value>
+    <comment>Menu142</comment>
+  </data>
+  <data name="workpieceToolStripMenuItem.Text" xml:space="preserve">
+    <value>Werkstück</value>
+    <comment>Menu14</comment>
+  </data>
+  <data name="edgeFinderToolStripMenuItem.Text" xml:space="preserve">
+    <value>Abtasten</value>
+    <comment>Menu14</comment>
+  </data>
+  <data name="foldCodeBlocks1stLevelToolStripMenuItem.Text" xml:space="preserve">
+    <value>Codeblock auf erster Ebene einklappen</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="expandCodeBlocksToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Alle Codeblöcke aufklappen</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="toolStripViewRuler.Text" xml:space="preserve">
+    <value>Lineal</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewInfo.Text" xml:space="preserve">
+    <value>Info</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewPenUp.Text" xml:space="preserve">
+    <value>Stift-Oben Pfad</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="foldCodeBlocks2ndLevelToolStripMenuItem.Text" xml:space="preserve">
+    <value>Codeblock auf zweiter Ebene einklappen</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="foldCodeBlocks3rdLevelToolStripMenuItem.Text" xml:space="preserve">
+    <value>Codeblock auf dritter Ebene einklappen</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="lbInfo.Text" xml:space="preserve">
+    <value>Nachricht</value>
+    <comment>groupBox_Streaming</comment>
+  </data>
+  <data name="btnStreamCheck.Text" xml:space="preserve">
+    <value>G-Code überprüfen</value>
+    <comment>groupBox_Streaming</comment>
+  </data>
+  <data name="gBoxStream.Text" xml:space="preserve">
+    <value>G-Code übertragen</value>
+    <comment>groupBox_Streaming</comment>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Offset Y</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="label6.ToolTip" xml:space="preserve">
+    <value>Offset Y</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Offset X</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value>Offset X</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="gBOverrideRGB.Text" xml:space="preserve">
+    <value>Schnell</value>
+    <comment>groupBox_Override1</comment>
+  </data>
+  <data name="gBOverrideASGB.Text" xml:space="preserve">
+    <value>Zubehörstatus umschalten</value>
+    <comment>groupBox_Override2</comment>
+  </data>
+  <data name="lblStatusFeed.Text" xml:space="preserve">
+    <value>Akt. Vorschub</value>
+    <comment>groupBox_Override3</comment>
+  </data>
+  <data name="gBOverrideFRGB.Text" xml:space="preserve">
+    <value>Vorschub</value>
+    <comment>groupBox_Override3</comment>
+  </data>
+  <data name="lblStatusSpeed.Text" xml:space="preserve">
+    <value>aktuelle Drehzahl</value>
+    <comment>groupBox_Override3</comment>
+  </data>
+  <data name="btnStreamCheck.ToolTip" xml:space="preserve">
+    <value>Dadurch wird der Gcode-Parser des Grbl so umgeschaltet, dass alle eingehenden Blöcke wie im normalen Betrieb vollständig verarbeitet werden. Er bewegt jedoch keine der Achsen, ignoriert Verweilzeiten und schaltet die Spindel und das Kühlmittel aus. Auf diese Weise kann der Benutzer überprüfen, wie sein neues G-Code-Programm mit dem Grbl-Parser abschneidet und auf Fehler überwacht (und, falls aktiviert, auf Soft-Limit-Verstöße überprüft).</value>
+  </data>
+  <data name="btnSimulateSlower.ToolTip" xml:space="preserve">
+    <value>Halbe Simulationsgeschwindigkeit</value>
+  </data>
+  <data name="btnSimulateFaster.ToolTip" xml:space="preserve">
+    <value>Doppelte Simulationsgeschwindigkeit</value>
+  </data>
+  <data name="btnSimulate.Text" xml:space="preserve">
+    <value>Streckensimulation starten</value>
+  </data>
+  <data name="gBOverrideSSGB.Text" xml:space="preserve">
+    <value>Drehzahl</value>
+    <comment>groupBox_Override3</comment>
+  </data>
+  <data name="btnJogZeroA.ToolTip" xml:space="preserve">
+    <value>Sende G90 G0 A(or B,C)0</value>
+  </data>
+  <data name="btnJogZeroX.ToolTip" xml:space="preserve">
+    <value>Sende G90 G0 X0</value>
+  </data>
+  <data name="btnJogZeroXY.ToolTip" xml:space="preserve">
+    <value>Sende G90 G0 X0 Y0</value>
+  </data>
+  <data name="btnJogZeroY.ToolTip" xml:space="preserve">
+    <value>Sende G90 G0 Y0</value>
+  </data>
+  <data name="btnJogZeroZ.ToolTip" xml:space="preserve">
+    <value>Sende G90 G0 Z0</value>
+  </data>
+  <data name="toolStripViewDimension.Text" xml:space="preserve">
+    <value>G-Code Dimensionen</value>
+  </data>
+  <data name="startExtensionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Erweiterungen</value>
+  </data>
+  <data name="cmsEditMode.Text" xml:space="preserve">
+    <value>Bearbeitungsmodus umschalten</value>
+  </data>
+  <data name="cBServoButtons.Text" xml:space="preserve">
+    <value>Stift nach oben / unten anzeigen</value>
+  </data>
+  <data name="btnPenDown.Text" xml:space="preserve">
+    <value>Stift runter</value>
+  </data>
+  <data name="btnPenDown.ToolTip" xml:space="preserve">
+    <value>Verwenden Sie die Einstellungen von Setup-Servo-PWM</value>
+  </data>
+  <data name="btnPenUp.Text" xml:space="preserve">
+    <value>Pen Up</value>
+  </data>
+  <data name="btnPenUp.ToolTip" xml:space="preserve">
+    <value>Verwenden Sie die Einstellungen von Setup-Servo-PWM</value>
+  </data>
+  <data name="cmsPicBoxMoveToMarkedPosition.Text" xml:space="preserve">
+    <value>Zur markierten Position mit G0 fahren</value>
+  </data>
+  <data name="cmsPicBoxZeroXYAtMarkedPosition.Text" xml:space="preserve">
+    <value>Null XY an der markierten Position G10 L20</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOrigin.Text" xml:space="preserve">
+    <value>Versetzte Grafik um die Markerposition</value>
+  </data>
+  <data name="cmsPicBoxResetZooming.Text" xml:space="preserve">
+    <value>Zoomen zurücksetzen</value>
+  </data>
+  <data name="cmsPicBoxPasteFromClipboard.Text" xml:space="preserve">
+    <value>Einfügen aus der Zwischenablage</value>
+  </data>
+  <data name="cmsPicBoxReloadFile.Text" xml:space="preserve">
+    <value>Datei neu laden</value>
+  </data>
+  <data name="cmsPicBoxMarkFirstPos.Text" xml:space="preserve">
+    <value>Markieren Sie den ersten Punkt des ausgewählten Pfads</value>
+  </data>
+  <data name="cmsPicBoxDeletePath.Text" xml:space="preserve">
+    <value>Ausgewählten Pfad löschen</value>
+  </data>
+  <data name="cmsPicBoxDeletePath.ToolTipText" xml:space="preserve">
+    <value>Ausgewählten Pfad löschen</value>
+  </data>
+  <data name="cmsPicBoxCropSelectedPath.Text" xml:space="preserve">
+    <value>Ausgewählten Pfad freistellen</value>
+  </data>
+  <data name="cmsPicBoxMoveSelectedPathInCode.Text" xml:space="preserve">
+    <value>Versatz auf GCode anwenden</value>
+  </data>
+  <data name="cmsPicBoxSetGCodeAsBackground.Text" xml:space="preserve">
+    <value>Stellen Sie den G-Code als Hintergrund ein</value>
+  </data>
+  <data name="cmsPicBoxClearBackground.Text" xml:space="preserve">
+    <value>Hintergrund löschen</value>
+  </data>
+  <data name="unDo3ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Letzte Aktion rückgängig machen</value>
+  </data>
+  <data name="cmsEditorHotkeys.AccessibleDescription" xml:space="preserve">
+    <value>Fenster mit Standard-Hotkeys für das "Fast Coloured Text Box" anzeigen</value>
+  </data>
+  <data name="cmsCodeBlocksFold.AccessibleDescription" xml:space="preserve">
+    <value>Codeblöcke sind G-Code, umgeben von XML-Elementen wie "Gruppe" von "Abbildung"</value>
+  </data>
+  <data name="cmsCodeBlocksFold.Text" xml:space="preserve">
+    <value>Codeblöcke falten</value>
+  </data>
+  <data name="cmsCodeBlocksMove.AccessibleDescription" xml:space="preserve">
+    <value>Codeblöcke sind G-Code, umgeben von XML-Elementen wie "Gruppe" von "Abbildung"</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockMostUp.Text" xml:space="preserve">
+    <value>Verschieben des ausgewählten Codeblock am weitesten nach oben</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockUp.Text" xml:space="preserve">
+    <value>Verschieben des ausgewählten Codeblock nach oben</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockDown.Text" xml:space="preserve">
+    <value>Verschieben des ausgewählten Codeblock nach unten</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockMostDown.Text" xml:space="preserve">
+    <value>Verschieben des  ausgewählten Codeblock am weitesten nach unten</value>
+  </data>
+  <data name="cmsCodeBlocksMove.Text" xml:space="preserve">
+    <value>Codeblöcke verschieben</value>
+  </data>
+  <data name="cmsCodeBlocksSortReverse.Text" xml:space="preserve">
+    <value>Sortierreihenfolge umkehren</value>
+  </data>
+  <data name="cmsCodeBlocksSortById.Text" xml:space="preserve">
+    <value>Sortieren nach 'Id'</value>
+  </data>
+  <data name="cmsCodeBlocksSortByGeometry.Text" xml:space="preserve">
+    <value>Sortieren nach 'Geometrie'</value>
+  </data>
+  <data name="cmsCodeBlocksSortByToolNr.Text" xml:space="preserve">
+    <value>Sortieren nach 'ToolNr'</value>
+  </data>
+  <data name="cmsCodeBlocksSortByToolName.Text" xml:space="preserve">
+    <value>Sortieren nach 'ToolName'</value>
+  </data>
+  <data name="cmsCodeBlocksSortByColor.Text" xml:space="preserve">
+    <value>Sortieren nach 'Farbe'</value>
+  </data>
+  <data name="cmsCodeBlocksSortByCodeSize.Text" xml:space="preserve">
+    <value>Sortieren nach 'CodeSize'</value>
+  </data>
+  <data name="cmsCodeBlocksSortByCodeArea.Text" xml:space="preserve">
+    <value>Sortieren nach 'CodeArea'</value>
+  </data>
+  <data name="cmsCodeBlocksSort.Text" xml:space="preserve">
+    <value>Codeblöcke sortieren</value>
+  </data>
+  <data name="cmsCodeBlocksRemoveGroup.Text" xml:space="preserve">
+    <value>'Group' XML-Tags entfernen</value>
+  </data>
+  <data name="cmsCodeBlocksRemoveAll.Text" xml:space="preserve">
+    <value>Entfernen Sie alle XML-Tags</value>
+  </data>
+  <data name="cmsEditMode.AccessibleDescription" xml:space="preserve">
+    <value>Im Bearbeitungsmodus ist die automatische Auswahl von Gruppen deaktiviert</value>
+  </data>
+  <data name="cmsCodeSelect.AccessibleDescription" xml:space="preserve">
+    <value>Wählen Sie den vollständigen Code</value>
+  </data>
+  <data name="cmsCodeCopy.AccessibleDescription" xml:space="preserve">
+    <value>Kopieren Sie die Auswahl in die Zwischenablage</value>
+  </data>
+  <data name="cmsCodePaste.AccessibleDescription" xml:space="preserve">
+    <value>Editor löschen und aus der Zwischenablage einfügen</value>
+  </data>
+  <data name="cmsCodePasteSpecial1.AccessibleDescription" xml:space="preserve">
+    <value>Fügen Sie den G-Code "Pen up" vor die aktuelle Zeile ein</value>
+  </data>
+  <data name="cmsCodePasteSpecial2.AccessibleDescription" xml:space="preserve">
+    <value>Fügen Sie den G-Code "Pen down" vor die aktuelle Zeile ein</value>
+  </data>
+  <data name="cmsFindDialog.AccessibleDescription" xml:space="preserve">
+    <value>Öffnen Sie "Dialogfeld suchen" im "Schnellfarbigen Textfeld".</value>
+  </data>
+  <data name="cmsReplaceDialog.AccessibleDescription" xml:space="preserve">
+    <value>Öffnen Sie "Dialogfeld ersetzen" </value>
+  </data>
+  <data name="cmsUpdate2DView.AccessibleDescription" xml:space="preserve">
+    <value>G-Code neu vom Editor einlesen, um die 2D-Ansicht zu aktualisieren</value>
+  </data>
+  <data name="toolStripStatusLabel0.Text" xml:space="preserve">
+    <value>[Datei per Drag &amp; Drop laden oder Datei öffnen. Oder wählen Sie 'Datei neu laden', um die zuletzt verwendete Datei zu öffnen. ]</value>
+  </data>
+  <data name="copyContentTroClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kopiert den Inhalt in die Zwischenablage</value>
+  </data>
+  <data name="createBarcodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Barcode erstellen</value>
+  </data>
+  <data name="cmsCodeBlocksSortByDistance.Text" xml:space="preserve">
+    <value>Nach Entfernung sortieren</value>
+  </data>
+  <data name="cmsPicBoxReverseSelectedPath.Text" xml:space="preserve">
+    <value>Ausgewählten Pfad umkehren / drehen</value>
+  </data>
+  <data name="sortByPenWidthToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sortieren nach 'Stiftbreite'</value>
+  </data>
+  <data name="sortByLayerToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sortieren nach 'Ebene'</value>
+  </data>
+  <data name="sortByTypeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sortieren nach 'Typ'</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>Beenden</value>
+  </data>
+  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
+    <value>Zeigt den Status des D3-Pins (grbl-Mega-5X), beim Klicken senden Sie 'M64 P3 (on)' oder 'M65 P3 (off)' je nach Status</value>
+  </data>
+  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
+    <value>Zeigt den Status des D2-Pins (grbl-Mega-5X), beim Klicken senden Sie 'M64 P2 (on)' oder 'M65 P2 (off)' je nach Status</value>
+  </data>
+  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
+    <value>Zeigt den Status des D1-Pins (grbl-Mega-5X), beim Klicken senden Sie 'M64 P1 (on)' oder 'M65 P1 (off)' je nach Status</value>
+  </data>
+  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
+    <value>Zeigt den Status des D0-Pins (grbl-Mega-5X), beim Klicken senden Sie 'M64 P0 (on)' oder 'M65 P0 (off)' je nach Status</value>
+  </data>
+</root>

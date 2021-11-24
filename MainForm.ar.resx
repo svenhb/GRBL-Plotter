@@ -1,0 +1,1073 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cmsEditorHotkeys.Text" xml:space="preserve">
+    <value>إظهار مفاتيح الاختصار للمحرر</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="foldCodeBlocks1stLevelToolStripMenuItem.Text" xml:space="preserve">
+    <value>أضعاف كتل رمز المستوى 1</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="foldCodeBlocks2ndLevelToolStripMenuItem.Text" xml:space="preserve">
+    <value>أضعاف كتل رمز المستوى 2</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="foldCodeBlocks3rdLevelToolStripMenuItem.Text" xml:space="preserve">
+    <value>أضعاف كتل رمز المستوى 3</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="expandCodeBlocksToolStripMenuItem1.Text" xml:space="preserve">
+    <value>توسيع كتل التعليمات البرمجية</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsCodeSelect.Text" xml:space="preserve">
+    <value>اختر الكل</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsCodeCopy.Text" xml:space="preserve">
+    <value>نسخ إلى الحافظة</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsCodePaste.Text" xml:space="preserve">
+    <value>لصق من الحافظة</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsCodePasteSpecial1.Text" xml:space="preserve">
+    <value>إدراج "PenUp"</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsCodePasteSpecial2.Text" xml:space="preserve">
+    <value>إدراج "PenDown"</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsFindDialog.Text" xml:space="preserve">
+    <value>البحث عن الحوار</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsReplaceDialog.Text" xml:space="preserve">
+    <value>استبدال الحوار</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsCodeSendLine.Text" xml:space="preserve">
+    <value>إرسال خط ملحوظ نحو GRBL</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsCommentOut.Text" xml:space="preserve">
+    <value>علق على G-Code غير معروف</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="cmsUpdate2DView.Text" xml:space="preserve">
+    <value>تحديث عرض 2D</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="fCTBCode.Text" xml:space="preserve">
+    <value>(لصق رمز G أو ملف التحميل)</value>
+    <comment>Editor</comment>
+  </data>
+  <data name="lbInfo.Text" xml:space="preserve">
+    <value>رسالة</value>
+    <comment>groupBox_Streaming</comment>
+  </data>
+  <data name="btnStreamStop.ToolTip" xml:space="preserve">
+    <value>التوقف عن إرسال رمز إلى GRBL</value>
+    <comment>groupBox_Streaming</comment>
+  </data>
+  <data name="btnStreamCheck.Text" xml:space="preserve">
+    <value>التحقق من الشفرة</value>
+    <comment>groupBox_Streaming</comment>
+  </data>
+  <data name="lblElapsed.Text" xml:space="preserve">
+    <value>زمن</value>
+    <comment>groupBox_Streaming</comment>
+  </data>
+  <data name="lblFileProgress.Text" xml:space="preserve">
+    <value>تقدم</value>
+    <comment>groupBox_Streaming</comment>
+  </data>
+  <data name="btnStreamStart.ToolTip" xml:space="preserve">
+    <value>إرسال رمز من محرر النصوص إلى GRBL</value>
+    <comment>groupBox_Streaming</comment>
+  </data>
+  <data name="gBoxStream.Text" xml:space="preserve">
+    <value>G- كود الجري</value>
+    <comment>groupBox_Streaming</comment>
+  </data>
+  <data name="btnLimitExceed.Text" xml:space="preserve">
+    <value>؟</value>
+  </data>
+  <data name="btnOffsetApply.Text" xml:space="preserve">
+    <value>تطبيق الأوفست</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>إزاحة Y</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="label6.ToolTip" xml:space="preserve">
+    <value>إزاحة Y</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>إزاحة X</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value>إزاحة X</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>الأصل س ص</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="lbDimension.Text" xml:space="preserve">
+    <value>الأبعاد</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="gBoxDimension.Text" xml:space="preserve">
+    <value>G- كود البعد</value>
+    <comment>groupBox_Dimension</comment>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>جلس:</value>
+  </data>
+  <data name="gBOverrideRGB.Text" xml:space="preserve">
+    <value>سريعون</value>
+    <comment>groupBox_Override1</comment>
+  </data>
+  <data name="btnOverrideSpindle.Text" xml:space="preserve">
+    <value>المغزل CW</value>
+  </data>
+  <data name="btnOverrideSpindle.ToolTip" xml:space="preserve">
+    <value>يعمل فقط في حالة HOLD</value>
+    <comment>groupBox_Override2</comment>
+  </data>
+  <data name="btnOverrideMist.Text" xml:space="preserve">
+    <value>ضباب</value>
+  </data>
+  <data name="btnOverrideMist.ToolTip" xml:space="preserve">
+    <value>قد لا يتم تمكين M7 في grbl</value>
+    <comment>groupBox_Override2</comment>
+  </data>
+  <data name="btnOverrideFlood.Text" xml:space="preserve">
+    <value>فيضان</value>
+  </data>
+  <data name="gBOverrideASGB.Text" xml:space="preserve">
+    <value>تبديل الدول التبعي</value>
+    <comment>groupBox_Override2</comment>
+  </data>
+  <data name="lblStatusFeed.Text" xml:space="preserve">
+    <value>تغذية الفعلية</value>
+    <comment>groupBox_Override3</comment>
+  </data>
+  <data name="lblStatusFeed.ToolTip" xml:space="preserve">
+    <value>معدل التغذية الفعلي بالملليمتر / دقيقة أو البوصة / الدقيقة (اعتمادًا على 13 دولارًا)</value>
+    <comment>groupBox_Override3</comment>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>جلس:</value>
+  </data>
+  <data name="gBOverrideFRGB.Text" xml:space="preserve">
+    <value>تغذية</value>
+    <comment>groupBox_Override3</comment>
+  </data>
+  <data name="lblStatusSpeed.Text" xml:space="preserve">
+    <value>السرعة الفعلية</value>
+    <comment>groupBox_Override3</comment>
+  </data>
+  <data name="lblStatusSpeed.ToolTip" xml:space="preserve">
+    <value>سرعة المغزل الفعلية في دورة في الدقيقة</value>
+    <comment>groupBox_Override3</comment>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>جلس:</value>
+  </data>
+  <data name="gBOverrideSSGB.Text" xml:space="preserve">
+    <value>سرعة المغزل</value>
+    <comment>groupBox_Override3</comment>
+  </data>
+  <data name="gBoxOverride.Text" xml:space="preserve">
+    <value>Overrides (grbl 1.1 فقط) - انقر لتوسيع / تقليص</value>
+    <comment>groupBox_Override3</comment>
+  </data>
+  <data name="btnJogStop.Text" xml:space="preserve">
+    <value>وقف الركض</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnJogStop.ToolTip" xml:space="preserve">
+    <value>وقف حركة الركض الحالية</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="cBTool.Text" xml:space="preserve">
+    <value>الأداة في المغزل</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="cBCoolant.Text" xml:space="preserve">
+    <value>المبرد</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="cBSpindle.Text" xml:space="preserve">
+    <value>المغزل CW</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="gB_Jogging.Text" xml:space="preserve">
+    <value>التحكم / الركض</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="virtualJoystickA.ToolTip" xml:space="preserve">
+    <value>هرول المحور الرابع</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="virtualJoystickXY.ToolTip" xml:space="preserve">
+    <value>محور Jog X و Y</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="virtualJoystickZ.ToolTip" xml:space="preserve">
+    <value>هرول Z المحور</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="virtualJoystickB.ToolTip" xml:space="preserve">
+    <value>هرول المحور الرابع</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="virtualJoystickC.ToolTip" xml:space="preserve">
+    <value>هرول المحور الرابع</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="cBSendJogStop.Text" xml:space="preserve">
+    <value>وقف الركض على الماوس لأعلى</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnOverrideDoor.Text" xml:space="preserve">
+    <value>باب</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnOverrideDoor.ToolTip" xml:space="preserve">
+    <value>على الرغم من أن عادةً ما تكون متصلة بمسمار إدخال للكشف عن فتح باب الأمان ، فإن هذا الأمر يسمح لـ GUI بتفعيل سلوك باب الأمان باستخدام هذا الأمر.
+يعلق على الفور في حالة الباب ويعطل المغزل والمبرد. في حالة الحركة ، ستتباطأ الماكينة وتوقف بعد ذلك.
+إذا تم تنفيذ أثناء صاروخ موجه ، فإن Grbl ستوقف الحركة وتلقي إنذارًا صارخًا.
+إذا كانت موجودة بالفعل في حالة تعليق مؤقت أو HOLD ، فإن حالة DOOR ستحل محلها.
+إذا تم تمكين خيار وقت إيقاف السيارات ، فسيقوم Grbl بإيقاف المغزل إلى موقع محدد.
+يتم تنفيذ الأمر عندما يكون Grbl في حالة IDLE أو HOLD أو RUN أو HOMING أو JOG. يتم تجاهله بطريقة أخرى.
+إذا كان الركض ، فإن باب السلامة سوف يلغي الركض وجميع حركات الانتظار في المخزن المؤقت للمخطط. عند إغلاق باب الأمان واستئنافه ، سيعود Grbl إلى حالة IDLE.
+يتوفر دبوس إدخال لتوصيل زر أو مفتاح ، إذا تم تمكينه باستخدام خيار وقت الترجمة.</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnResume.Text" xml:space="preserve">
+    <value>استئنف</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnResume.ToolTip" xml:space="preserve">
+    <value>يمكن إصدار أمر بدء الدورة أو استئنافها "~" في أي وقت ، حيث إنه أمر في الوقت الفعلي.
+عندما يكون لدى Grbl حركات قائمة الانتظار في المخزن المؤقت الخاص به ويكون جاهزًا للذهاب ، فإن الأمر ~ cycle start سوف
+البدء في تنفيذ المخزن المؤقت وسيبدأ Grbl في تحريك المحاور.</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnFeedHold.Text" xml:space="preserve">
+    <value>تغذية تعليق</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnFeedHold.ToolTip" xml:space="preserve">
+    <value>أمر تعليق التغذية '!' سيؤدي إلى توقف الدورة النشطة عن طريق التباطؤ المتحكم به ، حتى لا تفقد مركزك.
+إنه أيضًا وقت حقيقي ويمكن تنشيطه في أي وقت. بمجرد الانتهاء أو الإيقاف المؤقت ، سوف ينتظر Grbl حتى أمر بدء دورة
+صدر لاستئناف البرنامج. تعليق الخلاصة يمكن أن يوقف دورة فقط ولن يؤثر على صاروخ موجه أو أي عملية أخرى.
+إذا كنت بحاجة إلى إيقاف دورة منتصف البرنامج ولا يمكنك تحمل خسارة المركز ، فقم بإجراء تعليق لتلقي Grbl
+كل شيء إلى توقف تسيطر عليها. بمجرد الانتهاء ، يمكنك حينئذ إصدار إعادة تعيين. حاول دائمًا تنفيذ تعليق تغذية متى
+يتم تشغيل الجهاز قبل الضغط على إعادة التعيين ، إلا إذا كان هناك بعض حالات الطوارئ.</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnKillAlarm.Text" xml:space="preserve">
+    <value>اقتل المنبه</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnKillAlarm.ToolTip" xml:space="preserve">
+    <value>وضع التنبيه Grbl هو حالة عندما يكون هناك شيء خاطئ بشكل خطير ،
+مثل الحد الصلب أو الإجهاض أثناء الدورة ، أو إذا كان Grbl لا يعرف موقعه.
+افتراضيًا ، إذا قمت بتمكين صاروخ موجه وإدخال Arduino ، يدخل Grbl
+حالة الإنذار ، لأنها لا تعرف موقفها. وضع المنبه قفل كل شيء
+أوامر G-code حتى يتم تنفيذ دورة التوجيه "$ H". أو إذا كان يحتاج المستخدم
+لتجاوز قفل المنبه لتحريك محاورهم عن مفاتيح الحد الخاصة بهم ، على سبيل المثال ، قفل المنبه "$ X"
+سيتجاوز الأقفال ويسمح لوظائف G-code بالعمل مرة أخرى.</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnReset.Text" xml:space="preserve">
+    <value>إعادة تعيين</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnReset.ToolTip" xml:space="preserve">
+    <value>هذا هو أمر إعادة تعيين Grbl الناعم 'Ctrl-x'. إنه وقت حقيقي ويمكن إرساله في أي وقت.
+كما يوحي الاسم ، فإنه يعيد تعيين Grbl ، ولكن بطريقة محكومة ، يحتفظ بموضع جهازك ،
+ويتم كل ذلك دون التقليل من اردوينو الخاص بك. الأوقات الوحيدة التي يمكن إعادة تعيين لينة
+الموقف المفقود هو عندما تنشأ مشاكل وقتل السائر بينما كانوا يتحركون.
+إذا كان الأمر كذلك ، فستبلغ إذا كان تتبع Grbl لموضع الماكينة قد فقد.
+وذلك لأن التباطؤ غير المنضبط يمكن أن يؤدي إلى خطوات ضائعة ، وليس لدى Grbl أي ملاحظات
+إلى مقدار خسارتها (هذه هي المشكلة مع السائر بشكل عام). خلاف ذلك ، سوف Grbl مجرد إعادة تهيئة ،
+تشغيل خطوط بدء التشغيل ، والاستمرار في طريقها مرح.</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="unDo2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>التراجع عن آخر إجراء</value>
+    <comment>Menu131</comment>
+  </data>
+  <data name="deletenotMarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>تعليم الكود (بدون حذف)</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="deletenotMarkToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>انقر للتبديل</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="tBURL.Text" xml:space="preserve">
+    <value>لصق عنوان URL لملف SVG / DXF هنا</value>
+    <comment>2DView</comment>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>أزرار مخصصة</value>
+    <comment>groupBox_Custom</comment>
+  </data>
+  <data name="btnZeroC.Text" xml:space="preserve">
+    <value>صفر جيم</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroC.ToolTip" xml:space="preserve">
+    <value>ضبط العمل C إحداثي إلى صفر</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroB.Text" xml:space="preserve">
+    <value>صفر ب</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroB.ToolTip" xml:space="preserve">
+    <value>تعيين العمل B إحداثي إلى الصفر</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="lblCurrentG.ToolTip" xml:space="preserve">
+    <value>نظام الإحداثيات الافتراضي = G54
+نظام إحداثيات الكاميرا = G59
+أضف "G54 ؛" إلى رأس G-Code للتبديل تلقائيًا إلى G54 قبل دفق G-Code</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="label_status0.Text" xml:space="preserve">
+    <value>الحالة:</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroA.Text" xml:space="preserve">
+    <value>صفر Z</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroA.ToolTip" xml:space="preserve">
+    <value>ضبط تنسيق العمل على الصفر</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnHome.Text" xml:space="preserve">
+    <value>الصفحة الرئيسية</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnHome.ToolTip" xml:space="preserve">
+    <value>بدء صاروخ موجه (إذا تم تمكين GRBL)</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroXYZ.Text" xml:space="preserve">
+    <value>صفر XYZ</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroXYZ.ToolTip" xml:space="preserve">
+    <value>تعيين العمل X ، Y ، Z تنسيق إلى الصفر</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroXY.Text" xml:space="preserve">
+    <value>صفر XY</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroXY.ToolTip" xml:space="preserve">
+    <value>تعيين العمل X ، Y تنسيق إلى الصفر</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroZ.Text" xml:space="preserve">
+    <value>صفر Z</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroZ.ToolTip" xml:space="preserve">
+    <value>اضبط إحداثي Z إلى صفر</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroY.Text" xml:space="preserve">
+    <value>صفر Y</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroY.ToolTip" xml:space="preserve">
+    <value>تعيين العمل Y إحداثي إلى الصفر</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroX.Text" xml:space="preserve">
+    <value>صفر X</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroX.ToolTip" xml:space="preserve">
+    <value>تعيين العمل X تنسيق إلى الصفر</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="label_status.Text" xml:space="preserve">
+    <value>الحالة</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="groupBoxCoordinates.Text" xml:space="preserve">
+    <value>إحداثيات الأداة (العمل / الجهاز)</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="loadToolStripMenuItem.Text" xml:space="preserve">
+    <value>فتح الملف</value>
+    <comment>Menu111</comment>
+  </data>
+  <data name="loadToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>افتح ملف G-Code أو SVG</value>
+    <comment>Menu111</comment>
+  </data>
+  <data name="toolStripMenuItem2.Text" xml:space="preserve">
+    <value>افتح الملف الأخير</value>
+    <comment>Menu112</comment>
+  </data>
+  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
+    <value>حفظ G- كود</value>
+    <comment>Menu113</comment>
+  </data>
+  <data name="saveToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>احفظ G-Code المعروض في ملف</value>
+    <comment>Menu113</comment>
+  </data>
+  <data name="setupToolStripMenuItem1.Text" xml:space="preserve">
+    <value>اقامة</value>
+    <comment>Menu114</comment>
+  </data>
+  <data name="saveMachineParametersToolStripMenuItem.Text" xml:space="preserve">
+    <value>تصدير إعدادات الجهاز</value>
+    <comment>Menu115</comment>
+  </data>
+  <data name="saveMachineParametersToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>تصدير إعدادات واجهة المستخدم الرسومية (تعريفات الزر ، معلمات عصا التحكم) إلى ملف INI</value>
+    <comment>Menu115</comment>
+  </data>
+  <data name="loadMachineParametersToolStripMenuItem.Text" xml:space="preserve">
+    <value>واستيراد إعدادات الجهاز</value>
+    <comment>Menu116</comment>
+  </data>
+  <data name="loadMachineParametersToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>استيراد إعدادات واجهة المستخدم الرسومية (تعريفات الزر ، معلمات جويستيك) من ملف INI</value>
+    <comment>Menu116</comment>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>ملف</value>
+    <comment>Menu11</comment>
+  </data>
+  <data name="textWizzardToolStripMenuItem.Text" xml:space="preserve">
+    <value>إنشاء والنص</value>
+    <comment>Menu121</comment>
+  </data>
+  <data name="textWizzardToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>كوبيوريتنغ بسيطة مع الخطوط هيرشي</value>
+    <comment>Menu121</comment>
+  </data>
+  <data name="imageToolStripMenuItem.Text" xml:space="preserve">
+    <value>تحويل والصورة</value>
+    <comment>Menu122</comment>
+  </data>
+  <data name="createSimpleShapesToolStripMenuItem.Text" xml:space="preserve">
+    <value>إنشاء بسيط القرود والقرود</value>
+    <comment>Menu123</comment>
+  </data>
+  <data name="createSimpleShapesToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>دائرة أو مستطيل ، اختياريا مع زوايا مدورة ، اختياريا كحقيبة</value>
+    <comment>Menu123</comment>
+  </data>
+  <data name="createGCodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>G- كود و الخلق</value>
+    <comment>Menu12</comment>
+  </data>
+  <data name="unDoToolStripMenuItem.Text" xml:space="preserve">
+    <value>التراجع عن آخر إجراء</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="mirrorXToolStripMenuItem.Text" xml:space="preserve">
+    <value>المرآة X (والأفقية)</value>
+    <comment>Menu131</comment>
+  </data>
+  <data name="mirrorYToolStripMenuItem.Text" xml:space="preserve">
+    <value>المرآة Y (والرأسي)</value>
+    <comment>Menu131</comment>
+  </data>
+  <data name="mirrorRotaryToolStripMenuItem.Text" xml:space="preserve">
+    <value>مرآة محور الدوران</value>
+    <comment>Menu131</comment>
+  </data>
+  <data name="rotate90ToolStripMenuItem.Text" xml:space="preserve">
+    <value>تدوير + 90 درجة (ccw)</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="rotate90ToolStripMenuItem1.Text" xml:space="preserve">
+    <value>تدوير -90 درجة (cw)</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="rotate180ToolStripMenuItem.Text" xml:space="preserve">
+    <value>تدوير 180 درجة</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="rotateFreeToolStripMenuItem.Text" xml:space="preserve">
+    <value>تدوير بواسطة ... °</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="sToolStripMenuItem.Text" xml:space="preserve">
+    <value>مقياس XY بواسطة ...٪</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skalierenXYToolStripMenuItem.Text" xml:space="preserve">
+    <value>تعيين مقياس XY X = ... وحدات</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skalierenXYUmXUnitsZuErreichenToolStripMenuItem.Text" xml:space="preserve">
+    <value>تعيين مقياس XY Y = ... وحدات</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereXUmToolStripMenuItem.Text" xml:space="preserve">
+    <value>المقياس X بنسبة ...٪</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereXUmToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 غير مدعوم</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereAufXUnitsToolStripMenuItem.Text" xml:space="preserve">
+    <value>مقياس X مجموعة X = ... وحدات</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereAufXUnitsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 غير مدعوم</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereYUmToolStripMenuItem.Text" xml:space="preserve">
+    <value>مقياس Y بواسطة ...٪</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereYUmToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 غير مدعوم</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereAufYUnitsToolStripMenuItem.Text" xml:space="preserve">
+    <value>مقياس Y تعيين Y = ... وحدات</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereAufYUnitsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 غير مدعوم</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="rotaryDimaeterToolStripMenuItem.Text" xml:space="preserve">
+    <value>القطر الدوار</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="rotaryDimaeterToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>تعيين قطر جزء للمحور الدوار</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="skaliereXAufDrehachseToolStripMenuItem.Text" xml:space="preserve">
+    <value>المقياس X إلى ... ° (المحور الدوار)</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereXAufDrehachseToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 غير مدعوم</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereYAufDrehachseToolStripMenuItem.Text" xml:space="preserve">
+    <value>مقياس Y إلى ... ° (محور دوار)</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereYAufDrehachseToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 غير مدعوم</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="toolStrip_RadiusComp.Text" xml:space="preserve">
+    <value>تعويض نصف القطر</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="ersetzteG23DurchLinienToolStripMenuItem.Text" xml:space="preserve">
+    <value>استبدل G2 / 3 بخطوط</value>
+    <comment>Menu134</comment>
+  </data>
+  <data name="convertZToSspindleSpeedToolStripMenuItem.Text" xml:space="preserve">
+    <value>تحويل Z إلى S (سرعة الدوران)</value>
+    <comment>Menu134</comment>
+  </data>
+  <data name="convertZToSspindleSpeedToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>اضبط أقصى سرعة للمغزل لأدنى Z في
+[الإعداد - استيراد الرسومات - تعديل G-Code]</value>
+    <comment>Menu134</comment>
+  </data>
+  <data name="removeAnyZMoveToolStripMenuItem.Text" xml:space="preserve">
+    <value>إزالة أي خطوة Z</value>
+    <comment>Menu134</comment>
+  </data>
+  <data name="gCodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>تحويل G- كود</value>
+    <comment>Menu13</comment>
+  </data>
+  <data name="probingToolLengthToolStripMenuItem.Text" xml:space="preserve">
+    <value>التحقيق / طول الأداة</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="surfaceScanHeightMapToolStripMenuItem.Text" xml:space="preserve">
+    <value>مسح السطح / خريطة الارتفاع</value>
+    <comment>Menu142</comment>
+  </data>
+  <data name="workpieceToolStripMenuItem.Text" xml:space="preserve">
+    <value>والشغل</value>
+    <comment>Menu14</comment>
+  </data>
+  <data name="edgeFinderToolStripMenuItem.Text" xml:space="preserve">
+    <value>جس</value>
+    <comment>Menu14</comment>
+  </data>
+  <data name="heightMapToolStripMenuItem.Text" xml:space="preserve">
+    <value>مسح السطح</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="laserToolsToolStripMenuItem.Text" xml:space="preserve">
+    <value>أدوات الليزر</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="coordinateSystemsToolStripMenuItem.Text" xml:space="preserve">
+    <value>نظم الإحداثيات</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
+    <value>السيطرة DIY</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="setupToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>إعداد واجهة المستخدم الرسومية واستيراد المعلمات</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="toolStripMenuItem1.Text" xml:space="preserve">
+    <value>عرض الكاميرا</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="toolStripMenuItem1.ToolTipText" xml:space="preserve">
+    <value>عرض صورة الكاميرا</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="toolStrip_tb_StreamLine.ToolTipText" xml:space="preserve">
+    <value>خط ملحوظ</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="startStreamingAtLineToolStripMenuItem.Text" xml:space="preserve">
+    <value>بدء الجري في خط</value>
+  </data>
+  <data name="startStreamingAtLineToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>اضبط سطر البدء هنا إذا كان يجب ألا يبدأ G-Code من السطر 0</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="controlStreamingToolStripMenuItem.Text" xml:space="preserve">
+    <value>التحكم في التدفق</value>
+    <comment>Menu142</comment>
+  </data>
+  <data name="controlStreamingToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>تجاوز معدل التغذية وسرعة المغزل</value>
+    <comment>Menu142</comment>
+  </data>
+  <data name="control2ndGRBLToolStripMenuItem.Text" xml:space="preserve">
+    <value>السيطرة 2nd GRBL</value>
+    <comment>Menu142</comment>
+  </data>
+  <data name="control2ndGRBLToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>يفتح نافذة بسيطة للتحكم في وحدة تحكم GRBL ثانية</value>
+    <comment>Menu142</comment>
+  </data>
+  <data name="machineToolStripMenuItem.Text" xml:space="preserve">
+    <value>و آلة التحكم</value>
+    <comment>Menu14</comment>
+  </data>
+  <data name="toolStripViewRuler.Text" xml:space="preserve">
+    <value>مسطرة</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewInfo.Text" xml:space="preserve">
+    <value>معلومات</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewPenUp.Text" xml:space="preserve">
+    <value>مسار القلم الهاتفي</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewMachineFix.Text" xml:space="preserve">
+    <value>منطقة آلة ثابتة</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewMachineFix.ToolTipText" xml:space="preserve">
+    <value>يمكن ضبط الحد والإزاحة عبر "الإعداد" - "التحكم" - "منطقة Maschine"</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewMachine.Text" xml:space="preserve">
+    <value>حدود الجهاز</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewMachine.ToolTipText" xml:space="preserve">
+    <value>يمكن ضبط الحد والإزاحة عبر "الإعداد" - "التحكم" - "منطقة Maschine"</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewTool.Text" xml:space="preserve">
+    <value>الجدول أداة</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewTool.ToolTipText" xml:space="preserve">
+    <value>يمكن ضبط الحد والإزاحة عبر "الإعداد" - "إعداد تغيير الأداة" - "جدول الأدوات"</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewBackground.Text" xml:space="preserve">
+    <value>خلفية</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>رأي</value>
+    <comment>Menu15</comment>
+  </data>
+  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
+    <value>حول</value>
+    <comment>Menu16</comment>
+  </data>
+  <data name="toolStripMenuItem3.Text" xml:space="preserve">
+    <value>لغة</value>
+    <comment>Menu117</comment>
+  </data>
+  <data name="btnStreamCheck.ToolTip" xml:space="preserve">
+    <value>يعمل هذا على تبديل المحلل اللغوي الخاص بـ Grbl لأخذ جميع الكتل الواردة ومعالجتها تمامًا ، كما هو الحال في التشغيل العادي ، لكنه لا يحرك أي من المحاور ، ويتجاهل المساكن ، ويفصل الطاقة عن المغزل والمبرد. الغرض من ذلك هو توفير وسيلة للمستخدم للتحقق من كيفية حصول برنامج G-code الجديد على محلل Grbl ومراقبته عن أي أخطاء (والتحقق من انتهاكات الحد المسموح به ، إذا كان ممكّنًا).</value>
+  </data>
+  <data name="btnSimulateSlower.ToolTip" xml:space="preserve">
+    <value>نصف سرعة المحاكاة</value>
+  </data>
+  <data name="btnSimulateFaster.ToolTip" xml:space="preserve">
+    <value>سرعة محاكاة مزدوجة</value>
+  </data>
+  <data name="btnSimulate.Text" xml:space="preserve">
+    <value>بدء محاكاة المسار</value>
+  </data>
+  <data name="btnJogZeroA.ToolTip" xml:space="preserve">
+    <value>أرسل G90 G0 A (أو B ، C) 0</value>
+  </data>
+  <data name="btnJogZeroX.ToolTip" xml:space="preserve">
+    <value>أرسل G90 G0 X0</value>
+  </data>
+  <data name="btnJogZeroXY.ToolTip" xml:space="preserve">
+    <value>أرسل G90 G0 X0 Y0</value>
+  </data>
+  <data name="btnJogZeroY.ToolTip" xml:space="preserve">
+    <value>أرسل G90 G0 Y0</value>
+  </data>
+  <data name="btnJogZeroZ.ToolTip" xml:space="preserve">
+    <value>أرسل G90 G0 Z0</value>
+  </data>
+  <data name="toolStripViewDimension.Text" xml:space="preserve">
+    <value>البعد G- كود</value>
+  </data>
+  <data name="startExtensionToolStripMenuItem.Text" xml:space="preserve">
+    <value>ملحقات</value>
+  </data>
+  <data name="cmsEditMode.Text" xml:space="preserve">
+    <value>تبديل وضع التحرير</value>
+  </data>
+  <data name="cBServoButtons.Text" xml:space="preserve">
+    <value>إظهار القلم لأعلى / لأسفل</value>
+  </data>
+  <data name="btnPenDown.Text" xml:space="preserve">
+    <value>القلم لأسفل</value>
+  </data>
+  <data name="btnPenDown.ToolTip" xml:space="preserve">
+    <value>استخدم الإعدادات من Setup-Servo-PWM</value>
+  </data>
+  <data name="btnPenUp.Text" xml:space="preserve">
+    <value>قلم لأعلى</value>
+  </data>
+  <data name="btnPenUp.ToolTip" xml:space="preserve">
+    <value>استخدم الإعدادات من Setup-Servo-PWM</value>
+  </data>
+  <data name="cmsPicBoxMoveToMarkedPosition.Text" xml:space="preserve">
+    <value>الانتقال إلى الموضع المميز G0</value>
+  </data>
+  <data name="cmsPicBoxZeroXYAtMarkedPosition.Text" xml:space="preserve">
+    <value>صفر XY في الموضع المميز G10 L20</value>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOrigin.Text" xml:space="preserve">
+    <value>تعويض الرسوم عن طريق وضع علامة</value>
+  </data>
+  <data name="cmsPicBoxResetZooming.Text" xml:space="preserve">
+    <value>إعادة تعيين التكبير</value>
+  </data>
+  <data name="cmsPicBoxPasteFromClipboard.Text" xml:space="preserve">
+    <value>لصق من الحافظة</value>
+  </data>
+  <data name="cmsPicBoxReloadFile.Text" xml:space="preserve">
+    <value>إعادة تحميل الملف</value>
+  </data>
+  <data name="cmsPicBoxMarkFirstPos.Text" xml:space="preserve">
+    <value>ضع علامة على النقطة الأولى من المسار المحدد</value>
+  </data>
+  <data name="cmsPicBoxDeletePath.Text" xml:space="preserve">
+    <value>حذف المسار المحدد</value>
+  </data>
+  <data name="cmsPicBoxDeletePath.ToolTipText" xml:space="preserve">
+    <value>حذف المسار المحدد</value>
+  </data>
+  <data name="cmsPicBoxCropSelectedPath.Text" xml:space="preserve">
+    <value>قطع المسار المحدد</value>
+  </data>
+  <data name="cmsPicBoxMoveSelectedPathInCode.Text" xml:space="preserve">
+    <value>تطبيق الإزاحة على GCode</value>
+  </data>
+  <data name="cmsPicBoxSetGCodeAsBackground.Text" xml:space="preserve">
+    <value>قم بتعيين G-Code كخلفية</value>
+  </data>
+  <data name="cmsPicBoxClearBackground.Text" xml:space="preserve">
+    <value>خلفية واضحة</value>
+  </data>
+  <data name="unDo3ToolStripMenuItem.Text" xml:space="preserve">
+    <value>التراجع عن الإجراء الأخير</value>
+  </data>
+  <data name="cmsEditorHotkeys.AccessibleDescription" xml:space="preserve">
+    <value>إظهار النافذة باستخدام مفاتيح التشغيل السريع الافتراضية لـ "مربع نص ملون سريع"</value>
+  </data>
+  <data name="cmsCodeBlocksFold.AccessibleDescription" xml:space="preserve">
+    <value>كتل التعليمات البرمجية هي G- كود محاطة بعناصر XML مثل "مجموعة" من "الشكل"</value>
+  </data>
+  <data name="cmsCodeBlocksFold.Text" xml:space="preserve">
+    <value>أضعاف كتل رمز</value>
+  </data>
+  <data name="cmsCodeBlocksMove.AccessibleDescription" xml:space="preserve">
+    <value>كتل التعليمات البرمجية هي G- كود محاطة بعناصر XML مثل "مجموعة" من "الشكل"</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockMostUp.Text" xml:space="preserve">
+    <value>نقل كتلة التعليمات البرمجية المحددة لأعلى</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockUp.Text" xml:space="preserve">
+    <value>نقل كتلة الرمز المحدد لأعلى</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockDown.Text" xml:space="preserve">
+    <value>نقل كتلة الرمز المحدد لأسفل</value>
+  </data>
+  <data name="cmsFCTBMoveSelectedCodeBlockMostDown.Text" xml:space="preserve">
+    <value>نقل كتلة التعليمات البرمجية المحددة لأسفل</value>
+  </data>
+  <data name="cmsCodeBlocksMove.Text" xml:space="preserve">
+    <value>نقل كتل التعليمات البرمجية</value>
+  </data>
+  <data name="cmsCodeBlocksSortReverse.Text" xml:space="preserve">
+    <value>ترتيب فرز عكسي</value>
+  </data>
+  <data name="cmsCodeBlocksSortById.Text" xml:space="preserve">
+    <value>فرز حسب 'Id'</value>
+  </data>
+  <data name="cmsCodeBlocksSortByGeometry.Text" xml:space="preserve">
+    <value>فرز حسب "الهندسة"</value>
+  </data>
+  <data name="cmsCodeBlocksSortByToolNr.Text" xml:space="preserve">
+    <value>فرز حسب "ToolNr"</value>
+  </data>
+  <data name="cmsCodeBlocksSortByToolName.Text" xml:space="preserve">
+    <value>فرز حسب "ToolName"</value>
+  </data>
+  <data name="cmsCodeBlocksSortByColor.Text" xml:space="preserve">
+    <value>فرز حسب "اللون"</value>
+  </data>
+  <data name="cmsCodeBlocksSortByCodeSize.Text" xml:space="preserve">
+    <value>فرز حسب 'CodeSize'</value>
+  </data>
+  <data name="cmsCodeBlocksSortByCodeArea.Text" xml:space="preserve">
+    <value>فرز حسب 'CodeArea'</value>
+  </data>
+  <data name="cmsCodeBlocksSort.Text" xml:space="preserve">
+    <value>فرز كتل الرمز</value>
+  </data>
+  <data name="cmsCodeBlocksRemoveGroup.Text" xml:space="preserve">
+    <value>إزالة علامات XML "المجموعة"</value>
+  </data>
+  <data name="cmsCodeBlocksRemoveAll.Text" xml:space="preserve">
+    <value>إزالة كافة علامات XML</value>
+  </data>
+  <data name="cmsEditMode.AccessibleDescription" xml:space="preserve">
+    <value>يتم تعطيل التحديد التلقائي للمجموعات في وضع التحرير</value>
+  </data>
+  <data name="cmsCodeSelect.AccessibleDescription" xml:space="preserve">
+    <value>حدد الرمز الكامل</value>
+  </data>
+  <data name="cmsCodeCopy.AccessibleDescription" xml:space="preserve">
+    <value>نسخ التحديد إلى الحافظة</value>
+  </data>
+  <data name="cmsCodePaste.AccessibleDescription" xml:space="preserve">
+    <value>محرر واضح ولصق من الحافظة</value>
+  </data>
+  <data name="cmsCodePasteSpecial1.AccessibleDescription" xml:space="preserve">
+    <value>أدخل "Pen up" G-Code أمام السطر الحالي</value>
+  </data>
+  <data name="cmsCodePasteSpecial2.AccessibleDescription" xml:space="preserve">
+    <value>أدخل "Pen down" G-Code أمام السطر الحالي</value>
+  </data>
+  <data name="cmsFindDialog.AccessibleDescription" xml:space="preserve">
+    <value>افتح "مربع حوار البحث" من "مربع نص ملون سريع"</value>
+  </data>
+  <data name="cmsReplaceDialog.AccessibleDescription" xml:space="preserve">
+    <value>فتح "استبدال مربع حوار" من "مربع نص ملون سريع"</value>
+  </data>
+  <data name="cmsUpdate2DView.AccessibleDescription" xml:space="preserve">
+    <value>معالجة G-Code من المحرر لتحديث 2D-View</value>
+  </data>
+  <data name="toolStripStatusLabel0.Text" xml:space="preserve">
+    <value>[تحميل الملف عن طريق السحب والإفلات أو فتح ملف الحوار. أو حدد "إعادة تحميل الملف" لفتح آخر ملف مستخدم. ]</value>
+  </data>
+  <data name="copyContentTroClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>نسخ المحتوى إلى الحافظة</value>
+  </data>
+  <data name="createBarcodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>إنشاء الباركود</value>
+  </data>
+  <data name="cmsCodeBlocksSortByDistance.Text" xml:space="preserve">
+    <value>فرز حسب المسافة</value>
+  </data>
+  <data name="cmsPicBoxReverseSelectedPath.Text" xml:space="preserve">
+    <value>عكس / تدوير المسار المحدد</value>
+  </data>
+  <data name="sortByPenWidthToolStripMenuItem.Text" xml:space="preserve">
+    <value>فرز حسب "عرض القلم"</value>
+  </data>
+  <data name="sortByLayerToolStripMenuItem.Text" xml:space="preserve">
+    <value>الترتيب حسب "الطبقة"</value>
+  </data>
+  <data name="sortByTypeToolStripMenuItem.Text" xml:space="preserve">
+    <value>فرز حسب "النوع"</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>خروج</value>
+  </data>
+  <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
+    <value>يعرض حالة D3 pin (grbl-Mega-5X) ، عند النقر فوق إرسال "M64 P3 (تشغيل)" أو "M65 P3 (إيقاف)" اعتمادًا على الحالة</value>
+  </data>
+  <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
+    <value>يعرض حالة D2 pin (grbl-Mega-5X) ، عند النقر فوق إرسال "M64 P2 (تشغيل)" أو "M65 P2 (إيقاف)" اعتمادًا على الحالة</value>
+  </data>
+  <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
+    <value>يعرض حالة D1 pin (grbl-Mega-5X) ، عند النقر فوق إرسال "M64 P1 (تشغيل)" أو "M65 P1 (إيقاف)" اعتمادًا على الحالة</value>
+  </data>
+  <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
+    <value>يعرض حالة D0 pin (grbl-Mega-5X) ، عند النقر فوق إرسال "M64 P0 (on)" أو "M65 P0 (off)" اعتمادًا على الحالة</value>
+  </data>
+</root>
