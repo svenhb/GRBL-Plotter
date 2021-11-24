@@ -26,6 +26,7 @@
  * 2021-02-16 presets when switch between tabs
  * 2021-06-26 gcode.setup(false) disable InsertSubroutine, LineSegmentation. Tab 2,3 disable cBNoZUp
  * 2021-07-14 code clean up / code quality
+ * 2021-11-23 set default for tprop
 */
 
 using System;
@@ -35,10 +36,6 @@ using System.Globalization;
 using System.Threading;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-
-//#pragma warning disable CA1303	// Do not pass literals as localized parameters
-//#pragma warning disable CA1307
-#pragma warning disable IDE0059
 
 namespace GrblPlotter
 {
@@ -56,8 +53,7 @@ namespace GrblPlotter
         private static bool gcodeTangEnable = false;
         private Image picBevelOff = Properties.Resources.rndOff;
         private Image picBevelOn = Properties.Resources.rndOn;
-        
-//        private List<Image> edgePicOff = new List<Image>();
+        private ToolProp tprop = new ToolProp();
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -866,7 +862,6 @@ namespace GrblPlotter
             nUDToolSpindleSpeed.Enabled = state;
         }
 
-        ToolProp tprop;
         private void CBTool_SelectedIndexChanged(object sender, EventArgs e)
         {
             string tmp = cBTool.SelectedItem.ToString();
@@ -923,12 +918,6 @@ namespace GrblPlotter
             if (tmp.Name == "rB3") { tmp.Image = on ? (Image)picBevelOn.Clone() : (Image)picBevelOff.Clone(); tmp.Image.RotateFlip((RotateFlipType.Rotate180FlipNone)); }
             if (tmp.Name == "rB4") { tmp.Image = on ? (Image)picBevelOn.Clone() : (Image)picBevelOff.Clone(); tmp.Image.RotateFlip((RotateFlipType.Rotate270FlipNone)); }
         }
-    /*    private void setRBEnable(RadioButton tmp, bool en)
-        {   rB1.Enabled = en;
-            rB2.Enabled = en;
-            rB3.Enabled = en;
-            rB4.Enabled = en;
-        }*/
 
         private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {

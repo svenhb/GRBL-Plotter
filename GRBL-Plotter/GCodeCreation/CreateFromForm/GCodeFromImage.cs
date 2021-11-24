@@ -29,6 +29,7 @@
  * 2021-04-03 add preset for S value range
  * 2021-04-14 line 1124 only horizontal scanning for process tool
  * 2021-07-26 code clean up / code quality
+ * 2021-11-23 line 309 check nUDMaxColors.maximum, line 1137 add catch
 */
 
 using AForge.Imaging.ColorReduction;
@@ -42,12 +43,6 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
-
-//#pragma warning disable CA1303	// Do not pass literals as localized parameters
-//#pragma warning disable CA1304
-//#pragma warning disable CA1305
-//#pragma warning disable CA1307
-#pragma warning disable IDE1006
 
 namespace GrblPlotter
 {
@@ -305,7 +300,9 @@ namespace GrblPlotter
             originalImage = new Bitmap(adjustedImage); resetColorCorrection();
             disableControlEvents(); cbGrayscale.Checked = true; tBarGamma.Value = 10;
             cbExceptColor.Checked = true; ToolTable.SetExceptionColor(cbExceptColor.BackColor);
-            cBPreview.Checked = true; cBReduceColorsToolTable.Checked = true; nUDMaxColors.Value = 2;
+            cBPreview.Checked = true; cBReduceColorsToolTable.Checked = true; 
+			if (nUDMaxColors.Maximum >= 2)
+				nUDMaxColors.Value = 2;
             enableControlEvents(); applyColorCorrections();
         }
 
@@ -1130,12 +1127,15 @@ namespace GrblPlotter
                     pixelsResult[index + 3] = 255;
                 }
                 Marshal.Copy(pixelsResult, 0, ptrResult, pixelsResult.Length);
-            }
-            finally
-            {
                 if (resultImage != null) resultImage.UnlockBits(dataResult);
                 if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
-            }
+           }
+			catch (Exception err)
+			{	Logger.Error(err,"generateResultImage");
+				Properties.Settings.Default.guiLastEndReason += "generateResultImage:"+err;
+                if (resultImage != null) resultImage.UnlockBits(dataResult);
+                if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
+			}
             lblStatus.Text = "Done";
         }
 
