@@ -1,4 +1,4 @@
-// https://www.technical-recipes.com/2017/creating-installations-using-inno-setup-in-visual-studio/
+; replace constant autoappdata by autodocs
 
 #define MyAppName "GRBL-Plotter"
 #define MyAppExeName "GRBL-Plotter.exe"
@@ -7,14 +7,15 @@
 #define MyReleasePath "GRBL-Plotter\bin\Release\"
 #define MyWorkPath "GRBL-Plotter\"
 #define MyAppVersion GetVersionNumbersString("GRBL-Plotter\bin\Release\GRBL-Plotter.exe")
-#define MySetupVersion "1.0.0.0"
-;If VS-Properties-Company ="" then MyAppDataPath "\GrblPlotter\GRBL-Plotter"
-#define MyAppDataPath "\GRBL-Plotter\GRBL-Plotter"
+#define MySetupVersion "1.0.1.0"
+#define MyAppDataPath "\GRBL-Plotter"
 
 [Setup]
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppId=8079d7d8-2b91-4a22-a13e-7e5ac5a9e5fc
+AppPublisher=svenhb
+AppPublisherURL=https://grbl-plotter.de/
 VersionInfoVersion= {#MySetupVersion}
 DefaultDirName={autopf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
@@ -61,13 +62,13 @@ Source: "{#MyReleasePath}pt\*"; DestDir: "{app}\pt"; Flags: ignoreversion
 Source: "{#MyReleasePath}ru\*"; DestDir: "{app}\ru"; Flags: ignoreversion
 Source: "{#MyReleasePath}zh-CN\*"; DestDir: "{app}\zh-CN"; Flags: ignoreversion
 
-Source: "{#MyWorkPath}Recent.txt"; DestDir: "{autoappdata}{#MyAppDataPath}"; Flags: comparetimestamp promptifolder; Permissions: users-modify
-Source: "{#MyReleasePath}data\*"; DestDir: "{autoappdata}{#MyAppDataPath}\data"; Flags: recursesubdirs comparetimestamp promptifolder; Permissions: users-modify
+Source: "{#MyWorkPath}Recent.txt"; DestDir: "{autodocs}{#MyAppDataPath}"; Flags: comparetimestamp promptifolder; Permissions: users-modify
+Source: "{#MyReleasePath}data\*"; DestDir: "{autodocs}{#MyAppDataPath}\data"; Flags: recursesubdirs comparetimestamp promptifolder; Permissions: users-modify
 
-Source: "Firmware\*"; DestDir: "{autoappdata}{#MyAppDataPath}\Firmware"; Flags: recursesubdirs; Permissions: users-modify
+Source: "Firmware\*"; DestDir: "{autodocs}{#MyAppDataPath}\Firmware"; Flags: recursesubdirs; Permissions: users-modify
 
 [Registry]
-Root: HKA; Subkey: "Software\{#MyAppName}"; ValueType: string; ValueName: "DataPath"; ValueData: "{autoappdata}{#MyAppDataPath}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\{#MyAppName}"; ValueType: string; ValueName: "DataPath"; ValueData: "{autodocs}{#MyAppDataPath}"; Flags: uninsdeletekey
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
