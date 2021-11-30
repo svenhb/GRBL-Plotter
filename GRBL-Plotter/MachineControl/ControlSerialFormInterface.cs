@@ -1103,7 +1103,6 @@ namespace GrblPlotter
                 if (!Grbl.grblSimulate)
                     LogError("! Sending line", err);
                 UpdateControls();
-                //    throw;
             }
             if (logTransmit) Logger.Trace("Ser:{0} TX '{1}'", iamSerial, data);
         }

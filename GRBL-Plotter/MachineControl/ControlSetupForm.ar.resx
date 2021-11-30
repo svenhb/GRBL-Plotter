@@ -3074,4 +3074,16 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="CbShowVertexEnable.Text" xml:space="preserve">
     <value>يعرض عقد مسار القلم لأسفل</value>
   </data>
+  <data name="groupBox24.Text" xml:space="preserve">
+    <value>وصف الدبوس ("تجاوز حالات الملحقات")</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>تسجيل</value>
+  </data>
+  <data name="LblSaveEncoding.Text" xml:space="preserve">
+    <value>الترميز لتخزين G- كود</value>
+  </data>
+  <data name="checkBox11.Text" xml:space="preserve">
+    <value>إزالة جميع التعليقات عند الحفظ</value>
+  </data>
 </root>

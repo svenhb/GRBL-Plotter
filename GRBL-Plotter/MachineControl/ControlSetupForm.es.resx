@@ -2813,4 +2813,16 @@ El rango utilizable real sería $ 30 = 31, $ 31 = 0.</value>
   <data name="CbShowVertexEnable.Text" xml:space="preserve">
     <value>Muestra los nodos de ruta de pluma hacia abajo</value>
   </data>
+  <data name="groupBox24.Text" xml:space="preserve">
+    <value>Descripción del pin ('Anula los estados de los accesorios')</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Inicio sesión</value>
+  </data>
+  <data name="LblSaveEncoding.Text" xml:space="preserve">
+    <value>Codificación para almacenamiento de código G</value>
+  </data>
+  <data name="checkBox11.Text" xml:space="preserve">
+    <value>Eliminar todos los comentarios al guardar</value>
+  </data>
 </root>

@@ -2822,4 +2822,16 @@ O intervalo utilizável real seria $ 30 = 31, $ 31 = 0.</value>
   <data name="CbShowVertexEnable.Text" xml:space="preserve">
     <value>Exibe os nós do caminho da caneta</value>
   </data>
+  <data name="groupBox24.Text" xml:space="preserve">
+    <value>Descrição do pino ('Substitui os estados do acessório')</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Exploração madeireira</value>
+  </data>
+  <data name="LblSaveEncoding.Text" xml:space="preserve">
+    <value>Codificação para armazenamento de código G</value>
+  </data>
+  <data name="checkBox11.Text" xml:space="preserve">
+    <value>Remova todos os comentários ao salvar</value>
+  </data>
 </root>

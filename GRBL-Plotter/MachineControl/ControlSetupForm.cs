@@ -209,6 +209,13 @@ namespace GrblPlotter
             lblJoystickSize.Text = hScrollBar1.Value.ToString();
 
             cBoxPollInterval.SelectedIndex = Properties.Settings.Default.grblPollIntervalIndex;
+            foreach (Encoding encode in GuiVariables.SaveEncoding)
+            {   CBoxSaveEncoding.Items.Add(encode.BodyName); }
+            int encodeIndex = Properties.Settings.Default.FCTBSaveEncodingIndex;
+            if ((encodeIndex >=0 ) && (encodeIndex < GuiVariables.SaveEncoding.Length))
+                CBoxSaveEncoding.SelectedIndex = Properties.Settings.Default.FCTBSaveEncodingIndex;
+            else
+                CBoxSaveEncoding.SelectedIndex = Properties.Settings.Default.FCTBSaveEncodingIndex = 0;
 
             CheckVisibility();
             CbImportSVGGroup_CheckedChanged(sender, e);
@@ -370,7 +377,7 @@ namespace GrblPlotter
         {
             timer1.Enabled = true;
             try { ControlGamePad.Initialize(); timer1.Interval = 200; }
-            catch { }//            throw; }
+            catch (Exception err) { Logger.Error(err,"TabPage24_Enter ");}
         }
 
         private void TabPage24_Leave(object sender, EventArgs e)
@@ -398,8 +405,6 @@ namespace GrblPlotter
             {
                 try { ControlGamePad.Initialize(); timer1.Interval = 200; }
                 catch { timer1.Interval = 5000; }
-                // throw; }
-                // throw;
             }
         }
         private void ProcessGamepad(SharpDX.DirectInput.JoystickUpdate state)
@@ -531,7 +536,7 @@ namespace GrblPlotter
                 HsFilterScrollSetLabels();
                 return value[0];
             }
-            catch { }// throw; }
+            catch (Exception err) { Logger.Error(err,"ShapeSetLoad ");}
             return "not set";
         }
 
@@ -625,7 +630,6 @@ namespace GrblPlotter
                         {
                             dGVToolList.Rows[row].DefaultCellStyle.BackColor = Color.White;
                             dGVToolList.Rows[row].DefaultCellStyle.ForeColor = Color.Black;
-                            // throw;
                         }
                     }
                     row++;
@@ -654,11 +658,8 @@ namespace GrblPlotter
                 {
                     dGVToolList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
                     dGVToolList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
-                    //  throw;
                 }
             }
-            //        if (dGVToolList.Rows.Count > 1)
-            //             ExportDgvToCSV(defaultToolList);
 
             Properties.Settings.Default.toolTableOriginal = false;
             lblToolListChanged.Text = "Changed List should be saved \r\nvia 'Save tool table'";
@@ -692,7 +693,7 @@ namespace GrblPlotter
                 //                dgv.Rows[rowIndex - 1].Cells[colIndex].Selected = true;
                 dgv.Rows[rowIndex - 1].Selected = true;
             }
-            catch { }// throw; }
+            catch (Exception err) { Logger.Error(err,"BtnUp_Click ");}
         }
 
         private void BtnDown_Click(object sender, EventArgs e)
@@ -714,8 +715,7 @@ namespace GrblPlotter
                 //              dgv.Rows[rowIndex + 1].Cells[colIndex].Selected = true;
                 dgv.Rows[rowIndex + 1].Selected = true;
             }
-            catch { }
-            // throw; }
+            catch (Exception err) { Logger.Error(err,"BtnDown_Click ");}
         }
 
         private void DgvSortColor(object sender, DataGridViewSortCompareEventArgs e)
@@ -1089,7 +1089,8 @@ namespace GrblPlotter
             if (cBGPEnable.Checked)
             {
                 try { ControlGamePad.Initialize(); }
-                catch { }// throw; }
+                catch (Exception err) { Logger.Error(err,"CbGPEnable_CheckedChanged ");}
+
             }
         }
 
@@ -1104,6 +1105,10 @@ namespace GrblPlotter
         private void CboxPollInterval_SelectedIndexChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.grblPollIntervalIndex = cBoxPollInterval.SelectedIndex;
+        }
+        private void CBoxSaveEncoding_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.FCTBSaveEncodingIndex = CBoxSaveEncoding.SelectedIndex;
         }
 
         private void BtnCheckSpindle_Click(object sender, EventArgs e)
@@ -1167,11 +1172,7 @@ namespace GrblPlotter
                     }
                 }
             }
-            catch //Exception Ex)
-            {
-                // throw;
-                //throw (Ex);
-            }
+            catch (Exception err) { Logger.Error(err,"FillToolTableFileList ");}
         }
 
 
@@ -1331,11 +1332,7 @@ namespace GrblPlotter
                         lBUseCase.Items.Add(Path.GetFileName(Files[i]));
                 }
             }
-            catch //(Exception Ex)
-            {
-                //throw;
-                //throw (Ex);
-            }
+            catch (Exception err) { Logger.Error(err,"FillUseCaseFileList ");}
         }
 
 
@@ -1562,8 +1559,12 @@ namespace GrblPlotter
         }
         private void SetZeroMinMax()
         {   //nUDImportGCPWMZero.Value = (nUDImportGCPWMUp.Value + nUDImportGCPWMDown.Value) / 2;
-            nUDImportGCPWMZero.Maximum = Math.Max(nUDImportGCPWMUp.Value, nUDImportGCPWMDown.Value);
-            nUDImportGCPWMZero.Minimum = Math.Min(nUDImportGCPWMUp.Value, nUDImportGCPWMDown.Value);
+			decimal max = Math.Max(nUDImportGCPWMUp.Value, nUDImportGCPWMDown.Value);
+			decimal min	= Math.Min(nUDImportGCPWMUp.Value, nUDImportGCPWMDown.Value);
+			if (nUDImportGCPWMZero.Value > max) nUDImportGCPWMZero.Value = max;
+			if (nUDImportGCPWMZero.Value < min) nUDImportGCPWMZero.Value = min;
+            nUDImportGCPWMZero.Maximum = max;
+            nUDImportGCPWMZero.Minimum = min;
         }
 
         private void CbImportGCPWMSendCode_CheckedChanged(object sender, EventArgs e)

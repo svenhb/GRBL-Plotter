@@ -229,7 +229,7 @@ namespace GrblPlotter
                             if (fiducialEnable)
                             {
                                 fiducialDimension.SetDimensionXY((XyPoint)oldL.actualPos); fiducialDimension.SetDimensionXY((XyPoint)newL.actualPos);
-//                                Logger.Trace("Set fiducial dim line {0} {1}  {2} {3}", oldL.actualPos.X, oldL.actualPos.Y, newL.actualPos.X, newL.actualPos.Y);
+                                //                                Logger.Trace("Set fiducial dim line {0} {1}  {2} {3}", oldL.actualPos.X, oldL.actualPos.Y, newL.actualPos.X, newL.actualPos.Y);
                             }
                         }
                         onlyZ = 0;  // x or y has changed
@@ -252,9 +252,10 @@ namespace GrblPlotter
                         CreateMarker(pathPenUp, (XyPoint)newL.actualPos, markerSize, 4, false);       	// draw circle
                         path = pathPenUp;
                         onlyZ = 0;
-						if (fiducialEnable) 
-                        {   fiducialsCenter.Add((XyPoint)newL.actualPos);
-            //                Logger.Trace("Set fiducial add point {0} {1}  ", newL.actualPos.X, newL.actualPos.Y);
+                        if (fiducialEnable)
+                        {
+                            fiducialsCenter.Add((XyPoint)newL.actualPos);
+                            //                Logger.Trace("Set fiducial add point {0} {1}  ", newL.actualPos.X, newL.actualPos.Y);
                         }
                         //       passLimit = false;
                     }
@@ -267,10 +268,10 @@ namespace GrblPlotter
 
                     ArcProperties arcMove;
                     arcMove = GcodeMath.GetArcMoveProperties((XyPoint)oldL.actualPos, (XyPoint)newL.actualPos, newL.i, newL.j, (newL.motionMode == 2));
-             //       centerList.Add(new CoordByLine(newL.lineNumber, figureCount, new XyzPoint(arcMove.center, 0), new XyzPoint(arcMove.center, 0), newL.motionMode, 0, true));
+                    //       centerList.Add(new CoordByLine(newL.lineNumber, figureCount, new XyzPoint(arcMove.center, 0), new XyzPoint(arcMove.center, 0), newL.motionMode, 0, true));
                     centerList.Add(new CenterByLine(newL.lineNumber, newL.figureNumber, new XyzPoint(arcMove.center, newL.actualPos.Z), (XyzPoint)newL.actualPos, newL.alpha));
-					if (fiducialEnable) {fiducialsCenter.Add(arcMove.center);}
-					
+                    if (fiducialEnable) { fiducialsCenter.Add(arcMove.center); }
+
                     newL.distance = Math.Abs(arcMove.radius * arcMove.angleDiff);
 
                     double x1 = (arcMove.center.X - arcMove.radius);
@@ -341,12 +342,7 @@ namespace GrblPlotter
             pathMachineLimit.StartFigure();
             pathMachineLimit.AddRectangle(pathRect1);
             pathMachineLimit.AddRectangle(pathRect2);
-            /*        
-				pathMachineLimit.AddRectangle(pathRect3);
-				pathMachineLimit.Transform(matrix);
-				pathMachineLimit.AddString("Set limitation in setup", new FontFamily("Arial"), (int)FontStyle.Regular, rx/20, new Point((int)x1,(int)-(y1-10)), StringFormat.GenericDefault);
-				pathMachineLimit.Transform(matrix);
-			*/
+
             pathToolTable.Reset();
             if ((ToolTable.toolTableArray != null) && (ToolTable.toolTableArray.Count > 1))
             {
@@ -418,10 +414,13 @@ namespace GrblPlotter
             pathBackground = (GraphicsPath)pathPenDown.Clone();
             coordListLandMark = new List<CoordByLine>();
             bool isArc;
-            foreach (CoordByLine gcline in coordList)        // copy coordList and add WCO
+            if ((coordList != null) && (coordList.Count > 0))
             {
-                isArc = ((newLine.motionMode == 2) || (newLine.motionMode == 3));
-                coordListLandMark.Add(new CoordByLine(0, -1, gcline.lastPos + Grbl.posWCO, gcline.actualPos + Grbl.posWCO, gcline.actualG, gcline.alpha, isArc));
+                foreach (CoordByLine gcline in coordList)        // copy coordList and add WCO
+                {
+                    isArc = ((newLine.motionMode == 2) || (newLine.motionMode == 3));
+                    coordListLandMark.Add(new CoordByLine(0, -1, gcline.lastPos + Grbl.posWCO, gcline.actualPos + Grbl.posWCO, gcline.actualG, gcline.alpha, isArc));
+                }
             }
             origWCOLandMark = (XyPoint)Grbl.posWCO;
         }

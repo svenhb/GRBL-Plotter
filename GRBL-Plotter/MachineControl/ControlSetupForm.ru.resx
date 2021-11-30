@@ -2983,4 +2983,16 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   <data name="CbShowVertexEnable.Text" xml:space="preserve">
     <value>Отображает узлы пути вниз пером</value>
   </data>
+  <data name="groupBox24.Text" xml:space="preserve">
+    <value>Описание контакта («Переопределяет состояния аксессуаров»)</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>логирование</value>
+  </data>
+  <data name="LblSaveEncoding.Text" xml:space="preserve">
+    <value>Кодирование для хранения G-кода</value>
+  </data>
+  <data name="checkBox11.Text" xml:space="preserve">
+    <value>Удалять все комментарии при сохранении</value>
+  </data>
 </root>

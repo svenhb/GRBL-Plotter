@@ -2813,4 +2813,16 @@ La plage utilisable réelle serait 30 $ = 31, 31 $ = 0.</value>
   <data name="CbShowVertexEnable.Text" xml:space="preserve">
     <value>Affiche les nœuds de chemin de plume vers le bas</value>
   </data>
+  <data name="groupBox24.Text" xml:space="preserve">
+    <value>Description de la broche (« Remplace les états des accessoires »)</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Enregistrement</value>
+  </data>
+  <data name="LblSaveEncoding.Text" xml:space="preserve">
+    <value>Codage pour le stockage du code G</value>
+  </data>
+  <data name="checkBox11.Text" xml:space="preserve">
+    <value>Supprimer tous les commentaires lors de l'enregistrement</value>
+  </data>
 </root>

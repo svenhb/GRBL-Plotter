@@ -25,6 +25,7 @@
  * 2021-09-04 new struct to store simulation data: SimuCoordByLine in simuList
  * 2021-09-21 collect fiducials
  * 2021-09-29 add fiducialDimension
+ * 2021-11-30 line 451 check if index < objec.count
 */
 
 using System;
@@ -47,7 +48,7 @@ namespace GrblPlotter
             public Color color = Color.White;
             public float width = 0;
             public Pen pen;
-			public PointF offsetView;
+            public PointF offsetView;
             public PathData()
             {
                 path = new GraphicsPath();
@@ -82,7 +83,7 @@ namespace GrblPlotter
             {
                 path = new GraphicsPath();
                 width = (float)penwidth;
-				offsetView = offset;
+                offsetView = offset;
 
                 if (width <= 0)
                     width = (float)Properties.Settings.Default.gui2DWidthPenDown;
@@ -137,8 +138,8 @@ namespace GrblPlotter
         private static bool xyPosChanged;
         private static bool figureActive = false;
         private static bool tileActive = false;
-		internal static bool ShiftTilePaths { get; set; }
-		
+        internal static bool ShiftTilePaths { get; set; }
+
         private static bool tangentialAxisEnable = false;
         private static string tangentialAxisName = "C";
 
@@ -162,16 +163,16 @@ namespace GrblPlotter
         // analyse each GCode line and track actual position and modes for each code line
         private static List<GcodeByLine> gcodeList = new List<GcodeByLine>();        // keep original program                                                                                     //      private static List<GcodeByLine> simuList;         // as gcodeList but resolved subroutines
         private static List<SimuCoordByLine> simuList = new List<SimuCoordByLine>();         // as gcodeList but resolved subroutines
-        private static List<CoordByLine> coordList;        // get all coordinates (also subroutines)
-        private static List<CenterByLine> centerList; 
+        private static List<CoordByLine> coordList = new List<CoordByLine>();        // get all coordinates (also subroutines)
+        private static List<CenterByLine> centerList = new List<CenterByLine>();
 
-		internal static List<XyPoint> fiducialsCenter = new List<XyPoint>();
-		private static bool fiducialEnable = false;
-		private static Dimensions fiducialDimension = new Dimensions();
-        private static  string fiducialLabel = "Fiducials";
-		
-		internal static bool largeDataAmount=false;
-		
+        internal static List<XyPoint> fiducialsCenter = new List<XyPoint>();
+        private static bool fiducialEnable = false;
+        private static Dimensions fiducialDimension = new Dimensions();
+        private static string fiducialLabel = "Fiducials";
+
+        internal static bool largeDataAmount = false;
+
         private static GcodeByLine oldLine = new GcodeByLine();    // actual parsed line
         private static readonly GcodeByLine newLine = new GcodeByLine();    // last parsed line
 
@@ -248,10 +249,10 @@ namespace GrblPlotter
             coordList = new List<CoordByLine>();    // needed to find GCode-line by coordiante
             centerList = new List<CenterByLine>();  	// center coordinates of arcs
             pathInfoMarker = new List<PathInfo>();
-			fiducialsCenter = new List<XyPoint>();
-			fiducialEnable = false;
-			fiducialLabel = Properties.Settings.Default.importFiducialLabel;
-			
+            fiducialsCenter = new List<XyPoint>();
+            fiducialEnable = false;
+            fiducialLabel = Properties.Settings.Default.importFiducialLabel;
+
             modal = new ModalGroup();               // clear
             XmlMarker.Reset();                      // reset lists, holding marker line numbers
             oldLine.ResetAll(Grbl.posWork);         // reset coordinates and parser modes, set initial pos
@@ -265,12 +266,12 @@ namespace GrblPlotter
             lastFigureNumber = -1;
             pathActualDown = null;
 
-			largeDataAmount=false;
+            largeDataAmount = false;
 
             figureActive = false;
             tileActive = false;
-			ShiftTilePaths = false;
-			
+            ShiftTilePaths = false;
+
             gcodeMinutes = 0;
             gcodeDistance = 0;
             tangentialAxisEnable = false;
@@ -299,16 +300,17 @@ namespace GrblPlotter
             int countZ = 0;
             int lastMotion = 0;
 
-			if (oldCode.Count > 100000)	// huge amount of code, reduce time consuming functionality
-			{	Logger.Info("!!!!! Huge amount of code, reduce time consuming functionality !!!!!");
-				showArrow = false;
-				showId = false;
-				showColors = false;
-				largeDataAmount=true;
-			}
-			else if (Properties.Settings.Default.gui2DShowVertexEnable)
-			{	Logger.Info("!!!!! Show path-node markers, type:{0}  size:{1} !!!!!",Properties.Settings.Default.gui2DShowVertexType, Properties.Settings.Default.gui2DShowVertexSize);}
-				
+            if (oldCode.Count > 100000) // huge amount of code, reduce time consuming functionality
+            {
+                Logger.Info("!!!!! Huge amount of code, reduce time consuming functionality !!!!!");
+                showArrow = false;
+                showId = false;
+                showColors = false;
+                largeDataAmount = true;
+            }
+            else if (Properties.Settings.Default.gui2DShowVertexEnable)
+            { Logger.Info("!!!!! Show path-node markers, type:{0}  size:{1} !!!!!", Properties.Settings.Default.gui2DShowVertexType, Properties.Settings.Default.gui2DShowVertexSize); }
+
             if (showColors)
                 ToolTable.Init();
 
@@ -446,14 +448,17 @@ namespace GrblPlotter
 
                 if (updateFigureLineNeeded) // f (line.Contains(XmlMarker.FigureStart)) 
                 {
-                    coordList[XmlMarker.tmpFigure.LineStart].actualG = 0;
-                    if (xyPosChanged)
+                    if ((XmlMarker.tmpFigure.LineStart >= 0) && (XmlMarker.tmpFigure.LineStart < coordList.Count))
                     {
-                        updateFigureLineNeeded = false;
-                        XmlMarker.tmpFigure.PosStart = (XyPoint)newLine.actualPos;
-                        coordList[XmlMarker.tmpFigure.LineStart].actualPos = (XyzPoint)newLine.actualPos;
-                        coordList[XmlMarker.tmpFigure.LineStart].alpha = newLine.alpha;
-                    } 
+                        coordList[XmlMarker.tmpFigure.LineStart].actualG = 0;
+                        if (xyPosChanged)
+                        {
+                            updateFigureLineNeeded = false;
+                            XmlMarker.tmpFigure.PosStart = (XyPoint)newLine.actualPos;
+                            coordList[XmlMarker.tmpFigure.LineStart].actualPos = (XyzPoint)newLine.actualPos;
+                            coordList[XmlMarker.tmpFigure.LineStart].alpha = newLine.alpha;
+                        }
+                    }
                 }
 
                 if ((modal.mWord == 30) || (modal.mWord == 2)) { programEnd = true; }
@@ -540,6 +545,11 @@ namespace GrblPlotter
             //            Logger.Trace("addSubroutine start:{0}  stop:{1}  repeat:{2} processSubs:{3}",start, stop, repeat, processSubs);
             bool showPath = true;
             bool isArc;
+            if ((start >= GCode.Length) || (stop >= GCode.Length))
+            {
+                Logger.Error("AddSubroutine start:{0}  stop:{1}  GCode.Length:{2}",start,stop,GCode.Length);
+                return;
+            }
             for (int loop = 0; loop < repeat; loop++)
             {
                 for (int subLineNr = start + 1; subLineNr < stop; subLineNr++)      // go through real line numbers and parse sub-code
@@ -705,7 +715,7 @@ namespace GrblPlotter
                 {
                     offset2DView.X = (float)XmlMarker.tmpTile.Offset.X;
                     offset2DView.Y = (float)XmlMarker.tmpTile.Offset.Y;
-					ShiftTilePaths = true;
+                    ShiftTilePaths = true;
                 }
                 tileActive = true;
             }
@@ -716,8 +726,8 @@ namespace GrblPlotter
                 figureMarkerCount++;
                 XmlMarker.AddGroup(lineNr, clean, figureMarkerCount);
                 figureActive = true;
-                if (logCoordinates) {Logger.Trace(" Set Group  figureMarkerCount:{0}  {1}", figureMarkerCount, line);}
-				if (XmlMarker.tmpGroup.Layer.IndexOf(fiducialLabel) >= 0) 
+                if (logCoordinates) { Logger.Trace(" Set Group  figureMarkerCount:{0}  {1}", figureMarkerCount, line); }
+                if (XmlMarker.tmpGroup.Layer.IndexOf(fiducialLabel) >= 0)
                 {   //fiducialEnable=true; 
                 }
             }
@@ -734,8 +744,8 @@ namespace GrblPlotter
                 if (logCoordinates) Logger.Trace(" Set Figure figureMarkerCount:{0}  {1}", figureMarkerCount, line);
 
                 fiducialDimension = new Dimensions();
-                if (XmlMarker.tmpFigure.Layer.IndexOf(fiducialLabel) >= 0) 
-                {   fiducialEnable = true;  }
+                if (XmlMarker.tmpFigure.Layer.IndexOf(fiducialLabel) >= 0)
+                { fiducialEnable = true; }
 
                 if (Properties.Settings.Default.gui2DColorPenDownModeEnable && Graphic.SizeOk())    // enable color mode
                 {
@@ -772,12 +782,14 @@ namespace GrblPlotter
                 XmlMarker.tmpFigure.PosEnd = (XyPoint)newLine.actualPos;
                 XmlMarker.FinishFigure(lineNr);
                 pathActualDown = null;
-				if (fiducialEnable)
-				{	if(fiducialDimension.IsXYSet())
-					{
+                if (fiducialEnable)
+                {
+                    if (fiducialDimension.IsXYSet())
+                    {
                         XyPoint tmpFiducial = fiducialDimension.GetCenter();
                         if (fiducialsCenter.Count > 0)
-                        {   if (!fiducialsCenter[fiducialsCenter.Count - 1].Equals(tmpFiducial))
+                        {
+                            if (!fiducialsCenter[fiducialsCenter.Count - 1].Equals(tmpFiducial))
                             { fiducialsCenter.Add(fiducialDimension.GetCenter()); } // avoid same coordinates
                         }
                         else
@@ -789,7 +801,8 @@ namespace GrblPlotter
             }
             /* Process Group end */
             else if (line.Contains(XmlMarker.GroupEnd))                    // check if marker available
-            {   XmlMarker.FinishGroup(lineNr); 
+            {
+                XmlMarker.FinishGroup(lineNr);
                 //fiducialEnable = false;
             }
             /* Process Tile end */
@@ -826,25 +839,28 @@ namespace GrblPlotter
         {
             if (worker != null) worker.ReportProgress(0, new MyUserState { Value = 50, Content = "Pen-up path: Add dir-arrows and figure-Ids" });
             int count = 0;
-            foreach (PathInfo tmp in pathInfoMarker)
+            if ((pathInfoMarker != null) && (!pathInfoMarker.Any()))
             {
-                if (worker != null)
+                foreach (PathInfo tmp in pathInfoMarker)
                 {
-                    int progressSub = (count++ * 100) / pathInfoMarker.Count;
-                    int progressMain = (int)(50 + progressSub * progressMainFactor);
-                    if (progressSub != progressSubOld)
+                    if (worker != null)
                     {
-                        worker.ReportProgress(progressSub, new MyUserState { Value = progressMain, Content = "Pen-up path: Add dir-arrows and figure-Ids " + progressSub + " %" });
-                        progressSubOld = progressSub;
+                        int progressSub = (count++ * 100) / pathInfoMarker.Count;
+                        int progressMain = (int)(50 + progressSub * progressMainFactor);
+                        if (progressSub != progressSubOld)
+                        {
+                            worker.ReportProgress(progressSub, new MyUserState { Value = progressMain, Content = "Pen-up path: Add dir-arrows and figure-Ids " + progressSub + " %" });
+                            progressSubOld = progressSub;
+                        }
+                        if (worker.CancellationPending)
+                        {
+                            if (e != null)
+                                e.Cancel = true;
+                            break;
+                        }
                     }
-                    if (worker.CancellationPending)
-                    {
-                        if (e != null)
-                            e.Cancel = true;
-                        break;
-                    }
+                    AddArrow(pathPenUp, tmp, showArrow, showId);
                 }
-                AddArrow(pathPenUp, tmp, showArrow, showId);
             }
         }
 

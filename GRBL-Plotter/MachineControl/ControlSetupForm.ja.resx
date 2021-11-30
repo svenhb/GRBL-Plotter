@@ -3098,4 +3098,16 @@ https://github.com/cprezzi/grbl-servoのGrbl-version'grbl_v1.1f_Servo.hex '、
   <data name="CbShowVertexEnable.Text" xml:space="preserve">
     <value>ペンダウンパスノードを表示します</value>
   </data>
+  <data name="groupBox24.Text" xml:space="preserve">
+    <value>ピンの説明（「アクセサリの状態を上書きする」）</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>ロギング</value>
+  </data>
+  <data name="LblSaveEncoding.Text" xml:space="preserve">
+    <value>Gコードストレージのコーディング</value>
+  </data>
+  <data name="checkBox11.Text" xml:space="preserve">
+    <value>保存時にすべてのコメントを削除する</value>
+  </data>
 </root>

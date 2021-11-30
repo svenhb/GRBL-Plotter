@@ -2762,4 +2762,16 @@ Der tatsächlich nutzbare Bereich wäre $ 30 = 31, $ 31 = 0.</value>
   <data name="CbShowVertexEnable.Text" xml:space="preserve">
     <value>Zeigt die Stift-unten Pfadknoten an</value>
   </data>
+  <data name="groupBox24.Text" xml:space="preserve">
+    <value>Pin-Beschreibung ('Overrides accessory states')</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Protokollierung</value>
+  </data>
+  <data name="LblSaveEncoding.Text" xml:space="preserve">
+    <value>Kodierung bei  G-Code Speicherung</value>
+  </data>
+  <data name="checkBox11.Text" xml:space="preserve">
+    <value>Alle Kommentare beim Speichern entfernen</value>
+  </data>
 </root>

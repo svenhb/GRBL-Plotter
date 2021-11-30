@@ -3078,4 +3078,16 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   <data name="CbShowVertexEnable.Text" xml:space="preserve">
     <value>显示下笔路径节点</value>
   </data>
+  <data name="groupBox24.Text" xml:space="preserve">
+    <value>引脚说明（“覆盖附件状态”）</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>日志记录</value>
+  </data>
+  <data name="LblSaveEncoding.Text" xml:space="preserve">
+    <value>G 代码存储的编码</value>
+  </data>
+  <data name="checkBox11.Text" xml:space="preserve">
+    <value>保存时删除所有评论</value>
+  </data>
 </root>
