@@ -25,6 +25,7 @@
  * 2021-07-02 code clean up / code quality
  * 2021-09-03 BtnStreamStart_Click switch from click to mouseUp event
  * 2021-11-23 line 121, 403, 406 add try/catch
+ * 2021-11-30 check lineIsInRange(fCTBCodeClickedLineNow)
 */
 
 using GrblPlotter.GUI;
@@ -253,9 +254,14 @@ namespace GrblPlotter
                         if (Properties.Settings.Default.flowControlEnable) // send extra Pause-Code in MainTimer_Tick from Properties.Settings.Default.flowControlText
                             delayedSend = 2;
 
-                        if (logStreaming) Logger.Trace("OnRaiseStreamEvent - pause: {0}  in line:{1}", fCTBCode.Lines[fCTBCodeClickedLineNow], fCTBCodeClickedLineNow);
+                        if (logStreaming) 
+						{ 	if (lineIsInRange(fCTBCodeClickedLineNow))
+								Logger.Trace("OnRaiseStreamEvent - pause: {0}  in line:{1}", fCTBCode.Lines[fCTBCodeClickedLineNow], fCTBCodeClickedLineNow);
+							else
+								Logger.Trace("OnRaiseStreamEvent - fCTBCodeClickedLineNow is out of range:{0}  count:{1}", fCTBCodeClickedLineNow, fCTBCode.Lines.Count);
+						}		
 
-                        if (fCTBCode.Lines[fCTBCodeClickedLineNow].Contains("M0") && fCTBCode.Lines[fCTBCodeClickedLineNow].Contains("Tool"))  // keyword set in gcodeRelated 1132
+                        if (lineIsInRange(fCTBCodeClickedLineNow) && fCTBCode.Lines[fCTBCodeClickedLineNow].Contains("M0") && fCTBCode.Lines[fCTBCodeClickedLineNow].Contains("Tool"))  // keyword set in gcodeRelated 1132
                         { signalShowToolExchangeMessage = true; if (logStreaming) Logger.Trace("OnRaiseStreamEvent trigger ToolExchangeMessage"); }
                         else
                         { if (notifierEnable) Notifier.SendMessage("grbl Pause", "Pause"); }
@@ -293,13 +299,15 @@ namespace GrblPlotter
         internal delegate void Del();
 
         bool signalShowToolExchangeMessage = false;
-        private void ShowToolChangeMessage()
+        private void ShowToolChangeMessage()		// triggert by signalShowToolExchangeMessage at GrblStreaming.pause
         {
             if (logStreaming) Logger.Trace("showToolChangeMessage");
             Console.Beep();
             using (MessageForm f = new MessageForm())
             {
-                string tool = fCTBCode.Lines[fCTBCodeClickedLineNow];
+                string tool = "unknown";
+				if (lineIsInRange(fCTBCodeClickedLineNow))
+					tool = fCTBCode.Lines[fCTBCodeClickedLineNow];
                 int c1 = tool.IndexOf('(');
                 if (c1 > 0)
                 {

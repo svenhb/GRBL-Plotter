@@ -24,6 +24,7 @@
  * 2021-07-27 code clean up / code quality
  * 2021-11-22 change AppDataFolder start-path
  * 2021-11-23 line 688 add check (form != null)
+ * 2021-11-29 add SaveEncoding array
 */
 
 using GrblPlotter.Resources;
@@ -33,6 +34,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Threading;
+using System.Text;
 
 namespace GrblPlotter
 {
@@ -63,6 +65,7 @@ namespace GrblPlotter
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
+        public static Encoding[] SaveEncoding = { Encoding.Unicode, Encoding.ASCII, Encoding.UTF8, Encoding.GetEncoding("iso-8859-1") }; 
         internal static Dictionary<string, double> variable = new Dictionary<string, double>();
         public static string InsertVariable(string line)//, Dictionary<string, double> variable)
         {

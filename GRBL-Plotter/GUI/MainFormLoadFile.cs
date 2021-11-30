@@ -43,6 +43,7 @@
  * 2021-11-11 track prog-start and -end
  * 2021-11-17 LoadExtensionList - don't list pictures png, jpg
  * 2021-11-23 line 192 add try/catch
+ * 2021-11-29 line 893 BtnSaveFile_Click supply more encodings
 */
 
 using System;
@@ -190,8 +191,10 @@ namespace GrblPlotter
 
             pictureBox1.Invalidate();                   // resfresh view
 
-			try {	fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);}
-			catch (Exception err) {	Logger.Error(err, "NewCodeStart - fCTBCode.UnbookmarkLine({0}) ",fCTBCodeClickedLineLast);}
+			if (lineIsInRange(fCTBCodeClickedLineLast))
+			{	try {	fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);}
+				catch (Exception err) {	Logger.Error(err, "NewCodeStart - fCTBCode.UnbookmarkLine({0}) ",fCTBCodeClickedLineLast);}
+			}
             fCTBCodeClickedLineNow = 0;
             fCTBCodeClickedLineLast = 0;
             fCTBCode.Clear();
@@ -290,7 +293,7 @@ namespace GrblPlotter
 
         private static bool timerShowGCodeError = false;
         private readonly object balanceLock = new object();
-        private void ShowGCodeErrors()
+        private void ShowGCodeErrors()  // show errors in GCode, found in GCode2DViewpath
         {
             string err = VisuGCode.errorString;
             if (err.Contains("\n"))
@@ -304,14 +307,15 @@ namespace GrblPlotter
                     for (int i = 0; i < errlines.Length; i++)
                     {
                         string errline = errlines[i];
-                        if (errline.Contains("["))                        // find line number e.g. [61] to mark line in editor
+                        if (errline.Contains("["))                          // find line number e.g. [61] to mark line in editor
                         {
-                            int strt = errline.IndexOf("[");
+                            int strt = errline.IndexOf("[");                // line-nr in brackets
                             int end = errline.IndexOf("]", strt);
+                            int len = end - strt - 2;
                             Logger.Trace("Mark error start:{0} end:{1} from string:'{2}'", strt, end, errline);
-                            if ((strt >= 0) && (end > strt))
+                            if ((strt >= 0) && (len > 0))
                             {
-                                string numstr = errline.Substring(strt + 1, end - 2);
+                                string numstr = errline.Substring(strt + 1, len);
                                 if (int.TryParse(numstr, out int errorLine))
                                 {
                                     Logger.Trace("Mark error line:{0} start:{1} end:{2} from string:'{3}'", errorLine, strt, end, numstr);
@@ -330,7 +334,7 @@ namespace GrblPlotter
             else
             {
                 StatusStripSet(0, VisuGCode.errorString, Color.OrangeRed);
-                Logger.Info("errorstring contains not n");
+                Logger.Info("ShowGCodeErrors - errorstring contains no linebreak");
             }
         }
 
@@ -901,12 +905,33 @@ namespace GrblPlotter
             };
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                if (Properties.Settings.Default.FCTBSaveAsUTF16)
-                    fCTBCode.SaveToFile(sfd.FileName, Encoding.Unicode);
-                else
-                    fCTBCode.SaveToFile(sfd.FileName, Encoding.ASCII);
+                IList<string> temp = fCTBCode.Lines;
+                // remove any brackets, comments
+                string comments = "";
+               if (Properties.Settings.Default.FCTBSaveWithoutComments)
+                {
+                    comments = " without comments";
+                    temp = new List<string>();
+                    int pos;
+                    foreach (string line in fCTBCode.Lines)
+                    {   if (line.StartsWith("("))
+                            continue;
+                        pos = line.IndexOf("(");
+                        if (pos > 0)
+                            temp.Add(line.Substring(0,pos));
+                        else
+                            temp.Add(line);
+                    }
+                }
+                int encodeIndex = Properties.Settings.Default.FCTBSaveEncodingIndex;
+                if ((encodeIndex < 0) || (encodeIndex >= GuiVariables.SaveEncoding.Length))
+                    encodeIndex = 0;
 
-                Logger.Info("Save GCode as {0}", sfd.FileName);
+                string encoding = GuiVariables.SaveEncoding[encodeIndex].BodyName;
+                System.IO.File.WriteAllLines(sfd.FileName, temp, GuiVariables.SaveEncoding[encodeIndex]);
+
+                Logger.Info("Save GCode as {0}, Encoding: {1}{2}", sfd.FileName, encoding, comments);
+                StatusStripSet(1, string.Format("G-Code saved as {0}{1}",encoding, comments), Color.Yellow);
                 Properties.Settings.Default.guiPathSaveCode = sfd.FileName;
                 Properties.Settings.Default.Save();
             }
