@@ -2260,6 +2260,156 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;btnGetPWMValues.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="cBCompress.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBCompress.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBCompress.Location" type="System.Drawing.Point, System.Drawing">
+    <value>261, 147</value>
+  </data>
+  <data name="cBCompress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 17</value>
+  </data>
+  <data name="cBCompress.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="cBCompress.Text" xml:space="preserve">
+    <value>compress Code</value>
+  </data>
+  <data name="cBCompress.ToolTip" xml:space="preserve">
+    <value>Avoid code overhead for faster streaming</value>
+  </data>
+  <data name="&gt;&gt;cBCompress.Name" xml:space="preserve">
+    <value>cBCompress</value>
+  </data>
+  <data name="&gt;&gt;cBCompress.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBCompress.Parent" xml:space="preserve">
+    <value>tabPage22</value>
+  </data>
+  <data name="&gt;&gt;cBCompress.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="checkBox1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>261, 170</value>
+  </data>
+  <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 17</value>
+  </data>
+  <data name="checkBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>2D view hide 0</value>
+  </data>
+  <data name="checkBox1.ToolTip" xml:space="preserve">
+    <value>In 2D view don't show white value (pen width = 0)</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.Name" xml:space="preserve">
+    <value>checkBox1</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.Parent" xml:space="preserve">
+    <value>tabPage22</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="nUDResoY.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="nUDResoY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>261, 121</value>
+  </data>
+  <data name="nUDResoY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="nUDResoY.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="nUDResoY.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="nUDResoY.ToolTip" xml:space="preserve">
+    <value>Distance between lines, should match pen width</value>
+  </data>
+  <data name="&gt;&gt;nUDResoY.Name" xml:space="preserve">
+    <value>nUDResoY</value>
+  </data>
+  <data name="&gt;&gt;nUDResoY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDResoY.Parent" xml:space="preserve">
+    <value>tabPage22</value>
+  </data>
+  <data name="&gt;&gt;nUDResoY.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="nUDZBot.Location" type="System.Drawing.Point, System.Drawing">
+    <value>78, 34</value>
+  </data>
+  <data name="nUDZBot.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 20</value>
+  </data>
+  <data name="nUDZBot.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="nUDZBot.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="nUDZBot.ToolTip" xml:space="preserve">
+    <value>Lower value</value>
+  </data>
+  <data name="&gt;&gt;nUDZBot.Name" xml:space="preserve">
+    <value>nUDZBot</value>
+  </data>
+  <data name="&gt;&gt;nUDZBot.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDZBot.Parent" xml:space="preserve">
+    <value>groupBox8</value>
+  </data>
+  <data name="&gt;&gt;nUDZBot.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="nUDSMax.Location" type="System.Drawing.Point, System.Drawing">
+    <value>78, 36</value>
+  </data>
+  <data name="nUDSMax.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 20</value>
+  </data>
+  <data name="nUDSMax.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="nUDSMax.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="nUDSMax.ToolTip" xml:space="preserve">
+    <value>Lower value</value>
+  </data>
+  <data name="&gt;&gt;nUDSMax.Name" xml:space="preserve">
+    <value>nUDSMax</value>
+  </data>
+  <data name="&gt;&gt;nUDSMax.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDSMax.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;nUDSMax.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="groupBox6.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 20</value>
   </data>
@@ -2440,33 +2590,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="nUDZBot.Location" type="System.Drawing.Point, System.Drawing">
-    <value>78, 34</value>
-  </data>
-  <data name="nUDZBot.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 20</value>
-  </data>
-  <data name="nUDZBot.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="nUDZBot.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="nUDZBot.ToolTip" xml:space="preserve">
-    <value>Lower value</value>
-  </data>
-  <data name="&gt;&gt;nUDZBot.Name" xml:space="preserve">
-    <value>nUDZBot</value>
-  </data>
-  <data name="&gt;&gt;nUDZBot.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDZBot.Parent" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;nUDZBot.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="groupBox8.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 6</value>
   </data>
@@ -2577,39 +2700,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="&gt;&gt;label23.ZOrder" xml:space="preserve">
     <value>4</value>
-  </data>
-  <data name="cBCompress.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBCompress.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBCompress.Location" type="System.Drawing.Point, System.Drawing">
-    <value>261, 147</value>
-  </data>
-  <data name="cBCompress.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 17</value>
-  </data>
-  <data name="cBCompress.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="cBCompress.Text" xml:space="preserve">
-    <value>compress Code</value>
-  </data>
-  <data name="cBCompress.ToolTip" xml:space="preserve">
-    <value>Avoid code overhead for faster streaming</value>
-  </data>
-  <data name="&gt;&gt;cBCompress.Name" xml:space="preserve">
-    <value>cBCompress</value>
-  </data>
-  <data name="&gt;&gt;cBCompress.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBCompress.Parent" xml:space="preserve">
-    <value>tabPage22</value>
-  </data>
-  <data name="&gt;&gt;cBCompress.ZOrder" xml:space="preserve">
-    <value>8</value>
   </data>
   <data name="rBProcessZ.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3688,39 +3778,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;tabPage21.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="checkBox1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="checkBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="checkBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>261, 170</value>
-  </data>
-  <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>97, 17</value>
-  </data>
-  <data name="checkBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>54</value>
-  </data>
-  <data name="checkBox1.Text" xml:space="preserve">
-    <value>2D view hide 0</value>
-  </data>
-  <data name="checkBox1.ToolTip" xml:space="preserve">
-    <value>In 2D view don't show white value (pen width = 0)</value>
-  </data>
-  <data name="&gt;&gt;checkBox1.Name" xml:space="preserve">
-    <value>checkBox1</value>
-  </data>
-  <data name="&gt;&gt;checkBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBox1.Parent" xml:space="preserve">
-    <value>tabPage22</value>
-  </data>
-  <data name="&gt;&gt;checkBox1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="rBGrayZ.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -3750,36 +3807,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="&gt;&gt;rBGrayZ.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="nUDResoY.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="nUDResoY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>261, 121</value>
-  </data>
-  <data name="nUDResoY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="nUDResoY.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
-  </data>
-  <data name="nUDResoY.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="nUDResoY.ToolTip" xml:space="preserve">
-    <value>Distance between lines, should match pen width</value>
-  </data>
-  <data name="&gt;&gt;nUDResoY.Name" xml:space="preserve">
-    <value>nUDResoY</value>
-  </data>
-  <data name="&gt;&gt;nUDResoY.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDResoY.Parent" xml:space="preserve">
-    <value>tabPage22</value>
-  </data>
-  <data name="&gt;&gt;nUDResoY.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <data name="cBLaserModeOffEnd.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3840,33 +3867,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="&gt;&gt;cBLaserModeOnStart.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="nUDSMax.Location" type="System.Drawing.Point, System.Drawing">
-    <value>78, 36</value>
-  </data>
-  <data name="nUDSMax.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 20</value>
-  </data>
-  <data name="nUDSMax.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="nUDSMax.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="nUDSMax.ToolTip" xml:space="preserve">
-    <value>Lower value</value>
-  </data>
-  <data name="&gt;&gt;nUDSMax.Name" xml:space="preserve">
-    <value>nUDSMax</value>
-  </data>
-  <data name="&gt;&gt;nUDSMax.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDSMax.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;nUDSMax.ZOrder" xml:space="preserve">
-    <value>3</value>
   </data>
   <data name="nUDSMin.Location" type="System.Drawing.Point, System.Drawing">
     <value>78, 14</value>
@@ -4158,9 +4158,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>844, 441</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
     <value>100, 350</value>

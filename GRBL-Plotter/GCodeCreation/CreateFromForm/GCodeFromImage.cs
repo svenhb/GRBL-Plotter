@@ -30,6 +30,7 @@
  * 2021-04-14 line 1124 only horizontal scanning for process tool
  * 2021-07-26 code clean up / code quality
  * 2021-11-23 line 309 check nUDMaxColors.maximum, line 1137 add catch
+ * 2021-11-26 fix ThreadException LockBits line 1079, line 512
 */
 
 using AForge.Imaging.ColorReduction;
@@ -144,7 +145,8 @@ namespace GrblPlotter
             }
             catch (Exception err)
             {
-                MessageBox.Show("Error opening file: " + err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);//throw;
+                Logger.Error(err, "btnLoad_Click ");
+                MessageBox.Show("Error opening file: " + err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -509,7 +511,7 @@ namespace GrblPlotter
         { nUDWidth.Value = originalImage.Width * nUDResoX.Value; }
 
         private void btnKeepSizeReso_Click(object sender, EventArgs e)
-        { nUDResoX.Value = nUDWidth.Value / originalImage.Width; }
+        { nUDResoX.Value = (decimal)(nUDWidth.Value / originalImage.Width); }
 
 
         //Horizontal mirroing
@@ -956,9 +958,10 @@ namespace GrblPlotter
                 lblImageSource.Text = "modified";
                 Refresh();
             }
-            catch (Exception e)
+            catch (Exception err)
             {
-                MessageBox.Show("Error resizing/balancing image: " + e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);//throw;
+                Logger.Error(err, "applyColorCorrections ");
+                MessageBox.Show("Error resizing/balancing image: " + err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             showResultImage();  // if checked, show final result with tool colors
             Cursor.Current = Cursors.Default;
@@ -1072,10 +1075,12 @@ namespace GrblPlotter
             Dictionary<Color, sbyte> lookUpToolNr = new Dictionary<Color, sbyte>();
             try
             {
-                Rectangle rect = new Rectangle(0, 0, adjustedImage.Width, adjustedImage.Height);
-                dataAdjusted = adjustedImage.LockBits(rect, ImageLockMode.ReadOnly, adjustedImage.PixelFormat);
-
-                dataResult = resultImage.LockBits(rect, ImageLockMode.WriteOnly, adjustedImage.PixelFormat);
+                Rectangle rectAdjusted = new Rectangle(0, 0, adjustedImage.Width, adjustedImage.Height);
+                Rectangle rectResult = new Rectangle(0, 0, adjustedImage.Width, adjustedImage.Height);
+				
+                dataAdjusted = adjustedImage.LockBits(rectAdjusted, ImageLockMode.ReadOnly, adjustedImage.PixelFormat);
+                dataResult = resultImage.LockBits(rectResult, ImageLockMode.WriteOnly, adjustedImage.PixelFormat);
+				
                 IntPtr ptrAdjusted = dataAdjusted.Scan0;
                 IntPtr ptrResult = dataResult.Scan0;
                 int psize = 4;  // 32bppARGB GetPixelInfoSize(adjustedImage.PixelFormat);
@@ -1129,9 +1134,9 @@ namespace GrblPlotter
                 Marshal.Copy(pixelsResult, 0, ptrResult, pixelsResult.Length);
                 if (resultImage != null) resultImage.UnlockBits(dataResult);
                 if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
-           }
+            }
 			catch (Exception err)
-			{	Logger.Error(err,"generateResultImage");
+			{	Logger.Error(err,"generateResultImage ");
 				Properties.Settings.Default.guiLastEndReason += "generateResultImage:"+err;
                 if (resultImage != null) resultImage.UnlockBits(dataResult);
                 if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
@@ -1470,7 +1475,6 @@ namespace GrblPlotter
 
         private void fillUseCaseFileList(string Root)
         {
-            //List<string> FileArray = new List<string>();
             try
             {
                 string[] Files = System.IO.Directory.GetFiles(Root);
@@ -1481,10 +1485,9 @@ namespace GrblPlotter
                         lBUseCase.Items.Add(Path.GetFileName(Files[i]));
                 }
             }
-            catch //(Exception Ex)
+            catch (Exception err)
             {
-                Logger.Error("fillUseCaseFileList no file found {0}", Root);
-                //throw (Ex);
+                Logger.Error(err, "fillUseCaseFileList no file found {0}", Root);
             }
         }
 
