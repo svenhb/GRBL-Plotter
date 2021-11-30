@@ -416,9 +416,6 @@
     <Setting Name="FCTBLineInterval" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="FCTBSaveAsUTF16" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="flowCheckRegistryChange" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -1912,6 +1909,12 @@
     </Setting>
     <Setting Name="guiLastEndReason" Type="System.String" Scope="User">
       <Value Profile="(Default)">-</Value>
+    </Setting>
+    <Setting Name="FCTBSaveWithoutComments" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="FCTBSaveEncodingIndex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>

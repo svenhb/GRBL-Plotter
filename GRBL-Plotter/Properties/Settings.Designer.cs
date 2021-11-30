@@ -1682,18 +1682,6 @@ namespace GrblPlotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool FCTBSaveAsUTF16 {
-            get {
-                return ((bool)(this["FCTBSaveAsUTF16"]));
-            }
-            set {
-                this["FCTBSaveAsUTF16"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool flowCheckRegistryChange {
             get {
                 return ((bool)(this["flowCheckRegistryChange"]));
@@ -7669,6 +7657,30 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["guiLastEndReason"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool FCTBSaveWithoutComments {
+            get {
+                return ((bool)(this["FCTBSaveWithoutComments"]));
+            }
+            set {
+                this["FCTBSaveWithoutComments"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int FCTBSaveEncodingIndex {
+            get {
+                return ((int)(this["FCTBSaveEncodingIndex"]));
+            }
+            set {
+                this["FCTBSaveEncodingIndex"] = value;
             }
         }
     }
