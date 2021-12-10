@@ -742,9 +742,7 @@ namespace GrblPlotter
             if (value.Length < 10)
                 return;
             int i = 1;
-            try
-            {
-                //#pragma warning disable CA1305 
+            try {
                 Properties.Settings.Default.camFilterRed1 = Convert.ToInt16(value[i++]);
                 Properties.Settings.Default.camFilterRed2 = Convert.ToInt16(value[i++]);
                 Properties.Settings.Default.camFilterGreen1 = Convert.ToInt16(value[i++]);
@@ -759,9 +757,10 @@ namespace GrblPlotter
                 Properties.Settings.Default.camShapeDist = Convert.ToDecimal(value[i++]);
                 Properties.Settings.Default.camShapeDistMax = Convert.ToDecimal(value[i++]);
                 Properties.Settings.Default.Save();
-                //#pragma warning restore CA1305
             }
-            catch (Exception ex) { Logger.Error(ex, "ShapeSetLoad "); throw; }
+            catch (Exception ex) { 
+				Logger.Error(ex, "ShapeSetLoad "); 
+			}
         }
 
 		private void LoadExampleImages()

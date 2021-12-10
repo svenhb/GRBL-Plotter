@@ -943,21 +943,28 @@ namespace GrblPlotter
             nUDOffsetX.ValueChanged -= NudOffset_ValueChanged;
             nUDOffsetY.ValueChanged -= NudOffset_ValueChanged;
             nUDOffsetZ.ValueChanged -= NudOffset_ValueChanged;
-
+			decimal tmpNewVal;
+			
             if (nUDOffsetX.Value >= nUDProbeSaveX.Value)
-            {   nUDProbeSaveX.Value = Math.Round(nUDOffsetX.Value) + 5;
+            {   tmpNewVal = Math.Round(nUDOffsetX.Value) + 5;
+				if (tmpNewVal > nUDProbeSaveX.Maximum) nUDProbeSaveX.Maximum = tmpNewVal;
+				nUDProbeSaveX.Value = tmpNewVal;
                 label14.BackColor = nUDProbeSaveX.BackColor = Color.Yellow;
             }
             else { label14.BackColor = nUDProbeSaveX.BackColor = SystemColors.Window; }
 
             if (nUDOffsetY.Value >= nUDProbeSaveY.Value)
-            {   nUDProbeSaveY.Value = Math.Round(nUDOffsetY.Value) + 5;
+            {   tmpNewVal = Math.Round(nUDOffsetY.Value) + 5;
+				if (tmpNewVal > nUDProbeSaveY.Maximum) nUDProbeSaveY.Maximum = tmpNewVal;
+				nUDProbeSaveY.Value = tmpNewVal;
                 label14.BackColor = nUDProbeSaveY.BackColor = Color.Yellow;
             }
             else { label14.BackColor = nUDProbeSaveY.BackColor = SystemColors.Window; }
 
             if (nUDOffsetZ.Value >= nUDProbeSaveZ.Value)
-            {   nUDProbeSaveZ.Value = Math.Round(nUDOffsetZ.Value) + 5;
+            {   tmpNewVal = Math.Round(nUDOffsetZ.Value) + 5;
+				if (tmpNewVal > nUDProbeSaveZ.Maximum) nUDProbeSaveZ.Maximum = tmpNewVal;
+				nUDProbeSaveZ.Value = tmpNewVal;
                 label14.BackColor = nUDProbeSaveZ.BackColor = Color.Yellow;
             }
             else { label14.BackColor = nUDProbeSaveZ.BackColor = SystemColors.Window; }

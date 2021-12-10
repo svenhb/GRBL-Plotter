@@ -54,21 +54,17 @@ namespace GrblPlotter
 
         private static void AsyncCheckVersion(object foo)
         {
-            try
-            {
+            try {
                 TryCheckSite2();
             } //official https
-            catch
-            {
+            catch {
                 CheckSite1(@"https://api.github.com/repos/svenhb/GRBL-Plotter/releases/latest");
-                //   throw;
             }
         }
 
         private static void TryCheckSite2()
         {
-            try
-            {
+            try {
                 CultureInfo ci = CultureInfo.InstalledUICulture;
                 ci = CultureInfo.CurrentUICulture;
                 Logger.Trace(culture, " Vers.:{0}  ID:{1}  LangSet:{2}  LangOri:{3}  url:{4}", Application.ProductVersion, GetID(), Properties.Settings.Default.guiLanguage, ci.Name, Properties.Settings.Default.guiCheckUpdateURL);
@@ -88,9 +84,8 @@ namespace GrblPlotter
                 }
                 CheckSite2(Properties.Settings.Default.guiCheckUpdateURL + "/GRBL-Plotter.php" + get);   // get Version-Nr and count individual ip to get an idea of amount of users
             }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "AsyncCheckVersion - CheckSite2"); //throw;
+            catch (Exception ex) {
+                Logger.Error(ex, "AsyncCheckVersion - CheckSite2"); 
             }
 
         }
@@ -114,8 +109,7 @@ namespace GrblPlotter
 
         private static string GetCounters(CounterType type)
         {
-            try
-            {
+            try {
                 if (type == CounterType.import)
                 {
                     uint gcode = Properties.Settings.Default.counterImportGCode;
@@ -145,9 +139,8 @@ namespace GrblPlotter
                     return tmp;
                 }
             }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, " getCounters"); //throw;
+            catch (Exception ex) {
+                Logger.Error(ex, " getCounters"); 
             }
             return "0";
         }
@@ -161,8 +154,7 @@ namespace GrblPlotter
             ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
             using (System.Net.WebClient wc = new System.Net.WebClient())
             {
-                try
-                {
+                try {
                     Logger.Trace(culture, "CheckSite2 {0}", site);
                     string[] lines = wc.DownloadString(site).Split(';');
                     string vers = lines[0];
@@ -175,13 +167,11 @@ namespace GrblPlotter
                         info = lines[1];
                     ShowResult(current, latest, info);
                 }
-                catch (WebException ex)
-                {
+                catch (WebException ex) {
                     Logger.Error(ex, "CheckSite2 1)");
                 }
-                catch (Exception ex)
-                {
-                    Logger.Error(ex, "CheckSite2 2)"); //throw;
+                catch (Exception ex) {
+                    Logger.Error(ex, "CheckSite2 2)"); 
                 }
             }
         }

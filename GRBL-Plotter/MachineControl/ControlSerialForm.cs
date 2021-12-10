@@ -339,8 +339,7 @@ namespace GrblPlotter
             SerialPortOpen = serialPort.IsOpen;
 			if (SerialPortOpen && !serialPortError)
             {
-                try
-                {
+                try {
 			//		if (resetProcessed)		// only poll status if reset was successfully recognized
 					{	if (isMarlin)
 						{
@@ -357,24 +356,22 @@ namespace GrblPlotter
 						}
 					}
                 }
-                catch (TimeoutException err)
-                {
+                catch (TimeoutException err) {
 					serialPortError = true;
                     Logger.Error(err, "Ser:{0} GRBL status could not be queried (send ?) TimeoutException rtsrResponse:{1}", iamSerial, rtsrResponse);
                     LogError("! GRBL status could not be queried", err);
                     ResetStreaming();
                     ClosePort();            
                 }
-                catch (InvalidOperationException err)
-                {
+                catch (InvalidOperationException err) {
 					serialPortError = true;
                     Logger.Error(err, "Ser:{0} GRBL status could not be queried (send ?) or (send M114) in TimerSerial_Tick", iamSerial);
                     LogError("! GRBL status could not be queried", err);
                     ResetStreaming();
                     ClosePort();           
                 }
-				catch (Exception err)
-				{   Logger.Error(err, "Ser:{0} unknown error in TimerSerial_Tick", iamSerial);
+				catch (Exception err) {
+					Logger.Error(err, "Ser:{0} unknown error in TimerSerial_Tick", iamSerial);
 				}
 
                 if (!isMarlin && !isHoming && (countMissingStatusReport-- <= 0))
@@ -408,6 +405,7 @@ namespace GrblPlotter
 
                 if (!resetProcessed && (axisCount > 0))			// to get axis count, a status must be received
                 {
+                //    Logger.Info("Process reset:{0} ", countStateReset);
                     if (countStateReset > 0)					// set in StateReset to 10
                     {
                         countStateReset--;
@@ -473,8 +471,7 @@ namespace GrblPlotter
 
         private void LoadSettings()
         {
-            try
-            {
+            try {
                 if (iamSerial == 1)
                 {
                     cbPort.Text = Properties.Settings.Default.serialPort1;
@@ -486,17 +483,14 @@ namespace GrblPlotter
                     cbBaud.Text = Properties.Settings.Default.serialBaud2;
                 }
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 Logger.Error(e, "Ser:{0}  -loadSettings-", iamSerial);
                 LogError("! Loading settings", e);
-            //    throw;
             }
         }
         private void SaveSettings()
         {
-            try
-            {
+            try {
                 if (iamSerial == 1)
                 {
                     Properties.Settings.Default.locationSerForm1 = Location;
@@ -514,11 +508,9 @@ namespace GrblPlotter
                 }
                 Properties.Settings.Default.Save();
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 Logger.Error(e, "Ser:{0} -saveSettings-", iamSerial);
                 LogError("! Saving settings", e);
-            //    throw;
             }
         }
 
@@ -540,14 +532,11 @@ namespace GrblPlotter
             }
             else
             {
-                try
-                {
+                try {
                     rtbLog.AppendText(text + "\r");
                     rtbLog.ScrollToCaret();
                 }
-                catch
-                {
-               //     throw;
+                catch {
                 }
             }
         }
@@ -558,7 +547,8 @@ namespace GrblPlotter
             List<String> tList = new List<String>();
             cbPort.Items.Clear();
             foreach (string s in System.IO.Ports.SerialPort.GetPortNames()) tList.Add(s);
-            if (tList.Count < 1) LogError("! No serial ports found", null);
+            if (tList.Count < 1) 
+			{	LogError("! No serial ports found", null);}
             else
             {
                 tList.Sort();
@@ -571,8 +561,7 @@ namespace GrblPlotter
             rxErrorCount = 0;
 			bool errorOnOpen = false;
 			serialPortError = false;
-            try
-            {
+            try {
                 Logger.Info("Ser:{0}, ==== openPort {1} {2} ======", iamSerial, cbPort.Text, cbBaud.Text);
                 serialPort.PortName = actualPort = cbPort.Text;
                 serialPort.DataBits = 8;
@@ -592,7 +581,7 @@ namespace GrblPlotter
                         try
                         { 	SerialPortFixer.Execute(cbPort.Text); }
                         catch (Exception err)
-                        { 	Logger.Error(err, "Ser:{0} -SerialPortFixer-", iamSerial);// throw;
+                        { 	Logger.Error(err, "Ser:{0} -SerialPortFixer-", iamSerial);
 							errorOnOpen = true;
 							serialPortError = true;
                         }
@@ -642,22 +631,19 @@ namespace GrblPlotter
                 SerialPortOpen = serialPort.IsOpen;
                 UpdateControls();
             }
-            catch (Exception err)
-            {
+            catch (Exception err) {
                 Logger.Error(err, "Ser:{0} -openPort-", iamSerial);
                 countMinimizeForm = 0;
                 LogError("! Opening port", err);
                 SerialPortOpen = false;
                 UpdateControls();
-            //    throw;
             }
         }
         private void ClosePort(object sender, EventArgs e)
         { 	ClosePort(); }
         public void ClosePort()
         {
-            try
-            {
+            try {
                 if (serialPort.IsOpen)
                 {
                     Logger.Info("Ser:{0}, closePort {1} ", iamSerial, actualPort);
@@ -673,8 +659,7 @@ namespace GrblPlotter
                 }
                 timerSerial.Interval = 1000;
             }
-            catch (Exception err)
-            {
+            catch (Exception err) {
                 Logger.Error(err, "Ser:{0} -closePort- ", iamSerial);
                 LogError("! Closing port", err);
                 if (!flag_closeForm)
@@ -693,10 +678,9 @@ namespace GrblPlotter
 			resetProcessed = false;
             var dataArray = new byte[] { 24 };//Ctrl-X
             if (serialPort.IsOpen)
-            { 	try
-				{	serialPort.Write(dataArray, 0, 1); }
-                catch (TimeoutException err)
-                {
+            { 	try	{
+					serialPort.Write(dataArray, 0, 1); }
+                catch (TimeoutException err) {
                     Logger.Error(err, "Ser:{0} Error sending reset (Ctrl-X)", iamSerial);
                     ResetStreaming();
 					serialPortError = true;
@@ -704,8 +688,7 @@ namespace GrblPlotter
                     ClosePort();          
                     LogError("! Error sending reset (Ctrl-X)", err);
                 }
-				catch (Exception err)
-				{
+				catch (Exception err) {
                     Logger.Error(err, "Ser:{0} Error sending reset (Ctrl-X)", iamSerial);
 					LogError("! Closing port", err);
 					if (!flag_closeForm)
@@ -797,16 +780,14 @@ namespace GrblPlotter
             while ((serialPort.IsOpen) && (serialPort.BytesToRead > 0))// && !blockSend)
             {
                 rxString = string.Empty;
-                try
-                {
+                try {
                     rxString = serialPort.ReadTo(lineEndRX).Trim();  //read line from grbl, discard CR LF
                     isDataProcessing = true;
                     this.BeginInvoke(new EventHandler(ProcessMessages));        //tigger rx process 2020-09-16 change from Invoke to BeginInvoke
                     while ((serialPort.IsOpen) && isDataProcessing)// && !blockSend)   //wait previous data line processed done
                     { }
                 }
-                catch (TimeoutException err1)
-                {
+                catch (TimeoutException err1) {
                     Logger.Error(err1, "TimeoutException");
                     AddToLog("Error reading line from serial port - correct baud rate?");
                     rxString = serialPort.ReadExisting().Trim();
@@ -817,8 +798,7 @@ namespace GrblPlotter
                     Grbl.lastMessage = "Serial timeout exception - correct baud rate?";
                     OnRaisePosEvent(new PosEventArgs(posWork, posMachine, GrblState.notConnected, machineState, mParserState, Grbl.lastMessage));
                 }
-                catch (Exception err)
-                {
+                catch (Exception err) {
                     if (++rxErrorCount > 2)
                     {
                         AddToLog("Close port after 3 retries");
@@ -831,7 +811,6 @@ namespace GrblPlotter
                     grblStateNow = GrblState.notConnected;
                     Grbl.lastMessage = "Serial exception - correct baud rate?";
                     OnRaisePosEvent(new PosEventArgs(posWork, posMachine, GrblState.notConnected, machineState, mParserState, Grbl.lastMessage));
-                //    throw;
                 }
             }
         }

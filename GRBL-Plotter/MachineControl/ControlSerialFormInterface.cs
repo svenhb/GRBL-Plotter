@@ -387,12 +387,12 @@ namespace GrblPlotter
                 {
                     if (dataField[1].StartsWith("WPos"))
                     {
-                        Grbl.GetPosition(iamSerial, dataField[1] + "," + dataField[2] + "," + dataField[3] + " ", ref posWork);
+                        axisCount = Grbl.GetPosition(iamSerial, dataField[1] + "," + dataField[2] + "," + dataField[3] + " ", ref posWork);
                         posMachine = posWork + posWCO;
                     }
                     else
                     {
-                        Grbl.GetPosition(iamSerial, dataField[1] + "," + dataField[2] + "," + dataField[3] + " ", ref posMachine);
+                        axisCount = Grbl.GetPosition(iamSerial, dataField[1] + "," + dataField[2] + "," + dataField[3] + " ", ref posMachine);
                         posWork = posMachine - posWCO;
                     }
                 }
@@ -753,7 +753,7 @@ namespace GrblPlotter
         public void RealtimeCommand(byte cmd)
         {
             var dataArray = new byte[] { Convert.ToByte(cmd) };
-            if (serialPort.IsOpen)// && !blockSend)
+            if (serialPort.IsOpen && (dataArray.Length > 0))// && !blockSend)
                 serialPort.Write(dataArray, 0, 1);
             AddToLog("> '0x" + cmd.ToString("X") + "' " + Grbl.GetRealtimeDescription(cmd));
             if ((cmd == 0x85) && !(isStreaming && !isStreamingPause))                   //  Jog Cancel
@@ -786,7 +786,7 @@ namespace GrblPlotter
                 else
                 {
                     var tmp = CleanUpCodeLine(data, keepComments);
-                    if ((!string.IsNullOrEmpty(tmp)) && (tmp[0] != ';'))    // trim lines and remove all empty lines and comment lines
+                    if ((!string.IsNullOrEmpty(tmp)) && (!tmp.StartsWith(";")))  //(tmp[0] != ';'))    // trim lines and remove all empty lines and comment lines
                     {
                         if (tmp == "$#") countPreventEvent = 5;                  // no response echo for parser state
                         if (tmp == "$H") { isHoming = true; AddToLog("Homing"); Logger.Info("requestSend Start Homing"); }
@@ -1087,8 +1087,7 @@ namespace GrblPlotter
          *********************************************************************/
         private void SendLine(string data)
         {
-            try
-            {
+            try {
                 if (serialPort.IsOpen)// && !blockSend)
                     serialPort.Write(data + lineEndTXgrbl);         // sendLine single command
                 if (!IsHeightProbing && (!(isStreaming && !isStreamingPause)))// || (cBStatus1.Checked || cBStatus.Checked))
@@ -1097,8 +1096,7 @@ namespace GrblPlotter
                         AddToLog(string.Format("> {0}", data));     // if not in transfer log the txLine
                 }
             }
-            catch (Exception err)
-            {
+            catch (Exception err) {
                 Logger.Error(err, "Ser:{0} -sendLine-", iamSerial);
                 if (!Grbl.grblSimulate)
                     LogError("! Sending line", err);

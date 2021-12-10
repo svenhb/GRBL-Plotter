@@ -1162,8 +1162,7 @@ namespace GrblPlotter
             videoSource = new VideoCaptureDevice(videosources[index].MonikerString);
             ((ToolStripMenuItem)camSourceToolStripMenuItem.DropDownItems[index]).Checked = true;
 
-            try
-            {
+            try {
                 int i;
                 if (videoSource.VideoCapabilities.Length > 0)
                 {
@@ -1172,19 +1171,14 @@ namespace GrblPlotter
                         Logger.Trace("SelectCameraSource {0}) width:{1} height:{2}", i, videoSource.VideoCapabilities[i].FrameSize.Width, videoSource.VideoCapabilities[i].FrameSize.Height);
                         if (videoSource.VideoCapabilities[i].FrameSize.Width == resolution)
                         {
-                            //                    Logger.Trace("SelectCameraSource {0}) {1}", i, resolution);
                             videoSource.VideoResolution = videoSource.VideoCapabilities[i];
-                            //       cameraResolutionY = videoSource.VideoCapabilities[i].FrameSize.Height;
-
-                            //    break;
                         }
                     }
-                    //         videoSource.VideoResolution = videoSource.VideoCapabilities[i];
                 }
-                //          double pHeight = 480 * cameraResolutionY / cameraResolutionX;
-                //          pictureBoxVideo.Height = (int)pHeight;
             }
-            catch (Exception ex) { Logger.Error(ex, "SelectCameraSource "); throw; }
+            catch (Exception ex) { 
+				Logger.Error(ex, "SelectCameraSource "); 
+			}
             videoSource.NewFrame += new AForge.Video.NewFrameEventHandler(VideoSource_NewFrame);
             videoSource.Start();
         }

@@ -11917,6 +11917,30 @@ https://github.com/fra589/grbl-Mega-5X/wiki/grbl-Mega-5X-pinout</value>
   <data name="&gt;&gt;cBExtendedLogging.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="BtnThrow.Location" type="System.Drawing.Point, System.Drawing">
+    <value>155, 13</value>
+  </data>
+  <data name="BtnThrow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 28</value>
+  </data>
+  <data name="BtnThrow.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="BtnThrow.Text" xml:space="preserve">
+    <value>Throw event</value>
+  </data>
+  <data name="&gt;&gt;BtnThrow.Name" xml:space="preserve">
+    <value>BtnThrow</value>
+  </data>
+  <data name="&gt;&gt;BtnThrow.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnThrow.Parent" xml:space="preserve">
+    <value>gBLoggingOptions</value>
+  </data>
+  <data name="&gt;&gt;BtnThrow.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="cBLog3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -11945,7 +11969,7 @@ https://github.com/fra589/grbl-Mega-5X/wiki/grbl-Mega-5X-pinout</value>
     <value>gBLoggingOptions</value>
   </data>
   <data name="&gt;&gt;cBLog3.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="cBLog0.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -11975,7 +11999,7 @@ https://github.com/fra589/grbl-Mega-5X/wiki/grbl-Mega-5X-pinout</value>
     <value>gBLoggingOptions</value>
   </data>
   <data name="&gt;&gt;cBLog0.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="cBLog1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -12005,7 +12029,7 @@ https://github.com/fra589/grbl-Mega-5X/wiki/grbl-Mega-5X-pinout</value>
     <value>gBLoggingOptions</value>
   </data>
   <data name="&gt;&gt;cBLog1.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="cBLog6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -12035,7 +12059,7 @@ https://github.com/fra589/grbl-Mega-5X/wiki/grbl-Mega-5X-pinout</value>
     <value>gBLoggingOptions</value>
   </data>
   <data name="&gt;&gt;cBLog6.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="cBLog2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -12065,7 +12089,7 @@ https://github.com/fra589/grbl-Mega-5X/wiki/grbl-Mega-5X-pinout</value>
     <value>gBLoggingOptions</value>
   </data>
   <data name="&gt;&gt;cBLog2.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="cBLog5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -12095,7 +12119,7 @@ https://github.com/fra589/grbl-Mega-5X/wiki/grbl-Mega-5X-pinout</value>
     <value>gBLoggingOptions</value>
   </data>
   <data name="&gt;&gt;cBLog5.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="cBLog4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -12125,7 +12149,7 @@ https://github.com/fra589/grbl-Mega-5X/wiki/grbl-Mega-5X-pinout</value>
     <value>gBLoggingOptions</value>
   </data>
   <data name="&gt;&gt;cBLog4.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="gBLoggingOptions.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 54</value>
@@ -21540,7 +21564,7 @@ Step width  Speed</value>
     <value>678, 11</value>
   </data>
   <data name="btnReloadSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 23</value>
+    <value>174, 66</value>
   </data>
   <data name="btnReloadSettings.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>

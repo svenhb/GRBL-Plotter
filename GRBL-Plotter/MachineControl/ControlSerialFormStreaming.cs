@@ -41,10 +41,6 @@ using System.Linq;
 using System.Windows.Forms;
 using System.IO;
 
-//#pragma warning disable CA1303
-//#pragma warning disable CA1305
-//#pragma warning disable CA1307
-
 namespace GrblPlotter
 {
     public partial class ControlSerialForm : Form        // Form can be loaded twice!!! COM1, COM2
@@ -116,21 +112,21 @@ namespace GrblPlotter
 
             // check if other serial are still alive
             if (useSerial2)
-            {   try
-                {   if (!_serial_form2.SerialPortOpen)
+            {   try {   
+					if (!_serial_form2.SerialPortOpen)
                     { AddToLog("[2nd serial port is not open]"); useSerial2 = false; }
                 }
-                catch
-                { useSerial2 = false; //throw;
+                catch { 
+					useSerial2 = false; 
                 }
             }
             if (useSerial3)
-            {   try
-                {   if (!_serial_form3.SerialPortOpen)
+            {   try {   
+					if (!_serial_form3.SerialPortOpen)
                     { AddToLog("[3rd serial port is not open]"); useSerial3 = false; }
                 }
-                catch
-                { useSerial3 = false;// throw;
+                catch { 
+					useSerial3 = false;
                 }
             }
 

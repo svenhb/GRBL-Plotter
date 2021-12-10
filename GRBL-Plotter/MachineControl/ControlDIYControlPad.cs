@@ -217,8 +217,7 @@ namespace GrblPlotter
         /// </summary>
         private void SendLine(string data)
         {
-            try
-            {
+            try {
                 if (serialPort.IsOpen)
                 {
                     serialPort.Write(data + "\r\n");
@@ -237,13 +236,12 @@ namespace GrblPlotter
                     }
                 }
             }
-            catch (Exception err)
-            {
+            catch (Exception err) {
                 Logger.Error(err, "Error SendLine: ");
                 if (cBFeedback.Checked)
                     rtbLog.AppendText(string.Format(">| {0} \r\n", data));
-                //          throw;
             }
+			
             while (rtbLog.Lines.Length > 99)
             {
                 rtbLog.SelectionStart = 0;

@@ -463,7 +463,7 @@ namespace GrblPlotter
                 string msg = " no information found for error-nr. '" + msgNr + "'";
                 try
                 {
-                    if (messageErrorCodes.ContainsKey(msgNr))
+                    if ((messageErrorCodes != null) && messageErrorCodes.ContainsKey(msgNr))
                     {
                         msg = Grbl.messageErrorCodes[msgNr];
                         //int errnr = Convert.ToInt16(tmp[1].Trim());
@@ -492,7 +492,7 @@ namespace GrblPlotter
             string msg = " no information found for alarm-nr. '" + tmp[1] + "'";
             try
             {
-                if (messageAlarmCodes.ContainsKey(tmp[1].Trim()))
+                if ((messageAlarmCodes != null) && messageAlarmCodes.ContainsKey(tmp[1].Trim()))
                     msg = Grbl.messageAlarmCodes[tmp[1].Trim()];
             }
             catch { }

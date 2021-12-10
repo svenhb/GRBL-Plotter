@@ -23,6 +23,7 @@
  * 2021-04-09 split finish commands
  * 2021-07-02 code clean up / code quality
  * 2021-11-23 set default for tprop
+ * 2021-12-09 line 222 check if (cBTool.Count == 0)
 */
 
 using System;
@@ -218,8 +219,15 @@ namespace GrblPlotter
                 tmpTool = ToolTable.GetToolProperties(i);
                 cBTool.Items.Add(i.ToString() + ") " + tmpTool.Name);
             }
-            cBTool.SelectedIndex = 0;
-            tprop = ToolTable.GetToolProperties(1);
+			if (cBTool.Items.Count == 0)
+			{
+				cBTool.Items.Add("No tool table entries found!!!");
+			}
+			else
+			{
+				cBTool.SelectedIndex = 0;
+				tprop = ToolTable.GetToolProperties(1);
+			}
             CbTool_SelectedIndexChanged(sender, e);
         }
     }
