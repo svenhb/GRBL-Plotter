@@ -720,10 +720,10 @@ namespace GrblPlotter
             if (!cancelByWorker && (graphicInformation.OptionZFromWidth || (graphicInformation.OptionDotFromCircle && graphicInformation.OptionZFromRadius)))
             {
                 string tmp1 = string.Format(" penMin: {0:0.00} penMax: {1:0.00}",
-                    graphicInformation.PenWidthMin, graphicInformation.PenWidthMax);
+                graphicInformation.PenWidthMin, graphicInformation.PenWidthMax);
                 string tmp2 = string.Format("   zMin:{0:0.00}   zMax:{1:0.00}  zLimit:{2:0.00}",
-                    Properties.Settings.Default.importDepthFromWidthMin, Properties.Settings.Default.importDepthFromWidthMax,
-                    Properties.Settings.Default.importGCZDown);
+                Properties.Settings.Default.importDepthFromWidthMin, Properties.Settings.Default.importDepthFromWidthMax,
+                Properties.Settings.Default.importGCZDown);
                 SetHeaderInfo(tmp1);
                 SetHeaderInfo(tmp2);
                 if (logEnable) Logger.Trace("----OptionZFromWidth {0}{1}", tmp1, tmp2);

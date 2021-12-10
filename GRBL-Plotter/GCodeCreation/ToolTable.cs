@@ -25,6 +25,7 @@
  * 2021-03-26 add getColorWidth()
  * 2021-07-26 code clean up / code quality
  * 2021-08-26 GetToolColor remove leading '#'
+ * 2021-12-09 set default tool-nr=1
 */
 
 using System;
@@ -33,9 +34,6 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-
-//#pragma warning disable CA1303
-//#pragma warning disable CA1307
 
 namespace GrblPlotter
 {
@@ -75,7 +73,7 @@ namespace GrblPlotter
 
         public void ResetToolProperties()
         {
-            Toolnr = 0; Color = Color.Black; Name = "default"; Position = new XyzPoint(); Diameter = 1; FeedXY = 1111; FeedZ = 555; SaveZ = 4.444f; FinalZ = -1.111f;
+            Toolnr = 1; Color = Color.Black; Name = "default"; Position = new XyzPoint(); Diameter = 1; FeedXY = 1111; FeedZ = 555; SaveZ = 4.444f; FinalZ = -1.111f;
             StepZ = 1.111f; SpindleSpeed = 999; Overlap = 99.9f;
         }
 
@@ -279,7 +277,8 @@ namespace GrblPlotter
             else
             {
 				Logger.Info("Tool table not found: {0}",file);
-                toolTableArray.Add(new ToolProp()); // add default color
+				toolTableArray.Add(new ToolProp(1, Color.Black, "Default"));  // add default color
+                toolTableIndex = toolTableArray.Count - 1;
             }
             return toolTableIndex;
         }

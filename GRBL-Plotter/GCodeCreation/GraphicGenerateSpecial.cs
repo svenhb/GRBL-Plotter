@@ -63,7 +63,7 @@ namespace GrblPlotter
 
             uint backgroundNotchProperties;
 
-            Logger.Trace("...Develop tool-angle:{0:0.0} notch-depth:{1:0.0}  notch-dist:{2:0.00}", toolAngle, zNotch, notchDistance);
+            if (logModification) Logger.Trace("...Develop tool-angle:{0:0.0} notch-depth:{1:0.0}  notch-dist:{2:0.00}", toolAngle, zNotch, notchDistance);
 
             Point pStart, pNow, pNext, pLabel, pLabelLast;
             double distance, distAccumulated = 0, angleDiff, angle1, angle2;
@@ -101,7 +101,7 @@ namespace GrblPlotter
                     startIndex = 1;
                     if (item.IsClosed) { startIndex = 0; }         // last point = first point
 
-                    Logger.Info("...Start isClosed:{0} startIndex:{1}  count:{2}", item.IsClosed, startIndex, item.Path.Count);
+                    if (logModification) Logger.Trace("...Start isClosed:{0} startIndex:{1}  count:{2}", item.IsClosed, startIndex, item.Path.Count);
                     for (int i = startIndex; i < item.Path.Count; i++)      				// go through path objects
                     {
                         pLabel = pNow = item.Path[i].MoveTo;
@@ -444,16 +444,19 @@ namespace GrblPlotter
             float centerX = (float)pos.X;// (float)((clipMax.X + clipMin.X) / 2);
             float centerY = (float)pos.Y;// (float)((clipMax.Y + clipMin.Y) / 2);
 
-            System.Drawing.StringFormat sFormat = new System.Drawing.StringFormat(System.Drawing.StringFormat.GenericDefault)
-            {
-                Alignment = System.Drawing.StringAlignment.Center,
-                LineAlignment = System.Drawing.StringAlignment.Center
-            };
-            System.Drawing.FontFamily myFont = new System.Drawing.FontFamily("Arial");
-            VisuGCode.pathBackground.AddString(txt, myFont, (int)System.Drawing.FontStyle.Regular, emSize, new System.Drawing.PointF(centerX, -centerY), sFormat);
-            VisuGCode.pathBackground.Transform(matrix);
-            myFont.Dispose();
-            sFormat.Dispose();
+			try
+            {	System.Drawing.StringFormat sFormat = new System.Drawing.StringFormat(System.Drawing.StringFormat.GenericDefault)
+				{
+					Alignment = System.Drawing.StringAlignment.Center,
+					LineAlignment = System.Drawing.StringAlignment.Center
+				};
+				System.Drawing.FontFamily myFont = new System.Drawing.FontFamily("Arial");
+				VisuGCode.pathBackground.AddString(txt, myFont, (int)System.Drawing.FontStyle.Regular, emSize, new System.Drawing.PointF(centerX, -centerY), sFormat);
+				VisuGCode.pathBackground.Transform(matrix);
+				myFont.Dispose();
+				sFormat.Dispose();
+			}
+			catch (Exception err) {Logger.Error(err,"AddBackgroundText ");}
         }
     }
 }
