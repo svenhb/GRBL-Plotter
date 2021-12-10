@@ -292,7 +292,10 @@ namespace GrblPlotter
 
                 e.DrawPath(penSimulation, VisuGCode.Simulation.pathSimulation);
             }
-            catch (Exception Ex){ Logger.Error(Ex, "OnPaint_drawToolPath "); throw; }
+            catch (Exception Ex){ 
+				Logger.Error(Ex, "OnPaint_drawToolPath "); 
+				throw; 
+			}
         }
 
         // Generante a background-image for pictureBox to avoid frequent drawing of pen-up/down paths

@@ -44,6 +44,7 @@
  * 2021-11-17 LoadExtensionList - don't list pictures png, jpg
  * 2021-11-23 line 192 add try/catch
  * 2021-11-29 line 893 BtnSaveFile_Click supply more encodings
+ * 2021-12-06 line 1131 check also if (iData.ContainsText(DataFormats.Text))
 */
 
 using System;
@@ -296,7 +297,7 @@ namespace GrblPlotter
         private void ShowGCodeErrors()  // show errors in GCode, found in GCode2DViewpath
         {
             string err = VisuGCode.errorString;
-            if (err.Contains("\n"))
+            if ((!String.IsNullOrEmpty(err)) && err.Contains("\n"))
             {
                 StatusStripSet(0, err.Substring(0, err.IndexOf("\n") - 1), Color.OrangeRed);
                 string[] errlines = err.Split('\n');
@@ -307,7 +308,7 @@ namespace GrblPlotter
                     for (int i = 0; i < errlines.Length; i++)
                     {
                         string errline = errlines[i];
-                        if (errline.Contains("["))                          // find line number e.g. [61] to mark line in editor
+                        if ((!String.IsNullOrEmpty(errline)) && errline.Contains("["))                          // find line number e.g. [61] to mark line in editor
                         {
                             int strt = errline.IndexOf("[");                // line-nr in brackets
                             int end = errline.IndexOf("]", strt);
@@ -391,15 +392,13 @@ namespace GrblPlotter
                 return false;
             }
 
+			if (!File.Exists(fileName))
+			{
+				Logger.Error("▄▄▄▄▄ File not found {0}", fileName);
+				MessageBox.Show(Localization.GetString("mainLoadError1") + fileName + "'", Localization.GetString("mainAttention"));
+				return false;
+			}
 
-            {
-                if (!File.Exists(fileName))
-                {
-                    Logger.Error("▄▄▄▄▄ File not found {0}", fileName);
-                    MessageBox.Show(Localization.GetString("mainLoadError1") + fileName + "'", Localization.GetString("mainAttention"));
-                    return false;
-                }
-            }
             if (ext == ".svg")
             {
                 if (Properties.Settings.Default.importSVGRezise) importOptions = "<SVG Resize> " + importOptions;
@@ -453,10 +452,20 @@ namespace GrblPlotter
             {
                 if (File.Exists(fileName))
                 {
-                    LoadFromClipboard(File.ReadAllText(fileName));
-                    fileLoaded = true;
-                    this.Text = appName + " | Source: " + fileName;
-                }
+					try
+                    {	LoadFromClipboard(File.ReadAllText(fileName));
+						fileLoaded = true;
+						this.Text = appName + " | Source: " + fileName;
+					}
+					catch (IOException)
+					{
+                        ShowIoException("LoadFile", fileName);
+						return false;
+					}
+					catch (Exception err) { 
+						throw;		// unknown exception...
+					}
+               }
             }
 
             if (ext == ".url")
@@ -691,53 +700,63 @@ namespace GrblPlotter
                     f.ShowDialog(this);
                 }
             }
-            switch (type)
-            {
-                case Graphic.SourceType.SVG:   // uses Graphic-Class, get result from Graphic.GCode
-                    {
-                        if (!showProgress) GCodeFromSvg.ConvertFromFile(source, null, null);
-                        conversionInfo = GCodeFromSvg.ConversionInfo;
-                        Properties.Settings.Default.counterImportSVG += 1;
-                        break;
-                    }
-                case Graphic.SourceType.DXF:   // uses Graphic-Class, get result from Graphic.GCode
-                    {
-                        if (!showProgress) GCodeFromDxf.ConvertFromFile(source, null, null);
-                        conversionInfo = GCodeFromDxf.ConversionInfo;
-                        Properties.Settings.Default.counterImportDXF += 1;
-                        break;
-                    }
-                case Graphic.SourceType.HPGL:  // uses Graphic-Class, get result from Graphic.GCode
-                    {
-                        if (!showProgress) GCodeFromHpgl.ConvertFromFile(source, null, null);
-                        conversionInfo = GCodeFromHpgl.ConversionInfo;
-                        Properties.Settings.Default.counterImportHPGL += 1;
-                        break;
-                    }
-                case Graphic.SourceType.CSV:   // uses Graphic-Class, get result from Graphic.GCode
-                    {
-                        if (!showProgress) GCodeFromCsv.ConvertFromFile(source, null, null);
-                        conversionInfo = GCodeFromCsv.ConversionInfo;
-                        Properties.Settings.Default.counterImportCSV += 1;
-                        break;
-                    }
-                case Graphic.SourceType.Drill:
-                    {
-                        if (!showProgress) GCodeFromDrill.ConvertFromFile(source, null, null);
-                        conversionInfo = GCodeFromDrill.ConversionInfo;
-                        Properties.Settings.Default.counterImportDrill += 1;
-                        break;
-                    }
-                case Graphic.SourceType.Gerber:    // uses Graphic-Class, get result from Graphic.GCode
-                    {
-                        if (!showProgress) GCodeFromGerber.ConvertFromFile(source, null, null);
-                        conversionInfo = GCodeFromGerber.conversionInfo;
-                        Properties.Settings.Default.counterImportGerber += 1;
-                        break;
-                    }
-                default: break;
-            }
-
+			
+			try {
+				switch (type)
+				{
+					case Graphic.SourceType.SVG:   // uses Graphic-Class, get result from Graphic.GCode
+						{
+							if (!showProgress) GCodeFromSvg.ConvertFromFile(source, null, null);
+							conversionInfo = GCodeFromSvg.ConversionInfo;
+							Properties.Settings.Default.counterImportSVG += 1;
+							break;
+						}
+					case Graphic.SourceType.DXF:   // uses Graphic-Class, get result from Graphic.GCode
+						{
+							if (!showProgress) GCodeFromDxf.ConvertFromFile(source, null, null);
+							conversionInfo = GCodeFromDxf.ConversionInfo;
+							Properties.Settings.Default.counterImportDXF += 1;
+							break;
+						}
+					case Graphic.SourceType.HPGL:  // uses Graphic-Class, get result from Graphic.GCode
+						{
+							if (!showProgress) GCodeFromHpgl.ConvertFromFile(source, null, null);
+							conversionInfo = GCodeFromHpgl.ConversionInfo;
+							Properties.Settings.Default.counterImportHPGL += 1;
+							break;
+						}
+					case Graphic.SourceType.CSV:   // uses Graphic-Class, get result from Graphic.GCode
+						{
+							if (!showProgress) GCodeFromCsv.ConvertFromFile(source, null, null);
+							conversionInfo = GCodeFromCsv.ConversionInfo;
+							Properties.Settings.Default.counterImportCSV += 1;
+							break;
+						}
+					case Graphic.SourceType.Drill:
+						{
+							if (!showProgress) GCodeFromDrill.ConvertFromFile(source, null, null);
+							conversionInfo = GCodeFromDrill.ConversionInfo;
+							Properties.Settings.Default.counterImportDrill += 1;
+							break;
+						}
+					case Graphic.SourceType.Gerber:    // uses Graphic-Class, get result from Graphic.GCode
+						{
+							if (!showProgress) GCodeFromGerber.ConvertFromFile(source, null, null);
+							conversionInfo = GCodeFromGerber.conversionInfo;
+							Properties.Settings.Default.counterImportGerber += 1;
+							break;
+						}
+					default: break;
+				}
+			}
+			catch (IOException) {
+                ShowIoException("StartConvert", source);
+				return;
+			}
+			catch (Exception err) { 
+				throw;		// unknown exception...
+			}
+			
             if (!showProgress)
             {
                 VisuGCode.xyzSize.AddDimensionXY(Graphic.actualDimension);
@@ -790,7 +809,7 @@ namespace GrblPlotter
             {
                 case 1:
                     loadTimer.Stop();
-                    NewCodeEnd(true);   // read code line 187
+                    NewCodeEnd(true);   // timer will be started here again
                     break;
                 case 2:
                     SetFctbCodeText(Graphic.GCode.ToString());  // loadTimer_Tick
@@ -1128,7 +1147,11 @@ namespace GrblPlotter
                 string source = "Textfile";
                 string checkContent = "";
                 if (fromClipboard)
-                {   checkContent = (String)iData.GetData(DataFormats.Text); source = "Clipboard"; }
+                {   //if (iData..ContainsText(DataFormats.Text))
+					{	checkContent = (String)iData.GetData(DataFormats.Text); source = "Clipboard"; }
+					//else
+					//{	return;}
+				}
                 else
                     checkContent = text;
 

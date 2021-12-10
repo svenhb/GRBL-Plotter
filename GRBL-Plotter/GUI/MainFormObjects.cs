@@ -711,7 +711,7 @@ namespace GrblPlotter
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Set culture info"); //throw;
+                Logger.Error(ex, "Set culture info"); 
             }
         }
 
@@ -721,7 +721,7 @@ namespace GrblPlotter
             try { tmp = ResStrings.ResourceManager.GetString(pattern).Replace("\\r", Environment.NewLine); }
             catch (Exception ex)
             {
-                Logger.Error(ex, "String not found '{0}'", pattern); //throw;
+                Logger.Error(ex, "String not found '{0}'", pattern); 
             }
             return tmp.Replace("\\n", "");
         }

@@ -258,10 +258,6 @@ namespace GrblPlotter
             { StatusStripSet(1, Localization.GetString("statusStripeClickKeys"), Color.LightGreen); }
 
             FctbCodeMarkLine(true);             // set Bookmark and marker in 2D-View
-
-            /* Test new feature
-            ErrorLines.Add(fCTBCodeClickedLineNow);
-            markErrorLine(fCTBCodeClickedLineNow);  */
         }
         private void FctbCode_KeyDown(object sender, KeyEventArgs e)    // key up down 
         {
@@ -393,8 +389,7 @@ namespace GrblPlotter
             {
                 if ((fCTBCodeClickedLineNow != fCTBCodeClickedLineLast) || markAnyway)
                 {
-                	try
-					{
+                	try	{
 						if (lineIsInRange(fCTBCodeClickedLineLast))
 							fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);           // remove marker from old line
 						fCTBCode.BookmarkLine(fCTBCodeClickedLineNow);              // set new marker
@@ -403,8 +398,9 @@ namespace GrblPlotter
 						pictureBox1.Invalidate(); // avoid too much events
 												  //             toolStrip_tb_StreamLine.Text = fCTBCodeClickedLineNow.ToString();
 					}
-					catch (Exception er)
-					{ Logger.Error(er, "fCTBCodeMarkLine fCTBCodeClickedLineLast:{0} fCTBCodeClickedLineNow:{1} FCTBLinesCount:{2}", fCTBCodeClickedLineLast, fCTBCodeClickedLineNow, fCTBCode.LinesCount); }
+					catch (Exception er) { 
+						Logger.Error(er, "fCTBCodeMarkLine fCTBCodeClickedLineLast:{0} fCTBCodeClickedLineNow:{1} FCTBLinesCount:{2}", fCTBCodeClickedLineLast, fCTBCodeClickedLineNow, fCTBCode.LinesCount); 
+					}
                 }
             }
         }
@@ -588,7 +584,7 @@ namespace GrblPlotter
                     if (collapse)
                         FoldBlocks2();
                     markedBlockType = XmlMarkerType.Figure;
-                    if (XmlMarker.GetFigure(clickedLine))
+                    if (XmlMarker.GetFigure(clickedLine) && lineIsInRange(XmlMarker.lastFigure.LineStart))
                     {
                         EnableBlockCommands(SetTextSelection(XmlMarker.lastFigure.LineStart, XmlMarker.lastFigure.LineEnd));
                         VisuGCode.SetPosMarkerLine(fCTBCodeClickedLineNow, false);	//!isStreaming);	// 2020-08-24 don't highlight in setPosMarkerLine - was done (or deselect) before in setPosMarkerNearBy
@@ -612,7 +608,7 @@ namespace GrblPlotter
                 if (XmlMarker.GetFigure(clickedLine))
                 {
                     int figStart = XmlMarker.lastFigure.LineStart;
-                    if (figStart < fCTBCode.LinesCount)
+                    if (lineIsInRange(XmlMarker.lastFigure.LineStart))	//figStart < fCTBCode.LinesCount)
                     {
                         EnableBlockCommands(SetTextSelection(XmlMarker.lastFigure.LineStart, XmlMarker.lastFigure.LineEnd));
                         VisuGCode.SetPosMarkerLine(fCTBCodeClickedLineNow, false);      //!isStreaming);	// 2020-08-24 don't highlight in setPosMarkerLine - was done (or deselect) before in setPosMarkerNearBy

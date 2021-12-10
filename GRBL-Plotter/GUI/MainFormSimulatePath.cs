@@ -19,14 +19,12 @@
 /*
  * 2020-03-11 split from MainForm.cs
  * 2021-07-02 code clean up / code quality
+ * 2021-12-02 add range test for index
 */
 
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-
-//#pragma warning disable CA1303
-//#pragma warning disable CA1305
 
 namespace GrblPlotter
 {
@@ -135,13 +133,9 @@ namespace GrblPlotter
         {
             simuLine = VisuGCode.Simulation.Next(ref codeInfo);
 
-            if ((simuLine >= 0) && (simuLine < fCTBCode.Lines.Count))
-                lbInfo.Text = string.Format("Line {0}: {1}", (simuLine + 1), fCTBCode.Lines[simuLine]);
-            else
-                lbInfo.Text = string.Format("Line {0}", (simuLine + 1));
-
-            if (simuLine >= 0)
+            if (lineIsInRange(simuLine))   //(simuLine >= 0)
             {
+                lbInfo.Text = string.Format("Line {0}: {1}", (simuLine + 1), fCTBCode.Lines[simuLine]);
                 fCTBCode.Selection = fCTBCode.GetLine(simuLine);
                 fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
                 fCTBCode.BookmarkLine(simuLine);
@@ -156,6 +150,7 @@ namespace GrblPlotter
             }
             else
             {
+                lbInfo.Text = string.Format("Line {0}", (simuLine + 1));
                 SimuStop();
                 simuLine = 0;   // Math.Abs(simuLine);
                 VisuGCode.Simulation.Reset();
@@ -167,7 +162,8 @@ namespace GrblPlotter
                 mySelection.End = selStart;
                 fCTBCode.Selection = mySelection;
 
-                fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
+                if (lineIsInRange(fCTBCodeClickedLineLast)) 
+                    fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
                 fCTBCode.BookmarkLine(simuLine);
                 fCTBCode.DoCaretVisible();
                 fCTBCodeClickedLineLast = simuLine;

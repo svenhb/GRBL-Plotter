@@ -69,8 +69,7 @@ namespace GrblPlotter
 
         public static string SendMail(string message, string titleAddon)
         {   // http://csharp.net-informations.com/communications/csharp-smtp-mail.htm
-            try
-            {
+            try {
                 MailMessage mail = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient(Properties.Settings.Default.notifierMailClientAdr);
 
@@ -88,11 +87,9 @@ namespace GrblPlotter
                 mail.Dispose();
                 return "Email sent";
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Logger.Error(ex, " sendMail() ");
                 return "Error sending email:\r\n" + ex.ToString();
-             //   throw;
             }
         }
 
@@ -134,8 +131,7 @@ namespace GrblPlotter
                 //                streamWriter.Close();
             }
 
-            try
-            {
+            try {
                 var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                 using (StreamReader streamReader = new StreamReader(httpResponse.GetResponseStream()))
                 {   //var result = streamReader.ReadToEnd();
@@ -143,15 +139,12 @@ namespace GrblPlotter
                 }
                 return "PushBullet message sent";
             }
-            catch (WebException ex)
-            {
+            catch (WebException ex) {
                 return "Error sending PushBullet message:\r\n" + ex.ToString();
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 Logger.Error(ex, " pushBullet() ");
                 return "Error sending PushBullet message:\r\n" + ex.ToString();
-                //   throw;
             }
         }
         internal class Note

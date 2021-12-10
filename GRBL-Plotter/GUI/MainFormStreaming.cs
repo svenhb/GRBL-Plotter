@@ -26,6 +26,7 @@
  * 2021-09-03 BtnStreamStart_Click switch from click to mouseUp event
  * 2021-11-23 line 121, 403, 406 add try/catch
  * 2021-11-30 check lineIsInRange(fCTBCodeClickedLineNow)
+ * 2021-12-10 line 122 check if (e.CodeLineSent >= fCTBCode.LinesCount); line 340 = fCTBCode.LinesCount - 1;
 */
 
 using GrblPlotter.GUI;
@@ -57,8 +58,7 @@ namespace GrblPlotter
         /***** thread save update *****/
         private void UpdateProgressBar(int codeProgress, int buffProgress)
         {
-            try
-            {
+            try {
                 int cPrgs = codeProgress;
                 if (cPrgs < 0) cPrgs = 0; if (cPrgs > 100) cPrgs = 100;
                 int bPrgs = buffProgress;
@@ -118,7 +118,7 @@ namespace GrblPlotter
 
             int actualCodeLine = e.CodeLineSent;
             if (actualCodeLine < 0) actualCodeLine = 0;
-            if (e.CodeLineSent > fCTBCode.LinesCount)
+            if (e.CodeLineSent >= fCTBCode.LinesCount)
                 actualCodeLine = fCTBCode.LinesCount - 1;
 			try
             {	fCTBCode.Selection = fCTBCode.GetLine(actualCodeLine);}
@@ -128,16 +128,14 @@ namespace GrblPlotter
             FctbCodeMarkLine();         // set Bookmark and marker in 2D-View
                                         //            fCTBCode.DoCaretVisible();
 
-            try
-            {
+            try {
                 if (this.fCTBCode.InvokeRequired)
                 { this.fCTBCode.BeginInvoke((MethodInvoker)delegate () { this.fCTBCode.DoCaretVisible(); }); }
                 else
                 { this.fCTBCode.DoCaretVisible(); }
             }
-            catch (Exception er)
-            {
-                Logger.Error(er, "OnRaiseStreamEvent fCTBCode.InvokeRequired "); //throw;
+            catch (Exception er) {
+                Logger.Error(er, "OnRaiseStreamEvent fCTBCode.InvokeRequired "); 
             }
 
 
@@ -336,7 +334,7 @@ namespace GrblPlotter
         private void StreamSection()
         {
             int lineStart = fCTBCodeClickedLineNow;
-            int lineEnd = fCTBCode.LinesCount;
+            int lineEnd = fCTBCode.LinesCount - 1;
             int selStart = fCTBCode.Selection.FromLine;
             int selEnd = fCTBCode.Selection.ToLine;
             if (selStart < selEnd)
@@ -397,7 +395,7 @@ namespace GrblPlotter
                         //              isStreamingPause = true;
                     }
 
-                    if (!Grbl.isVersion_0)
+                    if (!Grbl.isVersion_0)		// show override buttons below start-button
                     {
                         gBoxOverride.Height = 175;
                         gBoxOverrideBig = true;
@@ -416,17 +414,20 @@ namespace GrblPlotter
                     string txt = fCTBCode.Text;
 
                     try { 
-						File.WriteAllText(fileName + ".nc", txt);
-						if (File.Exists(fileName + ".xml")) 
+						File.WriteAllText(fileName + ".nc", txt);		// save current GCode
+						if (File.Exists(fileName + ".xml")) 			// remove old process-state
                             File.Delete(fileName + ".xml"); 
-					    SaveRecentFile(fileLastProcessed + ".nc");
+					    SaveRecentFile(fileLastProcessed + ".nc");		// update last processed file
 					}
-                    catch (Exception err) { 
+					catch (IOException err) { 
 						Properties.Settings.Default.guiLastEndReason += "StartStreaming: "+Datapath.AppDataFolder;
 						Datapath.AppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 						MessageBox.Show("Path does not exist and could not be created: "+fileName+"\r\nPath will be modified to "+ Datapath.AppDataFolder, "Error");
 						Logger.Error(err, "StartStreaming fileName: {0}, new Datapath.AppDataFolder: {1} ",fileName, Datapath.AppDataFolder); 
 						fileName = Datapath.AppDataFolder + "\\" + fileLastProcessed;
+					}
+					catch (Exception err) { 
+						throw;		// unknown exception...
 					}
 
                     bool removeFiducials = (Properties.Settings.Default.importFiducialSkipCode && (VisuGCode.fiducialsCenter.Count > 0));
@@ -551,6 +552,5 @@ namespace GrblPlotter
         { UpdateLogging(); _serial_form.PauseStreaming(); }
 
         #endregion
-
     }
 }

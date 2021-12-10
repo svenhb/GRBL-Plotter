@@ -263,7 +263,7 @@ namespace GrblPlotter
                 MainTimer.Start();
             }
         }
-
+/*
         //Unhandled exception
         private void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
@@ -309,7 +309,7 @@ namespace GrblPlotter
             var st = new StackTrace(exept, true);
             var frames = st.GetFrames();
             var traceString = new StringBuilder();
-            traceString.Append("Exept: " + exept.Message);
+            traceString.Append("Except: " + exept.Message);
 
             foreach (var frame in frames)
             {
@@ -325,7 +325,7 @@ namespace GrblPlotter
             }
             return traceString.ToString();
         }
-
+*/
         // close Main form
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {   // Note all other forms will be closed, before reaching following code...
@@ -564,8 +564,13 @@ namespace GrblPlotter
         private readonly string[] btnCustomCommand = new string[33];
         private int SetCustomButton(Button btn, string text)//, int cnt)
         {
-            int index = Convert.ToUInt16(btn.Name.Substring("btnCustom".Length), culture);
-            if (text.Contains("|"))
+            int index = -1;
+			try { 
+				index = Convert.ToUInt16(btn.Name.Substring("btnCustom".Length), culture);
+			}
+			catch (Exception err){	Logger.Error(err,"SetCustomButton {0}",btn.Name);}
+			
+            if (text.Contains("|") && (index >= 0) && (index < 32))
             {
                 string[] parts = text.Split('|');
                 Color btnColor = Control.DefaultBackColor;
@@ -632,25 +637,31 @@ namespace GrblPlotter
         private void BtnCustomButton_Click(object sender, MouseEventArgs e)
         {
             Button clickedButton = sender as Button;
-            int index = Convert.ToUInt16(clickedButton.Name.Substring("btnCustom".Length), culture);
-            if (e.Button == MouseButtons.Right)
-            {
-                using (ButtonEdit f = new ButtonEdit(index))
-                {
-                    var result = f.ShowDialog(this);
-                    if (result == DialogResult.OK)
-                    {
-                        timerUpdateControlSource = "btnCustomButton_Click";
-                        //UpdateControlEnables(); 
-                        UpdateWholeApplication();
-                    }
-                }
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(clickedButton.Text))
-                { ProcessCommands(btnCustomCommand[index]); }
-            }
+            int index=-1;
+			try { 
+				index = Convert.ToUInt16(clickedButton.Name.Substring("btnCustom".Length), culture);
+			}
+			catch (Exception err){	Logger.Error(err,"BtnCustomButton_Click {0}",clickedButton.Name);}
+			
+			if ((index >= 0) && (index < 32))
+            {	if (e.Button == MouseButtons.Right)
+				{
+					using (ButtonEdit f = new ButtonEdit(index))
+					{
+						var result = f.ShowDialog(this);
+						if (result == DialogResult.OK)
+						{
+							timerUpdateControlSource = "btnCustomButton_Click";
+							UpdateWholeApplication();
+						}
+					}
+				}
+				else
+				{
+					if (!string.IsNullOrEmpty(clickedButton.Text))
+					{ ProcessCommands(btnCustomCommand[index]); }
+				}
+			}
         }
 
 
