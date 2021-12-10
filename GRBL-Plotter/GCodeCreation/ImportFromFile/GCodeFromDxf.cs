@@ -68,6 +68,7 @@
  * 2021-08-16 use Z information - not for point, spline, text
  * 2021-10-29 logger output format
  * 2021-11-02 add DXFText (before just DXFMText)
+ * 2021-12-09 line 401 check if (layerLType != null)
 */
 
 using DXFLib;
@@ -234,26 +235,28 @@ namespace GrblPlotter //DXFImporter
         private static bool LoadDXF(string filename)
         {
             doc = new DXFDocument();
-            try { doc.Load(filename); }
-            catch (Exception er)
-            {
-                Logger.Error(er, "loading the file failed ");
-                MessageBox.Show("The file could not be opened - perhaps already open in other application?\r\n" + er.ToString());
-                //    throw;
+            try { doc.Load(filename); return true;}
+            catch (IOException err) {
+                Logger.Error(err, "loading the file failed ");
+                MessageBox.Show("The file could not be opened - perhaps already open in other application?\r\n" + err.ToString());
             }
-            return true;
+			catch (Exception err) { 
+				throw;		// unknown exception...
+			}
+            return false;
         }
         private static bool LoadDXF(Stream content)
         {
             doc = new DXFDocument();
-            try { doc.Load(content); }
-            catch (Exception er)
-            {
-                Logger.Error(er, "loading the file failed ");
-                MessageBox.Show("The file could not be opened - perhaps already open in other application?\r\n" + er.ToString());
-                //   throw;
+            try { doc.Load(content); return true;}
+            catch (IOException err) {
+                Logger.Error(err, "loading the file failed ");
+                MessageBox.Show("The file could not be opened - perhaps already open in other application?\r\n" + err.ToString());
             }
-            return true;
+			catch (Exception err) { 
+				throw;		// unknown exception...
+			}
+            return false;
         }
         private static void GetVectorDXF()
         {
@@ -398,7 +401,7 @@ namespace GrblPlotter //DXFImporter
             /* get Dash pattern   */
             if ((entity.LineType == null) || (entity.LineType == "ByLayer"))
             {
-                if (layerLType.ContainsKey(layerName))              // check if layer name is known
+                if ((layerLType != null) && (layerLType.ContainsKey(layerName)))              // check if layer name is known
                 {
                     string dashType = layerLType[layerName];        // get name of pattern
                     if (lineTypes.ContainsKey(dashType))            // check if pattern name is known
@@ -664,7 +667,7 @@ namespace GrblPlotter //DXFImporter
                         }
                     }
                     DXFStopPath();// true);
-                    Logger.Trace(" stop path");
+                    //Logger.Trace(" stop path");
 
                 }
                 if ((ctrls == 3) && (knots == 6))           //  # quadratic

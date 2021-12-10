@@ -140,8 +140,7 @@ namespace GrblPlotter
             byte[] byteArray = Encoding.UTF8.GetBytes(svgText);
             using (MemoryStream stream = new MemoryStream(byteArray))
             {
-                try
-                {
+                try {
                     svgCode = XElement.Load(stream, LoadOptions.None);
                     fromClipboard = true;
                     if (String.IsNullOrEmpty(svgText) && svgText.IndexOf("Adobe") >= 0)
@@ -149,10 +148,9 @@ namespace GrblPlotter
                     unitIsPixel = replaceUnitByPixel;
                     return ConvertSVG(svgCode, "from Clipboard");                   // startConvert(svgCode);
                 }
-                catch (Exception e)
-                {
+                catch (Exception e) {
                     Logger.Error(e, "Error loading SVG-Code");
-                    MessageBox.Show("Error '" + e.ToString() + "' in XML string ");// throw;// "( No valid SVG data found)";
+                    MessageBox.Show("Error '" + e.ToString() + "' in XML string ");
                     return false;
                 }
             }
@@ -191,15 +189,13 @@ namespace GrblPlotter
             {
                 if (File.Exists(filePath))
                 {
-                    try
-                    {
+                    try {
                         svgCode = XElement.Load(filePath, LoadOptions.None);    // PreserveWhitespace);
                         return ConvertSVG(svgCode, filePath);                   // startConvert(svgCode);
                     }
-                    catch (Exception err)
-                    {
+                    catch (Exception err) {
                         Logger.Error(err, "Error loading SVG-Code");
-                        MessageBox.Show("Error '" + err.ToString() + "' in XML file " + filePath + "\r\n\r\nTry to save file with other encoding e.g. UTF-8"); //throw;
+                        MessageBox.Show("Error '" + err.ToString() + "' in XML file " + filePath + "\r\n\r\nTry to save file with other encoding e.g. UTF-8");
                     }
                 }
                 else { MessageBox.Show("File does not exist: " + filePath); return false; }
