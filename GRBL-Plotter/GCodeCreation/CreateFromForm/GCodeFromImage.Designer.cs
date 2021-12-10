@@ -297,6 +297,11 @@
             0,
             65536});
             resources.ApplyResources(this.nUDResoX, "nUDResoX");
+            this.nUDResoX.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.nUDResoX.Minimum = new decimal(new int[] {
             1,
             0,
@@ -332,7 +337,7 @@
             1,
             0,
             0,
-            0});
+            65536});
             this.nUDHeight.Name = "nUDHeight";
             this.nUDHeight.Value = global::GrblPlotter.Properties.Settings.Default.importImageHeight;
             this.nUDHeight.ValueChanged += new System.EventHandler(this.nUDWidthHeight_ValueChanged);
@@ -356,7 +361,7 @@
             1,
             0,
             0,
-            0});
+            65536});
             this.nUDWidth.Name = "nUDWidth";
             this.nUDWidth.Value = global::GrblPlotter.Properties.Settings.Default.importImageWidth;
             this.nUDWidth.ValueChanged += new System.EventHandler(this.nUDWidthHeight_ValueChanged);

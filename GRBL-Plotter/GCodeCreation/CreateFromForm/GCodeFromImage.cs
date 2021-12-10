@@ -30,7 +30,7 @@
  * 2021-04-14 line 1124 only horizontal scanning for process tool
  * 2021-07-26 code clean up / code quality
  * 2021-11-23 line 309 check nUDMaxColors.maximum, line 1137 add catch
- * 2021-11-26 fix ThreadException LockBits line 1079, line 512
+ * 2021-12-10 fix ThreadException LockBits line 1079, line 512
 */
 
 using AForge.Imaging.ColorReduction;
@@ -77,7 +77,7 @@ namespace GrblPlotter
         }
         private void GCodeFromImage_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Logger.Trace("++++++ GCodeFromImage STOP ++++++");
+            Logger.Info("++++++ GCodeFromImage STOP ++++++");
             Properties.Settings.Default.locationImageForm = Location;
         }
         private void GCodeFromImage_KeyDown(object sender, KeyEventArgs e)
@@ -99,7 +99,7 @@ namespace GrblPlotter
 
         public GCodeFromImage(bool loadFile = false)
         {
-            Logger.Trace(culture, "++++++ GCodeFromImage loadFile:{0} START ++++++", loadFile);
+            Logger.Info(culture, "++++++ GCodeFromImage loadFile:{0} START ++++++", loadFile);
             CultureInfo ci = new CultureInfo(Properties.Settings.Default.guiLanguage);
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
@@ -129,8 +129,7 @@ namespace GrblPlotter
         //OpenFile, save picture grayscaled to originalImage and save the original aspect ratio to ratio
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            try
-            {
+            try {
                 using (OpenFileDialog sfd = new OpenFileDialog())
                 {
                     sfd.Filter = "Images|*.jpg;*.jpeg;*.png;*.bmp;*.gif;*.tif;";
@@ -139,12 +138,12 @@ namespace GrblPlotter
                         if (!File.Exists(sfd.FileName)) return;
                         lastFile = sfd.FileName;
                         originalImage = new Bitmap(System.Drawing.Image.FromFile(sfd.FileName));
+						Logger.Info("### btnLoad_Click: {0}",sfd.FileName);
                         processLoading();   // reset color corrections
                     }
                 }
             }
-            catch (Exception err)
-            {
+            catch (Exception err) {
                 Logger.Error(err, "btnLoad_Click ");
                 MessageBox.Show("Error opening file: " + err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -155,6 +154,7 @@ namespace GrblPlotter
             if (!File.Exists(file)) return;
             lastFile = file;
             originalImage = new Bitmap(System.Drawing.Image.FromFile(file));
+			Logger.Info("### LoadExtern: {0}", file);
             processLoading();   // reset color corrections
         }
 
@@ -172,7 +172,7 @@ namespace GrblPlotter
         public void LoadClipboard()
         {
             IDataObject iData = Clipboard.GetDataObject();
-            Logger.Trace("++++++ loadClipboard START ++++++");
+            Logger.Info("### pasteFromClipboard");
             if (iData.GetDataPresent(DataFormats.Bitmap))
             {
                 lastFile = "";
@@ -207,10 +207,10 @@ namespace GrblPlotter
             adjustedImage = new Bitmap(originalImage);
             resultImage = new Bitmap(originalImage);
 
-            ratio = (decimal)originalImage.Width / (decimal)originalImage.Height;         //Save ratio for future use if needled
+            ratio = (decimal)((double)originalImage.Width / (double)originalImage.Height);         //Save ratio for future use if needled
             nUDHeight.ValueChanged -= nUDWidthHeight_ValueChanged;
             oldWidth = Properties.Settings.Default.importImageWidth;    //nUDWidth.Value;
-            oldHeight = oldWidth / ratio;               //Initialize y size
+            oldHeight = (decimal)(oldWidth / ratio);               //Initialize y size
             nUDHeight.Value = oldHeight;
             nUDHeight.ValueChanged += nUDWidthHeight_ValueChanged;
 
@@ -603,8 +603,7 @@ namespace GrblPlotter
             var output = new Bitmap(input.Width, input.Height, PixelFormat.Format1bppIndexed);
             var data = new sbyte[input.Width, input.Height];
             var inputData = input.LockBits(new Rectangle(0, 0, input.Width, input.Height), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
-            try
-            {
+            try {
                 var scanLine = inputData.Scan0;
                 var line = new byte[inputData.Stride];
                 for (var y = 0; y < inputData.Height; y++, scanLine += inputData.Stride)
@@ -616,12 +615,12 @@ namespace GrblPlotter
                     }
                 }
             }
-            finally
-            { input.UnlockBits(inputData); }
+            finally { 
+				input.UnlockBits(inputData); 
+			}
 
             var outputData = output.LockBits(new Rectangle(0, 0, output.Width, output.Height), ImageLockMode.WriteOnly, PixelFormat.Format1bppIndexed);
-            try
-            {
+            try {
                 var scanLine = outputData.Scan0;
                 for (var y = 0; y < outputData.Height; y++, scanLine += outputData.Stride)
                 {
@@ -642,8 +641,7 @@ namespace GrblPlotter
                     Marshal.Copy(line, 0, scanLine, outputData.Stride);
                 }
             }
-            finally
-            {
+            finally {
                 output.UnlockBits(outputData);
             }
             lblStatus.Text = "Done";
@@ -701,8 +699,6 @@ namespace GrblPlotter
                 }
             }
             return img;
-
-
             /*        Bitmap output = new Bitmap(img.Width, img.Height);//, PixelFormat.Format24bppRgb);
                     Graphics g = Graphics.FromImage(output);
                     g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
@@ -804,8 +800,7 @@ namespace GrblPlotter
 
             showInfo();
             Refresh();
-            try
-            {
+            try {
                 if (adjustedImage == null) return;//if no image, do nothing
 
                 ResizeNearestNeighbor filterResize = new ResizeNearestNeighbor(xSize, ySize);
@@ -958,8 +953,7 @@ namespace GrblPlotter
                 lblImageSource.Text = "modified";
                 Refresh();
             }
-            catch (Exception err)
-            {
+            catch (Exception err) {
                 Logger.Error(err, "applyColorCorrections ");
                 MessageBox.Show("Error resizing/balancing image: " + err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -975,12 +969,7 @@ namespace GrblPlotter
             if (cBPreview.Checked || showResultPreview)
             {
                 showResultPreview = false;
-                /*              maxToolTableIndex = toolTable.clear();
-                              if (nUDMaxColors.Maximum != maxToolTableIndex - 1)
-                              {
-                                  nUDMaxColors.Maximum = maxToolTableIndex - 1;
-                                  nUDMaxColors.Value = maxToolTableIndex - 1;
-                              }*/
+
                 generateResultImage(ref resultToolNrArray);      // fill countColors
                 showResultActive = true;
                 if (showResult)
@@ -1014,8 +1003,7 @@ namespace GrblPlotter
             BitmapData dataAdjusted = null;
             sbyte myToolNr;//, myIndex;
             Dictionary<Color, sbyte> lookUpToolNr = new Dictionary<Color, sbyte>();
-            try
-            {
+            try {
                 Rectangle rect = new Rectangle(0, 0, adjustedImage.Width, adjustedImage.Height);
                 dataAdjusted = adjustedImage.LockBits(rect, ImageLockMode.ReadOnly, adjustedImage.PixelFormat);
 
@@ -1047,8 +1035,7 @@ namespace GrblPlotter
                     ToolTable.SetPresent(true);
                 }
             }
-            finally
-            {
+            finally {
                 if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
             }
             setToolList();
@@ -1073,10 +1060,9 @@ namespace GrblPlotter
             lblStatus.Text = "Generate result image...";
             //     sbyte myToolNr;//, myIndex;
             Dictionary<Color, sbyte> lookUpToolNr = new Dictionary<Color, sbyte>();
-            try
-            {
+            try {
                 Rectangle rectAdjusted = new Rectangle(0, 0, adjustedImage.Width, adjustedImage.Height);
-                Rectangle rectResult = new Rectangle(0, 0, adjustedImage.Width, adjustedImage.Height);
+                Rectangle rectResult = new Rectangle(0, 0, resultImage.Width, resultImage.Height);
 				
                 dataAdjusted = adjustedImage.LockBits(rectAdjusted, ImageLockMode.ReadOnly, adjustedImage.PixelFormat);
                 dataResult = resultImage.LockBits(rectResult, ImageLockMode.WriteOnly, adjustedImage.PixelFormat);
@@ -1135,8 +1121,8 @@ namespace GrblPlotter
                 if (resultImage != null) resultImage.UnlockBits(dataResult);
                 if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
             }
-			catch (Exception err)
-			{	Logger.Error(err,"generateResultImage ");
+			catch (Exception err) {	
+				Logger.Error(err,"generateResultImage ");
 				Properties.Settings.Default.guiLastEndReason += "generateResultImage:"+err;
                 if (resultImage != null) resultImage.UnlockBits(dataResult);
                 if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
@@ -1221,7 +1207,6 @@ namespace GrblPlotter
                 tmpCount -= ToolTable.PixelCount();     // no color-except
 
 
-            //        if (!rBImportSVGTool.Checked)
             ToolTable.SortByPixelCount(false);           // sort by color area (max. first)
 
             if (tmpCount == 0) { tmpCount = 100; }
@@ -1267,10 +1252,7 @@ namespace GrblPlotter
                     cBPreview.Checked = true;
                     showResultImage(true);      // generate and show result
                 }
-                //                if (rbEngravingPattern1.Checked)
                 GenerateGCodeHorizontal();
-                //                else
-                //                    generateGCodeDiagonal();
             }
             else
                 GenerateHeightData();
@@ -1342,23 +1324,6 @@ namespace GrblPlotter
             cBOnlyLeftToRight.Enabled = !rbEngravingPattern2.Checked;
             applyColorCorrections();
         }
-        /*       private void rbEngravingPattern2_CheckedChanged(object sender, EventArgs e)
-               {
-                   if (rbEngravingPattern2.Checked)
-                   {
-                       cBGCodeOutline.Checked = false;
-                       cBGCodeOutline.Enabled = false;
-                       cBGCodeFill.Checked = true;
-                       cBGCodeFill.Enabled = false;
-                   }
-                   else
-                   {
-                       cBGCodeOutline.Checked = true;
-                       cBGCodeOutline.Enabled = true;
-                       cBGCodeFill.Checked = true;
-                       cBGCodeFill.Enabled = true;
-                   }
-               }*/
 
         /// <summary>
         /// if 'Draw outline' is unchecked, disable smoothing
@@ -1391,8 +1356,6 @@ namespace GrblPlotter
             resetColorCorrection(); applyColorCorrections(); lblImageSource.Text = "original";
             cBPreview.Checked = !useZ;
             cbGrayscale.Checked = useZ;
-            //            gBgcodeDirection.Enabled = !useZ;
-            //         gBgcodeSetup.Enabled = !useZ;
             gBgcodeSelection.Enabled = !useZ;
         }
 
@@ -1430,8 +1393,6 @@ namespace GrblPlotter
                         ReturnValue1 = "$32=1 (laser mode on)";
                 }
             }
-            //         this.DialogResult = DialogResult.OK;
-            //         this.Close();
         }
 
         private void btnGetPWMValues_Click(object sender, EventArgs e)
@@ -1475,8 +1436,7 @@ namespace GrblPlotter
 
         private void fillUseCaseFileList(string Root)
         {
-            try
-            {
+            try {
                 string[] Files = System.IO.Directory.GetFiles(Root);
                 lBUseCase.Items.Clear();
                 for (int i = 0; i < Files.Length; i++)
@@ -1485,11 +1445,9 @@ namespace GrblPlotter
                         lBUseCase.Items.Add(Path.GetFileName(Files[i]));
                 }
             }
-            catch (Exception err)
-            {
+            catch (Exception err) {
                 Logger.Error(err, "fillUseCaseFileList no file found {0}", Root);
             }
         }
-
     }
 }

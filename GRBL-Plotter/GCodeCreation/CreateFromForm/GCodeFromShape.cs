@@ -873,8 +873,7 @@ namespace GrblPlotter
                 {
                     tprop = ToolTable.GetToolProperties(tnr);
                     Logger.Info(culture, "Tool dia:{0}, feedXY:{1}, finalZ:{2}, stepZ:{3}, feedZ:{4}, overlap:{5}, spindle:{6}", tprop.Diameter, tprop.FeedXY, tprop.FinalZ, tprop.StepZ, tprop.FeedZ, tprop.Overlap, tprop.SpindleSpeed);
-                    try
-                    {
+                    try {
                         CheckSetValue(nUDToolDiameter, (decimal)tprop.Diameter);
                         CheckSetValue(nUDToolFeedXY, (decimal)tprop.FeedXY);
                         CheckSetValue(nUDImportGCZDown, (decimal)tprop.FinalZ);
@@ -883,8 +882,9 @@ namespace GrblPlotter
                         CheckSetValue(nUDToolOverlap, (decimal)tprop.Overlap);
                         CheckSetValue(nUDToolSpindleSpeed, (decimal)tprop.SpindleSpeed);
                     }
-                    catch (Exception err)
-                    { Logger.Error(err, "CBTool_SelectedIndexChanged Set numeric Up Downs"); }//throw; }
+                    catch (Exception err) { 
+						Logger.Error(err, "CBTool_SelectedIndexChanged Set numeric Up Downs"); 
+					}
                 }
             }
         }
