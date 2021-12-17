@@ -329,7 +329,7 @@
             0});
             resources.ApplyResources(this.nUDHeight, "nUDHeight");
             this.nUDHeight.Maximum = new decimal(new int[] {
-            10000,
+            100000,
             0,
             0,
             0});
@@ -353,7 +353,7 @@
             0});
             resources.ApplyResources(this.nUDWidth, "nUDWidth");
             this.nUDWidth.Maximum = new decimal(new int[] {
-            10000,
+            100000,
             0,
             0,
             0});
