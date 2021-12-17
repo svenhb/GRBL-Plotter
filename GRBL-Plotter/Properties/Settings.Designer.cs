@@ -1681,6 +1681,30 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int FCTBSaveEncodingIndex {
+            get {
+                return ((int)(this["FCTBSaveEncodingIndex"]));
+            }
+            set {
+                this["FCTBSaveEncodingIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool FCTBSaveWithoutComments {
+            get {
+                return ((bool)(this["FCTBSaveWithoutComments"]));
+            }
+            set {
+                this["FCTBSaveWithoutComments"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool flowCheckRegistryChange {
             get {
@@ -2197,6 +2221,66 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D0")]
+        public string grblDescriptionD0 {
+            get {
+                return ((string)(this["grblDescriptionD0"]));
+            }
+            set {
+                this["grblDescriptionD0"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D1")]
+        public string grblDescriptionD1 {
+            get {
+                return ((string)(this["grblDescriptionD1"]));
+            }
+            set {
+                this["grblDescriptionD1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D2")]
+        public string grblDescriptionD2 {
+            get {
+                return ((string)(this["grblDescriptionD2"]));
+            }
+            set {
+                this["grblDescriptionD2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D3")]
+        public string grblDescriptionD3 {
+            get {
+                return ((string)(this["grblDescriptionD3"]));
+            }
+            set {
+                this["grblDescriptionD3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool grblDescriptionDxEnable {
+            get {
+                return ((bool)(this["grblDescriptionDxEnable"]));
+            }
+            set {
+                this["grblDescriptionDxEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public double grblLastOffsetA {
             get {
@@ -2281,66 +2365,6 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D0")]
-        public string grblDescriptionD0 {
-            get {
-                return ((string)(this["grblDescriptionD0"]));
-            }
-            set {
-                this["grblDescriptionD0"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D1")]
-        public string grblDescriptionD1 {
-            get {
-                return ((string)(this["grblDescriptionD1"]));
-            }
-            set {
-                this["grblDescriptionD1"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D2")]
-        public string grblDescriptionD2 {
-            get {
-                return ((string)(this["grblDescriptionD2"]));
-            }
-            set {
-                this["grblDescriptionD2"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D3")]
-        public string grblDescriptionD3 {
-            get {
-                return ((string)(this["grblDescriptionD3"]));
-            }
-            set {
-                this["grblDescriptionD3"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool grblDescriptionDxEnable {
-            get {
-                return ((bool)(this["grblDescriptionDxEnable"]));
-            }
-            set {
-                this["grblDescriptionDxEnable"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int grblPollIntervalIndex {
             get {
@@ -2360,6 +2384,42 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["grblPollIntervalReduce"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double grblRunTimeFlood {
+            get {
+                return ((double)(this["grblRunTimeFlood"]));
+            }
+            set {
+                this["grblRunTimeFlood"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double grblRunTimeMist {
+            get {
+                return ((double)(this["grblRunTimeMist"]));
+            }
+            set {
+                this["grblRunTimeMist"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double grblRunTimeSpindle {
+            get {
+                return ((double)(this["grblRunTimeSpindle"]));
+            }
+            set {
+                this["grblRunTimeSpindle"] = value;
             }
         }
         
@@ -2618,24 +2678,24 @@ namespace GrblPlotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool gui2DToolTableShow {
-            get {
-                return ((bool)(this["gui2DToolTableShow"]));
-            }
-            set {
-                this["gui2DToolTableShow"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool gui2DShowVertexEnable {
             get {
                 return ((bool)(this["gui2DShowVertexEnable"]));
             }
             set {
                 this["gui2DShowVertexEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public decimal gui2DShowVertexSize {
+            get {
+                return ((decimal)(this["gui2DShowVertexSize"]));
+            }
+            set {
+                this["gui2DShowVertexSize"] = value;
             }
         }
         
@@ -2653,13 +2713,13 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
-        public decimal gui2DShowVertexSize {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool gui2DToolTableShow {
             get {
-                return ((decimal)(this["gui2DShowVertexSize"]));
+                return ((bool)(this["gui2DToolTableShow"]));
             }
             set {
-                this["gui2DShowVertexSize"] = value;
+                this["gui2DToolTableShow"] = value;
             }
         }
         
@@ -3223,6 +3283,18 @@ namespace GrblPlotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool guiExtendedLoggingCOMEnabled {
+            get {
+                return ((bool)(this["guiExtendedLoggingCOMEnabled"]));
+            }
+            set {
+                this["guiExtendedLoggingCOMEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool guiExtendedLoggingEnabled {
             get {
                 return ((bool)(this["guiExtendedLoggingEnabled"]));
@@ -3618,6 +3690,30 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public long guiLastEnd {
+            get {
+                return ((long)(this["guiLastEnd"]));
+            }
+            set {
+                this["guiLastEnd"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-")]
+        public string guiLastEndReason {
+            get {
+                return ((string)(this["guiLastEndReason"]));
+            }
+            set {
+                this["guiLastEndReason"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("D:\\")]
         public string guiLastFileLoaded {
             get {
@@ -3637,18 +3733,6 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["guiLastStart"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public long guiLastEnd {
-            get {
-                return ((long)(this["guiLastEnd"]));
-            }
-            set {
-                this["guiLastEnd"] = value;
             }
         }
         
@@ -7645,42 +7729,6 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["useCaseLastLoaded"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-")]
-        public string guiLastEndReason {
-            get {
-                return ((string)(this["guiLastEndReason"]));
-            }
-            set {
-                this["guiLastEndReason"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool FCTBSaveWithoutComments {
-            get {
-                return ((bool)(this["FCTBSaveWithoutComments"]));
-            }
-            set {
-                this["FCTBSaveWithoutComments"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int FCTBSaveEncodingIndex {
-            get {
-                return ((int)(this["FCTBSaveEncodingIndex"]));
-            }
-            set {
-                this["FCTBSaveEncodingIndex"] = value;
             }
         }
     }
