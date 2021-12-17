@@ -23,12 +23,9 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-
-//#pragma warning disable CA1307
 
 namespace GrblPlotter.GUI
 {
@@ -76,7 +73,6 @@ namespace GrblPlotter.GUI
         private void FillComboBoxPreset(string Root)
         {
             presetButtonText.Clear();
-            //  List<string> FileArray = new List<string>();
             try
             {
                 string[] Files = System.IO.Directory.GetFiles(Root);

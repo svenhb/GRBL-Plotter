@@ -25,6 +25,7 @@
  * 2021-11-22 change AppDataFolder start-path
  * 2021-11-23 line 688 add check (form != null)
  * 2021-11-29 add SaveEncoding array
+ * 2021-12-14 add log path 
 */
 
 using GrblPlotter.Resources;
@@ -58,6 +59,7 @@ namespace GrblPlotter
         public static string Buttons { get => AppDataFolder + "\\data\\buttons"; }
         public static string Jogpath { get => AppDataFolder + "\\data\\jogpaths"; }
         public static string RecentFile { get => AppDataFolder + "\\Recent.txt"; }
+        public static string LogFiles { get => AppDataFolder + "\\logfiles"; }
     }
 
     public static class GuiVariables

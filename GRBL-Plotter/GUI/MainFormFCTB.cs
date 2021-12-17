@@ -36,10 +36,13 @@
  * 2021-07-14 code clean up / code quality
  * 2021-09-30 abort FindFigureMarkSelection if XmlMarker.GetFigureCount()==0
  * 2021-11-26 fix ThreadException line 310, 649
+ * 2021-12-14 line 397 if (lineIsInRange(fCTBCodeClickedLineNow))
+ * 2021-12-16 ErrorLines = new ConcurrentBag<int>(); (old List<int>())
 */
 
 using FastColoredTextBoxNS;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -74,8 +77,8 @@ namespace GrblPlotter
         private readonly Style Style2nd = new TextStyle(Brushes.Black, null, FontStyle.Bold);
 
         private readonly Style ErrorStyle = new TextStyle(Brushes.Red, Brushes.Yellow, FontStyle.Underline);
-        private readonly List<int> ErrorLines = new List<int>();
-
+   //     private readonly List<int> ErrorLines = new List<int>();
+        private ConcurrentBag<int> ErrorLines = new ConcurrentBag<int>();
         private void FctbCode_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
         {
     //        if (Gcode.LoggerTrace) Logger.Trace("Event  fCTBCode_TextChanged  manualEdit:{0}", manualEdit);
@@ -143,7 +146,7 @@ namespace GrblPlotter
                     }
                 }
             }
-            ErrorLines.Clear();
+            ErrorLines = new ConcurrentBag<int>();
         }
         private void FctbCode_TextChangedDelayed(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
         {
@@ -392,9 +395,12 @@ namespace GrblPlotter
                 	try	{
 						if (lineIsInRange(fCTBCodeClickedLineLast))
 							fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);           // remove marker from old line
-						fCTBCode.BookmarkLine(fCTBCodeClickedLineNow);              // set new marker
-						fCTBCodeClickedLineLast = fCTBCodeClickedLineNow;
-						VisuGCode.SetPosMarkerLine(fCTBCodeClickedLineNow, !isStreaming);
+						
+						if (lineIsInRange(fCTBCodeClickedLineNow))
+						{	fCTBCode.BookmarkLine(fCTBCodeClickedLineNow);              // set new marker
+							fCTBCodeClickedLineLast = fCTBCodeClickedLineNow;
+							VisuGCode.SetPosMarkerLine(fCTBCodeClickedLineNow, !isStreaming);
+						}
 						pictureBox1.Invalidate(); // avoid too much events
 												  //             toolStrip_tb_StreamLine.Text = fCTBCodeClickedLineNow.ToString();
 					}
@@ -519,7 +525,10 @@ namespace GrblPlotter
             cmsCodeBlocksRemoveAll.Enabled = enable;
             cmsCodeBlocksRemoveGroup.Enabled = enable;
             if (!enable)
-            { fCTBCode.ExpandAllFoldingBlocks(); foldLevel = 0; fCTBCode.DoCaretVisible(); }
+            { 
+				try {fCTBCode.ExpandAllFoldingBlocks(); foldLevel = 0; fCTBCode.DoCaretVisible(); }
+				catch (Exception err) {Logger.Error(err,"EnableCmsCodeBlocks ");}
+			}
         }
 
         #region find blocks
@@ -632,7 +641,7 @@ namespace GrblPlotter
                     { 	fCTBCode.CollapseAllFoldingBlocks(); foldLevel = 1; }
                 }
                 if (XmlMarker.GetFigure(clickedLine) && lineIsInRange(XmlMarker.lastFigure.LineStart))
-                { fCTBCode.ExpandFoldedBlock(XmlMarker.lastFigure.LineStart); }
+                { 	fCTBCode.ExpandFoldedBlock(XmlMarker.lastFigure.LineStart); }
                 if (clickedLine == XmlMarker.lastFigure.LineStart)
                     clickedLine++;
 
@@ -642,8 +651,9 @@ namespace GrblPlotter
                 EnableBlockCommands(false, true);
             }
             fCTBCodeClickedLineNow = XmlMarker.lastFigure.LineStart;
-            fCTBCode.DoCaretVisible();
-            this.Invalidate();
+			try {fCTBCode.DoCaretVisible(); }
+			catch (Exception err) {Logger.Error(err,"FindFigureMarkSelection ");}
+			this.Invalidate();
         }
 		private bool lineIsInRange(int line)
 		{	return ((line >= 0) && (line < fCTBCode.LinesCount));}
@@ -658,7 +668,7 @@ namespace GrblPlotter
         }
         private bool SetTextSelection(int start, int end)
         {
-            if (start < 0) start = 0; if (start > fCTBCode.LinesCount) start = 0;
+            if (start < 0) start = 0; if (start >= fCTBCode.LinesCount) start = 0;
             if (end < 0) end = 0;
             if (end >= fCTBCode.LinesCount) end = fCTBCode.LinesCount - 1;
 

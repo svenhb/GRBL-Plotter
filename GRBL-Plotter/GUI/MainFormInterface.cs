@@ -427,8 +427,10 @@ namespace GrblPlotter
         private void ProcessReset()
         {
             timerUpdateControlSource = "processReset";
+            if (isStreaming) 
+            { ResetStreaming(); }
 
-            Logger.Trace("processReset");
+            Logger.Info("### MainForm ProcessReset");
             if (!_serial_form.CheckGRBLSettingsOk())   // check 30 kHz limit
             {
                 StatusStripSet(1, Grbl.lastMessage, Color.Orange);

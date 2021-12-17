@@ -22,6 +22,7 @@
  * 2021-09-19 line 389 change order of virtualJoystickXY.Enabled
  * 2021-11-18 add processing of accessory D0-D3 from grbl-Mega-5X - line 210
  * 2021-11-22 change reg-key to get data-path from installation
+ * 2021-12-14 change log path
 */
 
 using Microsoft.Win32;
@@ -44,7 +45,8 @@ namespace GrblPlotter
 
             Gcode.LoggerTrace = Properties.Settings.Default.guiExtendedLoggingEnabled;
             Gcode.LoggerTraceImport = Gcode.LoggerTrace && Properties.Settings.Default.importGCAddComments;
-            if (Gcode.LoggerTrace)
+
+            if (Gcode.LoggerTrace || Properties.Settings.Default.guiExtendedLoggingCOMEnabled)
             {
                 foreach (var rule in NLog.LogManager.Configuration.LoggingRules)
                 {
@@ -74,29 +76,29 @@ namespace GrblPlotter
             if (!string.IsNullOrEmpty(newPathUser))
             {
                 Datapath.AppDataFolder = newPathUser;                   // get path from registry
-                NLog.LogManager.Configuration.Variables["basedir"] = newPathUser;
-                Logger.Info("GetAppDataPath from {0}: {1}", reg_key_user, newPathUser);
+                LogAppDataPath(reg_key_user);
             }
             else if (!string.IsNullOrEmpty(newPathAdmin))
             {
                 Datapath.AppDataFolder = newPathAdmin;                   // get path from registry
-                NLog.LogManager.Configuration.Variables["basedir"] = newPathAdmin;
-                Logger.Info("GetAppDataPath from {0}: {1}", reg_key_admin, newPathAdmin);
+                LogAppDataPath(reg_key_admin);
             }
             else if (!string.IsNullOrEmpty(newPathAdmin2))
             {
                 Datapath.AppDataFolder = newPathAdmin2;                   // get path from registry
-                NLog.LogManager.Configuration.Variables["basedir"] = newPathAdmin2;
-                Logger.Info("GetAppDataPath from {0}: {1}", reg_key_admin2, newPathAdmin2);
+                LogAppDataPath(reg_key_admin2);
             }
             else // no setup?
             {
                 newPathUser = Datapath.AppDataFolder = Datapath.Application;      // use application path
-                NLog.LogManager.Configuration.Variables["basedir"] = newPathUser;
-                Logger.Info("GetAppDataPath Application.StartupPath: {0}", newPathUser);
+                LogAppDataPath("Default");
             }
         }
-
+        private void LogAppDataPath(string src)
+        {
+            NLog.LogManager.Configuration.Variables["basedir"] = Datapath.LogFiles;
+            Logger.Info("GetAppDataPath from {0}: {1}", src, Datapath.AppDataFolder);
+        }
         private void SetGUISize()
         {
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
@@ -163,6 +165,11 @@ namespace GrblPlotter
             pictureBox1.Invalidate();
 
             UpdateWholeApplication();
+
+            if (Properties.Settings.Default.guiExtendedLoggingEnabled || Properties.Settings.Default.guiExtendedLoggingCOMEnabled)
+                StatusStripSet(0, "Logging enabled", Color.Yellow);
+            else
+                StatusStripClear(0);
         }
 
         private void UpdateWholeApplication()	// after ini file, setup change, update controls

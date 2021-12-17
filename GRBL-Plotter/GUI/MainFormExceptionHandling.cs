@@ -100,12 +100,12 @@ namespace GrblPlotter
 			lbInfo.BackColor = Color.Fuchsia;
 		}
 		
-        public static string GetAllFootprints(Exception exept, bool full=true)
+        public static string GetAllFootprints(Exception except, bool full=true)
         {
-            var st = new StackTrace(exept, true);
+            var st = new StackTrace(except, true);
             var frames = st.GetFrames();
             var traceString = new StringBuilder();
-			traceString.Append("Except: " + exept.Message);
+			traceString.Append("Except: " + except.Message + " Source: " + except.Source + " Target: " + except.TargetSite);
 
 			try
 			{

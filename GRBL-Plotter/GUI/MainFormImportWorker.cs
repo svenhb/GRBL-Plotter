@@ -24,8 +24,6 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 
-//#pragma warning disable CA1303	// Do not pass literals as localized parameters
-
 namespace GrblPlotter
 {
     public class ImportWorker : System.Windows.Forms.Form
@@ -105,13 +103,15 @@ namespace GrblPlotter
         // This event handler updates the progress bar.
         private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            int pVal = e.ProgressPercentage;
-            if (pVal > 100) pVal = 100;
-            this.progressBar1.Value = pVal;
+            int p1Val = e.ProgressPercentage;
+            if (p1Val > 100) p1Val = 100;
+            this.progressBar1.Value = p1Val;
             if (e.UserState is MyUserState)
             {
                 MyUserState state = e.UserState as MyUserState;
-                this.progressBar2.Value = state.Value;
+				int p2Val = state.Value;
+				if (p2Val > 100) p2Val = 100;
+                this.progressBar2.Value = p2Val;
                 this.resultLabel.Text = state.Content;
             }
         }

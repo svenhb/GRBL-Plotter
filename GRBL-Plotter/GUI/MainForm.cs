@@ -55,6 +55,7 @@
  * 2021-11-11 track prog-start and -end
  * 2021-11-17 show path-nodes gui2DShowVertexEnable - will be switched off on prog-start - line 146
  * 2021-11-18 add processing of accessory D0-D3 from grbl-Mega-5X - line 976
+ * 2021-12-14 line 613 remove else...
 */
 
 using GrblPlotter.GUI;
@@ -187,6 +188,9 @@ namespace GrblPlotter
             Grbl.Init();                    // load and set grbl messages in grblRelated.cs
             ToolTable.Init();               // fill structure in ToolTable.cs
             GuiVariables.ResetVariables();	// set variables in MainFormObjects.cs			
+
+            if (Properties.Settings.Default.guiExtendedLoggingEnabled || Properties.Settings.Default.guiExtendedLoggingCOMEnabled)
+                StatusStripSet(0, "Logging enabled", Color.Yellow);
         }
 
         // initialize Main form
@@ -263,69 +267,7 @@ namespace GrblPlotter
                 MainTimer.Start();
             }
         }
-/*
-        //Unhandled exception
-        private void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
-        {
-            this.Opacity = 100;
-            if (_splashscreen != null)
-            {
-                _splashscreen.Close();
-                _splashscreen.Dispose();
-            }
-            Exception ex = e.Exception;
-            Logger.Error(ex, "Application_ThreadException: ");
-            MessageBox.Show(ex.Message + "\r\n\r\n" + GetAllFootprints(ex) + "\r\n\r\nCheck " + Datapath.AppDataFolder + "\\logfile.txt", "Main Form Thread exception");
-            Properties.Settings.Default.guiLastEndReason += "ThreadException: " + GetAllFootprints(ex, false) + "---";
-            if (MessageBox.Show(Localization.GetString("mainQuit"), Localization.GetString("mainProblem"), MessageBoxButtons.YesNo) == DialogResult.Yes)
-            { 	Properties.Settings.Default.guiLastEnd = DateTime.Now.Ticks;
-				//Properties.Settings.Default.guiLastEndReason += "ThreadException: " + GetAllFootprints(ex);
-				Application.Exit(); 
-			}
-        }
-        private void Application_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            this.Opacity = 100;
-            if (_splashscreen != null)
-            {
-                _splashscreen.Close();
-                _splashscreen.Dispose();
-            }
-            if (e.ExceptionObject != null)
-            {
-                Exception ex = (Exception)e.ExceptionObject;
-                Logger.Error(ex, "UnhandledException - Quit GRBL Plotter? ");
-                MessageBox.Show(ex.Message + "\r\n\r\n" + GetAllFootprints(ex) + "\r\n\r\nCheck " + Datapath.AppDataFolder + "\\logfile.txt", "Main Form Application exception");
-                Properties.Settings.Default.guiLastEndReason += "UnhandledException: " + GetAllFootprints(ex, false) +"---";
-                if (MessageBox.Show(Localization.GetString("mainQuit") + "\r\n\r\nCheck " + Datapath.AppDataFolder + "\\logfile.txt", Localization.GetString("mainProblem"), MessageBoxButtons.YesNo) == DialogResult.Yes)
-                { 	Properties.Settings.Default.guiLastEnd = DateTime.Now.Ticks;
-					//Properties.Settings.Default.guiLastEndReason += "UnhandledException: " + GetAllFootprints(ex);
-					Application.Exit(); 
-				}
-            }
-        }
-        public static string GetAllFootprints(Exception exept, bool full=true)
-        {
-            var st = new StackTrace(exept, true);
-            var frames = st.GetFrames();
-            var traceString = new StringBuilder();
-            traceString.Append("Except: " + exept.Message);
 
-            foreach (var frame in frames)
-            {
-                if (frame.GetFileLineNumber() < 1)
-                    continue;
-
-                traceString.Append(", File: " + frame.GetFileName());
-                traceString.Append(", Method:" + frame.GetMethod().Name);
-                traceString.Append(", LineNumber: " + frame.GetFileLineNumber());
-                if (!full) 
-                    break;
-                traceString.Append("  -->  ");
-            }
-            return traceString.ToString();
-        }
-*/
         // close Main form
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {   // Note all other forms will be closed, before reaching following code...
@@ -429,8 +371,6 @@ namespace GrblPlotter
                 overrideMessage = " !!! Override !!!";
             lbInfo.Text = lastLabelInfoText + overrideMessage;
         }
-
-
 
         private void ShowLaserMode()
         {
@@ -568,7 +508,7 @@ namespace GrblPlotter
 			try { 
 				index = Convert.ToUInt16(btn.Name.Substring("btnCustom".Length), culture);
 			}
-			catch (Exception err){	Logger.Error(err,"SetCustomButton {0}",btn.Name);}
+			catch (Exception err){	Logger.Error(err,"SetCustomButton {0}",btn.Name); return 0;}
 			
             if (text.Contains("|") && (index >= 0) && (index < 32))
             {
@@ -611,8 +551,6 @@ namespace GrblPlotter
                 btnCustomCommand[index] = parts[1];
                 return parts[0].Trim().Length;// + parts[1].Trim().Length;
             }
-            else
-                btnCustomCommand[index] = "";
             return 0;
         }
         private static void SetButtonColors(Button btn, Color col)
@@ -641,7 +579,7 @@ namespace GrblPlotter
 			try { 
 				index = Convert.ToUInt16(clickedButton.Name.Substring("btnCustom".Length), culture);
 			}
-			catch (Exception err){	Logger.Error(err,"BtnCustomButton_Click {0}",clickedButton.Name);}
+			catch (Exception err){	Logger.Error(err,"BtnCustomButton_Click {0}",clickedButton.Name); return;}
 			
 			if ((index >= 0) && (index < 32))
             {	if (e.Button == MouseButtons.Right)
@@ -896,6 +834,7 @@ namespace GrblPlotter
         {
             _serial_form.GrblReset(true);   // savePos
             pbFile.Value = 0;
+            pbFile.Maximum = 100;
             signalResume = 0;
             signalLock = 0;
             signalPlay = 0;

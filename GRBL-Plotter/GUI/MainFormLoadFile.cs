@@ -45,6 +45,7 @@
  * 2021-11-23 line 192 add try/catch
  * 2021-11-29 line 893 BtnSaveFile_Click supply more encodings
  * 2021-12-06 line 1131 check also if (iData.ContainsText(DataFormats.Text))
+ * 2021-12-15 line 458 load *.txt try to read file used by other process
 */
 
 using System;
@@ -237,7 +238,7 @@ namespace GrblPlotter
             if (!imported && Properties.Settings.Default.ctrlCommentOut)
             { FctbCheckUnknownCode(); }                              // check code
 
-            Logger.Info("Object count:{0} KB  maxObjects:{1} KB  Process Gcode lines-showProgress:{2}", objectCount, maxObjects, (objectCount > maxObjects));
+            Logger.Info("▄▄▄▄▄▄▄▄ Object count:{0} KB  maxObjects:{1} KB  Process Gcode lines-showProgress:{2}", objectCount, maxObjects, (objectCount > maxObjects));
         //    ClearErrorLines();
 
             if (objectCount <= maxObjects)
@@ -452,10 +453,15 @@ namespace GrblPlotter
             {
                 if (File.Exists(fileName))
                 {
-					try
-                    {	LoadFromClipboard(File.ReadAllText(fileName));
-						fileLoaded = true;
-						this.Text = appName + " | Source: " + fileName;
+					try	// https://stackoverflow.com/questions/9759697/reading-a-file-used-by-another-process
+                    {	
+						using (var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+						using (var sr = new StreamReader(fs, GetEncoding(fileName))) {
+							string tmp = sr.ReadToEnd();
+							LoadFromClipboard(tmp);		//File.ReadAllText(fileName));
+							fileLoaded = true;
+							this.Text = appName + " | Source: " + fileName;
+						}
 					}
 					catch (IOException)
 					{
@@ -688,7 +694,7 @@ namespace GrblPlotter
                 int sizeLimit = 250;
                 long filesize = fs.Length / 1024;
                 showProgress = filesize > sizeLimit;
-                Logger.Info("File size:{0} KB  sizeLimit:{1} KB  Import-showProgress:{2}", filesize, sizeLimit, showProgress);
+                Logger.Info("▄▄▄▄▄▄▄▄ File size:{0} KB  sizeLimit:{1} KB  Import-showProgress:{2}", filesize, sizeLimit, showProgress);
             }
             loadTimerStep = 0;
 
@@ -857,7 +863,8 @@ namespace GrblPlotter
                 NewCodeStart();             // LoadGcode
                 fCTBCode.Text = "PLEASE WAIT !!!\r\nDisplaying a large number of lines\r\ntakes some seconds.";
                 fCTBCode.Refresh();
-                fCTBCode.OpenFile(tbFile.Text);
+                fCTBCode.OpenFile(tbFile.Text);//, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);	// File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+// https://stackoverflow.com/questions/9759697/reading-a-file-used-by-another-process
 
                 if (_serial_form.IsLasermode && Properties.Settings.Default.ctrlReplaceEnable)
                 {
@@ -878,7 +885,7 @@ namespace GrblPlotter
                     string fileInfo = Path.ChangeExtension(tbFile.Text, ".xml");    // see also saveStreamingStatus
                     if (File.Exists(fileInfo))
                     {
-                        int lineNr = LoadStreamingStatus();
+                        int lineNr = fCTBCodeClickedLineNow = LoadStreamingStatus();
                         if (lineNr > 0)
                         {
                             DialogResult dialogResult = MessageBox.Show(Localization.GetString("mainPauseStream1") + lineNr + " / " + fCTBCode.LinesCount + Localization.GetString("mainPauseStream2"), Localization.GetString("mainAttention"), MessageBoxButtons.YesNo);
@@ -1544,9 +1551,16 @@ namespace GrblPlotter
                     content.WriteStartElement("GCode");
                     content.WriteAttributeString("lineNr", lineNr.ToString());
                     if (lineNr > 0)
-                        content.WriteAttributeString("lineContent", fCTBCode.Lines[lineNr - 1]);
+                    {   
+						if (lineNr < fCTBCode.LinesCount)
+						{	content.WriteAttributeString("lineContent", fCTBCode.Lines[lineNr - 1]); }
+						else 
+						{	Logger.Error("lineNr: {0}  fCTBCode.LinesCount:{1}",fCTBCode.LinesCount);
+			                content.WriteAttributeString("lineContent", fCTBCode.Lines[0]);
+						}
+					}
                     else
-                        content.WriteAttributeString("lineContent", fCTBCode.Lines[0]);
+                    {    content.WriteAttributeString("lineContent", fCTBCode.Lines[0]);  }
 
                     content.WriteStartElement("WPos");
                     content.WriteAttributeString("X", Grbl.posWork.X.ToString().Replace(',', '.'));
@@ -1606,7 +1620,8 @@ namespace GrblPlotter
                     FctbCodeMarkLine();
                     _serial_form.parserStateGC = parserState;
                     _serial_form.posPause = tmp;
-                    StartStreaming(codeLine, fCTBCode.LinesCount-1);
+                    if (parserState != "")
+                        StartStreaming(codeLine, fCTBCode.LinesCount-1);
                 }
                 return codeLine;
             }
@@ -1666,5 +1681,33 @@ namespace GrblPlotter
             try { System.Diagnostics.Process.Start(tmp); }
             catch (Exception er) { Logger.Error(er, "ExtensionFile_click Start Process {0} ", tmp); }
         }
+		
+		/// <summary>
+		/// Determines a text file's encoding by analyzing its byte order mark (BOM).
+		/// Defaults to ASCII when detection of the text file's endianness fails.
+		/// </summary>
+		/// <param name="filename">The text file to analyze.</param>
+		/// <returns>The detected encoding.</returns>
+		public static Encoding GetEncoding(string filename)
+		{
+			// Read the BOM
+			var bom = new byte[4];
+			using (var file = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+			{
+				file.Read(bom, 0, 4);
+			}
+
+			// Analyze the BOM
+			if (bom[0] == 0x2b && bom[1] == 0x2f && bom[2] == 0x76) return Encoding.UTF7;
+			if (bom[0] == 0xef && bom[1] == 0xbb && bom[2] == 0xbf) return Encoding.UTF8;
+			if (bom[0] == 0xff && bom[1] == 0xfe && bom[2] == 0 && bom[3] == 0) return Encoding.UTF32; //UTF-32LE
+			if (bom[0] == 0xff && bom[1] == 0xfe) return Encoding.Unicode; //UTF-16LE
+			if (bom[0] == 0xfe && bom[1] == 0xff) return Encoding.BigEndianUnicode; //UTF-16BE
+			if (bom[0] == 0 && bom[1] == 0 && bom[2] == 0xfe && bom[3] == 0xff) return new UTF32Encoding(true, true);  //UTF-32BE
+
+			// We actually have no idea what the encoding is if we reach this point, so
+			// you may wish to return null instead of defaulting to ASCII
+			return Encoding.ASCII;
+		}
     }
 }

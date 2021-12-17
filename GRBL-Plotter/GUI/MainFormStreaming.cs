@@ -60,9 +60,9 @@ namespace GrblPlotter
         {
             try {
                 int cPrgs = codeProgress;
-                if (cPrgs < 0) cPrgs = 0; if (cPrgs > 100) cPrgs = 100;
+                if (cPrgs < 0) cPrgs = 0; if (cPrgs > pbFile.Maximum) cPrgs = pbFile.Maximum;
                 int bPrgs = buffProgress;
-                if (bPrgs < 0) bPrgs = 0; if (bPrgs > 100) bPrgs = 100;
+                if (bPrgs < 0) bPrgs = 0; if (bPrgs > pbBuffer.Maximum) bPrgs = pbBuffer.Maximum;
 
                 if (this.pbFile.InvokeRequired)
                 { this.pbFile.BeginInvoke((MethodInvoker)delegate () { this.pbFile.Value = cPrgs; }); }
@@ -145,7 +145,7 @@ namespace GrblPlotter
         //    if (Properties.Settings.Default.guiProgressShow)
             VisuGCode.ProcessedPath.ProcessedPathLine(e.CodeLineConfirmed);		// in GCodeSimulate.cs
 
-            if (logStreaming) Logger.Trace("OnRaiseStreamEvent  {0}  line {1} ", e.Status.ToString(), e.CodeLineSent);
+            if (logStreaming) Logger.Trace("### OnRaiseStreamEvent  {0}  line {1} ", e.Status.ToString(), e.CodeLineSent);
 
             switch (e.Status)
             {
@@ -154,7 +154,9 @@ namespace GrblPlotter
                     break;
 
                 case GrblStreaming.reset:
+                    Logger.Info("### OnRaiseStreamEvent - GrblStreaming.reset");
                     ResetDetected = true;
+                    SaveStreamingStatus(e.CodeLineSent);
                     StopStreaming(false);
                     if (e.CodeProgress < 0)
                     { SetInfoLabel(_serial_form.lastError, Color.Fuchsia); }
@@ -174,6 +176,8 @@ namespace GrblPlotter
                     Logger.Info("streaming error at line {0}", e.CodeLineConfirmed);
                     StatusStripSet(0, Grbl.lastMessage, Color.Fuchsia);
                     pbFile.ForeColor = Color.Red;
+
+                    SaveStreamingStatus(e.CodeLineSent);
 
                     int errorLine = e.CodeLineConfirmed - 1;
                     if (isStreamingCheck)
@@ -388,6 +392,8 @@ namespace GrblPlotter
                     isStreamingPause = false;
                     isStreamingCheck = false;
                     isStreamingOk = true;
+					pbFile.Maximum = 100;
+					
                     VisuGCode.MarkSelectedFigure(0);
                     if (startLine > 0)
                     {
@@ -532,6 +538,7 @@ namespace GrblPlotter
             isStreaming = false;
             isStreamingCheck = false;
             pbFile.Value = 0;
+            pbFile.Maximum = 100;
             pbBuffer.Value = 0;
 
             signalPlay = 0;
