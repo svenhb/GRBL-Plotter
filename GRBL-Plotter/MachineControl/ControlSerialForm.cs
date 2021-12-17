@@ -58,6 +58,8 @@
  * 2021-07-14 code clean up / code quality
  * 2021-09-29 reduce polling frequency on missing reports line 376
  * 2021-10-24 handle serial port System.TimeoutException -> close port
+ * 2021-12-13 replace serialPort.Write by SerialPortDataSend
+ * 2021-12-14 add run time for spindle, flood, mist
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -137,6 +139,11 @@ namespace GrblPlotter
         private static bool logStartStop = false;
         private static bool log2ndGrbl = false;
         private static bool log3rdCOM = false;
+        private static bool logStreamData = false;
+
+        private const string logFileGCode  = "logStreamGCode.nc";
+        private const string logFileSentData = "logSendBuffer.nc";
+        private const string logFileEcho   = "logGrblEcho.nc";
 
         private static void UpdateLogging()
         {	// LogEnable { Level1=1, Level2=2, Level3=4, Level4=8, Detailed=16, Coordinates=32, Properties=64, Sort = 128, GroupAllGraphics = 256, ClipCode = 512, PathModification = 1024 }
@@ -146,6 +153,7 @@ namespace GrblPlotter
             logReceive = logEnable && ((logFlags & (uint)LogEnables.Coordinates) > 0);
             logTransmit = logEnable && ((logFlags & (uint)LogEnables.Properties) > 0);
             logStartStop = logEnable && ((logFlags & (uint)LogEnables.Sort) > 0);
+            logStreamData = Properties.Settings.Default.guiExtendedLoggingCOMEnabled;
         }
 
         public ControlSerialForm(string txt, int nr, ControlSerialForm handle2 = null, SimpleSerialForm handle3 = null)
@@ -343,7 +351,7 @@ namespace GrblPlotter
 			//		if (resetProcessed)		// only poll status if reset was successfully recognized
 					{	if (isMarlin)
 						{
-							if (!isStreaming) { serialPort.Write("M114" + lineEndTXgrbl); getMarlinPositionWasSent = true; }    // marlin pos request
+							if (!isStreaming) { SerialPortDataSend("M114" + lineEndTXgrbl); getMarlinPositionWasSent = true; }    // marlin pos request
 							updateMarlinPosition = true;
 						}
 						else
@@ -405,7 +413,7 @@ namespace GrblPlotter
 
                 if (!resetProcessed && (axisCount > 0))			// to get axis count, a status must be received
                 {
-                //    Logger.Info("Process reset:{0} ", countStateReset);
+                    Logger.Info("Process reset:{0} ", countStateReset);
                     if (countStateReset > 0)					// set in StateReset to 10
                     {
                         countStateReset--;
@@ -571,7 +579,7 @@ namespace GrblPlotter
                 serialPort.Handshake = System.IO.Ports.Handshake.None;
                 serialPort.DtrEnable = false;
 				serialPort.ReadTimeout = 500;
-				serialPort.WriteTimeout = 500;		
+				serialPort.WriteTimeout = 1000;		
 				
                 rtbLog.Clear();
                 if (RefreshPorts())				// check if last used port is listed
@@ -796,6 +804,7 @@ namespace GrblPlotter
 
                     grblStateNow = GrblState.notConnected;
                     Grbl.lastMessage = "Serial timeout exception - correct baud rate?";
+                    Properties.Settings.Default.guiLastEndReason += string.Format("SerRec:{0} {1} ---", iamSerial, err1.Message);
                     OnRaisePosEvent(new PosEventArgs(posWork, posMachine, GrblState.notConnected, machineState, mParserState, Grbl.lastMessage));
                 }
                 catch (Exception err) {
@@ -809,12 +818,35 @@ namespace GrblPlotter
                         Logger.Error(err, "Ser:{0} -DataReceived- ", iamSerial);
 
                     grblStateNow = GrblState.notConnected;
-                    Grbl.lastMessage = "Serial exception - correct baud rate?";
+                    Grbl.lastMessage = "Serial receive exception - correct baud rate?";
+                    Properties.Settings.Default.guiLastEndReason += string.Format("SerRec:{0} {1} ---", iamSerial, err.Message);
                     OnRaisePosEvent(new PosEventArgs(posWork, posMachine, GrblState.notConnected, machineState, mParserState, Grbl.lastMessage));
                 }
             }
         }
 
+        private bool SerialPortDataSend(string tmp)
+        {
+            if ((serialPort.IsOpen) && (!string.IsNullOrEmpty(tmp)))
+            {   try {
+                    serialPort.Write(tmp);
+                    if (logStreamData) System.IO.File.AppendAllText(Datapath.LogFiles + "\\" + logFileSentData, tmp);
+                    return true;
+                }
+                catch (Exception err)
+                {       // InvalidOperationException, ArgumentNullException, TimeoutException
+                    AddToLog("Data send exception "+err.Message+" -Close port");
+                    Logger.Error(err, "SerialPortDataSend Ser:{0}", iamSerial);
+                    Properties.Settings.Default.guiLastEndReason += string.Format("SerSnd:{0} {1} ---", iamSerial, err.Message);
+                    this.BeginInvoke(new EventHandler(ClosePort));    //closePort();
+                    Grbl.lastMessage = "Serial send exception";
+                    OnRaisePosEvent(new PosEventArgs(posWork, posMachine, GrblState.notConnected, machineState, mParserState, Grbl.lastMessage));
+                    return false;
+                }
+            }
+            return false;
+        }
+		
         private void SendResetEvent()
         {
             if (lastError.Length > 2)
@@ -989,13 +1021,18 @@ namespace GrblPlotter
                     {
                         if (int.TryParse(splt[0].Substring(1), out int id))
                         {
-                            if (id == 100) { float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out stepX); }
-                            else if (id == 101) { float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out stepY); }
-                            else if (id == 102) { float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out stepZ); }
-                            else if (id == 110) { float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out speedX); }
-                            else if (id == 111) { float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out speedY); }
-                            else if (id == 112) { float.TryParse(splt[1], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out speedZ); }
-                        }
+                            string val = splt[1];
+                            int maxcnt = splt[1].IndexOf(" ");
+                            if (maxcnt > 1) val = splt[1].Substring(0, maxcnt);
+
+                            if (id == 100) { float.TryParse(val, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out stepX); }
+                            else if (id == 101) { float.TryParse(val, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out stepY); }
+                            else if (id == 102) { float.TryParse(val, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out stepZ); }
+                            else if (id == 110) { float.TryParse(val, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out speedX); }
+                            else if (id == 111) { float.TryParse(val, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out speedY); }
+                            else if (id == 112) { float.TryParse(val, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out speedZ); }
+                        //    AddToLog(id.ToString() + " " + splt[1].Substring(0, maxcnt));
+                         }
                     }
                 }
                 maxfX = stepX * speedX / 60000; rx = (maxfX < 30) ? "ok" : "problem!";
@@ -1053,5 +1090,37 @@ namespace GrblPlotter
 
         private static string GetTimeStampString()
         { return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); }
+
+        private void LblAccessoryState_Click(object sender, EventArgs e)
+        {	ListAccessoryStateRunTime(true);}
+        private void ListAccessoryStateRunTime(bool showAll)
+        {			
+            AddToRunTimer(stopwatchSpindle, "grblRunTimeSpindle");	// update timer if needed
+            AddToRunTimer(stopwatchFlood, "grblRunTimeFlood"); 
+            AddToRunTimer(stopwatchMist, "grblRunTimeMist"); 
+			double tSpindle = Properties.Settings.Default.grblRunTimeSpindle;
+			double tFlood   = Properties.Settings.Default.grblRunTimeFlood;
+			double tMist    = Properties.Settings.Default.grblRunTimeMist;
+			
+			if (showAll || ((tSpindle + tFlood + tMist) > 1))
+            {	AddToLog("");
+				AddToLog("Accessory State run times :");
+				AddToLog("             h: m: s");
+				if (showAll || (tSpindle > 1)) AddToLog("Spindle: " + getTimeString(tSpindle));
+				if (showAll || (tFlood   > 1)) AddToLog("Flood  : " + getTimeString(tFlood));
+				if (showAll || (tMist    > 1)) AddToLog("Mist   : " + getTimeString(tMist));
+			}
+			Logger.Info("ListAccessoryStateRunTime Spindle:{0}  Flood:{1}  Mist:{2}",getTimeString(tSpindle), getTimeString(tFlood), getTimeString(tMist));
+        }
+        private string getTimeString(double tmp)
+        {
+            TimeSpan t = TimeSpan.FromMilliseconds(tmp);
+
+            string answer = string.Format("{0:D5}:{1:D2}:{2:D2}",
+                            t.Hours,
+                            t.Minutes,
+                            t.Seconds);
+            return answer;
+        }
     }
 }

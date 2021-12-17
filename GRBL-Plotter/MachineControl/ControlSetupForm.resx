@@ -11917,6 +11917,9 @@ https://github.com/fra589/grbl-Mega-5X/wiki/grbl-Mega-5X-pinout</value>
   <data name="&gt;&gt;cBExtendedLogging.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="BtnThrow.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="BtnThrow.Location" type="System.Drawing.Point, System.Drawing">
     <value>155, 13</value>
   </data>
@@ -12176,7 +12179,7 @@ https://github.com/fra589/grbl-Mega-5X/wiki/grbl-Mega-5X-pinout</value>
     <value>5</value>
   </data>
   <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>574, 6</value>
+    <value>574, 87</value>
   </data>
   <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
     <value>277, 213</value>
@@ -12225,6 +12228,9 @@ https://github.com/fra589/grbl-Mega-5X/wiki/grbl-Mega-5X-pinout</value>
   </data>
   <data name="LblSaveEncoding.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="LblSaveEncoding.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="LblSaveEncoding.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 79</value>
@@ -12882,6 +12888,60 @@ M4 Dynamic Laser Power Mode</value>
   <data name="&gt;&gt;tab5gB1.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="cBExtendedLoggingCOM.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBExtendedLoggingCOM.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBExtendedLoggingCOM.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 19</value>
+  </data>
+  <data name="cBExtendedLoggingCOM.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 17</value>
+  </data>
+  <data name="cBExtendedLoggingCOM.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="cBExtendedLoggingCOM.Text" xml:space="preserve">
+    <value>Serial COM / streaming</value>
+  </data>
+  <data name="&gt;&gt;cBExtendedLoggingCOM.Name" xml:space="preserve">
+    <value>cBExtendedLoggingCOM</value>
+  </data>
+  <data name="&gt;&gt;cBExtendedLoggingCOM.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBExtendedLoggingCOM.Parent" xml:space="preserve">
+    <value>groupBox25</value>
+  </data>
+  <data name="&gt;&gt;cBExtendedLoggingCOM.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBox25.Location" type="System.Drawing.Point, System.Drawing">
+    <value>574, 6</value>
+  </data>
+  <data name="groupBox25.Size" type="System.Drawing.Size, System.Drawing">
+    <value>277, 193</value>
+  </data>
+  <data name="groupBox25.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="groupBox25.Text" xml:space="preserve">
+    <value>Logging</value>
+  </data>
+  <data name="&gt;&gt;groupBox25.Name" xml:space="preserve">
+    <value>groupBox25</value>
+  </data>
+  <data name="&gt;&gt;groupBox25.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox25.Parent" xml:space="preserve">
+    <value>tabPage13</value>
+  </data>
+  <data name="&gt;&gt;groupBox25.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
   <data name="tabPage13.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
   </data>
@@ -12907,6 +12967,318 @@ M4 Dynamic Laser Power Mode</value>
     <value>tabControl4_Level2</value>
   </data>
   <data name="&gt;&gt;tabPage13.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="BtnAccessoryRefresh.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnAccessoryRefresh.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 99</value>
+  </data>
+  <data name="BtnAccessoryRefresh.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="BtnAccessoryRefresh.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="BtnAccessoryRefresh.Text" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="&gt;&gt;BtnAccessoryRefresh.Name" xml:space="preserve">
+    <value>BtnAccessoryRefresh</value>
+  </data>
+  <data name="&gt;&gt;BtnAccessoryRefresh.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnAccessoryRefresh.Parent" xml:space="preserve">
+    <value>GbAccessoryRunTime</value>
+  </data>
+  <data name="&gt;&gt;BtnAccessoryRefresh.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="BtnAccessoryMistReset.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnAccessoryMistReset.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 61</value>
+  </data>
+  <data name="BtnAccessoryMistReset.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 23</value>
+  </data>
+  <data name="BtnAccessoryMistReset.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="BtnAccessoryMistReset.Text" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="&gt;&gt;BtnAccessoryMistReset.Name" xml:space="preserve">
+    <value>BtnAccessoryMistReset</value>
+  </data>
+  <data name="&gt;&gt;BtnAccessoryMistReset.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnAccessoryMistReset.Parent" xml:space="preserve">
+    <value>GbAccessoryRunTime</value>
+  </data>
+  <data name="&gt;&gt;BtnAccessoryMistReset.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="BtnAccessoryFloodReset.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnAccessoryFloodReset.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 38</value>
+  </data>
+  <data name="BtnAccessoryFloodReset.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 23</value>
+  </data>
+  <data name="BtnAccessoryFloodReset.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="BtnAccessoryFloodReset.Text" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="&gt;&gt;BtnAccessoryFloodReset.Name" xml:space="preserve">
+    <value>BtnAccessoryFloodReset</value>
+  </data>
+  <data name="&gt;&gt;BtnAccessoryFloodReset.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnAccessoryFloodReset.Parent" xml:space="preserve">
+    <value>GbAccessoryRunTime</value>
+  </data>
+  <data name="&gt;&gt;BtnAccessoryFloodReset.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="BtnAccessorySpindleReset.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnAccessorySpindleReset.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 15</value>
+  </data>
+  <data name="BtnAccessorySpindleReset.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 23</value>
+  </data>
+  <data name="BtnAccessorySpindleReset.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="BtnAccessorySpindleReset.Text" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="&gt;&gt;BtnAccessorySpindleReset.Name" xml:space="preserve">
+    <value>BtnAccessorySpindleReset</value>
+  </data>
+  <data name="&gt;&gt;BtnAccessorySpindleReset.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnAccessorySpindleReset.Parent" xml:space="preserve">
+    <value>GbAccessoryRunTime</value>
+  </data>
+  <data name="&gt;&gt;BtnAccessorySpindleReset.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="LblAccessoryMistVal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblAccessoryMistVal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>51, 66</value>
+  </data>
+  <data name="LblAccessoryMistVal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 13</value>
+  </data>
+  <data name="LblAccessoryMistVal.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="LblAccessoryMistVal.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="LblAccessoryMistVal.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="&gt;&gt;LblAccessoryMistVal.Name" xml:space="preserve">
+    <value>LblAccessoryMistVal</value>
+  </data>
+  <data name="&gt;&gt;LblAccessoryMistVal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblAccessoryMistVal.Parent" xml:space="preserve">
+    <value>GbAccessoryRunTime</value>
+  </data>
+  <data name="&gt;&gt;LblAccessoryMistVal.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="LblAccessoryFloodVal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblAccessoryFloodVal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>51, 43</value>
+  </data>
+  <data name="LblAccessoryFloodVal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 13</value>
+  </data>
+  <data name="LblAccessoryFloodVal.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="LblAccessoryFloodVal.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="LblAccessoryFloodVal.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="&gt;&gt;LblAccessoryFloodVal.Name" xml:space="preserve">
+    <value>LblAccessoryFloodVal</value>
+  </data>
+  <data name="&gt;&gt;LblAccessoryFloodVal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblAccessoryFloodVal.Parent" xml:space="preserve">
+    <value>GbAccessoryRunTime</value>
+  </data>
+  <data name="&gt;&gt;LblAccessoryFloodVal.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="LblAccessorySpindleVal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblAccessorySpindleVal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>51, 20</value>
+  </data>
+  <data name="LblAccessorySpindleVal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 13</value>
+  </data>
+  <data name="LblAccessorySpindleVal.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="LblAccessorySpindleVal.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="LblAccessorySpindleVal.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="&gt;&gt;LblAccessorySpindleVal.Name" xml:space="preserve">
+    <value>LblAccessorySpindleVal</value>
+  </data>
+  <data name="&gt;&gt;LblAccessorySpindleVal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblAccessorySpindleVal.Parent" xml:space="preserve">
+    <value>GbAccessoryRunTime</value>
+  </data>
+  <data name="&gt;&gt;LblAccessorySpindleVal.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="LblAccessoryMist.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblAccessoryMist.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblAccessoryMist.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 66</value>
+  </data>
+  <data name="LblAccessoryMist.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 13</value>
+  </data>
+  <data name="LblAccessoryMist.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="LblAccessoryMist.Text" xml:space="preserve">
+    <value>Mist:</value>
+  </data>
+  <data name="&gt;&gt;LblAccessoryMist.Name" xml:space="preserve">
+    <value>LblAccessoryMist</value>
+  </data>
+  <data name="&gt;&gt;LblAccessoryMist.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblAccessoryMist.Parent" xml:space="preserve">
+    <value>GbAccessoryRunTime</value>
+  </data>
+  <data name="&gt;&gt;LblAccessoryMist.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="LblAccessoryFlood.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblAccessoryFlood.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblAccessoryFlood.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 43</value>
+  </data>
+  <data name="LblAccessoryFlood.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 13</value>
+  </data>
+  <data name="LblAccessoryFlood.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="LblAccessoryFlood.Text" xml:space="preserve">
+    <value>Flood:</value>
+  </data>
+  <data name="&gt;&gt;LblAccessoryFlood.Name" xml:space="preserve">
+    <value>LblAccessoryFlood</value>
+  </data>
+  <data name="&gt;&gt;LblAccessoryFlood.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblAccessoryFlood.Parent" xml:space="preserve">
+    <value>GbAccessoryRunTime</value>
+  </data>
+  <data name="&gt;&gt;LblAccessoryFlood.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="LblAccessorySpindle.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblAccessorySpindle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblAccessorySpindle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 20</value>
+  </data>
+  <data name="LblAccessorySpindle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 13</value>
+  </data>
+  <data name="LblAccessorySpindle.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="LblAccessorySpindle.Text" xml:space="preserve">
+    <value>Spindle:</value>
+  </data>
+  <data name="&gt;&gt;LblAccessorySpindle.Name" xml:space="preserve">
+    <value>LblAccessorySpindle</value>
+  </data>
+  <data name="&gt;&gt;LblAccessorySpindle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblAccessorySpindle.Parent" xml:space="preserve">
+    <value>GbAccessoryRunTime</value>
+  </data>
+  <data name="&gt;&gt;LblAccessorySpindle.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="GbAccessoryRunTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>292, 6</value>
+  </data>
+  <data name="GbAccessoryRunTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>225, 128</value>
+  </data>
+  <data name="GbAccessoryRunTime.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="GbAccessoryRunTime.Text" xml:space="preserve">
+    <value>Accessory run times (ms)</value>
+  </data>
+  <data name="&gt;&gt;GbAccessoryRunTime.Name" xml:space="preserve">
+    <value>GbAccessoryRunTime</value>
+  </data>
+  <data name="&gt;&gt;GbAccessoryRunTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GbAccessoryRunTime.Parent" xml:space="preserve">
+    <value>tabPage26</value>
+  </data>
+  <data name="&gt;&gt;GbAccessoryRunTime.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="nUDMachineHomeZ.Location" type="System.Drawing.Point, System.Drawing">
@@ -13400,7 +13772,7 @@ Note machine coordinates</value>
     <value>tabPage26</value>
   </data>
   <data name="&gt;&gt;tab5gB5.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="comboBox1.Items" xml:space="preserve">
     <value>A</value>
@@ -13622,7 +13994,7 @@ Note machine coordinates</value>
     <value>6</value>
   </data>
   <data name="tab5gB6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>292, 6</value>
+    <value>523, 6</value>
   </data>
   <data name="tab5gB6.Size" type="System.Drawing.Size, System.Drawing">
     <value>328, 96</value>
@@ -13643,7 +14015,7 @@ Note machine coordinates</value>
     <value>tabPage26</value>
   </data>
   <data name="&gt;&gt;tab5gB6.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="nUDRotaryScale.Location" type="System.Drawing.Point, System.Drawing">
     <value>166, 36</value>
@@ -14081,7 +14453,7 @@ Note machine coordinates</value>
     <value>9</value>
   </data>
   <data name="tab5gB7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>292, 143</value>
+    <value>523, 143</value>
   </data>
   <data name="tab5gB7.Size" type="System.Drawing.Size, System.Drawing">
     <value>328, 173</value>
@@ -14102,7 +14474,7 @@ Note machine coordinates</value>
     <value>tabPage26</value>
   </data>
   <data name="&gt;&gt;tab5gB7.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="tabPage26.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>

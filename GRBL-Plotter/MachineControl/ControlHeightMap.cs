@@ -25,6 +25,7 @@
  * 2021-04-30 after cancel, fill up missing coordinates line 561
  * 2021-07-14 code clean up / code quality
  * 2021-07-23 add notifier (by pushbullet or email)
+ * 2021-12-15 InterpolateZ check index range
 */
 
 using System;
@@ -36,9 +37,6 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
-
-//#pragma warning disable CA1303
-//#pragma warning disable CA1305
 
 namespace GrblPlotter
 {
@@ -967,22 +965,28 @@ namespace GrblPlotter
             }
         }
 
-        public double InterpolateZ(double x, double y)
+        public double InterpolateZ(double x, double y)	// find Z for given XY coordinate
         {
-            if (x > Max.X || x < Min.X || y > Max.Y || y < Min.Y)
+            if (x > Max.X || x < Min.X || y > Max.Y || y < Min.Y)	// out of area?
                 return MaxHeight;
 
-            x -= Min.X;
-            y -= Min.Y;
+            x -= Min.X;		// convert coordinate to index
+            y -= Min.Y;		// remove offset
 
-            x /= GridX;
-            y /= GridY;
+            x /= GridX;		// convert coordinate to index
+            y /= GridY;		// devide by resolution
 
             int iLX = (int)Math.Floor(x);   //lower integer part
             int iLY = (int)Math.Floor(y);
 
+			if (iLX < 0) iLX = 0;		// check range
+			if (iLY < 0) iLY = 0;
+			
             int iHX = (int)Math.Ceiling(x); //upper integer part
             int iHY = (int)Math.Ceiling(y);
+
+			if (iHX >= SizeX) iHX = SizeX - 1;	// check range
+			if (iHY >= SizeY) iHY = SizeY - 1;
 
             //     try
             //     {

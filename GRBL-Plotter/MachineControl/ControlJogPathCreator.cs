@@ -19,6 +19,7 @@
 /* 2021-01-13 First version
  * 2021-01-23 Bug fix create jog path - wrong size
  * 2021-07-26 code clean up / code quality
+ * 2021-12-11 line 328 check if (list.Count > 0)
  */
 
 using System;
@@ -325,7 +326,9 @@ namespace GrblPlotter
             actualLine.Reset();
             jogPath.Reset();
             jogPath.AddLines(list.ToArray());
-            lastSet = ToPoint(list[list.Count - 1]);
+
+            if (list.Count > 0)
+                lastSet = ToPoint(list[list.Count - 1]);
             if (jogPath.PointCount > 0)
             { rubberBand.AddLine(lastSet, posMoveTmp); }
 

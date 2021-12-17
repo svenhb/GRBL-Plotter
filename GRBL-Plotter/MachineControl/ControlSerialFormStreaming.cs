@@ -241,9 +241,9 @@ namespace GrblPlotter
                                     foreach(string subroutineLine in subroutines[(int)pWord])          // copy subroutine
                                     {
                                         if (subroutineLine.Contains('#'))                    // check if variable neededs to be replaced
-                                            streamingBuffer.Add(InsertVariable(subroutineLine),i); 
+                                            streamingBuffer.Add(InsertVariable(subroutineLine).Replace(" ", ""), i); 
                                         else 
-                                            streamingBuffer.Add(subroutineLine, i);             // add gcode line to list to send 
+                                            streamingBuffer.Add(subroutineLine.Replace(" ", ""), i);             // add gcode line to list to send 
                                     }
                                 }
                             }
@@ -276,7 +276,7 @@ namespace GrblPlotter
                                 { tmp = "(" + tmp + ")"; }      // hide M30
                             }
 
-                            streamingBuffer.Add(tmp, i);        // add gcode line to list to send
+                            streamingBuffer.Add(tmp.Replace(" ", ""), i);        // add gcode line to list to send
 
                             if (cmdMNr == 30)                   // stop filling buffer, to avoid sending subroutine code
                             {   foundM30 = true;
@@ -294,15 +294,16 @@ namespace GrblPlotter
             }   // lock
             timerSerial.Start();
 
-            if (logEnable || useSubroutine)
-            {   string startText = string.Format("( {0} )\r\n", GetTimeStampString());
-                File.WriteAllText(Datapath.AppDataFolder + "\\logStreamGCode.nc", startText); // clear file
-                File.AppendAllLines(Datapath.AppDataFolder + "\\logStreamGCode.nc", streamingBuffer.Buffer);
+            if (logStreamData || useSubroutine)
+            {   string startText = string.Format("( {0} )\r\n( Start at line:{1} stop:{2} )\r\n( Set ParserState:{3} )\r\n", GetTimeStampString(), startAtLine, stopAtLine, parserStateGC);
+                File.WriteAllText(Datapath.LogFiles + "\\"+ logFileGCode, "( Data to stream from editor )\r\n" + startText); // clear file
+                File.AppendAllLines(Datapath.LogFiles + "\\"+ logFileGCode, streamingBuffer.Buffer);
             }
 
-            if (logEnable)
-            {   string startText = string.Format("( {0} )\r\n", GetTimeStampString());
-                File.WriteAllText(Datapath.AppDataFolder + "\\logSendBuffer.nc", startText); // clear file
+            if (logStreamData)
+            {   string startText = string.Format("( {0} )\r\n( Start at line:{1} stop:{2} )\r\n( Set ParserState:{3} )\r\n", GetTimeStampString(), startAtLine, stopAtLine, parserStateGC);
+                File.WriteAllText(Datapath.LogFiles + "\\" + logFileSentData, "( Data sent to grbl )\r\n" + startText); // clear file
+                File.WriteAllText(Datapath.LogFiles + "\\" + logFileEcho, "( Data echoed by grbl if #define REPORT_ECHO_LINE_RECEIVED )\r\n" + startText); // clear file
             }
             isStreaming = true;
             UpdateControls();
@@ -670,15 +671,13 @@ namespace GrblPlotter
                         }
                         updateMarlinPosition = false;
                     }
-         //           requestSend(line, streamingBuffer.GetSentLineNr(), false);   // fill sendBuffer, 
-                    sendBuffer.Add(line, streamingBuffer.GetSentLineNr());
-                    if (logEnable) System.IO.File.AppendAllText(Datapath.AppDataFolder + "\\logSendBuffer.nc", line + "\r\n"); // clear file
+                    /* remove spaces from line (in echo, there are also no spaces) */
+                    sendBuffer.Add(line.Replace(" ",""), streamingBuffer.GetSentLineNr());
                     streamingBuffer.LineWasSent();
                     streamingStateOld = streamingStateNow;
                     lengthToSend = streamingBuffer.LengthSent() + 1;    // update while-variable
                 }   // lock
                 ProcessSend();
-                //                Logger.Trace("preProcessStreaming sent {0}  lengthToSend {1}  grblBufferFree {2} 3busy {3} countPreventIdle {4} line {5}", streamingBuffer.IndexSent, lengthToSend, grblBufferFree, serial3Busy, countPreventIdle, line);
             }   // while
 
             if (streamingStateNow != GrblStreaming.pause)
@@ -754,6 +753,8 @@ namespace GrblPlotter
             UpdateControls();
             if (isStreamingCheck)
             { RequestSend("$C"); isStreamingCheck = false; }
+
+			ListAccessoryStateRunTime(false);
         }
 
         private void SetToolChangeCoordinates(int cmdTNr, string line="")

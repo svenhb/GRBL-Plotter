@@ -20,15 +20,13 @@
  * 2021-01-19 dont apply .toUpper for send box - line 95 
  * 2021-04-06 log RX and TX
  * 2021-07-26 code clean up / code quality
+ * 2021-12-14 add try catch for sending
 */
 
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-
-//#pragma warning disable CA1303
-//#pragma warning disable CA1305
 
 namespace GrblPlotter
 {
@@ -67,7 +65,6 @@ namespace GrblPlotter
             timerSerial.Start();
         }
 
-
         private void BtnScanPort_Click(object sender, EventArgs e)
         { RefreshPorts(); }
 
@@ -93,23 +90,10 @@ namespace GrblPlotter
         {
             {
                 string cmd = cBCommand.Text;    //.ToUpper();
-                Send(cmd.Trim());
+                SerialPortDataSend(cmd.Trim());
                 cBCommand.Items.Remove(cBCommand.SelectedItem);
                 cBCommand.Items.Insert(0, cmd);
                 cBCommand.Text = cmd;
-            }
-        }
-
-        public void Send(string data)
-        {
-            if (serialPort.IsOpen && !string.IsNullOrEmpty(data))
-            {
-                serialPort.Write(data.Trim() + lineEndTX);      // send single command via form
-                Busy = true;
-                countTimeOut = (int)(countTimeOutMax * 1000 / timerSerial.Interval);
-                string sndTXT = string.Format("> {0,-10} | > set busy flag:{1,4:G} | {2}", data.Trim(), countTimeOut.ToString(), DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"));
-                AddToLog(sndTXT);
-                Logger.Trace("send {0}", sndTXT);
             }
         }
 
@@ -172,16 +156,39 @@ namespace GrblPlotter
                     Logger.Error(err1, "TimeoutException");
                     AddToLog("Error reading line from serial port - correct baud rate? Missing line-end?");
                     rxString = serialPort.ReadExisting().Trim();
-                    Logger.Error("ReadExisting '{0}'", rxString);
-                    AddToLog(rxString);
+                    Logger.Error(err1, "ReadExisting '{0}'", rxString);
+                    AddToLog("RX TimeoutException" + rxString);
                     //          this.BeginInvoke(new EventHandler(closePort));    //closePort();
                 }
                 catch (Exception err)
                 {
-                    AddToLog("Close port ");
-                    Logger.Error(err, " -DataReceived- Close port ");
-                    //           this.BeginInvoke(new EventHandler(closePort));    //closePort();
+                    Busy = false;
+                    AddToLog("RX Exception - Close port ");
+                    Logger.Error(err, " -DataReceived- Close port, clear busy flag ");
+                    this.BeginInvoke(new EventHandler(ClosePort));    //closePort();
                     throw;
+                }
+            }
+        }
+
+        public void SerialPortDataSend(string data)
+        {
+            if (serialPort.IsOpen && !string.IsNullOrEmpty(data))
+            {
+				try {
+					serialPort.Write(data.Trim() + lineEndTX);      // send single command via form
+					Busy = true;
+					countTimeOut = (int)(countTimeOutMax * 1000 / timerSerial.Interval);
+					string sndTXT = string.Format("> {0,-10} | > set busy flag:{1,4:G} | {2}", data.Trim(), countTimeOut.ToString(), DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"));
+					AddToLog(sndTXT);
+					Logger.Trace("send {0}", sndTXT);
+				}
+                catch (Exception err)
+                {       // InvalidOperationException, ArgumentNullException, TimeoutException
+                    Busy = false;
+                    AddToLog("TX Exception "+err.Message+" - Close port, clear busy flag");
+                    Logger.Error(err, "SerialPortDataSend 3rd com ");
+                    this.BeginInvoke(new EventHandler(ClosePort));    //closePort();
                 }
             }
         }
@@ -230,6 +237,9 @@ namespace GrblPlotter
                 serialPort.StopBits = System.IO.Ports.StopBits.One;
                 serialPort.Handshake = System.IO.Ports.Handshake.None;
                 serialPort.DtrEnable = false;
+				serialPort.ReadTimeout = 500;
+				serialPort.WriteTimeout = 1000;		
+				
                 rtbLog.Clear();
                 if (RefreshPorts())
                 {
@@ -292,6 +302,7 @@ namespace GrblPlotter
                     UpdateControls();
                 }
                 timerSerial.Interval = 1000;
+                Busy = false;
             }
             catch (Exception err)
             {

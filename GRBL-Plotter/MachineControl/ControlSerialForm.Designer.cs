@@ -77,7 +77,7 @@ namespace GrblPlotter
             this.lblSrOv = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.lblSrA = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.LblAccessoryState = new System.Windows.Forms.Label();
             this.lblSrLn = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.btnCheckGRBL = new System.Windows.Forms.Button();
@@ -291,11 +291,13 @@ namespace GrblPlotter
             this.lblSrA.Name = "lblSrA";
             this.toolTipSerial.SetToolTip(this.lblSrA, resources.GetString("lblSrA.ToolTip"));
             // 
-            // label11
+            // LblAccessoryState
             // 
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.Name = "label11";
-            this.toolTipSerial.SetToolTip(this.label11, resources.GetString("label11.ToolTip"));
+            resources.ApplyResources(this.LblAccessoryState, "LblAccessoryState");
+            this.LblAccessoryState.BackColor = System.Drawing.Color.Yellow;
+            this.LblAccessoryState.Name = "LblAccessoryState";
+            this.toolTipSerial.SetToolTip(this.LblAccessoryState, resources.GetString("LblAccessoryState.ToolTip"));
+            this.LblAccessoryState.Click += new System.EventHandler(this.LblAccessoryState_Click);
             // 
             // lblSrLn
             // 
@@ -390,7 +392,7 @@ namespace GrblPlotter
             this.groupBox1.Controls.Add(this.cBStatus);
             this.groupBox1.Controls.Add(this.lblSrA);
             this.groupBox1.Controls.Add(this.lblSrLn);
-            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.LblAccessoryState);
             this.groupBox1.Controls.Add(this.lblSrState);
             this.groupBox1.Controls.Add(this.lblSrOv);
             this.groupBox1.Controls.Add(this.label13);
@@ -491,7 +493,7 @@ namespace GrblPlotter
         private System.Windows.Forms.Label lblSrOv;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblSrA;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label LblAccessoryState;
         private System.Windows.Forms.Label lblSrLn;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox groupBox1;

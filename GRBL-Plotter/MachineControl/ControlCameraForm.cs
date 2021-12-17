@@ -29,6 +29,7 @@
  * 2021-07-02 code clean up / code quality
  * 2021-09-12 split some code to ControlCameraFormMisc.cs
  *            - add distortion correction, shape recognizion: don't show applied filter
+ * 2021-12-11 line 1097 check if ((cameraIndex >= 0) && (cameraIndex < videosources.Count)) 
 */
 
 using AForge;
@@ -1094,9 +1095,10 @@ namespace GrblPlotter
             else
                 timerFreezFrame.Stop();
 
-            ((ToolStripMenuItem)camSourceToolStripMenuItem.DropDownItems[cameraIndex]).Checked = false;
+            if ((cameraIndex >= 0) && (cameraIndex < videosources.Count)) 
+                ((ToolStripMenuItem)camSourceToolStripMenuItem.DropDownItems[cameraIndex]).Checked = false;
             SetCameraMountDependence();
-            if (cameraIndex >= videosources.Count)
+            if ((cameraIndex < 0) || (cameraIndex >= videosources.Count))
                 cameraIndex = 0;
             frameCounter = 0;
             ((ToolStripMenuItem)camSourceToolStripMenuItem.DropDownItems[cameraIndex]).Checked = true;

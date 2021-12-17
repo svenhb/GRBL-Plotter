@@ -939,10 +939,16 @@ namespace GrblPlotter
                 string fpath = Datapath.Tools + "\\" + tmpstr;
                 if (File.Exists(fpath))
                 {
-                    File.Copy(Datapath.Tools + "\\" + ToolTable.DefaultFileName, Datapath.Tools + "\\_beforeUseCase.csv", true);
-                    File.Copy(Datapath.Tools + "\\" + tmpstr, Datapath.Tools + "\\" + ToolTable.DefaultFileName, true);
-                    setup.toolTableOriginal = true;
-                    ToolTable.Init();
+					try {
+						File.Copy(Datapath.Tools + "\\" + ToolTable.DefaultFileName, Datapath.Tools + "\\_beforeUseCase.csv", true);
+						File.Copy(Datapath.Tools + "\\" + tmpstr, Datapath.Tools + "\\" + ToolTable.DefaultFileName, true);
+						setup.toolTableOriginal = true;
+						ToolTable.Init();
+					}
+					catch (Exception err)
+					{
+						MessageBox.Show("Could not copy data: "+err.Message,"Error");
+					}					
                 }
                 else
                 {

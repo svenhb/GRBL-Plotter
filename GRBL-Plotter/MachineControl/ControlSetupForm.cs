@@ -247,6 +247,10 @@ namespace GrblPlotter
             PWMIncValue = (int)Properties.Settings.Default.setupPWMIncrement;
             btnPWMInc.Text = "Inc. " + PWMIncValue.ToString();
             SetPWMIncValues(PWMIncValue);
+
+            LblAccessorySpindleVal.Text = Properties.Settings.Default.grblRunTimeSpindle.ToString("F0");
+            LblAccessoryFloodVal.Text = Properties.Settings.Default.grblRunTimeFlood.ToString("F0");
+            LblAccessoryMistVal.Text = Properties.Settings.Default.grblRunTimeMist.ToString("F0");
         }
 
         private void SaveSettings()
@@ -1719,6 +1723,34 @@ namespace GrblPlotter
         private void BtnThrow_Click(object sender, EventArgs e)
         {
             throw new InvalidOperationException("Just test");
+        }
+
+        private void BtnAccessorySpindleReset_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.grblRunTimeSpindle = 0;
+            Properties.Settings.Default.Save();
+            LblAccessorySpindleVal.Text = Properties.Settings.Default.grblRunTimeSpindle.ToString();
+        }
+
+        private void BtnAccessoryFloodReset_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.grblRunTimeFlood = 0;
+            Properties.Settings.Default.Save();
+            LblAccessoryFloodVal.Text = Properties.Settings.Default.grblRunTimeFlood.ToString();
+        }
+
+        private void BtnAccessoryMistReset_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.grblRunTimeMist = 0;
+            Properties.Settings.Default.Save();
+            LblAccessoryMistVal.Text = Properties.Settings.Default.grblRunTimeMist.ToString();
+        }
+
+        private void BtnAccessoryRefresh_Click(object sender, EventArgs e)
+        {
+            LblAccessorySpindleVal.Text = Properties.Settings.Default.grblRunTimeSpindle.ToString("F0");
+            LblAccessoryFloodVal.Text = Properties.Settings.Default.grblRunTimeFlood.ToString("F0");
+            LblAccessoryMistVal.Text = Properties.Settings.Default.grblRunTimeMist.ToString("F0");
         }
     }
 }

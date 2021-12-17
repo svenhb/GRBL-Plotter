@@ -26,6 +26,7 @@
  * 2021-09-21 collect fiducials
  * 2021-09-29 add fiducialDimension
  * 2021-11-30 line 451 check if index < objec.count
+ * 2021-12-13 bug fix line 843 && (pathInfoMarker.Any())
 */
 
 using System;
@@ -244,11 +245,11 @@ namespace GrblPlotter
 
         private static void ResetGlobalObjects()
         {
-            gcodeList = new List<GcodeByLine>();    // needed for code transformations
+            gcodeList = new List<GcodeByLine>();    	// needed for code transformations
             simuList = new List<SimuCoordByLine>();    	// needed for simulation
-            coordList = new List<CoordByLine>();    // needed to find GCode-line by coordiante
+            coordList = new List<CoordByLine>();    	// needed to find GCode-line by coordiante
             centerList = new List<CenterByLine>();  	// center coordinates of arcs
-            pathInfoMarker = new List<PathInfo>();
+            pathInfoMarker = new List<PathInfo>();		// collect Pen-up path data (fig-id, angle)
             fiducialsCenter = new List<XyPoint>();
             fiducialEnable = false;
             fiducialLabel = Properties.Settings.Default.importFiducialLabel;
@@ -839,8 +840,9 @@ namespace GrblPlotter
         {
             if (worker != null) worker.ReportProgress(0, new MyUserState { Value = 50, Content = "Pen-up path: Add dir-arrows and figure-Ids" });
             int count = 0;
-            if ((pathInfoMarker != null) && (!pathInfoMarker.Any()))
+            if ((pathInfoMarker != null) && (pathInfoMarker.Any()))
             {
+                Logger.Info("ModifyPenUpPath - add arrows and ids - count:{0}", pathInfoMarker.Count);
                 foreach (PathInfo tmp in pathInfoMarker)
                 {
                     if (worker != null)
@@ -862,6 +864,10 @@ namespace GrblPlotter
                     AddArrow(pathPenUp, tmp, showArrow, showId);
                 }
             }
+			else
+			{
+                Logger.Error("ModifyPenUpPath - pathInfoMarker is null or empty, can't add arrows and ids to PenUp path");
+			}
         }
 
         public static string GetParserState(int lineNr)
