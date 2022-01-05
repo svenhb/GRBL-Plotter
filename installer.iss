@@ -7,7 +7,7 @@
 #define MyReleasePath "GRBL-Plotter\bin\Release\"
 #define MyWorkPath "GRBL-Plotter\"
 #define MyAppVersion GetVersionNumbersString("GRBL-Plotter\bin\Release\GRBL-Plotter.exe")
-#define MySetupVersion "1.0.1.0"
+#define MySetupVersion "1.0.2.0"
 #define MyAppDataPath "\GRBL-Plotter"
 
 [Setup]
@@ -22,7 +22,7 @@ DefaultGroupName={#MyAppName}
 UninstallDisplayIcon={app}\{#MyAppExeName}
 OutputDir=Output
 OutputBaseFilename=GRBL-Plotter_Setup
-AppCopyright=Copyright © 2015-2021 SH
+AppCopyright=Copyright © 2015-2022 SH
 WizardImageFile=image_modell_328.bmp
 WizardSmallImageFile=image_modell_55.bmp
 WizardStyle=modern
@@ -44,6 +44,7 @@ Name: "ja"; MessagesFile: "compiler:Languages\Japanese.isl"
 Name: "pt"; MessagesFile: "compiler:Languages\Portuguese.isl"
 Name: "sp"; MessagesFile: "compiler:Languages\Spanish.isl"
 Name: "fr"; MessagesFile: "compiler:Languages\French.isl"
+Name: "cs"; MessagesFile: "compiler:Languages\Czech.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
