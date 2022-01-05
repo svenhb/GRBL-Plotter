@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -504,7 +504,7 @@ namespace GrblPlotter
             if (!double.TryParse(txt, NumberStyles.Number, NumberFormatInfo.InvariantInfo, out double nr))
             {
                 nr = ConvertToPixel(txt);
-                Logger.Error("Convert stroke-width via ConvertToPixel '{0}' result '{1}'", txt, nr);
+        //        Logger.Error("Convert stroke-width via ConvertToPixel '{0}' result '{1}'", txt, nr);
             }
             Graphic.SetPenWidth(Math.Round(nr * svgStrokeWidthScale, 3).ToString().Replace(',', '.'));
             //            Logger.Trace( "SetPenWidth '{0}' result:{1}  scale:{2}", txt,nr, svgStrokeWidthScale);
