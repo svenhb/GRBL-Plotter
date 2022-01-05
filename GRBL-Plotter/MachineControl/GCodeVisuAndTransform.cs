@@ -408,8 +408,8 @@ namespace GrblPlotter
             int steps,i;
             bool lastWasG0 = true;
             lastPos = new ImgPoint();
-            double offX = (xyzSize.maxx - xyzSize.minx) / 2;
-            double offY = (xyzSize.maxy - xyzSize.miny) / 2;
+            double offX = (xyzSize.maxx + xyzSize.minx) / 2;
+            double offY = (xyzSize.maxy + xyzSize.miny) / 2;
             foreach (GcodeByLine gcline in gcodeList)
             {
                 actualPos = new ImgPoint((float)(gcline.actualPos.X - offX), (float)(gcline.actualPos.Y - offY), gcline.motionMode);
