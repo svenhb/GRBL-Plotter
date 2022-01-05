@@ -4,6 +4,10 @@ Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windo
 Geschrieben in C# VisualStudio 2019.  
 Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WK8ATWHC872JU)   
   
+### Neu in Version 1.6.4.x
+* Neue Sprachauswahl: Tschechisch
+* Hintergrundmuster für Bildimport-Halbtone
+ 
 ### Neu in Version 1.6.3.x
 * Option um die Pfadknoten (=Gcode-Koordinaten) der Grafikobjekte in der 2D-Anzeige einzublenden (wird bei Programmstart abgeschaltet) - [File - Setup - Program appearance - 2D-View]
 * Anzeige des Status von D0-D3 des grbl-Mega-5X, Freigabe und Portbeschreibung: [File - Setup - Program behavior - Program start - Pin description]
