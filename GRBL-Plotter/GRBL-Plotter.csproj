@@ -29,8 +29,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>5</ApplicationRevision>
-    <ApplicationVersion>1.6.3.5</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.6.4.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -432,6 +432,12 @@
     <Content Include="data\examples\graphic_fiducial_circle.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\examples\pattern_spiral.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\examples\pattern_wave.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\extensions\GCode_Conic_Spiral.hta">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -633,7 +639,7 @@
     <Content Include="data\tools\test_layer.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\usecases\example_plotter.ini">
+    <Content Include="data\usecases\example_plotter_Z_axis.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\scripts\script_find_Z_set_zero.nc">
@@ -729,6 +735,15 @@
     <Content Include="data\buttons\usecase_simple_z.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\examples\pattern_rect.dxf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\examples\pattern_star1.dxf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\examples\pattern_star2.dxf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\app.manifest" />
     <None Include="Resources\LeadInOut.png" />
     <None Include="Resources\rndOff.png" />
@@ -766,6 +781,9 @@
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.ar.resx">
       <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.cs.resx">
+      <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.de-DE.resx">
       <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
     </EmbeddedResource>
@@ -790,7 +808,19 @@
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.zh-CN.resx">
       <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromImage.cs.resx">
+      <DependentUpon>GCodeFromImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromShape.cs.resx">
+      <DependentUpon>GCodeFromShape.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromText.cs.resx">
+      <DependentUpon>GCodeFromText.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\AboutForm.ar.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AboutForm.cs.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\AboutForm.de-DE.resx">
@@ -883,6 +913,9 @@
     <EmbeddedResource Include="GUI\ButtonEdit.ar.resx">
       <DependentUpon>ButtonEdit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ButtonEdit.cs.resx">
+      <DependentUpon>ButtonEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\ButtonEdit.de-DE.resx">
       <DependentUpon>ButtonEdit.cs</DependentUpon>
     </EmbeddedResource>
@@ -907,7 +940,13 @@
     <EmbeddedResource Include="GUI\ButtonEdit.zh-CN.resx">
       <DependentUpon>ButtonEdit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MainForm.cs.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\MainFormStreamSection.ar.resx">
+      <DependentUpon>MainFormStreamSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MainFormStreamSection.cs.resx">
       <DependentUpon>MainFormStreamSection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\MainFormStreamSection.de-DE.resx">
@@ -941,6 +980,9 @@
       <DependentUpon>Control2ndGRBL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlCameraForm.ar.resx">
+      <DependentUpon>ControlCameraForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlCameraForm.cs.resx">
       <DependentUpon>ControlCameraForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlCameraForm.de-DE.resx">
@@ -979,6 +1021,9 @@
     <EmbeddedResource Include="MachineControl\ControlHeightMap.ar.resx">
       <DependentUpon>ControlHeightMap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlHeightMap.cs.resx">
+      <DependentUpon>ControlHeightMap.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlHeightMap.de-DE.resx">
       <DependentUpon>ControlHeightMap.cs</DependentUpon>
     </EmbeddedResource>
@@ -1004,6 +1049,9 @@
       <DependentUpon>ControlHeightMap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlJogPathCreator.ar.resx">
+      <DependentUpon>ControlJogPathCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlJogPathCreator.cs.resx">
       <DependentUpon>ControlJogPathCreator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlJogPathCreator.de-DE.resx">
@@ -1033,6 +1081,9 @@
     <EmbeddedResource Include="MachineControl\ControlLaser.ar.resx">
       <DependentUpon>ControlLaser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlLaser.cs.resx">
+      <DependentUpon>ControlLaser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlLaser.de-DE.resx">
       <DependentUpon>ControlLaser.cs</DependentUpon>
     </EmbeddedResource>
@@ -1060,6 +1111,9 @@
     <EmbeddedResource Include="MachineControl\ControlProbing.ar.resx">
       <DependentUpon>ControlProbing.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlProbing.cs.resx">
+      <DependentUpon>ControlProbing.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlProbing.de-DE.resx">
       <DependentUpon>ControlProbing.cs</DependentUpon>
     </EmbeddedResource>
@@ -1085,6 +1139,9 @@
       <DependentUpon>ControlProbing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSerialForm.ar.resx">
+      <DependentUpon>ControlSerialForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSerialForm.cs.resx">
       <DependentUpon>ControlSerialForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSerialForm.de-DE.resx">
@@ -1116,6 +1173,9 @@
     <EmbeddedResource Include="MachineControl\ControlSetupForm.ar.resx">
       <DependentUpon>ControlSetupForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSetupForm.cs.resx">
+      <DependentUpon>ControlSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupForm.de-DE.resx">
       <DependentUpon>ControlSetupForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1138,6 +1198,9 @@
       <DependentUpon>ControlSetupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupUseCase.ar.resx">
+      <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSetupUseCase.cs.resx">
       <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupUseCase.de-DE.resx">
@@ -1181,9 +1244,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\MainForm.ar.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\MainForm.de-DE.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\MainForm.es.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -1548,12 +1613,12 @@
   <ItemGroup>
     <PublishFile Include="data\hotkeys.xml">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
