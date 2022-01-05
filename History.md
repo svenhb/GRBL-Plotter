@@ -1,6 +1,9 @@
 ## History
 Needs to be read from the bottom up ;-)  
  
+### 2022-01 Version 1.6.4.x 
+* Czech language
+* Add background pattern for image-import halftone 
  
 ### 2021-11 Version 1.6.3.x 
 * option to show path-nodes (vertices) (=gcode coordinates) of graphics in 2D view (will be switched off on each program start to save recources) - [File - Setup - Program appearance - 2D-View]
