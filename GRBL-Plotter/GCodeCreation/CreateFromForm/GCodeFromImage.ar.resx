@@ -508,4 +508,55 @@
   <data name="checkBox1.ToolTip" xml:space="preserve">
     <value>في العرض ثنائي الأبعاد لا تظهر قيمة بيضاء (عرض القلم = 0)</value>
   </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>مسافة الخط</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>استخراج CMYK / RGB</value>
+  </data>
+  <data name="cbGrayscaleChannel.Text" xml:space="preserve">
+    <value>قناة لون واحد</value>
+  </data>
+  <data name="BtnReloadPattern.Text" xml:space="preserve">
+    <value>إعادة تحميل النمط</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>مركز نقاط البيع. من النمط</value>
+  </data>
+  <data name="rbEngravingPattern4.Text" xml:space="preserve">
+    <value>من العرض ثنائي الأبعاد</value>
+  </data>
+  <data name="rbEngravingPattern4.ToolTip" xml:space="preserve">
+    <value>قم بتحميل رسم SVG أو DXF كنمط للصورة.</value>
+  </data>
+  <data name="rbEngravingPattern3.Text" xml:space="preserve">
+    <value>حلزوني</value>
+  </data>
+  <data name="rbEngravingPattern3.ToolTip" xml:space="preserve">
+    <value>يتم إنشاء نمط حلزوني داخليًا. "مسافة الخط" = زيادة نصف القطر لكل دورة.</value>
+  </data>
+  <data name="cBOnlyLeftToRight.Text" xml:space="preserve">
+    <value>فقط من اليسار إلى اليمين</value>
+  </data>
+  <data name="cBOnlyLeftToRight.ToolTip" xml:space="preserve">
+    <value>ارسم من اتجاه واحد فقط لتجنب الإزاحة</value>
+  </data>
+  <data name="Cb2DViewHide0.Text" xml:space="preserve">
+    <value>2D إخفاء الرؤية 0</value>
+  </data>
+  <data name="Cb2DViewHide0.ToolTip" xml:space="preserve">
+    <value>في العرض ثنائي الأبعاد لا تظهر قيمة بيضاء (عرض القلم = 0)</value>
+  </data>
+  <data name="nUDZBottom.ToolTip" xml:space="preserve">
+    <value>قيمة أقل</value>
+  </data>
+  <data name="nUDSBottom.ToolTip" xml:space="preserve">
+    <value>قيمة أقل</value>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>نمط</value>
+  </data>
+  <data name="CbPenUpOn0.Text" xml:space="preserve">
+    <value>Pen-up على 0</value>
+  </data>
 </root>

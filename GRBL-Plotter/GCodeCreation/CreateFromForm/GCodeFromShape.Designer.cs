@@ -443,7 +443,7 @@
             1,
             0,
             0,
-            65536});
+            131072});
             this.nUDShapeR.Name = "nUDShapeR";
             this.nUDShapeR.Value = new decimal(new int[] {
             3,
@@ -490,10 +490,10 @@
             65536});
             resources.ApplyResources(this.nUDImportGCZDown, "nUDImportGCZDown");
             this.nUDImportGCZDown.Maximum = new decimal(new int[] {
-            1,
             0,
             0,
-            -2147418112});
+            0,
+            0});
             this.nUDImportGCZDown.Minimum = new decimal(new int[] {
             1000,
             0,

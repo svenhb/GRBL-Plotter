@@ -1,0 +1,538 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Výstupní velikost v jednotkách</value>
+  </data>
+  <data name="btnKeepSizeReso.Text" xml:space="preserve">
+    <value>Ponechat orig. velikost pixelů, kalkul. Rozlišení</value>
+  </data>
+  <data name="btnKeepSizeWidth.Text" xml:space="preserve">
+    <value>Ponechat orig. velikost pixelů, kalkul. Šířka</value>
+  </data>
+  <data name="lblSizeOrig.Text" xml:space="preserve">
+    <value>Velikost</value>
+  </data>
+  <data name="nUDResoX.ToolTip" xml:space="preserve">
+    <value>Vzdálenost mezi řádky by měla odpovídat šířce pera</value>
+  </data>
+  <data name="lblSizeResult.Text" xml:space="preserve">
+    <value>Velikost</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Šířka</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Reso X</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Výška</value>
+  </data>
+  <data name="cbLockRatio.Text" xml:space="preserve">
+    <value>zachovat poměr</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Vzdálenost čáry</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Gamma</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Kontrast</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Jas</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Extrahujte CMYK / RGB</value>
+  </data>
+  <data name="cbGrayscaleChannel.Text" xml:space="preserve">
+    <value>Jednobarevný kanál</value>
+  </data>
+  <data name="cbGrayscale.Text" xml:space="preserve">
+    <value>Stupně šedi</value>
+  </data>
+  <data name="rbModeDither.Text" xml:space="preserve">
+    <value>Dithering</value>
+  </data>
+  <data name="rbModeGray.Text" xml:space="preserve">
+    <value>Stupně šedi</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Režim konverze</value>
+  </data>
+  <data name="btnInvert.ToolTip" xml:space="preserve">
+    <value>Invertovat barvy</value>
+  </data>
+  <data name="btnHorizMirror.ToolTip" xml:space="preserve">
+    <value>Horizontální překlopení</value>
+  </data>
+  <data name="btnVertMirror.ToolTip" xml:space="preserve">
+    <value>Vertikální překlopení</value>
+  </data>
+  <data name="btnRotateRight.ToolTip" xml:space="preserve">
+    <value>Otočit obrázek o 90° cw</value>
+  </data>
+  <data name="btnRotateLeft.ToolTip" xml:space="preserve">
+    <value>Otočit obrázek o 90° ccw</value>
+  </data>
+  <data name="gBgcodeDirection.Text" xml:space="preserve">
+    <value>Směr pozemku</value>
+  </data>
+  <data name="BtnReloadPattern.Text" xml:space="preserve">
+    <value>Znovu načíst vzor</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Střed-poz. vzoru</value>
+  </data>
+  <data name="rbEngravingPattern4.Text" xml:space="preserve">
+    <value>z 2D pohledu</value>
+  </data>
+  <data name="rbEngravingPattern4.ToolTip" xml:space="preserve">
+    <value>Načtěte grafiku SVG nebo DXF jako vzor pro obrázek.</value>
+  </data>
+  <data name="rbEngravingPattern3.Text" xml:space="preserve">
+    <value>Spirála</value>
+  </data>
+  <data name="rbEngravingPattern3.ToolTip" xml:space="preserve">
+    <value>Interně generovaný spirálový vzor. 'Vzdálenost čáry' = zvětšení poloměru na otáčku.</value>
+  </data>
+  <data name="cBOnlyLeftToRight.Text" xml:space="preserve">
+    <value>Pouze zleva doprava</value>
+  </data>
+  <data name="cBOnlyLeftToRight.ToolTip" xml:space="preserve">
+    <value>Kreslete pouze z jednoho směru, abyste se vyhnuli posunům</value>
+  </data>
+  <data name="rbEngravingPattern2.Text" xml:space="preserve">
+    <value>úhlopříčka</value>
+  </data>
+  <data name="rbEngravingPattern1.Text" xml:space="preserve">
+    <value>horizontální</value>
+  </data>
+  <data name="btnGenerate.Text" xml:space="preserve">
+    <value>Vytvořte G-Code</value>
+  </data>
+  <data name="copyToolStripMenuItem.Text" xml:space="preserve">
+    <value>kopírovat</value>
+  </data>
+  <data name="setAsOriginalToolStripMenuItem.Text" xml:space="preserve">
+    <value>Nastavit jako originál</value>
+  </data>
+  <data name="lblImageSource.Text" xml:space="preserve">
+    <value>originál</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Posun odstínu</value>
+  </data>
+  <data name="tBarHueShift.ToolTip" xml:space="preserve">
+    <value>V rozsahu barev HSV přidejte hodnotu k HUE</value>
+  </data>
+  <data name="nUDMaxColors.ToolTip" xml:space="preserve">
+    <value>Max. množství = max. záznamy v tabulce nástrojů</value>
+  </data>
+  <data name="lblColors.Text" xml:space="preserve">
+    <value>Počet barev</value>
+  </data>
+  <data name="cbExceptColor.Text" xml:space="preserve">
+    <value>Barva výjimky</value>
+  </data>
+  <data name="cbExceptColor.ToolTip" xml:space="preserve">
+    <value>Kliknutím levým tlačítkem uvnitř obrázku vyberte barvu, která nebude vykreslena</value>
+  </data>
+  <data name="cbSkipToolOrder.Text" xml:space="preserve">
+    <value>Přeskočit pův. nástroj č. použijte sekvenční nr.</value>
+  </data>
+  <data name="cbSkipToolOrder.ToolTip" xml:space="preserve">
+    <value>Místo použití čísla nástroje z tabulky nástrojů (např. 3,7,9) budou nástroje počítány ve vzestupném pořadí (1,2,3)</value>
+  </data>
+  <data name="tBRMin.ToolTip" xml:space="preserve">
+    <value>Červená Hodnoty pod touto hodnotou budou nastaveny na nulu</value>
+  </data>
+  <data name="tBRMax.ToolTip" xml:space="preserve">
+    <value>Červená Hodnoty nad touto hodnotou budou nastaveny na nulu</value>
+  </data>
+  <data name="tBGMax.ToolTip" xml:space="preserve">
+    <value>Zelená Hodnoty nad touto hodnotou budou nastaveny na nulu</value>
+  </data>
+  <data name="tBGMin.ToolTip" xml:space="preserve">
+    <value>Zelená Hodnoty pod touto hodnotou budou nastaveny na nulu</value>
+  </data>
+  <data name="tBBMax.ToolTip" xml:space="preserve">
+    <value>Modrá Hodnoty nad touto hodnotou budou nastaveny na nulu</value>
+  </data>
+  <data name="tBBMin.ToolTip" xml:space="preserve">
+    <value>Modrá Hodnoty pod touto hodnotou budou nastaveny na nulu</value>
+  </data>
+  <data name="label13.ToolTip" xml:space="preserve">
+    <value>Filtr provádí filtrování barevných kanálů vymazáním hodnot (nastavených na černou), které jsou uvnitř/mimo zadaný rozsah hodnot.
+Filtr umožňuje vyplnit určité rozsahy barevných kanálů RGB zadanou hodnotou.</value>
+  </data>
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value>Filtr provádí filtrování barevných kanálů vymazáním hodnot (nastavených na černou), které jsou uvnitř/mimo zadaný rozsah hodnot.</value>
+  </data>
+  <data name="label15.ToolTip" xml:space="preserve">
+    <value>Filtr provádí filtrování barevných kanálů vymazáním hodnot (nastavených na černou), které jsou uvnitř/mimo zadaný rozsah hodnot.</value>
+  </data>
+  <data name="rBMode0.Text" xml:space="preserve">
+    <value>Vzdálenost v RGB prostoru</value>
+  </data>
+  <data name="rBMode0.ToolTip" xml:space="preserve">
+    <value>Vzdálenost v prostoru RGB: Math.Sqrt((c1.R - ​​c2.R) * (c1.R - ​​c2.R) + (c1.G - c2.G) * (c1.G - c2.G) + (cl.B - c2.B)* (cl.B - c2.B)); }</value>
+  </data>
+  <data name="rBMode1.Text" xml:space="preserve">
+    <value>Vzdálenost v barevném odstínu (0°-360°)</value>
+  </data>
+  <data name="rBMode1.ToolTip" xml:space="preserve">
+    <value>Vzdálenost v barevném odstínu (0°-360°)</value>
+  </data>
+  <data name="rBMode2.Text" xml:space="preserve">
+    <value>Vzdálenost v barvě-odstín,-sat.,-světlý.</value>
+  </data>
+  <data name="rBMode2.ToolTip" xml:space="preserve">
+    <value>Vzdálenost v barevném odstínu (0°-360°) + sytost barev + jas barev</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Mapujte barvy obrázku na barvy tabulky nástrojů</value>
+  </data>
+  <data name="label7.ToolTip" xml:space="preserve">
+    <value>Metoda k nalezení nejvhodnější barvy
+0: Prostor v prostoru RGB: Math.Sqrt ((c1.R - ​​c2.R) * (c1.R - ​​c2.R) + (c1.G - c2.G) * (c1.G - c2.G ) + (cl.B - c2.B) * (cl.B - c2.B)); }
+1: vzdálenost v barevném prostoru (0 ° -360 °)
+2: vzdálenost v barevném prostoru (0 ° -360 °) + sytost + jas</value>
+  </data>
+  <data name="btnTest.Text" xml:space="preserve">
+    <value>Náhled</value>
+  </data>
+  <data name="btnTest.ToolTip" xml:space="preserve">
+    <value>Podržte tlačítko stisknuté pro kontrolu obrázku s barvami z tabulky nástrojů</value>
+  </data>
+  <data name="nUDColorPercent.ToolTip" xml:space="preserve">
+    <value>Minimální limit % výskytu barvy</value>
+  </data>
+  <data name="btnPresetCorrection3.Text" xml:space="preserve">
+    <value>Komiks - málo barev</value>
+  </data>
+  <data name="btnPresetCorrection3.ToolTip" xml:space="preserve">
+    <value>Pokuste se použít co nejméně barev tím, že vyřadíte barvy pod určité procento</value>
+  </data>
+  <data name="btnShowSettings.Text" xml:space="preserve">
+    <value>zobrazit Nastavení</value>
+  </data>
+  <data name="btnShowSettings.ToolTip" xml:space="preserve">
+    <value>Zobrazit použité korekční hodnoty</value>
+  </data>
+  <data name="btnShowOrig.Text" xml:space="preserve">
+    <value>Originál</value>
+  </data>
+  <data name="btnShowOrig.ToolTip" xml:space="preserve">
+    <value>Stisknutím zobrazíte původní neupravený obrázek</value>
+  </data>
+  <data name="nUDGCodeOutlineSmooth.ToolTip" xml:space="preserve">
+    <value>Vyhlazovací cykly</value>
+  </data>
+  <data name="cBGCodeOutlineShrink.Text" xml:space="preserve">
+    <value>Zmenšit cestu</value>
+  </data>
+  <data name="cBGCodeOutlineShrink.ToolTip" xml:space="preserve">
+    <value>Zmenšením dráhy kompenzujte šířku pera</value>
+  </data>
+  <data name="btnGetPWMValues.Text" xml:space="preserve">
+    <value>Získejte nastavení servo-PWM</value>
+  </data>
+  <data name="btnGetPWMValues.ToolTip" xml:space="preserve">
+    <value>Získejte hodnoty pro RC-Servo Pen-down a Pen-Zero z dialogu nastavení</value>
+  </data>
+  <data name="cBCompress.Text" xml:space="preserve">
+    <value>komprimovat kód</value>
+  </data>
+  <data name="cBCompress.ToolTip" xml:space="preserve">
+    <value>Vyhněte se režii kódu pro rychlejší streamování</value>
+  </data>
+  <data name="Cb2DViewHide0.Text" xml:space="preserve">
+    <value>2D pohled skrýt 0</value>
+  </data>
+  <data name="Cb2DViewHide0.ToolTip" xml:space="preserve">
+    <value>Ve 2D zobrazení nezobrazovat bílou hodnotu (šířka pera = 0)</value>
+  </data>
+  <data name="nUDResoY.ToolTip" xml:space="preserve">
+    <value>Vzdálenost mezi řádky by měla odpovídat šířce pera</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Režim výměny barev</value>
+  </data>
+  <data name="loadPictureToolStripMenuItem.Text" xml:space="preserve">
+    <value>Načíst obrázek</value>
+  </data>
+  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Vložit ze schránky</value>
+  </data>
+  <data name="rBProcessTool.Text" xml:space="preserve">
+    <value>Barva jako nástroj č.</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Z max (bílá)</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Z min (černá)</value>
+  </data>
+  <data name="rBGrayS.Text" xml:space="preserve">
+    <value>Šedá hodnota jako otáčky vřetena (PWM)</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>S min (bílá)</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>S max (černá)</value>
+  </data>
+  <data name="rBProcessZ.Text" xml:space="preserve">
+    <value>Hodnota šedé jako Z</value>
+  </data>
+  <data name="cBPreview.Text" xml:space="preserve">
+    <value>Náhled s barvami z tabulky nástrojů</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Přednastavení</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Oprava obrazu</value>
+  </data>
+  <data name="cBFilterRemoveArtefact.Text" xml:space="preserve">
+    <value>Odstraňte jednotlivé pixely</value>
+  </data>
+  <data name="nUDZBottom.ToolTip" xml:space="preserve">
+    <value>Nižší hodnota</value>
+  </data>
+  <data name="nUDSBottom.ToolTip" xml:space="preserve">
+    <value>Nižší hodnota</value>
+  </data>
+  <data name="cBFilterHistogram.Text" xml:space="preserve">
+    <value>Vyrovnání histogramu</value>
+  </data>
+  <data name="cBFilterEdge.Text" xml:space="preserve">
+    <value>Okrajový filtr</value>
+  </data>
+  <data name="cBPosterize.Text" xml:space="preserve">
+    <value>Posterizace</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Barevné efekty</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Výměna barvy</value>
+  </data>
+  <data name="tabPage5.Text" xml:space="preserve">
+    <value>Generování G-kódu</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Redukce barev</value>
+  </data>
+  <data name="cBReduceColorsToolTable.Text" xml:space="preserve">
+    <value>Omezte barvy</value>
+  </data>
+  <data name="cBReduceColorsDithering.Text" xml:space="preserve">
+    <value>Dithering</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Seznam nástrojů seřazený podle výskytu</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Průvodce převodem</value>
+  </data>
+  <data name="btnPresetCorrection4.Text" xml:space="preserve">
+    <value>Obrys (bez návratu)</value>
+  </data>
+  <data name="btnPresetCorrection2.Text" xml:space="preserve">
+    <value>Grafika - mnoho barev</value>
+  </data>
+  <data name="btnResetCorrection.Text" xml:space="preserve">
+    <value>RESET hodnot</value>
+  </data>
+  <data name="btnPresetCorrection1.Text" xml:space="preserve">
+    <value>Obrázek - tmavé pozadí</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Nasycení</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Zrušte výběr barev, pokud to není potřeba</value>
+  </data>
+  <data name="tabPage21.Text" xml:space="preserve">
+    <value>Barva jako nástroj č.</value>
+  </data>
+  <data name="gBgcodeSelection.Text" xml:space="preserve">
+    <value>Kreslit výběr</value>
+  </data>
+  <data name="cBGCodeFill.Text" xml:space="preserve">
+    <value>Vyplňte oblasti</value>
+  </data>
+  <data name="cBGCodeOutline.Text" xml:space="preserve">
+    <value>Nakreslete obrys</value>
+  </data>
+  <data name="cBGCodeOutlineSmooth.Text" xml:space="preserve">
+    <value>hladký</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>2D pohled</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Poznámka: pokud je zaškrtnuto "Náhled", v horní části okna budou použity barvy z tabulky nástrojů (Nastavení - Tabulka nástrojů).</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Barevný režim pera používá šířku pera z tabulky nástrojů [Nastavení - Vzhled programu - 2D zobrazení]</value>
+  </data>
+  <data name="cBResolutionPenWidth.Text" xml:space="preserve">
+    <value>Použijte hodnotu rozlišení jako šířku pera ve 2D zobrazení</value>
+  </data>
+  <data name="tabPage22.Text" xml:space="preserve">
+    <value>Hodnota šedé jako Z nebo S</value>
+  </data>
+  <data name="tabPage6.Text" xml:space="preserve">
+    <value>Z nebo S</value>
+  </data>
+  <data name="rBGrayZ.Text" xml:space="preserve">
+    <value>Šedá hodnota jako Z (hloubka)</value>
+  </data>
+  <data name="cBLaserModeOffEnd.Text" xml:space="preserve">
+    <value>Vymažte laserový režim na konci G-Code</value>
+  </data>
+  <data name="cBLaserModeOnStart.Text" xml:space="preserve">
+    <value>Nastavte laserový režim na start G-Code</value>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>Vzor</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Vlastnosti</value>
+  </data>
+  <data name="CbPenUpOn0.Text" xml:space="preserve">
+    <value>Přípis na 0</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Načíst případ použití pro nastavení</value>
+  </data>
+  <data name="btnLoad.Text" xml:space="preserve">
+    <value>Načíst a použít případ použití</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Naposledy načteno:</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Vytvořte G-kód z obrázku</value>
+  </data>
+</root>

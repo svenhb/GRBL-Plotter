@@ -86,14 +86,8 @@ namespace GrblPlotter
             }
             if (!defaultToolFound)
             {
-                if (cBTool.Items.Count > 0)
-                    cBTool.SelectedIndex = 0;
-                else
-                {
-                    cBToolTable.Checked = false;
-                    cBToolTable.Enabled = false;
-                    cBTool.Enabled = false;
-                }
+                cBTool.Items.Add("No tools found");
+                cBTool.SelectedIndex = 0;
             }
             CBToolTable_CheckedChanged(sender, e);
 

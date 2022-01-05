@@ -492,4 +492,49 @@
   <data name="nUDZBot.ToolTip" xml:space="preserve">
     <value>Bajo valor</value>
   </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Distancia de línea</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Extraer CMYK / RGB</value>
+  </data>
+  <data name="cbGrayscaleChannel.Text" xml:space="preserve">
+    <value>Canal de un solo color</value>
+  </data>
+  <data name="BtnReloadPattern.Text" xml:space="preserve">
+    <value>Patrón de recarga</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Posición central de patrón</value>
+  </data>
+  <data name="rbEngravingPattern4.Text" xml:space="preserve">
+    <value>desde la vista 2D</value>
+  </data>
+  <data name="rbEngravingPattern4.ToolTip" xml:space="preserve">
+    <value>Cargue un gráfico SVG o DXF como patrón para la imagen.</value>
+  </data>
+  <data name="rbEngravingPattern3.Text" xml:space="preserve">
+    <value>Espiral</value>
+  </data>
+  <data name="rbEngravingPattern3.ToolTip" xml:space="preserve">
+    <value>Patrón de espiral generado internamente. 'Distancia de línea' = aumento de radio por vuelta.</value>
+  </data>
+  <data name="cBOnlyLeftToRight.Text" xml:space="preserve">
+    <value>Solo de izquierda a derecha</value>
+  </data>
+  <data name="cBOnlyLeftToRight.ToolTip" xml:space="preserve">
+    <value>Dibuje solo desde una dirección para evitar desplazamientos</value>
+  </data>
+  <data name="Cb2DViewHide0.Text" xml:space="preserve">
+    <value>Vista 2D ocultar 0</value>
+  </data>
+  <data name="Cb2DViewHide0.ToolTip" xml:space="preserve">
+    <value>En la vista 2D no muestra el valor blanco (ancho de la pluma = 0)</value>
+  </data>
+  <data name="nUDZBottom.ToolTip" xml:space="preserve">
+    <value>Bajo valor</value>
+  </data>
+  <data name="nUDSBottom.ToolTip" xml:space="preserve">
+    <value>Bajo valor</value>
+  </data>
 </root>

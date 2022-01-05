@@ -468,4 +468,49 @@ unter dem angegebenen Prozentwert werden in die nächstgelegene Farbe umgewandel
   <data name="nUDZBot.ToolTip" xml:space="preserve">
     <value>Unterer Wert</value>
   </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Linienabstand</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>CMYK / RGB extrahieren</value>
+  </data>
+  <data name="cbGrayscaleChannel.Text" xml:space="preserve">
+    <value>Einfarbiger Kanal</value>
+  </data>
+  <data name="BtnReloadPattern.Text" xml:space="preserve">
+    <value>Muster neu laden</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Mittel-Pos. des Musters</value>
+  </data>
+  <data name="rbEngravingPattern4.Text" xml:space="preserve">
+    <value>aus 2D-Ansicht</value>
+  </data>
+  <data name="rbEngravingPattern4.ToolTip" xml:space="preserve">
+    <value>Laden Sie eine SVG- oder DXF-Grafik als Muster für das Bild.</value>
+  </data>
+  <data name="rbEngravingPattern3.Text" xml:space="preserve">
+    <value>Spiral</value>
+  </data>
+  <data name="rbEngravingPattern3.ToolTip" xml:space="preserve">
+    <value>Intern erzeugtes Spiralmuster. 'Linienabstand' = Zunahme des Radius pro Umdrehung.</value>
+  </data>
+  <data name="cBOnlyLeftToRight.Text" xml:space="preserve">
+    <value>Nur von links nach rechts</value>
+  </data>
+  <data name="cBOnlyLeftToRight.ToolTip" xml:space="preserve">
+    <value>Zeichnen Sie nur aus einer Richtung, um Versätze zu vermeiden</value>
+  </data>
+  <data name="Cb2DViewHide0.Text" xml:space="preserve">
+    <value>2D-Ansicht ausblenden 0</value>
+  </data>
+  <data name="Cb2DViewHide0.ToolTip" xml:space="preserve">
+    <value>In der 2D-Ansicht keinen Weißwert anzeigen (Stiftbreite = 0)</value>
+  </data>
+  <data name="nUDZBottom.ToolTip" xml:space="preserve">
+    <value>Unterer Wert</value>
+  </data>
+  <data name="nUDSBottom.ToolTip" xml:space="preserve">
+    <value>Unterer Wert</value>
+  </data>
 </root>

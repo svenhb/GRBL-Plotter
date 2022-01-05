@@ -505,4 +505,58 @@
   <data name="checkBox1.ToolTip" xml:space="preserve">
     <value>2Dビューでは、白の値は表示されません（ペンの幅= 0）</value>
   </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>線間距離</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>CMYK / RGBを抽出します</value>
+  </data>
+  <data name="cbGrayscaleChannel.Text" xml:space="preserve">
+    <value>単色チャンネル</value>
+  </data>
+  <data name="gBgcodeDirection.Text" xml:space="preserve">
+    <value>プロット方向</value>
+  </data>
+  <data name="BtnReloadPattern.Text" xml:space="preserve">
+    <value>リロードパターン</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>センター位置パターンの</value>
+  </data>
+  <data name="rbEngravingPattern4.Text" xml:space="preserve">
+    <value>2Dビューから</value>
+  </data>
+  <data name="rbEngravingPattern4.ToolTip" xml:space="preserve">
+    <value>画像のパターンとしてSVGまたはDXFグラフィックをロードします。</value>
+  </data>
+  <data name="rbEngravingPattern3.Text" xml:space="preserve">
+    <value>螺旋</value>
+  </data>
+  <data name="rbEngravingPattern3.ToolTip" xml:space="preserve">
+    <value>内部で生成されたスパイラルパターン。 「線距離」=回転あたりの半径の増加。</value>
+  </data>
+  <data name="cBOnlyLeftToRight.Text" xml:space="preserve">
+    <value>左から右のみ</value>
+  </data>
+  <data name="cBOnlyLeftToRight.ToolTip" xml:space="preserve">
+    <value>オフセットを避けるために一方向からのみ描画します</value>
+  </data>
+  <data name="Cb2DViewHide0.Text" xml:space="preserve">
+    <value>2Dビュー非表示0</value>
+  </data>
+  <data name="Cb2DViewHide0.ToolTip" xml:space="preserve">
+    <value>2Dビューでは、白の値を表示しません（ペンの幅= 0）</value>
+  </data>
+  <data name="nUDZBottom.ToolTip" xml:space="preserve">
+    <value>低い値</value>
+  </data>
+  <data name="nUDSBottom.ToolTip" xml:space="preserve">
+    <value>低い値</value>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>パターン</value>
+  </data>
+  <data name="CbPenUpOn0.Text" xml:space="preserve">
+    <value>0のペンアップ</value>
+  </data>
 </root>

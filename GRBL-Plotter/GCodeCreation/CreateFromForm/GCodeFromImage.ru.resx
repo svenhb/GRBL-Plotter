@@ -492,4 +492,58 @@
   <data name="checkBox1.ToolTip" xml:space="preserve">
     <value>В 2D-виде не показывать белое значение (ширина пера = 0)</value>
   </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Расстояние линии</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Извлечь CMYK / RGB</value>
+  </data>
+  <data name="cbGrayscaleChannel.Text" xml:space="preserve">
+    <value>Одноцветный канал</value>
+  </data>
+  <data name="BtnReloadPattern.Text" xml:space="preserve">
+    <value>Шаблон перезагрузки</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Центр-поз. образца</value>
+  </data>
+  <data name="rbEngravingPattern4.Text" xml:space="preserve">
+    <value>из 2D вида</value>
+  </data>
+  <data name="rbEngravingPattern4.ToolTip" xml:space="preserve">
+    <value>Загрузите графику SVG или DXF в качестве шаблона для изображения.</value>
+  </data>
+  <data name="rbEngravingPattern3.Text" xml:space="preserve">
+    <value>Спираль</value>
+  </data>
+  <data name="rbEngravingPattern3.ToolTip" xml:space="preserve">
+    <value>Внутренний спиральный узор. «Расстояние по линии» = увеличение радиуса за оборот.</value>
+  </data>
+  <data name="cBOnlyLeftToRight.Text" xml:space="preserve">
+    <value>Только слева направо</value>
+  </data>
+  <data name="cBOnlyLeftToRight.ToolTip" xml:space="preserve">
+    <value>Рисуйте только в одном направлении, чтобы избежать смещений</value>
+  </data>
+  <data name="Cb2DViewHide0.Text" xml:space="preserve">
+    <value>2D вид скрыть 0</value>
+  </data>
+  <data name="Cb2DViewHide0.ToolTip" xml:space="preserve">
+    <value>В 2D-виде не показывать белое значение (ширина пера = 0)</value>
+  </data>
+  <data name="nUDZBottom.ToolTip" xml:space="preserve">
+    <value>Меньшее значение</value>
+  </data>
+  <data name="nUDSBottom.ToolTip" xml:space="preserve">
+    <value>Меньшее значение</value>
+  </data>
+  <data name="cBReduceColorsDithering.Text" xml:space="preserve">
+    <value>Дизеринг</value>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>Шаблон</value>
+  </data>
+  <data name="CbPenUpOn0.Text" xml:space="preserve">
+    <value>Pen-up на 0</value>
+  </data>
 </root>

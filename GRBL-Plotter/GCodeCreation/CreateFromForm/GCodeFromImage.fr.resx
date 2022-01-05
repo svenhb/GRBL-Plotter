@@ -492,4 +492,49 @@
   <data name="nUDZBot.ToolTip" xml:space="preserve">
     <value>Unterer Wert</value>
   </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Distance de ligne</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Extraire CMJN / RVB</value>
+  </data>
+  <data name="cbGrayscaleChannel.Text" xml:space="preserve">
+    <value>Canal de couleur unique</value>
+  </data>
+  <data name="BtnReloadPattern.Text" xml:space="preserve">
+    <value>Recharger le modèle</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Centre-pos. de modèle</value>
+  </data>
+  <data name="rbEngravingPattern4.Text" xml:space="preserve">
+    <value>à partir de la vue 2D</value>
+  </data>
+  <data name="rbEngravingPattern4.ToolTip" xml:space="preserve">
+    <value>Chargez un graphique SVG ou DXF comme motif pour l'image.</value>
+  </data>
+  <data name="rbEngravingPattern3.Text" xml:space="preserve">
+    <value>Spirale</value>
+  </data>
+  <data name="rbEngravingPattern3.ToolTip" xml:space="preserve">
+    <value>Motif en spirale généré en interne. 'Line distance' = augmentation du rayon par tour.</value>
+  </data>
+  <data name="cBOnlyLeftToRight.Text" xml:space="preserve">
+    <value>Seulement de gauche à droite</value>
+  </data>
+  <data name="cBOnlyLeftToRight.ToolTip" xml:space="preserve">
+    <value>Ne dessinez que dans une direction pour éviter les décalages</value>
+  </data>
+  <data name="Cb2DViewHide0.Text" xml:space="preserve">
+    <value>Vue 2D masquer 0</value>
+  </data>
+  <data name="Cb2DViewHide0.ToolTip" xml:space="preserve">
+    <value>Dans la vue 2D, n'affiche pas la valeur du blanc (largeur du stylo = 0)</value>
+  </data>
+  <data name="nUDZBottom.ToolTip" xml:space="preserve">
+    <value>Valeur inférieure</value>
+  </data>
+  <data name="nUDSBottom.ToolTip" xml:space="preserve">
+    <value>Valeur inférieure</value>
+  </data>
 </root>

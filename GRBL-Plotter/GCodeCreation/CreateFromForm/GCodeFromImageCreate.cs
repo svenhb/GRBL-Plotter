@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2018-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2018-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,9 +28,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
-#pragma warning disable CA1303	// Do not pass literals as localized parameters
-#pragma warning disable CA1305
-
 namespace GrblPlotter
 {   public partial class GCodeFromImage
     {
@@ -46,7 +43,7 @@ namespace GrblPlotter
         private static float cncPixelResoX;    // resolution = distance between pixels / lines / columns
         private static float cncPixelResoY;
 
-        public void GenerateGCodePreset(float startX, float startY)
+        private void GenerateGCodePreset(float startX, float startY)
         {   lblStatus.Text = "Generating GCode... ";    //Generate picture Gcode
             gcodeByToolNr.Clear();
             finalString.Clear();
@@ -60,7 +57,7 @@ namespace GrblPlotter
             cncCoordLastZ = cncCoordZ = Gcode.GcodeZUp;
         }
 
-        public void GenerateGCodeHorizontal()
+        private void GenerateGCodeHorizontal()
         {
             Logger.Debug("generateGCodeHorizontal");
             if (resultImage == null) return;          //if no image, do nothing
@@ -112,10 +109,10 @@ namespace GrblPlotter
    //         if (rBImportSVGTool.Checked)
    //             toolTable.sortByToolNr(false);
    //         else
-                ToolTable.SortByPixelCount(false);    // sort by color area (max. first)
+            ToolTable.SortByPixelCount(false);      // sort by color area (max. first)
 
             Gcode.ReduceGCode = true;
-            ConvertColorMap(resolX);             // generate GCode from coleccted pixel positions
+            ConvertColorMap(resolX);                // generate GCode from coleccted pixel positions
             Gcode.PenUp(finalString, "");                             // pen up
             if (!gcodeSpindleToggle) Gcode.SpindleOff(finalString, "Stop spindle");
             imagegcode += Gcode.GetHeader("Image import", "") + finalString.Replace(',', '.').ToString() + Gcode.GetFooter();
@@ -177,7 +174,7 @@ namespace GrblPlotter
             string tmp = "";
             int pathCount =0;
             
-            for (int index = 0; index < maxToolTableIndex; index++)  // go through lists
+            for (int index = 0; index < toolTableCount; index++)  // go through lists
             {
                 ToolTable.SetIndex(index);                      // set index in class
                 key = (sbyte)ToolTable.IndexToolNR();           // if tool-nr == known key go on
@@ -358,162 +355,5 @@ namespace GrblPlotter
         }
 
 
-    /*    private void generateGCodeDiagonal()
-        {
-            Logger.Debug("generateGCodeDiagonal");
-            if (resultImage == null) return;            //if no image, do nothing
-
-            float resolX = (float)resoDesiredX;// (float)nUDReso.Value;
-            float resolY = (float)resoDesiredX;// (float)nUDReso.Value;
-            int pixelCount = resultImage.Width * resultImage.Height;
-            int pixelProcessed = 0;
-            int percentDone = 0;
-            GenerateGCodePreset(0, 0);                   // 1st position
-
-            //////////////////////////////////////////////
-            // Generate Gcode lines by Diagonal scanning
-            //////////////////////////////////////////////
-            #region diagonal and  drawPixel
-            //Start image
-            int positionX = 0;
-            int positionY = 0;
-            cncCoordLastX = 0;//reset last positions
-            cncCoordLastY = 0;
-            int edge, direction;
-            gcode.reduceGCode = true;
-
-            while ((positionX < resultImage.Width) | (positionY < resultImage.Height))
-            {
-                edge = 1;
-                direction = 2;    // up-left to low-right
-                while ((positionX < resultImage.Width) & (positionY >= 0))
-                {
-                    cncCoordY = resolY * (float)positionY;
-                    cncCoordX = resolX * (float)positionX;
-
-                    drawPixel(positionX, positionY, cncCoordX, cncCoordY, edge, direction);
-                    edge = 0;
-                    pixelProcessed++;
-                    positionX++;
-                    positionY--;
-                    if ((positionX >= resultImage.Width - 1) || (positionY <= 0)) edge = 2;  //&& (lin == 0)
-                }
-                positionX--;
-                positionY++;
-
-                if (positionX >= resultImage.Width - 1) positionY++;
-                else positionX++;
-                edge = 1;
-                direction = -2;    // low-right to up-left 
-                while ((positionX >= 0) & (positionY < resultImage.Height))
-                {
-                    cncCoordY = resolY * (float)positionY;
-                    cncCoordX = resolX * (float)positionX;
-
-                    drawPixel(positionX, positionY, cncCoordX, cncCoordY, edge, direction);
-                    edge = 0;
-                    pixelProcessed++;
-                    positionX--;
-                    positionY++;
-                    if ((positionX <= 0) || (positionY >= resultImage.Height - 1)) edge = 2;  //&& (lin >= adjustedImage.Height-1)
-                }
-                positionX++;
-                positionY--;
-                if (positionY >= resultImage.Height - 1) positionX++;
-                else positionY++;
-                percentDone = (pixelProcessed * 100) / pixelCount;
-                lblStatus.Text = "Generating GCode... " + Convert.ToString(percentDone) + "%";
-                if ((percentDone % 10) == 0)
-                    Refresh();
-            }
-            #endregion
-
-            imagegcode = "( Generated by GRBL-Plotter )\r\n";
-
-            int key;
-            int skipTooNr = 0;
-            int toolNr = 0;
-
- //           if (rBImportSVGTool.Checked)
- //               toolTable.sortByToolNr(false);
- //           else
-                toolTable.sortByPixelCount(false);    // sort by color area (max. first)
-
-            int pathCount=0;
-
-            gcode.reduceGCode = false;
-            for (int index = 0; index < maxToolTableIndex; index++)
-            {
-                toolTable.setIndex(index);
-                key = toolTable.indexToolNr();
-                if (gcodeByToolNr.ContainsKey(key))
-                {
-                    toolNr = key;
-                    if (cbSkipToolOrder.Checked)
-                        toolNr = skipTooNr++;
-                    finalString.AppendLine("\r\n( +++++ Tool change +++++ )");
-
-                    gcode.Tool(finalString, toolNr, toolTable.indexName());  // + svgPalette.pixelCount());
-
-                    gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" PenColor=\"{2}\" PenName=\"{3}\" PenWidth=\"{4:0.00}\">", xmlMarker.figureStart, (++pathCount), ColorTranslator.ToHtml(toolTable.indexColor()).Substring(1), toolTable.indexName(), toolTable.indexWidth()));	//toolTable.indexName()));
-                    gcode.PenUp(finalString);                             // pen up
-                    finalString.Append(gcodeByToolNr[key]);
-                    gcode.Comment(finalString, string.Format("{0}>", xmlMarker.figureEnd));
-                }
-            }
-            gcode.PenUp(finalString);                             // pen up
-            if (!gcodeSpindleToggle) gcode.SpindleOff(finalString, "Stop spindle");
-            imagegcode += gcode.GetHeader("Image import") + finalString.Replace(',', '.').ToString() + gcode.GetFooter();
-
-            lblStatus.Text = "Done (" + Convert.ToString(pixelProcessed) + "/" + Convert.ToString(pixelCount) + ")";
-            Refresh();
-        }*/
-
-   //     private float lastDrawX, lastDrawY;
-  //      bool lastIfBackground = false;
-   /*     private void DrawPixel(int picPosX, int picPosY, float coordX, float coordY, int edge, int dir)
-        {   int tmpToolNumber = resultToolNrArray[picPosX, (resultImage.Height - 1) - picPosY];
-            bool ifBackground = false;
-            float myX = coordX;
-            float myY = coordY;
-            ifBackground = (tmpToolNumber < 0) ? true : false;
-            if (edge == 0)
-            {
-                if (dir == -1) myX += (float)nUDResoX.Value;
-                if (dir == -2) myX += (float)nUDResoX.Value;
-                if (dir == 2) myY += (float)nUDResoX.Value;
-            }
-            if ((lastTool != tmpToolNumber) || (edge > 0))
-            {
-                if ((edge != 1) && !lastIfBackground)
-                { LineEnd(myX, myY); }
-                if (tmpToolNumber >= 0) gcodeStringIndex = tmpToolNumber;
-                if ((edge != 2) && !ifBackground)
-                { LineStart(myX, myY); }
-        //        lastDrawX = coordX;
-       //         lastDrawY = coordY;
-            }
-
-            lastTool = tmpToolNumber;
-            cncCoordLastX = coordX; cncCoordLastY = coordY;
-            lastIfBackground = ifBackground;
-        }*/
-
-   /*     private void LineEnd(float x, float y, string txt = "")   // finish line with old pen
-        {   Gcode.MoveTo(tmpString, x, y, txt);          // move to end pos
-            Gcode.PenUp(tmpString);                             // pen up
-            if ((gcodeStringIndex >= 0) && (!gcodeByToolNr.ContainsKey(gcodeStringIndex)))   // if ToolNr unknown, create new buffer
-            {   gcodeByToolNr.Add(gcodeStringIndex, new StringBuilder());// add array with lines
-            }
-            gcodeByToolNr[gcodeStringIndex].Append(tmpString);
-            tmpString.Clear();
-        }*/
-    /*    private void LineStart(float x, float y, string txt = "")
-        {
-  //          gcode.reduceGCode = false;
-            Gcode.MoveToRapid(tmpString, x, y, txt);         // rapid move to start pos
-            Gcode.PenDown(tmpString);                           // pen down
-  //          gcode.reduceGCode = true;
-        }*/
     }
 }

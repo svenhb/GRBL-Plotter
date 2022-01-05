@@ -483,4 +483,49 @@ O filtro permite preencher determinados intervalos de canais de cores RGB com o 
   <data name="checkBox1.ToolTip" xml:space="preserve">
     <value>Na vista 2D, não mostra o valor de branco (largura da caneta = 0)</value>
   </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Distância da linha</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Extrair CMYK / RGB</value>
+  </data>
+  <data name="cbGrayscaleChannel.Text" xml:space="preserve">
+    <value>Canal de cor única</value>
+  </data>
+  <data name="BtnReloadPattern.Text" xml:space="preserve">
+    <value>Recarregar padrão</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Pos. Central de padrão</value>
+  </data>
+  <data name="rbEngravingPattern4.Text" xml:space="preserve">
+    <value>da vista 2D</value>
+  </data>
+  <data name="rbEngravingPattern4.ToolTip" xml:space="preserve">
+    <value>Carregue um gráfico SVG ou DXF como padrão para a imagem.</value>
+  </data>
+  <data name="rbEngravingPattern3.Text" xml:space="preserve">
+    <value>Espiral</value>
+  </data>
+  <data name="rbEngravingPattern3.ToolTip" xml:space="preserve">
+    <value>Padrão de espiral gerado internamente. 'Distância da linha' = aumento do raio por volta.</value>
+  </data>
+  <data name="cBOnlyLeftToRight.Text" xml:space="preserve">
+    <value>Só da esquerda para a direita</value>
+  </data>
+  <data name="cBOnlyLeftToRight.ToolTip" xml:space="preserve">
+    <value>Desenhe apenas em uma direção para evitar deslocamentos</value>
+  </data>
+  <data name="Cb2DViewHide0.Text" xml:space="preserve">
+    <value>Vista 2D ocultar 0</value>
+  </data>
+  <data name="Cb2DViewHide0.ToolTip" xml:space="preserve">
+    <value>Na vista 2D, não mostra o valor de branco (largura da caneta = 0)</value>
+  </data>
+  <data name="nUDZBottom.ToolTip" xml:space="preserve">
+    <value>Valor inferior</value>
+  </data>
+  <data name="nUDSBottom.ToolTip" xml:space="preserve">
+    <value>Valor inferior</value>
+  </data>
 </root>

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -47,13 +47,14 @@ namespace GrblPlotter
         public GraphicsPath PathBackground = new GraphicsPath();
         private GraphicsPath path;
 
-        private static StringBuilder gcodeString = new StringBuilder();
+        private static readonly StringBuilder gcodeString = new StringBuilder();
 
         private float offsetX = 0, offsetY = 0;
         private static bool gcodeTangEnable = false;
         private Image picBevelOff = Properties.Resources.rndOff;
         private Image picBevelOn = Properties.Resources.rndOn;
         private ToolProp tprop = new ToolProp();
+        private readonly ToolProp torig = new ToolProp();
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -109,7 +110,7 @@ namespace GrblPlotter
 
             int counter=0,safety = 100;
             int zStepCount = 0;
-            float dx = 0, dy = 0, rDelta=0;
+            float dx, dy, rDelta;
             int passCount = 0;
             int figureCount = 1;
             Gcode.JobStart(gcodeString, "StartJob");
@@ -434,8 +435,8 @@ namespace GrblPlotter
             }
             else if (tabControl1.SelectedTab == tabPage3)   // round off Z
             {
-                float xStart = 0, yStart = 0;
-                float xEnd = 0, yEnd = 0;
+                float xStart, yStart;
+                float xEnd, yEnd;
 
                 float roundR = (float)nUDRZRadius.Value;
                 float stepZ = (float)nUDRZStep.Value;
@@ -445,7 +446,7 @@ namespace GrblPlotter
                 float width = (float)nUDRZWidth.Value;
 
                 float actualZ = roundR;
-                float tmpX1 = 0, tmpX2 = 0, tmpY1 = 0, tmpY2 = 0;
+                float tmpX1, tmpX2 = 0, tmpY1, tmpY2 = 0;
 
                 #region horizontal
                 if (rBRoundZYT.Checked || rBRoundZYB.Checked)
@@ -460,8 +461,10 @@ namespace GrblPlotter
                     int cnt = 0;
                     float y1 = 0, y2 = 0;
                     float starta = 90;
-                    PointF circlePos = new PointF();
-                    circlePos.Y = roundR;
+                    PointF circlePos = new PointF
+                    {
+                        Y = roundR
+                    };
                     float lastZ = circlePos.Y;
                     while (circlePos.Y > 0.001)    // add steps
                     {
@@ -507,9 +510,9 @@ namespace GrblPlotter
                             break;
 
                         circlePos = GetCirclePos(roundR, stepZ, circlePos.Y);
-                        yStart = yEnd = circlePos.X + rTool;
+                        yEnd = circlePos.X + rTool;
                         if (rBRoundZYB.Checked)
-                        { yStart = yEnd = (roundR - (circlePos.X + rTool)); }
+                        { yEnd = (roundR - (circlePos.X + rTool)); }
                         Gcode.MoveTo(gcodeString, (xEnd + offsetX), (yEnd + offsetY), "");
                         Gcode.GcodeZDown = (circlePos.Y - roundR);               // adapt Z-deepth
                         Gcode.PenDown(gcodeString, "");
@@ -532,8 +535,10 @@ namespace GrblPlotter
                     int cnt = 0;
                     float starta = 0;
                     float x1 = 0, x2 = -roundR, x3=0;
-                    PointF circlePos = new PointF();
-                    circlePos.Y = roundR;
+                    PointF circlePos = new PointF
+                    {
+                        Y = roundR
+                    };
                     while (circlePos.Y > 0.001)
                     {
                         circlePos = GetCirclePos(roundR, stepZ, circlePos.Y);
@@ -560,8 +565,8 @@ namespace GrblPlotter
                     
                     circlePos.Y = roundR;
                     yStart = -rToolOffset; yEnd = width + rToolOffset;
-                    if (rBRoundZXL.Checked)
-                    { xStart = xEnd = (roundR - (circlePos.X + rTool)); }
+                //    if (rBRoundZXL.Checked)
+                //    { xStart = xEnd = (roundR - (circlePos.X + rTool)); }
                     while (circlePos.Y > 0.001)
                     {   // vertical zig zag
 
@@ -764,7 +769,7 @@ namespace GrblPlotter
                     rBOrigin5.Checked = true;
                     break;
             }
-            int toolCount = ToolTable.Init();
+            int toolCount = ToolTable.Init();   // get max index
             ToolProp tmpTool;
             bool defaultToolFound = false;
             for (int i = 0; i < toolCount; i++)
@@ -780,9 +785,11 @@ namespace GrblPlotter
                 }
             }
             if (!defaultToolFound)
-                cBTool.SelectedIndex = 0;
+            {
+                cBTool.Items.Add("No tools found");
+                cBTool.SelectedIndex = 0; 
+            }
             tprop = ToolTable.GetToolProperties(1);
-            EnableTool(!cBToolSet.Checked);
             CBToolSet_CheckedChanged(sender, e);
 
             rB1.Image = (Image)picBevelOff.Clone();
@@ -840,20 +847,27 @@ namespace GrblPlotter
             {
                 decimal min = Math.Min(nUDShapeX.Value, nUDShapeY.Value);
                 if (nUDShapeR.Value > min / 2)
-                    nUDShapeR.Value = min / 2;
+                    CheckSetValue(nUDShapeR, min / 2);
             }
         }
 
         private void CBToolSet_CheckedChanged(object sender, EventArgs e)
         {
-            bool enabled = cBToolSet.Checked;
-            label1.Enabled = enabled;
-            cBTool.Enabled = enabled;
-            EnableTool(!cBToolSet.Checked);
-            CBTool_SelectedIndexChanged(sender, e);
+            bool valueFromToolTable = cBToolSet.Checked;
+            label1.Enabled = valueFromToolTable;
+            cBTool.Enabled = valueFromToolTable;
+            if (valueFromToolTable)                     // switch to tooltable - save current settings
+            {
+                SaveOrigToolProperties();
+                RefreshToolPropertiesFromSelectedTool();        // CBTool_SelectedIndexChanged(sender, e);
+            } else
+            {
+                SetToolProperties(torig);               // switch back to manual tool settings
+            }
+            EnableToolPropertiesControls(!valueFromToolTable);
         }
 
-        private void EnableTool(bool state)
+        private void EnableToolPropertiesControls(bool state)
         {   nUDToolDiameter.Enabled = state;
             nUDToolFeedXY.Enabled = state;
             nUDToolZStep.Enabled = state;
@@ -862,9 +876,23 @@ namespace GrblPlotter
             nUDToolSpindleSpeed.Enabled = state;
         }
 
+        private void SaveOrigToolProperties()
+        {
+            torig.Diameter = (float)nUDToolDiameter.Value;
+            torig.FeedXY = (float)nUDToolFeedXY.Value;
+            torig.FinalZ = (float)nUDImportGCZDown.Value;
+            torig.StepZ = (float)nUDToolZStep.Value;
+            torig.FeedZ = (float)nUDToolFeedZ.Value;
+            torig.Overlap = (float)nUDToolOverlap.Value;
+            torig.SpindleSpeed = (float)nUDToolSpindleSpeed.Value;
+            Logger.Info(culture, "Save Tool dia:{0}, feedXY:{1}, finalZ:{2}, stepZ:{3}, feedZ:{4}, overlap:{5}, spindle:{6}", torig.Diameter, torig.FeedXY, torig.FinalZ, torig.StepZ, torig.FeedZ, torig.Overlap, torig.SpindleSpeed);
+        }
         private void CBTool_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string tmp = cBTool.SelectedItem.ToString();
+            RefreshToolPropertiesFromSelectedTool();
+        }
+        private void RefreshToolPropertiesFromSelectedTool()
+        {   string tmp = cBTool.SelectedItem.ToString();
             if (tmp.IndexOf(")") > 0)
             {
                 int tnr = int.Parse(tmp.Substring(0, tmp.IndexOf(")")), culture);
@@ -872,22 +900,30 @@ namespace GrblPlotter
                 if (cBToolSet.Checked)
                 {
                     tprop = ToolTable.GetToolProperties(tnr);
-                    Logger.Info(culture, "Tool dia:{0}, feedXY:{1}, finalZ:{2}, stepZ:{3}, feedZ:{4}, overlap:{5}, spindle:{6}", tprop.Diameter, tprop.FeedXY, tprop.FinalZ, tprop.StepZ, tprop.FeedZ, tprop.Overlap, tprop.SpindleSpeed);
-                    try {
-                        CheckSetValue(nUDToolDiameter, (decimal)tprop.Diameter);
-                        CheckSetValue(nUDToolFeedXY, (decimal)tprop.FeedXY);
-                        CheckSetValue(nUDImportGCZDown, (decimal)tprop.FinalZ);
-                        CheckSetValue(nUDToolZStep, (decimal)Math.Abs(tprop.StepZ));
-                        CheckSetValue(nUDToolFeedZ, (decimal)tprop.FeedZ);
-                        CheckSetValue(nUDToolOverlap, (decimal)tprop.Overlap);
-                        CheckSetValue(nUDToolSpindleSpeed, (decimal)tprop.SpindleSpeed);
-                    }
-                    catch (Exception err) { 
-						Logger.Error(err, "CBTool_SelectedIndexChanged Set numeric Up Downs"); 
-					}
+                    SetToolProperties(tprop);
                 }
             }
         }
+
+        private void SetToolProperties(ToolProp tmp)
+        {
+            Logger.Info(culture, "Set Tool dia:{0}, feedXY:{1}, finalZ:{2}, stepZ:{3}, feedZ:{4}, overlap:{5}, spindle:{6}", tmp.Diameter, tmp.FeedXY, tmp.FinalZ, tmp.StepZ, tmp.FeedZ, tmp.Overlap, tmp.SpindleSpeed);
+            try
+            {
+                CheckSetValue(nUDToolDiameter, (decimal)tmp.Diameter);
+                CheckSetValue(nUDToolFeedXY, (decimal)tmp.FeedXY);
+                CheckSetValue(nUDImportGCZDown, (decimal)tmp.FinalZ);
+                CheckSetValue(nUDToolZStep, (decimal)Math.Abs(tmp.StepZ));
+                CheckSetValue(nUDToolFeedZ, (decimal)tmp.FeedZ);
+                CheckSetValue(nUDToolOverlap, (decimal)tmp.Overlap);
+                CheckSetValue(nUDToolSpindleSpeed, (decimal)tmp.SpindleSpeed);
+            }
+            catch (Exception err)
+            {
+                Logger.Error(err, "CBTool_SelectedIndexChanged Set numeric Up Downs");
+            }
+        }
+
         private static void CheckSetValue(NumericUpDown nUDcontrol, decimal val)
         {   if ((val <= nUDcontrol.Maximum) && (val >= nUDcontrol.Minimum))
             {   nUDcontrol.Value = val; }

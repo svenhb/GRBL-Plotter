@@ -501,4 +501,58 @@
   <data name="checkBox1.ToolTip" xml:space="preserve">
     <value>在2D视图中不显示白色值（笔宽= 0）</value>
   </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>线距</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>提取 CMYK/RGB</value>
+  </data>
+  <data name="cbGrayscaleChannel.Text" xml:space="preserve">
+    <value>单色通道</value>
+  </data>
+  <data name="BtnReloadPattern.Text" xml:space="preserve">
+    <value>重装模式</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>中心位置。图案的</value>
+  </data>
+  <data name="rbEngravingPattern4.Text" xml:space="preserve">
+    <value>从二维视图</value>
+  </data>
+  <data name="rbEngravingPattern4.ToolTip" xml:space="preserve">
+    <value>加载 SVG 或 DXF 图形作为图像的图案。</value>
+  </data>
+  <data name="rbEngravingPattern3.Text" xml:space="preserve">
+    <value>螺旋</value>
+  </data>
+  <data name="rbEngravingPattern3.ToolTip" xml:space="preserve">
+    <value>内部生成的螺旋图案。 '线距' = 每圈半径增加。</value>
+  </data>
+  <data name="cBOnlyLeftToRight.Text" xml:space="preserve">
+    <value>只能从左到右</value>
+  </data>
+  <data name="cBOnlyLeftToRight.ToolTip" xml:space="preserve">
+    <value>只从一个方向绘制以避免偏移</value>
+  </data>
+  <data name="Cb2DViewHide0.Text" xml:space="preserve">
+    <value>2D 视图隐藏 0</value>
+  </data>
+  <data name="Cb2DViewHide0.ToolTip" xml:space="preserve">
+    <value>在 2D 视图中不显示白色值（笔宽 = 0）</value>
+  </data>
+  <data name="nUDZBottom.ToolTip" xml:space="preserve">
+    <value>较低的价值</value>
+  </data>
+  <data name="nUDSBottom.ToolTip" xml:space="preserve">
+    <value>较低的价值</value>
+  </data>
+  <data name="cBReduceColorsDithering.Text" xml:space="preserve">
+    <value>抖动</value>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>图案</value>
+  </data>
+  <data name="CbPenUpOn0.Text" xml:space="preserve">
+    <value>上笔 0</value>
+  </data>
 </root>
