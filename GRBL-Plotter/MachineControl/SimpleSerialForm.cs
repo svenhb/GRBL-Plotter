@@ -181,7 +181,7 @@ namespace GrblPlotter
 					countTimeOut = (int)(countTimeOutMax * 1000 / timerSerial.Interval);
 					string sndTXT = string.Format("> {0,-10} | > set busy flag:{1,4:G} | {2}", data.Trim(), countTimeOut.ToString(), DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"));
 					AddToLog(sndTXT);
-					Logger.Trace("send {0}", sndTXT);
+					Logger.Trace("3rd serial TX {0}", data.Trim());
 				}
                 catch (Exception err)
                 {       // InvalidOperationException, ArgumentNullException, TimeoutException

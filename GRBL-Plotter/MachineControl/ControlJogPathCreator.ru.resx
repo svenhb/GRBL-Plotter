@@ -174,4 +174,16 @@
   <data name="gBJogParameter.Text" xml:space="preserve">
     <value>Параметр толчкового режима</value>
   </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Конец</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Начинать</value>
+  </data>
+  <data name="tBCodeEnd.ToolTip" xml:space="preserve">
+    <value>Код для отправки после завершения пути</value>
+  </data>
+  <data name="tBCodeStart.ToolTip" xml:space="preserve">
+    <value>Код для отправки перед началом пути</value>
+  </data>
 </root>

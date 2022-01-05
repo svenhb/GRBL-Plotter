@@ -242,4 +242,11 @@ M = líquido refrigerante</value>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Relatório de status em tempo real</value>
   </data>
+  <data name="LblAccessoryState.ToolTip" xml:space="preserve">
+    <value>Estado do acessório 
+S = eixo CW, 
+C = eixo CCW, 
+F = corante flutuante, 
+M = líquido refrigerante</value>
+  </data>
 </root>

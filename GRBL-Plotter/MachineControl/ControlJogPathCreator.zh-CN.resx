@@ -177,4 +177,16 @@
   <data name="gBJogParameter.Text" xml:space="preserve">
     <value>点动参数</value>
   </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>结尾</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="tBCodeEnd.ToolTip" xml:space="preserve">
+    <value>完成路径后发送的代码</value>
+  </data>
+  <data name="tBCodeStart.ToolTip" xml:space="preserve">
+    <value>在开始路径之前发送的代码</value>
+  </data>
 </root>

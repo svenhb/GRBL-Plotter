@@ -117,76 +117,73 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="gBPathCreator.Text" xml:space="preserve">
-    <value>パスクリエーター</value>
-  </data>
-  <data name="btnDelete.ToolTip" xml:space="preserve">
-    <value>完全なパスを削除する</value>
-  </data>
   <data name="btnUndo.Text" xml:space="preserve">
-    <value>最後に元に戻す</value>
-  </data>
-  <data name="btnLoad.Text" xml:space="preserve">
-    <value>ロードパス</value>
-  </data>
-  <data name="btnSave.Text" xml:space="preserve">
-    <value>パスを保存</value>
-  </data>
-  <data name="btnRotate.Text" xml:space="preserve">
-    <value>パスを90°回転します</value>
-  </data>
-  <data name="btnDelete.Text" xml:space="preserve">
-    <value>パスを削除</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>ラスター</value>
-  </data>
-  <data name="nUDRaster.ToolTip" xml:space="preserve">
-    <value>パス位置をスナップするためのラスター幅</value>
-  </data>
-  <data name="btnExport.Text" xml:space="preserve">
-    <value>グラフィックとしてインポート</value>
-  </data>
-  <data name="btnJogStop.Text" xml:space="preserve">
-    <value>やめる</value>
-  </data>
-  <data name="btnJogStart.Text" xml:space="preserve">
-    <value>ジョグパスを送信</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>送り速度</value>
+    <value>Vrátit zpět poslední</value>
   </data>
   <data name="cBSnap.Text" xml:space="preserve">
-    <value>ラスターにスナップ</value>
+    <value>Přichytit na rastr</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>ジョグパスクリエーター</value>
+  <data name="btnLoad.Text" xml:space="preserve">
+    <value>Cesta zatížení</value>
   </data>
-  <data name="btnExport.ToolTip" xml:space="preserve">
-    <value>指定された設定でパスをインポートします</value>
+  <data name="btnSave.Text" xml:space="preserve">
+    <value>Uložit cestu</value>
   </data>
-  <data name="btnJogStop.ToolTip" xml:space="preserve">
-    <value>ジョギングをやめる（grbl 1.1のみ）</value>
+  <data name="btnRotate.Text" xml:space="preserve">
+    <value>Otočte dráhu o 90°</value>
   </data>
-  <data name="btnJogStart.ToolTip" xml:space="preserve">
-    <value>すぐに相対運動を開始します</value>
+  <data name="nUDRaster.ToolTip" xml:space="preserve">
+    <value>Šířka rastru pro umístění dráhy uchopení</value>
   </data>
-  <data name="nUDFeedrate.ToolTip" xml:space="preserve">
-    <value>ジョギングの送り速度</value>
+  <data name="btnDelete.Text" xml:space="preserve">
+    <value>Smazat cestu</value>
   </data>
-  <data name="gBJogParameter.Text" xml:space="preserve">
-    <value>ジョグパラメータ</value>
+  <data name="btnDelete.ToolTip" xml:space="preserve">
+    <value>Smazat celou cestu</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Rastrové</value>
+  </data>
+  <data name="gBPathCreator.Text" xml:space="preserve">
+    <value>Tvůrce cesty</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>終わり</value>
+    <value>Konec</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>始める</value>
+    <value>Start</value>
   </data>
   <data name="tBCodeEnd.ToolTip" xml:space="preserve">
-    <value>パスの終了後に送信するコード</value>
+    <value>Kód k odeslání po dokončení cesty</value>
   </data>
   <data name="tBCodeStart.ToolTip" xml:space="preserve">
-    <value>パスを開始する前に送信するコード</value>
+    <value>Kód k odeslání před zahájením cesty</value>
+  </data>
+  <data name="btnExport.Text" xml:space="preserve">
+    <value>Importovat jako grafiku</value>
+  </data>
+  <data name="btnExport.ToolTip" xml:space="preserve">
+    <value>Importujte cestu s daným nastavením</value>
+  </data>
+  <data name="btnJogStop.ToolTip" xml:space="preserve">
+    <value>Přestat běhat (pouze grbl 1.1)</value>
+  </data>
+  <data name="btnJogStart.Text" xml:space="preserve">
+    <value>Poslat Jog cestu</value>
+  </data>
+  <data name="btnJogStart.ToolTip" xml:space="preserve">
+    <value>Okamžitě začněte relativní pohyb</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Rychlost posuvu</value>
+  </data>
+  <data name="nUDFeedrate.ToolTip" xml:space="preserve">
+    <value>Rychlost posuvu pro běhání</value>
+  </data>
+  <data name="gBJogParameter.Text" xml:space="preserve">
+    <value>Parametr jog</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Jog Path Creator</value>
   </data>
 </root>

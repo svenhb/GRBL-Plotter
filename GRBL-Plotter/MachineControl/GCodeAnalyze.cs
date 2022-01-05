@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -202,7 +202,7 @@ namespace GrblPlotter
                 showHalftoneMin = 0;
                 showHalftoneMax = 100;
                 showHalftoneWidth = 1;
-                showHalftoneLastS = -1;
+                showHalftoneLastS = 1;
                 showHalftoneLastZ = 1;
                 lastS = -1;
                 lastZ = double.MaxValue;
@@ -229,8 +229,9 @@ namespace GrblPlotter
                 if (showHalftoneS && (showHalftoneLastS != lastS))
                 {
                     diff = showHalftoneMax - showHalftoneMin;
-                    if (diff > 0)
-                        width = (lastS - showHalftoneMin) * showHalftoneWidth / diff;    // calculate pen-width
+                //    if (diff > 0)
+                //        width = (lastS - showHalftoneMin) * showHalftoneWidth / diff;    // calculate pen-width
+                    width = Math.Abs((lastS - showHalftoneMin) * showHalftoneWidth / diff);    // calculate pen-width
                 }
 
                 else if (showHalftoneZ && (showHalftoneLastZ != lastZ))
@@ -357,12 +358,10 @@ namespace GrblPlotter
                     {
                         string log = string.Format("Line {0} ", (newLine.lineNumber + 1));
                         log += string.Format("F:{0} S:{1} Z:{2:0.000} ", HalfTone.lastF, HalfTone.lastS, HalfTone.lastZ);
-                        ToolProp penProp = new ToolProp(1, Properties.Settings.Default.gui2DColorPenDown, "PenDown");
-                        /*{
-                             Color = Properties.Settings.Default.gui2DColorPenDown,    // Color.Pink;
-                             Diameter = (float)Properties.Settings.Default.gui2DWidthPenDown
-                         };*/
-                        penProp.Diameter = (float)Properties.Settings.Default.gui2DWidthPenDown;
+                        ToolProp penProp = new ToolProp(1, Properties.Settings.Default.gui2DColorPenDown, "PenDown")
+                        {
+                            Diameter = (float)Properties.Settings.Default.gui2DWidthPenDown
+                        };
 
                         if (countZ == 0)
                             HalfTone.lastZ = double.MaxValue;
@@ -768,10 +767,16 @@ namespace GrblPlotter
                 if (line.Contains("Min")) { HalfTone.showHalftoneMin = XmlMarker.GetAttributeValueDouble(line, "Min"); }
                 if (line.Contains("Max")) { HalfTone.showHalftoneMax = XmlMarker.GetAttributeValueDouble(line, "Max"); }
                 if (line.Contains("Width")) { HalfTone.showHalftoneWidth = XmlMarker.GetAttributeValueDouble(line, "Width"); }
-                Logger.Trace("Display halftone  {0}  {1}  {2}  {3}", line, HalfTone.showHalftoneMin, HalfTone.showHalftoneMax, HalfTone.showHalftoneWidth);
+                Logger.Info("Display halftone  {0}  {1}  {2}  {3}", line, HalfTone.showHalftoneMin, HalfTone.showHalftoneMax, HalfTone.showHalftoneWidth);
 
-                if (line.Contains(XmlMarker.HalftoneS)) { HalfTone.showHalftoneS = true; halfToneEnable = true; }
-                if (line.Contains(XmlMarker.HalftoneZ)) { HalfTone.showHalftoneZ = true; halfToneEnable = true; }
+                if (line.Contains(XmlMarker.HalftoneS)) { 
+                    HalfTone.showHalftoneS = true; halfToneEnable = true; 
+                    Logger.Info("showHalftoneS min:{0}  max:{1}  width:{2}", HalfTone.showHalftoneMin, HalfTone.showHalftoneMax, HalfTone.showHalftoneWidth); 
+                }
+                if (line.Contains(XmlMarker.HalftoneZ)) { 
+                    HalfTone.showHalftoneZ = true; halfToneEnable = true; 
+                    Logger.Info("showHalftoneZ min:{0}  max:{1}  width:{2}", HalfTone.showHalftoneMin, HalfTone.showHalftoneMax, HalfTone.showHalftoneWidth); 
+                }
             }
         }
 

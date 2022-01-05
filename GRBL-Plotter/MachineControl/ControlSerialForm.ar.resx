@@ -236,4 +236,16 @@
   <data name="groupBox1.Text" xml:space="preserve">
     <value>في الوقت الحقيقي تقرير الحالة</value>
   </data>
+  <data name="pasteCodeFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>الصق الكود من الحافظة</value>
+  </data>
+  <data name="copySelectionToClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>نسخ التحديد إلى الحافظة</value>
+  </data>
+  <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
+    <value>اختر الكل</value>
+  </data>
+  <data name="LblAccessoryState.ToolTip" xml:space="preserve">
+    <value>حالة الملحقات S = محور الدوران CW ، C = محور الدوران CCW ، F = عمود الدوران ، M = ضباب التبريد</value>
+  </data>
 </root>

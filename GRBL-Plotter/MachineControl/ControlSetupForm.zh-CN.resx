@@ -3090,4 +3090,34 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   <data name="checkBox11.Text" xml:space="preserve">
     <value>保存时删除所有评论</value>
   </data>
+  <data name="cBExtendedLoggingCOM.Text" xml:space="preserve">
+    <value>串行 COM / 流媒体</value>
+  </data>
+  <data name="groupBox25.Text" xml:space="preserve">
+    <value>日志记录</value>
+  </data>
+  <data name="BtnAccessoryRefresh.Text" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="BtnAccessoryMistReset.Text" xml:space="preserve">
+    <value>重启</value>
+  </data>
+  <data name="BtnAccessoryFloodReset.Text" xml:space="preserve">
+    <value>重启</value>
+  </data>
+  <data name="BtnAccessorySpindleReset.Text" xml:space="preserve">
+    <value>重启</value>
+  </data>
+  <data name="LblAccessoryMist.Text" xml:space="preserve">
+    <value>薄雾：</value>
+  </data>
+  <data name="LblAccessoryFlood.Text" xml:space="preserve">
+    <value>洪水：</value>
+  </data>
+  <data name="LblAccessorySpindle.Text" xml:space="preserve">
+    <value>主轴：</value>
+  </data>
+  <data name="GbAccessoryRunTime.Text" xml:space="preserve">
+    <value>附件运行时间 (ms)</value>
+  </data>
 </root>

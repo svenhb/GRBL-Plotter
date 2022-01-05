@@ -52,6 +52,7 @@ namespace GrblPlotter
 
         public static bool isVersion_0 = true;  // note if grbl version <=0.9 or >=1.1
         public static bool isMarlin = false;
+        public static bool isConnected = false;
 
         public static int axisCount = 0;
         public static bool axisA = false;       // axis A available?
@@ -63,6 +64,7 @@ namespace GrblPlotter
         public static int bufferSize = -1;
         public static string lastMessage = "";
         public static short lastErrorNr = 0;
+        public static int DefaultFeed = 1000;
 
         public static bool grblSimulate = false;
         private static readonly Dictionary<int, float> settings = new Dictionary<int, float>();    // keep $$-settings

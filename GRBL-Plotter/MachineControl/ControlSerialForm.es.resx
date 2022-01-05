@@ -244,4 +244,11 @@ M = refrigerante por neblina</value>
   <data name="cBStatus1.ToolTip" xml:space="preserve">
     <value>Mostrar comandos enviados y procesados durante la transmisión</value>
   </data>
+  <data name="LblAccessoryState.ToolTip" xml:space="preserve">
+    <value>Estado del accesorio 
+S = husillo CW, 
+C = husillo CCW, 
+F = colant floot, 
+M = refrigerante por neblina</value>
+  </data>
 </root>

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -60,6 +60,8 @@
  * 2021-10-24 handle serial port System.TimeoutException -> close port
  * 2021-12-13 replace serialPort.Write by SerialPortDataSend
  * 2021-12-14 add run time for spindle, flood, mist
+ * 2021-12-22 add Grbl.isConnected
+ * 2022-01-04 change readtimeout from 500 to 1000
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -345,6 +347,8 @@ namespace GrblPlotter
             }
 
             SerialPortOpen = serialPort.IsOpen;
+			if (iamSerial == 1) {Grbl.isConnected = SerialPortOpen;}
+
 			if (SerialPortOpen && !serialPortError)
             {
                 try {
@@ -421,6 +425,7 @@ namespace GrblPlotter
                         if (countStateReset == 4)
                         {
                             SerialPortOpen = serialPort.IsOpen;
+							if (iamSerial == 1) {Grbl.isConnected = SerialPortOpen;}
                             SendResetEvent();
                         }
                         else if (countStateReset == 1)
@@ -456,10 +461,7 @@ namespace GrblPlotter
                 if (isStreaming)
                 {
                     if (countLoggerUpdate-- <= 0)
-                    {   //Logger.Info("timer update infoStream:{0}", listInfoStream());
-                        //Logger.Info("timer update infoSend:  {0}", listInfoSend());
-                        countLoggerUpdate = (int)(10000 / timerSerial.Interval);
-                    }
+                    {   countLoggerUpdate = (int)(10000 / timerSerial.Interval); }
                     if (!isStreamingRequestPause && !isStreamingPause)
                     { PreProcessStreaming(); }
                 }
@@ -467,13 +469,6 @@ namespace GrblPlotter
                 if (!waitForIdle)
                 { ProcessSend(); }
             }
-
-            /*     removed 2021-04-07 
-             *     if (countShutdown > 0)		//(flag_closeForm)
-                   {   Logger.Trace("Ser:{0} timer: countShutdown:{1}",iamSerial,countShutdown);
-                       countShutdown--;
-                       Application.Exit();
-                   }*/
         }
 
 
@@ -578,7 +573,7 @@ namespace GrblPlotter
                 serialPort.StopBits = System.IO.Ports.StopBits.One;
                 serialPort.Handshake = System.IO.Ports.Handshake.None;
                 serialPort.DtrEnable = false;
-				serialPort.ReadTimeout = 500;
+				serialPort.ReadTimeout = 1000;
 				serialPort.WriteTimeout = 1000;		
 				
                 rtbLog.Clear();
@@ -637,6 +632,7 @@ namespace GrblPlotter
                     OnRaisePosEvent(new PosEventArgs(posWork, posMachine, GrblState.unknown, machineState, mParserState, ""));// lastCmd));					
 				}
                 SerialPortOpen = serialPort.IsOpen;
+				if (iamSerial == 1) {Grbl.isConnected = SerialPortOpen;}
                 UpdateControls();
             }
             catch (Exception err) {
@@ -644,6 +640,7 @@ namespace GrblPlotter
                 countMinimizeForm = 0;
                 LogError("! Opening port", err);
                 SerialPortOpen = false;
+				if (iamSerial == 1) {Grbl.isConnected = SerialPortOpen;}
                 UpdateControls();
             }
         }
@@ -675,6 +672,7 @@ namespace GrblPlotter
                 timerSerial.Enabled = false;
             }
             SerialPortOpen = false;
+			if (iamSerial == 1) {Grbl.isConnected = SerialPortOpen;}
             OnRaisePosEvent(new PosEventArgs(posWork, posMachine, GrblState.unknown, machineState, mParserState, ""));// lastCmd));
         }
         #endregion
@@ -754,16 +752,24 @@ namespace GrblPlotter
             Grbl.isMarlin = false;
             if (serialPort.IsOpen)
             {
-                timerSerial.Enabled = false;
-                serialPort.DtrEnable = true;
-                StateReset(savePos);
-                serialPort.DiscardInBuffer();
-                serialPort.DiscardOutBuffer();
-                AddToLog("> DTR/RTS reset");
-                serialPort.DtrEnable = false;
-                serialPort.RtsEnable = false;
-                if (iamSerial == 1)
-                    Grbl.lastMessage = "Hard-RESET, waiting for response of grbl-controller";
+				try
+                {	timerSerial.Enabled = false;
+					serialPort.DtrEnable = true;
+					StateReset(savePos);
+					serialPort.DiscardInBuffer();
+					serialPort.DiscardOutBuffer();
+					AddToLog("> DTR/RTS reset");
+					serialPort.DtrEnable = false;
+					serialPort.RtsEnable = false;
+					if (iamSerial == 1)
+						Grbl.lastMessage = "Hard-RESET, waiting for response of grbl-controller";
+				}
+				catch (Exception err)
+				{
+					Logger.Error(err, "GrblHardReset");
+					Properties.Settings.Default.guiLastEndReason += string.Format("SerSnd GrblHardReset:{0} {1} ---", iamSerial, err.Message);
+					AddToLog("> DTR/RTS reset ERROR "+ err.Message);
+				}
             }
             else
             {
@@ -796,15 +802,20 @@ namespace GrblPlotter
                     { }
                 }
                 catch (TimeoutException err1) {
-                    Logger.Error(err1, "TimeoutException");
-                    AddToLog("Error reading line from serial port - correct baud rate?");
-                    rxString = serialPort.ReadExisting().Trim();
+                    Logger.Error(err1, "TimeoutException try:{0} ", rxErrorCount);
+                    AddToLog("Error reading line from serial port - correct baud rate? Try:"+ rxErrorCount.ToString());
+                    if (serialPort.IsOpen)
+                        rxString = serialPort.ReadExisting().Trim();
                     Logger.Error("ReadExisting '{0}'", rxString);
-                    this.BeginInvoke(new EventHandler(ClosePort));    //closePort();
 
-                    grblStateNow = GrblState.notConnected;
-                    Grbl.lastMessage = "Serial timeout exception - correct baud rate?";
-                    Properties.Settings.Default.guiLastEndReason += string.Format("SerRec:{0} {1} ---", iamSerial, err1.Message);
+                    if (++rxErrorCount > 2)
+                    {
+                        this.BeginInvoke(new EventHandler(ClosePort));    //closePort();
+                        grblStateNow = GrblState.notConnected;
+                        Grbl.lastMessage = "Serial timeout exception - correct baud rate?";
+                    }
+
+                    Properties.Settings.Default.guiLastEndReason += string.Format("SerRecT:{0} {1} {2} ---", iamSerial, err1.Message, rxErrorCount);
                     OnRaisePosEvent(new PosEventArgs(posWork, posMachine, GrblState.notConnected, machineState, mParserState, Grbl.lastMessage));
                 }
                 catch (Exception err) {
@@ -819,12 +830,27 @@ namespace GrblPlotter
 
                     grblStateNow = GrblState.notConnected;
                     Grbl.lastMessage = "Serial receive exception - correct baud rate?";
-                    Properties.Settings.Default.guiLastEndReason += string.Format("SerRec:{0} {1} ---", iamSerial, err.Message);
+                    Properties.Settings.Default.guiLastEndReason += string.Format("SerRecE:{0} {1} ---", iamSerial, err.Message);
                     OnRaisePosEvent(new PosEventArgs(posWork, posMachine, GrblState.notConnected, machineState, mParserState, Grbl.lastMessage));
                 }
             }
         }
 
+		private void SerialPortDataSend(byte[] tmp, int a, int b)
+		{	if (serialPort.IsOpen) 
+            {	try {
+                    serialPort.Write(tmp, a, b);
+                    if (logStreamData) System.IO.File.AppendAllText(Datapath.LogFiles + "\\" + logFileSentData, tmp.ToString());
+                    return ;
+                }
+                catch (Exception err)
+                {       // InvalidOperationException, ArgumentNullException, TimeoutException
+                    AddToLog("Data send exception "+err.Message+" -Close port");
+                    Logger.Error(err, "SerialPortDataSend Ser:{0}", iamSerial);
+                    Properties.Settings.Default.guiLastEndReason += string.Format("SerSnd:{0} {1} ---", iamSerial, err.Message);
+				}
+			}
+		}
         private bool SerialPortDataSend(string tmp)
         {
             if ((serialPort.IsOpen) && (!string.IsNullOrEmpty(tmp)))
@@ -919,6 +945,7 @@ namespace GrblPlotter
         {
             bool isConnected = serialPort.IsOpen || Grbl.grblSimulate;
             SerialPortOpen = isConnected;
+			if (iamSerial == 1) {Grbl.isConnected = SerialPortOpen;}
             //  bool isSensing = isStreaming;
             cbPort.Enabled = !isConnected;
             cbBaud.Enabled = !isConnected;
@@ -1121,6 +1148,12 @@ namespace GrblPlotter
                             t.Minutes,
                             t.Seconds);
             return answer;
+        }
+
+        private void cBStatus1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cBStatus1.Checked) Logger.Info("Status1 Enable");
+            else Logger.Info("Status1 Disable");
         }
     }
 }

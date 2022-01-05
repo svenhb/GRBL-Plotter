@@ -266,4 +266,20 @@ M = туманная охлаждающая жидкость</value>
   <data name="cBStatus1.ToolTip" xml:space="preserve">
     <value>Показать отправленные и обработанные команды во время потоковой передачи</value>
   </data>
+  <data name="pasteCodeFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Вставить код из буфера обмена</value>
+  </data>
+  <data name="copySelectionToClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Копировать выделение в буфер обмена</value>
+  </data>
+  <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
+    <value>Выбрать все</value>
+  </data>
+  <data name="LblAccessoryState.ToolTip" xml:space="preserve">
+    <value>Состояние аксессуара 
+S = шпиндель CW, 
+C = шпиндель против часовой стрелки, 
+F = колонтитул, 
+M = туманная охлаждающая жидкость</value>
+  </data>
 </root>

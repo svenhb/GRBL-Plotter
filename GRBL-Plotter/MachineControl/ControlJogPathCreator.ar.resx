@@ -177,4 +177,16 @@
   <data name="gBJogParameter.Text" xml:space="preserve">
     <value>معلمة Jog</value>
   </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>نهاية</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>يبدأ</value>
+  </data>
+  <data name="tBCodeEnd.ToolTip" xml:space="preserve">
+    <value>كود لإرساله بعد الانتهاء من المسار</value>
+  </data>
+  <data name="tBCodeStart.ToolTip" xml:space="preserve">
+    <value>رمز لإرساله قبل بدء المسار</value>
+  </data>
 </root>

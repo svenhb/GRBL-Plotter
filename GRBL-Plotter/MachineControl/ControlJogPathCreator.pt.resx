@@ -174,4 +174,16 @@
   <data name="gBJogParameter.Text" xml:space="preserve">
     <value>Parâmetro de jog</value>
   </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Fim</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Começar</value>
+  </data>
+  <data name="tBCodeEnd.ToolTip" xml:space="preserve">
+    <value>Código para enviar depois de terminar o caminho</value>
+  </data>
+  <data name="tBCodeStart.ToolTip" xml:space="preserve">
+    <value>Código a ser enviado antes de iniciar o caminho</value>
+  </data>
 </root>

@@ -244,4 +244,11 @@ M = agent de refroidissement par brouillard</value>
   <data name="cBStatus1.ToolTip" xml:space="preserve">
     <value>Afficher les commandes envoyées et traitées pendant la diffusion</value>
   </data>
+  <data name="LblAccessoryState.ToolTip" xml:space="preserve">
+    <value>Etat accessoire 
+S = broche dans le sens de la broche, 
+C = broche dans le sens de la longueur, 
+F = coloration de la tige, 
+M = agent de refroidissement par brouillard</value>
+  </data>
 </root>

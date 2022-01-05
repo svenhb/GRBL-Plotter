@@ -26,6 +26,8 @@
  * 2021-07-14 code clean up / code quality
  * 2021-07-23 add notifier (by pushbullet or email)
  * 2021-12-15 InterpolateZ check index range
+ * 2021-12-21 no save, if Map is null
+ * 2021-12-22 check if is connected to grbl before sending code - 637
 */
 
 using System;
@@ -374,6 +376,10 @@ namespace GrblPlotter
         #region controls
         private void BtnSave_Click(object sender, EventArgs e)
         {
+			if (Map == null)
+			{	MessageBox.Show("There is no Map-data to save","Error");
+				return;
+			}
             SaveFileDialog sfd = new SaveFileDialog
             {
                 InitialDirectory = pathMap//    Application.StartupPath + Datapath.Examples;
@@ -393,6 +399,10 @@ namespace GrblPlotter
 
         private void BtnSaveSTL_Click(object sender, EventArgs e)
         {
+			if (Map == null)
+			{	MessageBox.Show("There is no Map-data to save","Error");
+				return;
+			}
             SaveFileDialog sfd = new SaveFileDialog
             {
                 InitialDirectory = pathExport//    Application.StartupPath + Datapath.Examples;
@@ -411,6 +421,10 @@ namespace GrblPlotter
 
         private void BtnSaveOBJ_Click(object sender, EventArgs e)
         {
+			if (Map == null)
+			{	MessageBox.Show("There is no Map-data to save","Error");
+				return;
+			}
             SaveFileDialog sfd = new SaveFileDialog
             {
                 InitialDirectory = pathExport//    Application.StartupPath + Datapath.Examples;
@@ -429,6 +443,10 @@ namespace GrblPlotter
 
         private void BtnSaveX3D_Click(object sender, EventArgs e)
         {
+			if (Map == null)
+			{	MessageBox.Show("There is no Map-data to save","Error");
+				return;
+			}
             SaveFileDialog sfd = new SaveFileDialog
             {
                 InitialDirectory = pathExport//    Application.StartupPath + Datapath.Examples;
@@ -566,7 +584,7 @@ namespace GrblPlotter
          ******************************************************************/
         private void PictureBox1_Click(object sender, EventArgs e)
         {
-            if (Map != null)
+            if ((Map != null) && (!scanStarted))
             {
                 double relposX = Map.Delta.X * (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).X) / pictureBox1.Width);
                 double relposY = Map.Delta.Y - Map.Delta.Y * (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).Y) / pictureBox1.Height);
@@ -577,8 +595,8 @@ namespace GrblPlotter
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
                     if ((decimal)Grbl.posWork.Z < nUDProbeUp.Value)
-                        OnRaiseXyzEvent(new XyzEventArgs(null, null, (double)nUDProbeUp.Value, "G91"));
-                    OnRaiseXyzEvent(new XyzEventArgs(posX, posY, "G91 G0"));   // move relative and fast
+                        OnRaiseXyzEvent(new XyzEventArgs(null, null, (double)nUDProbeUp.Value, "G90"));
+                    OnRaiseXyzEvent(new XyzEventArgs(posX, posY, "G90"));   // move relative and fast
                 }
             }
         }
@@ -616,6 +634,11 @@ namespace GrblPlotter
             EnableControls(scanStarted);
             if (!scanStarted)
             {
+				if (!Grbl.isConnected)
+				{	MessageBox.Show(Localization.GetString("grblNotConnected"), Localization.GetString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+					return;
+				}
+
                 Logger.Info("Generate Height scan Code");
                 refreshPictureBox = true;
                 isMapOk = false;

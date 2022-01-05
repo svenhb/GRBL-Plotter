@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="setWork00ToHereToolStripMenuItem.Text" xml:space="preserve">
+    <value>Zde nastavte pracovní souřadnice 0;0</value>
+  </data>
+  <data name="setWork00ToHereToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Nastaví počátek pracovní souřadnice na klepnutou pozici ve 2D pohledu</value>
+  </data>
+  <data name="compensateAngleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Použijte úhel na G-kód</value>
+  </data>
+  <data name="compensateAngleToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Aplikuje žlutě označený úhel na G kód</value>
+  </data>
+  <data name="FiducialAddCoordinateIn2DViewToolStripMenuItem.Text" xml:space="preserve">
+    <value>Přidejte základní souřadnice z 2D zobrazení do základního seznamu</value>
+  </data>
+  <data name="FiducialAddCoordinateIn2DViewToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Přidejte výchozí souřadnice pozice, na kterou jste klikli, uvnitř 2D pohledu do základního seznamu</value>
+  </data>
+  <data name="FiducialRemoveLastToolStripMenuItem.Text" xml:space="preserve">
+    <value>Odstraňte poslední referenční číslo</value>
+  </data>
+  <data name="FiducialRemoveLastToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Odebrat poslední přidanou fiduciář ze seznamu fiduciář</value>
+  </data>
+  <data name="FiducialListClearToolStripMenuItem.Text" xml:space="preserve">
+    <value>Přehledný základní seznam</value>
+  </data>
+  <data name="FiducialListClearToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Přehledný základní seznam</value>
+  </data>
+  <data name="ReferenceAddPointInImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Přidejte referenční bod z obrázku do přiřazeného seznamu</value>
+  </data>
+  <data name="ReferenceAddPointInImageToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Přidejte referenční bod z obrázku do přiřazeného seznamu</value>
+  </data>
+  <data name="ReferenceRemoveLastPointToolStripMenuItem.Text" xml:space="preserve">
+    <value>Odstraňte poslední referenční bod</value>
+  </data>
+  <data name="ReferenceRemoveLastPointToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Odebrat poslední přidaný referenční bod z přiřazeného seznamu</value>
+  </data>
+  <data name="ReferenceClearListToolStripMenuItem.Text" xml:space="preserve">
+    <value>Vymazat seznam referenčních bodů (přiřazených).</value>
+  </data>
+  <data name="ReferenceClearListToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Vymazat seznam referenčních bodů (přiřazených).</value>
+  </data>
+  <data name="showOverlayGraphicsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Zobrazit překryvnou grafiku</value>
+  </data>
+  <data name="showOverlayGraphicsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Zobrazit překryvnou grafiku (pravítko, dráha pera dolů atd.)</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Zvětšení</value>
+  </data>
+  <data name="simulateCameraToolStripMenuItem.Text" xml:space="preserve">
+    <value>Simulovat fotoaparát</value>
+  </data>
+  <data name="cameraMountToolStripMenuItem.Text" xml:space="preserve">
+    <value>Držák fotoaparátu</value>
+  </data>
+  <data name="camSourceToolStripMenuItem.Text" xml:space="preserve">
+    <value>Zdroj videa</value>
+  </data>
+  <data name="camSourceToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Vyberte zdroj fotoaparátu.</value>
+  </data>
+  <data name="resetAndTeachToolStripMenuItem.Text" xml:space="preserve">
+    <value>Resetovat a učit</value>
+  </data>
+  <data name="distortionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Korekce zkreslení</value>
+  </data>
+  <data name="toolStripTextBox1.ToolTipText" xml:space="preserve">
+    <value>Otočit obraz videa – zadejte úhel</value>
+  </data>
+  <data name="setRotationAngleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Otočení obrázku</value>
+  </data>
+  <data name="setRotationAngleToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Otočit obraz videa – zadejte úhel</value>
+  </data>
+  <data name="upperPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Učte horní pozici</value>
+  </data>
+  <data name="upperPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Učte pohled kamery</value>
+  </data>
+  <data name="toolStripTextBox2.ToolTipText" xml:space="preserve">
+    <value>v jednotkách GRBL (mm nebo palce)</value>
+  </data>
+  <data name="teachRadiusTopToolStripMenuItem.Text" xml:space="preserve">
+    <value>Nastavte horní poloměr učení</value>
+  </data>
+  <data name="lowerPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Naučte nižší pozici</value>
+  </data>
+  <data name="lowerPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Učte pohled kamery</value>
+  </data>
+  <data name="toolStripTextBox3.ToolTipText" xml:space="preserve">
+    <value>v jednotkách GRBL (mm nebo palce)</value>
+  </data>
+  <data name="teachRadiusBottomToolStripMenuItem.Text" xml:space="preserve">
+    <value>Nastavte spodní poloměr učení</value>
+  </data>
+  <data name="teachScalingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Naučte škálování</value>
+  </data>
+  <data name="teachScalingToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1) Domácí plotr
+2) přesuňte kameru do horní polohy
+3) kliknutím na obrázek naučte vzdálenost horního poloměru
+4) přesuňte kameru do nižší polohy
+5) klikněte na obrázek pro naučení vzdálenosti spodního poloměru</value>
+  </data>
+  <data name="teachRadiusToolStripMenuItem.Text" xml:space="preserve">
+    <value>Naučte rádius</value>
+  </data>
+  <data name="setTeachRadiusToolStripMenuItem.Text" xml:space="preserve">
+    <value>Nastavte rádius učení</value>
+  </data>
+  <data name="teachScaling2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Naučte škálování</value>
+  </data>
+  <data name="setToolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kliknutím nastavíte počátek ve 2D pohledu</value>
+  </data>
+  <data name="setMachinePositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kliknutím získáte offset stroje grbl na počátku</value>
+  </data>
+  <data name="toolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Nastavte orign souřadnic</value>
+  </data>
+  <data name="teachToolStripMenuItem.Text" xml:space="preserve">
+    <value>Naučte posun kamery</value>
+  </data>
+  <data name="teachToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1) Poloha nula X,Y
+2) Označte polohu nástroje (při X=0, Y=0)
+3) Pohybujte se, dokud nebude značka ve středu pohledu kamery
+4) Naučte skutečnou polohu jako offset</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Naučte Offset</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1) přepněte na „Coord nástroje“. (G54)
+2) Poloha nula X,Y
+3) Označte polohu nástroje (při X=0,Y=0) nástrojem na obrobku
+4) Přesuňte značku pod střed pohledu kamery
+5) Naučte skutečnou polohu jako offset
+6) přepněte na 'Cam coord.' (G59) - nyní ukazuje X=0, Y=0</value>
+  </data>
+  <data name="textToolStripMenuItem.Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="crossHairsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Zaměřovací kříž</value>
+  </data>
+  <data name="colorsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Barvy</value>
+  </data>
+  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Založit</value>
+  </data>
+  <data name="penupPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Cesta k peru</value>
+  </data>
+  <data name="machineLimitsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Limity stroje</value>
+  </data>
+  <data name="dimensionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Rozměr G-kódu</value>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>Pohled</value>
+  </data>
+  <data name="menuStripCamera.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="btnApplyAngle.Text" xml:space="preserve">
+    <value>Použijte úhel na G-kód</value>
+  </data>
+  <data name="btnApplyAngle.ToolTip" xml:space="preserve">
+    <value>Pomocí pravého tlačítka myši změřte úhel.
+Stiskněte tlačítko pro transformaci G-kódu s naměřeným úhlem.</value>
+  </data>
+  <data name="btnCamCoordTool.Text" xml:space="preserve">
+    <value>G54 Souřadnice nástroje.</value>
+  </data>
+  <data name="btnCamCoordTool.ToolTip" xml:space="preserve">
+    <value>Přesunout aktuální pozici nástroje pod kameru</value>
+  </data>
+  <data name="cBCamCoordMove.Text" xml:space="preserve">
+    <value>Přesuňte jeviště</value>
+  </data>
+  <data name="cBCamCoordMove.ToolTip" xml:space="preserve">
+    <value>Použít offset kamery na grafiku</value>
+  </data>
+  <data name="lblAngle.Text" xml:space="preserve">
+    <value>0,00°</value>
+  </data>
+  <data name="lblAngle.ToolTip" xml:space="preserve">
+    <value>Měřený úhel</value>
+  </data>
+  <data name="btnCamCoordCam.Text" xml:space="preserve">
+    <value>Koordinátor fotoaparátu G59</value>
+  </data>
+  <data name="btnCamCoordCam.ToolTip" xml:space="preserve">
+    <value>Přesuňte aktuální pozici kamery pod nástroj</value>
+  </data>
+  <data name="TbSetPoints.Text" xml:space="preserve">
+    <value>Výchozí souřadnice:</value>
+  </data>
+  <data name="TbSetPoints.ToolTip" xml:space="preserve">
+    <value>Výchozí souřadnice: Budou použity pouze 1. a 2. souřadnice.
+Získejte souřadnice referenčních značek z importované grafiky nebo je shromážděte ručně:
+Ctrl-Klikněte pro označení,
+"a" pro připojení k seznamu,
+"c" pro vymazání seznamu.</value>
+  </data>
+  <data name="TbRealPoints.Text" xml:space="preserve">
+    <value>Přidělené souřadnice:</value>
+  </data>
+  <data name="TbRealPoints.ToolTip" xml:space="preserve">
+    <value>Přidělené souřadnice:
+Sbírejte body ručně:
+Shift-Klikněte pro přidání bodu,
+Shift - "c" pro vymazání seznamu</value>
+  </data>
+  <data name="btnAutoCenter.Text" xml:space="preserve">
+    <value>Přejděte na červený kruh</value>
+  </data>
+  <data name="btnAutoCenter.ToolTip" xml:space="preserve">
+    <value>Přidejte pozici do "Assigned points" a pohybujte nástrojem</value>
+  </data>
+  <data name="GbZoom.Text" xml:space="preserve">
+    <value>Fotoaparát</value>
+  </data>
+  <data name="BtnSetOffsetZero.Text" xml:space="preserve">
+    <value>Nastavte XY = 0;0</value>
+  </data>
+  <data name="BtnSetOffsetMarker.Text" xml:space="preserve">
+    <value>Nastavte XY = Marker</value>
+  </data>
+  <data name="GbOffset.Text" xml:space="preserve">
+    <value>Offset / Pohyb kamery</value>
+  </data>
+  <data name="lblCenterPos.Text" xml:space="preserve">
+    <value>Nebyl nalezen žádný tvar</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Klikněte pravým tlačítkem pro bod otáčení, držte stisknuté a uvolněte v požadovaném úhlu</value>
+  </data>
+  <data name="CbScale.Text" xml:space="preserve">
+    <value>Také měřítko</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Úhel</value>
+  </data>
+  <data name="cBRotateArround0.Text" xml:space="preserve">
+    <value>Otočit kolem 0;0</value>
+  </data>
+  <data name="GbMeasure.Text" xml:space="preserve">
+    <value>Změřte úhel</value>
+  </data>
+  <data name="cBShapeDetection.Text" xml:space="preserve">
+    <value>Povolit rozpoznávání tvarů</value>
+  </data>
+  <data name="BtnStartAutomatic.Text" xml:space="preserve">
+    <value>Spusťte automatickou korekci základny</value>
+  </data>
+  <data name="cBShapeShowFilter.Text" xml:space="preserve">
+    <value>Zobrazit použité filtry</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Vyberte sadu filtrů pro základní rozpoznávání</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>Také měřítko při otáčení</value>
+  </data>
+  <data name="CbUseShapeRecognition.Text" xml:space="preserve">
+    <value>Použijte rozpoznávání tvarů</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Automatický režim</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Tvar blízko značky je červený</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Filtry lze nastavit v [Nastavení - Chování programu - Fotoaparát]</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Rozpoznávání tvaru</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Manuální režim</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Nastavte offsety</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Fotoaparát</value>
+  </data>
+</root>

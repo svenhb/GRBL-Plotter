@@ -321,7 +321,8 @@ namespace GrblPlotter
         private void BtnUndo_Click(object sender, EventArgs e)
         {
             List<PointF> list = jogPath.PathData.Points.ToList<PointF>();
-            list.RemoveAt(list.Count - 1);
+            if (list.Count > 0)
+                list.RemoveAt(list.Count - 1);
             rubberBand.Reset();
             actualLine.Reset();
             jogPath.Reset();
@@ -369,6 +370,11 @@ namespace GrblPlotter
 
         private void BtnJogStart_Click(object sender, EventArgs e)
         {
+            if (jogPath.PointCount <= 0)
+            {
+                joggcode = "(No jog path to send)";
+                return; 
+            }
             float x, y, factor = 1;
             float lastX = 0, lastY = 0;
             int i = 0;

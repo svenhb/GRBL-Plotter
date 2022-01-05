@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -188,8 +188,10 @@ namespace GrblPlotter
             double tmpDist;
             if ((coordList == null) || (coordList.Count == 0))
             {
-                DistanceByLine tmp = new DistanceByLine(0);
-                tmp.actualPos = new XyzPoint(pos,0);
+                DistanceByLine tmp = new DistanceByLine(0)
+                {
+                    actualPos = new XyzPoint(pos, 0)
+                };
                 return tmp;
             }
 
@@ -393,28 +395,50 @@ namespace GrblPlotter
             myPathIterator.Dispose();
         }
 
-        internal static bool GetPathCordinates(List<PointF> posList)    //, float maxDistance)
+        internal static bool GetPathCordinates(List<ImgPoint> posList, float maxDistance)
         {
             if (!gcodeList.Any())
                 return false;
 
-            PointF actualPos, lastPos;
+            if (ContainsG2G3Command())
+            { }
+            ImgPoint actualPos, lastPos;
+            double dist;
+            float dX, dY;
+            int steps,i;
             bool lastWasG0 = true;
-            lastPos = new PointF();
+            lastPos = new ImgPoint();
+            double offX = (xyzSize.maxx - xyzSize.minx) / 2;
+            double offY = (xyzSize.maxy - xyzSize.miny) / 2;
             foreach (GcodeByLine gcline in gcodeList)
             {
-                actualPos = new PointF((float)gcline.actualPos.X, (float)gcline.actualPos.Y);
-                if ((gcline.motionMode > 0))
+                actualPos = new ImgPoint((float)(gcline.actualPos.X - offX), (float)(gcline.actualPos.Y - offY), gcline.motionMode);
+                if (gcline.motionMode > 0)
                 {
                     if (lastWasG0)
-                        posList.Add(lastPos);
+                    { posList.Add(lastPos); }
+                    dist = lastPos.DistanceTo(actualPos);
+                    if ((gcline.motionMode == 1) && (dist > maxDistance))
+                    {   steps = (int)((dist / maxDistance) + 1);
+                        dX = (actualPos.X - lastPos.X)/steps;
+                        dY = (actualPos.Y - lastPos.Y)/steps;
+                //        Logger.Info("GetPathCordinates dist:{0}  max:{1:0.00} steps:{2} ", dist, maxDistance, steps);
+                //        Logger.Info("GetPathCordinates start:{0:0.00} {1:0.00}  stop:{2:0.00} {3:0.00}",lastPos.X, lastPos.Y, actualPos.X, actualPos.Y);
+                        if ((steps > 1) && (steps < 100000))
+                        {
+                            for (i = 1; i < steps; i++)
+                            {
+                                posList.Add(new ImgPoint(lastPos.X + dX * i, lastPos.Y + dY * i, 1));
+                //                Logger.Info("GetPathCordinates  {0:0.00} {1:0.00}", lastPos.X + dX * i, lastPos.Y + dY * i);
+                            }
+                        }
+                    }
                     posList.Add(actualPos);
                     lastWasG0 = false;
                 }
                 else
                 {
-                    if (!lastWasG0)
-                        posList.Add(new PointF(float.NaN, float.NaN));  // mark end of figure
+                    posList.Add(actualPos);
                     lastWasG0 = true;
                 }
                 lastPos = actualPos;

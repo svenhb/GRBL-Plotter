@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@
  * 2021-03-28 btnDeleteToolTable_Click only delete if a file is selected
  * 2021-07-26 code clean up / code quality
  * 2021-11-23 line 79 add try/catch
+ * 2022-01-02 move MakeAbsolutePath to class Datapath
 */
 
 using System;
@@ -356,7 +357,7 @@ namespace GrblPlotter
 				nUDJoyXYSpeed4.Value = (decimal)((double)nUDJoyXYStep4.Value / time * 60 * correct);
 				nUDJoyXYSpeed5.Value = (decimal)((double)nUDJoyXYStep5.Value / time * 60 * correct);
 			}
-			catch (Exception err) {
+			catch {//(Exception err) {
 				MessageBox.Show("Value is out of range","Error");
 			}
         }
@@ -372,7 +373,7 @@ namespace GrblPlotter
 				nUDJoyZSpeed4.Value = (decimal)((double)nUDJoyZStep4.Value / time * 60 * correct);
 				nUDJoyZSpeed5.Value = (decimal)((double)nUDJoyZStep5.Value / time * 60 * correct);
 			}
-			catch (Exception err) {
+			catch {//(Exception err) {
 				MessageBox.Show("Value is out of range","Error");
 			}
         }
@@ -600,10 +601,13 @@ namespace GrblPlotter
 			catch (IOException err) {
 				Properties.Settings.Default.guiLastEndReason += "Error ExportDgvToCSV:"+file;
 				Logger.Error(err,"ExportDgvToCSV IOException:{0}",file);
-				MessageBox.Show("Could not write " + file, "Error");
+				MessageBox.Show("Could not write " + file + "\r\n" + err.Message, "Error");
 			}
-			catch (Exception err) { 
-				throw;		// unknown exception...
+			catch (Exception err) { // access denied
+				Properties.Settings.Default.guiLastEndReason += "Error ExportDgvToCSV:"+file;
+				Logger.Error(err,"ExportDgvToCSV IOException:{0}",file);
+				MessageBox.Show("Could not write " + file + "\r\n" + err.Message, "Error");
+//				throw;		// unknown exception...
 			}
             dGVToolList.DefaultCellStyle.NullValue = dGVToolList.Columns.Count;
             FillToolTableFileList(Datapath.Tools);
@@ -626,7 +630,7 @@ namespace GrblPlotter
 					MessageBox.Show("Could not read " + file, "Error");
 					return false;
 				}
-				catch (Exception err) { 
+				catch {//(Exception err) { 
 					throw;		// unknown exception...
 				}
 					
@@ -831,7 +835,7 @@ namespace GrblPlotter
 					MessageBox.Show("Could not delete " + path, "Error");
 					return;
 				}
-				catch (Exception err) { 
+				catch {//(Exception err) { 
 					throw;		// unknown exception...
 				}
             }
@@ -899,7 +903,7 @@ namespace GrblPlotter
 					MessageBox.Show("Could not read " + tmp.Text, "Error");
 					return;
 				}
-				catch (Exception err) { 
+				catch {//(Exception err) { 
 					throw;		// unknown exception...
 				}
 					
@@ -1041,7 +1045,8 @@ namespace GrblPlotter
         private void SetFilePath(TextBox tmp)
         {
             OpenFileDialog opnDlg = new OpenFileDialog();
-            string ipath = MakeAbsolutePath(tmp.Text);
+            string ipath = Datapath.MakeAbsolutePath(tmp.Text);
+            Logger.Info("SetFilePath initiial: box:{☺}   makeAbsolute:{1}", tmp.Text, ipath);
             opnDlg.InitialDirectory = ipath.Substring(0, ipath.LastIndexOf("\\"));
             opnDlg.Filter = "GCode (*.nc)|*.nc|All Files (*.*)|*.*";
             //            MessageBox.Show(opnDlg.InitialDirectory+"\r\n"+ Application.StartupPath);
@@ -1049,6 +1054,7 @@ namespace GrblPlotter
             {
                 FileInfo f = new FileInfo(opnDlg.FileName);
                 string path;
+                Logger.Info("SetFilePath DirectoryName:{☺}   Datapath.AppDataFolder:{1}", f.DirectoryName, Datapath.AppDataFolder);
                 if (f.DirectoryName == Datapath.AppDataFolder)
                     path = f.Name;  // only file name
                 else if (f.DirectoryName.StartsWith(Datapath.AppDataFolder))
@@ -1058,33 +1064,9 @@ namespace GrblPlotter
                 if (path.StartsWith(@".\"))
                     path = path.Substring(2);
                 tmp.Text = path;
+                Logger.Info("SetFilePath changed: box:{☺}   makeAbsolute:{1}", path, opnDlg.FileName);
             }
             opnDlg.Dispose();
-        }
-        private static string MakeAbsolutePath(string iFilename)
-        {
-            string iNewFilename;
-            if (string.IsNullOrEmpty(iFilename) || (!File.Exists(iFilename)))
-                iFilename = Datapath.AppDataFolder;
-
-            // Get full name considering relative path
-            FileInfo f = new FileInfo(iFilename);
-
-            if (iFilename == Datapath.AppDataFolder)
-                iNewFilename = Datapath.AppDataFolder;
-            else if (!(iFilename.StartsWith(".") || iFilename.StartsWith("\\")) && !f.DirectoryName.StartsWith(Datapath.AppDataFolder))  // File in child folder
-                iNewFilename = Datapath.AppDataFolder + "\\"
-                             + iFilename.Substring(1);  // leave period out of string
-            else if (iFilename.StartsWith(".\\"))       // File in child folder
-                iNewFilename = Datapath.AppDataFolder
-                             + iFilename.Substring(1); // leave period out of string
-            else if (!iFilename.Contains("\\"))         // Consider file in StartupPath
-                iNewFilename = Datapath.AppDataFolder
-                             + "\\" + iFilename;
-            else
-                iNewFilename = f.FullName; // keep full path
-
-            return iNewFilename;
         }
 
         private void ControlSetupForm_SizeChanged(object sender, EventArgs e)
@@ -1124,7 +1106,7 @@ namespace GrblPlotter
 				MessageBox.Show("Could not read " + fileName, "Error");
 				return;
 			}
-			catch (Exception err) { 
+			catch {//(Exception err) { 
 				throw;		// unknown exception...
 			}
 			
@@ -1451,7 +1433,7 @@ namespace GrblPlotter
 					MessageBox.Show("Could not delete old " + sfd.FileName, "Error");
 					return;
 				}
-				catch (Exception err) { 
+				catch {//(Exception err) { 
 					throw;		// unknown exception...
 				}
 				
@@ -1473,7 +1455,7 @@ namespace GrblPlotter
 				MessageBox.Show("Could not delete old " + fileName, "Error");
 				return;
 			}
-			catch (Exception err) { 
+			catch {//(Exception err) { 
 				throw;		// unknown exception...
 			}
             FillUseCaseFileList(Datapath.Usecases);

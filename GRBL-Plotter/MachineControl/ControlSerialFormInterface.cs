@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -36,6 +36,8 @@
  * 2021-11-23 line 446 check dataField.Length, line 793 add if (serialPort.IsOpen) 
  * 2021-12-13 replace serialPort.Write by SerialPortDataSend (in ControlSerialForm.cs)
  * 2021-12-14 add run time for spindle, flood, mist
+ * 2021-12-21 line 819 replace serialPort.Write by 	SerialPortDataSend
+ * 2022-01-03 InsertVariable error handling
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -88,9 +90,13 @@ namespace GrblPlotter
         private bool externalProbe = false;
         private bool isHoming = false;
 
-        private Stopwatch stopwatchSpindle = new Stopwatch();
-        private Stopwatch stopwatchFlood = new Stopwatch();
-        private Stopwatch stopwatchMist = new Stopwatch();
+		private int useSerial3LastBufferFree = 0;		// avoid lock in line 1020 "process 3rd free:109  size:127"
+		private int useSerial3LastBufferFreeSame = 0;	
+		
+		
+        private readonly Stopwatch stopwatchSpindle = new Stopwatch();
+        private readonly Stopwatch stopwatchFlood = new Stopwatch();
+        private readonly Stopwatch stopwatchMist = new Stopwatch();
 
         static readonly object sendDataLock = new object();
         static readonly object receiveDataLock = new object();
@@ -816,7 +822,8 @@ namespace GrblPlotter
         {
             var dataArray = new byte[] { Convert.ToByte(cmd) };
             if (serialPort.IsOpen && (dataArray.Length > 0))// && !blockSend)
-                serialPort.Write(dataArray, 0, 1);
+                //serialPort.Write(dataArray, 0, 1);
+				SerialPortDataSend(dataArray, 0, 1);
             AddToLog("> '0x" + cmd.ToString("X") + "' " + Grbl.GetRealtimeDescription(cmd));
             if ((cmd == 0x85) && !(isStreaming && !isStreamingPause))                   //  Jog Cancel
             {
@@ -1013,10 +1020,21 @@ namespace GrblPlotter
                             serial3Busy = true;                 // avoid further copy from streamingBuffer to sendBuffer
                             if (grblStateNow != GrblState.idle)	// only send if 1st grbl is IDLE
                                 break;
-                            Logger.Trace("process 3rd free:{0}  size:{1}", grblBufferFree, Grbl.RX_BUFFER_SIZE);
+                            Logger.Trace("process 3rd BufferFree:{0}  BufferSize:{1}  BufferState:{2}  lineNr:{3}  line:{4}", grblBufferFree, Grbl.RX_BUFFER_SIZE, machineState.Bf, sendBuffer.LineNr, line);
                             if (grblBufferFree < (Grbl.RX_BUFFER_SIZE - 1)) //  added 2021-04-07 
-                                break;
-
+                            {   if (useSerial3LastBufferFree != grblBufferFree)	// any progress?
+								{	useSerial3LastBufferFree = grblBufferFree;
+								}
+								else
+								{	useSerial3LastBufferFreeSame++; }
+							
+								if (useSerial3LastBufferFreeSame > 10)
+								{	useSerial3LastBufferFreeSame = 0;
+									grblBufferFree = Grbl.RX_BUFFER_SIZE;	// reset buffer - must be empty
+								}
+								else
+									break;
+							}
                             lock (sendDataLock)
                             {
                                 SendTo3rdCOM(line);			    // send to 3rd serial
@@ -1185,7 +1203,14 @@ namespace GrblPlotter
                     if (pos > 0)
                     {
                         myvalue = 0;
-                        variable = line.Substring(pos, 5);
+                        if ((pos + 5) <= (line.Length))
+                        { variable = line.Substring(pos, 5); }
+                        else
+                        {
+                            Logger.Error("InsertVariable pos#:{0} line-len:{1} line:'{2}'", pos, line.Length, line);
+                            AddToLog("!!! Error replacing variable: " + line);
+                            continue;
+                        }
                         mykey = variable.Substring(1);
                         if (gcodeVariable.ContainsKey(mykey))
                         { myvalue = gcodeVariable[mykey]; }

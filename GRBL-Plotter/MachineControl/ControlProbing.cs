@@ -23,6 +23,7 @@
  * 2021-01-05 clear progress bar when finished line 490
  * 2021-04-27 adapt save position, if probe plate dimension is higher
  * 2021-07-14 code clean up / code quality
+ * 2021-12-22 check if is connected to grbl before sending code - 452, 706, 803
 */
 
 using System;
@@ -450,6 +451,10 @@ namespace GrblPlotter
         #region edgeFinder
         private void BtnStartEF_Click(object sender, EventArgs e)
         {
+			if (!Grbl.isConnected)
+			{	MessageBox.Show(Localization.GetString("grblNotConnected"), Localization.GetString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return;
+			}
             Logger.Trace("Start Edge Finder");
             timer1.Enabled = false;
             probeX = false; probeY = false;
@@ -700,6 +705,10 @@ namespace GrblPlotter
         #region centerFinder
         private void BtnStartCF_Click(object sender, EventArgs e)
         {
+			if (!Grbl.isConnected)
+			{	MessageBox.Show(Localization.GetString("grblNotConnected"), Localization.GetString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return;
+			}
             btnCancelCF.Enabled = true;
             btnStartCF.Enabled = false;
             lblEFProgressInfo.Text = Localization.GetString("probingProbingOn") + " X"; //"Probing on X";
@@ -793,6 +802,11 @@ namespace GrblPlotter
         #region toolLength
         private void BtnStartTL_Click(object sender, EventArgs e)
         {
+			if (!Grbl.isConnected)
+			{	MessageBox.Show(Localization.GetString("grblNotConnected"), Localization.GetString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return;
+			}
+		
             lblEFProgressInfo.Text = Localization.GetString("probingProbingOn") + " Z"; //"Probing on X";
             lblTLProgress.Text = "";
             lblTLStatus.Text = "";

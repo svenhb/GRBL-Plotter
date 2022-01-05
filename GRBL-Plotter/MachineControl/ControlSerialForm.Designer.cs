@@ -364,6 +364,7 @@ namespace GrblPlotter
             this.cBStatus1.Name = "cBStatus1";
             this.toolTipSerial.SetToolTip(this.cBStatus1, resources.GetString("cBStatus1.ToolTip"));
             this.cBStatus1.UseVisualStyleBackColor = true;
+            this.cBStatus1.CheckedChanged += new System.EventHandler(this.cBStatus1_CheckedChanged);
             // 
             // lblSrState
             // 

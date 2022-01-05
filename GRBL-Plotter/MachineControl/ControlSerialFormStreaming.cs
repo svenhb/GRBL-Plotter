@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@
  * 2021-02-19 insert variables in subroutine already in startStreaming()
  * 2021-02-28 preProcessStreaming lock copy-routine and replace "requestSend()" by sendBuffer.Add
  * 2021-07-12 code clean up / code quality
+ * 2022-01-02 line 354 AddCodeFromFile -> add MakeAbsolutePath
  */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -165,15 +166,17 @@ namespace GrblPlotter
 
             bool useSubroutine = false;
             for (int i = startAtLine; i < gCode.Length; i++)
-    //        for (int i = startAtLine; i <= stopAtLine; i++)
             {
                 if (gCode[i].Contains("O"))     // find and store subroutines - nothing else
                 {
                     int cmdONr = Gcode.GetCodeNrFromGCode('O', gCode[i]);
                     if (cmdONr <= 0)
                         continue;
-                    subroutines.Add(cmdONr, new List<string>());
                     Logger.Trace("Add subroutine O{0}", cmdONr);
+                    if (!subroutines.ContainsKey(cmdONr))   // 2021-12-17 added
+                        subroutines.Add(cmdONr, new List<string>());
+                    else
+                        Logger.Error("StartStreaming subroutines key {0} already added", cmdONr);
                     useSubroutine = true;
 
                     for (int k = i + 1; k < gCode.Length; k++)
@@ -319,6 +322,7 @@ namespace GrblPlotter
     
         private void InsertToolChangeCode(int line, ref bool inSpindle)
         {
+            Logger.Info("InsertToolChangeCode line:{0} tool is in spindle:{1}",line,inSpindle);
             streamingBuffer.Add("($TS)", line);         // keyword for receiving-buffer (sendBuffer.GetConfirmedLine();) "Tool change start"
             if (inSpindle)
             {   AddCodeFromFile(Properties.Settings.Default.ctrlToolScriptPut, line);
@@ -346,16 +350,19 @@ namespace GrblPlotter
             gcodeVariable["TOLA"] = gcodeVariable["TOAA"];
         } 
 
-		private void AddCodeFromFile(string file, int linenr)
+		private void AddCodeFromFile(string fileRaw, int linenr)
 		{
-			if (File.Exists(file))
-			{
-				string fileCmd = File.ReadAllText(file);
-				string[] commands = fileCmd.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-				string tmp;
-				foreach (string cmd in commands)
-				{
-					tmp = CleanUpCodeLine(cmd);         // remove comments
+            string file = Datapath.MakeAbsolutePath(fileRaw);
+            Logger.Info("AddCodeFromFile file:{0}", file);
+
+            if (File.Exists(file))
+            {
+                string fileCmd = File.ReadAllText(file);
+                string[] commands = fileCmd.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                string tmp;
+                foreach (string cmd in commands)
+                {
+                    tmp = CleanUpCodeLine(cmd);         // remove comments
                     if (tmp.IndexOf("M98") >= 0)
                     {
                         double pWord = FindDouble("P", -1, tmp);
@@ -375,8 +382,7 @@ namespace GrblPlotter
                             }
                         }
                         else
-                            Logger.Error("addCodeFromFile Subroutine {0} not found", pWord);
-
+                        { Logger.Error("AddCodeFromFile Subroutine {0} not found", pWord); }
                     }
                     else
                     {
@@ -385,8 +391,13 @@ namespace GrblPlotter
                         if (tmp.Length > 0)
                         { streamingBuffer.Add(tmp, linenr); }
                     }
-				}
-			}
+                }
+            }
+            else
+            {
+                Logger.Error("AddCodeFromFile file not found:{0}", file);
+                AddToLog("!!! Tool change script not found: "+fileRaw); 
+            }
 		}
 
 

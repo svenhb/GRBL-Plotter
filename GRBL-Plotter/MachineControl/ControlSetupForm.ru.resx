@@ -2995,4 +2995,34 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   <data name="checkBox11.Text" xml:space="preserve">
     <value>Удалять все комментарии при сохранении</value>
   </data>
+  <data name="cBExtendedLoggingCOM.Text" xml:space="preserve">
+    <value>Последовательный COM / потоковая передача</value>
+  </data>
+  <data name="groupBox25.Text" xml:space="preserve">
+    <value>логирование</value>
+  </data>
+  <data name="BtnAccessoryRefresh.Text" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="BtnAccessoryMistReset.Text" xml:space="preserve">
+    <value>Перезагрузить</value>
+  </data>
+  <data name="BtnAccessoryFloodReset.Text" xml:space="preserve">
+    <value>Перезагрузить</value>
+  </data>
+  <data name="BtnAccessorySpindleReset.Text" xml:space="preserve">
+    <value>Перезагрузить</value>
+  </data>
+  <data name="LblAccessoryMist.Text" xml:space="preserve">
+    <value>Туман:</value>
+  </data>
+  <data name="LblAccessoryFlood.Text" xml:space="preserve">
+    <value>Наводнение:</value>
+  </data>
+  <data name="LblAccessorySpindle.Text" xml:space="preserve">
+    <value>Шпиндель:</value>
+  </data>
+  <data name="GbAccessoryRunTime.Text" xml:space="preserve">
+    <value>Время работы аксессуаров (мс)</value>
+  </data>
 </root>

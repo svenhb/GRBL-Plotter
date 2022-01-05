@@ -244,4 +244,20 @@ M =冷却液</value>
   <data name="cBStatus1.ToolTip" xml:space="preserve">
     <value>在流式传输期间显示已发送和已处理的命令</value>
   </data>
+  <data name="pasteCodeFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>从剪贴板粘贴代码</value>
+  </data>
+  <data name="copySelectionToClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>将选择复制到剪贴板</value>
+  </data>
+  <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
+    <value>全选</value>
+  </data>
+  <data name="LblAccessoryState.ToolTip" xml:space="preserve">
+    <value>附件状态
+S =主轴CW，
+C =主轴CCW，
+F =防洪线，
+M =冷却液</value>
+  </data>
 </root>

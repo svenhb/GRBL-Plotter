@@ -236,4 +236,16 @@ GRBL Vers用ではありません。 &lt;1.0</value>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>リアルタイムステータスレポート</value>
   </data>
+  <data name="pasteCodeFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>クリップボードからコードを貼り付ける</value>
+  </data>
+  <data name="copySelectionToClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>選択範囲をクリップボードにコピー</value>
+  </data>
+  <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
+    <value>すべて選択</value>
+  </data>
+  <data name="LblAccessoryState.ToolTip" xml:space="preserve">
+    <value>付属品の状態S =スピンドルCW、C =スピンドルCCW、F = floot colant、M =ミストクーラント</value>
+  </data>
 </root>

@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
 */
 /* 
  * 2021-07-09 split code from GCodeVisuAndTransform
+ * 2022-01-04 fix convertZtoS problem #245
 */
 using System;
 using System.Collections.Generic;
@@ -84,6 +85,7 @@ namespace GrblPlotter
             double newZ;
             //     int lastMotionMode;
             double convertMinZ = xyzSize.minz;          // 1st get last minimum
+            double convertMaxZ = xyzSize.maxz;          // 1st get last minimum
             xyzSize.ResetDimension();                   // then reset
             bool hide_code = false;
             double convertMaxSpeed = (double)Properties.Settings.Default.convertZtoSMax;
@@ -176,9 +178,8 @@ namespace GrblPlotter
 
                         if (specialCmd == ConvertMode.ConvertZToS)
                         {
-                            gcline.spindleSpeed = 0;                //  reset old speed
-                            spindleSpeed = -1;                      // force output
-                            if (gcline.spindleState < 5)            // if spindle on
+                            gcline.spindleSpeed = (int)spindleSpeed;    // reset old speed
+                            if (gcline.spindleState < 5)                // if spindle on
                                 forceM = true;
                         }
 
@@ -186,13 +187,10 @@ namespace GrblPlotter
                         {
                             if (specialCmd == ConvertMode.Nothing)               //  !removeZ
                             { tmpCode.AppendFormat(" Z{0}", Gcode.FrmtNum((double)gcline.z)); }
-                            else if ((specialCmd == ConvertMode.ConvertZToS) && (convertMinZ != 0))
+                            else if ((specialCmd == ConvertMode.ConvertZToS))// && (convertMinZ != 0))
                             {
-                                double convertTmp = (double)gcline.z * convertSpeedRange / convertMinZ + convertMinSpeed;
-                                if (gcline.z > 0)
-                                    convertTmp = convertOffSpeed;
-                                gcline.spindleSpeed = (int)convertTmp;
-                                //tmpCode.AppendFormat(" S{0}", Math.Round(convertTmp));
+                                gcline.spindleSpeed = convertZtoS(gcline.actualPos.Z, convertMaxZ, convertMinZ);
+                                spindleSpeed = -1;  // force output
                             }
                             getCoordinateZ = true;
                         }
@@ -215,14 +213,23 @@ namespace GrblPlotter
 
                         if ((getCoordinateXY || getCoordinateZ) && (!gcline.ismachineCoordG53) && (!hide_code))
                         {
+                            bool keepComment = false;
                             if ((gcline.motionMode > 0) && (feedRate != gcline.feedRate) && (getCoordinateXY || getCoordinateZ)) //((getCoordinateXY && !getCoordinateZ) || (!getCoordinateXY && getCoordinateZ)))
                             { tmpCode.AppendFormat(" F{0,0}", gcline.feedRate); }       // feed
                             if (spindleState != gcline.spindleState)
                             { tmpCode.AppendFormat(" M{0,0}", gcline.spindleState); }   // state
                             if (spindleSpeed != gcline.spindleSpeed)
-                            { tmpCode.AppendFormat(" S{0,0}", gcline.spindleSpeed); }   // speed
+                            {   tmpCode.AppendFormat(" S{0,0}", gcline.spindleSpeed);   // speed
+                                keepComment = true; // keep (PU) / (PD)
+                            }
                             if (coolantState != gcline.coolantState)
                             { tmpCode.AppendFormat(" M{0,0}", gcline.coolantState); }   // state
+
+                            if (keepComment)
+                            {   int strtCmt = gcline.codeLine.IndexOf("(");
+                                if (strtCmt > 0)
+                                    tmpCode.AppendFormat(" {0}", gcline.codeLine.Substring(strtCmt)); 
+                            }
 
                             tmpCode.Replace(',', '.');
                             if (gcline.codeLine.IndexOf("(Setup - GCode") > 1)  // ignore coordinates from setup footer
@@ -267,5 +274,18 @@ namespace GrblPlotter
             return newCode.ToString().Replace(',', '.');
         }
 
+        private static int convertZtoS(double z, double maxZ, double minZ)
+        {
+            double convertMaxSpeed = (double)Properties.Settings.Default.convertZtoSMax;
+            double convertMinSpeed = (double)Properties.Settings.Default.convertZtoSMin;
+            double convertSpeedRange = Math.Abs(convertMaxSpeed - convertMinSpeed);
+            double convertOffSpeed = (double)Properties.Settings.Default.convertZtoSOff;
+        //    Logger.Info("convertZtoS z:{0} max:{1} min:{2}",z,maxZ,minZ);
+            if (z > 0)
+            { return (int)convertOffSpeed; }
+            int result = (int)(z * convertSpeedRange / minZ + convertMinSpeed);
+        //    Logger.Info("convertZtoS z:{0} convertSpeedRange:{1} convertMinSpeed:{2}  result:{3}", z, convertSpeedRange, convertMinSpeed, result);
+            return result;
+        }
     }
 }

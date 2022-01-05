@@ -24,6 +24,7 @@
  * 2021-07-02 code clean up / code quality
  * 2021-11-23 set default for tprop
  * 2021-12-09 line 222 check if (cBTool.Count == 0)
+ * 2021-12-22 check if is connected to grbl before sending code
 */
 
 using System;
@@ -77,6 +78,10 @@ namespace GrblPlotter
 
         private void BtnScanZ_Click(object sender, EventArgs e)
         {
+			if (!Grbl.isConnected)
+			{	MessageBox.Show(Localization.GetString("grblNotConnected"), Localization.GetString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return;
+			}
             string m = rBM3.Checked ? "3" : "4";
             SendCommandEvent(new CmdEventArgs("(++++++++++ Scan Z)"));
             SendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0 Z0")));
@@ -89,6 +94,10 @@ namespace GrblPlotter
 
         private void BtnScanSpeed_Click(object sender, EventArgs e)
         {
+			if (!Grbl.isConnected)
+			{	MessageBox.Show(Localization.GetString("grblNotConnected"), Localization.GetString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return;
+			}
             string m = rBM3.Checked ? "3" : "4";
             decimal rangeSpeed = nUDSpeedMax.Value - nUDSpeedMin.Value;
             if (rangeSpeed == 0)
@@ -115,6 +124,10 @@ namespace GrblPlotter
 
         private void BtnScanPower_Click(object sender, EventArgs e)
         {
+			if (!Grbl.isConnected)
+			{	MessageBox.Show(Localization.GetString("grblNotConnected"), Localization.GetString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return;
+			}
             string m = rBM3.Checked ? "3" : "4";
             decimal rangePower = nUDPowerMax.Value - nUDPowerMin.Value;
             if (rangePower == 0)
@@ -142,6 +155,10 @@ namespace GrblPlotter
 
         private void BtnScanTool_Click(object sender, EventArgs e)
         {
+			if (!Grbl.isConnected)
+			{	MessageBox.Show(Localization.GetString("grblNotConnected"), Localization.GetString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return;
+			}
             string m = rBM3.Checked ? "3" : "4";
             SendCommandEvent(new CmdEventArgs("(++++++++++ Try Tool )"));
             SendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0")));

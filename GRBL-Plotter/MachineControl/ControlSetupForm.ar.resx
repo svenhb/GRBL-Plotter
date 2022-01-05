@@ -3086,4 +3086,34 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="checkBox11.Text" xml:space="preserve">
     <value>إزالة جميع التعليقات عند الحفظ</value>
   </data>
+  <data name="cBExtendedLoggingCOM.Text" xml:space="preserve">
+    <value>المسلسل COM / الجري</value>
+  </data>
+  <data name="groupBox25.Text" xml:space="preserve">
+    <value>تسجيل</value>
+  </data>
+  <data name="BtnAccessoryRefresh.Text" xml:space="preserve">
+    <value>ينعش</value>
+  </data>
+  <data name="BtnAccessoryMistReset.Text" xml:space="preserve">
+    <value>إعادة ضبط</value>
+  </data>
+  <data name="BtnAccessoryFloodReset.Text" xml:space="preserve">
+    <value>إعادة ضبط</value>
+  </data>
+  <data name="BtnAccessorySpindleReset.Text" xml:space="preserve">
+    <value>إعادة ضبط</value>
+  </data>
+  <data name="LblAccessoryMist.Text" xml:space="preserve">
+    <value>شبورة:</value>
+  </data>
+  <data name="LblAccessoryFlood.Text" xml:space="preserve">
+    <value>فيضان:</value>
+  </data>
+  <data name="LblAccessorySpindle.Text" xml:space="preserve">
+    <value>مغزل:</value>
+  </data>
+  <data name="GbAccessoryRunTime.Text" xml:space="preserve">
+    <value>أوقات تشغيل الملحق (مللي ثانية)</value>
+  </data>
 </root>

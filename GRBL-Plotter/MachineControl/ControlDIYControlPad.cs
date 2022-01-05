@@ -33,7 +33,7 @@ namespace GrblPlotter
 {
     public partial class ControlDiyControlPad : Form
     {
-        private string rxString, rxTmpString;
+        private string rxString="", rxTmpString="";
         private byte rxChar;
         internal bool isHeightProbing = false;
         //      internal bool isConnected;

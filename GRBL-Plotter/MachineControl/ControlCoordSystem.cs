@@ -22,6 +22,7 @@
  * 2019-10-25 remove icon to reduce resx size, load icon on run-time
  * 2019-11-10 add .Replace(',', '.')
  * 2021-07-02 code clean up / code quality
+ * 2021-12-22 check if is connected to grbl before sending code
 */
 
 using System;
@@ -150,13 +151,13 @@ namespace GrblPlotter
             SendCommandEvent(new CmdEventArgs("G49")); RefreshValues();
         }
 
-        private void BtnUpdate_Click(object sender, EventArgs e) { RefreshValues(); }
-
-    /*    private void SetCoord(int nr, XyPoint tmp)
-        {   string cmd = String.Format("G10 L2 P{0} X{1:0.000} Y{2:0.000}", nr, tmp.X, tmp.Y);
-            SendCommandEvent(new CmdEventArgs(cmd.Replace(',', '.')));
-//            refreshValues();
-        }  */  
+        private void BtnUpdate_Click(object sender, EventArgs e)  
+		{	if (!Grbl.isConnected)
+			{	MessageBox.Show(Localization.GetString("grblNotConnected"), Localization.GetString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				return;
+			}
+			RefreshValues(); 
+		}
 
         private void SetCoord(int nr, XyzPoint tmp=new XyzPoint())
         {   string cmd = String.Format("G10 L2 P{0} X{1:0.000} Y{2:0.000} Z{3:0.000}", nr, tmp.X, tmp.Y, tmp.Z);
