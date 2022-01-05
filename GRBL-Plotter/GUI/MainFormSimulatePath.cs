@@ -133,7 +133,7 @@ namespace GrblPlotter
         {
             simuLine = VisuGCode.Simulation.Next(ref codeInfo);
 
-            if (lineIsInRange(simuLine))   //(simuLine >= 0)
+            if (LineIsInRange(simuLine))   //(simuLine >= 0)
             {
                 lbInfo.Text = string.Format("Line {0}: {1}", (simuLine + 1), fCTBCode.Lines[simuLine]);
                 fCTBCode.Selection = fCTBCode.GetLine(simuLine);
@@ -162,7 +162,7 @@ namespace GrblPlotter
                 mySelection.End = selStart;
                 fCTBCode.Selection = mySelection;
 
-                if (lineIsInRange(fCTBCodeClickedLineLast)) 
+                if (LineIsInRange(fCTBCodeClickedLineLast)) 
                     fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
                 fCTBCode.BookmarkLine(simuLine);
                 fCTBCode.DoCaretVisible();
@@ -171,6 +171,11 @@ namespace GrblPlotter
                 pictureBox1.Invalidate(); // avoid too much events
                 lbInfo.Text = string.Format("Simulation finished");
                 return;
+            }
+            if (pbFile.Maximum < simuLine)
+            {
+                Logger.Error("SimulationTimer_Tick pbFile.Maximum < simuLine {0} {1}",pbFile.Maximum, simuLine);
+                pbFile.Maximum = simuLine; 
             }
             pbFile.Value = simuLine;
             lblFileProgress.Text = string.Format("{0} {1:0.0}%", Localization.GetString("mainProgress"), (100 * simuLine / (fCTBCode.LinesCount - 2)));

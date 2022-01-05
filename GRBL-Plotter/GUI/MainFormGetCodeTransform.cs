@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -199,13 +199,14 @@ namespace GrblPlotter
             if (!isStreaming)
             {
                 SimuStop();
+                VisuGCode.pathBackground.Reset();
                 NewCodeStart(false);             // GetGCodeFromImage
                 SetFctbCodeText(_image_form.ImageGCode);
                 if (Properties.Settings.Default.importImageResoApply)
                     penDown.Width = (float)Properties.Settings.Default.importImageReso;
                 else
                     penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown;
-                SetLastLoadedFile("from image", "");
+            //    SetLastLoadedFile("from image", "");
                 NewCodeEnd();
                 FoldCode();
                 Properties.Settings.Default.counterImportImage += 1;
@@ -246,7 +247,7 @@ namespace GrblPlotter
         #region camera
         private void OnRaisePositionClickEvent(object sender, XyzEventArgs e)
         {
-            if (e.Command.IndexOf("G91") >= 0)
+            if (e.Command.IndexOf("G90") >= 0)
             {
                 string final = e.Command;
                 if (Grbl.isMarlin) final += ";G1 ";
@@ -256,6 +257,7 @@ namespace GrblPlotter
                     final += string.Format(" Y{0}", Gcode.FrmtNum((float)e.PosY));
                 if (e.PosZ != null)
                     final += string.Format(" Z{0}", Gcode.FrmtNum((float)e.PosZ));
+                final += string.Format(" F{0}", Gcode.FrmtNum((float)Grbl.DefaultFeed));
                 SendCommands(final.Replace(',', '.'), true);
             }
         }

@@ -1044,4 +1044,13 @@ Adicione 'G54;' ao cabeçalho do código G para retornar automaticamente ao G54
   <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
     <value>Mostra o status do pino D0 (grbl-Mega-5X), ao clicar em enviar 'M64 P0 (ligado)' ou 'M65 P0 (desligado)' dependendo do status</value>
   </data>
+  <data name="cmsPicBoxRotateSelectedPath.Text" xml:space="preserve">
+    <value>Girar caminho selecionado</value>
+  </data>
+  <data name="jogPathCreatorToolStripMenuItem.Text" xml:space="preserve">
+    <value>Criador de jog path</value>
+  </data>
+  <data name="LanguageToolStripMenuItem3.Text" xml:space="preserve">
+    <value>Língua</value>
+  </data>
 </root>

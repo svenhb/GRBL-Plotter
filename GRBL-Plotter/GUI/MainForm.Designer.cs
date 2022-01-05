@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -345,13 +345,14 @@ namespace GrblPlotter
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.saveMachineParametersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadMachineParametersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.LanguageToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deutschToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pусскийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.portuguêsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.franzToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.czechToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chinesischToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.arabischToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.japanischToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -2329,7 +2330,7 @@ namespace GrblPlotter
             this.toolStripSeparator7,
             this.saveMachineParametersToolStripMenuItem,
             this.loadMachineParametersToolStripMenuItem,
-            this.toolStripMenuItem3,
+            this.LanguageToolStripMenuItem3,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
@@ -2384,21 +2385,22 @@ namespace GrblPlotter
             resources.ApplyResources(this.loadMachineParametersToolStripMenuItem, "loadMachineParametersToolStripMenuItem");
             this.loadMachineParametersToolStripMenuItem.Click += new System.EventHandler(this.LoadMachineParametersToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem3
+            // LanguageToolStripMenuItem3
             // 
-            this.toolStripMenuItem3.AutoToolTip = true;
-            this.toolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.LanguageToolStripMenuItem3.AutoToolTip = true;
+            this.LanguageToolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.englishToolStripMenuItem,
             this.deutschToolStripMenuItem,
             this.pусскийToolStripMenuItem,
             this.toolStripMenuItem4,
             this.portuguêsToolStripMenuItem,
             this.franzToolStripMenuItem,
+            this.czechToolStripMenuItem,
             this.chinesischToolStripMenuItem,
             this.arabischToolStripMenuItem,
             this.japanischToolStripMenuItem});
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
+            this.LanguageToolStripMenuItem3.Name = "LanguageToolStripMenuItem3";
+            resources.ApplyResources(this.LanguageToolStripMenuItem3, "LanguageToolStripMenuItem3");
             // 
             // englishToolStripMenuItem
             // 
@@ -2435,6 +2437,12 @@ namespace GrblPlotter
             this.franzToolStripMenuItem.Name = "franzToolStripMenuItem";
             resources.ApplyResources(this.franzToolStripMenuItem, "franzToolStripMenuItem");
             this.franzToolStripMenuItem.Click += new System.EventHandler(this.FranzToolStripMenuItem_Click);
+            // 
+            // czechToolStripMenuItem
+            // 
+            this.czechToolStripMenuItem.Name = "czechToolStripMenuItem";
+            resources.ApplyResources(this.czechToolStripMenuItem, "czechToolStripMenuItem");
+            this.czechToolStripMenuItem.Click += new System.EventHandler(this.CzechToolStripMenuItem_Click);
             // 
             // chinesischToolStripMenuItem
             // 
@@ -3214,7 +3222,7 @@ namespace GrblPlotter
         private System.Windows.Forms.ToolStripMenuItem saveMachineParametersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadMachineParametersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem control2ndGRBLToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem LanguageToolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deutschToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gCodeToolStripMenuItem;
@@ -3465,6 +3473,7 @@ namespace GrblPlotter
         private System.Windows.Forms.Button BtnOverrideD2;
         private System.Windows.Forms.Button BtnOverrideD1;
         private System.Windows.Forms.Button BtnOverrideD0;
+        private System.Windows.Forms.ToolStripMenuItem czechToolStripMenuItem;
     }
 }
 

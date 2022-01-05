@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -91,6 +91,8 @@ namespace GrblPlotter
                 _image_form = new GCodeFromImage();
                 _image_form.FormClosed += FormClosed_ImageToGCode;
                 _image_form.btnGenerate.Click += GetGCodeFromImage;      // assign btn-click event
+                _image_form.BtnReloadPattern.Click += LoadLastGraphic;
+                _image_form.CBoxPatternFiles.SelectedIndexChanged += LoadSelectedGraphicImage;
             }
             else
             {

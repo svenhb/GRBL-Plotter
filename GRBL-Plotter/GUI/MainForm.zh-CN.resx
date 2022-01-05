@@ -1051,4 +1051,13 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
   <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
     <value>显示 D0 引脚 (grbl-Mega-5X) 的状态，根据状态点击发送“M64 P0（开）”或“M65 P0（关）”</value>
   </data>
+  <data name="cmsPicBoxRotateSelectedPath.Text" xml:space="preserve">
+    <value>旋转所选路径</value>
+  </data>
+  <data name="jogPathCreatorToolStripMenuItem.Text" xml:space="preserve">
+    <value>点动路径创建器</value>
+  </data>
+  <data name="LanguageToolStripMenuItem3.Text" xml:space="preserve">
+    <value>语</value>
+  </data>
 </root>

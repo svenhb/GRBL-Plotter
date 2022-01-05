@@ -1067,4 +1067,13 @@ Grblのバッファーにモーションがキューイングされていて準�
   <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
     <value>D0ピン（grbl-Mega-5X）のステータスを表示します。クリックすると、ステータスに応じて「M64 P0（オン）」または「M65P0（オフ）」を送信します。</value>
   </data>
+  <data name="cmsPicBoxRotateSelectedPath.Text" xml:space="preserve">
+    <value>選択したパスを回転します</value>
+  </data>
+  <data name="jogPathCreatorToolStripMenuItem.Text" xml:space="preserve">
+    <value>ジョグパスクリエーター</value>
+  </data>
+  <data name="LanguageToolStripMenuItem3.Text" xml:space="preserve">
+    <value>言語</value>
+  </data>
 </root>

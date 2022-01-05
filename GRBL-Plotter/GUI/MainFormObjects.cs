@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@
  * 2021-11-23 line 688 add check (form != null)
  * 2021-11-29 add SaveEncoding array
  * 2021-12-14 add log path 
+ * 2022-01-02 add MakeAbsolutePath (from ControlSetup.cs)
 */
 
 using GrblPlotter.Resources;
@@ -36,6 +37,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Threading;
 using System.Text;
+using System.IO;
 
 namespace GrblPlotter
 {
@@ -60,6 +62,41 @@ namespace GrblPlotter
         public static string Jogpath { get => AppDataFolder + "\\data\\jogpaths"; }
         public static string RecentFile { get => AppDataFolder + "\\Recent.txt"; }
         public static string LogFiles { get => AppDataFolder + "\\logfiles"; }
+
+
+        public static string MakeAbsolutePath(string fileName)
+        {
+            if (Path.IsPathRooted(fileName))
+            { return fileName; }
+
+            return Path.Combine(Datapath.AppDataFolder, fileName);
+   /*         string iNewFilename;
+            if (string.IsNullOrEmpty(fileName) || (!File.Exists(fileName)))
+                fileName = Datapath.AppDataFolder;
+
+            // Get full name considering relative path
+            FileInfo f = new FileInfo(fileName);
+
+            if (fileName == Datapath.AppDataFolder)
+                iNewFilename = Datapath.AppDataFolder;
+            else if (!(fileName.StartsWith(".") || fileName.StartsWith("\\")) && !f.DirectoryName.StartsWith(Datapath.AppDataFolder))  // File in child folder
+            {
+                iNewFilename = Datapath.AppDataFolder + "\\"
+                            + fileName;
+            }
+            else if (fileName.StartsWith(".\\"))       // File in child folder
+            {
+                iNewFilename = Datapath.AppDataFolder
+                            + fileName.Substring(1); // leave period out of string
+            }
+            else if (!fileName.Contains("\\"))         // Consider file in StartupPath
+                iNewFilename = Datapath.AppDataFolder
+                             + "\\" + fileName;
+            else
+                iNewFilename = f.FullName; // keep full path
+
+            return iNewFilename;*/
+        }
     }
 
     public static class GuiVariables
@@ -378,6 +415,23 @@ namespace GrblPlotter
         public static explicit operator XyArcPoint(XyPoint tmp)
         {
             return new XyArcPoint(tmp);
+        }
+    }
+
+    internal struct ImgPoint
+    {
+        public float X;
+        public float Y;
+        public int brightnes;
+        public ImgPoint(float x, float y, int z)
+        { X = x; Y = y; brightnes = z; }
+    //    public ImgPoint(float x, float y)
+    //    { X = x; Y = y; brightnes = -1; }
+        public double DistanceTo(ImgPoint anotherPoint)
+        {
+            double distanceCodeX = X - anotherPoint.X;
+            double distanceCodeY = Y - anotherPoint.Y;
+            return Math.Sqrt(distanceCodeX * distanceCodeX + distanceCodeY * distanceCodeY);
         }
     }
 

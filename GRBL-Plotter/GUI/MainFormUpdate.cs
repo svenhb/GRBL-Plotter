@@ -90,7 +90,7 @@ namespace GrblPlotter
             }
             else // no setup?
             {
-                newPathUser = Datapath.AppDataFolder = Datapath.Application;      // use application path
+                Datapath.AppDataFolder = Datapath.Application;      // use application path
                 LogAppDataPath("Default");
             }
         }
@@ -390,9 +390,9 @@ namespace GrblPlotter
         }
 
         // update controls on Main form (disable if streaming or no serial)
-        private void UpdateControlEnables()
-        { UpdateControlEnables(false); }
-        private void UpdateControlEnables(bool allowControl)
+    //    private void UpdateControlEnables()
+    //    { UpdateControlEnables(false); }
+        private void UpdateControlEnables()//bool allowControl)
         {
             bool isConnected = false;
             if (_serial_form != null)
@@ -400,7 +400,7 @@ namespace GrblPlotter
 
             UpdateCustomButtons(true);  // isConnected && (!isStreaming || allowControl)
 
-            allowControl = isStreamingPause;
+            bool allowControl = isStreamingPause;
             Logger.Trace("updateControls isConnected:{0} isStreaming:{1} streamingAllowControl:{2} source:{3}", isConnected, isStreaming, allowControl, timerUpdateControlSource);
             timerUpdateControlSource = "";
 

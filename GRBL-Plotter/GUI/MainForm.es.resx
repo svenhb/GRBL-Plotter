@@ -1033,4 +1033,13 @@ Añadir 'G54;' al encabezado G-Code para volver automáticamente a G54 antes de 
   <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
     <value>Muestra el estado del pin D0 (grbl-Mega-5X), al hacer clic en enviar 'M64 P0 (encendido)' o 'M65 P0 (apagado)' según el estado</value>
   </data>
+  <data name="cmsPicBoxRotateSelectedPath.Text" xml:space="preserve">
+    <value>Girar la ruta seleccionada</value>
+  </data>
+  <data name="jogPathCreatorToolStripMenuItem.Text" xml:space="preserve">
+    <value>Creador de Jog Path</value>
+  </data>
+  <data name="LanguageToolStripMenuItem3.Text" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
 </root>

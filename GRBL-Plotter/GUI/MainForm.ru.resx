@@ -1041,4 +1041,13 @@
   <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
     <value>Показывает состояние вывода D0 (grbl-Mega-5X), при нажатии отправляется 'M64 P0 (on)' или 'M65 P0 (off)' в зависимости от статуса</value>
   </data>
+  <data name="cmsPicBoxRotateSelectedPath.Text" xml:space="preserve">
+    <value>Повернуть выбранный путь</value>
+  </data>
+  <data name="jogPathCreatorToolStripMenuItem.Text" xml:space="preserve">
+    <value>Создатель пути для бега трусцой</value>
+  </data>
+  <data name="LanguageToolStripMenuItem3.Text" xml:space="preserve">
+    <value>Язык</value>
+  </data>
 </root>

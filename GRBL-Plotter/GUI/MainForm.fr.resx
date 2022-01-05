@@ -1017,4 +1017,13 @@ Ajouter 'G54;' to G-Code header pour revenir automatiquement à G54 avant de dif
   <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
     <value>Affiche l'état de la broche D0 (grbl-Mega-5X), en cliquant sur envoyer 'M64 P0 (on)' ou 'M65 P0 (off)' selon l'état</value>
   </data>
+  <data name="cmsPicBoxRotateSelectedPath.Text" xml:space="preserve">
+    <value>Faire pivoter le chemin sélectionné</value>
+  </data>
+  <data name="jogPathCreatorToolStripMenuItem.Text" xml:space="preserve">
+    <value>Créateur de parcours de jogging</value>
+  </data>
+  <data name="LanguageToolStripMenuItem3.Text" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
 </root>

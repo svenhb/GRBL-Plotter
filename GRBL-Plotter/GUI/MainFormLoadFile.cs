@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -46,6 +46,8 @@
  * 2021-11-29 line 893 BtnSaveFile_Click supply more encodings
  * 2021-12-06 line 1131 check also if (iData.ContainsText(DataFormats.Text))
  * 2021-12-15 line 458 load *.txt try to read file used by other process
+ * 2021-12-31 LoadHotkeys add try/catch
+ * 2022-01-02 add LastLoadedImagePattern = fileName;
 */
 
 using System;
@@ -166,11 +168,11 @@ namespace GrblPlotter
         }
         private void RecentFile_click(object sender, EventArgs e)
         {
-            string mypath = sender.ToString();
-            if (!Path.IsPathRooted(mypath))
+            string mypath = Datapath.MakeAbsolutePath(sender.ToString());
+       /*     if (!Path.IsPathRooted(mypath))
             {
                 mypath = Path.Combine(Datapath.AppDataFolder, mypath); 
-            }
+            }*/
             if (!LoadFile(mypath))
             {
                 SaveRecentFile(sender.ToString(), false);   // remove nonexisting file-path
@@ -193,7 +195,7 @@ namespace GrblPlotter
 
             pictureBox1.Invalidate();                   // resfresh view
 
-			if (lineIsInRange(fCTBCodeClickedLineLast))
+			if (LineIsInRange(fCTBCodeClickedLineLast))
 			{	try {	fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);}
 				catch (Exception err) {	Logger.Error(err, "NewCodeStart - fCTBCode.UnbookmarkLine({0}) ",fCTBCodeClickedLineLast);}
 			}
@@ -283,6 +285,7 @@ namespace GrblPlotter
             this.Cursor = Cursors.Default;
 
             cmsPicBoxReverseSelectedPath.Enabled = false;
+            cmsPicBoxRotateSelectedPath.Enabled = false;
 
             pictureBox1.Invalidate();                                   // resfresh view
             Application.DoEvents();                                     // after creating drawing paths
@@ -403,11 +406,15 @@ namespace GrblPlotter
             if (ext == ".svg")
             {
                 if (Properties.Settings.Default.importSVGRezise) importOptions = "<SVG Resize> " + importOptions;
+                LastLoadedImagePattern = fileName;
                 StartConvert(Graphic.SourceType.SVG, fileName); fileLoaded = true;
             }
 
             else if ((ext == ".dxf") || (ext == ".dxf~"))
-            { StartConvert(Graphic.SourceType.DXF, fileName); fileLoaded = true; }
+            {
+                LastLoadedImagePattern = fileName;
+                StartConvert(Graphic.SourceType.DXF, fileName); fileLoaded = true; 
+            }
 
             else if (extensionDrill.Contains(ext))
             { StartConvert(Graphic.SourceType.Drill, fileName); fileLoaded = true; }
@@ -416,7 +423,10 @@ namespace GrblPlotter
             { StartConvert(Graphic.SourceType.Gerber, fileName); fileLoaded = true; }
 
             else if (extensionHPGL.Contains(ext))
-            { StartConvert(Graphic.SourceType.HPGL, fileName); fileLoaded = true; }
+            {
+                LastLoadedImagePattern = fileName;             
+                StartConvert(Graphic.SourceType.HPGL, fileName); fileLoaded = true; 
+            }
 
             else if (extensionCSV.Contains(ext))
             {
@@ -427,6 +437,7 @@ namespace GrblPlotter
             else if (extensionGCode.Contains(ext))              // extensionGCode = ".nc,.cnc,.ngc,.gcode,.tap";
             {
                 tbFile.Text = fileName;                         // hidden textBox
+                LastLoadedImagePattern = fileName;
                 LoadGcode();
                 Properties.Settings.Default.counterImportGCode += 1;
                 fileLoaded = true;
@@ -438,6 +449,8 @@ namespace GrblPlotter
                     _image_form = new GCodeFromImage(true);
                     _image_form.FormClosed += FormClosed_ImageToGCode;
                     _image_form.btnGenerate.Click += GetGCodeFromImage;      // assign btn-click event
+                    _image_form.BtnReloadPattern.Click += LoadLastGraphic;
+                    _image_form.CBoxPatternFiles.SelectedIndexChanged += LoadSelectedGraphicImage;
                 }
                 else
                 {
@@ -496,6 +509,17 @@ namespace GrblPlotter
             }
         }
 
+        private string LastLoadedImagePattern = "";
+        private void LoadLastGraphic(object sender, EventArgs e)
+        {   LoadFile(LastLoadedImagePattern); }
+        private void LoadSelectedGraphicImage(object sender, EventArgs e)
+        {
+            if (_image_form != null)
+            {
+                string file = Datapath.Examples + "//" + _image_form.patternFile;
+                LoadFile(file);
+            }
+        }
         private void SetLastLoadedFile(string text, string file)
         {
             lastLoadSource = text; showPaths = true;
@@ -613,6 +637,8 @@ namespace GrblPlotter
                     _image_form = new GCodeFromImage(true);
                     _image_form.FormClosed += FormClosed_ImageToGCode;
                     _image_form.btnGenerate.Click += GetGCodeFromImage;      // assign btn-click event
+                    _image_form.BtnReloadPattern.Click += LoadLastGraphic;
+                    _image_form.CBoxPatternFiles.SelectedIndexChanged += LoadSelectedGraphicImage;
                 }
                 else
                 {
@@ -759,7 +785,7 @@ namespace GrblPlotter
                 ShowIoException("StartConvert", source);
 				return;
 			}
-			catch (Exception err) { 
+			catch {//(Exception err) { 
 				throw;		// unknown exception...
 			}
 			
@@ -1040,6 +1066,14 @@ namespace GrblPlotter
                 "Pour améliorer la traduction, veuillez ouvrir un problème avec la correction suggérée sur https://github.com/svenhb/GRBL-Plotter/issues", "Attention");
             TryRestart();
         }
+        private void CzechToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.guiLanguage = "cs";
+            MessageBox.Show("Je potřeba restartovat GRBL-Plotter.\r\n" +
+                "Chcete-li zlepšit překlad, otevřete problém s navrhovanou opravou na https://github.com/svenhb/GRBL-Plotter/issues", "Pozornost");
+            TryRestart();
+        }
+
         private void ChinesischToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.guiLanguage = "zh-CN";
@@ -1282,6 +1316,8 @@ namespace GrblPlotter
                     _image_form = new GCodeFromImage(true);
                     _image_form.FormClosed += FormClosed_ImageToGCode;
                     _image_form.btnGenerate.Click += GetGCodeFromImage;      // assign btn-click event
+                    _image_form.BtnReloadPattern.Click += LoadLastGraphic;
+                    _image_form.CBoxPatternFiles.SelectedIndexChanged += LoadSelectedGraphicImage;
                 }
                 else
                 {
@@ -1338,29 +1374,37 @@ namespace GrblPlotter
                 return;
             }
 
-            XmlReader content = XmlReader.Create(fileName, settings);   // "hotkeys.xml");
-            while (content.Read())
+            try
             {
-                if (!content.IsStartElement())
-                    continue;
-
-                switch (content.Name)
+                XmlReader content = XmlReader.Create(fileName, settings);   // "hotkeys.xml");
+                while (content.Read())
                 {
-                    case "hotkeys":
-                        break;
-                    case "bind":
-                        if ((content["keydata"].Length > 0) && (content["action"] != null))
-                        {
-                            if (!hotkey.ContainsKey(content["keydata"]))
-                                hotkey.Add(content["keydata"], content["action"]);
-                        }
-                        else if ((content["keydata"].Length > 0) && (content["code"] != null))
-                        {
-                            if (!hotkeyCode.ContainsKey(content["keydata"]))
-                                hotkeyCode.Add(content["keydata"], content["code"]);
-                        }
-                        break;
+                    if (!content.IsStartElement())
+                        continue;
+
+                    switch (content.Name)
+                    {
+                        case "hotkeys":
+                            break;
+                        case "bind":
+                            if ((content["keydata"].Length > 0) && (content["action"] != null))
+                            {
+                                if (!hotkey.ContainsKey(content["keydata"]))
+                                    hotkey.Add(content["keydata"], content["action"]);
+                            }
+                            else if ((content["keydata"].Length > 0) && (content["code"] != null))
+                            {
+                                if (!hotkeyCode.ContainsKey(content["keydata"]))
+                                    hotkeyCode.Add(content["keydata"], content["code"]);
+                            }
+                            break;
+                    }
                 }
+            }
+            catch (Exception err)
+            {
+                Logger.Error(err, "MainFormLoadFile - LoadHotkeys {0} ", fileName);
+                MessageBox.Show("Could not load / read hotkeys.xml.\r\n"+err.Message, "Error");
             }
             //	content.Dispose();
         }

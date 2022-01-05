@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -106,7 +106,7 @@ namespace GrblPlotter
         private static uint logFlags = 0;
         private static bool logEnable = false;
         private static bool logDetailed = false;
-        private static bool logPosEvent = false;
+        private static readonly bool logPosEvent = false;
         private static bool logStreaming = false;
 
 
@@ -504,7 +504,7 @@ namespace GrblPlotter
         private readonly string[] btnCustomCommand = new string[33];
         private int SetCustomButton(Button btn, string text)//, int cnt)
         {
-            int index = -1;
+            int index;
 			try { 
 				index = Convert.ToUInt16(btn.Name.Substring("btnCustom".Length), culture);
 			}
@@ -575,7 +575,7 @@ namespace GrblPlotter
         private void BtnCustomButton_Click(object sender, MouseEventArgs e)
         {
             Button clickedButton = sender as Button;
-            int index=-1;
+            int index;
 			try { 
 				index = Convert.ToUInt16(clickedButton.Name.Substring("btnCustom".Length), culture);
 			}

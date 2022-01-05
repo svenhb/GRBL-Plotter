@@ -1070,4 +1070,13 @@
   <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
     <value>يعرض حالة D0 pin (grbl-Mega-5X) ، عند النقر فوق إرسال "M64 P0 (on)" أو "M65 P0 (off)" اعتمادًا على الحالة</value>
   </data>
+  <data name="cmsPicBoxRotateSelectedPath.Text" xml:space="preserve">
+    <value>تدوير المسار المحدد</value>
+  </data>
+  <data name="jogPathCreatorToolStripMenuItem.Text" xml:space="preserve">
+    <value>الخالق مسار الركض</value>
+  </data>
+  <data name="LanguageToolStripMenuItem3.Text" xml:space="preserve">
+    <value>لغة</value>
+  </data>
 </root>

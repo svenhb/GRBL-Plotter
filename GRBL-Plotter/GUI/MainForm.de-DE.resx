@@ -993,4 +993,13 @@ Fügen Sie 'G54;' to G-Code-Header, um vor dem Streaming von G-Code automatisch 
   <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
     <value>Zeigt den Status des D0-Pins (grbl-Mega-5X), beim Klicken senden Sie 'M64 P0 (on)' oder 'M65 P0 (off)' je nach Status</value>
   </data>
+  <data name="cmsPicBoxRotateSelectedPath.Text" xml:space="preserve">
+    <value>Ausgewählten Pfad drehen</value>
+  </data>
+  <data name="jogPathCreatorToolStripMenuItem.Text" xml:space="preserve">
+    <value>Jog-Pfad-Ersteller</value>
+  </data>
+  <data name="LanguageToolStripMenuItem3.Text" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
 </root>

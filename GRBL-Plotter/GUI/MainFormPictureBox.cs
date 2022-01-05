@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -33,6 +33,8 @@
  * 2021-09-08 color-selector for BackgroundPath and Dimension
  * 2021-09-16 show pathPenDown OR pathObject (not both). Apply tileOffset during progress
  * 2021-09-30 line 243 take care of VisuGCode.largeDataAmount
+ * 2021-12-27 line 253 check if any coloredPenPathAvailable
+ * 2022-01-03 switch order of resetView = true line 736 and 755
 */
 
 using System;
@@ -249,7 +251,14 @@ namespace GrblPlotter
                 if (Properties.Settings.Default.gui2DRulerShow)
                     e.DrawPath(penRuler, VisuGCode.pathRuler);
 
-                if (Properties.Settings.Default.gui2DColorPenDownModeEnable && (!VisuGCode.largeDataAmount) && (VisuGCode.pathObject.Count > 0) && (VisuGCode.pathObject[0].path.PointCount > 0))    // Show PenDown path in colors from imported graphics
+                bool coloredPenPathAvailable = false;
+                for (int k = 0; k < VisuGCode.pathObject.Count; k++)        //added 2021-12-24
+                {   if (VisuGCode.pathObject[k].path.PointCount > 0)
+                    {   coloredPenPathAvailable = true;
+                        break;
+                    } 
+                }
+                if (Properties.Settings.Default.gui2DColorPenDownModeEnable && (!VisuGCode.largeDataAmount) && (VisuGCode.pathObject.Count > 0) && coloredPenPathAvailable)// && (VisuGCode.pathObject[0].path.PointCount > 0))    // Show PenDown path in colors from imported graphics
                 {
                     //if (VisuGCode.pathObject.Count > 0)
                     {	if (VisuGCode.ShiftTilePaths)
@@ -262,8 +271,15 @@ namespace GrblPlotter
                         if (shiftedDisplay)
                             e.TranslateTransform(-(float)VisuGCode.ProcessedPath.offset2DView.X, -(float)VisuGCode.ProcessedPath.offset2DView.Y);       // apply offset
 
-						foreach (VisuGCode.PathData tmpPath in VisuGCode.pathObject)
-						{ e.DrawPath(tmpPath.pen, tmpPath.path); }
+                        try
+                        {
+                            foreach (VisuGCode.PathData tmpPath in VisuGCode.pathObject)
+                            { e.DrawPath(tmpPath.pen, tmpPath.path); }
+                        }
+                        catch (Exception err)
+                        {
+                            Logger.Error(err, "OnPaint_drawToolPath VisuGCode.pathObject count {0}", VisuGCode.pathObject.Count);
+                        }
 
                         if (shiftedDisplay)
                             e.TranslateTransform((float)VisuGCode.ProcessedPath.offset2DView.X, (float)VisuGCode.ProcessedPath.offset2DView.Y);       // remove offset
@@ -725,9 +741,9 @@ namespace GrblPlotter
 			// posMoveStart will be stored on left-click
             if (figureIsMarked)
             {
-                resetView = true;
                 if (Graphic.SizeOk())
                 {
+                    resetView = true;
                     SetEditMode(false);
 					VisuGCode.MarkSelectedFigure(-1);           // hide highlight
                     VisuGCode.pathBackground.Reset();
@@ -744,10 +760,10 @@ namespace GrblPlotter
         {
             if (figureIsMarked)
             {
-                resetView = true;
                 if (Graphic.SizeOk())
                 {
-					SetEditMode(false);
+                    resetView = true;
+                    SetEditMode(false);
 					VisuGCode.MarkSelectedFigure(-1);           // hide highlight
 					VisuGCode.pathBackground.Reset();
 					

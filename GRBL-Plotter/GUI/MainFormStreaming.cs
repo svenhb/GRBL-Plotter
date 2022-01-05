@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@
  * 2021-11-23 line 121, 403, 406 add try/catch
  * 2021-11-30 check lineIsInRange(fCTBCodeClickedLineNow)
  * 2021-12-10 line 122 check if (e.CodeLineSent >= fCTBCode.LinesCount); line 340 = fCTBCode.LinesCount - 1;
+ * 2022-01-05 bug fix GrblStreaming.pause: show tool change message
 */
 
 using GrblPlotter.GUI;
@@ -51,7 +52,7 @@ namespace GrblPlotter
         private bool isStreaming = false;
         private bool isStreamingPause = false;
         private bool isStreamingCheck = false;
-        private bool isStreamingRequestStop = false;
+     //   private bool isStreamingRequestStop = false;
         private bool isStreamingOk = true;
         private string lblInfoOkString = "Send G-Code";
 
@@ -241,35 +242,32 @@ namespace GrblPlotter
                     break;
 
                 case GrblStreaming.pause:
-                    //          lock (this)       2020-12-15 removed
-                    {
-                        signalPlay = 1;
-                        SetInfoLabel(Localization.GetString("mainInfoPause") + e.CodeLineSent.ToString() + ")", Color.Yellow);
-                        btnStreamStart.Image = Properties.Resources.btn_play;
-                        isStreamingPause = true;
-                        MainTimer.Stop();
-                        MainTimer.Start();
-                        timerUpdateControls = true; timerUpdateControlSource = "grblStreaming.pause";//updateControls(true);
+                    signalPlay = 1;
+                    SetInfoLabel(Localization.GetString("mainInfoPause") + e.CodeLineSent.ToString() + ")", Color.Yellow);
+                    btnStreamStart.Image = Properties.Resources.btn_play;
+                    isStreamingPause = true;
+                    MainTimer.Stop();
+                    MainTimer.Start();
+                    timerUpdateControls = true; timerUpdateControlSource = "grblStreaming.pause";//updateControls(true);
 
-                        SaveStreamingStatus(e.CodeLineSent);
+                    SaveStreamingStatus(e.CodeLineSent);
 
-                        if (Properties.Settings.Default.flowControlEnable) // send extra Pause-Code in MainTimer_Tick from Properties.Settings.Default.flowControlText
-                            delayedSend = 2;
+                    if (Properties.Settings.Default.flowControlEnable) // send extra Pause-Code in MainTimer_Tick from Properties.Settings.Default.flowControlText
+                        delayedSend = 2;
 
-                        if (logStreaming) 
-						{ 	if (lineIsInRange(fCTBCodeClickedLineNow))
-								Logger.Trace("OnRaiseStreamEvent - pause: {0}  in line:{1}", fCTBCode.Lines[fCTBCodeClickedLineNow], fCTBCodeClickedLineNow);
-							else
-								Logger.Trace("OnRaiseStreamEvent - fCTBCodeClickedLineNow is out of range:{0}  count:{1}", fCTBCodeClickedLineNow, fCTBCode.Lines.Count);
-						}		
+                    if (logStreaming) 
+					{ 	if (LineIsInRange(fCTBCodeClickedLineNow))
+							Logger.Trace("OnRaiseStreamEvent - pause: {0}  in line:{1}", fCTBCode.Lines[fCTBCodeClickedLineNow], fCTBCodeClickedLineNow);
+						else
+							Logger.Trace("OnRaiseStreamEvent - fCTBCodeClickedLineNow is out of range:{0}  count:{1}", fCTBCodeClickedLineNow, fCTBCode.Lines.Count);
+					}
 
-                        if (lineIsInRange(fCTBCodeClickedLineNow) && fCTBCode.Lines[fCTBCodeClickedLineNow].Contains("M0") && fCTBCode.Lines[fCTBCodeClickedLineNow].Contains("Tool"))  // keyword set in gcodeRelated 1132
-                        { signalShowToolExchangeMessage = true; if (logStreaming) Logger.Trace("OnRaiseStreamEvent trigger ToolExchangeMessage"); }
-                        else
-                        { if (notifierEnable) Notifier.SendMessage("grbl Pause", "Pause"); }
-                        //  if (Properties.Settings.Default.importGCToolChangeCode.Length > 1)
-                        //  {   processCommands(Properties.Settings.Default.importGCToolChangeCode); }
+                    for (int tmpLine = (fCTBCodeClickedLineNow - 2); tmpLine <= (fCTBCodeClickedLineNow + 2); tmpLine++)
+                    {   // find correct line
+                        if (LineIsInRange(tmpLine) && fCTBCode.Lines[tmpLine].Contains("M0") && fCTBCode.Lines[tmpLine].Contains("Tool"))  // keyword set in gcodeRelated 1132
+                        { signalShowToolExchangeMessage = true; signalShowToolExchangeLine = tmpLine; if(logStreaming) Logger.Trace("OnRaiseStreamEvent trigger ToolExchangeMessage"); break; }
                     }
+                    if (notifierEnable) Notifier.SendMessage("grbl Pause", "Pause"); 
                     break;
 
                 case GrblStreaming.toolchange:
@@ -301,6 +299,7 @@ namespace GrblPlotter
         internal delegate void Del();
 
         bool signalShowToolExchangeMessage = false;
+        int signalShowToolExchangeLine = 0;
         private void ShowToolChangeMessage()		// triggert by signalShowToolExchangeMessage at GrblStreaming.pause
         {
             if (logStreaming) Logger.Trace("showToolChangeMessage");
@@ -308,8 +307,8 @@ namespace GrblPlotter
             using (MessageForm f = new MessageForm())
             {
                 string tool = "unknown";
-				if (lineIsInRange(fCTBCodeClickedLineNow))
-					tool = fCTBCode.Lines[fCTBCodeClickedLineNow];
+				if (LineIsInRange(signalShowToolExchangeLine))
+					tool = fCTBCode.Lines[signalShowToolExchangeLine];
                 int c1 = tool.IndexOf('(');
                 if (c1 > 0)
                 {
@@ -373,7 +372,7 @@ namespace GrblPlotter
         private void StartStreaming(int startLine, int endLine)
         {
             Logger.Trace("startStreaming serialPortOpen:{0} ", _serial_form.SerialPortOpen);
-            isStreamingRequestStop = false;
+         //   isStreamingRequestStop = false;
             lblInfoOkString = Localization.GetString("mainInfoSendCode");
             notifierUpdateMarker = false;
             notifierUpdateMarkerFinish = false;
@@ -522,7 +521,7 @@ namespace GrblPlotter
             showPicBoxBgImage = false;                 // don't show background image anymore
                                                        //            pictureBox1.BackgroundImage = null;
             signalPlay = 0;
-            isStreamingRequestStop = true;
+        //    isStreamingRequestStop = true;
 
             _serial_form.StopStreaming(showMessage);
 
