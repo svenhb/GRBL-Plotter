@@ -21,6 +21,8 @@
  * 2021-09-03 add "no curve" option
  * 2021-09-07 set limit=0 if noCurve
  * 2021-09-15 add material side view as background - only in +X direction
+ * 2021-12-10 line 447 try/catch
+ * 2021-12-10 line 443 add logger
 */
 
 
@@ -437,7 +439,9 @@ namespace GrblPlotter
             AddBackgroundText(pos, emSize, txt);
         }
         private static void AddBackgroundText(Point pos, float emSize, string txt)
-        {   System.Drawing.Drawing2D.Matrix matrix = new System.Drawing.Drawing2D.Matrix();
+        {   
+			Logger.Info("AddBackgroundText x:{0} y:{1}  emSize:{2}  text:{3}", pos.X, pos.Y, emSize, txt);
+			System.Drawing.Drawing2D.Matrix matrix = new System.Drawing.Drawing2D.Matrix();
             matrix.Scale(1, -1);
             VisuGCode.pathBackground.StartFigure();
             VisuGCode.pathBackground.Transform(matrix);

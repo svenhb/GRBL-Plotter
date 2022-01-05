@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -74,7 +74,7 @@ namespace GrblPlotter
         public void ResetToolProperties()
         {
             Toolnr = 1; Color = Color.Black; Name = "default"; Position = new XyzPoint(); Diameter = 1; FeedXY = 1111; FeedZ = 555; SaveZ = 4.444f; FinalZ = -1.111f;
-            StepZ = 1.111f; SpindleSpeed = 999; Overlap = 99.9f;
+            StepZ = 1.111f; SpindleSpeed = 999; Overlap = 99.9f; Gcode = "";
         }
 
         public void ResetPathProperties()
@@ -120,9 +120,13 @@ namespace GrblPlotter
             foreach (ToolProp tool in toolTableArray)
             {
                 if (index == tool.Toolnr)
-                    return ColorTranslator.ToHtml(tool.Color).Substring(1); // 2021-08-26 remove '#'
+                {   string tmp = ColorTranslator.ToHtml(tool.Color);
+                    if (tmp.StartsWith("#"))
+                        tmp = tmp.Substring(1);
+                    return tmp; // 2021-08-26 remove '#'
+                }
             }
-            return "not defined";
+            return "000000"; // return black
         }
 
         public static int GetIndexByToolNR(int toolNr)
@@ -139,18 +143,26 @@ namespace GrblPlotter
         internal static ToolProp GetToolProperties(int toolNr)
         {
             int index;
-            foreach (ToolProp tool in toolTableArray)
+            if (toolTableArray != null)
             {
-                if (toolNr == tool.Toolnr)
-                { index = toolNr; return tool; }
+                foreach (ToolProp tool in toolTableArray)
+                {
+                    if (toolNr == tool.Toolnr)
+                    { index = toolNr; return tool; }
+                }
             }
             index = toolTableArray.Count - 1;// 2;
+            if (index < 0)
+            {   Logger.Error("GetToolProperties toolTableArray.Count is zero");
+                index = 0;
+                toolTableArray.Add(new ToolProp(1, Color.Black, "Default 2"));  // add default colors
+            }
             return toolTableArray[index]; // return 1st regular tool;
         }
 
         public static void SetIndex(int index)
         {
-            if ((index >= 0) && (index < toolTableIndex))
+            if ((index >= 0) && (index <= toolTableIndex))
                 tmpIndex = index;
         }
 
@@ -177,7 +189,7 @@ namespace GrblPlotter
         public static void SortByToolNR(bool invert)
         {
             List<ToolProp> SortedList;
-            if (invert)
+            if (!invert)
                 SortedList = toolTableArray.OrderBy(o => o.Toolnr).ToList();
             //            Array.Sort<ToolProp>(toolTableArray, (x, y) => y.Toolnr.CompareTo(x.Toolnr));
             else
@@ -233,6 +245,7 @@ namespace GrblPlotter
 
             string file = Datapath.Tools + "\\" + DefaultFileName;
             Logger.Info("Init tool table: {0}", file);
+            bool anyToolFound = false;
             if (File.Exists(file))
             {
                 string[] readText = File.ReadAllLines(file);
@@ -246,7 +259,7 @@ namespace GrblPlotter
                     {
                         col = s.Split(','); //ToolNr,color,name,X,Y,Z,diameter,XYspeed,Z-step, Zspeed, spindleSpeed, overlap
 
-                        toolTableArray.Add(new ToolProp());
+                        toolTableArray.Add(new ToolProp());             // add empty property, fill later
                         toolTableIndex = toolTableArray.Count - 1;
 
                         try
@@ -268,19 +281,22 @@ namespace GrblPlotter
                             if (col.Length >= 14) toolTableArray[toolTableIndex].SpindleSpeed = float.Parse(col[13].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
                             if (col.Length >= 15) toolTableArray[toolTableIndex].Overlap = float.Parse(col[14].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
                             if (col.Length >= 16) toolTableArray[toolTableIndex].Gcode = col[15].Trim();
+                            anyToolFound = true;
                         }
-                        catch (Exception ex) { Logger.Debug(ex, "Error "); }
+                        catch (Exception ex) { Logger.Error(ex, "ToolTable.Init() Error "); }
                         if (toolTableIndex >= (toolTableMax - 1)) break;
                     }
                 }
             }
-            else
+            if (!anyToolFound)
             {
-				Logger.Info("Tool table not found: {0}",file);
-				toolTableArray.Add(new ToolProp(1, Color.Black, "Default"));  // add default color
+        //        toolTableArray.Add(new ToolProp());
+                toolTableArray.Add(new ToolProp(1, Color.Black, "Default 1"));  // add default colors
                 toolTableIndex = toolTableArray.Count - 1;
+                Logger.Error("Tool table not found or empty, use defaults. Count:{0}", toolTableArray.Count);
+                Properties.Settings.Default.importGCToolDefNr = 1;
             }
-            return toolTableIndex;
+            return toolTableArray.Count;
         }
         public static int Clear()
         {   //sortByToolNr();
@@ -295,8 +311,7 @@ namespace GrblPlotter
             return toolTableIndex;
         }
         public static void SetAllSelected(bool val)
-        {  // for (int i = 0; i < toolTableIndex; i++)   // add colors to AForge filter
-            for (int i = 0; i < toolTableArray.Count; i++)   // add colors to AForge filter
+        {   for (int i = 0; i < toolTableArray.Count; i++)   // add colors to AForge filter
             { toolTableArray[i].ToolSelected = val; }
         }
 
@@ -334,7 +349,7 @@ namespace GrblPlotter
         }
         // Clear exception color
         public static void ClrExceptionColor()
-        { useException = false; toolTableArray[0].ColorPresent = false; }
+        { useException = false; SortByToolNR(false); toolTableArray[0].ColorPresent = false; }
 
         // return tool nr of nearest color
         public static int GetToolNRByToolColor(String mycolor, int mode)
@@ -593,6 +608,12 @@ namespace GrblPlotter
             if (tmpIndex < toolTableArray.Count)
                 return toolTableArray[tmpIndex].Name;
             return "no set";
+        }
+        public static int GetToolNr()
+        {
+            if (tmpIndex < toolTableArray.Count)
+                return toolTableArray[tmpIndex].Toolnr;
+            return -9;
         }
 
         // http://stackoverflow.com/questions/27374550/how-to-compare-color-object-and-get-closest-color-in-an-color
