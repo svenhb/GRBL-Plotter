@@ -55,6 +55,7 @@ Source: "{#MyReleasePath}GRBL-Plotter.pdb"; DestDir: "{app}"; Flags: ignoreversi
 Source: "{#MyReleasePath}NLog.config"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#MyReleasePath}*.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#MyReleasePath}ar\*"; DestDir: "{app}\ar"; Flags: ignoreversion
+Source: "{#MyReleasePath}cs\*"; DestDir: "{app}\cs"; Flags: ignoreversion
 Source: "{#MyReleasePath}de-DE\*"; DestDir: "{app}\de-DE"; Flags: ignoreversion
 Source: "{#MyReleasePath}es\*"; DestDir: "{app}\es"; Flags: ignoreversion
 Source: "{#MyReleasePath}fr\*"; DestDir: "{app}\fr"; Flags: ignoreversion
