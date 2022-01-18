@@ -7566,6 +7566,78 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("192.168.1.121")]
+        public string serialEthernetIP1 {
+            get {
+                return ((string)(this["serialEthernetIP1"]));
+            }
+            set {
+                this["serialEthernetIP1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("192.168.1.122")]
+        public string serialEthernetIP2 {
+            get {
+                return ((string)(this["serialEthernetIP2"]));
+            }
+            set {
+                this["serialEthernetIP2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("34000")]
+        public int serialEthernetPort1 {
+            get {
+                return ((int)(this["serialEthernetPort1"]));
+            }
+            set {
+                this["serialEthernetPort1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("34000")]
+        public int serialEthernetPort2 {
+            get {
+                return ((int)(this["serialEthernetPort2"]));
+            }
+            set {
+                this["serialEthernetPort2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool serialEthernetUse1 {
+            get {
+                return ((bool)(this["serialEthernetUse1"]));
+            }
+            set {
+                this["serialEthernetUse1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool serialEthernetUse2 {
+            get {
+                return ((bool)(this["serialEthernetUse2"]));
+            }
+            set {
+                this["serialEthernetUse2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool serialMinimize {
             get {
@@ -7729,6 +7801,30 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["useCaseLastLoaded"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("600, 500")]
+        public global::System.Drawing.Size sizeUseCase {
+            get {
+                return ((global::System.Drawing.Size)(this["sizeUseCase"]));
+            }
+            set {
+                this["sizeUseCase"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool createTextInsertEnable {
+            get {
+                return ((bool)(this["createTextInsertEnable"]));
+            }
+            set {
+                this["createTextInsertEnable"] = value;
             }
         }
     }

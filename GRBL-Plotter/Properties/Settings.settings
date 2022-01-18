@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version='1.0' encoding='utf-8'?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GrblPlotter.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
@@ -1886,6 +1886,24 @@
     <Setting Name="serialBaudDIY" Type="System.String" Scope="User">
       <Value Profile="(Default)">115200</Value>
     </Setting>
+    <Setting Name="serialEthernetIP1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.1.121</Value>
+    </Setting>
+    <Setting Name="serialEthernetIP2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.1.122</Value>
+    </Setting>
+    <Setting Name="serialEthernetPort1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">34000</Value>
+    </Setting>
+    <Setting Name="serialEthernetPort2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">34000</Value>
+    </Setting>
+    <Setting Name="serialEthernetUse1" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="serialEthernetUse2" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="serialMinimize" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -1927,6 +1945,12 @@
     </Setting>
     <Setting Name="useCaseLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">?</Value>
+    </Setting>
+    <Setting Name="sizeUseCase" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">600, 500</Value>
+    </Setting>
+    <Setting Name="createTextInsertEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>
