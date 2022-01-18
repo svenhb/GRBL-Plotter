@@ -147,6 +147,9 @@
   <data name="grblSleep" xml:space="preserve">
     <value>Sleep</value>
   </data>
+  <data name="grblNotConnected" xml:space="preserve">
+    <value>grbl controller is not connected!\r\nCannot perform the desired action!</value>
+  </data>
   <data name="mainAttention" xml:space="preserve">
     <value>Attention</value>
   </data>
@@ -398,5 +401,29 @@
   </data>
   <data name="cameraDistortionMarker" xml:space="preserve">
     <value>Distortion marker</value>
+  </data>
+  <data name="probing" xml:space="preserve">
+    <value>probing</value>
+  </data>
+  <data name="scan" xml:space="preserve">
+    <value>scan</value>
+  </data>
+  <data name="heightScan" xml:space="preserve">
+    <value>height scan</value>
+  </data>
+  <data name="useCaseInfo" xml:space="preserve">
+    <value>A use-case is a presetted setup to adjust settings for a specific machine and/or application.\r\nThe settings of a selected and applied use-case also remain after the import of the graphics.\r\nA use-case needs to be stored in \data\usecases to be accessible.\r\nAlso exported machine-settings and sub-sets of it can be used.</value>
+  </data>
+  <data name="useCaseInfo2" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="useCaseHeader1" xml:space="preserve">
+    <value>Use current settings (last loaded: '{0}')</value>
+  </data>
+  <data name="useCaseHeader2" xml:space="preserve">
+    <value>Settings from '{0}'</value>
+  </data>
+  <data name="useCaseItem0" xml:space="preserve">
+    <value>### Current settings ###</value>
   </data>
 </root>

@@ -399,4 +399,22 @@
   <data name="cameraDistortionMarker" xml:space="preserve">
     <value>Marcador de distorção</value>
   </data>
+  <data name="grblNotConnected" xml:space="preserve">
+    <value>controlador grbl não está conectado! \r\nNão é possível realizar a ação desejada!</value>
+  </data>
+  <data name="useCaseInfo" xml:space="preserve">
+    <value>Um caso de uso é uma configuração predefinida para ajustar as configurações de uma máquina e/ou aplicativo específico.\r\nAs configurações de um caso de uso selecionado e aplicado também permanecem após a importação dos gráficos.\r\nUm caso de uso precisa para ser armazenado em \data\usecases para ser acessível.\r\nTambém podem ser usadas configurações de máquina exportadas e subconjuntos dela.</value>
+  </data>
+  <data name="useCaseInfo2" xml:space="preserve">
+    <value>Em formação</value>
+  </data>
+  <data name="useCaseHeader1" xml:space="preserve">
+    <value>Use as configurações atuais (último carregamento: '{0}')</value>
+  </data>
+  <data name="useCaseHeader2" xml:space="preserve">
+    <value>Configurações de '{0}'</value>
+  </data>
+  <data name="useCaseItem0" xml:space="preserve">
+    <value>### Configurações atuais ###</value>
+  </data>
 </root>

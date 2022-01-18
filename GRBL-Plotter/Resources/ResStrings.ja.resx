@@ -399,4 +399,22 @@
   <data name="cameraDistortionMarker" xml:space="preserve">
     <value>歪みマーカー</value>
   </data>
+  <data name="grblNotConnected" xml:space="preserve">
+    <value>grblコントローラーが接続されていません！\r\n目的のアクションを実行できません！</value>
+  </data>
+  <data name="useCaseInfo" xml:space="preserve">
+    <value>ユースケースは、特定のマシンやアプリケーションの設定を調整するための事前設定されたセットアップです。\ r \ n選択して適用したユースケースの設定は、グラフィックのインポート後も残ります。\ r \ nユースケースのニーズアクセスできるように\ data \ usecasesに保存されます。\ r \ nエクスポートされたマシン設定とそのサブセットも使用できます。</value>
+  </data>
+  <data name="useCaseInfo2" xml:space="preserve">
+    <value>情報</value>
+  </data>
+  <data name="useCaseHeader1" xml:space="preserve">
+    <value>現在の設定を使用します（最終ロード： '{0}'）</value>
+  </data>
+  <data name="useCaseHeader2" xml:space="preserve">
+    <value>'{0}'からの設定</value>
+  </data>
+  <data name="useCaseItem0" xml:space="preserve">
+    <value>###現在の設定###</value>
+  </data>
 </root>

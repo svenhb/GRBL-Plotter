@@ -399,4 +399,22 @@
   <data name="cameraDistortionMarker" xml:space="preserve">
     <value>失真标记</value>
   </data>
+  <data name="grblNotConnected" xml:space="preserve">
+    <value>grbl 控制器未连接！\r\n无法执行所需的操作！</value>
+  </data>
+  <data name="useCaseInfo" xml:space="preserve">
+    <value>用例是一种预设设置，用于调整特定机器和/或应用程序的设置。\r\n所选和应用的用例的设置在图形导入后也保留。\r\n用例需要存储在 \data\usecases 中以便可访问。\r\n还可以使用导出的机器设置及其子集。</value>
+  </data>
+  <data name="useCaseInfo2" xml:space="preserve">
+    <value>信息</value>
+  </data>
+  <data name="useCaseHeader1" xml:space="preserve">
+    <value>使用当前设置（上次加载：“{0}”）</value>
+  </data>
+  <data name="useCaseHeader2" xml:space="preserve">
+    <value>来自“{0}”的设置</value>
+  </data>
+  <data name="useCaseItem0" xml:space="preserve">
+    <value>＃＃＃ 当前设置 ＃＃＃</value>
+  </data>
 </root>

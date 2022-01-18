@@ -333,4 +333,19 @@
   <data name="cameraDistortionMarker" xml:space="preserve">
     <value>Verzerrungsmarker</value>
   </data>
+  <data name="grblNotConnected" xml:space="preserve">
+    <value>grbl-Controller ist nicht verbunden!\r\nDie gewünschte Aktion kann nicht ausgeführt werden!</value>
+  </data>
+  <data name="useCaseInfo" xml:space="preserve">
+    <value>Ein Anwendungsfall ist ein voreingestelltes Setup, um Einstellungen für eine bestimmte Maschine und/oder Anwendung anzupassen.\r\nDie Einstellungen eines ausgewählten und angewendeten Anwendungsfalls bleiben auch nach dem Import der Grafiken erhalten.\r\nEin Anwendungsfall muss in \data\usecases gespeichert werden, um zugänglich zu sein.\r\nAuch exportierte Maschineneinstellungen und Teilmengen davon können verwendet werden.</value>
+  </data>
+  <data name="useCaseHeader1" xml:space="preserve">
+    <value>Aktuelle Einstellungen verwenden (zuletzt geladen: '{0}')</value>
+  </data>
+  <data name="useCaseHeader2" xml:space="preserve">
+    <value>Einstellungen von '{0}'</value>
+  </data>
+  <data name="useCaseItem0" xml:space="preserve">
+    <value>### Aktuelle Einstellungen ###</value>
+  </data>
 </root>

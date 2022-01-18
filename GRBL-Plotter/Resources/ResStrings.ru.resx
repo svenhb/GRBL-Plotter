@@ -399,4 +399,22 @@
   <data name="cameraDistortionMarker" xml:space="preserve">
     <value>Маркер искажения</value>
   </data>
+  <data name="grblNotConnected" xml:space="preserve">
+    <value>Контроллер grbl не подключен! \r\nНе удается выполнить желаемое действие!</value>
+  </data>
+  <data name="useCaseInfo" xml:space="preserve">
+    <value>Вариант использования — это предустановленная настройка для настройки параметров для конкретной машины и/или приложения.\r\nНастройки выбранного и примененного варианта использования также сохраняются после импорта графики.\r\nПотребности варианта использования для хранения в \data\usecases, чтобы быть доступным.\r\nТакже можно использовать экспортированные настройки машины и их подмножества.</value>
+  </data>
+  <data name="useCaseInfo2" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="useCaseHeader1" xml:space="preserve">
+    <value>Использовать текущие настройки (последние загружены: '{0}')</value>
+  </data>
+  <data name="useCaseHeader2" xml:space="preserve">
+    <value>Настройки из "{0}"</value>
+  </data>
+  <data name="useCaseItem0" xml:space="preserve">
+    <value>### Текущие настройки ###</value>
+  </data>
 </root>
