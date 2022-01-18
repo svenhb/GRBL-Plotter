@@ -77,11 +77,9 @@ namespace GrblPlotter
         private readonly Style Style2nd = new TextStyle(Brushes.Black, null, FontStyle.Bold);
 
         private readonly Style ErrorStyle = new TextStyle(Brushes.Red, Brushes.Yellow, FontStyle.Underline);
-   //     private readonly List<int> ErrorLines = new List<int>();
         private ConcurrentBag<int> ErrorLines = new ConcurrentBag<int>();
         private void FctbCode_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
         {
-    //        if (Gcode.LoggerTrace) Logger.Trace("Event  fCTBCode_TextChanged  manualEdit:{0}", manualEdit);
             e.ChangedRange.ClearStyle(StyleComment, ErrorStyle);
             e.ChangedRange.SetStyle(StyleTT, "(tool-table)|(PU)|(PD)", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(Style2nd, "\\(\\^[23].*", System.Text.RegularExpressions.RegexOptions.Compiled);
@@ -125,9 +123,12 @@ namespace GrblPlotter
         }
         private void MarkErrorLine(int line)
         {
-            SetTextSelection(line, line);
-            fCTBCode.Selection.ClearStyle(StyleGWord, StyleXAxis, StyleYAxis);
-            fCTBCode.Selection.SetStyle(ErrorStyle);
+            if (line < fCTBCode.LinesCount)
+            {
+                SetTextSelection(line, line);
+                fCTBCode.Selection.ClearStyle(StyleGWord, StyleXAxis, StyleYAxis);
+                fCTBCode.Selection.SetStyle(ErrorStyle);
+            }
             //       Logger.Info("MarkErrorLine {0}",line);
         }
         private void ClearErrorLines()

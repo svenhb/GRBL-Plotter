@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -104,9 +104,9 @@ namespace GrblPlotter
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             Location = Properties.Settings.Default.locationMForm;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { this.CenterToScreen(); }
-            Size = Properties.Settings.Default.mainFormSize;
+            this.Size = Properties.Settings.Default.mainFormSize;
 
-            WindowState = Properties.Settings.Default.mainFormWinState;
+            this.WindowState = Properties.Settings.Default.mainFormWinState;
 
             int splitDist = Properties.Settings.Default.mainFormSplitDistance;
             if ((splitDist > splitContainer1.Panel1MinSize) && (splitDist < (splitContainer1.Width - splitContainer1.Panel2MinSize)))
@@ -389,9 +389,8 @@ namespace GrblPlotter
             virtualJoystickC.JoystickLabel = joystickAStep;
         }
 
-        // update controls on Main form (disable if streaming or no serial)
-    //    private void UpdateControlEnables()
-    //    { UpdateControlEnables(false); }
+		// update controls on Main form (disable if streaming or no serial)
+		// private void UpdateControlEnables()
         private void UpdateControlEnables()//bool allowControl)
         {
             bool isConnected = false;

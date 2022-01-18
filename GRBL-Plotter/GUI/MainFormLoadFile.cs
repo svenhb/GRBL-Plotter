@@ -48,6 +48,7 @@
  * 2021-12-15 line 458 load *.txt try to read file used by other process
  * 2021-12-31 LoadHotkeys add try/catch
  * 2022-01-02 add LastLoadedImagePattern = fileName;
+ * 2022-01-07 BtnSaveFile_Click add try/catch
 */
 
 using System;
@@ -169,10 +170,6 @@ namespace GrblPlotter
         private void RecentFile_click(object sender, EventArgs e)
         {
             string mypath = Datapath.MakeAbsolutePath(sender.ToString());
-       /*     if (!Path.IsPathRooted(mypath))
-            {
-                mypath = Path.Combine(Datapath.AppDataFolder, mypath); 
-            }*/
             if (!LoadFile(mypath))
             {
                 SaveRecentFile(sender.ToString(), false);   // remove nonexisting file-path
@@ -235,22 +232,18 @@ namespace GrblPlotter
             else
                 StatusStripSet(0, "Display GCode", Color.YellowGreen);
 
-            //           setEditMode(false);
-
             if (!imported && Properties.Settings.Default.ctrlCommentOut)
             { FctbCheckUnknownCode(); }                              // check code
 
             Logger.Info("▄▄▄▄▄▄▄▄ Object count:{0} KB  maxObjects:{1} KB  Process Gcode lines-showProgress:{2}", objectCount, maxObjects, (objectCount > maxObjects));
-        //    ClearErrorLines();
 
-            if (objectCount <= maxObjects)
+            if (objectCount <= maxObjects)  // set FctbCode.Text directly OR via GCodeVisuWorker.cs
             {
-
                 if (imported &&(Graphic.GCode != null))
                 {
-                    SetFctbCodeText(Graphic.GCode.ToString());    // newCodeEnd
+                    SetFctbCodeText(Graphic.GCode.ToString());          // newCodeEnd
                 }
-                VisuGCode.GetGCodeLines(fCTBCode.Lines, null, null);        // get code path
+                VisuGCode.GetGCodeLines(fCTBCode.Lines, null, null);    // get code path
             }
             else
             {
@@ -278,7 +271,7 @@ namespace GrblPlotter
             }
 
             StatusStripClear(0);
-            Update_GCode_Depending_Controls();                          // update GUI controls
+            Update_GCode_Depending_Controls();  // lbDimension.Text && Tranfrom-menu update GUI controls
             timerUpdateControlSource = "newCodeEnd";
             UpdateControlEnables();                                   	// update control enable 
             lbInfo.BackColor = SystemColors.Control;
@@ -294,6 +287,9 @@ namespace GrblPlotter
             {
                 timerShowGCodeError = true;
             }
+
+            // https://docs.microsoft.com/de-de/dotnet/desktop/winforms/automatic-scaling-in-windows-forms?view=netframeworkdesktop-4.8
+            // PerformAutoScale();		// absichtlich
         }
 
         private static bool timerShowGCodeError = false;
@@ -795,9 +791,9 @@ namespace GrblPlotter
                 VisuGCode.CalcDrawingArea();                                // calc ruler dimension
             }
 
-            pictureBox1.Invalidate();                                   // resfresh view
+         //   pictureBox1.Invalidate();                                   // resfresh view
             Application.DoEvents();
-            this.Invalidate();
+         //   this.Invalidate();
 
             this.Text = appName + " | Source: " + source;
 
@@ -828,7 +824,7 @@ namespace GrblPlotter
             }
             NewCodeEnd(true);               // code was imported, no need to check for bad GCode
             FoldCode();
-            UpdateControlEnables();
+        //    UpdateControlEnables(); 
 			if (_camera_form != null)
 			{	_camera_form.NewDrawing();}
             Logger.Trace("foldCode");
@@ -889,8 +885,23 @@ namespace GrblPlotter
                 NewCodeStart();             // LoadGcode
                 fCTBCode.Text = "PLEASE WAIT !!!\r\nDisplaying a large number of lines\r\ntakes some seconds.";
                 fCTBCode.Refresh();
-                fCTBCode.OpenFile(tbFile.Text);//, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);	// File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-// https://stackoverflow.com/questions/9759697/reading-a-file-used-by-another-process
+                try
+                {
+                    fCTBCode.OpenFile(tbFile.Text);//, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);	// File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                }
+                catch (Exception err)
+                {
+                    Logger.Error(err, "LoadGcode ");
+                    Properties.Settings.Default.guiLastEndReason += "LoadGcode 2nd try open file: "+err.Message+" ---";
+
+                    // https://stackoverflow.com/questions/9759697/reading-a-file-used-by-another-process
+                    using (var fs = new FileStream(tbFile.Text, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                    using (var sr = new StreamReader(fs, GetEncoding(tbFile.Text)))
+                    {
+                        string tmp = sr.ReadToEnd();
+                        fCTBCode.Text = tmp;
+                    }
+                }
 
                 if (_serial_form.IsLasermode && Properties.Settings.Default.ctrlReplaceEnable)
                 {
@@ -980,7 +991,16 @@ namespace GrblPlotter
                     encodeIndex = 0;
 
                 string encoding = GuiVariables.SaveEncoding[encodeIndex].BodyName;
-                System.IO.File.WriteAllLines(sfd.FileName, temp, GuiVariables.SaveEncoding[encodeIndex]);
+                try
+                {
+                    System.IO.File.WriteAllLines(sfd.FileName, temp, GuiVariables.SaveEncoding[encodeIndex]);
+                }
+                catch (Exception err)
+                {   Logger.Error(err, "BtnSaveFile_Click ");
+                    MessageBox.Show("Could not save the file: \r\n"+err.Message,"Error");
+                    sfd.Dispose();
+                    return;
+                }
 
                 Logger.Info("Save GCode as {0}, Encoding: {1}{2}", sfd.FileName, encoding, comments);
                 StatusStripSet(1, string.Format("G-Code saved as {0}{1}",encoding, comments), Color.Yellow);
@@ -1420,11 +1440,18 @@ namespace GrblPlotter
                     string num = action.Substring("CustomButton".Length);
                     //   int num1;
                     if (!int.TryParse(num, out int num1))
-                        MessageBox.Show(Localization.GetString("mainHotkeyError1") + action, Localization.GetString("mainHotkeyError2"));
+                    {   MessageBox.Show(Localization.GetString("mainHotkeyError1") + action, Localization.GetString("mainHotkeyError2"));
+                        Logger.Error("ProcessHotkeys CustomButton TryParse:'{0}'", action);
+                    }
                     else
                     {
-                        if (_serial_form.SerialPortOpen && (!isStreaming || isStreamingPause) || Grbl.grblSimulate)
-                            ProcessCommands(btnCustomCommand[num1]);
+                        if ((num1 >= 0) && (num1 < 32))
+                        {
+                            if (_serial_form.SerialPortOpen && (!isStreaming || isStreamingPause) || Grbl.grblSimulate)
+                                ProcessCommands(btnCustomCommand[num1]);
+                        }
+                        else
+                            Logger.Error("ProcessHotkeys CustomButton index:{0} '{1}'", num1, action);
                     }
                     return true;
                 }

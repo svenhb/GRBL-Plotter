@@ -70,32 +70,6 @@ namespace GrblPlotter
             { return fileName; }
 
             return Path.Combine(Datapath.AppDataFolder, fileName);
-   /*         string iNewFilename;
-            if (string.IsNullOrEmpty(fileName) || (!File.Exists(fileName)))
-                fileName = Datapath.AppDataFolder;
-
-            // Get full name considering relative path
-            FileInfo f = new FileInfo(fileName);
-
-            if (fileName == Datapath.AppDataFolder)
-                iNewFilename = Datapath.AppDataFolder;
-            else if (!(fileName.StartsWith(".") || fileName.StartsWith("\\")) && !f.DirectoryName.StartsWith(Datapath.AppDataFolder))  // File in child folder
-            {
-                iNewFilename = Datapath.AppDataFolder + "\\"
-                            + fileName;
-            }
-            else if (fileName.StartsWith(".\\"))       // File in child folder
-            {
-                iNewFilename = Datapath.AppDataFolder
-                            + fileName.Substring(1); // leave period out of string
-            }
-            else if (!fileName.Contains("\\"))         // Consider file in StartupPath
-                iNewFilename = Datapath.AppDataFolder
-                             + "\\" + fileName;
-            else
-                iNewFilename = f.FullName; // keep full path
-
-            return iNewFilename;*/
         }
     }
 
@@ -288,9 +262,13 @@ namespace GrblPlotter
         { X = tmp.X; Y = tmp.Y; }
         public XyPoint(Point tmp)
         { X = tmp.X; Y = tmp.Y; }
+        public XyPoint(System.Drawing.PointF tmp)
+        { X = tmp.X; Y = tmp.Y; }
         public XyPoint(XyzPoint tmp)
         { X = tmp.X; Y = tmp.Y; }
         public static explicit operator XyPoint(Point tmp)
+        { return new XyPoint(tmp); }
+        public static explicit operator XyPoint(PointF tmp)
         { return new XyPoint(tmp); }
         public static explicit operator XyPoint(System.Windows.Point tmp)
         { return new XyPoint(tmp); }
@@ -761,9 +739,9 @@ namespace GrblPlotter
         public static void UpdateLanguage(string langId)
         {
             try
-            {
-                //Set Language  
+            {       //Set Language  
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(langId);
+                Logger.Info("UpdateLanguage {0} {1}",langId, Thread.CurrentThread.CurrentUICulture);
             }
             catch (Exception ex)
             {

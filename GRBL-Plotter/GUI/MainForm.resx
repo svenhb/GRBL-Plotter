@@ -3946,6 +3946,9 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
   <data name="cmsPicBoxMoveSelectedPathInCode.Text" xml:space="preserve">
     <value>Apply offset to GCode</value>
   </data>
+  <data name="cmsPicBoxMoveSelectedPathInCode.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="cmsPicBoxReverseSelectedPath.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -6813,7 +6816,7 @@ Jazyk
     <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>60</value>
+    <value>93</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>

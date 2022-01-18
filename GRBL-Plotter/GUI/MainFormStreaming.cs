@@ -90,6 +90,7 @@ namespace GrblPlotter
         /***** Receive streaming status from serial COM *****/
         private bool notifierUpdateMarker = false;
         private bool notifierUpdateMarkerFinish = false;
+        private int lastErrorLine = 0;
         private void OnRaiseStreamEvent(object sender, StreamEventArgs e)
         {
             // only notify if estimated process-time > notifier intervall
@@ -157,6 +158,7 @@ namespace GrblPlotter
                 case GrblStreaming.reset:
                     Logger.Info("### OnRaiseStreamEvent - GrblStreaming.reset");
                     ResetDetected = true;
+                    lastErrorLine = 0;
                     SaveStreamingStatus(e.CodeLineSent);
                     StopStreaming(false);
                     if (e.CodeProgress < 0)
@@ -178,18 +180,23 @@ namespace GrblPlotter
                     StatusStripSet(0, Grbl.lastMessage, Color.Fuchsia);
                     pbFile.ForeColor = Color.Red;
 
-                    SaveStreamingStatus(e.CodeLineSent);
+                    if (lastErrorLine != e.CodeLineConfirmed)
+                    {
+                        SaveStreamingStatus(e.CodeLineSent);
 
-                    int errorLine = e.CodeLineConfirmed - 1;
-                    if (isStreamingCheck)
-                        errorLine = e.CodeLineConfirmed - 2;
-                    ErrorLines.Add(errorLine);
-                    MarkErrorLine(errorLine);
+                        int errorLine = e.CodeLineConfirmed - 1;
+                        if (isStreamingCheck)
+                            errorLine = e.CodeLineConfirmed - 2;
+                        ErrorLines.Add(errorLine);
+                        MarkErrorLine(errorLine);
 
-                    SetInfoLabel(Localization.GetString("mainInfoErrorLine") + errorLine.ToString(), Color.Fuchsia);
+                        SetInfoLabel(Localization.GetString("mainInfoErrorLine") + errorLine.ToString(), Color.Fuchsia);
 
-                    fCTBCode.BookmarkLine(actualCodeLine - 1);
-                    fCTBCode.DoSelectionVisible();
+                        if (actualCodeLine < fCTBCode.LinesCount)
+                            fCTBCode.BookmarkLine(actualCodeLine - 1);
+                        fCTBCode.DoSelectionVisible();
+                    }
+                    lastErrorLine = e.CodeLineConfirmed;
 
                     if (notifierEnable) Notifier.SendMessage(string.Format("Streaming error at line {0}\r\nTime stamp: {1}", e.CodeLineConfirmed, GetTimeStampString()), "Error");
                     break;
@@ -205,6 +212,7 @@ namespace GrblPlotter
                             btnStreamStart.BackColor = SystemColors.Control;
                         }
                     }
+                    lastErrorLine = 0;
                     break;
 
                 case GrblStreaming.finish:

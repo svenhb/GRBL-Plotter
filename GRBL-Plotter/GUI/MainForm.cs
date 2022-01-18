@@ -218,6 +218,7 @@ namespace GrblPlotter
             if (_splashscreen != null)          // 2nd occurance, hide splashscreen windows
             {
                 this.Opacity = 100;
+
                 if (_serial_form == null)
                 {
                     if (Properties.Settings.Default.ctrlUseSerial2)
@@ -237,10 +238,6 @@ namespace GrblPlotter
                 }
                 if (Properties.Settings.Default.ctrlUseSerialDIY)
                 { DIYControlopen(sender, e); }
-                _splashscreen.Close();
-                _splashscreen.Dispose();
-                _splashscreen = null;
-                Logger.Info(culture, "++++++ MainForm SplashScreen closed          -> mainTimer:{0}", mainTimerCount);
 
                 string[] args = Environment.GetCommandLineArgs();
                 if (args.Length > 1)
@@ -248,6 +245,15 @@ namespace GrblPlotter
                     Logger.Info(culture, "Load file via CommandLineArgs[1] {0}", args[1]);
                     LoadFile(args[1]);
                 }
+
+                if (_splashscreen != null)
+                {
+                    _splashscreen.Close();
+                    _splashscreen.Dispose();
+                }
+                _splashscreen = null;
+                Logger.Info(culture, "++++++ MainForm SplashScreen closed          -> mainTimer:{0}", mainTimerCount);
+                
                 SplashScreenTimer.Stop();
                 SplashScreenTimer.Interval = 2000;
                 SplashScreenTimer.Start();
@@ -630,18 +636,18 @@ namespace GrblPlotter
             int dirX = Math.Sign(index_X);
             int dirY = Math.Sign(index_Y);
             virtualJoystickXY_lastIndex = Math.Max(indexX, indexY);
-            if (indexX > joystickXYStep.Length)
-            { indexX = joystickXYStep.Length; index_X = indexX; }
+            if (indexX >= joystickXYStep.Length)
+            { indexX = joystickXYStep.Length-1; index_X = indexX; }
             if (indexX < 0)
             { indexX = 0; index_X = 0; }
-            if (indexY > joystickXYStep.Length)
-            { indexY = joystickXYStep.Length; index_Y = indexY; }
+            if (indexY >= joystickXYStep.Length)
+            { indexY = joystickXYStep.Length-1; index_Y = indexY; }
             if (indexY < 0)
             { indexY = 0; index_Y = 0; }
             int speed = (int)Math.Max(joystickXYSpeed[indexX], joystickXYSpeed[indexY]);
             String strX = Gcode.FrmtNum(joystickXYStep[indexX] * dirX);
             String strY = Gcode.FrmtNum(joystickXYStep[indexY] * dirY);
-            Logger.Error("VirtualJoystickXY_move speed==0  x:{0}  y:{1}", index_X, index_Y);
+        //    Logger.Error("VirtualJoystickXY_move speed==0  x:{0}  y:{1}", index_X, index_Y);
             if (speed > 0)
             {
                 if (Properties.Settings.Default.machineLimitsAlarm && Properties.Settings.Default.machineLimitsShow)
@@ -672,6 +678,9 @@ namespace GrblPlotter
 
                 SendCommands(s, true);
             }
+			else
+				Logger.Error("VirtualJoystickXY_move speed==0  index: x:{0}  y:{1}", index_X, index_Y);
+
         }
         private void VirtualJoystickXY_MouseUp(object sender, MouseEventArgs e)
         { if (!Grbl.isVersion_0 && cBSendJogStop.Checked) SendRealtimeCommand(133); }
@@ -699,8 +708,8 @@ namespace GrblPlotter
         {
             int indexZ = Math.Abs(index_Z);
             int dirZ = Math.Sign(index_Z);
-            if (indexZ > joystickZStep.Length)
-            { indexZ = joystickZStep.Length; }
+            if (indexZ >= joystickZStep.Length)
+            { indexZ = joystickZStep.Length-1; }
             if (indexZ < 0)
             { indexZ = 0; }
 
@@ -721,8 +730,8 @@ namespace GrblPlotter
         {
             int indexA = Math.Abs(index_A);
             int dirA = Math.Sign(index_A);
-            if (indexA > joystickAStep.Length)
-            { indexA = joystickAStep.Length; }
+            if (indexA >= joystickAStep.Length)
+            { indexA = joystickAStep.Length-1; }
             if (indexA < 0)
             { indexA = 0; }
 
@@ -1023,13 +1032,19 @@ namespace GrblPlotter
         }
 
         private void MainForm_Activated(object sender, EventArgs e)
-        { pictureBox1.Focus(); }
+        { 	if (!pictureBox1.Focused)
+				pictureBox1.Focus(); 
+		}
 
         private void PictureBox1_MouseHover(object sender, EventArgs e)
-        { pictureBox1.Focus(); }
+        { 	//if (!pictureBox1.Focused)
+			//	pictureBox1.Focus(); 
+		}
 
         private void FCTBCode_MouseHover(object sender, EventArgs e)
-        { fCTBCode.Focus(); }
+        { 	if (!fCTBCode.Focused)
+				fCTBCode.Focus(); 
+		}
 
         private void ToolStrip_tb_StreamLine_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1284,6 +1299,11 @@ namespace GrblPlotter
         {
             if (pictureBox1.Focused && ((e.KeyCode == Keys.Right) || (e.KeyCode == Keys.Left) || (e.KeyCode == Keys.Up) || (e.KeyCode == Keys.Down)))
             { e.IsInputKey = true; }
+        }
+
+        private void pictureBox1_MouseLeave(object sender, EventArgs e)
+        {
+            Cursor = Cursors.Default;
         }
     }
 }

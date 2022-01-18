@@ -52,13 +52,19 @@ namespace GrblPlotter
                 penRotary.Dispose();
                 penHeightMap.Dispose();
                 penRuler.Dispose();
+				penGrid1.Dispose();
+				penGrid10.Dispose();
+                penGrid100.Dispose();
                 penTool.Dispose();
                 penMarker.Dispose();
                 penLandMark.Dispose();
+				penBackgroundPath.Dispose();
+				penDimension.Dispose();
                 penSimulation.Dispose();
 
                 brushMachineLimit.Dispose();
                 brushBackground.Dispose();
+				brushBackgroundPath.Dispose();
                 StyleAAxis.Dispose();
                 StyleLineN.Dispose();
                 pBoxOrig.Dispose();
@@ -1763,6 +1769,7 @@ namespace GrblPlotter
             this.pictureBox1.SizeChanged += new System.EventHandler(this.PictureBox1_SizeChanged);
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBox1_Paint);
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseDown);
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
             this.pictureBox1.MouseHover += new System.EventHandler(this.PictureBox1_MouseHover);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseUp);
