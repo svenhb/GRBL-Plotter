@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -643,6 +643,7 @@ namespace GrblPlotter
             Logger.Info("CreateGCode - show original graphics in 2D-view");
             lock (lockObject)
             { CreateGraphicsPath(completeGraphic, VisuGCode.pathBackground); }
+			
             VisuGCode.xyzSize.AddDimensionXY(Graphic.actualDimension);
             VisuGCode.CalcDrawingArea();                                // calc ruler dimension
             if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt * 100 / maxOpt), Content = "show" });
@@ -811,14 +812,15 @@ namespace GrblPlotter
         internal static bool ReDoReversePath(int figureNr, XyPoint aP, int[] sortOrderFigure, int[] sortOrderGroup, bool reverse)	// called in MainFormPictureBox
         {
             if (reverse)
-                Logger.Info("ReDoReversePath reverse figure:{0}  posX:{1:0.00}  posY:{2:0.00}   ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄", figureNr, aP.X, aP.Y);
+                Logger.Info("▌ ReDoReversePath reverse figure:{0}  posX:{1:0.00}  posY:{2:0.00}  GroupEnable:{3}  ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄", figureNr, aP.X, aP.Y, graphicInformation.GroupEnable);
             else
-                Logger.Info("ReDoReversePath rotate  figure:{0}  posX:{1:0.00}  posY:{2:0.00}   ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄", figureNr, aP.X, aP.Y);
+                Logger.Info("▌ ReDoReversePath rotate  figure:{0}  posX:{1:0.00}  posY:{2:0.00}  GroupEnable:{3}  ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄", figureNr, aP.X, aP.Y, graphicInformation.GroupEnable);
 
-            if (sortOrderFigure == null) return false;
+            if (sortOrderFigure == null) { Logger.Warn("▌ ReDoReversePath sortOrderFigure == null"); return false; }
 
-            if (graphicInformation.GroupEnable && groupedGraphic.Count > 0)
+            if (graphicInformation.GroupEnable && (groupedGraphic != null) && (groupedGraphic.Count > 0))
             {
+                Logger.Info("▌ ReDoReversePath process groupedGraphic:{0}", groupedGraphic.Count); 
                 foreach (GroupObject tmpGrp in groupedGraphic)
                 {
                     for (int i = 0; i < tmpGrp.GroupPath.Count; i++)
@@ -856,8 +858,9 @@ namespace GrblPlotter
             }
             else
             {
-				if (completeGraphic == null)
-					return false;
+				if (completeGraphic == null) { Logger.Warn("▌ ReDoReversePath completeGraphic == null"); return false; }
+
+                Logger.Info("▌ ReDoReversePath process completeGraphic:{0}", completeGraphic.Count);
                 foreach (PathObject tmp in completeGraphic)
                 {
                     if ((figureNr > 0) && (figureNr <= sortOrderFigure.Length) && (tmp.FigureId == sortOrderFigure[figureNr - 1]))
