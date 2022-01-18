@@ -31,16 +31,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlSetupUseCase));
             this.tBUseCaseInfo = new System.Windows.Forms.TextBox();
             this.lBUseCase = new System.Windows.Forms.ListBox();
-            this.btnLoad = new System.Windows.Forms.Button();
-            this.btnOk = new System.Windows.Forms.Button();
+            this.BtnLoad = new System.Windows.Forms.Button();
+            this.BtnOk = new System.Windows.Forms.Button();
             this.tBSetup = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.LblUseCaseHeader = new System.Windows.Forms.Label();
             this.lblLastUseCase = new System.Windows.Forms.Label();
             this.cBshowImportDialog = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // tBUseCaseInfo
             // 
+            this.tBUseCaseInfo.BackColor = System.Drawing.SystemColors.ControlLightLight;
             resources.ApplyResources(this.tBUseCaseInfo, "tBUseCaseInfo");
             this.tBUseCaseInfo.Name = "tBUseCaseInfo";
             this.tBUseCaseInfo.ReadOnly = true;
@@ -52,23 +54,24 @@
             this.lBUseCase.Name = "lBUseCase";
             this.lBUseCase.SelectedIndexChanged += new System.EventHandler(this.LbUseCase_SelectedIndexChanged);
             // 
-            // btnLoad
+            // BtnLoad
             // 
-            resources.ApplyResources(this.btnLoad, "btnLoad");
-            this.btnLoad.Name = "btnLoad";
-            this.btnLoad.UseVisualStyleBackColor = true;
-            this.btnLoad.Click += new System.EventHandler(this.BtnLoad_Click);
+            resources.ApplyResources(this.BtnLoad, "BtnLoad");
+            this.BtnLoad.Name = "BtnLoad";
+            this.BtnLoad.UseVisualStyleBackColor = true;
+            this.BtnLoad.Click += new System.EventHandler(this.BtnLoad_Click);
             // 
-            // btnOk
+            // BtnOk
             // 
-            this.btnOk.BackColor = System.Drawing.Color.Yellow;
-            resources.ApplyResources(this.btnOk, "btnOk");
-            this.btnOk.Name = "btnOk";
-            this.btnOk.UseVisualStyleBackColor = false;
-            this.btnOk.Click += new System.EventHandler(this.BtnOk_Click);
+            this.BtnOk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            resources.ApplyResources(this.BtnOk, "BtnOk");
+            this.BtnOk.Name = "BtnOk";
+            this.BtnOk.UseVisualStyleBackColor = false;
+            this.BtnOk.Click += new System.EventHandler(this.BtnOk_Click);
             // 
             // tBSetup
             // 
+            this.tBSetup.BackColor = System.Drawing.SystemColors.ControlLightLight;
             resources.ApplyResources(this.tBSetup, "tBSetup");
             this.tBSetup.Name = "tBSetup";
             this.tBSetup.ReadOnly = true;
@@ -77,6 +80,11 @@
             // 
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
+            // 
+            // LblUseCaseHeader
+            // 
+            resources.ApplyResources(this.LblUseCaseHeader, "LblUseCaseHeader");
+            this.LblUseCaseHeader.Name = "LblUseCaseHeader";
             // 
             // lblLastUseCase
             // 
@@ -98,16 +106,19 @@
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.LblUseCaseHeader);
             this.Controls.Add(this.lblLastUseCase);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tBSetup);
-            this.Controls.Add(this.btnOk);
-            this.Controls.Add(this.btnLoad);
+            this.Controls.Add(this.BtnOk);
+            this.Controls.Add(this.BtnLoad);
             this.Controls.Add(this.tBUseCaseInfo);
             this.Controls.Add(this.lBUseCase);
             this.Controls.Add(this.cBshowImportDialog);
             this.Name = "ControlSetupUseCase";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ControlSetupUseCase_FormClosing);
             this.Load += new System.EventHandler(this.ControlSetupUseCase_Load);
+            this.SizeChanged += new System.EventHandler(this.ControlSetupUseCase_SizeChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -118,10 +129,11 @@
         private System.Windows.Forms.CheckBox cBshowImportDialog;
         private System.Windows.Forms.TextBox tBUseCaseInfo;
         private System.Windows.Forms.ListBox lBUseCase;
-        private System.Windows.Forms.Button btnLoad;
-        private System.Windows.Forms.Button btnOk;
+        private System.Windows.Forms.Button BtnLoad;
+        private System.Windows.Forms.Button BtnOk;
         private System.Windows.Forms.TextBox tBSetup;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblLastUseCase;
+        private System.Windows.Forms.Label LblUseCaseHeader;
     }
 }

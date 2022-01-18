@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -51,7 +51,7 @@ namespace GrblPlotter
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlSerialForm));
             this.cbPort = new System.Windows.Forms.ComboBox();
             this.cbBaud = new System.Windows.Forms.ComboBox();
-            this.btnOpenPort = new System.Windows.Forms.Button();
+            this.BtnOpenPortSerial = new System.Windows.Forms.Button();
             this.btnScanPort = new System.Windows.Forms.Button();
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
             this.rtbLog = new System.Windows.Forms.RichTextBox();
@@ -90,9 +90,13 @@ namespace GrblPlotter
             this.lblSrState = new System.Windows.Forms.Label();
             this.cBCommand = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tBURL = new System.Windows.Forms.TextBox();
             this.btnCheckGRBLResult = new System.Windows.Forms.Button();
-            this.cBTelnet = new System.Windows.Forms.CheckBox();
+            this.TbEthernetIP = new System.Windows.Forms.TextBox();
+            this.CbEthernetUse = new System.Windows.Forms.CheckBox();
+            this.TbEthernetPort = new System.Windows.Forms.TextBox();
+            this.LblEthernetIP = new System.Windows.Forms.Label();
+            this.LblEthernetPort = new System.Windows.Forms.Label();
+            this.BtnOpenPortEthernet = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -118,13 +122,13 @@ namespace GrblPlotter
             this.cbBaud.Name = "cbBaud";
             this.toolTipSerial.SetToolTip(this.cbBaud, resources.GetString("cbBaud.ToolTip"));
             // 
-            // btnOpenPort
+            // BtnOpenPortSerial
             // 
-            resources.ApplyResources(this.btnOpenPort, "btnOpenPort");
-            this.btnOpenPort.Name = "btnOpenPort";
-            this.toolTipSerial.SetToolTip(this.btnOpenPort, resources.GetString("btnOpenPort.ToolTip"));
-            this.btnOpenPort.UseVisualStyleBackColor = true;
-            this.btnOpenPort.Click += new System.EventHandler(this.BtnOpenPort_Click);
+            resources.ApplyResources(this.BtnOpenPortSerial, "BtnOpenPortSerial");
+            this.BtnOpenPortSerial.Name = "BtnOpenPortSerial";
+            this.toolTipSerial.SetToolTip(this.BtnOpenPortSerial, resources.GetString("BtnOpenPortSerial.ToolTip"));
+            this.BtnOpenPortSerial.UseVisualStyleBackColor = true;
+            this.BtnOpenPortSerial.Click += new System.EventHandler(this.BtnOpenPortSerial_Click);
             // 
             // btnScanPort
             // 
@@ -364,7 +368,7 @@ namespace GrblPlotter
             this.cBStatus1.Name = "cBStatus1";
             this.toolTipSerial.SetToolTip(this.cBStatus1, resources.GetString("cBStatus1.ToolTip"));
             this.cBStatus1.UseVisualStyleBackColor = true;
-            this.cBStatus1.CheckedChanged += new System.EventHandler(this.cBStatus1_CheckedChanged);
+            this.cBStatus1.CheckedChanged += new System.EventHandler(this.CbStatus1_CheckedChanged);
             // 
             // lblSrState
             // 
@@ -387,7 +391,6 @@ namespace GrblPlotter
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.cBStatus1);
-            this.groupBox1.Controls.Add(this.tBURL);
             this.groupBox1.Controls.Add(this.btnCheckGRBLResult);
             this.groupBox1.Controls.Add(this.btnCheckGRBL);
             this.groupBox1.Controls.Add(this.cBStatus);
@@ -409,11 +412,6 @@ namespace GrblPlotter
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
-            // tBURL
-            // 
-            resources.ApplyResources(this.tBURL, "tBURL");
-            this.tBURL.Name = "tBURL";
-            // 
             // btnCheckGRBLResult
             // 
             resources.ApplyResources(this.btnCheckGRBLResult, "btnCheckGRBLResult");
@@ -421,18 +419,51 @@ namespace GrblPlotter
             this.btnCheckGRBLResult.UseVisualStyleBackColor = true;
             this.btnCheckGRBLResult.Click += new System.EventHandler(this.BtnCheckGRBLResult_Click);
             // 
-            // cBTelnet
+            // TbEthernetIP
             // 
-            resources.ApplyResources(this.cBTelnet, "cBTelnet");
-            this.cBTelnet.Name = "cBTelnet";
+            resources.ApplyResources(this.TbEthernetIP, "TbEthernetIP");
+            this.TbEthernetIP.Name = "TbEthernetIP";
+            // 
+            // CbEthernetUse
+            // 
+            resources.ApplyResources(this.CbEthernetUse, "CbEthernetUse");
+            this.CbEthernetUse.Name = "CbEthernetUse";
+            this.CbEthernetUse.CheckedChanged += new System.EventHandler(this.CbEthernetUse_CheckedChanged);
+            // 
+            // TbEthernetPort
+            // 
+            resources.ApplyResources(this.TbEthernetPort, "TbEthernetPort");
+            this.TbEthernetPort.Name = "TbEthernetPort";
+            // 
+            // LblEthernetIP
+            // 
+            resources.ApplyResources(this.LblEthernetIP, "LblEthernetIP");
+            this.LblEthernetIP.Name = "LblEthernetIP";
+            // 
+            // LblEthernetPort
+            // 
+            resources.ApplyResources(this.LblEthernetPort, "LblEthernetPort");
+            this.LblEthernetPort.Name = "LblEthernetPort";
+            // 
+            // BtnOpenPortEthernet
+            // 
+            resources.ApplyResources(this.BtnOpenPortEthernet, "BtnOpenPortEthernet");
+            this.BtnOpenPortEthernet.Name = "BtnOpenPortEthernet";
+            this.BtnOpenPortEthernet.UseVisualStyleBackColor = true;
+            this.BtnOpenPortEthernet.Click += new System.EventHandler(this.BtnOpenPortEthernet_Click);
             // 
             // ControlSerialForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ContextMenuStrip = this.contextMenuStrip1;
+            this.Controls.Add(this.TbEthernetPort);
+            this.Controls.Add(this.BtnOpenPortEthernet);
+            this.Controls.Add(this.LblEthernetPort);
+            this.Controls.Add(this.LblEthernetIP);
+            this.Controls.Add(this.TbEthernetIP);
             this.Controls.Add(this.btnScanPort);
-            this.Controls.Add(this.cBTelnet);
+            this.Controls.Add(this.CbEthernetUse);
             this.Controls.Add(this.btnGRBLCmndBuild);
             this.Controls.Add(this.btnGRBLCmndParser);
             this.Controls.Add(this.btnGRBLHardReset);
@@ -447,7 +478,7 @@ namespace GrblPlotter
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.rtbLog);
-            this.Controls.Add(this.btnOpenPort);
+            this.Controls.Add(this.BtnOpenPortSerial);
             this.Controls.Add(this.cbBaud);
             this.Controls.Add(this.cbPort);
             this.KeyPreview = true;
@@ -460,6 +491,7 @@ namespace GrblPlotter
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -467,7 +499,7 @@ namespace GrblPlotter
 
         private System.Windows.Forms.ComboBox cbPort;
         private System.Windows.Forms.ComboBox cbBaud;
-        private System.Windows.Forms.Button btnOpenPort;
+        private System.Windows.Forms.Button BtnOpenPortSerial;
         private System.Windows.Forms.Button btnScanPort;
         private System.IO.Ports.SerialPort serialPort;
         private System.Windows.Forms.RichTextBox rtbLog;
@@ -503,12 +535,16 @@ namespace GrblPlotter
         private System.Windows.Forms.Button btnGRBLHardReset;
         private System.Windows.Forms.Button btnGRBLCmndParser;
         private System.Windows.Forms.Button btnGRBLCmndBuild;
-        private System.Windows.Forms.CheckBox cBTelnet;
-        private System.Windows.Forms.TextBox tBURL;
+        private System.Windows.Forms.CheckBox CbEthernetUse;
+        private System.Windows.Forms.TextBox TbEthernetIP;
         private System.Windows.Forms.CheckBox cBStatus1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem pasteCodeFromClipboardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copySelectionToClipboardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
+        private System.Windows.Forms.TextBox TbEthernetPort;
+        private System.Windows.Forms.Label LblEthernetIP;
+        private System.Windows.Forms.Label LblEthernetPort;
+        private System.Windows.Forms.Button BtnOpenPortEthernet;
     }
 }

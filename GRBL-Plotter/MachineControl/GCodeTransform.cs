@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@
  * 2020-07-25 bug fix in simulaation -> only addArc if r > 0
  * 2020-08-13 bug fix transformGCodeMirror with G91 
  * 2021-07-12 code clean up / code quality
+ * 2022-01-17 process more than one figures (e.g. selected group) for scaling, rotation, move
  */
 
 using System;
@@ -55,6 +56,23 @@ namespace GrblPlotter
             float centerX = selectionBounds.X + selectionBounds.Width / 2;
             float centerY = selectionBounds.Y + selectionBounds.Height / 2;
             return new XyPoint((double)centerX, (double)centerY);
+        }
+
+
+        /// <summary>
+        /// CmsPicBoxReverseSelectedPath_Click
+        /// </summary>
+        public static string TransformPathReverseDirection()
+        {
+            return CreateGCodeProg();
+        }
+
+        /// <summary>
+        /// CmsPicBoxRotateSelectedPath_Click
+        /// </summary>
+        public static string TransformPathRotate()
+        {
+            return CreateGCodeProg();
         }
 
         /// <summary>
@@ -175,11 +193,15 @@ namespace GrblPlotter
             double lastAbsPosX = 0;
             double lastAbsPosY = 0;
 
+            if (lastFigureNumbers.Count == 0)
+                lastFigureNumbers.Add(lastFigureNumber);
+
             foreach (GcodeByLine gcline in gcodeList)
             {
                 // if only a single figure is marked to be rotated
                 // and motion mode is 91, the relative position to the next (not rotated) figure must be adapted
-                if ((lastFigureNumber > 0) && (gcline.figureNumber != lastFigureNumber))
+                //    if ((lastFigureNumber > 0) && (gcline.figureNumber != lastFigureNumber))
+                if ((lastFigureNumber > 0) && !lastFigureNumbers.Contains(gcline.figureNumber))
                 {
                     if (!gcline.isdistanceModeG90 && offsetApplied)         // correct relative movement of next figure
                     {
@@ -250,7 +272,7 @@ namespace GrblPlotter
                     //       oldLine = new gcodeByLine(gcline);   // get copy of newLine
                 }
             }
-            //			pathBackground.Reset();
+            pathBackground.Reset();
             return CreateGCodeProg();
         }
 
@@ -259,11 +281,16 @@ namespace GrblPlotter
         /// </summary>
         public static string TransformGCodeScale(double scaleX, double scaleY)
         {
-            Logger.Debug("Scale scaleX: {0}, scale Y: {1}", scaleX, scaleY);
-            if (gcodeList == null) return "";
             XyPoint centerOfFigure = xyzSize.GetCenter();
             if (lastFigureNumber > 0)
                 centerOfFigure = GetCenterOfMarkedFigure();
+            return TransformGCodeScale(scaleX, scaleY, centerOfFigure);
+        }
+        public static string TransformGCodeScale(double scaleX, double scaleY, XyPoint centerOfFigure)
+        {
+            Logger.Debug("Scale scaleX: {0}, scale Y: {1}", scaleX, scaleY);
+            if (gcodeList == null) return "";
+
             double factor_x = scaleX / 100;
             double factor_y = scaleY / 100;
             bool offsetApplied = false;
@@ -272,9 +299,25 @@ namespace GrblPlotter
 
             oldLine.ResetAll(Grbl.posWork);         // reset coordinates and parser modes
             ClearDrawingPath();                    // reset path, dimensions
+
+            if (lastFigureNumbers.Count == 0)
+                lastFigureNumbers.Add(lastFigureNumber);
+
             foreach (GcodeByLine gcline in gcodeList)
             {
-                if ((lastFigureNumber > 0) && (gcline.figureNumber != lastFigureNumber))
+                if ((lastFigureNumber > 0) && lastFigureNumbers.Contains(gcline.figureNumber))
+                {   if (gcline.motionMode > 1)
+                    {
+                        Logger.Warn("TransformGCodeScale found G2/G3 command, set scaleX=scaleY");
+                        factor_x = factor_y = Math.Max(factor_x, factor_y);
+                        break;
+                    }
+                }
+            }
+
+            foreach (GcodeByLine gcline in gcodeList)
+            {
+                if ((lastFigureNumber > 0) && !lastFigureNumbers.Contains(gcline.figureNumber))//(gcline.figureNumber != lastFigureNumber)) 
                 {
                     if (!gcline.isdistanceModeG90 && offsetApplied)         // correct relative movement of next figure
                     {
@@ -380,14 +423,19 @@ namespace GrblPlotter
                     }
                 }
             }
-            bool hide_code = false; ;
+            bool hide_code = false;
+
+            if (lastFigureNumbers.Count == 0)
+                lastFigureNumbers.Add(lastFigureNumber);
+
             foreach (GcodeByLine gcline in gcodeList)
             {
                 if (gcline.codeLine.Contains("%START_HIDECODE")) { hide_code = true; }
                 if (gcline.codeLine.Contains("%STOP_HIDECODE")) { hide_code = false; }
                 if ((!hide_code) && (!gcline.isSubroutine) && (!gcline.ismachineCoordG53) && (gcline.codeLine.IndexOf("(Setup - GCode") < 1)) // ignore coordinates from setup footer
                 {
-                    if ((lastFigureNumber > 0) && (gcline.figureNumber != lastFigureNumber))    // 2019-11-30
+                    //   if ((lastFigureNumber > 0) && (gcline.figureNumber != lastFigureNumber))    // 2019-11-30
+                    if ((lastFigureNumber > 0) && !lastFigureNumbers.Contains(gcline.figureNumber))
                     { continue; }
 
                     if (gcline.isdistanceModeG90)           // absolute move: apply offset to any XY position

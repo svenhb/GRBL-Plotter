@@ -31,6 +31,7 @@
  * 2021-02-28 preProcessStreaming lock copy-routine and replace "requestSend()" by sendBuffer.Add
  * 2021-07-12 code clean up / code quality
  * 2022-01-02 line 354 AddCodeFromFile -> add MakeAbsolutePath
+ * 2022-01-17 Avoid grbl-error:20 if T01M06 but "Perform tool change" not enabled line 272;  AddCodeFromFile - no error if filename = "" line 354
  */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -269,10 +270,13 @@ namespace GrblPlotter
                             {   SetToolChangeCoordinates(cmdTNr, tmp);              // update variables e.g. "gcodeVariable[TOAX]" from tool-table
                             }
                             if (cmdMNr == 6)                                        // M06 is not allowed - remove
-                            {   if (Properties.Settings.Default.ctrlToolChange)
-                                {   InsertToolChangeCode(i, ref tmpToolInSpindle);  // insert external script-code and insert variables 
-                                    tmp = "(" + tmp + ")";
-                                }
+                            {   tmp = "(" + tmp + ")";
+								if (Properties.Settings.Default.ctrlToolChange)
+                                {   InsertToolChangeCode(i, ref tmpToolInSpindle);  }// insert external script-code and insert variables 
+                                else   
+                                {	AddToLog(tmp + " !!! Tool change is disabled");
+									Logger.Warn("Found {0} but tool change is disabled in [Setup - Tool change]");
+								}
                             }
                             if (cmdMNr == 30)
                             {   if (skipM30)
@@ -352,8 +356,11 @@ namespace GrblPlotter
 
 		private void AddCodeFromFile(string fileRaw, int linenr)
 		{
+			if (fileRaw.Length < 3)
+				return;
+			
             string file = Datapath.MakeAbsolutePath(fileRaw);
-            Logger.Info("AddCodeFromFile file:{0}", file);
+            Logger.Info("AddCodeFromFile file:{0}  line:{1}", file, linenr);
 
             if (File.Exists(file))
             {
@@ -563,7 +570,7 @@ namespace GrblPlotter
                 }
                 else
                     streamingStateNow = GrblStreaming.pause;   // update status
-				
+
 // send status via event to main GUI
                 if ((streamingStateOld != streamingStateNow) || allowStreamingEvent)
                 {
@@ -787,13 +794,5 @@ namespace GrblPlotter
                 if (cBStatus1.Checked || cBStatus.Checked)  AddToLog("\r[set tool coordinates " + cmdTNr.ToString() + " " + coord +  "]");
             }
         }
-
-   /*     private int InsertComment(int index, int linenr, string cmt)
-        {
-            if (!streamingBuffer.Insert(index, cmt, linenr))
-                Logger.Error("insertComment nok index:{0} buffer:{1}",index, streamingBuffer.Count);
-            index++;
-            return index;
-        }*/
     }
 }

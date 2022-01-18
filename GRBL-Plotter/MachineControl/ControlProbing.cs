@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@
  * 2021-04-27 adapt save position, if probe plate dimension is higher
  * 2021-07-14 code clean up / code quality
  * 2021-12-22 check if is connected to grbl before sending code - 452, 706, 803
+ * 2022-01-07 SetProgressxx .Value=0
 */
 
 using System;
@@ -514,7 +515,7 @@ namespace GrblPlotter
         //    progressDistance = maxTravel;
             probingTime = (int)((maxTravel / nUDProbeFeed.Value) * 60 * 10);    // distance(mm) / speed(mm/min) *60(sec) 100 ms
             progressBarEF.Minimum = 0;
-            progressBarEF.Value = 1;
+            progressBarEF.Value = 0;
             progressBarEF.Maximum = (int)probingTime;
             updateProgress = true;
         }
@@ -792,7 +793,7 @@ namespace GrblPlotter
         //    progressDistance = maxTravel;
             probingTime = (int)((maxTravel / nUDProbeFeed.Value) * 60 * 10);    // distance(mm) / speed(mm/min) *60(sec) 100 ms
             progressBarCF.Minimum = 0;
-            progressBarCF.Value = 1;
+            progressBarCF.Value = 0;
             progressBarCF.Maximum = (int)probingTime;
             updateProgress = true;
         }
@@ -845,7 +846,7 @@ namespace GrblPlotter
         //    progressDistance = maxTravel;
             probingTime = (int)((maxTravel / nUDProbeFeed.Value) * 60 * 10);    // distance(mm) / speed(mm/min) *60(sec) 100 ms
             progressBarTL.Minimum = 0;
-            progressBarTL.Value = 1;
+            progressBarTL.Value = 0;
             progressBarTL.Maximum = (int)probingTime;
             updateProgress = true;
         }

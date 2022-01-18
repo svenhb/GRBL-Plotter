@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,22 +20,20 @@
  * 2019-10-25 remove icon to reduce resx size, load icon on run-time
  * 2019-12-07 show current settings on start up MyIni.showIniSettings(true)
  * 2021-07-25 code clean up
+ * 2022-01-13 rework
 */
-
 
 using System;
 using System.IO;
 using System.Windows.Forms;
 
-//#pragma warning disable CA1303
-//#pragma warning disable CA1304
-//#pragma warning disable CA1305
-//#pragma warning disable CA1307
-
 namespace GrblPlotter
 {
     public partial class ControlSetupUseCase : Form
     {
+
+        private readonly System.Timers.Timer timer = new System.Timers.Timer();
+
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
@@ -45,18 +43,29 @@ namespace GrblPlotter
         {
             InitializeComponent();
             this.Icon = Properties.Resources.Icon;
+            timer.Interval = 500;
+            timer.Stop();
+            timer.Elapsed += TimerElapsed;
         }
 
         private void ControlSetupUseCase_Load(object sender, EventArgs e)
         {
             FillUseCaseFileList(Datapath.Usecases);
-            tBUseCaseInfo.Text += "\r\n\r\nLast loaded: " + Properties.Settings.Default.useCaseLastLoaded;
             tBSetup.Text = "Last loaded: " + Properties.Settings.Default.useCaseLastLoaded + "\r\n";
             string path = Datapath.Usecases + "\\" + lBUseCase.Text;
             var MyIni = new IniFile(path);
             tBSetup.Text += "Actually Set:\r\n" + MyIni.ShowIniSettings(true);
             tBSetup.Select(0, 0);
+            this.Size = Properties.Settings.Default.sizeUseCase;
         }
+
+        private void TimerElapsed(object sender, EventArgs e)
+        {
+            timer.Stop();
+            if (Properties.Settings.Default.useCaseLastLoaded == "")
+            { MessageBox.Show(this.Owner, Localization.GetString("useCaseInfo"), Localization.GetString("useCaseInfo2"), MessageBoxButtons.OK, MessageBoxIcon.Information); }
+        }
+
         private void BtnLoad_Click(object sender, EventArgs e)
         {
             ReturnValue1 = "";
@@ -100,16 +109,17 @@ namespace GrblPlotter
 
         private void FillUseCaseFileList(string Root)
         {
-            //   List<string> FileArray = new List<string>();
             try
             {
                 string[] Files = System.IO.Directory.GetFiles(Root);
                 lBUseCase.Items.Clear();
+                lBUseCase.Items.Add(Localization.GetString("useCaseItem0"));
                 for (int i = 0; i < Files.Length; i++)
                 {
                     if (Files[i].ToLower().EndsWith("ini"))
                         lBUseCase.Items.Add(Path.GetFileName(Files[i]));
                 }
+                lBUseCase.SelectedIndex = 0;
             }
             catch //(Exception Ex)
             {
@@ -122,8 +132,40 @@ namespace GrblPlotter
             string path = Datapath.Usecases + "\\" + lBUseCase.Text;
             var MyIni = new IniFile(path);
             tBUseCaseInfo.Text = MyIni.ReadUseCaseInfo();
-            tBSetup.Text = MyIni.ShowIniSettings();
-            btnLoad.BackColor = System.Drawing.Color.LightGreen;
+
+            bool iniAvailable = File.Exists(path);
+            tBSetup.Text = MyIni.ShowIniSettings(!iniAvailable);
+            BtnLoad.Enabled = iniAvailable;
+            if (iniAvailable)
+            {
+                BtnLoad.BackColor = LblUseCaseHeader.BackColor = System.Drawing.Color.Yellow;
+                LblUseCaseHeader.Text = string.Format(Localization.GetString("useCaseHeader2"), lBUseCase.Text );
+            }
+            else
+            {   BtnLoad.BackColor = System.Drawing.SystemColors.Control;
+                LblUseCaseHeader.BackColor = BtnOk.BackColor;
+                LblUseCaseHeader.Text = string.Format(Localization.GetString("useCaseHeader1"), Properties.Settings.Default.useCaseLastLoaded);
+                tBUseCaseInfo.Text = Localization.GetString("useCaseInfo");
+            }
+        }
+
+        private void ControlSetupUseCase_SizeChanged(object sender, EventArgs e)
+        {
+            tBUseCaseInfo.Width = Width - 24;
+            lBUseCase.Width = Width - 370;
+            lBUseCase.Height = tBSetup.Height = Height - 250;
+
+            BtnLoad.Width = BtnOk.Width = Width - 240;
+            BtnLoad.Top = Height - 122;
+            BtnOk.Top = cBshowImportDialog.Top = Height - 96;
+
+            label1.Top = lblLastUseCase.Top = Height - 64;
+        }
+
+        private void ControlSetupUseCase_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.sizeUseCase = this.Size;
+            Properties.Settings.Default.Save();
         }
     }
 }

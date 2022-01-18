@@ -52,6 +52,9 @@ namespace GrblPlotter
         internal static GraphicsPath pathPenUp = new GraphicsPath();
         internal static GraphicsPath pathPenDown = new GraphicsPath();
         internal static GraphicsPath pathRuler = new GraphicsPath();
+        internal static GraphicsPath pathGrid1 = new GraphicsPath();
+        internal static GraphicsPath pathGrid10 = new GraphicsPath();
+        internal static GraphicsPath pathGrid100 = new GraphicsPath();
         internal static GraphicsPath pathTool = new GraphicsPath();
         internal static GraphicsPath pathMarker = new GraphicsPath();
         internal static GraphicsPath pathHeightMap = new GraphicsPath();
@@ -568,6 +571,8 @@ namespace GrblPlotter
             { Logger.Error("CreateRuler, path=null"); return; }
 
             path.Reset();
+			pathGrid1.Reset();
+            pathGrid10.Reset();
             float unit = 1;
             int divider = 1;
             int divider_long = 100;
@@ -601,14 +606,23 @@ namespace GrblPlotter
                 if (i % divider_short == 0)
                 {
                     if (i % divider_long == 0)
-                    { path.AddLine(x, 0, x, -length5); }  // 100                    
+                    {   path.AddLine(x, 0, x, -length5);        // 100 
+                        pathGrid100.AddLine(x, dP.minY, x, dP.maxY);
+                        pathGrid100.StartFigure();
+                    }  	             
                     else if ((i % divider_med == 0) && (rangeX < (2 * show_short)))
-                    { path.AddLine(x, 0, x, -length3); }  // 10                  
+                    { 	path.AddLine(x, 0, x, -length3);   	// 10   
+						pathGrid10.AddLine(x, dP.minY, x, dP.maxY);
+                        pathGrid10.StartFigure();
+                    }
                     else if (rangeX < show_short)
-                    { path.AddLine(x, 0, x, -length2); }  // 5
+                    { path.AddLine(x, 0, x, -length2); }  	// 5
                 }
                 else if (dP.maxX < show_smallest)
-                { path.AddLine(x, 0, x, -length1); }  // 1
+                { 	path.AddLine(x, 0, x, -length1); 		// 1
+				}
+                pathGrid1.AddLine(x, dP.minY, x, dP.maxY);
+                pathGrid1.StartFigure();
             }
             for (float i = dP.minY; i < dP.maxY; i++)          // vertical ruler
             {
@@ -617,14 +631,23 @@ namespace GrblPlotter
                 if (i % divider_short == 0)
                 {
                     if (i % divider_long == 0)
-                    { path.AddLine(0, y, -length5, y); } // 100                   
+                    {   path.AddLine(0, y, -length5, y);    // 100
+                        pathGrid100.AddLine(dP.minX, y, dP.maxX, y);
+                        pathGrid100.StartFigure();
+                    } 	
                     else if ((i % divider_med == 0) && (rangeY < (2 * show_short)))
-                    { path.AddLine(0, y, -length3, y); } // 10           
+                    { 	path.AddLine(0, y, -length3, y);  	// 10           
+						pathGrid10.AddLine(dP.minX, y, dP.maxX, y);
+                        pathGrid10.StartFigure();
+                    }
                     else if (rangeY < show_short)
-                    { path.AddLine(0, y, -length2, y); } // 5
+                    { path.AddLine(0, y, -length2, y); } 	// 5
                 }
                 else if (dP.maxY < show_smallest)
-                { path.AddLine(0, y, -length1, y); }     // 1
+                { 	path.AddLine(0, y, -length1, y);     	// 1
+				}
+                pathGrid1.AddLine(dP.minX, y, dP.maxX, y);
+                pathGrid1.StartFigure();
             }
         }
 

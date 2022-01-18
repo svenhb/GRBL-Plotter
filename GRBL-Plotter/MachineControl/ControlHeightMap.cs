@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@
  * 2021-12-15 InterpolateZ check index range
  * 2021-12-21 no save, if Map is null
  * 2021-12-22 check if is connected to grbl before sending code - 637
+ * 2022-01-12 Except: Nullable object must have a value - Method:InterpolateZ
 */
 
 using System;
@@ -1016,8 +1017,15 @@ namespace GrblPlotter
             double fX = x - iLX;             //fractional part
             double fY = y - iLY;
 
-            double linUpper = Points[iHX, iHY].Value * fX + Points[iLX, iHY].Value * (1 - fX);       //linear immediates
-            double linLower = Points[iHX, iLY].Value * fX + Points[iLX, iLY].Value * (1 - fX);
+			double hxhy = Points[iHX, iHY].GetValueOrDefault(MaxHeight);
+			double lxhy = Points[iLX, iHY].GetValueOrDefault(MaxHeight);
+			double hxly = Points[iHX, iLY].GetValueOrDefault(MaxHeight);
+			double lxly = Points[iLX, iLY].GetValueOrDefault(MaxHeight);
+            double linUpper = hxhy * fX + lxhy * (1 - fX); 
+            double linLower = hxly * fX + lxly * (1 - fX);
+			
+    //        double linUpper = Points[iHX, iHY].Value * fX + Points[iLX, iHY].Value * (1 - fX);       //linear immediates
+    //        double linLower = Points[iHX, iLY].Value * fX + Points[iLX, iLY].Value * (1 - fX);
 
             return linUpper * fY + linLower * (1 - fY);     //bilinear result
                                                             //   } catch { return MaxHeight; }

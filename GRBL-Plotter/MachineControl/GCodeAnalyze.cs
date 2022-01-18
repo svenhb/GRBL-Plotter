@@ -266,6 +266,7 @@ namespace GrblPlotter
 
             figureMarkerCount = 0;
             lastFigureNumber = -1;
+            lastFigureNumbers.Clear();
             pathActualDown = null;
 
             largeDataAmount = false;

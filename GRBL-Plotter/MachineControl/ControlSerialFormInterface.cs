@@ -38,6 +38,7 @@
  * 2021-12-14 add run time for spindle, flood, mist
  * 2021-12-21 line 819 replace serialPort.Write by 	SerialPortDataSend
  * 2022-01-03 InsertVariable error handling
+ * 2022-01-07 rework ResetVariables
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -170,7 +171,12 @@ namespace GrblPlotter
                 if (rxString.Contains("X:") && rxString.Contains("Y:") && rxString.Contains("Z:"))
                 {
                     string[] axis = rxString.Split(' ');
-                    axisCount = Grbl.GetPosition(iamSerial, "WPOS:" + axis[0].Substring(2) + "," + axis[1].Substring(2) + "," + axis[2].Substring(2) + "," + axis[3].Substring(2) + " ", ref posWork);
+					if (axis.Length > 3)
+						axisCount = Grbl.GetPosition(iamSerial, "WPOS:" + axis[0].Substring(2) + "," + axis[1].Substring(2) + "," + axis[2].Substring(2) + "," + axis[3].Substring(2) + " ", ref posWork);
+					else if (axis.Length > 2)
+						axisCount = Grbl.GetPosition(iamSerial, "WPOS:" + axis[0].Substring(2) + "," + axis[1].Substring(2) + "," + axis[2].Substring(2) + " ", ref posWork);
+					else if (axis.Length > 1)
+						axisCount = Grbl.GetPosition(iamSerial, "WPOS:" + axis[0].Substring(2) + "," + axis[1].Substring(2) + " ", ref posWork);
                     posMachine = posWork;
                     ProcessGrblPositionUpdate();        // 1st status would be reset
                     grblStateNow = GrblState.Marlin;
@@ -221,7 +227,7 @@ namespace GrblPlotter
             else
             {
                 if (isOk)   // sendBuffer.GetConfirmedLine = index = sinnlos wg. FeedbackMessage
-                { } //if (logReceive) Logger.Trace("Ser:{0} RX '{1}'  sent:'{2}'  line:{3}   BufferFree:{4}", iamSerial, rxString, sendBuffer.GetConfirmedLine(), streamingBuffer.GetConfirmedLineNr(), grblBufferFree); }
+                { }//if (logReceive) Logger.Trace("Ser:{0} RX '{1}'  sent:'{2}'  line:{3}   BufferFree:{4}", iamSerial, rxString, sendBuffer.GetConfirmedLine(), streamingBuffer.GetConfirmedLineNr(), grblBufferFree); }
                 else
                 {
                     if (logReceive) Logger.Trace("s{0} RX '{1}'", iamSerial, rxString);
@@ -433,8 +439,8 @@ namespace GrblPlotter
                             if (dataField[i].IndexOf("Bf:") >= 0)            // Buffer state - needs to be enabled in config.h file
                             {
                                 machineState.Bf = lblSrBf.Text = data[1];
-                                if (Grbl.GetBufferSize(data[1])) RequestSend("$10=" + ((Grbl.GetSetting(10) >= 0) ? Grbl.GetSetting(10).ToString() : "0"));
-                                continue;
+                            //    if (Grbl.GetBufferSize(data[1])) RequestSend("$10=" + ((Grbl.GetSetting(10) >= 0) ? Grbl.GetSetting(10).ToString() : "0"));
+                            //    continue;
                             }
                             if (dataField[i].IndexOf("Ln:") >= 0)            // Line number - needs to be enabled in config.h file
                             { machineState.Ln = lblSrLn.Text = data[1]; continue; }
@@ -821,8 +827,7 @@ namespace GrblPlotter
         public void RealtimeCommand(byte cmd)
         {
             var dataArray = new byte[] { Convert.ToByte(cmd) };
-            if (serialPort.IsOpen && (dataArray.Length > 0))// && !blockSend)
-                //serialPort.Write(dataArray, 0, 1);
+            if (dataArray.Length > 0)// && !blockSend)
 				SerialPortDataSend(dataArray, 0, 1);
             AddToLog("> '0x" + cmd.ToString("X") + "' " + Grbl.GetRealtimeDescription(cmd));
             if ((cmd == 0x85) && !(isStreaming && !isStreamingPause))                   //  Jog Cancel
@@ -859,22 +864,20 @@ namespace GrblPlotter
                     {
                         if (tmp == "$#") { countPreventEvent = 5; }                 // no response echo for parser state
                         if (tmp == "$H") { isHoming = true; AddToLog("Homing"); Logger.Info("requestSend Start Homing"); }
-                        if (tmp == "$X")
-                        {
+
+                        if (tmp == "$X") {
                             SerialPortDataSend(tmp + lineEndTXgrbl);
-                            return serialPort.IsOpen;
+                            return IsConnectedToGrbl();
                         }
                         lock (sendDataLock)
-                        {
-                            sendBuffer.Add(tmp, lineNr);
-                            //                        System.IO.File.AppendAllText(Application.StartupPath + "\\logSendBuffer.nc", tmp+"\r\n"); // clear file
-                        }
+                        {   sendBuffer.Add(tmp, lineNr);  }
+
                         ProcessSend();
                         FeedBackSettings(tmp);
                     }
                 }
             }
-            return serialPort.IsOpen;
+            return IsConnectedToGrbl();
         }
 
         /*******************************************************
@@ -989,7 +992,7 @@ namespace GrblPlotter
                 {
                     if (replaced)
                         sendBuffer.SetSentLine(line);
-                    if (serialPort.IsOpen || Grbl.grblSimulate)
+                    if (IsConnectedToGrbl() || Grbl.grblSimulate)
                     {
 
                         // Delay "IDLE" to give the controler a chance to switch to "RUN"
@@ -1056,7 +1059,7 @@ namespace GrblPlotter
                                     if (grblStateNow != GrblState.idle)	// only send if 1st grbl is IDLE
                                         break;
                                 }
-                                if (serialPort.IsOpen && (grblBufferFree >= sendLength) && (line != "OV") && (!waitForOk))// && !blockSend)
+                                if (IsConnectedToGrbl() && (grblBufferFree >= sendLength) && (line != "OV") && (!waitForOk))// && !blockSend)
                                 {
                                     if (SerialPortDataSend(line + lineEndTXgrbl))         // grbl accepts '\n' or '\r'			
                                     {
@@ -1241,7 +1244,16 @@ namespace GrblPlotter
 
         private void ResetVariables(bool resetToolCoord = false)
         {
-            Logger.Trace("resetVariables");
+            Logger.Trace("resetVariables  keep last tool:{0}", resetToolCoord);
+            double toln = 0, tolx = 0, toly = 0, tolz = 0, tola = 0;
+            if (!resetToolCoord)    // try to keep last tool informations
+            {   if (gcodeVariable.ContainsKey("TOLN")) { toln = gcodeVariable["TOLN"]; }
+                if (gcodeVariable.ContainsKey("TOLX")) { tolx = gcodeVariable["TOLX"]; }
+                if (gcodeVariable.ContainsKey("TOLY")) { toly = gcodeVariable["TOLY"]; }
+                if (gcodeVariable.ContainsKey("TOLZ")) { tolz = gcodeVariable["TOLZ"]; }
+                if (gcodeVariable.ContainsKey("TOLY")) { tola = gcodeVariable["TOLA"]; }
+            }
+
             gcodeVariable.Clear();
             gcodeVariable.Add("PRBX", 0.0); // Probing coordinates
             gcodeVariable.Add("PRBY", 0.0);
@@ -1261,19 +1273,17 @@ namespace GrblPlotter
             gcodeVariable.Add("WLAX", 0.0); // last Work coordinates (before break)
             gcodeVariable.Add("WLAY", 0.0);
             gcodeVariable.Add("WLAZ", 0.0);
-            if (resetToolCoord)
-            {
-                gcodeVariable.Add("TOAN", 0.0); // TOol Actual Number
-                gcodeVariable.Add("TOAX", 0.0); // Tool change position
-                gcodeVariable.Add("TOAY", 0.0);
-                gcodeVariable.Add("TOAZ", 0.0);
-                gcodeVariable.Add("TOAA", 0.0);
-                gcodeVariable.Add("TOLN", 0.0); // TOol Last Number
-                gcodeVariable.Add("TOLX", 0.0); // Tool change position
-                gcodeVariable.Add("TOLY", 0.0);
-                gcodeVariable.Add("TOLZ", 0.0);
-                gcodeVariable.Add("TOLA", 0.0);
-            }
+            gcodeVariable.Add("TOAN", 0.0); // Tool Actual Number
+            gcodeVariable.Add("TOAX", 0.0); // Tool change position
+            gcodeVariable.Add("TOAY", 0.0);
+            gcodeVariable.Add("TOAZ", 0.0);
+            gcodeVariable.Add("TOAA", 0.0);
+
+            gcodeVariable.Add("TOLN", toln); // Tool Last Number
+            gcodeVariable.Add("TOLX", tolx); // Tool change position
+            gcodeVariable.Add("TOLY", toly);
+            gcodeVariable.Add("TOLZ", tolz);
+            gcodeVariable.Add("TOLA", tola);
         }
         private void SaveLastPos()
         {

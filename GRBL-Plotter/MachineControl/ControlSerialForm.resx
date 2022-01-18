@@ -131,6 +131,9 @@
   <data name="cbPort.Text" xml:space="preserve">
     <value>COM123</value>
   </data>
+  <metadata name="toolTipSerial.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>119, 17</value>
+  </metadata>
   <data name="cbPort.ToolTip" xml:space="preserve">
     <value>Select free serial port</value>
   </data>
@@ -144,7 +147,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbPort.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>24</value>
   </data>
   <data name="cbBaud.Items" xml:space="preserve">
     <value>9600</value>
@@ -189,38 +192,38 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbBaud.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>23</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="btnOpenPort.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="BtnOpenPortSerial.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btnOpenPort.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="BtnOpenPortSerial.Location" type="System.Drawing.Point, System.Drawing">
     <value>135, 0</value>
   </data>
-  <data name="btnOpenPort.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="BtnOpenPortSerial.Size" type="System.Drawing.Size, System.Drawing">
     <value>73, 23</value>
   </data>
-  <data name="btnOpenPort.TabIndex" type="System.Int32, mscorlib">
+  <data name="BtnOpenPortSerial.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="btnOpenPort.Text" xml:space="preserve">
+  <data name="BtnOpenPortSerial.Text" xml:space="preserve">
     <value>Open</value>
   </data>
-  <data name="btnOpenPort.ToolTip" xml:space="preserve">
+  <data name="BtnOpenPortSerial.ToolTip" xml:space="preserve">
     <value>Open selected COM port with selected speed</value>
   </data>
-  <data name="&gt;&gt;btnOpenPort.Name" xml:space="preserve">
-    <value>btnOpenPort</value>
+  <data name="&gt;&gt;BtnOpenPortSerial.Name" xml:space="preserve">
+    <value>BtnOpenPortSerial</value>
   </data>
-  <data name="&gt;&gt;btnOpenPort.Type" xml:space="preserve">
+  <data name="&gt;&gt;BtnOpenPortSerial.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnOpenPort.Parent" xml:space="preserve">
+  <data name="&gt;&gt;BtnOpenPortSerial.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnOpenPort.ZOrder" xml:space="preserve">
-    <value>17</value>
+  <data name="&gt;&gt;BtnOpenPortSerial.ZOrder" xml:space="preserve">
+    <value>22</value>
   </data>
   <data name="btnScanPort.Location" type="System.Drawing.Point, System.Drawing">
     <value>207, 0</value>
@@ -247,8 +250,14 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnScanPort.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>6</value>
   </data>
+  <metadata name="serialPort.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>239, 17</value>
+  </metadata>
   <data name="pasteCodeFromClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>219, 22</value>
   </data>
@@ -304,7 +313,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;rtbLog.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>21</value>
   </data>
   <data name="btnClear.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 393</value>
@@ -331,7 +340,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnClear.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>20</value>
   </data>
   <data name="btnSend.Location" type="System.Drawing.Point, System.Drawing">
     <value>276, 393</value>
@@ -358,7 +367,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnSend.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>19</value>
   </data>
   <data name="btnGRBLCommand0.Location" type="System.Drawing.Point, System.Drawing">
     <value>1, 417</value>
@@ -385,7 +394,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnGRBLCommand0.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>18</value>
   </data>
   <data name="btnGRBLCommand1.Location" type="System.Drawing.Point, System.Drawing">
     <value>31, 417</value>
@@ -412,7 +421,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnGRBLCommand1.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>17</value>
   </data>
   <data name="btnGRBLCommand2.Location" type="System.Drawing.Point, System.Drawing">
     <value>61, 417</value>
@@ -439,7 +448,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnGRBLCommand2.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>16</value>
   </data>
   <data name="btnGRBLCommand3.Location" type="System.Drawing.Point, System.Drawing">
     <value>151, 417</value>
@@ -466,7 +475,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnGRBLCommand3.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>15</value>
   </data>
   <data name="btnGRBLCommand4.Location" type="System.Drawing.Point, System.Drawing">
     <value>181, 417</value>
@@ -493,7 +502,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnGRBLCommand4.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>14</value>
   </data>
   <data name="lblSrPos.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -524,7 +533,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lblSrPos.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>12</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -554,7 +563,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>14</value>
   </data>
   <data name="lblSrBf.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -584,7 +593,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lblSrBf.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>16</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -614,7 +623,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>17</value>
   </data>
   <data name="lblSrFS.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -644,7 +653,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lblSrFS.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>15</value>
   </data>
   <data name="lblSrPn.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -674,7 +683,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lblSrPn.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>11</value>
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -704,7 +713,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>13</value>
   </data>
   <data name="lblSrOv.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -734,7 +743,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lblSrOv.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>8</value>
   </data>
   <data name="label9.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -764,7 +773,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>10</value>
   </data>
   <data name="lblSrA.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -794,7 +803,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lblSrA.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="LblAccessoryState.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -824,7 +833,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;LblAccessoryState.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="lblSrLn.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -854,7 +863,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lblSrLn.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="label13.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -884,7 +893,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>9</value>
   </data>
   <data name="btnCheckGRBL.Location" type="System.Drawing.Point, System.Drawing">
     <value>222, 71</value>
@@ -912,7 +921,7 @@ Not for GRBL Vers. &lt; 1.0</value>
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;btnCheckGRBL.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="btnGRBLReset.Location" type="System.Drawing.Point, System.Drawing">
     <value>211, 417</value>
@@ -939,7 +948,7 @@ Not for GRBL Vers. &lt; 1.0</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnGRBLReset.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>13</value>
   </data>
   <data name="btnGRBLHardReset.Location" type="System.Drawing.Point, System.Drawing">
     <value>276, 417</value>
@@ -967,7 +976,7 @@ Success depends on used hardware (DTR, RTS wired?)</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnGRBLHardReset.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>10</value>
   </data>
   <data name="btnGRBLCmndParser.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -997,7 +1006,7 @@ Success depends on used hardware (DTR, RTS wired?)</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnGRBLCmndParser.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>9</value>
   </data>
   <data name="btnGRBLCmndBuild.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1027,7 +1036,7 @@ Success depends on used hardware (DTR, RTS wired?)</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnGRBLCmndBuild.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>8</value>
   </data>
   <data name="cBStatus.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1057,7 +1066,7 @@ Success depends on used hardware (DTR, RTS wired?)</value>
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;cBStatus.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="cBStatus1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1114,7 +1123,7 @@ Success depends on used hardware (DTR, RTS wired?)</value>
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;lblSrState.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="cBCommand.Items" xml:space="preserve">
     <value>$H (Homing)</value>
@@ -1150,34 +1159,7 @@ Success depends on used hardware (DTR, RTS wired?)</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cBCommand.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="tBURL.Location" type="System.Drawing.Point, System.Drawing">
-    <value>164, 5</value>
-  </data>
-  <data name="tBURL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 20</value>
-  </data>
-  <data name="tBURL.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
-  </data>
-  <data name="tBURL.Text" xml:space="preserve">
-    <value>192.168.2.122</value>
-  </data>
-  <data name="tBURL.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;tBURL.Name" xml:space="preserve">
-    <value>tBURL</value>
-  </data>
-  <data name="&gt;&gt;tBURL.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tBURL.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;tBURL.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>12</value>
   </data>
   <data name="btnCheckGRBLResult.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1204,7 +1186,7 @@ Success depends on used hardware (DTR, RTS wired?)</value>
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;btnCheckGRBLResult.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 24</value>
@@ -1228,35 +1210,185 @@ Success depends on used hardware (DTR, RTS wired?)</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>11</value>
   </data>
-  <data name="cBTelnet.Location" type="System.Drawing.Point, System.Drawing">
-    <value>280, 0</value>
+  <data name="TbEthernetIP.Location" type="System.Drawing.Point, System.Drawing">
+    <value>24, 1</value>
   </data>
-  <data name="cBTelnet.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 24</value>
+  <data name="TbEthernetIP.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 20</value>
   </data>
-  <data name="cBTelnet.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
+  <data name="TbEthernetIP.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
   </data>
-  <data name="cBTelnet.Text" xml:space="preserve">
-    <value>IP</value>
+  <data name="TbEthernetIP.Text" xml:space="preserve">
+    <value>192.168.2.122</value>
   </data>
-  <data name="cBTelnet.Visible" type="System.Boolean, mscorlib">
+  <data name="TbEthernetIP.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="TbEthernetIP.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="&gt;&gt;cBTelnet.Name" xml:space="preserve">
-    <value>cBTelnet</value>
+  <data name="&gt;&gt;TbEthernetIP.Name" xml:space="preserve">
+    <value>TbEthernetIP</value>
   </data>
-  <data name="&gt;&gt;cBTelnet.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;TbEthernetIP.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cBTelnet.Parent" xml:space="preserve">
+  <data name="&gt;&gt;TbEthernetIP.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;cBTelnet.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;TbEthernetIP.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="CbEthernetUse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>287, 0</value>
+  </data>
+  <data name="CbEthernetUse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 24</value>
+  </data>
+  <data name="CbEthernetUse.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="CbEthernetUse.Text" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="&gt;&gt;CbEthernetUse.Name" xml:space="preserve">
+    <value>CbEthernetUse</value>
+  </data>
+  <data name="&gt;&gt;CbEthernetUse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbEthernetUse.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;CbEthernetUse.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="TbEthernetPort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>150, 2</value>
+  </data>
+  <data name="TbEthernetPort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
+  </data>
+  <data name="TbEthernetPort.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="TbEthernetPort.Text" xml:space="preserve">
+    <value>34001</value>
+  </data>
+  <data name="TbEthernetPort.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="TbEthernetPort.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;TbEthernetPort.Name" xml:space="preserve">
+    <value>TbEthernetPort</value>
+  </data>
+  <data name="&gt;&gt;TbEthernetPort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TbEthernetPort.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;TbEthernetPort.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="LblEthernetIP.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblEthernetIP.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 4</value>
+  </data>
+  <data name="LblEthernetIP.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 13</value>
+  </data>
+  <data name="LblEthernetIP.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="LblEthernetIP.Text" xml:space="preserve">
+    <value>IP:</value>
+  </data>
+  <data name="LblEthernetIP.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;LblEthernetIP.Name" xml:space="preserve">
+    <value>LblEthernetIP</value>
+  </data>
+  <data name="&gt;&gt;LblEthernetIP.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblEthernetIP.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LblEthernetIP.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="LblEthernetPort.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblEthernetPort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>119, 4</value>
+  </data>
+  <data name="LblEthernetPort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 13</value>
+  </data>
+  <data name="LblEthernetPort.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="LblEthernetPort.Text" xml:space="preserve">
+    <value>Port:</value>
+  </data>
+  <data name="LblEthernetPort.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;LblEthernetPort.Name" xml:space="preserve">
+    <value>LblEthernetPort</value>
+  </data>
+  <data name="&gt;&gt;LblEthernetPort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblEthernetPort.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LblEthernetPort.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="BtnOpenPortEthernet.Location" type="System.Drawing.Point, System.Drawing">
+    <value>207, 0</value>
+  </data>
+  <data name="BtnOpenPortEthernet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 23</value>
+  </data>
+  <data name="BtnOpenPortEthernet.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="BtnOpenPortEthernet.Text" xml:space="preserve">
+    <value>Connect</value>
+  </data>
+  <data name="BtnOpenPortEthernet.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;BtnOpenPortEthernet.Name" xml:space="preserve">
+    <value>BtnOpenPortEthernet</value>
+  </data>
+  <data name="&gt;&gt;BtnOpenPortEthernet.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnOpenPortEthernet.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;BtnOpenPortEthernet.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>39</value>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -1308,22 +1440,4 @@ Success depends on used hardware (DTR, RTS wired?)</value>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label11.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <metadata name="toolTipSerial.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>119, 17</value>
-  </metadata>
-  <metadata name="serialPort.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>239, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>39</value>
-  </metadata>
 </root>

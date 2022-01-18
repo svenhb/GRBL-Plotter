@@ -122,7 +122,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="tBUseCaseInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 288</value>
+    <value>3, 31</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="tBUseCaseInfo.Multiline" type="System.Boolean, mscorlib">
@@ -133,7 +133,7 @@
     <value>Both</value>
   </data>
   <data name="tBUseCaseInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>576, 119</value>
+    <value>576, 84</value>
   </data>
   <data name="tBUseCaseInfo.TabIndex" type="System.Int32, mscorlib">
     <value>40</value>
@@ -152,13 +152,13 @@ when loading a use case.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tBUseCaseInfo.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="lBUseCase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>409, 6</value>
+    <value>349, 121</value>
   </data>
   <data name="lBUseCase.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 277</value>
+    <value>230, 251</value>
   </data>
   <data name="lBUseCase.TabIndex" type="System.Int32, mscorlib">
     <value>39</value>
@@ -173,67 +173,73 @@ when loading a use case.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lBUseCase.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
-  <data name="btnLoad.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="BtnLoad.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="BtnLoad.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btnLoad.Location" type="System.Drawing.Point, System.Drawing">
-    <value>276, 410</value>
+  <data name="BtnLoad.Location" type="System.Drawing.Point, System.Drawing">
+    <value>219, 378</value>
   </data>
-  <data name="btnLoad.Size" type="System.Drawing.Size, System.Drawing">
-    <value>300, 23</value>
+  <data name="BtnLoad.Size" type="System.Drawing.Size, System.Drawing">
+    <value>360, 23</value>
   </data>
-  <data name="btnLoad.TabIndex" type="System.Int32, mscorlib">
+  <data name="BtnLoad.TabIndex" type="System.Int32, mscorlib">
     <value>41</value>
   </data>
-  <data name="btnLoad.Text" xml:space="preserve">
+  <data name="BtnLoad.Text" xml:space="preserve">
     <value>Load and apply settings, close dialog</value>
   </data>
-  <data name="&gt;&gt;btnLoad.Name" xml:space="preserve">
-    <value>btnLoad</value>
+  <data name="&gt;&gt;BtnLoad.Name" xml:space="preserve">
+    <value>BtnLoad</value>
   </data>
-  <data name="&gt;&gt;btnLoad.Type" xml:space="preserve">
+  <data name="&gt;&gt;BtnLoad.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnLoad.Parent" xml:space="preserve">
+  <data name="&gt;&gt;BtnLoad.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnLoad.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="&gt;&gt;BtnLoad.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
-  <data name="btnOk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="BtnOk.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="BtnOk.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>276, 436</value>
+  <data name="BtnOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>219, 404</value>
   </data>
-  <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>300, 23</value>
+  <data name="BtnOk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>360, 45</value>
   </data>
-  <data name="btnOk.TabIndex" type="System.Int32, mscorlib">
+  <data name="BtnOk.TabIndex" type="System.Int32, mscorlib">
     <value>42</value>
   </data>
-  <data name="btnOk.Text" xml:space="preserve">
-    <value>Close Dialog without changes</value>
+  <data name="BtnOk.Text" xml:space="preserve">
+    <value>Use current import settings</value>
   </data>
-  <data name="&gt;&gt;btnOk.Name" xml:space="preserve">
-    <value>btnOk</value>
+  <data name="&gt;&gt;BtnOk.Name" xml:space="preserve">
+    <value>BtnOk</value>
   </data>
-  <data name="&gt;&gt;btnOk.Type" xml:space="preserve">
+  <data name="&gt;&gt;BtnOk.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnOk.Parent" xml:space="preserve">
+  <data name="&gt;&gt;BtnOk.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnOk.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;BtnOk.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="tBSetup.Font" type="System.Drawing.Font, System.Drawing">
     <value>Lucida Console, 7.5pt</value>
   </data>
   <data name="tBSetup.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 6</value>
+    <value>3, 121</value>
   </data>
   <data name="tBSetup.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -242,7 +248,7 @@ when loading a use case.</value>
     <value>Both</value>
   </data>
   <data name="tBSetup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>400, 277</value>
+    <value>340, 251</value>
   </data>
   <data name="tBSetup.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -260,7 +266,7 @@ when loading a use case.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tBSetup.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -269,7 +275,7 @@ when loading a use case.</value>
     <value>NoControl</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 441</value>
+    <value>0, 436</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 13</value>
@@ -290,7 +296,40 @@ when loading a use case.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
+  </data>
+  <data name="LblUseCaseHeader.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblUseCaseHeader.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 14pt</value>
+  </data>
+  <data name="LblUseCaseHeader.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblUseCaseHeader.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 5</value>
+  </data>
+  <data name="LblUseCaseHeader.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 24</value>
+  </data>
+  <data name="LblUseCaseHeader.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="LblUseCaseHeader.Text" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;LblUseCaseHeader.Name" xml:space="preserve">
+    <value>LblUseCaseHeader</value>
+  </data>
+  <data name="&gt;&gt;LblUseCaseHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblUseCaseHeader.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LblUseCaseHeader.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="lblLastUseCase.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -299,7 +338,7 @@ when loading a use case.</value>
     <value>NoControl</value>
   </data>
   <data name="lblLastUseCase.Location" type="System.Drawing.Point, System.Drawing">
-    <value>64, 441</value>
+    <value>70, 436</value>
   </data>
   <data name="lblLastUseCase.Size" type="System.Drawing.Size, System.Drawing">
     <value>13, 13</value>
@@ -317,7 +356,7 @@ when loading a use case.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblLastUseCase.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="cBshowImportDialog.AccessibleDescription" xml:space="preserve">
     <value>This option can be enabled again in Setup - Graphics import</value>
@@ -329,7 +368,7 @@ when loading a use case.</value>
     <value>NoControl</value>
   </data>
   <data name="cBshowImportDialog.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 414</value>
+    <value>3, 404</value>
   </data>
   <data name="cBshowImportDialog.Size" type="System.Drawing.Size, System.Drawing">
     <value>192, 17</value>
@@ -350,16 +389,16 @@ when loading a use case.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cBshowImportDialog.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>584, 461</value>
-  </data>
-  <data name="$this.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>600, 500</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>600, 500</value>
@@ -376,7 +415,4 @@ when loading a use case.</value>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>

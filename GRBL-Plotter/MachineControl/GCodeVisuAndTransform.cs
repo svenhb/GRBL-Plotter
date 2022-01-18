@@ -76,6 +76,8 @@ namespace GrblPlotter
 
         internal static string selectedFigureInfo = "";
         private static int lastFigureNumber = -1;
+        private static HashSet<int> lastFigureNumbers = new HashSet<int>();
+
         public static int GetHighlightStatus()
         { return lastFigureNumber; }
 
@@ -264,7 +266,8 @@ namespace GrblPlotter
             else
             {
                 MarkSelectedFigure(-1);  // deselect
-                lastFigureNumber = -1;
+                lastFigureNumber = -1; 
+                lastFigureNumbers.Clear();
             }
 
             return SortedList[line];//.lineNumber;
@@ -301,11 +304,13 @@ namespace GrblPlotter
         /// </summary>
         public static void MarkSelectedFigure(int figureNr)
         {
+            lastFigureNumbers.Clear();
             if (figureNr <= 0)
             {
                 pathMarkSelection.Reset();
                 lastFigureNumber = -2;
                 selectedFigureInfo = "";
+                SelectionHandle.IsActive = false;
                 return;
             }
             // get dimension of selection
@@ -327,6 +332,7 @@ namespace GrblPlotter
 
             myPathIterator.Dispose();
             RectangleF selectionBounds = pathMarkSelection.GetBounds();
+            SelectionHandle.SetBounds(selectionBounds);
             float centerX = selectionBounds.X + selectionBounds.Width / 2;
             float centerY = selectionBounds.Y + selectionBounds.Height / 2;
             selectedFigureInfo = string.Format("Selection: {0}\r\nWidth : {1:0.000}\r\nHeight: {2:0.000}\r\nCenter: X {3:0.000} Y {4:0.000}", figureNr, selectionBounds.Width, selectionBounds.Height, centerX, centerY);
@@ -359,8 +365,11 @@ namespace GrblPlotter
                     for (int i = 1; i <= figNr; i++)
                         myPathIterator.NextMarker(tmpPath);
                     pathMarkSelection.AddPath(tmpPath, false);
+                    lastFigureNumbers.Add(figNr);
                 }
             }
+            RectangleF selectionBounds = pathMarkSelection.GetBounds();
+            SelectionHandle.SetBounds(selectionBounds);
             myPathIterator.Dispose();
             tmpPath.Dispose();
         }

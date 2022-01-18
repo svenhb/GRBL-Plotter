@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,9 +31,6 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml;
-
-//#pragma warning disable CA1303	// Do not pass literals as localized parameters
-//#pragma warning disable CA1305
 
 namespace GrblPlotter
 {
@@ -326,10 +323,11 @@ namespace GrblPlotter
             rubberBand.Reset();
             actualLine.Reset();
             jogPath.Reset();
-            jogPath.AddLines(list.ToArray());
-
+			
             if (list.Count > 0)
+			{	jogPath.AddLines(list.ToArray());
                 lastSet = ToPoint(list[list.Count - 1]);
+			}
             if (jogPath.PointCount > 0)
             { rubberBand.AddLine(lastSet, posMoveTmp); }
 

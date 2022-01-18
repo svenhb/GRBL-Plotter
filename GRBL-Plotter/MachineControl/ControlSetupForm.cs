@@ -599,12 +599,12 @@ namespace GrblPlotter
 				File.WriteAllText(file, csv.ToString()); 
 			}			
 			catch (IOException err) {
-				Properties.Settings.Default.guiLastEndReason += "Error ExportDgvToCSV:"+file;
+				Properties.Settings.Default.guiLastEndReason += "Error:"+err.Message+" ExportDgvToCSV: "+file;
 				Logger.Error(err,"ExportDgvToCSV IOException:{0}",file);
 				MessageBox.Show("Could not write " + file + "\r\n" + err.Message, "Error");
 			}
 			catch (Exception err) { // access denied
-				Properties.Settings.Default.guiLastEndReason += "Error ExportDgvToCSV:"+file;
+				Properties.Settings.Default.guiLastEndReason += "Error:"+err.Message+" ExportDgvToCSV: "+file;
 				Logger.Error(err,"ExportDgvToCSV IOException:{0}",file);
 				MessageBox.Show("Could not write " + file + "\r\n" + err.Message, "Error");
 //				throw;		// unknown exception...

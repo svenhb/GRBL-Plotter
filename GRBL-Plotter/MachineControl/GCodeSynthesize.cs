@@ -72,7 +72,8 @@ namespace GrblPlotter
         {
             Logger.Debug("createGCodeProg replaceG23: {0}, splitMoves: {1}, applyNewZ: {2}, specialCmd: {3}", replaceG23, splitMoves, applyNewZ, specialCmd);
             if (gcodeList == null) return "";
-            pathMarkSelection.Reset(); lastFigureNumber = -1;
+            pathMarkSelection.Reset(); 
+            lastFigureNumber = -1; lastFigureNumbers.Clear();
             StringBuilder newCode = new StringBuilder();
             StringBuilder tmpCode = new StringBuilder();
             string infoCode = "";
