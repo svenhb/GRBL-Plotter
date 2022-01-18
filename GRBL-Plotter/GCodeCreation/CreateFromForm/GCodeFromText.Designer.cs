@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -53,6 +53,10 @@ namespace GrblPlotter
             this.cBFont = new System.Windows.Forms.ComboBox();
             this.btnApply = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.RbAlign3 = new System.Windows.Forms.RadioButton();
+            this.RbAlign2 = new System.Windows.Forms.RadioButton();
+            this.RbAlign1 = new System.Windows.Forms.RadioButton();
+            this.label4 = new System.Windows.Forms.Label();
             this.nUDLineBreak = new System.Windows.Forms.NumericUpDown();
             this.cBLineBreak = new System.Windows.Forms.CheckBox();
             this.nUDFontLine = new System.Windows.Forms.NumericUpDown();
@@ -73,6 +77,7 @@ namespace GrblPlotter
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.CbInsertCode = new System.Windows.Forms.CheckBox();
             this.tBText = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button7 = new System.Windows.Forms.Button();
@@ -84,10 +89,6 @@ namespace GrblPlotter
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.RbAlign1 = new System.Windows.Forms.RadioButton();
-            this.RbAlign2 = new System.Windows.Forms.RadioButton();
-            this.RbAlign3 = new System.Windows.Forms.RadioButton();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLineBreak)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDFontLine)).BeginInit();
@@ -138,6 +139,33 @@ namespace GrblPlotter
             resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
+            // 
+            // RbAlign3
+            // 
+            resources.ApplyResources(this.RbAlign3, "RbAlign3");
+            this.RbAlign3.Name = "RbAlign3";
+            this.RbAlign3.TabStop = true;
+            this.RbAlign3.UseVisualStyleBackColor = true;
+            // 
+            // RbAlign2
+            // 
+            resources.ApplyResources(this.RbAlign2, "RbAlign2");
+            this.RbAlign2.Name = "RbAlign2";
+            this.RbAlign2.TabStop = true;
+            this.RbAlign2.UseVisualStyleBackColor = true;
+            // 
+            // RbAlign1
+            // 
+            resources.ApplyResources(this.RbAlign1, "RbAlign1");
+            this.RbAlign1.Checked = true;
+            this.RbAlign1.Name = "RbAlign1";
+            this.RbAlign1.TabStop = true;
+            this.RbAlign1.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
             // 
             // nUDLineBreak
             // 
@@ -328,6 +356,7 @@ namespace GrblPlotter
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.CbInsertCode);
             this.tabPage1.Controls.Add(this.btnApply);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.btnCancel);
@@ -336,6 +365,14 @@ namespace GrblPlotter
             resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // CbInsertCode
+            // 
+            resources.ApplyResources(this.CbInsertCode, "CbInsertCode");
+            this.CbInsertCode.Checked = global::GrblPlotter.Properties.Settings.Default.createTextInsertEnable;
+            this.CbInsertCode.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "createTextInsertEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbInsertCode.Name = "CbInsertCode";
+            this.CbInsertCode.UseVisualStyleBackColor = true;
             // 
             // tBText
             // 
@@ -423,33 +460,6 @@ namespace GrblPlotter
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.BtnLoadGraphic_Click);
             // 
-            // label4
-            // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
-            // 
-            // RbAlign1
-            // 
-            resources.ApplyResources(this.RbAlign1, "RbAlign1");
-            this.RbAlign1.Checked = true;
-            this.RbAlign1.Name = "RbAlign1";
-            this.RbAlign1.TabStop = true;
-            this.RbAlign1.UseVisualStyleBackColor = true;
-            // 
-            // RbAlign2
-            // 
-            resources.ApplyResources(this.RbAlign2, "RbAlign2");
-            this.RbAlign2.Name = "RbAlign2";
-            this.RbAlign2.TabStop = true;
-            this.RbAlign2.UseVisualStyleBackColor = true;
-            // 
-            // RbAlign3
-            // 
-            resources.ApplyResources(this.RbAlign3, "RbAlign3");
-            this.RbAlign3.Name = "RbAlign3";
-            this.RbAlign3.TabStop = true;
-            this.RbAlign3.UseVisualStyleBackColor = true;
-            // 
             // GCodeFromText
             // 
             resources.ApplyResources(this, "$this");
@@ -519,5 +529,6 @@ namespace GrblPlotter
         private System.Windows.Forms.RadioButton RbAlign2;
         private System.Windows.Forms.RadioButton RbAlign1;
         private System.Windows.Forms.Label label4;
+        public System.Windows.Forms.CheckBox CbInsertCode;
     }
 }

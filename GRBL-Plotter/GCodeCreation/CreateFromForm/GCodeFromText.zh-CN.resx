@@ -198,4 +198,10 @@
   <data name="label4.Text" xml:space="preserve">
     <value>线对齐</value>
   </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>G代码</value>
+  </data>
+  <data name="CbInsertCode.Text" xml:space="preserve">
+    <value>将文本插入 2D 视图（在位置 0;0）</value>
+  </data>
 </root>

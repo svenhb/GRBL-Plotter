@@ -15,6 +15,7 @@
  * 2020-06-22 removed unneeded functions
  * 2020-06-22 replaced Exceptions by MyException
  * 2020-12-16 Line 1278 'repair' dispose function
+ * 2022-01-17 add try/catch
  */
 
 
@@ -325,13 +326,13 @@ namespace GrblPlotter.BarcodeCreation
             this.Encoded_Value = ibarcode.Encoded_Value;
             this.Raw_Data = ibarcode.RawData;
 
-            if (!string.IsNullOrEmpty(Encoded_Value))
-                _Encoded_Image = (Image)Generate_Image();
-            else
-                return null;
+            if (!string.IsNullOrEmpty(this.Encoded_Value))
+            {    _Encoded_Image = (Image)Generate_Image();
+//            else
+//                return null;
 
-            this.EncodedImage.RotateFlip(this.RotateFlipType);
-
+				this.EncodedImage.RotateFlip(this.RotateFlipType);
+			}
             this.EncodingTime = ((TimeSpan)(DateTime.Now - dtStartTime)).TotalMilliseconds;
 
             //      _XML = GetXML();

@@ -201,4 +201,7 @@
   <data name="label4.Text" xml:space="preserve">
     <value>محاذاة الخط</value>
   </data>
+  <data name="CbInsertCode.Text" xml:space="preserve">
+    <value>أدخل نصًا في عرض ثنائي الأبعاد (في الموضع 0 ؛ 0)</value>
+  </data>
 </root>

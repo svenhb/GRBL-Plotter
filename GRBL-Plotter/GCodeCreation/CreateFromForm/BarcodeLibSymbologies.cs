@@ -13,6 +13,7 @@
 /*
  * 2020-12-16 Add dispose function for class Code93 and class Code128
  * 2021-07-02 code clean up / code quality
+ * 2022-01-08 line 3080 add if (Encoded.Length > 1)
 */
 
 using System;
@@ -3077,7 +3078,8 @@ namespace GrblPlotter.BarcodeCreation
                 Encoded += c + "0";
             }//foreach
 
-            Encoded = Encoded.Substring(0, Encoded.Length - 1);
+            if (Encoded.Length > 1)
+                Encoded = Encoded.Substring(0, Encoded.Length - 1);
 
             return Encoded;
         }

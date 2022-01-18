@@ -195,4 +195,7 @@
   <data name="label4.Text" xml:space="preserve">
     <value>Alineación de línea</value>
   </data>
+  <data name="CbInsertCode.Text" xml:space="preserve">
+    <value>Insertar texto en la vista 2D (en la posición 0;0)</value>
+  </data>
 </root>

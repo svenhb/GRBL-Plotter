@@ -201,4 +201,7 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Vytvořte G-kód z textu</value>
   </data>
+  <data name="CbInsertCode.Text" xml:space="preserve">
+    <value>Vložit text do 2D pohledu (na pozici 0;0)</value>
+  </data>
 </root>

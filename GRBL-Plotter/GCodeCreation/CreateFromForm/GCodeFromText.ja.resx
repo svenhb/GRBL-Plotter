@@ -201,4 +201,7 @@
   <data name="label4.Text" xml:space="preserve">
     <value>ラインアライメント</value>
   </data>
+  <data name="CbInsertCode.Text" xml:space="preserve">
+    <value>テキストを2Dビューに挿入します（位置0; 0）</value>
+  </data>
 </root>

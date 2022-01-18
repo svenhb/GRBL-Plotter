@@ -198,4 +198,10 @@
   <data name="label4.Text" xml:space="preserve">
     <value>Выравнивание линии</value>
   </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>G-код</value>
+  </data>
+  <data name="CbInsertCode.Text" xml:space="preserve">
+    <value>Вставить текст в 2D-вид (в позиции 0;0)</value>
+  </data>
 </root>

@@ -31,6 +31,7 @@
  * 2021-07-26 code clean up / code quality
  * 2021-11-23 line 309 check nUDMaxColors.maximum, line 1137 add catch
  * 2021-12-10 fix ThreadException LockBits line 1079, line 512
+ * 2022-01-07 add try/catch for BtnLoad_Click, LoadExtern, CountImageColors
 */
 
 using AForge.Imaging.ColorReduction;
@@ -141,9 +142,17 @@ namespace GrblPlotter
                     {
                         if (!File.Exists(sfd.FileName)) return;
                         lastFile = sfd.FileName;
-                        originalImage = new Bitmap(System.Drawing.Image.FromFile(sfd.FileName));
-						Logger.Info("### btnLoad_Click: {0}",sfd.FileName);
-                        ProcessLoading();   // reset color corrections
+                        try
+                        {
+                            originalImage = new Bitmap(System.Drawing.Image.FromFile(sfd.FileName));
+						    Logger.Info("### btnLoad_Click: {0}",sfd.FileName);
+                            ProcessLoading();   // reset color corrections
+                        }
+                        catch (Exception err)
+                        {
+                            Logger.Error(err, "BtnLoad_Click ");
+                            MessageBox.Show("Error loading image:\r\n" + err.Message, "Error");
+                        }
                     }
                 }
             }
@@ -157,9 +166,16 @@ namespace GrblPlotter
         {
             if (!File.Exists(file)) return;
             lastFile = file;
-            originalImage = new Bitmap(System.Drawing.Image.FromFile(file));
-			Logger.Info("### LoadExtern: {0}", file);
-            ProcessLoading();   // reset color corrections
+            try
+            {
+                originalImage = new Bitmap(System.Drawing.Image.FromFile(file));
+                Logger.Info("### LoadExtern: {0}", file);
+                ProcessLoading();   // reset color corrections
+            }
+            catch (Exception err)
+            {   Logger.Error(err, "LoadExtern ");
+                MessageBox.Show("Error loading image:\r\n"+err.Message,"Error");
+            }
         }
 
         private void CopyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -175,14 +191,18 @@ namespace GrblPlotter
         { LoadClipboard(); }
         public void LoadClipboard()
         {
-            IDataObject iData = Clipboard.GetDataObject();
-            Logger.Info("### pasteFromClipboard");
-            if (iData.GetDataPresent(DataFormats.Bitmap))
-            {
-                lastFile = "";
-                originalImage = new Bitmap(Clipboard.GetImage());
-                ProcessLoading();   // reset color corrections
-            }
+			try
+            {	IDataObject iData = Clipboard.GetDataObject();
+				Logger.Info("### pasteFromClipboard");
+				if ((iData != null) && (iData.GetDataPresent(DataFormats.Bitmap)))
+				{
+					lastFile = "";
+					originalImage = new Bitmap(Clipboard.GetImage());
+					ProcessLoading();   // reset color corrections
+				}
+			}
+			catch (Exception err)
+			{	Logger.Error(err,"LoadClipboard ");	}
         }
 
         public void LoadUrl(string url)
@@ -212,6 +232,10 @@ namespace GrblPlotter
             resultImage = new Bitmap(originalImage);
 
             ratio = (decimal)((double)originalImage.Width / (double)originalImage.Height);         //Save ratio for future use if needled
+            if (ratio == 0) 
+            {   Logger.Error("ProcessLoading ratio=0  width:{0}  height:{1}", originalImage.Width, originalImage.Height);
+                ratio = 1;
+            }
             nUDHeight.ValueChanged -= NudWidthHeight_ValueChanged;
             oldWidth = Properties.Settings.Default.importImageWidth;    //nUDWidth.Value;
             oldHeight = (decimal)(oldWidth / ratio);               //Initialize y size
@@ -269,6 +293,8 @@ namespace GrblPlotter
             int tmpCount = pixelCount;                // keep original counter 
             if (cbExceptColor.Checked)
                 tmpCount -= ToolTable.PixelCount(0);  // no color-except
+            if (tmpCount < 1) { tmpCount = 1; }
+
             ToolTable.SortByPixelCount(false);
             int listed = 0;
             int toolPixelCount;
@@ -505,6 +531,11 @@ namespace GrblPlotter
             nUDWidth.ValueChanged -= NudWidthHeight_ValueChanged;
             nUDHeight.ValueChanged -= NudWidthHeight_ValueChanged;
             bool edit = false;
+            if (ratio == 0)
+            {
+                Logger.Error("NudWidthHeight_ValueChanged ratio=0  width:{0}  height:{1}", originalImage.Width, originalImage.Height);
+                ratio = 1;
+            }
             if (oldWidth != nUDWidth.Value)
             {
                 oldWidth = nUDWidth.Value;
@@ -978,9 +1009,10 @@ namespace GrblPlotter
                         int matchLimit = 0;
                         ToolTable.SortByToolNR(false);
                         int tmpCount = pixelCount;                // keep original counter 
-
                         if (cbExceptColor.Checked)
                             tmpCount -= ToolTable.PixelCount(0);  // no color-except
+                        if (tmpCount < 1) { tmpCount = 1; }
+
                         int toolPixelCount;
                         decimal percent;
                         Logger.Info("applyColorCorrections redoColorAdjust pixelCount:{0} tmpCount:{1} percentLimit:{2} ", pixelCount, tmpCount, nUDColorPercent.Value);
@@ -1155,8 +1187,12 @@ namespace GrblPlotter
             //     sbyte myToolNr;//, myIndex;
             Dictionary<Color, sbyte> lookUpToolNr = new Dictionary<Color, sbyte>();
             try {
-                Rectangle rectAdjusted = new Rectangle(0, 0, adjustedImage.Width, adjustedImage.Height);
-                Rectangle rectResult = new Rectangle(0, 0, resultImage.Width, resultImage.Height);
+				
+				int rectWidth, rectHeight;
+				rectWidth = Math.Min(adjustedImage.Width, resultImage.Width);
+				rectHeight = Math.Min(adjustedImage.Height, resultImage.Height);
+                Rectangle rectAdjusted = new Rectangle(0, 0, rectWidth, rectHeight);	//adjustedImage.Width, adjustedImage.Height);
+                Rectangle rectResult = new Rectangle(0, 0, rectWidth, rectHeight);	//resultImage.Width, resultImage.Height);
 				
                 dataAdjusted = adjustedImage.LockBits(rectAdjusted, ImageLockMode.ReadOnly, adjustedImage.PixelFormat);
                 dataResult = resultImage.LockBits(rectResult, ImageLockMode.WriteOnly, adjustedImage.PixelFormat);
@@ -1164,10 +1200,10 @@ namespace GrblPlotter
                 IntPtr ptrAdjusted = dataAdjusted.Scan0;
                 IntPtr ptrResult = dataResult.Scan0;
                 int psize = 4;  // 32bppARGB GetPixelInfoSize(adjustedImage.PixelFormat);
-                int bsize = dataAdjusted.Stride * adjustedImage.Height;
+                int bsize = dataAdjusted.Stride * rectHeight;	//adjustedImage.Height;
                 byte[] pixelsAdjusted = new byte[bsize];
                 byte[] pixelsResult = new byte[bsize];
-                tmpToolNrArray = new sbyte[adjustedImage.Width, adjustedImage.Height];
+                tmpToolNrArray = new sbyte[rectWidth, rectHeight];	//adjustedImage.Width, adjustedImage.Height];
                 Marshal.Copy(ptrAdjusted, pixelsAdjusted, 0, pixelsAdjusted.Length);
 
                 byte r, g, b, a;
@@ -1201,7 +1237,7 @@ namespace GrblPlotter
                     ToolTable.SetPresent(true);
                     tmpToolNrArray[bx++, by] = myToolNr;
 
-                    if (bx >= adjustedImage.Width)
+                    if (bx >= rectWidth)	//adjustedImage.Width)
                     { bx = 0; by++; }
                     // apply new color
                     pixelsResult[index] = newColor.B;// newColor.A;
@@ -1236,7 +1272,18 @@ namespace GrblPlotter
         /// </summary>
         private int CountImageColors()
         {   // Lock the bitmap's bits.  
-            Rectangle rect = new Rectangle(0, 0, adjustedImage.Width, adjustedImage.Height);
+            Rectangle rect;
+            try
+            {
+                rect = new Rectangle(0, 0, adjustedImage.Width, adjustedImage.Height);
+            }
+            catch (Exception err)
+            {
+                Logger.Error(err, "CountImageColors ");
+                MessageBox.Show("Error count image colors - width or height not ok?:\r\n" + err.Message, "Error");
+                return 1;
+            }
+
             BitmapData bmpData = adjustedImage.LockBits(rect, ImageLockMode.ReadWrite, adjustedImage.PixelFormat);
             IntPtr ptr = bmpData.Scan0;                         // Get the address of the first line.
             int bytes = bmpData.Stride * adjustedImage.Height;  // Declare an array to hold the bytes of the bitmap.
@@ -1294,16 +1341,13 @@ namespace GrblPlotter
             ToolTable.SortByToolNR(false);
             ToolTable.SetIndex(0);
             int tmpCount = pixelCount;
-  //          if (useFullReso)
-    //            tmpCount = originalImage.Width * originalImage.Height;
-
             if (cbExceptColor.Checked)
                 tmpCount -= ToolTable.PixelCount(0);     // no color-except
+            if (tmpCount < 1) { tmpCount = 1; }
 
             ToolTable.SortByPixelCount(false);           // sort by color area (max. first)
 
             Logger.Info("updateToolList pixelCount:{0}  tmpCount:{1}", pixelCount, tmpCount);
-            if (tmpCount == 0) { tmpCount = 100; }
 
             tmp2 = "Tools sorted by pixel count.\r\n";
             tmp2 += "Tool colors in use and pixel count:\r\n";

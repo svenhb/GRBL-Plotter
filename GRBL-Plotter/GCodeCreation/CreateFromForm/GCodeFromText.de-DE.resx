@@ -190,4 +190,7 @@ in Setup SVG-Import </value>
   <data name="label4.Text" xml:space="preserve">
     <value>Zeilenausrichtung</value>
   </data>
+  <data name="CbInsertCode.Text" xml:space="preserve">
+    <value>Text in 2D-Ansicht einfügen (an Position 0;0)</value>
+  </data>
 </root>
