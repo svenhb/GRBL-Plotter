@@ -30,7 +30,7 @@
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.6.4.0</ApplicationVersion>
+    <ApplicationVersion>1.6.5.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -280,6 +280,10 @@
     <Compile Include="MachineControl\ControlProbing.Designer.cs">
       <DependentUpon>ControlProbing.cs</DependentUpon>
     </Compile>
+    <Compile Include="MachineControl\ControlSerialFormConnect.cs">
+      <DependentUpon>ControlSerialForm.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MachineControl\ControlSerialFormInterface.cs">
       <DependentUpon>ControlSerialForm.cs</DependentUpon>
       <SubType>Form</SubType>
@@ -297,6 +301,7 @@
     <Compile Include="MachineControl\GCode2DViewpaths.cs" />
     <Compile Include="MachineControl\GCodeAnalyze.cs" />
     <Compile Include="MachineControl\GCodeParser.cs" />
+    <Compile Include="MachineControl\GCodeSelectionHandle.cs" />
     <Compile Include="MachineControl\GCodeSimulate.cs" />
     <Compile Include="MachineControl\GCodeSynthesize.cs" />
     <Compile Include="MachineControl\GCodeTransform.cs" />
@@ -1101,6 +1106,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlLaser.resx">
       <DependentUpon>ControlLaser.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlLaser.ru.resx">
       <DependentUpon>ControlLaser.cs</DependentUpon>
@@ -1143,6 +1149,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSerialForm.cs.resx">
       <DependentUpon>ControlSerialForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSerialForm.de-DE.resx">
       <DependentUpon>ControlSerialForm.cs</DependentUpon>
@@ -1459,6 +1466,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Resources\ResStrings.ar.resx" />
+    <EmbeddedResource Include="Resources\ResStrings.cs.resx" />
     <EmbeddedResource Include="Resources\ResStrings.de-DE.resx" />
     <EmbeddedResource Include="Resources\ResStrings.es.resx" />
     <EmbeddedResource Include="Resources\ResStrings.fr.resx" />
