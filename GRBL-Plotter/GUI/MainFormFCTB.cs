@@ -317,7 +317,7 @@ namespace GrblPlotter
                     FctbCodeMarkLine();             // set Bookmark and marker in 2D-View
                     fCTBCode.DoCaretVisible();
                 }
-                StatusStripClear(1);
+                StatusStripClear(1); // FctbCode_KeyDown
                 if (VisuGCode.CodeBlocksAvailable() && figureIsMarked)
                 {
                     StatusStripSet(1, Localization.GetString("statusStripeUpKeys"), Color.LightGreen);
@@ -371,7 +371,7 @@ namespace GrblPlotter
                     FctbCodeMarkLine();                 // set Bookmark and marker in 2D-View
                     fCTBCode.DoCaretVisible();
                 }
-                StatusStripClear(1);
+                StatusStripClear(1); // FctbCode_KeyDown
                 if (VisuGCode.CodeBlocksAvailable() && figureIsMarked)
                 {
                     StatusStripSet(1, Localization.GetString("statusStripeDownKeys"), Color.LightGreen);
@@ -517,8 +517,8 @@ namespace GrblPlotter
             }
             else
             {
-                fCTBCode.BackColor = Color.White;
-                StatusStripClear(1, 2);//, "setEditMode");
+        //        fCTBCode.BackColor = Color.White;
+         //       StatusStripClear(1, 2);//, "setEditMode");
             }
         }
 
@@ -541,13 +541,6 @@ namespace GrblPlotter
         private static XmlMarkerType markedBlockType = XmlMarkerType.None;
         private void FindFigureMarkSelection(XmlMarkerType marker, int clickedLine, bool collapse = true)   // called by click on figure in 2D view
         {
-		/*	if (XmlMarker.GetFigureCount()==0)	// no figure = no other XMLs	 && (GetGroupCount()==0) && (GetTileCount()==0))
-			{   fCTBCodeClickedLineNow = clickedLine;
-				fCTBCode.DoCaretVisible();
-				this.Invalidate();
-				return;
-			}
-*/
             if (Properties.Settings.Default.FCTBBlockExpandKeepLastOpen)
                 collapse = false;
             bool expand = expandGCode;
@@ -555,7 +548,7 @@ namespace GrblPlotter
                 return;
             if (logDetailed) Logger.Trace(" findFigureMarkSelection marker:{0}  line:{1}  collapse:{2}", marker, clickedLine, collapse);
             fCTBCode.Selection.ColumnSelectionMode = false;
-            StatusStripClear(2);
+    //        StatusStripClear(2);    // FindFigureMarkSelection
             EnableBlockCommands(false);
             markedBlockType = marker;
             Color highlight = Color.GreenYellow;

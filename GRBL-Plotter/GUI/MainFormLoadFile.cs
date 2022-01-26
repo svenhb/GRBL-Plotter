@@ -675,7 +675,7 @@ namespace GrblPlotter
                 {
                     this.Cursor = Cursors.WaitCursor;
                     if (lastLoadSource.IndexOf("Clipboard") >= 0)
-                    { LoadFromClipboard(); }
+                    {   LoadFromClipboard(); }
                     else
                     {
                         if (lastLoadFile.Contains("Nothing"))
@@ -1143,11 +1143,13 @@ namespace GrblPlotter
                 else if ((e.KeyCode == Keys.Right) || (e.KeyCode == Keys.NumPad6))
                 {   MoveView(-1,0); }
                 else if ((e.KeyCode == Keys.Left) || (e.KeyCode == Keys.NumPad4))
-                { MoveView(1, 0); }
+                {   MoveView(1, 0); }
                 else if ((e.KeyCode == Keys.Up) || (e.KeyCode == Keys.NumPad8))
-                { MoveView(0, 1); }
+                {   MoveView(0, 1); }
                 else if ((e.KeyCode == Keys.Down) || (e.KeyCode == Keys.NumPad2))
-                { MoveView(0, -1); }
+                {   MoveView(0, -1); }
+
+                e.SuppressKeyPress = true;
             }
             if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)         // ctrl V = paste
             {
@@ -1186,6 +1188,11 @@ namespace GrblPlotter
             }
             else if (fCTBCode.Focused)
                 return;
+            if (pictureBox1.Focused)
+            {   e.SuppressKeyPress = true;
+                return; 
+            }
+
             ProcessHotkeys(e.KeyData.ToString(), false);
         }
 

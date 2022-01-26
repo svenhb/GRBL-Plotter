@@ -487,7 +487,7 @@ namespace GrblPlotter
                 {
                     label_status.Text = "";
                     label_status.BackColor = SystemColors.Control;
-                    StatusStripClear(2);
+                    StatusStripClear(2); // MainTimer_Tick
                     StatusStripSet(1, Grbl.lastMessage, Color.Yellow);
                     if (Grbl.lastMessage.ToLower(culture).Contains("hard"))
                         StatusStripSet(2, Localization.GetString("statusStripeGrblResetNeeded"), Color.Yellow);
@@ -1239,6 +1239,11 @@ namespace GrblPlotter
             btnPenDown.Visible = cBServoButtons.Checked;
         }
 
+        /* StatusStripSet messages:
+         * 0: import, loggingEnabled, start import
+         * 1: Key-usage, grblLastMessage, importOptions, setEditMode, fileLoading
+         * 2: Exception, Marked group, Toggle penup, conversionInfo, clrEditmode
+         */
         private void StatusStripSet(int nr, string text, Color color)
         {
             if (nr == 0)
@@ -1297,13 +1302,9 @@ namespace GrblPlotter
 
         private void MainForm_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            if (pictureBox1.Focused && ((e.KeyCode == Keys.Right) || (e.KeyCode == Keys.Left) || (e.KeyCode == Keys.Up) || (e.KeyCode == Keys.Down)))
+            if (pictureBox1.Focused && ((e.KeyCode == Keys.Right) || (e.KeyCode == Keys.Left) || (e.KeyCode == Keys.Up) || (e.KeyCode == Keys.Down) ||
+                (e.KeyCode == Keys.Alt) || (e.KeyCode == Keys.Shift) || (e.KeyCode == Keys.Control)))
             { e.IsInputKey = true; }
-        }
-
-        private void pictureBox1_MouseLeave(object sender, EventArgs e)
-        {
-            Cursor = Cursors.Default;
         }
     }
 }

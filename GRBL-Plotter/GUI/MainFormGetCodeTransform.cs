@@ -132,105 +132,128 @@ namespace GrblPlotter
 
         // handle event from create Text,  shape, barcode, image, jog path creator
         #region create_from_form
+
+        private void InsertCodeFromForm(string sourceGCode, string sourceForm)
+        {
+            bool insertCode = Properties.Settings.Default.fromFormInsertEnable;
+            importOptions = "";
+            SimuStop();
+            bool createGroup = false;
+            int insertLineNr = XmlMarker.FindInsertPositionGroupMostTop();      // try to find group
+            if (insertLineNr < 0)
+            {
+                insertLineNr = XmlMarker.FindInsertPositionFigureMostTop(-1);  // no group? find figure
+                createGroup = true;
+            }
+
+            Logger.Info("InsertCodeFromForm:{0} insertCode:{1}  insertAt:{2}", sourceForm, insertCode, insertLineNr);
+
+            if (insertCode && LineIsInRange(insertLineNr))
+            {
+                if (createGroup)
+                {    // add startGroup for existing figures
+                    Place selStartGrp;
+                    selStartGrp.iLine = XmlMarker.FindInsertPositionFigureMostBottom(insertLineNr);
+                    selStartGrp.iChar = 0;
+                    Range mySelectionGrp = new Range(fCTBCode);
+                    mySelectionGrp.Start = mySelectionGrp.End = selStartGrp;
+                    fCTBCode.Selection = mySelectionGrp;
+                    fCTBCode.InsertText("(" + XmlMarker.GroupEnd + ">)\r\n", false);    // insert new code
+                }
+                // extract group code from generated gcode
+                string tmpCodeString = sourceGCode; // Graphic.GCode.ToString();
+                StringBuilder tmpCodeFinish = new StringBuilder();
+                string[] tmpCodeLines = tmpCodeString.Split('\n');// new string[] { Environment.NewLine }, StringSplitOptions.None);
+                bool useCode = false, useGroup = false;
+                string line;
+                int figureCount = 1;
+                for (int k = 0; k < tmpCodeLines.Length; k++)
+                {
+                    line = tmpCodeLines[k].Trim();
+                    if (line.Contains(XmlMarker.GroupStart))
+                    {
+                        useCode = true; useGroup = true;
+                        int idStart = line.IndexOf("Id=");
+                        int idCount = XmlMarker.GetGroupCount();
+                        if (idStart > 1)
+                        {
+                            string tmp = line.Substring(0, idStart);
+                            tmp += "Id=\"" + (idCount + 1).ToString() + "\"";
+                            int strtIndex = line.IndexOf("\"", idStart + 4) + 1;
+                            if (strtIndex < (idStart + 6)) { strtIndex = idStart + 5 + idCount.ToString().Length; }
+                            tmp += line.Substring(strtIndex);
+                            //        Logger.Info("getGCodeFromText figure  idStart:{0}  digits:{1}  final:{2}  string:'{3}'-'{4}'", idStart, idCount.ToString().Length, strtIndex, line.Substring(0, idStart), line.Substring(strtIndex));
+                            line = tmp;
+                        }
+                    }
+                    if (line.Contains(XmlMarker.FigureStart))
+                    {
+                        useCode = true;
+                        if (!useGroup)
+                        {
+                            int idStart = line.IndexOf("Id=");
+                            int idCount = XmlMarker.GetFigureCount();
+                            if (idStart > 1)
+                            {
+                                string tmp = line.Substring(0, idStart);
+                                tmp += "Id=\"" + (idCount + figureCount++).ToString() + "\"";
+                                int strtIndex = line.IndexOf("\"", idStart + 4) + 1;
+                                if (strtIndex < (idStart + 6)) { strtIndex = idStart + 5 + idCount.ToString().Length; }
+                                tmp += line.Substring(strtIndex);
+                                //            Logger.Info("getGCodeFromText figure  idStart:{0}  digits:{1}  final:{2}  string:'{3}'-'{4}'", idStart, idCount.ToString().Length, strtIndex, line.Substring(0, idStart), line.Substring(strtIndex));
+                                line = tmp;
+                            }
+                        }
+                    }
+                    if (useCode)
+                    { tmpCodeFinish.AppendLine(line.Trim()); }
+                    if (useGroup)
+                    { if (line.Contains(XmlMarker.GroupEnd)) useCode = false; }
+                    else
+                    { if (line.Contains(XmlMarker.FigureEnd)) useCode = false; }
+                }
+                //   tmpCodeFinish.AppendLine();
+                if (createGroup)
+                { tmpCodeFinish.AppendLine("(" + XmlMarker.GroupStart + " Id=\"0\" Type=\"Existing code\" >)"); }    // add startGroup for existing figures
+                Place selStart;
+                selStart.iLine = insertLineNr;
+                selStart.iChar = 0;
+                Range mySelection = new Range(fCTBCode);
+                mySelection.Start = mySelection.End = selStart;
+                fCTBCode.Selection = mySelection;
+                fCTBCode.InsertText(tmpCodeFinish.ToString(), true);    // insert new code
+                SetLastLoadedFile(sourceForm, "");
+                NewCodeEnd();
+                FoldCode();
+
+         //       VisuGCode.MarkSelectedFigure(-1);     // unselect
+        //        VisuGCode.SetPosMarkerLine(insertLineNr, true);
+         //       FindFigureMarkSelection(XmlMarkerType.Group, insertLineNr);
+            }
+            else
+            {
+                if (insertCode && (fCTBCode.LinesCount > 5))     // failed
+                {
+                    StatusStripSet(2, "No XML-Tags found to insert code", Color.Fuchsia);
+                }
+                NewCodeStart(false);                        // GetGCodeFromText
+                SetFctbCodeText(sourceGCode);   // Graphic.GCode.ToString());  // getGCodeFromText
+                SetLastLoadedFile(sourceForm, "");
+                NewCodeEnd();
+                FoldCode();
+            }
+            importOptions = Graphic.graphicInformation.ListOptions();
+            if (importOptions.Length > 1)
+            {
+                importOptions = "Import options: " + importOptions;
+                StatusStripSet(1, importOptions, Color.Yellow);
+            }
+        }
         private void GetGCodeFromText(object sender, EventArgs e)
         {
             if (!isStreaming)
             {
-                bool insertCode = false;
-                if (_text_form != null)     // check option
-                { insertCode = _text_form.CbInsertCode.Checked; }
-
-                importOptions = "";
-                SimuStop();
-
-                int insertLineNr = XmlMarker.FindInsertPositionGroupMostTop();
-                if (insertLineNr < 0) { insertLineNr = XmlMarker.FindInsertPositionFigureMostTop(-1); }
-
-                Logger.Info("getGCodeFromText insertCode:{0}  insertAt:{1}",insertCode, insertLineNr);
-
-                if (insertCode && (insertLineNr > 0))
-                {
-                    // extract group code from generated gcode
-                    string tmpCodeString = Graphic.GCode.ToString();
-                    StringBuilder tmpCodeFinish = new StringBuilder();
-                    string[] tmpCodeLines = tmpCodeString.Split('\n');// new string[] { Environment.NewLine }, StringSplitOptions.None);
-                    bool useCode = false, useGroup = false;
-                    string line;
-                    int figureCount = 1;
-                    for (int k=0; k < tmpCodeLines.Length; k++)
-                    {
-                        line = tmpCodeLines[k].Trim();
-                        if (line.Contains(XmlMarker.GroupStart)) 
-                        {   useCode = true; useGroup = true;
-                            int idStart = line.IndexOf("Id=");
-                            int idCount = XmlMarker.GetGroupCount();
-                            if (idStart > 1)
-                            {
-                                string tmp = line.Substring(0, idStart);
-                                tmp += "Id=\"" + (idCount + 1).ToString() + "\"";
-                                int strtIndex = line.IndexOf("\"", idStart + 4) + 1;
-                                if (strtIndex < (idStart + 6)) { strtIndex = idStart + 5 + idCount.ToString().Length; }
-                                tmp += line.Substring(strtIndex);
-                        //        Logger.Info("getGCodeFromText figure  idStart:{0}  digits:{1}  final:{2}  string:'{3}'-'{4}'", idStart, idCount.ToString().Length, strtIndex, line.Substring(0, idStart), line.Substring(strtIndex));
-                                line = tmp;
-                            }
-                        }
-                        if (line.Contains(XmlMarker.FigureStart))
-                        {
-                            useCode = true;
-                            if (!useGroup)
-                            {
-                                int idStart = line.IndexOf("Id=");
-                                int idCount = XmlMarker.GetFigureCount();
-                                if (idStart > 1)
-                                {
-                                    string tmp = line.Substring(0, idStart);
-                                    tmp += "Id=\"" + (idCount + figureCount++).ToString() + "\"";
-                                    int strtIndex = line.IndexOf("\"", idStart + 4) +1;
-                                    if (strtIndex < (idStart + 6)) { strtIndex = idStart + 5 + idCount.ToString().Length; }
-                                    tmp += line.Substring(strtIndex);
-                        //            Logger.Info("getGCodeFromText figure  idStart:{0}  digits:{1}  final:{2}  string:'{3}'-'{4}'", idStart, idCount.ToString().Length, strtIndex, line.Substring(0, idStart), line.Substring(strtIndex));
-                                    line = tmp;
-                                }
-                            }
-                        }
-                        if (useCode)
-                        { tmpCodeFinish.AppendLine(line.Trim()); }
-                        if (useGroup)
-                        { if (line.Contains(XmlMarker.GroupEnd)) useCode = false; }
-                        else
-                        { if (line.Contains(XmlMarker.FigureEnd)) useCode = false; }
-                    }
-                 //   tmpCodeFinish.AppendLine();
-
-                    Place selStart;
-                    selStart.iLine = insertLineNr;
-                    selStart.iChar = 0;
-                    Range mySelection = new Range(fCTBCode);
-                    mySelection.Start = mySelection.End = selStart;
-                    fCTBCode.Selection = mySelection;
-                    fCTBCode.InsertText(tmpCodeFinish.ToString(), true);
-                    SetLastLoadedFile("from text", "");
-                    NewCodeEnd();
-                    FoldCode();
-
-                    VisuGCode.SetPosMarkerLine(insertLineNr, true);
-                    FindFigureMarkSelection(XmlMarkerType.Group, insertLineNr);
-                }
-                else
-                {
-                    NewCodeStart(false);                        // GetGCodeFromText
-                    SetFctbCodeText(Graphic.GCode.ToString());  // getGCodeFromText
-                    SetLastLoadedFile("from text", "");
-                    NewCodeEnd();
-                    FoldCode();
-                }
-                importOptions = Graphic.graphicInformation.ListOptions();
-                if (importOptions.Length > 1)
-                {
-                    importOptions = "Import options: " + importOptions;
-                    StatusStripSet(1, importOptions, Color.Yellow);
-                }
+                InsertCodeFromForm(Graphic.GCode.ToString(), "from text");
                 Properties.Settings.Default.counterImportText += 1;
             }
             else
@@ -243,13 +266,15 @@ namespace GrblPlotter
             Logger.Info("getGCodeFromShape");
             if (!isStreaming)
             {
-                SimuStop();
+                InsertCodeFromForm(_shape_form.ShapeGCode, "from shape");
+                VisuGCode.pathBackground = (GraphicsPath)_shape_form.PathBackground.Clone();
+/*                SimuStop();
                 NewCodeStart(false);            // GetGCodeFromShape
                 VisuGCode.pathBackground = (GraphicsPath)_shape_form.PathBackground.Clone();
                 SetFctbCodeText(_shape_form.ShapeGCode);
                 SetLastLoadedFile("from shape", "");
                 NewCodeEnd();
-                FoldCode();
+                FoldCode();*/
                 Properties.Settings.Default.counterImportShape += 1;
             }
             else
@@ -261,11 +286,12 @@ namespace GrblPlotter
             Logger.Info("getGCodeFromBarcode");
             if (!isStreaming)
             {
-                SimuStop();
+                InsertCodeFromForm(Graphic.GCode.ToString(), "from barcode");
+         /*       SimuStop();
                 NewCodeStart(false);                        // GetGCodeFromBarcode
                 SetFctbCodeText(Graphic.GCode.ToString());  // getGCodeFromBarcode
                 SetLastLoadedFile("from barcode", "");
-                NewCodeEnd();
+                NewCodeEnd();*/
                 Properties.Settings.Default.counterImportBarcode += 1;
             }
             else
@@ -401,10 +427,6 @@ namespace GrblPlotter
             showPicBoxBgImage = false;                      // don't show background image anymore
             pictureBox1.BackgroundImage = null;
             pBoxTransform.Reset();
-            /*        if (resetMark)
-                    {   visuGCode.markSelectedFigure(-1);           // hide highlight
-                        grbl.posMarker = new xyPoint(0, 0);
-                    }*/
         }
 
         private void TransformEnd()
@@ -418,7 +440,7 @@ namespace GrblPlotter
             UpdateControlEnables();                                     // update control enable 
             EnableCmsCodeBlocks(VisuGCode.CodeBlocksAvailable());
             this.Cursor = Cursors.Default;
-            SetEditMode(false);
+            manualEdit = false;
             resetView = false;
         }
 

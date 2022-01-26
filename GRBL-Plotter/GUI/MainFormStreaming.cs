@@ -433,14 +433,17 @@ namespace GrblPlotter
 					    SaveRecentFile(fileLastProcessed + ".nc");		// update last processed file
 					}
 					catch (IOException err) { 
-						Properties.Settings.Default.guiLastEndReason += "StartStreaming: "+Datapath.AppDataFolder;
+						Properties.Settings.Default.guiLastEndReason += "StartStreaming: "+Datapath.AppDataFolder+" ";
 						Datapath.AppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-						MessageBox.Show("Path does not exist and could not be created: "+fileName+"\r\nPath will be modified to "+ Datapath.AppDataFolder, "Error");
-						Logger.Error(err, "StartStreaming fileName: {0}, new Datapath.AppDataFolder: {1} ",fileName, Datapath.AppDataFolder); 
+                        Logger.Error(err, "StartStreaming fileName: {0}, new Datapath.AppDataFolder: {1} ", fileName, Datapath.AppDataFolder);
+                        MessageBox.Show("Path does not exist and could not be created: "+fileName+"\r\nPath will be modified to "+ Datapath.AppDataFolder, "Error");
 						fileName = Datapath.AppDataFolder + "\\" + fileLastProcessed;
 					}
-					catch (Exception err) { 
-						throw;		// unknown exception...
+					catch (Exception err) {
+                        Properties.Settings.Default.guiLastEndReason += "StartStreaming: " + err.Message + "  " + fileName+" ";
+                        Logger.Error(err, "StartStreaming fileName: {0}, new Datapath.AppDataFolder: {1} ", fileName, Datapath.AppDataFolder);
+                        MessageBox.Show("'last processed' file could not be created: " + fileName + "\r\nError: " + err.Message, "Error");
+                        //  throw;		// unknown exception...  access denied 
 					}
 
                     bool removeFiducials = (Properties.Settings.Default.importFiducialSkipCode && (VisuGCode.fiducialsCenter.Count > 0));
