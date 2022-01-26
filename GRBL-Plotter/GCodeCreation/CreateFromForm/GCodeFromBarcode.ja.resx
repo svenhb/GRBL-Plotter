@@ -219,4 +219,7 @@
   <data name="tabPage2.Text" xml:space="preserve">
     <value>QRコード</value>
   </data>
+  <data name="CbInsertCode.Text" xml:space="preserve">
+    <value>2Dビューにコードを挿入します（位置0; 0）</value>
+  </data>
 </root>

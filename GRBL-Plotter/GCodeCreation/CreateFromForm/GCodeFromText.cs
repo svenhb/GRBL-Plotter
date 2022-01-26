@@ -153,6 +153,11 @@ namespace GrblPlotter
             Graphic.graphicInformation.OptionSortCode = false;
             Graphic.graphicInformation.OptionZFromWidth = false;
 
+            Graphic.graphicInformation.FigureEnable = true;
+            Graphic.graphicInformation.GroupEnable = true;
+            Graphic.graphicInformation.GroupOption = Graphic.GroupOption.ByType;
+            Graphic.SetType("Text");
+
             if (Properties.Settings.Default.createTextLineBreakEnable)
                 GCodeFromFont.GetCode((double)nUDLineBreak.Value);      // do automatic page break
             else

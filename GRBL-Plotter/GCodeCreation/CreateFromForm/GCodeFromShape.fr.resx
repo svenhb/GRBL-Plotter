@@ -267,4 +267,13 @@
   <data name="groupBox8.Text" xml:space="preserve">
     <value>Position arrondie</value>
   </data>
+  <data name="cBNoZUp.Text" xml:space="preserve">
+    <value>Évitez Z-up</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Outil:</value>
+  </data>
+  <data name="CbInsertCode.Text" xml:space="preserve">
+    <value>Insérer la forme dans la vue 2D (à la position 0;0)</value>
+  </data>
 </root>

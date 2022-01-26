@@ -267,4 +267,13 @@
   <data name="groupBox8.Text" xml:space="preserve">
     <value>Posição de arredondamento</value>
   </data>
+  <data name="cBNoZUp.Text" xml:space="preserve">
+    <value>Evite Z-up</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Ferramenta:</value>
+  </data>
+  <data name="CbInsertCode.Text" xml:space="preserve">
+    <value>Insira a forma na vista 2D (na posição 0;0)</value>
+  </data>
 </root>

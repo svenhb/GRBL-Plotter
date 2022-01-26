@@ -267,4 +267,13 @@
   <data name="groupBox8.Text" xml:space="preserve">
     <value>四舍五入位置</value>
   </data>
+  <data name="cBNoZUp.Text" xml:space="preserve">
+    <value>避免 Z-up</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>工具：</value>
+  </data>
+  <data name="CbInsertCode.Text" xml:space="preserve">
+    <value>将形状插入 2D 视图（在位置 0;0）</value>
+  </data>
 </root>

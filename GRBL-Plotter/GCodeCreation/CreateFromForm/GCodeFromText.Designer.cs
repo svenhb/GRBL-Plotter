@@ -58,7 +58,6 @@ namespace GrblPlotter
             this.RbAlign1 = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.nUDLineBreak = new System.Windows.Forms.NumericUpDown();
-            this.cBLineBreak = new System.Windows.Forms.CheckBox();
             this.nUDFontLine = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
             this.nUDFontDistance = new System.Windows.Forms.NumericUpDown();
@@ -66,7 +65,6 @@ namespace GrblPlotter
             this.nUDFontSize = new System.Windows.Forms.NumericUpDown();
             this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cBToolTable = new System.Windows.Forms.CheckBox();
             this.cBConnectLetter = new System.Windows.Forms.CheckBox();
             this.cBTool = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -78,7 +76,6 @@ namespace GrblPlotter
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.CbInsertCode = new System.Windows.Forms.CheckBox();
-            this.tBText = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button7 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -89,6 +86,9 @@ namespace GrblPlotter
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.cBLineBreak = new System.Windows.Forms.CheckBox();
+            this.cBToolTable = new System.Windows.Forms.CheckBox();
+            this.tBText = new System.Windows.Forms.TextBox();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLineBreak)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDFontLine)).BeginInit();
@@ -192,15 +192,6 @@ namespace GrblPlotter
             0,
             0});
             // 
-            // cBLineBreak
-            // 
-            resources.ApplyResources(this.cBLineBreak, "cBLineBreak");
-            this.cBLineBreak.Checked = global::GrblPlotter.Properties.Settings.Default.createTextLineBreakEnable;
-            this.cBLineBreak.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "createTextLineBreakEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBLineBreak.Name = "cBLineBreak";
-            this.toolTip1.SetToolTip(this.cBLineBreak, resources.GetString("cBLineBreak.ToolTip"));
-            this.cBLineBreak.UseVisualStyleBackColor = true;
-            // 
             // nUDFontLine
             // 
             this.nUDFontLine.DecimalPlaces = 1;
@@ -294,16 +285,6 @@ namespace GrblPlotter
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
-            // cBToolTable
-            // 
-            resources.ApplyResources(this.cBToolTable, "cBToolTable");
-            this.cBToolTable.Checked = global::GrblPlotter.Properties.Settings.Default.importGCToolTableUse;
-            this.cBToolTable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGCToolTableUse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBToolTable.Name = "cBToolTable";
-            this.toolTip1.SetToolTip(this.cBToolTable, resources.GetString("cBToolTable.ToolTip"));
-            this.cBToolTable.UseVisualStyleBackColor = true;
-            this.cBToolTable.CheckedChanged += new System.EventHandler(this.CBToolTable_CheckedChanged);
-            // 
             // cBConnectLetter
             // 
             resources.ApplyResources(this.cBConnectLetter, "cBConnectLetter");
@@ -369,17 +350,10 @@ namespace GrblPlotter
             // CbInsertCode
             // 
             resources.ApplyResources(this.CbInsertCode, "CbInsertCode");
-            this.CbInsertCode.Checked = global::GrblPlotter.Properties.Settings.Default.createTextInsertEnable;
-            this.CbInsertCode.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "createTextInsertEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbInsertCode.Checked = global::GrblPlotter.Properties.Settings.Default.fromFormInsertEnable;
+            this.CbInsertCode.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "fromFormInsertEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.CbInsertCode.Name = "CbInsertCode";
             this.CbInsertCode.UseVisualStyleBackColor = true;
-            // 
-            // tBText
-            // 
-            this.tBText.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "createtextFontText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBText, "tBText");
-            this.tBText.Name = "tBText";
-            this.tBText.Text = global::GrblPlotter.Properties.Settings.Default.createTextFontText;
             // 
             // tabPage2
             // 
@@ -459,6 +433,32 @@ namespace GrblPlotter
             this.button1.Name = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.BtnLoadGraphic_Click);
+            // 
+            // cBLineBreak
+            // 
+            resources.ApplyResources(this.cBLineBreak, "cBLineBreak");
+            this.cBLineBreak.Checked = global::GrblPlotter.Properties.Settings.Default.createTextLineBreakEnable;
+            this.cBLineBreak.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "createTextLineBreakEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBLineBreak.Name = "cBLineBreak";
+            this.toolTip1.SetToolTip(this.cBLineBreak, resources.GetString("cBLineBreak.ToolTip"));
+            this.cBLineBreak.UseVisualStyleBackColor = true;
+            // 
+            // cBToolTable
+            // 
+            resources.ApplyResources(this.cBToolTable, "cBToolTable");
+            this.cBToolTable.Checked = global::GrblPlotter.Properties.Settings.Default.importGCToolTableUse;
+            this.cBToolTable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGCToolTableUse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBToolTable.Name = "cBToolTable";
+            this.toolTip1.SetToolTip(this.cBToolTable, resources.GetString("cBToolTable.ToolTip"));
+            this.cBToolTable.UseVisualStyleBackColor = true;
+            this.cBToolTable.CheckedChanged += new System.EventHandler(this.CBToolTable_CheckedChanged);
+            // 
+            // tBText
+            // 
+            this.tBText.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "createtextFontText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBText, "tBText");
+            this.tBText.Name = "tBText";
+            this.tBText.Text = global::GrblPlotter.Properties.Settings.Default.createTextFontText;
             // 
             // GCodeFromText
             // 

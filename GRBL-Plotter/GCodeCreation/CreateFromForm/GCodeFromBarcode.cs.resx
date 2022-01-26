@@ -219,4 +219,7 @@
   <data name="rBWLAN2.Text" xml:space="preserve">
     <value>WEP</value>
   </data>
+  <data name="CbInsertCode.Text" xml:space="preserve">
+    <value>Vložte kód do 2D zobrazení (na pozici 0;0)</value>
+  </data>
 </root>

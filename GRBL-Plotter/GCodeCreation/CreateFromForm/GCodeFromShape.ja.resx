@@ -285,4 +285,7 @@
   <data name="groupBox8.Text" xml:space="preserve">
     <value>四捨五入位置</value>
   </data>
+  <data name="CbInsertCode.Text" xml:space="preserve">
+    <value>形状を2Dビューに挿入します（位置0; 0）</value>
+  </data>
 </root>

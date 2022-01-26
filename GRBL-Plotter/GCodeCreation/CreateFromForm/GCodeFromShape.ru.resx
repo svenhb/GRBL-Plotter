@@ -267,4 +267,13 @@
   <data name="groupBox8.Text" xml:space="preserve">
     <value>Позиция округления</value>
   </data>
+  <data name="cBNoZUp.Text" xml:space="preserve">
+    <value>Избегайте Z-up</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Инструмент:</value>
+  </data>
+  <data name="CbInsertCode.Text" xml:space="preserve">
+    <value>Вставить фигуру в 2D-вид (в позиции 0;0)</value>
+  </data>
 </root>

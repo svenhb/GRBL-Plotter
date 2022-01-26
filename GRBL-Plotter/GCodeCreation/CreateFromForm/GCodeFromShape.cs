@@ -118,6 +118,7 @@ namespace GrblPlotter
 
             bool inOneStep = (nUDToolZStep.Value >= -nUDImportGCZDown.Value); // if step >= final Z
 
+            Gcode.Comment(gcodeString, XmlMarker.GroupStart + " Id=\"" + figureCount.ToString(culture) + "\" Type=\"Shape\" >");
             Gcode.Comment(gcodeString, XmlMarker.FigureStart + " Id=\"" + figureCount.ToString(culture) + "\" >");
             
             if (tabControl1.SelectedTab == tabPage1)    // rectangle, circle
@@ -601,6 +602,7 @@ namespace GrblPlotter
                     //        MessageBox.Show(tmp);
             }
             Gcode.Comment(gcodeString, string.Format(culture, "{0}>", XmlMarker.FigureEnd)); // Graphic2GCode.SetFigureEnd(figureCount));
+            Gcode.Comment(gcodeString, string.Format(culture, "{0}>", XmlMarker.GroupEnd)); // Graphic2GCode.SetFigureEnd(figureCount));
 
             if (cBMoveTo00.Checked)
                 Gcode.MoveToRapid(gcodeString, 0, 0, "");

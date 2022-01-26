@@ -83,6 +83,7 @@
             this.nUDLines2D = new System.Windows.Forms.NumericUpDown();
             this.nUDScanGap2D = new System.Windows.Forms.NumericUpDown();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.CbInsertCode = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -110,9 +111,9 @@
             // 
             // pictureBox1
             // 
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Image = global::GrblPlotter.Properties.Resources.barcode;
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
             // 
@@ -125,15 +126,14 @@
             // 
             // tabControl1
             // 
-            resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             // 
             // tabPage1
             // 
-            resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Controls.Add(this.btnClipboardBarcode1D);
             this.tabPage1.Controls.Add(this.btnCheckBarcode1D);
             this.tabPage1.Controls.Add(this.label6);
@@ -149,6 +149,7 @@
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.comboBox1);
             this.tabPage1.Controls.Add(this.btnGenerateBarcode1D);
+            resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
@@ -173,7 +174,6 @@
             // 
             // nUDHeight1D
             // 
-            resources.ApplyResources(this.nUDHeight1D, "nUDHeight1D");
             this.nUDHeight1D.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importBarcode1DHeight", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.nUDHeight1D.DecimalPlaces = 1;
             this.nUDHeight1D.Increment = new decimal(new int[] {
@@ -181,6 +181,7 @@
             0,
             0,
             0});
+            resources.ApplyResources(this.nUDHeight1D, "nUDHeight1D");
             this.nUDHeight1D.Minimum = new decimal(new int[] {
             1,
             0,
@@ -201,8 +202,8 @@
             // 
             // textBox1
             // 
-            resources.ApplyResources(this.textBox1, "textBox1");
             this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "importBarcode1DText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.textBox1, "textBox1");
             this.textBox1.Name = "textBox1";
             this.textBox1.Text = global::GrblPlotter.Properties.Settings.Default.importBarcode1DText;
             // 
@@ -213,8 +214,8 @@
             // 
             // nUDLines1D
             // 
-            resources.ApplyResources(this.nUDLines1D, "nUDLines1D");
             this.nUDLines1D.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importBarcode1DLines", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDLines1D, "nUDLines1D");
             this.nUDLines1D.Minimum = new decimal(new int[] {
             1,
             0,
@@ -230,7 +231,6 @@
             // 
             // nUDScanGap1D
             // 
-            resources.ApplyResources(this.nUDScanGap1D, "nUDScanGap1D");
             this.nUDScanGap1D.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importBarcode1DScanGap", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.nUDScanGap1D.DecimalPlaces = 2;
             this.nUDScanGap1D.Increment = new decimal(new int[] {
@@ -238,6 +238,7 @@
             0,
             0,
             65536});
+            resources.ApplyResources(this.nUDScanGap1D, "nUDScanGap1D");
             this.nUDScanGap1D.Maximum = new decimal(new int[] {
             10,
             0,
@@ -258,14 +259,13 @@
             // 
             // comboBox1
             // 
-            resources.ApplyResources(this.comboBox1, "comboBox1");
             this.comboBox1.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox1, "comboBox1");
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
             // 
             // tabPage2
             // 
-            resources.ApplyResources(this.tabPage2, "tabPage2");
             this.tabPage2.Controls.Add(this.gBLogo);
             this.tabPage2.Controls.Add(this.tCQRPayload);
             this.tabPage2.Controls.Add(this.btnClipboardBarcode2D);
@@ -280,16 +280,17 @@
             this.tabPage2.Controls.Add(this.cBBorder2D);
             this.tabPage2.Controls.Add(this.nUDLines2D);
             this.tabPage2.Controls.Add(this.nUDScanGap2D);
+            resources.ApplyResources(this.tabPage2, "tabPage2");
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // gBLogo
             // 
-            resources.ApplyResources(this.gBLogo, "gBLogo");
             this.gBLogo.Controls.Add(this.btnLogoInvert);
             this.gBLogo.Controls.Add(this.btnLogoFromFile);
             this.gBLogo.Controls.Add(this.btnLogoFromClipboard);
             this.gBLogo.Controls.Add(this.pictureBox3);
+            resources.ApplyResources(this.gBLogo, "gBLogo");
             this.gBLogo.Name = "gBLogo";
             this.gBLogo.TabStop = false;
             // 
@@ -316,51 +317,50 @@
             // 
             // pictureBox3
             // 
-            resources.ApplyResources(this.pictureBox3, "pictureBox3");
             this.pictureBox3.Image = global::GrblPlotter.Properties.Resources.logo;
+            resources.ApplyResources(this.pictureBox3, "pictureBox3");
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.TabStop = false;
             // 
             // tCQRPayload
             // 
-            resources.ApplyResources(this.tCQRPayload, "tCQRPayload");
             this.tCQRPayload.Controls.Add(this.tPQR1);
             this.tCQRPayload.Controls.Add(this.tPQR2);
             this.tCQRPayload.Controls.Add(this.tabPage3);
+            resources.ApplyResources(this.tCQRPayload, "tCQRPayload");
             this.tCQRPayload.Name = "tCQRPayload";
             this.tCQRPayload.SelectedIndex = 0;
             // 
             // tPQR1
             // 
-            resources.ApplyResources(this.tPQR1, "tPQR1");
             this.tPQR1.Controls.Add(this.tBQRText);
+            resources.ApplyResources(this.tPQR1, "tPQR1");
             this.tPQR1.Name = "tPQR1";
             this.tPQR1.UseVisualStyleBackColor = true;
             // 
             // tBQRText
             // 
-            resources.ApplyResources(this.tBQRText, "tBQRText");
             this.tBQRText.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "importBarcode2DText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBQRText, "tBQRText");
             this.tBQRText.Name = "tBQRText";
             this.tBQRText.Text = global::GrblPlotter.Properties.Settings.Default.importBarcode2DText;
             // 
             // tPQR2
             // 
-            resources.ApplyResources(this.tPQR2, "tPQR2");
             this.tPQR2.Controls.Add(this.tBQRURL);
+            resources.ApplyResources(this.tPQR2, "tPQR2");
             this.tPQR2.Name = "tPQR2";
             this.tPQR2.UseVisualStyleBackColor = true;
             // 
             // tBQRURL
             // 
-            resources.ApplyResources(this.tBQRURL, "tBQRURL");
             this.tBQRURL.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "importBarcode2DURL", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBQRURL, "tBQRURL");
             this.tBQRURL.Name = "tBQRURL";
             this.tBQRURL.Text = global::GrblPlotter.Properties.Settings.Default.importBarcode2DURL;
             // 
             // tabPage3
             // 
-            resources.ApplyResources(this.tabPage3, "tabPage3");
             this.tabPage3.Controls.Add(this.radioButton1);
             this.tabPage3.Controls.Add(this.cBWLAN1);
             this.tabPage3.Controls.Add(this.label11);
@@ -370,6 +370,7 @@
             this.tabPage3.Controls.Add(this.label4);
             this.tabPage3.Controls.Add(this.tBWLAN2);
             this.tabPage3.Controls.Add(this.tBWLAN1);
+            resources.ApplyResources(this.tabPage3, "tabPage3");
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
@@ -417,15 +418,15 @@
             // 
             // tBWLAN2
             // 
-            resources.ApplyResources(this.tBWLAN2, "tBWLAN2");
             this.tBWLAN2.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "importBarcode2DWlanPass", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBWLAN2, "tBWLAN2");
             this.tBWLAN2.Name = "tBWLAN2";
             this.tBWLAN2.Text = global::GrblPlotter.Properties.Settings.Default.importBarcode2DWlanPass;
             // 
             // tBWLAN1
             // 
-            resources.ApplyResources(this.tBWLAN1, "tBWLAN1");
             this.tBWLAN1.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "importBarcode2DWlanSSID", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBWLAN1, "tBWLAN1");
             this.tBWLAN1.Name = "tBWLAN1";
             this.tBWLAN1.Text = global::GrblPlotter.Properties.Settings.Default.importBarcode2DWlanSSID;
             // 
@@ -452,9 +453,9 @@
             // 
             // pictureBox2
             // 
-            resources.ApplyResources(this.pictureBox2, "pictureBox2");
             this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox2.Image = global::GrblPlotter.Properties.Resources.qrcode;
+            resources.ApplyResources(this.pictureBox2, "pictureBox2");
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.TabStop = false;
             // 
@@ -489,8 +490,8 @@
             // 
             // nUDLines2D
             // 
-            resources.ApplyResources(this.nUDLines2D, "nUDLines2D");
             this.nUDLines2D.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importBarcode2DLines", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.nUDLines2D, "nUDLines2D");
             this.nUDLines2D.Minimum = new decimal(new int[] {
             1,
             0,
@@ -501,7 +502,6 @@
             // 
             // nUDScanGap2D
             // 
-            resources.ApplyResources(this.nUDScanGap2D, "nUDScanGap2D");
             this.nUDScanGap2D.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importBarcode2DScanGap", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.nUDScanGap2D.DecimalPlaces = 2;
             this.nUDScanGap2D.Increment = new decimal(new int[] {
@@ -509,6 +509,7 @@
             0,
             0,
             65536});
+            resources.ApplyResources(this.nUDScanGap2D, "nUDScanGap2D");
             this.nUDScanGap2D.Maximum = new decimal(new int[] {
             10,
             0,
@@ -526,12 +527,20 @@
             // 
             this.openFileDialog1.AddExtension = false;
             this.openFileDialog1.FileName = "openFileDialog1";
-            resources.ApplyResources(this.openFileDialog1, "openFileDialog1");
+            // 
+            // CbInsertCode
+            // 
+            resources.ApplyResources(this.CbInsertCode, "CbInsertCode");
+            this.CbInsertCode.Checked = global::GrblPlotter.Properties.Settings.Default.fromFormInsertEnable;
+            this.CbInsertCode.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "fromFormInsertEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbInsertCode.Name = "CbInsertCode";
+            this.CbInsertCode.UseVisualStyleBackColor = true;
             // 
             // GCodeForBarcode
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.CbInsertCode);
             this.Controls.Add(this.tabControl1);
             this.Name = "GCodeForBarcode";
             this.Load += new System.EventHandler(this.GCodeForBarcode_Load);
@@ -557,6 +566,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDLines2D)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDScanGap2D)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -613,5 +623,6 @@
         private System.Windows.Forms.TextBox tBWLAN2;
         private System.Windows.Forms.TextBox tBWLAN1;
         private System.Windows.Forms.RadioButton radioButton1;
+        public System.Windows.Forms.CheckBox CbInsertCode;
     }
 }

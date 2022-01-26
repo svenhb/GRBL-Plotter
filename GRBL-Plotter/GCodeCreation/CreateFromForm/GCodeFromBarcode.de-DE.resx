@@ -186,4 +186,7 @@
   <data name="cBBorder2D.Text" xml:space="preserve">
     <value>Umrandung zeichnen</value>
   </data>
+  <data name="CbInsertCode.Text" xml:space="preserve">
+    <value>Code in 2D-Ansicht einfügen (an Position 0;0)</value>
+  </data>
 </root>

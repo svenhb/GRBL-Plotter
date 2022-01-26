@@ -219,4 +219,7 @@
   <data name="tabPage2.Text" xml:space="preserve">
     <value>QR код</value>
   </data>
+  <data name="CbInsertCode.Text" xml:space="preserve">
+    <value>Вставить код в 2D-вид (в позиции 0;0)</value>
+  </data>
 </root>

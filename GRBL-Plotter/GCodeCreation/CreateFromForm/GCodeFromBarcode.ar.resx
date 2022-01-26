@@ -219,4 +219,7 @@
   <data name="tabPage2.Text" xml:space="preserve">
     <value>رمز الاستجابة السريعة</value>
   </data>
+  <data name="CbInsertCode.Text" xml:space="preserve">
+    <value>أدخل الرمز في العرض ثنائي الأبعاد (في الموضع 0 ؛ 0)</value>
+  </data>
 </root>

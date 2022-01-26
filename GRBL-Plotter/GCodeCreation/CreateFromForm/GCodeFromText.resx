@@ -207,6 +207,9 @@
   <data name="RbAlign3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="RbAlign3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="RbAlign3.Location" type="System.Drawing.Point, System.Drawing">
     <value>158, 152</value>
   </data>
@@ -233,6 +236,9 @@
   </data>
   <data name="RbAlign2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="RbAlign2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="RbAlign2.Location" type="System.Drawing.Point, System.Drawing">
     <value>80, 152</value>
@@ -261,6 +267,9 @@
   <data name="RbAlign1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="RbAlign1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="RbAlign1.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 152</value>
   </data>
@@ -287,6 +296,9 @@
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 137</value>
@@ -825,6 +837,9 @@
   <data name="CbInsertCode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="CbInsertCode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="CbInsertCode.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 293</value>
   </data>
@@ -1199,6 +1214,9 @@
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>484, 341</value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
     <value>50, 300</value>

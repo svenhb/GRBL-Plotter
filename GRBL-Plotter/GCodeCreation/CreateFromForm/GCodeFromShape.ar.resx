@@ -285,4 +285,7 @@
   <data name="groupBox3.Text" xml:space="preserve">
     <value>ممر الأدوات</value>
   </data>
+  <data name="CbInsertCode.Text" xml:space="preserve">
+    <value>أدخل الشكل في عرض ثنائي الأبعاد (في الموضع 0 ؛ 0)</value>
+  </data>
 </root>

@@ -261,4 +261,13 @@
   <data name="groupBox8.Text" xml:space="preserve">
     <value>Position zum Abrunden</value>
   </data>
+  <data name="cBNoZUp.Text" xml:space="preserve">
+    <value>Z-up vermeiden</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Werkzeug:</value>
+  </data>
+  <data name="CbInsertCode.Text" xml:space="preserve">
+    <value>Form in 2D-Ansicht einfügen (an Position 0;0)</value>
+  </data>
 </root>
