@@ -431,6 +431,9 @@
     <Setting Name="flowControlText" Type="System.String" Scope="User">
       <Value Profile="(Default)">M5; M9</Value>
     </Setting>
+    <Setting Name="fromFormInsertEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="gamePadAnalogDead" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1000</Value>
     </Setting>
@@ -1104,6 +1107,48 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGCAddComments" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCAux1Axis" Type="System.String" Scope="User">
+      <Value Profile="(Default)">A</Value>
+    </Setting>
+    <Setting Name="importGCAux1Enable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCAux1Factor" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importGCAux1Source" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importGCAux1ZFactor" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importGCAux1ZMode" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="importGCAux1ZUse" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCAux2Axis" Type="System.String" Scope="User">
+      <Value Profile="(Default)">B</Value>
+    </Setting>
+    <Setting Name="importGCAux2Enable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCAux2Factor" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importGCAux2ZMode" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="importGCAux2Source" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importGCAux2ZFactor" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importGCAux2ZUse" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGCCompress" Type="System.Boolean" Scope="User">
@@ -1925,6 +1970,9 @@
     <Setting Name="sizeSerForm1" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">342, 480</Value>
     </Setting>
+    <Setting Name="sizeUseCase" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">600, 500</Value>
+    </Setting>
     <Setting Name="toolTableLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">empty</Value>
     </Setting>
@@ -1946,11 +1994,11 @@
     <Setting Name="useCaseLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">?</Value>
     </Setting>
-    <Setting Name="sizeUseCase" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">600, 500</Value>
+    <Setting Name="importGCAux1SumUp" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="createTextInsertEnable" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+    <Setting Name="importGCAux2SumUp" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

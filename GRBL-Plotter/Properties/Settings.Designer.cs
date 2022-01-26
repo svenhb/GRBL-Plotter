@@ -1741,6 +1741,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool fromFormInsertEnable {
+            get {
+                return ((bool)(this["fromFormInsertEnable"]));
+            }
+            set {
+                this["fromFormInsertEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1000")]
         public decimal gamePadAnalogDead {
             get {
@@ -4441,6 +4453,174 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["importGCAddComments"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("A")]
+        public string importGCAux1Axis {
+            get {
+                return ((string)(this["importGCAux1Axis"]));
+            }
+            set {
+                this["importGCAux1Axis"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCAux1Enable {
+            get {
+                return ((bool)(this["importGCAux1Enable"]));
+            }
+            set {
+                this["importGCAux1Enable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal importGCAux1Factor {
+            get {
+                return ((decimal)(this["importGCAux1Factor"]));
+            }
+            set {
+                this["importGCAux1Factor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int importGCAux1Source {
+            get {
+                return ((int)(this["importGCAux1Source"]));
+            }
+            set {
+                this["importGCAux1Source"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal importGCAux1ZFactor {
+            get {
+                return ((decimal)(this["importGCAux1ZFactor"]));
+            }
+            set {
+                this["importGCAux1ZFactor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int importGCAux1ZMode {
+            get {
+                return ((int)(this["importGCAux1ZMode"]));
+            }
+            set {
+                this["importGCAux1ZMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCAux1ZUse {
+            get {
+                return ((bool)(this["importGCAux1ZUse"]));
+            }
+            set {
+                this["importGCAux1ZUse"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("B")]
+        public string importGCAux2Axis {
+            get {
+                return ((string)(this["importGCAux2Axis"]));
+            }
+            set {
+                this["importGCAux2Axis"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCAux2Enable {
+            get {
+                return ((bool)(this["importGCAux2Enable"]));
+            }
+            set {
+                this["importGCAux2Enable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal importGCAux2Factor {
+            get {
+                return ((decimal)(this["importGCAux2Factor"]));
+            }
+            set {
+                this["importGCAux2Factor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int importGCAux2ZMode {
+            get {
+                return ((int)(this["importGCAux2ZMode"]));
+            }
+            set {
+                this["importGCAux2ZMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int importGCAux2Source {
+            get {
+                return ((int)(this["importGCAux2Source"]));
+            }
+            set {
+                this["importGCAux2Source"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal importGCAux2ZFactor {
+            get {
+                return ((decimal)(this["importGCAux2ZFactor"]));
+            }
+            set {
+                this["importGCAux2ZFactor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCAux2ZUse {
+            get {
+                return ((bool)(this["importGCAux2ZUse"]));
+            }
+            set {
+                this["importGCAux2ZUse"] = value;
             }
         }
         
@@ -7722,6 +7902,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("600, 500")]
+        public global::System.Drawing.Size sizeUseCase {
+            get {
+                return ((global::System.Drawing.Size)(this["sizeUseCase"]));
+            }
+            set {
+                this["sizeUseCase"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("empty")]
         public string toolTableLastLoaded {
             get {
@@ -7806,25 +7998,25 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("600, 500")]
-        public global::System.Drawing.Size sizeUseCase {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importGCAux1SumUp {
             get {
-                return ((global::System.Drawing.Size)(this["sizeUseCase"]));
+                return ((bool)(this["importGCAux1SumUp"]));
             }
             set {
-                this["sizeUseCase"] = value;
+                this["importGCAux1SumUp"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool createTextInsertEnable {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importGCAux2SumUp {
             get {
-                return ((bool)(this["createTextInsertEnable"]));
+                return ((bool)(this["importGCAux2SumUp"]));
             }
             set {
-                this["createTextInsertEnable"] = value;
+                this["importGCAux2SumUp"] = value;
             }
         }
     }
