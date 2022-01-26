@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -34,6 +34,8 @@
  * 2021-08-26 line 220, 290 use tool colors if tools are used
  * 2021-09-02 CreateGCode-TileObject add XML-Tag OffsetX,-Y
  * 2021-09-21 new GroupOption 'Label' - add txt to layer
+ * 2022-01-23 line 466 switch index of "layer" and "type"
+ * 2022-01-23 add proforma figure-tag if not figureEnable
 */
 
 using System;
@@ -67,6 +69,9 @@ namespace GrblPlotter
         public static int PathCount { get; set; } = 0;
         public static bool FigureEndTagWasSet { get; set; } = true;
         private static double[] PathDashArray;
+
+		private static double setAux1FinalDistance = 0;		// sum-up path distances 396
+		private static double setAux2FinalDistance = 0;
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -119,6 +124,8 @@ namespace GrblPlotter
             string xmlTag;
             int iDToSet = 1;
             mainGroupID = 0;
+			setAux1FinalDistance = 0;	
+			setAux2FinalDistance = 0;	
 
             if (logEnable) Logger.Trace("-CreateGCode from Tiles");
 
@@ -169,7 +176,6 @@ namespace GrblPlotter
         /// </summary>		
         internal static bool CreateGCode(List<Graphic.GroupObject> completeGraphic, List<string> headerInfo, Graphic.GraphicInformationClass graphicInfo, bool useTiles)
         {
-            //            Init();                                 // initalize variables, toolTable.init(), gcode.setup()
             if (graphicInfo == null) return false;
 
             overWriteId = graphicInfo.ReProcess;    // keep IDs from previous conversion
@@ -187,7 +193,9 @@ namespace GrblPlotter
                 }
                 Gcode.JobStart(finalGcodeString, "StartJob");
                 mainGroupID = 0;
-            }
+				setAux1FinalDistance = 0;
+                setAux2FinalDistance = 0;	
+           }
 
             int groupID = mainGroupID;
             int iDToSet;
@@ -208,6 +216,9 @@ namespace GrblPlotter
                 groupObject.GroupId = iDToSet;  // track id
                 Gcode.Comment(finalGcodeString, string.Format(culture, "{0} Id=\"{1}\"{2}>", XmlMarker.GroupStart, iDToSet, groupAttributes));
                 if (logEnable) Logger.Trace(culture, "-CreateGCode {0} Id=\"{1}\"{2}>", XmlMarker.GroupStart, iDToSet, groupAttributes);
+
+                if (!graphicInfo.FigureEnable)  // proforma figure tag
+                { Gcode.Comment(finalGcodeString, string.Format(culture, "{0} Id=\"{1}\"> ", XmlMarker.FigureStart, iDToSet)); }
 
                 if (logEnable) Logger.Trace("CreateGCode-Group  toolNr:{0}  name:{1}", groupObject.ToolNr, groupObject.ToolName);
                 ToolChange(groupObject.ToolNr, groupObject.ToolName);   // add tool change commands (if enabled) and set XYFeed etc.
@@ -231,6 +242,11 @@ namespace GrblPlotter
                 finalGcodeString.Append(gcodeString);
                 gcodeString.Clear();                            // don't add gcode a 2nd time
 
+                if (!graphicInfo.FigureEnable)  // proforma figure tag
+                {
+                    Gcode.Comment(finalGcodeString, XmlMarker.FigureEnd + ">");
+                }
+
                 Gcode.Comment(finalGcodeString, XmlMarker.GroupEnd + ">");
                 if (logEnable) Logger.Trace(culture, "-CreateGCode {0} >", XmlMarker.GroupEnd);
             }
@@ -249,7 +265,6 @@ namespace GrblPlotter
         /// </summary>		
         internal static bool CreateGCode(List<Graphic.PathObject> completeGraphic, List<string> headerInfo, Graphic.GraphicInformationClass graphicInfo, bool useTiles = false)
         {
-            //            Init();        							// initalize variables, toolTable.init(), gcode.setup()
             if (graphicInfo == null) return false;
 
             overWriteId = graphicInfo.ReProcess;    // keep IDs from previous conversion
@@ -265,7 +280,9 @@ namespace GrblPlotter
                     foreach (string info in headerInfo)     // set header info
                     { Gcode.AddToHeader(info); }
                 }
-            }
+				setAux1FinalDistance = 0;
+                setAux2FinalDistance = 0;	
+           }
 
             int toolNr;
             string toolName;
@@ -378,6 +395,9 @@ namespace GrblPlotter
 
                 int index;
                 GCodeMotion entity;
+                bool setAux1Enable = Properties.Settings.Default.importGCAux1Enable;
+                bool setAux2Enable = Properties.Settings.Default.importGCAux2Enable;
+
                 for (index = 1; index < PathData.Path.Count; index++) // 0 was already processed in StartPath
                 {
                     entity = PathData.Path[index];
@@ -397,13 +417,17 @@ namespace GrblPlotter
                         //            Logger.Info("ProcessPathObject OptionSpecialDevelop index Z:{0:0.000}", newZ);
                     }
 
+					if (setAux1Enable) {   CalculateAux1(entity); }
+					if (setAux2Enable) {   CalculateAux2(entity); }
+					
                     /* Create Line */
                     if (entity is GCodeLine)
-                        MoveTo(entity.MoveTo, newZ, entity.Angle, "");
+                    {   
+                        MoveTo(entity.MoveTo, newZ, entity.Angle, ""); 
+                    }
                     else if (entity is GCodeArc ArcData)
                     {
                         /* Create Arc */
-                        //GCodeArc ArcData = (GCodeArc)entity;
                         Arc(ArcData.IsCW, ArcData.MoveTo, ArcData.CenterIJ, ArcData.AngleStart, ArcData.Angle);//, "");// entity.comment);
                     }
                 }
@@ -427,6 +451,40 @@ namespace GrblPlotter
             Gcode.GcodeZDown = origZ;
             if (logDetailed) Logger.Trace("ProcessPathObject end");
         }
+
+		private static void CalculateAux1(GCodeMotion entity)
+		{   
+			int setAux1ZMode = Properties.Settings.Default.importGCAux1ZMode; 
+			double setAux1ZFactor = (double)Properties.Settings.Default.importGCAux1ZFactor;
+			double distValue = entity.Depth * (double)Properties.Settings.Default.importGCAux1Factor;
+			if (Properties.Settings.Default.importGCAux1ZUse)	
+			{	if (setAux1ZMode == 0) {  distValue *= Gcode.GcodeZDown * setAux1ZFactor;}
+				else if (setAux1ZMode == 1) {  distValue *= Math.Abs(Gcode.GcodeZDown) * setAux1ZFactor;}									// +/-Z but only +result
+				else if ((setAux1ZMode == 2) && (Gcode.GcodeZDown >= 0)) {  distValue *= Math.Abs(Gcode.GcodeZDown) * setAux1ZFactor;}	// +Z only
+				else if ((setAux1ZMode == 3) && (Gcode.GcodeZDown <= 0)) {  distValue *= Math.Abs(Gcode.GcodeZDown) * setAux1ZFactor;}	// -Z only
+			}
+			if (Properties.Settings.Default.importGCAux1SumUp)
+				setAux1FinalDistance += distValue;
+			else
+				setAux1FinalDistance = distValue;
+		}
+
+		private static void CalculateAux2(GCodeMotion entity)
+		{   
+			int setAux2ZMode = Properties.Settings.Default.importGCAux2ZMode; 
+			double setAux2ZFactor = (double)Properties.Settings.Default.importGCAux2ZFactor;
+			double distValue = entity.Depth * (double)Properties.Settings.Default.importGCAux2Factor;
+			if (Properties.Settings.Default.importGCAux2ZUse)	
+			{	if (setAux2ZMode == 0) {  distValue *= Gcode.GcodeZDown * setAux2ZFactor;}
+				else if (setAux2ZMode == 1) {  distValue *= Math.Abs(Gcode.GcodeZDown) * setAux2ZFactor;}									// +/-Z but only +result
+				else if ((setAux2ZMode == 2) && (Gcode.GcodeZDown >= 0)) {  distValue *= Math.Abs(Gcode.GcodeZDown) * setAux2ZFactor;}	// +Z only
+				else if ((setAux2ZMode == 3) && (Gcode.GcodeZDown <= 0)) {  distValue *= Math.Abs(Gcode.GcodeZDown) * setAux2ZFactor;}	// -Z only
+			}
+			if (Properties.Settings.Default.importGCAux2SumUp)
+				setAux2FinalDistance += distValue;
+			else
+				setAux2FinalDistance = distValue;
+		}
 
         public static double CalculateZFromRange(double min, double max, double penWidth)
         {
@@ -462,13 +520,14 @@ namespace GrblPlotter
 
         private static string GetGroupAttributes(GroupObject groupObject, GraphicInformationClass graphicInfo)
         {
-            string[] groupAttribute = new string[] { "none=", "PenColor=", "PenWidth=", "Layer=", "Tile=", "Type=" };       // check public enum GroupOptions
+            string[] groupAttribute = new string[] { "none=", "PenColor=", "PenWidth=", "Layer=", "Type=", "Tile=" };       // check public enum GroupOptions
             string groupVal1 = string.Format(culture, " {0}\"{1}\"", groupAttribute[(int)graphicInfo.GroupOption], groupObject.Key);
-            string groupVal2 = string.Format(culture, " ToolNr=\"{0}\"", groupObject.ToolNr);
-            string groupVal3 = string.Format(culture, " ToolName=\"{0}\"", groupObject.ToolName);
-            string groupVal4 = string.Format(culture, " PathLength=\"{0:0.0}\"", groupObject.PathLength);
-            string groupVal5 = string.Format(culture, " PathArea=\"{0:0.0}\"", groupObject.PathArea);
-            return string.Format(culture, "{0}{1}{2}{3}{4}", groupVal1, groupVal2, groupVal3, groupVal4, groupVal5);
+            string groupVal2 = "";// string.Format(culture, " Type=\"{0}\"", groupObject.Type);
+            string groupVal3 = string.Format(culture, " ToolNr=\"{0}\"", groupObject.ToolNr);
+            string groupVal4 = string.Format(culture, " ToolName=\"{0}\"", groupObject.ToolName);
+            string groupVal5 = string.Format(culture, " PathLength=\"{0:0.0}\"", groupObject.PathLength);
+            string groupVal6 = string.Format(culture, " PathArea=\"{0:0.0}\"", groupObject.PathArea);
+            return string.Format(culture, "{0}{1}{2}{3}{4}", groupVal1, groupVal2, groupVal3, groupVal4, groupVal5, groupVal6);
         }
         private static StringBuilder GetFigureAttributes(PathObject pathObject)
         {
@@ -636,6 +695,9 @@ namespace GrblPlotter
             double setangle = 180 * tangAngle / Math.PI;
             if (logCoordinates) Logger.Trace(" MoveTo X{0:0.000} Y{1:0.000} A{2:0.00}", coordxy.X, coordxy.Y, setangle);
             Gcode.SetTangential(gcodeString, setangle, true);
+            Gcode.SetAux1Distance(gcodeString, setAux1FinalDistance);
+            Gcode.SetAux2Distance(gcodeString, setAux2FinalDistance);
+			
             if (useAlternitveZ) //Properties.Settings.Default.importDepthFromWidthRamp|| Properties.Settings.Default.importDXFUseZ)
                 Gcode.Move(gcodeString, 1, (float)coordxy.X, (float)coordxy.Y, (float)newZ, true, cmt);
             else
@@ -824,6 +886,9 @@ namespace GrblPlotter
             if (gnr > 2) { offset = -offset; }
 
             Gcode.SetTangential(gcodeString, 180 * tangStartRad / Math.PI, true);
+            Gcode.SetAux1Distance(gcodeString, setAux1FinalDistance);
+            Gcode.SetAux2Distance(gcodeString, setAux2FinalDistance);
+			
             if (logCoordinates) Logger.Trace(culture, "   Start Arc alpha{0:0.000} offset{1:0.000}  ", 180 * tangStartRad / Math.PI, 180 * offset / Math.PI);
 
             PenDown(cmt + " from Arc");

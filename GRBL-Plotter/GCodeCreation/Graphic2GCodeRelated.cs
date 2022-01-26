@@ -128,6 +128,16 @@ namespace GrblPlotter
         //    private static float gcodeTangentialAngleLast = 0;
         private static string gcodeTangentialCommand = "";
 
+        private static bool gcodeAuxiliaryValue1Enable = false;
+        private static string gcodeAuxiliaryValue1Name = "A";
+        private static float gcodeAuxiliaryValue1Distance = 1;
+        private static string gcodeAuxiliaryValue1Command = "";
+
+        private static bool gcodeAuxiliaryValue2Enable = false;
+        private static string gcodeAuxiliaryValue2Name = "A";
+        private static float gcodeAuxiliaryValue2Distance = 1;
+        private static string gcodeAuxiliaryValue2Command = "";
+
         private static bool gcodeZLeadInEnable = false;
         private static XyPoint gcodeZLeadInXY = new XyPoint();
         private static bool gcodeZLeadOutEnable = false;
@@ -248,6 +258,11 @@ namespace GrblPlotter
 
             gcodeTangentialAngleDevi = (float)Properties.Settings.Default.importGCTangentialAngleDevi;
             gcodeTangentialCommand = figureStartAlpha = "";
+
+            gcodeAuxiliaryValue1Enable = Properties.Settings.Default.importGCAux1Enable;
+            gcodeAuxiliaryValue2Enable = Properties.Settings.Default.importGCAux2Enable;
+            gcodeAuxiliaryValue1Name = Properties.Settings.Default.importGCAux1Axis;
+            gcodeAuxiliaryValue2Name = Properties.Settings.Default.importGCAux2Axis;
 
             gcodeZLeadInEnable = false;
             gcodeZLeadOutEnable = false;
@@ -921,11 +936,14 @@ namespace GrblPlotter
             if (gcodeValueFinal == null) return;
 
             StringBuilder gcodeString = gcodeValueFinal;
-
+            string gcodeAux1Cmd = "";
+            string gcodeAux2Cmd = "";
             if (gnr != 0)
             {
                 if (GcodeZApply && repeatZ)
                 { gcodeString = figureString; }// if (loggerTrace) Logger.Trace("    gcodeString = figureString"); }
+                gcodeAux1Cmd = gcodeAuxiliaryValue1Command;
+                gcodeAux2Cmd = gcodeAuxiliaryValue2Command;
             }
             string feed = "";
             StringBuilder gcodeTmp = new StringBuilder();
@@ -975,6 +993,7 @@ namespace GrblPlotter
                             if (lastz != mz) { gcodeTmp.AppendFormat("Z{0}", FrmtNum((float)mz)); isneeded = true; }
                         }
                         gcodeTmp.AppendFormat("{0}", gcodeTangentialCommand);	// 2020-02-12
+                        gcodeTmp.AppendFormat("{0}{1}", gcodeAux1Cmd, gcodeAux2Cmd);	// 2022-01-24
                     }
 
                     if ((gnr == 1) && (lastf != GcodeXYFeed) || applyFeed)
@@ -992,7 +1011,7 @@ namespace GrblPlotter
                 }
             }
             else
-            {
+            {   // no compress
                 string nnr = "";
                 if (nNumber >= 0) nnr = string.Format("N{0} ", nNumber);
 
@@ -1001,14 +1020,14 @@ namespace GrblPlotter
                     if (GcodeRelative)
                         gcodeString.AppendFormat("{0}G{1} X{2} Y{3} Z{4} {5} {6}\r\n", nnr, FrmtCode(gnr), FrmtNum(x_relative), FrmtNum(y_relative), FrmtNum(z_relative), feed, cmt);
                     else
-                        gcodeString.AppendFormat("{0}G{1} X{2} Y{3} Z{4}{5} {6} {7}\r\n", nnr, FrmtCode(gnr), FrmtNum(mx), FrmtNum(my), FrmtNum((float)mz), gcodeTangentialCommand, feed, cmt);
+                        gcodeString.AppendFormat("{0}G{1} X{2} Y{3} Z{4}{5}{6}{7} {8} {9}\r\n", nnr, FrmtCode(gnr), FrmtNum(mx), FrmtNum(my), FrmtNum((float)mz), gcodeTangentialCommand, gcodeAux1Cmd, gcodeAux2Cmd, feed, cmt);
                 }
                 else
                 {
                     if (GcodeRelative)
                         gcodeString.AppendFormat("{0}G{1} X{2} Y{3} {4} {5}\r\n", nnr, FrmtCode(gnr), FrmtNum(x_relative), FrmtNum(y_relative), feed, cmt);
                     else
-                        gcodeString.AppendFormat("{0}G{1} X{2} Y{3}{4} {5} {6}\r\n", nnr, FrmtCode(gnr), FrmtNum(mx), FrmtNum(my), gcodeTangentialCommand, feed, cmt);
+                        gcodeString.AppendFormat("{0}G{1} X{2} Y{3}{4}{5}{6} {7} {8}\r\n", nnr, FrmtCode(gnr), FrmtNum(mx), FrmtNum(my), gcodeTangentialCommand, gcodeAux1Cmd, gcodeAux2Cmd, feed, cmt);
                 }
             }
             if (GcodeZApply && repeatZ)
@@ -1095,6 +1114,26 @@ namespace GrblPlotter
             else gcodeTangentialCommand = "";
         }
 
+        public static void SetAux1Distance(StringBuilder gcodeValue, double distance)
+        {
+            if (gcodeAuxiliaryValue1Enable)
+            {
+                gcodeAuxiliaryValue1Command = string.Format(" {0}{1}", gcodeAuxiliaryValue1Name, FrmtNum(distance));
+                Logger.Info("SetAux1Distance {0}", gcodeAuxiliaryValue1Command);
+            }
+            else { gcodeAuxiliaryValue1Command = ""; }
+        }
+
+        public static void SetAux2Distance(StringBuilder gcodeValue, double distance)
+        {
+            if (gcodeAuxiliaryValue2Enable)
+            {
+                gcodeAuxiliaryValue2Command = string.Format(" {0}{1}", gcodeAuxiliaryValue2Name, FrmtNum(distance));
+                Logger.Info("SetAux2Distance {0}", gcodeAuxiliaryValue2Command);
+            }
+            else { gcodeAuxiliaryValue2Command = ""; }
+        }
+
         public static void Arc(StringBuilder gcodeValue, int gnr, float ax, float ay, float ai, float aj, string cmt)//, bool avoidG23 = false)
         {
             if (string.IsNullOrEmpty(cmt)) cmt = "";
@@ -1129,7 +1168,7 @@ namespace GrblPlotter
                 if (GcodeRelative)
                     gcodeString.AppendFormat("G{0} X{1} Y{2}  I{3} J{4} {5} {6}\r\n", FrmtCode(gnr), FrmtNum(x_relative), FrmtNum(y_relative), FrmtNum(i), FrmtNum(j), feed, cmt);
                 else
-                    gcodeString.AppendFormat("G{0} X{1} Y{2}  I{3} J{4}{5} {6} {7}\r\n", FrmtCode(gnr), FrmtNum(x), FrmtNum(y), FrmtNum(i), FrmtNum(j), gcodeTangentialCommand, feed, cmt);
+                    gcodeString.AppendFormat("G{0} X{1} Y{2}  I{3} J{4}{5}{6}{7} {8} {9}\r\n", FrmtCode(gnr), FrmtNum(x), FrmtNum(y), FrmtNum(i), FrmtNum(j), gcodeTangentialCommand, gcodeAuxiliaryValue1Command, gcodeAuxiliaryValue2Command, feed, cmt);
                 lastg = gnr;
             }
             if (GcodeZApply && repeatZ)

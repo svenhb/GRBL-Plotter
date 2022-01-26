@@ -717,6 +717,12 @@ namespace GrblPlotter
                 CalculateStartAngle();
             }
 
+            if (Properties.Settings.Default.importGCAux1Enable)
+            {
+                Logger.Info("CreateGCode - CalculateDistances ");
+                CalculateDistances();
+			}
+			
             /* List option data */
             if (!cancelByWorker && (graphicInformation.OptionZFromWidth || (graphicInformation.OptionDotFromCircle && graphicInformation.OptionZFromRadius)))
             {

@@ -20,6 +20,7 @@
  * 2021-09-10 split from graphicRelated
  * 2021-10-29 bugfix in RemoveIntermediateSteps
  * 2021-11-16 bugfix RemoveIntermediateSteps, RemoveShortMoves
+ * 2022-01-24 add CalculateDistances
 */
 
 using System;
@@ -33,6 +34,40 @@ namespace GrblPlotter
 {
     public static partial class Graphic
     {
+		
+		private static void CalculateDistances()
+		{
+            foreach (PathObject pathObject in completeGraphic)
+            {
+                if (pathObject is ItemPath apath)
+                {
+                    if (apath.Path.Count <= 0)
+                    {   continue;  }
+
+                    Point pStart, pEnd;
+                    apath.Path[0].Depth = 0;
+                    for (int i = 1; i < apath.Path.Count; i++)                   // go through path objects
+                    {
+                        pStart = apath.Path[i - 1].MoveTo;
+                        pEnd = apath.Path[i].MoveTo;
+						
+						if (apath.Path[i] is GCodeLine)
+                        {  
+							apath.Path[i].Depth = PointDistance(pStart,pEnd); 	// distance between a and b
+						}
+						else if (apath.Path[i] is GCodeArc)
+						{   // is arc
+                            Point center = new Point(pStart.X + ((GCodeArc)apath.Path[i]).CenterIJ.X, pStart.Y + ((GCodeArc)apath.Path[i]).CenterIJ.Y);
+                            double r = PointDistance(center, pEnd);
+                            ArcProperties tmp = GcodeMath.GetArcMoveProperties((XyPoint)pStart, (XyPoint)pEnd, ((GCodeArc)apath.Path[i]).CenterIJ.X, ((GCodeArc)apath.Path[i]).CenterIJ.Y, ((GCodeArc)apath.Path[i]).IsCW);
+                            apath.Path[i].Depth = Math.Abs(tmp.angleDiff * r);
+                    //        Logger.Info("CalculateDistances arc a0:{0:0.00} a1:{1:0.00} diff:{2:0.00}  r:{3:0.00}", tmp.angleStart,tmp.angleEnd,tmp.angleDiff,r);
+                        }
+                    }
+                }				
+			}			
+		}
+		
         // create GraphicsPath for 2-D view
         private static void CreateGraphicsPath(List<PathObject> graphicToDraw, GraphicsPath path)
         {
