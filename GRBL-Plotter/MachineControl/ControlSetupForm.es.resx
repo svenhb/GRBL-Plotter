@@ -2825,4 +2825,92 @@ El rango utilizable real sería $ 30 = 31, $ 31 = 0.</value>
   <data name="checkBox11.Text" xml:space="preserve">
     <value>Eliminar todos los comentarios al guardar</value>
   </data>
+  <data name="LbLAuxDescription.Text" xml:space="preserve">
+    <value>Utilice esta opción para controlar un eje adicional que bombea pintura o alimenta filamento en una cantidad que depende de la distancia.
+Además, la posición del eje Z se puede utilizar para, por ejemplo, aumentar la cantidad de pintura cuando el pincel presiona con más fuerza el lienzo.</value>
+  </data>
+  <data name="CbAux2ZMode.Items" xml:space="preserve">
+    <value>Usar pos y neg Z con signo</value>
+  </data>
+  <data name="CbAux2ZMode.Items1" xml:space="preserve">
+    <value>Usar pos y neg Z absolutos</value>
+  </data>
+  <data name="CbAux2ZMode.Items2" xml:space="preserve">
+    <value>Utilice sólo la posición Z</value>
+  </data>
+  <data name="CbAux2ZMode.Items3" xml:space="preserve">
+    <value>Solo use neg Z</value>
+  </data>
+  <data name="LblAux12.Text" xml:space="preserve">
+    <value>factor</value>
+  </data>
+  <data name="CbAux2ZUse.Text" xml:space="preserve">
+    <value>considerar Z</value>
+  </data>
+  <data name="groupBox28.Text" xml:space="preserve">
+    <value>Multiplicar por el valor Z actual</value>
+  </data>
+  <data name="LblAux11.Text" xml:space="preserve">
+    <value>factor</value>
+  </data>
+  <data name="LblAux10.Text" xml:space="preserve">
+    <value>eje</value>
+  </data>
+  <data name="CbAux2SumUp.Text" xml:space="preserve">
+    <value>Valor absoluto</value>
+  </data>
+  <data name="CbAux2SumUp.ToolTip" xml:space="preserve">
+    <value>Valor absoluto: Al igual que con el modo de distancia G90, los valores de distancia se resumen.</value>
+  </data>
+  <data name="NudAux2Factor.ToolTip" xml:space="preserve">
+    <value>Factor para calcular el valor del eje = distancia * factor</value>
+  </data>
+  <data name="CbAux2Enable.Text" xml:space="preserve">
+    <value>Agregar comando relacionado con la distancia 2</value>
+  </data>
+  <data name="CbAux1ZMode.Items" xml:space="preserve">
+    <value>Usar pos y neg Z con signo</value>
+  </data>
+  <data name="CbAux1ZMode.Items1" xml:space="preserve">
+    <value>Usar pos y neg Z absolutos</value>
+  </data>
+  <data name="CbAux1ZMode.Items2" xml:space="preserve">
+    <value>Utilice sólo la posición Z</value>
+  </data>
+  <data name="CbAux1ZMode.Items3" xml:space="preserve">
+    <value>Solo use neg Z</value>
+  </data>
+  <data name="LblAux3.Text" xml:space="preserve">
+    <value>factor</value>
+  </data>
+  <data name="CbAux1ZUse.Text" xml:space="preserve">
+    <value>considerar Z</value>
+  </data>
+  <data name="groupBox27.Text" xml:space="preserve">
+    <value>Multiplicar por el valor Z actual</value>
+  </data>
+  <data name="LblAux2.Text" xml:space="preserve">
+    <value>factor</value>
+  </data>
+  <data name="LblAux1.Text" xml:space="preserve">
+    <value>eje</value>
+  </data>
+  <data name="CbAux1SumUp.Text" xml:space="preserve">
+    <value>Valor absoluto</value>
+  </data>
+  <data name="CbAux1SumUp.ToolTip" xml:space="preserve">
+    <value>Valor absoluto: Al igual que con el modo de distancia G90, los valores de distancia se resumen.</value>
+  </data>
+  <data name="NudAux1Factor.ToolTip" xml:space="preserve">
+    <value>Factor para calcular el valor del eje = distancia * factor</value>
+  </data>
+  <data name="CbAux1Enable.Text" xml:space="preserve">
+    <value>Agregar comando relacionado con la distancia 1</value>
+  </data>
+  <data name="groupBox26.Text" xml:space="preserve">
+    <value>Valor relacionado con la distancia para la bomba de pintura o el alimentador de filamentos</value>
+  </data>
+  <data name="tabPage31.Text" xml:space="preserve">
+    <value>extensión de comando</value>
+  </data>
 </root>

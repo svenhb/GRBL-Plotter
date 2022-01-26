@@ -296,7 +296,7 @@ namespace GrblPlotter
             lblMax.Text = string.Format("{0:0.000}", Map.MaxHeight);
             pictureBox2.Image = new Bitmap(heightLegendBMP);
             pictureBox2.Refresh();
-            nUDCutOffZ.Value = (decimal)Map.MinHeight;
+        //    nUDCutOffZ.Value = (decimal)Map.MinHeight;
         }
 
         private bool isgray = false;
@@ -543,9 +543,14 @@ namespace GrblPlotter
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { CenterToScreen(); }
 
             //_event = new eventArgsTemplates();
-
-            nUDDeltaX.Value = Properties.Settings.Default.heightMapX2 - Properties.Settings.Default.heightMapX1;
-            nUDDeltaY.Value = Properties.Settings.Default.heightMapY2 - Properties.Settings.Default.heightMapY1;
+			decimal tmp = Properties.Settings.Default.heightMapX2 - Properties.Settings.Default.heightMapX1;
+			if (tmp <= 0) tmp = 1;
+            nUDDeltaX.Value = tmp;
+			
+			tmp = Properties.Settings.Default.heightMapY2 - Properties.Settings.Default.heightMapY1;
+			if (tmp <= 0) tmp = 1;
+            nUDDeltaY.Value = tmp;
+			
             int legendHeight = 160;
             heightLegendBMP = new Bitmap(2, legendHeight);
             for (int i = 0; i < legendHeight; i++)

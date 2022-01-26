@@ -3120,4 +3120,92 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   <data name="GbAccessoryRunTime.Text" xml:space="preserve">
     <value>附件运行时间 (ms)</value>
   </data>
+  <data name="LbLAuxDescription.Text" xml:space="preserve">
+    <value>使用此选项可控制一个附加轴，该轴以与距离相关的量泵送油漆或馈送灯丝。
+此外，Z 轴的位置可用于例如当画笔在画布上用力按压时增加油漆量。</value>
+  </data>
+  <data name="CbAux2ZMode.Items" xml:space="preserve">
+    <value>使用带符号的 pos 和 neg Z</value>
+  </data>
+  <data name="CbAux2ZMode.Items1" xml:space="preserve">
+    <value>使用 pos 和 neg Z 绝对值</value>
+  </data>
+  <data name="CbAux2ZMode.Items2" xml:space="preserve">
+    <value>仅使用 pos Z</value>
+  </data>
+  <data name="CbAux2ZMode.Items3" xml:space="preserve">
+    <value>只使用负 Z</value>
+  </data>
+  <data name="LblAux12.Text" xml:space="preserve">
+    <value>因素</value>
+  </data>
+  <data name="CbAux2ZUse.Text" xml:space="preserve">
+    <value>考虑 Z</value>
+  </data>
+  <data name="groupBox28.Text" xml:space="preserve">
+    <value>乘以当前 Z 值</value>
+  </data>
+  <data name="LblAux11.Text" xml:space="preserve">
+    <value>因素</value>
+  </data>
+  <data name="LblAux10.Text" xml:space="preserve">
+    <value>轴</value>
+  </data>
+  <data name="CbAux2SumUp.Text" xml:space="preserve">
+    <value>绝对值</value>
+  </data>
+  <data name="CbAux2SumUp.ToolTip" xml:space="preserve">
+    <value>绝对值：和G90距离模式一样，距离值是相加的。</value>
+  </data>
+  <data name="NudAux2Factor.ToolTip" xml:space="preserve">
+    <value>计算轴值的因子 = 距离 * 因子</value>
+  </data>
+  <data name="CbAux2Enable.Text" xml:space="preserve">
+    <value>添加距离相关命令2</value>
+  </data>
+  <data name="CbAux1ZMode.Items" xml:space="preserve">
+    <value>使用带符号的 pos 和 neg Z</value>
+  </data>
+  <data name="CbAux1ZMode.Items1" xml:space="preserve">
+    <value>使用 pos 和 neg Z 绝对值</value>
+  </data>
+  <data name="CbAux1ZMode.Items2" xml:space="preserve">
+    <value>仅使用 pos Z</value>
+  </data>
+  <data name="CbAux1ZMode.Items3" xml:space="preserve">
+    <value>只使用负 Z</value>
+  </data>
+  <data name="LblAux3.Text" xml:space="preserve">
+    <value>因素</value>
+  </data>
+  <data name="CbAux1ZUse.Text" xml:space="preserve">
+    <value>考虑 Z</value>
+  </data>
+  <data name="groupBox27.Text" xml:space="preserve">
+    <value>乘以当前 Z 值</value>
+  </data>
+  <data name="LblAux2.Text" xml:space="preserve">
+    <value>因素</value>
+  </data>
+  <data name="LblAux1.Text" xml:space="preserve">
+    <value>轴</value>
+  </data>
+  <data name="CbAux1SumUp.Text" xml:space="preserve">
+    <value>绝对值</value>
+  </data>
+  <data name="CbAux1SumUp.ToolTip" xml:space="preserve">
+    <value>绝对值：和G90距离模式一样，距离值是相加的。</value>
+  </data>
+  <data name="NudAux1Factor.ToolTip" xml:space="preserve">
+    <value>计算轴值的因子 = 距离 * 因子</value>
+  </data>
+  <data name="CbAux1Enable.Text" xml:space="preserve">
+    <value>添加距离相关命令1</value>
+  </data>
+  <data name="groupBox26.Text" xml:space="preserve">
+    <value>油漆泵或长丝进料器的距离相关值</value>
+  </data>
+  <data name="tabPage31.Text" xml:space="preserve">
+    <value>命令扩展</value>
+  </data>
 </root>

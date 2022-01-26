@@ -3025,4 +3025,92 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   <data name="GbAccessoryRunTime.Text" xml:space="preserve">
     <value>Время работы аксессуаров (мс)</value>
   </data>
+  <data name="LbLAuxDescription.Text" xml:space="preserve">
+    <value>Используйте эту опцию для управления дополнительной осью, которая перекачивает краску или подает нить на расстояние, зависящее от расстояния.
+Кроме того, положение оси Z можно использовать, например, для увеличения количества краски, когда кисть сильнее давит на холст.</value>
+  </data>
+  <data name="CbAux2ZMode.Items" xml:space="preserve">
+    <value>Используйте pos и neg Z со знаком</value>
+  </data>
+  <data name="CbAux2ZMode.Items1" xml:space="preserve">
+    <value>Используйте pos и neg Z absolute</value>
+  </data>
+  <data name="CbAux2ZMode.Items2" xml:space="preserve">
+    <value>Используйте только позицию Z</value>
+  </data>
+  <data name="CbAux2ZMode.Items3" xml:space="preserve">
+    <value>Используйте только отрицательную Z</value>
+  </data>
+  <data name="LblAux12.Text" xml:space="preserve">
+    <value>фактор</value>
+  </data>
+  <data name="CbAux2ZUse.Text" xml:space="preserve">
+    <value>рассмотреть Z</value>
+  </data>
+  <data name="groupBox28.Text" xml:space="preserve">
+    <value>Умножить на текущее значение Z</value>
+  </data>
+  <data name="LblAux11.Text" xml:space="preserve">
+    <value>фактор</value>
+  </data>
+  <data name="LblAux10.Text" xml:space="preserve">
+    <value>ось</value>
+  </data>
+  <data name="CbAux2SumUp.Text" xml:space="preserve">
+    <value>Абсолютная величина</value>
+  </data>
+  <data name="CbAux2SumUp.ToolTip" xml:space="preserve">
+    <value>Абсолютное значение: Как и в режиме расстояния G90, значения расстояния суммируются.</value>
+  </data>
+  <data name="NudAux2Factor.ToolTip" xml:space="preserve">
+    <value>Коэффициент для расчета значения оси = расстояние * коэффициент</value>
+  </data>
+  <data name="CbAux2Enable.Text" xml:space="preserve">
+    <value>Добавить команду 2, связанную с расстоянием</value>
+  </data>
+  <data name="CbAux1ZMode.Items" xml:space="preserve">
+    <value>Используйте pos и neg Z со знаком</value>
+  </data>
+  <data name="CbAux1ZMode.Items1" xml:space="preserve">
+    <value>Используйте pos и neg Z absolute</value>
+  </data>
+  <data name="CbAux1ZMode.Items2" xml:space="preserve">
+    <value>Используйте только позицию Z</value>
+  </data>
+  <data name="CbAux1ZMode.Items3" xml:space="preserve">
+    <value>Используйте только отрицательную Z</value>
+  </data>
+  <data name="LblAux3.Text" xml:space="preserve">
+    <value>фактор</value>
+  </data>
+  <data name="CbAux1ZUse.Text" xml:space="preserve">
+    <value>рассмотреть Z</value>
+  </data>
+  <data name="groupBox27.Text" xml:space="preserve">
+    <value>Умножить на текущее значение Z</value>
+  </data>
+  <data name="LblAux2.Text" xml:space="preserve">
+    <value>фактор</value>
+  </data>
+  <data name="LblAux1.Text" xml:space="preserve">
+    <value>ось</value>
+  </data>
+  <data name="CbAux1SumUp.Text" xml:space="preserve">
+    <value>Абсолютная величина</value>
+  </data>
+  <data name="CbAux1SumUp.ToolTip" xml:space="preserve">
+    <value>Абсолютное значение: Как и в режиме расстояния G90, значения расстояния суммируются.</value>
+  </data>
+  <data name="NudAux1Factor.ToolTip" xml:space="preserve">
+    <value>Коэффициент для расчета значения оси = расстояние * коэффициент</value>
+  </data>
+  <data name="CbAux1Enable.Text" xml:space="preserve">
+    <value>Добавить команду 1, связанную с расстоянием</value>
+  </data>
+  <data name="groupBox26.Text" xml:space="preserve">
+    <value>Значение, связанное с расстоянием для насоса для краски или устройства подачи нити</value>
+  </data>
+  <data name="tabPage31.Text" xml:space="preserve">
+    <value>расширение команды</value>
+  </data>
 </root>

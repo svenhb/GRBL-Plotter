@@ -2825,4 +2825,92 @@ La plage utilisable réelle serait 30 $ = 31, 31 $ = 0.</value>
   <data name="checkBox11.Text" xml:space="preserve">
     <value>Supprimer tous les commentaires lors de l'enregistrement</value>
   </data>
+  <data name="LbLAuxDescription.Text" xml:space="preserve">
+    <value>Utilisez cette option pour contrôler un axe supplémentaire qui pompe la peinture ou alimente le filament en fonction de la distance.
+De plus, la position de l'axe Z peut être utilisée, par exemple, pour augmenter la quantité de peinture lorsque le pinceau appuie plus fort sur la toile.</value>
+  </data>
+  <data name="CbAux2ZMode.Items" xml:space="preserve">
+    <value>Utilisez pos et neg Z avec signe</value>
+  </data>
+  <data name="CbAux2ZMode.Items1" xml:space="preserve">
+    <value>Utiliser pos et neg Z absolu</value>
+  </data>
+  <data name="CbAux2ZMode.Items2" xml:space="preserve">
+    <value>N'utilisez que la position Z</value>
+  </data>
+  <data name="CbAux2ZMode.Items3" xml:space="preserve">
+    <value>Utilisez uniquement Z négatif</value>
+  </data>
+  <data name="LblAux12.Text" xml:space="preserve">
+    <value>facteur</value>
+  </data>
+  <data name="CbAux2ZUse.Text" xml:space="preserve">
+    <value>considérer Z</value>
+  </data>
+  <data name="groupBox28.Text" xml:space="preserve">
+    <value>Multiplier par la valeur Z actuelle</value>
+  </data>
+  <data name="LblAux11.Text" xml:space="preserve">
+    <value>facteur</value>
+  </data>
+  <data name="LblAux10.Text" xml:space="preserve">
+    <value>axe</value>
+  </data>
+  <data name="CbAux2SumUp.Text" xml:space="preserve">
+    <value>Valeur absolue</value>
+  </data>
+  <data name="CbAux2SumUp.ToolTip" xml:space="preserve">
+    <value>Valeur absolue : Comme pour le mode distance G90, les valeurs de distance sont additionnées.</value>
+  </data>
+  <data name="NudAux2Factor.ToolTip" xml:space="preserve">
+    <value>Facteur pour calculer la valeur de l'axe = distance * facteur</value>
+  </data>
+  <data name="CbAux2Enable.Text" xml:space="preserve">
+    <value>Ajouter la commande liée à la distance 2</value>
+  </data>
+  <data name="CbAux1ZMode.Items" xml:space="preserve">
+    <value>Utilisez pos et neg Z avec signe</value>
+  </data>
+  <data name="CbAux1ZMode.Items1" xml:space="preserve">
+    <value>Utiliser pos et neg Z absolu</value>
+  </data>
+  <data name="CbAux1ZMode.Items2" xml:space="preserve">
+    <value>N'utilisez que la position Z</value>
+  </data>
+  <data name="CbAux1ZMode.Items3" xml:space="preserve">
+    <value>Utilisez uniquement Z négatif</value>
+  </data>
+  <data name="LblAux3.Text" xml:space="preserve">
+    <value>facteur</value>
+  </data>
+  <data name="CbAux1ZUse.Text" xml:space="preserve">
+    <value>considérer Z</value>
+  </data>
+  <data name="groupBox27.Text" xml:space="preserve">
+    <value>Multiplier par la valeur Z actuelle</value>
+  </data>
+  <data name="LblAux2.Text" xml:space="preserve">
+    <value>facteur</value>
+  </data>
+  <data name="LblAux1.Text" xml:space="preserve">
+    <value>axe</value>
+  </data>
+  <data name="CbAux1SumUp.Text" xml:space="preserve">
+    <value>Valeur absolue</value>
+  </data>
+  <data name="CbAux1SumUp.ToolTip" xml:space="preserve">
+    <value>Valeur absolue : Comme pour le mode distance G90, les valeurs de distance sont additionnées.</value>
+  </data>
+  <data name="NudAux1Factor.ToolTip" xml:space="preserve">
+    <value>Facteur pour calculer la valeur de l'axe = distance * facteur</value>
+  </data>
+  <data name="CbAux1Enable.Text" xml:space="preserve">
+    <value>Ajouter la commande liée à la distance 1</value>
+  </data>
+  <data name="groupBox26.Text" xml:space="preserve">
+    <value>Valeur liée à la distance pour la pompe à peinture ou le chargeur de filament</value>
+  </data>
+  <data name="tabPage31.Text" xml:space="preserve">
+    <value>extension de commande</value>
+  </data>
 </root>

@@ -331,7 +331,12 @@ namespace GrblPlotter
             if (inSpindle)
             {   AddCodeFromFile(Properties.Settings.Default.ctrlToolScriptPut, line);
                 inSpindle = false;
-                streamingBuffer.Add("($TO T"+ gcodeVariable["TOLN"]+")", line);     // keyword for receiving-buffer "Tool removed"
+				if (gcodeVariable.ContainsKey("TOLN"))
+                {	streamingBuffer.Add("($TO T"+ gcodeVariable["TOLN"]+")", line);  }   // keyword for receiving-buffer "Tool removed"
+				else {
+					AddToLog("InsertToolChangeCode var 'TOLN' not set!");
+					Logger.Error("InsertToolChangeCode var 'TOLN' not set!");
+				}
             }
             if (!Properties.Settings.Default.ctrlToolChangeEmpty || (gcodeVariable["TOAN"] != (int)Properties.Settings.Default.ctrlToolChangeEmptyNr))
             {   AddCodeFromFile(Properties.Settings.Default.ctrlToolScriptSelect, line);
@@ -347,7 +352,7 @@ namespace GrblPlotter
                 streamingBuffer.Add(string.Format("G4 P{0:0.00}",Properties.Settings.Default.ctrlToolScriptDelay), line);
 
             // save actual tool info as last tool info
-            gcodeVariable["TOLN"] = gcodeVariable["TOAN"];
+            gcodeVariable["TOLN"] = gcodeVariable["TOAN"];	// TOol Last Number = TOol Actual Number
             gcodeVariable["TOLX"] = gcodeVariable["TOAX"];
             gcodeVariable["TOLY"] = gcodeVariable["TOAY"];
             gcodeVariable["TOLZ"] = gcodeVariable["TOAZ"];

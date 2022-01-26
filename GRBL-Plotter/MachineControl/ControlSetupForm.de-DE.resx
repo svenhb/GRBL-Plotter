@@ -2774,4 +2774,92 @@ Der tatsächlich nutzbare Bereich wäre $ 30 = 31, $ 31 = 0.</value>
   <data name="checkBox11.Text" xml:space="preserve">
     <value>Alle Kommentare beim Speichern entfernen</value>
   </data>
+  <data name="LbLAuxDescription.Text" xml:space="preserve">
+    <value>Verwende diese Option, um eine zusätzliche Achse zu steuern, die Farbe pumpt oder Filament zuführt, in einer entfernungsabhängigen Menge.
+Zusätzlich kann die Position der Z Achse verwendet werden um z.B. die Farbmenge zu erhöhen, wenn der Pinsel stärker auf die Leinwand drückt.</value>
+  </data>
+  <data name="CbAux2ZMode.Items" xml:space="preserve">
+    <value>Verwende pos und neg Z mit Vorzeichen</value>
+  </data>
+  <data name="CbAux2ZMode.Items1" xml:space="preserve">
+    <value>Verwende pos und neg Z absolut</value>
+  </data>
+  <data name="CbAux2ZMode.Items2" xml:space="preserve">
+    <value>Verwende nur pos Z</value>
+  </data>
+  <data name="CbAux2ZMode.Items3" xml:space="preserve">
+    <value>Verwende nur neg Z</value>
+  </data>
+  <data name="LblAux12.Text" xml:space="preserve">
+    <value>Faktor</value>
+  </data>
+  <data name="CbAux2ZUse.Text" xml:space="preserve">
+    <value>Z berücksichtigen</value>
+  </data>
+  <data name="groupBox28.Text" xml:space="preserve">
+    <value>Mit aktuellem Z-Wert multiplizieren</value>
+  </data>
+  <data name="LblAux11.Text" xml:space="preserve">
+    <value>Faktor</value>
+  </data>
+  <data name="LblAux10.Text" xml:space="preserve">
+    <value>Achse</value>
+  </data>
+  <data name="CbAux2SumUp.Text" xml:space="preserve">
+    <value>Absoluter Wert</value>
+  </data>
+  <data name="CbAux2SumUp.ToolTip" xml:space="preserve">
+    <value>Absolutwert: Wie beim G90-Distanzmodus werden die Distanzwerte aufsummiert.</value>
+  </data>
+  <data name="NudAux2Factor.ToolTip" xml:space="preserve">
+    <value>Faktor zur Berechnung des Achsenwertes = Abstand * Faktor</value>
+  </data>
+  <data name="CbAux2Enable.Text" xml:space="preserve">
+    <value>Entfernungsbezogenen Befehl hinzufügen 2</value>
+  </data>
+  <data name="CbAux1ZMode.Items" xml:space="preserve">
+    <value>Verwende pos und neg Z mit Vorzeichen</value>
+  </data>
+  <data name="CbAux1ZMode.Items1" xml:space="preserve">
+    <value>Verwende pos und neg Z absolut</value>
+  </data>
+  <data name="CbAux1ZMode.Items2" xml:space="preserve">
+    <value>Verwende nur pos Z</value>
+  </data>
+  <data name="CbAux1ZMode.Items3" xml:space="preserve">
+    <value>Verwende nur neg Z</value>
+  </data>
+  <data name="LblAux3.Text" xml:space="preserve">
+    <value>Faktor</value>
+  </data>
+  <data name="CbAux1ZUse.Text" xml:space="preserve">
+    <value>Z berücksichtigen</value>
+  </data>
+  <data name="groupBox27.Text" xml:space="preserve">
+    <value>Mit aktuellem Z-Wert multiplizieren</value>
+  </data>
+  <data name="LblAux2.Text" xml:space="preserve">
+    <value>Faktor</value>
+  </data>
+  <data name="LblAux1.Text" xml:space="preserve">
+    <value>Achse</value>
+  </data>
+  <data name="CbAux1SumUp.Text" xml:space="preserve">
+    <value>Absoluter Wert</value>
+  </data>
+  <data name="CbAux1SumUp.ToolTip" xml:space="preserve">
+    <value>Absolutwert: Wie beim G90-Distanzmodus werden die Distanzwerte aufsummiert.</value>
+  </data>
+  <data name="NudAux1Factor.ToolTip" xml:space="preserve">
+    <value>Faktor zur Berechnung des Achsenwertes = Abstand * Faktor</value>
+  </data>
+  <data name="CbAux1Enable.Text" xml:space="preserve">
+    <value>Entfernungsbezogenen Befehl hinzufügen 1</value>
+  </data>
+  <data name="groupBox26.Text" xml:space="preserve">
+    <value>Entfernungsbezogener Wert für Farbpumpe oder Filamentzuführung</value>
+  </data>
+  <data name="tabPage31.Text" xml:space="preserve">
+    <value>Befehlserweiterung</value>
+  </data>
 </root>

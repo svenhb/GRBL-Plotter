@@ -74,14 +74,17 @@ namespace GrblPlotter
 					System.IO.Directory.CreateDirectory(tpath);
 			}
 			catch (IOException err) {
-				Properties.Settings.Default.guiLastEndReason += "Error creating path:"+tpath;
+				Properties.Settings.Default.guiLastEndReason += "SetupForm_Load Error creating path:" + tpath+ " Error:" + err.Message;
 				Datapath.AppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);	// apply new data path
-				MessageBox.Show("Path does not exist and could not be created: "+tpath+"\r\nPath will be modified to "+ Datapath.AppDataFolder, "Error");
+				MessageBox.Show("Path to tool-tables does not exist and could not be created: "+tpath+"\r\nPath will be modified to "+ Datapath.AppDataFolder, "Error");
 				Logger.Error(err,"SetupForm_Load path nok:{0}, changed to: {1}",tpath, Datapath.AppDataFolder);
 				tpath = Datapath.Tools;				
 			}
-			catch (Exception err) { 
-				throw;		// unknown exception...
+			catch (Exception err) {
+                Properties.Settings.Default.guiLastEndReason += "SetupForm_Load Error accessing path:" + tpath + " Error:" + err.Message;
+                MessageBox.Show("Path to tool-tables can't be accessed: " + tpath + "\r\nError: "+err.Message, "Error");
+                Logger.Error(err, "SetupForm_Load path nok:{0}", tpath);
+                //throw;		// unknown exception...
 			}
             defaultToolList = tpath + "\\" + ToolTable.DefaultFileName;
 
@@ -252,6 +255,9 @@ namespace GrblPlotter
             LblAccessorySpindleVal.Text = Properties.Settings.Default.grblRunTimeSpindle.ToString("F0");
             LblAccessoryFloodVal.Text = Properties.Settings.Default.grblRunTimeFlood.ToString("F0");
             LblAccessoryMistVal.Text = Properties.Settings.Default.grblRunTimeMist.ToString("F0");
+
+            CbAux1ZMode.SelectedIndex = Properties.Settings.Default.importGCAux1ZMode;
+            CbAux2ZMode.SelectedIndex = Properties.Settings.Default.importGCAux2ZMode;
         }
 
         private void SaveSettings()
@@ -601,12 +607,12 @@ namespace GrblPlotter
 			catch (IOException err) {
 				Properties.Settings.Default.guiLastEndReason += "Error:"+err.Message+" ExportDgvToCSV: "+file;
 				Logger.Error(err,"ExportDgvToCSV IOException:{0}",file);
-				MessageBox.Show("Could not write " + file + "\r\n" + err.Message, "Error");
+				MessageBox.Show("Current tool-table settings could not be saved " + file + "\r\n" + err.Message, "Error");
 			}
 			catch (Exception err) { // access denied
 				Properties.Settings.Default.guiLastEndReason += "Error:"+err.Message+" ExportDgvToCSV: "+file;
 				Logger.Error(err,"ExportDgvToCSV IOException:{0}",file);
-				MessageBox.Show("Could not write " + file + "\r\n" + err.Message, "Error");
+				MessageBox.Show("Current tool-table settings could not be saved " + file + "\r\n" + err.Message, "Error");
 //				throw;		// unknown exception...
 			}
             dGVToolList.DefaultCellStyle.NullValue = dGVToolList.Columns.Count;
@@ -1445,7 +1451,15 @@ namespace GrblPlotter
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-			string fileName = Datapath.Usecases + "\\" + lBUseCase.Text;
+            string file = lBUseCase.Text;
+            if (string.IsNullOrEmpty(file))
+                return;
+
+            string fileName = Datapath.Usecases + "\\" + file;
+
+            if (!File.Exists(fileName))
+                return;
+
             try {
 				File.Delete(fileName);
 			}
@@ -1733,6 +1747,16 @@ namespace GrblPlotter
             LblAccessorySpindleVal.Text = Properties.Settings.Default.grblRunTimeSpindle.ToString("F0");
             LblAccessoryFloodVal.Text = Properties.Settings.Default.grblRunTimeFlood.ToString("F0");
             LblAccessoryMistVal.Text = Properties.Settings.Default.grblRunTimeMist.ToString("F0");
+        }
+
+        private void CbAux1ZMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.importGCAux1ZMode = CbAux1ZMode.SelectedIndex;
+        }
+
+        private void CbAux2ZMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.importGCAux2ZMode = CbAux2ZMode.SelectedIndex;
         }
     }
 }

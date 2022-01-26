@@ -342,7 +342,6 @@ namespace GrblPlotter
         {
             if (start <= 0) return;
             if (start >= (gcodeList.Count - 1)) return;
-
             List<int> figures = new List<int>();
             int figNr;
 
@@ -376,6 +375,8 @@ namespace GrblPlotter
 
         public static void MarkSelectedTile(int start)
         {
+            if (start <= 0) return;
+            if (start >= (gcodeList.Count - 1)) return;
             List<int> figures = new List<int>();
             int figNr;
 
@@ -398,8 +399,11 @@ namespace GrblPlotter
                     for (int i = 1; i <= figNr; i++)
                         myPathIterator.NextMarker(tmpPath);
                     pathMarkSelection.AddPath(tmpPath, false);
+                    lastFigureNumbers.Add(figNr);
                 }
             }
+            RectangleF selectionBounds = pathMarkSelection.GetBounds();
+            SelectionHandle.SetBounds(selectionBounds);
             tmpPath.Dispose();
             myPathIterator.Dispose();
         }

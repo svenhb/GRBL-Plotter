@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
     Thanks to http://code-bude.net/2011/06/02/webcam-benutzen-in-csharp/
 */
 /* 
+	2022-01-21 line 461 if ((realPoints.Count < 2) || (VisuGCode.fiducialsCenter.Count < 2))
 */
 
 using AForge;
@@ -458,7 +459,7 @@ namespace GrblPlotter
                         }
                         else
                         {
-                            if (realPoints.Count < 2)
+                            if ((realPoints.Count < 2) || (VisuGCode.fiducialsCenter.Count < 2))
                             {
                                 SetToolStrip(Color.Fuchsia, "Fiducial detection: Too less assigned points for next step - STOP automatic", true);
                                 fiducialDetection = false;

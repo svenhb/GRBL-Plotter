@@ -3140,4 +3140,92 @@ https://github.com/cprezzi/grbl-servoのGrbl-version'grbl_v1.1f_Servo.hex '、
   <data name="GbAccessoryRunTime.Text" xml:space="preserve">
     <value>アクセサリの実行時間（ミリ秒）</value>
   </data>
+  <data name="LbLAuxDescription.Text" xml:space="preserve">
+    <value>このオプションを使用して、距離に依存する量で塗料をポンピングまたはフィラメントに供給する追加の軸を制御します。
+さらに、Z軸の位置を使用して、たとえば、ブラシがキャンバスを強く押したときにペイントの量を増やすことができます。</value>
+  </data>
+  <data name="CbAux2ZMode.Items" xml:space="preserve">
+    <value>正と負のZを符号付きで使用</value>
+  </data>
+  <data name="CbAux2ZMode.Items1" xml:space="preserve">
+    <value>posとnegZabsoluteを使用する</value>
+  </data>
+  <data name="CbAux2ZMode.Items2" xml:space="preserve">
+    <value>posZのみを使用してください</value>
+  </data>
+  <data name="CbAux2ZMode.Items3" xml:space="preserve">
+    <value>ネガZのみを使用</value>
+  </data>
+  <data name="LblAux12.Text" xml:space="preserve">
+    <value>要素</value>
+  </data>
+  <data name="CbAux2ZUse.Text" xml:space="preserve">
+    <value>Zを検討する</value>
+  </data>
+  <data name="groupBox28.Text" xml:space="preserve">
+    <value>現在のZ値を掛ける</value>
+  </data>
+  <data name="LblAux11.Text" xml:space="preserve">
+    <value>要素</value>
+  </data>
+  <data name="LblAux10.Text" xml:space="preserve">
+    <value>軸</value>
+  </data>
+  <data name="CbAux2SumUp.Text" xml:space="preserve">
+    <value>絶対値</value>
+  </data>
+  <data name="CbAux2SumUp.ToolTip" xml:space="preserve">
+    <value>絶対値：G90距離モードと同様に、距離値が合計されます。</value>
+  </data>
+  <data name="NudAux2Factor.ToolTip" xml:space="preserve">
+    <value>軸の値を計算するための係数=距離*係数</value>
+  </data>
+  <data name="CbAux2Enable.Text" xml:space="preserve">
+    <value>距離関連コマンドの追加2</value>
+  </data>
+  <data name="CbAux1ZMode.Items" xml:space="preserve">
+    <value>正と負のZを符号付きで使用</value>
+  </data>
+  <data name="CbAux1ZMode.Items1" xml:space="preserve">
+    <value>posとnegZabsoluteを使用する</value>
+  </data>
+  <data name="CbAux1ZMode.Items2" xml:space="preserve">
+    <value>posZのみを使用してください</value>
+  </data>
+  <data name="CbAux1ZMode.Items3" xml:space="preserve">
+    <value>ネガZのみを使用</value>
+  </data>
+  <data name="LblAux3.Text" xml:space="preserve">
+    <value>要素</value>
+  </data>
+  <data name="CbAux1ZUse.Text" xml:space="preserve">
+    <value>Zを検討する</value>
+  </data>
+  <data name="groupBox27.Text" xml:space="preserve">
+    <value>現在のZ値を掛ける</value>
+  </data>
+  <data name="LblAux2.Text" xml:space="preserve">
+    <value>要素</value>
+  </data>
+  <data name="LblAux1.Text" xml:space="preserve">
+    <value>軸</value>
+  </data>
+  <data name="CbAux1SumUp.Text" xml:space="preserve">
+    <value>絶対値</value>
+  </data>
+  <data name="CbAux1SumUp.ToolTip" xml:space="preserve">
+    <value>絶対値：G90距離モードと同様に、距離値が合計されます。</value>
+  </data>
+  <data name="NudAux1Factor.ToolTip" xml:space="preserve">
+    <value>軸の値を計算するための係数=距離*係数</value>
+  </data>
+  <data name="CbAux1Enable.Text" xml:space="preserve">
+    <value>距離関連コマンドの追加1</value>
+  </data>
+  <data name="groupBox26.Text" xml:space="preserve">
+    <value>ペイントポンプまたはフィラメントフィーダーの距離関連値</value>
+  </data>
+  <data name="tabPage31.Text" xml:space="preserve">
+    <value>コマンド拡張</value>
+  </data>
 </root>

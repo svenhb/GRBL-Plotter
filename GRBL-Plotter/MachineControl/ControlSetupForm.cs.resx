@@ -3094,4 +3094,92 @@ Ostatní nastavení budou obvykle uložena při změně.</value>
     <value>Založit</value>
     <comment>Form</comment>
   </data>
+  <data name="LbLAuxDescription.Text" xml:space="preserve">
+    <value>Tuto možnost použijte k ovládání další osy, která pumpuje barvu nebo přivádí vlákno v množství závislém na vzdálenosti.
+Kromě toho lze polohu osy Z využít např. ke zvýšení množství barvy, když štětec silněji tlačí na plátno.</value>
+  </data>
+  <data name="CbAux2ZMode.Items" xml:space="preserve">
+    <value>Použijte pos a neg Z se znaménkem</value>
+  </data>
+  <data name="CbAux2ZMode.Items1" xml:space="preserve">
+    <value>Použijte pozici a neg Z absolutní</value>
+  </data>
+  <data name="CbAux2ZMode.Items2" xml:space="preserve">
+    <value>Používejte pouze pozici Z</value>
+  </data>
+  <data name="CbAux2ZMode.Items3" xml:space="preserve">
+    <value>Používejte pouze neg Z</value>
+  </data>
+  <data name="LblAux12.Text" xml:space="preserve">
+    <value>faktor</value>
+  </data>
+  <data name="CbAux2ZUse.Text" xml:space="preserve">
+    <value>zvážit Z</value>
+  </data>
+  <data name="groupBox28.Text" xml:space="preserve">
+    <value>Vynásobte aktuální hodnotou Z</value>
+  </data>
+  <data name="LblAux11.Text" xml:space="preserve">
+    <value>faktor</value>
+  </data>
+  <data name="LblAux10.Text" xml:space="preserve">
+    <value>osa</value>
+  </data>
+  <data name="CbAux2SumUp.Text" xml:space="preserve">
+    <value>Absolutní hodnota</value>
+  </data>
+  <data name="CbAux2SumUp.ToolTip" xml:space="preserve">
+    <value>Absolutní hodnota: Stejně jako u režimu vzdálenosti G90 se hodnoty vzdálenosti sečtou.</value>
+  </data>
+  <data name="NudAux2Factor.ToolTip" xml:space="preserve">
+    <value>Faktor pro výpočet hodnoty osy = vzdálenost * faktor</value>
+  </data>
+  <data name="CbAux2Enable.Text" xml:space="preserve">
+    <value>Přidejte příkaz související se vzdáleností 2</value>
+  </data>
+  <data name="CbAux1ZMode.Items" xml:space="preserve">
+    <value>Použijte pos a neg Z se znaménkem</value>
+  </data>
+  <data name="CbAux1ZMode.Items1" xml:space="preserve">
+    <value>Použijte pozici a neg Z absolutní</value>
+  </data>
+  <data name="CbAux1ZMode.Items2" xml:space="preserve">
+    <value>Používejte pouze pozici Z</value>
+  </data>
+  <data name="CbAux1ZMode.Items3" xml:space="preserve">
+    <value>Používejte pouze neg Z</value>
+  </data>
+  <data name="LblAux3.Text" xml:space="preserve">
+    <value>faktor</value>
+  </data>
+  <data name="CbAux1ZUse.Text" xml:space="preserve">
+    <value>zvážit Z</value>
+  </data>
+  <data name="groupBox27.Text" xml:space="preserve">
+    <value>Vynásobte aktuální hodnotou Z</value>
+  </data>
+  <data name="LblAux2.Text" xml:space="preserve">
+    <value>faktor</value>
+  </data>
+  <data name="LblAux1.Text" xml:space="preserve">
+    <value>osa</value>
+  </data>
+  <data name="CbAux1SumUp.Text" xml:space="preserve">
+    <value>Absolutní hodnota</value>
+  </data>
+  <data name="CbAux1SumUp.ToolTip" xml:space="preserve">
+    <value>Absolutní hodnota: Stejně jako u režimu vzdálenosti G90 se hodnoty vzdálenosti sečtou.</value>
+  </data>
+  <data name="NudAux1Factor.ToolTip" xml:space="preserve">
+    <value>Faktor pro výpočet hodnoty osy = vzdálenost * faktor</value>
+  </data>
+  <data name="CbAux1Enable.Text" xml:space="preserve">
+    <value>Přidejte příkaz související se vzdáleností 1</value>
+  </data>
+  <data name="groupBox26.Text" xml:space="preserve">
+    <value>Hodnota související se vzdáleností pro čerpadlo barvy nebo podavač vlákna</value>
+  </data>
+  <data name="tabPage31.Text" xml:space="preserve">
+    <value>rozšíření příkazu</value>
+  </data>
 </root>

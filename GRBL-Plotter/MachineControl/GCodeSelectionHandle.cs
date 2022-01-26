@@ -18,6 +18,7 @@
 */
 /*
  * 2022-01-17 new class to process frame with handles at selected figure
+ * 2022-01-21 snap on grid
 */
 
 using System;
@@ -31,7 +32,8 @@ namespace GrblPlotter
     internal static class SelectionHandle
     {
         internal enum Handle { None, Move, SizeX, SizeY, SizeXY, Rotate }
-
+		private static int moveHandlePos = 0;					// like on keyboard: 1=lower-left corner, 2=lower edge...
+		
         private static GraphicsPath pathBounds = new GraphicsPath();
         private static GraphicsPath pathArrows = new GraphicsPath();
         private static GraphicsPath arrow0 = new GraphicsPath();
@@ -39,18 +41,25 @@ namespace GrblPlotter
         private static GraphicsPath arrow2 = new GraphicsPath();
 
         private static float handleSizeFix = 10;        // handle size in px
-        private static float handleSize = 10;
+        private static float handleSize = 10;           // handle size adapted on view-range and zoom
+
+        private static RectangleF selectionBoundsOrig;      // selected figure bounds
         private static RectangleF selectionBounds;      // selected figure bounds
+        private static PointF upperEdgeLeft;          	// move
         private static PointF upperEdgeCenter;          // scale y
         private static PointF upperEdgeRight;           // scale xy
         private static PointF rightEdgeCenter;          // scale x
-        private static PointF rightEdgeBottom;              // rotate
+        private static PointF rightEdgeBottom;          // rotate
+        private static PointF lowerEdgeLeft;          	// move
+        private static PointF lowerEdgeRight;          	// move
         internal static PointF center = new PointF();
 
         public static float scalingX = 1, scalingY = 1;
-        public static float offsetX, offsetY;
+  //      public static float offsetX, offsetY;
         public static PointF transformPoint;
         public static float angleDeg = 0;
+        public static XyPoint correctedDifference = new XyPoint();
+
         private static double scalingHandle = 1;
 
         private static bool isactive;
@@ -62,6 +71,7 @@ namespace GrblPlotter
 
         public static void SetBounds(RectangleF bounds)
         {
+            selectionBoundsOrig = bounds;
             selectionBounds = bounds;
             SetHandlePositions(bounds);
             DrawHandles();
@@ -70,21 +80,26 @@ namespace GrblPlotter
         }
         private static void SetHandlePositions(RectangleF bounds)
         {
-            upperEdgeCenter = new PointF(bounds.X + bounds.Width / 2, bounds.Y + bounds.Height + handleSize);
-            upperEdgeRight = new PointF(bounds.X + bounds.Width + handleSize, bounds.Y + bounds.Height + handleSize);
-            rightEdgeCenter = new PointF(bounds.X + bounds.Width + handleSize, bounds.Y + bounds.Height / 2);
-            rightEdgeBottom = new PointF(bounds.X + bounds.Width + handleSize, bounds.Y - handleSize);
+            upperEdgeCenter = new PointF(bounds.X + bounds.Width / 2, bounds.Y + bounds.Height + 2 * handleSize);
+            upperEdgeRight = new PointF(bounds.X + bounds.Width + 2 * handleSize, bounds.Y + bounds.Height + 2 * handleSize);
+            rightEdgeCenter = new PointF(bounds.X + bounds.Width + 2 * handleSize, bounds.Y + bounds.Height / 2);
+            rightEdgeBottom = new PointF(bounds.X + bounds.Width + 2 * handleSize, bounds.Y - 2 * handleSize);
             center = new PointF(bounds.X + bounds.Width / 2, bounds.Y + bounds.Height / 2);
-            offsetX = bounds.Left; offsetY = bounds.Top;
+    //        offsetX = bounds.Left; offsetY = bounds.Top;
             transformPoint = new PointF(bounds.Left, bounds.Top);// - bounds.Height);
+			
+			upperEdgeLeft = new PointF(bounds.X, bounds.Y + bounds.Height);
+			lowerEdgeLeft = new PointF(bounds.X, bounds.Y);
+			lowerEdgeRight= new PointF(bounds.X + bounds.Width, bounds.Y);
         }
         public static Handle IsHandlePosition(XyPoint tmp)
         {
+			moveHandlePos = 0;
             if (InHandle(tmp, upperEdgeCenter, handleSize)) { return Handle.SizeY; }
             if (InHandle(tmp, upperEdgeRight, handleSize)) { return Handle.SizeXY; }
             if (InHandle(tmp, rightEdgeCenter, handleSize)) { return Handle.SizeX; }
             if (InHandle(tmp, rightEdgeBottom, handleSize)) { return Handle.Rotate; }
-            if (InHandle(tmp, center, handleSize)) { return Handle.Move; }
+            if (InHandle(tmp, center, handleSize)) { moveHandlePos = 5; return Handle.Move; }
             if (OnFrame(tmp, handleSize)) { return Handle.Move; }
             return Handle.None;
         }
@@ -95,12 +110,26 @@ namespace GrblPlotter
         { 
 			if ((tmp.X < (selectionBounds.X - r)) || (tmp.X > (selectionBounds.X + selectionBounds.Width + r))) return false;	// too far outside frame
 			if ((tmp.Y < (selectionBounds.Y - r)) || (tmp.Y > (selectionBounds.Y + selectionBounds.Height + r))) return false;	
-			if ((tmp.X < (selectionBounds.X + r)) || (tmp.X > (selectionBounds.X + selectionBounds.Width - r))) return true;	// too far inside frame
-			if ((tmp.Y < (selectionBounds.Y + r)) || (tmp.Y > (selectionBounds.Y + selectionBounds.Height - r))) return true;	
+			if (tmp.X < (selectionBounds.X + r)) {	
+				moveHandlePos = 4;												// left edge
+				if (tmp.Y < (selectionBounds.Y + r)) {moveHandlePos = 1;} 		// lower-left corner
+				if (tmp.Y > (selectionBounds.Y + selectionBounds.Height - r))	// upper-left corner
+				{moveHandlePos = 7;}
+				return true; }
+			if (tmp.X > (selectionBounds.X + selectionBounds.Width - r)) {
+				moveHandlePos = 6;												// right edge
+				if (tmp.Y < (selectionBounds.Y + r)) {moveHandlePos = 3;} 		// lower-right corner
+				if (tmp.Y > (selectionBounds.Y + selectionBounds.Height - r))	// upper-right corner
+				{moveHandlePos = 9;}
+				return true; }	
+			if (tmp.Y < (selectionBounds.Y + r)) {
+				moveHandlePos = 2;	return true; }								// lower edge
+				
+			if (tmp.Y > (selectionBounds.Y + selectionBounds.Height - r)) {
+				moveHandlePos = 8; return true;	}								// upper edge
 			return false;
 		}
-
-
+	
         private static void DrawHandles()
         {
             pathBounds.Reset();
@@ -161,52 +190,90 @@ namespace GrblPlotter
         private static RectangleF GetRectHandle(PointF tmp, float r)
         { return new RectangleF(tmp.X - r, tmp.Y - r, 2 * r, 2 * r); }
 
-        public static PointF GetScaleFactor(XyPoint diff, bool sameScaling)
+        public static PointF GetScaleFactor(XyPoint diff, bool sameScaling, bool snap)
         {
+            if (snap)
+            {
+                diff.X = Math.Round(selectionBoundsOrig.X + selectionBounds.Width + diff.X) - (selectionBoundsOrig.X + selectionBounds.Width);
+                diff.Y = Math.Round(selectionBoundsOrig.Y + selectionBounds.Height + diff.Y) - (selectionBoundsOrig.Y + selectionBounds.Height);
+            }
+
             float x = (selectionBounds.Width + (float)diff.X) / selectionBounds.Width;
             float y = (selectionBounds.Height + (float)diff.Y) / selectionBounds.Height;
             if (sameScaling)
             	y = x = Math.Max(x,y);
+
             return new PointF(x, y);
         }
 
-        public static void Translate(XyPoint diff)
+		private static XyPoint correctOffsetOnSnap(XyPoint diff)
+		{
+			if ((moveHandlePos==1)||(moveHandlePos==4)||(moveHandlePos==7))	// correct X-left
+			{	diff.X = Math.Round(selectionBoundsOrig.X + diff.X) - selectionBoundsOrig.X; }
+			if ((moveHandlePos==3)||(moveHandlePos==6)||(moveHandlePos==9))	// correct X-right
+			{	diff.X = Math.Round(selectionBoundsOrig.X + selectionBoundsOrig.Width + diff.X) - (selectionBoundsOrig.X + selectionBoundsOrig.Width); }
+
+			if ((moveHandlePos==1)||(moveHandlePos==2)||(moveHandlePos==3))	// correct Y-bottom
+			{	diff.Y = Math.Round(selectionBoundsOrig.Y + diff.Y) - selectionBoundsOrig.Y; }
+			if ((moveHandlePos==7)||(moveHandlePos==8)||(moveHandlePos==9))	// correct Y-top
+			{	diff.Y = Math.Round(selectionBoundsOrig.Y + selectionBoundsOrig.Height + diff.Y) - (selectionBoundsOrig.Y + selectionBoundsOrig.Height); }
+
+            if (moveHandlePos == 5)
+            {
+                PointF centerTmp = new PointF(selectionBoundsOrig.X + selectionBoundsOrig.Width / 2, selectionBoundsOrig.Y + selectionBoundsOrig.Height / 2);
+                diff.X = Math.Round(centerTmp.X + diff.X) - centerTmp.X;
+                diff.Y = Math.Round(centerTmp.Y + diff.Y) - centerTmp.Y;            
+            }
+            correctedDifference = diff;
+            return diff;
+		}
+
+        public static XyPoint Translate(XyPoint diff, bool snap)
         {
-            selectionBounds.X += (float)diff.X;
-            selectionBounds.Y += (float)diff.Y;
-            SetHandlePositions(selectionBounds);
-            DrawHandles();
+			if (snap)
+			{	diff = correctOffsetOnSnap(diff); }
+            selectionBounds.X = selectionBoundsOrig.X + (float)diff.X;
+			selectionBounds.Y = selectionBoundsOrig.Y + (float)diff.Y;
+            SetHandlePositions(selectionBounds);		// move coordinates
+            DrawHandles();								// then create paths
+			return diff;
         }
-        public static float GetAngleDeg(XyPoint pa, XyPoint pb)
+        public static float GetAngleDeg(XyPoint pa, XyPoint pb, bool snap)
         {
             XyPoint centPos = new XyPoint(center);
             float angle = (float)(centPos.AngleTo(pa) - centPos.AngleTo(pb));
-            angleDeg += angle;
+            if (snap)
+                angle = (float)Math.Round(angle);
+
+            angleDeg = angle;
             Matrix tmp = new Matrix();
             tmp.RotateAt(angle, center);
-            pathBounds.Transform(tmp);
+            SetHandlePositions(selectionBounds);		// move coordinates
+            DrawHandles();                              // then create paths
+            pathBounds.Transform(tmp);					// rotate path
             pathArrows.Transform(tmp);
             tmp.Dispose();
             return angle;
         }
 
-        public static void Scale(XyPoint diff, Handle type, bool sameScaling)
+        public static void Scale(XyPoint diff, Handle type, bool sameScaling, bool snap)
         {
-            PointF factor = GetScaleFactor(diff, sameScaling);
+            PointF factor = GetScaleFactor(diff, sameScaling, snap);
             if ((type == Handle.SizeX) || (type == Handle.SizeXY))
-                selectionBounds.Width *= factor.X;
+                selectionBounds.Width = selectionBoundsOrig.Width * factor.X;
             if ((type == Handle.SizeY) || (type == Handle.SizeXY))
-                selectionBounds.Height *= factor.Y;
-            //	if ((type == Handle.SizeXY) && sameScaling)
-            //		selectionBounds.Height *= factor.X;
-            SetHandlePositions(selectionBounds);
-            DrawHandles();
-            scalingX *= factor.X;
-            scalingY *= factor.Y;
+                selectionBounds.Height = selectionBoundsOrig.Height * factor.Y;
+            SetHandlePositions(selectionBounds);		// scale coordinates
+            DrawHandles();								// then create paths
+            scalingX = factor.X;
+            scalingY = factor.Y;
         }
 
         public static void DrawPath(Graphics e, double scal)
         {
+            if (!IsActive)
+                return;
+
             if (scalingHandle != scal)  // zooming in 2D view changed... Keep handle size relative to view-box
             {
                 scalingHandle = scal;

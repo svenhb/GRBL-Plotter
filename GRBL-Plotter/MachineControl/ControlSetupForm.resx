@@ -6529,6 +6529,733 @@ select items on next page 'G-Code generation'</value>
   <data name="&gt;&gt;tabPage30.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
+  <data name="LbLAuxDescription.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LbLAuxDescription.Location" type="System.Drawing.Point, System.Drawing">
+    <value>435, 20</value>
+  </data>
+  <data name="LbLAuxDescription.Size" type="System.Drawing.Size, System.Drawing">
+    <value>393, 241</value>
+  </data>
+  <data name="LbLAuxDescription.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="LbLAuxDescription.Text" xml:space="preserve">
+    <value>Use this option to control an additional axis that pumps paint or feeds filament in a distance dependent amount.
+In addition, the position of the Z axis can be used to e.g. increase the amount of paint when the brush presses harder on the canvas.</value>
+  </data>
+  <data name="&gt;&gt;LbLAuxDescription.Name" xml:space="preserve">
+    <value>LbLAuxDescription</value>
+  </data>
+  <data name="&gt;&gt;LbLAuxDescription.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LbLAuxDescription.Parent" xml:space="preserve">
+    <value>groupBox26</value>
+  </data>
+  <data name="&gt;&gt;LbLAuxDescription.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="CbAux2ZMode.Items" xml:space="preserve">
+    <value>Use pos and neg Z with sign</value>
+  </data>
+  <data name="CbAux2ZMode.Items1" xml:space="preserve">
+    <value>Use pos and neg Z absolute</value>
+  </data>
+  <data name="CbAux2ZMode.Items2" xml:space="preserve">
+    <value>Only use pos Z</value>
+  </data>
+  <data name="CbAux2ZMode.Items3" xml:space="preserve">
+    <value>Only use neg Z</value>
+  </data>
+  <data name="CbAux2ZMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>232, 18</value>
+  </data>
+  <data name="CbAux2ZMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 21</value>
+  </data>
+  <data name="CbAux2ZMode.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;CbAux2ZMode.Name" xml:space="preserve">
+    <value>CbAux2ZMode</value>
+  </data>
+  <data name="&gt;&gt;CbAux2ZMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbAux2ZMode.Parent" xml:space="preserve">
+    <value>groupBox28</value>
+  </data>
+  <data name="&gt;&gt;CbAux2ZMode.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="LblAux12.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblAux12.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblAux12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>97, 20</value>
+  </data>
+  <data name="LblAux12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 13</value>
+  </data>
+  <data name="LblAux12.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="LblAux12.Text" xml:space="preserve">
+    <value>Factor</value>
+  </data>
+  <data name="&gt;&gt;LblAux12.Name" xml:space="preserve">
+    <value>LblAux12</value>
+  </data>
+  <data name="&gt;&gt;LblAux12.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblAux12.Parent" xml:space="preserve">
+    <value>groupBox28</value>
+  </data>
+  <data name="&gt;&gt;LblAux12.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="CbAux2ZUse.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbAux2ZUse.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbAux2ZUse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 19</value>
+  </data>
+  <data name="CbAux2ZUse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 17</value>
+  </data>
+  <data name="CbAux2ZUse.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="CbAux2ZUse.Text" xml:space="preserve">
+    <value>include Z</value>
+  </data>
+  <data name="&gt;&gt;CbAux2ZUse.Name" xml:space="preserve">
+    <value>CbAux2ZUse</value>
+  </data>
+  <data name="&gt;&gt;CbAux2ZUse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbAux2ZUse.Parent" xml:space="preserve">
+    <value>groupBox28</value>
+  </data>
+  <data name="&gt;&gt;CbAux2ZUse.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="NudAux2ZFactor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>151, 18</value>
+  </data>
+  <data name="NudAux2ZFactor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 20</value>
+  </data>
+  <data name="NudAux2ZFactor.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="NudAux2ZFactor.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudAux2ZFactor.Name" xml:space="preserve">
+    <value>NudAux2ZFactor</value>
+  </data>
+  <data name="&gt;&gt;NudAux2ZFactor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudAux2ZFactor.Parent" xml:space="preserve">
+    <value>groupBox28</value>
+  </data>
+  <data name="&gt;&gt;NudAux2ZFactor.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="groupBox28.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 176</value>
+  </data>
+  <data name="groupBox28.Size" type="System.Drawing.Size, System.Drawing">
+    <value>399, 53</value>
+  </data>
+  <data name="groupBox28.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="groupBox28.Text" xml:space="preserve">
+    <value>Multiply with current Z value</value>
+  </data>
+  <data name="&gt;&gt;groupBox28.Name" xml:space="preserve">
+    <value>groupBox28</value>
+  </data>
+  <data name="&gt;&gt;groupBox28.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox28.Parent" xml:space="preserve">
+    <value>groupBox26</value>
+  </data>
+  <data name="&gt;&gt;groupBox28.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="LblAux11.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblAux11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblAux11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>106, 152</value>
+  </data>
+  <data name="LblAux11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 13</value>
+  </data>
+  <data name="LblAux11.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="LblAux11.Text" xml:space="preserve">
+    <value>Factor</value>
+  </data>
+  <data name="&gt;&gt;LblAux11.Name" xml:space="preserve">
+    <value>LblAux11</value>
+  </data>
+  <data name="&gt;&gt;LblAux11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblAux11.Parent" xml:space="preserve">
+    <value>groupBox26</value>
+  </data>
+  <data name="&gt;&gt;LblAux11.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="LblAux10.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblAux10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblAux10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 152</value>
+  </data>
+  <data name="LblAux10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>26, 13</value>
+  </data>
+  <data name="LblAux10.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="LblAux10.Text" xml:space="preserve">
+    <value>Axis</value>
+  </data>
+  <data name="&gt;&gt;LblAux10.Name" xml:space="preserve">
+    <value>LblAux10</value>
+  </data>
+  <data name="&gt;&gt;LblAux10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblAux10.Parent" xml:space="preserve">
+    <value>groupBox26</value>
+  </data>
+  <data name="&gt;&gt;LblAux10.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="CbAux2SumUp.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbAux2SumUp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbAux2SumUp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 151</value>
+  </data>
+  <data name="CbAux2SumUp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 17</value>
+  </data>
+  <data name="CbAux2SumUp.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="CbAux2SumUp.Text" xml:space="preserve">
+    <value>Absolute value</value>
+  </data>
+  <data name="CbAux2SumUp.ToolTip" xml:space="preserve">
+    <value>Absolute value: Like G90 distance mode, distance values will be summed up.</value>
+  </data>
+  <data name="&gt;&gt;CbAux2SumUp.Name" xml:space="preserve">
+    <value>CbAux2SumUp</value>
+  </data>
+  <data name="&gt;&gt;CbAux2SumUp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbAux2SumUp.Parent" xml:space="preserve">
+    <value>groupBox26</value>
+  </data>
+  <data name="&gt;&gt;CbAux2SumUp.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="NudAux2Factor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 150</value>
+  </data>
+  <data name="NudAux2Factor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 20</value>
+  </data>
+  <data name="NudAux2Factor.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="NudAux2Factor.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="NudAux2Factor.ToolTip" xml:space="preserve">
+    <value>Factor to calculate axis value = distance * factor</value>
+  </data>
+  <data name="&gt;&gt;NudAux2Factor.Name" xml:space="preserve">
+    <value>NudAux2Factor</value>
+  </data>
+  <data name="&gt;&gt;NudAux2Factor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudAux2Factor.Parent" xml:space="preserve">
+    <value>groupBox26</value>
+  </data>
+  <data name="&gt;&gt;NudAux2Factor.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="CbAux2Axis.Items" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="CbAux2Axis.Items1" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="CbAux2Axis.Items2" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="CbAux2Axis.Items3" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="CbAux2Axis.Location" type="System.Drawing.Point, System.Drawing">
+    <value>48, 149</value>
+  </data>
+  <data name="CbAux2Axis.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 21</value>
+  </data>
+  <data name="CbAux2Axis.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;CbAux2Axis.Name" xml:space="preserve">
+    <value>CbAux2Axis</value>
+  </data>
+  <data name="&gt;&gt;CbAux2Axis.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbAux2Axis.Parent" xml:space="preserve">
+    <value>groupBox26</value>
+  </data>
+  <data name="&gt;&gt;CbAux2Axis.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="CbAux2Enable.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbAux2Enable.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbAux2Enable.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 132</value>
+  </data>
+  <data name="CbAux2Enable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 17</value>
+  </data>
+  <data name="CbAux2Enable.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="CbAux2Enable.Text" xml:space="preserve">
+    <value>Add distance related command 2</value>
+  </data>
+  <data name="&gt;&gt;CbAux2Enable.Name" xml:space="preserve">
+    <value>CbAux2Enable</value>
+  </data>
+  <data name="&gt;&gt;CbAux2Enable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbAux2Enable.Parent" xml:space="preserve">
+    <value>groupBox26</value>
+  </data>
+  <data name="&gt;&gt;CbAux2Enable.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="CbAux1ZMode.Items" xml:space="preserve">
+    <value>Use pos and neg Z with sign</value>
+  </data>
+  <data name="CbAux1ZMode.Items1" xml:space="preserve">
+    <value>Use pos and neg Z absolute</value>
+  </data>
+  <data name="CbAux1ZMode.Items2" xml:space="preserve">
+    <value>Only use pos Z</value>
+  </data>
+  <data name="CbAux1ZMode.Items3" xml:space="preserve">
+    <value>Only use neg Z</value>
+  </data>
+  <data name="CbAux1ZMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>232, 18</value>
+  </data>
+  <data name="CbAux1ZMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 21</value>
+  </data>
+  <data name="CbAux1ZMode.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;CbAux1ZMode.Name" xml:space="preserve">
+    <value>CbAux1ZMode</value>
+  </data>
+  <data name="&gt;&gt;CbAux1ZMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbAux1ZMode.Parent" xml:space="preserve">
+    <value>groupBox27</value>
+  </data>
+  <data name="&gt;&gt;CbAux1ZMode.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="LblAux3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblAux3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblAux3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>97, 20</value>
+  </data>
+  <data name="LblAux3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 13</value>
+  </data>
+  <data name="LblAux3.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="LblAux3.Text" xml:space="preserve">
+    <value>Factor</value>
+  </data>
+  <data name="&gt;&gt;LblAux3.Name" xml:space="preserve">
+    <value>LblAux3</value>
+  </data>
+  <data name="&gt;&gt;LblAux3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblAux3.Parent" xml:space="preserve">
+    <value>groupBox27</value>
+  </data>
+  <data name="&gt;&gt;LblAux3.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="CbAux1ZUse.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbAux1ZUse.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbAux1ZUse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 19</value>
+  </data>
+  <data name="CbAux1ZUse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 17</value>
+  </data>
+  <data name="CbAux1ZUse.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="CbAux1ZUse.Text" xml:space="preserve">
+    <value>include Z</value>
+  </data>
+  <data name="&gt;&gt;CbAux1ZUse.Name" xml:space="preserve">
+    <value>CbAux1ZUse</value>
+  </data>
+  <data name="&gt;&gt;CbAux1ZUse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbAux1ZUse.Parent" xml:space="preserve">
+    <value>groupBox27</value>
+  </data>
+  <data name="&gt;&gt;CbAux1ZUse.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="NudAux1ZFactor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>151, 18</value>
+  </data>
+  <data name="NudAux1ZFactor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 20</value>
+  </data>
+  <data name="NudAux1ZFactor.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="NudAux1ZFactor.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudAux1ZFactor.Name" xml:space="preserve">
+    <value>NudAux1ZFactor</value>
+  </data>
+  <data name="&gt;&gt;NudAux1ZFactor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudAux1ZFactor.Parent" xml:space="preserve">
+    <value>groupBox27</value>
+  </data>
+  <data name="&gt;&gt;NudAux1ZFactor.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="groupBox27.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 63</value>
+  </data>
+  <data name="groupBox27.Size" type="System.Drawing.Size, System.Drawing">
+    <value>399, 53</value>
+  </data>
+  <data name="groupBox27.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="groupBox27.Text" xml:space="preserve">
+    <value>Multiply with current Z value</value>
+  </data>
+  <data name="&gt;&gt;groupBox27.Name" xml:space="preserve">
+    <value>groupBox27</value>
+  </data>
+  <data name="&gt;&gt;groupBox27.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox27.Parent" xml:space="preserve">
+    <value>groupBox26</value>
+  </data>
+  <data name="&gt;&gt;groupBox27.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="LblAux2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblAux2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblAux2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>106, 39</value>
+  </data>
+  <data name="LblAux2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 13</value>
+  </data>
+  <data name="LblAux2.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="LblAux2.Text" xml:space="preserve">
+    <value>Factor</value>
+  </data>
+  <data name="&gt;&gt;LblAux2.Name" xml:space="preserve">
+    <value>LblAux2</value>
+  </data>
+  <data name="&gt;&gt;LblAux2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblAux2.Parent" xml:space="preserve">
+    <value>groupBox26</value>
+  </data>
+  <data name="&gt;&gt;LblAux2.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="LblAux1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblAux1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblAux1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 39</value>
+  </data>
+  <data name="LblAux1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>26, 13</value>
+  </data>
+  <data name="LblAux1.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="LblAux1.Text" xml:space="preserve">
+    <value>Axis</value>
+  </data>
+  <data name="&gt;&gt;LblAux1.Name" xml:space="preserve">
+    <value>LblAux1</value>
+  </data>
+  <data name="&gt;&gt;LblAux1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblAux1.Parent" xml:space="preserve">
+    <value>groupBox26</value>
+  </data>
+  <data name="&gt;&gt;LblAux1.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="CbAux1SumUp.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbAux1SumUp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbAux1SumUp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 38</value>
+  </data>
+  <data name="CbAux1SumUp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 17</value>
+  </data>
+  <data name="CbAux1SumUp.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="CbAux1SumUp.Text" xml:space="preserve">
+    <value>Absolute value</value>
+  </data>
+  <data name="CbAux1SumUp.ToolTip" xml:space="preserve">
+    <value>Absolute value: Like G90 distance mode, distance values will be summed up.</value>
+  </data>
+  <data name="&gt;&gt;CbAux1SumUp.Name" xml:space="preserve">
+    <value>CbAux1SumUp</value>
+  </data>
+  <data name="&gt;&gt;CbAux1SumUp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbAux1SumUp.Parent" xml:space="preserve">
+    <value>groupBox26</value>
+  </data>
+  <data name="&gt;&gt;CbAux1SumUp.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="NudAux1Factor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>160, 37</value>
+  </data>
+  <data name="NudAux1Factor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 20</value>
+  </data>
+  <data name="NudAux1Factor.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="NudAux1Factor.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="NudAux1Factor.ToolTip" xml:space="preserve">
+    <value>Factor to calculate axis value = distance * factor</value>
+  </data>
+  <data name="&gt;&gt;NudAux1Factor.Name" xml:space="preserve">
+    <value>NudAux1Factor</value>
+  </data>
+  <data name="&gt;&gt;NudAux1Factor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudAux1Factor.Parent" xml:space="preserve">
+    <value>groupBox26</value>
+  </data>
+  <data name="&gt;&gt;NudAux1Factor.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="CbAux1Axis.Items" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="CbAux1Axis.Items1" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="CbAux1Axis.Items2" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="CbAux1Axis.Items3" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="CbAux1Axis.Location" type="System.Drawing.Point, System.Drawing">
+    <value>48, 36</value>
+  </data>
+  <data name="CbAux1Axis.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 21</value>
+  </data>
+  <data name="CbAux1Axis.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;CbAux1Axis.Name" xml:space="preserve">
+    <value>CbAux1Axis</value>
+  </data>
+  <data name="&gt;&gt;CbAux1Axis.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbAux1Axis.Parent" xml:space="preserve">
+    <value>groupBox26</value>
+  </data>
+  <data name="&gt;&gt;CbAux1Axis.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="CbAux1Enable.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbAux1Enable.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbAux1Enable.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 19</value>
+  </data>
+  <data name="CbAux1Enable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 17</value>
+  </data>
+  <data name="CbAux1Enable.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="CbAux1Enable.Text" xml:space="preserve">
+    <value>Add distance related command 1</value>
+  </data>
+  <data name="&gt;&gt;CbAux1Enable.Name" xml:space="preserve">
+    <value>CbAux1Enable</value>
+  </data>
+  <data name="&gt;&gt;CbAux1Enable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbAux1Enable.Parent" xml:space="preserve">
+    <value>groupBox26</value>
+  </data>
+  <data name="&gt;&gt;CbAux1Enable.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="groupBox26.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 6</value>
+  </data>
+  <data name="groupBox26.Size" type="System.Drawing.Size, System.Drawing">
+    <value>834, 272</value>
+  </data>
+  <data name="groupBox26.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="groupBox26.Text" xml:space="preserve">
+    <value>Distance related value for paint pump or filament feeder</value>
+  </data>
+  <data name="&gt;&gt;groupBox26.Name" xml:space="preserve">
+    <value>groupBox26</value>
+  </data>
+  <data name="&gt;&gt;groupBox26.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox26.Parent" xml:space="preserve">
+    <value>tabPage31</value>
+  </data>
+  <data name="&gt;&gt;groupBox26.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabPage31.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPage31.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPage31.Size" type="System.Drawing.Size, System.Drawing">
+    <value>846, 284</value>
+  </data>
+  <data name="tabPage31.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="tabPage31.Text" xml:space="preserve">
+    <value>Command extension</value>
+  </data>
+  <data name="&gt;&gt;tabPage31.Name" xml:space="preserve">
+    <value>tabPage31</value>
+  </data>
+  <data name="&gt;&gt;tabPage31.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage31.Parent" xml:space="preserve">
+    <value>tabControl3</value>
+  </data>
+  <data name="&gt;&gt;tabPage31.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
   <data name="tabControl3.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 6</value>
   </data>
@@ -24557,6 +25284,9 @@ Other settings will be stored on change, usually.</value>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>884, 411</value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 150</value>
   </data>
@@ -24826,6 +25556,6 @@ Other settings will be stored on change, usually.</value>
     <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>43</value>
+    <value>49</value>
   </metadata>
 </root>

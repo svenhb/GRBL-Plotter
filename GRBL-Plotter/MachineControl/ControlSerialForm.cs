@@ -606,7 +606,7 @@ namespace GrblPlotter
             List<String> tList = new List<String>();
             cbPort.Items.Clear();
             foreach (string s in System.IO.Ports.SerialPort.GetPortNames()) tList.Add(s);
-            if (tList.Count < 1)
+            if ((tList.Count < 1) && !CbEthernetUse.Checked)
             { LogError("! No serial ports found", null); }
             else
             {
@@ -642,7 +642,7 @@ namespace GrblPlotter
                         { SerialPortFixer.Execute(cbPort.Text); }
                         catch (Exception err)
                         {
-                            Logger.Error(err, "Ser:{0} -SerialPortFixer-", iamSerial);
+                            Logger.Error(err, "Ser:{0} -SerialPortFixer- ", iamSerial);
                             errorOnOpen = true;
                             serialPortError = true;
                         }
@@ -653,6 +653,7 @@ namespace GrblPlotter
 
                 if (errorOnOpen)				// last used port is not available
                 {
+					tryDoSerialConnection = false;
                     AddToLog("* " + cbPort.Text + " not available\r\n");
                     Logger.Warn("Ser:{0}, Port {1} not available", iamSerial, cbPort.Text);
                     if (iamSerial == 1)
@@ -670,6 +671,7 @@ namespace GrblPlotter
             }
             catch (Exception err)
             {
+				tryDoSerialConnection = false;
                 Logger.Error(err, "Ser:{0} -openPort-", iamSerial);
                 countMinimizeForm = 0;
                 LogError("! Opening port", err);

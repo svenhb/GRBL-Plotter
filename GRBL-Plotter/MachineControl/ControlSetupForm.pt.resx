@@ -2834,4 +2834,92 @@ O intervalo utilizável real seria $ 30 = 31, $ 31 = 0.</value>
   <data name="checkBox11.Text" xml:space="preserve">
     <value>Remova todos os comentários ao salvar</value>
   </data>
+  <data name="LbLAuxDescription.Text" xml:space="preserve">
+    <value>Use esta opção para controlar um eixo adicional que bombeia tinta ou alimenta o filamento em uma quantidade dependente da distância.
+Além disso, a posição do eixo Z pode ser usada para, por exemplo, aumentar a quantidade de tinta quando o pincel pressiona com mais força a tela.</value>
+  </data>
+  <data name="CbAux2ZMode.Items" xml:space="preserve">
+    <value>Use pos e neg Z com sinal</value>
+  </data>
+  <data name="CbAux2ZMode.Items1" xml:space="preserve">
+    <value>Use pos e neg Z absoluto</value>
+  </data>
+  <data name="CbAux2ZMode.Items2" xml:space="preserve">
+    <value>Use apenas pos Z</value>
+  </data>
+  <data name="CbAux2ZMode.Items3" xml:space="preserve">
+    <value>Use apenas neg Z</value>
+  </data>
+  <data name="LblAux12.Text" xml:space="preserve">
+    <value>fator</value>
+  </data>
+  <data name="CbAux2ZUse.Text" xml:space="preserve">
+    <value>considere Z</value>
+  </data>
+  <data name="groupBox28.Text" xml:space="preserve">
+    <value>Multiplicar pelo valor Z atual</value>
+  </data>
+  <data name="LblAux11.Text" xml:space="preserve">
+    <value>fator</value>
+  </data>
+  <data name="LblAux10.Text" xml:space="preserve">
+    <value>eixo</value>
+  </data>
+  <data name="CbAux2SumUp.Text" xml:space="preserve">
+    <value>Valor absoluto</value>
+  </data>
+  <data name="CbAux2SumUp.ToolTip" xml:space="preserve">
+    <value>Valor absoluto: Assim como no modo de distância G90, os valores de distância são somados.</value>
+  </data>
+  <data name="NudAux2Factor.ToolTip" xml:space="preserve">
+    <value>Fator para calcular o valor do eixo = distância * fator</value>
+  </data>
+  <data name="CbAux2Enable.Text" xml:space="preserve">
+    <value>Adicionar comando relacionado à distância 2</value>
+  </data>
+  <data name="CbAux1ZMode.Items" xml:space="preserve">
+    <value>Use pos e neg Z com sinal</value>
+  </data>
+  <data name="CbAux1ZMode.Items1" xml:space="preserve">
+    <value>Use pos e neg Z absoluto</value>
+  </data>
+  <data name="CbAux1ZMode.Items2" xml:space="preserve">
+    <value>Use apenas pos Z</value>
+  </data>
+  <data name="CbAux1ZMode.Items3" xml:space="preserve">
+    <value>Use apenas neg Z</value>
+  </data>
+  <data name="LblAux3.Text" xml:space="preserve">
+    <value>fator</value>
+  </data>
+  <data name="CbAux1ZUse.Text" xml:space="preserve">
+    <value>considere Z</value>
+  </data>
+  <data name="groupBox27.Text" xml:space="preserve">
+    <value>Multiplicar pelo valor Z atual</value>
+  </data>
+  <data name="LblAux2.Text" xml:space="preserve">
+    <value>fator</value>
+  </data>
+  <data name="LblAux1.Text" xml:space="preserve">
+    <value>eixo</value>
+  </data>
+  <data name="CbAux1SumUp.Text" xml:space="preserve">
+    <value>Valor absoluto</value>
+  </data>
+  <data name="CbAux1SumUp.ToolTip" xml:space="preserve">
+    <value>Valor absoluto: Assim como no modo de distância G90, os valores de distância são somados.</value>
+  </data>
+  <data name="NudAux1Factor.ToolTip" xml:space="preserve">
+    <value>Fator para calcular o valor do eixo = distância * fator</value>
+  </data>
+  <data name="CbAux1Enable.Text" xml:space="preserve">
+    <value>Adicionar comando relacionado à distância 1</value>
+  </data>
+  <data name="groupBox26.Text" xml:space="preserve">
+    <value>Valor relacionado à distância para bomba de tinta ou alimentador de filamento</value>
+  </data>
+  <data name="tabPage31.Text" xml:space="preserve">
+    <value>extensão de comando</value>
+  </data>
 </root>

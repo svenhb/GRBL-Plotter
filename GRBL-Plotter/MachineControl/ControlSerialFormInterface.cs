@@ -887,7 +887,10 @@ namespace GrblPlotter
          *******************************************************/
         private string CleanUpCodeLine(string data, bool keepComments = false)
         {
-            var line = data.Replace("\r", "").Replace("\n", "");  //remove CR LF
+            if (data == null)
+				return "";
+			
+			var line = data.Replace("\r", "").Replace("\n", "");  //remove CR LF
                                                                   //            line = line.Replace("\n", "");      //remove LF
             if (!keepComments)
             {
@@ -895,7 +898,7 @@ namespace GrblPlotter
                 int start = orig.IndexOf('(');
                 int end = orig.LastIndexOf(')');
                 if (start >= 0) line = orig.Substring(0, start);    // get line without comment
-                if (end >= 0) line += orig.Substring(end + 1);
+                if (end > start) line += orig.Substring(end + 1);
                 line = line.ToUpper();                              //all uppercase
 
                 // extract GCode for 2nd / 3rd COM Port

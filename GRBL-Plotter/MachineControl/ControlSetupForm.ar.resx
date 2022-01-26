@@ -3116,4 +3116,92 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="GbAccessoryRunTime.Text" xml:space="preserve">
     <value>أوقات تشغيل الملحق (مللي ثانية)</value>
   </data>
+  <data name="LbLAuxDescription.Text" xml:space="preserve">
+    <value>استخدم هذا الخيار للتحكم في محور إضافي يضخ الطلاء أو يغذي الفتيل بكمية تعتمد على المسافة.
+بالإضافة إلى ذلك ، يمكن استخدام موضع المحور Z لزيادة كمية الطلاء على سبيل المثال عندما تضغط الفرشاة بقوة أكبر على القماش.</value>
+  </data>
+  <data name="CbAux2ZMode.Items" xml:space="preserve">
+    <value>استخدم نقاط البيع و Neg Z مع الإشارة</value>
+  </data>
+  <data name="CbAux2ZMode.Items1" xml:space="preserve">
+    <value>استخدم نقاط البيع و Neg Z المطلقة</value>
+  </data>
+  <data name="CbAux2ZMode.Items2" xml:space="preserve">
+    <value>استخدم فقط نقاط البيع Z</value>
+  </data>
+  <data name="CbAux2ZMode.Items3" xml:space="preserve">
+    <value>استخدم Neg Z.</value>
+  </data>
+  <data name="LblAux12.Text" xml:space="preserve">
+    <value>عامل</value>
+  </data>
+  <data name="CbAux2ZUse.Text" xml:space="preserve">
+    <value>اعتبر Z</value>
+  </data>
+  <data name="groupBox28.Text" xml:space="preserve">
+    <value>اضرب في قيمة Z الحالية</value>
+  </data>
+  <data name="LblAux11.Text" xml:space="preserve">
+    <value>عامل</value>
+  </data>
+  <data name="LblAux10.Text" xml:space="preserve">
+    <value>محور</value>
+  </data>
+  <data name="CbAux2SumUp.Text" xml:space="preserve">
+    <value>قيمه مطلقه</value>
+  </data>
+  <data name="CbAux2SumUp.ToolTip" xml:space="preserve">
+    <value>القيمة المطلقة: كما هو الحال مع وضع المسافة G90 ، يتم تلخيص قيم المسافة.</value>
+  </data>
+  <data name="NudAux2Factor.ToolTip" xml:space="preserve">
+    <value>عامل لحساب قيمة المحور = المسافة * العامل</value>
+  </data>
+  <data name="CbAux2Enable.Text" xml:space="preserve">
+    <value>أضف الأمر المتعلق بالمسافة2 </value>
+  </data>
+  <data name="CbAux1ZMode.Items" xml:space="preserve">
+    <value>استخدم نقاط البيع و Neg Z مع الإشارة</value>
+  </data>
+  <data name="CbAux1ZMode.Items1" xml:space="preserve">
+    <value>استخدم نقاط البيع و Neg Z المطلقة</value>
+  </data>
+  <data name="CbAux1ZMode.Items2" xml:space="preserve">
+    <value>استخدم فقط نقاط البيع Z</value>
+  </data>
+  <data name="CbAux1ZMode.Items3" xml:space="preserve">
+    <value>استخدم Neg Z.</value>
+  </data>
+  <data name="LblAux3.Text" xml:space="preserve">
+    <value>عامل</value>
+  </data>
+  <data name="CbAux1ZUse.Text" xml:space="preserve">
+    <value>اعتبر Z</value>
+  </data>
+  <data name="groupBox27.Text" xml:space="preserve">
+    <value>اضرب في قيمة Z الحالية</value>
+  </data>
+  <data name="LblAux2.Text" xml:space="preserve">
+    <value>عامل</value>
+  </data>
+  <data name="LblAux1.Text" xml:space="preserve">
+    <value>محور</value>
+  </data>
+  <data name="CbAux1SumUp.Text" xml:space="preserve">
+    <value>قيمه مطلقه</value>
+  </data>
+  <data name="CbAux1SumUp.ToolTip" xml:space="preserve">
+    <value>القيمة المطلقة: كما هو الحال مع وضع المسافة G90 ، يتم تلخيص قيم المسافة.</value>
+  </data>
+  <data name="NudAux1Factor.ToolTip" xml:space="preserve">
+    <value>عامل لحساب قيمة المحور = المسافة * العامل</value>
+  </data>
+  <data name="CbAux1Enable.Text" xml:space="preserve">
+    <value>أضف الأمر المتعلق بالمسافة 1</value>
+  </data>
+  <data name="groupBox26.Text" xml:space="preserve">
+    <value>القيمة المتعلقة بالمسافة لمضخة الطلاء أو وحدة تغذية الفتيل</value>
+  </data>
+  <data name="tabPage31.Text" xml:space="preserve">
+    <value>تمديد القيادة</value>
+  </data>
 </root>
