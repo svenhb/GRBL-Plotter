@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -42,6 +42,7 @@
  * 2020-12-08 add BackgroundWorker updates
  * 2021-07-01 try to guess missing settings: aperture (line 175), number format (line 700)
  * 2021-07-31 code clean up / code quality
+ * 2022-01-19 line 145 err.Message instead of e.String()
 */
 
 using System;
@@ -53,9 +54,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Forms;
-
-//#pragma warning disable CA1303	// Do not pass literals as localized parameters
-//#pragma warning disable CA1307	// Specify StringComparison for clarity
 
 namespace GrblPlotter
 {
@@ -142,7 +140,7 @@ namespace GrblPlotter
                     catch (Exception err)
                     {
                         Logger.Error(err, "Error loading Gerber Code");
-                        MessageBox.Show("Error '" + e.ToString() + "' in Gerber file " + file); //throw;
+                        MessageBox.Show("Error '" + err.Message + "' in Gerber file " + file); //throw;
                     }
                 }
                 else { MessageBox.Show("Gerber file does not exist: " + file); return false; }
