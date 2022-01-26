@@ -8,6 +8,7 @@ Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Don
 * Verbessertes Handling von selektierten Objekten
 * Ausrichten an Gitter
 * Einfügen in vorhandenen Code von Text, Formen oder Barcode
+* Neue Option zum Einfügen einer neuen Achse mit fahrwegabhängigen Wert (für Farbpumpe oder Filament-Feeder)
 
 ### Neu in Version 1.6.4.x
 * Neue Sprachauswahl: Tschechisch
