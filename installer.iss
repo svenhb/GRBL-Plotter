@@ -1,5 +1,8 @@
-; replace constant autoappdata by autodocs
+; 1.0.1.0 replace constant autoappdata by autodocs
+; 1.0.2.0 add CS subfolder
+; 1.0.3.0 change permission from users-modify to everyone-modify
 
+#define MySetupVersion "1.0.3.0"
 #define MyAppName "GRBL-Plotter"
 #define MyAppExeName "GRBL-Plotter.exe"
 #define MyAppPublisher "GRBL-Plotter"
@@ -7,7 +10,6 @@
 #define MyReleasePath "GRBL-Plotter\bin\Release\"
 #define MyWorkPath "GRBL-Plotter\"
 #define MyAppVersion GetVersionNumbersString("GRBL-Plotter\bin\Release\GRBL-Plotter.exe")
-#define MySetupVersion "1.0.2.0"
 #define MyAppDataPath "\GRBL-Plotter"
 
 [Setup]
@@ -39,6 +41,7 @@ Name: "en"; MessagesFile: "compiler:Default.isl"
 Name: "de"; MessagesFile: "compiler:Languages\German.isl"
 ; from https://github.com/kira-96/Inno-Setup-Chinese-Simplified-Translation
 Name: "cn"; MessagesFile: "compiler:Languages\ChineseSimplified.isl"
+Name: "cs"; MessagesFile: "compiler:Languages\Czech.isl"
 Name: "ru"; MessagesFile: "compiler:Languages\Russian.isl"
 Name: "ja"; MessagesFile: "compiler:Languages\Japanese.isl"
 Name: "pt"; MessagesFile: "compiler:Languages\Portuguese.isl"
@@ -64,13 +67,16 @@ Source: "{#MyReleasePath}pt\*"; DestDir: "{app}\pt"; Flags: ignoreversion
 Source: "{#MyReleasePath}ru\*"; DestDir: "{app}\ru"; Flags: ignoreversion
 Source: "{#MyReleasePath}zh-CN\*"; DestDir: "{app}\zh-CN"; Flags: ignoreversion
 
-Source: "{#MyWorkPath}Recent.txt"; DestDir: "{autodocs}{#MyAppDataPath}"; Flags: comparetimestamp promptifolder; Permissions: users-modify
-Source: "{#MyReleasePath}data\*"; DestDir: "{autodocs}{#MyAppDataPath}\data"; Flags: recursesubdirs comparetimestamp promptifolder; Permissions: users-modify
+; autodocs - The path to the My Documents folder. (commondocs or userdocs)
+Source: "{#MyWorkPath}Recent.txt"; DestDir: "{autodocs}{#MyAppDataPath}"; Flags: comparetimestamp promptifolder; Permissions: everyone-modify
+Source: "{#MyReleasePath}data\*"; DestDir: "{autodocs}{#MyAppDataPath}\data"; Flags: recursesubdirs comparetimestamp promptifolder; Permissions: everyone-modify
 
-Source: "Firmware\*"; DestDir: "{autodocs}{#MyAppDataPath}\Firmware"; Flags: recursesubdirs; Permissions: users-modify
+Source: "Firmware\*"; DestDir: "{autodocs}{#MyAppDataPath}\Firmware"; Flags: recursesubdirs; Permissions: everyone-modify
 
 [Registry]
-Root: HKA; Subkey: "Software\{#MyAppName}"; ValueType: string; ValueName: "DataPath"; ValueData: "{autodocs}{#MyAppDataPath}"; Flags: uninsdeletekey
+; HKCU will be checked first, should be cleared if installation is in admin mode
+Root: HKCU; Subkey: "Software\{#MyAppName}\DataPath"; ValueType: none; Flags: deletekey
+Root: HKA;  Subkey: "Software\{#MyAppName}"; ValueType: string; ValueName: "DataPath"; ValueData: "{autodocs}{#MyAppDataPath}"; Flags: uninsdeletekey
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
