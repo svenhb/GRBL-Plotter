@@ -332,9 +332,9 @@ namespace GrblPlotter
                     waitForOk = false;
                     if (sendBuffer.Count > 0)
                     {
-                        Logger.Error("### grblBufferFree too big! {0} rx:'{1}' in processGrblOkMessage() - fix | last RX:'{2}' RX-1:'{3}' RX-2:'{4}'", grblBufferFree, rxString, sendBuffer.GetConfirmedLine(), sendBuffer.GetConfirmedLine(-1), sendBuffer.GetConfirmedLine(-2));
-                        Logger.Info("{0}", ListInfoSend());
-                        Logger.Info("{0}", ListInfoStream());
+                        Logger.Warn("⚠ grblBufferFree too big! {0} rx:'{1}' in processGrblOkMessage() - fix | last RX:'{2}' RX-1:'{3}' RX-2:'{4}'", grblBufferFree, rxString, sendBuffer.GetConfirmedLine(), sendBuffer.GetConfirmedLine(-1), sendBuffer.GetConfirmedLine(-2));
+                        Logger.Info("⚠ {0}", ListInfoSend());
+                        Logger.Info("⚠ {0}", ListInfoStream());
                     }
                 }
             }   // lock
@@ -376,7 +376,7 @@ namespace GrblPlotter
             {
                 if (sendBuffer.IndexConfirmed > sendBuffer.Count)  // nok
                 {
-                    Logger.Warn("processGrblOkMessage  fix overflow  IndexConfirmed:{0}  Count:{1}", sendBuffer.IndexConfirmed, sendBuffer.Count);
+                    Logger.Warn("⚠ processGrblOkMessage  fix overflow  IndexConfirmed:{0}  Count:{1}", sendBuffer.IndexConfirmed, sendBuffer.Count);
                     sendBuffer.Clear();
                 }
             }
@@ -725,7 +725,7 @@ namespace GrblPlotter
             waitForIdle = false;
             lastError = "";
             lastMessage = string.Format("grbl ALARM '{0}' {1}", rxStringTmp, Grbl.GetAlarmDescription(rxStringTmp));
-            Logger.Warn("Ser:{0}  {1}", iamSerial, lastMessage);
+            Logger.Warn("⚠ Ser:{0}  {1}", iamSerial, lastMessage);
             AddToLog("\r\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             AddToLog(string.Format("< {0} \t{1}", rxStringTmp, Grbl.GetAlarmDescription(rxStringTmp)));
             lastError = rxStringTmp + " " + Grbl.GetAlarmDescription(rxStringTmp) + "\r\n";
@@ -754,7 +754,7 @@ namespace GrblPlotter
             lastMessage = string.Format("grbl ERROR '{0}' {1}", rxStringTmp, Grbl.GetErrorDescription(rxStringTmp));
             lastError = rxStringTmp + " " + Grbl.GetErrorDescription(rxStringTmp) + "\r\n";
 
-            Logger.Warn("Ser:{0}  {1}", iamSerial, lastMessage);
+            Logger.Warn("⚠ Ser:{0}  {1}", iamSerial, lastMessage);
             AddToLog("\r\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             AddToLog(string.Format("< {0} \t{1}", rxStringTmp, Grbl.GetErrorDescription(rxStringTmp)));
             this.WindowState = FormWindowState.Minimized;
@@ -764,7 +764,7 @@ namespace GrblPlotter
             streamingStateNow = GrblStreaming.error;
             if (isStreaming)
             {
-                Logger.Warn("! Last RX '{0}'  BufferFree:{1,3}  Index:{2,3}  max:{3,3}  lineNr:{4}", sendBuffer.GetConfirmedLine(), grblBufferFree, sendBuffer.IndexConfirmed, sendBuffer.Count, (sendBuffer.GetConfirmedLineNr() + 1));
+                Logger.Warn("⚠ Last RX '{0}'  BufferFree:{1,3}  Index:{2,3}  max:{3,3}  lineNr:{4}", sendBuffer.GetConfirmedLine(), grblBufferFree, sendBuffer.IndexConfirmed, sendBuffer.Count, (sendBuffer.GetConfirmedLineNr() + 1));
                 AddToLog(string.Format("! Last processed '{0}'  line-Nr:{1}", sendBuffer.GetConfirmedLine(), (sendBuffer.GetConfirmedLineNr() + 1)));
                 AddToLog(string.Format("Try to continue err-count:{0}", ++countGrblError));
                 SendStreamEvent(streamingStateNow);         // processGrblErrorMessage

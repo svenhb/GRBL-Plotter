@@ -86,7 +86,7 @@ namespace GrblPlotter
         public void StartStreaming(IList<string> gCodeList, int startAtLine, int stopAtLine, bool check)
         {
             grblCharacterCounting = Properties.Settings.Default.grblStreamingProtocol1 && !isMarlin;
-            Logger.Info("Ser:{0} startStreaming at line:{1} to line:{2} ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼", iamSerial, startAtLine, stopAtLine);
+            Logger.Info("▼▼▼▼▼ Ser:{0} startStreaming at line:{1} to line:{2} ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼", iamSerial, startAtLine, stopAtLine);
             if (grblCharacterCounting)
                 Logger.Info("Streaming Protocol: Character-Counting");
             else
@@ -275,7 +275,7 @@ namespace GrblPlotter
                                 {   InsertToolChangeCode(i, ref tmpToolInSpindle);  }// insert external script-code and insert variables 
                                 else   
                                 {	AddToLog(tmp + " !!! Tool change is disabled");
-									Logger.Warn("Found {0} but tool change is disabled in [Setup - Tool change]");
+									Logger.Warn("⚠ Found {0} but tool change is disabled in [Setup - Tool change]");
 								}
                             }
                             if (cmdMNr == 30)
@@ -445,7 +445,7 @@ namespace GrblPlotter
             {   isStreamingRequestPause = true;     // wait until buffer is empty before switch to pause
                 AddToLog("[Pause streaming - wait for IDLE]");
                 AddToLog("[Save Settings]");
-                Logger.Info("pauseStreaming RequestPause ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲");
+                Logger.Info("▲▼▲▼▲ pauseStreaming RequestPause    ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲");
                 streamingStateNow = GrblStreaming.waitidle;
                 getParserState = true;
             }
@@ -471,7 +471,7 @@ namespace GrblPlotter
 				
                 AddToLog(string.Format("[Start streaming line:{0} - no echo]", streamingBuffer.GetSentLineNr()));
          //       AddToLog("[Restore Settings: "+ parserStateGC+" ]");
-                Logger.Info("pauseStreaming start streaming ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼");
+                Logger.Info("▲▼▲▼▲ pauseStreaming start streaming ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼");
                 streamingStateNow = GrblStreaming.ok;
 
 				if (parserStateGC.Length > 0)
@@ -509,7 +509,7 @@ namespace GrblPlotter
                 ResetStreaming(false);      // stopStreaming
                 isStreamingRequestStopp = true;         // 20200717
                 isStreamingRequestPause = true;     // 20200717
-                Logger.Info(" stopStreaming() - wait for IDLE - sent:{0}  received:{1}  ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲", streamingBuffer.IndexSent, streamingBuffer.IndexConfirmed);
+                Logger.Info("▲▲▲▲▲ stopStreaming() - wait for IDLE - sent:{0}  received:{1}  ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲", streamingBuffer.IndexSent, streamingBuffer.IndexConfirmed);
             }
         }
 		
@@ -523,6 +523,7 @@ namespace GrblPlotter
            // line = streamingBuffer.GetSentLineNr();
             if (logStartStop) Logger.Trace(" stopStreamingFinal() gCodeLinesSent {0}  gCodeLineNr.Count {1}", streamingBuffer.IndexSent, streamingBuffer.Count);
             SendStreamEvent(GrblStreaming.stop);        // stopStreamingFinal
+            Logger.Info("▲▲▲▲▲ StopStreamingFinal() ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲");
 
             IsHeightProbing = false;
 			
@@ -760,7 +761,7 @@ namespace GrblPlotter
             countPreventEvent = 0; countPreventOutput = 0;
 
             AddToLog(string.Format("\r[Streaming finish line:{0}]", streamingBuffer.GetConfirmedLineNr()));
-            Logger.Info("streamingFinish ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲");
+            Logger.Info("▲▲▲▲▲ streamingFinish ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲");
             SendStreamEvent(streamingStateNow);     // streaming in streamingFinish()
             streamingStateNow = GrblStreaming.finish;
 

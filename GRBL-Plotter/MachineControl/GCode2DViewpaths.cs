@@ -55,6 +55,8 @@ namespace GrblPlotter
         internal static GraphicsPath pathGrid1 = new GraphicsPath();
         internal static GraphicsPath pathGrid10 = new GraphicsPath();
         internal static GraphicsPath pathGrid100 = new GraphicsPath();
+        internal static GraphicsPath pathGrid1000 = new GraphicsPath();
+        internal static GraphicsPath pathGrid10000 = new GraphicsPath();
         internal static GraphicsPath pathTool = new GraphicsPath();
         internal static GraphicsPath pathMarker = new GraphicsPath();
         internal static GraphicsPath pathHeightMap = new GraphicsPath();
@@ -573,6 +575,9 @@ namespace GrblPlotter
             path.Reset();
 			pathGrid1.Reset();
             pathGrid10.Reset();
+            pathGrid100.Reset();
+            pathGrid1000.Reset();
+            pathGrid10000.Reset();
             float unit = 1;
             int divider = 1;
             int divider_long = 100;
@@ -605,7 +610,17 @@ namespace GrblPlotter
                 x = (float)i * unit / (float)divider;
                 if (i % divider_short == 0)
                 {
-                    if (i % divider_long == 0)
+                    if (i % 10000 == 0)
+                    {   path.AddLine(x, 0, x, -length5);        // 1000
+                        pathGrid10000.AddLine(x, dP.minY-2000, x, dP.maxY+2000);
+                        pathGrid10000.StartFigure();
+                    }
+                    else if(i % 1000 == 0)
+                    {   path.AddLine(x, 0, x, -length5);        // 1000
+                        pathGrid1000.AddLine(x, dP.minY-500, x, dP.maxY+500);
+                        pathGrid1000.StartFigure();
+                    }
+                    else if(i % divider_long == 0)
                     {   path.AddLine(x, 0, x, -length5);        // 100 
                         pathGrid100.AddLine(x, dP.minY, x, dP.maxY);
                         pathGrid100.StartFigure();
@@ -630,7 +645,19 @@ namespace GrblPlotter
                 y = (float)i * unit / (float)divider;
                 if (i % divider_short == 0)
                 {
-                    if (i % divider_long == 0)
+                    if (i % 10000 == 0)
+                    {
+                        path.AddLine(0, y, -length5, y);    // 100
+                        pathGrid10000.AddLine(dP.minX-2000, y, dP.maxX+2000, y);
+                        pathGrid10000.StartFigure();
+                    }
+                    else if(i % 1000 == 0)
+                    {
+                        path.AddLine(0, y, -length5, y);    // 100
+                        pathGrid1000.AddLine(dP.minX-500, y, dP.maxX+500, y);
+                        pathGrid1000.StartFigure();
+                    }
+                    else if(i % divider_long == 0)
                     {   path.AddLine(0, y, -length5, y);    // 100
                         pathGrid100.AddLine(dP.minX, y, dP.maxX, y);
                         pathGrid100.StartFigure();
@@ -754,15 +781,23 @@ namespace GrblPlotter
         }
 
 
+        public static float MarkerSize = 10;
         public static void CreateMarkerPath()
-        { CreateMarkerPath(false, new XyPoint(0, 0)); }
+        {   CreateMarkerPath(MarkerSize); }
+        public static void CreateMarkerPath(float size)
+        {   if (size > 0)
+                MarkerSize = size;
+            else
+                MarkerSize = (float)Math.Sqrt(xyzSize.dimx * xyzSize.dimx + xyzSize.dimy * xyzSize.dimy) / 40f; 
+            CreateMarkerPath(false, new XyPoint(0, 0)); 
+        }
 
         internal static void CreateMarkerPath(bool showCenter, XyPoint center)
         { CreateMarkerPath(showCenter, center, center); }
         internal static void CreateMarkerPath(bool showCenter, XyPoint center, XyPoint last)
         {
-            float msize = (float)Math.Sqrt(xyzSize.dimx * xyzSize.dimx + xyzSize.dimy * xyzSize.dimy) / 40f;
-            msize = Math.Max(msize, 2);
+            //float MarkerSize = (float)Math.Sqrt(xyzSize.dimx * xyzSize.dimx + xyzSize.dimy * xyzSize.dimy) / 40f;
+            MarkerSize = Math.Max(MarkerSize, 2);
             //            createMarker(pathTool,   (xyPoint)grbl.posWork, msize, 2);
 
             if (tangentialAxisEnable)
@@ -773,18 +808,18 @@ namespace GrblPlotter
                 else if (tangentialAxisName == "B") { posAngle = factor * Grbl.posWork.B; }
                 else if (tangentialAxisName == "A") { posAngle = factor * Grbl.posWork.A; }
                 else if (tangentialAxisName == "Z") { posAngle = factor * Grbl.posWork.Z; }
-                CreateMarkerArrow(pathTool, msize, (XyPoint)Grbl.posWork, posAngle, 1);
-                CreateMarkerArrow(pathMarker, msize, (XyPoint)Grbl.PosMarker, Grbl.PosMarkerAngle * 360 / (double)Properties.Settings.Default.importGCTangentialTurn);
+                CreateMarkerArrow(pathTool, MarkerSize, (XyPoint)Grbl.posWork, posAngle, 1);
+                CreateMarkerArrow(pathMarker, MarkerSize, (XyPoint)Grbl.PosMarker, Grbl.PosMarkerAngle * 360 / (double)Properties.Settings.Default.importGCTangentialTurn);
             }
             else
             {
-                CreateMarker(pathTool, (XyPoint)Grbl.posWork, msize, 2);
-                CreateMarker(pathMarker, (XyPoint)Grbl.PosMarker, msize, 3);
+                CreateMarker(pathTool, (XyPoint)Grbl.posWork, MarkerSize, 2);
+                CreateMarker(pathMarker, (XyPoint)Grbl.PosMarker, MarkerSize, 3);
             }
 
             if (showCenter)
             {
-                CreateMarker(pathMarker, center, msize, 0, false);
+                CreateMarker(pathMarker, center, MarkerSize, 0, false);
                 pathMarker.StartFigure(); pathMarker.AddLine((float)last.X, (float)last.Y, (float)center.X, (float)center.Y);
                 pathMarker.StartFigure(); pathMarker.AddLine((float)center.X, (float)center.Y, (float)Grbl.PosMarker.X, (float)Grbl.PosMarker.Y);
             }
@@ -796,11 +831,11 @@ namespace GrblPlotter
 
                 if (Properties.Settings.Default.ctrl4thOverX)
                 {
-                    CreateMarker(pathTool, (float)Grbl.posWork.X, (float)Grbl.posWork.A * scale, msize, 2);
+                    CreateMarker(pathTool, (float)Grbl.posWork.X, (float)Grbl.posWork.A * scale, MarkerSize, 2);
                 }
                 else
                 {
-                    CreateMarker(pathTool, (float)Grbl.posWork.A * scale, (float)Grbl.posWork.Y, msize, 2);
+                    CreateMarker(pathTool, (float)Grbl.posWork.A * scale, (float)Grbl.posWork.Y, MarkerSize, 2);
                 }
             }
         }

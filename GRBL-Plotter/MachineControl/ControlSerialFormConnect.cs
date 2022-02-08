@@ -35,16 +35,17 @@ namespace GrblPlotter
 
         private bool IsConnectedToGrbl()
         {
-            if (!CbEthernetUse.Checked) { return serialPort.IsOpen; }
+            if (!useEthernet) { return serialPort.IsOpen; }
             else { return Connected; }
         }
 
         /***** ethernet preperations *****/
 
         private NetworkStream Connection;
-        TcpClient ClientEthernet;
-        bool Connected = false;
-        StreamReader reader;
+        private TcpClient ClientEthernet;
+        private bool Connected = false;
+        private bool UseSocket = true;
+        private StreamReader reader;
         //     StreamWriter writer;
 
         public void ConnectToGrbl()
@@ -54,8 +55,10 @@ namespace GrblPlotter
             bool showMessageBox = false;	//true;
             rxErrorCount = 0;
 			tryDoSerialConnection = true;
-			
-            if (!CbEthernetUse.Checked)
+            rtbLog.Clear();
+
+            useEthernet = CbEthernetUse.Checked;
+            if (!useEthernet)
             {
                 AddToLog("\nTry to connect to serial " + cbPort.Text + " @ " + cbBaud.Text);
                 Application.DoEvents();
@@ -72,42 +75,50 @@ namespace GrblPlotter
                 try
                 {
                     Logger.Info("==== Connecting to {0}:{1} ====", TbEthernetIP.Text, TbEthernetPort.Text);
-                    AddToLog("\nTry to connect to Ethernet (wait 20 sec.)\n" + TbEthernetIP.Text + ":" + TbEthernetPort.Text);
+                    AddToLog("\nTry to connect via Ethernet - Telnet\nConnect to " + TbEthernetIP.Text + ":" + TbEthernetPort.Text + "\nIf fails, it takes up to 20 sec. to response!");
 					timerSerial.Interval = 1000;
                     timerSerial.Start();
 
                     if (int.TryParse(TbEthernetPort.Text, out int port))
                     {
-                        if ((port >= 0) && (port <= 65535))
+
+                        // https://docs.microsoft.com/de-de/dotnet/framework/network-programming/asynchronous-client-socket-example
+                     //   if (UseSocket)
+                     //   { }
+                        // Telnet
+                    //    else
                         {
-                            BtnOpenPortEthernet.Text = Localization.GetString("serialClose");
-                            BtnOpenPortEthernet.Enabled = false;
-                            CbEthernetUse.Enabled = false;
-                            Application.DoEvents();
-                            ClientEthernet = new TcpClient(TbEthernetIP.Text, port);
-                            Connected = true;
-                            Connection = ClientEthernet.GetStream();
-							tryDoSerialConnection = false;
+                            if ((port >= 0) && (port <= 65535))
+                            {
+                                BtnOpenPortEthernet.Text = Localization.GetString("serialClose");
+                                BtnOpenPortEthernet.Enabled = false;
+                                CbEthernetUse.Enabled = false;
+                                Application.DoEvents();
+                                ClientEthernet = new TcpClient(TbEthernetIP.Text, port);        // Telnet
+                                Connected = true;
+                                Connection = ClientEthernet.GetStream();
+                                tryDoSerialConnection = false;
 
-                            SaveSettings();
-                            reader = new StreamReader(Connection);
-                            AddToLog("Connect to ethernet " + TbEthernetIP.Text + ":" + TbEthernetPort.Text);
+                                SaveSettings();
+                                reader = new StreamReader(Connection, System.Text.Encoding.ASCII);
+                                AddToLog("Connect via Ethernet - Telnet " + TbEthernetIP.Text + ":" + TbEthernetPort.Text);
 
-							ConnectionSucceed("Connect to ethernet " + TbEthernetIP.Text + ":" + TbEthernetPort.Text);
+                                ConnectionSucceed("Connect to Ethernet " + TbEthernetIP.Text + ":" + TbEthernetPort.Text);
 
-                            timerSerial.Interval = 500;       		// timerReload;
+                                timerSerial.Interval = 500;             // timerReload;
 
-                            CbEthernetUse.Enabled = false;
-                            BtnOpenPortEthernet.Enabled = true;
-                            Application.DoEvents();
-                        }
-                        else
-                        {
-							countMinimizeForm = 0;
-                            string msg = string.Format("Port number must be between 0 and 65535: {0}");
-                            Logger.Error(msg);
-                            AddToLog(msg);
-                            if (showMessageBox) MessageBox.Show(msg, "Error");
+                                CbEthernetUse.Enabled = false;
+                                BtnOpenPortEthernet.Enabled = true;
+                                Application.DoEvents();
+                            }
+                            else
+                            {
+                                countMinimizeForm = 0;
+                                string msg = string.Format("Port number must be between 0 and 65535: {0}");
+                                Logger.Error(msg);
+                                AddToLog(msg);
+                                if (showMessageBox) MessageBox.Show(msg, "Error");
+                            }
                         }
                     }
                     else
@@ -122,7 +133,7 @@ namespace GrblPlotter
                 catch (ArgumentNullException)
                 {
 					countMinimizeForm = 0;
-                    string msg = "ArgumentNullException - Invalid address or port";
+                    string msg = "ArgumentNullException - Invalid address or port.\nWrong port? Telnet on esp expects port 23.";
                     Logger.Error(msg);
                     AddToLog(msg);
                     if (showMessageBox) MessageBox.Show(msg, "Error");
@@ -134,7 +145,7 @@ namespace GrblPlotter
                 catch (SocketException)
                 {
 					countMinimizeForm = 0;
-                    string msg = "SocketException - Connection failure";
+                    string msg = "SocketException - Connection failure.\nWrong port? Telnet on esp expects port 23.";
                     Logger.Error(msg);
                     AddToLog(msg);
                     if (showMessageBox) MessageBox.Show(msg, "Error");
@@ -143,8 +154,9 @@ namespace GrblPlotter
                     BtnOpenPortEthernet.Text = Localization.GetString("serialOpen");
                     Connected = false;
                 }
+                tryDoSerialConnection = false;
             }
-			UpdateControls();
+            UpdateControls();
         }
 		
         public void DisconnectFromGrbl(object sender, EventArgs e)
@@ -155,7 +167,8 @@ namespace GrblPlotter
             //     writer = null;
             CbEthernetUse.Enabled = true;
 
-            if (!CbEthernetUse.Checked)
+            useEthernet = CbEthernetUse.Checked;
+            if (!useEthernet)
             {
                 ClosePortSerial();
 				BtnOpenPortSerial.Text = Localization.GetString("serialOpen");
@@ -174,6 +187,8 @@ namespace GrblPlotter
                 timerSerial.Interval = 1000;
                 //SaveSettings();
                 Connection = null;
+                CbEthernetUse.Enabled = true;
+                BtnOpenPortEthernet.Enabled = true;
                 BtnOpenPortEthernet.Text = Localization.GetString("serialOpen");
             }
             if (iamSerial == 1) { Grbl.isConnected = SerialPortOpen = IsConnectedToGrbl(); }
@@ -191,12 +206,13 @@ namespace GrblPlotter
 				Grbl.Clear();			// reset internal grbl variables
 			}
 
-			if (Properties.Settings.Default.serialMinimize)
-				countMinimizeForm = (int)(3000 / timerSerial.Interval); 	// minimize window after 5 sec.
-
 			timerSerial.Interval = Grbl.pollInterval;       		// timerReload;
 			countMissingStatusReport = (int)(2000 / timerSerial.Interval);
-			timerSerial.Enabled = true;
+
+            if (Properties.Settings.Default.serialMinimize)
+                countMinimizeForm = (int)(2000 / timerSerial.Interval);     // minimize window after 3 sec.
+
+            timerSerial.Enabled = true;
 			serialPortError = false;
 
 			countPreventOutput = 0; countPreventEvent = 0;

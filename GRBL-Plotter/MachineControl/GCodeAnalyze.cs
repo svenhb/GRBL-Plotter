@@ -303,7 +303,7 @@ namespace GrblPlotter
             int countZ = 0;
             int lastMotion = 0;
 
-            if (oldCode.Count > 100000) // huge amount of code, reduce time consuming functionality
+            if (oldCode.Count > 1000000) // huge amount of code, reduce time consuming functionality
             {
                 Logger.Info("!!!!! Huge amount of code, reduce time consuming functionality !!!!!");
                 showArrow = false;
@@ -664,14 +664,14 @@ namespace GrblPlotter
             {   // Note "[" and "]" are used to parse line number in MainFormLoadFile to mark line via MainFormFCTB
                 string err1 = string.Format("i,j not ok: r-old:{0:0.000} r-new:{1:0.000}", r, newr);
                 string err2 = string.Format(" [{0}] '{1}' would cause error 33: Radii are not equal between r-start:{2:0.000} and r-end:{3:0.000}", (newLine.lineNumber + 1), newLine.codeLine, r, newr);
-                string err3 = string.Format(" [{0}] error 33: r-start:{1:0.000} r-end:{2:0.000}", (newLine.lineNumber + 1), r, newr);
+                string err3 = string.Format(" [{0}] error 33: X:{1:0.000} Y:{2:0.000}  r-start:{3:0.000} r-end:{4:0.000}", (newLine.lineNumber + 1), oldLine.actualPos.X, oldLine.actualPos.Y, r, newr);
                 if (error33cnt == 0)
                 {
                     errorString += err2 + "\r\n  You may increase decimal places in (Setup Graphics import - G-Code generation) and import the graphic again.\r\n\r\n";
                 }
                 else
                 { errorString += err3 + "\r\n"; }
-                Logger.Error("{0}", err3);
+                Logger.Error("{0}  '{1}' to '{2}'", err3, oldLine.codeLine, newLine.codeLine);
                 newLine.codeLine += string.Format("({0})", err1);
                 error33cnt++;
             }
@@ -848,7 +848,7 @@ namespace GrblPlotter
             int count = 0;
             if ((pathInfoMarker != null) && (pathInfoMarker.Any()))
             {
-                Logger.Info("ModifyPenUpPath - add arrows and ids - count:{0}", pathInfoMarker.Count);
+                Logger.Info("🡷🡴🡵🡶 ModifyPenUpPath - add arrows and ids - count:{0}", pathInfoMarker.Count);
                 foreach (PathInfo tmp in pathInfoMarker)
                 {
                     if (worker != null)
