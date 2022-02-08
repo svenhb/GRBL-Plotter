@@ -1904,8 +1904,8 @@ namespace GrblPlotter
             // 
             // cmsPicBoxRotateSelectedPath
             // 
-            this.cmsPicBoxRotateSelectedPath.Name = "cmsPicBoxRotateSelectedPath";
             resources.ApplyResources(this.cmsPicBoxRotateSelectedPath, "cmsPicBoxRotateSelectedPath");
+            this.cmsPicBoxRotateSelectedPath.Name = "cmsPicBoxRotateSelectedPath";
             this.cmsPicBoxRotateSelectedPath.Click += new System.EventHandler(this.CmsPicBoxRotateSelectedPath_Click);
             // 
             // toolStripSeparator10

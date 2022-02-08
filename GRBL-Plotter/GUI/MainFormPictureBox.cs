@@ -88,6 +88,7 @@ namespace GrblPlotter
 
         private readonly object lockObject = new object();
         private bool shiftedDisplay = false;
+
         private double picScaling = 1;
 
         private void PictureBox1_Paint(object sender, PaintEventArgs e)
@@ -270,10 +271,14 @@ namespace GrblPlotter
                 if (Properties.Settings.Default.gui2DRulerShow)
                 {	
 					if ((picScaling* zoomFactor) > 10)
-						e.DrawPath(penGrid1, VisuGCode.pathGrid1);
+						e.DrawPath(penGrid1, VisuGCode.pathGrid1);          // grid   1mm
 					if ((picScaling* zoomFactor) > 2)
-						e.DrawPath(penGrid10, VisuGCode.pathGrid10);
-                    e.DrawPath(penGrid100, VisuGCode.pathGrid100);
+						e.DrawPath(penGrid10, VisuGCode.pathGrid10);        // grid  10mm
+                    if ((picScaling * zoomFactor) > 0.1)
+                        e.DrawPath(penGrid100, VisuGCode.pathGrid100);      // grid 100mm
+                    if ((picScaling * zoomFactor) > 0.01)
+                        e.DrawPath(penGrid100, VisuGCode.pathGrid1000);     // grid 1000mm
+                    e.DrawPath(penGrid100, VisuGCode.pathGrid10000);        // grid 10000mm
                     e.DrawPath(penRuler, VisuGCode.pathRuler);
 				}
 
@@ -599,7 +604,7 @@ namespace GrblPlotter
 					FindFigureMarkSelection(markerType, line, (fold > 0));    // collapse=true
 
 					Grbl.PosMarker = marker.actualPos;
-					VisuGCode.CreateMarkerPath();
+					VisuGCode.CreateMarkerPath(markerSize);
 					selectionPathOrig = (GraphicsPath)VisuGCode.pathMarkSelection.Clone();
 				}
 				cmsPicBoxMoveToMarkedPosition.ToolTipText = "Work X: " + Grbl.PosMarker.X.ToString() + "   Y: " + Grbl.PosMarker.Y.ToString();
@@ -625,6 +630,7 @@ namespace GrblPlotter
         private Matrix pBoxOrig = new Matrix();			// to restore e.Graphics.Transform
         private const float scrollZoomFactor = 1.2f; // zoom factor   
         private float zoomFactor = 1f;
+        private float markerSize = 20;
         private bool allowZoom = true;
 
         private void PictureBox1_MouseWheel(object sender, MouseEventArgs e)
@@ -679,7 +685,7 @@ namespace GrblPlotter
 
             if (zoomIn > 0)
             {
-                if (zoomFactor < 800)
+                if (zoomFactor < 10000)
                 {
                     zoomFactor *= scrollZoomFactor;
                     XyPoint locationO = GetPicBoxOffset(location);
@@ -704,6 +710,8 @@ namespace GrblPlotter
                 pBoxTransform.Reset(); zoomFactor = 1;
             }
 
+            markerSize = (float)(40f/(picScaling* zoomFactor));
+            VisuGCode.CreateMarkerPath(markerSize);
             pictureBox1.Invalidate();
         }
 
@@ -761,7 +769,7 @@ namespace GrblPlotter
         #region cmsPictureBox events
         private void CmsPicBoxEnable(bool enable = true)
         {
-            Logger.Trace("cmsPicBoxEnable {0}", enable);
+            Logger.Trace("==== cmsPicBoxEnable {0}", enable);
             cmsPicBoxMoveToMarkedPosition.Enabled = enable;
             cmsPicBoxZeroXYAtMarkedPosition.Enabled = enable;
             cmsPicBoxMoveGraphicsOrigin.Enabled = enable;
@@ -860,6 +868,7 @@ namespace GrblPlotter
             else
                 fCTBCode.Text = VisuGCode.CutOutFigure();
             TransformEnd();
+            VisuGCode.pathBackground.Reset();
         }
 
         private void CmsPicBoxMoveSelectedPathInCode_Click(object sender, EventArgs e)

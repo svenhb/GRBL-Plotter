@@ -103,7 +103,7 @@ namespace GrblPlotter
         private readonly List<string> MRUlist = new List<string>();
         private void SaveRecentFile(string path, bool addPath = true)
         {
-            Logger.Trace("SaveRecentFile {0}", path);
+            Logger.Info("SaveRecentFile: {0}", path);
             saveName = Path.GetFileNameWithoutExtension(path);
             toolStripMenuItem2.DropDownItems.Clear();
             LoadRecentList(); //load list from file
@@ -149,7 +149,7 @@ namespace GrblPlotter
         }
         private void LoadRecentList()
         {
-            Logger.Info("LoadRecentList : {0}", Datapath.RecentFile);
+            Logger.Info("LoadRecentList: {0}", Datapath.RecentFile);
             MRUlist.Clear();
             try
             {
@@ -180,7 +180,7 @@ namespace GrblPlotter
         private static readonly Stopwatch stopwatch = new Stopwatch();
         private void NewCodeStart(bool cleanupGraphic = true)
         {
-            Logger.Trace("----newCodeStart++++");
+            Logger.Trace("===== newCodeStart - clear 2D-view and editor");
             stopwatch.Start();
             Cursor.Current = Cursors.WaitCursor;
             pBoxTransform.Reset(); zoomFactor = 1;
@@ -225,7 +225,7 @@ namespace GrblPlotter
                 maxObjects = 100000;
                 showPaths = false;	// don't process graphic-paths in onPaint event
             }
-            Logger.Trace("---- newCodeEnd objectCount:{0} max:{1} ++++ ", objectCount, maxObjects);
+            Logger.Trace("====  newCodeEnd objectCount:{0} max:{1}, copy code to editor and display ", objectCount, maxObjects);
 
             if (objectCount > maxObjects)
                 StatusStripSet(0, "Display GCode, huge amount of objects (" + objectCount.ToString() + ") - takes more time", Color.Fuchsia);
@@ -235,7 +235,7 @@ namespace GrblPlotter
             if (!imported && Properties.Settings.Default.ctrlCommentOut)
             { FctbCheckUnknownCode(); }                              // check code
 
-            Logger.Info("▄▄▄▄▄▄▄▄ Object count:{0} KB  maxObjects:{1} KB  Process Gcode lines-showProgress:{2}", objectCount, maxObjects, (objectCount > maxObjects));
+            Logger.Info("▄▄▄▄  Object count:{0} KB  maxObjects:{1} KB  Process Gcode lines-showProgress:{2}", objectCount, maxObjects, (objectCount > maxObjects));
 
             if (objectCount <= maxObjects)  // set FctbCode.Text directly OR via GCodeVisuWorker.cs
             {
@@ -313,7 +313,7 @@ namespace GrblPlotter
                             int strt = errline.IndexOf("[");                // line-nr in brackets
                             int end = errline.IndexOf("]", strt);
                             int len = end - strt - 2;
-                            Logger.Trace("Mark error start:{0} end:{1} from string:'{2}'", strt, end, errline);
+                            Logger.Trace("Mark error start:{0} end:{1} from string:'{2}'", strt, end, errline.Trim());
                             if ((strt >= 0) && (len > 0))
                             {
                                 string numstr = errline.Substring(strt + 1, len);
@@ -350,7 +350,6 @@ namespace GrblPlotter
                 return true;
             }
 
-            Logger.Info("LoadFile ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
             String ext = Path.GetExtension(fileName).ToLower();
             MainTimer.Stop();
             MainTimer.Start();
@@ -367,15 +366,13 @@ namespace GrblPlotter
                 return true;
             }
             else
-                Logger.Info("Load file {0}", fileName);
+                Logger.Info("▀▀▀▀▀ Load file {0}", fileName);
 
 
             StatusStripSet(1, string.Format("[{0}: {1}]", Localization.GetString("statusStripeFileLoad"), fileName), Color.Lime);
             StatusStripSet(2, "Press 'Space bar' to toggle PenUp path", Color.Lime);
 
             importOptions = "";
-            //            statusStripClear(0, 1);
-            //            statusStripClear(2);
             this.Invalidate();      // force gui update
 
             showPathPenUp = true;
@@ -486,7 +483,7 @@ namespace GrblPlotter
             if (ext == ".url")
             { GetURL(fileName); fileLoaded = true; }
 
-            Logger.Info("Load file fileLoaded:{0}", fileLoaded);
+            Logger.Info("▄▄▄▄▄ Load file fileLoaded:{0}", fileLoaded);
             if (fileLoaded)
             {
                 SaveRecentFile(fileName);
@@ -574,8 +571,7 @@ namespace GrblPlotter
             string ext = parts[parts.Length - 1].ToLower();   // get extension
             importOptions = "";                                                  //   String ext = Path.GetExtension(fileName).ToLower();
                                                                                  //   MessageBox.Show("-" + ext + "-");			
-            Logger.Trace("tBURL_TextChanged: '{0}'", tBURL.Text);
-            Logger.Info("LoadFile URL ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
+            Logger.Info("▀▀▀▀▀ LoadFile URL: {0}", tBURL.Text);
             MainTimer.Stop();
             MainTimer.Start();
 
@@ -660,7 +656,7 @@ namespace GrblPlotter
 
         public void ReStartConvertFile(object sender, EventArgs e)   // event from setup form
         {
-            Logger.Info("ReStartConvertFile SourceType:{0}", Graphic.graphicInformation.SourceType);
+            Logger.Info("●●●●● ReStartConvertFile SourceType:{0}", Graphic.graphicInformation.SourceType);
             if (!isStreaming)
             {
                 if (Graphic.graphicInformation.SourceType == Graphic.SourceType.Text)
@@ -701,7 +697,6 @@ namespace GrblPlotter
 
         private void StartConvert(Graphic.SourceType type, string source)
         {
-            Logger.Info("StartConvert type:{0}  source:{1}", type.ToString(), source);
             UseCaseDialog();
             NewCodeStart();             // StartConvert
             StatusStripSet(0, "Start import of vector graphic, read graphic elements, process options", Color.Yellow);
@@ -716,8 +711,11 @@ namespace GrblPlotter
                 int sizeLimit = 250;
                 long filesize = fs.Length / 1024;
                 showProgress = filesize > sizeLimit;
-                Logger.Info("▄▄▄▄▄▄▄▄ File size:{0} KB  sizeLimit:{1} KB  Import-showProgress:{2}", filesize, sizeLimit, showProgress);
+                Logger.Info("▀▀▀▀  StartConvert type:{0} File size:{1} KB  sizeLimit:{2} KB  Import-showProgress:{3}", type.ToString(), filesize, sizeLimit, showProgress);
             }
+			else
+			{ 	Logger.Info("▀▀▀▀  StartConvert type:{0}", type.ToString());}
+		
             loadTimerStep = 0;
 
             if (showProgress)
@@ -791,9 +789,7 @@ namespace GrblPlotter
                 VisuGCode.CalcDrawingArea();                                // calc ruler dimension
             }
 
-         //   pictureBox1.Invalidate();                                   // resfresh view
             Application.DoEvents();
-         //   this.Invalidate();
 
             this.Text = appName + " | Source: " + source;
 
@@ -814,7 +810,7 @@ namespace GrblPlotter
                 else
                     StatusStripSet(2, conversionInfo, Color.YellowGreen);
             }
-            Logger.Info(" Conversion info: {0}", conversionInfo);
+            Logger.Info("▄▄▄   Conversion info: {0}", conversionInfo);
 
             if (showProgress)   //  start timer delayed process
             {
@@ -827,7 +823,6 @@ namespace GrblPlotter
         //    UpdateControlEnables(); 
 			if (_camera_form != null)
 			{	_camera_form.NewDrawing();}
-            Logger.Trace("foldCode");
         }
 
         int loadTimerStep = -1;
@@ -836,7 +831,8 @@ namespace GrblPlotter
             switch (loadTimerStep)
             {
                 case 1:
-                    loadTimer.Stop();
+					if (loadTimer != null)
+						loadTimer.Stop();
                     NewCodeEnd(true);   // timer will be started here again
                     break;
                 case 2:
@@ -845,14 +841,14 @@ namespace GrblPlotter
                     loadTimerStep++;
                     break;
                 default:
-                    loadTimer.Stop();
+					if (loadTimer != null)
+						loadTimer.Stop();
                     break;
             }
         }
 
         private void ShowImportOptions()
         {
-            Logger.Trace(" showImportOptions {0}", importOptions);
             importOptions = Graphic.graphicInformation.ListOptions() + importOptions;
             if (Properties.Settings.Default.importGCCompress) importOptions += "<Compress> ";
             if (Properties.Settings.Default.importGCRelative) importOptions += "< G91 > ";
@@ -862,9 +858,8 @@ namespace GrblPlotter
             {
                 importOptions = "Import options: " + importOptions;
                 StatusStripSet(1, importOptions, Color.Yellow);
-                Logger.Info(" {0}", importOptions);
+                Logger.Info("▄▄    {0}", importOptions);
             }
-            //            Logger.Info(" ImportOptions: {0}", importOptions);
         }
         private void FoldCode()
         {
@@ -874,12 +869,13 @@ namespace GrblPlotter
                 { foldLevel = 0; }
                 else
                 { fCTBCode.CollapseAllFoldingBlocks(); foldLevel = 1; }
+                Logger.Trace("◯◯◯ foldCode level: {0}", foldLevel);
             }
         }
 
         private void LoadGcode()
         {
-            Logger.Trace(" LoadGCode");
+            Logger.Info("▼▼▼▼▼ Load GCODE - NO path modifications on import");
             if (File.Exists(tbFile.Text))
             {
                 NewCodeStart();             // LoadGcode
@@ -948,9 +944,7 @@ namespace GrblPlotter
                 else
                     StatusStripSet(1, "Load G-Code - no import options applied!", Color.Yellow);
 
-                //               else
-                //                    SaveRecentFile(tbFile.Text);
-                Logger.Trace(" LoadGCode end");
+                Logger.Info("▲▲▲▲▲ LoadGCode end");
             }
         }
 

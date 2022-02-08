@@ -441,6 +441,7 @@ namespace GrblPlotter
             EnableCmsCodeBlocks(VisuGCode.CodeBlocksAvailable());
             this.Cursor = Cursors.Default;
             manualEdit = false;
+            fCTBCode.BackColor = Color.White;
             resetView = false;
         }
 

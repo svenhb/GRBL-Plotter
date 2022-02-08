@@ -389,7 +389,7 @@ namespace GrblPlotter
                 if (!isStreaming)
                 {
                     ClearErrorLines();
-                    Logger.Info("Start streaming at line:{0} to line:{1} showProgress:{2}  backgroundImage:{3}", startLine, endLine, Properties.Settings.Default.guiProgressShow, Properties.Settings.Default.guiBackgroundImageEnable);
+                    Logger.Info("►►►►  Start streaming at line:{0} to line:{1} showProgress:{2}  backgroundImage:{3}", startLine, endLine, Properties.Settings.Default.guiProgressShow, Properties.Settings.Default.guiBackgroundImageEnable);
                     ExpandCodeBlocksToolStripMenuItem_Click(null, null);
                     VisuGCode.ProcessedPath.ProcessedPathClear();
                     MainTimer.Stop();
@@ -486,7 +486,7 @@ namespace GrblPlotter
                 {
                     if (!isStreamingPause)
                     {
-                        Logger.Info("Pause streaming - pause stream");
+                        Logger.Info("⏸⏸  Pause streaming - pause stream");
                         btnStreamStart.Image = Properties.Resources.btn_play;
                         _serial_form.PauseStreaming();
                         //            isStreamingPause = true;
@@ -494,7 +494,7 @@ namespace GrblPlotter
                     }
                     else
                     {
-                        Logger.Info("Pause streaming - continue stream  ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄");
+                        Logger.Info("⏸⏸  Pause streaming - continue stream");
                         btnStreamStart.Image = Properties.Resources.btn_pause;
                         _serial_form.PauseStreaming();
                         isStreamingPause = false;
@@ -528,7 +528,7 @@ namespace GrblPlotter
         { UpdateLogging(); StopStreaming(true); }
         private void StopStreaming(bool showMessage)
         {
-            Logger.Info("stop streaming at line {0}", (fCTBCodeClickedLineNow + 1));
+            Logger.Info("⏹⏹  Stop streaming at line {0}", (fCTBCodeClickedLineNow + 1));
             showPicBoxBgImage = false;                 // don't show background image anymore
                                                        //            pictureBox1.BackgroundImage = null;
             signalPlay = 0;

@@ -273,8 +273,9 @@ namespace GrblPlotter
             int key = e.KeyValue;
             #region key up
             if (key == 38)                                  // up
-            {   //if (!(fCTBCodeClickedLineNow > 0))
-                //     return;
+            {   
+				if (fCTBCode.LinesCount < 1)	return;
+				
                 if (Panel.ModifierKeys == Keys.Control)
                 { MoveSelectedCodeBlockUp(); }
                 else if (Panel.ModifierKeys == (Keys.Control | Keys.Shift))
@@ -328,8 +329,9 @@ namespace GrblPlotter
             #endregion
             #region key down
             else if (key == 40)       // down
-            {   //if (!(fCTBCodeClickedLineNow < (fCTBCode.Lines.Count - 1)))
-                //     return;
+            {   				
+				if (fCTBCode.LinesCount < 1)	return;
+
                 if (Panel.ModifierKeys == Keys.Control)
                 { MoveSelectedCodeBlockDown(); }
                 else if (Panel.ModifierKeys == (Keys.Control | Keys.Shift))
@@ -517,8 +519,8 @@ namespace GrblPlotter
             }
             else
             {
-        //        fCTBCode.BackColor = Color.White;
-         //       StatusStripClear(1, 2);//, "setEditMode");
+                fCTBCode.BackColor = Color.White;
+                StatusStripClear(1);//, "setEditMode");
             }
         }
 

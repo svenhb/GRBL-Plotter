@@ -98,6 +98,7 @@ namespace GrblPlotter
         {
             NLog.LogManager.Configuration.Variables["basedir"] = Datapath.LogFiles;
             Logger.Info("GetAppDataPath from {0}: {1}", src, Datapath.AppDataFolder);
+            Logger.Info("Application path: {0}", Datapath.Application);
         }
         private void SetGUISize()
         {
@@ -400,7 +401,7 @@ namespace GrblPlotter
             UpdateCustomButtons(true);  // isConnected && (!isStreaming || allowControl)
 
             bool allowControl = isStreamingPause;
-            Logger.Trace("updateControls isConnected:{0} isStreaming:{1} streamingAllowControl:{2} source:{3}", isConnected, isStreaming, allowControl, timerUpdateControlSource);
+            Logger.Trace("◯◯◯ updateControls isConnected:{0} isStreaming:{1} streamingAllowControl:{2} source:{3}", isConnected, isStreaming, allowControl, timerUpdateControlSource);
             timerUpdateControlSource = "";
 
             virtualJoystickC.Enabled = isConnected && (!isStreaming || allowControl);

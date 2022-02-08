@@ -136,5 +136,12 @@ namespace GrblPlotter
             }
             return traceString.ToString();
         }
+
+        private static string lastStoredExeption = "";
+        public static void StoreException(string text)
+        {   if (text != lastStoredExeption)
+                Properties.Settings.Default.guiLastEndReason += text + "-";
+            lastStoredExeption = text;
+        }
     }
 }

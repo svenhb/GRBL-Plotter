@@ -3958,6 +3958,9 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
   <data name="cmsPicBoxReverseSelectedPath.Text" xml:space="preserve">
     <value>Reverse selected path</value>
   </data>
+  <data name="cmsPicBoxRotateSelectedPath.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="cmsPicBoxRotateSelectedPath.Size" type="System.Drawing.Size, System.Drawing">
     <value>261, 22</value>
   </data>
@@ -3986,7 +3989,7 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>Copy content to Clipboard</value>
   </data>
   <data name="cmsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>262, 408</value>
+    <value>262, 430</value>
   </data>
   <data name="&gt;&gt;cmsPictureBox.Name" xml:space="preserve">
     <value>cmsPictureBox</value>
