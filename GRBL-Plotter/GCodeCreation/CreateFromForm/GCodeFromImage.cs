@@ -1420,7 +1420,7 @@ namespace GrblPlotter
                 {
                     Bitmap bmp = new Bitmap(pictureBox1.ClientSize.Width, pictureBox1.ClientSize.Height);
                     pictureBox1.DrawToBitmap(bmp, pictureBox1.ClientRectangle);
-                    if ((0 <= e.X) && (e.X <= pictureBox1.ClientSize.Width) && (0 <= e.Y) && (e.Y <= pictureBox1.ClientSize.Height))
+                    if ((0 <= e.X) && (e.X < pictureBox1.ClientSize.Width) && (0 <= e.Y) && (e.Y < pictureBox1.ClientSize.Height))
                         clr = bmp.GetPixel(e.X, e.Y);
                     bmp.Dispose();
                 }
