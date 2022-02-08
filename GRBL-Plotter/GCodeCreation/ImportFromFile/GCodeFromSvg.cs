@@ -205,7 +205,7 @@ namespace GrblPlotter
 
         private static bool ConvertSVG(XElement svgCode, string filePath)
         {
-            Logger.Info(" convertSVG {0}", filePath);
+        //    Logger.Info(" convertSVG {0}", filePath);
             logFlags = (uint)Properties.Settings.Default.importLoggerSettings;
             logEnable = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnables.Level1) > 0);
 
@@ -218,12 +218,13 @@ namespace GrblPlotter
             ConversionInfo = "";
             shapeCounter = 0;
 
-            Logger.Trace(" logEnable:{0} svgScaleApply:{1} svgMaxSize:{2} svgComments:{3} svgConvertToMM:{4} svgNodesOnly:{5} svgConvertCircleToDot:{6}", logEnable, svgScaleApply, svgMaxSize, svgComments, svgConvertToMM, svgNodesOnly, svgConvertCircleToDot);
+        //    Logger.Trace(" logEnable:{0} svgScaleApply:{1} svgMaxSize:{2} svgComments:{3} svgConvertToMM:{4} svgNodesOnly:{5} svgConvertCircleToDot:{6}", logEnable, svgScaleApply, svgMaxSize, svgComments, svgConvertToMM, svgNodesOnly, svgConvertCircleToDot);
+            Logger.Info("▼▼▼▼  ConvertSVG Start : svgScaleApply: {0} svgMaxSize: {1} svgComments: {2} svgConvertToMM: {3} svgNodesOnly: {4} svgConvertCircleToDot: {5}", svgScaleApply, svgMaxSize, svgComments, svgConvertToMM, svgNodesOnly, svgConvertCircleToDot);
 
             Graphic.Init(Graphic.SourceType.SVG, filePath, backgroundWorker, backgroundEvent);
             GetVectorSVG(svgCode);                  // convert graphics
             ConversionInfo += string.Format("{0} elements imported", shapeCounter);
-            Logger.Info(" convertSVG finish <- Graphic.CreateGCode()", filePath);
+            Logger.Info("▲▲▲▲  ConvertSVG Finish: shapeCounter: {0}", shapeCounter);
             svgCode.RemoveAll();
             return Graphic.CreateGCode();
         }
@@ -254,7 +255,7 @@ namespace GrblPlotter
 
             int count = svgCode.Descendants("path").Count();
 
-            Logger.Info(" Amount Paths:{0}", count);
+        //    Logger.Info(" Amount Paths:{0}", count);
             if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = 10, Content = "Read SVG vector data of " + count.ToString() + " elements " });
 
             matrixElement.SetIdentity();                // preset transform matrix

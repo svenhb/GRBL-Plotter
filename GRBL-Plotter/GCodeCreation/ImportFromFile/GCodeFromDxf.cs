@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -69,6 +69,7 @@
  * 2021-10-29 logger output format
  * 2021-11-02 add DXFText (before just DXFMText)
  * 2021-12-09 line 401 check if (layerLType != null)
+ * 2022-02-08 extend DXFPolyline by bulge
 */
 
 using DXFLib;
@@ -166,7 +167,7 @@ namespace GrblPlotter //DXFImporter
                         byte[] byteArray = Encoding.Unicode.GetBytes(content); // Encoding.UTF8.GetBytes(content);
                         using (MemoryStream stream = new MemoryStream(byteArray))
                         {
-                            Logger.Info(" load from stream");
+                            Logger.Info("●●●● load from stream");
                             if (!LoadDXF(stream))
                                 return false;// "(File could not be loaded)";
                         }
@@ -181,7 +182,7 @@ namespace GrblPlotter //DXFImporter
             {
                 if (File.Exists(filePath))
                 {
-                    Logger.Info(" load from file");
+                    Logger.Info("●●●● load from file");
                     try
                     {
                         if (!LoadDXF(filePath))
@@ -200,11 +201,11 @@ namespace GrblPlotter //DXFImporter
         /// </summary>
         private static bool ConvertDXF(string filePath)
         {
-            Logger.Info(" ConvertDXF {0}", filePath);
+            Logger.Info("▼▼▼▼ ConvertDXF  logEnable:{0}  logPosition:{1}", logEnable, logPosition);
             logFlags = (uint)Properties.Settings.Default.importLoggerSettings;
             logEnable = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnables.Level1) > 0);
             logPosition = logEnable && ((logFlags & (uint)LogEnables.Coordinates) > 0);
-            Logger.Trace(" logEnable:{0}  logPosition:{1}", logEnable, logPosition);
+        //    Logger.Trace(" logEnable:{0}  logPosition:{1}", logEnable, logPosition);
 
             nodesOnly = Properties.Settings.Default.importSVGNodesOnly;
             useZ = Properties.Settings.Default.importDXFUseZ;
@@ -215,14 +216,14 @@ namespace GrblPlotter //DXFImporter
 
             Graphic.Init(Graphic.SourceType.DXF, filePath, backgroundWorker, backgroundEvent);
             GetVectorDXF();                     // convert graphics
-            Logger.Info(" Disable Z use? {0}", lastSetZ);
+            Logger.Info("●●●● Disable Z use? {0}", lastSetZ);
             if (lastSetZ == null)
             {
-                Logger.Info(" Disable Z use?");
+                Logger.Info("●●●● Disable Z use - yes");
                 Graphic.graphicInformation.DxfImportZ = false;    // no Z value, no need for export
             }
             ConversionInfo += string.Format("{0} elements imported", shapeCounter);
-            Logger.Info(" ConvertDXF finish <- Graphic.CreateGCode()", filePath);
+            Logger.Info("▲▲▲▲ ConvertDXF Finish: shapeCounter: {0}", shapeCounter);
             doc = null;
             return Graphic.CreateGCode();
         }
@@ -277,8 +278,8 @@ namespace GrblPlotter //DXFImporter
             countDXFBlocks = doc.Blocks.Count;
             countDXFEntity = 0;
             
-            Logger.Info(" AutoCADVersion:{0}", doc.Header.AutoCADVersion);
-            Logger.Info(" Amount Layers:{0}  Entities:{1}  Blocks:{2}", countDXFLayers, countDXFEntities, countDXFBlocks);
+            Logger.Info("●●●● AutoCADVersion:{0}", doc.Header.AutoCADVersion);
+            Logger.Info("●●●● Amount Layers:{0}  Entities:{1}  Blocks:{2}", countDXFLayers, countDXFEntities, countDXFBlocks);
             if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = 10, Content = "Read DXF vector data of " + countDXFEntities.ToString() + " elements" });
 
             foreach (DXFLayerRecord record in tst)
@@ -474,10 +475,10 @@ namespace GrblPlotter //DXFImporter
                         if (logPosition) Logger.Trace("PolyLine bulge  index:{0} val1X:{1:0.000} val1Y:{2:0.000} val2X:{3:0.000} val2Y:{4:0.000}", i, lp.Elements[i].Vertex.X, lp.Elements[i].Vertex.Y, lp.Elements[i + 1].Vertex.X, lp.Elements[i + 1].Vertex.Y);
 
                         if (i < (lp.VertexCount - 1))
-                            AddRoundCorner(lp.Elements[i], lp.Elements[i + 1], offset, offsetAngle);
+                            AddRoundCorner((DXFPoint)lp.Elements[i].Vertex, (DXFPoint)lp.Elements[i + 1].Vertex, bulge, offset, offsetAngle);
                         else
                             if (lp.Flags == DXFLWPolyLine.FlagsEnum.closed)
-                            AddRoundCorner(lp.Elements[i], lp.Elements[0], offset, offsetAngle);
+                            AddRoundCorner((DXFPoint)lp.Elements[i].Vertex, (DXFPoint)lp.Elements[0].Vertex, bulge, offset, offsetAngle);
                         roundcorner = true;
                     }
                     else
@@ -494,15 +495,77 @@ namespace GrblPlotter //DXFImporter
             }
             #endregion
             #region DXFPolyline
-            else if (entity.GetType() == typeof(DXFPolyLine))
+		/*	else if (entity.GetType() == typeof(DXFPolyLine))
             {
                 Graphic.SetGeometry("Polyline");
                 DXFPolyLine lp = (DXFPolyLine)entity;
                 index = 0;
-                tmp = new DXFPoint();
-                foreach (DXFVertex coordinate in lp.Children)
+                double bulge = 0;
+                DXFPolyLine.Element coordinate;
+                bool roundcorner = false;
+                for (int i = 0; i < lp.VertexCount; i++)
                 {
-                    if (coordinate.GetType() == typeof(DXFVertex))
+                    coordinate = lp.Elements[i];
+                    bulge = coordinate.Bulge;
+                    position = ApplyOffsetAndAngle(coordinate.Vertex, offset, offsetAngle);
+
+                    if (i == 0)
+                    {
+                        if (!nodesOnly)
+                        {
+                            DXFStartPath(position);//, "Start LWPolyLine - Nr pts " + lp.VertexCount.ToString( ));
+                        }
+                        else { GCodeDotOnly(position); }//, "Start LWPolyLine"); }
+                        if (logPosition) Logger.Trace("Start DXFPolyLine count:{0} X:{1:0.000} Y:{2:0.000} Z:{3:0.000}", lp.VertexCount, position.X, position.Y, position.Z);
+                    }
+
+                    if ((!roundcorner) && (i > 0))
+                    {
+                        if (logPosition) Logger.Trace("PolyLine moveTo index:{0} X:{1:0.000} Y:{2:0.000} Z:{3:0.000}", i, position.X, position.Y, position.Z);
+                        DXFMoveTo(position, "");
+                    }
+                    if (bulge != 0)
+                    {
+                        if (logPosition) Logger.Trace("PolyLine bulge  index:{0} val1X:{1:0.000} val1Y:{2:0.000} val2X:{3:0.000} val2Y:{4:0.000}", i, lp.Elements[i].Vertex.X, lp.Elements[i].Vertex.Y, lp.Elements[i + 1].Vertex.X, lp.Elements[i + 1].Vertex.Y);
+
+                        if (i < (lp.VertexCount - 1))
+                            AddRoundCorner(lp.Elements[i], lp.Elements[i + 1], offset, offsetAngle);
+                        else
+                            if (lp.Flags == DXFPolyLine.FlagsEnum.closed)
+                            AddRoundCorner(lp.Elements[i], lp.Elements[0], offset, offsetAngle);
+                        roundcorner = true;
+                    }
+                    else
+                        roundcorner = false;
+                }
+                if (logPosition) Logger.Trace(" LWPolyLine lp.Flags {0}", lp.Flags);
+                if (lp.Flags == DXFPolyLine.FlagsEnum.closed)
+                {
+                    position = ApplyOffsetAndAngle(lp.Elements[0].Vertex, offset, offsetAngle); // move to start position
+                    if (logPosition) Logger.Trace(" PolyLine close X:{0:0.000}  Y:{1:0.000}", position.X, position.Y);
+                    DXFMoveTo(position, "End PolyLine " + lp.Flags.ToString());
+                }
+                DXFStopPath();
+            }
+            */
+            else if (entity.GetType() == typeof(DXFPolyLine))
+            {
+                Graphic.SetGeometry("Polyline");
+                DXFPolyLine lp = (DXFPolyLine)entity;
+                double bulge = 0;
+                bool roundcorner = false;
+                DXFEntity vertex;
+                DXFVertex coordinate;
+                index = 0;
+                tmp = new DXFPoint();
+             //   foreach (DXFVertex coordinate in lp.Children)
+             for (int i=0; i < lp.Children.Count; i++)
+                {
+                    vertex = lp.Children[i];
+                    if (vertex.GetType() == typeof(DXFVertex))
+                    {
+                        coordinate = (DXFVertex)vertex;
+                        bulge = coordinate.Buldge;
                         if (coordinate.Location.X != null && coordinate.Location.Y != null)
                         {
                             position = ApplyOffsetAndAngle(coordinate.Location, offset, offsetAngle);
@@ -512,7 +575,7 @@ namespace GrblPlotter //DXFImporter
                                 {
                                     tmp = position;
                                     DXFStartPath(position);//, "Start PolyLine");
-									if (logPosition) Logger.Trace("Start DXFPolyLine count:{0} X:{1:0.000} Y:{2:0.000} Z:{3:0.000}", lp.Children.Count, position.X, position.Y, position.Z);
+                                    if (logPosition) Logger.Trace("Start DXFPolyLine count:{0} X:{1:0.000} Y:{2:0.000} Z:{3:0.000}", lp.Children.Count, position.X, position.Y, position.Z);
                                 }
                                 else
                                     DXFMoveTo(position, "");
@@ -520,6 +583,20 @@ namespace GrblPlotter //DXFImporter
                             else { GCodeDotOnly(position); }//, "PolyLine"); }
                             index++;
                         }
+                        if (bulge != 0)
+                        {
+                            if (logPosition) Logger.Trace("PolyLine bulge  index:{0} val1X:{1:0.000} val1Y:{2:0.000} val2X:{3:0.000} val2Y:{4:0.000}", i, ((DXFVertex)lp.Children[i]).Location.X, ((DXFVertex)lp.Children[i]).Location.Y, ((DXFVertex)lp.Children[i+1]).Location.X, ((DXFVertex)lp.Children[i+1]).Location.Y);
+
+                            if (i < (lp.Children.Count - 1))
+                                AddRoundCorner((DXFPoint)((DXFVertex)lp.Children[i]).Location, (DXFPoint)((DXFVertex)lp.Children[i + 1]).Location, bulge, offset, offsetAngle);
+                            else
+                                if (lp.Flags == DXFPolyLine.FlagsEnum.closed)
+                                AddRoundCorner((DXFPoint)((DXFVertex)lp.Children[i]).Location, (DXFPoint)((DXFVertex)lp.Children[0]).Location, bulge, offset, offsetAngle);
+                            roundcorner = true;
+                        }
+                        else
+                            roundcorner = false;
+                    }
                 }
                 if (lp.Flags == DXFPolyLine.FlagsEnum.closed) //if ((lp.Flags > 0))
                 {
@@ -940,14 +1017,19 @@ namespace GrblPlotter //DXFImporter
         /// <param name="var1">First vertex coord</param>
         /// <param name="var2">Second vertex</param>
         /// <returns></returns>
-        private static void AddRoundCorner(DXFLWPolyLine.Element var1, DXFLWPolyLine.Element var2, DXFPoint offset, double angleDegree)
+        //    private static void AddRoundCorner(DXFLWPolyLine.Element var1, DXFLWPolyLine.Element var2, DXFPoint offset, double angleDegree)
+        private static void AddRoundCorner(DXFPoint var1, DXFPoint var2, double bulge, DXFPoint offset, double angleDegree)
         {
             double angleRad = angleDegree * Math.PI / 180;
-            double bulge = var1.Bulge;
-            double p1x = (double)(var1.Vertex.X * Math.Cos(angleRad) - var1.Vertex.Y * Math.Sin(angleRad));       //var1.Vertex.X;
-            double p1y = (double)(var1.Vertex.X * Math.Sin(angleRad) + var1.Vertex.Y * Math.Cos(angleRad));       //var1.Vertex.Y;
-            double p2x = (double)(var2.Vertex.X * Math.Cos(angleRad) - var2.Vertex.Y * Math.Sin(angleRad));       //var2.Vertex.X;
-            double p2y = (double)(var2.Vertex.X * Math.Sin(angleRad) + var2.Vertex.Y * Math.Cos(angleRad));       //var2.Vertex.Y;
+         //   double bulge = var1.Bulge;
+        //    double p1x = (double)(var1.Vertex.X * Math.Cos(angleRad) - var1.Vertex.Y * Math.Sin(angleRad));       //var1.Vertex.X;
+        //    double p1y = (double)(var1.Vertex.X * Math.Sin(angleRad) + var1.Vertex.Y * Math.Cos(angleRad));       //var1.Vertex.Y;
+        //    double p2x = (double)(var2.Vertex.X * Math.Cos(angleRad) - var2.Vertex.Y * Math.Sin(angleRad));       //var2.Vertex.X;
+        //    double p2y = (double)(var2.Vertex.X * Math.Sin(angleRad) + var2.Vertex.Y * Math.Cos(angleRad));       //var2.Vertex.Y;
+            double p1x = (double)(var1.X * Math.Cos(angleRad) - var1.Y * Math.Sin(angleRad));       //var1.Vertex.X;
+            double p1y = (double)(var1.X * Math.Sin(angleRad) + var1.Y * Math.Cos(angleRad));       //var1.Vertex.Y;
+            double p2x = (double)(var2.X * Math.Cos(angleRad) - var2.Y * Math.Sin(angleRad));       //var2.Vertex.X;
+            double p2y = (double)(var2.X * Math.Sin(angleRad) + var2.Y * Math.Cos(angleRad));       //var2.Vertex.Y;
 
             //Definition of bulge, from Autodesk DXF fileformat specs
             double angle = Math.Abs(Math.Atan(bulge) * 4);
