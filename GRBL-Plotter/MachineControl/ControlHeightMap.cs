@@ -891,13 +891,21 @@ namespace GrblPlotter
         private void BtnPosFromCodeDimension_Click(object sender, EventArgs e)
         {
             if (GuiVariables.variable["GMIX"] != GuiVariables.variable["GMAX"])
-            {   nUDX1.Value = (decimal)(CbRoundUp.Checked ? Math.Floor(GuiVariables.variable["GMIX"]) : GuiVariables.variable["GMIX"]);
-                nUDX2.Value = (decimal)(CbRoundUp.Checked ? Math.Ceiling(GuiVariables.variable["GMAX"]) : GuiVariables.variable["GMAX"]);
+            {   decimal min = (decimal)(CbRoundUp.Checked ? Math.Floor(GuiVariables.variable["GMIX"]) : GuiVariables.variable["GMIX"]);
+                decimal max = (decimal)(CbRoundUp.Checked ? Math.Ceiling(GuiVariables.variable["GMAX"]) : GuiVariables.variable["GMAX"]);
+                if (min >= nUDX1.Minimum)
+                    nUDX1.Value = min;
+                if (max <= nUDX2.Maximum)
+                    nUDX2.Value = max;
             }
             if (GuiVariables.variable["GMIY"] != GuiVariables.variable["GMAY"])
             {
-                nUDY1.Value = (decimal)(CbRoundUp.Checked ? Math.Floor(GuiVariables.variable["GMIY"]) : GuiVariables.variable["GMIY"]);
-                nUDY2.Value = (decimal)(CbRoundUp.Checked ? Math.Ceiling(GuiVariables.variable["GMAY"]) : GuiVariables.variable["GMAY"]);
+                decimal min = (decimal)(CbRoundUp.Checked ? Math.Floor(GuiVariables.variable["GMIY"]) : GuiVariables.variable["GMIY"]);
+                decimal max = (decimal)(CbRoundUp.Checked ? Math.Ceiling(GuiVariables.variable["GMAY"]) : GuiVariables.variable["GMAY"]);
+                if (min >= nUDY1.Minimum)
+                    nUDY1.Value = min;
+                if (max <= nUDY2.Maximum)
+                    nUDY2.Value = max;
             }
         }
 

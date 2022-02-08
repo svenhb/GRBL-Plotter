@@ -631,9 +631,11 @@ namespace GrblPlotter
 					readText = File.ReadAllLines(file);
 				}			
 				catch (IOException err) {
-					Properties.Settings.Default.guiLastEndReason += "Error ImportCSVToDgv:"+file;
+                    // read already opened file???
+                    // https://stackoverflow.com/questions/9759697/reading-a-file-used-by-another-process
+                    Properties.Settings.Default.guiLastEndReason += "ImportCSVToDgv IOException: " + file + " " + err.Message + " - ";
 					Logger.Error(err,"ImportCSVToDgv IOException:{0}",file);
-					MessageBox.Show("Could not read " + file, "Error");
+					MessageBox.Show("Could not read " + file + "\r\n" + err.Message, "Error");
 					return false;
 				}
 				catch {//(Exception err) { 
@@ -759,9 +761,23 @@ namespace GrblPlotter
         private void DgvSortColor(object sender, DataGridViewSortCompareEventArgs e)
         {
             if (e.Column.Index != 1) return;
-            long lcolor1 = Convert.ToInt32(e.CellValue1.ToString().ToUpper().Substring(0, 6), 16) | 0xff000000;
-            long lcolor2 = Convert.ToInt32(e.CellValue2.ToString().ToUpper().Substring(0, 6), 16) | 0xff000000;
-            Color ccolor1 = Color.FromArgb((int)lcolor1);
+            long lcolor1 = 0, lcolor2 = 0;
+			string scolor1 = e.CellValue1.ToString().ToUpper();
+			string scolor2 = e.CellValue2.ToString().ToUpper();
+
+            if (scolor1.Length > 6)
+            {   scolor1 = scolor1.Substring(0, 6); }
+            try {	lcolor1 = Convert.ToInt32(scolor1, 16) | 0xff000000; }
+			catch (Exception err)
+            {   Logger.Error(err, "DgvSortColor could not convert color1:{0} ", scolor1);   }
+			
+			if (scolor2.Length > 6)
+            { scolor2 = scolor2.Substring(0, 6); }
+            try { 	lcolor2 = Convert.ToInt32(scolor2, 16) | 0xff000000; }
+			catch (Exception err)
+            {   Logger.Error(err, "DgvSortColor could not convert color2:{0} ", scolor2);   }
+
+			Color ccolor1 = Color.FromArgb((int)lcolor1);
             Color ccolor2 = Color.FromArgb((int)lcolor2);
             double brighness1 = (0.299 * ccolor1.R * ccolor1.R + 0.587 * ccolor1.G * ccolor1.G + 0.114 * ccolor1.B * ccolor1.B);
             double brighness2 = (0.299 * ccolor2.R * ccolor2.R + 0.587 * ccolor2.G * ccolor2.G + 0.114 * ccolor2.B * ccolor2.B);
