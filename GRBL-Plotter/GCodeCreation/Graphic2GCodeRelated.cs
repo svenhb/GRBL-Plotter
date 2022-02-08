@@ -36,6 +36,7 @@
 * 2021-07-27 code clean up / code quality
 * 2021-07-29 add PD, PU marker if no Pen-up/down translation is selected
 * 2022-01-02 make gcodeZApply and gcodePWMEnable public
+* 2022-02-08 For functions Arc, MoveArc and SplitArc switch to double (15 digits) for coordinates (before float with 7 digits)
 */
 
 using System;
@@ -44,10 +45,6 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
-
-//#pragma warning disable CA1303
-//#pragma warning disable CA1305
-//#pragma warning disable CA1307
 
 namespace GrblPlotter
 {
@@ -307,7 +304,7 @@ namespace GrblPlotter
                 }
                 if (insertSubroutine)
                 {
-                    float tmp_lastz = lastz;
+                    double tmp_lastz = lastz;
                     StringBuilder tmp = new StringBuilder();
                     Logger.Trace("setup create PenUp/Down subroutine gcodeInsertSubroutine:{0} gcodeToolChange:{1} ctrlToolChange:{2}", gcodeInsertSubroutineEnable, gcodeToolChange, Properties.Settings.Default.ctrlToolChange);
                     PenUp(tmp, "");
@@ -501,7 +498,7 @@ namespace GrblPlotter
                 {
                     if (gcodeComments) gcodeValue.AppendFormat("({0})\r\n", "Pen up: Z-Axis");
                     float tmpZUp = (float)Properties.Settings.Default.importGCZUp;
-                    float z_relative = tmpZUp - lastz;
+                    double z_relative = tmpZUp - lastz;
                     if (gcodeZFeedToolTable && gcodeComments) { cmt = cmto + " Z feed from tool-table"; }
                     if (cmt.Length > 0) { cmt = " (" + cmt + ")"; }
                     if (GcodeRelative)
@@ -583,7 +580,7 @@ namespace GrblPlotter
                 }
                 else
                 {
-                    float z_relative = GcodeZDown - lastz;
+                    double z_relative = GcodeZDown - lastz;
                     if (Math.Abs(z_relative) > 0)
                     {
                         if (GcodeRelative)
@@ -697,7 +694,7 @@ namespace GrblPlotter
                 {
                     if (gcodeComments) gcodeValue.AppendFormat("({0})\r\n", "Pen up: Z-Axis");
 
-                    float z_relative = GcodeZUp - lastz;
+                    double z_relative = GcodeZUp - lastz;
                     if (Math.Abs(z_relative) > 0)
                     {
                         if (gcodeZFeedToolTable && gcodeComments) { cmt += " Z feed from tool-table"; }
@@ -733,19 +730,20 @@ namespace GrblPlotter
                 gcodeValue.AppendLine("(PU)");	// mark pen down
         }
 
-        private static float lastx, lasty, lastz, lastg, lastf;
+        private static double lastx, lasty, lastz;
+        private static float lastg, lastf;
         public static void SetLastxyz(double lx, double ly, double lz)
-        { lastx = (float)lx; lasty = (float)ly; lastz = (float)lz; }
+        { lastx = lx; lasty = ly; lastz = lz; }
 
         private static double lasta;
         public static bool LastMovewasG0 { get; set; } //= true;
         public static void MoveToNoFeed(StringBuilder gcodeValue, Point coord, string cmt)//, bool avoidFeed)
-        { ApplyXYFeedRate = false; MoveSplit(gcodeValue, 1, (float)coord.X, (float)coord.Y, ApplyXYFeedRate, cmt); }
+        { ApplyXYFeedRate = false; MoveSplit(gcodeValue, 1, coord.X, coord.Y, ApplyXYFeedRate, cmt); }
         public static void MoveTo(StringBuilder gcodeValue, Point coord, string cmt)
-        { MoveSplit(gcodeValue, 1, (float)coord.X, (float)coord.Y, ApplyXYFeedRate, cmt); }
-        public static void MoveTo(StringBuilder gcodeValue, float mx, float my, string cmt)
+        { MoveSplit(gcodeValue, 1, coord.X, coord.Y, ApplyXYFeedRate, cmt); }
+        public static void MoveTo(StringBuilder gcodeValue, double mx, double my, string cmt)
         { MoveSplit(gcodeValue, 1, mx, my, ApplyXYFeedRate, cmt); }
-        public static void MoveTo(StringBuilder gcodeValue, float mx, float my, float mz, string cmt)
+        public static void MoveTo(StringBuilder gcodeValue, double mx, double my, double mz, string cmt)
         { if (gcodeValue != null) MoveSplit(gcodeValue, 1, mx, my, mz, ApplyXYFeedRate, cmt); }
 
         public static void MoveToRapid(StringBuilder gcodeValue, Point coord, string cmt)
@@ -778,13 +776,13 @@ namespace GrblPlotter
         }
 
         // MoveSplit breaks down a line to line segments with given max. length
-        private static void MoveSplit(StringBuilder gcodeString, int gnr, float mx, float my, bool applyFeed, string cmt)
+        private static void MoveSplit(StringBuilder gcodeString, int gnr, double mx, double my, bool applyFeed, string cmt)
         { MoveSplit(gcodeString, gnr, mx, my, null, applyFeed, cmt); }
 
-        private static float remainingX = 10, remainingY = 10, remainingC = 10;
+        private static double remainingX = 10, remainingY = 10, remainingC = 10;
         //private static float segFinalX = 0, segFinalY = 0;//, segLastFinalX = 0, segLastFinalY = 0;
         //   private static int lastCharCount = 0;
-        private static void MoveSplit(StringBuilder gcodeStringFinal, int gnr, float finalx, float finaly, float? z, bool applyFeed, string cmt)
+        private static void MoveSplit(StringBuilder gcodeStringFinal, int gnr, double finalx, double finaly, double? z, bool applyFeed, string cmt)
         {
             if (LastMovewasG0)
             {
@@ -802,10 +800,10 @@ namespace GrblPlotter
 
             if (gcodeLineSegmentationEnable)       // apply segmentation
             {
-                float segFinalX = finalx, segFinalY = finaly;
-                float dx = finalx - lastx;       // remaining distance until full move
-                float dy = finaly - lasty;       // lastXY is global
-                float moveLength = (float)Math.Sqrt(dx * dx + dy * dy);
+                double segFinalX = finalx, segFinalY = finaly;
+                double dx = finalx - lastx;       // remaining distance until full move
+                double dy = finaly - lasty;       // lastXY is global
+                double moveLength = (float)Math.Sqrt(dx * dx + dy * dy);
                 float segmentLength = gcodeLineSegmentLength;
                 if (gcodeLineSegmentLength <= 0.01)
                     segmentLength = float.MaxValue;
@@ -830,7 +828,7 @@ namespace GrblPlotter
                     }
                     else
                     {
-                        float tmpX, tmpY, origX, origY, deltaX, deltaY;
+                        double tmpX, tmpY, origX, origY, deltaX, deltaY;
                         int count = (int)Math.Ceiling(moveLength / segmentLength);
                         gcodeString.AppendFormat("(count {0})\r\n", count.ToString());
                         origX = lastx; origY = lasty;
@@ -893,7 +891,7 @@ namespace GrblPlotter
         //    private static float origLastX, origLastY, origFinalX, origFinalY;
 
         // process subroutine, afterwards move back to last regular position before subroutine        
-        private static bool InsertSubroutine(StringBuilder gcodeString, float lX, float lY)//, float lZ, bool applyFeed)
+        private static bool InsertSubroutine(StringBuilder gcodeString, double lX, double lY)//, float lZ, bool applyFeed)
         {
             //Logger.Trace("insertSubroutine");
             bool xyfeedneeded = true;
@@ -929,9 +927,9 @@ namespace GrblPlotter
         }
 
 
-        private static void Move(StringBuilder gcodeString, int gnr, float x, float y, bool applyFeed, string cmt)
+        private static void Move(StringBuilder gcodeString, int gnr, double x, double y, bool applyFeed, string cmt)
         { Move(gcodeString, gnr, x, y, null, applyFeed, cmt); }
-        public static void Move(StringBuilder gcodeValueFinal, int gnr, float mx, float my, float? mz, bool applyFeed, string cmt)
+        public static void Move(StringBuilder gcodeValueFinal, int gnr, double mx, double my, double? mz, bool applyFeed, string cmt)
         {
             if (gcodeValueFinal == null) return;
 
@@ -948,9 +946,9 @@ namespace GrblPlotter
             string feed = "";
             StringBuilder gcodeTmp = new StringBuilder();
             bool isneeded = false;
-            float x_relative = mx - lastx;
-            float y_relative = my - lasty;
-            float z_relative = lastz;
+            double x_relative = mx - lastx;
+            double y_relative = my - lasty;
+            double z_relative = lastz;
             float tz = 0;
 
             float delta = Fdistance(lastx, lasty, mx, my);
@@ -1119,7 +1117,7 @@ namespace GrblPlotter
             if (gcodeAuxiliaryValue1Enable)
             {
                 gcodeAuxiliaryValue1Command = string.Format(" {0}{1}", gcodeAuxiliaryValue1Name, FrmtNum(distance));
-                Logger.Info("SetAux1Distance {0}", gcodeAuxiliaryValue1Command);
+        //        Logger.Info("SetAux1Distance {0}", gcodeAuxiliaryValue1Command);
             }
             else { gcodeAuxiliaryValue1Command = ""; }
         }
@@ -1129,17 +1127,17 @@ namespace GrblPlotter
             if (gcodeAuxiliaryValue2Enable)
             {
                 gcodeAuxiliaryValue2Command = string.Format(" {0}{1}", gcodeAuxiliaryValue2Name, FrmtNum(distance));
-                Logger.Info("SetAux2Distance {0}", gcodeAuxiliaryValue2Command);
+        //        Logger.Info("SetAux2Distance {0}", gcodeAuxiliaryValue2Command);
             }
             else { gcodeAuxiliaryValue2Command = ""; }
         }
 
-        public static void Arc(StringBuilder gcodeValue, int gnr, float ax, float ay, float ai, float aj, string cmt)//, bool avoidG23 = false)
+        public static void Arc(StringBuilder gcodeValue, int gnr, double ax, double ay, double ai, double aj, string cmt)//, bool avoidG23 = false)
         {
             if (string.IsNullOrEmpty(cmt)) cmt = "";
             if (gcodeValue != null) MoveArc(gcodeValue, gnr, ax, ay, ai, aj, ApplyXYFeedRate, cmt, false);
         }
-        private static void MoveArc(StringBuilder gcodeStringFinal, int gnr, float x, float y, float i, float j, bool applyFeed, string cmt, bool avoidG23)
+        private static void MoveArc(StringBuilder gcodeStringFinal, int gnr, double x, double y, double i, double j, bool applyFeed, string cmt, bool avoidG23)
         {
             if (string.IsNullOrEmpty(cmt)) cmt = "";
             if (gcodeStringFinal == null) return;
@@ -1149,8 +1147,8 @@ namespace GrblPlotter
             { gcodeString = figureString; if (LoggerTraceImport) Logger.Trace("    gcodeString = figureString"); }
 
             string feed = "";
-            float x_relative = x - lastx;
-            float y_relative = y - lasty;
+            double x_relative = x - lastx;
+            double y_relative = y - lasty;
             //float a_relative = gcodeTangentialAngle - gcodeTangentialAngleLast;
 
             if (applyFeed)
@@ -1181,14 +1179,14 @@ namespace GrblPlotter
                 gcodeTime += Fdistance(lastx, lasty, x, y) / GcodeXYFeed;
                 gcodeLines++;
             }
-            lastx = x; lasty = y; lastf = GcodeXYFeed;
+            lastx = (float)x; lasty = (float)y; lastf = GcodeXYFeed;
             LastMovewasG0 = false;
         }
 
-        public static void SplitArc(StringBuilder gcodeValue, int gnr, float x1, float y1, float x2, float y2, float i1, float j2, string cmt)
+        public static void SplitArc(StringBuilder gcodeValue, int gnr, double x1, double y1, double x2, double y2, double i1, double j2, string cmt)
         {
             if (string.IsNullOrEmpty(cmt)) cmt = "";
-            float segmentLength = (float)Properties.Settings.Default.importGCLineSegmentLength;
+            double segmentLength = (double)Properties.Settings.Default.importGCLineSegmentLength;
             bool equidistance = Properties.Settings.Default.importGCLineSegmentEquidistant;
 
             ArcProperties arcMove;
@@ -1205,7 +1203,7 @@ namespace GrblPlotter
             int count;
             if (equidistance)
             {
-                float circum = (float)(arcMove.radius * arcMove.angleDiff);    // radius * da* (float)Math.PI / 180;
+                double circum = (double)(arcMove.radius * arcMove.angleDiff);    // radius * da* (float)Math.PI / 180;
                 count = (int)Math.Ceiling(circum / segmentLength);
                 segmentLength = circum / count;
                 Comment(gcodeValue, circum.ToString() + " " + count.ToString() + " " + segmentLength.ToString());
@@ -1221,7 +1219,7 @@ namespace GrblPlotter
                     double x = arcMove.center.X + arcMove.radius * Math.Cos(angle);
                     double y = arcMove.center.Y + arcMove.radius * Math.Sin(angle);
                     moveLength += Fdistance(x, y, lastx, lasty);
-                    Move(gcodeValue, 1, (float)x, (float)y, ApplyXYFeedRate, cmt);
+                    Move(gcodeValue, 1, x, y, ApplyXYFeedRate, cmt);
                     if (moveLength >= (count * segmentLength))
                     {
                         if (gcodeInsertSubroutineEnable)
@@ -1238,7 +1236,7 @@ namespace GrblPlotter
                     double x = arcMove.center.X + arcMove.radius * Math.Cos(angle);
                     double y = arcMove.center.Y + arcMove.radius * Math.Sin(angle);
                     moveLength += Fdistance(x, y, lastx, lasty);
-                    Move(gcodeValue, 1, (float)x, (float)y, ApplyXYFeedRate, cmt);
+                    Move(gcodeValue, 1, x, y, ApplyXYFeedRate, cmt);
                     if (moveLength >= (count * segmentLength))
                     {
                         if (gcodeInsertSubroutineEnable)
@@ -1254,7 +1252,7 @@ namespace GrblPlotter
             {
                 if (gcodeInsertSubroutineEnable)
                 //    applyXYFeedRate = insertSubroutine(gcodeString, lastx, lasty, lastz, applyXYFeedRate);    //2021-06-20
-                { if (gcodeValue != null) ApplyXYFeedRate = InsertSubroutine(gcodeValue, x2, y2); }//, lastz, ApplyXYFeedRate); }
+                { if (gcodeValue != null) ApplyXYFeedRate = InsertSubroutine(gcodeValue, (float)x2, (float)y2); }//, lastz, ApplyXYFeedRate); }
                                                                                                    //    moveLength = 0;
             }
         }
@@ -1403,11 +1401,11 @@ namespace GrblPlotter
             if (Properties.Settings.Default.importRepeatEnable)
             {
                 header += string.Format("( G-Code repetitions: {0:0} times)\r\n", Properties.Settings.Default.importRepeatCnt);
-                Logger.Info("Header: G-Code repetitions:{0}", Properties.Settings.Default.importRepeatCnt);
+                Logger.Info("◆◆  Header: G-Code repetitions:{0}", Properties.Settings.Default.importRepeatCnt);
             }
 
             header += string.Format("( G-Code lines: {0} )\r\n", gcodeLines);
-            Logger.Info("Header: G-Code lines:{0}", gcodeLines);
+            Logger.Info("◆◆  Header: G-Code lines:{0}", gcodeLines);
 
             header += string.Format("( Pen Down/Up : {0} times )\r\n", gcodeDownUp);
             //           header += string.Format("( Path length : {0:0.0} units )\r\n", gcodeDistance);
@@ -1415,7 +1413,7 @@ namespace GrblPlotter
             if (gcodeSubroutineCount > 0)
             {
                 header += string.Format("( Call to subs.: {0} )\r\n", gcodeSubroutineCount);
-                Logger.Info("Header: Subroutine calls:{0}", gcodeSubroutineCount);
+                Logger.Info("◆◆  Header: Subroutine calls:{0}", gcodeSubroutineCount);
             }
 
             stopwatch.Stop();
@@ -1434,7 +1432,7 @@ namespace GrblPlotter
             {
                 header += string.Format("( Tool changes: {0})\r\n", gcodeToolCounter);
                 header += gcodeToolText;
-                Logger.Info("Header: Tool changes:{0}", gcodeToolCounter);
+                Logger.Info("◆◆  Header: Tool changes:{0}", gcodeToolCounter);
             }
             if (gcodePauseCounter > 0)
                 header += string.Format("( M0 count    : {0})\r\n", gcodePauseCounter);
@@ -1593,6 +1591,6 @@ namespace GrblPlotter
         private static float Fdistance(float x1, float y1, float x2, float y2) { return Fvmag(x2 - x1, y2 - y1); }
         private static double Fsqrt(double x) { return Math.Sqrt(x); }
         private static double Fvmag(double x, double y) { return Fsqrt(x * x + y * y); }
-        private static double Fdistance(double x1, double y1, double x2, double y2) { return Fvmag(x2 - x1, y2 - y1); }
+        private static float Fdistance(double x1, double y1, double x2, double y2) { return (float)Fvmag(x2 - x1, y2 - y1); }
     }
 }

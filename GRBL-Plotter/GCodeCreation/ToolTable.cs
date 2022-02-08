@@ -244,7 +244,7 @@ namespace GrblPlotter
             toolTableArray.Add(new ToolProp(-2, Color.White, "No White"));  // add exception color
 
             string file = Datapath.Tools + "\\" + DefaultFileName;
-            Logger.Info("Init tool table: {0}", file);
+            Logger.Info("🛠🛠 Init tool table: {0}", file);
             bool anyToolFound = false;
             if (File.Exists(file))
             {
