@@ -29,8 +29,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>2</ApplicationRevision>
-    <ApplicationVersion>1.6.5.2</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.6.6.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -138,6 +138,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -161,6 +162,9 @@
     </Compile>
     <Compile Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.Designer.cs">
       <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GCodeCreation\CreateFromForm\GCodeFromImageMisc.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="GCodeCreation\GraphicClasses.cs" />
     <Compile Include="GCodeCreation\GraphicGenerateMisc.cs" />
@@ -278,6 +282,12 @@
     </Compile>
     <Compile Include="MachineControl\ControlProbing.Designer.cs">
       <DependentUpon>ControlProbing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MachineControl\ControlProjector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MachineControl\ControlProjector.Designer.cs">
+      <DependentUpon>ControlProjector.cs</DependentUpon>
     </Compile>
     <Compile Include="MachineControl\ControlSerialFormConnect.cs">
       <DependentUpon>ControlSerialForm.cs</DependentUpon>
@@ -1142,6 +1152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlProbing.zh-CN.resx">
       <DependentUpon>ControlProbing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlProjector.resx">
+      <DependentUpon>ControlProjector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSerialForm.ar.resx">
       <DependentUpon>ControlSerialForm.cs</DependentUpon>
