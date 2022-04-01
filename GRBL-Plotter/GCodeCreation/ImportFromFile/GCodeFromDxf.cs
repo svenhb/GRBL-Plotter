@@ -70,6 +70,8 @@
  * 2021-11-02 add DXFText (before just DXFMText)
  * 2021-12-09 line 401 check if (layerLType != null)
  * 2022-02-08 extend DXFPolyline by bulge
+ * 2022-02-18 line 405 add check (layerName != null)
+ * 2022-03-19 line 729 2nd CalcQuadraticBezier start index at 2 not 3
 */
 
 using DXFLib;
@@ -272,8 +274,13 @@ namespace GrblPlotter //DXFImporter
             wasSetPenFill = "";
             wasSetPenWidth = -1;
 
-            List<DXFLayerRecord> tst = doc.Tables.Layers;
-            countDXFLayers = tst.Count;
+            List<DXFLayerRecord> tst = new List<DXFLayerRecord>();
+            try
+            {
+                tst = doc.Tables.Layers;
+                countDXFLayers = tst.Count;
+            }
+            catch (Exception err) { Logger.Error(err, "Could not read doc.Tables.Layers "); }
             countDXFEntities = doc.Entities.Count;
             countDXFBlocks = doc.Blocks.Count;
             countDXFEntity = 0;
@@ -402,7 +409,7 @@ namespace GrblPlotter //DXFImporter
             /* get Dash pattern   */
             if ((entity.LineType == null) || (entity.LineType == "ByLayer"))
             {
-                if ((layerLType != null) && (layerLType.ContainsKey(layerName)))              // check if layer name is known
+                if ((layerLType != null) && (layerName != null) && (layerLType.ContainsKey(layerName)))              // check if layer name is known
                 {
                     string dashType = layerLType[layerName];        // get name of pattern
                     if (lineTypes.ContainsKey(dashType))            // check if pattern name is known
@@ -495,59 +502,6 @@ namespace GrblPlotter //DXFImporter
             }
             #endregion
             #region DXFPolyline
-		/*	else if (entity.GetType() == typeof(DXFPolyLine))
-            {
-                Graphic.SetGeometry("Polyline");
-                DXFPolyLine lp = (DXFPolyLine)entity;
-                index = 0;
-                double bulge = 0;
-                DXFPolyLine.Element coordinate;
-                bool roundcorner = false;
-                for (int i = 0; i < lp.VertexCount; i++)
-                {
-                    coordinate = lp.Elements[i];
-                    bulge = coordinate.Bulge;
-                    position = ApplyOffsetAndAngle(coordinate.Vertex, offset, offsetAngle);
-
-                    if (i == 0)
-                    {
-                        if (!nodesOnly)
-                        {
-                            DXFStartPath(position);//, "Start LWPolyLine - Nr pts " + lp.VertexCount.ToString( ));
-                        }
-                        else { GCodeDotOnly(position); }//, "Start LWPolyLine"); }
-                        if (logPosition) Logger.Trace("Start DXFPolyLine count:{0} X:{1:0.000} Y:{2:0.000} Z:{3:0.000}", lp.VertexCount, position.X, position.Y, position.Z);
-                    }
-
-                    if ((!roundcorner) && (i > 0))
-                    {
-                        if (logPosition) Logger.Trace("PolyLine moveTo index:{0} X:{1:0.000} Y:{2:0.000} Z:{3:0.000}", i, position.X, position.Y, position.Z);
-                        DXFMoveTo(position, "");
-                    }
-                    if (bulge != 0)
-                    {
-                        if (logPosition) Logger.Trace("PolyLine bulge  index:{0} val1X:{1:0.000} val1Y:{2:0.000} val2X:{3:0.000} val2Y:{4:0.000}", i, lp.Elements[i].Vertex.X, lp.Elements[i].Vertex.Y, lp.Elements[i + 1].Vertex.X, lp.Elements[i + 1].Vertex.Y);
-
-                        if (i < (lp.VertexCount - 1))
-                            AddRoundCorner(lp.Elements[i], lp.Elements[i + 1], offset, offsetAngle);
-                        else
-                            if (lp.Flags == DXFPolyLine.FlagsEnum.closed)
-                            AddRoundCorner(lp.Elements[i], lp.Elements[0], offset, offsetAngle);
-                        roundcorner = true;
-                    }
-                    else
-                        roundcorner = false;
-                }
-                if (logPosition) Logger.Trace(" LWPolyLine lp.Flags {0}", lp.Flags);
-                if (lp.Flags == DXFPolyLine.FlagsEnum.closed)
-                {
-                    position = ApplyOffsetAndAngle(lp.Elements[0].Vertex, offset, offsetAngle); // move to start position
-                    if (logPosition) Logger.Trace(" PolyLine close X:{0:0.000}  Y:{1:0.000}", position.X, position.Y);
-                    DXFMoveTo(position, "End PolyLine " + lp.Flags.ToString());
-                }
-                DXFStopPath();
-            }
-            */
             else if (entity.GetType() == typeof(DXFPolyLine))
             {
                 Graphic.SetGeometry("Polyline");
@@ -559,7 +513,7 @@ namespace GrblPlotter //DXFImporter
                 index = 0;
                 tmp = new DXFPoint();
              //   foreach (DXFVertex coordinate in lp.Children)
-             for (int i=0; i < lp.Children.Count; i++)
+				for (int i=0; i < lp.Children.Count; i++)
                 {
                     vertex = lp.Children[i];
                     if (vertex.GetType() == typeof(DXFVertex))
@@ -772,9 +726,9 @@ namespace GrblPlotter //DXFImporter
                         ImportMath.CalcQuadraticBezier(ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[0], offset, offsetAngle)),
                                                         ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[1], offset, offsetAngle)),
                                                         ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[2], offset, offsetAngle)), DXFMoveTo, "SQ");
-                        ImportMath.CalcQuadraticBezier(ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[3], offset, offsetAngle)),
-                                                        ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[4], offset, offsetAngle)),
-                                                        ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[5], offset, offsetAngle)), DXFMoveTo, "SQ");
+                        ImportMath.CalcQuadraticBezier(ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[2], offset, offsetAngle)),                     // 2022-03-19 start at 2 not 3
+                                                        ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[3], offset, offsetAngle)),
+                                                        ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[4], offset, offsetAngle)), DXFMoveTo, "SQ");
                     }
                     else
                     {
