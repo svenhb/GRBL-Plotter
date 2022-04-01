@@ -323,7 +323,17 @@ namespace GrblPlotter
                             if (GCPauseChar && (actualChar == ' '))
                                 GcodePause();//"Pause before word");
                             Graphic.SetGeometry(string.Format("Char {0}", actualChar));
-                            DrawLetter(HersheyFonts[GCFontName][chrIndex], scale);//, actualChar.ToString()); // regular char
+                            string svgPath = "";
+                            if (HersheyFonts.ContainsKey(GCFontName))
+                            {
+                                if (chrIndex < HersheyFonts[GCFontName].Length)
+                                {
+                                    DrawLetter(HersheyFonts[GCFontName][chrIndex], scale);//, actualChar.ToString()); // regular char
+                                }
+                                else
+                                { Graphic.SetHeaderInfo(string.Format("Char index is too large:{0}, max:{1}", chrIndex, HersheyFonts[GCFontName].Length)); }
+                            }
+                            else { Graphic.SetHeaderInfo(string.Format("Font not found:{0}", GCFontName)); }
                         }
                     }
                     else // useSVGFile

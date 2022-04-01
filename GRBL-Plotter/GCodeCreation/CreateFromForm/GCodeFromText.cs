@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,6 +25,8 @@
  * 2021-02-24 adapations for SVG-Font files
  * 2021-07-26 code clean up / code quality
  * 2021-09-10 add radioButtons to select line alignment: left, center, right line 168
+ * 2022-02-28 check if a font is selected before creating text
+ * 2022-03-04 check max in NudFontSize_ValueChanged
 */
 
 using System;
@@ -55,11 +57,6 @@ namespace GrblPlotter
             InitializeComponent();
         }
 
-        //        private string textgcode = "";
-
-        //        public string textGCode
-        //        { get { return textgcode; } }
-
         private void TextForm_Load(object sender, EventArgs e)
         {
             FillFontSelector();
@@ -68,7 +65,7 @@ namespace GrblPlotter
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { CenterToScreen(); }
 
-            int toolCount = ToolTable.Init();
+            int toolCount = ToolTable.Init(" (TextForm_Load)");
             ToolProp tmpTool;
             bool defaultToolFound = false;
             for (int i = 0; i < toolCount; i++)
@@ -132,6 +129,10 @@ namespace GrblPlotter
 
         public void CreateText()
         {
+			if (cBFont.SelectedIndex < 0)
+			{	MessageBox.Show("Please select a font", "Error");
+				return;
+			}
             Logger.Trace(culture, " createText()	");
             SaveSettings();
             GCodeFromFont.Reset();
@@ -173,7 +174,11 @@ namespace GrblPlotter
 
         // adapt line distance depending on font size
         private void NudFontSize_ValueChanged(object sender, EventArgs e)
-        { nUDFontLine.Value = nUDFontSize.Value * (decimal)1.5; }
+        { 	decimal tmp = nUDFontSize.Value * (decimal)1.5;
+			if (tmp > nUDFontLine.Maximum)
+				nUDFontLine.Maximum = tmp;
+			nUDFontLine.Value = tmp; 
+		}
 
         private void BtnCancel_Click(object sender, EventArgs e)
         { this.Close(); }
@@ -191,9 +196,10 @@ namespace GrblPlotter
         private void GCodeFromText_Resize(object sender, EventArgs e)
         {
             tBText.Width = Width - 37;
-            tBText.Height = Height - 250;
+            tBText.Height = Height - 280;
             btnApply.Left = Width - 151;
             btnApply.Top = Height - 88;
+            CbInsertCode.Top = Height - 84;
 
             tabControl1.Width = Width - 17;
             panel1.Width = Width - 118;
@@ -272,15 +278,6 @@ namespace GrblPlotter
                 newHeight = pictureBox1.Size.Height - (pictureBox1.Size.Height / 10);
                 newX = pictureBox1.Location.X + ((pictureBox1.Size.Width / 10) / 2);
                 newY = pictureBox1.Location.Y + ((pictureBox1.Size.Height / 10) / 2);
-
-                // Prevent image from zooming out beyond original size
-                /*      if (newWidth < image.Width)
-                      {
-                          newWidth = image.Width;
-                          newHeight = image.Height;
-                          newX = 0;
-                          newY = 0;
-                      }*/
             }
             pictureBox1.Size = new Size(newWidth, newHeight);
             pictureBox1.Location = new Point(newX, newY);

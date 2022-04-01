@@ -208,7 +208,7 @@
     <value>Niveaux de gris</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Mode de conversion</value>
+    <value>Conversion niveaux de gris / noir et blanc</value>
   </data>
   <data name="gBgcodeDirection.Text" xml:space="preserve">
     <value>Direction de la parcelle</value>
@@ -243,9 +243,6 @@
   <data name="groupBox6.Text" xml:space="preserve">
     <value>Mode de remplacement de couleur</value>
   </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>Valeur grise en Z (profondeur) ou vitesse de la broche</value>
-  </data>
   <data name="cBPreview.Text" xml:space="preserve">
     <value>Aperçu avec les couleurs de la table d'outils</value>
   </data>
@@ -274,10 +271,10 @@
     <value>Postérisation</value>
   </data>
   <data name="cBResolutionPenWidth.Text" xml:space="preserve">
-    <value>Utiliser la largeur du stylo également en vue 2D</value>
+    <value>Largeur du stylo à partir de la résolution</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>Traitement de la couleur</value>
+    <value>À partir du formulaire de configuration</value>
   </data>
   <data name="cBGCodeFill.Text" xml:space="preserve">
     <value>Remplir des zones</value>
@@ -294,14 +291,11 @@
   <data name="label16.Text" xml:space="preserve">
     <value>Dernier chargé:</value>
   </data>
-  <data name="nUDReso.ToolTip" xml:space="preserve">
-    <value>Distance entre deux lignes en unités (mm ou pouces)</value>
-  </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Largeur</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>Résolution</value>
+    <value>Résolution X / largeur du stylo</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>la taille</value>
@@ -329,9 +323,6 @@
   </data>
   <data name="label21.Text" xml:space="preserve">
     <value>Désélectionne les couleurs si nécessaire</value>
-  </data>
-  <data name="label24.Text" xml:space="preserve">
-    <value>Charger les paramètres pour l'application</value>
   </data>
   <data name="rbModeDither.Text" xml:space="preserve">
     <value>Tramage</value>
@@ -384,23 +375,14 @@
 1: distance dans l'espace colorimétrique (0 ° à 360 °)
 2: distance dans l'espace colorimétrique (0 ° à 360 °) + saturation + luminosité</value>
   </data>
-  <data name="rBProcessTool.Text" xml:space="preserve">
-    <value>La couleur détermine le numéro de l'outil</value>
-  </data>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>Préréglé</value>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>Correction d'image</value>
   </data>
-  <data name="tabPage2.Text" xml:space="preserve">
-    <value>Effets de couleur</value>
-  </data>
   <data name="tabPage3.Text" xml:space="preserve">
     <value>Remplacement de la couleur</value>
-  </data>
-  <data name="tabPage5.Text" xml:space="preserve">
-    <value>Génération de G-Code</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Z max (blanc)</value>
@@ -418,13 +400,10 @@
     <value>Z min (noir)</value>
   </data>
   <data name="label17.Text" xml:space="preserve">
-    <value>Le mode de couleur du stylet bas utilise la largeur du stylet de la table d'outils [Configuration - Apparence du programme - Vue 2D]</value>
+    <value>Collecte des zones de même couleur</value>
   </data>
   <data name="nUDResoX.ToolTip" xml:space="preserve">
     <value>Distance entre les lignes, doit correspondre à la largeur du stylo</value>
-  </data>
-  <data name="cBEngravingPattern3.Text" xml:space="preserve">
-    <value>Seulement de gauche à droite</value>
   </data>
   <data name="btnGetPWMValues.Text" xml:space="preserve">
     <value>Obtenez les paramètres servo-PWM</value>
@@ -435,9 +414,6 @@
   <data name="nUDResoY.ToolTip" xml:space="preserve">
     <value>Distance entre les lignes, doit correspondre à la largeur du stylo</value>
   </data>
-  <data name="rBGrayS.Text" xml:space="preserve">
-    <value>Valeur de gris comme vitesse de broche (PWM)</value>
-  </data>
   <data name="label22.Text" xml:space="preserve">
     <value>S min (blanc)</value>
   </data>
@@ -447,32 +423,17 @@
   <data name="cBCompress.Text" xml:space="preserve">
     <value>compresser le code</value>
   </data>
-  <data name="rBProcessZ.Text" xml:space="preserve">
-    <value>Valeur de gris comme Z</value>
-  </data>
   <data name="label19.Text" xml:space="preserve">
-    <value>Remarque: si "Aperçu" est coché, en haut de la fenêtre, les couleurs de la table d'outils (Configuration - Table d'outils) seront appliquées.</value>
-  </data>
-  <data name="tabPage21.Text" xml:space="preserve">
-    <value>Couleur comme outil Nr.</value>
-  </data>
-  <data name="rBGrayZ.Text" xml:space="preserve">
-    <value>Valeur de gris comme Z (profondeur)</value>
+    <value>Sélection et contenu de la table d'outils :</value>
   </data>
   <data name="groupBox7.Text" xml:space="preserve">
     <value>Distance de ligne</value>
   </data>
   <data name="cBLaserModeOffEnd.Text" xml:space="preserve">
-    <value>Effacer le mode laser à l'extrémité G-Code</value>
+    <value>Mode laser désactivé à la fin du code G</value>
   </data>
   <data name="cBLaserModeOnStart.Text" xml:space="preserve">
-    <value>Définir le mode laser au démarrage du G-Code</value>
-  </data>
-  <data name="tabPage22.Text" xml:space="preserve">
-    <value>Valeur de gris comme Z ou S</value>
-  </data>
-  <data name="cBEngravingPattern3.ToolTip" xml:space="preserve">
-    <value>Ne tirez que dans une seule direction pour éviter les décalages</value>
+    <value>Mode laser activé au démarrage du code G</value>
   </data>
   <data name="lblColors.Text" xml:space="preserve">
     <value>nombre de couleurs</value>
@@ -481,16 +442,7 @@
     <value>Élimine la surcharge de code pour une diffusion plus rapide</value>
   </data>
   <data name="checkBox1.Text" xml:space="preserve">
-    <value>Vue 2D masquer la valeur 0</value>
-  </data>
-  <data name="checkBox1.ToolTip" xml:space="preserve">
-    <value>En vue 2D, ne pas afficher la valeur du blanc (largeur du crayon = 0)</value>
-  </data>
-  <data name="nUDSMax.ToolTip" xml:space="preserve">
-    <value>Unterer Wert</value>
-  </data>
-  <data name="nUDZBot.ToolTip" xml:space="preserve">
-    <value>Unterer Wert</value>
+    <value>Mode couleur stylet vers le bas</value>
   </data>
   <data name="label18.Text" xml:space="preserve">
     <value>Distance de ligne</value>
@@ -536,5 +488,75 @@
   </data>
   <data name="nUDSBottom.ToolTip" xml:space="preserve">
     <value>Valeur inférieure</value>
+  </data>
+  <data name="GbGcodeDirection.Text" xml:space="preserve">
+    <value>Direction / motif du tracé</value>
+  </data>
+  <data name="tabPage2Color.Text" xml:space="preserve">
+    <value>Mode de couleur</value>
+  </data>
+  <data name="CboxToolTable.Text" xml:space="preserve">
+    <value>Contenu de la table d'outils</value>
+  </data>
+  <data name="CboxToolFiles.Text" xml:space="preserve">
+    <value>Dernière table d'outils chargée</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Pour feutres, crayons de couleur, aquarelle...
+Utilise une table d'outils pour attribuer des couleurs d'outils aux couleurs d'image et les regroupe. La quantité de couleurs peut être réduite en appliquant des filtres.
+Un changement d'outil manuel ou automatique peut être appliqué.</value>
+  </data>
+  <data name="tabPage2Gray.Text" xml:space="preserve">
+    <value>Mode niveaux de gris N/B</value>
+  </data>
+  <data name="LblStartGrayMode.Text" xml:space="preserve">
+    <value>Pour défonceuse, laser ou stylo ou pinceau monochrome
+Utilise la valeur de niveaux de gris (0 - 255) pour contrôler la profondeur ou la puissance de l'outil.
+Les filtres de couleur et les effets seront pris en compte lors de la génération des niveaux de gris.</value>
+  </data>
+  <data name="GbCOlorCorrection.Text" xml:space="preserve">
+    <value>Correction de couleur</value>
+  </data>
+  <data name="GbColorEffects.Text" xml:space="preserve">
+    <value>Effets de couleur</value>
+  </data>
+  <data name="GbSpecialEffects.Text" xml:space="preserve">
+    <value>Effets spéciaux</value>
+  </data>
+  <data name="cBToolChange.Text" xml:space="preserve">
+    <value>Effectuer le changement d'outil sur Tx M06</value>
+  </data>
+  <data name="cBToolChange.ToolTip" xml:space="preserve">
+    <value>Exécutez les scripts suivants sur les commandes Tx M06</value>
+  </data>
+  <data name="cBImportGCToolM0.Text" xml:space="preserve">
+    <value>Ajouter Pause (M0) à la place</value>
+  </data>
+  <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
+    <value>Remplacez toute commande M06 (changement d'outil) par M0 (pause) pour un changement d'outil manuel.</value>
+  </data>
+  <data name="cBImportGCTool.Text" xml:space="preserve">
+    <value>Ajouter la commande de changement d'outil Tx M06</value>
+  </data>
+  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
+    <value>Effectuez une action de changement d'outil sur les commandes Tx M06 si des informations sont disponibles - vérifiez l'onglet 'Changement d'outil'.</value>
+  </data>
+  <data name="RbStartGrayZ.Text" xml:space="preserve">
+    <value>Valeur de gris en Z (profondeur)</value>
+  </data>
+  <data name="GbUseCaseLoad.Text" xml:space="preserve">
+    <value>Charger le cas d'utilisation</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Affichage en vue 2D</value>
+  </data>
+  <data name="GbGrayscaleProcess.Text" xml:space="preserve">
+    <value>Traitement des niveaux de gris</value>
+  </data>
+  <data name="RbGrayscaleVector.Text" xml:space="preserve">
+    <value>Vectoriser</value>
+  </data>
+  <data name="radioButton2.Text" xml:space="preserve">
+    <value>Modèle</value>
   </data>
 </root>

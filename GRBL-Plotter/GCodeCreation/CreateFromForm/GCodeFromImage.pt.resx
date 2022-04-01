@@ -196,9 +196,6 @@
   <data name="nUDColorPercent.ToolTip" xml:space="preserve">
     <value>% De limite mínimo de ocorrência de cores</value>
   </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>Valor de cinza como Z (profundidade) ou velocidade do eixo</value>
-  </data>
   <data name="tBGMin.ToolTip" xml:space="preserve">
     <value>Os valores verdes abaixo disso serão definidos como zero</value>
   </data>
@@ -224,16 +221,13 @@
     <value>Criar código G a partir da imagem</value>
   </data>
   <data name="cBResolutionPenWidth.Text" xml:space="preserve">
-    <value>Aplicar o valor da resolução como largura da caneta na visualização 2D</value>
+    <value>Largura da caneta a partir da resolução</value>
   </data>
   <data name="cBFilterHistogram.Text" xml:space="preserve">
     <value>Equalização do histograma</value>
   </data>
   <data name="btnRotateRight.ToolTip" xml:space="preserve">
     <value>Rodar imagem 90 ° cw</value>
-  </data>
-  <data name="rBProcessTool.Text" xml:space="preserve">
-    <value>Cor como ferramenta nº</value>
   </data>
   <data name="btnVertMirror.ToolTip" xml:space="preserve">
     <value>Aleta vertical</value>
@@ -257,10 +251,10 @@
     <value>Mantenha o botão pressionado para verificar a imagem com as cores da tabela de ferramentas</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Modo de conversão</value>
+    <value>Conversão de tons de cinza/preto e branco</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>Processamento de cores</value>
+    <value>Do formulário de configuração</value>
   </data>
   <data name="btnPresetCorrection1.Text" xml:space="preserve">
     <value>Imagem - fundo escuro</value>
@@ -282,9 +276,6 @@
   </data>
   <data name="cBGCodeOutlineSmooth.Text" xml:space="preserve">
     <value>suave</value>
-  </data>
-  <data name="tabPage5.Text" xml:space="preserve">
-    <value>Geração de código G</value>
   </data>
   <data name="nUDGCodeOutlineSmooth.ToolTip" xml:space="preserve">
     <value>Ciclos de suavização</value>
@@ -334,16 +325,10 @@ O filtro permite preencher determinados intervalos de canais de cores RGB com o 
     <value>Brilho</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>Resolução</value>
-  </data>
-  <data name="label24.Text" xml:space="preserve">
-    <value>Carregar caso de uso para configuração</value>
+    <value>Resolução X / largura da caneta</value>
   </data>
   <data name="btnPresetCorrection2.Text" xml:space="preserve">
     <value>Gráfico - muitas cores</value>
-  </data>
-  <data name="nUDReso.ToolTip" xml:space="preserve">
-    <value>Distância entre linhas, deve corresponder à largura da caneta</value>
   </data>
   <data name="tBRMax.ToolTip" xml:space="preserve">
     <value>Valores vermelhos acima disso, serão definidos como zero</value>
@@ -353,9 +338,6 @@ O filtro permite preencher determinados intervalos de canais de cores RGB com o 
   </data>
   <data name="tBGMax.ToolTip" xml:space="preserve">
     <value>Valores verdes acima disso serão definidos como zero</value>
-  </data>
-  <data name="nUDZBot.ToolTip" xml:space="preserve">
-    <value>Valor mais baixo</value>
   </data>
   <data name="cBFilterRemoveArtefact.Text" xml:space="preserve">
     <value>Remover pixels únicos</value>
@@ -378,17 +360,11 @@ O filtro permite preencher determinados intervalos de canais de cores RGB com o 
   <data name="label16.Text" xml:space="preserve">
     <value>Último carregamento:</value>
   </data>
-  <data name="nUDSMax.ToolTip" xml:space="preserve">
-    <value>Valor mais baixo</value>
-  </data>
   <data name="label11.Text" xml:space="preserve">
     <value>Saturação</value>
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>Predefinição</value>
-  </data>
-  <data name="tabPage2.Text" xml:space="preserve">
-    <value>Efeitos de cor</value>
   </data>
   <data name="cbExceptColor.ToolTip" xml:space="preserve">
     <value>Clique esquerdo na imagem para selecionar a cor que não será desenhada</value>
@@ -418,13 +394,10 @@ O filtro permite preencher determinados intervalos de canais de cores RGB com o 
     <value>Distância na cor-matiz, -sat., - brilhante.</value>
   </data>
   <data name="label17.Text" xml:space="preserve">
-    <value>O modo de cor da caneta para baixo usa a largura da caneta da tabela de ferramentas [Configuração - Aparência do programa - visualização 2D]</value>
+    <value>Coleta áreas da mesma cor</value>
   </data>
   <data name="nUDResoX.ToolTip" xml:space="preserve">
     <value>Distância entre as linhas, deve corresponder à largura da caneta</value>
-  </data>
-  <data name="cBEngravingPattern3.Text" xml:space="preserve">
-    <value>Só da esquerda para a direita</value>
   </data>
   <data name="btnGetPWMValues.Text" xml:space="preserve">
     <value>Obtenha as configurações do servo-PWM</value>
@@ -435,9 +408,6 @@ O filtro permite preencher determinados intervalos de canais de cores RGB com o 
   <data name="nUDResoY.ToolTip" xml:space="preserve">
     <value>Distância entre as linhas, deve corresponder à largura da caneta</value>
   </data>
-  <data name="rBGrayS.Text" xml:space="preserve">
-    <value>Valor de cinza como velocidade do fuso (PWM)</value>
-  </data>
   <data name="label22.Text" xml:space="preserve">
     <value>S min (branco)</value>
   </data>
@@ -447,41 +417,23 @@ O filtro permite preencher determinados intervalos de canais de cores RGB com o 
   <data name="cBCompress.Text" xml:space="preserve">
     <value>código de compressão</value>
   </data>
-  <data name="rBProcessZ.Text" xml:space="preserve">
-    <value>Valor de cinza como Z</value>
-  </data>
   <data name="label19.Text" xml:space="preserve">
-    <value>Nota: se "Visualização" estiver marcada, no topo da janela, as cores da tabela de ferramentas (Configuração - Tabela de ferramentas) serão aplicadas.</value>
-  </data>
-  <data name="tabPage21.Text" xml:space="preserve">
-    <value>Cor como ferramenta nº.</value>
-  </data>
-  <data name="rBGrayZ.Text" xml:space="preserve">
-    <value>Valor de cinza como Z (profundidade)</value>
+    <value>Seleção e conteúdo da tabela de ferramentas:</value>
   </data>
   <data name="groupBox7.Text" xml:space="preserve">
     <value>Distância da linha</value>
   </data>
   <data name="cBLaserModeOffEnd.Text" xml:space="preserve">
-    <value>Limpar modo de laser na extremidade do Código G</value>
+    <value>Modo laser DESLIGADO no final do código G</value>
   </data>
   <data name="cBLaserModeOnStart.Text" xml:space="preserve">
-    <value>Definir modo laser no início do Código G</value>
-  </data>
-  <data name="tabPage22.Text" xml:space="preserve">
-    <value>Valor de cinza como Z ou S</value>
-  </data>
-  <data name="cBEngravingPattern3.ToolTip" xml:space="preserve">
-    <value>Desenhe apenas em uma direção para evitar deslocamentos</value>
+    <value>Modo laser LIGADO no início do código G</value>
   </data>
   <data name="cBCompress.ToolTip" xml:space="preserve">
     <value>Elimina a sobrecarga de código para streaming mais rápido</value>
   </data>
   <data name="checkBox1.Text" xml:space="preserve">
-    <value>Vista 2D ocultar valor 0</value>
-  </data>
-  <data name="checkBox1.ToolTip" xml:space="preserve">
-    <value>Na vista 2D, não mostra o valor de branco (largura da caneta = 0)</value>
+    <value>Modo de cor da caneta para baixo</value>
   </data>
   <data name="label18.Text" xml:space="preserve">
     <value>Distância da linha</value>
@@ -527,5 +479,75 @@ O filtro permite preencher determinados intervalos de canais de cores RGB com o 
   </data>
   <data name="nUDSBottom.ToolTip" xml:space="preserve">
     <value>Valor inferior</value>
+  </data>
+  <data name="GbGcodeDirection.Text" xml:space="preserve">
+    <value>Direção/padrão de plotagem</value>
+  </data>
+  <data name="tabPage2Color.Text" xml:space="preserve">
+    <value>Modo de cor</value>
+  </data>
+  <data name="CboxToolTable.Text" xml:space="preserve">
+    <value>Conteúdo da tabela de ferramentas</value>
+  </data>
+  <data name="CboxToolFiles.Text" xml:space="preserve">
+    <value>Última tabela de ferramentas carregada</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Para canetas de feltro, lápis de cor, aguarela...
+Usa uma tabela de ferramentas para atribuir cores de ferramentas às cores da imagem e agrupá-las. A quantidade de cores pode ser reduzida aplicando filtros.
+A troca manual ou automática da ferramenta pode ser aplicada.</value>
+  </data>
+  <data name="tabPage2Gray.Text" xml:space="preserve">
+    <value>Modo P/B em tons de cinza</value>
+  </data>
+  <data name="LblStartGrayMode.Text" xml:space="preserve">
+    <value>Para roteador, laser ou caneta ou pincel de cor única
+Usa o valor da escala de cinza (0 - 255) para controlar a profundidade ou potência da ferramenta.
+Filtros de cores e efeitos serão considerados na geração de tons de cinza.</value>
+  </data>
+  <data name="GbCOlorCorrection.Text" xml:space="preserve">
+    <value>Correção de cor</value>
+  </data>
+  <data name="GbColorEffects.Text" xml:space="preserve">
+    <value>Efeitos de cor</value>
+  </data>
+  <data name="GbSpecialEffects.Text" xml:space="preserve">
+    <value>Efeitos especiais</value>
+  </data>
+  <data name="cBToolChange.Text" xml:space="preserve">
+    <value>Realize a troca de ferramenta no Tx M06</value>
+  </data>
+  <data name="cBToolChange.ToolTip" xml:space="preserve">
+    <value>Execute os seguintes scripts nos comandos Tx M06</value>
+  </data>
+  <data name="cBImportGCToolM0.Text" xml:space="preserve">
+    <value>Adicionar Pausa (M0) em vez disso</value>
+  </data>
+  <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
+    <value>Substitua qualquer comando M06 (troca de ferramenta) por M0 (pausa) para troca manual de ferramenta.</value>
+  </data>
+  <data name="cBImportGCTool.Text" xml:space="preserve">
+    <value>Adicionar comando de mudança de ferramenta Tx M06</value>
+  </data>
+  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
+    <value>Execute a ação de troca de ferramenta nos comandos Tx M06 se as informações estiverem disponíveis - verifique a guia 'Mudança de ferramenta'.</value>
+  </data>
+  <data name="RbStartGrayZ.Text" xml:space="preserve">
+    <value>Valor cinza como Z (profundidade)</value>
+  </data>
+  <data name="GbUseCaseLoad.Text" xml:space="preserve">
+    <value>Carregar caso de uso</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Exibição em 2D-View</value>
+  </data>
+  <data name="GbGrayscaleProcess.Text" xml:space="preserve">
+    <value>Processamento em escala de cinza</value>
+  </data>
+  <data name="RbGrayscaleVector.Text" xml:space="preserve">
+    <value>Vetorizar</value>
+  </data>
+  <data name="radioButton2.Text" xml:space="preserve">
+    <value>Padrão</value>
   </data>
 </root>

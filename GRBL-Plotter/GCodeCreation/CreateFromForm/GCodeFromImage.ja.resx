@@ -201,9 +201,6 @@
   <data name="nUDColorPercent.ToolTip" xml:space="preserve">
     <value>色の発生の最小制限％</value>
   </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>Z（深さ）またはスピンドル速度としてのグレー値</value>
-  </data>
   <data name="tBGMin.ToolTip" xml:space="preserve">
     <value>これ以下の緑の値はゼロに設定されます</value>
   </data>
@@ -229,7 +226,7 @@
     <value>コードを圧縮する</value>
   </data>
   <data name="cBResolutionPenWidth.Text" xml:space="preserve">
-    <value>2Dビューでペン幅として解像度値を適用</value>
+    <value>解像度からのペン幅</value>
   </data>
   <data name="cBFilterHistogram.Text" xml:space="preserve">
     <value>ヒストグラム均等化</value>
@@ -239,9 +236,6 @@
   </data>
   <data name="btnRotateRight.ToolTip" xml:space="preserve">
     <value>画像を90°回転させる</value>
-  </data>
-  <data name="rBProcessTool.Text" xml:space="preserve">
-    <value>   ツール番号としての色</value>
   </data>
   <data name="rbEngravingPattern1.Text" xml:space="preserve">
     <value>水平</value>
@@ -268,10 +262,10 @@
     <value>ボタンを押したままにして、ツールテーブルの色で画像を確認します</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>変換モード</value>
+    <value>グレースケール/白黒変換</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>色処理</value>
+    <value>セットアップフォームから</value>
   </data>
   <data name="rbEngravingPattern2.Text" xml:space="preserve">
     <value>対角線</value>
@@ -299,9 +293,6 @@
   </data>
   <data name="cBGCodeOutlineSmooth.Text" xml:space="preserve">
     <value>なめらか</value>
-  </data>
-  <data name="tabPage5.Text" xml:space="preserve">
-    <value>Gコード生成</value>
   </data>
   <data name="nUDGCodeOutlineSmooth.ToolTip" xml:space="preserve">
     <value>平滑化サイクル</value>
@@ -359,16 +350,10 @@
     <value>輝度</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>解決</value>
-  </data>
-  <data name="label24.Text" xml:space="preserve">
-    <value>セットアップのユースケースを読み込む</value>
+    <value>解像度X/ペン幅</value>
   </data>
   <data name="btnPresetCorrection2.Text" xml:space="preserve">
     <value>グラフィック-多くの色</value>
-  </data>
-  <data name="nUDReso.ToolTip" xml:space="preserve">
-    <value>線間の距離、ペンの幅と一致する必要があります</value>
   </data>
   <data name="tBRMax.ToolTip" xml:space="preserve">
     <value>これより上の赤い値はゼロに設定されます</value>
@@ -378,9 +363,6 @@
   </data>
   <data name="tBGMax.ToolTip" xml:space="preserve">
     <value>これより上の緑の値はゼロに設定されます</value>
-  </data>
-  <data name="nUDZBot.ToolTip" xml:space="preserve">
-    <value>低い値</value>
   </data>
   <data name="cBFilterRemoveArtefact.Text" xml:space="preserve">
     <value>単一ピクセルを削除</value>
@@ -406,17 +388,11 @@
   <data name="rbModeDither.Text" xml:space="preserve">
     <value>ディザリング</value>
   </data>
-  <data name="nUDSMax.ToolTip" xml:space="preserve">
-    <value>低い値</value>
-  </data>
   <data name="label11.Text" xml:space="preserve">
     <value>飽和</value>
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>プリセット</value>
-  </data>
-  <data name="tabPage2.Text" xml:space="preserve">
-    <value>色の効果</value>
   </data>
   <data name="cbExceptColor.ToolTip" xml:space="preserve">
     <value>画像内を左クリックして、描画されない色を選択します</value>
@@ -449,13 +425,10 @@
     <value>色相、彩度、明度での距離。</value>
   </data>
   <data name="label17.Text" xml:space="preserve">
-    <value>ペンダウンカラーモードは、ツールテーブルのペン幅を使用します[セットアップ-プログラムの外観-2Dビュー]</value>
+    <value>同じ色の領域を収集します</value>
   </data>
   <data name="nUDResoX.ToolTip" xml:space="preserve">
     <value>行間の距離、ペンの幅と一致する必要があります</value>
-  </data>
-  <data name="cBEngravingPattern3.Text" xml:space="preserve">
-    <value>左から右のみ</value>
   </data>
   <data name="btnGetPWMValues.Text" xml:space="preserve">
     <value>サーボPWM設定を取得する</value>
@@ -466,20 +439,8 @@
   <data name="nUDResoY.ToolTip" xml:space="preserve">
     <value>行間の距離、ペンの幅と一致する必要があります</value>
   </data>
-  <data name="rBGrayS.Text" xml:space="preserve">
-    <value>スピンドル速度（PWM）としての灰色の値</value>
-  </data>
-  <data name="rBProcessZ.Text" xml:space="preserve">
-    <value>Zとしてのグレー値</value>
-  </data>
   <data name="label19.Text" xml:space="preserve">
-    <value>注：「プレビュー」がチェックされている場合、ウィンドウの上部に、ツールテーブル（セットアップ-ツールテーブル）の色が適用されます。</value>
-  </data>
-  <data name="tabPage21.Text" xml:space="preserve">
-    <value>ツール番号としての色</value>
-  </data>
-  <data name="rBGrayZ.Text" xml:space="preserve">
-    <value>Z（深さ）としてのグレー値</value>
+    <value>ツールテーブルの選択と内容：</value>
   </data>
   <data name="groupBox7.Text" xml:space="preserve">
     <value>線間距離</value>
@@ -490,20 +451,11 @@
   <data name="cBLaserModeOnStart.Text" xml:space="preserve">
     <value>Gコード開始時にレーザーモードを設定します</value>
   </data>
-  <data name="tabPage22.Text" xml:space="preserve">
-    <value>ZまたはSとしてのグレー値</value>
-  </data>
-  <data name="cBEngravingPattern3.ToolTip" xml:space="preserve">
-    <value>オフセットを避けるために一方向からのみ描画します</value>
-  </data>
   <data name="cBCompress.ToolTip" xml:space="preserve">
     <value>コードのオーバーヘッドを排除してストリーミングを高速化</value>
   </data>
   <data name="checkBox1.Text" xml:space="preserve">
-    <value>2Dビューは0の値を非表示にします</value>
-  </data>
-  <data name="checkBox1.ToolTip" xml:space="preserve">
-    <value>2Dビューでは、白の値は表示されません（ペンの幅= 0）</value>
+    <value>ペンダウンカラーモード</value>
   </data>
   <data name="label18.Text" xml:space="preserve">
     <value>線間距離</value>
@@ -553,10 +505,77 @@
   <data name="nUDSBottom.ToolTip" xml:space="preserve">
     <value>低い値</value>
   </data>
-  <data name="tabPage7.Text" xml:space="preserve">
-    <value>パターン</value>
-  </data>
   <data name="CbPenUpOn0.Text" xml:space="preserve">
     <value>0のペンアップ</value>
+  </data>
+  <data name="GbGcodeDirection.Text" xml:space="preserve">
+    <value>プロットの方向/パターン</value>
+  </data>
+  <data name="tabPage2Color.Text" xml:space="preserve">
+    <value>カラーモード</value>
+  </data>
+  <data name="CboxToolTable.Text" xml:space="preserve">
+    <value>ツールテーブルの内容</value>
+  </data>
+  <data name="CboxToolFiles.Text" xml:space="preserve">
+    <value>最後にロードされたツールテーブル</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>フェルトペン、色鉛筆、水彩画用...
+ツールテーブルを使用して、ツールの色を画像の色に割り当て、グループ化します。フィルタを適用することにより、色の量を減らすことができます。
+手動または自動の工具交換を適用できます。</value>
+  </data>
+  <data name="tabPage2Gray.Text" xml:space="preserve">
+    <value>B/Wグレースケールモード</value>
+  </data>
+  <data name="LblStartGrayMode.Text" xml:space="preserve">
+    <value>ルーター、レーザー、単色ペンまたはブラシ用
+グレースケール値（0〜255）を使用して、ツールの深さまたはパワーを制御します。
+グレースケールを生成するときは、カラーフィルターと効果が考慮されます。</value>
+  </data>
+  <data name="GbCOlorCorrection.Text" xml:space="preserve">
+    <value>色補正</value>
+  </data>
+  <data name="GbColorEffects.Text" xml:space="preserve">
+    <value>色の効果</value>
+  </data>
+  <data name="GbSpecialEffects.Text" xml:space="preserve">
+    <value>特殊効果</value>
+  </data>
+  <data name="cBToolChange.Text" xml:space="preserve">
+    <value>TxM06で工具交換を実行します</value>
+  </data>
+  <data name="cBToolChange.ToolTip" xml:space="preserve">
+    <value>TxM06コマンドで次のスクリプトを実行します</value>
+  </data>
+  <data name="cBImportGCToolM0.Text" xml:space="preserve">
+    <value>代わりに一時停止（M0）を追加</value>
+  </data>
+  <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
+    <value>手動で工具を交換するには、M06（工具交換）コマンドをM0（一時停止）に置き換えます。</value>
+  </data>
+  <data name="cBImportGCTool.Text" xml:space="preserve">
+    <value>ツール変更コマンドの追加TxM06</value>
+  </data>
+  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
+    <value>情報が利用可能な場合は、TxM06コマンドでツール変更アクションを実行します-タブ「ツール変更」を確認します。</value>
+  </data>
+  <data name="RbStartGrayZ.Text" xml:space="preserve">
+    <value>Z（深さ）としてのグレー値</value>
+  </data>
+  <data name="GbUseCaseLoad.Text" xml:space="preserve">
+    <value>負荷のユースケース</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>2Dビューで表示</value>
+  </data>
+  <data name="GbGrayscaleProcess.Text" xml:space="preserve">
+    <value>グレースケール処理</value>
+  </data>
+  <data name="RbGrayscaleVector.Text" xml:space="preserve">
+    <value>ベクトル化</value>
+  </data>
+  <data name="radioButton2.Text" xml:space="preserve">
+    <value>パターン</value>
   </data>
 </root>

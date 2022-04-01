@@ -204,6 +204,30 @@
   <data name="&gt;&gt;btnApply.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="nUDLineBreak.Location" type="System.Drawing.Point, System.Drawing">
+    <value>165, 101</value>
+  </data>
+  <data name="nUDLineBreak.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
+  </data>
+  <data name="nUDLineBreak.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="nUDLineBreak.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;nUDLineBreak.Name" xml:space="preserve">
+    <value>nUDLineBreak</value>
+  </data>
+  <data name="&gt;&gt;nUDLineBreak.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDLineBreak.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;nUDLineBreak.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="RbAlign3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -232,7 +256,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;RbAlign3.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="RbAlign2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -262,7 +286,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;RbAlign2.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="RbAlign1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -292,7 +316,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;RbAlign1.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -322,30 +346,6 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="nUDLineBreak.Location" type="System.Drawing.Point, System.Drawing">
-    <value>175, 101</value>
-  </data>
-  <data name="nUDLineBreak.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 20</value>
-  </data>
-  <data name="nUDLineBreak.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="nUDLineBreak.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;nUDLineBreak.Name" xml:space="preserve">
-    <value>nUDLineBreak</value>
-  </data>
-  <data name="&gt;&gt;nUDLineBreak.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDLineBreak.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;nUDLineBreak.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="cBLineBreak.AutoSize" type="System.Boolean, mscorlib">
@@ -382,10 +382,10 @@
     <value>5</value>
   </data>
   <data name="nUDFontLine.Location" type="System.Drawing.Point, System.Drawing">
-    <value>175, 80</value>
+    <value>165, 80</value>
   </data>
   <data name="nUDFontLine.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 20</value>
+    <value>60, 20</value>
   </data>
   <data name="nUDFontLine.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -439,10 +439,10 @@
     <value>7</value>
   </data>
   <data name="nUDFontDistance.Location" type="System.Drawing.Point, System.Drawing">
-    <value>175, 59</value>
+    <value>165, 59</value>
   </data>
   <data name="nUDFontDistance.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 20</value>
+    <value>60, 20</value>
   </data>
   <data name="nUDFontDistance.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -496,13 +496,13 @@
     <value>9</value>
   </data>
   <data name="nUDFontSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>175, 38</value>
+    <value>165, 38</value>
   </data>
   <data name="nUDFontSize.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
   </data>
   <data name="nUDFontSize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 20</value>
+    <value>60, 20</value>
   </data>
   <data name="nUDFontSize.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -1214,9 +1214,6 @@
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>484, 341</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
     <value>50, 300</value>

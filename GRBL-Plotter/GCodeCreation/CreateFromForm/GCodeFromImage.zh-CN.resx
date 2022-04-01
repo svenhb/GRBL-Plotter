@@ -208,7 +208,7 @@
     <value>灰阶</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>转换方式</value>
+    <value>灰度/黑白转换</value>
   </data>
   <data name="gBgcodeDirection.Text" xml:space="preserve">
     <value>绘图方向</value>
@@ -243,9 +243,6 @@
   <data name="groupBox6.Text" xml:space="preserve">
     <value>换色模式</value>
   </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>灰度值为Z（深度）或主轴转速</value>
-  </data>
   <data name="cBPreview.Text" xml:space="preserve">
     <value>使用工具表中的颜色进行预览</value>
   </data>
@@ -274,10 +271,10 @@
     <value>后发化</value>
   </data>
   <data name="cBResolutionPenWidth.Text" xml:space="preserve">
-    <value>在2D视图中也使用笔宽</value>
+    <value>分辨率的笔宽</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>色彩处理</value>
+    <value>从设置表单</value>
   </data>
   <data name="cBGCodeFill.Text" xml:space="preserve">
     <value>填充区域</value>
@@ -294,14 +291,11 @@
   <data name="label16.Text" xml:space="preserve">
     <value>上次加载：</value>
   </data>
-  <data name="nUDReso.ToolTip" xml:space="preserve">
-    <value>两行之间的距离，单位（毫米或英寸）</value>
-  </data>
   <data name="label4.Text" xml:space="preserve">
     <value>宽度</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>解析度</value>
+    <value>分辨率 X / 笔宽</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>高度</value>
@@ -329,9 +323,6 @@
   </data>
   <data name="label21.Text" xml:space="preserve">
     <value>如果不需要，请取消选择颜色</value>
-  </data>
-  <data name="label24.Text" xml:space="preserve">
-    <value>应用程序的负载设置</value>
   </data>
   <data name="rbModeDither.Text" xml:space="preserve">
     <value>抖动</value>
@@ -384,23 +375,14 @@
 1：在色彩空间中的距离（0°-360°）
 2：色彩空间中的距离（0°-360°）+饱和度+亮度</value>
   </data>
-  <data name="rBProcessTool.Text" xml:space="preserve">
-    <value>颜色决定工具编号</value>
-  </data>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>预设值</value>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>影像校正</value>
   </data>
-  <data name="tabPage2.Text" xml:space="preserve">
-    <value>色彩效果</value>
-  </data>
   <data name="tabPage3.Text" xml:space="preserve">
     <value>换色</value>
-  </data>
-  <data name="tabPage5.Text" xml:space="preserve">
-    <value>G代码生成</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>最大Z（白色）</value>
@@ -418,7 +400,7 @@
     <value>Z分钟（黑色）</value>
   </data>
   <data name="label17.Text" xml:space="preserve">
-    <value>落笔彩色模式使用工具表中的笔宽度[设置-程序外观-2D视图]</value>
+    <value>收集相同颜色的区域</value>
   </data>
   <data name="lblSizeOrig.Text" xml:space="preserve">
     <value>尺寸</value>
@@ -428,9 +410,6 @@
   </data>
   <data name="lblSizeResult.Text" xml:space="preserve">
     <value>尺寸</value>
-  </data>
-  <data name="cBEngravingPattern3.Text" xml:space="preserve">
-    <value>只从左到右</value>
   </data>
   <data name="lblImageSource.Text" xml:space="preserve">
     <value>原来的</value>
@@ -447,15 +426,6 @@
   <data name="nUDResoY.ToolTip" xml:space="preserve">
     <value>行之间的距离，应与笔的宽度相匹配</value>
   </data>
-  <data name="nUDZBot.ToolTip" xml:space="preserve">
-    <value>较低的价值</value>
-  </data>
-  <data name="nUDSMax.ToolTip" xml:space="preserve">
-    <value>较低的价值</value>
-  </data>
-  <data name="rBGrayS.Text" xml:space="preserve">
-    <value>灰度值作为主轴转速（PWM）</value>
-  </data>
   <data name="label22.Text" xml:space="preserve">
     <value>S min（白色）</value>
   </data>
@@ -465,17 +435,8 @@
   <data name="cBCompress.Text" xml:space="preserve">
     <value>压缩代码</value>
   </data>
-  <data name="rBProcessZ.Text" xml:space="preserve">
-    <value>灰度值为Z</value>
-  </data>
   <data name="label19.Text" xml:space="preserve">
-    <value>注意：如果选中“预览”，则在窗口顶部，将应用工具表（设置-工具表）中的颜色。</value>
-  </data>
-  <data name="tabPage21.Text" xml:space="preserve">
-    <value>颜色作为工具编号。</value>
-  </data>
-  <data name="rBGrayZ.Text" xml:space="preserve">
-    <value>灰度值为Z（深度）</value>
+    <value>工具表选择及内容：</value>
   </data>
   <data name="groupBox7.Text" xml:space="preserve">
     <value>线距</value>
@@ -486,20 +447,11 @@
   <data name="cBLaserModeOnStart.Text" xml:space="preserve">
     <value>在G代码启动时设置Lasermode</value>
   </data>
-  <data name="tabPage22.Text" xml:space="preserve">
-    <value>灰度值为Z或S</value>
-  </data>
-  <data name="cBEngravingPattern3.ToolTip" xml:space="preserve">
-    <value>仅从一个方向绘制以避免偏移</value>
-  </data>
   <data name="cBCompress.ToolTip" xml:space="preserve">
     <value>消除代码开销，实现更快的流传输</value>
   </data>
   <data name="checkBox1.Text" xml:space="preserve">
-    <value>2D视图隐藏0值</value>
-  </data>
-  <data name="checkBox1.ToolTip" xml:space="preserve">
-    <value>在2D视图中不显示白色值（笔宽= 0）</value>
+    <value>下笔颜色模式</value>
   </data>
   <data name="label18.Text" xml:space="preserve">
     <value>线距</value>
@@ -549,10 +501,77 @@
   <data name="cBReduceColorsDithering.Text" xml:space="preserve">
     <value>抖动</value>
   </data>
-  <data name="tabPage7.Text" xml:space="preserve">
-    <value>图案</value>
-  </data>
   <data name="CbPenUpOn0.Text" xml:space="preserve">
     <value>上笔 0</value>
+  </data>
+  <data name="GbGcodeDirection.Text" xml:space="preserve">
+    <value>绘图方向/模式</value>
+  </data>
+  <data name="tabPage2Color.Text" xml:space="preserve">
+    <value>颜色模式</value>
+  </data>
+  <data name="CboxToolTable.Text" xml:space="preserve">
+    <value>工具表内容</value>
+  </data>
+  <data name="CboxToolFiles.Text" xml:space="preserve">
+    <value>最后加载的刀具表</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>用于毡笔、彩色铅笔、水彩...
+使用工具表将工具颜色分配给图像颜色并将它们分组。通过应用过滤器可以减少颜色的数量。
+可以应用手动或自动换刀。</value>
+  </data>
+  <data name="tabPage2Gray.Text" xml:space="preserve">
+    <value>黑白灰度模式</value>
+  </data>
+  <data name="LblStartGrayMode.Text" xml:space="preserve">
+    <value>适用于路由器、激光或单色笔或刷子
+使用灰度值 (0 - 255) 来控制工具的深度或功率。
+在生成灰度时，将考虑滤色器和效果。</value>
+  </data>
+  <data name="GbCOlorCorrection.Text" xml:space="preserve">
+    <value>色彩校正</value>
+  </data>
+  <data name="GbColorEffects.Text" xml:space="preserve">
+    <value>色彩效果</value>
+  </data>
+  <data name="GbSpecialEffects.Text" xml:space="preserve">
+    <value>特殊效果</value>
+  </data>
+  <data name="cBToolChange.Text" xml:space="preserve">
+    <value>在 Tx M06 上执行换刀</value>
+  </data>
+  <data name="cBToolChange.ToolTip" xml:space="preserve">
+    <value>在 Tx M06 命令上执行以下脚本</value>
+  </data>
+  <data name="cBImportGCToolM0.Text" xml:space="preserve">
+    <value>改为添加暂停 (M0)</value>
+  </data>
+  <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
+    <value>用 M0（暂停）替换任何 M06（换刀）命令以进行手动换刀。</value>
+  </data>
+  <data name="cBImportGCTool.Text" xml:space="preserve">
+    <value>添加换刀命令 Tx M06</value>
+  </data>
+  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
+    <value>如果信息可用，请对 Tx M06 命令执行换刀操作 - 检查选项卡“换刀”。</value>
+  </data>
+  <data name="RbStartGrayZ.Text" xml:space="preserve">
+    <value>灰度值为 Z（深度）</value>
+  </data>
+  <data name="GbUseCaseLoad.Text" xml:space="preserve">
+    <value>加载用例</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>以 2D 视图显示</value>
+  </data>
+  <data name="GbGrayscaleProcess.Text" xml:space="preserve">
+    <value>灰度处理</value>
+  </data>
+  <data name="RbGrayscaleVector.Text" xml:space="preserve">
+    <value>向量化</value>
+  </data>
+  <data name="radioButton2.Text" xml:space="preserve">
+    <value>图案</value>
   </data>
 </root>

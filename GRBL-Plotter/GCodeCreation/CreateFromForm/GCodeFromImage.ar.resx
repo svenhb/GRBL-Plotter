@@ -201,9 +201,6 @@
   <data name="nUDColorPercent.ToolTip" xml:space="preserve">
     <value>الحد الأدنى ٪ من ocurence اللون</value>
   </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>قيمة رمادية مثل Z (عمق) أو سرعة الدوران</value>
-  </data>
   <data name="tBGMin.ToolTip" xml:space="preserve">
     <value>القيم الخضراء أدناه ، سيتم ضبطها على الصفر</value>
   </data>
@@ -229,7 +226,7 @@
     <value>ضغط كود</value>
   </data>
   <data name="cBResolutionPenWidth.Text" xml:space="preserve">
-    <value>تطبيق قيمة القرار كعرض القلم في عرض ثنائي الأبعاد</value>
+    <value>عرض القلم من القرار</value>
   </data>
   <data name="cBFilterHistogram.Text" xml:space="preserve">
     <value>الرسم البياني معادلة</value>
@@ -239,9 +236,6 @@
   </data>
   <data name="btnRotateRight.ToolTip" xml:space="preserve">
     <value>تدوير الصورة 90 درجة مئوية</value>
-  </data>
-  <data name="rBProcessTool.Text" xml:space="preserve">
-    <value>   اللون كأداة رقم.</value>
   </data>
   <data name="rbEngravingPattern1.Text" xml:space="preserve">
     <value>أفقي</value>
@@ -268,10 +262,10 @@
     <value>استمر في الضغط على الزر للتحقق من الألوان باستخدام جدول الأدوات</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>وضع التحويل</value>
+    <value>التحويل إلى تدرج الرمادي / الأبيض والأسود</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>معالجة اللون</value>
+    <value>من نموذج الإعداد</value>
   </data>
   <data name="rbEngravingPattern2.Text" xml:space="preserve">
     <value>قطري</value>
@@ -299,9 +293,6 @@
   </data>
   <data name="cBGCodeOutlineSmooth.Text" xml:space="preserve">
     <value>ناعم</value>
-  </data>
-  <data name="tabPage5.Text" xml:space="preserve">
-    <value>جيل رمز جيل</value>
   </data>
   <data name="nUDGCodeOutlineSmooth.ToolTip" xml:space="preserve">
     <value>دورات تجانس</value>
@@ -359,16 +350,10 @@
     <value>سطوع</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>القرار</value>
-  </data>
-  <data name="label24.Text" xml:space="preserve">
-    <value>تحميل حالة الاستخدام للإعداد</value>
+    <value>القرار X / عرض القلم</value>
   </data>
   <data name="btnPresetCorrection2.Text" xml:space="preserve">
     <value>الرسم - العديد من الألوان</value>
-  </data>
-  <data name="nUDReso.ToolTip" xml:space="preserve">
-    <value>المسافة بين السطور ، يجب أن تتطابق مع عرض القلم</value>
   </data>
   <data name="tBRMax.ToolTip" xml:space="preserve">
     <value>سيتم تعيين القيم الحمراء فوق هذا ، إلى صفر</value>
@@ -378,9 +363,6 @@
   </data>
   <data name="tBGMax.ToolTip" xml:space="preserve">
     <value>سيتم تعيين القيم الخضراء فوق هذا ، إلى صفر</value>
-  </data>
-  <data name="nUDZBot.ToolTip" xml:space="preserve">
-    <value>قيمة أقل</value>
   </data>
   <data name="cBFilterRemoveArtefact.Text" xml:space="preserve">
     <value>إزالة بكسل واحد</value>
@@ -406,17 +388,11 @@
   <data name="rbModeDither.Text" xml:space="preserve">
     <value>التردد</value>
   </data>
-  <data name="nUDSMax.ToolTip" xml:space="preserve">
-    <value>قيمة أقل</value>
-  </data>
   <data name="label11.Text" xml:space="preserve">
     <value>التشبع</value>
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>مسبقا</value>
-  </data>
-  <data name="tabPage2.Text" xml:space="preserve">
-    <value>تأثيرات الألوان</value>
   </data>
   <data name="cbExceptColor.ToolTip" xml:space="preserve">
     <value>انقر بزر الماوس الأيسر داخل الصورة لتحديد اللون الذي لن يتم رسمه</value>
@@ -452,13 +428,10 @@
     <value>اتجاه المؤامرة</value>
   </data>
   <data name="label17.Text" xml:space="preserve">
-    <value>يستخدم وضع ألوان القلم لأسفل عرض القلم من جدول الأدوات [الإعداد - مظهر البرنامج - العرض ثنائي الأبعاد]</value>
+    <value>يجمع مساحات من نفس اللون</value>
   </data>
   <data name="nUDResoX.ToolTip" xml:space="preserve">
     <value>يجب أن تتطابق المسافة بين السطور مع عرض القلم</value>
-  </data>
-  <data name="cBEngravingPattern3.Text" xml:space="preserve">
-    <value>فقط من اليسار إلى اليمين</value>
   </data>
   <data name="btnGetPWMValues.Text" xml:space="preserve">
     <value>احصل على إعدادات servo-PWM</value>
@@ -469,20 +442,8 @@
   <data name="nUDResoY.ToolTip" xml:space="preserve">
     <value>يجب أن تتطابق المسافة بين السطور مع عرض القلم</value>
   </data>
-  <data name="rBGrayS.Text" xml:space="preserve">
-    <value>القيمة الرمادية كسرعة المغزل (PWM)</value>
-  </data>
-  <data name="rBProcessZ.Text" xml:space="preserve">
-    <value>القيمة الرمادية مثل Z</value>
-  </data>
   <data name="label19.Text" xml:space="preserve">
-    <value>ملاحظة: إذا تم تحديد "معاينة" ، في أعلى النافذة ، سيتم تطبيق الألوان من جدول الأدوات (الإعداد - جدول الأدوات).</value>
-  </data>
-  <data name="tabPage21.Text" xml:space="preserve">
-    <value>اللون كأداة Nr.</value>
-  </data>
-  <data name="rBGrayZ.Text" xml:space="preserve">
-    <value>القيمة الرمادية مثل Z (عمق)</value>
+    <value>اختيار جدول الأدوات والمحتوى:</value>
   </data>
   <data name="groupBox7.Text" xml:space="preserve">
     <value>مسافة الخط</value>
@@ -493,20 +454,11 @@
   <data name="cBLaserModeOnStart.Text" xml:space="preserve">
     <value>اضبط وضع الليزر على G-Code start</value>
   </data>
-  <data name="tabPage22.Text" xml:space="preserve">
-    <value>القيمة الرمادية مثل Z أو S.</value>
-  </data>
-  <data name="cBEngravingPattern3.ToolTip" xml:space="preserve">
-    <value>ارسم من اتجاه واحد فقط لتجنب الإزاحة</value>
-  </data>
   <data name="cBCompress.ToolTip" xml:space="preserve">
     <value>يزيل عبء الكود للحصول على تدفق أسرع</value>
   </data>
   <data name="checkBox1.Text" xml:space="preserve">
-    <value>عرض ثنائي الأبعاد إخفاء القيمة 0</value>
-  </data>
-  <data name="checkBox1.ToolTip" xml:space="preserve">
-    <value>في العرض ثنائي الأبعاد لا تظهر قيمة بيضاء (عرض القلم = 0)</value>
+    <value>وضع القلم لأسفل</value>
   </data>
   <data name="label18.Text" xml:space="preserve">
     <value>مسافة الخط</value>
@@ -553,10 +505,77 @@
   <data name="nUDSBottom.ToolTip" xml:space="preserve">
     <value>قيمة أقل</value>
   </data>
-  <data name="tabPage7.Text" xml:space="preserve">
-    <value>نمط</value>
-  </data>
   <data name="CbPenUpOn0.Text" xml:space="preserve">
     <value>Pen-up على 0</value>
+  </data>
+  <data name="GbGcodeDirection.Text" xml:space="preserve">
+    <value>رسم الاتجاه / النمط</value>
+  </data>
+  <data name="tabPage2Color.Text" xml:space="preserve">
+    <value>وضع اللون</value>
+  </data>
+  <data name="CboxToolTable.Text" xml:space="preserve">
+    <value>محتوى جدول الأدوات</value>
+  </data>
+  <data name="CboxToolFiles.Text" xml:space="preserve">
+    <value>آخر جدول أداة تم تحميله</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>لأقلام اللباد والأقلام الملونة والألوان المائية ...
+يستخدم جدول الأدوات لتعيين ألوان الأداة لألوان الصورة وتجميعها. يمكن تقليل كمية الألوان عن طريق تطبيق المرشحات.
+يمكن تطبيق التغيير اليدوي أو التلقائي للأداة.</value>
+  </data>
+  <data name="tabPage2Gray.Text" xml:space="preserve">
+    <value>وضع B / W Grayscale</value>
+  </data>
+  <data name="LblStartGrayMode.Text" xml:space="preserve">
+    <value>لجهاز التوجيه أو الليزر أو القلم أو الفرشاة ذات اللون الواحد
+يستخدم قيمة التدرج الرمادي (0-255) للتحكم في عمق الأداة أو قوتها.
+سيتم أخذ فلاتر وتأثيرات الألوان في الاعتبار ، عند إنشاء تدرج الرمادي.</value>
+  </data>
+  <data name="GbCOlorCorrection.Text" xml:space="preserve">
+    <value>تصحيح الألوان</value>
+  </data>
+  <data name="GbColorEffects.Text" xml:space="preserve">
+    <value>تأثيرات اللون</value>
+  </data>
+  <data name="GbSpecialEffects.Text" xml:space="preserve">
+    <value>مؤثرات خاصة</value>
+  </data>
+  <data name="cBToolChange.Text" xml:space="preserve">
+    <value>قم بإجراء تغيير الأداة على Tx M06</value>
+  </data>
+  <data name="cBToolChange.ToolTip" xml:space="preserve">
+    <value>قم بتنفيذ البرامج النصية التالية على أوامر Tx M06</value>
+  </data>
+  <data name="cBImportGCToolM0.Text" xml:space="preserve">
+    <value>أضف إيقاف مؤقت (M0) بدلاً من ذلك</value>
+  </data>
+  <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
+    <value>استبدل أي أمر M06 (تغيير الأداة) بواسطة M0 (إيقاف مؤقت) لتغيير الأداة يدويًا.</value>
+  </data>
+  <data name="cBImportGCTool.Text" xml:space="preserve">
+    <value>إضافة أداة تغيير الأمر Tx M06</value>
+  </data>
+  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
+    <value>قم بتنفيذ إجراء تغيير الأداة على أوامر Tx M06 إذا كانت المعلومات متوفرة - حدد علامة التبويب "تغيير الأداة".</value>
+  </data>
+  <data name="RbStartGrayZ.Text" xml:space="preserve">
+    <value>القيمة الرمادية مثل Z (عمق)</value>
+  </data>
+  <data name="GbUseCaseLoad.Text" xml:space="preserve">
+    <value>حالة استخدام الحمل</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>العرض في 2D-View</value>
+  </data>
+  <data name="GbGrayscaleProcess.Text" xml:space="preserve">
+    <value>معالجة التدرج الرمادي</value>
+  </data>
+  <data name="RbGrayscaleVector.Text" xml:space="preserve">
+    <value>فيكتور</value>
+  </data>
+  <data name="radioButton2.Text" xml:space="preserve">
+    <value>نمط</value>
   </data>
 </root>

@@ -771,7 +771,7 @@ namespace GrblPlotter
                     rBOrigin5.Checked = true;
                     break;
             }
-            int toolCount = ToolTable.Init();   // get max index
+            int toolCount = ToolTable.Init(" (ShapeToGCode_Load)");   // get max index
             ToolProp tmpTool;
             bool defaultToolFound = false;
             for (int i = 0; i < toolCount; i++)

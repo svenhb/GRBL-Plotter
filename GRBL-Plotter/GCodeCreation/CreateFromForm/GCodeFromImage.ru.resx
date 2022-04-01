@@ -208,7 +208,7 @@
     <value>Оттенки серого</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Режим конвертации</value>
+    <value>Оттенки серого / черно-белое преобразование</value>
   </data>
   <data name="gBgcodeDirection.Text" xml:space="preserve">
     <value>Направление участка</value>
@@ -243,9 +243,6 @@
   <data name="groupBox6.Text" xml:space="preserve">
     <value>Режим замены цвета</value>
   </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>Значение серого как Z (глубина) или скорость шпинделя</value>
-  </data>
   <data name="cBPreview.Text" xml:space="preserve">
     <value>Предварительный просмотр с цветами из таблицы инструментов</value>
   </data>
@@ -274,10 +271,10 @@
     <value>Постеризация</value>
   </data>
   <data name="cBResolutionPenWidth.Text" xml:space="preserve">
-    <value>Используйте ширину пера также в 2D-виде</value>
+    <value>Ширина пера от разрешения</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>Обработка цвета</value>
+    <value>Из формы настройки</value>
   </data>
   <data name="cBGCodeFill.Text" xml:space="preserve">
     <value>Заполнить области</value>
@@ -294,14 +291,11 @@
   <data name="label16.Text" xml:space="preserve">
     <value>Последняя загрузка:</value>
   </data>
-  <data name="nUDReso.ToolTip" xml:space="preserve">
-    <value>Расстояние между двумя линиями в единицах (мм или дюймах)</value>
-  </data>
   <data name="label4.Text" xml:space="preserve">
     <value>ширина</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>разрешение</value>
+    <value>Разрешение X / ширина пера</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Высота</value>
@@ -329,9 +323,6 @@
   </data>
   <data name="label21.Text" xml:space="preserve">
     <value>Отмените выбор цветов, если не требуется</value>
-  </data>
-  <data name="label24.Text" xml:space="preserve">
-    <value>Загрузка настроек приложения</value>
   </data>
   <data name="rbModeDither.Text" xml:space="preserve">
     <value>Смешение</value>
@@ -384,23 +375,14 @@
 1: расстояние в цветовом пространстве (0 ° -360 °)
 2: расстояние в цветовом пространстве (0 ° -360 °) + насыщенность + яркость</value>
   </data>
-  <data name="rBProcessTool.Text" xml:space="preserve">
-    <value>Цвет определяет номер инструмента</value>
-  </data>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>Предустановленная</value>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>Коррекция изображения</value>
   </data>
-  <data name="tabPage2.Text" xml:space="preserve">
-    <value>Цветовые эффекты</value>
-  </data>
   <data name="tabPage3.Text" xml:space="preserve">
     <value>Замена цвета</value>
-  </data>
-  <data name="tabPage5.Text" xml:space="preserve">
-    <value>Генерация G-Code</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Z max (белый)</value>
@@ -418,13 +400,10 @@
     <value>Z мин (черный)</value>
   </data>
   <data name="label17.Text" xml:space="preserve">
-    <value>В цветном режиме «Перо вниз» используется ширина пера из таблицы инструментов [Настройка - Внешний вид программы - 2D-вид]</value>
+    <value>Собирает области одного цвета</value>
   </data>
   <data name="nUDResoX.ToolTip" xml:space="preserve">
     <value>Расстояние между линиями должно соответствовать ширине пера</value>
-  </data>
-  <data name="cBEngravingPattern3.Text" xml:space="preserve">
-    <value>Только слева направо</value>
   </data>
   <data name="btnGetPWMValues.Text" xml:space="preserve">
     <value>Получить настройки серво-ШИМ</value>
@@ -435,15 +414,6 @@
   <data name="nUDResoY.ToolTip" xml:space="preserve">
     <value>Расстояние между линиями должно соответствовать ширине пера</value>
   </data>
-  <data name="nUDZBot.ToolTip" xml:space="preserve">
-    <value>Меньшее значение</value>
-  </data>
-  <data name="nUDSMax.ToolTip" xml:space="preserve">
-    <value>Меньшее значение</value>
-  </data>
-  <data name="rBGrayS.Text" xml:space="preserve">
-    <value>Значение серого как скорость шпинделя (ШИМ)</value>
-  </data>
   <data name="label22.Text" xml:space="preserve">
     <value>S мин (белый)</value>
   </data>
@@ -453,32 +423,17 @@
   <data name="cBCompress.Text" xml:space="preserve">
     <value>сжать код</value>
   </data>
-  <data name="rBProcessZ.Text" xml:space="preserve">
-    <value>Значение серого как Z</value>
-  </data>
   <data name="label19.Text" xml:space="preserve">
-    <value>Примечание: если установлен флажок «Предварительный просмотр», поверх окна будут применены цвета из таблицы инструментов (Настройка - Таблица инструментов).</value>
-  </data>
-  <data name="tabPage21.Text" xml:space="preserve">
-    <value>Цвет как инструмент №</value>
-  </data>
-  <data name="rBGrayZ.Text" xml:space="preserve">
-    <value>Значение серого как Z (глубина)</value>
+    <value>Выбор и содержимое таблицы инструментов:</value>
   </data>
   <data name="groupBox7.Text" xml:space="preserve">
     <value>Расстояние линии</value>
   </data>
   <data name="cBLaserModeOffEnd.Text" xml:space="preserve">
-    <value>Четкий лазерный режим на конце G-кода</value>
+    <value>Режим лазера ВЫКЛ в конце G-кода</value>
   </data>
   <data name="cBLaserModeOnStart.Text" xml:space="preserve">
-    <value>Установить лазерный режим при запуске G-кода</value>
-  </data>
-  <data name="tabPage22.Text" xml:space="preserve">
-    <value>Значение серого как Z или S</value>
-  </data>
-  <data name="cBEngravingPattern3.ToolTip" xml:space="preserve">
-    <value>Рисуйте только в одном направлении, чтобы избежать смещений</value>
+    <value>Лазерный режим включается при запуске G-кода</value>
   </data>
   <data name="lblColors.Text" xml:space="preserve">
     <value>количество цветов</value>
@@ -487,10 +442,7 @@
     <value>Устраняет накладные расходы на код для более быстрой потоковой передачи</value>
   </data>
   <data name="checkBox1.Text" xml:space="preserve">
-    <value>2D вид скрыть значение 0</value>
-  </data>
-  <data name="checkBox1.ToolTip" xml:space="preserve">
-    <value>В 2D-виде не показывать белое значение (ширина пера = 0)</value>
+    <value>Цветовой режим «Перо вниз»</value>
   </data>
   <data name="label18.Text" xml:space="preserve">
     <value>Расстояние линии</value>
@@ -540,10 +492,77 @@
   <data name="cBReduceColorsDithering.Text" xml:space="preserve">
     <value>Дизеринг</value>
   </data>
-  <data name="tabPage7.Text" xml:space="preserve">
-    <value>Шаблон</value>
-  </data>
   <data name="CbPenUpOn0.Text" xml:space="preserve">
     <value>Pen-up на 0</value>
+  </data>
+  <data name="GbGcodeDirection.Text" xml:space="preserve">
+    <value>Направление сюжета/шаблон</value>
+  </data>
+  <data name="tabPage2Color.Text" xml:space="preserve">
+    <value>Цветовой режим</value>
+  </data>
+  <data name="CboxToolTable.Text" xml:space="preserve">
+    <value>Содержимое таблицы инструментов</value>
+  </data>
+  <data name="CboxToolFiles.Text" xml:space="preserve">
+    <value>Последняя загруженная таблица инструментов</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Для фломастеров, цветных карандашей, акварели...
+Использует таблицу инструментов для назначения цветов инструментов цветам изображения и группирует их. Количество цветов можно уменьшить, применяя фильтры.
+Может применяться ручная или автоматическая смена инструмента.</value>
+  </data>
+  <data name="tabPage2Gray.Text" xml:space="preserve">
+    <value>Ч/Б режим оттенков серого</value>
+  </data>
+  <data name="LblStartGrayMode.Text" xml:space="preserve">
+    <value>Для маршрутизатора, лазера или одноцветной ручки или кисти
+Использует значение оттенков серого (0–255) для управления глубиной или мощностью инструмента.
+Цветовые фильтры и эффекты будут учитываться при создании оттенков серого.</value>
+  </data>
+  <data name="GbCOlorCorrection.Text" xml:space="preserve">
+    <value>Цветовая коррекция</value>
+  </data>
+  <data name="GbColorEffects.Text" xml:space="preserve">
+    <value>Цветовые эффекты</value>
+  </data>
+  <data name="GbSpecialEffects.Text" xml:space="preserve">
+    <value>Спецэффекты</value>
+  </data>
+  <data name="cBToolChange.Text" xml:space="preserve">
+    <value>Выполните смену инструмента на Tx M06</value>
+  </data>
+  <data name="cBToolChange.ToolTip" xml:space="preserve">
+    <value>Выполните следующие сценарии для команд Tx M06.</value>
+  </data>
+  <data name="cBImportGCToolM0.Text" xml:space="preserve">
+    <value>Вместо этого добавьте паузу (M0)</value>
+  </data>
+  <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
+    <value>Замените любую команду M06 (смена инструмента) на M0 (пауза) для ручной смены инструмента.</value>
+  </data>
+  <data name="cBImportGCTool.Text" xml:space="preserve">
+    <value>Добавить команду смены инструмента Tx M06</value>
+  </data>
+  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
+    <value>Выполните действие по смене инструмента по командам Tx M06, если информация доступна - проверьте вкладку «Смена инструмента».</value>
+  </data>
+  <data name="RbStartGrayZ.Text" xml:space="preserve">
+    <value>Значение серого как Z (глубина)</value>
+  </data>
+  <data name="GbUseCaseLoad.Text" xml:space="preserve">
+    <value>Загрузить вариант использования</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Отображение в 2D-виде</value>
+  </data>
+  <data name="GbGrayscaleProcess.Text" xml:space="preserve">
+    <value>Обработка оттенков серого</value>
+  </data>
+  <data name="RbGrayscaleVector.Text" xml:space="preserve">
+    <value>Векторизовать</value>
+  </data>
+  <data name="radioButton2.Text" xml:space="preserve">
+    <value>Шаблон</value>
   </data>
 </root>

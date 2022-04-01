@@ -37,11 +37,11 @@ namespace GrblPlotter
     {
         private static int Width, Height;
         private static float penRadius;
-        private static sbyte toolNr;
-        private static sbyte[,] bitmap;
-        private const sbyte markObject     = sbyte.MaxValue;
-        private static sbyte markBackground = sbyte.MinValue;
-        private static List<List<PointF>> outlinePaths = new List<List<PointF>>();
+        private static short toolNr;
+        private static short[,] bitmap;
+        private const short markObject     = short.MaxValue;
+        private static readonly short markBackground = short.MinValue;
+        private static readonly List<List<PointF>> outlinePaths = new List<List<PointF>>();
         private static int Smooth = 0;
         public static StringBuilder logList  = new StringBuilder();
         public static bool log = false;
@@ -50,7 +50,7 @@ namespace GrblPlotter
         /// <summary>
         /// Get a List of PointF-Lists from paths found in sbyte-array
         /// </summary>
-        public static List<List<PointF>> GetPaths(sbyte[,] bitm, int sizeX, int sizeY, sbyte toolN, int smooth, float pradius, bool shrink)
+        public static List<List<PointF>> GetPaths(short[,] bitm, int sizeX, int sizeY, short toolN, int smooth, float pradius, bool shrink)
         {
             Width  = sizeX;
             Height = sizeY;
@@ -58,14 +58,14 @@ namespace GrblPlotter
             Smooth = smooth;
             penRadius = pradius;      // width in pixels
             shrinkPath = shrink;
-            bitmap = new sbyte[Width, Height];
+            bitmap = new short[Width, Height];
             for (int y = 0; y < Height; y++)    // make working copy
                 for (int x = 0; x < Width; x++)
                 { bitmap[x, y] = bitm[x, y]; }
 
             outlinePaths.Clear();       // reset all paths
             StartTracing();             // find paths
-            bitmap = new sbyte[1, 1];   // free memory
+            bitmap = new short[1, 1];   // free memory
             return outlinePaths;
         }
 
@@ -352,7 +352,7 @@ namespace GrblPlotter
         // 5 6 7
         // 4 p 0
         // 3 2 1
-        private static short[][] searchDirection = { new short[] { 1, 0 }, new short[] { 1, 1 }, new short[] { 0, 1 }, new short[] { -1, 1 }, new short[] { -1, 0 }, new short[] { -1, -1 }, new short[] { 0, -1 }, new short[] { 1, -1 } }; // xy-dir by index
+        private static readonly short[][] searchDirection = { new short[] { 1, 0 }, new short[] { 1, 1 }, new short[] { 0, 1 }, new short[] { -1, 1 }, new short[] { -1, 0 }, new short[] { -1, -1 }, new short[] { 0, -1 }, new short[] { 1, -1 } }; // xy-dir by index
         // go through neighbor points and check direction to continue 0                     1                    2                      3                      4                      5
         private static int TraceCheck(ref Point p, int oldDir)
         {

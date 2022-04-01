@@ -139,7 +139,7 @@
     <value>Šířka</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>Reso X</value>
+    <value>Rozlišení X / šířka pera</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Výška</value>
@@ -175,7 +175,7 @@
     <value>Stupně šedi</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Režim konverze</value>
+    <value>Převod stupňů šedi / černobílé</value>
   </data>
   <data name="btnInvert.ToolTip" xml:space="preserve">
     <value>Invertovat barvy</value>
@@ -382,26 +382,17 @@ Filtr umožňuje vyplnit určité rozsahy barevných kanálů RGB zadanou hodnot
   <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
     <value>Vložit ze schránky</value>
   </data>
-  <data name="rBProcessTool.Text" xml:space="preserve">
-    <value>Barva jako nástroj č.</value>
-  </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Z max (bílá)</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
     <value>Z min (černá)</value>
   </data>
-  <data name="rBGrayS.Text" xml:space="preserve">
-    <value>Šedá hodnota jako otáčky vřetena (PWM)</value>
-  </data>
   <data name="label22.Text" xml:space="preserve">
     <value>S min (bílá)</value>
   </data>
   <data name="label23.Text" xml:space="preserve">
     <value>S max (černá)</value>
-  </data>
-  <data name="rBProcessZ.Text" xml:space="preserve">
-    <value>Hodnota šedé jako Z</value>
   </data>
   <data name="cBPreview.Text" xml:space="preserve">
     <value>Náhled s barvami z tabulky nástrojů</value>
@@ -430,14 +421,8 @@ Filtr umožňuje vyplnit určité rozsahy barevných kanálů RGB zadanou hodnot
   <data name="cBPosterize.Text" xml:space="preserve">
     <value>Posterizace</value>
   </data>
-  <data name="tabPage2.Text" xml:space="preserve">
-    <value>Barevné efekty</value>
-  </data>
   <data name="tabPage3.Text" xml:space="preserve">
     <value>Výměna barvy</value>
-  </data>
-  <data name="tabPage5.Text" xml:space="preserve">
-    <value>Generování G-kódu</value>
   </data>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Redukce barev</value>
@@ -472,9 +457,6 @@ Filtr umožňuje vyplnit určité rozsahy barevných kanálů RGB zadanou hodnot
   <data name="label21.Text" xml:space="preserve">
     <value>Zrušte výběr barev, pokud to není potřeba</value>
   </data>
-  <data name="tabPage21.Text" xml:space="preserve">
-    <value>Barva jako nástroj č.</value>
-  </data>
   <data name="gBgcodeSelection.Text" xml:space="preserve">
     <value>Kreslit výběr</value>
   </data>
@@ -488,43 +470,31 @@ Filtr umožňuje vyplnit určité rozsahy barevných kanálů RGB zadanou hodnot
     <value>hladký</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>2D pohled</value>
+    <value>Z formuláře Nastavení</value>
   </data>
   <data name="label19.Text" xml:space="preserve">
-    <value>Poznámka: pokud je zaškrtnuto "Náhled", v horní části okna budou použity barvy z tabulky nástrojů (Nastavení - Tabulka nástrojů).</value>
+    <value>Výběr a obsah tabulky nástrojů:</value>
   </data>
   <data name="label17.Text" xml:space="preserve">
-    <value>Barevný režim pera používá šířku pera z tabulky nástrojů [Nastavení - Vzhled programu - 2D zobrazení]</value>
+    <value>Sbírá oblasti stejné barvy</value>
   </data>
   <data name="cBResolutionPenWidth.Text" xml:space="preserve">
-    <value>Použijte hodnotu rozlišení jako šířku pera ve 2D zobrazení</value>
-  </data>
-  <data name="tabPage22.Text" xml:space="preserve">
-    <value>Hodnota šedé jako Z nebo S</value>
+    <value>Šířka pera od rozlišení</value>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
     <value>Z nebo S</value>
   </data>
-  <data name="rBGrayZ.Text" xml:space="preserve">
-    <value>Šedá hodnota jako Z (hloubka)</value>
-  </data>
   <data name="cBLaserModeOffEnd.Text" xml:space="preserve">
-    <value>Vymažte laserový režim na konci G-Code</value>
+    <value>Laserový režim VYP na konci G kódu</value>
   </data>
   <data name="cBLaserModeOnStart.Text" xml:space="preserve">
-    <value>Nastavte laserový režim na start G-Code</value>
-  </data>
-  <data name="tabPage7.Text" xml:space="preserve">
-    <value>Vzor</value>
+    <value>Laserový režim zapnut při spuštění G kódu</value>
   </data>
   <data name="groupBox7.Text" xml:space="preserve">
     <value>Vlastnosti</value>
   </data>
   <data name="CbPenUpOn0.Text" xml:space="preserve">
     <value>Přípis na 0</value>
-  </data>
-  <data name="label24.Text" xml:space="preserve">
-    <value>Načíst případ použití pro nastavení</value>
   </data>
   <data name="btnLoad.Text" xml:space="preserve">
     <value>Načíst a použít případ použití</value>
@@ -534,5 +504,78 @@ Filtr umožňuje vyplnit určité rozsahy barevných kanálů RGB zadanou hodnot
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Vytvořte G-kód z obrázku</value>
+  </data>
+  <data name="GbGcodeDirection.Text" xml:space="preserve">
+    <value>Směr vykreslování / vzor</value>
+  </data>
+  <data name="tabPage2Color.Text" xml:space="preserve">
+    <value>Barevný režim</value>
+  </data>
+  <data name="CboxToolTable.Text" xml:space="preserve">
+    <value>Obsah tabulky nástrojů</value>
+  </data>
+  <data name="CboxToolFiles.Text" xml:space="preserve">
+    <value>Poslední načtená tabulka nástrojů</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Na fixy, pastelky, vodové barvy...
+Používá tabulku nástrojů k přiřazení barev nástrojů k barvám obrazu a jejich seskupení. Množství barev lze snížit použitím filtrů.
+Lze použít ruční nebo automatickou výměnu nástroje.</value>
+  </data>
+  <data name="tabPage2Gray.Text" xml:space="preserve">
+    <value>Černobílý režim odstínů šedi</value>
+  </data>
+  <data name="LblStartGrayMode.Text" xml:space="preserve">
+    <value>Pro router, laser nebo jednobarevné pero nebo štětec
+Používá hodnotu ve stupních šedi (0 - 255) k ovládání hloubky nebo výkonu nástroje.
+Při generování stupňů šedi budou brány v úvahu barevné filtry a efekty.</value>
+  </data>
+  <data name="GbCOlorCorrection.Text" xml:space="preserve">
+    <value>Korekce barev</value>
+  </data>
+  <data name="GbColorEffects.Text" xml:space="preserve">
+    <value>Barevné efekty</value>
+  </data>
+  <data name="GbSpecialEffects.Text" xml:space="preserve">
+    <value>Zvláštní efekty</value>
+  </data>
+  <data name="cBToolChange.Text" xml:space="preserve">
+    <value>Proveďte výměnu nástroje na Tx M06</value>
+  </data>
+  <data name="cBToolChange.ToolTip" xml:space="preserve">
+    <value>Proveďte následující skripty na příkazech Tx M06</value>
+  </data>
+  <data name="cBImportGCToolM0.Text" xml:space="preserve">
+    <value>Místo toho přidejte Pauza (M0).</value>
+  </data>
+  <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
+    <value>Pro ruční výměnu nástroje nahraďte libovolný příkaz M06 (výměna nástroje) příkazem M0 (pauza).</value>
+  </data>
+  <data name="cBImportGCTool.Text" xml:space="preserve">
+    <value>Přidejte příkaz výměny nástroje Tx M06</value>
+  </data>
+  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
+    <value>Proveďte akci výměny nástroje na příkazech Tx M06, pokud jsou k dispozici informace - zaškrtněte záložku 'Výměna nástroje'.</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>Barevný režim s perem</value>
+  </data>
+  <data name="RbStartGrayZ.Text" xml:space="preserve">
+    <value>Šedá hodnota jako Z (hloubka)</value>
+  </data>
+  <data name="GbUseCaseLoad.Text" xml:space="preserve">
+    <value>Načíst případ použití</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Zobrazení ve 2D zobrazení</value>
+  </data>
+  <data name="GbGrayscaleProcess.Text" xml:space="preserve">
+    <value>Zpracování ve stupních šedi</value>
+  </data>
+  <data name="RbGrayscaleVector.Text" xml:space="preserve">
+    <value>Vektorizovat</value>
+  </data>
+  <data name="radioButton2.Text" xml:space="preserve">
+    <value>Vzor</value>
   </data>
 </root>

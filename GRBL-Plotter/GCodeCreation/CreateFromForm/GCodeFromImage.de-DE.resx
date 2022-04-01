@@ -126,14 +126,11 @@
   <data name="btnKeepSizeWidth.Text" xml:space="preserve">
     <value>Orig. px Größe - Anpassung Breite</value>
   </data>
-  <data name="nUDReso.ToolTip" xml:space="preserve">
-    <value>Abstand zwischen zwei Zeilen in Einheiten (mm oder Inch)</value>
-  </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Breite</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>Auflösung</value>
+    <value>Auflösung X / Stiftbreite</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Höhe</value>
@@ -148,7 +145,7 @@
     <value>Helligkeit</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Umwandlungs Mode</value>
+    <value>Graustufen-/Schwarzweiß-Konvertierung</value>
   </data>
   <data name="cbGrayscale.Text" xml:space="preserve">
     <value>In Graustufen umwandeln</value>
@@ -288,12 +285,6 @@ unter dem angegebenen Prozentwert werden in die nächstgelegene Farbe umgewandel
   <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
     <value>Aus Zwischenablage</value>
   </data>
-  <data name="rBProcessTool.Text" xml:space="preserve">
-    <value>  Farbe bestimmt Werkzeugnummer</value>
-  </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>Grauwert als Z Tiefe</value>
-  </data>
   <data name="label22.Text" xml:space="preserve">
     <value>S min (weiß)</value>
   </data>
@@ -339,9 +330,6 @@ unter dem angegebenen Prozentwert werden in die nächstgelegene Farbe umgewandel
   <data name="label11.Text" xml:space="preserve">
     <value>Farbsättig.</value>
   </data>
-  <data name="tabPage2.Text" xml:space="preserve">
-    <value>Farbeffekte</value>
-  </data>
   <data name="cBFilterRemoveArtefact.Text" xml:space="preserve">
     <value>Einzelne Pixel entfernen</value>
   </data>
@@ -357,14 +345,11 @@ unter dem angegebenen Prozentwert werden in die nächstgelegene Farbe umgewandel
   <data name="label21.Text" xml:space="preserve">
     <value>Abwählen von Farben</value>
   </data>
-  <data name="tabPage5.Text" xml:space="preserve">
-    <value>G-Code Erzeugung</value>
-  </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>Farbverarbeitung</value>
+    <value>Aus dem Setup-Formular</value>
   </data>
   <data name="cBResolutionPenWidth.Text" xml:space="preserve">
-    <value>Verwende Stiftbreite auch in 2D Ansicht</value>
+    <value>Stiftbreite aus Auflösung</value>
   </data>
   <data name="gBgcodeSelection.Text" xml:space="preserve">
     <value>Auswahl Zeichnen</value>
@@ -377,9 +362,6 @@ unter dem angegebenen Prozentwert werden in die nächstgelegene Farbe umgewandel
   </data>
   <data name="cBGCodeOutlineSmooth.Text" xml:space="preserve">
     <value>glätten</value>
-  </data>
-  <data name="label24.Text" xml:space="preserve">
-    <value>Einstellung für Anwendung laden</value>
   </data>
   <data name="btnLoad.Text" xml:space="preserve">
     <value>Lade und verwende Einstellungen</value>
@@ -403,13 +385,10 @@ unter dem angegebenen Prozentwert werden in die nächstgelegene Farbe umgewandel
     <value>Max. Menge = max. Werkzeugtabelleneinträge</value>
   </data>
   <data name="label17.Text" xml:space="preserve">
-    <value>Der Pen-Down-Farbmodus verwendet die Stiftbreite aus der Werkzeugtabelle [Setup - Programmdarstellung - 2D-Ansicht]</value>
+    <value>Sammelt Bereiche gleicher Farbe</value>
   </data>
   <data name="nUDResoX.ToolTip" xml:space="preserve">
     <value>Der Abstand zwischen den Linien sollte mit der Stiftbreite übereinstimmen</value>
-  </data>
-  <data name="cBEngravingPattern3.Text" xml:space="preserve">
-    <value>Nur von links nach rechts</value>
   </data>
   <data name="btnGetPWMValues.Text" xml:space="preserve">
     <value>Kopieren der Servo-PWM-Einstellungen</value>
@@ -420,53 +399,26 @@ unter dem angegebenen Prozentwert werden in die nächstgelegene Farbe umgewandel
   <data name="nUDResoY.ToolTip" xml:space="preserve">
     <value>Der Abstand zwischen den Linien sollte mit der Stiftbreite übereinstimmen</value>
   </data>
-  <data name="rBGrayS.Text" xml:space="preserve">
-    <value>Grauwert als Spindeldrehzahl (PWM)</value>
-  </data>
   <data name="cBCompress.Text" xml:space="preserve">
     <value>Code komprimieren</value>
   </data>
-  <data name="rBProcessZ.Text" xml:space="preserve">
-    <value>Grauwert als Z.</value>
-  </data>
   <data name="label19.Text" xml:space="preserve">
-    <value>Hinweis: Wenn "Vorschau" aktiviert ist, werden oben im Fenster die Farben aus der Werkzeugtabelle (Setup - Werkzeugtabelle) angewendet.</value>
-  </data>
-  <data name="tabPage21.Text" xml:space="preserve">
-    <value>Farbe als Werkzeug Nr.</value>
-  </data>
-  <data name="rBGrayZ.Text" xml:space="preserve">
-    <value>Grauwert als Z (Tiefe)</value>
+    <value>Auswahl und Inhalt der Werkzeugtabelle:</value>
   </data>
   <data name="groupBox7.Text" xml:space="preserve">
     <value>Linienabstand</value>
   </data>
   <data name="cBLaserModeOffEnd.Text" xml:space="preserve">
-    <value>Lasermode am G-Code-Ende löschen</value>
+    <value>Lasermode AUS am G-Code-Ende</value>
   </data>
   <data name="cBLaserModeOnStart.Text" xml:space="preserve">
-    <value>Stellen Sie den Lasermodus beim Start des G-Codes ein</value>
-  </data>
-  <data name="tabPage22.Text" xml:space="preserve">
-    <value>Grauwert als Z oder S.</value>
-  </data>
-  <data name="cBEngravingPattern3.ToolTip" xml:space="preserve">
-    <value>Zeichnet nur aus einer Richtung, um Offsets zu vermeiden</value>
+    <value>Lasermode EIN am G-Code-Start</value>
   </data>
   <data name="cBCompress.ToolTip" xml:space="preserve">
     <value>Vermeidet Code-Overhead für ein schnelleres Streaming</value>
   </data>
   <data name="checkBox1.Text" xml:space="preserve">
-    <value>2D-Ansicht 0-Wert ausblenden</value>
-  </data>
-  <data name="checkBox1.ToolTip" xml:space="preserve">
-    <value>In der 2D-Ansicht wird kein Weißwert angezeigt (Stiftbreite = 0).</value>
-  </data>
-  <data name="nUDSMax.ToolTip" xml:space="preserve">
-    <value>Unterer Wert</value>
-  </data>
-  <data name="nUDZBot.ToolTip" xml:space="preserve">
-    <value>Unterer Wert</value>
+    <value>Stift-unten-Farbmodus</value>
   </data>
   <data name="label18.Text" xml:space="preserve">
     <value>Linienabstand</value>
@@ -512,5 +464,75 @@ unter dem angegebenen Prozentwert werden in die nächstgelegene Farbe umgewandel
   </data>
   <data name="nUDSBottom.ToolTip" xml:space="preserve">
     <value>Unterer Wert</value>
+  </data>
+  <data name="GbGcodeDirection.Text" xml:space="preserve">
+    <value>Plotrichtung / Muster</value>
+  </data>
+  <data name="tabPage2Color.Text" xml:space="preserve">
+    <value>Farbmodus</value>
+  </data>
+  <data name="CboxToolTable.Text" xml:space="preserve">
+    <value>Inhalt der Werkzeugtabelle</value>
+  </data>
+  <data name="CboxToolFiles.Text" xml:space="preserve">
+    <value>Zuletzt geladene Werkzeugtabelle</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Für Filzstifte, Buntstifte, Wasserfarben...
+Verwendet eine Werkzeugtabelle, um Bildfarben Werkzeugfarben zuzuweisen und sie zu gruppieren. Die Farbmenge kann durch Anwenden von Filtern reduziert werden.
+Es kann ein manueller oder automatischer Werkzeugwechsel angewendet werden.</value>
+  </data>
+  <data name="tabPage2Gray.Text" xml:space="preserve">
+    <value>S/W Graustufenmodus</value>
+  </data>
+  <data name="LblStartGrayMode.Text" xml:space="preserve">
+    <value>Für Fräser, Laser oder einfarbigen Stift oder Pinsel
+Verwendet den Graustufenwert (0 - 255), um die Tiefe oder Stärke des Werkzeugs zu steuern.
+Farbfilter und Effekte werden bei der Generierung von Graustufen berücksichtigt.</value>
+  </data>
+  <data name="GbCOlorCorrection.Text" xml:space="preserve">
+    <value>Farbkorrektur</value>
+  </data>
+  <data name="GbColorEffects.Text" xml:space="preserve">
+    <value>Farbeffekte</value>
+  </data>
+  <data name="GbSpecialEffects.Text" xml:space="preserve">
+    <value>Spezialeffekte</value>
+  </data>
+  <data name="cBToolChange.Text" xml:space="preserve">
+    <value>Werkzeugwechsel auf Tx M06 durchführen</value>
+  </data>
+  <data name="cBToolChange.ToolTip" xml:space="preserve">
+    <value>Führen Sie die folgenden Skripte für Tx M06-Befehle aus</value>
+  </data>
+  <data name="cBImportGCToolM0.Text" xml:space="preserve">
+    <value>Fügen Sie stattdessen Pause (M0) hinzu</value>
+  </data>
+  <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
+    <value>Ersetzen Sie jeden M06-Befehl (Werkzeugwechsel) durch M0 (Pause) für den manuellen Werkzeugwechsel.</value>
+  </data>
+  <data name="cBImportGCTool.Text" xml:space="preserve">
+    <value>Werkzeugwechselbefehl Tx M06 hinzufügen</value>
+  </data>
+  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
+    <value>Führen Sie die Werkzeugwechselaktion für Tx M06-Befehle durch, wenn Informationen verfügbar sind – überprüfen Sie die Registerkarte „Werkzeugwechsel“.</value>
+  </data>
+  <data name="RbStartGrayZ.Text" xml:space="preserve">
+    <value>Grauwert als Z (Tiefe)</value>
+  </data>
+  <data name="GbUseCaseLoad.Text" xml:space="preserve">
+    <value>Anwendungsfall laden</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Anzeige in 2D-Ansicht</value>
+  </data>
+  <data name="GbGrayscaleProcess.Text" xml:space="preserve">
+    <value>Graustufenverarbeitung</value>
+  </data>
+  <data name="RbGrayscaleVector.Text" xml:space="preserve">
+    <value>Vektorisieren</value>
+  </data>
+  <data name="radioButton2.Text" xml:space="preserve">
+    <value>Muster</value>
   </data>
 </root>

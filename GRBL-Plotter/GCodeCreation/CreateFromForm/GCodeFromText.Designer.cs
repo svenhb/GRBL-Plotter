@@ -75,7 +75,6 @@ namespace GrblPlotter
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.CbInsertCode = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button7 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -86,6 +85,7 @@ namespace GrblPlotter
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.CbInsertCode = new System.Windows.Forms.CheckBox();
             this.cBLineBreak = new System.Windows.Forms.CheckBox();
             this.cBToolTable = new System.Windows.Forms.CheckBox();
             this.tBText = new System.Windows.Forms.TextBox();
@@ -123,11 +123,11 @@ namespace GrblPlotter
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.nUDLineBreak);
             this.groupBox3.Controls.Add(this.RbAlign3);
             this.groupBox3.Controls.Add(this.RbAlign2);
             this.groupBox3.Controls.Add(this.RbAlign1);
             this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.nUDLineBreak);
             this.groupBox3.Controls.Add(this.cBLineBreak);
             this.groupBox3.Controls.Add(this.nUDFontLine);
             this.groupBox3.Controls.Add(this.label11);
@@ -197,7 +197,7 @@ namespace GrblPlotter
             this.nUDFontLine.DecimalPlaces = 1;
             resources.ApplyResources(this.nUDFontLine, "nUDFontLine");
             this.nUDFontLine.Maximum = new decimal(new int[] {
-            1000,
+            4000,
             0,
             0,
             0});
@@ -228,8 +228,13 @@ namespace GrblPlotter
             0,
             65536});
             resources.ApplyResources(this.nUDFontDistance, "nUDFontDistance");
+            this.nUDFontDistance.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.nUDFontDistance.Minimum = new decimal(new int[] {
-            100,
+            1000,
             0,
             0,
             -2147483648});
@@ -246,7 +251,7 @@ namespace GrblPlotter
             this.nUDFontSize.DecimalPlaces = 1;
             resources.ApplyResources(this.nUDFontSize, "nUDFontSize");
             this.nUDFontSize.Maximum = new decimal(new int[] {
-            1000,
+            2000,
             0,
             0,
             0});
@@ -347,14 +352,6 @@ namespace GrblPlotter
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // CbInsertCode
-            // 
-            resources.ApplyResources(this.CbInsertCode, "CbInsertCode");
-            this.CbInsertCode.Checked = global::GrblPlotter.Properties.Settings.Default.fromFormInsertEnable;
-            this.CbInsertCode.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "fromFormInsertEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.CbInsertCode.Name = "CbInsertCode";
-            this.CbInsertCode.UseVisualStyleBackColor = true;
-            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.button7);
@@ -433,6 +430,14 @@ namespace GrblPlotter
             this.button1.Name = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.BtnLoadGraphic_Click);
+            // 
+            // CbInsertCode
+            // 
+            resources.ApplyResources(this.CbInsertCode, "CbInsertCode");
+            this.CbInsertCode.Checked = global::GrblPlotter.Properties.Settings.Default.fromFormInsertEnable;
+            this.CbInsertCode.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "fromFormInsertEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbInsertCode.Name = "CbInsertCode";
+            this.CbInsertCode.UseVisualStyleBackColor = true;
             // 
             // cBLineBreak
             // 
