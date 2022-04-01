@@ -1,0 +1,3194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Hodnota typu pro M19 (pokročilé)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Hodnota typu pro M15 (knife)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Zadejte hodnotu pro D2 (Pen)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBGerberGeometryEnable.Text" xml:space="preserve">
+    <value>Zadejte hodnotu typu v tagu obrázku G-kódu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_3gB7.Text" xml:space="preserve">
+    <value>Dovoz Gerber</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBLineEndEnable.Text" xml:space="preserve">
+    <value>Aplikujte text na konec řádku</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBCodeCreationLineNumbers.Text" xml:space="preserve">
+    <value>Přidejte čísla řádků</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_3gB6.Text" xml:space="preserve">
+    <value>Vytvoření G-kódu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Delimetr</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Hodnoty začínající na řádku</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Hodnota Y</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Hodnota X</value>
+    <comment>ok</comment>
+  </data>
+  <data name="radioButton4.Text" xml:space="preserve">
+    <value>Zpracujte souřadnice jako tečky</value>
+    <comment>ok</comment>
+  </data>
+  <data name="radioButton3.Text" xml:space="preserve">
+    <value>Spojte souřadnice s čarami</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Měřítko</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Sloupec</value>
+    <comment>ok</comment>
+  </data>
+  <data name="checkBox8.Text" xml:space="preserve">
+    <value>Proces Z také (pouze tečka)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="checkBox7.Text" xml:space="preserve">
+    <value>Zkuste automatické rozpoznání</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Import CSV (*.csv, *.dat)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportDXFUseZ.Text" xml:space="preserve">
+    <value>Importujte informace Z</value>
+  </data>
+  <data name="cBImportDXFSwitchWhite.Text" xml:space="preserve">
+    <value>Rukojeť pera - barva bílá jako černá</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportDXFSwitchWhite.ToolTip" xml:space="preserve">
+    <value>LibreCAD zobrazuje bílou barvu pera na černém pozadí. Ale skutečná barva pera je černá.</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportDXFIndexToolNr.Text" xml:space="preserve">
+    <value>Použijte barevný index (+1) jako nástroj č. (místo barvy)</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportDXFIndexToolNr.ToolTip" xml:space="preserve">
+    <value>Formát DXF používá index barev od 0 do 255. Tento index + 1 bude použit jako číslo nástroje.</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1gB3.Text" xml:space="preserve">
+    <value>Import DXF</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="checkBox5.Text" xml:space="preserve">
+    <value>Pokud je objekt vyplněn, použijte šrafovací výplň</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDSVGScale.ToolTip" xml:space="preserve">
+    <value>Před vygenerováním gcode zkuste škálovat grafiku na dané jednotky,</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl3.Text" xml:space="preserve">
+    <value>Nastavení DPI</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVG_DPI_72.Text" xml:space="preserve">
+    <value>72 dpi</value>
+  </data>
+  <data name="cBImportSVG_DPI_72.ToolTip" xml:space="preserve">
+    <value>72 dpi používá Adobe Illustrator</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVG_DPI_96.Text" xml:space="preserve">
+    <value>96 dpi</value>
+  </data>
+  <data name="cBImportSVG_DPI_96.ToolTip" xml:space="preserve">
+    <value>Výchozí měřítko je 96 dpi</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGResize.Text" xml:space="preserve">
+    <value>Zkuste změnit velikost grafiky na max. Rozměr X nebo Y</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGResize.ToolTip" xml:space="preserve">
+    <value>Před vygenerováním gcode zkuste škálovat grafiku na dané jednotky,
+abyste se vyhnuli problémům při zmenšování gcode.</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="lblSVGScale.Text" xml:space="preserve">
+    <value>Jednotky</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_1gB2.Text" xml:space="preserve">
+    <value>Import SVG</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tabPage16.Text" xml:space="preserve">
+    <value>Související s formátem</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblImportPenWidthToZWarning.Text" xml:space="preserve">
+    <value>Atteniton: Z-Engrave omezí max. hloubka!</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportPenWidthToZRamp.Text" xml:space="preserve">
+    <value>Místo kroku použijte rampu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGCircleToDotZ.Text" xml:space="preserve">
+    <value>Převeďte poloměr „kruhu“ na hloubku bodu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGCircleToDotZ.ToolTip" xml:space="preserve">
+    <value>Hloubka je omezena na gravírování výšky Z.
+Nápad: použijte zahloubení k ovládání rozměru kruhu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Přeložte Z do rozsahu:
+("Gravírování výšky Z" nebude překročeno)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGCircleToDot.Text" xml:space="preserve">
+    <value>Převést střed „kruhu“ na tečku (pro vrtání)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGCircleToDot.ToolTip" xml:space="preserve">
+    <value>Pomocí vrtačky označte střed kruhu s hloubkou vyrytí „Z-Height“.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Max</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportPenWidthToZ.Text" xml:space="preserve">
+    <value>Převeďte šířku pera na hodnotu Z</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportPenWidthToZ.ToolTip" xml:space="preserve">
+    <value>Šířka pera bude zpracována jako hodnota Z pro hloubku.
+Maximální hloubka bude omezena vyrytím výšky Z.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportPenWidthToZMin.ToolTip" xml:space="preserve">
+    <value>Nejmenší šířka pera bude převedena do této hloubky</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Min</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="nUDImportPenWidthToZMax.ToolTip" xml:space="preserve">
+    <value>Nejširší šířka pera bude přeložena do této hloubky – ale omezena vyrytím Z-Height v 'G-Code generation'</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBCreateZValue.Text" xml:space="preserve">
+    <value>Vytvořte hodnotu Z</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBDashedLine2.Text" xml:space="preserve">
+    <value>G0 na peru nahoru</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBDashedLine2.ToolTip" xml:space="preserve">
+    <value>Výchozí nastavení je G1 pro plynulý pohyb,
+méně stresu pro mechaniky</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGNodesOnly.Text" xml:space="preserve">
+    <value>Pouze uzly cesty procesu</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGNodesOnly.ToolTip" xml:space="preserve">
+    <value>Pro akci perem dolů/nahoru zpracujte pouze uzly (např. koncové body čar).
+Tato možnost je určena pro strunové umění pro předvrtání pozic nehtů.
+V Inkscape nejprve převeďte objekty na cestu 'Cesta - Object to Path',
+pak přidejte uzly pomocí 'Rozšíření - Upravit cestu - Přidat uzly', abyste rozmístili další uzly podél cesty.</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBDashedLine1.Text" xml:space="preserve">
+    <value>Zpracovat vzor přerušované čáry</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBDashedLine1.ToolTip" xml:space="preserve">
+    <value>Převeďte přerušovanou čáru ve skutečném peru nahoru/dolů</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Výklad cesty</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGRepeatHF.Text" xml:space="preserve">
+    <value>Všechno</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGRepeatHF.ToolTip" xml:space="preserve">
+    <value>Zahrnuje záhlaví a zápatí</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportRepeat.ToolTip" xml:space="preserve">
+    <value>Opakujte vygenerovaný kód n-krát (např. pro slabé lasery pro řezání silnějšího materiálu)</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="rBImportSVGRepeat2.Text" xml:space="preserve">
+    <value>Opakujte cestu po cestě</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGRepeat1.Text" xml:space="preserve">
+    <value>Opakujte celý kód</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGRepeat.Text" xml:space="preserve">
+    <value>Opakujte kód</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGRepeat.ToolTip" xml:space="preserve">
+    <value>Opakujte vygenerovaný kód n-krát (např. pro slabé lasery pro řezání silnějšího materiálu)</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="label58.Text" xml:space="preserve">
+    <value>časy</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Opakování dráhy (pro slabý laser)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGComments.Text" xml:space="preserve">
+    <value>Další komentáře k importu</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGComments.ToolTip" xml:space="preserve">
+    <value>Přidejte do GCode komentáře související s grafikou</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="checkBox4.Text" xml:space="preserve">
+    <value>Složte bloky kódu</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="checkBox4.ToolTip" xml:space="preserve">
+    <value>Přidejte do GCode komentáře související s grafikou</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Vzhled G-Code</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGPauseE.Text" xml:space="preserve">
+    <value>Pauza (M0) před každou cestou</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGPauseP.Text" xml:space="preserve">
+    <value>Pauza (M0) před každým spuštěním pera</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Řízení toku</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicSortDistanceRotatePath.Text" xml:space="preserve">
+    <value>Povolit nový počáteční bod v uzavřené cestě</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Šířka kroku na obvodu oblouků</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCSegment.ToolTip" xml:space="preserve">
+    <value>Šířka kroku na obvodu oblouku.
+Pokud je hodnota &gt; poloměr oblouku, hodnota se automaticky sníží.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportReduce.ToolTip" xml:space="preserve">
+    <value>Tato možnost přeskakuje pohyby menší než je daná hodnota, aby se minimalizovala velikost gcode.</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="nUDImportSVGSegemnts.ToolTip" xml:space="preserve">
+    <value>Křivky budou kresleny úsečkami. Čím více segmentů, tím větší je přesnost křivky.</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1_2lbl2.Text" xml:space="preserve">
+    <value>Vzdálenost se považuje za stejnou</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_1_2lbl2.ToolTip" xml:space="preserve">
+    <value>Malé mezery budou uzavřeny</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCNoArcs.Text" xml:space="preserve">
+    <value>Vyhněte se příkazům G2/3</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
+    <value>Převeďte kružnice a oblouky na úsečky – potřebné, pokud je potřeba různá měřítka X a Y.
+Pokud je šířka kroku &gt; polovina poloměru, bude automaticky zmenšena</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGraphicOffsetOrigin.Text" xml:space="preserve">
+    <value>Posunutí počátku grafiky na 0;0</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicOffsetOrigin.ToolTip" xml:space="preserve">
+    <value>Nastavte levý dolní okraj importované grafiky na souřadnici xy 0;0</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicSortDistance.Text" xml:space="preserve">
+    <value>Seřadit objekty podle nejkratších spojení a sloučit</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicSortDistance.ToolTip" xml:space="preserve">
+    <value>Objekty budou seřazeny podle uzavřené vzdálenosti mezi počátečními a koncovými souřadnicemi, pokud se obrátí užitečná cesta objektů.
+Objekty se stejnou počáteční a koncovou souřadnicí budou sloučeny dohromady.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportUnitGCode.Text" xml:space="preserve">
+    <value>Přidejte G-kód G20 (palec)/G21 (mm).</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportUnitGCode.ToolTip" xml:space="preserve">
+    <value>Přidejte příkaz G20 / G21 do GCode. G21 je výchozí.</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="rBImportUnitInch.Text" xml:space="preserve">
+    <value>palec</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportUnitInch.ToolTip" xml:space="preserve">
+    <value>příkaz G20</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl1.Text" xml:space="preserve">
+    <value>Cílové jednotky a zobrazení</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl1.ToolTip" xml:space="preserve">
+    <value>Pokud je v souboru importu uvedena nějaká jednotka, zkuste ji převést na cílové jednotky</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="rBImportUnitmm.ToolTip" xml:space="preserve">
+    <value>příkaz G21</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGReduce.Text" xml:space="preserve">
+    <value>Odstraňte velmi krátké tahy &lt;</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGReduce.ToolTip" xml:space="preserve">
+    <value>Tato možnost přeskakuje pohyby menší než je daná hodnota, aby se minimalizovala velikost gcode.</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl2.Text" xml:space="preserve">
+    <value>Počet úsečkových segmentů v křivkách, spline</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl2.ToolTip" xml:space="preserve">
+    <value>Bézierovy křivky a oblouky budou nakresleny úsečkami.
+Čím více segmentů, tím větší je přesnost křivky.</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1gB1.Text" xml:space="preserve">
+    <value>Import grafiky obecně</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tabPage17.Text" xml:space="preserve">
+    <value>Obecné možnosti</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label50.Text" xml:space="preserve">
+    <value>Vzdálenost po</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGraphicLeadOutEnable.Text" xml:space="preserve">
+    <value>Vyvést</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label48.Text" xml:space="preserve">
+    <value>Vzdálenost</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGraphicLeadInEnable.Text" xml:space="preserve">
+    <value>Rampa</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBPathAddOn3.Text" xml:space="preserve">
+    <value>Nájezd na peru dolů (osa Z nebo PWM)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBPathAddOn3.ToolTip" xml:space="preserve">
+    <value>Užitečné pouze pro použití s ​​perem/štětcem</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>Číslo ve směru Y</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label37.Text" xml:space="preserve">
+    <value>Číslo ve směru X</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label36.Text" xml:space="preserve">
+    <value>Vzdálenost mezi grafikou</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGraphicMultiplyGraphicsEnable.Text" xml:space="preserve">
+    <value>Násobit grafiku</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBPathAddOn2.Text" xml:space="preserve">
+    <value>Násobit</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label45.Text" xml:space="preserve">
+    <value>Vrstva</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>Šířka pera</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>Barva pera</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox21.Text" xml:space="preserve">
+    <value>Vlastnosti pro seskupování</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGraphicAddFrameRadius.Text" xml:space="preserve">
+    <value>Zaoblete roh</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>Vzdálenost ke grafice</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGraphicAddFrameEnable.Text" xml:space="preserve">
+    <value>Nakreslit rám</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBPathAddOn1.Text" xml:space="preserve">
+    <value>Rám</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>Doplňky cesty</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBPathOverlapEnable.Text" xml:space="preserve">
+    <value>Překrývání cest</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBPathOverlapEnable.ToolTip" xml:space="preserve">
+    <value>Po dokončení uzavřené cesty začněte od začátku a posuňte se o danou vzdálenost.
+Užitečné pro laserovou řezačku.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_3gB8.Text" xml:space="preserve">
+    <value>Překrytí uzavřené cesty</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPathModification.Text" xml:space="preserve">
+    <value>Jakákoli z těchto úprav povolí "Vyhnout se příkazům G2/G3"</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicHatchFillInset.Text" xml:space="preserve">
+    <value>Vložit výplň od okrajů o</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicHatchFillChangeAngle.Text" xml:space="preserve">
+    <value>Změňte úhel po každé cestě o</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicHatchFillCross.Text" xml:space="preserve">
+    <value>Křížový poklop</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblHatchFill2.Text" xml:space="preserve">
+    <value>Úhel čáry</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblHatchFill1.Text" xml:space="preserve">
+    <value>Vzdálenost čáry</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicHatchFill.Text" xml:space="preserve">
+    <value>Výplň poklopu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBHatchFill.Text" xml:space="preserve">
+    <value>Vyplňte uzavřené cesty</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCTangentialSwivel2.ToolTip" xml:space="preserve">
+    <value>Změňte úhel před zvednutím, otočením a spuštěním nože</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCTangentialSwivel.ToolTip" xml:space="preserve">
+    <value>Změňte úhel před zvednutím, otočením a spuštěním nože</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblDImportGCTangential4.Text" xml:space="preserve">
+    <value>Správný počáteční úhel, pokud je odchylka &gt;</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblDImportGCTangential4.ToolTip" xml:space="preserve">
+    <value>Pokud je změna úhlu větší než tento úhel, vloží se jednoduchý příkaz otočení</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCTangentialRange.Text" xml:space="preserve">
+    <value>Omezte úhel nástroje na &gt;= 0°, &lt; 360°</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCTangentialRange.ToolTip" xml:space="preserve">
+    <value>Pomocí této možnosti se vyhnete úhlům pod 0° a nad 360°.
+Nefunguje s G2/3 – aktivujte „Vyhnout se příkazům G2/3“</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblDImportGCTangential3.Text" xml:space="preserve">
+    <value>Jednotky za tah</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblDImportGCTangential2.Text" xml:space="preserve">
+    <value>Úhel otočení</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblDImportGCTangential2.ToolTip" xml:space="preserve">
+    <value>Pokud je změna úhlu větší než úhel otáčení,
+Osa Z se posune nahoru
+osa se otočí
+Osa Z bude posunuta dolů</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblDImportGCTangential1.Text" xml:space="preserve">
+    <value>Název tečné osy</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCTangential.Text" xml:space="preserve">
+    <value>Přidejte tangenciální osu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_3gB5.Text" xml:space="preserve">
+    <value>Příkazy tangenciální osy</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCDragKnifeAngle.ToolTip" xml:space="preserve">
+    <value>Před přidáním oblouku změňte úhel</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCDragKnifePercent.ToolTip" xml:space="preserve">
+    <value>Vypočítejte offset v závislosti na hloubce Z</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCDragKnifeLength.ToolTip" xml:space="preserve">
+    <value>Odsazení od středu otáčení. U tažného nože obvykle kolem 0,3 mm.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCDragKnifePercent.Text" xml:space="preserve">
+    <value>v % z hloubky Z</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCDragKnifePercent.ToolTip" xml:space="preserve">
+    <value>Vypočítejte offset v závislosti na hloubce Z</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="lblDrag2.Text" xml:space="preserve">
+    <value>Úhel otočení</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="lblDrag2.ToolTip" xml:space="preserve">
+    <value>Před přidáním oblouku změňte úhel</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="lblDrag1.Text" xml:space="preserve">
+    <value>Odsazení od středu</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="lblDrag1.ToolTip" xml:space="preserve">
+    <value>Odsazení od středu otáčení. U tažného nože obvykle kolem 0,3 mm.</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCDragKnife.Text" xml:space="preserve">
+    <value>Kompenzace tažení nástroje</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCDragKnife.ToolTip" xml:space="preserve">
+    <value>Kompenzujte offset při použití tažného nože nebo kartáče</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3gB2.Text" xml:space="preserve">
+    <value>Kompenzace tažení nástroje</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tabPage20.Text" xml:space="preserve">
+    <value>Úpravy cest</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGraphicClipOffsetY.ToolTip" xml:space="preserve">
+    <value>Rozměr X dlaždice</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGraphicClipHeight.ToolTip" xml:space="preserve">
+    <value>Rozměr Y dlaždice</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGraphicClipOffsetX.ToolTip" xml:space="preserve">
+    <value>Rozměr X dlaždice</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGraphicTileClipWidth.ToolTip" xml:space="preserve">
+    <value>Rozměr X dlaždice</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Ořez / Obklad rozměr šířka / výška</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportGraphicClip1.Text" xml:space="preserve">
+    <value>Převeďte grafiku na dlaždice</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportGraphicClip0.Text" xml:space="preserve">
+    <value>Klip v levém dolním bodě X / Y:</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportGraphicClip0.ToolTip" xml:space="preserve">
+    <value>Výsledek</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicTile.Text" xml:space="preserve">
+    <value>Použijte ořez nebo obklad</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicTile.ToolTip" xml:space="preserve">
+    <value>Rozřízněte celou grafiku na dlaždice, které chcete nakreslit samostatně</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.Text" xml:space="preserve">
+    <value>Přesune dlaždice na 0; 0 původ při streamování</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.ToolTip" xml:space="preserve">
+    <value>Přesune dlaždice na počátek 0; 0 během streamování, aby se přizpůsobily poloze nástroje grbl</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.Text" xml:space="preserve">
+    <value>Zobrazit orig. pozice dlaždice</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.ToolTip" xml:space="preserve">
+    <value>Ukaž původní pozice postav</value>
+  </data>
+  <data name="label51.Text" xml:space="preserve">
+    <value>Prodloužit oříznutou cestu za hranice</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicClipSkipCode.Text" xml:space="preserve">
+    <value>Přeskočit kód pro 1. dlaždici (xy=0;0)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>Proměnné:
+#INDX #INDY index dlaždice pro směr x nebo y (např. 0, 1, 2 ...)
+#OFFX #OFFY posun dlaždice pro směr x nebo y (např. 0, 200, 400 ...)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>GCode před dlaždicí</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label11.ToolTip" xml:space="preserve">
+    <value>GCode použít před zpracováním další dlaždice.
+Např. 'M0' pro pozastavení pro ruční přesun papíru nebo '(^2 G91 X100)' pro přesun X 2. ovladače grbl pro přesun papíru.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicClipOffsetApply.Text" xml:space="preserve">
+    <value>Nastavte původ dlaždic na 0;0</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicClipOffsetApply.ToolTip" xml:space="preserve">
+    <value>Nastavte původ oříznuté oblasti / dlaždic na 0;0</value>
+  </data>
+  <data name="gBClipping.Text" xml:space="preserve">
+    <value>Ořezávání / Obkládání</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage18.Text" xml:space="preserve">
+    <value>Výstřižek</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label62.Text" xml:space="preserve">
+    <value>Poznámka: Pokud je aktivována tabulka nástrojů, původní barvy obrázků jsou nahrazeny barvami použitých nástrojů</value>
+  </data>
+  <data name="cBToolTableDefault.Text" xml:space="preserve">
+    <value>použijte pouze výchozí nástroj č.</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBToolTableUse.Text" xml:space="preserve">
+    <value>Nastavte XY-Feed atd. ze stolu nástrojů,
+vyberte položky na další stránce 'G-Code generation'</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1gB5.Text" xml:space="preserve">
+    <value>Stůl na nářadí</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblGroupInfo.Text" xml:space="preserve">
+    <value>Seskupení je zrušeno, pokud je nalezena pouze jedna vlastnost (např. jedna barva)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGSort1.Text" xml:space="preserve">
+    <value>třídit skupiny podle skupinové vlastnosti - vzestupně</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="rBImportSVGSort0.Text" xml:space="preserve">
+    <value>žádné třídění</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="rBImportSVGSort3.Text" xml:space="preserve">
+    <value>seřadit skupiny podle délky cesty - sestupně</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="rBImportSVGSort4.Text" xml:space="preserve">
+    <value>třídit skupiny podle rozměru objektu – vzestupně</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGSort2.Text" xml:space="preserve">
+    <value>třídit skupiny podle nástroje č. - vzestupně</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGSortInvert.Text" xml:space="preserve">
+    <value>vrátit pořadí řazení</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1_4gB3.Text" xml:space="preserve">
+    <value>Seřadit skupiny</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem4.Text" xml:space="preserve">
+    <value>Typ</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem3.Text" xml:space="preserve">
+    <value>Seskupit podle vrstvy (Název nástroje ~= vrstva)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem3.ToolTip" xml:space="preserve">
+    <value>Seskupte podle grafické vrstvy a vyberte číslo nástroje podle nejvhodnějšího názvu nástroje</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem2.Text" xml:space="preserve">
+    <value>Seskupit podle šířky pera (Průměr nástroje ~= šířka pera)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem2.ToolTip" xml:space="preserve">
+    <value>Seskupte podle šířky pera a vyberte číslo nástroje podle nejvhodnějšího průměru nástroje</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem1.Text" xml:space="preserve">
+    <value>Seskupit podle barvy pera (Tool-Color ~= barva pera)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem1.ToolTip" xml:space="preserve">
+    <value>Seskupte podle barvy pera a vyberte číslo nástroje podle nejvhodnější barvy nástroje</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_1_4gB2.Text" xml:space="preserve">
+    <value>Vlastnost pro seskupení a vyberte Tool-Nr. přes</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGGroup.Text" xml:space="preserve">
+    <value>Seskupit objekty stejné vlastnosti</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGGroup.ToolTip" xml:space="preserve">
+    <value>Skupinový objekt stejné barvy = Tool Nr.</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1gB4.Text" xml:space="preserve">
+    <value>Seskupování a třídění objektů</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tabPage19.Text" xml:space="preserve">
+    <value>Seskupování a nástroje</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label60.Text" xml:space="preserve">
+    <value>Úhel nástroje</value>
+  </data>
+  <data name="groupBox22.Text" xml:space="preserve">
+    <value>V-Tool</value>
+  </data>
+  <data name="label57.Text" xml:space="preserve">
+    <value>Krmte po dokončení tvaru</value>
+  </data>
+  <data name="label54.Text" xml:space="preserve">
+    <value>Výška Z pro řez před/za tvarem (pokud je povoleno Z)</value>
+  </data>
+  <data name="CbImportGraphicDevelopNoCurve.Text" xml:space="preserve">
+    <value>Žádná křivka</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNotchLift.Text" xml:space="preserve">
+    <value>Zvedněte nástroj po zářezu</value>
+  </data>
+  <data name="label59.Text" xml:space="preserve">
+    <value>Výška Z pro rytí vrubu (pokud je povoleno Z)</value>
+  </data>
+  <data name="LblImportGraphicDevelopNotchDistance.Text" xml:space="preserve">
+    <value>Min. vzdálenost od zářezu k zářezu v obloucích</value>
+  </data>
+  <data name="label52.Text" xml:space="preserve">
+    <value>Délka zářezu (šířka obrobku)</value>
+  </data>
+  <data name="groupBox20.Text" xml:space="preserve">
+    <value>Vlastnosti zářezu</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedInvert.Text" xml:space="preserve">
+    <value>Obrátit směr podávání</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedX.Text" xml:space="preserve">
+    <value>Posuv na ose X, zářez na ose Y</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedY.Text" xml:space="preserve">
+    <value>Posuv na ose Y, zářez na ose X</value>
+  </data>
+  <data name="groupBox19.Text" xml:space="preserve">
+    <value>Směr pro posuv a zářez</value>
+  </data>
+  <data name="cBImportGraphicDevelopEnable.Text" xml:space="preserve">
+    <value>Aplikujte vývoj postavy</value>
+  </data>
+  <data name="gBDevelop.Text" xml:space="preserve">
+    <value>Převeďte obrys 2D tvaru na rozvinutí</value>
+  </data>
+  <data name="tabPage30.Text" xml:space="preserve">
+    <value>Speciální konverze</value>
+  </data>
+  <data name="tabPage9.Text" xml:space="preserve">
+    <value>Import cesty</value>
+    <comment>TabPage</comment>
+  </data>
+  <data name="label32.Text" xml:space="preserve">
+    <value>G-kód před výměnou nástroje</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCFeedXY.ToolTip" xml:space="preserve">
+    <value>Rychlost posuvu pro příkazy G1,2,3 pomocí rozměru X nebo Y</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCSSpeed.ToolTip" xml:space="preserve">
+    <value>Rychlost vřetena pro gravírování</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCSpindleDelay.ToolTip" xml:space="preserve">
+    <value>Zpoždění vložení v sekundách po zapnutí vřetena (aby byl čas na reset, pokud je vřeteno vypnuté)</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportLasermode.Text" xml:space="preserve">
+    <value>Laserový režim (pro vypnutí laseru použijte S0 místo M5)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportGCSpindleCmd2.Text" xml:space="preserve">
+    <value>'M4' CCW</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportGCSpindleCmd2.ToolTip" xml:space="preserve">
+    <value>Odesláním „M4“ zapnete vřeteno proti směru hodinových ručiček
+Dynamický režim výkonu laseru v režimu laseru</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl6.Text" xml:space="preserve">
+    <value>Směr / laserový režim</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="rBImportGCSpindleCmd1.ToolTip" xml:space="preserve">
+    <value>Odesláním 'M3' zapnete vřeteno ve směru hodinových ručiček
+Režim konstantního výkonu laseru v režimu laseru</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl7.Text" xml:space="preserve">
+    <value>Zpoždění po zapnutí vřetena</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl5.Text" xml:space="preserve">
+    <value>Rychlost vřetena / Laser pwr.</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl5.ToolTip" xml:space="preserve">
+    <value>Rychlost vřetena pro gravírování</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTTSSpeed.Text" xml:space="preserve">
+    <value>ze stolu nástrojů</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTTSSpeed.ToolTip" xml:space="preserve">
+    <value>Pokud jsou povoleny 'Add Tool Change' a 'Perform Tool Change', hodnota bude převzata z tabulky nástrojů během importu</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB2.Text" xml:space="preserve">
+    <value>Vřeteno / Laser</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCToolM0.Text" xml:space="preserve">
+    <value>Místo toho přidejte Pauza (M0).</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
+    <value>Pro ruční výměnu nástroje nahraďte libovolný příkaz M06 (výměna nástroje) příkazem M0 (pauza).</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTool.Text" xml:space="preserve">
+    <value>Přidejte příkaz výměny nástroje Tx M06</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
+    <value>Proveďte akci výměny nástroje na příkazech Tx M06, pokud jsou k dispozici informace - zaškrtněte záložku 'Výměna nástroje'.</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCComments.Text" xml:space="preserve">
+    <value>Další komentáře ke kódu G</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCComments.ToolTip" xml:space="preserve">
+    <value>Přidejte do GCode nějaké další komentáře</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTTXYFeed.Text" xml:space="preserve">
+    <value>ze stolu nástrojů</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTTXYFeed.ToolTip" xml:space="preserve">
+    <value>Pokud jsou povoleny 'Add Tool Change' a 'Perform Tool Change', hodnota bude převzata z tabulky nástrojů během importu</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl1.Text" xml:space="preserve">
+    <value>Desetinná místa</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl1.ToolTip" xml:space="preserve">
+    <value>Desetinná místa pro souřadnice v gcode.</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tBImportGCHeader.ToolTip" xml:space="preserve">
+    <value>Stav GRBL po resetu: G0, G54, G17, G90, G94, G21, G40, G49, M0, M5, M9
+Tato slova není třeba nastavovat</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl4.Text" xml:space="preserve">
+    <value>Rychlost posuvu XY</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl4.ToolTip" xml:space="preserve">
+    <value>Rychlost posuvu pro příkazy G1,2,3 pomocí rozměru X nebo Y</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl2.Text" xml:space="preserve">
+    <value>Záhlaví G-kódu</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl2.ToolTip" xml:space="preserve">
+    <value>Stav GRBL po resetu: G0, G54, G17, G90, G94, G21, G40, G49, M0, M5, M9
+Tato slova není třeba nastavovat</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl3.Text" xml:space="preserve">
+    <value>Zápatí kódu G</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportDecPlaces.ToolTip" xml:space="preserve">
+    <value>Desetinná místa pro souřadnice v gcode.</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB1.Text" xml:space="preserve">
+    <value>Všeobecné</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUseIndividual2.Text" xml:space="preserve">
+    <value>Individuální</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCUseSpindle2.Text" xml:space="preserve">
+    <value>Vřeteno</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCUsePWM2.Text" xml:space="preserve">
+    <value>PWM</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCUseZ2.Text" xml:space="preserve">
+    <value>Osa Z</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label67.ToolTip" xml:space="preserve">
+    <value>Číslo podprogramu 'Pen down'</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label64.ToolTip" xml:space="preserve">
+    <value>Číslo podprogramu 'Pen up'</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCTTZAxis.Text" xml:space="preserve">
+    <value>ze stolu nástrojů</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTTZAxis.ToolTip" xml:space="preserve">
+    <value>Pokud jsou povoleny 'Add Tool Change' a 'Perform Tool Change', všechny hodnoty Z budou převzaty z tabulky nástrojů během importu</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCFeedZ.ToolTip" xml:space="preserve">
+    <value>Rychlost při pohybu do obrobku pro příkaz G1</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCZUp.ToolTip" xml:space="preserve">
+    <value>Výška nad povrchem obrobku - musí být kladná</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCZDown.ToolTip" xml:space="preserve">
+    <value>Konečná hloubka pod povrchem obrobku - musí být záporná</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCZIncStartZero.Text" xml:space="preserve">
+    <value>Začněte na Z=0</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCZIncStartZero.ToolTip" xml:space="preserve">
+    <value>Pro první průchod použijte Z=0</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl35.Text" xml:space="preserve">
+    <value>Hloubka na průchod</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl35.ToolTip" xml:space="preserve">
+    <value>Max. zvýšení hodnoty Z</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCZIncEnable.Text" xml:space="preserve">
+    <value>Použijte několik průchodů</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCZIncEnable.ToolTip" xml:space="preserve">
+    <value>Opakujte cestu s rostoucí hloubkou Z, abyste dosáhli konečné hloubky
+Nelze použít s jinými možnostmi nahoru/dolů perem!</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUseZ.Text" xml:space="preserve">
+    <value>Použijte osu Z a vřeteno</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUseZ.ToolTip" xml:space="preserve">
+    <value>Vložit pohyby osy Z do G-kódu</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl32.Text" xml:space="preserve">
+    <value>Uložení výšky Z</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2lbl32.ToolTip" xml:space="preserve">
+    <value>Výška nad povrchem obrobku - musí být kladná</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl33.Text" xml:space="preserve">
+    <value>Gravírování výšky Z</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2lbl33.ToolTip" xml:space="preserve">
+    <value>Konečná hloubka pod povrchem obrobku - musí být záporná</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl31.Text" xml:space="preserve">
+    <value>Z Rychlost posuvu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2lbl31.ToolTip" xml:space="preserve">
+    <value>Rychlost při pohybu do obrobku</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB3.Text" xml:space="preserve">
+    <value>Osa Z</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB3.ToolTip" xml:space="preserve">
+    <value>Vložit pohyby osy Z do G-kódu</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tabPage12.Text" xml:space="preserve">
+    <value>Osa Z</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnPWMAdvanced.Text" xml:space="preserve">
+    <value>Pokročilé nastavení</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnPWMAdvanced.ToolTip" xml:space="preserve">
+    <value>Zobrazit další pozice serva</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP94.ToolTip" xml:space="preserve">
+    <value>Číslo podprogramu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCDlyP94.ToolTip" xml:space="preserve">
+    <value>Vložit G4: zpoždění v sekundách před dalším příkazem</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP93.ToolTip" xml:space="preserve">
+    <value>Číslo podprogramu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP92.ToolTip" xml:space="preserve">
+    <value>Číslo podprogramu 'Pen down'</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCDlyP93.ToolTip" xml:space="preserve">
+    <value>Vložit G4: zpoždění v sekundách před dalším příkazem</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP91.ToolTip" xml:space="preserve">
+    <value>Číslo podprogramu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMFunction.Text" xml:space="preserve">
+    <value>Funkce</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMFunction.ToolTip" xml:space="preserve">
+    <value>Funkce podprogramu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMSub.Text" xml:space="preserve">
+    <value>Sub</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMSub.ToolTip" xml:space="preserve">
+    <value>Číslo podprogramu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP90.ToolTip" xml:space="preserve">
+    <value>Číslo podprogramu 'Pen up'</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label55.Text" xml:space="preserve">
+    <value>Zpoždění poté</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label55.ToolTip" xml:space="preserve">
+    <value>Zpoždění po použití nové hodnoty PWM</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label56.Text" xml:space="preserve">
+    <value>PWM</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label56.ToolTip" xml:space="preserve">
+    <value>Hodnota PWM</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnPWMInc.Text" xml:space="preserve">
+    <value>Inc 10</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnPWMInc.ToolTip" xml:space="preserve">
+    <value>Hodnota přírůstku PWM 1, 10 nebo 100</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMZero.Text" xml:space="preserve">
+    <value>Pen Zero</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMZero.ToolTip" xml:space="preserve">
+    <value>Pero se dotýká povrchu
+Potřebné pouze pro zaváděcí provoz</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCPWMZero.ToolTip" xml:space="preserve">
+    <value>Otáčky vřetena pro nulu pera
+Potřebné pouze pro zaváděcí provoz</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblInfoPWM.ToolTip" xml:space="preserve">
+    <value>Možné max. hodnota je nastavena přes $30 (výchozí=1000), min přes $31 (výchozí=0).
+Grbl-version 'grbl_v1.1f_Servo.hex' z https://github.com/cprezzi/grbl-servo,
+používá 31 kroků pro výstup 0,5 ms až 2,5 ms (viz cpu_map.h).
+Skutečný použitelný rozsah by byl 30 $ = 31, 31 $ = 0.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMDown.Text" xml:space="preserve">
+    <value>Perem dolů</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMDown.ToolTip" xml:space="preserve">
+    <value>Posuňte pero úplně dolů</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMUp.Text" xml:space="preserve">
+    <value>Pen Up</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
+    <value>Posuňte pero co nejvíce nahoru</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCPWMSendCode.Text" xml:space="preserve">
+    <value>Odešlete příkaz ke kontrole</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCPWMSendCode.ToolTip" xml:space="preserve">
+    <value>Odeslat příkaz ke změně hodnoty</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCPWMSkipM30.Text" xml:space="preserve">
+    <value>Přeskočte příkaz M30</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCPWMSkipM30.ToolTip" xml:space="preserve">
+    <value>Přeskočte příkaz M30 'Konec programu', abyste se vyhnuli vypnutí vřetena resetováním stavu analyzátoru, což způsobí, že se servo přesune do polohy '0'.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCPWMUp.ToolTip" xml:space="preserve">
+    <value>Rychlost vřetena pro pero nahoru</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCDlyUp.ToolTip" xml:space="preserve">
+    <value>Vložit G4: zpoždění v sekundách před dalším příkazem</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCPWMDown.ToolTip" xml:space="preserve">
+    <value>Rychlost vřetena pro dolů pero</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCDlyDown.ToolTip" xml:space="preserve">
+    <value>Vložit G4: zpoždění v sekundách před dalším příkazem</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUsePWM.Text" xml:space="preserve">
+    <value>Otáčky vřetena jako PWM</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUsePWM.ToolTip" xml:space="preserve">
+    <value>Ovládání RC-Servo pomocí rychlosti vřetena (speciální verze GRBL potřebná pro generování 1ms - 2ms PWM výstupu)</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB4.Text" xml:space="preserve">
+    <value>Servo ovládání</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB4.ToolTip" xml:space="preserve">
+    <value>Ovládání RC-Servo pomocí rychlosti vřetena (speciální verze GRBL potřebná pro generování 1ms - 2ms PWM výstupu)</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tabPage27.Text" xml:space="preserve">
+    <value>PWM</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2lbl51.Text" xml:space="preserve">
+    <value>Zkontrolujte nastavení vřetena pro výběr a zpoždění M3 M4</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUseSpindle.Text" xml:space="preserve">
+    <value>Vřeteno zapnuto/vypnuto</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUseSpindle.ToolTip" xml:space="preserve">
+    <value>Vřeteno „vypněte“ pomocí příkazu „Per up“ a „zapněte“ pomocí příkazu „Per down“ (pro laserový rytec)
+Zkontrolujte nastavení vřetena pro výběr a zpoždění M3 M4</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB5.Text" xml:space="preserve">
+    <value>Zapnutí/vypnutí vřetena s perem dolů/nahoru (pro laser)</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB5.ToolTip" xml:space="preserve">
+    <value>Vřeteno „vypněte“ pomocí příkazu „Per up“ a „zapněte“ pomocí příkazu „Per down“ (pro laserový rytec)</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tabPage28.Text" xml:space="preserve">
+    <value>Vřeteno</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2lbl62.Text" xml:space="preserve">
+    <value>Perem dolů</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2lbl61.Text" xml:space="preserve">
+    <value>Pen Up</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCUseIndividual.Text" xml:space="preserve">
+    <value>Použijte jednotlivé příkazy (řádky oddělte ';' )</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB6.Text" xml:space="preserve">
+    <value>Jednotlivé příkazy pro pero Down/Up</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tabPage29.Text" xml:space="preserve">
+    <value>Individuální</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2gB7.Text" xml:space="preserve">
+    <value>Překlad perem nahoru / dolů</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tabPage10.Text" xml:space="preserve">
+    <value>Generování G-kódu</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_3lbl34.Text" xml:space="preserve">
+    <value>S při Z &gt; 0</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3lbl31.Text" xml:space="preserve">
+    <value>Nastavení pro Menu GCode Transform, Převést Z na S</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3lbl33.Text" xml:space="preserve">
+    <value>Minimum S a maximum Z</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3lbl32.Text" xml:space="preserve">
+    <value>Maximum S a minimum Z</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3gB3.Text" xml:space="preserve">
+    <value>Převeďte osu Z na rychlost vřetena S</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3lbl41.Text" xml:space="preserve">
+    <value>S jinými možnostmi nemusí fungovat</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCRelative.Text" xml:space="preserve">
+    <value>Relativní pohyby</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCRelative.ToolTip" xml:space="preserve">
+    <value>Vypočítejte relativní pohyby pro G91
+Poznámka: Nepoužívejte „Seřadit objekty podle indexu pera“</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCCompress.Text" xml:space="preserve">
+    <value>Komprimujte G-Code</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCCompress.ToolTip" xml:space="preserve">
+    <value>Přeskočí nadbytečná data.
+Poznámka: Nepoužívejte „Seřadit objekty podle indexu pera“</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3gB4.Text" xml:space="preserve">
+    <value>Experimentální</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>Použijte pero nahoru/-dolů před/po podprogramu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCLineSegment.ToolTip" xml:space="preserve">
+    <value>Pokud je hodnota 0, bude zpracováno pouze 'Vložit také na začátek cesty'</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCSubFirst.Text" xml:space="preserve">
+    <value>Vložte také na začátek cesty</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="btnShowScriptSub.Text" xml:space="preserve">
+    <value>ukázat</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="btnShowScriptSub.ToolTip" xml:space="preserve">
+    <value>Kliknutím zobrazíte obsah souboru</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.Text" xml:space="preserve">
+    <value>stejně vzdálené segmenty</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.ToolTip" xml:space="preserve">
+    <value>Zaškrtnuto: Čára bude rozdělena na segmenty stejné délky (&lt;= daná délka)
+Nezaškrtnuto: poslední segment řádku je kratší, všechny ostatní přesně zadané délky</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tBImportGCSubroutine.ToolTip" xml:space="preserve">
+    <value>Cesta k souboru s podprogramem</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCSubEnable.Text" xml:space="preserve">
+    <value>Vložit podprogram</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCSubEnable.ToolTip" xml:space="preserve">
+    <value>Vložte podprogram každou délku segmentu.</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCLineSegments.Text" xml:space="preserve">
+    <value>Rozdělte čáry G1 na segmenty s max. délka v jednotkách. 0 = žádné dělení.</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCLineSegments.ToolTip" xml:space="preserve">
+    <value>Dlouhé rovné tahy řežte na kratší tahy s max. daná délka.
+Nepoužívejte s "Relativními pohyby"</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3gB1.Text" xml:space="preserve">
+    <value>Rozdělit původní pohyby</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tabPage11.Text" xml:space="preserve">
+    <value>Úprava G-kódu</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_4lbl1.Text" xml:space="preserve">
+    <value>Naposledy načteno:</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="tBUseCaseSetting1.Text" xml:space="preserve">
+    <value>Chcete-li zobrazit nastavení, vyberte případ použití</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="tab1_4lbl2.Text" xml:space="preserve">
+    <value>Napište informace o případu použití</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnDelete.Text" xml:space="preserve">
+    <value>Smazat vybrané</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnDelete.ToolTip" xml:space="preserve">
+    <value>Smazat vybraný případ použití</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnUseCaseSave.Text" xml:space="preserve">
+    <value>Uložit „případ užití“</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnUseCaseSave.ToolTip" xml:space="preserve">
+    <value>Uložit aktuální nastavení importu jako případ použití</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnUseCaseLoad.Text" xml:space="preserve">
+    <value>Vybráno zatížení</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnUseCaseLoad.ToolTip" xml:space="preserve">
+    <value>Načíst nastavení vybraného případu použití</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="tab1_4gB1.Text" xml:space="preserve">
+    <value>Uložit nastavení importu jako „případ užití“</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="tabPage15.Text" xml:space="preserve">
+    <value>Případy užití</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Import grafiky</value>
+    <comment>TabPage1</comment>
+  </data>
+  <data name="lblToolListChanged.Text" xml:space="preserve">
+    <value>-</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnDeleteToolTable.Text" xml:space="preserve">
+    <value>Smazat vybraný seznam</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnDeleteToolTable.ToolTip" xml:space="preserve">
+    <value>Smazat vybranou tabulku nástrojů</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="lblToolListLoaded.Text" xml:space="preserve">
+    <value>prázdný</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Poslední načtená tabulka nástrojů:</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnLoadToolTable.Text" xml:space="preserve">
+    <value>Vybráno zatížení</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnLoadToolTable.ToolTip" xml:space="preserve">
+    <value>Načtěte vybranou tabulku nástrojů</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnToolExport.Text" xml:space="preserve">
+    <value>Uložit tabulku nástrojů</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnToolExport.ToolTip" xml:space="preserve">
+    <value>Uložit aktuální tabulku nástrojů do souboru csv</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="tab2gB1.Text" xml:space="preserve">
+    <value>Stoly na nářadí</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="cBToolLaser.Text" xml:space="preserve">
+    <value>Související s laserem</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="cBToolLaser.ToolTip" xml:space="preserve">
+    <value>Zmenšete viditelné sloupce</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnReNumberTools.Text" xml:space="preserve">
+    <value>přečíslovat</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnMoveToolXY.Text" xml:space="preserve">
+    <value>Přesuňte se na pozici XY označeného řádku</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="tab2gB2lbl1.Text" xml:space="preserve">
+    <value>Offset na pozice nástroje v tabulce nástrojů (X,Y,Z)</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column1.HeaderText" xml:space="preserve">
+    <value>Nr.</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column1.ToolTipText" xml:space="preserve">
+    <value>Číslo nástroje</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column2.HeaderText" xml:space="preserve">
+    <value>Barva</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column2.ToolTipText" xml:space="preserve">
+    <value>Barva pera v 6místném hexu. Klepnutím seřadíte podle jasu.</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column3.HeaderText" xml:space="preserve">
+    <value>název</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column3.ToolTipText" xml:space="preserve">
+    <value>Název nástroje</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column4.HeaderText" xml:space="preserve">
+    <value>Poz. X</value>
+  </data>
+  <data name="Column4.ToolTipText" xml:space="preserve">
+    <value>Výměnná pozice X</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column5.HeaderText" xml:space="preserve">
+    <value>Poz. Y</value>
+  </data>
+  <data name="Column5.ToolTipText" xml:space="preserve">
+    <value>Výměna pozice Y</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column6.HeaderText" xml:space="preserve">
+    <value>Poz. Z</value>
+  </data>
+  <data name="Column6.ToolTipText" xml:space="preserve">
+    <value>Výměnná pozice Z</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column16.HeaderText" xml:space="preserve">
+    <value>Poz. A</value>
+  </data>
+  <data name="Column16.ToolTipText" xml:space="preserve">
+    <value>Výměnná pozice A</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column7.HeaderText" xml:space="preserve">
+    <value>Ø nástroje</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column7.ToolTipText" xml:space="preserve">
+    <value>Průměr nástroje</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column8.HeaderText" xml:space="preserve">
+    <value>XY Spd</value>
+  </data>
+  <data name="Column8.ToolTipText" xml:space="preserve">
+    <value>Rychlost posuvu pro XY tahů</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column10.HeaderText" xml:space="preserve">
+    <value>Z Spd</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column10.ToolTipText" xml:space="preserve">
+    <value>Rychlost posuvu pro pohyby Z</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column15.HeaderText" xml:space="preserve">
+    <value>Z Uložit</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column15.ToolTipText" xml:space="preserve">
+    <value>Uložte výšku nad obrobkem</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column9.HeaderText" xml:space="preserve">
+    <value>Z Hluboké</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column9.ToolTipText" xml:space="preserve">
+    <value>Konečná hloubka Z</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column13.HeaderText" xml:space="preserve">
+    <value>Společnost Z Inc.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column13.ToolTipText" xml:space="preserve">
+    <value>Max. Přírůstek Z na průchod</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column11.HeaderText" xml:space="preserve">
+    <value>Vřeteno</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column11.ToolTipText" xml:space="preserve">
+    <value>Rychlost otáčení vřetena</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column12.HeaderText" xml:space="preserve">
+    <value>Překročit</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column12.ToolTipText" xml:space="preserve">
+    <value>Vzdálenost v průměru nástroje mezi paralelními dráhami</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column14.HeaderText" xml:space="preserve">
+    <value>GCode</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column14.ToolTipText" xml:space="preserve">
+    <value>Kód, který se použije po příkazu k výměně nástroje</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="tab2gB2.Text" xml:space="preserve">
+    <value>Tabulka nástrojů - pozice v souřadnicích stroje! Navádění doporučeno před použitím.</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="tabPage14.Text" xml:space="preserve">
+    <value>Stůl na nářadí</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="label47.Text" xml:space="preserve">
+    <value>sekundy</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label46.Text" xml:space="preserve">
+    <value>Zpoždění po skriptu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDToolChangeEmpty.ToolTip" xml:space="preserve">
+    <value>Použijte nástroj č. který není uveden v tabulce nástrojů.</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="cBToolChangeEmpty.Text" xml:space="preserve">
+    <value>Nakonec vyprázdněte vřeteno „načtením“ nástroje č.:</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="cBToolChangeEmpty.ToolTip" xml:space="preserve">
+    <value>Odstraňte naposledy použitý nástroj načtením neexistujícího nástroje jako posledního příkazu.</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="label61.Text" xml:space="preserve">
+    <value>Jak to funguje:
+Mějte GCode s příkazy Tx M6 pro výměnu nástroje.
+Během streamování do grbl (na Arduinu nebo jiném ovladači) bude příkaz k výměně nástroje interpretován GRBL-Plotterem a bude vložen skript gcode:
+
+Všimněte si příkazu 'Tx', získejte číslo nástroje 'x'
+Načtěte souřadnice výměny nástroje pro číslo nástroje 'x' do proměnných TOAX, TOAY, TOAZ z aktuální tabulky nástrojů.
+
+Všimněte si příkazu 'M6'
+Pokud je nástroj ve vřetenu
+vložte kód skriptu 'REMOVE' (zde použijte TOLX,Y,Z pro souřadnice posledního nástroje)
+Vložte kód skriptu 'SELECT' do fronty pro odesílání (zde použijte souřadnice nástroje TOAX,Y,Z)
+Vložte kód skriptu 'PICK UP'
+Vložte kód skriptu 'PROBE'
+Kopírovat skutečné souřadnice nástroje (TOAX,Y,Z do poslední souřadnice. TOLX,Y,Z)
+Odeberte 'M6' z fronty odesílání, protože grbl tento příkaz nezvládne.</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_4.Text" xml:space="preserve">
+    <value>4) Nástroj PROBE</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_4.ToolTip" xml:space="preserve">
+    <value>Kliknutím zobrazíte obsah souboru</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="tBToolChangeScriptProbe.ToolTip" xml:space="preserve">
+    <value>4. délka nástroje sondy</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_2.Text" xml:space="preserve">
+    <value>2) Nástroj SELECT</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_2.ToolTip" xml:space="preserve">
+    <value>Kliknutím zobrazíte obsah souboru</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="tBToolChangeScriptSelect.ToolTip" xml:space="preserve">
+    <value>2. přiveďte nový nástroj před vřeteno</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_1.Text" xml:space="preserve">
+    <value>1) VYJMĚTE nástroj (pokud je ve vřetenu)</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_1.ToolTip" xml:space="preserve">
+    <value>Kliknutím zobrazíte obsah souboru</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="tBToolChangeScriptPut.ToolTip" xml:space="preserve">
+    <value>Nejprve je třeba odstranit starý nástroj z vřetena (kromě prvního použití)</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_3.Text" xml:space="preserve">
+    <value>3) Nástroj PICK UP</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_3.ToolTip" xml:space="preserve">
+    <value>Kliknutím zobrazíte obsah souboru</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="tBToolChangeScriptGet.ToolTip" xml:space="preserve">
+    <value>3. vyzvednout nový nástroj</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="cBToolChange.Text" xml:space="preserve">
+    <value>Proveďte výměnu nástroje na Tx M06</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="cBToolChange.ToolTip" xml:space="preserve">
+    <value>Proveďte následující skripty na příkazech Tx M06</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="gBToolChange.Text" xml:space="preserve">
+    <value>Nastavení výměny nástroje</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="tabPage8.Text" xml:space="preserve">
+    <value>Výměna nástroje</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="label53.Text" xml:space="preserve">
+    <value>Stav pinu Mega 2560
+https://github.com/fra589/grbl-Mega-5X/wiki/grbl-Mega-5X-pinout</value>
+  </data>
+  <data name="checkBox10.Text" xml:space="preserve">
+    <value>Zobrazit stav špendlíku</value>
+  </data>
+  <data name="groupBox24.Text" xml:space="preserve">
+    <value>Popis pinu (přepisuje stavy příslušenství)</value>
+  </data>
+  <data name="cBExtendedLogging.Text" xml:space="preserve">
+    <value>Povolit rozšířené protokolování</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Protokolování</value>
+  </data>
+  <data name="LblSaveEncoding.Text" xml:space="preserve">
+    <value>Uložte kódování G-Code</value>
+  </data>
+  <data name="checkBox11.Text" xml:space="preserve">
+    <value>Při ukládání odstraňte všechny komentáře</value>
+  </data>
+  <data name="checkBox9.Text" xml:space="preserve">
+    <value>Uložit G-Code jako unicode UTF-16 (jinak ASCII)</value>
+  </data>
+  <data name="checkBox2.Text" xml:space="preserve">
+    <value>Často kontrolujte registr, abyste mohli vložit kód ze schránky</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBcheckupdate.Text" xml:space="preserve">
+    <value>Podívejte se na nové vydání plotru GRBL na GitHubu</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBcheckupdate.ToolTip" xml:space="preserve">
+    <value>Při každém spuštění plotru GRBL zkontrolujte novou verzi programu:
+1. zkuste na github.com/svenhb/GRBL-Plotter
+2. pokus na svenhb.bplaced.net</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>Smíšený</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBCtrlToolTable.Text" xml:space="preserve">
+    <value>2D zobrazení: Získejte barvy z tabulky nástrojů</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBCtrlToolTable.ToolTip" xml:space="preserve">
+    <value>Analyzujte hodnoty S, Z a F v G-kódu, abyste přiřadili barvu z tabulky nástrojů k dráze nástroje</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBCtrlCommentOut.Text" xml:space="preserve">
+    <value>Zakomentujte neznámý G-Code</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBCtrlCommentOut.ToolTip" xml:space="preserve">
+    <value>Skryjte neznámý G-kód v závorkách, abyste předešli chybám z GRBL</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="rBCtrlReplaceM4.Text" xml:space="preserve">
+    <value>Nahradit „M4“ za „M3“</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="rBCtrlReplaceM4.ToolTip" xml:space="preserve">
+    <value>Režim konstantního výkonu laseru M3</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="rBCtrlReplaceM3.Text" xml:space="preserve">
+    <value>Nahradit „M3“ za „M4“</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="rBCtrlReplaceM3.ToolTip" xml:space="preserve">
+    <value>Režim dynamického výkonu laseru M4:</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBCtrlMCmd.Text" xml:space="preserve">
+    <value>Převeďte příkazy 'Spindle On'</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBCtrlMCmd.ToolTip" xml:space="preserve">
+    <value>Pokud je povoleno, během načítání souboru GCode budou příkazy M3 nebo M4 nahrazeny příkazy M4 nebo M3 pro aktivaci
+Režim konstantního výkonu laseru M3
+nebo
+Režim dynamického výkonu laseru M4</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB4.Text" xml:space="preserve">
+    <value>'Laserový režim'</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab5gB3.Text" xml:space="preserve">
+    <value>Načíst G-kód</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="checkBox6.Text" xml:space="preserve">
+    <value>Při spuštění programu otevře 3. sériové rozhraní</value>
+    <comment>ok</comment>
+  </data>
+  <data name="checkBox6.ToolTip" xml:space="preserve">
+    <value>Otevře 2. COM port pro ovládání 2. GRBL. Užitečné pro výměníky nástrojů nebo 4. osu.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBSerialMinimize.Text" xml:space="preserve">
+    <value>Po připojení minimalizujte sériové formuláře</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerialMinimize.ToolTip" xml:space="preserve">
+    <value>Po úspěšném připojení minimalizuje sériová okna</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerial2.Text" xml:space="preserve">
+    <value>Otevřete 2. sériový port na prog. Start</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerial2.ToolTip" xml:space="preserve">
+    <value>Otevře 2. COM port pro ovládání 2. GRBL. Užitečné pro výměník nástrojů nebo 4. osu.</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="groupBox13.Text" xml:space="preserve">
+    <value>připojení grbl</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBSerialDIY.Text" xml:space="preserve">
+    <value>Otevřete sériový port na prog. Start</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB2.Text" xml:space="preserve">
+    <value>DIY ovládací panel přes sériové připojení</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerialPortFixer.Text" xml:space="preserve">
+    <value>Použijte fixátor sériového portu</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerialPortFixer.ToolTip" xml:space="preserve">
+    <value>Může pomoci předejít chybám při zavírání aplikace</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB1.Text" xml:space="preserve">
+    <value>Sériové připojení</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBExtendedLoggingCOM.Text" xml:space="preserve">
+    <value>Sériový COM / streamování</value>
+  </data>
+  <data name="groupBox25.Text" xml:space="preserve">
+    <value>Protokolování</value>
+  </data>
+  <data name="tabPage13.Text" xml:space="preserve">
+    <value>Spuštění programu</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="BtnAccessoryRefresh.Text" xml:space="preserve">
+    <value>Obnovit</value>
+  </data>
+  <data name="BtnAccessoryMistReset.Text" xml:space="preserve">
+    <value>Resetovat</value>
+  </data>
+  <data name="BtnAccessoryFloodReset.Text" xml:space="preserve">
+    <value>Resetovat</value>
+  </data>
+  <data name="BtnAccessorySpindleReset.Text" xml:space="preserve">
+    <value>Resetovat</value>
+  </data>
+  <data name="LblAccessoryMist.Text" xml:space="preserve">
+    <value>Mlha:</value>
+  </data>
+  <data name="LblAccessoryFlood.Text" xml:space="preserve">
+    <value>Zaplavit:</value>
+  </data>
+  <data name="LblAccessorySpindle.Text" xml:space="preserve">
+    <value>Vřeteno:</value>
+  </data>
+  <data name="GbAccessoryRunTime.Text" xml:space="preserve">
+    <value>Doba chodu příslušenství (ms)</value>
+  </data>
+  <data name="btnMachineRangeGet.Text" xml:space="preserve">
+    <value>Získejte rozsah od nastavení $ 130-$ 132</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="label66.Text" xml:space="preserve">
+    <value>Max poloha Z</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label65.Text" xml:space="preserve">
+    <value>Min pozice Y</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab5gB5lbl4.Text" xml:space="preserve">
+    <value>Umístěte stroj do výchozí polohy, přejděte na min X, min Y a max Z.
+Poznamenejte si souřadnice stroje</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="label63.Text" xml:space="preserve">
+    <value>Min pozice X</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBMachineLimitsAlarm.Text" xml:space="preserve">
+    <value>Min pozice X</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBMachineLimitsShow.Text" xml:space="preserve">
+    <value>Zobrazit limity stroje</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB5lbl3.Text" xml:space="preserve">
+    <value>Pojezd stroje Z</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB5lbl2.Text" xml:space="preserve">
+    <value>Pojezd stroje Y</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB5lbl1.Text" xml:space="preserve">
+    <value>Pojezd stroje X</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Získejte upozornění, pokud kód překročí rozměry stroje</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab5gB5.Text" xml:space="preserve">
+    <value>Oblast stroje</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB6lbl2.Text" xml:space="preserve">
+    <value>Velikost 4. osy ve 2D pohledu lze změnit pomocí rotačního průměru v menu transformace gcode</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>Invertujte 4. osu ve 2D pohledu</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="radioButton2.Text" xml:space="preserve">
+    <value>zobrazit 4. osu nad Y</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="radioButton1.Text" xml:space="preserve">
+    <value>zobrazit 4. osu nad X</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cB4thUse.Text" xml:space="preserve">
+    <value>Zobrazit stav a ovládací prvky</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB6lbl1.Text" xml:space="preserve">
+    <value>Název 4. osy</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB6.Text" xml:space="preserve">
+    <value>GRBL 4th axis (speciální vydání)</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tBRotarySetupOff.ToolTip" xml:space="preserve">
+    <value>Toto nastavení bude nastaveno při zakázání substituce os</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tBRotarySetupOn.ToolTip" xml:space="preserve">
+    <value>Toto nastavení bude nastaveno při povolení substituce os</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8lbl2.Text" xml:space="preserve">
+    <value>Primární osa</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8lbl2.ToolTip" xml:space="preserve">
+    <value>Toto nastavení bude nastaveno při zakázání substituce os</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBRotarySetupApply.Text" xml:space="preserve">
+    <value>Použít nastavení při zavření formuláře</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBRotarySetupApply.ToolTip" xml:space="preserve">
+    <value>Automaticky přizpůsobte nastavení grbl při povolení nebo zakázání substituce</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8lbl1.Text" xml:space="preserve">
+    <value>Rotační osa</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8lbl1.ToolTip" xml:space="preserve">
+    <value>Toto nastavení bude nastaveno při povolení substituce os</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8.Text" xml:space="preserve">
+    <value>Nastavení GRBL pro vyměněnou osu</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="label30.Text" xml:space="preserve">
+    <value>Jednotky</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB7lbl2.Text" xml:space="preserve">
+    <value>Průměr dílu</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB7lbl2.ToolTip" xml:space="preserve">
+    <value>Potřebné pro výpočet obvodu pro vztah vzdálenost &lt;=&gt; úhel</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>Jednotky</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB7lbl1.Text" xml:space="preserve">
+    <value>360° odpovídá</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="rBRotaryY.Text" xml:space="preserve">
+    <value>osa Y</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBRotarySubstitute.Text" xml:space="preserve">
+    <value>Použijte substituci osy</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB7.Text" xml:space="preserve">
+    <value>Ovládání rotační osy (místo osy X nebo Y)</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tabPage26.Text" xml:space="preserve">
+    <value>Ovládání programu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>Speciální režim pauzy umožňuje uživateli používat stroj. Po ukončení pauzy se obnoví poslední souřadnice procesu a stav stroje a streamování pokračuje.
+Zatímco normální M0 zahájí zadržování posuvu, aniž by bylo možné stroj použít.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBStreanProtocoll2.Text" xml:space="preserve">
+    <value>Jednoduché odeslání-odpověď (režim „ok“)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>Streamovací protokol:</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBStreanProtocoll1.Text" xml:space="preserve">
+    <value>Počítání znaků (vyplnění vyrovnávací paměti)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBDisableProgramPause.Text" xml:space="preserve">
+    <value>Vypněte speciální režim pauzy, projděte přes M0</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBDisableProgramPause.ToolTip" xml:space="preserve">
+    <value>Pokud je zakázáno, streamování se zastaví na M0 a stav analyzátoru se uloží (ale M0 se neodešle do ovladače), pak uživatel může ovládat stroj.
+Po pauze bude stav analyzátoru obnoven a streamování bude pokračovat.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab4gB7.Text" xml:space="preserve">
+    <value>Vlastnosti streamování</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBgrblTranslate.Text" xml:space="preserve">
+    <value>Přeložte zprávy grbl</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBgrblTranslate.ToolTip" xml:space="preserve">
+    <value>Překládejte grbl zprávy jako NEČINNÁ, RUN, HOLD</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBsimulation.Text" xml:space="preserve">
+    <value>Simulovat připojený grbl</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB6.Text" xml:space="preserve">
+    <value>Speciální</value>
+  </data>
+  <data name="cBShowStreamingProgress.Text" xml:space="preserve">
+    <value>Zobrazit průběh streamování ve 2D-View</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBBackgroundImage.Text" xml:space="preserve">
+    <value>Zakázat aktualizaci cesty v reálném čase během streamování.
+Šetří zátěž CPU, deaktivuje zoomování během streamování</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab4gB5.Text" xml:space="preserve">
+    <value>Během streamování G-Code</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBpollIntervalReduce.Text" xml:space="preserve">
+    <value>Snížit frekv. při streamování gcode</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB1lbl1.Text" xml:space="preserve">
+    <value>Nastavte frekvenci aktualizace zprávy o stavu grbl. Čím vyšší, tím větší stres pro ovladač.</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB1.Text" xml:space="preserve">
+    <value>Frekvence dotazování stavu</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB3lbl1.Text" xml:space="preserve">
+    <value>Automatická detekce předpokládá:
+Výchozí (Arduino Uno/Nano) - 127 bajtů
+Více než 3 osy (Mega2560) - 255 bajtů</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="checkBox3.Text" xml:space="preserve">
+    <value>Detekovat automaticky</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB3.Text" xml:space="preserve">
+    <value>velikost vyrovnávací paměti grbl</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="cBresetSendCode.Text" xml:space="preserve">
+    <value>Po resetování odešlete následující G-kód</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tBresetSendCode.ToolTip" xml:space="preserve">
+    <value>Přiřaďte běžný GCode, oddělte kód do různých řádků pomocí ';' jako separátor.
+Nebo přiřaďte název souboru obsahující GCode.</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="cBrestoreCoordReset.Text" xml:space="preserve">
+    <value>Po resetování obnovte pracovní souřadnice a nastavte výchozí rychlost posuvu</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB2.Text" xml:space="preserve">
+    <value>Chování po grbl RESET</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>Přiřaďte běžný GCode, oddělte kód do různých řádků pomocí ';' jako separátor.
+Nebo přiřaďte název souboru obsahující GCode.</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>Odešlete následující gcode při pozastavení nebo zastavení</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB4.Text" xml:space="preserve">
+    <value>Řízení toku pro streamování</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tabPage25.Text" xml:space="preserve">
+    <value>Řízení toku</value>
+    <comment>ok</comment>
+  </data>
+  <data name="CbCameraFiducialSkip.Text" xml:space="preserve">
+    <value>Při streamování přeskočte G kód výchozích bodů</value>
+  </data>
+  <data name="LblCameraFiducial.Text" xml:space="preserve">
+    <value>Název grafické vrstvy nebo obrázku pro referenční značky</value>
+  </data>
+  <data name="groupBox23.Text" xml:space="preserve">
+    <value>Referenční čísla</value>
+  </data>
+  <data name="tab10lbl1.Text" xml:space="preserve">
+    <value>Uložte nastavení do pojmenovaných sad parametrů a vyvolejte je v okně kamery, abyste změnili chování rozpoznávání tvarů. Po změně názvu zavřete/otevřete okno Fotoaparát.</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetSave4.Text" xml:space="preserve">
+    <value>Uložit</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetLoad4.Text" xml:space="preserve">
+    <value>zatížení</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetSave3.Text" xml:space="preserve">
+    <value>Uložit</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetLoad3.Text" xml:space="preserve">
+    <value>zatížení</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetSave2.Text" xml:space="preserve">
+    <value>Uložit</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetLoad2.Text" xml:space="preserve">
+    <value>zatížení</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetSave1.Text" xml:space="preserve">
+    <value>Uložit</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetLoad1.Text" xml:space="preserve">
+    <value>zatížení</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="cBFilterOuside.Text" xml:space="preserve">
+    <value>Vyplněné pixely mimo zadaný rozsah barev</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB2lbl3.Text" xml:space="preserve">
+    <value>Modrý</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB2lbl2.Text" xml:space="preserve">
+    <value>Zelená</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB2lbl1.Text" xml:space="preserve">
+    <value>Červené</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB2.Text" xml:space="preserve">
+    <value>Barevný filtr</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab10gB3lbl3.Text" xml:space="preserve">
+    <value>Přijatelné zkreslení max.</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB3lbl5.Text" xml:space="preserve">
+    <value>pixel</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab10gB3lbl4.Text" xml:space="preserve">
+    <value>Jednotky</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab10gB3lbl2.Text" xml:space="preserve">
+    <value>Přijatelné zkreslení min.</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB3lbl1.Text" xml:space="preserve">
+    <value>Min. max. velikost tvaru</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="cBShapeRect.Text" xml:space="preserve">
+    <value>Obdélník</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="cBShapeCircle.Text" xml:space="preserve">
+    <value>Kruh</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB3.Text" xml:space="preserve">
+    <value>Rozpoznávání tvaru</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB1.Text" xml:space="preserve">
+    <value>Nastavení pro rozpoznávání tvarů</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Fotoaparát</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>Odeslat zkušební zprávu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifierPBChannel.Text" xml:space="preserve">
+    <value>Kanál (pro odeslání poznámky ponechte prázdný)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cbNotifierPBEnable.Text" xml:space="preserve">
+    <value>Povolit oznámení pushbullet</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifierPBToken.Text" xml:space="preserve">
+    <value>API Access Token</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label33.Text" xml:space="preserve">
+    <value>E-mail: z bezpečnostních důvodů byste měli používat „koš“ e-mailový účet, heslo nelze uložit v zašifrované podobě.
+
+Pushbullet: z bezpečnostních důvodů byste měli používat 'koš' účet, přístupový token nelze uložit v zašifrované podobě.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox17.Text" xml:space="preserve">
+    <value>Bezpečnostní poznámky</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cbNotifierTitle.Text" xml:space="preserve">
+    <value>Přidejte do názvu průběh streamování</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cbNotifierMsg1.Text" xml:space="preserve">
+    <value>Časté aktualizace průběhu (minuty)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier8.Text" xml:space="preserve">
+    <value>Název / Předmět</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifierMsg1.Text" xml:space="preserve">
+    <value>Dokončete zprávu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox16.Text" xml:space="preserve">
+    <value>Oznámení</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cbNotifierEmailEnable.Text" xml:space="preserve">
+    <value>Povolit upozornění e-mailem</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btn_notifierMail_Test.Text" xml:space="preserve">
+    <value>Odeslat zkušební mail</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier7.Text" xml:space="preserve">
+    <value>Do emailu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier6.Text" xml:space="preserve">
+    <value>Z e-mailu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier3.Text" xml:space="preserve">
+    <value>Přístav</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier5.Text" xml:space="preserve">
+    <value>Heslo</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier2.Text" xml:space="preserve">
+    <value>Adresa</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier4.Text" xml:space="preserve">
+    <value>uživatelské jméno</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox15.Text" xml:space="preserve">
+    <value>Server SMTP</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier1.Text" xml:space="preserve">
+    <value>Nastavte pro svůj e-mailový účet přístup k serveru SMTP
+Poznámka: „z e-mailu“ musí být často stejné jako e-mail ze schránky SMTP.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>E-mailem</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabControl5_Level2.Text" xml:space="preserve">
+    <value>Oznamovatel</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage21.Text" xml:space="preserve">
+    <value>Chování programu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab6lbl1.Text" xml:space="preserve">
+    <value>Přiřaďte běžný GCode, oddělte kód do různých řádků pomocí ';' jako separátor.
+Nebo přiřaďte název souboru obsahující GCode.
+Relativní cesta k souboru začíná zde:</value>
+    <comment>TabPage6</comment>
+  </data>
+  <data name="tab6lbl2.Text" xml:space="preserve">
+    <value>Tlačítka 13 až 16 jsou skrytá, když jsou pole prázdná</value>
+    <comment>TabPage6</comment>
+  </data>
+  <data name="Column20.HeaderText" xml:space="preserve">
+    <value>Nr.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column21.HeaderText" xml:space="preserve">
+    <value>Označení</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column22.HeaderText" xml:space="preserve">
+    <value>G-kód</value>
+    <comment>ok</comment>
+  </data>
+  <data name="color.HeaderText" xml:space="preserve">
+    <value>Barva</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage23.Text" xml:space="preserve">
+    <value>Vlastní tlačítka</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnOpenHotkeys.Text" xml:space="preserve">
+    <value>Otevřete hotkeys.xml v poznámkovém bloku</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="lblPathHotkeys.Text" xml:space="preserve">
+    <value>Cesta</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="btnHotkeyRefresh.Text" xml:space="preserve">
+    <value>Znovu načtěte hotkey.xml</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="tab9gB1lbl2.Text" xml:space="preserve">
+    <value>Obsah hotkeys.xml (musí být upraven externě, stiskněte 'Apply changes' pro aktualizaci přiřazení):</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="tab9gB1lbl1.Text" xml:space="preserve">
+    <value>Zde zkontrolujte klíčová data (budou zkopírována do schránky):</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="tB_kP_Left1.Text" xml:space="preserve">
+    <value>A, ovládání, Alt</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab9gB1.Text" xml:space="preserve">
+    <value>Horké klávesy</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Horké klávesy</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab7gB2lbl3.Text" xml:space="preserve">
+    <value>Minimální šířka kroku pod danou hodnotou (pouze pokud se používá jedna osa)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab7gB2lbl5.Text" xml:space="preserve">
+    <value>Rychlost posuvu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDFeedrate.ToolTip" xml:space="preserve">
+    <value>Rychlost posuvu pro běhání</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDStepwidth.ToolTip" xml:space="preserve">
+    <value>Krok s pro jogging</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab7gB2lbl4.Text" xml:space="preserve">
+    <value>Jednotky</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDMinimum.ToolTip" xml:space="preserve">
+    <value>Mezi touto hodnotou a mrtvou zónou se bude odesílat daná šířka kroku a rychlost posuvu - pokud je aktivována pouze jedna osa joysticku.
+V tomto případě je interval opakování 200 ms místo 50 ms.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab7gB2lbl2.Text" xml:space="preserve">
+    <value>Deadzone - Přestaňte běhat</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab7gB2lbl1.Text" xml:space="preserve">
+    <value>Offset pro středovou polohu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDOffset.ToolTip" xml:space="preserve">
+    <value>Subtrahend získáte '0' ve středové poloze.
+Po změně offsetu pohněte joystickem.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDDead.ToolTip" xml:space="preserve">
+    <value>Minimální hodnota, která má být dosažena před odesláním jakéhokoli příkazu krokování.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Nastavení analogového joysticku</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValR.Text" xml:space="preserve">
+    <value>-</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValR.ToolTip" xml:space="preserve">
+    <value>Hodnota s aplikovaným offsetem</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValY.Text" xml:space="preserve">
+    <value>-</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValY.ToolTip" xml:space="preserve">
+    <value>Hodnota s aplikovaným offsetem</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValZ.Text" xml:space="preserve">
+    <value>-</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValZ.ToolTip" xml:space="preserve">
+    <value>Hodnota s aplikovaným offsetem</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValX.Text" xml:space="preserve">
+    <value>-</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValX.ToolTip" xml:space="preserve">
+    <value>Hodnota s aplikovaným offsetem</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBGPEnable.Text" xml:space="preserve">
+    <value>Povolit ovládání gamepadem v GUI</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="cBRInvert.Text" xml:space="preserve">
+    <value>obrácený směr</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="cBZInvert.Text" xml:space="preserve">
+    <value>obrácený směr</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="cBYInvert.Text" xml:space="preserve">
+    <value>obrácený směr</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="cBXInvert.Text" xml:space="preserve">
+    <value>obrácený směr</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="tBRAxis.ToolTip" xml:space="preserve">
+    <value>Osa GCode se má pohybovat</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tBZAxis.ToolTip" xml:space="preserve">
+    <value>Osa GCode se má pohybovat</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tBYAxis.ToolTip" xml:space="preserve">
+    <value>Osa GCode se má pohybovat</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tBXAxis.ToolTip" xml:space="preserve">
+    <value>Osa GCode se má pohybovat</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab7gB1lbl1.Text" xml:space="preserve">
+    <value>Stisknutím tlačítek na gamepadu zkontrolujte přiřazení tlačítek.
+
+Přiřaďte běžný GCode (kontrolujte pravidla 'Custom Buttons') nebo speciální funkce uvnitř editboxů.
+
+Speciální funkce (začíná na #):
+#Start (Spustit streamování)
+#Stop (Zastavit streamování)
+#F-10 (-1, 100, +1, +10 přepsání podavače)
+#S-10 (-1, 100, +1, +10 Spd o. vřetena)
+#FEEDHOLD
+#ŽIVOTOPIS
+#KILLALARM
+#RST (soft reset pomocí CTRL-X)
+#HRST (hardwarový reset přes DTR/RTS)
+
+Přiřadit Invertovat osu a směr
+Interval obnovování = 50 ms.
+
+Chcete-li používat Gamepad v GUI, musíte okno nastavení zavřít.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblgp.Text" xml:space="preserve">
+    <value>Zpráva z gamepadu</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="trackBarR.ToolTip" xml:space="preserve">
+    <value>Hodnota kanálu R joysticku</value>
+    <comment>ok</comment>
+  </data>
+  <data name="trackBarZ.ToolTip" xml:space="preserve">
+    <value>Hodnota kanálu Z joysticku</value>
+    <comment>ok</comment>
+  </data>
+  <data name="trackBarY.ToolTip" xml:space="preserve">
+    <value>Hodnota kanálu Y joysticku</value>
+    <comment>ok</comment>
+  </data>
+  <data name="trackBarX.ToolTip" xml:space="preserve">
+    <value>Hodnota kanálu X joysticku</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab7gB1.Text" xml:space="preserve">
+    <value>Přiřazení tlačítka gamepadu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage24.Text" xml:space="preserve">
+    <value>GamePad</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label77.Text" xml:space="preserve">
+    <value>A, B, C
+Šířka kroku Rychlost</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab8gB1lbl2.Text" xml:space="preserve">
+    <value>Stisknutím tlačítka „Použít změny“ změňte velikost ovládacích prvků joysticku</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tab8gB1lbl1.Text" xml:space="preserve">
+    <value>Max. velikost ovládacích prvků joysticku v pixelech</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnJoyZCalc.Text" xml:space="preserve">
+    <value>Calc. nejlepší rychlost</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnJoyZCalc.ToolTip" xml:space="preserve">
+    <value>Vypočítejte rychlosti, abyste dosáhli šířky kroku v rámci opakovací frekvence 0,5 sekundy</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Z
+Šířka kroku Rychlost</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>XY
+Šířka kroku Rychlost</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnJoyXYCalc.Text" xml:space="preserve">
+    <value>Calc. nejlepší rychlost</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnJoyXYCalc.ToolTip" xml:space="preserve">
+    <value>Vypočítejte rychlosti, abyste dosáhli šířky kroku v rámci opakovací frekvence 0,5 sekundy</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tab8gB1.Text" xml:space="preserve">
+    <value>Nastavení virtuálního joysticku</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Virtuální joystick</value>
+    <comment>TabPage6</comment>
+  </data>
+  <data name="LblShowVertex.Text" xml:space="preserve">
+    <value>Typ a velikost značky uzlu cesty</value>
+  </data>
+  <data name="CbShowVertexEnable.Text" xml:space="preserve">
+    <value>Zobrazuje uzly cesty s perem dolů</value>
+  </data>
+  <data name="cB2DViewFigureId.Text" xml:space="preserve">
+    <value>Zobrazit další id obrázku s perem</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cB2DViewDirectionArrow.Text" xml:space="preserve">
+    <value>Zobrazit směrovou šipku pera</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBKeepPenWidth.Text" xml:space="preserve">
+    <value>Při přibližování neměňte šířku pera</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox14.Text" xml:space="preserve">
+    <value>2D pohled</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnReloadSettings.Text" xml:space="preserve">
+    <value>Znovu načtěte všechna nastavení</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBFCTBBlockExpandKeepLastOpen.Text" xml:space="preserve">
+    <value>Ponechat poslední vybraný blok rozbalený</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBFCTBBlockExpandOnSelect.Text" xml:space="preserve">
+    <value>Rozbalte blok kódu kliknutím ve 2D zobrazení</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab5gB9.Text" xml:space="preserve">
+    <value>Vložit speciální obsah</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Vzdálenost čáry editoru</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>Editor</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnColorDimension.Text" xml:space="preserve">
+    <value>Dimenze</value>
+  </data>
+  <data name="btnColorBackgroundPath.Text" xml:space="preserve">
+    <value>Informační cesta</value>
+  </data>
+  <data name="cBColorModeEnable.Text" xml:space="preserve">
+    <value>Barevný režim</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBColorModeEnable.ToolTip" xml:space="preserve">
+    <value>Cesta dolů perem se zobrazí v barvě a šířce jako importovaná grafika (SVG nebo DXF)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDSimulation.ToolTip" xml:space="preserve">
+    <value>Šířka pera</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnColorSimulation.Text" xml:space="preserve">
+    <value>Simulace</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDRotaryInfo.ToolTip" xml:space="preserve">
+    <value>Šířka pera</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorRotaryInfo.Text" xml:space="preserve">
+    <value>Rotační informace</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorMachineLimit.Text" xml:space="preserve">
+    <value>Limit stroje</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tab8gB2lbl2.Text" xml:space="preserve">
+    <value>Šířka pera je nastavena na jednotky mm. Při přepnutí na palec se šířka přizpůsobí.</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tab8gB2lbl1.Text" xml:space="preserve">
+    <value>Šířka pera</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDHeightMap.ToolTip" xml:space="preserve">
+    <value>Šířka pera</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorHeightMap.Text" xml:space="preserve">
+    <value>Výšková mapa</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDMarker.ToolTip" xml:space="preserve">
+    <value>Šířka pera</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorMarker.Text" xml:space="preserve">
+    <value>Popisovač</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDTool.ToolTip" xml:space="preserve">
+    <value>Šířka pera</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDPenDown.ToolTip" xml:space="preserve">
+    <value>Šířka pera</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDPenUp.ToolTip" xml:space="preserve">
+    <value>Šířka pera</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDRuler.ToolTip" xml:space="preserve">
+    <value>Šířka pera</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorTool.Text" xml:space="preserve">
+    <value>Nástroj</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorPenDown.Text" xml:space="preserve">
+    <value>Perem dolů</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorPenUp.Text" xml:space="preserve">
+    <value>Pen Up</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorRuler.Text" xml:space="preserve">
+    <value>Pravítko</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorBackground.Text" xml:space="preserve">
+    <value>Pozadí</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tab8gB2.Text" xml:space="preserve">
+    <value>Kreslení barvy</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tabPage6.Text" xml:space="preserve">
+    <value>2D-View / Editor / Různé</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="tabPage22.Text" xml:space="preserve">
+    <value>Vzhled programu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Převede statické obrázky na klikaté čáry vhodné pro vykreslování</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Vytváří tečkované kresby a „TSP art“ z obrazových souborů.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Konverze obrazu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab11gB1lbl1a.Text" xml:space="preserve">
+    <value>Rozšíření Inkscape</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel16.Text" xml:space="preserve">
+    <value>Rozšíření Inkscape</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab11gB1lbl3.Text" xml:space="preserve">
+    <value>Popis zásuvného modulu EggBot Inkscape</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="linkLabel14.Text" xml:space="preserve">
+    <value>Vytváření vyplněných oblastí</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab11gB1lbl2.Text" xml:space="preserve">
+    <value>Užitečná rozšíření pro Inkscape</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="tab11gB1lbl1.Text" xml:space="preserve">
+    <value>Grafický program</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel13.Text" xml:space="preserve">
+    <value>EggBot_extensions</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel12.Text" xml:space="preserve">
+    <value>Inkscape</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab11gB1.Text" xml:space="preserve">
+    <value>Tvorba, úprava SVG</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="linkLabel15.Text" xml:space="preserve">
+    <value>Jigsaw generator od Draradech/jigsaw.html na Github</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab11gB3.Text" xml:space="preserve">
+    <value>Vytvářejte výkresy SVG online</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="tab11gB4.Text" xml:space="preserve">
+    <value>Volná písma, např. pro šablonu nebo vyskakovací okno</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="linkLabel8.Text" xml:space="preserve">
+    <value>Přehled GCode na linuxcnc</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel7.Text" xml:space="preserve">
+    <value>GRBL na GitHubu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab11gB5.Text" xml:space="preserve">
+    <value>související s GRBL a GCode</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="tab11gB2lbl1.Text" xml:space="preserve">
+    <value>Poznámka: Přetažení nefunguje v prohlížeči IE, ale v prohlížeči Google Chrome</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="tab11gB2.Text" xml:space="preserve">
+    <value>Bezplatné grafické zdroje SVG (s možností přetažení)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage5.Text" xml:space="preserve">
+    <value>WWW odkazy</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="btnReloadFile.Text" xml:space="preserve">
+    <value>Znovu načtěte soubor SVG, DXF, HPGL, Drill</value>
+    <comment>TabPage1</comment>
+  </data>
+  <data name="btnReloadFile.ToolTip" xml:space="preserve">
+    <value>Chcete-li během importu použít nová nastavení, znovu načtěte data</value>
+    <comment>TabPage1</comment>
+  </data>
+  <data name="btnApplyChangings.Text" xml:space="preserve">
+    <value>Aplikuj změny</value>
+    <comment>TabPage0</comment>
+  </data>
+  <data name="btnApplyChangings.ToolTip" xml:space="preserve">
+    <value>Stiskněte tlačítko pro okamžité použití nových nastavení na uživatelská tlačítka.
+Ostatní nastavení budou obvykle uložena při změně.</value>
+    <comment>TabPage0</comment>
+  </data>
+  <data name="cBshowImportDialog.Text" xml:space="preserve">
+    <value>Zobrazit výběr „případ použití“ při importu grafiky</value>
+    <comment>TabPage1</comment>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Založit</value>
+    <comment>Form</comment>
+  </data>
+  <data name="LbLAuxDescription.Text" xml:space="preserve">
+    <value>Tuto možnost použijte k ovládání další osy, která pumpuje barvu nebo přivádí vlákno v množství závislém na vzdálenosti.
+Kromě toho lze polohu osy Z využít např. ke zvýšení množství barvy, když štětec silněji tlačí na plátno.</value>
+  </data>
+  <data name="CbAux2ZMode.Items" xml:space="preserve">
+    <value>Použijte pos a neg Z se znaménkem</value>
+  </data>
+  <data name="CbAux2ZMode.Items1" xml:space="preserve">
+    <value>Použijte pozici a neg Z absolutní</value>
+  </data>
+  <data name="CbAux2ZMode.Items2" xml:space="preserve">
+    <value>Používejte pouze pozici Z</value>
+  </data>
+  <data name="CbAux2ZMode.Items3" xml:space="preserve">
+    <value>Používejte pouze neg Z</value>
+  </data>
+  <data name="LblAux12.Text" xml:space="preserve">
+    <value>faktor</value>
+  </data>
+  <data name="CbAux2ZUse.Text" xml:space="preserve">
+    <value>zvážit Z</value>
+  </data>
+  <data name="groupBox28.Text" xml:space="preserve">
+    <value>Vynásobte aktuální hodnotou Z</value>
+  </data>
+  <data name="LblAux11.Text" xml:space="preserve">
+    <value>faktor</value>
+  </data>
+  <data name="LblAux10.Text" xml:space="preserve">
+    <value>osa</value>
+  </data>
+  <data name="CbAux2SumUp.Text" xml:space="preserve">
+    <value>Absolutní hodnota</value>
+  </data>
+  <data name="CbAux2SumUp.ToolTip" xml:space="preserve">
+    <value>Absolutní hodnota: Stejně jako u režimu vzdálenosti G90 se hodnoty vzdálenosti sečtou.</value>
+  </data>
+  <data name="NudAux2Factor.ToolTip" xml:space="preserve">
+    <value>Faktor pro výpočet hodnoty osy = vzdálenost * faktor</value>
+  </data>
+  <data name="CbAux2Enable.Text" xml:space="preserve">
+    <value>Přidejte příkaz související se vzdáleností 2</value>
+  </data>
+  <data name="CbAux1ZMode.Items" xml:space="preserve">
+    <value>Použijte pos a neg Z se znaménkem</value>
+  </data>
+  <data name="CbAux1ZMode.Items1" xml:space="preserve">
+    <value>Použijte pozici a neg Z absolutní</value>
+  </data>
+  <data name="CbAux1ZMode.Items2" xml:space="preserve">
+    <value>Používejte pouze pozici Z</value>
+  </data>
+  <data name="CbAux1ZMode.Items3" xml:space="preserve">
+    <value>Používejte pouze neg Z</value>
+  </data>
+  <data name="LblAux3.Text" xml:space="preserve">
+    <value>faktor</value>
+  </data>
+  <data name="CbAux1ZUse.Text" xml:space="preserve">
+    <value>zvážit Z</value>
+  </data>
+  <data name="groupBox27.Text" xml:space="preserve">
+    <value>Vynásobte aktuální hodnotou Z</value>
+  </data>
+  <data name="LblAux2.Text" xml:space="preserve">
+    <value>faktor</value>
+  </data>
+  <data name="LblAux1.Text" xml:space="preserve">
+    <value>osa</value>
+  </data>
+  <data name="CbAux1SumUp.Text" xml:space="preserve">
+    <value>Absolutní hodnota</value>
+  </data>
+  <data name="CbAux1SumUp.ToolTip" xml:space="preserve">
+    <value>Absolutní hodnota: Stejně jako u režimu vzdálenosti G90 se hodnoty vzdálenosti sečtou.</value>
+  </data>
+  <data name="NudAux1Factor.ToolTip" xml:space="preserve">
+    <value>Faktor pro výpočet hodnoty osy = vzdálenost * faktor</value>
+  </data>
+  <data name="CbAux1Enable.Text" xml:space="preserve">
+    <value>Přidejte příkaz související se vzdáleností 1</value>
+  </data>
+  <data name="groupBox26.Text" xml:space="preserve">
+    <value>Hodnota související se vzdáleností pro čerpadlo barvy nebo podavač vlákna</value>
+  </data>
+  <data name="tabPage31.Text" xml:space="preserve">
+    <value>rozšíření příkazu</value>
+  </data>
+  <data name="checkBox12.Text" xml:space="preserve">
+    <value>Zobrazit další formuláře vždy v popředí (např. formulář nastavení)</value>
+  </data>
+  <data name="label68.Text" xml:space="preserve">
+    <value>Velikost v px</value>
+  </data>
+  <data name="groupBox29.Text" xml:space="preserve">
+    <value>Různé</value>
+  </data>
+</root>

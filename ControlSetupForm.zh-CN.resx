@@ -1,0 +1,3223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btnDelete.Text" xml:space="preserve">
+    <value>删除所选</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnColorRotaryInfo.Text" xml:space="preserve">
+    <value>旋转信息</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorMachineLimit.Text" xml:space="preserve">
+    <value>机器极限</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorHeightMap.Text" xml:space="preserve">
+    <value>高度轮廓</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorMarker.Text" xml:space="preserve">
+    <value>记号笔</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorTool.Text" xml:space="preserve">
+    <value>工具</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorPenDown.Text" xml:space="preserve">
+    <value>落笔</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorPenUp.Text" xml:space="preserve">
+    <value>抬笔</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorRuler.Text" xml:space="preserve">
+    <value>统治者</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorBackground.Text" xml:space="preserve">
+    <value>背景</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnApplyChangings.Text" xml:space="preserve">
+    <value>应用更改</value>
+    <comment>TabPage0</comment>
+  </data>
+  <data name="btnApplyChangings.ToolTip" xml:space="preserve">
+    <value>按按钮可将新设置立即应用于自定义按钮。
+通常，其他设置将在更改时存储。</value>
+    <comment>TabPage0</comment>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>设置</value>
+    <comment>Form</comment>
+  </data>
+  <data name="cBImportDXFSwitchWhite.Text" xml:space="preserve">
+    <value>处理笔色白为黑</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportDXFSwitchWhite.ToolTip" xml:space="preserve">
+    <value>LibreCAD 在黑色背景上显示白色笔颜色。但真正的笔色是黑色的。</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportDXFIndexToolNr.Text" xml:space="preserve">
+    <value>使用颜色索引（+1）作为工具nr。 （而不是颜色）</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportDXFIndexToolNr.ToolTip" xml:space="preserve">
+    <value>DXF格式使用从0到255的颜色索引。此索引+1将用作工具编号。</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportGCTTSSpeed.Text" xml:space="preserve">
+    <value>从工具表</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTTSSpeed.ToolTip" xml:space="preserve">
+    <value>如果启用了“添加工具更改”和“执行工具更改”，则导入期间将从工具表中获取值</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCToolM0.Text" xml:space="preserve">
+    <value>改为添加暂停（M0）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
+    <value>用M0（暂停）替换任何M06（换刀）命令，以进行手动换刀。</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTool.Text" xml:space="preserve">
+    <value>添加换刀命令Tx M06</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
+    <value>如果有可用信息，请对Tx M06命令执行换刀动作-选中“换刀”选项卡。</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCComments.Text" xml:space="preserve">
+    <value>其他G代码注释</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCComments.ToolTip" xml:space="preserve">
+    <value>在G代码中添加更多注释</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTTXYFeed.Text" xml:space="preserve">
+    <value>从工具表</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTTXYFeed.ToolTip" xml:space="preserve">
+    <value>如果启用了“添加工具更改”和“执行工具更改”，则导入期间将从工具表中获取值</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTTZAxis.Text" xml:space="preserve">
+    <value>从工具表</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTTZAxis.ToolTip" xml:space="preserve">
+    <value>如果启用了“添加工具更改”和“执行工具更改”，则导入期间将从工具表中获取值</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUseIndividual.Text" xml:space="preserve">
+    <value>使用单独的命令（用';'分隔行）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUsePWM.Text" xml:space="preserve">
+    <value>主轴转速作为PWM</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCRelative.ToolTip" xml:space="preserve">
+    <value>计算G91的相对运动
+注意：请勿使用“按笔索引对对象进行排序”</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCCompress.Text" xml:space="preserve">
+    <value>压缩G代码</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCCompress.ToolTip" xml:space="preserve">
+    <value>删除不必要的信息
+注意：请勿与“按引脚号排序对象”一起使用</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCDragKnifePercent.ToolTip" xml:space="preserve">
+    <value>根据Z深度计算偏移</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCDragKnife.Text" xml:space="preserve">
+    <value>拖曳工具补偿</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCDragKnife.ToolTip" xml:space="preserve">
+    <value>使用拖刀或毛刷补偿偏移</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCSubFirst.Text" xml:space="preserve">
+    <value>也在路径的开始处插入</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="btnShowScriptSub.Text" xml:space="preserve">
+    <value>节目</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="btnShowScriptSub.ToolTip" xml:space="preserve">
+    <value>单击以显示文件内容</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.Text" xml:space="preserve">
+    <value>等距段</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.ToolTip" xml:space="preserve">
+    <value>选中：一条线将被分成相同长度的段（&lt;=给定长度）
+未选中：最后一个线段较短，所有其他精确的给定长度</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCNoArcs.Text" xml:space="preserve">
+    <value>避免使用G2 / 3命令
+角度步幅（度）</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
+    <value>将圆和圆弧转换为线段-如果需要不同的X和Y比例尺则需要</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCSubEnable.ToolTip" xml:space="preserve">
+    <value>在每个段长度处插入子例程。</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCLineSegments.Text" xml:space="preserve">
+    <value>将G1线划分为段
+最高 长度单位</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCLineSegments.ToolTip" xml:space="preserve">
+    <value>将最大的直线动作切成最大的较短动作。 给定的长度。
+请勿与“相对运动”一起使用</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="btnDelete.ToolTip" xml:space="preserve">
+    <value>删除所选用例</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnUseCaseSave.ToolTip" xml:space="preserve">
+    <value>将当前导入设置保存为用例</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnUseCaseLoad.ToolTip" xml:space="preserve">
+    <value>加载所选用例的设置</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnReloadFile.Text" xml:space="preserve">
+    <value>重新加载SVG，DXF，钻取文件</value>
+    <comment>TabPage1</comment>
+  </data>
+  <data name="btnReloadFile.ToolTip" xml:space="preserve">
+    <value>重新导入数据以在导入期间应用新设置</value>
+    <comment>TabPage1</comment>
+  </data>
+  <data name="btnDeleteToolTable.Text" xml:space="preserve">
+    <value>删除清单</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnDeleteToolTable.ToolTip" xml:space="preserve">
+    <value>删除所选工具表</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnLoadToolTable.ToolTip" xml:space="preserve">
+    <value>加载所选工具表</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnToolExport.ToolTip" xml:space="preserve">
+    <value>将当前工具表保存到csv文件</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnReNumberTools.Text" xml:space="preserve">
+    <value>重新编号</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnMoveToolXY.Text" xml:space="preserve">
+    <value>移至标记行的XY位置</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>在暂停或停止时发送以下g代码</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="btnMachineRangeGet.Text" xml:space="preserve">
+    <value>从$130-$132阅读</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBCtrlCommentOut.Text" xml:space="preserve">
+    <value>注释掉未知的G-Code</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBCtrlCommentOut.ToolTip" xml:space="preserve">
+    <value>在方括号内隐藏未知的G代码，以避免GRBL产生错误</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBCtrlMCmd.Text" xml:space="preserve">
+    <value>转换“ Spindle On”命令</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBCtrlMCmd.ToolTip" xml:space="preserve">
+    <value>如果启用，则在加载GCode文件期间，M3或M4命令将被M4或M3命令替换以激活
+M3恒定激光功率模式
+要么
+M4动态激光功率模式</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBBackgroundImage.Text" xml:space="preserve">
+    <value>在流式传输期间禁用实时路径更新。
+节省CPU负载，在流式传输期间禁用缩放</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBcheckupdate.Text" xml:space="preserve">
+    <value>在GitHub上检查新的GRBL-Plotter版本</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBcheckupdate.ToolTip" xml:space="preserve">
+    <value>在每次启动GRBL-Plotter时，检查新程序版本：
+第一次尝试github.com/svenhb/GRBL-Plotter
+第二次尝试svenhb.bplaced.net</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBGPEnable.Text" xml:space="preserve">
+    <value>在GUI中启用GamePad控件</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="btnJoyZCalc.ToolTip" xml:space="preserve">
+    <value>计算速度以在0.5秒的重复率内达到步长</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnJoyXYCalc.ToolTip" xml:space="preserve">
+    <value>计算速度以在0.5秒的重复率内达到步长</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnOpenHotkeys.Text" xml:space="preserve">
+    <value>在记事本中打开hotkeys.xml</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="btnHotkeyRefresh.Text" xml:space="preserve">
+    <value>重新加载hotkey.xml</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="btnShapeSetSave4.Text" xml:space="preserve">
+    <value>保存</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetLoad4.Text" xml:space="preserve">
+    <value>开放</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetSave3.Text" xml:space="preserve">
+    <value>保存</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetLoad3.Text" xml:space="preserve">
+    <value>开放</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetSave2.Text" xml:space="preserve">
+    <value>保存</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetLoad2.Text" xml:space="preserve">
+    <value>开放</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetSave1.Text" xml:space="preserve">
+    <value>保存</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetLoad1.Text" xml:space="preserve">
+    <value>开放</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="cBFilterOuside.Text" xml:space="preserve">
+    <value>像素填充超出指定的颜色范围</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="cBshowImportDialog.Text" xml:space="preserve">
+    <value>在图形导入中显示“用例”选择</value>
+    <comment>TabPage1</comment>
+  </data>
+  <data name="cBToolTableDefault.Text" xml:space="preserve">
+    <value>仅使用默认工具nr。</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGSortInvert.Text" xml:space="preserve">
+    <value>恢复排序顺序</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGGroup.Text" xml:space="preserve">
+    <value>将相同颜色的对象分组=相同的工具</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGGroup.ToolTip" xml:space="preserve">
+    <value>相同颜色的组对象=工具编号。</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGNodesOnly.Text" xml:space="preserve">
+    <value>仅处理路径节点</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGNodesOnly.ToolTip" xml:space="preserve">
+    <value>仅处理节点（例如，线的端点）以进行笔下/上动作。
+此选项用于弦图艺术，以预钻钉子位置。
+在Inkscape中，首先将对象转换为路径“ Path-Object to Path”，
+然后通过“扩展-修改路径-添加节点”添加节点，以沿路径分布其他节点。</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGRepeat.Text" xml:space="preserve">
+    <value>重复完整的代码（弱激光）</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGRepeat.ToolTip" xml:space="preserve">
+    <value>重复生成代码n次（例如，对于弱激光切割较厚的材料）</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportUnitGCode.ToolTip" xml:space="preserve">
+    <value>在G代码中添加G20 / G21命令。 默认为G21。</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGPauseP.Text" xml:space="preserve">
+    <value>每次下笔前暂停</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGPauseE.Text" xml:space="preserve">
+    <value>在每条路径前暂停（M0）</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGReduce.Text" xml:space="preserve">
+    <value>删除非常短的动作&lt;</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGReduce.ToolTip" xml:space="preserve">
+    <value>此选项跳过小于给定值的移动，以最小化g代码大小。</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGComments.Text" xml:space="preserve">
+    <value>附加的导入注释</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGComments.ToolTip" xml:space="preserve">
+    <value>将与图形相关的注释添加到G代码</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVG_DPI_72.ToolTip" xml:space="preserve">
+    <value>Adobe Illustrator使用72 dpi</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVG_DPI_96.ToolTip" xml:space="preserve">
+    <value>默认缩放比例为96 dpi</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGResize.Text" xml:space="preserve">
+    <value>尝试将图形调整为最大尺寸。 X或Y尺寸</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGResize.ToolTip" xml:space="preserve">
+    <value>在生成g代码之前，尝试将图形缩放到给定的单位，
+以避免在缩小g代码时出现问题。</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportGCZIncStartZero.Text" xml:space="preserve">
+    <value>从Z = 0开始</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCZIncStartZero.ToolTip" xml:space="preserve">
+    <value>使用Z = 0进行第一次通过</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCZIncEnable.Text" xml:space="preserve">
+    <value>分为几遍加工</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCZIncEnable.ToolTip" xml:space="preserve">
+    <value>重复增加Z深度的路径以达到最终深度
+不能与其他笔上/下选项一起使用！</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUseZ.Text" xml:space="preserve">
+    <value>使用Z轴和主轴</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUseZ.ToolTip" xml:space="preserve">
+    <value>将Z轴移动到G代码中</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUseSpindle.Text" xml:space="preserve">
+    <value>主轴开/关</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUseSpindle.ToolTip" xml:space="preserve">
+    <value>使用'Pen up'命令关闭主轴，并使用'Pen down'命令打开主轴（用于激光雕刻机）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUsePWM.ToolTip" xml:space="preserve">
+    <value>通过主轴速度控制RC-Servo（需要生成1ms-2ms PWM输出的特殊GRBL版本）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBToolLaser.Text" xml:space="preserve">
+    <value>激光相关</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="cBToolLaser.ToolTip" xml:space="preserve">
+    <value>减少可见列</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="cBToolChangeEmpty.Text" xml:space="preserve">
+    <value>最后通过“加载”工具nr清空主轴：</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="cBToolChangeEmpty.ToolTip" xml:space="preserve">
+    <value>通过加载不存在的工具作为最终命令来删除最后使用的工具。</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="cBToolChange.Text" xml:space="preserve">
+    <value>在Tx M06上进行换刀</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="cBToolChange.ToolTip" xml:space="preserve">
+    <value>在Tx M06命令上执行以下脚本</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="cBrestoreCoordReset.Text" xml:space="preserve">
+    <value>重置后恢复工作坐标并设置默认进给速度
+</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="cBpollIntervalReduce.Text" xml:space="preserve">
+    <value>降低频率。 流式g代码时</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="cBsimulation.Text" xml:space="preserve">
+    <value>模拟连接的grbl</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="cBMachineLimitsAlarm.Text" xml:space="preserve">
+    <value>警报超出限制（X和Y）</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBMachineLimitsShow.Text" xml:space="preserve">
+    <value>显示机器限制</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerialDIY.Text" xml:space="preserve">
+    <value>在编上打开串行端口。 开始</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBRotarySetupApply.Text" xml:space="preserve">
+    <value>在表单关闭时应用设置</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBRotarySetupApply.ToolTip" xml:space="preserve">
+    <value>启用或禁用替代时自动调整grbl设置</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBRotarySubstitute.Text" xml:space="preserve">
+    <value>使用轴替换</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerial2.Text" xml:space="preserve">
+    <value>在编上打开第二个串行端口。 开始</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerial2.ToolTip" xml:space="preserve">
+    <value>打开第二个COM端口以控制第二个GRBL。 对于换刀或第四轴很有用。</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerialMinimize.Text" xml:space="preserve">
+    <value>连接后最小化串行形式</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerialMinimize.ToolTip" xml:space="preserve">
+    <value>成功连接后将最小化串行窗口</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBRInvert.Text" xml:space="preserve">
+    <value>反转方向</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="cBShapeRect.Text" xml:space="preserve">
+    <value>长方形</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="cBShapeCircle.Text" xml:space="preserve">
+    <value>圈</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="cBToolTableUse.Text" xml:space="preserve">
+    <value>从工具表中设置XY进给等
+在下一页“ G代码生成”中选择项目</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="checkBox4.Text" xml:space="preserve">
+    <value>折叠码块</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="checkBox4.ToolTip" xml:space="preserve">
+    <value>将与图形相关的注释添加到G代码</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="checkBox2.Text" xml:space="preserve">
+    <value>激光模式（使用S0而不是M5关闭激光）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="checkBox3.Text" xml:space="preserve">
+    <value>自动检测</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>在2D视图中反转第4轴</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBZInvert.Text" xml:space="preserve">
+    <value>反转方向</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="cBYInvert.Text" xml:space="preserve">
+    <value>反转方向</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="cBXInvert.Text" xml:space="preserve">
+    <value>反转方向</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="Column1.ToolTipText" xml:space="preserve">
+    <value>工具编号</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column2.ToolTipText" xml:space="preserve">
+    <value>笔的颜色以6位十六进制表示。 单击以按亮度排序。</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column10.ToolTipText" xml:space="preserve">
+    <value>Z轴进给速度</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column15.ToolTipText" xml:space="preserve">
+    <value>工件上方的安全高度</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column13.ToolTipText" xml:space="preserve">
+    <value>最高 每遍Z增量</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column11.ToolTipText" xml:space="preserve">
+    <value>主轴转速</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column12.ToolTipText" xml:space="preserve">
+    <value>平行路径之间的刀具直径距离</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column14.ToolTipText" xml:space="preserve">
+    <value>在换刀命令后应用的代码</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column3.ToolTipText" xml:space="preserve">
+    <value>工具名称</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column4.ToolTipText" xml:space="preserve">
+    <value>交换头寸X</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column5.ToolTipText" xml:space="preserve">
+    <value>交换头寸Y</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column6.ToolTipText" xml:space="preserve">
+    <value>交换头寸Z</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column7.ToolTipText" xml:space="preserve">
+    <value>工具直径</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column8.ToolTipText" xml:space="preserve">
+    <value>XY进给速度</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column9.ToolTipText" xml:space="preserve">
+    <value>最终Z深度</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="gBToolChange.Text" xml:space="preserve">
+    <value>换刀设置</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>最小</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="label30.Text" xml:space="preserve">
+    <value>单位</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>单位</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>上次加载的工具表：</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="label61.Text" xml:space="preserve">
+    <value>它是如何工作的：
+使用带有Tx M6命令的GCode进行工具更换。
+在流传输到grbl期间（在Arduino或其他控制器上），工具更改命令将由GRBL-Plotter解释，并将插入脚本gcode：
+
+注意“ Tx”命令，获取工具号“ x”
+从实际刀具表中将刀具号“ x”的换刀坐标读入变量TOAX，TOAY，TOAZ。
+
+注意“ M6”命令
+如果刀具在主轴中
+插入脚本代码“ REMOVE”（在此处使用TOLX，Y，Z作为最后一个工具坐标）
+将脚本代码“ SELECT”插入发送队列（在此处使用TOAX，Y，Z工具坐标）
+插入脚本代码“ PICK UP”
+插入脚本代码“ PROBE”
+复制实际工具坐标（TOAX，Y，Z到最后一个坐标。TOLX，Y，Z）
+从发送队列中删除“ M6”，因为grbl无法处理此命令。</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lblDrag2.Text" xml:space="preserve">
+    <value>旋转角度</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="lblDrag2.ToolTip" xml:space="preserve">
+    <value>在添加圆弧之前改变角度</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="lblDrag1.Text" xml:space="preserve">
+    <value>偏离中心</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="lblDrag1.ToolTip" xml:space="preserve">
+    <value>与旋转中心的偏移量。 对于拖刀，通常约为0.3毫米。</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="lbl_4.Text" xml:space="preserve">
+    <value>4）PROBE工具</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_4.ToolTip" xml:space="preserve">
+    <value>单击以显示文件内容</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_2.Text" xml:space="preserve">
+    <value>2）选择工具</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_2.ToolTip" xml:space="preserve">
+    <value>单击以显示文件内容</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_1.Text" xml:space="preserve">
+    <value>1）拆卸工具（如果在主轴上）</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_1.ToolTip" xml:space="preserve">
+    <value>单击以显示文件内容</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_3.Text" xml:space="preserve">
+    <value>3）拾起工具</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_3.ToolTip" xml:space="preserve">
+    <value>单击以显示文件内容</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lblgp.Text" xml:space="preserve">
+    <value>来自游戏手柄的消息</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="lblPathHotkeys.Text" xml:space="preserve">
+    <value>路径</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="rBImportSVGSort1.Text" xml:space="preserve">
+    <value>按组属性对组进行排序-升序</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="rBImportSVGSort2.Text" xml:space="preserve">
+    <value>按工具编号对组进行排序-升序</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="rBImportSVGSort0.Text" xml:space="preserve">
+    <value>没有排序</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="nUDImportRepeat.ToolTip" xml:space="preserve">
+    <value>重复生成代码n次（例如，对于弱激光切割较厚的材料）</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="rBImportUnitInch.ToolTip" xml:space="preserve">
+    <value>G20指令</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="rBImportUnitmm.ToolTip" xml:space="preserve">
+    <value>G21指令</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="nUDImportReduce.ToolTip" xml:space="preserve">
+    <value>此选项跳过小于给定值的移动，以最小化g代码大小。</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="nUDImportSVGSegemnts.ToolTip" xml:space="preserve">
+    <value>曲线将由线段绘制。 分段越多，曲线越漂亮。</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="nUDSVGScale.ToolTip" xml:space="preserve">
+    <value>在生成g代码之前，尝试将图形缩放到给定的单位，</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tabPage9.Text" xml:space="preserve">
+    <value>路径导入</value>
+    <comment>TabPage</comment>
+  </data>
+  <data name="rBImportGCSpindleCmd2.ToolTip" xml:space="preserve">
+    <value>发送“ M4”以逆时针方向打开主轴
+激光模式下的动态激光功率模式</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="rBImportGCSpindleCmd1.ToolTip" xml:space="preserve">
+    <value>发送“ M3”以顺时针方向打开主轴
+激光模式下的恒定激光功率模式</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCSpindleDelay.ToolTip" xml:space="preserve">
+    <value>主轴启动后以秒为单位插入延迟</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCSSpeed.ToolTip" xml:space="preserve">
+    <value>雕刻主轴转速</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tBImportGCHeader.ToolTip" xml:space="preserve">
+    <value>复位后的GRBL状态：G0，G54，G17，G90，G94，G21，G40，G49，M0，M5，M9
+无需设置这个词</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCFeedXY.ToolTip" xml:space="preserve">
+    <value>使用X或Y尺寸的G1,2,3命令的进给率</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportDecPlaces.ToolTip" xml:space="preserve">
+    <value>G代码中坐标的小数位。</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCZUp.ToolTip" xml:space="preserve">
+    <value>工件表面上方的高度-必须为正</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCFeedZ.ToolTip" xml:space="preserve">
+    <value>G1指令移入工件时的速度</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCZDown.ToolTip" xml:space="preserve">
+    <value>工件表面以下的最终深度-必须为负</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCDlyDown.ToolTip" xml:space="preserve">
+    <value>插入G4：下一条命令之前的延迟（以秒为单位）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCDlyUp.ToolTip" xml:space="preserve">
+    <value>插入G4：下一条命令之前的延迟（以秒为单位）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCPWMDown.ToolTip" xml:space="preserve">
+    <value>``下降''的PWM值（S）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCPWMUp.ToolTip" xml:space="preserve">
+    <value>``笔加''的PWM值（S）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tabPage10.Text" xml:space="preserve">
+    <value>G代码生成</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCDragKnifePercent.ToolTip" xml:space="preserve">
+    <value>根据Z深度计算偏移</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCDragKnifeAngle.ToolTip" xml:space="preserve">
+    <value>在添加圆弧之前改变角度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCDragKnifeLength.ToolTip" xml:space="preserve">
+    <value>与旋转中心的偏移量。 对于拖刀，通常约为0.3毫米。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tBImportGCSubroutine.ToolTip" xml:space="preserve">
+    <value>带有子例程的文件路径</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="nUDImportGCSegment.ToolTip" xml:space="preserve">
+    <value>弧长上的步长。
+如果值&gt; arc-radius，则值将自动减小。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage11.Text" xml:space="preserve">
+    <value>G代码修改</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tBUseCaseSetting1.Text" xml:space="preserve">
+    <value>选择用例以查看设置</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="tabPage15.Text" xml:space="preserve">
+    <value>用例</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>图形导入</value>
+    <comment>TabPage1</comment>
+  </data>
+  <data name="tabPage14.Text" xml:space="preserve">
+    <value>工具表</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="nUDToolChangeEmpty.ToolTip" xml:space="preserve">
+    <value>使用工具nr。 工具表中未列出。</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="tBToolChangeScriptProbe.ToolTip" xml:space="preserve">
+    <value>第四测头长度</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="tBToolChangeScriptSelect.ToolTip" xml:space="preserve">
+    <value>第二把新工具带到主轴前</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="tBToolChangeScriptPut.ToolTip" xml:space="preserve">
+    <value>首先，需要从spidle中移除旧工具（第一次除外）</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="tBToolChangeScriptGet.ToolTip" xml:space="preserve">
+    <value>第三次拿起新工具</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="tabPage8.Text" xml:space="preserve">
+    <value>换刀</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>分配常规G代码，使用';'将代码分成不同的行 作为分隔符。</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tabPage13.Text" xml:space="preserve">
+    <value>流量控制</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="radioButton2.Text" xml:space="preserve">
+    <value>在Y上显示第4轴</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="radioButton1.Text" xml:space="preserve">
+    <value>在X上显示第4轴</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tBRotarySetupOff.ToolTip" xml:space="preserve">
+    <value>禁用轴替换时将设置此设置</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tBRotarySetupOn.ToolTip" xml:space="preserve">
+    <value>启用轴替换时将设置此设置</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="rBCtrlReplaceM4.Text" xml:space="preserve">
+    <value>将“ M4”替换为“ M3”</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="rBCtrlReplaceM4.ToolTip" xml:space="preserve">
+    <value>M3恒定激光功率模式</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="rBCtrlReplaceM3.Text" xml:space="preserve">
+    <value>将“ M3”替换为“ M4”</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="rBCtrlReplaceM3.ToolTip" xml:space="preserve">
+    <value>M4动态激光功率模式：</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>程序控制</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>虚拟操纵杆</value>
+    <comment>TabPage6</comment>
+  </data>
+  <data name="tabPage6.Text" xml:space="preserve">
+    <value>2D 视图 / 编辑器 / 杂项</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="nUDRotaryInfo.ToolTip" xml:space="preserve">
+    <value>笔宽</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDHeightMap.ToolTip" xml:space="preserve">
+    <value>笔宽</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDMarker.ToolTip" xml:space="preserve">
+    <value>笔宽</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDTool.ToolTip" xml:space="preserve">
+    <value>笔宽</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDPenDown.ToolTip" xml:space="preserve">
+    <value>笔宽</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDPenUp.ToolTip" xml:space="preserve">
+    <value>笔宽</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDRuler.ToolTip" xml:space="preserve">
+    <value>笔宽</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>相机</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tabPage5.Text" xml:space="preserve">
+    <value>万维网链接</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="btnUseCaseSave.Text" xml:space="preserve">
+    <value>保存</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnToolExport.Text" xml:space="preserve">
+    <value>保存</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnUseCaseLoad.Text" xml:space="preserve">
+    <value>开放</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnLoadToolTable.Text" xml:space="preserve">
+    <value>开放</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="cB4thUse.Text" xml:space="preserve">
+    <value>显示状态和控制</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBImportGCRelative.Text" xml:space="preserve">
+    <value>相对运动</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCSubEnable.Text" xml:space="preserve">
+    <value>插入子程序</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBresetSendCode.Text" xml:space="preserve">
+    <value>重置后发送以下G代码</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="cBSerialPortFixer.Text" xml:space="preserve">
+    <value>应用“串行端口修复程序”</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerialPortFixer.ToolTip" xml:space="preserve">
+    <value>在关闭应用程序时可能有助于防止错误</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="Column2.HeaderText" xml:space="preserve">
+    <value>颜色</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="tab11gB1.Text" xml:space="preserve">
+    <value>SVG创建，修改</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="tab11gB3.Text" xml:space="preserve">
+    <value>在线创建SVG图纸</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="tab11gB4.Text" xml:space="preserve">
+    <value>免费字体，例如 用于模具或弹出</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="tab11gB5.Text" xml:space="preserve">
+    <value>GRBL和G代码相关</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="tab11gB2lbl1.Text" xml:space="preserve">
+    <value>注意：拖放操作不适用于IE浏览器，但适用于Google Chrome浏览器</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="tab1_1gB4.Text" xml:space="preserve">
+    <value>对对象进行分组和排序</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1gB3.Text" xml:space="preserve">
+    <value>DXF导入</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1gB1.Text" xml:space="preserve">
+    <value>图形导入常规</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="label58.Text" xml:space="preserve">
+    <value>次</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl1.Text" xml:space="preserve">
+    <value>目标单位和显示</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl1.ToolTip" xml:space="preserve">
+    <value>如果导入文件中指定了任何单位，请尝试转换为目标单位</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl2.Text" xml:space="preserve">
+    <value>弧线段数</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl2.ToolTip" xml:space="preserve">
+    <value>曲线将由线段绘制。 分段越多，曲线越漂亮。</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1gB2.Text" xml:space="preserve">
+    <value>SVG导入</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl3.Text" xml:space="preserve">
+    <value>DPI设定</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_2gB1.Text" xml:space="preserve">
+    <value>通常</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB2.Text" xml:space="preserve">
+    <value>主轴/激光</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl6.Text" xml:space="preserve">
+    <value>方向/激光模式</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl7.Text" xml:space="preserve">
+    <value>主轴“ ON”后延迟</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl5.Text" xml:space="preserve">
+    <value>主轴转速/激光功率</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl5.ToolTip" xml:space="preserve">
+    <value>雕刻主轴转速</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl1.Text" xml:space="preserve">
+    <value>小数位</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl1.ToolTip" xml:space="preserve">
+    <value>代码中的小数位</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl4.ToolTip" xml:space="preserve">
+    <value>使用X或Y尺寸的G1,2,3命令的进给率</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl2.ToolTip" xml:space="preserve">
+    <value>复位后的GRBL状态：G0，G54，G17，G90，G94，G21，G40，G49，M0，M5，M9
+无需设置这个词
+</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl3.Text" xml:space="preserve">
+    <value>G代码页脚</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB7.Text" xml:space="preserve">
+    <value>上/下笔翻译</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB3.ToolTip" xml:space="preserve">
+    <value>将Z轴移动到G代码中</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl35.ToolTip" xml:space="preserve">
+    <value>最高 Z值的增量</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl32.ToolTip" xml:space="preserve">
+    <value>工件表面上方的高度-必须为正</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl33.ToolTip" xml:space="preserve">
+    <value>工件表面以下的最终深度-必须为负</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl31.ToolTip" xml:space="preserve">
+    <value>移入工件时的速度</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB5.Text" xml:space="preserve">
+    <value>主轴开关 关联 抬笔落笔（适⽤于激光）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB5.ToolTip" xml:space="preserve">
+    <value>使用'Pen up'命令关闭主轴，并使用'Pen down'命令打开主轴（用于激光雕刻机）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl51.Text" xml:space="preserve">
+    <value>检查主轴设置以了解M3 M4的选择和延迟</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB6.Text" xml:space="preserve">
+    <value>抬笔落笔的单独命令</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB4.Text" xml:space="preserve">
+    <value>伺服控制</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB4.ToolTip" xml:space="preserve">
+    <value>通过主轴速度控制RC-Servo（需要生成1ms-2ms PWM输出的特殊GRBL版本）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl44.ToolTip" xml:space="preserve">
+    <value>插入G4：下一条命令之前的延迟（以秒为单位）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl42.ToolTip" xml:space="preserve">
+    <value>插入G4：下一条命令之前的延迟（以秒为单位）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl43.ToolTip" xml:space="preserve">
+    <value>``下降''的PWM值（S）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl41.ToolTip" xml:space="preserve">
+    <value>``笔加''的PWM值（S）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_3gB3.Text" xml:space="preserve">
+    <value>将Z轴转换为主轴转速S</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3lbl31.Text" xml:space="preserve">
+    <value>菜单G代码转换的设置，将Z转换为S</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3gB4.Text" xml:space="preserve">
+    <value>实验性</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3lbl41.Text" xml:space="preserve">
+    <value>可能不适用于其他选项</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3gB2.Text" xml:space="preserve">
+    <value>拖曳工具补偿</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3gB1.Text" xml:space="preserve">
+    <value>分割原始动作</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_4gB1.Text" xml:space="preserve">
+    <value>将导入设置另存为“用例”</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="tab1_4lbl1.Text" xml:space="preserve">
+    <value>上次加载：</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="tab1_4lbl2.Text" xml:space="preserve">
+    <value>撰写有关用例的信息</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="tab2gB1.Text" xml:space="preserve">
+    <value>工具表</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="tab2gB2.Text" xml:space="preserve">
+    <value>刀具表-机器坐标中的位置！ 归巢建议事先使用。</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="tab2gB2lbl1.Text" xml:space="preserve">
+    <value>偏移到刀具列表中的刀具位置（X，Y，Z）</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column1.HeaderText" xml:space="preserve">
+    <value>Nr.</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="tab4gB2.Text" xml:space="preserve">
+    <value>grbl重置后的行为</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tBresetSendCode.ToolTip" xml:space="preserve">
+    <value>分配常规GCode，使用';'将代码分成不同的行 作为分隔符。
+或分配一个包含GCode的文件名。</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB3.Text" xml:space="preserve">
+    <value>grbl缓冲区大小</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB3lbl1.Text" xml:space="preserve">
+    <value>自动检测假设：
+默认（Arduino Uno / Nano）-127字节
+超过3个轴（Mega2560）-255字节
+</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB1.Text" xml:space="preserve">
+    <value>状态查询的频率</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB1lbl1.Text" xml:space="preserve">
+    <value>设置grbl状态报告的更新频率。 控制器承受更大的压力。</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB4.Text" xml:space="preserve">
+    <value>流的流控制</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="cBExtendedLogging.Text" xml:space="preserve">
+    <value>启用扩展日志记录</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB9.Text" xml:space="preserve">
+    <value>粘贴特殊内容</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB5.Text" xml:space="preserve">
+    <value>机器面积</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB5lbl4.Text" xml:space="preserve">
+    <value>将机器归位，移至
+最小X，最小Y和最大Z。
+注意机器坐标
+</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB5lbl3.Text" xml:space="preserve">
+    <value>机器行程Z</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB5lbl2.Text" xml:space="preserve">
+    <value>机器行程Y</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB5lbl1.Text" xml:space="preserve">
+    <value>机器行程X</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB2.Text" xml:space="preserve">
+    <value>通过串行连接DIY控制板</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB6.Text" xml:space="preserve">
+    <value>GRBL第四轴（特别版）</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB6lbl2.Text" xml:space="preserve">
+    <value>可以通过g代码转换菜单中的旋转直径来更改2D视图中第4轴的大小</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB6lbl1.Text" xml:space="preserve">
+    <value>第四轴名称</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB7.Text" xml:space="preserve">
+    <value>旋转轴控制（代替X或Y轴）</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8.Text" xml:space="preserve">
+    <value>更换轴的GRBL设置</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8lbl2.Text" xml:space="preserve">
+    <value>主轴</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8lbl2.ToolTip" xml:space="preserve">
+    <value>禁用轴替换时将设置此设置</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8lbl1.Text" xml:space="preserve">
+    <value>旋转轴</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8lbl1.ToolTip" xml:space="preserve">
+    <value>启用轴替换时将设置此设置</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB7lbl2.Text" xml:space="preserve">
+    <value>零件直径</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB7lbl2.ToolTip" xml:space="preserve">
+    <value>需要计算关系距离&lt;=&gt;角度的周长</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB7lbl1.Text" xml:space="preserve">
+    <value>360°对应</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB3.Text" xml:space="preserve">
+    <value>读取G码</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB1.Text" xml:space="preserve">
+    <value>串行连接</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab6lbl2.Text" xml:space="preserve">
+    <value>字段为空时，按钮13至16被隐藏</value>
+    <comment>TabPage6</comment>
+  </data>
+  <data name="tab6lbl1.Text" xml:space="preserve">
+    <value>分配常规G代码，使用';'将代码分成不同的行 作为分隔符。
+或分配一个包含G代码的文件名。
+相对文件路径从此处开始：
+</value>
+    <comment>TabPage6</comment>
+  </data>
+  <data name="tab7gB1.Text" xml:space="preserve">
+    <value>游戏手柄按钮分配</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab7gB1lbl1.Text" xml:space="preserve">
+    <value>按下游戏手柄上的按钮以检查按钮分配。
+
+在编辑框内分配常规GCode（“自定义按钮”的检查规则）或特殊功能。
+
+特殊功能（以＃开头）：
+#Start（开始流式传输）
+#Stop（停止流式传输）
+＃F-10（-1、100，+ 1，+ 10进纸器倍率）
+＃S-10（-1，100，+1，+10主轴速度o。）
+#FEEDHOLD
+#RESUME
+#KILLALARM
+#RST  (soft reset via CTRL-X)
+#HRST (hardware reset via DTR/RTS)
+
+分配轴和方向反转
+刷新间隔= 50ms。
+
+必须关闭设置窗口才能在GUI中使用GamePad。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab8gB2.Text" xml:space="preserve">
+    <value>2D预览的颜色</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tab8gB2lbl2.Text" xml:space="preserve">
+    <value>笔宽度设置为毫米单位。 切换为英寸时，将调整宽度。</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tab8gB2lbl1.Text" xml:space="preserve">
+    <value>笔宽</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tab8gB1.Text" xml:space="preserve">
+    <value>游戏杆设置</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tab8gB1lbl2.Text" xml:space="preserve">
+    <value>按“应用更改”以调整操纵杆控件的大小</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tab8gB1lbl1.Text" xml:space="preserve">
+    <value>最高 游戏杆控件的大小（以像素为单位）</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tab9gB1.Text" xml:space="preserve">
+    <value>热键</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="tab9gB1lbl2.Text" xml:space="preserve">
+    <value>hotkeys.xml的内容（必须在外部进行编辑，请按“应用更改”以更新分配）：</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="tab9gB1lbl1.Text" xml:space="preserve">
+    <value>在此处检查关键数据（将复制到剪贴板）：</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="tab10gB1.Text" xml:space="preserve">
+    <value>形状识别设置</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10lbl1.Text" xml:space="preserve">
+    <value>将设置保存在命名参数集中，然后在相机窗口中调用它们以更改形状识别行为。 更改名称后关闭/打开“相机”窗口。</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB2lbl3.Text" xml:space="preserve">
+    <value>蓝色</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB2lbl2.Text" xml:space="preserve">
+    <value>绿色</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB2lbl1.Text" xml:space="preserve">
+    <value>红色</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB3.Text" xml:space="preserve">
+    <value>形状识别</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB3lbl3.Text" xml:space="preserve">
+    <value>可接受的最大失真</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB3lbl2.Text" xml:space="preserve">
+    <value>可接受的失真最小值</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB3lbl1.Text" xml:space="preserve">
+    <value>最小 最高 形状大小</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab11gB1lbl3.Text" xml:space="preserve">
+    <value>关于EggBot Inkscape插件的说明</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="tab11gB1lbl2.Text" xml:space="preserve">
+    <value>Inkscape的有用扩展</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="tab7gB2lbl3.Text" xml:space="preserve">
+    <value>低于给定值的最小步长</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab7gB2lbl5.Text" xml:space="preserve">
+    <value>进给速度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab7gB2lbl4.Text" xml:space="preserve">
+    <value>单位</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDMinimum.ToolTip" xml:space="preserve">
+    <value>如果仅激活一个操纵杆轴，则将在该值和死区之间发送给定的步长和进给速度。
+在这种情况下，重复间隔为200 ms，而不是50 ms。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab7gB2lbl2.Text" xml:space="preserve">
+    <value>盲区</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab7gB2lbl1.Text" xml:space="preserve">
+    <value>中心位置偏移</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDOffset.ToolTip" xml:space="preserve">
+    <value>减位以获得中心位置的“ 0”。
+更改偏移量后移动操纵杆。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDDead.ToolTip" xml:space="preserve">
+    <value>发送任何点动命令之前要达到的最小值。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>模拟操纵杆设置</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValR.Text" xml:space="preserve">
+    <value>--</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValR.ToolTip" xml:space="preserve">
+    <value>应用偏移量的值</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValY.Text" xml:space="preserve">
+    <value>--</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValY.ToolTip" xml:space="preserve">
+    <value>应用偏移量的值</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValZ.Text" xml:space="preserve">
+    <value>--</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValZ.ToolTip" xml:space="preserve">
+    <value>应用偏移量的值</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValX.Text" xml:space="preserve">
+    <value>--</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValX.ToolTip" xml:space="preserve">
+    <value>应用偏移量的值</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tBRAxis.ToolTip" xml:space="preserve">
+    <value>G代码轴移动</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tBZAxis.ToolTip" xml:space="preserve">
+    <value>G代码轴移动</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tBYAxis.ToolTip" xml:space="preserve">
+    <value>G代码轴移动</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tBXAxis.ToolTip" xml:space="preserve">
+    <value>G代码轴移动</value>
+    <comment>ok</comment>
+  </data>
+  <data name="trackBarR.ToolTip" xml:space="preserve">
+    <value>操纵杆R通道的值</value>
+    <comment>ok</comment>
+  </data>
+  <data name="trackBarZ.ToolTip" xml:space="preserve">
+    <value>游戏杆Z通道的值</value>
+    <comment>ok</comment>
+  </data>
+  <data name="trackBarY.ToolTip" xml:space="preserve">
+    <value>操纵杆Y通道的值</value>
+    <comment>ok</comment>
+  </data>
+  <data name="trackBarX.ToolTip" xml:space="preserve">
+    <value>游戏杆X通道的值</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBKeepPenWidth.Text" xml:space="preserve">
+    <value>请勿在缩放时更改笔宽</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBgrblTranslate.Text" xml:space="preserve">
+    <value>翻译grbl讯息</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBgrblTranslate.ToolTip" xml:space="preserve">
+    <value>翻译GRBL消息，例如IDLE，RUN，HOLD</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDFeedrate.ToolTip" xml:space="preserve">
+    <value>慢进给速度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDStepwidth.ToolTip" xml:space="preserve">
+    <value>慢跑</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCTangential.Text" xml:space="preserve">
+    <value>添加切线轴</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_3gB5.Text" xml:space="preserve">
+    <value>切线轴命令</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGSort3.Text" xml:space="preserve">
+    <value>按路径长度对组进行排序-降序</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="lblDImportGCTangential3.Text" xml:space="preserve">
+    <value>每转单位</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblDImportGCTangential2.Text" xml:space="preserve">
+    <value>旋转角度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblDImportGCTangential2.ToolTip" xml:space="preserve">
+    <value>如果角度变化大于旋转角度，
+Z轴将向上移动
+轴将转动
+Z轴将向下移动</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCTangentialSwivel.ToolTip" xml:space="preserve">
+    <value>在升高，旋转和降低刀之前更改角度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblDImportGCTangential1.Text" xml:space="preserve">
+    <value>切线轴名称</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_1gB5.Text" xml:space="preserve">
+    <value>工具表</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>圆弧圆周上的步长</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportUnitGCode.Text" xml:space="preserve">
+    <value>添加G20（英寸）/ G21（毫米）G代码</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportUnitInch.Text" xml:space="preserve">
+    <value>英寸</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportUnitmm.Text" xml:space="preserve">
+    <value>毫米</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblSVGScale.Text" xml:space="preserve">
+    <value>单位</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportLasermode.Text" xml:space="preserve">
+    <value>Lasermode（使用S0而不是M5来关闭Laser）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2lbl4.Text" xml:space="preserve">
+    <value>XY进给速度</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl2.Text" xml:space="preserve">
+    <value>G代码标题</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl35.Text" xml:space="preserve">
+    <value>每遍深度</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl32.Text" xml:space="preserve">
+    <value>Z 安全的高度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2lbl33.Text" xml:space="preserve">
+    <value>Z雕刻的高</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2lbl31.Text" xml:space="preserve">
+    <value>Z进给速度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2gB3.Text" xml:space="preserve">
+    <value>Z轴</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl62.Text" xml:space="preserve">
+    <value>落笔</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2lbl61.Text" xml:space="preserve">
+    <value>抬笔</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2lbl44.Text" xml:space="preserve">
+    <value>延迟后</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2lbl42.Text" xml:space="preserve">
+    <value>延迟后</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2lbl43.Text" xml:space="preserve">
+    <value>落笔</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2lbl41.Text" xml:space="preserve">
+    <value>抬笔</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_3lbl33.Text" xml:space="preserve">
+    <value>最小S时最大Z</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3lbl32.Text" xml:space="preserve">
+    <value>最小Z时最大S</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCDragKnifePercent.Text" xml:space="preserve">
+    <value>Z深度的百分比</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblToolListLoaded.Text" xml:space="preserve">
+    <value>空的</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column3.HeaderText" xml:space="preserve">
+    <value>名称</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column10.HeaderText" xml:space="preserve">
+    <value>Z速度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column15.HeaderText" xml:space="preserve">
+    <value>Z储存</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column9.HeaderText" xml:space="preserve">
+    <value>Z深</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column13.HeaderText" xml:space="preserve">
+    <value>Z增量</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column11.HeaderText" xml:space="preserve">
+    <value>主轴</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column12.HeaderText" xml:space="preserve">
+    <value>跨步</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column14.HeaderText" xml:space="preserve">
+    <value>G代码</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBRotaryY.Text" xml:space="preserve">
+    <value>Y轴</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB4.Text" xml:space="preserve">
+    <value>激光模式</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column20.HeaderText" xml:space="preserve">
+    <value>数</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column21.HeaderText" xml:space="preserve">
+    <value>标签</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column22.HeaderText" xml:space="preserve">
+    <value>G代码</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label77.Text" xml:space="preserve">
+    <value>A，B，C步长+速度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnJoyZCalc.Text" xml:space="preserve">
+    <value>计算最佳速度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Z步幅+速度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>XY步进宽度+速度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnJoyXYCalc.Text" xml:space="preserve">
+    <value>计算最佳速度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tB_kP_Left1.Text" xml:space="preserve">
+    <value>A，控制，Alt</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab10gB2.Text" xml:space="preserve">
+    <value>彩色滤光片</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab10gB3lbl5.Text" xml:space="preserve">
+    <value>像素点</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab10gB3lbl4.Text" xml:space="preserve">
+    <value>像素点</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCTangentialRange.Text" xml:space="preserve">
+    <value>将刀具角度限制为&gt; = 0°，&lt;360°</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCTangentialRange.ToolTip" xml:space="preserve">
+    <value>使用此选项可避免角度小于0°且大于360°。
+不适用于G2 / 3-激活“避免G2 / 3命令”</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGCircleToDot.Text" xml:space="preserve">
+    <value>将“圆”中心转换为点（用于钻孔）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDSimulation.ToolTip" xml:space="preserve">
+    <value>笔宽</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnColorSimulation.Text" xml:space="preserve">
+    <value>模拟</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>影像转换</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>将静态图像转换为适合绘制的波浪线</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>从图像文件创建点画工程图和“ TSP插图”。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab11gB1lbl1a.Text" xml:space="preserve">
+    <value>Inkscape扩展</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel16.Text" xml:space="preserve">
+    <value>Inkscape扩展</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel15.Text" xml:space="preserve">
+    <value>Генератор пазлов от Draradech / jigsaw.html на Github</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel8.Text" xml:space="preserve">
+    <value>linuxcnc上的GCode概述</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel7.Text" xml:space="preserve">
+    <value>GitHub上的GRBL</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab11gB2.Text" xml:space="preserve">
+    <value>免费的SVG图形源（具有拖放功能）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel14.Text" xml:space="preserve">
+    <value>创建填充区域</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab11gB1lbl1.Text" xml:space="preserve">
+    <value>图形程序</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGCircleToDotZ.Text" xml:space="preserve">
+    <value>将圆半径转换为点深度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGCircleToDotZ.ToolTip" xml:space="preserve">
+    <value>深度限于“ Z高度”雕刻。
+想法：使用埋头孔设置圆直径</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGCircleToDot.ToolTip" xml:space="preserve">
+    <value>用钻头在刻有'Z-Height'刻印深度的圆心上做标记</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicOffsetOrigin.Text" xml:space="preserve">
+    <value>将图形原点偏移为0; 0</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicOffsetOrigin.ToolTip" xml:space="preserve">
+    <value>将导入图形的左下边缘设置为xy坐标0; 0</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicSortDistance.Text" xml:space="preserve">
+    <value>按最短连接对对象排序并合并</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicSortDistance.ToolTip" xml:space="preserve">
+    <value>对象将按照开始和结束坐标之间的最近距离排序，对象的有用路径将被反转。
+具有相同起点和终点坐标的对象将合并在一起。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage16.Text" xml:space="preserve">
+    <value>格式相关</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>路径解释</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>路径重复（用于弱激光）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>G代码外观</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>流量控制</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_1_2lbl2.Text" xml:space="preserve">
+    <value>假定距离相等</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_1_2lbl2.ToolTip" xml:space="preserve">
+    <value>差距将缩小</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage17.Text" xml:space="preserve">
+    <value>常规选项</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage20.Text" xml:space="preserve">
+    <value>路径修改</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage18.Text" xml:space="preserve">
+    <value>剪裁</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage19.Text" xml:space="preserve">
+    <value>分组和工具</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage21.Text" xml:space="preserve">
+    <value>程序行为</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage22.Text" xml:space="preserve">
+    <value>程序外观</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>CSV导入（* .csv，*。dat）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>测力计</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>从行开始的值</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Y值</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>X值</value>
+    <comment>ok</comment>
+  </data>
+  <data name="radioButton4.Text" xml:space="preserve">
+    <value>以点的形式处理坐标</value>
+    <comment>ok</comment>
+  </data>
+  <data name="radioButton3.Text" xml:space="preserve">
+    <value>用线连接坐标</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>规模</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>柱</value>
+    <comment>ok</comment>
+  </data>
+  <data name="checkBox8.Text" xml:space="preserve">
+    <value>进程Z也（仅点）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="checkBox7.Text" xml:space="preserve">
+    <value>尝试自动识别</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGRepeat2.Text" xml:space="preserve">
+    <value>逐条路径重复</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGRepeat1.Text" xml:space="preserve">
+    <value>重复完整的代码</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBHatchFill.Text" xml:space="preserve">
+    <value>填写封闭路径</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicHatchFillInset.Text" xml:space="preserve">
+    <value>从边缘插入填充</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicHatchFillChangeAngle.Text" xml:space="preserve">
+    <value>每条路径后改变角度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicHatchFillCross.Text" xml:space="preserve">
+    <value>十字线</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblHatchFill2.Text" xml:space="preserve">
+    <value>线角</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblHatchFill1.Text" xml:space="preserve">
+    <value>行距</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicHatchFill.Text" xml:space="preserve">
+    <value>舱口填充</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblDImportGCTangential4.Text" xml:space="preserve">
+    <value>如果偏差&gt;</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblDImportGCTangential4.ToolTip" xml:space="preserve">
+    <value>如果角度变化大于该角度，将插入单转命令</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCTangentialSwivel2.ToolTip" xml:space="preserve">
+    <value>升高，旋转和降低刀之前的角度变化</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBClipping.Text" xml:space="preserve">
+    <value>修剪/平铺</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>修剪/平铺尺寸宽度/高度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGraphicClipOffsetY.ToolTip" xml:space="preserve">
+    <value>瓷砖的X尺寸</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGraphicClipOffsetX.ToolTip" xml:space="preserve">
+    <value>瓷砖的X尺寸</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportGraphicClip1.Text" xml:space="preserve">
+    <value>将图形转换为图块</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportGraphicClip0.Text" xml:space="preserve">
+    <value>剪辑在左下点X / Y：</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportGraphicClip0.ToolTip" xml:space="preserve">
+    <value>结果</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGraphicClipHeight.ToolTip" xml:space="preserve">
+    <value>瓷砖的Y尺寸</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGraphicTileClipWidth.ToolTip" xml:space="preserve">
+    <value>瓷砖的X尺寸</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicTile.Text" xml:space="preserve">
+    <value>应用剪辑或平铺</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicTile.ToolTip" xml:space="preserve">
+    <value>将整个图形切成小块，单独分开</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>平铺前的GCode</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label11.ToolTip" xml:space="preserve">
+    <value>在处理下一个图块之前应用的GCode。
+例如。 'M0'暂停以手动移动纸张，或'（^ 2 G91 X100）'移动第二个grbl控制器的X来移动纸张。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicClipOffsetApply.Text" xml:space="preserve">
+    <value>将裁剪区域/图块的原点设置为0; 0</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGSort4.Text" xml:space="preserve">
+    <value>按对象尺寸对组进行排序-升序</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_1_4gB2.Text" xml:space="preserve">
+    <value>要分组的属性，然后选择Tool-Nr。 通过</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem3.Text" xml:space="preserve">
+    <value>按层分组（工具名称〜=层）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem3.ToolTip" xml:space="preserve">
+    <value>按图形层分组并根据最合适的工具名称选择工具编号</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem2.Text" xml:space="preserve">
+    <value>按笔宽分组（工具直径〜=笔宽）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem2.ToolTip" xml:space="preserve">
+    <value>按笔宽分组，并根据最合适的刀径选择刀号</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem1.Text" xml:space="preserve">
+    <value>按笔颜色分组（工具颜色〜=笔颜色）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem1.ToolTip" xml:space="preserve">
+    <value>按笔颜色分组并根据最合适的工具颜色选择工具编号</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage26.Text" xml:space="preserve">
+    <value>程序控制</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>如果代码超出机器尺寸，则获取通知</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage23.Text" xml:space="preserve">
+    <value>自定义按钮</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage24.Text" xml:space="preserve">
+    <value>游戏手柄</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>编辑</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>编辑器行距</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_1_4gB3.Text" xml:space="preserve">
+    <value>排序组</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column16.ToolTipText" xml:space="preserve">
+    <value>交换头寸A</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox13.Text" xml:space="preserve">
+    <value>grbl连接</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage25.Text" xml:space="preserve">
+    <value>流量控制</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>最高</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportPenWidthToZMax.ToolTip" xml:space="preserve">
+    <value>最宽的笔宽度将转换为该深度-但受“ G代码生成”中的Z高度刻记限制</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportPenWidthToZMin.ToolTip" xml:space="preserve">
+    <value>最小笔宽将转换为该深度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportPenWidthToZ.Text" xml:space="preserve">
+    <value>将笔宽转换为Z值</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportPenWidthToZ.ToolTip" xml:space="preserve">
+    <value>笔宽度将作为深度的Z值处理。
+最大深度将受到Z高度雕刻的限制。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_3gB8.Text" xml:space="preserve">
+    <value>封闭路径重叠</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPathModification.Text" xml:space="preserve">
+    <value>任何此类修改都会启用“避免G2 / G3命令”</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBDashedLine2.Text" xml:space="preserve">
+    <value>笔上的G0</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBDashedLine2.ToolTip" xml:space="preserve">
+    <value>默认值为G1，以实现平稳移动；
+减轻机械师的压力</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBDashedLine1.Text" xml:space="preserve">
+    <value>处理虚线图案</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBDashedLine1.ToolTip" xml:space="preserve">
+    <value>在实际的笔上/下转换虚线</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBPathOverlapEnable.Text" xml:space="preserve">
+    <value>路径重叠</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBPathOverlapEnable.ToolTip" xml:space="preserve">
+    <value>完成封闭路径后，从起点开始并移动给定距离。
+对激光切割机有用。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnReloadSettings.Text" xml:space="preserve">
+    <value>将所有设置设为默认</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>将Z转换为以下范围：
+（不会超过“ Z高度雕刻”）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBCreateZValue.Text" xml:space="preserve">
+    <value>创建Z值</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>杂</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>电子邮件</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBShowStreamingProgress.Text" xml:space="preserve">
+    <value>在2D视图中显示流式处理进度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab4gB5.Text" xml:space="preserve">
+    <value>在流式传输G代码期间</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicSortDistanceRotatePath.Text" xml:space="preserve">
+    <value>在封闭路径中允许新的起点</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportPenWidthToZRamp.Text" xml:space="preserve">
+    <value>应用坡道而不是台阶</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblImportPenWidthToZWarning.Text" xml:space="preserve">
+    <value>注意：Z-Engrave将限制最大。 深度！</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblGroupInfo.Text" xml:space="preserve">
+    <value>如果仅找到一种属性（例如一种颜色），则取消分组</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBLineEndEnable.Text" xml:space="preserve">
+    <value>套用文字</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_3gB6.Text" xml:space="preserve">
+    <value>G代码创建</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>M19的类型值（扩展）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>M15（刀）的类型值</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>D2的类型值（引脚）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBGerberGeometryEnable.Text" xml:space="preserve">
+    <value>在G代码图标签中指定类型值</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_3gB7.Text" xml:space="preserve">
+    <value>格柏进口</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem4.Text" xml:space="preserve">
+    <value>类型</value>
+    <comment>ok</comment>
+  </data>
+  <data name="checkBox5.Text" xml:space="preserve">
+    <value>如果填充了对象，则应用填充填充</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBDisableProgramPause.Text" xml:space="preserve">
+    <value>禁用特殊暂停模式，通过M0</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBDisableProgramPause.ToolTip" xml:space="preserve">
+    <value>如果禁用，流将在M0处停止并且解析器状态将被保存（但M0不会发送到控制器），然后用户可以控制计算机。
+暂停后，解析器状态将恢复并继续进行流式处理。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cB2DViewFigureId.Text" xml:space="preserve">
+    <value>显示下一个字符的ID</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cB2DViewDirectionArrow.Text" xml:space="preserve">
+    <value>显示启动路径</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox14.Text" xml:space="preserve">
+    <value>2D视图</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBColorModeEnable.Text" xml:space="preserve">
+    <value>色彩模式</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBColorModeEnable.ToolTip" xml:space="preserve">
+    <value>笔沿路径将以颜色和宽度显示，如导入的图形（SVG或DXF）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label32.Text" xml:space="preserve">
+    <value>换刀前的G代码</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>特殊的暂停模式允许用户使用机器。 暂停完成后，将恢复最后的过程坐标和机器状态，并且继续进行流式传输。
+而正常的M0会启动进给保持，而不会使用机器。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBStreanProtocoll2.Text" xml:space="preserve">
+    <value>简单的发送响应</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>流协议：</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBStreanProtocoll1.Text" xml:space="preserve">
+    <value>字符计数</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab4gB7.Text" xml:space="preserve">
+    <value>流媒体属性</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBCodeCreationLineNumbers.Text" xml:space="preserve">
+    <value>添加行号</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cbNotifierMsg1.Text" xml:space="preserve">
+    <value>进度经常更新（分钟）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifierMsg1.Text" xml:space="preserve">
+    <value>完成留言</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox16.Text" xml:space="preserve">
+    <value>通知事项</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btn_notifierMail_Test.Text" xml:space="preserve">
+    <value>发送测试邮件</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier8.Text" xml:space="preserve">
+    <value>学科</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier7.Text" xml:space="preserve">
+    <value>发邮件</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier6.Text" xml:space="preserve">
+    <value>来自电子邮件</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier3.Text" xml:space="preserve">
+    <value>港口</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier5.Text" xml:space="preserve">
+    <value>密码</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier2.Text" xml:space="preserve">
+    <value>地址</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier4.Text" xml:space="preserve">
+    <value>用户名</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox15.Text" xml:space="preserve">
+    <value>SMTP服务器</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier1.Text" xml:space="preserve">
+    <value>为您的电子邮件帐户设置SMTP服务器访问
+注意：通常，“来自电子邮件”必须与SMTP邮箱电子邮件相同。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabControl5_Level2.Text" xml:space="preserve">
+    <value>通知者</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label33.Text" xml:space="preserve">
+    <value>电子邮件：出于安全原因，您应该使用“垃圾邮件”电子邮件帐户，密码无法以加密形式保存。
+
+Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问令牌无法以加密形式保存。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox17.Text" xml:space="preserve">
+    <value>安全须知</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cbNotifierTitle.Text" xml:space="preserve">
+    <value>将流媒体进度添加到标题</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifierPBToken.Text" xml:space="preserve">
+    <value>API访问令牌</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifierPBChannel.Text" xml:space="preserve">
+    <value>频道（保持空白以发送便笺）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cbNotifierEmailEnable.Text" xml:space="preserve">
+    <value>启用电子邮件通知</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cbNotifierPBEnable.Text" xml:space="preserve">
+    <value>启用推送通知</value>
+    <comment>ok</comment>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>发送测试信息</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>Y方向上的数字</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label37.Text" xml:space="preserve">
+    <value>X方向上的数字</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label36.Text" xml:space="preserve">
+    <value>图形之间的距离</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGraphicMultiplyGraphicsEnable.Text" xml:space="preserve">
+    <value>乘法图形</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label45.Text" xml:space="preserve">
+    <value>层</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>笔宽</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>笔颜色</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox21.Text" xml:space="preserve">
+    <value>分组的属性</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGraphicAddFrameRadius.Text" xml:space="preserve">
+    <value>四舍五入</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>到图形的距离</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGraphicAddFrameEnable.Text" xml:space="preserve">
+    <value>画框</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>路径附件</value>
+    <comment>ok</comment>
+  </data>
+  <data name="checkBox6.Text" xml:space="preserve">
+    <value>程序启动时打开第三个串行接口</value>
+    <comment>ok</comment>
+  </data>
+  <data name="checkBox6.ToolTip" xml:space="preserve">
+    <value>打开第二个COM端口以控制第二个GRBL。 对于换刀或第四轴很有用。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicClipSkipCode.Text" xml:space="preserve">
+    <value>第1个图块的跳过代码（xy = 0; 0）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>变量：
+#INDX #INDY x或y方向的图块索引（例如0、1、2 ...）
+#OFFX #OFFY瓷砖在x或y方向上的偏移量（例如0、200、400 ...）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label47.Text" xml:space="preserve">
+    <value>秒</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label46.Text" xml:space="preserve">
+    <value>脚本后延迟</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCPWMSkipM30.Text" xml:space="preserve">
+    <value>跳过命令M30</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCPWMSkipM30.ToolTip" xml:space="preserve">
+    <value>跳过命令M30“程序结束”，以避免通过重置解析器状态来关闭主轴，这会导致伺服系统移至位置“ 0”。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMDown.Text" xml:space="preserve">
+    <value>下笔</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMUp.Text" xml:space="preserve">
+    <value>笔向上</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCPWMSendCode.Text" xml:space="preserve">
+    <value>发送命令以控制伺服</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCPWMSendCode.ToolTip" xml:space="preserve">
+    <value>发送值更改命令</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGRepeatHF.Text" xml:space="preserve">
+    <value>全部</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGRepeatHF.ToolTip" xml:space="preserve">
+    <value>包括页眉和页脚</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label48.Text" xml:space="preserve">
+    <value>距离</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGraphicLeadInEnable.Text" xml:space="preserve">
+    <value>坡道</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBPathAddOn3.Text" xml:space="preserve">
+    <value>笔向下倾斜（Z轴或PWM）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBPathAddOn3.ToolTip" xml:space="preserve">
+    <value>仅适用于笔/刷子的使用</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBPathAddOn2.Text" xml:space="preserve">
+    <value>乘</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBPathAddOn1.Text" xml:space="preserve">
+    <value>框架</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMZero.Text" xml:space="preserve">
+    <value>笔零</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMZero.ToolTip" xml:space="preserve">
+    <value>笔接触表面
+仅用于斜坡操作</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCPWMZero.ToolTip" xml:space="preserve">
+    <value>零位主轴转速
+仅用于斜坡操作</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblInfoPWM.ToolTip" xml:space="preserve">
+    <value>可能的最高值是通过“ $ 30”（默认值= 1000）设置的，最小值是通过$ 31（默认值= 0）设置的。
+来自https://github.com/cprezzi/grbl-servo的Grbl版本'grbl_v1.1f_Servo.hex'，
+使用31步输出0.5ms至2.5ms（请参阅cpu_map.h）。
+实际可用范围为$ 30 = 31，$ 31 = 0。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMDown.ToolTip" xml:space="preserve">
+    <value>最下移笔</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
+    <value>向上移动笔</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBCtrlToolTable.Text" xml:space="preserve">
+    <value>2D视图：使用工具列表中的颜色</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBCtrlToolTable.ToolTip" xml:space="preserve">
+    <value>分析G代码中的S，Z和F值以将颜色从刀具列表分配到刀具路径</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label66.Text" xml:space="preserve">
+    <value>最大位置Z</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label65.Text" xml:space="preserve">
+    <value>最低排名Y</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label63.Text" xml:space="preserve">
+    <value>最低排名X</value>
+    <comment>ok</comment>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>PWM增量值1、10或100</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>子程序之前/之后的上/下笔</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage12.Text" xml:space="preserve">
+    <value>Z轴</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnPWMAdvanced.Text" xml:space="preserve">
+    <value>高级设置</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnPWMAdvanced.ToolTip" xml:space="preserve">
+    <value>显示更多伺服位置</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP94.ToolTip" xml:space="preserve">
+    <value>子程序数</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCDlyP94.ToolTip" xml:space="preserve">
+    <value>插入G4：在下一条命令之前的延迟（以秒为单位）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP93.ToolTip" xml:space="preserve">
+    <value>子程序数</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP92.ToolTip" xml:space="preserve">
+    <value>子程序“ Pen down”的数量</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCDlyP93.ToolTip" xml:space="preserve">
+    <value>插入G4：在下一条命令之前的延迟（以秒为单位）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP91.ToolTip" xml:space="preserve">
+    <value>子程序数</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMFunction.Text" xml:space="preserve">
+    <value>功能</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMFunction.ToolTip" xml:space="preserve">
+    <value>子程序功能</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMSub.Text" xml:space="preserve">
+    <value>子</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMSub.ToolTip" xml:space="preserve">
+    <value>子程序数</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP90.ToolTip" xml:space="preserve">
+    <value>子程序“补足”的数量</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label55.Text" xml:space="preserve">
+    <value>延迟后</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label55.ToolTip" xml:space="preserve">
+    <value>应用新的PWM值后的延迟</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label56.Text" xml:space="preserve">
+    <value>脉宽调制</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label56.ToolTip" xml:space="preserve">
+    <value>PWM值</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnPWMInc.Text" xml:space="preserve">
+    <value>Inc 10</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnPWMInc.ToolTip" xml:space="preserve">
+    <value>PWM增量值1、10或100</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCLineSegment.ToolTip" xml:space="preserve">
+    <value>如果值为0，则仅处理“在路径开始时也插入”</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBFCTBBlockExpandKeepLastOpen.Text" xml:space="preserve">
+    <value>保留最后选择的块</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBFCTBBlockExpandOnSelect.Text" xml:space="preserve">
+    <value>在2D视图中单击时展开代码块</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label51.Text" xml:space="preserve">
+    <value>将剪切的路径延伸到边界之外</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCUseSpindle2.Text" xml:space="preserve">
+    <value>主轴</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label67.ToolTip" xml:space="preserve">
+    <value>子程序“ Pen down”的数量</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label64.ToolTip" xml:space="preserve">
+    <value>子程序“补足”的数量</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage28.Text" xml:space="preserve">
+    <value>主轴</value>
+    <comment>ok</comment>
+  </data>
+  <data name="color.HeaderText" xml:space="preserve">
+    <value>颜色</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label50.Text" xml:space="preserve">
+    <value>之后的距离</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGraphicLeadOutEnable.Text" xml:space="preserve">
+    <value>引出</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportGCSpindleCmd2.Text" xml:space="preserve">
+    <value>“ M4”逆时针</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportGCSpindleCmd1.Text" xml:space="preserve">
+    <value>'M3'CW</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCUseIndividual2.Text" xml:space="preserve">
+    <value>个人</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCUsePWM2.Text" xml:space="preserve">
+    <value>脉宽调制</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCUseZ2.Text" xml:space="preserve">
+    <value>Z轴</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage27.Text" xml:space="preserve">
+    <value>脉宽调制</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage29.Text" xml:space="preserve">
+    <value>个人</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label62.Text" xml:space="preserve">
+    <value>注意：如果工具表被激活，图形的原始颜色将被使用的工具颜色替换</value>
+  </data>
+  <data name="label60.Text" xml:space="preserve">
+    <value>刀具角度</value>
+  </data>
+  <data name="groupBox22.Text" xml:space="preserve">
+    <value>V工具</value>
+  </data>
+  <data name="label57.Text" xml:space="preserve">
+    <value>完成形状后进料</value>
+  </data>
+  <data name="label54.Text" xml:space="preserve">
+    <value>在形状之前/之后切割的 Z 高度（如果启用了 Z）</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNotchLift.Text" xml:space="preserve">
+    <value>凹口后提起工具</value>
+  </data>
+  <data name="label59.Text" xml:space="preserve">
+    <value>凹口雕刻的 Z 高度（如果启用 Z）</value>
+  </data>
+  <data name="label53.Text" xml:space="preserve">
+    <value>最小。曲线中凹口到凹口的距离</value>
+  </data>
+  <data name="label52.Text" xml:space="preserve">
+    <value>缺口长度（工件宽度）</value>
+  </data>
+  <data name="groupBox20.Text" xml:space="preserve">
+    <value>缺口特性</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedInvert.Text" xml:space="preserve">
+    <value>反转进给方向</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedX.Text" xml:space="preserve">
+    <value>X 轴进给，Y 轴开槽</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedY.Text" xml:space="preserve">
+    <value>Y轴进给，X轴开槽</value>
+  </data>
+  <data name="groupBox19.Text" xml:space="preserve">
+    <value>进给和缺口方向</value>
+  </data>
+  <data name="cBImportGraphicDevelopEnable.Text" xml:space="preserve">
+    <value>应用图形开发</value>
+  </data>
+  <data name="gBDevelop.Text" xml:space="preserve">
+    <value>将 2D 形状的轮廓转换为开发</value>
+  </data>
+  <data name="tabPage30.Text" xml:space="preserve">
+    <value>特殊转换</value>
+  </data>
+  <data name="cBImportDXFUseZ.Text" xml:space="preserve">
+    <value>导入 Z 信息</value>
+  </data>
+  <data name="tab1_3lbl34.Text" xml:space="preserve">
+    <value>S 在 Z &gt; 0</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="Column4.HeaderText" xml:space="preserve">
+    <value>位置X</value>
+  </data>
+  <data name="Column5.HeaderText" xml:space="preserve">
+    <value>位置是</value>
+  </data>
+  <data name="Column6.HeaderText" xml:space="preserve">
+    <value>位置Z</value>
+  </data>
+  <data name="Column16.HeaderText" xml:space="preserve">
+    <value>位置A</value>
+  </data>
+  <data name="Column7.HeaderText" xml:space="preserve">
+    <value>工具Ø</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column8.HeaderText" xml:space="preserve">
+    <value>XY速度</value>
+  </data>
+  <data name="tab4gB6.Text" xml:space="preserve">
+    <value>特别的</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.Text" xml:space="preserve">
+    <value>显示原始图块位置</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.ToolTip" xml:space="preserve">
+    <value>显示原始图块位置</value>
+  </data>
+  <data name="cBImportGraphicClipOffsetApply.ToolTip" xml:space="preserve">
+    <value>将瓷砖的原点设置为 0；0</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
+    <value>无曲线</value>
+  </data>
+  <data name="btnColorDimension.Text" xml:space="preserve">
+    <value>尺寸</value>
+  </data>
+  <data name="btnColorBackgroundPath.Text" xml:space="preserve">
+    <value>信息路径</value>
+  </data>
+  <data name="checkBox9.Text" xml:space="preserve">
+    <value>将 G 代码另存为 unicode UTF-16（否则为 ASCII）</value>
+  </data>
+  <data name="LblImportGraphicDevelopNotchDistance.Text" xml:space="preserve">
+    <value>最小。曲线中凹口到凹口的距离</value>
+  </data>
+  <data name="LblCameraFiducial.Text" xml:space="preserve">
+    <value>图形图层或基准图形的名称</value>
+  </data>
+  <data name="groupBox23.Text" xml:space="preserve">
+    <value>基准点</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.Text" xml:space="preserve">
+    <value>流式传输时将图块移动到 0; 0 原点</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.ToolTip" xml:space="preserve">
+    <value>将图块移动到原点 0；在流式传输期间为 0 以使它们适应 grbl 工具位置</value>
+  </data>
+  <data name="CbImportGraphicDevelopNoCurve.Text" xml:space="preserve">
+    <value>无曲线</value>
+  </data>
+  <data name="CbCameraFiducialSkip.Text" xml:space="preserve">
+    <value>流式传输时跳过基准点的 G 代码</value>
+  </data>
+  <data name="LblShowVertex.Text" xml:space="preserve">
+    <value>路径节点标记的类型和大小</value>
+  </data>
+  <data name="CbShowVertexEnable.Text" xml:space="preserve">
+    <value>显示下笔路径节点</value>
+  </data>
+  <data name="groupBox24.Text" xml:space="preserve">
+    <value>引脚说明（“覆盖附件状态”）</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>日志记录</value>
+  </data>
+  <data name="LblSaveEncoding.Text" xml:space="preserve">
+    <value>G 代码存储的编码</value>
+  </data>
+  <data name="checkBox11.Text" xml:space="preserve">
+    <value>保存时删除所有评论</value>
+  </data>
+  <data name="cBExtendedLoggingCOM.Text" xml:space="preserve">
+    <value>串行 COM / 流媒体</value>
+  </data>
+  <data name="groupBox25.Text" xml:space="preserve">
+    <value>日志记录</value>
+  </data>
+  <data name="BtnAccessoryRefresh.Text" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="BtnAccessoryMistReset.Text" xml:space="preserve">
+    <value>重启</value>
+  </data>
+  <data name="BtnAccessoryFloodReset.Text" xml:space="preserve">
+    <value>重启</value>
+  </data>
+  <data name="BtnAccessorySpindleReset.Text" xml:space="preserve">
+    <value>重启</value>
+  </data>
+  <data name="LblAccessoryMist.Text" xml:space="preserve">
+    <value>薄雾：</value>
+  </data>
+  <data name="LblAccessoryFlood.Text" xml:space="preserve">
+    <value>洪水：</value>
+  </data>
+  <data name="LblAccessorySpindle.Text" xml:space="preserve">
+    <value>主轴：</value>
+  </data>
+  <data name="GbAccessoryRunTime.Text" xml:space="preserve">
+    <value>附件运行时间 (ms)</value>
+  </data>
+  <data name="LbLAuxDescription.Text" xml:space="preserve">
+    <value>使用此选项可控制一个附加轴，该轴以与距离相关的量泵送油漆或馈送灯丝。
+此外，Z 轴的位置可用于例如当画笔在画布上用力按压时增加油漆量。</value>
+  </data>
+  <data name="CbAux2ZMode.Items" xml:space="preserve">
+    <value>使用带符号的 pos 和 neg Z</value>
+  </data>
+  <data name="CbAux2ZMode.Items1" xml:space="preserve">
+    <value>使用 pos 和 neg Z 绝对值</value>
+  </data>
+  <data name="CbAux2ZMode.Items2" xml:space="preserve">
+    <value>仅使用 pos Z</value>
+  </data>
+  <data name="CbAux2ZMode.Items3" xml:space="preserve">
+    <value>只使用负 Z</value>
+  </data>
+  <data name="LblAux12.Text" xml:space="preserve">
+    <value>因素</value>
+  </data>
+  <data name="CbAux2ZUse.Text" xml:space="preserve">
+    <value>考虑 Z</value>
+  </data>
+  <data name="groupBox28.Text" xml:space="preserve">
+    <value>乘以当前 Z 值</value>
+  </data>
+  <data name="LblAux11.Text" xml:space="preserve">
+    <value>因素</value>
+  </data>
+  <data name="LblAux10.Text" xml:space="preserve">
+    <value>轴</value>
+  </data>
+  <data name="CbAux2SumUp.Text" xml:space="preserve">
+    <value>绝对值</value>
+  </data>
+  <data name="CbAux2SumUp.ToolTip" xml:space="preserve">
+    <value>绝对值：和G90距离模式一样，距离值是相加的。</value>
+  </data>
+  <data name="NudAux2Factor.ToolTip" xml:space="preserve">
+    <value>计算轴值的因子 = 距离 * 因子</value>
+  </data>
+  <data name="CbAux2Enable.Text" xml:space="preserve">
+    <value>添加距离相关命令2</value>
+  </data>
+  <data name="CbAux1ZMode.Items" xml:space="preserve">
+    <value>使用带符号的 pos 和 neg Z</value>
+  </data>
+  <data name="CbAux1ZMode.Items1" xml:space="preserve">
+    <value>使用 pos 和 neg Z 绝对值</value>
+  </data>
+  <data name="CbAux1ZMode.Items2" xml:space="preserve">
+    <value>仅使用 pos Z</value>
+  </data>
+  <data name="CbAux1ZMode.Items3" xml:space="preserve">
+    <value>只使用负 Z</value>
+  </data>
+  <data name="LblAux3.Text" xml:space="preserve">
+    <value>因素</value>
+  </data>
+  <data name="CbAux1ZUse.Text" xml:space="preserve">
+    <value>考虑 Z</value>
+  </data>
+  <data name="groupBox27.Text" xml:space="preserve">
+    <value>乘以当前 Z 值</value>
+  </data>
+  <data name="LblAux2.Text" xml:space="preserve">
+    <value>因素</value>
+  </data>
+  <data name="LblAux1.Text" xml:space="preserve">
+    <value>轴</value>
+  </data>
+  <data name="CbAux1SumUp.Text" xml:space="preserve">
+    <value>绝对值</value>
+  </data>
+  <data name="CbAux1SumUp.ToolTip" xml:space="preserve">
+    <value>绝对值：和G90距离模式一样，距离值是相加的。</value>
+  </data>
+  <data name="NudAux1Factor.ToolTip" xml:space="preserve">
+    <value>计算轴值的因子 = 距离 * 因子</value>
+  </data>
+  <data name="CbAux1Enable.Text" xml:space="preserve">
+    <value>添加距离相关命令1</value>
+  </data>
+  <data name="groupBox26.Text" xml:space="preserve">
+    <value>油漆泵或长丝进料器的距离相关值</value>
+  </data>
+  <data name="tabPage31.Text" xml:space="preserve">
+    <value>命令扩展</value>
+  </data>
+  <data name="checkBox12.Text" xml:space="preserve">
+    <value>始终在前面显示其他表单（例如设置表单）</value>
+  </data>
+  <data name="label68.Text" xml:space="preserve">
+    <value>像素大小</value>
+  </data>
+  <data name="groupBox29.Text" xml:space="preserve">
+    <value>杂项</value>
+  </data>
+  <data name="checkBox10.Text" xml:space="preserve">
+    <value>显示引脚状态</value>
+  </data>
+</root>
