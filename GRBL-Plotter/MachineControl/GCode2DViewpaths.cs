@@ -336,6 +336,8 @@ namespace GrblPlotter
             float y1 = (float)Properties.Settings.Default.machineLimitsHomeY - offsetY;
             float rx = (float)Properties.Settings.Default.machineLimitsRangeX;
             float ry = (float)Properties.Settings.Default.machineLimitsRangeY;
+            if (rx <= 0) rx = 10;
+            if (ry <= 0) ry = 10;
             float extend = 2 * rx;
             Matrix matrix = new Matrix();
             matrix.Scale(1, -1);
@@ -738,7 +740,7 @@ namespace GrblPlotter
         }
 
         // setup drawing area 
-        public static void CalcDrawingArea()
+        public static void CalcDrawingArea(float markerSize=-1)
         {
             double extend = 1.01;                                                       // extend dimension a little bit
             double roundTo = 5;                                                         // round-up dimensions
@@ -765,7 +767,9 @@ namespace GrblPlotter
             //           createRuler(pathRuler, drawingSize.minX, drawingSize.maxX, drawingSize.minY, drawingSize.maxY);
             CreateRuler(pathRuler, drawingSize);
 
-            CreateMarkerPath();
+			if (markerSize <= 0)
+				markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (500/xyzSize.dimy));
+            CreateMarkerPath(markerSize);
 
             CreateDimensionBox();
         }
@@ -797,7 +801,7 @@ namespace GrblPlotter
         internal static void CreateMarkerPath(bool showCenter, XyPoint center, XyPoint last)
         {
             //float MarkerSize = (float)Math.Sqrt(xyzSize.dimx * xyzSize.dimx + xyzSize.dimy * xyzSize.dimy) / 40f;
-            MarkerSize = Math.Max(MarkerSize, 2);
+            MarkerSize = Math.Max(MarkerSize, 0.2f);
             //            createMarker(pathTool,   (xyPoint)grbl.posWork, msize, 2);
 
             if (tangentialAxisEnable)

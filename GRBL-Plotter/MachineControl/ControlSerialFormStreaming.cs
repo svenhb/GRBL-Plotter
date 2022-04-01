@@ -67,6 +67,7 @@ namespace GrblPlotter
   //      private int lineStreamingPause = 0;
         private bool trgEvent = false;
         private bool skipM30 = false;
+        private bool progressUpdateMarker = false;
 
         private Dictionary<int, List<string>> subroutines = new Dictionary<int, List<string>>();
 
@@ -109,7 +110,7 @@ namespace GrblPlotter
             lastError = "";
             countGrblError = 0;
             lastSentToCOM.Clear();
-            ToolTable.Init();       // fill structure
+            ToolTable.Init(" (StartStreaming)");       // fill structure
             rtbLog.Clear();
 
             // check if other serial are still alive
@@ -133,7 +134,9 @@ namespace GrblPlotter
             }
 
             if (!check)
-            {   AddToLog("[Start streaming - no echo]");
+            {
+                if (logStreamData) AddToLog("* Logging enabled");
+                AddToLog("[Start streaming - no echo at " + GetTimeStampString() +" ]");
                 if (useSerial2) AddToLog("[Use serial 2]");
                 if (useSerial3) AddToLog("[Use serial 3]");
             }
@@ -275,7 +278,7 @@ namespace GrblPlotter
                                 {   InsertToolChangeCode(i, ref tmpToolInSpindle);  }// insert external script-code and insert variables 
                                 else   
                                 {	AddToLog(tmp + " !!! Tool change is disabled");
-									Logger.Warn("⚠ Found {0} but tool change is disabled in [Setup - Tool change]");
+									Logger.Warn("⚠ Found '{0}' but tool change is disabled in [Setup - Tool change]",tmp);
 								}
                             }
                             if (cmdMNr == 30)
@@ -361,11 +364,14 @@ namespace GrblPlotter
 
 		private void AddCodeFromFile(string fileRaw, int linenr)
 		{
-			if (fileRaw.Length < 3)
+			if (fileRaw.Length < 3)     // no path at all
 				return;
-			
+
             string file = Datapath.MakeAbsolutePath(fileRaw);
-            Logger.Info("AddCodeFromFile file:{0}  line:{1}", file, linenr);
+            if (Path.GetFileName(file) == string.Empty)         // path but no filename
+                return;
+
+            Logger.Info("◯◯◯ AddCodeFromFile file:{0}  line:{1}", file, linenr);
 
             if (File.Exists(file))
             {
@@ -610,7 +616,17 @@ namespace GrblPlotter
             if (codeFinish > 100) { codeFinish = 100; }
             if (buffFinish > 100) { buffFinish = 100; }
 
-//            Logger.Trace("OnRaiseStreamEvent {0} {1} {2} {3} {4}", lineNrSent, lineNrConfirmed, codeFinish, buffFinish, status);
+            if ((codeFinish % 10) == 0)
+            {
+                if (progressUpdateMarker)
+                {
+                    progressUpdateMarker = false;
+                    AddToLog("Streaming Progress: " + codeFinish + " %");
+                }
+            }
+            else { progressUpdateMarker = true; }
+
+            //            Logger.Trace("OnRaiseStreamEvent {0} {1} {2} {3} {4}", lineNrSent, lineNrConfirmed, codeFinish, buffFinish, status);
             OnRaiseStreamEvent(new StreamEventArgs(lineNrSent, lineNrConfirmed, codeFinish, buffFinish, status));
         }
 

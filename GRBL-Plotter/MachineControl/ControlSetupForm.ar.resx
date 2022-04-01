@@ -1467,7 +1467,7 @@ M4 وضع الطاقة ليزر ديناميكي</value>
     <comment>ok</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
-    <value>عرض ثنائي الأبعاد / محرر</value>
+    <value>2D- عرض / محرر / متفرقات</value>
     <comment>TabPage7</comment>
   </data>
   <data name="cBKeepPenWidth.Text" xml:space="preserve">
@@ -3203,5 +3203,17 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   </data>
   <data name="tabPage31.Text" xml:space="preserve">
     <value>تمديد القيادة</value>
+  </data>
+  <data name="checkBox12.Text" xml:space="preserve">
+    <value>إظهار النماذج الأخرى دائمًا في المقدمة (مثل نموذج الإعداد)</value>
+  </data>
+  <data name="label68.Text" xml:space="preserve">
+    <value>الحجم بالبكسل</value>
+  </data>
+  <data name="groupBox29.Text" xml:space="preserve">
+    <value>متفرقات</value>
+  </data>
+  <data name="checkBox10.Text" xml:space="preserve">
+    <value>إظهار حالة الدبوس</value>
   </data>
 </root>

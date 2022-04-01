@@ -74,14 +74,14 @@ namespace GrblPlotter
 					System.IO.Directory.CreateDirectory(tpath);
 			}
 			catch (IOException err) {
-				Properties.Settings.Default.guiLastEndReason += "SetupForm_Load Error creating path:" + tpath+ " Error:" + err.Message;
+                EventCollector.StoreException("SetupForm_Load Error creating path:" + tpath+ " Error:" + err.Message);
 				Datapath.AppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);	// apply new data path
 				MessageBox.Show("Path to tool-tables does not exist and could not be created: "+tpath+"\r\nPath will be modified to "+ Datapath.AppDataFolder, "Error");
 				Logger.Error(err,"SetupForm_Load path nok:{0}, changed to: {1}",tpath, Datapath.AppDataFolder);
 				tpath = Datapath.Tools;				
 			}
 			catch (Exception err) {
-                Properties.Settings.Default.guiLastEndReason += "SetupForm_Load Error accessing path:" + tpath + " Error:" + err.Message;
+                EventCollector.StoreException("SetupForm_Load Error accessing path:" + tpath + " Error:" + err.Message);
                 MessageBox.Show("Path to tool-tables can't be accessed: " + tpath + "\r\nError: "+err.Message, "Error");
                 Logger.Error(err, "SetupForm_Load path nok:{0}", tpath);
                 //throw;		// unknown exception...
@@ -275,7 +275,7 @@ namespace GrblPlotter
             Properties.Settings.Default.Save();
 
             ExportDgvToCSV(defaultToolList);
-            ToolTable.Init();
+            ToolTable.Init(" (SaveSettings)");
         }
 
         private void BtnApplyChangings_Click(object sender, EventArgs e)
@@ -605,12 +605,12 @@ namespace GrblPlotter
 				File.WriteAllText(file, csv.ToString()); 
 			}			
 			catch (IOException err) {
-				Properties.Settings.Default.guiLastEndReason += "Error:"+err.Message+" ExportDgvToCSV: "+file;
+                EventCollector.StoreException("Error:" +err.Message+" ExportDgvToCSV: "+file);
 				Logger.Error(err,"ExportDgvToCSV IOException:{0}",file);
 				MessageBox.Show("Current tool-table settings could not be saved " + file + "\r\n" + err.Message, "Error");
 			}
 			catch (Exception err) { // access denied
-				Properties.Settings.Default.guiLastEndReason += "Error:"+err.Message+" ExportDgvToCSV: "+file;
+                EventCollector.StoreException("Error:" +err.Message+" ExportDgvToCSV: "+file);
 				Logger.Error(err,"ExportDgvToCSV IOException:{0}",file);
 				MessageBox.Show("Current tool-table settings could not be saved " + file + "\r\n" + err.Message, "Error");
 //				throw;		// unknown exception...
@@ -633,7 +633,7 @@ namespace GrblPlotter
 				catch (IOException err) {
                     // read already opened file???
                     // https://stackoverflow.com/questions/9759697/reading-a-file-used-by-another-process
-                    Properties.Settings.Default.guiLastEndReason += "ImportCSVToDgv IOException: " + file + " " + err.Message + " - ";
+                    EventCollector.StoreException("ImportCSVToDgv IOException: " + file + " " + err.Message + " - ");
 					Logger.Error(err,"ImportCSVToDgv IOException:{0}",file);
 					MessageBox.Show("Could not read " + file + "\r\n" + err.Message, "Error");
 					return false;
@@ -852,7 +852,7 @@ namespace GrblPlotter
 					FillToolTableFileList(Datapath.Tools);
 				}			
 				catch (IOException err) {
-					Properties.Settings.Default.guiLastEndReason += "Error BtnDeleteToolTable_Click:"+path;
+                    EventCollector.StoreException("Error BtnDeleteToolTable_Click:" +path);
 					Logger.Error(err,"BtnDeleteToolTable_Click IOException:{0}",path);
 					MessageBox.Show("Could not delete " + path, "Error");
 					return;
@@ -920,7 +920,7 @@ namespace GrblPlotter
 					tmpText = File.ReadAllText(tmp.Text).Replace('\t', ' ');
 				}			
 				catch (IOException err) {
-					Properties.Settings.Default.guiLastEndReason += "Error ShowFileContent:"+tmp.Text;
+                    EventCollector.StoreException("Error ShowFileContent:" +tmp.Text);
 					Logger.Error(err,"ShowFileContent IOException:{0}",tmp.Text);
 					MessageBox.Show("Could not read " + tmp.Text, "Error");
 					return;
@@ -1105,7 +1105,8 @@ namespace GrblPlotter
         {
             TextBox clickedTB = sender as TextBox;
             clickedTB.Text = e.KeyData.ToString();
-            Clipboard.SetText(e.KeyData.ToString());
+            if (!string.IsNullOrEmpty(e.KeyData.ToString())) 
+                Clipboard.SetText(e.KeyData.ToString());
         }
 
         private void ListHotkeys()
@@ -1123,7 +1124,7 @@ namespace GrblPlotter
 				tmp = File.ReadAllText(fileName);
 			}			
 			catch (IOException err) {
-				Properties.Settings.Default.guiLastEndReason += "Error ListHotkeys:"+fileName;
+                EventCollector.StoreException("Error ListHotkeys:" +fileName);
 				Logger.Error(err,"ListHotkeys IOException:{0}",fileName);
 				MessageBox.Show("Could not read " + fileName, "Error");
 				return;
@@ -1227,11 +1228,11 @@ namespace GrblPlotter
             btnDown.Visible = enabled;
         }
 
-        private void FillToolTableFileList(string Root)
+        private void FillToolTableFileList(string filepath)
         {
             try
             {
-                string[] Files = System.IO.Directory.GetFiles(Root);
+                string[] Files = System.IO.Directory.GetFiles(filepath);
 
                 lbFiles.Items.Clear();
                 for (int i = 0; i < Files.Length; i++)
@@ -1450,7 +1451,7 @@ namespace GrblPlotter
 						File.Delete(sfd.FileName);
 				}
 				catch (IOException err) {
-					Properties.Settings.Default.guiLastEndReason += "Error BtnUseCaseSave_Click:"+sfd.FileName;
+                    EventCollector.StoreException("Error BtnUseCaseSave_Click:" +sfd.FileName);
 					Logger.Error(err,"BtnUseCaseSave_Click IOException:{0}",sfd.FileName);
 					MessageBox.Show("Could not delete old " + sfd.FileName, "Error");
 					return;
@@ -1480,7 +1481,7 @@ namespace GrblPlotter
 				File.Delete(fileName);
 			}
 			catch (IOException err) {
-				Properties.Settings.Default.guiLastEndReason += "Error BtnDelete_Click:"+fileName;
+                EventCollector.StoreException("Error BtnDelete_Click:" +fileName);
 				Logger.Error(err,"BtnDelete_Click IOException:{0}",fileName);
 				MessageBox.Show("Could not delete old " + fileName, "Error");
 				return;
@@ -1546,6 +1547,14 @@ namespace GrblPlotter
             { cBImportGCNoArcs.Checked = true; }
             HighlightPenOptions_Click(sender, e);
         }
+
+        private void BtnOpenLogFile_Click(object sender, EventArgs e)
+        { 	try {
+				Process.Start("notepad.exe", Datapath.LogFiles + "\\logfile.txt"); 
+			}
+			catch (Exception err)
+			{	MessageBox.Show("Could not open log file: \r\n" + err.Message,"Error");}
+		}
 
         private void CbLog1_CheckedChanged(object sender, EventArgs e)
         {
@@ -1661,10 +1670,10 @@ namespace GrblPlotter
         }
         private void SetZeroMinMax()
         {   //nUDImportGCPWMZero.Value = (nUDImportGCPWMUp.Value + nUDImportGCPWMDown.Value) / 2;
-			decimal max = Math.Max(nUDImportGCPWMUp.Value, nUDImportGCPWMDown.Value);
-			decimal min	= Math.Min(nUDImportGCPWMUp.Value, nUDImportGCPWMDown.Value);
-			if (nUDImportGCPWMZero.Value > max) nUDImportGCPWMZero.Value = max;
-			if (nUDImportGCPWMZero.Value < min) nUDImportGCPWMZero.Value = min;
+            decimal max = Math.Max(nUDImportGCPWMUp.Value, nUDImportGCPWMDown.Value);
+            decimal min	= Math.Min(nUDImportGCPWMUp.Value, nUDImportGCPWMDown.Value);
+            if (nUDImportGCPWMZero.Value > max) nUDImportGCPWMZero.Value = max;
+            if (nUDImportGCPWMZero.Value < min) nUDImportGCPWMZero.Value = min;
             nUDImportGCPWMZero.Maximum = max;
             nUDImportGCPWMZero.Minimum = min;
         }

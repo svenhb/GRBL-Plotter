@@ -20,7 +20,8 @@
     Thanks to http://code-bude.net/2011/06/02/webcam-benutzen-in-csharp/
 */
 /* 
-	2022-01-21 line 461 if ((realPoints.Count < 2) || (VisuGCode.fiducialsCenter.Count < 2))
+ * 2022-01-21 line 461 if ((realPoints.Count < 2) || (VisuGCode.fiducialsCenter.Count < 2))
+ * 2022-03-23 listSettings()
 */
 
 using AForge;
@@ -750,7 +751,7 @@ namespace GrblPlotter
                 Properties.Settings.Default.camFilterGreen2 = Convert.ToInt16(value[i++]);
                 Properties.Settings.Default.camFilterBlue1 = Convert.ToInt16(value[i++]);
                 Properties.Settings.Default.camFilterBlue2 = Convert.ToInt16(value[i++]);
-                Properties.Settings.Default.camFilterOutside = (value[i++] == "True");
+                Properties.Settings.Default.camFilterOutside = (value[i++] == "True");		// true if (value[i++] == "True")
                 Properties.Settings.Default.camShapeCircle = (value[i++] == "True");
                 Properties.Settings.Default.camShapeRect = (value[i++] == "True");
                 Properties.Settings.Default.camShapeSizeMin = Convert.ToDecimal(value[i++]);
@@ -792,6 +793,23 @@ namespace GrblPlotter
                     ShowLabel(gr,new System.Drawing.Point(50,200), string.Format("File not found: {0}", fileExampleFrame));
                     }
 			}
+		}
+		
+		private void ListSettings()
+		{
+			Logger.Info("Cam fix Rot.:{0:0.000}  Scaling:{1:0.000}  Offset-X:{2:0.000}  Offset-Y:{3:0.000}", Properties.Settings.Default.cameraRotationFix, cameraScalingFix, Properties.Settings.Default.cameraZeroFixMachineX, Properties.Settings.Default.cameraZeroFixMachineY);
+			Logger.Info("Cam  xy Rot.:{0:0.000}  Scaling:{1:0.000} ", Properties.Settings.Default.cameraRotationXy, cameraScalingXy);
+			Logger.Info("Cam   z Rot.:{0:0.000}  Scl-Top:{1:0.000}  Scl-Bot:{2:0.000}", Properties.Settings.Default.cameraRotationXy, cameraScalingXyzTop, cameraScalingXyzBot);
+            double blobScaling = cameraScalingFix;
+            if (CameraMount == CameraMounting.MoveXY)
+            { blobScaling = cameraScalingXy/2; }
+			Logger.Info("Shape Min:{0:0.000}  Max:{1:0.000}  CamZoom:{2}  BlobScale:{3}",Properties.Settings.Default.camShapeSizeMin, Properties.Settings.Default.camShapeSizeMax, cameraZoom, blobScaling);
+			Logger.Info("Shape Distortion:{0}  DistortionMax:{1}", Properties.Settings.Default.camShapeDist, Properties.Settings.Default.camShapeDistMax);
+
+			Logger.Info("Shape Red1:{0}  Red2:{1}  Green1:{2}  Green2:{3}  Blue1:{4}  Blue2:{5}  Outside:{6}",Properties.Settings.Default.camFilterRed1, Properties.Settings.Default.camFilterRed2,
+																				Properties.Settings.Default.camFilterGreen1, Properties.Settings.Default.camFilterGreen2,
+																				Properties.Settings.Default.camFilterBlue1, Properties.Settings.Default.camFilterBlue2, Properties.Settings.Default.camFilterOutside);
+		
 		}
     }
 }

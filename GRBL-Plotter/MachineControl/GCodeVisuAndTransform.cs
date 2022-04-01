@@ -49,6 +49,7 @@
  * 2021-04-30 apply height-msp only if (!gcline.ismachineCoordG53 && gcline.isdistanceModeG90)   line 1660
  * 2021-07-27 code clean up / code quality
  *			  split code to GCodeAnalyze.cs, GCode2DViewPaths.cs
+ * 2022-03-01 MarkSelectedGroup line 368 add try/catch for AddPath
 */
 
 using System;
@@ -338,7 +339,7 @@ namespace GrblPlotter
             selectedFigureInfo = string.Format("Selection: {0}\r\nWidth : {1:0.000}\r\nHeight: {2:0.000}\r\nCenter: X {3:0.000} Y {4:0.000}", figureNr, selectionBounds.Width, selectionBounds.Height, centerX, centerY);
         }
 
-        public static void MarkSelectedGroup(int start)
+        public static void MarkSelectedGroup(int start)		// mark all figures within a group
         {
             if (start <= 0) return;
             if (start >= (gcodeList.Count - 1)) return;
@@ -352,18 +353,21 @@ namespace GrblPlotter
             GraphicsPathIterator myPathIterator = new GraphicsPathIterator(pathPenDown);
             myPathIterator.Rewind();
 
-            for (int line = start + 1; line < gcodeList.Count; line++)
+            for (int line = start + 1; line < gcodeList.Count; line++)			// go through gcode-lines
             {
-                if (gcodeList[line].codeLine.Contains(XmlMarker.GroupEnd))
+                if (gcodeList[line].codeLine.Contains(XmlMarker.GroupEnd))		// find group-end tag
                     break;
-                figNr = gcodeList[line].figureNumber;
-                if (!figures.Contains(figNr) && (figNr > 0))
+                figNr = gcodeList[line].figureNumber;							// get figure nummer
+                if (!figures.Contains(figNr) && (figNr > 0))					// add fig-nr to list, if not already in
                 {
-                    figures.Add(figNr);
+                    figures.Add(figNr);											// add fig-nr to list
                     myPathIterator.Rewind();
-                    for (int i = 1; i <= figNr; i++)
-                        myPathIterator.NextMarker(tmpPath);
-                    pathMarkSelection.AddPath(tmpPath, false);
+                    for (int i = 1; i <= figNr; i++)							// set path-marker to figure-position
+                        myPathIterator.NextMarker(tmpPath);						// and copy path to tmpPath
+					
+					try { pathMarkSelection.AddPath(tmpPath, false);}			// add figure-path to marker-path
+					catch (Exception err)
+					{	Logger.Error(err,"MarkSelectedGroup start:{0} figNr:{1} ");}
                     lastFigureNumbers.Add(figNr);
                 }
             }

@@ -7926,13 +7926,13 @@ No need to set this words</value>
     <value>234, 16</value>
   </data>
   <data name="cBImportGCUseSpindle2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 17</value>
+    <value>98, 17</value>
   </data>
   <data name="cBImportGCUseSpindle2.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
   <data name="cBImportGCUseSpindle2.Text" xml:space="preserve">
-    <value>Spindle</value>
+    <value>Spindle / Laser</value>
   </data>
   <data name="&gt;&gt;cBImportGCUseSpindle2.Name" xml:space="preserve">
     <value>cBImportGCUseSpindle2</value>
@@ -8013,7 +8013,7 @@ No need to set this words</value>
     <value>NoControl</value>
   </data>
   <data name="label67.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 74</value>
+    <value>6, 78</value>
   </data>
   <data name="label67.Size" type="System.Drawing.Size, System.Drawing">
     <value>26, 13</value>
@@ -8046,7 +8046,7 @@ No need to set this words</value>
     <value>NoControl</value>
   </data>
   <data name="label64.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 54</value>
+    <value>6, 58</value>
   </data>
   <data name="label64.Size" type="System.Drawing.Size, System.Drawing">
     <value>26, 13</value>
@@ -8079,7 +8079,7 @@ No need to set this words</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportGCTTZAxis.Location" type="System.Drawing.Point, System.Drawing">
-    <value>156, 14</value>
+    <value>156, 18</value>
   </data>
   <data name="cBImportGCTTZAxis.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 17</value>
@@ -8106,7 +8106,7 @@ No need to set this words</value>
     <value>2</value>
   </data>
   <data name="nUDImportGCFeedZ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>191, 32</value>
+    <value>191, 36</value>
   </data>
   <data name="nUDImportGCFeedZ.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 20</value>
@@ -8133,7 +8133,7 @@ No need to set this words</value>
     <value>3</value>
   </data>
   <data name="nUDImportGCZUp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>191, 52</value>
+    <value>191, 56</value>
   </data>
   <data name="nUDImportGCZUp.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 20</value>
@@ -8160,7 +8160,7 @@ No need to set this words</value>
     <value>4</value>
   </data>
   <data name="nUDImportGCZDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>191, 72</value>
+    <value>191, 76</value>
   </data>
   <data name="nUDImportGCZDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 20</value>
@@ -8193,7 +8193,7 @@ No need to set this words</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportGCZIncStartZero.Location" type="System.Drawing.Point, System.Drawing">
-    <value>139, 108</value>
+    <value>139, 112</value>
   </data>
   <data name="cBImportGCZIncStartZero.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 17</value>
@@ -8220,7 +8220,7 @@ No need to set this words</value>
     <value>6</value>
   </data>
   <data name="nUDImportGCZIncrement.Location" type="System.Drawing.Point, System.Drawing">
-    <value>191, 126</value>
+    <value>191, 130</value>
   </data>
   <data name="nUDImportGCZIncrement.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 20</value>
@@ -8250,7 +8250,7 @@ No need to set this words</value>
     <value>NoControl</value>
   </data>
   <data name="tab1_2lbl35.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 128</value>
+    <value>6, 132</value>
   </data>
   <data name="tab1_2lbl35.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 13</value>
@@ -8283,7 +8283,7 @@ No need to set this words</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportGCZIncEnable.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 108</value>
+    <value>9, 112</value>
   </data>
   <data name="cBImportGCZIncEnable.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 17</value>
@@ -8317,7 +8317,7 @@ Not usable with other pen up/down options!</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportGCUseZ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 14</value>
+    <value>9, 18</value>
   </data>
   <data name="cBImportGCUseZ.Size" type="System.Drawing.Size, System.Drawing">
     <value>134, 17</value>
@@ -8350,7 +8350,7 @@ Not usable with other pen up/down options!</value>
     <value>NoControl</value>
   </data>
   <data name="tab1_2lbl32.Location" type="System.Drawing.Point, System.Drawing">
-    <value>35, 54</value>
+    <value>35, 58</value>
   </data>
   <data name="tab1_2lbl32.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 13</value>
@@ -8383,7 +8383,7 @@ Not usable with other pen up/down options!</value>
     <value>NoControl</value>
   </data>
   <data name="tab1_2lbl33.Location" type="System.Drawing.Point, System.Drawing">
-    <value>35, 74</value>
+    <value>35, 78</value>
   </data>
   <data name="tab1_2lbl33.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 13</value>
@@ -8416,7 +8416,7 @@ Not usable with other pen up/down options!</value>
     <value>NoControl</value>
   </data>
   <data name="tab1_2lbl31.Location" type="System.Drawing.Point, System.Drawing">
-    <value>35, 34</value>
+    <value>35, 38</value>
   </data>
   <data name="tab1_2lbl31.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 13</value>
@@ -8446,7 +8446,7 @@ Not usable with other pen up/down options!</value>
     <value>3, 3</value>
   </data>
   <data name="tab1_2gB3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>430, 241</value>
+    <value>430, 238</value>
   </data>
   <data name="tab1_2gB3.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -8533,7 +8533,7 @@ Not usable with other pen up/down options!</value>
     <value>NoControl</value>
   </data>
   <data name="lblPWMP94.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 140</value>
+    <value>6, 144</value>
   </data>
   <data name="lblPWMP94.Size" type="System.Drawing.Size, System.Drawing">
     <value>26, 13</value>
@@ -8563,7 +8563,7 @@ Not usable with other pen up/down options!</value>
     <value>1</value>
   </data>
   <data name="tBImportGCPWMTextP94.Location" type="System.Drawing.Point, System.Drawing">
-    <value>35, 138</value>
+    <value>35, 142</value>
   </data>
   <data name="tBImportGCPWMTextP94.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 20</value>
@@ -8587,7 +8587,7 @@ Not usable with other pen up/down options!</value>
     <value>2</value>
   </data>
   <data name="nUDImportGCDlyP94.Location" type="System.Drawing.Point, System.Drawing">
-    <value>226, 138</value>
+    <value>226, 142</value>
   </data>
   <data name="nUDImportGCDlyP94.Size" type="System.Drawing.Size, System.Drawing">
     <value>45, 20</value>
@@ -8617,7 +8617,7 @@ Not usable with other pen up/down options!</value>
     <value>3</value>
   </data>
   <data name="nUDImportGCPWMP94.Location" type="System.Drawing.Point, System.Drawing">
-    <value>167, 138</value>
+    <value>167, 142</value>
   </data>
   <data name="nUDImportGCPWMP94.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 20</value>
@@ -8650,7 +8650,7 @@ Not usable with other pen up/down options!</value>
     <value>NoControl</value>
   </data>
   <data name="lblPWMP93.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 118</value>
+    <value>6, 122</value>
   </data>
   <data name="lblPWMP93.Size" type="System.Drawing.Size, System.Drawing">
     <value>26, 13</value>
@@ -8680,7 +8680,7 @@ Not usable with other pen up/down options!</value>
     <value>5</value>
   </data>
   <data name="tBImportGCPWMTextP93.Location" type="System.Drawing.Point, System.Drawing">
-    <value>35, 116</value>
+    <value>35, 120</value>
   </data>
   <data name="tBImportGCPWMTextP93.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 20</value>
@@ -8710,7 +8710,7 @@ Not usable with other pen up/down options!</value>
     <value>NoControl</value>
   </data>
   <data name="lblPWMP92.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 96</value>
+    <value>6, 100</value>
   </data>
   <data name="lblPWMP92.Size" type="System.Drawing.Size, System.Drawing">
     <value>26, 13</value>
@@ -8737,7 +8737,7 @@ Not usable with other pen up/down options!</value>
     <value>7</value>
   </data>
   <data name="nUDImportGCDlyP93.Location" type="System.Drawing.Point, System.Drawing">
-    <value>226, 116</value>
+    <value>226, 120</value>
   </data>
   <data name="nUDImportGCDlyP93.Size" type="System.Drawing.Size, System.Drawing">
     <value>45, 20</value>
@@ -8773,7 +8773,7 @@ Not usable with other pen up/down options!</value>
     <value>NoControl</value>
   </data>
   <data name="lblPWMP91.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 74</value>
+    <value>6, 78</value>
   </data>
   <data name="lblPWMP91.Size" type="System.Drawing.Size, System.Drawing">
     <value>26, 13</value>
@@ -8803,7 +8803,7 @@ Not usable with other pen up/down options!</value>
     <value>9</value>
   </data>
   <data name="nUDImportGCPWMP93.Location" type="System.Drawing.Point, System.Drawing">
-    <value>167, 116</value>
+    <value>167, 120</value>
   </data>
   <data name="nUDImportGCPWMP93.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 20</value>
@@ -8836,7 +8836,7 @@ Not usable with other pen up/down options!</value>
     <value>NoControl</value>
   </data>
   <data name="lblPWMFunction.Location" type="System.Drawing.Point, System.Drawing">
-    <value>38, 32</value>
+    <value>38, 36</value>
   </data>
   <data name="lblPWMFunction.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 13</value>
@@ -8869,7 +8869,7 @@ Not usable with other pen up/down options!</value>
     <value>NoControl</value>
   </data>
   <data name="lblPWMSub.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 32</value>
+    <value>6, 36</value>
   </data>
   <data name="lblPWMSub.Size" type="System.Drawing.Size, System.Drawing">
     <value>26, 13</value>
@@ -8902,7 +8902,7 @@ Not usable with other pen up/down options!</value>
     <value>NoControl</value>
   </data>
   <data name="lblPWMP90.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 52</value>
+    <value>6, 56</value>
   </data>
   <data name="lblPWMP90.Size" type="System.Drawing.Size, System.Drawing">
     <value>26, 13</value>
@@ -8935,7 +8935,7 @@ Not usable with other pen up/down options!</value>
     <value>NoControl</value>
   </data>
   <data name="label55.Location" type="System.Drawing.Point, System.Drawing">
-    <value>222, 32</value>
+    <value>222, 36</value>
   </data>
   <data name="label55.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 13</value>
@@ -8968,7 +8968,7 @@ Not usable with other pen up/down options!</value>
     <value>NoControl</value>
   </data>
   <data name="label56.Location" type="System.Drawing.Point, System.Drawing">
-    <value>165, 32</value>
+    <value>165, 36</value>
   </data>
   <data name="label56.Size" type="System.Drawing.Size, System.Drawing">
     <value>34, 13</value>
@@ -9001,7 +9001,7 @@ Not usable with other pen up/down options!</value>
     <value>NoControl</value>
   </data>
   <data name="btnPWMInc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>166, 165</value>
+    <value>166, 169</value>
   </data>
   <data name="btnPWMInc.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 20</value>
@@ -9031,7 +9031,7 @@ Not usable with other pen up/down options!</value>
     <value>NoControl</value>
   </data>
   <data name="btnGCPWMZero.Location" type="System.Drawing.Point, System.Drawing">
-    <value>35, 70</value>
+    <value>35, 74</value>
   </data>
   <data name="btnGCPWMZero.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 22</value>
@@ -9065,7 +9065,7 @@ Only needed for lead-in operation</value>
     <value>17</value>
   </data>
   <data name="nUDImportGCPWMZero.Location" type="System.Drawing.Point, System.Drawing">
-    <value>167, 72</value>
+    <value>167, 76</value>
   </data>
   <data name="nUDImportGCPWMZero.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 20</value>
@@ -9102,7 +9102,7 @@ Only needed for lead-in operation</value>
     <value>NoControl</value>
   </data>
   <data name="lblInfoPWM.Location" type="System.Drawing.Point, System.Drawing">
-    <value>174, 15</value>
+    <value>174, 19</value>
   </data>
   <data name="lblInfoPWM.Size" type="System.Drawing.Size, System.Drawing">
     <value>13, 13</value>
@@ -9135,7 +9135,7 @@ Real usable range would be $30=31, $31=0.</value>
     <value>NoControl</value>
   </data>
   <data name="btnGCPWMDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>35, 92</value>
+    <value>35, 96</value>
   </data>
   <data name="btnGCPWMDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 22</value>
@@ -9168,7 +9168,7 @@ Real usable range would be $30=31, $31=0.</value>
     <value>NoControl</value>
   </data>
   <data name="btnGCPWMUp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>35, 48</value>
+    <value>35, 52</value>
   </data>
   <data name="btnGCPWMUp.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 22</value>
@@ -9204,7 +9204,7 @@ Real usable range would be $30=31, $31=0.</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportGCPWMSendCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 190</value>
+    <value>9, 194</value>
   </data>
   <data name="cBImportGCPWMSendCode.Size" type="System.Drawing.Size, System.Drawing">
     <value>145, 17</value>
@@ -9237,7 +9237,7 @@ Real usable range would be $30=31, $31=0.</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportGCPWMSkipM30.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 167</value>
+    <value>9, 171</value>
   </data>
   <data name="cBImportGCPWMSkipM30.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 17</value>
@@ -9264,7 +9264,7 @@ Real usable range would be $30=31, $31=0.</value>
     <value>23</value>
   </data>
   <data name="nUDImportGCPWMUp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>167, 49</value>
+    <value>167, 53</value>
   </data>
   <data name="nUDImportGCPWMUp.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 20</value>
@@ -9291,7 +9291,7 @@ Real usable range would be $30=31, $31=0.</value>
     <value>24</value>
   </data>
   <data name="nUDImportGCDlyUp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>226, 49</value>
+    <value>226, 53</value>
   </data>
   <data name="nUDImportGCDlyUp.Size" type="System.Drawing.Size, System.Drawing">
     <value>45, 20</value>
@@ -9318,7 +9318,7 @@ Real usable range would be $30=31, $31=0.</value>
     <value>25</value>
   </data>
   <data name="nUDImportGCPWMDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>167, 94</value>
+    <value>167, 98</value>
   </data>
   <data name="nUDImportGCPWMDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 20</value>
@@ -9345,7 +9345,7 @@ Real usable range would be $30=31, $31=0.</value>
     <value>26</value>
   </data>
   <data name="nUDImportGCDlyDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>226, 94</value>
+    <value>226, 98</value>
   </data>
   <data name="nUDImportGCDlyDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>45, 20</value>
@@ -9378,7 +9378,7 @@ Real usable range would be $30=31, $31=0.</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportGCUsePWM.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 14</value>
+    <value>9, 18</value>
   </data>
   <data name="cBImportGCUsePWM.Size" type="System.Drawing.Size, System.Drawing">
     <value>139, 17</value>
@@ -9462,7 +9462,7 @@ Real usable range would be $30=31, $31=0.</value>
     <value>NoControl</value>
   </data>
   <data name="tab1_2lbl51.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 14</value>
+    <value>112, 18</value>
   </data>
   <data name="tab1_2lbl51.Size" type="System.Drawing.Size, System.Drawing">
     <value>315, 59</value>
@@ -9492,7 +9492,7 @@ Real usable range would be $30=31, $31=0.</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportGCUseSpindle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 14</value>
+    <value>9, 18</value>
   </data>
   <data name="cBImportGCUseSpindle.Size" type="System.Drawing.Size, System.Drawing">
     <value>97, 17</value>
@@ -9523,7 +9523,7 @@ Check Spindle settings for M3 M4 selection and delay</value>
     <value>3, 3</value>
   </data>
   <data name="tab1_2gB5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>430, 242</value>
+    <value>430, 238</value>
   </data>
   <data name="tab1_2gB5.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -9560,7 +9560,7 @@ Check Spindle settings for M3 M4 selection and delay</value>
     <value>2</value>
   </data>
   <data name="tabPage28.Text" xml:space="preserve">
-    <value>Spindle</value>
+    <value>Spindle / Laser</value>
   </data>
   <data name="&gt;&gt;tabPage28.Name" xml:space="preserve">
     <value>tabPage28</value>
@@ -9575,7 +9575,7 @@ Check Spindle settings for M3 M4 selection and delay</value>
     <value>2</value>
   </data>
   <data name="tBImportGCIPD.Location" type="System.Drawing.Point, System.Drawing">
-    <value>156, 53</value>
+    <value>156, 57</value>
   </data>
   <data name="tBImportGCIPD.Size" type="System.Drawing.Size, System.Drawing">
     <value>265, 20</value>
@@ -9596,7 +9596,7 @@ Check Spindle settings for M3 M4 selection and delay</value>
     <value>0</value>
   </data>
   <data name="tBImportGCIPU.Location" type="System.Drawing.Point, System.Drawing">
-    <value>156, 32</value>
+    <value>156, 36</value>
   </data>
   <data name="tBImportGCIPU.Size" type="System.Drawing.Size, System.Drawing">
     <value>265, 20</value>
@@ -9623,7 +9623,7 @@ Check Spindle settings for M3 M4 selection and delay</value>
     <value>NoControl</value>
   </data>
   <data name="tab1_2lbl62.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 56</value>
+    <value>6, 60</value>
   </data>
   <data name="tab1_2lbl62.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 13</value>
@@ -9653,7 +9653,7 @@ Check Spindle settings for M3 M4 selection and delay</value>
     <value>NoControl</value>
   </data>
   <data name="tab1_2lbl61.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 35</value>
+    <value>6, 39</value>
   </data>
   <data name="tab1_2lbl61.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 13</value>
@@ -9683,7 +9683,7 @@ Check Spindle settings for M3 M4 selection and delay</value>
     <value>NoControl</value>
   </data>
   <data name="cBImportGCUseIndividual.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 14</value>
+    <value>9, 18</value>
   </data>
   <data name="cBImportGCUseIndividual.Size" type="System.Drawing.Size, System.Drawing">
     <value>247, 17</value>
@@ -9710,7 +9710,7 @@ Check Spindle settings for M3 M4 selection and delay</value>
     <value>3, 3</value>
   </data>
   <data name="tab1_2gB6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>430, 242</value>
+    <value>430, 238</value>
   </data>
   <data name="tab1_2gB6.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -13618,6 +13618,33 @@ M4 Dynamic Laser Power Mode</value>
   <data name="&gt;&gt;tab5gB1.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="BtnOpenLogFile.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnOpenLogFile.Location" type="System.Drawing.Point, System.Drawing">
+    <value>164, 56</value>
+  </data>
+  <data name="BtnOpenLogFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 23</value>
+  </data>
+  <data name="BtnOpenLogFile.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="BtnOpenLogFile.Text" xml:space="preserve">
+    <value>Open logfile</value>
+  </data>
+  <data name="&gt;&gt;BtnOpenLogFile.Name" xml:space="preserve">
+    <value>BtnOpenLogFile</value>
+  </data>
+  <data name="&gt;&gt;BtnOpenLogFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnOpenLogFile.Parent" xml:space="preserve">
+    <value>groupBox25</value>
+  </data>
+  <data name="&gt;&gt;BtnOpenLogFile.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="cBExtendedLoggingCOM.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -13646,7 +13673,7 @@ M4 Dynamic Laser Power Mode</value>
     <value>groupBox25</value>
   </data>
   <data name="&gt;&gt;cBExtendedLoggingCOM.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="groupBox25.Location" type="System.Drawing.Point, System.Drawing">
     <value>574, 6</value>
@@ -22443,6 +22470,57 @@ Step width  Speed</value>
   <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="checkBox12.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBox12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 19</value>
+  </data>
+  <data name="checkBox12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>291, 43</value>
+  </data>
+  <data name="checkBox12.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="checkBox12.Text" xml:space="preserve">
+    <value>Show other forms always in front (e.g. Setup form)</value>
+  </data>
+  <data name="&gt;&gt;checkBox12.Name" xml:space="preserve">
+    <value>checkBox12</value>
+  </data>
+  <data name="&gt;&gt;checkBox12.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox12.Parent" xml:space="preserve">
+    <value>groupBox29</value>
+  </data>
+  <data name="&gt;&gt;checkBox12.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="groupBox29.Location" type="System.Drawing.Point, System.Drawing">
+    <value>372, 244</value>
+  </data>
+  <data name="groupBox29.Size" type="System.Drawing.Size, System.Drawing">
+    <value>300, 72</value>
+  </data>
+  <data name="groupBox29.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="groupBox29.Text" xml:space="preserve">
+    <value>Misc</value>
+  </data>
+  <data name="&gt;&gt;groupBox29.Name" xml:space="preserve">
+    <value>groupBox29</value>
+  </data>
+  <data name="&gt;&gt;groupBox29.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox29.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;groupBox29.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="LblShowVertex.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -22612,7 +22690,7 @@ Step width  Speed</value>
     <value>NoControl</value>
   </data>
   <data name="cBKeepPenWidth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 126</value>
+    <value>9, 112</value>
   </data>
   <data name="cBKeepPenWidth.Size" type="System.Drawing.Size, System.Drawing">
     <value>196, 17</value>
@@ -22639,7 +22717,7 @@ Step width  Speed</value>
     <value>372, 6</value>
   </data>
   <data name="groupBox14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>300, 157</value>
+    <value>300, 136</value>
   </data>
   <data name="groupBox14.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -22657,7 +22735,7 @@ Step width  Speed</value>
     <value>tabPage6</value>
   </data>
   <data name="&gt;&gt;groupBox14.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="btnReloadSettings.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -22684,7 +22762,7 @@ Step width  Speed</value>
     <value>tabPage6</value>
   </data>
   <data name="&gt;&gt;btnReloadSettings.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="cBFCTBBlockExpandKeepLastOpen.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -22770,54 +22848,6 @@ Step width  Speed</value>
   <data name="&gt;&gt;nUDFCTBLineInterval.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="tBPasteSpecial.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 19</value>
-  </data>
-  <data name="tBPasteSpecial.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 20</value>
-  </data>
-  <data name="tBPasteSpecial.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tBPasteSpecial.Name" xml:space="preserve">
-    <value>tBPasteSpecial</value>
-  </data>
-  <data name="&gt;&gt;tBPasteSpecial.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tBPasteSpecial.Parent" xml:space="preserve">
-    <value>tab5gB9</value>
-  </data>
-  <data name="&gt;&gt;tBPasteSpecial.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tab5gB9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>61, 90</value>
-  </data>
-  <data name="tab5gB9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 53</value>
-  </data>
-  <data name="tab5gB9.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="tab5gB9.Text" xml:space="preserve">
-    <value>Paste Special content</value>
-  </data>
-  <data name="tab5gB9.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;tab5gB9.Name" xml:space="preserve">
-    <value>tab5gB9</value>
-  </data>
-  <data name="&gt;&gt;tab5gB9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tab5gB9.Parent" xml:space="preserve">
-    <value>groupBox12</value>
-  </data>
-  <data name="&gt;&gt;tab5gB9.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="label12.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -22846,13 +22876,13 @@ Step width  Speed</value>
     <value>groupBox12</value>
   </data>
   <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="groupBox12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>372, 169</value>
+    <value>372, 148</value>
   </data>
   <data name="groupBox12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>300, 147</value>
+    <value>300, 90</value>
   </data>
   <data name="groupBox12.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -22870,7 +22900,109 @@ Step width  Speed</value>
     <value>tabPage6</value>
   </data>
   <data name="&gt;&gt;groupBox12.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
+  </data>
+  <data name="tBPasteSpecial.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 19</value>
+  </data>
+  <data name="tBPasteSpecial.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 20</value>
+  </data>
+  <data name="tBPasteSpecial.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tBPasteSpecial.Name" xml:space="preserve">
+    <value>tBPasteSpecial</value>
+  </data>
+  <data name="&gt;&gt;tBPasteSpecial.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tBPasteSpecial.Parent" xml:space="preserve">
+    <value>tab5gB9</value>
+  </data>
+  <data name="&gt;&gt;tBPasteSpecial.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tab5gB9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>678, 89</value>
+  </data>
+  <data name="tab5gB9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>174, 53</value>
+  </data>
+  <data name="tab5gB9.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="tab5gB9.Text" xml:space="preserve">
+    <value>Paste Special content</value>
+  </data>
+  <data name="tab5gB9.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;tab5gB9.Name" xml:space="preserve">
+    <value>tab5gB9</value>
+  </data>
+  <data name="&gt;&gt;tab5gB9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tab5gB9.Parent" xml:space="preserve">
+    <value>tabPage6</value>
+  </data>
+  <data name="&gt;&gt;tab5gB9.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="nUDToolSize.Location" type="System.Drawing.Point, System.Drawing">
+    <value>249, 207</value>
+  </data>
+  <data name="nUDToolSize.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 20</value>
+  </data>
+  <data name="nUDToolSize.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="nUDToolSize.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;nUDToolSize.Name" xml:space="preserve">
+    <value>nUDToolSize</value>
+  </data>
+  <data name="&gt;&gt;nUDToolSize.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDToolSize.Parent" xml:space="preserve">
+    <value>tab8gB2</value>
+  </data>
+  <data name="&gt;&gt;nUDToolSize.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label68.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label68.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label68.Location" type="System.Drawing.Point, System.Drawing">
+    <value>172, 209</value>
+  </data>
+  <data name="label68.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 13</value>
+  </data>
+  <data name="label68.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="label68.Text" xml:space="preserve">
+    <value>Size in px</value>
+  </data>
+  <data name="&gt;&gt;label68.Name" xml:space="preserve">
+    <value>label68</value>
+  </data>
+  <data name="&gt;&gt;label68.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label68.Parent" xml:space="preserve">
+    <value>tab8gB2</value>
+  </data>
+  <data name="&gt;&gt;label68.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="btnColorDimension.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -22897,7 +23029,7 @@ Step width  Speed</value>
     <value>tab8gB2</value>
   </data>
   <data name="&gt;&gt;btnColorDimension.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="btnColorBackgroundPath.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -22924,7 +23056,7 @@ Step width  Speed</value>
     <value>tab8gB2</value>
   </data>
   <data name="&gt;&gt;btnColorBackgroundPath.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="cBColorModeEnable.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -22957,7 +23089,7 @@ Step width  Speed</value>
     <value>tab8gB2</value>
   </data>
   <data name="&gt;&gt;cBColorModeEnable.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="nUDSimulation.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 266</value>
@@ -22984,7 +23116,7 @@ Step width  Speed</value>
     <value>tab8gB2</value>
   </data>
   <data name="&gt;&gt;nUDSimulation.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="btnColorSimulation.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -23011,7 +23143,7 @@ Step width  Speed</value>
     <value>tab8gB2</value>
   </data>
   <data name="&gt;&gt;btnColorSimulation.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="nUDRotaryInfo.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 170</value>
@@ -23038,7 +23170,7 @@ Step width  Speed</value>
     <value>tab8gB2</value>
   </data>
   <data name="&gt;&gt;nUDRotaryInfo.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="btnColorRotaryInfo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -23065,7 +23197,7 @@ Step width  Speed</value>
     <value>tab8gB2</value>
   </data>
   <data name="&gt;&gt;btnColorRotaryInfo.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="btnColorMachineLimit.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -23092,7 +23224,7 @@ Step width  Speed</value>
     <value>tab8gB2</value>
   </data>
   <data name="&gt;&gt;btnColorMachineLimit.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="tab8gB2lbl2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -23119,7 +23251,7 @@ Step width  Speed</value>
     <value>tab8gB2</value>
   </data>
   <data name="&gt;&gt;tab8gB2lbl2.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="tab8gB2lbl1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -23149,7 +23281,7 @@ Step width  Speed</value>
     <value>tab8gB2</value>
   </data>
   <data name="&gt;&gt;tab8gB2lbl1.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="nUDHeightMap.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 242</value>
@@ -23176,7 +23308,7 @@ Step width  Speed</value>
     <value>tab8gB2</value>
   </data>
   <data name="&gt;&gt;nUDHeightMap.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="btnColorHeightMap.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -23203,7 +23335,7 @@ Step width  Speed</value>
     <value>tab8gB2</value>
   </data>
   <data name="&gt;&gt;btnColorHeightMap.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="nUDMarker.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 218</value>
@@ -23230,7 +23362,7 @@ Step width  Speed</value>
     <value>tab8gB2</value>
   </data>
   <data name="&gt;&gt;nUDMarker.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="btnColorMarker.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -23257,7 +23389,7 @@ Step width  Speed</value>
     <value>tab8gB2</value>
   </data>
   <data name="&gt;&gt;btnColorMarker.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="nUDTool.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 194</value>
@@ -23284,7 +23416,7 @@ Step width  Speed</value>
     <value>tab8gB2</value>
   </data>
   <data name="&gt;&gt;nUDTool.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>16</value>
   </data>
   <data name="nUDPenDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 146</value>
@@ -23311,7 +23443,7 @@ Step width  Speed</value>
     <value>tab8gB2</value>
   </data>
   <data name="&gt;&gt;nUDPenDown.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>17</value>
   </data>
   <data name="nUDPenUp.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 122</value>
@@ -23338,7 +23470,7 @@ Step width  Speed</value>
     <value>tab8gB2</value>
   </data>
   <data name="&gt;&gt;nUDPenUp.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>18</value>
   </data>
   <data name="nUDRuler.Location" type="System.Drawing.Point, System.Drawing">
     <value>112, 98</value>
@@ -23365,7 +23497,7 @@ Step width  Speed</value>
     <value>tab8gB2</value>
   </data>
   <data name="&gt;&gt;nUDRuler.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>19</value>
   </data>
   <data name="btnColorTool.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -23392,7 +23524,7 @@ Step width  Speed</value>
     <value>tab8gB2</value>
   </data>
   <data name="&gt;&gt;btnColorTool.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>20</value>
   </data>
   <data name="btnColorPenDown.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -23419,7 +23551,7 @@ Step width  Speed</value>
     <value>tab8gB2</value>
   </data>
   <data name="&gt;&gt;btnColorPenDown.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>21</value>
   </data>
   <data name="btnColorPenUp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -23446,7 +23578,7 @@ Step width  Speed</value>
     <value>tab8gB2</value>
   </data>
   <data name="&gt;&gt;btnColorPenUp.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>22</value>
   </data>
   <data name="btnColorRuler.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -23473,7 +23605,7 @@ Step width  Speed</value>
     <value>tab8gB2</value>
   </data>
   <data name="&gt;&gt;btnColorRuler.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>23</value>
   </data>
   <data name="btnColorBackground.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -23500,7 +23632,7 @@ Step width  Speed</value>
     <value>tab8gB2</value>
   </data>
   <data name="&gt;&gt;btnColorBackground.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>24</value>
   </data>
   <data name="tab8gB2.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 6</value>
@@ -23524,7 +23656,7 @@ Step width  Speed</value>
     <value>tabPage6</value>
   </data>
   <data name="&gt;&gt;tab8gB2.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="tabPage6.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -23539,7 +23671,7 @@ Step width  Speed</value>
     <value>4</value>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
-    <value>2D-View / Editor</value>
+    <value>2D-View / Editor / Misc</value>
   </data>
   <data name="&gt;&gt;tabPage6.Name" xml:space="preserve">
     <value>tabPage6</value>
@@ -24679,6 +24811,9 @@ Other settings will be stored on change, usually.</value>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>884, 411</value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 150</value>
   </data>
@@ -24690,48 +24825,6 @@ Other settings will be stored on change, usually.</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Setup</value>
-  </data>
-  <data name="&gt;&gt;Column20.Name" xml:space="preserve">
-    <value>Column20</value>
-  </data>
-  <data name="&gt;&gt;Column20.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Column21.Name" xml:space="preserve">
-    <value>Column21</value>
-  </data>
-  <data name="&gt;&gt;Column21.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Column22.Name" xml:space="preserve">
-    <value>Column22</value>
-  </data>
-  <data name="&gt;&gt;Column22.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;color.Name" xml:space="preserve">
-    <value>color</value>
-  </data>
-  <data name="&gt;&gt;color.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
-    <value>toolTip1</value>
-  </data>
-  <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;colorDialog1.Name" xml:space="preserve">
-    <value>colorDialog1</value>
-  </data>
-  <data name="&gt;&gt;colorDialog1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColorDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;timer1.Name" xml:space="preserve">
-    <value>timer1</value>
-  </data>
-  <data name="&gt;&gt;timer1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Column1.Name" xml:space="preserve">
     <value>Column1</value>
@@ -24828,6 +24921,48 @@ Other settings will be stored on change, usually.</value>
   </data>
   <data name="&gt;&gt;Column14.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Column20.Name" xml:space="preserve">
+    <value>Column20</value>
+  </data>
+  <data name="&gt;&gt;Column20.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Column21.Name" xml:space="preserve">
+    <value>Column21</value>
+  </data>
+  <data name="&gt;&gt;Column21.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Column22.Name" xml:space="preserve">
+    <value>Column22</value>
+  </data>
+  <data name="&gt;&gt;Column22.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;color.Name" xml:space="preserve">
+    <value>color</value>
+  </data>
+  <data name="&gt;&gt;color.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
+    <value>toolTip1</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;colorDialog1.Name" xml:space="preserve">
+    <value>colorDialog1</value>
+  </data>
+  <data name="&gt;&gt;colorDialog1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColorDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;timer1.Name" xml:space="preserve">
+    <value>timer1</value>
+  </data>
+  <data name="&gt;&gt;timer1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ControlSetupForm</value>

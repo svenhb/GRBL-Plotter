@@ -1475,7 +1475,7 @@ GUIでGamePadを使用するには、セットアップウィンドウを閉じ�
     <comment>ok</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
-    <value>2Dビュー/エディター</value>
+    <value>2D-ビュー/エディター/その他</value>
     <comment>TabPage7</comment>
   </data>
   <data name="cBKeepPenWidth.Text" xml:space="preserve">
@@ -3227,5 +3227,17 @@ https://github.com/cprezzi/grbl-servoのGrbl-version'grbl_v1.1f_Servo.hex '、
   </data>
   <data name="tabPage31.Text" xml:space="preserve">
     <value>コマンド拡張</value>
+  </data>
+  <data name="checkBox12.Text" xml:space="preserve">
+    <value>他のフォームを常に前面に表示する（例：セットアップフォーム）</value>
+  </data>
+  <data name="label68.Text" xml:space="preserve">
+    <value>ピクセル単位のサイズ</value>
+  </data>
+  <data name="groupBox29.Text" xml:space="preserve">
+    <value>その他</value>
+  </data>
+  <data name="checkBox10.Text" xml:space="preserve">
+    <value>ピンの状態を表示</value>
   </data>
 </root>

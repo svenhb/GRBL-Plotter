@@ -1072,7 +1072,7 @@ M4动态激光功率模式</value>
     <comment>TabPage6</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
-    <value>2D视图/编辑器</value>
+    <value>2D 视图 / 编辑器 / 杂项</value>
     <comment>TabPage7</comment>
   </data>
   <data name="nUDRotaryInfo.ToolTip" xml:space="preserve">
@@ -3207,5 +3207,17 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   </data>
   <data name="tabPage31.Text" xml:space="preserve">
     <value>命令扩展</value>
+  </data>
+  <data name="checkBox12.Text" xml:space="preserve">
+    <value>始终在前面显示其他表单（例如设置表单）</value>
+  </data>
+  <data name="label68.Text" xml:space="preserve">
+    <value>像素大小</value>
+  </data>
+  <data name="groupBox29.Text" xml:space="preserve">
+    <value>杂项</value>
+  </data>
+  <data name="checkBox10.Text" xml:space="preserve">
+    <value>显示引脚状态</value>
   </data>
 </root>

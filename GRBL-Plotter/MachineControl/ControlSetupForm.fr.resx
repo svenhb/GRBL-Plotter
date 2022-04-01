@@ -1068,7 +1068,7 @@ Ou assignez un nom de fichier contenant G-Code.</value>
     <comment>TabPage6</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
-    <value>Vue 2D / Éditeur</value>
+    <value>Vue 2D / Éditeur / Divers</value>
     <comment>TabPage7</comment>
   </data>
   <data name="nUDRotaryInfo.ToolTip" xml:space="preserve">
@@ -2912,5 +2912,17 @@ De plus, la position de l'axe Z peut être utilisée, par exemple, pour augmente
   </data>
   <data name="tabPage31.Text" xml:space="preserve">
     <value>extension de commande</value>
+  </data>
+  <data name="checkBox12.Text" xml:space="preserve">
+    <value>Afficher les autres formulaires toujours devant (par exemple, le formulaire de configuration)</value>
+  </data>
+  <data name="label68.Text" xml:space="preserve">
+    <value>Taille en px</value>
+  </data>
+  <data name="groupBox29.Text" xml:space="preserve">
+    <value>Divers</value>
+  </data>
+  <data name="checkBox10.Text" xml:space="preserve">
+    <value>Afficher l'état de la broche</value>
   </data>
 </root>

@@ -33,7 +33,7 @@ namespace GrblPlotter
     public partial class ControlSerialForm : Form        // Form can be loaded twice!!! COM1, COM2
     {
 
-        private bool IsConnectedToGrbl()
+        public bool IsConnectedToGrbl()
         {
             if (!useEthernet) { return serialPort.IsOpen; }
             else { return Connected; }
@@ -61,6 +61,7 @@ namespace GrblPlotter
             if (!useEthernet)
             {
                 AddToLog("\nTry to connect to serial " + cbPort.Text + " @ " + cbBaud.Text);
+				EventCollector.SetCommunication("C" + cbPort.Text);
                 Application.DoEvents();
                 OpenPortSerial();
                 if (serialPort.IsOpen)
@@ -76,6 +77,7 @@ namespace GrblPlotter
                 {
                     Logger.Info("==== Connecting to {0}:{1} ====", TbEthernetIP.Text, TbEthernetPort.Text);
                     AddToLog("\nTry to connect via Ethernet - Telnet\nConnect to " + TbEthernetIP.Text + ":" + TbEthernetPort.Text + "\nIf fails, it takes up to 20 sec. to response!");
+					EventCollector.SetCommunication("CEther");
 					timerSerial.Interval = 1000;
                     timerSerial.Start();
 
@@ -167,6 +169,7 @@ namespace GrblPlotter
             //     writer = null;
             CbEthernetUse.Enabled = true;
 
+			EventCollector.SetCommunication("CDisc");
             useEthernet = CbEthernetUse.Checked;
             if (!useEthernet)
             {

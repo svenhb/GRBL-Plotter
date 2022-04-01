@@ -22,6 +22,7 @@
  * 2019-10-31 add SerialPortFixer http://zachsaw.blogspot.com/2010/07/serialport-ioexception-workaround-in-c.html
  * 2021-07-22 code clean up / code quality
  * 2021-09-01 line 145 new loop: for (int i = 0; i < rxBuff.Length; i++) // old foreach (byte rxTmpChart in rxBuff)
+ * 2022-03-19 add EventCollector on send error
 */
 using System;
 using System.Collections.Generic;
@@ -237,7 +238,8 @@ namespace GrblPlotter
                 }
             }
             catch (Exception err) {
-                Logger.Error(err, "Error SendLine: ");
+                Logger.Error(err, "Error SendLine: {0} ", data);
+                EventCollector.SetCommunication(string.Format("CDiyS{1}", err.Message));
                 if (cBFeedback.Checked)
                     rtbLog.AppendText(string.Format(">| {0} \r\n", data));
             }

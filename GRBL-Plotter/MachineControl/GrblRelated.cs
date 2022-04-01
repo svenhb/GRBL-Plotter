@@ -555,7 +555,7 @@ namespace GrblPlotter
     }
 
     internal enum GrblState { idle, run, hold, jog, alarm, door, check, home, sleep, probe, reset, unknown, Marlin, notConnected };
-    internal enum GrblStreaming { ok, error, reset, finish, pause, waitidle, toolchange, stop, lasermode, waitstop };
+    internal enum GrblStreaming { ok, error, reset, finish, pause, waitidle, toolchange, stop, lasermode, waitstop, setting };
 
     internal struct StatConvert
     {

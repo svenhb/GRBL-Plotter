@@ -35,6 +35,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlHeightMapForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.RbScanY = new System.Windows.Forms.RadioButton();
+            this.RbScanX = new System.Windows.Forms.RadioButton();
+            this.CbExtrudeEnable = new System.Windows.Forms.CheckBox();
             this.CbRoundUp = new System.Windows.Forms.CheckBox();
             this.BtnPosFromCodeDimension = new System.Windows.Forms.Button();
             this.BtnMoveUR = new System.Windows.Forms.Button();
@@ -101,7 +104,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.GbProbing = new System.Windows.Forms.GroupBox();
             this.NudXYFeedrate = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
             this.CbUseG1 = new System.Windows.Forms.CheckBox();
@@ -136,7 +139,7 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.GbProbing.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudXYFeedrate)).BeginInit();
             this.GbProbingDiy.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -145,6 +148,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.RbScanY);
+            this.groupBox1.Controls.Add(this.RbScanX);
+            this.groupBox1.Controls.Add(this.CbExtrudeEnable);
             this.groupBox1.Controls.Add(this.CbRoundUp);
             this.groupBox1.Controls.Add(this.BtnPosFromCodeDimension);
             this.groupBox1.Controls.Add(this.BtnMoveUR);
@@ -168,6 +174,29 @@
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
+            // 
+            // RbScanY
+            // 
+            resources.ApplyResources(this.RbScanY, "RbScanY");
+            this.RbScanY.Name = "RbScanY";
+            this.RbScanY.TabStop = true;
+            this.RbScanY.UseVisualStyleBackColor = true;
+            // 
+            // RbScanX
+            // 
+            resources.ApplyResources(this.RbScanX, "RbScanX");
+            this.RbScanX.Checked = true;
+            this.RbScanX.Name = "RbScanX";
+            this.RbScanX.TabStop = true;
+            this.RbScanX.UseVisualStyleBackColor = true;
+            // 
+            // CbExtrudeEnable
+            // 
+            resources.ApplyResources(this.CbExtrudeEnable, "CbExtrudeEnable");
+            this.CbExtrudeEnable.Checked = global::GrblPlotter.Properties.Settings.Default.heightMapExtrudeEnable;
+            this.CbExtrudeEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "heightMapExtrudeEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbExtrudeEnable.Name = "CbExtrudeEnable";
+            this.CbExtrudeEnable.UseVisualStyleBackColor = true;
             // 
             // CbRoundUp
             // 
@@ -837,23 +866,23 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.groupBox4);
+            this.tabPage2.Controls.Add(this.GbProbing);
             resources.ApplyResources(this.tabPage2, "tabPage2");
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // groupBox4
+            // GbProbing
             // 
-            this.groupBox4.Controls.Add(this.NudXYFeedrate);
-            this.groupBox4.Controls.Add(this.label11);
-            this.groupBox4.Controls.Add(this.CbUseG1);
-            this.groupBox4.Controls.Add(this.RbProbingDiy);
-            this.groupBox4.Controls.Add(this.GbProbingDiy);
-            this.groupBox4.Controls.Add(this.RbProbingZ);
-            this.groupBox4.Controls.Add(this.GbProbingZ);
-            resources.ApplyResources(this.groupBox4, "groupBox4");
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.TabStop = false;
+            this.GbProbing.Controls.Add(this.NudXYFeedrate);
+            this.GbProbing.Controls.Add(this.label11);
+            this.GbProbing.Controls.Add(this.CbUseG1);
+            this.GbProbing.Controls.Add(this.RbProbingDiy);
+            this.GbProbing.Controls.Add(this.GbProbingDiy);
+            this.GbProbing.Controls.Add(this.RbProbingZ);
+            this.GbProbing.Controls.Add(this.GbProbingZ);
+            resources.ApplyResources(this.GbProbing, "GbProbing");
+            this.GbProbing.Name = "GbProbing";
+            this.GbProbing.TabStop = false;
             // 
             // NudXYFeedrate
             // 
@@ -918,8 +947,7 @@
             // RbProbingZ
             // 
             resources.ApplyResources(this.RbProbingZ, "RbProbingZ");
-            this.RbProbingZ.Checked = global::GrblPlotter.Properties.Settings.Default.heightMapProbeUseZ;
-            this.RbProbingZ.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "heightMapProbeUseZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.RbProbingZ.Checked = true;
             this.RbProbingZ.Name = "RbProbingZ";
             this.RbProbingZ.TabStop = true;
             this.RbProbingZ.UseVisualStyleBackColor = true;
@@ -985,8 +1013,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.GbProbing.ResumeLayout(false);
+            this.GbProbing.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudXYFeedrate)).EndInit();
             this.GbProbingDiy.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
@@ -1063,7 +1091,7 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox GbProbing;
         private System.Windows.Forms.RadioButton RbProbingDiy;
         private System.Windows.Forms.GroupBox GbProbingDiy;
         private System.Windows.Forms.RadioButton RbProbingZ;
@@ -1077,5 +1105,8 @@
         private System.Windows.Forms.Button BtnMoveLL;
         private System.Windows.Forms.Button BtnPosFromCodeDimension;
         private System.Windows.Forms.CheckBox CbRoundUp;
+        private System.Windows.Forms.CheckBox CbExtrudeEnable;
+        private System.Windows.Forms.RadioButton RbScanY;
+        private System.Windows.Forms.RadioButton RbScanX;
     }
 }

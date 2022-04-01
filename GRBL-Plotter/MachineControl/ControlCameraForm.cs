@@ -30,6 +30,7 @@
  * 2021-09-12 split some code to ControlCameraFormMisc.cs
  *            - add distortion correction, shape recognizion: don't show applied filter
  * 2021-12-11 line 1097 check if ((cameraIndex >= 0) && (cameraIndex < videosources.Count)) 
+ * 2022-03-23 listSettings if (cBShapeDetection.Checked)
 */
 
 using AForge;
@@ -185,6 +186,7 @@ namespace GrblPlotter
             cameraTeachRadiusXyzBot = Properties.Settings.Default.cameraTeachRadiusXyzBot;
 
             // get last selected cam
+            FillComboBox();
             SetCameraMountDependence();	// depending on fix or xy: load camera -index, -name, -rotation, -distortion-values, 
 
             cameraScalingFix = Properties.Settings.Default.cameraScalingFix;
@@ -226,7 +228,6 @@ namespace GrblPlotter
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { CenterToScreen(); }
 
-            FillComboBox();
 
             if (Properties.Settings.Default.cameraSimulateImage)
             {
@@ -431,33 +432,45 @@ namespace GrblPlotter
                 case SetupType.TeachFix:
                     {
                         radiusInPx = (int)(actualScaling * cameraTeachRadiusFix * cameraZoom);
-                        e.Graphics.DrawEllipse(penTeachMark, new Rectangle((int)cameraZeroFixXInPx - radiusInPx, (int)cameraZeroFixYInPx - radiusInPx, 2 * radiusInPx, 2 * radiusInPx));
-                        string txt = Localization.GetString("cameraNextClick") + " " + cameraTeachRadiusFix.ToString(culture);
-                        ShowLabel(e.Graphics, stringpos, txt);
+                        if (radiusInPx > 0)
+                        {
+                            e.Graphics.DrawEllipse(penTeachMark, new Rectangle((int)cameraZeroFixXInPx - radiusInPx, (int)cameraZeroFixYInPx - radiusInPx, 2 * radiusInPx, 2 * radiusInPx));
+                            string txt = Localization.GetString("cameraNextClick") + " " + cameraTeachRadiusFix.ToString(culture);
+                            ShowLabel(e.Graphics, stringpos, txt);
+                        }
                         break;
                     }
                 case SetupType.TeachXy:
                     {
                         radiusInPx = (int)(cameraTeachRadiusXy * cameraZoom * xmid / actualScaling);
-                        e.Graphics.DrawEllipse(penTeachMark, new Rectangle(xmid - radiusInPx, ymid - radiusInPx, 2 * radiusInPx, 2 * radiusInPx));
-                        string txt = Localization.GetString("cameraNextClick") + " " + cameraTeachRadiusXy.ToString(culture);
-                        ShowLabel(e.Graphics, stringpos, txt);
+                        if (radiusInPx > 0)
+                        {
+                            e.Graphics.DrawEllipse(penTeachMark, new Rectangle(xmid - radiusInPx, ymid - radiusInPx, 2 * radiusInPx, 2 * radiusInPx));
+                            string txt = Localization.GetString("cameraNextClick") + " " + cameraTeachRadiusXy.ToString(culture);
+                            ShowLabel(e.Graphics, stringpos, txt);
+                        }  
                         break;
                     }
                 case SetupType.TeachXyzTop:
                     {
                         radiusInPx = (int)(cameraTeachRadiusXyzTop * cameraZoom * xmid / actualScaling);
-                        e.Graphics.DrawEllipse(penTeachMark, new Rectangle(xmid - radiusInPx, ymid - radiusInPx, 2 * radiusInPx, 2 * radiusInPx));
-                        string txt = Localization.GetString("cameraNextClick") + " " + cameraTeachRadiusXyzTop.ToString(culture);
-                        ShowLabel(e.Graphics, stringpos, txt);
+                        if (radiusInPx > 0)
+                        {
+                            e.Graphics.DrawEllipse(penTeachMark, new Rectangle(xmid - radiusInPx, ymid - radiusInPx, 2 * radiusInPx, 2 * radiusInPx));
+                            string txt = Localization.GetString("cameraNextClick") + " " + cameraTeachRadiusXyzTop.ToString(culture);
+                            ShowLabel(e.Graphics, stringpos, txt);
+                        }  
                         break;
                     }
                 case SetupType.TeachXyzBot:
                     {
                         radiusInPx = (int)(cameraTeachRadiusXyzBot * cameraZoom * xmid / actualScaling);
-                        e.Graphics.DrawEllipse(penTeachMark, new Rectangle(xmid - radiusInPx, ymid - radiusInPx, 2 * radiusInPx, 2 * radiusInPx));
-                        string txt = Localization.GetString("cameraNextClick") + " " + cameraTeachRadiusXyzBot.ToString(culture);
-                        ShowLabel(e.Graphics, stringpos, txt);
+                        if (radiusInPx > 0)
+                        {
+                            e.Graphics.DrawEllipse(penTeachMark, new Rectangle(xmid - radiusInPx, ymid - radiusInPx, 2 * radiusInPx, 2 * radiusInPx));
+                            string txt = Localization.GetString("cameraNextClick") + " " + cameraTeachRadiusXyzBot.ToString(culture);
+                            ShowLabel(e.Graphics, stringpos, txt);
+                        } 
                         break;
                     }
                 case SetupType.MeasureAngle:
@@ -868,14 +881,16 @@ namespace GrblPlotter
         private void CbShapeDetection_CheckedChanged(object sender, EventArgs e)
         {
             if (cBShapeDetection.Checked)
-                btnAutoCenter.Enabled = true;
+            {   btnAutoCenter.Enabled = true;
+				ListSettings();
+			}
             else
                 btnAutoCenter.Enabled = false;
         }
 
 
 
-        private void FillComboBox()
+        private void FillComboBox()		// on Form load
         {
             if (comboBox1.InvokeRequired)
                 comboBox1.Invoke((MethodInvoker)delegate
@@ -887,17 +902,35 @@ namespace GrblPlotter
                 string txt;
                 comboBox1.Items.Clear();
                 txt = Properties.Settings.Default.camShapeSet1;
-                if (txt.IndexOf('|') < 1) { txt = Properties.Settings.Default.camShapeSet1 = "Paper|0|100|0|100|0|100|True|True|True|20|200|0.5|1|"; }
+                if (txt.IndexOf('|') < 1) 
+				{ txt = Properties.Settings.Default.camShapeSet1 = "Paper|0|100|0|100|0|100|True|True|True|20|200|0.5|1|"; Logger.Error("FillComboBox set default for 1: {0}", txt);}
                 comboBox1.Items.Add((string.IsNullOrEmpty(txt)) ? "not set" : txt.Substring(0, txt.IndexOf('|')));
+				
                 txt = Properties.Settings.Default.camShapeSet2;
-                if (txt.IndexOf('|') < 1) { txt = Properties.Settings.Default.camShapeSet2 = "Paper2|0|100|0|100|0|100|True|True|True|20|200|0.5|1|"; }
+                if (txt.IndexOf('|') < 1) 
+				{ txt = Properties.Settings.Default.camShapeSet2 = "Paper2|0|100|0|100|0|100|True|True|True|20|200|0.5|1|";Logger.Error("FillComboBox set default for 2: {0}", txt);}
                 comboBox1.Items.Add((string.IsNullOrEmpty(txt)) ? "not set" : txt.Substring(0, txt.IndexOf('|')));
+				
                 txt = Properties.Settings.Default.camShapeSet3;
-                if (txt.IndexOf('|') < 1) { txt = Properties.Settings.Default.camShapeSet3 = "PCB|0|150|0|150|0|150|False|False|True|20|100|0.5|1|"; }
+                if (txt.IndexOf('|') < 1) 
+				{ txt = Properties.Settings.Default.camShapeSet3 = "PCB|0|150|0|150|0|150|False|False|True|20|100|0.5|1|"; Logger.Error("FillComboBox set default for 3: {0}", txt);}
                 comboBox1.Items.Add((string.IsNullOrEmpty(txt)) ? "not set" : txt.Substring(0, txt.IndexOf('|')));
+				
                 txt = Properties.Settings.Default.camShapeSet4;
-                if (txt.IndexOf('|') < 1) { txt = Properties.Settings.Default.camShapeSet4 = "Wood|0|106|0|237|123|246|True|True|False|10|100|0.5|2.0|"; }
+                if (txt.IndexOf('|') < 1) 
+				{ txt = Properties.Settings.Default.camShapeSet4 = "Wood|0|106|0|237|123|246|True|True|False|10|100|0.5|2.0|"; Logger.Error("FillComboBox set default for 4: {0}", txt);}
                 comboBox1.Items.Add((string.IsNullOrEmpty(txt)) ? "not set" : txt.Substring(0, txt.IndexOf('|')));
+				
+				Properties.Settings.Default.Save();
+
+				byte selectedIndex = 0;
+				if (CameraMount == CameraMounting.Fix)
+					selectedIndex = filterIndexFix = Properties.Settings.Default.cameraFilterIndexFix;
+				else
+					selectedIndex = filterIndexXy = Properties.Settings.Default.cameraFilterIndexXy;
+				
+				if (selectedIndex >= comboBox1.Items.Count) {Logger.Error("FillComboBox stored index too high: {0}", selectedIndex); selectedIndex = 0; }
+				comboBox1.SelectedIndex = (int)selectedIndex;
             }
         }
 

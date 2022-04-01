@@ -303,9 +303,9 @@ namespace GrblPlotter
             int countZ = 0;
             int lastMotion = 0;
 
-            if (oldCode.Count > 1000000) // huge amount of code, reduce time consuming functionality
+            if (oldCode.Count > 100000) // huge amount of code, reduce time consuming functionality
             {
-                Logger.Info("!!!!! Huge amount of code, reduce time consuming functionality !!!!!");
+                Logger.Info("⚠⚠⚠⚠ Huge amount of code (> 100000 lines), reduce time consuming functionality (no pen-up-path-arrows/-ids, no colored pen-down-paths) !!!!!");
                 showArrow = false;
                 showId = false;
                 showColors = false;
@@ -315,7 +315,7 @@ namespace GrblPlotter
             { Logger.Info("!!!!! Show path-node markers, type:{0}  size:{1} !!!!!", Properties.Settings.Default.gui2DShowVertexType, Properties.Settings.Default.gui2DShowVertexSize); }
 
             if (showColors)
-                ToolTable.Init();
+                ToolTable.Init(" (GetGCodeLines)");
 
             if (worker != null) worker.ReportProgress(0, new MyUserState { Value = 0, Content = "Analyse GCode..." });
             int progressMain;

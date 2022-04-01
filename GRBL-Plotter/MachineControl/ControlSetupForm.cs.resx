@@ -2978,7 +2978,7 @@ Chcete-li používat Gamepad v GUI, musíte okno nastavení zavřít.</value>
     <comment>TabPage8</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
-    <value>2D-View / Editor</value>
+    <value>2D-View / Editor / Různé</value>
     <comment>TabPage7</comment>
   </data>
   <data name="tabPage22.Text" xml:space="preserve">
@@ -3181,5 +3181,14 @@ Kromě toho lze polohu osy Z využít např. ke zvýšení množství barvy, kdy
   </data>
   <data name="tabPage31.Text" xml:space="preserve">
     <value>rozšíření příkazu</value>
+  </data>
+  <data name="checkBox12.Text" xml:space="preserve">
+    <value>Zobrazit další formuláře vždy v popředí (např. formulář nastavení)</value>
+  </data>
+  <data name="label68.Text" xml:space="preserve">
+    <value>Velikost v px</value>
+  </data>
+  <data name="groupBox29.Text" xml:space="preserve">
+    <value>Různé</value>
   </data>
 </root>

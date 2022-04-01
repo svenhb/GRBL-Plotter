@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@
  * 2021-05-06 new method to get unique id
  * 2021-07-26 code clean up / code quality
  * 2021-11-11 track prog-start and -end
+ * 2022-04-01 limit length of log-string line 145
 */
 
 using System;
@@ -40,15 +41,15 @@ namespace GrblPlotter
         private enum CounterType { import, usage };
 
         private static bool showAny = false;
+        private static string output = "not set";
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private static readonly CultureInfo culture = CultureInfo.InvariantCulture;
 
-        public static void CheckVersion(bool showAnyResult = false)
+        public static void CheckVersion(bool showAnyResult, string lastEvents)
         {
- //           Logger.Info("CheckVersion");
+            output = lastEvents;
             showAny = showAnyResult;
-            //            if (Properties.Settings.Default.guiCheckUpdate)
             System.Threading.ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(CheckUpdate.AsyncCheckVersion));
         }
 
@@ -75,7 +76,7 @@ namespace GrblPlotter
                 get += "&langori=" + ci.Name;
                 get += "&import=" + GetCounters(CounterType.import);
                 get += "&usage=" + GetCounters(CounterType.usage);
-                get += "&error=" + GetError();
+                get += "&error=" + output;  // GetError();
                 if (!Properties.Settings.Default.guiCheckUpdateURL.StartsWith("http"))
                 {
                     Properties.Settings.Default.guiCheckUpdateURL = "https://GRBL-Plotter.de";
@@ -90,22 +91,6 @@ namespace GrblPlotter
 
         }
 
-        private static string GetError()
-		{
-            if (Properties.Settings.Default.guiLastStart == 0)
-                Properties.Settings.Default.guiLastStart = DateTime.Now.Ticks;
-            if (Properties.Settings.Default.guiLastEnd == 0)
-                Properties.Settings.Default.guiLastEnd = DateTime.Now.Ticks;
-
-            long diff = Properties.Settings.Default.guiLastEnd - Properties.Settings.Default.guiLastStart;
-		//	var days = Math.Floor((decimal)(diff/(24*60*60*10000000L))); // Math.floor() rounds a number downwards to the nearest whole integer, which in this case is the value representing the day
-			var hours = Math.Round((decimal)((diff/(60*60*10000000L))) ); // % 24) Math.round() rounds the number up or down
-			var mins = Math.Round((decimal)((diff/(60*10000000))) % 60);
-            string output = string.Format("{0:00}:{1:00}-{2}",hours, mins, Properties.Settings.Default.guiLastEndReason);
-    //        Logger.Info("{0}  {1}  {2}", diff, Properties.Settings.Default.guiLastStart, Properties.Settings.Default.guiLastEnd);
-            Logger.Info(output);
-            return output;
-		}
 
         private static string GetCounters(CounterType type)
         {
@@ -146,7 +131,6 @@ namespace GrblPlotter
         }
         // Suddenly it was not possible anymore to get latest version from here (@"https://api.github.com/repos/svenhb/GRBL-Plotter/releases/latest"); 
         // workarround: put file 'GRBL-Plotter.txt' with actual version on own server
-
         private static void CheckSite2(string site)
         {
             ServicePointManager.Expect100Continue = true;
@@ -155,7 +139,11 @@ namespace GrblPlotter
             using (System.Net.WebClient wc = new System.Net.WebClient())
             {
                 try {
-                    Logger.Trace(culture, "CheckSite2 {0}", site);
+					string logTmp = site;
+					if (site.Length > 255)
+						logTmp = site.Substring(0,255);
+                    Logger.Trace(culture, "CheckSite2 {0}", logTmp);
+					
                     string[] lines = wc.DownloadString(site).Split(';');
                     string vers = lines[0];
                     Logger.Trace(culture, "CheckSite2 {0}", String.Join(" | ", lines));

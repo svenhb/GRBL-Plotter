@@ -19,6 +19,7 @@
 /*
  * 2022-01-17 new class to process frame with handles at selected figure
  * 2022-01-21 snap on grid
+ * 2022-02-21 strange zooming behavior: GetScaleFactor switch to selectionBoundsOrig
 */
 
 using System;
@@ -190,7 +191,7 @@ namespace GrblPlotter
         private static RectangleF GetRectHandle(PointF tmp, float r)
         { return new RectangleF(tmp.X - r, tmp.Y - r, 2 * r, 2 * r); }
 
-        public static PointF GetScaleFactor(XyPoint diff, bool sameScaling, bool snap)
+        public static PointF GetScaleFactor(XyPoint diff, bool sameScaling, bool snap)	
         {
             if (snap)
             {
@@ -198,8 +199,8 @@ namespace GrblPlotter
                 diff.Y = Math.Round(selectionBoundsOrig.Y + selectionBounds.Height + diff.Y) - (selectionBoundsOrig.Y + selectionBounds.Height);
             }
 
-            float x = (selectionBounds.Width + (float)diff.X) / selectionBounds.Width;
-            float y = (selectionBounds.Height + (float)diff.Y) / selectionBounds.Height;
+            float x = (selectionBoundsOrig.Width + (float)diff.X) / selectionBoundsOrig.Width;		// switch to selectionBoundsOrig
+            float y = (selectionBoundsOrig.Height + (float)diff.Y) / selectionBoundsOrig.Height;	// switch to selectionBoundsOrig
             if (sameScaling)
             	y = x = Math.Max(x,y);
 
@@ -281,7 +282,7 @@ namespace GrblPlotter
                 SetHandlePositions(selectionBounds);
                 DrawHandles();
             }
-            Pen myPen = new Pen(Color.Black, 0.2f);
+            Pen myPen = new Pen(Color.Black, 0.05f);
             myPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             e.DrawPath(myPen, pathBounds);
             myPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;

@@ -30,6 +30,7 @@
  * 2020-08-13 bug fix transformGCodeMirror with G91 
  * 2021-07-12 code clean up / code quality
  * 2022-01-17 process more than one figures (e.g. selected group) for scaling, rotation, move
+ * 2022-03-31 line 257 take care of Properties.Settings.Default.importGCTangentialTurn when rotating issue #272
  */
 
 using System;
@@ -81,6 +82,7 @@ namespace GrblPlotter
         public static string TransformGCodeMirror(Translate shiftToZero = Translate.MirrorX)
         {
             Logger.Debug("..transformGCodeMirror {0}", shiftToZero);
+            EventCollector.SetTransform("Tmir");
             if (gcodeList == null) return "";
 
             XyPoint centerOfFigure = xyzSize.GetCenter();		// center of whole graphics
@@ -178,6 +180,7 @@ namespace GrblPlotter
         internal static string TransformGCodeRotate(double angle, double scale, XyPoint offset, bool calcCenter = true)
         {
             Logger.Debug("Rotate angle: {0}", angle);
+			EventCollector.SetTransform("Trot");
             if (gcodeList == null) return "";
             XyPoint centerOfFigure = xyzSize.GetCenter();
             if (lastFigureNumber > 0)
@@ -200,7 +203,6 @@ namespace GrblPlotter
             {
                 // if only a single figure is marked to be rotated
                 // and motion mode is 91, the relative position to the next (not rotated) figure must be adapted
-                //    if ((lastFigureNumber > 0) && (gcline.figureNumber != lastFigureNumber))
                 if ((lastFigureNumber > 0) && !lastFigureNumbers.Contains(gcline.figureNumber))
                 {
                     if (!gcline.isdistanceModeG90 && offsetApplied)         // correct relative movement of next figure
@@ -224,8 +226,6 @@ namespace GrblPlotter
                         newvaly = (gcline.actualPos.X - offset.X) * Math.Sin(angle * Math.PI / 180) + (gcline.actualPos.Y - offset.Y) * Math.Cos(angle * Math.PI / 180);
                         if (gcline.isdistanceModeG90)	// absolute
                         {
-                            //                            newvalx = (gcline.actualPos.X - offset.X) * Math.Cos(angle * Math.PI / 180) - (gcline.actualPos.Y - offset.Y) * Math.Sin(angle * Math.PI / 180);
-                            //                            newvaly = (gcline.actualPos.X - offset.X) * Math.Sin(angle * Math.PI / 180) + (gcline.actualPos.Y - offset.Y) * Math.Cos(angle * Math.PI / 180);
                             gcline.x = (newvalx * scale) + offset.X;
                             gcline.y = (newvaly * scale) + offset.Y;
                         }
@@ -233,8 +233,6 @@ namespace GrblPlotter
                         {
                             if ((gcline.motionMode == 0) && !offsetApplied)
                             {
-                                //                                newvalx = (gcline.actualPos.X - offset.X) * Math.Cos(angle * Math.PI / 180) - (gcline.actualPos.Y - offset.Y) * Math.Sin(angle * Math.PI / 180);
-                                //                                newvaly = (gcline.actualPos.X - offset.X) * Math.Sin(angle * Math.PI / 180) + (gcline.actualPos.Y - offset.Y) * Math.Cos(angle * Math.PI / 180);
                                 gcline.x = gcline.x + ((newvalx * scale) + offset.X) - gcline.actualPos.X;
                                 gcline.y = gcline.y + ((newvaly * scale) + offset.Y) - gcline.actualPos.Y;
                                 if ((gcline.x != null) && (gcline.y != null))
@@ -242,13 +240,9 @@ namespace GrblPlotter
                             }
                             else
                             {
-                                //  newvalx = gcline.x * Math.Cos(angle * Math.PI / 180) - gcline.y * Math.Sin(angle * Math.PI / 180);
-                                //  newvaly = gcline.x * Math.Sin(angle * Math.PI / 180) + gcline.y * Math.Cos(angle * Math.PI / 180);
                                 gcline.x = gcline.x * Math.Cos(angle * Math.PI / 180) - gcline.y * Math.Sin(angle * Math.PI / 180);//newvalx;
                                 gcline.y = gcline.x * Math.Sin(angle * Math.PI / 180) + gcline.y * Math.Cos(angle * Math.PI / 180);//newvaly;
                             }
-                            //                            newvalx = (gcline.actualPos.X - offset.X) * Math.Cos(angle * Math.PI / 180) - (gcline.actualPos.Y - offset.Y) * Math.Sin(angle * Math.PI / 180);
-                            //                            newvaly = (gcline.actualPos.X - offset.X) * Math.Sin(angle * Math.PI / 180) + (gcline.actualPos.Y - offset.Y) * Math.Cos(angle * Math.PI / 180);
                             lastAbsPosX = ((double)newvalx * scale) + offset.X; //gcline.actualPos.X;
                             lastAbsPosY = ((double)newvaly * scale) + offset.Y; //gcline.actualPos.Y;
                         }
@@ -262,14 +256,13 @@ namespace GrblPlotter
                     }
                     if (tangentialAxisEnable)
                     {
-                        if ((tangentialAxisName == "C") && (gcline.c != null)) { gcline.c += angle; }
-                        else if ((tangentialAxisName == "B") && (gcline.b != null)) { gcline.b += angle; }
-                        else if ((tangentialAxisName == "A") && (gcline.a != null)) { gcline.a += angle; }
-                        else if ((tangentialAxisName == "Z") && (gcline.z != null)) { gcline.z += angle; }
-                    }
+						double tangle =((double)Properties.Settings.Default.importGCTangentialTurn * angle / 360);
 
-                    //       calcAbsPosition(gcline, oldLine);
-                    //       oldLine = new gcodeByLine(gcline);   // get copy of newLine
+                        if ((tangentialAxisName == "C") && (gcline.c != null)) { gcline.c += tangle; }
+                        else if ((tangentialAxisName == "B") && (gcline.b != null)) { gcline.b += tangle; }
+                        else if ((tangentialAxisName == "A") && (gcline.a != null)) { gcline.a += tangle; }
+                        else if ((tangentialAxisName == "Z") && (gcline.z != null)) { gcline.z += tangle; }
+                    }
                 }
             }
             pathBackground.Reset();
@@ -289,6 +282,7 @@ namespace GrblPlotter
         public static string TransformGCodeScale(double scaleX, double scaleY, XyPoint centerOfFigure)
         {
             Logger.Debug("Scale scaleX: {0}, scale Y: {1}", scaleX, scaleY);
+			EventCollector.SetTransform("Tscl");
             if (gcodeList == null) return "";
 
             double factor_x = scaleX / 100;
@@ -378,6 +372,7 @@ namespace GrblPlotter
         public static string TransformGCodeOffset(double tx, double ty, Translate shiftToZero)
         {
             Logger.Debug("Transform X: {0}, Y: {1}, Offset: {2}", tx, ty, shiftToZero);
+			EventCollector.SetTransform("Toff");
             if (gcodeList == null) return "";
             if ((lastFigureNumber <= 0) || (!(shiftToZero == Translate.None)))
             { pathMarkSelection.Reset(); lastFigureNumber = -1; }
@@ -482,6 +477,7 @@ namespace GrblPlotter
         public static string TransformGCodeRadiusCorrection(double radius)
         {
             Logger.Debug("..transformGCodeRadiusCorrection r: {0}", radius);
+			EventCollector.SetTransform("Trad");
             if (gcodeList == null) return "";
 
             if (lastFigureNumber > 0)
@@ -638,23 +634,11 @@ namespace GrblPlotter
             bool isFullCircle = ((p1.X == p2.X) && (p1.Y == p2.Y));
             int offsetType = Crc.GetPointOffsets(ref offset, p1, p2, p3, radius, isEnd);
 
-            //           Logger.Trace(" offset typ{0} x{1:0.000} y{2:0.000}", offsetType, offset[1].X, offset[1].Y);
-
-            /*       if (offsetType == -2)   // intersection not successfull
-                   {
-                       gcodeList[act].motionMode = 1; gcodeList[act].x = null; gcodeList[act].y = null;    // clear move
-                       p2 = p3; p3 = fillPointData(next, next+1);      // next+1 not save
-                       offsetType = crc.getPointOffsets(ref offset, p1, p2, p3, radius, isEnd);
-       #if (debuginfo)
-                       log.Add(string.Format(" redo offset x{0:0.000} y{1:0.000}", offset[1].X, offset[1].Y));
-       #endif
-                   }*/
 
             if (isArc && !isFullCircle)   // replace arc by line, if start and end-point are too close
             {
                 double dist = offset[0].DistanceTo(offset[1]);
-                //     double a1 = offset[0].AngleTo(offset[1]);
-                //      double a2 = ((XyPoint)p1).AngleTo((XyPoint)p2);
+
                 if (dist < 0.1)
                 {
                     gcodeList[act].motionMode = 1;
@@ -670,8 +654,6 @@ namespace GrblPlotter
 
             gcodeList[act].x = offset[1].X; gcodeList[act].y = offset[1].Y;         // offset point
 
-            //          Logger.Trace(" createOffsetedPath Offset x{0:0.000} y{1:0.000}", gcodeList[act].x, gcodeList[act].y);
-
             if (isArc)                                                              // offset radius     
             {
                 double iNew = p2.CX - (double)gcodeList[prev].x;
@@ -680,9 +662,6 @@ namespace GrblPlotter
 
                 if (!SameSign(gcodeList[act].i, iNew) || !SameSign(gcodeList[act].j, jNew)) // radius now negative
                 { }
-
-                //            if ((gcodeList[act].i == 0) && (gcodeList[act].j == 0)) // radius = 0, command not needed
-                //             {   gcodeList[act].motionMode = 1; gcodeList[act].i = null; gcodeList[act].j = null;}
             }
 
             if (offsetType >= 1)     // insert arc to connect lines

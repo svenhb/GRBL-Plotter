@@ -85,6 +85,7 @@ namespace GrblPlotter
         SimpleSerialForm _serial_form3;
 
         public bool SerialPortOpen { get; private set; } = false;
+        private bool SerialPortOpenLast = false;
         private bool serialPortError = false;
 
         private readonly System.Timers.Timer timerSerial = new System.Timers.Timer();
@@ -114,6 +115,7 @@ namespace GrblPlotter
         // Note: receive-event waits for line-end char, if missing -> timeout exception
         private const string lineEndRX = "\n";      // read - grbl accepts '\n' or '\r' and sends "\r\n", but Marlin sends '\n'
         private const string lineEndTXgrbl = "\r";    // send - grbl accepts '\n' or '\r' and sends "\r\n", but Marlin sends '\n'
+        private const string lineEndTXmarlin = "\n";    // send - grbl accepts '\n' or '\r' and sends "\r\n", but Marlin sends '\n'
 
         /* counters will be decreased in timer event - action on 0 */
         private int countMinimizeForm = 0;              // timer to minimize form
@@ -315,7 +317,10 @@ namespace GrblPlotter
         private void PasteCodeFromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         { PasteCode(); }
         private void CopySelectionToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
-        { Clipboard.SetText(rtbLog.SelectedText); }
+        {
+            if (!string.IsNullOrEmpty(rtbLog.SelectedText))
+                Clipboard.SetText(rtbLog.SelectedText); 
+        }
 
         private void SelectAllToolStripMenuItem_Click(object sender, EventArgs e)
         { rtbLog.SelectAll(); }
@@ -324,7 +329,9 @@ namespace GrblPlotter
         { rtbLog.SelectAll(); }
 
         private void CopyCode()
-        { Clipboard.SetText(rtbLog.SelectedText); }
+        { if (!string.IsNullOrEmpty(rtbLog.SelectedText)) 
+                Clipboard.SetText(rtbLog.SelectedText); 
+        }
 
         private void PasteCode()
         {
@@ -366,11 +373,33 @@ namespace GrblPlotter
                         return;
                     }
                 }
-                Logger.Info("TimerSerial_Tick countMinimizeForm:{0}", countMinimizeForm);
+                Logger.Trace("TimerSerial_Tick countMinimizeForm:{0}", countMinimizeForm);
             }
 
             SerialPortOpen = IsConnectedToGrbl();
             if (iamSerial == 1) { Grbl.isConnected = SerialPortOpen; }
+
+			if (logTransmit) Logger.Trace("TimerSerial_Tick SerialPortOpen:{0} IsConnectedToGrbl():{1} serialPortError:{2}", SerialPortOpen, IsConnectedToGrbl(), serialPortError);
+
+            if (!SerialPortOpen && SerialPortOpenLast && (grblStateNow != GrblState.unknown) && (grblStateNow != GrblState.notConnected))         // lost connection
+            {
+                grblStateNow = GrblState.notConnected;
+                AddToLog("\r* Lost connection, close port at " + GetTimeStampString());
+                AddToLog("* Last line-nr. sent: " + streamingBuffer.GetSentLineNr() + "   confirmed: " + streamingBuffer.GetConfirmedLineNr());
+                Logger.Error("⚠⚠⚠ Lost connection, close port. Last sent:{0}  confirmed:{1}", streamingBuffer.GetSentLineNr(), streamingBuffer.GetConfirmedLineNr());
+                EventCollector.SetCommunication(string.Format("CLost{0}", iamSerial), true);
+	            Grbl.lastMessage = lastError = "Lost connection, close port";
+
+                SendStreamEvent(GrblStreaming.error);		// SaveStreamingStatus
+                OnRaisePosEvent(new PosEventArgs(posWork, posMachine, GrblState.notConnected, machineState, mParserState, Grbl.lastMessage));
+                this.BeginInvoke(new EventHandler(DisconnectFromGrbl));
+                lblSrState.BackColor = Grbl.GrblStateColor(grblStateNow);
+                lblSrState.Text = Grbl.StatusToText(grblStateNow);  // status;
+                this.WindowState = FormWindowState.Minimized;
+                this.Show();
+                this.WindowState = FormWindowState.Normal;
+            }
+            SerialPortOpenLast = SerialPortOpen;
 
             if (IsConnectedToGrbl() && !serialPortError)
             {
@@ -380,7 +409,7 @@ namespace GrblPlotter
                     {
                         if (isMarlin)
                         {
-                            if (!isStreaming) { SerialPortDataSend("M114" + lineEndTXgrbl); getMarlinPositionWasSent = true; }    // marlin pos request
+                            if (!isStreaming) { SerialPortDataSend("M114" + lineEndTXmarlin); getMarlinPositionWasSent = true; }    // marlin pos request
                             updateMarlinPosition = true;
                         }
                         else
@@ -392,14 +421,6 @@ namespace GrblPlotter
 								SerialPortDataSend("?");
                                 if (useEthernet) 
                                     EthernetDataReceive();
-                                /*    if (!useEthernet)
-                                    {   serialPort.Write(dataArray, 0, 1); }
-                                    else
-                                    {
-                                        byte[] myWriteBuffer = Encoding.ASCII.GetBytes("?");
-                                        Connection.Write(myWriteBuffer, 0, myWriteBuffer.Length);
-                                        EthernetDataReceive();
-                                    }*/
                             }
                         }
                     }
@@ -637,7 +658,7 @@ namespace GrblPlotter
             serialPortError = false;
             try
             {
-                Logger.Info("Ser:{0}, ==== openPort {1} {2} ======", iamSerial, cbPort.Text, cbBaud.Text);
+                Logger.Info("Ser:{0}, ==== openPort '{1}' @ {2} Bd ======", iamSerial, cbPort.Text, cbBaud.Text);
                 serialPort.PortName = actualPort = cbPort.Text;
                 serialPort.DataBits = 8;
                 serialPort.BaudRate = Convert.ToInt32(cbBaud.Text);
@@ -670,7 +691,7 @@ namespace GrblPlotter
                 {
 					tryDoSerialConnection = false;
                     AddToLog("* " + cbPort.Text + " not available\r\n");
-                    Logger.Warn("⚠ Ser:{0}, Port {1} not available", iamSerial, cbPort.Text);
+                    Logger.Warn("⚠ Ser:{0}, Port '{1}' not available", iamSerial, cbPort.Text);
                     if (iamSerial == 1)
                         Grbl.lastMessage = "Open COM Port: " + cbPort.Text + " failed";
                 }
@@ -688,7 +709,8 @@ namespace GrblPlotter
             {
 				tryDoSerialConnection = false;
                 Logger.Error(err, "Ser:{0} -openPort-", iamSerial);
-                countMinimizeForm = 0;
+                EventCollector.SetCommunication(string.Format("COpS{0}", iamSerial, err.Message));
+				countMinimizeForm = 0;
                 LogError("! Opening port", err);
                 if (iamSerial == 1) { Grbl.isConnected = SerialPortOpen = IsConnectedToGrbl(); }
                 UpdateControls();
@@ -707,6 +729,8 @@ namespace GrblPlotter
                     serialPort.Close();
                 }
                 serialPort.Dispose();
+                if (!isStreaming)
+                    SerialPortOpenLast = false;     // avoid connection lost error
                 SaveSettings();
                 if (!flag_closeForm)
                 {
@@ -842,7 +866,7 @@ namespace GrblPlotter
                 catch (Exception err)
                 {
                     Logger.Error(err, "GrblHardReset");
-                    Properties.Settings.Default.guiLastEndReason += string.Format("SerSnd GrblHardReset:{0} {1} ---", iamSerial, err.Message);
+                    EventCollector.SetCommunication(string.Format("CRst{0}-{1}", iamSerial, err.Message));
                     AddToLog("> DTR/RTS reset ERROR " + err.Message);
                 }
             }
@@ -887,12 +911,12 @@ namespace GrblPlotter
 
                     if (++rxErrorCount > 2)
                     {
+						EventCollector.SetCommunication(string.Format("CRSa{0}-{1}", iamSerial, err1.Message));
                         this.BeginInvoke(new EventHandler(ClosePortSerial));    //closePort();
                         grblStateNow = GrblState.notConnected;
                         Grbl.lastMessage = "Serial timeout exception - correct baud rate?";
                     }
 
-                    Properties.Settings.Default.guiLastEndReason += string.Format("SerRecT:{0} {1} {2} ---", iamSerial, err1.Message, rxErrorCount);
                     OnRaisePosEvent(new PosEventArgs(posWork, posMachine, GrblState.notConnected, machineState, mParserState, Grbl.lastMessage));
                 }
                 catch (Exception err)
@@ -908,7 +932,7 @@ namespace GrblPlotter
 
                     grblStateNow = GrblState.notConnected;
                     Grbl.lastMessage = "Serial receive exception - correct baud rate?";
-                    Properties.Settings.Default.guiLastEndReason += string.Format("SerRecE:{0} {1} ---", iamSerial, err.Message);
+                    EventCollector.SetCommunication(string.Format("CRSb{0}-{1}", iamSerial, err.Message));
                     OnRaisePosEvent(new PosEventArgs(posWork, posMachine, GrblState.notConnected, machineState, mParserState, Grbl.lastMessage));
                 }
             }
@@ -946,7 +970,7 @@ namespace GrblPlotter
                     rxErrorCount++;
                     AddToLog("Error ethernet receive - disconnect: " + err.Message);
                     Logger.Error(err, "EthernetDataReceive - disconnect:{0} ", rxErrorCount);
-                    Properties.Settings.Default.guiLastEndReason += string.Format("EthernetDataReceive:{0} ---", err.Message);
+                    EventCollector.SetCommunication(string.Format("CRE-{0}", err.Message));
                     grblStateNow = GrblState.notConnected;
                     OnRaisePosEvent(new PosEventArgs(posWork, posMachine, GrblState.notConnected, machineState, mParserState, Grbl.lastMessage));
                     //   DisconnectFromGrbl(null, null);
@@ -975,6 +999,7 @@ namespace GrblPlotter
 
         private void SerialPortDataSend(byte[] tmp, int a, int b)
         {
+			if (logTransmit) Logger.Trace("SerialPortDataSend data:{0} IsConnectedToGrbl:{1} Connected:{2} useEthernet:{3}  serOpen:{4}", tmp.ToString(), IsConnectedToGrbl(), Connected, useEthernet, serialPort.IsOpen);
             if (IsConnectedToGrbl())
             {
              //   useEthernet = CbEthernetUse.Checked;
@@ -983,14 +1008,14 @@ namespace GrblPlotter
                     try
                     {
                         serialPort.Write(tmp, a, b);
-                        if (logStreamData) System.IO.File.AppendAllText(Datapath.LogFiles + "\\" + logFileSentData, tmp.ToString());
+                        if (logStreamData) WriteLog(logFileSentData, tmp.ToString(), "1");
                         return;
                     }
                     catch (Exception err)
                     {       // InvalidOperationException, ArgumentNullException, TimeoutException
                         AddToLog("Data send exception " + err.Message + " -Close port");
-                        Logger.Error(err, "SerialPortDataSend Ser:{0}", iamSerial);
-                        Properties.Settings.Default.guiLastEndReason += string.Format("SerSnd:{0} {1} ---", iamSerial, err.Message);
+                        Logger.Error(err, "SerialPortDataSend Ser:{0} ", iamSerial);
+                        EventCollector.SetCommunication(string.Format("CSSa{0}-{1}", iamSerial, err.Message));
                     }
                 }
                 else
@@ -998,8 +1023,7 @@ namespace GrblPlotter
 					try 
                     {	if (Connection.CanWrite)
 							Connection.Write(tmp, a, b);       //tmp[0]);
-                        if (logStreamData) System.IO.File.AppendAllText(Datapath.LogFiles + "\\" + logFileSentData, tmp.ToString());
-					//	Logger.Info("SerialPortDataSend {0}",tmp);
+                        if (logStreamData) WriteLog(logFileSentData, tmp.ToString(), "2");
 					}
 					catch (System.IO.IOException err)
 					{   if (Connected)
@@ -1014,7 +1038,7 @@ namespace GrblPlotter
                     catch (Exception err)
                     {   AddToLog("Data send exception " + err.Message);
                         Logger.Error(err, "SerialPortDataSend Ethernet ");
-                        Properties.Settings.Default.guiLastEndReason += string.Format("SerSnd1: Ethernet{0} ---", err.Message);
+                        EventCollector.SetCommunication(string.Format("CSEa-{0}", err.Message));
                     }
                 //    EthernetDataReceive();
                 }
@@ -1022,6 +1046,7 @@ namespace GrblPlotter
         }
         private bool SerialPortDataSend(string tmp)
         {
+			if (logTransmit) Logger.Trace("SerialPortDataSend data:{0} IsConnectedToGrbl:{1} Connected:{2} useEthernet:{3}  serOpen:{4}", tmp, IsConnectedToGrbl(), Connected, useEthernet, serialPort.IsOpen);
             if (IsConnectedToGrbl() && (!string.IsNullOrEmpty(tmp)))
             {
              //   useEthernet = CbEthernetUse.Checked;
@@ -1032,12 +1057,12 @@ namespace GrblPlotter
                         try
                         {
                             serialPort.Write(tmp);
-                            if (logStreamData) System.IO.File.AppendAllText(Datapath.LogFiles + "\\" + logFileSentData, tmp);
+                            if (logStreamData && (tmp != "?")) WriteLog(logFileSentData, tmp, "3");
                             return true;
                         }
 						catch (System.IO.IOException err)
 						{   if (Connected)
-							{   Logger.Error(err, "SerialPortDataSend, Ethernet IO.IOException... ");
+							{   Logger.Error(err, "SerialPortDataSend, Serial:{0} IO.IOException... ", iamSerial);
 								this.BeginInvoke(new EventHandler(DisconnectFromGrbl));
 								if (this.WindowState == FormWindowState.Minimized)
 								{
@@ -1050,7 +1075,7 @@ namespace GrblPlotter
                         {       // InvalidOperationException, ArgumentNullException, TimeoutException
                             AddToLog("Data send exception " + err.Message + " -Close port");
                             Logger.Error(err, "SerialPortDataSend Ser:{0}", iamSerial);
-                            Properties.Settings.Default.guiLastEndReason += string.Format("SerSnd:{0} {1} ---", iamSerial, err.Message);
+                            EventCollector.SetCommunication(string.Format("CSSb{0}-{1}", iamSerial, err.Message));
                             this.BeginInvoke(new EventHandler(ClosePortSerial));    //closePort();
                             Grbl.lastMessage = "Serial send exception";
                             OnRaisePosEvent(new PosEventArgs(posWork, posMachine, GrblState.notConnected, machineState, mParserState, Grbl.lastMessage));
@@ -1064,15 +1089,13 @@ namespace GrblPlotter
 					{	byte[] myWriteBuffer = Encoding.ASCII.GetBytes(tmp);
 						if (Connection.CanWrite)
 							Connection.Write(myWriteBuffer, 0, myWriteBuffer.Length); //(tmp);
-                        if (logStreamData) System.IO.File.AppendAllText(Datapath.LogFiles + "\\" + logFileSentData, tmp);
-                        //    Logger.Info("SerialPortDataSend {0}",tmp);
-                //        EthernetDataReceive();
+                        if (logStreamData && (tmp != "?")) WriteLog(logFileSentData, tmp, "4");
                         return true;
                     }
                     catch (Exception err)
                     {   AddToLog("Data send exception " + err.Message);
                         Logger.Error(err, "SerialPortDataSend Ethernet ");
-                        Properties.Settings.Default.guiLastEndReason += string.Format("SerSnd2: Ethernet{0} ---", err.Message);
+                        EventCollector.SetCommunication(string.Format("CSEb-{0}", err.Message));
                     }
 				//	EthernetDataReceive();
                 }
@@ -1080,7 +1103,23 @@ namespace GrblPlotter
             return false;
         }
 
-        private void SendResetEvent()
+        private object threadlock = new object();
+
+        private void WriteLog(string fileName, string message, string source)
+		{
+			try
+			{
+				lock (threadlock)
+				{
+                    System.IO.File.AppendAllText(Datapath.LogFiles + "\\" + fileName, message);
+				}
+			}
+			catch (Exception err)
+			{
+				AddToLog("WriteLog exception " + source + " " + err.Message);
+			}
+		}        
+		private void SendResetEvent()
         {
             if (lastError.Length > 2)
             {   AddToLog("* last error: " + lastError); }
@@ -1218,7 +1257,7 @@ namespace GrblPlotter
         }
 
         private void BtnClear_Click(object sender, EventArgs e)
-        { rtbLog.Clear(); }
+        { UpdateLogging(); rtbLog.Clear(); }
         private void TbCommand_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar != (char)13) return;
@@ -1311,7 +1350,14 @@ namespace GrblPlotter
                 strCheckResult += string.Format("Min Feedrate for X = {0:.#}mm/min\r\nMin Feedrate for Y = {1:.#}mm/min\r\nMin Feedrate for Z = {2:.#}mm/min\r\n\r\n", (1800 / stepX), (1800 / stepY), (1800 / stepZ));
                 strCheckResult += string.Format("Avoid feedrates (F) below {0:.#}mm/min\r\n", minF);
                 strCheckResult += "\r\nSettings are copied to clipboard for further use (e.g. save as text file)";
-                System.Windows.Forms.Clipboard.SetText(string.Join("\r\n", GRBLSettings.ToArray()));
+				try {
+                    string text = string.Join("\r\n", GRBLSettings.ToArray());
+                    if (!string.IsNullOrEmpty(text))
+                        System.Windows.Forms.Clipboard.SetText(text);
+				}
+				catch {
+					AddToLog("Could not copy settings to clipboard!");
+				}
                 GRBLSettings.Clear();
             }
             else
@@ -1343,9 +1389,9 @@ namespace GrblPlotter
         private void BtnGRBLCommand4_Click(object sender, EventArgs e)      // $X - Kill alarm lock
         { RequestSend("$X"); }
         private void BtnGRBLReset_Click(object sender, EventArgs e)
-        { GrblReset(true); }    // savePos
+        { UpdateLogging(); GrblReset(true); }    // savePos
         private void BtnGRBLHardReset_Click(object sender, EventArgs e)
-        { GrblHardReset(); }
+        { UpdateLogging(); GrblHardReset(); }
 
         #endregion
 
@@ -1373,8 +1419,9 @@ namespace GrblPlotter
                 if (showAll || (tSpindle > 1)) AddToLog("Spindle: " + GetTimeString(tSpindle));
                 if (showAll || (tFlood > 1)) AddToLog("Flood  : " + GetTimeString(tFlood));
                 if (showAll || (tMist > 1)) AddToLog("Mist   : " + GetTimeString(tMist));
+				AddToLog("---------------------------");
             }
-            Logger.Info("ListAccessoryStateRunTime Spindle:{0}  Flood:{1}  Mist:{2}", GetTimeString(tSpindle), GetTimeString(tFlood), GetTimeString(tMist));
+            Logger.Info("🛠🛠🛠 ListAccessoryStateRunTime Spindle:{0}  Flood:{1}  Mist:{2}", GetTimeString(tSpindle), GetTimeString(tFlood), GetTimeString(tMist));
         }
         private string GetTimeString(double tmp)
         {

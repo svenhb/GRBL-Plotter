@@ -142,7 +142,7 @@
     <comment>TabPage6</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
-    <value>2D-просмотр / редактор</value>
+    <value>2D-вид / Редактор / Разное</value>
     <comment>TabPage7</comment>
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
@@ -1554,7 +1554,7 @@ min X, min Y и max Z.
     <comment>TabPage8</comment>
   </data>
   <data name="tab8gB1lbl2.Text" xml:space="preserve">
-    <value>Нажмите «Применить изменения», чтобы изменить размеры джойстика</value>
+    <value>Нажмите «Применить изменения», чтобы изменить размер элементов управления джойстиком.</value>
     <comment>TabPage8</comment>
   </data>
   <data name="tab8gB1lbl1.Text" xml:space="preserve">
@@ -3112,5 +3112,36 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   </data>
   <data name="tabPage31.Text" xml:space="preserve">
     <value>расширение команды</value>
+  </data>
+  <data name="checkBox12.Text" xml:space="preserve">
+    <value>Показывать другие формы всегда впереди (например, форма настройки)</value>
+  </data>
+  <data name="label68.Text" xml:space="preserve">
+    <value>Размер в пикселях</value>
+  </data>
+  <data name="groupBox29.Text" xml:space="preserve">
+    <value>Разное</value>
+  </data>
+  <data name="label77.Text" xml:space="preserve">
+    <value>А,Б,С
+Ширина шага Скорость</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Z
+Ширина шага Скорость</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>XY
+Ширина шага Скорость</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnJoyXYCalc.Text" xml:space="preserve">
+    <value>Расчет лучшая скорость</value>
+    <comment>ok</comment>
+  </data>
+  <data name="checkBox10.Text" xml:space="preserve">
+    <value>Показать состояние контакта</value>
   </data>
 </root>

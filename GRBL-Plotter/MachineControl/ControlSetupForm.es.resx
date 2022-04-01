@@ -1068,7 +1068,7 @@ O asigne un nombre de archivo que contenga G-Code.</value>
     <comment>TabPage6</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
-    <value>Vista 2D / Editor</value>
+    <value>Vista 2D / Editor / Varios</value>
     <comment>TabPage7</comment>
   </data>
   <data name="nUDRotaryInfo.ToolTip" xml:space="preserve">
@@ -2912,5 +2912,17 @@ Además, la posición del eje Z se puede utilizar para, por ejemplo, aumentar la
   </data>
   <data name="tabPage31.Text" xml:space="preserve">
     <value>extensión de comando</value>
+  </data>
+  <data name="checkBox12.Text" xml:space="preserve">
+    <value>Mostrar otros formularios siempre al frente (por ejemplo, formulario de configuración)</value>
+  </data>
+  <data name="label68.Text" xml:space="preserve">
+    <value>Tamaño en píxeles</value>
+  </data>
+  <data name="groupBox29.Text" xml:space="preserve">
+    <value>Varios</value>
+  </data>
+  <data name="checkBox10.Text" xml:space="preserve">
+    <value>Mostrar estado de pin</value>
   </data>
 </root>

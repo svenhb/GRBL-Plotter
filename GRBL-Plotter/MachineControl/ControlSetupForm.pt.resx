@@ -2076,7 +2076,7 @@ Por exemplo. 'M0' para pausar a movimentação manual do papel ou '(^ 2 G91 X100
     <comment>ok</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
-    <value>2D-View / Editor</value>
+    <value>2D-View / Editor / Misc</value>
     <comment>TabPage7</comment>
   </data>
   <data name="groupBox12.Text" xml:space="preserve">
@@ -2921,5 +2921,17 @@ Além disso, a posição do eixo Z pode ser usada para, por exemplo, aumentar a 
   </data>
   <data name="tabPage31.Text" xml:space="preserve">
     <value>extensão de comando</value>
+  </data>
+  <data name="checkBox12.Text" xml:space="preserve">
+    <value>Mostrar outros formulários sempre na frente (por exemplo, formulário de configuração)</value>
+  </data>
+  <data name="label68.Text" xml:space="preserve">
+    <value>Tamanho em px</value>
+  </data>
+  <data name="groupBox29.Text" xml:space="preserve">
+    <value>Diversos</value>
+  </data>
+  <data name="checkBox10.Text" xml:space="preserve">
+    <value>Mostrar estado do pino</value>
   </data>
 </root>

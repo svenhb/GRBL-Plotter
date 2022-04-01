@@ -228,7 +228,7 @@ namespace GrblPlotter
 
         private void BtnToolUpdate_Click(object sender, EventArgs e)
         {
-            int toolCount = ToolTable.Init();
+            int toolCount = ToolTable.Init(" (BtnToolUpdate)");
             ToolProp tmpTool;
             cBTool.Items.Clear();
             for (int i = 1; i < toolCount; i++)
