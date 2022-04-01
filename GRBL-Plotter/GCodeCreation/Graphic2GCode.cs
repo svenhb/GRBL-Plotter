@@ -36,6 +36,7 @@
  * 2021-09-21 new GroupOption 'Label' - add txt to layer
  * 2022-01-23 line 466 switch index of "layer" and "type"
  * 2022-01-23 add proforma figure-tag if not figureEnable
+ * 2022-03-29 function 'arc' line 900 if full circle, end_angle = start_angle+360° issue #270
 */
 
 using System;
@@ -882,7 +883,7 @@ namespace GrblPlotter
             Point coordxy = new Point(x, y);
             Point center = new Point(lastGC.X + i, lastGC.Y + j);
             double offset = +Math.PI / 2;
-            if (logCoordinates) Logger.Trace("  Start Arc G{0} X{1:0.000} Y{2:0.000} cx{3:0.000} cy{4:0.000} ", gnr, x, y, center.X, center.Y);
+            if (logCoordinates) Logger.Trace("  Start Arc G{0} X{1:0.000} Y{2:0.000} angle:{3:0.000}    cx{4:0.000} cy{5:0.000} angle:{6:0.000}", gnr, x, y, (180*tangStartRad/ Math.PI), center.X, center.Y, (180*tangEndRad/ Math.PI));
             if (gnr > 2) { offset = -offset; }
 
             Gcode.SetTangential(gcodeString, 180 * tangStartRad / Math.PI, true);
@@ -896,9 +897,9 @@ namespace GrblPlotter
             if (GcodeMath.IsEqual(coordxy, lastGC))				// end = start position? Full circle!
             {
                 if (gnr > 2)
-                    tangEndRad += 2 * Math.PI;        			// CW 360°
+                    tangEndRad += 2 * Math.PI + tangStartRad;        			// CW 360°
                 else
-                    tangEndRad -= 2 * Math.PI;        			// CCW 360°
+                    tangEndRad -= 2 * Math.PI + tangStartRad;        			// CCW 360°
             }
             Gcode.SetTangential(gcodeString, 180 * tangEndRad / Math.PI, false);
             Gcode.Arc(gcodeString, gnr, x, y, i, j, cmt);

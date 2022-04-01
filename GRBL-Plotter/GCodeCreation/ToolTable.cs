@@ -142,6 +142,11 @@ namespace GrblPlotter
 
         internal static ToolProp GetToolProperties(int toolNr)
         {
+            if ((toolTableArray == null) || (toolTableArray.Count == 0))
+            {   Logger.Error("GetToolProperties toolTableArray is empty - do Init");
+                Init(" (GetToolProperties)");
+            }
+
             int index;
             if (toolTableArray != null)
             {
@@ -152,11 +157,6 @@ namespace GrblPlotter
                 }
             }
             index = toolTableArray.Count - 1;// 2;
-            if (index < 0)
-            {   Logger.Error("GetToolProperties toolTableArray.Count is zero");
-                index = 0;
-                toolTableArray.Add(new ToolProp(1, Color.Black, "Default 2"));  // add default colors
-            }
             return toolTableArray[index]; // return 1st regular tool;
         }
 
@@ -188,17 +188,25 @@ namespace GrblPlotter
 
         public static void SortByToolNR(bool invert)
         {
+            if ((toolTableArray == null) || (toolTableArray.Count == 0))
+            {
+                Logger.Error("SortByToolNR toolTableArray is empty - do Init");
+                Init(" (SortByToolNR)");
+            }
             List<ToolProp> SortedList;
             if (!invert)
                 SortedList = toolTableArray.OrderBy(o => o.Toolnr).ToList();
-            //            Array.Sort<ToolProp>(toolTableArray, (x, y) => y.Toolnr.CompareTo(x.Toolnr));
             else
                 SortedList = toolTableArray.OrderByDescending(o => o.Toolnr).ToList();
-            //            Array.Sort<ToolProp>(toolTableArray, (x, y) => x.Toolnr.CompareTo(y.Toolnr));    // sort by tool nr
             toolTableArray = SortedList;
         }
         public static void SortByPixelCount(bool invert)
         {
+            if ((toolTableArray == null) || (toolTableArray.Count == 0))
+            {
+                Logger.Error("SortByPixelCount toolTableArray is empty - do Init");
+                Init(" (SortByPixelCount)");
+            }
             List<ToolProp> SortedList;
             if (invert)
                 SortedList = toolTableArray.OrderBy(o => o.PixelCount).ToList();
@@ -214,7 +222,6 @@ namespace GrblPlotter
             SortedList = toolTableArray.OrderBy(o => o.Toolnr).ToList();
             toolTableArray = SortedList;
 
-            //      Array.Sort<ToolProp>(toolTableArray, (x, y) => x.Toolnr.CompareTo(y.Toolnr));    // sort by tool nr
             for (int i = 1; i < toolTableArray.Count; i++)
             {
                 if (valF == toolTableArray[i].FeedXY)
@@ -236,7 +243,7 @@ namespace GrblPlotter
         /// set tool/color table
         /// get table size
         /// </summary>
-        public static int Init()    // return number of entries
+        public static int Init(string cmt="")    // return number of entries
         {
             useException = false;
             toolTableArray.Clear();
@@ -244,7 +251,7 @@ namespace GrblPlotter
             toolTableArray.Add(new ToolProp(-2, Color.White, "No White"));  // add exception color
 
             string file = Datapath.Tools + "\\" + DefaultFileName;
-            Logger.Info("🛠🛠 Init tool table: {0}", file);
+            Logger.Info("🛠🛠 Init tool table{0}: {1}", cmt, file);
             bool anyToolFound = false;
             if (File.Exists(file))
             {
@@ -290,7 +297,6 @@ namespace GrblPlotter
             }
             if (!anyToolFound)
             {
-        //        toolTableArray.Add(new ToolProp());
                 toolTableArray.Add(new ToolProp(1, Color.Black, "Default 1"));  // add default colors
                 toolTableIndex = toolTableArray.Count - 1;
                 Logger.Error("Tool table not found or empty, use defaults. Count:{0}", toolTableArray.Count);
@@ -300,7 +306,6 @@ namespace GrblPlotter
         }
         public static int Clear()
         {   //sortByToolNr();
-            //       for (int i = 0; i < toolTableIndex; i++)
             for (int i = 0; i < toolTableArray.Count; i++)
             {
                 toolTableArray[i].ColorPresent = false;
@@ -315,18 +320,15 @@ namespace GrblPlotter
             { toolTableArray[i].ToolSelected = val; }
         }
 
-        /*     private static void showList()
-             {
-                 string tmp="";
-                 for (int i = 0; i < toolTableArray.Length; i++)
-                  { tmp += i.ToString() + "  " + toolTableArray[i].Toolnr + "  " + toolTableArray[i].Name + "  " + toolTableArray[i].Color.ToString() + "  " + String.Format("{0:X}", toolTableArray[i].PixelCount) + "\r\n"; }
-                  MessageBox.Show(tmp);
-             }*/
         // set exception color
         public static string SetExceptionColor(Color mycolor)
         {
             useException = true;
-            //    Array.Sort<ToolProp>(toolTableArray, (x, y) => x.Toolnr.CompareTo(y.Toolnr));    // sort by tool nr
+            if ((toolTableArray == null) || (toolTableArray.Count == 0))
+            {
+                Logger.Error("SetExceptionColor toolTableArray is empty - do init");
+                Init(" (SetExceptionColor)");
+            }
             List<ToolProp> SortedList = toolTableArray.OrderBy(o => o.Toolnr).ToList();
             toolTableArray = SortedList;
             toolTableArray[0].Toolnr = -1;
@@ -334,8 +336,7 @@ namespace GrblPlotter
             toolTableArray[0].ColorPresent = true;
             toolTableArray[0].Diff = int.MaxValue;
             toolTableArray[0].Name = "No " + ColorTranslator.ToHtml(Color.FromArgb(mycolor.ToArgb()));
-            //        bool nameFound = false;
-            //            for (int i = 1; i < toolTableIndex; i++)
+
             for (int i = 1; i < toolTableArray.Count; i++)
             {
                 if (toolTableArray[i].Color == mycolor)
@@ -349,7 +350,10 @@ namespace GrblPlotter
         }
         // Clear exception color
         public static void ClrExceptionColor()
-        { useException = false; SortByToolNR(false); toolTableArray[0].ColorPresent = false; }
+        { useException = false; SortByToolNR(false); 
+            if (toolTableArray.Count > 0)
+             toolTableArray[0].ColorPresent = false; 
+        }
 
         // return tool nr of nearest color
         public static int GetToolNRByToolColor(String mycolor, int mode)
@@ -376,8 +380,13 @@ namespace GrblPlotter
         }
         public static short GetToolNRByColor(Color mycolor, int mode)
         {
+            if ((toolTableArray == null) || (toolTableArray.Count == 0))
+            {
+                Logger.Error("GetToolNRByColor toolTableArray is empty - do Init");
+                Init(" (GetToolNRByColor)");
+            }
+
             int i, start = 1;
-            //       Array.Sort<ToolProp>(toolTableArray, (x, y) => x.Toolnr.CompareTo(y.Toolnr));    // sort by tool nr
             List<ToolProp> SortedList = toolTableArray.OrderBy(o => o.Toolnr).ToList();
             toolTableArray = SortedList;
             if (useException) start = 0;  // first element is exception
@@ -406,7 +415,12 @@ namespace GrblPlotter
 
         public static short GetToolNRByToolDiameter(string txtWidth)
         {
-            //   double width = 1;
+            if ((toolTableArray == null) || (toolTableArray.Count == 0))
+            {
+                Logger.Error("GetToolNRByToolDiameter toolTableArray is empty - do Init");
+                Init(" (GetToolNRByToolDiameter)");
+            }
+
             if (!double.TryParse(txtWidth, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out double width))
             { Logger.Error(culture, "Error converting getToolNrByWidth '{0}' ", txtWidth); width = 1; }
 
@@ -433,25 +447,26 @@ namespace GrblPlotter
 
         public static short GetToolNRByToolName(string layer)
         {
-            //        Array.Sort<ToolProp>(toolTableArray, (x, y) => x.Toolnr.CompareTo(y.Toolnr));    // sort by tool nr
+            if ((toolTableArray == null) || (toolTableArray.Count == 0))
+            {
+                Logger.Error("GetToolNRByToolName toolTableArray is empty - do Init");
+                Init(" (GetToolNRByToolName)");
+            }
             List<ToolProp> SortedList = toolTableArray.OrderBy(o => o.Toolnr).ToList();
             toolTableArray = SortedList;
             int diff = 0;
-            //            for (int i = 1; i < toolTableIndex; i++)
+
             for (int i = 1; i < toolTableArray.Count; i++)
             {
                 if (layer == toolTableArray[i].Name)         // direct hit
                 {
                     tmpIndex = i;
-                    //                    Logger.Debug("   check strings direkt hit {0} ", layer);
                     return toolTableArray[i].Toolnr;
                 }
                 diff = LevenshteinDistanceAlgorithm(layer, toolTableArray[i].Name);
-                //               Logger.Debug("   check strings {0}  {1}  diff {2}", layer, toolTableArray[i].name, diff);
 
                 toolTableArray[i].Diff = diff;
             }
-            //     Array.Sort<ToolProp>(toolTableArray, (x, y) => x.Diff.CompareTo(y.Diff));    // sort by color difference
             SortedList = toolTableArray.OrderBy(o => o.Diff).ToList();
             toolTableArray = SortedList;
             tmpIndex = 0;

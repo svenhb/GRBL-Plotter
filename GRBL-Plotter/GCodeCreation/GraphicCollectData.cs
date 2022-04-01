@@ -111,7 +111,7 @@ namespace GrblPlotter
 
         public static void CleanUp()
         {
-            Logger.Trace("----  CleanUp()  before WorkingSet: {0} kb   Total Memory: {1:N0} kb", System.Environment.WorkingSet / 1024, GC.GetTotalMemory(false)/1024);
+            Logger.Trace("----  CleanUp()  before WorkingSet: {0} kb   Total Memory: {1:N0} kb", System.Environment.WorkingSet / 1024, GC.GetTotalMemory(false) / 1024);
             Graphic2GCode.CleanUp();
             completeGraphic = null;
             finalPathList = null;
@@ -122,7 +122,7 @@ namespace GrblPlotter
             backgroundEvent = null;
             GCode = null;
             GC.Collect();
-            Logger.Trace("----  CleanUp()  after  WorkingSet: {0} kb   Total Memory: {1:N0} kb", System.Environment.WorkingSet / 1024, GC.GetTotalMemory(true)/1024);
+            Logger.Trace("----  CleanUp()  after  WorkingSet: {0} kb   Total Memory: {1:N0} kb", System.Environment.WorkingSet / 1024, GC.GetTotalMemory(true) / 1024);
         }
 
         #region notifications
@@ -235,22 +235,24 @@ namespace GrblPlotter
             }
 
             if (completeGraphic.Any())
-            { lastPath = completeGraphic[completeGraphic.Count - 1]; }
+            { lastPath = completeGraphic[completeGraphic.Count - 1]; }		// continoue last stored path
             else
-            { lastPath = actualPath; }
+            { lastPath = actualPath; }                                      // continoue actualPath
 
             actualPath.Info.CopyData(actualPathInfo);       // preset global info for GROUP
 
             // only continue last path if same layer, color, dash-pattern - if enabled
             if ((lastPath is ItemPath apath) && (objectCount > 0) && HasSameProperties(apath, (ItemPath)actualPath) && (IsEqual(xy, lastPoint)))
             {
-                actualPath = apath;
+                actualPath = apath;             // only continoue last path if it was finished
                 actualPath.Options = lastOption;
-                if (logCoordinates) Logger.Trace("AddToPath Id:{0} at X:{1:0.00} Y:{2:0.00} {3}  start.X:{4:0.00} start.Y:{5:0.00}", objectCount, xy.X, xy.Y, actualPath.Info.List(), actualPath.Start.X, actualPath.Start.Y);
+                if (logCoordinates) Logger.Trace("► StartPath-ADD (same properties and pos) Id:{0} at X:{1:0.00} Y:{2:0.00} {3}  start.X:{4:0.00} start.Y:{5:0.00}", objectCount, xy.X, xy.Y, actualPath.Info.List(), actualPath.Start.X, actualPath.Start.Y);
                 continuePath = true;
             }
             else
             {
+                if (logCoordinates) Logger.Trace("► StartPath-NEW (diff properties or pos) Id:{0}  xy X:{1:0.00} Y:{2:0.00}   lastPoint X:{3:0.00} Y:{4:0.00}", objectCount, xy.X, xy.Y, lastPoint.X, lastPoint.Y);
+
                 if (actualPath.Path.Count > 1)
                     StopPath("in StartPath");   // save previous path, before starting an new one
 
@@ -271,7 +273,7 @@ namespace GrblPlotter
                     actualDashArray.CopyTo(actualPath.DashArray, 0);
                 }
 
-                if (logCoordinates) Logger.Trace("StartPath Id:{0} at X:{1:0.00} Y:{2:0.00} Z:{3:0.00} {4}  start.X:{5:0.00} start.Y:{6:0.00}", objectCount, xy.X, xy.Y, useZ, actualPath.Info.List(), actualPath.Start.X, actualPath.Start.Y);
+                if (logCoordinates) Logger.Trace("► StartPath-NEW Id:{0} at X:{1:0.00} Y:{2:0.00} Z:{3:0.00} {4}  start.X:{5:0.00} start.Y:{6:0.00}", objectCount, xy.X, xy.Y, useZ, actualPath.Info.List(), actualPath.Start.X, actualPath.Start.Y);
             }
 
             actualPath.Dimension.SetDimensionXY(xy.X, xy.Y);
@@ -286,27 +288,28 @@ namespace GrblPlotter
         public static void StopPath(string cmt)
         {
             if (!actualPath.Dimension.IsXYSet())                    // 2020-10-31
+            {   if (logEnable) {Logger.Trace("⚠ StopPath dimension not set - skip1"); }
                 return;
+            }
 
-            //           actualPath.Dimension.AddDimensionXY(actualDimension);   // 2020-10-25 // remove 2021-09-09
-
-            if (continuePath && (completeGraphic.Count > 0))
-                completeGraphic[completeGraphic.Count - 1] = actualPath;
+            if (continuePath &&  (completeGraphic.Count > 0))
+            {    completeGraphic[completeGraphic.Count - 1] = actualPath;}
             else
             {
                 if (actualPath.Dimension.IsXYSet())
-                { completeGraphic.Add(actualPath); if (logCoordinates) Logger.Trace("   StopPath completeGraphic.Add {0}", completeGraphic.Count); }
+                {   completeGraphic.Add(actualPath); 
+                    if (logCoordinates) {Logger.Trace("▲ StopPath completeGraphic.Add {0}", completeGraphic.Count); }
+                }
                 else
-                { if (logEnable) Logger.Trace("   StopPath dimension not set - skip"); }
+                { if (logEnable) Logger.Trace("⚠ StopPath dimension not set - skip2"); }
             }
-            if (logCoordinates) Logger.Trace("StopPath  cnt:{0}  cmt:{1} {2}", (objectCount - 1), cmt, actualPath.Info.List());
-            if (logCoordinates) Logger.Trace("    StopPath Dimension  {0}  cmt:{1} {2}", actualPath.Dimension.GetXYString(), cmt, actualPath.Info.List());
+            if (logCoordinates) { Logger.Trace("▲ StopPath  cnt:{0}  cmt:{1} {2}", (objectCount - 1), cmt, actualPath.Info.List()); }
+            if (logCoordinates) { Logger.Trace("▲   StopPath Dimension  {0}  cmt:{1} {2}", actualPath.Dimension.GetXYString(), cmt, actualPath.Info.List()); }
 
             if (actualPath.Path.Count > 0)
             { actualDimension.AddDimensionXY(actualPath.Dimension); }
 
             continuePath = false;
-
             actualPath = new ItemPath();                    // reset path
             actualPathInfo.Id = objectCount;
             actualPath.Info.CopyData(actualPathInfo);       // preset global info for GROUP
@@ -329,11 +332,11 @@ namespace GrblPlotter
             }
 
             if (IsEqual(lastPoint, xy))
-            { if (logCoordinates) Logger.Trace("  AddLine SKIP, same coordinates! X:{0:0.00} Y:{1:0.00}", xy.X, xy.Y); }
+            { if (logCoordinates) Logger.Trace("⚠ AddLine SKIP, same coordinates! X:{0:0.00} Y:{1:0.00}", xy.X, xy.Y); }
             else
             {
                 actualPath.Add(xy, z, 0);
-                if (logCoordinates) Logger.Trace("  AddLine to X:{0:0.00} Y:{1:0.00}  Z:{2:0.00} new dist {3:0.00}   start.X:{4:0.00}  start.Y:{5:0.00}", xy.X, xy.Y, z, actualPath.PathLength, actualPath.Start.X, actualPath.Start.Y);
+                if (logCoordinates) Logger.Trace("● AddLine to X:{0:0.00} Y:{1:0.00}  Z:{2:0.00} new dist {3:0.00}   start.X:{4:0.00}  start.Y:{5:0.00}", xy.X, xy.Y, z, actualPath.PathLength, actualPath.Start.X, actualPath.Start.Y);
                 actualDimension.SetDimensionXY(xy.X, xy.Y);
                 lastPoint = xy;
             }
@@ -346,7 +349,7 @@ namespace GrblPlotter
         {
             bool success = true;
             if (Double.IsNaN(dx) || Double.IsNaN(dy))
-            { Logger.Error("AddDot NaN skip the dot X:{0:0.00} Y:{1:0.00}", dx, dy); success = false; }
+            { Logger.Error("⚠ AddDot NaN skip the dot X:{0:0.00} Y:{1:0.00}", dx, dy); success = false; }
             else
             {
                 ItemDot dot = new ItemDot(dx, dy);
@@ -356,7 +359,7 @@ namespace GrblPlotter
                 completeGraphic.Add(dot);
                 lastPoint = new Point(dx, dy);
                 actualDimension.SetDimensionXY(dx, dy);
-                if (logCoordinates) Logger.Trace("  AddDot at X:{0:0.00} Y:{1:0.00}", dx, dy);
+                if (logCoordinates) Logger.Trace("● AddDot at X:{0:0.00} Y:{1:0.00}", dx, dy);
                 actualPath = new ItemPath();                    // reset path
             }
             return success;

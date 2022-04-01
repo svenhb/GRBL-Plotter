@@ -37,6 +37,7 @@
 * 2021-07-29 add PD, PU marker if no Pen-up/down translation is selected
 * 2022-01-02 make gcodeZApply and gcodePWMEnable public
 * 2022-02-08 For functions Arc, MoveArc and SplitArc switch to double (15 digits) for coordinates (before float with 7 digits)
+* 2022-03-25 pen-up/down individual, add PU/PD
 */
 
 using System;
@@ -282,7 +283,7 @@ namespace GrblPlotter
             headerData.Clear();
             figureString.Clear();                                                           // 
 
-            lastx = -1; lasty = -1; lastz = +1; lasta = 0;
+            lastx = -0.001; lasty = -0.001; lastz = +0.001; lasta = 0;
 
             if (GcodeRelative)
             { lastx = 0; lasty = 0; }
@@ -622,7 +623,7 @@ namespace GrblPlotter
                     if (gcodeComments) tmpString.AppendFormat("({0})\r\n", "Pen down: Individual Cmd");
                     string[] commands = gcodeIndividualDown.Split(';');
                     foreach (string cmd in commands)
-                    { tmpString.AppendFormat("{0}\r\n", cmd.Trim()); }
+                    { tmpString.AppendFormat("{0} {1}\r\n", cmd.Trim(), cmt); }		// 2022-03-25 add {1}
                     penDownApplied = true;
                 }
             }
@@ -645,6 +646,7 @@ namespace GrblPlotter
             string comment = "";
             bool penUpApplied = false;
             if (GcodeRelative) { cmt += string.Format("rel {0}", lastz); }
+            if (cmt.Length > 0) { comment = string.Format("({0})", cmt); }		// 2022-03-25 move up
 
             if (!(GcodeZApply && repeatZ))  // if true, do action in intermediateZ
             {
@@ -653,14 +655,14 @@ namespace GrblPlotter
                     if (gcodeComments) gcodeValue.AppendFormat("({0})\r\n", "Pen up: Individual Cmd");
                     string[] commands = gcodeIndividualUp.Split(';');
                     foreach (string cmd in commands)
-                    { gcodeValue.AppendFormat("{0}\r\n", cmd.Trim()); }
+                    { gcodeValue.AppendFormat("{0} {1}\r\n", cmd.Trim(), comment); }	// 2022-03-25 add {1}
                     penUpApplied = true;
                 }
 
                 if (GcodePWMEnable)
                 {
                     if (gcodeComments) gcodeValue.AppendFormat("({0})\r\n", "Pen up: Servo control");
-                    if (cmt.Length > 0) { comment = string.Format("({0})", cmt); }
+                //    if (cmt.Length > 0) { comment = string.Format("({0})", cmt); }		// 2022-03-25 move up
                     gcodeValue.AppendFormat("M{0} S{1} {2}\r\n", GcodeSpindleCmd, gcodePwmUp, comment);
                     if (GcodePwmDlyUp > 0)
                         gcodeValue.AppendFormat("G{0} P{1}\r\n", FrmtCode(4), FrmtNum(GcodePwmDlyUp));
@@ -669,15 +671,20 @@ namespace GrblPlotter
                     penUpApplied = true;
                 }
 
-                if (gcodeUseLasermode)  // 1st Z, then Laser
+                if (gcodeUseLasermode && !GcodePWMEnable)  // 1st Z, then Laser
                 {
                     if (gcodeComments) gcodeValue.AppendFormat("({0})\r\n", "Pen up: Laser-Off");
+                    //    SpindleOff(gcodeValue, cmto);
+                    gcodeValue.AppendFormat("M{0} S0 (Lasermode: S0 instead of M5 to switch laser off)\r\n", GcodeSpindleCmd);  //2022-03-15
                     if ((!GcodeZApply) && (LastMovewasG0))
                     {
-                        Move(gcodeValue, 1, lastx + 0.001f, lasty + 0.001f, false, "");
-                        Move(gcodeValue, 1, lastx - 0.001f, lasty - 0.001f, false, "");
+                        gcodeValue.AppendFormat("G91 X0.001 F{0} (use Laser mode)\r\n", GcodeXYFeed);
+                        gcodeValue.AppendFormat("G91 X-0.001     (G1 move to activate laser)\r\n");
+                        if (!GcodeRelative)
+                        { gcodeValue.AppendFormat("G90\r\n");}
+                        //        Move(gcodeValue, 1, lastx + 0.001f, lasty + 0.001f, false, "");
+                        //        Move(gcodeValue, 1, lastx - 0.001f, lasty - 0.001f, false, "");
                     }
-                    SpindleOff(gcodeValue, cmto);
                     penUpApplied = true;
                 }
             }

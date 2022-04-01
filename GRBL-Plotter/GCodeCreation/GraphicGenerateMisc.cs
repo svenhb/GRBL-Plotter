@@ -21,6 +21,7 @@
  * 2021-10-29 bugfix in RemoveIntermediateSteps
  * 2021-11-16 bugfix RemoveIntermediateSteps, RemoveShortMoves
  * 2022-01-24 add CalculateDistances
+ line 1300
 */
 
 using System;
@@ -1298,9 +1299,9 @@ namespace GrblPlotter
             if (logEnable) Logger.Trace("...MergeFigures after :{0}    ------------------------------------", graphicToMerge.Count);
         }
         private static bool IsEqual(System.Windows.Point a, System.Windows.Point b)
-        { return ((Math.Abs(a.X - b.X) < equalPrecision) && (Math.Abs(a.Y - b.Y) < equalPrecision)); }
+        {   return ((Math.Abs(a.X - b.X) < equalPrecision) && (Math.Abs(a.Y - b.Y) < equalPrecision)); }
         private static bool IsEqual(double a, double b)
-        { return (Math.Abs(a - b) < equalPrecision); }
+        {   return (Math.Abs(a - b) < equalPrecision); }
         private static void MergePaths(ItemPath addAtEnd, ItemPath toMerge)
         {
             if (logDetailed) Logger.Trace(".....MergePaths ID:{0} {1}     ID:{2} {3}", addAtEnd.Info.Id, addAtEnd.Info.PathGeometry, toMerge.Info.Id, toMerge.Info.PathGeometry);
