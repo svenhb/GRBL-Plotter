@@ -20,6 +20,7 @@
  * 2020-03-11 split from MainForm.cs
  * 2021-07-02 code clean up / code quality
  * 2021-12-02 add range test for index
+ * 2022-03-29 line 115 check if (_serial_form != null)
 */
 
 using System;
@@ -111,7 +112,10 @@ namespace GrblPlotter
                 UpdateWholeApplication();
             }
 
-            bool isConnected = _serial_form.SerialPortOpen || Grbl.grblSimulate;
+            bool isConnected = false;
+			if (((_serial_form != null) && (_serial_form.SerialPortOpen)) || Grbl.grblSimulate)
+				isConnected = true;
+			
             simuEnabled = false;
             simulationTimer.Enabled = false;
             btnSimulate.Text = Localization.GetString("mainSimuStart");

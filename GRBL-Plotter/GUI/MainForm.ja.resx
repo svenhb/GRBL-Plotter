@@ -1076,4 +1076,61 @@ Grblのバッファーにモーションがキューイングされていて準�
   <data name="LanguageToolStripMenuItem3.Text" xml:space="preserve">
     <value>言語</value>
   </data>
+  <data name="cBMoveG0.ToolTip" xml:space="preserve">
+    <value>G0 rappidmoveコマンドを使用します-STOPジョギングは機能しません</value>
+  </data>
+  <data name="CbSpindle.Text" xml:space="preserve">
+    <value>スピンドルCW</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="CbCoolant.Text" xml:space="preserve">
+    <value>クーラント</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="CbTool.Text" xml:space="preserve">
+    <value>ツールはスピンドルにあります</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="BtnPenUp.Text" xml:space="preserve">
+    <value>ペンアップ</value>
+  </data>
+  <data name="BtnPenUp.ToolTip" xml:space="preserve">
+    <value>Setup-Servo-PWMの設定を使用する</value>
+  </data>
+  <data name="BtnPenDown.Text" xml:space="preserve">
+    <value>ペンダウン</value>
+  </data>
+  <data name="BtnPenDown.ToolTip" xml:space="preserve">
+    <value>Setup-Servo-PWMの設定を使用する</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>ルーター</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>ZおよびPWMに対して有効なペンアップ/ダウン変換の値を適用します</value>
+  </data>
+  <data name="BtnPenZero.Text" xml:space="preserve">
+    <value>ペンゼロ</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>プロッタ</value>
+  </data>
+  <data name="CbLasermode.Text" xml:space="preserve">
+    <value>レーザーモード</value>
+  </data>
+  <data name="RbLaserM4.Text" xml:space="preserve">
+    <value>M4動的電源。</value>
+  </data>
+  <data name="RbLaserM3.Text" xml:space="preserve">
+    <value>M3定数電源。</value>
+  </data>
+  <data name="CbLaser.Text" xml:space="preserve">
+    <value>レーザーオン</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>レーザ</value>
+  </data>
+  <data name="control3rdGRBLToolStripMenuItem.Text" xml:space="preserve">
+    <value>3番目のシリアルCOMを制御する</value>
+  </data>
 </root>

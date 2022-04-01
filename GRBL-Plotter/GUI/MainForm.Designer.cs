@@ -229,9 +229,6 @@ namespace GrblPlotter
             this.tLPRechtsUnten = new System.Windows.Forms.TableLayoutPanel();
             this.tLPRechtsUntenRechts = new System.Windows.Forms.TableLayoutPanel();
             this.gB_Jogging = new System.Windows.Forms.GroupBox();
-            this.cBServoButtons = new System.Windows.Forms.CheckBox();
-            this.btnPenDown = new System.Windows.Forms.Button();
-            this.btnPenUp = new System.Windows.Forms.Button();
             this.btnJogStop = new System.Windows.Forms.Button();
             this.gB_Jog0 = new System.Windows.Forms.GroupBox();
             this.btnJogZeroA = new System.Windows.Forms.Button();
@@ -240,12 +237,6 @@ namespace GrblPlotter
             this.btnJogZeroY = new System.Windows.Forms.Button();
             this.btnJogZeroZ = new System.Windows.Forms.Button();
             this.cBMoveG0 = new System.Windows.Forms.CheckBox();
-            this.lblTool = new System.Windows.Forms.Label();
-            this.cBTool = new System.Windows.Forms.CheckBox();
-            this.lblSpeed = new System.Windows.Forms.Label();
-            this.tBSpeed = new System.Windows.Forms.TextBox();
-            this.cBCoolant = new System.Windows.Forms.CheckBox();
-            this.cBSpindle = new System.Windows.Forms.CheckBox();
             this.tLPRechtsUntenRechtsMitte = new System.Windows.Forms.TableLayoutPanel();
             this.virtualJoystickA = new virtualJoystick.virtualJoystick();
             this.virtualJoystickXY = new virtualJoystick.virtualJoystick();
@@ -262,6 +253,42 @@ namespace GrblPlotter
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnKillAlarm = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.LblSpeedSetVal = new System.Windows.Forms.Label();
+            this.LblSpeedSet = new System.Windows.Forms.Label();
+            this.RbSpindleCCW = new System.Windows.Forms.RadioButton();
+            this.RbSpindleCW = new System.Windows.Forms.RadioButton();
+            this.LblSpeedMaxVal = new System.Windows.Forms.Label();
+            this.LblSpeedMinVal = new System.Windows.Forms.Label();
+            this.CbMist = new System.Windows.Forms.CheckBox();
+            this.LblSpeedMax = new System.Windows.Forms.Label();
+            this.LblSpeedMin = new System.Windows.Forms.Label();
+            this.NudSpeed = new System.Windows.Forms.NumericUpDown();
+            this.CbSpindle = new System.Windows.Forms.CheckBox();
+            this.CbCoolant = new System.Windows.Forms.CheckBox();
+            this.lblTool = new System.Windows.Forms.Label();
+            this.CbTool = new System.Windows.Forms.CheckBox();
+            this.lblSpeed = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
+            this.BtnPenZero = new System.Windows.Forms.Button();
+            this.BtnPenUp = new System.Windows.Forms.Button();
+            this.BtnPenDown = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.PbLaser = new System.Windows.Forms.PictureBox();
+            this.CbLasermodeVal = new System.Windows.Forms.Label();
+            this.CbLasermode = new System.Windows.Forms.CheckBox();
+            this.LblLaserSetVal = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.LblLaserMaxVal = new System.Windows.Forms.Label();
+            this.LblLaserMinVal = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.RbLaserM4 = new System.Windows.Forms.RadioButton();
+            this.RbLaserM3 = new System.Windows.Forms.RadioButton();
+            this.CbLaser = new System.Windows.Forms.CheckBox();
+            this.TbLaser = new System.Windows.Forms.TrackBar();
             this.tLPMitteUnten = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cmsPictureBox = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -426,6 +453,7 @@ namespace GrblPlotter
             this.controlStreamingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.control2ndGRBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.control3rdGRBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.projectorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewRuler = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewInfo = new System.Windows.Forms.ToolStripMenuItem();
@@ -437,6 +465,7 @@ namespace GrblPlotter
             this.toolStripViewBackground = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showFormsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainTimer = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -473,6 +502,13 @@ namespace GrblPlotter
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudSpeed)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PbLaser)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TbLaser)).BeginInit();
             this.tLPMitteUnten.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.cmsPictureBox.SuspendLayout();
@@ -1380,54 +1416,21 @@ namespace GrblPlotter
             // tLPRechtsUntenRechts
             // 
             resources.ApplyResources(this.tLPRechtsUntenRechts, "tLPRechtsUntenRechts");
-            this.tLPRechtsUntenRechts.Controls.Add(this.gB_Jogging, 0, 0);
-            this.tLPRechtsUntenRechts.Controls.Add(this.tLPRechtsUntenRechtsMitte, 0, 1);
-            this.tLPRechtsUntenRechts.Controls.Add(this.tableLayoutPanel2, 0, 2);
+            this.tLPRechtsUntenRechts.Controls.Add(this.gB_Jogging, 0, 1);
+            this.tLPRechtsUntenRechts.Controls.Add(this.tLPRechtsUntenRechtsMitte, 0, 2);
+            this.tLPRechtsUntenRechts.Controls.Add(this.tableLayoutPanel2, 0, 3);
+            this.tLPRechtsUntenRechts.Controls.Add(this.tabControl1, 0, 0);
             this.tLPRechtsUntenRechts.Name = "tLPRechtsUntenRechts";
             // 
             // gB_Jogging
             // 
             resources.ApplyResources(this.gB_Jogging, "gB_Jogging");
-            this.gB_Jogging.Controls.Add(this.cBServoButtons);
-            this.gB_Jogging.Controls.Add(this.btnPenDown);
-            this.gB_Jogging.Controls.Add(this.btnPenUp);
             this.gB_Jogging.Controls.Add(this.btnJogStop);
             this.gB_Jogging.Controls.Add(this.gB_Jog0);
-            this.gB_Jogging.Controls.Add(this.lblTool);
-            this.gB_Jogging.Controls.Add(this.cBTool);
-            this.gB_Jogging.Controls.Add(this.lblSpeed);
-            this.gB_Jogging.Controls.Add(this.tBSpeed);
-            this.gB_Jogging.Controls.Add(this.cBCoolant);
-            this.gB_Jogging.Controls.Add(this.cBSpindle);
             this.gB_Jogging.Name = "gB_Jogging";
             this.gB_Jogging.TabStop = false;
             this.gB_Jogging.Enter += new System.EventHandler(this.VirtualJoystickXY_Enter);
             this.gB_Jogging.Leave += new System.EventHandler(this.VirtualJoystickXY_Leave);
-            // 
-            // cBServoButtons
-            // 
-            resources.ApplyResources(this.cBServoButtons, "cBServoButtons");
-            this.cBServoButtons.Checked = global::GrblPlotter.Properties.Settings.Default.guiPenUpDownButtonsShow;
-            this.cBServoButtons.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "guiPenUpDownButtonsShow", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBServoButtons.Name = "cBServoButtons";
-            this.cBServoButtons.UseVisualStyleBackColor = true;
-            this.cBServoButtons.CheckedChanged += new System.EventHandler(this.CbServoButtons_CheckedChanged);
-            // 
-            // btnPenDown
-            // 
-            resources.ApplyResources(this.btnPenDown, "btnPenDown");
-            this.btnPenDown.Name = "btnPenDown";
-            this.toolTip1.SetToolTip(this.btnPenDown, resources.GetString("btnPenDown.ToolTip"));
-            this.btnPenDown.UseVisualStyleBackColor = true;
-            this.btnPenDown.Click += new System.EventHandler(this.BtnPenDown_Click);
-            // 
-            // btnPenUp
-            // 
-            resources.ApplyResources(this.btnPenUp, "btnPenUp");
-            this.btnPenUp.Name = "btnPenUp";
-            this.toolTip1.SetToolTip(this.btnPenUp, resources.GetString("btnPenUp.ToolTip"));
-            this.btnPenUp.UseVisualStyleBackColor = true;
-            this.btnPenUp.Click += new System.EventHandler(this.BtnPenUp_Click);
             // 
             // btnJogStop
             // 
@@ -1494,45 +1497,8 @@ namespace GrblPlotter
             // 
             resources.ApplyResources(this.cBMoveG0, "cBMoveG0");
             this.cBMoveG0.Name = "cBMoveG0";
+            this.toolTip1.SetToolTip(this.cBMoveG0, resources.GetString("cBMoveG0.ToolTip"));
             this.cBMoveG0.UseVisualStyleBackColor = true;
-            // 
-            // lblTool
-            // 
-            resources.ApplyResources(this.lblTool, "lblTool");
-            this.lblTool.Name = "lblTool";
-            // 
-            // cBTool
-            // 
-            resources.ApplyResources(this.cBTool, "cBTool");
-            this.cBTool.Name = "cBTool";
-            this.cBTool.UseVisualStyleBackColor = true;
-            this.cBTool.CheckedChanged += new System.EventHandler(this.CbTool_CheckedChanged);
-            // 
-            // lblSpeed
-            // 
-            resources.ApplyResources(this.lblSpeed, "lblSpeed");
-            this.lblSpeed.Name = "lblSpeed";
-            // 
-            // tBSpeed
-            // 
-            this.tBSpeed.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "guiSpindleSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBSpeed, "tBSpeed");
-            this.tBSpeed.Name = "tBSpeed";
-            this.tBSpeed.Text = global::GrblPlotter.Properties.Settings.Default.guiSpindleSpeed;
-            // 
-            // cBCoolant
-            // 
-            resources.ApplyResources(this.cBCoolant, "cBCoolant");
-            this.cBCoolant.Name = "cBCoolant";
-            this.cBCoolant.UseVisualStyleBackColor = true;
-            this.cBCoolant.CheckedChanged += new System.EventHandler(this.CbCoolant_CheckedChanged);
-            // 
-            // cBSpindle
-            // 
-            resources.ApplyResources(this.cBSpindle, "cBSpindle");
-            this.cBSpindle.Name = "cBSpindle";
-            this.cBSpindle.UseVisualStyleBackColor = true;
-            this.cBSpindle.CheckedChanged += new System.EventHandler(this.CbSpindle_CheckedChanged);
             // 
             // tLPRechtsUntenRechtsMitte
             // 
@@ -1748,6 +1714,283 @@ namespace GrblPlotter
             this.toolTip1.SetToolTip(this.btnReset, resources.GetString("btnReset.ToolTip"));
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.BtnReset_Click);
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            resources.ApplyResources(this.tabControl1, "tabControl1");
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.LblSpeedSetVal);
+            this.tabPage1.Controls.Add(this.LblSpeedSet);
+            this.tabPage1.Controls.Add(this.RbSpindleCCW);
+            this.tabPage1.Controls.Add(this.RbSpindleCW);
+            this.tabPage1.Controls.Add(this.LblSpeedMaxVal);
+            this.tabPage1.Controls.Add(this.LblSpeedMinVal);
+            this.tabPage1.Controls.Add(this.CbMist);
+            this.tabPage1.Controls.Add(this.LblSpeedMax);
+            this.tabPage1.Controls.Add(this.LblSpeedMin);
+            this.tabPage1.Controls.Add(this.NudSpeed);
+            this.tabPage1.Controls.Add(this.CbSpindle);
+            this.tabPage1.Controls.Add(this.CbCoolant);
+            this.tabPage1.Controls.Add(this.lblTool);
+            this.tabPage1.Controls.Add(this.CbTool);
+            this.tabPage1.Controls.Add(this.lblSpeed);
+            resources.ApplyResources(this.tabPage1, "tabPage1");
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // LblSpeedSetVal
+            // 
+            resources.ApplyResources(this.LblSpeedSetVal, "LblSpeedSetVal");
+            this.LblSpeedSetVal.Name = "LblSpeedSetVal";
+            // 
+            // LblSpeedSet
+            // 
+            resources.ApplyResources(this.LblSpeedSet, "LblSpeedSet");
+            this.LblSpeedSet.Name = "LblSpeedSet";
+            this.toolTip1.SetToolTip(this.LblSpeedSet, resources.GetString("LblSpeedSet.ToolTip"));
+            // 
+            // RbSpindleCCW
+            // 
+            resources.ApplyResources(this.RbSpindleCCW, "RbSpindleCCW");
+            this.RbSpindleCCW.Name = "RbSpindleCCW";
+            this.RbSpindleCCW.TabStop = true;
+            this.RbSpindleCCW.UseVisualStyleBackColor = true;
+            this.RbSpindleCCW.CheckedChanged += new System.EventHandler(this.CbSpindle_CheckedChanged);
+            // 
+            // RbSpindleCW
+            // 
+            resources.ApplyResources(this.RbSpindleCW, "RbSpindleCW");
+            this.RbSpindleCW.Checked = true;
+            this.RbSpindleCW.Name = "RbSpindleCW";
+            this.RbSpindleCW.TabStop = true;
+            this.RbSpindleCW.UseVisualStyleBackColor = true;
+            this.RbSpindleCW.CheckedChanged += new System.EventHandler(this.CbSpindle_CheckedChanged);
+            // 
+            // LblSpeedMaxVal
+            // 
+            resources.ApplyResources(this.LblSpeedMaxVal, "LblSpeedMaxVal");
+            this.LblSpeedMaxVal.Name = "LblSpeedMaxVal";
+            // 
+            // LblSpeedMinVal
+            // 
+            resources.ApplyResources(this.LblSpeedMinVal, "LblSpeedMinVal");
+            this.LblSpeedMinVal.Name = "LblSpeedMinVal";
+            // 
+            // CbMist
+            // 
+            resources.ApplyResources(this.CbMist, "CbMist");
+            this.CbMist.Name = "CbMist";
+            this.CbMist.UseVisualStyleBackColor = true;
+            this.CbMist.CheckedChanged += new System.EventHandler(this.CbMist_CheckedChanged);
+            // 
+            // LblSpeedMax
+            // 
+            resources.ApplyResources(this.LblSpeedMax, "LblSpeedMax");
+            this.LblSpeedMax.Name = "LblSpeedMax";
+            this.toolTip1.SetToolTip(this.LblSpeedMax, resources.GetString("LblSpeedMax.ToolTip"));
+            // 
+            // LblSpeedMin
+            // 
+            resources.ApplyResources(this.LblSpeedMin, "LblSpeedMin");
+            this.LblSpeedMin.Name = "LblSpeedMin";
+            this.toolTip1.SetToolTip(this.LblSpeedMin, resources.GetString("LblSpeedMin.ToolTip"));
+            // 
+            // NudSpeed
+            // 
+            this.NudSpeed.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.NudSpeed, "NudSpeed");
+            this.NudSpeed.Name = "NudSpeed";
+            this.NudSpeed.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.NudSpeed.ValueChanged += new System.EventHandler(this.CbSpindle_CheckedChanged);
+            // 
+            // CbSpindle
+            // 
+            resources.ApplyResources(this.CbSpindle, "CbSpindle");
+            this.CbSpindle.Name = "CbSpindle";
+            this.CbSpindle.UseVisualStyleBackColor = true;
+            this.CbSpindle.CheckedChanged += new System.EventHandler(this.CbSpindle_CheckedChanged);
+            // 
+            // CbCoolant
+            // 
+            resources.ApplyResources(this.CbCoolant, "CbCoolant");
+            this.CbCoolant.Name = "CbCoolant";
+            this.CbCoolant.UseVisualStyleBackColor = true;
+            this.CbCoolant.CheckedChanged += new System.EventHandler(this.CbCoolant_CheckedChanged);
+            // 
+            // lblTool
+            // 
+            resources.ApplyResources(this.lblTool, "lblTool");
+            this.lblTool.Name = "lblTool";
+            // 
+            // CbTool
+            // 
+            resources.ApplyResources(this.CbTool, "CbTool");
+            this.CbTool.Name = "CbTool";
+            this.CbTool.UseVisualStyleBackColor = true;
+            this.CbTool.CheckedChanged += new System.EventHandler(this.CbTool_CheckedChanged);
+            // 
+            // lblSpeed
+            // 
+            resources.ApplyResources(this.lblSpeed, "lblSpeed");
+            this.lblSpeed.Name = "lblSpeed";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.label9);
+            this.tabPage2.Controls.Add(this.BtnPenZero);
+            this.tabPage2.Controls.Add(this.BtnPenUp);
+            this.tabPage2.Controls.Add(this.BtnPenDown);
+            resources.ApplyResources(this.tabPage2, "tabPage2");
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
+            // BtnPenZero
+            // 
+            resources.ApplyResources(this.BtnPenZero, "BtnPenZero");
+            this.BtnPenZero.Name = "BtnPenZero";
+            this.BtnPenZero.UseVisualStyleBackColor = true;
+            this.BtnPenZero.Click += new System.EventHandler(this.BtnPenZero_Click);
+            // 
+            // BtnPenUp
+            // 
+            resources.ApplyResources(this.BtnPenUp, "BtnPenUp");
+            this.BtnPenUp.Name = "BtnPenUp";
+            this.toolTip1.SetToolTip(this.BtnPenUp, resources.GetString("BtnPenUp.ToolTip"));
+            this.BtnPenUp.UseVisualStyleBackColor = true;
+            this.BtnPenUp.Click += new System.EventHandler(this.BtnPenUp_Click);
+            // 
+            // BtnPenDown
+            // 
+            resources.ApplyResources(this.BtnPenDown, "BtnPenDown");
+            this.BtnPenDown.Name = "BtnPenDown";
+            this.toolTip1.SetToolTip(this.BtnPenDown, resources.GetString("BtnPenDown.ToolTip"));
+            this.BtnPenDown.UseVisualStyleBackColor = true;
+            this.BtnPenDown.Click += new System.EventHandler(this.BtnPenDown_Click);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.PbLaser);
+            this.tabPage3.Controls.Add(this.CbLasermodeVal);
+            this.tabPage3.Controls.Add(this.CbLasermode);
+            this.tabPage3.Controls.Add(this.LblLaserSetVal);
+            this.tabPage3.Controls.Add(this.label14);
+            this.tabPage3.Controls.Add(this.LblLaserMaxVal);
+            this.tabPage3.Controls.Add(this.LblLaserMinVal);
+            this.tabPage3.Controls.Add(this.label17);
+            this.tabPage3.Controls.Add(this.label18);
+            this.tabPage3.Controls.Add(this.RbLaserM4);
+            this.tabPage3.Controls.Add(this.RbLaserM3);
+            this.tabPage3.Controls.Add(this.CbLaser);
+            this.tabPage3.Controls.Add(this.TbLaser);
+            resources.ApplyResources(this.tabPage3, "tabPage3");
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // PbLaser
+            // 
+            resources.ApplyResources(this.PbLaser, "PbLaser");
+            this.PbLaser.Name = "PbLaser";
+            this.PbLaser.TabStop = false;
+            // 
+            // CbLasermodeVal
+            // 
+            resources.ApplyResources(this.CbLasermodeVal, "CbLasermodeVal");
+            this.CbLasermodeVal.Name = "CbLasermodeVal";
+            // 
+            // CbLasermode
+            // 
+            resources.ApplyResources(this.CbLasermode, "CbLasermode");
+            this.CbLasermode.Name = "CbLasermode";
+            this.CbLasermode.UseVisualStyleBackColor = true;
+            this.CbLasermode.CheckedChanged += new System.EventHandler(this.CbLasermode_CheckedChanged);
+            // 
+            // LblLaserSetVal
+            // 
+            resources.ApplyResources(this.LblLaserSetVal, "LblLaserSetVal");
+            this.LblLaserSetVal.Name = "LblLaserSetVal";
+            // 
+            // label14
+            // 
+            resources.ApplyResources(this.label14, "label14");
+            this.label14.Name = "label14";
+            this.toolTip1.SetToolTip(this.label14, resources.GetString("label14.ToolTip"));
+            // 
+            // LblLaserMaxVal
+            // 
+            resources.ApplyResources(this.LblLaserMaxVal, "LblLaserMaxVal");
+            this.LblLaserMaxVal.Name = "LblLaserMaxVal";
+            // 
+            // LblLaserMinVal
+            // 
+            resources.ApplyResources(this.LblLaserMinVal, "LblLaserMinVal");
+            this.LblLaserMinVal.Name = "LblLaserMinVal";
+            // 
+            // label17
+            // 
+            resources.ApplyResources(this.label17, "label17");
+            this.label17.Name = "label17";
+            this.toolTip1.SetToolTip(this.label17, resources.GetString("label17.ToolTip"));
+            // 
+            // label18
+            // 
+            resources.ApplyResources(this.label18, "label18");
+            this.label18.Name = "label18";
+            this.toolTip1.SetToolTip(this.label18, resources.GetString("label18.ToolTip"));
+            // 
+            // RbLaserM4
+            // 
+            resources.ApplyResources(this.RbLaserM4, "RbLaserM4");
+            this.RbLaserM4.Name = "RbLaserM4";
+            this.RbLaserM4.TabStop = true;
+            this.RbLaserM4.UseVisualStyleBackColor = true;
+            this.RbLaserM4.CheckedChanged += new System.EventHandler(this.CbLaser_CheckedChanged);
+            // 
+            // RbLaserM3
+            // 
+            resources.ApplyResources(this.RbLaserM3, "RbLaserM3");
+            this.RbLaserM3.Checked = true;
+            this.RbLaserM3.Name = "RbLaserM3";
+            this.RbLaserM3.TabStop = true;
+            this.RbLaserM3.UseVisualStyleBackColor = true;
+            this.RbLaserM3.CheckedChanged += new System.EventHandler(this.CbLaser_CheckedChanged);
+            // 
+            // CbLaser
+            // 
+            resources.ApplyResources(this.CbLaser, "CbLaser");
+            this.CbLaser.Name = "CbLaser";
+            this.CbLaser.UseVisualStyleBackColor = true;
+            this.CbLaser.CheckedChanged += new System.EventHandler(this.CbLaser_CheckedChanged);
+            // 
+            // TbLaser
+            // 
+            resources.ApplyResources(this.TbLaser, "TbLaser");
+            this.TbLaser.LargeChange = 10;
+            this.TbLaser.Maximum = 100;
+            this.TbLaser.Name = "TbLaser";
+            this.TbLaser.SmallChange = 5;
+            this.TbLaser.TickFrequency = 5;
+            this.TbLaser.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.TbLaser.Scroll += new System.EventHandler(this.CbLaser_CheckedChanged);
             // 
             // tLPMitteUnten
             // 
@@ -2321,7 +2564,8 @@ namespace GrblPlotter
             this.machineToolStripMenuItem,
             this.viewToolStripMenuItem,
             this.aboutToolStripMenuItem,
-            this.logToolStripMenuItem});
+            this.logToolStripMenuItem,
+            this.showFormsToolStripMenuItem});
             resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
@@ -2842,7 +3086,8 @@ namespace GrblPlotter
             this.startStreamingAtLineToolStripMenuItem,
             this.controlStreamingToolStripMenuItem,
             this.control2ndGRBLToolStripMenuItem,
-            this.control3rdGRBLToolStripMenuItem});
+            this.control3rdGRBLToolStripMenuItem,
+            this.projectorToolStripMenuItem});
             this.machineToolStripMenuItem.Name = "machineToolStripMenuItem";
             resources.ApplyResources(this.machineToolStripMenuItem, "machineToolStripMenuItem");
             // 
@@ -2913,6 +3158,12 @@ namespace GrblPlotter
             resources.ApplyResources(this.control3rdGRBLToolStripMenuItem, "control3rdGRBLToolStripMenuItem");
             this.control3rdGRBLToolStripMenuItem.Click += new System.EventHandler(this.Control3rdSerialCOMToolStripMenuItem_Click);
             // 
+            // projectorToolStripMenuItem
+            // 
+            this.projectorToolStripMenuItem.Name = "projectorToolStripMenuItem";
+            resources.ApplyResources(this.projectorToolStripMenuItem, "projectorToolStripMenuItem");
+            this.projectorToolStripMenuItem.Click += new System.EventHandler(this.ProjectorToolStripMenuItem_Click);
+            // 
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -2934,7 +3185,7 @@ namespace GrblPlotter
             this.toolStripViewRuler.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripViewRuler.Name = "toolStripViewRuler";
             resources.ApplyResources(this.toolStripViewRuler, "toolStripViewRuler");
-            this.toolStripViewRuler.Click += new System.EventHandler(this.UpdateView);
+            this.toolStripViewRuler.Click += new System.EventHandler(this.UpdatePathDisplay);
             // 
             // toolStripViewInfo
             // 
@@ -2943,7 +3194,7 @@ namespace GrblPlotter
             this.toolStripViewInfo.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripViewInfo.Name = "toolStripViewInfo";
             resources.ApplyResources(this.toolStripViewInfo, "toolStripViewInfo");
-            this.toolStripViewInfo.Click += new System.EventHandler(this.UpdateView);
+            this.toolStripViewInfo.Click += new System.EventHandler(this.UpdatePathDisplay);
             // 
             // toolStripViewPenUp
             // 
@@ -2952,14 +3203,14 @@ namespace GrblPlotter
             this.toolStripViewPenUp.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripViewPenUp.Name = "toolStripViewPenUp";
             resources.ApplyResources(this.toolStripViewPenUp, "toolStripViewPenUp");
-            this.toolStripViewPenUp.Click += new System.EventHandler(this.UpdateView);
+            this.toolStripViewPenUp.Click += new System.EventHandler(this.UpdatePathDisplay);
             // 
             // toolStripViewMachineFix
             // 
             this.toolStripViewMachineFix.CheckOnClick = true;
             this.toolStripViewMachineFix.Name = "toolStripViewMachineFix";
             resources.ApplyResources(this.toolStripViewMachineFix, "toolStripViewMachineFix");
-            this.toolStripViewMachineFix.Click += new System.EventHandler(this.UpdateView);
+            this.toolStripViewMachineFix.Click += new System.EventHandler(this.UpdatePathDisplay);
             // 
             // toolStripViewMachine
             // 
@@ -2968,7 +3219,7 @@ namespace GrblPlotter
             this.toolStripViewMachine.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripViewMachine.Name = "toolStripViewMachine";
             resources.ApplyResources(this.toolStripViewMachine, "toolStripViewMachine");
-            this.toolStripViewMachine.Click += new System.EventHandler(this.UpdateView);
+            this.toolStripViewMachine.Click += new System.EventHandler(this.UpdatePathDisplay);
             // 
             // toolStripViewDimension
             // 
@@ -2977,7 +3228,7 @@ namespace GrblPlotter
             this.toolStripViewDimension.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripViewDimension.Name = "toolStripViewDimension";
             resources.ApplyResources(this.toolStripViewDimension, "toolStripViewDimension");
-            this.toolStripViewDimension.Click += new System.EventHandler(this.UpdateView);
+            this.toolStripViewDimension.Click += new System.EventHandler(this.UpdatePathDisplay);
             // 
             // toolStripViewTool
             // 
@@ -2985,7 +3236,7 @@ namespace GrblPlotter
             this.toolStripViewTool.CheckOnClick = true;
             this.toolStripViewTool.Name = "toolStripViewTool";
             resources.ApplyResources(this.toolStripViewTool, "toolStripViewTool");
-            this.toolStripViewTool.Click += new System.EventHandler(this.UpdateView);
+            this.toolStripViewTool.Click += new System.EventHandler(this.UpdatePathDisplay);
             // 
             // toolStripViewBackground
             // 
@@ -2994,7 +3245,7 @@ namespace GrblPlotter
             this.toolStripViewBackground.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripViewBackground.Name = "toolStripViewBackground";
             resources.ApplyResources(this.toolStripViewBackground, "toolStripViewBackground");
-            this.toolStripViewBackground.Click += new System.EventHandler(this.UpdateView);
+            this.toolStripViewBackground.Click += new System.EventHandler(this.UpdatePathDisplay);
             // 
             // aboutToolStripMenuItem
             // 
@@ -3006,6 +3257,13 @@ namespace GrblPlotter
             // 
             this.logToolStripMenuItem.Name = "logToolStripMenuItem";
             resources.ApplyResources(this.logToolStripMenuItem, "logToolStripMenuItem");
+            // 
+            // showFormsToolStripMenuItem
+            // 
+            this.showFormsToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.showFormsToolStripMenuItem.Name = "showFormsToolStripMenuItem";
+            resources.ApplyResources(this.showFormsToolStripMenuItem, "showFormsToolStripMenuItem");
+            this.showFormsToolStripMenuItem.Click += new System.EventHandler(this.showFormsToolStripMenuItem_Click);
             // 
             // MainTimer
             // 
@@ -3113,7 +3371,6 @@ namespace GrblPlotter
             this.tLPRechtsUntenRechts.ResumeLayout(false);
             this.tLPRechtsUntenRechts.PerformLayout();
             this.gB_Jogging.ResumeLayout(false);
-            this.gB_Jogging.PerformLayout();
             this.gB_Jog0.ResumeLayout(false);
             this.gB_Jog0.PerformLayout();
             this.tLPRechtsUntenRechtsMitte.ResumeLayout(false);
@@ -3121,6 +3378,15 @@ namespace GrblPlotter
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudSpeed)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PbLaser)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TbLaser)).EndInit();
             this.tLPMitteUnten.ResumeLayout(false);
             this.tLPMitteUnten.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -3350,13 +3616,12 @@ namespace GrblPlotter
         private System.Windows.Forms.Button btnJogZeroY;
         private System.Windows.Forms.Button btnJogZeroZ;
         private System.Windows.Forms.Label lblTool;
-        private System.Windows.Forms.CheckBox cBTool;
+        private System.Windows.Forms.CheckBox CbTool;
         private virtualJoystick.virtualJoystick virtualJoystickZ;
         private virtualJoystick.virtualJoystick virtualJoystickXY;
         private System.Windows.Forms.Label lblSpeed;
-        private System.Windows.Forms.TextBox tBSpeed;
-        private System.Windows.Forms.CheckBox cBCoolant;
-        private System.Windows.Forms.CheckBox cBSpindle;
+        private System.Windows.Forms.CheckBox CbCoolant;
+        private System.Windows.Forms.CheckBox CbSpindle;
         private System.Windows.Forms.Button btnKillAlarm;
         private System.Windows.Forms.Button btnFeedHold;
         private System.Windows.Forms.Button btnReset;
@@ -3432,9 +3697,8 @@ namespace GrblPlotter
         private System.Windows.Forms.Button btnSimulateSlower;
         private System.Windows.Forms.Button btnSimulateFaster;
         private System.Windows.Forms.Button btnSimulatePause;
-        private System.Windows.Forms.CheckBox cBServoButtons;
-        private System.Windows.Forms.Button btnPenDown;
-        private System.Windows.Forms.Button btnPenUp;
+        private System.Windows.Forms.Button BtnPenDown;
+        private System.Windows.Forms.Button BtnPenUp;
         private System.Windows.Forms.CheckBox cBMoveG0;
         private System.Windows.Forms.ToolStripMenuItem startExtensionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripViewDimension;
@@ -3481,6 +3745,37 @@ namespace GrblPlotter
         private System.Windows.Forms.Button BtnOverrideD1;
         private System.Windows.Forms.Button BtnOverrideD0;
         private System.Windows.Forms.ToolStripMenuItem czechToolStripMenuItem;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TrackBar TbLaser;
+        private System.Windows.Forms.Label LblSpeedMax;
+        private System.Windows.Forms.Label LblSpeedMin;
+        private System.Windows.Forms.NumericUpDown NudSpeed;
+        private System.Windows.Forms.Button BtnPenZero;
+        private System.Windows.Forms.CheckBox CbMist;
+        private System.Windows.Forms.RadioButton RbSpindleCCW;
+        private System.Windows.Forms.RadioButton RbSpindleCW;
+        private System.Windows.Forms.Label LblSpeedMaxVal;
+        private System.Windows.Forms.Label LblSpeedMinVal;
+        private System.Windows.Forms.Label LblSpeedSetVal;
+        private System.Windows.Forms.Label LblSpeedSet;
+        private System.Windows.Forms.CheckBox CbLaser;
+        private System.Windows.Forms.RadioButton RbLaserM4;
+        private System.Windows.Forms.RadioButton RbLaserM3;
+        private System.Windows.Forms.Label LblLaserSetVal;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label LblLaserMaxVal;
+        private System.Windows.Forms.Label LblLaserMinVal;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.CheckBox CbLasermode;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label CbLasermodeVal;
+        private System.Windows.Forms.PictureBox PbLaser;
+        private System.Windows.Forms.ToolStripMenuItem showFormsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem projectorToolStripMenuItem;
     }
 }
 

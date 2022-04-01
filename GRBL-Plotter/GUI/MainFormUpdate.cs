@@ -28,7 +28,9 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -77,21 +79,46 @@ namespace GrblPlotter
             {
                 Datapath.AppDataFolder = newPathUser;                   // get path from registry
                 LogAppDataPath(reg_key_user);
+				EventCollector.SetInstalled("HKCU");
             }
             else if (!string.IsNullOrEmpty(newPathAdmin))
             {
                 Datapath.AppDataFolder = newPathAdmin;                   // get path from registry
                 LogAppDataPath(reg_key_admin);
+				EventCollector.SetInstalled("HKLM-WOW");
             }
             else if (!string.IsNullOrEmpty(newPathAdmin2))
             {
                 Datapath.AppDataFolder = newPathAdmin2;                   // get path from registry
                 LogAppDataPath(reg_key_admin2);
+				EventCollector.SetInstalled("HKLM");
             }
             else // no setup?
             {
-                Datapath.AppDataFolder = Datapath.Application;      // use application path
-                LogAppDataPath("Default");
+				if (Datapath.Application.StartsWith("C:\\Program"))
+				{	newPathUser = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\GRBL_Plotter";
+                    string oldPathData = Datapath.Application + "\\data";
+
+                    Datapath.AppDataFolder = newPathUser;                   // set path to my documents
+					LogAppDataPath("fall back");
+                    Logger.Warn("GetAppDataPath: current path starts with C:\\Program, which is probably write protected: {0}", Datapath.Application);
+                    Logger.Warn("GetAppDataPath: switch to new path {0}", newPathUser);
+
+                    DirectoryInfo dir = new DirectoryInfo(newPathUser+"\\data");
+                    if (!dir.Exists)
+                    {
+                        Logger.Warn("GetAppDataPath: copy data-folders from {0} to {1}", oldPathData, newPathUser + "\\data");
+                        DirectoryCopy(oldPathData, newPathUser + "\\data", true);
+                    }
+
+                    Registry.SetValue(reg_key_user, "DataPath", newPathUser);			// store for next prog-start				
+					EventCollector.SetInstalled("FallBack",true);					
+				}
+				else
+                {	Datapath.AppDataFolder = Datapath.Application;      // use application path
+					LogAppDataPath("Default");
+					EventCollector.SetInstalled("COPY",true);
+				}
             }
         }
         private void LogAppDataPath(string src)
@@ -99,6 +126,44 @@ namespace GrblPlotter
             NLog.LogManager.Configuration.Variables["basedir"] = Datapath.LogFiles;
             Logger.Info("GetAppDataPath from {0}: {1}", src, Datapath.AppDataFolder);
             Logger.Info("Application path: {0}", Datapath.Application);
+			Logger.Info("user.config path: {0}", ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoaming).FilePath);
+        }
+
+        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+        {
+         //   Logger.Info("DirectoryCopy {0}  to  {1}", sourceDirName, destDirName);
+            // Get the subdirectories for the specified directory.
+            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+
+            if (!dir.Exists)
+            {
+                throw new DirectoryNotFoundException(
+                    "Source directory does not exist or could not be found: "
+                    + sourceDirName);
+            }
+
+            DirectoryInfo[] dirs = dir.GetDirectories();
+
+            // If the destination directory doesn't exist, create it.       
+            Directory.CreateDirectory(destDirName);
+
+            // Get the files in the directory and copy them to the new location.
+            FileInfo[] files = dir.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                string tempPath = Path.Combine(destDirName, file.Name);
+                file.CopyTo(tempPath, false);
+            }
+
+            // If copying subdirectories, copy them and their contents to new location.
+            if (copySubDirs)
+            {
+                foreach (DirectoryInfo subdir in dirs)
+                {
+                    string tempPath = Path.Combine(destDirName, subdir.Name);
+                    DirectoryCopy(subdir.FullName, tempPath, copySubDirs);
+                }
+            }
         }
         private void SetGUISize()
         {
@@ -178,6 +243,8 @@ namespace GrblPlotter
             Logger.Info("UpdateWholeApplication");
             UpdateLogging();
 
+            showFormInFront = Properties.Settings.Default.guiShowFormInFront;
+
             fCTBCode.BookmarkColor = Properties.Settings.Default.gui2DColorMarker; ;
             fCTBCode.LineInterval = (int)Properties.Settings.Default.FCTBLineInterval;
             tbFile.Text = Properties.Settings.Default.guiLastFileLoaded;
@@ -198,9 +265,15 @@ namespace GrblPlotter
             toolStripViewMachineFix.Checked = Properties.Settings.Default.machineLimitsFix;
 
             if (Properties.Settings.Default.importGCSDirM3)
-                cBSpindle.Text = "Spindle CW";
+            {
+                RbSpindleCW.Checked = true;//CbSpindle.Text = "Spindle CW";
+                RbLaserM3.Checked = true;
+            }
             else
-                cBSpindle.Text = "Spindle CCW";
+            {
+                RbSpindleCCW.Checked = true;//CbSpindle.Text = "Spindle CCW";
+                RbLaserM4.Checked = true;
+            }
 
             // grbl communication
             int[] interval = new int[] { 500, 250, 200, 125, 100 };
@@ -213,8 +286,8 @@ namespace GrblPlotter
             LoadHotkeys();
 
             // changed PWM settings			
-            toolTip1.SetToolTip(btnPenUp, string.Format("send 'M3 S{0}'", Properties.Settings.Default.importGCPWMUp));
-            toolTip1.SetToolTip(btnPenDown, string.Format("send 'M3 S{0}'", Properties.Settings.Default.importGCPWMDown));
+            toolTip1.SetToolTip(BtnPenUp, string.Format("send 'M3 S{0}'", Properties.Settings.Default.importGCPWMUp));
+            toolTip1.SetToolTip(BtnPenDown, string.Format("send 'M3 S{0}'", Properties.Settings.Default.importGCPWMDown));
             GuiVariables.variable["GMIS"] = (double)Properties.Settings.Default.importGCPWMDown;
             GuiVariables.variable["GMAS"] = (double)Properties.Settings.Default.importGCPWMUp;
             GuiVariables.variable["GZES"] = (double)Properties.Settings.Default.importGCPWMZero;
@@ -426,19 +499,31 @@ namespace GrblPlotter
             btnOffsetApply.Enabled = !isStreaming;
             gCodeToolStripMenuItem.Enabled = !isStreaming;
 
-            cBSpindle.Enabled = isConnected & !isStreaming | allowControl;
-            btnPenUp.Enabled = isConnected & !isStreaming | allowControl;
-            btnPenDown.Enabled = isConnected & !isStreaming | allowControl;
+            CbSpindle.Enabled = isConnected & !isStreaming | allowControl;
+            BtnPenUp.Enabled = isConnected & !isStreaming | allowControl;
+            BtnPenZero.Enabled = isConnected & !isStreaming | allowControl;
+            BtnPenDown.Enabled = isConnected & !isStreaming | allowControl;
 
-            tBSpeed.Enabled = isConnected & !isStreaming | allowControl;
+            NudSpeed.Enabled = isConnected & !isStreaming | allowControl;
             lblSpeed.Enabled = isConnected & !isStreaming | allowControl;
+            RbSpindleCW.Enabled = isConnected & !isStreaming | allowControl;
+            RbSpindleCCW.Enabled = isConnected & !isStreaming | allowControl;
+
+            CbLasermode.Enabled = isConnected & !isStreaming | allowControl;
+            CbLaser.Enabled = isConnected & !isStreaming | allowControl;
+            RbLaserM3.Enabled = isConnected & !isStreaming | allowControl;
+            RbLaserM4.Enabled = isConnected & !isStreaming | allowControl;
+            TbLaser.Enabled = isConnected & !isStreaming | allowControl;
+
             gB_Jog0.Enabled = isConnected & !isStreaming | allowControl;
-            cBCoolant.Enabled = isConnected & !isStreaming | allowControl;
-            cBTool.Enabled = isConnected & !isStreaming | allowControl;
-            btnReset.Enabled = isConnected;
+            CbCoolant.Enabled = isConnected & !isStreaming | allowControl;
+            CbMist.Enabled = isConnected & !isStreaming | allowControl;
+            CbTool.Enabled = isConnected & !isStreaming | allowControl;
+        //    btnReset.Enabled = isConnected;
             btnFeedHold.Enabled = isConnected;
             btnResume.Enabled = isConnected;
             btnKillAlarm.Enabled = isConnected;
+            btnOverrideDoor.Enabled = isConnected;
             btnStreamStart.Enabled = isConnected;// & isFileLoaded;
             btnStreamStop.Enabled = isConnected; // & isFileLoaded;
             btnStreamCheck.Enabled = isConnected;// & isFileLoaded;

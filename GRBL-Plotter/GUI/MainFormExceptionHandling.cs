@@ -18,6 +18,7 @@
 */
 /*
  * 2021-12-10 new
+ * 2022-04-01 add UrlEncode line 218
 */
 
 using System;
@@ -25,6 +26,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using System.Threading;
+using System.Web;
 using System.Windows.Forms;
 
 namespace GrblPlotter
@@ -42,7 +44,7 @@ namespace GrblPlotter
             else
             {
                 Logger.Error("Application_ThreadException - Exception is NULL");
-                Properties.Settings.Default.guiLastEndReason += "ThreadException is null ---";
+                EventCollector.StoreException("ThreadException is null");
             }
         }
 
@@ -57,7 +59,7 @@ namespace GrblPlotter
             else
             {
                 Logger.Error("Application_UnhandledException - Exception is NULL");
-                Properties.Settings.Default.guiLastEndReason += "UnhandledException is null ---";
+                EventCollector.StoreException("UnhandledException is null");
             }
         }
 
@@ -77,16 +79,17 @@ namespace GrblPlotter
             if (ex != null)
             {
                 MessageBox.Show(ex.Message + "\r\n\r\n" + GetAllFootprints(ex) + "\r\n\r\nCheck " + Datapath.AppDataFolder + "\\logfile.txt", "Main Form " + source);
-                Properties.Settings.Default.guiLastEndReason += source + ": " + GetAllFootprints(ex, false) + "---";
+                EventCollector.StoreException(source + ": " + GetAllFootprints(ex, false));
             }
             else
             {
                 Logger.Error("ShowException - Exception is NULL");
-                Properties.Settings.Default.guiLastEndReason += "Exception is null ---";
+                EventCollector.StoreException("Exception is null");
             }
             if (MessageBox.Show(Localization.GetString("mainQuit"), Localization.GetString("mainProblem"), MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 Properties.Settings.Default.guiLastEnd = DateTime.Now.Ticks;
+                EventCollector.SetEnd(true);
                 Application.Exit();
             }
         }
@@ -137,11 +140,99 @@ namespace GrblPlotter
             return traceString.ToString();
         }
 
-        private static string lastStoredExeption = "";
-        public static void StoreException(string text)
-        {   if (text != lastStoredExeption)
-                Properties.Settings.Default.guiLastEndReason += text + "-";
-            lastStoredExeption = text;
+    }
+	
+	public static class EventCollector				// allowed chars: A–Z, a–z, 0–9, - . _ ~
+	{
+		// collect history of data processing to find error causes
+		private static DateTime start=DateTime.Now;
+    //    private static string WindowsVersion = "";  // System.Environment.OSVersion
+    //    private static string GRBLVersion = "";
+		
+		public static string installed="";			// Installed? - regkey available
+        private static string exception="";
+        private static string import="";
+        private static string stream="";
+        private static string communication="";
+        private static string transform="";
+        private static string history="";
+		private static bool errorOccured=false;
+		private static string lastStoredException="";
+		
+        public static void Init()
+        {
+			start=DateTime.Now;
+        //    WindowsVersion = System.Environment.OSVersion.ToString();
+        //    GRBLVersion= System.Windows.Forms.Application.ProductVersion.ToString();
         }
+        public static void SetInstalled(string txt, bool show=false)
+		{	installed = txt;
+			if (show) errorOccured = true;			// show switched location
+		}
+		
+        public static void SetImport(string txt)    // Itxt, Ishp, Ibqr, Iimg, Isvg...	
+        { 	history += "." + txt;
+			import = GetElapsedTime() + txt;
+		}
+
+        public static void SetStreaming(string txt)	// Sstp, Strt, Schk, Spau, Scnt, Sfin, Serr, 
+        { 	history += "."+txt;
+			stream = GetElapsedTime() + txt;
+		}
+		
+		public static void SetTransform(string txt)	// Tmir, Tscl, Toff, Trot
+		{	history += "." + txt;
+			transform = GetElapsedTime() + txt;
+		}
+
+		public static void SetCommunication(string txt, bool show=false)	// COpS, CLost(show), CRst, CRSa, CRSb, CRE, CSSa, CSEa, CSSb, CSEb - ComSendSerial, ComSendEthernet, ComReceiveSerial
+		{	history += "." + txt;
+			communication = GetElapsedTime() + txt;
+			if (show) errorOccured = true;			
+		}
+
+
+        public static void SetEnd(bool show=false)
+        { 	
+			string final = installed + "_";
+			if (!string.IsNullOrEmpty(communication))
+				final += communication + "_";
+			if (!string.IsNullOrEmpty(stream))
+				final += stream + "_";
+			if (!string.IsNullOrEmpty(import))
+				final += import + "_";
+			if (!string.IsNullOrEmpty(transform))
+				final += transform + "_";
+			if (!string.IsNullOrEmpty(history))
+				final += history + "_";
+			
+			
+			if (errorOccured || show)
+				Properties.Settings.Default.guiLastEndReason = final + "-" + exception + GetElapsedTime() + "END";
+			else
+				Properties.Settings.Default.guiLastEndReason = GetElapsedTime() + "END";
+            Properties.Settings.Default.Save();
+        }
+
+        public static void StoreException(string txt)
+        {   
+			errorOccured = true;
+			if (txt != lastStoredException)
+			{	exception += GetElapsedTime() + HttpUtility.UrlEncode(txt) + "_";}	// UrlEncode, because exception can contain forbidden chars: ...GrblPlotter.GCodeFromImage.GenerateResultImageGray(Int16[,]& tmpToolNrArray)
+			else
+			{	exception += "and" + GetElapsedTime();}
+			lastStoredException = txt;
+        }
+		
+		private static string GetElapsedTime()
+		{
+			int maxLength = 80;					// also shorten history string
+			if (history.Length > maxLength)
+				history = history.Substring(history.Length - maxLength, maxLength);
+			
+			long elapsedTicks = DateTime.Now.Ticks - start.Ticks;
+			TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
+			return string.Format("-{0:00}.{1:00}.{2:00}.", elapsedSpan.Hours, elapsedSpan.Minutes, elapsedSpan.Seconds);		
+		}
     }
 }

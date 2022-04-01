@@ -1042,4 +1042,54 @@ Añadir 'G54;' al encabezado G-Code para volver automáticamente a G54 antes de 
   <data name="LanguageToolStripMenuItem3.Text" xml:space="preserve">
     <value>Idioma</value>
   </data>
+  <data name="cBMoveG0.ToolTip" xml:space="preserve">
+    <value>Use el comando de movimiento rápido G0 - STOP jogging no funcionará</value>
+  </data>
+  <data name="CbCoolant.Text" xml:space="preserve">
+    <value>Refrigerante</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="CbTool.Text" xml:space="preserve">
+    <value>Herr. en husillo</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="BtnPenUp.Text" xml:space="preserve">
+    <value>Pen Up</value>
+  </data>
+  <data name="BtnPenUp.ToolTip" xml:space="preserve">
+    <value>Use la configuración de Setup-Servo-PWM</value>
+  </data>
+  <data name="BtnPenDown.Text" xml:space="preserve">
+    <value>Pen Down</value>
+  </data>
+  <data name="BtnPenDown.ToolTip" xml:space="preserve">
+    <value>Use la configuración de Setup-Servo-PWM</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>enrutador</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Aplica valores de traducción de Pen-up/-down habilitada para Z y PWM</value>
+  </data>
+  <data name="BtnPenZero.Text" xml:space="preserve">
+    <value>Pen Zero</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Trazador</value>
+  </data>
+  <data name="CbLasermode.Text" xml:space="preserve">
+    <value>Modo láser</value>
+  </data>
+  <data name="RbLaserM4.Text" xml:space="preserve">
+    <value>M4 Potencia dinámica.</value>
+  </data>
+  <data name="RbLaserM3.Text" xml:space="preserve">
+    <value>M3 Potencia constante</value>
+  </data>
+  <data name="CbLaser.Text" xml:space="preserve">
+    <value>láser encendido</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Láser</value>
+  </data>
 </root>

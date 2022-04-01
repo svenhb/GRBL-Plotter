@@ -1097,4 +1097,58 @@ Přidat 'G54;' do hlavičky G-Code, aby se před streamováním G-Code automatic
   <data name="LanguageToolStripMenuItem3.Text" xml:space="preserve">
     <value>Jazyk</value>
   </data>
+  <data name="cBMoveG0.ToolTip" xml:space="preserve">
+    <value>Použijte příkaz rychlého pohybu G0 - STOP jogging nebude fungovat</value>
+  </data>
+  <data name="CbSpindle.Text" xml:space="preserve">
+    <value>Vřeteno CW</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="CbCoolant.Text" xml:space="preserve">
+    <value>Chladicí kapalina</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="CbTool.Text" xml:space="preserve">
+    <value>Nástroj je ve vřetenu</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="BtnPenUp.Text" xml:space="preserve">
+    <value>Pen Up</value>
+  </data>
+  <data name="BtnPenUp.ToolTip" xml:space="preserve">
+    <value>Použijte nastavení z Setup-Servo-PWM</value>
+  </data>
+  <data name="BtnPenDown.Text" xml:space="preserve">
+    <value>Pen Down</value>
+  </data>
+  <data name="BtnPenDown.ToolTip" xml:space="preserve">
+    <value>Použijte nastavení z Setup-Servo-PWM</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Směrovač</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Použije hodnoty povoleného překladu perem nahoru / dolů pro Z a PWM</value>
+  </data>
+  <data name="BtnPenZero.Text" xml:space="preserve">
+    <value>Pen Zero</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Plotter</value>
+  </data>
+  <data name="CbLasermode.Text" xml:space="preserve">
+    <value>Laserový režim</value>
+  </data>
+  <data name="RbLaserM4.Text" xml:space="preserve">
+    <value>M4 Dynamic Pwr.</value>
+  </data>
+  <data name="RbLaserM3.Text" xml:space="preserve">
+    <value>M3 Konstantní pwr.</value>
+  </data>
+  <data name="CbLaser.Text" xml:space="preserve">
+    <value>Laser zapnutý</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Laser</value>
+  </data>
 </root>

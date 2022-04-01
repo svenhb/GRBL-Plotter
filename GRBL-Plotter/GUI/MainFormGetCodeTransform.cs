@@ -133,7 +133,7 @@ namespace GrblPlotter
         // handle event from create Text,  shape, barcode, image, jog path creator
         #region create_from_form
 
-        private void InsertCodeFromForm(string sourceGCode, string sourceForm)
+        private void InsertCodeFromForm(string sourceGCode, string sourceForm, GraphicsPath backgroundPath=null)
         {
             bool insertCode = Properties.Settings.Default.fromFormInsertEnable;
             importOptions = "";
@@ -223,6 +223,8 @@ namespace GrblPlotter
                 fCTBCode.Selection = mySelection;
                 fCTBCode.InsertText(tmpCodeFinish.ToString(), true);    // insert new code
                 SetLastLoadedFile(sourceForm, "");
+                if (backgroundPath != null)
+                    VisuGCode.pathBackground = (GraphicsPath)backgroundPath.Clone();
                 NewCodeEnd();
                 FoldCode();
 
@@ -239,6 +241,8 @@ namespace GrblPlotter
                 NewCodeStart(false);                        // GetGCodeFromText
                 SetFctbCodeText(sourceGCode);   // Graphic.GCode.ToString());  // getGCodeFromText
                 SetLastLoadedFile(sourceForm, "");
+                if (backgroundPath != null)
+                    VisuGCode.pathBackground = (GraphicsPath)backgroundPath.Clone();
                 NewCodeEnd();
                 FoldCode();
             }
@@ -255,6 +259,10 @@ namespace GrblPlotter
             {
                 InsertCodeFromForm(Graphic.GCode.ToString(), "from text");
                 Properties.Settings.Default.counterImportText += 1;
+                string source = "Itxt";
+                if (Properties.Settings.Default.fromFormInsertEnable)
+                    source = "I" + source;
+                EventCollector.SetImport(source);
             }
             else
                 MessageBox.Show(Localization.GetString("mainStreamingActive"), Localization.GetString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -266,16 +274,12 @@ namespace GrblPlotter
             Logger.Info("getGCodeFromShape");
             if (!isStreaming)
             {
-                InsertCodeFromForm(_shape_form.ShapeGCode, "from shape");
-                VisuGCode.pathBackground = (GraphicsPath)_shape_form.PathBackground.Clone();
-/*                SimuStop();
-                NewCodeStart(false);            // GetGCodeFromShape
-                VisuGCode.pathBackground = (GraphicsPath)_shape_form.PathBackground.Clone();
-                SetFctbCodeText(_shape_form.ShapeGCode);
-                SetLastLoadedFile("from shape", "");
-                NewCodeEnd();
-                FoldCode();*/
+                InsertCodeFromForm(_shape_form.ShapeGCode, "from shape", _shape_form.PathBackground);
                 Properties.Settings.Default.counterImportShape += 1;
+                string source = "Ishp";
+                if (Properties.Settings.Default.fromFormInsertEnable)
+                    source = "I" + source;
+                EventCollector.SetImport(source);
             }
             else
                 MessageBox.Show(Localization.GetString("mainStreamingActive"));
@@ -287,12 +291,11 @@ namespace GrblPlotter
             if (!isStreaming)
             {
                 InsertCodeFromForm(Graphic.GCode.ToString(), "from barcode");
-         /*       SimuStop();
-                NewCodeStart(false);                        // GetGCodeFromBarcode
-                SetFctbCodeText(Graphic.GCode.ToString());  // getGCodeFromBarcode
-                SetLastLoadedFile("from barcode", "");
-                NewCodeEnd();*/
                 Properties.Settings.Default.counterImportBarcode += 1;
+                string source = "Ibqr";
+                if (Properties.Settings.Default.fromFormInsertEnable)
+                    source = "I" + source;
+                EventCollector.SetImport(source);
             }
             else
                 MessageBox.Show(Localization.GetString("mainStreamingActive"));
@@ -318,6 +321,8 @@ namespace GrblPlotter
                 NewCodeEnd();
                 FoldCode();
                 Properties.Settings.Default.counterImportImage += 1;
+                EventCollector.SetImport("Iimg");
+                calculatePicScaling();      // update picScaling
             }
             else
                 MessageBox.Show(Localization.GetString("mainStreamingActive"));
@@ -805,6 +810,7 @@ namespace GrblPlotter
         private void ErsetzteG23DurchLinienToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TransformStart("Replace G2 / G3");
+            EventCollector.SetTransform("Tg23");
             fCTBCode.Text = VisuGCode.ReplaceG23();
             TransformEnd();
         }
@@ -812,6 +818,7 @@ namespace GrblPlotter
         private void ConvertZToSspindleSpeedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TransformStart("Convert Z");
+            EventCollector.SetTransform("Tcoz");
             fCTBCode.Text = VisuGCode.ConvertZ();
             TransformEnd();
         }
@@ -819,6 +826,7 @@ namespace GrblPlotter
         private void RemoveAnyZMoveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TransformStart("Remove any Z");
+            EventCollector.SetTransform("Trmz");
             fCTBCode.Text = VisuGCode.RemoveZ();
             TransformEnd();
         }
@@ -857,7 +865,6 @@ namespace GrblPlotter
                 ersetzteG23DurchLinienToolStripMenuItem.Enabled = false;
             }
         }
-        //     private static int limitcnt = 0;
         private void CheckMachineLimit()
         {
             if ((Properties.Settings.Default.machineLimitsShow) && (pictureBox1.BackgroundImage == null))
@@ -865,10 +872,6 @@ namespace GrblPlotter
                 if (!VisuGCode.xyzSize.WithinLimits(Grbl.posMachine, Grbl.posWork))
                 {
                     lbDimension.BackColor = Color.Fuchsia;
-                    //          decimal minx = Properties.Settings.Default.machineLimitsHomeX;
-                    //  decimal maxx = minx + Properties.Settings.Default.machineLimitsRangeX;
-                    //          decimal miny = Properties.Settings.Default.machineLimitsHomeY;
-                    //  decimal maxy = miny + Properties.Settings.Default.machineLimitsRangeY;
                     btnLimitExceed.Visible = true;
                 }
                 else
@@ -887,7 +890,6 @@ namespace GrblPlotter
 
         private void BtnLimitExceed_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("Graphics dimension exceeds machine dimension!\r\nTransformation is recommended to avoid damaging the machine! ", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             MessageBox.Show(Localization.GetString("mainLimits3"), Localization.GetString("mainAttention"));
         }
 

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -43,32 +43,43 @@ namespace GrblPlotter
             toolTip1.SetToolTip(linkLabel2, "Open file explorer and visit '"+ Datapath.AppDataFolder + "'");
         }
 
+		/* link to github */
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(@"https://github.com/svenhb/GRBL-Plotter");
+            try {	Process.Start(@"https://github.com/svenhb/GRBL-Plotter");}
+			catch (Exception err)
+			{	MessageBox.Show("Could not open URL : "+err.Message, "Error");}
         }
 
+		/* show actual verison */
         private void AboutForm_Load(object sender, EventArgs e)
         {
-         //   lblVersion.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
             lblVersion.Text = string.Format("{0}    {1}", System.Windows.Forms.Application.ProductVersion.ToString(), GetLinkerTimestampUtc(System.Reflection.Assembly.GetExecutingAssembly()).ToString("yyyy-MM-dd"));   //File.GetCreationTime(System.Reflection.Assembly.GetExecutingAssembly().Location)
         }
 
+		/* check prog. version */
         private void Button2_Click(object sender, EventArgs e)
         {
-            CheckUpdate.CheckVersion(true);
+            CheckUpdate.CheckVersion(true, Properties.Settings.Default.guiLastEndReason);
         }
 
+		/* open AppData */
         private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(Datapath.AppDataFolder);// (@"c:\test");
+            try { Process.Start(Datapath.AppDataFolder);	}// (@"c:\test");
+			catch (Exception err)
+			{	MessageBox.Show("Could not open folder : "+err.Message, "Error");}
         }
 
+		/* open home page */
         private void LinkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(@"https://GRBL-Plotter.de/?setlang=en");
+            try {	Process.Start(@"https://GRBL-Plotter.de/?setlang=en");}
+			catch (Exception err)
+			{	MessageBox.Show("Could not open URL : "+err.Message, "Error");}			
         }
 
+		/* date/time of compilation */
         public static DateTime GetLinkerTimestampUtc(System.Reflection.Assembly assembly)
         {
             var location = assembly.Location;

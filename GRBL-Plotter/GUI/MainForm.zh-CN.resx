@@ -1060,4 +1060,61 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
   <data name="LanguageToolStripMenuItem3.Text" xml:space="preserve">
     <value>语</value>
   </data>
+  <data name="cBMoveG0.ToolTip" xml:space="preserve">
+    <value>使用 G0 快速移动命令 - STOP jogging 将不起作用</value>
+  </data>
+  <data name="CbSpindle.Text" xml:space="preserve">
+    <value>主轴CW</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="CbCoolant.Text" xml:space="preserve">
+    <value>冷却液</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="CbTool.Text" xml:space="preserve">
+    <value>刀具在主轴中</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="BtnPenUp.Text" xml:space="preserve">
+    <value>笔向上</value>
+  </data>
+  <data name="BtnPenUp.ToolTip" xml:space="preserve">
+    <value>使用Setup-Servo-PWM中的设置</value>
+  </data>
+  <data name="BtnPenDown.Text" xml:space="preserve">
+    <value>下笔</value>
+  </data>
+  <data name="BtnPenDown.ToolTip" xml:space="preserve">
+    <value>使用Setup-Servo-PWM中的设置</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>路由器</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>为 Z 和 PWM 应用启用的笔向上/向下转换的值</value>
+  </data>
+  <data name="BtnPenZero.Text" xml:space="preserve">
+    <value>零笔</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>绘图仪</value>
+  </data>
+  <data name="CbLasermode.Text" xml:space="preserve">
+    <value>激光模式</value>
+  </data>
+  <data name="RbLaserM4.Text" xml:space="preserve">
+    <value>M4 动态电源</value>
+  </data>
+  <data name="RbLaserM3.Text" xml:space="preserve">
+    <value>M3 恒定功率</value>
+  </data>
+  <data name="CbLaser.Text" xml:space="preserve">
+    <value>激光开启</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>激光</value>
+  </data>
+  <data name="control3rdGRBLToolStripMenuItem.Text" xml:space="preserve">
+    <value>控制第 3 个串行 COM</value>
+  </data>
 </root>

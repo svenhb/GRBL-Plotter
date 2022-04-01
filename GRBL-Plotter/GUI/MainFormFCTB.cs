@@ -455,7 +455,8 @@ namespace GrblPlotter
                 Gcode.PenUp(gcodeString, "pasted");
                 SetTextSelection(fCTBCodeClickedLineNow, fCTBCodeClickedLineNow);
                 gcodeString.Append(fCTBCode.SelectedText.Replace("G01", "G00") + " (modified)");
-                Clipboard.SetText(gcodeString.ToString());
+                if (!string.IsNullOrEmpty(gcodeString.ToString()))
+                    Clipboard.SetText(gcodeString.ToString());
                 fCTBCode.Paste();
                 FctbCodeMarkLine();
             }
@@ -467,7 +468,8 @@ namespace GrblPlotter
                 Gcode.PenDown(gcodeString, "pasted");
                 SetTextSelection(fCTBCodeClickedLineNow, fCTBCodeClickedLineNow);
                 gcodeString.Append(fCTBCode.SelectedText.Replace("G00", "G01") + " F" + Gcode.GcodeXYFeed + " (modified)");
-                Clipboard.SetText(gcodeString.ToString());
+                if (!string.IsNullOrEmpty(gcodeString.ToString()))
+                    Clipboard.SetText(gcodeString.ToString());
                 fCTBCode.Paste();
                 FctbCodeMarkLine();
             }

@@ -1079,4 +1079,61 @@
   <data name="LanguageToolStripMenuItem3.Text" xml:space="preserve">
     <value>لغة</value>
   </data>
+  <data name="cBMoveG0.ToolTip" xml:space="preserve">
+    <value>استخدم أمر النقل السريع G0 - لن يعمل إيقاف الركض</value>
+  </data>
+  <data name="CbSpindle.Text" xml:space="preserve">
+    <value>المغزل CW</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="CbCoolant.Text" xml:space="preserve">
+    <value>المبرد</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="CbTool.Text" xml:space="preserve">
+    <value>الأداة في المغزل</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="BtnPenUp.Text" xml:space="preserve">
+    <value>قلم لأعلى</value>
+  </data>
+  <data name="BtnPenUp.ToolTip" xml:space="preserve">
+    <value>استخدم الإعدادات من Setup-Servo-PWM</value>
+  </data>
+  <data name="BtnPenDown.Text" xml:space="preserve">
+    <value>القلم لأسفل</value>
+  </data>
+  <data name="BtnPenDown.ToolTip" xml:space="preserve">
+    <value>استخدم الإعدادات من Setup-Servo-PWM</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>جهاز التوجيه</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>يطبق قيم ترجمة Pen -up / -down الممكّنة لـ Z و PWM</value>
+  </data>
+  <data name="BtnPenZero.Text" xml:space="preserve">
+    <value>القلم صفر</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>متآمر</value>
+  </data>
+  <data name="CbLasermode.Text" xml:space="preserve">
+    <value>وضع الليزر</value>
+  </data>
+  <data name="RbLaserM4.Text" xml:space="preserve">
+    <value>M4 ديناميكي PWR.</value>
+  </data>
+  <data name="RbLaserM3.Text" xml:space="preserve">
+    <value>M3 ثابت pwr.</value>
+  </data>
+  <data name="CbLaser.Text" xml:space="preserve">
+    <value>الليزر في</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>الليزر</value>
+  </data>
+  <data name="control3rdGRBLToolStripMenuItem.Text" xml:space="preserve">
+    <value>التحكم الثالث المسلسل COM</value>
+  </data>
 </root>

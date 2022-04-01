@@ -1050,4 +1050,57 @@
   <data name="LanguageToolStripMenuItem3.Text" xml:space="preserve">
     <value>Язык</value>
   </data>
+  <data name="cBMoveG0.ToolTip" xml:space="preserve">
+    <value>Используйте команду быстрого перемещения G0 — толчковый режим STOP не будет работать.</value>
+  </data>
+  <data name="CbSpindle.Text" xml:space="preserve">
+    <value>Шпиндель</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="CbTool.Text" xml:space="preserve">
+    <value>Инструмент в шпинделе</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="BtnPenUp.Text" xml:space="preserve">
+    <value>Pen Up</value>
+  </data>
+  <data name="BtnPenUp.ToolTip" xml:space="preserve">
+    <value>Используйте настройки из Setup-Servo-PWM</value>
+  </data>
+  <data name="BtnPenDown.Text" xml:space="preserve">
+    <value>Pen Down</value>
+  </data>
+  <data name="BtnPenDown.ToolTip" xml:space="preserve">
+    <value>Используйте настройки из Setup-Servo-PWM</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Маршрутизатор</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Применяет значения включенного перевода пера вверх/вниз для Z и ШИМ.</value>
+  </data>
+  <data name="BtnPenZero.Text" xml:space="preserve">
+    <value>Pen Zero</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Плоттер</value>
+  </data>
+  <data name="CbLasermode.Text" xml:space="preserve">
+    <value>Лазерный режим</value>
+  </data>
+  <data name="RbLaserM4.Text" xml:space="preserve">
+    <value>M4 Динамическая мощность.</value>
+  </data>
+  <data name="RbLaserM3.Text" xml:space="preserve">
+    <value>M3 Постоянная мощность.</value>
+  </data>
+  <data name="CbLaser.Text" xml:space="preserve">
+    <value>Лазер включен</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Лазер</value>
+  </data>
+  <data name="control3rdGRBLToolStripMenuItem.Text" xml:space="preserve">
+    <value>Управление 3-м серийным COM</value>
+  </data>
 </root>

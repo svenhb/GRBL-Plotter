@@ -100,6 +100,8 @@ namespace GrblPlotter
         private readonly string zeroCmd = "G10 L20 P0";      // "G92"
         private int mainTimerCount = 0;
 
+        private bool showFormInFront = false;
+
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private static readonly CultureInfo culture = CultureInfo.InvariantCulture;
@@ -108,6 +110,7 @@ namespace GrblPlotter
         private static bool logDetailed = false;
         private static readonly bool logPosEvent = false;
         private static bool logStreaming = false;
+
 
 
         public MainForm()
@@ -122,6 +125,8 @@ namespace GrblPlotter
             Thread.CurrentThread.CurrentUICulture = ci;
 
             Logger.Info(culture, "###### START GRBL-Plotter Ver. {0}  Language: {1}   OS: {2} ######", Application.ProductVersion, ci, System.Environment.OSVersion);
+            Logger.Info("Info {0}", Properties.Settings.Default.guiLastEndReason);
+            EventCollector.Init();
             UpdateLogging();            // set logging flags
 
             InitializeComponent();      // controls
@@ -159,7 +164,8 @@ namespace GrblPlotter
             CustomButtonsSetEvents();       // for buttons 17 to 32
             SetMenuShortCuts();				// Add shortcuts to menu items
             LoadRecentList();               // open Recent.txt and fill menu
-            toolStripViewPenUp.Checked = Properties.Settings.Default.gui2DPenUpShow;	//2021-08-09
+
+            UpdateMenuChecker();
 
             if (MRUlist.Count > 0)			// add recent list to gui menu
             {
@@ -186,7 +192,7 @@ namespace GrblPlotter
             catch (Exception er) { Logger.Error(er, " MainForm - ControlGamePad.Initialize "); }
 
             Grbl.Init();                    // load and set grbl messages in grblRelated.cs
-            ToolTable.Init();               // fill structure in ToolTable.cs
+        //    ToolTable.Init();               // fill structure in ToolTable.cs
             GuiVariables.ResetVariables();	// set variables in MainFormObjects.cs			
 
             if (Properties.Settings.Default.guiExtendedLoggingEnabled || Properties.Settings.Default.guiExtendedLoggingCOMEnabled)
@@ -204,7 +210,7 @@ namespace GrblPlotter
             if (Properties.Settings.Default.guiCheckUpdate)
             {
                 StatusStripSet(2, Localization.GetString("statusStripeCheckUpdate"), Color.LightGreen);
-                CheckUpdate.CheckVersion();     // check update
+                CheckUpdate.CheckVersion(false, Properties.Settings.Default.guiLastEndReason);     // check update
             }
 
             mainTimerCount = 0;
@@ -224,15 +230,19 @@ namespace GrblPlotter
                     if (Properties.Settings.Default.ctrlUseSerial2)
                     {
                         _serial_form2 = new ControlSerialForm("COM Tool changer", 2);
-                        _serial_form2.Show(this);
+                        if (showFormInFront) _serial_form2.Show(this);
+                        else _serial_form2.Show();
                     }
                     if (Properties.Settings.Default.ctrlUseSerial3)
                     {
                         _serial_form3 = new SimpleSerialForm();// "COM simple", 3);
-                        _serial_form3.Show(this);
+                        if (showFormInFront) _serial_form3.Show(this);
+                        else _serial_form3.Show();
                     }
                     _serial_form = new ControlSerialForm("COM CNC", 1, _serial_form2, _serial_form3);
-                    _serial_form.Show(this);
+                    if (showFormInFront) _serial_form.Show(this);
+                    else _serial_form.Show();
+
                     _serial_form.RaisePosEvent += OnRaisePosEvent;
                     _serial_form.RaiseStreamEvent += OnRaiseStreamEvent;
                 }
@@ -268,7 +278,6 @@ namespace GrblPlotter
                 StatusStripClear(2, 2);
                 Logger.Info(culture, "++++++ MainForm SplashScreen Timer disabled  -> mainTimer:{0}", mainTimerCount);
                 timerUpdateControlSource = "SplashScreenTimer_Tick";
-                CbServoButtons_CheckedChanged(sender, e);
                 MainTimer.Stop();
                 MainTimer.Start();
             }
@@ -278,7 +287,12 @@ namespace GrblPlotter
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {   // Note all other forms will be closed, before reaching following code...
             Logger.Info("###### FormClosing ");
+			if (isStreaming)
+				EventCollector.SetStreaming("CLOST");
+			else
+				EventCollector.SetStreaming("Close");
 
+            loadTimer.Stop();
             Properties.Settings.Default.mainFormWinState = WindowState;
             WindowState = FormWindowState.Normal;
             Properties.Settings.Default.mainFormSize = Size;
@@ -287,13 +301,13 @@ namespace GrblPlotter
             Properties.Settings.Default.mainFormSplitDistance = splitContainer1.SplitterDistance;
 
 			Properties.Settings.Default.guiLastEnd = DateTime.Now.Ticks;
-			Properties.Settings.Default.guiLastEndReason += "END";
+			
             SaveSettings();
-            Logger.Info(culture, "###### GRBL-Plotter STOP ######", Application.ProductVersion);
+            Logger.Info("###### GRBL-Plotter STOP ######");
         }
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Logger.Info(culture, "###+++ GRBL-Plotter FormClosed +++###", Application.ProductVersion);
+            Logger.Info("###+++ GRBL-Plotter FormClosed +++###");
             if (System.Windows.Forms.Application.MessageLoop)
             {
                 // Use this since we are a WinForms app
@@ -304,10 +318,12 @@ namespace GrblPlotter
                 // Use this since we are a console app
                 System.Environment.Exit(1);
             }
+			EventCollector.SetEnd();
+            Logger.Info("EventCollector: {0}", Properties.Settings.Default.guiLastEndReason);
         }
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Logger.Trace(culture, "##**** GRBL-Plotter EXIT");
+            Logger.Trace("##**** GRBL-Plotter EXIT");
             this.Close();
         }
 
@@ -382,17 +398,15 @@ namespace GrblPlotter
         {
             if (!Grbl.isVersion_0 && _serial_form.IsLasermode)
             {
-                lbInfo.Text = Localization.GetString("mainInfoLaserModeOn"); // "Laser Mode active $32=1";
-                lbInfo.BackColor = Color.Fuchsia;
-                btnPenDown.BackColor = Color.Fuchsia;
-                btnPenUp.BackColor = Color.Fuchsia;
+        //        lbInfo.Text = Localization.GetString("mainInfoLaserModeOn"); // "Laser Mode active $32=1";
+        //        lbInfo.BackColor = Color.Fuchsia;
+                SetTextThreadSave(lbInfo, Localization.GetString("mainInfoLaserModeOn"), Color.Fuchsia);
             }
             else
             {
-                lbInfo.Text = Localization.GetString("mainInfoLaserModeOff");  //"Laser Mode not active $32=0";
-                lbInfo.BackColor = Color.Lime;
-                btnPenDown.BackColor = SystemColors.Control;
-                btnPenUp.BackColor = SystemColors.Control;
+         ///       lbInfo.Text = Localization.GetString("mainInfoLaserModeOff");  //"Laser Mode not active $32=0";
+         //       lbInfo.BackColor = Color.Lime;
+                SetTextThreadSave(lbInfo, Localization.GetString("mainInfoLaserModeOff"), Color.Lime);
             }
         }
         // update 500ms
@@ -755,38 +769,136 @@ namespace GrblPlotter
         private void CbSpindle_CheckedChanged(object sender, EventArgs e)
         {
             string m = "M3";
-            if (Properties.Settings.Default.importGCSDirM3)
-                cBSpindle.Text = "Spindle CW";
-            else
-            { cBSpindle.Text = "Spindle CCW"; m = "M4"; }
+            if (RbSpindleCCW.Checked) m = "M4";
 
-            if (cBSpindle.Checked)
-            { SendCommand(m + " S" + tBSpeed.Text); }
+            float speed = Grbl.GetSetting(30);
+            if (speed > 1)
+                speed = (int)Math.Round((float)NudSpeed.Value * speed / 100);
             else
-            { SendCommand("M5"); }
+                speed = (int)Math.Round((float)NudSpeed.Value * 10);
+
+            if (CbSpindle.Checked)
+            {   SendCommand(m + " S" + speed.ToString());
+                SetTextThreadSave(LblSpeedSetVal, speed.ToString(), Color.Yellow);
+                CbLaser.CheckedChanged -= CbLaser_CheckedChanged;
+                CbLaser.Checked = true;
+                TbLaser.Value = (int)NudSpeed.Value;
+                RbLaserM3.Checked = RbSpindleCW.Checked;
+                RbLaserM4.Checked = !RbSpindleCW.Checked;
+                PbLaser.Visible = true;
+                CbLaser.CheckedChanged += CbLaser_CheckedChanged;
+            }
+            else
+            {   SendCommand("M5");
+                CbLaser.CheckedChanged -= CbLaser_CheckedChanged;
+                CbLaser.Checked = false;
+                PbLaser.Visible = false;
+                CbLaser.CheckedChanged += CbLaser_CheckedChanged;
+            }
+        }
+        private void CbLaser_CheckedChanged(object sender, EventArgs e)
+        {
+            string m = "M3";
+            if (RbLaserM4.Checked) m = "M4";
+
+            float speed = Grbl.GetSetting(30);
+            if (speed > 1)
+                speed = (int)Math.Round((float)TbLaser.Value * speed / 100);
+            else
+                speed = (int)Math.Round((float)TbLaser.Value * 10);
+
+            if (CbLaser.Checked)
+            {
+                if (_serial_form.IsLasermode) SendCommand(string.Format(culture, "$J=G91X0.0001F1000"));    // move G1 tiny step to force laser on
+                SendCommand(m + " S" + speed.ToString());
+                SetTextThreadSave(LblLaserSetVal, speed.ToString(), Color.Yellow);
+                PbLaser.Visible = true;
+                if (_serial_form.IsLasermode) SendCommand(string.Format(culture, "$J=G91X-0.0001F1000"));   // move G1 tiny step back
+
+                CbSpindle.CheckedChanged -= CbSpindle_CheckedChanged;
+                CbSpindle.Checked = true;
+                NudSpeed.Value = TbLaser.Value;
+                RbSpindleCW.Checked = RbLaserM3.Checked;
+                RbSpindleCCW.Checked = !RbLaserM3.Checked;
+                CbSpindle.CheckedChanged += CbSpindle_CheckedChanged;
+            }
+            else
+            {   SendCommand("M5"); PbLaser.Visible = false;
+                CbSpindle.CheckedChanged -= CbSpindle_CheckedChanged;
+                CbSpindle.Checked = false;
+                CbSpindle.CheckedChanged += CbSpindle_CheckedChanged;
+            }
+        }
+        private void CbLasermode_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CbLasermode.Checked)
+            {
+                SetTextThreadSave(CbLasermodeVal, "ON", Color.Yellow);
+                SendCommand("$32=1");
+            }
+            else
+            {
+                SetTextThreadSave(CbLasermodeVal, "OFF", Color.Yellow);
+                SendCommand("$32=0"); 
+            }
         }
 
         private void BtnPenUp_Click(object sender, EventArgs e)
         {
-            if (_serial_form.IsLasermode) SendCommand(string.Format(culture, "$J=G91X0.0001F1000"));
-            SendCommand(string.Format(culture, "M3 S{0}", Properties.Settings.Default.importGCPWMUp));
-            if (_serial_form.IsLasermode) SendCommand(string.Format(culture, "$J=G91X-0.0001F1000"));
+            if (Properties.Settings.Default.importGCPWMEnable)  // to avoid error 9, do jog command at last
+            {
+                if (_serial_form.IsLasermode) SendCommand(string.Format(culture, "$J=G91X0.0001F1000"));    // move G1 tiny step to force PWM on
+                SendCommand(string.Format(culture, "M3 S{0}", Properties.Settings.Default.importGCPWMUp));
+                if (_serial_form.IsLasermode) SendCommand(string.Format(culture, "$J=G91X-0.0001F1000"));   // move G1 tiny step back
+            }
+            if (Properties.Settings.Default.importGCZEnable)
+            {
+                SendCommand(string.Format(culture, "$J=G90 Z{0} F{1}", Gcode.FrmtNum(Properties.Settings.Default.importGCZUp), Properties.Settings.Default.importGCZFeed));
+            }
+        }
+        private void BtnPenZero_Click(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.importGCPWMEnable)  // to avoid error 9, do jog command at last
+            {
+                if (_serial_form.IsLasermode) SendCommand(string.Format(culture, "G91 G01 X0.0001F1000"));
+                SendCommand(string.Format(culture, "M3 S{0}", Properties.Settings.Default.importGCPWMZero));
+                if (_serial_form.IsLasermode) SendCommand(string.Format(culture, "G91 G01 X-0.0001F1000"));
+            }
+            if (Properties.Settings.Default.importGCZEnable)
+            {
+                SendCommand(string.Format(culture, "$J=G90 Z{0} F{1}", Gcode.FrmtNum(0f), Properties.Settings.Default.importGCZFeed));
+            }
         }
 
         private void BtnPenDown_Click(object sender, EventArgs e)
         {
-            if (_serial_form.IsLasermode) SendCommand(string.Format(culture, "G91 G01 X0.0001F1000"));
-            SendCommand(string.Format(culture, "M3 S{0}", Properties.Settings.Default.importGCPWMDown));
-            if (_serial_form.IsLasermode) SendCommand(string.Format(culture, "G91 G01 X-0.0001F1000"));
+            if (Properties.Settings.Default.importGCPWMEnable)  // to avoid error 9, do jog command at last
+            {
+                if (_serial_form.IsLasermode) SendCommand(string.Format(culture, "G91 G01 X0.0001F1000"));
+                SendCommand(string.Format(culture, "M3 S{0}", Properties.Settings.Default.importGCPWMDown));
+                if (_serial_form.IsLasermode) SendCommand(string.Format(culture, "G91 G01 X-0.0001F1000"));
+            }
+            if (Properties.Settings.Default.importGCZEnable)
+            {
+                SendCommand(string.Format(culture, "$J=G90 Z{0} F{1}", Gcode.FrmtNum(Properties.Settings.Default.importGCZDown), Properties.Settings.Default.importGCZFeed));
+            }
         }
 
         private void CbCoolant_CheckedChanged(object sender, EventArgs e)
         {
-            if (cBCoolant.Checked)
+            if (CbCoolant.Checked)
             { SendCommand("M8"); }
             else
             { SendCommand("M9"); }
         }
+        private void CbMist_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CbCoolant.Checked)
+            { SendCommand("M7"); }
+            else
+            { SendCommand("M9"); }
+        }
+
         private void BtnHome_Click(object sender, EventArgs e)
         {
             if (Grbl.isMarlin)
@@ -841,21 +953,29 @@ namespace GrblPlotter
 
         private void BtnReset_Click(object sender, EventArgs e)
         {
-            _serial_form.GrblReset(true);   // savePos
+            if (_serial_form.IsConnectedToGrbl())
+            {
+                Logger.Trace("BtnReset_Click  IsConnectedToGrbl");
+                StopStreaming(true);
+                _serial_form.GrblReset(true);   // savePos
+            }
+            isStreaming = false;
             pbFile.Value = 0;
             pbFile.Maximum = 100;
             signalResume = 0;
             signalLock = 0;
             signalPlay = 0;
             btnResume.BackColor = SystemColors.Control;
-            lbInfo.Text = "";
-            lbInfo.BackColor = SystemColors.Control;
-            cBSpindle.CheckedChanged -= CbSpindle_CheckedChanged;
-            cBSpindle.Checked = false;
-            cBSpindle.CheckedChanged += CbSpindle_CheckedChanged;
-            cBCoolant.CheckedChanged -= CbSpindle_CheckedChanged;
-            cBCoolant.Checked = false;
-            cBCoolant.CheckedChanged += CbSpindle_CheckedChanged;
+        //    lbInfo.Text = "";
+        //    lbInfo.BackColor = SystemColors.Control;
+            SetTextThreadSave(lbInfo, "", SystemColors.Control);
+            CbSpindle.CheckedChanged -= CbSpindle_CheckedChanged;
+            CbSpindle.Checked = false;
+            CbSpindle.CheckedChanged += CbSpindle_CheckedChanged;
+            CbCoolant.CheckedChanged -= CbSpindle_CheckedChanged;
+            CbCoolant.Checked = false;
+            CbCoolant.CheckedChanged += CbSpindle_CheckedChanged;
+
             UpdateControlEnables();
             ControlPowerSaving.EnableStandby();
         }
@@ -878,28 +998,30 @@ namespace GrblPlotter
             Logger.Trace("Resume");
             btnResume.BackColor = SystemColors.Control;
             signalResume = 0;
-            lbInfo.Text = "";
-            lbInfo.BackColor = SystemColors.Control;
+        //    lbInfo.Text = "";
+        //    lbInfo.BackColor = SystemColors.Control;
+            SetTextThreadSave(lbInfo, "", SystemColors.Control);
             timerUpdateControlSource = "grblResume";
             UpdateControlEnables();
         }
         private void BtnKillAlarm_Click(object sender, EventArgs e)
-        { GrblKillAlarm(); }
+        {   GrblKillAlarm(); }
         private void GrblKillAlarm()
         {
             SendCommand("$X");
             Logger.Trace("KillAlarm");
             signalLock = 0;
             btnKillAlarm.BackColor = SystemColors.Control;
-            lbInfo.Text = "";
-            lbInfo.BackColor = SystemColors.Control;
+        //    lbInfo.Text = "";
+        //    lbInfo.BackColor = SystemColors.Control;
+            SetTextThreadSave(lbInfo, "", SystemColors.Control);
             timerUpdateControlSource = "grblKillAlarm";
             UpdateControlEnables();
         }
         #endregion
 
         private void CbTool_CheckedChanged(object sender, EventArgs e)
-        { _serial_form.ToolInSpindle = cBTool.Checked; }
+        { _serial_form.ToolInSpindle = CbTool.Checked; }
 
         private void BtnOverrideFR0_Click(object sender, EventArgs e)
         { SendRealtimeCommand(144); }     // 0x90 : Set 100% of programmed rate.    
@@ -979,7 +1101,10 @@ namespace GrblPlotter
                     }
                 }
                 else
+                {
                     _serial_form.AddToLog("Script/file does not exists: " + command);
+                    Logger.Warn("ProcessCommands Script/file does not exists: {0}", command);
+                }
             }
             else
             { commands = command.Split(';'); }
@@ -1037,9 +1162,12 @@ namespace GrblPlotter
 		}
 
         private void PictureBox1_MouseHover(object sender, EventArgs e)
-        { 	//if (!pictureBox1.Focused)
-			//	pictureBox1.Focus(); 
-		}
+        { 	if (!pictureBox1.Focused)
+            {
+                pictureBox1.Focus();
+                markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (picScaling * zoomFactor));
+            }
+        }
 
         private void FCTBCode_MouseHover(object sender, EventArgs e)
         { 	if (!fCTBCode.Focused)
@@ -1062,7 +1190,7 @@ namespace GrblPlotter
             }
         }
 
-        private void UpdateView(object sender, EventArgs e)
+        private void UpdatePathDisplay(object sender, EventArgs e)
         {
             Properties.Settings.Default.gui2DRulerShow = toolStripViewRuler.Checked;
             Properties.Settings.Default.gui2DInfoShow = toolStripViewInfo.Checked;
@@ -1076,7 +1204,17 @@ namespace GrblPlotter
             VisuGCode.DrawMachineLimit();// ToolTable.GetToolCordinates());
             pictureBox1.Invalidate();                                   // resfresh view
         }
-
+        private void UpdateMenuChecker()
+        {
+            toolStripViewRuler.Checked = Properties.Settings.Default.gui2DRulerShow;
+            toolStripViewInfo.Checked = Properties.Settings.Default.gui2DInfoShow;
+            toolStripViewPenUp.Checked = Properties.Settings.Default.gui2DPenUpShow ;
+            toolStripViewMachine.Checked =  Properties.Settings.Default.machineLimitsShow ;
+            toolStripViewTool.Checked = Properties.Settings.Default.gui2DToolTableShow ;
+            toolStripViewDimension.Checked = Properties.Settings.Default.guiDimensionShow ;
+            toolStripViewBackground.Checked = Properties.Settings.Default.guiBackgroundShow ;
+            toolStripViewMachineFix.Checked = Properties.Settings.Default.machineLimitsFix ;
+        }
         private void MainForm_Resize(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Normal)
@@ -1101,9 +1239,9 @@ namespace GrblPlotter
             if (ctrl4thAxis || Grbl.axisA) zCount = 2;
             if (Grbl.axisB) { zCount = 3; zRatio = 25; }
             if (Grbl.axisC) { zCount = 4; zRatio = 25; }
-            int spaceY = this.Height - 520;     // width is 125% or 150%    485
+            int spaceY = this.Height - 400;// 520;     // width is 125% or 150%    485
             int spaceX = this.Width - 670;      // heigth is 100%
-            spaceX = Math.Max(spaceX, 235);     // minimum width is 235px
+            spaceX = Math.Max(spaceX, 120);// 235);     // minimum width is 235px
 
             int aWidth = 0, bWidth = 0, cWidth = 0;
             int zWidth = (spaceX * zRatio / (100 + zCount * zRatio));           // 
@@ -1232,13 +1370,6 @@ namespace GrblPlotter
             }
         }
 
-
-        private void CbServoButtons_CheckedChanged(object sender, EventArgs e)
-        {
-            btnPenUp.Visible = cBServoButtons.Checked;
-            btnPenDown.Visible = cBServoButtons.Checked;
-        }
-
         /* StatusStripSet messages:
          * 0: import, loggingEnabled, start import
          * 1: Key-usage, grblLastMessage, importOptions, setEditMode, fileLoading
@@ -1306,6 +1437,24 @@ namespace GrblPlotter
                 (e.KeyCode == Keys.Alt) || (e.KeyCode == Keys.Shift) || (e.KeyCode == Keys.Control)))
             { e.IsInputKey = true; }
         }
+
+        private void showFormsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_serial_form != null) _serial_form.BringToFront();
+            if (_text_form != null) _text_form.BringToFront();
+            if (_image_form != null) _image_form.BringToFront();
+            if (_shape_form != null) _shape_form.BringToFront();
+            if (_barcode_form != null) _barcode_form.BringToFront();
+
+            if (_setup_form != null) _setup_form.BringToFront();
+            if (_camera_form != null) _camera_form.BringToFront();
+            if (_coordSystem_form != null) _coordSystem_form.BringToFront();
+            if (_laser_form != null) _laser_form.BringToFront();
+            if (_probing_form != null) _probing_form.BringToFront();
+            if (_heightmap_form != null) _heightmap_form.BringToFront();
+
+         //   _streaming_form.SendToBack();
+       }
     }
 }
 

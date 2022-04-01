@@ -20,12 +20,11 @@
  * 2020-09-18 split file
  * 2021-01-13 add 3rd serial com
  * 2021-07-15 code clean up / code quality
+ * 2022-03-06 changed from form.show(this) to .show() to be able to stay behaind main form
 */
 
 using System;
 using System.Windows.Forms;
-
-//#pragma warning disable CA1307
 
 namespace GrblPlotter
 {
@@ -54,7 +53,7 @@ namespace GrblPlotter
         ControlHeightMapForm _heightmap_form = null;
         ControlSetupForm _setup_form = null;
         ControlJogPathCreator _jogPathCreator_form = null;
-
+        ControlProjector _projector_form = null;
 
 
         #region MAIN-MENU GCode creation
@@ -74,7 +73,11 @@ namespace GrblPlotter
             {
                 _text_form.Visible = false;
             }
-            _text_form.Show(this);
+
+            if (showFormInFront) _text_form.Show(this);
+            else _text_form.Show();  // this);
+
+            showFormsToolStripMenuItem.Visible = true;
             _text_form.WindowState = FormWindowState.Normal;
         }
         private void FormClosed_TextToGCode(object sender, FormClosedEventArgs e)
@@ -90,7 +93,7 @@ namespace GrblPlotter
             {
                 _image_form = new GCodeFromImage();
                 _image_form.FormClosed += FormClosed_ImageToGCode;
-                _image_form.btnGenerate.Click += GetGCodeFromImage;      // assign btn-click event
+                _image_form.btnGenerate.Click += GetGCodeFromImage;      // assign btn-click event in MainFormgetCodetransform.cs
                 _image_form.BtnReloadPattern.Click += LoadLastGraphic;
                 _image_form.CBoxPatternFiles.SelectedIndexChanged += LoadSelectedGraphicImage;
             }
@@ -98,7 +101,10 @@ namespace GrblPlotter
             {
                 _image_form.Visible = false;
             }
-            _image_form.Show(this);
+            if (showFormInFront) _image_form.Show(this);
+            else _image_form.Show();
+			
+            showFormsToolStripMenuItem.Visible = true;
             _image_form.WindowState = FormWindowState.Normal;
         }
         private void FormClosed_ImageToGCode(object sender, FormClosedEventArgs e)
@@ -120,7 +126,11 @@ namespace GrblPlotter
             {
                 _shape_form.Visible = false;
             }
-            _shape_form.Show(this);
+
+            if (showFormInFront) _shape_form.Show(this);
+            else _shape_form.Show(); // this);
+
+            showFormsToolStripMenuItem.Visible = true;
             _shape_form.WindowState = FormWindowState.Normal;
         }
         private void FormClosed_ShapeToGCode(object sender, FormClosedEventArgs e)
@@ -143,7 +153,11 @@ namespace GrblPlotter
             {
                 _barcode_form.Visible = false;
             }
-            _barcode_form.Show(this);
+
+            if (showFormInFront) _barcode_form.Show(this);
+            else _barcode_form.Show();   // this);
+
+            showFormsToolStripMenuItem.Visible = true;
             _barcode_form.WindowState = FormWindowState.Normal;
         }
         private void FormClosed_BarcodeToGCode(object sender, FormClosedEventArgs e)
@@ -273,7 +287,11 @@ namespace GrblPlotter
             {
                 _camera_form.Visible = false;
             }
-            _camera_form.Show(this);
+
+            if (showFormInFront) _camera_form.Show(this);
+            else _camera_form.Show();        // this);
+
+            showFormsToolStripMenuItem.Visible = true;
             _camera_form.WindowState = FormWindowState.Normal;
         }
         private void FormClosed_CameraForm(object sender, FormClosedEventArgs e)
@@ -346,7 +364,11 @@ namespace GrblPlotter
             {
                 _coordSystem_form.Visible = false;
             }
-            _coordSystem_form.Show(this);
+
+            if (showFormInFront) _coordSystem_form.Show(this);
+            else _coordSystem_form.Show();       // this);
+
+            showFormsToolStripMenuItem.Visible = true;
             _coordSystem_form.WindowState = FormWindowState.Normal;
         }
         private void FormClosed_CoordSystemForm(object sender, FormClosedEventArgs e)
@@ -374,7 +396,11 @@ namespace GrblPlotter
             {
                 _laser_form.Visible = false;
             }
-            _laser_form.Show(this);
+
+            if (showFormInFront) _laser_form.Show(this);
+            else _laser_form.Show();     // this);
+
+            showFormsToolStripMenuItem.Visible = true;
             _laser_form.WindowState = FormWindowState.Normal;
         }
         private void FormClosed_LaserForm(object sender, FormClosedEventArgs e)
@@ -405,7 +431,11 @@ namespace GrblPlotter
             {
                 _probing_form.Visible = false;
             }
-            _probing_form.Show(this);
+
+            if (showFormInFront) _probing_form.Show(this);
+            else _probing_form.Show();       // this);
+
+            showFormsToolStripMenuItem.Visible = true;
             _probing_form.WindowState = FormWindowState.Normal;
         }
         private void FormClosed_ProbingForm(object sender, FormClosedEventArgs e)
@@ -457,7 +487,11 @@ namespace GrblPlotter
             {
                 _heightmap_form.Visible = false;
             }
-            _heightmap_form.Show(this);
+
+            if (showFormInFront) _heightmap_form.Show(this);
+            else _heightmap_form.Show(); // this);
+
+            showFormsToolStripMenuItem.Visible = true;
             _heightmap_form.WindowState = FormWindowState.Normal;
             if (_diyControlPad != null)
             { _heightmap_form.DiyControlConnected = _diyControlPad.IsConnected; }
@@ -481,7 +515,7 @@ namespace GrblPlotter
                 _setup_form = new ControlSetupForm();
                 _setup_form.FormClosed += FormClosed_SetupForm;
                 _setup_form.btnApplyChangings.Click += LoadSettings;
-                _setup_form.btnReloadFile.Click += ReStartConvertFile;
+                _setup_form.btnReloadFile.Click += ReStartConvertFileFromSetup;
                 _setup_form.btnMoveToolXY.Click += MoveToPickup;
                 _setup_form.btnGCPWMUp.Click += MoveToPickup;
                 _setup_form.btnGCPWMDown.Click += MoveToPickup;
@@ -493,7 +527,11 @@ namespace GrblPlotter
             {
                 _setup_form.Visible = false;
             }
-            _setup_form.Show(null);// this);
+
+            if (showFormInFront) _setup_form.Show(this);
+            else _setup_form.Show();// null);// this);
+
+            showFormsToolStripMenuItem.Visible = true;
             _setup_form.WindowState = FormWindowState.Normal;
         }
         private void FormClosed_SetupForm(object sender, FormClosedEventArgs e)
@@ -528,6 +566,40 @@ namespace GrblPlotter
         }
         private void FormClosed_JogCreator(object sender, FormClosedEventArgs e)
         { _jogPathCreator_form = null; }
+
+ 
+		/********************************************************************
+         * Projector - a form to be displayed via a projector on the workpiece
+         * _projector_form
+         ********************************************************************/
+        private void ProjectorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_projector_form == null)
+            {
+                _projector_form = new ControlProjector();
+                _projector_form.FormClosed += FormClosed_Projector;
+            }
+            else
+            {
+                _projector_form.Visible = false;
+            }
+			
+			if (Screen.AllScreens.Length > 1)
+			{
+				_projector_form.StartPosition = FormStartPosition.Manual;
+				_projector_form.Location = Screen.AllScreens[1].WorkingArea.Location;
+			//	_projector_form.FormBorderStyle = FormBorderStyle.None;
+				_projector_form.Show();
+				_projector_form.WindowState = FormWindowState.Maximized;
+			} 
+			else
+			{	_projector_form.Show(this);
+				_projector_form.WindowState = FormWindowState.Normal;
+			}
+        }
+        private void FormClosed_Projector(object sender, FormClosedEventArgs e)
+        { 	_projector_form = null; }
+
 
         /********************************************************************
         * About Form

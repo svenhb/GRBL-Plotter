@@ -49,6 +49,7 @@
  * 2021-12-31 LoadHotkeys add try/catch
  * 2022-01-02 add LastLoadedImagePattern = fileName;
  * 2022-01-07 BtnSaveFile_Click add try/catch
+ * 2022-03-06 ReStartConvertFile: if last file is "lastProcessed.nc" reload 2nd last file from Setup-Form
 */
 
 using System;
@@ -259,7 +260,10 @@ namespace GrblPlotter
             }
 			
             fCTBCode.Refresh();
-            VisuGCode.CalcDrawingArea();                                // calc ruler dimension
+
+            calculatePicScaling();		// update picScaling
+            float markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / picScaling);
+            VisuGCode.CalcDrawingArea(markerSize);                                // calc ruler dimension
             VisuGCode.DrawMachineLimit();
 			showPaths = true;
 
@@ -287,6 +291,9 @@ namespace GrblPlotter
             {
                 timerShowGCodeError = true;
             }
+
+            if (_projector_form != null)
+                _projector_form.Invalidate();
 
             // https://docs.microsoft.com/de-de/dotnet/desktop/winforms/automatic-scaling-in-windows-forms?view=netframeworkdesktop-4.8
             // PerformAutoScale();		// absichtlich
@@ -344,6 +351,11 @@ namespace GrblPlotter
 
         private bool LoadFile(string fileName)
         {
+			if (string.IsNullOrEmpty(fileName) || !fileName.Contains("."))
+			{	Logger.Error("LoadFile '{0}' fileName is empty or does not contain '.' to separate extension", fileName);
+				return false;
+			}
+			
             if (fileName.StartsWith("http"))
             {
                 tBURL.Text = fileName;
@@ -351,6 +363,7 @@ namespace GrblPlotter
             }
 
             String ext = Path.GetExtension(fileName).ToLower();
+            EventCollector.SetImport("I"+ext.Substring(1));
             MainTimer.Stop();
             MainTimer.Start();
 
@@ -449,7 +462,11 @@ namespace GrblPlotter
                 {
                     _image_form.Visible = false;
                 }
-                _image_form.Show(this);
+
+                if (showFormInFront) _image_form.Show(this);
+                else     _image_form.Show(); // this);
+
+                showFormsToolStripMenuItem.Visible = true;
                 _image_form.WindowState = FormWindowState.Normal;
                 _image_form.LoadExtern(fileName);
                 fileLoaded = true;
@@ -569,6 +586,7 @@ namespace GrblPlotter
 
             var parts = tBURL.Text.Split('.');
             string ext = parts[parts.Length - 1].ToLower();   // get extension
+            EventCollector.SetImport("Iu"+ext.Substring(1));
             importOptions = "";                                                  //   String ext = Path.GetExtension(fileName).ToLower();
                                                                                  //   MessageBox.Show("-" + ext + "-");			
             Logger.Info("▀▀▀▀▀ LoadFile URL: {0}", tBURL.Text);
@@ -654,7 +672,12 @@ namespace GrblPlotter
             tBURL.TextChanged += TbURL_TextChanged;
         }
 
-        public void ReStartConvertFile(object sender, EventArgs e)   // event from setup form
+        //schalter if source from setup oder picbox-cms 
+        public void ReStartConvertFileFromSetup(object sender, EventArgs e)   	// event from setup form
+        { ReStartConvertFile(sender, e, true); }
+        public void ReStartConvertFile(object sender, EventArgs e)   			// event from picbox cms
+        { ReStartConvertFile(sender, e, false); }
+        public void ReStartConvertFile(object sender, EventArgs e, bool wantGraphic)  
         {
             Logger.Info("●●●●● ReStartConvertFile SourceType:{0}", Graphic.graphicInformation.SourceType);
             if (!isStreaming)
@@ -681,9 +704,19 @@ namespace GrblPlotter
                             {
                                 mypath = Path.Combine(Datapath.AppDataFolder, mypath);
                             }
-                            LoadFile(mypath); }
+                            LoadFile(mypath); 
+                        }
                         else
-                        { LoadFile(lastLoadFile); }
+                        { 	if (wantGraphic && lastLoadFile.EndsWith(fileLastProcessed + ".nc") && (MRUlist.Count > 1))		// safety copy during streaming
+							{	
+								string lastGraphic = MRUlist[1];		// try to get 2nd last file
+								string tmpPath = Path.Combine(Datapath.AppDataFolder, lastGraphic);
+								Logger.Info("⚠⚠⚠ ReStartConvertFile - from Setup-form - load 2nd last file: {0}",tmpPath);
+								LoadFile(tmpPath);
+							}
+							else
+							{	LoadFile(lastLoadFile); }								
+						}
                     }
                     this.Cursor = Cursors.Default;
                 }
@@ -698,6 +731,10 @@ namespace GrblPlotter
         private void StartConvert(Graphic.SourceType type, string source)
         {
             UseCaseDialog();
+            if (Properties.Settings.Default.importGroupObjects)
+            {
+                ToolTable.Init(" (StartConvert with GroupObjects)"); 
+            }
             NewCodeStart();             // StartConvert
             StatusStripSet(0, "Start import of vector graphic, read graphic elements, process options", Color.Yellow);
             Application.DoEvents();
@@ -888,7 +925,7 @@ namespace GrblPlotter
                 catch (Exception err)
                 {
                     Logger.Error(err, "LoadGcode ");
-                    Properties.Settings.Default.guiLastEndReason += "LoadGcode 2nd try open file: "+err.Message+" ---";
+                    EventCollector.StoreException("LoadGcode 2nd try open file: " +err.Message+" ---");
 
                     // https://stackoverflow.com/questions/9759697/reading-a-file-used-by-another-process
                     using (var fs = new FileStream(tbFile.Text, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
@@ -918,13 +955,14 @@ namespace GrblPlotter
                     string fileInfo = Path.ChangeExtension(tbFile.Text, ".xml");    // see also saveStreamingStatus
                     if (File.Exists(fileInfo))
                     {
-                        int lineNr = fCTBCodeClickedLineNow = LoadStreamingStatus();
+						string status="", message="";
+                        int lineNr = fCTBCodeClickedLineNow = LoadStreamingStatus(ref status, ref message);
                         if (lineNr > 0)
                         {
-                            DialogResult dialogResult = MessageBox.Show(Localization.GetString("mainPauseStream1") + lineNr + " / " + fCTBCode.LinesCount + Localization.GetString("mainPauseStream2"), Localization.GetString("mainAttention"), MessageBoxButtons.YesNo);
+                            DialogResult dialogResult = MessageBox.Show(Localization.GetString("mainPauseStream1") + lineNr + " of " + fCTBCode.LinesCount + Localization.GetString("mainPauseStream2") + "\r\rReason: " + status + "   " + message, Localization.GetString("mainAttention"), MessageBoxButtons.YesNo);
                             if (dialogResult == DialogResult.Yes)
                             {
-                                LoadStreamingStatus(true);                            //do something
+                                LoadStreamingStatus(ref status, ref message, true);                            //do something
                                 timerUpdateControlSource = "loadGcode";
                                 UpdateControlEnables(); // true
                                 btnStreamStart.Image = Properties.Resources.btn_play;
@@ -1041,7 +1079,8 @@ namespace GrblPlotter
             {
                 Logger.Info("  tryRestart()");
 				Properties.Settings.Default.guiLastEnd = DateTime.Now.Ticks;
-				Properties.Settings.Default.guiLastEndReason += "Language change;";
+                EventCollector.StoreException("Language change;");
+                EventCollector.SetEnd();
                 Application.Restart();
                 Application.ExitThread();  // 20200716
             }
@@ -1366,7 +1405,6 @@ namespace GrblPlotter
         {
             try
             {
-        //        Properties.Settings.Default.gui2DPenUpShow = toolStripViewPenUp.Checked;	//2021-08-09
 				Properties.Settings.Default.guiLastFileLoaded = tbFile.Text;
                 Properties.Settings.Default.Save();
             }
@@ -1595,9 +1633,9 @@ namespace GrblPlotter
                     }
                     if (action.StartsWith("Toggle") && _serial_form.SerialPortOpen)
                     {
-                        if (action.Contains("ToolInSpindle")) { cBTool.Checked = !cBTool.Checked; }     // order is important...
-                        else if (action.Contains("Spindle")) { cBSpindle.Checked = !cBSpindle.Checked; }
-                        else if (action.Contains("Coolant")) { cBCoolant.Checked = !cBCoolant.Checked; }
+                        if (action.Contains("ToolInSpindle")) { CbTool.Checked = !CbTool.Checked; }     // order is important...
+                        else if (action.Contains("Spindle")) { CbSpindle.Checked = !CbSpindle.Checked; }
+                        else if (action.Contains("Coolant")) { CbCoolant.Checked = !CbCoolant.Checked; }
                         return true;
                     }
                 }
@@ -1607,13 +1645,14 @@ namespace GrblPlotter
         #endregion
 
         static readonly object lockSaveAction = new object();
-        private void SaveStreamingStatus(int lineNr)
+        private void SaveStreamingStatus(int lineNr, string info1, string info2)
         {
             try
             {
                 lock (lockSaveAction)
                 {
                     string fileName = Datapath.AppDataFolder + "\\" + fileLastProcessed + ".xml";  //System.Environment.CurrentDirectory
+                    Logger.Info("SaveStreamingStatus LineNr:{0}  Info1:{1}  Info2:{2}",lineNr, info1, info2);
                     XmlWriterSettings set = new XmlWriterSettings
                     {
                         Indent = true
@@ -1644,58 +1683,78 @@ namespace GrblPlotter
                     content.WriteAttributeString("State", _serial_form.parserStateGC);
                     content.WriteEndElement();
 
+                    content.WriteStartElement("Reason");
+                    content.WriteAttributeString("Status", info1);
+                    content.WriteAttributeString("Message", info2);
+                    content.WriteEndElement();
+
                     content.WriteEndElement();
                     content.Close();
                 }
             }
             catch (Exception err) { Logger.Error(err, "SaveStreamingStatus failed "); }
         }
-
-        private int LoadStreamingStatus(bool setPause = false)
+		
+        private int LoadStreamingStatus(ref string status, ref string message, bool setPause = false)
         {
+			status = "";
+			message = "";
             string fileName = Datapath.AppDataFolder + "\\" + fileLastProcessed + ".xml";
             if (!File.Exists(fileName))
                 return 0;
             FileInfo fi = new FileInfo(fileName);
             if (fi.Length > 1)
             {
-                XmlReader content = XmlReader.Create(fileName, settings);
+				try
+                {	XmlReader content = XmlReader.Create(fileName, settings);
 
-                XyzPoint tmp = new XyzPoint(0, 0, 0);
-                int codeLine = 0;
-                string parserState = "";
-                while (content.Read())
-                {
-                    if (!content.IsStartElement())
-                        continue;
+					XyzPoint tmp = new XyzPoint(0, 0, 0);
+					int codeLine = 0;
+					string parserState = "";
+					string info1 = "";
+					while (content.Read())
+					{
+						if (!content.IsStartElement())
+							continue;
 
-                    switch (content.Name)
+						switch (content.Name)
+						{
+							case "GCode":
+								codeLine = int.Parse(content["lineNr"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
+								break;
+							case "WPos":
+								tmp.X = double.Parse(content["X"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
+								tmp.Y = double.Parse(content["Y"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
+								tmp.Z = double.Parse(content["Z"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
+								break;
+							case "Parser":
+								parserState = content["State"];
+								break;
+							case "Reason":
+								status = content["Status"];
+								message = content["Message"];
+								break;
+						}
+					}
+					content.Close();
+
+                    if (setPause)
                     {
-                        case "GCode":
-                            codeLine = int.Parse(content["lineNr"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
-                            break;
-                        case "WPos":
-                            tmp.X = double.Parse(content["X"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
-                            tmp.Y = double.Parse(content["Y"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
-                            tmp.Z = double.Parse(content["Z"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
-                            break;
-                        case "Parser":
-                            parserState = content["State"];
-                            break;
+                        fCTBCodeClickedLineNow = codeLine;
+                        FctbCodeMarkLine();
+                        _serial_form.parserStateGC = parserState;
+                        _serial_form.posPause = tmp;
+                        if (parserState != "")
+                            StartStreaming(codeLine, fCTBCode.LinesCount-1);
                     }
+                    return codeLine;
                 }
-                content.Close();
-
-                if (setPause)
+                catch (Exception err)
                 {
-                    fCTBCodeClickedLineNow = codeLine;
-                    FctbCodeMarkLine();
-                    _serial_form.parserStateGC = parserState;
-                    _serial_form.posPause = tmp;
-                    if (parserState != "")
-                        StartStreaming(codeLine, fCTBCode.LinesCount-1);
+                    Logger.Error(err, "LoadStreamingStatus file:{0}", fileName);
+                    return 0;
                 }
-                return codeLine;
+
             }
             Logger.Trace("loadStreamingStatus fileSize=0 {0}", fileName);
             return 0;

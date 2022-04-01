@@ -1026,4 +1026,46 @@ Ajouter 'G54;' to G-Code header pour revenir automatiquement à G54 avant de dif
   <data name="LanguageToolStripMenuItem3.Text" xml:space="preserve">
     <value>Idioma</value>
   </data>
+  <data name="cBMoveG0.ToolTip" xml:space="preserve">
+    <value>Utilisez la commande de déplacement rapide G0 - STOP jogging ne fonctionnera pas</value>
+  </data>
+  <data name="BtnPenUp.Text" xml:space="preserve">
+    <value>Pen Up</value>
+  </data>
+  <data name="BtnPenUp.ToolTip" xml:space="preserve">
+    <value>Utiliser les paramètres de Setup-Servo-PWM</value>
+  </data>
+  <data name="BtnPenDown.Text" xml:space="preserve">
+    <value>Pen Down</value>
+  </data>
+  <data name="BtnPenDown.ToolTip" xml:space="preserve">
+    <value>Utiliser les paramètres de Setup-Servo-PWM</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Routeur</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Applique les valeurs de la traduction Pen -up / -down activée pour Z et PWM</value>
+  </data>
+  <data name="BtnPenZero.Text" xml:space="preserve">
+    <value>Pen Zero</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Traceur</value>
+  </data>
+  <data name="CbLasermode.Text" xml:space="preserve">
+    <value>Mode laser</value>
+  </data>
+  <data name="RbLaserM4.Text" xml:space="preserve">
+    <value>Alimentation dynamique M4</value>
+  </data>
+  <data name="RbLaserM3.Text" xml:space="preserve">
+    <value>M3 Puissance constante</value>
+  </data>
+  <data name="CbLaser.Text" xml:space="preserve">
+    <value>Laser activé</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Laser</value>
+  </data>
 </root>

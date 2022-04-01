@@ -90,7 +90,24 @@ namespace GrblPlotter
         private bool shiftedDisplay = false;
 
         private double picScaling = 1;
+        private void calculatePicScaling()
+        {
+            double minx = VisuGCode.drawingSize.minX;                  // extend dimensions
+            double maxx = VisuGCode.drawingSize.maxX;
+            double miny = VisuGCode.drawingSize.minY;
+            double maxy = VisuGCode.drawingSize.maxY;
+            double xRange = (maxx - minx);                                              // calculate new size
+            double yRange = (maxy - miny);
+            if (Properties.Settings.Default.machineLimitsFix)
+            {
+                double offset = (double)Properties.Settings.Default.machineLimitsRangeX / 40;       // view size
+                xRange = (double)Properties.Settings.Default.machineLimitsRangeX + 2 * offset;
+                yRange = (double)Properties.Settings.Default.machineLimitsRangeY + 2 * offset;
+            }
 
+            picScaling = Math.Min(pictureBox1.Width / (xRange), pictureBox1.Height / (yRange));               // calculate scaling px/unit
+        }
+		
         private void PictureBox1_Paint(object sender, PaintEventArgs e)
         {
             double minx = VisuGCode.drawingSize.minX;                  // extend dimensions
@@ -109,6 +126,7 @@ namespace GrblPlotter
             }
 
             picScaling = Math.Min(pictureBox1.Width / (xRange), pictureBox1.Height / (yRange));               // calculate scaling px/unit
+
             if ((picScaling > 0.001) && (picScaling < 10000))
             {
                 double offsetX = 0;
@@ -710,7 +728,7 @@ namespace GrblPlotter
                 pBoxTransform.Reset(); zoomFactor = 1;
             }
 
-            markerSize = (float)(40f/(picScaling* zoomFactor));
+            markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (picScaling* zoomFactor));
             VisuGCode.CreateMarkerPath(markerSize);
             pictureBox1.Invalidate();
         }
@@ -809,7 +827,9 @@ namespace GrblPlotter
         }
 
         private void CmsPicBoxReloadFile_Click(object sender, EventArgs e)
-        { ReStartConvertFile(sender, e); }
+        {
+            Logger.Trace("CmsPicBoxReloadFile_Click  tooltip:{0}   file:{1}", cmsPicBoxReloadFile.ToolTipText, lastLoadFile);
+            ReStartConvertFile(sender, e); }
 
         private void CmsPicBoxMoveToFirstPos_Click(object sender, EventArgs e)
         {
