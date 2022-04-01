@@ -677,6 +677,9 @@
     <Setting Name="gui2DShowVertexType" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
+    <Setting Name="gui2DSizeTool" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">40</Value>
+    </Setting>
     <Setting Name="gui2DToolTableShow" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -941,6 +944,9 @@
     <Setting Name="guiProgressShow" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="guiShowFormInFront" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="guiSpindleSpeed" Type="System.String" Scope="User">
       <Value Profile="(Default)">1000</Value>
     </Setting>
@@ -949,6 +955,12 @@
     </Setting>
     <Setting Name="heightMapDeltaY" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="heightMapExtrudeEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="heightMapExtrudeScanX" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="heightMapGridX" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">5</Value>
@@ -1121,6 +1133,9 @@
     <Setting Name="importGCAux1Source" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
+    <Setting Name="importGCAux1SumUp" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="importGCAux1ZFactor" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
@@ -1139,14 +1154,17 @@
     <Setting Name="importGCAux2Factor" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="importGCAux2ZMode" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
     <Setting Name="importGCAux2Source" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
+    <Setting Name="importGCAux2SumUp" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="importGCAux2ZFactor" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importGCAux2ZMode" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="importGCAux2ZUse" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -1523,6 +1541,9 @@
     <Setting Name="importImage2DViewHideZero" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="importImageColorMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="importImageGrayAsZ" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -1883,6 +1904,72 @@
     <Setting Name="probingWorkpieceDiameter" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">20</Value>
     </Setting>
+    <Setting Name="projectorColorBackground" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="projectorColorDimension" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">150, 150, 150</Value>
+    </Setting>
+    <Setting Name="projectorColorMarker" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DeepPink</Value>
+    </Setting>
+    <Setting Name="projectorColorPenDown" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">White</Value>
+    </Setting>
+    <Setting Name="projectorColorPenUp" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Green</Value>
+    </Setting>
+    <Setting Name="projectorColorRuler" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">0, 0, 192</Value>
+    </Setting>
+    <Setting Name="projectorColorTool" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightGray</Value>
+    </Setting>
+    <Setting Name="projectorDisplayOffsetX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="projectorDisplayOffsetY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="projectorDisplayScale" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="projectorShowDimension" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="projectorShowMarker" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="projectorShowPenUp" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="projectorShowRuler" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="projectorShowSetup" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="projectorShowTool" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="projectorWidthDimension" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.2</Value>
+    </Setting>
+    <Setting Name="projectorWidthMarker" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.2</Value>
+    </Setting>
+    <Setting Name="projectorWidthPenDown" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="projectorWidthPenUp" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="projectorWidthRuler" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
+    <Setting Name="projectorWidthTool" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.2</Value>
+    </Setting>
     <Setting Name="resetRestoreWorkCoordinates" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -1994,11 +2081,8 @@
     <Setting Name="useCaseLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">?</Value>
     </Setting>
-    <Setting Name="importGCAux1SumUp" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="importGCAux2SumUp" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+    <Setting Name="importImageGrayVectorize" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

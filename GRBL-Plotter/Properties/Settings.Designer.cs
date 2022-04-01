@@ -2725,6 +2725,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("40")]
+        public decimal gui2DSizeTool {
+            get {
+                return ((decimal)(this["gui2DSizeTool"]));
+            }
+            set {
+                this["gui2DSizeTool"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool gui2DToolTableShow {
             get {
@@ -3786,6 +3798,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool guiShowFormInFront {
+            get {
+                return ((bool)(this["guiShowFormInFront"]));
+            }
+            set {
+                this["guiShowFormInFront"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1000")]
         public string guiSpindleSpeed {
             get {
@@ -3817,6 +3841,30 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["heightMapDeltaY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool heightMapExtrudeEnable {
+            get {
+                return ((bool)(this["heightMapExtrudeEnable"]));
+            }
+            set {
+                this["heightMapExtrudeEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool heightMapExtrudeScanX {
+            get {
+                return ((bool)(this["heightMapExtrudeScanX"]));
+            }
+            set {
+                this["heightMapExtrudeScanX"] = value;
             }
         }
         
@@ -4506,6 +4554,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importGCAux1SumUp {
+            get {
+                return ((bool)(this["importGCAux1SumUp"]));
+            }
+            set {
+                this["importGCAux1SumUp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public decimal importGCAux1ZFactor {
             get {
@@ -4578,18 +4638,6 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int importGCAux2ZMode {
-            get {
-                return ((int)(this["importGCAux2ZMode"]));
-            }
-            set {
-                this["importGCAux2ZMode"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public int importGCAux2Source {
             get {
@@ -4602,6 +4650,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importGCAux2SumUp {
+            get {
+                return ((bool)(this["importGCAux2SumUp"]));
+            }
+            set {
+                this["importGCAux2SumUp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public decimal importGCAux2ZFactor {
             get {
@@ -4609,6 +4669,18 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["importGCAux2ZFactor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int importGCAux2ZMode {
+            get {
+                return ((int)(this["importGCAux2ZMode"]));
+            }
+            set {
+                this["importGCAux2ZMode"] = value;
             }
         }
         
@@ -6115,6 +6187,18 @@ namespace GrblPlotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importImageColorMode {
+            get {
+                return ((bool)(this["importImageColorMode"]));
+            }
+            set {
+                this["importImageColorMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool importImageGrayAsZ {
             get {
                 return ((bool)(this["importImageGrayAsZ"]));
@@ -7554,6 +7638,270 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color projectorColorBackground {
+            get {
+                return ((global::System.Drawing.Color)(this["projectorColorBackground"]));
+            }
+            set {
+                this["projectorColorBackground"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("150, 150, 150")]
+        public global::System.Drawing.Color projectorColorDimension {
+            get {
+                return ((global::System.Drawing.Color)(this["projectorColorDimension"]));
+            }
+            set {
+                this["projectorColorDimension"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DeepPink")]
+        public global::System.Drawing.Color projectorColorMarker {
+            get {
+                return ((global::System.Drawing.Color)(this["projectorColorMarker"]));
+            }
+            set {
+                this["projectorColorMarker"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color projectorColorPenDown {
+            get {
+                return ((global::System.Drawing.Color)(this["projectorColorPenDown"]));
+            }
+            set {
+                this["projectorColorPenDown"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Green")]
+        public global::System.Drawing.Color projectorColorPenUp {
+            get {
+                return ((global::System.Drawing.Color)(this["projectorColorPenUp"]));
+            }
+            set {
+                this["projectorColorPenUp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0, 192")]
+        public global::System.Drawing.Color projectorColorRuler {
+            get {
+                return ((global::System.Drawing.Color)(this["projectorColorRuler"]));
+            }
+            set {
+                this["projectorColorRuler"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("LightGray")]
+        public global::System.Drawing.Color projectorColorTool {
+            get {
+                return ((global::System.Drawing.Color)(this["projectorColorTool"]));
+            }
+            set {
+                this["projectorColorTool"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal projectorDisplayOffsetX {
+            get {
+                return ((decimal)(this["projectorDisplayOffsetX"]));
+            }
+            set {
+                this["projectorDisplayOffsetX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal projectorDisplayOffsetY {
+            get {
+                return ((decimal)(this["projectorDisplayOffsetY"]));
+            }
+            set {
+                this["projectorDisplayOffsetY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal projectorDisplayScale {
+            get {
+                return ((decimal)(this["projectorDisplayScale"]));
+            }
+            set {
+                this["projectorDisplayScale"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool projectorShowDimension {
+            get {
+                return ((bool)(this["projectorShowDimension"]));
+            }
+            set {
+                this["projectorShowDimension"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool projectorShowMarker {
+            get {
+                return ((bool)(this["projectorShowMarker"]));
+            }
+            set {
+                this["projectorShowMarker"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool projectorShowPenUp {
+            get {
+                return ((bool)(this["projectorShowPenUp"]));
+            }
+            set {
+                this["projectorShowPenUp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool projectorShowRuler {
+            get {
+                return ((bool)(this["projectorShowRuler"]));
+            }
+            set {
+                this["projectorShowRuler"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool projectorShowSetup {
+            get {
+                return ((bool)(this["projectorShowSetup"]));
+            }
+            set {
+                this["projectorShowSetup"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool projectorShowTool {
+            get {
+                return ((bool)(this["projectorShowTool"]));
+            }
+            set {
+                this["projectorShowTool"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.2")]
+        public decimal projectorWidthDimension {
+            get {
+                return ((decimal)(this["projectorWidthDimension"]));
+            }
+            set {
+                this["projectorWidthDimension"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.2")]
+        public decimal projectorWidthMarker {
+            get {
+                return ((decimal)(this["projectorWidthMarker"]));
+            }
+            set {
+                this["projectorWidthMarker"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public decimal projectorWidthPenDown {
+            get {
+                return ((decimal)(this["projectorWidthPenDown"]));
+            }
+            set {
+                this["projectorWidthPenDown"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public decimal projectorWidthPenUp {
+            get {
+                return ((decimal)(this["projectorWidthPenUp"]));
+            }
+            set {
+                this["projectorWidthPenUp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public decimal projectorWidthRuler {
+            get {
+                return ((decimal)(this["projectorWidthRuler"]));
+            }
+            set {
+                this["projectorWidthRuler"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.2")]
+        public decimal projectorWidthTool {
+            get {
+                return ((decimal)(this["projectorWidthTool"]));
+            }
+            set {
+                this["projectorWidthTool"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool resetRestoreWorkCoordinates {
             get {
@@ -7998,25 +8346,13 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool importGCAux1SumUp {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importImageGrayVectorize {
             get {
-                return ((bool)(this["importGCAux1SumUp"]));
+                return ((bool)(this["importImageGrayVectorize"]));
             }
             set {
-                this["importGCAux1SumUp"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool importGCAux2SumUp {
-            get {
-                return ((bool)(this["importGCAux2SumUp"]));
-            }
-            set {
-                this["importGCAux2SumUp"] = value;
+                this["importImageGrayVectorize"] = value;
             }
         }
     }
