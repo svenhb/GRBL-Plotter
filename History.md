@@ -1,6 +1,16 @@
 ## History
 Needs to be read from the bottom up ;-)  
  
+### 2022-04 Version 1.6.6.x 
+* New form "Projector" shows the 2D-view in fix scale, to be shown on the workpiece with an projector [Machine control - Projector].
+* Additional forms (e.g. setup-form or text-creation) are not pinned to the front anymore, but can be brought to front via menu-button.
+* Changed layout in main GUI: Select use of Router/Plotter/Laser to control spindle speed / PWM adjustment
+  
+### 2022-02 Version 1.6.5.x 
+* Improoved Object handling in 2D-view: added handles to selected object (figure or group) for moving, scaling, rotation.
+* Adding Text to existing (formerly imported) gcode
+* New setup-option "Command extension", to add new axis with travel-distance related value
+ 
 ### 2022-01 Version 1.6.4.x 
 * Czech language
 * Add background pattern for image-import halftone 
