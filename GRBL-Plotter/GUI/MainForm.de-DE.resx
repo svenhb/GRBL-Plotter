@@ -1044,4 +1044,35 @@ Fügen Sie 'G54;' to G-Code-Header, um vor dem Streaming von G-Code automatisch 
   <data name="tabPage3.Text" xml:space="preserve">
     <value>Laser</value>
   </data>
+  <data name="CbAddGraphic.Text" xml:space="preserve">
+    <value>Importierte Grafik zur 2D-Ansicht hinzufügen</value>
+  </data>
+  <data name="createJogPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Jog-Pfad erstellen</value>
+  </data>
+  <data name="laserToolsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Tool zum Finden der besten Lasereinstellungen</value>
+  </data>
+  <data name="coordinateSystemsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Überprüfen und kontrollieren aller grbl-Koordinaten</value>
+  </data>
+  <data name="control3rdGRBLToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Öffnet ein einfaches Fenster, um ein Gerät über eine dritte serielle Schnittstelle zu steuern</value>
+  </data>
+  <data name="projectorToolStripMenuItem.Text" xml:space="preserve">
+    <value>Projektor</value>
+  </data>
+  <data name="projectorToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Öffnet ein neues Fenster, um die Maschinenbahn auf dem Werkstück über einen Projektor über der Werkbank anzuzeigen</value>
+  </data>
+  <data name="showFormsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Fenster nach vorne</value>
+  </data>
+  <data name="showFormsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Bringt alle geöffneten GRBL-Plotter-Formulare (z. B. Texterstellung) in den Vordergrund der z-Reihenfolge</value>
+  </data>
+  <data name="CbAddGraphic.ToolTip" xml:space="preserve">
+    <value>Wenn aktiviert, wird der neu importierte G-Code in den bereits vorhandenen Code eingefügt.
+Das Ändern der Importeinstellungen nach dem ersten Import kann zu unerwünschten Effekten führen.</value>
+  </data>
 </root>

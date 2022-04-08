@@ -236,6 +236,9 @@ namespace GrblPlotter
                 StatusStripSet(0, "Logging enabled", Color.Yellow);
             else
                 StatusStripClear(0);
+
+            if (_projector_form != null)
+                _projector_form.Invalidate();
         }
 
         private void UpdateWholeApplication()	// after ini file, setup change, update controls
@@ -465,7 +468,14 @@ namespace GrblPlotter
 
 		// update controls on Main form (disable if streaming or no serial)
 		// private void UpdateControlEnables()
-        private void UpdateControlEnables()//bool allowControl)
+        private void UpdateControlEnables()
+        {
+            if (this.InvokeRequired)
+            { this.BeginInvoke((MethodInvoker)delegate () { UpdateControlEnablesInvoked(); }); }
+            else
+            { UpdateControlEnablesInvoked(); }
+        }
+        private void UpdateControlEnablesInvoked()//bool allowControl)
         {
             bool isConnected = false;
             if (_serial_form != null)

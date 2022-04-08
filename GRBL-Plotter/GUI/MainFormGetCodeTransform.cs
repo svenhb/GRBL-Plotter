@@ -23,6 +23,8 @@
  * 2021-01-20 move code for camera handling from 'MainForm' to here
  * 2021-01-20 bug fix rotation from camera form
  * 2021-07-02 code clean up / code quality
+ * 2022-04-04 in TransformEnd() add _projector_form.Invalidate();
+
 */
 using System;
 using System.Drawing;
@@ -124,7 +126,7 @@ namespace GrblPlotter
                 NewCodeStart();     // GetGCodeFromHeightMap
                 SetFctbCodeText(_heightmap_form.scanCode.ToString().Replace(',', '.'));
                 SetLastLoadedFile("from height map", "");
-                NewCodeEnd();
+                NewCodeEnd();       // GetGCodeFromHeightMap
             }
         }
 
@@ -212,25 +214,18 @@ namespace GrblPlotter
                     else
                     { if (line.Contains(XmlMarker.FigureEnd)) useCode = false; }
                 }
-                //   tmpCodeFinish.AppendLine();
+
                 if (createGroup)
                 { tmpCodeFinish.AppendLine("(" + XmlMarker.GroupStart + " Id=\"0\" Type=\"Existing code\" >)"); }    // add startGroup for existing figures
-                Place selStart;
-                selStart.iLine = insertLineNr;
-                selStart.iChar = 0;
-                Range mySelection = new Range(fCTBCode);
-                mySelection.Start = mySelection.End = selStart;
-                fCTBCode.Selection = mySelection;
-                fCTBCode.InsertText(tmpCodeFinish.ToString(), true);    // insert new code
+			
+				InsertTextAtLine(insertLineNr, tmpCodeFinish.ToString());	
+				InsertTextAtLine(1, "( ADD code from " + sourceForm + " )\r\n");	
+				
                 SetLastLoadedFile(sourceForm, "");
                 if (backgroundPath != null)
                     VisuGCode.pathBackground = (GraphicsPath)backgroundPath.Clone();
-                NewCodeEnd();
+                NewCodeEnd();       // InsertCodeFromForm with insertCode
                 FoldCode();
-
-         //       VisuGCode.MarkSelectedFigure(-1);     // unselect
-        //        VisuGCode.SetPosMarkerLine(insertLineNr, true);
-         //       FindFigureMarkSelection(XmlMarkerType.Group, insertLineNr);
             }
             else
             {
@@ -238,12 +233,12 @@ namespace GrblPlotter
                 {
                     StatusStripSet(2, "No XML-Tags found to insert code", Color.Fuchsia);
                 }
-                NewCodeStart(false);                        // GetGCodeFromText
-                SetFctbCodeText(sourceGCode);   // Graphic.GCode.ToString());  // getGCodeFromText
+                NewCodeStart(false);            // InsertCodeFromForm
+                SetFctbCodeText(sourceGCode);   // InsertCodeFromForm
                 SetLastLoadedFile(sourceForm, "");
                 if (backgroundPath != null)
                     VisuGCode.pathBackground = (GraphicsPath)backgroundPath.Clone();
-                NewCodeEnd();
+                NewCodeEnd();       // InsertCodeFromForm without insertCode
                 FoldCode();
             }
             importOptions = Graphic.graphicInformation.ListOptions();
@@ -318,11 +313,11 @@ namespace GrblPlotter
                 else
                     penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown;
             //    SetLastLoadedFile("from image", "");
-                NewCodeEnd();
+                NewCodeEnd();       // GetGCodeFromImage
                 FoldCode();
                 Properties.Settings.Default.counterImportImage += 1;
                 EventCollector.SetImport("Iimg");
-                calculatePicScaling();      // update picScaling
+                CalculatePicScaling();      // update picScaling
             }
             else
                 MessageBox.Show(Localization.GetString("mainStreamingActive"));
@@ -347,7 +342,7 @@ namespace GrblPlotter
                 NewCodeStart();             // GetGCodeJogCreator2
                 SetFctbCodeText(_jogPathCreator_form.JogGCode);
                 SetLastLoadedFile("from jog path creator", "");
-                NewCodeEnd();
+                NewCodeEnd();       // GetGCodeJogCreator2
                 ShowImportOptions();
             }
             else
@@ -448,6 +443,8 @@ namespace GrblPlotter
             manualEdit = false;
             fCTBCode.BackColor = Color.White;
             resetView = false;
+            if (_projector_form != null)
+                _projector_form.Invalidate();
         }
 
         private void BtnOffsetApply_Click(object sender, EventArgs e)
@@ -777,8 +774,8 @@ namespace GrblPlotter
         {
             if (e.KeyValue == (char)13)
             {
-                double radius;
-                if (Double.TryParse(toolStrip_tBRadiusCompValue.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out radius))
+             //   double radius;
+                if (Double.TryParse(toolStrip_tBRadiusCompValue.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double radius))
                 {
                     Properties.Settings.Default.crcValue = radius;
                     Properties.Settings.Default.guiBackgroundShow = toolStripViewBackground.Checked = true;

@@ -28,6 +28,7 @@
  * 2021-11-30 check lineIsInRange(fCTBCodeClickedLineNow)
  * 2021-12-10 line 122 check if (e.CodeLineSent >= fCTBCode.LinesCount); line 340 = fCTBCode.LinesCount - 1;
  * 2022-01-05 bug fix GrblStreaming.pause: show tool change message
+ * 2022-04-06 line 485 also PathId
 */
 
 using GrblPlotter.GUI;
@@ -447,22 +448,25 @@ namespace GrblPlotter
                         fCTBCode.UnbookmarkLine(i);
 
                     //save gcode
-                    string fileName = Datapath.AppDataFolder + "\\" + fileLastProcessed;	// in MainForm.cs = "lastProcessed";
+                    string file1stName = Datapath.AppDataFolder + "\\" + fileLastProcessed;	// in MainForm.cs = "lastProcessed";
+					string fileName="fN";
                     string txt = fCTBCode.Text;
 
                     try { 
-						File.WriteAllText(fileName + ".nc", txt);		// save current GCode
-						if (File.Exists(fileName + ".xml")) 			// remove old process-state
-                            File.Delete(fileName + ".xml"); 
+						fileName = file1stName + ".xml";
+						if (File.Exists(fileName)) 						// remove old process-state
+                            File.Delete(fileName); 
+
+						fileName = file1stName + ".nc";
+						File.WriteAllText(fileName, txt);				// save current GCode						
 					    SaveRecentFile(fileLastProcessed + ".nc");      // update last processed file
-                        SetLastLoadedFile("Start streaming", fileName + ".nc");
+                        SetLastLoadedFile("Start streaming", fileName);
                     }
                     catch (IOException err) {
-                        EventCollector.StoreException("StartStreaming: " +Datapath.AppDataFolder+" ");
+                        EventCollector.StoreException("StartStreaming: IOEx-folder: " +Datapath.AppDataFolder+" ");
 						Datapath.AppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                         Logger.Error(err, "StartStreaming fileName: {0}, new Datapath.AppDataFolder: {1} ", fileName, Datapath.AppDataFolder);
-                        MessageBox.Show("Path does not exist and could not be created: "+fileName+"\r\nPath will be modified to "+ Datapath.AppDataFolder, "Error");
-						fileName = Datapath.AppDataFolder + "\\" + fileLastProcessed;
+                        MessageBox.Show("Path does not exist and could not be created to save: "+fileName+"\r\nPath will be modified to "+ Datapath.AppDataFolder, "Error");
 					}
 					catch (Exception err) {
                         EventCollector.StoreException("StartStreaming: " + err.Message + "  " + fileName+" ");
@@ -479,7 +483,7 @@ namespace GrblPlotter
                         fCTBCode.TextChanged -= FctbCode_TextChanged;       // disable textChanged events
                         foreach (XmlMarker.BlockData tmp in XmlMarker.listFigures)
 						{
-                            if (tmp.Layer.IndexOf(fiducialLabel) >= 0)
+                            if ((tmp.Layer.IndexOf(fiducialLabel) >= 0) || (tmp.PathId.IndexOf(fiducialLabel) >= 0))
                             {
                                 Logger.Info("StartStreaming fiducials: exclude line:{0} to:{1}", tmp.LineStart, tmp.LineEnd);
                                 for (int lnr=tmp.LineStart; lnr <= tmp.LineEnd; lnr++)								

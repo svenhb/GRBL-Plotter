@@ -1151,4 +1151,32 @@ Přidat 'G54;' do hlavičky G-Code, aby se před streamováním G-Code automatic
   <data name="tabPage3.Text" xml:space="preserve">
     <value>Laser</value>
   </data>
+  <data name="CbAddGraphic.Text" xml:space="preserve">
+    <value>Přidejte importovanou grafiku do 2D zobrazení</value>
+  </data>
+  <data name="laserToolsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Nástroj pro nalezení nejlepšího nastavení laseru</value>
+  </data>
+  <data name="coordinateSystemsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Zkontrolujte a kontrolujte všechny grbl souřadnice</value>
+  </data>
+  <data name="control3rdGRBLToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Otevře jednoduché okno pro ovládání jednotky přes 3. sériový com</value>
+  </data>
+  <data name="projectorToolStripMenuItem.Text" xml:space="preserve">
+    <value>Projektor</value>
+  </data>
+  <data name="projectorToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Otevře nové okno pro zobrazení dráhy stroje na obrobku prostřednictvím projektoru nad pracovním stolem</value>
+  </data>
+  <data name="showFormsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Formy dopředu</value>
+  </data>
+  <data name="showFormsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Přenese všechny otevřené formuláře GRBL-Plotter (např. vytváření textu) na začátek pořadí z</value>
+  </data>
+  <data name="CbAddGraphic.ToolTip" xml:space="preserve">
+    <value>Pokud je povoleno, nový importovaný G-kód bude vložen do již existujícího kódu.
+Změna nastavení importu po prvním importu může vést k nežádoucím efektům.</value>
+  </data>
 </root>

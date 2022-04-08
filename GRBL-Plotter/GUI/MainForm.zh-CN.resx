@@ -1117,4 +1117,54 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
   <data name="control3rdGRBLToolStripMenuItem.Text" xml:space="preserve">
     <value>控制第 3 个串行 COM</value>
   </data>
+  <data name="gB_Jog0.Text" xml:space="preserve">
+    <value>搬去</value>
+  </data>
+  <data name="btnResume.Text" xml:space="preserve">
+    <value>恢复</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnFeedHold.Text" xml:space="preserve">
+    <value>进给保持</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnKillAlarm.Text" xml:space="preserve">
+    <value>杀死警报</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="btnReset.Text" xml:space="preserve">
+    <value>重置</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="CbAddGraphic.Text" xml:space="preserve">
+    <value>将导入的图形添加到 2D 视图</value>
+  </data>
+  <data name="createJogPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>创建 Jog 路径</value>
+  </data>
+  <data name="laserToolsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>寻找最佳激光设置的工具</value>
+  </data>
+  <data name="coordinateSystemsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>检查和控制所有 grbl 坐标</value>
+  </data>
+  <data name="control3rdGRBLToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>打开一个简单的窗口以通过第三个串行 com 控制一个单元</value>
+  </data>
+  <data name="projectorToolStripMenuItem.Text" xml:space="preserve">
+    <value>投影仪</value>
+  </data>
+  <data name="projectorToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>打开一个新窗口，通过工作台上方的投影仪显示工件上的机器路径</value>
+  </data>
+  <data name="showFormsToolStripMenuItem.Text" xml:space="preserve">
+    <value>表格到前面</value>
+  </data>
+  <data name="showFormsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>将所有打开的 GRBL-Plotter 表单（例如文本创建）带到 z 顺序的前面</value>
+  </data>
+  <data name="CbAddGraphic.ToolTip" xml:space="preserve">
+    <value>如果启用，新导入的 G 代码将插入到现有代码中。
+首次导入后更改导入设置可能会导致不良影响。</value>
+  </data>
 </root>

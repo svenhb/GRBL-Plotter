@@ -36,6 +36,7 @@
  * 2021-12-27 line 253 check if any coloredPenPathAvailable
  * 2022-01-03 switch order of resetView = true line 736 and 755
  * 2022-01-21 snap on grid
+ * 2022-04-04 line 550 _projector_form.Invalidate()
 */
 
 using System;
@@ -90,7 +91,7 @@ namespace GrblPlotter
         private bool shiftedDisplay = false;
 
         private double picScaling = 1;
-        private void calculatePicScaling()
+        private void CalculatePicScaling()
         {
             double minx = VisuGCode.drawingSize.minX;                  // extend dimensions
             double maxx = VisuGCode.drawingSize.maxX;
@@ -546,11 +547,14 @@ namespace GrblPlotter
 						
 			if ( mouseDownLeftButton && (PointDistance(mouseDownPos, mouseUpPos) < 10))		// select Figure
 			{	SetFigureSelectionOnClick();}
+
+            if (_projector_form != null)
+                _projector_form.Invalidate();
         }
 
         // find closest coordinate in GCode and mark
         private bool expandGCode = true;
-        private int clickDownCount = 0;
+     //   private int clickDownCount = 0;
 		private bool mouseDownLeftButton = false;
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -577,7 +581,7 @@ namespace GrblPlotter
                     else
                         Cursor = Cursors.Default;
                 }
-                clickDownCount++;
+        //        clickDownCount++;
 				pictureBox1.Invalidate();
             }
         }
@@ -599,8 +603,8 @@ namespace GrblPlotter
 					bool modKeyAlt = (Panel.ModifierKeys == Keys.Alt);          // Keys.Alt find line with coord nearby, mark / unmark Figure
 					bool modKeyCtrl = (Panel.ModifierKeys == Keys.Control);     // Keys.Control find line with coord nearby, mark / unmark Group
 					bool modKeyShift = (Panel.ModifierKeys == Keys.Shift);      // Keys.Shift find line with coord nearby, mark / unmark Tile
-					bool toggleHighlight = !(modKeyAlt || modKeyCtrl || modKeyShift);
-					toggleHighlight = true;
+				//	bool toggleHighlight = !(modKeyAlt || modKeyCtrl || modKeyShift);
+					bool toggleHighlight = true;
 
 					XmlMarkerType markerType = XmlMarkerType.Figure;
 					if (modKeyAlt) { markerType = XmlMarkerType.Line; }
@@ -970,7 +974,7 @@ namespace GrblPlotter
         {
             e.Cancel = mouseWasMoved;
         }
-        private void pictureBox1_MouseLeave(object sender, EventArgs e)
+        private void PictureBox1_MouseLeave(object sender, EventArgs e)
         {
             Cursor = Cursors.Default;
         }

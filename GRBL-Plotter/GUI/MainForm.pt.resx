@@ -1103,4 +1103,38 @@ Adicione 'G54;' ao cabeçalho do código G para retornar automaticamente ao G54
   <data name="tabPage3.Text" xml:space="preserve">
     <value>Laser</value>
   </data>
+  <data name="gB_Jog0.Text" xml:space="preserve">
+    <value>Mover para</value>
+  </data>
+  <data name="CbAddGraphic.Text" xml:space="preserve">
+    <value>Adicionar gráfico importado à visualização 2D</value>
+  </data>
+  <data name="createJogPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Criar caminho de jog</value>
+  </data>
+  <data name="laserToolsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Ferramenta para encontrar as melhores configurações de laser</value>
+  </data>
+  <data name="coordinateSystemsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Verifique e controle todas as coordenadas grbl</value>
+  </data>
+  <data name="control3rdGRBLToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Abre uma janela simples para controlar uma unidade através de um 3º com serial</value>
+  </data>
+  <data name="projectorToolStripMenuItem.Text" xml:space="preserve">
+    <value>Projetor</value>
+  </data>
+  <data name="projectorToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Abre uma nova janela para exibir o caminho da máquina na peça de trabalho por meio de um projetor acima da bancada de trabalho</value>
+  </data>
+  <data name="showFormsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Formulários para a frente</value>
+  </data>
+  <data name="showFormsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Traz todos os formulários GRBL-Plotter abertos (por exemplo, criação de texto) para a frente da ordem z</value>
+  </data>
+  <data name="CbAddGraphic.ToolTip" xml:space="preserve">
+    <value>Se habilitado, o novo G-Code importado será inserido no código já existente.
+Alterar as configurações de importação após a primeira importação pode levar a efeitos indesejados.</value>
+  </data>
 </root>

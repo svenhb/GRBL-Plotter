@@ -199,7 +199,7 @@ namespace GrblPlotter
 			}
             fCTBCodeClickedLineNow = 0;
             fCTBCodeClickedLineLast = 0;
-            fCTBCode.Clear();
+       //     fCTBCode.Clear();
             ClearErrorLines();
 
             SetEditMode(false);
@@ -242,7 +242,7 @@ namespace GrblPlotter
             {
                 if (imported &&(Graphic.GCode != null))
                 {
-                    SetFctbCodeText(Graphic.GCode.ToString());          // newCodeEnd
+                    SetFctbCodeText(Graphic.GCode.ToString(), imported);          // newCodeEnd
                 }
                 VisuGCode.GetGCodeLines(fCTBCode.Lines, null, null);    // get code path
             }
@@ -261,7 +261,7 @@ namespace GrblPlotter
 			
             fCTBCode.Refresh();
 
-            calculatePicScaling();		// update picScaling
+            CalculatePicScaling();		// update picScaling
             float markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / picScaling);
             VisuGCode.CalcDrawingArea(markerSize);                                // calc ruler dimension
             VisuGCode.DrawMachineLimit();
@@ -699,20 +699,15 @@ namespace GrblPlotter
                     {
                         if (lastLoadFile.Contains("Nothing"))
                         {
-                            string mypath = MRUlist[0];
-                            if (!Path.IsPathRooted(mypath))
-                            {
-                                mypath = Path.Combine(Datapath.AppDataFolder, mypath);
-                            }
+                            string mypath = Datapath.MakeAbsolutePath(MRUlist[0]);
                             LoadFile(mypath); 
                         }
                         else
                         { 	if (wantGraphic && lastLoadFile.EndsWith(fileLastProcessed + ".nc") && (MRUlist.Count > 1))		// safety copy during streaming
 							{	
-								string lastGraphic = MRUlist[1];		// try to get 2nd last file
-								string tmpPath = Path.Combine(Datapath.AppDataFolder, lastGraphic);
-								Logger.Info("⚠⚠⚠ ReStartConvertFile - from Setup-form - load 2nd last file: {0}",tmpPath);
-								LoadFile(tmpPath);
+								string lastGraphic = Datapath.MakeAbsolutePath(MRUlist[1]);		// try to get 2nd last file
+								Logger.Info("⚠⚠⚠ ReStartConvertFile - from Setup-form - load 2nd last file: {0}", lastGraphic);
+								LoadFile(lastGraphic);
 							}
 							else
 							{	LoadFile(lastLoadFile); }								
@@ -855,7 +850,7 @@ namespace GrblPlotter
                 loadTimer.Start();
                 return;
             }
-            NewCodeEnd(true);               // code was imported, no need to check for bad GCode
+            NewCodeEnd(true);               // StartConvert code was imported, no need to check for bad GCode
             FoldCode();
         //    UpdateControlEnables(); 
 			if (_camera_form != null)
@@ -865,23 +860,29 @@ namespace GrblPlotter
         int loadTimerStep = -1;
         private void LoadTimer_Tick(object sender, EventArgs e)
         {
-            switch (loadTimerStep)
-            {
-                case 1:
-					if (loadTimer != null)
-						loadTimer.Stop();
-                    NewCodeEnd(true);   // timer will be started here again
-                    break;
-                case 2:
-                    SetFctbCodeText(Graphic.GCode.ToString());  // loadTimer_Tick
-                    FoldCode();
-                    loadTimerStep++;
-                    break;
-                default:
-					if (loadTimer != null)
-						loadTimer.Stop();
-                    break;
-            }
+			try {
+				switch (loadTimerStep)
+				{
+					case 1:
+						if (loadTimer != null)
+							loadTimer.Stop();
+						NewCodeEnd(true);               // timer will be started here again
+						break;
+					case 2:
+						SetFctbCodeText(Graphic.GCode.ToString());  // loadTimer_Tick
+						FoldCode();
+						loadTimerStep++;
+						break;
+					default:
+						if (loadTimer != null)
+							loadTimer.Stop();
+						break;
+				}
+			}
+			catch (Exception err)
+			{	
+                EventCollector.StoreException("LoadTimer_Tick: " + err.Message + "  stp:" + loadTimerStep+" ");
+			}			
         }
 
         private void ShowImportOptions()
@@ -943,7 +944,7 @@ namespace GrblPlotter
                     else
                         fCTBCode.Text = "(!!! Replaced M4 by M3 !!!)\r\n" + fCTBCode.Text.Replace("M04", "M03");
                 }
-                NewCodeEnd();       // -> fCTB_CheckUnknownCode
+                NewCodeEnd();                      // LoadGcode -> fCTB_CheckUnknownCode
 
                 SaveRecentFile(tbFile.Text);
                 this.Text = appName + " | File: " + tbFile.Text;
@@ -1240,7 +1241,17 @@ namespace GrblPlotter
                 fromClipboard = false;
             string svg_format1 = "image/x-inkscape-svg";
             string svg_format2 = "image/svg+xml";
-            IDataObject iData = Clipboard.GetDataObject();
+            IDataObject iData;
+
+            try {
+				iData = Clipboard.GetDataObject();
+			}
+			catch (Exception err)
+			{
+				Logger.Error(err,"LoadFromClipboard GetDataObject ");
+				MessageBox.Show("Could not get clipboard data:\r\n" + err,"Error");
+				return;
+			}
             MemoryStream stream = new MemoryStream();
             if ((iData.GetDataPresent(DataFormats.Text)) || (!fromClipboard))            // not working anymore?
             {
@@ -1289,7 +1300,7 @@ namespace GrblPlotter
                     Properties.Settings.Default.counterImportSVG += 1;
                     if (fCTBCode.LinesCount <= 1)
                     { fCTBCode.Text = "( Code conversion failed )"; return; }
-                    NewCodeEnd(true);               // code was imported, no need to check for bad GCode
+                    NewCodeEnd(true);               // LoadFromClipboard SVG code was imported, no need to check for bad GCode
 
                     this.Text = appName + " | Source: from " + source;
                     SetLastLoadedFile("Data from " + source + ": SVG", "");
@@ -1319,7 +1330,7 @@ namespace GrblPlotter
                     Properties.Settings.Default.counterImportDXF += 1;
                     if (fCTBCode.LinesCount <= 1)
                     { fCTBCode.Text = "( Code conversion failed )"; return; }
-                    NewCodeEnd(true);               // code was imported, no need to check for bad GCode
+                    NewCodeEnd(true);               // LoadFromClipboard DXF code was imported, no need to check for bad GCode
 
                     this.Text = appName + " | Source: from " + source;
                     SetLastLoadedFile("Data from " + source + ": DXF", "");
@@ -1334,7 +1345,7 @@ namespace GrblPlotter
                     else
                         fCTBCode.Text = text;
                     Properties.Settings.Default.counterImportGCode += 1;
-                    NewCodeEnd();
+                    NewCodeEnd();                      // LoadFromClipboard GCode
                     SetLastLoadedFile("Data from " + source + ": Text", "");
                     lbInfo.Text = "GCode from " + source;
                 }
@@ -1360,7 +1371,7 @@ namespace GrblPlotter
                 Properties.Settings.Default.counterImportSVG += 1;
                 if (fCTBCode.LinesCount <= 1)
                 { fCTBCode.Text = "( Code conversion failed )"; return; }
-                NewCodeEnd(true);               // code was imported, no need to check for bad GCode
+                NewCodeEnd(true);               // LoadFromClipboard SVG code was imported, no need to check for bad GCode
 
                 this.Text = appName + " | Source: from Clipboard";
                 SetLastLoadedFile("Data from Clipboard: SVG", "");

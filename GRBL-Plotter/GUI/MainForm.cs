@@ -217,7 +217,8 @@ namespace GrblPlotter
             SplashScreenTimer.Enabled = true;
             SplashScreenTimer.Stop();
             SplashScreenTimer.Start();  // 1st event after 1500
-        }
+            CbAddGraphic_CheckedChanged(sender, e);
+    }
 
         private void SplashScreenTimer_Tick(object sender, EventArgs e)
         {
@@ -1380,13 +1381,11 @@ namespace GrblPlotter
             if (nr == 0)
             {
                 if (this.toolStripStatusLabel0.GetCurrentParent().InvokeRequired)
-                { this.toolStripStatusLabel0.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { this.toolStripStatusLabel0.Text = "[ " + text + " ]"; }); }
+                { this.toolStripStatusLabel0.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { this.toolStripStatusLabel0.Text = "[ " + text + " ]"; toolStripStatusLabel0.BackColor = color; }); }
                 else
-                { this.toolStripStatusLabel0.Text = "[ " + text + " ]"; }
-                toolStripStatusLabel0.BackColor = color;
+                { this.toolStripStatusLabel0.Text = "[ " + text + " ]"; toolStripStatusLabel0.BackColor = color; }                
             }
             else if (nr == 1)
-
             {
                 if (this.toolStripStatusLabel1.GetCurrentParent().InvokeRequired)
                 { this.toolStripStatusLabel1.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { this.toolStripStatusLabel1.Text = "[ " + text + " ]"; toolStripStatusLabel1.BackColor = color; }); }
@@ -1438,7 +1437,7 @@ namespace GrblPlotter
             { e.IsInputKey = true; }
         }
 
-        private void showFormsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ShowFormsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (_serial_form != null) _serial_form.BringToFront();
             if (_text_form != null) _text_form.BringToFront();
@@ -1455,6 +1454,14 @@ namespace GrblPlotter
 
          //   _streaming_form.SendToBack();
        }
+
+        private void CbAddGraphic_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CbAddGraphic.Checked)
+                CbAddGraphic.BackColor = Color.Yellow;
+            else
+                CbAddGraphic.BackColor = Color.Transparent;
+        }
     }
 }
 

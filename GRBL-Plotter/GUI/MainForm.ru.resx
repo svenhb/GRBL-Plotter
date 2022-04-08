@@ -1103,4 +1103,38 @@
   <data name="control3rdGRBLToolStripMenuItem.Text" xml:space="preserve">
     <value>Управление 3-м серийным COM</value>
   </data>
+  <data name="gB_Jog0.Text" xml:space="preserve">
+    <value>Перейти к</value>
+  </data>
+  <data name="CbAddGraphic.Text" xml:space="preserve">
+    <value>Добавить импортированную графику в 2D-просмотр</value>
+  </data>
+  <data name="createJogPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Создать беговую дорожку</value>
+  </data>
+  <data name="laserToolsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Инструмент для поиска лучших настроек лазера</value>
+  </data>
+  <data name="coordinateSystemsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Проверяйте и контролируйте все координаты grbl</value>
+  </data>
+  <data name="control3rdGRBLToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Открывает простое окно для управления блоком через 3-й последовательный порт.</value>
+  </data>
+  <data name="projectorToolStripMenuItem.Text" xml:space="preserve">
+    <value>проектор</value>
+  </data>
+  <data name="projectorToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Открывает новое окно для отображения траектории станка на заготовке с помощью проектора над рабочим столом.</value>
+  </data>
+  <data name="showFormsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Формы вперед</value>
+  </data>
+  <data name="showFormsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Переносит все открытые формы GRBL-Plotter (например, создание текста) в начало порядка z.</value>
+  </data>
+  <data name="CbAddGraphic.ToolTip" xml:space="preserve">
+    <value>Если этот параметр включен, новый импортированный G-код будет вставлен в уже существующий код.
+Изменение настроек импорта после первого импорта может привести к нежелательным последствиям.</value>
+  </data>
 </root>

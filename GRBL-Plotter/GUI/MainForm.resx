@@ -133,7 +133,7 @@
     <value>1</value>
   </data>
   <data name="fCTBCode.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
-    <value>191, 12</value>
+    <value>214, 12</value>
   </data>
   <metadata name="cmsFCTB.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>123, 56</value>
@@ -4852,7 +4852,7 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>3, 3</value>
   </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>286, 371</value>
+    <value>286, 347</value>
   </data>
   <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -4873,7 +4873,7 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>Fill</value>
   </data>
   <data name="tBURL.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 380</value>
+    <value>3, 356</value>
   </data>
   <data name="tBURL.Size" type="System.Drawing.Size, System.Drawing">
     <value>286, 20</value>
@@ -4901,6 +4901,37 @@ for SVG files</value>
   <data name="&gt;&gt;tBURL.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="CbAddGraphic.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbAddGraphic.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 380</value>
+  </data>
+  <data name="CbAddGraphic.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 17</value>
+  </data>
+  <data name="CbAddGraphic.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="CbAddGraphic.Text" xml:space="preserve">
+    <value>Add imported graphic to 2D-view</value>
+  </data>
+  <data name="CbAddGraphic.ToolTip" xml:space="preserve">
+    <value>If enabled, the new imported G-Code will be inserted to the already existing code.
+Changing import settings after the first import can lead to undesired effects.</value>
+  </data>
+  <data name="&gt;&gt;CbAddGraphic.Name" xml:space="preserve">
+    <value>CbAddGraphic</value>
+  </data>
+  <data name="&gt;&gt;CbAddGraphic.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbAddGraphic.Parent" xml:space="preserve">
+    <value>tLPMitteUnten</value>
+  </data>
+  <data name="&gt;&gt;CbAddGraphic.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="tLPMitteUnten.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -4908,7 +4939,7 @@ for SVG files</value>
     <value>3, 3</value>
   </data>
   <data name="tLPMitteUnten.RowCount" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="tLPMitteUnten.Size" type="System.Drawing.Size, System.Drawing">
     <value>292, 401</value>
@@ -4929,7 +4960,7 @@ for SVG files</value>
     <value>1</value>
   </data>
   <data name="tLPMitteUnten.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="pictureBox1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tBURL" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Percent,100,Absolute,24" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="pictureBox1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tBURL" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="CbAddGraphic" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Percent,100,Absolute,24,Absolute,24" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="tLPRechtsUnten.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>

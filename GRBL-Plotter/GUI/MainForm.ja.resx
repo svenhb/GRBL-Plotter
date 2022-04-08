@@ -1133,4 +1133,38 @@ Grblのバッファーにモーションがキューイングされていて準�
   <data name="control3rdGRBLToolStripMenuItem.Text" xml:space="preserve">
     <value>3番目のシリアルCOMを制御する</value>
   </data>
+  <data name="gB_Jog0.Text" xml:space="preserve">
+    <value>へ引っ越す</value>
+  </data>
+  <data name="CbAddGraphic.Text" xml:space="preserve">
+    <value>インポートしたグラフィックを2Dビューに追加</value>
+  </data>
+  <data name="createJogPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>ジョグパスを作成する</value>
+  </data>
+  <data name="laserToolsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>最適なレーザー設定を見つけるためのツール</value>
+  </data>
+  <data name="coordinateSystemsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>すべてのgrbl座標を確認および制御します</value>
+  </data>
+  <data name="control3rdGRBLToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>3番目のシリアルコムを介してユニットを制御するための簡単なウィンドウを開きます</value>
+  </data>
+  <data name="projectorToolStripMenuItem.Text" xml:space="preserve">
+    <value>プロジェクター</value>
+  </data>
+  <data name="projectorToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>新しいウィンドウを開き、作業台の上のプロジェクターを介してワークピースのマシンパスを表示します</value>
+  </data>
+  <data name="showFormsToolStripMenuItem.Text" xml:space="preserve">
+    <value>前面にフォーム</value>
+  </data>
+  <data name="showFormsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>開いているすべてのGRBL-プロッタフォーム（テキスト作成など）をzオーダーの前に移動します</value>
+  </data>
+  <data name="CbAddGraphic.ToolTip" xml:space="preserve">
+    <value>有効にすると、新しくインポートされたGコードが既存のコードに挿入されます。
+最初のインポート後にインポート設定を変更すると、望ましくない影響が生じる可能性があります。</value>
+  </data>
 </root>

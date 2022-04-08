@@ -34,7 +34,8 @@ namespace GrblPlotter
             if (disposing && (components != null))
             {
                 components.Dispose();
-                picBoxBackround.Dispose();
+                if (picBoxBackround != null)
+                    picBoxBackround.Dispose();
                 StyleComment.Dispose();
                 StyleFWord.Dispose();
                 StyleGWord.Dispose();
@@ -315,6 +316,7 @@ namespace GrblPlotter
             this.cmsPicBoxClearBackground = new System.Windows.Forms.ToolStripMenuItem();
             this.copyContentTroClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tBURL = new System.Windows.Forms.TextBox();
+            this.CbAddGraphic = new System.Windows.Forms.CheckBox();
             this.tLPRechtsOben = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tLPCustomButton1 = new System.Windows.Forms.TableLayoutPanel();
@@ -1997,6 +1999,7 @@ namespace GrblPlotter
             resources.ApplyResources(this.tLPMitteUnten, "tLPMitteUnten");
             this.tLPMitteUnten.Controls.Add(this.pictureBox1, 0, 0);
             this.tLPMitteUnten.Controls.Add(this.tBURL, 0, 1);
+            this.tLPMitteUnten.Controls.Add(this.CbAddGraphic, 0, 2);
             this.tLPMitteUnten.Name = "tLPMitteUnten";
             // 
             // pictureBox1
@@ -2012,7 +2015,7 @@ namespace GrblPlotter
             this.pictureBox1.SizeChanged += new System.EventHandler(this.PictureBox1_SizeChanged);
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBox1_Paint);
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseDown);
-            this.pictureBox1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.PictureBox1_MouseLeave);
             this.pictureBox1.MouseHover += new System.EventHandler(this.PictureBox1_MouseHover);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseUp);
@@ -2180,6 +2183,16 @@ namespace GrblPlotter
             this.tBURL.Name = "tBURL";
             this.toolTip1.SetToolTip(this.tBURL, resources.GetString("tBURL.ToolTip"));
             this.tBURL.TextChanged += new System.EventHandler(this.TbURL_TextChanged);
+            // 
+            // CbAddGraphic
+            // 
+            resources.ApplyResources(this.CbAddGraphic, "CbAddGraphic");
+            this.CbAddGraphic.Checked = global::GrblPlotter.Properties.Settings.Default.fromFormInsertEnable;
+            this.CbAddGraphic.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "fromFormInsertEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbAddGraphic.Name = "CbAddGraphic";
+            this.toolTip1.SetToolTip(this.CbAddGraphic, resources.GetString("CbAddGraphic.ToolTip"));
+            this.CbAddGraphic.UseVisualStyleBackColor = true;
+            this.CbAddGraphic.CheckedChanged += new System.EventHandler(this.CbAddGraphic_CheckedChanged);
             // 
             // tLPRechtsOben
             // 
@@ -3263,7 +3276,7 @@ namespace GrblPlotter
             this.showFormsToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.showFormsToolStripMenuItem.Name = "showFormsToolStripMenuItem";
             resources.ApplyResources(this.showFormsToolStripMenuItem, "showFormsToolStripMenuItem");
-            this.showFormsToolStripMenuItem.Click += new System.EventHandler(this.showFormsToolStripMenuItem_Click);
+            this.showFormsToolStripMenuItem.Click += new System.EventHandler(this.ShowFormsToolStripMenuItem_Click);
             // 
             // MainTimer
             // 
@@ -3776,6 +3789,7 @@ namespace GrblPlotter
         private System.Windows.Forms.PictureBox PbLaser;
         private System.Windows.Forms.ToolStripMenuItem showFormsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem projectorToolStripMenuItem;
+        private System.Windows.Forms.CheckBox CbAddGraphic;
     }
 }
 

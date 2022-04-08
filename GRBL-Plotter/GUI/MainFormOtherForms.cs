@@ -21,6 +21,7 @@
  * 2021-01-13 add 3rd serial com
  * 2021-07-15 code clean up / code quality
  * 2022-03-06 changed from form.show(this) to .show() to be able to stay behaind main form
+ * 2022-04-06 add _projector_form with monitor selection
 */
 
 using System;
@@ -585,10 +586,13 @@ namespace GrblPlotter
             }
 			
 			if (Screen.AllScreens.Length > 1)
-			{
+			{	
+				if ((int)Properties.Settings.Default.projectorMonitorIndex >= Screen.AllScreens.Length)
+					Properties.Settings.Default.projectorMonitorIndex = Screen.AllScreens.Length - 1;
+				
 				_projector_form.StartPosition = FormStartPosition.Manual;
-				_projector_form.Location = Screen.AllScreens[1].WorkingArea.Location;
-			//	_projector_form.FormBorderStyle = FormBorderStyle.None;
+				_projector_form.Location = Screen.AllScreens[(int)Properties.Settings.Default.projectorMonitorIndex].WorkingArea.Location;	// selectable index
+				_projector_form.FormBorderStyle = FormBorderStyle.None;		// default = Sizable
 				_projector_form.Show();
 				_projector_form.WindowState = FormWindowState.Maximized;
 			} 

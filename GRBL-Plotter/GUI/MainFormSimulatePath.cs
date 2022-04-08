@@ -21,6 +21,7 @@
  * 2021-07-02 code clean up / code quality
  * 2021-12-02 add range test for index
  * 2022-03-29 line 115 check if (_serial_form != null)
+ * 2022-04-07 reset codeInfo on start
 */
 
 using System;
@@ -41,7 +42,8 @@ namespace GrblPlotter
         {
             if ((!isStreaming) && (fCTBCode.LinesCount > 2))
             {
-                if (!simuEnabled)
+				codeInfo = new XyzPoint();	// reset old positions
+				if (!simuEnabled)
                 { SimuStart(Properties.Settings.Default.gui2DColorSimulation); }
                 else
                 { SimuStop(); }

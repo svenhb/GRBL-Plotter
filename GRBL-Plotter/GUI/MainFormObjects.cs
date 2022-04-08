@@ -66,6 +66,11 @@ namespace GrblPlotter
 
         public static string MakeAbsolutePath(string fileName)
         {
+            if (fileName.ToLower().StartsWith("http"))
+            { return fileName; }
+            if (fileName.ToLower().StartsWith("ftp"))
+            { return fileName; }
+
             if (Path.IsPathRooted(fileName))
             { return fileName; }
 

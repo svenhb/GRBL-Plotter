@@ -1136,4 +1136,38 @@
   <data name="control3rdGRBLToolStripMenuItem.Text" xml:space="preserve">
     <value>التحكم الثالث المسلسل COM</value>
   </data>
+  <data name="gB_Jog0.Text" xml:space="preserve">
+    <value>الانتقال إلى</value>
+  </data>
+  <data name="CbAddGraphic.Text" xml:space="preserve">
+    <value>أضف الرسم الذي تم استيراده إلى طريقة العرض ثنائية الأبعاد</value>
+  </data>
+  <data name="createJogPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>قم بإنشاء مسار للركض</value>
+  </data>
+  <data name="laserToolsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>أداة للعثور على أفضل إعدادات الليزر</value>
+  </data>
+  <data name="coordinateSystemsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>فحص جميع إحداثيات grbl والتحكم فيها</value>
+  </data>
+  <data name="control3rdGRBLToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>يفتح نافذة بسيطة للتحكم في وحدة عن طريق كوم التسلسلي الثالث</value>
+  </data>
+  <data name="projectorToolStripMenuItem.Text" xml:space="preserve">
+    <value>كشاف ضوئي</value>
+  </data>
+  <data name="projectorToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>يفتح نافذة جديدة لعرض مسار الماكينة على قطعة العمل عبر جهاز عرض أعلى طاولة العمل</value>
+  </data>
+  <data name="showFormsToolStripMenuItem.Text" xml:space="preserve">
+    <value>أشكال في المقدمة</value>
+  </data>
+  <data name="showFormsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>يجلب جميع نماذج GRBL-Plotter المفتوحة (مثل إنشاء النص) في مقدمة الترتيب z</value>
+  </data>
+  <data name="CbAddGraphic.ToolTip" xml:space="preserve">
+    <value>في حالة التمكين ، سيتم إدراج G-Code الجديد المستورد في الكود الموجود بالفعل.
+قد يؤدي تغيير إعدادات الاستيراد بعد الاستيراد الأول إلى تأثيرات غير مرغوب فيها.</value>
+  </data>
 </root>

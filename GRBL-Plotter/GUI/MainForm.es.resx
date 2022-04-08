@@ -1092,4 +1092,38 @@ Añadir 'G54;' al encabezado G-Code para volver automáticamente a G54 antes de 
   <data name="tabPage3.Text" xml:space="preserve">
     <value>Láser</value>
   </data>
+  <data name="gB_Jog0.Text" xml:space="preserve">
+    <value>Mover a</value>
+  </data>
+  <data name="CbAddGraphic.Text" xml:space="preserve">
+    <value>Agregar gráfico importado a la vista 2D</value>
+  </data>
+  <data name="createJogPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Crear ruta de desplazamiento</value>
+  </data>
+  <data name="laserToolsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Herramienta para encontrar la mejor configuración de láser</value>
+  </data>
+  <data name="coordinateSystemsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Comprueba y controla todas las coordenadas grbl</value>
+  </data>
+  <data name="control3rdGRBLToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Abre una ventana simple para controlar una unidad a través de un tercer serial com</value>
+  </data>
+  <data name="projectorToolStripMenuItem.Text" xml:space="preserve">
+    <value>Proyector</value>
+  </data>
+  <data name="projectorToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Abre una nueva ventana para mostrar la trayectoria de la máquina en la pieza de trabajo a través de un proyector sobre el banco de trabajo</value>
+  </data>
+  <data name="showFormsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Formularios al frente</value>
+  </data>
+  <data name="showFormsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Trae todos los formularios GRBL-Plotter abiertos (por ejemplo, creación de texto) al frente del orden z</value>
+  </data>
+  <data name="CbAddGraphic.ToolTip" xml:space="preserve">
+    <value>Si está habilitado, el nuevo código G importado se insertará en el código ya existente.
+Cambiar la configuración de importación después de la primera importación puede provocar efectos no deseados.</value>
+  </data>
 </root>
