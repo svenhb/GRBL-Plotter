@@ -8355,5 +8355,29 @@ namespace GrblPlotter.Properties {
                 this["importImageGrayVectorize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal projectorMonitorIndex {
+            get {
+                return ((decimal)(this["projectorMonitorIndex"]));
+            }
+            set {
+                this["projectorMonitorIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCZPreventSpindle {
+            get {
+                return ((bool)(this["importGCZPreventSpindle"]));
+            }
+            set {
+                this["importGCZPreventSpindle"] = value;
+            }
+        }
     }
 }
