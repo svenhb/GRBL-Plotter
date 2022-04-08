@@ -970,9 +970,9 @@ namespace GrblPlotter
             lblStatus.Text = "Generate result image...";
 
             Dictionary<Color, sbyte> lookUpToolNr = new Dictionary<Color, sbyte>();
-            try {
-				
-				int rectWidth, rectHeight;
+            int rectWidth=-1, rectHeight=-1;
+            try
+            {
 				rectWidth = Math.Min(adjustedImage.Width, resultImage.Width);
 				rectHeight = Math.Min(adjustedImage.Height, resultImage.Height);
                 Rectangle rectAdjusted = new Rectangle(0, 0, rectWidth, rectHeight);	//adjustedImage.Width, adjustedImage.Height);
@@ -1036,7 +1036,7 @@ namespace GrblPlotter
             }
 			catch (Exception err) {	
 				Logger.Error(err,"generateResultImage ");
-                EventCollector.StoreException("generateResultImage:" +err);
+                EventCollector.StoreException("generateResultImage: size:"+rectWidth+" x "+rectHeight+" " +err);
                 if (resultImage != null) resultImage.UnlockBits(dataResult);
                 if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
 			}
@@ -1056,11 +1056,10 @@ namespace GrblPlotter
             lblStatus.Text = "Generate result image...";
 
             SortByGrayValue(false);
-
-            try {
-				
-				int rectWidth, rectHeight;
-				rectWidth = Math.Min(adjustedImage.Width, resultImage.Width);
+            int rectWidth=-1, rectHeight=-1;
+            try
+            {
+                rectWidth = Math.Min(adjustedImage.Width, resultImage.Width);
 				rectHeight = Math.Min(adjustedImage.Height, resultImage.Height);
                 Rectangle rectAdjusted = new Rectangle(0, 0, rectWidth, rectHeight);	//adjustedImage.Width, adjustedImage.Height);
                 Rectangle rectResult = new Rectangle(0, 0, rectWidth, rectHeight);	//resultImage.Width, resultImage.Height);
@@ -1103,7 +1102,7 @@ namespace GrblPlotter
             }
 			catch (Exception err) {	
 				Logger.Error(err,"generateResultImage ");
-                EventCollector.StoreException("generateResultImage:" +err);
+                EventCollector.StoreException("generateResultImageGray: size:"+rectWidth+" x "+rectHeight+" " +err);
                 if (resultImage != null) resultImage.UnlockBits(dataResult);
                 if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
 			}
@@ -1140,6 +1139,7 @@ namespace GrblPlotter
             }
             catch (Exception err)
             {
+                EventCollector.StoreException("CountImageColors1: size:"+adjustedImage.Width+" x "+adjustedImage.Height+" " +err);
                 Logger.Error(err, "CountImageColors ");
                 MessageBox.Show("Error count image colors - width or height not ok?:\r\n" + err.Message, "Error");
                 return 1;
@@ -1154,19 +1154,30 @@ namespace GrblPlotter
       //      int count = 0;
             long stride = bmpData.Stride;
             var differentColor = new HashSet<System.Drawing.Color>();          // count each color once
-            for (long column = 0; column < bmpData.Height; column++)
+			try {
+				for (long column = 0; column < bmpData.Height; column++)
+				{
+					for (long row = 0; row < bmpData.Width; row++)
+					{
+						b = (byte)(rgbValues[(column * stride) + (row * 4) + 0]);  // https://stackoverflow.com/questions/8104461/pixelformat-format32bppargb-seems-to-have-wrong-byte-order
+						g = (byte)(rgbValues[(column * stride) + (row * 4) + 1]);
+						r = (byte)(rgbValues[(column * stride) + (row * 4) + 2]);
+						a = (byte)(rgbValues[(column * stride) + (row * 4) + 3]);
+						differentColor.Add(Color.FromArgb(a, r, g, b));
+			//            count++;
+					}
+				}
+			}
+			catch (Exception err)
             {
-                for (long row = 0; row < bmpData.Width; row++)
-                {
-                    b = (byte)(rgbValues[(column * stride) + (row * 4) + 0]);  // https://stackoverflow.com/questions/8104461/pixelformat-format32bppargb-seems-to-have-wrong-byte-order
-                    g = (byte)(rgbValues[(column * stride) + (row * 4) + 1]);
-                    r = (byte)(rgbValues[(column * stride) + (row * 4) + 2]);
-                    a = (byte)(rgbValues[(column * stride) + (row * 4) + 3]);
-                    differentColor.Add(Color.FromArgb(a, r, g, b));
-        //            count++;
-                }
+                EventCollector.StoreException("CountImageColors2: size:"+adjustedImage.Width+" x "+adjustedImage.Height+" " +err);
+                Logger.Error(err, "CountImageColors ");
+            //    MessageBox.Show("Error count image colors - width or height not ok?:\r\n" + err.Message, "Error");
+                return 1;
             }
-            adjustedImage.UnlockBits(bmpData);
+			finally
+			{ adjustedImage.UnlockBits(bmpData); }
+			
             lblColors.Text = "Number of colors: " + differentColor.Count.ToString();
 			if (logEnable) Logger.Trace("CountImageColors Count:{0}   update:{1}", differentColor.Count, updateLabelColorCount);
             updateLabelColorCount = false;

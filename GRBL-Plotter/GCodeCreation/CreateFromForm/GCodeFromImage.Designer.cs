@@ -610,10 +610,9 @@
             // tBarBWThreshold
             // 
             resources.ApplyResources(this.tBarBWThreshold, "tBarBWThreshold");
-            this.tBarBWThreshold.LargeChange = 20;
+            this.tBarBWThreshold.LargeChange = 10;
             this.tBarBWThreshold.Maximum = 255;
             this.tBarBWThreshold.Name = "tBarBWThreshold";
-            this.tBarBWThreshold.SmallChange = 10;
             this.tBarBWThreshold.TickFrequency = 32;
             this.tBarBWThreshold.Value = 127;
             this.tBarBWThreshold.Scroll += new System.EventHandler(this.ApplyColorCorrectionsEventScrollBar);
@@ -679,7 +678,6 @@
             this.tBarGamma.Maximum = 500;
             this.tBarGamma.Minimum = 1;
             this.tBarGamma.Name = "tBarGamma";
-            this.tBarGamma.SmallChange = 10;
             this.tBarGamma.TickFrequency = 10;
             this.tBarGamma.Value = 1;
             this.tBarGamma.Scroll += new System.EventHandler(this.ApplyColorCorrectionsEventScrollBar);
@@ -693,7 +691,6 @@
             this.tBarContrast.Maximum = 127;
             this.tBarContrast.Minimum = -127;
             this.tBarContrast.Name = "tBarContrast";
-            this.tBarContrast.SmallChange = 10;
             this.tBarContrast.TickFrequency = 32;
             this.tBarContrast.Scroll += new System.EventHandler(this.ApplyColorCorrectionsEventScrollBar);
             this.tBarContrast.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ScrollBar_MouseDown);
@@ -706,7 +703,6 @@
             this.tBarBrightness.Maximum = 127;
             this.tBarBrightness.Minimum = -127;
             this.tBarBrightness.Name = "tBarBrightness";
-            this.tBarBrightness.SmallChange = 10;
             this.tBarBrightness.TickFrequency = 32;
             this.tBarBrightness.Scroll += new System.EventHandler(this.ApplyColorCorrectionsEventScrollBar);
             this.tBarBrightness.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ScrollBar_MouseDown);
@@ -977,7 +973,6 @@
             this.tBarHueShift.LargeChange = 20;
             this.tBarHueShift.Maximum = 359;
             this.tBarHueShift.Name = "tBarHueShift";
-            this.tBarHueShift.SmallChange = 10;
             this.tBarHueShift.TickFrequency = 30;
             this.toolTip1.SetToolTip(this.tBarHueShift, resources.GetString("tBarHueShift.ToolTip"));
             this.tBarHueShift.Scroll += new System.EventHandler(this.ApplyColorCorrectionsEventScrollBar);
@@ -1925,7 +1920,6 @@
             this.tBarSaturation.Maximum = 255;
             this.tBarSaturation.Minimum = -255;
             this.tBarSaturation.Name = "tBarSaturation";
-            this.tBarSaturation.SmallChange = 10;
             this.tBarSaturation.TickFrequency = 32;
             this.tBarSaturation.Scroll += new System.EventHandler(this.ApplyColorCorrectionsEventScrollBar);
             this.tBarSaturation.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ScrollBar_MouseDown);
