@@ -3191,4 +3191,79 @@ Kromě toho lze polohu osy Z využít např. ke zvýšení množství barvy, kdy
   <data name="groupBox29.Text" xml:space="preserve">
     <value>Různé</value>
   </data>
+  <data name="label69.Text" xml:space="preserve">
+    <value>Monitor č. otevřít okno</value>
+  </data>
+  <data name="BtnProjectorColorBackground.Text" xml:space="preserve">
+    <value>Pozadí</value>
+  </data>
+  <data name="BtnProjectorColorDimension.Text" xml:space="preserve">
+    <value>Dimenze</value>
+  </data>
+  <data name="BtnProjectorColorRuler.Text" xml:space="preserve">
+    <value>Pravítko</value>
+  </data>
+  <data name="BtnProjectorColorPenUp.Text" xml:space="preserve">
+    <value>Pen Up</value>
+  </data>
+  <data name="BtnProjectorColorPenDown.Text" xml:space="preserve">
+    <value>Perem dolů</value>
+  </data>
+  <data name="CbProjectorMarker.Text" xml:space="preserve">
+    <value>ukázat</value>
+  </data>
+  <data name="CbProjectorTool.Text" xml:space="preserve">
+    <value>ukázat</value>
+  </data>
+  <data name="CbProjectorPenUp.Text" xml:space="preserve">
+    <value>ukázat</value>
+  </data>
+  <data name="CbProjectorRuler.Text" xml:space="preserve">
+    <value>ukázat</value>
+  </data>
+  <data name="CbProjectorDimension.Text" xml:space="preserve">
+    <value>ukázat</value>
+  </data>
+  <data name="LblProjector1.Text" xml:space="preserve">
+    <value>Barva</value>
+  </data>
+  <data name="tabPage32.Text" xml:space="preserve">
+    <value>Projektor</value>
+  </data>
+  <data name="BtnProjectorColorTool.Text" xml:space="preserve">
+    <value>Nástroj</value>
+  </data>
+  <data name="BtnProjectorColorMarker.Text" xml:space="preserve">
+    <value>Popisovač</value>
+  </data>
+  <data name="LblProjector2.Text" xml:space="preserve">
+    <value>Šířka pera</value>
+  </data>
+  <data name="LblProjector5.Text" xml:space="preserve">
+    <value>Offset Y</value>
+  </data>
+  <data name="LblProjector4.Text" xml:space="preserve">
+    <value>Offset X</value>
+  </data>
+  <data name="LblProjector3.Text" xml:space="preserve">
+    <value>Měřítko (také závisí na limitech stroje)</value>
+  </data>
+  <data name="GbProjector.Text" xml:space="preserve">
+    <value>Barvy pro formu projektoru</value>
+  </data>
+  <data name="label71.Text" xml:space="preserve">
+    <value>Skutečná měřená šířka</value>
+  </data>
+  <data name="label70.Text" xml:space="preserve">
+    <value>Šířka grafiky</value>
+  </data>
+  <data name="BtnProjectorCalc.Text" xml:space="preserve">
+    <value>Vypočítejte měřítko</value>
+  </data>
+  <data name="GbProjectorCalc.Text" xml:space="preserve">
+    <value>Vypočítejte měřítko</value>
+  </data>
+  <data name="cBImportGCZPreventSpindle.Text" xml:space="preserve">
+    <value>Spindel nicht einschalten</value>
+  </data>
 </root>

@@ -18,7 +18,7 @@
 */
 /*
  * 2022-03-25 New form to be displayed with a projector on the work-piece
-
+ * 2022-04-06 Add buttons to minimize / maximize windows, monitor selection
 */
 
 
@@ -36,10 +36,6 @@ namespace GrblPlotter
 {
     public partial class ControlProjector : Form
     {
-
-		private Color ColorBackground = Color.Black;
-		private Color ColorPenDown = Color.White;
-	//	private Int WidthPenDown = 0.1;
         private readonly Pen penUp = new Pen(Color.Green, 0.1F);
         private readonly Pen penDown = new Pen(Color.White, 0.2F);
         private readonly Pen penTool = new Pen(Color.Gray, 0.5F);
@@ -49,7 +45,6 @@ namespace GrblPlotter
         private readonly Pen penGrid1 = new Pen(Color.LightGray, 0.01F);
         private readonly Pen penGrid10 = new Pen(Color.LightSlateGray, 0.01F);
         private readonly Pen penGrid100 = new Pen(Color.Gray, 0.1F);
-
 
         public ControlProjector()
         {
@@ -70,32 +65,21 @@ namespace GrblPlotter
             SetupPanel.Visible = Properties.Settings.Default.projectorShowSetup;
         }
 
-
-
         private void ControlProjector_Paint(object sender, PaintEventArgs e)
         {
-            double minx = VisuGCode.drawingSize.minX;                  // extend dimensions
-            double maxx = VisuGCode.drawingSize.maxX;
-            double miny = VisuGCode.drawingSize.minY;
-            double maxy = VisuGCode.drawingSize.maxY;
-            double xRange = (maxx - minx);                                              // calculate new size
-            double yRange = (maxy - miny);
-            if (true)   //Properties.Settings.Default.machineLimitsFix)
-            {
-                double offset = (double)Properties.Settings.Default.machineLimitsRangeX / 40;       // view size
-                minx = (double)Properties.Settings.Default.machineLimitsHomeX - Grbl.posWCO.X - offset;
-                miny = (double)Properties.Settings.Default.machineLimitsHomeY - Grbl.posWCO.Y - offset;
-                xRange = (double)Properties.Settings.Default.machineLimitsRangeX + 2 * offset;
-                yRange = (double)Properties.Settings.Default.machineLimitsRangeY + 2 * offset;
-            }
+            double offset = (double)Properties.Settings.Default.machineLimitsRangeX / 40;       // view size
+            double minx = (double)Properties.Settings.Default.machineLimitsHomeX - Grbl.posWCO.X - offset;
+            double miny = (double)Properties.Settings.Default.machineLimitsHomeY - Grbl.posWCO.Y - offset;
+            double xRange = (double)Properties.Settings.Default.machineLimitsRangeX + 2 * offset;
+            double yRange = (double)Properties.Settings.Default.machineLimitsRangeY + 2 * offset;
 
             double picScaling = Math.Min(this.Width / (xRange), this.Height / (yRange))* (double)NudScaling.Value;               // calculate scaling px/unit
             double zoomFactor = 1;// (double)NudScaling.Value;
 
             e.Graphics.ScaleTransform((float)picScaling, (float)-picScaling);           // apply scaling (flip Y)
-			e.Graphics.TranslateTransform((float)-minx + (float)NudOffsetX.Value, (float)(-yRange - miny) + (float)NudOffsetY.Value);       // apply offset
+            e.Graphics.TranslateTransform((float)-minx + (float)NudOffsetX.Value, (float)(-yRange - miny) + (float)NudOffsetY.Value);       // apply offset
 
-			if (Properties.Settings.Default.projectorShowRuler)
+            if (Properties.Settings.Default.projectorShowRuler)
 			{	
 				if ((picScaling* zoomFactor) > 10)
 					e.Graphics.DrawPath(penGrid1, VisuGCode.pathGrid1);          // grid   1mm
@@ -122,9 +106,7 @@ namespace GrblPlotter
 
             if (Properties.Settings.Default.projectorShowPenUp)
                 e.Graphics.DrawPath(penUp, VisuGCode.pathPenUp);
-
 		}
-
 
 		private void SetupPens()
 		{
@@ -154,14 +136,6 @@ namespace GrblPlotter
             penMarker.LineJoin = LineJoin.Round;
             penDimension.LineJoin = LineJoin.Round;
 		}
-
-// Hide/show groupbox with controls to setup pen colors and width and visibility
-
-// offset und scaling für x unf y
-// click to set 0;0
-		
-//ApplyColor(btnColorBackground, "projectorColorBackground"); }		
-//ApplyColor(btnColorBackground, "projectorColorPenDown"); }		
 		
         private void BtnColorBackground_Click(object sender, EventArgs e)
         { ApplyColor(btnColorBackground, "projectorColorBackground"); }
@@ -180,14 +154,15 @@ namespace GrblPlotter
 		
         private void ApplyColor(Button btn, string settings)
         {
-			ColorDialog colorDialog1 = new ColorDialog();
-            colorDialog1.AnyColor = true;
-            colorDialog1.Color = (Color)Properties.Settings.Default[settings];
-            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            using (ColorDialog colorDialog1 = new ColorDialog())
             {
-                SetButtonColors(btn, colorDialog1.Color);
-                Properties.Settings.Default[settings] = colorDialog1.Color;
-         //       SaveSettings();
+                colorDialog1.AnyColor = true;
+                colorDialog1.Color = (Color)Properties.Settings.Default[settings];
+                if (colorDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    SetButtonColors(btn, colorDialog1.Color);
+                    Properties.Settings.Default[settings] = colorDialog1.Color;
+                }
             }
             SetupPens();
             this.Invalidate();
@@ -228,7 +203,6 @@ namespace GrblPlotter
             this.Invalidate();
         }
 
-
         private Point p = new Point();
         private void SetupPanel_MouseDown(object sender, MouseEventArgs e)
         {
@@ -240,6 +214,18 @@ namespace GrblPlotter
         {
             if (e.Button==MouseButtons.Left)
                 SetupPanel.Location = new Point(e.X - p.X + SetupPanel.Location.X, e.Y - p.Y + SetupPanel.Location.Y);
+        }
+		
+        private void BtnMinimize_Click(object sender, EventArgs e)
+        {
+            this.FormBorderStyle = FormBorderStyle.Sizable;
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void BtnMaximize_Click(object sender, EventArgs e)
+        {
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.WindowState = FormWindowState.Maximized;
         }
     }
 }

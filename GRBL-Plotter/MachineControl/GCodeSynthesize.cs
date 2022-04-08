@@ -60,7 +60,9 @@ namespace GrblPlotter
         /// undo height map (reload saved backup)
         /// </summary>
         public static void ClearHeightMap()
-        { pathHeightMap.Reset(); }
+        {   pathHeightMap.Reset();
+            pathBackground.Reset();
+        }
 
         /// <summary>
         /// Generate GCode from given coordinates in GCodeList

@@ -133,6 +133,8 @@ namespace GrblPlotter
             SetButtonColors(btnColorHeightMap, Properties.Settings.Default.gui2DColorHeightMap);
             SetButtonColors(btnColorMachineLimit, Properties.Settings.Default.gui2DColorMachineLimit);
             SetButtonColors(btnColorSimulation, Properties.Settings.Default.gui2DColorSimulation);
+            SetProjectorButtons();
+
             nUDImportDecPlaces.Value = Properties.Settings.Default.importGCDecPlaces;
 
             Location = Properties.Settings.Default.locationSetForm;
@@ -1782,6 +1784,45 @@ namespace GrblPlotter
         private void CbAux2ZMode_SelectedIndexChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.importGCAux2ZMode = CbAux2ZMode.SelectedIndex;
+        }
+
+        private void BtnProjectorColorBackground_Click(object sender, EventArgs e)
+        { ApplyColor(BtnProjectorColorBackground, "projectorColorBackground"); btnApplyChangings.PerformClick(); }
+
+        private void BtnProjectorColorDimension_Click(object sender, EventArgs e)
+        { ApplyColor(BtnProjectorColorDimension, "projectorColorDimension"); btnApplyChangings.PerformClick(); }
+
+        private void BtnProjectorColorRuler_Click(object sender, EventArgs e)
+        { ApplyColor(BtnProjectorColorRuler, "projectorColorRuler"); btnApplyChangings.PerformClick(); }
+
+        private void BtnProjectorColorPenUp_Click(object sender, EventArgs e)
+        { ApplyColor(BtnProjectorColorPenUp, "projectorColorPenUp"); btnApplyChangings.PerformClick(); }
+
+        private void BtnProjectorColorPenDown_Click(object sender, EventArgs e)
+        { ApplyColor(BtnProjectorColorPenDown, "projectorColorPenDown"); btnApplyChangings.PerformClick(); }
+
+        private void BtnProjectorColorTool_Click(object sender, EventArgs e)
+        { ApplyColor(BtnProjectorColorTool, "projectorColorTool"); btnApplyChangings.PerformClick(); }
+
+        private void BtnProjectorColorMarker_Click(object sender, EventArgs e)
+        { ApplyColor(BtnProjectorColorMarker, "projectorColorMarker"); btnApplyChangings.PerformClick(); }
+
+        private void SetProjectorButtons()
+        {
+            SetButtonColors(BtnProjectorColorBackground, Properties.Settings.Default.projectorColorBackground);
+            SetButtonColors(BtnProjectorColorDimension, Properties.Settings.Default.projectorColorDimension);
+            SetButtonColors(BtnProjectorColorRuler, Properties.Settings.Default.projectorColorRuler);
+            SetButtonColors(BtnProjectorColorPenUp, Properties.Settings.Default.projectorColorPenUp);
+            SetButtonColors(BtnProjectorColorPenDown, Properties.Settings.Default.projectorColorPenDown);
+            SetButtonColors(BtnProjectorColorTool, Properties.Settings.Default.projectorColorTool);
+            SetButtonColors(BtnProjectorColorMarker, Properties.Settings.Default.projectorColorMarker);
+        }
+
+        private void BtnProjectorCalc_Click(object sender, EventArgs e)
+        {
+            decimal scaling = NudProjectorSet.Value / NudProjectorReal.Value;
+            NudProjectorScaling.Value *= scaling;
+            NudProjectorReal.Value = NudProjectorSet.Value;
         }
     }
 }

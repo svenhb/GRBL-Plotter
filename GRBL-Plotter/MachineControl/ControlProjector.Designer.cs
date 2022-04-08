@@ -29,6 +29,7 @@ namespace GrblPlotter
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlProjector));
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,8 +44,12 @@ namespace GrblPlotter
             this.btnColorDimension = new System.Windows.Forms.Button();
             this.btnColorBackground = new System.Windows.Forms.Button();
             this.SetupPanel = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
+            this.label69 = new System.Windows.Forms.Label();
+            this.numericUpDown15 = new System.Windows.Forms.NumericUpDown();
+            this.BtnMaximize = new System.Windows.Forms.Button();
+            this.BtnMinimize = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.NudOffsetY = new System.Windows.Forms.NumericUpDown();
             this.NudOffsetX = new System.Windows.Forms.NumericUpDown();
             this.NudScaling = new System.Windows.Forms.NumericUpDown();
@@ -60,6 +65,7 @@ namespace GrblPlotter
             this.NudPenDown = new System.Windows.Forms.NumericUpDown();
             this.NudTool = new System.Windows.Forms.NumericUpDown();
             this.SetupPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudOffsetY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudOffsetX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudScaling)).BeginInit();
@@ -73,136 +79,95 @@ namespace GrblPlotter
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(75, 317);
+            resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 13);
-            this.label5.TabIndex = 27;
-            this.label5.Text = "Offset Y";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(75, 291);
+            resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 13);
-            this.label4.TabIndex = 26;
-            this.label4.Text = "Offset X";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(75, 265);
+            resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(197, 13);
-            this.label3.TabIndex = 23;
-            this.label3.Text = "Scaling (also depends on machine limits)";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(38, 34);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 13);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "Color";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(133, 34);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 13);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Pen width";
             // 
             // BtnClose
             // 
-            this.BtnClose.Location = new System.Drawing.Point(7, 352);
+            resources.ApplyResources(this.BtnClose, "BtnClose");
             this.BtnClose.Name = "BtnClose";
-            this.BtnClose.Size = new System.Drawing.Size(328, 23);
-            this.BtnClose.TabIndex = 7;
-            this.BtnClose.Text = "Close Setup (reopen with right-click)";
             this.BtnClose.UseVisualStyleBackColor = true;
             this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // btnColorMarker
             // 
-            this.btnColorMarker.Location = new System.Drawing.Point(7, 223);
+            resources.ApplyResources(this.btnColorMarker, "btnColorMarker");
             this.btnColorMarker.Name = "btnColorMarker";
-            this.btnColorMarker.Size = new System.Drawing.Size(120, 23);
-            this.btnColorMarker.TabIndex = 6;
-            this.btnColorMarker.Text = "Marker";
             this.btnColorMarker.UseVisualStyleBackColor = true;
             this.btnColorMarker.Click += new System.EventHandler(this.BtnColorMarker_Click);
             // 
             // btnColorTool
             // 
-            this.btnColorTool.Location = new System.Drawing.Point(7, 194);
+            resources.ApplyResources(this.btnColorTool, "btnColorTool");
             this.btnColorTool.Name = "btnColorTool";
-            this.btnColorTool.Size = new System.Drawing.Size(120, 23);
-            this.btnColorTool.TabIndex = 5;
-            this.btnColorTool.Text = "Tool";
             this.btnColorTool.UseVisualStyleBackColor = true;
             this.btnColorTool.Click += new System.EventHandler(this.BtnColorTool_Click);
             // 
             // btnColorPenDown
             // 
-            this.btnColorPenDown.Location = new System.Drawing.Point(7, 165);
+            resources.ApplyResources(this.btnColorPenDown, "btnColorPenDown");
             this.btnColorPenDown.Name = "btnColorPenDown";
-            this.btnColorPenDown.Size = new System.Drawing.Size(120, 23);
-            this.btnColorPenDown.TabIndex = 4;
-            this.btnColorPenDown.Text = "Pen-Down";
             this.btnColorPenDown.UseVisualStyleBackColor = true;
             this.btnColorPenDown.Click += new System.EventHandler(this.BtnColorPenDown_Click);
             // 
             // btnColorPenUp
             // 
-            this.btnColorPenUp.Location = new System.Drawing.Point(7, 136);
+            resources.ApplyResources(this.btnColorPenUp, "btnColorPenUp");
             this.btnColorPenUp.Name = "btnColorPenUp";
-            this.btnColorPenUp.Size = new System.Drawing.Size(120, 23);
-            this.btnColorPenUp.TabIndex = 3;
-            this.btnColorPenUp.Text = "Pen-Up";
             this.btnColorPenUp.UseVisualStyleBackColor = true;
             this.btnColorPenUp.Click += new System.EventHandler(this.BtnColorPenUp_Click);
             // 
             // btnColorRuler
             // 
-            this.btnColorRuler.Location = new System.Drawing.Point(7, 107);
+            resources.ApplyResources(this.btnColorRuler, "btnColorRuler");
             this.btnColorRuler.Name = "btnColorRuler";
-            this.btnColorRuler.Size = new System.Drawing.Size(120, 23);
-            this.btnColorRuler.TabIndex = 2;
-            this.btnColorRuler.Text = "Ruler";
             this.btnColorRuler.UseVisualStyleBackColor = true;
             this.btnColorRuler.Click += new System.EventHandler(this.BtnColorRuler_Click);
             // 
             // btnColorDimension
             // 
-            this.btnColorDimension.Location = new System.Drawing.Point(7, 78);
+            resources.ApplyResources(this.btnColorDimension, "btnColorDimension");
             this.btnColorDimension.Name = "btnColorDimension";
-            this.btnColorDimension.Size = new System.Drawing.Size(120, 23);
-            this.btnColorDimension.TabIndex = 1;
-            this.btnColorDimension.Text = "Dimension";
             this.btnColorDimension.UseVisualStyleBackColor = true;
             this.btnColorDimension.Click += new System.EventHandler(this.BtnColorDimension_Click);
             // 
             // btnColorBackground
             // 
-            this.btnColorBackground.Location = new System.Drawing.Point(7, 49);
+            resources.ApplyResources(this.btnColorBackground, "btnColorBackground");
             this.btnColorBackground.Name = "btnColorBackground";
-            this.btnColorBackground.Size = new System.Drawing.Size(120, 23);
-            this.btnColorBackground.TabIndex = 0;
-            this.btnColorBackground.Text = "Background";
             this.btnColorBackground.UseVisualStyleBackColor = true;
             this.btnColorBackground.Click += new System.EventHandler(this.BtnColorBackground_Click);
             // 
             // SetupPanel
             // 
             this.SetupPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SetupPanel.Controls.Add(this.label69);
+            this.SetupPanel.Controls.Add(this.numericUpDown15);
+            this.SetupPanel.Controls.Add(this.BtnMaximize);
+            this.SetupPanel.Controls.Add(this.BtnMinimize);
             this.SetupPanel.Controls.Add(this.checkBox1);
             this.SetupPanel.Controls.Add(this.BtnClose);
             this.SetupPanel.Controls.Add(this.label5);
-            this.SetupPanel.Controls.Add(this.label6);
             this.SetupPanel.Controls.Add(this.label4);
             this.SetupPanel.Controls.Add(this.btnColorBackground);
             this.SetupPanel.Controls.Add(this.NudOffsetY);
@@ -228,41 +193,67 @@ namespace GrblPlotter
             this.SetupPanel.Controls.Add(this.NudMarker);
             this.SetupPanel.Controls.Add(this.NudPenDown);
             this.SetupPanel.Controls.Add(this.NudTool);
-            this.SetupPanel.Location = new System.Drawing.Point(195, 12);
+            this.SetupPanel.Controls.Add(this.label6);
+            resources.ApplyResources(this.SetupPanel, "SetupPanel");
             this.SetupPanel.Name = "SetupPanel";
-            this.SetupPanel.Size = new System.Drawing.Size(340, 380);
-            this.SetupPanel.TabIndex = 1;
             this.SetupPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SetupPanel_MouseDown);
             this.SetupPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.SetupPanel_MouseMove);
             // 
-            // label6
+            // label69
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(3, 6);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(52, 20);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Setup";
+            resources.ApplyResources(this.label69, "label69");
+            this.label69.Name = "label69";
+            // 
+            // numericUpDown15
+            // 
+            this.numericUpDown15.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "projectorMonitorIndex", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.numericUpDown15, "numericUpDown15");
+            this.numericUpDown15.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDown15.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown15.Name = "numericUpDown15";
+            this.numericUpDown15.Value = global::GrblPlotter.Properties.Settings.Default.projectorMonitorIndex;
+            // 
+            // BtnMaximize
+            // 
+            resources.ApplyResources(this.BtnMaximize, "BtnMaximize");
+            this.BtnMaximize.Name = "BtnMaximize";
+            this.BtnMaximize.UseVisualStyleBackColor = true;
+            this.BtnMaximize.Click += new System.EventHandler(this.BtnMaximize_Click);
+            // 
+            // BtnMinimize
+            // 
+            resources.ApplyResources(this.BtnMinimize, "BtnMinimize");
+            this.BtnMinimize.Name = "BtnMinimize";
+            this.BtnMinimize.UseVisualStyleBackColor = true;
+            this.BtnMinimize.Click += new System.EventHandler(this.BtnMinimize_Click);
             // 
             // checkBox1
             // 
-            this.checkBox1.AutoSize = true;
+            resources.ApplyResources(this.checkBox1, "checkBox1");
             this.checkBox1.Checked = global::GrblPlotter.Properties.Settings.Default.projectorShowSetup;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "projectorShowSetup", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox1.Location = new System.Drawing.Point(163, 329);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(143, 17);
-            this.checkBox1.TabIndex = 28;
-            this.checkBox1.Text = "Show setup on form load";
             this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
             // 
             // NudOffsetY
             // 
             this.NudOffsetY.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "projectorDisplayOffsetY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.NudOffsetY.DecimalPlaces = 2;
-            this.NudOffsetY.Location = new System.Drawing.Point(7, 315);
+            resources.ApplyResources(this.NudOffsetY, "NudOffsetY");
             this.NudOffsetY.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -274,9 +265,6 @@ namespace GrblPlotter
             0,
             -2147483648});
             this.NudOffsetY.Name = "NudOffsetY";
-            this.NudOffsetY.Size = new System.Drawing.Size(62, 20);
-            this.NudOffsetY.TabIndex = 25;
-            this.NudOffsetY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.NudOffsetY.Value = global::GrblPlotter.Properties.Settings.Default.projectorDisplayOffsetY;
             this.NudOffsetY.ValueChanged += new System.EventHandler(this.CbShow_CheckedChanged);
             // 
@@ -284,7 +272,7 @@ namespace GrblPlotter
             // 
             this.NudOffsetX.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "projectorDisplayOffsetX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.NudOffsetX.DecimalPlaces = 2;
-            this.NudOffsetX.Location = new System.Drawing.Point(7, 289);
+            resources.ApplyResources(this.NudOffsetX, "NudOffsetX");
             this.NudOffsetX.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -296,9 +284,6 @@ namespace GrblPlotter
             0,
             -2147483648});
             this.NudOffsetX.Name = "NudOffsetX";
-            this.NudOffsetX.Size = new System.Drawing.Size(62, 20);
-            this.NudOffsetX.TabIndex = 24;
-            this.NudOffsetX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.NudOffsetX.Value = global::GrblPlotter.Properties.Settings.Default.projectorDisplayOffsetX;
             this.NudOffsetX.ValueChanged += new System.EventHandler(this.CbShow_CheckedChanged);
             // 
@@ -311,7 +296,7 @@ namespace GrblPlotter
             0,
             0,
             131072});
-            this.NudScaling.Location = new System.Drawing.Point(7, 263);
+            resources.ApplyResources(this.NudScaling, "NudScaling");
             this.NudScaling.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -323,62 +308,43 @@ namespace GrblPlotter
             0,
             131072});
             this.NudScaling.Name = "NudScaling";
-            this.NudScaling.Size = new System.Drawing.Size(62, 20);
-            this.NudScaling.TabIndex = 22;
-            this.NudScaling.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.NudScaling.Value = global::GrblPlotter.Properties.Settings.Default.projectorDisplayScale;
             this.NudScaling.ValueChanged += new System.EventHandler(this.CbShow_CheckedChanged);
             // 
             // CbMarker
             // 
-            this.CbMarker.AutoSize = true;
+            resources.ApplyResources(this.CbMarker, "CbMarker");
             this.CbMarker.Checked = global::GrblPlotter.Properties.Settings.Default.projectorShowMarker;
             this.CbMarker.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "projectorShowMarker", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.CbMarker.Location = new System.Drawing.Point(190, 227);
             this.CbMarker.Name = "CbMarker";
-            this.CbMarker.Size = new System.Drawing.Size(53, 17);
-            this.CbMarker.TabIndex = 21;
-            this.CbMarker.Text = "Show";
             this.CbMarker.UseVisualStyleBackColor = true;
             this.CbMarker.CheckedChanged += new System.EventHandler(this.CbShow_CheckedChanged);
             // 
             // CbTool
             // 
-            this.CbTool.AutoSize = true;
+            resources.ApplyResources(this.CbTool, "CbTool");
             this.CbTool.Checked = global::GrblPlotter.Properties.Settings.Default.projectorShowTool;
             this.CbTool.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "projectorShowTool", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.CbTool.Location = new System.Drawing.Point(190, 198);
             this.CbTool.Name = "CbTool";
-            this.CbTool.Size = new System.Drawing.Size(53, 17);
-            this.CbTool.TabIndex = 20;
-            this.CbTool.Text = "Show";
             this.CbTool.UseVisualStyleBackColor = true;
             this.CbTool.CheckedChanged += new System.EventHandler(this.CbShow_CheckedChanged);
             // 
             // CbPenUp
             // 
-            this.CbPenUp.AutoSize = true;
+            resources.ApplyResources(this.CbPenUp, "CbPenUp");
             this.CbPenUp.Checked = global::GrblPlotter.Properties.Settings.Default.projectorShowPenUp;
             this.CbPenUp.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "projectorShowPenUp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.CbPenUp.Location = new System.Drawing.Point(190, 140);
             this.CbPenUp.Name = "CbPenUp";
-            this.CbPenUp.Size = new System.Drawing.Size(53, 17);
-            this.CbPenUp.TabIndex = 19;
-            this.CbPenUp.Text = "Show";
             this.CbPenUp.UseVisualStyleBackColor = true;
             this.CbPenUp.CheckedChanged += new System.EventHandler(this.CbShow_CheckedChanged);
             // 
             // CbRuler
             // 
-            this.CbRuler.AutoSize = true;
+            resources.ApplyResources(this.CbRuler, "CbRuler");
             this.CbRuler.Checked = global::GrblPlotter.Properties.Settings.Default.projectorShowRuler;
             this.CbRuler.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CbRuler.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "projectorShowRuler", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.CbRuler.Location = new System.Drawing.Point(190, 111);
             this.CbRuler.Name = "CbRuler";
-            this.CbRuler.Size = new System.Drawing.Size(53, 17);
-            this.CbRuler.TabIndex = 18;
-            this.CbRuler.Text = "Show";
             this.CbRuler.UseVisualStyleBackColor = true;
             this.CbRuler.CheckedChanged += new System.EventHandler(this.CbShow_CheckedChanged);
             // 
@@ -391,7 +357,7 @@ namespace GrblPlotter
             0,
             0,
             65536});
-            this.NudDImension.Location = new System.Drawing.Point(133, 81);
+            resources.ApplyResources(this.NudDImension, "NudDImension");
             this.NudDImension.Maximum = new decimal(new int[] {
             10,
             0,
@@ -403,21 +369,14 @@ namespace GrblPlotter
             0,
             131072});
             this.NudDImension.Name = "NudDImension";
-            this.NudDImension.Size = new System.Drawing.Size(51, 20);
-            this.NudDImension.TabIndex = 10;
-            this.NudDImension.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.NudDImension.Value = global::GrblPlotter.Properties.Settings.Default.projectorWidthDimension;
             // 
             // CbDimension
             // 
-            this.CbDimension.AutoSize = true;
+            resources.ApplyResources(this.CbDimension, "CbDimension");
             this.CbDimension.Checked = global::GrblPlotter.Properties.Settings.Default.projectorShowDimension;
             this.CbDimension.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "projectorShowDimension", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.CbDimension.Location = new System.Drawing.Point(190, 82);
             this.CbDimension.Name = "CbDimension";
-            this.CbDimension.Size = new System.Drawing.Size(53, 17);
-            this.CbDimension.TabIndex = 17;
-            this.CbDimension.Text = "Show";
             this.CbDimension.UseVisualStyleBackColor = true;
             this.CbDimension.CheckedChanged += new System.EventHandler(this.CbShow_CheckedChanged);
             // 
@@ -430,7 +389,7 @@ namespace GrblPlotter
             0,
             0,
             65536});
-            this.NudRuler.Location = new System.Drawing.Point(133, 110);
+            resources.ApplyResources(this.NudRuler, "NudRuler");
             this.NudRuler.Maximum = new decimal(new int[] {
             10,
             0,
@@ -442,9 +401,6 @@ namespace GrblPlotter
             0,
             131072});
             this.NudRuler.Name = "NudRuler";
-            this.NudRuler.Size = new System.Drawing.Size(51, 20);
-            this.NudRuler.TabIndex = 11;
-            this.NudRuler.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.NudRuler.Value = global::GrblPlotter.Properties.Settings.Default.projectorWidthRuler;
             // 
             // NudPenUp
@@ -456,7 +412,7 @@ namespace GrblPlotter
             0,
             0,
             65536});
-            this.NudPenUp.Location = new System.Drawing.Point(133, 139);
+            resources.ApplyResources(this.NudPenUp, "NudPenUp");
             this.NudPenUp.Maximum = new decimal(new int[] {
             10,
             0,
@@ -468,9 +424,6 @@ namespace GrblPlotter
             0,
             131072});
             this.NudPenUp.Name = "NudPenUp";
-            this.NudPenUp.Size = new System.Drawing.Size(51, 20);
-            this.NudPenUp.TabIndex = 12;
-            this.NudPenUp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.NudPenUp.Value = global::GrblPlotter.Properties.Settings.Default.projectorWidthPenUp;
             // 
             // NudMarker
@@ -482,7 +435,7 @@ namespace GrblPlotter
             0,
             0,
             65536});
-            this.NudMarker.Location = new System.Drawing.Point(133, 226);
+            resources.ApplyResources(this.NudMarker, "NudMarker");
             this.NudMarker.Maximum = new decimal(new int[] {
             10,
             0,
@@ -494,9 +447,6 @@ namespace GrblPlotter
             0,
             131072});
             this.NudMarker.Name = "NudMarker";
-            this.NudMarker.Size = new System.Drawing.Size(51, 20);
-            this.NudMarker.TabIndex = 15;
-            this.NudMarker.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.NudMarker.Value = global::GrblPlotter.Properties.Settings.Default.projectorWidthMarker;
             // 
             // NudPenDown
@@ -508,7 +458,7 @@ namespace GrblPlotter
             0,
             0,
             65536});
-            this.NudPenDown.Location = new System.Drawing.Point(133, 168);
+            resources.ApplyResources(this.NudPenDown, "NudPenDown");
             this.NudPenDown.Maximum = new decimal(new int[] {
             10,
             0,
@@ -520,9 +470,6 @@ namespace GrblPlotter
             0,
             131072});
             this.NudPenDown.Name = "NudPenDown";
-            this.NudPenDown.Size = new System.Drawing.Size(51, 20);
-            this.NudPenDown.TabIndex = 13;
-            this.NudPenDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.NudPenDown.Value = global::GrblPlotter.Properties.Settings.Default.projectorWidthPenDown;
             // 
             // NudTool
@@ -534,7 +481,7 @@ namespace GrblPlotter
             0,
             0,
             65536});
-            this.NudTool.Location = new System.Drawing.Point(133, 197);
+            resources.ApplyResources(this.NudTool, "NudTool");
             this.NudTool.Maximum = new decimal(new int[] {
             10,
             0,
@@ -546,19 +493,14 @@ namespace GrblPlotter
             0,
             131072});
             this.NudTool.Name = "NudTool";
-            this.NudTool.Size = new System.Drawing.Size(51, 20);
-            this.NudTool.TabIndex = 14;
-            this.NudTool.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.NudTool.Value = global::GrblPlotter.Properties.Settings.Default.projectorWidthTool;
             // 
             // ControlProjector
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 441);
             this.Controls.Add(this.SetupPanel);
             this.Name = "ControlProjector";
-            this.Text = "Projector";
             this.Load += new System.EventHandler(this.ControlProjector_Load);
             this.ResizeEnd += new System.EventHandler(this.CbShow_CheckedChanged);
             this.SizeChanged += new System.EventHandler(this.CbShow_CheckedChanged);
@@ -567,6 +509,7 @@ namespace GrblPlotter
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ControlProjector_MouseUp);
             this.SetupPanel.ResumeLayout(false);
             this.SetupPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudOffsetY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudOffsetX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudScaling)).EndInit();
@@ -611,5 +554,9 @@ namespace GrblPlotter
         private System.Windows.Forms.Panel SetupPanel;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button BtnMaximize;
+        private System.Windows.Forms.Button BtnMinimize;
+        private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.NumericUpDown numericUpDown15;
     }
 }

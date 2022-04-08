@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@
  * 2021-09-29 update fiducialDimension
  * 2021-09-30 take care for inch:  if (!Properties.Settings.Default.importUnitmm || (modal.unitsMode == 20))
  * 2021-11-18 show path-nodes gui2DShowVertexEnable - will be switched off on prog-start	 
+ * 2022-04-07 DrawHeightMap add side-view of shape at y=0 and x=0 (below and left of hight-map grid)
 */
 
 using System;
@@ -82,12 +83,16 @@ namespace GrblPlotter
             G0Size.ResetDimension();
             pathPenUp.Reset();
             pathPenDown.Reset();
-            pathRotaryInfo.Reset();
             pathRuler.Reset();
             pathTool.Reset();
             pathMarker.Reset();
+            pathHeightMap.Reset();
+            pathBackground.Reset();
             pathMarkSelection.Reset();
+            pathRotaryInfo.Reset();
+            pathDimension.Reset();
             Simulation.pathSimulation.Reset();
+			
             pathObject.Clear();
             path = pathPenUp;
             onlyZ = 0;
@@ -387,7 +392,7 @@ namespace GrblPlotter
         internal static void DrawHeightMap(HeightMap Map)
         {
             pathHeightMap.Reset();
-            Vector2 tmp;
+            Vector2 tmp, tmpOld;
             int x = 0, y;
             for (y = 0; y < Map.SizeY; y++)
             {
@@ -401,6 +406,56 @@ namespace GrblPlotter
                 pathHeightMap.StartFigure();
                 pathHeightMap.AddLine((float)tmp.X, (float)Map.Min.Y, (float)tmp.X, (float)Map.Max.Y);
             }
+			
+			// show X shape -> Z on Y axis
+			double z, zOld, offsetX = -10, offsetY = -10;
+		//	double dimX = Map.Max.X - Map.Min.X;
+			float emSize = 2;
+			float emOffset = emSize/2;
+			GraphicsPath pathToDraw = pathBackground;
+			pathToDraw.Reset();
+            pathToDraw.StartFigure();
+			tmpOld = Map.GetCoordinates(0, 0);
+			zOld = Map.InterpolateZ(tmpOld.X, tmpOld.Y);
+			if (Math.Abs(zOld) < emSize)
+				emOffset = emSize;
+
+/* info below x axis */
+            pathToDraw.AddLine((float)Map.Min.X, (float)(Map.Min.Y + offsetY), (float)Map.Max.X, (float)(Map.Min.Y + offsetY));		// zreo Z
+			AddBackgroundText(pathToDraw, new PointF((float)Map.Min.X, (float)(Map.Min.Y + offsetY + emSize * 1.5)), emSize, string.Format("Z profile over X, at Y={0:0.00}", tmpOld.Y));
+			AddBackgroundText(pathToDraw, new PointF((float)Map.Max.X + emSize, (float)(Map.Min.Y + offsetY + emSize/2)), emSize, "Z= 0.00");
+			AddBackgroundText(pathToDraw, new PointF((float)Map.Max.X + emSize, (float)(Map.Min.Y + offsetY + zOld - emOffset)), emSize, string.Format("Z= {0:0.00}",zOld));
+
+            pathToDraw.StartFigure();
+            for (x = 1; x < Map.SizeX; x++)
+            {
+                tmp = Map.GetCoordinates(x, 0);
+				z = Map.InterpolateZ(tmp.X, tmp.Y);
+                pathToDraw.AddLine((float)tmpOld.X, (float)(Map.Min.Y + offsetY + zOld), (float)tmp.X, (float)(Map.Min.Y + offsetY + z));
+				tmpOld = tmp;
+				zOld = z;
+            }
+
+/* info left of y axis */
+            tmpOld = Map.GetCoordinates(0, 0);
+            zOld = Map.InterpolateZ(tmpOld.X, tmpOld.Y);
+
+            pathToDraw.StartFigure();
+            pathToDraw.AddLine((float)(Map.Min.X + offsetX),(float)Map.Min.Y, (float)(Map.Min.X + offsetX), (float)Map.Max.Y);		// zreo Z
+		//	AddBackgroundText(pathToDraw, new PointF((float)Map.Min.X, (float)(offsetY + emSize * 1.5)), emSize, string.Format("Z profile over X, at Y={0:0.00}", tmpOld.Y));
+		//	AddBackgroundText(pathToDraw, new PointF((float)(Map.Max.X + offsetX - emSize), (float)(Map.Min.Y - emSize/2)), emSize, "Z= 0.00", true);
+		//	AddBackgroundText(pathToDraw, new PointF((float)(Map.Max.X + offsetX + zOld - emOffset), (float)(Map.Min.Y - emSize/2)), emSize, string.Format("Z= {0:0.00}",zOld), true);
+
+            pathToDraw.StartFigure();
+            for (y = 1; y < Map.SizeY; y++)
+            {
+                tmp = Map.GetCoordinates(0, y);
+				z = Map.InterpolateZ(tmp.X, tmp.Y);
+                pathToDraw.AddLine((float)(Map.Min.X + offsetX + zOld),(float)tmpOld.Y, (float)(Map.Min.X + offsetX + z), (float)tmp.Y);
+				tmpOld = tmp;
+				zOld = z;
+            }
+			
             tmp = Map.GetCoordinates(0, 0);
             xyzSize.SetDimensionXY(tmp.X, tmp.Y);
             tmp = Map.GetCoordinates(Map.SizeX, Map.SizeY);
@@ -448,6 +503,50 @@ namespace GrblPlotter
             origWCOMachineLimit = (XyPoint)Grbl.posWCO;
             matrix.Dispose();
         }
+
+        private static void AddBackgroundText(GraphicsPath path, PointF pos, float emSize, string txt, bool vertical=false)
+        {   
+			Logger.Info("AddBackgroundText x:{0} y:{1}  emSize:{2}  text:{3}", pos.X, pos.Y, emSize, txt);
+            float centerX = (float)pos.X;// (float)((clipMax.X + clipMin.X) / 2);
+            float centerY = (float)pos.Y;// (float)((clipMax.Y + clipMin.Y) / 2);
+
+			try
+            {
+                System.Drawing.Drawing2D.Matrix matrix = new System.Drawing.Drawing2D.Matrix();
+                matrix.Scale(1, -1);
+                path.Transform(matrix);
+          /*      if (vertical)
+                {
+                    matrix = new System.Drawing.Drawing2D.Matrix(); 
+                    matrix.Rotate(-90);
+                    path.Transform(matrix);
+                }*/
+                path.StartFigure();
+
+                System.Drawing.FontFamily myFont = new System.Drawing.FontFamily("Arial");
+                System.Drawing.StringFormat sFormat = new System.Drawing.StringFormat(System.Drawing.StringFormat.GenericDefault)
+                {
+                    Alignment = System.Drawing.StringAlignment.Near,
+                    LineAlignment = System.Drawing.StringAlignment.Near
+                };
+                path.AddString(txt, myFont, (int)System.Drawing.FontStyle.Regular, emSize, new System.Drawing.PointF(centerX, -centerY), sFormat);
+				
+			/*	if (vertical)
+                {
+                    matrix = new System.Drawing.Drawing2D.Matrix();
+                    matrix.Rotate(90);
+					path.Transform(matrix);
+                }*/
+                matrix = new System.Drawing.Drawing2D.Matrix();
+                matrix.Scale(1, -1);
+                path.Transform(matrix);
+
+				myFont.Dispose();
+				sFormat.Dispose();
+			}
+			catch (Exception err) {Logger.Error(err,"AddBackgroundText ");}
+        }
+
 
         private static void AddArrow(GraphicsPath path, PathInfo pinfo, bool showArrow, bool showInfo)
         {

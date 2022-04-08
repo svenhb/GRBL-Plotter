@@ -2934,4 +2934,79 @@ Além disso, a posição do eixo Z pode ser usada para, por exemplo, aumentar a 
   <data name="checkBox10.Text" xml:space="preserve">
     <value>Mostrar estado do pino</value>
   </data>
+  <data name="label69.Text" xml:space="preserve">
+    <value>Monitor n. para abrir a janela</value>
+  </data>
+  <data name="BtnProjectorColorBackground.Text" xml:space="preserve">
+    <value>Fundo</value>
+  </data>
+  <data name="BtnProjectorColorDimension.Text" xml:space="preserve">
+    <value>Dimensão</value>
+  </data>
+  <data name="BtnProjectorColorRuler.Text" xml:space="preserve">
+    <value>governante</value>
+  </data>
+  <data name="BtnProjectorColorPenUp.Text" xml:space="preserve">
+    <value>Pen Up</value>
+  </data>
+  <data name="BtnProjectorColorPenDown.Text" xml:space="preserve">
+    <value>Caneta para baixo</value>
+  </data>
+  <data name="CbProjectorMarker.Text" xml:space="preserve">
+    <value>mostrar</value>
+  </data>
+  <data name="CbProjectorTool.Text" xml:space="preserve">
+    <value>mostrar</value>
+  </data>
+  <data name="CbProjectorPenUp.Text" xml:space="preserve">
+    <value>mostrar</value>
+  </data>
+  <data name="CbProjectorRuler.Text" xml:space="preserve">
+    <value>mostrar</value>
+  </data>
+  <data name="CbProjectorDimension.Text" xml:space="preserve">
+    <value>mostrar</value>
+  </data>
+  <data name="LblProjector1.Text" xml:space="preserve">
+    <value>Cor</value>
+  </data>
+  <data name="tabPage32.Text" xml:space="preserve">
+    <value>Projetor</value>
+  </data>
+  <data name="BtnProjectorColorTool.Text" xml:space="preserve">
+    <value>Ferramenta</value>
+  </data>
+  <data name="BtnProjectorColorMarker.Text" xml:space="preserve">
+    <value>Marcador</value>
+  </data>
+  <data name="LblProjector2.Text" xml:space="preserve">
+    <value>Largura da caneta</value>
+  </data>
+  <data name="LblProjector5.Text" xml:space="preserve">
+    <value>Deslocamento Y</value>
+  </data>
+  <data name="LblProjector4.Text" xml:space="preserve">
+    <value>Deslocamento X</value>
+  </data>
+  <data name="LblProjector3.Text" xml:space="preserve">
+    <value>Escala (também depende dos limites da máquina)</value>
+  </data>
+  <data name="GbProjector.Text" xml:space="preserve">
+    <value>Cores para o formulário do projetor</value>
+  </data>
+  <data name="label71.Text" xml:space="preserve">
+    <value>Largura medida real</value>
+  </data>
+  <data name="label70.Text" xml:space="preserve">
+    <value>Largura do gráfico</value>
+  </data>
+  <data name="BtnProjectorCalc.Text" xml:space="preserve">
+    <value>Calcular escala</value>
+  </data>
+  <data name="GbProjectorCalc.Text" xml:space="preserve">
+    <value>Calcular escala</value>
+  </data>
+  <data name="cBImportGCZPreventSpindle.Text" xml:space="preserve">
+    <value>Não ligue o eixo</value>
+  </data>
 </root>

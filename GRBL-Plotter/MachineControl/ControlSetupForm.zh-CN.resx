@@ -3220,4 +3220,79 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   <data name="checkBox10.Text" xml:space="preserve">
     <value>显示引脚状态</value>
   </data>
+  <data name="label69.Text" xml:space="preserve">
+    <value>监视器编号。打开窗口</value>
+  </data>
+  <data name="BtnProjectorColorBackground.Text" xml:space="preserve">
+    <value>背景</value>
+  </data>
+  <data name="BtnProjectorColorDimension.Text" xml:space="preserve">
+    <value>方面</value>
+  </data>
+  <data name="BtnProjectorColorRuler.Text" xml:space="preserve">
+    <value>统治者</value>
+  </data>
+  <data name="BtnProjectorColorPenUp.Text" xml:space="preserve">
+    <value>抬笔</value>
+  </data>
+  <data name="BtnProjectorColorPenDown.Text" xml:space="preserve">
+    <value>落笔</value>
+  </data>
+  <data name="CbProjectorMarker.Text" xml:space="preserve">
+    <value>节目</value>
+  </data>
+  <data name="CbProjectorTool.Text" xml:space="preserve">
+    <value>节目</value>
+  </data>
+  <data name="CbProjectorPenUp.Text" xml:space="preserve">
+    <value>节目</value>
+  </data>
+  <data name="CbProjectorRuler.Text" xml:space="preserve">
+    <value>节目</value>
+  </data>
+  <data name="CbProjectorDimension.Text" xml:space="preserve">
+    <value>节目</value>
+  </data>
+  <data name="LblProjector1.Text" xml:space="preserve">
+    <value>颜色</value>
+  </data>
+  <data name="tabPage32.Text" xml:space="preserve">
+    <value>投影仪</value>
+  </data>
+  <data name="BtnProjectorColorTool.Text" xml:space="preserve">
+    <value>工具</value>
+  </data>
+  <data name="BtnProjectorColorMarker.Text" xml:space="preserve">
+    <value>记号笔</value>
+  </data>
+  <data name="LblProjector2.Text" xml:space="preserve">
+    <value>笔宽</value>
+  </data>
+  <data name="LblProjector5.Text" xml:space="preserve">
+    <value>偏移 Y</value>
+  </data>
+  <data name="LblProjector4.Text" xml:space="preserve">
+    <value>偏移 X</value>
+  </data>
+  <data name="LblProjector3.Text" xml:space="preserve">
+    <value>缩放（也取决于机器限制）</value>
+  </data>
+  <data name="GbProjector.Text" xml:space="preserve">
+    <value>投影仪形状的颜色</value>
+  </data>
+  <data name="label71.Text" xml:space="preserve">
+    <value>实际测量宽度</value>
+  </data>
+  <data name="label70.Text" xml:space="preserve">
+    <value>图形宽度</value>
+  </data>
+  <data name="BtnProjectorCalc.Text" xml:space="preserve">
+    <value>计算缩放</value>
+  </data>
+  <data name="GbProjectorCalc.Text" xml:space="preserve">
+    <value>计算缩放</value>
+  </data>
+  <data name="cBImportGCZPreventSpindle.Text" xml:space="preserve">
+    <value>不要打开主轴</value>
+  </data>
 </root>

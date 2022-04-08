@@ -40,6 +40,7 @@
  * 2022-01-03 InsertVariable error handling
  * 2022-01-07 rework ResetVariables
  * 2022-02-14 line 1035 use of 3rd, reset counter
+ * 2022-04-08 line 120 force Marlin check
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -116,6 +117,13 @@ namespace GrblPlotter
         {
             if (string.IsNullOrEmpty(rxString)) { isDataProcessing = false; return; }     // unlock serialPort1_DataReceived
             if (countShutdown > 0) { isDataProcessing = false; return; }
+            if ((rxString[0] < 32))
+            {   AddToLog("-"+rxString);
+                if (rxString.Contains("M11"))
+                    isMarlin = true;
+                isDataProcessing = false;                   // unlock serialPort1_DataReceived
+                return;
+            }
 
             if (!isMarlin)
                 ProcessGrblMessages(sender, e);
@@ -155,7 +163,7 @@ namespace GrblPlotter
             /***** Marlin start up *****/
             else if (isMarlinEcho)
             {
-                if (rxString.Contains("Marlin"))
+                if (rxString.Contains("Marlin") || rxString.Contains(";"))
                 {
                     MarlinReset();
                 }    // set global flag

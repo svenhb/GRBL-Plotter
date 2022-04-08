@@ -63,6 +63,7 @@
  * 2021-12-22 add Grbl.isConnected
  * 2022-01-04 change readtimeout from 500 to 1000
  * 2022-01-07 OnKeyDown add try/catch
+ * 2022-04-08 line 463 remove if
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -459,10 +460,10 @@ namespace GrblPlotter
                         if (resetProcessed) AddToLog(lastError);
                         Logger.Error("Ser:{0}  {1}", iamSerial, lastError);
 
-                        if (!resetProcessed)    // try to get Marlin response
+                     //   if (!resetProcessed)    // try to get Marlin response - removed 2022-04-08
                         {
                             AddToLog("Correct baud rate? Try Marlin response...");
-                            RequestSend("\r\nM115\n");
+                            SerialPortDataSend("M114" + lineEndTXmarlin);       // marlin
                         }
                     }
                     countMissingStatusReport = (int)(10000 / timerSerial.Interval);
@@ -656,6 +657,7 @@ namespace GrblPlotter
             rxErrorCount = 0;
             bool errorOnOpen = false;
             serialPortError = false;
+            isMarlin = false;
             try
             {
                 Logger.Info("Ser:{0}, ==== openPort '{1}' @ {2} Bd ======", iamSerial, cbPort.Text, cbBaud.Text);

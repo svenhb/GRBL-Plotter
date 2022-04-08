@@ -3144,4 +3144,79 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   <data name="checkBox10.Text" xml:space="preserve">
     <value>Показать состояние контакта</value>
   </data>
+  <data name="label69.Text" xml:space="preserve">
+    <value>Номер монитора открыть окно</value>
+  </data>
+  <data name="BtnProjectorColorBackground.Text" xml:space="preserve">
+    <value>Задний план</value>
+  </data>
+  <data name="BtnProjectorColorDimension.Text" xml:space="preserve">
+    <value>Измерение</value>
+  </data>
+  <data name="BtnProjectorColorRuler.Text" xml:space="preserve">
+    <value>Правитель</value>
+  </data>
+  <data name="BtnProjectorColorPenUp.Text" xml:space="preserve">
+    <value>Прикалывать</value>
+  </data>
+  <data name="BtnProjectorColorPenDown.Text" xml:space="preserve">
+    <value>Закрепить</value>
+  </data>
+  <data name="CbProjectorMarker.Text" xml:space="preserve">
+    <value>шоу</value>
+  </data>
+  <data name="CbProjectorTool.Text" xml:space="preserve">
+    <value>шоу</value>
+  </data>
+  <data name="CbProjectorPenUp.Text" xml:space="preserve">
+    <value>шоу</value>
+  </data>
+  <data name="CbProjectorRuler.Text" xml:space="preserve">
+    <value>шоу</value>
+  </data>
+  <data name="CbProjectorDimension.Text" xml:space="preserve">
+    <value>шоу</value>
+  </data>
+  <data name="LblProjector1.Text" xml:space="preserve">
+    <value>Цвет</value>
+  </data>
+  <data name="tabPage32.Text" xml:space="preserve">
+    <value>проектор</value>
+  </data>
+  <data name="BtnProjectorColorTool.Text" xml:space="preserve">
+    <value>Орудие труда</value>
+  </data>
+  <data name="BtnProjectorColorMarker.Text" xml:space="preserve">
+    <value>маркер</value>
+  </data>
+  <data name="LblProjector2.Text" xml:space="preserve">
+    <value>Ширина пера</value>
+  </data>
+  <data name="LblProjector5.Text" xml:space="preserve">
+    <value>Смещение Y</value>
+  </data>
+  <data name="LblProjector4.Text" xml:space="preserve">
+    <value>Смещение X</value>
+  </data>
+  <data name="LblProjector3.Text" xml:space="preserve">
+    <value>Масштабирование (также зависит от ограничений машины)</value>
+  </data>
+  <data name="GbProjector.Text" xml:space="preserve">
+    <value>Цвета для формы проектора</value>
+  </data>
+  <data name="label71.Text" xml:space="preserve">
+    <value>Реальная измеренная ширина</value>
+  </data>
+  <data name="label70.Text" xml:space="preserve">
+    <value>Графическая ширина</value>
+  </data>
+  <data name="BtnProjectorCalc.Text" xml:space="preserve">
+    <value>Рассчитать масштабирование</value>
+  </data>
+  <data name="GbProjectorCalc.Text" xml:space="preserve">
+    <value>Рассчитать масштабирование</value>
+  </data>
+  <data name="cBImportGCZPreventSpindle.Text" xml:space="preserve">
+    <value>Не включать шпиндель</value>
+  </data>
 </root>

@@ -3216,4 +3216,79 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="checkBox10.Text" xml:space="preserve">
     <value>إظهار حالة الدبوس</value>
   </data>
+  <data name="label69.Text" xml:space="preserve">
+    <value>مراقب لا. لفتح النافذة</value>
+  </data>
+  <data name="BtnProjectorColorBackground.Text" xml:space="preserve">
+    <value>خلفية</value>
+  </data>
+  <data name="BtnProjectorColorDimension.Text" xml:space="preserve">
+    <value>البعد</value>
+  </data>
+  <data name="BtnProjectorColorRuler.Text" xml:space="preserve">
+    <value>مسطرة</value>
+  </data>
+  <data name="BtnProjectorColorPenUp.Text" xml:space="preserve">
+    <value>القلم لأعلى</value>
+  </data>
+  <data name="BtnProjectorColorPenDown.Text" xml:space="preserve">
+    <value>القلم لأسفل</value>
+  </data>
+  <data name="CbProjectorMarker.Text" xml:space="preserve">
+    <value>تبين</value>
+  </data>
+  <data name="CbProjectorTool.Text" xml:space="preserve">
+    <value>تبين</value>
+  </data>
+  <data name="CbProjectorPenUp.Text" xml:space="preserve">
+    <value>تبين</value>
+  </data>
+  <data name="CbProjectorRuler.Text" xml:space="preserve">
+    <value>تبين</value>
+  </data>
+  <data name="CbProjectorDimension.Text" xml:space="preserve">
+    <value>تبين</value>
+  </data>
+  <data name="LblProjector1.Text" xml:space="preserve">
+    <value>اللون</value>
+  </data>
+  <data name="tabPage32.Text" xml:space="preserve">
+    <value>كشاف ضوئي</value>
+  </data>
+  <data name="BtnProjectorColorTool.Text" xml:space="preserve">
+    <value>أداة</value>
+  </data>
+  <data name="BtnProjectorColorMarker.Text" xml:space="preserve">
+    <value>علامة</value>
+  </data>
+  <data name="LblProjector2.Text" xml:space="preserve">
+    <value>عرض القلم</value>
+  </data>
+  <data name="LblProjector5.Text" xml:space="preserve">
+    <value>تعويض Y</value>
+  </data>
+  <data name="LblProjector4.Text" xml:space="preserve">
+    <value>تعويض X</value>
+  </data>
+  <data name="LblProjector3.Text" xml:space="preserve">
+    <value>التحجيم (يعتمد أيضًا على حدود الماكينة)</value>
+  </data>
+  <data name="GbProjector.Text" xml:space="preserve">
+    <value>ألوان لشكل جهاز العرض</value>
+  </data>
+  <data name="label71.Text" xml:space="preserve">
+    <value>العرض الحقيقي المقاس</value>
+  </data>
+  <data name="label70.Text" xml:space="preserve">
+    <value>عرض الرسم</value>
+  </data>
+  <data name="BtnProjectorCalc.Text" xml:space="preserve">
+    <value>حساب التحجيم</value>
+  </data>
+  <data name="GbProjectorCalc.Text" xml:space="preserve">
+    <value>حساب التحجيم</value>
+  </data>
+  <data name="cBImportGCZPreventSpindle.Text" xml:space="preserve">
+    <value>لا تقم بتشغيل المغزل</value>
+  </data>
 </root>

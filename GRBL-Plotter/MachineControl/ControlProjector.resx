@@ -117,4 +117,880 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>75, 274</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 13</value>
+  </data>
+  <data name="label5.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Offset Y</value>
+  </data>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
+  </data>
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>75, 252</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 13</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Offset X</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>75, 230</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>197, 13</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Scaling (also depends on machine limits)</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>38, 34</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>31, 13</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>133, 34</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 13</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Pen width</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="BtnClose.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 352</value>
+  </data>
+  <data name="BtnClose.Size" type="System.Drawing.Size, System.Drawing">
+    <value>484, 23</value>
+  </data>
+  <data name="BtnClose.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="BtnClose.Text" xml:space="preserve">
+    <value>Close Setup (reopen with right-click)</value>
+  </data>
+  <data name="&gt;&gt;BtnClose.Name" xml:space="preserve">
+    <value>BtnClose</value>
+  </data>
+  <data name="&gt;&gt;BtnClose.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnClose.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;BtnClose.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="btnColorMarker.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 198</value>
+  </data>
+  <data name="btnColorMarker.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="btnColorMarker.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="btnColorMarker.Text" xml:space="preserve">
+    <value>Marker</value>
+  </data>
+  <data name="&gt;&gt;btnColorMarker.Name" xml:space="preserve">
+    <value>btnColorMarker</value>
+  </data>
+  <data name="&gt;&gt;btnColorMarker.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnColorMarker.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;btnColorMarker.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="btnColorTool.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 173</value>
+  </data>
+  <data name="btnColorTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="btnColorTool.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="btnColorTool.Text" xml:space="preserve">
+    <value>Tool</value>
+  </data>
+  <data name="&gt;&gt;btnColorTool.Name" xml:space="preserve">
+    <value>btnColorTool</value>
+  </data>
+  <data name="&gt;&gt;btnColorTool.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnColorTool.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;btnColorTool.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="btnColorPenDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 148</value>
+  </data>
+  <data name="btnColorPenDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="btnColorPenDown.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="btnColorPenDown.Text" xml:space="preserve">
+    <value>Pen-Down</value>
+  </data>
+  <data name="&gt;&gt;btnColorPenDown.Name" xml:space="preserve">
+    <value>btnColorPenDown</value>
+  </data>
+  <data name="&gt;&gt;btnColorPenDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnColorPenDown.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;btnColorPenDown.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="btnColorPenUp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 123</value>
+  </data>
+  <data name="btnColorPenUp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="btnColorPenUp.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="btnColorPenUp.Text" xml:space="preserve">
+    <value>Pen-Up</value>
+  </data>
+  <data name="&gt;&gt;btnColorPenUp.Name" xml:space="preserve">
+    <value>btnColorPenUp</value>
+  </data>
+  <data name="&gt;&gt;btnColorPenUp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnColorPenUp.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;btnColorPenUp.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="btnColorRuler.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 98</value>
+  </data>
+  <data name="btnColorRuler.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="btnColorRuler.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="btnColorRuler.Text" xml:space="preserve">
+    <value>Ruler</value>
+  </data>
+  <data name="&gt;&gt;btnColorRuler.Name" xml:space="preserve">
+    <value>btnColorRuler</value>
+  </data>
+  <data name="&gt;&gt;btnColorRuler.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnColorRuler.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;btnColorRuler.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="btnColorDimension.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 73</value>
+  </data>
+  <data name="btnColorDimension.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="btnColorDimension.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="btnColorDimension.Text" xml:space="preserve">
+    <value>Dimension</value>
+  </data>
+  <data name="&gt;&gt;btnColorDimension.Name" xml:space="preserve">
+    <value>btnColorDimension</value>
+  </data>
+  <data name="&gt;&gt;btnColorDimension.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnColorDimension.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;btnColorDimension.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="btnColorBackground.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 48</value>
+  </data>
+  <data name="btnColorBackground.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="btnColorBackground.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="btnColorBackground.Text" xml:space="preserve">
+    <value>Background</value>
+  </data>
+  <data name="&gt;&gt;btnColorBackground.Name" xml:space="preserve">
+    <value>btnColorBackground</value>
+  </data>
+  <data name="&gt;&gt;btnColorBackground.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnColorBackground.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;btnColorBackground.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="label69.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label69.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label69.Location" type="System.Drawing.Point, System.Drawing">
+    <value>75, 300</value>
+  </data>
+  <data name="label69.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 13</value>
+  </data>
+  <data name="label69.TabIndex" type="System.Int32, mscorlib">
+    <value>51</value>
+  </data>
+  <data name="label69.Text" xml:space="preserve">
+    <value>Monitor nr. to open window</value>
+  </data>
+  <data name="&gt;&gt;label69.Name" xml:space="preserve">
+    <value>label69</value>
+  </data>
+  <data name="&gt;&gt;label69.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label69.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;label69.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="numericUpDown15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>33, 298</value>
+  </data>
+  <data name="numericUpDown15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 20</value>
+  </data>
+  <data name="numericUpDown15.TabIndex" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="numericUpDown15.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Center</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown15.Name" xml:space="preserve">
+    <value>numericUpDown15</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown15.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown15.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown15.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="BtnMaximize.Location" type="System.Drawing.Point, System.Drawing">
+    <value>290, 142</value>
+  </data>
+  <data name="BtnMaximize.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 46</value>
+  </data>
+  <data name="BtnMaximize.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="BtnMaximize.Text" xml:space="preserve">
+    <value>Maximize Window</value>
+  </data>
+  <data name="&gt;&gt;BtnMaximize.Name" xml:space="preserve">
+    <value>BtnMaximize</value>
+  </data>
+  <data name="&gt;&gt;BtnMaximize.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnMaximize.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;BtnMaximize.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="BtnMinimize.Location" type="System.Drawing.Point, System.Drawing">
+    <value>290, 82</value>
+  </data>
+  <data name="BtnMinimize.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 46</value>
+  </data>
+  <data name="BtnMinimize.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="BtnMinimize.Text" xml:space="preserve">
+    <value>Minimize Window</value>
+  </data>
+  <data name="&gt;&gt;BtnMinimize.Name" xml:space="preserve">
+    <value>BtnMinimize</value>
+  </data>
+  <data name="&gt;&gt;BtnMinimize.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnMinimize.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;BtnMinimize.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="checkBox1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 329</value>
+  </data>
+  <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 17</value>
+  </data>
+  <data name="checkBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>Show setup on form load</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.Name" xml:space="preserve">
+    <value>checkBox1</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="NudOffsetY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 272</value>
+  </data>
+  <data name="NudOffsetY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 20</value>
+  </data>
+  <data name="NudOffsetY.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="NudOffsetY.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudOffsetY.Name" xml:space="preserve">
+    <value>NudOffsetY</value>
+  </data>
+  <data name="&gt;&gt;NudOffsetY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudOffsetY.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;NudOffsetY.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="NudOffsetX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 250</value>
+  </data>
+  <data name="NudOffsetX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 20</value>
+  </data>
+  <data name="NudOffsetX.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="NudOffsetX.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudOffsetX.Name" xml:space="preserve">
+    <value>NudOffsetX</value>
+  </data>
+  <data name="&gt;&gt;NudOffsetX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudOffsetX.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;NudOffsetX.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="NudScaling.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 228</value>
+  </data>
+  <data name="NudScaling.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 20</value>
+  </data>
+  <data name="NudScaling.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="NudScaling.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudScaling.Name" xml:space="preserve">
+    <value>NudScaling</value>
+  </data>
+  <data name="&gt;&gt;NudScaling.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudScaling.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;NudScaling.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="CbMarker.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbMarker.Location" type="System.Drawing.Point, System.Drawing">
+    <value>190, 202</value>
+  </data>
+  <data name="CbMarker.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 17</value>
+  </data>
+  <data name="CbMarker.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="CbMarker.Text" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="&gt;&gt;CbMarker.Name" xml:space="preserve">
+    <value>CbMarker</value>
+  </data>
+  <data name="&gt;&gt;CbMarker.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbMarker.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;CbMarker.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="CbTool.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbTool.Location" type="System.Drawing.Point, System.Drawing">
+    <value>190, 177</value>
+  </data>
+  <data name="CbTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 17</value>
+  </data>
+  <data name="CbTool.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="CbTool.Text" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="&gt;&gt;CbTool.Name" xml:space="preserve">
+    <value>CbTool</value>
+  </data>
+  <data name="&gt;&gt;CbTool.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbTool.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;CbTool.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="CbPenUp.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbPenUp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>190, 127</value>
+  </data>
+  <data name="CbPenUp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 17</value>
+  </data>
+  <data name="CbPenUp.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="CbPenUp.Text" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="&gt;&gt;CbPenUp.Name" xml:space="preserve">
+    <value>CbPenUp</value>
+  </data>
+  <data name="&gt;&gt;CbPenUp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbPenUp.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;CbPenUp.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="CbRuler.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbRuler.Location" type="System.Drawing.Point, System.Drawing">
+    <value>190, 102</value>
+  </data>
+  <data name="CbRuler.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 17</value>
+  </data>
+  <data name="CbRuler.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="CbRuler.Text" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="&gt;&gt;CbRuler.Name" xml:space="preserve">
+    <value>CbRuler</value>
+  </data>
+  <data name="&gt;&gt;CbRuler.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbRuler.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;CbRuler.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="NudDImension.Location" type="System.Drawing.Point, System.Drawing">
+    <value>133, 76</value>
+  </data>
+  <data name="NudDImension.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 20</value>
+  </data>
+  <data name="NudDImension.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="NudDImension.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudDImension.Name" xml:space="preserve">
+    <value>NudDImension</value>
+  </data>
+  <data name="&gt;&gt;NudDImension.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudDImension.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;NudDImension.ZOrder" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="CbDimension.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbDimension.Location" type="System.Drawing.Point, System.Drawing">
+    <value>190, 77</value>
+  </data>
+  <data name="CbDimension.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 17</value>
+  </data>
+  <data name="CbDimension.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="CbDimension.Text" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="&gt;&gt;CbDimension.Name" xml:space="preserve">
+    <value>CbDimension</value>
+  </data>
+  <data name="&gt;&gt;CbDimension.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbDimension.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;CbDimension.ZOrder" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="NudRuler.Location" type="System.Drawing.Point, System.Drawing">
+    <value>133, 101</value>
+  </data>
+  <data name="NudRuler.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 20</value>
+  </data>
+  <data name="NudRuler.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="NudRuler.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudRuler.Name" xml:space="preserve">
+    <value>NudRuler</value>
+  </data>
+  <data name="&gt;&gt;NudRuler.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudRuler.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;NudRuler.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="NudPenUp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>133, 126</value>
+  </data>
+  <data name="NudPenUp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 20</value>
+  </data>
+  <data name="NudPenUp.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="NudPenUp.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudPenUp.Name" xml:space="preserve">
+    <value>NudPenUp</value>
+  </data>
+  <data name="&gt;&gt;NudPenUp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudPenUp.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;NudPenUp.ZOrder" xml:space="preserve">
+    <value>28</value>
+  </data>
+  <data name="NudMarker.Location" type="System.Drawing.Point, System.Drawing">
+    <value>133, 201</value>
+  </data>
+  <data name="NudMarker.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 20</value>
+  </data>
+  <data name="NudMarker.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="NudMarker.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudMarker.Name" xml:space="preserve">
+    <value>NudMarker</value>
+  </data>
+  <data name="&gt;&gt;NudMarker.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudMarker.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;NudMarker.ZOrder" xml:space="preserve">
+    <value>29</value>
+  </data>
+  <data name="NudPenDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>133, 151</value>
+  </data>
+  <data name="NudPenDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 20</value>
+  </data>
+  <data name="NudPenDown.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="NudPenDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudPenDown.Name" xml:space="preserve">
+    <value>NudPenDown</value>
+  </data>
+  <data name="&gt;&gt;NudPenDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudPenDown.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;NudPenDown.ZOrder" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="NudTool.Location" type="System.Drawing.Point, System.Drawing">
+    <value>133, 176</value>
+  </data>
+  <data name="NudTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 20</value>
+  </data>
+  <data name="NudTool.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="NudTool.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudTool.Name" xml:space="preserve">
+    <value>NudTool</value>
+  </data>
+  <data name="&gt;&gt;NudTool.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudTool.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;NudTool.ZOrder" xml:space="preserve">
+    <value>31</value>
+  </data>
+  <data name="label6.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 6</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>488, 39</value>
+  </data>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Setup - see also [Setup - Program appearance - Projector]</value>
+  </data>
+  <data name="&gt;&gt;label6.Name" xml:space="preserve">
+    <value>label6</value>
+  </data>
+  <data name="&gt;&gt;label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
+    <value>32</value>
+  </data>
+  <data name="SetupPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>195, 12</value>
+  </data>
+  <data name="SetupPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>496, 380</value>
+  </data>
+  <data name="SetupPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;SetupPanel.Name" xml:space="preserve">
+    <value>SetupPanel</value>
+  </data>
+  <data name="&gt;&gt;SetupPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SetupPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;SetupPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>784, 441</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Projector</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ControlProjector</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

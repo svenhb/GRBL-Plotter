@@ -303,6 +303,7 @@ namespace GrblPlotter
             int countZ = 0;
             int lastMotion = 0;
 
+			Logger.Info("▽▽▽▽ GetGCodeLines Count:{0}  Show colors if no XML-Tags:{1}  Show pen-up path arrows:{2}  Show pen-up path Ids:{3}  Use BackgroundWorker:{4}", oldCode.Count, showColors, showArrow, showId, (worker != null) );
             if (oldCode.Count > 100000) // huge amount of code, reduce time consuming functionality
             {
                 Logger.Info("⚠⚠⚠⚠ Huge amount of code (> 100000 lines), reduce time consuming functionality (no pen-up-path-arrows/-ids, no colored pen-down-paths) !!!!!");
@@ -495,6 +496,7 @@ namespace GrblPlotter
             }
 
             if (worker != null) worker.ReportProgress(100, new MyUserState { Value = 100, Content = "Wait for update of text editor" });
+			Logger.Info("△△△△ GetGCodeLines finish");
             return true;
         }
 
@@ -745,8 +747,11 @@ namespace GrblPlotter
                 if (logCoordinates) Logger.Trace(" Set Figure figureMarkerCount:{0}  {1}", figureMarkerCount, line);
 
                 fiducialDimension = new Dimensions();
+				
                 if (XmlMarker.tmpFigure.Layer.IndexOf(fiducialLabel) >= 0)
-                { fiducialEnable = true; }
+                { fiducialEnable = true; Logger.Trace("◯◯◯ Fiducial found Layer:'{0}'",XmlMarker.tmpFigure.Layer);}
+                if (XmlMarker.tmpFigure.PathId.IndexOf(fiducialLabel) >= 0)
+                { fiducialEnable = true; Logger.Trace("◯◯◯ Fiducial found PathId:'{0}'",XmlMarker.tmpFigure.PathId);}
 
                 if (Properties.Settings.Default.gui2DColorPenDownModeEnable && Graphic.SizeOk())    // enable color mode
                 {

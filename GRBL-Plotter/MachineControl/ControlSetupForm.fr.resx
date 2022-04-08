@@ -2925,4 +2925,79 @@ De plus, la position de l'axe Z peut être utilisée, par exemple, pour augmente
   <data name="checkBox10.Text" xml:space="preserve">
     <value>Afficher l'état de la broche</value>
   </data>
+  <data name="label69.Text" xml:space="preserve">
+    <value>Moniteur nr. ouvrir la fenêtre</value>
+  </data>
+  <data name="BtnProjectorColorBackground.Text" xml:space="preserve">
+    <value>Contexte</value>
+  </data>
+  <data name="BtnProjectorColorDimension.Text" xml:space="preserve">
+    <value>Dimension</value>
+  </data>
+  <data name="BtnProjectorColorRuler.Text" xml:space="preserve">
+    <value>Règle</value>
+  </data>
+  <data name="BtnProjectorColorPenUp.Text" xml:space="preserve">
+    <value>Pen Up</value>
+  </data>
+  <data name="BtnProjectorColorPenDown.Text" xml:space="preserve">
+    <value>Épingler</value>
+  </data>
+  <data name="CbProjectorMarker.Text" xml:space="preserve">
+    <value>spectacle</value>
+  </data>
+  <data name="CbProjectorTool.Text" xml:space="preserve">
+    <value>spectacle</value>
+  </data>
+  <data name="CbProjectorPenUp.Text" xml:space="preserve">
+    <value>spectacle</value>
+  </data>
+  <data name="CbProjectorRuler.Text" xml:space="preserve">
+    <value>spectacle</value>
+  </data>
+  <data name="CbProjectorDimension.Text" xml:space="preserve">
+    <value>spectacle</value>
+  </data>
+  <data name="LblProjector1.Text" xml:space="preserve">
+    <value>Couleur</value>
+  </data>
+  <data name="tabPage32.Text" xml:space="preserve">
+    <value>Projecteur</value>
+  </data>
+  <data name="BtnProjectorColorTool.Text" xml:space="preserve">
+    <value>Outil</value>
+  </data>
+  <data name="BtnProjectorColorMarker.Text" xml:space="preserve">
+    <value>Marqueur</value>
+  </data>
+  <data name="LblProjector2.Text" xml:space="preserve">
+    <value>Largeur du stylo</value>
+  </data>
+  <data name="LblProjector5.Text" xml:space="preserve">
+    <value>Décalage Y</value>
+  </data>
+  <data name="LblProjector4.Text" xml:space="preserve">
+    <value>Décalage X</value>
+  </data>
+  <data name="LblProjector3.Text" xml:space="preserve">
+    <value>Mise à l'échelle (dépend également des limites de la machine)</value>
+  </data>
+  <data name="GbProjector.Text" xml:space="preserve">
+    <value>Couleurs pour la forme du projecteur</value>
+  </data>
+  <data name="label71.Text" xml:space="preserve">
+    <value>Largeur réelle mesurée</value>
+  </data>
+  <data name="label70.Text" xml:space="preserve">
+    <value>Largeur graphique</value>
+  </data>
+  <data name="BtnProjectorCalc.Text" xml:space="preserve">
+    <value>Calculer la mise à l'échelle</value>
+  </data>
+  <data name="GbProjectorCalc.Text" xml:space="preserve">
+    <value>Calculer la mise à l'échelle</value>
+  </data>
+  <data name="cBImportGCZPreventSpindle.Text" xml:space="preserve">
+    <value>Ne pas allumer la broche</value>
+  </data>
 </root>
