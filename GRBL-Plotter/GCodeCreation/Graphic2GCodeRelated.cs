@@ -38,6 +38,7 @@
 * 2022-01-02 make gcodeZApply and gcodePWMEnable public
 * 2022-02-08 For functions Arc, MoveArc and SplitArc switch to double (15 digits) for coordinates (before float with 7 digits)
 * 2022-03-25 pen-up/down individual, add PU/PD
+* 2022-04-07 line 500 add warning if Z is used as normal AND tangential axis, add 
 */
 
 using System;
@@ -86,6 +87,9 @@ namespace GrblPlotter
         public static float GcodeZFeed { get; set; } //= 499;           // Z feed to apply for G1
         private static bool gcodeZFeedToolTable = false;// from Tool Table
         public static float GcodeZInc { get; set; } //= 1;
+        public static bool GcodeZPreventSpindle { get; set; } //= 1;
+		
+		private static bool PreventSpindle { get; set; }
         //        public static float gcodeZRepitition;          // Z feed to apply for G1
 
         // Using Spindle pwr. to switch on/off laser
@@ -208,6 +212,7 @@ namespace GrblPlotter
             GcodeZFeed = (float)Properties.Settings.Default.importGCZFeed;
             gcodeZFeedToolTable = useValueFromToolTable && Properties.Settings.Default.importGCTTZAxis;
             GcodeZInc = (float)Properties.Settings.Default.importGCZIncrement;             // depth per pass
+			GcodeZPreventSpindle = Properties.Settings.Default.importGCZPreventSpindle;
 
             repeatZ = convertGraphics && Properties.Settings.Default.importGCZIncEnable;    // do final Z in several passes?
             repeatZStartZero = Properties.Settings.Default.importGCZIncStartZero;
@@ -262,6 +267,8 @@ namespace GrblPlotter
             gcodeAuxiliaryValue1Name = Properties.Settings.Default.importGCAux1Axis;
             gcodeAuxiliaryValue2Name = Properties.Settings.Default.importGCAux2Axis;
 
+			PreventSpindle = GcodeZPreventSpindle && !gcodeSpindleToggle; //(&& dragtool && ...)
+			
             gcodeZLeadInEnable = false;
             gcodeZLeadOutEnable = false;
 
@@ -497,6 +504,12 @@ namespace GrblPlotter
 
                 if (GcodeZApply)    // pen up
                 {
+					if (gcodeTangentialEnable && (gcodeTangentialName == "Z"))
+						gcodeValue.AppendFormat("({0})\r\n", " WARNING! Z is used as axis AND as tangential axis ");
+					if ((gcodeAuxiliaryValue1Enable && (gcodeAuxiliaryValue1Name == "Z")) ||
+						(gcodeAuxiliaryValue2Enable && (gcodeAuxiliaryValue2Name == "Z")))						
+						gcodeValue.AppendFormat("({0})\r\n", " WARNING! Z is used as axis AND as auxiliary axis ");
+					
                     if (gcodeComments) gcodeValue.AppendFormat("({0})\r\n", "Pen up: Z-Axis");
                     float tmpZUp = (float)Properties.Settings.Default.importGCZUp;
                     double z_relative = tmpZUp - lastz;
@@ -528,7 +541,9 @@ namespace GrblPlotter
                         {
                             if (gcodeComments) cmt = " (" + cmto + " spindle )";
                             else cmt = "";
-                            SpindleOn(gcodeValue, cmt);
+							if (!PreventSpindle)
+								SpindleOn(gcodeValue, cmt);
+							else gcodeValue.AppendFormat("( Attention: Spindle stays off )\r\n");
                         }
                     }
                 }

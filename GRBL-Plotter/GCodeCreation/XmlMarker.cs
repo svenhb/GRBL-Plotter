@@ -23,15 +23,13 @@
  * 2020-12-16 add Tile
  * 2021-07-02 code clean up / code quality
  * 2021-09-02 read XML attribute OffsetX, -Y
+ * 2022-04-04 change PathId from int to string
 */
 
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
-
-//#pragma warning disable CA1303	// Do not pass literals as localized parameters
-//#pragma warning disable CA1307
 
 namespace GrblPlotter
 {
@@ -78,7 +76,7 @@ namespace GrblPlotter
             public int ToolNr { get; set; }
             public int CodeSize { get; set; }
             public int CodeArea { get; set; }
-            public int PathId { get; set; }
+    //        public int PathId { get; set; }
             public double PathLength { get; set; }
             public double PathArea { get; set; }
             public double PenWidth { get; set; }
@@ -87,6 +85,7 @@ namespace GrblPlotter
             public string PenColor { get; set; }
             public string ToolName { get; set; }
             public string Layer { get; set; }
+            public string PathId { get; set; }
             public string Type { get; set; }
         };
 
@@ -383,19 +382,19 @@ namespace GrblPlotter
             header.LineEnd = Math.Min(header.LineEnd, lineStart);   // lowest block-line = end of header
             BlockData tmp = new BlockData();
             tmp.LineStart = lineStart; tmp.Reverse = false;
-            tmp.Id = tmp.ToolNr = tmp.CodeSize = tmp.CodeArea = tmp.PathId = -1;
+            tmp.Id = tmp.ToolNr = tmp.CodeSize = tmp.CodeArea = -1;
             tmp.PenWidth = tmp.PathLength = tmp.PathArea = -1;
-            tmp.Geometry = tmp.Layer = tmp.Type = tmp.PenColor = tmp.ToolName = "";
+            tmp.Geometry = tmp.Layer = tmp.Type = tmp.PenColor = tmp.ToolName = tmp.PathId = "";
             tmp.FigureNr = figNr;
             tmp.Offset = new XyPoint();
 
             //            if (gcode.loggerTrace) Logger.Trace("setBlockData {0}", element);
-            if (element.Contains("Id")) { tmp.Id = GetAttributeValueNumber(element, "Id"); }
+            if (element.Contains("Id")) { tmp.Id = GetAttributeValueNumber(element, "Id"); }							// Id here and PathId below, should work anyway, because 'Id' comes first in XML-Tag
             if (element.Contains("ToolNr")) { tmp.ToolNr = GetAttributeValueNumber(element, "ToolNr"); }
             if (element.Contains("ToolName")) { tmp.ToolName = GetAttributeValue(element, "ToolName"); }
             if (element.Contains("PathLength")) { tmp.PathLength = GetAttributeValueDouble(element, "PathLength"); }
             if (element.Contains("PathArea")) { tmp.PathArea = GetAttributeValueDouble(element, "PathArea"); }
-            if (element.Contains("PathId")) { tmp.PathId = GetAttributeValueNumber(element, "PathId"); }
+            if (element.Contains("PathId")) { tmp.PathId = GetAttributeValue(element, "PathId"); }						// ...Id here
             if (element.Contains("Layer")) { tmp.Layer = GetAttributeValue(element, "Layer"); }
             if (element.Contains("Type")) { tmp.Type = GetAttributeValue(element, "Type"); }
             if (element.Contains("CodeSize")) { tmp.CodeSize = GetAttributeValueNumber(element, "CodeSize"); }

@@ -37,6 +37,7 @@
  * 2022-01-23 line 466 switch index of "layer" and "type"
  * 2022-01-23 add proforma figure-tag if not figureEnable
  * 2022-03-29 function 'arc' line 900 if full circle, end_angle = start_angle+360° issue #270
+ * 2022-04-04 line 547 change "PathID" to "PathId"
 */
 
 using System;
@@ -544,7 +545,7 @@ namespace GrblPlotter
 
             if (pathObject.Info.GroupAttributes[(int)GroupOption.ByType].Length > 0) attributes.Append(string.Format(" Type=\"{0}\"", pathObject.Info.GroupAttributes[(int)GroupOption.ByType]));
             if (pathObject.Info.GroupAttributes[(int)GroupOption.ByTile].Length > 0) attributes.Append(string.Format(" Tile=\"{0}\"", pathObject.Info.GroupAttributes[(int)GroupOption.ByTile]));
-            if (pathObject.Info.PathId.Length > 0) attributes.Append(string.Format(" PathID=\"{0}\"", pathObject.Info.PathId));
+            if (pathObject.Info.PathId.Length > 0) attributes.Append(string.Format(" PathId=\"{0}\"", pathObject.Info.PathId));
             if (pathObject.PathLength > 0) attributes.Append(string.Format(" PathLength=\"{0:0.0}\"", pathObject.PathLength));
 
             return attributes;
