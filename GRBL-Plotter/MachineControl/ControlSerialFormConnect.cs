@@ -56,6 +56,9 @@ namespace GrblPlotter
             rxErrorCount = 0;
 			tryDoSerialConnection = true;
             rtbLog.Clear();
+            Grbl.isMarlin = isMarlin = Properties.Settings.Default.ctrlConnectMarlin;
+            if (isMarlin)
+                AddToLog("Force connection to Marlin");
 
             useEthernet = CbEthernetUse.Checked;
             if (!useEthernet)

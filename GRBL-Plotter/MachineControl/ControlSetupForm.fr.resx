@@ -3000,4 +3000,13 @@ De plus, la position de l'axe Z peut être utilisée, par exemple, pour augmente
   <data name="cBImportGCZPreventSpindle.Text" xml:space="preserve">
     <value>Ne pas allumer la broche</value>
   </data>
+  <data name="cBImportGCDragKnifeUse.Text" xml:space="preserve">
+    <value>Utiliser un couteau à traîner</value>
+  </data>
+  <data name="CbMarlin.Text" xml:space="preserve">
+    <value>Connectez-vous à Marlin</value>
+  </data>
+  <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
+    <value>Mise à l'échelle et décalage</value>
+  </data>
 </root>

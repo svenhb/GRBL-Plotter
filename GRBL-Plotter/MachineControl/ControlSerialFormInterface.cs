@@ -274,8 +274,7 @@ namespace GrblPlotter
             /***** reset message *****/
             else if (rxString.ToLower().IndexOf("['$' for help]") >= 0)
             {
-                isMarlin = false;
-                Grbl.isMarlin = false;
+                Grbl.isMarlin = isMarlin = false;
                 ProcessGrblWelcomeMessage(rxString);    // https://github.com/gnea/grbl/wiki/Grbl-v1.1-Interface#welcome-message
             }
 

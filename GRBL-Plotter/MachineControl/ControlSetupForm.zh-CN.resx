@@ -3295,4 +3295,13 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   <data name="cBImportGCZPreventSpindle.Text" xml:space="preserve">
     <value>不要打开主轴</value>
   </data>
+  <data name="cBImportGCDragKnifeUse.Text" xml:space="preserve">
+    <value>使用拖刀</value>
+  </data>
+  <data name="CbMarlin.Text" xml:space="preserve">
+    <value>连接到马林</value>
+  </data>
+  <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
+    <value>缩放和偏移</value>
+  </data>
 </root>

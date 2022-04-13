@@ -2949,4 +2949,13 @@ Zusätzlich kann die Position der Z Achse verwendet werden um z.B. die Farbmenge
   <data name="cBImportGCZPreventSpindle.Text" xml:space="preserve">
     <value>Spindel nicht einschalten</value>
   </data>
+  <data name="cBImportGCDragKnifeUse.Text" xml:space="preserve">
+    <value>Verwendung eines Schleppmessers</value>
+  </data>
+  <data name="CbMarlin.Text" xml:space="preserve">
+    <value>Verbindung mit Marlin</value>
+  </data>
+  <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
+    <value>Skalierung und Offset</value>
+  </data>
 </root>

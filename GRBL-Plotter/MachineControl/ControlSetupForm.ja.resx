@@ -3315,4 +3315,13 @@ https://github.com/cprezzi/grbl-servoのGrbl-version'grbl_v1.1f_Servo.hex '、
   <data name="cBImportGCZPreventSpindle.Text" xml:space="preserve">
     <value>スピンドルをオンにしないでください</value>
   </data>
+  <data name="cBImportGCDragKnifeUse.Text" xml:space="preserve">
+    <value>ドラッグナイフを使用する</value>
+  </data>
+  <data name="CbMarlin.Text" xml:space="preserve">
+    <value>マーリンに接続する</value>
+  </data>
+  <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
+    <value>スケーリングとオフセット</value>
+  </data>
 </root>

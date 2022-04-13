@@ -3000,4 +3000,13 @@ Además, la posición del eje Z se puede utilizar para, por ejemplo, aumentar la
   <data name="cBImportGCZPreventSpindle.Text" xml:space="preserve">
     <value>No encienda el husillo</value>
   </data>
+  <data name="cBImportGCDragKnifeUse.Text" xml:space="preserve">
+    <value>Usa un cuchillo de arrastre</value>
+  </data>
+  <data name="CbMarlin.Text" xml:space="preserve">
+    <value>Conéctate a Marlín</value>
+  </data>
+  <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
+    <value>Escalado y Compensación</value>
+  </data>
 </root>

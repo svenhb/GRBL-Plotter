@@ -3009,4 +3009,13 @@ Além disso, a posição do eixo Z pode ser usada para, por exemplo, aumentar a 
   <data name="cBImportGCZPreventSpindle.Text" xml:space="preserve">
     <value>Não ligue o eixo</value>
   </data>
+  <data name="cBImportGCDragKnifeUse.Text" xml:space="preserve">
+    <value>Use uma faca de arrasto</value>
+  </data>
+  <data name="CbMarlin.Text" xml:space="preserve">
+    <value>Conecte-se a Marlin</value>
+  </data>
+  <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
+    <value>Dimensionamento e deslocamento</value>
+  </data>
 </root>

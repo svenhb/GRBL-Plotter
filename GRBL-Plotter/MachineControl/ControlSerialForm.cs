@@ -657,7 +657,6 @@ namespace GrblPlotter
             rxErrorCount = 0;
             bool errorOnOpen = false;
             serialPortError = false;
-            isMarlin = false;
             try
             {
                 Logger.Info("Ser:{0}, ==== openPort '{1}' @ {2} Bd ======", iamSerial, cbPort.Text, cbBaud.Text);
@@ -848,8 +847,7 @@ namespace GrblPlotter
                 return;
             resetProcessed = false;
             bool savePos = true;
-            isMarlin = false;
-            Grbl.isMarlin = false;
+            Grbl.isMarlin = isMarlin = Properties.Settings.Default.ctrlConnectMarlin;
             if (serialPort.IsOpen)
             {
                 try

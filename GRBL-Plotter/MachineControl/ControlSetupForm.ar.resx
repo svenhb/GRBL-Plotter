@@ -3291,4 +3291,13 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="cBImportGCZPreventSpindle.Text" xml:space="preserve">
     <value>لا تقم بتشغيل المغزل</value>
   </data>
+  <data name="cBImportGCDragKnifeUse.Text" xml:space="preserve">
+    <value>استخدم سكين السحب</value>
+  </data>
+  <data name="CbMarlin.Text" xml:space="preserve">
+    <value>تواصل مع مارلين</value>
+  </data>
+  <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
+    <value>التحجيم والإزاحة</value>
+  </data>
 </root>

@@ -1369,6 +1369,7 @@ namespace GrblPlotter
             nUDImportGCDragKnifePercent.Enabled = enable;
             nUDImportGCDragKnifeAngle.Enabled = enable;
             cBImportGCDragKnifePercent.Enabled = enable;
+            cBImportGCDragKnifeUse.Enabled = enable;
             lblDrag1.Enabled = enable;
             lblDrag2.Enabled = enable;
             HighlightPenOptions_Click(sender, e);
@@ -1823,6 +1824,11 @@ namespace GrblPlotter
             decimal scaling = NudProjectorSet.Value / NudProjectorReal.Value;
             NudProjectorScaling.Value *= scaling;
             NudProjectorReal.Value = NudProjectorSet.Value;
+        }
+
+        private void CbProjectorScaleEnable_CheckedChanged(object sender, EventArgs e)
+        {
+            GbProjectorScale.Enabled = CbProjectorScaleEnable.Checked;
         }
     }
 }

@@ -3219,4 +3219,13 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   <data name="cBImportGCZPreventSpindle.Text" xml:space="preserve">
     <value>Не включать шпиндель</value>
   </data>
+  <data name="cBImportGCDragKnifeUse.Text" xml:space="preserve">
+    <value>Воспользуйтесь тянущим ножом</value>
+  </data>
+  <data name="CbMarlin.Text" xml:space="preserve">
+    <value>Подключиться к Марлину</value>
+  </data>
+  <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
+    <value>Масштабирование и смещение</value>
+  </data>
 </root>

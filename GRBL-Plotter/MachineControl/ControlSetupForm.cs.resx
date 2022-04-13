@@ -3266,4 +3266,13 @@ Kromě toho lze polohu osy Z využít např. ke zvýšení množství barvy, kdy
   <data name="cBImportGCZPreventSpindle.Text" xml:space="preserve">
     <value>Spindel nicht einschalten</value>
   </data>
+  <data name="cBImportGCDragKnifeUse.Text" xml:space="preserve">
+    <value>Použijte tažný nůž</value>
+  </data>
+  <data name="CbMarlin.Text" xml:space="preserve">
+    <value>Připojte se k Marlinovi</value>
+  </data>
+  <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
+    <value>Měřítko a Offset</value>
+  </data>
 </root>
