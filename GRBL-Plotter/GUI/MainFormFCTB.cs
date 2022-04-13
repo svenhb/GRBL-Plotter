@@ -232,9 +232,9 @@ namespace GrblPlotter
             CmsPicBoxEnable();
             ClearErrorLines();
             if (insertCode && Properties.Settings.Default.fromFormInsertEnable)
-            { InsertCodeToFctb(code); }
+            { 	InsertCodeToFctb(code); }
             else
-            { fCTBCode.Text = code; }
+            { 	fCTBCode.Text = code; }
 
             return true;
         }
@@ -339,6 +339,7 @@ namespace GrblPlotter
 				InsertTextAtLine(insertLineNr, tmpCodeFinish.ToString());
 				char[] charsToTrim = { '(', ')','\r','\n'};
 				InsertTextAtLine(1, "( ADD code from " + tmpCodeLines[2].Trim( charsToTrim) + " )\r\n");	
+				Logger.Info("◆◆◆◆ Add code to existing code at line {0}", insertLineNr);
             }
             else
             { fCTBCode.Text = sourceGCode; }
