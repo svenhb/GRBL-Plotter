@@ -731,7 +731,7 @@ namespace GrblPlotter
  			    SetHeaderInfo(string.Format(" Option: Tangential axis: '{0}'", Properties.Settings.Default.importGCTangentialAxis));
 				if ((Properties.Settings.Default.importGCTangentialAxis == "Z") && (Properties.Settings.Default.importGCZEnable))
 					SetHeaderInfo(string.Format(" WARNING: Z is used as tangential axis AND as Pen-up/down axis"));
-           }
+            }
             else
             {
                 Logger.Info("●●● Calculate start angle");

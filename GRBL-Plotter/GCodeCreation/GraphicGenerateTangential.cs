@@ -21,6 +21,7 @@
  * 2020-08-03 Drag-Tool radius = % from Z-depth -> use path.depth if graphicInformation.OptionZFromWidth is enabled
  * 2021-07-02 code clean up / code quality
  * 2022-04-07 add DragToolModificationTangential, to preset path for tangential knife with offset in knife-tip
+ * 2022-04-13 add drag-tool, option knife (expect knife-angle = 0 on path-start, leave path with 0 deg.)
 */
 
 using System;
@@ -317,35 +318,64 @@ namespace GrblPlotter
         {   const uint loggerSelect = (uint)LogEnables.PathModification;
             double gcodeDragRadius = (double)Properties.Settings.Default.importGCDragKnifeLength;
             double gcodeDragAngle = (double)Properties.Settings.Default.importGCDragKnifeAngle;
-
+			bool useKnife = Properties.Settings.Default.importGCDragKnifeUse;
+			
             Logger.Trace("...DragToolModification radius:{0:0.00} angle:{1:0.00}", gcodeDragRadius, gcodeDragAngle);
 
             if (graphicToModify == null) return;
 
             ListGraphicObjects(graphicToModify, true);
 
-          //  List<PathObject> modifiedGraphic = new List<PathObject>();
+/* 2022-04-13 assume start-angle = 0 and leave path at 0 deg. for a KNIFE*/
 
-            foreach (PathObject item in graphicToModify)      // replace original list?
+            foreach (PathObject item in graphicToModify)     
             {
                 if (item is ItemPath opath)               // if Dot: nothing to correct
                 {
                     Point origMoveTo, center, shorten;
-                    double a, a1, a2;
-
                     if (opath.Path.Count > 1)
                     {
                         origMoveTo = opath.Path[0].MoveTo;
                         gcodeDragRadius = GetDragRadius(opath.Path[0]);     //  2020-08-03
-/* First move starts earlier */						
-                        opath.Path[0].MoveTo = ExtendPath(opath.Path[0].MoveTo, opath.Path[1].MoveTo, gcodeDragRadius, ExtendDragPath.startEarlier);
-                        opath.Start = opath.Path[0].MoveTo;
+												
+/* First move starts earlier ? */
+						if (!useKnife)
+                        {	opath.Path[0].MoveTo = ExtendPath(opath.Path[0].MoveTo, opath.Path[1].MoveTo, gcodeDragRadius, ExtendDragPath.startEarlier);
+							opath.Start = opath.Path[0].MoveTo;
+						}
+						else
+/* Find path-segment with direction ca. 0 deg. and set it as 1st point, to avoid adjustment of knife */
+//RotatePath(ItemPath item)  set item.TmpIndex to start index.		CalculateStartAngle			
+						{
+							int lastIndex=0;
+							double lastAlpha = Math.PI;
+							for (int i = 0; i < opath.Path.Count - 1; i++)
+							{   Point pStart = opath.Path[i].MoveTo;
+								Point pEnd = opath.Path[i+1].MoveTo;
+								double angleNow = GcodeMath.GetAlpha(pStart, pEnd);			// in radiant
+						//		Logger.Trace("DragTool with knife, index:{0} alpha:{1:0.0}", i, (180* angleNow / Math.PI));
+
+								if (Math.Abs(angleNow) < Math.Abs(lastAlpha))
+								{	lastAlpha = angleNow;
+									lastIndex = i;
+								}
+							}				
+						//	Logger.Trace("DragTool with knife, found alpha:{0:0.0}  at index:{1}", (180*lastAlpha/Math.PI), lastIndex);
+							if (lastIndex !=0)
+							{
+								opath.TmpIndex = lastIndex;
+								RotatePath(opath);
+							}
+							origMoveTo = opath.Path[0].MoveTo;
+							gcodeDragRadius = GetDragRadius(opath.Path[0]);     //  2020-08-03
+						}
 
 /*Go from path-end to path-start for easier path-insertion*/
                         for (int i = opath.Path.Count - 1; i > 0; i--)
                         {
                             if (IsEqual(opath.Path[i - 1].MoveTo, opath.Path[i].MoveTo))
-                            { if ((logFlags & loggerSelect) > 0) Logger.Trace( " Error same coord: Drag (i-1) x:{0:0.00} y:{1:0.00} (i) x:{2:0.00} y:{3:0.00}  ", opath.Path[i - 1].MoveTo.X, opath.Path[i - 1].MoveTo.Y, opath.Path[i].MoveTo.X, opath.Path[i].MoveTo.Y);
+                            { 	//if ((logFlags & loggerSelect) > 0) 
+								Logger.Trace( " Error same coord: Drag (i-1) x:{0:0.00} y:{1:0.00} (i) x:{2:0.00} y:{3:0.00}  ", opath.Path[i - 1].MoveTo.X, opath.Path[i - 1].MoveTo.Y, opath.Path[i].MoveTo.X, opath.Path[i].MoveTo.Y);
                                 continue;
                             }
 
@@ -353,40 +383,56 @@ namespace GrblPlotter
                             gcodeDragRadius = GetDragRadius(opath.Path[i]);     //  2020-08-03
 /* Each move ends later */							
                             opath.Path[i].MoveTo = ExtendPath(opath.Path[i - 1].MoveTo, opath.Path[i].MoveTo, gcodeDragRadius, ExtendDragPath.endLater);
-                            if (i < opath.Path.Count - 1)
+							if (i == opath.Path.Count - 1)
+							{	
+								if (useKnife)	// leave path at 0 deg.
+								{
+									Point leavePath = new Point(origMoveTo.X+gcodeDragRadius, origMoveTo.Y);
+									CheckArcMove(opath, i, opath.Path[i - 1].MoveTo, origMoveTo, leavePath, gcodeDragRadius, 1);	// on path end, move knife to the right
+								}
+							}
+							else
                             {
-                                a1 = GcodeMath.GetAlpha(opath.Path[i - 1].MoveTo, origMoveTo);
-                                a2 = GcodeMath.GetAlpha(origMoveTo, opath.Path[i + 1].MoveTo);
-                                a = a2 - a1;
-                                if (a > Math.PI) { a -= 2 * Math.PI; }
-                                if (a < -Math.PI) { a += 2 * Math.PI; }
-                                if ((logFlags & loggerSelect) > 0) Logger.Trace( " Drag (i-1) x:{0:0.00} y:{1:0.00} (i) x:{2:0.00} y:{3:0.00}  (i+1) x:{4:0.00} y:{5:0.00} a1:{6:0.00} a2:{7:0.00}", opath.Path[i - 1].MoveTo.X, opath.Path[i - 1].MoveTo.Y, opath.Path[i].MoveTo.X, opath.Path[i].MoveTo.Y, opath.Path[i + 1].MoveTo.X, opath.Path[i + 1].MoveTo.Y, (a1 * 180 / Math.PI), (a2 * 180 / Math.PI));
-
-/* if change in angle is too much, insert curve, to match next move angle */
-                                if ((Math.Abs(a) * 180 / Math.PI) > gcodeDragAngle)
-                                {   if ((logFlags & loggerSelect) > 0) Logger.Trace( "   Abs angle exceeds max a:{0:0.00} > max:{1:0.00}", (a * 180 / Math.PI), gcodeDragAngle);
-                                    shorten = ExtendPath(origMoveTo, opath.Path[i + 1].MoveTo, gcodeDragRadius, ExtendDragPath.startLater);
-                                    center = (Point)Point.Subtract(origMoveTo, opath.Path[i].MoveTo);
-
-                                    if (true)	// !useTangentialAxis
-                                    {
-/* insert arc as line segments to avoid problems with other options 2020-08-03*/
-                                        InsertArcMove(opath, i, opath.Path[i].MoveTo, shorten, center, Math.Sign(a) < 0, opath.Path[i].Depth);
-                                        //       GCodeMotion tmpArc = new GCodeArc(shorten, center, Math.Sign(a) < 0, opath.path[i].Depth);
-                                        //       opath.path.Insert(i + 1, tmpArc);
-                                    }
-                                    else // nok - path must be split, next path starts at point 'shorten'
-                                    {   GCodeMotion tmpLine = new GCodeLine(shorten, opath.Path[i].Depth);
-                                        opath.Path.Insert(i + 1, tmpLine);
-                                    }
-                                }
+								CheckArcMove(opath, i, opath.Path[i - 1].MoveTo, origMoveTo, opath.Path[i + 1].MoveTo, gcodeDragRadius, gcodeDragAngle);
                             }
                         }
                         opath.End = opath.Path[opath.Path.Count - 1].MoveTo;
-                    }
+ 						if (useKnife)
+                        {	
+							Point startPath = new Point(opath.Path[0].MoveTo.X-gcodeDragRadius, origMoveTo.Y);
+                            if (!CheckArcMove(opath, 0, startPath, opath.Path[0].MoveTo, opath.Path[1].MoveTo, gcodeDragRadius, 1)) // on path start, expect knife to the right
+                            { opath.Path[0].MoveTo = ExtendPath(opath.Path[0].MoveTo, opath.Path[1].MoveTo, gcodeDragRadius, ExtendDragPath.startLater); }
+							opath.Start = opath.Path[0].MoveTo;
+						}
+                   }
                 }
             }
         }
+		private static bool CheckArcMove(ItemPath opath, int pos, Point pLast, Point pNow, Point pNext, double gcodeDragRadius, double limitAngle)
+		{
+            const uint loggerSelect = (uint)LogEnables.PathModification;
+            double a1 = GcodeMath.GetAlpha(pLast, pNow);
+            double a2 = GcodeMath.GetAlpha(pNow, pNext);
+            double a = a2 - a1;
+			if (a > Math.PI) { a -= 2 * Math.PI; }
+			if (a < -Math.PI) { a += 2 * Math.PI; }
+			if ((logFlags & loggerSelect) > 0) Logger.Trace( " Drag (i-1) x:{0:0.00} y:{1:0.00} (i) x:{2:0.00} y:{3:0.00}  (i+1) x:{4:0.00} y:{5:0.00} a1:{6:0.00} a2:{7:0.00}", pLast.X, pLast.Y, opath.Path[pos].MoveTo.X, opath.Path[pos].MoveTo.Y, pNext.X, pNext.Y, (a1 * 180 / Math.PI), (a2 * 180 / Math.PI));
+
+/* if change in angle is too much, insert curve, to match next move angle */
+			if ((Math.Abs(a) * 180 / Math.PI) > limitAngle)
+			{   if ((logFlags & loggerSelect) > 0) Logger.Trace( "   Abs angle exceeds max a:{0:0.00} > max:{1:0.00}", (a * 180 / Math.PI), limitAngle);
+				Point shorten = ExtendPath(pNow, pNext, gcodeDragRadius, ExtendDragPath.startLater);
+				Point center = (Point)Point.Subtract(pNow, opath.Path[pos].MoveTo);
+
+/* insert arc as line segments to avoid problems with other options 2020-08-03*/
+				InsertArcMove(opath, pos, opath.Path[pos].MoveTo, shorten, center, Math.Sign(a) < 0, opath.Path[pos].Depth);
+                return true;
+			}
+            return false;
+		}
+		
+		/* inserts intermediate arc-move into existing path at index 'pos'
+			from oldPoint to endPoint at center in direction isCW */
         private static  void InsertArcMove(ItemPath item, int pos, Point oldPoint, Point endPoint, Point center, bool isCW, double depth)
         {
             GCodeMotion motion;
