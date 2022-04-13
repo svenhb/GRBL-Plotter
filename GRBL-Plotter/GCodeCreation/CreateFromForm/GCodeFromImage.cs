@@ -1049,7 +1049,7 @@ namespace GrblPlotter
         private void GenerateResultImageGray(ref short[,] tmpToolNrArray)      // and count tool colors
         {//https://www.codeproject.com/Articles/17162/Fast-Color-Depth-Change-for-Bitmaps
 
-            if (logEnable) Logger.Trace("GenerateResultImageGray");
+            if (logEnable) Logger.Trace("GenerateResultImageGray pixelFormat:{0}", adjustedImage.PixelFormat);
 
             BitmapData dataAdjusted = null;
             BitmapData dataResult = null;
@@ -1101,8 +1101,8 @@ namespace GrblPlotter
                 if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
             }
 			catch (Exception err) {	
-				Logger.Error(err,"generateResultImage ");
-                EventCollector.StoreException("generateResultImageGray: size:"+rectWidth+" x "+rectHeight+" " +err);
+				Logger.Error(err,"generateResultImage pixelFormat:{0} ", adjustedImage.PixelFormat);
+                EventCollector.StoreException("generateResultImageGray: size:"+rectWidth+" x "+rectHeight+"  pixelFormat: " + adjustedImage.PixelFormat.ToString() + "  " +err.Message);
                 if (resultImage != null) resultImage.UnlockBits(dataResult);
                 if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
 			}
