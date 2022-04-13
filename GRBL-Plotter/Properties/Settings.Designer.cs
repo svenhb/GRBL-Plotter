@@ -8379,5 +8379,29 @@ namespace GrblPlotter.Properties {
                 this["importGCZPreventSpindle"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ctrlConnectMarlin {
+            get {
+                return ((bool)(this["ctrlConnectMarlin"]));
+            }
+            set {
+                this["ctrlConnectMarlin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCDragKnifeUse {
+            get {
+                return ((bool)(this["importGCDragKnifeUse"]));
+            }
+            set {
+                this["importGCDragKnifeUse"] = value;
+            }
+        }
     }
 }
