@@ -30,6 +30,7 @@
  * 2021-08-03 bug fix file not found line 148
  * 2021-08-06 default GCFontName = "lff\\standard.lff"; becausee of DXF Text import
  * 2021-09-10 add Graphic.SetAuxInfo(lineIndex) in line 290
+ * 2022-04-18 DrawTokenLFF / DrawLetter check if index ok
 */
 
 using System;
@@ -527,7 +528,7 @@ namespace GrblPlotter
             return maxX;
         }
 
-        private static double charX, charY, charXOld = 0, charYOld = 0;
+        private static double charX=0, charY=0, charXOld = 0, charYOld = 0;
 
         private static double DrawTokenLFF(string txtPath, double offX, double offY, double scale)
         {
@@ -537,11 +538,16 @@ namespace GrblPlotter
             foreach (string point in points)
             {
                 string[] scoord = point.Split(',');
-                charX = double.Parse(scoord[0], CultureInfo.InvariantCulture.NumberFormat);
+                if (scoord.Length > 0)
+                { charX = double.Parse(scoord[0], CultureInfo.InvariantCulture.NumberFormat); }
+
                 xx = charX * scale;
                 maxX = Math.Max(maxX, xx);
                 xx += offX;
-                charY = double.Parse(scoord[1], CultureInfo.InvariantCulture.NumberFormat);
+
+                if (scoord.Length > 1)
+                { charY = double.Parse(scoord[1], CultureInfo.InvariantCulture.NumberFormat); }
+
                 yy = charY * scale + offY;
                 if (GCAngleRad == 0)
                 { x = xx + GCOffX; y = yy + GCOffY; }
@@ -581,7 +587,12 @@ namespace GrblPlotter
             var tokens = Regex.Split(svgtxt, separators).Where(t => !string.IsNullOrEmpty(t));
             string[] svgsplit = svgtxt.Split(' ');
             double tmpX = 0;
-            tmpX = offsetX - double.Parse(svgsplit[0], NumberFormatInfo.InvariantInfo) * scale;
+
+            if (svgsplit.Length < 2)
+                Logger.Info("DrawLetter Problem svgsplit<2:{0} svgtxt:{1}", svgsplit, svgtxt);
+
+            if (svgsplit.Length > 0)
+            { tmpX = offsetX - double.Parse(svgsplit[0], NumberFormatInfo.InvariantInfo) * scale; }
             int token_cnt = 0;
             foreach (string token in tokens)
             {
@@ -591,7 +602,8 @@ namespace GrblPlotter
                     //                    Logger.Trace("token:{0}  x:{1}  y:{2}  cnt:{3}", token, (tmpX + gcOffX), (offsetY + gcOffY), token_cnt);
                 }
             }
-            offsetX = tmpX + double.Parse(svgsplit[1], NumberFormatInfo.InvariantInfo) * scale + GCFontDistance; //double.Parse(svgsplit[1]) * scale + gcFontDistance;
+            if (svgsplit.Length > 1)
+            { offsetX = tmpX + double.Parse(svgsplit[1], NumberFormatInfo.InvariantInfo) * scale + GCFontDistance; }//double.Parse(svgsplit[1]) * scale + gcFontDistance;
             isSameWord = true;
         }
 
