@@ -1298,6 +1298,8 @@ namespace GrblPlotter
             if (logDetailed) ListGraphicObjects(graphicToMerge, true);
             if (logEnable) Logger.Trace("...MergeFigures after :{0}    ------------------------------------", graphicToMerge.Count);
         }
+        private static bool IsEqual(System.Windows.Point a, System.Windows.Point b, double ePrecision)
+        { return ((Math.Abs(a.X - b.X) < ePrecision) && (Math.Abs(a.Y - b.Y) < ePrecision)); }
         private static bool IsEqual(System.Windows.Point a, System.Windows.Point b)
         {   return ((Math.Abs(a.X - b.X) < equalPrecision) && (Math.Abs(a.Y - b.Y) < equalPrecision)); }
         private static bool IsEqual(double a, double b)
