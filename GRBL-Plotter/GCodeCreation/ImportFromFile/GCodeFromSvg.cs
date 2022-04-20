@@ -1222,6 +1222,12 @@ namespace GrblPlotter
                             Vector c1 = new Vector(floatArgs[rep + 0], floatArgs[rep + 1]) + (Vector)Off;
                             Vector c2 = new Vector(floatArgs[rep + 2], floatArgs[rep + 3]) + (Vector)Off;
                             Vector c3 = new Vector(floatArgs[rep + 4], floatArgs[rep + 5]) + (Vector)Off;
+                            if (logEnable) { 
+                                Logger.Trace("CalcCubicBezier  0: X:{0:0.000}   Y:{1:0.000}", lastX, lastY);
+                                Logger.Trace("CalcCubicBezier c1: X:{0:0.000}   Y:{1:0.000}", c1.X, c1.Y);
+                                Logger.Trace("CalcCubicBezier c2: X:{0:0.000}   Y:{1:0.000}", c2.X, c2.Y);
+                                Logger.Trace("CalcCubicBezier c3: X:{0:0.000}   Y:{1:0.000}", c3.X, c3.Y);
+                            }
                             if (svgNodesOnly)
                                 GCodeDotOnly((float)c3.X, (float)c3.Y, command.ToString());
                             else
