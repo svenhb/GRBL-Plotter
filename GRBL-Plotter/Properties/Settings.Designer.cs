@@ -8403,5 +8403,29 @@ namespace GrblPlotter.Properties {
                 this["importGCDragKnifeUse"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public decimal selectionPropertyIncrement {
+            get {
+                return ((decimal)(this["selectionPropertyIncrement"]));
+            }
+            set {
+                this["selectionPropertyIncrement"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public decimal ctrlImportSkip {
+            get {
+                return ((decimal)(this["ctrlImportSkip"]));
+            }
+            set {
+                this["ctrlImportSkip"] = value;
+            }
+        }
     }
 }
