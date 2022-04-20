@@ -189,4 +189,19 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Projecteur</value>
   </data>
+  <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
+    <value>Mise à l'échelle et décalage</value>
+  </data>
+  <data name="GbProjectorCalc.Text" xml:space="preserve">
+    <value>Calculer la mise à l'échelle</value>
+  </data>
+  <data name="label71.Text" xml:space="preserve">
+    <value>Largeur réelle mesurée</value>
+  </data>
+  <data name="label70.Text" xml:space="preserve">
+    <value>Largeur graphique</value>
+  </data>
+  <data name="BtnProjectorCalc.Text" xml:space="preserve">
+    <value>Calculer la mise à l'échelle</value>
+  </data>
 </root>

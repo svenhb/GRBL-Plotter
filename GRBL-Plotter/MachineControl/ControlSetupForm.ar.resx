@@ -3300,4 +3300,10 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
     <value>التحجيم والإزاحة</value>
   </data>
+  <data name="label72.Text" xml:space="preserve">
+    <value>ألف سطر قبل تخطي خيارات العرض</value>
+  </data>
+  <data name="NudCtrlImportSkip.ToolTip" xml:space="preserve">
+    <value>يجب تجاوز عدد الأسطر (مرات بالآلاف) قبل تخطي خيارات العرض.</value>
+  </data>
 </root>

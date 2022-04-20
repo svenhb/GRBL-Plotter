@@ -189,4 +189,19 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Projektor</value>
   </data>
+  <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
+    <value>Měřítko a Offset</value>
+  </data>
+  <data name="GbProjectorCalc.Text" xml:space="preserve">
+    <value>Vypočítejte měřítko</value>
+  </data>
+  <data name="label71.Text" xml:space="preserve">
+    <value>Skutečná měřená šířka</value>
+  </data>
+  <data name="label70.Text" xml:space="preserve">
+    <value>Grafická šířka</value>
+  </data>
+  <data name="BtnProjectorCalc.Text" xml:space="preserve">
+    <value>Vypočítejte měřítko</value>
+  </data>
 </root>

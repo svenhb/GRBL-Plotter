@@ -3275,4 +3275,10 @@ Kromě toho lze polohu osy Z využít např. ke zvýšení množství barvy, kdy
   <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
     <value>Měřítko a Offset</value>
   </data>
+  <data name="label72.Text" xml:space="preserve">
+    <value>tisíc řádků před přeskočením možností zobrazení</value>
+  </data>
+  <data name="NudCtrlImportSkip.ToolTip" xml:space="preserve">
+    <value>Počet řádků (krát tisíc), které mají být překročeny, před přeskočením možností zobrazení.</value>
+  </data>
 </root>

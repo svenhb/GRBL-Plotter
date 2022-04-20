@@ -193,4 +193,19 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Projektor</value>
   </data>
+  <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
+    <value>Skalierung und Offset</value>
+  </data>
+  <data name="GbProjectorCalc.Text" xml:space="preserve">
+    <value>Skalierung berechnen</value>
+  </data>
+  <data name="label71.Text" xml:space="preserve">
+    <value>Echte gemessene Breite</value>
+  </data>
+  <data name="label70.Text" xml:space="preserve">
+    <value>Grafikbreite</value>
+  </data>
+  <data name="BtnProjectorCalc.Text" xml:space="preserve">
+    <value>Skalierung berechnen</value>
+  </data>
 </root>

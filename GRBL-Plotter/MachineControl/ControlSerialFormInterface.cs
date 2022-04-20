@@ -41,6 +41,8 @@
  * 2022-01-07 rework ResetVariables
  * 2022-02-14 line 1035 use of 3rd, reset counter
  * 2022-04-08 line 120 force Marlin check
+ * 2022-04-15 extend MarlinReset(), line 390 avoid sendBuffer.Clear, if Marlin
+ * 2022-04-18 line 951 if (splt.Length < 2) return;
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -136,7 +138,7 @@ namespace GrblPlotter
         private void ProcessMarlinMessages(object sender, EventArgs e)	// https://github.com/gnea/grbl/wiki/Grbl-v1.1-Interface#message-summary
         {
             bool isOk = rxString.StartsWith("ok");
-            bool isMarlinEcho = rxString.StartsWith("echo:") || rxString.StartsWith("start");
+            bool isMarlinEcho = rxString.StartsWith("echo:") || rxString.StartsWith("start") || rxString.StartsWith("Marlin");
 
             /***** buffer processed *****/
             if (isOk)
@@ -163,7 +165,7 @@ namespace GrblPlotter
             /***** Marlin start up *****/
             else if (isMarlinEcho)
             {
-                if (rxString.Contains("Marlin") || rxString.Contains(";"))
+                if (rxString.Contains("Marlin"))
                 {
                     MarlinReset();
                 }    // set global flag
@@ -206,6 +208,8 @@ namespace GrblPlotter
             ProcessWelcomeMessage();
             SerialPortDataSend("M114" + lineEndTXmarlin);       // marlin
             getMarlinPositionWasSent = true;
+            EventCollector.SetStreaming("Marlin");
+            SendResetEvent();
         }
 
         /********************************************************************************* 
@@ -236,7 +240,7 @@ namespace GrblPlotter
                 else
                 {
                     if (logReceive) Logger.Trace("s{0} RX '{1}'", iamSerial, rxString);
-                    isMarlinEcho = rxString.StartsWith("echo:") || rxString.StartsWith("start");
+                    isMarlinEcho = rxString.StartsWith("echo:") || rxString.StartsWith("start") || rxString.StartsWith("Marlin");
                 }
             }
 
@@ -378,12 +382,9 @@ namespace GrblPlotter
 
             if (!isStreaming)
             {
-                if (sendBuffer.IndexConfirmed > sendBuffer.Count)  // nok
+                if (!isMarlin && (sendBuffer.IndexConfirmed > sendBuffer.Count))  // nok
                 {
                     Logger.Warn("⚠ processGrblOkMessage  fix overflow  IndexConfirmed:{0}  Count:{1}", sendBuffer.IndexConfirmed, sendBuffer.Count);
-               //     Logger.Warn("⚠ grblBufferFree too big! {0} rx:'{1}' in processGrblOkMessage() - fix | last RX:'{2}' RX-1:'{3}' RX-2:'{4}'", grblBufferFree, rxString, sendBuffer.GetConfirmedLine(), sendBuffer.GetConfirmedLine(-1), sendBuffer.GetConfirmedLine(-2));
-               //     Logger.Info("⚠ {0}", ListInfoSend());
-               //     Logger.Info("⚠ {0}", ListInfoStream());
                     sendBuffer.Clear();
                 }
             }
@@ -948,6 +949,8 @@ namespace GrblPlotter
                 if (tmp.IndexOf("$") >= 0)
                 {
                     string[] splt = tmp.Split('=');     // $123=456
+                    if (splt.Length < 2)
+                        return;
                     if (splt[0].Length < 2)
                         return;
                     btnCheckGRBLResult.Enabled = false; btnCheckGRBLResult.BackColor = SystemColors.Control;

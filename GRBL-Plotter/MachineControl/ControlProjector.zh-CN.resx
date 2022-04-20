@@ -189,4 +189,19 @@
   <data name="$this.Text" xml:space="preserve">
     <value>投影仪</value>
   </data>
+  <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
+    <value>缩放和偏移</value>
+  </data>
+  <data name="GbProjectorCalc.Text" xml:space="preserve">
+    <value>计算缩放</value>
+  </data>
+  <data name="label71.Text" xml:space="preserve">
+    <value>实际测量宽度</value>
+  </data>
+  <data name="label70.Text" xml:space="preserve">
+    <value>图形宽度</value>
+  </data>
+  <data name="BtnProjectorCalc.Text" xml:space="preserve">
+    <value>计算缩放</value>
+  </data>
 </root>

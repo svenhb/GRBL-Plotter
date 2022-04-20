@@ -3009,4 +3009,10 @@ De plus, la position de l'axe Z peut être utilisée, par exemple, pour augmente
   <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
     <value>Mise à l'échelle et décalage</value>
   </data>
+  <data name="label72.Text" xml:space="preserve">
+    <value>mille lignes, avant de sauter les options d'affichage</value>
+  </data>
+  <data name="NudCtrlImportSkip.ToolTip" xml:space="preserve">
+    <value>Nombre de lignes (milliers) à dépasser avant de sauter les options d'affichage.</value>
+  </data>
 </root>

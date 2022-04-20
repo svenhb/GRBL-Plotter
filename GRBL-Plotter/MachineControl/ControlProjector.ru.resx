@@ -189,4 +189,19 @@
   <data name="$this.Text" xml:space="preserve">
     <value>проектор</value>
   </data>
+  <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
+    <value>Масштабирование и смещение</value>
+  </data>
+  <data name="GbProjectorCalc.Text" xml:space="preserve">
+    <value>Рассчитать масштабирование</value>
+  </data>
+  <data name="label71.Text" xml:space="preserve">
+    <value>Реальная измеренная ширина</value>
+  </data>
+  <data name="label70.Text" xml:space="preserve">
+    <value>Графическая ширина</value>
+  </data>
+  <data name="BtnProjectorCalc.Text" xml:space="preserve">
+    <value>Рассчитать масштабирование</value>
+  </data>
 </root>

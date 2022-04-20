@@ -173,6 +173,7 @@ namespace GrblPlotter
         private static string fiducialLabel = "Fiducials";
 
         internal static bool largeDataAmount = false;
+        internal static int numberDataLines = 0;
 
         private static GcodeByLine oldLine = new GcodeByLine();    // actual parsed line
         private static readonly GcodeByLine newLine = new GcodeByLine();    // last parsed line
@@ -244,6 +245,18 @@ namespace GrblPlotter
             }
         }
 
+        public static string GetGcodeListLine(int line)
+        {   if ((line >= 0) && (line < gcodeList.Count))
+                return gcodeList[line].codeLine;
+            else 
+                return "";
+        }
+        public static void SetGcodeListLine(int line, string newCode)
+        {
+            if ((line >= 0) && (line < gcodeList.Count))
+                gcodeList[line].codeLine = newCode;
+        }
+
         private static void ResetGlobalObjects()
         {
             gcodeList = new List<GcodeByLine>();    	// needed for code transformations
@@ -300,17 +313,19 @@ namespace GrblPlotter
             bool showArrow = Properties.Settings.Default.gui2DPenUpArrow;
             bool showId = Properties.Settings.Default.gui2DPenUpId;
             bool showColors = Properties.Settings.Default.ctrlColorizeGCode;        // gui2DColorPenDownModeEnable;
+            int skipLimit = (int)Properties.Settings.Default.ctrlImportSkip * 1000;
             int countZ = 0;
             int lastMotion = 0;
 
 			Logger.Info("▽▽▽▽ GetGCodeLines Count:{0}  Show colors if no XML-Tags:{1}  Show pen-up path arrows:{2}  Show pen-up path Ids:{3}  Use BackgroundWorker:{4}", oldCode.Count, showColors, showArrow, showId, (worker != null) );
-            if (oldCode.Count > 100000) // huge amount of code, reduce time consuming functionality
+            if (oldCode.Count > skipLimit) // huge amount of code, reduce time consuming functionality
             {
-                Logger.Info("⚠⚠⚠⚠ Huge amount of code (> 100000 lines), reduce time consuming functionality (no pen-up-path-arrows/-ids, no colored pen-down-paths) !!!!!");
+                Logger.Info("⚠⚠⚠⚠ Huge amount of code (> {0} lines), reduce time consuming functionality (no pen-up-path-arrows/-ids, no colored pen-down-paths) !!!!!", skipLimit);
                 showArrow = false;
                 showId = false;
                 showColors = false;
                 largeDataAmount = true;
+                numberDataLines = oldCode.Count;
             }
             else if (Properties.Settings.Default.gui2DShowVertexEnable)
             { Logger.Info("!!!!! Show path-node markers, type:{0}  size:{1} !!!!!", Properties.Settings.Default.gui2DShowVertexType, Properties.Settings.Default.gui2DShowVertexSize); }

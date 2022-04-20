@@ -189,4 +189,19 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Proyector</value>
   </data>
+  <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
+    <value>Escalado y Compensación</value>
+  </data>
+  <data name="GbProjectorCalc.Text" xml:space="preserve">
+    <value>Calcular escala</value>
+  </data>
+  <data name="label71.Text" xml:space="preserve">
+    <value>Ancho real medido</value>
+  </data>
+  <data name="label70.Text" xml:space="preserve">
+    <value>Ancho gráfico</value>
+  </data>
+  <data name="BtnProjectorCalc.Text" xml:space="preserve">
+    <value>Calcular escala</value>
+  </data>
 </root>

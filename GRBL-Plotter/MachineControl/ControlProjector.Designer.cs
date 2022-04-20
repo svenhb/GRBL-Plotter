@@ -49,7 +49,6 @@ namespace GrblPlotter
             this.BtnMaximize = new System.Windows.Forms.Button();
             this.BtnMinimize = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.NudOffsetY = new System.Windows.Forms.NumericUpDown();
             this.NudOffsetX = new System.Windows.Forms.NumericUpDown();
             this.NudScaling = new System.Windows.Forms.NumericUpDown();
@@ -64,6 +63,15 @@ namespace GrblPlotter
             this.NudMarker = new System.Windows.Forms.NumericUpDown();
             this.NudPenDown = new System.Windows.Forms.NumericUpDown();
             this.NudTool = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.GbProjectorScale = new System.Windows.Forms.GroupBox();
+            this.CbProjectorScaleEnable = new System.Windows.Forms.CheckBox();
+            this.GbProjectorCalc = new System.Windows.Forms.GroupBox();
+            this.label71 = new System.Windows.Forms.Label();
+            this.label70 = new System.Windows.Forms.Label();
+            this.BtnProjectorCalc = new System.Windows.Forms.Button();
+            this.NudProjectorSet = new System.Windows.Forms.NumericUpDown();
+            this.NudProjectorReal = new System.Windows.Forms.NumericUpDown();
             this.SetupPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudOffsetY)).BeginInit();
@@ -75,6 +83,10 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.NudMarker)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudPenDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudTool)).BeginInit();
+            this.GbProjectorScale.SuspendLayout();
+            this.GbProjectorCalc.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudProjectorSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudProjectorReal)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
@@ -161,22 +173,18 @@ namespace GrblPlotter
             // SetupPanel
             // 
             this.SetupPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SetupPanel.Controls.Add(this.CbProjectorScaleEnable);
+            this.SetupPanel.Controls.Add(this.GbProjectorScale);
             this.SetupPanel.Controls.Add(this.label69);
             this.SetupPanel.Controls.Add(this.numericUpDown15);
             this.SetupPanel.Controls.Add(this.BtnMaximize);
             this.SetupPanel.Controls.Add(this.BtnMinimize);
             this.SetupPanel.Controls.Add(this.checkBox1);
             this.SetupPanel.Controls.Add(this.BtnClose);
-            this.SetupPanel.Controls.Add(this.label5);
-            this.SetupPanel.Controls.Add(this.label4);
             this.SetupPanel.Controls.Add(this.btnColorBackground);
-            this.SetupPanel.Controls.Add(this.NudOffsetY);
             this.SetupPanel.Controls.Add(this.btnColorDimension);
-            this.SetupPanel.Controls.Add(this.NudOffsetX);
             this.SetupPanel.Controls.Add(this.btnColorRuler);
-            this.SetupPanel.Controls.Add(this.label3);
             this.SetupPanel.Controls.Add(this.btnColorPenUp);
-            this.SetupPanel.Controls.Add(this.NudScaling);
             this.SetupPanel.Controls.Add(this.btnColorPenDown);
             this.SetupPanel.Controls.Add(this.CbMarker);
             this.SetupPanel.Controls.Add(this.btnColorTool);
@@ -243,11 +251,6 @@ namespace GrblPlotter
             this.checkBox1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "projectorShowSetup", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
             // 
             // NudOffsetY
             // 
@@ -495,6 +498,101 @@ namespace GrblPlotter
             this.NudTool.Name = "NudTool";
             this.NudTool.Value = global::GrblPlotter.Properties.Settings.Default.projectorWidthTool;
             // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // GbProjectorScale
+            // 
+            this.GbProjectorScale.Controls.Add(this.GbProjectorCalc);
+            this.GbProjectorScale.Controls.Add(this.NudScaling);
+            this.GbProjectorScale.Controls.Add(this.label3);
+            this.GbProjectorScale.Controls.Add(this.NudOffsetX);
+            this.GbProjectorScale.Controls.Add(this.NudOffsetY);
+            this.GbProjectorScale.Controls.Add(this.label4);
+            this.GbProjectorScale.Controls.Add(this.label5);
+            resources.ApplyResources(this.GbProjectorScale, "GbProjectorScale");
+            this.GbProjectorScale.Name = "GbProjectorScale";
+            this.GbProjectorScale.TabStop = false;
+            // 
+            // CbProjectorScaleEnable
+            // 
+            resources.ApplyResources(this.CbProjectorScaleEnable, "CbProjectorScaleEnable");
+            this.CbProjectorScaleEnable.Name = "CbProjectorScaleEnable";
+            this.CbProjectorScaleEnable.UseVisualStyleBackColor = true;
+            this.CbProjectorScaleEnable.CheckedChanged += new System.EventHandler(this.CbProjectorScaleEnable_CheckedChanged);
+            // 
+            // GbProjectorCalc
+            // 
+            this.GbProjectorCalc.Controls.Add(this.label71);
+            this.GbProjectorCalc.Controls.Add(this.label70);
+            this.GbProjectorCalc.Controls.Add(this.BtnProjectorCalc);
+            this.GbProjectorCalc.Controls.Add(this.NudProjectorSet);
+            this.GbProjectorCalc.Controls.Add(this.NudProjectorReal);
+            resources.ApplyResources(this.GbProjectorCalc, "GbProjectorCalc");
+            this.GbProjectorCalc.Name = "GbProjectorCalc";
+            this.GbProjectorCalc.TabStop = false;
+            // 
+            // label71
+            // 
+            resources.ApplyResources(this.label71, "label71");
+            this.label71.Name = "label71";
+            // 
+            // label70
+            // 
+            resources.ApplyResources(this.label70, "label70");
+            this.label70.Name = "label70";
+            // 
+            // BtnProjectorCalc
+            // 
+            resources.ApplyResources(this.BtnProjectorCalc, "BtnProjectorCalc");
+            this.BtnProjectorCalc.Name = "BtnProjectorCalc";
+            this.BtnProjectorCalc.UseVisualStyleBackColor = true;
+            this.BtnProjectorCalc.Click += new System.EventHandler(this.BtnProjectorCalc_Click);
+            // 
+            // NudProjectorSet
+            // 
+            this.NudProjectorSet.DecimalPlaces = 2;
+            resources.ApplyResources(this.NudProjectorSet, "NudProjectorSet");
+            this.NudProjectorSet.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.NudProjectorSet.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NudProjectorSet.Name = "NudProjectorSet";
+            this.NudProjectorSet.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // NudProjectorReal
+            // 
+            this.NudProjectorReal.DecimalPlaces = 2;
+            resources.ApplyResources(this.NudProjectorReal, "NudProjectorReal");
+            this.NudProjectorReal.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.NudProjectorReal.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NudProjectorReal.Name = "NudProjectorReal";
+            this.NudProjectorReal.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
             // ControlProjector
             // 
             resources.ApplyResources(this, "$this");
@@ -519,6 +617,12 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.NudMarker)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudPenDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudTool)).EndInit();
+            this.GbProjectorScale.ResumeLayout(false);
+            this.GbProjectorScale.PerformLayout();
+            this.GbProjectorCalc.ResumeLayout(false);
+            this.GbProjectorCalc.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudProjectorSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudProjectorReal)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -558,5 +662,13 @@ namespace GrblPlotter
         private System.Windows.Forms.Button BtnMinimize;
         private System.Windows.Forms.Label label69;
         private System.Windows.Forms.NumericUpDown numericUpDown15;
+        private System.Windows.Forms.GroupBox GbProjectorScale;
+        private System.Windows.Forms.CheckBox CbProjectorScaleEnable;
+        private System.Windows.Forms.GroupBox GbProjectorCalc;
+        private System.Windows.Forms.Label label71;
+        private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.Button BtnProjectorCalc;
+        private System.Windows.Forms.NumericUpDown NudProjectorSet;
+        private System.Windows.Forms.NumericUpDown NudProjectorReal;
     }
 }

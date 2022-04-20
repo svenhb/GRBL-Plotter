@@ -3018,4 +3018,10 @@ Além disso, a posição do eixo Z pode ser usada para, por exemplo, aumentar a 
   <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
     <value>Dimensionamento e deslocamento</value>
   </data>
+  <data name="label72.Text" xml:space="preserve">
+    <value>mil linhas, antes de pular as opções de exibição</value>
+  </data>
+  <data name="NudCtrlImportSkip.ToolTip" xml:space="preserve">
+    <value>Quantidade de linhas (vezes mil) a exceder, antes de pular as opções de exibição.</value>
+  </data>
 </root>

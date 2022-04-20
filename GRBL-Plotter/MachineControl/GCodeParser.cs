@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@
  * 2021-07-29 line 306 add G28 to ismachineCoordG53 = true;
  * 2021-08-02 calc distance to line
  * 2021-09-04 new struct to store simulation data: SimuCoordByLine
+ * 2022-04-18 line 630 simplify GetAlpha by use of atan2
 */
 
 
@@ -621,34 +622,36 @@ namespace GrblPlotter
             return tmp;
         }
 
-        internal static double GetAlpha(System.Windows.Point pOld, double P2x, double P2y)
-        { return GetAlpha(pOld.X, pOld.Y, P2x, P2y); }
+  //      internal static double GetAlpha(System.Windows.Point pOld, double P2x, double P2y)
+  //      { return GetAlpha(pOld.X, pOld.Y, P2x, P2y); }
         internal static double GetAlpha(System.Windows.Point pOld, System.Windows.Point pNew)
         { return GetAlpha(pOld.X, pOld.Y, pNew.X, pNew.Y); }
         internal static double GetAlpha(XyPoint pOld, XyPoint pNew)
         { return GetAlpha(pOld.X, pOld.Y, pNew.X, pNew.Y); }
         internal static double GetAlpha(double P1x, double P1y, double P2x, double P2y)
         {
-            double s, a;
+        //    double s, a;
             double dx = P2x - P1x;
             double dy = P2y - P1y;
-            if (dx == 0)
+            return Math.Atan2(dy, dx);
+            /*
+            if (dx == 0)                    // vertical line
             {
-                if (dy > 0)
+                if (dy > 0)                 // upwards
                     a = Math.PI / 2;
                 else
-                    a = 3 * Math.PI / 2;
+                    a = 3 * Math.PI / 2;    // downwards
                 if (dy == 0)
-                    return 0;
+                    return 0;               // no line
             }
-            else if (dy == 0)
+            else if (dy == 0)               // horizontal line
             {
-                if (dx > 0)
+                if (dx > 0)                 // to the right
                     a = 0;
                 else
-                    a = Math.PI;
+                    a = Math.PI;            // to the left
                 if (dx == 0)
-                    return 0;
+                    return 0;               // no line
             }
             else
             {
@@ -657,7 +660,7 @@ namespace GrblPlotter
                 if (dx < 0)
                     a += Math.PI;
             }
-            return a;
+            return a;*/
         }
 
         internal static double cutAngle = 0, cutAngleLast = 0, angleOffset = 0;

@@ -2958,4 +2958,10 @@ Zusätzlich kann die Position der Z Achse verwendet werden um z.B. die Farbmenge
   <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
     <value>Skalierung und Offset</value>
   </data>
+  <data name="label72.Text" xml:space="preserve">
+    <value>Tausend Zeilen, bevor Anzeigeoptionen übersprungen werden</value>
+  </data>
+  <data name="NudCtrlImportSkip.ToolTip" xml:space="preserve">
+    <value>Anzahl der zu überschreitenden Zeilen (mal Tausend), bevor Anzeigeoptionen übersprungen werden.</value>
+  </data>
 </root>

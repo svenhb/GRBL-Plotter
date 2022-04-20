@@ -23,13 +23,8 @@
 
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace GrblPlotter
@@ -226,6 +221,18 @@ namespace GrblPlotter
         {
             this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void BtnProjectorCalc_Click(object sender, EventArgs e)
+        {
+            decimal scaling = NudProjectorSet.Value / NudProjectorReal.Value;
+            NudScaling.Value *= scaling;
+            NudProjectorReal.Value = NudProjectorSet.Value;
+        }
+
+        private void CbProjectorScaleEnable_CheckedChanged(object sender, EventArgs e)
+        {
+            GbProjectorScale.Enabled = CbProjectorScaleEnable.Checked;
         }
     }
 }

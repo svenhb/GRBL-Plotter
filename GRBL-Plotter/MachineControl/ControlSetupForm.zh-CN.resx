@@ -3304,4 +3304,10 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
     <value>缩放和偏移</value>
   </data>
+  <data name="label72.Text" xml:space="preserve">
+    <value>千行，在跳过显示选项之前</value>
+  </data>
+  <data name="NudCtrlImportSkip.ToolTip" xml:space="preserve">
+    <value>在跳过显示选项之前要超过的行数（千次）。</value>
+  </data>
 </root>

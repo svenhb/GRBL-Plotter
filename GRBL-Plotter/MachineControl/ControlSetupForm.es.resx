@@ -3009,4 +3009,10 @@ Además, la posición del eje Z se puede utilizar para, por ejemplo, aumentar la
   <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
     <value>Escalado y Compensación</value>
   </data>
+  <data name="label72.Text" xml:space="preserve">
+    <value>mil líneas, antes de saltarse las opciones de visualización</value>
+  </data>
+  <data name="NudCtrlImportSkip.ToolTip" xml:space="preserve">
+    <value>Cantidad de líneas (miles de veces) a exceder, antes de omitir las opciones de visualización.</value>
+  </data>
 </root>

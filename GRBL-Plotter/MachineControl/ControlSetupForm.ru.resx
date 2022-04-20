@@ -3228,4 +3228,14 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
     <value>Масштабирование и смещение</value>
   </data>
+  <data name="label72.Text" xml:space="preserve">
+    <value>тысяча строк, прежде чем пропустить параметры отображения</value>
+  </data>
+  <data name="NudCtrlImportSkip.ToolTip" xml:space="preserve">
+    <value>Количество строк (умножить на тысячу), которое необходимо превысить, прежде чем пропустить параметры отображения.</value>
+  </data>
+  <data name="btnJoyZCalc.Text" xml:space="preserve">
+    <value>Рассчитать лучшую скорость</value>
+    <comment>ok</comment>
+  </data>
 </root>

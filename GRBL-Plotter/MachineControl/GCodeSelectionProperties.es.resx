@@ -118,90 +118,30 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label5.Text" xml:space="preserve">
-    <value>オフセットY</value>
+    <value>Ancho de la pluma</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>オフセットX</value>
+  <data name="BtnAttributeColor.Text" xml:space="preserve">
+    <value>color de pluma</value>
   </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>スケーリング（マシンの制限にも依存します）</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Propiedades</value>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="button2.Text" xml:space="preserve">
+    <value>De acuerdo</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>色</value>
+    <value>Centro X</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>ペン幅</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Centro Y</value>
   </data>
-  <data name="BtnClose.Text" xml:space="preserve">
-    <value>セットアップを閉じます（右クリックで再度開きます）</value>
+  <data name="label4.Text" xml:space="preserve">
+    <value>incremento de valor para los números anteriores</value>
   </data>
-  <data name="btnColorMarker.Text" xml:space="preserve">
-    <value>マーカー</value>
-  </data>
-  <data name="btnColorTool.Text" xml:space="preserve">
-    <value>ツール</value>
-  </data>
-  <data name="btnColorPenDown.Text" xml:space="preserve">
-    <value>ペンダウン</value>
-  </data>
-  <data name="btnColorPenUp.Text" xml:space="preserve">
-    <value>ペンアップ</value>
-  </data>
-  <data name="btnColorRuler.Text" xml:space="preserve">
-    <value>定規</value>
-  </data>
-  <data name="btnColorBackground.Text" xml:space="preserve">
-    <value>バックグラウンド</value>
-  </data>
-  <data name="CbMarker.Text" xml:space="preserve">
-    <value>見せる</value>
-  </data>
-  <data name="CbTool.Text" xml:space="preserve">
-    <value>見せる</value>
-  </data>
-  <data name="CbPenUp.Text" xml:space="preserve">
-    <value>見せる</value>
-  </data>
-  <data name="CbRuler.Text" xml:space="preserve">
-    <value>見せる</value>
-  </data>
-  <data name="CbDimension.Text" xml:space="preserve">
-    <value>見せる</value>
-  </data>
-  <data name="btnColorDimension.Text" xml:space="preserve">
-    <value>寸法</value>
-  </data>
-  <data name="label69.Text" xml:space="preserve">
-    <value>モニター番号ウィンドウを開く</value>
-  </data>
-  <data name="BtnMaximize.Text" xml:space="preserve">
-    <value>ウィンドウを最大化</value>
-  </data>
-  <data name="BtnMinimize.Text" xml:space="preserve">
-    <value>ウィンドウを最小化</value>
-  </data>
-  <data name="checkBox1.Text" xml:space="preserve">
-    <value>フォームの読み込み時にセットアップを表示</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>セットアップ-[セットアップ-プログラムの外観-プロジェクター]も参照してください。</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>プロジェクター</value>
-  </data>
-  <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
-    <value>スケーリングとオフセット</value>
-  </data>
-  <data name="GbProjectorCalc.Text" xml:space="preserve">
-    <value>スケーリングを計算する</value>
-  </data>
-  <data name="label71.Text" xml:space="preserve">
-    <value>実際に測定された幅</value>
-  </data>
-  <data name="label70.Text" xml:space="preserve">
-    <value>グラフィック幅</value>
-  </data>
-  <data name="BtnProjectorCalc.Text" xml:space="preserve">
-    <value>スケーリングを計算する</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Coordenadas</value>
   </data>
 </root>

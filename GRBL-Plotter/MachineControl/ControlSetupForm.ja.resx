@@ -3324,4 +3324,10 @@ https://github.com/cprezzi/grbl-servoのGrbl-version'grbl_v1.1f_Servo.hex '、
   <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
     <value>スケーリングとオフセット</value>
   </data>
+  <data name="label72.Text" xml:space="preserve">
+    <value>表示オプションをスキップする前の千行</value>
+  </data>
+  <data name="NudCtrlImportSkip.ToolTip" xml:space="preserve">
+    <value>表示オプションをスキップする前に超える行数（千倍）。</value>
+  </data>
 </root>

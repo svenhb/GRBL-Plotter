@@ -87,7 +87,7 @@ namespace GrblPlotter
             pathTool.Reset();
             pathMarker.Reset();
             pathHeightMap.Reset();
-            pathBackground.Reset();
+     //       pathBackground.Reset();
             pathMarkSelection.Reset();
             pathRotaryInfo.Reset();
             pathDimension.Reset();
@@ -221,7 +221,10 @@ namespace GrblPlotter
                                 xyzSize.SetDimensionX(newR);
                             }
                         }
+
+                    //    if (!((path == pathPenUp) && largeDataAmount && (oldL.lineNumber > 10) && (oldL.lineNumber < (numberDataLines - 10))))
                         path.AddLine((float)oldL.actualPos.X + viewOffset.X, (float)oldL.actualPos.Y + viewOffset.Y, (float)newL.actualPos.X + viewOffset.X, (float)newL.actualPos.Y + viewOffset.Y);   // 2021-09-02
+
                         if (Properties.Settings.Default.gui2DShowVertexEnable && !largeDataAmount)
                         {
                             CreateMarker(path, (float)oldL.actualPos.X + viewOffset.X, (float)oldL.actualPos.Y + viewOffset.Y, (float)Properties.Settings.Default.gui2DShowVertexSize, (int)Properties.Settings.Default.gui2DShowVertexType, false);
