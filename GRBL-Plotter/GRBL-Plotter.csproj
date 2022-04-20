@@ -29,8 +29,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>2</ApplicationRevision>
-    <ApplicationVersion>1.6.6.2</ApplicationVersion>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>1.6.6.3</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -311,6 +311,12 @@
     <Compile Include="MachineControl\GCodeAnalyze.cs" />
     <Compile Include="MachineControl\GCodeParser.cs" />
     <Compile Include="MachineControl\GCodeSelectionHandle.cs" />
+    <Compile Include="MachineControl\GCodeSelectionProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MachineControl\GCodeSelectionProperties.Designer.cs">
+      <DependentUpon>GCodeSelectionProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="MachineControl\GCodeSimulate.cs" />
     <Compile Include="MachineControl\GCodeSynthesize.cs" />
     <Compile Include="MachineControl\GCodeTransform.cs" />
@@ -1321,6 +1327,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\MessageForm.resx">
       <DependentUpon>MessageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\GCodeSelectionProperties.ar.resx">
+      <DependentUpon>GCodeSelectionProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\GCodeSelectionProperties.cs.resx">
+      <DependentUpon>GCodeSelectionProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\GCodeSelectionProperties.de-DE.resx">
+      <DependentUpon>GCodeSelectionProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\GCodeSelectionProperties.es.resx">
+      <DependentUpon>GCodeSelectionProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\GCodeSelectionProperties.fr.resx">
+      <DependentUpon>GCodeSelectionProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\GCodeSelectionProperties.ja.resx">
+      <DependentUpon>GCodeSelectionProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\GCodeSelectionProperties.pt.resx">
+      <DependentUpon>GCodeSelectionProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\GCodeSelectionProperties.resx">
+      <DependentUpon>GCodeSelectionProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\GCodeSelectionProperties.ru.resx">
+      <DependentUpon>GCodeSelectionProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\GCodeSelectionProperties.zh-CN.resx">
+      <DependentUpon>GCodeSelectionProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\SimpleSerialForm.resx">
       <DependentUpon>SimpleSerialForm.cs</DependentUpon>
