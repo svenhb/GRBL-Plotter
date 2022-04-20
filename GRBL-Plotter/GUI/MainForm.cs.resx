@@ -1179,4 +1179,10 @@ Přidat 'G54;' do hlavičky G-Code, aby se před streamováním G-Code automatic
     <value>Pokud je povoleno, nový importovaný G-kód bude vložen do již existujícího kódu.
 Změna nastavení importu po prvním importu může vést k nežádoucím efektům.</value>
   </data>
+  <data name="cmsPicBoxDuplicatePath.Text" xml:space="preserve">
+    <value>Duplikovat vybranou cestu</value>
+  </data>
+  <data name="cmsPicBoxShowProperties.Text" xml:space="preserve">
+    <value>Vlastnosti vybrané cesty</value>
+  </data>
 </root>

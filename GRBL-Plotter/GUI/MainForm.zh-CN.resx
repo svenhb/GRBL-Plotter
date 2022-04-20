@@ -1167,4 +1167,10 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>如果启用，新导入的 G 代码将插入到现有代码中。
 首次导入后更改导入设置可能会导致不良影响。</value>
   </data>
+  <data name="cmsPicBoxDuplicatePath.Text" xml:space="preserve">
+    <value>复制所选路径</value>
+  </data>
+  <data name="cmsPicBoxShowProperties.Text" xml:space="preserve">
+    <value>选定路径的属性</value>
+  </data>
 </root>

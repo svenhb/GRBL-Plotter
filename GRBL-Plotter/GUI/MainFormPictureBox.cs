@@ -39,6 +39,7 @@
  * 2022-04-04 line 550 _projector_form.Invalidate()
 */
 
+using GrblPlotter.MachineControl;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -205,9 +206,9 @@ namespace GrblPlotter
 							else if (transformType == SelectionHandle.Handle.Rotate)
 								e.Graphics.DrawString(String.Format("Rotate by:\r\n{0:0.0}°", SelectionHandle.angleDeg), myFont8, Brushes.Black, stringposRot);
 							else if (transformType == SelectionHandle.Handle.Move)
-								e.Graphics.DrawString(String.Format("Move by:\r\nX:{0:0.0}\r\nY:{0:0.0}", (posMoveEnd.X - posMoveStart.X), (posMoveEnd.Y - posMoveStart.Y)), myFont8, Brushes.Black, stringposMov);
+								e.Graphics.DrawString(String.Format("Move by:\r\nX:{0:0.0}\r\nY:{1:0.0}", (posMoveEnd.X - posMoveStart.X), (posMoveEnd.Y - posMoveStart.Y)), myFont8, Brushes.Black, stringposMov);
 							else 
-								e.Graphics.DrawString(String.Format("Zoom by:\r\nX:{0:0.0}%\r\nY:{0:0.0}%", (SelectionHandle.scalingX * 100), (SelectionHandle.scalingY * 100)), myFont8, Brushes.Black, stringpos);
+								e.Graphics.DrawString(String.Format("Zoom by:\r\nX:{0:0.0}%\r\nY:{1:0.0}%", (SelectionHandle.scalingX * 100), (SelectionHandle.scalingY * 100)), myFont8, Brushes.Black, stringpos);
 							
 							
 							/* label at upper left edge */
@@ -611,7 +612,9 @@ namespace GrblPlotter
 					else if (modKeyCtrl) { markerType = XmlMarkerType.Group; }
 					else if (modKeyShift) { markerType = XmlMarkerType.Tile; }
 
-					marker = VisuGCode.SetPosMarkerNearBy(picAbsPos, toggleHighlight);  // find line with coord nearby, mark / unmark figure
+                    VisuGCode.MarkerSize = markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (picScaling * zoomFactor));
+                    marker = VisuGCode.SetPosMarkerNearBy(picAbsPos, toggleHighlight);  // find line with coord nearby, mark / unmark figure
+
 					line = marker.lineNumber;
 					fCTBCodeClickedLineNow = line;
 					if (LineIsInRange(line) && XmlMarker.GetGroup(line))
@@ -624,8 +627,9 @@ namespace GrblPlotter
 					}
 
 					FindFigureMarkSelection(markerType, line, (fold > 0));    // collapse=true
+                    lastMarkerType = markerType;
 
-					Grbl.PosMarker = marker.actualPos;
+                    Grbl.PosMarker = marker.actualPos;
 					VisuGCode.CreateMarkerPath(markerSize);
 					selectionPathOrig = (GraphicsPath)VisuGCode.pathMarkSelection.Clone();
 				}
@@ -635,7 +639,7 @@ namespace GrblPlotter
 					StatusStripSet(1, Localization.GetString("statusStripeClickKeys2"), Color.LightGreen);
 			}			
 		}
-		
+		private XmlMarkerType lastMarkerType = XmlMarkerType.Figure;
         private void PictureBox1_DoubleClick(object sender, EventArgs e)
         {
             if (logDetailed) Logger.Trace("pictureBox1_DoubleClick");
@@ -842,6 +846,29 @@ namespace GrblPlotter
             return;
         }
 
+        private void CmsPicBoxDuplicatePath_Click(object sender, EventArgs e)
+        {
+            UnDo.SetCode(fCTBCode.Text, cmsPicBoxDuplicatePath.Text, this);
+            Logger.Trace("▌ cmsPicBoxDuplicatePath figureIsMarked:{0}", figureIsMarked);
+            if (figureIsMarked)
+            {
+                resetView = true;
+                string tmpCode = fCTBCode.SelectedText;         // get selected code
+                int line = fCTBCodeClickedLineNow;              // start line
+                if (lastMarkerType != XmlMarkerType.Figure)     // insert figure into same group, insert any other as new group
+                    line = 0;
+                InsertCodeToFctb(tmpCode, false, line);
+                TransformEnd();
+                picAbsPos = (XyPoint)Grbl.PosMarker;            // restor prev. click-position
+                SetFigureSelectionOnClick();                    // mark figure - new inserted code will be found, because it was inserted in front of prev. selection
+
+                markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (picScaling * zoomFactor));
+                VisuGCode.CreateMarkerPath(markerSize);
+                cmsPicBoxReverseSelectedPath.Enabled = false;
+                cmsPicBoxRotateSelectedPath.Enabled = false;
+            }
+            return;
+        }
         private void CmsPicBoxDeletePath_Click(object sender, EventArgs e)
         {
             UnDo.SetCode(fCTBCode.Text, cmsPicBoxDeletePath.Text, this);
@@ -850,8 +877,16 @@ namespace GrblPlotter
             {
                 resetView = true;
                 fCTBCode.InsertText("( Figure removed )\r\n");
+                SelectionHandle.IsActive = false;
                 TransformEnd();
             }
+            return;
+        }
+        private void CmsPicBoxShowProperties_Click(object sender, EventArgs e)
+        {
+            UnDo.SetCode(fCTBCode.Text, cmsPicBoxShowProperties.Text, this);
+            Logger.Trace("▌ cmsPicBoxShowProperties figureIsMarked:{0}", figureIsMarked);
+            SelectionPropertiesDialog();
             return;
         }
 
@@ -977,6 +1012,77 @@ namespace GrblPlotter
         private void PictureBox1_MouseLeave(object sender, EventArgs e)
         {
             Cursor = Cursors.Default;
+        }
+
+
+        private void SelectionPropertiesDialog()
+        {
+            double penWidth=0;
+            string penColor="";
+            int line = 0;
+            using (GCodeSelectionProperties f = new GCodeSelectionProperties())
+            {
+                f.CenterX = (double)SelectionHandle.center.X;
+                f.CenterY = (double)SelectionHandle.center.Y;
+                if (lastMarkerType == XmlMarkerType.Figure)    
+                {   f.AttributePenWidth = penWidth = XmlMarker.lastFigure.PenWidth;
+                    f.AttributePenColor = penColor = XmlMarker.lastFigure.PenColor;
+                    line = XmlMarker.lastFigure.LineStart;
+                }
+                else if (lastMarkerType == XmlMarkerType.Group)
+                {
+                    f.AttributePenWidth = penWidth = XmlMarker.lastGroup.PenWidth;
+                    f.AttributePenColor = penColor = XmlMarker.lastGroup.PenColor;
+                    line = XmlMarker.lastGroup.LineStart;
+                }
+                var result = f.ShowDialog(this);
+                if (result == DialogResult.OK)
+                {
+                    if (f.AttributeWasChanged) 
+                    {
+                        if (f.CenterWasChanged && (line > 0))
+                        {   string tmpCode = VisuGCode.GetGcodeListLine(line);
+                            if (penWidth > 0) { ReplaceXmlAttribute(ref tmpCode, XmlMarker.FigureStart, "PenWidth", string.Format("{0:0.00}", f.AttributePenWidth)); }
+                            if (penColor.Length > 2) { ReplaceXmlAttribute(ref tmpCode, XmlMarker.FigureStart, "PenColor", f.AttributePenColor); }
+                            VisuGCode.SetGcodeListLine(line, tmpCode);
+                        }
+                        else
+                        {
+                            string tmpCode = fCTBCode.SelectedText;
+                            if (penWidth > 0) { ReplaceXmlAttribute(ref tmpCode, XmlMarker.FigureStart, "PenWidth", string.Format("{0:0.00}", f.AttributePenWidth)); }
+                            if (penColor.Length > 2) { ReplaceXmlAttribute(ref tmpCode, XmlMarker.FigureStart, "PenColor", f.AttributePenColor); }
+                            fCTBCode.SelectedText = tmpCode;
+                            TransformEnd();
+                        }
+                    }
+                    if (f.CenterWasChanged)
+                    {
+                        double dx = (double)SelectionHandle.center.X - f.CenterX;
+                        double dy = (double)SelectionHandle.center.Y - f.CenterY;
+                        SetFctbCodeText(VisuGCode.TransformGCodeOffset(dx, dy, VisuGCode.Translate.None));
+                        fCTBCodeClickedLineNow = fCTBCodeClickedLineLast;
+                        fCTBCodeClickedLineLast = 0;
+                        TransformEnd();
+                        VisuGCode.MarkSelectedFigure(-1);
+                        Cursor = Cursors.Default;
+                    }
+
+                }
+            }
+        }
+
+        private void ReplaceXmlAttribute(ref string code, string xmlTag, string xmlAtt, string newVal)
+        {
+            int posTagStart = code.IndexOf(xmlTag);
+            if (posTagStart < 0) return;
+            int posTagEnd = code.IndexOf(">", posTagStart + xmlTag.Length);
+            if (posTagEnd < 0) return;
+            int posAttStart = code.IndexOf(xmlAtt, posTagStart);
+            int posAttEnd = code.IndexOf("\"", posAttStart + xmlAtt.Length + 3);
+            string origAtt = code.Substring(posAttStart, posAttEnd - posAttStart + 1);
+            string newAtt = string.Format("{0}=\"{1}\"",xmlAtt,newVal);
+            //    MessageBox.Show("-"+origAtt+"-\r\n-"+newAtt+"-");
+            code = code.Replace(origAtt, newAtt);
         }
     }
 }

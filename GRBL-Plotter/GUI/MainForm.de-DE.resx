@@ -1075,4 +1075,10 @@ Fügen Sie 'G54;' to G-Code-Header, um vor dem Streaming von G-Code automatisch 
     <value>Wenn aktiviert, wird der neu importierte G-Code in den bereits vorhandenen Code eingefügt.
 Das Ändern der Importeinstellungen nach dem ersten Import kann zu unerwünschten Effekten führen.</value>
   </data>
+  <data name="cmsPicBoxDuplicatePath.Text" xml:space="preserve">
+    <value>Ausgewählten Pfad duplizieren</value>
+  </data>
+  <data name="cmsPicBoxShowProperties.Text" xml:space="preserve">
+    <value>Eigenschaften des ausgewählten Pfads</value>
+  </data>
 </root>

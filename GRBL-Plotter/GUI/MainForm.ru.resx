@@ -1137,4 +1137,10 @@
     <value>Если этот параметр включен, новый импортированный G-код будет вставлен в уже существующий код.
 Изменение настроек импорта после первого импорта может привести к нежелательным последствиям.</value>
   </data>
+  <data name="cmsPicBoxDuplicatePath.Text" xml:space="preserve">
+    <value>Дублировать выбранный путь</value>
+  </data>
+  <data name="cmsPicBoxShowProperties.Text" xml:space="preserve">
+    <value>Свойства выбранного пути</value>
+  </data>
 </root>

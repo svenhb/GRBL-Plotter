@@ -313,11 +313,11 @@ namespace GrblPlotter
                 else
                     penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown;
             //    SetLastLoadedFile("from image", "");
-                NewCodeEnd();       // GetGCodeFromImage
+                NewCodeEnd();                   // GetGCodeFromImage
                 FoldCode();
                 Properties.Settings.Default.counterImportImage += 1;
                 EventCollector.SetImport("Iimg");
-                CalculatePicScaling();      // update picScaling
+                CalculatePicScaling();          // update picScaling
             }
             else
                 MessageBox.Show(Localization.GetString("mainStreamingActive"));

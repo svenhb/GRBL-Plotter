@@ -1137,4 +1137,10 @@ Adicione 'G54;' ao cabeçalho do código G para retornar automaticamente ao G54
     <value>Se habilitado, o novo G-Code importado será inserido no código já existente.
 Alterar as configurações de importação após a primeira importação pode levar a efeitos indesejados.</value>
   </data>
+  <data name="cmsPicBoxDuplicatePath.Text" xml:space="preserve">
+    <value>Duplicar caminho selecionado</value>
+  </data>
+  <data name="cmsPicBoxShowProperties.Text" xml:space="preserve">
+    <value>Propriedades do caminho selecionado</value>
+  </data>
 </root>

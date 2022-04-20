@@ -58,6 +58,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Windows.Forms;
@@ -261,7 +262,6 @@ namespace GrblPlotter
 			
             fCTBCode.Refresh();
 
-            CalculatePicScaling();		// update picScaling
             float markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / picScaling);
             VisuGCode.CalcDrawingArea(markerSize);                                // calc ruler dimension
             VisuGCode.DrawMachineLimit();
@@ -283,6 +283,10 @@ namespace GrblPlotter
 
             cmsPicBoxReverseSelectedPath.Enabled = false;
             cmsPicBoxRotateSelectedPath.Enabled = false;
+
+            CalculatePicScaling();              // update picScaling
+            markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (picScaling));
+            VisuGCode.CreateMarkerPath(markerSize);
 
             pictureBox1.Invalidate();                                   // resfresh view
             Application.DoEvents();                                     // after creating drawing paths
@@ -917,21 +921,27 @@ namespace GrblPlotter
             if (File.Exists(tbFile.Text))
             {
                 NewCodeStart();             // LoadGcode
-                fCTBCode.Text = "PLEASE WAIT !!!\r\nDisplaying a large number of lines\r\ntakes some seconds.";
-                fCTBCode.Refresh();
+                string info = "PLEASE WAIT !!!\r\nDisplaying a large number of lines,\r\nthis may takes some seconds.\r\n\r\n" +
+                    "Check [Setup - Program behavior - Load G-Code]\r\nto reduce time by skipping display options\r\nwhen exceeding a number of x-thousand lines.";
                 try
                 {
+                    var lineCount = File.ReadLines(tbFile.Text).Count();
+                    info += string.Format("\r\n{0} Lines in file\r\n{1} limit to skip display options", lineCount, (Properties.Settings.Default.ctrlImportSkip * 1000));
+                    fCTBCode.Text = info;
+                    fCTBCode.Refresh();
                     fCTBCode.OpenFile(tbFile.Text);//, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);	// File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
                 }
                 catch (Exception err)
                 {
-                    Logger.Error(err, "LoadGcode ");
+                    Logger.Error(err, "LoadGcode try 2nd method ");
                     EventCollector.StoreException("LoadGcode 2nd try open file: " +err.Message+" ---");
 
                     // https://stackoverflow.com/questions/9759697/reading-a-file-used-by-another-process
                     using (var fs = new FileStream(tbFile.Text, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                     using (var sr = new StreamReader(fs, GetEncoding(tbFile.Text)))
                     {
+                        fCTBCode.Text = info;
+                        fCTBCode.Refresh();
                         string tmp = sr.ReadToEnd();
                         fCTBCode.Text = tmp;
                     }

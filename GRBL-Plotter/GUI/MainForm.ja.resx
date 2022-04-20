@@ -1167,4 +1167,10 @@ Grblのバッファーにモーションがキューイングされていて準�
     <value>有効にすると、新しくインポートされたGコードが既存のコードに挿入されます。
 最初のインポート後にインポート設定を変更すると、望ましくない影響が生じる可能性があります。</value>
   </data>
+  <data name="cmsPicBoxDuplicatePath.Text" xml:space="preserve">
+    <value>選択したパスを複製する</value>
+  </data>
+  <data name="cmsPicBoxShowProperties.Text" xml:space="preserve">
+    <value>選択したパスのプロパティ</value>
+  </data>
 </root>

@@ -306,8 +306,10 @@ namespace GrblPlotter
             this.deletenotMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.cmsPicBoxMarkFirstPos = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsPicBoxDuplicatePath = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsPicBoxDeletePath = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsPicBoxCropSelectedPath = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsPicBoxShowProperties = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsPicBoxMoveSelectedPathInCode = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsPicBoxReverseSelectedPath = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsPicBoxRotateSelectedPath = new System.Windows.Forms.ToolStripMenuItem();
@@ -2037,6 +2039,8 @@ namespace GrblPlotter
             this.deletenotMarkToolStripMenuItem,
             this.toolStripSeparator1,
             this.cmsPicBoxMarkFirstPos,
+            this.cmsPicBoxShowProperties,
+            this.cmsPicBoxDuplicatePath,
             this.cmsPicBoxDeletePath,
             this.cmsPicBoxCropSelectedPath,
             this.cmsPicBoxMoveSelectedPathInCode,
@@ -2047,6 +2051,7 @@ namespace GrblPlotter
             this.cmsPicBoxClearBackground,
             this.copyContentTroClipboardToolStripMenuItem});
             this.cmsPictureBox.Name = "cmsPictureBox";
+            this.cmsPictureBox.ShowImageMargin = false;
             resources.ApplyResources(this.cmsPictureBox, "cmsPictureBox");
             this.cmsPictureBox.Opening += new System.ComponentModel.CancelEventHandler(this.CmsPictureBox_Opening);
             // 
@@ -2124,6 +2129,12 @@ namespace GrblPlotter
             resources.ApplyResources(this.cmsPicBoxMarkFirstPos, "cmsPicBoxMarkFirstPos");
             this.cmsPicBoxMarkFirstPos.Click += new System.EventHandler(this.CmsPicBoxMoveToFirstPos_Click);
             // 
+            // cmsPicBoxDuplicatePath
+            // 
+            resources.ApplyResources(this.cmsPicBoxDuplicatePath, "cmsPicBoxDuplicatePath");
+            this.cmsPicBoxDuplicatePath.Name = "cmsPicBoxDuplicatePath";
+            this.cmsPicBoxDuplicatePath.Click += new System.EventHandler(this.CmsPicBoxDuplicatePath_Click);
+            // 
             // cmsPicBoxDeletePath
             // 
             resources.ApplyResources(this.cmsPicBoxDeletePath, "cmsPicBoxDeletePath");
@@ -2135,6 +2146,12 @@ namespace GrblPlotter
             resources.ApplyResources(this.cmsPicBoxCropSelectedPath, "cmsPicBoxCropSelectedPath");
             this.cmsPicBoxCropSelectedPath.Name = "cmsPicBoxCropSelectedPath";
             this.cmsPicBoxCropSelectedPath.Click += new System.EventHandler(this.CmsPicBoxCropSelectedPath_Click);
+            // 
+            // cmsPicBoxShowProperties
+            // 
+            resources.ApplyResources(this.cmsPicBoxShowProperties, "cmsPicBoxShowProperties");
+            this.cmsPicBoxShowProperties.Name = "cmsPicBoxShowProperties";
+            this.cmsPicBoxShowProperties.Click += new System.EventHandler(this.CmsPicBoxShowProperties_Click);
             // 
             // cmsPicBoxMoveSelectedPathInCode
             // 
@@ -3790,6 +3807,8 @@ namespace GrblPlotter
         private System.Windows.Forms.ToolStripMenuItem showFormsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem projectorToolStripMenuItem;
         private System.Windows.Forms.CheckBox CbAddGraphic;
+        private System.Windows.Forms.ToolStripMenuItem cmsPicBoxDuplicatePath;
+        private System.Windows.Forms.ToolStripMenuItem cmsPicBoxShowProperties;
     }
 }
 

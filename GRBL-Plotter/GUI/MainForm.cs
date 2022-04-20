@@ -56,6 +56,7 @@
  * 2021-11-17 show path-nodes gui2DShowVertexEnable - will be switched off on prog-start - line 146
  * 2021-11-18 add processing of accessory D0-D3 from grbl-Mega-5X - line 976
  * 2021-12-14 line 613 remove else...
+ * 2022-04-19 check  if (toolStripStatusLabel0 == null) 
 */
 
 using GrblPlotter.GUI;
@@ -1076,7 +1077,7 @@ namespace GrblPlotter
 
         private void ProcessCommands(string command)
         {
-            if (command.Length <= 1)
+            if (string.IsNullOrEmpty(command))
                 return;
             string[] commands = { };
 
@@ -1229,6 +1230,7 @@ namespace GrblPlotter
                     b.Height = btnCustom1.Height;
                 }
             }
+            StatusStripSet(0, string.Format("New size X:{0}  Y:{1}",Width, Height), Color.White);
         }
         private void JoystickResize()
         {
@@ -1350,7 +1352,7 @@ namespace GrblPlotter
 
         internal void SetUndoText(string txt)
         {
-            if (string.IsNullOrEmpty(txt)) return;
+            if (txt == null) txt = "";
             if (txt.Length > 1)
             {
                 unDoToolStripMenuItem.Text = txt;
@@ -1380,35 +1382,47 @@ namespace GrblPlotter
         {
             if (nr == 0)
             {
-                if (this.toolStripStatusLabel0.GetCurrentParent().InvokeRequired)
-                { this.toolStripStatusLabel0.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { this.toolStripStatusLabel0.Text = "[ " + text + " ]"; toolStripStatusLabel0.BackColor = color; }); }
+                if (toolStripStatusLabel0 == null) return;
+                if (toolStripStatusLabel0.GetCurrentParent().InvokeRequired)
+                { toolStripStatusLabel0.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { toolStripStatusLabel0.Text = "[ " + text + " ]"; toolStripStatusLabel0.BackColor = color; }); }
                 else
-                { this.toolStripStatusLabel0.Text = "[ " + text + " ]"; toolStripStatusLabel0.BackColor = color; }                
+                { toolStripStatusLabel0.Text = "[ " + text + " ]"; toolStripStatusLabel0.BackColor = color; }                
             }
             else if (nr == 1)
             {
-                if (this.toolStripStatusLabel1.GetCurrentParent().InvokeRequired)
-                { this.toolStripStatusLabel1.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { this.toolStripStatusLabel1.Text = "[ " + text + " ]"; toolStripStatusLabel1.BackColor = color; }); }
+                if (toolStripStatusLabel1 == null) return;
+                if (toolStripStatusLabel1.GetCurrentParent().InvokeRequired)
+                { toolStripStatusLabel1.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { toolStripStatusLabel1.Text = "[ " + text + " ]"; toolStripStatusLabel1.BackColor = color; }); }
                 else
-                { this.toolStripStatusLabel1.Text = "[ " + text + " ]"; toolStripStatusLabel1.BackColor = color; }
+                { toolStripStatusLabel1.Text = "[ " + text + " ]"; toolStripStatusLabel1.BackColor = color; }
             }
             else if (nr == 2)
             {
-                if (this.toolStripStatusLabel2.GetCurrentParent().InvokeRequired)
-                { this.toolStripStatusLabel2.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { this.toolStripStatusLabel2.Text = "[ " + text + " ]"; toolStripStatusLabel2.BackColor = color; }); }
+                if (toolStripStatusLabel2 == null) return;
+                if (toolStripStatusLabel2.GetCurrentParent().InvokeRequired)
+                { toolStripStatusLabel2.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { toolStripStatusLabel2.Text = "[ " + text + " ]"; toolStripStatusLabel2.BackColor = color; }); }
                 else
-                { this.toolStripStatusLabel2.Text = "[ " + text + " ]"; toolStripStatusLabel2.BackColor = color; }
+                { toolStripStatusLabel2.Text = "[ " + text + " ]"; toolStripStatusLabel2.BackColor = color; }
             }
         }
 
         private void StatusStripClear(int nr1, int nr2 = -1)//, string rem="")
         {
             if ((nr1 == 0) || (nr2 == 0))
-            { toolStripStatusLabel0.Text = ""; toolStripStatusLabel0.BackColor = SystemColors.Control; toolStripStatusLabel0.ToolTipText = ""; }
+            {
+                if (toolStripStatusLabel0 == null) return;
+                toolStripStatusLabel0.Text = ""; toolStripStatusLabel0.BackColor = SystemColors.Control; toolStripStatusLabel0.ToolTipText = ""; 
+            }
             if ((nr1 == 1) || (nr2 == 1))
-            { toolStripStatusLabel1.Text = ""; toolStripStatusLabel1.BackColor = SystemColors.Control; toolStripStatusLabel1.ToolTipText = ""; }
+            {
+                if (toolStripStatusLabel1 == null) return;
+                toolStripStatusLabel1.Text = ""; toolStripStatusLabel1.BackColor = SystemColors.Control; toolStripStatusLabel1.ToolTipText = ""; 
+            }
             if ((nr1 == 2) || (nr2 == 2))
-            { toolStripStatusLabel2.Text = ""; toolStripStatusLabel2.BackColor = SystemColors.Control; toolStripStatusLabel2.ToolTipText = ""; }
+            {
+                if (toolStripStatusLabel2 == null) return;
+                toolStripStatusLabel2.Text = ""; toolStripStatusLabel2.BackColor = SystemColors.Control; toolStripStatusLabel2.ToolTipText = ""; 
+            }
         }
         private void StatusStripClear()
         {

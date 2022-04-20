@@ -4678,22 +4678,22 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>False</value>
   </data>
   <data name="unDo2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="unDo2ToolStripMenuItem.Text" xml:space="preserve">
     <value>Undo last action</value>
   </data>
   <data name="toolStripSeparator17.Size" type="System.Drawing.Size, System.Drawing">
-    <value>258, 6</value>
+    <value>233, 6</value>
   </data>
   <data name="cmsPicBoxMoveToMarkedPosition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="cmsPicBoxMoveToMarkedPosition.Text" xml:space="preserve">
     <value>Move to marked position G0</value>
   </data>
   <data name="cmsPicBoxZeroXYAtMarkedPosition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="cmsPicBoxZeroXYAtMarkedPosition.Text" xml:space="preserve">
     <value>Zero XY at marked position G10 L20</value>
@@ -4702,31 +4702,31 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>False</value>
   </data>
   <data name="cmsPicBoxMoveGraphicsOrigin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="cmsPicBoxMoveGraphicsOrigin.Text" xml:space="preserve">
     <value>Offset graphics by Marker Position</value>
   </data>
   <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>258, 6</value>
+    <value>233, 6</value>
   </data>
   <data name="cmsPicBoxResetZooming.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="cmsPicBoxResetZooming.Text" xml:space="preserve">
     <value>Reset Zooming</value>
   </data>
   <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>258, 6</value>
+    <value>233, 6</value>
   </data>
   <data name="cmsPicBoxPasteFromClipboard.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="cmsPicBoxPasteFromClipboard.Text" xml:space="preserve">
     <value>Paste from Clipboard</value>
   </data>
   <data name="cmsPicBoxReloadFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="cmsPicBoxReloadFile.Text" xml:space="preserve">
     <value>Reload File</value>
@@ -4735,7 +4735,7 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>False</value>
   </data>
   <data name="deletenotMarkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="deletenotMarkToolStripMenuItem.Text" xml:space="preserve">
     <value>Mark code (no delete)</value>
@@ -4747,10 +4747,10 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>False</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>258, 6</value>
+    <value>233, 6</value>
   </data>
   <data name="cmsPicBoxMarkFirstPos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="cmsPicBoxMarkFirstPos.Text" xml:space="preserve">
     <value>Mark first point of selected path</value>
@@ -4758,11 +4758,29 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
   <data name="cmsPicBoxMarkFirstPos.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
+  <data name="cmsPicBoxShowProperties.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cmsPicBoxShowProperties.Size" type="System.Drawing.Size, System.Drawing">
+    <value>236, 22</value>
+  </data>
+  <data name="cmsPicBoxShowProperties.Text" xml:space="preserve">
+    <value>Properties of selected path</value>
+  </data>
+  <data name="cmsPicBoxDuplicatePath.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cmsPicBoxDuplicatePath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>236, 22</value>
+  </data>
+  <data name="cmsPicBoxDuplicatePath.Text" xml:space="preserve">
+    <value>Duplicate selected path</value>
+  </data>
   <data name="cmsPicBoxDeletePath.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="cmsPicBoxDeletePath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="cmsPicBoxDeletePath.Text" xml:space="preserve">
     <value>Delete selected path</value>
@@ -4774,7 +4792,7 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>False</value>
   </data>
   <data name="cmsPicBoxCropSelectedPath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="cmsPicBoxCropSelectedPath.Text" xml:space="preserve">
     <value>Crop selected path (cut out)</value>
@@ -4783,7 +4801,7 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>False</value>
   </data>
   <data name="cmsPicBoxMoveSelectedPathInCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="cmsPicBoxMoveSelectedPathInCode.Text" xml:space="preserve">
     <value>Apply offset to GCode</value>
@@ -4795,7 +4813,7 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>False</value>
   </data>
   <data name="cmsPicBoxReverseSelectedPath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="cmsPicBoxReverseSelectedPath.Text" xml:space="preserve">
     <value>Reverse selected path</value>
@@ -4804,34 +4822,34 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>False</value>
   </data>
   <data name="cmsPicBoxRotateSelectedPath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="cmsPicBoxRotateSelectedPath.Text" xml:space="preserve">
     <value>Rotate selected path</value>
   </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>258, 6</value>
+    <value>233, 6</value>
   </data>
   <data name="cmsPicBoxSetGCodeAsBackground.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="cmsPicBoxSetGCodeAsBackground.Text" xml:space="preserve">
     <value>Set G-Code as Background</value>
   </data>
   <data name="cmsPicBoxClearBackground.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="cmsPicBoxClearBackground.Text" xml:space="preserve">
     <value>Clear Background</value>
   </data>
   <data name="copyContentTroClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 22</value>
+    <value>236, 22</value>
   </data>
   <data name="copyContentTroClipboardToolStripMenuItem.Text" xml:space="preserve">
     <value>Copy content to Clipboard</value>
   </data>
   <data name="cmsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>262, 408</value>
+    <value>237, 474</value>
   </data>
   <data name="&gt;&gt;cmsPictureBox.Name" xml:space="preserve">
     <value>cmsPictureBox</value>
@@ -8081,6 +8099,12 @@ Jazyk
   <data name="&gt;&gt;cmsPicBoxMarkFirstPos.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;cmsPicBoxDuplicatePath.Name" xml:space="preserve">
+    <value>cmsPicBoxDuplicatePath</value>
+  </data>
+  <data name="&gt;&gt;cmsPicBoxDuplicatePath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;cmsPicBoxDeletePath.Name" xml:space="preserve">
     <value>cmsPicBoxDeletePath</value>
   </data>
@@ -8091,6 +8115,12 @@ Jazyk
     <value>cmsPicBoxCropSelectedPath</value>
   </data>
   <data name="&gt;&gt;cmsPicBoxCropSelectedPath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmsPicBoxShowProperties.Name" xml:space="preserve">
+    <value>cmsPicBoxShowProperties</value>
+  </data>
+  <data name="&gt;&gt;cmsPicBoxShowProperties.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cmsPicBoxMoveSelectedPathInCode.Name" xml:space="preserve">

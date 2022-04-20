@@ -231,8 +231,9 @@ namespace GrblPlotter
         {
             CmsPicBoxEnable();
             ClearErrorLines();
+            Logger.Trace("SetFctbCodeText insertCode:{0}  enabled:{1}", insertCode, Properties.Settings.Default.fromFormInsertEnable);
             if (insertCode && Properties.Settings.Default.fromFormInsertEnable)
-            { 	InsertCodeToFctb(code); }
+            { 	InsertCodeToFctb(code, true, 0); }
             else
             { 	fCTBCode.Text = code; }
 
@@ -253,9 +254,12 @@ namespace GrblPlotter
             fCTBCode.DoCaretVisible();
         }
 
-        private void InsertCodeToFctb(string sourceGCode)
+        private void InsertCodeToFctb(string sourceGCode, bool fromFile, int lineSelected)
         {
-            bool insertCode = Properties.Settings.Default.fromFormInsertEnable;
+            /* if graphic import, add new group, 
+             * if duplicate group, add new group
+             * if duplicate figure -> put into same group (if available)
+            */
             importOptions = "";
             SimuStop();
             bool createGroup = false;
@@ -266,9 +270,11 @@ namespace GrblPlotter
                 createGroup = true;
             }
 
-            Logger.Info("InsertCodeToFctb");
+            Logger.Info("InsertCodeToFctb fromFile:{0}  lineSelection:{1}  lineInsert:{2}", fromFile, lineSelected, insertLineNr);
+            if (!fromFile && (lineSelected > 0))
+            { insertLineNr = lineSelected; }
 
-            if (insertCode && LineIsInRange(insertLineNr))
+            if (LineIsInRange(insertLineNr))
             {
                 if (createGroup)
                 {    // add startGroup for existing figures
@@ -337,8 +343,11 @@ namespace GrblPlotter
                 { tmpCodeFinish.AppendLine("(" + XmlMarker.GroupStart + " Id=\"0\" Type=\"Existing code\" >)"); }    // add startGroup for existing figures
 			
 				InsertTextAtLine(insertLineNr, tmpCodeFinish.ToString());
-				char[] charsToTrim = { '(', ')','\r','\n'};
-				InsertTextAtLine(1, "( ADD code from " + tmpCodeLines[2].Trim( charsToTrim) + " )\r\n");	
+                if (fromFile)
+                {
+                    char[] charsToTrim = { '(', ')', '\r', '\n' };
+                    InsertTextAtLine(1, "( ADD code from " + tmpCodeLines[2].Trim(charsToTrim) + " )\r\n");
+                }
 				Logger.Info("◆◆◆◆ Add code to existing code at line {0}", insertLineNr);
             }
             else
@@ -828,16 +837,16 @@ namespace GrblPlotter
         { FoldBlocks2(); }
         private void FoldBlocks2()
         {
-            //       if (!expandGCode)
-            //           return;
-
             string tmp;
             fCTBCode.ExpandAllFoldingBlocks();
             for (int i = 0; i < fCTBCode.LinesCount; i++)
             {
                 tmp = fCTBCode.GetLine(i).Text;
                 if (tmp.Contains(XmlMarker.FigureStart) || tmp.Contains(XmlMarker.ContourStart) || tmp.Contains(XmlMarker.FillStart) || tmp.Contains(XmlMarker.PassStart))
-                { fCTBCode.CollapseFoldingBlock(i); }
+                {
+                    try { fCTBCode.CollapseFoldingBlock(i); }
+                    catch (Exception err) { Logger.Error(err, "FoldBlocks2 "); }    // no need to track
+                }
             }
             foldLevel = 2;
         }
@@ -867,8 +876,10 @@ namespace GrblPlotter
             cmsFCTBMoveSelectedCodeBlockDown.Enabled = tmp;
             cmsFCTBMoveSelectedCodeBlockMostDown.Enabled = tmp;
 
+            cmsPicBoxDuplicatePath.Enabled = tmp;
             cmsPicBoxDeletePath.Enabled = tmp;
             cmsPicBoxCropSelectedPath.Enabled = tmp;
+            cmsPicBoxShowProperties.Enabled = tmp;
             cmsPicBoxReverseSelectedPath.Enabled = tmp && Graphic.SizeOk(); // Data in Graphic-class is needed
             cmsPicBoxRotateSelectedPath.Enabled = tmp && Graphic.SizeOk(); // Data in Graphic-class is needed
         }

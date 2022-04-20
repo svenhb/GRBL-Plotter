@@ -1102,4 +1102,10 @@ Ajouter 'G54;' to G-Code header pour revenir automatiquement à G54 avant de dif
     <value>Si activé, le nouveau G-Code importé sera inséré dans le code déjà existant.
 La modification des paramètres d'importation après la première importation peut entraîner des effets indésirables.</value>
   </data>
+  <data name="cmsPicBoxDuplicatePath.Text" xml:space="preserve">
+    <value>Dupliquer le chemin sélectionné</value>
+  </data>
+  <data name="cmsPicBoxShowProperties.Text" xml:space="preserve">
+    <value>Propriétés du chemin sélectionné</value>
+  </data>
 </root>

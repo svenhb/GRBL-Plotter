@@ -1170,4 +1170,10 @@
     <value>في حالة التمكين ، سيتم إدراج G-Code الجديد المستورد في الكود الموجود بالفعل.
 قد يؤدي تغيير إعدادات الاستيراد بعد الاستيراد الأول إلى تأثيرات غير مرغوب فيها.</value>
   </data>
+  <data name="cmsPicBoxDuplicatePath.Text" xml:space="preserve">
+    <value>المسار المحدد مكرر</value>
+  </data>
+  <data name="cmsPicBoxShowProperties.Text" xml:space="preserve">
+    <value>خصائص المسار المحدد</value>
+  </data>
 </root>
