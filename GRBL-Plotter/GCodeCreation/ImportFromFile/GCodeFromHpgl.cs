@@ -199,7 +199,8 @@ namespace GrblPlotter
                         {
                             Logger.Warn(" UNKOWN command {0} ", cmd);
                             ConversionInfo += string.Format("Error: Unknown command: {0} ", cmd);
-                            Graphic.SetHeaderInfo(string.Format("Unknown command: {0}", cmd));
+                            Graphic.SetHeaderInfo(string.Format(" Unknown HPGL command: {0}", cmd));
+                            Graphic.SetHeaderMessage(string.Format(" {0}-1301: Unknown HPGL command: {1}", CodeMessage.Attention, cmd));
                             messageList.Add(cmd);
                         }
                     }

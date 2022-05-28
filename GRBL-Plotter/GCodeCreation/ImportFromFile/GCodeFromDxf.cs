@@ -72,6 +72,7 @@
  * 2022-02-08 extend DXFPolyline by bulge
  * 2022-02-18 line 405 add check (layerName != null)
  * 2022-03-19 line 729 2nd CalcQuadraticBezier start index at 2 not 3
+ * 2022-05-18 line 295 check via ContainsKey
 */
 
 using DXFLib;
@@ -240,11 +241,12 @@ namespace GrblPlotter //DXFImporter
             doc = new DXFDocument();
             try { doc.Load(filename); return true;}
             catch (IOException err) {
-                Logger.Error(err, "loading the file failed ");
+                Logger.Error(err, "loading the file failed IOException ");
                 MessageBox.Show("The file could not be opened - perhaps already open in other application?\r\n" + err.ToString());
             }
-			catch (Exception err) { 
-				throw;		// unknown exception...
+			catch (Exception err) {
+                Logger.Error(err, "loading the file failed 2 ");
+                throw;		// unknown exception...
 			}
             return false;
         }
@@ -253,11 +255,12 @@ namespace GrblPlotter //DXFImporter
             doc = new DXFDocument();
             try { doc.Load(content); return true;}
             catch (IOException err) {
-                Logger.Error(err, "loading the file failed ");
+                Logger.Error(err, "loading the file failed IOException ");
                 MessageBox.Show("The file could not be opened - perhaps already open in other application?\r\n" + err.ToString());
             }
-			catch (Exception err) { 
-				throw;		// unknown exception...
+			catch (Exception err) {
+                Logger.Error(err, "loading the file failed 2 ");
+                throw;		// unknown exception...
 			}
             return false;
         }
@@ -292,9 +295,9 @@ namespace GrblPlotter //DXFImporter
             foreach (DXFLayerRecord record in tst)
             {
                 Graphic.SetHeaderInfo(string.Format(" Layer: {0} , color: {1} , line type: {2}", record.LayerName, record.Color, record.LineType));
-                layerColor.Add(record.LayerName, record.Color);
-                layerLType.Add(record.LayerName, record.LineType);
-                layerLineWeigth.Add(record.LayerName, record.LineWeight);
+                if (!layerColor.ContainsKey(record.LayerName)) layerColor.Add(record.LayerName, record.Color);
+                if (!layerLType.ContainsKey(record.LayerName)) layerLType.Add(record.LayerName, record.LineType);
+                if (!layerLineWeigth.ContainsKey(record.LayerName)) layerLineWeigth.Add(record.LayerName, record.LineWeight);
             }
 
             List<DXFLineTypeRecord> ltypes = doc.Tables.LineTypes;
@@ -475,7 +478,7 @@ namespace GrblPlotter //DXFImporter
                     if ((!roundcorner) && (i > 0))
                     {
                         if (logPosition) Logger.Trace("PolyLine moveTo index:{0} X:{1:0.000} Y:{2:0.000} Z:{3:0.000}", i, position.X, position.Y, position.Z);
-                        DXFMoveTo(position, "");
+                        DXFMoveTo(position);    //, "");
                     }
                     if (bulge != 0)
                     {
@@ -496,7 +499,7 @@ namespace GrblPlotter //DXFImporter
                 {
                     position = ApplyOffsetAndAngle(lp.Elements[0].Vertex, offset, offsetAngle); // move to start position
                     if (logPosition) Logger.Trace(" LWPolyLine close X:{0:0.000}  Y:{1:0.000}", position.X, position.Y);
-                    DXFMoveTo(position, "End LWPolyLine " + lp.Flags.ToString());
+                    DXFMoveTo(position);    //, "End LWPolyLine " + lp.Flags.ToString());
                 }
                 DXFStopPath();
             }
@@ -507,13 +510,13 @@ namespace GrblPlotter //DXFImporter
                 Graphic.SetGeometry("Polyline");
                 DXFPolyLine lp = (DXFPolyLine)entity;
                 double bulge = 0;
-                bool roundcorner = false;
+            //    bool roundcorner = false;
                 DXFEntity vertex;
                 DXFVertex coordinate;
                 index = 0;
                 tmp = new DXFPoint();
-             //   foreach (DXFVertex coordinate in lp.Children)
-				for (int i=0; i < lp.Children.Count; i++)
+                //   foreach (DXFVertex coordinate in lp.Children)
+                for (int i = 0; i < lp.Children.Count; i++)
                 {
                     vertex = lp.Children[i];
                     if (vertex.GetType() == typeof(DXFVertex))
@@ -532,30 +535,30 @@ namespace GrblPlotter //DXFImporter
                                     if (logPosition) Logger.Trace("Start DXFPolyLine count:{0} X:{1:0.000} Y:{2:0.000} Z:{3:0.000}", lp.Children.Count, position.X, position.Y, position.Z);
                                 }
                                 else
-                                    DXFMoveTo(position, "");
+                                    DXFMoveTo(position);    //, "");
                             }
                             else { GCodeDotOnly(position); }//, "PolyLine"); }
                             index++;
                         }
                         if (bulge != 0)
                         {
-                            if (logPosition) Logger.Trace("PolyLine bulge  index:{0} val1X:{1:0.000} val1Y:{2:0.000} val2X:{3:0.000} val2Y:{4:0.000}", i, ((DXFVertex)lp.Children[i]).Location.X, ((DXFVertex)lp.Children[i]).Location.Y, ((DXFVertex)lp.Children[i+1]).Location.X, ((DXFVertex)lp.Children[i+1]).Location.Y);
+                            if (logPosition) Logger.Trace("PolyLine bulge  index:{0} val1X:{1:0.000} val1Y:{2:0.000} val2X:{3:0.000} val2Y:{4:0.000}", i, ((DXFVertex)lp.Children[i]).Location.X, ((DXFVertex)lp.Children[i]).Location.Y, ((DXFVertex)lp.Children[i + 1]).Location.X, ((DXFVertex)lp.Children[i + 1]).Location.Y);
 
                             if (i < (lp.Children.Count - 1))
                                 AddRoundCorner((DXFPoint)((DXFVertex)lp.Children[i]).Location, (DXFPoint)((DXFVertex)lp.Children[i + 1]).Location, bulge, offset, offsetAngle);
                             else
                                 if (lp.Flags == DXFPolyLine.FlagsEnum.closed)
                                 AddRoundCorner((DXFPoint)((DXFVertex)lp.Children[i]).Location, (DXFPoint)((DXFVertex)lp.Children[0]).Location, bulge, offset, offsetAngle);
-                            roundcorner = true;
+                    //        roundcorner = true;
                         }
-                        else
-                            roundcorner = false;
+                    //    else
+                    //        roundcorner = false;
                     }
                 }
                 if (lp.Flags == DXFPolyLine.FlagsEnum.closed) //if ((lp.Flags > 0))
                 {
                     if (logPosition) Logger.Trace("Close path Flags:{0}", lp.Flags);
-                    DXFMoveTo(tmp, "End PolyLine " + lp.Flags.ToString());
+                    DXFMoveTo(tmp);    //, "End PolyLine " + lp.Flags.ToString());
                 }
                 DXFStopPath();
             }
@@ -571,7 +574,7 @@ namespace GrblPlotter //DXFImporter
                 if (!nodesOnly)
                 {
                     DXFStartPath(position);//, "Start Line");
-                    DXFMoveTo(tmp, "");
+                    DXFMoveTo(tmp);    //, "");
                 }
                 else
                 {
@@ -596,7 +599,7 @@ namespace GrblPlotter //DXFImporter
                 int knots = spline.KnotCount;
                 int ctrls = spline.ControlPoints.Count;//spline.ControlPointCount;
                 //spline.Flags
-                if (logPosition|| newAlgorythm) Logger.Trace(" Spline ControlPointCnt: {0} KnotsCount: {1} Flags: {2}", ctrls, knots, spline.Flags);
+                if (logPosition || newAlgorythm) Logger.Trace(" Spline ControlPointCnt: {0} KnotsCount: {1} Flags: {2}", ctrls, knots, spline.Flags);
 
                 if ((ctrls > 3) && (knots == ctrls + 4))    //  # cubic
                 {
@@ -614,9 +617,9 @@ namespace GrblPlotter //DXFImporter
                                 new Vector2((double)spline.ControlPoints[i + 3].X, (double)spline.ControlPoints[i + 3].Y));
 
                             for (int k = 0; k < 4; k++)
-                            { Logger.Trace("  Vector:{0} X:{1:0.000}  Y:{2:0.000}", k, (double)spline.ControlPoints[i + k].X, (double)spline.ControlPoints[i + k].Y);}
+                            { Logger.Trace("  Vector:{0} X:{1:0.000}  Y:{2:0.000}", k, (double)spline.ControlPoints[i + k].X, (double)spline.ControlPoints[i + k].Y); }
 
-                            if ((spline.ControlPoints[i + 1].X == spline.ControlPoints[i + 2].X) && (spline.ControlPoints[i + 1].Y == spline.ControlPoints[i + 2].Y)&&
+                            if ((spline.ControlPoints[i + 1].X == spline.ControlPoints[i + 2].X) && (spline.ControlPoints[i + 1].Y == spline.ControlPoints[i + 2].Y) &&
                                 (spline.ControlPoints[i + 1].X == spline.ControlPoints[i + 3].X) && (spline.ControlPoints[i + 1].Y == spline.ControlPoints[i + 3].Y))
                             {
                                 Logger.Trace("  Vector 1=2=3");
@@ -886,7 +889,9 @@ namespace GrblPlotter //DXFImporter
             }
             #endregion
             else
-                Graphic.SetHeaderInfo(" Unknown DXF Entity: " + entity.GetType().ToString());
+            {   Graphic.SetHeaderInfo(" Unknown DXF Entity: " + entity.GetType().ToString());
+                Graphic.SetHeaderMessage(string.Format(" {0}-1201: Unknown DXF Entity: {1}", CodeMessage.Attention, entity.GetType().ToString()));
+            }
         }
     /*    private static void DrawArc(ImportMath.Arc arc)
         {
@@ -1140,24 +1145,24 @@ namespace GrblPlotter //DXFImporter
         /// <summary>
         /// Insert G1 gcode command
         /// </summary>
-        private static void DXFMoveTo(DXFPoint tmp, string cmt)
+        private static void DXFMoveTo(DXFPoint tmp) //, string cmt)
         {
-            DXFMoveTo((double)tmp.X, (double)tmp.Y, tmp.Z, cmt);
+            DXFMoveTo((double)tmp.X, (double)tmp.Y, tmp.Z); //, cmt);
         }
 
-        private static void DXFMoveTo(double x, double y, double? z, string cmt)
+        private static void DXFMoveTo(double x, double y, double? z)    //, string cmt)
         {
             System.Windows.Point coord = new System.Windows.Point(x, y);
-            DXFMoveTo(coord, z, cmt);
+            DXFMoveTo(coord, z); //, cmt);
         }
         /// <summary>
         /// Insert G1 gcode command
         /// </summary>
         private static void DXFMoveTo(System.Windows.Point orig, string cmt)
         {
-            DXFMoveTo(orig, lastSetZ, cmt);
+            DXFMoveTo(orig, lastSetZ);   //, cmt);
         }
-        private static void DXFMoveTo(System.Windows.Point orig, double? z, string cmt)
+        private static void DXFMoveTo(System.Windows.Point orig, double? z)//, string cmt)
         {
             System.Windows.Point coord = TranslateXY(orig);
             if (logPosition) Logger.Trace(" DXFMoveTo   X:{0:0.00} Y:{1:0.00} Z:{2:0.00} useZ:{3}", coord.X, coord.Y, z, useZ);

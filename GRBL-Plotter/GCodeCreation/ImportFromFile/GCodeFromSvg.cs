@@ -139,22 +139,23 @@ namespace GrblPlotter
         private static bool unitIsPixel = false;
         public static bool ConvertFromText(string svgText, bool replaceUnitByPixel)
         {
-            byte[] byteArray = Encoding.UTF8.GetBytes(svgText);
-            using (MemoryStream stream = new MemoryStream(byteArray))
-            {
-                try {
-                    svgCode = XElement.Load(stream, LoadOptions.None);
-                    fromClipboard = true;
-                    if (String.IsNullOrEmpty(svgText) && svgText.IndexOf("Adobe") >= 0)
-                        replaceUnitByPixel = false;
-                    unitIsPixel = replaceUnitByPixel;
-                    return ConvertSVG(svgCode, "from Clipboard");                   // startConvert(svgCode);
-                }
-                catch (Exception e) {
-                    Logger.Error(e, "Error loading SVG-Code");
-                    MessageBox.Show("Error '" + e.ToString() + "' in XML string ");
-                    return false;
-                }
+            backgroundWorker = null;
+            backgroundEvent = null;
+            try {
+                byte[] byteArray = Encoding.UTF8.GetBytes(svgText);
+                MemoryStream stream = new MemoryStream(byteArray);
+                svgCode = XElement.Load(stream, LoadOptions.None);
+                stream.Dispose();
+                fromClipboard = true;
+                if (String.IsNullOrEmpty(svgText) && svgText.IndexOf("Adobe") >= 0)
+                    replaceUnitByPixel = false;
+                unitIsPixel = replaceUnitByPixel;
+                return ConvertSVG(svgCode, "from Clipboard");                   // startConvert(svgCode);
+            }
+            catch (Exception e) {
+                Logger.Error(e, "Error loading SVG-Code ");
+                MessageBox.Show("Error '" + e.ToString() + "' in XML string ");
+                return false;
             }
         }
         public static bool ConvertFromFile(string filePath, BackgroundWorker worker, DoWorkEventArgs e)
@@ -196,7 +197,7 @@ namespace GrblPlotter
                         return ConvertSVG(svgCode, filePath);                   // startConvert(svgCode);
                     }
                     catch (Exception err) {
-                        Logger.Error(err, "Error loading SVG-Code");
+                        Logger.Error(err, "Error loading SVG-Code ");
                         MessageBox.Show("Error '" + err.ToString() + "' in XML file " + filePath + "\r\n\r\nTry to save file with other encoding e.g. UTF-8");
                     }
                 }
@@ -1340,7 +1341,8 @@ namespace GrblPlotter
                     break;
                 default:
                     if (svgComments) Graphic.SetComment(" *********** unknown: " + command.ToString() + " ***** ");
-                    Graphic.SetHeaderInfo(" Unknown element: '" + command.ToString() + "'");
+                    Graphic.SetHeaderInfo(" Unknown SVG element: '" + command.ToString() + "'");
+                    Graphic.SetHeaderMessage(string.Format(" {0}-1101: Unknown SVG element: {1}", CodeMessage.Attention, command.ToString()));
                     break;
             }
             return objCount;
