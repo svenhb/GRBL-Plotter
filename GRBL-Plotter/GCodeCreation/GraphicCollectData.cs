@@ -40,6 +40,7 @@
  * 0221-09-30 setgraphicInformation.FigureEnable = false - if to many figures
  * 2021-11-16 bugfix RemoveIntermediateSteps <- include RemoveShortMoves
  * 2022-04-06 add DragToolModificationTangential, add header info about some applied options
+ * 2022-04-21 line 773 make limit variable: if (completeGraphic.Count > maxCount)
 */
 
 using System;
@@ -68,6 +69,7 @@ namespace GrblPlotter
         private static GroupObject tmpGroup = new GroupObject();
 
         private static List<String> headerInfo = new List<String>();
+        private static List<String> headerMessage = new List<String>();
         private static ItemPath actualPath = new ItemPath();
         private static PathInformation actualPathInfo = new PathInformation();
         private static double[] actualDashArray = new double[0];
@@ -119,6 +121,7 @@ namespace GrblPlotter
             tileGraphicAll = null;
             groupedGraphic = null;
             headerInfo = null;
+            headerMessage = null;
             backgroundWorker = null; // will be set by GCodeFromxxx
             backgroundEvent = null;
             GCode = null;
@@ -202,6 +205,7 @@ namespace GrblPlotter
             actualPath = new ItemPath();
 
             headerInfo = new List<String>();
+            headerMessage = new List<String>();
             actualPathInfo = new PathInformation();
             actualDashArray = new double[0];
             actualDimension = new Dimensions();
@@ -545,6 +549,15 @@ namespace GrblPlotter
             if (logProperties) Logger.Trace("Set HeaderInfo '{0}'", txt);
             headerInfo.Add(txt);
         }
+        public static void SetHeaderMessage(string txt)
+        {
+            if (logProperties) Logger.Trace("Set HeaderMessage '{0}'", txt);
+            if (headerMessage.Count > 0)
+            {   for (int i = 0; i < headerMessage.Count; i++)   // don't add if already existing
+                { if (headerMessage[i] == txt) return; }
+            }
+            headerMessage.Add(txt);
+        }
 
         public static void SetDash(double[] tmp)
         {
@@ -586,13 +599,16 @@ namespace GrblPlotter
             if (completeGraphic.Count == 0) //actualPath.Path.Count == 0)
             {
                 Logger.Warn("◆◆◆CreateGCode - path is empty");
-                return Graphic2GCode.CreateGCode(completeGraphic, headerInfo, graphicInformation); // Graphic.Gcode will be filled, return true
+                return Graphic2GCode.CreateGCode(completeGraphic, headerInfo, headerMessage, graphicInformation); // Graphic.Gcode will be filled, return true
             }
 
             if (actualPath.Path.Count > 1)
                 StopPath("in CreateCode");  // save previous path
 
             Logger.Trace("▼▼▼ Graphic - CreateGCode count:{0}", completeGraphic.Count);
+			
+			if (Properties.Settings.Default.importGCRelative)
+			{ 	SetHeaderMessage(string.Format(" {0}-2010: GCode for relative movement commands G91 will be generated", CodeMessage.Warning));}
 
             int maxOpt = GetOptionsAmount();
             int actOpt = 0;
@@ -730,7 +746,7 @@ namespace GrblPlotter
                 CalculateTangentialAxis();
  			    SetHeaderInfo(string.Format(" Option: Tangential axis: '{0}'", Properties.Settings.Default.importGCTangentialAxis));
 				if ((Properties.Settings.Default.importGCTangentialAxis == "Z") && (Properties.Settings.Default.importGCZEnable))
-					SetHeaderInfo(string.Format(" WARNING: Z is used as tangential axis AND as Pen-up/down axis"));
+                    SetHeaderMessage(string.Format(" {0}-2001: Z is used as tangential axis AND as Pen-up/down axis", CodeMessage.Warning));
             }
             else
             {
@@ -758,6 +774,14 @@ namespace GrblPlotter
                 if (logEnable) Logger.Trace("----OptionZFromWidth {0}{1}", tmp1, tmp2);
             }
 
+
+            if (Properties.Settings.Default.importGraphicWireBenderEnable)
+            {
+                Logger.Info("◆◆◆ Wire bender");
+                WireBender();
+                SetHeaderInfo(" Option: Wire bender");
+            }
+            
             if (Properties.Settings.Default.importGraphicDevelopmentEnable)
             {
                 Logger.Info("◆◆◆ Develop path");
@@ -768,9 +792,12 @@ namespace GrblPlotter
 
             VisuGCode.xyzSize.AddDimensionXY(Graphic.actualDimension);
 
-			if (completeGraphic.Count > 1000)
-			{	Logger.Info("███► CreateGCode disable figure XML code to keep usability (completeGraphic.Count > 1000), count:{0}",completeGraphic.Count);
-				graphicInformation.FigureEnable = false;
+            int maxCount = (int)Properties.Settings.Default.importFigureMaxAmount;
+			if (completeGraphic.Count > maxCount)
+			{	Logger.Info("███► CreateGCode disable figure XML code to keep usability (completeGraphic.Count > {0}), count:{1}", maxCount, completeGraphic.Count);
+                SetHeaderMessage(string.Format(" {0}-2002: high amount of Figure objects, count:{1},  max:{2}", CodeMessage.Warning, completeGraphic.Count.ToString(), maxCount.ToString()));
+                SetHeaderMessage(" Figure codes will be summarized to one Figure.");
+                graphicInformation.FigureEnable = false;
 			}
 			else
 				Logger.Info("●●● CreateGCode completeGraphic.Count:{0}", completeGraphic.Count);
@@ -785,37 +812,37 @@ namespace GrblPlotter
                 {
                     Logger.Info("◄◄◄ Return group tiledGraphic");
                     GroupTileContent(graphicInformation);
-                    return Graphic2GCode.CreateGCode(tiledGraphic, headerInfo, graphicInformation);
+                    return Graphic2GCode.CreateGCode(tiledGraphic, headerInfo, headerMessage, graphicInformation);
                 }
 
                 if (!GroupAllGraphics(completeGraphic, groupedGraphic, graphicInformation))
                 {
                     Logger.Info("◄◄◄ Return completeGraphic");
-                    return Graphic2GCode.CreateGCode(completeGraphic, headerInfo, graphicInformation);
+                    return Graphic2GCode.CreateGCode(completeGraphic, headerInfo, headerMessage, graphicInformation);
                 }
 
                 Logger.Info("◄◄◄ Return groupedGraphic");
-                return Graphic2GCode.CreateGCode(groupedGraphic, headerInfo, graphicInformation, false);   // useTiles
+                return Graphic2GCode.CreateGCode(groupedGraphic, headerInfo, headerMessage, graphicInformation, false);   // useTiles
             }
             if (!cancelByWorker && !graphicInformation.GroupEnable)
             {   // add tile-tags, don't group
                 if (graphicInformation.OptionClipCode && !Properties.Settings.Default.importGraphicClip)
                 {
                     Logger.Info("◄◄◄ Return tiledGraphic");
-                    return Graphic2GCode.CreateGCode(tiledGraphic, headerInfo, graphicInformation);
+                    return Graphic2GCode.CreateGCode(tiledGraphic, headerInfo, headerMessage, graphicInformation);
                 }
             }
 
             if (cancelByWorker)
             {
-                bool tmpResult = Graphic2GCode.CreateGCode(completeGraphic, headerInfo, graphicInformation);
+                bool tmpResult = Graphic2GCode.CreateGCode(completeGraphic, headerInfo, headerMessage, graphicInformation);
                 backgroundEvent.Cancel = true;
                 Logger.Info("◄◄◄ Return completeGraphic - after cancelation");
                 return tmpResult;
             }
 
             Logger.Info("◄◄◄ Return completeGraphic - final");
-            return Graphic2GCode.CreateGCode(completeGraphic, headerInfo, graphicInformation); // Graphic.Gcode will be filled, return true
+            return Graphic2GCode.CreateGCode(completeGraphic, headerInfo, headerMessage, graphicInformation); // Graphic.Gcode will be filled, return true
         }
         // #######################################################################
 
@@ -905,9 +932,9 @@ namespace GrblPlotter
 
             if (graphicInformation.GroupEnable) // group objects by color/width/layer/tile-nr 
             {
-                return Graphic2GCode.CreateGCode(groupedGraphic, headerInfo, graphicInformation, false);    // Grouped graphic - useTiles
+                return Graphic2GCode.CreateGCode(groupedGraphic, headerInfo, headerMessage, graphicInformation, false);    // Grouped graphic - useTiles
             }
-            return Graphic2GCode.CreateGCode(completeGraphic, headerInfo, graphicInformation);			// complete graphic
+            return Graphic2GCode.CreateGCode(completeGraphic, headerInfo, headerMessage, graphicInformation);			// complete graphic
         }
 
         private static void ReverseOrRotatePath(ItemPath tmpItemPath, XyPoint aP, bool reverse)

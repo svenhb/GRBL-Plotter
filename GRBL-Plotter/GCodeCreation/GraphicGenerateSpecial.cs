@@ -23,6 +23,7 @@
  * 2021-09-15 add material side view as background - only in +X direction
  * 2021-12-10 line 447 try/catch
  * 2021-12-10 line 443 add logger
+ * 2022-04-23 add wire bender
 */
 
 
@@ -34,6 +35,141 @@ namespace GrblPlotter
 {
     public static partial class Graphic
     {
+        // wire bender
+        internal static void WireBender()
+        {
+            double rBend = (double)Properties.Settings.Default.importGraphicWireBenderRadius;
+
+            if (logModification) Logger.Trace("...Wire bender, r:{0}",rBend);
+
+            Point pStart, pNow, pNext, pLabel;
+            double fullDistance = 0, angleDiff, angleDiffOld = 0, angle1, angle2;
+        //    double angleDiffOrig;
+            double distanceOrig, distanceCorrected;
+            double angleApply;
+            bool pegActivated = false;
+            int startIndex;
+
+            Point actualXY = new Point(0, 0);
+            ItemPath tmpItemPath = new ItemPath(actualXY, 0);
+            List<PathObject> developGraphic = new List<PathObject>();
+            PathInformation pathInfo = new PathInformation();
+            foreach (PathObject graphicItem in completeGraphic)
+            {
+                if (!(graphicItem is ItemDot))
+                {
+                    ItemPath item = (ItemPath)graphicItem;
+                    pNext = item.Path[item.Path.Count - 1].MoveTo;
+
+                    pathInfo.Id = item.Info.Id;
+                    pathInfo.PathId = item.Info.PathId;
+                    pathInfo.PenColorId = item.Info.PenColorId;
+                    pathInfo.GroupAttributes = item.Info.GroupAttributes;
+                    pathInfo.PathGeometry = item.Info.PathGeometry + "_WireBender";
+
+                    tmpItemPath.Info.CopyData(pathInfo);    // add info to path
+
+                    startIndex = 1;
+
+                    if (logModification) Logger.Trace("...Start isClosed:{0} startIndex:{1}  count:{2}", item.IsClosed, startIndex, item.Path.Count);
+                    for (int i = startIndex; i < item.Path.Count; i++)      				// go through path objects
+                    {
+                        pLabel = pNow = item.Path[i].MoveTo;
+
+                        pStart = item.Path[i - 1].MoveTo; 
+
+                        if (i < (item.Path.Count - 1))
+                            pNext = item.Path[i + 1].MoveTo;
+                        else
+                        {
+                            pNext = item.Path[i - item.Path.Count + 2].MoveTo;
+                        }
+
+                        /* Process Line */
+                        if (item.Path[i] is GCodeLine)
+                        {
+                            distanceOrig = GcodeMath.DistancePointToPoint(pStart, pNow);
+
+                            angle1 = GcodeMath.GetAlpha(pStart, pNow);
+                            angle2 = GcodeMath.GetAlpha(pNow, pNext);
+                            angleDiff = angle2 - angle1;
+
+                            while (angleDiff < -Math.PI) { angleDiff += 2 * Math.PI; }
+                            while (angleDiff > 2 * Math.PI) { angleDiff -= 2 * Math.PI; }
+
+                            distanceCorrected = distanceOrig - (2 * rBend) + ((Math.Abs(angleDiff) + Math.Abs(angleDiffOld)) * rBend / 2);
+                            fullDistance += distanceCorrected;
+
+                            Logger.Trace("Correct length: orig:{0:0.00}  new:{1:0.00}  a1:{2:0.00}  a2:{3:0.00}  diff:{4:0.00}", distanceOrig, distanceCorrected, (angle1 * 180 / Math.PI), (angle2 * 180 / Math.PI), (angleDiff * 180 / Math.PI));
+
+                            angleApply =  Math.Sign(angleDiff) * (Math.Abs(angleDiff) + (double)Properties.Settings.Default.importGraphicWireBenderAngleAddOn*Math.PI/180);
+                            if (!Properties.Settings.Default.importGraphicWireBenderAngleAbsolute)
+                                angleApply *= (1 + (double)Properties.Settings.Default.importGraphicWireBenderAngleAddOn);
+
+                            if (distanceCorrected < 0)
+                            {   FeedAndBend(distanceOrig, angleApply); }
+                            else
+                            {
+                                FeedDistance(distanceCorrected);
+                                BendAngle(angleApply);
+                            }
+
+                            angleDiffOld = angleDiff;
+                        }
+                    }   // for
+                    developGraphic.Add(tmpItemPath);            // add path to graphic
+                    tmpItemPath = new ItemPath(actualXY, 0);    // start new path
+
+        //            pathInfo.PathGeometry = item.Info.PathGeometry + "_Cut2";
+        //            SetHeaderInfo(string.Format(" Id:{0} Length:{1:0.00}", item.Info.Id, fullDistance));
+                }
+            }
+
+            // replace original 2D shape by developed shape
+            completeGraphic.Clear();
+            foreach (PathObject item in developGraphic)     // add tile to full graphic
+                completeGraphic.Add(item);
+            return;
+
+
+            void FeedAndBend(double s, double a)
+            {
+                actualXY.X += s;
+
+                if (!pegActivated)
+                {   tmpItemPath.Add(actualXY, 0, 0);    // set feed
+                    actualXY.Y = a * 180 / Math.PI;
+                    tmpItemPath.Add(actualXY, 1, 0);    // set peg and bend
+                    pegActivated = true;
+                }
+                else
+                    tmpItemPath.Add(actualXY, 1, 0);   // keep peg, keep angle, set feed
+            }
+            void FeedDistance(double s)
+            {
+                if (pegActivated)
+                {
+                    actualXY.Y = 0;
+                    tmpItemPath.Add(actualXY, 0, 0);   // remove peg and turn back
+                    pegActivated = false;
+                }
+                actualXY.X += s;
+                actualXY.Y = 0;
+                tmpItemPath.Add(actualXY, 0, 0);        // add line to path     xy, deepth, angle
+            }
+
+            void BendAngle(double a)
+            {
+                actualXY.Y = a * 180 / Math.PI;
+                tmpItemPath.Add(actualXY, 1, 0);   // set peg and bend
+                pegActivated = true;
+                actualXY.Y = 0;
+                tmpItemPath.Add(actualXY, 0, 0);   // remove peg and turn back
+                pegActivated = false;
+            }
+        }
+
+
         // process development of a figure.
         internal static void Develop()
         {

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@
  * 2021-07-30 check ApplyHatchFill not in constructor (it's only needed for SourceType.SVG)
  * 2021-09-02 add Offset to TileObject
  * 2021-09-21 add new GroupOption 'Label'
+ * 2022-04-23 add OptionSpecialWireBend
 */
 
 using System;
@@ -94,6 +95,7 @@ namespace GrblPlotter
             public bool OptionFeedFromToolTable { get; set; }
 
             public bool OptionSpecialDevelop { get; set; }	// Special conversion
+            public bool OptionSpecialWireBend { get; set; }	// Special conversion
 
             public GraphicInformationClass()
             {
@@ -112,8 +114,10 @@ namespace GrblPlotter
                 DxfImportZ = false;
 
                 OptionSpecialDevelop = Properties.Settings.Default.importGraphicDevelopmentEnable;
-                if (OptionSpecialDevelop)
-                { ResetOptions(true); }
+                OptionSpecialWireBend = Properties.Settings.Default.importGraphicWireBenderEnable;
+
+                if (OptionSpecialWireBend || OptionSpecialDevelop)
+                {   ResetOptions(true); }
                 else
                 {
                     ApplyHatchFill = Properties.Settings.Default.importSVGApplyFill;
@@ -135,7 +139,7 @@ namespace GrblPlotter
                 OptionFeedFromToolTable = Properties.Settings.Default.importGCToolTableUse;
 
                 ConvertArcToLine = Properties.Settings.Default.importGCNoArcs || OptionClipCode || OptionDragTool || OptionHatchFill;// only for SVG: || ApplyHatchFill;
-                ConvertArcToLine = ConvertArcToLine || OptionSpecialDevelop || OptionRampOnPenDown;
+                ConvertArcToLine = ConvertArcToLine || OptionSpecialWireBend || OptionSpecialDevelop || OptionRampOnPenDown;
             }
             public void ResetOptions(bool enableFigures)
             {
@@ -181,7 +185,7 @@ namespace GrblPlotter
             {
                 string importOptions = "";
                 if (DxfImportZ) importOptions += "<DXF Z> ";
-                if (OptionSpecialDevelop) importOptions += "<Special conversion!> ";
+                if (OptionSpecialDevelop|| OptionSpecialWireBend) importOptions += "<Special conversion!> ";
                 if (ConvertArcToLine) importOptions += "<Arc to Line> ";
                 if (OptionZFromWidth) importOptions += "<Depth from width> ";
                 if (OptionDotFromCircle) importOptions += "<Dot from circle> ";

@@ -239,7 +239,7 @@ namespace GrblPlotter
             {
                 if (item is ItemPath opath)               // if Dot: nothing to correct
                 {
-                    Point origMoveTo, newMoveTo, center, shorten;
+                    Point origMoveTo, newMoveTo, shorten;
                     double a, a1, a2;
 
                     if (opath.Path.Count > 1)
@@ -332,7 +332,7 @@ namespace GrblPlotter
             {
                 if (item is ItemPath opath)               // if Dot: nothing to correct
                 {
-                    Point origMoveTo, lastOrigMoveTo, center, shorten;
+                    Point origMoveTo, lastOrigMoveTo;
                     if (opath.Path.Count > 1)
                     {
                         origMoveTo = opath.Path[0].MoveTo;
@@ -368,7 +368,9 @@ namespace GrblPlotter
 								RotatePath(opath);
 							}
 							origMoveTo = opath.Path[0].MoveTo;
-							gcodeDragRadius = GetDragRadius(opath.Path[0]);     //  2020-08-03
+                     ///      opath.Path[0].MoveTo = ExtendPath(opath.Path[0].MoveTo, opath.Path[1].MoveTo, gcodeDragRadius, ExtendDragPath.startLater);
+                     //       opath.Start = opath.Path[0].MoveTo;
+                            gcodeDragRadius = GetDragRadius(opath.Path[0]);     //  2020-08-03
 						}
 
 /*Go from path-end to path-start for easier path-insertion*/
@@ -406,9 +408,9 @@ namespace GrblPlotter
                         opath.End = opath.Path[opath.Path.Count - 1].MoveTo;
  						if (useKnife)
                         {	
-							Point startPath = new Point(opath.Path[0].MoveTo.X-gcodeDragRadius, origMoveTo.Y);
+						//	Point startPath = new Point(opath.Path[0].MoveTo.X-gcodeDragRadius, origMoveTo.Y);
                             if ((logFlags & loggerSelect) > 0) Logger.Trace("CheckArcMove useKnife first-element extend path");
-                            if (!CheckArcMove(opath, 0, startPath, opath.Path[0].MoveTo, opath.Path[1].MoveTo, gcodeDragRadius, 1)) // on path start, expect knife to the right
+                       //     if (!CheckArcMove(opath, 0, startPath, opath.Path[0].MoveTo, opath.Path[1].MoveTo, gcodeDragRadius, 2)) // on path start, expect knife to the right
                             { opath.Path[0].MoveTo = ExtendPath(opath.Path[0].MoveTo, opath.Path[1].MoveTo, gcodeDragRadius, ExtendDragPath.startLater); }
 							opath.Start = opath.Path[0].MoveTo;
 						}
@@ -424,7 +426,7 @@ namespace GrblPlotter
             double a = a2 - a1;
 			if (a > Math.PI) { a -= 2 * Math.PI; }
 			if (a < -Math.PI) { a += 2 * Math.PI; }
-			if ((logFlags & loggerSelect) > 0) Logger.Trace(" Drag {0}) (i-1) x:{1:0.00} y:{2:0.00} (i) x:{3:0.00} y:{4:0.00}  (i+1) x:{5:0.00} y:{6:0.00} a1:{7:0.00} a2:{8:0.00}  a:{9:0.00}", pos, pLast.X, pLast.Y, opath.Path[pos].MoveTo.X, opath.Path[pos].MoveTo.Y, pNext.X, pNext.Y, (a1 * 180 / Math.PI), (a2 * 180 / Math.PI), (a * 180 / Math.PI));
+			if ((logFlags & loggerSelect) > 0) Logger.Trace(" Drag {0}) (i-1) x:{1:0.00} y:{2:0.00} (i) x:{3:0.00} y:{4:0.00}  (i+1) x:{5:0.00} y:{6:0.00} a1:{7:0.00} a2:{8:0.00}  a:{9:0.00}  limit:{10:0.00}", pos, pLast.X, pLast.Y, opath.Path[pos].MoveTo.X, opath.Path[pos].MoveTo.Y, pNext.X, pNext.Y, (a1 * 180 / Math.PI), (a2 * 180 / Math.PI), (a * 180 / Math.PI), limitAngle);
 
 /* if change in angle is too much, insert curve, to match next move angle */
 			if ((Math.Abs(a) * 180 / Math.PI) > limitAngle)

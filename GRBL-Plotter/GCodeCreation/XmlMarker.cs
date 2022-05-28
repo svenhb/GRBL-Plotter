@@ -33,7 +33,7 @@ using System.Text;
 
 namespace GrblPlotter
 {
-    public enum XmlMarkerType { None, Tile, Group, Figure, Path, Pass, Contour, Fill, Line };
+    public enum XmlMarkerType { None, Tile, Group, Figure, Path, Pass, Contour, Fill, Node };
     public static class XmlMarker
     {   // order by hierachy / importance
         public const string TileStart = "<Tile";
@@ -76,7 +76,7 @@ namespace GrblPlotter
             public int ToolNr { get; set; }
             public int CodeSize { get; set; }
             public int CodeArea { get; set; }
-    //        public int PathId { get; set; }
+            //        public int PathId { get; set; }
             public double PathLength { get; set; }
             public double PathArea { get; set; }
             public double PenWidth { get; set; }
@@ -404,7 +404,7 @@ namespace GrblPlotter
             if (element.Contains("PenWidth")) { tmp.PenWidth = GetAttributeValueDouble(element, "PenWidth"); }
             if (element.Contains("OffsetX")) { XyPoint tmpPoint = tmp.Offset; tmpPoint.X = GetAttributeValueDouble(element, "OffsetX"); tmp.Offset = tmpPoint; }
             if (element.Contains("OffsetY")) { XyPoint tmpPoint = tmp.Offset; tmpPoint.Y = GetAttributeValueDouble(element, "OffsetY"); tmp.Offset = tmpPoint; }
-			
+
             return tmp;
         }
 
@@ -683,8 +683,8 @@ namespace GrblPlotter
             if (element != null)
             {
                 tmpTile = SetBlockData(lineStart, element, figureNR);
-                if (logEnable) 
-                    Logger.Trace("AddTile line:{0}  figNr:{1}  xml:{2}",lineStart, figureNR, element);
+                if (logEnable)
+                    Logger.Trace("AddTile line:{0}  figNr:{1}  xml:{2}", lineStart, figureNR, element);
             }
         }
 

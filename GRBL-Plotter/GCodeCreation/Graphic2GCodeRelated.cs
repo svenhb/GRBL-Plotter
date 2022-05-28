@@ -132,12 +132,12 @@ namespace GrblPlotter
 
         private static bool gcodeAuxiliaryValue1Enable = false;
         private static string gcodeAuxiliaryValue1Name = "A";
-        private static float gcodeAuxiliaryValue1Distance = 1;
+    //    private static float gcodeAuxiliaryValue1Distance = 1;
         private static string gcodeAuxiliaryValue1Command = "";
 
         private static bool gcodeAuxiliaryValue2Enable = false;
         private static string gcodeAuxiliaryValue2Name = "A";
-        private static float gcodeAuxiliaryValue2Distance = 1;
+    //    private static float gcodeAuxiliaryValue2Distance = 1;
         private static string gcodeAuxiliaryValue2Command = "";
 
         private static bool gcodeZLeadInEnable = false;
@@ -146,6 +146,7 @@ namespace GrblPlotter
         private static XyPoint gcodeZLeadOutXY = new XyPoint();
 
         private static readonly StringBuilder headerData = new StringBuilder();
+        private static readonly StringBuilder headerMessage = new StringBuilder();
 
         // depth per pass
         private static readonly StringBuilder figureString = new StringBuilder();    // tool path for pen down path
@@ -288,6 +289,7 @@ namespace GrblPlotter
             docDescription = "";
 
             headerData.Clear();
+            headerMessage.Clear();
             figureString.Clear();                                                           // 
 
             lastx = -0.001; lasty = -0.001; lastz = +0.001; lasta = 0;
@@ -505,10 +507,10 @@ namespace GrblPlotter
                 if (GcodeZApply)    // pen up
                 {
 					if (gcodeTangentialEnable && (gcodeTangentialName == "Z"))
-						gcodeValue.AppendFormat("({0})\r\n", " WARNING! Z is used as axis AND as tangential axis ");
+						gcodeValue.AppendFormat("( {0}-3001: Z is used as axis AND as tangential axis )\r\n", CodeMessage.Warning);
 					if ((gcodeAuxiliaryValue1Enable && (gcodeAuxiliaryValue1Name == "Z")) ||
 						(gcodeAuxiliaryValue2Enable && (gcodeAuxiliaryValue2Name == "Z")))						
-						gcodeValue.AppendFormat("({0})\r\n", " WARNING! Z is used as axis AND as auxiliary axis ");
+						gcodeValue.AppendFormat("({0}-3002: Z is used as axis AND as auxiliary axis )\r\n", CodeMessage.Warning);
 					
                     if (gcodeComments) gcodeValue.AppendFormat("({0})\r\n", "Pen up: Z-Axis");
                     float tmpZUp = (float)Properties.Settings.Default.importGCZUp;
@@ -543,7 +545,7 @@ namespace GrblPlotter
                             else cmt = "";
 							if (!PreventSpindle)
 								SpindleOn(gcodeValue, cmt);
-							else gcodeValue.AppendFormat("( Attention: Spindle stays off )\r\n");
+							else gcodeValue.AppendFormat("( {0}-3003: Spindle stays off )\r\n",CodeMessage.Attention);
                         }
                     }
                 }
@@ -1134,7 +1136,7 @@ namespace GrblPlotter
             else gcodeTangentialCommand = "";
         }
 
-        public static void SetAux1Distance(StringBuilder gcodeValue, double distance)
+        public static void SetAux1DistanceCommand(double distance)
         {
             if (gcodeAuxiliaryValue1Enable)
             {
@@ -1144,7 +1146,7 @@ namespace GrblPlotter
             else { gcodeAuxiliaryValue1Command = ""; }
         }
 
-        public static void SetAux2Distance(StringBuilder gcodeValue, double distance)
+        public static void SetAux2DistanceCommand(double distance)
         {
             if (gcodeAuxiliaryValue2Enable)
             {
@@ -1354,8 +1356,12 @@ namespace GrblPlotter
             }
         }
 
-        public static void AddToHeader(string cmt)
-        { headerData.AppendFormat("({0})\r\n", cmt); }
+        public static void AddToHeader(string cmt, bool insideTag = true)
+        {   if (insideTag)
+                headerData.AppendFormat("({0})\r\n", cmt); 
+            else
+                headerMessage.AppendFormat("({0})\r\n", cmt);
+        }
 
         private static string docTitle = "";
         private static string docDescription = "";
@@ -1365,6 +1371,7 @@ namespace GrblPlotter
             string header = string.Format("( {0} by GRBL-Plotter {1} )\r\n", cmt, System.Windows.Forms.Application.ProductVersion.ToString());
             string header_end = headerData.ToString();
             header_end += string.Format("({0} >)\r\n", XmlMarker.HeaderEnd);
+            header_end += headerMessage.ToString();
 
             if (gcodeTangentialEnable)
                 header_end += string.Format("({0} Axis=\"{1}\"/>)\r\n", XmlMarker.TangentialAxis, gcodeTangentialName);
@@ -1553,7 +1560,7 @@ namespace GrblPlotter
                 GcodeZDown = zStep;
                 xml = string.Format("{0} Nr=\"{1}\" step=\"{2:0.000}\" final=\"{3:0.000}\" >", XmlMarker.PassStart, passCount, zStep, finalZ);
                 Comment(gcodeString, xml);
-                Logger.Trace("{0}", xml);
+                if (LoggerTraceImport)  Logger.Trace("{0}", xml);
                 gcodeTangentialCommand = figureStartAlpha;
                 Move(gcodeString, 0, (float)figureStart.X, (float)figureStart.Y, false, ""); LastMovewasG0 = true;
                 gcodeFigureLines--; // avoid double count
@@ -1577,7 +1584,7 @@ namespace GrblPlotter
 
                 gcodeDownUp++;
                 gcodeString.Append(figureString.ToString());                                                        // draw figure
-                Logger.Trace(" intermediateZ Copy code");
+                if (LoggerTraceImport)  Logger.Trace(" intermediateZ Copy code");
 
                 // PenUp
                 if (gcodeIndividualTool)
@@ -1608,9 +1615,6 @@ namespace GrblPlotter
         }
 
         // helper functions
-        private static float Fsqrt(float x) { return (float)Math.Sqrt(x); }
-        private static float Fvmag(float x, float y) { return Fsqrt(x * x + y * y); }
-        private static float Fdistance(float x1, float y1, float x2, float y2) { return Fvmag(x2 - x1, y2 - y1); }
         private static double Fsqrt(double x) { return Math.Sqrt(x); }
         private static double Fvmag(double x, double y) { return Fsqrt(x * x + y * y); }
         private static float Fdistance(double x1, double y1, double x2, double y2) { return (float)Fvmag(x2 - x1, y2 - y1); }

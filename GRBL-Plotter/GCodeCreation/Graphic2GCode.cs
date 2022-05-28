@@ -43,6 +43,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Text;
 using System.Windows;
 using static GrblPlotter.Graphic;
@@ -121,7 +122,7 @@ namespace GrblPlotter
         /// Create GCode from tiles, no further sorting needed.
         /// </summary>		
         private static int mainGroupID = 0;
-        internal static bool CreateGCode(List<Graphic.TileObject> tiledGraphic, List<string> headerInfo, Graphic.GraphicInformationClass graphicInfo)
+        internal static bool CreateGCode(List<Graphic.TileObject> tiledGraphic, List<string> headerInfo, List<string> headerMessage, Graphic.GraphicInformationClass graphicInfo)
         {
             string xmlTag;
             int iDToSet = 1;
@@ -137,11 +138,16 @@ namespace GrblPlotter
                 foreach (string info in headerInfo)             // set header info
                 { Gcode.AddToHeader(info); }
             }
+            if (headerMessage != null)
+            {
+                foreach (string info in headerMessage)     // set header info
+                { Gcode.AddToHeader(info, false); }
+            }
             Gcode.JobStart(finalGcodeString, "StartJob");
 
             if (graphicInfo == null) return false;
             if (tiledGraphic == null) return false;
-            double offsetX, offsetY;
+        //    double offsetX, offsetY;
 
             foreach (TileObject tileObject in tiledGraphic)
             {
@@ -160,9 +166,9 @@ namespace GrblPlotter
                 }
 
                 if (graphicInfo.GroupEnable)
-                    CreateGCode(tileObject.Tile, headerInfo, graphicInfo, true);        // create grouped code
+                    CreateGCode(tileObject.Tile, headerInfo, headerMessage, graphicInfo, true);        // create grouped code
                 else
-                    CreateGCode(tileObject.GroupPath, headerInfo, graphicInfo, true);   // create path code
+                    CreateGCode(tileObject.GroupPath, headerInfo, headerMessage, graphicInfo, true);   // create path code
 
                 Gcode.Comment(finalGcodeString, XmlMarker.TileEnd + ">");
                 iDToSet++;
@@ -176,7 +182,7 @@ namespace GrblPlotter
         /// <summary>
         /// Create GCode from already sorted groups, no further sorting needed.
         /// </summary>		
-        internal static bool CreateGCode(List<Graphic.GroupObject> completeGraphic, List<string> headerInfo, Graphic.GraphicInformationClass graphicInfo, bool useTiles)
+        internal static bool CreateGCode(List<Graphic.GroupObject> completeGraphic, List<string> headerInfo, List<string> headerMessage, Graphic.GraphicInformationClass graphicInfo, bool useTiles)
         {
             if (graphicInfo == null) return false;
 
@@ -192,6 +198,11 @@ namespace GrblPlotter
                 {
                     foreach (string info in headerInfo)     // set header info
                     { Gcode.AddToHeader(info); }
+                }
+                if (headerMessage != null)
+                {
+                    foreach (string info in headerMessage)     // set header info
+                    { Gcode.AddToHeader(info, false); }
                 }
                 Gcode.JobStart(finalGcodeString, "StartJob");
                 mainGroupID = 0;
@@ -220,7 +231,15 @@ namespace GrblPlotter
                 if (logEnable) Logger.Trace("-CreateGCode {0} Id=\"{1}\"{2}>", XmlMarker.GroupStart, iDToSet, groupAttributes);
 
                 if (!graphicInfo.FigureEnable)  // proforma figure tag
-                { Gcode.Comment(finalGcodeString, string.Format("{0} Id=\"{1}\"> ", XmlMarker.FigureStart, iDToSet)); }
+                {
+                    string figColor = "", figWidth = "";
+                    if (groupObject.GroupPath.Count > 0)
+                    {
+                        figColor = string.Format(" PenColor=\"{0}\"", groupObject.GroupPath[0].Info.GroupAttributes[(int)GroupOption.ByColor]);
+                        figWidth = string.Format(" PenWidth=\"{0}\"", groupObject.GroupPath[0].Info.GroupAttributes[(int)GroupOption.ByWidth]);
+                    }
+                    Gcode.Comment(finalGcodeString, string.Format("{0} Id=\"{1}\" {2} {3}>", XmlMarker.FigureStart, iDToSet, figColor, figWidth)); 
+                }
 
                 if (logEnable) Logger.Trace("CreateGCode-Group  toolNr:{0}  name:{1}", groupObject.ToolNr, groupObject.ToolName);
                 ToolChange(groupObject.ToolNr, groupObject.ToolName);   // add tool change commands (if enabled) and set XYFeed etc.
@@ -265,7 +284,7 @@ namespace GrblPlotter
         /// <summary>
         /// Create GCode from already sorted paths, no further sorting needed.
         /// </summary>		
-        internal static bool CreateGCode(List<Graphic.PathObject> completeGraphic, List<string> headerInfo, Graphic.GraphicInformationClass graphicInfo, bool useTiles = false)
+        internal static bool CreateGCode(List<Graphic.PathObject> completeGraphic, List<string> headerInfo, List<string> headerMessage, Graphic.GraphicInformationClass graphicInfo, bool useTiles = false)
         {
             if (graphicInfo == null) return false;
 
@@ -282,7 +301,12 @@ namespace GrblPlotter
                     foreach (string info in headerInfo)     // set header info
                     { Gcode.AddToHeader(info); }
                 }
-				setAux1FinalDistance = 0;
+                if (headerMessage != null)
+                {
+                    foreach (string info in headerMessage)     // set header info
+                    { Gcode.AddToHeader(info, false); }
+                }
+                setAux1FinalDistance = 0;
                 setAux2FinalDistance = 0;	
            }
 
@@ -388,12 +412,17 @@ namespace GrblPlotter
                     Gcode.GcodeZDown = (float)PathData.Path[0].Depth;
                     //  Logger.Info("ProcessPathObject OptionSpecialDevelop start Z:{0:0.000}", PathData.Path[0].Depth);
                 }
+                if (graphicInfo.OptionSpecialWireBend)
+                {
+                    InsertCode(Properties.Settings.Default.importGraphicWireBenderCodePegOff);
+                }
 
                 pathObject.FigureId = StartPath(PathData, toolNr, toolCmt, "PD");
                 PathDashArray = new double[PathData.DashArray.Length];
                 PathData.DashArray.CopyTo(PathDashArray, 0);
 
                 double newZ = Gcode.GcodeZDown;     // default
+                bool optionSpecialWireBendOn = false;
 
                 int index;
                 GCodeMotion entity;
@@ -418,8 +447,19 @@ namespace GrblPlotter
                         newZ = Gcode.GcodeZDown = (float)entity.Depth;
                         //            Logger.Info("ProcessPathObject OptionSpecialDevelop index Z:{0:0.000}", newZ);
                     }
-
-					if (setAux1Enable) {   CalculateAux1(entity); }
+                    if (graphicInfo.OptionSpecialWireBend)
+                    {
+                        if ((entity.Depth > 0.9) && !optionSpecialWireBendOn)
+                        {   optionSpecialWireBendOn = true;
+                            InsertCode(Properties.Settings.Default.importGraphicWireBenderCodePegOn); 
+                        }
+                        else if ((entity.Depth < 0.1) && optionSpecialWireBendOn)
+                        {
+                            optionSpecialWireBendOn = false;
+                            InsertCode(Properties.Settings.Default.importGraphicWireBenderCodePegOff);
+                        }
+                    }
+                    if (setAux1Enable) {   CalculateAux1(entity); }
 					if (setAux2Enable) {   CalculateAux2(entity); }
 					
                     /* Create Line */
@@ -432,6 +472,14 @@ namespace GrblPlotter
                         /* Create Arc */
                         Arc(ArcData.IsCW, ArcData.MoveTo, ArcData.CenterIJ, ArcData.AngleStart, ArcData.Angle);//, "");// entity.comment);
                     }
+             /*       if (graphicInfo.OptionSpecialWireBend)
+                    {
+                        if ((entity.Depth < 0.1) && optionSpecialWireBendOn)
+                        {
+                            optionSpecialWireBendOn = false;
+                            InsertCode(Properties.Settings.Default.importGraphicWireBenderCodePegOff);
+                        }
+                    }*/
                 }
                 /* create ramp on pen up */
                 if (Properties.Settings.Default.importGCZEnable && Properties.Settings.Default.importGraphicLeadOutEnable)
@@ -449,12 +497,36 @@ namespace GrblPlotter
                     Gcode.SetZEndPos(startPenUp);
                 }
                 StopPath("PU");
+                if (graphicInfo.OptionSpecialWireBend)
+                {
+                    InsertCode(Properties.Settings.Default.importGraphicWireBenderCodeCut);
+                }
+
             }
             Gcode.GcodeZDown = origZ;
             if (logDetailed) Logger.Trace("ProcessPathObject end");
         }
 
-		private static void CalculateAux1(GCodeMotion entity)
+        private static void InsertCode(string code)
+        {
+            if (!string.IsNullOrEmpty(code))
+            {
+                string[] commands;
+                if (File.Exists(code))
+                {
+                    string fileCmd = File.ReadAllText(code);
+                    commands = fileCmd.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                }
+                else
+                {   commands = code.Split(';'); }
+
+                foreach (string cmd in commands)
+                {
+                    gcodeString.AppendLine(cmd);
+                }
+            }
+        }
+        private static void CalculateAux1(GCodeMotion entity)
 		{   
 			int setAux1ZMode = Properties.Settings.Default.importGCAux1ZMode; 
 			double setAux1ZFactor = (double)Properties.Settings.Default.importGCAux1ZFactor;
@@ -529,7 +601,7 @@ namespace GrblPlotter
             string groupVal4 = string.Format(" ToolName=\"{0}\"", groupObject.ToolName);
             string groupVal5 = string.Format(" PathLength=\"{0:0.0}\"", groupObject.PathLength);
             string groupVal6 = string.Format(" PathArea=\"{0:0.0}\"", groupObject.PathArea);
-            return string.Format("{0}{1}{2}{3}{4}", groupVal1, groupVal2, groupVal3, groupVal4, groupVal5, groupVal6);
+            return string.Format("{0}{1}{2}{3}{4}{5}", groupVal1, groupVal2, groupVal3, groupVal4, groupVal5, groupVal6);
         }
         private static StringBuilder GetFigureAttributes(PathObject pathObject)
         {
@@ -697,8 +769,8 @@ namespace GrblPlotter
             double setangle = 180 * tangAngle / Math.PI;
             if (logCoordinates) Logger.Trace(" MoveTo X{0:0.000} Y{1:0.000} A{2:0.00}", coordxy.X, coordxy.Y, setangle);
             Gcode.SetTangential(gcodeString, setangle, true);
-            Gcode.SetAux1Distance(gcodeString, setAux1FinalDistance);
-            Gcode.SetAux2Distance(gcodeString, setAux2FinalDistance);
+            Gcode.SetAux1DistanceCommand(setAux1FinalDistance);
+            Gcode.SetAux2DistanceCommand(setAux2FinalDistance);
 			
             if (useAlternitveZ) //Properties.Settings.Default.importDepthFromWidthRamp|| Properties.Settings.Default.importDXFUseZ)
                 Gcode.Move(gcodeString, 1, coordxy.X, coordxy.Y, (float)newZ, true, cmt);
@@ -888,8 +960,8 @@ namespace GrblPlotter
             if (gnr > 2) { offset = -offset; }
 
             Gcode.SetTangential(gcodeString, 180 * tangStartRad / Math.PI, true);
-            Gcode.SetAux1Distance(gcodeString, setAux1FinalDistance);
-            Gcode.SetAux2Distance(gcodeString, setAux2FinalDistance);
+            Gcode.SetAux1DistanceCommand(setAux1FinalDistance);
+            Gcode.SetAux2DistanceCommand(setAux2FinalDistance);
 			
             if (logCoordinates) Logger.Trace("   Start Arc alpha{0:0.000} offset{1:0.000}  ", 180 * tangStartRad / Math.PI, 180 * offset / Math.PI);
 

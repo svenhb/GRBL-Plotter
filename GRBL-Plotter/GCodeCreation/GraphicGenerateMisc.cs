@@ -56,14 +56,21 @@ namespace GrblPlotter
                         {  
 							apath.Path[i].Depth = PointDistance(pStart,pEnd); 	// distance between a and b
 						}
-						else if (apath.Path[i] is GCodeArc)
+                        else if (apath.Path[i] is GCodeArc aPathArc)
+                        {   // is arc
+                            Point center = new Point(pStart.X + aPathArc.CenterIJ.X, pStart.Y + aPathArc.CenterIJ.Y);
+                            double r = PointDistance(center, pEnd);
+                            ArcProperties tmp = GcodeMath.GetArcMoveProperties((XyPoint)pStart, (XyPoint)pEnd, aPathArc.CenterIJ.X, aPathArc.CenterIJ.Y, aPathArc.IsCW);
+                            aPathArc.Depth = Math.Abs(tmp.angleDiff * r);
+                        }
+                /*        else if (apath.Path[i] is GCodeArc)
 						{   // is arc
                             Point center = new Point(pStart.X + ((GCodeArc)apath.Path[i]).CenterIJ.X, pStart.Y + ((GCodeArc)apath.Path[i]).CenterIJ.Y);
                             double r = PointDistance(center, pEnd);
                             ArcProperties tmp = GcodeMath.GetArcMoveProperties((XyPoint)pStart, (XyPoint)pEnd, ((GCodeArc)apath.Path[i]).CenterIJ.X, ((GCodeArc)apath.Path[i]).CenterIJ.Y, ((GCodeArc)apath.Path[i]).IsCW);
                             apath.Path[i].Depth = Math.Abs(tmp.angleDiff * r);
                     //        Logger.Info("CalculateDistances arc a0:{0:0.00} a1:{1:0.00} diff:{2:0.00}  r:{3:0.00}", tmp.angleStart,tmp.angleEnd,tmp.angleDiff,r);
-                        }
+                        }*/
                     }
                 }				
 			}			
@@ -711,7 +718,7 @@ namespace GrblPlotter
                     double angleLast = 0;
                     bool isLineNow = false;
                     bool isLineLast = false;
-					bool removeMinDistance;
+				//	bool removeMinDistance;
                     if (PathData.Path.Count > 2)
                     {
                         for (int i = (PathData.Path.Count - 2); i >= 0; i--)
