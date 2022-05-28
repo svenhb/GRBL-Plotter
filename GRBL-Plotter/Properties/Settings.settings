@@ -344,8 +344,14 @@
     <Setting Name="ctrlCommentOut" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="ctrlConnectMarlin" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="ctrlDIYShowFeedback" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ctrlImportSkip" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
     </Setting>
     <Setting Name="ctrlLaserMode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -707,6 +713,18 @@
     <Setting Name="gui2DWidthTool" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.2</Value>
     </Setting>
+    <Setting Name="gui2DDuplicateOffsetX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="gui2DDuplicateOffsetY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="gui2DDuplicateAddDimensionX" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="gui2DDuplicateAddDimensionY" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="guiBackgroundImageEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -858,7 +876,7 @@
       <Value Profile="(Default)">180</Value>
     </Setting>
     <Setting Name="guiJoystickSize" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">180</Value>
+      <Value Profile="(Default)">120</Value>
     </Setting>
     <Setting Name="guiJoystickXYSpeed1" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">10</Value>
@@ -1118,6 +1136,9 @@
     <Setting Name="importFiducialSkipCode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importFigureMaxAmount" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
     <Setting Name="importGCAddComments" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -1188,6 +1209,9 @@
       <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="importGCDragKnifePercentEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCDragKnifeUse" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGCFooter" Type="System.String" Scope="User">
@@ -1361,6 +1385,9 @@
     <Setting Name="importGCZIncStartZero" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importGCZPreventSpindle" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="importGCZUp" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
@@ -1526,6 +1553,36 @@
     <Setting Name="importGraphicTileY" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">200</Value>
     </Setting>
+    <Setting Name="importGraphicWireBenderAngleAbsolute" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGraphicWireBenderAngleAddOn" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="importGraphicWireBenderAxisAngle" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Y</Value>
+    </Setting>
+    <Setting Name="importGraphicWireBenderAxisFeed" Type="System.String" Scope="User">
+      <Value Profile="(Default)">X</Value>
+    </Setting>
+    <Setting Name="importGraphicWireBenderCodeCut" Type="System.String" Scope="User">
+      <Value Profile="(Default)">( cut wire )</Value>
+    </Setting>
+    <Setting Name="importGraphicWireBenderCodePegOff" Type="System.String" Scope="User">
+      <Value Profile="(Default)">( disable bending pegs )</Value>
+    </Setting>
+    <Setting Name="importGraphicWireBenderCodePegOn" Type="System.String" Scope="User">
+      <Value Profile="(Default)">( activate bending pegs )</Value>
+    </Setting>
+    <Setting Name="importGraphicWireBenderDiameter" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="importGraphicWireBenderEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGraphicWireBenderRadius" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
     <Setting Name="importGroupItem" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
@@ -1546,6 +1603,9 @@
     </Setting>
     <Setting Name="importImageGrayAsZ" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importImageGrayVectorize" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importImageHeight" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">50</Value>
@@ -1776,7 +1836,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="mainFormSize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">900, 640</Value>
+      <Value Profile="(Default)">900, 680</Value>
     </Setting>
     <Setting Name="mainFormSplitDistance" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">296</Value>
@@ -1934,6 +1994,9 @@
     <Setting Name="projectorDisplayScale" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
+    <Setting Name="projectorMonitorIndex" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
     <Setting Name="projectorShowDimension" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -1999,6 +2062,9 @@
     </Setting>
     <Setting Name="rotarySubstitutionX" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="selectionPropertyIncrement" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="serial3Ready" Type="System.String" Scope="User">
       <Value Profile="(Default)">ready</Value>
@@ -2080,27 +2146,6 @@
     </Setting>
     <Setting Name="useCaseLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">?</Value>
-    </Setting>
-    <Setting Name="importImageGrayVectorize" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="projectorMonitorIndex" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">1</Value>
-    </Setting>
-    <Setting Name="importGCZPreventSpindle" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="ctrlConnectMarlin" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="importGCDragKnifeUse" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="selectionPropertyIncrement" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">10</Value>
-    </Setting>
-    <Setting Name="ctrlImportSkip" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">50</Value>
     </Setting>
   </Settings>
 </SettingsFile>

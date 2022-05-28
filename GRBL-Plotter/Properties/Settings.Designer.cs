@@ -1393,6 +1393,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ctrlConnectMarlin {
+            get {
+                return ((bool)(this["ctrlConnectMarlin"]));
+            }
+            set {
+                this["ctrlConnectMarlin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool ctrlDIYShowFeedback {
             get {
@@ -1400,6 +1412,18 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["ctrlDIYShowFeedback"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public decimal ctrlImportSkip {
+            get {
+                return ((decimal)(this["ctrlImportSkip"]));
+            }
+            set {
+                this["ctrlImportSkip"] = value;
             }
         }
         
@@ -2845,6 +2869,54 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public decimal gui2DDuplicateOffsetX {
+            get {
+                return ((decimal)(this["gui2DDuplicateOffsetX"]));
+            }
+            set {
+                this["gui2DDuplicateOffsetX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal gui2DDuplicateOffsetY {
+            get {
+                return ((decimal)(this["gui2DDuplicateOffsetY"]));
+            }
+            set {
+                this["gui2DDuplicateOffsetY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool gui2DDuplicateAddDimensionX {
+            get {
+                return ((bool)(this["gui2DDuplicateAddDimensionX"]));
+            }
+            set {
+                this["gui2DDuplicateAddDimensionX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool gui2DDuplicateAddDimensionY {
+            get {
+                return ((bool)(this["gui2DDuplicateAddDimensionY"]));
+            }
+            set {
+                this["gui2DDuplicateAddDimensionY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool guiBackgroundImageEnable {
             get {
@@ -3450,7 +3522,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("180")]
+        [global::System.Configuration.DefaultSettingValueAttribute("120")]
         public int guiJoystickSize {
             get {
                 return ((int)(this["guiJoystickSize"]));
@@ -4494,6 +4566,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        public decimal importFigureMaxAmount {
+            get {
+                return ((decimal)(this["importFigureMaxAmount"]));
+            }
+            set {
+                this["importFigureMaxAmount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool importGCAddComments {
             get {
@@ -4777,6 +4861,18 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["importGCDragKnifePercentEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCDragKnifeUse {
+            get {
+                return ((bool)(this["importGCDragKnifeUse"]));
+            }
+            set {
+                this["importGCDragKnifeUse"] = value;
             }
         }
         
@@ -5466,6 +5562,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCZPreventSpindle {
+            get {
+                return ((bool)(this["importGCZPreventSpindle"]));
+            }
+            set {
+                this["importGCZPreventSpindle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public decimal importGCZUp {
             get {
@@ -6126,6 +6234,126 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importGraphicWireBenderAngleAbsolute {
+            get {
+                return ((bool)(this["importGraphicWireBenderAngleAbsolute"]));
+            }
+            set {
+                this["importGraphicWireBenderAngleAbsolute"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public decimal importGraphicWireBenderAngleAddOn {
+            get {
+                return ((decimal)(this["importGraphicWireBenderAngleAddOn"]));
+            }
+            set {
+                this["importGraphicWireBenderAngleAddOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Y")]
+        public string importGraphicWireBenderAxisAngle {
+            get {
+                return ((string)(this["importGraphicWireBenderAxisAngle"]));
+            }
+            set {
+                this["importGraphicWireBenderAxisAngle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("X")]
+        public string importGraphicWireBenderAxisFeed {
+            get {
+                return ((string)(this["importGraphicWireBenderAxisFeed"]));
+            }
+            set {
+                this["importGraphicWireBenderAxisFeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("( cut wire )")]
+        public string importGraphicWireBenderCodeCut {
+            get {
+                return ((string)(this["importGraphicWireBenderCodeCut"]));
+            }
+            set {
+                this["importGraphicWireBenderCodeCut"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("( disable bending pegs )")]
+        public string importGraphicWireBenderCodePegOff {
+            get {
+                return ((string)(this["importGraphicWireBenderCodePegOff"]));
+            }
+            set {
+                this["importGraphicWireBenderCodePegOff"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("( activate bending pegs )")]
+        public string importGraphicWireBenderCodePegOn {
+            get {
+                return ((string)(this["importGraphicWireBenderCodePegOn"]));
+            }
+            set {
+                this["importGraphicWireBenderCodePegOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public decimal importGraphicWireBenderDiameter {
+            get {
+                return ((decimal)(this["importGraphicWireBenderDiameter"]));
+            }
+            set {
+                this["importGraphicWireBenderDiameter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGraphicWireBenderEnable {
+            get {
+                return ((bool)(this["importGraphicWireBenderEnable"]));
+            }
+            set {
+                this["importGraphicWireBenderEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public decimal importGraphicWireBenderRadius {
+            get {
+                return ((decimal)(this["importGraphicWireBenderRadius"]));
+            }
+            set {
+                this["importGraphicWireBenderRadius"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public int importGroupItem {
             get {
@@ -6205,6 +6433,18 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["importImageGrayAsZ"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importImageGrayVectorize {
+            get {
+                return ((bool)(this["importImageGrayVectorize"]));
+            }
+            set {
+                this["importImageGrayVectorize"] = value;
             }
         }
         
@@ -7122,7 +7362,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("900, 640")]
+        [global::System.Configuration.DefaultSettingValueAttribute("900, 680")]
         public global::System.Drawing.Size mainFormSize {
             get {
                 return ((global::System.Drawing.Size)(this["mainFormSize"]));
@@ -7758,6 +7998,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal projectorMonitorIndex {
+            get {
+                return ((decimal)(this["projectorMonitorIndex"]));
+            }
+            set {
+                this["projectorMonitorIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool projectorShowDimension {
             get {
@@ -8017,6 +8269,18 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["rotarySubstitutionX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public decimal selectionPropertyIncrement {
+            get {
+                return ((decimal)(this["selectionPropertyIncrement"]));
+            }
+            set {
+                this["selectionPropertyIncrement"] = value;
             }
         }
         
@@ -8341,90 +8605,6 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["useCaseLastLoaded"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool importImageGrayVectorize {
-            get {
-                return ((bool)(this["importImageGrayVectorize"]));
-            }
-            set {
-                this["importImageGrayVectorize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public decimal projectorMonitorIndex {
-            get {
-                return ((decimal)(this["projectorMonitorIndex"]));
-            }
-            set {
-                this["projectorMonitorIndex"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool importGCZPreventSpindle {
-            get {
-                return ((bool)(this["importGCZPreventSpindle"]));
-            }
-            set {
-                this["importGCZPreventSpindle"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool ctrlConnectMarlin {
-            get {
-                return ((bool)(this["ctrlConnectMarlin"]));
-            }
-            set {
-                this["ctrlConnectMarlin"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool importGCDragKnifeUse {
-            get {
-                return ((bool)(this["importGCDragKnifeUse"]));
-            }
-            set {
-                this["importGCDragKnifeUse"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public decimal selectionPropertyIncrement {
-            get {
-                return ((decimal)(this["selectionPropertyIncrement"]));
-            }
-            set {
-                this["selectionPropertyIncrement"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("50")]
-        public decimal ctrlImportSkip {
-            get {
-                return ((decimal)(this["ctrlImportSkip"]));
-            }
-            set {
-                this["ctrlImportSkip"] = value;
             }
         }
     }
