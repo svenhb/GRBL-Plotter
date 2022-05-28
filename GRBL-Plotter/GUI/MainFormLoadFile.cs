@@ -220,7 +220,7 @@ namespace GrblPlotter
         private void NewCodeEnd(bool imported = false)
         {
             int objectCount = Graphic.GetObjectCount();
-            int maxObjects = 20000;
+            int maxObjects = 10000;
             if (!imported)
             {
                 objectCount = fCTBCode.LinesCount;     // no extra handling for GCode
@@ -249,14 +249,21 @@ namespace GrblPlotter
             }
             else
             {
+                int lineCount = 0;
                 using (VisuWorker f = new VisuWorker())					// GCodeVisuWorker.cs
                 {
                     if (!imported)
                     { f.SetTmpGCode(fCTBCode.Lines); }
                     else
-                    { f.SetTmpGCode(); }								// take code from Graphic.GCode.ToString()
+                    { lineCount = f.SetTmpGCode(); }								// take code from Graphic.GCode.ToString()
                     f.ShowDialog(this);									// perform VisuGCode.GetGCodeLines via worker
-                    if (imported) { fCTBCode.Text = "PLEASE WAIT !!!\r\nDisplaying a large number of lines\r\ntakes some seconds."; }
+                    if (imported) {
+                        string info = "PLEASE WAIT !!!\r\nDisplaying a large number of lines,\r\nthis may takes some seconds.\r\n\r\n" +
+                            "Check [Setup - Program behavior - Load G-Code]\r\nto reduce time by skipping display options\r\nwhen exceeding a number of x-thousand lines.";
+                        
+                        info += string.Format("\r\n{0,8} Lines in file\r\n{1,8} limit to skip display options", lineCount, (Properties.Settings.Default.ctrlImportSkip * 1000));
+                        fCTBCode.Text = info;
+                    }
                 }
             }
 			
@@ -281,8 +288,8 @@ namespace GrblPlotter
             lbInfo.BackColor = SystemColors.Control;
             this.Cursor = Cursors.Default;
 
-            cmsPicBoxReverseSelectedPath.Enabled = false;
-            cmsPicBoxRotateSelectedPath.Enabled = false;
+            EnableBlockCommands(false);
+            VisuGCode.MarkSelectedFigure(-1);
 
             CalculatePicScaling();              // update picScaling
             markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (picScaling));
@@ -383,7 +390,7 @@ namespace GrblPlotter
                 return true;
             }
             else
-                Logger.Info("▀▀▀▀▀ Load file {0}", fileName);
+                Logger.Info("▀▀▀▀▀▀▀▀▀▀ Load file START {0}", fileName);
 
 
             StatusStripSet(1, string.Format("[{0}: {1}]", Localization.GetString("statusStripeFileLoad"), fileName), Color.Lime);
@@ -427,10 +434,10 @@ namespace GrblPlotter
             }
 
             else if (extensionDrill.Contains(ext))
-            { StartConvert(Graphic.SourceType.Drill, fileName); fileLoaded = true; }
+            {   StartConvert(Graphic.SourceType.Drill, fileName); fileLoaded = true; }
 
             else if (extensionGerber.Contains(ext))
-            { StartConvert(Graphic.SourceType.Gerber, fileName); fileLoaded = true; }
+            {   StartConvert(Graphic.SourceType.Gerber, fileName); fileLoaded = true; }
 
             else if (extensionHPGL.Contains(ext))
             {
@@ -481,22 +488,35 @@ namespace GrblPlotter
                 if (File.Exists(fileName))
                 {
 					try	// https://stackoverflow.com/questions/9759697/reading-a-file-used-by-another-process
-                    {	
-						using (var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-						using (var sr = new StreamReader(fs, GetEncoding(fileName))) {
-							string tmp = sr.ReadToEnd();
-							LoadFromClipboard(tmp);		//File.ReadAllText(fileName));
-							fileLoaded = true;
-							this.Text = appName + " | Source: " + fileName;
-						}
-					}
+                    {
+                        FileStream fs = null;
+                        //    using (var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                        try
+                        {
+                            fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                            using (var sr = new StreamReader(fs, GetEncoding(fileName)))
+                            {
+                                string tmp = sr.ReadToEnd();
+                                LoadFromClipboard(tmp);     //File.ReadAllText(fileName));
+                                fileLoaded = true;
+                                this.Text = appName + " | Source: " + fileName;
+                            }
+                        }
+                        finally
+                        {
+                            if (fs != null)
+                                fs.Dispose();
+                        }
+                    }
 					catch (IOException)
 					{
                         ShowIoException("LoadFile", fileName);
 						return false;
 					}
-					catch (Exception err) { 
-						throw;		// unknown exception...
+					catch (Exception err)
+                    {
+                        Logger.Error(err, " LoadFile 2 ", fileName);
+                        throw;		// unknown exception...
 					}
                }
             }
@@ -504,7 +524,7 @@ namespace GrblPlotter
             if (ext == ".url")
             { GetURL(fileName); fileLoaded = true; }
 
-            Logger.Info("▄▄▄▄▄ Load file fileLoaded:{0}", fileLoaded);
+            Logger.Info("▄▄▄▄▄▄▄▄▄▄ Load file END fileLoaded:{0}", fileLoaded);
             if (fileLoaded)
             {
                 SaveRecentFile(fileName);
@@ -575,9 +595,9 @@ namespace GrblPlotter
             request.Method = "HEAD";
             try
             { response = (HttpWebResponse)request.GetResponse(); }
-            catch (WebException ex)
+            catch (WebException err)
             {
-                Logger.Error("TbURL_TextChanged URL not valid:{0}", url);
+                Logger.Error(err, "TbURL_TextChanged URL not valid:{0}", url);
                 return;
             }
             finally
@@ -593,7 +613,7 @@ namespace GrblPlotter
             EventCollector.SetImport("Iu"+ext.Substring(1));
             importOptions = "";                                                  //   String ext = Path.GetExtension(fileName).ToLower();
                                                                                  //   MessageBox.Show("-" + ext + "-");			
-            Logger.Info("▀▀▀▀▀ LoadFile URL: {0}", tBURL.Text);
+            Logger.Info("▀▀▀▀▀▀▀▀▀▀ Load file START URL: {0}", tBURL.Text);
             MainTimer.Stop();
             MainTimer.Start();
 
@@ -675,6 +695,198 @@ namespace GrblPlotter
             tBURL.Text = "";
             tBURL.TextChanged += TbURL_TextChanged;
         }
+
+
+        // paste from clipboard SVG or image
+        private void LoadFromClipboard(string text = "")
+        {
+            //         Logger.Info(" loadFromClipboard");
+            NewCodeStart();         // LoadFromClipboard
+            importOptions = "";
+            bool fromClipboard = true;
+            if (text.Length > 1)
+                fromClipboard = false;
+            string svg_format1 = "image/x-inkscape-svg";
+            string svg_format2 = "image/svg+xml";
+            IDataObject iData;
+
+            try {
+				iData = Clipboard.GetDataObject();
+			}
+			catch (Exception err)
+			{
+				Logger.Error(err,"LoadFromClipboard GetDataObject ");
+				MessageBox.Show("Could not get clipboard data:\r\n" + err,"Error");
+				return;
+			}
+            MemoryStream stream = new MemoryStream();
+            if ((iData.GetDataPresent(DataFormats.Text)) || (!fromClipboard))            // not working anymore?
+            {
+                Logger.Info(" loadFromClipboard 1");
+                string source = "Textfile";
+                string checkContent = "";
+                if (fromClipboard)
+                {   
+                    checkContent = (String)iData.GetData(DataFormats.Text); 
+                    source = "Clipboard"; 
+				}
+                else
+                    checkContent = text;
+
+                if (checkContent.StartsWith("http"))
+                {
+                    tBURL.Text = checkContent;
+                    return;
+                }
+                
+                string[] checkLines = checkContent.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                int posSVG = checkContent.IndexOf("<svg ");
+                if ((posSVG >= 0) && (posSVG < 200))
+                {
+                    string txt = "";
+                    if (!(checkContent.IndexOf("<?xml version") >= 0))
+                        txt += "<?xml version=\"1.0\"?>\r\n";
+                    if (fromClipboard)
+                    {
+                        stream = (MemoryStream)iData.GetData("text");
+                        byte[] bytes = stream.ToArray();
+                        if (stream != null)
+                            stream.Dispose();
+                        txt += System.Text.Encoding.Default.GetString(bytes);
+                    }
+                    else
+                        txt += checkContent;
+                    if (!(txt.IndexOf("xmlns") >= 0))
+                        txt = txt.Replace("<svg", "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" ");
+
+                    UseCaseDialog();
+                    NewCodeStart();             // LoadFromClipboard 2
+
+                    GCodeFromSvg.ConvertFromText(txt.Trim((char)0x00), true);    // replaceUnitByPixel = true,  import as mm
+                    // perhaps use backgroundworker?                 using (ImportWorker f = new ImportWorker())   //MainFormImportWorker
+
+                    SetFctbCodeText(Graphic.GCode.ToString());      // loadFromClipboard
+                    Properties.Settings.Default.counterImportSVG += 1;
+                    if (fCTBCode.LinesCount <= 1)
+                    { fCTBCode.Text = "( Code conversion failed )"; return; }
+                    NewCodeEnd(true);               // LoadFromClipboard SVG code was imported, no need to check for bad GCode
+
+                    this.Text = appName + " | Source: from " + source;
+                    SetLastLoadedFile("Data from " + source + ": SVG", "");
+                    lbInfo.Text = "SVG from " + source;
+                    if (Properties.Settings.Default.importSVGRezise) importOptions = "<SVG Resize> " + importOptions;
+                    ShowImportOptions();
+                }
+                else if ((checkLines[0].Trim() == "0") && (checkLines[1].Trim() == "SECTION"))
+                {
+                    string txt = "";
+                    if (fromClipboard)
+                    {
+                        stream = (MemoryStream)iData.GetData("text");
+                        byte[] bytes = stream.ToArray();
+                        if (stream != null)
+                            stream.Dispose();
+                        txt = System.Text.Encoding.Default.GetString(bytes);
+                    }
+                    else
+                        txt += checkContent;
+
+                    UseCaseDialog();
+                    NewCodeStart();                 // LoadFromClipboard 3
+
+                    GCodeFromDxf.ConvertFromText(txt);
+                    // perhaps use backgroundworker?                 using (ImportWorker f = new ImportWorker())   //MainFormImportWorker
+
+                    SetFctbCodeText(Graphic.GCode.ToString());      // loadFromClipboard
+
+                    Properties.Settings.Default.counterImportDXF += 1;
+                    if (fCTBCode.LinesCount <= 1)
+                    { fCTBCode.Text = "( Code conversion failed )"; return; }
+                    NewCodeEnd(true);               // LoadFromClipboard DXF code was imported, no need to check for bad GCode
+
+                    this.Text = appName + " | Source: from " + source;
+                    SetLastLoadedFile("Data from " + source + ": DXF", "");
+                    lbInfo.Text = "DXF from " + source;
+                    ShowImportOptions();
+                }
+                else
+                {
+                    NewCodeStart();                 // LoadFromClipboard 4
+                    if (fromClipboard)
+                        fCTBCode.Text = (String)iData.GetData(DataFormats.Text);
+                    else
+                        fCTBCode.Text = text;
+                    Properties.Settings.Default.counterImportGCode += 1;
+                    NewCodeEnd();                      // LoadFromClipboard GCode
+                    SetLastLoadedFile("Data from " + source + ": Text", "");
+                    lbInfo.Text = "GCode from " + source;
+                }
+            }
+            else if (iData.GetDataPresent(svg_format1) || iData.GetDataPresent(svg_format2))
+            {
+                Logger.Info(" loadFromClipboard 2");
+
+                if (iData.GetDataPresent(svg_format1))
+                    stream = (MemoryStream)iData.GetData(svg_format1);
+                else
+                    stream = (MemoryStream)iData.GetData(svg_format2);
+
+                byte[] bytes = stream.ToArray();
+                string txt = System.Text.Encoding.Default.GetString(bytes);
+
+                UseCaseDialog();
+                NewCodeStart();                 // LoadFromClipboard 5
+
+                GCodeFromSvg.ConvertFromText(txt, false);       // replaceUnitByPixel = false
+                // perhaps use backgroundworker?                 using (ImportWorker f = new ImportWorker())   //MainFormImportWorker
+
+                SetFctbCodeText(Graphic.GCode.ToString());      // loadFromClipboard
+
+                Properties.Settings.Default.counterImportSVG += 1;
+                if (fCTBCode.LinesCount <= 1)
+                { fCTBCode.Text = "( Code conversion failed )"; return; }
+                NewCodeEnd(true);               // LoadFromClipboard SVG code was imported, no need to check for bad GCode
+
+                this.Text = appName + " | Source: from Clipboard";
+                SetLastLoadedFile("Data from Clipboard: SVG", "");
+                lbInfo.Text = "SVG from clipboard";
+                if (Properties.Settings.Default.importSVGRezise) importOptions = "<SVG Resize> " + importOptions;
+                ShowImportOptions();
+            }
+            else if (iData.GetDataPresent(DataFormats.Bitmap))
+            {
+                Logger.Info(" loadFromClipboard 3");
+                if (_image_form == null)
+                {
+                    _image_form = new GCodeFromImage(true);
+                    _image_form.FormClosed += FormClosed_ImageToGCode;
+                    _image_form.btnGenerate.Click += GetGCodeFromImage;      // assign btn-click event
+                    _image_form.BtnReloadPattern.Click += LoadLastGraphic;
+                    _image_form.CBoxPatternFiles.SelectedIndexChanged += LoadSelectedGraphicImage;
+                }
+                else
+                {
+                    _image_form.Visible = false;
+                }
+                _image_form.Show(this);
+                _image_form.WindowState = FormWindowState.Normal;
+                _image_form.LoadClipboard();
+                Properties.Settings.Default.counterImportImage += 1;
+                SetLastLoadedFile("Data from Clipboard: Image", "");
+            }
+            else
+            {
+                Logger.Info(" loadFromClipboard 4");
+                string tmp = "";
+                foreach (string format in iData.GetFormats())
+                { tmp += format + "\r\n"; }
+                MessageBox.Show(tmp);
+            }
+            if (stream != null)
+                stream.Dispose();
+        }
+
+
 
         //schalter if source from setup oder picbox-cms 
         public void ReStartConvertFileFromSetup(object sender, EventArgs e)   	// event from setup form
@@ -855,7 +1067,7 @@ namespace GrblPlotter
                 return;
             }
             NewCodeEnd(true);               // StartConvert code was imported, no need to check for bad GCode
-            FoldCode();
+            FoldCodeOnLoad();
         //    UpdateControlEnables(); 
 			if (_camera_form != null)
 			{	_camera_form.NewDrawing();}
@@ -874,7 +1086,7 @@ namespace GrblPlotter
 						break;
 					case 2:
 						SetFctbCodeText(Graphic.GCode.ToString());  // loadTimer_Tick
-						FoldCode();
+						FoldCodeOnLoad();
 						loadTimerStep++;
 						break;
 					default:
@@ -903,17 +1115,22 @@ namespace GrblPlotter
                 Logger.Info("▄▄    {0}", importOptions);
             }
         }
-        private void FoldCode()
-        {
-            if (Properties.Settings.Default.importCodeFold)
-            {
-                if (Properties.Settings.Default.importGCZIncEnable)
-                { foldLevel = 0; }
-                else
-                { fCTBCode.CollapseAllFoldingBlocks(); foldLevel = 1; }
-                Logger.Trace("◯◯◯ foldCode level: {0}", foldLevel);
-            }
-        }
+		
+		private void FoldCodeOnLoad()
+		{
+			if (Properties.Settings.Default.importCodeFold)
+			{
+				if (XmlMarker.GetFigureCount() > 20)		// show only groups
+				{	FoldBlocks1(); foldLevelSelected = 1;}
+				else
+				{	if (Properties.Settings.Default.importGCZIncEnable)	// break down to single passes
+					{ 	FoldBlocks3(); foldLevelSelected = 3;}
+					else
+					{	FoldBlocks2(); foldLevelSelected = 2;}			// just figures
+				}
+				Logger.Trace("◯◯◯ FoldCodeOnLoad level: {0}", foldLevelSelected);
+			}
+		}
 
         private void LoadGcode()
         {
@@ -937,13 +1154,23 @@ namespace GrblPlotter
                     EventCollector.StoreException("LoadGcode 2nd try open file: " +err.Message+" ---");
 
                     // https://stackoverflow.com/questions/9759697/reading-a-file-used-by-another-process
-                    using (var fs = new FileStream(tbFile.Text, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-                    using (var sr = new StreamReader(fs, GetEncoding(tbFile.Text)))
+                    FileStream fs = null;
+                    //    using (var fs = new FileStream(tbFile.Text, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                    try
                     {
-                        fCTBCode.Text = info;
-                        fCTBCode.Refresh();
-                        string tmp = sr.ReadToEnd();
-                        fCTBCode.Text = tmp;
+                        fs = new FileStream(tbFile.Text, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                        using (var sr = new StreamReader(fs, GetEncoding(tbFile.Text)))
+                        {
+                            fCTBCode.Text = info;
+                            fCTBCode.Refresh();
+                            string tmp = sr.ReadToEnd();
+                            fCTBCode.Text = tmp;
+                        }
+                    }
+                    finally
+                    {
+                        if (fs != null)
+                            fs.Dispose();
                     }
                 }
 
@@ -1085,7 +1312,8 @@ namespace GrblPlotter
         // switch language
         private static void TryRestart()
         {
-            Logger.Info(" Change Language to {0}", Properties.Settings.Default.guiLanguage);
+            Properties.Settings.Default.Save();
+			Logger.Info(" Change Language to {0}", Properties.Settings.Default.guiLanguage);
             if (MessageBox.Show("Restart now?", "Attention", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 Logger.Info("  tryRestart()");
@@ -1093,7 +1321,8 @@ namespace GrblPlotter
                 EventCollector.StoreException("Language change;");
                 EventCollector.SetEnd();
                 Application.Restart();
-                Application.ExitThread();  // 20200716
+                Application.ExitThread();  	// 20200716
+				Environment.Exit(0);		// 2022-04-29
             }
         }
 
@@ -1181,9 +1410,6 @@ namespace GrblPlotter
                     e.SuppressKeyPress = true;
                 }
 
-                else if (e.KeyCode == Keys.E)
-                {   expandGCode = !expandGCode; }
-
                 else if ((e.KeyCode == Keys.Right) || (e.KeyCode == Keys.NumPad6))
                 {   MoveView(-1,0); }
                 else if ((e.KeyCode == Keys.Left) || (e.KeyCode == Keys.NumPad4))
@@ -1193,6 +1419,15 @@ namespace GrblPlotter
                 else if ((e.KeyCode == Keys.Down) || (e.KeyCode == Keys.NumPad2))
                 {   MoveView(0, -1); }
 
+                if ((e.KeyCode == Keys.D) && (e.Modifiers == Keys.Control))
+                {
+                    if (figureIsMarked)
+                        DuplicateSelectedPath();
+                }
+        /*        else if ((e.KeyCode == Keys.E) && (e.Modifiers == Keys.Alt))
+                {
+                        ToggleBlockExpansion();                   
+                }*/
                 e.SuppressKeyPress = true;
             }
             if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)         // ctrl V = paste
@@ -1216,7 +1451,7 @@ namespace GrblPlotter
                 e.SuppressKeyPress = true;
             }
             else if (fCTBCode.Focused)
-                return;
+               return;
 
             e.SuppressKeyPress = ProcessHotkeys(e.KeyData.ToString(), true);
             //   e.SuppressKeyPress = true;
@@ -1240,186 +1475,6 @@ namespace GrblPlotter
             ProcessHotkeys(e.KeyData.ToString(), false);
         }
 
-        // paste from clipboard SVG or image
-        private void LoadFromClipboard(string text = "")
-        {
-            //         Logger.Info(" loadFromClipboard");
-            NewCodeStart();         // LoadFromClipboard
-            importOptions = "";
-            bool fromClipboard = true;
-            if (text.Length > 1)
-                fromClipboard = false;
-            string svg_format1 = "image/x-inkscape-svg";
-            string svg_format2 = "image/svg+xml";
-            IDataObject iData;
-
-            try {
-				iData = Clipboard.GetDataObject();
-			}
-			catch (Exception err)
-			{
-				Logger.Error(err,"LoadFromClipboard GetDataObject ");
-				MessageBox.Show("Could not get clipboard data:\r\n" + err,"Error");
-				return;
-			}
-            MemoryStream stream = new MemoryStream();
-            if ((iData.GetDataPresent(DataFormats.Text)) || (!fromClipboard))            // not working anymore?
-            {
-                Logger.Info(" loadFromClipboard 1");
-                string source = "Textfile";
-                string checkContent = "";
-                if (fromClipboard)
-                {   //if (iData..ContainsText(DataFormats.Text))
-					{	checkContent = (String)iData.GetData(DataFormats.Text); source = "Clipboard"; }
-					//else
-					//{	return;}
-				}
-                else
-                    checkContent = text;
-
-                if (checkContent.StartsWith("http"))
-                {
-                    tBURL.Text = checkContent;
-                    return;
-                }
-                
-                string[] checkLines = checkContent.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-                int posSVG = checkContent.IndexOf("<svg ");
-                if ((posSVG >= 0) && (posSVG < 200))
-                {
-                    string txt = "";
-                    if (!(checkContent.IndexOf("<?xml version") >= 0))
-                        txt += "<?xml version=\"1.0\"?>\r\n";
-                    if (fromClipboard)
-                    {
-                        //                       MemoryStream stream = new MemoryStream();
-                        stream = (MemoryStream)iData.GetData("text");
-                        byte[] bytes = stream.ToArray();
-                        stream.Dispose();
-                        txt += System.Text.Encoding.Default.GetString(bytes);
-                    }
-                    else
-                        txt += checkContent;
-                    if (!(txt.IndexOf("xmlns") >= 0))
-                        txt = txt.Replace("<svg", "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" ");
-
-                    UseCaseDialog();
-                    NewCodeStart();             // LoadFromClipboard 2
-                    GCodeFromSvg.ConvertFromText(txt.Trim((char)0x00), true);    // replaceUnitByPixel = true,  import as mm
-                    SetFctbCodeText(Graphic.GCode.ToString());      // loadFromClipboard
-                    Properties.Settings.Default.counterImportSVG += 1;
-                    if (fCTBCode.LinesCount <= 1)
-                    { fCTBCode.Text = "( Code conversion failed )"; return; }
-                    NewCodeEnd(true);               // LoadFromClipboard SVG code was imported, no need to check for bad GCode
-
-                    this.Text = appName + " | Source: from " + source;
-                    SetLastLoadedFile("Data from " + source + ": SVG", "");
-                    lbInfo.Text = "SVG from " + source;
-                    if (Properties.Settings.Default.importSVGRezise) importOptions = "<SVG Resize> " + importOptions;
-                    ShowImportOptions();
-                }
-                else if ((checkLines[0].Trim() == "0") && (checkLines[1].Trim() == "SECTION"))
-                {
-                    string txt = "";
-                    if (fromClipboard)
-                    {
-                        //          MemoryStream stream = new MemoryStream();
-                        stream = (MemoryStream)iData.GetData("text");
-                        byte[] bytes = stream.ToArray();
-                        stream.Dispose();
-                        txt = System.Text.Encoding.Default.GetString(bytes);
-                    }
-                    else
-                        txt += checkContent;
-
-                    UseCaseDialog();
-                    NewCodeStart();                 // LoadFromClipboard 3
-                    GCodeFromDxf.ConvertFromText(txt);
-                    SetFctbCodeText(Graphic.GCode.ToString());      // loadFromClipboard
-
-                    Properties.Settings.Default.counterImportDXF += 1;
-                    if (fCTBCode.LinesCount <= 1)
-                    { fCTBCode.Text = "( Code conversion failed )"; return; }
-                    NewCodeEnd(true);               // LoadFromClipboard DXF code was imported, no need to check for bad GCode
-
-                    this.Text = appName + " | Source: from " + source;
-                    SetLastLoadedFile("Data from " + source + ": DXF", "");
-                    lbInfo.Text = "DXF from " + source;
-                    ShowImportOptions();
-                }
-                else
-                {
-                    NewCodeStart();                 // LoadFromClipboard 4
-                    if (fromClipboard)
-                        fCTBCode.Text = (String)iData.GetData(DataFormats.Text);
-                    else
-                        fCTBCode.Text = text;
-                    Properties.Settings.Default.counterImportGCode += 1;
-                    NewCodeEnd();                      // LoadFromClipboard GCode
-                    SetLastLoadedFile("Data from " + source + ": Text", "");
-                    lbInfo.Text = "GCode from " + source;
-                }
-            }
-            else if (iData.GetDataPresent(svg_format1) || iData.GetDataPresent(svg_format2))
-            {
-                Logger.Info(" loadFromClipboard 2");
-                //    MemoryStream stream = new MemoryStream();
-                if (iData.GetDataPresent(svg_format1))
-                    stream = (MemoryStream)iData.GetData(svg_format1);
-                else
-                    stream = (MemoryStream)iData.GetData(svg_format2);
-
-                byte[] bytes = stream.ToArray();
-       //         stream.Dispose();
-                string txt = System.Text.Encoding.Default.GetString(bytes);
-
-                UseCaseDialog();
-                NewCodeStart();                 // LoadFromClipboard 5
-                GCodeFromSvg.ConvertFromText(txt, false);       // replaceUnitByPixel = false
-                SetFctbCodeText(Graphic.GCode.ToString());      // loadFromClipboard
-
-                Properties.Settings.Default.counterImportSVG += 1;
-                if (fCTBCode.LinesCount <= 1)
-                { fCTBCode.Text = "( Code conversion failed )"; return; }
-                NewCodeEnd(true);               // LoadFromClipboard SVG code was imported, no need to check for bad GCode
-
-                this.Text = appName + " | Source: from Clipboard";
-                SetLastLoadedFile("Data from Clipboard: SVG", "");
-                lbInfo.Text = "SVG from clipboard";
-                if (Properties.Settings.Default.importSVGRezise) importOptions = "<SVG Resize> " + importOptions;
-                ShowImportOptions();
-            }
-            else if (iData.GetDataPresent(DataFormats.Bitmap))
-            {
-                Logger.Info(" loadFromClipboard 3");
-                if (_image_form == null)
-                {
-                    _image_form = new GCodeFromImage(true);
-                    _image_form.FormClosed += FormClosed_ImageToGCode;
-                    _image_form.btnGenerate.Click += GetGCodeFromImage;      // assign btn-click event
-                    _image_form.BtnReloadPattern.Click += LoadLastGraphic;
-                    _image_form.CBoxPatternFiles.SelectedIndexChanged += LoadSelectedGraphicImage;
-                }
-                else
-                {
-                    _image_form.Visible = false;
-                }
-                _image_form.Show(this);
-                _image_form.WindowState = FormWindowState.Normal;
-                _image_form.LoadClipboard();
-                Properties.Settings.Default.counterImportImage += 1;
-                SetLastLoadedFile("Data from Clipboard: Image", "");
-            }
-            else
-            {
-                Logger.Info(" loadFromClipboard 4");
-                string tmp = "";
-                foreach (string format in iData.GetFormats())
-                { tmp += format + "\r\n"; }
-                MessageBox.Show(tmp);
-            }
-            stream.Dispose();
-        }
 
         // Save settings
         public void SaveSettings()
@@ -1732,7 +1787,7 @@ namespace GrblPlotter
 					XyzPoint tmp = new XyzPoint(0, 0, 0);
 					int codeLine = 0;
 					string parserState = "";
-					string info1 = "";
+				//	string info1 = "";
 					while (content.Read())
 					{
 						if (!content.IsStartElement())
@@ -1762,7 +1817,7 @@ namespace GrblPlotter
                     if (setPause)
                     {
                         fCTBCodeClickedLineNow = codeLine;
-                        FctbCodeMarkLine();
+                        FctbSetBookmark();
                         _serial_form.parserStateGC = parserState;
                         _serial_form.posPause = tmp;
                         if (parserState != "")

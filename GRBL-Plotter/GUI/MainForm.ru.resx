@@ -265,14 +265,6 @@
     <value>Остановить текущее беговое движение</value>
     <comment>groupBox_Jogging</comment>
   </data>
-  <data name="cBTool.Text" xml:space="preserve">
-    <value>Инструмент в шпинделе</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="cBSpindle.Text" xml:space="preserve">
-    <value>Шпиндель</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="virtualJoystickA.ToolTip" xml:space="preserve">
     <value>Бег трусцой 4-й оси</value>
     <comment>groupBox_Jogging</comment>
@@ -861,18 +853,6 @@
   <data name="cBServoButtons.Text" xml:space="preserve">
     <value>Показать перо вверх / вниз</value>
   </data>
-  <data name="btnPenDown.Text" xml:space="preserve">
-    <value>Pen Down</value>
-  </data>
-  <data name="btnPenDown.ToolTip" xml:space="preserve">
-    <value>Используйте настройки из Setup-Servo-PWM</value>
-  </data>
-  <data name="btnPenUp.Text" xml:space="preserve">
-    <value>Pen Up</value>
-  </data>
-  <data name="btnPenUp.ToolTip" xml:space="preserve">
-    <value>Используйте настройки из Setup-Servo-PWM</value>
-  </data>
   <data name="cmsPicBoxMoveToMarkedPosition.Text" xml:space="preserve">
     <value>Переместиться в отмеченную позицию G0</value>
   </data>
@@ -920,12 +900,15 @@
   </data>
   <data name="cmsCodeBlocksFold.AccessibleDescription" xml:space="preserve">
     <value>Блоки кода представляют собой G-код, окруженный XML-элементами, такими как «Группа» или «Рисунок».</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodeBlocksFold.Text" xml:space="preserve">
     <value>Сложите кодовые блоки</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodeBlocksMove.AccessibleDescription" xml:space="preserve">
     <value>Блоки кода представляют собой G-код, окруженный XML-элементами, такими как «Группа» или «Рисунок».</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="cmsFCTBMoveSelectedCodeBlockMostUp.Text" xml:space="preserve">
     <value>Переместить выбранный блок кода вверх</value>
@@ -1142,5 +1125,53 @@
   </data>
   <data name="cmsPicBoxShowProperties.Text" xml:space="preserve">
     <value>Свойства выбранного пути</value>
+  </data>
+  <data name="cmsPicBoxMoveToMarkedPosition.ToolTipText" xml:space="preserve">
+    <value>Переместите инструмент в отмеченное положение</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxZeroXYAtMarkedPosition.ToolTipText" xml:space="preserve">
+    <value>Установите фактическую систему координат на ноль в отмеченной позиции</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxPasteFromClipboard.ToolTipText" xml:space="preserve">
+    <value>Обработка данных из буфера обмена, таких как SVG, DXF, TXT (SVG или GCode) или изображения</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxReloadFile.ToolTipText" xml:space="preserve">
+    <value>Перезагрузить последний загруженный файл</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxShowProperties.ToolTipText" xml:space="preserve">
+    <value>Показать или изменить свойства выбранной фигуры или группы</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxDuplicatePath.ToolTipText" xml:space="preserve">
+    <value>Дублировать фигуру или группу с необязательным смещением (отметьте [Настройка - Внешний вид программы - 2D-вид / Редактор]</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxCropSelectedPath.ToolTipText" xml:space="preserve">
+    <value>Обрезать (освободить) выбранную фигуру или группу</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxReverseSelectedPath.ToolTipText" xml:space="preserve">
+    <value>Обратный порядок узлов пути - возможен только после импорта графики</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxRotateSelectedPath.ToolTipText" xml:space="preserve">
+    <value>Повернуть начальный узел выбранного пути в положение щелчка — возможно только после импорта графики.</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxSetGCodeAsBackground.ToolTipText" xml:space="preserve">
+    <value>Скопировать выбранный путь в фон</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="copyContentTroClipboardToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Копировать 2D-изображение в буфер обмена</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="toggleBlockExpansionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Автоматическое складывание блоков</value>
+    <comment>Editor_Menu</comment>
   </data>
 </root>

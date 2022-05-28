@@ -225,7 +225,8 @@ namespace GrblPlotter
                 if (backgroundPath != null)
                     VisuGCode.pathBackground = (GraphicsPath)backgroundPath.Clone();
                 NewCodeEnd();       // InsertCodeFromForm with insertCode
-                FoldCode();
+             //   FoldCodeOnLoad();
+                FoldBlocksByLevel(foldLevelSelected);
             }
             else
             {
@@ -239,7 +240,8 @@ namespace GrblPlotter
                 if (backgroundPath != null)
                     VisuGCode.pathBackground = (GraphicsPath)backgroundPath.Clone();
                 NewCodeEnd();       // InsertCodeFromForm without insertCode
-                FoldCode();
+            //    FoldCodeOnLoad();
+                FoldBlocksByLevel(foldLevelSelected);
             }
             importOptions = Graphic.graphicInformation.ListOptions();
             if (importOptions.Length > 1)
@@ -314,7 +316,7 @@ namespace GrblPlotter
                     penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown;
             //    SetLastLoadedFile("from image", "");
                 NewCodeEnd();                   // GetGCodeFromImage
-                FoldCode();
+                FoldCodeOnLoad();
                 Properties.Settings.Default.counterImportImage += 1;
                 EventCollector.SetImport("Iimg");
                 CalculatePicScaling();          // update picScaling
@@ -898,4 +900,142 @@ namespace GrblPlotter
             TransformEnd();
         }
     }
+	
+	public static class ModifyCode
+	{
+        private static Point posX = new Point(), posY = new Point();	// used to store text-start, -end
+        private static double X,Y;
+     //   private static int G;
+        private static bool wasSetX, wasSetY;
+        private static bool wasSetG0123;
+
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
+        /* add offset if G0,1,2,3 to X and Y, keep rest of line */
+        public static string ApplyXYOffsetSimple(string code, double offsetX, double offsetY)
+		{
+			string singleLine, tokenBefore, tokenAfter;
+			string[] lines =  code.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            wasSetG0123 = false;
+            X = -1;Y = -1;  // G = -1;
+
+            Logger.Info("ApplyXYOffsetSimple  lines:{0}  X:{1:0.00}  Y:{2:0.00}", lines.Length, offsetX, offsetY);
+
+            for (int i=0; i < lines.Length; i++)
+			{
+                wasSetX = false; wasSetY = false;
+                singleLine = lines[i];
+				ParseLine(singleLine);	// extract data from GCode
+				if (wasSetG0123)
+				{
+                    if (wasSetX)
+                    {   X += offsetX;
+                        tokenBefore = lines[i].Substring(posX.X, posX.Y - posX.X + 1);
+                        tokenAfter = string.Format("X{0}", Gcode.FrmtNum(X));
+                        singleLine = singleLine.Replace(tokenBefore, tokenAfter).Replace(',', '.');
+	             //       Logger.Info("ApplyXYOffsetSimple orig:'{0}'   new:'{1}'   tokenBefore:'{2}'   tokenAfter:'{3}'   start:{4}    end:{5}", lines[i], singleLine, tokenBefore, tokenAfter,  posX.X, posX.Y);
+
+                    }
+                    if (wasSetY)
+                    {
+                        Y += offsetY;
+                        tokenBefore = lines[i].Substring(posY.X, posY.Y - posY.X + 1);
+                        tokenAfter = string.Format("Y{0}", Gcode.FrmtNum(Y));
+                        singleLine = singleLine.Replace(tokenBefore, tokenAfter).Replace(',', '.');
+ 	             //       Logger.Info("ApplyXYOffsetSimple orig:'{0}'   new:'{1}'   tokenBefore:'{2}'   tokenAfter:'{3}'   start:{4}    end:{5}", lines[i], singleLine, tokenBefore, tokenAfter,  posY.X, posY.Y);
+                    }
+                    lines[i] = singleLine;
+                }
+            }
+            code = string.Join("\r\n", lines);
+            return code;
+		}
+	
+        private static void ParseLine(string line)
+        {
+            char cmd = '\0';
+            string num = "";
+            bool comment = false;
+            double value;
+            line = line.ToUpper().Trim();   
+			int posStart=0, posEnd=0, pos=-1;
+            #region parse
+            if ((!(line.StartsWith("$") || line.StartsWith("(") || line.StartsWith(";"))) && (line.Length > 1))//do not parse grbl comments
+            {
+                try
+                {
+                    foreach (char cil in line)
+                    {
+                        pos++;
+                        if (cil == ';')                        	// comment?
+                            break;
+                        if (cil == '(')                        	// comment starts
+                        { comment = true; }
+                        if (!comment)
+                        {
+                            if (System.Char.IsLetter(cil))     	// if char is letter
+                            {
+                                if (cmd != '\0')               	// and command is set, process previous command
+                                {
+                                    if (double.TryParse(num, System.Globalization.NumberStyles.Float, System.Globalization.NumberFormatInfo.InvariantInfo, out value))
+                                        ParseGCodeToken(cmd, value, posStart, posEnd);
+                                }
+                                cmd = cil;                     	// set actual command
+                                num = "";						// clear digits
+                                posStart = pos;					// update command pos
+                            }
+                            else if (System.Char.IsNumber(cil) || cil == '.' || cil == '-')  // char is not letter but number
+                            {
+                                num += cil;						// collect digits
+                                posEnd = pos;					// update last pos
+                            }
+                        }
+
+                        if (cil == ')')                        	// comment ends
+                        { comment = false; }
+                    }
+                    if (cmd != '\0')                         	// finally after for-each process final command and number
+                    {   if (double.TryParse(num, System.Globalization.NumberStyles.Float, System.Globalization.NumberFormatInfo.InvariantInfo, out value))
+                            ParseGCodeToken(cmd, value, posStart, posEnd);
+                    }
+                }
+                catch (Exception ) { }
+            }
+            #endregion
+        }
+
+        private static void ParseGCodeToken(char cmd, double value, int pstart, int pend)
+        {
+        //    Logger.Trace("parseGCodeToken {0}  {1}   {2}   {3}",cmd, value, pstart, pend);
+            switch (System.Char.ToUpper(cmd))
+            {
+                case 'X':
+                    X = value;
+                    wasSetX = true;
+                    posX.X = pstart;
+                    posX.Y = pend;
+                    break;
+                case 'Y':
+                    Y = value;
+                    wasSetY = true;
+                    posY.X = pstart;
+                    posY.Y = pend;
+                    break;
+                case 'G':
+                    if (value <= 3)                                 // Motion Mode 0-3
+                    {
+                        wasSetG0123 = true;
+                    }
+                    else
+                    {
+                        wasSetG0123 = false;
+                    }
+                    // G =(int)value;
+                    break;
+            }
+        }
+    }
+	
+	
 }

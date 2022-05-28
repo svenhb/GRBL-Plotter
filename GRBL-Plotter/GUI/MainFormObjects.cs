@@ -46,11 +46,11 @@ namespace GrblPlotter
 
     public static class Datapath
     {   // https://stackoverflow.com/questions/66430190/how-do-i-get-access-to-c-program-files-in-c-sharp
-        public static string Application = System.Windows.Forms.Application.StartupPath;
+        internal static string Application = System.Windows.Forms.Application.StartupPath;
         //        public static string AppDataFolder = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.CommonAppDataPath);   // without vers.Nr
         // https://stackoverflow.com/questions/10563148/where-is-the-correct-place-to-store-my-application-specific-data#:~:text=AppData%20(maps%20to%20C%3A%5C,their%20save%20games%20into%20Environment.
         // https://docs.microsoft.com/en-us/dotnet/api/system.environment.specialfolder?view=netframework-4.7.2
-        public static string AppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);   // will be changed by MainFormUpdate()-GetAppDataPath
+        internal static string AppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);   // will be changed by MainFormUpdate()-GetAppDataPath
         public static string Fonts { get => AppDataFolder + "\\data\\fonts"; }
         public static string Tools { get => AppDataFolder + "\\data\\tools"; }
         public static string Scripts { get => AppDataFolder + "\\data\\scripts"; }
@@ -83,7 +83,7 @@ namespace GrblPlotter
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
-        public static Encoding[] SaveEncoding = { Encoding.Unicode, Encoding.ASCII, Encoding.UTF8, Encoding.GetEncoding("iso-8859-1") }; 
+        internal static Encoding[] SaveEncoding = { Encoding.Unicode, Encoding.ASCII, Encoding.UTF8, Encoding.GetEncoding("iso-8859-1") }; 
         internal static Dictionary<string, double> variable = new Dictionary<string, double>();
         public static string InsertVariable(string line)//, Dictionary<string, double> variable)
         {
@@ -225,6 +225,8 @@ namespace GrblPlotter
             //     return (Math.Abs(a.X - b.X) <= grbl.resolution) && (Math.Abs(a.Y - b.Y) <= grbl.resolution) && (Math.Abs(a.Z - b.Z) <= grbl.resolution);
             return (Gcode.IsEqual(a.X, b.X) && Gcode.IsEqual(a.Y, b.Y) && Gcode.IsEqual(a.Z, b.Z));
         }
+        public PointF ToPointF()
+        { return new PointF((float)X, (float)Y); }
 
 
         public string Print(bool singleLines, bool full)

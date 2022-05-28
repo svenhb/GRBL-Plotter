@@ -314,18 +314,6 @@
     <value>وقف حركة الركض الحالية</value>
     <comment>groupBox_Jogging</comment>
   </data>
-  <data name="cBTool.Text" xml:space="preserve">
-    <value>الأداة في المغزل</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="cBCoolant.Text" xml:space="preserve">
-    <value>المبرد</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="cBSpindle.Text" xml:space="preserve">
-    <value>المغزل CW</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="gB_Jogging.Text" xml:space="preserve">
     <value>التحكم / الركض</value>
     <comment>groupBox_Jogging</comment>
@@ -890,18 +878,6 @@
   <data name="cBServoButtons.Text" xml:space="preserve">
     <value>إظهار القلم لأعلى / لأسفل</value>
   </data>
-  <data name="btnPenDown.Text" xml:space="preserve">
-    <value>القلم لأسفل</value>
-  </data>
-  <data name="btnPenDown.ToolTip" xml:space="preserve">
-    <value>استخدم الإعدادات من Setup-Servo-PWM</value>
-  </data>
-  <data name="btnPenUp.Text" xml:space="preserve">
-    <value>قلم لأعلى</value>
-  </data>
-  <data name="btnPenUp.ToolTip" xml:space="preserve">
-    <value>استخدم الإعدادات من Setup-Servo-PWM</value>
-  </data>
   <data name="cmsPicBoxMoveToMarkedPosition.Text" xml:space="preserve">
     <value>الانتقال إلى الموضع المميز G0</value>
   </data>
@@ -949,12 +925,15 @@
   </data>
   <data name="cmsCodeBlocksFold.AccessibleDescription" xml:space="preserve">
     <value>كتل التعليمات البرمجية هي G- كود محاطة بعناصر XML مثل "مجموعة" من "الشكل"</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodeBlocksFold.Text" xml:space="preserve">
     <value>أضعاف كتل رمز</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodeBlocksMove.AccessibleDescription" xml:space="preserve">
     <value>كتل التعليمات البرمجية هي G- كود محاطة بعناصر XML مثل "مجموعة" من "الشكل"</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="cmsFCTBMoveSelectedCodeBlockMostUp.Text" xml:space="preserve">
     <value>نقل كتلة التعليمات البرمجية المحددة لأعلى</value>
@@ -1175,5 +1154,53 @@
   </data>
   <data name="cmsPicBoxShowProperties.Text" xml:space="preserve">
     <value>خصائص المسار المحدد</value>
+  </data>
+  <data name="cmsPicBoxMoveToMarkedPosition.ToolTipText" xml:space="preserve">
+    <value>انقل الأداة إلى الموضع المحدد</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxZeroXYAtMarkedPosition.ToolTipText" xml:space="preserve">
+    <value>اضبط نظام الإحداثيات الفعلي على صفر في الموضع المحدد</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxPasteFromClipboard.ToolTipText" xml:space="preserve">
+    <value>معالجة البيانات من الحافظة ، مثل SVG أو DXF أو TXT (SVG أو GCode) أو الصورة</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxReloadFile.ToolTipText" xml:space="preserve">
+    <value>إعادة تحميل آخر ملف تم تحميله</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxShowProperties.ToolTipText" xml:space="preserve">
+    <value>إظهار أو تحرير خصائص الشكل أو المجموعة المحددة</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxDuplicatePath.ToolTipText" xml:space="preserve">
+    <value>شكل أو مجموعة مكررة مع إزاحة اختيارية (حدد [الإعداد - مظهر البرنامج - عرض ثنائي الأبعاد / محرر]</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxCropSelectedPath.ToolTipText" xml:space="preserve">
+    <value>اقتصاص (تحرير) الشكل أو المجموعة المحددة</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxReverseSelectedPath.ToolTipText" xml:space="preserve">
+    <value>ترتيب عكسي لعقدة المسار - ممكن فقط بعد استيراد الرسم</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxRotateSelectedPath.ToolTipText" xml:space="preserve">
+    <value>قم بتدوير عقدة البداية للمسار المحدد للنقر فوق الموضع - ممكن فقط بعد استيراد الرسم</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxSetGCodeAsBackground.ToolTipText" xml:space="preserve">
+    <value>نسخ المسار المحدد إلى الخلفية</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="copyContentTroClipboardToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>نسخ صورة ثنائية الأبعاد إلى الحافظة</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="toggleBlockExpansionToolStripMenuItem.Text" xml:space="preserve">
+    <value>الطي التلقائي للكتل</value>
+    <comment>Editor_Menu</comment>
   </data>
 </root>

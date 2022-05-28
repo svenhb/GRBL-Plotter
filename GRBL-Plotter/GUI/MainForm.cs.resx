@@ -129,6 +129,7 @@
   </data>
   <data name="cmsCodeBlocksFold.AccessibleDescription" xml:space="preserve">
     <value>Kódové bloky jsou G-kód obklopený prvky XML, jako je „Skupina“ nebo „Obrázek“</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="foldCodeBlocks1stLevelToolStripMenuItem.Text" xml:space="preserve">
     <value>Přeložte bloky kódu 1. úrovně</value>
@@ -148,9 +149,11 @@
   </data>
   <data name="cmsCodeBlocksFold.Text" xml:space="preserve">
     <value>Skládací bloky kódu</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodeBlocksMove.AccessibleDescription" xml:space="preserve">
     <value>Kódové bloky jsou G-kód obklopený prvky XML, jako je „Skupina“ nebo „Obrázek“</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="cmsFCTBMoveSelectedCodeBlockMostUp.Text" xml:space="preserve">
     <value>Přesuňte vybraný blok kódu nejvíce nahoru</value>
@@ -432,18 +435,6 @@ Kliknutím pravým tlačítkem vyberte číslo startovní řady</value>
   <data name="cBServoButtons.Text" xml:space="preserve">
     <value>Zobrazit pero nahoru/dolů</value>
   </data>
-  <data name="btnPenDown.Text" xml:space="preserve">
-    <value>Perem dolů</value>
-  </data>
-  <data name="btnPenDown.ToolTip" xml:space="preserve">
-    <value>Použijte nastavení z Setup-Servo-PWM</value>
-  </data>
-  <data name="btnPenUp.Text" xml:space="preserve">
-    <value>Pen Up</value>
-  </data>
-  <data name="btnPenUp.ToolTip" xml:space="preserve">
-    <value>Použijte nastavení z Setup-Servo-PWM</value>
-  </data>
   <data name="btnJogStop.Text" xml:space="preserve">
     <value>PŘESTAŇTE běhat</value>
     <comment>groupBox_Jogging</comment>
@@ -485,20 +476,8 @@ Kliknutím pravým tlačítkem vyberte číslo startovní řady</value>
   <data name="lblTool.Text" xml:space="preserve">
     <value>-</value>
   </data>
-  <data name="cBTool.Text" xml:space="preserve">
-    <value>Nástroj je ve vřetenu</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="lblSpeed.Text" xml:space="preserve">
     <value>Rychlost</value>
-  </data>
-  <data name="cBCoolant.Text" xml:space="preserve">
-    <value>Chladicí kapalina</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="cBSpindle.Text" xml:space="preserve">
-    <value>Vřeteno CW</value>
-    <comment>groupBox_Jogging</comment>
   </data>
   <data name="gB_Jogging.Text" xml:space="preserve">
     <value>Ovládání / Jogging</value>
@@ -1184,5 +1163,53 @@ Změna nastavení importu po prvním importu může vést k nežádoucím efekt�
   </data>
   <data name="cmsPicBoxShowProperties.Text" xml:space="preserve">
     <value>Vlastnosti vybrané cesty</value>
+  </data>
+  <data name="cmsPicBoxMoveToMarkedPosition.ToolTipText" xml:space="preserve">
+    <value>Přesuňte nástroj do označené pozice</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxZeroXYAtMarkedPosition.ToolTipText" xml:space="preserve">
+    <value>Nastavte aktuální souřadný systém na nulu na označené pozici</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxPasteFromClipboard.ToolTipText" xml:space="preserve">
+    <value>Zpracování dat ze schránky, jako jsou SVG, DXF, TXT (SVG nebo GCode) nebo obrázek</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxReloadFile.ToolTipText" xml:space="preserve">
+    <value>Znovu načíst naposledy načtený soubor</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxShowProperties.ToolTipText" xml:space="preserve">
+    <value>Zobrazit nebo upravit vlastnosti vybraného obrázku nebo skupiny</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxDuplicatePath.ToolTipText" xml:space="preserve">
+    <value>Duplicitní obrázek nebo skupina s volitelným odsazením (zkontrolujte [Nastavení - Vzhled programu - 2D-View / Editor]</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxCropSelectedPath.ToolTipText" xml:space="preserve">
+    <value>Ořízněte (uvolněte) vybranou postavu nebo skupinu</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxReverseSelectedPath.ToolTipText" xml:space="preserve">
+    <value>Opačné pořadí uzlu cesty - možné pouze po importu grafiky</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxRotateSelectedPath.ToolTipText" xml:space="preserve">
+    <value>Otočit počáteční uzel vybrané cesty na pozici kliknutí – možné pouze po importu grafiky</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxSetGCodeAsBackground.ToolTipText" xml:space="preserve">
+    <value>Zkopírujte vybranou cestu na pozadí</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="copyContentTroClipboardToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Zkopírujte obrázek 2D-View do schránky</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="toggleBlockExpansionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Automatické skládání bloku</value>
+    <comment>Editor_Menu</comment>
   </data>
 </root>

@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
  * 2020-12-18 Notifier by email or pushbullet 
  * 2021-07-15 code clean up / code quality
  * 2021-08-29 SendMessage async: https://docs.microsoft.com/de-de/dotnet/api/system.threading.tasks.task?view=netframework-4.0
+ * 2022-05-03 only show logger.info if (mail || push)
 */
 
 using System;
@@ -46,7 +47,8 @@ namespace GrblPlotter
             bool push = Properties.Settings.Default.notifierPushbulletEnable;
             if (!string.IsNullOrEmpty(message))
             {
-                Logger.Info(culture, "Mail:{0} Push:{1}   Msg:{2}  Addon:{3}   Interval:{4}", mail, push, message.Replace("\r\n", " | "), titleAddon, Properties.Settings.Default.notifierMessageProgressInterval);
+				if (mail || push)
+					Logger.Info(culture, "Mail:{0} Push:{1}   Msg:{2}  Addon:{3}   Interval:{4}", mail, push, message.Replace("\r\n", " | "), titleAddon, Properties.Settings.Default.notifierMessageProgressInterval);
                 if (mail)
                 {
                     Task tm = Task.Factory.StartNew(() =>

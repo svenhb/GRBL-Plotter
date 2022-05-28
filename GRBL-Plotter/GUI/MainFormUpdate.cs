@@ -206,6 +206,8 @@ namespace GrblPlotter
             cmsCodePaste.ShortcutKeys = Keys.Control | Keys.V;
             cmsCodeSendLine.ShortcutKeys = Keys.Alt | Keys.Control | Keys.M;
 
+
+            toggleBlockExpansionToolStripMenuItem.ShortcutKeys = Keys.Alt | Keys.E;
             foldCodeBlocks1stLevelToolStripMenuItem.ShortcutKeys = Keys.Alt | Keys.D2;
             foldCodeBlocks2ndLevelToolStripMenuItem.ShortcutKeys = Keys.Alt | Keys.D3;
             foldCodeBlocks3rdLevelToolStripMenuItem.ShortcutKeys = Keys.Alt | Keys.D4;
@@ -213,6 +215,8 @@ namespace GrblPlotter
 
             cmsPicBoxMoveToMarkedPosition.ShortcutKeys = Keys.Control | Keys.M;
             cmsPicBoxPasteFromClipboard.ShortcutKeys = Keys.Control | Keys.V;
+            cmsPicBoxReloadFile.ShortcutKeys = Keys.Control | Keys.R;
+            cmsPicBoxDuplicatePath.ShortcutKeys = Keys.Control | Keys.D;
 
             toolStrip_tBRadiusCompValue.Text = string.Format(culture, "{0:0.000}", Properties.Settings.Default.crcValue);
 
@@ -534,6 +538,8 @@ namespace GrblPlotter
             btnResume.Enabled = isConnected;
             btnKillAlarm.Enabled = isConnected;
             btnOverrideDoor.Enabled = isConnected;
+
+            btnStreamStart.Enabled = false;     // sometimes nok
             btnStreamStart.Enabled = isConnected;// & isFileLoaded;
             btnStreamStop.Enabled = isConnected; // & isFileLoaded;
             btnStreamCheck.Enabled = isConnected;// & isFileLoaded;

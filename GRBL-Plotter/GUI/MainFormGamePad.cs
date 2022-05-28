@@ -44,7 +44,7 @@ namespace GrblPlotter
         }
 
         //        private static Stopwatch gamePadWatch = new Stopwatch();
-        private Dictionary<string, int> gamePadValue = new Dictionary<string, int>();
+        private readonly Dictionary<string, int> gamePadValue = new Dictionary<string, int>();
         private void ProcessGamePadNew()
         {
             string command = "";

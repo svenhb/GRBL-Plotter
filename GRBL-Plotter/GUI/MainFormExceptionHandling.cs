@@ -145,11 +145,12 @@ namespace GrblPlotter
 	public static class EventCollector				// allowed chars: A–Z, a–z, 0–9, - . _ ~
 	{
 		// collect history of data processing to find error causes
+        // -time.msg_
 		private static DateTime start=DateTime.Now;
-    //    private static string WindowsVersion = "";  // System.Environment.OSVersion
-    //    private static string GRBLVersion = "";
-		
-		public static string installed="";			// Installed? - regkey available
+        //    private static string WindowsVersion = "";  // System.Environment.OSVersion
+        //    private static string GRBLVersion = "";
+
+        internal static string installed="";			// Installed? - regkey available
         private static string exception="";
         private static string import="";
         private static string stream="";
@@ -171,29 +172,35 @@ namespace GrblPlotter
 		}
 		
         public static void SetImport(string txt)    // Itxt, Ishp, Ibqr, Iimg, Isvg...	
-        { 	history += "." + txt;
-			import = GetElapsedTime() + txt;
+        {
+            import = GetElapsedTime() + txt;
+            history += import;		//"." + txt;
 		}
 
         public static void SetStreaming(string txt)	// Sstp, Strt, Schk, Spau, Scnt, Sfin, Serr, 
-        { 	history += "."+txt;
-			stream = GetElapsedTime() + txt;
+        {
+            stream = GetElapsedTime() + txt;
+            history += stream;		//"."+txt;
 		}
 		
-		public static void SetTransform(string txt)	// Tmir, Tscl, Toff, Trot
-		{	history += "." + txt;
-			transform = GetElapsedTime() + txt;
+		public static void SetTransform(string txt) // Tmir, Tscl, Toff, Trot
+        {
+            transform = GetElapsedTime() + txt;
+            history += transform;		//"." + txt;
 		}
 
-		public static void SetCommunication(string txt, bool show=false)	// COpS, CLost(show), CRst, CRSa, CRSb, CRE, CSSa, CSEa, CSSb, CSEb - ComSendSerial, ComSendEthernet, ComReceiveSerial
-		{	history += "." + txt;
-			communication = GetElapsedTime() + txt;
+		public static void SetCommunication(string txt, bool show=false)    // COpS, CLost(show), CRst, CRSa, CRSb, CRE, CSSa, CSEa, CSSb, CSEb - ComSendSerial, ComSendEthernet, ComReceiveSerial
+        {
+            communication = GetElapsedTime() + txt;
+            history += communication;		//"." + txt;
 			if (show) errorOccured = true;			
 		}
 
 
         public static void SetEnd(bool show=false)
         { 	
+			if (show) history += GetElapsedTime() + "Abort_";
+
 			string final = installed + "_";
 			if (!string.IsNullOrEmpty(communication))
 				final += communication + "_";
@@ -205,8 +212,7 @@ namespace GrblPlotter
 				final += transform + "_";
 			if (!string.IsNullOrEmpty(history))
 				final += history + "_";
-			
-			
+
 			if (errorOccured || show)
 				Properties.Settings.Default.guiLastEndReason = final + "-" + exception + GetElapsedTime() + "END";
 			else
@@ -224,15 +230,17 @@ namespace GrblPlotter
 			lastStoredException = txt;
         }
 		
-		private static string GetElapsedTime()
+		private static string GetElapsedTime()//bool totalSec = false)
 		{
-			int maxLength = 80;					// also shorten history string
+			int maxLength = 1000;					// also shorten history string
 			if (history.Length > maxLength)
 				history = history.Substring(history.Length - maxLength, maxLength);
 			
 			long elapsedTicks = DateTime.Now.Ticks - start.Ticks;
 			TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
-			return string.Format("-{0:00}.{1:00}.{2:00}.", elapsedSpan.Hours, elapsedSpan.Minutes, elapsedSpan.Seconds);		
+			
+			return string.Format("-{0:0.00}.", elapsedSpan.TotalSeconds).Replace(",",".");	
+			
 		}
     }
 }

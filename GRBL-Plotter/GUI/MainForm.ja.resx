@@ -311,18 +311,6 @@
     <value>現在のジョギングモーションを停止する</value>
     <comment>groupBox_Jogging</comment>
   </data>
-  <data name="cBTool.Text" xml:space="preserve">
-    <value>ツールはスピンドルにあります</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="cBCoolant.Text" xml:space="preserve">
-    <value>クーラント</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="cBSpindle.Text" xml:space="preserve">
-    <value>スピンドルCW</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="gB_Jogging.Text" xml:space="preserve">
     <value>コントロール/ジョギング</value>
     <comment>groupBox_Jogging</comment>
@@ -887,18 +875,6 @@ Grblのバッファーにモーションがキューイングされていて準�
   <data name="cBServoButtons.Text" xml:space="preserve">
     <value>ペンを上/下に表示</value>
   </data>
-  <data name="btnPenDown.Text" xml:space="preserve">
-    <value>ペンダウン</value>
-  </data>
-  <data name="btnPenDown.ToolTip" xml:space="preserve">
-    <value>Setup-Servo-PWMの設定を使用する</value>
-  </data>
-  <data name="btnPenUp.Text" xml:space="preserve">
-    <value>ペンアップ</value>
-  </data>
-  <data name="btnPenUp.ToolTip" xml:space="preserve">
-    <value>Setup-Servo-PWMの設定を使用する</value>
-  </data>
   <data name="cmsPicBoxMoveToMarkedPosition.Text" xml:space="preserve">
     <value>マークされた位置に移動G0</value>
   </data>
@@ -946,12 +922,15 @@ Grblのバッファーにモーションがキューイングされていて準�
   </data>
   <data name="cmsCodeBlocksFold.AccessibleDescription" xml:space="preserve">
     <value>コードブロックは、「図」の「グループ」のようなXML要素で囲まれたGコードです。</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodeBlocksFold.Text" xml:space="preserve">
     <value>コードブロックの折りたたみ</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodeBlocksMove.AccessibleDescription" xml:space="preserve">
     <value>コードブロックは、「図」の「グループ」のようなXML要素で囲まれたGコードです。</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="cmsFCTBMoveSelectedCodeBlockMostUp.Text" xml:space="preserve">
     <value>選択したコードブロックを一番上に移動</value>
@@ -1172,5 +1151,53 @@ Grblのバッファーにモーションがキューイングされていて準�
   </data>
   <data name="cmsPicBoxShowProperties.Text" xml:space="preserve">
     <value>選択したパスのプロパティ</value>
+  </data>
+  <data name="cmsPicBoxMoveToMarkedPosition.ToolTipText" xml:space="preserve">
+    <value>ツールをマークされた位置に移動します</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxZeroXYAtMarkedPosition.ToolTipText" xml:space="preserve">
+    <value>マークされた位置で実際の座標系をゼロに設定します</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxPasteFromClipboard.ToolTipText" xml:space="preserve">
+    <value>SVG、DXF、TXT（SVGまたはGCode）や画像などのクリップボードからのデータを処理する</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxReloadFile.ToolTipText" xml:space="preserve">
+    <value>最後にロードされたファイルをリロードします</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxShowProperties.ToolTipText" xml:space="preserve">
+    <value>選択した図またはグループのプロパティを表示または編集する</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxDuplicatePath.ToolTipText" xml:space="preserve">
+    <value>オプションのオフセットを使用して図またはグループを複製します（[セットアップ-プログラムの外観-2D-ビュー/エディター]をチェックします]</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxCropSelectedPath.ToolTipText" xml:space="preserve">
+    <value>選択したフィギュアまたはグループを切り抜く（リリースする）</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxReverseSelectedPath.ToolTipText" xml:space="preserve">
+    <value>パスノードの逆順-グラフィックのインポート後にのみ可能</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxRotateSelectedPath.ToolTipText" xml:space="preserve">
+    <value>選択したパスの開始ノードを回転して位置をクリックします-グラフィックのインポート後にのみ可能です</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxSetGCodeAsBackground.ToolTipText" xml:space="preserve">
+    <value>選択したパスをバックグラウンドにコピーします</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="copyContentTroClipboardToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>2D-View画像をクリップボードにコピー</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="toggleBlockExpansionToolStripMenuItem.Text" xml:space="preserve">
+    <value>自動ブロック折りたたみ</value>
+    <comment>Editor_Menu</comment>
   </data>
 </root>

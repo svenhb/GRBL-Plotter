@@ -837,18 +837,6 @@ Ajouter 'G54;' to G-Code header pour revenir automatiquement à G54 avant de dif
   <data name="cBServoButtons.Text" xml:space="preserve">
     <value>Afficher le stylo vers le haut / bas</value>
   </data>
-  <data name="btnPenDown.Text" xml:space="preserve">
-    <value>Pen Down</value>
-  </data>
-  <data name="btnPenDown.ToolTip" xml:space="preserve">
-    <value>Utiliser les paramètres de Setup-Servo-PWM</value>
-  </data>
-  <data name="btnPenUp.Text" xml:space="preserve">
-    <value>Pen Up</value>
-  </data>
-  <data name="btnPenUp.ToolTip" xml:space="preserve">
-    <value>Utiliser les paramètres de Setup-Servo-PWM</value>
-  </data>
   <data name="cmsPicBoxMoveToMarkedPosition.Text" xml:space="preserve">
     <value>Déplacer vers la position marquée G0</value>
   </data>
@@ -896,12 +884,15 @@ Ajouter 'G54;' to G-Code header pour revenir automatiquement à G54 avant de dif
   </data>
   <data name="cmsCodeBlocksFold.AccessibleDescription" xml:space="preserve">
     <value>Les blocs de code sont du code G entouré d'éléments XML tels que "Groupe" de "Figure"</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodeBlocksFold.Text" xml:space="preserve">
     <value>Plier les blocs de code</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodeBlocksMove.AccessibleDescription" xml:space="preserve">
     <value>Les blocs de code sont du code G entouré d'éléments XML tels que "Groupe" de "Figure"</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="cmsFCTBMoveSelectedCodeBlockMostUp.Text" xml:space="preserve">
     <value>Déplacer le bloc de code sélectionné vers le haut</value>
@@ -1107,5 +1098,53 @@ La modification des paramètres d'importation après la première importation pe
   </data>
   <data name="cmsPicBoxShowProperties.Text" xml:space="preserve">
     <value>Propriétés du chemin sélectionné</value>
+  </data>
+  <data name="cmsPicBoxMoveToMarkedPosition.ToolTipText" xml:space="preserve">
+    <value>Déplacer l'outil à la position marquée</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxZeroXYAtMarkedPosition.ToolTipText" xml:space="preserve">
+    <value>Définir le système de coordonnées réel sur zéro à la position marquée</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxPasteFromClipboard.ToolTipText" xml:space="preserve">
+    <value>Traiter les données du presse-papiers, comme SVG, DXF, TXT (SVG ou GCode) ou image</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxReloadFile.ToolTipText" xml:space="preserve">
+    <value>Recharger le dernier fichier chargé</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxShowProperties.ToolTipText" xml:space="preserve">
+    <value>Afficher ou modifier les propriétés de la figure ou du groupe sélectionné</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxDuplicatePath.ToolTipText" xml:space="preserve">
+    <value>Figure ou groupe en double avec décalage facultatif (vérifier [Configuration - Apparence du programme - Vue 2D / Éditeur]</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxCropSelectedPath.ToolTipText" xml:space="preserve">
+    <value>Recadrer (libérer) la figure ou le groupe sélectionné</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxReverseSelectedPath.ToolTipText" xml:space="preserve">
+    <value>Ordre inverse du nœud de chemin - uniquement possible après l'importation du graphique</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxRotateSelectedPath.ToolTipText" xml:space="preserve">
+    <value>Faire pivoter le nœud de départ du chemin sélectionné pour cliquer sur la position - uniquement possible après l'importation du graphique</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxSetGCodeAsBackground.ToolTipText" xml:space="preserve">
+    <value>Copier le chemin sélectionné en arrière-plan</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="copyContentTroClipboardToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Copier l'image 2D-View dans le presse-papiers</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="toggleBlockExpansionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Pliage automatique des blocs</value>
+    <comment>Editor_Menu</comment>
   </data>
 </root>

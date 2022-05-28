@@ -730,16 +730,8 @@ Añadir 'G54;' al encabezado G-Code para volver automáticamente a G54 antes de 
     <value>Continuar</value>
     <comment>groupBox_Jogging</comment>
   </data>
-  <data name="cBCoolant.Text" xml:space="preserve">
-    <value>Refrigerante</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="btnFeedHold.Text" xml:space="preserve">
     <value>Pausa</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="cBTool.Text" xml:space="preserve">
-    <value>Herr. en husillo</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="probingToolLengthToolStripMenuItem.Text" xml:space="preserve">
@@ -853,18 +845,6 @@ Añadir 'G54;' al encabezado G-Code para volver automáticamente a G54 antes de 
   <data name="cBServoButtons.Text" xml:space="preserve">
     <value>Mostrar lápiz arriba / abajo</value>
   </data>
-  <data name="btnPenDown.Text" xml:space="preserve">
-    <value>Pluma abajo</value>
-  </data>
-  <data name="btnPenDown.ToolTip" xml:space="preserve">
-    <value>Use la configuración de Setup-Servo-PWM</value>
-  </data>
-  <data name="btnPenUp.Text" xml:space="preserve">
-    <value>Encerrar</value>
-  </data>
-  <data name="btnPenUp.ToolTip" xml:space="preserve">
-    <value>Use la configuración de Setup-Servo-PWM</value>
-  </data>
   <data name="cmsPicBoxMoveToMarkedPosition.Text" xml:space="preserve">
     <value>Mover a la posición marcada G0</value>
   </data>
@@ -912,12 +892,15 @@ Añadir 'G54;' al encabezado G-Code para volver automáticamente a G54 antes de 
   </data>
   <data name="cmsCodeBlocksFold.AccessibleDescription" xml:space="preserve">
     <value>Los bloques de código son código G rodeados de elementos XML como "Grupo" de "Figura"</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodeBlocksFold.Text" xml:space="preserve">
     <value>Bloques de código plegado</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodeBlocksMove.AccessibleDescription" xml:space="preserve">
     <value>Los bloques de código son código G rodeados de elementos XML como "Grupo" de "Figura"</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="cmsFCTBMoveSelectedCodeBlockMostUp.Text" xml:space="preserve">
     <value>Mover el bloque de código seleccionado más arriba</value>
@@ -1131,5 +1114,53 @@ Cambiar la configuración de importación después de la primera importación pu
   </data>
   <data name="cmsPicBoxShowProperties.Text" xml:space="preserve">
     <value>Propiedades de la ruta seleccionada</value>
+  </data>
+  <data name="cmsPicBoxMoveToMarkedPosition.ToolTipText" xml:space="preserve">
+    <value>Mover la herramienta a la posición marcada</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxZeroXYAtMarkedPosition.ToolTipText" xml:space="preserve">
+    <value>Establezca el sistema de coordenadas real en cero en la posición marcada</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxPasteFromClipboard.ToolTipText" xml:space="preserve">
+    <value>Procese datos del portapapeles, como SVG, DXF, TXT (SVG o GCode) o imagen</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxReloadFile.ToolTipText" xml:space="preserve">
+    <value>Recargar último archivo cargado</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxShowProperties.ToolTipText" xml:space="preserve">
+    <value>Mostrar o editar propiedades de la figura o grupo seleccionado</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxDuplicatePath.ToolTipText" xml:space="preserve">
+    <value>Duplicar figura o grupo con desplazamiento opcional (marque [Configuración - Aspecto del programa - Vista 2D / Editor]</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxCropSelectedPath.ToolTipText" xml:space="preserve">
+    <value>Recortar (liberar) figura o grupo seleccionado</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxReverseSelectedPath.ToolTipText" xml:space="preserve">
+    <value>Orden inverso del nodo de ruta: solo es posible después de importar el gráfico</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxRotateSelectedPath.ToolTipText" xml:space="preserve">
+    <value>Gire el nodo de inicio de la ruta seleccionada para hacer clic en la posición; solo es posible después de importar el gráfico</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxSetGCodeAsBackground.ToolTipText" xml:space="preserve">
+    <value>Copiar la ruta seleccionada al fondo</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="copyContentTroClipboardToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Copie la imagen de vista 2D al portapapeles</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="toggleBlockExpansionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Plegado automático de bloques</value>
+    <comment>Editor_Menu</comment>
   </data>
 </root>

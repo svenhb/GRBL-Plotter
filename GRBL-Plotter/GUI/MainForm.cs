@@ -72,6 +72,7 @@ using System.Threading;
 using System.Windows.Forms;
 using virtualJoystick;
 
+
 namespace GrblPlotter
 {
     public partial class MainForm : Form
@@ -152,7 +153,8 @@ namespace GrblPlotter
                 Properties.Settings.Default.Save();
             }
 			
-			Properties.Settings.Default.gui2DShowVertexEnable = false;	// don't show vertex / path-nodes on program start
+			Properties.Settings.Default.gui2DShowVertexEnable = false;				// don't show vertex / path-nodes on program start
+		//	expandGCode = Properties.Settings.Default.FCTBBlockExpandOnSelect;
 			
             if (Properties.Settings.Default.flowCheckRegistryChange)	// don't load from clipboard on program start
             {
@@ -193,6 +195,7 @@ namespace GrblPlotter
             catch (Exception er) { Logger.Error(er, " MainForm - ControlGamePad.Initialize "); }
 
             Grbl.Init();                    // load and set grbl messages in grblRelated.cs
+            CodeMessage.Init();
         //    ToolTable.Init();               // fill structure in ToolTable.cs
             GuiVariables.ResetVariables();	// set variables in MainFormObjects.cs			
 
@@ -1062,13 +1065,13 @@ namespace GrblPlotter
         { SendRealtimeCommand(161); }     // 0xA1 : Toggle Mist Coolant 
 
         private void BtnOverrideD0_Click(object sender, EventArgs e)
-        { if(BtnOverrideD0.Tag == "off") SendCommand("M64 P0"); else SendCommand("M65 P0"); }
+        { if(BtnOverrideD0.Tag.ToString() == "off") SendCommand("M64 P0"); else SendCommand("M65 P0"); }
         private void BtnOverrideD1_Click(object sender, EventArgs e)
-        { if(BtnOverrideD1.Tag == "off") SendCommand("M64 P1"); else SendCommand("M65 P1"); }
+        { if(BtnOverrideD1.Tag.ToString() == "off") SendCommand("M64 P1"); else SendCommand("M65 P1"); }
         private void BtnOverrideD2_Click(object sender, EventArgs e)
-        { if(BtnOverrideD2.Tag == "off") SendCommand("M64 P2"); else SendCommand("M65 P2"); }
+        { if(BtnOverrideD2.Tag.ToString() == "off") SendCommand("M64 P2"); else SendCommand("M65 P2"); }
         private void BtnOverrideD3_Click(object sender, EventArgs e)
-        { if(BtnOverrideD3.Tag == "off") SendCommand("M64 P3"); else SendCommand("M65 P3"); }
+        { if(BtnOverrideD3.Tag.ToString() == "off") SendCommand("M64 P3"); else SendCommand("M65 P3"); }
 
 
         private void BtnOverrideDoor_Click(object sender, EventArgs e)
@@ -1137,6 +1140,9 @@ namespace GrblPlotter
         }
         private bool ProcessSpecialCommands(string command)
         {
+			if (string.IsNullOrEmpty(command))
+				return false;
+			
             bool commandFound = false;
             if (command.ToLower(culture).IndexOf("#start") >= 0) { BtnStreamStart_Click(this, null); commandFound = true; }
             else if (command.ToLower(culture).IndexOf("#stop") >= 0) { BtnStreamStop_Click(this, EventArgs.Empty); commandFound = true; }
@@ -1230,7 +1236,8 @@ namespace GrblPlotter
                     b.Height = btnCustom1.Height;
                 }
             }
-            StatusStripSet(0, string.Format("New size X:{0}  Y:{1}",Width, Height), Color.White);
+
+        //    StatusStripSet(0, string.Format("New size X:{0}  Y:{1}",Width, Height), Color.White);
         }
         private void JoystickResize()
         {
@@ -1380,30 +1387,38 @@ namespace GrblPlotter
          */
         private void StatusStripSet(int nr, string text, Color color)
         {
-            if (nr == 0)
-            {
-                if (toolStripStatusLabel0 == null) return;
-                if (toolStripStatusLabel0.GetCurrentParent().InvokeRequired)
-                { toolStripStatusLabel0.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { toolStripStatusLabel0.Text = "[ " + text + " ]"; toolStripStatusLabel0.BackColor = color; }); }
-                else
-                { toolStripStatusLabel0.Text = "[ " + text + " ]"; toolStripStatusLabel0.BackColor = color; }                
-            }
-            else if (nr == 1)
-            {
-                if (toolStripStatusLabel1 == null) return;
-                if (toolStripStatusLabel1.GetCurrentParent().InvokeRequired)
-                { toolStripStatusLabel1.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { toolStripStatusLabel1.Text = "[ " + text + " ]"; toolStripStatusLabel1.BackColor = color; }); }
-                else
-                { toolStripStatusLabel1.Text = "[ " + text + " ]"; toolStripStatusLabel1.BackColor = color; }
-            }
-            else if (nr == 2)
-            {
-                if (toolStripStatusLabel2 == null) return;
-                if (toolStripStatusLabel2.GetCurrentParent().InvokeRequired)
-                { toolStripStatusLabel2.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { toolStripStatusLabel2.Text = "[ " + text + " ]"; toolStripStatusLabel2.BackColor = color; }); }
-                else
-                { toolStripStatusLabel2.Text = "[ " + text + " ]"; toolStripStatusLabel2.BackColor = color; }
-            }
+			try {
+				if (nr == 0)
+				{
+					if (toolStripStatusLabel0 == null) return;
+					if (toolStripStatusLabel0.GetCurrentParent() == null) return;
+					if (toolStripStatusLabel0.GetCurrentParent().InvokeRequired)
+					{ toolStripStatusLabel0.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { toolStripStatusLabel0.Text = "[ " + text + " ]"; toolStripStatusLabel0.BackColor = color; }); }
+					else
+					{ toolStripStatusLabel0.Text = "[ " + text + " ]"; toolStripStatusLabel0.BackColor = color; }                
+				}
+				else if (nr == 1)
+				{
+					if (toolStripStatusLabel1 == null) return;
+					if (toolStripStatusLabel1.GetCurrentParent() == null) return;
+					if (toolStripStatusLabel1.GetCurrentParent().InvokeRequired)
+					{ toolStripStatusLabel1.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { toolStripStatusLabel1.Text = "[ " + text + " ]"; toolStripStatusLabel1.BackColor = color; }); }
+					else
+					{ toolStripStatusLabel1.Text = "[ " + text + " ]"; toolStripStatusLabel1.BackColor = color; }
+				}
+				else if (nr == 2)
+				{
+					if (toolStripStatusLabel2 == null) return;
+					if (toolStripStatusLabel2.GetCurrentParent() == null) return;
+					if (toolStripStatusLabel2.GetCurrentParent().InvokeRequired)
+					{ toolStripStatusLabel2.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { toolStripStatusLabel2.Text = "[ " + text + " ]"; toolStripStatusLabel2.BackColor = color; }); }
+					else
+					{ toolStripStatusLabel2.Text = "[ " + text + " ]"; toolStripStatusLabel2.BackColor = color; }
+				}
+			}
+			catch (Exception err)
+			{	Logger.Error(err,"StatusStripSet nr:{0}, text:'{1}', color:{2}",nr, text, color.ToString());
+			}
         }
 
         private void StatusStripClear(int nr1, int nr2 = -1)//, string rem="")

@@ -89,7 +89,7 @@ namespace GrblPlotter
         { return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"); }
 
         /***** Receive streaming status from serial COM *****/
-        private bool notifierUpdateMarker = false;
+        private bool notifierUpdateFlag = false;
         private bool notifierUpdateMarkerFinish = false;
         private bool loggerUpdateMarker = false;
         private int lastErrorLine = 0;
@@ -105,7 +105,7 @@ namespace GrblPlotter
 				{	
 					if (loggerUpdateMarker)
 					{	loggerUpdateMarker = false;
-						Logger.Info("●●● Streaming Progress:{0,3}%  Duration:{1}  Line:{2,5}", e.CodeProgress, elapsed.ToString(@"hh\:mm\:ss"), e.CodeLineSent);
+						Logger.Info("●●● Streaming Progress:{0,3}%  Duration:{1}  Line:{2,5}   Status:{3,6}   WCO.X:{4:0000.000}  Y:{5:0000.000}  Z:{6:0000.000}  A:{6:0000.000}  B:{6:0000.000}  C:{6:0000.000}", e.CodeProgress, elapsed.ToString(@"hh\:mm\:ss"), e.CodeLineSent, e.Status, Grbl.posWork.X, Grbl.posWork.Y, Grbl.posWork.Z, Grbl.posWork.A, Grbl.posWork.B, Grbl.posWork.C);
 					}
 				} else {loggerUpdateMarker = true;}
 
@@ -113,9 +113,9 @@ namespace GrblPlotter
                 {
                     if ((elapsed.Seconds % (int)(60 * Properties.Settings.Default.notifierMessageProgressInterval)) == 5) // offset 5 sec. to get message at start
                     {
-                        if (notifierUpdateMarker)
+                        if (notifierUpdateFlag)
                         {
-                            notifierUpdateMarker = false;
+                            notifierUpdateFlag = false;
                             string etime = string.Format("{0:00}:{1:00} hrs", elapsed.Hours, elapsed.Minutes);
                             string msg = string.Format("{0}Duration   : {1} \r\nCode line  : {2,6}\r\nProcessed: {3,4:0.0} %\r\nGrbl Buffer: {4,3:0} %\r\nTime stamp: {5}", "", etime, e.CodeLineSent, e.CodeProgress, e.BuffProgress, GetTimeStampString());//Properties.Settings.Default.notifierMessageProgress
                             if (Properties.Settings.Default.notifierMessageProgressTitle)
@@ -125,7 +125,7 @@ namespace GrblPlotter
                         }
                     }
                     else
-                        notifierUpdateMarker = true;
+                        notifierUpdateFlag = true;
                 }
             }
 
@@ -138,10 +138,12 @@ namespace GrblPlotter
 			catch (Exception err) {	Logger.Error(err,"OnRaiseStreamEvent - fCTBCode.Selection = fCTBCode.GetLine(actualCodeLine)");}
 
             fCTBCodeClickedLineNow = e.CodeLineSent - 1;// - 1;
-            FctbCodeMarkLine();         // set Bookmark and marker in 2D-View
-                                        //            fCTBCode.DoCaretVisible();
+            FctbSetBookmark();         // set Bookmark and marker in 2D-View
+            VisuGCode.SetPosMarkerLine(fCTBCodeClickedLineNow, false);
+            //            fCTBCode.DoCaretVisible();
 
-            try {
+            try
+            {
                 if (this.fCTBCode.InvokeRequired)
                 { this.fCTBCode.BeginInvoke((MethodInvoker)delegate () { this.fCTBCode.DoCaretVisible(); }); }
                 else
@@ -394,7 +396,8 @@ namespace GrblPlotter
                     string parserState = VisuGCode.GetParserState(f.LineStart - 1);
                     XyzPoint tmpPos = VisuGCode.GetActualPosition(f.LineStart - 1); ;
                     Logger.Info("StreamSection start:{0} stop:{1}  state:{2} posX:{0:0.000} posY:{0:0.000} posZ:{0:0.000}", f.LineStart, f.LineEnd, parserState, tmpPos.X, tmpPos.Y, tmpPos.Z);
-                    FctbCodeMarkLine();
+                    FctbSetBookmark();
+                    VisuGCode.SetPosMarkerLine(fCTBCodeClickedLineNow, false);
                     _serial_form.parserStateGC = parserState;   //   <Parser State="G1 G54 G17 G21 G90 G94 M3 M9 T0 F1000 S10000" />
                     _serial_form.posPause = tmpPos;
                     StartStreaming(f.LineStart, f.LineEnd);
@@ -407,7 +410,7 @@ namespace GrblPlotter
         {
             Logger.Trace("startStreaming serialPortOpen:{0} ", _serial_form.SerialPortOpen);
             lblInfoOkString = Localization.GetString("mainInfoSendCode");
-            notifierUpdateMarker = false;
+            notifierUpdateFlag = false;
             notifierUpdateMarkerFinish = false;
             if (fCTBCode.LinesCount > 1)
             {
@@ -557,7 +560,7 @@ namespace GrblPlotter
             }
         }
         private void BtnStreamStop_Click(object sender, EventArgs e)
-        { UpdateLogging(); StopStreaming(true); }
+        { StopStreaming(true); UpdateLogging(); }
         private void StopStreaming(bool showMessage)
         {
             Logger.Info("⏹⏹  Stop streaming at line {0}", (fCTBCodeClickedLineNow + 1));
@@ -585,12 +588,14 @@ namespace GrblPlotter
             pbFile.Maximum = 100;
             pbBuffer.Value = 0;
 
-            signalPlay = 0;
-            VisuGCode.ProcessedPath.ProcessedPathClear();
-            btnStreamStart.Image = Properties.Resources.btn_play;
-            btnStreamStart.BackColor = SystemColors.Control;
+            btnStreamStart.Enabled = false;
             btnStreamStart.Enabled = true;
             btnStreamCheck.Enabled = true;
+            btnStreamStart.Image = Properties.Resources.btn_play;
+            btnStreamStart.BackColor = SystemColors.Control;
+
+            signalPlay = 0;
+            VisuGCode.ProcessedPath.ProcessedPathClear();
             timerUpdateControlSource = "resetStreaming";
             if (updateCtrls)
             {

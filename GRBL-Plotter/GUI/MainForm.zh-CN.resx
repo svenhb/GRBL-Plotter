@@ -825,18 +825,6 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
   <data name="btnJogZeroZ.ToolTip" xml:space="preserve">
     <value>发送G90 G0 Z0</value>
   </data>
-  <data name="cBTool.Text" xml:space="preserve">
-    <value>刀具在主轴中</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="cBCoolant.Text" xml:space="preserve">
-    <value>冷却液</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="cBSpindle.Text" xml:space="preserve">
-    <value>主轴CW</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="btnHome.Text" xml:space="preserve">
     <value>Home</value>
     <comment>groupBox_Tool_Coord</comment>
@@ -870,18 +858,6 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
   </data>
   <data name="cBServoButtons.Text" xml:space="preserve">
     <value>显示笔向上/向下</value>
-  </data>
-  <data name="btnPenDown.Text" xml:space="preserve">
-    <value>下笔</value>
-  </data>
-  <data name="btnPenDown.ToolTip" xml:space="preserve">
-    <value>使用Setup-Servo-PWM中的设置</value>
-  </data>
-  <data name="btnPenUp.Text" xml:space="preserve">
-    <value>笔向上</value>
-  </data>
-  <data name="btnPenUp.ToolTip" xml:space="preserve">
-    <value>使用Setup-Servo-PWM中的设置</value>
   </data>
   <data name="cmsPicBoxMoveToMarkedPosition.Text" xml:space="preserve">
     <value>移至标记的位置G0</value>
@@ -930,12 +906,15 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
   </data>
   <data name="cmsCodeBlocksFold.AccessibleDescription" xml:space="preserve">
     <value>代码块是G代码，周围是XML元素，例如“ Figure”的“ Group”</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodeBlocksFold.Text" xml:space="preserve">
     <value>折叠码块</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodeBlocksMove.AccessibleDescription" xml:space="preserve">
     <value>代码块是G代码，周围是XML元素，例如“ Figure”的“ Group”</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="cmsFCTBMoveSelectedCodeBlockMostUp.Text" xml:space="preserve">
     <value>将所选代码块移至最上</value>
@@ -1172,5 +1151,53 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
   </data>
   <data name="cmsPicBoxShowProperties.Text" xml:space="preserve">
     <value>选定路径的属性</value>
+  </data>
+  <data name="cmsPicBoxMoveToMarkedPosition.ToolTipText" xml:space="preserve">
+    <value>将工具移动到标记位置</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxZeroXYAtMarkedPosition.ToolTipText" xml:space="preserve">
+    <value>在标记位置将实际坐标系设置为零</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxPasteFromClipboard.ToolTipText" xml:space="preserve">
+    <value>处理剪贴板中的数据，例如 SVG、DXF、TXT（SVG 或 GCode）或图像</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxReloadFile.ToolTipText" xml:space="preserve">
+    <value>重新加载上次加载的文件</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxShowProperties.ToolTipText" xml:space="preserve">
+    <value>显示或编辑选定图形或组的属性</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxDuplicatePath.ToolTipText" xml:space="preserve">
+    <value>具有可选偏移的重复图形或组（检查 [设置 - 程序外观 - 2D-视图/编辑器]</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxCropSelectedPath.ToolTipText" xml:space="preserve">
+    <value>裁剪（释放）选定的图形或组</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxReverseSelectedPath.ToolTipText" xml:space="preserve">
+    <value>路径节点的逆序 - 仅在导入图形后才有可能</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxRotateSelectedPath.ToolTipText" xml:space="preserve">
+    <value>将所选路径的起始节点旋转到单击位置-仅在导入图形后才可能</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxSetGCodeAsBackground.ToolTipText" xml:space="preserve">
+    <value>将所选路径复制到背景</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="copyContentTroClipboardToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>将 2D 视图图像复制到剪贴板</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="toggleBlockExpansionToolStripMenuItem.Text" xml:space="preserve">
+    <value>自动块折叠</value>
+    <comment>Editor_Menu</comment>
   </data>
 </root>

@@ -133,7 +133,7 @@
     <value>1</value>
   </data>
   <data name="fCTBCode.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
-    <value>214, 12</value>
+    <value>191, 12</value>
   </data>
   <metadata name="cmsFCTB.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>123, 56</value>
@@ -185,6 +185,12 @@
   </data>
   <data name="expandCodeBlocksToolStripMenuItem1.Text" xml:space="preserve">
     <value>Expand code blocks</value>
+  </data>
+  <data name="toggleBlockExpansionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>213, 22</value>
+  </data>
+  <data name="toggleBlockExpansionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Automatic block folding</value>
   </data>
   <data name="cmsCodeBlocksFold.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -489,6 +495,9 @@
   <data name="fCTBCode.Text" xml:space="preserve">
     <value>(Paste G-Code or load file)</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>800, 17</value>
+  </metadata>
   <data name="&gt;&gt;fCTBCode.Name" xml:space="preserve">
     <value>fCTBCode</value>
   </data>
@@ -546,9 +555,6 @@
   <data name="btnSimulateSlower.Text" xml:space="preserve">
     <value>/2</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>800, 17</value>
-  </metadata>
   <data name="btnSimulateSlower.ToolTip" xml:space="preserve">
     <value>Half simulation speed</value>
   </data>
@@ -4692,11 +4698,17 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
   <data name="cmsPicBoxMoveToMarkedPosition.Text" xml:space="preserve">
     <value>Move to marked position G0</value>
   </data>
+  <data name="cmsPicBoxMoveToMarkedPosition.ToolTipText" xml:space="preserve">
+    <value>Move tool to marked position</value>
+  </data>
   <data name="cmsPicBoxZeroXYAtMarkedPosition.Size" type="System.Drawing.Size, System.Drawing">
     <value>236, 22</value>
   </data>
   <data name="cmsPicBoxZeroXYAtMarkedPosition.Text" xml:space="preserve">
     <value>Zero XY at marked position G10 L20</value>
+  </data>
+  <data name="cmsPicBoxZeroXYAtMarkedPosition.ToolTipText" xml:space="preserve">
+    <value>Set actual coordinate system to zero at marked position</value>
   </data>
   <data name="cmsPicBoxZeroXYAtMarkedPosition.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -4725,11 +4737,17 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
   <data name="cmsPicBoxPasteFromClipboard.Text" xml:space="preserve">
     <value>Paste from Clipboard</value>
   </data>
+  <data name="cmsPicBoxPasteFromClipboard.ToolTipText" xml:space="preserve">
+    <value>Process data from clipboard, like SVG, DXF, TXT (SVG or GCode) or image</value>
+  </data>
   <data name="cmsPicBoxReloadFile.Size" type="System.Drawing.Size, System.Drawing">
     <value>236, 22</value>
   </data>
   <data name="cmsPicBoxReloadFile.Text" xml:space="preserve">
     <value>Reload File</value>
+  </data>
+  <data name="cmsPicBoxReloadFile.ToolTipText" xml:space="preserve">
+    <value>Reload last loaded file</value>
   </data>
   <data name="deletenotMarkToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -4767,6 +4785,9 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
   <data name="cmsPicBoxShowProperties.Text" xml:space="preserve">
     <value>Properties of selected path</value>
   </data>
+  <data name="cmsPicBoxShowProperties.ToolTipText" xml:space="preserve">
+    <value>Show or edit properties of selected figure or group</value>
+  </data>
   <data name="cmsPicBoxDuplicatePath.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -4775,6 +4796,9 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
   </data>
   <data name="cmsPicBoxDuplicatePath.Text" xml:space="preserve">
     <value>Duplicate selected path</value>
+  </data>
+  <data name="cmsPicBoxDuplicatePath.ToolTipText" xml:space="preserve">
+    <value>Duplicate figure or group with optional offset (check [Setup - Program appearance - 2D-View / Editor]</value>
   </data>
   <data name="cmsPicBoxDeletePath.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -4786,7 +4810,7 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>Delete selected path</value>
   </data>
   <data name="cmsPicBoxDeletePath.ToolTipText" xml:space="preserve">
-    <value>Delete selected path</value>
+    <value>Delete selected figure or group</value>
   </data>
   <data name="cmsPicBoxCropSelectedPath.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -4796,6 +4820,9 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
   </data>
   <data name="cmsPicBoxCropSelectedPath.Text" xml:space="preserve">
     <value>Crop selected path (cut out)</value>
+  </data>
+  <data name="cmsPicBoxCropSelectedPath.ToolTipText" xml:space="preserve">
+    <value>Crop (release) selected figure or group</value>
   </data>
   <data name="cmsPicBoxMoveSelectedPathInCode.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -4818,6 +4845,9 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
   <data name="cmsPicBoxReverseSelectedPath.Text" xml:space="preserve">
     <value>Reverse selected path</value>
   </data>
+  <data name="cmsPicBoxReverseSelectedPath.ToolTipText" xml:space="preserve">
+    <value>Reverse order of path node - only possible after import of graphic</value>
+  </data>
   <data name="cmsPicBoxRotateSelectedPath.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -4827,6 +4857,9 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
   <data name="cmsPicBoxRotateSelectedPath.Text" xml:space="preserve">
     <value>Rotate selected path</value>
   </data>
+  <data name="cmsPicBoxRotateSelectedPath.ToolTipText" xml:space="preserve">
+    <value>Rotate start node of selected path  to click position- only possible after import of graphic</value>
+  </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 6</value>
   </data>
@@ -4835,6 +4868,9 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
   </data>
   <data name="cmsPicBoxSetGCodeAsBackground.Text" xml:space="preserve">
     <value>Set G-Code as Background</value>
+  </data>
+  <data name="cmsPicBoxSetGCodeAsBackground.ToolTipText" xml:space="preserve">
+    <value>Copy selected path to background</value>
   </data>
   <data name="cmsPicBoxClearBackground.Size" type="System.Drawing.Size, System.Drawing">
     <value>236, 22</value>
@@ -4848,8 +4884,11 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
   <data name="copyContentTroClipboardToolStripMenuItem.Text" xml:space="preserve">
     <value>Copy content to Clipboard</value>
   </data>
+  <data name="copyContentTroClipboardToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Copy 2D-View image to clipboard</value>
+  </data>
   <data name="cmsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 474</value>
+    <value>237, 452</value>
   </data>
   <data name="&gt;&gt;cmsPictureBox.Name" xml:space="preserve">
     <value>cmsPictureBox</value>
@@ -7817,6 +7856,12 @@ Jazyk
   <data name="&gt;&gt;expandCodeBlocksToolStripMenuItem1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;toggleBlockExpansionToolStripMenuItem.Name" xml:space="preserve">
+    <value>toggleBlockExpansionToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;toggleBlockExpansionToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;cmsCodeBlocksMove.Name" xml:space="preserve">
     <value>cmsCodeBlocksMove</value>
   </data>
@@ -8021,6 +8066,12 @@ Jazyk
   <data name="&gt;&gt;cmsUpdate2DView.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
+    <value>toolTip1</value>
+  </data>
+  <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;unDo2ToolStripMenuItem.Name" xml:space="preserve">
     <value>unDo2ToolStripMenuItem</value>
   </data>
@@ -8099,6 +8150,12 @@ Jazyk
   <data name="&gt;&gt;cmsPicBoxMarkFirstPos.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;cmsPicBoxShowProperties.Name" xml:space="preserve">
+    <value>cmsPicBoxShowProperties</value>
+  </data>
+  <data name="&gt;&gt;cmsPicBoxShowProperties.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;cmsPicBoxDuplicatePath.Name" xml:space="preserve">
     <value>cmsPicBoxDuplicatePath</value>
   </data>
@@ -8115,12 +8172,6 @@ Jazyk
     <value>cmsPicBoxCropSelectedPath</value>
   </data>
   <data name="&gt;&gt;cmsPicBoxCropSelectedPath.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmsPicBoxShowProperties.Name" xml:space="preserve">
-    <value>cmsPicBoxShowProperties</value>
-  </data>
-  <data name="&gt;&gt;cmsPicBoxShowProperties.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cmsPicBoxMoveSelectedPathInCode.Name" xml:space="preserve">
@@ -8764,12 +8815,6 @@ Jazyk
   </data>
   <data name="&gt;&gt;openFileDialog1.Type" xml:space="preserve">
     <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolTip1.Name" xml:space="preserve">
-    <value>toolTip1</value>
-  </data>
-  <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;gamePadTimer.Name" xml:space="preserve">
     <value>gamePadTimer</value>

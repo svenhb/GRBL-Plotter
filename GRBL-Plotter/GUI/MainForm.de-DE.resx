@@ -237,7 +237,7 @@ Zur Verbindung einer Taste oder eines Schalters steht ein Eingangspin zur Verfü
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="deletenotMarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>Markiere  Code (kein Löschen)</value>
+    <value>Code markieren (kein Löschen)</value>
     <comment>2DView_Menu</comment>
   </data>
   <data name="groupBox5.Text" xml:space="preserve">
@@ -628,7 +628,7 @@ Fügen Sie 'G54;' to G-Code-Header, um vor dem Streaming von G-Code automatisch 
     <comment>Menu131</comment>
   </data>
   <data name="tBURL.Text" xml:space="preserve">
-    <value>Fügen Sie hier die URL der SVG / DXF-Datei ein</value>
+    <value>Fügen Sie hier die URL der SVG-/DXF-Datei ein</value>
     <comment>2DView</comment>
   </data>
   <data name="unDoToolStripMenuItem.Text" xml:space="preserve">
@@ -813,18 +813,6 @@ Fügen Sie 'G54;' to G-Code-Header, um vor dem Streaming von G-Code automatisch 
   <data name="cBServoButtons.Text" xml:space="preserve">
     <value>Stift nach oben / unten anzeigen</value>
   </data>
-  <data name="btnPenDown.Text" xml:space="preserve">
-    <value>Stift runter</value>
-  </data>
-  <data name="btnPenDown.ToolTip" xml:space="preserve">
-    <value>Verwenden Sie die Einstellungen von Setup-Servo-PWM</value>
-  </data>
-  <data name="btnPenUp.Text" xml:space="preserve">
-    <value>Pen Up</value>
-  </data>
-  <data name="btnPenUp.ToolTip" xml:space="preserve">
-    <value>Verwenden Sie die Einstellungen von Setup-Servo-PWM</value>
-  </data>
   <data name="cmsPicBoxMoveToMarkedPosition.Text" xml:space="preserve">
     <value>Zur markierten Position mit G0 fahren</value>
   </data>
@@ -872,12 +860,15 @@ Fügen Sie 'G54;' to G-Code-Header, um vor dem Streaming von G-Code automatisch 
   </data>
   <data name="cmsCodeBlocksFold.AccessibleDescription" xml:space="preserve">
     <value>Codeblöcke sind G-Code, umgeben von XML-Elementen wie "Gruppe" von "Abbildung"</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodeBlocksFold.Text" xml:space="preserve">
     <value>Codeblöcke falten</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodeBlocksMove.AccessibleDescription" xml:space="preserve">
     <value>Codeblöcke sind G-Code, umgeben von XML-Elementen wie "Gruppe" von "Abbildung"</value>
+    <comment>Editor_Menu</comment>
   </data>
   <data name="cmsFCTBMoveSelectedCodeBlockMostUp.Text" xml:space="preserve">
     <value>Verschieben des ausgewählten Codeblock am weitesten nach oben</value>
@@ -1080,5 +1071,53 @@ Das Ändern der Importeinstellungen nach dem ersten Import kann zu unerwünschte
   </data>
   <data name="cmsPicBoxShowProperties.Text" xml:space="preserve">
     <value>Eigenschaften des ausgewählten Pfads</value>
+  </data>
+  <data name="cmsPicBoxMoveToMarkedPosition.ToolTipText" xml:space="preserve">
+    <value>Werkzeug an markierte Position fahren</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxZeroXYAtMarkedPosition.ToolTipText" xml:space="preserve">
+    <value>Aktuelles Koordinatensystem an markierter Stelle auf Null setzen</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxPasteFromClipboard.ToolTipText" xml:space="preserve">
+    <value>Verarbeiten Sie Daten aus der Zwischenablage, wie SVG, DXF, TXT (SVG oder GCode) oder Bild</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxReloadFile.ToolTipText" xml:space="preserve">
+    <value>Zuletzt geladene Datei neu laden</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxShowProperties.ToolTipText" xml:space="preserve">
+    <value>Eigenschaften der ausgewählten Figur oder Gruppe anzeigen oder bearbeiten</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxDuplicatePath.ToolTipText" xml:space="preserve">
+    <value>Figur oder Gruppe mit optionalem Versatz duplizieren (siehe [Setup - Programmdarstellung - 2D-Ansicht / Editor]</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxCropSelectedPath.ToolTipText" xml:space="preserve">
+    <value>Ausgewählte Figur oder Gruppe zuschneiden (freigeben).</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxReverseSelectedPath.ToolTipText" xml:space="preserve">
+    <value>Umgekehrte Reihenfolge der Pfadknoten - nur nach Import der Grafik möglich</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxRotateSelectedPath.ToolTipText" xml:space="preserve">
+    <value>Startknoten des ausgewählten Pfades auf Klickposition drehen - nur nach Import der Grafik möglich</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxSetGCodeAsBackground.ToolTipText" xml:space="preserve">
+    <value>Ausgewählten Pfad in den Hintergrund kopieren</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="copyContentTroClipboardToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Kopieren Sie das 2D-View-Bild in die Zwischenablage</value>
+    <comment>20220428</comment>
+  </data>
+  <data name="toggleBlockExpansionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Automatische Blockfaltung</value>
+    <comment>Editor_Menu</comment>
   </data>
 </root>
