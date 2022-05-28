@@ -466,9 +466,6 @@
   <data name="cbGrayscaleChannel.Text" xml:space="preserve">
     <value>単色チャンネル</value>
   </data>
-  <data name="gBgcodeDirection.Text" xml:space="preserve">
-    <value>プロット方向</value>
-  </data>
   <data name="BtnReloadPattern.Text" xml:space="preserve">
     <value>リロードパターン</value>
   </data>

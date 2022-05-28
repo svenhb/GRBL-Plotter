@@ -210,9 +210,6 @@
   <data name="groupBox1.Text" xml:space="preserve">
     <value>灰度/黑白转换</value>
   </data>
-  <data name="gBgcodeDirection.Text" xml:space="preserve">
-    <value>绘图方向</value>
-  </data>
   <data name="copyToolStripMenuItem.Text" xml:space="preserve">
     <value>复制</value>
   </data>

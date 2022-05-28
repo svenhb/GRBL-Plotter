@@ -168,9 +168,6 @@
   <data name="btnRotateLeft.ToolTip" xml:space="preserve">
     <value>Bild um 90° gegen den Uhrzeigersinn drehen</value>
   </data>
-  <data name="gBgcodeDirection.Text" xml:space="preserve">
-    <value>Zeichenrichtung</value>
-  </data>
   <data name="btnGenerate.Text" xml:space="preserve">
     <value>Erzeuge G-Code</value>
   </data>

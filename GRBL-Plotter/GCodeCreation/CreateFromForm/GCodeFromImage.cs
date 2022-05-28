@@ -451,7 +451,6 @@ namespace GrblPlotter
         {
 
 			int checkedCount=0;
-			bool isChecked;
             if (useColorMode)
 			{
 				ToolTable.SortByToolNR(false);
@@ -921,7 +920,7 @@ namespace GrblPlotter
                 long bsize = dataAdjusted.Stride * adjustedImage.Height;
                 byte[] pixelsAdjusted = new byte[bsize];
                 Marshal.Copy(ptrAdjusted, pixelsAdjusted, 0, pixelsAdjusted.Length);
-                byte r, g, b, a;
+                byte b;
                 for (long index = 0; index < pixelsAdjusted.Length; index += psize)
                 {
                     b = pixelsAdjusted[index]; //g = pixelsAdjusted[index + 1]; r = pixelsAdjusted[index + 2]; a = pixelsAdjusted[index + 3];
@@ -976,8 +975,10 @@ namespace GrblPlotter
 				rectWidth = Math.Min(adjustedImage.Width, resultImage.Width);
 				rectHeight = Math.Min(adjustedImage.Height, resultImage.Height);
                 Rectangle rectAdjusted = new Rectangle(0, 0, rectWidth, rectHeight);	//adjustedImage.Width, adjustedImage.Height);
-                Rectangle rectResult = new Rectangle(0, 0, rectWidth, rectHeight);	//resultImage.Width, resultImage.Height);
+                Rectangle rectResult = new Rectangle(0, 0, rectWidth, rectHeight);		//resultImage.Width, resultImage.Height);
 				
+				Logger.Trace("GenerateResultImage: size:{0} x {1}  bits:{2}",rectWidth, rectHeight, Image.GetPixelFormatSize(adjustedImage.PixelFormat));
+
                 dataAdjusted = adjustedImage.LockBits(rectAdjusted, ImageLockMode.ReadOnly, adjustedImage.PixelFormat);
                 dataResult = resultImage.LockBits(rectResult, ImageLockMode.WriteOnly, adjustedImage.PixelFormat);
 				
@@ -1035,8 +1036,9 @@ namespace GrblPlotter
                 if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
             }
 			catch (Exception err) {	
-				Logger.Error(err,"generateResultImage ");
-                EventCollector.StoreException("generateResultImage: size:"+rectWidth+" x "+rectHeight+" " +err);
+				string errString = string.Format("GenerateResultImage: size:{0} x {1}  bits:{2}",rectWidth, rectHeight, Image.GetPixelFormatSize(adjustedImage.PixelFormat));
+				Logger.Error(err,"{0}  ",errString);
+                EventCollector.StoreException(errString + "  " + err.Message);
                 if (resultImage != null) resultImage.UnlockBits(dataResult);
                 if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
 			}
@@ -1076,7 +1078,7 @@ namespace GrblPlotter
                 tmpToolNrArray = new short[rectWidth, rectHeight];	//adjustedImage.Width, adjustedImage.Height];
                 Marshal.Copy(ptrAdjusted, pixelsAdjusted, 0, pixelsAdjusted.Length);
 
-                byte r, g, b, a;
+                byte b;
                 int bx = 0, by = 0;
 				byte background = 255;
                 for (long index = 0; index < pixelsAdjusted.Length; index += psize)
@@ -1101,8 +1103,12 @@ namespace GrblPlotter
                 if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
             }
 			catch (Exception err) {	
-				Logger.Error(err,"generateResultImage pixelFormat:{0} ", adjustedImage.PixelFormat);
-                EventCollector.StoreException("generateResultImageGray: size:"+rectWidth+" x "+rectHeight+"  pixelFormat: " + adjustedImage.PixelFormat.ToString() + "  " +err.Message);
+				string errString = string.Format("GenerateResultImageGray: size:{0} x {1}  bits:{2}",rectWidth, rectHeight, Image.GetPixelFormatSize(adjustedImage.PixelFormat));
+				Logger.Error(err,"{0}  ",errString);
+                EventCollector.StoreException(errString + "  " + err.Message);
+
+			//	Logger.Error(err,"generateResultImage pixelFormat:{0} ", adjustedImage.PixelFormat);
+            //    EventCollector.StoreException("generateResultImageGray: size:"+rectWidth+" x "+rectHeight+"  pixelFormat: " + adjustedImage.PixelFormat.ToString() + "  " +err.Message);
                 if (resultImage != null) resultImage.UnlockBits(dataResult);
                 if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
 			}
@@ -1170,8 +1176,12 @@ namespace GrblPlotter
 			}
 			catch (Exception err)
             {
-                EventCollector.StoreException("CountImageColors2: size:"+adjustedImage.Width+" x "+adjustedImage.Height+" " +err);
-                Logger.Error(err, "CountImageColors ");
+				string errString = string.Format("CountImageColors2: size:{0} x {1}  bits:{2}",adjustedImage.Width, adjustedImage.Height, Image.GetPixelFormatSize(adjustedImage.PixelFormat));
+				Logger.Error(err,"{0}  ",errString);
+                EventCollector.StoreException(errString + "  " + err.Message);
+
+            //    EventCollector.StoreException("CountImageColors2: size:"+adjustedImage.Width+" x "+adjustedImage.Height+" " +err);
+            //    Logger.Error(err, "CountImageColors ");
             //    MessageBox.Show("Error count image colors - width or height not ok?:\r\n" + err.Message, "Error");
                 return 1;
             }

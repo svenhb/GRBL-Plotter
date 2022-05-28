@@ -463,13 +463,22 @@ namespace GrblPlotter
                 return;
             double r = 0,a = 0,x,y;
             double aDeg = 0, deltaDeg;
-            while (r < maxR)
-            {   x = Math.Cos(a) * r;
-                y = -Math.Sin(a) * r;
-                scanCNCPos.Add(new ImgPoint((float)x, (float)y, 1));
-                deltaDeg = (Math.Atan(step / r) * 180 / Math.PI);   // step width should be pixel distance
-                aDeg += deltaDeg; r += distance * deltaDeg / 360;                // 1 deg step, 1 distance/turn
-                a = (aDeg * Math.PI / 180);
+
+            try
+            {
+				while (r < maxR)
+				{   x = Math.Cos(a) * r;
+					y = -Math.Sin(a) * r;
+					scanCNCPos.Add(new ImgPoint((float)x, (float)y, 1));
+					deltaDeg = (Math.Atan(step / r) * 180 / Math.PI);   // step width should be pixel distance
+					aDeg += deltaDeg; r += distance * deltaDeg / 360;                // 1 deg step, 1 distance/turn
+					a = (aDeg * Math.PI / 180);
+				}
+            }
+			catch (Exception err)
+			{	EventCollector.StoreException("CreateSpiral scanCNCPos.Count="+ scanCNCPos.Count +" " +err.Message+" ---");
+				Logger.Error(err, "Could not create spiral, scanCNCPos.Count:{0}  r:{1}   maxR:{2}", scanCNCPos.Count, r, maxR);
+                System.Windows.Forms.MessageBox.Show("Error: "+err.Message+" \r\n\r\nPattern is may not complete.\r\nTry with higher Line distance","Error");
             }
         }
         

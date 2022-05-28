@@ -192,9 +192,6 @@
   <data name="btnRotateLeft.ToolTip" xml:space="preserve">
     <value>Otočit obrázek o 90° ccw</value>
   </data>
-  <data name="gBgcodeDirection.Text" xml:space="preserve">
-    <value>Směr pozemku</value>
-  </data>
   <data name="BtnReloadPattern.Text" xml:space="preserve">
     <value>Znovu načíst vzor</value>
   </data>

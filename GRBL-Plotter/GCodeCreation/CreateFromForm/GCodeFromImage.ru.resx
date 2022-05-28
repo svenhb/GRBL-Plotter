@@ -210,9 +210,6 @@
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Оттенки серого / черно-белое преобразование</value>
   </data>
-  <data name="gBgcodeDirection.Text" xml:space="preserve">
-    <value>Направление участка</value>
-  </data>
   <data name="copyToolStripMenuItem.Text" xml:space="preserve">
     <value>копия</value>
   </data>

@@ -210,9 +210,6 @@
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Conversion niveaux de gris / noir et blanc</value>
   </data>
-  <data name="gBgcodeDirection.Text" xml:space="preserve">
-    <value>Direction de la parcelle</value>
-  </data>
   <data name="copyToolStripMenuItem.Text" xml:space="preserve">
     <value>Copie</value>
   </data>

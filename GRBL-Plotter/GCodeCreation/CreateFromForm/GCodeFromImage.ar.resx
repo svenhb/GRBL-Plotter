@@ -424,9 +424,6 @@
   <data name="rBMode2.Text" xml:space="preserve">
     <value>المسافة في لون هوى ، -sat. ، - مشرق.</value>
   </data>
-  <data name="gBgcodeDirection.Text" xml:space="preserve">
-    <value>اتجاه المؤامرة</value>
-  </data>
   <data name="label17.Text" xml:space="preserve">
     <value>يجمع مساحات من نفس اللون</value>
   </data>

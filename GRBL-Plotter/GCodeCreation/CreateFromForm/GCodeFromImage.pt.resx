@@ -214,9 +214,6 @@
   <data name="cBFilterEdge.Text" xml:space="preserve">
     <value>Filtro de borda</value>
   </data>
-  <data name="gBgcodeDirection.Text" xml:space="preserve">
-    <value>Direção do gráfico</value>
-  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Criar código G a partir da imagem</value>
   </data>

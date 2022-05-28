@@ -324,7 +324,6 @@ namespace GrblPlotter
                             if (GCPauseChar && (actualChar == ' '))
                                 GcodePause();//"Pause before word");
                             Graphic.SetGeometry(string.Format("Char {0}", actualChar));
-                            string svgPath = "";
                             if (HersheyFonts.ContainsKey(GCFontName))
                             {
                                 if (chrIndex < HersheyFonts[GCFontName].Length)
