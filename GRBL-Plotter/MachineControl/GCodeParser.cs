@@ -80,14 +80,13 @@ namespace GrblPlotter
                 (tmp.Y <= Math.Max(lastPos.Y, actualPos.Y)) && (tmp.Y >= Math.Min(lastPos.Y, actualPos.Y)))
             {
                 XyPoint da = new XyPoint(tmp - (XyPoint)lastPos);
-                double a = Math.Sqrt(da.X * da.X + da.Y * da.Y);
+                double a = Math.Sqrt(da.X * da.X + da.Y * da.Y);		// side length a
                 XyPoint db = new XyPoint(tmp - (XyPoint)actualPos);
-                double b = Math.Sqrt(db.X * db.X + db.Y * db.Y);
+                double b = Math.Sqrt(db.X * db.X + db.Y * db.Y);		// side length b
                 XyPoint dc = new XyPoint((XyPoint)actualPos - (XyPoint)lastPos);
-                double c = Math.Sqrt(dc.X * dc.X + dc.Y * dc.Y);
-                if (c <= 0) return -1;
+                double c = Math.Sqrt(dc.X * dc.X + dc.Y * dc.Y);		// side length c
                 double s = (a + b + c) / 2;
-                double h = 2 / c * Math.Sqrt(s * (s - a) * (s - b) * (s - c));
+                double h = 2 / c * Math.Sqrt(s * (s - a) * (s - b) * (s - c));	// height over c
                 return h;
             }
             else

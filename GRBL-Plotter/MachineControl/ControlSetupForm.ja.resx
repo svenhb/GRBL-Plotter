@@ -615,38 +615,6 @@ gcodeを縮小する際の問題を回避するため。</value>
     <value>ペンアップのスピンドル速度</value>
     <comment>TabPage1_2</comment>
   </data>
-  <data name="tab1_2lbl44.Text" xml:space="preserve">
-    <value>遅延後</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tab1_2lbl44.ToolTip" xml:space="preserve">
-    <value>G4を挿入：次のコマンドまでの遅延（秒）</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl42.Text" xml:space="preserve">
-    <value>遅延後</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tab1_2lbl42.ToolTip" xml:space="preserve">
-    <value>G4を挿入：次のコマンドまでの遅延（秒）</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl43.Text" xml:space="preserve">
-    <value>ペンダウン</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tab1_2lbl43.ToolTip" xml:space="preserve">
-    <value>ペンダウンのスピンドル速度</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl41.Text" xml:space="preserve">
-    <value>ペンアップ</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tab1_2lbl41.ToolTip" xml:space="preserve">
-    <value>ペンアップのスピンドル速度</value>
-    <comment>TabPage1_2</comment>
-  </data>
   <data name="tab1_2gB4.Text" xml:space="preserve">
     <value>サーボ制御</value>
     <comment>TabPage1_2</comment>
@@ -1475,7 +1443,7 @@ GUIでGamePadを使用するには、セットアップウィンドウを閉じ�
     <comment>ok</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
-    <value>2D-ビュー/エディター/その他</value>
+    <value>2D-ビュー/エディター</value>
     <comment>TabPage7</comment>
   </data>
   <data name="cBKeepPenWidth.Text" xml:space="preserve">
@@ -2810,10 +2778,6 @@ https://github.com/cprezzi/grbl-servoのGrbl-version'grbl_v1.1f_Servo.hex '、
     <value>最小位置X</value>
     <comment>ok</comment>
   </data>
-  <data name="button2.ToolTip" xml:space="preserve">
-    <value>PWMインクリメント値1、10、または100</value>
-    <comment>ok</comment>
-  </data>
   <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
     <value>サブルーチンの前後のペンアップ/ダウン</value>
     <comment>ok</comment>
@@ -3058,9 +3022,6 @@ https://github.com/cprezzi/grbl-servoのGrbl-version'grbl_v1.1f_Servo.hex '、
   </data>
   <data name="cBImportGraphicClipOffsetApply.ToolTip" xml:space="preserve">
     <value>タイルの原点を0に設定します; 0</value>
-  </data>
-  <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
-    <value>カーブなし</value>
   </data>
   <data name="btnColorDimension.Text" xml:space="preserve">
     <value>寸法</value>
@@ -3316,7 +3277,7 @@ https://github.com/cprezzi/grbl-servoのGrbl-version'grbl_v1.1f_Servo.hex '、
     <value>スピンドルをオンにしないでください</value>
   </data>
   <data name="cBImportGCDragKnifeUse.Text" xml:space="preserve">
-    <value>ドラッグナイフを使用する</value>
+    <value>ドラッグナイフの使用（開始方向は常に0°度=右）</value>
   </data>
   <data name="CbMarlin.Text" xml:space="preserve">
     <value>マーリンに接続する</value>
@@ -3329,5 +3290,59 @@ https://github.com/cprezzi/grbl-servoのGrbl-version'grbl_v1.1f_Servo.hex '、
   </data>
   <data name="NudCtrlImportSkip.ToolTip" xml:space="preserve">
     <value>表示オプションをスキップする前に超える行数（千倍）。</value>
+  </data>
+  <data name="RbWireBenderAnglePcnt.Text" xml:space="preserve">
+    <value>パーセンテージとして使用</value>
+  </data>
+  <data name="RbWireBenderAngleAbs.Text" xml:space="preserve">
+    <value>絶対値を使用</value>
+  </data>
+  <data name="label83.Text" xml:space="preserve">
+    <value>ワイヤーを切る</value>
+  </data>
+  <data name="label82.Text" xml:space="preserve">
+    <value>ペグを無効にする</value>
+  </data>
+  <data name="label81.Text" xml:space="preserve">
+    <value>ペグアクティブ</value>
+  </data>
+  <data name="textBox6.ToolTip" xml:space="preserve">
+    <value>ここでコマンドを適用して、ワイヤーを切断します</value>
+  </data>
+  <data name="textBox5.ToolTip" xml:space="preserve">
+    <value>ここでコマンドを適用して、曲げペグを無効にします</value>
+  </data>
+  <data name="textBox4.ToolTip" xml:space="preserve">
+    <value>ここでコマンドを適用して、曲げペグをアクティブにします</value>
+  </data>
+  <data name="label80.Text" xml:space="preserve">
+    <value>特定のアクションのGコード（「;」またはset script-pathを使用した個別のコマンド）：</value>
+  </data>
+  <data name="label74.Text" xml:space="preserve">
+    <value>曲げ半径</value>
+  </data>
+  <data name="label75.Text" xml:space="preserve">
+    <value>ワイヤ送給用のX軸</value>
+  </data>
+  <data name="label76.Text" xml:space="preserve">
+    <value>曲げ角度のY軸</value>
+  </data>
+  <data name="groupBox31.Text" xml:space="preserve">
+    <value>機械パラメータ</value>
+  </data>
+  <data name="label79.Text" xml:space="preserve">
+    <value>線径</value>
+  </data>
+  <data name="label78.Text" xml:space="preserve">
+    <value>角度を追加して、目的の角度に到達します</value>
+  </data>
+  <data name="CbWireBenderEnable.Text" xml:space="preserve">
+    <value>ワイヤーベンダーのコードを生成する</value>
+  </data>
+  <data name="GbWireBender.Text" xml:space="preserve">
+    <value>ワイヤーベンダー</value>
+  </data>
+  <data name="tabPage33.Text" xml:space="preserve">
+    <value>その他</value>
   </data>
 </root>

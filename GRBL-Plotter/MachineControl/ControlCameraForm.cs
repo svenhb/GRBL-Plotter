@@ -86,7 +86,7 @@ namespace GrblPlotter
         private XyPoint teachPoint1;
         private XyPoint teachPoint2;
         private XyPoint lastClickedCoordinate;
-        private XyPoint positionOffsetMachine = new XyPoint();
+    //    private XyPoint positionOffsetMachine = new XyPoint();
 
         //     private XyPoint teachPoint3;
         private int coordG = 54;
@@ -263,13 +263,13 @@ namespace GrblPlotter
             }
             toolStripCameraMount.Click += ToolStripCameraMount_SelectedIndexChanged;
 
-            if (false)  // perhaps needed in future
+        /*    if (false)  // perhaps needed in future
             {
                 positionOffsetMachine.X = (double)Properties.Settings.Default.machineLimitsHomeX;
                 positionOffsetMachine.Y = (double)Properties.Settings.Default.machineLimitsHomeY;
             }
-            else
-                positionOffsetMachine = new XyPoint();
+            else*/
+        //        positionOffsetMachine = new XyPoint();
         }
         // save settings
         private void Camera_form_FormClosing(object sender, FormClosingEventArgs e)
@@ -1327,8 +1327,7 @@ namespace GrblPlotter
         // get set radius for cameraFix and -Xy
         private void ToolStripTextBox4_TextChanged(object sender, EventArgs e)
         {
-            double newVal;
-            if (!Double.TryParse(toolStripTextBox4.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out newVal))
+            if (!Double.TryParse(toolStripTextBox4.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double newVal))
             { newVal = 20; toolStripTextBox4.Text = newVal.ToString(); }
             if (newVal <= 0)
             { newVal = 20; toolStripTextBox4.Text = newVal.ToString(); }

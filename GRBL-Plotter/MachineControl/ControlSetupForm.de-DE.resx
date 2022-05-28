@@ -1239,22 +1239,6 @@ Andere Einstellungen werden normalerweise beim Ändern gespeichert.</value>
     <value>Steuere RC-Servo mit Spindle speed Befehlen (es ist eine besondere GRBL version nötig, welche 1ms bis 2ms PWM ausgeben kann)</value>
     <comment>TabPage1_2</comment>
   </data>
-  <data name="tab1_2lbl44.ToolTip" xml:space="preserve">
-    <value>Pause G4 in Sek. nach 'Stift runter'</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl42.ToolTip" xml:space="preserve">
-    <value>Pause G4 in Sek. nach 'Stift runter'</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl43.ToolTip" xml:space="preserve">
-    <value>PWM Wert (S) für 'Stift runter'</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl41.ToolTip" xml:space="preserve">
-    <value>PWM Wert (S) für 'Stift hoch'</value>
-    <comment>TabPage1_2</comment>
-  </data>
   <data name="tab1_3gB3.Text" xml:space="preserve">
     <value>Konvertiere Z-Achse zu Spindle Speed S</value>
     <comment>TabPage1_3</comment>
@@ -2025,7 +2009,7 @@ Z.B. 'M0' zum Anhalten für manuelles Verschieben von Papier oder '(^ 2 G91 X100
     <comment>ok</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
-    <value>2D-Ansicht / Editor / Sonstiges</value>
+    <value>2D-Ansicht / Editor</value>
     <comment>TabPage7</comment>
   </data>
   <data name="groupBox12.Text" xml:space="preserve">
@@ -2496,10 +2480,6 @@ Der tatsächlich nutzbare Bereich wäre $ 30 = 31, $ 31 = 0.</value>
     <value>Analysiert die S-, Z- und F-Werte im G-Code, um die Farbe aus der Werkzeugliste dem Werkzeugpfad zuzuweisen</value>
     <comment>ok</comment>
   </data>
-  <data name="button2.ToolTip" xml:space="preserve">
-    <value>PWM-Inkrementwert 1, 10 oder 100</value>
-    <comment>ok</comment>
-  </data>
   <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
     <value>Pen-up / -down vor / nach dem Unterprogramm</value>
     <comment>ok</comment>
@@ -2722,9 +2702,6 @@ Der tatsächlich nutzbare Bereich wäre $ 30 = 31, $ 31 = 0.</value>
   </data>
   <data name="cBImportGraphicClipOffsetApply.ToolTip" xml:space="preserve">
     <value>Setze den Ursprung der Kacheln auf 0;0</value>
-  </data>
-  <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
-    <value>Keine Kurve</value>
   </data>
   <data name="btnColorDimension.Text" xml:space="preserve">
     <value>Abmessungen</value>
@@ -2950,7 +2927,7 @@ Zusätzlich kann die Position der Z Achse verwendet werden um z.B. die Farbmenge
     <value>Spindel nicht einschalten</value>
   </data>
   <data name="cBImportGCDragKnifeUse.Text" xml:space="preserve">
-    <value>Verwendung eines Schleppmessers</value>
+    <value>Einsatz eines Schleppmessers (Startrichtung ist immer bei 0° Grad = nach rechts)</value>
   </data>
   <data name="CbMarlin.Text" xml:space="preserve">
     <value>Verbindung mit Marlin</value>
@@ -2963,5 +2940,59 @@ Zusätzlich kann die Position der Z Achse verwendet werden um z.B. die Farbmenge
   </data>
   <data name="NudCtrlImportSkip.ToolTip" xml:space="preserve">
     <value>Anzahl der zu überschreitenden Zeilen (mal Tausend), bevor Anzeigeoptionen übersprungen werden.</value>
+  </data>
+  <data name="RbWireBenderAnglePcnt.Text" xml:space="preserve">
+    <value>Als Prozentsatz verwenden</value>
+  </data>
+  <data name="RbWireBenderAngleAbs.Text" xml:space="preserve">
+    <value>Absolutwert verwenden</value>
+  </data>
+  <data name="label83.Text" xml:space="preserve">
+    <value>Draht schneiden</value>
+  </data>
+  <data name="label82.Text" xml:space="preserve">
+    <value>Peg deaktivieren</value>
+  </data>
+  <data name="label81.Text" xml:space="preserve">
+    <value>Peg aktiv</value>
+  </data>
+  <data name="textBox6.ToolTip" xml:space="preserve">
+    <value>Wenden Sie hier Befehle an, um den Draht zu schneiden</value>
+  </data>
+  <data name="textBox5.ToolTip" xml:space="preserve">
+    <value>Wenden Sie hier Befehle an, um das Biegen von Zapfen zu deaktivieren</value>
+  </data>
+  <data name="textBox4.ToolTip" xml:space="preserve">
+    <value>Wenden Sie hier Befehle an, um Biegestifte zu aktivieren</value>
+  </data>
+  <data name="label80.Text" xml:space="preserve">
+    <value>G-Code für bestimmte Aktionen (getrennte Befehle mit ';' oder Skriptpfad setzen):</value>
+  </data>
+  <data name="label74.Text" xml:space="preserve">
+    <value>Biegungsradius</value>
+  </data>
+  <data name="label75.Text" xml:space="preserve">
+    <value>X-Achse für Drahtvorschub</value>
+  </data>
+  <data name="label76.Text" xml:space="preserve">
+    <value>Y-Achse für Biegewinkel</value>
+  </data>
+  <data name="groupBox31.Text" xml:space="preserve">
+    <value>Maschinenparameter</value>
+  </data>
+  <data name="label79.Text" xml:space="preserve">
+    <value>Kabeldurchmesser</value>
+  </data>
+  <data name="label78.Text" xml:space="preserve">
+    <value>Winkel hinzufügen, um den gewünschten Winkel zu erreichen</value>
+  </data>
+  <data name="CbWireBenderEnable.Text" xml:space="preserve">
+    <value>Code für Drahtbieger generieren</value>
+  </data>
+  <data name="GbWireBender.Text" xml:space="preserve">
+    <value>Drahtbieger</value>
+  </data>
+  <data name="tabPage33.Text" xml:space="preserve">
+    <value>Sonstiges</value>
   </data>
 </root>

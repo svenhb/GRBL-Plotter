@@ -43,6 +43,7 @@
  * 2022-04-08 line 120 force Marlin check
  * 2022-04-15 extend MarlinReset(), line 390 avoid sendBuffer.Clear, if Marlin
  * 2022-04-18 line 951 if (splt.Length < 2) return;
+ * 2022-05-27 line 1496 add method MissingConfirmationLength()
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -110,7 +111,7 @@ namespace GrblPlotter
         { return ((int)(100 * grblBufferFree / (float)grblBufferSize)); }
 
         private string ListInfoSend()
-        { return string.Format("{0}sendBuffer snt:{1,3}  cnfrmnd:{2,3}  cnt:{3,3}  BFree:{4,3}  lineNr:{5}  code:'{6}' state:{7}", "", sendBuffer.IndexSent, sendBuffer.IndexConfirmed, sendBuffer.Count, grblBufferFree, sendBuffer.GetConfirmedLineNr(), sendBuffer.GetConfirmedLine(), grblStateNow.ToString()); }
+        { return string.Format("{0}sendBuffer snt:{1,3}  cnfrmnd:{2,3}  cnt:{3,5}  BFree:{4,3}  lineNr:{5}  code:'{6}' state:{7}", "", sendBuffer.IndexSent, sendBuffer.IndexConfirmed, sendBuffer.Count, grblBufferFree, sendBuffer.GetConfirmedLineNr(), sendBuffer.GetConfirmedLine(), grblStateNow.ToString()); }
 
 
         #region processGRBL
@@ -376,7 +377,7 @@ namespace GrblPlotter
                 if (isStreaming && !isStreamingRequestPause && !isStreamingPause)
                 {
                     Application.DoEvents();
-                    PreProcessStreaming();
+                    PreProcessStreaming();              // ProcessGrblOkMessage
                 }
             }
 
@@ -537,7 +538,7 @@ namespace GrblPlotter
             if (iamSerial == 1)
             {
                 if (!Grbl.posChanged)
-                    Grbl.posChanged = !(XyzPoint.AlmostEqual(Grbl.posWCO, posWCO) && XyzPoint.AlmostEqual(Grbl.posMachine, posMachine));
+                    Grbl.posChanged = posChangedMonitor = !(XyzPoint.AlmostEqual(Grbl.posWCO, posWCO) && XyzPoint.AlmostEqual(Grbl.posMachine, posMachine));
                 if (!Grbl.wcoChanged)
                     Grbl.wcoChanged = !(XyzPoint.AlmostEqual(Grbl.posWCO, posWCO));
                 Grbl.posWCO = posWCO; Grbl.posWork = posWork; Grbl.posMachine = posMachine;
@@ -601,11 +602,7 @@ namespace GrblPlotter
 
             Logger.Info("grbl reset: '{0}'  isGrblVers0:{1}  isMarlin:{2}", rxStringTmp, IsGrblVers0, isMarlin);
 			
-			string tmp = "Rst-"+GrblVers;
-			if (serialPort.IsOpen)
-				tmp+=" " + cbPort.Text;
-			else
-				tmp+=" IP";				
+			string tmp = "Rst "+GrblVers;
 			EventCollector.SetStreaming(tmp);       // RstGrbl 1.1f ['$' for help] COM9
 
             if (logStreamData) AddToLog("* Logging enabled");
@@ -885,7 +882,7 @@ namespace GrblPlotter
                         lock (sendDataLock)
                         {   sendBuffer.Add(tmp, lineNr);  }
 
-                        ProcessSend();
+                        ProcessSend();          // RequestSend
                         FeedBackSettings(tmp);
                     }
                 }
@@ -1383,6 +1380,10 @@ namespace GrblPlotter
             {
                 get { return buffer.Count; }
             }
+            public int Capacity
+            { 
+                get { return buffer.Capacity; }
+            }
             public int MaxLineNr
             {
                 get { return max; }
@@ -1487,6 +1488,15 @@ namespace GrblPlotter
                     return false;
                 int blen = buffer[sent].Length + 1;
                 return (bufferSize >= blen);
+            }
+            public int MissingConfirmationLength()
+            {
+                if ((buffer == null) || (confirmed+1 >= buffer.Count) || (confirmed < 0))
+                    return 0;
+                int blen = 0;
+                for (int i = confirmed + 1; i < buffer.Count; i++)
+                { blen += buffer[i].Length + 1; }    // length + \r
+                return blen;
             }
 
             public bool Insert(int index, string cmt)

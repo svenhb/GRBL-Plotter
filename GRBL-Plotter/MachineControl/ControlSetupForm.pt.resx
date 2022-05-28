@@ -1306,22 +1306,6 @@ Não há necessidade de definir essas palavras
     <value>Controle o servo RC via velocidade do eixo (versão GRBL especial necessária para gerar 1ms - 2ms de saída PWM)</value>
     <comment>TabPage1_2</comment>
   </data>
-  <data name="tab1_2lbl44.ToolTip" xml:space="preserve">
-    <value>Inserir G4: atraso em segundos antes do próximo comando</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl42.ToolTip" xml:space="preserve">
-    <value>Inserir G4: atraso em segundos antes do próximo comando</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl43.ToolTip" xml:space="preserve">
-    <value>Velocidade do eixo para reduzir a caneta</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl41.ToolTip" xml:space="preserve">
-    <value>Velocidade do eixo para aumentar a caneta</value>
-    <comment>TabPage1_2</comment>
-  </data>
   <data name="tab1_3gB3.Text" xml:space="preserve">
     <value>Converter Eixo Z em Velocidade do eixo S</value>
     <comment>TabPage1_3</comment>
@@ -2076,7 +2060,7 @@ Por exemplo. 'M0' para pausar a movimentação manual do papel ou '(^ 2 G91 X100
     <comment>ok</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
-    <value>2D-View / Editor / Misc</value>
+    <value>2D-View / Editor</value>
     <comment>TabPage7</comment>
   </data>
   <data name="groupBox12.Text" xml:space="preserve">
@@ -2559,10 +2543,6 @@ O intervalo utilizável real seria $ 30 = 31, $ 31 = 0.</value>
     <value>Analisa os valores S, Z e F no código G para atribuir a cor da lista de ferramentas ao caminho da ferramenta</value>
     <comment>ok</comment>
   </data>
-  <data name="button2.ToolTip" xml:space="preserve">
-    <value>Valor de incremento PWM 1, 10 ou 100</value>
-    <comment>ok</comment>
-  </data>
   <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
     <value>Pen-up / -down antes / depois da sub-rotina</value>
     <comment>ok</comment>
@@ -2789,9 +2769,6 @@ O intervalo utilizável real seria $ 30 = 31, $ 31 = 0.</value>
   <data name="cBImportGraphicClipOffsetApply.ToolTip" xml:space="preserve">
     <value>Defina a origem dos ladrilhos como 0; 0</value>
   </data>
-  <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
-    <value>Sem curva</value>
-  </data>
   <data name="checkBox9.Text" xml:space="preserve">
     <value>Salve o código G como unicode UTF-16 (caso contrário, ASCII)</value>
   </data>
@@ -3010,7 +2987,7 @@ Além disso, a posição do eixo Z pode ser usada para, por exemplo, aumentar a 
     <value>Não ligue o eixo</value>
   </data>
   <data name="cBImportGCDragKnifeUse.Text" xml:space="preserve">
-    <value>Use uma faca de arrasto</value>
+    <value>Uso de uma faca de arrasto (a direção inicial é sempre em 0° graus = para a direita)</value>
   </data>
   <data name="CbMarlin.Text" xml:space="preserve">
     <value>Conecte-se a Marlin</value>
@@ -3023,5 +3000,59 @@ Além disso, a posição do eixo Z pode ser usada para, por exemplo, aumentar a 
   </data>
   <data name="NudCtrlImportSkip.ToolTip" xml:space="preserve">
     <value>Quantidade de linhas (vezes mil) a exceder, antes de pular as opções de exibição.</value>
+  </data>
+  <data name="RbWireBenderAnglePcnt.Text" xml:space="preserve">
+    <value>Usar como porcentagem</value>
+  </data>
+  <data name="RbWireBenderAngleAbs.Text" xml:space="preserve">
+    <value>Usar valor absoluto</value>
+  </data>
+  <data name="label83.Text" xml:space="preserve">
+    <value>Cortar fio</value>
+  </data>
+  <data name="label82.Text" xml:space="preserve">
+    <value>Desativar pino</value>
+  </data>
+  <data name="label81.Text" xml:space="preserve">
+    <value>Peg ativo</value>
+  </data>
+  <data name="textBox6.ToolTip" xml:space="preserve">
+    <value>Aplique comandos aqui, para cortar o fio</value>
+  </data>
+  <data name="textBox5.ToolTip" xml:space="preserve">
+    <value>Aplique comandos aqui, para desabilitar pinos de dobra</value>
+  </data>
+  <data name="textBox4.ToolTip" xml:space="preserve">
+    <value>Aplique comandos aqui, para ativar pinos de dobra</value>
+  </data>
+  <data name="label80.Text" xml:space="preserve">
+    <value>G-Code para ações específicas (comandos separados com ';' ou defina o caminho do script):</value>
+  </data>
+  <data name="label74.Text" xml:space="preserve">
+    <value>Raio de curvatura</value>
+  </data>
+  <data name="label75.Text" xml:space="preserve">
+    <value>Eixo X para alimentação de arame</value>
+  </data>
+  <data name="label76.Text" xml:space="preserve">
+    <value>Eixo Y para ângulo de curvatura</value>
+  </data>
+  <data name="groupBox31.Text" xml:space="preserve">
+    <value>Parâmetro de máquina</value>
+  </data>
+  <data name="label79.Text" xml:space="preserve">
+    <value>Diâmetro do fio</value>
+  </data>
+  <data name="label78.Text" xml:space="preserve">
+    <value>Adicionar ângulo para alcançar o ângulo desejado</value>
+  </data>
+  <data name="CbWireBenderEnable.Text" xml:space="preserve">
+    <value>Gerar código para dobrador de fio</value>
+  </data>
+  <data name="GbWireBender.Text" xml:space="preserve">
+    <value>Dobrador de arame</value>
+  </data>
+  <data name="tabPage33.Text" xml:space="preserve">
+    <value>Diversos</value>
   </data>
 </root>

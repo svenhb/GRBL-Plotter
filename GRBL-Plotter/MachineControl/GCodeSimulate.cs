@@ -371,7 +371,7 @@ namespace GrblPlotter
             private static XyzPoint lastGCodePos = new XyzPoint();
             private static int lastLine = 0;
             private static int maxLine = 0;
-            private static float tolerance = 0.1f;              // to assume two values as same
+            private static readonly float tolerance = 0.1f;              // to assume two values as same
 			public static System.Windows.Point offset2DView;
             public static System.Windows.Point offset2DViewOld;
 

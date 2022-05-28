@@ -72,7 +72,7 @@ namespace GrblPlotter
         { return CreateGCodeProg(false, false, false, ConvertMode.Nothing); }
         private static string CreateGCodeProg(bool replaceG23, bool splitMoves, bool applyNewZ, ConvertMode specialCmd, HeightMap Map = null)
         {
-            Logger.Debug("createGCodeProg replaceG23: {0}, splitMoves: {1}, applyNewZ: {2}, specialCmd: {3}", replaceG23, splitMoves, applyNewZ, specialCmd);
+            Logger.Debug("+++ CreateGCodeProg replaceG23: {0}, splitMoves: {1}, applyNewZ: {2}, specialCmd: {3}", replaceG23, splitMoves, applyNewZ, specialCmd);
             if (gcodeList == null) return "";
             pathMarkSelection.Reset(); 
             lastFigureNumber = -1; lastFigureNumbers.Clear();

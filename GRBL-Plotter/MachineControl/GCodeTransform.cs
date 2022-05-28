@@ -179,7 +179,7 @@ namespace GrblPlotter
         /// </summary>
         internal static string TransformGCodeRotate(double angle, double scale, XyPoint offset, bool calcCenter = true)
         {
-            Logger.Debug("Rotate angle: {0}", angle);
+            Logger.Debug(">^< TransformGCodeRotate angle: {0}", angle);
 			EventCollector.SetTransform("Trot");
             if (gcodeList == null) return "";
             XyPoint centerOfFigure = xyzSize.GetCenter();
@@ -281,7 +281,7 @@ namespace GrblPlotter
         }
         public static string TransformGCodeScale(double scaleX, double scaleY, XyPoint centerOfFigure)
         {
-            Logger.Debug("Scale scaleX: {0}, scale Y: {1}", scaleX, scaleY);
+            Logger.Debug("<=> TransformGCodeScale scaleX: {0}, scale Y: {1}", scaleX, scaleY);
 			EventCollector.SetTransform("Tscl");
             if (gcodeList == null) return "";
 
@@ -371,7 +371,7 @@ namespace GrblPlotter
 
         public static string TransformGCodeOffset(double tx, double ty, Translate shiftToZero)
         {
-            Logger.Debug("Transform X: {0}, Y: {1}, Offset: {2}", tx, ty, shiftToZero);
+            Logger.Debug("<-> TransformGCodeOffset X: {0:0.000}, Y: {1:0.000}, Offset: {2},   lastFigureNumber:{3}", tx, ty, shiftToZero, lastFigureNumber);
 			EventCollector.SetTransform("Toff");
             if (gcodeList == null) return "";
             if ((lastFigureNumber <= 0) || (!(shiftToZero == Translate.None)))

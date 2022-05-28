@@ -147,6 +147,8 @@ namespace GrblPlotter
             this.label34 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.tabPage19 = new System.Windows.Forms.TabPage();
+            this.groupBox30 = new System.Windows.Forms.GroupBox();
+            this.label73 = new System.Windows.Forms.Label();
             this.tab1_1gB5 = new System.Windows.Forms.GroupBox();
             this.label62 = new System.Windows.Forms.Label();
             this.tab1_1gB4 = new System.Windows.Forms.GroupBox();
@@ -163,6 +165,18 @@ namespace GrblPlotter
             this.rBImportSVGGroupItem2 = new System.Windows.Forms.RadioButton();
             this.rBImportSVGGroupItem1 = new System.Windows.Forms.RadioButton();
             this.tabPage30 = new System.Windows.Forms.TabPage();
+            this.GbWireBender = new System.Windows.Forms.GroupBox();
+            this.RbWireBenderAnglePcnt = new System.Windows.Forms.RadioButton();
+            this.groupBox31 = new System.Windows.Forms.GroupBox();
+            this.label83 = new System.Windows.Forms.Label();
+            this.label82 = new System.Windows.Forms.Label();
+            this.label81 = new System.Windows.Forms.Label();
+            this.label80 = new System.Windows.Forms.Label();
+            this.label74 = new System.Windows.Forms.Label();
+            this.label75 = new System.Windows.Forms.Label();
+            this.label76 = new System.Windows.Forms.Label();
+            this.label79 = new System.Windows.Forms.Label();
+            this.label78 = new System.Windows.Forms.Label();
             this.gBDevelop = new System.Windows.Forms.GroupBox();
             this.groupBox22 = new System.Windows.Forms.GroupBox();
             this.label60 = new System.Windows.Forms.Label();
@@ -332,6 +346,7 @@ namespace GrblPlotter
             this.lblEnableLogging = new System.Windows.Forms.Label();
             this.checkBox9 = new System.Windows.Forms.CheckBox();
             this.tab5gB3 = new System.Windows.Forms.GroupBox();
+            this.label72 = new System.Windows.Forms.Label();
             this.tab5gB4 = new System.Windows.Forms.GroupBox();
             this.rBCtrlReplaceM4 = new System.Windows.Forms.RadioButton();
             this.rBCtrlReplaceM3 = new System.Windows.Forms.RadioButton();
@@ -533,14 +548,13 @@ namespace GrblPlotter
             this.label20 = new System.Windows.Forms.Label();
             this.btnJoyXYCalc = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.groupBox29 = new System.Windows.Forms.GroupBox();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.groupBox32 = new System.Windows.Forms.GroupBox();
+            this.label85 = new System.Windows.Forms.Label();
+            this.label84 = new System.Windows.Forms.Label();
             this.LblShowVertex = new System.Windows.Forms.Label();
-            this.btnReloadSettings = new System.Windows.Forms.Button();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.tab5gB9 = new System.Windows.Forms.GroupBox();
-            this.tBPasteSpecial = new System.Windows.Forms.TextBox();
             this.tab8gB2 = new System.Windows.Forms.GroupBox();
             this.label68 = new System.Windows.Forms.Label();
             this.btnColorDimension = new System.Windows.Forms.Button();
@@ -580,6 +594,11 @@ namespace GrblPlotter
             this.BtnProjectorColorMarker = new System.Windows.Forms.Button();
             this.LblProjector2 = new System.Windows.Forms.Label();
             this.LblProjector1 = new System.Windows.Forms.Label();
+            this.tabPage33 = new System.Windows.Forms.TabPage();
+            this.groupBox29 = new System.Windows.Forms.GroupBox();
+            this.btnReloadSettings = new System.Windows.Forms.Button();
+            this.tab5gB9 = new System.Windows.Forms.GroupBox();
+            this.tBPasteSpecial = new System.Windows.Forms.TextBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -618,7 +637,6 @@ namespace GrblPlotter
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label72 = new System.Windows.Forms.Label();
             this.cBshowImportDialog = new System.Windows.Forms.CheckBox();
             this.tBGerberGeometryM19 = new System.Windows.Forms.TextBox();
             this.tBGerberGeometryKnife = new System.Windows.Forms.TextBox();
@@ -721,11 +739,22 @@ namespace GrblPlotter
             this.cBImportGraphicClipSkipCode = new System.Windows.Forms.CheckBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.cBImportGraphicClipOffsetApply = new System.Windows.Forms.CheckBox();
+            this.NudConversionMaxFigures = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.cBToolTableDefault = new System.Windows.Forms.CheckBox();
             this.cBToolTableUse = new System.Windows.Forms.CheckBox();
             this.cBImportSVGSortInvert = new System.Windows.Forms.CheckBox();
             this.cBImportSVGGroup = new System.Windows.Forms.CheckBox();
+            this.RbWireBenderAngleAbs = new System.Windows.Forms.RadioButton();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.CbWireBenderFeed = new System.Windows.Forms.ComboBox();
+            this.NudWireBenderRadius = new System.Windows.Forms.NumericUpDown();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.NudWireBenderDiameter = new System.Windows.Forms.NumericUpDown();
+            this.NudWireBenderAngleAddOn = new System.Windows.Forms.NumericUpDown();
+            this.CbWireBenderEnable = new System.Windows.Forms.CheckBox();
             this.numericUpDown14 = new System.Windows.Forms.NumericUpDown();
             this.nUDImportGraphicDevelopFeedAfter = new System.Windows.Forms.NumericUpDown();
             this.CbImportGraphicDevelopNoCurve = new System.Windows.Forms.CheckBox();
@@ -826,6 +855,7 @@ namespace GrblPlotter
             this.checkBox11 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.cBcheckupdate = new System.Windows.Forms.CheckBox();
+            this.NudCtrlImportSkip = new System.Windows.Forms.NumericUpDown();
             this.cBCtrlToolTable = new System.Windows.Forms.CheckBox();
             this.cBCtrlCommentOut = new System.Windows.Forms.CheckBox();
             this.cBCtrlMCmd = new System.Windows.Forms.CheckBox();
@@ -967,7 +997,10 @@ namespace GrblPlotter
             this.nUDJoyXYStep3 = new System.Windows.Forms.NumericUpDown();
             this.nUDJoyXYStep2 = new System.Windows.Forms.NumericUpDown();
             this.nUDJoyXYStep1 = new System.Windows.Forms.NumericUpDown();
-            this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.CbDuplicateAddHeight = new System.Windows.Forms.CheckBox();
+            this.CbDuplicateAddWidth = new System.Windows.Forms.CheckBox();
+            this.NudDuplicateOffsetY = new System.Windows.Forms.NumericUpDown();
+            this.NudDuplicateOffsetX = new System.Windows.Forms.NumericUpDown();
             this.NudShowVertexSize = new System.Windows.Forms.NumericUpDown();
             this.NudShowVertexType = new System.Windows.Forms.NumericUpDown();
             this.CbShowVertexEnable = new System.Windows.Forms.CheckBox();
@@ -1002,7 +1035,7 @@ namespace GrblPlotter
             this.NudProjectorMarker = new System.Windows.Forms.NumericUpDown();
             this.NudProjectorPenDown = new System.Windows.Forms.NumericUpDown();
             this.NudProjectorTool = new System.Windows.Forms.NumericUpDown();
-            this.NudCtrlImportSkip = new System.Windows.Forms.NumericUpDown();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
             this.tabControl_Level1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl1_Level2.SuspendLayout();
@@ -1036,11 +1069,14 @@ namespace GrblPlotter
             this.gBClipping.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.tabPage19.SuspendLayout();
+            this.groupBox30.SuspendLayout();
             this.tab1_1gB5.SuspendLayout();
             this.tab1_1gB4.SuspendLayout();
             this.tab1_1_4gB3.SuspendLayout();
             this.tab1_1_4gB2.SuspendLayout();
             this.tabPage30.SuspendLayout();
+            this.GbWireBender.SuspendLayout();
+            this.groupBox31.SuspendLayout();
             this.gBDevelop.SuspendLayout();
             this.groupBox22.SuspendLayout();
             this.groupBox20.SuspendLayout();
@@ -1133,10 +1169,9 @@ namespace GrblPlotter
             this.tabPage1.SuspendLayout();
             this.tab8gB1.SuspendLayout();
             this.tabPage6.SuspendLayout();
-            this.groupBox29.SuspendLayout();
             this.groupBox14.SuspendLayout();
+            this.groupBox32.SuspendLayout();
             this.groupBox12.SuspendLayout();
-            this.tab5gB9.SuspendLayout();
             this.tab8gB2.SuspendLayout();
             this.tabPage32.SuspendLayout();
             this.GbProjector.SuspendLayout();
@@ -1144,6 +1179,9 @@ namespace GrblPlotter
             this.GbProjectorCalc.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudProjectorSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudProjectorReal)).BeginInit();
+            this.tabPage33.SuspendLayout();
+            this.groupBox29.SuspendLayout();
+            this.tab5gB9.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tab11gB1.SuspendLayout();
@@ -1189,7 +1227,11 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicClipOffsetX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicTileClipWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicTileClipAddOnX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudConversionMaxFigures)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudWireBenderRadius)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudWireBenderDiameter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudWireBenderAngleAddOn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicDevelopFeedAfter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicDevelopNotchZNotch)).BeginInit();
@@ -1225,6 +1267,7 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolChangeScriptDelay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolChangeEmpty)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudCtrlImportSkip)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDMachineHomeZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDMachineHomeY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDMachineHomeX)).BeginInit();
@@ -1275,6 +1318,8 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyXYStep3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyXYStep2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyXYStep1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudDuplicateOffsetY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudDuplicateOffsetX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudShowVertexSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudShowVertexType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDFCTBLineInterval)).BeginInit();
@@ -1297,7 +1342,6 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.NudProjectorMarker)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudProjectorPenDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudProjectorTool)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudCtrlImportSkip)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl_Level1
@@ -1961,11 +2005,26 @@ namespace GrblPlotter
             // 
             // tabPage19
             // 
+            this.tabPage19.Controls.Add(this.groupBox30);
             this.tabPage19.Controls.Add(this.tab1_1gB5);
             this.tabPage19.Controls.Add(this.tab1_1gB4);
             resources.ApplyResources(this.tabPage19, "tabPage19");
             this.tabPage19.Name = "tabPage19";
             this.tabPage19.UseVisualStyleBackColor = true;
+            // 
+            // groupBox30
+            // 
+            this.groupBox30.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox30.Controls.Add(this.label73);
+            this.groupBox30.Controls.Add(this.NudConversionMaxFigures);
+            resources.ApplyResources(this.groupBox30, "groupBox30");
+            this.groupBox30.Name = "groupBox30";
+            this.groupBox30.TabStop = false;
+            // 
+            // label73
+            // 
+            resources.ApplyResources(this.label73, "label73");
+            this.label73.Name = "label73";
             // 
             // tab1_1gB5
             // 
@@ -2095,10 +2154,96 @@ namespace GrblPlotter
             // 
             // tabPage30
             // 
+            this.tabPage30.Controls.Add(this.GbWireBender);
             this.tabPage30.Controls.Add(this.gBDevelop);
             resources.ApplyResources(this.tabPage30, "tabPage30");
             this.tabPage30.Name = "tabPage30";
             this.tabPage30.UseVisualStyleBackColor = true;
+            // 
+            // GbWireBender
+            // 
+            this.GbWireBender.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.GbWireBender.Controls.Add(this.RbWireBenderAnglePcnt);
+            this.GbWireBender.Controls.Add(this.RbWireBenderAngleAbs);
+            this.GbWireBender.Controls.Add(this.groupBox31);
+            this.GbWireBender.Controls.Add(this.label79);
+            this.GbWireBender.Controls.Add(this.NudWireBenderDiameter);
+            this.GbWireBender.Controls.Add(this.label78);
+            this.GbWireBender.Controls.Add(this.NudWireBenderAngleAddOn);
+            this.GbWireBender.Controls.Add(this.CbWireBenderEnable);
+            resources.ApplyResources(this.GbWireBender, "GbWireBender");
+            this.GbWireBender.Name = "GbWireBender";
+            this.GbWireBender.TabStop = false;
+            // 
+            // RbWireBenderAnglePcnt
+            // 
+            resources.ApplyResources(this.RbWireBenderAnglePcnt, "RbWireBenderAnglePcnt");
+            this.RbWireBenderAnglePcnt.Name = "RbWireBenderAnglePcnt";
+            this.RbWireBenderAnglePcnt.UseVisualStyleBackColor = true;
+            // 
+            // groupBox31
+            // 
+            this.groupBox31.Controls.Add(this.label83);
+            this.groupBox31.Controls.Add(this.label82);
+            this.groupBox31.Controls.Add(this.label81);
+            this.groupBox31.Controls.Add(this.textBox6);
+            this.groupBox31.Controls.Add(this.textBox5);
+            this.groupBox31.Controls.Add(this.textBox4);
+            this.groupBox31.Controls.Add(this.label80);
+            this.groupBox31.Controls.Add(this.CbWireBenderFeed);
+            this.groupBox31.Controls.Add(this.NudWireBenderRadius);
+            this.groupBox31.Controls.Add(this.label74);
+            this.groupBox31.Controls.Add(this.label75);
+            this.groupBox31.Controls.Add(this.comboBox2);
+            this.groupBox31.Controls.Add(this.label76);
+            resources.ApplyResources(this.groupBox31, "groupBox31");
+            this.groupBox31.Name = "groupBox31";
+            this.groupBox31.TabStop = false;
+            // 
+            // label83
+            // 
+            resources.ApplyResources(this.label83, "label83");
+            this.label83.Name = "label83";
+            // 
+            // label82
+            // 
+            resources.ApplyResources(this.label82, "label82");
+            this.label82.Name = "label82";
+            // 
+            // label81
+            // 
+            resources.ApplyResources(this.label81, "label81");
+            this.label81.Name = "label81";
+            // 
+            // label80
+            // 
+            resources.ApplyResources(this.label80, "label80");
+            this.label80.Name = "label80";
+            // 
+            // label74
+            // 
+            resources.ApplyResources(this.label74, "label74");
+            this.label74.Name = "label74";
+            // 
+            // label75
+            // 
+            resources.ApplyResources(this.label75, "label75");
+            this.label75.Name = "label75";
+            // 
+            // label76
+            // 
+            resources.ApplyResources(this.label76, "label76");
+            this.label76.Name = "label76";
+            // 
+            // label79
+            // 
+            resources.ApplyResources(this.label79, "label79");
+            this.label79.Name = "label79";
+            // 
+            // label78
+            // 
+            resources.ApplyResources(this.label78, "label78");
+            this.label78.Name = "label78";
             // 
             // gBDevelop
             // 
@@ -3518,6 +3663,11 @@ namespace GrblPlotter
             this.tab5gB3.Name = "tab5gB3";
             this.tab5gB3.TabStop = false;
             // 
+            // label72
+            // 
+            resources.ApplyResources(this.label72, "label72");
+            this.label72.Name = "label72";
+            // 
             // tab5gB4
             // 
             this.tab5gB4.Controls.Add(this.rBCtrlReplaceM4);
@@ -4407,6 +4557,7 @@ namespace GrblPlotter
             this.tabControl4.Controls.Add(this.tabPage1);
             this.tabControl4.Controls.Add(this.tabPage6);
             this.tabControl4.Controls.Add(this.tabPage32);
+            this.tabControl4.Controls.Add(this.tabPage33);
             resources.ApplyResources(this.tabControl4, "tabControl4");
             this.tabControl4.Name = "tabControl4";
             this.tabControl4.SelectedIndex = 0;
@@ -5045,25 +5196,16 @@ namespace GrblPlotter
             // 
             // tabPage6
             // 
-            this.tabPage6.Controls.Add(this.groupBox29);
             this.tabPage6.Controls.Add(this.groupBox14);
-            this.tabPage6.Controls.Add(this.btnReloadSettings);
             this.tabPage6.Controls.Add(this.groupBox12);
-            this.tabPage6.Controls.Add(this.tab5gB9);
             this.tabPage6.Controls.Add(this.tab8gB2);
             resources.ApplyResources(this.tabPage6, "tabPage6");
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // groupBox29
-            // 
-            this.groupBox29.Controls.Add(this.checkBox12);
-            resources.ApplyResources(this.groupBox29, "groupBox29");
-            this.groupBox29.Name = "groupBox29";
-            this.groupBox29.TabStop = false;
-            // 
             // groupBox14
             // 
+            this.groupBox14.Controls.Add(this.groupBox32);
             this.groupBox14.Controls.Add(this.LblShowVertex);
             this.groupBox14.Controls.Add(this.NudShowVertexSize);
             this.groupBox14.Controls.Add(this.NudShowVertexType);
@@ -5075,17 +5217,33 @@ namespace GrblPlotter
             this.groupBox14.Name = "groupBox14";
             this.groupBox14.TabStop = false;
             // 
+            // groupBox32
+            // 
+            this.groupBox32.Controls.Add(this.CbDuplicateAddHeight);
+            this.groupBox32.Controls.Add(this.CbDuplicateAddWidth);
+            this.groupBox32.Controls.Add(this.label85);
+            this.groupBox32.Controls.Add(this.label84);
+            this.groupBox32.Controls.Add(this.NudDuplicateOffsetY);
+            this.groupBox32.Controls.Add(this.NudDuplicateOffsetX);
+            resources.ApplyResources(this.groupBox32, "groupBox32");
+            this.groupBox32.Name = "groupBox32";
+            this.groupBox32.TabStop = false;
+            this.toolTip1.SetToolTip(this.groupBox32, resources.GetString("groupBox32.ToolTip"));
+            // 
+            // label85
+            // 
+            resources.ApplyResources(this.label85, "label85");
+            this.label85.Name = "label85";
+            // 
+            // label84
+            // 
+            resources.ApplyResources(this.label84, "label84");
+            this.label84.Name = "label84";
+            // 
             // LblShowVertex
             // 
             resources.ApplyResources(this.LblShowVertex, "LblShowVertex");
             this.LblShowVertex.Name = "LblShowVertex";
-            // 
-            // btnReloadSettings
-            // 
-            resources.ApplyResources(this.btnReloadSettings, "btnReloadSettings");
-            this.btnReloadSettings.Name = "btnReloadSettings";
-            this.btnReloadSettings.UseVisualStyleBackColor = true;
-            this.btnReloadSettings.Click += new System.EventHandler(this.BtnReloadSettings_Click);
             // 
             // groupBox12
             // 
@@ -5101,18 +5259,6 @@ namespace GrblPlotter
             // 
             resources.ApplyResources(this.label12, "label12");
             this.label12.Name = "label12";
-            // 
-            // tab5gB9
-            // 
-            this.tab5gB9.Controls.Add(this.tBPasteSpecial);
-            resources.ApplyResources(this.tab5gB9, "tab5gB9");
-            this.tab5gB9.Name = "tab5gB9";
-            this.tab5gB9.TabStop = false;
-            // 
-            // tBPasteSpecial
-            // 
-            resources.ApplyResources(this.tBPasteSpecial, "tBPasteSpecial");
-            this.tBPasteSpecial.Name = "tBPasteSpecial";
             // 
             // tab8gB2
             // 
@@ -5450,6 +5596,41 @@ namespace GrblPlotter
             resources.ApplyResources(this.LblProjector1, "LblProjector1");
             this.LblProjector1.Name = "LblProjector1";
             // 
+            // tabPage33
+            // 
+            this.tabPage33.Controls.Add(this.groupBox29);
+            this.tabPage33.Controls.Add(this.btnReloadSettings);
+            this.tabPage33.Controls.Add(this.tab5gB9);
+            resources.ApplyResources(this.tabPage33, "tabPage33");
+            this.tabPage33.Name = "tabPage33";
+            this.tabPage33.UseVisualStyleBackColor = true;
+            // 
+            // groupBox29
+            // 
+            this.groupBox29.Controls.Add(this.checkBox12);
+            resources.ApplyResources(this.groupBox29, "groupBox29");
+            this.groupBox29.Name = "groupBox29";
+            this.groupBox29.TabStop = false;
+            // 
+            // btnReloadSettings
+            // 
+            resources.ApplyResources(this.btnReloadSettings, "btnReloadSettings");
+            this.btnReloadSettings.Name = "btnReloadSettings";
+            this.btnReloadSettings.UseVisualStyleBackColor = true;
+            this.btnReloadSettings.Click += new System.EventHandler(this.BtnReloadSettings_Click);
+            // 
+            // tab5gB9
+            // 
+            this.tab5gB9.Controls.Add(this.tBPasteSpecial);
+            resources.ApplyResources(this.tab5gB9, "tab5gB9");
+            this.tab5gB9.Name = "tab5gB9";
+            this.tab5gB9.TabStop = false;
+            // 
+            // tBPasteSpecial
+            // 
+            resources.ApplyResources(this.tBPasteSpecial, "tBPasteSpecial");
+            this.tBPasteSpecial.Name = "tBPasteSpecial";
+            // 
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.groupBox2);
@@ -5483,6 +5664,8 @@ namespace GrblPlotter
             this.linkLabel19.Name = "linkLabel19";
             this.linkLabel19.TabStop = true;
             this.linkLabel19.Tag = "https://drawingbots.net/knowledge/tools/svg-generator";
+            this.toolTip1.SetToolTip(this.linkLabel19, resources.GetString("linkLabel19.ToolTip"));
+            this.linkLabel19.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
             // 
             // label1
             // 
@@ -5495,6 +5678,8 @@ namespace GrblPlotter
             this.linkLabel18.Name = "linkLabel18";
             this.linkLabel18.TabStop = true;
             this.linkLabel18.Tag = "https://wiki.evilmadscientist.com/StippleGen";
+            this.toolTip1.SetToolTip(this.linkLabel18, resources.GetString("linkLabel18.ToolTip"));
+            this.linkLabel18.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
             // 
             // tab11gB1
             // 
@@ -5521,6 +5706,7 @@ namespace GrblPlotter
             this.linkLabel16.Name = "linkLabel16";
             this.linkLabel16.TabStop = true;
             this.linkLabel16.Tag = "https://inkscape.org/gallery/=extension/";
+            this.toolTip1.SetToolTip(this.linkLabel16, resources.GetString("linkLabel16.ToolTip"));
             // 
             // tab11gB1lbl3
             // 
@@ -5533,6 +5719,7 @@ namespace GrblPlotter
             this.linkLabel14.Name = "linkLabel14";
             this.linkLabel14.TabStop = true;
             this.linkLabel14.Tag = "https://wiki.evilmadscientist.com/Creating_filled_regions";
+            this.toolTip1.SetToolTip(this.linkLabel14, resources.GetString("linkLabel14.ToolTip"));
             this.linkLabel14.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
             // 
             // tab11gB1lbl2
@@ -5551,6 +5738,7 @@ namespace GrblPlotter
             this.linkLabel13.Name = "linkLabel13";
             this.linkLabel13.TabStop = true;
             this.linkLabel13.Tag = "https://github.com/evil-mad/EggBot/releases/";
+            this.toolTip1.SetToolTip(this.linkLabel13, resources.GetString("linkLabel13.ToolTip"));
             this.linkLabel13.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
             // 
             // linkLabel12
@@ -5559,6 +5747,7 @@ namespace GrblPlotter
             this.linkLabel12.Name = "linkLabel12";
             this.linkLabel12.TabStop = true;
             this.linkLabel12.Tag = "https://inkscape.org";
+            this.toolTip1.SetToolTip(this.linkLabel12, resources.GetString("linkLabel12.ToolTip"));
             this.linkLabel12.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
             // 
             // tab11gB3
@@ -5577,6 +5766,7 @@ namespace GrblPlotter
             this.linkLabel17.Name = "linkLabel17";
             this.linkLabel17.TabStop = true;
             this.linkLabel17.Tag = "https://drawingbots.net/knowledge/tools";
+            this.toolTip1.SetToolTip(this.linkLabel17, resources.GetString("linkLabel17.ToolTip"));
             this.linkLabel17.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
             // 
             // linkLabel15
@@ -5586,6 +5776,7 @@ namespace GrblPlotter
             this.linkLabel15.TabStop = true;
             this.linkLabel15.Tag = "https://cdn.rawgit.com/Draradech/35d36347312ca6d0887aa7d55f366e30/raw/b04cf9cd63a" +
     "59571910cb226226ce2b3ed46af46/jigsaw.html";
+            this.toolTip1.SetToolTip(this.linkLabel15, resources.GetString("linkLabel15.ToolTip"));
             this.linkLabel15.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
             // 
             // linkLabel11
@@ -5594,6 +5785,7 @@ namespace GrblPlotter
             this.linkLabel11.Name = "linkLabel11";
             this.linkLabel11.TabStop = true;
             this.linkLabel11.Tag = "https://www.templatemaker.nl";
+            this.toolTip1.SetToolTip(this.linkLabel11, resources.GetString("linkLabel11.ToolTip"));
             this.linkLabel11.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
             // 
             // linkLabel10
@@ -5602,6 +5794,7 @@ namespace GrblPlotter
             this.linkLabel10.Name = "linkLabel10";
             this.linkLabel10.TabStop = true;
             this.linkLabel10.Tag = "https://maker.js.org/demos/#content";
+            this.toolTip1.SetToolTip(this.linkLabel10, resources.GetString("linkLabel10.ToolTip"));
             this.linkLabel10.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
             // 
             // tab11gB4
@@ -5617,6 +5810,7 @@ namespace GrblPlotter
             this.linkLabel9.Name = "linkLabel9";
             this.linkLabel9.TabStop = true;
             this.linkLabel9.Tag = "https://www.dafont.com";
+            this.toolTip1.SetToolTip(this.linkLabel9, resources.GetString("linkLabel9.ToolTip"));
             this.linkLabel9.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
             // 
             // tab11gB5
@@ -5633,6 +5827,7 @@ namespace GrblPlotter
             this.linkLabel8.Name = "linkLabel8";
             this.linkLabel8.TabStop = true;
             this.linkLabel8.Tag = "http://linuxcnc.org/docs/html/gcode.html";
+            this.toolTip1.SetToolTip(this.linkLabel8, resources.GetString("linkLabel8.ToolTip"));
             this.linkLabel8.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
             // 
             // linkLabel7
@@ -5641,6 +5836,7 @@ namespace GrblPlotter
             this.linkLabel7.Name = "linkLabel7";
             this.linkLabel7.TabStop = true;
             this.linkLabel7.Tag = "https://github.com/gnea/grbl/wiki";
+            this.toolTip1.SetToolTip(this.linkLabel7, resources.GetString("linkLabel7.ToolTip"));
             this.linkLabel7.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
             // 
             // tab11gB2
@@ -5667,6 +5863,7 @@ namespace GrblPlotter
             this.linkLabel6.Name = "linkLabel6";
             this.linkLabel6.TabStop = true;
             this.linkLabel6.Tag = "https://free.clipartof.com";
+            this.toolTip1.SetToolTip(this.linkLabel6, resources.GetString("linkLabel6.ToolTip"));
             this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
             // 
             // linkLabel5
@@ -5675,6 +5872,7 @@ namespace GrblPlotter
             this.linkLabel5.Name = "linkLabel5";
             this.linkLabel5.TabStop = true;
             this.linkLabel5.Tag = "http://www.cliparts101.com";
+            this.toolTip1.SetToolTip(this.linkLabel5, resources.GetString("linkLabel5.ToolTip"));
             this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
             // 
             // linkLabel4
@@ -5683,6 +5881,7 @@ namespace GrblPlotter
             this.linkLabel4.Name = "linkLabel4";
             this.linkLabel4.TabStop = true;
             this.linkLabel4.Tag = "http://www.clker.com";
+            this.toolTip1.SetToolTip(this.linkLabel4, resources.GetString("linkLabel4.ToolTip"));
             this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
             // 
             // linkLabel3
@@ -5691,6 +5890,7 @@ namespace GrblPlotter
             this.linkLabel3.Name = "linkLabel3";
             this.linkLabel3.TabStop = true;
             this.linkLabel3.Tag = "https://simplemaps.com";
+            this.toolTip1.SetToolTip(this.linkLabel3, resources.GetString("linkLabel3.ToolTip"));
             this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
             // 
             // linkLabel2
@@ -5699,6 +5899,7 @@ namespace GrblPlotter
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Tag = "https://publicdomainvectors.org";
+            this.toolTip1.SetToolTip(this.linkLabel2, resources.GetString("linkLabel2.ToolTip"));
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
             // 
             // linkLabel1
@@ -5707,6 +5908,7 @@ namespace GrblPlotter
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Tag = "https://openclipart.org/tags/svg";
+            this.toolTip1.SetToolTip(this.linkLabel1, resources.GetString("linkLabel1.ToolTip"));
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
             // 
             // btnReloadFile
@@ -5728,11 +5930,6 @@ namespace GrblPlotter
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
-            // 
-            // label72
-            // 
-            resources.ApplyResources(this.label72, "label72");
-            this.label72.Name = "label72";
             // 
             // cBshowImportDialog
             // 
@@ -6700,9 +6897,9 @@ namespace GrblPlotter
             // 
             // cBImportGCDragKnifeUse
             // 
-            resources.ApplyResources(this.cBImportGCDragKnifeUse, "cBImportGCDragKnifeUse");
             this.cBImportGCDragKnifeUse.Checked = global::GrblPlotter.Properties.Settings.Default.importGCDragKnifeUse;
             this.cBImportGCDragKnifeUse.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGCDragKnifeUse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.cBImportGCDragKnifeUse, "cBImportGCDragKnifeUse");
             this.cBImportGCDragKnifeUse.Name = "cBImportGCDragKnifeUse";
             this.cBImportGCDragKnifeUse.UseVisualStyleBackColor = true;
             // 
@@ -6943,6 +7140,28 @@ namespace GrblPlotter
             this.toolTip1.SetToolTip(this.cBImportGraphicClipOffsetApply, resources.GetString("cBImportGraphicClipOffsetApply.ToolTip"));
             this.cBImportGraphicClipOffsetApply.UseVisualStyleBackColor = true;
             // 
+            // NudConversionMaxFigures
+            // 
+            this.NudConversionMaxFigures.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importFigureMaxAmount", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.NudConversionMaxFigures.Increment = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.NudConversionMaxFigures, "NudConversionMaxFigures");
+            this.NudConversionMaxFigures.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.NudConversionMaxFigures.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.NudConversionMaxFigures.Name = "NudConversionMaxFigures";
+            this.NudConversionMaxFigures.Value = global::GrblPlotter.Properties.Settings.Default.importFigureMaxAmount;
+            // 
             // numericUpDown2
             // 
             this.numericUpDown2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGCToolDefNr", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -6995,6 +7214,114 @@ namespace GrblPlotter
             this.toolTip1.SetToolTip(this.cBImportSVGGroup, resources.GetString("cBImportSVGGroup.ToolTip"));
             this.cBImportSVGGroup.UseVisualStyleBackColor = true;
             this.cBImportSVGGroup.CheckedChanged += new System.EventHandler(this.CbImportSVGGroup_CheckedChanged);
+            // 
+            // RbWireBenderAngleAbs
+            // 
+            resources.ApplyResources(this.RbWireBenderAngleAbs, "RbWireBenderAngleAbs");
+            this.RbWireBenderAngleAbs.Checked = global::GrblPlotter.Properties.Settings.Default.importGraphicWireBenderAngleAbsolute;
+            this.RbWireBenderAngleAbs.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGraphicWireBenderAngleAbsolute", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.RbWireBenderAngleAbs.Name = "RbWireBenderAngleAbs";
+            this.RbWireBenderAngleAbs.TabStop = true;
+            this.RbWireBenderAngleAbs.UseVisualStyleBackColor = true;
+            // 
+            // textBox6
+            // 
+            this.textBox6.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "importGraphicWireBenderCodeCut", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.textBox6, "textBox6");
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Text = global::GrblPlotter.Properties.Settings.Default.importGraphicWireBenderCodeCut;
+            this.toolTip1.SetToolTip(this.textBox6, resources.GetString("textBox6.ToolTip"));
+            // 
+            // textBox5
+            // 
+            this.textBox5.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "importGraphicWireBenderCodePegOff", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.textBox5, "textBox5");
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Text = global::GrblPlotter.Properties.Settings.Default.importGraphicWireBenderCodePegOff;
+            this.toolTip1.SetToolTip(this.textBox5, resources.GetString("textBox5.ToolTip"));
+            // 
+            // textBox4
+            // 
+            this.textBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "importGraphicWireBenderCodePegOn", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.textBox4, "textBox4");
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Text = global::GrblPlotter.Properties.Settings.Default.importGraphicWireBenderCodePegOn;
+            this.toolTip1.SetToolTip(this.textBox4, resources.GetString("textBox4.ToolTip"));
+            // 
+            // CbWireBenderFeed
+            // 
+            this.CbWireBenderFeed.AllowDrop = true;
+            this.CbWireBenderFeed.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "importGraphicWireBenderAxisFeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbWireBenderFeed.FormattingEnabled = true;
+            this.CbWireBenderFeed.Items.AddRange(new object[] {
+            resources.GetString("CbWireBenderFeed.Items"),
+            resources.GetString("CbWireBenderFeed.Items1"),
+            resources.GetString("CbWireBenderFeed.Items2"),
+            resources.GetString("CbWireBenderFeed.Items3"),
+            resources.GetString("CbWireBenderFeed.Items4"),
+            resources.GetString("CbWireBenderFeed.Items5")});
+            resources.ApplyResources(this.CbWireBenderFeed, "CbWireBenderFeed");
+            this.CbWireBenderFeed.Name = "CbWireBenderFeed";
+            this.CbWireBenderFeed.Text = global::GrblPlotter.Properties.Settings.Default.importGraphicWireBenderAxisFeed;
+            // 
+            // NudWireBenderRadius
+            // 
+            this.NudWireBenderRadius.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGraphicWireBenderRadius", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.NudWireBenderRadius.DecimalPlaces = 2;
+            this.NudWireBenderRadius.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.NudWireBenderRadius, "NudWireBenderRadius");
+            this.NudWireBenderRadius.Name = "NudWireBenderRadius";
+            this.NudWireBenderRadius.Value = global::GrblPlotter.Properties.Settings.Default.importGraphicWireBenderRadius;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.AllowDrop = true;
+            this.comboBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "importGraphicWireBenderAxisAngle", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            resources.GetString("comboBox2.Items"),
+            resources.GetString("comboBox2.Items1"),
+            resources.GetString("comboBox2.Items2"),
+            resources.GetString("comboBox2.Items3"),
+            resources.GetString("comboBox2.Items4"),
+            resources.GetString("comboBox2.Items5")});
+            resources.ApplyResources(this.comboBox2, "comboBox2");
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Text = global::GrblPlotter.Properties.Settings.Default.importGraphicWireBenderAxisAngle;
+            // 
+            // NudWireBenderDiameter
+            // 
+            this.NudWireBenderDiameter.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGraphicWireBenderDiameter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.NudWireBenderDiameter.DecimalPlaces = 2;
+            resources.ApplyResources(this.NudWireBenderDiameter, "NudWireBenderDiameter");
+            this.NudWireBenderDiameter.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.NudWireBenderDiameter.Name = "NudWireBenderDiameter";
+            this.NudWireBenderDiameter.Value = global::GrblPlotter.Properties.Settings.Default.importGraphicWireBenderDiameter;
+            // 
+            // NudWireBenderAngleAddOn
+            // 
+            this.NudWireBenderAngleAddOn.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGraphicWireBenderAngleAddOn", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.NudWireBenderAngleAddOn.DecimalPlaces = 1;
+            resources.ApplyResources(this.NudWireBenderAngleAddOn, "NudWireBenderAngleAddOn");
+            this.NudWireBenderAngleAddOn.Name = "NudWireBenderAngleAddOn";
+            this.NudWireBenderAngleAddOn.Value = global::GrblPlotter.Properties.Settings.Default.importGraphicWireBenderAngleAddOn;
+            // 
+            // CbWireBenderEnable
+            // 
+            resources.ApplyResources(this.CbWireBenderEnable, "CbWireBenderEnable");
+            this.CbWireBenderEnable.Checked = global::GrblPlotter.Properties.Settings.Default.importGraphicWireBenderEnable;
+            this.CbWireBenderEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGraphicWireBenderEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbWireBenderEnable.Name = "CbWireBenderEnable";
+            this.CbWireBenderEnable.UseVisualStyleBackColor = true;
+            this.CbWireBenderEnable.CheckedChanged += new System.EventHandler(this.CbWireBenderEnable_CheckedChanged);
             // 
             // numericUpDown14
             // 
@@ -7145,8 +7472,8 @@ namespace GrblPlotter
             // cBImportGraphicDevelopEnable
             // 
             resources.ApplyResources(this.cBImportGraphicDevelopEnable, "cBImportGraphicDevelopEnable");
-            this.cBImportGraphicDevelopEnable.Checked = global::GrblPlotter.Properties.Settings.Default.importGraphicDevelopmentEnable;
-            this.cBImportGraphicDevelopEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGraphicDevelopmentEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGraphicDevelopEnable.Checked = global::GrblPlotter.Properties.Settings.Default.importGraphicDevelopmentFeedInvert;
+            this.cBImportGraphicDevelopEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGraphicDevelopmentFeedInvert", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cBImportGraphicDevelopEnable.Name = "cBImportGraphicDevelopEnable";
             this.cBImportGraphicDevelopEnable.UseVisualStyleBackColor = true;
             this.cBImportGraphicDevelopEnable.CheckedChanged += new System.EventHandler(this.CbImportGraphicDevelopEnable_CheckedChanged);
@@ -8147,6 +8474,29 @@ namespace GrblPlotter
             this.cBcheckupdate.Name = "cBcheckupdate";
             this.toolTip1.SetToolTip(this.cBcheckupdate, resources.GetString("cBcheckupdate.ToolTip"));
             this.cBcheckupdate.UseVisualStyleBackColor = true;
+            // 
+            // NudCtrlImportSkip
+            // 
+            this.NudCtrlImportSkip.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "ctrlImportSkip", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.NudCtrlImportSkip.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.NudCtrlImportSkip, "NudCtrlImportSkip");
+            this.NudCtrlImportSkip.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.NudCtrlImportSkip.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NudCtrlImportSkip.Name = "NudCtrlImportSkip";
+            this.toolTip1.SetToolTip(this.NudCtrlImportSkip, resources.GetString("NudCtrlImportSkip.ToolTip"));
+            this.NudCtrlImportSkip.Value = global::GrblPlotter.Properties.Settings.Default.ctrlImportSkip;
             // 
             // cBCtrlToolTable
             // 
@@ -9795,13 +10145,48 @@ namespace GrblPlotter
             this.nUDJoyXYStep1.Name = "nUDJoyXYStep1";
             this.nUDJoyXYStep1.Value = global::GrblPlotter.Properties.Settings.Default.guiJoystickXYStep1;
             // 
-            // checkBox12
+            // CbDuplicateAddHeight
             // 
-            this.checkBox12.Checked = global::GrblPlotter.Properties.Settings.Default.guiShowFormInFront;
-            this.checkBox12.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "guiShowFormInFront", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.checkBox12, "checkBox12");
-            this.checkBox12.Name = "checkBox12";
-            this.checkBox12.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.CbDuplicateAddHeight, "CbDuplicateAddHeight");
+            this.CbDuplicateAddHeight.Checked = global::GrblPlotter.Properties.Settings.Default.gui2DDuplicateAddDimensionY;
+            this.CbDuplicateAddHeight.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "gui2DDuplicateAddDimensionY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbDuplicateAddHeight.Name = "CbDuplicateAddHeight";
+            this.CbDuplicateAddHeight.UseVisualStyleBackColor = true;
+            // 
+            // CbDuplicateAddWidth
+            // 
+            resources.ApplyResources(this.CbDuplicateAddWidth, "CbDuplicateAddWidth");
+            this.CbDuplicateAddWidth.Checked = global::GrblPlotter.Properties.Settings.Default.gui2DDuplicateAddDimensionX;
+            this.CbDuplicateAddWidth.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CbDuplicateAddWidth.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "gui2DDuplicateAddDimensionX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbDuplicateAddWidth.Name = "CbDuplicateAddWidth";
+            this.CbDuplicateAddWidth.UseVisualStyleBackColor = true;
+            // 
+            // NudDuplicateOffsetY
+            // 
+            this.NudDuplicateOffsetY.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "gui2DDuplicateOffsetY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.NudDuplicateOffsetY.DecimalPlaces = 2;
+            resources.ApplyResources(this.NudDuplicateOffsetY, "NudDuplicateOffsetY");
+            this.NudDuplicateOffsetY.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.NudDuplicateOffsetY.Name = "NudDuplicateOffsetY";
+            this.NudDuplicateOffsetY.Value = global::GrblPlotter.Properties.Settings.Default.gui2DDuplicateOffsetY;
+            // 
+            // NudDuplicateOffsetX
+            // 
+            this.NudDuplicateOffsetX.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "gui2DDuplicateOffsetX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.NudDuplicateOffsetX.DecimalPlaces = 2;
+            resources.ApplyResources(this.NudDuplicateOffsetX, "NudDuplicateOffsetX");
+            this.NudDuplicateOffsetX.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.NudDuplicateOffsetX.Name = "NudDuplicateOffsetX";
+            this.NudDuplicateOffsetX.Value = global::GrblPlotter.Properties.Settings.Default.gui2DDuplicateOffsetX;
             // 
             // NudShowVertexSize
             // 
@@ -10370,23 +10755,13 @@ namespace GrblPlotter
             this.NudProjectorTool.Name = "NudProjectorTool";
             this.NudProjectorTool.Value = global::GrblPlotter.Properties.Settings.Default.projectorWidthTool;
             // 
-            // NudCtrlImportSkip
+            // checkBox12
             // 
-            this.NudCtrlImportSkip.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "ctrlImportSkip", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudCtrlImportSkip.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            resources.ApplyResources(this.NudCtrlImportSkip, "NudCtrlImportSkip");
-            this.NudCtrlImportSkip.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.NudCtrlImportSkip.Name = "NudCtrlImportSkip";
-            this.toolTip1.SetToolTip(this.NudCtrlImportSkip, resources.GetString("NudCtrlImportSkip.ToolTip"));
-            this.NudCtrlImportSkip.Value = global::GrblPlotter.Properties.Settings.Default.ctrlImportSkip;
+            this.checkBox12.Checked = global::GrblPlotter.Properties.Settings.Default.guiShowFormInFront;
+            this.checkBox12.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "guiShowFormInFront", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.checkBox12, "checkBox12");
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.UseVisualStyleBackColor = true;
             // 
             // ControlSetupForm
             // 
@@ -10455,6 +10830,7 @@ namespace GrblPlotter
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.tabPage19.ResumeLayout(false);
+            this.groupBox30.ResumeLayout(false);
             this.tab1_1gB5.ResumeLayout(false);
             this.tab1_1gB5.PerformLayout();
             this.tab1_1gB4.ResumeLayout(false);
@@ -10464,6 +10840,10 @@ namespace GrblPlotter
             this.tab1_1_4gB2.ResumeLayout(false);
             this.tab1_1_4gB2.PerformLayout();
             this.tabPage30.ResumeLayout(false);
+            this.GbWireBender.ResumeLayout(false);
+            this.GbWireBender.PerformLayout();
+            this.groupBox31.ResumeLayout(false);
+            this.groupBox31.PerformLayout();
             this.gBDevelop.ResumeLayout(false);
             this.gBDevelop.PerformLayout();
             this.groupBox22.ResumeLayout(false);
@@ -10615,13 +10995,12 @@ namespace GrblPlotter
             this.tab8gB1.ResumeLayout(false);
             this.tab8gB1.PerformLayout();
             this.tabPage6.ResumeLayout(false);
-            this.groupBox29.ResumeLayout(false);
             this.groupBox14.ResumeLayout(false);
             this.groupBox14.PerformLayout();
+            this.groupBox32.ResumeLayout(false);
+            this.groupBox32.PerformLayout();
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
-            this.tab5gB9.ResumeLayout(false);
-            this.tab5gB9.PerformLayout();
             this.tab8gB2.ResumeLayout(false);
             this.tab8gB2.PerformLayout();
             this.tabPage32.ResumeLayout(false);
@@ -10633,6 +11012,10 @@ namespace GrblPlotter
             this.GbProjectorCalc.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudProjectorSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudProjectorReal)).EndInit();
+            this.tabPage33.ResumeLayout(false);
+            this.groupBox29.ResumeLayout(false);
+            this.tab5gB9.ResumeLayout(false);
+            this.tab5gB9.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -10684,7 +11067,11 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicClipOffsetX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicTileClipWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicTileClipAddOnX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudConversionMaxFigures)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudWireBenderRadius)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudWireBenderDiameter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudWireBenderAngleAddOn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicDevelopFeedAfter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicDevelopNotchZNotch)).EndInit();
@@ -10720,6 +11107,7 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolChangeScriptDelay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolChangeEmpty)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudCtrlImportSkip)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDMachineHomeZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDMachineHomeY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDMachineHomeX)).EndInit();
@@ -10770,6 +11158,8 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyXYStep3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyXYStep2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyXYStep1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudDuplicateOffsetY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudDuplicateOffsetX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudShowVertexSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudShowVertexType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDFCTBLineInterval)).EndInit();
@@ -10792,7 +11182,6 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.NudProjectorMarker)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudProjectorPenDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudProjectorTool)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudCtrlImportSkip)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -11736,5 +12125,38 @@ namespace GrblPlotter
         private System.Windows.Forms.CheckBox CbProjectorScaleEnable;
         private System.Windows.Forms.Label label72;
         private System.Windows.Forms.NumericUpDown NudCtrlImportSkip;
+        private System.Windows.Forms.GroupBox groupBox30;
+        private System.Windows.Forms.Label label73;
+        private System.Windows.Forms.NumericUpDown NudConversionMaxFigures;
+        private System.Windows.Forms.GroupBox GbWireBender;
+        private System.Windows.Forms.CheckBox CbWireBenderEnable;
+        private System.Windows.Forms.ComboBox CbWireBenderFeed;
+        private System.Windows.Forms.Label label74;
+        private System.Windows.Forms.NumericUpDown NudWireBenderRadius;
+        private System.Windows.Forms.Label label76;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label75;
+        private System.Windows.Forms.GroupBox groupBox31;
+        private System.Windows.Forms.Label label79;
+        private System.Windows.Forms.NumericUpDown NudWireBenderDiameter;
+        private System.Windows.Forms.Label label78;
+        private System.Windows.Forms.NumericUpDown NudWireBenderAngleAddOn;
+        private System.Windows.Forms.RadioButton RbWireBenderAnglePcnt;
+        private System.Windows.Forms.RadioButton RbWireBenderAngleAbs;
+        private System.Windows.Forms.Label label80;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label83;
+        private System.Windows.Forms.Label label82;
+        private System.Windows.Forms.Label label81;
+        private System.Windows.Forms.GroupBox groupBox32;
+        private System.Windows.Forms.CheckBox CbDuplicateAddHeight;
+        private System.Windows.Forms.CheckBox CbDuplicateAddWidth;
+        private System.Windows.Forms.Label label85;
+        private System.Windows.Forms.Label label84;
+        private System.Windows.Forms.NumericUpDown NudDuplicateOffsetY;
+        private System.Windows.Forms.NumericUpDown NudDuplicateOffsetX;
+        private System.Windows.Forms.TabPage tabPage33;
     }
 }

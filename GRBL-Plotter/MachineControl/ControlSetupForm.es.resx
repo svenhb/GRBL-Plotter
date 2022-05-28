@@ -1068,7 +1068,7 @@ O asigne un nombre de archivo que contenga G-Code.</value>
     <comment>TabPage6</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
-    <value>Vista 2D / Editor / Varios</value>
+    <value>Vista 2D / Editor</value>
     <comment>TabPage7</comment>
   </data>
   <data name="nUDRotaryInfo.ToolTip" xml:space="preserve">
@@ -1303,22 +1303,6 @@ No es necesario establecer estas palabras
   </data>
   <data name="tab1_2gB4.ToolTip" xml:space="preserve">
     <value>Controle el RC-Servo a través de la velocidad del husillo (se necesita una versión GRBL especial para generar una salida PWM de 1 ms a 2 ms)</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl44.ToolTip" xml:space="preserve">
-    <value>Insertar G4: retraso en segundos antes del siguiente comando</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl42.ToolTip" xml:space="preserve">
-    <value>Insertar G4: retraso en segundos antes del siguiente comando</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl43.ToolTip" xml:space="preserve">
-    <value>Valor PWM (S) para 'pluma hacia abajo'</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl41.ToolTip" xml:space="preserve">
-    <value>Valor PWM (S) para 'pluma arriba'</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_3gB3.Text" xml:space="preserve">
@@ -2550,10 +2534,6 @@ El rango utilizable real sería $ 30 = 31, $ 31 = 0.</value>
     <value>Analiza los valores S, Z y F en el código G para asignar el color de la lista de herramientas a la trayectoria de la herramienta.</value>
     <comment>ok</comment>
   </data>
-  <data name="button2.ToolTip" xml:space="preserve">
-    <value>Valor de incremento de PWM 1, 10 o 100</value>
-    <comment>ok</comment>
-  </data>
   <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
     <value>Pen-up / -down antes / después de la subrutina</value>
     <comment>ok</comment>
@@ -2780,9 +2760,6 @@ El rango utilizable real sería $ 30 = 31, $ 31 = 0.</value>
   <data name="cBImportGraphicClipOffsetApply.ToolTip" xml:space="preserve">
     <value>Establece el origen de los mosaicos en 0; 0</value>
   </data>
-  <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
-    <value>Sin curva</value>
-  </data>
   <data name="checkBox9.Text" xml:space="preserve">
     <value>Guarde el código G como unicode UTF-16 (de lo contrario, ASCII)</value>
   </data>
@@ -3001,7 +2978,7 @@ Además, la posición del eje Z se puede utilizar para, por ejemplo, aumentar la
     <value>No encienda el husillo</value>
   </data>
   <data name="cBImportGCDragKnifeUse.Text" xml:space="preserve">
-    <value>Usa un cuchillo de arrastre</value>
+    <value>Uso de una cuchilla de arrastre (la dirección de inicio es siempre a 0° = a la derecha)</value>
   </data>
   <data name="CbMarlin.Text" xml:space="preserve">
     <value>Conéctate a Marlín</value>
@@ -3014,5 +2991,59 @@ Además, la posición del eje Z se puede utilizar para, por ejemplo, aumentar la
   </data>
   <data name="NudCtrlImportSkip.ToolTip" xml:space="preserve">
     <value>Cantidad de líneas (miles de veces) a exceder, antes de omitir las opciones de visualización.</value>
+  </data>
+  <data name="RbWireBenderAnglePcnt.Text" xml:space="preserve">
+    <value>Usar como porcentaje</value>
+  </data>
+  <data name="RbWireBenderAngleAbs.Text" xml:space="preserve">
+    <value>Usar valor absoluto</value>
+  </data>
+  <data name="label83.Text" xml:space="preserve">
+    <value>cortar alambre</value>
+  </data>
+  <data name="label82.Text" xml:space="preserve">
+    <value>Deshabilitar clavija</value>
+  </data>
+  <data name="label81.Text" xml:space="preserve">
+    <value>clavija activa</value>
+  </data>
+  <data name="textBox6.ToolTip" xml:space="preserve">
+    <value>Aplicar comandos aquí, para cortar el cable</value>
+  </data>
+  <data name="textBox5.ToolTip" xml:space="preserve">
+    <value>Aplicar comandos aquí, para deshabilitar las clavijas de flexión</value>
+  </data>
+  <data name="textBox4.ToolTip" xml:space="preserve">
+    <value>Aplicar comandos aquí, para activar clavijas de flexión</value>
+  </data>
+  <data name="label80.Text" xml:space="preserve">
+    <value>Código G para acciones específicas (comandos separados con ';' o establecer la ruta del script):</value>
+  </data>
+  <data name="label74.Text" xml:space="preserve">
+    <value>Radio de curvatura</value>
+  </data>
+  <data name="label75.Text" xml:space="preserve">
+    <value>Eje X para alimentación de alambre</value>
+  </data>
+  <data name="label76.Text" xml:space="preserve">
+    <value>Eje Y para ángulo de plegado</value>
+  </data>
+  <data name="groupBox31.Text" xml:space="preserve">
+    <value>parámetro de la máquina</value>
+  </data>
+  <data name="label79.Text" xml:space="preserve">
+    <value>Diámetro del cable</value>
+  </data>
+  <data name="label78.Text" xml:space="preserve">
+    <value>Añadir ángulo para alcanzar el ángulo deseado</value>
+  </data>
+  <data name="CbWireBenderEnable.Text" xml:space="preserve">
+    <value>Generar código para doblador de alambre</value>
+  </data>
+  <data name="GbWireBender.Text" xml:space="preserve">
+    <value>dobladora de alambre</value>
+  </data>
+  <data name="tabPage33.Text" xml:space="preserve">
+    <value>Varios</value>
   </data>
 </root>

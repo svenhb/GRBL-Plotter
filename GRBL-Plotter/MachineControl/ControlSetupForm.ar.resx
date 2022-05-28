@@ -607,38 +607,6 @@
     <value>سرعة المغزل للقلم يصل</value>
     <comment>TabPage1_2</comment>
   </data>
-  <data name="tab1_2lbl44.Text" xml:space="preserve">
-    <value>تأخير بعد</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tab1_2lbl44.ToolTip" xml:space="preserve">
-    <value>أدخل G4: التأخير بالثواني قبل الأمر التالي</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl42.Text" xml:space="preserve">
-    <value>تأخير بعد</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tab1_2lbl42.ToolTip" xml:space="preserve">
-    <value>أدخل G4: التأخير بالثواني قبل الأمر التالي</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl43.Text" xml:space="preserve">
-    <value>القلم لأسفل</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tab1_2lbl43.ToolTip" xml:space="preserve">
-    <value>سرعة المغزل لأسفل القلم</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl41.Text" xml:space="preserve">
-    <value>القلم لأعلى</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tab1_2lbl41.ToolTip" xml:space="preserve">
-    <value>سرعة المغزل للقلم يصل</value>
-    <comment>TabPage1_2</comment>
-  </data>
   <data name="tab1_2gB4.Text" xml:space="preserve">
     <value>أجهزة التحكم</value>
     <comment>TabPage1_2</comment>
@@ -1467,7 +1435,7 @@ M4 وضع الطاقة ليزر ديناميكي</value>
     <comment>ok</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
-    <value>2D- عرض / محرر / متفرقات</value>
+    <value>2D- عرض / محرر / </value>
     <comment>TabPage7</comment>
   </data>
   <data name="cBKeepPenWidth.Text" xml:space="preserve">
@@ -2809,10 +2777,6 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
     <value>الحد الأدنى للمركز X</value>
     <comment>ok</comment>
   </data>
-  <data name="button2.ToolTip" xml:space="preserve">
-    <value>قيمة زيادة PWM 1 أو 10 أو 100</value>
-    <comment>ok</comment>
-  </data>
   <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
     <value>Pen-up / -down قبل / بعد الروتين الفرعي</value>
     <comment>ok</comment>
@@ -3034,9 +2998,6 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   </data>
   <data name="cBImportGraphicClipOffsetApply.ToolTip" xml:space="preserve">
     <value>اضبط أصل المربعات على 0 ؛ 0</value>
-  </data>
-  <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
-    <value>لا يوجد منحنى</value>
   </data>
   <data name="btnColorDimension.Text" xml:space="preserve">
     <value>البعد</value>
@@ -3292,7 +3253,7 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
     <value>لا تقم بتشغيل المغزل</value>
   </data>
   <data name="cBImportGCDragKnifeUse.Text" xml:space="preserve">
-    <value>استخدم سكين السحب</value>
+    <value>استخدام سكين السحب (يكون اتجاه البداية دائمًا عند 0 درجة = إلى اليمين)</value>
   </data>
   <data name="CbMarlin.Text" xml:space="preserve">
     <value>تواصل مع مارلين</value>
@@ -3305,5 +3266,59 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   </data>
   <data name="NudCtrlImportSkip.ToolTip" xml:space="preserve">
     <value>يجب تجاوز عدد الأسطر (مرات بالآلاف) قبل تخطي خيارات العرض.</value>
+  </data>
+  <data name="RbWireBenderAnglePcnt.Text" xml:space="preserve">
+    <value>استخدم كنسبة مئوية</value>
+  </data>
+  <data name="RbWireBenderAngleAbs.Text" xml:space="preserve">
+    <value>استخدم القيمة المطلقة</value>
+  </data>
+  <data name="label83.Text" xml:space="preserve">
+    <value>قطع الأسلاك</value>
+  </data>
+  <data name="label82.Text" xml:space="preserve">
+    <value>الوتد تعطيل</value>
+  </data>
+  <data name="label81.Text" xml:space="preserve">
+    <value>الوتد نشط</value>
+  </data>
+  <data name="textBox6.ToolTip" xml:space="preserve">
+    <value>قم بتطبيق الأوامر هنا لقطع السلك</value>
+  </data>
+  <data name="textBox5.ToolTip" xml:space="preserve">
+    <value>قم بتطبيق الأوامر هنا لتعطيل أوتاد الانحناء</value>
+  </data>
+  <data name="textBox4.ToolTip" xml:space="preserve">
+    <value>قم بتطبيق الأوامر هنا لتنشيط أوتاد الانحناء</value>
+  </data>
+  <data name="label80.Text" xml:space="preserve">
+    <value>G- كود لإجراءات محددة (أوامر منفصلة باستخدام "؛" أو تعيين مسار البرنامج النصي):</value>
+  </data>
+  <data name="label74.Text" xml:space="preserve">
+    <value>نصف قطر الانحناء</value>
+  </data>
+  <data name="label75.Text" xml:space="preserve">
+    <value>المحور العاشر لتغذية الأسلاك</value>
+  </data>
+  <data name="label76.Text" xml:space="preserve">
+    <value>المحور ص لزاوية الانحناء</value>
+  </data>
+  <data name="groupBox31.Text" xml:space="preserve">
+    <value>معلمة الآلة</value>
+  </data>
+  <data name="label79.Text" xml:space="preserve">
+    <value>قطر السلك</value>
+  </data>
+  <data name="label78.Text" xml:space="preserve">
+    <value>الزاوية تضاف للوصول إلى الزاوية المرغوبة</value>
+  </data>
+  <data name="CbWireBenderEnable.Text" xml:space="preserve">
+    <value>توليد رمز لثني الأسلاك</value>
+  </data>
+  <data name="GbWireBender.Text" xml:space="preserve">
+    <value>بندر الأسلاك</value>
+  </data>
+  <data name="tabPage33.Text" xml:space="preserve">
+    <value>متفرقات</value>
   </data>
 </root>

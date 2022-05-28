@@ -17,6 +17,15 @@ namespace GrblPlotter
             if (disposing && (components != null))
             {
                 components.Dispose();
+                penUp.Dispose();
+                penTool.Dispose();
+                penRuler.Dispose();
+                penMarker.Dispose();
+                penGrid100.Dispose();
+                penGrid10.Dispose();
+                penGrid1.Dispose();
+                penDown.Dispose();
+                penDimension.Dispose();
             }
             base.Dispose(disposing);
         }

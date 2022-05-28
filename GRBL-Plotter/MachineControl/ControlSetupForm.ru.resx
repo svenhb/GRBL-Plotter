@@ -142,7 +142,7 @@
     <comment>TabPage6</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
-    <value>2D-вид / Редактор / Разное</value>
+    <value>2D-вид / Редактор</value>
     <comment>TabPage7</comment>
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
@@ -1307,22 +1307,6 @@ M4 Dynamic Laser Power Mode</value>
   </data>
   <data name="tab1_2gB4.ToolTip" xml:space="preserve">
     <value>Управление RC-сервоприводом через скорость вращения шпинделя (требуется специальная GRBL-версия для генерации выходных сигналов от 1 до 2 мс)</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl44.ToolTip" xml:space="preserve">
-    <value>Вставить G4: задержка в секундах перед следующей командой</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl42.ToolTip" xml:space="preserve">
-    <value>Вставить G4: задержка в секундах перед следующей командой</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl43.ToolTip" xml:space="preserve">
-    <value>Значение ШИМ (S) для «перо вниз»</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl41.ToolTip" xml:space="preserve">
-    <value>Значение ШИМ (S) для «Pen Up»</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_3gB3.Text" xml:space="preserve">
@@ -2646,10 +2630,6 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
     <value>Мин. Позиция X</value>
     <comment>ok</comment>
   </data>
-  <data name="button2.ToolTip" xml:space="preserve">
-    <value>Значение приращения ШИМ 1, 10 или 100</value>
-    <comment>ok</comment>
-  </data>
   <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
     <value>Pen-up / -down до / после подпрограммы</value>
     <comment>ok</comment>
@@ -2944,9 +2924,6 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   <data name="cBImportGraphicClipOffsetApply.ToolTip" xml:space="preserve">
     <value>Установите исходную точку плиток на 0; 0</value>
   </data>
-  <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
-    <value>Нет кривой</value>
-  </data>
   <data name="btnColorDimension.Text" xml:space="preserve">
     <value>Измерение</value>
   </data>
@@ -3220,7 +3197,7 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
     <value>Не включать шпиндель</value>
   </data>
   <data name="cBImportGCDragKnifeUse.Text" xml:space="preserve">
-    <value>Воспользуйтесь тянущим ножом</value>
+    <value>Использование тормозного ножа (начальное направление всегда 0° градусов = вправо)</value>
   </data>
   <data name="CbMarlin.Text" xml:space="preserve">
     <value>Подключиться к Марлину</value>
@@ -3237,5 +3214,59 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   <data name="btnJoyZCalc.Text" xml:space="preserve">
     <value>Рассчитать лучшую скорость</value>
     <comment>ok</comment>
+  </data>
+  <data name="RbWireBenderAnglePcnt.Text" xml:space="preserve">
+    <value>Использовать в процентах</value>
+  </data>
+  <data name="RbWireBenderAngleAbs.Text" xml:space="preserve">
+    <value>Использовать абсолютное значение</value>
+  </data>
+  <data name="label83.Text" xml:space="preserve">
+    <value>Обрезать провод</value>
+  </data>
+  <data name="label82.Text" xml:space="preserve">
+    <value>Отключение привязки</value>
+  </data>
+  <data name="label81.Text" xml:space="preserve">
+    <value>Привязка активна</value>
+  </data>
+  <data name="textBox6.ToolTip" xml:space="preserve">
+    <value>Примените команды здесь, чтобы перерезать провод</value>
+  </data>
+  <data name="textBox5.ToolTip" xml:space="preserve">
+    <value>Примените команды здесь, чтобы отключить гибкие штифты</value>
+  </data>
+  <data name="textBox4.ToolTip" xml:space="preserve">
+    <value>Примените команды здесь, чтобы активировать гибкие колышки</value>
+  </data>
+  <data name="label80.Text" xml:space="preserve">
+    <value>G-код для определенных действий (отдельные команды с ';' или указать путь к скрипту):</value>
+  </data>
+  <data name="label74.Text" xml:space="preserve">
+    <value>Радиус изгиба</value>
+  </data>
+  <data name="label75.Text" xml:space="preserve">
+    <value>Ось X для подачи проволоки</value>
+  </data>
+  <data name="label76.Text" xml:space="preserve">
+    <value>Ось Y для угла изгиба</value>
+  </data>
+  <data name="groupBox31.Text" xml:space="preserve">
+    <value>Параметр машины</value>
+  </data>
+  <data name="label79.Text" xml:space="preserve">
+    <value>Диаметр провода</value>
+  </data>
+  <data name="label78.Text" xml:space="preserve">
+    <value>Угол добавить для достижения желаемого угла</value>
+  </data>
+  <data name="CbWireBenderEnable.Text" xml:space="preserve">
+    <value>Сгенерировать код для сгиба проволоки</value>
+  </data>
+  <data name="GbWireBender.Text" xml:space="preserve">
+    <value>Изгиб проволоки</value>
+  </data>
+  <data name="tabPage33.Text" xml:space="preserve">
+    <value>Разное</value>
   </data>
 </root>

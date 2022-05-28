@@ -17,15 +17,30 @@ namespace GrblPlotter.MachineControl
         public double CenterX { get { return (double)NudCenterX.Value; } set { NudCenterX.Value = (decimal)value; } }
         public double CenterY { get { return (double)NudCenterY.Value; } set { NudCenterY.Value = (decimal)value; } }
         public bool AttributeWasChanged { get; set; } = false;
-        public double AttributePenWidth { get { return (double)NudAttributeWidth.Value; } set { if (value > 0) { NudAttributeWidth.Value = (decimal)value; NudAttributeWidth.Enabled = true; } } }
-        public string AttributePenColor { get { return GetColorString(BtnAttributeColor.BackColor); } set { if (value.Length > 2) { BtnAttributeColor.BackColor = GetColor(value); BtnAttributeColor.Enabled = true; } } }
+        public double AttributePenWidth { 
+			get { return (double)NudAttributeWidth.Value; } 
+			set { 	if (value > 0) 
+					{ 	NudAttributeWidth.Value = (decimal)value; 
+						NudAttributeWidth.Enabled = true; 
+					} 
+				} 
+		}
+        public string AttributePenColor { 
+			get { return GetColorString(BtnAttributeColor.BackColor); } 
+			set { 	if (value.Length > 2) 
+					{ 	BtnAttributeColor.BackColor = GetColor(value); 
+						BtnAttributeColor.Enabled = true; 
+					} 
+				} 
+		}
 
         public GCodeSelectionProperties()
         {
             InitializeComponent();
             this.Icon = Properties.Resources.Icon;
-            BtnAttributeColor.Enabled = false;
-            NudAttributeWidth.Enabled = false;
+        //    BtnAttributeColor.Enabled = false;
+        //    NudAttributeWidth.Enabled = false;
+        //    AttributePenColor = "000000";
         }
         private void GCodeSelectionProperties_Load(object sender, EventArgs e)
         {

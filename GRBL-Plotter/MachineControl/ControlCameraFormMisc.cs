@@ -57,7 +57,7 @@ namespace GrblPlotter
         private static XyPoint measureAngleStart = new XyPoint(0, 0);
         private static XyPoint measureAngleStop = new XyPoint(0, 0);
         private static XyPoint angleRotationCenter = new XyPoint(0, 0);
-        private List<XyPoint> realPoints = new List<XyPoint>();
+        private static readonly List<XyPoint> realPoints = new List<XyPoint>();
         private static XyPoint realPointsOffset = new XyPoint();
 
         private static readonly bool showLog = false;
@@ -69,7 +69,7 @@ namespace GrblPlotter
         private readonly Pen penTeach = new Pen(Color.LightPink, 0.5F);
         private readonly Pen penUp = new Pen(Color.Green, 0.1F);
         private readonly Pen penDown = new Pen(Color.Red, 0.4F);
-        private Pen penRuler = new Pen(Color.Blue, 0.1F);
+        private readonly Pen penRuler = new Pen(Color.Blue, 0.1F);
         private readonly Pen penTool = new Pen(Color.Black, 0.5F);
         private readonly  Pen penMarker = new Pen(Color.DeepPink, 1F);
         private readonly Pen penDimension = new Pen(Color.DarkGray, 1F);
@@ -150,7 +150,7 @@ namespace GrblPlotter
                         if (camName == videosources[i].Name)
                         {
                             return i;
-                            break;
+                    //        break;
                         }
                     }
                 }
@@ -659,14 +659,14 @@ namespace GrblPlotter
             double lowestDistance = xmid;
             double distance;
             shapeFound = false;
-            AForge.Point center;
+        //    AForge.Point center;
             double shapeRadius = 1;
 
             for (int i = 0, n = blobs.Length; i < n; i++)
             {
                 List<IntPoint> edgePoints = blobCounter.GetBlobsEdgePoints(blobs[i]);
-                System.Single myRadius;
-                if (Properties.Settings.Default.camShapeCircle && shapeChecker.IsCircle(edgePoints, out center, out myRadius))
+            //    System.Single myRadius;
+                if (Properties.Settings.Default.camShapeCircle && shapeChecker.IsCircle(edgePoints, out AForge.Point center, out System.Single myRadius))
                 {
          //           Logger.Trace("Shape r:{0}  min:{1}  max:{2}   refPosPx {3:0.0} {4:0.0}   centerPosPx {5:0.0} {6:0.0}", myRadius, shapeMin, shapeMax, refPointInPx.X, refPointInPx.Y, center.X, center.Y);
                     if ((center.X < 1) || (center.Y < 1))
@@ -687,14 +687,14 @@ namespace GrblPlotter
                         if (showLog) Logger.Trace("Shape r:{0}  min:{1}  max:{2}   refPosPx {3:0.0} {4:0.0}   centerPosPx {5:0.0} {6:0.0}", myRadius, shapeMin, shapeMax, refPointInPx.X, refPointInPx.Y, center.X, center.Y);
                     }
                 }
-                List<IntPoint> corners;
-                if (Properties.Settings.Default.camShapeRect && shapeChecker.IsQuadrilateral(edgePoints, out corners))  //.IsConvexPolygon
+             //   List<IntPoint> corners;
+                if (Properties.Settings.Default.camShapeRect && shapeChecker.IsQuadrilateral(edgePoints, out List<IntPoint> corners))  //.IsConvexPolygon
                 {
-                    IntPoint minxy, maxxy, centxy;
-					if (!fiducialDetection)
+                    IntPoint centxy;        // minxy, maxxy,
+                    if (!fiducialDetection)
                     {	g.DrawPolygon(yellowPen, ToPointsArray(corners));}
 				
-                    PointsCloud.GetBoundingRectangle(corners, out minxy, out maxxy);
+                    PointsCloud.GetBoundingRectangle(corners, out IntPoint minxy, out IntPoint maxxy);
                     centxy = (minxy + maxxy) / 2;
                     if ((centxy.X < 1) || (centxy.Y < 1))
                         continue;

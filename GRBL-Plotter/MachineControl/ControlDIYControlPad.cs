@@ -239,7 +239,7 @@ namespace GrblPlotter
             }
             catch (Exception err) {
                 Logger.Error(err, "Error SendLine: {0} ", data);
-                EventCollector.SetCommunication(string.Format("CDiyS{1}", err.Message));
+                EventCollector.SetCommunication(string.Format("CDiyS{0}", err.Message));
                 if (cBFeedback.Checked)
                     rtbLog.AppendText(string.Format(">| {0} \r\n", data));
             }

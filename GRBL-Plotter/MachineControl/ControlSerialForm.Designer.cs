@@ -35,6 +35,8 @@ namespace GrblPlotter
             {
                 components.Dispose();
 				timerSerial.Dispose();
+                reader.Dispose();
+                ClientEthernet.Close();
             }
             base.Dispose(disposing);
         }

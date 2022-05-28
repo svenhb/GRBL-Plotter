@@ -1068,7 +1068,7 @@ Ou assignez un nom de fichier contenant G-Code.</value>
     <comment>TabPage6</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
-    <value>Vue 2D / Éditeur / Divers</value>
+    <value>Vue 2D / Éditeur</value>
     <comment>TabPage7</comment>
   </data>
   <data name="nUDRotaryInfo.ToolTip" xml:space="preserve">
@@ -1303,22 +1303,6 @@ Pas besoin de définir ces mots
   </data>
   <data name="tab1_2gB4.ToolTip" xml:space="preserve">
     <value>Contrôle RC-Servo via la vitesse de rotation (version spéciale GRBL nécessaire pour générer une sortie PWM 1 ms - 2 ms)</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl44.ToolTip" xml:space="preserve">
-    <value>Insert G4: délai en secondes avant la prochaine commande</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl42.ToolTip" xml:space="preserve">
-    <value>Insert G4: délai en secondes avant la prochaine commande</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl43.ToolTip" xml:space="preserve">
-    <value>Valeur PWM (S) pour 'Pen Down'</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl41.ToolTip" xml:space="preserve">
-    <value>Valor PWM (S) para 'pluma arriba'</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_3gB3.Text" xml:space="preserve">
@@ -2550,10 +2534,6 @@ La plage utilisable réelle serait 30 $ = 31, 31 $ = 0.</value>
     <value>Analyse les valeurs S, Z et F dans le code G pour attribuer la couleur de la liste d'outils à la trajectoire d'outil</value>
     <comment>ok</comment>
   </data>
-  <data name="button2.ToolTip" xml:space="preserve">
-    <value>Valeur d'incrément PWM 1, 10 ou 100</value>
-    <comment>ok</comment>
-  </data>
   <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
     <value>Pen-up / -down avant / après le sous-programme</value>
     <comment>ok</comment>
@@ -2780,9 +2760,6 @@ La plage utilisable réelle serait 30 $ = 31, 31 $ = 0.</value>
   <data name="cBImportGraphicClipOffsetApply.ToolTip" xml:space="preserve">
     <value>Définissez l'origine des tuiles sur 0 ; 0</value>
   </data>
-  <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
-    <value>Pas de courbe</value>
-  </data>
   <data name="checkBox9.Text" xml:space="preserve">
     <value>Enregistrer le G-Code au format unicode UTF-16 (sinon ASCII)</value>
   </data>
@@ -3001,7 +2978,7 @@ De plus, la position de l'axe Z peut être utilisée, par exemple, pour augmente
     <value>Ne pas allumer la broche</value>
   </data>
   <data name="cBImportGCDragKnifeUse.Text" xml:space="preserve">
-    <value>Utiliser un couteau à traîner</value>
+    <value>Utilisation d'un couteau à traînée (la direction de départ est toujours à 0° deg = vers la droite)</value>
   </data>
   <data name="CbMarlin.Text" xml:space="preserve">
     <value>Connectez-vous à Marlin</value>
@@ -3014,5 +2991,59 @@ De plus, la position de l'axe Z peut être utilisée, par exemple, pour augmente
   </data>
   <data name="NudCtrlImportSkip.ToolTip" xml:space="preserve">
     <value>Nombre de lignes (milliers) à dépasser avant de sauter les options d'affichage.</value>
+  </data>
+  <data name="RbWireBenderAnglePcnt.Text" xml:space="preserve">
+    <value>Utiliser en pourcentage</value>
+  </data>
+  <data name="RbWireBenderAngleAbs.Text" xml:space="preserve">
+    <value>Utiliser la valeur absolue</value>
+  </data>
+  <data name="label83.Text" xml:space="preserve">
+    <value>Fil coupé</value>
+  </data>
+  <data name="label82.Text" xml:space="preserve">
+    <value>Peg désactivé</value>
+  </data>
+  <data name="label81.Text" xml:space="preserve">
+    <value>Cheville active</value>
+  </data>
+  <data name="textBox6.ToolTip" xml:space="preserve">
+    <value>Appliquer les commandes ici, pour couper le fil</value>
+  </data>
+  <data name="textBox5.ToolTip" xml:space="preserve">
+    <value>Appliquez les commandes ici, pour désactiver les chevilles de flexion</value>
+  </data>
+  <data name="textBox4.ToolTip" xml:space="preserve">
+    <value>Appliquez les commandes ici, pour activer les chevilles de pliage</value>
+  </data>
+  <data name="label80.Text" xml:space="preserve">
+    <value>G-Code pour des actions spécifiques (séparez les commandes avec ';' ou définissez le chemin du script):</value>
+  </data>
+  <data name="label74.Text" xml:space="preserve">
+    <value>Rayon de courbure</value>
+  </data>
+  <data name="label75.Text" xml:space="preserve">
+    <value>Axe X pour le dévidage du fil</value>
+  </data>
+  <data name="label76.Text" xml:space="preserve">
+    <value>Axe Y pour l'angle de pliage</value>
+  </data>
+  <data name="groupBox31.Text" xml:space="preserve">
+    <value>Paramètre machine</value>
+  </data>
+  <data name="label79.Text" xml:space="preserve">
+    <value>Diamètre du fil</value>
+  </data>
+  <data name="label78.Text" xml:space="preserve">
+    <value>Angle ajouté pour atteindre l'angle désiré</value>
+  </data>
+  <data name="CbWireBenderEnable.Text" xml:space="preserve">
+    <value>Générer du code pour la cintreuse de fils</value>
+  </data>
+  <data name="GbWireBender.Text" xml:space="preserve">
+    <value>Cintreuse de fil</value>
+  </data>
+  <data name="tabPage33.Text" xml:space="preserve">
+    <value>Divers</value>
   </data>
 </root>

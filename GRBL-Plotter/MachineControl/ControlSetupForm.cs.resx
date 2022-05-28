@@ -2978,7 +2978,7 @@ Chcete-li používat Gamepad v GUI, musíte okno nastavení zavřít.</value>
     <comment>TabPage8</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
-    <value>2D-View / Editor / Různé</value>
+    <value>2D-View / Editor</value>
     <comment>TabPage7</comment>
   </data>
   <data name="tabPage22.Text" xml:space="preserve">
@@ -3267,7 +3267,7 @@ Kromě toho lze polohu osy Z využít např. ke zvýšení množství barvy, kdy
     <value>Spindel nicht einschalten</value>
   </data>
   <data name="cBImportGCDragKnifeUse.Text" xml:space="preserve">
-    <value>Použijte tažný nůž</value>
+    <value>Použití tažného nože (směr startu je vždy 0° = vpravo)</value>
   </data>
   <data name="CbMarlin.Text" xml:space="preserve">
     <value>Připojte se k Marlinovi</value>
@@ -3280,5 +3280,59 @@ Kromě toho lze polohu osy Z využít např. ke zvýšení množství barvy, kdy
   </data>
   <data name="NudCtrlImportSkip.ToolTip" xml:space="preserve">
     <value>Počet řádků (krát tisíc), které mají být překročeny, před přeskočením možností zobrazení.</value>
+  </data>
+  <data name="RbWireBenderAnglePcnt.Text" xml:space="preserve">
+    <value>Použijte jako procento</value>
+  </data>
+  <data name="RbWireBenderAngleAbs.Text" xml:space="preserve">
+    <value>Použijte absolutní hodnotu</value>
+  </data>
+  <data name="label83.Text" xml:space="preserve">
+    <value>Přestřihněte drát</value>
+  </data>
+  <data name="label82.Text" xml:space="preserve">
+    <value>Zakázat peg</value>
+  </data>
+  <data name="label81.Text" xml:space="preserve">
+    <value>Peg aktivní</value>
+  </data>
+  <data name="textBox6.ToolTip" xml:space="preserve">
+    <value>Zde použijte příkazy pro přestřižení drátu</value>
+  </data>
+  <data name="textBox5.ToolTip" xml:space="preserve">
+    <value>Zde použijte příkazy pro deaktivaci ohýbacích kolíků</value>
+  </data>
+  <data name="textBox4.ToolTip" xml:space="preserve">
+    <value>Zde použijte příkazy pro aktivaci ohýbacích kolíků</value>
+  </data>
+  <data name="label80.Text" xml:space="preserve">
+    <value>G-Code pro konkrétní akce (samostatné příkazy s ';' nebo nastavit cestu skriptu):</value>
+  </data>
+  <data name="label74.Text" xml:space="preserve">
+    <value>Poloměr ohybu</value>
+  </data>
+  <data name="label75.Text" xml:space="preserve">
+    <value>Osa X pro posuv drátu</value>
+  </data>
+  <data name="label76.Text" xml:space="preserve">
+    <value>Osa Y pro úhel ohybu</value>
+  </data>
+  <data name="groupBox31.Text" xml:space="preserve">
+    <value>Parametr stroje</value>
+  </data>
+  <data name="label79.Text" xml:space="preserve">
+    <value>Průměr drátu</value>
+  </data>
+  <data name="label78.Text" xml:space="preserve">
+    <value>Přidejte úhel pro dosažení požadovaného úhlu</value>
+  </data>
+  <data name="CbWireBenderEnable.Text" xml:space="preserve">
+    <value>Vygenerujte kód pro ohýbačku drátu</value>
+  </data>
+  <data name="GbWireBender.Text" xml:space="preserve">
+    <value>Ohýbačka drátu</value>
+  </data>
+  <data name="tabPage33.Text" xml:space="preserve">
+    <value>Různé</value>
   </data>
 </root>

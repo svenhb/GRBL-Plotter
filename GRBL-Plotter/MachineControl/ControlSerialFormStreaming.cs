@@ -32,6 +32,7 @@
  * 2021-07-12 code clean up / code quality
  * 2022-01-02 line 354 AddCodeFromFile -> add MakeAbsolutePath
  * 2022-01-17 Avoid grbl-error:20 if T01M06 but "Perform tool change" not enabled line 272;  AddCodeFromFile - no error if filename = "" line 354
+ * 2022-05-27 line 650 keep size of sendBuffer small
  */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -71,12 +72,15 @@ namespace GrblPlotter
 
         private Dictionary<int, List<string>> subroutines = new Dictionary<int, List<string>>();
 
+        private bool posChangedMonitor = false;
+        private int countDownMonitor = 10;
+
         public event EventHandler<StreamEventArgs> RaiseStreamEvent;
         protected virtual void OnRaiseStreamEvent(StreamEventArgs e)
         { RaiseStreamEvent?.Invoke(this, e); }
 
         private string ListInfoStream()
-        { return string.Format("{0}strmBuffer snt:{1,3}  cnfrmnd:{2,3}  cnt:{3,3}  BFree:{4,3}  lineNr:{5}  code:'{6}' state:{7}", "", streamingBuffer.IndexSent, streamingBuffer.IndexConfirmed, streamingBuffer.Count, grblBufferFree, streamingBuffer.GetConfirmedLineNr(), streamingBuffer.GetConfirmedLine(), grblStateNow.ToString()); }
+        { return string.Format("{0}strmBuffer snt:{1,3}  cnfrmnd:{2,3}  cnt:{3,5}  BFree:{4,3}  lineNr:{5}  code:'{6}' state:{7}", "", streamingBuffer.IndexSent, streamingBuffer.IndexConfirmed, streamingBuffer.Count, grblBufferFree, streamingBuffer.GetConfirmedLineNr(), streamingBuffer.GetConfirmedLine(), grblStateNow.ToString()); }
 
 /****************************************************************************
 *  startStreaming called by main-Prog
@@ -88,10 +92,11 @@ namespace GrblPlotter
         {
             grblCharacterCounting = Properties.Settings.Default.grblStreamingProtocol1 && !isMarlin;
             Logger.Info("▼▼▼▼▼ Ser:{0} startStreaming at line:{1} to line:{2} ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼", iamSerial, startAtLine, stopAtLine);
+            string infoProtocol = "Streaming Protocol: Simple Send-Response";
+
             if (grblCharacterCounting)
-                Logger.Info("Streaming Protocol: Character-Counting");
-            else
-                Logger.Info("Streaming Protocol: Simple Send-Response");
+                infoProtocol = "Streaming Protocol: Character-Counting";
+            Logger.Info("{0}", infoProtocol);
 
             UpdateLogging();
 
@@ -137,6 +142,7 @@ namespace GrblPlotter
             {
                 if (logStreamData) AddToLog("* Logging enabled");
                 AddToLog("[Start streaming - no echo at " + GetTimeStampString() +" ]");
+                AddToLog("[" + infoProtocol + "]");
                 if (useSerial2) AddToLog("[Use serial 2]");
                 if (useSerial3) AddToLog("[Use serial 3]");
             }
@@ -323,7 +329,7 @@ namespace GrblPlotter
             }
             else
             {   waitForIdle = false;
-                PreProcessStreaming();  // 411 
+                PreProcessStreaming();              // StartStreaming
             }
         }   // startStreaming
     
@@ -445,13 +451,15 @@ namespace GrblPlotter
         public void PauseStreaming()
         {
 			UpdateLogging();
-            if (logStartStop) Logger.Trace("Ser:{0} pauseStreaming()  isStreamingPause {1}   isStreamingRequestPause {2}   {3}", iamSerial, isStreamingPause, isStreamingRequestPause, ListInfoStream());
+        //    if (logStartStop) Logger.Trace("Ser:{0} pauseStreaming()  isStreamingPause {1}   isStreamingRequestPause {2}   {3}", iamSerial, isStreamingPause, isStreamingRequestPause, ListInfoStream());
 // start pause			
             if (!isStreamingPause)
             {   isStreamingRequestPause = true;     // wait until buffer is empty before switch to pause
                 AddToLog("[Pause streaming - wait for IDLE]");
                 AddToLog("[Save Settings]");
-                Logger.Info("▲▼▲▼▲ pauseStreaming RequestPause    ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲");
+                Logger.Info("▲▼▲▼▲ pauseStreaming RequestPause    ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ Outstanding lines:{0}", (sendBuffer.Count - sendBuffer.IndexConfirmed));
+                Logger.Info("  capacity:{0,6} {1}", sendBuffer.Capacity, ListInfoSend());
+                Logger.Info("  capacity:{0,6} {1}", streamingBuffer.Capacity, ListInfoStream());
                 streamingStateNow = GrblStreaming.waitidle;
                 getParserState = true;
             }
@@ -491,7 +499,7 @@ namespace GrblPlotter
                 isStreamingPause = false;
                 isStreamingRequestPause = false;
 
-                PreProcessStreaming();
+                PreProcessStreaming();              // pauseStreaming start streaming
             }
             UpdateControls();
         }   // pauseStreaming
@@ -621,7 +629,10 @@ namespace GrblPlotter
                 if (progressUpdateMarker)
                 {
                     progressUpdateMarker = false;
-                    AddToLog("Streaming Progress: " + codeFinish + " %");
+                    AddToLog(string.Format("Streaming Progress:{0,3} %  line:{1,6} ", codeFinish, lineNrConfirmed));
+                    Logger.Info("🗲🗲 SendStreamEvent Progress:{0} %  Bfree:{1}  Bsize:{2}", codeFinish, grblBufferFree, grblBufferSize);
+                    Logger.Info("  capacity:{0,6} {1}", sendBuffer.Capacity, ListInfoSend());
+                    Logger.Info("  capacity:{0,6} {1}", streamingBuffer.Capacity, ListInfoStream());
                 }
             }
             else { progressUpdateMarker = true; }
@@ -639,11 +650,19 @@ namespace GrblPlotter
  **********************************************************************************/
         private void PreProcessStreaming()
         {
-            int lengthToSend = streamingBuffer.LengthSent() + 1;
-
+            int lengthFree = sendBuffer.MissingConfirmationLength();        // 2022-05-27 keep sendBuffer small, for short reaction time on pause request
+            if (lengthFree > grblBufferSize)
+            {
+                //Logger.Trace("PreProcessStreaming abort- MissingConfirmationLength:{0}  size:{1}", lengthFree, grblBufferSize);
+                return;
+            }
             if (waitForIdle || isStreamingRequestPause || (countPreventIdle > 0))
-            {   return;    }
+            {   
+                Logger.Trace("PreProcessStreaming abort- waitForIdle:{0}  isStreamingRequestPause:{1}  countPreventIdle:{2}", waitForIdle, isStreamingRequestPause, countPreventIdle);
+                return;    
+            }
 
+            int lengthToSend = streamingBuffer.LengthSent() + 1;
             while ((streamingBuffer.IndexSent < streamingBuffer.Count) && (grblBufferFree >= lengthToSend) && !waitForIdle && (streamingStateNow != GrblStreaming.pause) && ExternalCOMReady())
             {
                 lock (sendDataLock)
@@ -717,7 +736,7 @@ namespace GrblPlotter
                     streamingStateOld = streamingStateNow;
                     lengthToSend = streamingBuffer.LengthSent() + 1;    // update while-variable
                 }   // lock
-                ProcessSend();
+                ProcessSend();          // PreProcessStreaming
             }   // while
 
             if (streamingStateNow != GrblStreaming.pause)
@@ -816,5 +835,43 @@ namespace GrblPlotter
                 if (cBStatus1.Checked || cBStatus.Checked)  AddToLog("\r[set tool coordinates " + cmdTNr.ToString() + " " + coord +  "]");
             }
         }
+		
+		private void StreamingMonitor()
+		{
+			if (posChangedMonitor)      // check change in X,Y and Z
+			{
+				posChangedMonitor = false;
+				countDownMonitor = 10;
+			}
+			else
+			{
+				if (countDownMonitor-- > 0)
+					return;
+
+                countDownMonitor = (int)(10 * 1000 / timerSerial.Interval); // update 10 sec.
+
+                if (isStreamingRequestPause || isStreamingPause) 
+                {   Logger.Info("⏱ StreamingMonitor isStreamingPause:{0} request:{1}", isStreamingPause, isStreamingRequestPause);
+                //    countDownMonitor = (int)(10000 / timerSerial.Interval); // update 10 sec.
+                    return;
+                }
+
+                Logger.Info("⚠ StreamingMonitor sendBuffer.OkToSend:{0}  grblBufferFree:{1}  waitForIdle:{2}  (true(x) && false)", sendBuffer.OkToSend(grblBufferFree), grblBufferFree, waitForIdle);
+                Logger.Info("    StreamingMonitor sendBuffer.GetSentLine:'{0}'  IndexSent:{1}  Count:{2}  LineSent:{3}", sendBuffer.GetSentLine(), sendBuffer.IndexSent, sendBuffer.Count, sendBuffer.GetSentLineNr());
+
+                /* why it's IDLE, what we are waiting for? */
+                bool ready = ExternalCOMReady();
+				if (!ready)
+				{	Logger.Warn("    StreamingMonitor  serial2Busy:{0} form2.grblStateNow:{1}  (false && idle)",serial2Busy, _serial_form2.grblStateNow);
+					Logger.Warn("    StreamingMonitor  serial3Busy:{0} form3.Busy:{1}  (false && false)", serial3Busy, _serial_form3.Busy);
+				}		
+				Logger.Info("    StreamingMonitor  ExternalCOMReady:{0}  waitForOk:{1} grblStateNow:{2}  (true, false || alarm)", ExternalCOMReady(), waitForOk, grblStateNow);
+				Logger.Info("    StreamingMonitor  call PreProcessStreaming");
+                Logger.Info("    capacity:{0,6} {1}", sendBuffer.Capacity, ListInfoSend());
+                Logger.Info("    capacity:{0,6} {1}", streamingBuffer.Capacity, ListInfoStream());
+                PreProcessStreaming();              // StreamingMonitor
+                                            //    this.BeginInvoke(new EventHandler(PreProcessStreaming));	// try to wake-up 
+            }
+		}
     }
 }

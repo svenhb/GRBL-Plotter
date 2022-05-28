@@ -1072,7 +1072,7 @@ M4动态激光功率模式</value>
     <comment>TabPage6</comment>
   </data>
   <data name="tabPage6.Text" xml:space="preserve">
-    <value>2D 视图 / 编辑器 / 杂项</value>
+    <value>2D 视图 / 编辑器</value>
     <comment>TabPage7</comment>
   </data>
   <data name="nUDRotaryInfo.ToolTip" xml:space="preserve">
@@ -1307,22 +1307,6 @@ M4动态激光功率模式</value>
   </data>
   <data name="tab1_2gB4.ToolTip" xml:space="preserve">
     <value>通过主轴速度控制RC-Servo（需要生成1ms-2ms PWM输出的特殊GRBL版本）</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl44.ToolTip" xml:space="preserve">
-    <value>插入G4：下一条命令之前的延迟（以秒为单位）</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl42.ToolTip" xml:space="preserve">
-    <value>插入G4：下一条命令之前的延迟（以秒为单位）</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl43.ToolTip" xml:space="preserve">
-    <value>``下降''的PWM值（S）</value>
-    <comment>TabPage1_2</comment>
-  </data>
-  <data name="tab1_2lbl41.ToolTip" xml:space="preserve">
-    <value>``笔加''的PWM值（S）</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_3gB3.Text" xml:space="preserve">
@@ -1835,22 +1819,6 @@ Z轴将向下移动</value>
     <comment>ok</comment>
   </data>
   <data name="tab1_2lbl61.Text" xml:space="preserve">
-    <value>抬笔</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tab1_2lbl44.Text" xml:space="preserve">
-    <value>延迟后</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tab1_2lbl42.Text" xml:space="preserve">
-    <value>延迟后</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tab1_2lbl43.Text" xml:space="preserve">
-    <value>落笔</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tab1_2lbl41.Text" xml:space="preserve">
     <value>抬笔</value>
     <comment>ok</comment>
   </data>
@@ -2790,10 +2758,6 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <value>最低排名X</value>
     <comment>ok</comment>
   </data>
-  <data name="button2.ToolTip" xml:space="preserve">
-    <value>PWM增量值1、10或100</value>
-    <comment>ok</comment>
-  </data>
   <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
     <value>子程序之前/之后的上/下笔</value>
     <comment>ok</comment>
@@ -3038,9 +3002,6 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   </data>
   <data name="cBImportGraphicClipOffsetApply.ToolTip" xml:space="preserve">
     <value>将瓷砖的原点设置为 0；0</value>
-  </data>
-  <data name="cBDImportGraphicDevelopNoCurve.Text" xml:space="preserve">
-    <value>无曲线</value>
   </data>
   <data name="btnColorDimension.Text" xml:space="preserve">
     <value>尺寸</value>
@@ -3296,7 +3257,7 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <value>不要打开主轴</value>
   </data>
   <data name="cBImportGCDragKnifeUse.Text" xml:space="preserve">
-    <value>使用拖刀</value>
+    <value>使用拖刀（起始方向始终为 0° 度 = 向右）</value>
   </data>
   <data name="CbMarlin.Text" xml:space="preserve">
     <value>连接到马林</value>
@@ -3309,5 +3270,59 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   </data>
   <data name="NudCtrlImportSkip.ToolTip" xml:space="preserve">
     <value>在跳过显示选项之前要超过的行数（千次）。</value>
+  </data>
+  <data name="RbWireBenderAnglePcnt.Text" xml:space="preserve">
+    <value>使用百分比</value>
+  </data>
+  <data name="RbWireBenderAngleAbs.Text" xml:space="preserve">
+    <value>使用绝对值</value>
+  </data>
+  <data name="label83.Text" xml:space="preserve">
+    <value>剪断电线</value>
+  </data>
+  <data name="label82.Text" xml:space="preserve">
+    <value>挂钩禁用</value>
+  </data>
+  <data name="label81.Text" xml:space="preserve">
+    <value>挂钩活跃</value>
+  </data>
+  <data name="textBox6.ToolTip" xml:space="preserve">
+    <value>在此处应用命令，以切断电线</value>
+  </data>
+  <data name="textBox5.ToolTip" xml:space="preserve">
+    <value>在此处应用命令，以禁用弯曲钉</value>
+  </data>
+  <data name="textBox4.ToolTip" xml:space="preserve">
+    <value>在此处应用命令，以激活弯曲钉</value>
+  </data>
+  <data name="label80.Text" xml:space="preserve">
+    <value>特定操作的 G 代码（使用 ';' 单独命令或设置脚本路径）：</value>
+  </data>
+  <data name="label74.Text" xml:space="preserve">
+    <value>弯曲半径</value>
+  </data>
+  <data name="label75.Text" xml:space="preserve">
+    <value>X轴送丝</value>
+  </data>
+  <data name="label76.Text" xml:space="preserve">
+    <value>弯曲角度的 Y 轴</value>
+  </data>
+  <data name="groupBox31.Text" xml:space="preserve">
+    <value>机器参数</value>
+  </data>
+  <data name="label79.Text" xml:space="preserve">
+    <value>线径</value>
+  </data>
+  <data name="label78.Text" xml:space="preserve">
+    <value>增加角度以达到所需的角度</value>
+  </data>
+  <data name="CbWireBenderEnable.Text" xml:space="preserve">
+    <value>为弯线机生成代码</value>
+  </data>
+  <data name="GbWireBender.Text" xml:space="preserve">
+    <value>弯线机</value>
+  </data>
+  <data name="tabPage33.Text" xml:space="preserve">
+    <value>杂项</value>
   </data>
 </root>

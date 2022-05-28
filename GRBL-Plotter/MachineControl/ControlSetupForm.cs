@@ -389,8 +389,14 @@ namespace GrblPlotter
 
         private void LinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            LinkLabel clickedLink = sender as LinkLabel;
-            Process.Start(clickedLink.Tag.ToString());
+            try {	
+				LinkLabel clickedLink = sender as LinkLabel;
+				Process.Start(clickedLink.Tag.ToString());
+			}
+			catch (Exception err) 
+			{ 	Logger.Error(err,"LinkLabel_LinkClicked ");
+				MessageBox.Show("Could not open the link: " + err.Message,"Error");
+			}
         }
 
         private void TabPage24_Enter(object sender, EventArgs e)
@@ -656,7 +662,8 @@ namespace GrblPlotter
                     {
                         col = s.Split(',');
                         dGVToolList.Rows.Add();
-                        for (int j = 0; j < ToolTable.defaultTool.Length; ++j)
+						for (int j = 0; j < dGVToolList.Columns.Count; ++j)
+                    //   for (int j = 0; j < ToolTable.defaultTool.Length; ++j)
                         {
                             if (j < col.Length)
                             {
@@ -1045,6 +1052,11 @@ namespace GrblPlotter
             else
                 gBPathAddOn3.BackColor = inactive;
 
+            if (CbWireBenderEnable.Checked)
+                GbWireBender.BackColor = Color.Yellow;
+            else
+                GbWireBender.BackColor = Color.WhiteSmoke;
+
             if (cBImportGraphicDevelopEnable.Checked)
                 gBDevelop.BackColor = Color.Yellow;
             else
@@ -1146,8 +1158,11 @@ namespace GrblPlotter
 
         private void BtnMachineRangeGet_Click(object sender, EventArgs e)
         {
-            if (Grbl.GetSetting(130) < 0)
-                MessageBox.Show("No information available - please connect grbl-controller", "Attention!");
+			double maxX = Grbl.GetSetting(130);
+			double maxY = Grbl.GetSetting(131);
+			double maxZ = Grbl.GetSetting(132);
+            if ((maxX < 0) || (maxY < 0) || (maxZ < 0))
+                MessageBox.Show(string.Format("No information available - please connect grbl-controller ($130={0}; $131={1}; $132={2}; )", maxX, maxY, maxZ), "Attention!");
             else
             {
                 nUDMachineRangeX.Value = (decimal)Grbl.GetSetting(130);
@@ -1728,6 +1743,13 @@ namespace GrblPlotter
             btnGCPWMZero.Visible = tBImportGCPWMTextP93.Visible = tBImportGCPWMTextP94.Visible = pwmAdvanced;
             nUDImportGCPWMZero.Visible = nUDImportGCPWMP93.Visible = nUDImportGCPWMP94.Visible = pwmAdvanced;
             nUDImportGCDlyP93.Visible = nUDImportGCDlyP94.Visible = pwmAdvanced;
+        }
+        private void CbWireBenderEnable_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CbWireBenderEnable.Checked)
+                GbWireBender.BackColor = Color.Yellow;
+            else
+                GbWireBender.BackColor = Color.WhiteSmoke;
         }
 
         private void CbImportGraphicDevelopEnable_CheckedChanged(object sender, EventArgs e)

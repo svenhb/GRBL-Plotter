@@ -31,28 +31,44 @@ using System.Linq;
 namespace GrblPlotter
 {
     internal static class SelectionHandle
-    {
-        internal enum Handle { None, Move, SizeX, SizeY, SizeXY, Rotate }
+    {	
+        private static readonly float handleSizeFix = 15;        // handle size in px
+        private static float handleSize = 15;           		// handle size adapted on view-range and zoom
+		private static float handlePenWidth = 0.1f;
+		
 		private static int moveHandlePos = 0;					// like on keyboard: 1=lower-left corner, 2=lower edge...
 		
-        private static GraphicsPath pathBounds = new GraphicsPath();
-        private static GraphicsPath pathArrows = new GraphicsPath();
-        private static GraphicsPath arrow0 = new GraphicsPath();
-        private static GraphicsPath arrow1 = new GraphicsPath();
-        private static GraphicsPath arrow2 = new GraphicsPath();
-
-        private static float handleSizeFix = 10;        // handle size in px
-        private static float handleSize = 10;           // handle size adapted on view-range and zoom
+        private static readonly GraphicsPath pathBounds = new GraphicsPath();
+        private static readonly GraphicsPath pathArrows = new GraphicsPath();
+        private static readonly GraphicsPath arrow0 = new GraphicsPath();
+        private static readonly GraphicsPath arrow1 = new GraphicsPath();
+        private static readonly GraphicsPath arrow2 = new GraphicsPath();
+        private static readonly GraphicsPath arrow3 = new GraphicsPath();
 
         private static RectangleF selectionBoundsOrig;      // selected figure bounds
         private static RectangleF selectionBounds;      // selected figure bounds
-        private static PointF upperEdgeLeft;          	// move
+    //    private static PointF upperEdgeLeft;          	// move
         private static PointF upperEdgeCenter;          // scale y
         private static PointF upperEdgeRight;           // scale xy
         private static PointF rightEdgeCenter;          // scale x
         private static PointF rightEdgeBottom;          // rotate
-        private static PointF lowerEdgeLeft;          	// move
-        private static PointF lowerEdgeRight;          	// move
+    //    private static PointF lowerEdgeLeft;          	// move
+    //    private static PointF lowerEdgeRight;          	// move
+
+        private static PointF nodePathBefore;          
+        private static PointF nodePathAfter;          
+        private static PointF nodePathActual;          
+        private static bool nodePathBeforeOk = false;
+        private static bool nodePathAfterOk = false;
+
+
+        internal enum Handle { None, Move, SizeX, SizeY, SizeXY, Rotate }
+        internal static RectangleF Bounds {get; set;}      // selected figure bounds
+		internal static XmlMarkerType SelectedMarkerType {get; set;} = XmlMarkerType.Figure;
+		internal static int SelectedMarkerLine {get; set;} = 0;
+		internal static int SelectedTile {get; set;} = -1;
+		internal static int SelectedGroup {get; set;} = -1;
+		internal static int SelectedFigure {get; set;} = -1;
         internal static PointF center = new PointF();
 
         public static float scalingX = 1, scalingY = 1;
@@ -67,17 +83,44 @@ namespace GrblPlotter
         public static bool IsActive  // property
         {
             get { return isactive; }
-            set { isactive = value; scalingX = 1; scalingY = 1; angleDeg = 0; }
+            set { isactive = value; scalingX = 1; scalingY = 1; angleDeg = 0; 
+				  if (!isactive) {nodePathBeforeOk = nodePathAfterOk = false;}
+				}
         }
+		public static void ClearSelected()
+		{
+			SelectedTile = -1;
+			SelectedGroup = -1;
+			SelectedFigure = -1;
+            SelectedMarkerLine = 0;
+            IsActive = false;
+        }
+    //    private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
-        public static void SetBounds(RectangleF bounds)
+        public static void SetBounds(RectangleF bounds, bool setActive = true)
         {
-            selectionBoundsOrig = bounds;
+            if ((bounds.Width == 0) || (bounds.Height == 0))
+            { SelectedMarkerType = XmlMarkerType.Node; }
+            Bounds = bounds;
+			selectionBoundsOrig = bounds;
             selectionBounds = bounds;
             SetHandlePositions(bounds);
             DrawHandles();
-            IsActive = true;
+            IsActive = setActive;
             scalingX = 1; scalingY = 1; angleDeg = 0;
+        }
+		
+		public static void SetSelectionPath(PointF pBefore, bool bBefore, PointF pActual, PointF pAfter, bool bAfter)
+		{	nodePathBefore = pBefore; nodePathBeforeOk = bBefore;
+			nodePathAfter = pAfter; nodePathAfterOk = bAfter;
+			nodePathActual = pActual;          
+			SelectedMarkerType = XmlMarkerType.Node;
+            DrawHandles();			
+		}
+        public static void UpdateSelectionPath(PointF pActual)
+        {
+            nodePathActual = pActual;
+            DrawHandles();
         }
         private static void SetHandlePositions(RectangleF bounds)
         {
@@ -89,17 +132,19 @@ namespace GrblPlotter
     //        offsetX = bounds.Left; offsetY = bounds.Top;
             transformPoint = new PointF(bounds.Left, bounds.Top);// - bounds.Height);
 			
-			upperEdgeLeft = new PointF(bounds.X, bounds.Y + bounds.Height);
-			lowerEdgeLeft = new PointF(bounds.X, bounds.Y);
-			lowerEdgeRight= new PointF(bounds.X + bounds.Width, bounds.Y);
+		//	upperEdgeLeft = new PointF(bounds.X, bounds.Y + bounds.Height);
+		//	lowerEdgeLeft = new PointF(bounds.X, bounds.Y);
+		//	lowerEdgeRight= new PointF(bounds.X + bounds.Width, bounds.Y);
         }
         public static Handle IsHandlePosition(XyPoint tmp)
         {
 			moveHandlePos = 0;
-            if (InHandle(tmp, upperEdgeCenter, handleSize)) { return Handle.SizeY; }
-            if (InHandle(tmp, upperEdgeRight, handleSize)) { return Handle.SizeXY; }
-            if (InHandle(tmp, rightEdgeCenter, handleSize)) { return Handle.SizeX; }
-            if (InHandle(tmp, rightEdgeBottom, handleSize)) { return Handle.Rotate; }
+			if (SelectedMarkerType != XmlMarkerType.Node)
+            {	if (InHandle(tmp, upperEdgeCenter, handleSize)) { return Handle.SizeY; }
+				if (InHandle(tmp, upperEdgeRight, handleSize)) { return Handle.SizeXY; }
+				if (InHandle(tmp, rightEdgeCenter, handleSize)) { return Handle.SizeX; }
+				if (InHandle(tmp, rightEdgeBottom, handleSize)) { return Handle.Rotate; }
+			}
             if (InHandle(tmp, center, handleSize)) { moveHandlePos = 5; return Handle.Move; }
             if (OnFrame(tmp, handleSize)) { return Handle.Move; }
             return Handle.None;
@@ -135,15 +180,22 @@ namespace GrblPlotter
         {
             pathBounds.Reset();
             pathBounds.StartFigure();
-            pathBounds.AddRectangle(selectionBounds);
-
             pathArrows.Reset();
             pathArrows.StartFigure();
-            AddPath(pathArrows, arrow0, GetRectHandle(upperEdgeCenter, handleSize), 0);
-            AddPath(pathArrows, arrow0, GetRectHandle(upperEdgeRight, handleSize), -45);
-            AddPath(pathArrows, arrow0, GetRectHandle(rightEdgeCenter, handleSize), 90);
-            AddPath(pathArrows, arrow1, GetRectHandle(rightEdgeBottom, handleSize), 0, 1);
-            AddPath(pathArrows, arrow2, GetRectHandle(center, handleSize), 0, 2);
+			if (SelectedMarkerType != XmlMarkerType.Node)
+            {	pathBounds.AddRectangle(selectionBounds);
+				AddPath(pathArrows, arrow0, GetRectHandle(upperEdgeCenter, handleSize), 0);		// arrow vertical
+				AddPath(pathArrows, arrow0, GetRectHandle(upperEdgeRight, handleSize), -45);	// arrow diagonal
+				AddPath(pathArrows, arrow0, GetRectHandle(rightEdgeCenter, handleSize), 90);	// arrow horizontal
+				AddPath(pathArrows, arrow1, GetRectHandle(rightEdgeBottom, handleSize), 0, 1);	// turn
+				AddPath(pathArrows, arrow2, GetRectHandle(center, handleSize), 0, 2);			// center cross
+			}
+			else
+			{	
+				if (nodePathBeforeOk) pathBounds.AddLine(nodePathBefore, nodePathActual);
+				if (nodePathAfterOk) pathBounds.AddLine(nodePathActual, nodePathAfter);
+				AddPath(pathArrows, arrow3, GetRectHandle(center, handleSize), 0, 3);			// center box
+			}
         }
         private static void AddPath(GraphicsPath finalPath, GraphicsPath tmpPath, RectangleF rect, float angle, int type = 0)
         {
@@ -168,6 +220,7 @@ namespace GrblPlotter
             int[] arrowPoint0 = { 0, -4, 3, -1, 1, -1, 1, 1, 3, 1, 0, 4, -3, 1, -1, 1, -1, -1, -3, -1 };
             int[] arrowPoint1 = { -4, -2, -2, -4, -2, -3, 1, -3, 3, -1, 3, 2, 4, 2, 2, 4, 0, 2, 1, 2, 1, 0, 0, -1, -2, -1, -2, 0, -4, -2 };
             int[] arrowPoint2 = { 0, -4, 1, -3, 1, -1, 3, -1, 4, 0, 3, 1, 1, 1, 1, 3, 0, 4, -1, 3, -1, 1, -3, 1, -4, 0, -3, -1, -1, -1, -1, -3 };
+            int[] arrowPoint3 = { -2, -2, -2, 2, 2, 2, 2, -2, -2, -2};
             List<Point> points = new List<Point>();
             tmpPath.Reset();
             if (type == 0)
@@ -180,10 +233,15 @@ namespace GrblPlotter
                 for (int i = 0; i < arrowPoint1.Count(); i += 2)
                 { points.Add(new Point(arrowPoint1[i], arrowPoint1[i + 1])); }
             }
-            else
+            else if (type == 2)
             {
                 for (int i = 0; i < arrowPoint2.Count(); i += 2)
                 { points.Add(new Point(arrowPoint2[i], arrowPoint2[i + 1])); }
+            }
+            else
+            {
+                for (int i = 0; i < arrowPoint3.Count(); i += 2)
+                { points.Add(new Point(arrowPoint3[i], arrowPoint3[i + 1])); }
             }
             tmpPath.AddLines(points.ToArray());
             tmpPath.CloseFigure();
@@ -207,7 +265,7 @@ namespace GrblPlotter
             return new PointF(x, y);
         }
 
-		private static XyPoint correctOffsetOnSnap(XyPoint diff)
+		private static XyPoint CorrectOffsetOnSnap(XyPoint diff)
 		{
 			if ((moveHandlePos==1)||(moveHandlePos==4)||(moveHandlePos==7))	// correct X-left
 			{	diff.X = Math.Round(selectionBoundsOrig.X + diff.X) - selectionBoundsOrig.X; }
@@ -232,7 +290,7 @@ namespace GrblPlotter
         public static XyPoint Translate(XyPoint diff, bool snap)
         {
 			if (snap)
-			{	diff = correctOffsetOnSnap(diff); }
+			{	diff = CorrectOffsetOnSnap(diff); }
             selectionBounds.X = selectionBoundsOrig.X + (float)diff.X;
 			selectionBounds.Y = selectionBoundsOrig.Y + (float)diff.Y;
             SetHandlePositions(selectionBounds);		// move coordinates
@@ -282,8 +340,10 @@ namespace GrblPlotter
                 SetHandlePositions(selectionBounds);
                 DrawHandles();
             }
-            Pen myPen = new Pen(Color.Black, 0.05f);
-            myPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            Pen myPen = new Pen(Color.Black, handlePenWidth) { DashStyle = System.Drawing.Drawing2D.DashStyle.Dash };
+			if (SelectedMarkerType == XmlMarkerType.Node)
+				myPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+			
             e.DrawPath(myPen, pathBounds);
             myPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             e.DrawPath(myPen, pathArrows);

@@ -147,8 +147,8 @@ namespace GrblPlotter
         private static bool logReceive = false;			// any other RX data
         private static bool logTransmit = false;            // TX data
         private static bool logStartStop = false;
-        private static bool log2ndGrbl = false;
-        private static bool log3rdCOM = false;
+        private static readonly bool log2ndGrbl = false;
+        private static readonly bool log3rdCOM = false;
         private static bool logStreamData = false;
 
         private const string logFileGCode = "logStreamGCode.nc";
@@ -361,7 +361,9 @@ namespace GrblPlotter
          **************************************************************************/
         private void TimerSerial_Tick(object sender, EventArgs e)
         {
-            if (countMinimizeForm > 0)							// minimize form after connection - if enabled (then set start value)
+
+/* minimize form after connection - if enabled (then set start value) */
+            if (countMinimizeForm > 0)
             {
                 if (--countMinimizeForm == 0)
                 {
@@ -382,7 +384,8 @@ namespace GrblPlotter
 
 			if (logTransmit) Logger.Trace("TimerSerial_Tick SerialPortOpen:{0} IsConnectedToGrbl():{1} serialPortError:{2}", SerialPortOpen, IsConnectedToGrbl(), serialPortError);
 
-            if (!SerialPortOpen && SerialPortOpenLast && (grblStateNow != GrblState.unknown) && (grblStateNow != GrblState.notConnected))         // lost connection
+/* Connection lost ??? */
+            if (!SerialPortOpen && SerialPortOpenLast && (grblStateNow != GrblState.unknown) && (grblStateNow != GrblState.notConnected))
             {
                 grblStateNow = GrblState.notConnected;
                 AddToLog("\r* Lost connection, close port at " + GetTimeStampString());
@@ -402,8 +405,10 @@ namespace GrblPlotter
             }
             SerialPortOpenLast = SerialPortOpen;
 
+
             if (IsConnectedToGrbl() && !serialPortError)
             {
+/* poll status */
                 try
                 {
                     //		if (resetProcessed)		// only poll status if reset was successfully recognized
@@ -447,6 +452,7 @@ namespace GrblPlotter
                     Logger.Error(err, "Ser:{0} unknown error in TimerSerial_Tick", iamSerial);
                 }
 
+/* missing status reports ??? */
                 if (!isMarlin && !isHoming && (countMissingStatusReport-- <= 0))
                 {
                     if (Math.Abs(rtsrResponse) > 10)
@@ -470,6 +476,7 @@ namespace GrblPlotter
                     rtsrResponse = 0;
                 }
 
+/* some state counters... */
                 if (countCallCheckGRBL > 0)
                 {
                     if (countCallCheckGRBL-- == 0)
@@ -519,16 +526,20 @@ namespace GrblPlotter
                 }
 
                 trgEvent = true;
+				
+				
+/* preProcessStreaming and  processSend may block further timer-code */
                 if (isStreaming)
                 {
                     if (countLoggerUpdate-- <= 0)
                     { countLoggerUpdate = (int)(10000 / timerSerial.Interval); }
                     if (!isStreamingRequestPause && !isStreamingPause)
-                    { PreProcessStreaming(); }
+                    { PreProcessStreaming(); }          // TimerSerial_Tick
+
+                    StreamingMonitor();	// ControlSerialFormStreaming.cs
                 }
-                /* preProcessStreaming and  processSend may block further timer-code */
                 if (!waitForIdle)
-                { ProcessSend(); }
+                { ProcessSend(); }      // TimerSerial_Tick
             }
 			if (tryDoSerialConnection)
 			{	if (rtbLog.InvokeRequired)	// rtbLog.AppendText("*"); }
@@ -710,7 +721,7 @@ namespace GrblPlotter
             {
 				tryDoSerialConnection = false;
                 Logger.Error(err, "Ser:{0} -openPort-", iamSerial);
-                EventCollector.SetCommunication(string.Format("COpS{0}", iamSerial, err.Message));
+                EventCollector.SetCommunication(string.Format("COpS{0}", iamSerial));
 				countMinimizeForm = 0;
                 LogError("! Opening port", err);
                 if (iamSerial == 1) { Grbl.isConnected = SerialPortOpen = IsConnectedToGrbl(); }
@@ -892,9 +903,9 @@ namespace GrblPlotter
         {
             while ((serialPort.IsOpen) && (serialPort.BytesToRead > 0))// && !blockSend)
             {
-                rxString = string.Empty;
                 try
                 {
+					rxString = string.Empty;
                     rxString = serialPort.ReadTo(lineEndRX).Trim();  //read line from grbl, discard CR LF
                     isDataProcessing = true;
                     this.BeginInvoke(new EventHandler(ProcessMessages));        //tigger rx process 2020-09-16 change from Invoke to BeginInvoke
@@ -1103,7 +1114,7 @@ namespace GrblPlotter
             return false;
         }
 
-        private object threadlock = new object();
+        private readonly object threadlock = new object();
 
         private void WriteLog(string fileName, string message, string source)
 		{

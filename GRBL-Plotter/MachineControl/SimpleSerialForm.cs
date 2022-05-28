@@ -165,8 +165,9 @@ namespace GrblPlotter
                     Busy = false;
                     AddToLog("RX Exception - Close port ");
                     Logger.Error(err, " -DataReceived- Close port, clear busy flag ");
+					EventCollector.SetCommunication("Csimple"+err.Message);
                     this.BeginInvoke(new EventHandler(ClosePort));    //closePort();
-                    throw;
+                //    throw;
                 }
             }
         }

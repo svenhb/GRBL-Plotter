@@ -44,7 +44,7 @@ namespace GrblPlotter
         private NetworkStream Connection;
         private TcpClient ClientEthernet;
         private bool Connected = false;
-        private bool UseSocket = true;
+    //    private bool UseSocket = true;
         private StreamReader reader;
         //     StreamWriter writer;
 
@@ -119,7 +119,7 @@ namespace GrblPlotter
                             else
                             {
                                 countMinimizeForm = 0;
-                                string msg = string.Format("Port number must be between 0 and 65535: {0}");
+                                string msg = string.Format("Port number must be between 0 and 65535: {0}", port);
                                 Logger.Error(msg);
                                 AddToLog(msg);
                                 if (showMessageBox) MessageBox.Show(msg, "Error");

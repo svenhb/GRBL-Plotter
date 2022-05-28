@@ -44,6 +44,8 @@ namespace GrblPlotter
                 brushText.Dispose();
                 penTeach.Dispose();
 				brushMachineLimit.Dispose();
+                exampleFrameXy.Dispose();
+                exampleFrameFix.Dispose();
             }
             base.Dispose(disposing);
         }

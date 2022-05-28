@@ -768,7 +768,7 @@ namespace GrblPlotter
                 if (XmlMarker.tmpFigure.PathId.IndexOf(fiducialLabel) >= 0)
                 { fiducialEnable = true; Logger.Trace("◯◯◯ Fiducial found PathId:'{0}'",XmlMarker.tmpFigure.PathId);}
 
-                if (Properties.Settings.Default.gui2DColorPenDownModeEnable && Graphic.SizeOk())    // enable color mode
+                if (Properties.Settings.Default.gui2DColorPenDownModeEnable)// && !largeDataAmount)    // Graphic.SizeOk())    // enable color mode 
                 {
                     PathData tmp = new PathData(XmlMarker.tmpFigure.PenColor, XmlMarker.tmpFigure.PenWidth, offset2DView);      // set color, width, pendownpath
                     pathObject.Add(tmp);
@@ -925,7 +925,7 @@ namespace GrblPlotter
                 if (gcodeList[i].lineNumber == lineNr)
                 {
                     return (XyzPoint)gcodeList[i].actualPos;
-                    break;
+                //    break;
                 }
             }
             return new XyzPoint();

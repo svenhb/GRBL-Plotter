@@ -30,6 +30,8 @@
  * 2021-12-22 check if is connected to grbl before sending code - 637
  * 2022-01-12 Except: Nullable object must have a value - Method:InterpolateZ
  * 2022-03-13 add extrudeX and Y option
+ * 2022-04-25 line 1044 BtnPosFromCodeDimension_Click change to ((GuiVariables.variable["GMIX"] < Double.MaxValue) 
+ * 2022-04-28 line 833 for (int iy = 0; iy < Map.SizeY; iy++)
 */
 
 using System;
@@ -829,7 +831,7 @@ namespace GrblPlotter
                     else
                     { scanCode.AppendFormat("G0X{0}\r\n", Gcode.FrmtNum((float)tmp.X)); }
 
-                    for (int iy = 0; iy < Map.SizeX; iy++)
+                    for (int iy = 0; iy < Map.SizeY; iy++)	// fixed 2022-04-28
                     {
                         pixX = ix * BMPsizeX / Map.SizeX;
                         pixY = iy * BMPsizeY / Map.SizeY;
@@ -1040,7 +1042,7 @@ namespace GrblPlotter
 
         private void BtnPosFromCodeDimension_Click(object sender, EventArgs e)
         {
-            if (GuiVariables.variable["GMIX"] != GuiVariables.variable["GMAX"])
+            if ((GuiVariables.variable["GMIX"] < Double.MaxValue) && (GuiVariables.variable["GMAX"] > Double.MinValue))		//(GuiVariables.variable["GMIX"] != GuiVariables.variable["GMAX"])
             {   decimal min = (decimal)(CbRoundUp.Checked ? Math.Floor(GuiVariables.variable["GMIX"]) : GuiVariables.variable["GMIX"]);
                 decimal max = (decimal)(CbRoundUp.Checked ? Math.Ceiling(GuiVariables.variable["GMAX"]) : GuiVariables.variable["GMAX"]);
                 if (min >= nUDX1.Minimum)
@@ -1048,7 +1050,9 @@ namespace GrblPlotter
                 if (max <= nUDX2.Maximum)
                     nUDX2.Value = max;
             }
-            if (GuiVariables.variable["GMIY"] != GuiVariables.variable["GMAY"])
+			else {MessageBox.Show("No graphic loaded?");}
+				
+            if ((GuiVariables.variable["GMIY"] < Double.MaxValue) && (GuiVariables.variable["GMAY"] > Double.MinValue))		//(GuiVariables.variable["GMIY"] != GuiVariables.variable["GMAY"])
             {
                 decimal min = (decimal)(CbRoundUp.Checked ? Math.Floor(GuiVariables.variable["GMIY"]) : GuiVariables.variable["GMIY"]);
                 decimal max = (decimal)(CbRoundUp.Checked ? Math.Ceiling(GuiVariables.variable["GMAY"]) : GuiVariables.variable["GMAY"]);
@@ -1693,6 +1697,8 @@ namespace GrblPlotter
             return (float)Math.Sqrt(dx * dx + dy * dy);
         }
         public static Vector2 operator +(Vector2 v1, Vector2 v2)
+        {    return Add(v1, v2); }
+        public static Vector2 Add(Vector2 v1, Vector2 v2)
         {
             return
             (
@@ -1705,6 +1711,8 @@ namespace GrblPlotter
         }
 
         public static Vector2 operator -(Vector2 v1, Vector2 v2)
+        {   return Subtract(v1, v2); }
+        public static Vector2 Subtract(Vector2 v1, Vector2 v2)
         {
             return
             (
@@ -1717,9 +1725,11 @@ namespace GrblPlotter
         }
 
         public static Vector2 operator *(Vector2 v1, double s2)
+        {   return Multiply(v1, s2); }
+         public static Vector2 Multiply(Vector2 v1, double s2)
         {
             return
-            (
+           (
                 new Vector2
                 (
                     v1.X * s2,
@@ -1729,11 +1739,15 @@ namespace GrblPlotter
         }
 
         public static Vector2 operator *(double s1, Vector2 v2)
+        {   return Multiply(s1, v2); }
+        public static Vector2 Multiply(double s1, Vector2 v2)
         {
             return v2 * s1;
         }
 
         public static Vector2 operator /(Vector2 v1, double s2)
+        {   return Divide(v1, s2); }
+        public static Vector2 Divide(Vector2 v1, double s2)
         {
             return
             (
@@ -1746,6 +1760,10 @@ namespace GrblPlotter
         }
 
         public static Vector2 operator -(Vector2 v1)
+        {
+            return Negate(v1);
+        }
+        public static Vector2 Negate(Vector2 v1)
         {
             return
             (
