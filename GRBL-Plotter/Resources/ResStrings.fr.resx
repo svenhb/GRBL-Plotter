@@ -411,4 +411,38 @@
   <data name="useCaseItem0" xml:space="preserve">
     <value>### Paramètres actuels ###</value>
   </data>
+  <data name="codeMessage_1_unknowncommand" xml:space="preserve">
+    <value>La commande donnée est inconnue ou non prise en charge, lancez un problème sur github pour clarifier.</value>
+  </data>
+  <data name="codeMessage_2_highdataamount" xml:space="preserve">
+    <value>Le nombre de chiffres uniques sélectionnables dépasse le maximum donné et réduirait les performances. Tous les chiffres sont résumés en un seul chiffre.\r\nLa limite peut être ajustée dans\r\n[Configuration - Importation de graphiques - Importation de chemin - Regroupement et outils - Concersion concernant]</value>
+  </data>
+  <data name="codeMessage_2_zdoubletang" xml:space="preserve">
+    <value>L'axe z est affecté deux fois : en tant qu'axe tangentiel ET en tant qu'axe de plume haut/bas. \r\nCela entraînera un comportement étrange et imprévisible.</value>
+  </data>
+  <data name="codeMessage_3_spindlestaysoff" xml:space="preserve">
+    <value>La commande M3|M4 / M5 ne sera pas envoyée ! -&gt; La broche reste éteinte. \r\nVérifiez l'option dans \r\n[Configuration - Importation de graphiques - Génération de code G - Axe Z Translation du stylet vers le haut/bas] \r\n☐ Ne pas allumer la broche</value>
+  </data>
+  <data name="codeMessage_3_zdoubleaux" xml:space="preserve">
+    <value>L'axe z est affecté deux fois : comme axe auxiliaire ET comme axe de plume haut/bas. \r\nCela entraînera un comportement étrange et imprévisible.</value>
+  </data>
+  <data name="codeMessage_3_zdoubletang" xml:space="preserve">
+    <value>L'axe z est affecté deux fois : en tant qu'axe tangentiel ET en tant qu'axe de plume haut/bas. \r\nCela entraînera un comportement étrange et imprévisible.</value>
+  </data>
+  <data name="codeMessage_attention" xml:space="preserve">
+    <value>Attention</value>
+  </data>
+  <data name="codeMessage_error" xml:space="preserve">
+    <value>Erreur</value>
+  </data>
+  <data name="codeMessage_warning" xml:space="preserve">
+    <value>Avertissement</value>
+  </data>
+  <data name="codeMessage_1202_dontplot" xml:space="preserve">
+    <value>Le calque n'est pas visible ou l'impression est désactivée.
+Vérifiez https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlist</value>
+  </data>
+  <data name="codeMessage_1302_dontplot" xml:space="preserve">
+    <value>Le calque, le chemin ou l'objet n'est pas visible en raison de l'attribut de visibilité.</value>
+  </data>
 </root>

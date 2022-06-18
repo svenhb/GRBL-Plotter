@@ -417,4 +417,38 @@
   <data name="useCaseItem0" xml:space="preserve">
     <value>### Текущие настройки ###</value>
   </data>
+  <data name="codeMessage_1_unknowncommand" xml:space="preserve">
+    <value>Данная команда неизвестна или не поддерживается, задайте вопрос на github, чтобы уточнить.</value>
+  </data>
+  <data name="codeMessage_2_highdataamount" xml:space="preserve">
+    <value>Количество одиночных выбираемых фигур превышает заданный максимум, что снижает производительность. Все цифры суммируются в одну цифру.\r\nОграничение можно настроить в\r\n[Настройка - Импорт графики - Импорт пути - Группировка и инструменты - Концерн относительно]</value>
+  </data>
+  <data name="codeMessage_2_zdoubletang" xml:space="preserve">
+    <value>Ось Z назначается дважды: как тангенциальная ось И как ось пера вверх/вниз. \r\nЭто приведет к странному и непредсказуемому поведению.</value>
+  </data>
+  <data name="codeMessage_3_spindlestaysoff" xml:space="preserve">
+    <value>Команда M3|M4 / M5 не будет отправлена! -&gt; Шпиндель остается выключенным. \r\nПроверьте параметр в \r\n[Настройка - Импорт графики - Генерация G-кода - Перемещение пера по оси Z вверх/вниз] \r\n☐ Не включать шпиндель</value>
+  </data>
+  <data name="codeMessage_3_zdoubleaux" xml:space="preserve">
+    <value>Ось Z назначается дважды: как вспомогательная ось И как ось пера вверх/вниз. \r\nЭто приведет к странному и непредсказуемому поведению.</value>
+  </data>
+  <data name="codeMessage_3_zdoubletang" xml:space="preserve">
+    <value>Ось Z назначается дважды: как тангенциальная ось И как ось пера вверх/вниз. \r\nЭто приведет к странному и непредсказуемому поведению.</value>
+  </data>
+  <data name="codeMessage_attention" xml:space="preserve">
+    <value>Внимание</value>
+  </data>
+  <data name="codeMessage_error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="codeMessage_warning" xml:space="preserve">
+    <value>Предупреждение</value>
+  </data>
+  <data name="codeMessage_1202_dontplot" xml:space="preserve">
+    <value>Слой не виден или печать отключена.
+Проверьте https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlist.</value>
+  </data>
+  <data name="codeMessage_1302_dontplot" xml:space="preserve">
+    <value>Слой, путь или объект не видны из-за атрибута видимости.</value>
+  </data>
 </root>

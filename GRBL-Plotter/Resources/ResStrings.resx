@@ -426,4 +426,41 @@
   <data name="useCaseItem0" xml:space="preserve">
     <value>### Current settings ###</value>
   </data>
+  <data name="codeMessage_1_unknowncommand" xml:space="preserve">
+    <value>Given command is unknown or not supported, start an issue on github to clarify.</value>
+  </data>
+  <data name="codeMessage_2_highdataamount" xml:space="preserve">
+    <value>The amount of single, selectable, figures exceeds the given maximum an would decrease the performance. \r\nAll figures are summarized to one figure.\r\nThe limit can be adjusted in\r\n[Setup - Graphics import - Path import - Grouping and tools - Concersion concerning]</value>
+  </data>
+  <data name="codeMessage_2_zdoubletang" xml:space="preserve">
+    <value>The z-axis is assigned twice: as tangential axis AND as Pen-up/down axis. \r\nThis will cause strange and unpredictable behavior.</value>
+  </data>
+  <data name="codeMessage_3_spindlestaysoff" xml:space="preserve">
+    <value>M3|M4 / M5 command will not be sent! -&gt; Spindle stays off. \r\nCheck option in \r\n[Setup - Graphics import - G-Code generation - Z axis Pen up/down translation] \r\n☐ Do not switch on spindle</value>
+  </data>
+  <data name="codeMessage_3_zdoubleaux" xml:space="preserve">
+    <value>The z-axis is assigned twice: as auxillary axis AND as Pen-up/down axis. \r\nThis will cause strange and unpredictable behavior.</value>
+  </data>
+  <data name="codeMessage_3_zdoubletang" xml:space="preserve">
+    <value>The z-axis is assigned twice: as tangential axis AND as Pen-up/down axis. \r\nThis will cause strange and unpredictable behavior.</value>
+  </data>
+  <data name="codeMessage_attention" xml:space="preserve">
+    <value>Attention</value>
+  </data>
+  <data name="codeMessage_error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="codeMessage_warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="codeMessage_1202_dontplot" xml:space="preserve">
+    <value>Layer is not visible or printing of layer is disabled. Check:
+https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlist</value>
+  </data>
+  <data name="codeMessage_1302_dontplot" xml:space="preserve">
+    <value>Layer, path or object is not visible because of visibility attribute.</value>
+  </data>
+  <data name="codeMessage_1x02_dontplot" xml:space="preserve">
+    <value />
+  </data>
 </root>

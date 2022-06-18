@@ -348,4 +348,38 @@
   <data name="useCaseItem0" xml:space="preserve">
     <value>### Aktuelle Einstellungen ###</value>
   </data>
+  <data name="codeMessage_1_unknowncommand" xml:space="preserve">
+    <value>Der angegebene Befehl ist unbekannt oder wird nicht unterstützt. Starten Sie ein Problem auf GitHub, um dies zu klären.</value>
+  </data>
+  <data name="codeMessage_2_highdataamount" xml:space="preserve">
+    <value>Die Anzahl der einzelnen, wählbaren Ziffern übersteigt das vorgegebene Maximum und würde die Performance mindern. Alle Zahlen werden zu einer Figur zusammengefasst.\r\nDas Limit kann in\r\n[Setup - Grafikimport - Pfadimport - Gruppierung und Werkzeuge - Einschränkung betreffend] angepasst werden</value>
+  </data>
+  <data name="codeMessage_2_zdoubletang" xml:space="preserve">
+    <value>Die z-Achse ist doppelt belegt: als Tangentialachse UND als Pen-Up/Down-Achse. \r\nDies führt zu seltsamem und unvorhersehbarem Verhalten.</value>
+  </data>
+  <data name="codeMessage_3_spindlestaysoff" xml:space="preserve">
+    <value>M3|M4 / M5 Befehl wird nicht gesendet! -&gt; Spindel bleibt aus. \r\nÜberprüfen Sie die Option in \r\n[Setup - Grafikimport - G-Code-Generierung - Z-Achse Stift auf/ab Verschiebung] \r\n☐ Schalten Sie die Spindel nicht ein</value>
+  </data>
+  <data name="codeMessage_3_zdoubleaux" xml:space="preserve">
+    <value>Die z-Achse ist doppelt belegt: als Hilfsachse UND als Pen-Up/Down-Achse. \r\nDies führt zu seltsamem und unvorhersehbarem Verhalten.</value>
+  </data>
+  <data name="codeMessage_3_zdoubletang" xml:space="preserve">
+    <value>Die z-Achse ist doppelt belegt: als Tangentialachse UND als Pen-Up/Down-Achse. \r\nDies führt zu seltsamem und unvorhersehbarem Verhalten.</value>
+  </data>
+  <data name="codeMessage_attention" xml:space="preserve">
+    <value>Achtung</value>
+  </data>
+  <data name="codeMessage_error" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="codeMessage_warning" xml:space="preserve">
+    <value>Warnung</value>
+  </data>
+  <data name="codeMessage_1202_dontplot" xml:space="preserve">
+    <value>Ebene ist nicht sichtbar oder Drucken ist deaktiviert.
+Siehe https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlist</value>
+  </data>
+  <data name="codeMessage_1302_dontplot" xml:space="preserve">
+    <value>Ebene, Pfad oder Objekt sind aufgrund des Sichtbarkeitsattributs nicht sichtbar.</value>
+  </data>
 </root>

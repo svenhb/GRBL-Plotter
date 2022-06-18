@@ -417,4 +417,38 @@
   <data name="useCaseItem0" xml:space="preserve">
     <value>###現在の設定###</value>
   </data>
+  <data name="codeMessage_1_unknowncommand" xml:space="preserve">
+    <value>与えられたコマンドが不明またはサポートされていない場合は、githubで問題を開始して明確にします。</value>
+  </data>
+  <data name="codeMessage_2_highdataamount" xml:space="preserve">
+    <value>単一の選択可能な数値の量が指定された最大値を超えると、パフォーマンスが低下します。すべての図が1つの図にまとめられています。\r\n制限は\r\n[セットアップ-グラフィックのインポート-パスのインポート-グループ化とツール-懸念事項]で調整できます。</value>
+  </data>
+  <data name="codeMessage_2_zdoubletang" xml:space="preserve">
+    <value>z軸は、接線軸とペンアップ/ダウン軸の2回割り当てられます。 \ r \ nこれにより、奇妙で予測できない動作が発生します。</value>
+  </data>
+  <data name="codeMessage_3_spindlestaysoff" xml:space="preserve">
+    <value>M3 | M4 / M5コマンドは送信されません！ -&gt;スピンドルはオフのままです。 \ r\nオプションをチェック\r\n[セットアップ-グラフィックスのインポート-Gコードの生成-Z軸ペンの上下移動]\r\n☐スピンドルをオンにしないでください</value>
+  </data>
+  <data name="codeMessage_3_zdoubleaux" xml:space="preserve">
+    <value>z軸は、補助軸とペンアップ/ダウン軸の2回割り当てられます。 \ r \ nこれにより、奇妙で予測できない動作が発生します。</value>
+  </data>
+  <data name="codeMessage_3_zdoubletang" xml:space="preserve">
+    <value>z軸は、接線軸とペンアップ/ダウン軸の2回割り当てられます。 \ r \ nこれにより、奇妙で予測できない動作が発生します。</value>
+  </data>
+  <data name="codeMessage_attention" xml:space="preserve">
+    <value>注意</value>
+  </data>
+  <data name="codeMessage_error" xml:space="preserve">
+    <value>エラー</value>
+  </data>
+  <data name="codeMessage_warning" xml:space="preserve">
+    <value>警告</value>
+  </data>
+  <data name="codeMessage_1202_dontplot" xml:space="preserve">
+    <value>レイヤーが表示されていないか、印刷が無効になっています。
+https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlistを確認してください</value>
+  </data>
+  <data name="codeMessage_1302_dontplot" xml:space="preserve">
+    <value>可視性属性のため、レイヤー、パス、またはオブジェクトは表示されません。</value>
+  </data>
 </root>

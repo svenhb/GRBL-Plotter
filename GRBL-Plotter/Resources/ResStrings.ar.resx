@@ -417,4 +417,38 @@
   <data name="useCaseItem0" xml:space="preserve">
     <value>### الاعدادات الحالية ###</value>
   </data>
+  <data name="codeMessage_1_unknowncommand" xml:space="preserve">
+    <value>نظرًا لأن الأمر غير معروف أو غير مدعوم ، ابدأ مشكلة على github للتوضيح.</value>
+  </data>
+  <data name="codeMessage_2_highdataamount" xml:space="preserve">
+    <value>يتجاوز مقدار الأرقام الفردية القابلة للتحديد الحد الأقصى المعطى وسيؤدي إلى انخفاض الأداء. تم تلخيص كافة الأرقام في شكل واحد. \ r \ n يمكن تعديل الحد في \ r \ n [الإعداد - استيراد الرسومات - استيراد المسار - التجميع والأدوات - بخصوص التوافق]</value>
+  </data>
+  <data name="codeMessage_2_zdoubletang" xml:space="preserve">
+    <value>يتم تعيين المحور z مرتين: كمحور مماسي وكمحور Pen-up / down. \ r \ n سيؤدي هذا إلى سلوك غريب وغير متوقع.</value>
+  </data>
+  <data name="codeMessage_3_spindlestaysoff" xml:space="preserve">
+    <value>M3 | لن يتم إرسال الأمر M4 / M5! -&gt; المغزل يبقى مغلقا. \ r \ n حدد الخيار في \ r \ n [الإعداد - استيراد الرسومات - إنشاء رمز G - ترجمة لأعلى / لأسفل لقلم المحور Z] \ r \ n☐ لا تقم بتشغيل المغزل</value>
+  </data>
+  <data name="codeMessage_3_zdoubleaux" xml:space="preserve">
+    <value>يتم تعيين المحور z مرتين: كمحور إضافي وكمحور Pen-up / down. \ r \ n سيؤدي هذا إلى سلوك غريب وغير متوقع.</value>
+  </data>
+  <data name="codeMessage_3_zdoubletang" xml:space="preserve">
+    <value>يتم تعيين المحور z مرتين: كمحور مماسي وكمحور Pen-up / down. \ r \ n سيؤدي هذا إلى سلوك غريب وغير متوقع.</value>
+  </data>
+  <data name="codeMessage_attention" xml:space="preserve">
+    <value>انتباه</value>
+  </data>
+  <data name="codeMessage_error" xml:space="preserve">
+    <value>خطأ</value>
+  </data>
+  <data name="codeMessage_warning" xml:space="preserve">
+    <value>تحذير</value>
+  </data>
+  <data name="codeMessage_1202_dontplot" xml:space="preserve">
+    <value>الطبقة غير مرئية أو تم تعطيل الطباعة.
+تحقق من https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlist</value>
+  </data>
+  <data name="codeMessage_1302_dontplot" xml:space="preserve">
+    <value>الطبقة أو المسار أو الكائن غير مرئي بسبب سمة الرؤية.</value>
+  </data>
 </root>

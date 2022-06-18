@@ -417,4 +417,38 @@
   <data name="useCaseItem0" xml:space="preserve">
     <value>＃＃＃ 当前设置 ＃＃＃</value>
   </data>
+  <data name="codeMessage_1_unknowncommand" xml:space="preserve">
+    <value>给定命令未知或不受支持，请在 github 上启动一个问题以澄清。</value>
+  </data>
+  <data name="codeMessage_2_highdataamount" xml:space="preserve">
+    <value>单个可选数字的数量超过给定的最大值会降低性能。所有图形汇总为一个图形。\r\n限制可以在\r\n[设置-图形导入-路径导入-分组和工具-关注]中调整</value>
+  </data>
+  <data name="codeMessage_2_zdoubletang" xml:space="preserve">
+    <value>z 轴被分配两次：作为切向轴和作为笔上/下轴。 \r\n这将导致奇怪和不可预知的行为。</value>
+  </data>
+  <data name="codeMessage_3_spindlestaysoff" xml:space="preserve">
+    <value>M3|M4 / M5 命令不会发送！ -&gt; 主轴保持关闭。 \r\n检查选项\r\n[设置 - 图形导入 - G-代码生成 - Z 轴笔向上/向下平移] \r\n☐ 不打开主轴</value>
+  </data>
+  <data name="codeMessage_3_zdoubleaux" xml:space="preserve">
+    <value>z 轴被分配两次：作为辅助轴和作为笔上/下轴。 \r\n这将导致奇怪和不可预知的行为。</value>
+  </data>
+  <data name="codeMessage_3_zdoubletang" xml:space="preserve">
+    <value>z 轴被分配两次：作为切向轴和作为笔上/下轴。 \r\n这将导致奇怪和不可预知的行为。</value>
+  </data>
+  <data name="codeMessage_attention" xml:space="preserve">
+    <value>注意力</value>
+  </data>
+  <data name="codeMessage_error" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="codeMessage_warning" xml:space="preserve">
+    <value>警告</value>
+  </data>
+  <data name="codeMessage_1202_dontplot" xml:space="preserve">
+    <value>图层不可见或打印被禁用。
+检查 https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlist</value>
+  </data>
+  <data name="codeMessage_1302_dontplot" xml:space="preserve">
+    <value>由于可见性属性，图层、路径或对象不可见。</value>
+  </data>
 </root>

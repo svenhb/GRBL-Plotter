@@ -196,6 +196,106 @@ namespace GrblPlotter.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Given command is unknown or not supported, start an issue on github to clarify. ähnelt.
+        /// </summary>
+        public static string codeMessage_1_unknowncommand {
+            get {
+                return ResourceManager.GetString("codeMessage_1_unknowncommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Layer is not visible or printing is disabled.
+        ///Check https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlist ähnelt.
+        /// </summary>
+        public static string codeMessage_1202_dontplot {
+            get {
+                return ResourceManager.GetString("codeMessage_1202_dontplot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Layer or object is not visible. ähnelt.
+        /// </summary>
+        public static string codeMessage_1302_dontplot {
+            get {
+                return ResourceManager.GetString("codeMessage_1302_dontplot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The amount of single, selectable, figures exceeds the given maximum an would decrease the performance. \r\nAll figures are summarized to one figure.\r\nThe limit can be adjusted in\r\n[Setup - Graphics import - Path import - Grouping and tools - Concersion concerning] ähnelt.
+        /// </summary>
+        public static string codeMessage_2_highdataamount {
+            get {
+                return ResourceManager.GetString("codeMessage_2_highdataamount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The z-axis is assigned twice: as tangential axis AND as Pen-up/down axis. \r\nThis will cause strange and unpredictable behavior. ähnelt.
+        /// </summary>
+        public static string codeMessage_2_zdoubletang {
+            get {
+                return ResourceManager.GetString("codeMessage_2_zdoubletang", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die M3|M4 / M5 command will not be sent! -&gt; Spindle stays off. \r\nCheck option in \r\n[Setup - Graphics import - G-Code generation - Z axis Pen up/down translation] \r\n☐ Do not switch on spindle ähnelt.
+        /// </summary>
+        public static string codeMessage_3_spindlestaysoff {
+            get {
+                return ResourceManager.GetString("codeMessage_3_spindlestaysoff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The z-axis is assigned twice: as auxillary axis AND as Pen-up/down axis. \r\nThis will cause strange and unpredictable behavior. ähnelt.
+        /// </summary>
+        public static string codeMessage_3_zdoubleaux {
+            get {
+                return ResourceManager.GetString("codeMessage_3_zdoubleaux", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The z-axis is assigned twice: as tangential axis AND as Pen-up/down axis. \r\nThis will cause strange and unpredictable behavior. ähnelt.
+        /// </summary>
+        public static string codeMessage_3_zdoubletang {
+            get {
+                return ResourceManager.GetString("codeMessage_3_zdoubletang", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Attention ähnelt.
+        /// </summary>
+        public static string codeMessage_attention {
+            get {
+                return ResourceManager.GetString("codeMessage_attention", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
+        /// </summary>
+        public static string codeMessage_error {
+            get {
+                return ResourceManager.GetString("codeMessage_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Warning ähnelt.
+        /// </summary>
+        public static string codeMessage_warning {
+            get {
+                return ResourceManager.GetString("codeMessage_warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Alarm ähnelt.
         /// </summary>
         public static string grblAlarm {

@@ -417,4 +417,38 @@
   <data name="useCaseItem0" xml:space="preserve">
     <value>### Configuraciones actuales ###</value>
   </data>
+  <data name="codeMessage_1_unknowncommand" xml:space="preserve">
+    <value>El comando dado es desconocido o no es compatible, inicie un problema en github para aclararlo.</value>
+  </data>
+  <data name="codeMessage_2_highdataamount" xml:space="preserve">
+    <value>La cantidad de cifras únicas seleccionables excede el máximo dado y disminuiría el rendimiento. Todas las cifras se resumen en una cifra.\r\nEl límite se puede ajustar en\r\n[Configuración - Importación de gráficos - Importación de ruta - Agrupación y herramientas - Concesión relativa]</value>
+  </data>
+  <data name="codeMessage_2_zdoubletang" xml:space="preserve">
+    <value>El eje z se asigna dos veces: como eje tangencial Y como eje Pluma arriba/abajo. \r\nEsto provocará un comportamiento extraño e impredecible.</value>
+  </data>
+  <data name="codeMessage_3_spindlestaysoff" xml:space="preserve">
+    <value>¡El comando M3|M4 / M5 no se enviará! -&gt; El eje se queda apagado. \r\nVerifique la opción en \r\n[Configuración - Importación de gráficos - Generación de código G - Traducción arriba/abajo del lápiz del eje Z] \r\n☐ No encienda el eje</value>
+  </data>
+  <data name="codeMessage_3_zdoubleaux" xml:space="preserve">
+    <value>El eje z se asigna dos veces: como eje auxiliar Y como eje Pluma arriba/abajo. \r\nEsto provocará un comportamiento extraño e impredecible.</value>
+  </data>
+  <data name="codeMessage_3_zdoubletang" xml:space="preserve">
+    <value>El eje z se asigna dos veces: como eje tangencial Y como eje Pluma arriba/abajo. \r\nEsto provocará un comportamiento extraño e impredecible.</value>
+  </data>
+  <data name="codeMessage_attention" xml:space="preserve">
+    <value>Atención</value>
+  </data>
+  <data name="codeMessage_error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="codeMessage_warning" xml:space="preserve">
+    <value>Advertencia</value>
+  </data>
+  <data name="codeMessage_1202_dontplot" xml:space="preserve">
+    <value>La capa no está visible o la impresión está deshabilitada.
+Consulte https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlist</value>
+  </data>
+  <data name="codeMessage_1302_dontplot" xml:space="preserve">
+    <value>La capa, la ruta o el objeto no son visibles debido al atributo de visibilidad.</value>
+  </data>
 </root>

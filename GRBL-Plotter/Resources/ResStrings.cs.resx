@@ -417,4 +417,38 @@
   <data name="useCaseItem0" xml:space="preserve">
     <value>### Aktuální nastavení ###</value>
   </data>
+  <data name="codeMessage_1_unknowncommand" xml:space="preserve">
+    <value>Daný příkaz je neznámý nebo není podporován, začněte problém na githubu, abyste to objasnili.</value>
+  </data>
+  <data name="codeMessage_2_highdataamount" xml:space="preserve">
+    <value>Množství jednotlivých volitelných čísel překračuje dané maximum a snižuje výkon. Všechny obrázky jsou shrnuty do jednoho čísla.\r\nOmezení lze upravit v\r\n[Nastavení - Import grafiky - Import cesty - Seskupení a nástroje - Úloha týkající se]</value>
+  </data>
+  <data name="codeMessage_2_zdoubletang" xml:space="preserve">
+    <value>Osa z je přiřazena dvakrát: jako tangenciální osa A jako osa Pen-up/down. \r\nTo způsobí podivné a nepředvídatelné chování.</value>
+  </data>
+  <data name="codeMessage_3_spindlestaysoff" xml:space="preserve">
+    <value>Příkaz M3|M4 / M5 nebude odeslán! -&gt; Vřeteno zůstane vypnuté. \r\nZkontrolujte možnost v \r\n[Nastavení - Import grafiky - Generování G-kódu - Překlad pera nahoru/dolů v ose Z] \r\n☐ Nezapínejte vřeteno</value>
+  </data>
+  <data name="codeMessage_3_zdoubleaux" xml:space="preserve">
+    <value>Osa z je přiřazena dvakrát: jako pomocná osa A jako osa Pen-up/down. \r\nTo způsobí podivné a nepředvídatelné chování.</value>
+  </data>
+  <data name="codeMessage_3_zdoubletang" xml:space="preserve">
+    <value>Osa z je přiřazena dvakrát: jako tangenciální osa A jako osa Pen-up/down. \r\nTo způsobí podivné a nepředvídatelné chování.</value>
+  </data>
+  <data name="codeMessage_attention" xml:space="preserve">
+    <value>Pozornost</value>
+  </data>
+  <data name="codeMessage_error" xml:space="preserve">
+    <value>Chyba</value>
+  </data>
+  <data name="codeMessage_warning" xml:space="preserve">
+    <value>Varování</value>
+  </data>
+  <data name="codeMessage_1202_dontplot" xml:space="preserve">
+    <value>Vrstva není viditelná nebo je tisk zakázán.
+Zkontrolujte https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlist</value>
+  </data>
+  <data name="codeMessage_1302_dontplot" xml:space="preserve">
+    <value>Vrstva, cesta nebo objekt nejsou viditelné kvůli atributu viditelnosti.</value>
+  </data>
 </root>

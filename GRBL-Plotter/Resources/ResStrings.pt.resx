@@ -417,4 +417,38 @@
   <data name="useCaseItem0" xml:space="preserve">
     <value>### Configurações atuais ###</value>
   </data>
+  <data name="codeMessage_1_unknowncommand" xml:space="preserve">
+    <value>O comando dado é desconhecido ou não é suportado, inicie um problema no github para esclarecer.</value>
+  </data>
+  <data name="codeMessage_2_highdataamount" xml:space="preserve">
+    <value>A quantidade de figuras únicas e selecionáveis ​​excede o máximo dado e diminuiria o desempenho. Todas as figuras estão resumidas em uma figura.\r\nO limite pode ser ajustado em\r\n[Configuração - Importação de gráficos - Importação de caminho - Agrupamento e ferramentas - Concessão relativa]</value>
+  </data>
+  <data name="codeMessage_2_zdoubletang" xml:space="preserve">
+    <value>O eixo z é atribuído duas vezes: como eixo tangencial E como eixo Pen-up/down. \r\nIsso causará um comportamento estranho e imprevisível.</value>
+  </data>
+  <data name="codeMessage_3_spindlestaysoff" xml:space="preserve">
+    <value>Comando M3|M4 / M5 não será enviado! -&gt; O fuso permanece desligado. \r\nMarque a opção em \r\n[Configuração - Importação de gráficos - Geração de código G - Eixo Z Tradução para cima/baixo da caneta] \r\n☐ Não ligue o fuso</value>
+  </data>
+  <data name="codeMessage_3_zdoubleaux" xml:space="preserve">
+    <value>O eixo z é atribuído duas vezes: como eixo auxiliar E como eixo Pen-up/down. \r\nIsso causará um comportamento estranho e imprevisível.</value>
+  </data>
+  <data name="codeMessage_3_zdoubletang" xml:space="preserve">
+    <value>O eixo z é atribuído duas vezes: como eixo tangencial E como eixo Pen-up/down. \r\nIsso causará um comportamento estranho e imprevisível.</value>
+  </data>
+  <data name="codeMessage_attention" xml:space="preserve">
+    <value>Atenção</value>
+  </data>
+  <data name="codeMessage_error" xml:space="preserve">
+    <value>Erro</value>
+  </data>
+  <data name="codeMessage_warning" xml:space="preserve">
+    <value>Aviso</value>
+  </data>
+  <data name="codeMessage_1202_dontplot" xml:space="preserve">
+    <value>A camada não está visível ou a impressão está desativada.
+Verifique https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlist</value>
+  </data>
+  <data name="codeMessage_1302_dontplot" xml:space="preserve">
+    <value>Camada, caminho ou objeto não está visível devido ao atributo de visibilidade.</value>
+  </data>
 </root>
