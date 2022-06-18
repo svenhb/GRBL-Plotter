@@ -24,8 +24,6 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-#pragma warning disable CA1305
-#pragma warning disable CA1307
 #pragma warning disable IDE0044
 #pragma warning disable IDE0059
 
