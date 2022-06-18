@@ -3269,4 +3269,16 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   <data name="tabPage33.Text" xml:space="preserve">
     <value>Разное</value>
   </data>
+  <data name="CbImportDXFDontPlot.Text" xml:space="preserve">
+    <value>Пропустить скрытые слои</value>
+  </data>
+  <data name="CbImportDXFDontPlot.ToolTip" xml:space="preserve">
+    <value>Если слой не виден или печать в LibreCAD отключена, слой не будет импортирован.</value>
+  </data>
+  <data name="CbImportSVGDontPlot.Text" xml:space="preserve">
+    <value>Пропустить скрытые слои</value>
+  </data>
+  <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
+    <value>Если слой или объект не отображаются в Inkscape, слой или объект не будут импортированы.</value>
+  </data>
 </root>

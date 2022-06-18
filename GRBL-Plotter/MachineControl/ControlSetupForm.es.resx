@@ -3046,4 +3046,16 @@ Además, la posición del eje Z se puede utilizar para, por ejemplo, aumentar la
   <data name="tabPage33.Text" xml:space="preserve">
     <value>Varios</value>
   </data>
+  <data name="CbImportDXFDontPlot.Text" xml:space="preserve">
+    <value>Saltar capas ocultas</value>
+  </data>
+  <data name="CbImportDXFDontPlot.ToolTip" xml:space="preserve">
+    <value>Si la capa no está visible o la impresión está deshabilitada en LibreCAD, la capa no se importará</value>
+  </data>
+  <data name="CbImportSVGDontPlot.Text" xml:space="preserve">
+    <value>Saltar capas ocultas</value>
+  </data>
+  <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
+    <value>Si la capa o el objeto no están visibles en Inkscape, la capa o el objeto no se importarán.</value>
+  </data>
 </root>

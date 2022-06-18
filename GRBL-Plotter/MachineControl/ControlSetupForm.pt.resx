@@ -3055,4 +3055,16 @@ Além disso, a posição do eixo Z pode ser usada para, por exemplo, aumentar a 
   <data name="tabPage33.Text" xml:space="preserve">
     <value>Diversos</value>
   </data>
+  <data name="CbImportDXFDontPlot.Text" xml:space="preserve">
+    <value>Pular camadas ocultas</value>
+  </data>
+  <data name="CbImportDXFDontPlot.ToolTip" xml:space="preserve">
+    <value>Se a camada não estiver visível ou a impressão estiver desativada no LibreCAD, a camada não será importada</value>
+  </data>
+  <data name="CbImportSVGDontPlot.Text" xml:space="preserve">
+    <value>Pular camadas ocultas</value>
+  </data>
+  <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
+    <value>Se a camada ou objeto não estiver visível no Inkscape, a camada ou objeto não será importado.</value>
+  </data>
 </root>

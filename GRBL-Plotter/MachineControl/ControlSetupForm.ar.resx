@@ -3321,4 +3321,16 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="tabPage33.Text" xml:space="preserve">
     <value>متفرقات</value>
   </data>
+  <data name="CbImportDXFDontPlot.Text" xml:space="preserve">
+    <value>تخطي الطبقات المخفية</value>
+  </data>
+  <data name="CbImportDXFDontPlot.ToolTip" xml:space="preserve">
+    <value>إذا كانت الطبقة غير مرئية أو تم تعطيل الطباعة في LibreCAD ، فلن يتم استيراد الطبقة</value>
+  </data>
+  <data name="CbImportSVGDontPlot.Text" xml:space="preserve">
+    <value>تخطي الطبقات المخفية</value>
+  </data>
+  <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
+    <value>إذا كانت الطبقة أو الكائن غير مرئي في Inkscape ، فلن يتم استيراد الطبقة أو الكائن.</value>
+  </data>
 </root>

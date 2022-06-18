@@ -267,7 +267,8 @@ namespace GrblPlotter
                     timerSerial.Interval = 1000;
                     timerSerial.Start();
                     DisconnectFromGrbl(null,null);   // ClosePortSerial();
-                    countShutdown = 5;
+                    if (reader != null) reader.Dispose();
+					countShutdown = 5;
                 }
                 e.Cancel = false;
                 flag_closeForm = true;

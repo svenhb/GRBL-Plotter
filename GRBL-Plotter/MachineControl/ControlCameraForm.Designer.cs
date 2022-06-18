@@ -44,8 +44,8 @@ namespace GrblPlotter
                 brushText.Dispose();
                 penTeach.Dispose();
 				brushMachineLimit.Dispose();
-                exampleFrameXy.Dispose();
-                exampleFrameFix.Dispose();
+            //    exampleFrameXy.Dispose();			// will be disposed in ControlCameraForm.cs line 294
+            //    exampleFrameFix.Dispose();		// will be disposed in ControlCameraForm.cs line 295
             }
             base.Dispose(disposing);
         }

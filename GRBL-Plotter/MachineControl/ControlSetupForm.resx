@@ -313,7 +313,7 @@
     <value>6</value>
   </data>
   <data name="tab1_3gB7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 130</value>
+    <value>6, 160</value>
   </data>
   <data name="tab1_3gB7.Size" type="System.Drawing.Size, System.Drawing">
     <value>270, 118</value>
@@ -421,7 +421,7 @@
     <value>2</value>
   </data>
   <data name="tab1_3gB6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>288, 130</value>
+    <value>288, 160</value>
   </data>
   <data name="tab1_3gB6.Size" type="System.Drawing.Size, System.Drawing">
     <value>270, 118</value>
@@ -963,6 +963,42 @@
   <data name="&gt;&gt;groupBox6.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="CbImportDXFDontPlot.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbImportDXFDontPlot.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbImportDXFDontPlot.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 77</value>
+  </data>
+  <data name="CbImportDXFDontPlot.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 17</value>
+  </data>
+  <data name="CbImportDXFDontPlot.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="CbImportDXFDontPlot.Text" xml:space="preserve">
+    <value>Skip hidden layers </value>
+  </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="CbImportDXFDontPlot.ToolTip" xml:space="preserve">
+    <value>If layer is not visible or printing is disabled in LibreCAD, layer will not be imported</value>
+  </data>
+  <data name="&gt;&gt;CbImportDXFDontPlot.Name" xml:space="preserve">
+    <value>CbImportDXFDontPlot</value>
+  </data>
+  <data name="&gt;&gt;CbImportDXFDontPlot.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbImportDXFDontPlot.Parent" xml:space="preserve">
+    <value>tab1_1gB3</value>
+  </data>
+  <data name="&gt;&gt;CbImportDXFDontPlot.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="cBImportDXFUseZ.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -970,7 +1006,7 @@
     <value>NoControl</value>
   </data>
   <data name="cBImportDXFUseZ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 77</value>
+    <value>6, 115</value>
   </data>
   <data name="cBImportDXFUseZ.Size" type="System.Drawing.Size, System.Drawing">
     <value>119, 17</value>
@@ -991,7 +1027,7 @@
     <value>tab1_1gB3</value>
   </data>
   <data name="&gt;&gt;cBImportDXFUseZ.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="cBImportDXFSwitchWhite.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1000,7 +1036,7 @@
     <value>NoControl</value>
   </data>
   <data name="cBImportDXFSwitchWhite.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 43</value>
+    <value>6, 34</value>
   </data>
   <data name="cBImportDXFSwitchWhite.Size" type="System.Drawing.Size, System.Drawing">
     <value>178, 17</value>
@@ -1011,9 +1047,6 @@
   <data name="cBImportDXFSwitchWhite.Text" xml:space="preserve">
     <value>Handle pen-color white as black</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="cBImportDXFSwitchWhite.ToolTip" xml:space="preserve">
     <value>LibreCAD shows white pen color on black background. But real pen-color is black.</value>
   </data>
@@ -1027,7 +1060,7 @@
     <value>tab1_1gB3</value>
   </data>
   <data name="&gt;&gt;cBImportDXFSwitchWhite.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="cBImportDXFIndexToolNr.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1060,13 +1093,13 @@
     <value>tab1_1gB3</value>
   </data>
   <data name="&gt;&gt;cBImportDXFIndexToolNr.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="tab1_1gB3.Location" type="System.Drawing.Point, System.Drawing">
     <value>288, 6</value>
   </data>
   <data name="tab1_1gB3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 100</value>
+    <value>270, 138</value>
   </data>
   <data name="tab1_1gB3.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -1086,6 +1119,39 @@
   <data name="&gt;&gt;tab1_1gB3.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="CbImportSVGDontPlot.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbImportSVGDontPlot.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbImportSVGDontPlot.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 77</value>
+  </data>
+  <data name="CbImportSVGDontPlot.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 17</value>
+  </data>
+  <data name="CbImportSVGDontPlot.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="CbImportSVGDontPlot.Text" xml:space="preserve">
+    <value>Skip hidden layers </value>
+  </data>
+  <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
+    <value>If layer or object is not visible in Inkscape, layer or object  will not be imported.</value>
+  </data>
+  <data name="&gt;&gt;CbImportSVGDontPlot.Name" xml:space="preserve">
+    <value>CbImportSVGDontPlot</value>
+  </data>
+  <data name="&gt;&gt;CbImportSVGDontPlot.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbImportSVGDontPlot.Parent" xml:space="preserve">
+    <value>tab1_1gB2</value>
+  </data>
+  <data name="&gt;&gt;CbImportSVGDontPlot.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="checkBox5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1093,7 +1159,7 @@
     <value>NoControl</value>
   </data>
   <data name="checkBox5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 77</value>
+    <value>6, 115</value>
   </data>
   <data name="checkBox5.Size" type="System.Drawing.Size, System.Drawing">
     <value>168, 17</value>
@@ -1114,7 +1180,7 @@
     <value>tab1_1gB2</value>
   </data>
   <data name="&gt;&gt;checkBox5.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="nUDSVGScale.Location" type="System.Drawing.Point, System.Drawing">
     <value>180, 42</value>
@@ -1141,7 +1207,7 @@
     <value>tab1_1gB2</value>
   </data>
   <data name="&gt;&gt;nUDSVGScale.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="tab1_1lbl3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1171,7 +1237,7 @@
     <value>tab1_1gB2</value>
   </data>
   <data name="&gt;&gt;tab1_1lbl3.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="cBImportSVG_DPI_72.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1204,7 +1270,7 @@
     <value>tab1_1gB2</value>
   </data>
   <data name="&gt;&gt;cBImportSVG_DPI_72.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="cBImportSVG_DPI_96.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1237,7 +1303,7 @@
     <value>tab1_1gB2</value>
   </data>
   <data name="&gt;&gt;cBImportSVG_DPI_96.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="cBImportSVGResize.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1268,7 +1334,7 @@ to avoid problems when scaling down gcode.</value>
     <value>tab1_1gB2</value>
   </data>
   <data name="&gt;&gt;cBImportSVGResize.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="lblSVGScale.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1298,13 +1364,13 @@ to avoid problems when scaling down gcode.</value>
     <value>tab1_1gB2</value>
   </data>
   <data name="&gt;&gt;lblSVGScale.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="tab1_1gB2.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 6</value>
   </data>
   <data name="tab1_1gB2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 100</value>
+    <value>270, 138</value>
   </data>
   <data name="tab1_1gB2.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -26967,9 +27033,6 @@ Other settings will be stored on change, usually.</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>884, 411</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 150</value>

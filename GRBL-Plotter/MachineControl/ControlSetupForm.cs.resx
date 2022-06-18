@@ -3335,4 +3335,16 @@ Kromě toho lze polohu osy Z využít např. ke zvýšení množství barvy, kdy
   <data name="tabPage33.Text" xml:space="preserve">
     <value>Různé</value>
   </data>
+  <data name="CbImportDXFDontPlot.Text" xml:space="preserve">
+    <value>Přeskočit skryté vrstvy</value>
+  </data>
+  <data name="CbImportDXFDontPlot.ToolTip" xml:space="preserve">
+    <value>Pokud vrstva není viditelná nebo je v LibreCADu zakázán tisk, vrstva se neimportuje</value>
+  </data>
+  <data name="CbImportSVGDontPlot.Text" xml:space="preserve">
+    <value>Přeskočit skryté vrstvy</value>
+  </data>
+  <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
+    <value>Pokud vrstva nebo objekt není v Inkscape vidět, vrstva nebo objekt se neimportují.</value>
+  </data>
 </root>

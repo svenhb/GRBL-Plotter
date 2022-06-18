@@ -3046,4 +3046,16 @@ De plus, la position de l'axe Z peut être utilisée, par exemple, pour augmente
   <data name="tabPage33.Text" xml:space="preserve">
     <value>Divers</value>
   </data>
+  <data name="CbImportDXFDontPlot.Text" xml:space="preserve">
+    <value>Ignorer les couches masquées</value>
+  </data>
+  <data name="CbImportDXFDontPlot.ToolTip" xml:space="preserve">
+    <value>Si le calque n'est pas visible ou si l'impression est désactivée dans LibreCAD, le calque ne sera pas importé</value>
+  </data>
+  <data name="CbImportSVGDontPlot.Text" xml:space="preserve">
+    <value>Ignorer les couches masquées</value>
+  </data>
+  <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
+    <value>Si le calque ou l'objet n'est pas visible dans Inkscape, le calque ou l'objet ne sera pas importé.</value>
+  </data>
 </root>

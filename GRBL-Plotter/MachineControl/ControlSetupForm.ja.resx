@@ -3345,4 +3345,16 @@ https://github.com/cprezzi/grbl-servoのGrbl-version'grbl_v1.1f_Servo.hex '、
   <data name="tabPage33.Text" xml:space="preserve">
     <value>その他</value>
   </data>
+  <data name="CbImportDXFDontPlot.Text" xml:space="preserve">
+    <value>隠しレイヤーをスキップする</value>
+  </data>
+  <data name="CbImportDXFDontPlot.ToolTip" xml:space="preserve">
+    <value>レイヤーが表示されていないか、LibreCADで印刷が無効になっている場合、レイヤーはインポートされません</value>
+  </data>
+  <data name="CbImportSVGDontPlot.Text" xml:space="preserve">
+    <value>隠しレイヤーをスキップする</value>
+  </data>
+  <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
+    <value>レイヤーまたはオブジェクトがInkscapeに表示されていない場合、レイヤーまたはオブジェクトはインポートされません。</value>
+  </data>
 </root>

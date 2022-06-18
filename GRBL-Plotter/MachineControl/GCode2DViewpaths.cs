@@ -223,6 +223,7 @@ namespace GrblPlotter
                         }
 
                     //    if (!((path == pathPenUp) && largeDataAmount && (oldL.lineNumber > 10) && (oldL.lineNumber < (numberDataLines - 10))))
+                    // no improovement, when skipping pen-up paths 2022-04-20
                         path.AddLine((float)oldL.actualPos.X + viewOffset.X, (float)oldL.actualPos.Y + viewOffset.Y, (float)newL.actualPos.X + viewOffset.X, (float)newL.actualPos.Y + viewOffset.Y);   // 2021-09-02
 
                         if (Properties.Settings.Default.gui2DShowVertexEnable && !largeDataAmount)
@@ -257,7 +258,8 @@ namespace GrblPlotter
                         if (!Properties.Settings.Default.importUnitmm || (modal.unitsMode == 20))
                         { markerSize /= 25.4F; }
                         CreateMarker(pathPenDown, (XyPoint)newL.actualPos, markerSize, 1, false);       // draw cross
-                        if ((path == pathPenDown) && (pathActualDown != null))
+                    //    if ((path == pathPenDown) && (pathActualDown != null))
+                        if (pathActualDown != null)
                         {
                             XyPoint tmpPoint = new XyPoint(newL.actualPos.X + viewOffset.X, newL.actualPos.Y + viewOffset.Y);
                             CreateMarker(pathActualDown, tmpPoint, markerSize, 1, false);               // draw cross

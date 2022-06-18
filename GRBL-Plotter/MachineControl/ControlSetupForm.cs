@@ -135,7 +135,9 @@ namespace GrblPlotter
             SetButtonColors(btnColorSimulation, Properties.Settings.Default.gui2DColorSimulation);
             SetProjectorButtons();
 
-            nUDImportDecPlaces.Value = Properties.Settings.Default.importGCDecPlaces;
+			decimal tmpPlaces = Properties.Settings.Default.importGCDecPlaces;
+			if ((tmpPlaces < 0) || (tmpPlaces > 6)) {	Properties.Settings.Default.importGCDecPlaces = tmpPlaces = 3;}		// set default
+            nUDImportDecPlaces.Value = tmpPlaces;
 
             Location = Properties.Settings.Default.locationSetForm;
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
@@ -1158,16 +1160,16 @@ namespace GrblPlotter
 
         private void BtnMachineRangeGet_Click(object sender, EventArgs e)
         {
-			double maxX = Grbl.GetSetting(130);
-			double maxY = Grbl.GetSetting(131);
-			double maxZ = Grbl.GetSetting(132);
+			decimal maxX = (decimal)Grbl.GetSetting(130);
+			decimal maxY = (decimal)Grbl.GetSetting(131);
+			decimal maxZ = (decimal)Grbl.GetSetting(132);
             if ((maxX < 0) || (maxY < 0) || (maxZ < 0))
                 MessageBox.Show(string.Format("No information available - please connect grbl-controller ($130={0}; $131={1}; $132={2}; )", maxX, maxY, maxZ), "Attention!");
             else
             {
-                nUDMachineRangeX.Value = (decimal)Grbl.GetSetting(130);
-                nUDMachineRangeY.Value = (decimal)Grbl.GetSetting(131);
-                nUDMachineRangeZ.Value = (decimal)Grbl.GetSetting(132);
+                if (maxX > 0) nUDMachineRangeX.Value = maxX;
+                if (maxY > 0) nUDMachineRangeY.Value = maxY;
+                if (maxZ > 0) nUDMachineRangeZ.Value = maxZ;
             }
         }
 

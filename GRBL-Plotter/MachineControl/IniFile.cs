@@ -143,10 +143,13 @@ namespace GrblPlotter
                 Write("SVG resize enable", setup.importSVGRezise.ToString(), section);
                 Write("SVG resize units", setup.importSVGMaxSize.ToString(), section);
             }
+            if (setup.importSVGDontPlot || all) { Write("SVG skip hidden", setup.importSVGDontPlot.ToString(), section); }
             if (setup.importSVGApplyFill || all) { Write("SVG apply fill", setup.importSVGApplyFill.ToString(), section); }
 
             if (setup.importDXFToolIndex || all) { Write("DXF use color index", setup.importDXFToolIndex.ToString(), section); }
             if (setup.importDXFSwitchWhite || all) { Write("DXF handle white as black", setup.importDXFSwitchWhite.ToString(), section); }
+            if (setup.importDXFDontPlot || all) { Write("DXF skip hidden", setup.importDXFDontPlot.ToString(), section); }
+
 
             /* Graphics import General */
             Write("Graph Units mm", setup.importUnitmm.ToString(), section);
@@ -662,8 +665,10 @@ namespace GrblPlotter
             /* Format related */
             setup.importSVGDPI96 = true;
             setup.importSVGRezise = false;
+            setup.importSVGDontPlot = false;
             setup.importSVGApplyFill = false;
             setup.importDXFToolIndex = false;
+            setup.importDXFDontPlot = false;
             setup.importDXFSwitchWhite = true;
 
             /* Graphics import General */
@@ -758,10 +763,12 @@ namespace GrblPlotter
             if (SetVariable(ref tmpbool, section, "SVG DPI 96 enable")) { setup.importSVGDPI96 = tmpbool; }
             if (SetVariable(ref tmpbool, section, "SVG resize enable")) { setup.importSVGRezise = tmpbool; }
             if (SetVariable(ref tmpdeci, section, "SVG resize units")) { setup.importSVGMaxSize = tmpdeci; }
+            if (SetVariable(ref tmpbool, section, "SVG skip hidden")) { setup.importSVGDontPlot = tmpbool; }
             if (SetVariable(ref tmpbool, section, "SVG apply fill")) { setup.importSVGApplyFill = tmpbool; }
 
             if (SetVariable(ref tmpbool, section, "DXF use color index")) { setup.importDXFToolIndex = tmpbool; }
             if (SetVariable(ref tmpbool, section, "DXF handle white as black")) { setup.importDXFSwitchWhite = tmpbool; }
+            if (SetVariable(ref tmpbool, section, "DXF skip hidden")) { setup.importDXFDontPlot = tmpbool; }
 
             /* Graphics import General */
             if (SetVariable(ref tmpbool, section, "Graph Units mm")) { setup.importUnitmm = tmpbool; }

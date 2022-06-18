@@ -1354,7 +1354,9 @@ namespace GrblPlotter
             {
                 buffer = new List<string>();
                 lineNr = new List<int>();
+                sent = 0;
                 confirmed = 0;
+				max=0;
             }
             public List<string> Buffer
             {
@@ -1392,6 +1394,7 @@ namespace GrblPlotter
             {
                 sent = 0;
                 confirmed = 0;
+				max=0;
                 buffer.Clear();
                 lineNr.Clear();
             }

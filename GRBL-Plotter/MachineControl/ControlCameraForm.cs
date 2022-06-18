@@ -568,10 +568,14 @@ namespace GrblPlotter
         { DrawCrossHairs(path, new System.Drawing.Point(center.X, center.Y), gap, chlen); }
         private void DrawCrossHairs(Graphics path, System.Drawing.Point center, int gap, int chlen)
         {
-            path.DrawLine(penTeachMark, new System.Drawing.Point(center.X - chlen, center.Y), new System.Drawing.Point(center.X - gap, center.Y));
-            path.DrawLine(penTeachMark, new System.Drawing.Point(center.X + gap, center.Y), new System.Drawing.Point(center.X + chlen, center.Y));
-            path.DrawLine(penTeachMark, new System.Drawing.Point(center.X, center.Y - chlen), new System.Drawing.Point(center.X, center.Y - gap));
-            path.DrawLine(penTeachMark, new System.Drawing.Point(center.X, center.Y + gap), new System.Drawing.Point(center.X, center.Y + chlen));
+            try
+            {
+                path.DrawLine(penTeachMark, new System.Drawing.Point(center.X - chlen, center.Y), new System.Drawing.Point(center.X - gap, center.Y));
+                path.DrawLine(penTeachMark, new System.Drawing.Point(center.X + gap, center.Y), new System.Drawing.Point(center.X + chlen, center.Y));
+                path.DrawLine(penTeachMark, new System.Drawing.Point(center.X, center.Y - chlen), new System.Drawing.Point(center.X, center.Y - gap));
+                path.DrawLine(penTeachMark, new System.Drawing.Point(center.X, center.Y + gap), new System.Drawing.Point(center.X, center.Y + chlen));
+            }
+            catch (Exception err) { Logger.Error(err, "DrawCrossHairs "); }
         }
         // Calculate click position and send coordinates via event
 

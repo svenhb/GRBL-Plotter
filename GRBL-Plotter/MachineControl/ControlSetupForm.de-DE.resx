@@ -2995,4 +2995,16 @@ Zusätzlich kann die Position der Z Achse verwendet werden um z.B. die Farbmenge
   <data name="tabPage33.Text" xml:space="preserve">
     <value>Sonstiges</value>
   </data>
+  <data name="CbImportDXFDontPlot.Text" xml:space="preserve">
+    <value>Versteckte Ebenen überspringen</value>
+  </data>
+  <data name="CbImportDXFDontPlot.ToolTip" xml:space="preserve">
+    <value>Wenn die Ebene nicht sichtbar ist oder das Drucken in LibreCAD deaktiviert ist, wird die Ebene nicht importiert</value>
+  </data>
+  <data name="CbImportSVGDontPlot.Text" xml:space="preserve">
+    <value>Versteckte Ebenen überspringen</value>
+  </data>
+  <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
+    <value>Wenn Ebene oder Objekt in Inkscape nicht sichtbar sind, werden Ebene oder Objekt nicht importiert.</value>
+  </data>
 </root>
