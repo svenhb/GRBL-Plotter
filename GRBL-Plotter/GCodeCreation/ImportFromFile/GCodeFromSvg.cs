@@ -77,6 +77,8 @@
  * 2021-09-21 also read inkscape:label
  * 2022-02-27 switch order of  ParseTransform (now 1st) and ParseAttributs / apply matrix-scale to svgStrokeWidthScale
  * 2022-03-01 ParsePathCommand line 1080 if found a 2nd 'M' or 'm' command within 'd' path	- if same coordinate, do nothing
+ * 2022-06-14 line 440/782/1031 skip layer if style="display:none"; attribute "visibility"
+ * 2022-06-18 bug fix getting first coordinates in "m" command and applying in "z" command
 */
 
 using System;
@@ -123,6 +125,7 @@ namespace GrblPlotter
 
         private static uint logFlags = 0;
         private static bool logEnable = false;
+        private static bool logEnableCoord = false;
         private static string logSource = "";
 
         private static BackgroundWorker backgroundWorker = null;
@@ -166,7 +169,7 @@ namespace GrblPlotter
             backgroundWorker = worker;
             backgroundEvent = e;
 
-            if (String.IsNullOrEmpty(filePath))
+            if (String.IsNullOrEmpty(filePath) || (filePath.Length < 5))
             { MessageBox.Show("Empty file name"); return false; }
             else if (filePath.Substring(0, 4) == "http")
             {
@@ -211,6 +214,7 @@ namespace GrblPlotter
         //    Logger.Info(" convertSVG {0}", filePath);
             logFlags = (uint)Properties.Settings.Default.importLoggerSettings;
             logEnable = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnables.Level1) > 0);
+            logEnableCoord = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnables.Detailed) > 0);
 
             svgScaleApply = Properties.Settings.Default.importSVGRezise;
             svgMaxSize = (float)Properties.Settings.Default.importSVGMaxSize;
@@ -432,16 +436,28 @@ namespace GrblPlotter
         {
          //   if (logEnable) Logger.Debug("●●●● ParseGroup Level:{0} Elements:{1}", level, svgCode.Elements(nspace + "g").Count());
             foreach (XElement groupElement in svgCode.Elements(nspace + "g"))
-            {
+            {				
                 if (level == 1)
                 {
+					string idtext = "ID not set " + level.ToString();
+                    if (groupElement.Attribute("id") != null)
+                        idtext = groupElement.Attribute("id").Value;
+					
+					/* skip layer if not visible */
+					if (Properties.Settings.Default.importSVGDontPlot)
+					{
+                        if ((groupElement.Attribute("style") != null) && (groupElement.Attribute("style").Value.Contains("display:none")))
+                        {
+                            Graphic.SetHeaderInfo(string.Format(" Hide SVG Layer:{0}   ", idtext));
+                            Graphic.SetHeaderMessage(string.Format(" {0}-1302: SVG Layer '{1}' is not visible and will not be imported", CodeMessage.Attention, idtext));
+                            continue;
+                        }
+					}
+
                     if (groupElement.Attribute(inkscape + "label") != null)
                         Graphic.SetLabel(groupElement.Attribute(inkscape + "label").Value);
 
-                    if (groupElement.Attribute("id") != null)
-                        Graphic.SetLayer(groupElement.Attribute("id").Value);	// top level group-id = layer
-                    else
-                        Graphic.SetLayer("ID not set " + level.ToString());
+                    Graphic.SetLayer(idtext);
                 }
                 if (logEnable)
                 {
@@ -510,18 +526,14 @@ namespace GrblPlotter
         }
 
         private static void SetPenWidth(string txt)
-        {   double nr = 1;
-            if (!double.TryParse(txt, NumberStyles.Number, NumberFormatInfo.InvariantInfo, out nr))
+        {   
+            if (!double.TryParse(txt, NumberStyles.Number, NumberFormatInfo.InvariantInfo, out double nr))
             {
                 nr = ConvertToPixel(txt);   // = txt * 96
-            //    Logger.Error("SetPenWidth Convert stroke-width via ConvertToPixel '{0}' result '{1}'", txt, nr);
             }
-		//	double width = Math.Round(matrixElement.Transform(new Point(nr,nr)).X, 3);
-         //   Logger.Info("⛭ SetPenWidth set:{0} stroke-width:'{1}'  scale:{2} ", (nr * svgStrokeWidthScale), txt, svgStrokeWidthScale);
-         //   Logger.Info("⛭ SetPenWidth set:{0} stroke-width:'{1}'  scale:{2} ", width, txt, svgStrokeWidthScale);
-         //   Graphic.SetPenWidth(Math.Round(width,3).ToString().Replace(',', '.'));
 			Graphic.SetPenWidth(Math.Round(nr * svgStrokeWidthScale, 3).ToString().Replace(',', '.'));
         }
+
         /// <summary>
         /// Parse Transform information - more information here: http://www.w3.org/TR/SVG/coords.html
         /// transform will be applied in gcodeMove
@@ -758,13 +770,28 @@ namespace GrblPlotter
                         ParseAttributs(pathElement);                // process color and stroke-dasharray
                         logSource = "Basic element " + form;
 
+						string attrId="";
                         if (pathElement.Attribute("id") != null)
-                            Graphic.SetPathId(pathElement.Attribute("id").Value);
+                        {
+							attrId = pathElement.Attribute("id").Value;
+							Graphic.SetPathId(attrId);
+						}
 
                         offsetX = 0; offsetY = 0;
 
                         float x = 0, y = 0, x1 = 0, y1 = 0, x2 = 0, y2 = 0, width = 0, height = 0, rx = 0, ry = 0, cx = 0, cy = 0, r = 0;
                         string[] points = { "" };
+						
+						/* skip element if not visible */
+						string visibility = "";
+                        if (pathElement.Attribute("visibility") != null) { visibility = pathElement.Attribute("visibility").Value; }
+						if (Properties.Settings.Default.importSVGDontPlot && visibility.Contains("hidden"))
+						{   
+							Graphic.SetHeaderInfo(string.Format(" Hide SVG Element:{0}   Id:{1}", form, attrId));
+							Graphic.SetHeaderMessage(string.Format(" {0}-1302: SVG Element '{1}' is not visible and will not be imported", CodeMessage.Attention, form));
+							continue;
+						}
+						
                         if (pathElement.Attribute("x") != null) x = ConvertToPixel(pathElement.Attribute("x").Value);
                         if (pathElement.Attribute("y") != null) y = ConvertToPixel(pathElement.Attribute("y").Value);
                         if (pathElement.Attribute("x1") != null) x1 = ConvertToPixel(pathElement.Attribute("x1").Value);
@@ -978,7 +1005,6 @@ namespace GrblPlotter
                     currentX = offsetX; currentY = offsetX;
                     firstX = null; firstY = null;
                     startPath = true;
-                    startSubPath = true;
                     lastX = offsetX; lastY = offsetY;
                     string d = pathElement.Attribute("d").Value;
 
@@ -987,15 +1013,28 @@ namespace GrblPlotter
                         id = id.Substring(0, 20);
 
 					lastPathInformation = "";
+					string attrId = "";
                     oldMatrixElement = matrixElement;
                     ParseTransform(pathElement, false, level);      // transform will be applied in gcodeMove
                     ParseAttributs(pathElement);                    // process color and stroke-dasharray
                     shapeCounter++;
 
                     if (pathElement.Attribute("id") != null)
-					{   Graphic.SetPathId(pathElement.Attribute("id").Value);
-						lastPathInformation = "id=" + pathElement.Attribute("id").Value;
+					{   attrId = pathElement.Attribute("id").Value;
+						Graphic.SetPathId(attrId);
+						lastPathInformation = "id=" + attrId;
 					}
+					
+					/* skip element if not visible */
+					string visibility = "";
+                    if (pathElement.Attribute("visibility") != null) { visibility = pathElement.Attribute("visibility").Value; }
+					if (Properties.Settings.Default.importSVGDontPlot && visibility.Contains("hidden"))
+					{   
+						Graphic.SetHeaderInfo(string.Format(" Hide SVG Path Id:{0}", attrId));
+						Graphic.SetHeaderMessage(string.Format(" {0}-1302: SVG Path-Id '{1}' is not visible and will not be imported", CodeMessage.Attention, attrId));
+						continue;
+					}
+					
                     if (d.Length > 0)
                     {
                         // split complete path in to command-tokens
@@ -1015,7 +1054,6 @@ namespace GrblPlotter
             return;
         }
 
-        private static bool startSubPath = true;
         private static bool startPath = true;
         private static float offsetX, offsetY;
         private static float currentX, currentY;
@@ -1061,8 +1099,11 @@ namespace GrblPlotter
                         { currentX = floatArgs[i] + offsetX; currentY = floatArgs[i + 1] + offsetY; }
                         else
                         { currentX = floatArgs[i] + lastX; currentY = floatArgs[i + 1] + lastY; }
-                        if (startSubPath)
-                        {
+
+                        if (i == 0) // first two coordinates are start of path
+                        {    
+                            firstX = currentX; firstY = currentY; 
+
                             if (!startPath && Gcode.IsEqual(lastX, currentX) && Gcode.IsEqual(lastY, currentY)) // found a 2nd 'M' or 'm' command within 'd' path		
                             {   Logger.Warn("⚠ Skip 2nd 'm' because of no position change: {0}",lastPathInformation); }
                             else { 
@@ -1070,22 +1111,18 @@ namespace GrblPlotter
                                 if (svgNodesOnly)
                                     GCodeDotOnly(currentX, currentY, (command.ToString()));
                                 else
-                                    SVGStartPath(currentX, currentY, command.ToString());
-                                firstX = currentX; firstY = currentY;
+                                    SVGStartPath(currentX, currentY, string.Format("{0} 000)  X:{1:0.00} Y:{2:0.00}", command, currentX, currentY));
                                 startPath = false;
-                                startSubPath = false;
                             }
                         }
                         else
-                        {	if (svgNodesOnly)
+                        {	
+                            if (svgNodesOnly)
 								GCodeDotOnly(currentX, currentY, command.ToString());
-							else if (i <= 1) // amount of coordinates
-								SVGStartPath(currentX, currentY, command.ToString()); 	// gcodeMoveTo(currentX, currentY, command.ToString());  // G1
 							else
-								SVGMoveTo(currentX, currentY, command.ToString());  	// G1
+								SVGMoveTo(currentX, currentY, string.Format("{0} {1,3})  X:{2:0.00} Y:{3:0.00}", command, (i/2), currentX, currentY));  	// G1
                         }
-                        if (firstX == null) { firstX = currentX; }
-                        if (firstY == null) { firstY = currentY; }
+
                         lastX = currentX; lastY = currentY;
                     }
 
@@ -1098,11 +1135,10 @@ namespace GrblPlotter
                         if (firstX == null) { firstX = currentX; }
                         if (firstY == null) { firstY = currentY; }
                         if (!Gcode.IsEqual((float)firstX, lastX) || !Gcode.IsEqual((float)firstY, lastY))
-                            SVGMoveTo((float)firstX, (float)firstY, command.ToString());// (isNearlyEqual((float)firstX, lastX).ToString()+"  "+ firstX.ToString()+" "+lastX.ToString()+"  "+ firstY.ToString() + " " + lastY.ToString()));// 
+                            SVGMoveTo((float)firstX, (float)firstY, string.Format("{0} X:{1:0.00} Y:{2:0.00}", command, firstX, firstY));// (isNearlyEqual((float)firstX, lastX).ToString()+"  "+ firstX.ToString()+" "+lastX.ToString()+"  "+ firstY.ToString() + " " + lastY.ToString()));// 
                     }
                     lastX = (float)firstX; lastY = (float)firstY;
                     firstX = null; firstY = null;
-                    startSubPath = true;
                     Graphic.StopPath("Z");//Plotter.StopPath("Z");
                     break;
                 #endregion
@@ -1128,7 +1164,6 @@ namespace GrblPlotter
                         lastX = currentX; lastY = currentY;
                         //        cxMirror = currentX; cyMirror = currentY;
                     }
-                    startSubPath = true;
                     break;
                 #endregion
                 case 'H':       // Draws a horizontal line from the current point (cpx, cpy) to (x, cpy)
@@ -1146,7 +1181,6 @@ namespace GrblPlotter
                             SVGMoveTo(currentX, currentY, command.ToString());
                         lastX = currentX; lastY = currentY;
                     }
-                    startSubPath = true;
                     break;
                 #endregion
                 case 'V':       // Draws a vertical line from the current point (cpx, cpy) to (cpx, y)
@@ -1164,7 +1198,6 @@ namespace GrblPlotter
                             SVGMoveTo(currentX, currentY, command.ToString());
                         lastX = currentX; lastY = currentY;
                     }
-                    startSubPath = true;
                     break;
                 #endregion
                 case 'A':       // Draws an elliptical arc from the current point to (x, y)
@@ -1196,7 +1229,6 @@ namespace GrblPlotter
                             ImportMath.CalcArc(lastX, lastY, rx, ry, rot, large, sweep, nx, ny, SVGMoveTo);
                         lastX = nx; lastY = ny;
                     }
-                    startSubPath = true;
                     break;
                 #endregion
                 case 'C':       // Draws a cubic Bézier curve from the current point to (x,y)
@@ -1241,7 +1273,6 @@ namespace GrblPlotter
                         else
                         { Graphic.SetComment(string.Format(" Missing argument after {0} ", rep)); }
                     }
-                    startSubPath = true;
                     break;
                 #endregion
                 case 'S':       // Draws a cubic Bézier curve from the current point to (x,y)
@@ -1272,7 +1303,6 @@ namespace GrblPlotter
 
                         cMirror = c3 * 2 - c2;
                     }
-                    startSubPath = true;
                     break;
                 #endregion
                 case 'Q':       // Draws a quadratic Bézier curve from the current point to (x,y)
@@ -1303,7 +1333,6 @@ namespace GrblPlotter
 
                         cMirror = c3 * 2 - c2;
                     }
-                    startSubPath = true;
                     break;
                 #endregion
                 case 'T':       // Draws a quadratic Bézier curve from the current point to (x,y)
@@ -1333,7 +1362,6 @@ namespace GrblPlotter
 
                         cMirror = c3;
                     }
-                    startSubPath = true;
                     break;
                 #endregion
                 case ' ':
@@ -1405,7 +1433,7 @@ namespace GrblPlotter
         private static void SVGStartPath(float x, float y, string cmt)
         {
             Point tmp = TranslateXY(x, y);  // convert from SVG-Units to GCode-Units
-            if (logEnable) Logger.Trace("▼▼▼ SVGStart at: x:{0:0.00} y:{1:0.00}  orig: x:{2:0.00} y:{3:0.00}", tmp.X, tmp.Y, x, y);
+            if (logEnable) Logger.Trace("▼▼▼ SVGStart at:x:{0:0.000} y:{1:0.000}  svg:{2}", tmp.X, tmp.Y, cmt);
             Graphic.SetGeometry(cmt);
             Graphic.StartPath(tmp);
         }
@@ -1429,7 +1457,11 @@ namespace GrblPlotter
             if (!svgNodesOnly)
             {
                 Point tmp = TranslateXY(orig);
-                if (logEnable) Logger.Trace("●●● SVGMoveTo {0}: x:{1:0.00} y:{2:0.00} ", cmt, tmp.X, tmp.Y);
+                if (cmt.ToLower() == "z")
+                {
+                    if (logEnable)        Logger.Trace("▲▲▲ SVGStop at: x:{0:0.000} y:{1:0.000}  svg:{2}", tmp.X, tmp.Y, cmt);
+                }
+                else  if (logEnableCoord) Logger.Trace("  ● SVGMoveTo:  x:{0:0.000} y:{1:0.000}  svg:{2}", tmp.X, tmp.Y, cmt);
                 Graphic.AddLine(tmp);//, cmt);
             }
             else

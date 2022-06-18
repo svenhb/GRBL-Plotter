@@ -73,6 +73,7 @@
  * 2022-02-18 line 405 add check (layerName != null)
  * 2022-03-19 line 729 2nd CalcQuadraticBezier start index at 2 not 3
  * 2022-05-18 line 295 check via ContainsKey
+ * 2022-06-14 line 387 skip entity if layer is invisible or printing is disabled
 */
 
 using DXFLib;
@@ -119,6 +120,7 @@ namespace GrblPlotter //DXFImporter
         private static readonly Dictionary<string, string> layerLType = new Dictionary<string, string>();
         private static readonly Dictionary<string, double[]> lineTypes = new Dictionary<string, double[]>();
         private static readonly Dictionary<string, int> layerLineWeigth = new Dictionary<string, int>();
+        private static readonly Dictionary<string, bool> layerPlot = new Dictionary<string, bool>();
 
         public static string ConversionInfo { get; set; }
         private static int shapeCounter = 0;
@@ -270,6 +272,7 @@ namespace GrblPlotter //DXFImporter
             layerLType.Clear();
             lineTypes.Clear();
             layerLineWeigth.Clear();
+            layerPlot.Clear();
 
             wasSetLayer = "";
             wasSetPenColor = "";
@@ -277,27 +280,38 @@ namespace GrblPlotter //DXFImporter
             wasSetPenFill = "";
             wasSetPenWidth = -1;
 
-            List<DXFLayerRecord> tst = new List<DXFLayerRecord>();
+            List<DXFLayerRecord> lrecord = new List<DXFLayerRecord>();
             try
             {
-                tst = doc.Tables.Layers;
-                countDXFLayers = tst.Count;
+                lrecord = doc.Tables.Layers;
+                countDXFLayers = lrecord.Count;
             }
             catch (Exception err) { Logger.Error(err, "Could not read doc.Tables.Layers "); }
             countDXFEntities = doc.Entities.Count;
             countDXFBlocks = doc.Blocks.Count;
             countDXFEntity = 0;
-            
+
             Logger.Info("●●●● AutoCADVersion:{0}", doc.Header.AutoCADVersion);
             Logger.Info("●●●● Amount Layers:{0}  Entities:{1}  Blocks:{2}", countDXFLayers, countDXFEntities, countDXFBlocks);
             if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = 10, Content = "Read DXF vector data of " + countDXFEntities.ToString() + " elements" });
 
-            foreach (DXFLayerRecord record in tst)
+			int plotflag = 0;
+            foreach (DXFLayerRecord record in lrecord)
             {
-                Graphic.SetHeaderInfo(string.Format(" Layer: {0} , color: {1} , line type: {2}", record.LayerName, record.Color, record.LineType));
+                Graphic.SetHeaderInfo(string.Format(" Layer:{0} , color:{1} , line type:{2}", record.LayerName, record.Color, record.LineType));
                 if (!layerColor.ContainsKey(record.LayerName)) layerColor.Add(record.LayerName, record.Color);
                 if (!layerLType.ContainsKey(record.LayerName)) layerLType.Add(record.LayerName, record.LineType);
                 if (!layerLineWeigth.ContainsKey(record.LayerName)) layerLineWeigth.Add(record.LayerName, record.LineWeight);
+				try {
+					plotflag = record.PlottingFlag;	// new property in DXFLib 1.0.2.0
+				}
+				catch (Exception err)
+				{	Logger.Error(err,"GetVectorDXF record.PlottingFlag - probably old DXFLib.dll in use - Ver. 1.0.2.0 is needed ");}
+				
+				// http://docs.autodesk.com/ACD/2011/DEU/filesDXF/WS1a9193826455f5ff18cb41610ec0a2e719-7a51.htm
+				// record.Flags==0 - visible;	plotflag==1 - plot
+				if (!layerPlot.ContainsKey(record.LayerName)) layerPlot.Add(record.LayerName, ((record.Flags == 0) && (plotflag==1)));   // true when plot
+				if (logEnable) Logger.Trace("Record Layer:{0,-10}   color:{1,3}   ltype:{2}   lweight:{3}   flags:{4}   plot:{5}",record.LayerName, record.Color, record.LineType, record.LineWeight, record.Flags, plotflag);
             }
 
             List<DXFLineTypeRecord> ltypes = doc.Tables.LineTypes;
@@ -318,7 +332,7 @@ namespace GrblPlotter //DXFImporter
                     lineTypes.Add(lt.LineTypeName, tmp);
                 }
             }
-
+            
             foreach (DXFEntity dxfEntity in doc.Entities)				// process all entities
             {
                 if ((backgroundWorker != null) && backgroundWorker.CancellationPending)
@@ -343,7 +357,7 @@ namespace GrblPlotter //DXFImporter
                     {
                         if (block.BlockName.ToString() == ins.BlockName)
                         {
-                            if (logEnable) Logger.Trace("Block: {0}", block.BlockName);
+                            if (logEnable) Logger.Trace("Block: {0}  -invisible:{1}", block.BlockName, block.IsInvisible);
                             dxfBlockColorNr = block.ColorNumber;
                             dxfBlockLineWeigth = block.LineWeight;
                             Graphic.SetComment("Block:" + block.BlockName);
@@ -377,6 +391,14 @@ namespace GrblPlotter //DXFImporter
             shapeCounter++;
 
             if (backgroundWorker != null) backgroundWorker.ReportProgress(countDXFEntity++ * 100 / countDXFEntities);
+
+
+			/* skip entity if layer is invisible or printing is disabled */
+            if (Properties.Settings.Default.importDXFDontPlot && layerPlot.ContainsKey(layerName) && !layerPlot[layerName])
+            {   Graphic.SetHeaderInfo(string.Format(" Hide DXF Entity:{0}  of Layer:{1}  ",entity.GetType(), layerName));
+                Graphic.SetHeaderMessage(string.Format(" {0}-1202: DXF Layer '{1}' is not visible or plotting is disabled and will not be imported", CodeMessage.Attention, layerName));
+                return;
+            }
 
             /* get color        */
             dxfColorNr = entity.ColorNumber;
@@ -425,7 +447,7 @@ namespace GrblPlotter //DXFImporter
                     Graphic.SetDash(lineTypes[entity.LineType]);
             }
 
-            if (logEnable) Logger.Trace("ProcessEntity Layer:{0}{1} EntityColorNumber:{2} -use:{3} EntityLineWeight:{4} -use:{5}", layerName, "", entity.ColorNumber, dxfColorNr, entity.LineWeight, dxfLineWeigth);
+            if (logEnable) Logger.Trace("ProcessEntity Layer: {0,-10}  Entity: {1,-22}  EntityColorNumber:{2} -use:{3}   EntityLineWeight:{4,3} -use:{5,3}  -invisible:{6}", layerName, entity.GetType(), entity.ColorNumber, dxfColorNr, entity.LineWeight, dxfLineWeigth, entity.IsInvisible);
 
             if (layerName != wasSetLayer) { Graphic.SetLayer(layerName); Graphic.SetComment("Layer:" + layerName); wasSetLayer = layerName; }
             if (dxfColorHex != wasSetPenColor) { Graphic.SetPenColor(dxfColorHex); wasSetPenColor = dxfColorHex; }
@@ -807,7 +829,8 @@ namespace GrblPlotter //DXFImporter
                 DXFHatch hatch = (DXFHatch)entity;
 
                 Graphic.SetGeometry("Hatch");
-                if (logEnable) Logger.Trace(" Hatch: Layer:{0} ColorNr.:{1} LineWeight:{2} Handle:{3}", hatch.LayerName, hatch.ColorNumber, hatch.LineWeight, hatch.Handle);
+                if (logEnable) Logger.Trace(" Hatch-fill is not implemented: Layer:'{0}' ColorNr.:{1} LineWeight:{2} Handle:{3}", hatch.LayerName, hatch.ColorNumber, hatch.LineWeight, hatch.Handle);
+				Graphic.SetHeaderInfo(string.Format(" DXFHatch - fill is not implemented - Layer:{0}  ", hatch.LayerName));
             }
             #endregion
             #region DXFMText
@@ -820,20 +843,25 @@ namespace GrblPlotter //DXFImporter
                 double angle = 0;
                 foreach (var entry in txt.Entries)
                 {
-                    if (entry.GroupCode == 1) { GCodeFromFont.GCText = entry.Value.ToString(); }
-                    else if (entry.GroupCode == 40) { GCodeFromFont.GCHeight = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
-                    else if (entry.GroupCode == 41) { GCodeFromFont.GCWidth = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
-                    else if (entry.GroupCode == 71) { GCodeFromFont.GCAttachPoint = Convert.ToInt16(entry.Value); }
-                    else if (entry.GroupCode == 10) { GCodeFromFont.GCOffX = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
-                    else if (entry.GroupCode == 20) { GCodeFromFont.GCOffY = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
-                    else if (entry.GroupCode == 50) { angle = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }// + offsetAngle)* Math.PI / 180; } 
-                    else if (entry.GroupCode == 44) { GCodeFromFont.GCSpacing = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
-                    else if (entry.GroupCode == 7)
+                    try
                     {
-                        GCodeFromFont.GCFontName = "lff\\" + entry.Value.ToString();
-                        if (!GCodeFromFont.GCFontName.ToLower().EndsWith("lff"))
-                        { GCodeFromFont.GCFontName += ".lff"; }
+                        if (entry.GroupCode == 1) { GCodeFromFont.GCText = entry.Value.ToString(); }
+                        else if (entry.GroupCode == 40) { GCodeFromFont.GCHeight = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
+                        else if (entry.GroupCode == 41) { GCodeFromFont.GCWidth = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
+                        else if (entry.GroupCode == 71) { GCodeFromFont.GCAttachPoint = Convert.ToInt16(entry.Value); }
+                        else if (entry.GroupCode == 10) { GCodeFromFont.GCOffX = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
+                        else if (entry.GroupCode == 20) { GCodeFromFont.GCOffY = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
+                        else if (entry.GroupCode == 50) { angle = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }// + offsetAngle)* Math.PI / 180; } 
+                        else if (entry.GroupCode == 44) { GCodeFromFont.GCSpacing = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
+                        else if (entry.GroupCode == 7)
+                        {
+                            GCodeFromFont.GCFontName = "lff\\" + entry.Value.ToString();
+                            if (!GCodeFromFont.GCFontName.ToLower().EndsWith("lff"))
+                            { GCodeFromFont.GCFontName += ".lff"; }
+                        }
                     }
+                    catch (Exception err)
+                    { Logger.Error(err, "DXFMText entry.GroupCode:{0}   entry.Value:{1}", entry.GroupCode, entry.Value); }
                 }
                 tmp = new DXFPoint
                 {
@@ -859,20 +887,25 @@ namespace GrblPlotter //DXFImporter
                 double angle = 0;
                 foreach (var entry in txt.Entries)
                 {
-                    if (entry.GroupCode == 1) { GCodeFromFont.GCText = entry.Value.ToString(); }
-                    else if (entry.GroupCode == 40) { GCodeFromFont.GCHeight = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
-                    else if (entry.GroupCode == 41) { GCodeFromFont.GCWidth = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
-                    else if (entry.GroupCode == 71) { GCodeFromFont.GCAttachPoint = Convert.ToInt16(entry.Value); }
-                    else if (entry.GroupCode == 10) { GCodeFromFont.GCOffX = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
-                    else if (entry.GroupCode == 20) { GCodeFromFont.GCOffY = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
-                    else if (entry.GroupCode == 50) { angle = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }// + offsetAngle)* Math.PI / 180; } 
-                    else if (entry.GroupCode == 44) { GCodeFromFont.GCSpacing = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
-                    else if (entry.GroupCode == 7)
+                    try
                     {
-                        GCodeFromFont.GCFontName = "lff\\" + entry.Value.ToString();
-                        if (!GCodeFromFont.GCFontName.ToLower().EndsWith("lff"))
-                        { GCodeFromFont.GCFontName += ".lff"; }
+                        if (entry.GroupCode == 1) { GCodeFromFont.GCText = entry.Value.ToString(); }
+                        else if (entry.GroupCode == 40) { GCodeFromFont.GCHeight = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
+                        else if (entry.GroupCode == 41) { GCodeFromFont.GCWidth = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
+                        else if (entry.GroupCode == 71) { GCodeFromFont.GCAttachPoint = Convert.ToInt16(entry.Value); }
+                        else if (entry.GroupCode == 10) { GCodeFromFont.GCOffX = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
+                        else if (entry.GroupCode == 20) { GCodeFromFont.GCOffY = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
+                        else if (entry.GroupCode == 50) { angle = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }// + offsetAngle)* Math.PI / 180; } 
+                        else if (entry.GroupCode == 44) { GCodeFromFont.GCSpacing = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
+                        else if (entry.GroupCode == 7)
+                        {
+                            GCodeFromFont.GCFontName = "lff\\" + entry.Value.ToString();
+                            if (!GCodeFromFont.GCFontName.ToLower().EndsWith("lff"))
+                            { GCodeFromFont.GCFontName += ".lff"; }
+                        }
                     }
+                    catch (Exception err)
+                    { Logger.Error(err, "DXFText entry.GroupCode:{0}   entry.Value:{1}", entry.GroupCode, entry.Value); }
                 }
                 tmp = new DXFPoint
                 {
