@@ -6750,7 +6750,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool importSVGApplyFill {
             get {
                 return ((bool)(this["importSVGApplyFill"]));
@@ -8605,6 +8605,30 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["useCaseLastLoaded"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importDXFDontPlot {
+            get {
+                return ((bool)(this["importDXFDontPlot"]));
+            }
+            set {
+                this["importDXFDontPlot"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importSVGDontPlot {
+            get {
+                return ((bool)(this["importSVGDontPlot"]));
+            }
+            set {
+                this["importSVGDontPlot"] = value;
             }
         }
     }

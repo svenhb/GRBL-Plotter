@@ -1683,7 +1683,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importSVGApplyFill" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importSVGCircleToDot" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -2146,6 +2146,12 @@
     </Setting>
     <Setting Name="useCaseLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">?</Value>
+    </Setting>
+    <Setting Name="importDXFDontPlot" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importSVGDontPlot" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>
