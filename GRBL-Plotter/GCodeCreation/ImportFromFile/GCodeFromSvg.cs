@@ -179,7 +179,7 @@ namespace GrblPlotter
                     try { content = wc.DownloadString(filePath); }
                     catch { MessageBox.Show("Could not load content from " + filePath); }
                 }
-                if ((!String.IsNullOrEmpty(content)) && (content.IndexOf("<?xml") == 0))
+                if ((!String.IsNullOrEmpty(content)) && (content.Contains("<?xml")))    // (content.IndexOf("<?xml") == 0)
                 {
                     byte[] byteArray = Encoding.UTF8.GetBytes(content);
                     MemoryStream stream = new MemoryStream(byteArray);
