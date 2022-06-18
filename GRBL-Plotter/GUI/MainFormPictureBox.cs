@@ -898,8 +898,7 @@ namespace GrblPlotter
 
         private void DuplicateSelectedPath()
         {   UnDo.SetCode(fCTBCode.Text, cmsPicBoxDuplicatePath.Text, this);
-            Range range = new Range(fCTBCode);
-            range = fCTBCode.Selection.Clone();
+            Range range = fCTBCode.Selection.Clone();
             Logger.Trace("+++ DuplicateSelectedPath figureIsMarked:{0}  lastMarkerType:{1}   range:{2}", figureIsMarked, lastMarkerType, range);
             if (figureIsMarked && (lastMarkerType != XmlMarkerType.Node))
             {

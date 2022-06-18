@@ -515,10 +515,11 @@ namespace GrblPlotter
 					}
 					catch (Exception err)
                     {
+						EventCollector.StoreException("LoadFile: " + err.Message + "  file:" + fileName+" ");
                         Logger.Error(err, " LoadFile 2 ", fileName);
                         throw;		// unknown exception...
 					}
-               }
+				}
             }
 
             if (ext == ".url")
@@ -1320,9 +1321,15 @@ namespace GrblPlotter
 				Properties.Settings.Default.guiLastEnd = DateTime.Now.Ticks;
                 EventCollector.StoreException("Language change;");
                 EventCollector.SetEnd();
-                Application.Restart();
-                Application.ExitThread();  	// 20200716
-				Environment.Exit(0);		// 2022-04-29
+				try {
+					Application.Restart();
+					Application.ExitThread();  	// 20200716
+					Environment.Exit(0);		// 2022-04-29
+				}
+				catch (Exception err)
+				{   // EventCollector.StoreException("Language change failed;");
+				    EventCollector.StoreException("TryRestart failed: " + err.Message);
+				}
             }
         }
 

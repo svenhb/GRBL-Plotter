@@ -893,8 +893,7 @@ namespace GrblPlotter
 		
 		private void FoldBlocksByLevel(XmlMarkerType markerType, int clickedLineNr)
 		{
-            Range range = new Range(fCTBCode);
-            range = fCTBCode.Selection.Clone();
+            Range range = fCTBCode.Selection.Clone();
             FctbSetBookmark(true);
 
             bool changeFoldStatus = toggleBlockExpansionToolStripMenuItem.Checked;//Properties.Settings.Default.FCTBBlockExpandOnSelect;
@@ -1314,6 +1313,9 @@ namespace GrblPlotter
             MessageCode.Add("1301", tmpMessage);
             MessageCode.Add("1401", tmpMessage);
             MessageCode.Add("1501", tmpMessage);
+
+            MessageCode.Add("1202", Localization.GetString("codeMessage_1202_dontplot"));
+            MessageCode.Add("1302", Localization.GetString("codeMessage_1302_dontplot"));
 
             MessageCode.Add("2001", Localization.GetString("codeMessage_2_zdoubletang"));       // GraphicCollectData.cs 746
             MessageCode.Add("2002", Localization.GetString("codeMessage_2_highdataamount"));    // GraphicCollectData.cs 787

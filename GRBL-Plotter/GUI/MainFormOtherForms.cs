@@ -69,6 +69,7 @@ namespace GrblPlotter
                 _text_form = new GCodeFromText();
                 _text_form.FormClosed += FormClosed_TextToGCode;
                 _text_form.btnApply.Click += GetGCodeFromText;      // assign btn-click event
+                EventCollector.SetOpenForm("Ftxt");
             }
             else
             {
@@ -82,7 +83,7 @@ namespace GrblPlotter
             _text_form.WindowState = FormWindowState.Normal;
         }
         private void FormClosed_TextToGCode(object sender, FormClosedEventArgs e)
-        { _text_form = null; }
+        { _text_form = null; EventCollector.SetOpenForm("FCtxt");}
 
         /********************************************************************
          * Image
@@ -97,6 +98,7 @@ namespace GrblPlotter
                 _image_form.btnGenerate.Click += GetGCodeFromImage;      // assign btn-click event in MainFormgetCodetransform.cs
                 _image_form.BtnReloadPattern.Click += LoadLastGraphic;
                 _image_form.CBoxPatternFiles.SelectedIndexChanged += LoadSelectedGraphicImage;
+                EventCollector.SetOpenForm("Fimg");            
             }
             else
             {
@@ -109,7 +111,7 @@ namespace GrblPlotter
             _image_form.WindowState = FormWindowState.Normal;
         }
         private void FormClosed_ImageToGCode(object sender, FormClosedEventArgs e)
-        { _image_form = null; }
+        { _image_form = null; EventCollector.SetOpenForm("FCimg"); }
 
         /********************************************************************
          * Shape
@@ -122,6 +124,7 @@ namespace GrblPlotter
                 _shape_form = new GCodeFromShape();
                 _shape_form.FormClosed += FormClosed_ShapeToGCode;
                 _shape_form.btnApply.Click += GetGCodeFromShape;      // assign btn-click event
+                EventCollector.SetOpenForm("Fsis");
             }
             else
             {
@@ -135,7 +138,7 @@ namespace GrblPlotter
             _shape_form.WindowState = FormWindowState.Normal;
         }
         private void FormClosed_ShapeToGCode(object sender, FormClosedEventArgs e)
-        { _shape_form = null; }
+        { _shape_form = null; EventCollector.SetOpenForm("FCsis"); }
 
         /********************************************************************
          * Barcode
@@ -149,6 +152,7 @@ namespace GrblPlotter
                 _barcode_form.FormClosed += FormClosed_BarcodeToGCode;
                 _barcode_form.btnGenerateBarcode1D.Click += GetGCodeFromBarcode;      // assign btn-click event
                 _barcode_form.btnGenerateBarcode2D.Click += GetGCodeFromBarcode;      // assign btn-click event
+                EventCollector.SetOpenForm("Fbcd");
             }
             else
             {
@@ -162,7 +166,7 @@ namespace GrblPlotter
             _barcode_form.WindowState = FormWindowState.Normal;
         }
         private void FormClosed_BarcodeToGCode(object sender, FormClosedEventArgs e)
-        { _barcode_form = null; }
+        { _barcode_form = null; EventCollector.SetOpenForm("FCbcd"); }
 
         #endregion
 
@@ -233,6 +237,7 @@ namespace GrblPlotter
                 _2ndGRBL_form.Set2ndSerial(_serial_form2);
                 _serial_form.Set2ndSerial(_serial_form2);
                 _2ndGRBL_form.FormClosed += FormClosed_2ndGRBLForm;
+                EventCollector.SetOpenForm("F2nd");
             }
             else
             {
@@ -242,7 +247,7 @@ namespace GrblPlotter
             _2ndGRBL_form.WindowState = FormWindowState.Normal;
         }
         private void FormClosed_2ndGRBLForm(object sender, FormClosedEventArgs e)
-        { _2ndGRBL_form = null; }
+        { _2ndGRBL_form = null; EventCollector.SetOpenForm("FC2nd"); }
 
         /********************************************************************
          * Control 3rd serial COM
@@ -254,6 +259,7 @@ namespace GrblPlotter
             {
                 _serial_form3 = new SimpleSerialForm();// "COM Tool changer", 3);
                 _serial_form3.FormClosed += FormClosed_3rdSerialCOMForm;
+                EventCollector.SetOpenForm("F3rd");
             }
             else
             {
@@ -269,6 +275,7 @@ namespace GrblPlotter
             _serial_form3 = null;
             _serial_form.Set3rdSerial(null);    // sign out
             Logger.Info("formClosed_3rdSerialCOMForm {0}", _serial_form3);
+            EventCollector.SetOpenForm("FC3rd");
         }
 
         /********************************************************************
@@ -283,6 +290,7 @@ namespace GrblPlotter
                 _camera_form.FormClosed += FormClosed_CameraForm;
                 _camera_form.RaiseXYEvent += OnRaiseCameraClickEvent;
                 //               _camera_form.setPosMarker(grbl.posMarker);// visuGCode.GetPosMarker());
+                EventCollector.SetOpenForm("Fcam");
             }
             else
             {
@@ -296,7 +304,7 @@ namespace GrblPlotter
             _camera_form.WindowState = FormWindowState.Normal;
         }
         private void FormClosed_CameraForm(object sender, FormClosedEventArgs e)
-        { _camera_form = null; }
+        { _camera_form = null; EventCollector.SetOpenForm("FCcam"); }
 
 
         /********************************************************************
@@ -310,6 +318,7 @@ namespace GrblPlotter
                 _diyControlPad = new ControlDiyControlPad();
                 _diyControlPad.FormClosed += FormClosed_DIYControlForm;
                 _diyControlPad.RaiseStreamEvent += OnRaiseDIYCommandEvent;
+                EventCollector.SetOpenForm("Fdiy");
             }
             else
             {
@@ -321,7 +330,7 @@ namespace GrblPlotter
             { _heightmap_form.DiyControlConnected = _diyControlPad.IsConnected; }
         }
         private void FormClosed_DIYControlForm(object sender, FormClosedEventArgs e)
-        { _diyControlPad = null; }
+        { _diyControlPad = null; EventCollector.SetOpenForm("FCdiy"); }
 		
         private void OnRaiseDIYCommandEvent(object sender, CommandEventArgs e)
         {
@@ -360,6 +369,7 @@ namespace GrblPlotter
                 _coordSystem_form = new ControlCoordSystem();
                 _coordSystem_form.FormClosed += FormClosed_CoordSystemForm;
                 _coordSystem_form.RaiseCmdEvent += OnRaiseCoordSystemEvent;
+                EventCollector.SetOpenForm("Fcord");
             }
             else
             {
@@ -373,7 +383,7 @@ namespace GrblPlotter
             _coordSystem_form.WindowState = FormWindowState.Normal;
         }
         private void FormClosed_CoordSystemForm(object sender, FormClosedEventArgs e)
-        { _coordSystem_form = null; }
+        { _coordSystem_form = null; EventCollector.SetOpenForm("FCcord"); }
 		
         private void OnRaiseCoordSystemEvent(object sender, CmdEventArgs e)
         {
@@ -392,6 +402,7 @@ namespace GrblPlotter
                 _laser_form = new ControlLaser();
                 _laser_form.FormClosed += FormClosed_LaserForm;
                 _laser_form.RaiseCmdEvent += OnRaiseLaserEvent;
+                EventCollector.SetOpenForm("Flas");
             }
             else
             {
@@ -405,7 +416,7 @@ namespace GrblPlotter
             _laser_form.WindowState = FormWindowState.Normal;
         }
         private void FormClosed_LaserForm(object sender, FormClosedEventArgs e)
-        { _laser_form = null; }
+        { _laser_form = null; EventCollector.SetOpenForm("FClas"); }
 		
         private void OnRaiseLaserEvent(object sender, CmdEventArgs e)
         {
@@ -427,6 +438,7 @@ namespace GrblPlotter
                 _probing_form.FormClosed += FormClosed_ProbingForm;
                 _probing_form.RaiseCmdEvent += OnRaiseProbingEvent;
                 _probing_form.btnGetAngleEF.Click += BtnGetAngleEF_Click;
+                EventCollector.SetOpenForm("Fprb");
             }
             else
             {
@@ -440,7 +452,7 @@ namespace GrblPlotter
             _probing_form.WindowState = FormWindowState.Normal;
         }
         private void FormClosed_ProbingForm(object sender, FormClosedEventArgs e)
-        { _probing_form = null; }
+        { _probing_form = null; EventCollector.SetOpenForm("FCprb"); }
 		
         private void BtnGetAngleEF_Click(object sender, EventArgs e)
         {
@@ -482,7 +494,8 @@ namespace GrblPlotter
                 _heightmap_form.loadHeightMapToolStripMenuItem.Click += LoadHeightMap;	// in MainFormGetCodeTransform
                 _heightmap_form.btnApply.Click += ApplyHeightMap;						// in MainFormGetCodeTransform
                 _heightmap_form.RaiseXyzEvent += OnRaisePositionClickEvent;				// in MainForm
-                _heightmap_form.btnGCode.Click += GetGCodeFromHeightMap;      			// in MainFormGetCodeTransform
+                _heightmap_form.btnGCode.Click += GetGCodeFromHeightMap;                // in MainFormGetCodeTransform
+                EventCollector.SetOpenForm("Fmap");
             }
             else
             {
@@ -502,6 +515,7 @@ namespace GrblPlotter
             _heightmap_form = null;
             VisuGCode.ClearHeightMap();
             _serial_form.StopStreaming(true);   // isNotStartup = true
+            EventCollector.SetOpenForm("FCmap");
         }
 
 
@@ -523,6 +537,7 @@ namespace GrblPlotter
                 _setup_form.btnGCPWMZero.Click += MoveToPickup;
                 _setup_form.SetLastLoadedFile(lastLoadSource);
                 gamePadTimer.Enabled = false;
+                EventCollector.SetOpenForm("Fstp");
             }
             else
             {
@@ -542,6 +557,7 @@ namespace GrblPlotter
             VisuGCode.DrawMachineLimit();// ToolTable.GetToolCordinates());
             pictureBox1.Invalidate();                                   // resfresh view
             gamePadTimer.Enabled = Properties.Settings.Default.gamePadEnable;
+            EventCollector.SetOpenForm("FCstp");
         }
 
         /********************************************************************
@@ -557,6 +573,7 @@ namespace GrblPlotter
                 _jogPathCreator_form.btnJogStart.Click += GetGCodeJogCreator;      // assign btn-click event
                 _jogPathCreator_form.btnExport.Click += GetGCodeJogCreator2;      // assign btn-click event
                 _jogPathCreator_form.btnJogStop.Click += BtnJogStop_Click;      // assign btn-click event
+                EventCollector.SetOpenForm("Fjog");
             }
             else
             {
@@ -566,7 +583,7 @@ namespace GrblPlotter
             _jogPathCreator_form.WindowState = FormWindowState.Normal;
         }
         private void FormClosed_JogCreator(object sender, FormClosedEventArgs e)
-        { _jogPathCreator_form = null; }
+        { _jogPathCreator_form = null; EventCollector.SetOpenForm("FCjog"); }
 
  
 		/********************************************************************
@@ -579,6 +596,7 @@ namespace GrblPlotter
             {
                 _projector_form = new ControlProjector();
                 _projector_form.FormClosed += FormClosed_Projector;
+                EventCollector.SetOpenForm("Fprj");
             }
             else
             {
@@ -602,7 +620,7 @@ namespace GrblPlotter
 			}
         }
         private void FormClosed_Projector(object sender, FormClosedEventArgs e)
-        { 	_projector_form = null; }
+        { 	_projector_form = null; EventCollector.SetOpenForm("FCprj"); }
 
 
         /********************************************************************

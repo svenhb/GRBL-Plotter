@@ -156,6 +156,7 @@ namespace GrblPlotter
         private static string stream="";
         private static string communication="";
         private static string transform="";
+        private static string openForm = "";
         private static string history="";
 		private static bool errorOccured=false;
 		private static string lastStoredException="";
@@ -195,6 +196,11 @@ namespace GrblPlotter
             history += communication;		//"." + txt;
 			if (show) errorOccured = true;			
 		}
+        public static void SetOpenForm(string txt) // Ftxt, Fbcd, Fimg, Fsis, Fjog, Fext, Fprb, Fmap, Flas, Fcrd, Fdiy, Fcam, F2nd, F3rd, Fprj
+        {
+            openForm = GetElapsedTime() + txt;
+            history += openForm;       //"." + txt;
+        }
 
 
         public static void SetEnd(bool show=false)
@@ -210,7 +216,9 @@ namespace GrblPlotter
 				final += import + "_";
 			if (!string.IsNullOrEmpty(transform))
 				final += transform + "_";
-			if (!string.IsNullOrEmpty(history))
+            if (!string.IsNullOrEmpty(openForm))
+                final += openForm + "_";
+            if (!string.IsNullOrEmpty(history))
 				final += history + "_";
 
 			if (errorOccured || show)
