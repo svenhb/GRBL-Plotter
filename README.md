@@ -11,7 +11,7 @@ Check the [Wiki](https://github.com/svenhb/GRBL-Plotter/wiki) for further inform
 
 ### Program is free and you can use it at your own risk,<br>as you understand there is no warranty of any kind
 Zip folder contains ClickOnce application setup. Exe can be found in sub-folder GRBL-Plotter/bin/release.
-#### [GRBL-Plotter Vers. 1.6.6.3](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2022-04-20     
+#### [GRBL-Plotter Vers. 1.6.6.6](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2022-06-18     
 
 ### Requirements for compiling
 * VisualStudio 2019 
