@@ -59,11 +59,12 @@ namespace GrblPlotter
             tmpGCode = tmp;
             backgroundWorker1.RunWorkerAsync();
         }
-        public void SetTmpGCode()
+        public int SetTmpGCode()
         {
             tmpGCode = Graphic.GCode.ToString().Split(System.Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             //    System.IO.File.WriteAllText(Datapath.AppDataFolder + "\\visuworker.nc", Graphic.GCode.ToString()); // clear file
             backgroundWorker1.RunWorkerAsync();
+            return tmpGCode.Count;
         }
 
         private void CancelAsyncButton_Click(System.Object sender, System.EventArgs e)
