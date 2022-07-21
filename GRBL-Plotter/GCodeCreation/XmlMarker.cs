@@ -380,13 +380,16 @@ namespace GrblPlotter
         {
             //            Logger.Trace("   setBlockData");
             header.LineEnd = Math.Min(header.LineEnd, lineStart);   // lowest block-line = end of header
-            BlockData tmp = new BlockData();
-            tmp.LineStart = lineStart; tmp.Reverse = false;
+            BlockData tmp = new BlockData
+            {
+                LineStart = lineStart,
+                Reverse = false,
+                FigureNr = figNr,
+                Offset = new XyPoint()
+            };
             tmp.Id = tmp.ToolNr = tmp.CodeSize = tmp.CodeArea = -1;
             tmp.PenWidth = tmp.PathLength = tmp.PathArea = -1;
             tmp.Geometry = tmp.Layer = tmp.Type = tmp.PenColor = tmp.ToolName = tmp.PathId = "";
-            tmp.FigureNr = figNr;
-            tmp.Offset = new XyPoint();
 
             //            if (gcode.loggerTrace) Logger.Trace("setBlockData {0}", element);
             if (element.Contains("Id")) { tmp.Id = GetAttributeValueNumber(element, "Id"); }							// Id here and PathId below, should work anyway, because 'Id' comes first in XML-Tag

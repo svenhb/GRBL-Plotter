@@ -189,18 +189,14 @@ namespace GrblPlotter
         {
             lblInfo.Text = string.Format("Max spindle speed: $30={0}; Min spindle speed: $31={1}; Laser Mode: $32={2}", Grbl.GetSetting(30), Grbl.GetSetting(31), Grbl.GetSetting(32));
             cBLaserMode.CheckedChanged -= CbLaserMode_CheckedChanged;
-            cBLaserMode.Checked = (Grbl.GetSetting(32) > 0) ? true : false;
+            cBLaserMode.Checked = Grbl.GetSetting(32) > 0;
             cBLaserMode.CheckedChanged += CbLaserMode_CheckedChanged;
         }
 
         public event EventHandler<CmdEventArgs> RaiseCmdEvent;
         protected virtual void SendCommandEvent(CmdEventArgs e)
         {
-            EventHandler<CmdEventArgs> handler = RaiseCmdEvent;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
+            RaiseCmdEvent?.Invoke(this, e);
         }
 
         private void ControlLaser_FormClosing(object sender, FormClosingEventArgs e)

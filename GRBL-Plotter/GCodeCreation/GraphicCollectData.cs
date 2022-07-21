@@ -72,7 +72,7 @@ namespace GrblPlotter
         private static List<String> headerMessage = new List<String>();
         private static ItemPath actualPath = new ItemPath();
         private static PathInformation actualPathInfo = new PathInformation();
-        private static double[] actualDashArray = new double[0];
+        private static double[] actualDashArray = Array.Empty<double>();
 
         private static readonly Dictionary<string, int>[] groupPropertiesCount = new Dictionary<string, int>[10];
 
@@ -207,7 +207,7 @@ namespace GrblPlotter
             headerInfo = new List<String>();
             headerMessage = new List<String>();
             actualPathInfo = new PathInformation();
-            actualDashArray = new double[0];
+            actualDashArray = Array.Empty<double>();
             actualDimension = new Dimensions();
             lastPoint = new Point();
             lastPath = new ItemPath();
@@ -572,7 +572,7 @@ namespace GrblPlotter
                 tmp.CopyTo(actualDashArray, 0);
             }
             else
-                actualDashArray = new double[0];
+                actualDashArray = Array.Empty<double>();
 
             setNewId = true;
             if (logProperties)

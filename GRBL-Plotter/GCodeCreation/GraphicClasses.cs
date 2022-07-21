@@ -553,7 +553,7 @@ namespace GrblPlotter
         {
             public bool IsReversed { get; set; }
             public bool IsClosed { get; set; }
-            public double[] DashArray = new double[0];
+            public double[] DashArray = Array.Empty<double>();
             public List<GCodeMotion> Path;
 
             public bool Reversed

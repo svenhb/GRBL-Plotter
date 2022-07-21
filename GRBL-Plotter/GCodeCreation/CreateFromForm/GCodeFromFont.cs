@@ -119,7 +119,7 @@ namespace GrblPlotter
                 }
                 return tmp.ToArray();
             }
-            return new string[0];
+            return Array.Empty<string>();
         }
         public static void Reset()
         {

@@ -1087,7 +1087,7 @@ namespace GrblPlotter
         {
             if (string.IsNullOrEmpty(command))
                 return;
-            string[] commands = { };
+            string[] commands = Array.Empty<string>();
 
             if (!command.StartsWith("(") && command.Contains('\\') && (!isStreaming || isStreamingPause))
             {

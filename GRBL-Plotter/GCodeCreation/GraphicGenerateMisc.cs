@@ -479,7 +479,7 @@ namespace GrblPlotter
                             { continue; }
 
                             pStart = item.Path[0].MoveTo;
-                            actualDashArray = new double[0];
+                            actualDashArray = Array.Empty<double>();
                             if (item.DashArray.Length > 0)
                             {
                                 actualDashArray = new double[item.DashArray.Length];

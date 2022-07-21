@@ -484,7 +484,7 @@ namespace GrblPlotter
         /// </summary>
         private static void ParseAttributs(XElement element, bool isGroup = false)
         {
-            if (isGroup) Graphic.SetDash(new double[0]);     // clear dash
+            if (isGroup) Graphic.SetDash(Array.Empty<double>());     // clear dash
 
             if (element.Attribute("style") != null)
             {
@@ -717,7 +717,7 @@ namespace GrblPlotter
                 if (dasharray.Length > 2)
                 {
                     if (dasharray.Contains("none"))
-                    { Graphic.SetDash(new double[0]); }
+                    { Graphic.SetDash(Array.Empty<double>()); }
                     else
                     {
                         string[] pattern;

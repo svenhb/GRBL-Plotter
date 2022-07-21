@@ -156,7 +156,7 @@ namespace GrblPlotter
 
                 if (!string.IsNullOrEmpty(tileObject.TileRelatedGCode))
                 {
-                    string[] commands = { };
+                    string[] commands = Array.Empty<string>();
                     commands = tileObject.TileRelatedGCode.Split(';');
                     foreach (string cmd in commands)
                     {
