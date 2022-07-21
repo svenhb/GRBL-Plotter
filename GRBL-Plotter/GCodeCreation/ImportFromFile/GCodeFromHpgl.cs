@@ -52,7 +52,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows;
-using System.Windows.Forms;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 //#pragma warning disable CA1303
 //#pragma warning disable CA1305

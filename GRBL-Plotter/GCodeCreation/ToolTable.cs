@@ -120,7 +120,8 @@ namespace GrblPlotter
             foreach (ToolProp tool in toolTableArray)
             {
                 if (index == tool.Toolnr)
-                {   string tmp = ColorTranslator.ToHtml(tool.Color);
+                {
+                    string tmp = ColorTranslator.ToHtml(tool.Color);
                     if (tmp.StartsWith("#"))
                         tmp = tmp.Substring(1);
                     return tmp; // 2021-08-26 remove '#'
@@ -143,7 +144,8 @@ namespace GrblPlotter
         internal static ToolProp GetToolProperties(int toolNr)
         {
             if ((toolTableArray == null) || (toolTableArray.Count == 0))
-            {   Logger.Error("GetToolProperties toolTableArray is empty - do Init");
+            {
+                Logger.Error("GetToolProperties toolTableArray is empty - do Init");
                 Init(" (GetToolProperties)");
             }
 
@@ -243,7 +245,7 @@ namespace GrblPlotter
         /// set tool/color table
         /// get table size
         /// </summary>
-        public static int Init(string cmt="")    // return number of entries
+        public static int Init(string cmt = "")    // return number of entries
         {
             useException = false;
             toolTableArray.Clear();
@@ -316,7 +318,8 @@ namespace GrblPlotter
             return toolTableIndex;
         }
         public static void SetAllSelected(bool val)
-        {   for (int i = 0; i < toolTableArray.Count; i++)   // add colors to AForge filter
+        {
+            for (int i = 0; i < toolTableArray.Count; i++)   // add colors to AForge filter
             { toolTableArray[i].ToolSelected = val; }
         }
 
@@ -350,9 +353,10 @@ namespace GrblPlotter
         }
         // Clear exception color
         public static void ClrExceptionColor()
-        { useException = false; SortByToolNR(false); 
+        {
+            useException = false; SortByToolNR(false);
             if (toolTableArray.Count > 0)
-             toolTableArray[0].ColorPresent = false; 
+                toolTableArray[0].ColorPresent = false;
         }
 
         // return tool nr of nearest color

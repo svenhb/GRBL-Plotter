@@ -78,10 +78,11 @@ namespace GrblPlotter
 
         private void BtnScanZ_Click(object sender, EventArgs e)
         {
-			if (!Grbl.isConnected)
-			{	MessageBox.Show(Localization.GetString("grblNotConnected"), Localization.GetString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-				return;
-			}
+            if (!Grbl.isConnected)
+            {
+                MessageBox.Show(Localization.GetString("grblNotConnected"), Localization.GetString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             string m = rBM3.Checked ? "3" : "4";
             SendCommandEvent(new CmdEventArgs("(++++++++++ Scan Z)"));
             SendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0 Z0")));
@@ -94,10 +95,11 @@ namespace GrblPlotter
 
         private void BtnScanSpeed_Click(object sender, EventArgs e)
         {
-			if (!Grbl.isConnected)
-			{	MessageBox.Show(Localization.GetString("grblNotConnected"), Localization.GetString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-				return;
-			}
+            if (!Grbl.isConnected)
+            {
+                MessageBox.Show(Localization.GetString("grblNotConnected"), Localization.GetString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             string m = rBM3.Checked ? "3" : "4";
             decimal rangeSpeed = nUDSpeedMax.Value - nUDSpeedMin.Value;
             if (rangeSpeed == 0)
@@ -124,10 +126,11 @@ namespace GrblPlotter
 
         private void BtnScanPower_Click(object sender, EventArgs e)
         {
-			if (!Grbl.isConnected)
-			{	MessageBox.Show(Localization.GetString("grblNotConnected"), Localization.GetString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-				return;
-			}
+            if (!Grbl.isConnected)
+            {
+                MessageBox.Show(Localization.GetString("grblNotConnected"), Localization.GetString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             string m = rBM3.Checked ? "3" : "4";
             decimal rangePower = nUDPowerMax.Value - nUDPowerMin.Value;
             if (rangePower == 0)
@@ -155,10 +158,11 @@ namespace GrblPlotter
 
         private void BtnScanTool_Click(object sender, EventArgs e)
         {
-			if (!Grbl.isConnected)
-			{	MessageBox.Show(Localization.GetString("grblNotConnected"), Localization.GetString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-				return;
-			}
+            if (!Grbl.isConnected)
+            {
+                MessageBox.Show(Localization.GetString("grblNotConnected"), Localization.GetString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             string m = rBM3.Checked ? "3" : "4";
             SendCommandEvent(new CmdEventArgs("(++++++++++ Try Tool )"));
             SendCommandEvent(new CmdEventArgs(string.Format("G90 G0 X0")));
@@ -236,15 +240,15 @@ namespace GrblPlotter
                 tmpTool = ToolTable.GetToolProperties(i);
                 cBTool.Items.Add(i.ToString() + ") " + tmpTool.Name);
             }
-			if (cBTool.Items.Count == 0)
-			{
-				cBTool.Items.Add("No tool table entries found!!!");
-			}
-			else
-			{
-				cBTool.SelectedIndex = 0;
-				tprop = ToolTable.GetToolProperties(1);
-			}
+            if (cBTool.Items.Count == 0)
+            {
+                cBTool.Items.Add("No tool table entries found!!!");
+            }
+            else
+            {
+                cBTool.SelectedIndex = 0;
+                tprop = ToolTable.GetToolProperties(1);
+            }
             CbTool_SelectedIndexChanged(sender, e);
         }
     }

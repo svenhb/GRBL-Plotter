@@ -60,7 +60,8 @@ namespace GrblPlotter
         /// undo height map (reload saved backup)
         /// </summary>
         public static void ClearHeightMap()
-        {   pathHeightMap.Reset();
+        {
+            pathHeightMap.Reset();
             pathBackground.Reset();
         }
 
@@ -74,7 +75,7 @@ namespace GrblPlotter
         {
             Logger.Debug("+++ CreateGCodeProg replaceG23: {0}, splitMoves: {1}, applyNewZ: {2}, specialCmd: {3}", replaceG23, splitMoves, applyNewZ, specialCmd);
             if (gcodeList == null) return "";
-            pathMarkSelection.Reset(); 
+            pathMarkSelection.Reset();
             lastFigureNumber = -1; lastFigureNumbers.Clear();
             StringBuilder newCode = new StringBuilder();
             StringBuilder tmpCode = new StringBuilder();
@@ -222,16 +223,18 @@ namespace GrblPlotter
                             if (spindleState != gcline.spindleState)
                             { tmpCode.AppendFormat(" M{0,0}", gcline.spindleState); }   // state
                             if (spindleSpeed != gcline.spindleSpeed)
-                            {   tmpCode.AppendFormat(" S{0,0}", gcline.spindleSpeed);   // speed
+                            {
+                                tmpCode.AppendFormat(" S{0,0}", gcline.spindleSpeed);   // speed
                                 keepComment = true; // keep (PU) / (PD)
                             }
                             if (coolantState != gcline.coolantState)
                             { tmpCode.AppendFormat(" M{0,0}", gcline.coolantState); }   // state
 
                             if (keepComment)
-                            {   int strtCmt = gcline.codeLine.IndexOf("(");
+                            {
+                                int strtCmt = gcline.codeLine.IndexOf("(");
                                 if (strtCmt > 0)
-                                    tmpCode.AppendFormat(" {0}", gcline.codeLine.Substring(strtCmt)); 
+                                    tmpCode.AppendFormat(" {0}", gcline.codeLine.Substring(strtCmt));
                             }
 
                             tmpCode.Replace(',', '.');
@@ -283,11 +286,11 @@ namespace GrblPlotter
             double convertMinSpeed = (double)Properties.Settings.Default.convertZtoSMin;
             double convertSpeedRange = Math.Abs(convertMaxSpeed - convertMinSpeed);
             double convertOffSpeed = (double)Properties.Settings.Default.convertZtoSOff;
-        //    Logger.Info("convertZtoS z:{0} max:{1} min:{2}",z,maxZ,minZ);
+            //    Logger.Info("convertZtoS z:{0} max:{1} min:{2}",z,maxZ,minZ);
             if (z > 0)
             { return (int)convertOffSpeed; }
             int result = (int)(z * convertSpeedRange / minZ + convertMinSpeed);
-        //    Logger.Info("convertZtoS z:{0} convertSpeedRange:{1} convertMinSpeed:{2}  result:{3}", z, convertSpeedRange, convertMinSpeed, result);
+            //    Logger.Info("convertZtoS z:{0} convertSpeedRange:{1} convertMinSpeed:{2}  result:{3}", z, convertSpeedRange, convertMinSpeed, result);
             return result;
         }
     }

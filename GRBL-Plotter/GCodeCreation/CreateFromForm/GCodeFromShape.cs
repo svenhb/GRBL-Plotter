@@ -30,12 +30,12 @@
 */
 
 using System;
-using System.Text;
-using System.Windows.Forms;
-using System.Globalization;
-using System.Threading;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Globalization;
+using System.Text;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace GrblPlotter
 {
@@ -71,7 +71,7 @@ namespace GrblPlotter
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
-        {   this.Close();  }
+        { this.Close(); }
 
         private void BtnApply_Click(object sender, EventArgs e)
         {
@@ -79,7 +79,7 @@ namespace GrblPlotter
             Gcode.Setup(false);                  // load defaults from setup-tab - disable InsertSubroutine, LineSegmentation
 
             Gcode.GcodeXYFeed = (float)nUDToolFeedXY.Value;    // override devault values
-            Gcode.GcodeZFeed  = (float)nUDToolFeedZ.Value;    // override devault values
+            Gcode.GcodeZFeed = (float)nUDToolFeedZ.Value;    // override devault values
             Gcode.GcodeSpindleSpeed = (float)nUDToolSpindleSpeed.Value;    // override devault values
             Gcode.GcodeZDown = (float)nUDImportGCZDown.Value;
             gcodeTangEnable = Properties.Settings.Default.importGCTangentialEnable;
@@ -93,9 +93,9 @@ namespace GrblPlotter
             path.StartFigure();
 
             Gcode.Tool(gcodeString, tprop.Toolnr, tprop.Name);
-     //       if (!Properties.Settings.Default.importGCSpindleToggle) gcode.SpindleOn(gcodeString, "Start");
+            //       if (!Properties.Settings.Default.importGCSpindleToggle) gcode.SpindleOn(gcodeString, "Start");
 
-            float x, y, rShape,d,dTool, dToolOffset,overlap,rTool, rToolOffset,zStep;
+            float x, y, rShape, d, dTool, dToolOffset, overlap, rTool, rToolOffset, zStep;
             float zStart = 0;
             x = (float)nUDShapeX.Value;
             y = (float)nUDShapeY.Value;
@@ -103,24 +103,24 @@ namespace GrblPlotter
             d = 2 * rShape;
             dTool = dToolOffset = (float)nUDToolDiameter.Value;               // tool diameter;
             rTool = dTool / 2;
-            overlap = dToolOffset * (float)nUDToolOverlap.Value/100;  // tool overlap
+            overlap = dToolOffset * (float)nUDToolOverlap.Value / 100;  // tool overlap
             if (rBToolpath1.Checked) { dToolOffset = 0; }             // engrave
             if (rBToolpath3.Checked) { dToolOffset = -dToolOffset; }        // inside
             rToolOffset = dToolOffset / 2;                                  // tool radius
 
-            int counter=0,safety = 100;
+            int counter = 0, safety = 100;
             int zStepCount = 0;
             float dx, dy, rDelta;
             int passCount = 0;
             int figureCount = 1;
             Gcode.JobStart(gcodeString, "StartJob");
-        //    gcode.PenUp(gcodeString);
+            //    gcode.PenUp(gcodeString);
 
             bool inOneStep = (nUDToolZStep.Value >= -nUDImportGCZDown.Value); // if step >= final Z
 
             Gcode.Comment(gcodeString, XmlMarker.GroupStart + " Id=\"" + figureCount.ToString(culture) + "\" Type=\"Shape\" >");
             Gcode.Comment(gcodeString, XmlMarker.FigureStart + " Id=\"" + figureCount.ToString(culture) + "\" >");
-            
+
             if (tabControl1.SelectedTab == tabPage1)    // rectangle, circle
             {
                 #region shape
@@ -458,7 +458,7 @@ namespace GrblPlotter
 
                     float noffX = width + (float)Math.Ceiling(rTool) + 1;
                     float lastZX = 0;
-     //               float tmpX1=0, tmpX2=0, tmpY1 = 0, tmpY2 = 0;
+                    //               float tmpX1=0, tmpX2=0, tmpY1 = 0, tmpY2 = 0;
                     int cnt = 0;
                     float y1 = 0, y2 = 0;
                     float starta = 90;
@@ -485,7 +485,7 @@ namespace GrblPlotter
                     }
                     path.AddLine((roundR + noffX + offsetX), (tmpY2 + offsetY), (roundR + noffX + offsetX), (y2 + offsetY));    // draw final line
                     path.StartFigure();
-                    path.AddArc((  noffX + offsetX), (-tmpY2 + offsetY), (2* roundR), (2* roundR), starta, 90);                 // draw 1/4 circle
+                    path.AddArc((noffX + offsetX), (-tmpY2 + offsetY), (2 * roundR), (2 * roundR), starta, 90);                 // draw 1/4 circle
                     path.StartFigure();
                     path.AddArc((-rTool + width + offsetX), (y1 + offsetY), (dTool), (dTool), 0, 360);                          // draw tool diameter
                     path.StartFigure();
@@ -500,7 +500,7 @@ namespace GrblPlotter
                         if (rBRoundZYB.Checked)
                         { yStart = yEnd = (roundR - (circlePos.X + rTool)); }
 
-                        if (cnt++==0)
+                        if (cnt++ == 0)
                             Gcode.MoveToRapid(gcodeString, (xStart + offsetX), (yStart + offsetY), "");
 
                         Gcode.MoveTo(gcodeString, (xStart + offsetX), (yEnd + offsetY), "");
@@ -530,12 +530,12 @@ namespace GrblPlotter
                     path.AddRectangle(new RectangleF(offsetX, offsetY, roundR, width));
                     path.StartFigure();
 
-                    float noffY = -( (float)Math.Ceiling(rTool) + 1);
+                    float noffY = -((float)Math.Ceiling(rTool) + 1);
                     float lastZ = actualZ;
                     float lastZX = 0;
                     int cnt = 0;
                     float starta = 0;
-                    float x1 = 0, x2 = -roundR, x3=0;
+                    float x1 = 0, x2 = -roundR, x3 = 0;
                     PointF circlePos = new PointF
                     {
                         Y = roundR
@@ -551,23 +551,23 @@ namespace GrblPlotter
                         { tmpX1 = (roundR - lastZX); tmpX2 = (roundR - circlePos.X); }
                         if (cnt++ == 0)
                         { x1 = tmpX2; if (rBRoundZXL.Checked) { x1 -= dTool; starta = 90; x2 = 0; x3 = roundR; } }
-                        path.AddLine((tmpX1  + offsetX), (tmpY1 + noffY + offsetY), (tmpX2  + offsetX), (tmpY1 + noffY + offsetY)); // draw steps
-                        path.AddLine((tmpX2  + offsetX), (tmpY1 + noffY + offsetY), (tmpX2  + offsetX), (tmpY2 + noffY + offsetY)); // draw steps
+                        path.AddLine((tmpX1 + offsetX), (tmpY1 + noffY + offsetY), (tmpX2 + offsetX), (tmpY1 + noffY + offsetY)); // draw steps
+                        path.AddLine((tmpX2 + offsetX), (tmpY1 + noffY + offsetY), (tmpX2 + offsetX), (tmpY2 + noffY + offsetY)); // draw steps
                         lastZ = circlePos.Y;
                         lastZX = circlePos.X;
                     }
-                    path.AddLine((tmpX2  + offsetX), (tmpY2 + noffY + offsetY), (x3 + offsetX), (tmpY2 + noffY + offsetY)); // draw final line
+                    path.AddLine((tmpX2 + offsetX), (tmpY2 + noffY + offsetY), (x3 + offsetX), (tmpY2 + noffY + offsetY)); // draw final line
                     path.StartFigure();
-                    path.AddArc((x2 + offsetX), (-2*roundR + noffY + offsetY), (2* roundR), (2* roundR), starta, 90);       // draw 1/4 circle
+                    path.AddArc((x2 + offsetX), (-2 * roundR + noffY + offsetY), (2 * roundR), (2 * roundR), starta, 90);       // draw 1/4 circle
                     path.StartFigure();
                     path.AddArc((x1 + offsetX), (-rTool + offsetY), (dTool), (dTool), 0, 360);                              // draw tool diameter
                     path.StartFigure();
                     #endregion
-                    
+
                     circlePos.Y = roundR;
                     yStart = -rToolOffset; yEnd = width + rToolOffset;
-                //    if (rBRoundZXL.Checked)
-                //    { xStart = xEnd = (roundR - (circlePos.X + rTool)); }
+                    //    if (rBRoundZXL.Checked)
+                    //    { xStart = xEnd = (roundR - (circlePos.X + rTool)); }
                     while (circlePos.Y > 0.001)
                     {   // vertical zig zag
 
@@ -576,21 +576,21 @@ namespace GrblPlotter
                         if (rBRoundZXL.Checked)
                         { xStart = xEnd = (roundR - (circlePos.X + rTool)); }
 
-                        if (cnt++==0)
+                        if (cnt++ == 0)
                             Gcode.MoveToRapid(gcodeString, (xStart + offsetX), (yStart + offsetY), "");
 
                         Gcode.MoveTo(gcodeString, (xStart + offsetX), (yStart + offsetY), "");
                         Gcode.GcodeZDown = (circlePos.Y - roundR);               // adapt Z-deepth
                         Gcode.PenDown(gcodeString, "");
                         Gcode.MoveTo(gcodeString, (xEnd + offsetX), (yEnd + offsetY), "");
-                                                
+
                         circlePos = GetCirclePos(roundR, stepZ, circlePos.Y);
                         xStart = xEnd = circlePos.X + rTool;
                         if (rBRoundZXL.Checked)
                         { xStart = xEnd = (roundR - (circlePos.X + rTool)); }
                         if (circlePos.Y <= 0)
                             break;
-                            
+
                         Gcode.MoveTo(gcodeString, (xEnd + offsetX), (yEnd + offsetY), "");
                         Gcode.GcodeZDown = (circlePos.Y - roundR);               // adapt Z-deepth
                         Gcode.PenDown(gcodeString, "");
@@ -599,7 +599,7 @@ namespace GrblPlotter
                     Gcode.PenUp(gcodeString, "");
                 }
                 #endregion
-                    //        MessageBox.Show(tmp);
+                //        MessageBox.Show(tmp);
             }
             Gcode.Comment(gcodeString, string.Format(culture, "{0}>", XmlMarker.FigureEnd)); // Graphic2GCode.SetFigureEnd(figureCount));
             Gcode.Comment(gcodeString, string.Format(culture, "{0}>", XmlMarker.GroupEnd)); // Graphic2GCode.SetFigureEnd(figureCount));
@@ -608,8 +608,8 @@ namespace GrblPlotter
                 Gcode.MoveToRapid(gcodeString, 0, 0, "");
 
             Gcode.JobEnd(gcodeString, "EndJob");      // Spindle / laser off
-        //    if (Properties.Settings.Default.importGCZEnable)
-       //         gcode.SpindleOff(gcodeString, "Finish - Spindle off");
+                                                      //    if (Properties.Settings.Default.importGCZEnable)
+                                                      //         gcode.SpindleOff(gcodeString, "Finish - Spindle off");
 
             string header = Gcode.GetHeader("Simple Shape", "");
             string footer = Gcode.GetFooter();
@@ -629,13 +629,13 @@ namespace GrblPlotter
             return new PointF(actualZX, actualZ);
         }
 
-   /*     private static void CreateGraphicsPathAddCorner()
-        {
-            GraphicsPath path = VisuGCode.pathBackground;
-            path.StartFigure();
-        }*/
+        /*     private static void CreateGraphicsPathAddCorner()
+             {
+                 GraphicsPath path = VisuGCode.pathBackground;
+                 path.StartFigure();
+             }*/
 
-        private static void MakeRect(float x1, float y1, float x2, float y2, float r, bool cw=true )
+        private static void MakeRect(float x1, float y1, float x2, float y2, float r, bool cw = true)
         {   // start bottom left
             if (cw)
             {
@@ -644,27 +644,27 @@ namespace GrblPlotter
                 if (r > 0) { Gcode.Arc(gcodeString, 2, x1 + r, y2, r, 0, ""); }
                 Gcode.MoveTo(gcodeString, x2 - r, y2, "cw 2");          // TL to TR
                 SetTangentialUpDown(-90, !(r > 0));
-                if (r > 0) { Gcode.Arc(gcodeString, 2, x2, y2 - r, 0, -r,  ""); }
+                if (r > 0) { Gcode.Arc(gcodeString, 2, x2, y2 - r, 0, -r, ""); }
                 Gcode.MoveTo(gcodeString, x2, y1 + r, "cw 3");          // TR to BR
                 SetTangentialUpDown(-180, !(r > 0));
-                if (r > 0) { Gcode.Arc(gcodeString, 2, x2 - r, y1, -r, 0,  ""); }
+                if (r > 0) { Gcode.Arc(gcodeString, 2, x2 - r, y1, -r, 0, ""); }
                 Gcode.MoveTo(gcodeString, x1 + r, y1, "cw 4");          // BR to BL
                 if (r > 0) Gcode.SetTangential(gcodeString, -270, !(r > 0));  //
-                if (r > 0) { Gcode.Arc(gcodeString, 2, x1, y1 + r, 0, r,  ""); }
+                if (r > 0) { Gcode.Arc(gcodeString, 2, x1, y1 + r, 0, r, ""); }
             }
             else
             {
                 SetTangentialUpDown(0, !(r > 0));
-                if (r > 0) { Gcode.Arc(gcodeString, 3, x1 + r, y1, r, 0,  ""); }
+                if (r > 0) { Gcode.Arc(gcodeString, 3, x1 + r, y1, r, 0, ""); }
                 Gcode.MoveTo(gcodeString, x2 - r, y1, "ccw 1");          // to BR
                 SetTangentialUpDown(90, !(r > 0));
-                if (r > 0) { Gcode.Arc(gcodeString, 3, x2, y1 + r, 0, r,  ""); }
+                if (r > 0) { Gcode.Arc(gcodeString, 3, x2, y1 + r, 0, r, ""); }
                 Gcode.MoveTo(gcodeString, x2, y2 - r, "ccw 2");           // to TR
                 SetTangentialUpDown(180, !(r > 0));
-                if (r > 0) { Gcode.Arc(gcodeString, 3, x2 - r, y2, -r, 0,  ""); }
+                if (r > 0) { Gcode.Arc(gcodeString, 3, x2 - r, y2, -r, 0, ""); }
                 Gcode.MoveTo(gcodeString, x1 + r, y2, "ccw 3");           // to TL
                 SetTangentialUpDown(270, !(r > 0));
-                if (r > 0) { Gcode.Arc(gcodeString, 3, x1, y2 - r, 0, -r,  ""); }
+                if (r > 0) { Gcode.Arc(gcodeString, 3, x1, y2 - r, 0, -r, ""); }
                 Gcode.MoveTo(gcodeString, x1, y1 + r, "ccw 4");           // to BL 
             }
         }
@@ -673,8 +673,10 @@ namespace GrblPlotter
         {
             double angleNew = (double)Properties.Settings.Default.importGCTangentialTurn * angle / 360;
             if (gcodeTangEnable)
-            {   if (penUp)
-                {   Gcode.PenUp(gcodeString, "");
+            {
+                if (penUp)
+                {
+                    Gcode.PenUp(gcodeString, "");
                     gcodeString.AppendFormat("G00 {0}{1:0.000}\r\n", Properties.Settings.Default.importGCTangentialAxis, angleNew);
                     Gcode.PenDown(gcodeString, "");
                 }
@@ -683,12 +685,13 @@ namespace GrblPlotter
         }
 
         private void GetOffset(float x, float y)
-        {   if (rBOrigin1.Checked) { offsetX = 0; offsetY = -y; }               // upper left
-            if (rBOrigin2.Checked) { offsetX = -x/2; offsetY = -y; }
+        {
+            if (rBOrigin1.Checked) { offsetX = 0; offsetY = -y; }               // upper left
+            if (rBOrigin2.Checked) { offsetX = -x / 2; offsetY = -y; }
             if (rBOrigin3.Checked) { offsetX = -x; offsetY = -y; }              // upper right
-            if (rBOrigin4.Checked) { offsetX = 0; offsetY = -y/2; }
-            if (rBOrigin5.Checked) { offsetX = -x / 2; offsetY = -y/2; }        // center
-            if (rBOrigin6.Checked) { offsetX = -x; offsetY = -y/2; }
+            if (rBOrigin4.Checked) { offsetX = 0; offsetY = -y / 2; }
+            if (rBOrigin5.Checked) { offsetX = -x / 2; offsetY = -y / 2; }        // center
+            if (rBOrigin6.Checked) { offsetX = -x; offsetY = -y / 2; }
             if (rBOrigin7.Checked) { offsetX = 0; offsetY = 0; }                // origin - lower left
             if (rBOrigin8.Checked) { offsetX = -x / 2; offsetY = 0; }
             if (rBOrigin9.Checked) { offsetX = -x; offsetY = 0; }               // lower right
@@ -781,15 +784,16 @@ namespace GrblPlotter
                 {
                     cBTool.Items.Add(i.ToString(culture) + ") " + tmpTool.Name);
                     if (i == Properties.Settings.Default.importGCToolDefNr)
-                    {   cBTool.SelectedIndex = cBTool.Items.Count - 1;
-                        defaultToolFound=true;
+                    {
+                        cBTool.SelectedIndex = cBTool.Items.Count - 1;
+                        defaultToolFound = true;
                     }
                 }
             }
             if (!defaultToolFound)
             {
                 cBTool.Items.Add("No tools found");
-                cBTool.SelectedIndex = 0; 
+                cBTool.SelectedIndex = 0;
             }
             tprop = ToolTable.GetToolProperties(1);
             CBToolSet_CheckedChanged(sender, e);
@@ -817,7 +821,7 @@ namespace GrblPlotter
             Properties.Settings.Default.createShapeX = nUDShapeX.Value;
             Properties.Settings.Default.createShapeY = nUDShapeY.Value;
             Properties.Settings.Default.createShapeR = nUDShapeR.Value;
-            Properties.Settings.Default.createShapeMovo00 =cBMoveTo00.Checked;
+            Properties.Settings.Default.createShapeMovo00 = cBMoveTo00.Checked;
             Properties.Settings.Default.createShapeNoZUp = cBNoZUp.Checked;
 
             Properties.Settings.Default.createShapeRZRadius = nUDRZRadius.Value;
@@ -845,7 +849,8 @@ namespace GrblPlotter
         }
 
         private void NudShapeR_ValueChanged(object sender, EventArgs e)
-        {   if (rBShape2.Checked)
+        {
+            if (rBShape2.Checked)
             {
                 decimal min = Math.Min(nUDShapeX.Value, nUDShapeY.Value);
                 if (nUDShapeR.Value > min / 2)
@@ -862,7 +867,8 @@ namespace GrblPlotter
             {
                 SaveOrigToolProperties();
                 RefreshToolPropertiesFromSelectedTool();        // CBTool_SelectedIndexChanged(sender, e);
-            } else
+            }
+            else
             {
                 SetToolProperties(torig);               // switch back to manual tool settings
             }
@@ -870,7 +876,8 @@ namespace GrblPlotter
         }
 
         private void EnableToolPropertiesControls(bool state)
-        {   nUDToolDiameter.Enabled = state;
+        {
+            nUDToolDiameter.Enabled = state;
             nUDToolFeedXY.Enabled = state;
             nUDToolZStep.Enabled = state;
             nUDToolFeedZ.Enabled = state;
@@ -894,7 +901,8 @@ namespace GrblPlotter
             RefreshToolPropertiesFromSelectedTool();
         }
         private void RefreshToolPropertiesFromSelectedTool()
-        {   string tmp = cBTool.SelectedItem.ToString();
+        {
+            string tmp = cBTool.SelectedItem.ToString();
             if (tmp.IndexOf(")") > 0)
             {
                 int tnr = int.Parse(tmp.Substring(0, tmp.IndexOf(")")), culture);
@@ -927,10 +935,12 @@ namespace GrblPlotter
         }
 
         private static void CheckSetValue(NumericUpDown nUDcontrol, decimal val)
-        {   if ((val <= nUDcontrol.Maximum) && (val >= nUDcontrol.Minimum))
-            {   nUDcontrol.Value = val; }
+        {
+            if ((val <= nUDcontrol.Maximum) && (val >= nUDcontrol.Minimum))
+            { nUDcontrol.Value = val; }
             else
-            {   Logger.Error(culture, "{0} Value:{1} out of range min:{2} max:{3}", nUDcontrol.Name, val, nUDcontrol.Minimum, nUDcontrol.Maximum);
+            {
+                Logger.Error(culture, "{0} Value:{1} out of range min:{2} max:{3}", nUDcontrol.Name, val, nUDcontrol.Minimum, nUDcontrol.Maximum);
                 nUDcontrol.Enabled = true;
             }
         }
@@ -946,12 +956,13 @@ namespace GrblPlotter
             if (cBnow.Name == "rB3") rBOrigin9.PerformClick();
             if (cBnow.Name == "rB4") rBOrigin7.PerformClick();
             if (cBold != null)
-            {   SetImage(cBold, false);            }
+            { SetImage(cBold, false); }
             cBold = cBnow;
             btnApply.Enabled = true;
         }
         private void SetImage(RadioButton tmp, bool on)
-        {   if (tmp.Name == "rB1") { tmp.Image = on ? (Image)picBevelOn.Clone() : (Image)picBevelOff.Clone(); }
+        {
+            if (tmp.Name == "rB1") { tmp.Image = on ? (Image)picBevelOn.Clone() : (Image)picBevelOff.Clone(); }
             if (tmp.Name == "rB2") { tmp.Image = on ? (Image)picBevelOn.Clone() : (Image)picBevelOff.Clone(); tmp.Image.RotateFlip((RotateFlipType.Rotate90FlipNone)); }
             if (tmp.Name == "rB3") { tmp.Image = on ? (Image)picBevelOn.Clone() : (Image)picBevelOff.Clone(); tmp.Image.RotateFlip((RotateFlipType.Rotate180FlipNone)); }
             if (tmp.Name == "rB4") { tmp.Image = on ? (Image)picBevelOn.Clone() : (Image)picBevelOff.Clone(); tmp.Image.RotateFlip((RotateFlipType.Rotate270FlipNone)); }
@@ -965,7 +976,7 @@ namespace GrblPlotter
             if (tabControl1.SelectedTab == tabPage2)    // Bevel
             {
                 cBNoZUp.Enabled = false;
-                btnApply.Enabled = (rB1.Checked || rB2.Checked || rB3.Checked || rB4.Checked);  
+                btnApply.Enabled = (rB1.Checked || rB2.Checked || rB3.Checked || rB4.Checked);
                 rBToolpath2.PerformClick();             // preset 'Outside the shape'
             }
             else
@@ -974,7 +985,7 @@ namespace GrblPlotter
             if (tabControl1.SelectedTab == tabPage3)    // Round off Z
             {
                 cBNoZUp.Enabled = false;
-                RBRoundZYT_CheckedChanged(sender,e);
+                RBRoundZYT_CheckedChanged(sender, e);
             }
         }
 
@@ -982,19 +993,21 @@ namespace GrblPlotter
         {
             if (rBRoundZYT.Checked) rBOrigin1.PerformClick();
             else if (rBRoundZYB.Checked) rBOrigin7.PerformClick();
-            else if(rBRoundZXR.Checked) rBOrigin9.PerformClick();
-            else if(rBRoundZXL.Checked) rBOrigin7.PerformClick();
+            else if (rBRoundZXR.Checked) rBOrigin9.PerformClick();
+            else if (rBRoundZXL.Checked) rBOrigin7.PerformClick();
 
         }
 
         private void RBBevel1_CheckedChanged(object sender, EventArgs e)
         {
             if (rBBevel1.Checked)
-            {   picBevelOff = Properties.Resources.rndOff;
+            {
+                picBevelOff = Properties.Resources.rndOff;
                 picBevelOn = Properties.Resources.rndOn;
             }
-            else            
-            {   picBevelOff = Properties.Resources.bevOff;
+            else
+            {
+                picBevelOff = Properties.Resources.bevOff;
                 picBevelOn = Properties.Resources.bevOn;
             }
             SetImage(rB1, rB1.Checked);

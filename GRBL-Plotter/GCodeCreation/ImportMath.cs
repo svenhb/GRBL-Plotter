@@ -21,26 +21,26 @@
  * 
 */
 
+using AForge.Math;
 using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
-using AForge.Math;
 
 namespace GrblPlotter
 {
     public static class ImportMath
     {
-//        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        //        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Calculate Path-Arc-Command - Code from https://github.com/vvvv/SVG/blob/master/Source/Paths/SvgArcSegment.cs
         /// </summary>
-        public static void CalcArc(float astartX, float astartY, float radiusX, float radiusY, 
+        public static void CalcArc(float astartX, float astartY, float radiusX, float radiusY,
             float angle, float size, float sweep, float endX, float endY, Action<Point, string> moveTo)
         {
- //           Logger.Trace(" calcArc Start: {0};{1} rx: {2} ry: {3} a: {4} size: {5} sweep: {6} End: {7};{8}", StartX, StartY, RadiusX, RadiusY,
-//            Angle, Size, Sweep, EndX, EndY);
+            //           Logger.Trace(" calcArc Start: {0};{1} rx: {2} ry: {3} a: {4} size: {5} sweep: {6} End: {7};{8}", StartX, StartY, RadiusX, RadiusY,
+            //            Angle, Size, Sweep, EndX, EndY);
             if (radiusX == 0.0f && radiusY == 0.0f)
             {
                 //              graphicsPath.AddLine(this.Start, this.End);
@@ -112,7 +112,7 @@ namespace GrblPlotter
                 var b = GetBezierApproximation(points, (int)Properties.Settings.Default.importBezierLineSegmentsCnt);
                 if (moveTo != null)
                     for (int k = 1; k < b.Points.Count; k++)
-                    moveTo(b.Points[k], "arc"); //svgMoveTo(b.Points[k], "arc");
+                        moveTo(b.Points[k], "arc"); //svgMoveTo(b.Points[k], "arc");
 
                 theta1 = theta2;
                 startX = (float)endpointX;
@@ -131,15 +131,15 @@ namespace GrblPlotter
 
         public static void CalcQuadraticBezier(Point p0, Point c2, Point c3, Action<Point, string> moveTo, string cmt)
         {
-            Vector qp1  = ((Vector)c2 - (Vector)p0); qp1 *= (2d / 3d); qp1 += (Vector)p0;      // float qpx1 = (cx2 - lastX) * 2 / 3 + lastX;     // shorten control points to 2/3 length to use 
-            Vector qp2  = ((Vector)c2 - (Vector)c3); qp2 *= (2d / 3d); qp2 += (Vector)c3;      // float qpx2 = (cx2 - cx3) * 2 / 3 + cx3;
-            Point[] points = new Point[4]; 
+            Vector qp1 = ((Vector)c2 - (Vector)p0); qp1 *= (2d / 3d); qp1 += (Vector)p0;      // float qpx1 = (cx2 - lastX) * 2 / 3 + lastX;     // shorten control points to 2/3 length to use 
+            Vector qp2 = ((Vector)c2 - (Vector)c3); qp2 *= (2d / 3d); qp2 += (Vector)c3;      // float qpx2 = (cx2 - cx3) * 2 / 3 + cx3;
+            Point[] points = new Point[4];
             points[0] = p0;             // new Point(lastX, lastY);
             points[1] = (Point)qp1;     // new Point(qpx1, qpy1);
             points[2] = (Point)qp2;     // new Point(qpx2, qpy2);
             points[3] = c3;             // new Point(cx3, cy3);
             var b = GetBezierApproximation(points, (int)Properties.Settings.Default.importBezierLineSegmentsCnt);
-            if(moveTo!=null)
+            if (moveTo != null)
                 for (int i = 1; i < b.Points.Count; i++)
                     moveTo(b.Points[i], cmt);
         }
@@ -148,8 +148,8 @@ namespace GrblPlotter
         {
             Point[] points = new Point[4];
             points[0] = p0;             // new Point(lastX, lastY);
-            points[1] = c1;             
-            points[2] = c2;             
+            points[1] = c1;
+            points[2] = c2;
             points[3] = c3;             // new Point(cx3, cy3);
             var b = GetBezierApproximation(points, (int)Properties.Settings.Default.importBezierLineSegmentsCnt);
             if (moveTo != null)
@@ -164,9 +164,9 @@ namespace GrblPlotter
         private static Point[] points;
         public static PolyLineSegment GetBezierApproximation(Point[] controlPoints, int outputSegmentCount)
         {
-     //       return BezierTools.FlattenTo(controlPoints).ToArray();
+            //       return BezierTools.FlattenTo(controlPoints).ToArray();
             Point[] points = new Point[outputSegmentCount + 1];
-            if (controlPoints!=null)
+            if (controlPoints != null)
                 for (int i = 0; i <= outputSegmentCount; i++)
                 {
                     double t = (double)i / outputSegmentCount;
@@ -190,8 +190,8 @@ namespace GrblPlotter
         // https://dlacko.org/blog/2016/10/19/approximating-bezier-curves-by-biarcs/
         // https://github.com/domoszlai/bezier2biarc
 
-     //   var bezier = Current;
-     //   private static var biarcs = Algorithm.ApproxCubicBezier(bezier, 5, (float)ErrorLevel.Value);
+        //   var bezier = Current;
+        //   private static var biarcs = Algorithm.ApproxCubicBezier(bezier, 5, (float)ErrorLevel.Value);
 
         public class Algorithm
         {
@@ -261,9 +261,7 @@ namespace GrblPlotter
                         // I'm not sure if I need, but it does not hurt to order them
                         if (t1 > t2)
                         {
-                            var tmp = t1;
-                            t1 = t2;
-                            t2 = tmp;
+                            (t2, t1) = (t1, t2);
                         }
 
                         // Make the first split and save the first new curve. The second one has to be splitted again
@@ -558,7 +556,7 @@ namespace GrblPlotter
                 get { return A1.Length + A2.Length; }
             }
         }
-   
+
         public struct Arc
         {
             /// <summary>

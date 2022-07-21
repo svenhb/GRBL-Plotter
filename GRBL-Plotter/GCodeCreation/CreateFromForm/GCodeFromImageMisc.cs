@@ -21,17 +21,13 @@
  * 2022-03-28  split code into ...Create and ...Outline
 */
 
-using AForge.Imaging.ColorReduction;
-using AForge.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace GrblPlotter
@@ -102,18 +98,19 @@ namespace GrblPlotter
                 redoColorAdjust = false;
 
                 CbBlackWhiteEnable.Checked = false;
-				if (useColorMode)
-                {	cBGCodeFill.Checked = true;				// only preset in color mode
-					cBGCodeOutline.Checked = true;
-					cBGCodeOutlineSmooth.Checked = true;
-					cBGCodeOutlineShrink.Checked = true;
-				}
-				else
-				{
-					if (!cBGCodeFill.Checked && !cBGCodeOutline.Checked)
-					{	cBGCodeOutline.Checked = true;}					// at least one must be checked
-				}
-				
+                if (useColorMode)
+                {
+                    cBGCodeFill.Checked = true;             // only preset in color mode
+                    cBGCodeOutline.Checked = true;
+                    cBGCodeOutlineSmooth.Checked = true;
+                    cBGCodeOutlineShrink.Checked = true;
+                }
+                else
+                {
+                    if (!cBGCodeFill.Checked && !cBGCodeOutline.Checked)
+                    { cBGCodeOutline.Checked = true; }                  // at least one must be checked
+                }
+
                 //           updatePixelCountPerColorNeeded = false;
                 lblImageSource.Text = "original";
             }
@@ -155,8 +152,8 @@ namespace GrblPlotter
             rBMode0.CheckedChanged -= RbMode0_CheckedChanged;
             rBMode1.CheckedChanged -= RbMode0_CheckedChanged;
             rBMode2.CheckedChanged -= RbMode0_CheckedChanged;
-			nUDResoX.ValueChanged -= ApplyColorCorrectionsEvent;
-			nUDResoY.ValueChanged -= ApplyColorCorrectionsEvent;
+            nUDResoX.ValueChanged -= ApplyColorCorrectionsEvent;
+            nUDResoY.ValueChanged -= ApplyColorCorrectionsEvent;
             RbGrayscaleVector.CheckedChanged -= RbGrayscaleVector_CheckedChanged;
             RbGrayscalePattern.CheckedChanged -= RbGrayscaleVector_CheckedChanged;
             tabControl2.SelectedIndexChanged -= TabControl2_SelectedIndexChanged;
@@ -198,8 +195,8 @@ namespace GrblPlotter
             rBMode0.CheckedChanged += RbMode0_CheckedChanged;
             rBMode1.CheckedChanged += RbMode0_CheckedChanged;
             rBMode2.CheckedChanged += RbMode0_CheckedChanged;
-			nUDResoX.ValueChanged += ApplyColorCorrectionsEvent;
-			nUDResoY.ValueChanged += ApplyColorCorrectionsEvent;
+            nUDResoX.ValueChanged += ApplyColorCorrectionsEvent;
+            nUDResoY.ValueChanged += ApplyColorCorrectionsEvent;
             RbGrayscaleVector.CheckedChanged += RbGrayscaleVector_CheckedChanged;
             RbGrayscalePattern.CheckedChanged += RbGrayscaleVector_CheckedChanged;
             tabControl2.SelectedIndexChanged += TabControl2_SelectedIndexChanged;
@@ -387,16 +384,14 @@ namespace GrblPlotter
             adjustedImage.RotateFlip(RotateFlipType.Rotate90FlipNone);
             originalImage.RotateFlip(RotateFlipType.Rotate90FlipNone);
             AspectRatioOriginalImage = 1 / AspectRatioOriginalImage;
-            decimal s = nUDHeight.Value;
-            nUDHeight.Value = nUDWidth.Value;
-            nUDWidth.Value = s;
+            (nUDWidth.Value, nUDHeight.Value) = (nUDHeight.Value, nUDWidth.Value);
             pictureBox1.Image = adjustedImage;
             AutoZoomToolStripMenuItem_Click(this, null);
 
-			if (useColorMode)
-				GenerateResultImage(ref resultToolNrArray);      // fill countColors
-			else
-				GenerateResultImageGray(ref resultToolNrArray);      
+            if (useColorMode)
+                GenerateResultImage(ref resultToolNrArray);      // fill countColors
+            else
+                GenerateResultImageGray(ref resultToolNrArray);
 
             ShowResultImage();
         }
@@ -407,17 +402,15 @@ namespace GrblPlotter
             adjustedImage.RotateFlip(RotateFlipType.Rotate270FlipNone);
             originalImage.RotateFlip(RotateFlipType.Rotate270FlipNone);
             AspectRatioOriginalImage = 1 / AspectRatioOriginalImage;
-            decimal s = nUDHeight.Value;
-            nUDHeight.Value = nUDWidth.Value;
-            nUDWidth.Value = s;
+            (nUDWidth.Value, nUDHeight.Value) = (nUDHeight.Value, nUDWidth.Value);
             pictureBox1.Image = adjustedImage;
             AutoZoomToolStripMenuItem_Click(this, null);
-			
-			if (useColorMode)
-				GenerateResultImage(ref resultToolNrArray);      // fill countColors
-			else
-				GenerateResultImageGray(ref resultToolNrArray);      
-			
+
+            if (useColorMode)
+                GenerateResultImage(ref resultToolNrArray);      // fill countColors
+            else
+                GenerateResultImageGray(ref resultToolNrArray);
+
             ShowResultImage();
         }
         //Invert image color
@@ -826,7 +819,7 @@ namespace GrblPlotter
         /* Display tools from selected tool table */
         private bool LoadToolList(string file)
         {
-			UpdateLogging();
+            UpdateLogging();
             if (File.Exists(file))
             {
                 Logger.Trace("Load Tool Table {0}", file);
@@ -905,9 +898,9 @@ namespace GrblPlotter
                 gBgcodeSelection.BackColor = Color.WhiteSmoke;
                 GbGcodeDirection.BackColor = Color.Yellow;
             }
-            ResetColorCorrectionControls(); 
-			ApplyColorCorrections("RbGrayscaleVector_CheckedChanged"); 
-			lblImageSource.Text = "original";
+            ResetColorCorrectionControls();
+            ApplyColorCorrections("RbGrayscaleVector_CheckedChanged");
+            lblImageSource.Text = "original";
         }
 
         /* OwnerDrawFixed - colorize tab-handle */

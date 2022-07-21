@@ -40,9 +40,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.IO;
 
 namespace GrblPlotter
 {
@@ -65,7 +65,7 @@ namespace GrblPlotter
         private bool isDataProcessing = false;      		// false when no data processing pending
         private GrblStreaming streamingStateNow = GrblStreaming.ok;
         private GrblStreaming streamingStateOld = GrblStreaming.ok;
-  //      private int lineStreamingPause = 0;
+        //      private int lineStreamingPause = 0;
         private bool trgEvent = false;
         private bool skipM30 = false;
         private bool progressUpdateMarker = false;
@@ -82,12 +82,12 @@ namespace GrblPlotter
         private string ListInfoStream()
         { return string.Format("{0}strmBuffer snt:{1,3}  cnfrmnd:{2,3}  cnt:{3,5}  BFree:{4,3}  lineNr:{5}  code:'{6}' state:{7}", "", streamingBuffer.IndexSent, streamingBuffer.IndexConfirmed, streamingBuffer.Count, grblBufferFree, streamingBuffer.GetConfirmedLineNr(), streamingBuffer.GetConfirmedLine(), grblStateNow.ToString()); }
 
-/****************************************************************************
-*  startStreaming called by main-Prog
-*  get complete GCode list and copy to streamingBuffer
-*  initialize streaming
-*  if startAtLine > 0 start with pause
-****************************************************************************/
+        /****************************************************************************
+        *  startStreaming called by main-Prog
+        *  get complete GCode list and copy to streamingBuffer
+        *  initialize streaming
+        *  if startAtLine > 0 start with pause
+        ****************************************************************************/
         public void StartStreaming(IList<string> gCodeList, int startAtLine, int stopAtLine, bool check)
         {
             grblCharacterCounting = Properties.Settings.Default.grblStreamingProtocol1 && !isMarlin;
@@ -109,7 +109,7 @@ namespace GrblPlotter
             else
             { timerSerial.Interval = Grbl.pollInterval; }
             countMissingStatusReport = (int)(10000 / timerSerial.Interval);
-            Logger.Info("Poll frequency:{0}  max. missing reports:{1}", 1000/timerSerial.Interval, countMissingStatusReport);
+            Logger.Info("Poll frequency:{0}  max. missing reports:{1}", 1000 / timerSerial.Interval, countMissingStatusReport);
 
             skipM30 = false;
             lastError = "";
@@ -120,28 +120,34 @@ namespace GrblPlotter
 
             // check if other serial are still alive
             if (useSerial2)
-            {   try {   
-					if (!_serial_form2.SerialPortOpen)
+            {
+                try
+                {
+                    if (!_serial_form2.SerialPortOpen)
                     { AddToLog("[2nd serial port is not open]"); useSerial2 = false; }
                 }
-                catch { 
-					useSerial2 = false; 
+                catch
+                {
+                    useSerial2 = false;
                 }
             }
             if (useSerial3)
-            {   try {   
-					if (!_serial_form3.SerialPortOpen)
+            {
+                try
+                {
+                    if (!_serial_form3.SerialPortOpen)
                     { AddToLog("[3rd serial port is not open]"); useSerial3 = false; }
                 }
-                catch { 
-					useSerial3 = false;
+                catch
+                {
+                    useSerial3 = false;
                 }
             }
 
             if (!check)
             {
                 if (logStreamData) AddToLog("* Logging enabled");
-                AddToLog("[Start streaming - no echo at " + GetTimeStampString() +" ]");
+                AddToLog("[Start streaming - no echo at " + GetTimeStampString() + " ]");
                 AddToLog("[" + infoProtocol + "]");
                 if (useSerial2) AddToLog("[Use serial 2]");
                 if (useSerial3) AddToLog("[Use serial 3]");
@@ -157,11 +163,12 @@ namespace GrblPlotter
             isStreamingRequestPause = false;
             isStreamingCheck = check;
             streamingStateNow = GrblStreaming.ok;
-       //     lineStreamingPause = -1;                // save line were M0 appeared for main GUI to show notification
+            //     lineStreamingPause = -1;                // save line were M0 appeared for main GUI to show notification
             streamingBuffer.Clear();    // = new List<string>();
             ResetStreaming();           // startStreaming
             if (isStreamingCheck)
-            {   SendLine("$C");         // startStreaming check
+            {
+                SendLine("$C");         // startStreaming check
                 grblBufferSize = 100;   // reduce size to avoid fake errors
             }
             countLoggerUpdate = (int)(10000 / timerSerial.Interval);
@@ -190,7 +197,8 @@ namespace GrblPlotter
                     useSubroutine = true;
 
                     for (int k = i + 1; k < gCode.Length; k++)
-                    {   if (gCode[k].IndexOf("M99") >= 0)
+                    {
+                        if (gCode[k].IndexOf("M99") >= 0)
                         { break; }
                         if (gCode[k].IndexOf("M98") >= 0)
                         {
@@ -209,7 +217,7 @@ namespace GrblPlotter
                                 }
                             }
                             else
-                                Logger.Error("Start stresaming Subroutine {0} not found",pWord);
+                                Logger.Error("Start stresaming Subroutine {0} not found", pWord);
                         }
                         else
                         {
@@ -220,7 +228,7 @@ namespace GrblPlotter
                 }
             }
             /****************************************************************************/
-#endregion
+            #endregion
             lock (sendDataLock)
             {
                 double pWord, lWord;//, oWord;
@@ -251,11 +259,11 @@ namespace GrblPlotter
                             {
                                 for (int repeat = 0; repeat < lWord; repeat++)
                                 {
-                                    foreach(string subroutineLine in subroutines[(int)pWord])          // copy subroutine
+                                    foreach (string subroutineLine in subroutines[(int)pWord])          // copy subroutine
                                     {
                                         if (subroutineLine.Contains('#'))                    // check if variable neededs to be replaced
-                                            streamingBuffer.Add(InsertVariable(subroutineLine).Replace(" ", ""), i); 
-                                        else 
+                                            streamingBuffer.Add(InsertVariable(subroutineLine).Replace(" ", ""), i);
+                                        else
                                             streamingBuffer.Add(subroutineLine.Replace(" ", ""), i);             // add gcode line to list to send 
                                     }
                                 }
@@ -270,32 +278,38 @@ namespace GrblPlotter
                         else
                         {
                             if (Grbl.unknownG.Contains(cmdGNr))
-                            {   streamingBuffer.SetSentLine("(" + tmp + " - unknown)");    // don't pass unkown GCode to GRBL because is unknown
+                            {
+                                streamingBuffer.SetSentLine("(" + tmp + " - unknown)");    // don't pass unkown GCode to GRBL because is unknown
                                 tmp = streamingBuffer.GetSentLine();
                                 streamingBuffer.LineWasReceived();
                                 AddToLog(tmp);
                             }
                             if (cmdTNr >= 0)                                        // T-word is allowed by grbl - no need to filter
-                            {   SetToolChangeCoordinates(cmdTNr, tmp);              // update variables e.g. "gcodeVariable[TOAX]" from tool-table
+                            {
+                                SetToolChangeCoordinates(cmdTNr, tmp);              // update variables e.g. "gcodeVariable[TOAX]" from tool-table
                             }
                             if (cmdMNr == 6)                                        // M06 is not allowed - remove
-                            {   tmp = "(" + tmp + ")";
-								if (Properties.Settings.Default.ctrlToolChange)
-                                {   InsertToolChangeCode(i, ref tmpToolInSpindle);  }// insert external script-code and insert variables 
-                                else   
-                                {	AddToLog(tmp + " !!! Tool change is disabled");
-									Logger.Warn("⚠ Found '{0}' but tool change is disabled in [Setup - Tool change]",tmp);
-								}
+                            {
+                                tmp = "(" + tmp + ")";
+                                if (Properties.Settings.Default.ctrlToolChange)
+                                { InsertToolChangeCode(i, ref tmpToolInSpindle); }// insert external script-code and insert variables 
+                                else
+                                {
+                                    AddToLog(tmp + " !!! Tool change is disabled");
+                                    Logger.Warn("⚠ Found '{0}' but tool change is disabled in [Setup - Tool change]", tmp);
+                                }
                             }
                             if (cmdMNr == 30)
-                            {   if (skipM30)
+                            {
+                                if (skipM30)
                                 { tmp = "(" + tmp + ")"; }      // hide M30
                             }
 
                             streamingBuffer.Add(tmp.Replace(" ", ""), i);        // add gcode line to list to send
 
                             if (cmdMNr == 30)                   // stop filling buffer, to avoid sending subroutine code
-                            {   foundM30 = true;
+                            {
+                                foundM30 = true;
                                 break;
                             }
                         }
@@ -311,44 +325,51 @@ namespace GrblPlotter
             timerSerial.Start();
 
             if (logStreamData || useSubroutine)
-            {   string startText = string.Format("( {0} )\r\n( Start at line:{1} stop:{2} )\r\n( Set ParserState:{3} )\r\n", GetTimeStampString(), startAtLine, stopAtLine, parserStateGC);
-                File.WriteAllText(Datapath.LogFiles + "\\"+ logFileGCode, "( Data to stream from editor )\r\n" + startText); // clear file
-                File.AppendAllLines(Datapath.LogFiles + "\\"+ logFileGCode, streamingBuffer.Buffer);
+            {
+                string startText = string.Format("( {0} )\r\n( Start at line:{1} stop:{2} )\r\n( Set ParserState:{3} )\r\n", GetTimeStampString(), startAtLine, stopAtLine, parserStateGC);
+                File.WriteAllText(Datapath.LogFiles + "\\" + logFileGCode, "( Data to stream from editor )\r\n" + startText); // clear file
+                File.AppendAllLines(Datapath.LogFiles + "\\" + logFileGCode, streamingBuffer.Buffer);
             }
 
             if (logStreamData)
-            {   string startText = string.Format("( {0} )\r\n( Start at line:{1} stop:{2} )\r\n( Set ParserState:{3} )\r\n", GetTimeStampString(), startAtLine, stopAtLine, parserStateGC);
+            {
+                string startText = string.Format("( {0} )\r\n( Start at line:{1} stop:{2} )\r\n( Set ParserState:{3} )\r\n", GetTimeStampString(), startAtLine, stopAtLine, parserStateGC);
                 File.WriteAllText(Datapath.LogFiles + "\\" + logFileSentData, "( Data sent to grbl )\r\n" + startText); // clear file
                 File.WriteAllText(Datapath.LogFiles + "\\" + logFileEcho, "( Data echoed by grbl if #define REPORT_ECHO_LINE_RECEIVED )\r\n" + startText); // clear file
             }
             isStreaming = true;
             UpdateControls();
             if (startAtLine > 0)
-            {   PauseStreaming();
+            {
+                PauseStreaming();
                 isStreamingPause = true;
             }
             else
-            {   waitForIdle = false;
+            {
+                waitForIdle = false;
                 PreProcessStreaming();              // StartStreaming
             }
         }   // startStreaming
-    
+
         private void InsertToolChangeCode(int line, ref bool inSpindle)
         {
-            Logger.Info("InsertToolChangeCode line:{0} tool is in spindle:{1}",line,inSpindle);
+            Logger.Info("InsertToolChangeCode line:{0} tool is in spindle:{1}", line, inSpindle);
             streamingBuffer.Add("($TS)", line);         // keyword for receiving-buffer (sendBuffer.GetConfirmedLine();) "Tool change start"
             if (inSpindle)
-            {   AddCodeFromFile(Properties.Settings.Default.ctrlToolScriptPut, line);
+            {
+                AddCodeFromFile(Properties.Settings.Default.ctrlToolScriptPut, line);
                 inSpindle = false;
-				if (gcodeVariable.ContainsKey("TOLN"))
-                {	streamingBuffer.Add("($TO T"+ gcodeVariable["TOLN"]+")", line);  }   // keyword for receiving-buffer "Tool removed"
-				else {
-					AddToLog("InsertToolChangeCode var 'TOLN' not set!");
-					Logger.Error("InsertToolChangeCode var 'TOLN' not set!");
-				}
+                if (gcodeVariable.ContainsKey("TOLN"))
+                { streamingBuffer.Add("($TO T" + gcodeVariable["TOLN"] + ")", line); }   // keyword for receiving-buffer "Tool removed"
+                else
+                {
+                    AddToLog("InsertToolChangeCode var 'TOLN' not set!");
+                    Logger.Error("InsertToolChangeCode var 'TOLN' not set!");
+                }
             }
             if (!Properties.Settings.Default.ctrlToolChangeEmpty || (gcodeVariable["TOAN"] != (int)Properties.Settings.Default.ctrlToolChangeEmptyNr))
-            {   AddCodeFromFile(Properties.Settings.Default.ctrlToolScriptSelect, line);
+            {
+                AddCodeFromFile(Properties.Settings.Default.ctrlToolScriptSelect, line);
                 AddCodeFromFile(Properties.Settings.Default.ctrlToolScriptGet, line);
                 inSpindle = true;
                 streamingBuffer.Add("($TI T" + gcodeVariable["TOAN"] + ")", line);  // keyword for receiving-buffer "Tool inserted"
@@ -358,7 +379,7 @@ namespace GrblPlotter
             streamingBuffer.Add("($TE)", line);         // keyword for receiving-buffer "Tool change finished"
 
             if (Properties.Settings.Default.ctrlToolScriptDelay > 0)
-                streamingBuffer.Add(string.Format("G4 P{0:0.00}",Properties.Settings.Default.ctrlToolScriptDelay), line);
+                streamingBuffer.Add(string.Format("G4 P{0:0.00}", Properties.Settings.Default.ctrlToolScriptDelay), line);
 
             // save actual tool info as last tool info
             gcodeVariable["TOLN"] = gcodeVariable["TOAN"];	// TOol Last Number = TOol Actual Number
@@ -366,12 +387,12 @@ namespace GrblPlotter
             gcodeVariable["TOLY"] = gcodeVariable["TOAY"];
             gcodeVariable["TOLZ"] = gcodeVariable["TOAZ"];
             gcodeVariable["TOLA"] = gcodeVariable["TOAA"];
-        } 
+        }
 
-		private void AddCodeFromFile(string fileRaw, int linenr)
-		{
-			if (fileRaw.Length < 3)     // no path at all
-				return;
+        private void AddCodeFromFile(string fileRaw, int linenr)
+        {
+            if (fileRaw.Length < 3)     // no path at all
+                return;
 
             string file = Datapath.MakeAbsolutePath(fileRaw);
             if (Path.GetFileName(file) == string.Empty)         // path but no filename
@@ -420,41 +441,43 @@ namespace GrblPlotter
             else
             {
                 Logger.Error("AddCodeFromFile file not found:{0}", file);
-                AddToLog("!!! Tool change script not found: "+fileRaw); 
+                AddToLog("!!! Tool change script not found: " + fileRaw);
             }
-		}
+        }
 
 
-    /****** get number from string ******/
-		private static double FindDouble(string start, double notfound, string txt)
-        {   int istart = txt.IndexOf(start);
+        /****** get number from string ******/
+        private static double FindDouble(string start, double notfound, string txt)
+        {
+            int istart = txt.IndexOf(start);
             if (istart < 0)
                 return notfound;
-            string line = txt.Substring(istart+start.Length);
+            string line = txt.Substring(istart + start.Length);
             string num = "";
             foreach (char c in line)
             {
                 if (Char.IsLetter(c))
-                    break; 
+                    break;
                 else if (Char.IsNumber(c) || c == '.' || c == '-')
                     num += c;
             }
-            if (num.Length<1)
+            if (num.Length < 1)
                 return notfound;
             return double.Parse(num, System.Globalization.NumberFormatInfo.InvariantInfo);
         }
-		
-/************************************************************************
- * pauseStreaming()
- * Pause or restart streaming after button click
- ************************************************************************/ 
+
+        /************************************************************************
+         * pauseStreaming()
+         * Pause or restart streaming after button click
+         ************************************************************************/
         public void PauseStreaming()
         {
-			UpdateLogging();
-        //    if (logStartStop) Logger.Trace("Ser:{0} pauseStreaming()  isStreamingPause {1}   isStreamingRequestPause {2}   {3}", iamSerial, isStreamingPause, isStreamingRequestPause, ListInfoStream());
-// start pause			
+            UpdateLogging();
+            //    if (logStartStop) Logger.Trace("Ser:{0} pauseStreaming()  isStreamingPause {1}   isStreamingRequestPause {2}   {3}", iamSerial, isStreamingPause, isStreamingRequestPause, ListInfoStream());
+            // start pause			
             if (!isStreamingPause)
-            {   isStreamingRequestPause = true;     // wait until buffer is empty before switch to pause
+            {
+                isStreamingRequestPause = true;     // wait until buffer is empty before switch to pause
                 AddToLog("[Pause streaming - wait for IDLE]");
                 AddToLog("[Save Settings]");
                 Logger.Info("▲▼▲▼▲ pauseStreaming RequestPause    ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ Outstanding lines:{0}", (sendBuffer.Count - sendBuffer.IndexConfirmed));
@@ -463,36 +486,37 @@ namespace GrblPlotter
                 streamingStateNow = GrblStreaming.waitidle;
                 getParserState = true;
             }
-// restart streaming			
+            // restart streaming			
             else
             {   //if ((posPause.X != posWork.X) || (posPause.Y != posWork.Y) || (posPause.Z != posWork.Z))
                 AddToLog("++++++++++++++++++++++++++++++++++++");
                 timerSerial.Interval = Grbl.pollInterval;
                 if (parserStateGC.Contains("F0"))
-                {   parserStateGC = parserStateGC.Replace("F0", "F100");            // Avoid missing feed rate
+                {
+                    parserStateGC = parserStateGC.Replace("F0", "F100");            // Avoid missing feed rate
                     AddToLog(string.Format("[Fix F0: {0}]", parserStateGC));
                 }
-							
+
                 if (!XyzPoint.AlmostEqual(posPause, posWork))	// restore position
                 {
                     if (logStartStop) Logger.Trace("AlmostEqual posPause X{0:0.000} Y{1:0.000}  posWork X{2:0.000} Y{3:0.000}", posPause.X, posPause.Y, posWork.X, posWork.Y);
                     AddToLog("[Restore Position]");
                     RequestSend(string.Format("G90 G0 X{0:0.000} Y{1:0.000}", posPause.X, posPause.Y).Replace(',', '.'));  // restore last position
                     if (logStartStop) Logger.Trace("[Restore] X{0:0.000} Y{1:0.000}  State:{2}", posPause.X, posPause.Y, parserStateGC);
-					RequestSend("G4 P0.5");       // wait 1 second // changed from 1 to 0,5 2021-01-26
+                    RequestSend("G4 P0.5");       // wait 1 second // changed from 1 to 0,5 2021-01-26
                     RequestSend(string.Format("G0 Z{0:0.000}", posPause.Z).Replace(',', '.'));                      // restore last position
                 }
-				
+
                 AddToLog(string.Format("[Start streaming line:{0} - no echo]", streamingBuffer.GetSentLineNr()));
-         //       AddToLog("[Restore Settings: "+ parserStateGC+" ]");
+                //       AddToLog("[Restore Settings: "+ parserStateGC+" ]");
                 Logger.Info("▲▼▲▼▲ pauseStreaming start streaming ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼");
                 streamingStateNow = GrblStreaming.ok;
 
-				if (parserStateGC.Length > 0)
-				{
-					AddToLog("[Restore Settings: " + parserStateGC + " ]");     // [GC:G0 G54 G17 G21 G90 G94 M5 M9 T0 F0.0 S0]
-                    RequestSend(parserStateGC);          
-				}
+                if (parserStateGC.Length > 0)
+                {
+                    AddToLog("[Restore Settings: " + parserStateGC + " ]");     // [GC:G0 G54 G17 G21 G90 G94 M5 M9 T0 F0.0 S0]
+                    RequestSend(parserStateGC);
+                }
 
                 waitForIdle = false;
                 waitForOk = false;
@@ -504,14 +528,15 @@ namespace GrblPlotter
             UpdateControls();
         }   // pauseStreaming
 
-/******************************************************************
- * stopStreaming()
- * Initiate stop (wait until IDLE)
- ******************************************************************/
+        /******************************************************************
+         * stopStreaming()
+         * Initiate stop (wait until IDLE)
+         ******************************************************************/
         public void StopStreaming(bool isNotStartup)
         {
             if (isStreamingCheck)
-            {   SendLine("$C");         // stopStreaming check
+            {
+                SendLine("$C");         // stopStreaming check
                 isStreamingCheck = false;
             }
 
@@ -526,46 +551,49 @@ namespace GrblPlotter
                 Logger.Info("▲▲▲▲▲ stopStreaming() - wait for IDLE - sent:{0}  received:{1}  ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲", streamingBuffer.IndexSent, streamingBuffer.IndexConfirmed);
             }
         }
-		
-/******************************************************************
- * stopStreamingFinal()
- * Finally stop 
- ******************************************************************/
+
+        /******************************************************************
+         * stopStreamingFinal()
+         * Finally stop 
+         ******************************************************************/
         public void StopStreamingFinal()
-        {						
-           // int line = 0;
-           // line = streamingBuffer.GetSentLineNr();
+        {
+            // int line = 0;
+            // line = streamingBuffer.GetSentLineNr();
             if (logStartStop) Logger.Trace(" stopStreamingFinal() gCodeLinesSent {0}  gCodeLineNr.Count {1}", streamingBuffer.IndexSent, streamingBuffer.Count);
             SendStreamEvent(GrblStreaming.stop);        // stopStreamingFinal
             Logger.Info("▲▲▲▲▲ StopStreamingFinal() ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲");
 
             IsHeightProbing = false;
-			
+
             ResetStreaming(true);       // stopStreamingFinal()
             if (logStartStop) Logger.Trace(" stopStreamingFinal() - lines in buffer {0}", (streamingBuffer.IndexSent - streamingBuffer.IndexConfirmed));
 
             if (isStreamingCheck)
-            {   SendLine("$C");         // stopStreamingFinal check
+            {
+                SendLine("$C");         // stopStreamingFinal check
                 isStreamingCheck = false;
             }
             UpdateControls();
             if (Properties.Settings.Default.grblPollIntervalReduce)
-            {   timerSerial.Interval = Grbl.pollInterval;
+            {
+                timerSerial.Interval = Grbl.pollInterval;
                 countMissingStatusReport = (int)(10000 / timerSerial.Interval);
             }
         }
 
-/***** reset streaming variables *****/
+        /***** reset streaming variables *****/
         private void ResetStreaming(bool isStopping = true)
         {
             externalProbe = false;
             isStreaming = false;
             isStreamingRequestPause = false;
             isStreamingPause = false;
-			isStreamingRequestStopp = false;
-			
-			if (isStopping)		// 20200717
-            {	streamingBuffer.Clear();
+            isStreamingRequestStopp = false;
+
+            if (isStopping)		// 20200717
+            {
+                streamingBuffer.Clear();
                 sendBuffer.Clear();
                 grblBufferFree = grblBufferSize;
             }
@@ -573,25 +601,26 @@ namespace GrblPlotter
             Grbl.lastErrorNr = 0;
         }
 
-/********************************************************
- * processOkStreaming()
- * process ok message for streaming
- * called in RX event chain, from processGrblMessages()
- ********************************************************/
+        /********************************************************
+         * processOkStreaming()
+         * process ok message for streaming
+         * called in RX event chain, from processGrblMessages()
+         ********************************************************/
         public void ProcessOkStreaming()
         {
             if (isStreaming)    // || isStreamingRequestStopp)
             {
-// confirm sent data
+                // confirm sent data
                 if (!isStreamingPause)
-                {   streamingBuffer.LineWasReceived();
-    //                streamingBuffer.DeleteLine();		// better don't removeAt(0)...
+                {
+                    streamingBuffer.LineWasReceived();
+                    //                streamingBuffer.DeleteLine();		// better don't removeAt(0)...
                     allowStreamingEvent = true;
                 }
                 else
                     streamingStateNow = GrblStreaming.pause;   // update status
 
-// send status via event to main GUI
+                // send status via event to main GUI
                 if ((streamingStateOld != streamingStateNow) || allowStreamingEvent)
                 {
                     if (streamingStateNow != GrblStreaming.pause)
@@ -602,24 +631,24 @@ namespace GrblPlotter
             }
         }
 
-/*****  sendStreamEvent update main prog  *****/
-        private void SendStreamEvent(GrblStreaming status, int linePause=-1)
+        /*****  sendStreamEvent update main prog  *****/
+        private void SendStreamEvent(GrblStreaming status, int linePause = -1)
         {
-			int lineNrSent = streamingBuffer.GetSentLineNr();
+            int lineNrSent = streamingBuffer.GetSentLineNr();
             if (linePause > 0)
                 lineNrSent = linePause;
 
             int lineNrConfirmed = streamingBuffer.GetConfirmedLineNr();
             if (status == GrblStreaming.error)
-                lineNrConfirmed = sendBuffer.GetConfirmedLineNr() +1;
+                lineNrConfirmed = sendBuffer.GetConfirmedLineNr() + 1;
 
             // progressbar.value is int
             int codeFinish = 0;
-			if (streamingBuffer.Count != 0)
-				codeFinish = (int)Math.Ceiling((float)lineNrConfirmed * 100 / streamingBuffer.MaxLineNr) +1;      // to reach 100%
+            if (streamingBuffer.Count != 0)
+                codeFinish = (int)Math.Ceiling((float)lineNrConfirmed * 100 / streamingBuffer.MaxLineNr) + 1;      // to reach 100%
             int buffFinish = 0;
-			if (grblBufferSize != 0)
-				buffFinish = (int)Math.Ceiling((float)(grblBufferSize - grblBufferFree) * 100 / grblBufferSize) +1; // to reach 100%
+            if (grblBufferSize != 0)
+                buffFinish = (int)Math.Ceiling((float)(grblBufferSize - grblBufferFree) * 100 / grblBufferSize) + 1; // to reach 100%
 
             if (codeFinish > 100) { codeFinish = 100; }
             if (buffFinish > 100) { buffFinish = 100; }
@@ -641,13 +670,13 @@ namespace GrblPlotter
             OnRaiseStreamEvent(new StreamEventArgs(lineNrSent, lineNrConfirmed, codeFinish, buffFinish, status));
         }
 
-/**********************************************************************************  
- *  preProcessStreaming copy line by line (requestSend(line)) to sendBuffer until 
- *  grbl-buffer (grblBufferFree) is filled, M0 or M30 or buffer-end reached.
- *  Insert script-code on tool change.
- *  requestSend -> processSend -> sendLine  -  dec. grblBufferFree
- *  called in startStreaming, pauseStreaming (to restart) and timer
- **********************************************************************************/
+        /**********************************************************************************  
+         *  preProcessStreaming copy line by line (requestSend(line)) to sendBuffer until 
+         *  grbl-buffer (grblBufferFree) is filled, M0 or M30 or buffer-end reached.
+         *  Insert script-code on tool change.
+         *  requestSend -> processSend -> sendLine  -  dec. grblBufferFree
+         *  called in startStreaming, pauseStreaming (to restart) and timer
+         **********************************************************************************/
         private void PreProcessStreaming()
         {
             int lengthFree = sendBuffer.MissingConfirmationLength();        // 2022-05-27 keep sendBuffer small, for short reaction time on pause request
@@ -657,9 +686,9 @@ namespace GrblPlotter
                 return;
             }
             if (waitForIdle || isStreamingRequestPause || (countPreventIdle > 0))
-            {   
+            {
                 Logger.Trace("PreProcessStreaming abort- waitForIdle:{0}  isStreamingRequestPause:{1}  countPreventIdle:{2}", waitForIdle, isStreamingRequestPause, countPreventIdle);
-                return;    
+                return;
             }
 
             int lengthToSend = streamingBuffer.LengthSent() + 1;
@@ -669,7 +698,8 @@ namespace GrblPlotter
                 {
                     string line = streamingBuffer.GetSentLine();
                     if ((line == "OV") || (line == "UR"))
-                    {   Logger.Error("preProcessStreaming read:{0} from  streamingBuffer index:{1} count:{2}",line, streamingBuffer.IndexSent, streamingBuffer.Count);
+                    {
+                        Logger.Error("preProcessStreaming read:{0} from  streamingBuffer index:{1} count:{2}", line, streamingBuffer.IndexSent, streamingBuffer.Count);
                         break;
                     }
                     streamingStateNow = GrblStreaming.ok;       // default status
@@ -699,7 +729,7 @@ namespace GrblPlotter
                         {
                             if (logStartStop || logReceive) Logger.Trace("[Pause streaming - skip M0 - wait for IDLE]  indx-sent:{0}  line:{1} lineNr:{2} grblBufferFree:{3}", streamingBuffer.IndexSent, streamingBuffer.GetSentLine(), streamingBuffer.GetSentLineNr(), grblBufferFree);
                             AddToLog("[Pause streaming - skip M0 line:" + streamingBuffer.GetSentLineNr() + "]");
-                      //      lineStreamingPause = streamingBuffer.GetSentLineNr();
+                            //      lineStreamingPause = streamingBuffer.GetSentLineNr();
 
                             if (grblStateNow == GrblState.idle)
                             {
@@ -719,7 +749,8 @@ namespace GrblPlotter
                     #endregion
 
                     if (isMarlin)
-                    {   if (updateMarlinPosition || (--insertMarlinCounter <= 0))
+                    {
+                        if (updateMarlinPosition || (--insertMarlinCounter <= 0))
                         {   //requestSend("M114", streamingBuffer.GetSentLineNr(), false);    // insert getPosition commands
                             sendBuffer.Add("M114", streamingBuffer.GetSentLineNr());
                             getMarlinPositionWasSent = true;
@@ -731,7 +762,7 @@ namespace GrblPlotter
                         updateMarlinPosition = false;
                     }
                     /* remove spaces from line (in echo, there are also no spaces) */
-                    sendBuffer.Add(line.Replace(" ",""), streamingBuffer.GetSentLineNr());
+                    sendBuffer.Add(line.Replace(" ", ""), streamingBuffer.GetSentLineNr());
                     streamingBuffer.LineWasSent();
                     streamingStateOld = streamingStateNow;
                     lengthToSend = streamingBuffer.LengthSent() + 1;    // update while-variable
@@ -740,14 +771,14 @@ namespace GrblPlotter
             }   // while
 
             if (streamingStateNow != GrblStreaming.pause)
-            {   if (trgEvent) SendStreamEvent(streamingStateNow); trgEvent = false; }    // streaming in preProcessStreaming
+            { if (trgEvent) SendStreamEvent(streamingStateNow); trgEvent = false; }    // streaming in preProcessStreaming
         }
 
 
-/***************************************************************
-* streamingIDLE()
-* called in RX event chain, from processGrblStateChange()
-***************************************************************/
+        /***************************************************************
+        * streamingIDLE()
+        * called in RX event chain, from processGrblStateChange()
+        ***************************************************************/
         private void StreamingIDLE()
         {
             // in main GUI: send extra Pause-Code in MainTimer_Tick from Properties.Settings.Default.flowControlText
@@ -755,7 +786,7 @@ namespace GrblPlotter
             if (countPreventIdle <= 1)
             {
                 waitForIdle = false;
-//                addToLog("---------- IDLE state reached ---------");
+                //                addToLog("---------- IDLE state reached ---------");
                 if (logStartStop) Logger.Trace(" grblStateChanged() ---------- IDLE state reached --------- {0}", ListInfoStream());
                 if ((isStreamingRequestPause || isStreamingRequestStopp) && !isStreamingPause)
                 {
@@ -770,14 +801,14 @@ namespace GrblPlotter
                     gcodeVariable["WLAX"] = posWork.X; gcodeVariable["WLAY"] = posWork.Y; gcodeVariable["WLAZ"] = posWork.Z;
 
                     if (getParserState)
-                    {   RequestSend("$G"); }
+                    { RequestSend("$G"); }
 
-                    if (isStreamingRequestStopp)	// 20200717
-					{	
-						if (logStartStop) Logger.Trace(" grblStateChanged() - now really stop - resetStreaming");
-						StopStreamingFinal();
+                    if (isStreamingRequestStopp)    // 20200717
+                    {
+                        if (logStartStop) Logger.Trace(" grblStateChanged() - now really stop - resetStreaming");
+                        StopStreamingFinal();
                         isStreaming = false;
-					}
+                    }
                     UpdateControls();
                 }
 
@@ -786,11 +817,11 @@ namespace GrblPlotter
                 streamingStateOld = streamingStateNow;
 
                 if (streamingBuffer.IndexConfirmed >= streamingBuffer.Count)
-                {   StreamingFinish(); }
+                { StreamingFinish(); }
             }
         }
 
-/***** last command was sent/received - end streaming *****/
+        /***** last command was sent/received - end streaming *****/
         private void StreamingFinish()
         {
             countPreventEvent = 0; countPreventOutput = 0;
@@ -813,15 +844,16 @@ namespace GrblPlotter
             if (isStreamingCheck)
             { RequestSend("$C"); isStreamingCheck = false; }
 
-			ListAccessoryStateRunTime(false);
+            ListAccessoryStateRunTime(false);
         }
 
-        private void SetToolChangeCoordinates(int cmdTNr, string line="")
-        { 
+        private void SetToolChangeCoordinates(int cmdTNr, string line = "")
+        {
             ToolProp toolInfo = ToolTable.GetToolProperties(cmdTNr);
             gcodeVariable["TOAN"] = cmdTNr;
             if (toolInfo.Toolnr != cmdTNr)
-            {   gcodeVariable["TOAX"] = gcodeVariable["TOAY"] = gcodeVariable["TOAZ"] = gcodeVariable["TOAA"] = 0;
+            {
+                gcodeVariable["TOAX"] = gcodeVariable["TOAY"] = gcodeVariable["TOAZ"] = gcodeVariable["TOAA"] = 0;
                 if (cBStatus1.Checked || cBStatus.Checked) AddToLog("\r[Tool change: " + cmdTNr.ToString() + " no Information found! (" + line + ")]");
             }
             else
@@ -831,28 +863,29 @@ namespace GrblPlotter
                 gcodeVariable["TOAY"] = ty = toolInfo.Position.Y + (double)Properties.Settings.Default.toolTableOffsetY;
                 gcodeVariable["TOAZ"] = tz = toolInfo.Position.Z + (double)Properties.Settings.Default.toolTableOffsetZ;
                 gcodeVariable["TOAA"] = ta = toolInfo.Position.A + (double)Properties.Settings.Default.toolTableOffsetA;
-                string coord = string.Format("X:{0:0.0} Y:{1:0.0} Z:{2:0.0} A:{3:0.0}",tx,ty,tz,ta);
-                if (cBStatus1.Checked || cBStatus.Checked)  AddToLog("\r[set tool coordinates " + cmdTNr.ToString() + " " + coord +  "]");
+                string coord = string.Format("X:{0:0.0} Y:{1:0.0} Z:{2:0.0} A:{3:0.0}", tx, ty, tz, ta);
+                if (cBStatus1.Checked || cBStatus.Checked) AddToLog("\r[set tool coordinates " + cmdTNr.ToString() + " " + coord + "]");
             }
         }
-		
-		private void StreamingMonitor()
-		{
-			if (posChangedMonitor)      // check change in X,Y and Z
-			{
-				posChangedMonitor = false;
-				countDownMonitor = 10;
-			}
-			else
-			{
-				if (countDownMonitor-- > 0)
-					return;
+
+        private void StreamingMonitor()
+        {
+            if (posChangedMonitor)      // check change in X,Y and Z
+            {
+                posChangedMonitor = false;
+                countDownMonitor = 10;
+            }
+            else
+            {
+                if (countDownMonitor-- > 0)
+                    return;
 
                 countDownMonitor = (int)(10 * 1000 / timerSerial.Interval); // update 10 sec.
 
-                if (isStreamingRequestPause || isStreamingPause) 
-                {   Logger.Info("⏱ StreamingMonitor isStreamingPause:{0} request:{1}", isStreamingPause, isStreamingRequestPause);
-                //    countDownMonitor = (int)(10000 / timerSerial.Interval); // update 10 sec.
+                if (isStreamingRequestPause || isStreamingPause)
+                {
+                    Logger.Info("⏱ StreamingMonitor isStreamingPause:{0} request:{1}", isStreamingPause, isStreamingRequestPause);
+                    //    countDownMonitor = (int)(10000 / timerSerial.Interval); // update 10 sec.
                     return;
                 }
 
@@ -861,17 +894,18 @@ namespace GrblPlotter
 
                 /* why it's IDLE, what we are waiting for? */
                 bool ready = ExternalCOMReady();
-				if (!ready)
-				{	Logger.Warn("    StreamingMonitor  serial2Busy:{0} form2.grblStateNow:{1}  (false && idle)",serial2Busy, _serial_form2.grblStateNow);
-					Logger.Warn("    StreamingMonitor  serial3Busy:{0} form3.Busy:{1}  (false && false)", serial3Busy, _serial_form3.Busy);
-				}		
-				Logger.Info("    StreamingMonitor  ExternalCOMReady:{0}  waitForOk:{1} grblStateNow:{2}  (true, false || alarm)", ExternalCOMReady(), waitForOk, grblStateNow);
-				Logger.Info("    StreamingMonitor  call PreProcessStreaming");
+                if (!ready)
+                {
+                    Logger.Warn("    StreamingMonitor  serial2Busy:{0} form2.grblStateNow:{1}  (false && idle)", serial2Busy, _serial_form2.grblStateNow);
+                    Logger.Warn("    StreamingMonitor  serial3Busy:{0} form3.Busy:{1}  (false && false)", serial3Busy, _serial_form3.Busy);
+                }
+                Logger.Info("    StreamingMonitor  ExternalCOMReady:{0}  waitForOk:{1} grblStateNow:{2}  (true, false || alarm)", ExternalCOMReady(), waitForOk, grblStateNow);
+                Logger.Info("    StreamingMonitor  call PreProcessStreaming");
                 Logger.Info("    capacity:{0,6} {1}", sendBuffer.Capacity, ListInfoSend());
                 Logger.Info("    capacity:{0,6} {1}", streamingBuffer.Capacity, ListInfoStream());
                 PreProcessStreaming();              // StreamingMonitor
-                                            //    this.BeginInvoke(new EventHandler(PreProcessStreaming));	// try to wake-up 
+                                                    //    this.BeginInvoke(new EventHandler(PreProcessStreaming));	// try to wake-up 
             }
-		}
+        }
     }
 }

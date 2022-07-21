@@ -230,8 +230,8 @@ namespace GrblPlotter
                 if (showHalftoneS && (showHalftoneLastS != lastS))
                 {
                     diff = showHalftoneMax - showHalftoneMin;
-                //    if (diff > 0)
-                //        width = (lastS - showHalftoneMin) * showHalftoneWidth / diff;    // calculate pen-width
+                    //    if (diff > 0)
+                    //        width = (lastS - showHalftoneMin) * showHalftoneWidth / diff;    // calculate pen-width
                     width = Math.Abs((lastS - showHalftoneMin) * showHalftoneWidth / diff);    // calculate pen-width
                 }
 
@@ -246,9 +246,10 @@ namespace GrblPlotter
         }
 
         public static string GetGcodeListLine(int line)
-        {   if ((line >= 0) && (line < gcodeList.Count))
+        {
+            if ((line >= 0) && (line < gcodeList.Count))
                 return gcodeList[line].codeLine;
-            else 
+            else
                 return "";
         }
         public static void SetGcodeListLine(int line, string newCode)
@@ -317,7 +318,7 @@ namespace GrblPlotter
             int countZ = 0;
             int lastMotion = 0;
 
-			Logger.Info("▽▽▽▽ GetGCodeLines Count:{0}  Show colors if no XML-Tags:{1}  Show pen-up path arrows:{2}  Show pen-up path Ids:{3}  Use BackgroundWorker:{4}", oldCode.Count, showColors, showArrow, showId, (worker != null) );
+            Logger.Info("▽▽▽▽ GetGCodeLines Count:{0}  Show colors if no XML-Tags:{1}  Show pen-up path arrows:{2}  Show pen-up path Ids:{3}  Use BackgroundWorker:{4}", oldCode.Count, showColors, showArrow, showId, (worker != null));
             if (oldCode.Count > skipLimit) // huge amount of code, reduce time consuming functionality
             {
                 Logger.Info("⚠⚠⚠⚠ Huge amount of code (> {0} lines), reduce time consuming functionality (no pen-up-path-arrows/-ids, no colored pen-down-paths) !!!!!", skipLimit);
@@ -511,7 +512,7 @@ namespace GrblPlotter
             }
 
             if (worker != null) worker.ReportProgress(100, new MyUserState { Value = 100, Content = "Wait for update of text editor" });
-			Logger.Info("△△△△ GetGCodeLines finish");
+            Logger.Info("△△△△ GetGCodeLines finish");
             return true;
         }
 
@@ -565,7 +566,7 @@ namespace GrblPlotter
             bool isArc;
             if ((start >= GCode.Length) || (stop >= GCode.Length))
             {
-                Logger.Error("AddSubroutine start:{0}  stop:{1}  GCode.Length:{2}",start,stop,GCode.Length);
+                Logger.Error("AddSubroutine start:{0}  stop:{1}  GCode.Length:{2}", start, stop, GCode.Length);
                 return;
             }
             for (int loop = 0; loop < repeat; loop++)
@@ -762,11 +763,11 @@ namespace GrblPlotter
                 if (logCoordinates) Logger.Trace(" Set Figure figureMarkerCount:{0}  {1}", figureMarkerCount, line);
 
                 fiducialDimension = new Dimensions();
-				
+
                 if (XmlMarker.tmpFigure.Layer.IndexOf(fiducialLabel) >= 0)
-                { fiducialEnable = true; Logger.Trace("◯◯◯ Fiducial found Layer:'{0}'",XmlMarker.tmpFigure.Layer);}
+                { fiducialEnable = true; Logger.Trace("◯◯◯ Fiducial found Layer:'{0}'", XmlMarker.tmpFigure.Layer); }
                 if (XmlMarker.tmpFigure.PathId.IndexOf(fiducialLabel) >= 0)
-                { fiducialEnable = true; Logger.Trace("◯◯◯ Fiducial found PathId:'{0}'",XmlMarker.tmpFigure.PathId);}
+                { fiducialEnable = true; Logger.Trace("◯◯◯ Fiducial found PathId:'{0}'", XmlMarker.tmpFigure.PathId); }
 
                 if (Properties.Settings.Default.gui2DColorPenDownModeEnable)// && !largeDataAmount)    // Graphic.SizeOk())    // enable color mode 
                 {
@@ -790,13 +791,15 @@ namespace GrblPlotter
                 if (line.Contains("Width")) { HalfTone.showHalftoneWidth = XmlMarker.GetAttributeValueDouble(line, "Width"); }
                 Logger.Info("Display halftone  {0}  {1}  {2}  {3}", line, HalfTone.showHalftoneMin, HalfTone.showHalftoneMax, HalfTone.showHalftoneWidth);
 
-                if (line.Contains(XmlMarker.HalftoneS)) { 
-                    HalfTone.showHalftoneS = true; halfToneEnable = true; 
-                    Logger.Info("showHalftoneS min:{0}  max:{1}  width:{2}", HalfTone.showHalftoneMin, HalfTone.showHalftoneMax, HalfTone.showHalftoneWidth); 
+                if (line.Contains(XmlMarker.HalftoneS))
+                {
+                    HalfTone.showHalftoneS = true; halfToneEnable = true;
+                    Logger.Info("showHalftoneS min:{0}  max:{1}  width:{2}", HalfTone.showHalftoneMin, HalfTone.showHalftoneMax, HalfTone.showHalftoneWidth);
                 }
-                if (line.Contains(XmlMarker.HalftoneZ)) { 
-                    HalfTone.showHalftoneZ = true; halfToneEnable = true; 
-                    Logger.Info("showHalftoneZ min:{0}  max:{1}  width:{2}", HalfTone.showHalftoneMin, HalfTone.showHalftoneMax, HalfTone.showHalftoneWidth); 
+                if (line.Contains(XmlMarker.HalftoneZ))
+                {
+                    HalfTone.showHalftoneZ = true; halfToneEnable = true;
+                    Logger.Info("showHalftoneZ min:{0}  max:{1}  width:{2}", HalfTone.showHalftoneMin, HalfTone.showHalftoneMax, HalfTone.showHalftoneWidth);
                 }
             }
         }
@@ -890,10 +893,10 @@ namespace GrblPlotter
                     AddArrow(pathPenUp, tmp, showArrow, showId);
                 }
             }
-			else
-			{
+            else
+            {
                 Logger.Error("ModifyPenUpPath - pathInfoMarker is null or empty, can't add arrows and ids to PenUp path");
-			}
+            }
         }
 
         public static string GetParserState(int lineNr)
@@ -925,7 +928,7 @@ namespace GrblPlotter
                 if (gcodeList[i].lineNumber == lineNr)
                 {
                     return (XyzPoint)gcodeList[i].actualPos;
-                //    break;
+                    //    break;
                 }
             }
             return new XyzPoint();

@@ -84,7 +84,7 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Windows;
-using System.Windows.Forms;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace GrblPlotter //DXFImporter
 {
@@ -210,7 +210,7 @@ namespace GrblPlotter //DXFImporter
             logFlags = (uint)Properties.Settings.Default.importLoggerSettings;
             logEnable = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnables.Level1) > 0);
             logPosition = logEnable && ((logFlags & (uint)LogEnables.Coordinates) > 0);
-        //    Logger.Trace(" logEnable:{0}  logPosition:{1}", logEnable, logPosition);
+            //    Logger.Trace(" logEnable:{0}  logPosition:{1}", logEnable, logPosition);
 
             nodesOnly = Properties.Settings.Default.importSVGNodesOnly;
             useZ = Properties.Settings.Default.importDXFUseZ;
@@ -241,29 +241,33 @@ namespace GrblPlotter //DXFImporter
         private static bool LoadDXF(string filename)
         {
             doc = new DXFDocument();
-            try { doc.Load(filename); return true;}
-            catch (IOException err) {
+            try { doc.Load(filename); return true; }
+            catch (IOException err)
+            {
                 Logger.Error(err, "loading the file failed IOException ");
                 MessageBox.Show("The file could not be opened - perhaps already open in other application?\r\n" + err.ToString());
             }
-			catch (Exception err) {
+            catch (Exception err)
+            {
                 Logger.Error(err, "loading the file failed 2 ");
-                throw;		// unknown exception...
-			}
+                throw;      // unknown exception...
+            }
             return false;
         }
         private static bool LoadDXF(Stream content)
         {
             doc = new DXFDocument();
-            try { doc.Load(content); return true;}
-            catch (IOException err) {
+            try { doc.Load(content); return true; }
+            catch (IOException err)
+            {
                 Logger.Error(err, "loading the file failed IOException ");
                 MessageBox.Show("The file could not be opened - perhaps already open in other application?\r\n" + err.ToString());
             }
-			catch (Exception err) {
+            catch (Exception err)
+            {
                 Logger.Error(err, "loading the file failed 2 ");
-                throw;		// unknown exception...
-			}
+                throw;      // unknown exception...
+            }
             return false;
         }
         private static void GetVectorDXF()
@@ -295,23 +299,24 @@ namespace GrblPlotter //DXFImporter
             Logger.Info("●●●● Amount Layers:{0}  Entities:{1}  Blocks:{2}", countDXFLayers, countDXFEntities, countDXFBlocks);
             if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = 10, Content = "Read DXF vector data of " + countDXFEntities.ToString() + " elements" });
 
-			int plotflag = 0;
+            int plotflag = 0;
             foreach (DXFLayerRecord record in lrecord)
             {
                 Graphic.SetHeaderInfo(string.Format(" Layer:{0} , color:{1} , line type:{2}", record.LayerName, record.Color, record.LineType));
                 if (!layerColor.ContainsKey(record.LayerName)) layerColor.Add(record.LayerName, record.Color);
                 if (!layerLType.ContainsKey(record.LayerName)) layerLType.Add(record.LayerName, record.LineType);
                 if (!layerLineWeigth.ContainsKey(record.LayerName)) layerLineWeigth.Add(record.LayerName, record.LineWeight);
-				try {
-					plotflag = record.PlottingFlag;	// new property in DXFLib 1.0.2.0
-				}
-				catch (Exception err)
-				{	Logger.Error(err,"GetVectorDXF record.PlottingFlag - probably old DXFLib.dll in use - Ver. 1.0.2.0 is needed ");}
-				
-				// http://docs.autodesk.com/ACD/2011/DEU/filesDXF/WS1a9193826455f5ff18cb41610ec0a2e719-7a51.htm
-				// record.Flags==0 - visible;	plotflag==1 - plot
-				if (!layerPlot.ContainsKey(record.LayerName)) layerPlot.Add(record.LayerName, ((record.Flags == 0) && (plotflag==1)));   // true when plot
-				if (logEnable) Logger.Trace("Record Layer:{0,-10}   color:{1,3}   ltype:{2}   lweight:{3}   flags:{4}   plot:{5}",record.LayerName, record.Color, record.LineType, record.LineWeight, record.Flags, plotflag);
+                try
+                {
+                    plotflag = record.PlottingFlag; // new property in DXFLib 1.0.2.0
+                }
+                catch (Exception err)
+                { Logger.Error(err, "GetVectorDXF record.PlottingFlag - probably old DXFLib.dll in use - Ver. 1.0.2.0 is needed "); }
+
+                // http://docs.autodesk.com/ACD/2011/DEU/filesDXF/WS1a9193826455f5ff18cb41610ec0a2e719-7a51.htm
+                // record.Flags==0 - visible;	plotflag==1 - plot
+                if (!layerPlot.ContainsKey(record.LayerName)) layerPlot.Add(record.LayerName, ((record.Flags == 0) && (plotflag == 1)));   // true when plot
+                if (logEnable) Logger.Trace("Record Layer:{0,-10}   color:{1,3}   ltype:{2}   lweight:{3}   flags:{4}   plot:{5}", record.LayerName, record.Color, record.LineType, record.LineWeight, record.Flags, plotflag);
             }
 
             List<DXFLineTypeRecord> ltypes = doc.Tables.LineTypes;
@@ -332,7 +337,7 @@ namespace GrblPlotter //DXFImporter
                     lineTypes.Add(lt.LineTypeName, tmp);
                 }
             }
-            
+
             foreach (DXFEntity dxfEntity in doc.Entities)				// process all entities
             {
                 if ((backgroundWorker != null) && backgroundWorker.CancellationPending)
@@ -393,9 +398,10 @@ namespace GrblPlotter //DXFImporter
             if (backgroundWorker != null) backgroundWorker.ReportProgress(countDXFEntity++ * 100 / countDXFEntities);
 
 
-			/* skip entity if layer is invisible or printing is disabled */
+            /* skip entity if layer is invisible or printing is disabled */
             if (Properties.Settings.Default.importDXFDontPlot && layerPlot.ContainsKey(layerName) && !layerPlot[layerName])
-            {   Graphic.SetHeaderInfo(string.Format(" Hide DXF Entity:{0}  of Layer:{1}  ",entity.GetType(), layerName));
+            {
+                Graphic.SetHeaderInfo(string.Format(" Hide DXF Entity:{0}  of Layer:{1}  ", entity.GetType(), layerName));
                 Graphic.SetHeaderMessage(string.Format(" {0}-1202: DXF Layer '{1}' is not visible or plotting is disabled and will not be imported", CodeMessage.Attention, layerName));
                 return;
             }
@@ -532,7 +538,7 @@ namespace GrblPlotter //DXFImporter
                 Graphic.SetGeometry("Polyline");
                 DXFPolyLine lp = (DXFPolyLine)entity;
                 double bulge = 0;
-            //    bool roundcorner = false;
+                //    bool roundcorner = false;
                 DXFEntity vertex;
                 DXFVertex coordinate;
                 index = 0;
@@ -571,10 +577,10 @@ namespace GrblPlotter //DXFImporter
                             else
                                 if (lp.Flags == DXFPolyLine.FlagsEnum.closed)
                                 AddRoundCorner((DXFPoint)((DXFVertex)lp.Children[i]).Location, (DXFPoint)((DXFVertex)lp.Children[0]).Location, bulge, offset, offsetAngle);
-                    //        roundcorner = true;
+                            //        roundcorner = true;
                         }
-                    //    else
-                    //        roundcorner = false;
+                        //    else
+                        //        roundcorner = false;
                     }
                 }
                 if (lp.Flags == DXFPolyLine.FlagsEnum.closed) //if ((lp.Flags > 0))
@@ -830,7 +836,7 @@ namespace GrblPlotter //DXFImporter
 
                 Graphic.SetGeometry("Hatch");
                 if (logEnable) Logger.Trace(" Hatch-fill is not implemented: Layer:'{0}' ColorNr.:{1} LineWeight:{2} Handle:{3}", hatch.LayerName, hatch.ColorNumber, hatch.LineWeight, hatch.Handle);
-				Graphic.SetHeaderInfo(string.Format(" DXFHatch - fill is not implemented - Layer:{0}  ", hatch.LayerName));
+                Graphic.SetHeaderInfo(string.Format(" DXFHatch - fill is not implemented - Layer:{0}  ", hatch.LayerName));
             }
             #endregion
             #region DXFMText
@@ -922,20 +928,21 @@ namespace GrblPlotter //DXFImporter
             }
             #endregion
             else
-            {   Graphic.SetHeaderInfo(" Unknown DXF Entity: " + entity.GetType().ToString());
+            {
+                Graphic.SetHeaderInfo(" Unknown DXF Entity: " + entity.GetType().ToString());
                 Graphic.SetHeaderMessage(string.Format(" {0}-1201: Unknown DXF Entity: {1}", CodeMessage.Attention, entity.GetType().ToString()));
             }
         }
-    /*    private static void DrawArc(ImportMath.Arc arc)
-        {
-            if (arc.r != 0.0)
+        /*    private static void DrawArc(ImportMath.Arc arc)
             {
-                Vector2 startPoint = arc.PointAt(0) - arc.C;
-                Vector2 endPoint = arc.PointAt(1);
-                Logger.Trace("  DrawArc x:{0} y:{1}", endPoint.X, endPoint.Y);
-                Graphic.AddArc(arc.IsClockwise, new Point(endPoint.X, endPoint.Y), new Point(startPoint.X, startPoint.Y));  // G2 = clockwise
-            }
-        }*/
+                if (arc.r != 0.0)
+                {
+                    Vector2 startPoint = arc.PointAt(0) - arc.C;
+                    Vector2 endPoint = arc.PointAt(1);
+                    Logger.Trace("  DrawArc x:{0} y:{1}", endPoint.X, endPoint.Y);
+                    Graphic.AddArc(arc.IsClockwise, new Point(endPoint.X, endPoint.Y), new Point(startPoint.X, startPoint.Y));  // G2 = clockwise
+                }
+            }*/
 
         private static double RotateGetX(DXFPoint r, double angleRad)
         { return (double)(r.X * Math.Cos(angleRad) - r.Y * Math.Sin(angleRad)); }
@@ -1013,11 +1020,11 @@ namespace GrblPlotter //DXFImporter
         private static void AddRoundCorner(DXFPoint var1, DXFPoint var2, double bulge, DXFPoint offset, double angleDegree)
         {
             double angleRad = angleDegree * Math.PI / 180;
-         //   double bulge = var1.Bulge;
-        //    double p1x = (double)(var1.Vertex.X * Math.Cos(angleRad) - var1.Vertex.Y * Math.Sin(angleRad));       //var1.Vertex.X;
-        //    double p1y = (double)(var1.Vertex.X * Math.Sin(angleRad) + var1.Vertex.Y * Math.Cos(angleRad));       //var1.Vertex.Y;
-        //    double p2x = (double)(var2.Vertex.X * Math.Cos(angleRad) - var2.Vertex.Y * Math.Sin(angleRad));       //var2.Vertex.X;
-        //    double p2y = (double)(var2.Vertex.X * Math.Sin(angleRad) + var2.Vertex.Y * Math.Cos(angleRad));       //var2.Vertex.Y;
+            //   double bulge = var1.Bulge;
+            //    double p1x = (double)(var1.Vertex.X * Math.Cos(angleRad) - var1.Vertex.Y * Math.Sin(angleRad));       //var1.Vertex.X;
+            //    double p1y = (double)(var1.Vertex.X * Math.Sin(angleRad) + var1.Vertex.Y * Math.Cos(angleRad));       //var1.Vertex.Y;
+            //    double p2x = (double)(var2.Vertex.X * Math.Cos(angleRad) - var2.Vertex.Y * Math.Sin(angleRad));       //var2.Vertex.X;
+            //    double p2y = (double)(var2.Vertex.X * Math.Sin(angleRad) + var2.Vertex.Y * Math.Cos(angleRad));       //var2.Vertex.Y;
             double p1x = (double)(var1.X * Math.Cos(angleRad) - var1.Y * Math.Sin(angleRad));       //var1.Vertex.X;
             double p1y = (double)(var1.X * Math.Sin(angleRad) + var1.Y * Math.Cos(angleRad));       //var1.Vertex.Y;
             double p2x = (double)(var2.X * Math.Cos(angleRad) - var2.Y * Math.Sin(angleRad));       //var2.Vertex.X;

@@ -339,7 +339,7 @@ namespace GrblPlotter
             lblMax.Text = string.Format("{0:0.000}", Map.MaxHeight);
             pictureBox2.Image = new Bitmap(heightLegendBMP);
             pictureBox2.Refresh();
-        //    nUDCutOffZ.Value = (decimal)Map.MinHeight;
+            //    nUDCutOffZ.Value = (decimal)Map.MinHeight;
         }
 
         private bool isgray = false;
@@ -424,10 +424,11 @@ namespace GrblPlotter
         #region controls
         private void BtnSave_Click(object sender, EventArgs e)
         {
-			if (Map == null)
-			{	MessageBox.Show("There is no Map-data to save","Error");
-				return;
-			}
+            if (Map == null)
+            {
+                MessageBox.Show("There is no Map-data to save", "Error");
+                return;
+            }
             SaveFileDialog sfd = new SaveFileDialog
             {
                 InitialDirectory = pathMap//    Application.StartupPath + Datapath.Examples;
@@ -447,10 +448,11 @@ namespace GrblPlotter
 
         private void BtnSaveSTL_Click(object sender, EventArgs e)
         {
-			if (Map == null)
-			{	MessageBox.Show("There is no Map-data to save","Error");
-				return;
-			}
+            if (Map == null)
+            {
+                MessageBox.Show("There is no Map-data to save", "Error");
+                return;
+            }
             SaveFileDialog sfd = new SaveFileDialog
             {
                 InitialDirectory = pathExport//    Application.StartupPath + Datapath.Examples;
@@ -469,10 +471,11 @@ namespace GrblPlotter
 
         private void BtnSaveOBJ_Click(object sender, EventArgs e)
         {
-			if (Map == null)
-			{	MessageBox.Show("There is no Map-data to save","Error");
-				return;
-			}
+            if (Map == null)
+            {
+                MessageBox.Show("There is no Map-data to save", "Error");
+                return;
+            }
             SaveFileDialog sfd = new SaveFileDialog
             {
                 InitialDirectory = pathExport//    Application.StartupPath + Datapath.Examples;
@@ -491,10 +494,11 @@ namespace GrblPlotter
 
         private void BtnSaveX3D_Click(object sender, EventArgs e)
         {
-			if (Map == null)
-			{	MessageBox.Show("There is no Map-data to save","Error");
-				return;
-			}
+            if (Map == null)
+            {
+                MessageBox.Show("There is no Map-data to save", "Error");
+                return;
+            }
             SaveFileDialog sfd = new SaveFileDialog
             {
                 InitialDirectory = pathExport//    Application.StartupPath + Datapath.Examples;
@@ -590,14 +594,14 @@ namespace GrblPlotter
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { CenterToScreen(); }
 
             //_event = new eventArgsTemplates();
-			decimal tmp = Properties.Settings.Default.heightMapX2 - Properties.Settings.Default.heightMapX1;
-			if (tmp <= 0) tmp = 1;
+            decimal tmp = Properties.Settings.Default.heightMapX2 - Properties.Settings.Default.heightMapX1;
+            if (tmp <= 0) tmp = 1;
             nUDDeltaX.Value = tmp;
-			
-			tmp = Properties.Settings.Default.heightMapY2 - Properties.Settings.Default.heightMapY1;
-			if (tmp <= 0) tmp = 1;
+
+            tmp = Properties.Settings.Default.heightMapY2 - Properties.Settings.Default.heightMapY1;
+            if (tmp <= 0) tmp = 1;
             nUDDeltaY.Value = tmp;
-			
+
             int legendHeight = 160;
             heightLegendBMP = new Bitmap(2, legendHeight);
             for (int i = 0; i < legendHeight; i++)
@@ -698,7 +702,7 @@ namespace GrblPlotter
                     MessageBox.Show(Localization.GetString("grblNotConnected"), Localization.GetString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
-          
+
                 Logger.Info("Generate Height scan Code");
                 refreshPictureBox = true;
                 isMapOk = false;
@@ -823,7 +827,7 @@ namespace GrblPlotter
                 else if (extrudeX)  // scan Y axis, extrude in X
                 {
                     textBox1.Text += "ExtrudeX scan Y axis, extrude in X";
-                        int ix = 0; //ix < Map.SizeX; ix++)
+                    int ix = 0; //ix < Map.SizeX; ix++)
                     tmp = Map.GetCoordinates(ix, 0);
                     if (useZ) scanCode.AppendFormat("G0Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeUp.Value));
                     if (CbUseG1.Checked)
@@ -889,7 +893,7 @@ namespace GrblPlotter
                         cntSent++;
                     }
                 }
-            
+
                 if (useZ) scanCode.AppendFormat("G0 Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeUp.Value));
                 tmp = Map.GetCoordinates(0, 0);
                 scanCode.AppendFormat("G0 X{0} Y{1}\r\n", Gcode.FrmtNum((float)tmp.X), Gcode.FrmtNum((float)tmp.Y));
@@ -929,7 +933,7 @@ namespace GrblPlotter
                                 Map.AddPoint(MapIndex[cntReceived].X, extY, worldZ);
                             }
                         }
-                        else 
+                        else
                             Map.AddPoint(MapIndex[cntReceived].X, MapIndex[cntReceived].Y, worldZ);
 
                         cntReceived++;
@@ -1043,15 +1047,16 @@ namespace GrblPlotter
         private void BtnPosFromCodeDimension_Click(object sender, EventArgs e)
         {
             if ((GuiVariables.variable["GMIX"] < Double.MaxValue) && (GuiVariables.variable["GMAX"] > Double.MinValue))		//(GuiVariables.variable["GMIX"] != GuiVariables.variable["GMAX"])
-            {   decimal min = (decimal)(CbRoundUp.Checked ? Math.Floor(GuiVariables.variable["GMIX"]) : GuiVariables.variable["GMIX"]);
+            {
+                decimal min = (decimal)(CbRoundUp.Checked ? Math.Floor(GuiVariables.variable["GMIX"]) : GuiVariables.variable["GMIX"]);
                 decimal max = (decimal)(CbRoundUp.Checked ? Math.Ceiling(GuiVariables.variable["GMAX"]) : GuiVariables.variable["GMAX"]);
                 if (min >= nUDX1.Minimum)
                     nUDX1.Value = min;
                 if (max <= nUDX2.Maximum)
                     nUDX2.Value = max;
             }
-			else {MessageBox.Show("No graphic loaded?");}
-				
+            else { MessageBox.Show("No graphic loaded?"); }
+
             if ((GuiVariables.variable["GMIY"] < Double.MaxValue) && (GuiVariables.variable["GMAY"] > Double.MinValue))		//(GuiVariables.variable["GMIY"] != GuiVariables.variable["GMAY"])
             {
                 decimal min = (decimal)(CbRoundUp.Checked ? Math.Floor(GuiVariables.variable["GMIY"]) : GuiVariables.variable["GMIY"]);
@@ -1087,17 +1092,19 @@ namespace GrblPlotter
             { label.Text = txt; }
         }
         private void TextBoxAddThreadSave(TextBox box, string txt)
-        {    if (box.InvokeRequired)
+        {
+            if (box.InvokeRequired)
             { box.BeginInvoke((MethodInvoker)delegate () { box.AppendText(txt); }); }
             else
             { box.AppendText(txt); box.ScrollToCaret(); }
         }
 
         private void SetProgressValueThreadSave(ProgressBar bar, int val)
-        { if (bar.InvokeRequired)
+        {
+            if (bar.InvokeRequired)
             { bar.BeginInvoke((MethodInvoker)delegate () { bar.Value = val; }); }
             else
-            { bar.Value = val; } 
+            { bar.Value = val; }
         }
 
     }
@@ -1146,16 +1153,12 @@ namespace GrblPlotter
 
             if (max.X < min.X)
             {
-                double a = min.X;
-                min.X = max.X;
-                max.X = a;
+                (max.X, min.X) = (min.X, max.X);
             }
 
             if (max.Y < min.Y)
             {
-                double a = min.Y;
-                min.Y = max.Y;
-                max.Y = a;
+                (max.Y, min.Y) = (min.Y, max.Y);
             }
 
             Min = min;
@@ -1191,29 +1194,29 @@ namespace GrblPlotter
             int iLX = (int)Math.Floor(x);   //lower integer part
             int iLY = (int)Math.Floor(y);
 
-			if (iLX < 0) iLX = 0;		// check range
-			if (iLY < 0) iLY = 0;
-			
+            if (iLX < 0) iLX = 0;       // check range
+            if (iLY < 0) iLY = 0;
+
             int iHX = (int)Math.Ceiling(x); //upper integer part
             int iHY = (int)Math.Ceiling(y);
 
-			if (iHX >= SizeX) iHX = SizeX - 1;	// check range
-			if (iHY >= SizeY) iHY = SizeY - 1;
+            if (iHX >= SizeX) iHX = SizeX - 1;  // check range
+            if (iHY >= SizeY) iHY = SizeY - 1;
 
             //     try
             //     {
             double fX = x - iLX;             //fractional part
             double fY = y - iLY;
 
-			double hxhy = Points[iHX, iHY].GetValueOrDefault(MaxHeight);
-			double lxhy = Points[iLX, iHY].GetValueOrDefault(MaxHeight);
-			double hxly = Points[iHX, iLY].GetValueOrDefault(MaxHeight);
-			double lxly = Points[iLX, iLY].GetValueOrDefault(MaxHeight);
-            double linUpper = hxhy * fX + lxhy * (1 - fX); 
+            double hxhy = Points[iHX, iHY].GetValueOrDefault(MaxHeight);
+            double lxhy = Points[iLX, iHY].GetValueOrDefault(MaxHeight);
+            double hxly = Points[iHX, iLY].GetValueOrDefault(MaxHeight);
+            double lxly = Points[iLX, iLY].GetValueOrDefault(MaxHeight);
+            double linUpper = hxhy * fX + lxhy * (1 - fX);
             double linLower = hxly * fX + lxly * (1 - fX);
-			
-    //        double linUpper = Points[iHX, iHY].Value * fX + Points[iLX, iHY].Value * (1 - fX);       //linear immediates
-    //        double linLower = Points[iHX, iLY].Value * fX + Points[iLX, iLY].Value * (1 - fX);
+
+            //        double linUpper = Points[iHX, iHY].Value * fX + Points[iLX, iHY].Value * (1 - fX);       //linear immediates
+            //        double linLower = Points[iHX, iLY].Value * fX + Points[iLX, iLY].Value * (1 - fX);
 
             return linUpper * fY + linLower * (1 - fY);     //bilinear result
                                                             //   } catch { return MaxHeight; }
@@ -1687,7 +1690,7 @@ namespace GrblPlotter
 
         public float Length()
         {
-            return (float)Math.Sqrt(x*x+y*y);
+            return (float)Math.Sqrt(x * x + y * y);
         }
 
         public static float Distance(Vector2 a, Vector2 b)
@@ -1697,7 +1700,7 @@ namespace GrblPlotter
             return (float)Math.Sqrt(dx * dx + dy * dy);
         }
         public static Vector2 operator +(Vector2 v1, Vector2 v2)
-        {    return Add(v1, v2); }
+        { return Add(v1, v2); }
         public static Vector2 Add(Vector2 v1, Vector2 v2)
         {
             return
@@ -1711,7 +1714,7 @@ namespace GrblPlotter
         }
 
         public static Vector2 operator -(Vector2 v1, Vector2 v2)
-        {   return Subtract(v1, v2); }
+        { return Subtract(v1, v2); }
         public static Vector2 Subtract(Vector2 v1, Vector2 v2)
         {
             return
@@ -1725,8 +1728,8 @@ namespace GrblPlotter
         }
 
         public static Vector2 operator *(Vector2 v1, double s2)
-        {   return Multiply(v1, s2); }
-         public static Vector2 Multiply(Vector2 v1, double s2)
+        { return Multiply(v1, s2); }
+        public static Vector2 Multiply(Vector2 v1, double s2)
         {
             return
            (
@@ -1739,14 +1742,14 @@ namespace GrblPlotter
         }
 
         public static Vector2 operator *(double s1, Vector2 v2)
-        {   return Multiply(s1, v2); }
+        { return Multiply(s1, v2); }
         public static Vector2 Multiply(double s1, Vector2 v2)
         {
             return v2 * s1;
         }
 
         public static Vector2 operator /(Vector2 v1, double s2)
-        {   return Divide(v1, s2); }
+        { return Divide(v1, s2); }
         public static Vector2 Divide(Vector2 v1, double s2)
         {
             return

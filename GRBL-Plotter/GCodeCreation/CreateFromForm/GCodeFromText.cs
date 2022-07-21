@@ -129,10 +129,11 @@ namespace GrblPlotter
 
         public void CreateText()
         {
-			if (cBFont.SelectedIndex < 0)
-			{	MessageBox.Show("Please select a font", "Error");
-				return;
-			}
+            if (cBFont.SelectedIndex < 0)
+            {
+                MessageBox.Show("Please select a font", "Error");
+                return;
+            }
             Logger.Trace(culture, " createText()	");
             SaveSettings();
             GCodeFromFont.Reset();
@@ -163,9 +164,9 @@ namespace GrblPlotter
                 GCodeFromFont.GetCode((double)nUDLineBreak.Value);      // do automatic page break
             else
                 GCodeFromFont.GetCode(0);   // no page break
-			
+
             if (RbAlign2.Checked)
-			    Graphic.AlignLines(1);		// 0=left, 1=center, 2=right
+                Graphic.AlignLines(1);		// 0=left, 1=center, 2=right
             else if (RbAlign3.Checked)
                 Graphic.AlignLines(2);		// 0=left, 1=center, 2=right
 
@@ -174,11 +175,12 @@ namespace GrblPlotter
 
         // adapt line distance depending on font size
         private void NudFontSize_ValueChanged(object sender, EventArgs e)
-        { 	decimal tmp = nUDFontSize.Value * (decimal)1.5;
-			if (tmp > nUDFontLine.Maximum)
-				nUDFontLine.Maximum = tmp;
-			nUDFontLine.Value = tmp; 
-		}
+        {
+            decimal tmp = nUDFontSize.Value * (decimal)1.5;
+            if (tmp > nUDFontLine.Maximum)
+                nUDFontLine.Maximum = tmp;
+            nUDFontLine.Value = tmp;
+        }
 
         private void BtnCancel_Click(object sender, EventArgs e)
         { this.Close(); }

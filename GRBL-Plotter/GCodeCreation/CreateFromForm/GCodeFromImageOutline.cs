@@ -39,11 +39,11 @@ namespace GrblPlotter
         private static float penRadius;
         private static short toolNr;
         private static short[,] bitmap;
-        private const short markObject     = short.MaxValue;
+        private const short markObject = short.MaxValue;
         private static readonly short markBackground = short.MinValue;
         private static readonly List<List<PointF>> outlinePaths = new List<List<PointF>>();
         private static int Smooth = 0;
-        public static StringBuilder logList  = new StringBuilder();
+        public static StringBuilder logList = new StringBuilder();
         public static bool log = false;
         public static bool shrinkPath = false;
 
@@ -52,7 +52,7 @@ namespace GrblPlotter
         /// </summary>
         public static List<List<PointF>> GetPaths(short[,] bitm, int sizeX, int sizeY, short toolN, int smooth, float pradius, bool shrink)
         {
-            Width  = sizeX;
+            Width = sizeX;
             Height = sizeY;
             toolNr = toolN;
             Smooth = smooth;
@@ -69,7 +69,7 @@ namespace GrblPlotter
             return outlinePaths;
         }
 
-        private static int abortCount=1000;     // watch dog to escape from do-while
+        private static int abortCount = 1000;     // watch dog to escape from do-while
 
         /// <summary>
         /// Scan line by line for 0/1 transient to start contour tracing
@@ -82,40 +82,43 @@ namespace GrblPlotter
             int cnt = 1;
 
             for (int y = 0; y < Height; y++)
-            {   isObjectLast = false; isObjectCur = false;
+            {
+                isObjectLast = false; isObjectCur = false;
                 for (int x = 0; x < Width; x++)
                 {
-                    if      (bitmap[x, y] >= markObject)     { isObjectCur = true; }    // already found as object, nothing to do
-                    else if (bitmap[x, y] <= markBackground) { isObjectCur = false;}    // already found as background, nothing to do
+                    if (bitmap[x, y] >= markObject) { isObjectCur = true; }    // already found as object, nothing to do
+                    else if (bitmap[x, y] <= markBackground) { isObjectCur = false; }    // already found as background, nothing to do
                     else if (bitmap[x, y] == toolNr)                            // object found, 0/1 transient = start point
-                    {   bitmap[x, y] = markObject;                                    // mark as found
+                    {
+                        bitmap[x, y] = markObject;                                    // mark as found
                         if (!isObjectLast)
                         {
-                            logList.AppendFormat("startTracing-CW  ({0}) at {1} ; {2}\r\n",cnt++, x,y);
+                            logList.AppendFormat("startTracing-CW  ({0}) at {1} ; {2}\r\n", cnt++, x, y);
                             TraceContour(x, y, true);                           // find contour CW
                         }
                         isObjectCur = true;
                     }
                     else
-                    {   bitmap[x, y] = markBackground;                                   // must be background
+                    {
+                        bitmap[x, y] = markBackground;                                   // must be background
                         isObjectCur = false;                                    // mark as background
                         if (isObjectLast)                                       // found 1/0 transient
                         {                                                       // edge is upper left
-                            logList.AppendFormat("startTracing-CCW ({0}) at {1} ; {2}\r\n", cnt++,(x-1), (y-0));
-                            TraceContour(x - 1, y-0, false);                      // find contour with last object x, CCW
+                            logList.AppendFormat("startTracing-CCW ({0}) at {1} ; {2}\r\n", cnt++, (x - 1), (y - 0));
+                            TraceContour(x - 1, y - 0, false);                      // find contour with last object x, CCW
                         }
-                    }                          
+                    }
                     isObjectLast = isObjectCur;
                 }
             }
         }
 
-        private  const int searchOffset = 5;
+        private const int searchOffset = 5;
         /// <summary>
         /// Create list with contour points starting at x,y
         /// </summary>
         private static void TraceContour(int x, int y, bool isCW)
-        {     
+        {
             int searchDirCur = 1;                       // if CW  start with 6 (1+searchOffset)
             if (!isCW) searchDirCur = 3;                // if CCW start with 0 (3+searchOffset)
             int searchDirLast = searchDirCur;
@@ -129,15 +132,17 @@ namespace GrblPlotter
             onePath.Add(start1);                        // store 1st point
             int cnt = 0;
             do
-            {   searchDirCur = TraceCheck(ref next, searchDirCur);   
+            {
+                searchDirCur = TraceCheck(ref next, searchDirCur);
                 startFound = ((last == start1) && (next == start2));            // stop when 1st and 2nd point repeats
                 if (cnt == 0) { start2 = next; searchDirLast = searchDirCur; }  // store 2nd point for stopping condition
 
-                if ((Smooth > 0)||(searchDirLast != searchDirCur))
+                if ((Smooth > 0) || (searchDirLast != searchDirCur))
                     onePath.Add(new Point(last.X, last.Y));             // only store point when direction changed      
-                   
+
                 if (searchDirCur == -1)                                 // failure ?
-                {   logList.AppendFormat("traceContour break at {0} ; {1}\r\n", next.X, next.Y);
+                {
+                    logList.AppendFormat("traceContour break at {0} ; {1}\r\n", next.X, next.Y);
                     break;
                 }
                 searchDirLast = searchDirCur;
@@ -150,7 +155,7 @@ namespace GrblPlotter
                 return;
 
             if (Smooth > 0)
-                for (int k=0; k<Smooth;k++)
+                for (int k = 0; k < Smooth; k++)
                     SmoothContour(onePath);
 
             if (shrinkPath)
@@ -167,18 +172,18 @@ namespace GrblPlotter
         /// Smooth points by calc. average of last, current and next point
         /// </summary>
         private static void SmoothContour(List<PointF> list)
-        {   
+        {
             if (list.Count < 10) return;    // too less points to smooth
             PointF a, b, c;
             a = list[0]; b = list[1]; c = list[2];
             float newX, newY;
             tmpList = new List<PointF>();
-            for (int i = 1; i < list.Count-1; i++)
+            for (int i = 1; i < list.Count - 1; i++)
             {
-                a = list[i-1]; b = list[i]; c= list[i + 1];
+                a = list[i - 1]; b = list[i]; c = list[i + 1];
                 newX = (a.X + b.X + c.X) / 3;
                 newY = (a.Y + b.Y + c.Y) / 3;
-                tmpList.Add(new PointF(newX,newY));
+                tmpList.Add(new PointF(newX, newY));
             }
             newX = (b.X + c.X + list[0].X) / 3;             // last point
             newY = (b.Y + c.Y + list[0].Y) / 3;
@@ -195,7 +200,7 @@ namespace GrblPlotter
         {   // average of last end next vector [i-1]-[i] and [i]-[i+1]
             // move i 90 degree of vector
             if (list.Count < 3) return;     // too less points to shrink
-            PointF a, b, c,p;
+            PointF a, b, c, p;
             a = list[0]; b = list[1]; c = list[2];
 
             float newX, newY;
@@ -204,8 +209,8 @@ namespace GrblPlotter
             {
                 a = list[i - 1]; b = list[i]; c = list[i + 1];
                 p = CalcOffset(width, GetAngle(a, c) + Math.PI / 2);
-                newX = b.X+p.X;
-                newY = b.Y+p.Y;
+                newX = b.X + p.X;
+                newY = b.Y + p.Y;
                 tmpList.Add(new PointF(newX, newY));
             }
             p = CalcOffset(width, GetAngle(b, list[0]) + Math.PI / 2);// last point
@@ -230,9 +235,9 @@ namespace GrblPlotter
             PointF delta2 = new PointF();
             PointF p1 = new PointF();
             int i, k, j, cnt;
-            p1 = list[list.Count-1];
+            p1 = list[list.Count - 1];
             for (i = list.Count - 2; i > 0; i--)
-            {   
+            {
                 delta1.X = list[i].X - p1.X;
                 delta1.Y = list[i].Y - p1.Y;
                 delta2.X = list[i - 1].X - list[i].X;
@@ -256,11 +261,14 @@ namespace GrblPlotter
             float aX, minX, maxX, aY, minY, maxY;
             bool setMin, setMax;
             for (i = list.Count - 1; i > 0; i--)        // scan for useless Y
-            {   cnt = 1; aX = list[i].X;
+            {
+                cnt = 1; aX = list[i].X;
                 minY = maxY = list[i].Y;
                 for (k = i - 1; k >= 0; k--)            // find min / max Y for same X      
-                {   if (aX == list[k].X)                // same X?
-                    {   cnt++;
+                {
+                    if (aX == list[k].X)                // same X?
+                    {
+                        cnt++;
                         minY = Math.Min(minY, list[k].Y);
                         maxY = Math.Max(maxY, list[k].Y);
                     }
@@ -268,14 +276,16 @@ namespace GrblPlotter
                     { k++; break; }
                 }
                 if (cnt > 2)
-                {   setMin = false; setMax = false;
+                {
+                    setMin = false; setMax = false;
                     int jend = i - cnt;
                     for (j = i; j > jend; j--)              // sort out inbetween values   
-                    {   aY =  list[j].Y;
+                    {
+                        aY = list[j].Y;
                         if (!setMin && (aY == minY))        // keep 1st min
-                        { setMin = true; continue;      }
+                        { setMin = true; continue; }
                         else if (!setMax && (aY == maxY))   // keep 1st max
-                        { setMax = true; continue;      }
+                        { setMax = true; continue; }
                         list.RemoveAt(j);
                         i--;
                     }
@@ -287,8 +297,10 @@ namespace GrblPlotter
                 cnt = 1; aY = list[i].Y;
                 minX = maxX = list[i].X;
                 for (k = i - 1; k >= 0; k--)            // find min / max X for same Y      
-                {   if (aY == list[k].Y)                // same Y?
-                    {   cnt++;
+                {
+                    if (aY == list[k].Y)                // same Y?
+                    {
+                        cnt++;
                         minX = Math.Min(minX, list[k].X);
                         maxX = Math.Max(maxX, list[k].X);
                     }
@@ -296,10 +308,12 @@ namespace GrblPlotter
                     { k++; break; }
                 }
                 if (cnt > 2)
-                {   setMin = false; setMax = false;
+                {
+                    setMin = false; setMax = false;
                     int jend = i - cnt;
                     for (j = i; j > jend; j--)              // sort out inbetween values   
-                    {   aX = list[j].X;
+                    {
+                        aX = list[j].X;
                         if (!setMin && (aX == minX))        // keep 1st min
                         { setMin = true; continue; }
                         else if (!setMax && (aX == maxX))   // keep 1st max
@@ -319,18 +333,20 @@ namespace GrblPlotter
             return false;
         }
 
-     //   private static double GetDistance(PointF p1, PointF p2)
-     //   { return Math.Sqrt((p1.X-p2.X)* (p1.X - p2.X) + (p1.Y - p2.Y)* (p1.Y - p2.Y)); }
+        //   private static double GetDistance(PointF p1, PointF p2)
+        //   { return Math.Sqrt((p1.X-p2.X)* (p1.X - p2.X) + (p1.Y - p2.Y)* (p1.Y - p2.Y)); }
         private static double GetAngle(PointF p1, PointF p2)
-        {   if ((p2.X - p1.X) == 0)
-            {   if ((p2.Y - p1.Y) > 0)
+        {
+            if ((p2.X - p1.X) == 0)
+            {
+                if ((p2.Y - p1.Y) > 0)
                     return Math.PI / 2;
                 else
                     return -Math.PI / 2;
             }
             if ((p2.X - p1.X) > 0)
                 return Math.Atan((p2.Y - p1.Y) / (p2.X - p1.X));
-            else 
+            else
                 return Math.PI + Math.Atan((p2.Y - p1.Y) / (p2.X - p1.X));
         }
         private static PointF CalcOffset(float r, double a)
@@ -356,10 +372,10 @@ namespace GrblPlotter
         // go through neighbor points and check direction to continue 0                     1                    2                      3                      4                      5
         private static int TraceCheck(ref Point p, int oldDir)
         {
-            int newDir = (oldDir + searchOffset)%8;
+            int newDir = (oldDir + searchOffset) % 8;
             int checkX, checkY;
             bool isObjectLast, isObjectCur;                 // store last and current 'color'
-            if (log) logList.AppendFormat("traceCheck old dir {0}   {1} ; {2}    ", oldDir,p.X,p.Y);
+            if (log) logList.AppendFormat("traceCheck old dir {0}   {1} ; {2}    ", oldDir, p.X, p.Y);
             checkX = p.X + searchDirection[newDir][0];     // coord of pixel to test
             checkY = p.Y + searchDirection[newDir][1];
             isObjectLast = CheckPoint(checkX, checkY);      // check 'color' - background = false, object = true
@@ -373,18 +389,19 @@ namespace GrblPlotter
                     if ((oldDir % 2 == 0) && (((oldDir - newDir) == 1) || ((oldDir - newDir) == -7)))
                     {
                         if (log) logList.Append("correct ?\r\n");
-   
+
                         int tnewDir = (newDir + 1) % 8;
                         int tcheckX = p.X + searchDirection[tnewDir][0];
                         int tcheckY = p.Y + searchDirection[tnewDir][1];
                         if (CheckPoint(tcheckX, tcheckY))       // also 0/1 transient?
-                        {   p.X = tcheckX; p.Y = tcheckY;       // set next point
+                        {
+                            p.X = tcheckX; p.Y = tcheckY;       // set next point
                             if (log) logList.AppendFormat("corrected new dir {0}   {1} ; {2}\r\n", newDir, tcheckX, tcheckY);
                             return tnewDir;                     // return direction
                         }
                     }
                     p.X = checkX; p.Y = checkY;             // set next point
-                    if (log) logList.AppendFormat("new dir {0}   {1} ; {2}\r\n", newDir,checkX,checkY);
+                    if (log) logList.AppendFormat("new dir {0}   {1} ; {2}\r\n", newDir, checkX, checkY);
                     return newDir;                             // return direction
                 }
                 isObjectLast = isObjectCur;                 // store last value
@@ -393,15 +410,19 @@ namespace GrblPlotter
             return -1;
         }
         private static bool CheckPoint(int cx, int cy)
-        {   if ((cx < 0) || (cx >= Width) || (cy < 0) || (cy >= Height))
-            {   return false; }
+        {
+            if ((cx < 0) || (cx >= Width) || (cy < 0) || (cy >= Height))
+            { return false; }
             else
-            {   if ((bitmap[cx, cy] == toolNr) || (bitmap[cx, cy] >= markObject))
-                {   bitmap[cx, cy] = markObject;        // mark as object
+            {
+                if ((bitmap[cx, cy] == toolNr) || (bitmap[cx, cy] >= markObject))
+                {
+                    bitmap[cx, cy] = markObject;        // mark as object
                     return true;
                 }
                 else
-                {   bitmap[cx, cy] = markBackground;    // mark as background
+                {
+                    bitmap[cx, cy] = markBackground;    // mark as background
                     return false;
                 }
             }

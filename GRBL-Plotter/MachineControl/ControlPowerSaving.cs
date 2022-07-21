@@ -29,16 +29,18 @@ namespace GrblPlotter
     public static class ControlPowerSaving
     {
         public static void SuppressStandby()
-        {   if (NativeMethods.PowerAvailabilityRequestsSupported())
+        {
+            if (NativeMethods.PowerAvailabilityRequestsSupported())
                 NativeMethods.SuppressStandbyWin7();
             else
                 NativeMethods.SuppressStandbyXP();
         }
         public static void EnableStandby()
-        {   if (NativeMethods.PowerAvailabilityRequestsSupported())
+        {
+            if (NativeMethods.PowerAvailabilityRequestsSupported())
                 NativeMethods.EnableStandbyWin7();
             else
                 NativeMethods.EnableStandbyXP();
         }
-	}
+    }
 }

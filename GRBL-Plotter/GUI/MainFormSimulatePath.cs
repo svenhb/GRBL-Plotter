@@ -42,8 +42,8 @@ namespace GrblPlotter
         {
             if ((!isStreaming) && (fCTBCode.LinesCount > 2))
             {
-				codeInfo = new XyzPoint();	// reset old positions
-				if (!simuEnabled)
+                codeInfo = new XyzPoint();  // reset old positions
+                if (!simuEnabled)
                 { SimuStart(Properties.Settings.Default.gui2DColorSimulation); }
                 else
                 { SimuStop(); }
@@ -115,9 +115,9 @@ namespace GrblPlotter
             }
 
             bool isConnected = false;
-			if (((_serial_form != null) && (_serial_form.SerialPortOpen)) || Grbl.grblSimulate)
-				isConnected = true;
-			
+            if (((_serial_form != null) && (_serial_form.SerialPortOpen)) || Grbl.grblSimulate)
+                isConnected = true;
+
             simuEnabled = false;
             simulationTimer.Enabled = false;
             btnSimulate.Text = Localization.GetString("mainSimuStart");
@@ -168,7 +168,7 @@ namespace GrblPlotter
                 mySelection.End = selStart;
                 fCTBCode.Selection = mySelection;
 
-                if (LineIsInRange(fCTBCodeClickedLineLast)) 
+                if (LineIsInRange(fCTBCodeClickedLineLast))
                     fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
                 fCTBCode.BookmarkLine(simuLine);
                 fCTBCode.DoCaretVisible();
@@ -180,8 +180,8 @@ namespace GrblPlotter
             }
             if (pbFile.Maximum < simuLine)
             {
-                Logger.Error("SimulationTimer_Tick pbFile.Maximum < simuLine {0} {1}",pbFile.Maximum, simuLine);
-                pbFile.Maximum = simuLine; 
+                Logger.Error("SimulationTimer_Tick pbFile.Maximum < simuLine {0} {1}", pbFile.Maximum, simuLine);
+                pbFile.Maximum = simuLine;
             }
             pbFile.Value = simuLine;
             lblFileProgress.Text = string.Format("{0} {1:0.0}%", Localization.GetString("mainProgress"), (100 * simuLine / (fCTBCode.LinesCount - 2)));

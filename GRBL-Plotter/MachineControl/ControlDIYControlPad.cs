@@ -34,7 +34,7 @@ namespace GrblPlotter
 {
     public partial class ControlDiyControlPad : Form
     {
-        private string rxString="", rxTmpString="";
+        private string rxString = "", rxTmpString = "";
         private byte rxChar;
         internal bool isHeightProbing = false;
         //      internal bool isConnected;
@@ -218,7 +218,8 @@ namespace GrblPlotter
         /// </summary>
         private void SendLine(string data)
         {
-            try {
+            try
+            {
                 if (serialPort.IsOpen)
                 {
                     serialPort.Write(data + "\r\n");
@@ -237,13 +238,14 @@ namespace GrblPlotter
                     }
                 }
             }
-            catch (Exception err) {
+            catch (Exception err)
+            {
                 Logger.Error(err, "Error SendLine: {0} ", data);
                 EventCollector.SetCommunication(string.Format("CDiyS{0}", err.Message));
                 if (cBFeedback.Checked)
                     rtbLog.AppendText(string.Format(">| {0} \r\n", data));
             }
-			
+
             while (rtbLog.Lines.Length > 99)
             {
                 rtbLog.SelectionStart = 0;

@@ -90,9 +90,9 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Media;
 using System.Xml.Linq;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace GrblPlotter
 {
@@ -144,7 +144,8 @@ namespace GrblPlotter
         {
             backgroundWorker = null;
             backgroundEvent = null;
-            try {
+            try
+            {
                 byte[] byteArray = Encoding.UTF8.GetBytes(svgText);
                 MemoryStream stream = new MemoryStream(byteArray);
                 svgCode = XElement.Load(stream, LoadOptions.None);
@@ -155,7 +156,8 @@ namespace GrblPlotter
                 unitIsPixel = replaceUnitByPixel;
                 return ConvertSVG(svgCode, "from Clipboard");                   // startConvert(svgCode);
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 Logger.Error(e, "Error loading SVG-Code ");
                 MessageBox.Show("Error '" + e.ToString() + "' in XML string ");
                 return false;
@@ -195,11 +197,13 @@ namespace GrblPlotter
             {
                 if (File.Exists(filePath))
                 {
-                    try {
+                    try
+                    {
                         svgCode = XElement.Load(filePath, LoadOptions.None);    // PreserveWhitespace);
                         return ConvertSVG(svgCode, filePath);                   // startConvert(svgCode);
                     }
-                    catch (Exception err) {
+                    catch (Exception err)
+                    {
                         Logger.Error(err, "Error loading SVG-Code ");
                         MessageBox.Show("Error '" + err.ToString() + "' in XML file " + filePath + "\r\n\r\nTry to save file with other encoding e.g. UTF-8");
                     }
@@ -211,7 +215,7 @@ namespace GrblPlotter
 
         private static bool ConvertSVG(XElement svgCode, string filePath)
         {
-        //    Logger.Info(" convertSVG {0}", filePath);
+            //    Logger.Info(" convertSVG {0}", filePath);
             logFlags = (uint)Properties.Settings.Default.importLoggerSettings;
             logEnable = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnables.Level1) > 0);
             logEnableCoord = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnables.Detailed) > 0);
@@ -225,7 +229,7 @@ namespace GrblPlotter
             ConversionInfo = "";
             shapeCounter = 0;
 
-        //    Logger.Trace(" logEnable:{0} svgScaleApply:{1} svgMaxSize:{2} svgComments:{3} svgConvertToMM:{4} svgNodesOnly:{5} svgConvertCircleToDot:{6}", logEnable, svgScaleApply, svgMaxSize, svgComments, svgConvertToMM, svgNodesOnly, svgConvertCircleToDot);
+            //    Logger.Trace(" logEnable:{0} svgScaleApply:{1} svgMaxSize:{2} svgComments:{3} svgConvertToMM:{4} svgNodesOnly:{5} svgConvertCircleToDot:{6}", logEnable, svgScaleApply, svgMaxSize, svgComments, svgConvertToMM, svgNodesOnly, svgConvertCircleToDot);
             Logger.Info("▼▼▼▼  ConvertSVG Start : svgScaleApply: {0} svgMaxSize: {1} svgComments: {2} svgConvertToMM: {3} svgNodesOnly: {4} svgConvertCircleToDot: {5}", svgScaleApply, svgMaxSize, svgComments, svgConvertToMM, svgNodesOnly, svgConvertCircleToDot);
 
             Graphic.Init(Graphic.SourceType.SVG, filePath, backgroundWorker, backgroundEvent);
@@ -262,7 +266,7 @@ namespace GrblPlotter
 
             int count = svgCode.Descendants("path").Count();
 
-        //    Logger.Info(" Amount Paths:{0}", count);
+            //    Logger.Info(" Amount Paths:{0}", count);
             if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = 10, Content = "Read SVG vector data of " + count.ToString() + " elements " });
 
             matrixElement.SetIdentity();                // preset transform matrix
@@ -434,25 +438,25 @@ namespace GrblPlotter
         /// </summary>
         private static void ParseGroup(XElement svgCode, int level)
         {
-         //   if (logEnable) Logger.Debug("●●●● ParseGroup Level:{0} Elements:{1}", level, svgCode.Elements(nspace + "g").Count());
+            //   if (logEnable) Logger.Debug("●●●● ParseGroup Level:{0} Elements:{1}", level, svgCode.Elements(nspace + "g").Count());
             foreach (XElement groupElement in svgCode.Elements(nspace + "g"))
-            {				
+            {
                 if (level == 1)
                 {
-					string idtext = "ID not set " + level.ToString();
+                    string idtext = "ID not set " + level.ToString();
                     if (groupElement.Attribute("id") != null)
                         idtext = groupElement.Attribute("id").Value;
-					
-					/* skip layer if not visible */
-					if (Properties.Settings.Default.importSVGDontPlot)
-					{
+
+                    /* skip layer if not visible */
+                    if (Properties.Settings.Default.importSVGDontPlot)
+                    {
                         if ((groupElement.Attribute("style") != null) && (groupElement.Attribute("style").Value.Contains("display:none")))
                         {
                             Graphic.SetHeaderInfo(string.Format(" Hide SVG Layer:{0}   ", idtext));
                             Graphic.SetHeaderMessage(string.Format(" {0}-1302: SVG Layer '{1}' is not visible and will not be imported", CodeMessage.Attention, idtext));
                             continue;
                         }
-					}
+                    }
 
                     if (groupElement.Attribute(inkscape + "label") != null)
                         Graphic.SetLabel(groupElement.Attribute(inkscape + "label").Value);
@@ -526,12 +530,12 @@ namespace GrblPlotter
         }
 
         private static void SetPenWidth(string txt)
-        {   
+        {
             if (!double.TryParse(txt, NumberStyles.Number, NumberFormatInfo.InvariantInfo, out double nr))
             {
                 nr = ConvertToPixel(txt);   // = txt * 96
             }
-			Graphic.SetPenWidth(Math.Round(nr * svgStrokeWidthScale, 3).ToString().Replace(',', '.'));
+            Graphic.SetPenWidth(Math.Round(nr * svgStrokeWidthScale, 3).ToString().Replace(',', '.'));
         }
 
         /// <summary>
@@ -547,7 +551,7 @@ namespace GrblPlotter
                 // tranform elements must be processed in given order
                 string[] separatingStrings = { "trans", "sca", "rot", "mat" };
                 string transform = element.Attribute("transform").Value;
-            //    if (logEnable) Logger.Trace("ParseTransform1: {0} ", transform);
+                //    if (logEnable) Logger.Trace("ParseTransform1: {0} ", transform);
                 string[] words = transform.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
                 foreach (var word in words)
                 {
@@ -566,19 +570,19 @@ namespace GrblPlotter
                     { matrixGroup[i] = Matrix.Multiply(finalMatrix, matrixGroup[level - 1]); }
                 }
                 else
-                {   matrixGroup[level] = finalMatrix; }
+                { matrixGroup[level] = finalMatrix; }
                 matrixElement = matrixGroup[level];
             }
             else
-            {   matrixElement = Matrix.Multiply(finalMatrix, matrixGroup[level]); }
-		
+            { matrixElement = Matrix.Multiply(finalMatrix, matrixGroup[level]); }
+
             svgStrokeWidthScale = matrixElement.M11;
-        //    Logger.Info("ParseTransform {0}  isGroup:{1}", matrixElement.ToString(), isGroup);
+            //    Logger.Info("ParseTransform {0}  isGroup:{1}", matrixElement.ToString(), isGroup);
         }
         private static Matrix ParseTransform(string transform)
         {
             Matrix tmp = new Matrix(1, 0, 0, 1, 0, 0); // m11, m12, m21, m22, offsetx, offsety
-        //    if (logEnable) Logger.Trace("ParseTransform2: {0} ", transform);
+                                                       //    if (logEnable) Logger.Trace("ParseTransform2: {0} ", transform);
 
             logSource = "transform " + transform;
             if ((transform != null) && (transform.IndexOf("translate") >= 0))
@@ -606,7 +610,7 @@ namespace GrblPlotter
                 else
                 {
                     tmp.M11 = ConvertToPixel(coord);
-                    tmp.M22 = ConvertToPixel(coord);  
+                    tmp.M22 = ConvertToPixel(coord);
                 }
                 if (svgComments) Graphic.SetComment(string.Format(" SVG-Scale {0} {1} ", tmp.M11, tmp.M22));
                 if (logEnable) Logger.Trace("◯ SVG-Scale {0} {1} ", tmp.M11, tmp.M22);
@@ -740,7 +744,7 @@ namespace GrblPlotter
         {
             string[] forms = { "rect", "circle", "ellipse", "line", "polyline", "polygon", "text", "image" };
             string pathElementString = "";
-        //    if (logEnable) Logger.Debug("►►► ParseBasicElements Level:{0}", level);
+            //    if (logEnable) Logger.Debug("►►► ParseBasicElements Level:{0}", level);
             foreach (var form in forms)
             {
                 int maxCount = svgCode.Elements(nspace + form).Count();
@@ -759,7 +763,7 @@ namespace GrblPlotter
                     }
                     pathElementString = pathElement.ToString();
                     pathElementString = pathElementString.Substring(0, Math.Min(100, pathElementString.Length));
-             //       if (logEnable) Logger.Debug("►►► ParseBasicElements Elements:{0} Level:{1}", pathElementString, level);
+                    //       if (logEnable) Logger.Debug("►►► ParseBasicElements Elements:{0} Level:{1}", pathElementString, level);
                     if (pathElement != null)
                     {
                         if (logEnable) Logger.Trace("►►► ParseBasicElements: '{0}' Level:{1}", form, level);
@@ -770,28 +774,28 @@ namespace GrblPlotter
                         ParseAttributs(pathElement);                // process color and stroke-dasharray
                         logSource = "Basic element " + form;
 
-						string attrId="";
+                        string attrId = "";
                         if (pathElement.Attribute("id") != null)
                         {
-							attrId = pathElement.Attribute("id").Value;
-							Graphic.SetPathId(attrId);
-						}
+                            attrId = pathElement.Attribute("id").Value;
+                            Graphic.SetPathId(attrId);
+                        }
 
                         offsetX = 0; offsetY = 0;
 
                         float x = 0, y = 0, x1 = 0, y1 = 0, x2 = 0, y2 = 0, width = 0, height = 0, rx = 0, ry = 0, cx = 0, cy = 0, r = 0;
                         string[] points = { "" };
-						
-						/* skip element if not visible */
-						string visibility = "";
+
+                        /* skip element if not visible */
+                        string visibility = "";
                         if (pathElement.Attribute("visibility") != null) { visibility = pathElement.Attribute("visibility").Value; }
-						if (Properties.Settings.Default.importSVGDontPlot && visibility.Contains("hidden"))
-						{   
-							Graphic.SetHeaderInfo(string.Format(" Hide SVG Element:{0}   Id:{1}", form, attrId));
-							Graphic.SetHeaderMessage(string.Format(" {0}-1302: SVG Element '{1}' is not visible and will not be imported", CodeMessage.Attention, form));
-							continue;
-						}
-						
+                        if (Properties.Settings.Default.importSVGDontPlot && visibility.Contains("hidden"))
+                        {
+                            Graphic.SetHeaderInfo(string.Format(" Hide SVG Element:{0}   Id:{1}", form, attrId));
+                            Graphic.SetHeaderMessage(string.Format(" {0}-1302: SVG Element '{1}' is not visible and will not be imported", CodeMessage.Attention, form));
+                            continue;
+                        }
+
                         if (pathElement.Attribute("x") != null) x = ConvertToPixel(pathElement.Attribute("x").Value);
                         if (pathElement.Attribute("y") != null) y = ConvertToPixel(pathElement.Attribute("y").Value);
                         if (pathElement.Attribute("x1") != null) x1 = ConvertToPixel(pathElement.Attribute("x1").Value);
@@ -1012,34 +1016,35 @@ namespace GrblPlotter
                     if (id.Length > 20)
                         id = id.Substring(0, 20);
 
-					lastPathInformation = "";
-					string attrId = "";
+                    lastPathInformation = "";
+                    string attrId = "";
                     oldMatrixElement = matrixElement;
                     ParseTransform(pathElement, false, level);      // transform will be applied in gcodeMove
                     ParseAttributs(pathElement);                    // process color and stroke-dasharray
                     shapeCounter++;
 
                     if (pathElement.Attribute("id") != null)
-					{   attrId = pathElement.Attribute("id").Value;
-						Graphic.SetPathId(attrId);
-						lastPathInformation = "id=" + attrId;
-					}
-					
-					/* skip element if not visible */
-					string visibility = "";
+                    {
+                        attrId = pathElement.Attribute("id").Value;
+                        Graphic.SetPathId(attrId);
+                        lastPathInformation = "id=" + attrId;
+                    }
+
+                    /* skip element if not visible */
+                    string visibility = "";
                     if (pathElement.Attribute("visibility") != null) { visibility = pathElement.Attribute("visibility").Value; }
-					if (Properties.Settings.Default.importSVGDontPlot && visibility.Contains("hidden"))
-					{   
-						Graphic.SetHeaderInfo(string.Format(" Hide SVG Path Id:{0}", attrId));
-						Graphic.SetHeaderMessage(string.Format(" {0}-1302: SVG Path-Id '{1}' is not visible and will not be imported", CodeMessage.Attention, attrId));
-						continue;
-					}
-					
+                    if (Properties.Settings.Default.importSVGDontPlot && visibility.Contains("hidden"))
+                    {
+                        Graphic.SetHeaderInfo(string.Format(" Hide SVG Path Id:{0}", attrId));
+                        Graphic.SetHeaderMessage(string.Format(" {0}-1302: SVG Path-Id '{1}' is not visible and will not be imported", CodeMessage.Attention, attrId));
+                        continue;
+                    }
+
                     if (d.Length > 0)
                     {
                         // split complete path in to command-tokens
                         if (logEnable) Logger.Trace("►►► Path d {0} .....", d.Substring(0, Math.Min(100, d.Length)));
-						lastPathInformation += "  d=" + d.Substring(0, Math.Min(100, d.Length));
+                        lastPathInformation += "  d=" + d.Substring(0, Math.Min(100, d.Length));
                         string separators = @"(?=[A-Za-z-[e]])";
                         var tokens = Regex.Split(d, separators).Where(t => !string.IsNullOrEmpty(t));
                         int objCount = 0;
@@ -1101,12 +1106,13 @@ namespace GrblPlotter
                         { currentX = floatArgs[i] + lastX; currentY = floatArgs[i + 1] + lastY; }
 
                         if (i == 0) // first two coordinates are start of path
-                        {    
-                            firstX = currentX; firstY = currentY; 
+                        {
+                            firstX = currentX; firstY = currentY;
 
                             if (!startPath && Gcode.IsEqual(lastX, currentX) && Gcode.IsEqual(lastY, currentY)) // found a 2nd 'M' or 'm' command within 'd' path		
-                            {   Logger.Warn("⚠ Skip 2nd 'm' because of no position change: {0}",lastPathInformation); }
-                            else { 
+                            { Logger.Warn("⚠ Skip 2nd 'm' because of no position change: {0}", lastPathInformation); }
+                            else
+                            {
                                 if (svgComments) { Graphic.SetComment(string.Format(" Start new subpath at {0} {1} ", floatArgs[i], floatArgs[i + 1])); }
                                 if (svgNodesOnly)
                                     GCodeDotOnly(currentX, currentY, (command.ToString()));
@@ -1116,11 +1122,11 @@ namespace GrblPlotter
                             }
                         }
                         else
-                        {	
+                        {
                             if (svgNodesOnly)
-								GCodeDotOnly(currentX, currentY, command.ToString());
-							else
-								SVGMoveTo(currentX, currentY, string.Format("{0} {1,3})  X:{2:0.00} Y:{3:0.00}", command, (i/2), currentX, currentY));  	// G1
+                                GCodeDotOnly(currentX, currentY, command.ToString());
+                            else
+                                SVGMoveTo(currentX, currentY, string.Format("{0} {1,3})  X:{2:0.00} Y:{3:0.00}", command, (i / 2), currentX, currentY));  	// G1
                         }
 
                         lastX = currentX; lastY = currentY;
@@ -1255,7 +1261,8 @@ namespace GrblPlotter
                             Vector c1 = new Vector(floatArgs[rep + 0], floatArgs[rep + 1]) + (Vector)Off;
                             Vector c2 = new Vector(floatArgs[rep + 2], floatArgs[rep + 3]) + (Vector)Off;
                             Vector c3 = new Vector(floatArgs[rep + 4], floatArgs[rep + 5]) + (Vector)Off;
-                            if (logEnable) { 
+                            if (logEnable)
+                            {
                                 Logger.Trace("CalcCubicBezier  0: X:{0:0.000}   Y:{1:0.000}", lastX, lastY);
                                 Logger.Trace("CalcCubicBezier c1: X:{0:0.000}   Y:{1:0.000}", c1.X, c1.Y);
                                 Logger.Trace("CalcCubicBezier c2: X:{0:0.000}   Y:{1:0.000}", c2.X, c2.Y);
@@ -1459,9 +1466,9 @@ namespace GrblPlotter
                 Point tmp = TranslateXY(orig);
                 if (cmt.ToLower() == "z")
                 {
-                    if (logEnable)        Logger.Trace("▲▲▲ SVGStop at: x:{0:0.000} y:{1:0.000}  svg:{2}", tmp.X, tmp.Y, cmt);
+                    if (logEnable) Logger.Trace("▲▲▲ SVGStop at: x:{0:0.000} y:{1:0.000}  svg:{2}", tmp.X, tmp.Y, cmt);
                 }
-                else  if (logEnableCoord) Logger.Trace("  ● SVGMoveTo:  x:{0:0.000} y:{1:0.000}  svg:{2}", tmp.X, tmp.Y, cmt);
+                else if (logEnableCoord) Logger.Trace("  ● SVGMoveTo:  x:{0:0.000} y:{1:0.000}  svg:{2}", tmp.X, tmp.Y, cmt);
                 Graphic.AddLine(tmp);//, cmt);
             }
             else

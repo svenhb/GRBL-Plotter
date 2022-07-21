@@ -323,11 +323,12 @@ namespace GrblPlotter
             rubberBand.Reset();
             actualLine.Reset();
             jogPath.Reset();
-			
+
             if (list.Count > 0)
-			{	jogPath.AddLines(list.ToArray());
+            {
+                jogPath.AddLines(list.ToArray());
                 lastSet = ToPoint(list[list.Count - 1]);
-			}
+            }
             if (jogPath.PointCount > 0)
             { rubberBand.AddLine(lastSet, posMoveTmp); }
 
@@ -371,7 +372,7 @@ namespace GrblPlotter
             if (jogPath.PointCount <= 0)
             {
                 joggcode = "(No jog path to send)";
-                return; 
+                return;
             }
             float x, y, factor = 1;
             float lastX = 0, lastY = 0;

@@ -87,12 +87,12 @@ namespace GrblPlotter
             pathTool.Reset();
             pathMarker.Reset();
             pathHeightMap.Reset();
-     //       pathBackground.Reset();
+            //       pathBackground.Reset();
             pathMarkSelection.Reset();
             pathRotaryInfo.Reset();
             pathDimension.Reset();
             Simulation.pathSimulation.Reset();
-			
+
             pathObject.Clear();
             path = pathPenUp;
             onlyZ = 0;
@@ -222,8 +222,8 @@ namespace GrblPlotter
                             }
                         }
 
-                    //    if (!((path == pathPenUp) && largeDataAmount && (oldL.lineNumber > 10) && (oldL.lineNumber < (numberDataLines - 10))))
-                    // no improovement, when skipping pen-up paths 2022-04-20
+                        //    if (!((path == pathPenUp) && largeDataAmount && (oldL.lineNumber > 10) && (oldL.lineNumber < (numberDataLines - 10))))
+                        // no improovement, when skipping pen-up paths 2022-04-20
                         path.AddLine((float)oldL.actualPos.X + viewOffset.X, (float)oldL.actualPos.Y + viewOffset.Y, (float)newL.actualPos.X + viewOffset.X, (float)newL.actualPos.Y + viewOffset.Y);   // 2021-09-02
 
                         if (Properties.Settings.Default.gui2DShowVertexEnable && !largeDataAmount)
@@ -258,7 +258,7 @@ namespace GrblPlotter
                         if (!Properties.Settings.Default.importUnitmm || (modal.unitsMode == 20))
                         { markerSize /= 25.4F; }
                         CreateMarker(pathPenDown, (XyPoint)newL.actualPos, markerSize, 1, false);       // draw cross
-                    //    if ((path == pathPenDown) && (pathActualDown != null))
+                                                                                                        //    if ((path == pathPenDown) && (pathActualDown != null))
                         if (pathActualDown != null)
                         {
                             XyPoint tmpPoint = new XyPoint(newL.actualPos.X + viewOffset.X, newL.actualPos.Y + viewOffset.Y);
@@ -411,56 +411,56 @@ namespace GrblPlotter
                 pathHeightMap.StartFigure();
                 pathHeightMap.AddLine((float)tmp.X, (float)Map.Min.Y, (float)tmp.X, (float)Map.Max.Y);
             }
-			
-			// show X shape -> Z on Y axis
-			double z, zOld, offsetX = -10, offsetY = -10;
-		//	double dimX = Map.Max.X - Map.Min.X;
-			float emSize = 2;
-			float emOffset = emSize/2;
-			GraphicsPath pathToDraw = pathBackground;
-			pathToDraw.Reset();
-            pathToDraw.StartFigure();
-			tmpOld = Map.GetCoordinates(0, 0);
-			zOld = Map.InterpolateZ(tmpOld.X, tmpOld.Y);
-			if (Math.Abs(zOld) < emSize)
-				emOffset = emSize;
 
-/* info below x axis */
-            pathToDraw.AddLine((float)Map.Min.X, (float)(Map.Min.Y + offsetY), (float)Map.Max.X, (float)(Map.Min.Y + offsetY));		// zreo Z
-			AddBackgroundText(pathToDraw, new PointF((float)Map.Min.X, (float)(Map.Min.Y + offsetY + emSize * 1.5)), emSize, string.Format("Z profile over X, at Y={0:0.00}", tmpOld.Y));
-			AddBackgroundText(pathToDraw, new PointF((float)Map.Max.X + emSize, (float)(Map.Min.Y + offsetY + emSize/2)), emSize, "Z= 0.00");
-			AddBackgroundText(pathToDraw, new PointF((float)Map.Max.X + emSize, (float)(Map.Min.Y + offsetY + zOld - emOffset)), emSize, string.Format("Z= {0:0.00}",zOld));
+            // show X shape -> Z on Y axis
+            double z, zOld, offsetX = -10, offsetY = -10;
+            //	double dimX = Map.Max.X - Map.Min.X;
+            float emSize = 2;
+            float emOffset = emSize / 2;
+            GraphicsPath pathToDraw = pathBackground;
+            pathToDraw.Reset();
+            pathToDraw.StartFigure();
+            tmpOld = Map.GetCoordinates(0, 0);
+            zOld = Map.InterpolateZ(tmpOld.X, tmpOld.Y);
+            if (Math.Abs(zOld) < emSize)
+                emOffset = emSize;
+
+            /* info below x axis */
+            pathToDraw.AddLine((float)Map.Min.X, (float)(Map.Min.Y + offsetY), (float)Map.Max.X, (float)(Map.Min.Y + offsetY));     // zreo Z
+            AddBackgroundText(pathToDraw, new PointF((float)Map.Min.X, (float)(Map.Min.Y + offsetY + emSize * 1.5)), emSize, string.Format("Z profile over X, at Y={0:0.00}", tmpOld.Y));
+            AddBackgroundText(pathToDraw, new PointF((float)Map.Max.X + emSize, (float)(Map.Min.Y + offsetY + emSize / 2)), emSize, "Z= 0.00");
+            AddBackgroundText(pathToDraw, new PointF((float)Map.Max.X + emSize, (float)(Map.Min.Y + offsetY + zOld - emOffset)), emSize, string.Format("Z= {0:0.00}", zOld));
 
             pathToDraw.StartFigure();
             for (x = 1; x < Map.SizeX; x++)
             {
                 tmp = Map.GetCoordinates(x, 0);
-				z = Map.InterpolateZ(tmp.X, tmp.Y);
+                z = Map.InterpolateZ(tmp.X, tmp.Y);
                 pathToDraw.AddLine((float)tmpOld.X, (float)(Map.Min.Y + offsetY + zOld), (float)tmp.X, (float)(Map.Min.Y + offsetY + z));
-				tmpOld = tmp;
-				zOld = z;
+                tmpOld = tmp;
+                zOld = z;
             }
 
-/* info left of y axis */
+            /* info left of y axis */
             tmpOld = Map.GetCoordinates(0, 0);
             zOld = Map.InterpolateZ(tmpOld.X, tmpOld.Y);
 
             pathToDraw.StartFigure();
-            pathToDraw.AddLine((float)(Map.Min.X + offsetX),(float)Map.Min.Y, (float)(Map.Min.X + offsetX), (float)Map.Max.Y);		// zreo Z
-		//	AddBackgroundText(pathToDraw, new PointF((float)Map.Min.X, (float)(offsetY + emSize * 1.5)), emSize, string.Format("Z profile over X, at Y={0:0.00}", tmpOld.Y));
-		//	AddBackgroundText(pathToDraw, new PointF((float)(Map.Max.X + offsetX - emSize), (float)(Map.Min.Y - emSize/2)), emSize, "Z= 0.00", true);
-		//	AddBackgroundText(pathToDraw, new PointF((float)(Map.Max.X + offsetX + zOld - emOffset), (float)(Map.Min.Y - emSize/2)), emSize, string.Format("Z= {0:0.00}",zOld), true);
+            pathToDraw.AddLine((float)(Map.Min.X + offsetX), (float)Map.Min.Y, (float)(Map.Min.X + offsetX), (float)Map.Max.Y);     // zreo Z
+                                                                                                                                    //	AddBackgroundText(pathToDraw, new PointF((float)Map.Min.X, (float)(offsetY + emSize * 1.5)), emSize, string.Format("Z profile over X, at Y={0:0.00}", tmpOld.Y));
+                                                                                                                                    //	AddBackgroundText(pathToDraw, new PointF((float)(Map.Max.X + offsetX - emSize), (float)(Map.Min.Y - emSize/2)), emSize, "Z= 0.00", true);
+                                                                                                                                    //	AddBackgroundText(pathToDraw, new PointF((float)(Map.Max.X + offsetX + zOld - emOffset), (float)(Map.Min.Y - emSize/2)), emSize, string.Format("Z= {0:0.00}",zOld), true);
 
             pathToDraw.StartFigure();
             for (y = 1; y < Map.SizeY; y++)
             {
                 tmp = Map.GetCoordinates(0, y);
-				z = Map.InterpolateZ(tmp.X, tmp.Y);
-                pathToDraw.AddLine((float)(Map.Min.X + offsetX + zOld),(float)tmpOld.Y, (float)(Map.Min.X + offsetX + z), (float)tmp.Y);
-				tmpOld = tmp;
-				zOld = z;
+                z = Map.InterpolateZ(tmp.X, tmp.Y);
+                pathToDraw.AddLine((float)(Map.Min.X + offsetX + zOld), (float)tmpOld.Y, (float)(Map.Min.X + offsetX + z), (float)tmp.Y);
+                tmpOld = tmp;
+                zOld = z;
             }
-			
+
             tmp = Map.GetCoordinates(0, 0);
             xyzSize.SetDimensionXY(tmp.X, tmp.Y);
             tmp = Map.GetCoordinates(Map.SizeX, Map.SizeY);
@@ -509,23 +509,23 @@ namespace GrblPlotter
             matrix.Dispose();
         }
 
-        private static void AddBackgroundText(GraphicsPath path, PointF pos, float emSize, string txt, bool vertical=false)
-        {   
-			Logger.Info("AddBackgroundText x:{0} y:{1}  emSize:{2}  text:{3}", pos.X, pos.Y, emSize, txt);
+        private static void AddBackgroundText(GraphicsPath path, PointF pos, float emSize, string txt, bool vertical = false)
+        {
+            Logger.Info("AddBackgroundText x:{0} y:{1}  emSize:{2}  text:{3}", pos.X, pos.Y, emSize, txt);
             float centerX = (float)pos.X;// (float)((clipMax.X + clipMin.X) / 2);
             float centerY = (float)pos.Y;// (float)((clipMax.Y + clipMin.Y) / 2);
 
-			try
+            try
             {
                 System.Drawing.Drawing2D.Matrix matrix = new System.Drawing.Drawing2D.Matrix();
                 matrix.Scale(1, -1);
                 path.Transform(matrix);
-          /*      if (vertical)
-                {
-                    matrix = new System.Drawing.Drawing2D.Matrix(); 
-                    matrix.Rotate(-90);
-                    path.Transform(matrix);
-                }*/
+                /*      if (vertical)
+                      {
+                          matrix = new System.Drawing.Drawing2D.Matrix(); 
+                          matrix.Rotate(-90);
+                          path.Transform(matrix);
+                      }*/
                 path.StartFigure();
 
                 System.Drawing.FontFamily myFont = new System.Drawing.FontFamily("Arial");
@@ -535,21 +535,21 @@ namespace GrblPlotter
                     LineAlignment = System.Drawing.StringAlignment.Near
                 };
                 path.AddString(txt, myFont, (int)System.Drawing.FontStyle.Regular, emSize, new System.Drawing.PointF(centerX, -centerY), sFormat);
-				
-			/*	if (vertical)
-                {
-                    matrix = new System.Drawing.Drawing2D.Matrix();
-                    matrix.Rotate(90);
-					path.Transform(matrix);
-                }*/
+
+                /*	if (vertical)
+                    {
+                        matrix = new System.Drawing.Drawing2D.Matrix();
+                        matrix.Rotate(90);
+                        path.Transform(matrix);
+                    }*/
                 matrix = new System.Drawing.Drawing2D.Matrix();
                 matrix.Scale(1, -1);
                 path.Transform(matrix);
 
-				myFont.Dispose();
-				sFormat.Dispose();
-			}
-			catch (Exception err) {Logger.Error(err,"AddBackgroundText ");}
+                myFont.Dispose();
+                sFormat.Dispose();
+            }
+            catch (Exception err) { Logger.Error(err, "AddBackgroundText "); }
         }
 
 
@@ -679,7 +679,7 @@ namespace GrblPlotter
             { Logger.Error("CreateRuler, path=null"); return; }
 
             path.Reset();
-			pathGrid1.Reset();
+            pathGrid1.Reset();
             pathGrid10.Reset();
             pathGrid100.Reset();
             pathGrid1000.Reset();
@@ -717,31 +717,36 @@ namespace GrblPlotter
                 if (i % divider_short == 0)
                 {
                     if (i % 10000 == 0)
-                    {   path.AddLine(x, 0, x, -length5);        // 1000
-                        pathGrid10000.AddLine(x, dP.minY-2000, x, dP.maxY+2000);
+                    {
+                        path.AddLine(x, 0, x, -length5);        // 1000
+                        pathGrid10000.AddLine(x, dP.minY - 2000, x, dP.maxY + 2000);
                         pathGrid10000.StartFigure();
                     }
-                    else if(i % 1000 == 0)
-                    {   path.AddLine(x, 0, x, -length5);        // 1000
-                        pathGrid1000.AddLine(x, dP.minY-500, x, dP.maxY+500);
+                    else if (i % 1000 == 0)
+                    {
+                        path.AddLine(x, 0, x, -length5);        // 1000
+                        pathGrid1000.AddLine(x, dP.minY - 500, x, dP.maxY + 500);
                         pathGrid1000.StartFigure();
                     }
-                    else if(i % divider_long == 0)
-                    {   path.AddLine(x, 0, x, -length5);        // 100 
+                    else if (i % divider_long == 0)
+                    {
+                        path.AddLine(x, 0, x, -length5);        // 100 
                         pathGrid100.AddLine(x, dP.minY, x, dP.maxY);
                         pathGrid100.StartFigure();
-                    }  	             
+                    }
                     else if ((i % divider_med == 0) && (rangeX < (2 * show_short)))
-                    { 	path.AddLine(x, 0, x, -length3);   	// 10   
-						pathGrid10.AddLine(x, dP.minY, x, dP.maxY);
+                    {
+                        path.AddLine(x, 0, x, -length3);    // 10   
+                        pathGrid10.AddLine(x, dP.minY, x, dP.maxY);
                         pathGrid10.StartFigure();
                     }
                     else if (rangeX < show_short)
                     { path.AddLine(x, 0, x, -length2); }  	// 5
                 }
                 else if (dP.maxX < show_smallest)
-                { 	path.AddLine(x, 0, x, -length1); 		// 1
-				}
+                {
+                    path.AddLine(x, 0, x, -length1);        // 1
+                }
                 pathGrid1.AddLine(x, dP.minY, x, dP.maxY);
                 pathGrid1.StartFigure();
             }
@@ -754,31 +759,34 @@ namespace GrblPlotter
                     if (i % 10000 == 0)
                     {
                         path.AddLine(0, y, -length5, y);    // 100
-                        pathGrid10000.AddLine(dP.minX-2000, y, dP.maxX+2000, y);
+                        pathGrid10000.AddLine(dP.minX - 2000, y, dP.maxX + 2000, y);
                         pathGrid10000.StartFigure();
                     }
-                    else if(i % 1000 == 0)
+                    else if (i % 1000 == 0)
                     {
                         path.AddLine(0, y, -length5, y);    // 100
-                        pathGrid1000.AddLine(dP.minX-500, y, dP.maxX+500, y);
+                        pathGrid1000.AddLine(dP.minX - 500, y, dP.maxX + 500, y);
                         pathGrid1000.StartFigure();
                     }
-                    else if(i % divider_long == 0)
-                    {   path.AddLine(0, y, -length5, y);    // 100
+                    else if (i % divider_long == 0)
+                    {
+                        path.AddLine(0, y, -length5, y);    // 100
                         pathGrid100.AddLine(dP.minX, y, dP.maxX, y);
                         pathGrid100.StartFigure();
-                    } 	
+                    }
                     else if ((i % divider_med == 0) && (rangeY < (2 * show_short)))
-                    { 	path.AddLine(0, y, -length3, y);  	// 10           
-						pathGrid10.AddLine(dP.minX, y, dP.maxX, y);
+                    {
+                        path.AddLine(0, y, -length3, y);    // 10           
+                        pathGrid10.AddLine(dP.minX, y, dP.maxX, y);
                         pathGrid10.StartFigure();
                     }
                     else if (rangeY < show_short)
                     { path.AddLine(0, y, -length2, y); } 	// 5
                 }
                 else if (dP.maxY < show_smallest)
-                { 	path.AddLine(0, y, -length1, y);     	// 1
-				}
+                {
+                    path.AddLine(0, y, -length1, y);        // 1
+                }
                 pathGrid1.AddLine(dP.minX, y, dP.maxX, y);
                 pathGrid1.StartFigure();
             }
@@ -844,7 +852,7 @@ namespace GrblPlotter
         }
 
         // setup drawing area 
-        public static void CalcDrawingArea(float markerSize=-1)
+        public static void CalcDrawingArea(float markerSize = -1)
         {
             double extend = 1.01;                                                       // extend dimension a little bit
             double roundTo = 5;                                                         // round-up dimensions
@@ -871,8 +879,8 @@ namespace GrblPlotter
             //           createRuler(pathRuler, drawingSize.minX, drawingSize.maxX, drawingSize.minY, drawingSize.maxY);
             CreateRuler(pathRuler, drawingSize);
 
-			if (markerSize <= 0)
-				markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (500/xyzSize.dimy));
+            if (markerSize <= 0)
+                markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (500 / xyzSize.dimy));
             CreateMarkerPath(markerSize);
 
             CreateDimensionBox();
@@ -891,13 +899,14 @@ namespace GrblPlotter
 
         public static float MarkerSize = 10;
         public static void CreateMarkerPath()
-        {   CreateMarkerPath(MarkerSize); }
+        { CreateMarkerPath(MarkerSize); }
         public static void CreateMarkerPath(float size)
-        {   if (size > 0)
+        {
+            if (size > 0)
                 MarkerSize = size;
             else
-                MarkerSize = (float)Math.Sqrt(xyzSize.dimx * xyzSize.dimx + xyzSize.dimy * xyzSize.dimy) / 40f; 
-            CreateMarkerPath(false, new XyPoint(0, 0)); 
+                MarkerSize = (float)Math.Sqrt(xyzSize.dimx * xyzSize.dimx + xyzSize.dimy * xyzSize.dimy) / 40f;
+            CreateMarkerPath(false, new XyPoint(0, 0));
         }
 
         internal static void CreateMarkerPath(bool showCenter, XyPoint center)

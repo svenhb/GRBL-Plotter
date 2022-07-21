@@ -372,12 +372,12 @@ namespace GrblPlotter
             private static int lastLine = 0;
             private static int maxLine = 0;
             private static readonly float tolerance = 0.1f;              // to assume two values as same
-			public static System.Windows.Point offset2DView;
+            public static System.Windows.Point offset2DView;
             public static System.Windows.Point offset2DViewOld;
 
             private static int indexLastSucess = 0;
-			private static readonly bool logProgress = false;
-			
+            private static readonly bool logProgress = false;
+
             public static void ProcessedPathClear()
             {
                 Simulation.pathSimulation.Reset();
@@ -395,21 +395,21 @@ namespace GrblPlotter
             {
                 for (int i = start; i < simuList.Count; i++)
                 {
-					if (!IsSameXYPos(start, i))
+                    if (!IsSameXYPos(start, i))
                         return i;
                 }
                 return start + 1;
             }
-			private static bool IsSameXYPos(int a, int b)
-			{
+            private static bool IsSameXYPos(int a, int b)
+            {
                 if (!IsSameXYPos(simuList[a].actualPos, simuList[b].actualPos))
-                    return false;	
+                    return false;
                 if ((simuList[a].motionMode == 0) && (simuList[b].motionMode > 1))
                     return false;   // same pos but diff motionMode -> full circle?
                 return true;
-			}
+            }
             private static bool IsSameXYPos(XyzPoint a, XyzPoint b)
-            {                
+            {
                 if ((Math.Abs(a.X - b.X) > tolerance) || (Math.Abs(a.Y - b.Y) > tolerance))
                     return false;
                 return true;
@@ -424,7 +424,7 @@ namespace GrblPlotter
                 if ((lastPos.X == newPos.X) && (lastPos.Y == newPos.Y))		// no change in grbl position - nothing to do
                     return;
 
-                if ((simuList == null) || (simuList.Count == 0) || ((maxLine + 1) >= simuList.Count))	
+                if ((simuList == null) || (simuList.Count == 0) || ((maxLine + 1) >= simuList.Count))
                     return;
 
                 XyzPoint newPosTileOffseted;
@@ -460,21 +460,21 @@ namespace GrblPlotter
                         onTrack = PointOnLine(ToPointF(simuList[iStart].actualPos), ToPointF(simuList[iEnd].actualPos), ToPointF(newPosTileOffseted));
                     }
 
-					if (logProgress) Logger.Trace("Processed path iStart:{0,2}  iStart.X:{1,2:0.0} Y:{2,2:0.0}  iEnd:{3,2}  iEnd.X:{4,2:0.0} Y:{5,2:0.0}  newPos X:{6,2:0.0} Y:{7,2:0.0}  onTrack:{8}", iStart, simuList[iStart].actualPos.X, simuList[iStart].actualPos.Y, iEnd, simuList[iEnd].actualPos.X, simuList[iEnd].actualPos.Y, newPos.X, newPos.Y, onTrack);
-					
+                    if (logProgress) Logger.Trace("Processed path iStart:{0,2}  iStart.X:{1,2:0.0} Y:{2,2:0.0}  iEnd:{3,2}  iEnd.X:{4,2:0.0} Y:{5,2:0.0}  newPos X:{6,2:0.0} Y:{7,2:0.0}  onTrack:{8}", iStart, simuList[iStart].actualPos.X, simuList[iStart].actualPos.Y, iEnd, simuList[iEnd].actualPos.X, simuList[iEnd].actualPos.Y, newPos.X, newPos.Y, onTrack);
+
                     if (IsSameXYPos(simuList[iEnd].actualPos, newPosTileOffseted))
                     { lastPos = newPos; }
 
                     if (onTrack)			// two consecutive command lines found (where newPos is in-between) - were lines skipped?
-                    {   
+                    {
                         indexLastSucess = iStart;
-						for (int k = lastLine + 1; k <= iStart; k++)	// were lines skipped?
+                        for (int k = lastLine + 1; k <= iStart; k++)	// were lines skipped?
                         {
-							// no movement - nothing to do - except probably full circle
+                            // no movement - nothing to do - except probably full circle
                             if ((lastGCodePos.X == simuList[k].actualPos.X) && (lastGCodePos.Y == simuList[k].actualPos.Y) && (simuList[k].motionMode < 2))
-                            {   continue;  }
+                            { continue; }
 
-							// draw skipped lines
+                            // draw skipped lines
                             if (simuList[k].motionMode == 0)		// new path
                             {
                                 lastGCodePos = new XyzPoint(simuList[k].actualPos.X, simuList[k].actualPos.Y, simuList[k].actualPos.Z);
@@ -514,14 +514,15 @@ namespace GrblPlotter
                             Simulation.pathSimulation.AddLine(ToPointF(lastPos - tileOffset), ToPointF(newPos));
                         }
 
-                        lastLine = iStart;		
+                        lastLine = iStart;
 
-						if (Properties.Settings.Default.importGraphicClipShowOrigPositionShiftTileProcessed)
-						{	offset2DView = new System.Windows.Point(simuList[iStart].actualOffset.X, simuList[iStart].actualOffset.Y);
+                        if (Properties.Settings.Default.importGraphicClipShowOrigPositionShiftTileProcessed)
+                        {
+                            offset2DView = new System.Windows.Point(simuList[iStart].actualOffset.X, simuList[iStart].actualOffset.Y);
 
-							if (!offset2DView.Equals(offset2DViewOld))	// special case tiles - new tile, reset simulation-path
-								Simulation.pathSimulation.Reset();
-						}
+                            if (!offset2DView.Equals(offset2DViewOld))  // special case tiles - new tile, reset simulation-path
+                                Simulation.pathSimulation.Reset();
+                        }
                         offset2DViewOld = offset2DView;
 
                         lastPos = newPos;
@@ -558,11 +559,11 @@ namespace GrblPlotter
 
             private static bool PointOnLine(PointF p1, PointF p2, PointF xp)
             {
-                if ((xp.X < Math.Min(p1.X-tolerance, p2.X-tolerance)) || (xp.X > Math.Max(p1.X+tolerance, p2.X+tolerance)))
+                if ((xp.X < Math.Min(p1.X - tolerance, p2.X - tolerance)) || (xp.X > Math.Max(p1.X + tolerance, p2.X + tolerance)))
                 {
                     return false;
                 }
-                if ((xp.Y < Math.Min(p1.Y-tolerance, p2.Y-tolerance)) || (xp.Y > Math.Max(p1.Y+tolerance, p2.Y+tolerance)))
+                if ((xp.Y < Math.Min(p1.Y - tolerance, p2.Y - tolerance)) || (xp.Y > Math.Max(p1.Y + tolerance, p2.Y + tolerance)))
                 {
                     return false;
                 }

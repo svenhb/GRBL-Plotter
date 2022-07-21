@@ -66,59 +66,61 @@ namespace GrblPlotter
             const string reg_key_admin2 = "HKEY_LOCAL_MACHINE\\SOFTWARE\\GRBL-Plotter";
             string newPathUser = "", newPathAdmin = "", newPathAdmin2 = "";
             try
-            {   newPathUser = (string)Registry.GetValue(reg_key_user, "DataPath", 0);  }
+            { newPathUser = (string)Registry.GetValue(reg_key_user, "DataPath", 0); }
             catch { }
             try
-            {   newPathAdmin = (string)Registry.GetValue(reg_key_admin, "DataPath", 0); }
+            { newPathAdmin = (string)Registry.GetValue(reg_key_admin, "DataPath", 0); }
             catch { }
             try
-            {   newPathAdmin2 = (string)Registry.GetValue(reg_key_admin2, "DataPath", 0); }
+            { newPathAdmin2 = (string)Registry.GetValue(reg_key_admin2, "DataPath", 0); }
             catch { }
 
             if (!string.IsNullOrEmpty(newPathUser))
             {
                 Datapath.AppDataFolder = newPathUser;                   // get path from registry
                 LogAppDataPath(reg_key_user);
-				EventCollector.SetInstalled("HKCU");
+                EventCollector.SetInstalled("HKCU");
             }
             else if (!string.IsNullOrEmpty(newPathAdmin))
             {
                 Datapath.AppDataFolder = newPathAdmin;                   // get path from registry
                 LogAppDataPath(reg_key_admin);
-				EventCollector.SetInstalled("HKLM-WOW");
+                EventCollector.SetInstalled("HKLM-WOW");
             }
             else if (!string.IsNullOrEmpty(newPathAdmin2))
             {
                 Datapath.AppDataFolder = newPathAdmin2;                   // get path from registry
                 LogAppDataPath(reg_key_admin2);
-				EventCollector.SetInstalled("HKLM");
+                EventCollector.SetInstalled("HKLM");
             }
             else // no setup?
             {
-				if (Datapath.Application.StartsWith("C:\\Program"))
-				{	newPathUser = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\GRBL_Plotter";
+                if (Datapath.Application.StartsWith("C:\\Program"))
+                {
+                    newPathUser = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\GRBL_Plotter";
                     string oldPathData = Datapath.Application + "\\data";
 
                     Datapath.AppDataFolder = newPathUser;                   // set path to my documents
-					LogAppDataPath("fall back");
+                    LogAppDataPath("fall back");
                     Logger.Warn("GetAppDataPath: current path starts with C:\\Program, which is probably write protected: {0}", Datapath.Application);
                     Logger.Warn("GetAppDataPath: switch to new path {0}", newPathUser);
 
-                    DirectoryInfo dir = new DirectoryInfo(newPathUser+"\\data");
+                    DirectoryInfo dir = new DirectoryInfo(newPathUser + "\\data");
                     if (!dir.Exists)
                     {
                         Logger.Warn("GetAppDataPath: copy data-folders from {0} to {1}", oldPathData, newPathUser + "\\data");
                         DirectoryCopy(oldPathData, newPathUser + "\\data", true);
                     }
 
-                    Registry.SetValue(reg_key_user, "DataPath", newPathUser);			// store for next prog-start				
-					EventCollector.SetInstalled("FallBack",true);					
-				}
-				else
-                {	Datapath.AppDataFolder = Datapath.Application;      // use application path
-					LogAppDataPath("Default");
-					EventCollector.SetInstalled("COPY",true);
-				}
+                    Registry.SetValue(reg_key_user, "DataPath", newPathUser);           // store for next prog-start				
+                    EventCollector.SetInstalled("FallBack", true);
+                }
+                else
+                {
+                    Datapath.AppDataFolder = Datapath.Application;      // use application path
+                    LogAppDataPath("Default");
+                    EventCollector.SetInstalled("COPY", true);
+                }
             }
         }
         private void LogAppDataPath(string src)
@@ -126,12 +128,12 @@ namespace GrblPlotter
             NLog.LogManager.Configuration.Variables["basedir"] = Datapath.LogFiles;
             Logger.Info("GetAppDataPath from {0}: {1}", src, Datapath.AppDataFolder);
             Logger.Info("Application path: {0}", Datapath.Application);
-			Logger.Info("user.config path: {0}", ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoaming).FilePath);
+            Logger.Info("user.config path: {0}", ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoaming).FilePath);
         }
 
         private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
         {
-         //   Logger.Info("DirectoryCopy {0}  to  {1}", sourceDirName, destDirName);
+            //   Logger.Info("DirectoryCopy {0}  to  {1}", sourceDirName, destDirName);
             // Get the subdirectories for the specified directory.
             DirectoryInfo dir = new DirectoryInfo(sourceDirName);
 
@@ -470,8 +472,8 @@ namespace GrblPlotter
             virtualJoystickC.JoystickLabel = joystickAStep;
         }
 
-		// update controls on Main form (disable if streaming or no serial)
-		// private void UpdateControlEnables()
+        // update controls on Main form (disable if streaming or no serial)
+        // private void UpdateControlEnables()
         private void UpdateControlEnables()
         {
             if (this.InvokeRequired)
@@ -533,7 +535,7 @@ namespace GrblPlotter
             CbCoolant.Enabled = isConnected & !isStreaming | allowControl;
             CbMist.Enabled = isConnected & !isStreaming | allowControl;
             CbTool.Enabled = isConnected & !isStreaming | allowControl;
-        //    btnReset.Enabled = isConnected;
+            //    btnReset.Enabled = isConnected;
             btnFeedHold.Enabled = isConnected;
             btnResume.Enabled = isConnected;
             btnKillAlarm.Enabled = isConnected;

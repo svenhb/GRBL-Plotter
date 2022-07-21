@@ -165,9 +165,9 @@ namespace GrblPlotter
                     Busy = false;
                     AddToLog("RX Exception - Close port ");
                     Logger.Error(err, " -DataReceived- Close port, clear busy flag ");
-					EventCollector.SetCommunication("Csimple"+err.Message);
+                    EventCollector.SetCommunication("Csimple" + err.Message);
                     this.BeginInvoke(new EventHandler(ClosePort));    //closePort();
-                //    throw;
+                                                                      //    throw;
                 }
             }
         }
@@ -176,18 +176,19 @@ namespace GrblPlotter
         {
             if (serialPort.IsOpen && !string.IsNullOrEmpty(data))
             {
-				try {
-					serialPort.Write(data.Trim() + lineEndTX);      // send single command via form
-					Busy = true;
-					countTimeOut = (int)(countTimeOutMax * 1000 / timerSerial.Interval);
-					string sndTXT = string.Format("> {0,-10} | > set busy flag:{1,4:G} | {2}", data.Trim(), countTimeOut.ToString(), DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"));
-					AddToLog(sndTXT);
-					Logger.Trace("3rd serial TX {0}", data.Trim());
-				}
+                try
+                {
+                    serialPort.Write(data.Trim() + lineEndTX);      // send single command via form
+                    Busy = true;
+                    countTimeOut = (int)(countTimeOutMax * 1000 / timerSerial.Interval);
+                    string sndTXT = string.Format("> {0,-10} | > set busy flag:{1,4:G} | {2}", data.Trim(), countTimeOut.ToString(), DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"));
+                    AddToLog(sndTXT);
+                    Logger.Trace("3rd serial TX {0}", data.Trim());
+                }
                 catch (Exception err)
                 {       // InvalidOperationException, ArgumentNullException, TimeoutException
                     Busy = false;
-                    AddToLog("TX Exception "+err.Message+" - Close port, clear busy flag");
+                    AddToLog("TX Exception " + err.Message + " - Close port, clear busy flag");
                     Logger.Error(err, "SerialPortDataSend 3rd com ");
                     this.BeginInvoke(new EventHandler(ClosePort));    //closePort();
                 }
@@ -238,9 +239,9 @@ namespace GrblPlotter
                 serialPort.StopBits = System.IO.Ports.StopBits.One;
                 serialPort.Handshake = System.IO.Ports.Handshake.None;
                 serialPort.DtrEnable = false;
-				serialPort.ReadTimeout = 500;
-				serialPort.WriteTimeout = 1000;		
-				
+                serialPort.ReadTimeout = 500;
+                serialPort.WriteTimeout = 1000;
+
                 rtbLog.Clear();
                 if (RefreshPorts())
                 {

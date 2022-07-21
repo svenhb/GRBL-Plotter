@@ -78,8 +78,8 @@ namespace GrblPlotter
                 pictureBox1.Image = barcodeImage;
                 btnClipboardBarcode1D.Visible = true;
             }
-     //       b.Dispose();
-       //     barcodeImage.Dispose();
+            //       b.Dispose();
+            //     barcodeImage.Dispose();
         }
         public void BtnGenerateBarcodeClick(object sender, EventArgs e)
         {
@@ -96,8 +96,8 @@ namespace GrblPlotter
                 GenerateGCode1D(b.EncodedValue, b.EncodedType.ToString(), (double)nUDHeight1D.Value);
                 btnClipboardBarcode1D.Visible = true;
             }
-    //        b.Dispose();
-    //        barcodeImage.Dispose();
+            //        b.Dispose();
+            //        barcodeImage.Dispose();
         }
 
         private void GenerateGCode1D(string code, string type, double height)
@@ -225,12 +225,12 @@ namespace GrblPlotter
             if (cBInsertLogo.Checked)
                 qrCodeImage = qrCode.GetGraphic((int)Properties.Settings.Default.importBarcode2DLines, System.Drawing.Color.Black, System.Drawing.Color.White, (System.Drawing.Bitmap)pictureBox3.Image);
             else
-                qrCodeImage = qrCode.GetGraphic((int)Properties.Settings.Default.importBarcode2DLines);	// pixel per module
-     //       qrCode.Dispose();
-    //       qrGenerator.Dispose();
+                qrCodeImage = qrCode.GetGraphic((int)Properties.Settings.Default.importBarcode2DLines); // pixel per module
+                                                                                                        //       qrCode.Dispose();
+                                                                                                        //       qrGenerator.Dispose();
             pictureBox2.Image = qrCodeImage;
             btnClipboardBarcode2D.Visible = true;
-    //        qrCodeImage.Dispose();
+            //        qrCodeImage.Dispose();
         }
 
         public void GenerateGCode2D()

@@ -22,7 +22,6 @@
 */
 
 using System;
-using System.IO;
 using System.Windows.Forms;
 
 //#pragma warning disable CA1305

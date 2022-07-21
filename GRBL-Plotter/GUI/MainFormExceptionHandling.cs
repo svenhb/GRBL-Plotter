@@ -133,69 +133,71 @@ namespace GrblPlotter
                 else
                 { traceString.Append(" No frames to add"); }
             }
-            catch {
+            catch
+            {
                 traceString.Append(" GAF-except ");
-                return traceString.ToString(); 
+                return traceString.ToString();
             }
             return traceString.ToString();
         }
 
     }
-	
-	public static class EventCollector				// allowed chars: A–Z, a–z, 0–9, - . _ ~
-	{
-		// collect history of data processing to find error causes
+
+    public static class EventCollector              // allowed chars: A–Z, a–z, 0–9, - . _ ~
+    {
+        // collect history of data processing to find error causes
         // -time.msg_
-		private static DateTime start=DateTime.Now;
+        private static DateTime start = DateTime.Now;
         //    private static string WindowsVersion = "";  // System.Environment.OSVersion
         //    private static string GRBLVersion = "";
 
-        internal static string installed="";			// Installed? - regkey available
-        private static string exception="";
-        private static string import="";
-        private static string stream="";
-        private static string communication="";
-        private static string transform="";
+        internal static string installed = "";			// Installed? - regkey available
+        private static string exception = "";
+        private static string import = "";
+        private static string stream = "";
+        private static string communication = "";
+        private static string transform = "";
         private static string openForm = "";
-        private static string history="";
-		private static bool errorOccured=false;
-		private static string lastStoredException="";
-		
+        private static string history = "";
+        private static bool errorOccured = false;
+        private static string lastStoredException = "";
+
         public static void Init()
         {
-			start=DateTime.Now;
-        //    WindowsVersion = System.Environment.OSVersion.ToString();
-        //    GRBLVersion= System.Windows.Forms.Application.ProductVersion.ToString();
+            start = DateTime.Now;
+            //    WindowsVersion = System.Environment.OSVersion.ToString();
+            //    GRBLVersion= System.Windows.Forms.Application.ProductVersion.ToString();
         }
-        public static void SetInstalled(string txt, bool show=false)
-		{	installed = txt;
-			if (show) errorOccured = true;			// show switched location
-		}
-		
+        public static void SetInstalled(string txt, bool show = false)
+        {
+            installed = txt;
+            if (show) errorOccured = true;          // show switched location
+        }
+
         public static void SetImport(string txt)    // Itxt, Ishp, Ibqr, Iimg, Isvg...	
         {
             import = GetElapsedTime() + txt;
-            history += import;		//"." + txt;
-		}
+            history += import;      //"." + txt;
+        }
 
         public static void SetStreaming(string txt)	// Sstp, Strt, Schk, Spau, Scnt, Sfin, Serr, 
         {
             stream = GetElapsedTime() + txt;
-            history += stream;		//"."+txt;
-		}
-		
-		public static void SetTransform(string txt) // Tmir, Tscl, Toff, Trot
+            history += stream;      //"."+txt;
+        }
+
+        public static void SetTransform(string txt) // Tmir, Tscl, Toff, Trot
         {
             transform = GetElapsedTime() + txt;
-            history += transform;		//"." + txt;
-		}
+            history += transform;       //"." + txt;
+        }
 
-		public static void SetCommunication(string txt, bool show=false)    // COpS, CLost(show), CRst, CRSa, CRSb, CRE, CSSa, CSEa, CSSb, CSEb - ComSendSerial, ComSendEthernet, ComReceiveSerial
+        public static void SetCommunication(string txt, bool show = false)    // COpS, CLost(show), CRst, CRSa, CRSb, CRE, CSSa, CSEa, CSSb, CSEb - ComSendSerial, ComSendEthernet, ComReceiveSerial
         {
             communication = GetElapsedTime() + txt;
-            history += communication;		//"." + txt;
-			if (show) errorOccured = true;			
-		}
+            history += communication;       //"." + txt;
+            if (show) errorOccured = true;
+        }
         public static void SetOpenForm(string txt) // Ftxt, Fbcd, Fimg, Fsis, Fjog, Fext, Fprb, Fmap, Flas, Fcrd, Fdiy, Fcam, F2nd, F3rd, Fprj
         {
             openForm = GetElapsedTime() + txt;
@@ -203,52 +205,52 @@ namespace GrblPlotter
         }
 
 
-        public static void SetEnd(bool show=false)
-        { 	
-			if (show) history += GetElapsedTime() + "Abort_";
+        public static void SetEnd(bool show = false)
+        {
+            if (show) history += GetElapsedTime() + "Abort_";
 
-			string final = installed + "_";
-			if (!string.IsNullOrEmpty(communication))
-				final += communication + "_";
-			if (!string.IsNullOrEmpty(stream))
-				final += stream + "_";
-			if (!string.IsNullOrEmpty(import))
-				final += import + "_";
-			if (!string.IsNullOrEmpty(transform))
-				final += transform + "_";
+            string final = installed + "_";
+            if (!string.IsNullOrEmpty(communication))
+                final += communication + "_";
+            if (!string.IsNullOrEmpty(stream))
+                final += stream + "_";
+            if (!string.IsNullOrEmpty(import))
+                final += import + "_";
+            if (!string.IsNullOrEmpty(transform))
+                final += transform + "_";
             if (!string.IsNullOrEmpty(openForm))
                 final += openForm + "_";
             if (!string.IsNullOrEmpty(history))
-				final += history + "_";
+                final += history + "_";
 
-			if (errorOccured || show)
-				Properties.Settings.Default.guiLastEndReason = final + "-" + exception + GetElapsedTime() + "END";
-			else
-				Properties.Settings.Default.guiLastEndReason = GetElapsedTime() + "END";
+            if (errorOccured || show)
+                Properties.Settings.Default.guiLastEndReason = final + "-" + exception + GetElapsedTime() + "END";
+            else
+                Properties.Settings.Default.guiLastEndReason = GetElapsedTime() + "END";
             Properties.Settings.Default.Save();
         }
 
         public static void StoreException(string txt)
-        {   
-			errorOccured = true;
-			if (txt != lastStoredException)
-			{	exception += GetElapsedTime() + HttpUtility.UrlEncode(txt) + "_";}	// UrlEncode, because exception can contain forbidden chars: ...GrblPlotter.GCodeFromImage.GenerateResultImageGray(Int16[,]& tmpToolNrArray)
-			else
-			{	exception += "and" + GetElapsedTime();}
-			lastStoredException = txt;
+        {
+            errorOccured = true;
+            if (txt != lastStoredException)
+            { exception += GetElapsedTime() + HttpUtility.UrlEncode(txt) + "_"; }   // UrlEncode, because exception can contain forbidden chars: ...GrblPlotter.GCodeFromImage.GenerateResultImageGray(Int16[,]& tmpToolNrArray)
+            else
+            { exception += "and" + GetElapsedTime(); }
+            lastStoredException = txt;
         }
-		
-		private static string GetElapsedTime()//bool totalSec = false)
-		{
-			int maxLength = 1000;					// also shorten history string
-			if (history.Length > maxLength)
-				history = history.Substring(history.Length - maxLength, maxLength);
-			
-			long elapsedTicks = DateTime.Now.Ticks - start.Ticks;
-			TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
-			
-			return string.Format("-{0:0.00}.", elapsedSpan.TotalSeconds).Replace(",",".");	
-			
-		}
+
+        private static string GetElapsedTime()//bool totalSec = false)
+        {
+            int maxLength = 1000;                   // also shorten history string
+            if (history.Length > maxLength)
+                history = history.Substring(history.Length - maxLength, maxLength);
+
+            long elapsedTicks = DateTime.Now.Ticks - start.Ticks;
+            TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
+
+            return string.Format("-{0:0.00}.", elapsedSpan.TotalSeconds).Replace(",", ".");
+
+        }
     }
 }

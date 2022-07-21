@@ -109,10 +109,10 @@ namespace GrblPlotter
             saveName = Path.GetFileNameWithoutExtension(path);
             toolStripMenuItem2.DropDownItems.Clear();
             LoadRecentList(); //load list from file
-			
-			if (path.StartsWith(Datapath.AppDataFolder))
-			{	path = path.Substring(Datapath.AppDataFolder.Length+1);}
-			
+
+            if (path.StartsWith(Datapath.AppDataFolder))
+            { path = path.Substring(Datapath.AppDataFolder.Length + 1); }
+
             if (MRUlist.Contains(path)) //prevent duplication on recent list
                 MRUlist.Remove(path);
 
@@ -189,24 +189,25 @@ namespace GrblPlotter
             showPicBoxBgImage = false;                  // don't show background image anymore
             pictureBox1.BackgroundImage = null;
             pictureBox1.Image = null;
-            VisuGCode.ClearDrawingPath();	
+            VisuGCode.ClearDrawingPath();
             Graphic.pathBackground.Reset();// = new GraphicsPath();
 
             pictureBox1.Invalidate();                   // resfresh view
 
-			if (LineIsInRange(fCTBCodeClickedLineLast))
-			{	try {	fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);}
-				catch (Exception err) {	Logger.Error(err, "NewCodeStart - fCTBCode.UnbookmarkLine({0}) ",fCTBCodeClickedLineLast);}
-			}
+            if (LineIsInRange(fCTBCodeClickedLineLast))
+            {
+                try { fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast); }
+                catch (Exception err) { Logger.Error(err, "NewCodeStart - fCTBCode.UnbookmarkLine({0}) ", fCTBCodeClickedLineLast); }
+            }
             fCTBCodeClickedLineNow = 0;
             fCTBCodeClickedLineLast = 0;
-       //     fCTBCode.Clear();
+            //     fCTBCode.Clear();
             ClearErrorLines();
 
             SetEditMode(false);
 
             VisuGCode.MarkSelectedFigure(-1);           // hide highlight
-    //        VisuGCode.pathBackground.Reset();
+                                                        //        VisuGCode.pathBackground.Reset();
             Grbl.PosMarker = new XyzPoint(0, 0, 0);
             if (cleanupGraphic)
             {
@@ -241,7 +242,7 @@ namespace GrblPlotter
 
             if (objectCount <= maxObjects)  // set FctbCode.Text directly OR via GCodeVisuWorker.cs
             {
-                if (imported &&(Graphic.GCode != null))
+                if (imported && (Graphic.GCode != null))
                 {
                     SetFctbCodeText(Graphic.GCode.ToString(), imported);          // newCodeEnd
                 }
@@ -257,22 +258,23 @@ namespace GrblPlotter
                     else
                     { lineCount = f.SetTmpGCode(); }								// take code from Graphic.GCode.ToString()
                     f.ShowDialog(this);									// perform VisuGCode.GetGCodeLines via worker
-                    if (imported) {
+                    if (imported)
+                    {
                         string info = "PLEASE WAIT !!!\r\nDisplaying a large number of lines,\r\nthis may takes some seconds.\r\n\r\n" +
                             "Check [Setup - Program behavior - Load G-Code]\r\nto reduce time by skipping display options\r\nwhen exceeding a number of x-thousand lines.";
-                        
+
                         info += string.Format("\r\n{0,8} Lines in file\r\n{1,8} limit to skip display options", lineCount, (Properties.Settings.Default.ctrlImportSkip * 1000));
                         fCTBCode.Text = info;
                     }
                 }
             }
-			
+
             fCTBCode.Refresh();
 
             float markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / picScaling);
             VisuGCode.CalcDrawingArea(markerSize);                                // calc ruler dimension
             VisuGCode.DrawMachineLimit();
-			showPaths = true;
+            showPaths = true;
 
             if (loadTimerStep > 0)				// will be set in StartConvert if CodeSize > 250kb (showProgress = true)
             {
@@ -362,11 +364,12 @@ namespace GrblPlotter
 
         private bool LoadFile(string fileName)
         {
-			if (string.IsNullOrEmpty(fileName) || !fileName.Contains("."))
-			{	Logger.Error("LoadFile '{0}' fileName is empty or does not contain '.' to separate extension", fileName);
-				return false;
-			}
-			
+            if (string.IsNullOrEmpty(fileName) || !fileName.Contains("."))
+            {
+                Logger.Error("LoadFile '{0}' fileName is empty or does not contain '.' to separate extension", fileName);
+                return false;
+            }
+
             if (fileName.StartsWith("http"))
             {
                 tBURL.Text = fileName;
@@ -374,7 +377,7 @@ namespace GrblPlotter
             }
 
             String ext = Path.GetExtension(fileName).ToLower();
-            EventCollector.SetImport("I"+ext.Substring(1));
+            EventCollector.SetImport("I" + ext.Substring(1));
             MainTimer.Stop();
             MainTimer.Start();
 
@@ -413,12 +416,12 @@ namespace GrblPlotter
                 return false;
             }
 
-			if (!File.Exists(fileName))
-			{
-				Logger.Error("▄▄▄▄▄ File not found {0}", fileName);
-				MessageBox.Show(Localization.GetString("mainLoadError1") + fileName + "'", Localization.GetString("mainAttention"));
-				return false;
-			}
+            if (!File.Exists(fileName))
+            {
+                Logger.Error("▄▄▄▄▄ File not found {0}", fileName);
+                MessageBox.Show(Localization.GetString("mainLoadError1") + fileName + "'", Localization.GetString("mainAttention"));
+                return false;
+            }
 
             if (ext == ".svg")
             {
@@ -430,19 +433,19 @@ namespace GrblPlotter
             else if ((ext == ".dxf") || (ext == ".dxf~"))
             {
                 LastLoadedImagePattern = fileName;
-                StartConvert(Graphic.SourceType.DXF, fileName); fileLoaded = true; 
+                StartConvert(Graphic.SourceType.DXF, fileName); fileLoaded = true;
             }
 
             else if (extensionDrill.Contains(ext))
-            {   StartConvert(Graphic.SourceType.Drill, fileName); fileLoaded = true; }
+            { StartConvert(Graphic.SourceType.Drill, fileName); fileLoaded = true; }
 
             else if (extensionGerber.Contains(ext))
-            {   StartConvert(Graphic.SourceType.Gerber, fileName); fileLoaded = true; }
+            { StartConvert(Graphic.SourceType.Gerber, fileName); fileLoaded = true; }
 
             else if (extensionHPGL.Contains(ext))
             {
-                LastLoadedImagePattern = fileName;             
-                StartConvert(Graphic.SourceType.HPGL, fileName); fileLoaded = true; 
+                LastLoadedImagePattern = fileName;
+                StartConvert(Graphic.SourceType.HPGL, fileName); fileLoaded = true;
             }
 
             else if (extensionCSV.Contains(ext))
@@ -475,7 +478,7 @@ namespace GrblPlotter
                 }
 
                 if (showFormInFront) _image_form.Show(this);
-                else     _image_form.Show(); // this);
+                else _image_form.Show(); // this);
 
                 showFormsToolStripMenuItem.Visible = true;
                 _image_form.WindowState = FormWindowState.Normal;
@@ -487,7 +490,7 @@ namespace GrblPlotter
             {
                 if (File.Exists(fileName))
                 {
-					try	// https://stackoverflow.com/questions/9759697/reading-a-file-used-by-another-process
+                    try	// https://stackoverflow.com/questions/9759697/reading-a-file-used-by-another-process
                     {
                         FileStream fs = null;
                         //    using (var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
@@ -508,18 +511,18 @@ namespace GrblPlotter
                                 fs.Dispose();
                         }
                     }
-					catch (IOException)
-					{
-                        ShowIoException("LoadFile", fileName);
-						return false;
-					}
-					catch (Exception err)
+                    catch (IOException)
                     {
-						EventCollector.StoreException("LoadFile: " + err.Message + "  file:" + fileName+" ");
+                        ShowIoException("LoadFile", fileName);
+                        return false;
+                    }
+                    catch (Exception err)
+                    {
+                        EventCollector.StoreException("LoadFile: " + err.Message + "  file:" + fileName + " ");
                         Logger.Error(err, " LoadFile 2 ", fileName);
-                        throw;		// unknown exception...
-					}
-				}
+                        throw;      // unknown exception...
+                    }
+                }
             }
 
             if (ext == ".url")
@@ -546,7 +549,7 @@ namespace GrblPlotter
 
         private string LastLoadedImagePattern = "";
         private void LoadLastGraphic(object sender, EventArgs e)
-        {   LoadFile(LastLoadedImagePattern); }
+        { LoadFile(LastLoadedImagePattern); }
         private void LoadSelectedGraphicImage(object sender, EventArgs e)
         {
             if (_image_form != null)
@@ -611,7 +614,7 @@ namespace GrblPlotter
 
             var parts = tBURL.Text.Split('.');
             string ext = parts[parts.Length - 1].ToLower();   // get extension
-            EventCollector.SetImport("Iu"+ext.Substring(1));
+            EventCollector.SetImport("Iu" + ext.Substring(1));
             importOptions = "";                                                  //   String ext = Path.GetExtension(fileName).ToLower();
                                                                                  //   MessageBox.Show("-" + ext + "-");			
             Logger.Info("▀▀▀▀▀▀▀▀▀▀ Load file START URL: {0}", tBURL.Text);
@@ -711,15 +714,16 @@ namespace GrblPlotter
             string svg_format2 = "image/svg+xml";
             IDataObject iData;
 
-            try {
-				iData = Clipboard.GetDataObject();
-			}
-			catch (Exception err)
-			{
-				Logger.Error(err,"LoadFromClipboard GetDataObject ");
-				MessageBox.Show("Could not get clipboard data:\r\n" + err,"Error");
-				return;
-			}
+            try
+            {
+                iData = Clipboard.GetDataObject();
+            }
+            catch (Exception err)
+            {
+                Logger.Error(err, "LoadFromClipboard GetDataObject ");
+                MessageBox.Show("Could not get clipboard data:\r\n" + err, "Error");
+                return;
+            }
             MemoryStream stream = new MemoryStream();
             if ((iData.GetDataPresent(DataFormats.Text)) || (!fromClipboard))            // not working anymore?
             {
@@ -727,10 +731,10 @@ namespace GrblPlotter
                 string source = "Textfile";
                 string checkContent = "";
                 if (fromClipboard)
-                {   
-                    checkContent = (String)iData.GetData(DataFormats.Text); 
-                    source = "Clipboard"; 
-				}
+                {
+                    checkContent = (String)iData.GetData(DataFormats.Text);
+                    source = "Clipboard";
+                }
                 else
                     checkContent = text;
 
@@ -739,7 +743,7 @@ namespace GrblPlotter
                     tBURL.Text = checkContent;
                     return;
                 }
-                
+
                 string[] checkLines = checkContent.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
                 int posSVG = checkContent.IndexOf("<svg ");
                 if ((posSVG >= 0) && (posSVG < 200))
@@ -894,7 +898,7 @@ namespace GrblPlotter
         { ReStartConvertFile(sender, e, true); }
         public void ReStartConvertFile(object sender, EventArgs e)   			// event from picbox cms
         { ReStartConvertFile(sender, e, false); }
-        public void ReStartConvertFile(object sender, EventArgs e, bool wantGraphic)  
+        public void ReStartConvertFile(object sender, EventArgs e, bool wantGraphic)
         {
             Logger.Info("●●●●● ReStartConvertFile SourceType:{0}", Graphic.graphicInformation.SourceType);
             if (!isStreaming)
@@ -911,24 +915,25 @@ namespace GrblPlotter
                 {
                     this.Cursor = Cursors.WaitCursor;
                     if (lastLoadSource.IndexOf("Clipboard") >= 0)
-                    {   LoadFromClipboard(); }
+                    { LoadFromClipboard(); }
                     else
                     {
                         if (lastLoadFile.Contains("Nothing"))
                         {
                             string mypath = Datapath.MakeAbsolutePath(MRUlist[0]);
-                            LoadFile(mypath); 
+                            LoadFile(mypath);
                         }
                         else
-                        { 	if (wantGraphic && lastLoadFile.EndsWith(fileLastProcessed + ".nc") && (MRUlist.Count > 1))		// safety copy during streaming
-							{	
-								string lastGraphic = Datapath.MakeAbsolutePath(MRUlist[1]);		// try to get 2nd last file
-								Logger.Info("⚠⚠⚠ ReStartConvertFile - from Setup-form - load 2nd last file: {0}", lastGraphic);
-								LoadFile(lastGraphic);
-							}
-							else
-							{	LoadFile(lastLoadFile); }								
-						}
+                        {
+                            if (wantGraphic && lastLoadFile.EndsWith(fileLastProcessed + ".nc") && (MRUlist.Count > 1))     // safety copy during streaming
+                            {
+                                string lastGraphic = Datapath.MakeAbsolutePath(MRUlist[1]);     // try to get 2nd last file
+                                Logger.Info("⚠⚠⚠ ReStartConvertFile - from Setup-form - load 2nd last file: {0}", lastGraphic);
+                                LoadFile(lastGraphic);
+                            }
+                            else
+                            { LoadFile(lastLoadFile); }
+                        }
                     }
                     this.Cursor = Cursors.Default;
                 }
@@ -945,7 +950,7 @@ namespace GrblPlotter
             UseCaseDialog();
             if (Properties.Settings.Default.importGroupObjects)
             {
-                ToolTable.Init(" (StartConvert with GroupObjects)"); 
+                ToolTable.Init(" (StartConvert with GroupObjects)");
             }
             NewCodeStart();             // StartConvert
             StatusStripSet(0, "Start import of vector graphic, read graphic elements, process options", Color.Yellow);
@@ -962,9 +967,9 @@ namespace GrblPlotter
                 showProgress = filesize > sizeLimit;
                 Logger.Info("▀▀▀▀  StartConvert type:{0} File size:{1} KB  sizeLimit:{2} KB  Import-showProgress:{3}", type.ToString(), filesize, sizeLimit, showProgress);
             }
-			else
-			{ 	Logger.Info("▀▀▀▀  StartConvert type:{0}", type.ToString());}
-		
+            else
+            { Logger.Info("▀▀▀▀  StartConvert type:{0}", type.ToString()); }
+
             loadTimerStep = 0;
 
             if (showProgress)
@@ -975,63 +980,66 @@ namespace GrblPlotter
                     f.ShowDialog(this);
                 }
             }
-			
-			try {
-				switch (type)
-				{
-					case Graphic.SourceType.SVG:   // uses Graphic-Class, get result from Graphic.GCode
-						{
-							if (!showProgress) GCodeFromSvg.ConvertFromFile(source, null, null);
-							conversionInfo = GCodeFromSvg.ConversionInfo;
-							Properties.Settings.Default.counterImportSVG += 1;
-							break;
-						}
-					case Graphic.SourceType.DXF:   // uses Graphic-Class, get result from Graphic.GCode
-						{
-							if (!showProgress) GCodeFromDxf.ConvertFromFile(source, null, null);
-							conversionInfo = GCodeFromDxf.ConversionInfo;
-							Properties.Settings.Default.counterImportDXF += 1;
-							break;
-						}
-					case Graphic.SourceType.HPGL:  // uses Graphic-Class, get result from Graphic.GCode
-						{
-							if (!showProgress) GCodeFromHpgl.ConvertFromFile(source, null, null);
-							conversionInfo = GCodeFromHpgl.ConversionInfo;
-							Properties.Settings.Default.counterImportHPGL += 1;
-							break;
-						}
-					case Graphic.SourceType.CSV:   // uses Graphic-Class, get result from Graphic.GCode
-						{
-							if (!showProgress) GCodeFromCsv.ConvertFromFile(source, null, null);
-							conversionInfo = GCodeFromCsv.ConversionInfo;
-							Properties.Settings.Default.counterImportCSV += 1;
-							break;
-						}
-					case Graphic.SourceType.Drill:
-						{
-							if (!showProgress) GCodeFromDrill.ConvertFromFile(source, null, null);
-							conversionInfo = GCodeFromDrill.ConversionInfo;
-							Properties.Settings.Default.counterImportDrill += 1;
-							break;
-						}
-					case Graphic.SourceType.Gerber:    // uses Graphic-Class, get result from Graphic.GCode
-						{
-							if (!showProgress) GCodeFromGerber.ConvertFromFile(source, null, null);
-							conversionInfo = GCodeFromGerber.conversionInfo;
-							Properties.Settings.Default.counterImportGerber += 1;
-							break;
-						}
-					default: break;
-				}
-			}
-			catch (IOException) {
+
+            try
+            {
+                switch (type)
+                {
+                    case Graphic.SourceType.SVG:   // uses Graphic-Class, get result from Graphic.GCode
+                        {
+                            if (!showProgress) GCodeFromSvg.ConvertFromFile(source, null, null);
+                            conversionInfo = GCodeFromSvg.ConversionInfo;
+                            Properties.Settings.Default.counterImportSVG += 1;
+                            break;
+                        }
+                    case Graphic.SourceType.DXF:   // uses Graphic-Class, get result from Graphic.GCode
+                        {
+                            if (!showProgress) GCodeFromDxf.ConvertFromFile(source, null, null);
+                            conversionInfo = GCodeFromDxf.ConversionInfo;
+                            Properties.Settings.Default.counterImportDXF += 1;
+                            break;
+                        }
+                    case Graphic.SourceType.HPGL:  // uses Graphic-Class, get result from Graphic.GCode
+                        {
+                            if (!showProgress) GCodeFromHpgl.ConvertFromFile(source, null, null);
+                            conversionInfo = GCodeFromHpgl.ConversionInfo;
+                            Properties.Settings.Default.counterImportHPGL += 1;
+                            break;
+                        }
+                    case Graphic.SourceType.CSV:   // uses Graphic-Class, get result from Graphic.GCode
+                        {
+                            if (!showProgress) GCodeFromCsv.ConvertFromFile(source, null, null);
+                            conversionInfo = GCodeFromCsv.ConversionInfo;
+                            Properties.Settings.Default.counterImportCSV += 1;
+                            break;
+                        }
+                    case Graphic.SourceType.Drill:
+                        {
+                            if (!showProgress) GCodeFromDrill.ConvertFromFile(source, null, null);
+                            conversionInfo = GCodeFromDrill.ConversionInfo;
+                            Properties.Settings.Default.counterImportDrill += 1;
+                            break;
+                        }
+                    case Graphic.SourceType.Gerber:    // uses Graphic-Class, get result from Graphic.GCode
+                        {
+                            if (!showProgress) GCodeFromGerber.ConvertFromFile(source, null, null);
+                            conversionInfo = GCodeFromGerber.conversionInfo;
+                            Properties.Settings.Default.counterImportGerber += 1;
+                            break;
+                        }
+                    default: break;
+                }
+            }
+            catch (IOException)
+            {
                 ShowIoException("StartConvert", source);
-				return;
-			}
-			catch {//(Exception err) { 
-				throw;		// unknown exception...
-			}
-			
+                return;
+            }
+            catch
+            {//(Exception err) { 
+                throw;      // unknown exception...
+            }
+
             if (!showProgress)
             {
                 VisuGCode.xyzSize.AddDimensionXY(Graphic.actualDimension);
@@ -1069,37 +1077,38 @@ namespace GrblPlotter
             }
             NewCodeEnd(true);               // StartConvert code was imported, no need to check for bad GCode
             FoldCodeOnLoad();
-        //    UpdateControlEnables(); 
-			if (_camera_form != null)
-			{	_camera_form.NewDrawing();}
+            //    UpdateControlEnables(); 
+            if (_camera_form != null)
+            { _camera_form.NewDrawing(); }
         }
 
         int loadTimerStep = -1;
         private void LoadTimer_Tick(object sender, EventArgs e)
         {
-			try {
-				switch (loadTimerStep)
-				{
-					case 1:
-						if (loadTimer != null)
-							loadTimer.Stop();
-						NewCodeEnd(true);               // timer will be started here again
-						break;
-					case 2:
-						SetFctbCodeText(Graphic.GCode.ToString());  // loadTimer_Tick
-						FoldCodeOnLoad();
-						loadTimerStep++;
-						break;
-					default:
-						if (loadTimer != null)
-							loadTimer.Stop();
-						break;
-				}
-			}
-			catch (Exception err)
-			{	
-                EventCollector.StoreException("LoadTimer_Tick: " + err.Message + "  stp:" + loadTimerStep+" ");
-			}			
+            try
+            {
+                switch (loadTimerStep)
+                {
+                    case 1:
+                        if (loadTimer != null)
+                            loadTimer.Stop();
+                        NewCodeEnd(true);               // timer will be started here again
+                        break;
+                    case 2:
+                        SetFctbCodeText(Graphic.GCode.ToString());  // loadTimer_Tick
+                        FoldCodeOnLoad();
+                        loadTimerStep++;
+                        break;
+                    default:
+                        if (loadTimer != null)
+                            loadTimer.Stop();
+                        break;
+                }
+            }
+            catch (Exception err)
+            {
+                EventCollector.StoreException("LoadTimer_Tick: " + err.Message + "  stp:" + loadTimerStep + " ");
+            }
         }
 
         private void ShowImportOptions()
@@ -1116,22 +1125,23 @@ namespace GrblPlotter
                 Logger.Info("▄▄    {0}", importOptions);
             }
         }
-		
-		private void FoldCodeOnLoad()
-		{
-			if (Properties.Settings.Default.importCodeFold)
-			{
-				if (XmlMarker.GetFigureCount() > 20)		// show only groups
-				{	FoldBlocks1(); foldLevelSelected = 1;}
-				else
-				{	if (Properties.Settings.Default.importGCZIncEnable)	// break down to single passes
-					{ 	FoldBlocks3(); foldLevelSelected = 3;}
-					else
-					{	FoldBlocks2(); foldLevelSelected = 2;}			// just figures
-				}
-				Logger.Trace("◯◯◯ FoldCodeOnLoad level: {0}", foldLevelSelected);
-			}
-		}
+
+        private void FoldCodeOnLoad()
+        {
+            if (Properties.Settings.Default.importCodeFold)
+            {
+                if (XmlMarker.GetFigureCount() > 20)        // show only groups
+                { FoldBlocks1(); foldLevelSelected = 1; }
+                else
+                {
+                    if (Properties.Settings.Default.importGCZIncEnable) // break down to single passes
+                    { FoldBlocks3(); foldLevelSelected = 3; }
+                    else
+                    { FoldBlocks2(); foldLevelSelected = 2; }           // just figures
+                }
+                Logger.Trace("◯◯◯ FoldCodeOnLoad level: {0}", foldLevelSelected);
+            }
+        }
 
         private void LoadGcode()
         {
@@ -1152,7 +1162,7 @@ namespace GrblPlotter
                 catch (Exception err)
                 {
                     Logger.Error(err, "LoadGcode try 2nd method ");
-                    EventCollector.StoreException("LoadGcode 2nd try open file: " +err.Message+" ---");
+                    EventCollector.StoreException("LoadGcode 2nd try open file: " + err.Message + " ---");
 
                     // https://stackoverflow.com/questions/9759697/reading-a-file-used-by-another-process
                     FileStream fs = null;
@@ -1194,7 +1204,7 @@ namespace GrblPlotter
                     string fileInfo = Path.ChangeExtension(tbFile.Text, ".xml");    // see also saveStreamingStatus
                     if (File.Exists(fileInfo))
                     {
-						string status="", message="";
+                        string status = "", message = "";
                         int lineNr = fCTBCodeClickedLineNow = LoadStreamingStatus(ref status, ref message);
                         if (lineNr > 0)
                         {
@@ -1242,17 +1252,18 @@ namespace GrblPlotter
                 IList<string> temp = fCTBCode.Lines;
                 // remove any brackets, comments
                 string comments = "";
-               if (Properties.Settings.Default.FCTBSaveWithoutComments)
+                if (Properties.Settings.Default.FCTBSaveWithoutComments)
                 {
                     comments = " without comments";
                     temp = new List<string>();
                     int pos;
                     foreach (string line in fCTBCode.Lines)
-                    {   if (line.StartsWith("("))
+                    {
+                        if (line.StartsWith("("))
                             continue;
                         pos = line.IndexOf("(");
                         if (pos > 0)
-                            temp.Add(line.Substring(0,pos));
+                            temp.Add(line.Substring(0, pos));
                         else
                             temp.Add(line);
                     }
@@ -1267,14 +1278,15 @@ namespace GrblPlotter
                     System.IO.File.WriteAllLines(sfd.FileName, temp, GuiVariables.SaveEncoding[encodeIndex]);
                 }
                 catch (Exception err)
-                {   Logger.Error(err, "BtnSaveFile_Click ");
-                    MessageBox.Show("Could not save the file: \r\n"+err.Message,"Error");
+                {
+                    Logger.Error(err, "BtnSaveFile_Click ");
+                    MessageBox.Show("Could not save the file: \r\n" + err.Message, "Error");
                     sfd.Dispose();
                     return;
                 }
 
                 Logger.Info("Save GCode as {0}, Encoding: {1}{2}", sfd.FileName, encoding, comments);
-                StatusStripSet(1, string.Format("G-Code saved as {0}{1}",encoding, comments), Color.Yellow);
+                StatusStripSet(1, string.Format("G-Code saved as {0}{1}", encoding, comments), Color.Yellow);
                 Properties.Settings.Default.guiPathSaveCode = sfd.FileName;
                 Properties.Settings.Default.Save();
             }
@@ -1314,22 +1326,23 @@ namespace GrblPlotter
         private static void TryRestart()
         {
             Properties.Settings.Default.Save();
-			Logger.Info(" Change Language to {0}", Properties.Settings.Default.guiLanguage);
+            Logger.Info(" Change Language to {0}", Properties.Settings.Default.guiLanguage);
             if (MessageBox.Show("Restart now?", "Attention", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 Logger.Info("  tryRestart()");
-				Properties.Settings.Default.guiLastEnd = DateTime.Now.Ticks;
+                Properties.Settings.Default.guiLastEnd = DateTime.Now.Ticks;
                 EventCollector.StoreException("Language change;");
                 EventCollector.SetEnd();
-				try {
-					Application.Restart();
-					Application.ExitThread();  	// 20200716
-					Environment.Exit(0);		// 2022-04-29
-				}
-				catch (Exception err)
-				{   // EventCollector.StoreException("Language change failed;");
-				    EventCollector.StoreException("TryRestart failed: " + err.Message);
-				}
+                try
+                {
+                    Application.Restart();
+                    Application.ExitThread();   // 20200716
+                    Environment.Exit(0);        // 2022-04-29
+                }
+                catch (Exception err)
+                {   // EventCollector.StoreException("Language change failed;");
+                    EventCollector.StoreException("TryRestart failed: " + err.Message);
+                }
             }
         }
 
@@ -1409,7 +1422,8 @@ namespace GrblPlotter
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (pictureBox1.Focused)
-            {   if (e.KeyCode == Keys.Space)    // space = hide pen-up path
+            {
+                if (e.KeyCode == Keys.Space)    // space = hide pen-up path
                 {
                     showPathPenUp = !showPathPenUp; // false;
                     StatusStripSet(2, "Toggle PenUp path", Color.Lime);
@@ -1418,23 +1432,23 @@ namespace GrblPlotter
                 }
 
                 else if ((e.KeyCode == Keys.Right) || (e.KeyCode == Keys.NumPad6))
-                {   MoveView(-1,0); }
+                { MoveView(-1, 0); }
                 else if ((e.KeyCode == Keys.Left) || (e.KeyCode == Keys.NumPad4))
-                {   MoveView(1, 0); }
+                { MoveView(1, 0); }
                 else if ((e.KeyCode == Keys.Up) || (e.KeyCode == Keys.NumPad8))
-                {   MoveView(0, 1); }
+                { MoveView(0, 1); }
                 else if ((e.KeyCode == Keys.Down) || (e.KeyCode == Keys.NumPad2))
-                {   MoveView(0, -1); }
+                { MoveView(0, -1); }
 
                 if ((e.KeyCode == Keys.D) && (e.Modifiers == Keys.Control))
                 {
                     if (figureIsMarked)
                         DuplicateSelectedPath();
                 }
-        /*        else if ((e.KeyCode == Keys.E) && (e.Modifiers == Keys.Alt))
-                {
-                        ToggleBlockExpansion();                   
-                }*/
+                /*        else if ((e.KeyCode == Keys.E) && (e.Modifiers == Keys.Alt))
+                        {
+                                ToggleBlockExpansion();                   
+                        }*/
                 e.SuppressKeyPress = true;
             }
             if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)         // ctrl V = paste
@@ -1458,7 +1472,7 @@ namespace GrblPlotter
                 e.SuppressKeyPress = true;
             }
             else if (fCTBCode.Focused)
-               return;
+                return;
 
             e.SuppressKeyPress = ProcessHotkeys(e.KeyData.ToString(), true);
             //   e.SuppressKeyPress = true;
@@ -1475,8 +1489,9 @@ namespace GrblPlotter
             else if (fCTBCode.Focused)
                 return;
             if (pictureBox1.Focused)
-            {   e.SuppressKeyPress = true;
-                return; 
+            {
+                e.SuppressKeyPress = true;
+                return;
             }
 
             ProcessHotkeys(e.KeyData.ToString(), false);
@@ -1488,7 +1503,7 @@ namespace GrblPlotter
         {
             try
             {
-				Properties.Settings.Default.guiLastFileLoaded = tbFile.Text;
+                Properties.Settings.Default.guiLastFileLoaded = tbFile.Text;
                 Properties.Settings.Default.Save();
             }
             catch (Exception e)
@@ -1546,7 +1561,7 @@ namespace GrblPlotter
             catch (Exception err)
             {
                 Logger.Error(err, "MainFormLoadFile - LoadHotkeys {0} ", fileName);
-                MessageBox.Show("Could not load / read hotkeys.xml.\r\n"+err.Message, "Error");
+                MessageBox.Show("Could not load / read hotkeys.xml.\r\n" + err.Message, "Error");
             }
             //	content.Dispose();
         }
@@ -1562,7 +1577,8 @@ namespace GrblPlotter
                     string num = action.Substring("CustomButton".Length);
                     //   int num1;
                     if (!int.TryParse(num, out int num1))
-                    {   MessageBox.Show(Localization.GetString("mainHotkeyError1") + action, Localization.GetString("mainHotkeyError2"));
+                    {
+                        MessageBox.Show(Localization.GetString("mainHotkeyError1") + action, Localization.GetString("mainHotkeyError2"));
                         Logger.Error("ProcessHotkeys CustomButton TryParse:'{0}'", action);
                     }
                     else
@@ -1735,7 +1751,7 @@ namespace GrblPlotter
                 lock (lockSaveAction)
                 {
                     string fileName = Datapath.AppDataFolder + "\\" + fileLastProcessed + ".xml";  //System.Environment.CurrentDirectory
-                    Logger.Info("SaveStreamingStatus LineNr:{0}  Info1:{1}  Info2:{2}",lineNr, info1, info2);
+                    Logger.Info("SaveStreamingStatus LineNr:{0}  Info1:{1}  Info2:{2}", lineNr, info1, info2);
                     XmlWriterSettings set = new XmlWriterSettings
                     {
                         Indent = true
@@ -1745,16 +1761,17 @@ namespace GrblPlotter
                     content.WriteStartElement("GCode");
                     content.WriteAttributeString("lineNr", lineNr.ToString());
                     if (lineNr > 0)
-                    {   
-						if (lineNr < fCTBCode.LinesCount)
-						{	content.WriteAttributeString("lineContent", fCTBCode.Lines[lineNr - 1]); }
-						else 
-						{	Logger.Error("lineNr: {0}  fCTBCode.LinesCount:{1}",fCTBCode.LinesCount);
-			                content.WriteAttributeString("lineContent", fCTBCode.Lines[0]);
-						}
-					}
+                    {
+                        if (lineNr < fCTBCode.LinesCount)
+                        { content.WriteAttributeString("lineContent", fCTBCode.Lines[lineNr - 1]); }
+                        else
+                        {
+                            Logger.Error("lineNr: {0}  fCTBCode.LinesCount:{1}", fCTBCode.LinesCount);
+                            content.WriteAttributeString("lineContent", fCTBCode.Lines[0]);
+                        }
+                    }
                     else
-                    {    content.WriteAttributeString("lineContent", fCTBCode.Lines[0]);  }
+                    { content.WriteAttributeString("lineContent", fCTBCode.Lines[0]); }
 
                     content.WriteStartElement("WPos");
                     content.WriteAttributeString("X", Grbl.posWork.X.ToString().Replace(',', '.'));
@@ -1777,49 +1794,50 @@ namespace GrblPlotter
             }
             catch (Exception err) { Logger.Error(err, "SaveStreamingStatus failed "); }
         }
-		
+
         private int LoadStreamingStatus(ref string status, ref string message, bool setPause = false)
         {
-			status = "";
-			message = "";
+            status = "";
+            message = "";
             string fileName = Datapath.AppDataFolder + "\\" + fileLastProcessed + ".xml";
             if (!File.Exists(fileName))
                 return 0;
             FileInfo fi = new FileInfo(fileName);
             if (fi.Length > 1)
             {
-				try
-                {	XmlReader content = XmlReader.Create(fileName, settings);
+                try
+                {
+                    XmlReader content = XmlReader.Create(fileName, settings);
 
-					XyzPoint tmp = new XyzPoint(0, 0, 0);
-					int codeLine = 0;
-					string parserState = "";
-				//	string info1 = "";
-					while (content.Read())
-					{
-						if (!content.IsStartElement())
-							continue;
+                    XyzPoint tmp = new XyzPoint(0, 0, 0);
+                    int codeLine = 0;
+                    string parserState = "";
+                    //	string info1 = "";
+                    while (content.Read())
+                    {
+                        if (!content.IsStartElement())
+                            continue;
 
-						switch (content.Name)
-						{
-							case "GCode":
-								codeLine = int.Parse(content["lineNr"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
-								break;
-							case "WPos":
-								tmp.X = double.Parse(content["X"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
-								tmp.Y = double.Parse(content["Y"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
-								tmp.Z = double.Parse(content["Z"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
-								break;
-							case "Parser":
-								parserState = content["State"];
-								break;
-							case "Reason":
-								status = content["Status"];
-								message = content["Message"];
-								break;
-						}
-					}
-					content.Close();
+                        switch (content.Name)
+                        {
+                            case "GCode":
+                                codeLine = int.Parse(content["lineNr"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
+                                break;
+                            case "WPos":
+                                tmp.X = double.Parse(content["X"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
+                                tmp.Y = double.Parse(content["Y"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
+                                tmp.Z = double.Parse(content["Z"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
+                                break;
+                            case "Parser":
+                                parserState = content["State"];
+                                break;
+                            case "Reason":
+                                status = content["Status"];
+                                message = content["Message"];
+                                break;
+                        }
+                    }
+                    content.Close();
 
                     if (setPause)
                     {
@@ -1828,7 +1846,7 @@ namespace GrblPlotter
                         _serial_form.parserStateGC = parserState;
                         _serial_form.posPause = tmp;
                         if (parserState != "")
-                            StartStreaming(codeLine, fCTBCode.LinesCount-1);
+                            StartStreaming(codeLine, fCTBCode.LinesCount - 1);
                     }
                     return codeLine;
                 }
@@ -1895,33 +1913,33 @@ namespace GrblPlotter
             try { System.Diagnostics.Process.Start(tmp); }
             catch (Exception er) { Logger.Error(er, "ExtensionFile_click Start Process {0} ", tmp); }
         }
-		
-		/// <summary>
-		/// Determines a text file's encoding by analyzing its byte order mark (BOM).
-		/// Defaults to ASCII when detection of the text file's endianness fails.
-		/// </summary>
-		/// <param name="filename">The text file to analyze.</param>
-		/// <returns>The detected encoding.</returns>
-		public static Encoding GetEncoding(string filename)
-		{
-			// Read the BOM
-			var bom = new byte[4];
-			using (var file = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-			{
-				file.Read(bom, 0, 4);
-			}
 
-			// Analyze the BOM
-			if (bom[0] == 0x2b && bom[1] == 0x2f && bom[2] == 0x76) return Encoding.UTF7;
-			if (bom[0] == 0xef && bom[1] == 0xbb && bom[2] == 0xbf) return Encoding.UTF8;
-			if (bom[0] == 0xff && bom[1] == 0xfe && bom[2] == 0 && bom[3] == 0) return Encoding.UTF32; //UTF-32LE
-			if (bom[0] == 0xff && bom[1] == 0xfe) return Encoding.Unicode; //UTF-16LE
-			if (bom[0] == 0xfe && bom[1] == 0xff) return Encoding.BigEndianUnicode; //UTF-16BE
-			if (bom[0] == 0 && bom[1] == 0 && bom[2] == 0xfe && bom[3] == 0xff) return new UTF32Encoding(true, true);  //UTF-32BE
+        /// <summary>
+        /// Determines a text file's encoding by analyzing its byte order mark (BOM).
+        /// Defaults to ASCII when detection of the text file's endianness fails.
+        /// </summary>
+        /// <param name="filename">The text file to analyze.</param>
+        /// <returns>The detected encoding.</returns>
+        public static Encoding GetEncoding(string filename)
+        {
+            // Read the BOM
+            var bom = new byte[4];
+            using (var file = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            {
+                file.Read(bom, 0, 4);
+            }
 
-			// We actually have no idea what the encoding is if we reach this point, so
-			// you may wish to return null instead of defaulting to ASCII
-			return Encoding.ASCII;
-		}
+            // Analyze the BOM
+            if (bom[0] == 0x2b && bom[1] == 0x2f && bom[2] == 0x76) return Encoding.UTF7;
+            if (bom[0] == 0xef && bom[1] == 0xbb && bom[2] == 0xbf) return Encoding.UTF8;
+            if (bom[0] == 0xff && bom[1] == 0xfe && bom[2] == 0 && bom[3] == 0) return Encoding.UTF32; //UTF-32LE
+            if (bom[0] == 0xff && bom[1] == 0xfe) return Encoding.Unicode; //UTF-16LE
+            if (bom[0] == 0xfe && bom[1] == 0xff) return Encoding.BigEndianUnicode; //UTF-16BE
+            if (bom[0] == 0 && bom[1] == 0 && bom[2] == 0xfe && bom[3] == 0xff) return new UTF32Encoding(true, true);  //UTF-32BE
+
+            // We actually have no idea what the encoding is if we reach this point, so
+            // you may wish to return null instead of defaulting to ASCII
+            return Encoding.ASCII;
+        }
     }
 }

@@ -24,7 +24,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
-using System.IO;
 using System.Windows.Forms;
 
 //#pragma warning disable CA1303
@@ -70,7 +69,7 @@ namespace GrblPlotter.BarcodeCreation
         private IBarcode ibarcode = new Blank();
         private string Raw_Data = "";
         private string Encoded_Value = "";
-  //      private string _Country_Assigning_Manufacturer_Code = "N/A";
+        //      private string _Country_Assigning_Manufacturer_Code = "N/A";
         private TYPE Encoded_Type = TYPE.UNSPECIFIED;
         private Image _Encoded_Image = null;
         private Color _ForeColor = Color.Black;
@@ -82,7 +81,7 @@ namespace GrblPlotter.BarcodeCreation
         private Font _LabelFont = new Font("Microsoft Sans Serif", 10, FontStyle.Bold);
         private LabelPositions _LabelPosition = LabelPositions.BOTTOMCENTER;
         private RotateFlipType _RotateFlipType = RotateFlipType.RotateNoneFlipNone;
-   //     private bool _StandardizeLabel = true;
+        //     private bool _StandardizeLabel = true;
         private bool gotError = false;
         #endregion
 
@@ -327,12 +326,13 @@ namespace GrblPlotter.BarcodeCreation
             this.Raw_Data = ibarcode.RawData;
 
             if (!string.IsNullOrEmpty(this.Encoded_Value))
-            {    _Encoded_Image = (Image)Generate_Image();
-//            else
-//                return null;
+            {
+                _Encoded_Image = (Image)Generate_Image();
+                //            else
+                //                return null;
 
-				this.EncodedImage.RotateFlip(this.RotateFlipType);
-			}
+                this.EncodedImage.RotateFlip(this.RotateFlipType);
+            }
             this.EncodingTime = ((TimeSpan)(DateTime.Now - dtStartTime)).TotalMilliseconds;
 
             //      _XML = GetXML();
@@ -363,7 +363,7 @@ namespace GrblPlotter.BarcodeCreation
             { MyException("EENCODE-2: Symbology type not allowed to be unspecified."); return ""; }
 
             this.Encoded_Value = "";
-      //      this._Country_Assigning_Manufacturer_Code = "N/A";
+            //      this._Country_Assigning_Manufacturer_Code = "N/A";
 
 
             switch (this.Encoded_Type)
@@ -681,7 +681,7 @@ namespace GrblPlotter.BarcodeCreation
                         if (IncludeLabel)
                         {
                         }
-        //                bitmap.Dispose();
+                        //                bitmap.Dispose();
                         break;
                     }//case
                 default:
@@ -769,7 +769,7 @@ namespace GrblPlotter.BarcodeCreation
                         {
                             //         Labels.Label_Generic(this, bitmap);
                         }//if
-           //             bitmap.Dispose();
+                         //             bitmap.Dispose();
                         break;
                     }//switch
             }//switch
@@ -821,7 +821,7 @@ namespace GrblPlotter.BarcodeCreation
                 _XML = null;
                 Raw_Data = null;
                 Encoded_Value = null;
-        //        _Country_Assigning_Manufacturer_Code = null;
+                //        _Country_Assigning_Manufacturer_Code = null;
                 _ImageFormat = null;
             }
             _disposed = true;

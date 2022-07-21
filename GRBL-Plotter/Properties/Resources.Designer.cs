@@ -19,7 +19,7 @@ namespace GrblPlotter.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -65,7 +65,7 @@ namespace GrblPlotter.Properties {
         ///&quot;1&quot;,&quot;Hard limit&quot;,&quot;Hard limit has been triggered. Machine position is likely lost due to sudden halt. Re-homing is highly recommended.&quot;
         ///&quot;2&quot;,&quot;Soft limit&quot;,&quot;Soft limit alarm. G-code motion target exceeds machine travel. Machine position retained. Alarm may be safely unlocked.&quot;
         ///&quot;3&quot;,&quot;Abort during cycle&quot;,&quot;Reset while in motion. Machine position is likely lost due to sudden halt. Re-homing is highly recommended.&quot;
-        ///&quot;4&quot;,&quot;Probe fail&quot;,&quot;Probe fail. Prob [rest of string was truncated]&quot;;.
+        ///&quot;4&quot;,&quot;Probe fail&quot;,&quot;Probe fail.  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string alarm_codes_en_US {
             get {
@@ -522,7 +522,7 @@ namespace GrblPlotter.Properties {
         ///&quot;1&quot;,&quot;Step idle delay&quot;,&quot;milliseconds&quot;,&quot;Sets a short hold delay when stopping to let dynamics settle before disabling steppers. Value 255 keeps motors enabled with no delay.&quot;
         ///&quot;2&quot;,&quot;Step pulse invert&quot;,&quot;mask&quot;,&quot;Inverts the step signal. Set axis bit to invert (00000ZYX).&quot;
         ///&quot;3&quot;,&quot;Step direction invert&quot;,&quot;mask&quot;,&quot;Inverts the direction signal. Set axis bit to invert (00000ZYX).&quot;
-        ///&quot;4&quot;,&quot;Invert [rest of string was truncated]&quot;;.
+        ///&quot;4&quot;,&quot;I [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string setting_codes_en_US {
             get {

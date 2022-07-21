@@ -35,15 +35,15 @@ namespace GrblPlotter
 {
     public static partial class Graphic
     {
-		
-		private static void CalculateDistances()
-		{
+
+        private static void CalculateDistances()
+        {
             foreach (PathObject pathObject in completeGraphic)
             {
                 if (pathObject is ItemPath apath)
                 {
                     if (apath.Path.Count <= 0)
-                    {   continue;  }
+                    { continue; }
 
                     Point pStart, pEnd;
                     apath.Path[0].Depth = 0;
@@ -51,11 +51,11 @@ namespace GrblPlotter
                     {
                         pStart = apath.Path[i - 1].MoveTo;
                         pEnd = apath.Path[i].MoveTo;
-						
-						if (apath.Path[i] is GCodeLine)
-                        {  
-							apath.Path[i].Depth = PointDistance(pStart,pEnd); 	// distance between a and b
-						}
+
+                        if (apath.Path[i] is GCodeLine)
+                        {
+                            apath.Path[i].Depth = PointDistance(pStart, pEnd);  // distance between a and b
+                        }
                         else if (apath.Path[i] is GCodeArc aPathArc)
                         {   // is arc
                             Point center = new Point(pStart.X + aPathArc.CenterIJ.X, pStart.Y + aPathArc.CenterIJ.Y);
@@ -63,19 +63,19 @@ namespace GrblPlotter
                             ArcProperties tmp = GcodeMath.GetArcMoveProperties((XyPoint)pStart, (XyPoint)pEnd, aPathArc.CenterIJ.X, aPathArc.CenterIJ.Y, aPathArc.IsCW);
                             aPathArc.Depth = Math.Abs(tmp.angleDiff * r);
                         }
-                /*        else if (apath.Path[i] is GCodeArc)
-						{   // is arc
-                            Point center = new Point(pStart.X + ((GCodeArc)apath.Path[i]).CenterIJ.X, pStart.Y + ((GCodeArc)apath.Path[i]).CenterIJ.Y);
-                            double r = PointDistance(center, pEnd);
-                            ArcProperties tmp = GcodeMath.GetArcMoveProperties((XyPoint)pStart, (XyPoint)pEnd, ((GCodeArc)apath.Path[i]).CenterIJ.X, ((GCodeArc)apath.Path[i]).CenterIJ.Y, ((GCodeArc)apath.Path[i]).IsCW);
-                            apath.Path[i].Depth = Math.Abs(tmp.angleDiff * r);
-                    //        Logger.Info("CalculateDistances arc a0:{0:0.00} a1:{1:0.00} diff:{2:0.00}  r:{3:0.00}", tmp.angleStart,tmp.angleEnd,tmp.angleDiff,r);
-                        }*/
+                        /*        else if (apath.Path[i] is GCodeArc)
+                                {   // is arc
+                                    Point center = new Point(pStart.X + ((GCodeArc)apath.Path[i]).CenterIJ.X, pStart.Y + ((GCodeArc)apath.Path[i]).CenterIJ.Y);
+                                    double r = PointDistance(center, pEnd);
+                                    ArcProperties tmp = GcodeMath.GetArcMoveProperties((XyPoint)pStart, (XyPoint)pEnd, ((GCodeArc)apath.Path[i]).CenterIJ.X, ((GCodeArc)apath.Path[i]).CenterIJ.Y, ((GCodeArc)apath.Path[i]).IsCW);
+                                    apath.Path[i].Depth = Math.Abs(tmp.angleDiff * r);
+                            //        Logger.Info("CalculateDistances arc a0:{0:0.00} a1:{1:0.00} diff:{2:0.00}  r:{3:0.00}", tmp.angleStart,tmp.angleEnd,tmp.angleDiff,r);
+                                }*/
                     }
-                }				
-			}			
-		}
-		
+                }
+            }
+        }
+
         // create GraphicsPath for 2-D view
         private static void CreateGraphicsPath(List<PathObject> graphicToDraw, GraphicsPath path)
         {
@@ -718,7 +718,7 @@ namespace GrblPlotter
                     double angleLast = 0;
                     bool isLineNow = false;
                     bool isLineLast = false;
-				//	bool removeMinDistance;
+                    //	bool removeMinDistance;
                     if (PathData.Path.Count > 2)
                     {
                         for (int i = (PathData.Path.Count - 2); i >= 0; i--)
@@ -736,7 +736,7 @@ namespace GrblPlotter
                                 isLineNow = false;
                             }
 
-                            if (isLineNow && isLineLast && IsEqual(angleNow, angleLast))    
+                            if (isLineNow && isLineLast && IsEqual(angleNow, angleLast))
                             {
                                 if (((i + 2) < PathData.Path.Count) && (PathData.Path[i + 2] is GCodeLine))	// don't delete if start-point for arc
                                 {
@@ -764,7 +764,7 @@ namespace GrblPlotter
             {
                 if (item is ItemPath PathData)
                 {
-                    Point lastPoint = PathData.Path[PathData.Path.Count-1].MoveTo;  // PathData.End;
+                    Point lastPoint = PathData.Path[PathData.Path.Count - 1].MoveTo;  // PathData.End;
                     double lastAngle = PathData.Path[PathData.Path.Count - 1].Angle;
                     double distance;
                     if (PathData.Path.Count > 3)
@@ -779,8 +779,8 @@ namespace GrblPlotter
                             if ((distance < minDistance) && (Math.Abs(lastAngle - PathData.Path[i].Angle) < 0.5))   // < 30°
                             { PathData.Path.RemoveAt(i); }
 
-                            lastPoint = PathData.Path[i].MoveTo; 
-                            lastAngle = PathData.Path[i].Angle; 
+                            lastPoint = PathData.Path[i].MoveTo;
+                            lastAngle = PathData.Path[i].Angle;
                         }
                     }
                 }
@@ -791,7 +791,9 @@ namespace GrblPlotter
         #region remove offset
         private static void RemoveOffset(List<PathObject> graphicToOffset, double offsetX, double offsetY)
         {
+#pragma warning disable CS0618 // 'StackTrace.StackTrace(Thread, bool)' is obsolete: 'This constructor has been deprecated.  Please use a constructor that does not require a Thread parameter.  http://go.microsoft.com/fwlink/?linkid=14202'
             System.Diagnostics.StackTrace s = new System.Diagnostics.StackTrace(System.Threading.Thread.CurrentThread, true);
+#pragma warning restore CS0618 // 'StackTrace.StackTrace(Thread, bool)' is obsolete: 'This constructor has been deprecated.  Please use a constructor that does not require a Thread parameter.  http://go.microsoft.com/fwlink/?linkid=14202'
 
             //           MessageBox.Show("Methode B wurde von Methode " + s.GetFrame(1).GetMethod().Name + " aufgerufen");
             if (logEnable) Logger.Trace("...RemoveOffset before min X:{0:0.00} Y:{1:0.00} caller:{2} --------------------------------------", actualDimension.minx, actualDimension.miny, s.GetFrame(1).GetMethod().Name);
@@ -1087,9 +1089,7 @@ namespace GrblPlotter
                             {
                                 tmp.Distance = distanceReverse;
                                 ((ItemPath)tmp).Reversed = !((ItemPath)tmp).Reversed;
-                                Point start = tmp.Start;            //##################### new Point
-                                tmp.Start = tmp.End;
-                                tmp.End = start;
+                                (tmp.End, tmp.Start) = (tmp.Start, tmp.End);            //##################### new Point
                             }
                             if (logSortMerge) Logger.Trace("    id:{0}  object:{1}  distance:{2:0.00}", tmp.Info.Id, tmp.Info.PathGeometry, tmp.Distance);
                         }
@@ -1308,9 +1308,9 @@ namespace GrblPlotter
         private static bool IsEqual(System.Windows.Point a, System.Windows.Point b, double ePrecision)
         { return ((Math.Abs(a.X - b.X) < ePrecision) && (Math.Abs(a.Y - b.Y) < ePrecision)); }
         private static bool IsEqual(System.Windows.Point a, System.Windows.Point b)
-        {   return ((Math.Abs(a.X - b.X) < equalPrecision) && (Math.Abs(a.Y - b.Y) < equalPrecision)); }
+        { return ((Math.Abs(a.X - b.X) < equalPrecision) && (Math.Abs(a.Y - b.Y) < equalPrecision)); }
         private static bool IsEqual(double a, double b)
-        {   return (Math.Abs(a - b) < equalPrecision); }
+        { return (Math.Abs(a - b) < equalPrecision); }
         private static void MergePaths(ItemPath addAtEnd, ItemPath toMerge)
         {
             if (logDetailed) Logger.Trace(".....MergePaths ID:{0} {1}     ID:{2} {3}", addAtEnd.Info.Id, addAtEnd.Info.PathGeometry, toMerge.Info.Id, toMerge.Info.PathGeometry);
@@ -1453,9 +1453,7 @@ namespace GrblPlotter
 
             if (!item.IsReversed)				// indicatior if Start/End was already switched (in SortCode()
             {
-                Point tmp = item.End;       // if not, do now
-                item.End = item.Start;
-                item.Start = tmp;
+                (item.Start, item.End) = (item.End, item.Start);       // if not, do now
             }
             item.IsReversed = false;			// reset indicator
         }

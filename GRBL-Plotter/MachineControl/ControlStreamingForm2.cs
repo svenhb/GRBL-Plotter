@@ -21,8 +21,8 @@
  */
 
 using System;
-using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace GrblPlotter
 {
@@ -92,12 +92,12 @@ namespace GrblPlotter
         public event EventHandler<OverrideMsgEventArgs> RaiseOverrideEvent;
         protected virtual void OnRaiseOverrideEvent(OverrideMsgEventArgs e)
         {
-			RaiseOverrideEvent?.Invoke(this, e);
-       /*     EventHandler<OverrideMsgEventArgs> handler = RaiseOverrideEvent;
-            if (handler != null)
-            {
-                handler(this, e);
-            }*/
+            RaiseOverrideEvent?.Invoke(this, e);
+            /*     EventHandler<OverrideMsgEventArgs> handler = RaiseOverrideEvent;
+                 if (handler != null)
+                 {
+                     handler(this, e);
+                 }*/
         }
 
         private void ControlStreamingForm2_Load(object sender, EventArgs e)
@@ -118,7 +118,7 @@ namespace GrblPlotter
         private readonly int Msg;
         public OverrideMsgEventArgs(int msg)
         {
-            Msg=msg;
+            Msg = msg;
         }
         public int MSG
         { get { return Msg; } }

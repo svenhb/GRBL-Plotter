@@ -20,12 +20,12 @@
  *  2020-03-19 add SerialPortFixer code
  */
 
-using DWORD = System.UInt32;
+using Microsoft.Win32.SafeHandles;
 using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Text;
-using Microsoft.Win32.SafeHandles;
+using DWORD = System.UInt32;
 
 namespace GrblPlotter
 {
@@ -34,7 +34,8 @@ namespace GrblPlotter
     /// <summary>
     /// Providing all native methods
     /// </summary>
-    internal class NativeMethods {
+    internal class NativeMethods
+    {
         #region PowerSaving
 
         #region Win7 functions

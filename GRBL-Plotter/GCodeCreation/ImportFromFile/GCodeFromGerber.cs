@@ -53,7 +53,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Forms;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace GrblPlotter
 {

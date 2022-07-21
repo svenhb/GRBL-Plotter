@@ -31,7 +31,8 @@ using System.Drawing;
 using System.Text;
 
 namespace GrblPlotter
-{   public partial class GCodeFromImage
+{
+    public partial class GCodeFromImage
     {
         private static readonly Dictionary<int, StringBuilder> gcodeByToolNr = new Dictionary<int, StringBuilder>();
         private static readonly StringBuilder finalString = new StringBuilder();
@@ -48,16 +49,17 @@ namespace GrblPlotter
         private static float cncPixelResoY;
 
         private void GenerateGCodePreset(float startX, float startY)
-        {   lblStatus.Text = "Generating GCode... ";    //Generate picture Gcode
+        {
+            lblStatus.Text = "Generating GCode... ";    //Generate picture Gcode
             gcodeByToolNr.Clear();
             finalString.Clear();
             colorMap.Clear();
             colorStart = -2; colorEnd = -2; lastTool = -2; lastLine = -2;   // setColorMap startup
             Gcode.Setup(true);  // convertGraphics=true (repeat, inser sub)
             if (RbStartGrayS.Checked && cBLaserModeOnStart.Checked)
-            {   finalString.AppendLine("$32=1 (Lasermode on)");  }
+            { finalString.AppendLine("$32=1 (Lasermode on)"); }
             Gcode.JobStart(finalString, "StartJob");
-            Gcode.MoveToRapid(finalString, startX, startY,"");
+            Gcode.MoveToRapid(finalString, startX, startY, "");
             cncCoordLastZ = cncCoordZ = Gcode.GcodeZUp;
         }
 
@@ -78,33 +80,33 @@ namespace GrblPlotter
             //////////////////////////////////////////////
             #region go through all pixels and setColorMap
             int positionY = resultImage.Height - 1;     //top tile
-                int positionX = 0;                          //Left pixel
-                while (positionY >= 0)
-                {   //Y coordinate
-                    cncCoordY = resolY * (float)positionY;
-                    while (positionX < resultImage.Width)             //From left to right
-                    {   //X coordinate
-                        cncCoordX = resolX * (float)positionX;
-                        SetColorMap(positionX, positionY);   // collect positions of same color
-                        pixelProcessed++;
-                        positionX++;
-                    }
-                    positionX--; positionY--; cncCoordY = resolY * (float)positionY;
-                    while ((positionX >= 0) & (positionY >= 0))         //From right to left
-                    {   //X coordinate
-                        cncCoordX = resolX * (float)positionX;
-                        SetColorMap(positionX, positionY);   // collect positions of same color
-                        pixelProcessed++;
-                        positionX--;
-                    }
-                    positionX++; positionY--;
-                    percentDone = (pixelProcessed * 100) / pixelCount;
-                    lblStatus.Text = "Generating GCode... " + Convert.ToString(percentDone) + "%";
-                    if ((percentDone % 10) == 0)
-                        Refresh();
+            int positionX = 0;                          //Left pixel
+            while (positionY >= 0)
+            {   //Y coordinate
+                cncCoordY = resolY * (float)positionY;
+                while (positionX < resultImage.Width)             //From left to right
+                {   //X coordinate
+                    cncCoordX = resolX * (float)positionX;
+                    SetColorMap(positionX, positionY);   // collect positions of same color
+                    pixelProcessed++;
+                    positionX++;
                 }
-                if ((myToolNumber >= 0) && (colorMap.ContainsKey(myToolNumber)))
-                    colorMap[myToolNumber][0].Add(colorEnd);
+                positionX--; positionY--; cncCoordY = resolY * (float)positionY;
+                while ((positionX >= 0) & (positionY >= 0))         //From right to left
+                {   //X coordinate
+                    cncCoordX = resolX * (float)positionX;
+                    SetColorMap(positionX, positionY);   // collect positions of same color
+                    pixelProcessed++;
+                    positionX--;
+                }
+                positionX++; positionY--;
+                percentDone = (pixelProcessed * 100) / pixelCount;
+                lblStatus.Text = "Generating GCode... " + Convert.ToString(percentDone) + "%";
+                if ((percentDone % 10) == 0)
+                    Refresh();
+            }
+            if ((myToolNumber >= 0) && (colorMap.ContainsKey(myToolNumber)))
+                colorMap[myToolNumber][0].Add(colorEnd);
 
             #endregion
 
@@ -112,14 +114,16 @@ namespace GrblPlotter
 
             Gcode.ReduceGCode = true;
             if (withToolTable)
-            {   ToolTable.SortByPixelCount(false);      // sort by color area (max. first)
+            {
+                ToolTable.SortByPixelCount(false);      // sort by color area (max. first)
                 ConvertColorMap(resolX);                // generate GCode from coleccted pixel positions
             }
             else
-			{	SortByGrayValue(false);
+            {
+                SortByGrayValue(false);
                 ConvertColorMapBW(resolX);                // generate GCode from coleccted pixel positions
-			}
-			
+            }
+
             Gcode.PenUp(finalString, "");                             // pen up
             if (!gcodeSpindleToggle) Gcode.SpindleOff(finalString, "Stop spindle");
             imagegcode += Gcode.GetHeader("Image import", "") + finalString.Replace(',', '.').ToString() + Gcode.GetFooter();
@@ -133,16 +137,18 @@ namespace GrblPlotter
         /// </summary>
         private void SetColorMap(int tmpX, int tmpY)
         {
-            myToolNumber = resultToolNrArray[tmpX, (resultImage.Height -1)- tmpY];	// will be filled in GenerateResultImage
+            myToolNumber = resultToolNrArray[tmpX, (resultImage.Height - 1) - tmpY];	// will be filled in GenerateResultImage
 
             if ((myToolNumber >= 0) && (!colorMap.ContainsKey(myToolNumber)))   	// if ToolNr unknown, create new buffer
-            {   colorMap.Add(myToolNumber, new List<int>[resultImage.Height]);		// add array with lines
+            {
+                colorMap.Add(myToolNumber, new List<int>[resultImage.Height]);		// add array with lines
                 for (int i = 0; i < resultImage.Height; i++)
                 { colorMap[myToolNumber][i] = new List<int>(); }              		// add list to each line
             }
 
             if (lastTool != myToolNumber)                   	// if new color is in use
-            {   if (lastTool >= 0)
+            {
+                if (lastTool >= 0)
                     if (lastLine == tmpY)
                         colorMap[lastTool][tmpY].Add(colorEnd); // finish old color in same line
                     else if (lastLine >= 0)
@@ -153,8 +159,10 @@ namespace GrblPlotter
                     colorMap[myToolNumber][tmpY].Add(colorStart);   // start new color
             }
             else
-            {   if ((lastLine != tmpY) && (lastLine >= 0) && (myToolNumber >= 0)) // still same color but line change
-                { colorMap[myToolNumber][lastLine].Add(colorEnd); 	// finish old line
+            {
+                if ((lastLine != tmpY) && (lastLine >= 0) && (myToolNumber >= 0)) // still same color but line change
+                {
+                    colorMap[myToolNumber][lastLine].Add(colorEnd); 	// finish old line
                     colorStart = tmpX;
                     colorMap[myToolNumber][tmpY].Add(colorStart);   // start new line
                 }
@@ -177,33 +185,34 @@ namespace GrblPlotter
             float resoOutlineX = (float)resoDesiredX;
             float resoOutlineY = (float)resoDesiredY;
             string tmp = "";
-            int pathCount =0;
-			float penWidth;
-			bool useResoAsPenWidth = cBResolutionPenWidth.Checked;
-            
+            int pathCount = 0;
+            float penWidth;
+            bool useResoAsPenWidth = cBResolutionPenWidth.Checked;
+
             for (int index = 0; index < toolTableCount; index++)  	// go through lists
             {
                 ToolTable.SetIndex(index);                      	// set index in class
-                key = (short)ToolTable.IndexToolNR();           	// if tool-nr == known key go on
-				if(ToolTable.IndexSelected())
-					if (logEnable) Logger.Trace("ConvertColorMap  index:{0}  key:{1}   IndexSelected:{2}", index, key, ToolTable.IndexSelected());
+                key = (short)ToolTable.IndexToolNR();               // if tool-nr == known key go on
+                if (ToolTable.IndexSelected())
+                    if (logEnable) Logger.Trace("ConvertColorMap  index:{0}  key:{1}   IndexSelected:{2}", index, key, ToolTable.IndexSelected());
 
                 if (colorMap.ContainsKey(key) && ToolTable.IndexSelected())
-                {   toolNr = key;                               // use tool in palette order
+                {
+                    toolNr = key;                               // use tool in palette order
                     if (cbSkipToolOrder.Checked)
                         toolNr = skipTooNr++;                   // or start tool-nr at 1
 
                     finalString.AppendLine("\r\n( +++++ Tool change +++++ )");
 
                     Gcode.Tool(finalString, toolNr, ToolTable.IndexName());  // + svgPalette.pixelCount());
-					if (useResoAsPenWidth) penWidth = resoOutlineX;
-					else penWidth = ToolTable.IndexWidth();
-					
-                //    Gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" PenColor=\"{2}\" PenName=\"{3}\" PenWidth=\"{4:0.00}\">", XmlMarker.FigureStart, (++pathCount), ColorTranslator.ToHtml(ToolTable.IndexColor()).Substring(1), ToolTable.IndexName(), penWidth));		//toolTable.indexName()));
+                    if (useResoAsPenWidth) penWidth = resoOutlineX;
+                    else penWidth = ToolTable.IndexWidth();
+
+                    //    Gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" PenColor=\"{2}\" PenName=\"{3}\" PenWidth=\"{4:0.00}\">", XmlMarker.FigureStart, (++pathCount), ColorTranslator.ToHtml(ToolTable.IndexColor()).Substring(1), ToolTable.IndexName(), penWidth));		//toolTable.indexName()));
                     Gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" PenColor=\"{2}\" PenName=\"{3}\" PenWidth=\"{4:0.00}\">", XmlMarker.GroupStart, (++pathCount), ColorTranslator.ToHtml(ToolTable.IndexColor()).Substring(1), ToolTable.IndexName(), penWidth));		//toolTable.indexName()));
                     Gcode.ReduceGCode = false;
-                    Gcode.PenUp(finalString," start ");
-//                    gcode.MoveToRapid(finalString, 0, 0);          // move to start pos
+                    Gcode.PenUp(finalString, " start ");
+                    //                    gcode.MoveToRapid(finalString, 0, 0);          // move to start pos
                     Gcode.ReduceGCode = true;
 
                     tmp += ToolTable.IndexName() + "\r\n";
@@ -213,16 +222,17 @@ namespace GrblPlotter
                         int smoothCnt = (int)nUDGCodeOutlineSmooth.Value;
                         if (!cBGCodeOutlineSmooth.Checked)
                             smoothCnt = 0;
-                        outlineList = Vectorize.GetPaths(resultToolNrArray, adjustedImage.Width, adjustedImage.Height, key, smoothCnt, (float)0.5/resoOutlineX, cBGCodeOutlineShrink.Checked);// half pen-width in pixels
+                        outlineList = Vectorize.GetPaths(resultToolNrArray, adjustedImage.Width, adjustedImage.Height, key, smoothCnt, (float)0.5 / resoOutlineX, cBGCodeOutlineShrink.Checked);// half pen-width in pixels
                         int cnt = 0;
                         float tmpY;
                         foreach (List<PointF> path in outlineList)
                         {
                             if (path.Count > 0)
-                            {   cnt++;
+                            {
+                                cnt++;
                                 tmpP = path[0];
                                 tmpY = (adjustedImage.Height - 1) - tmpP.Y; // start point
-                            //    Gcode.Comment(finalString, string.Format("{0} Nr=\"{1}\">", XmlMarker.ContourStart, cnt));
+                                                                            //    Gcode.Comment(finalString, string.Format("{0} Nr=\"{1}\">", XmlMarker.ContourStart, cnt));
                                 Gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" Geometry=\"Contour\" PenColor=\"{2}\" PenWidth=\"{3:0.00}\">", XmlMarker.FigureStart, cnt, ColorTranslator.ToHtml(ToolTable.IndexColor()).Substring(1), penWidth));
                                 Gcode.MoveToRapid(finalString, tmpP.X * resoOutlineX, tmpY * resoOutlineY, "");          // move to start pos
                                 Gcode.PenDown(finalString, "");// " contour "+cnt);
@@ -232,51 +242,58 @@ namespace GrblPlotter
                                     Gcode.MoveTo(finalString, aP.X * resoOutlineX, tmpY * resoOutlineY, "");
                                 }
                                 tmpY = (adjustedImage.Height - 1) - tmpP.Y;
-                                Gcode.PenUp(finalString,"");
-                            //    Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.ContourEnd));
+                                Gcode.PenUp(finalString, "");
+                                //    Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.ContourEnd));
                                 Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.FigureEnd));
                             }
                         }
                         shrink = 0.4f;// 0.8f;          // shrink value in pixels!
-                        if(cBGCodeOutlineShrink.Checked)
-                            shrink = resoOutlineX*resoFactorX*1.2f;   // mm/px * factor * 1,6
-                        tmp += "\r\nTool Nr "+ key + " Points: "+cnt+" \r\n"+Vectorize.logList.ToString();
+                        if (cBGCodeOutlineShrink.Checked)
+                            shrink = resoOutlineX * resoFactorX * 1.2f;   // mm/px * factor * 1,6
+                        tmp += "\r\nTool Nr " + key + " Points: " + cnt + " \r\n" + Vectorize.logList.ToString();
                     }
                     else
                         shrink = 0;
 
                     if (cBGCodeFill.Checked)
-                    {   int factor = resoFactorX;
+                    {
+                        int factor = resoFactorX;
                         int start = factor / 2;
                         // if (cBGCodeOutlineShrink.Checked)
                         //     start = factor; 
                         // if shrink, adapt start and stop posditions
-                    //    Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.FillStart));
+                        //    Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.FillStart));
                         Gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" Geometry=\"Fill\" PenColor=\"{2}\" PenWidth=\"{3:0.00}\">", XmlMarker.FigureStart, pathCount, ColorTranslator.ToHtml(ToolTable.IndexColor()).Substring(1), penWidth));
                         if (shrink > 0)
                         {
-                            int pos1, pos2, min,max,minO,maxO, center;
+                            int pos1, pos2, min, max, minO, maxO, center;
                             int pxOffset = (int)(shrink / (float)resoDesiredX);
                             for (int y = start; y < resultImage.Height; y += factor)  // go through all lines
-                            {   if (colorMap[key][y].Count > 1)
-                                {   for (int k = 0; k < colorMap[key][y].Count; k += 2)
-                                    {   pos1 = colorMap[key][y][k];
-                                        pos2 = colorMap[key][y][k+1];
+                            {
+                                if (colorMap[key][y].Count > 1)
+                                {
+                                    for (int k = 0; k < colorMap[key][y].Count; k += 2)
+                                    {
+                                        pos1 = colorMap[key][y][k];
+                                        pos2 = colorMap[key][y][k + 1];
                                         min = Math.Min(pos1, pos2);
                                         max = Math.Max(pos1, pos2);
                                         minO = min + pxOffset;
                                         maxO = max - pxOffset;
                                         center = (min + max) / 2;
                                         if (minO < maxO)
-                                        {   colorMap[key][y][k] = minO;
-                                            colorMap[key][y][k+1] = maxO;
+                                        {
+                                            colorMap[key][y][k] = minO;
+                                            colorMap[key][y][k + 1] = maxO;
                                         }
                                         else if ((minO > max) || (maxO < min))
-                                        {   colorMap[key][y][k] =-1;
+                                        {
+                                            colorMap[key][y][k] = -1;
                                             colorMap[key][y][k + 1] = -1;
                                         }
                                         else
-                                        {   colorMap[key][y][k] = center;
+                                        {
+                                            colorMap[key][y][k] = center;
                                             colorMap[key][y][k + 1] = center;
                                         }
                                     }
@@ -284,18 +301,19 @@ namespace GrblPlotter
                             }
                         }
 
-                        for (int y=start; y < resultImage.Height; y+= factor)  // go through all lines
-                        {   while (colorMap[key][y].Count > 1)          // start at line 0 and check line by line
+                        for (int y = start; y < resultImage.Height; y += factor)  // go through all lines
+                        {
+                            while (colorMap[key][y].Count > 1)          // start at line 0 and check line by line
                                 DrawColorMap(resol, key, y, 0, true);
                         }
-                    //    Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.FillEnd));
+                        //    Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.FillEnd));
                         Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.FigureEnd));
                     }
                     //   Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.FigureEnd));
                     Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.GroupEnd));
                 }
             }
-//            System.Windows.Forms.Clipboard.SetText(tmp);
+            //            System.Windows.Forms.Clipboard.SetText(tmp);
         }
 
         /// <summary>
@@ -311,19 +329,19 @@ namespace GrblPlotter
             float resoOutlineY = (float)resoDesiredY;
             int pathCount = 0;
             SortByGrayValue(false);
-			short grayVal;
-			
+            short grayVal;
+
             for (int index = 0; index <= 255; index++)  // go through possible gray values
             {
                 key = (short)index;           // if tool-nr == known key go on
-				if (GrayValueMap[index].Use)
-					if (logEnable) Logger.Trace("ConvertColorMapBW  index:{0}  key:{1}   use:{2}", index, key, GrayValueMap[index].Use);
+                if (GrayValueMap[index].Use)
+                    if (logEnable) Logger.Trace("ConvertColorMapBW  index:{0}  key:{1}   use:{2}", index, key, GrayValueMap[index].Use);
 
                 if (colorMap.ContainsKey(key) && (GrayValueMap[index].Use))
                 {
                     finalString.AppendLine("\r\n( +++++ Tool change +++++ )");
 
-                //    Gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" PenColor=\"{2}\" PenName=\"{3}\" PenWidth=\"{4:0.00}\">", XmlMarker.FigureStart, (++pathCount), ColorTranslator.ToHtml(Color.FromArgb(key,key,key)).Substring(1), key, resol));        //toolTable.indexName()));
+                    //    Gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" PenColor=\"{2}\" PenName=\"{3}\" PenWidth=\"{4:0.00}\">", XmlMarker.FigureStart, (++pathCount), ColorTranslator.ToHtml(Color.FromArgb(key,key,key)).Substring(1), key, resol));        //toolTable.indexName()));
                     Gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" PenColor=\"{2}\" PenName=\"{3}\" PenWidth=\"{4:0.00}\">", XmlMarker.GroupStart, (++pathCount), ColorTranslator.ToHtml(Color.FromArgb(key, key, key)).Substring(1), key, resol));     //toolTable.indexName()));
                     Gcode.ReduceGCode = false;
                     Gcode.PenUp(finalString, " start ");
@@ -335,8 +353,8 @@ namespace GrblPlotter
                         int smoothCnt = (int)nUDGCodeOutlineSmooth.Value;
                         if (!cBGCodeOutlineSmooth.Checked)
                             smoothCnt = 0;
-						
-						grayVal = GrayValueMap[index].GrayVal;
+
+                        grayVal = GrayValueMap[index].GrayVal;
                         outlineList = Vectorize.GetPaths(resultToolNrArray, adjustedImage.Width, adjustedImage.Height, grayVal, smoothCnt, (float)0.5 / resoOutlineX, cBGCodeOutlineShrink.Checked);// half pen-width in pixels
                         int cnt = 0;
                         float tmpY;
@@ -347,7 +365,7 @@ namespace GrblPlotter
                                 cnt++;
                                 tmpP = path[0];
                                 tmpY = (adjustedImage.Height - 1) - tmpP.Y; // start point
-                            //    Gcode.Comment(finalString, string.Format("{0} Nr=\"{1}\">", XmlMarker.ContourStart, cnt));
+                                                                            //    Gcode.Comment(finalString, string.Format("{0} Nr=\"{1}\">", XmlMarker.ContourStart, cnt));
                                 Gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" Geometry=\"Contour\" PenColor=\"{2}\" PenWidth=\"{3:0.00}\">", XmlMarker.FigureStart, cnt, ColorTranslator.ToHtml(Color.FromArgb(key, key, key)).Substring(1), resol));
                                 Gcode.MoveToRapid(finalString, tmpP.X * resoOutlineX, tmpY * resoOutlineY, "");          // move to start pos
                                 Gcode.PenDown(finalString, "");// " contour "+cnt);
@@ -358,7 +376,7 @@ namespace GrblPlotter
                                 }
                                 tmpY = (adjustedImage.Height - 1) - tmpP.Y;
                                 Gcode.PenUp(finalString, "");
-                            //    Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.ContourEnd));
+                                //    Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.ContourEnd));
                                 Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.FigureEnd));
                             }
                         }
@@ -376,7 +394,7 @@ namespace GrblPlotter
                         // if (cBGCodeOutlineShrink.Checked)
                         //     start = factor; 
                         // if shrink, adapt start and stop posditions
-                     //   Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.FillStart));
+                        //   Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.FillStart));
                         Gcode.Comment(finalString, string.Format("{0} Id=\"{1}\" Geometry=\"Fill\" PenColor=\"{2}\" PenWidth=\"{3:0.00}\">", XmlMarker.FigureStart, pathCount, ColorTranslator.ToHtml(Color.FromArgb(key, key, key)).Substring(1), resol));
                         if (shrink > 0)
                         {
@@ -420,7 +438,7 @@ namespace GrblPlotter
                             while (colorMap[key][y].Count > 1)          // start at line 0 and check line by line
                                 DrawColorMap(resol, key, y, 0, true);
                         }
-                    //    Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.FillEnd));
+                        //    Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.FillEnd));
                         Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.FigureEnd));
                     }
                     //    Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.FigureEnd));
@@ -455,13 +473,15 @@ namespace GrblPlotter
                     stop = colorMap[toolNr][line][startIndex - 1];    // inital start of color
                     colorMap[toolNr][line].RemoveRange(startIndex - 1, 2);  // remove pair from list - needs to be drawn just once
                 }
-           //     float tmpShrink = shrink;
-           //     if (start > stop) tmpShrink = -shrink;
+                //     float tmpShrink = shrink;
+                //     if (start > stop) tmpShrink = -shrink;
                 float tmpShrink = 0;
                 if ((start >= 0) && (stop >= 0) && (cBGCodeFill.Checked))
-                {   float coordX = reso * (float)start + tmpShrink;
+                {
+                    float coordX = reso * (float)start + tmpShrink;
                     if (first)                                              // is this inital first call?
-                    {   Gcode.MoveToRapid(finalString, coordX, coordY, "1st pos.");     // move to start pos
+                    {
+                        Gcode.MoveToRapid(finalString, coordX, coordY, "1st pos.");     // move to start pos
                         Gcode.PenDown(finalString, "");
                         first = false;
                     }
@@ -470,7 +490,7 @@ namespace GrblPlotter
                     coordX = reso * (float)stop - tmpShrink;
                     Gcode.MoveTo(finalString, coordX, coordY, "");              // move to end pos
                 }
-                if (line < (resultImage.Height - factor -1))
+                if (line < (resultImage.Height - factor - 1))
                 {
                     var nextLine = colorMap[toolNr][line + factor];      // check for start-pos nearby in next line
                     bool end = true;
@@ -478,20 +498,26 @@ namespace GrblPlotter
                     int sfactor = (int)(factor * 1.5);
 
                     if (start < stop)                                   // comming from left, search from rigth to left
-                    {   for (int k = stop + sfactor; k >= start - sfactor; k--)
-                        {   newIndex = nextLine.IndexOf(k);             // first check direction were I came from
+                    {
+                        for (int k = stop + sfactor; k >= start - sfactor; k--)
+                        {
+                            newIndex = nextLine.IndexOf(k);             // first check direction were I came from
                             if (newIndex >= 0)                          // entry found
-                            {   DrawColorMap(reso, toolNr, line + factor, newIndex, first);  // go on with next line
+                            {
+                                DrawColorMap(reso, toolNr, line + factor, newIndex, first);  // go on with next line
                                 end = false;
                                 break;
                             }
                         }
-                    } else
+                    }
+                    else
                     {                                                   // comming from right, search from left to right
                         for (int k = stop - sfactor; k <= start + sfactor; k++)
-                        {   newIndex = nextLine.IndexOf(k);             // first check direction were I came from
+                        {
+                            newIndex = nextLine.IndexOf(k);             // first check direction were I came from
                             if (newIndex >= 0)                          // entry found
-                            {   DrawColorMap(reso, toolNr, line + factor, newIndex, first);  // go on with next line
+                            {
+                                DrawColorMap(reso, toolNr, line + factor, newIndex, first);  // go on with next line
                                 end = false;
                                 break;
                             }
