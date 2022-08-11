@@ -65,7 +65,7 @@ namespace GrblPlotter
         public static bool GCPauseChar { get; set; }
         public static bool GCConnectLetter { get; set; }
 
-    //    public static int GCTextAlign { get; set; }   
+        //    public static int GCTextAlign { get; set; }   
 
         private static double gcLetterSpacing = 3;
         private static double gcWordSpacing = 6.75;
@@ -289,8 +289,8 @@ namespace GrblPlotter
                     int chrIndex = (int)actualChar - 32;
                     int chrIndexLFF = (int)actualChar;
                     Graphic.SetPathId(lineIndex + "-" + txtIndex);
-					Graphic.SetAuxInfo(lineIndex);									// to center lines later - if needed
-					
+                    Graphic.SetAuxInfo(lineIndex);                                  // to center lines later - if needed
+
                     if (txtIndex == 0)    //actualChar == '\n')                       // next line
                     {
                         offsetX = 0;
@@ -527,7 +527,7 @@ namespace GrblPlotter
             return maxX;
         }
 
-        private static double charX=0, charY=0, charXOld = 0, charYOld = 0;
+        private static double charX = 0, charY = 0, charXOld = 0, charYOld = 0;
 
         private static double DrawTokenLFF(string txtPath, double offX, double offY, double scale)
         {

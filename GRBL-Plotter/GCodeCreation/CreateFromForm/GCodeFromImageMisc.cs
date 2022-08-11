@@ -19,19 +19,16 @@
 
 /*
  * 2022-03-28  split code into ...Create and ...Outline
+ * 2022-06-25 line 294 BtnShowSettings_Click add try catch
 */
 
-using AForge.Imaging.ColorReduction;
-using AForge.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace GrblPlotter
@@ -102,18 +99,19 @@ namespace GrblPlotter
                 redoColorAdjust = false;
 
                 CbBlackWhiteEnable.Checked = false;
-				if (useColorMode)
-                {	cBGCodeFill.Checked = true;				// only preset in color mode
-					cBGCodeOutline.Checked = true;
-					cBGCodeOutlineSmooth.Checked = true;
-					cBGCodeOutlineShrink.Checked = true;
-				}
-				else
-				{
-					if (!cBGCodeFill.Checked && !cBGCodeOutline.Checked)
-					{	cBGCodeOutline.Checked = true;}					// at least one must be checked
-				}
-				
+                if (useColorMode)
+                {
+                    cBGCodeFill.Checked = true;             // only preset in color mode
+                    cBGCodeOutline.Checked = true;
+                    cBGCodeOutlineSmooth.Checked = true;
+                    cBGCodeOutlineShrink.Checked = true;
+                }
+                else
+                {
+                    if (!cBGCodeFill.Checked && !cBGCodeOutline.Checked)
+                    { cBGCodeOutline.Checked = true; }                  // at least one must be checked
+                }
+
                 //           updatePixelCountPerColorNeeded = false;
                 lblImageSource.Text = "original";
             }
@@ -155,8 +153,8 @@ namespace GrblPlotter
             rBMode0.CheckedChanged -= RbMode0_CheckedChanged;
             rBMode1.CheckedChanged -= RbMode0_CheckedChanged;
             rBMode2.CheckedChanged -= RbMode0_CheckedChanged;
-			nUDResoX.ValueChanged -= ApplyColorCorrectionsEvent;
-			nUDResoY.ValueChanged -= ApplyColorCorrectionsEvent;
+            nUDResoX.ValueChanged -= ApplyColorCorrectionsEvent;
+            nUDResoY.ValueChanged -= ApplyColorCorrectionsEvent;
             RbGrayscaleVector.CheckedChanged -= RbGrayscaleVector_CheckedChanged;
             RbGrayscalePattern.CheckedChanged -= RbGrayscaleVector_CheckedChanged;
             tabControl2.SelectedIndexChanged -= TabControl2_SelectedIndexChanged;
@@ -198,8 +196,8 @@ namespace GrblPlotter
             rBMode0.CheckedChanged += RbMode0_CheckedChanged;
             rBMode1.CheckedChanged += RbMode0_CheckedChanged;
             rBMode2.CheckedChanged += RbMode0_CheckedChanged;
-			nUDResoX.ValueChanged += ApplyColorCorrectionsEvent;
-			nUDResoY.ValueChanged += ApplyColorCorrectionsEvent;
+            nUDResoX.ValueChanged += ApplyColorCorrectionsEvent;
+            nUDResoY.ValueChanged += ApplyColorCorrectionsEvent;
             RbGrayscaleVector.CheckedChanged += RbGrayscaleVector_CheckedChanged;
             RbGrayscalePattern.CheckedChanged += RbGrayscaleVector_CheckedChanged;
             tabControl2.SelectedIndexChanged += TabControl2_SelectedIndexChanged;
@@ -293,9 +291,16 @@ namespace GrblPlotter
         private void BtnShowSettings_Click(object sender, EventArgs e)
         {
             MessageBox.Show(ListColorCorrection(), "Color correction settings");
-            string text = ListColorCorrection();
-            if (!string.IsNullOrEmpty(text))
-                System.Windows.Forms.Clipboard.SetText(ListColorCorrection());
+            try
+            {
+                string text = ListColorCorrection();
+                if (!string.IsNullOrEmpty(text))
+                    System.Windows.Forms.Clipboard.SetText(ListColorCorrection());
+            }
+            catch (Exception err)
+            {
+                Logger.Error(err, "BtnShowSettings_Click ");
+            }
         }
         #endregion
 
@@ -309,7 +314,7 @@ namespace GrblPlotter
             bool edit = false;
             if (AspectRatioOriginalImage == 0)
             {
-                Logger.Error("NudWidthHeight_ValueChanged ratio=0  width:{0}  height:{1}", originalImage.Width, originalImage.Height);
+                Logger.Error("NudWidthHeight_ValueChanged ratio=0  width:{0}  height:{1}", nUDWidth.Value, nUDHeight.Value);	// originalImage.Width... -> Object reference not set
                 AspectRatioOriginalImage = 1;
             }
             if (oldWidth != nUDWidth.Value)
@@ -393,10 +398,10 @@ namespace GrblPlotter
             pictureBox1.Image = adjustedImage;
             AutoZoomToolStripMenuItem_Click(this, null);
 
-			if (useColorMode)
-				GenerateResultImage(ref resultToolNrArray);      // fill countColors
-			else
-				GenerateResultImageGray(ref resultToolNrArray);      
+            if (useColorMode)
+                GenerateResultImage(ref resultToolNrArray);      // fill countColors
+            else
+                GenerateResultImageGray(ref resultToolNrArray);
 
             ShowResultImage();
         }
@@ -412,12 +417,12 @@ namespace GrblPlotter
             nUDWidth.Value = s;
             pictureBox1.Image = adjustedImage;
             AutoZoomToolStripMenuItem_Click(this, null);
-			
-			if (useColorMode)
-				GenerateResultImage(ref resultToolNrArray);      // fill countColors
-			else
-				GenerateResultImageGray(ref resultToolNrArray);      
-			
+
+            if (useColorMode)
+                GenerateResultImage(ref resultToolNrArray);      // fill countColors
+            else
+                GenerateResultImageGray(ref resultToolNrArray);
+
             ShowResultImage();
         }
         //Invert image color
@@ -826,7 +831,7 @@ namespace GrblPlotter
         /* Display tools from selected tool table */
         private bool LoadToolList(string file)
         {
-			UpdateLogging();
+            UpdateLogging();
             if (File.Exists(file))
             {
                 Logger.Trace("Load Tool Table {0}", file);
@@ -905,9 +910,9 @@ namespace GrblPlotter
                 gBgcodeSelection.BackColor = Color.WhiteSmoke;
                 GbGcodeDirection.BackColor = Color.Yellow;
             }
-            ResetColorCorrectionControls(); 
-			ApplyColorCorrections("RbGrayscaleVector_CheckedChanged"); 
-			lblImageSource.Text = "original";
+            ResetColorCorrectionControls();
+            ApplyColorCorrections("RbGrayscaleVector_CheckedChanged");
+            lblImageSource.Text = "original";
         }
 
         /* OwnerDrawFixed - colorize tab-handle */

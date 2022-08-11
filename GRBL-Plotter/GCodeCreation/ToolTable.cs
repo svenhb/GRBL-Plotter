@@ -26,6 +26,7 @@
  * 2021-07-26 code clean up / code quality
  * 2021-08-26 GetToolColor remove leading '#'
  * 2021-12-09 set default tool-nr=1
+ * 2022-07-29 Init add try catch
 */
 
 using System;
@@ -120,7 +121,8 @@ namespace GrblPlotter
             foreach (ToolProp tool in toolTableArray)
             {
                 if (index == tool.Toolnr)
-                {   string tmp = ColorTranslator.ToHtml(tool.Color);
+                {
+                    string tmp = ColorTranslator.ToHtml(tool.Color);
                     if (tmp.StartsWith("#"))
                         tmp = tmp.Substring(1);
                     return tmp; // 2021-08-26 remove '#'
@@ -143,7 +145,8 @@ namespace GrblPlotter
         internal static ToolProp GetToolProperties(int toolNr)
         {
             if ((toolTableArray == null) || (toolTableArray.Count == 0))
-            {   Logger.Error("GetToolProperties toolTableArray is empty - do Init");
+            {
+                Logger.Warn("GetToolProperties toolTableArray is empty - do Init");
                 Init(" (GetToolProperties)");
             }
 
@@ -190,7 +193,7 @@ namespace GrblPlotter
         {
             if ((toolTableArray == null) || (toolTableArray.Count == 0))
             {
-                Logger.Error("SortByToolNR toolTableArray is empty - do Init");
+                Logger.Warn("SortByToolNR toolTableArray is empty - do Init");
                 Init(" (SortByToolNR)");
             }
             List<ToolProp> SortedList;
@@ -204,7 +207,7 @@ namespace GrblPlotter
         {
             if ((toolTableArray == null) || (toolTableArray.Count == 0))
             {
-                Logger.Error("SortByPixelCount toolTableArray is empty - do Init");
+                Logger.Warn("SortByPixelCount toolTableArray is empty - do Init");
                 Init(" (SortByPixelCount)");
             }
             List<ToolProp> SortedList;
@@ -243,7 +246,7 @@ namespace GrblPlotter
         /// set tool/color table
         /// get table size
         /// </summary>
-        public static int Init(string cmt="")    // return number of entries
+        public static int Init(string cmt = "")    // return number of entries
         {
             useException = false;
             toolTableArray.Clear();
@@ -251,48 +254,56 @@ namespace GrblPlotter
             toolTableArray.Add(new ToolProp(-2, Color.White, "No White"));  // add exception color
 
             string file = Datapath.Tools + "\\" + DefaultFileName;
-            Logger.Info("🛠🛠 Init tool table{0}: {1}", cmt, file);
+            Logger.Info("🛠🛠 Init tool table{0}: {1}", cmt, DefaultFileName);
             bool anyToolFound = false;
             if (File.Exists(file))
             {
-                string[] readText = File.ReadAllLines(file);
-                string[] col;
-                toolTableIndex = 1;
-                foreach (string s in readText)
+                try
                 {
-                    if (s.StartsWith("#") || s.StartsWith("/"))     // jump over comments
-                        continue;
-                    if (s.Length > 25)
+                    string[] readText = File.ReadAllLines(file);
+                    string[] col;
+                    toolTableIndex = 1;
+                    foreach (string s in readText)
                     {
-                        col = s.Split(','); //ToolNr,color,name,X,Y,Z,diameter,XYspeed,Z-step, Zspeed, spindleSpeed, overlap
-
-                        toolTableArray.Add(new ToolProp());             // add empty property, fill later
-                        toolTableIndex = toolTableArray.Count - 1;
-
-                        try
+                        if (s.StartsWith("#") || s.StartsWith("/"))     // jump over comments
+                            continue;
+                        if (s.Length > 25)
                         {
-                            toolTableArray[toolTableIndex].Toolnr = Convert.ToInt16(col[0].Trim(), culture);
-                            long clr = Convert.ToInt32(col[1].Trim(), 16) | 0xff000000;
-                            toolTableArray[toolTableIndex].Color = System.Drawing.Color.FromArgb((int)clr);
-                            toolTableArray[toolTableIndex].Name = col[2].Trim();
-                            if (col.Length >= 4) toolTableArray[toolTableIndex].Position.X = float.Parse(col[3].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
-                            if (col.Length >= 5) toolTableArray[toolTableIndex].Position.Y = float.Parse(col[4].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
-                            if (col.Length >= 6) toolTableArray[toolTableIndex].Position.Z = float.Parse(col[5].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
-                            if (col.Length >= 7) toolTableArray[toolTableIndex].Position.A = float.Parse(col[6].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
-                            if (col.Length >= 8) toolTableArray[toolTableIndex].Diameter = float.Parse(col[7].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
-                            if (col.Length >= 9) toolTableArray[toolTableIndex].FeedXY = float.Parse(col[8].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
-                            if (col.Length >= 10) toolTableArray[toolTableIndex].FeedZ = float.Parse(col[9].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
-                            if (col.Length >= 11) toolTableArray[toolTableIndex].SaveZ = float.Parse(col[10].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
-                            if (col.Length >= 12) toolTableArray[toolTableIndex].FinalZ = float.Parse(col[11].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
-                            if (col.Length >= 13) toolTableArray[toolTableIndex].StepZ = float.Parse(col[12].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
-                            if (col.Length >= 14) toolTableArray[toolTableIndex].SpindleSpeed = float.Parse(col[13].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
-                            if (col.Length >= 15) toolTableArray[toolTableIndex].Overlap = float.Parse(col[14].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
-                            if (col.Length >= 16) toolTableArray[toolTableIndex].Gcode = col[15].Trim();
-                            anyToolFound = true;
+                            col = s.Split(','); //ToolNr,color,name,X,Y,Z,diameter,XYspeed,Z-step, Zspeed, spindleSpeed, overlap
+
+                            toolTableArray.Add(new ToolProp());             // add empty property, fill later
+                            toolTableIndex = toolTableArray.Count - 1;
+
+                            try
+                            {
+                                toolTableArray[toolTableIndex].Toolnr = Convert.ToInt16(col[0].Trim(), culture);
+                                long clr = Convert.ToInt32(col[1].Trim(), 16) | 0xff000000;
+                                toolTableArray[toolTableIndex].Color = System.Drawing.Color.FromArgb((int)clr);
+                                toolTableArray[toolTableIndex].Name = col[2].Trim();
+                                if (col.Length >= 4) toolTableArray[toolTableIndex].Position.X = float.Parse(col[3].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                                if (col.Length >= 5) toolTableArray[toolTableIndex].Position.Y = float.Parse(col[4].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                                if (col.Length >= 6) toolTableArray[toolTableIndex].Position.Z = float.Parse(col[5].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                                if (col.Length >= 7) toolTableArray[toolTableIndex].Position.A = float.Parse(col[6].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                                if (col.Length >= 8) toolTableArray[toolTableIndex].Diameter = float.Parse(col[7].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                                if (col.Length >= 9) toolTableArray[toolTableIndex].FeedXY = float.Parse(col[8].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                                if (col.Length >= 10) toolTableArray[toolTableIndex].FeedZ = float.Parse(col[9].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                                if (col.Length >= 11) toolTableArray[toolTableIndex].SaveZ = float.Parse(col[10].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                                if (col.Length >= 12) toolTableArray[toolTableIndex].FinalZ = float.Parse(col[11].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                                if (col.Length >= 13) toolTableArray[toolTableIndex].StepZ = float.Parse(col[12].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                                if (col.Length >= 14) toolTableArray[toolTableIndex].SpindleSpeed = float.Parse(col[13].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                                if (col.Length >= 15) toolTableArray[toolTableIndex].Overlap = float.Parse(col[14].Trim(), System.Globalization.NumberFormatInfo.InvariantInfo);
+                                if (col.Length >= 16) toolTableArray[toolTableIndex].Gcode = col[15].Trim();
+                                anyToolFound = true;
+                            }
+                            catch (Exception ex) { Logger.Error(ex, "ToolTable.Init() Error "); }
+                            if (toolTableIndex >= (toolTableMax - 1)) break;
                         }
-                        catch (Exception ex) { Logger.Error(ex, "ToolTable.Init() Error "); }
-                        if (toolTableIndex >= (toolTableMax - 1)) break;
                     }
+                }
+                catch (Exception err)
+                {
+                    Logger.Error(err, "ToolTable Init read file ");
+                    EventCollector.StoreException("ToolTable Init read file " + err.Message);
                 }
             }
             if (!anyToolFound)
@@ -316,7 +327,8 @@ namespace GrblPlotter
             return toolTableIndex;
         }
         public static void SetAllSelected(bool val)
-        {   for (int i = 0; i < toolTableArray.Count; i++)   // add colors to AForge filter
+        {
+            for (int i = 0; i < toolTableArray.Count; i++)   // add colors to AForge filter
             { toolTableArray[i].ToolSelected = val; }
         }
 
@@ -326,7 +338,7 @@ namespace GrblPlotter
             useException = true;
             if ((toolTableArray == null) || (toolTableArray.Count == 0))
             {
-                Logger.Error("SetExceptionColor toolTableArray is empty - do init");
+                Logger.Warn("SetExceptionColor toolTableArray is empty - do init");
                 Init(" (SetExceptionColor)");
             }
             List<ToolProp> SortedList = toolTableArray.OrderBy(o => o.Toolnr).ToList();
@@ -350,9 +362,10 @@ namespace GrblPlotter
         }
         // Clear exception color
         public static void ClrExceptionColor()
-        { useException = false; SortByToolNR(false); 
+        {
+            useException = false; SortByToolNR(false);
             if (toolTableArray.Count > 0)
-             toolTableArray[0].ColorPresent = false; 
+                toolTableArray[0].ColorPresent = false;
         }
 
         // return tool nr of nearest color
@@ -382,7 +395,7 @@ namespace GrblPlotter
         {
             if ((toolTableArray == null) || (toolTableArray.Count == 0))
             {
-                Logger.Error("GetToolNRByColor toolTableArray is empty - do Init");
+                Logger.Warn("GetToolNRByColor toolTableArray is empty - do Init");
                 Init(" (GetToolNRByColor)");
             }
 
@@ -417,7 +430,7 @@ namespace GrblPlotter
         {
             if ((toolTableArray == null) || (toolTableArray.Count == 0))
             {
-                Logger.Error("GetToolNRByToolDiameter toolTableArray is empty - do Init");
+                Logger.Warn("GetToolNRByToolDiameter toolTableArray is empty - do Init");
                 Init(" (GetToolNRByToolDiameter)");
             }
 
@@ -449,7 +462,7 @@ namespace GrblPlotter
         {
             if ((toolTableArray == null) || (toolTableArray.Count == 0))
             {
-                Logger.Error("GetToolNRByToolName toolTableArray is empty - do Init");
+                Logger.Warn("GetToolNRByToolName toolTableArray is empty - do Init");
                 Init(" (GetToolNRByToolName)");
             }
             List<ToolProp> SortedList = toolTableArray.OrderBy(o => o.Toolnr).ToList();

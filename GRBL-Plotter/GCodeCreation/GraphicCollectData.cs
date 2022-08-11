@@ -41,6 +41,7 @@
  * 2021-11-16 bugfix RemoveIntermediateSteps <- include RemoveShortMoves
  * 2022-04-06 add DragToolModificationTangential, add header info about some applied options
  * 2022-04-21 line 773 make limit variable: if (completeGraphic.Count > maxCount)
+ * 2022-07-22 line 509 SetPenFill - also convert from "rgb("
 */
 
 using System;
@@ -293,17 +294,19 @@ namespace GrblPlotter
         public static void StopPath(string cmt)
         {
             if (!actualPath.Dimension.IsXYSet())                    // 2020-10-31
-            {   if (logEnable) {Logger.Trace("⚠ StopPath dimension not set - skip1"); }
+            {
+                if (logEnable) { Logger.Trace("⚠ StopPath dimension not set - skip1"); }
                 return;
             }
 
-            if (continuePath &&  (completeGraphic.Count > 0))
-            {    completeGraphic[completeGraphic.Count - 1] = actualPath;}
+            if (continuePath && (completeGraphic.Count > 0))
+            { completeGraphic[completeGraphic.Count - 1] = actualPath; }
             else
             {
                 if (actualPath.Dimension.IsXYSet())
-                {   completeGraphic.Add(actualPath); 
-                    if (logCoordinates) {Logger.Trace("▲ StopPath completeGraphic.Add {0}", completeGraphic.Count); }
+                {
+                    completeGraphic.Add(actualPath);
+                    if (logCoordinates) { Logger.Trace("▲ StopPath completeGraphic.Add {0}", completeGraphic.Count); }
                 }
                 else
                 { if (logEnable) Logger.Trace("⚠ StopPath dimension not set - skip2"); }
@@ -458,9 +461,9 @@ namespace GrblPlotter
         public static void SetLabel(string txt)	// from inkscape:label, will be added to layer-name
         {
             if (logProperties) Logger.Trace("Set Label '{0}'", txt);
-   //         setNewId = true;
+            //         setNewId = true;
             int tmpIndex = (int)GroupOption.Label;
-    //        CountProperty(tmpIndex, txt);
+            //        CountProperty(tmpIndex, txt);
             if (!actualPathInfo.SetGroupAttribute(tmpIndex, txt))
                 Logger.Error(" Error SetLabel '{0}'", txt);
         }
@@ -487,11 +490,14 @@ namespace GrblPlotter
                     Int32.Parse(colors[1].Trim()),
                     Int32.Parse(colors[2].Trim())
                     );
-                txt = System.Drawing.ColorTranslator.ToHtml(color);
+                string ntxt = System.Drawing.ColorTranslator.ToHtml(color);
+                Logger.Info("SetPenColor convert '{0}' to '{1}'", txt, ntxt);
+                txt = ntxt;
                 if (txt.StartsWith("#"))
                     txt = txt.Substring(1);
             }
-            if (logProperties) Logger.Trace("Set PenColor '{0}'", txt);
+            if (logProperties) Logger.Trace("SetPenColor '{0}'", txt);
+
             setNewId = true;
             int tmpIndex = (int)GroupOption.ByColor;
             CountProperty(tmpIndex, txt);
@@ -501,7 +507,23 @@ namespace GrblPlotter
 
         public static void SetPenFill(string txt)
         {
-            if (logProperties) Logger.Trace("Set PenFill '{0}'", txt);
+            if (string.IsNullOrEmpty(txt)) return;
+            if (txt.StartsWith("rgb("))
+            {
+                String[] colors = txt.Substring(4, txt.Length - 5).Split(',');
+                System.Drawing.Color color = System.Drawing.Color.FromArgb(
+                    Int32.Parse(colors[0].Trim()),
+                    Int32.Parse(colors[1].Trim()),
+                    Int32.Parse(colors[2].Trim())
+                    );
+                string ntxt = System.Drawing.ColorTranslator.ToHtml(color);
+                Logger.Info("SetPenFill convert '{0}' to '{1}'", txt, ntxt);
+                txt = ntxt;
+                if (txt.StartsWith("#"))
+                    txt = txt.Substring(1);
+            }
+            if (logProperties) Logger.Trace("SetPenFill '{0}'", txt);
+
             setNewId = true;
             int tmpIndex = (int)GroupOption.ByFill;
             CountProperty(tmpIndex, txt);
@@ -551,9 +573,12 @@ namespace GrblPlotter
         }
         public static void SetHeaderMessage(string txt)
         {
+            // 1st-digit: 1-Import, 2-CollectData, 3-Gernerate GCode
+            // 2nd-digit: 1-SVG, 2-DXF, 3-HPGL, 
             if (logProperties) Logger.Trace("Set HeaderMessage '{0}'", txt);
             if (headerMessage.Count > 0)
-            {   for (int i = 0; i < headerMessage.Count; i++)   // don't add if already existing
+            {
+                for (int i = 0; i < headerMessage.Count; i++)   // don't add if already existing
                 { if (headerMessage[i] == txt) return; }
             }
             headerMessage.Add(txt);
@@ -606,14 +631,14 @@ namespace GrblPlotter
                 StopPath("in CreateCode");  // save previous path
 
             Logger.Trace("▼▼▼ Graphic - CreateGCode count:{0}", completeGraphic.Count);
-			
-			if (Properties.Settings.Default.importGCRelative)
-			{ 	SetHeaderMessage(string.Format(" {0}-2010: GCode for relative movement commands G91 will be generated", CodeMessage.Warning));}
+
+            if (Properties.Settings.Default.importGCRelative)
+            { SetHeaderMessage(string.Format(" {0}-2010: GCode for relative movement commands G91 will be generated", CodeMessage.Warning)); }
 
             int maxOpt = GetOptionsAmount();
             int actOpt = 0;
-			string loggerTag = "►►►";
-			
+            string loggerTag = "►►►";
+
             /* remove short moves*/
             if (!cancelByWorker && Properties.Settings.Default.importRemoveShortMovesEnable)
             {
@@ -633,7 +658,7 @@ namespace GrblPlotter
                 AddFrame(actualDimension,
                 (double)Properties.Settings.Default.importGraphicAddFrameDistance,
                 Properties.Settings.Default.importGraphicAddFrameApplyRadius);
-                SetHeaderInfo(string.Format(" Option: Add frame distance:{0:0.00}  with radius:{1}",Properties.Settings.Default.importGraphicAddFrameDistance, Properties.Settings.Default.importGraphicAddFrameApplyRadius));
+                SetHeaderInfo(string.Format(" Option: Add frame distance:{0:0.00}  with radius:{1}", Properties.Settings.Default.importGraphicAddFrameDistance, Properties.Settings.Default.importGraphicAddFrameApplyRadius));
             } // distance from graphics dimension, corner radius
 
 
@@ -655,7 +680,7 @@ namespace GrblPlotter
                 double dist = (double)Properties.Settings.Default.importGraphicMultiplyGraphicsDistance;
                 Logger.Info("{0} Multiply graphics nx:{1} ny:{2} distance:{3:0.000}", loggerTag, nX, nY, dist);
                 MultiplyGraphics(completeGraphic, actualDimension, dist, nX, nY);
-                SetHeaderInfo(string.Format(" Option: Multiply graphics X:{0} Y:{1} distance:{2:0.00}",nX, nY, dist));
+                SetHeaderInfo(string.Format(" Option: Multiply graphics X:{0} Y:{1} distance:{2:0.00}", nX, nY, dist));
             }     // repititions in x and y direction
 
             //           if (Properties.Settings.Default.importSVGNodesOnly)         { SetDotOnly(); }
@@ -666,7 +691,7 @@ namespace GrblPlotter
             Logger.Info("●●● Show original graphics in 2D-view");
             lock (lockObject)
             { CreateGraphicsPath(completeGraphic, VisuGCode.pathBackground); }
-			
+
             VisuGCode.xyzSize.AddDimensionXY(Graphic.actualDimension);
             VisuGCode.CalcDrawingArea();                                // calc ruler dimension
             if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt * 100 / maxOpt), Content = "show" });
@@ -679,7 +704,7 @@ namespace GrblPlotter
                 if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Generate hatch fill..." });
                 Logger.Info("{0} Hatch fill", loggerTag);
                 HatchFill(completeGraphic);
-                SetHeaderInfo(string.Format(" Option: Hatch fill distance:{0:0.00} angle:{1:0.00}",Properties.Settings.Default.importGraphicHatchFillDistance, Properties.Settings.Default.importGraphicHatchFillAngle ));
+                SetHeaderInfo(string.Format(" Option: Hatch fill distance:{0:0.00} angle:{1:0.00}", Properties.Settings.Default.importGraphicHatchFillDistance, Properties.Settings.Default.importGraphicHatchFillAngle));
             }
 
             /* repeate paths */
@@ -688,7 +713,7 @@ namespace GrblPlotter
                 if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Repeat paths(" + countGeometry.ToString() + " elements)..." });
                 Logger.Info("{0} Repeate paths, count: {1}", loggerTag, Properties.Settings.Default.importRepeatCnt);
                 RepeatPaths(completeGraphic, (int)Properties.Settings.Default.importRepeatCnt);
-                SetHeaderInfo(string.Format(" Option: Repeat paths/code count:{0} ",Properties.Settings.Default.importRepeatCnt));
+                SetHeaderInfo(string.Format(" Option: Repeat paths/code count:{0} ", Properties.Settings.Default.importRepeatCnt));
             }
 
             /* sort by distance and merge paths with same start / end coordinates*/
@@ -710,14 +735,16 @@ namespace GrblPlotter
             {
                 if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Calculate drag tool paths (of " + countGeometry.ToString() + " elements)..." });
                 Logger.Info("◆◆◆ Drag Tool path modification - use also tangential axis:{0}", graphicInformation.OptionTangentialAxis);
-				if (graphicInformation.OptionTangentialAxis)
-				{	DragToolModificationTangential(completeGraphic);
-			        SetHeaderInfo(" Option: DragTool-Tangential");
-				}
-				else
-				{	DragToolModification(completeGraphic);		
-				    SetHeaderInfo(" Option: DragTool");
-				}
+                if (graphicInformation.OptionTangentialAxis)
+                {
+                    DragToolModificationTangential(completeGraphic);
+                    SetHeaderInfo(" Option: DragTool-Tangential");
+                }
+                else
+                {
+                    DragToolModification(completeGraphic);
+                    SetHeaderInfo(" Option: DragTool");
+                }
             }
 
             /* clipping or tiling of whole graphic */
@@ -726,7 +753,7 @@ namespace GrblPlotter
                 if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Apply clipping (on " + countGeometry.ToString() + " elements)..." });
                 Logger.Info("◆◆◆ clipping or tiling of whole graphic");
                 ClipCode((double)Properties.Settings.Default.importGraphicTileX, (double)Properties.Settings.Default.importGraphicTileY, (double)Properties.Settings.Default.importGraphicTileAddOnX);
-                SetHeaderInfo(string.Format(" Option: Clipping/Tiling size X:{0:0.00} Y:{1:0.00}",Properties.Settings.Default.importGraphicTileX, Properties.Settings.Default.importGraphicTileY));
+                SetHeaderInfo(string.Format(" Option: Clipping/Tiling size X:{0:0.00} Y:{1:0.00}", Properties.Settings.Default.importGraphicTileX, Properties.Settings.Default.importGraphicTileY));
             }
 
             /* extend closed path for laser cutting to avoid a "nose" at start/end position */
@@ -735,7 +762,7 @@ namespace GrblPlotter
                 if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Extend closed paths..." });
                 Logger.Info("◆◆◆ Extend closed path");
                 ExtendClosedPaths(completeGraphic, (double)Properties.Settings.Default.importGraphicExtendPathValue);
-                SetHeaderInfo(string.Format(" Option: Extend path by {0:0.00}",Properties.Settings.Default.importGraphicExtendPathValue));
+                SetHeaderInfo(string.Format(" Option: Extend path by {0:0.00}", Properties.Settings.Default.importGraphicExtendPathValue));
             }
 
             /* calculate tangential axis - paths may be splitted, do not merge afterwards!*/
@@ -744,8 +771,8 @@ namespace GrblPlotter
                 if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Calculate tangential axis (for " + countGeometry.ToString() + " elements)..." });
                 Logger.Info("●●● Calculate tangential axis ");
                 CalculateTangentialAxis();
- 			    SetHeaderInfo(string.Format(" Option: Tangential axis: '{0}'", Properties.Settings.Default.importGCTangentialAxis));
-				if ((Properties.Settings.Default.importGCTangentialAxis == "Z") && (Properties.Settings.Default.importGCZEnable))
+                SetHeaderInfo(string.Format(" Option: Tangential axis: '{0}'", Properties.Settings.Default.importGCTangentialAxis));
+                if ((Properties.Settings.Default.importGCTangentialAxis == "Z") && (Properties.Settings.Default.importGCZEnable))
                     SetHeaderMessage(string.Format(" {0}-2001: Z is used as tangential axis AND as Pen-up/down axis", CodeMessage.Warning));
             }
             else
@@ -758,8 +785,8 @@ namespace GrblPlotter
             {
                 Logger.Info("●●● CalculateDistances ");
                 CalculateDistances();
-			}
-			
+            }
+
             /* List option data */
             if (!cancelByWorker && (graphicInformation.OptionZFromWidth || (graphicInformation.OptionDotFromCircle && graphicInformation.OptionZFromRadius)))
             {
@@ -768,7 +795,7 @@ namespace GrblPlotter
                 string tmp2 = string.Format("   zMin:{0:0.00}   zMax:{1:0.00}  zLimit:{2:0.00}",
                 Properties.Settings.Default.importDepthFromWidthMin, Properties.Settings.Default.importDepthFromWidthMax,
                 Properties.Settings.Default.importGCZDown);
- 			    SetHeaderInfo(" Option: Z from width or radius");
+                SetHeaderInfo(" Option: Z from width or radius");
                 SetHeaderInfo(tmp1);
                 SetHeaderInfo(tmp2);
                 if (logEnable) Logger.Trace("----OptionZFromWidth {0}{1}", tmp1, tmp2);
@@ -781,27 +808,28 @@ namespace GrblPlotter
                 WireBender();
                 SetHeaderInfo(" Option: Wire bender");
             }
-            
+
             if (Properties.Settings.Default.importGraphicDevelopmentEnable)
             {
                 Logger.Info("◆◆◆ Develop path");
                 Develop();
- 			    SetHeaderInfo(" Option: Develop path");
+                SetHeaderInfo(" Option: Develop path");
             }
 
 
             VisuGCode.xyzSize.AddDimensionXY(Graphic.actualDimension);
 
             int maxCount = (int)Properties.Settings.Default.importFigureMaxAmount;
-			if (completeGraphic.Count > maxCount)
-			{	Logger.Info("███► CreateGCode disable figure XML code to keep usability (completeGraphic.Count > {0}), count:{1}", maxCount, completeGraphic.Count);
+            if (completeGraphic.Count > maxCount)
+            {
+                Logger.Info("███► CreateGCode disable figure XML code to keep usability (completeGraphic.Count > {0}), count:{1}", maxCount, completeGraphic.Count);
                 SetHeaderMessage(string.Format(" {0}-2002: high amount of Figure objects, count:{1},  max:{2}", CodeMessage.Warning, completeGraphic.Count.ToString(), maxCount.ToString()));
                 SetHeaderMessage(" Figure codes will be summarized to one Figure.");
                 graphicInformation.FigureEnable = false;
-			}
-			else
-				Logger.Info("●●● CreateGCode completeGraphic.Count:{0}", completeGraphic.Count);
-			
+            }
+            else
+                Logger.Info("●●● CreateGCode completeGraphic.Count:{0}", completeGraphic.Count);
+
             /* group objects by color/width/layer/tile-nr */
             if (!cancelByWorker && graphicInformation.GroupEnable)
             {
@@ -876,7 +904,7 @@ namespace GrblPlotter
 
             if (graphicInformation.GroupEnable && (groupedGraphic != null) && (groupedGraphic.Count > 0))
             {
-                Logger.Info("▌ ReDoReversePath process groupedGraphic:{0}", groupedGraphic.Count); 
+                Logger.Info("▌ ReDoReversePath process groupedGraphic:{0}", groupedGraphic.Count);
                 foreach (GroupObject tmpGrp in groupedGraphic)
                 {
                     for (int i = 0; i < tmpGrp.GroupPath.Count; i++)
@@ -914,7 +942,7 @@ namespace GrblPlotter
             }
             else
             {
-				if (completeGraphic == null) { Logger.Warn("▌ ReDoReversePath completeGraphic == null"); return false; }
+                if (completeGraphic == null) { Logger.Warn("▌ ReDoReversePath completeGraphic == null"); return false; }
 
                 Logger.Info("▌ ReDoReversePath process completeGraphic:{0}", completeGraphic.Count);
                 foreach (PathObject tmp in completeGraphic)

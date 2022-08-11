@@ -40,11 +40,11 @@ namespace GrblPlotter
         {
             double rBend = (double)Properties.Settings.Default.importGraphicWireBenderRadius;
 
-            if (logModification) Logger.Trace("...Wire bender, r:{0}",rBend);
+            if (logModification) Logger.Trace("...Wire bender, r:{0}", rBend);
 
             Point pStart, pNow, pNext, pLabel;
             double fullDistance = 0, angleDiff, angleDiffOld = 0, angle1, angle2;
-        //    double angleDiffOrig;
+            //    double angleDiffOrig;
             double distanceOrig, distanceCorrected;
             double angleApply;
             bool pegActivated = false;
@@ -76,7 +76,7 @@ namespace GrblPlotter
                     {
                         pLabel = pNow = item.Path[i].MoveTo;
 
-                        pStart = item.Path[i - 1].MoveTo; 
+                        pStart = item.Path[i - 1].MoveTo;
 
                         if (i < (item.Path.Count - 1))
                             pNext = item.Path[i + 1].MoveTo;
@@ -102,12 +102,12 @@ namespace GrblPlotter
 
                             Logger.Trace("Correct length: orig:{0:0.00}  new:{1:0.00}  a1:{2:0.00}  a2:{3:0.00}  diff:{4:0.00}", distanceOrig, distanceCorrected, (angle1 * 180 / Math.PI), (angle2 * 180 / Math.PI), (angleDiff * 180 / Math.PI));
 
-                            angleApply =  Math.Sign(angleDiff) * (Math.Abs(angleDiff) + (double)Properties.Settings.Default.importGraphicWireBenderAngleAddOn*Math.PI/180);
+                            angleApply = Math.Sign(angleDiff) * (Math.Abs(angleDiff) + (double)Properties.Settings.Default.importGraphicWireBenderAngleAddOn * Math.PI / 180);
                             if (!Properties.Settings.Default.importGraphicWireBenderAngleAbsolute)
                                 angleApply *= (1 + (double)Properties.Settings.Default.importGraphicWireBenderAngleAddOn);
 
                             if (distanceCorrected < 0)
-                            {   FeedAndBend(distanceOrig, angleApply); }
+                            { FeedAndBend(distanceOrig, angleApply); }
                             else
                             {
                                 FeedDistance(distanceCorrected);
@@ -120,8 +120,8 @@ namespace GrblPlotter
                     developGraphic.Add(tmpItemPath);            // add path to graphic
                     tmpItemPath = new ItemPath(actualXY, 0);    // start new path
 
-        //            pathInfo.PathGeometry = item.Info.PathGeometry + "_Cut2";
-        //            SetHeaderInfo(string.Format(" Id:{0} Length:{1:0.00}", item.Info.Id, fullDistance));
+                    //            pathInfo.PathGeometry = item.Info.PathGeometry + "_Cut2";
+                    //            SetHeaderInfo(string.Format(" Id:{0} Length:{1:0.00}", item.Info.Id, fullDistance));
                 }
             }
 
@@ -137,7 +137,8 @@ namespace GrblPlotter
                 actualXY.X += s;
 
                 if (!pegActivated)
-                {   tmpItemPath.Add(actualXY, 0, 0);    // set feed
+                {
+                    tmpItemPath.Add(actualXY, 0, 0);    // set feed
                     actualXY.Y = a * 180 / Math.PI;
                     tmpItemPath.Add(actualXY, 1, 0);    // set peg and bend
                     pegActivated = true;
@@ -182,7 +183,7 @@ namespace GrblPlotter
             double actualNotchPos = 0;
 
             bool noCurve = Properties.Settings.Default.importGraphicDevelopmentNoCurve;
-			
+
             double zNotch = (double)Properties.Settings.Default.importGraphicDevelopmentNotchZNotch;
             double zCut = (double)Properties.Settings.Default.importGraphicDevelopmentNotchZCut;
 
@@ -255,7 +256,7 @@ namespace GrblPlotter
                         else
                         {
                             pNext = item.Path[i - item.Path.Count + 2].MoveTo;
-                            if (item.IsClosed) { pLabel = new Point(pLabel.X + emSize/4, pLabel.Y - emSize / 4); }
+                            if (item.IsClosed) { pLabel = new Point(pLabel.X + emSize / 4, pLabel.Y - emSize / 4); }
                         }
 
                         /* Process Line */
@@ -283,7 +284,7 @@ namespace GrblPlotter
                             }
                             else
                                 neededDistance = toolDistance;
-			//				Logger.Trace("....i:{0} aNotch:{1:0.0}  aTool:{2:0.0}  neededDist:{3:0.000}  toolDist:{4:0.000}",i,angleDiff, toolAngle, neededDistance, toolDistance);
+                            //				Logger.Trace("....i:{0} aNotch:{1:0.0}  aTool:{2:0.0}  neededDist:{3:0.000}  toolDist:{4:0.000}",i,angleDiff, toolAngle, neededDistance, toolDistance);
 
                             if (i == 0) { distance = 0; }
                             fullDistance += distance;
@@ -310,14 +311,14 @@ namespace GrblPlotter
                                     if (!applyZUp) { tmpItemPath.Add(actualXY, zNotch, 0); }    // apply notch position
                                     AddBackgroundTextFigure(pLabel, item.Dimension, emSize / 2, edgeCount.ToString());
                                     AddNotchPath(zNotch, applyZUp, true);     					// make a single (center) notch 
-                                    backgroundNotchStartEnd.Add(new Point(actualXY.X - (toolDistance/2), actualXY.X + (toolDistance / 2)));
+                                    backgroundNotchStartEnd.Add(new Point(actualXY.X - (toolDistance / 2), actualXY.X + (toolDistance / 2)));
                                 }
                                 else		// multiple notches will be applied on pos and negative angle - nobody knows if notches are needed inside or outside the shape
                                 {
                                     int addNotches = (int)Math.Floor(neededDistance / toolDistance);	// amount of notches symetric arround center notch
-                                    double addStep = (neededDistance - toolDistance) / addNotches;			// needed step-width from notch to notch on front and behind center notch
-									
-									double addStepHalf = addStep/2;
+                                    double addStep = (neededDistance - toolDistance) / addNotches;          // needed step-width from notch to notch on front and behind center notch
+
+                                    double addStepHalf = addStep / 2;
 
                                     backgroundNotchStartEnd.Add(new Point(actualXY.X - (neededDistance / 2), actualXY.X + (neededDistance / 2)));
 
@@ -327,32 +328,32 @@ namespace GrblPlotter
                                         AddFeedXY(-addStepHalf * addNotches);	// move back to 1st front notch
                                         if (!applyZUp) { tmpItemPath.Add(actualXY, zNotch, 0); }
 
-										backgroundNotchProperties = 4; // shorten right edge
+                                        backgroundNotchProperties = 4; // shorten right edge
                                         for (int k = 0; k < addNotches; k++)          // from minus to 0
                                         {
                                             AddNotchPath(zNotch, applyZUp);
                                             AddFeedXY(addStepHalf);
                                             if (!applyZUp) { tmpItemPath.Add(actualXY, zNotch, 0); }
-											backgroundNotchProperties = 6; // shorten left & right edge
+                                            backgroundNotchProperties = 6; // shorten left & right edge
                                         }
                                     }
 
-									// center notch
-									AddBackgroundTextFigure(pLabel, item.Dimension, emSize / 2, edgeCount.ToString());
-									AddNotchPath(zNotch, applyZUp, true);
-									AddBackgroundNeededNotchX(neededDistance);
-									
+                                    // center notch
+                                    AddBackgroundTextFigure(pLabel, item.Dimension, emSize / 2, edgeCount.ToString());
+                                    AddNotchPath(zNotch, applyZUp, true);
+                                    AddBackgroundNeededNotchX(neededDistance);
+
                                     // notch behind edge
                                     if (i < (item.Path.Count - 1))			// don't move further than distance length on last point
                                     {
                                         double tmpTooFar = 0;
-										
-										backgroundNotchProperties = 6; // shorten left & right edge
+
+                                        backgroundNotchProperties = 6; // shorten left & right edge
                                         for (int k = 0; k < addNotches; k++) // from 0 to plus
                                         {
-											if (k == (addNotches-1))
-												backgroundNotchProperties = 2; // shorten left edge
-												
+                                            if (k == (addNotches - 1))
+                                                backgroundNotchProperties = 2; // shorten left edge
+
                                             AddFeedXY(addStepHalf);
                                             if (!applyZUp) { tmpItemPath.Add(actualXY, zNotch, 0); }
                                             AddNotchPath(zNotch, applyZUp);
@@ -391,7 +392,7 @@ namespace GrblPlotter
                 completeGraphic.Add(item);
             return;
 
-            void AddNotchPath(double deepth, bool zUp, bool addNumber=false)
+            void AddNotchPath(double deepth, bool zUp, bool addNumber = false)
             {
                 if (zUp)
                 {
@@ -431,9 +432,10 @@ namespace GrblPlotter
                 else { actualNotchPos = notchWidth; }
 
                 if (feedIsX)
-                { 	actualXY.Y = actualNotchPos; 
-					AddBackgroundNotchX();
-				}
+                {
+                    actualXY.Y = actualNotchPos;
+                    AddBackgroundNotchX();
+                }
                 else
                 { actualXY.X = actualNotchPos; }
             }
@@ -451,9 +453,9 @@ namespace GrblPlotter
             {
                 if (noCurve)
                 {
-                    AddFeedXY(distAccumulated); 
-					if (!applyZUp) 
-					{ tmpItemPath.Add(actualXY, zNotch, 0); }
+                    AddFeedXY(distAccumulated);
+                    if (!applyZUp)
+                    { tmpItemPath.Add(actualXY, zNotch, 0); }
                     AddNotchPath(zNotch, applyZUp, true);               // add number
                     backgroundNotchStartEnd.Add(new Point(actualXY.X - (toolDistance / 2), actualXY.X + (toolDistance / 2)));
                 }
@@ -461,28 +463,29 @@ namespace GrblPlotter
                 {
                     int cntNeededNotches = (int)Math.Round(distAccumulated / notchDistance);
                     double notchFeedUse = distAccumulated / cntNeededNotches;
-					double addedFeeds=0;
+                    double addedFeeds = 0;
                     for (int cnt = 0; cnt < cntNeededNotches; cnt++)
                     {
                         AddFeedXY(notchFeedUse);
-						addedFeeds +=notchFeedUse;
-                        if (!applyZUp) 
-						{ tmpItemPath.Add(actualXY, zNotch, 0); }
+                        addedFeeds += notchFeedUse;
+                        if (!applyZUp)
+                        { tmpItemPath.Add(actualXY, zNotch, 0); }
                         if (cnt == (cntNeededNotches - 1))
                         {
                             AddNotchPath(zNotch, applyZUp, true);       // add number at last notch
                             backgroundNotchStartEnd.Add(new Point(actualXY.X - (toolDistance / 2), actualXY.X + (toolDistance / 2)));
                         }
                         else
-                        {   AddNotchPath(zNotch, applyZUp); 
+                        {
+                            AddNotchPath(zNotch, applyZUp);
                             backgroundNotchStartEnd.Add(new Point(actualXY.X - (toolDistance / 2), actualXY.X + (toolDistance / 2)));
                         }
                     }
-		//			Logger.Trace("ProcessCurve  needed length:{0:0.000}  summed steps:{1:0.000}",distAccumulated, addedFeeds);
+                    //			Logger.Trace("ProcessCurve  needed length:{0:0.000}  summed steps:{1:0.000}",distAccumulated, addedFeeds);
                 }
                 distAccumulated = 0;
             }
-            
+
             void AddBackgroundSurfaces()
             {
                 if (!feedIsX || feedInvert)
@@ -494,12 +497,12 @@ namespace GrblPlotter
                 VisuGCode.pathBackground.AddLine(0, (float)posY, (float)actualXY.X, (float)posY);
                 VisuGCode.pathBackground.StartFigure();
 
-                double lastEnd = toolDistance / 2; 
+                double lastEnd = toolDistance / 2;
                 foreach (Point tmp in backgroundNotchStartEnd)
                 {
                     VisuGCode.pathBackground.StartFigure();
                     if ((tmp.X > 0) && (lastEnd < tmp.X) && (lastEnd < actualXY.X))
-                    { VisuGCode.pathBackground.AddLine((float)lastEnd, (float)posYTop, (float)tmp.X, (float)posYTop);  }
+                    { VisuGCode.pathBackground.AddLine((float)lastEnd, (float)posYTop, (float)tmp.X, (float)posYTop); }
                     lastEnd = tmp.Y;
                 }
             }
@@ -508,28 +511,30 @@ namespace GrblPlotter
                 if (!feedIsX || feedInvert)
                     return;
                 double thickness = Math.Max(Math.Abs(zCut), Math.Abs(zNotch));
-                double posY = -1.6* emSize - thickness;// notchWidth + 2;
+                double posY = -1.6 * emSize - thickness;// notchWidth + 2;
                 double posYTop = posY + thickness;
                 double dX = toolDistance / 2;
 
                 float x1 = (float)(actualXY.X - dX);
                 float y1 = (float)posYTop;
                 if ((backgroundNotchProperties & (uint)2) > 0)	// shorten left edge
-                { 	x1 = (float)(actualXY.X - dX/2);
-					y1 = (float)(posYTop - Math.Abs(zNotch)/2);
-				}
-								
+                {
+                    x1 = (float)(actualXY.X - dX / 2);
+                    y1 = (float)(posYTop - Math.Abs(zNotch) / 2);
+                }
+
                 float x2 = (float)(actualXY.X + dX);
                 float y2 = (float)posYTop;
-                if ((backgroundNotchProperties & (uint)4) > 0)	// shorten right edge
-				{	x2 = (float)(actualXY.X + dX/2);
-					y2 = (float)(posYTop - Math.Abs(zNotch)/2);	
-				}
-				
-                float y = (float)(posYTop - Math.Abs(zNotch));	
+                if ((backgroundNotchProperties & (uint)4) > 0)  // shorten right edge
+                {
+                    x2 = (float)(actualXY.X + dX / 2);
+                    y2 = (float)(posYTop - Math.Abs(zNotch) / 2);
+                }
+
+                float y = (float)(posYTop - Math.Abs(zNotch));
                 if ((backgroundNotchProperties & (uint)1) > 0)	// go full depth
                     y = (float)posY;
-				
+
                 VisuGCode.pathBackground.StartFigure();
                 VisuGCode.pathBackground.AddLine(x1, y1, (float)actualXY.X, y);
                 VisuGCode.pathBackground.AddLine((float)actualXY.X, y, x2, y2);
@@ -575,28 +580,29 @@ namespace GrblPlotter
             AddBackgroundText(pos, emSize, txt);
         }
         private static void AddBackgroundText(Point pos, float emSize, string txt)
-        {   
-			Logger.Info("AddBackgroundText x:{0} y:{1}  emSize:{2}  text:{3}", pos.X, pos.Y, emSize, txt);
-			System.Drawing.Drawing2D.Matrix matrix = new System.Drawing.Drawing2D.Matrix();
+        {
+            Logger.Info("AddBackgroundText x:{0} y:{1}  emSize:{2}  text:{3}", pos.X, pos.Y, emSize, txt);
+            System.Drawing.Drawing2D.Matrix matrix = new System.Drawing.Drawing2D.Matrix();
             matrix.Scale(1, -1);
             VisuGCode.pathBackground.StartFigure();
             VisuGCode.pathBackground.Transform(matrix);
             float centerX = (float)pos.X;// (float)((clipMax.X + clipMin.X) / 2);
             float centerY = (float)pos.Y;// (float)((clipMax.Y + clipMin.Y) / 2);
 
-			try
-            {	System.Drawing.StringFormat sFormat = new System.Drawing.StringFormat(System.Drawing.StringFormat.GenericDefault)
-				{
-					Alignment = System.Drawing.StringAlignment.Center,
-					LineAlignment = System.Drawing.StringAlignment.Center
-				};
-				System.Drawing.FontFamily myFont = new System.Drawing.FontFamily("Arial");
-				VisuGCode.pathBackground.AddString(txt, myFont, (int)System.Drawing.FontStyle.Regular, emSize, new System.Drawing.PointF(centerX, -centerY), sFormat);
-				VisuGCode.pathBackground.Transform(matrix);
-				myFont.Dispose();
-				sFormat.Dispose();
-			}
-			catch (Exception err) {Logger.Error(err,"AddBackgroundText ");}
+            try
+            {
+                System.Drawing.StringFormat sFormat = new System.Drawing.StringFormat(System.Drawing.StringFormat.GenericDefault)
+                {
+                    Alignment = System.Drawing.StringAlignment.Center,
+                    LineAlignment = System.Drawing.StringAlignment.Center
+                };
+                System.Drawing.FontFamily myFont = new System.Drawing.FontFamily("Arial");
+                VisuGCode.pathBackground.AddString(txt, myFont, (int)System.Drawing.FontStyle.Regular, emSize, new System.Drawing.PointF(centerX, -centerY), sFormat);
+                VisuGCode.pathBackground.Transform(matrix);
+                myFont.Dispose();
+                sFormat.Dispose();
+            }
+            catch (Exception err) { Logger.Error(err, "AddBackgroundText "); }
         }
     }
 }

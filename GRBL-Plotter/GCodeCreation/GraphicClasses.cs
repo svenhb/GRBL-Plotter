@@ -117,7 +117,7 @@ namespace GrblPlotter
                 OptionSpecialWireBend = Properties.Settings.Default.importGraphicWireBenderEnable;
 
                 if (OptionSpecialWireBend || OptionSpecialDevelop)
-                {   ResetOptions(true); }
+                { ResetOptions(true); }
                 else
                 {
                     ApplyHatchFill = Properties.Settings.Default.importSVGApplyFill;
@@ -185,7 +185,7 @@ namespace GrblPlotter
             {
                 string importOptions = "";
                 if (DxfImportZ) importOptions += "<DXF Z> ";
-                if (OptionSpecialDevelop|| OptionSpecialWireBend) importOptions += "<Special conversion!> ";
+                if (OptionSpecialDevelop || OptionSpecialWireBend) importOptions += "<Special conversion!> ";
                 if (ConvertArcToLine) importOptions += "<Arc to Line> ";
                 if (OptionZFromWidth) importOptions += "<Depth from width> ";
                 if (OptionDotFromCircle) importOptions += "<Dot from circle> ";
@@ -347,7 +347,7 @@ namespace GrblPlotter
             {
                 Id = PenColorId = AuxInfo = 0; // toolNr = codeSize = codeArea = 0;
                 PathGeometry = PathId = "";// pathComment = "";
-                GroupAttributes = new List<string>(new string[] { "", "", "", "", "", "", "" , ""});        // to use with 		public enum GroupOption { none=0, ByColor= 1, ByWidth=2, ByLayer=3, ByTile=4};
+                GroupAttributes = new List<string>(new string[] { "", "", "", "", "", "", "", "" });        // to use with 		public enum GroupOption { none=0, ByColor= 1, ByWidth=2, ByLayer=3, ByTile=4};
             }
             public void CopyData(PathInformation tmp)
             {

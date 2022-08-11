@@ -33,7 +33,7 @@ namespace AForge.Imaging.Filters
     /// 
     public class RemoveArtefact : BaseUsingCopyPartialFilter
     {
-        private int size = 5;   
+        private int size = 5;
         private int count = 3;
 
         // private format translation dictionary
@@ -85,7 +85,8 @@ namespace AForge.Imaging.Filters
         /// <param name="size">Processing square size.</param>
         /// 
         public RemoveArtefact(int size) : this()
-        {   Size = size;
+        {
+            Size = size;
         }
         public RemoveArtefact(int size, int count) : this()
         {
@@ -127,7 +128,7 @@ namespace AForge.Imaging.Filters
 
             byte cr, cg, cb;
             Dictionary<Color, int> myColors = new Dictionary<Color, int>();
-            Color ocolor,pcolor;
+            Color ocolor, pcolor;
 
             byte* src = (byte*)sourceData.ImageData.ToPointer();
             byte* dst = (byte*)destinationData.ImageData.ToPointer();
@@ -140,59 +141,64 @@ namespace AForge.Imaging.Filters
             // do the processing job
             if (destinationData.PixelFormat == PixelFormat.Format8bppIndexed)
             {
-            /*    for (int y = startY; y < stopY; y++)
-                {
-                    for (int x = startX; x < stopX; x++, src++, dst++)
+                /*    for (int y = startY; y < stopY; y++)
                     {
-                        c = 0;
-                        for (i = -radius; i <= radius; i++)
+                        for (int x = startX; x < stopX; x++, src++, dst++)
                         {
-                            t = y + i;
-                            if (t < startY)
-                                continue;
-                            if (t >= stopY)
-                                break;
-                            for (j = -radius; j <= radius; j++)
+                            c = 0;
+                            for (i = -radius; i <= radius; i++)
                             {
-                                t = x + j;
-                                if (t < startX)
+                                t = y + i;
+                                if (t < startY)
                                     continue;
-                                if (t < stopX)
+                                if (t >= stopY)
+                                    break;
+                                for (j = -radius; j <= radius; j++)
                                 {
-                                    g[c++] = src[i * srcStride + j];
+                                    t = x + j;
+                                    if (t < startX)
+                                        continue;
+                                    if (t < stopX)
+                                    {
+                                        g[c++] = src[i * srcStride + j];
+                                    }
                                 }
                             }
+                            // get the median
+                            *dst = g[c >> 1];
                         }
-                        // get the median
-                        *dst = g[c >> 1];
-                    }
-                    src += srcOffset;
-                    dst += dstOffset;
-                }*/
+                        src += srcOffset;
+                        dst += dstOffset;
+                    }*/
             }
             else
             {   // RGB image
                 for (int y = startY; y < stopY; y++)                                            // for each line
-                {   for (int x = startX; x < stopX; x++, src += pixelSize, dst += pixelSize)    // for each pixel
-                    {   myColors.Clear();
+                {
+                    for (int x = startX; x < stopX; x++, src += pixelSize, dst += pixelSize)    // for each pixel
+                    {
+                        myColors.Clear();
                         ocolor = Color.White;
                         for (i = -radius; i <= radius; i++)     // for each kernel row
-                        {   t = y + i;
+                        {
+                            t = y + i;
                             if (t < startY)     // skip row
                                 continue;
                             if (t >= stopY)     // break
                                 break;
                             for (j = -radius; j <= radius; j++) // for each kernel column
-                            {   t = x + j;
+                            {
+                                t = x + j;
                                 if (t < startX) // skip column
                                     continue;
                                 if (t < stopX)
-                                {   p = &src[i * srcStride + j * pixelSize];
+                                {
+                                    p = &src[i * srcStride + j * pixelSize];
 
                                     cr = p[RGB.R];
                                     cg = p[RGB.G];
                                     cb = p[RGB.B];
-                                    pcolor = Color.FromArgb(cr,cg,cb);
+                                    pcolor = Color.FromArgb(cr, cg, cb);
                                     if (myColors.ContainsKey(pcolor))
                                         myColors[pcolor]++;             // count color
                                     else
@@ -205,7 +211,8 @@ namespace AForge.Imaging.Filters
                         }
 
                         if (myColors[ocolor] <= count)   // replace single pixel by most used color in kernel
-                        {   var top1 = myColors.OrderByDescending(pair => pair.Value).Take(1);
+                        {
+                            var top1 = myColors.OrderByDescending(pair => pair.Value).Take(1);
                             ocolor = top1.ToArray()[0].Key;
                         }
                         dst[RGB.R] = ocolor.R;

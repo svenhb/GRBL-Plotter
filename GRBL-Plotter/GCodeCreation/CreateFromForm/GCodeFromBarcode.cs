@@ -78,8 +78,8 @@ namespace GrblPlotter
                 pictureBox1.Image = barcodeImage;
                 btnClipboardBarcode1D.Visible = true;
             }
-     //       b.Dispose();
-       //     barcodeImage.Dispose();
+            //       b.Dispose();
+            //     barcodeImage.Dispose();
         }
         public void BtnGenerateBarcodeClick(object sender, EventArgs e)
         {
@@ -96,8 +96,8 @@ namespace GrblPlotter
                 GenerateGCode1D(b.EncodedValue, b.EncodedType.ToString(), (double)nUDHeight1D.Value);
                 btnClipboardBarcode1D.Visible = true;
             }
-    //        b.Dispose();
-    //        barcodeImage.Dispose();
+            //        b.Dispose();
+            //        barcodeImage.Dispose();
         }
 
         private void GenerateGCode1D(string code, string type, double height)
@@ -225,12 +225,12 @@ namespace GrblPlotter
             if (cBInsertLogo.Checked)
                 qrCodeImage = qrCode.GetGraphic((int)Properties.Settings.Default.importBarcode2DLines, System.Drawing.Color.Black, System.Drawing.Color.White, (System.Drawing.Bitmap)pictureBox3.Image);
             else
-                qrCodeImage = qrCode.GetGraphic((int)Properties.Settings.Default.importBarcode2DLines);	// pixel per module
-     //       qrCode.Dispose();
-    //       qrGenerator.Dispose();
+                qrCodeImage = qrCode.GetGraphic((int)Properties.Settings.Default.importBarcode2DLines); // pixel per module
+                                                                                                        //       qrCode.Dispose();
+                                                                                                        //       qrGenerator.Dispose();
             pictureBox2.Image = qrCodeImage;
             btnClipboardBarcode2D.Visible = true;
-    //        qrCodeImage.Dispose();
+            //        qrCodeImage.Dispose();
         }
 
         public void GenerateGCode2D()
@@ -316,10 +316,14 @@ namespace GrblPlotter
         }
 
         private void BtnClipboardBarcode1D_Click(object sender, EventArgs e)
-        { System.Windows.Forms.Clipboard.SetImage(pictureBox1.Image); }
+        { 	if (pictureBox1.Image != null)
+				System.Windows.Forms.Clipboard.SetImage(pictureBox1.Image); 
+		}
 
         private void BtnClipboardBarcode2D_Click(object sender, EventArgs e)
-        { System.Windows.Forms.Clipboard.SetImage(pictureBox2.Image); }
+        { 	if (pictureBox2.Image != null)
+				System.Windows.Forms.Clipboard.SetImage(pictureBox2.Image); 
+		}
 
         private void CbInsertLogo_CheckedChanged(object sender, EventArgs e)
         { gBLogo.Visible = cBInsertLogo.Checked; }

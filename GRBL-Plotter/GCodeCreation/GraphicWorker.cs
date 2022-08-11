@@ -23,8 +23,6 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 
-#pragma warning disable CA1303	// Do not pass literals as localized parameters
-
 namespace GrblPlotter
 {
     public class GraphicWorker : System.Windows.Forms.Form
@@ -45,9 +43,10 @@ namespace GrblPlotter
 
         // Set up the BackgroundWorker object by attaching event handlers. 
         private void InitializeBackgroundWorker()
-        {   backgroundWorker1.DoWork +=             new DoWorkEventHandler(BackgroundWorker1_DoWork);
+        {
+            backgroundWorker1.DoWork += new DoWorkEventHandler(BackgroundWorker1_DoWork);
             backgroundWorker1.RunWorkerCompleted += new RunWorkerCompletedEventHandler(BackgroundWorker1_RunWorkerCompleted);
-            backgroundWorker1.ProgressChanged +=    new ProgressChangedEventHandler(BackgroundWorker1_ProgressChanged);
+            backgroundWorker1.ProgressChanged += new ProgressChangedEventHandler(BackgroundWorker1_ProgressChanged);
         }
 
         private void CancelAsyncButton_Click(System.Object sender, System.EventArgs e)
@@ -59,7 +58,7 @@ namespace GrblPlotter
         // This event handler is where the actual, potentially time-consuming work is done.
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {   //BackgroundWorker worker = sender as BackgroundWorker;
- //           e.Result = Graphic.tmpResult= Graphic.CreateGCodeFinal(worker, e);
+            //           e.Result = Graphic.tmpResult= Graphic.CreateGCodeFinal(worker, e);
         }
 
         // This event handler deals with the results of the background operation.
@@ -67,7 +66,7 @@ namespace GrblPlotter
         {
             // First, handle the case where an exception was thrown.
             if (e.Error != null)
-            {   MessageBox.Show(e.Error.Message); }
+            { MessageBox.Show(e.Error.Message); }
             else if (e.Cancelled)
             {
                 resultLabel.Text = "Canceled";
@@ -75,7 +74,7 @@ namespace GrblPlotter
             else
             {
                 resultLabel.Text = "Finished";
-           //     Graphic.tmpResult = e.Result.ToString();
+                //     Graphic.tmpResult = e.Result.ToString();
             }
 
             this.Close();
@@ -83,9 +82,11 @@ namespace GrblPlotter
 
         // This event handler updates the progress bar.
         private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {   this.progressBar1.Value = e.ProgressPercentage;
+        {
+            this.progressBar1.Value = e.ProgressPercentage;
             if (e.UserState is MyUserState)
-            {   MyUserState state = e.UserState as MyUserState;
+            {
+                MyUserState state = e.UserState as MyUserState;
                 this.progressBar2.Value = state.Value;
                 this.resultLabel.Text = state.Content;
             }

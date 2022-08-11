@@ -42,7 +42,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -73,19 +72,19 @@ namespace GrblPlotter
         public static bool FigureEndTagWasSet { get; set; } = true;
         private static double[] PathDashArray;
 
-		private static double setAux1FinalDistance = 0;		// sum-up path distances 396
-		private static double setAux2FinalDistance = 0;
+        private static double setAux1FinalDistance = 0;     // sum-up path distances 396
+        private static double setAux2FinalDistance = 0;
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
-    //    private static readonly CultureInfo culture = CultureInfo.InvariantCulture;
+        //    private static readonly CultureInfo culture = CultureInfo.InvariantCulture;
         private static bool logEnable;
         private static bool logDetailed;
         private static bool logCoordinates;
 
         public static void CleanUp()
         {
-         //   Logger.Trace("CleanUp()");
+            //   Logger.Trace("CleanUp()");
             gcodeString.Clear();
             gcodeString.Length = 0;
             finalGcodeString.Clear();
@@ -127,8 +126,8 @@ namespace GrblPlotter
             string xmlTag;
             int iDToSet = 1;
             mainGroupID = 0;
-			setAux1FinalDistance = 0;	
-			setAux2FinalDistance = 0;	
+            setAux1FinalDistance = 0;
+            setAux2FinalDistance = 0;
 
             if (logEnable) Logger.Trace("-CreateGCode from Tiles");
 
@@ -147,7 +146,7 @@ namespace GrblPlotter
 
             if (graphicInfo == null) return false;
             if (tiledGraphic == null) return false;
-        //    double offsetX, offsetY;
+            //    double offsetX, offsetY;
 
             foreach (TileObject tileObject in tiledGraphic)
             {
@@ -206,9 +205,9 @@ namespace GrblPlotter
                 }
                 Gcode.JobStart(finalGcodeString, "StartJob");
                 mainGroupID = 0;
-				setAux1FinalDistance = 0;
-                setAux2FinalDistance = 0;	
-           }
+                setAux1FinalDistance = 0;
+                setAux2FinalDistance = 0;
+            }
 
             int groupID = mainGroupID;
             int iDToSet;
@@ -238,7 +237,7 @@ namespace GrblPlotter
                         figColor = string.Format(" PenColor=\"{0}\"", groupObject.GroupPath[0].Info.GroupAttributes[(int)GroupOption.ByColor]);
                         figWidth = string.Format(" PenWidth=\"{0}\"", groupObject.GroupPath[0].Info.GroupAttributes[(int)GroupOption.ByWidth]);
                     }
-                    Gcode.Comment(finalGcodeString, string.Format("{0} Id=\"{1}\" {2} {3}>", XmlMarker.FigureStart, iDToSet, figColor, figWidth)); 
+                    Gcode.Comment(finalGcodeString, string.Format("{0} Id=\"{1}\" {2} {3}>", XmlMarker.FigureStart, iDToSet, figColor, figWidth));
                 }
 
                 if (logEnable) Logger.Trace("CreateGCode-Group  toolNr:{0}  name:{1}", groupObject.ToolNr, groupObject.ToolName);
@@ -307,8 +306,8 @@ namespace GrblPlotter
                     { Gcode.AddToHeader(info, false); }
                 }
                 setAux1FinalDistance = 0;
-                setAux2FinalDistance = 0;	
-           }
+                setAux2FinalDistance = 0;
+            }
 
             int toolNr;
             string toolName;
@@ -450,8 +449,9 @@ namespace GrblPlotter
                     if (graphicInfo.OptionSpecialWireBend)
                     {
                         if ((entity.Depth > 0.9) && !optionSpecialWireBendOn)
-                        {   optionSpecialWireBendOn = true;
-                            InsertCode(Properties.Settings.Default.importGraphicWireBenderCodePegOn); 
+                        {
+                            optionSpecialWireBendOn = true;
+                            InsertCode(Properties.Settings.Default.importGraphicWireBenderCodePegOn);
                         }
                         else if ((entity.Depth < 0.1) && optionSpecialWireBendOn)
                         {
@@ -459,27 +459,27 @@ namespace GrblPlotter
                             InsertCode(Properties.Settings.Default.importGraphicWireBenderCodePegOff);
                         }
                     }
-                    if (setAux1Enable) {   CalculateAux1(entity); }
-					if (setAux2Enable) {   CalculateAux2(entity); }
-					
+                    if (setAux1Enable) { CalculateAux1(entity); }
+                    if (setAux2Enable) { CalculateAux2(entity); }
+
                     /* Create Line */
                     if (entity is GCodeLine)
-                    {   
-                        MoveTo(entity.MoveTo, newZ, entity.Angle, ""); 
+                    {
+                        MoveTo(entity.MoveTo, newZ, entity.Angle, "");
                     }
                     else if (entity is GCodeArc ArcData)
                     {
                         /* Create Arc */
                         Arc(ArcData.IsCW, ArcData.MoveTo, ArcData.CenterIJ, ArcData.AngleStart, ArcData.Angle);//, "");// entity.comment);
                     }
-             /*       if (graphicInfo.OptionSpecialWireBend)
-                    {
-                        if ((entity.Depth < 0.1) && optionSpecialWireBendOn)
-                        {
-                            optionSpecialWireBendOn = false;
-                            InsertCode(Properties.Settings.Default.importGraphicWireBenderCodePegOff);
-                        }
-                    }*/
+                    /*       if (graphicInfo.OptionSpecialWireBend)
+                           {
+                               if ((entity.Depth < 0.1) && optionSpecialWireBendOn)
+                               {
+                                   optionSpecialWireBendOn = false;
+                                   InsertCode(Properties.Settings.Default.importGraphicWireBenderCodePegOff);
+                               }
+                           }*/
                 }
                 /* create ramp on pen up */
                 if (Properties.Settings.Default.importGCZEnable && Properties.Settings.Default.importGraphicLeadOutEnable)
@@ -518,7 +518,7 @@ namespace GrblPlotter
                     commands = fileCmd.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
                 }
                 else
-                {   commands = code.Split(';'); }
+                { commands = code.Split(';'); }
 
                 foreach (string cmd in commands)
                 {
@@ -527,38 +527,40 @@ namespace GrblPlotter
             }
         }
         private static void CalculateAux1(GCodeMotion entity)
-		{   
-			int setAux1ZMode = Properties.Settings.Default.importGCAux1ZMode; 
-			double setAux1ZFactor = (double)Properties.Settings.Default.importGCAux1ZFactor;
-			double distValue = entity.Depth * (double)Properties.Settings.Default.importGCAux1Factor;
-			if (Properties.Settings.Default.importGCAux1ZUse)	
-			{	if (setAux1ZMode == 0) {  distValue *= Gcode.GcodeZDown * setAux1ZFactor;}
-				else if (setAux1ZMode == 1) {  distValue *= Math.Abs(Gcode.GcodeZDown) * setAux1ZFactor;}									// +/-Z but only +result
-				else if ((setAux1ZMode == 2) && (Gcode.GcodeZDown >= 0)) {  distValue *= Math.Abs(Gcode.GcodeZDown) * setAux1ZFactor;}	// +Z only
-				else if ((setAux1ZMode == 3) && (Gcode.GcodeZDown <= 0)) {  distValue *= Math.Abs(Gcode.GcodeZDown) * setAux1ZFactor;}	// -Z only
-			}
-			if (Properties.Settings.Default.importGCAux1SumUp)
-				setAux1FinalDistance += distValue;
-			else
-				setAux1FinalDistance = distValue;
-		}
+        {
+            int setAux1ZMode = Properties.Settings.Default.importGCAux1ZMode;
+            double setAux1ZFactor = (double)Properties.Settings.Default.importGCAux1ZFactor;
+            double distValue = entity.Depth * (double)Properties.Settings.Default.importGCAux1Factor;
+            if (Properties.Settings.Default.importGCAux1ZUse)
+            {
+                if (setAux1ZMode == 0) { distValue *= Gcode.GcodeZDown * setAux1ZFactor; }
+                else if (setAux1ZMode == 1) { distValue *= Math.Abs(Gcode.GcodeZDown) * setAux1ZFactor; }                                   // +/-Z but only +result
+                else if ((setAux1ZMode == 2) && (Gcode.GcodeZDown >= 0)) { distValue *= Math.Abs(Gcode.GcodeZDown) * setAux1ZFactor; }  // +Z only
+                else if ((setAux1ZMode == 3) && (Gcode.GcodeZDown <= 0)) { distValue *= Math.Abs(Gcode.GcodeZDown) * setAux1ZFactor; }  // -Z only
+            }
+            if (Properties.Settings.Default.importGCAux1SumUp)
+                setAux1FinalDistance += distValue;
+            else
+                setAux1FinalDistance = distValue;
+        }
 
-		private static void CalculateAux2(GCodeMotion entity)
-		{   
-			int setAux2ZMode = Properties.Settings.Default.importGCAux2ZMode; 
-			double setAux2ZFactor = (double)Properties.Settings.Default.importGCAux2ZFactor;
-			double distValue = entity.Depth * (double)Properties.Settings.Default.importGCAux2Factor;
-			if (Properties.Settings.Default.importGCAux2ZUse)	
-			{	if (setAux2ZMode == 0) {  distValue *= Gcode.GcodeZDown * setAux2ZFactor;}
-				else if (setAux2ZMode == 1) {  distValue *= Math.Abs(Gcode.GcodeZDown) * setAux2ZFactor;}									// +/-Z but only +result
-				else if ((setAux2ZMode == 2) && (Gcode.GcodeZDown >= 0)) {  distValue *= Math.Abs(Gcode.GcodeZDown) * setAux2ZFactor;}	// +Z only
-				else if ((setAux2ZMode == 3) && (Gcode.GcodeZDown <= 0)) {  distValue *= Math.Abs(Gcode.GcodeZDown) * setAux2ZFactor;}	// -Z only
-			}
-			if (Properties.Settings.Default.importGCAux2SumUp)
-				setAux2FinalDistance += distValue;
-			else
-				setAux2FinalDistance = distValue;
-		}
+        private static void CalculateAux2(GCodeMotion entity)
+        {
+            int setAux2ZMode = Properties.Settings.Default.importGCAux2ZMode;
+            double setAux2ZFactor = (double)Properties.Settings.Default.importGCAux2ZFactor;
+            double distValue = entity.Depth * (double)Properties.Settings.Default.importGCAux2Factor;
+            if (Properties.Settings.Default.importGCAux2ZUse)
+            {
+                if (setAux2ZMode == 0) { distValue *= Gcode.GcodeZDown * setAux2ZFactor; }
+                else if (setAux2ZMode == 1) { distValue *= Math.Abs(Gcode.GcodeZDown) * setAux2ZFactor; }                                   // +/-Z but only +result
+                else if ((setAux2ZMode == 2) && (Gcode.GcodeZDown >= 0)) { distValue *= Math.Abs(Gcode.GcodeZDown) * setAux2ZFactor; }  // +Z only
+                else if ((setAux2ZMode == 3) && (Gcode.GcodeZDown <= 0)) { distValue *= Math.Abs(Gcode.GcodeZDown) * setAux2ZFactor; }  // -Z only
+            }
+            if (Properties.Settings.Default.importGCAux2SumUp)
+                setAux2FinalDistance += distValue;
+            else
+                setAux2FinalDistance = distValue;
+        }
 
         public static double CalculateZFromRange(double min, double max, double penWidth)
         {
@@ -650,11 +652,12 @@ namespace GrblPlotter
                 if (overWriteId && (pathObject.FigureId > 0))
                     iDToSet = pathObject.FigureId;
 
-                string xml ="no xml";
+                string xml = "no xml";
                 if (figureEnable)
-                {   xml = string.Format( "{0} Id=\"{1}\"{2}> ", XmlMarker.FigureStart, iDToSet, GetFigureAttributes(pathObject).ToString());//attributeGeometry, attributeId, attributeColor, attributeToolNr);                
-					Comment(xml);
-				}
+                {
+                    xml = string.Format("{0} Id=\"{1}\"{2}> ", XmlMarker.FigureStart, iDToSet, GetFigureAttributes(pathObject).ToString());//attributeGeometry, attributeId, attributeColor, attributeToolNr);                
+                    Comment(xml);
+                }
                 if (logCoordinates) Logger.Trace(" StartPath Option:{0}  {1}", pathObject.Options, xml);
                 FigureEndTagWasSet = false;
 
@@ -771,7 +774,7 @@ namespace GrblPlotter
             Gcode.SetTangential(gcodeString, setangle, true);
             Gcode.SetAux1DistanceCommand(setAux1FinalDistance);
             Gcode.SetAux2DistanceCommand(setAux2FinalDistance);
-			
+
             if (useAlternitveZ) //Properties.Settings.Default.importDepthFromWidthRamp|| Properties.Settings.Default.importDXFUseZ)
                 Gcode.Move(gcodeString, 1, coordxy.X, coordxy.Y, (float)newZ, true, cmt);
             else
@@ -956,13 +959,13 @@ namespace GrblPlotter
             Point coordxy = new Point(x, y);
             Point center = new Point(lastGC.X + i, lastGC.Y + j);
             double offset = +Math.PI / 2;
-            if (logCoordinates) Logger.Trace("  Start Arc G{0} X{1:0.000} Y{2:0.000} angle:{3:0.000}    cx{4:0.000} cy{5:0.000} angle:{6:0.000}", gnr, x, y, (180*tangStartRad/ Math.PI), center.X, center.Y, (180*tangEndRad/ Math.PI));
+            if (logCoordinates) Logger.Trace("  Start Arc G{0} X{1:0.000} Y{2:0.000} angle:{3:0.000}    cx{4:0.000} cy{5:0.000} angle:{6:0.000}", gnr, x, y, (180 * tangStartRad / Math.PI), center.X, center.Y, (180 * tangEndRad / Math.PI));
             if (gnr > 2) { offset = -offset; }
 
             Gcode.SetTangential(gcodeString, 180 * tangStartRad / Math.PI, true);
             Gcode.SetAux1DistanceCommand(setAux1FinalDistance);
             Gcode.SetAux2DistanceCommand(setAux2FinalDistance);
-			
+
             if (logCoordinates) Logger.Trace("   Start Arc alpha{0:0.000} offset{1:0.000}  ", 180 * tangStartRad / Math.PI, 180 * offset / Math.PI);
 
             PenDown(cmt + " from Arc");

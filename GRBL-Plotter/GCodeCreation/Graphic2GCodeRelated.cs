@@ -39,6 +39,7 @@
 * 2022-02-08 For functions Arc, MoveArc and SplitArc switch to double (15 digits) for coordinates (before float with 7 digits)
 * 2022-03-25 pen-up/down individual, add PU/PD
 * 2022-04-07 line 500 add warning if Z is used as normal AND tangential axis, add 
+* 2022-07-12 line 1048, 1055, 1196 add gcodeAux1Cmd, gcodeAux2Cmd at code for relative movement
 */
 
 using System;
@@ -88,8 +89,8 @@ namespace GrblPlotter
         private static bool gcodeZFeedToolTable = false;// from Tool Table
         public static float GcodeZInc { get; set; } //= 1;
         public static bool GcodeZPreventSpindle { get; set; } //= 1;
-		
-		private static bool PreventSpindle { get; set; }
+
+        private static bool PreventSpindle { get; set; }
         //        public static float gcodeZRepitition;          // Z feed to apply for G1
 
         // Using Spindle pwr. to switch on/off laser
@@ -132,12 +133,12 @@ namespace GrblPlotter
 
         private static bool gcodeAuxiliaryValue1Enable = false;
         private static string gcodeAuxiliaryValue1Name = "A";
-    //    private static float gcodeAuxiliaryValue1Distance = 1;
+        //    private static float gcodeAuxiliaryValue1Distance = 1;
         private static string gcodeAuxiliaryValue1Command = "";
 
         private static bool gcodeAuxiliaryValue2Enable = false;
         private static string gcodeAuxiliaryValue2Name = "A";
-    //    private static float gcodeAuxiliaryValue2Distance = 1;
+        //    private static float gcodeAuxiliaryValue2Distance = 1;
         private static string gcodeAuxiliaryValue2Command = "";
 
         private static bool gcodeZLeadInEnable = false;
@@ -213,7 +214,7 @@ namespace GrblPlotter
             GcodeZFeed = (float)Properties.Settings.Default.importGCZFeed;
             gcodeZFeedToolTable = useValueFromToolTable && Properties.Settings.Default.importGCTTZAxis;
             GcodeZInc = (float)Properties.Settings.Default.importGCZIncrement;             // depth per pass
-			GcodeZPreventSpindle = Properties.Settings.Default.importGCZPreventSpindle;
+            GcodeZPreventSpindle = Properties.Settings.Default.importGCZPreventSpindle;
 
             repeatZ = convertGraphics && Properties.Settings.Default.importGCZIncEnable;    // do final Z in several passes?
             repeatZStartZero = Properties.Settings.Default.importGCZIncStartZero;
@@ -234,7 +235,11 @@ namespace GrblPlotter
             gcodeToolChangeM0 = Properties.Settings.Default.importGCToolM0;
 
             gcodeCompress = convertGraphics && Properties.Settings.Default.importGCCompress;
-            GcodeRelative = convertGraphics && Properties.Settings.Default.importGCRelative;
+
+            bool auxIsRelative = (Properties.Settings.Default.importGCAux1Enable && !Properties.Settings.Default.importGCAux1SumUp) ||
+                                    (Properties.Settings.Default.importGCAux2Enable && !Properties.Settings.Default.importGCAux2SumUp);
+            GcodeRelative = (convertGraphics && Properties.Settings.Default.importGCRelative || auxIsRelative);
+
             gcodeNoArcs = convertGraphics && Properties.Settings.Default.importGCNoArcs;
             gcodeAngleStep = (float)Properties.Settings.Default.importGCSegment;
 
@@ -268,8 +273,8 @@ namespace GrblPlotter
             gcodeAuxiliaryValue1Name = Properties.Settings.Default.importGCAux1Axis;
             gcodeAuxiliaryValue2Name = Properties.Settings.Default.importGCAux2Axis;
 
-			PreventSpindle = GcodeZPreventSpindle && !gcodeSpindleToggle; //(&& dragtool && ...)
-			
+            PreventSpindle = GcodeZPreventSpindle && !gcodeSpindleToggle; //(&& dragtool && ...)
+
             gcodeZLeadInEnable = false;
             gcodeZLeadOutEnable = false;
 
@@ -506,12 +511,12 @@ namespace GrblPlotter
 
                 if (GcodeZApply)    // pen up
                 {
-					if (gcodeTangentialEnable && (gcodeTangentialName == "Z"))
-						gcodeValue.AppendFormat("( {0}-3001: Z is used as axis AND as tangential axis )\r\n", CodeMessage.Warning);
-					if ((gcodeAuxiliaryValue1Enable && (gcodeAuxiliaryValue1Name == "Z")) ||
-						(gcodeAuxiliaryValue2Enable && (gcodeAuxiliaryValue2Name == "Z")))						
-						gcodeValue.AppendFormat("({0}-3002: Z is used as axis AND as auxiliary axis )\r\n", CodeMessage.Warning);
-					
+                    if (gcodeTangentialEnable && (gcodeTangentialName == "Z"))
+                        gcodeValue.AppendFormat("( {0}-3001: Z is used as axis AND as tangential axis )\r\n", CodeMessage.Warning);
+                    if ((gcodeAuxiliaryValue1Enable && (gcodeAuxiliaryValue1Name == "Z")) ||
+                        (gcodeAuxiliaryValue2Enable && (gcodeAuxiliaryValue2Name == "Z")))
+                        gcodeValue.AppendFormat("({0}-3002: Z is used as axis AND as auxiliary axis )\r\n", CodeMessage.Warning);
+
                     if (gcodeComments) gcodeValue.AppendFormat("({0})\r\n", "Pen up: Z-Axis");
                     float tmpZUp = (float)Properties.Settings.Default.importGCZUp;
                     double z_relative = tmpZUp - lastz;
@@ -543,9 +548,9 @@ namespace GrblPlotter
                         {
                             if (gcodeComments) cmt = " (" + cmto + " spindle )";
                             else cmt = "";
-							if (!PreventSpindle)
-								SpindleOn(gcodeValue, cmt);
-							else gcodeValue.AppendFormat("( {0}-3003: Spindle stays off )\r\n",CodeMessage.Attention);
+                            if (!PreventSpindle)
+                                SpindleOn(gcodeValue, cmt);
+                            else gcodeValue.AppendFormat("( {0}-3003: Spindle stays off )\r\n", CodeMessage.Attention);
                         }
                     }
                 }
@@ -679,7 +684,7 @@ namespace GrblPlotter
                 if (GcodePWMEnable)
                 {
                     if (gcodeComments) gcodeValue.AppendFormat("({0})\r\n", "Pen up: Servo control");
-                //    if (cmt.Length > 0) { comment = string.Format("({0})", cmt); }		// 2022-03-25 move up
+                    //    if (cmt.Length > 0) { comment = string.Format("({0})", cmt); }		// 2022-03-25 move up
                     gcodeValue.AppendFormat("M{0} S{1} {2}\r\n", GcodeSpindleCmd, gcodePwmUp, comment);
                     if (GcodePwmDlyUp > 0)
                         gcodeValue.AppendFormat("G{0} P{1}\r\n", FrmtCode(4), FrmtNum(GcodePwmDlyUp));
@@ -698,7 +703,7 @@ namespace GrblPlotter
                         gcodeValue.AppendFormat("G91 X0.001 F{0} (use Laser mode)\r\n", GcodeXYFeed);
                         gcodeValue.AppendFormat("G91 X-0.001     (G1 move to activate laser)\r\n");
                         if (!GcodeRelative)
-                        { gcodeValue.AppendFormat("G90\r\n");}
+                        { gcodeValue.AppendFormat("G90\r\n"); }
                         //        Move(gcodeValue, 1, lastx + 0.001f, lasty + 0.001f, false, "");
                         //        Move(gcodeValue, 1, lastx - 0.001f, lasty - 0.001f, false, "");
                     }
@@ -1040,14 +1045,14 @@ namespace GrblPlotter
                 if (mz != null)
                 {
                     if (GcodeRelative)
-                        gcodeString.AppendFormat("{0}G{1} X{2} Y{3} Z{4} {5} {6}\r\n", nnr, FrmtCode(gnr), FrmtNum(x_relative), FrmtNum(y_relative), FrmtNum(z_relative), feed, cmt);
+                        gcodeString.AppendFormat("{0}G{1} X{2} Y{3} Z{4}{5}{6} {7} {8}\r\n", nnr, FrmtCode(gnr), FrmtNum(x_relative), FrmtNum(y_relative), FrmtNum(z_relative), gcodeAux1Cmd, gcodeAux2Cmd, feed, cmt);
                     else
                         gcodeString.AppendFormat("{0}G{1} X{2} Y{3} Z{4}{5}{6}{7} {8} {9}\r\n", nnr, FrmtCode(gnr), FrmtNum(mx), FrmtNum(my), FrmtNum((float)mz), gcodeTangentialCommand, gcodeAux1Cmd, gcodeAux2Cmd, feed, cmt);
                 }
                 else
                 {
                     if (GcodeRelative)
-                        gcodeString.AppendFormat("{0}G{1} X{2} Y{3} {4} {5}\r\n", nnr, FrmtCode(gnr), FrmtNum(x_relative), FrmtNum(y_relative), feed, cmt);
+                        gcodeString.AppendFormat("{0}G{1} X{2} Y{3}{4}{5} {6} {7}\r\n", nnr, FrmtCode(gnr), FrmtNum(x_relative), FrmtNum(y_relative), gcodeAux1Cmd, gcodeAux2Cmd, feed, cmt);
                     else
                         gcodeString.AppendFormat("{0}G{1} X{2} Y{3}{4}{5}{6} {7} {8}\r\n", nnr, FrmtCode(gnr), FrmtNum(mx), FrmtNum(my), gcodeTangentialCommand, gcodeAux1Cmd, gcodeAux2Cmd, feed, cmt);
                 }
@@ -1141,7 +1146,7 @@ namespace GrblPlotter
             if (gcodeAuxiliaryValue1Enable)
             {
                 gcodeAuxiliaryValue1Command = string.Format(" {0}{1}", gcodeAuxiliaryValue1Name, FrmtNum(distance));
-        //        Logger.Info("SetAux1Distance {0}", gcodeAuxiliaryValue1Command);
+                //        Logger.Info("SetAux1Distance {0}", gcodeAuxiliaryValue1Command);
             }
             else { gcodeAuxiliaryValue1Command = ""; }
         }
@@ -1151,7 +1156,7 @@ namespace GrblPlotter
             if (gcodeAuxiliaryValue2Enable)
             {
                 gcodeAuxiliaryValue2Command = string.Format(" {0}{1}", gcodeAuxiliaryValue2Name, FrmtNum(distance));
-        //        Logger.Info("SetAux2Distance {0}", gcodeAuxiliaryValue2Command);
+                //        Logger.Info("SetAux2Distance {0}", gcodeAuxiliaryValue2Command);
             }
             else { gcodeAuxiliaryValue2Command = ""; }
         }
@@ -1188,7 +1193,7 @@ namespace GrblPlotter
             else
             {
                 if (GcodeRelative)
-                    gcodeString.AppendFormat("G{0} X{1} Y{2}  I{3} J{4} {5} {6}\r\n", FrmtCode(gnr), FrmtNum(x_relative), FrmtNum(y_relative), FrmtNum(i), FrmtNum(j), feed, cmt);
+                    gcodeString.AppendFormat("G{0} X{1} Y{2}  I{3} J{4}{5}{6} {7} {8}\r\n", FrmtCode(gnr), FrmtNum(x_relative), FrmtNum(y_relative), FrmtNum(i), FrmtNum(j), gcodeAuxiliaryValue1Command, gcodeAuxiliaryValue2Command, feed, cmt);
                 else
                     gcodeString.AppendFormat("G{0} X{1} Y{2}  I{3} J{4}{5}{6}{7} {8} {9}\r\n", FrmtCode(gnr), FrmtNum(x), FrmtNum(y), FrmtNum(i), FrmtNum(j), gcodeTangentialCommand, gcodeAuxiliaryValue1Command, gcodeAuxiliaryValue2Command, feed, cmt);
                 lastg = gnr;
@@ -1277,7 +1282,7 @@ namespace GrblPlotter
                 if (gcodeInsertSubroutineEnable)
                 //    applyXYFeedRate = insertSubroutine(gcodeString, lastx, lasty, lastz, applyXYFeedRate);    //2021-06-20
                 { if (gcodeValue != null) ApplyXYFeedRate = InsertSubroutine(gcodeValue, (float)x2, (float)y2); }//, lastz, ApplyXYFeedRate); }
-                                                                                                   //    moveLength = 0;
+                                                                                                                 //    moveLength = 0;
             }
         }
 
@@ -1335,7 +1340,7 @@ namespace GrblPlotter
 
         internal static void GetValuesFromToolTable(ToolProp toolInfo)
         {
-         //   Logger.Info("GetValuesFromToolTable");
+            //   Logger.Info("GetValuesFromToolTable");
             if (toolInfo == null)
             { Logger.Error("GetValuesFromToolTable toolInfo is null"); return; }
             if (Properties.Settings.Default.importGCToolTableUse)
@@ -1357,8 +1362,9 @@ namespace GrblPlotter
         }
 
         public static void AddToHeader(string cmt, bool insideTag = true)
-        {   if (insideTag)
-                headerData.AppendFormat("({0})\r\n", cmt); 
+        {
+            if (insideTag)
+                headerData.AppendFormat("({0})\r\n", cmt);
             else
                 headerMessage.AppendFormat("({0})\r\n", cmt);
         }
@@ -1560,7 +1566,7 @@ namespace GrblPlotter
                 GcodeZDown = zStep;
                 xml = string.Format("{0} Nr=\"{1}\" step=\"{2:0.000}\" final=\"{3:0.000}\" >", XmlMarker.PassStart, passCount, zStep, finalZ);
                 Comment(gcodeString, xml);
-                if (LoggerTraceImport)  Logger.Trace("{0}", xml);
+                if (LoggerTraceImport) Logger.Trace("{0}", xml);
                 gcodeTangentialCommand = figureStartAlpha;
                 Move(gcodeString, 0, (float)figureStart.X, (float)figureStart.Y, false, ""); LastMovewasG0 = true;
                 gcodeFigureLines--; // avoid double count
@@ -1584,7 +1590,7 @@ namespace GrblPlotter
 
                 gcodeDownUp++;
                 gcodeString.Append(figureString.ToString());                                                        // draw figure
-                if (LoggerTraceImport)  Logger.Trace(" intermediateZ Copy code");
+                if (LoggerTraceImport) Logger.Trace(" intermediateZ Copy code");
 
                 // PenUp
                 if (gcodeIndividualTool)

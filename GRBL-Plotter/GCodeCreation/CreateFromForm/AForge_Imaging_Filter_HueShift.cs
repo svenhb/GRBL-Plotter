@@ -71,7 +71,7 @@ namespace AForge.Imaging.Filters
         /// 
         /// <param name="hue">Hue value to set.</param>
         /// 
-        public HueShift(int hue) : this( )
+        public HueShift(int hue) : this()
         {
             this.hue = hue;
         }

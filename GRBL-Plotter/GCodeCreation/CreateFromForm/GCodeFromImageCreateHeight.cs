@@ -27,11 +27,12 @@ using System.Collections.Generic;
 using System.Drawing;
 
 namespace GrblPlotter
-{   public partial class GCodeFromImage
+{
+    public partial class GCodeFromImage
     {
 
-        private static float cncCoordZ;   
-        private static float cncCoordLastZ;   
+        private static float cncCoordZ;
+        private static float cncCoordLastZ;
 
         private void GenerateHeightData()
         {
@@ -48,13 +49,14 @@ namespace GrblPlotter
             if (rbEngravingPattern1.Checked)        // horizontal no change
             { }
             else if (rbEngravingPattern2.Checked)                // if diagonal, take account of 45° angle
-            {   int factor = (int)Math.Round(resoRatioYX) + 1;
+            {
+                int factor = (int)Math.Round(resoRatioYX) + 1;
                 resoRatioYX = factor;
                 cncPixelResoX = cncPixelResoY * 1.414f / factor;
                 cncPixelResoY = cncPixelResoX;// cncPixelResoY * 1.414f; 
             }
             else
-            {   cncPixelResoY = cncPixelResoX; }
+            { cncPixelResoY = cncPixelResoX; }
 
             int newWidth = (int)((float)nUDWidth.Value / cncPixelResoX);
             int newHeigth = (int)((float)nUDHeight.Value / cncPixelResoY);
@@ -72,7 +74,7 @@ namespace GrblPlotter
             bool useZnotS = RbStartGrayZ.Checked;    // calculate Z-value or S-value
             bool backAndForth = !cBOnlyLeftToRight.Checked;
             bool relative = cBCompress.Checked; // true;
-       //     bool firstValue;//, firstLine=true;
+                                                //     bool firstValue;//, firstLine=true;
 
             int pixelValLast, pixelValNow, pixelValNext;    // gray-values at pixel pos
             cncCoordLastX = cncCoordX = 0;
@@ -83,7 +85,8 @@ namespace GrblPlotter
             else if (rbEngravingPattern2.Checked)
                 GenerateGCodePreset(0, 0);    // gcode.setup, -jobStart, PenUp, -G0 to 1st pos.
             else
-            {   cncCoordLastX = cncCoordX = cncPixelResoX * resultImage.Width * (float)NuDSpiralCenterX.Value;  // start pos
+            {
+                cncCoordLastX = cncCoordX = cncPixelResoX * resultImage.Width * (float)NuDSpiralCenterX.Value;  // start pos
                 cncCoordLastY = cncCoordY = cncPixelResoY * resultImage.Height * (float)NuDSpiralCenterY.Value;
                 GenerateGCodePreset(cncCoordX, cncCoordY);
             }
@@ -125,7 +128,7 @@ namespace GrblPlotter
                         if (relative) { finalString.AppendLine("G90"); }  // switch to absolute
                         Gcode.PenUp(finalString, "");
                         cncCoordLastZ = cncCoordZ = Gcode.GcodeZUp;
-                        Gcode.MoveToRapid(finalString, cncCoordX, cncCoordY,"");
+                        Gcode.MoveToRapid(finalString, cncCoordX, cncCoordY, "");
                         if (useZnotS)   // move servo down and delay
                         {
                             pixelValNow = GetPixelValue(pixelPosX, pixelPosY, useZnotS);
@@ -173,7 +176,7 @@ namespace GrblPlotter
                         SetCommand(pixelPosX, pixelPosY, pixelValNow, useZnotS, relative);
                         pixelPosY--;
                         Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.PassEnd));
-                    //    firstLine = false;
+                        //    firstLine = false;
                     }
 
                     percentDone = (pixelProcessed * 100) / pixelCount;
@@ -226,7 +229,7 @@ namespace GrblPlotter
             else if (rbEngravingPattern3.Checked)        // spiral
             {
                 Logger.Info("Create halftone spiral width:{0} height:{1} resoX:{2} resoY:{3}", resultImage.Width, resultImage.Height, cncPixelResoX, cncPixelResoY);
-                CreateSpiral((float)nUDResoY.Value, cncPixelResoX, (float)Math.Sqrt(resultImage.Width* resultImage.Width + resultImage.Height* resultImage.Height));
+                CreateSpiral((float)nUDResoY.Value, cncPixelResoX, (float)Math.Sqrt(resultImage.Width * resultImage.Width + resultImage.Height * resultImage.Height));
                 // fill path with brightnes values
                 CreateScanPath(resultImage.Width, resultImage.Height, resultImage.Width * (float)NuDSpiralCenterX.Value, resultImage.Height * (float)NuDSpiralCenterY.Value);
                 // improove path
@@ -245,7 +248,7 @@ namespace GrblPlotter
 
             if (relative) { finalString.AppendLine("G90"); }
             Gcode.Comment(finalString, string.Format("{0}>", XmlMarker.FigureEnd));
-            Gcode.JobEnd(finalString,"EndJob");
+            Gcode.JobEnd(finalString, "EndJob");
             if (RbStartGrayS.Checked && cBLaserModeOffEnd.Checked)
             { finalString.AppendLine("$32=0 (Lasermode off)"); }
 
@@ -254,7 +257,8 @@ namespace GrblPlotter
         }
 
         private int GetPixelValue(int picX, int picY, bool useZ)
-        {   if ((picX < 0) || (picY < 0) || (picX >= resultImage.Width) || (picY >= resultImage.Height))
+        {
+            if ((picX < 0) || (picY < 0) || (picX >= resultImage.Width) || (picY >= resultImage.Height))
                 return useZ ? 255 : 0;
             Color myColor = resultImage.GetPixel(picX, (resultImage.Height - 1) - picY);    // Get pixel color
             int brightness = (int)Math.Round((double)(myColor.R + myColor.G + myColor.B) / 3);        // calc height FF=white, 0=black
@@ -265,7 +269,7 @@ namespace GrblPlotter
             if (useZ)
             { return brightness; }      // calc height FF=white, 0=black
             else
-            { return (int)((255- brightness) * (float)(nUDSBottom.Value - nUDSTop.Value)) / 255; }
+            { return (int)((255 - brightness) * (float)(nUDSBottom.Value - nUDSTop.Value)) / 255; }
         }
         private int GetPixelBrightnes(float picX, float picY)
         {
@@ -364,9 +368,9 @@ namespace GrblPlotter
             pixelValLast = -1; pixelValNow = pixelValNext = scanCNCPos[0].brightnes;    // GetPixelValue(scanCNCPos[0].X, scanCNCPos[0].Y, useZnotS);
 
             if (relative) { finalString.AppendLine("G91G1 (relative mode)"); }
-            for (int i=1; i < scanCNCPos.Count-1; i++)                
+            for (int i = 1; i < scanCNCPos.Count - 1; i++)
             {
-                pixelPosX = scanCNCPos[i].X; 
+                pixelPosX = scanCNCPos[i].X;
                 pixelPosY = scanCNCPos[i].Y;
                 if ((pixelPosX < 0) || (pixelPosY < 0) || (scanCNCPos[i].brightnes < 0))
                 {   // do pen-up
@@ -404,12 +408,12 @@ namespace GrblPlotter
 
                         if (useZnotS)
                         {   // move z down
-                        //    finalString.AppendFormat("G{0} X{1} Y{2} Z{3} F{4} (PD)\r\n", Gcode.FrmtCode(1), Gcode.FrmtNum(cncCoordX), Gcode.FrmtNum(cncCoordY), Gcode.FrmtNum(nUDZTop.Value), Gcode.GcodeXYFeed);
+                            //    finalString.AppendFormat("G{0} X{1} Y{2} Z{3} F{4} (PD)\r\n", Gcode.FrmtCode(1), Gcode.FrmtNum(cncCoordX), Gcode.FrmtNum(cncCoordY), Gcode.FrmtNum(nUDZTop.Value), Gcode.GcodeXYFeed);
                             finalString.AppendFormat("Z{0} F{1} (PD)\r\n", Gcode.FrmtNum(nUDZTop.Value), Gcode.GcodeXYFeed);
                         }
                         else
                         {   // move servo down and delay
-                         //   finalString.AppendFormat("G{0} X{1} Y{2} F{3} S{4} (PD)\r\n", Gcode.FrmtCode(1), Gcode.FrmtNum(cncCoordX), Gcode.FrmtNum(cncCoordY), Gcode.GcodeXYFeed, Math.Round(nUDSTop.Value));
+                            //   finalString.AppendFormat("G{0} X{1} Y{2} F{3} S{4} (PD)\r\n", Gcode.FrmtCode(1), Gcode.FrmtNum(cncCoordX), Gcode.FrmtNum(cncCoordY), Gcode.GcodeXYFeed, Math.Round(nUDSTop.Value));
                             finalString.AppendFormat("F{0} S{1} (PD)\r\n", Gcode.GcodeXYFeed, Math.Round(nUDSTop.Value));
                             finalString.AppendFormat("G{0} P{1}\r\n", Gcode.FrmtCode(4), Gcode.FrmtNum(Properties.Settings.Default.importGCPWMDlyUp));
                         }
@@ -424,9 +428,9 @@ namespace GrblPlotter
                     pixelValNext = scanCNCPos[i + 1].brightnes; //GetPixelValue(scanCNCPos[i + 1].X, scanCNCPos[i + 1].Y, useZnotS);
 
                     if ((pixelValNow != pixelValLast) || (pixelValNow != pixelValNext))
-                    {   SetCommandFloat(pixelPosX, pixelPosY, pixelValNow, useZnotS, relative);  }
+                    { SetCommandFloat(pixelPosX, pixelPosY, pixelValNow, useZnotS, relative); }
                     else
-                    {   SetXYCommandFloat(pixelPosX, pixelPosY, "", relative);  }
+                    { SetXYCommandFloat(pixelPosX, pixelPosY, "", relative); }
                 }
                 pixelValLast = pixelValNow; pixelValNow = pixelValNext;
             }
@@ -435,60 +439,65 @@ namespace GrblPlotter
         private void CreateScanPath(int width, int height, float offsetX, float offsetY)
         {   //scanPixelPos.Clear();
             Logger.Trace("createScanPath width:{0} height:{1}", width, height);
-            float x,y;
+            float x, y;
             int brightnes;
-            for(int k=0; k < scanCNCPos.Count; k++)
-            {   x = (scanCNCPos[k].X/ cncPixelResoX + offsetX);
-                y = (scanCNCPos[k].Y/ cncPixelResoX + offsetY);
-                if (scanCNCPos[k].brightnes == 0) 
-                {   scanCNCPos[k] = new ImgPoint(x, y, - 2);
+            for (int k = 0; k < scanCNCPos.Count; k++)
+            {
+                x = (scanCNCPos[k].X / cncPixelResoX + offsetX);
+                y = (scanCNCPos[k].Y / cncPixelResoX + offsetY);
+                if (scanCNCPos[k].brightnes == 0)
+                {
+                    scanCNCPos[k] = new ImgPoint(x, y, -2);
                     continue;
                 }
                 //if ((x != oldX) || (y != oldY))
-                {   if ((x < 0) || (x >= width)) {x = -1;}
-                    if ((y < 0) || (y >= height)) {y = -1;}
+                {
+                    if ((x < 0) || (x >= width)) { x = -1; }
+                    if ((y < 0) || (y >= height)) { y = -1; }
                     brightnes = GetPixelBrightnes(x, y);
                     if ((CbPenUpOn0.Checked) && (brightnes == 255))
                         brightnes = -1;
                     scanCNCPos[k] = new ImgPoint(x, y, brightnes);
                 }
-            }            
+            }
         }
 
         private void CreateSpiral(float distance, float step, float maxR)
         {
             scanCNCPos.Clear();
             Logger.Trace("createSpiral createSpiral:{0} step:{1} maxR:{2}", distance, step, maxR);
-            if ((distance <=0) || (maxR <= distance))
+            if ((distance <= 0) || (maxR <= distance))
                 return;
-            double r = 0,a = 0,x,y;
+            double r = 0, a = 0, x, y;
             double aDeg = 0, deltaDeg;
 
             try
             {
-				while (r < maxR)
-				{   x = Math.Cos(a) * r;
-					y = -Math.Sin(a) * r;
-					scanCNCPos.Add(new ImgPoint((float)x, (float)y, 1));
-					deltaDeg = (Math.Atan(step / r) * 180 / Math.PI);   // step width should be pixel distance
-					aDeg += deltaDeg; r += distance * deltaDeg / 360;                // 1 deg step, 1 distance/turn
-					a = (aDeg * Math.PI / 180);
-				}
+                while (r < maxR)
+                {
+                    x = Math.Cos(a) * r;
+                    y = -Math.Sin(a) * r;
+                    scanCNCPos.Add(new ImgPoint((float)x, (float)y, 1));
+                    deltaDeg = (Math.Atan(step / r) * 180 / Math.PI);   // step width should be pixel distance
+                    aDeg += deltaDeg; r += distance * deltaDeg / 360;                // 1 deg step, 1 distance/turn
+                    a = (aDeg * Math.PI / 180);
+                }
             }
-			catch (Exception err)
-			{	EventCollector.StoreException("CreateSpiral scanCNCPos.Count="+ scanCNCPos.Count +" " +err.Message+" ---");
-				Logger.Error(err, "Could not create spiral, scanCNCPos.Count:{0}  r:{1}   maxR:{2}", scanCNCPos.Count, r, maxR);
-                System.Windows.Forms.MessageBox.Show("Error: "+err.Message+" \r\n\r\nPattern is may not complete.\r\nTry with higher Line distance","Error");
+            catch (Exception err)
+            {
+                EventCollector.StoreException("CreateSpiral scanCNCPos.Count=" + scanCNCPos.Count + " " + err.Message + " ---");
+                Logger.Error(err, "Could not create spiral, scanCNCPos.Count:{0}  r:{1}   maxR:{2}", scanCNCPos.Count, r, maxR);
+                System.Windows.Forms.MessageBox.Show("Error: " + err.Message + " \r\n\r\nPattern is may not complete.\r\nTry with higher Line distance", "Error");
             }
         }
-        
+
         private void CreateFrom2DView(float step)
         {
             scanCNCPos.Clear();
-            Logger.Trace("createFrom2DView G2G3:{0}",VisuGCode.ContainsG2G3Command());
+            Logger.Trace("createFrom2DView G2G3:{0}", VisuGCode.ContainsG2G3Command());
 
             if (VisuGCode.GetPathCordinates(scanCNCPos, step))  // get X,Y-pos and G-nr
-            {   }
+            { }
         }
 
         private void RemoveIntermediateSteps()
@@ -511,7 +520,7 @@ namespace GrblPlotter
                     angleNext = GcodeMath.GetAlpha(pointNext, pointNow);
                     if ((brightnesNext == brightnesNow) && (brightnesNow == brightnesLast) && (brightnesNow >= 0) && IsEqual(angleNext, angleNow) && IsEqual(angleNow, angleLast))
                     {
-                        if (((i + 2) < scanCNCPos.Count)) 
+                        if (((i + 2) < scanCNCPos.Count))
                         {
                             scanCNCPos.RemoveAt(i + 1);
                             removed++;
