@@ -77,7 +77,7 @@ namespace GrblPlotter
 
         internal static string selectedFigureInfo = "";
         private static int lastFigureNumber = -1;
-        private static HashSet<int> lastFigureNumbers = new HashSet<int>();
+        private static readonly HashSet<int> lastFigureNumbers = new HashSet<int>();
 
         public static int GetHighlightStatus()
         { return lastFigureNumber; }
@@ -177,16 +177,45 @@ namespace GrblPlotter
             catch (Exception er) { Logger.Error(er, " SetPosMarkerLine line:{0}  coordList.Count:{1}  markFigure:{2}", line, coordList.Count, markFigure); }
         }
 
+
+        public static void SetPosMarkerLineSimple(int line)
+        {
+            if (logDetailed) Logger.Trace("  SetPosMarkerLineSimple line:{0} ", line);
+            if (line < 0) return;
+
+            int figureNr;
+            XyPoint center = new XyPoint(0, 0);
+            bool showCenter = false;
+            try
+            {
+                if (line < coordList.Count)
+                {
+                    Grbl.PosMarker = (XyzPoint)coordList[line].actualPos;
+                    Grbl.PosMarkerAngle = coordList[line].alpha;
+                    if (coordList[line].isArc)
+                    {
+                        foreach (CenterByLine point in centerList)
+                        {
+                            if (point.lineNumber == coordList[line].lineNumber)
+                            { center = (XyPoint)point.center; showCenter = true; break; }
+                        }
+                    }
+                    CreateMarkerPath(showCenter, center, (XyPoint)coordList[line].actualPos);// line-1
+                }
+            }
+            catch (Exception er) { Logger.Error(er, " SetPosMarkerLineSimple line:{0}  coordList.Count:{1}", line, coordList.Count); }
+        }
+
         /// <summary>
         /// find gcode line with xy-coordinates near by given coordinates
         /// </summary>
         internal static DistanceByLine SetPosMarkerNearBy(XyPoint pos, bool findNode)//, bool toggleHighlight)
         {
-			bool checkDistanceToLine = !(largeDataAmount || findNode);
-            if (logDetailed) 
+            bool checkDistanceToLine = !(largeDataAmount || findNode);
+            if (logDetailed)
                 Logger.Trace("SetPosMarkerNearBy findNode:{0}  checkDistanceToLine:{1}  x:{2:0.00} y:{3:0.00}  ", findNode, checkDistanceToLine, pos.X, pos.Y);
 
-/* fill list with coordByLine with actual distance to given point */
+            /* fill list with coordByLine with actual distance to given point */
             if ((coordList == null) || (coordList.Count == 0))
             {
                 DistanceByLine tmp = new DistanceByLine(0)
@@ -216,7 +245,7 @@ namespace GrblPlotter
                 if (centerItem.figureNumber >= 0)
                 {
                     tmpDist = centerItem.CalcDistance(pos);//, checkDistanceToLine);
-                //    if (tmpDist < minDist)
+                                                           //    if (tmpDist < minDist)
                     {
                         minDist = tmpDist;
                         tmpList.Add(new DistanceByLine(centerItem, minDist));            // add to new list
@@ -236,7 +265,7 @@ namespace GrblPlotter
                 }
             }
 
-/* sort list by distance, get associated linenr. */
+            /* sort list by distance, get associated linenr. */
             List<DistanceByLine> SortedList = tmpList.OrderBy(o => o.distance).ToList();
             if (SortedList.Count == 0)
             {
@@ -247,36 +276,36 @@ namespace GrblPlotter
             int line = 0;
             DistanceByLine returnVal = SortedList[0];
 
-/* check if other node of same figure is closer to click position */
+            /* check if other node of same figure is closer to click position */
             int gline = SortedList[line].lineNumber;
             int clIndex = gline;
             int selIndex = clIndex;
-            if (checkDistanceToLine)    
+            if (checkDistanceToLine)
             {
                 if ((gline > 0) && (gline < coordList[coordList.Count - 2].lineNumber))
                 {
-                    for (int i=Math.Max(0, gline - 10); i < Math.Min(coordList.Count, gline + 10); i++)   // from actual figures
+                    for (int i = Math.Max(0, gline - 10); i < Math.Min(coordList.Count, gline + 10); i++)   // from actual figures
                     {
                         if (coordList[i].lineNumber == gline)
                         { clIndex = i; }
                     }
-					selIndex = clIndex;
-					
+                    selIndex = clIndex;
+
                     double distBefore = ((XyPoint)coordList[clIndex - 1].actualPos).DistanceTo((XyPoint)pos);
                     double distActual = ((XyPoint)coordList[clIndex].actualPos).DistanceTo((XyPoint)pos);
                     double distAfter = ((XyPoint)coordList[clIndex + 1].actualPos).DistanceTo((XyPoint)pos);
                     if ((distBefore < distActual) && (coordList[clIndex - 1].figureNumber == coordList[clIndex].figureNumber))
-                    {   gline = coordList[clIndex - 1].lineNumber; selIndex = clIndex - 1;}
+                    { gline = coordList[clIndex - 1].lineNumber; selIndex = clIndex - 1; }
                     if ((distAfter < distActual) && (coordList[clIndex + 1].figureNumber == coordList[clIndex].figureNumber))
-                    {   gline = coordList[clIndex + 1].lineNumber; selIndex = clIndex + 1; }
+                    { gline = coordList[clIndex + 1].lineNumber; selIndex = clIndex + 1; }
 
                     if (logDetailed) Logger.Info("SetPosMarkerNearBy gline:{0}  dist-1:{1:0.000}  dist-0:{2:0.000}  dist+1:{3:0.000}", gline, distBefore, distActual, distAfter);
 
                     returnVal = new DistanceByLine(coordList[selIndex], 0);
                 }
             }
-			
-/* find G0 line with X/Y coordinates */
+
+            /* find G0 line with X/Y coordinates */
             if (findNode && (coordList[selIndex].actualG == 0) && (gcodeList[selIndex].x == null) && (gcodeList[selIndex].y == null))
             {
                 if (logDetailed) Logger.Info("SetPosMarkerNearBy G0 without XY at {0}  '{1}'", returnVal.lineNumber, gcodeList[selIndex].codeLine);
@@ -296,7 +325,7 @@ namespace GrblPlotter
             Grbl.PosMarkerAngle = returnVal.alpha;
             int figureNr = returnVal.figureNumber;
 
-/* if possible, get center of arc */
+            /* if possible, get center of arc */
             XyPoint center = new XyPoint(0, 0);
             bool showCenter = false;
             if (returnVal.isArc && (centerList.Count > 0))
@@ -340,25 +369,25 @@ namespace GrblPlotter
 
 
         public static void MarkSelectedNode(DistanceByLine markerProperties)
-		{
-			CoordByLine before, now, after;
-			bool beforeOk, afterOk;
-			
+        {
+            CoordByLine before, now, after;
+            bool beforeOk, afterOk;
+
             if ((coordList == null) || (coordList.Count == 0))
-				return;
-			
-			int line = markerProperties.lineNumber;
+                return;
+
+            int line = markerProperties.lineNumber;
             int lineBefore = line - 1;
             int lineAfter = line + 1;
 
-       //     Logger.Info("MarkSelectedNode  -1:{0}   0:{1}   +1:{2}", lineBefore, line, lineAfter);
-            if (line < (coordList.Count -1))
-			{
+            //     Logger.Info("MarkSelectedNode  -1:{0}   0:{1}   +1:{2}", lineBefore, line, lineAfter);
+            if (line < (coordList.Count - 1))
+            {
                 if ((gcodeList[lineAfter].x == null) && (gcodeList[lineAfter].y == null))   // no XY move? Perhaps pen-down commands
                 {
                     for (int i = lineAfter; i < Math.Min(lineAfter + 5, gcodeList.Count); i++)
                     {
-        //                Logger.Info("{0}  {1}   {2}", i, gcodeList[i].figureNumber , gcodeList[line].figureNumber);
+                        //                Logger.Info("{0}  {1}   {2}", i, gcodeList[i].figureNumber , gcodeList[line].figureNumber);
                         if (((gcodeList[i].x != null) || (gcodeList[i].y != null)) && (gcodeList[i].figureNumber == gcodeList[line].figureNumber))
                         {
                             lineAfter = i;
@@ -366,21 +395,21 @@ namespace GrblPlotter
                         }
                     }
                 }
-        //        Logger.Info("MarkSelectedNode  -1:{0}   0:{1}   +1:{2}", lineBefore, line, lineAfter);
+                //        Logger.Info("MarkSelectedNode  -1:{0}   0:{1}   +1:{2}", lineBefore, line, lineAfter);
                 before = coordList[lineBefore];
-            //    now = coordList[line];
+                //    now = coordList[line];
                 after = coordList[lineAfter];
 
-                beforeOk = !(before.actualG == 0);   
-				afterOk = !(after.actualG == 0) ;	
-                
-				SelectionHandle.SetSelectionPath(before.actualPos.ToPointF(), beforeOk, markerProperties.actualPos.ToPointF(), after.actualPos.ToPointF(), afterOk);
+                beforeOk = !(before.actualG == 0);
+                afterOk = !(after.actualG == 0);
+
+                SelectionHandle.SetSelectionPath(before.actualPos.ToPointF(), beforeOk, markerProperties.actualPos.ToPointF(), after.actualPos.ToPointF(), afterOk);
                 pathMarkSelection.Reset();
                 pathMarkSelection.StartFigure();
                 if (beforeOk) pathMarkSelection.AddLine(before.actualPos.ToPointF(), markerProperties.actualPos.ToPointF());
                 if (afterOk) pathMarkSelection.AddLine(markerProperties.actualPos.ToPointF(), after.actualPos.ToPointF());
             }
-            SelectionHandle.SetBounds(new RectangleF((float)markerProperties.actualPos.X, (float)markerProperties.actualPos.Y, 0, 0));			
+            SelectionHandle.SetBounds(new RectangleF((float)markerProperties.actualPos.X, (float)markerProperties.actualPos.Y, 0, 0));
             selectedFigureInfo = string.Format("Selection: X {0:0.000} Y {1:0.000}", markerProperties.actualPos.X, markerProperties.actualPos.Y);
         }
 
@@ -409,8 +438,8 @@ namespace GrblPlotter
                 if ((gcline.figureNumber == figureNr) && XyMove(gcline))
                 { tmpSize.SetDimensionXY(gcline.actualPos.X, gcline.actualPos.Y); }
             }
-       //     XyPoint tmpCenter = new XyPoint(tmpSize.GetCenter());
-        //    selectedFigureInfo = string.Format("Selection: {0}\r\nWidth : {1:0.000}\r\nHeight: {2:0.000}\r\nCenter: X {3:0.000} Y {4:0.000}", figureNr, tmpSize.dimx, tmpSize.dimy, tmpCenter.X, tmpCenter.Y);
+            //     XyPoint tmpCenter = new XyPoint(tmpSize.GetCenter());
+            //    selectedFigureInfo = string.Format("Selection: {0}\r\nWidth : {1:0.000}\r\nHeight: {2:0.000}\r\nCenter: X {3:0.000} Y {4:0.000}", figureNr, tmpSize.dimx, tmpSize.dimy, tmpCenter.X, tmpCenter.Y);
 
             // find and copy selected path
             pathMarkSelection.Reset();
@@ -455,11 +484,11 @@ namespace GrblPlotter
                     figures.Add(figNr);											// add fig-nr to list
                     myPathIterator.Rewind();
                     for (int i = 1; i <= figNr; i++)							// set path-marker to figure-position
-                        myPathIterator.NextMarker(tmpPath);						// and copy path to tmpPath
-					
-					try { pathMarkSelection.AddPath(tmpPath, false);}			// add figure-path to marker-path
-					catch (Exception err)
-					{	Logger.Error(err,"MarkSelectedGroup start:{0} figNr:{1} ");}
+                        myPathIterator.NextMarker(tmpPath);                     // and copy path to tmpPath
+
+                    try { pathMarkSelection.AddPath(tmpPath, false); }          // add figure-path to marker-path
+                    catch (Exception err)
+                    { Logger.Error(err, "MarkSelectedGroup start:{0} figNr:{1} "); }
                     lastFigureNumbers.Add(figNr);
                 }
             }
@@ -490,7 +519,7 @@ namespace GrblPlotter
 
             for (int line = start + 1; line < gcodeList.Count; line++)		// go through tile code lines
             {
-                if (gcodeList[line].codeLine.Contains(XmlMarker.TileEnd))	
+                if (gcodeList[line].codeLine.Contains(XmlMarker.TileEnd))
                     break;
                 lastFigureNumber = figNr = gcodeList[line].figureNumber;
                 if (!figures.Contains(figNr) && (figNr > 0))				// find figures
@@ -519,7 +548,7 @@ namespace GrblPlotter
             ImgPoint actualPos, lastPos;
             double dist;
             float dX, dY;
-            int steps,i;
+            int steps, i;
             bool lastWasG0 = true;
             lastPos = new ImgPoint();
             double offX = (xyzSize.maxx + xyzSize.minx) / 2;

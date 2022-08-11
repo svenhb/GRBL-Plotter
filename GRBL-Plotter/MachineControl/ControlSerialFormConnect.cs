@@ -22,10 +22,7 @@
 
 using System;
 using System.IO;
-using System.IO.Ports;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GrblPlotter
@@ -44,7 +41,7 @@ namespace GrblPlotter
         private NetworkStream Connection;
         private TcpClient ClientEthernet;
         private bool Connected = false;
-    //    private bool UseSocket = true;
+        //    private bool UseSocket = true;
         private StreamReader reader;
         //     StreamWriter writer;
 
@@ -54,7 +51,7 @@ namespace GrblPlotter
         {
             bool showMessageBox = false;	//true;
             rxErrorCount = 0;
-			tryDoSerialConnection = true;
+            tryDoSerialConnection = true;
             rtbLog.Clear();
             Grbl.isMarlin = isMarlin = Properties.Settings.Default.ctrlConnectMarlin;
             if (isMarlin)
@@ -64,7 +61,7 @@ namespace GrblPlotter
             if (!useEthernet)
             {
                 AddToLog("\nTry to connect to serial " + cbPort.Text + " @ " + cbBaud.Text);
-				EventCollector.SetCommunication("C" + cbPort.Text);
+                EventCollector.SetCommunication("C" + cbPort.Text);
                 Application.DoEvents();
                 OpenPortSerial();
                 if (serialPort.IsOpen)
@@ -80,18 +77,18 @@ namespace GrblPlotter
                 {
                     Logger.Info("==== Connecting to {0}:{1} ====", TbEthernetIP.Text, TbEthernetPort.Text);
                     AddToLog("\nTry to connect via Ethernet - Telnet\nConnect to " + TbEthernetIP.Text + ":" + TbEthernetPort.Text + "\nIf fails, it takes up to 20 sec. to response!");
-					EventCollector.SetCommunication("CEther");
-					timerSerial.Interval = 1000;
+                    EventCollector.SetCommunication("CEther");
+                    timerSerial.Interval = 1000;
                     timerSerial.Start();
 
                     if (int.TryParse(TbEthernetPort.Text, out int port))
                     {
 
                         // https://docs.microsoft.com/de-de/dotnet/framework/network-programming/asynchronous-client-socket-example
-                     //   if (UseSocket)
-                     //   { }
+                        //   if (UseSocket)
+                        //   { }
                         // Telnet
-                    //    else
+                        //    else
                         {
                             if ((port >= 0) && (port <= 65535))
                             {
@@ -128,7 +125,7 @@ namespace GrblPlotter
                     }
                     else
                     {
-						countMinimizeForm = 0;
+                        countMinimizeForm = 0;
                         string msg = string.Format("Port is not a valid number: {0}", TbEthernetPort.Text);
                         Logger.Error(msg);
                         AddToLog(msg);
@@ -137,7 +134,7 @@ namespace GrblPlotter
                 }
                 catch (ArgumentNullException)
                 {
-					countMinimizeForm = 0;
+                    countMinimizeForm = 0;
                     string msg = "ArgumentNullException - Invalid address or port.\nWrong port? Telnet on esp expects port 23.";
                     Logger.Error(msg);
                     AddToLog(msg);
@@ -149,7 +146,7 @@ namespace GrblPlotter
                 }
                 catch (SocketException)
                 {
-					countMinimizeForm = 0;
+                    countMinimizeForm = 0;
                     string msg = "SocketException - Connection failure.\nWrong port? Telnet on esp expects port 23.";
                     Logger.Error(msg);
                     AddToLog(msg);
@@ -163,21 +160,21 @@ namespace GrblPlotter
             }
             UpdateControls();
         }
-		
+
         public void DisconnectFromGrbl(object sender, EventArgs e)
         {
-			tryDoSerialConnection = false;
+            tryDoSerialConnection = false;
             Connected = false;
-         //   reader = null;
+            //   reader = null;
             //     writer = null;
             CbEthernetUse.Enabled = true;
 
-			EventCollector.SetCommunication("CDisc");
+            EventCollector.SetCommunication("CDisc");
             useEthernet = CbEthernetUse.Checked;
             if (!useEthernet)
             {
                 ClosePortSerial();
-				BtnOpenPortSerial.Text = Localization.GetString("serialOpen");
+                BtnOpenPortSerial.Text = Localization.GetString("serialOpen");
             }
             else
             {
@@ -201,36 +198,37 @@ namespace GrblPlotter
             OnRaisePosEvent(new PosEventArgs(posWork, posMachine, GrblState.unknown, machineState, mParserState, ""));// lastCmd));
             UpdateControls();
         }
-		
-		private void ConnectionSucceed(string msg)
-		{
-			BtnOpenPortSerial.Text = Localization.GetString("serialClose");  // "Close";
-			isDataProcessing = true;
-			if (iamSerial == 1)
-			{	Grbl.isConnected = IsConnectedToGrbl();
-				Grbl.lastMessage = msg;
-				Grbl.Clear();			// reset internal grbl variables
-			}
 
-			timerSerial.Interval = Grbl.pollInterval;       		// timerReload;
-			countMissingStatusReport = (int)(2000 / timerSerial.Interval);
+        private void ConnectionSucceed(string msg)
+        {
+            BtnOpenPortSerial.Text = Localization.GetString("serialClose");  // "Close";
+            isDataProcessing = true;
+            if (iamSerial == 1)
+            {
+                Grbl.isConnected = IsConnectedToGrbl();
+                Grbl.lastMessage = msg;
+                Grbl.Clear();           // reset internal grbl variables
+            }
+
+            timerSerial.Interval = Grbl.pollInterval;               // timerReload;
+            countMissingStatusReport = (int)(2000 / timerSerial.Interval);
 
             if (Properties.Settings.Default.serialMinimize)
                 countMinimizeForm = (int)(2000 / timerSerial.Interval);     // minimize window after 3 sec.
 
             timerSerial.Enabled = true;
-			serialPortError = false;
+            serialPortError = false;
 
-			countPreventOutput = 0; countPreventEvent = 0;
-			IsHeightProbing = false;
-			if (Grbl.grblSimulate)
-			{
-				Grbl.grblSimulate = false;
-				AddToLog("* Stop simulation\r\n");
-			}
-			GrblReset(false);   		// reset controller, don't savePos, wait for reset response
+            countPreventOutput = 0; countPreventEvent = 0;
+            IsHeightProbing = false;
+            if (Grbl.grblSimulate)
+            {
+                Grbl.grblSimulate = false;
+                AddToLog("* Stop simulation\r\n");
+            }
+            GrblReset(false);           // reset controller, don't savePos, wait for reset response
 
-			OnRaisePosEvent(new PosEventArgs(posWork, posMachine, GrblState.unknown, machineState, mParserState, ""));// lastCmd));					
-		}
+            OnRaisePosEvent(new PosEventArgs(posWork, posMachine, GrblState.unknown, machineState, mParserState, ""));// lastCmd));					
+        }
     }
 }

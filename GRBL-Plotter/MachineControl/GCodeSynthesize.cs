@@ -60,7 +60,8 @@ namespace GrblPlotter
         /// undo height map (reload saved backup)
         /// </summary>
         public static void ClearHeightMap()
-        {   pathHeightMap.Reset();
+        {
+            pathHeightMap.Reset();
             pathBackground.Reset();
         }
 
@@ -74,7 +75,7 @@ namespace GrblPlotter
         {
             Logger.Debug("+++ CreateGCodeProg replaceG23: {0}, splitMoves: {1}, applyNewZ: {2}, specialCmd: {3}", replaceG23, splitMoves, applyNewZ, specialCmd);
             if (gcodeList == null) return "";
-            pathMarkSelection.Reset(); 
+            pathMarkSelection.Reset();
             lastFigureNumber = -1; lastFigureNumbers.Clear();
             StringBuilder newCode = new StringBuilder();
             StringBuilder tmpCode = new StringBuilder();
@@ -86,15 +87,11 @@ namespace GrblPlotter
             byte coolantState = 9;
             double lastActualX = 0, lastActualY = 0, lastActualZ = 0, i, j;
             double newZ;
-            //     int lastMotionMode;
+
             double convertMinZ = xyzSize.minz;          // 1st get last minimum
             double convertMaxZ = xyzSize.maxz;          // 1st get last minimum
             xyzSize.ResetDimension();                   // then reset
             bool hide_code = false;
-            double convertMaxSpeed = (double)Properties.Settings.Default.convertZtoSMax;
-            double convertMinSpeed = (double)Properties.Settings.Default.convertZtoSMin;
-            double convertSpeedRange = Math.Abs(convertMaxSpeed - convertMinSpeed);
-            double convertOffSpeed = (double)Properties.Settings.Default.convertZtoSOff;
             bool isArc;
 
             for (int iCode = 0; iCode < gcodeList.Count; iCode++)     // go through all code lines
@@ -192,7 +189,7 @@ namespace GrblPlotter
                             { tmpCode.AppendFormat(" Z{0}", Gcode.FrmtNum((double)gcline.z)); }
                             else if ((specialCmd == ConvertMode.ConvertZToS))// && (convertMinZ != 0))
                             {
-                                gcline.spindleSpeed = convertZtoS(gcline.actualPos.Z, convertMaxZ, convertMinZ);
+                                gcline.spindleSpeed = ConvertZtoS(gcline.actualPos.Z, convertMaxZ, convertMinZ);
                                 spindleSpeed = -1;  // force output
                             }
                             getCoordinateZ = true;
@@ -222,16 +219,18 @@ namespace GrblPlotter
                             if (spindleState != gcline.spindleState)
                             { tmpCode.AppendFormat(" M{0,0}", gcline.spindleState); }   // state
                             if (spindleSpeed != gcline.spindleSpeed)
-                            {   tmpCode.AppendFormat(" S{0,0}", gcline.spindleSpeed);   // speed
+                            {
+                                tmpCode.AppendFormat(" S{0,0}", gcline.spindleSpeed);   // speed
                                 keepComment = true; // keep (PU) / (PD)
                             }
                             if (coolantState != gcline.coolantState)
                             { tmpCode.AppendFormat(" M{0,0}", gcline.coolantState); }   // state
 
                             if (keepComment)
-                            {   int strtCmt = gcline.codeLine.IndexOf("(");
+                            {
+                                int strtCmt = gcline.codeLine.IndexOf("(");
                                 if (strtCmt > 0)
-                                    tmpCode.AppendFormat(" {0}", gcline.codeLine.Substring(strtCmt)); 
+                                    tmpCode.AppendFormat(" {0}", gcline.codeLine.Substring(strtCmt));
                             }
 
                             tmpCode.Replace(',', '.');
@@ -277,17 +276,17 @@ namespace GrblPlotter
             return newCode.ToString().Replace(',', '.');
         }
 
-        private static int convertZtoS(double z, double maxZ, double minZ)
+        private static int ConvertZtoS(double z, double maxZ, double minZ)
         {
             double convertMaxSpeed = (double)Properties.Settings.Default.convertZtoSMax;
             double convertMinSpeed = (double)Properties.Settings.Default.convertZtoSMin;
             double convertSpeedRange = Math.Abs(convertMaxSpeed - convertMinSpeed);
             double convertOffSpeed = (double)Properties.Settings.Default.convertZtoSOff;
-        //    Logger.Info("convertZtoS z:{0} max:{1} min:{2}",z,maxZ,minZ);
+            //    Logger.Info("convertZtoS z:{0} max:{1} min:{2}",z,maxZ,minZ);
             if (z > 0)
             { return (int)convertOffSpeed; }
             int result = (int)(z * convertSpeedRange / minZ + convertMinSpeed);
-        //    Logger.Info("convertZtoS z:{0} convertSpeedRange:{1} convertMinSpeed:{2}  result:{3}", z, convertSpeedRange, convertMinSpeed, result);
+            //    Logger.Info("convertZtoS z:{0} convertSpeedRange:{1} convertMinSpeed:{2}  result:{3}", z, convertSpeedRange, convertMinSpeed, result);
             return result;
         }
     }

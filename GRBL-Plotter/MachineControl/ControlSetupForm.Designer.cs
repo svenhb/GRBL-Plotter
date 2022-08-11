@@ -3958,7 +3958,7 @@ namespace GrblPlotter
             // NudAux2ZFactor
             // 
             this.NudAux2ZFactor.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGCAux2ZFactor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudAux2ZFactor.DecimalPlaces = 2;
+            this.NudAux2ZFactor.DecimalPlaces = 8;
             resources.ApplyResources(this.NudAux2ZFactor, "NudAux2ZFactor");
             this.NudAux2ZFactor.Name = "NudAux2ZFactor";
             this.NudAux2ZFactor.Value = global::GrblPlotter.Properties.Settings.Default.importGCAux2ZFactor;
@@ -3976,9 +3976,9 @@ namespace GrblPlotter
             // CbAux2SumUp
             // 
             resources.ApplyResources(this.CbAux2SumUp, "CbAux2SumUp");
-            this.CbAux2SumUp.Checked = global::GrblPlotter.Properties.Settings.Default.importGCAux2SumUp;
+            this.CbAux2SumUp.Checked = global::GrblPlotter.Properties.Settings.Default.importGCAux1SumUp;
             this.CbAux2SumUp.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CbAux2SumUp.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGCAux2SumUp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbAux2SumUp.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGCAux1SumUp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.CbAux2SumUp.Name = "CbAux2SumUp";
             this.toolTip1.SetToolTip(this.CbAux2SumUp, resources.GetString("CbAux2SumUp.ToolTip"));
             this.CbAux2SumUp.UseVisualStyleBackColor = true;
@@ -3986,7 +3986,7 @@ namespace GrblPlotter
             // NudAux2Factor
             // 
             this.NudAux2Factor.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGCAux2Factor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudAux2Factor.DecimalPlaces = 2;
+            this.NudAux2Factor.DecimalPlaces = 8;
             resources.ApplyResources(this.NudAux2Factor, "NudAux2Factor");
             this.NudAux2Factor.Maximum = new decimal(new int[] {
             100000,
@@ -4006,7 +4006,11 @@ namespace GrblPlotter
             resources.GetString("CbAux2Axis.Items"),
             resources.GetString("CbAux2Axis.Items1"),
             resources.GetString("CbAux2Axis.Items2"),
-            resources.GetString("CbAux2Axis.Items3")});
+            resources.GetString("CbAux2Axis.Items3"),
+            resources.GetString("CbAux2Axis.Items4"),
+            resources.GetString("CbAux2Axis.Items5"),
+            resources.GetString("CbAux2Axis.Items6"),
+            resources.GetString("CbAux2Axis.Items7")});
             resources.ApplyResources(this.CbAux2Axis, "CbAux2Axis");
             this.CbAux2Axis.Name = "CbAux2Axis";
             this.CbAux2Axis.Text = global::GrblPlotter.Properties.Settings.Default.importGCAux2Axis;
@@ -4057,7 +4061,7 @@ namespace GrblPlotter
             // NudAux1ZFactor
             // 
             this.NudAux1ZFactor.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGCAux1ZFactor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudAux1ZFactor.DecimalPlaces = 2;
+            this.NudAux1ZFactor.DecimalPlaces = 8;
             resources.ApplyResources(this.NudAux1ZFactor, "NudAux1ZFactor");
             this.NudAux1ZFactor.Name = "NudAux1ZFactor";
             this.NudAux1ZFactor.Value = global::GrblPlotter.Properties.Settings.Default.importGCAux1ZFactor;
@@ -4085,7 +4089,7 @@ namespace GrblPlotter
             // NudAux1Factor
             // 
             this.NudAux1Factor.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGCAux1Factor", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudAux1Factor.DecimalPlaces = 2;
+            this.NudAux1Factor.DecimalPlaces = 8;
             resources.ApplyResources(this.NudAux1Factor, "NudAux1Factor");
             this.NudAux1Factor.Maximum = new decimal(new int[] {
             100000,
@@ -4105,7 +4109,11 @@ namespace GrblPlotter
             resources.GetString("CbAux1Axis.Items"),
             resources.GetString("CbAux1Axis.Items1"),
             resources.GetString("CbAux1Axis.Items2"),
-            resources.GetString("CbAux1Axis.Items3")});
+            resources.GetString("CbAux1Axis.Items3"),
+            resources.GetString("CbAux1Axis.Items4"),
+            resources.GetString("CbAux1Axis.Items5"),
+            resources.GetString("CbAux1Axis.Items6"),
+            resources.GetString("CbAux1Axis.Items7")});
             resources.ApplyResources(this.CbAux1Axis, "CbAux1Axis");
             this.CbAux1Axis.Name = "CbAux1Axis";
             this.CbAux1Axis.Text = global::GrblPlotter.Properties.Settings.Default.importGCAux1Axis;

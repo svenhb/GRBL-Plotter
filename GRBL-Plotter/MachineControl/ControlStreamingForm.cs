@@ -19,12 +19,10 @@
 /*
  * 2021-07-12 code clean up / code quality
  */
- 
-using System;
-using System.Windows.Forms;
-using System.Drawing;
 
-#pragma warning disable CA1305
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace GrblPlotter
 {
@@ -55,13 +53,13 @@ namespace GrblPlotter
             lblOverrideSSValue.Text = tBOverrideSS.Value.ToString();
         }
         private void NudOverrideFRTop_ValueChanged(object sender, EventArgs e)
-        {   tBOverrideFR.Maximum = (int)nUDOverrideFRTop.Value;  }
+        { tBOverrideFR.Maximum = (int)nUDOverrideFRTop.Value; }
         private void NudOverrideFRBtm_ValueChanged(object sender, EventArgs e)
-        {   tBOverrideFR.Minimum = (int)nUDOverrideFRBtm.Value;  }
+        { tBOverrideFR.Minimum = (int)nUDOverrideFRBtm.Value; }
         private void NudOverrideSSTop_ValueChanged(object sender, EventArgs e)
-        {   tBOverrideSS.Maximum = (int)nUDOverrideSSTop.Value;  }
+        { tBOverrideSS.Maximum = (int)nUDOverrideSSTop.Value; }
         private void NudOverrideSSBtm_ValueChanged(object sender, EventArgs e)
-        {   tBOverrideSS.Minimum = (int)nUDOverrideSSBtm.Value;  }
+        { tBOverrideSS.Minimum = (int)nUDOverrideSSBtm.Value; }
 
         public void TbOverrideFRScroll(object sender, EventArgs e)
         {
@@ -101,7 +99,7 @@ namespace GrblPlotter
 
         private void CbOverrideFREnable_CheckedChanged(object sender, EventArgs e)
         {
-            OnRaiseOverrideEvent(new OverrideEventArgs(OverrideSource.feedRate,(float)tBOverrideFR.Value, cBOverrideFREnable.Checked));
+            OnRaiseOverrideEvent(new OverrideEventArgs(OverrideSource.feedRate, (float)tBOverrideFR.Value, cBOverrideFREnable.Checked));
         }
         private void CbOverrideSSEnable_CheckedChanged(object sender, EventArgs e)
         {
@@ -111,12 +109,12 @@ namespace GrblPlotter
         public event EventHandler<OverrideEventArgs> RaiseOverrideEvent;
         protected virtual void OnRaiseOverrideEvent(OverrideEventArgs e)
         {
-			RaiseOverrideEvent?.Invoke(this, e);
-        /*    EventHandler<OverrideEventArgs> handler = RaiseOverrideEvent;
-            if (handler != null)
-            {
-                handler(this, e);
-            }*/
+            RaiseOverrideEvent?.Invoke(this, e);
+            /*    EventHandler<OverrideEventArgs> handler = RaiseOverrideEvent;
+                if (handler != null)
+                {
+                    handler(this, e);
+                }*/
         }
 
         private void ControlStreamingForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -124,7 +122,7 @@ namespace GrblPlotter
             Properties.Settings.Default.locationStreamForm = Location;
         }
     }
-    public enum OverrideSource { spindleSpeed, feedRate};
+    public enum OverrideSource { spindleSpeed, feedRate };
 
     public class OverrideEventArgs : EventArgs
     {

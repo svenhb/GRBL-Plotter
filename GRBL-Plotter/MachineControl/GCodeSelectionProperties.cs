@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace GrblPlotter.MachineControl
@@ -17,30 +12,38 @@ namespace GrblPlotter.MachineControl
         public double CenterX { get { return (double)NudCenterX.Value; } set { NudCenterX.Value = (decimal)value; } }
         public double CenterY { get { return (double)NudCenterY.Value; } set { NudCenterY.Value = (decimal)value; } }
         public bool AttributeWasChanged { get; set; } = false;
-        public double AttributePenWidth { 
-			get { return (double)NudAttributeWidth.Value; } 
-			set { 	if (value > 0) 
-					{ 	NudAttributeWidth.Value = (decimal)value; 
-						NudAttributeWidth.Enabled = true; 
-					} 
-				} 
-		}
-        public string AttributePenColor { 
-			get { return GetColorString(BtnAttributeColor.BackColor); } 
-			set { 	if (value.Length > 2) 
-					{ 	BtnAttributeColor.BackColor = GetColor(value); 
-						BtnAttributeColor.Enabled = true; 
-					} 
-				} 
-		}
+        public double AttributePenWidth
+        {
+            get { return (double)NudAttributeWidth.Value; }
+            set
+            {
+                if (value > 0)
+                {
+                    NudAttributeWidth.Value = (decimal)value;
+                    NudAttributeWidth.Enabled = true;
+                }
+            }
+        }
+        public string AttributePenColor
+        {
+            get { return GetColorString(BtnAttributeColor.BackColor); }
+            set
+            {
+                if (value.Length > 2)
+                {
+                    BtnAttributeColor.BackColor = GetColor(value);
+                    BtnAttributeColor.Enabled = true;
+                }
+            }
+        }
 
         public GCodeSelectionProperties()
         {
             InitializeComponent();
             this.Icon = Properties.Resources.Icon;
-        //    BtnAttributeColor.Enabled = false;
-        //    NudAttributeWidth.Enabled = false;
-        //    AttributePenColor = "000000";
+            //    BtnAttributeColor.Enabled = false;
+            //    NudAttributeWidth.Enabled = false;
+            //    AttributePenColor = "000000";
         }
         private void GCodeSelectionProperties_Load(object sender, EventArgs e)
         {
@@ -49,13 +52,13 @@ namespace GrblPlotter.MachineControl
         }
 
         private void NudCenterX_ValueChanged(object sender, EventArgs e)
-        {   CenterWasChanged = true;}
+        { CenterWasChanged = true; }
 
         private void BtnAttributeColor_Click(object sender, EventArgs e)
-        {   ApplyColor(BtnAttributeColor); AttributeWasChanged = true; }
+        { ApplyColor(BtnAttributeColor); AttributeWasChanged = true; }
 
         private void NudAttributeWidth_ValueChanged(object sender, EventArgs e)
-        {   AttributeWasChanged = true;  }
+        { AttributeWasChanged = true; }
 
         private void NudIncrement_ValueChanged(object sender, EventArgs e)
         {
@@ -83,7 +86,7 @@ namespace GrblPlotter.MachineControl
             using (ColorDialog colorDialog1 = new ColorDialog())
             {
                 colorDialog1.AnyColor = true;
-                colorDialog1.Color = btn.BackColor; 
+                colorDialog1.Color = btn.BackColor;
                 if (colorDialog1.ShowDialog() == DialogResult.OK)
                 {
                     SetButtonColors(btn, colorDialog1.Color);

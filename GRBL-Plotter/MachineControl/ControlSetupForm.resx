@@ -7144,10 +7144,10 @@ select items on next page 'G-Code generation'</value>
     <value>NoControl</value>
   </data>
   <data name="LbLAuxDescription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>435, 20</value>
+    <value>479, 20</value>
   </data>
   <data name="LbLAuxDescription.Size" type="System.Drawing.Size, System.Drawing">
-    <value>393, 241</value>
+    <value>349, 241</value>
   </data>
   <data name="LbLAuxDescription.TabIndex" type="System.Int32, mscorlib">
     <value>30</value>
@@ -7181,10 +7181,10 @@ In addition, the position of the Z axis can be used to e.g. increase the amount 
     <value>Only use neg Z</value>
   </data>
   <data name="CbAux2ZMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>232, 18</value>
+    <value>269, 17</value>
   </data>
   <data name="CbAux2ZMode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 21</value>
+    <value>160, 21</value>
   </data>
   <data name="CbAux2ZMode.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -7265,7 +7265,7 @@ In addition, the position of the Z axis can be used to e.g. increase the amount 
     <value>151, 18</value>
   </data>
   <data name="NudAux2ZFactor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 20</value>
+    <value>100, 20</value>
   </data>
   <data name="NudAux2ZFactor.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -7289,7 +7289,7 @@ In addition, the position of the Z axis can be used to e.g. increase the amount 
     <value>9, 176</value>
   </data>
   <data name="groupBox28.Size" type="System.Drawing.Size, System.Drawing">
-    <value>399, 53</value>
+    <value>435, 53</value>
   </data>
   <data name="groupBox28.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -7376,7 +7376,7 @@ In addition, the position of the Z axis can be used to e.g. increase the amount 
     <value>NoControl</value>
   </data>
   <data name="CbAux2SumUp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>269, 151</value>
+    <value>278, 151</value>
   </data>
   <data name="CbAux2SumUp.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 17</value>
@@ -7406,7 +7406,7 @@ In addition, the position of the Z axis can be used to e.g. increase the amount 
     <value>160, 150</value>
   </data>
   <data name="NudAux2Factor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 20</value>
+    <value>100, 20</value>
   </data>
   <data name="NudAux2Factor.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -7439,6 +7439,18 @@ In addition, the position of the Z axis can be used to e.g. increase the amount 
     <value>C</value>
   </data>
   <data name="CbAux2Axis.Items3" xml:space="preserve">
+    <value>E</value>
+  </data>
+  <data name="CbAux2Axis.Items4" xml:space="preserve">
+    <value>U</value>
+  </data>
+  <data name="CbAux2Axis.Items5" xml:space="preserve">
+    <value>V</value>
+  </data>
+  <data name="CbAux2Axis.Items6" xml:space="preserve">
+    <value>W</value>
+  </data>
+  <data name="CbAux2Axis.Items7" xml:space="preserve">
     <value>Z</value>
   </data>
   <data name="CbAux2Axis.Location" type="System.Drawing.Point, System.Drawing">
@@ -7505,10 +7517,10 @@ In addition, the position of the Z axis can be used to e.g. increase the amount 
     <value>Only use neg Z</value>
   </data>
   <data name="CbAux1ZMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>232, 18</value>
+    <value>269, 17</value>
   </data>
   <data name="CbAux1ZMode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 21</value>
+    <value>160, 21</value>
   </data>
   <data name="CbAux1ZMode.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -7589,7 +7601,7 @@ In addition, the position of the Z axis can be used to e.g. increase the amount 
     <value>151, 18</value>
   </data>
   <data name="NudAux1ZFactor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 20</value>
+    <value>100, 20</value>
   </data>
   <data name="NudAux1ZFactor.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -7613,7 +7625,7 @@ In addition, the position of the Z axis can be used to e.g. increase the amount 
     <value>9, 63</value>
   </data>
   <data name="groupBox27.Size" type="System.Drawing.Size, System.Drawing">
-    <value>399, 53</value>
+    <value>435, 53</value>
   </data>
   <data name="groupBox27.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -7700,7 +7712,7 @@ In addition, the position of the Z axis can be used to e.g. increase the amount 
     <value>NoControl</value>
   </data>
   <data name="CbAux1SumUp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>269, 38</value>
+    <value>278, 38</value>
   </data>
   <data name="CbAux1SumUp.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 17</value>
@@ -7730,7 +7742,7 @@ In addition, the position of the Z axis can be used to e.g. increase the amount 
     <value>160, 37</value>
   </data>
   <data name="NudAux1Factor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 20</value>
+    <value>100, 20</value>
   </data>
   <data name="NudAux1Factor.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -7763,6 +7775,18 @@ In addition, the position of the Z axis can be used to e.g. increase the amount 
     <value>C</value>
   </data>
   <data name="CbAux1Axis.Items3" xml:space="preserve">
+    <value>E</value>
+  </data>
+  <data name="CbAux1Axis.Items4" xml:space="preserve">
+    <value>U</value>
+  </data>
+  <data name="CbAux1Axis.Items5" xml:space="preserve">
+    <value>V</value>
+  </data>
+  <data name="CbAux1Axis.Items6" xml:space="preserve">
+    <value>W</value>
+  </data>
+  <data name="CbAux1Axis.Items7" xml:space="preserve">
     <value>Z</value>
   </data>
   <data name="CbAux1Axis.Location" type="System.Drawing.Point, System.Drawing">

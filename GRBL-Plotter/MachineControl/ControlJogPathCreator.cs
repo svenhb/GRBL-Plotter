@@ -132,27 +132,31 @@ namespace GrblPlotter
             picAbsPos = GetGraphicCoordinateFromPictureBox(pictureBox1.PointToClient(MousePosition), true);
 
             pBoxOrig = e.Graphics.Transform;
-            try { e.Graphics.Transform = pBoxTransform; } catch (Exception ex) { Logger.Error(ex, "PictureBox1_Paint "); throw; }
-            float picScaling = Math.Min(pictureBox1.Width / drawingSize.rangeX, pictureBox1.Height / drawingSize.rangeY);               // calculate scaling px/unit
-            e.Graphics.ScaleTransform(picScaling, -picScaling);           // apply scaling (flip Y)
-            e.Graphics.TranslateTransform(-drawingSize.minX, (-drawingSize.rangeY - drawingSize.minY));       // apply offset
+            try
+            {
+                e.Graphics.Transform = pBoxTransform;
+                float picScaling = Math.Min(pictureBox1.Width / drawingSize.rangeX, pictureBox1.Height / drawingSize.rangeY);               // calculate scaling px/unit
+                e.Graphics.ScaleTransform(picScaling, -picScaling);           // apply scaling (flip Y)
+                e.Graphics.TranslateTransform(-drawingSize.minX, (-drawingSize.rangeY - drawingSize.minY));       // apply offset
+                e.Graphics.DrawPath(penGrid, grid);
+                e.Graphics.DrawPath(penRuler, ruler);
+                e.Graphics.DrawPath(penActualLine, actualLine);
+                e.Graphics.DrawPath(penRubberBand, rubberBand);
+                e.Graphics.DrawPath(penStartIcon, startIcon);
+                e.Graphics.DrawPath(penjogPath, jogPath);
 
-            e.Graphics.DrawPath(penGrid, grid);
-            e.Graphics.DrawPath(penRuler, ruler);
-            e.Graphics.DrawPath(penActualLine, actualLine);
-            e.Graphics.DrawPath(penRubberBand, rubberBand);
-            e.Graphics.DrawPath(penStartIcon, startIcon);
-            e.Graphics.DrawPath(penjogPath, jogPath);
-
-            /* Show labels */
-            e.Graphics.Transform = pBoxOrig;
-            Font myFont = new Font("Lucida Console", 8);
-            if (showDimension)
-                e.Graphics.DrawString(String.Format("Dimension:\r\nX:{0,7:0.000}\r\nY:{1,7:0.000}",
-                                 Math.Abs(picAbsPos.X - posMoveStart.X), Math.Abs(picAbsPos.Y - posMoveStart.Y)), myFont, Brushes.Black, stringpos);
-            else
-                e.Graphics.DrawString(String.Format("Pos:\r\nX:{0,7:0.000}\r\nY:{1,7:0.000}", picAbsPos.X, picAbsPos.Y), myFont, Brushes.Black, stringpos);
-            myFont.Dispose();
+                /* Show labels */
+                e.Graphics.Transform = pBoxOrig;
+                Font myFont = new Font("Lucida Console", 8);
+                if (showDimension)
+                    e.Graphics.DrawString(String.Format("Dimension:\r\nX:{0,7:0.000}\r\nY:{1,7:0.000}",
+                                     Math.Abs(picAbsPos.X - posMoveStart.X), Math.Abs(picAbsPos.Y - posMoveStart.Y)), myFont, Brushes.Black, stringpos);
+                else
+                    e.Graphics.DrawString(String.Format("Pos:\r\nX:{0,7:0.000}\r\nY:{1,7:0.000}", picAbsPos.X, picAbsPos.Y), myFont, Brushes.Black, stringpos);
+                myFont.Dispose();
+            }
+            catch (Exception ex)
+            { Logger.Error(ex, "PictureBox1_Paint "); }
         }
 
         private PointF GetGraphicCoordinateFromPictureBox(Point location, bool snapToGrid = false)
@@ -323,11 +327,12 @@ namespace GrblPlotter
             rubberBand.Reset();
             actualLine.Reset();
             jogPath.Reset();
-			
+
             if (list.Count > 0)
-			{	jogPath.AddLines(list.ToArray());
+            {
+                jogPath.AddLines(list.ToArray());
                 lastSet = ToPoint(list[list.Count - 1]);
-			}
+            }
             if (jogPath.PointCount > 0)
             { rubberBand.AddLine(lastSet, posMoveTmp); }
 
@@ -371,7 +376,7 @@ namespace GrblPlotter
             if (jogPath.PointCount <= 0)
             {
                 joggcode = "(No jog path to send)";
-                return; 
+                return;
             }
             float x, y, factor = 1;
             float lastX = 0, lastY = 0;
@@ -487,7 +492,7 @@ namespace GrblPlotter
             sfd.Dispose();
         }
 
-        private XmlReaderSettings settings = new XmlReaderSettings()
+        private readonly XmlReaderSettings settings = new XmlReaderSettings()
         { DtdProcessing = DtdProcessing.Prohibit };
         private void BtnLoad_Click(object sender, EventArgs e)
         {

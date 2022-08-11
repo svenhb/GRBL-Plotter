@@ -57,7 +57,7 @@ namespace GrblPlotter
 
         internal void CalcDistance(XyPoint tmp, bool checkDistanceToLine = true)
         {
-           // bool checkDistanceToLine = true;
+            // bool checkDistanceToLine = true;
             XyPoint delta = new XyPoint(tmp - (XyPoint)actualPos);
             double distancePoint = Math.Sqrt(delta.X * delta.X + delta.Y * delta.Y);
             double distanceLine = -1;
@@ -108,20 +108,21 @@ namespace GrblPlotter
 
     }
 
-	internal struct CenterByLine
-	{   public int lineNumber;          // line number in fCTBCode
+    internal struct CenterByLine
+    {
+        public int lineNumber;          // line number in fCTBCode
         public int figureNumber;
         public XyzPoint center;
         public XyzPoint actualPos;
         public double alpha;
 
         public CenterByLine(int linenr, int fig, XyzPoint cent, XyzPoint coord, double a)
-		{	lineNumber = linenr; figureNumber = fig; center=cent; actualPos = coord; alpha = a; }
+        { lineNumber = linenr; figureNumber = fig; center = cent; actualPos = coord; alpha = a; }
         public double CalcDistance(XyPoint tmp)
         {
             double a = center.X - tmp.X;
             double b = center.Y - tmp.Y;
-            return Math.Sqrt(a*a +b*b); 
+            return Math.Sqrt(a * a + b * b);
         }
 
     }
@@ -137,7 +138,7 @@ namespace GrblPlotter
         public DistanceByLine(int x)
         { lineNumber = x; figureNumber = x; actualPos = new XyzPoint(); alpha = 0; distance = 0; isArc = false; }
         public DistanceByLine(CoordByLine tmp, double dist)
-        { lineNumber = tmp.lineNumber; figureNumber = tmp.figureNumber ; actualPos = tmp.actualPos; alpha = tmp.alpha; distance = dist; isArc = tmp.isArc; }
+        { lineNumber = tmp.lineNumber; figureNumber = tmp.figureNumber; actualPos = tmp.actualPos; alpha = tmp.alpha; distance = dist; isArc = tmp.isArc; }
         public DistanceByLine(CenterByLine tmp, double dist)
         { lineNumber = tmp.lineNumber; figureNumber = tmp.figureNumber; actualPos = tmp.center; alpha = tmp.alpha; distance = dist; isArc = true; }
         public DistanceByLine(int lnr, int fnr, XyzPoint apos, double a, double dist, bool ia)
@@ -621,15 +622,15 @@ namespace GrblPlotter
             return tmp;
         }
 
-  //      internal static double GetAlpha(System.Windows.Point pOld, double P2x, double P2y)
-  //      { return GetAlpha(pOld.X, pOld.Y, P2x, P2y); }
+        //      internal static double GetAlpha(System.Windows.Point pOld, double P2x, double P2y)
+        //      { return GetAlpha(pOld.X, pOld.Y, P2x, P2y); }
         internal static double GetAlpha(System.Windows.Point pOld, System.Windows.Point pNew)
         { return GetAlpha(pOld.X, pOld.Y, pNew.X, pNew.Y); }
         internal static double GetAlpha(XyPoint pOld, XyPoint pNew)
         { return GetAlpha(pOld.X, pOld.Y, pNew.X, pNew.Y); }
         internal static double GetAlpha(double P1x, double P1y, double P2x, double P2y)
         {
-        //    double s, a;
+            //    double s, a;
             double dx = P2x - P1x;
             double dy = P2y - P1y;
             return Math.Atan2(dy, dx);

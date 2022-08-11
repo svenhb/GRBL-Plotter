@@ -31,6 +31,7 @@
  * 2021-07-26 code clean up / code quality
  * 2021-11-23 line 79 add try/catch
  * 2022-01-02 move MakeAbsolutePath to class Datapath
+ * 2022-06-25 line 1692 SetZeroMinMax add try catch
 */
 
 using System;
@@ -69,23 +70,26 @@ namespace GrblPlotter
         private void SetupForm_Load(object sender, EventArgs e)
         {
             string tpath = Datapath.Tools;
-			try
-            {	if (!System.IO.Directory.Exists(tpath))
-					System.IO.Directory.CreateDirectory(tpath);
-			}
-			catch (IOException err) {
-                EventCollector.StoreException("SetupForm_Load Error creating path:" + tpath+ " Error:" + err.Message);
-				Datapath.AppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);	// apply new data path
-				MessageBox.Show("Path to tool-tables does not exist and could not be created: "+tpath+"\r\nPath will be modified to "+ Datapath.AppDataFolder, "Error");
-				Logger.Error(err,"SetupForm_Load path nok:{0}, changed to: {1}",tpath, Datapath.AppDataFolder);
-				tpath = Datapath.Tools;				
-			}
-			catch (Exception err) {
+            try
+            {
+                if (!System.IO.Directory.Exists(tpath))
+                    System.IO.Directory.CreateDirectory(tpath);
+            }
+            catch (IOException err)
+            {
+                EventCollector.StoreException("SetupForm_Load Error creating path:" + tpath + " Error:" + err.Message);
+                Datapath.AppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);  // apply new data path
+                MessageBox.Show("Path to tool-tables does not exist and could not be created: " + tpath + "\r\nPath will be modified to " + Datapath.AppDataFolder, "Error");
+                Logger.Error(err, "SetupForm_Load path nok:{0}, changed to: {1}", tpath, Datapath.AppDataFolder);
+                tpath = Datapath.Tools;
+            }
+            catch (Exception err)
+            {
                 EventCollector.StoreException("SetupForm_Load Error accessing path:" + tpath + " Error:" + err.Message);
-                MessageBox.Show("Path to tool-tables can't be accessed: " + tpath + "\r\nError: "+err.Message, "Error");
+                MessageBox.Show("Path to tool-tables can't be accessed: " + tpath + "\r\nError: " + err.Message, "Error");
                 Logger.Error(err, "SetupForm_Load path nok:{0}", tpath);
                 //throw;		// unknown exception...
-			}
+            }
             defaultToolList = tpath + "\\" + ToolTable.DefaultFileName;
 
             if ((!ImportCSVToDgv(defaultToolList)) || (dGVToolList.Rows.Count == 1))
@@ -135,8 +139,8 @@ namespace GrblPlotter
             SetButtonColors(btnColorSimulation, Properties.Settings.Default.gui2DColorSimulation);
             SetProjectorButtons();
 
-			decimal tmpPlaces = Properties.Settings.Default.importGCDecPlaces;
-			if ((tmpPlaces < 0) || (tmpPlaces > 6)) {	Properties.Settings.Default.importGCDecPlaces = tmpPlaces = 3;}		// set default
+            decimal tmpPlaces = Properties.Settings.Default.importGCDecPlaces;
+            if ((tmpPlaces < 0) || (tmpPlaces > 6)) { Properties.Settings.Default.importGCDecPlaces = tmpPlaces = 3; }		// set default
             nUDImportDecPlaces.Value = tmpPlaces;
 
             Location = Properties.Settings.Default.locationSetForm;
@@ -215,9 +219,9 @@ namespace GrblPlotter
 
             cBoxPollInterval.SelectedIndex = Properties.Settings.Default.grblPollIntervalIndex;
             foreach (Encoding encode in GuiVariables.SaveEncoding)
-            {   CBoxSaveEncoding.Items.Add(encode.BodyName); }
+            { CBoxSaveEncoding.Items.Add(encode.BodyName); }
             int encodeIndex = Properties.Settings.Default.FCTBSaveEncodingIndex;
-            if ((encodeIndex >=0 ) && (encodeIndex < GuiVariables.SaveEncoding.Length))
+            if ((encodeIndex >= 0) && (encodeIndex < GuiVariables.SaveEncoding.Length))
                 CBoxSaveEncoding.SelectedIndex = Properties.Settings.Default.FCTBSaveEncodingIndex;
             else
                 CBoxSaveEncoding.SelectedIndex = Properties.Settings.Default.FCTBSaveEncodingIndex = 0;
@@ -360,52 +364,58 @@ namespace GrblPlotter
         {
             double time = 0.5;
             double correct = 1;
-			try {
-				nUDJoyXYSpeed1.Value = (decimal)((double)nUDJoyXYStep1.Value / time * 60 * correct);
-				nUDJoyXYSpeed2.Value = (decimal)((double)nUDJoyXYStep2.Value / time * 60 * correct);
-				nUDJoyXYSpeed3.Value = (decimal)((double)nUDJoyXYStep3.Value / time * 60 * correct);
-				nUDJoyXYSpeed4.Value = (decimal)((double)nUDJoyXYStep4.Value / time * 60 * correct);
-				nUDJoyXYSpeed5.Value = (decimal)((double)nUDJoyXYStep5.Value / time * 60 * correct);
-			}
-			catch {//(Exception err) {
-				MessageBox.Show("Value is out of range","Error");
-			}
+            try
+            {
+                nUDJoyXYSpeed1.Value = (decimal)((double)nUDJoyXYStep1.Value / time * 60 * correct);
+                nUDJoyXYSpeed2.Value = (decimal)((double)nUDJoyXYStep2.Value / time * 60 * correct);
+                nUDJoyXYSpeed3.Value = (decimal)((double)nUDJoyXYStep3.Value / time * 60 * correct);
+                nUDJoyXYSpeed4.Value = (decimal)((double)nUDJoyXYStep4.Value / time * 60 * correct);
+                nUDJoyXYSpeed5.Value = (decimal)((double)nUDJoyXYStep5.Value / time * 60 * correct);
+            }
+            catch
+            {//(Exception err) {
+                MessageBox.Show("Value is out of range", "Error");
+            }
         }
 
         private void BtnJoyZCalc_Click(object sender, EventArgs e)
         {
             double time = 0.5;
             double correct = 1;
-            try {
-				nUDJoyZSpeed1.Value = (decimal)((double)nUDJoyZStep1.Value / time * 60 * correct);
-				nUDJoyZSpeed2.Value = (decimal)((double)nUDJoyZStep2.Value / time * 60 * correct);
-				nUDJoyZSpeed3.Value = (decimal)((double)nUDJoyZStep3.Value / time * 60 * correct);
-				nUDJoyZSpeed4.Value = (decimal)((double)nUDJoyZStep4.Value / time * 60 * correct);
-				nUDJoyZSpeed5.Value = (decimal)((double)nUDJoyZStep5.Value / time * 60 * correct);
-			}
-			catch {//(Exception err) {
-				MessageBox.Show("Value is out of range","Error");
-			}
+            try
+            {
+                nUDJoyZSpeed1.Value = (decimal)((double)nUDJoyZStep1.Value / time * 60 * correct);
+                nUDJoyZSpeed2.Value = (decimal)((double)nUDJoyZStep2.Value / time * 60 * correct);
+                nUDJoyZSpeed3.Value = (decimal)((double)nUDJoyZStep3.Value / time * 60 * correct);
+                nUDJoyZSpeed4.Value = (decimal)((double)nUDJoyZStep4.Value / time * 60 * correct);
+                nUDJoyZSpeed5.Value = (decimal)((double)nUDJoyZStep5.Value / time * 60 * correct);
+            }
+            catch
+            {//(Exception err) {
+                MessageBox.Show("Value is out of range", "Error");
+            }
         }
 
 
         private void LinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            try {	
-				LinkLabel clickedLink = sender as LinkLabel;
-				Process.Start(clickedLink.Tag.ToString());
-			}
-			catch (Exception err) 
-			{ 	Logger.Error(err,"LinkLabel_LinkClicked ");
-				MessageBox.Show("Could not open the link: " + err.Message,"Error");
-			}
+            try
+            {
+                LinkLabel clickedLink = sender as LinkLabel;
+                Process.Start(clickedLink.Tag.ToString());
+            }
+            catch (Exception err)
+            {
+                Logger.Error(err, "LinkLabel_LinkClicked ");
+                MessageBox.Show("Could not open the link: " + err.Message, "Error");
+            }
         }
 
         private void TabPage24_Enter(object sender, EventArgs e)
         {
             timer1.Enabled = true;
             try { ControlGamePad.Initialize(); timer1.Interval = 200; }
-            catch (Exception err) { Logger.Error(err,"TabPage24_Enter ");}
+            catch (Exception err) { Logger.Error(err, "TabPage24_Enter "); }
         }
 
         private void TabPage24_Leave(object sender, EventArgs e)
@@ -564,7 +574,7 @@ namespace GrblPlotter
                 HsFilterScrollSetLabels();
                 return value[0];
             }
-            catch (Exception err) { Logger.Error(err,"ShapeSetLoad ");}
+            catch (Exception err) { Logger.Error(err, "ShapeSetLoad "); }
             return "not set";
         }
 
@@ -611,20 +621,23 @@ namespace GrblPlotter
                 }
             }
             Logger.Trace("Save Tool Table {0}", file);
-            try {
-				File.WriteAllText(file, csv.ToString()); 
-			}			
-			catch (IOException err) {
-                EventCollector.StoreException("Error:" +err.Message+" ExportDgvToCSV: "+file);
-				Logger.Error(err,"ExportDgvToCSV IOException:{0}",file);
-				MessageBox.Show("Current tool-table settings could not be saved " + file + "\r\n" + err.Message, "Error");
-			}
-			catch (Exception err) { // access denied
-                EventCollector.StoreException("Error:" +err.Message+" ExportDgvToCSV: "+file);
-				Logger.Error(err,"ExportDgvToCSV IOException:{0}",file);
-				MessageBox.Show("Current tool-table settings could not be saved " + file + "\r\n" + err.Message, "Error");
-//				throw;		// unknown exception...
-			}
+            try
+            {
+                File.WriteAllText(file, csv.ToString());
+            }
+            catch (IOException err)
+            {
+                EventCollector.StoreException("Error:" + err.Message + " ExportDgvToCSV: " + file);
+                Logger.Error(err, "ExportDgvToCSV IOException:{0}", file);
+                MessageBox.Show("Current tool-table settings could not be saved " + file + "\r\n" + err.Message, "Error");
+            }
+            catch (Exception err)
+            { // access denied
+                EventCollector.StoreException("Error:" + err.Message + " ExportDgvToCSV: " + file);
+                Logger.Error(err, "ExportDgvToCSV IOException:{0}", file);
+                MessageBox.Show("Current tool-table settings could not be saved " + file + "\r\n" + err.Message, "Error");
+                //				throw;		// unknown exception...
+            }
             dGVToolList.DefaultCellStyle.NullValue = dGVToolList.Columns.Count;
             FillToolTableFileList(Datapath.Tools);
         }
@@ -637,21 +650,24 @@ namespace GrblPlotter
                 dGVToolList.Rows.Clear();
                 string[] readText;
 
-				try {
-					readText = File.ReadAllLines(file);
-				}			
-				catch (IOException err) {
+                try
+                {
+                    readText = File.ReadAllLines(file);
+                }
+                catch (IOException err)
+                {
                     // read already opened file???
                     // https://stackoverflow.com/questions/9759697/reading-a-file-used-by-another-process
                     EventCollector.StoreException("ImportCSVToDgv IOException: " + file + " " + err.Message + " - ");
-					Logger.Error(err,"ImportCSVToDgv IOException:{0}",file);
-					MessageBox.Show("Could not read " + file + "\r\n" + err.Message, "Error");
-					return false;
-				}
-				catch {//(Exception err) { 
-					throw;		// unknown exception...
-				}
-					
+                    Logger.Error(err, "ImportCSVToDgv IOException:{0}", file);
+                    MessageBox.Show("Could not read " + file + "\r\n" + err.Message, "Error");
+                    return false;
+                }
+                catch
+                {//(Exception err) { 
+                    throw;      // unknown exception...
+                }
+
                 string[] col;
                 string tmp;
                 int row = 0;
@@ -664,8 +680,8 @@ namespace GrblPlotter
                     {
                         col = s.Split(',');
                         dGVToolList.Rows.Add();
-						for (int j = 0; j < dGVToolList.Columns.Count; ++j)
-                    //   for (int j = 0; j < ToolTable.defaultTool.Length; ++j)
+                        for (int j = 0; j < dGVToolList.Columns.Count; ++j)
+                        //   for (int j = 0; j < ToolTable.defaultTool.Length; ++j)
                         {
                             if (j < col.Length)
                             {
@@ -675,12 +691,14 @@ namespace GrblPlotter
                             else
                                 dGVToolList.Rows[row].Cells[j].Value = ToolTable.defaultTool[j];
                         }
-                        try {
+                        try
+                        {
                             long clr = Convert.ToInt32(col[1].Trim().Substring(0, 6), 16) | 0xff000000;
                             dGVToolList.Rows[row].DefaultCellStyle.BackColor = Color.FromArgb((int)clr);
                             dGVToolList.Rows[row].DefaultCellStyle.ForeColor = ContrastColor(Color.FromArgb((int)clr));
                         }
-                        catch {
+                        catch
+                        {
                             dGVToolList.Rows[row].DefaultCellStyle.BackColor = Color.White;
                             dGVToolList.Rows[row].DefaultCellStyle.ForeColor = Color.Black;
                         }
@@ -701,12 +719,14 @@ namespace GrblPlotter
                 string myColor = val.ToString();
                 if (myColor.Length > 6)
                 { dGVToolList.Rows[e.RowIndex].Cells[1].Value = myColor.Substring(0, 6); }
-                try {
+                try
+                {
                     long clr = Convert.ToInt32(myColor.Substring(0, 6), 16) | 0xff000000;
                     dGVToolList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb((int)clr);
                     dGVToolList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = ContrastColor(Color.FromArgb((int)clr));
                 }
-                catch {
+                catch
+                {
                     dGVToolList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
                     dGVToolList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
                 }
@@ -744,7 +764,7 @@ namespace GrblPlotter
                 //                dgv.Rows[rowIndex - 1].Cells[colIndex].Selected = true;
                 dgv.Rows[rowIndex - 1].Selected = true;
             }
-            catch (Exception err) { Logger.Error(err,"BtnUp_Click ");}
+            catch (Exception err) { Logger.Error(err, "BtnUp_Click "); }
         }
 
         private void BtnDown_Click(object sender, EventArgs e)
@@ -766,29 +786,29 @@ namespace GrblPlotter
                 //              dgv.Rows[rowIndex + 1].Cells[colIndex].Selected = true;
                 dgv.Rows[rowIndex + 1].Selected = true;
             }
-            catch (Exception err) { Logger.Error(err,"BtnDown_Click ");}
+            catch (Exception err) { Logger.Error(err, "BtnDown_Click "); }
         }
 
         private void DgvSortColor(object sender, DataGridViewSortCompareEventArgs e)
         {
             if (e.Column.Index != 1) return;
             long lcolor1 = 0, lcolor2 = 0;
-			string scolor1 = e.CellValue1.ToString().ToUpper();
-			string scolor2 = e.CellValue2.ToString().ToUpper();
+            string scolor1 = e.CellValue1.ToString().ToUpper();
+            string scolor2 = e.CellValue2.ToString().ToUpper();
 
             if (scolor1.Length > 6)
-            {   scolor1 = scolor1.Substring(0, 6); }
-            try {	lcolor1 = Convert.ToInt32(scolor1, 16) | 0xff000000; }
-			catch (Exception err)
-            {   Logger.Error(err, "DgvSortColor could not convert color1:{0} ", scolor1);   }
-			
-			if (scolor2.Length > 6)
-            { scolor2 = scolor2.Substring(0, 6); }
-            try { 	lcolor2 = Convert.ToInt32(scolor2, 16) | 0xff000000; }
-			catch (Exception err)
-            {   Logger.Error(err, "DgvSortColor could not convert color2:{0} ", scolor2);   }
+            { scolor1 = scolor1.Substring(0, 6); }
+            try { lcolor1 = Convert.ToInt32(scolor1, 16) | 0xff000000; }
+            catch (Exception err)
+            { Logger.Error(err, "DgvSortColor could not convert color1:{0} ", scolor1); }
 
-			Color ccolor1 = Color.FromArgb((int)lcolor1);
+            if (scolor2.Length > 6)
+            { scolor2 = scolor2.Substring(0, 6); }
+            try { lcolor2 = Convert.ToInt32(scolor2, 16) | 0xff000000; }
+            catch (Exception err)
+            { Logger.Error(err, "DgvSortColor could not convert color2:{0} ", scolor2); }
+
+            Color ccolor1 = Color.FromArgb((int)lcolor1);
             Color ccolor2 = Color.FromArgb((int)lcolor2);
             double brighness1 = (0.299 * ccolor1.R * ccolor1.R + 0.587 * ccolor1.G * ccolor1.G + 0.114 * ccolor1.B * ccolor1.B);
             double brighness2 = (0.299 * ccolor2.R * ccolor2.R + 0.587 * ccolor2.G * ccolor2.G + 0.114 * ccolor2.B * ccolor2.B);
@@ -858,19 +878,22 @@ namespace GrblPlotter
             Logger.Info("DeleteToolTable '{0}'", path);
             if (!string.IsNullOrEmpty(lbFiles.Text))
             {
-				try {
-					File.Delete(path);
-					FillToolTableFileList(Datapath.Tools);
-				}			
-				catch (IOException err) {
-                    EventCollector.StoreException("Error BtnDeleteToolTable_Click:" +path);
-					Logger.Error(err,"BtnDeleteToolTable_Click IOException:{0}",path);
-					MessageBox.Show("Could not delete " + path, "Error");
-					return;
-				}
-				catch {//(Exception err) { 
-					throw;		// unknown exception...
-				}
+                try
+                {
+                    File.Delete(path);
+                    FillToolTableFileList(Datapath.Tools);
+                }
+                catch (IOException err)
+                {
+                    EventCollector.StoreException("Error BtnDeleteToolTable_Click:" + path);
+                    Logger.Error(err, "BtnDeleteToolTable_Click IOException:{0}", path);
+                    MessageBox.Show("Could not delete " + path, "Error");
+                    return;
+                }
+                catch
+                {//(Exception err) { 
+                    throw;      // unknown exception...
+                }
             }
         }
 
@@ -926,20 +949,23 @@ namespace GrblPlotter
         {
             if (File.Exists(tmp.Text))
             {
-				string tmpText;
-				try {
-					tmpText = File.ReadAllText(tmp.Text).Replace('\t', ' ');
-				}			
-				catch (IOException err) {
-                    EventCollector.StoreException("Error ShowFileContent:" +tmp.Text);
-					Logger.Error(err,"ShowFileContent IOException:{0}",tmp.Text);
-					MessageBox.Show("Could not read " + tmp.Text, "Error");
-					return;
-				}
-				catch {//(Exception err) { 
-					throw;		// unknown exception...
-				}
-					
+                string tmpText;
+                try
+                {
+                    tmpText = File.ReadAllText(tmp.Text).Replace('\t', ' ');
+                }
+                catch (IOException err)
+                {
+                    EventCollector.StoreException("Error ShowFileContent:" + tmp.Text);
+                    Logger.Error(err, "ShowFileContent IOException:{0}", tmp.Text);
+                    MessageBox.Show("Could not read " + tmp.Text, "Error");
+                    return;
+                }
+                catch
+                {//(Exception err) { 
+                    throw;      // unknown exception...
+                }
+
                 MessageBox.Show("Current directory: " + Directory.GetCurrentDirectory() + "\r\nFile: '" + tmp.Text + "'\r\n\r\n" + tmpText, "File content of " + tmp.Text);
             }
             else
@@ -1121,7 +1147,7 @@ namespace GrblPlotter
         {
             TextBox clickedTB = sender as TextBox;
             clickedTB.Text = e.KeyData.ToString();
-            if (!string.IsNullOrEmpty(e.KeyData.ToString())) 
+            if (!string.IsNullOrEmpty(e.KeyData.ToString()))
                 Clipboard.SetText(e.KeyData.ToString());
         }
 
@@ -1136,19 +1162,22 @@ namespace GrblPlotter
                 return;
             }
             string tmp;
-			try {
-				tmp = File.ReadAllText(fileName);
-			}			
-			catch (IOException err) {
-                EventCollector.StoreException("Error ListHotkeys:" +fileName);
-				Logger.Error(err,"ListHotkeys IOException:{0}",fileName);
-				MessageBox.Show("Could not read " + fileName, "Error");
-				return;
-			}
-			catch {//(Exception err) { 
-				throw;		// unknown exception...
-			}
-			
+            try
+            {
+                tmp = File.ReadAllText(fileName);
+            }
+            catch (IOException err)
+            {
+                EventCollector.StoreException("Error ListHotkeys:" + fileName);
+                Logger.Error(err, "ListHotkeys IOException:{0}", fileName);
+                MessageBox.Show("Could not read " + fileName, "Error");
+                return;
+            }
+            catch
+            {//(Exception err) { 
+                throw;      // unknown exception...
+            }
+
             tBHotkeyList.Text = tmp;
             lblPathHotkeys.Text = fileName;
         }
@@ -1160,9 +1189,9 @@ namespace GrblPlotter
 
         private void BtnMachineRangeGet_Click(object sender, EventArgs e)
         {
-			decimal maxX = (decimal)Grbl.GetSetting(130);
-			decimal maxY = (decimal)Grbl.GetSetting(131);
-			decimal maxZ = (decimal)Grbl.GetSetting(132);
+            decimal maxX = (decimal)Grbl.GetSetting(130);
+            decimal maxY = (decimal)Grbl.GetSetting(131);
+            decimal maxZ = (decimal)Grbl.GetSetting(132);
             if ((maxX < 0) || (maxY < 0) || (maxZ < 0))
                 MessageBox.Show(string.Format("No information available - please connect grbl-controller ($130={0}; $131={1}; $132={2}; )", maxX, maxY, maxZ), "Attention!");
             else
@@ -1183,7 +1212,7 @@ namespace GrblPlotter
             if (cBGPEnable.Checked)
             {
                 try { ControlGamePad.Initialize(); }
-                catch (Exception err) { Logger.Error(err,"CbGPEnable_CheckedChanged ");}
+                catch (Exception err) { Logger.Error(err, "CbGPEnable_CheckedChanged "); }
 
             }
         }
@@ -1264,7 +1293,7 @@ namespace GrblPlotter
                     }
                 }
             }
-            catch (Exception err) { Logger.Error(err,"FillToolTableFileList ");}
+            catch (Exception err) { Logger.Error(err, "FillToolTableFileList "); }
         }
 
 
@@ -1423,7 +1452,7 @@ namespace GrblPlotter
                         lBUseCase.Items.Add(Path.GetFileName(Files[i]));
                 }
             }
-            catch (Exception err) { Logger.Error(err,"FillUseCaseFileList ");}
+            catch (Exception err) { Logger.Error(err, "FillUseCaseFileList "); }
         }
 
 
@@ -1466,20 +1495,23 @@ namespace GrblPlotter
             sfd.Dispose();
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                try {
-					if (File.Exists(sfd.FileName))
-						File.Delete(sfd.FileName);
-				}
-				catch (IOException err) {
-                    EventCollector.StoreException("Error BtnUseCaseSave_Click:" +sfd.FileName);
-					Logger.Error(err,"BtnUseCaseSave_Click IOException:{0}",sfd.FileName);
-					MessageBox.Show("Could not delete old " + sfd.FileName, "Error");
-					return;
-				}
-				catch {//(Exception err) { 
-					throw;		// unknown exception...
-				}
-				
+                try
+                {
+                    if (File.Exists(sfd.FileName))
+                        File.Delete(sfd.FileName);
+                }
+                catch (IOException err)
+                {
+                    EventCollector.StoreException("Error BtnUseCaseSave_Click:" + sfd.FileName);
+                    Logger.Error(err, "BtnUseCaseSave_Click IOException:{0}", sfd.FileName);
+                    MessageBox.Show("Could not delete old " + sfd.FileName, "Error");
+                    return;
+                }
+                catch
+                {//(Exception err) { 
+                    throw;      // unknown exception...
+                }
+
                 var MyIni = new IniFile(sfd.FileName);
                 MyIni.WriteImport();
             }
@@ -1497,18 +1529,21 @@ namespace GrblPlotter
             if (!File.Exists(fileName))
                 return;
 
-            try {
-				File.Delete(fileName);
-			}
-			catch (IOException err) {
-                EventCollector.StoreException("Error BtnDelete_Click:" +fileName);
-				Logger.Error(err,"BtnDelete_Click IOException:{0}",fileName);
-				MessageBox.Show("Could not delete old " + fileName, "Error");
-				return;
-			}
-			catch {//(Exception err) { 
-				throw;		// unknown exception...
-			}
+            try
+            {
+                File.Delete(fileName);
+            }
+            catch (IOException err)
+            {
+                EventCollector.StoreException("Error BtnDelete_Click:" + fileName);
+                Logger.Error(err, "BtnDelete_Click IOException:{0}", fileName);
+                MessageBox.Show("Could not delete old " + fileName, "Error");
+                return;
+            }
+            catch
+            {//(Exception err) { 
+                throw;      // unknown exception...
+            }
             FillUseCaseFileList(Datapath.Usecases);
         }
 
@@ -1569,12 +1604,14 @@ namespace GrblPlotter
         }
 
         private void BtnOpenLogFile_Click(object sender, EventArgs e)
-        { 	try {
-				Process.Start("notepad.exe", Datapath.LogFiles + "\\logfile.txt"); 
-			}
-			catch (Exception err)
-			{	MessageBox.Show("Could not open log file: \r\n" + err.Message,"Error");}
-		}
+        {
+            try
+            {
+                Process.Start("notepad.exe", Datapath.LogFiles + "\\logfile.txt");
+            }
+            catch (Exception err)
+            { MessageBox.Show("Could not open log file: \r\n" + err.Message, "Error"); }
+        }
 
         private void CbLog1_CheckedChanged(object sender, EventArgs e)
         {
@@ -1690,12 +1727,19 @@ namespace GrblPlotter
         }
         private void SetZeroMinMax()
         {   //nUDImportGCPWMZero.Value = (nUDImportGCPWMUp.Value + nUDImportGCPWMDown.Value) / 2;
-            decimal max = Math.Max(nUDImportGCPWMUp.Value, nUDImportGCPWMDown.Value);
-            decimal min	= Math.Min(nUDImportGCPWMUp.Value, nUDImportGCPWMDown.Value);
-            if (nUDImportGCPWMZero.Value > max) nUDImportGCPWMZero.Value = max;
-            if (nUDImportGCPWMZero.Value < min) nUDImportGCPWMZero.Value = min;
-            nUDImportGCPWMZero.Maximum = max;
-            nUDImportGCPWMZero.Minimum = min;
+            try
+            {
+                decimal max = Math.Max(nUDImportGCPWMUp.Value, nUDImportGCPWMDown.Value);
+                decimal min = Math.Min(nUDImportGCPWMUp.Value, nUDImportGCPWMDown.Value);
+                if (nUDImportGCPWMZero.Value > max) nUDImportGCPWMZero.Value = max;
+                if (nUDImportGCPWMZero.Value < min) nUDImportGCPWMZero.Value = min;
+                nUDImportGCPWMZero.Maximum = max;
+                nUDImportGCPWMZero.Minimum = min;
+            }
+            catch (Exception err)
+            {
+                Logger.Error(err, "SetZeroMinMax ");
+            }
         }
 
         private void CbImportGCPWMSendCode_CheckedChanged(object sender, EventArgs e)

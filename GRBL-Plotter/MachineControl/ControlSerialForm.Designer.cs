@@ -33,7 +33,7 @@ namespace GrblPlotter
         {
             if (disposing && (components != null))
             {
-                components.Dispose();
+				components.Dispose();
 				timerSerial.Dispose();
             //    reader.Dispose();		// dispose in ControlSerialForm.cs line 270
             //    ClientEthernet.Close();

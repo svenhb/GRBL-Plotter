@@ -68,25 +68,25 @@ namespace GrblPlotter
             double xRange = (double)Properties.Settings.Default.machineLimitsRangeX + 2 * offset;
             double yRange = (double)Properties.Settings.Default.machineLimitsRangeY + 2 * offset;
 
-            double picScaling = Math.Min(this.Width / (xRange), this.Height / (yRange))* (double)NudScaling.Value;               // calculate scaling px/unit
+            double picScaling = Math.Min(this.Width / (xRange), this.Height / (yRange)) * (double)NudScaling.Value;               // calculate scaling px/unit
             double zoomFactor = 1;// (double)NudScaling.Value;
 
             e.Graphics.ScaleTransform((float)picScaling, (float)-picScaling);           // apply scaling (flip Y)
             e.Graphics.TranslateTransform((float)-minx + (float)NudOffsetX.Value, (float)(-yRange - miny) + (float)NudOffsetY.Value);       // apply offset
 
             if (Properties.Settings.Default.projectorShowRuler)
-			{	
-				if ((picScaling* zoomFactor) > 10)
-					e.Graphics.DrawPath(penGrid1, VisuGCode.pathGrid1);          // grid   1mm
-				if ((picScaling* zoomFactor) > 2)
-					e.Graphics.DrawPath(penGrid10, VisuGCode.pathGrid10);        // grid  10mm
-				if ((picScaling * zoomFactor) > 0.1)
-					e.Graphics.DrawPath(penGrid100, VisuGCode.pathGrid100);      // grid 100mm
-				if ((picScaling * zoomFactor) > 0.01)
-					e.Graphics.DrawPath(penGrid100, VisuGCode.pathGrid1000);     // grid 1000mm
-				e.Graphics.DrawPath(penGrid100, VisuGCode.pathGrid10000);        // grid 10000mm
-				e.Graphics.DrawPath(penRuler, VisuGCode.pathRuler);
-			}
+            {
+                if ((picScaling * zoomFactor) > 10)
+                    e.Graphics.DrawPath(penGrid1, VisuGCode.pathGrid1);          // grid   1mm
+                if ((picScaling * zoomFactor) > 2)
+                    e.Graphics.DrawPath(penGrid10, VisuGCode.pathGrid10);        // grid  10mm
+                if ((picScaling * zoomFactor) > 0.1)
+                    e.Graphics.DrawPath(penGrid100, VisuGCode.pathGrid100);      // grid 100mm
+                if ((picScaling * zoomFactor) > 0.01)
+                    e.Graphics.DrawPath(penGrid100, VisuGCode.pathGrid1000);     // grid 1000mm
+                e.Graphics.DrawPath(penGrid100, VisuGCode.pathGrid10000);        // grid 10000mm
+                e.Graphics.DrawPath(penRuler, VisuGCode.pathRuler);
+            }
 
             if (Properties.Settings.Default.projectorShowTool)
                 e.Graphics.DrawPath(penTool, VisuGCode.pathTool);
@@ -101,28 +101,28 @@ namespace GrblPlotter
 
             if (Properties.Settings.Default.projectorShowPenUp)
                 e.Graphics.DrawPath(penUp, VisuGCode.pathPenUp);
-		}
+        }
 
-		private void SetupPens()
-		{
+        private void SetupPens()
+        {
             this.BackColor = Properties.Settings.Default.projectorColorBackground;
             SetupPanel.BackColor = SystemColors.Control;
-            
+
             penUp.Color = Properties.Settings.Default.projectorColorPenUp;
-			penDown.Color = Properties.Settings.Default.projectorColorPenDown;
-			penTool.Color = Properties.Settings.Default.projectorColorTool;
-			penMarker.Color = Properties.Settings.Default.projectorColorMarker;
-			penDimension.Color = Properties.Settings.Default.projectorColorDimension;
+            penDown.Color = Properties.Settings.Default.projectorColorPenDown;
+            penTool.Color = Properties.Settings.Default.projectorColorTool;
+            penMarker.Color = Properties.Settings.Default.projectorColorMarker;
+            penDimension.Color = Properties.Settings.Default.projectorColorDimension;
             penRuler.Color = Properties.Settings.Default.projectorColorRuler;
-			
-			float factorWidth = 1;
-			penUp.Width = (float)Properties.Settings.Default.projectorWidthPenUp * factorWidth;
-			penDown.Width = (float)Properties.Settings.Default.projectorWidthPenDown * factorWidth;
-			penTool.Width = (float)Properties.Settings.Default.projectorWidthTool * factorWidth;
-			penMarker.Width = (float)Properties.Settings.Default.projectorWidthMarker * factorWidth;
-			penDimension.Width = 2 * (float)Properties.Settings.Default.projectorWidthPenDown * factorWidth;
+
+            float factorWidth = 1;
+            penUp.Width = (float)Properties.Settings.Default.projectorWidthPenUp * factorWidth;
+            penDown.Width = (float)Properties.Settings.Default.projectorWidthPenDown * factorWidth;
+            penTool.Width = (float)Properties.Settings.Default.projectorWidthTool * factorWidth;
+            penMarker.Width = (float)Properties.Settings.Default.projectorWidthMarker * factorWidth;
+            penDimension.Width = 2 * (float)Properties.Settings.Default.projectorWidthPenDown * factorWidth;
             penRuler.Width = (float)Properties.Settings.Default.projectorWidthRuler * factorWidth;
-			
+
             penUp.LineJoin = LineJoin.Round;
             penDown.LineJoin = LineJoin.Round;
             penDown.StartCap = LineCap.Round;
@@ -130,8 +130,8 @@ namespace GrblPlotter
             penTool.LineJoin = LineJoin.Round;
             penMarker.LineJoin = LineJoin.Round;
             penDimension.LineJoin = LineJoin.Round;
-		}
-		
+        }
+
         private void BtnColorBackground_Click(object sender, EventArgs e)
         { ApplyColor(btnColorBackground, "projectorColorBackground"); }
         private void BtnColorDimension_Click(object sender, EventArgs e)
@@ -146,7 +146,7 @@ namespace GrblPlotter
         { ApplyColor(btnColorTool, "projectorColorTool"); }
         private void BtnColorMarker_Click(object sender, EventArgs e)
         { ApplyColor(btnColorMarker, "projectorColorMarker"); }
-		
+
         private void ApplyColor(Button btn, string settings)
         {
             using (ColorDialog colorDialog1 = new ColorDialog())
@@ -207,10 +207,10 @@ namespace GrblPlotter
 
         private void SetupPanel_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.Button==MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
                 SetupPanel.Location = new Point(e.X - p.X + SetupPanel.Location.X, e.Y - p.Y + SetupPanel.Location.Y);
         }
-		
+
         private void BtnMinimize_Click(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.Sizable;

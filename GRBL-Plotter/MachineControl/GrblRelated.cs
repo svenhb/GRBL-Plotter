@@ -45,8 +45,8 @@ namespace GrblPlotter
         internal static XyzPoint posWCO = new XyzPoint(0, 0, 0);
         internal static XyzPoint posWork = new XyzPoint(0, 0, 0);
         internal static XyzPoint posMachine = new XyzPoint(0, 0, 0);
-		internal static GrblState Status = GrblState.unknown;
-		
+        internal static GrblState Status = GrblState.unknown;
+
         public static bool posChanged = true;
         public static bool wcoChanged = true;
 
@@ -69,7 +69,7 @@ namespace GrblPlotter
         public static bool grblSimulate = false;
         private static readonly Dictionary<int, float> settings = new Dictionary<int, float>();    // keep $$-settings
         private static readonly Dictionary<string, XyzPoint> coordinates = new Dictionary<string, XyzPoint>();    // keep []-settings
-        private static readonly Dictionary<string, string> messages = new Dictionary<string, string>();  
+        private static readonly Dictionary<string, string> messages = new Dictionary<string, string>();
 
         private static XyzPoint _posMarker = new XyzPoint(0, 0, 0);
         private static double _posMarkerAngle = 0;
@@ -79,7 +79,7 @@ namespace GrblPlotter
             get
             { return _posMarker; }
             set
-            { _posMarker = value;     }
+            { _posMarker = value; }
         }
         public static double PosMarkerAngle
         {
@@ -125,8 +125,8 @@ namespace GrblPlotter
             coordinates.Clear();    // clear gcode parameters
             lastErrorNr = 0;
             lastMessage = "";
-			Status = GrblState.unknown;
-		}
+            Status = GrblState.unknown;
+        }
 
         // store grbl settings https://github.com/gnea/grbl/wiki/Grbl-v1.1-Configuration#grbl-settings
         public static void SetSettings(int id, string value)
@@ -434,7 +434,7 @@ namespace GrblPlotter
 
         internal static void GetOtherFeedbackMessage(string[] dataField)
         {
-            string tmp = string.Join(":",dataField);
+            string tmp = string.Join(":", dataField);
             if (messages.ContainsKey(dataField[0]))
                 messages[dataField[0]] = tmp;
             else

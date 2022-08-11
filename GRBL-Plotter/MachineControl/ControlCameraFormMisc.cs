@@ -71,7 +71,7 @@ namespace GrblPlotter
         private readonly Pen penDown = new Pen(Color.Red, 0.4F);
         private readonly Pen penRuler = new Pen(Color.Blue, 0.1F);
         private readonly Pen penTool = new Pen(Color.Black, 0.5F);
-        private readonly  Pen penMarker = new Pen(Color.DeepPink, 1F);
+        private readonly Pen penMarker = new Pen(Color.DeepPink, 1F);
         private readonly Pen penDimension = new Pen(Color.DarkGray, 1F);
         private HatchBrush brushMachineLimit = new HatchBrush(HatchStyle.Horizontal, Color.Yellow);
 
@@ -109,7 +109,7 @@ namespace GrblPlotter
                 quadCorners.Add(ToIntPoint(Properties.Settings.Default.cameraDistortionFixP2));
                 quadCorners.Add(ToIntPoint(Properties.Settings.Default.cameraDistortionFixP3));
                 quadFilter = new QuadrilateralTransformation(quadCorners, pictureBoxVideo.Width, pictureBoxVideo.Height);
-				filterIndex = filterIndexFix;
+                filterIndex = filterIndexFix;
             }
             else
             {
@@ -126,12 +126,12 @@ namespace GrblPlotter
                 quadCorners.Add(ToIntPoint(Properties.Settings.Default.cameraDistortionXyP2));
                 quadCorners.Add(ToIntPoint(Properties.Settings.Default.cameraDistortionXyP3));
                 quadFilter = new QuadrilateralTransformation(quadCorners, pictureBoxVideo.Width, pictureBoxVideo.Height);
-				filterIndex = filterIndexXy;				
+                filterIndex = filterIndexXy;
             }
             toolStripTextBox2.Text = String.Format(culture, "{0}", cameraTeachRadiusXyzTop);
             toolStripTextBox3.Text = String.Format(culture, "{0}", cameraTeachRadiusXyzBot);
 
-			if (filterIndex >= comboBox1.Items.Count) {filterIndex=0;}
+            if (filterIndex >= comboBox1.Items.Count) { filterIndex = 0; }
             comboBox1.SelectedIndex = filterIndex;
 
             if (cameraRotation > 360) cameraRotation = 0;
@@ -150,7 +150,7 @@ namespace GrblPlotter
                         if (camName == videosources[i].Name)
                         {
                             return i;
-                    //        break;
+                            //        break;
                         }
                     }
                 }
@@ -184,7 +184,7 @@ namespace GrblPlotter
             double myRadiusInPx = Math.Sqrt(relMousePosX * relMousePosX + relMousePosY * relMousePosY);
             if (myRadiusInPx > 0)
             { cameraScalingFix = myRadiusInPx / cameraTeachRadiusFix; }
-            SetToolStrip(Color.Lime, string.Format("{0}:{1:0} px  {2}:{3:0.000}", Localization.GetString("cameraSetRadius"), myRadiusInPx, Localization.GetString("cameraScaling"), cameraScalingFix),true);
+            SetToolStrip(Color.Lime, string.Format("{0}:{1:0} px  {2}:{3:0.000}", Localization.GetString("cameraSetRadius"), myRadiusInPx, Localization.GetString("cameraScaling"), cameraScalingFix), true);
         }
         private void CalcScalingXy()
         {
@@ -193,15 +193,15 @@ namespace GrblPlotter
             double myRadiusInPx = Math.Sqrt(relposx * relposx + relposy * relposy);
             if (myRadiusInPx > 0)
             { cameraScalingXy = cameraTeachRadiusXy / myRadiusInPx; }
-            SetToolStrip(Color.Lime, string.Format("{0}:{1:0} px  {2}:{3:0.000}", Localization.GetString("cameraSetRadius"), myRadiusInPx, Localization.GetString("cameraScaling"), cameraScalingFix),true);
+            SetToolStrip(Color.Lime, string.Format("{0}:{1:0} px  {2}:{3:0.000}", Localization.GetString("cameraSetRadius"), myRadiusInPx, Localization.GetString("cameraScaling"), cameraScalingFix), true);
         }
 
-		private double GetActualScaling()
-		{
-			if (CameraMount == CameraMounting.Fix)
-				return cameraScalingFix;
-			else if (CameraMount == CameraMounting.MoveXY)
-				return cameraScalingXy;
+        private double GetActualScaling()
+        {
+            if (CameraMount == CameraMounting.Fix)
+                return cameraScalingFix;
+            else if (CameraMount == CameraMounting.MoveXY)
+                return cameraScalingXy;
 
             double diff = cameraPosZTop - cameraPosZBot;
             if (diff == 0) diff = 1;
@@ -217,11 +217,11 @@ namespace GrblPlotter
             if (shapeFound)
             {
                 XyPoint tmp;
-        //        double actualScaling = GetActualScaling();
+                //        double actualScaling = GetActualScaling();
                 if (CameraMount == CameraMounting.Fix)
                 {
                     tmp = TranslateFromPicCoordinate(shapeCenterInPx);
-                    OnRaiseXYEvent(new XYEventArgs(0, 1,  tmp, "G0G90 "));        // set new coordinates
+                    OnRaiseXYEvent(new XYEventArgs(0, 1, tmp, "G0G90 "));        // set new coordinates
                     realPoints.Add(tmp);
                     ListRealPoints();
                 }
@@ -237,7 +237,7 @@ namespace GrblPlotter
         }
 
         private XyPoint TranslateFromPicCoordinate(System.Drawing.Point tmp)
-        {   return TranslateFromPicCoordinate(new AForge.Point(tmp.X, tmp.Y)); }
+        { return TranslateFromPicCoordinate(new AForge.Point(tmp.X, tmp.Y)); }
         private XyPoint TranslateFromPicCoordinate(AForge.Point picCoordinate)
         {
             XyPoint tmp = new XyPoint();
@@ -265,35 +265,36 @@ namespace GrblPlotter
             if (CameraMount == CameraMounting.Fix)
             {
                 XyPoint fixMachineOffset = new XyPoint(Properties.Settings.Default.cameraZeroFixMachineX, Properties.Settings.Default.cameraZeroFixMachineY);
-                tmp.X = cameraZeroFixXInPx + (float)(actualScaling * (realCoordinate.X + Grbl.posWCO.X - fixMachineOffset.X)); 
+                tmp.X = cameraZeroFixXInPx + (float)(actualScaling * (realCoordinate.X + Grbl.posWCO.X - fixMachineOffset.X));
                 tmp.Y = cameraZeroFixYInPx - (float)(actualScaling * (realCoordinate.Y + Grbl.posWCO.Y - fixMachineOffset.Y));
             }
             else
-            {   tmp.X = (float)(2 * (realCoordinate.X / pictureBoxVideo.Size.Width - 0.5) * actualScaling / cameraZoom);
+            {
+                tmp.X = (float)(2 * (realCoordinate.X / pictureBoxVideo.Size.Width - 0.5) * actualScaling / cameraZoom);
                 tmp.Y = (float)(-2 * (realCoordinate.Y / pictureBoxVideo.Size.Height - 0.5) * actualScaling * ratio / cameraZoom);
 
             }
             return tmp;
         }
         private int fiducialDetectionProgressCounter = 0;
-		private int fiducialDetectionGrblNotIdleCounter = 0;
+        private int fiducialDetectionGrblNotIdleCounter = 0;
         private int fiducialDetectionFail = 0;
         private readonly int fiducialDetectionFailMax = 3;
         private bool fiducialDetection = false;
         private XyPoint realPos1, realPos2;
         private void BtnStartAutomatic_Click(object sender, EventArgs e)
         {
-			cBShapeDetection.Checked = false;
-			cBShapeShowFilter.Checked = false;
-			fiducialDetectionProgressCounter = 1;
-			fiducialDetectionGrblNotIdleCounter = 0;
-			VisuGCode.MarkSelectedFigure(-1);
+            cBShapeDetection.Checked = false;
+            cBShapeShowFilter.Checked = false;
+            fiducialDetectionProgressCounter = 1;
+            fiducialDetectionGrblNotIdleCounter = 0;
+            VisuGCode.MarkSelectedFigure(-1);
             if (CbUseShapeRecognition.Checked)
                 timerFlowControl.Interval = 1000;
             else
                 timerFlowControl.Interval = 200;
 
-			frameCounterMax = 5;
+            frameCounterMax = 5;
             timerFlowControl.Start();
         }
 
@@ -301,13 +302,13 @@ namespace GrblPlotter
         {
             AutomaticFiducialDetection();
         }
-		private void ListFiducials()
-		{   			
-			TbSetPoints.Text = "Fiducial coordinates (mm):\r\n";
-			int i = 1;
-			foreach (XyPoint tmp in VisuGCode.fiducialsCenter)
+        private void ListFiducials()
+        {
+            TbSetPoints.Text = "Fiducial coordinates (mm):\r\n";
+            int i = 1;
+            foreach (XyPoint tmp in VisuGCode.fiducialsCenter)
             { TbSetPoints.Text += string.Format("{0}) X:{1:0.0} Y:{2:0.0}\r\n", (i++), tmp.X, tmp.Y); }
-		}
+        }
         private void ListRealPoints()
         {
             TbRealPoints.Text = "Assigned coordinates (mm):\r\n";
@@ -328,7 +329,7 @@ namespace GrblPlotter
                             SetToolStrip(Color.Fuchsia, "Fiducial detection: No list of fiducials from GCode - STOP automatic", true);
                             TbSetPoints.Text = "No list of fiducials from GCode";
                             fiducialDetectionProgressCounter = 0;
-							frameCounterMax = 10;
+                            frameCounterMax = 10;
                             break;
                         }
                         if (!CbUseShapeRecognition.Checked)
@@ -338,7 +339,7 @@ namespace GrblPlotter
                                 SetToolStrip(Color.Fuchsia, "Fiducial detection: No list of manual assigned points - STOP automatic", true);
                                 TbSetPoints.Text = "No list of manual assigned points";
                                 fiducialDetectionProgressCounter = 0;
-								frameCounterMax = 10;
+                                frameCounterMax = 10;
                                 break;
                             }
                         }
@@ -347,8 +348,8 @@ namespace GrblPlotter
 
                         refPointInPx = TranslateToPicCoordinate(VisuGCode.fiducialsCenter[0]);
                         if (CameraMount != CameraMounting.Fix)
-                         //   refPointInPx -= new AForge.Point((float)Grbl.posWork.X, (float)Grbl.posWork.Y);
-                            refPointInPx = new AForge.Point((float)pictureBoxVideo.Size.Width/2, (float)pictureBoxVideo.Size.Height/2);
+                            //   refPointInPx -= new AForge.Point((float)Grbl.posWork.X, (float)Grbl.posWork.Y);
+                            refPointInPx = new AForge.Point((float)pictureBoxVideo.Size.Width / 2, (float)pictureBoxVideo.Size.Height / 2);
 
                         shapeCenterInPx = refPointInPx; // default
 
@@ -362,7 +363,7 @@ namespace GrblPlotter
 
                         if (CbUseShapeRecognition.Checked)
                         {
-             //               fiducialDetection = true;       // activate shape detection
+                            //               fiducialDetection = true;       // activate shape detection
                             shapeFound = false;
                             if (CameraMount == CameraMounting.Fix)
                             {
@@ -381,16 +382,19 @@ namespace GrblPlotter
                         break;
                     }
                 case 2: // still moving?
-                    {   if (Grbl.Status != GrblState.idle)
-						{	if (fiducialDetectionGrblNotIdleCounter++ > 10)
-							{	fiducialDetection = false;fiducialDetectionProgressCounter=0;
+                    {
+                        if (Grbl.Status != GrblState.idle)
+                        {
+                            if (fiducialDetectionGrblNotIdleCounter++ > 10)
+                            {
+                                fiducialDetection = false; fiducialDetectionProgressCounter = 0;
                                 SetToolStrip(Color.Fuchsia, string.Format("Fiducial detection: 1) TP1/mm X:{0:0.00} Y:{1:0.00}  not reached - STOP automatic", teachPoint1.X, teachPoint1.Y), true);
                                 Logger.Error("Fiducial detection: 2, Grbl-Idle not reached");
-							}
-							break;
-						}
+                            }
+                            break;
+                        }
                         fiducialDetectionProgressCounter++;
-						fiducialDetection = true;				// activate shape detection
+                        fiducialDetection = true;				// activate shape detection
                         break;
                     }
                 case 3:
@@ -404,7 +408,7 @@ namespace GrblPlotter
                                 if (fiducialDetectionFail > fiducialDetectionFailMax)
                                 {
                                     fiducialDetectionProgressCounter = 0;
-									frameCounterMax = 10;
+                                    frameCounterMax = 10;
                                     SetToolStrip(Color.Fuchsia, "Fiducial detection: no fiducials found in image - STOP automatic", true);
                                     break;
                                 }
@@ -413,7 +417,7 @@ namespace GrblPlotter
                             }
                             realPos1 = TranslateFromPicCoordinate(shapeCenterInPx);
                             SetToolStrip(Color.Lime, string.Format("Fiducial detection: 1) shape/px X:{0:0.00} Y:{1:0.00} shape/mm X:{2:0.00} Y:{3:0.00} - correct offset of current coordinate system", shapeCenterInPx.X, shapeCenterInPx.Y, realPos1.X, realPos1.Y), true);
-                            if (showLog) Logger.Trace("Shape X:{0} Y:{1}   real X:{2}  Y:{3}",shapeCenterInPx.X, shapeCenterInPx.Y,realPos1.X,realPos1.Y);
+                            if (showLog) Logger.Trace("Shape X:{0} Y:{1}   real X:{2}  Y:{3}", shapeCenterInPx.X, shapeCenterInPx.Y, realPos1.X, realPos1.Y);
                         }
                         else
                             realPos1 = realPoints[0];
@@ -501,27 +505,31 @@ namespace GrblPlotter
                         break;
                     }
                 case 5: // still moving?
-                    {   if (Grbl.Status != GrblState.idle)
-						{	if (fiducialDetectionGrblNotIdleCounter++ > 10)
-							{	fiducialDetection = false;fiducialDetectionProgressCounter=0;
-								Logger.Error("Fiducial detection: 5, Grbl-Idle not reached");
-							}	
-							break;
-						}
+                    {
+                        if (Grbl.Status != GrblState.idle)
+                        {
+                            if (fiducialDetectionGrblNotIdleCounter++ > 10)
+                            {
+                                fiducialDetection = false; fiducialDetectionProgressCounter = 0;
+                                Logger.Error("Fiducial detection: 5, Grbl-Idle not reached");
+                            }
+                            break;
+                        }
                         fiducialDetectionProgressCounter++;
- 						fiducialDetection = true;				// activate shape detection
-                       break;
+                        fiducialDetection = true;               // activate shape detection
+                        break;
                     }
                 case 6:
                     {
                         if (CbUseShapeRecognition.Checked)
-                        {  if (!shapeFound)
+                        {
+                            if (!shapeFound)
                             {
                                 fiducialDetectionFail++;
                                 if (fiducialDetectionFail > fiducialDetectionFailMax)
                                 {
                                     fiducialDetectionProgressCounter = 0;
-									frameCounterMax = 10;
+                                    frameCounterMax = 10;
                                     SetToolStrip(Color.Fuchsia, "Fiducial detection: no fiducials found in image - STOP automatic", true);
                                     fiducialDetection = false;
                                     break;
@@ -573,20 +581,20 @@ namespace GrblPlotter
                             break;
                         }
                     }
-				case 7:
-					{	
-						fiducialDetectionProgressCounter=0;
-						frameCounterMax = 10;
-						ResetToolStrip();
-						break;
-					}				
+                case 7:
+                    {
+                        fiducialDetectionProgressCounter = 0;
+                        frameCounterMax = 10;
+                        ResetToolStrip();
+                        break;
+                    }
             }
         }
 
         // Process image
         private AForge.Point shapeCenterInPx, picCenter, refPointInPx;
         private bool shapeFound = false;
-		private Bitmap original;
+        private Bitmap original;
         private void ProcessShapeDetection(Bitmap bitmap)
         {	// http://www.aforgenet.com/articles/shape_checker/
 
@@ -600,8 +608,8 @@ namespace GrblPlotter
                 new Rectangle(0, 0, bitmap.Width, bitmap.Height),
                 ImageLockMode.ReadWrite, bitmap.PixelFormat);
 
-	//		HistogramEqualization histoFilter = new HistogramEqualization( );
-	//		histoFilter.ApplyInPlace( bitmapData );
+            //		HistogramEqualization histoFilter = new HistogramEqualization( );
+            //		histoFilter.ApplyInPlace( bitmapData );
 
             // step 1 - turn background to black
             ColorFiltering colorFilter = new ColorFiltering
@@ -616,7 +624,7 @@ namespace GrblPlotter
 
             double blobScaling = cameraScalingFix;
             if (CameraMount == CameraMounting.MoveXY)
-            { blobScaling = cameraScalingXy/2; }
+            { blobScaling = cameraScalingXy / 2; }
 
             int shapeMin = (int)((float)Properties.Settings.Default.camShapeSizeMin * cameraZoom * blobScaling);
             int shapeMax = (int)((float)Properties.Settings.Default.camShapeSizeMax * cameraZoom * blobScaling);
@@ -629,7 +637,7 @@ namespace GrblPlotter
                 MaxHeight = shapeMax,
                 MaxWidth = shapeMax
             };
-     //       Logger.Trace("Blob min:{0} max:{1}  scale:{2}",shapeMin,shapeMax,blobScaling);
+            //       Logger.Trace("Blob min:{0} max:{1}  scale:{2}",shapeMin,shapeMax,blobScaling);
 
             blobCounter.ProcessImage(bitmapData);
 
@@ -659,26 +667,27 @@ namespace GrblPlotter
             double lowestDistance = xmid;
             double distance;
             shapeFound = false;
-        //    AForge.Point center;
+            //    AForge.Point center;
             double shapeRadius = 1;
 
             for (int i = 0, n = blobs.Length; i < n; i++)
             {
                 List<IntPoint> edgePoints = blobCounter.GetBlobsEdgePoints(blobs[i]);
-            //    System.Single myRadius;
+                //    System.Single myRadius;
                 if (Properties.Settings.Default.camShapeCircle && shapeChecker.IsCircle(edgePoints, out AForge.Point center, out System.Single myRadius))
                 {
-         //           Logger.Trace("Shape r:{0}  min:{1}  max:{2}   refPosPx {3:0.0} {4:0.0}   centerPosPx {5:0.0} {6:0.0}", myRadius, shapeMin, shapeMax, refPointInPx.X, refPointInPx.Y, center.X, center.Y);
+                    //           Logger.Trace("Shape r:{0}  min:{1}  max:{2}   refPosPx {3:0.0} {4:0.0}   centerPosPx {5:0.0} {6:0.0}", myRadius, shapeMin, shapeMax, refPointInPx.X, refPointInPx.Y, center.X, center.Y);
                     if ((center.X < 1) || (center.Y < 1))
                         continue;
                     shapeFound = true;
                     distance = center.DistanceTo((AForge.Point)refPointInPx);
                     if (!fiducialDetection)
-                    {	g.DrawEllipse(yellowPen,
+                    {
+                        g.DrawEllipse(yellowPen,
                         (float)(center.X - myRadius), (float)(center.Y - myRadius),
                         (float)(myRadius * 2), (float)(myRadius * 2));
-					}
-					
+                    }
+
                     if ((lowestDistance > Math.Abs(distance)))// && (myRadius > shapeMin))
                     {
                         lowestDistance = Math.Abs(distance);
@@ -687,13 +696,13 @@ namespace GrblPlotter
                         if (showLog) Logger.Trace("Shape r:{0}  min:{1}  max:{2}   refPosPx {3:0.0} {4:0.0}   centerPosPx {5:0.0} {6:0.0}", myRadius, shapeMin, shapeMax, refPointInPx.X, refPointInPx.Y, center.X, center.Y);
                     }
                 }
-             //   List<IntPoint> corners;
+                //   List<IntPoint> corners;
                 if (Properties.Settings.Default.camShapeRect && shapeChecker.IsQuadrilateral(edgePoints, out List<IntPoint> corners))  //.IsConvexPolygon
                 {
                     IntPoint centxy;        // minxy, maxxy,
                     if (!fiducialDetection)
-                    {	g.DrawPolygon(yellowPen, ToPointsArray(corners));}
-				
+                    { g.DrawPolygon(yellowPen, ToPointsArray(corners)); }
+
                     PointsCloud.GetBoundingRectangle(corners, out IntPoint minxy, out IntPoint maxxy);
                     centxy = (minxy + maxxy) / 2;
                     if ((centxy.X < 1) || (centxy.Y < 1))
@@ -714,8 +723,8 @@ namespace GrblPlotter
                 g.DrawEllipse(redPen,
                (float)(shapeCenterInPx.X - shapeRadius * 1.2), (float)(shapeCenterInPx.Y - shapeRadius * 1.2),
                (float)(shapeRadius * 2.4), (float)(shapeRadius * 2.4));
-			   if (!fiducialDetection)
-					SetToolStrip(Color.Lime, string.Format("Diameter {0:0.0}px {1:0.0}mm   MinPx:{2:0.0}", 2 * shapeRadius, 2 * shapeRadius / cameraScalingFix, (int)((float)Properties.Settings.Default.camShapeSizeMin * cameraZoom * cameraScalingFix)));
+                if (!fiducialDetection)
+                    SetToolStrip(Color.Lime, string.Format("Diameter {0:0.0}px {1:0.0}mm   MinPx:{2:0.0}", 2 * shapeRadius, 2 * shapeRadius / cameraScalingFix, (int)((float)Properties.Settings.Default.camShapeSizeMin * cameraZoom * cameraScalingFix)));
             }
 
             yellowPen.Dispose();
@@ -744,7 +753,8 @@ namespace GrblPlotter
             if (value.Length < 10)
                 return;
             int i = 1;
-            try {
+            try
+            {
                 Properties.Settings.Default.camFilterRed1 = Convert.ToInt16(value[i++]);
                 Properties.Settings.Default.camFilterRed2 = Convert.ToInt16(value[i++]);
                 Properties.Settings.Default.camFilterGreen1 = Convert.ToInt16(value[i++]);
@@ -760,56 +770,61 @@ namespace GrblPlotter
                 Properties.Settings.Default.camShapeDistMax = Convert.ToDecimal(value[i++]);
                 Properties.Settings.Default.Save();
             }
-            catch (Exception ex) { 
-				Logger.Error(ex, "ShapeSetLoad "); 
-			}
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "ShapeSetLoad ");
+            }
         }
 
-		private void LoadExampleImages()
-		{
-			string fileExampleFrame = Datapath.Examples + "\\" + "exampleFrameFix.jpg";
-		    if (File.Exists(fileExampleFrame))
+        private void LoadExampleImages()
+        {
+            string fileExampleFrame = Datapath.Examples + "\\" + "exampleFrameFix.jpg";
+            if (File.Exists(fileExampleFrame))
             {
-                exampleFrameFix = (System.Drawing.Image)(new Bitmap(System.Drawing.Image.FromFile(fileExampleFrame),new Size(640,480)));
-                Logger.Info("Load example frame '{0}'",fileExampleFrame);
+                exampleFrameFix = (System.Drawing.Image)(new Bitmap(System.Drawing.Image.FromFile(fileExampleFrame), new Size(640, 480)));
+                Logger.Info("Load example frame '{0}'", fileExampleFrame);
             }
-			else
-			{	exampleFrameFix = new Bitmap(640,480);
-				using (Graphics gr = Graphics.FromImage(exampleFrameFix)) {
-					gr.Clear(Color.LightGray);
-                    ShowLabel(gr,new System.Drawing.Point(50,200), string.Format("File not found: {0}", fileExampleFrame));
-                    }
-			}
-			fileExampleFrame = Datapath.Examples + "\\" + "exampleFrameXy.jpg";
-		    if (File.Exists(fileExampleFrame))
+            else
             {
-                exampleFrameXy = (System.Drawing.Image)(new Bitmap(System.Drawing.Image.FromFile(fileExampleFrame),new Size(640,480)));
-                Logger.Info("Load example frame '{0}'",fileExampleFrame);
+                exampleFrameFix = new Bitmap(640, 480);
+                using (Graphics gr = Graphics.FromImage(exampleFrameFix))
+                {
+                    gr.Clear(Color.LightGray);
+                    ShowLabel(gr, new System.Drawing.Point(50, 200), string.Format("File not found: {0}", fileExampleFrame));
+                }
             }
-			else
-			{	exampleFrameXy = new Bitmap(640,480);
-				using (Graphics gr = Graphics.FromImage(exampleFrameXy)) {
-					gr.Clear(Color.LightGray);
-                    ShowLabel(gr,new System.Drawing.Point(50,200), string.Format("File not found: {0}", fileExampleFrame));
-                    }
-			}
-		}
-		
-		private void ListSettings()
-		{
-			Logger.Info("Cam fix Rot.:{0:0.000}  Scaling:{1:0.000}  Offset-X:{2:0.000}  Offset-Y:{3:0.000}", Properties.Settings.Default.cameraRotationFix, cameraScalingFix, Properties.Settings.Default.cameraZeroFixMachineX, Properties.Settings.Default.cameraZeroFixMachineY);
-			Logger.Info("Cam  xy Rot.:{0:0.000}  Scaling:{1:0.000} ", Properties.Settings.Default.cameraRotationXy, cameraScalingXy);
-			Logger.Info("Cam   z Rot.:{0:0.000}  Scl-Top:{1:0.000}  Scl-Bot:{2:0.000}", Properties.Settings.Default.cameraRotationXy, cameraScalingXyzTop, cameraScalingXyzBot);
+            fileExampleFrame = Datapath.Examples + "\\" + "exampleFrameXy.jpg";
+            if (File.Exists(fileExampleFrame))
+            {
+                exampleFrameXy = (System.Drawing.Image)(new Bitmap(System.Drawing.Image.FromFile(fileExampleFrame), new Size(640, 480)));
+                Logger.Info("Load example frame '{0}'", fileExampleFrame);
+            }
+            else
+            {
+                exampleFrameXy = new Bitmap(640, 480);
+                using (Graphics gr = Graphics.FromImage(exampleFrameXy))
+                {
+                    gr.Clear(Color.LightGray);
+                    ShowLabel(gr, new System.Drawing.Point(50, 200), string.Format("File not found: {0}", fileExampleFrame));
+                }
+            }
+        }
+
+        private void ListSettings()
+        {
+            Logger.Info("Cam fix Rot.:{0:0.000}  Scaling:{1:0.000}  Offset-X:{2:0.000}  Offset-Y:{3:0.000}", Properties.Settings.Default.cameraRotationFix, cameraScalingFix, Properties.Settings.Default.cameraZeroFixMachineX, Properties.Settings.Default.cameraZeroFixMachineY);
+            Logger.Info("Cam  xy Rot.:{0:0.000}  Scaling:{1:0.000} ", Properties.Settings.Default.cameraRotationXy, cameraScalingXy);
+            Logger.Info("Cam   z Rot.:{0:0.000}  Scl-Top:{1:0.000}  Scl-Bot:{2:0.000}", Properties.Settings.Default.cameraRotationXy, cameraScalingXyzTop, cameraScalingXyzBot);
             double blobScaling = cameraScalingFix;
             if (CameraMount == CameraMounting.MoveXY)
-            { blobScaling = cameraScalingXy/2; }
-			Logger.Info("Shape Min:{0:0.000}  Max:{1:0.000}  CamZoom:{2}  BlobScale:{3}",Properties.Settings.Default.camShapeSizeMin, Properties.Settings.Default.camShapeSizeMax, cameraZoom, blobScaling);
-			Logger.Info("Shape Distortion:{0}  DistortionMax:{1}", Properties.Settings.Default.camShapeDist, Properties.Settings.Default.camShapeDistMax);
+            { blobScaling = cameraScalingXy / 2; }
+            Logger.Info("Shape Min:{0:0.000}  Max:{1:0.000}  CamZoom:{2}  BlobScale:{3}", Properties.Settings.Default.camShapeSizeMin, Properties.Settings.Default.camShapeSizeMax, cameraZoom, blobScaling);
+            Logger.Info("Shape Distortion:{0}  DistortionMax:{1}", Properties.Settings.Default.camShapeDist, Properties.Settings.Default.camShapeDistMax);
 
-			Logger.Info("Shape Red1:{0}  Red2:{1}  Green1:{2}  Green2:{3}  Blue1:{4}  Blue2:{5}  Outside:{6}",Properties.Settings.Default.camFilterRed1, Properties.Settings.Default.camFilterRed2,
-																				Properties.Settings.Default.camFilterGreen1, Properties.Settings.Default.camFilterGreen2,
-																				Properties.Settings.Default.camFilterBlue1, Properties.Settings.Default.camFilterBlue2, Properties.Settings.Default.camFilterOutside);
-		
-		}
+            Logger.Info("Shape Red1:{0}  Red2:{1}  Green1:{2}  Green2:{3}  Blue1:{4}  Blue2:{5}  Outside:{6}", Properties.Settings.Default.camFilterRed1, Properties.Settings.Default.camFilterRed2,
+                                                                                Properties.Settings.Default.camFilterGreen1, Properties.Settings.Default.camFilterGreen2,
+                                                                                Properties.Settings.Default.camFilterBlue1, Properties.Settings.Default.camFilterBlue2, Properties.Settings.Default.camFilterOutside);
+
+        }
     }
 }

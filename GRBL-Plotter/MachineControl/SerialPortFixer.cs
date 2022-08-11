@@ -15,13 +15,11 @@
 /*
  * 2020-03-19 move some functions to NativeMethods.cs 
 */
+using Microsoft.Win32.SafeHandles;
 using System;
-using System.Text;
 using System.IO;
 using System.Runtime.InteropServices;
-using Microsoft.Win32.SafeHandles;
-
-#pragma warning disable CA1303
+using System.Text;
 
 namespace GrblPlotter
 {
@@ -36,7 +34,8 @@ namespace GrblPlotter
         #region IDisposable Members
 
         public void Dispose()
-        {   Dispose(true);
+        {
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
         protected virtual void Dispose(bool disposing)
@@ -89,31 +88,31 @@ namespace GrblPlotter
             {
                 hFile.Close();
                 m_Handle = null;
-       //         throw;
+                //         throw;
             }
         }
-/*
-        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern int FormatMessage(int dwFlags, HandleRef lpSource, int dwMessageId, int dwLanguageId,
-                                                StringBuilder lpBuffer, int nSize, IntPtr arguments);
+        /*
+                [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+                private static extern int FormatMessage(int dwFlags, HandleRef lpSource, int dwMessageId, int dwLanguageId,
+                                                        StringBuilder lpBuffer, int nSize, IntPtr arguments);
 
-        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern bool GetCommState(SafeFileHandle hFile, ref Dcb lpDcb);
+                [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+                private static extern bool GetCommState(SafeFileHandle hFile, ref Dcb lpDcb);
 
-        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern bool SetCommState(SafeFileHandle hFile, ref Dcb lpDcb);
+                [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+                private static extern bool SetCommState(SafeFileHandle hFile, ref Dcb lpDcb);
 
-        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern bool ClearCommError(SafeFileHandle hFile, ref int lpErrors, ref Comstat lpStat);
+                [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+                private static extern bool ClearCommError(SafeFileHandle hFile, ref int lpErrors, ref Comstat lpStat);
 
-        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern SafeFileHandle CreateFile(string lpFileName, int dwDesiredAccess, int dwShareMode,
-                                                        IntPtr securityAttrs, int dwCreationDisposition,
-                                                        int dwFlagsAndAttributes, IntPtr hTemplateFile);
+                [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+                private static extern SafeFileHandle CreateFile(string lpFileName, int dwDesiredAccess, int dwShareMode,
+                                                                IntPtr securityAttrs, int dwCreationDisposition,
+                                                                int dwFlagsAndAttributes, IntPtr hTemplateFile);
 
-        [DllImport("kernel32.dll", SetLastError = true)]
-        private static extern int GetFileType(SafeFileHandle hFile);
-        */
+                [DllImport("kernel32.dll", SetLastError = true)]
+                private static extern int GetFileType(SafeFileHandle hFile);
+                */
         private void InitializeDcb()
         {
             Dcb dcb = new Dcb();

@@ -736,9 +736,9 @@ namespace GrblPlotter
             setup.importGCRelative = false;
 
             setup.importGraphicDevelopmentEnable = false;
-			
-			setup.importGCAux1Enable = false;
-			setup.importGCAux2Enable = false;
+
+            setup.importGCAux1Enable = false;
+            setup.importGCAux2Enable = false;
         }
         public void ReadImport()
         {
@@ -883,20 +883,20 @@ namespace GrblPlotter
 
             section = "Command extension";
             if (SetVariable(ref tmpbool, section, "Aux1 enable")) { setup.importGCAux1Enable = tmpbool; }
-            if (SetVariable(ref tmpstr,  section, "Aux1 axis")) { setup.importGCAux1Axis = tmpstr; }
+            if (SetVariable(ref tmpstr, section, "Aux1 axis")) { setup.importGCAux1Axis = tmpstr; }
             if (SetVariable(ref tmpdeci, section, "Aux1 factor")) { setup.importGCAux1Factor = tmpdeci; }
             if (SetVariable(ref tmpbool, section, "Aux1 absolute")) { setup.importGCAux1SumUp = tmpbool; }
             if (SetVariable(ref tmpbool, section, "Aux1 Z include")) { setup.importGCAux1ZUse = tmpbool; }
             if (SetVariable(ref tmpdeci, section, "Aux1 Z factor")) { setup.importGCAux1ZFactor = tmpdeci; }
-            if (SetVariable(ref tmpint,  section, "Aux1 Z process")) { setup.importGCAux1ZMode = tmpint; }
+            if (SetVariable(ref tmpint, section, "Aux1 Z process")) { setup.importGCAux1ZMode = tmpint; }
             if (SetVariable(ref tmpbool, section, "Aux2 enable")) { setup.importGCAux2Enable = tmpbool; }
-            if (SetVariable(ref tmpstr,  section, "Aux2 axis")) { setup.importGCAux2Axis = tmpstr; }
+            if (SetVariable(ref tmpstr, section, "Aux2 axis")) { setup.importGCAux2Axis = tmpstr; }
             if (SetVariable(ref tmpdeci, section, "Aux2 factor")) { setup.importGCAux2Factor = tmpdeci; }
             if (SetVariable(ref tmpbool, section, "Aux2 absolute")) { setup.importGCAux2SumUp = tmpbool; }
             if (SetVariable(ref tmpbool, section, "Aux2 Z include")) { setup.importGCAux2ZUse = tmpbool; }
             if (SetVariable(ref tmpdeci, section, "Aux2 Z factor")) { setup.importGCAux2ZFactor = tmpdeci; }
-            if (SetVariable(ref tmpint,  section, "Aux2 Z process")) { setup.importGCAux2ZMode = tmpint; }
-			
+            if (SetVariable(ref tmpint, section, "Aux2 Z process")) { setup.importGCAux2ZMode = tmpint; }
+
 
             section = "GCode generation";
             if (SetVariable(ref tmpdeci, section, "Dec Places")) { setup.importGCDecPlaces = tmpdeci; }
@@ -984,16 +984,17 @@ namespace GrblPlotter
                 string fpath = Datapath.Tools + "\\" + tmpstr;
                 if (File.Exists(fpath))
                 {
-					try {
-						File.Copy(Datapath.Tools + "\\" + ToolTable.DefaultFileName, Datapath.Tools + "\\_beforeUseCase.csv", true);
-						File.Copy(Datapath.Tools + "\\" + tmpstr, Datapath.Tools + "\\" + ToolTable.DefaultFileName, true);
-						setup.toolTableOriginal = true;
-						ToolTable.Init(" (IniFile)");
-					}
-					catch (Exception err)
-					{
-						MessageBox.Show("Could not copy data: "+err.Message,"Error");
-					}					
+                    try
+                    {
+                        File.Copy(Datapath.Tools + "\\" + ToolTable.DefaultFileName, Datapath.Tools + "\\_beforeUseCase.csv", true);
+                        File.Copy(Datapath.Tools + "\\" + tmpstr, Datapath.Tools + "\\" + ToolTable.DefaultFileName, true);
+                        setup.toolTableOriginal = true;
+                        ToolTable.Init(" (IniFile)");
+                    }
+                    catch (Exception err)
+                    {
+                        MessageBox.Show("Could not copy data: " + err.Message, "Error");
+                    }
                 }
                 else
                 {

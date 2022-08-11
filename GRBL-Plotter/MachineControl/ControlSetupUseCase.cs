@@ -139,10 +139,11 @@ namespace GrblPlotter
             if (iniAvailable)
             {
                 BtnLoad.BackColor = LblUseCaseHeader.BackColor = System.Drawing.Color.Yellow;
-                LblUseCaseHeader.Text = string.Format(Localization.GetString("useCaseHeader2"), lBUseCase.Text );
+                LblUseCaseHeader.Text = string.Format(Localization.GetString("useCaseHeader2"), lBUseCase.Text);
             }
             else
-            {   BtnLoad.BackColor = System.Drawing.SystemColors.Control;
+            {
+                BtnLoad.BackColor = System.Drawing.SystemColors.Control;
                 LblUseCaseHeader.BackColor = BtnOk.BackColor;
                 LblUseCaseHeader.Text = string.Format(Localization.GetString("useCaseHeader1"), Properties.Settings.Default.useCaseLastLoaded);
                 tBUseCaseInfo.Text = Localization.GetString("useCaseInfo");

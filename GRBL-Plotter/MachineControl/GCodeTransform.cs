@@ -180,7 +180,7 @@ namespace GrblPlotter
         internal static string TransformGCodeRotate(double angle, double scale, XyPoint offset, bool calcCenter = true)
         {
             Logger.Debug(">^< TransformGCodeRotate angle: {0}", angle);
-			EventCollector.SetTransform("Trot");
+            EventCollector.SetTransform("Trot");
             if (gcodeList == null) return "";
             XyPoint centerOfFigure = xyzSize.GetCenter();
             if (lastFigureNumber > 0)
@@ -256,7 +256,7 @@ namespace GrblPlotter
                     }
                     if (tangentialAxisEnable)
                     {
-						double tangle =((double)Properties.Settings.Default.importGCTangentialTurn * angle / 360);
+                        double tangle = ((double)Properties.Settings.Default.importGCTangentialTurn * angle / 360);
 
                         if ((tangentialAxisName == "C") && (gcline.c != null)) { gcline.c += tangle; }
                         else if ((tangentialAxisName == "B") && (gcline.b != null)) { gcline.b += tangle; }
@@ -282,7 +282,7 @@ namespace GrblPlotter
         public static string TransformGCodeScale(double scaleX, double scaleY, XyPoint centerOfFigure)
         {
             Logger.Debug("<=> TransformGCodeScale scaleX: {0}, scale Y: {1}", scaleX, scaleY);
-			EventCollector.SetTransform("Tscl");
+            EventCollector.SetTransform("Tscl");
             if (gcodeList == null) return "";
 
             double factor_x = scaleX / 100;
@@ -300,7 +300,8 @@ namespace GrblPlotter
             foreach (GcodeByLine gcline in gcodeList)
             {
                 if ((lastFigureNumber > 0) && lastFigureNumbers.Contains(gcline.figureNumber))
-                {   if (gcline.motionMode > 1)
+                {
+                    if (gcline.motionMode > 1)
                     {
                         Logger.Warn("TransformGCodeScale found G2/G3 command, set scaleX=scaleY");
                         factor_x = factor_y = Math.Max(factor_x, factor_y);
@@ -372,7 +373,7 @@ namespace GrblPlotter
         public static string TransformGCodeOffset(double tx, double ty, Translate shiftToZero)
         {
             Logger.Debug("<-> TransformGCodeOffset X: {0:0.000}, Y: {1:0.000}, Offset: {2},   lastFigureNumber:{3}", tx, ty, shiftToZero, lastFigureNumber);
-			EventCollector.SetTransform("Toff");
+            EventCollector.SetTransform("Toff");
             if (gcodeList == null) return "";
             if ((lastFigureNumber <= 0) || (!(shiftToZero == Translate.None)))
             { pathMarkSelection.Reset(); lastFigureNumber = -1; }
@@ -477,7 +478,7 @@ namespace GrblPlotter
         public static string TransformGCodeRadiusCorrection(double radius)
         {
             Logger.Debug("..transformGCodeRadiusCorrection r: {0}", radius);
-			EventCollector.SetTransform("Trad");
+            EventCollector.SetTransform("Trad");
             if (gcodeList == null) return "";
 
             if (lastFigureNumber > 0)
