@@ -602,13 +602,13 @@
     <Setting Name="grblPollIntervalReduce" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="grblRunTimeFlood" Type="System.Double" Scope="User">
+    <Setting Name="grblRunTimeFlood" Type="System.Int64" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="grblRunTimeMist" Type="System.Double" Scope="User">
+    <Setting Name="grblRunTimeMist" Type="System.Int64" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="grblRunTimeSpindle" Type="System.Double" Scope="User">
+    <Setting Name="grblRunTimeSpindle" Type="System.Int64" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="grblStreamingProtocol1" Type="System.Boolean" Scope="User">

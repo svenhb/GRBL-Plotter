@@ -2426,9 +2426,9 @@ namespace GrblPlotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double grblRunTimeFlood {
+        public long grblRunTimeFlood {
             get {
-                return ((double)(this["grblRunTimeFlood"]));
+                return ((long)(this["grblRunTimeFlood"]));
             }
             set {
                 this["grblRunTimeFlood"] = value;
@@ -2438,9 +2438,9 @@ namespace GrblPlotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double grblRunTimeMist {
+        public long grblRunTimeMist {
             get {
-                return ((double)(this["grblRunTimeMist"]));
+                return ((long)(this["grblRunTimeMist"]));
             }
             set {
                 this["grblRunTimeMist"] = value;
@@ -2450,9 +2450,9 @@ namespace GrblPlotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double grblRunTimeSpindle {
+        public long grblRunTimeSpindle {
             get {
-                return ((double)(this["grblRunTimeSpindle"]));
+                return ((long)(this["grblRunTimeSpindle"]));
             }
             set {
                 this["grblRunTimeSpindle"] = value;
