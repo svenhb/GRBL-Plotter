@@ -451,4 +451,48 @@ Consulte https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layer
   <data name="codeMessage_1302_dontplot" xml:space="preserve">
     <value>La capa, la ruta o el objeto no son visibles debido al atributo de visibilidad.</value>
   </data>
+  <data name="statusStripeButtonBlocked" xml:space="preserve">
+    <value>El botón personalizado está bloqueado durante la transmisión</value>
+  </data>
+  <data name="statusStripeStreamingPause" xml:space="preserve">
+    <value>Pausa de transmisión</value>
+  </data>
+  <data name="statusStripeStreamingContinue" xml:space="preserve">
+    <value>Continuar transmitiendo</value>
+  </data>
+  <data name="statusStripeStreamingCheck" xml:space="preserve">
+    <value>Compruebe el código G en el controlador grbl</value>
+  </data>
+  <data name="statusStripeStreamingStop" xml:space="preserve">
+    <value>Streaming STOP en la línea</value>
+  </data>
+  <data name="statusStripeStreamingStart" xml:space="preserve">
+    <value>Streaming START desde la línea</value>
+  </data>
+  <data name="statusStripeStreamingFinish" xml:space="preserve">
+    <value>Transmisión FINALIZADA después de</value>
+  </data>
+  <data name="codeMessage_1102_dontplot" xml:space="preserve">
+    <value>La capa, la ruta o el objeto no son visibles debido al atributo de visibilidad.</value>
+  </data>
+  <data name="codeMessage_1103_elementsupport" xml:space="preserve">
+    <value>Se encontró un elemento SVG-XML no admitido.
+La imagen resultante puede tener un aspecto diferente al esperado.
+Posible solución alternativa: intente convertir el objeto en ruta.</value>
+  </data>
+  <data name="codeMessage_1104_elementuk" xml:space="preserve">
+    <value>Se encontró un elemento SVG-XML desconocido.
+La imagen resultante puede tener un aspecto diferente al esperado.
+Posible solución alternativa: intente convertir el objeto en ruta.</value>
+  </data>
+  <data name="codeMessage_1105_textpath" xml:space="preserve">
+    <value>Se encontró un elemento 'tspan' dentro de un elemento 'textPath'. Esta combinación no es compatible.
+La imagen resultante puede tener un aspecto diferente al esperado.
+Posible solución alternativa: intente convertir el objeto en ruta.</value>
+  </data>
+  <data name="codeMessage_1106_attributesupport" xml:space="preserve">
+    <value>Se encontró un atributo SVG-XML no compatible.
+La imagen resultante puede tener un aspecto diferente al esperado.
+Posible solución alternativa: intente convertir el objeto en ruta.</value>
+  </data>
 </root>

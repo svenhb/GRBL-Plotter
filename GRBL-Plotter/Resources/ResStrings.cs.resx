@@ -451,4 +451,48 @@ Zkontrolujte https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-l
   <data name="codeMessage_1302_dontplot" xml:space="preserve">
     <value>Vrstva, cesta nebo objekt nejsou viditelné kvůli atributu viditelnosti.</value>
   </data>
+  <data name="statusStripeButtonBlocked" xml:space="preserve">
+    <value>Vlastní tlačítko je při streamování blokováno</value>
+  </data>
+  <data name="statusStripeStreamingPause" xml:space="preserve">
+    <value>PAUZA streamování</value>
+  </data>
+  <data name="statusStripeStreamingContinue" xml:space="preserve">
+    <value>Pokračujte ve streamování</value>
+  </data>
+  <data name="statusStripeStreamingCheck" xml:space="preserve">
+    <value>Zkontrolujte G-Code na ovladači grbl</value>
+  </data>
+  <data name="statusStripeStreamingStop" xml:space="preserve">
+    <value>Streamování STOP na lince</value>
+  </data>
+  <data name="statusStripeStreamingStart" xml:space="preserve">
+    <value>Streamování START z řádku</value>
+  </data>
+  <data name="statusStripeStreamingFinish" xml:space="preserve">
+    <value>Streamování DOKONČENO poté</value>
+  </data>
+  <data name="codeMessage_1102_dontplot" xml:space="preserve">
+    <value>Vrstva, cesta nebo objekt nejsou viditelné kvůli atributu viditelnosti.</value>
+  </data>
+  <data name="codeMessage_1103_elementsupport" xml:space="preserve">
+    <value>Byl nalezen nepodporovaný prvek SVG-XML.
+Výsledný obrázek může vypadat jinak, než se očekávalo.
+Možné řešení: zkuste převést objekt na cestu.</value>
+  </data>
+  <data name="codeMessage_1104_elementuk" xml:space="preserve">
+    <value>Byl nalezen neznámý prvek SVG-XML.
+Výsledný obrázek může vypadat jinak, než se očekávalo.
+Možné řešení: zkuste převést objekt na cestu.</value>
+  </data>
+  <data name="codeMessage_1105_textpath" xml:space="preserve">
+    <value>Byl nalezen prvek 'tspan' v prvku 'textPath'. Tato kombinace není podporována.
+Výsledný obrázek může vypadat jinak, než se očekávalo.
+Možné řešení: zkuste převést objekt na cestu.</value>
+  </data>
+  <data name="codeMessage_1106_attributesupport" xml:space="preserve">
+    <value>Byl nalezen nepodporovaný atribut SVG-XML.
+Výsledný obrázek může vypadat jinak, než se očekávalo.
+Možné řešení: zkuste převést objekt na cestu.</value>
+  </data>
 </root>

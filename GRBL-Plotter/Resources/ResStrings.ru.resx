@@ -451,4 +451,48 @@
   <data name="codeMessage_1302_dontplot" xml:space="preserve">
     <value>Слой, путь или объект не видны из-за атрибута видимости.</value>
   </data>
+  <data name="statusStripeButtonBlocked" xml:space="preserve">
+    <value>Пользовательская кнопка заблокирована во время потоковой передачи</value>
+  </data>
+  <data name="statusStripeStreamingPause" xml:space="preserve">
+    <value>Потоковая передача ПАУЗА</value>
+  </data>
+  <data name="statusStripeStreamingContinue" xml:space="preserve">
+    <value>Продолжить трансляцию</value>
+  </data>
+  <data name="statusStripeStreamingCheck" xml:space="preserve">
+    <value>Проверить G-код на контроллере grbl</value>
+  </data>
+  <data name="statusStripeStreamingStop" xml:space="preserve">
+    <value>Потоковое СТОП на линии</value>
+  </data>
+  <data name="statusStripeStreamingStart" xml:space="preserve">
+    <value>Потоковое СТАРТ с линии</value>
+  </data>
+  <data name="statusStripeStreamingFinish" xml:space="preserve">
+    <value>Трансляция ЗАВЕРШЕНА после</value>
+  </data>
+  <data name="codeMessage_1102_dontplot" xml:space="preserve">
+    <value>Слой, путь или объект не видны из-за атрибута видимости.</value>
+  </data>
+  <data name="codeMessage_1103_elementsupport" xml:space="preserve">
+    <value>Обнаружен неподдерживаемый элемент SVG-XML.
+Полученное изображение может выглядеть иначе, чем ожидалось.
+Возможный обходной путь: попробуйте преобразовать объект в путь.</value>
+  </data>
+  <data name="codeMessage_1104_elementuk" xml:space="preserve">
+    <value>Обнаружен неизвестный элемент SVG-XML.
+Полученное изображение может выглядеть иначе, чем ожидалось.
+Возможный обходной путь: попробуйте преобразовать объект в путь.</value>
+  </data>
+  <data name="codeMessage_1105_textpath" xml:space="preserve">
+    <value>Обнаружен элемент tspan в элементе textPath. Эта комбинация не поддерживается.
+Полученное изображение может выглядеть иначе, чем ожидалось.
+Возможный обходной путь: попробуйте преобразовать объект в путь.</value>
+  </data>
+  <data name="codeMessage_1106_attributesupport" xml:space="preserve">
+    <value>Обнаружен неподдерживаемый атрибут SVG-XML.
+Полученное изображение может выглядеть иначе, чем ожидалось.
+Возможный обходной путь: попробуйте преобразовать объект в путь.</value>
+  </data>
 </root>

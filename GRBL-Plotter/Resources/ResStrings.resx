@@ -463,4 +463,51 @@ https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlist</val
   <data name="codeMessage_1x02_dontplot" xml:space="preserve">
     <value />
   </data>
+  <data name="statusStripeButtonBlocked" xml:space="preserve">
+    <value>Custom button is blocked while streaming</value>
+  </data>
+  <data name="statusStripeStreamingPause" xml:space="preserve">
+    <value>Streaming PAUSE</value>
+  </data>
+  <data name="statusStripeStreamingContinue" xml:space="preserve">
+    <value>Continue streaming</value>
+  </data>
+  <data name="statusStripeStreamingCheck" xml:space="preserve">
+    <value>Check G-Code on grbl controller</value>
+  </data>
+  <data name="statusStripeStreamingStop" xml:space="preserve">
+    <value>Streaming STOP at line</value>
+  </data>
+  <data name="statusStripeStreamingStart" xml:space="preserve">
+    <value>Streaming START from line</value>
+  </data>
+  <data name="statusStripeStreamingFinish" xml:space="preserve">
+    <value>Streaming FINISHED after</value>
+  </data>
+  <data name="NewKey" xml:space="preserve">
+    <value />
+  </data>
+  <data name="codeMessage_1102_dontplot" xml:space="preserve">
+    <value>Layer, path or object is not visible because of visibility attribute.</value>
+  </data>
+  <data name="codeMessage_1103_elementsupport" xml:space="preserve">
+    <value>An unsupported SVG-XML element was found.
+The resulting image may look different than expected.
+Possible workaround: try to convert object to path.</value>
+  </data>
+  <data name="codeMessage_1104_elementuk" xml:space="preserve">
+    <value>An unknown SVG-XML element was found.
+The resulting image may look different than expected.
+Possible workaround: try to convert object to path.</value>
+  </data>
+  <data name="codeMessage_1105_textpath" xml:space="preserve">
+    <value>An 'tspan' element within a 'textPath' element was found. This combination is not supported.
+The resulting image may look different than expected.
+Possible workaround: try to convert object to path.</value>
+  </data>
+  <data name="codeMessage_1106_attributesupport" xml:space="preserve">
+    <value>An unsupported SVG-XML attribute was found.
+The resulting image may look different than expected.
+Possible workaround: try to convert object to path.</value>
+  </data>
 </root>

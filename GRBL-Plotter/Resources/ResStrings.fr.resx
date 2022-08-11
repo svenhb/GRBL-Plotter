@@ -445,4 +445,48 @@ Vérifiez https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-laye
   <data name="codeMessage_1302_dontplot" xml:space="preserve">
     <value>Le calque, le chemin ou l'objet n'est pas visible en raison de l'attribut de visibilité.</value>
   </data>
+  <data name="statusStripeButtonBlocked" xml:space="preserve">
+    <value>Le bouton personnalisé est bloqué pendant la diffusion</value>
+  </data>
+  <data name="statusStripeStreamingPause" xml:space="preserve">
+    <value>PAUSE de la diffusion en continu</value>
+  </data>
+  <data name="statusStripeStreamingContinue" xml:space="preserve">
+    <value>Continuer la diffusion</value>
+  </data>
+  <data name="statusStripeStreamingCheck" xml:space="preserve">
+    <value>Vérifiez le code G sur le contrôleur grbl</value>
+  </data>
+  <data name="statusStripeStreamingStop" xml:space="preserve">
+    <value>Streaming STOP à la ligne</value>
+  </data>
+  <data name="statusStripeStreamingStart" xml:space="preserve">
+    <value>Streaming START à partir de la ligne</value>
+  </data>
+  <data name="statusStripeStreamingFinish" xml:space="preserve">
+    <value>Streaming TERMINÉ après</value>
+  </data>
+  <data name="codeMessage_1102_dontplot" xml:space="preserve">
+    <value>Le calque, le chemin ou l'objet n'est pas visible en raison de l'attribut de visibilité.</value>
+  </data>
+  <data name="codeMessage_1103_elementsupport" xml:space="preserve">
+    <value>Un élément SVG-XML non pris en charge a été trouvé.
+L'image résultante peut sembler différente de celle attendue.
+Solution de contournement possible : essayez de convertir l'objet en chemin.</value>
+  </data>
+  <data name="codeMessage_1104_elementuk" xml:space="preserve">
+    <value>Un élément SVG-XML inconnu a été trouvé.
+L'image résultante peut sembler différente de celle attendue.
+Solution de contournement possible : essayez de convertir l'objet en chemin.</value>
+  </data>
+  <data name="codeMessage_1105_textpath" xml:space="preserve">
+    <value>Un élément 'tspan' dans un élément 'textPath' a été trouvé. Cette combinaison n'est pas prise en charge.
+L'image résultante peut sembler différente de celle attendue.
+Solution de contournement possible : essayez de convertir l'objet en chemin.</value>
+  </data>
+  <data name="codeMessage_1106_attributesupport" xml:space="preserve">
+    <value>Un attribut SVG-XML non pris en charge a été trouvé.
+L'image résultante peut sembler différente de celle attendue.
+Solution de contournement possible : essayez de convertir l'objet en chemin.</value>
+  </data>
 </root>

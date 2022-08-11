@@ -451,4 +451,48 @@
   <data name="codeMessage_1302_dontplot" xml:space="preserve">
     <value>الطبقة أو المسار أو الكائن غير مرئي بسبب سمة الرؤية.</value>
   </data>
+  <data name="statusStripeButtonBlocked" xml:space="preserve">
+    <value>تم حظر الزر المخصص أثناء البث</value>
+  </data>
+  <data name="statusStripeStreamingPause" xml:space="preserve">
+    <value>تدفق وقفة</value>
+  </data>
+  <data name="statusStripeStreamingContinue" xml:space="preserve">
+    <value>استمر في البث</value>
+  </data>
+  <data name="statusStripeStreamingCheck" xml:space="preserve">
+    <value>تحقق من G-Code على وحدة تحكم grbl</value>
+  </data>
+  <data name="statusStripeStreamingStop" xml:space="preserve">
+    <value>الجري STOP على الخط</value>
+  </data>
+  <data name="statusStripeStreamingStart" xml:space="preserve">
+    <value>الجري START من الخط</value>
+  </data>
+  <data name="statusStripeStreamingFinish" xml:space="preserve">
+    <value>انتهى البث بعد</value>
+  </data>
+  <data name="codeMessage_1102_dontplot" xml:space="preserve">
+    <value>الطبقة أو المسار أو الكائن غير مرئي بسبب سمة الرؤية.</value>
+  </data>
+  <data name="codeMessage_1103_elementsupport" xml:space="preserve">
+    <value>تم العثور على عنصر SVG-XML غير مدعوم.
+قد تبدو الصورة الناتجة مختلفة عما هو متوقع.
+الحل المحتمل: حاول تحويل الكائن إلى مسار.</value>
+  </data>
+  <data name="codeMessage_1104_elementuk" xml:space="preserve">
+    <value>تم العثور على عنصر SVG-XML غير معروف.
+قد تبدو الصورة الناتجة مختلفة عما هو متوقع.
+الحل المحتمل: حاول تحويل الكائن إلى مسار.</value>
+  </data>
+  <data name="codeMessage_1105_textpath" xml:space="preserve">
+    <value>تم العثور على عنصر "tspan" داخل عنصر "textPath". لا يتم اعتماد هذا الجمع.
+قد تبدو الصورة الناتجة مختلفة عما هو متوقع.
+الحل المحتمل: حاول تحويل الكائن إلى مسار.</value>
+  </data>
+  <data name="codeMessage_1106_attributesupport" xml:space="preserve">
+    <value>تم العثور على سمة SVG-XML غير مدعومة.
+قد تبدو الصورة الناتجة مختلفة عما هو متوقع.
+الحل المحتمل: حاول تحويل الكائن إلى مسار.</value>
+  </data>
 </root>

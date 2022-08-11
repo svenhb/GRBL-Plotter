@@ -451,4 +451,48 @@
   <data name="codeMessage_1302_dontplot" xml:space="preserve">
     <value>由于可见性属性，图层、路径或对象不可见。</value>
   </data>
+  <data name="statusStripeButtonBlocked" xml:space="preserve">
+    <value>流式传输时自定义按钮被阻止</value>
+  </data>
+  <data name="statusStripeStreamingPause" xml:space="preserve">
+    <value>流媒体暂停</value>
+  </data>
+  <data name="statusStripeStreamingContinue" xml:space="preserve">
+    <value>继续流式传输</value>
+  </data>
+  <data name="statusStripeStreamingCheck" xml:space="preserve">
+    <value>检查 grbl 控制器上的 G 代码</value>
+  </data>
+  <data name="statusStripeStreamingStop" xml:space="preserve">
+    <value>在线停止流式传输</value>
+  </data>
+  <data name="statusStripeStreamingStart" xml:space="preserve">
+    <value>从线路流式传输 START</value>
+  </data>
+  <data name="statusStripeStreamingFinish" xml:space="preserve">
+    <value>流式传输完成后</value>
+  </data>
+  <data name="codeMessage_1102_dontplot" xml:space="preserve">
+    <value>由于可见性属性，图层、路径或对象不可见。</value>
+  </data>
+  <data name="codeMessage_1103_elementsupport" xml:space="preserve">
+    <value>找到了不受支持的 SVG-XML 元素。
+生成的图像可能看起来与预期不同。
+可能的解决方法：尝试将对象转换为路径。</value>
+  </data>
+  <data name="codeMessage_1104_elementuk" xml:space="preserve">
+    <value>发现未知的 SVG-XML 元素。
+生成的图像可能看起来与预期不同。
+可能的解决方法：尝试将对象转换为路径。</value>
+  </data>
+  <data name="codeMessage_1105_textpath" xml:space="preserve">
+    <value>在“textPath”元素中找到了一个“tspan”元素。不支持此组合。
+生成的图像可能看起来与预期不同。
+可能的解决方法：尝试将对象转换为路径。</value>
+  </data>
+  <data name="codeMessage_1106_attributesupport" xml:space="preserve">
+    <value>找到了不受支持的 SVG-XML 属性。
+生成的图像可能看起来与预期不同。
+可能的解决方法：尝试将对象转换为路径。</value>
+  </data>
 </root>

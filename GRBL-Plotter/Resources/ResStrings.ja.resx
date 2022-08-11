@@ -451,4 +451,48 @@ https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlistを�
   <data name="codeMessage_1302_dontplot" xml:space="preserve">
     <value>可視性属性のため、レイヤー、パス、またはオブジェクトは表示されません。</value>
   </data>
+  <data name="statusStripeButtonBlocked" xml:space="preserve">
+    <value>ストリーミング中はカスタムボタンがブロックされます</value>
+  </data>
+  <data name="statusStripeStreamingPause" xml:space="preserve">
+    <value>ストリーミング一時停止</value>
+  </data>
+  <data name="statusStripeStreamingContinue" xml:space="preserve">
+    <value>ストリーミングを続ける</value>
+  </data>
+  <data name="statusStripeStreamingCheck" xml:space="preserve">
+    <value>grblコントローラーのGコードを確認してください</value>
+  </data>
+  <data name="statusStripeStreamingStop" xml:space="preserve">
+    <value>ラインでのストリーミング停止</value>
+  </data>
+  <data name="statusStripeStreamingStart" xml:space="preserve">
+    <value>ラインからのストリーミングSTART</value>
+  </data>
+  <data name="statusStripeStreamingFinish" xml:space="preserve">
+    <value>ストリーミング終了後</value>
+  </data>
+  <data name="codeMessage_1102_dontplot" xml:space="preserve">
+    <value>可視性属性のため、レイヤー、パス、またはオブジェクトは表示されません。</value>
+  </data>
+  <data name="codeMessage_1103_elementsupport" xml:space="preserve">
+    <value>サポートされていない SVG-XML 要素が見つかりました。
+結果のイメージは、予想とは異なる場合があります。
+考えられる回避策: オブジェクトをパスに変換してみてください。</value>
+  </data>
+  <data name="codeMessage_1104_elementuk" xml:space="preserve">
+    <value>不明な SVG-XML 要素が見つかりました。
+結果のイメージは、予想とは異なる場合があります。
+考えられる回避策: オブジェクトをパスに変換してみてください。</value>
+  </data>
+  <data name="codeMessage_1105_textpath" xml:space="preserve">
+    <value>「textPath」要素内に「tspan」要素が見つかりました。この組み合わせはサポートされていません。
+結果のイメージは、予想とは異なる場合があります。
+考えられる回避策: オブジェクトをパスに変換してみてください。</value>
+  </data>
+  <data name="codeMessage_1106_attributesupport" xml:space="preserve">
+    <value>サポートされていない SVG-XML 属性が見つかりました。
+結果のイメージは、予想とは異なる場合があります。
+考えられる回避策: オブジェクトをパスに変換してみてください。</value>
+  </data>
 </root>

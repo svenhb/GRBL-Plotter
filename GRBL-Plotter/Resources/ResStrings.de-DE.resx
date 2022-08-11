@@ -382,4 +382,48 @@ Siehe https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlis
   <data name="codeMessage_1302_dontplot" xml:space="preserve">
     <value>Ebene, Pfad oder Objekt sind aufgrund des Sichtbarkeitsattributs nicht sichtbar.</value>
   </data>
+  <data name="statusStripeButtonBlocked" xml:space="preserve">
+    <value>Die benutzerdefinierte Schaltfläche ist während des Streamings blockiert</value>
+  </data>
+  <data name="statusStripeStreamingPause" xml:space="preserve">
+    <value>Streaming-PAUSE</value>
+  </data>
+  <data name="statusStripeStreamingContinue" xml:space="preserve">
+    <value>Streaming fortsetzen</value>
+  </data>
+  <data name="statusStripeStreamingCheck" xml:space="preserve">
+    <value>Überprüfung des G-Code auf dem Grbl-Controller</value>
+  </data>
+  <data name="statusStripeStreamingStop" xml:space="preserve">
+    <value>Streaming STOP an der Zeile</value>
+  </data>
+  <data name="statusStripeStreamingStart" xml:space="preserve">
+    <value>Streaming START von Zeile</value>
+  </data>
+  <data name="statusStripeStreamingFinish" xml:space="preserve">
+    <value>Streaming FERTIG nach</value>
+  </data>
+  <data name="codeMessage_1102_dontplot" xml:space="preserve">
+    <value>Ebene, Pfad oder Objekt sind aufgrund des Sichtbarkeitsattributs nicht sichtbar.</value>
+  </data>
+  <data name="codeMessage_1103_elementsupport" xml:space="preserve">
+    <value>Es wurde ein nicht unterstütztes SVG-XML-Element gefunden.
+Das resultierende Bild kann anders als erwartet aussehen.
+Mögliche Problemumgehung: Versuchen Sie, das Objekt in einen Pfad umzuwandeln.</value>
+  </data>
+  <data name="codeMessage_1104_elementuk" xml:space="preserve">
+    <value>Ein unbekanntes SVG-XML-Element wurde gefunden.
+Das resultierende Bild kann anders als erwartet aussehen.
+Mögliche Problemumgehung: Versuchen Sie, das Objekt in einen Pfad umzuwandeln.</value>
+  </data>
+  <data name="codeMessage_1105_textpath" xml:space="preserve">
+    <value>Ein 'tspan'-Element innerhalb eines 'textPath'-Elements wurde gefunden. Diese Kombination wird nicht unterstützt.
+Das resultierende Bild kann anders als erwartet aussehen.
+Mögliche Problemumgehung: Versuchen Sie, das Objekt in einen Pfad umzuwandeln.</value>
+  </data>
+  <data name="codeMessage_1106_attributesupport" xml:space="preserve">
+    <value>Es wurde ein nicht unterstütztes SVG-XML-Attribut gefunden.
+Das resultierende Bild kann anders als erwartet aussehen.
+Mögliche Problemumgehung: Versuchen Sie, das Objekt in einen Pfad umzuwandeln.</value>
+  </data>
 </root>

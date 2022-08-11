@@ -205,8 +205,8 @@ namespace GrblPlotter.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Layer is not visible or printing is disabled.
-        ///Check https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlist ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Layer is not visible or printing of layer is disabled. Check:
+        ///https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlist ähnelt.
         /// </summary>
         public static string codeMessage_1202_dontplot {
             get {
@@ -215,11 +215,20 @@ namespace GrblPlotter.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Layer or object is not visible. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Layer, path or object is not visible because of visibility attribute. ähnelt.
         /// </summary>
         public static string codeMessage_1302_dontplot {
             get {
                 return ResourceManager.GetString("codeMessage_1302_dontplot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        /// </summary>
+        public static string codeMessage_1x02_dontplot {
+            get {
+                return ResourceManager.GetString("codeMessage_1x02_dontplot", resourceCulture);
             }
         }
         
@@ -926,6 +935,15 @@ namespace GrblPlotter.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Custom button is blocked while streaming ähnelt.
+        /// </summary>
+        public static string statusStripeButtonBlocked {
+            get {
+                return ResourceManager.GetString("statusStripeButtonBlocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Check COM-window for further information ähnelt.
         /// </summary>
         public static string statusStripeCheckCOM {
@@ -1025,11 +1043,65 @@ namespace GrblPlotter.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Check G-Code on grbl controller ähnelt.
+        /// </summary>
+        public static string statusStripeStreamingCheck {
+            get {
+                return ResourceManager.GetString("statusStripeStreamingCheck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Continue streaming ähnelt.
+        /// </summary>
+        public static string statusStripeStreamingContinue {
+            get {
+                return ResourceManager.GetString("statusStripeStreamingContinue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Streaming FINISHED after ähnelt.
+        /// </summary>
+        public static string statusStripeStreamingFinish {
+            get {
+                return ResourceManager.GetString("statusStripeStreamingFinish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Streaming PAUSE ähnelt.
+        /// </summary>
+        public static string statusStripeStreamingPause {
+            get {
+                return ResourceManager.GetString("statusStripeStreamingPause", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Streaming START from line ähnelt.
+        /// </summary>
+        public static string statusStripeStreamingStart {
+            get {
+                return ResourceManager.GetString("statusStripeStreamingStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Streaming status and G-Code are saved in &apos;_lastProcessed.nc&apos;. Continuation after program restart is possible. ähnelt.
         /// </summary>
         public static string statusStripeStreamingStatusSaved {
             get {
                 return ResourceManager.GetString("statusStripeStreamingStatusSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Streaming STOP at line ähnelt.
+        /// </summary>
+        public static string statusStripeStreamingStop {
+            get {
+                return ResourceManager.GetString("statusStripeStreamingStop", resourceCulture);
             }
         }
         
