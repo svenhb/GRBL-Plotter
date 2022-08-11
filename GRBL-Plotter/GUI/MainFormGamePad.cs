@@ -65,16 +65,18 @@ namespace GrblPlotter
                             int value = state.Value;
                             if ((value > 0) && (offset.IndexOf("Buttons") >= 0))        // Buttons
                             {
-                                try {
+                                try
+                                {
                                     command = Properties.Settings.Default["gamePad" + offset].ToString();        // gP
                                     if (command.IndexOf('#') >= 0)
                                     { ProcessSpecialCommands(command); }
                                     else
                                     { ProcessCommands(command); }
                                 }
-                                catch (Exception Ex) { 
-									Logger.Error(Ex, "ProcessGamePadNew "); 
-								}
+                                catch (Exception Ex)
+                                {
+                                    Logger.Error(Ex, "ProcessGamePadNew ");
+                                }
                                 return;
                             }
                             else if (offset.IndexOf("PointOfViewControllers0") >= 0)

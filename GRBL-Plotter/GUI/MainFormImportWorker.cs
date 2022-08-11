@@ -109,8 +109,8 @@ namespace GrblPlotter
             if (e.UserState is MyUserState)
             {
                 MyUserState state = e.UserState as MyUserState;
-				int p2Val = state.Value;
-				if (p2Val > 100) p2Val = 100;
+                int p2Val = state.Value;
+                if (p2Val > 100) p2Val = 100;
                 this.progressBar2.Value = p2Val;
                 this.resultLabel.Text = state.Content;
             }

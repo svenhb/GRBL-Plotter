@@ -18,12 +18,6 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace GrblPlotter.GUI
@@ -36,7 +30,7 @@ namespace GrblPlotter.GUI
         private string parser = "";
         private XyzPoint position;
         public int LineStart
-        {            
+        {
             get { lineStart = (int)NudStreamStart.Value; return lineStart; }
             set
             {
@@ -80,7 +74,7 @@ namespace GrblPlotter.GUI
             set
             {
                 position = value;
-                lblPosition.Text = string.Format("X:{0:0.000}  Y:{1:0.000}  Z:{2:0.000}", position.X, position.Y, position.Z);                  
+                lblPosition.Text = string.Format("X:{0:0.000}  Y:{1:0.000}  Z:{2:0.000}", position.X, position.Y, position.Z);
             }
         }
 

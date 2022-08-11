@@ -35,9 +35,9 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
-using System.Threading;
-using System.Text;
 using System.IO;
+using System.Text;
+using System.Threading;
 
 namespace GrblPlotter
 {
@@ -83,7 +83,7 @@ namespace GrblPlotter
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
-        internal static Encoding[] SaveEncoding = { Encoding.Unicode, Encoding.ASCII, Encoding.UTF8, Encoding.GetEncoding("iso-8859-1") }; 
+        internal static Encoding[] SaveEncoding = { Encoding.Unicode, Encoding.ASCII, Encoding.UTF8, Encoding.GetEncoding("iso-8859-1") };
         internal static Dictionary<string, double> variable = new Dictionary<string, double>();
         public static string InsertVariable(string line)//, Dictionary<string, double> variable)
         {
@@ -410,8 +410,8 @@ namespace GrblPlotter
         public int brightnes;
         public ImgPoint(float x, float y, int z)
         { X = x; Y = y; brightnes = z; }
-    //    public ImgPoint(float x, float y)
-    //    { X = x; Y = y; brightnes = -1; }
+        //    public ImgPoint(float x, float y)
+        //    { X = x; Y = y; brightnes = -1; }
         public double DistanceTo(ImgPoint anotherPoint)
         {
             double distanceCodeX = X - anotherPoint.X;
@@ -732,7 +732,7 @@ namespace GrblPlotter
         public static string GetCode()
         {
             if (form != null)
-				form.SetUndoText("");
+                form.SetUndoText("");
             return unDoCode;
         }
     }
@@ -748,11 +748,11 @@ namespace GrblPlotter
             try
             {       //Set Language  
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(langId);
-                Logger.Info("UpdateLanguage {0} {1}",langId, Thread.CurrentThread.CurrentUICulture);
+                Logger.Info("UpdateLanguage {0} {1}", langId, Thread.CurrentThread.CurrentUICulture);
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Set culture info"); 
+                Logger.Error(ex, "UpdateLanguage Set culture info ");
             }
         }
 
@@ -762,7 +762,7 @@ namespace GrblPlotter
             try { tmp = ResStrings.ResourceManager.GetString(pattern).Replace("\\r", Environment.NewLine); }
             catch (Exception ex)
             {
-                Logger.Error(ex, "String not found '{0}'", pattern); 
+                Logger.Error(ex, "GetString String not found '{0}'", pattern);
             }
             return tmp.Replace("\\n", "");
         }

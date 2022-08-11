@@ -7598,6 +7598,12 @@ Jazyk
   <data name="projectorToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Opens a new window to display machine-path on the workpiece via a projector above the work bench</value>
   </data>
+  <data name="grblSetupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 22</value>
+  </data>
+  <data name="grblSetupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Grbl Setup</value>
+  </data>
   <data name="machineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 20</value>
   </data>
@@ -8730,6 +8736,12 @@ Jazyk
     <value>projectorToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;projectorToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grblSetupToolStripMenuItem.Name" xml:space="preserve">
+    <value>grblSetupToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;grblSetupToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;viewToolStripMenuItem.Name" xml:space="preserve">

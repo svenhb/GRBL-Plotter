@@ -24,14 +24,14 @@
  * 2021-01-20 bug fix rotation from camera form
  * 2021-07-02 code clean up / code quality
  * 2022-04-04 in TransformEnd() add _projector_form.Invalidate();
-
+ * 2022-07-29 Update_GCode_Depending_Controls add try catch
 */
+using FastColoredTextBoxNS;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Text;
 using System.Windows.Forms;
-using FastColoredTextBoxNS;
 
 namespace GrblPlotter
 {
@@ -135,7 +135,7 @@ namespace GrblPlotter
         // handle event from create Text,  shape, barcode, image, jog path creator
         #region create_from_form
 
-        private void InsertCodeFromForm(string sourceGCode, string sourceForm, GraphicsPath backgroundPath=null)
+        private void InsertCodeFromForm(string sourceGCode, string sourceForm, GraphicsPath backgroundPath = null)
         {
             bool insertCode = Properties.Settings.Default.fromFormInsertEnable;
             importOptions = "";
@@ -217,15 +217,15 @@ namespace GrblPlotter
 
                 if (createGroup)
                 { tmpCodeFinish.AppendLine("(" + XmlMarker.GroupStart + " Id=\"0\" Type=\"Existing code\" >)"); }    // add startGroup for existing figures
-			
-				InsertTextAtLine(insertLineNr, tmpCodeFinish.ToString());	
-				InsertTextAtLine(1, "( ADD code from " + sourceForm + " )\r\n");	
-				
+
+                InsertTextAtLine(insertLineNr, tmpCodeFinish.ToString());
+                InsertTextAtLine(1, "( ADD code from " + sourceForm + " )\r\n");
+
                 SetLastLoadedFile(sourceForm, "");
                 if (backgroundPath != null)
                     VisuGCode.pathBackground = (GraphicsPath)backgroundPath.Clone();
                 NewCodeEnd();       // InsertCodeFromForm with insertCode
-             //   FoldCodeOnLoad();
+                                    //   FoldCodeOnLoad();
                 FoldBlocksByLevel(foldLevelSelected);
             }
             else
@@ -240,7 +240,7 @@ namespace GrblPlotter
                 if (backgroundPath != null)
                     VisuGCode.pathBackground = (GraphicsPath)backgroundPath.Clone();
                 NewCodeEnd();       // InsertCodeFromForm without insertCode
-            //    FoldCodeOnLoad();
+                                    //    FoldCodeOnLoad();
                 FoldBlocksByLevel(foldLevelSelected);
             }
             importOptions = Graphic.graphicInformation.ListOptions();
@@ -314,7 +314,7 @@ namespace GrblPlotter
                     penDown.Width = (float)Properties.Settings.Default.importImageReso;
                 else
                     penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown;
-            //    SetLastLoadedFile("from image", "");
+                //    SetLastLoadedFile("from image", "");
                 NewCodeEnd();                   // GetGCodeFromImage
                 FoldCodeOnLoad();
                 Properties.Settings.Default.counterImportImage += 1;
@@ -776,7 +776,7 @@ namespace GrblPlotter
         {
             if (e.KeyValue == (char)13)
             {
-             //   double radius;
+                //   double radius;
                 if (Double.TryParse(toolStrip_tBRadiusCompValue.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double radius))
                 {
                     Properties.Settings.Default.crcValue = radius;
@@ -832,14 +832,26 @@ namespace GrblPlotter
 
         private void Update_GCode_Depending_Controls()
         {
-            lbDimension.Text = VisuGCode.xyzSize.GetMinMaxString() + "\r\n" + VisuGCode.GetProcessingTime(); //String.Format("X:[ {0:0.0} | {1:0.0} ];    Y:[ {2:0.0} | {3:0.0} ];    Z:[ {4:0.0} | {5:0.0} ]", visuGCode.xyzSize.minx, visuGCode.xyzSize.maxx, visuGCode.xyzSize.miny, visuGCode.xyzSize.maxy, visuGCode.xyzSize.minz, visuGCode.xyzSize.maxz);
-            lbDimension.Select(0, 0);
+            string dimensions = VisuGCode.xyzSize.GetMinMaxString() + "\r\n" + VisuGCode.GetProcessingTime(); //String.Format("X:[ {0:0.0} | {1:0.0} ];    Y:[ {2:0.0} | {3:0.0} ];    Z:[ {4:0.0} | {5:0.0} ]", visuGCode.xyzSize.minx, visuGCode.xyzSize.maxx, visuGCode.xyzSize.miny, visuGCode.xyzSize.maxy, visuGCode.xyzSize.minz, visuGCode.xyzSize.maxz);
+            if (lbDimension.InvokeRequired) { lbDimension.BeginInvoke((MethodInvoker)delegate () { lbDimension.Text = dimensions; }); }
+            else { lbDimension.Text = dimensions; }
+            if (!string.IsNullOrEmpty(lbDimension.Text))
+                lbDimension.Select(0, 0);
             //            toolTip1.SetToolTip(lbDimension, visuGCode.getProcessingTime());
             CheckMachineLimit();
-            toolStrip_tb_XY_X_scale.Text = string.Format("{0:0.000}", VisuGCode.xyzSize.dimx);
-            toolStrip_tb_X_X_scale.Text = string.Format("{0:0.000}", VisuGCode.xyzSize.dimx);
-            toolStrip_tb_XY_Y_scale.Text = string.Format("{0:0.000}", VisuGCode.xyzSize.dimy);
-            toolStrip_tb_Y_Y_scale.Text = string.Format("{0:0.000}", VisuGCode.xyzSize.dimy);
+            try
+            {
+                toolStrip_tb_XY_X_scale.Text = string.Format("{0:0.000}", VisuGCode.xyzSize.dimx);
+                toolStrip_tb_X_X_scale.Text = string.Format("{0:0.000}", VisuGCode.xyzSize.dimx);
+                toolStrip_tb_XY_Y_scale.Text = string.Format("{0:0.000}", VisuGCode.xyzSize.dimy);
+                toolStrip_tb_Y_Y_scale.Text = string.Format("{0:0.000}", VisuGCode.xyzSize.dimy);
+            }
+            catch (Exception err)
+            {
+                Logger.Error(err, "Update_GCode_Depending_Controls toolStrip_tb_XY_X_scale ");
+                EventCollector.StoreException("Update_GCode_Depending_Controls " + err.Message);
+            }
+
             btnSimulate.Enabled = true;
             SetGcodeVariables();
 
@@ -900,12 +912,12 @@ namespace GrblPlotter
             TransformEnd();
         }
     }
-	
-	public static class ModifyCode
-	{
+
+    public static class ModifyCode
+    {
         private static Point posX = new Point(), posY = new Point();	// used to store text-start, -end
-        private static double X,Y;
-     //   private static int G;
+        private static double X, Y;
+        //   private static int G;
         private static bool wasSetX, wasSetY;
         private static bool wasSetG0123;
 
@@ -914,27 +926,28 @@ namespace GrblPlotter
 
         /* add offset if G0,1,2,3 to X and Y, keep rest of line */
         public static string ApplyXYOffsetSimple(string code, double offsetX, double offsetY)
-		{
-			string singleLine, tokenBefore, tokenAfter;
-			string[] lines =  code.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+        {
+            string singleLine, tokenBefore, tokenAfter;
+            string[] lines = code.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
             wasSetG0123 = false;
-            X = -1;Y = -1;  // G = -1;
+            X = -1; Y = -1;  // G = -1;
 
             Logger.Info("ApplyXYOffsetSimple  lines:{0}  X:{1:0.00}  Y:{2:0.00}", lines.Length, offsetX, offsetY);
 
-            for (int i=0; i < lines.Length; i++)
-			{
+            for (int i = 0; i < lines.Length; i++)
+            {
                 wasSetX = false; wasSetY = false;
                 singleLine = lines[i];
-				ParseLine(singleLine);	// extract data from GCode
-				if (wasSetG0123)
-				{
+                ParseLine(singleLine);  // extract data from GCode
+                if (wasSetG0123)
+                {
                     if (wasSetX)
-                    {   X += offsetX;
+                    {
+                        X += offsetX;
                         tokenBefore = lines[i].Substring(posX.X, posX.Y - posX.X + 1);
                         tokenAfter = string.Format("X{0}", Gcode.FrmtNum(X));
                         singleLine = singleLine.Replace(tokenBefore, tokenAfter).Replace(',', '.');
-	             //       Logger.Info("ApplyXYOffsetSimple orig:'{0}'   new:'{1}'   tokenBefore:'{2}'   tokenAfter:'{3}'   start:{4}    end:{5}", lines[i], singleLine, tokenBefore, tokenAfter,  posX.X, posX.Y);
+                        //       Logger.Info("ApplyXYOffsetSimple orig:'{0}'   new:'{1}'   tokenBefore:'{2}'   tokenAfter:'{3}'   start:{4}    end:{5}", lines[i], singleLine, tokenBefore, tokenAfter,  posX.X, posX.Y);
 
                     }
                     if (wasSetY)
@@ -943,23 +956,23 @@ namespace GrblPlotter
                         tokenBefore = lines[i].Substring(posY.X, posY.Y - posY.X + 1);
                         tokenAfter = string.Format("Y{0}", Gcode.FrmtNum(Y));
                         singleLine = singleLine.Replace(tokenBefore, tokenAfter).Replace(',', '.');
- 	             //       Logger.Info("ApplyXYOffsetSimple orig:'{0}'   new:'{1}'   tokenBefore:'{2}'   tokenAfter:'{3}'   start:{4}    end:{5}", lines[i], singleLine, tokenBefore, tokenAfter,  posY.X, posY.Y);
+                        //       Logger.Info("ApplyXYOffsetSimple orig:'{0}'   new:'{1}'   tokenBefore:'{2}'   tokenAfter:'{3}'   start:{4}    end:{5}", lines[i], singleLine, tokenBefore, tokenAfter,  posY.X, posY.Y);
                     }
                     lines[i] = singleLine;
                 }
             }
             code = string.Join("\r\n", lines);
             return code;
-		}
-	
+        }
+
         private static void ParseLine(string line)
         {
             char cmd = '\0';
             string num = "";
             bool comment = false;
             double value;
-            line = line.ToUpper().Trim();   
-			int posStart=0, posEnd=0, pos=-1;
+            line = line.ToUpper().Trim();
+            int posStart = 0, posEnd = 0, pos = -1;
             #region parse
             if ((!(line.StartsWith("$") || line.StartsWith("(") || line.StartsWith(";"))) && (line.Length > 1))//do not parse grbl comments
             {
@@ -996,18 +1009,19 @@ namespace GrblPlotter
                         { comment = false; }
                     }
                     if (cmd != '\0')                         	// finally after for-each process final command and number
-                    {   if (double.TryParse(num, System.Globalization.NumberStyles.Float, System.Globalization.NumberFormatInfo.InvariantInfo, out value))
+                    {
+                        if (double.TryParse(num, System.Globalization.NumberStyles.Float, System.Globalization.NumberFormatInfo.InvariantInfo, out value))
                             ParseGCodeToken(cmd, value, posStart, posEnd);
                     }
                 }
-                catch (Exception ) { }
+                catch (Exception) { }
             }
             #endregion
         }
 
         private static void ParseGCodeToken(char cmd, double value, int pstart, int pend)
         {
-        //    Logger.Trace("parseGCodeToken {0}  {1}   {2}   {3}",cmd, value, pstart, pend);
+            //    Logger.Trace("parseGCodeToken {0}  {1}   {2}   {3}",cmd, value, pstart, pend);
             switch (System.Char.ToUpper(cmd))
             {
                 case 'X':
@@ -1036,6 +1050,6 @@ namespace GrblPlotter
             }
         }
     }
-	
-	
+
+
 }

@@ -462,6 +462,7 @@ namespace GrblPlotter
             this.control2ndGRBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.control3rdGRBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projectorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.grblSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewRuler = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewInfo = new System.Windows.Forms.ToolStripMenuItem();
@@ -3130,7 +3131,8 @@ namespace GrblPlotter
             this.controlStreamingToolStripMenuItem,
             this.control2ndGRBLToolStripMenuItem,
             this.control3rdGRBLToolStripMenuItem,
-            this.projectorToolStripMenuItem});
+            this.projectorToolStripMenuItem,
+            this.grblSetupToolStripMenuItem});
             this.machineToolStripMenuItem.Name = "machineToolStripMenuItem";
             resources.ApplyResources(this.machineToolStripMenuItem, "machineToolStripMenuItem");
             // 
@@ -3206,6 +3208,12 @@ namespace GrblPlotter
             this.projectorToolStripMenuItem.Name = "projectorToolStripMenuItem";
             resources.ApplyResources(this.projectorToolStripMenuItem, "projectorToolStripMenuItem");
             this.projectorToolStripMenuItem.Click += new System.EventHandler(this.ProjectorToolStripMenuItem_Click);
+            // 
+            // grblSetupToolStripMenuItem
+            // 
+            this.grblSetupToolStripMenuItem.Name = "grblSetupToolStripMenuItem";
+            resources.ApplyResources(this.grblSetupToolStripMenuItem, "grblSetupToolStripMenuItem");
+            this.grblSetupToolStripMenuItem.Click += new System.EventHandler(this.GrblSetupToolStripMenuItem_Click);
             // 
             // viewToolStripMenuItem
             // 
@@ -3823,6 +3831,7 @@ namespace GrblPlotter
         private System.Windows.Forms.ToolStripMenuItem cmsPicBoxDuplicatePath;
         private System.Windows.Forms.ToolStripMenuItem cmsPicBoxShowProperties;
         private System.Windows.Forms.ToolStripMenuItem toggleBlockExpansionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem grblSetupToolStripMenuItem;
     }
 }
 

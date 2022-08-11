@@ -29,6 +29,7 @@
  * 2021-12-10 line 122 check if (e.CodeLineSent >= fCTBCode.LinesCount); line 340 = fCTBCode.LinesCount - 1;
  * 2022-01-05 bug fix GrblStreaming.pause: show tool change message
  * 2022-04-06 line 485 also PathId
+ * 2022-06-28 line 132 don't update marker on line-nr if e.Status == GrblStreaming.setting
 */
 
 using GrblPlotter.GUI;
@@ -46,21 +47,26 @@ namespace GrblPlotter
         TimeSpan elapsed;               //elapsed time 
         DateTime timeInit;              //time start 
 
-        private int signalResume = 0;   // blinking button
-        private int signalLock = 0;     // blinking button
-        private int signalPlay = 0;     // blinking button
-        private int delayedSend = 0;
+        private uint signalResume = 0;   // blinking button
+        private uint signalLock = 0;     // blinking button
+        private uint signalPlay = 0;     // blinking button
+        private uint delayedSend = 0;
+        private uint delayedStatusStripClear0 = 0;
+        private uint delayedStatusStripClear1 = 0;
+        private uint delayedStatusStripClear2 = 0;
+
         private bool isStreaming = false;
         private bool isStreamingPause = false;
         private bool isStreamingCheck = false;
-     //   private bool isStreamingRequestStop = false;
+        //   private bool isStreamingRequestStop = false;
         private bool isStreamingOk = true;
         private string lblInfoOkString = "Send G-Code";
 
         /***** thread save update *****/
         private void UpdateProgressBar(int codeProgress, int buffProgress)
         {
-            try {
+            try
+            {
                 int cPrgs = codeProgress;
                 if (cPrgs < 0) cPrgs = 0; if (cPrgs > pbFile.Maximum) cPrgs = pbFile.Maximum;
                 int bPrgs = buffProgress;
@@ -81,7 +87,7 @@ namespace GrblPlotter
                 { this.lblFileProgress.BeginInvoke((MethodInvoker)delegate () { this.lblFileProgress.Text = txt; }); }
                 else
                 { this.lblFileProgress.Text = txt; }
-			            }
+            }
             catch (Exception err) { Logger.Error(err, "UpdateProgressBar "); }
         }
 
@@ -100,14 +106,16 @@ namespace GrblPlotter
             if (isStreaming)
             {
                 UpdateProgressBar(e.CodeProgress, e.BuffProgress);
-				
-				if ((e.CodeProgress % 5) == 0)
-				{	
-					if (loggerUpdateMarker)
-					{	loggerUpdateMarker = false;
-						Logger.Info("●●● Streaming Progress:{0,3}%  Duration:{1}  Line:{2,5}   Status:{3,6}   WCO.X:{4:0000.000}  Y:{5:0000.000}  Z:{6:0000.000}  A:{6:0000.000}  B:{6:0000.000}  C:{6:0000.000}", e.CodeProgress, elapsed.ToString(@"hh\:mm\:ss"), e.CodeLineSent, e.Status, Grbl.posWork.X, Grbl.posWork.Y, Grbl.posWork.Z, Grbl.posWork.A, Grbl.posWork.B, Grbl.posWork.C);
-					}
-				} else {loggerUpdateMarker = true;}
+
+                if ((e.CodeProgress % 5) == 0)
+                {
+                    if (loggerUpdateMarker)
+                    {
+                        loggerUpdateMarker = false;
+                        Logger.Info("●●● OnRaiseStreamEvent Progress:{0,3}%  Duration:{1}  Line:{2,5}   Status:{3,6}   WCO.X:{4:0000.000}  Y:{5:0000.000}  Z:{6:0000.000}  A:{6:0000.000}  B:{6:0000.000}  C:{6:0000.000}", e.CodeProgress, elapsed.ToString(@"hh\:mm\:ss"), e.CodeLineSent, e.Status, Grbl.posWork.X, Grbl.posWork.Y, Grbl.posWork.Z, Grbl.posWork.A, Grbl.posWork.B, Grbl.posWork.C);
+                    }
+                }
+                else { loggerUpdateMarker = true; }
 
                 if (notifierEnable && Properties.Settings.Default.notifierMessageProgressEnable)
                 {
@@ -130,37 +138,40 @@ namespace GrblPlotter
             }
 
             int actualCodeLine = e.CodeLineSent;
-            if (actualCodeLine < 0) actualCodeLine = 0;
-            if (e.CodeLineSent >= fCTBCode.LinesCount)
-                actualCodeLine = fCTBCode.LinesCount - 1;
-			try
-            {	fCTBCode.Selection = fCTBCode.GetLine(actualCodeLine);}
-			catch (Exception err) {	Logger.Error(err,"OnRaiseStreamEvent - fCTBCode.Selection = fCTBCode.GetLine(actualCodeLine)");}
-
-            fCTBCodeClickedLineNow = e.CodeLineSent - 1;// - 1;
-            FctbSetBookmark();         // set Bookmark and marker in 2D-View
-            VisuGCode.SetPosMarkerLine(fCTBCodeClickedLineNow, false);
-            //            fCTBCode.DoCaretVisible();
-
-            try
+            if (e.Status != GrblStreaming.setting)      // if setting, e.CodeLineSent contains $$-nr, not line-nr.
             {
-                if (this.fCTBCode.InvokeRequired)
-                { this.fCTBCode.BeginInvoke((MethodInvoker)delegate () { this.fCTBCode.DoCaretVisible(); }); }
-                else
-                { this.fCTBCode.DoCaretVisible(); }
-            }
-            catch (Exception er) {
-                Logger.Error(er, "OnRaiseStreamEvent fCTBCode.InvokeRequired "); 
-            }
+                if (actualCodeLine < 0) actualCodeLine = 0;
+                if (e.CodeLineSent >= fCTBCode.LinesCount)
+                    actualCodeLine = fCTBCode.LinesCount - 1;
+                try
+                { fCTBCode.Selection = fCTBCode.GetLine(actualCodeLine); }
+                catch (Exception err) { Logger.Error(err, "OnRaiseStreamEvent - fCTBCode.Selection = fCTBCode.GetLine(actualCodeLine)"); }
 
+                fCTBCodeClickedLineNow = e.CodeLineSent - 1;// - 1;
+                FctbSetBookmark();         // set Bookmark and marker in 2D-View
+                VisuGCode.SetPosMarkerLine(fCTBCodeClickedLineNow, false);
+                //            fCTBCode.DoCaretVisible();
+
+                try
+                {
+                    if (this.fCTBCode.InvokeRequired)
+                    { this.fCTBCode.BeginInvoke((MethodInvoker)delegate () { this.fCTBCode.DoCaretVisible(); }); }
+                    else
+                    { this.fCTBCode.DoCaretVisible(); }
+                }
+                catch (Exception er)
+                {
+                    Logger.Error(er, "OnRaiseStreamEvent fCTBCode.InvokeRequired ");
+                }
+            }
 
             if (_diyControlPad != null)
                 _diyControlPad.SendFeedback("[" + e.Status.ToString() + "]");
 
-        //    if (Properties.Settings.Default.guiProgressShow)
+            //    if (Properties.Settings.Default.guiProgressShow)
             VisuGCode.ProcessedPath.ProcessedPathLine(e.CodeLineConfirmed);		// in GCodeSimulate.cs
 
-            if (logStreaming) 
+            if (logStreaming)
                 Logger.Trace("### OnRaiseStreamEvent  {0}  line {1} ", e.Status.ToString(), e.CodeLineSent);
 
             switch (e.Status)
@@ -171,19 +182,25 @@ namespace GrblPlotter
 
                 case GrblStreaming.setting:
                     UpdateGrblSettings(e.CodeLineSent);
+                    if (_serial_form.FlagGrblSettingClick == true)
+                    {
+                        _serial_form.FlagGrblSettingClick = false;
+                        GrblSetupToolStripMenuItem_Click(sender, e);
+                    }
                     break;
 
                 case GrblStreaming.reset:
-                    Logger.Info("### OnRaiseStreamEvent - GrblStreaming.reset");
+                    Logger.Info("### OnRaiseStreamEvent - GrblStreaming.reset  '{0}'", Grbl.lastMessage);
                     ResetDetected = true;
                     lastErrorLine = 0;
+                    ShowGrblLastMessage();
                     SaveStreamingStatus(e.CodeLineSent, "Reset", "");
                     StopStreaming(false);
                     if (e.CodeProgress < 0)
                     { SetTextThreadSave(lbInfo, _serial_form.lastError, Color.Fuchsia); }
                     else
                     { SetTextThreadSave(lbInfo, "Vers. " + _serial_form.GrblVers, Color.Lime); }
-                    StatusStripClear(1, 2);//, "grblStreaming.reset");
+                    //        StatusStripClear(1, 2);//, "grblStreaming.reset");
                     toolTip1.SetToolTip(lbInfo, lbInfo.Text);
                     timerUpdateControls = true; timerUpdateControlSource = "grblStreaming.reset";//updateControls();
                     if (_coordSystem_form != null)
@@ -191,12 +208,13 @@ namespace GrblPlotter
 
                     ControlPowerSaving.EnableStandby();
                     VisuGCode.ProcessedPath.ProcessedPathClear();
+                    //        SetGRBLBuffer();
                     break;
 
                 case GrblStreaming.error:
                     string tmpMessage = Grbl.lastMessage;
                     Logger.Info("streaming error at line:{0}  last:{1}   message:{2}", e.CodeLineConfirmed, lastErrorLine, tmpMessage);
-					EventCollector.SetStreaming("Serr");
+                    EventCollector.SetStreaming("Serr" + Grbl.lastErrorNr.ToString());
                     StatusStripSet(0, Grbl.lastMessage, Color.Fuchsia);
                     pbFile.ForeColor = Color.Red;
 
@@ -208,7 +226,7 @@ namespace GrblPlotter
 
                     if (lastErrorLine != e.CodeLineConfirmed)
                     {
-                        SaveStreamingStatus(e.CodeLineSent,"Streaming error", tmpMessage);
+                        SaveStreamingStatus(e.CodeLineSent, "Streaming error", tmpMessage);
 
                         int errorLine = e.CodeLineConfirmed - 1;
                         if (isStreamingCheck)
@@ -218,13 +236,25 @@ namespace GrblPlotter
 
                         SetTextThreadSave(lbInfo, Localization.GetString("mainInfoErrorLine") + errorLine.ToString(), Color.Fuchsia);
 
-                        if (actualCodeLine < fCTBCode.LinesCount)
-                            fCTBCode.BookmarkLine(actualCodeLine - 1);
-                        fCTBCode.DoSelectionVisible();
+                        try
+                        {
+                            if (actualCodeLine < fCTBCode.LinesCount)
+                                fCTBCode.BookmarkLine(actualCodeLine - 1);
+                            fCTBCode.DoSelectionVisible();
+                        }
+                        catch (Exception er)
+                        {
+                            Logger.Error(er, "OnRaiseStreamEvent fCTBCode GrblStreaming.error ");
+                        }
+
                     }
                     lastErrorLine = e.CodeLineConfirmed;
 
                     if (notifierEnable) Notifier.SendMessage(string.Format("Streaming error at line {0}\r\nTime stamp: {1}", e.CodeLineConfirmed, GetTimeStampString()), "Error");
+
+                    if (Grbl.lastErrorNr == 9)  // G-code locked out during alarm or jog state -> stop streaming
+                    { StopStreaming(false); }
+
                     break;
 
                 case GrblStreaming.ok:
@@ -243,7 +273,7 @@ namespace GrblPlotter
 
                 case GrblStreaming.finish:
                     Logger.Info("streaming finished ok {0}", isStreamingOk);
-					EventCollector.SetStreaming("Sfin");
+                    EventCollector.SetStreaming("Sfin");
                     if (isStreamingOk)
                     {
                         if (isStreamingCheck)
@@ -251,10 +281,13 @@ namespace GrblPlotter
                         else
                         { SetTextThreadSave(lbInfo, Localization.GetString("mainInfoFinishSend"), Color.Lime); }   // "Finish sending G-Code"; }
                     }
+                    StatusStripSet(1, string.Format("{0} {1}: {2}", DateTime.Now.ToString("HH:mm:ss"), Localization.GetString("statusStripeStreamingFinish"), elapsed.ToString(@"hh\:mm\:ss")), Color.Lime);    // Streaming FINISHED after
+                    StatusStripColor(0, Color.White);
+
                     MainTimer.Stop();
                     MainTimer.Start();
                     timerUpdateControls = true; timerUpdateControlSource = "grblStreaming.finish";//updateControls();
-                    SaveStreamingStatus(0,"","");
+                    SaveStreamingStatus(0, "", "");
                     showPicBoxBgImage = false;                     // don't show background image anymore
                     pictureBox1.BackgroundImage = null;
                     ResetStreaming();
@@ -290,19 +323,20 @@ namespace GrblPlotter
                     if (Properties.Settings.Default.flowControlEnable) // send extra Pause-Code in MainTimer_Tick from Properties.Settings.Default.flowControlText
                         delayedSend = 2;
 
-                    if (logStreaming) 
-					{ 	if (LineIsInRange(fCTBCodeClickedLineNow))
-							Logger.Trace("OnRaiseStreamEvent - pause: {0}  in line:{1}", fCTBCode.Lines[fCTBCodeClickedLineNow], fCTBCodeClickedLineNow);
-						else
-							Logger.Trace("OnRaiseStreamEvent - fCTBCodeClickedLineNow is out of range:{0}  count:{1}", fCTBCodeClickedLineNow, fCTBCode.Lines.Count);
-					}
+                    if (logStreaming)
+                    {
+                        if (LineIsInRange(fCTBCodeClickedLineNow))
+                            Logger.Trace("OnRaiseStreamEvent - pause: {0}  in line:{1}", fCTBCode.Lines[fCTBCodeClickedLineNow], fCTBCodeClickedLineNow);
+                        else
+                            Logger.Trace("OnRaiseStreamEvent - fCTBCodeClickedLineNow is out of range:{0}  count:{1}", fCTBCodeClickedLineNow, fCTBCode.Lines.Count);
+                    }
 
                     for (int tmpLine = (fCTBCodeClickedLineNow - 2); tmpLine <= (fCTBCodeClickedLineNow + 2); tmpLine++)
                     {   // find correct line
                         if (LineIsInRange(tmpLine) && fCTBCode.Lines[tmpLine].Contains("M0") && fCTBCode.Lines[tmpLine].Contains("Tool"))  // keyword set in gcodeRelated 1132
-                        { signalShowToolExchangeMessage = true; signalShowToolExchangeLine = tmpLine; if(logStreaming) Logger.Trace("OnRaiseStreamEvent trigger ToolExchangeMessage"); break; }
+                        { signalShowToolExchangeMessage = true; signalShowToolExchangeLine = tmpLine; if (logStreaming) Logger.Trace("OnRaiseStreamEvent trigger ToolExchangeMessage"); break; }
                     }
-                    if (notifierEnable) Notifier.SendMessage("grbl Pause", "Pause"); 
+                    if (notifierEnable) Notifier.SendMessage("grbl Pause", "Pause");
                     break;
 
                 case GrblStreaming.toolchange:
@@ -314,7 +348,7 @@ namespace GrblPlotter
 
                 case GrblStreaming.stop:
                     SaveStreamingStatus(e.CodeLineSent, "Stop", "");
-					timerUpdateControls = true; timerUpdateControlSource = "grblStreaming.stop";// updateControls();
+                    timerUpdateControls = true; timerUpdateControlSource = "grblStreaming.stop";// updateControls();
                     SetTextThreadSave(lbInfo, Localization.GetString("mainInfoStopStream") + e.CodeLineSent.ToString() + ")", Color.Fuchsia);
 
                     if (Properties.Settings.Default.flowControlEnable) // send extra Pause-Code in MainTimer_Tick from Properties.Settings.Default.flowControlText
@@ -326,7 +360,7 @@ namespace GrblPlotter
             }
 
             lastLabelInfoText = lbInfo.Text;
-            //          lbInfo.Text += overrideMessage;
+
             if (this.lbInfo.InvokeRequired)
             { this.lbInfo.BeginInvoke((MethodInvoker)delegate () { this.lbInfo.Text += overrideMessage; }); }
             else
@@ -343,10 +377,10 @@ namespace GrblPlotter
             using (MessageForm f = new MessageForm())
             {
                 string tool = "unknown";
-				if (LineIsInRange(signalShowToolExchangeLine))
-					tool = fCTBCode.Lines[signalShowToolExchangeLine];
+                if (LineIsInRange(signalShowToolExchangeLine))
+                    tool = fCTBCode.Lines[signalShowToolExchangeLine];
                 int c1 = tool.IndexOf('(');
-                if (c1 > 0)
+                if ((c1 > 0) && (c1 < (tool.Length - 1)))
                 {
                     tool = tool.Substring(c1 + 1);
                     tool = tool.Substring(0, tool.Length - 1);
@@ -360,7 +394,7 @@ namespace GrblPlotter
                 { StartStreaming(0, fCTBCode.LinesCount - 1); }
             }
         }
-        //     private void BtnStreamStart_Click(object sender, EventArgs e)
+
         private void BtnStreamStart_Click(object sender, MouseEventArgs e)
         {
             UpdateLogging();
@@ -412,14 +446,24 @@ namespace GrblPlotter
             lblInfoOkString = Localization.GetString("mainInfoSendCode");
             notifierUpdateFlag = false;
             notifierUpdateMarkerFinish = false;
+            SelectionHandle.ClearSelected();
             if (fCTBCode.LinesCount > 1)
             {
+                if (Grbl.Status == GrblState.alarm)
+                {
+                    MessageBox.Show("Press 'Kill Alarm'! Otherwise no streaming is possible.");
+                    return;
+                }
+
                 if (!isStreaming)
                 {
                     ClearErrorLines();
                     Logger.Info("►►►►  Start streaming at line:{0} to line:{1} showProgress:{2}  backgroundImage:{3}", startLine, endLine, Properties.Settings.Default.guiProgressShow, Properties.Settings.Default.guiBackgroundImageEnable);
-					EventCollector.SetStreaming("Strt");
-					ExpandCodeBlocksToolStripMenuItem_Click(null, null);
+                    StatusStripSet(0, string.Format("{0} {1}: {2} to {3}", DateTime.Now.ToString("HH:mm:ss"), Localization.GetString("statusStripeStreamingStart"), startLine, endLine), Color.Lime);   // Streaming START from line
+                    StatusStripClear(1, 2);
+
+                    EventCollector.SetStreaming("Strt");
+                    ExpandCodeBlocksToolStripMenuItem_Click(null, null);
                     VisuGCode.ProcessedPath.ProcessedPathClear();
                     MainTimer.Stop();
                     MainTimer.Start();
@@ -428,8 +472,8 @@ namespace GrblPlotter
                     isStreamingPause = false;
                     isStreamingCheck = false;
                     isStreamingOk = true;
-					pbFile.Maximum = 100;
-					
+                    pbFile.Maximum = 100;
+
                     VisuGCode.MarkSelectedFigure(0);
                     if (startLine > 0)
                     {
@@ -451,63 +495,66 @@ namespace GrblPlotter
                         fCTBCode.UnbookmarkLine(i);
 
                     //save gcode
-                    string file1stName = Datapath.AppDataFolder + "\\" + fileLastProcessed;	// in MainForm.cs = "lastProcessed";
-					string fileName="fN";
+                    string file1stName = Datapath.AppDataFolder + "\\" + fileLastProcessed; // in MainForm.cs = "lastProcessed";
+                    string fileName = "fN";
                     string txt = fCTBCode.Text;
 
-                    try { 
-						fileName = file1stName + ".xml";
-						if (File.Exists(fileName)) 						// remove old process-state
-                            File.Delete(fileName); 
+                    try
+                    {
+                        fileName = file1stName + ".xml";
+                        if (File.Exists(fileName)) 						// remove old process-state
+                            File.Delete(fileName);
 
-						fileName = file1stName + ".nc";
-						File.WriteAllText(fileName, txt);				// save current GCode						
-					    SaveRecentFile(fileLastProcessed + ".nc");      // update last processed file
+                        fileName = file1stName + ".nc";
+                        File.WriteAllText(fileName, txt);               // save current GCode						
+                        SaveRecentFile(fileLastProcessed + ".nc");      // update last processed file
                         SetLastLoadedFile("Start streaming", fileName);
                     }
-                    catch (IOException err) {
-                        EventCollector.StoreException("StartStreaming: IOEx-folder: " +Datapath.AppDataFolder+" ");
-						Datapath.AppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                    catch (IOException err)
+                    {
+                        EventCollector.StoreException("StartStreaming: IOEx-folder: " + Datapath.AppDataFolder + " ");
+                        Datapath.AppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                         Logger.Error(err, "StartStreaming fileName: {0}, new Datapath.AppDataFolder: {1} ", fileName, Datapath.AppDataFolder);
-                        MessageBox.Show("Path does not exist and could not be created to save: "+fileName+"\r\nPath will be modified to "+ Datapath.AppDataFolder, "Error");
-					}
-					catch (Exception err) {
-                        EventCollector.StoreException("StartStreaming: " + err.Message + "  " + fileName+" ");
+                        MessageBox.Show("Path does not exist and could not be created to save: " + fileName + "\r\nPath will be modified to " + Datapath.AppDataFolder, "Error");
+                    }
+                    catch (Exception err)
+                    {
+                        EventCollector.StoreException("StartStreaming: " + err.Message + "  " + fileName + " ");
                         Logger.Error(err, "StartStreaming fileName: {0}, new Datapath.AppDataFolder: {1} ", fileName, Datapath.AppDataFolder);
                         MessageBox.Show("'last processed' file could not be created: " + fileName + "\r\nError: " + err.Message, "Error");
                         //  throw;		// unknown exception...  access denied 
-					}
+                    }
 
                     bool removeFiducials = (Properties.Settings.Default.importFiducialSkipCode && (VisuGCode.fiducialsCenter.Count > 0));
-                    if (removeFiducials)	// copy code
-					{
-						UnDo.SetCode(fCTBCode.Text, "remove fiducials", this);
+                    if (removeFiducials)    // copy code
+                    {
+                        UnDo.SetCode(fCTBCode.Text, "remove fiducials", this);
                         string fiducialLabel = Properties.Settings.Default.importFiducialLabel;
                         fCTBCode.TextChanged -= FctbCode_TextChanged;       // disable textChanged events
                         foreach (XmlMarker.BlockData tmp in XmlMarker.listFigures)
-						{
+                        {
                             if ((tmp.Layer.IndexOf(fiducialLabel) >= 0) || (tmp.PathId.IndexOf(fiducialLabel) >= 0))
                             {
                                 Logger.Info("StartStreaming fiducials: exclude line:{0} to:{1}", tmp.LineStart, tmp.LineEnd);
-                                for (int lnr=tmp.LineStart; lnr <= tmp.LineEnd; lnr++)								
-								{
+                                for (int lnr = tmp.LineStart; lnr <= tmp.LineEnd; lnr++)
+                                {
                                     Logger.Trace(" - {0}", fCTBCode.GetLineText(lnr));
                                     fCTBCode.Selection = fCTBCode.GetLine(lnr);
                                     fCTBCode.SelectedText = "(" + fCTBCode.GetLineText(lnr) + ")";  // remove fiducial code
                                 }
-							}							
-						}
+                            }
+                        }
                         fCTBCode.TextChanged += FctbCode_TextChanged;       // enable textChanged events
-                    }	
+                    }
 
                     lblElapsed.Text = "Time " + elapsed.ToString(@"hh\:mm\:ss");
                     _serial_form.StartStreaming(fCTBCode.Lines, startLine, endLine, false);  // no check
-					
-					if (removeFiducials)	// restore original code with fiducials
-					{
-						fCTBCode.Text = UnDo.GetCode();
-					}
-					
+
+                    if (removeFiducials)    // restore original code with fiducials
+                    {
+                        fCTBCode.Text = UnDo.GetCode();
+                    }
+
                     btnStreamStart.Image = Properties.Resources.btn_pause;
                     btnStreamCheck.Enabled = false;
                     OnPaint_setBackground();                // Generante a background-image for pictureBox to avoid frequent drawing of pen-up/down paths
@@ -519,20 +566,24 @@ namespace GrblPlotter
                     if (!isStreamingPause)
                     {
                         Logger.Info("⏸⏸  Pause streaming - pause stream");
-						EventCollector.SetStreaming("Spap");
+                        EventCollector.SetStreaming("Spap");
                         btnStreamStart.Image = Properties.Resources.btn_play;
                         _serial_form.PauseStreaming();
                         //            isStreamingPause = true;
-                        StatusStripSet(0, Localization.GetString("statusStripeStreamingStatusSaved"), Color.LightGreen);
+                        StatusStripSet(2, Localization.GetString("statusStripeStreamingStatusSaved"), Color.LightGreen);
+                        StatusStripSet(1, string.Format("{0} {1}", DateTime.Now.ToString("HH:mm:ss"), Localization.GetString("statusStripeStreamingPause")), Color.Yellow);     // Streaming PAUSE
+                        StatusStripColor(0, Color.White);
                     }
                     else
                     {
                         Logger.Info("⏸⏸  Pause streaming - continue stream");
-						EventCollector.SetStreaming("Spac");
+                        EventCollector.SetStreaming("Spac");
                         btnStreamStart.Image = Properties.Resources.btn_pause;
                         _serial_form.PauseStreaming();
                         isStreamingPause = false;
-                        StatusStripClear(0);
+                        StatusStripSet(1, Localization.GetString("statusStripeStreamingContinue"), Color.Lime);         // Continue streaming
+                        StatusStripColor(0, Color.White);
+                        delayedStatusStripClear1 = 8;
                     }
                 }
             }
@@ -543,7 +594,8 @@ namespace GrblPlotter
             {
                 ClearErrorLines();
                 Logger.Info("check code");
-				EventCollector.SetStreaming("Schk");
+                StatusStripSet(0, Localization.GetString("statusStripeStreamingCheck"), Color.Lime);        // Check G-Code on grbl controller
+                EventCollector.SetStreaming("Schk");
                 isStreaming = true;
                 isStreamingCheck = true;
                 isStreamingOk = true;
@@ -554,7 +606,7 @@ namespace GrblPlotter
                 SetTextThreadSave(lbInfo, Localization.GetString("mainInfoCheckCode"), SystemColors.Control);
                 for (int i = 0; i < fCTBCode.LinesCount; i++)
                     fCTBCode.UnbookmarkLine(i);
-                _serial_form.StartStreaming(fCTBCode.Lines, 0, fCTBCode.LinesCount -1, true);
+                _serial_form.StartStreaming(fCTBCode.Lines, 0, fCTBCode.LinesCount - 1, true);
                 btnStreamStart.Enabled = false;
                 OnPaint_setBackground();
             }
@@ -564,19 +616,23 @@ namespace GrblPlotter
         private void StopStreaming(bool showMessage)
         {
             Logger.Info("⏹⏹  Stop streaming at line {0}", (fCTBCodeClickedLineNow + 1));
+            StatusStripSet(1, string.Format("{0} {1} {0}", DateTime.Now.ToString("HH:mm:ss"), Localization.GetString("statusStripeStreamingStop"), (fCTBCodeClickedLineNow + 1)), Color.Yellow);        // Streaming STOP at line
+            StatusStripColor(0, Color.White);
+
             showPicBoxBgImage = false;                 // don't show background image anymore
                                                        //            pictureBox1.BackgroundImage = null;
             signalPlay = 0;
-        //    isStreamingRequestStop = true;
+            //    isStreamingRequestStop = true;
 
             _serial_form.StopStreaming(showMessage);
 
             if (isStreaming || isStreamingCheck)
             {
                 SetTextThreadSave(lbInfo, Localization.GetString("mainInfoStopStream2") + (fCTBCodeClickedLineNow + 1).ToString() + " )", Color.Fuchsia);
-				EventCollector.SetStreaming("Stps");
-            } else
-			{	EventCollector.SetStreaming("Stpp");}
+                EventCollector.SetStreaming("Stps");
+            }
+            else
+            { EventCollector.SetStreaming("Stpp"); }
 
             ResetStreaming();
         }

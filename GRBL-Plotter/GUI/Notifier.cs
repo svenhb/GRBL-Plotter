@@ -40,15 +40,15 @@ namespace GrblPlotter
         private static readonly CultureInfo culture = CultureInfo.InvariantCulture;
 
         public static void SendMessage(string message)
-        { SendMessage(message,""); }
+        { SendMessage(message, ""); }
         public static void SendMessage(string message, string titleAddon)
         {
             bool mail = Properties.Settings.Default.notifierMailEnable;
             bool push = Properties.Settings.Default.notifierPushbulletEnable;
             if (!string.IsNullOrEmpty(message))
             {
-				if (mail || push)
-					Logger.Info(culture, "Mail:{0} Push:{1}   Msg:{2}  Addon:{3}   Interval:{4}", mail, push, message.Replace("\r\n", " | "), titleAddon, Properties.Settings.Default.notifierMessageProgressInterval);
+                if (mail || push)
+                    Logger.Info(culture, "Mail:{0} Push:{1}   Msg:{2}  Addon:{3}   Interval:{4}", mail, push, message.Replace("\r\n", " | "), titleAddon, Properties.Settings.Default.notifierMessageProgressInterval);
                 if (mail)
                 {
                     Task tm = Task.Factory.StartNew(() =>
@@ -58,8 +58,8 @@ namespace GrblPlotter
                     tm.Wait();
                 }
 
-                if (push) 
-                { 
+                if (push)
+                {
                     Task tp = Task.Factory.StartNew(() =>
                     {
                         PushBullet(message, titleAddon);
@@ -71,7 +71,8 @@ namespace GrblPlotter
 
         public static string SendMail(string message, string titleAddon)
         {   // http://csharp.net-informations.com/communications/csharp-smtp-mail.htm
-            try {
+            try
+            {
                 MailMessage mail = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient(Properties.Settings.Default.notifierMailClientAdr);
 
@@ -89,7 +90,8 @@ namespace GrblPlotter
                 mail.Dispose();
                 return "Email sent";
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 Logger.Error(ex, " sendMail() ");
                 return "Error sending email:\r\n" + ex.ToString();
             }
@@ -133,7 +135,8 @@ namespace GrblPlotter
                 //                streamWriter.Close();
             }
 
-            try {
+            try
+            {
                 var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                 using (StreamReader streamReader = new StreamReader(httpResponse.GetResponseStream()))
                 {   //var result = streamReader.ReadToEnd();
@@ -141,10 +144,12 @@ namespace GrblPlotter
                 }
                 return "PushBullet message sent";
             }
-            catch (WebException ex) {
+            catch (WebException ex)
+            {
                 return "Error sending PushBullet message:\r\n" + ex.ToString();
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 Logger.Error(ex, " pushBullet() ");
                 return "Error sending PushBullet message:\r\n" + ex.ToString();
             }

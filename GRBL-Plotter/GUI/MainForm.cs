@@ -62,12 +62,10 @@
 using GrblPlotter.GUI;
 using Microsoft.Win32;
 using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using virtualJoystick;
@@ -100,7 +98,7 @@ namespace GrblPlotter
         private string lastLoadFile = "Nothing loaded";
         private int coordinateG = 54;
         private readonly string zeroCmd = "G10 L20 P0";      // "G92"
-        private int mainTimerCount = 0;
+        private ulong mainTimerCount = 0;
 
         private bool showFormInFront = false;
 
@@ -152,15 +150,15 @@ namespace GrblPlotter
                 Properties.Settings.Default.ctrlUpgradeRequired = false;
                 Properties.Settings.Default.Save();
             }
-			
-			Properties.Settings.Default.gui2DShowVertexEnable = false;				// don't show vertex / path-nodes on program start
-		//	expandGCode = Properties.Settings.Default.FCTBBlockExpandOnSelect;
-			
+
+            Properties.Settings.Default.gui2DShowVertexEnable = false;              // don't show vertex / path-nodes on program start
+                                                                                    //	expandGCode = Properties.Settings.Default.FCTBBlockExpandOnSelect;
+
             if (Properties.Settings.Default.flowCheckRegistryChange)	// don't load from clipboard on program start
             {
                 const string reg_key = "HKEY_CURRENT_USER\\SOFTWARE\\GRBL-Plotter";
                 try
-                {   Registry.SetValue(reg_key, "update", 0);}
+                { Registry.SetValue(reg_key, "update", 0); }
                 catch (Exception er) { Logger.Error(er, "MainForm Reading reg-key update "); }
             }
 
@@ -196,7 +194,7 @@ namespace GrblPlotter
 
             Grbl.Init();                    // load and set grbl messages in grblRelated.cs
             CodeMessage.Init();
-        //    ToolTable.Init();               // fill structure in ToolTable.cs
+            //    ToolTable.Init();               // fill structure in ToolTable.cs
             GuiVariables.ResetVariables();	// set variables in MainFormObjects.cs			
 
             if (Properties.Settings.Default.guiExtendedLoggingEnabled || Properties.Settings.Default.guiExtendedLoggingCOMEnabled)
@@ -222,7 +220,7 @@ namespace GrblPlotter
             SplashScreenTimer.Stop();
             SplashScreenTimer.Start();  // 1st event after 1500
             CbAddGraphic_CheckedChanged(sender, e);
-    }
+        }
 
         private void SplashScreenTimer_Tick(object sender, EventArgs e)
         {
@@ -268,7 +266,7 @@ namespace GrblPlotter
                 }
                 _splashscreen = null;
                 Logger.Info(culture, "++++++ MainForm SplashScreen closed          -> mainTimer:{0}", mainTimerCount);
-                
+
                 SplashScreenTimer.Stop();
                 SplashScreenTimer.Interval = 2000;
                 SplashScreenTimer.Start();
@@ -280,7 +278,7 @@ namespace GrblPlotter
             else
             {
                 SplashScreenTimer.Enabled = false;      // 1st occurance, show splashscreen windows
-                StatusStripClear(2, 2);
+                                                        //    StatusStripClear(2, 2);
                 Logger.Info(culture, "++++++ MainForm SplashScreen Timer disabled  -> mainTimer:{0}", mainTimerCount);
                 timerUpdateControlSource = "SplashScreenTimer_Tick";
                 MainTimer.Stop();
@@ -292,10 +290,10 @@ namespace GrblPlotter
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {   // Note all other forms will be closed, before reaching following code...
             Logger.Info("###### FormClosing ");
-			if (isStreaming)
-				EventCollector.SetStreaming("CLOST");
-			else
-				EventCollector.SetStreaming("Close");
+            if (isStreaming)
+                EventCollector.SetStreaming("CLOST");
+            else
+                EventCollector.SetStreaming("CLOSE");
 
             loadTimer.Stop();
             Properties.Settings.Default.mainFormWinState = WindowState;
@@ -305,8 +303,8 @@ namespace GrblPlotter
             ControlPowerSaving.EnableStandby();
             Properties.Settings.Default.mainFormSplitDistance = splitContainer1.SplitterDistance;
 
-			Properties.Settings.Default.guiLastEnd = DateTime.Now.Ticks;
-			
+            Properties.Settings.Default.guiLastEnd = DateTime.Now.Ticks;
+
             SaveSettings();
             Logger.Info("###### GRBL-Plotter STOP ######");
         }
@@ -323,7 +321,7 @@ namespace GrblPlotter
                 // Use this since we are a console app
                 System.Environment.Exit(1);
             }
-			EventCollector.SetEnd();
+            EventCollector.SetEnd();
             Logger.Info("EventCollector: {0}", Properties.Settings.Default.guiLastEndReason);
         }
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -403,14 +401,14 @@ namespace GrblPlotter
         {
             if (!Grbl.isVersion_0 && _serial_form.IsLasermode)
             {
-        //        lbInfo.Text = Localization.GetString("mainInfoLaserModeOn"); // "Laser Mode active $32=1";
-        //        lbInfo.BackColor = Color.Fuchsia;
+                //        lbInfo.Text = Localization.GetString("mainInfoLaserModeOn"); // "Laser Mode active $32=1";
+                //        lbInfo.BackColor = Color.Fuchsia;
                 SetTextThreadSave(lbInfo, Localization.GetString("mainInfoLaserModeOn"), Color.Fuchsia);
             }
             else
             {
-         ///       lbInfo.Text = Localization.GetString("mainInfoLaserModeOff");  //"Laser Mode not active $32=0";
-         //       lbInfo.BackColor = Color.Lime;
+                ///       lbInfo.Text = Localization.GetString("mainInfoLaserModeOff");  //"Laser Mode not active $32=0";
+                //       lbInfo.BackColor = Color.Lime;
                 SetTextThreadSave(lbInfo, Localization.GetString("mainInfoLaserModeOff"), Color.Lime);
             }
         }
@@ -490,16 +488,46 @@ namespace GrblPlotter
             if (delayedSend > 0)
             {
                 if (delayedSend-- == 1)
-                {   _serial_form.AddToLog("* Code after pause/stop: " + Properties.Settings.Default.flowControlText + " [Setup - Program behavior - Flow control]");
+                {
+                    _serial_form.AddToLog("* Code after pause/stop: " + Properties.Settings.Default.flowControlText + " [Setup - Program behavior - Flow control]");
                     ProcessCommands(Properties.Settings.Default.flowControlText);
                 }
             }
+
+            ShowGrblLastMessage();
+
+            if (timerShowGCodeError)
+            {
+                timerShowGCodeError = false;
+                ShowGCodeErrors();
+            }
+
+            if (delayedStatusStripClear0 > 0)
+            {
+                if (delayedStatusStripClear0-- == 1)
+                { StatusStripClear(0); }
+            }
+            if (delayedStatusStripClear1 > 0)
+            {
+                if (delayedStatusStripClear1-- == 1)
+                { StatusStripClear(1); }
+            }
+            if (delayedStatusStripClear2 > 0)
+            {
+                if (delayedStatusStripClear2-- == 1)
+                { StatusStripClear(2); }
+            }
+            mainTimerCount++;
+        }
+
+        private void ShowGrblLastMessage()
+        {
             if (Grbl.lastMessage.Length > 3)
             {
                 if (Grbl.lastMessage.ToLower(culture).Contains("missing"))
                 {
                     StatusStripClear();
-                    StatusStripSet(1, Grbl.lastMessage, Color.Red);
+                    StatusStripSet(1, Grbl.lastMessage, Color.Fuchsia);
                     StatusStripSet(2, Localization.GetString("statusStripeResetNeeded"), Color.Yellow);
                 }
                 else if (Grbl.lastMessage.ToLower(culture).Contains("reset"))
@@ -507,7 +535,12 @@ namespace GrblPlotter
                     label_status.Text = "";
                     label_status.BackColor = SystemColors.Control;
                     StatusStripClear(2); // MainTimer_Tick
-                    StatusStripSet(1, Grbl.lastMessage, Color.Yellow);
+
+                    if (Grbl.lastMessage.ToLower(culture).Contains("streaming"))
+                        StatusStripSet(1, Grbl.lastMessage, Color.Fuchsia);
+                    else
+                        StatusStripSet(1, Grbl.lastMessage, Color.Yellow);
+
                     if (Grbl.lastMessage.ToLower(culture).Contains("hard"))
                         StatusStripSet(2, Localization.GetString("statusStripeGrblResetNeeded"), Color.Yellow);
                 }
@@ -515,13 +548,8 @@ namespace GrblPlotter
                     StatusStripSet(1, Grbl.lastMessage, Color.Yellow);
                 Grbl.lastMessage = "";
             }
-            if (timerShowGCodeError)
-            {
-                timerShowGCodeError = false;
-                ShowGCodeErrors();
-            }
-            mainTimerCount++;
         }
+
 
         #region GUI Objects
 
@@ -530,12 +558,13 @@ namespace GrblPlotter
         private int SetCustomButton(Button btn, string text)//, int cnt)
         {
             int index;
-			try { 
-				index = Convert.ToUInt16(btn.Name.Substring("btnCustom".Length), culture);
-			}
-			catch (Exception err){	Logger.Error(err,"SetCustomButton {0}",btn.Name); return 0;}
-			
-            if (text.Contains("|") && (index >= 0) && (index < 32))
+            try
+            {
+                index = Convert.ToUInt16(btn.Name.Substring("btnCustom".Length), culture);
+            }
+            catch (Exception err) { Logger.Error(err, "SetCustomButton {0}", btn.Name); return 0; }
+
+            if (text.Contains("|") && (index >= 0) && (index < btnCustomCommand.Length))		// < 32
             {
                 string[] parts = text.Split('|');
                 Color btnColor = Control.DefaultBackColor;
@@ -600,31 +629,40 @@ namespace GrblPlotter
         private void BtnCustomButton_Click(object sender, MouseEventArgs e)
         {
             Button clickedButton = sender as Button;
+            if (isStreaming)
+            {
+                Logger.Warn("BtnCustomButton clicked while streaming: {0}", clickedButton.Name);
+                StatusStripSet(2, Localization.GetString("statusStripeButtonBlocked"), Color.Fuchsia);  // "Custom button is blocked while streaming"
+                delayedStatusStripClear2 = 8;
+                return;
+            }
             int index;
-			try { 
-				index = Convert.ToUInt16(clickedButton.Name.Substring("btnCustom".Length), culture);
-			}
-			catch (Exception err){	Logger.Error(err,"BtnCustomButton_Click {0}",clickedButton.Name); return;}
-			
-			if ((index >= 0) && (index < 32))
-            {	if (e.Button == MouseButtons.Right)
-				{
-					using (ButtonEdit f = new ButtonEdit(index))
-					{
-						var result = f.ShowDialog(this);
-						if (result == DialogResult.OK)
-						{
-							timerUpdateControlSource = "btnCustomButton_Click";
-							UpdateWholeApplication();
-						}
-					}
-				}
-				else
-				{
-					if (!string.IsNullOrEmpty(clickedButton.Text))
-					{ ProcessCommands(btnCustomCommand[index]); }
-				}
-			}
+            try
+            {
+                index = Convert.ToUInt16(clickedButton.Name.Substring("btnCustom".Length), culture);
+            }
+            catch (Exception err) { Logger.Error(err, "BtnCustomButton_Click {0}", clickedButton.Name); return; }
+
+            if ((index >= 0) && (index < btnCustomCommand.Length))		// < 32
+            {
+                if (e.Button == MouseButtons.Right)
+                {
+                    using (ButtonEdit f = new ButtonEdit(index))
+                    {
+                        var result = f.ShowDialog(this);
+                        if (result == DialogResult.OK)
+                        {
+                            timerUpdateControlSource = "btnCustomButton_Click";
+                            UpdateWholeApplication();
+                        }
+                    }
+                }
+                else
+                {
+                    if (!string.IsNullOrEmpty(clickedButton.Text))
+                    { ProcessCommands(btnCustomCommand[index]); }
+                }
+            }
         }
 
 
@@ -656,17 +694,17 @@ namespace GrblPlotter
             int dirY = Math.Sign(index_Y);
             virtualJoystickXY_lastIndex = Math.Max(indexX, indexY);
             if (indexX >= joystickXYStep.Length)
-            { indexX = joystickXYStep.Length-1; index_X = indexX; }
+            { indexX = joystickXYStep.Length - 1; index_X = indexX; }
             if (indexX < 0)
             { indexX = 0; index_X = 0; }
             if (indexY >= joystickXYStep.Length)
-            { indexY = joystickXYStep.Length-1; index_Y = indexY; }
+            { indexY = joystickXYStep.Length - 1; index_Y = indexY; }
             if (indexY < 0)
             { indexY = 0; index_Y = 0; }
             int speed = (int)Math.Max(joystickXYSpeed[indexX], joystickXYSpeed[indexY]);
             String strX = Gcode.FrmtNum(joystickXYStep[indexX] * dirX);
             String strY = Gcode.FrmtNum(joystickXYStep[indexY] * dirY);
-        //    Logger.Error("VirtualJoystickXY_move speed==0  x:{0}  y:{1}", index_X, index_Y);
+            //    Logger.Error("VirtualJoystickXY_move speed==0  x:{0}  y:{1}", index_X, index_Y);
             if (speed > 0)
             {
                 if (Properties.Settings.Default.machineLimitsAlarm && Properties.Settings.Default.machineLimitsShow)
@@ -697,8 +735,8 @@ namespace GrblPlotter
 
                 SendCommands(s, true);
             }
-			else
-				Logger.Error("VirtualJoystickXY_move speed==0  index: x:{0}  y:{1}", index_X, index_Y);
+            else
+                Logger.Error("VirtualJoystickXY_move speed==0  index: x:{0}  y:{1}", index_X, index_Y);
 
         }
         private void VirtualJoystickXY_MouseUp(object sender, MouseEventArgs e)
@@ -728,7 +766,7 @@ namespace GrblPlotter
             int indexZ = Math.Abs(index_Z);
             int dirZ = Math.Sign(index_Z);
             if (indexZ >= joystickZStep.Length)
-            { indexZ = joystickZStep.Length-1; }
+            { indexZ = joystickZStep.Length - 1; }
             if (indexZ < 0)
             { indexZ = 0; }
 
@@ -750,7 +788,7 @@ namespace GrblPlotter
             int indexA = Math.Abs(index_A);
             int dirA = Math.Sign(index_A);
             if (indexA >= joystickAStep.Length)
-            { indexA = joystickAStep.Length-1; }
+            { indexA = joystickAStep.Length - 1; }
             if (indexA < 0)
             { indexA = 0; }
 
@@ -783,7 +821,8 @@ namespace GrblPlotter
                 speed = (int)Math.Round((float)NudSpeed.Value * 10);
 
             if (CbSpindle.Checked)
-            {   SendCommand(m + " S" + speed.ToString());
+            {
+                SendCommand(m + " S" + speed.ToString());
                 SetTextThreadSave(LblSpeedSetVal, speed.ToString(), Color.Yellow);
                 CbLaser.CheckedChanged -= CbLaser_CheckedChanged;
                 CbLaser.Checked = true;
@@ -794,7 +833,8 @@ namespace GrblPlotter
                 CbLaser.CheckedChanged += CbLaser_CheckedChanged;
             }
             else
-            {   SendCommand("M5");
+            {
+                SendCommand("M5");
                 CbLaser.CheckedChanged -= CbLaser_CheckedChanged;
                 CbLaser.Checked = false;
                 PbLaser.Visible = false;
@@ -828,7 +868,8 @@ namespace GrblPlotter
                 CbSpindle.CheckedChanged += CbSpindle_CheckedChanged;
             }
             else
-            {   SendCommand("M5"); PbLaser.Visible = false;
+            {
+                SendCommand("M5"); PbLaser.Visible = false;
                 CbSpindle.CheckedChanged -= CbSpindle_CheckedChanged;
                 CbSpindle.Checked = false;
                 CbSpindle.CheckedChanged += CbSpindle_CheckedChanged;
@@ -844,7 +885,7 @@ namespace GrblPlotter
             else
             {
                 SetTextThreadSave(CbLasermodeVal, "OFF", Color.Yellow);
-                SendCommand("$32=0"); 
+                SendCommand("$32=0");
             }
         }
 
@@ -971,8 +1012,8 @@ namespace GrblPlotter
             signalLock = 0;
             signalPlay = 0;
             btnResume.BackColor = SystemColors.Control;
-        //    lbInfo.Text = "";
-        //    lbInfo.BackColor = SystemColors.Control;
+            //    lbInfo.Text = "";
+            //    lbInfo.BackColor = SystemColors.Control;
             SetTextThreadSave(lbInfo, "", SystemColors.Control);
             CbSpindle.CheckedChanged -= CbSpindle_CheckedChanged;
             CbSpindle.Checked = false;
@@ -1003,22 +1044,22 @@ namespace GrblPlotter
             Logger.Trace("Resume");
             btnResume.BackColor = SystemColors.Control;
             signalResume = 0;
-        //    lbInfo.Text = "";
-        //    lbInfo.BackColor = SystemColors.Control;
+            //    lbInfo.Text = "";
+            //    lbInfo.BackColor = SystemColors.Control;
             SetTextThreadSave(lbInfo, "", SystemColors.Control);
             timerUpdateControlSource = "grblResume";
             UpdateControlEnables();
         }
         private void BtnKillAlarm_Click(object sender, EventArgs e)
-        {   GrblKillAlarm(); }
+        { GrblKillAlarm(); }
         private void GrblKillAlarm()
         {
             SendCommand("$X");
             Logger.Trace("KillAlarm");
             signalLock = 0;
             btnKillAlarm.BackColor = SystemColors.Control;
-        //    lbInfo.Text = "";
-        //    lbInfo.BackColor = SystemColors.Control;
+            //    lbInfo.Text = "";
+            //    lbInfo.BackColor = SystemColors.Control;
             SetTextThreadSave(lbInfo, "", SystemColors.Control);
             timerUpdateControlSource = "grblKillAlarm";
             UpdateControlEnables();
@@ -1065,13 +1106,13 @@ namespace GrblPlotter
         { SendRealtimeCommand(161); }     // 0xA1 : Toggle Mist Coolant 
 
         private void BtnOverrideD0_Click(object sender, EventArgs e)
-        { if(BtnOverrideD0.Tag.ToString() == "off") SendCommand("M64 P0"); else SendCommand("M65 P0"); }
+        { if (BtnOverrideD0.Tag.ToString() == "off") SendCommand("M64 P0"); else SendCommand("M65 P0"); }
         private void BtnOverrideD1_Click(object sender, EventArgs e)
-        { if(BtnOverrideD1.Tag.ToString() == "off") SendCommand("M64 P1"); else SendCommand("M65 P1"); }
+        { if (BtnOverrideD1.Tag.ToString() == "off") SendCommand("M64 P1"); else SendCommand("M65 P1"); }
         private void BtnOverrideD2_Click(object sender, EventArgs e)
-        { if(BtnOverrideD2.Tag.ToString() == "off") SendCommand("M64 P2"); else SendCommand("M65 P2"); }
+        { if (BtnOverrideD2.Tag.ToString() == "off") SendCommand("M64 P2"); else SendCommand("M65 P2"); }
         private void BtnOverrideD3_Click(object sender, EventArgs e)
-        { if(BtnOverrideD3.Tag.ToString() == "off") SendCommand("M64 P3"); else SendCommand("M65 P3"); }
+        { if (BtnOverrideD3.Tag.ToString() == "off") SendCommand("M64 P3"); else SendCommand("M65 P3"); }
 
 
         private void BtnOverrideDoor_Click(object sender, EventArgs e)
@@ -1140,9 +1181,9 @@ namespace GrblPlotter
         }
         private bool ProcessSpecialCommands(string command)
         {
-			if (string.IsNullOrEmpty(command))
-				return false;
-			
+            if (string.IsNullOrEmpty(command))
+                return false;
+
             bool commandFound = false;
             if (command.ToLower(culture).IndexOf("#start") >= 0) { BtnStreamStart_Click(this, null); commandFound = true; }
             else if (command.ToLower(culture).IndexOf("#stop") >= 0) { BtnStreamStop_Click(this, EventArgs.Empty); commandFound = true; }
@@ -1165,12 +1206,14 @@ namespace GrblPlotter
         }
 
         private void MainForm_Activated(object sender, EventArgs e)
-        { 	if (!pictureBox1.Focused)
-				pictureBox1.Focus(); 
-		}
+        {
+            if (!pictureBox1.Focused)
+                pictureBox1.Focus();
+        }
 
         private void PictureBox1_MouseHover(object sender, EventArgs e)
-        { 	if (!pictureBox1.Focused)
+        {
+            if (!pictureBox1.Focused)
             {
                 pictureBox1.Focus();
                 markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (picScaling * zoomFactor));
@@ -1178,9 +1221,10 @@ namespace GrblPlotter
         }
 
         private void FCTBCode_MouseHover(object sender, EventArgs e)
-        { 	if (!fCTBCode.Focused)
-				fCTBCode.Focus(); 
-		}
+        {
+            if (!fCTBCode.Focused)
+                fCTBCode.Focus();
+        }
 
         private void ToolStrip_tb_StreamLine_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1216,12 +1260,12 @@ namespace GrblPlotter
         {
             toolStripViewRuler.Checked = Properties.Settings.Default.gui2DRulerShow;
             toolStripViewInfo.Checked = Properties.Settings.Default.gui2DInfoShow;
-            toolStripViewPenUp.Checked = Properties.Settings.Default.gui2DPenUpShow ;
-            toolStripViewMachine.Checked =  Properties.Settings.Default.machineLimitsShow ;
-            toolStripViewTool.Checked = Properties.Settings.Default.gui2DToolTableShow ;
-            toolStripViewDimension.Checked = Properties.Settings.Default.guiDimensionShow ;
-            toolStripViewBackground.Checked = Properties.Settings.Default.guiBackgroundShow ;
-            toolStripViewMachineFix.Checked = Properties.Settings.Default.machineLimitsFix ;
+            toolStripViewPenUp.Checked = Properties.Settings.Default.gui2DPenUpShow;
+            toolStripViewMachine.Checked = Properties.Settings.Default.machineLimitsShow;
+            toolStripViewTool.Checked = Properties.Settings.Default.gui2DToolTableShow;
+            toolStripViewDimension.Checked = Properties.Settings.Default.guiDimensionShow;
+            toolStripViewBackground.Checked = Properties.Settings.Default.guiBackgroundShow;
+            toolStripViewMachineFix.Checked = Properties.Settings.Default.machineLimitsFix;
         }
         private void MainForm_Resize(object sender, EventArgs e)
         {
@@ -1237,7 +1281,7 @@ namespace GrblPlotter
                 }
             }
 
-        //    StatusStripSet(0, string.Format("New size X:{0}  Y:{1}",Width, Height), Color.White);
+            //    StatusStripSet(0, string.Format("New size X:{0}  Y:{1}",Width, Height), Color.White);
         }
         private void JoystickResize()
         {
@@ -1312,14 +1356,15 @@ namespace GrblPlotter
             gBOverrideSSGB.Width = 284 + add;
 
             gBOverrideASGB.Width = 284 + add;
-            int btnSpindleW = (279 + add) / 7; 
-            btnOverrideSpindle.Width = 3* btnSpindleW;
+            int btnSpindleW = (279 + add) / 7;
+            btnOverrideSpindle.Width = 3 * btnSpindleW;
             btnOverrideFlood.Width = 2 * btnSpindleW;
             btnOverrideMist.Width = 2 * btnSpindleW;
             btnOverrideFlood.Left = 3 + 3 * btnSpindleW;
             btnOverrideMist.Left = (281 + add) - 2 * btnSpindleW;
             if (Properties.Settings.Default.grblDescriptionDxEnable)
-            {   int btnwidth = (278 + add) / 4;
+            {
+                int btnwidth = (278 + add) / 4;
                 BtnOverrideD0.Width = btnwidth;
                 BtnOverrideD1.Width = btnwidth;
                 BtnOverrideD2.Width = btnwidth;
@@ -1347,10 +1392,10 @@ namespace GrblPlotter
                 {
                     gBoxOverride.Height = 200;  // 175
                     gBOverrideASGB.Height = 62;
-                } 
+                }
                 else
                 {
-                    gBoxOverride.Height = 175;  
+                    gBoxOverride.Height = 175;
                     gBOverrideASGB.Height = 37;
                 }
             }
@@ -1387,38 +1432,74 @@ namespace GrblPlotter
          */
         private void StatusStripSet(int nr, string text, Color color)
         {
-			try {
-				if (nr == 0)
-				{
-					if (toolStripStatusLabel0 == null) return;
-					if (toolStripStatusLabel0.GetCurrentParent() == null) return;
-					if (toolStripStatusLabel0.GetCurrentParent().InvokeRequired)
-					{ toolStripStatusLabel0.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { toolStripStatusLabel0.Text = "[ " + text + " ]"; toolStripStatusLabel0.BackColor = color; }); }
-					else
-					{ toolStripStatusLabel0.Text = "[ " + text + " ]"; toolStripStatusLabel0.BackColor = color; }                
-				}
-				else if (nr == 1)
-				{
-					if (toolStripStatusLabel1 == null) return;
-					if (toolStripStatusLabel1.GetCurrentParent() == null) return;
-					if (toolStripStatusLabel1.GetCurrentParent().InvokeRequired)
-					{ toolStripStatusLabel1.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { toolStripStatusLabel1.Text = "[ " + text + " ]"; toolStripStatusLabel1.BackColor = color; }); }
-					else
-					{ toolStripStatusLabel1.Text = "[ " + text + " ]"; toolStripStatusLabel1.BackColor = color; }
-				}
-				else if (nr == 2)
-				{
-					if (toolStripStatusLabel2 == null) return;
-					if (toolStripStatusLabel2.GetCurrentParent() == null) return;
-					if (toolStripStatusLabel2.GetCurrentParent().InvokeRequired)
-					{ toolStripStatusLabel2.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { toolStripStatusLabel2.Text = "[ " + text + " ]"; toolStripStatusLabel2.BackColor = color; }); }
-					else
-					{ toolStripStatusLabel2.Text = "[ " + text + " ]"; toolStripStatusLabel2.BackColor = color; }
-				}
-			}
-			catch (Exception err)
-			{	Logger.Error(err,"StatusStripSet nr:{0}, text:'{1}', color:{2}",nr, text, color.ToString());
-			}
+            try
+            {
+                if (nr == 0)
+                {
+                    if (toolStripStatusLabel0 == null) return;
+                    if (toolStripStatusLabel0.GetCurrentParent() == null) return;
+                    if (toolStripStatusLabel0.GetCurrentParent().InvokeRequired)
+                    { toolStripStatusLabel0.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { toolStripStatusLabel0.Text = "[ " + text + " ]"; toolStripStatusLabel0.BackColor = color; }); }
+                    else
+                    { toolStripStatusLabel0.Text = "[ " + text + " ]"; toolStripStatusLabel0.BackColor = color; }
+                }
+                else if (nr == 1)
+                {
+                    if (toolStripStatusLabel1 == null) return;
+                    if (toolStripStatusLabel1.GetCurrentParent() == null) return;
+                    if (toolStripStatusLabel1.GetCurrentParent().InvokeRequired)
+                    { toolStripStatusLabel1.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { toolStripStatusLabel1.Text = "[ " + text + " ]"; toolStripStatusLabel1.BackColor = color; }); }
+                    else
+                    { toolStripStatusLabel1.Text = "[ " + text + " ]"; toolStripStatusLabel1.BackColor = color; }
+                }
+                else if (nr == 2)
+                {
+                    if (toolStripStatusLabel2 == null) return;
+                    if (toolStripStatusLabel2.GetCurrentParent() == null) return;
+                    if (toolStripStatusLabel2.GetCurrentParent().InvokeRequired)
+                    { toolStripStatusLabel2.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { toolStripStatusLabel2.Text = "[ " + text + " ]"; toolStripStatusLabel2.BackColor = color; }); }
+                    else
+                    { toolStripStatusLabel2.Text = "[ " + text + " ]"; toolStripStatusLabel2.BackColor = color; }
+                }
+            }
+            catch (Exception err)
+            { Logger.Error(err, "StatusStripSet nr:{0}, text:'{1}', color:{2}", nr, text, color.ToString()); }
+        }
+
+        private void StatusStripColor(int nr, Color color)
+        {
+            try
+            {
+                if (nr == 0)
+                {
+                    if (toolStripStatusLabel0 == null) return;
+                    if (toolStripStatusLabel0.GetCurrentParent() == null) return;
+                    if (toolStripStatusLabel0.GetCurrentParent().InvokeRequired)
+                    { toolStripStatusLabel0.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { toolStripStatusLabel0.BackColor = color; }); }
+                    else
+                    { toolStripStatusLabel0.BackColor = color; }
+                }
+                else if (nr == 1)
+                {
+                    if (toolStripStatusLabel1 == null) return;
+                    if (toolStripStatusLabel1.GetCurrentParent() == null) return;
+                    if (toolStripStatusLabel1.GetCurrentParent().InvokeRequired)
+                    { toolStripStatusLabel1.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { toolStripStatusLabel1.BackColor = color; }); }
+                    else
+                    { toolStripStatusLabel1.BackColor = color; }
+                }
+                else if (nr == 2)
+                {
+                    if (toolStripStatusLabel2 == null) return;
+                    if (toolStripStatusLabel2.GetCurrentParent() == null) return;
+                    if (toolStripStatusLabel2.GetCurrentParent().InvokeRequired)
+                    { toolStripStatusLabel2.GetCurrentParent().BeginInvoke((MethodInvoker)delegate () { toolStripStatusLabel2.BackColor = color; }); }
+                    else
+                    { toolStripStatusLabel2.BackColor = color; }
+                }
+            }
+            catch (Exception err)
+            { Logger.Error(err, "StatusStripColor nr:{0}, color:{1}", nr, color.ToString()); }
         }
 
         private void StatusStripClear(int nr1, int nr2 = -1)//, string rem="")
@@ -1426,17 +1507,17 @@ namespace GrblPlotter
             if ((nr1 == 0) || (nr2 == 0))
             {
                 if (toolStripStatusLabel0 == null) return;
-                toolStripStatusLabel0.Text = ""; toolStripStatusLabel0.BackColor = SystemColors.Control; toolStripStatusLabel0.ToolTipText = ""; 
+                toolStripStatusLabel0.Text = ""; toolStripStatusLabel0.BackColor = SystemColors.Control; toolStripStatusLabel0.ToolTipText = "";
             }
             if ((nr1 == 1) || (nr2 == 1))
             {
                 if (toolStripStatusLabel1 == null) return;
-                toolStripStatusLabel1.Text = ""; toolStripStatusLabel1.BackColor = SystemColors.Control; toolStripStatusLabel1.ToolTipText = ""; 
+                toolStripStatusLabel1.Text = ""; toolStripStatusLabel1.BackColor = SystemColors.Control; toolStripStatusLabel1.ToolTipText = "";
             }
             if ((nr1 == 2) || (nr2 == 2))
             {
                 if (toolStripStatusLabel2 == null) return;
-                toolStripStatusLabel2.Text = ""; toolStripStatusLabel2.BackColor = SystemColors.Control; toolStripStatusLabel2.ToolTipText = ""; 
+                toolStripStatusLabel2.Text = ""; toolStripStatusLabel2.BackColor = SystemColors.Control; toolStripStatusLabel2.ToolTipText = "";
             }
         }
         private void StatusStripClear()
@@ -1480,9 +1561,10 @@ namespace GrblPlotter
             if (_laser_form != null) _laser_form.BringToFront();
             if (_probing_form != null) _probing_form.BringToFront();
             if (_heightmap_form != null) _heightmap_form.BringToFront();
+            if (_grbl_setup_form != null) _grbl_setup_form.BringToFront();
 
-         //   _streaming_form.SendToBack();
-       }
+            //   _streaming_form.SendToBack();
+        }
 
         private void CbAddGraphic_CheckedChanged(object sender, EventArgs e)
         {

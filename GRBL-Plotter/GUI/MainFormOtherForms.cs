@@ -24,6 +24,7 @@
  * 2022-04-06 add _projector_form with monitor selection
 */
 
+using GrblPlotter.MachineControl;
 using System;
 using System.Windows.Forms;
 
@@ -55,7 +56,7 @@ namespace GrblPlotter
         ControlSetupForm _setup_form = null;
         ControlJogPathCreator _jogPathCreator_form = null;
         ControlProjector _projector_form = null;
-
+        GrblSetupForm _grbl_setup_form = null;
 
         #region MAIN-MENU GCode creation
         /********************************************************************
@@ -83,7 +84,7 @@ namespace GrblPlotter
             _text_form.WindowState = FormWindowState.Normal;
         }
         private void FormClosed_TextToGCode(object sender, FormClosedEventArgs e)
-        { _text_form = null; EventCollector.SetOpenForm("FCtxt");}
+        { _text_form = null; EventCollector.SetOpenForm("FCtxt"); }
 
         /********************************************************************
          * Image
@@ -98,7 +99,7 @@ namespace GrblPlotter
                 _image_form.btnGenerate.Click += GetGCodeFromImage;      // assign btn-click event in MainFormgetCodetransform.cs
                 _image_form.BtnReloadPattern.Click += LoadLastGraphic;
                 _image_form.CBoxPatternFiles.SelectedIndexChanged += LoadSelectedGraphicImage;
-                EventCollector.SetOpenForm("Fimg");            
+                EventCollector.SetOpenForm("Fimg");
             }
             else
             {
@@ -106,7 +107,7 @@ namespace GrblPlotter
             }
             if (showFormInFront) _image_form.Show(this);
             else _image_form.Show();
-			
+
             showFormsToolStripMenuItem.Visible = true;
             _image_form.WindowState = FormWindowState.Normal;
         }
@@ -331,7 +332,7 @@ namespace GrblPlotter
         }
         private void FormClosed_DIYControlForm(object sender, FormClosedEventArgs e)
         { _diyControlPad = null; EventCollector.SetOpenForm("FCdiy"); }
-		
+
         private void OnRaiseDIYCommandEvent(object sender, CommandEventArgs e)
         {
             if (e.RealTimeCommand > 0x00)
@@ -346,7 +347,7 @@ namespace GrblPlotter
                 if (e.Command.StartsWith("(PRB:Z"))
                 {
                     string num = e.Command.Substring(6);
-               //     double myZ;
+                    //     double myZ;
                     num = num.Trim(')');
                     alternateZ = null;
                     if (double.TryParse(num, out double myZ))
@@ -384,10 +385,10 @@ namespace GrblPlotter
         }
         private void FormClosed_CoordSystemForm(object sender, FormClosedEventArgs e)
         { _coordSystem_form = null; EventCollector.SetOpenForm("FCcord"); }
-		
+
         private void OnRaiseCoordSystemEvent(object sender, CmdEventArgs e)
         {
-            SendCommand(e.Command);
+            SendCommand(e.Command); _serial_form.BringToFront();
         }
 
 
@@ -417,7 +418,7 @@ namespace GrblPlotter
         }
         private void FormClosed_LaserForm(object sender, FormClosedEventArgs e)
         { _laser_form = null; EventCollector.SetOpenForm("FClas"); }
-		
+
         private void OnRaiseLaserEvent(object sender, CmdEventArgs e)
         {
             if (!_serial_form.RequestSend(e.Command, true))     // check if COM is still open
@@ -453,7 +454,7 @@ namespace GrblPlotter
         }
         private void FormClosed_ProbingForm(object sender, FormClosedEventArgs e)
         { _probing_form = null; EventCollector.SetOpenForm("FCprb"); }
-		
+
         private void BtnGetAngleEF_Click(object sender, EventArgs e)
         {
             if ((VisuGCode.xyzSize.dimx > 0) && (VisuGCode.xyzSize.dimy > 0))
@@ -585,8 +586,8 @@ namespace GrblPlotter
         private void FormClosed_JogCreator(object sender, FormClosedEventArgs e)
         { _jogPathCreator_form = null; EventCollector.SetOpenForm("FCjog"); }
 
- 
-		/********************************************************************
+
+        /********************************************************************
          * Projector - a form to be displayed via a projector on the workpiece
          * _projector_form
          ********************************************************************/
@@ -602,25 +603,47 @@ namespace GrblPlotter
             {
                 _projector_form.Visible = false;
             }
-			
-			if (Screen.AllScreens.Length > 1)
-			{	
-				if ((int)Properties.Settings.Default.projectorMonitorIndex >= Screen.AllScreens.Length)
-					Properties.Settings.Default.projectorMonitorIndex = Screen.AllScreens.Length - 1;
-				
-				_projector_form.StartPosition = FormStartPosition.Manual;
-				_projector_form.Location = Screen.AllScreens[(int)Properties.Settings.Default.projectorMonitorIndex].WorkingArea.Location;	// selectable index
-				_projector_form.FormBorderStyle = FormBorderStyle.None;		// default = Sizable
-				_projector_form.Show();
-				_projector_form.WindowState = FormWindowState.Maximized;
-			} 
-			else
-			{	_projector_form.Show(this);
-				_projector_form.WindowState = FormWindowState.Normal;
-			}
+
+            if (Screen.AllScreens.Length > 1)
+            {
+                if ((int)Properties.Settings.Default.projectorMonitorIndex >= Screen.AllScreens.Length)
+                    Properties.Settings.Default.projectorMonitorIndex = Screen.AllScreens.Length - 1;
+
+                _projector_form.StartPosition = FormStartPosition.Manual;
+                _projector_form.Location = Screen.AllScreens[(int)Properties.Settings.Default.projectorMonitorIndex].WorkingArea.Location;  // selectable index
+                _projector_form.FormBorderStyle = FormBorderStyle.None;     // default = Sizable
+                _projector_form.Show();
+                _projector_form.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                _projector_form.Show(this);
+                _projector_form.WindowState = FormWindowState.Normal;
+            }
         }
         private void FormClosed_Projector(object sender, FormClosedEventArgs e)
-        { 	_projector_form = null; EventCollector.SetOpenForm("FCprj"); }
+        { _projector_form = null; EventCollector.SetOpenForm("FCprj"); }
+
+
+
+        private void GrblSetupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_grbl_setup_form == null)
+            {
+                _grbl_setup_form = new GrblSetupForm();
+                _grbl_setup_form.FormClosed += FormClosed_GrblSetup;
+                _grbl_setup_form.RaiseCmdEvent += OnRaiseCoordSystemEvent;  // line 389
+                EventCollector.SetOpenForm("Fgrbl");
+            }
+            else
+            {
+                _grbl_setup_form.Visible = false;
+            }
+            _grbl_setup_form.Show(null);// this);
+            _grbl_setup_form.WindowState = FormWindowState.Normal;
+        }
+        private void FormClosed_GrblSetup(object sender, FormClosedEventArgs e)
+        { _grbl_setup_form = null; EventCollector.SetOpenForm("FCgrbl"); }
 
 
         /********************************************************************

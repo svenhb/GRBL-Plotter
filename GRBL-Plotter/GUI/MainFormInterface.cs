@@ -119,33 +119,42 @@ namespace GrblPlotter
                 btnOverrideSpindle.Image = Properties.Resources.led_on;   // Spindle on CW
                                                                           //        btnOverrideSpindle.Text = "Spindle CW";
                 RbSpindleCW.Checked = true;
-            //    CbSpindle.BackColor = Color.Lime;
+                //    CbSpindle.BackColor = Color.Lime;
             }
             if (StatMsg.A.Contains("C"))
             {
                 btnOverrideSpindle.Image = Properties.Resources.led_on;   // Spindle on CCW
                                                                           //       btnOverrideSpindle.Text = "Spindle CCW";
                 RbSpindleCCW.Checked = true;
-            //    CbSpindle.BackColor = Color.Lime;
+                //    CbSpindle.BackColor = Color.Lime;
             }
             if (!StatMsg.A.Contains("S") && !StatMsg.A.Contains("C"))
-            {   btnOverrideSpindle.Image = Properties.Resources.led_off;
-             //   CbSpindle.BackColor = Color.Fuchsia;
+            {
+                btnOverrideSpindle.Image = Properties.Resources.led_off;
+                //   CbSpindle.BackColor = Color.Fuchsia;
                 //CbSpindle.Checked = false; 
             }  // Spindle off
 
-            if (StatMsg.A.Contains("F")) {  btnOverrideFlood.Image = Properties.Resources.led_on; 
-                                            CbCoolant.BackColor = Color.Lime; 
+            if (StatMsg.A.Contains("F"))
+            {
+                btnOverrideFlood.Image = Properties.Resources.led_on;
+                CbCoolant.BackColor = Color.Lime;
             }   // Flood on
-            else {  btnOverrideFlood.Image = Properties.Resources.led_off;
-                    CbCoolant.BackColor = Color.Transparent;    // Color.Fuchsia;
+            else
+            {
+                btnOverrideFlood.Image = Properties.Resources.led_off;
+                CbCoolant.BackColor = Color.Transparent;    // Color.Fuchsia;
             }
 
-            if (StatMsg.A.Contains("M")) {  btnOverrideMist.Image = Properties.Resources.led_on;
-                                            CbMist.BackColor = Color.Lime;
+            if (StatMsg.A.Contains("M"))
+            {
+                btnOverrideMist.Image = Properties.Resources.led_on;
+                CbMist.BackColor = Color.Lime;
             } // Mist on
-            else {  btnOverrideMist.Image = Properties.Resources.led_off;
-                    CbMist.BackColor = Color.Transparent;    // Color.Fuchsia;
+            else
+            {
+                btnOverrideMist.Image = Properties.Resources.led_off;
+                CbMist.BackColor = Color.Transparent;    // Color.Fuchsia;
             }
 
             if (Properties.Settings.Default.grblDescriptionDxEnable)
@@ -204,7 +213,7 @@ namespace GrblPlotter
                 SetTextThreadSave(LblSpeedSetVal, value[1], Color.Lime);
                 SetTextThreadSave(LblLaserSetVal, value[1], Color.Lime);
             }
-            else
+            else if (value.Length > 0)
             {
                 SetTextThreadSave(lblStatusFeed, value[0]);  // + " mm/min";
                 SetTextThreadSave(lblStatusSpeed, "-");      // + " RPM";
@@ -253,7 +262,7 @@ namespace GrblPlotter
         {
             string lblInfoText = "";	// rename
             Color lblInfoColor = Color.Black;
-            if (logPosEvent) 
+            if (logPosEvent)
                 Logger.Trace("processStatus  Status:{0}", machineStatus.ToString());
             if ((machineStatus != lastMachineStatus) || (Grbl.lastMessage.Length > 5))
             {
@@ -285,7 +294,7 @@ namespace GrblPlotter
                         { btnKillAlarm.BackColor = SystemColors.Control; signalLock = 0; }
                         if (!isStreaming)                       // update drawing if G91 is used
                             updateDrawingPath = true;
-                        StatusStripClear(1, 2);//, "grblState.idle2");
+                        //       StatusStripClear(1, 2);//, "grblState.idle2");
                         Grbl.lastMessage = "";
                         break;
 
@@ -410,12 +419,12 @@ namespace GrblPlotter
 
                 if (Grbl.isVersion_0)
                 {
-                /*    CbSpindle.CheckedChanged -= CbSpindle_CheckedChanged;
-                    CbSpindle.Checked = (cmd.spindle <= 4);// ? true : false;  // M3, M4 start, M5 stop
-                    CbSpindle.CheckedChanged += CbSpindle_CheckedChanged;
-                    CbCoolant.CheckedChanged -= CbCoolant_CheckedChanged;
-                    CbCoolant.Checked = (cmd.coolant <= 8);// ? true : false;  // M7, M8 on   M9 coolant off
-                    CbCoolant.CheckedChanged += CbCoolant_CheckedChanged;*/
+                    /*    CbSpindle.CheckedChanged -= CbSpindle_CheckedChanged;
+                        CbSpindle.Checked = (cmd.spindle <= 4);// ? true : false;  // M3, M4 start, M5 stop
+                        CbSpindle.CheckedChanged += CbSpindle_CheckedChanged;
+                        CbCoolant.CheckedChanged -= CbCoolant_CheckedChanged;
+                        CbCoolant.Checked = (cmd.coolant <= 8);// ? true : false;  // M7, M8 on   M9 coolant off
+                        CbCoolant.CheckedChanged += CbCoolant_CheckedChanged;*/
                     if (cmd.spindle <= 4) CbSpindle.BackColor = Color.Lime;
                     else CbSpindle.BackColor = Color.Transparent;
                     if (cmd.spindle <= 8) CbCoolant.BackColor = Color.Lime;
@@ -440,6 +449,9 @@ namespace GrblPlotter
         private void ProcessReset()
         {
             timerUpdateControlSource = "processReset";
+
+            ShowGrblLastMessage();      // from Grbl.lastMessage  in MainForm.cs
+
             if (isStreaming)
             { ResetStreaming(); }
 
@@ -494,7 +506,7 @@ namespace GrblPlotter
             timerUpdateControls = true;
             SetGRBLBuffer();
             Logger.Trace("ResetEvent()  connect:{0}  msg:{1}", _serial_form.SerialPortOpen, Grbl.lastMessage);
-			EventCollector.SetStreaming("Srst");
+            EventCollector.SetStreaming("Srst");
             UpdateControlEnables();
             ResetStreaming(false);
         }
@@ -510,7 +522,7 @@ namespace GrblPlotter
                     {
                         Grbl.RX_BUFFER_SIZE = (Grbl.bufferSize != 128) ? Grbl.bufferSize : 127;
                         if (!Grbl.isMarlin) _serial_form.AddToLog("* Read buffer size of " + Grbl.RX_BUFFER_SIZE + " bytes");
-                        Logger.Info("Read buffer size of {0} [Setup - Flow control - grbl buffer size]", Grbl.RX_BUFFER_SIZE);
+                        Logger.Info("Read buffer size of {0} [Setup - Flow control - grbl buffer size]   Grbl.axisCount:{1}", Grbl.RX_BUFFER_SIZE, Grbl.axisCount);
                     }
                     else
                     {
@@ -520,16 +532,18 @@ namespace GrblPlotter
                             Grbl.RX_BUFFER_SIZE = 127;
 
                         if (!Grbl.isMarlin) _serial_form.AddToLog("* Assume buffer size of " + Grbl.RX_BUFFER_SIZE + " bytes");
-                        Logger.Info("Assume buffer size of {0} [Setup - Flow control - grbl buffer size]", Grbl.RX_BUFFER_SIZE);
+                        Logger.Info("Assume buffer size of {0} [Setup - Flow control - grbl buffer size]   Grbl.axisCount:{1}", Grbl.RX_BUFFER_SIZE, Grbl.axisCount);
                     }
                 }
                 else
                 {  //if (grbl.RX_BUFFER_SIZE != 127)
                     if (!Grbl.isMarlin) _serial_form.AddToLog("* Buffer size was manually set to " + Grbl.RX_BUFFER_SIZE + " bytes!\r* Check [Setup - Flow control]");
-                    Logger.Info("Buffer size was manually set to {0} [Setup - Flow control - grbl buffer size]", Grbl.RX_BUFFER_SIZE);
+                    Logger.Info("Buffer size was set manually to {0} [Setup - Flow control - grbl buffer size]  Grbl.axisCount:{1}", Grbl.RX_BUFFER_SIZE, Grbl.axisCount);
                 }
-                if (!Grbl.isMarlin) StatusStripSet(1, string.Format("grbl-controller connected: vers: {0}, axis: {1}, buffer: {2}", _serial_form.GrblVers, Grbl.axisCount, Grbl.RX_BUFFER_SIZE), Color.Lime);
-                else StatusStripSet(1, string.Format("Marlin connected: axis: {0}", Grbl.axisCount), Color.Lime);
+                if (!Grbl.isMarlin) StatusStripSet(2, string.Format("grbl-controller connected: vers: {0}, axis: {1}, buffer: {2}", _serial_form.GrblVers, Grbl.axisCount, Grbl.RX_BUFFER_SIZE), Color.Lime);
+                else StatusStripSet(2, string.Format("Marlin connected: axis: {0}", Grbl.axisCount), Color.Lime);
+
+                delayedStatusStripClear1 = 8;
             }
         }
 

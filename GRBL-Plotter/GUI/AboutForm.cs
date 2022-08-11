@@ -40,46 +40,46 @@ namespace GrblPlotter
             Thread.CurrentThread.CurrentUICulture = ci;
             InitializeComponent();
             linkLabel2.Text = Datapath.AppDataFolder;   // System.Windows.Forms.Application.StartupPath;
-            toolTip1.SetToolTip(linkLabel2, "Open file explorer and visit '"+ Datapath.AppDataFolder + "'");
+            toolTip1.SetToolTip(linkLabel2, "Open file explorer and visit '" + Datapath.AppDataFolder + "'");
         }
 
-		/* link to github */
+        /* link to github */
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            try {	Process.Start(@"https://github.com/svenhb/GRBL-Plotter");}
-			catch (Exception err)
-			{	MessageBox.Show("Could not open URL : "+err.Message, "Error");}
+            try { Process.Start(@"https://github.com/svenhb/GRBL-Plotter"); }
+            catch (Exception err)
+            { MessageBox.Show("Could not open URL : " + err.Message, "Error"); }
         }
 
-		/* show actual verison */
+        /* show actual verison */
         private void AboutForm_Load(object sender, EventArgs e)
         {
             lblVersion.Text = string.Format("{0}    {1}", System.Windows.Forms.Application.ProductVersion.ToString(), GetLinkerTimestampUtc(System.Reflection.Assembly.GetExecutingAssembly()).ToString("yyyy-MM-dd"));   //File.GetCreationTime(System.Reflection.Assembly.GetExecutingAssembly().Location)
         }
 
-		/* check prog. version */
+        /* check prog. version */
         private void Button2_Click(object sender, EventArgs e)
         {
             CheckUpdate.CheckVersion(true, Properties.Settings.Default.guiLastEndReason);
         }
 
-		/* open AppData */
+        /* open AppData */
         private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            try { Process.Start(Datapath.AppDataFolder);	}// (@"c:\test");
-			catch (Exception err)
-			{	MessageBox.Show("Could not open folder : "+err.Message, "Error");}
+            try { Process.Start(Datapath.AppDataFolder); }// (@"c:\test");
+            catch (Exception err)
+            { MessageBox.Show("Could not open folder : " + err.Message, "Error"); }
         }
 
-		/* open home page */
+        /* open home page */
         private void LinkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            try {	Process.Start(@"https://GRBL-Plotter.de/?setlang=en");}
-			catch (Exception err)
-			{	MessageBox.Show("Could not open URL : "+err.Message, "Error");}			
+            try { Process.Start(@"https://GRBL-Plotter.de/?setlang=en"); }
+            catch (Exception err)
+            { MessageBox.Show("Could not open URL : " + err.Message, "Error"); }
         }
 
-		/* date/time of compilation */
+        /* date/time of compilation */
         public static DateTime GetLinkerTimestampUtc(System.Reflection.Assembly assembly)
         {
             var location = assembly.Location;
