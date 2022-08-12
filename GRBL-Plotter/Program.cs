@@ -20,10 +20,7 @@
 // 2018-09-19 Avoid starting prog twice
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GrblPlotter
@@ -38,7 +35,7 @@ namespace GrblPlotter
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-      //      bool newInstance;
+            //      bool newInstance;
             using (var mutex = new Mutex(true, "Deine_Anwendung", out bool newInstance))
             {
                 if (newInstance)
