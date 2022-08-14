@@ -1,6 +1,10 @@
 ## History
 Needs to be read from the bottom up ;-)  
  
+### 2022-08 Version 1.6.7.x 
+* SVG Text import (not all SVG text options are implemented), see https://www.w3.org/TR/SVG11/text.html
+* grbl Setup form
+  
 ### 2022-04 Version 1.6.6.x 
 * New form "Projector" shows the 2D-view in fix scale, to be shown on the workpiece with an projector [Machine control - Projector].
 * Additional forms (e.g. setup-form or text-creation) are not pinned to the front anymore, but can be brought to front via menu-button.
