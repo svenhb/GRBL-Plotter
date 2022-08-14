@@ -4,6 +4,10 @@ Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windo
 Geschrieben in C# VisualStudio 2019.  
 Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WK8ATWHC872JU)   
   
+### Neu in Version 1.6.7.x
+* SVG-Text import (nicht alle SVG-Text Optionen werden unterstützt)
+* GRBL-Setup Fenster
+ 
 ### Neu in Version 1.6.6.x
 * Neues Fenster 'Projektor' um die 2D-Grafik mittels eines Beamers auf dem Werkstück anzuzeigen
 * Zusätzlich geöffnete Fenster können in den Hintergrund geschickt werden
