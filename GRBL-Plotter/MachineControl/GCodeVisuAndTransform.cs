@@ -419,7 +419,7 @@ namespace GrblPlotter
         /// </summary>
         public static void MarkSelectedFigure(int figureNr)
         {
-            Logger.Info("MarkSelectedFigure figureNr:{0}", figureNr);
+            Logger.Trace("MarkSelectedFigure figureNr:{0}", figureNr);
             lastFigureNumbers.Clear();
             if (figureNr <= 0)
             {

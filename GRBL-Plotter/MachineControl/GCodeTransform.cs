@@ -81,7 +81,7 @@ namespace GrblPlotter
         /// </summary>
         public static string TransformGCodeMirror(Translate shiftToZero = Translate.MirrorX)
         {
-            Logger.Debug("..transformGCodeMirror {0}", shiftToZero);
+            Logger.Info("●●● TransformGCode-Mirror {0}", shiftToZero);
             EventCollector.SetTransform("Tmir");
             if (gcodeList == null) return "";
 
@@ -179,7 +179,7 @@ namespace GrblPlotter
         /// </summary>
         internal static string TransformGCodeRotate(double angle, double scale, XyPoint offset, bool calcCenter = true)
         {
-            Logger.Debug(">^< TransformGCodeRotate angle: {0}", angle);
+            Logger.Info("●●● TransformGCode-Rotate angle: {0}", angle);
             EventCollector.SetTransform("Trot");
             if (gcodeList == null) return "";
             XyPoint centerOfFigure = xyzSize.GetCenter();
@@ -281,7 +281,7 @@ namespace GrblPlotter
         }
         public static string TransformGCodeScale(double scaleX, double scaleY, XyPoint centerOfFigure)
         {
-            Logger.Debug("<=> TransformGCodeScale scaleX: {0}, scale Y: {1}", scaleX, scaleY);
+            Logger.Info("●●● TransformGCode-Scale scaleX: {0}, scale Y: {1}", scaleX, scaleY);
             EventCollector.SetTransform("Tscl");
             if (gcodeList == null) return "";
 
@@ -303,7 +303,7 @@ namespace GrblPlotter
                 {
                     if (gcline.motionMode > 1)
                     {
-                        Logger.Warn("TransformGCodeScale found G2/G3 command, set scaleX=scaleY");
+                        Logger.Warn("⚠️⚠️ TransformGCodeScale found G2/G3 command, set scaleX=scaleY");
                         factor_x = factor_y = Math.Max(factor_x, factor_y);
                         break;
                     }
@@ -372,7 +372,7 @@ namespace GrblPlotter
 
         public static string TransformGCodeOffset(double tx, double ty, Translate shiftToZero)
         {
-            Logger.Debug("<-> TransformGCodeOffset X: {0:0.000}, Y: {1:0.000}, Offset: {2},   lastFigureNumber:{3}", tx, ty, shiftToZero, lastFigureNumber);
+            Logger.Info("●●● TransformGCode-Offset X: {0:0.000}, Y: {1:0.000}, Offset: {2},   lastFigureNumber:{3}", tx, ty, shiftToZero, lastFigureNumber);
             EventCollector.SetTransform("Toff");
             if (gcodeList == null) return "";
             if ((lastFigureNumber <= 0) || (!(shiftToZero == Translate.None)))
@@ -477,7 +477,7 @@ namespace GrblPlotter
 
         public static string TransformGCodeRadiusCorrection(double radius)
         {
-            Logger.Debug("..transformGCodeRadiusCorrection r: {0}", radius);
+            Logger.Info("●●● TransformGCode-RadiusCorrection r: {0}", radius);
             EventCollector.SetTransform("Trad");
             if (gcodeList == null) return "";
 
@@ -545,7 +545,7 @@ namespace GrblPlotter
                     {
                         gcodeList[i].i = null; gcodeList[i].j = null;
                         gcodeList[i].motionMode = 1;
-                        Logger.Trace("   transformGCodeRadiusCorrection - Radius too small, do G1 {0}", gcodeList[act].codeLine);
+                        Logger.Warn("⚠️⚠️️ TransformGCodeRadiusCorrection - Radius too small, do G1 {0}", gcodeList[act].codeLine);
                     }
                 }
                 figureProcessed = true;                 // must stay before jump label
