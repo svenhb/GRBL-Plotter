@@ -45,6 +45,7 @@
  * 2022-02-17 function CountImageColors line 1388 switch from int to long
  * 2022-03-24 add drop-down for tool-files and tool-table entries
  * 2022-03-28 move some functions to new file GCodeFromImageMisc
+ * 2022-09-14 add if (adjustedImage == null) 
 */
 
 using AForge.Imaging.ColorReduction;
@@ -592,7 +593,7 @@ namespace GrblPlotter
             //    Refresh();
             try
             {
-                if (adjustedImage == null) return;//if no image, do nothing
+				if (adjustedImage == null) {Logger.Warn("ApplyColorCorrections adjustedImage == null");return;}//if no image, do nothing
 
                 ResizeNearestNeighbor filterResize = new ResizeNearestNeighbor(xSize, ySize);   // The class implements image resizing filter using nearest neighbor algorithm, which does not assume any interpolation.
                                                                                                 // The filter accepts 8 and 16 bpp grayscale images and 24, 32, 48 and 64 bpp color images for processing.
@@ -838,7 +839,7 @@ namespace GrblPlotter
         {
             if (logEnable) Logger.Trace("ShowResultImage showResult:{0}", showResult);
 
-            if (adjustedImage == null) return;//if no image, do nothing
+            if (adjustedImage == null) {Logger.Warn("ShowResultImage adjustedImage == null");return;}//if no image, do nothing
 
             if (useColorMode)
                 GenerateResultImage(ref resultToolNrArray);      // fill countColors
@@ -970,6 +971,7 @@ namespace GrblPlotter
         private void GenerateResultImage(ref short[,] tmpToolNrArray)      // and count tool colors
         {//https://www.codeproject.com/Articles/17162/Fast-Color-Depth-Change-for-Bitmaps
 
+            if (adjustedImage == null) {Logger.Warn("GenerateResultImage adjustedImage == null");return;}//if no image, do nothing
             if (logEnable) Logger.Trace("GenerateResultImage ");
 
             Color myColor, newColor;
@@ -1069,6 +1071,7 @@ namespace GrblPlotter
         private void GenerateResultImageGray(ref short[,] tmpToolNrArray)      // and count tool colors
         {//https://www.codeproject.com/Articles/17162/Fast-Color-Depth-Change-for-Bitmaps
 
+            if (adjustedImage == null) {Logger.Warn("GenerateResultImageGray adjustedImage == null");return;}//if no image, do nothing
             if (logEnable) Logger.Trace("GenerateResultImageGray pixelFormat:{0}", adjustedImage.PixelFormat);
 
             BitmapData dataAdjusted = null;
@@ -1157,9 +1160,10 @@ namespace GrblPlotter
         /// </summary>
         private int CountImageColors()
         {   // Lock the bitmap's bits.  
+            if (adjustedImage == null) {Logger.Warn("CountImageColors adjustedImage == null");return 1;}//if no image, do nothing
             Rectangle rect;
             try
-            {
+            { 
                 rect = new Rectangle(0, 0, adjustedImage.Width, adjustedImage.Height);
             }
             catch (Exception err)
