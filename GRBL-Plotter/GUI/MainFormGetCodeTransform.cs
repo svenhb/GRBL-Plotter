@@ -148,7 +148,7 @@ namespace GrblPlotter
                 createGroup = true;
             }
 
-            Logger.Info("InsertCodeFromForm:{0} insertCode:{1}  insertAt:{2}", sourceForm, insertCode, insertLineNr);
+            Logger.Info("▀▀▀▀▀▀ InsertCodeFromForm:{0} insertCode:{1}  insertAt:{2}", sourceForm, insertCode, insertLineNr);
 
             if (insertCode && LineIsInRange(insertLineNr))
             {
@@ -268,7 +268,7 @@ namespace GrblPlotter
         // handle event from create Shape
         private void GetGCodeFromShape(object sender, EventArgs e)
         {
-            Logger.Info("getGCodeFromShape");
+            Logger.Info("▀▀▀▀▀▀ GetGCodeFromShape");
             if (!isStreaming)
             {
                 InsertCodeFromForm(_shape_form.ShapeGCode, "from shape", _shape_form.PathBackground);
@@ -284,7 +284,7 @@ namespace GrblPlotter
 
         private void GetGCodeFromBarcode(object sender, EventArgs e)
         {
-            Logger.Info("getGCodeFromBarcode");
+            Logger.Info("▀▀▀▀▀▀ GetGCodeFromBarcode");
             if (!isStreaming)
             {
                 InsertCodeFromForm(Graphic.GCode.ToString(), "from barcode");
@@ -303,7 +303,7 @@ namespace GrblPlotter
         // handle event from create Image form
         private void GetGCodeFromImage(object sender, EventArgs e)
         {
-            Logger.Info("getGCodeFromImage");
+            Logger.Info("▀▀▀▀▀▀ GetGCodeFromImage");
             if (!isStreaming)
             {
                 SimuStop();
@@ -327,7 +327,7 @@ namespace GrblPlotter
 
         private void GetGCodeJogCreator(object sender, EventArgs e)
         {
-            Logger.Info("getGCodeJogCreator");
+            Logger.Info("▀▀▀▀▀▀ GetGCodeJogCreator");
             if (!isStreaming)
             { SendCommands(_jogPathCreator_form.JogGCode, true); }
             else
@@ -336,7 +336,7 @@ namespace GrblPlotter
 
         private void GetGCodeJogCreator2(object sender, EventArgs e)
         {
-            Logger.Info("getGCodeJogCreator2");
+            Logger.Info("▀▀▀▀▀▀ GetGCodeJogCreator2");
             if (!isStreaming)
             {
                 SimuStop();
@@ -424,6 +424,7 @@ namespace GrblPlotter
 
         private void TransformStart(string action)//, bool resetMark = true)
         {
+			Logger.Info("▼▼▼▼▼▼ TransformStart {0}", action);
             Cursor.Current = Cursors.WaitCursor;
             UnDo.SetCode(fCTBCode.Text, action, this);
             showPicBoxBgImage = false;                      // don't show background image anymore
@@ -447,6 +448,7 @@ namespace GrblPlotter
             resetView = false;
             if (_projector_form != null)
                 _projector_form.Invalidate();
+			Logger.Info("▲▲▲▲▲▲ TransformEnd");
         }
 
         private void BtnOffsetApply_Click(object sender, EventArgs e)

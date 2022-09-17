@@ -71,7 +71,8 @@ namespace GrblPlotter
                 UpdateWholeApplication();
 
             pbFile.Maximum = fCTBCode.LinesCount;
-            fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
+            if (LineIsInRange(fCTBCodeClickedLineLast)) 
+                fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
             btnSimulate.Text = Localization.GetString("mainSimuStop");
             simuLine = 0;
             fCTBCodeClickedLineNow = simuLine;
@@ -143,7 +144,8 @@ namespace GrblPlotter
             {
                 lbInfo.Text = string.Format("Line {0}: {1}", (simuLine + 1), fCTBCode.Lines[simuLine]);
                 fCTBCode.Selection = fCTBCode.GetLine(simuLine);
-                fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
+                if (LineIsInRange(fCTBCodeClickedLineLast))
+                    fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
                 fCTBCode.BookmarkLine(simuLine);
                 fCTBCode.DoCaretVisible();
                 fCTBCodeClickedLineLast = simuLine;

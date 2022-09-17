@@ -38,6 +38,7 @@
  * 2022-01-21 snap on grid
  * 2022-04-04 line 550 _projector_form.Invalidate()
  * 2022-07-29 GraphicPropertiesSetup add try catch
+ * 2022-09-13 line 114/137	if ((xRange == 0) || (yRange == 0)) picScaling = 1;
 */
 
 using FastColoredTextBoxNS;
@@ -110,8 +111,11 @@ namespace GrblPlotter
                 xRange = (double)Properties.Settings.Default.machineLimitsRangeX + 2 * offset;
                 yRange = (double)Properties.Settings.Default.machineLimitsRangeY + 2 * offset;
             }
-
-            picScaling = Math.Min(pictureBox1.Width / (xRange), pictureBox1.Height / (yRange));               // calculate scaling px/unit
+			
+			if ((xRange == 0) || (yRange == 0))
+				picScaling = 1;
+			else
+				picScaling = Math.Min(pictureBox1.Width / (xRange), pictureBox1.Height / (yRange));               // calculate scaling px/unit
         }
 
         private void PictureBox1_Paint(object sender, PaintEventArgs e)
@@ -131,7 +135,10 @@ namespace GrblPlotter
                 yRange = (double)Properties.Settings.Default.machineLimitsRangeY + 2 * offset;
             }
 
-            picScaling = Math.Min(pictureBox1.Width / (xRange), pictureBox1.Height / (yRange));               // calculate scaling px/unit
+ 			if ((xRange == 0) || (yRange == 0))
+				picScaling = 1;
+			else
+				picScaling = Math.Min(pictureBox1.Width / (xRange), pictureBox1.Height / (yRange));               // calculate scaling px/unit
 
             if ((picScaling > 0.001) && (picScaling < 10000))
             {
@@ -885,7 +892,8 @@ namespace GrblPlotter
         private void CmsPicBoxMoveGraphicsOrigin_Click(object sender, EventArgs e)
         {
             UnDo.SetCode(fCTBCode.Text, cmsPicBoxMoveGraphicsOrigin.Text, this);
-            ClearTextSelection(fCTBCodeClickedLineNow);
+            if (LineIsInRange(fCTBCodeClickedLineNow))
+                ClearTextSelection(fCTBCodeClickedLineNow);
             VisuGCode.MarkSelectedFigure(-1);
             fCTBCode.Text = VisuGCode.TransformGCodeOffset(Grbl.PosMarker.X, Grbl.PosMarker.Y, VisuGCode.Translate.None);
             TransformEnd();

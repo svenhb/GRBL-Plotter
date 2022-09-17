@@ -39,6 +39,8 @@
  * 2021-12-14 line 397 if (lineIsInRange(fCTBCodeClickedLineNow))
  * 2021-12-16 ErrorLines = new ConcurrentBag<int>(); (old List<int>())
  * 2022-04-07 add style for warning and error
+ * 2022-09-14 line 898 ClearTextSelection(int line) add LineIsInRange
+			  line 660 change paste-function to LoadFromClipboard();
 */
 
 using FastColoredTextBoxNS;
@@ -111,9 +113,6 @@ namespace GrblPlotter
 
             if (!manualEdit)
             {
-                //    if (Properties.Settings.Default.importCodeFold)
-                //    { FoldBlocks2(); fCTBCode.CollapseAllFoldingBlocks(); foldLevel = 1; }
-
                 EnableCmsCodeBlocks(VisuGCode.CodeBlocksAvailable());
             }
 
@@ -125,13 +124,14 @@ namespace GrblPlotter
         }
         private void MarkErrorLine(int line)
         {
-            if (line < fCTBCode.LinesCount)
+            if (LineIsInRange(line))
             {
                 SetTextSelection(line, line);
                 fCTBCode.Selection.ClearStyle(StyleGWord, StyleXAxis, StyleYAxis);
                 fCTBCode.Selection.SetStyle(ErrorStyle);
             }
-            //       Logger.Info("MarkErrorLine {0}",line);
+			else
+			{	Logger.Error("MarkErrorLine LineIsNOTInRange: {0}", line);}
         }
         private void ClearErrorLines()
         {
@@ -139,7 +139,7 @@ namespace GrblPlotter
             {
                 foreach (int myline in ErrorLines)
                 {
-                    if (myline < fCTBCode.LinesCount)
+                    if (LineIsInRange(myline))
                     {
                         SetTextSelection(myline, myline);
                         fCTBCode.Selection.ClearStyle(ErrorStyle);
@@ -280,16 +280,19 @@ namespace GrblPlotter
         private void InsertTextAtLine(int line, string text)
         {
             //    Logger.Trace("InsertTextAtLine {0}  text:{1}", line, text);
-            if (line >= fCTBCode.LinesCount)
-            { return; }
-            Place selStart;
-            selStart.iLine = line;
-            selStart.iChar = 0;
-            Range mySelection = new Range(fCTBCode);
-            mySelection.Start = mySelection.End = selStart;
-            fCTBCode.Selection = mySelection;
-            fCTBCode.InsertText(text, true);    // insert new code		
-            fCTBCode.DoCaretVisible();
+            if (LineIsInRange(line))
+            {
+                Place selStart;
+                selStart.iLine = line;
+                selStart.iChar = 0;
+                Range mySelection = new Range(fCTBCode);
+                mySelection.Start = mySelection.End = selStart;
+                fCTBCode.Selection = mySelection;
+                fCTBCode.InsertText(text, true);    // insert new code		
+                fCTBCode.DoCaretVisible();
+            }
+			else
+			{	Logger.Error("InsertTextAtLine LineIsNOTInRange: {0}", line);}
         }
 
         private int InsertCodeToFctb(string sourceGCode, bool fromFile, int lineSelected, double offsetX, double offsetY)
@@ -399,7 +402,7 @@ namespace GrblPlotter
             else
             {
                 fCTBCode.Text = sourceGCode;
-                Logger.Warn("⚠⚠⚠ Insert code was not possible");
+                Logger.Warn("⚠⚠⚠ Insert code was not possible at line: {0}", insertLineNr);
                 return -1;
             }
         }
@@ -409,9 +412,10 @@ namespace GrblPlotter
         private int fCTBCodeClickedLineLast = 0;
         private void FctbCode_Click(object sender, EventArgs e)         // click into FCTB with mouse
         {
-            //            if (gcode.loggerTrace && logMain) Logger.Trace("Event  fCTBCode_Click");
+            //            if (gcode.loggerTrace && logMain)    Logger.Trace("Event  fCTBCode_Click  fCTBCodeClickedLineNow {0}",fCTBCodeClickedLineNow);
             fCTBCodeClickedLineNow = fCTBCode.Selection.ToLine;
-            //            statusStripSet2(string.Format("Clicked: {0}", fCTBCodeClickedLineNow),SystemColors.Control);
+			if (fCTBCodeClickedLineNow < 0) fCTBCodeClickedLineNow = 0;
+			
             markerType = markedBlockType = XmlMarkerType.None;
             if (manualEdit)
                 return;
@@ -639,6 +643,7 @@ namespace GrblPlotter
         // context Menu on fastColoredTextBox
         private void CmsFctb_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+			Logger.Trace("###### CmsFctb_ItemClicked: {0} fCTBCodeClickedLineNow: {1}", e.ClickedItem.Name,fCTBCodeClickedLineNow);
             if (e.ClickedItem.Name == "cmsCodeSelect")
                 fCTBCode.SelectAll();
             else if (e.ClickedItem.Name == "cmsCodeCopy")
@@ -648,12 +653,17 @@ namespace GrblPlotter
             }
             else if (e.ClickedItem.Name == "cmsCodePaste")
             {       //fCTBCode.Paste();
-                IDataObject iData = Clipboard.GetDataObject();
+            /*    IDataObject iData = Clipboard.GetDataObject();
                 UnDo.SetCode(fCTBCode.Text, "Paste Code", this);
                 fCTBCode.Text = (String)iData.GetData(DataFormats.Text);
                 NewCodeEnd();
+                Logger.Trace("CmsFctb_ItemClicked: fCTBCodeClickedLineNow: {0}", fCTBCodeClickedLineNow);
                 SetLastLoadedFile("Data from Clipboard: Text", "");
-                lbInfo.Text = "GCode from clipboard";
+                lbInfo.Text = "GCode from clipboard";*/
+				
+                UnDo.SetCode(fCTBCode.Text, cmsPicBoxPasteFromClipboard.Text, this);
+                LoadFromClipboard();
+                EnableCmsCodeBlocks(VisuGCode.CodeBlocksAvailable());				
             }
             else if (e.ClickedItem.Name == "cmsEditMode")
             {
@@ -891,13 +901,18 @@ namespace GrblPlotter
         private bool LineIsInRange(int line)
         { return ((line >= 0) && (line < fCTBCode.LinesCount)); }
 
+
+        private void ClearTextSelection()
+        { fCTBCode.Selection.End = fCTBCode.Selection.Start; }
+
         private void ClearTextSelection(int line)
         {
-            if (line >= fCTBCode.LinesCount)
-                return;
-            Range mySelection = new Range(fCTBCode, 0, line, 0, line);
-            fCTBCode.Selection = mySelection;
-            fCTBCode.SelectionColor = Color.Green;
+            if (LineIsInRange(line))
+            {
+                Range mySelection = new Range(fCTBCode, 0, line, 0, line);
+                fCTBCode.Selection = mySelection;
+                fCTBCode.SelectionColor = Color.Green;
+            }
         }
         private void SetTextSelection(int start, int end)	//, bool toggle = true)
         {
@@ -917,8 +932,6 @@ namespace GrblPlotter
             fCTBCode.Selection = mySelection;
             fCTBCode.SelectionColor = Color.Red;
         }
-        private void ClearTextSelection()
-        { fCTBCode.Selection.End = fCTBCode.Selection.Start; }
 
         private bool deleteMarkedCode = false;
         private void DeletenotMarkToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1068,7 +1081,7 @@ namespace GrblPlotter
 
         private void EnableBlockCommands(bool tmp, bool keepSelection = false)
         {
-            if (!tmp && !keepSelection)
+            if (!tmp && !keepSelection && LineIsInRange(fCTBCodeClickedLineNow))
                 ClearTextSelection(fCTBCodeClickedLineNow);
             figureIsMarked = tmp;
             cmsFCTBMoveSelectedCodeBlockMostUp.Enabled = tmp;

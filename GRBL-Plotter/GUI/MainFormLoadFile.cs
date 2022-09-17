@@ -197,7 +197,8 @@ namespace GrblPlotter
 
             if (LineIsInRange(fCTBCodeClickedLineLast))
             {
-                try { fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast); }
+                try { fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast); 
+                }
                 catch (Exception err) { Logger.Error(err, "NewCodeStart - fCTBCode.UnbookmarkLine({0}) ", fCTBCodeClickedLineLast); }
             }
             fCTBCodeClickedLineNow = 0;
@@ -245,7 +246,7 @@ namespace GrblPlotter
             {
                 if (imported && (Graphic.GCode != null))
                 {
-                    SetFctbCodeText(Graphic.GCode.ToString(), imported);          // newCodeEnd
+                    SetFctbCodeText(Graphic.GCode.ToString(), imported);    // newCodeEnd
                 }
                 VisuGCode.GetGCodeLines(fCTBCode.Lines, null, null);    // get code path
             }
@@ -705,7 +706,7 @@ namespace GrblPlotter
         // paste from clipboard SVG or image
         private void LoadFromClipboard(string text = "")
         {
-            //         Logger.Info(" loadFromClipboard");
+            Logger.Info("▀▀▀▀▀▀▀▀▀▀ LoadFromClipboard");
             NewCodeStart();         // LoadFromClipboard
             importOptions = "";
             bool fromClipboard = true;
@@ -721,14 +722,14 @@ namespace GrblPlotter
             }
             catch (Exception err)
             {
-                Logger.Error(err, "LoadFromClipboard GetDataObject ");
+                Logger.Error(err, "▀▀▀▀▀▀▀▀▀▀ LoadFromClipboard GetDataObject ");
                 MessageBox.Show("Could not get clipboard data:\r\n" + err, "Error");
                 return;
             }
             MemoryStream stream = new MemoryStream();
             if ((iData.GetDataPresent(DataFormats.Text)) || (!fromClipboard))            // not working anymore?
             {
-                Logger.Info(" loadFromClipboard 1");
+                Logger.Info("- LoadFromClipboard Text");
                 string source = "Textfile";
                 string checkContent = "";
                 if (fromClipboard)
@@ -766,12 +767,12 @@ namespace GrblPlotter
                         txt = txt.Replace("<svg", "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" ");
 
                     UseCaseDialog();
-                    NewCodeStart();             // LoadFromClipboard 2
+            //        NewCodeStart();             // LoadFromClipboard 2
 
                     GCodeFromSvg.ConvertFromText(txt.Trim((char)0x00), true);    // replaceUnitByPixel = true,  import as mm
                     // perhaps use backgroundworker?                 using (ImportWorker f = new ImportWorker())   //MainFormImportWorker
 
-                    SetFctbCodeText(Graphic.GCode.ToString());      // loadFromClipboard
+                    SetFctbCodeText(Graphic.GCode.ToString());      // loadFromClipboard SVG
                     Properties.Settings.Default.counterImportSVG += 1;
                     if (fCTBCode.LinesCount <= 1)
                     { fCTBCode.Text = "( Code conversion failed )"; return; }
@@ -798,12 +799,12 @@ namespace GrblPlotter
                         txt += checkContent;
 
                     UseCaseDialog();
-                    NewCodeStart();                 // LoadFromClipboard 3
+            //        NewCodeStart();                 // LoadFromClipboard 3
 
                     GCodeFromDxf.ConvertFromText(txt);
                     // perhaps use backgroundworker?                 using (ImportWorker f = new ImportWorker())   //MainFormImportWorker
 
-                    SetFctbCodeText(Graphic.GCode.ToString());      // loadFromClipboard
+                    SetFctbCodeText(Graphic.GCode.ToString());      // loadFromClipboard DXF
 
                     Properties.Settings.Default.counterImportDXF += 1;
                     if (fCTBCode.LinesCount <= 1)
@@ -817,7 +818,7 @@ namespace GrblPlotter
                 }
                 else
                 {
-                    NewCodeStart();                 // LoadFromClipboard 4
+            //        NewCodeStart();                 // LoadFromClipboard 4
                     if (fromClipboard)
                         fCTBCode.Text = (String)iData.GetData(DataFormats.Text);
                     else
@@ -830,7 +831,7 @@ namespace GrblPlotter
             }
             else if (iData.GetDataPresent(svg_format1) || iData.GetDataPresent(svg_format2))
             {
-                Logger.Info(" loadFromClipboard 2");
+                Logger.Info("- LoadFromClipboard svg_format");
 
                 if (iData.GetDataPresent(svg_format1))
                     stream = (MemoryStream)iData.GetData(svg_format1);
@@ -841,12 +842,12 @@ namespace GrblPlotter
                 string txt = System.Text.Encoding.Default.GetString(bytes);
 
                 UseCaseDialog();
-                NewCodeStart();                 // LoadFromClipboard 5
+            //    NewCodeStart();                 // LoadFromClipboard 5
 
                 GCodeFromSvg.ConvertFromText(txt, false);       // replaceUnitByPixel = false
                 // perhaps use backgroundworker?                 using (ImportWorker f = new ImportWorker())   //MainFormImportWorker
 
-                SetFctbCodeText(Graphic.GCode.ToString());      // loadFromClipboard
+                SetFctbCodeText(Graphic.GCode.ToString());      // loadFromClipboard SVG2
 
                 Properties.Settings.Default.counterImportSVG += 1;
                 if (fCTBCode.LinesCount <= 1)
@@ -861,7 +862,7 @@ namespace GrblPlotter
             }
             else if (iData.GetDataPresent(DataFormats.Bitmap))
             {
-                Logger.Info(" loadFromClipboard 3");
+                Logger.Info("- LoadFromClipboard Bitmap");
                 if (_image_form == null)
                 {
                     _image_form = new GCodeFromImage(true);
@@ -882,8 +883,8 @@ namespace GrblPlotter
             }
             else
             {
-                Logger.Info(" loadFromClipboard 4");
-                string tmp = "";
+                Logger.Info("- LoadFromClipboard unknown");
+                string tmp = "No supported clipboard data:\r\n";
                 foreach (string format in iData.GetFormats())
                 { tmp += format + "\r\n"; }
                 MessageBox.Show(tmp);
@@ -1096,7 +1097,7 @@ namespace GrblPlotter
                         NewCodeEnd(true);               // timer will be started here again
                         break;
                     case 2:
-                        SetFctbCodeText(Graphic.GCode.ToString());  // loadTimer_Tick
+                        SetFctbCodeText(Graphic.GCode.ToString());      // loadTimer_Tick
                         FoldCodeOnLoad();
                         loadTimerStep++;
                         break;

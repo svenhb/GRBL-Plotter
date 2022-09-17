@@ -147,10 +147,11 @@ namespace GrblPlotter
                 { fCTBCode.Selection = fCTBCode.GetLine(actualCodeLine); }
                 catch (Exception err) { Logger.Error(err, "OnRaiseStreamEvent - fCTBCode.Selection = fCTBCode.GetLine(actualCodeLine)"); }
 
-                fCTBCodeClickedLineNow = e.CodeLineSent - 1;// - 1;
+                fCTBCodeClickedLineNow = actualCodeLine - 1;
+                if (fCTBCodeClickedLineNow < 0) fCTBCodeClickedLineNow = 0;
+
                 FctbSetBookmark();         // set Bookmark and marker in 2D-View
                 VisuGCode.SetPosMarkerLine(fCTBCodeClickedLineNow, false);
-                //            fCTBCode.DoCaretVisible();
 
                 try
                 {
@@ -238,7 +239,8 @@ namespace GrblPlotter
 
                         try
                         {
-                            if (actualCodeLine < fCTBCode.LinesCount)
+                         //   if (actualCodeLine < fCTBCode.LinesCount)
+                            if (LineIsInRange(actualCodeLine - 1))
                                 fCTBCode.BookmarkLine(actualCodeLine - 1);
                             fCTBCode.DoSelectionVisible();
                         }
@@ -406,10 +408,14 @@ namespace GrblPlotter
 
         private void StreamSection()
         {
+            if (fCTBCodeClickedLineNow < 0)
+                fCTBCodeClickedLineNow = 0;
+
             int lineStart = fCTBCodeClickedLineNow;
             int lineEnd = fCTBCode.LinesCount - 1;
             int selStart = fCTBCode.Selection.FromLine;
             int selEnd = fCTBCode.Selection.ToLine;
+
             if (selStart < selEnd)
             {
                 lineStart = selStart;
@@ -463,7 +469,10 @@ namespace GrblPlotter
                     StatusStripClear(1, 2);
 
                     EventCollector.SetStreaming("Strt");
-                    ExpandCodeBlocksToolStripMenuItem_Click(null, null);
+                    // ExpandCodeBlocksToolStripMenuItem_Click(null, null);
+					try { fCTBCode.ExpandAllFoldingBlocks(); foldLevel = 0; fCTBCode.DoCaretVisible(); }
+					catch (Exception err) { Logger.Error(err, "StartStreaming  ExpandAllFoldingBlocks"); }
+
                     VisuGCode.ProcessedPath.ProcessedPathClear();
                     MainTimer.Stop();
                     MainTimer.Start();
