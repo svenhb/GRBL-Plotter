@@ -26,6 +26,7 @@
 */
 /* 
  * 2022-08-06 implement text import		// https://www.w3.org/TR/SVG2/text.html    https://www.w3.org/TR/SVG11/text.html
+ * 2022-09-29 line 676, 765 add (fill != "none"))
 */
 
 using System;
@@ -363,7 +364,7 @@ namespace GrblPlotter
 
             public int CharIndex = 0;
             public string stroke = "none";
-            public string fill = "black";
+            public string fill = "";
             public float fontSize = 16f;
             public System.Drawing.FontFamily fontFamily = new System.Drawing.FontFamily("Arial");
             public System.Drawing.FontStyle fontStyle = System.Drawing.FontStyle.Regular;
@@ -575,7 +576,10 @@ namespace GrblPlotter
                 if (element.Attribute("fill") != null)
                 {
                     fill = element.Attribute("fill").Value;
-                    if (stroke == "") stroke = fill;
+                    if (stroke == "")
+					{	if (fill != "none")	{stroke = fill;}
+						else	{stroke = "black";}
+					}
                 }
                 if (element.Attribute("stroke") != null) stroke = element.Attribute("stroke").Value;
 
@@ -669,7 +673,7 @@ namespace GrblPlotter
                 Logger.Trace("● ExportString '{0}'  pureText:{1}  start-X:{2:0.00}  textLen:{3:0.00}   spaceWidth:{4:0.00}   fontSize:{5:0.00}", text, isPureText, GetX(0), posX[text.Length], spaceWidth, fontSize);
 
                 if (stroke != "") { Graphic.SetPenColor(stroke.StartsWith("#") ? stroke.Substring(1) : stroke); }  //Logger.Info("SetPenColor '{0}'", stroke); 
-                if (fill != "") { Graphic.SetPenFill(fill.StartsWith("#") ? fill.Substring(1) : fill); }     //Logger.Info("SetPenFill  '{0}'", fill); 
+                if ((fill != "") && (fill != "none")){ Graphic.SetPenFill(fill.StartsWith("#") ? fill.Substring(1) : fill); }     //Logger.Info("SetPenFill  '{0}'", fill); 
 
                 float oxOrig = GetX(0) + GetdX(0);
                 float ox = oxOrig - xOffsetBounds + spaceWidthStartApply + XOffsetLSB;
@@ -758,7 +762,7 @@ namespace GrblPlotter
 
                     Logger.Trace("● ExportTextOnPath '{0}'  count:{1}   length:{2:0.00}   startOffset:{3:0.00}   height:{4}   size:{5}  size:{6}  emheight:{7}", text.Replace("\r", "").Replace("\n", ""), pPath.Length, pathLength, startOffset, yOffset, fontSize, font.Size, fontFamily.GetEmHeight(fontStyle));
                     if (stroke != "") { Graphic.SetPenColor(stroke.StartsWith("#") ? stroke.Substring(1) : stroke); }
-                    if (fill != "") { Graphic.SetPenFill(fill.StartsWith("#") ? fill.Substring(1) : fill); }
+                    if ((fill != "") && (fill != "none")) { Graphic.SetPenFill(fill.StartsWith("#") ? fill.Substring(1) : fill); }
 
                     using (var path = new GraphicsPath())       // place glyphs
                     {

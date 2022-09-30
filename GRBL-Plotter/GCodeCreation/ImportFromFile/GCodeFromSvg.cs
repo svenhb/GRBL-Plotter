@@ -81,6 +81,8 @@
  * 2022-06-18 bug fix getting first coordinates in "m" command and applying in "z" command
  * 2022-07-23 line 376, 406 issue #1868 LaserGRBL
  * 2022-08-10 add text-element
+ * 2022-09-29 line 539, 603, 624 add (attributeFill != "none"))
+ * 2022-09-30 line 1330 SVGStartPath -> SetGeometry = startPath to continue figure
 */
 
 /* SetHeaderMessages...
@@ -535,7 +537,8 @@ namespace GrblPlotter
 
                                 Graphic.SetPathId(href);
                                 if (attributeStroke != "") Graphic.SetPenColor(attributeStroke.StartsWith("#") ? attributeStroke.Substring(1) : attributeStroke);
-                                if (attributeFill != "") Graphic.SetPenFill(attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
+                                if ((attributeFill != "") && (attributeFill != "none"))
+									Graphic.SetPenFill(attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
 
                                 if (id.Name == (nspace + "path"))
                                 {
@@ -598,7 +601,7 @@ namespace GrblPlotter
 
                 attributeFill = GetStyleProperty(element, "fill");
                 logSource = "ParseAttributs: fill: " + attributeFill;
-                if (attributeFill.Length > 1)
+                if ((attributeFill.Length > 1) && (attributeFill != "none"))
                     Graphic.SetPenFill(attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
 
                 attributeStrokeWidth = GetStyleProperty(element, "stroke-width");
@@ -619,7 +622,8 @@ namespace GrblPlotter
             {
                 attributeFill = element.Attribute("fill").Value;
                 logSource = "ParseAttributs: fill2: " + attributeFill;
-                Graphic.SetPenFill(attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
+                if ((attributeFill.Length > 1) && (attributeFill != "none"))
+					Graphic.SetPenFill(attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
             }
             if (element.Attribute("stroke-width") != null)
             {
@@ -1323,8 +1327,8 @@ namespace GrblPlotter
                                 if (svgNodesOnly)
                                     GCodeDotOnly(currentX, currentY, (command.ToString()));
                                 else
-                                    SVGStartPath(currentX, currentY, "path");
-                                //SVGStartPath(currentX, currentY, string.Format("{0} 000)  X:{1:0.00} Y:{2:0.00}", command, currentX, currentY));
+                                    SVGStartPath(currentX, currentY, "path", startPath);
+
                                 startPath = false;
                             }
                         }
@@ -1920,7 +1924,7 @@ namespace GrblPlotter
         private static void SVGStartPath(float x, float y, string cmt, bool setGeometry = true)
         {
             Point tmp = TranslateXY(x, y);  // convert from SVG-Units to GCode-Units
-            if (logEnable) Logger.Trace("▼▼▼ SVGStart at:x:{0:0.000} y:{1:0.000}  svg:{2}", tmp.X, tmp.Y, cmt);
+            if (logEnable) Logger.Trace("▼▼▼ SVGStart at:x:{0:0.000} y:{1:0.000}  svg:{2}  set:{3}", tmp.X, tmp.Y, cmt, setGeometry);
             if (setGeometry) Graphic.SetGeometry(cmt);
             Graphic.StartPath(tmp);
         }
