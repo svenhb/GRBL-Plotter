@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="setWork00ToHereToolStripMenuItem.Text" xml:space="preserve">
+    <value>Imposta qui la coordinata di lavoro 0;0</value>
+  </data>
+  <data name="setWork00ToHereToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Imposta l'origine della coordinata di lavoro sulla posizione cliccata nella vista 2D</value>
+  </data>
+  <data name="compensateAngleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Applicare l'angolo al codice G</value>
+  </data>
+  <data name="compensateAngleToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Applica l'angolo contrassegnato in giallo al codice G</value>
+  </data>
+  <data name="FiducialAddCoordinateIn2DViewToolStripMenuItem.Text" xml:space="preserve">
+    <value>Aggiungi la coordinata fiduciale dalla vista 2D all'elenco fiduciale</value>
+  </data>
+  <data name="FiducialAddCoordinateIn2DViewToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Aggiungi le coordinate fiduciali della posizione cliccata, all'interno della vista 2D, all'elenco fiduciale</value>
+  </data>
+  <data name="FiducialRemoveLastToolStripMenuItem.Text" xml:space="preserve">
+    <value>Rimuovere l'ultimo fiducial</value>
+  </data>
+  <data name="FiducialRemoveLastToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Rimuovere l'ultimo fiducial aggiunto dall'elenco dei fiducial</value>
+  </data>
+  <data name="FiducialListClearToolStripMenuItem.Text" xml:space="preserve">
+    <value>Cancella lista fiduciale</value>
+  </data>
+  <data name="FiducialListClearToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Cancella lista fiduciale</value>
+  </data>
+  <data name="ReferenceAddPointInImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Aggiungi punto di riferimento dall'immagine all'elenco assegnato</value>
+  </data>
+  <data name="ReferenceAddPointInImageToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Aggiungi punto di riferimento dall'immagine all'elenco assegnato</value>
+  </data>
+  <data name="ReferenceRemoveLastPointToolStripMenuItem.Text" xml:space="preserve">
+    <value>Rimuovere l'ultimo punto di riferimento</value>
+  </data>
+  <data name="ReferenceRemoveLastPointToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Rimuovere l'ultimo punto di riferimento aggiunto dall'elenco assegnato</value>
+  </data>
+  <data name="ReferenceClearListToolStripMenuItem.Text" xml:space="preserve">
+    <value>Cancella l'elenco dei punti di riferimento (assegnati).</value>
+  </data>
+  <data name="ReferenceClearListToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Cancella l'elenco dei punti di riferimento (assegnati).</value>
+  </data>
+  <data name="showOverlayGraphicsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mostra grafica sovrapposta</value>
+  </data>
+  <data name="showOverlayGraphicsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Mostra grafica sovrapposta (righello, percorso penna verso il basso, ecc.)</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Ingrandisci</value>
+  </data>
+  <data name="simulateCameraToolStripMenuItem.Text" xml:space="preserve">
+    <value>Simula fotocamera</value>
+  </data>
+  <data name="cameraMountToolStripMenuItem.Text" xml:space="preserve">
+    <value>Supporto per fotocamera</value>
+  </data>
+  <data name="camSourceToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sorgente video</value>
+  </data>
+  <data name="camSourceToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Seleziona la sorgente della fotocamera.</value>
+  </data>
+  <data name="resetAndTeachToolStripMenuItem.Text" xml:space="preserve">
+    <value>Reimposta e insegna</value>
+  </data>
+  <data name="distortionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Correzione della distorsione</value>
+  </data>
+  <data name="toolStripTextBox1.ToolTipText" xml:space="preserve">
+    <value>Ruota immagine video - inserisci l'angolo</value>
+  </data>
+  <data name="setRotationAngleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Rotazione delle immagini</value>
+  </data>
+  <data name="setRotationAngleToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Ruota immagine video - inserisci l'angolo</value>
+  </data>
+  <data name="upperPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Insegna posizione superiore</value>
+  </data>
+  <data name="upperPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Insegna la visualizzazione della telecamera</value>
+  </data>
+  <data name="toolStripTextBox2.ToolTipText" xml:space="preserve">
+    <value>in unità GRBL (mm o pollici)</value>
+  </data>
+  <data name="teachRadiusTopToolStripMenuItem.Text" xml:space="preserve">
+    <value>Imposta raggio di apprendimento superiore</value>
+  </data>
+  <data name="lowerPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Insegna posizione inferiore</value>
+  </data>
+  <data name="lowerPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Insegna la visualizzazione della telecamera</value>
+  </data>
+  <data name="toolStripTextBox3.ToolTipText" xml:space="preserve">
+    <value>in unità GRBL (mm o pollici)</value>
+  </data>
+  <data name="teachRadiusBottomToolStripMenuItem.Text" xml:space="preserve">
+    <value>Imposta il raggio di apprendimento inferiore</value>
+  </data>
+  <data name="teachScalingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Insegna al ridimensionamento</value>
+  </data>
+  <data name="teachScalingToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1) Tracciatore domestico
+2) spostare la telecamera nella posizione superiore
+3) fare clic sull'immagine per insegnare la distanza del raggio superiore
+4) spostare la telecamera nella posizione più bassa
+5) fare clic sull'immagine per insegnare la distanza del raggio inferiore</value>
+  </data>
+  <data name="teachRadiusToolStripMenuItem.Text" xml:space="preserve">
+    <value>Insegna raggio</value>
+  </data>
+  <data name="setTeachRadiusToolStripMenuItem.Text" xml:space="preserve">
+    <value>Imposta raggio di apprendimento</value>
+  </data>
+  <data name="teachScaling2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Insegna al ridimensionamento</value>
+  </data>
+  <data name="setToolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Fare clic per impostare l'origine nella vista 2D</value>
+  </data>
+  <data name="setMachinePositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Fare clic per ottenere l'offset della macchina grbl all'origine</value>
+  </data>
+  <data name="toolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Imposta l'origine delle coordinate</value>
+  </data>
+  <data name="teachToolStripMenuItem.Text" xml:space="preserve">
+    <value>Insegna offset fotocamera</value>
+  </data>
+  <data name="teachToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1) Posizione X,Y zero
+2) Contrassegna la posizione dell'utensile (a X=0,Y=0)
+3) Spostarsi finché l'indicatore non si trova al centro della visuale della telecamera
+4) Apprendi la posizione attuale come offset</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Insegna offset</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1) passare a "Coord. utensile". (G54)
+2) Posizione X,Y zero
+3) Contrassegnare la posizione dell'utensile (a X=0,Y=0) con l'utensile sul pezzo da lavorare
+4) Spostare l'indicatore sotto il centro della visuale della telecamera
+5) Apprendi la posizione attuale come offset
+6) passare a 'Coord cam.' (G59) - mostra ora X=0, Y=0</value>
+  </data>
+  <data name="textToolStripMenuItem.Text" xml:space="preserve">
+    <value>Testo</value>
+  </data>
+  <data name="crossHairsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mirino</value>
+  </data>
+  <data name="colorsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Colori</value>
+  </data>
+  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Impostare</value>
+  </data>
+  <data name="penupPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Percorso in penna</value>
+  </data>
+  <data name="machineLimitsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Limiti della macchina</value>
+  </data>
+  <data name="dimensionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dimensione codice G</value>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>Visualizzazione</value>
+  </data>
+  <data name="menuStripCamera.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="btnApplyAngle.Text" xml:space="preserve">
+    <value>Applicare l'angolo al codice G</value>
+  </data>
+  <data name="btnApplyAngle.ToolTip" xml:space="preserve">
+    <value>Usa il tasto destro del mouse per misurare l'angolo.
+Premere il pulsante per trasformare il codice G con l'angolo misurato.</value>
+  </data>
+  <data name="btnCamCoordTool.Text" xml:space="preserve">
+    <value>G54 Cod. utensile</value>
+  </data>
+  <data name="btnCamCoordTool.ToolTip" xml:space="preserve">
+    <value>Sposta la posizione attuale dello strumento sotto la telecamera</value>
+  </data>
+  <data name="cBCamCoordMove.Text" xml:space="preserve">
+    <value>Sposta la fase</value>
+  </data>
+  <data name="cBCamCoordMove.ToolTip" xml:space="preserve">
+    <value>Applicare l'offset della telecamera alla grafica</value>
+  </data>
+  <data name="lblAngle.Text" xml:space="preserve">
+    <value>0,00°</value>
+  </data>
+  <data name="lblAngle.ToolTip" xml:space="preserve">
+    <value>Angolo misurato</value>
+  </data>
+  <data name="btnCamCoordCam.Text" xml:space="preserve">
+    <value>G59 Cod. fotocamera</value>
+  </data>
+  <data name="btnCamCoordCam.ToolTip" xml:space="preserve">
+    <value>Sposta la posizione corrente della telecamera sotto Strumento</value>
+  </data>
+  <data name="TbSetPoints.Text" xml:space="preserve">
+    <value>Coordinate fiduciarie:</value>
+  </data>
+  <data name="TbSetPoints.ToolTip" xml:space="preserve">
+    <value>Coordinate fiduciali: verranno utilizzate solo la 1a e la 2a.
+Ottieni le coordinate fiduciali dalla grafica importata o raccoglile manualmente:
+Ctrl-clic per contrassegnare,
+"a" da aggiungere all'elenco,
+"c" per cancellare l'elenco.</value>
+  </data>
+  <data name="TbRealPoints.Text" xml:space="preserve">
+    <value>Coordinate assegnate:</value>
+  </data>
+  <data name="TbRealPoints.ToolTip" xml:space="preserve">
+    <value>Coordinate assegnate:
+Raccogli punti manualmente:
+Maiusc-clic per aggiungere un punto,
+Shift -"c" per cancellare l'elenco</value>
+  </data>
+  <data name="btnAutoCenter.Text" xml:space="preserve">
+    <value>Passa al cerchio rosso</value>
+  </data>
+  <data name="btnAutoCenter.ToolTip" xml:space="preserve">
+    <value>Aggiungi posizione a "Punti assegnati" e sposta lo strumento</value>
+  </data>
+  <data name="GbZoom.Text" xml:space="preserve">
+    <value>Telecamera</value>
+  </data>
+  <data name="BtnSetOffsetZero.Text" xml:space="preserve">
+    <value>Impostare XY = 0;0</value>
+  </data>
+  <data name="BtnSetOffsetMarker.Text" xml:space="preserve">
+    <value>Imposta XY = Indicatore</value>
+  </data>
+  <data name="GbOffset.Text" xml:space="preserve">
+    <value>Spostamento/spostamento della fotocamera</value>
+  </data>
+  <data name="lblCenterPos.Text" xml:space="preserve">
+    <value>Nessuna forma trovata</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Fare clic con il pulsante destro del mouse per il punto di rotazione, tenere premuto, rilasciare all'angolazione desiderata</value>
+  </data>
+  <data name="CbScale.Text" xml:space="preserve">
+    <value>Anche scala</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Angolo</value>
+  </data>
+  <data name="cBRotateArround0.Text" xml:space="preserve">
+    <value>Ruota intorno a 0;0</value>
+  </data>
+  <data name="GbMeasure.Text" xml:space="preserve">
+    <value>Misura l'angolo</value>
+  </data>
+  <data name="cBShapeDetection.Text" xml:space="preserve">
+    <value>Abilita il riconoscimento della forma</value>
+  </data>
+  <data name="BtnStartAutomatic.Text" xml:space="preserve">
+    <value>Avvia la correzione fiduciale automatica</value>
+  </data>
+  <data name="cBShapeShowFilter.Text" xml:space="preserve">
+    <value>Mostra filtri applicati</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Seleziona il set di filtri per il riconoscimento fiduciale</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>Scala anche in rotazione</value>
+  </data>
+  <data name="CbUseShapeRecognition.Text" xml:space="preserve">
+    <value>Usa il riconoscimento della forma</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Modalità automatica</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>La forma vicino all'indicatore è rossa</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>I filtri possono essere impostati in [Configurazione - Comportamento programma - Fotocamera]</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Riconoscimento della forma</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Modalità manuale</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Imposta gli offset</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Telecamera</value>
+  </data>
+</root>

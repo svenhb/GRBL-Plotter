@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Diametro sonda/fresa</value>
+  </data>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value>Diametro della punta di tastatura o della testa di taglio per calcolare la posizione zero</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Massimo Distanza di indagine</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value>Distanza massima per spostarsi, per trovare un bordo</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Velocità di avanzamento della sonda</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Dimensione della piastra di contatto</value>
+  </data>
+  <data name="label4.ToolTip" xml:space="preserve">
+    <value>Offset alla posizione zero tastato, causato da piastra di contatto, blocchetto di riscontro o foglio di alluminio</value>
+  </data>
+  <data name="cBZProbing.Text" xml:space="preserve">
+    <value>Anche la sonda Z</value>
+  </data>
+  <data name="cBZProbing.ToolTip" xml:space="preserve">
+    <value>Infine, la sonda Z, dopo la tastatura di spigoli o spigoli riuscita</value>
+  </data>
+  <data name="nUDDiameter.ToolTip" xml:space="preserve">
+    <value>Diametro della punta di tastatura o della testa di taglio per calcolare la posizione zero</value>
+  </data>
+  <data name="nUDOffsetX.ToolTip" xml:space="preserve">
+    <value>Offset alla posizione zero sondata, causato dal blocco di riscontro o dal foglio di alluminio</value>
+  </data>
+  <data name="nUDOffsetY.ToolTip" xml:space="preserve">
+    <value>Offset alla posizione zero sondata, causato dal blocco di riscontro o dal foglio di alluminio</value>
+  </data>
+  <data name="nUDOffsetZ.ToolTip" xml:space="preserve">
+    <value>Offset alla posizione zero sondata, causato dal blocco di riscontro o dal foglio di alluminio</value>
+  </data>
+  <data name="gBHardware.Text" xml:space="preserve">
+    <value>Dimensioni hardware</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Salva distanza</value>
+  </data>
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value>Ritira di questa distanza dopo il successo del sondaggio</value>
+  </data>
+  <data name="lblProbeFinal.Text" xml:space="preserve">
+    <value>Posizione finale dopo il sondaggio</value>
+  </data>
+  <data name="lblProbeFinal.ToolTip" xml:space="preserve">
+    <value>Infine spostati in questa posizione</value>
+  </data>
+  <data name="nUDWorkpieceDiameter.ToolTip" xml:space="preserve">
+    <value>Diametro del pezzo per determinare la distanza di tastatura</value>
+  </data>
+  <data name="nUDProbeFinalZ.ToolTip" xml:space="preserve">
+    <value>Infine spostati in questa posizione</value>
+  </data>
+  <data name="nUDProbeFinalY.ToolTip" xml:space="preserve">
+    <value>Infine spostati in questa posizione</value>
+  </data>
+  <data name="nUDProbeFinalX.ToolTip" xml:space="preserve">
+    <value>Infine spostati in questa posizione</value>
+  </data>
+  <data name="nUDProbeSaveZ.ToolTip" xml:space="preserve">
+    <value>Ritira di questa distanza dopo il successo del sondaggio</value>
+  </data>
+  <data name="nUDProbeSaveY.ToolTip" xml:space="preserve">
+    <value>Ritira di questa distanza dopo il successo del sondaggio</value>
+  </data>
+  <data name="nUDProbeSaveX.ToolTip" xml:space="preserve">
+    <value>Ritira di questa distanza dopo il successo del sondaggio</value>
+  </data>
+  <data name="nUDProbeTravelZ.ToolTip" xml:space="preserve">
+    <value>Distanza massima per spostarsi, per trovare un bordo</value>
+  </data>
+  <data name="nUDProbeTravelY.ToolTip" xml:space="preserve">
+    <value>Distanza massima per spostarsi, per trovare un bordo</value>
+  </data>
+  <data name="nUDProbeTravelX.ToolTip" xml:space="preserve">
+    <value>Distanza massima per spostarsi, per trovare un bordo</value>
+  </data>
+  <data name="rBCF2.ToolTip" xml:space="preserve">
+    <value>Trova il centro e imposta 0;0
+Z su = Z inizio + Z tastatura
+Infine spostati al centro
+</value>
+  </data>
+  <data name="rBCF1.ToolTip" xml:space="preserve">
+    <value>Infine spostati al centro
+Trova il centro e imposta 0;0</value>
+  </data>
+  <data name="btnGetAngleEF.Text" xml:space="preserve">
+    <value>Ruota il codice G di angolo</value>
+  </data>
+  <data name="btnGetAngleEF.ToolTip" xml:space="preserve">
+    <value>L'angolo di correzione sarà calcolato dal bordo verticale (tastatura X) o orizzontale (tastatura Y) del pezzo</value>
+  </data>
+  <data name="tBAngle.ToolTip" xml:space="preserve">
+    <value>L'angolo di correzione sarà calcolato dal bordo verticale (tastatura X) o orizzontale (tastatura Y) del pezzo</value>
+  </data>
+  <data name="cBSetCoordTL.Text" xml:space="preserve">
+    <value>Impostare la coordinata Z G92. per il 1° strumento</value>
+  </data>
+  <data name="cBSetCoordTL.ToolTip" xml:space="preserve">
+    <value>Impostare G92 Z</value>
+  </data>
+  <data name="btnSaveTL.Text" xml:space="preserve">
+    <value>Sposta Z per salvare la pos.</value>
+  </data>
+  <data name="btnSaveTL.ToolTip" xml:space="preserve">
+    <value>Utilizzare la coordinata assoluta G90</value>
+  </data>
+  <data name="cBSetCenterZero.Text" xml:space="preserve">
+    <value>Imposta il centro utensile su zero</value>
+  </data>
+  <data name="cBSetCenterZero.ToolTip" xml:space="preserve">
+    <value>Se selezionato, il centro dell'utensile (tastatore/fresa) definisce la posizione zero.
+Solitamente si usa il bordo dell'utensile (tastatore/fresa) per definire lo zero.</value>
+  </data>
+  <data name="gBMovement.Text" xml:space="preserve">
+    <value>Movimento della sonda</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Angolo di correzione misurato</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Selezionare il bordo o l'angolo da rilevare.
+Posizionare la punta dell'utensile davanti al bordo.
+Sugli angoli, verrà rilevato prima X, quindi Y.
+Z sarà sondato per ultimo.
+Sonda il bordo una seconda volta su un'altra posizione per ottenere l'angolo.</value>
+  </data>
+  <data name="lblEFProgressInfo.Text" xml:space="preserve">
+    <value>Progresso</value>
+  </data>
+  <data name="btnStartEF.Text" xml:space="preserve">
+    <value>Inizio</value>
+  </data>
+  <data name="btnCancelEF.Text" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="rB5.Text" xml:space="preserve">
+    <value>Solo Z</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Cerca bordo</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Contorno interno:
+Posizionare la punta dell'utensile all'interno del foro del pezzo da lavorare, quasi al centro.
+Z non si sposterà.
+
+Contorno esterno:
+Posizionare la punta dell'utensile sul lato sinistro del pezzo da lavorare, come per il rilevamento del bordo</value>
+  </data>
+  <data name="lblCFProgressInfo.Text" xml:space="preserve">
+    <value>Progresso</value>
+  </data>
+  <data name="btnStartCF.Text" xml:space="preserve">
+    <value>Inizio</value>
+  </data>
+  <data name="btnCancelCF.Text" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>Diametro del pezzo</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Cercatore centrale</value>
+  </data>
+  <data name="btnClearTL.Text" xml:space="preserve">
+    <value>Cancella l'offset lunghezza utensile</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>1. Ottieni la lunghezza dell'utensile per il 1° utensile
+2. Utilizzare G92 per impostare Z zero
+3. Dopo il cambio utensile, misurare nuovamente la lunghezza dell'utensile, la coordinata Z verrà quindi corretta.</value>
+  </data>
+  <data name="lblTLProgressInfo.Text" xml:space="preserve">
+    <value>Progresso</value>
+  </data>
+  <data name="btnStartTL.Text" xml:space="preserve">
+    <value>Inizio</value>
+  </data>
+  <data name="btnCancelTL.Text" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Lunghezza utensile</value>
+  </data>
+  <data name="btnProbeCoordClear.Text" xml:space="preserve">
+    <value>Cancella G92</value>
+  </data>
+  <data name="rBProbeCoord2.Text" xml:space="preserve">
+    <value>Usa G92</value>
+  </data>
+  <data name="rBProbeCoord1.Text" xml:space="preserve">
+    <value>Usa G10 L2 P0 - Imposta coord. (G54-G59)</value>
+  </data>
+  <data name="gBCoordinates.Text" xml:space="preserve">
+    <value>Coordinate</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Sondaggio e offset lunghezza utensile</value>
+  </data>
+</root>
