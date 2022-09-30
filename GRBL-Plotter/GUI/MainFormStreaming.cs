@@ -569,6 +569,8 @@ namespace GrblPlotter
                     OnPaint_setBackground();                // Generante a background-image for pictureBox to avoid frequent drawing of pen-up/down paths
                     VisuGCode.SetPathAsLandMark(false);//clear = false
                     ControlPowerSaving.SuppressStandby();
+
+                    this.Icon = Properties.Resources.Icon2;  // set icon
                 }
                 else
                 {
@@ -644,6 +646,7 @@ namespace GrblPlotter
             { EventCollector.SetStreaming("Stpp"); }
 
             ResetStreaming();
+            this.Icon = Properties.Resources.Icon;  // set icon
         }
         private void ResetStreaming(bool updateCtrls = true)
         {

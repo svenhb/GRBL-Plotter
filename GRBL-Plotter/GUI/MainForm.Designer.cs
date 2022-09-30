@@ -485,6 +485,7 @@ namespace GrblPlotter
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.SplashScreenTimer = new System.Windows.Forms.Timer(this.components);
             this.loadTimer = new System.Windows.Forms.Timer(this.components);
+            this.italianoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -2690,6 +2691,7 @@ namespace GrblPlotter
             this.toolStripMenuItem4,
             this.portuguêsToolStripMenuItem,
             this.franzToolStripMenuItem,
+            this.italianoToolStripMenuItem,
             this.czechToolStripMenuItem,
             this.chinesischToolStripMenuItem,
             this.arabischToolStripMenuItem,
@@ -3371,6 +3373,12 @@ namespace GrblPlotter
             // 
             this.loadTimer.Tick += new System.EventHandler(this.LoadTimer_Tick);
             // 
+            // italianoToolStripMenuItem
+            // 
+            this.italianoToolStripMenuItem.Name = "italianoToolStripMenuItem";
+            resources.ApplyResources(this.italianoToolStripMenuItem, "italianoToolStripMenuItem");
+            this.italianoToolStripMenuItem.Click += new System.EventHandler(this.ItalianToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -3832,6 +3840,7 @@ namespace GrblPlotter
         private System.Windows.Forms.ToolStripMenuItem cmsPicBoxShowProperties;
         private System.Windows.Forms.ToolStripMenuItem toggleBlockExpansionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem grblSetupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem italianoToolStripMenuItem;
     }
 }
 

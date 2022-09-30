@@ -1426,6 +1426,13 @@ namespace GrblPlotter
                 "翻訳を改善するには、https：//github.com/svenhb/GRBL-Plotter/issuesで修正を提案する問題を開いてください。", "注意");
             TryRestart();
         }
+        private void ItalianToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.guiLanguage = "it";
+            MessageBox.Show("È necessario riavviare il plotter GRBL.\r\n" +
+                "Per migliorare la traduzione, apri un problema con la correzione suggerita all'indirizzo https://github.com/svenhb/GRBL-Plotter/issues", "Atenção");
+            TryRestart();
+        }
 
         #endregion
 
