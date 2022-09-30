@@ -642,7 +642,7 @@ namespace GrblPlotter
 
             PenUp();   // Don't set xmlMarker.figureEnd
 
-            if (!pathInfo.IsSameAs(pathObject.Info) || FigureEndTagWasSet)
+            if (!pathInfo.IsSameAs(pathObject.Info) || FigureEndTagWasSet)	// IsSameAs Id, PenColorId, PathId, AuxInfo, PathGeometry, GroupAttributes
             {
                 if (!FigureEndTagWasSet)
                 { SetFigureEndTag(); }

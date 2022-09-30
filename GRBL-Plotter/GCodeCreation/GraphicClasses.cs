@@ -365,14 +365,20 @@ namespace GrblPlotter
             {
                 if (tmp != null)
                 {
+                //    Logger.Trace("IsSameAs Id:{0}/{1}  ColId:{2}/{3}  PathId:{4}/{5}  Aux:{6}/{7}  Geo:{8}/{9}", Id, tmp.Id, PenColorId, tmp.PenColorId, PathId, tmp.PathId, AuxInfo, tmp.AuxInfo, PathGeometry, tmp.PathGeometry);
                     if (Id != tmp.Id) return false;
                     if (PenColorId != tmp.PenColorId) return false;
                     if (PathId != tmp.PathId) return false;
                     if (AuxInfo != tmp.AuxInfo) return false;
                     if (PathGeometry != tmp.PathGeometry) return false;
                     //				if (pathComment != tmp.pathComment)	return false;
-                    if (GroupAttributes.SequenceEqual(tmp.GroupAttributes)) return true;
+                    if (GroupAttributes.SequenceEqual(tmp.GroupAttributes))
+                    {
+                    //    Logger.Trace("IsSameAs true"); 
+                        return true;
+                    }
                 }
+             //   Logger.Trace("IsSameAs false");
                 return false;
             }
             public bool SetGroupAttribute(int index, string txt)

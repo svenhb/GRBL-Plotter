@@ -257,7 +257,7 @@ namespace GrblPlotter
             }
             else
             {
-                if (logCoordinates) Logger.Trace("► StartPath-NEW (diff properties or pos) Id:{0}  xy X:{1:0.00} Y:{2:0.00}   lastPoint X:{3:0.00} Y:{4:0.00}", objectCount, xy.X, xy.Y, lastPoint.X, lastPoint.Y);
+                if (logCoordinates) Logger.Trace("► StartPath-NEW (diff properties or pos) Id:{0}  xy X:{1:0.00} Y:{2:0.00}   lastPoint X:{3:0.00} Y:{4:0.00}   setNewId:{5}", objectCount, xy.X, xy.Y, lastPoint.X, lastPoint.Y, setNewId);
 
                 if (actualPath.Path.Count > 1)
                     StopPath("in StartPath");   // save previous path, before starting an new one
