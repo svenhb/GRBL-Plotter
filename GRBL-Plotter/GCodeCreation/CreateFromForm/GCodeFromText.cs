@@ -27,6 +27,7 @@
  * 2021-09-10 add radioButtons to select line alignment: left, center, right line 168
  * 2022-02-28 check if a font is selected before creating text
  * 2022-03-04 check max in NudFontSize_ValueChanged
+ * 2022-09-30 line 155 disable ApplyHatchFill (from SVG import)
 */
 
 using System;
@@ -129,6 +130,7 @@ namespace GrblPlotter
 
         public void CreateText()
         {
+			/* "Get values from tool table" (importGCToolDefNr and importGCToolDefNrUse) will be processed in "Graphic2GCode.cs" */
             if (cBFont.SelectedIndex < 0)
             {
                 MessageBox.Show("Please select a font", "Error");
@@ -151,6 +153,7 @@ namespace GrblPlotter
             VisuGCode.pathBackground.Reset();
             Graphic.CleanUp();
             Graphic.Init(Graphic.SourceType.Text, "", null, null);
+            Graphic.graphicInformation.ApplyHatchFill = false;			// no SVG import with fillColor "none"
             Graphic.graphicInformation.OptionNodesOnly = false;
             Graphic.graphicInformation.OptionSortCode = false;
             Graphic.graphicInformation.OptionZFromWidth = false;
