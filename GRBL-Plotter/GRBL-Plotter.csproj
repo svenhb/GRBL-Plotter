@@ -772,7 +772,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\examples\egg_extruded.map" />
-    <None Include="Resources\Icon2.ico" />
     <None Include="Properties\app.manifest" />
     <None Include="Resources\LeadInOut.png" />
     <None Include="Resources\rndOff.png" />
@@ -1426,7 +1425,7 @@
       <DependentUpon>SimpleSerialForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
