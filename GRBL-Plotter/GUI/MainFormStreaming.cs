@@ -570,7 +570,7 @@ namespace GrblPlotter
                     VisuGCode.SetPathAsLandMark(false);//clear = false
                     ControlPowerSaving.SuppressStandby();
 
-                    this.Icon = Properties.Resources.Icon2;  // set icon
+            //        this.Icon = Properties.Resources.Icon2;  // set icon
                 }
                 else
                 {
