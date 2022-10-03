@@ -1,8 +1,9 @@
 ; 1.0.1.0 replace constant autoappdata by autodocs
 ; 1.0.2.0 add CS subfolder
 ; 1.0.3.0 change permission from users-modify to everyone-modify
+; 1.0.4.0 add IT subfolder
 
-#define MySetupVersion "1.0.3.0"
+#define MySetupVersion "1.0.4.0"
 #define MyAppName "GRBL-Plotter"
 #define MyAppExeName "GRBL-Plotter.exe"
 #define MyAppPublisher "GRBL-Plotter"
@@ -47,6 +48,7 @@ Name: "ja"; MessagesFile: "compiler:Languages\Japanese.isl"
 Name: "pt"; MessagesFile: "compiler:Languages\Portuguese.isl"
 Name: "sp"; MessagesFile: "compiler:Languages\Spanish.isl"
 Name: "fr"; MessagesFile: "compiler:Languages\French.isl"
+Name: "it"; MessagesFile: "compiler:Languages\Italian.isl"
 Name: "cs"; MessagesFile: "compiler:Languages\Czech.isl"
 
 [Tasks]
@@ -62,6 +64,7 @@ Source: "{#MyReleasePath}cs\*"; DestDir: "{app}\cs"; Flags: ignoreversion
 Source: "{#MyReleasePath}de-DE\*"; DestDir: "{app}\de-DE"; Flags: ignoreversion
 Source: "{#MyReleasePath}es\*"; DestDir: "{app}\es"; Flags: ignoreversion
 Source: "{#MyReleasePath}fr\*"; DestDir: "{app}\fr"; Flags: ignoreversion
+Source: "{#MyReleasePath}it\*"; DestDir: "{app}\it"; Flags: ignoreversion
 Source: "{#MyReleasePath}ja\*"; DestDir: "{app}\ja"; Flags: ignoreversion
 Source: "{#MyReleasePath}pt\*"; DestDir: "{app}\pt"; Flags: ignoreversion
 Source: "{#MyReleasePath}ru\*"; DestDir: "{app}\ru"; Flags: ignoreversion
