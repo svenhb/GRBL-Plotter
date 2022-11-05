@@ -30,6 +30,7 @@
  * 2022-01-05 bug fix GrblStreaming.pause: show tool change message
  * 2022-04-06 line 485 also PathId
  * 2022-06-28 line 132 don't update marker on line-nr if e.Status == GrblStreaming.setting
+ * 2022-11-03 line 245 check InvoeRequired
 */
 
 using GrblPlotter.GUI;
@@ -145,7 +146,10 @@ namespace GrblPlotter
                     actualCodeLine = fCTBCode.LinesCount - 1;
                 try
                 { fCTBCode.Selection = fCTBCode.GetLine(actualCodeLine); }
-                catch (Exception err) { Logger.Error(err, "OnRaiseStreamEvent - fCTBCode.Selection = fCTBCode.GetLine(actualCodeLine)"); }
+                catch (Exception err) 
+				{ 	Logger.Error(err, "OnRaiseStreamEvent - fCTBCode.Selection = fCTBCode.GetLine(actualCodeLine)"); 
+					EventCollector.SetStreaming("Sfctb0");
+				}
 
                 fCTBCodeClickedLineNow = actualCodeLine - 1;
                 if (fCTBCodeClickedLineNow < 0) fCTBCodeClickedLineNow = 0;
@@ -163,6 +167,7 @@ namespace GrblPlotter
                 catch (Exception er)
                 {
                     Logger.Error(er, "OnRaiseStreamEvent fCTBCode.InvokeRequired ");
+					EventCollector.SetStreaming("Sfctb1");
                 }
             }
 
@@ -241,12 +246,22 @@ namespace GrblPlotter
                         {
                          //   if (actualCodeLine < fCTBCode.LinesCount)
                             if (LineIsInRange(actualCodeLine - 1))
-                                fCTBCode.BookmarkLine(actualCodeLine - 1);
-                            fCTBCode.DoSelectionVisible();
+                            {    //fCTBCode.BookmarkLine(actualCodeLine - 1);
+								if (this.fCTBCode.InvokeRequired)
+								{ this.fCTBCode.BeginInvoke((MethodInvoker)delegate () { this.fCTBCode.BookmarkLine(actualCodeLine - 1); }); }
+								else
+								{ this.fCTBCode.BookmarkLine(actualCodeLine - 1); }
+							}
+                            //fCTBCode.DoSelectionVisible();
+							if (this.fCTBCode.InvokeRequired)
+							{ this.fCTBCode.BeginInvoke((MethodInvoker)delegate () { this.fCTBCode.DoSelectionVisible(); }); }
+							else
+							{ this.fCTBCode.DoSelectionVisible(); }							
                         }
                         catch (Exception er)
                         {
                             Logger.Error(er, "OnRaiseStreamEvent fCTBCode GrblStreaming.error ");
+							EventCollector.SetStreaming("Sfctb2");
                         }
 
                     }

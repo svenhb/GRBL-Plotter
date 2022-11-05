@@ -393,6 +393,7 @@ namespace GrblPlotter
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.portuguêsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.franzToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.italianoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.czechToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chinesischToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.arabischToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -485,7 +486,6 @@ namespace GrblPlotter
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.SplashScreenTimer = new System.Windows.Forms.Timer(this.components);
             this.loadTimer = new System.Windows.Forms.Timer(this.components);
-            this.italianoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -2735,6 +2735,12 @@ namespace GrblPlotter
             resources.ApplyResources(this.franzToolStripMenuItem, "franzToolStripMenuItem");
             this.franzToolStripMenuItem.Click += new System.EventHandler(this.FranzToolStripMenuItem_Click);
             // 
+            // italianoToolStripMenuItem
+            // 
+            this.italianoToolStripMenuItem.Name = "italianoToolStripMenuItem";
+            resources.ApplyResources(this.italianoToolStripMenuItem, "italianoToolStripMenuItem");
+            this.italianoToolStripMenuItem.Click += new System.EventHandler(this.ItalianToolStripMenuItem_Click);
+            // 
             // czechToolStripMenuItem
             // 
             this.czechToolStripMenuItem.Name = "czechToolStripMenuItem";
@@ -3372,12 +3378,6 @@ namespace GrblPlotter
             // loadTimer
             // 
             this.loadTimer.Tick += new System.EventHandler(this.LoadTimer_Tick);
-            // 
-            // italianoToolStripMenuItem
-            // 
-            this.italianoToolStripMenuItem.Name = "italianoToolStripMenuItem";
-            resources.ApplyResources(this.italianoToolStripMenuItem, "italianoToolStripMenuItem");
-            this.italianoToolStripMenuItem.Click += new System.EventHandler(this.ItalianToolStripMenuItem_Click);
             // 
             // MainForm
             // 

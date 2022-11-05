@@ -25,6 +25,7 @@
  * 2021-07-02 code clean up / code quality
  * 2022-04-04 in TransformEnd() add _projector_form.Invalidate();
  * 2022-07-29 Update_GCode_Depending_Controls add try catch
+ * 2022-10-19 line 258, 298 check if Graphic.GCode == null
 */
 using FastColoredTextBoxNS;
 using System;
@@ -254,7 +255,11 @@ namespace GrblPlotter
         {
             if (!isStreaming)
             {
-                InsertCodeFromForm(Graphic.GCode.ToString(), "from text");
+				string tmpCode = "(no gcode)";
+				if (Graphic.GCode != null)
+				{	tmpCode = Graphic.GCode.ToString();}
+                InsertCodeFromForm(tmpCode, "from text");
+//                InsertCodeFromForm(Graphic.GCode.ToString(), "from text");
                 Properties.Settings.Default.counterImportText += 1;
                 string source = "Itxt";
                 if (Properties.Settings.Default.fromFormInsertEnable)
@@ -287,7 +292,10 @@ namespace GrblPlotter
             Logger.Info("▀▀▀▀▀▀ GetGCodeFromBarcode");
             if (!isStreaming)
             {
-                InsertCodeFromForm(Graphic.GCode.ToString(), "from barcode");
+				string tmpCode = "(no gcode)";
+				if (Graphic.GCode != null)
+				{	tmpCode = Graphic.GCode.ToString();}
+                InsertCodeFromForm(tmpCode, "from barcode");
                 Properties.Settings.Default.counterImportBarcode += 1;
                 string source = "Ibqr";
                 if (Properties.Settings.Default.fromFormInsertEnable)

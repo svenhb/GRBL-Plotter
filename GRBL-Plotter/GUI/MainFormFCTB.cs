@@ -41,6 +41,9 @@
  * 2022-04-07 add style for warning and error
  * 2022-09-14 line 898 ClearTextSelection(int line) add LineIsInRange
 			  line 660 change paste-function to LoadFromClipboard();
+ * 2022-11-03 check InvokeRequired in MarkErrorLine, ClearErrorLines, FctbSetBookmark
+			  new ToList in foreach (int myline in ErrorLines.ToList())
+ * 2022-11-04 FctbSetBookmark unbook 5 lines before
 */
 
 using FastColoredTextBoxNS;
@@ -118,7 +121,7 @@ namespace GrblPlotter
 
             if (ErrorLines.Count > 0)
             {
-                foreach (int myline in ErrorLines)
+                foreach (int myline in ErrorLines.ToList())
                 { MarkErrorLine(myline); }
             }
         }
@@ -126,9 +129,22 @@ namespace GrblPlotter
         {
             if (LineIsInRange(line))
             {
-                SetTextSelection(line, line);
-                fCTBCode.Selection.ClearStyle(StyleGWord, StyleXAxis, StyleYAxis);
-                fCTBCode.Selection.SetStyle(ErrorStyle);
+            //    SetTextSelection(line, line);
+            //    fCTBCode.Selection.ClearStyle(StyleGWord, StyleXAxis, StyleYAxis);
+            //    fCTBCode.Selection.SetStyle(ErrorStyle);
+
+				if (this.fCTBCode.InvokeRequired)
+				{ 	this.fCTBCode.BeginInvoke((MethodInvoker)delegate () 
+					{ 	SetTextSelection(line, line);
+						fCTBCode.Selection.ClearStyle(StyleGWord, StyleXAxis, StyleYAxis);
+						fCTBCode.Selection.SetStyle(ErrorStyle);
+					}); 
+				}
+				else
+				{	SetTextSelection(line, line);
+					fCTBCode.Selection.ClearStyle(StyleGWord, StyleXAxis, StyleYAxis);
+					fCTBCode.Selection.SetStyle(ErrorStyle);
+				}
             }
 			else
 			{	Logger.Error("MarkErrorLine LineIsNOTInRange: {0}", line);}
@@ -137,15 +153,32 @@ namespace GrblPlotter
         {
             if (ErrorLines.Count > 0)
             {
-                foreach (int myline in ErrorLines)
+                foreach (int myline in ErrorLines.ToList())
                 {
                     if (LineIsInRange(myline))
                     {
-                        SetTextSelection(myline, myline);
-                        fCTBCode.Selection.ClearStyle(ErrorStyle);
-                        fCTBCode.Selection.SetStyle(StyleGWord);
-                        fCTBCode.Selection.SetStyle(StyleXAxis);
-                        fCTBCode.Selection.SetStyle(StyleYAxis);
+                    //    SetTextSelection(myline, myline);
+                    //    fCTBCode.Selection.ClearStyle(ErrorStyle);
+                    //    fCTBCode.Selection.SetStyle(StyleGWord);
+                    //    fCTBCode.Selection.SetStyle(StyleXAxis);
+                    //    fCTBCode.Selection.SetStyle(StyleYAxis);
+
+						if (this.fCTBCode.InvokeRequired)
+						{ 	this.fCTBCode.BeginInvoke((MethodInvoker)delegate () 
+							{ 	SetTextSelection(myline, myline);
+								fCTBCode.Selection.ClearStyle(ErrorStyle);
+								fCTBCode.Selection.SetStyle(StyleGWord);
+								fCTBCode.Selection.SetStyle(StyleXAxis);
+								fCTBCode.Selection.SetStyle(StyleYAxis);
+							}); 
+						}
+						else
+						{	SetTextSelection(myline, myline);
+							fCTBCode.Selection.ClearStyle(ErrorStyle);
+							fCTBCode.Selection.SetStyle(StyleGWord);
+							fCTBCode.Selection.SetStyle(StyleXAxis);
+							fCTBCode.Selection.SetStyle(StyleYAxis);
+						}
                     }
                 }
             }
@@ -394,7 +427,11 @@ namespace GrblPlotter
                 if (fromFile)
                 {
                     char[] charsToTrim = { '(', ')', '\r', '\n' };
-                    InsertTextAtLine(1, "( ADD code from " + tmpCodeLines[2].Trim(charsToTrim) + " )\r\n");
+                    if (tmpCodeLines.Length > 2)
+                        InsertTextAtLine(1, "( ADD code from " + tmpCodeLines[2].Trim(charsToTrim) + " )\r\n");
+                    else
+                        InsertTextAtLine(1, "( ADD code from file )\r\n");
+
                 }
                 Logger.Info("◆◆◆◆ Insert code to existing code at line {0}", insertLineNr);
                 return insertLineNr;
@@ -620,13 +657,31 @@ namespace GrblPlotter
                 {
                     try
                     {
-                        if (LineIsInRange(fCTBCodeClickedLineLast))
-                        {
-                            fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);          // remove marker from old line
-                        }
+                        //fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);          // remove marker from old line
+                        int add = 5;
+                        if (fCTBCodeClickedLineNow < 50) add = fCTBCodeClickedLineNow;
+
+                        if (this.fCTBCode.InvokeRequired)
+						{   this.fCTBCode.BeginInvoke((MethodInvoker)delegate () 
+                            { for (int unbook = fCTBCodeClickedLineLast - add; unbook <= fCTBCodeClickedLineLast; unbook++)
+                                if (LineIsInRange(unbook)) 
+                                    this.fCTBCode.UnbookmarkLine(unbook); }); 
+                        }	// fCTBCodeClickedLineLast
+						else
+						{
+                            for (int unbook = fCTBCodeClickedLineLast - add; unbook <= fCTBCodeClickedLineLast; unbook++)
+                                if (LineIsInRange(unbook)) 
+                                    this.fCTBCode.UnbookmarkLine(unbook); 
+                        }	// fCTBCodeClickedLineLast
+
                         if (LineIsInRange(fCTBCodeClickedLineNow))
                         {
-                            fCTBCode.BookmarkLine(fCTBCodeClickedLineNow);              // set new marker
+                            //fCTBCode.BookmarkLine(fCTBCodeClickedLineNow);              // set new marker
+							if (this.fCTBCode.InvokeRequired)
+							{ this.fCTBCode.BeginInvoke((MethodInvoker)delegate () { this.fCTBCode.BookmarkLine(fCTBCodeClickedLineNow); }); }
+							else
+							{ this.fCTBCode.BookmarkLine(fCTBCodeClickedLineNow); }
+						
                             fCTBCodeClickedLineLast = fCTBCodeClickedLineNow;
                         }
                     }
