@@ -3058,4 +3058,7 @@ Además, la posición del eje Z se puede utilizar para, por ejemplo, aumentar la
   <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
     <value>Si la capa o el objeto no están visibles en Inkscape, la capa o el objeto no se importarán.</value>
   </data>
+  <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
+    <value>Usar patrón de guiones de ruta cerrada</value>
+  </data>
 </root>

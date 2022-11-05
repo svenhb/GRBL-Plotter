@@ -3357,4 +3357,7 @@ https://github.com/cprezzi/grbl-servoのGrbl-version'grbl_v1.1f_Servo.hex '、
   <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
     <value>レイヤーまたはオブジェクトがInkscapeに表示されていない場合、レイヤーまたはオブジェクトはインポートされません。</value>
   </data>
+  <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
+    <value>閉じたパスのダッシュ パターンを使用する</value>
+  </data>
 </root>

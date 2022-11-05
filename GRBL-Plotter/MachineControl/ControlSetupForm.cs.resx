@@ -3347,4 +3347,7 @@ Kromě toho lze polohu osy Z využít např. ke zvýšení množství barvy, kdy
   <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
     <value>Pokud vrstva nebo objekt není v Inkscape vidět, vrstva nebo objekt se neimportují.</value>
   </data>
+  <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
+    <value>Použijte čárkovaný vzor uzavřené cesty</value>
+  </data>
 </root>

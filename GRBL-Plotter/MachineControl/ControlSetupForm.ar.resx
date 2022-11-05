@@ -3333,4 +3333,7 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
     <value>إذا كانت الطبقة أو الكائن غير مرئي في Inkscape ، فلن يتم استيراد الطبقة أو الكائن.</value>
   </data>
+  <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
+    <value>استخدم نمط الشرطة للمسار المغلق</value>
+  </data>
 </root>

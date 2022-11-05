@@ -3281,4 +3281,7 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
     <value>Если слой или объект не отображаются в Inkscape, слой или объект не будут импортированы.</value>
   </data>
+  <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
+    <value>Использовать штриховой узор замкнутого пути</value>
+  </data>
 </root>

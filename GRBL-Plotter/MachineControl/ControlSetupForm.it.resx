@@ -3430,4 +3430,7 @@ Rimuovere 'M6' dalla coda di invio, perché grbl non può gestire questo comando
     <value>Premere il pulsante per applicare immediatamente le nuove impostazioni ai pulsanti personalizzati.</value>
     <comment>TabPage0</comment>
   </data>
+  <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
+    <value>Usa il modello di trattino del percorso chiuso</value>
+  </data>
 </root>

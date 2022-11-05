@@ -3067,4 +3067,7 @@ Além disso, a posição do eixo Z pode ser usada para, por exemplo, aumentar a 
   <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
     <value>Se a camada ou objeto não estiver visível no Inkscape, a camada ou objeto não será importado.</value>
   </data>
+  <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
+    <value>Usar padrão de traço de caminho fechado</value>
+  </data>
 </root>

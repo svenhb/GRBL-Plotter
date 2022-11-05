@@ -183,10 +183,10 @@ namespace GrblPlotter.MachineControl
             0,
             0});
             this.NudIncrement.Minimum = new decimal(new int[] {
-            1000,
+            1,
             0,
             0,
-            -2147483648});
+            196608});
             this.NudIncrement.Name = "NudIncrement";
             this.NudIncrement.Value = global::GrblPlotter.Properties.Settings.Default.selectionPropertyIncrement;
             this.NudIncrement.ValueChanged += new System.EventHandler(this.NudIncrement_ValueChanged);

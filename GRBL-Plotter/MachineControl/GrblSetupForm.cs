@@ -18,6 +18,8 @@
 */
 /* 
  * 2022-07-08 new form
+ * 2022-10-17 line 139 check also (RowIndex >= 0) -1 = headline
+ * 2022-10-18 line 50 disable sorting
 */
 
 using System;
@@ -44,6 +46,11 @@ namespace GrblPlotter.MachineControl
                 Height = 900;
                 Top = 0;
             }
+			
+			foreach (DataGridViewColumn column in dataGridView1.Columns)
+			{
+				column.SortMode = DataGridViewColumnSortMode.NotSortable;
+			}
         }
 
         private int UpdateTable()
@@ -136,7 +143,8 @@ namespace GrblPlotter.MachineControl
         private static int lastEdited = -1;
         private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 1)
+            if (e.RowIndex >= 0)
+        //    if ((e.ColumnIndex == 1) && (e.RowIndex >= 0))
             {
                 string nr = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
                 string format = dataGridView1.Rows[e.RowIndex].Cells[1].Style.Format;
@@ -144,8 +152,6 @@ namespace GrblPlotter.MachineControl
                 if (format == "0.000")
                     val = string.Format("{0:0.000}", dataGridView1.Rows[e.RowIndex].Cells[1].Value).Replace(",", ".");
 
-                //    string msg = "Actual: $" + nr + " = " + val;
-                //    MessageBox.Show(msg);
                 if (ShowInputDialog(ref val, "$" + nr + " =") == DialogResult.OK)
                 {
                     SendCommandEvent(new CmdEventArgs("$" + nr + "=" + val));

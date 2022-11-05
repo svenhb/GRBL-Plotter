@@ -1880,7 +1880,7 @@ Objekte mit derselben Start- und Endkoordinate werden zusammengeführt.</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportGraphicHatchFillChangeAngle.Text" xml:space="preserve">
-    <value>Ändern den Winkel nach jedem Pfad um</value>
+    <value>Ändere Winkel nach Pfad um</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportGraphicHatchFillCross.Text" xml:space="preserve">
@@ -3006,5 +3006,8 @@ Zusätzlich kann die Position der Z Achse verwendet werden um z.B. die Farbmenge
   </data>
   <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
     <value>Wenn Ebene oder Objekt in Inkscape nicht sichtbar sind, werden Ebene oder Objekt nicht importiert.</value>
+  </data>
+  <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
+    <value>Verwend Strichmuster des geschl. Pfads</value>
   </data>
 </root>

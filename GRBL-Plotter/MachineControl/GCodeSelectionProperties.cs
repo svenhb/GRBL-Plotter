@@ -62,8 +62,10 @@ namespace GrblPlotter.MachineControl
 
         private void NudIncrement_ValueChanged(object sender, EventArgs e)
         {
-            NudCenterX.Increment = NudIncrement.Value;
-            NudCenterY.Increment = NudIncrement.Value;
+			if (NudIncrement.Value > 0)
+            {	NudCenterX.Increment = NudIncrement.Value;
+				NudCenterY.Increment = NudIncrement.Value;
+			}
         }
 
         private string GetColorString(Color c)

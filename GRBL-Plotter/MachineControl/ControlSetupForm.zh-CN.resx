@@ -3337,4 +3337,7 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
     <value>如果图层或对象在 Inkscape 中不可见，则不会导入图层或对象。</value>
   </data>
+  <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
+    <value>使用封闭路径的破折号模式</value>
+  </data>
 </root>

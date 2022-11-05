@@ -3058,4 +3058,7 @@ De plus, la position de l'axe Z peut être utilisée, par exemple, pour augmente
   <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
     <value>Si le calque ou l'objet n'est pas visible dans Inkscape, le calque ou l'objet ne sera pas importé.</value>
   </data>
+  <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
+    <value>Utiliser le modèle de tiret du chemin fermé</value>
+  </data>
 </root>

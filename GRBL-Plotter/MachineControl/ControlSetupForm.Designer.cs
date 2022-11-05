@@ -1038,6 +1038,7 @@ namespace GrblPlotter
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.cBshowImportDialog = new System.Windows.Forms.CheckBox();
+            this.cBImportGraphicHatchFillDash = new System.Windows.Forms.CheckBox();
             this.tabControl_Level1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl1_Level2.SuspendLayout();
@@ -1966,6 +1967,7 @@ namespace GrblPlotter
             // 
             resources.ApplyResources(this.cBDashedLine2, "cBDashedLine2");
             this.cBDashedLine2.Checked = global::GrblPlotter.Properties.Settings.Default.importLineDashPatternG0;
+            this.cBDashedLine2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cBDashedLine2.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importLineDashPatternG0", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cBDashedLine2.Name = "cBDashedLine2";
             this.toolTip1.SetToolTip(this.cBDashedLine2, resources.GetString("cBDashedLine2.ToolTip"));
@@ -2643,6 +2645,7 @@ namespace GrblPlotter
             // gBHatchFill
             // 
             this.gBHatchFill.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.gBHatchFill.Controls.Add(this.cBImportGraphicHatchFillDash);
             this.gBHatchFill.Controls.Add(this.nUDHatchFillInset);
             this.gBHatchFill.Controls.Add(this.nUDHatchFillAngle2);
             this.gBHatchFill.Controls.Add(this.nUDHatchFillAngle);
@@ -10792,6 +10795,14 @@ namespace GrblPlotter
             this.cBshowImportDialog.Name = "cBshowImportDialog";
             this.cBshowImportDialog.UseVisualStyleBackColor = true;
             // 
+            // cBImportGraphicHatchFillDash
+            // 
+            resources.ApplyResources(this.cBImportGraphicHatchFillDash, "cBImportGraphicHatchFillDash");
+            this.cBImportGraphicHatchFillDash.Checked = global::GrblPlotter.Properties.Settings.Default.importGraphicHatchFillDash;
+            this.cBImportGraphicHatchFillDash.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGraphicHatchFillDash", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGraphicHatchFillDash.Name = "cBImportGraphicHatchFillDash";
+            this.cBImportGraphicHatchFillDash.UseVisualStyleBackColor = true;
+            // 
             // ControlSetupForm
             // 
             resources.ApplyResources(this, "$this");
@@ -12189,5 +12200,6 @@ namespace GrblPlotter
         private System.Windows.Forms.TabPage tabPage33;
         private System.Windows.Forms.CheckBox CbImportDXFDontPlot;
         private System.Windows.Forms.CheckBox CbImportSVGDontPlot;
+        private System.Windows.Forms.CheckBox cBImportGraphicHatchFillDash;
     }
 }
