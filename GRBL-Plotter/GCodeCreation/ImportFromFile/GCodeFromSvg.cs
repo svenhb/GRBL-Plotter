@@ -83,6 +83,7 @@
  * 2022-08-10 add text-element
  * 2022-09-29 line 539, 603, 624 add (attributeFill != "none"))
  * 2022-09-30 line 1330 SVGStartPath -> SetGeometry = startPath to continue figure
+ * 2022-11-04 line 845 dash pattern - convert px to mm
 */
 
 /* SetHeaderMessages...
@@ -839,6 +840,10 @@ namespace GrblPlotter
                         double[] dash = Array.ConvertAll(pattern,
                                s => double.TryParse(s, System.Globalization.NumberStyles.Float, System.Globalization.NumberFormatInfo.InvariantInfo, out double tmp) ? tmp : 0);    //(tmp * (double)gcodeScale) : 0);
                         if (logEnable) Logger.Debug("SetDashPattern:{0}", dasharray);
+						
+						for (int k=0; k < dash.Length; k++)
+						{	dash[k] = dash[k] / factor_Mm2Px;}	// convert px to mm
+					
                         Graphic.SetDash(dash);
                     }
                 }
