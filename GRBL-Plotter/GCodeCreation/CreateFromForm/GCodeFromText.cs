@@ -50,9 +50,9 @@ namespace GrblPlotter
 
         public GCodeFromText()
         {
-            Logger.Trace("++++++ GCodeFromText START ++++++");
             this.Icon = Properties.Resources.Icon;
             CultureInfo ci = new CultureInfo(Properties.Settings.Default.guiLanguage);
+            Logger.Info("++++++ GCodeFromText START ++++++");
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
             InitializeComponent();

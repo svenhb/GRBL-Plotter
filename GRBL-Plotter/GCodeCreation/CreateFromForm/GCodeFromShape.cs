@@ -62,9 +62,9 @@ namespace GrblPlotter
 
         public GCodeFromShape()
         {
-            Logger.Trace("++++++ GCodeFromShape START ++++++");
             this.Icon = Properties.Resources.Icon;
             CultureInfo ci = new CultureInfo(Properties.Settings.Default.guiLanguage);
+            Logger.Info("++++++ GCodeFromShape START ++++++");
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
             InitializeComponent();

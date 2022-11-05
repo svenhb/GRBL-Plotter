@@ -129,8 +129,8 @@ namespace GrblPlotter
 
         public GCodeFromImage(bool loadFile = false)
         {
-            Logger.Info("++++++ GCodeFromImage loadFile:{0} START ++++++", loadFile);
             CultureInfo ci = new CultureInfo(Properties.Settings.Default.guiLanguage);
+            Logger.Info("++++++ GCodeFromImage loadFile:{0} START ++++++", loadFile);
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
             InitializeComponent();
