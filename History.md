@@ -2,6 +2,7 @@
 Needs to be read from the bottom up ;-)  
  
 ### 2022-08 Version 1.6.7.x 
+* Bug fix in dash pattern for arcs and circles 
 * Italian languange
 * Bug fix in hatch fill for text-creation and SVG import
 * SVG Text import (not all SVG text options are implemented), see https://www.w3.org/TR/SVG11/text.html
