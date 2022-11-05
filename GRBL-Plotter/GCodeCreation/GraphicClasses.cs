@@ -25,6 +25,7 @@
  * 2021-09-02 add Offset to TileObject
  * 2021-09-21 add new GroupOption 'Label'
  * 2022-04-23 add OptionSpecialWireBend
+ * 2022-11-03 add OptionDashPattern to control ConvertArcToLine
 */
 
 using System;
@@ -76,6 +77,7 @@ namespace GrblPlotter
             public bool ConvertArcToLine { get; set; }
 
             public bool OptionNodesOnly { get; set; }		// General options, Path interpretation
+            public bool OptionDashPattern { get; set; }     // generate dashed lines
             public bool OptionZFromWidth { get; set; }
             public bool OptionDotFromCircle { get; set; }	// will be processed in GCodeFromSVG 702
             public bool OptionZFromRadius { get; set; }		// will select GCodeDotOnlyWithZ or GCodeDotOnly
@@ -121,6 +123,7 @@ namespace GrblPlotter
                 else
                 {
                     ApplyHatchFill = Properties.Settings.Default.importSVGApplyFill;
+                    OptionDashPattern = Properties.Settings.Default.importLineDashPattern;
                     OptionZFromWidth = Properties.Settings.Default.importDepthFromWidth;
                     OptionDotFromCircle = Properties.Settings.Default.importSVGCircleToDot;
                     OptionZFromRadius = Properties.Settings.Default.importSVGCircleToDotZ;
@@ -139,12 +142,13 @@ namespace GrblPlotter
                 OptionFeedFromToolTable = Properties.Settings.Default.importGCToolTableUse;
 
                 ConvertArcToLine = Properties.Settings.Default.importGCNoArcs || OptionClipCode || OptionDragTool || OptionHatchFill;// only for SVG: || ApplyHatchFill;
-                ConvertArcToLine = ConvertArcToLine || OptionSpecialWireBend || OptionSpecialDevelop || OptionRampOnPenDown;
+                ConvertArcToLine = ConvertArcToLine || OptionSpecialWireBend || OptionSpecialDevelop || OptionRampOnPenDown || OptionDashPattern;
             }
             public void ResetOptions(bool enableFigures)
             {
                 DxfImportZ = false;
                 FigureEnable = enableFigures;
+                OptionDashPattern = false;
                 OptionZFromWidth = false;
                 OptionDotFromCircle = false;
                 OptionZFromRadius = false;

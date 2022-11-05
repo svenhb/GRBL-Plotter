@@ -38,9 +38,11 @@
  * 2022-01-23 add proforma figure-tag if not figureEnable
  * 2022-03-29 function 'arc' line 900 if full circle, end_angle = start_angle+360° issue #270
  * 2022-04-04 line 547 change "PathID" to "PathId"
+ * 2022-11-04 change dash-apply algorithm in MoveToDashed to continue pattern in next move-segement 
 */
 
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -70,7 +72,12 @@ namespace GrblPlotter
 
         public static int PathCount { get; set; } = 0;
         public static bool FigureEndTagWasSet { get; set; } = true;
+		
         private static double[] PathDashArray;
+		private static int PathDashArrayIndex = 0;
+        private static bool PathDashArrayIndexChanged = false;
+        private static double PathDashArrayDistance = 0;
+        private static bool PathDashArrayPenIsUp = false;
 
         private static double setAux1FinalDistance = 0;     // sum-up path distances 396
         private static double setAux2FinalDistance = 0;
@@ -81,6 +88,8 @@ namespace GrblPlotter
         private static bool logEnable;
         private static bool logDetailed;
         private static bool logCoordinates;
+
+        private static bool gcodeComments = false;
 
         public static void CleanUp()
         {
@@ -96,6 +105,8 @@ namespace GrblPlotter
             logEnable = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnables.Level3) > 0);
             logDetailed = logEnable && ((logFlags & (uint)LogEnables.Detailed) > 0);
             logCoordinates = logEnable && ((logFlags & (uint)LogEnables.Coordinates) > 0);
+
+            gcodeComments = Properties.Settings.Default.importGCAddComments;
 
             Logger.Trace("▽▽▽Graphic2GCode - Init   loggerTrace:{0}", Convert.ToString(logFlags, 2));
 
@@ -640,7 +651,19 @@ namespace GrblPlotter
             if (overWriteId && (pathObject.FigureId > 0))
                 iDToSet = pathObject.FigureId;
 
-            PenUp();   // Don't set xmlMarker.figureEnd
+			if (Properties.Settings.Default.importLineDashPattern && (PathDashArray != null) && (PathDashArray.Length > 1))
+			{	string dash = "";
+				for (int k=0; k<PathDashArray.Length; k++)
+				{	dash += string.Format("{0}:{1:0.000}; ",k,PathDashArray[k]);}
+            
+				if (logCoordinates) Logger.Trace("  StartPath dash pattern: {0}", dash);
+			}
+					
+            PenUp("StartPath");   // Don't set xmlMarker.figureEnd
+            PathDashArrayIndex = 0;
+            PathDashArrayDistance = 0;
+            PathDashArrayIndexChanged = false;
+            PathDashArrayPenIsUp = true;
 
             if (!pathInfo.IsSameAs(pathObject.Info) || FigureEndTagWasSet)	// IsSameAs Id, PenColorId, PathId, AuxInfo, PathGeometry, GroupAttributes
             {
@@ -767,185 +790,108 @@ namespace GrblPlotter
         /// </summary>
         private static void MoveTo(Point coordxy, double newZ, double tangAngle, string cmt)
         {
-            if (!useAlternitveZ)    //Properties.Settings.Default.importDepthFromWidthRamp)
+			bool applyDashPattern = Properties.Settings.Default.importLineDashPattern && (PathDashArray != null) && (PathDashArray.Length > 1);
+			
+            if (!useAlternitveZ && !applyDashPattern)    //Properties.Settings.Default.importDepthFromWidthRamp)
                 PenDown(cmt);   //  + " moveto"                      // also process tangetial axis
             double setangle = 180 * tangAngle / Math.PI;
-            if (logCoordinates) Logger.Trace(" MoveTo X{0:0.000} Y{1:0.000} A{2:0.00}", coordxy.X, coordxy.Y, setangle);
+			
+            if (logCoordinates) Logger.Trace(" MoveTo X{0:0.000} Y{1:0.000} A{2:0.00}  useAlternitveZ:{3}  applyDashPattern:{4}", coordxy.X, coordxy.Y, setangle, useAlternitveZ, applyDashPattern);
             Gcode.SetTangential(gcodeString, setangle, true);
             Gcode.SetAux1DistanceCommand(setAux1FinalDistance);
             Gcode.SetAux2DistanceCommand(setAux2FinalDistance);
 
-            if (useAlternitveZ) //Properties.Settings.Default.importDepthFromWidthRamp|| Properties.Settings.Default.importDXFUseZ)
+            if (useAlternitveZ) 		//Properties.Settings.Default.importDepthFromWidthRamp|| Properties.Settings.Default.importDXFUseZ)
                 Gcode.Move(gcodeString, 1, coordxy.X, coordxy.Y, (float)newZ, true, cmt);
-            else
+            else if (applyDashPattern)
                 MoveToDashed(coordxy, cmt);
+			else
+				Gcode.MoveTo(gcodeString, coordxy, cmt); 
+			
             lastGC = coordxy;
         }
 
+
+
         private static void MoveToDashed(Point coordxy, string cmt)
         {
-            if (logCoordinates) Logger.Trace("  MoveToDashed X{0:0.000} Y{1:0.000}", coordxy.X, coordxy.Y);
-
-            bool showDashInfo = false;
-            string dashInfo = "";
+            if (logCoordinates) Logger.Trace("  MoveToDashed from X:{0:0.000} Y:{1:0.000}  to X:{0:0.000} Y:{1:0.000}", lastGC.X, lastGC.Y, coordxy.X, coordxy.Y);
 
             if (logCoordinates) Logger.Trace("  MoveToDashed enabled:{0} length:{1}", Properties.Settings.Default.importLineDashPattern, PathDashArray.Length);
-            if (!Properties.Settings.Default.importLineDashPattern || (PathDashArray.Length <= 1))
-            { Gcode.MoveTo(gcodeString, coordxy, cmt); }
-            else
-            {
-                bool penUpG1 = !Properties.Settings.Default.importLineDashPatternG0;
-                double dX = coordxy.X - lastGC.X;
-                double dY = coordxy.Y - lastGC.Y;
-                double xx = lastGC.X, yy = lastGC.Y, dd;
-                int i = 0;
-                int save = 1000;
-                if (dX == 0)
-                {
-                    if (dY > 0)
-                    {
-                        while (yy < coordxy.Y)
-                        {
-                            if (i >= PathDashArray.Length)
-                                i = 0;
-                            PenDown("MoveToDashed");
-                            dd = PathDashArray[i++];
-                            if (showDashInfo) { dashInfo = "dash " + dd.ToString(); }
-                            yy += dd;
-                            if (yy < coordxy.Y)
-                            { Gcode.MoveTo(gcodeString, new Point(coordxy.X, yy), dashInfo); }
-                            else
-                            { Gcode.MoveTo(gcodeString, coordxy, cmt); break; }
-                            if (i >= PathDashArray.Length)
-                                i = 0;
-                            PenUp("MoveToDashed");
-                            dd = PathDashArray[i++];
-                            yy += dd;
-                            if (showDashInfo) { dashInfo = "dash " + dd.ToString(); }
-                            if (yy < coordxy.Y)
-                            {
-                                if (penUpG1) Gcode.MoveToNoFeed(gcodeString, new Point(coordxy.X, yy), dashInfo);//, true);
-                                else Gcode.MoveToRapid(gcodeString, new Point(coordxy.X, yy), dashInfo);
-                            }
-                            else
-                            {
-                                if (penUpG1) Gcode.MoveToNoFeed(gcodeString, coordxy, cmt);//,true);
-                                else Gcode.MoveToRapid(gcodeString, coordxy, cmt);
-                                break;
-                            }
-                            if (save-- < 0) { Comment("break up dash 3"); break; }
-                        }
-                    }
-                    else
-                    {
-                        while (yy > coordxy.Y)
-                        {
-                            if (i >= PathDashArray.Length)
-                                i = 0;
-                            yy -= PathDashArray[i++];
-                            PenDown("MoveToDashed");
-                            if (yy > coordxy.Y)
-                            { Gcode.MoveTo(gcodeString, new Point(coordxy.X, yy), cmt); }
-                            else
-                            { Gcode.MoveTo(gcodeString, coordxy, cmt); break; }
-                            if (i >= PathDashArray.Length)
-                                i = 0;
-                            PenUp("MoveToDashed");
-                            yy -= PathDashArray[i++];
-                            if (yy > coordxy.Y)
-                            {
-                                if (penUpG1) Gcode.MoveToNoFeed(gcodeString, new Point(coordxy.X, yy), cmt);//, true);
-                                else Gcode.MoveToRapid(gcodeString, new Point(coordxy.X, yy), cmt);
-                            }
-                            else
-                            {
-                                if (penUpG1) Gcode.MoveToNoFeed(gcodeString, coordxy, cmt);//, true);
-                                else Gcode.MoveToRapid(gcodeString, coordxy, cmt);
-                                break;
-                            }
-                            if (save-- < 0) { Comment("break up dash 4"); break; }
-                        }
-                    }
-                }
-                else
-                {
-                    double dC = Math.Sqrt(dX * dX + dY * dY);
-                    double fX = dX / dC;        // factor X
-                    double fY = dY / dC;
-                    if (dX > 0)
-                    {
-                        while (xx < coordxy.X)
-                        {
-                            if (i >= PathDashArray.Length)
-                                i = 0;
-                            dd = PathDashArray[i++];
-                            xx += fX * dd;
-                            yy += fY * dd;
-                            PenDown("");
-                            if (showDashInfo) { dashInfo = "dash " + dd.ToString(); }
-                            if (xx < coordxy.X)
-                            { Gcode.MoveTo(gcodeString, new Point(xx, yy), dashInfo); }
-                            else
-                            { Gcode.MoveTo(gcodeString, coordxy, cmt); break; }
-                            if (i >= PathDashArray.Length)
-                                i = 0;
-                            dd = PathDashArray[i++];
-                            xx += fX * dd;
-                            yy += fY * dd;
-                            PenUp();
-                            if (showDashInfo) { dashInfo = "dash " + dd.ToString(); }
-                            if (xx < coordxy.X)
-                            {
-                                if (penUpG1) Gcode.MoveToNoFeed(gcodeString, new Point(xx, yy), dashInfo);//, true);
-                                else Gcode.MoveToRapid(gcodeString, new Point(xx, yy), dashInfo);
-                            }
-                            else
-                            {
-                                if (penUpG1) Gcode.MoveToNoFeed(gcodeString, coordxy, cmt);//, true);
-                                else Gcode.MoveToRapid(gcodeString, coordxy, cmt);
-                                break;
-                            }
-                            if (save-- < 0) { Comment("break up dash 1"); break; }
-                        }
-                    }
-                    else
-                    {
-                        while (xx > coordxy.X)
-                        {
-                            if (i >= PathDashArray.Length)
-                                i = 0;
-                            dd = PathDashArray[i++];
-                            xx += fX * dd;
-                            yy += fY * dd;
-                            PenDown("");
-                            if (showDashInfo) { dashInfo = "dash " + dd.ToString(); }
-                            if (xx > coordxy.X)
-                            { Gcode.MoveTo(gcodeString, new Point(xx, yy), dashInfo); }
-                            else
-                            { Gcode.MoveTo(gcodeString, coordxy, cmt); break; }
-                            if (i >= PathDashArray.Length)
-                                i = 0;
-                            PenUp();
-                            dd = PathDashArray[i++];
-                            xx += fX * dd;
-                            yy += fY * dd;
-                            if (showDashInfo) { dashInfo = "dash " + dd.ToString(); }
-                            if (xx > coordxy.X)
-                            {
-                                if (penUpG1) Gcode.MoveTo(gcodeString, new Point(xx, yy), dashInfo);
-                                else Gcode.MoveToRapid(gcodeString, new Point(xx, yy), dashInfo);
-                            }
-                            else
-                            {
-                                if (penUpG1) Gcode.MoveTo(gcodeString, coordxy, cmt);
-                                else Gcode.MoveToRapid(gcodeString, coordxy, cmt);
-                                break;
-                            }
-                            if (save-- < 0) { Comment("break up dash 2"); break; }
-                        }
-                    }
-                }
-            }
+			
+			bool penUpG1 = !Properties.Settings.Default.importLineDashPatternG0;
+			double dX = coordxy.X - lastGC.X;			// full distance
+			double dY = coordxy.Y - lastGC.Y;
+			double dFull = Math.Sqrt(dX * dX + dY * dY);
+			double dToGo = dFull;
+			double xx = lastGC.X, yy = lastGC.Y;		// intermediate pos
+			double ddx = 0, ddy = 0;					// dash distance
+			string dashInfo="";
+			Point pNext = coordxy;
+			
+			while (dToGo > 0)
+			{
+				if (logCoordinates) Logger.Trace("  -0 dToGo:{0:0.000}  PathDashArrayIndex:{1}  PathDashArrayDistance:{2:0.000}   PathDashArrayPenIsUp:{3}", dToGo, PathDashArrayIndex, PathDashArrayDistance, PathDashArrayPenIsUp);
+
+				if (PathDashArrayDistance <= 0)         // get distance
+				{
+					if (PathDashArrayIndex >= PathDashArray.Length) PathDashArrayIndex = 0;
+					PathDashArrayDistance = Math.Abs(PathDashArray[PathDashArrayIndex]);		// only allow positive distance
+					
+					if (logCoordinates) Logger.Trace("   1 Load PathDashArrayIndex:{0}  PathDashArrayDistance:{1:0.00}",PathDashArrayIndex,PathDashArrayDistance);
+					
+					PathDashArrayIndex++;
+					PathDashArrayIndexChanged = true;
+				}
+
+				if (PathDashArrayIndexChanged)
+				{
+					if ((PathDashArrayIndex % 2) == 0)      // pen-up/ down depending on dash index
+					{ 	if (logCoordinates) Logger.Trace("   1 PenUp");
+						PenUp("MoveToDashed"); PathDashArrayPenIsUp = true; 
+					}
+					else
+					{ 	if (logCoordinates) Logger.Trace("   1 PenDown");
+						PenDown("MoveToDashed"); PathDashArrayPenIsUp = false; 
+					}
+					PathDashArrayIndexChanged = false;
+				}
+				if (logCoordinates) Logger.Trace("   2 dToGo:{0:0.000}  PathDashArrayDistance:{1:0.000}   PathDashArrayPenIsUp:{2}", dToGo, PathDashArrayDistance, PathDashArrayPenIsUp);
+
+				if (dToGo <= PathDashArrayDistance)     // no dash-change in this move
+				{
+                    //dashInfo = String.Format("dash match dToGo:{0:0.000}  array:{1:0.000}", dToGo, PathDashArrayDistance);
+                    if (gcodeComments) dashInfo = String.Format("{0:0.000}", PathDashArrayDistance);
+                    PathDashArrayDistance -= dToGo;
+					dToGo = 0;
+					pNext = coordxy;
+				}
+				else									// do inermediate step
+				{	dToGo -= PathDashArrayDistance;
+					ddx = PathDashArrayDistance * dX / dFull;
+					ddy = PathDashArrayDistance * dY / dFull;
+					xx += ddx;							// new pos.
+					yy += ddy;
+                    //dashInfo = PathDashArrayDistance.ToString();
+                    if (gcodeComments) dashInfo = String.Format("{0:0.000}", PathDashArrayDistance);
+                    PathDashArrayDistance = 0;		
+					pNext = new Point(xx, yy);
+				}
+
+                if (PathDashArrayPenIsUp)
+				{
+                    if (gcodeComments) dashInfo = "pen-up dash:" + dashInfo;
+                    if (logCoordinates) Logger.Trace("   3 MoveTo PenUp x:{0:0.00}  y:{1:0.00}  dToGo:{2:0.000}  PathDashArrayDistance:{3:0.000}",pNext.X, pNext.Y, dToGo, PathDashArrayDistance);
+					if (penUpG1) Gcode.MoveToNoFeed(gcodeString, pNext, dashInfo);
+					else Gcode.MoveToRapid(gcodeString, pNext, dashInfo);
+				}
+				else
+				{
+                    if (gcodeComments) dashInfo = "pen-down dash:" + dashInfo;
+                    if (logCoordinates) Logger.Trace("   3 MoveTo PenDown x:{0:0.00}  y:{1:0.00}  dToGo:{2:0.000}  PathDashArrayDistance:{3:0.000}",pNext.X, pNext.Y, dToGo, PathDashArrayDistance);
+					Gcode.MoveTo(gcodeString, pNext, dashInfo);
+				}
+			}
         }
 
         private static void Arc(bool isG2, Point endPos, Point centerPos, double tangStart, double tangEnd)//, string cmt) remove newZ
@@ -1050,7 +996,7 @@ namespace GrblPlotter
         /// </summary>
         private static bool PenUp(string cmt = "", bool setEndFigureTag = false)
         {
-            if (logCoordinates) Logger.Trace("  PenUp {0}", cmt);
+            if (logCoordinates) Logger.Trace("   PenUp penIsDown:{0}  cmt:{1}", penIsDown, cmt);
 
             if (!comments && !cmt.Contains("PU"))
                 cmt = "";

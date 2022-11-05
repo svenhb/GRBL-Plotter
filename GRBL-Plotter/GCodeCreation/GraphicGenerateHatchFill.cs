@@ -19,6 +19,7 @@
 /*
  * 2020-07-05 Code adapted from Evil Mad Scientist eggbot_hatch.py
  * 2021-07-14 code clean up / code quality
+ * 2022-11-04 line 57 set dash pattern to 0
 */
 
 
@@ -45,13 +46,18 @@ namespace GrblPlotter
             bool nextIsSameHatch;
             bool fillColor = graphicInformation.ApplyHatchFill;	// only hatch if fillColor is set
 
-            Logger.Trace("...HatchFill distance:{0} angle:{1} cross:{2}", distance, angle, cross);
+            bool applyDash = Properties.Settings.Default.importGraphicHatchFillDash;
+            Logger.Trace("...HatchFill distance:{0} angle:{1} cross:{2}  dash:{3}", distance, angle, cross, applyDash);
+
             List<Point[]> hatchPattern = new List<Point[]>();
             List<Point[]> finalPattern = new List<Point[]>();
 
             int maxObject = graphicToFill.Count;
             List<PathObject> tmpPath = new List<PathObject>();
             Dimensions pathDimension = new Dimensions();
+
+            if (!applyDash)
+            { SetDash(new double[0]); }
 
             for (int index = 0; index < maxObject; index++)
             {
@@ -166,12 +172,14 @@ namespace GrblPlotter
                 { start = HatchLines[i][1]; end = HatchLines[i][0]; }
 
                 StartPath(start);
+
                 actualPath.Info.Id = PathData.Info.Id;
                 actualPath.Info.CopyData(PathData.Info);    // preset global info for GROUP
                 if (switchColor)
                     actualPath.Info.GroupAttributes[(int)GroupOption.ByColor] = actualPath.Info.GroupAttributes[(int)GroupOption.ByFill];
                 //        actualPath.Info.PathGeometry += "_hatch";
                 actualPath.Info.PathGeometry = "hatch_fill_" + actualPath.Info.PathGeometry;
+
                 AddLine(end);
                 StopPath();
             }
