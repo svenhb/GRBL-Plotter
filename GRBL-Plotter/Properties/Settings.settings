@@ -1647,7 +1647,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importLineDashPatternG0" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="importLoggerSettings" Type="System.UInt32" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -2151,6 +2151,9 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importSVGDontPlot" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGraphicHatchFillDash" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>

@@ -22,7 +22,7 @@ namespace GrblPlotter.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace GrblPlotter.Properties {
         ///   Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GrblPlotter.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace GrblPlotter.Properties {
         ///   Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -67,7 +67,7 @@ namespace GrblPlotter.Properties {
         ///&quot;3&quot;,&quot;Abort during cycle&quot;,&quot;Reset while in motion. Machine position is likely lost due to sudden halt. Re-homing is highly recommended.&quot;
         ///&quot;4&quot;,&quot;Probe fail&quot;,&quot;Probe fail. Prob [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
-        internal static string alarm_codes_en_US {
+        public static string alarm_codes_en_US {
             get {
                 return ResourceManager.GetString("alarm_codes_en_US", resourceCulture);
             }
@@ -76,7 +76,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap barcode {
+        public static System.Drawing.Bitmap barcode {
             get {
                 object obj = ResourceManager.GetObject("barcode", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -86,7 +86,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bevOff {
+        public static System.Drawing.Bitmap bevOff {
             get {
                 object obj = ResourceManager.GetObject("bevOff", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -96,7 +96,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bevOn {
+        public static System.Drawing.Bitmap bevOn {
             get {
                 object obj = ResourceManager.GetObject("bevOn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -106,7 +106,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap btn_pause {
+        public static System.Drawing.Bitmap btn_pause {
             get {
                 object obj = ResourceManager.GetObject("btn_pause", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -116,7 +116,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap btn_play {
+        public static System.Drawing.Bitmap btn_play {
             get {
                 object obj = ResourceManager.GetObject("btn_play", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -126,7 +126,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap btn_stop {
+        public static System.Drawing.Bitmap btn_stop {
             get {
                 object obj = ResourceManager.GetObject("btn_stop", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -136,7 +136,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap cfOff1 {
+        public static System.Drawing.Bitmap cfOff1 {
             get {
                 object obj = ResourceManager.GetObject("cfOff1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -146,7 +146,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap cfOff2 {
+        public static System.Drawing.Bitmap cfOff2 {
             get {
                 object obj = ResourceManager.GetObject("cfOff2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -156,7 +156,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap cfOn1 {
+        public static System.Drawing.Bitmap cfOn1 {
             get {
                 object obj = ResourceManager.GetObject("cfOn1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -166,7 +166,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap cfOn2 {
+        public static System.Drawing.Bitmap cfOn2 {
             get {
                 object obj = ResourceManager.GetObject("cfOn2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -176,7 +176,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap down {
+        public static System.Drawing.Bitmap down {
             get {
                 object obj = ResourceManager.GetObject("down", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -186,7 +186,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap efOff1 {
+        public static System.Drawing.Bitmap efOff1 {
             get {
                 object obj = ResourceManager.GetObject("efOff1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -196,7 +196,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap efOff2 {
+        public static System.Drawing.Bitmap efOff2 {
             get {
                 object obj = ResourceManager.GetObject("efOff2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -206,7 +206,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap efOff3 {
+        public static System.Drawing.Bitmap efOff3 {
             get {
                 object obj = ResourceManager.GetObject("efOff3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -216,7 +216,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap efOff4 {
+        public static System.Drawing.Bitmap efOff4 {
             get {
                 object obj = ResourceManager.GetObject("efOff4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -226,7 +226,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap efOff5 {
+        public static System.Drawing.Bitmap efOff5 {
             get {
                 object obj = ResourceManager.GetObject("efOff5", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -236,7 +236,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap efOff6 {
+        public static System.Drawing.Bitmap efOff6 {
             get {
                 object obj = ResourceManager.GetObject("efOff6", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -246,7 +246,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap efOff7 {
+        public static System.Drawing.Bitmap efOff7 {
             get {
                 object obj = ResourceManager.GetObject("efOff7", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -256,7 +256,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap efOff8 {
+        public static System.Drawing.Bitmap efOff8 {
             get {
                 object obj = ResourceManager.GetObject("efOff8", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -266,7 +266,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap efOff9 {
+        public static System.Drawing.Bitmap efOff9 {
             get {
                 object obj = ResourceManager.GetObject("efOff9", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -276,7 +276,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap efOn1 {
+        public static System.Drawing.Bitmap efOn1 {
             get {
                 object obj = ResourceManager.GetObject("efOn1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -286,7 +286,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap efOn2 {
+        public static System.Drawing.Bitmap efOn2 {
             get {
                 object obj = ResourceManager.GetObject("efOn2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -296,7 +296,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap efOn3 {
+        public static System.Drawing.Bitmap efOn3 {
             get {
                 object obj = ResourceManager.GetObject("efOn3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -306,7 +306,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap efOn4 {
+        public static System.Drawing.Bitmap efOn4 {
             get {
                 object obj = ResourceManager.GetObject("efOn4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -316,7 +316,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap efOn5 {
+        public static System.Drawing.Bitmap efOn5 {
             get {
                 object obj = ResourceManager.GetObject("efOn5", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -326,7 +326,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap efOn6 {
+        public static System.Drawing.Bitmap efOn6 {
             get {
                 object obj = ResourceManager.GetObject("efOn6", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -336,7 +336,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap efOn7 {
+        public static System.Drawing.Bitmap efOn7 {
             get {
                 object obj = ResourceManager.GetObject("efOn7", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -346,7 +346,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap efOn8 {
+        public static System.Drawing.Bitmap efOn8 {
             get {
                 object obj = ResourceManager.GetObject("efOn8", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -356,7 +356,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap efOn9 {
+        public static System.Drawing.Bitmap efOn9 {
             get {
                 object obj = ResourceManager.GetObject("efOn9", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -371,7 +371,7 @@ namespace GrblPlotter.Properties {
         ///&quot;4&quot;,&quot;Value &lt; 0&quot;,&quot;Negative value received for an expected positive value.&quot;
         ///&quot;5&quot;,&quot;Setting disabled&quot;,&quot;Homing cycle failure. Homing is not enabled via settings [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
-        internal static string error_codes_en_US {
+        public static string error_codes_en_US {
             get {
                 return ResourceManager.GetString("error_codes_en_US", resourceCulture);
             }
@@ -390,7 +390,7 @@ namespace GrblPlotter.Properties {
         ///- Tab, Shift+Tab - increase/decrease left indent of selected range
         ///- Ctrl+Home, Ctrl+End  [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
-        internal static string fctb_hotkeys {
+        public static string fctb_hotkeys {
             get {
                 return ResourceManager.GetString("fctb_hotkeys", resourceCulture);
             }
@@ -399,7 +399,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap flip_horizontal {
+        public static System.Drawing.Bitmap flip_horizontal {
             get {
                 object obj = ResourceManager.GetObject("flip_horizontal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -409,7 +409,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap flip_vertical {
+        public static System.Drawing.Bitmap flip_vertical {
             get {
                 object obj = ResourceManager.GetObject("flip_vertical", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -419,7 +419,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Icon ähnlich wie (Symbol).
         /// </summary>
-        internal static System.Drawing.Icon Icon {
+        public static System.Drawing.Icon Icon {
             get {
                 object obj = ResourceManager.GetObject("Icon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
@@ -427,19 +427,9 @@ namespace GrblPlotter.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Icon ähnlich wie (Symbol).
-        /// </summary>
-        internal static System.Drawing.Icon Icon2 {
-            get {
-                object obj = ResourceManager.GetObject("Icon2", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap inv2 {
+        public static System.Drawing.Bitmap inv2 {
             get {
                 object obj = ResourceManager.GetObject("inv2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -449,7 +439,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LeadInOut {
+        public static System.Drawing.Bitmap LeadInOut {
             get {
                 object obj = ResourceManager.GetObject("LeadInOut", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -459,7 +449,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap led_off {
+        public static System.Drawing.Bitmap led_off {
             get {
                 object obj = ResourceManager.GetObject("led_off", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -469,7 +459,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap led_on {
+        public static System.Drawing.Bitmap led_on {
             get {
                 object obj = ResourceManager.GetObject("led_on", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -479,7 +469,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap logo {
+        public static System.Drawing.Bitmap logo {
             get {
                 object obj = ResourceManager.GetObject("logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -489,7 +479,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap modell {
+        public static System.Drawing.Bitmap modell {
             get {
                 object obj = ResourceManager.GetObject("modell", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -499,7 +489,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap qrcode {
+        public static System.Drawing.Bitmap qrcode {
             get {
                 object obj = ResourceManager.GetObject("qrcode", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -509,7 +499,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rndOff {
+        public static System.Drawing.Bitmap rndOff {
             get {
                 object obj = ResourceManager.GetObject("rndOff", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -519,7 +509,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rndOn {
+        public static System.Drawing.Bitmap rndOn {
             get {
                 object obj = ResourceManager.GetObject("rndOn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -534,7 +524,7 @@ namespace GrblPlotter.Properties {
         ///&quot;3&quot;,&quot;Step direction invert&quot;,&quot;mask&quot;,&quot;Inverts the direction signal. Set axis bit to invert (00000ZYX).&quot;
         ///&quot;4&quot;,&quot;Invert [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
-        internal static string setting_codes_en_US {
+        public static string setting_codes_en_US {
             get {
                 return ResourceManager.GetString("setting_codes_en_US", resourceCulture);
             }
@@ -543,7 +533,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap tlOn {
+        public static System.Drawing.Bitmap tlOn {
             get {
                 object obj = ResourceManager.GetObject("tlOn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -553,7 +543,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap turn_l {
+        public static System.Drawing.Bitmap turn_l {
             get {
                 object obj = ResourceManager.GetObject("turn_l", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -563,7 +553,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap turn_r {
+        public static System.Drawing.Bitmap turn_r {
             get {
                 object obj = ResourceManager.GetObject("turn_r", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -573,7 +563,7 @@ namespace GrblPlotter.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap up {
+        public static System.Drawing.Bitmap up {
             get {
                 object obj = ResourceManager.GetObject("up", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
