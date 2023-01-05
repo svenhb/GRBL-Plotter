@@ -1,0 +1,33 @@
+<Table>
+
+<ProcessItem>
+<Action>Load</Action>
+<Value>data\examples\graphic_bunny.dxf</Value>
+<Info>Load example graphic file</Info>
+</ProcessItem>
+
+<ProcessItem>
+<Action>G-Code</Action>
+<Value>G00 X50</Value>
+<Info>Move X to fresh position</Info>
+</ProcessItem>
+
+<ProcessItem>
+<Action>G-Code</Action>
+<Value>G10 L20 P0 X0 Y0 Z0</Value>
+<Info>Set current coordinate to 0;0</Info>
+</ProcessItem>
+
+<ProcessItem>
+<Action>Stream</Action>
+<Value> </Value>
+<Info>Send G-Code from editor</Info>
+</ProcessItem>
+
+<ProcessItem>
+<Action>Jump to</Action>
+<Value>2</Value>
+<Info>Repeat from line 2, endless</Info>
+</ProcessItem>
+
+</Table>
