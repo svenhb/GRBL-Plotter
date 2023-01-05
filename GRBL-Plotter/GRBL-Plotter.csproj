@@ -29,8 +29,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>3</ApplicationRevision>
-    <ApplicationVersion>1.6.7.3</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.6.8.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -167,6 +167,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GCodeCreation\GraphicClasses.cs" />
+    <Compile Include="GCodeCreation\GraphicCollectText.cs" />
     <Compile Include="GCodeCreation\GraphicGenerateMisc.cs" />
     <Compile Include="GCodeCreation\GraphicGenerateHatchFill.cs" />
     <Compile Include="GCodeCreation\GraphicGenerateSpecial.cs" />
@@ -265,6 +266,7 @@
     <Compile Include="MachineControl\ControlDIYControlPad.Designer.cs">
       <DependentUpon>ControlDIYControlPad.cs</DependentUpon>
     </Compile>
+    <Compile Include="MachineControl\ControlHeightMapClass.cs" />
     <Compile Include="MachineControl\ControlJogPathCreator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -283,6 +285,12 @@
     </Compile>
     <Compile Include="MachineControl\ControlProbing.Designer.cs">
       <DependentUpon>ControlProbing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MachineControl\ControlProcessAutomation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MachineControl\ControlProcessAutomation.Designer.cs">
+      <DependentUpon>ControlProcessAutomation.cs</DependentUpon>
     </Compile>
     <Compile Include="MachineControl\ControlProjector.cs">
       <SubType>Form</SubType>
@@ -450,6 +458,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResStrings.resx</DependentUpon>
     </Compile>
+    <Content Include="data\automations\example.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\automations\example2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="data\examples\exampleFrameFix.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1207,6 +1221,39 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlProbing.zh-CN.resx">
       <DependentUpon>ControlProbing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlProcessAutomation.ar.resx">
+      <DependentUpon>ControlProcessAutomation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlProcessAutomation.cs.resx">
+      <DependentUpon>ControlProcessAutomation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlProcessAutomation.de-DE.resx">
+      <DependentUpon>ControlProcessAutomation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlProcessAutomation.es.resx">
+      <DependentUpon>ControlProcessAutomation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlProcessAutomation.fr.resx">
+      <DependentUpon>ControlProcessAutomation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlProcessAutomation.it.resx">
+      <DependentUpon>ControlProcessAutomation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlProcessAutomation.ja.resx">
+      <DependentUpon>ControlProcessAutomation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlProcessAutomation.pt.resx">
+      <DependentUpon>ControlProcessAutomation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlProcessAutomation.resx">
+      <DependentUpon>ControlProcessAutomation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlProcessAutomation.ru.resx">
+      <DependentUpon>ControlProcessAutomation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlProcessAutomation.zh-CN.resx">
+      <DependentUpon>ControlProcessAutomation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlProjector.ar.resx">
       <DependentUpon>ControlProjector.cs</DependentUpon>
