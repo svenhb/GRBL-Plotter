@@ -23,6 +23,7 @@
  * 2021-07-22 code clean up / code quality
  * 2021-09-01 line 145 new loop: for (int i = 0; i < rxBuff.Length; i++) // old foreach (byte rxTmpChart in rxBuff)
  * 2022-03-19 add EventCollector on send error
+ * 2022-11-13 line 127 check if rtbLog is null
 */
 using System;
 using System.Collections.Generic;
@@ -124,8 +125,14 @@ namespace GrblPlotter
             string textmsg = "\r\n[ERROR]: " + message + ". ";
             if (err != null) textmsg += err.Message;
             textmsg += "\r\n";
-            rtbLog.AppendText(textmsg);
-            rtbLog.ScrollToCaret();
+			if (rtbLog != null)
+			{
+				rtbLog.AppendText(textmsg);
+				rtbLog.ScrollToCaret();
+			}
+			else
+                Logger.Error(err, " LogError is null! Msg:{0} ",message);
+				
         }
 
         private static byte lastChar = 0;

@@ -3340,4 +3340,28 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
     <value>使用封闭路径的破折号模式</value>
   </data>
+  <data name="label73.Text" xml:space="preserve">
+    <value>如果数字数量超过此值，则将一组中的所有数字汇总为一个数字。</value>
+  </data>
+  <data name="groupBox30.Text" xml:space="preserve">
+    <value>转换涉及</value>
+  </data>
+  <data name="label87.Text" xml:space="preserve">
+    <value>秒。</value>
+  </data>
+  <data name="label86.Text" xml:space="preserve">
+    <value>识别超时</value>
+  </data>
+  <data name="CbDuplicateAddHeight.Text" xml:space="preserve">
+    <value>添加选择高度</value>
+  </data>
+  <data name="CbDuplicateAddWidth.Text" xml:space="preserve">
+    <value>添加选择宽度</value>
+  </data>
+  <data name="groupBox32.Text" xml:space="preserve">
+    <value>重复偏移</value>
+  </data>
+  <data name="groupBox32.ToolTip" xml:space="preserve">
+    <value>对复制和插入的选择应用偏移量。</value>
+  </data>
 </root>

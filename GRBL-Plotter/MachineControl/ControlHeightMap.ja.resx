@@ -340,4 +340,34 @@
   <data name="BtnPosFromCodeDimension.Text" xml:space="preserve">
     <value>ロードされたGCodeからの寸法</value>
   </data>
+  <data name="RbScanY.Text" xml:space="preserve">
+    <value>Y をスキャンし、X を押し出す</value>
+  </data>
+  <data name="RbScanX.Text" xml:space="preserve">
+    <value>X をスキャンし、Y を押し出す</value>
+  </data>
+  <data name="CbExtrudeEnable.Text" xml:space="preserve">
+    <value>1 つの軸をプローブし、もう 1 つの軸を押し出す</value>
+  </data>
+  <data name="sTLToolStripMenuItem.Text" xml:space="preserve">
+    <value>STL からの高さプロファイルのインポート</value>
+  </data>
+  <data name="importToolStripMenuItem.Text" xml:space="preserve">
+    <value>輸入</value>
+  </data>
+  <data name="GbProbing.Text" xml:space="preserve">
+    <value>プロービング、Z 値のソースを選択</value>
+  </data>
+  <data name="CbInterpolate.Text" xml:space="preserve">
+    <value>補間する</value>
+  </data>
+  <data name="CbNewStepWidth.Text" xml:space="preserve">
+    <value>個々のステップ幅</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>注: 高さマップをミリングする場合、最大値はゼロ以下でなければなりません。</value>
+  </data>
+  <data name="nUDCutOffZ.ToolTip" xml:space="preserve">
+    <value>STLインポート後、2番目に小さい値が表示されます</value>
+  </data>
 </root>

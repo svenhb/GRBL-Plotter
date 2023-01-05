@@ -340,4 +340,34 @@
   <data name="BtnPosFromCodeDimension.Text" xml:space="preserve">
     <value>已加载 GCode 的尺寸</value>
   </data>
+  <data name="RbScanY.Text" xml:space="preserve">
+    <value>扫描 Y，挤出 X</value>
+  </data>
+  <data name="RbScanX.Text" xml:space="preserve">
+    <value>扫描 X，挤出 Y</value>
+  </data>
+  <data name="CbExtrudeEnable.Text" xml:space="preserve">
+    <value>探测一个轴，挤压另一个</value>
+  </data>
+  <data name="sTLToolStripMenuItem.Text" xml:space="preserve">
+    <value>从 STL 获取地图</value>
+  </data>
+  <data name="importToolStripMenuItem.Text" xml:space="preserve">
+    <value>进口</value>
+  </data>
+  <data name="GbProbing.Text" xml:space="preserve">
+    <value>探测，选择 Z 值的来源</value>
+  </data>
+  <data name="CbInterpolate.Text" xml:space="preserve">
+    <value>插</value>
+  </data>
+  <data name="CbNewStepWidth.Text" xml:space="preserve">
+    <value>个人步幅</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>注意：对于铣削高度图，最大。值应等于或小于零。</value>
+  </data>
+  <data name="nUDCutOffZ.ToolTip" xml:space="preserve">
+    <value>STL导入后，会显示第二小的值</value>
+  </data>
 </root>

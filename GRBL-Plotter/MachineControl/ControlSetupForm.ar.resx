@@ -3336,4 +3336,28 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
     <value>استخدم نمط الشرطة للمسار المغلق</value>
   </data>
+  <data name="label73.Text" xml:space="preserve">
+    <value>إذا تجاوز عدد الأرقام هذه القيمة ، فسيتم تلخيص جميع الأرقام الخاصة بمجموعة واحدة في رقم واحد.</value>
+  </data>
+  <data name="groupBox30.Text" xml:space="preserve">
+    <value>بخصوص التحويل</value>
+  </data>
+  <data name="label87.Text" xml:space="preserve">
+    <value>ثانية.</value>
+  </data>
+  <data name="label86.Text" xml:space="preserve">
+    <value>مهلة التعرف</value>
+  </data>
+  <data name="CbDuplicateAddHeight.Text" xml:space="preserve">
+    <value>أضف ارتفاع التحديد</value>
+  </data>
+  <data name="CbDuplicateAddWidth.Text" xml:space="preserve">
+    <value>أضف عرض التحديد</value>
+  </data>
+  <data name="groupBox32.Text" xml:space="preserve">
+    <value>إزاحة مكررة</value>
+  </data>
+  <data name="groupBox32.ToolTip" xml:space="preserve">
+    <value>قم بتطبيق الإزاحة على التحديد المنسوخ والمُدرج.</value>
+  </data>
 </root>

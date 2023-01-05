@@ -1,4 +1,27 @@
-﻿using System;
+﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
+    This file is part of the GRBL-Plotter application.
+   
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+/*
+ * 2023-01-02 check if (value != null)
+ */
+
+using System;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
@@ -17,7 +40,7 @@ namespace GrblPlotter.MachineControl
             get { return (double)NudAttributeWidth.Value; }
             set
             {
-                if (value > 0)
+                if ((value != null) && (value > 0))
                 {
                     NudAttributeWidth.Value = (decimal)value;
                     NudAttributeWidth.Enabled = true;
@@ -29,7 +52,7 @@ namespace GrblPlotter.MachineControl
             get { return GetColorString(BtnAttributeColor.BackColor); }
             set
             {
-                if (value.Length > 2)
+                if ((value != null) && (value.Length > 2))
                 {
                     BtnAttributeColor.BackColor = GetColor(value);
                     BtnAttributeColor.Enabled = true;
@@ -62,10 +85,11 @@ namespace GrblPlotter.MachineControl
 
         private void NudIncrement_ValueChanged(object sender, EventArgs e)
         {
-			if (NudIncrement.Value > 0)
-            {	NudCenterX.Increment = NudIncrement.Value;
-				NudCenterY.Increment = NudIncrement.Value;
-			}
+            if (NudIncrement.Value > 0)
+            {
+                NudCenterX.Increment = NudIncrement.Value;
+                NudCenterY.Increment = NudIncrement.Value;
+            }
         }
 
         private string GetColorString(Color c)

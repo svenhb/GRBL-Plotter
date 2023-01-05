@@ -70,8 +70,6 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lblProgress = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnLoad = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblMin = new System.Windows.Forms.Label();
@@ -83,12 +81,17 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.loadHeightMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveHeightMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sTLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.savePictureAsBWBMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.savePictureAsBMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveMapAsSTLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveMapAsOBJToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveMapAsX3DToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.CbInterpolate = new System.Windows.Forms.CheckBox();
+            this.pictureBoxH = new System.Windows.Forms.PictureBox();
+            this.pictureBoxV = new System.Windows.Forms.PictureBox();
             this.cBGray = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnOffsetZ = new System.Windows.Forms.Button();
@@ -97,6 +100,12 @@
             this.btnCutOffZ = new System.Windows.Forms.Button();
             this.btnGCode = new System.Windows.Forms.Button();
             this.gB_Manipulation = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.CbNewStepWidth = new System.Windows.Forms.CheckBox();
+            this.CbMoveXY = new System.Windows.Forms.RadioButton();
+            this.NudNewStepWidth = new System.Windows.Forms.NumericUpDown();
+            this.label12 = new System.Windows.Forms.Label();
             this.nUDCutOffZ = new System.Windows.Forms.NumericUpDown();
             this.nUDZoomZ = new System.Windows.Forms.NumericUpDown();
             this.nUDOffsetZ = new System.Windows.Forms.NumericUpDown();
@@ -132,7 +141,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxH)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxV)).BeginInit();
             this.gB_Manipulation.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudNewStepWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDCutOffZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDZoomZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDOffsetZ)).BeginInit();
@@ -578,20 +591,6 @@
             this.lblProgress.BackColor = System.Drawing.Color.Transparent;
             this.lblProgress.Name = "lblProgress";
             // 
-            // btnSave
-            // 
-            resources.ApplyResources(this.btnSave, "btnSave");
-            this.btnSave.Name = "btnSave";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
-            // 
-            // btnLoad
-            // 
-            resources.ApplyResources(this.btnLoad, "btnLoad");
-            this.btnLoad.Name = "btnLoad";
-            this.btnLoad.UseVisualStyleBackColor = true;
-            this.btnLoad.Click += new System.EventHandler(this.BtnLoad_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlDark;
@@ -601,6 +600,7 @@
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseMove);
             // 
             // pictureBox2
@@ -651,6 +651,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadHeightMapToolStripMenuItem,
             this.saveHeightMapToolStripMenuItem,
+            this.importToolStripMenuItem,
             this.savePictureAsBWBMPToolStripMenuItem});
             resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
@@ -666,6 +667,19 @@
             this.saveHeightMapToolStripMenuItem.Name = "saveHeightMapToolStripMenuItem";
             resources.ApplyResources(this.saveHeightMapToolStripMenuItem, "saveHeightMapToolStripMenuItem");
             this.saveHeightMapToolStripMenuItem.Click += new System.EventHandler(this.BtnSave_Click);
+            // 
+            // importToolStripMenuItem
+            // 
+            this.importToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sTLToolStripMenuItem});
+            this.importToolStripMenuItem.Name = "importToolStripMenuItem";
+            resources.ApplyResources(this.importToolStripMenuItem, "importToolStripMenuItem");
+            // 
+            // sTLToolStripMenuItem
+            // 
+            this.sTLToolStripMenuItem.Name = "sTLToolStripMenuItem";
+            resources.ApplyResources(this.sTLToolStripMenuItem, "sTLToolStripMenuItem");
+            this.sTLToolStripMenuItem.Click += new System.EventHandler(this.BtnLoadSTL_Click);
             // 
             // savePictureAsBWBMPToolStripMenuItem
             // 
@@ -703,18 +717,41 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.CbInterpolate);
+            this.groupBox3.Controls.Add(this.pictureBoxH);
+            this.groupBox3.Controls.Add(this.pictureBoxV);
             this.groupBox3.Controls.Add(this.cBGray);
             this.groupBox3.Controls.Add(this.pictureBox1);
             this.groupBox3.Controls.Add(this.lblYDim);
             this.groupBox3.Controls.Add(this.lblXDim);
             this.groupBox3.Controls.Add(this.pictureBox2);
             this.groupBox3.Controls.Add(this.lblMin);
-            this.groupBox3.Controls.Add(this.btnSave);
             this.groupBox3.Controls.Add(this.lblMax);
             this.groupBox3.Controls.Add(this.lblMid);
             resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
+            // 
+            // CbInterpolate
+            // 
+            resources.ApplyResources(this.CbInterpolate, "CbInterpolate");
+            this.CbInterpolate.Name = "CbInterpolate";
+            this.CbInterpolate.UseVisualStyleBackColor = true;
+            this.CbInterpolate.CheckedChanged += new System.EventHandler(this.CbInterpolate_CheckedChanged);
+            // 
+            // pictureBoxH
+            // 
+            this.pictureBoxH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.pictureBoxH, "pictureBoxH");
+            this.pictureBoxH.Name = "pictureBoxH";
+            this.pictureBoxH.TabStop = false;
+            // 
+            // pictureBoxV
+            // 
+            this.pictureBoxV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.pictureBoxV, "pictureBoxV");
+            this.pictureBoxV.Name = "pictureBoxV";
+            this.pictureBoxV.TabStop = false;
             // 
             // cBGray
             // 
@@ -766,7 +803,8 @@
             // 
             // gB_Manipulation
             // 
-            this.gB_Manipulation.Controls.Add(this.btnGCode);
+            this.gB_Manipulation.Controls.Add(this.groupBox2);
+            this.gB_Manipulation.Controls.Add(this.label12);
             this.gB_Manipulation.Controls.Add(this.btnOffset);
             this.gB_Manipulation.Controls.Add(this.btnCutOffZ);
             this.gB_Manipulation.Controls.Add(this.nUDCutOffZ);
@@ -779,9 +817,66 @@
             this.gB_Manipulation.Name = "gB_Manipulation";
             this.gB_Manipulation.TabStop = false;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnGCode);
+            this.groupBox2.Controls.Add(this.radioButton2);
+            this.groupBox2.Controls.Add(this.CbNewStepWidth);
+            this.groupBox2.Controls.Add(this.CbMoveXY);
+            this.groupBox2.Controls.Add(this.NudNewStepWidth);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.TabStop = false;
+            // 
+            // radioButton2
+            // 
+            resources.ApplyResources(this.radioButton2, "radioButton2");
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // CbNewStepWidth
+            // 
+            resources.ApplyResources(this.CbNewStepWidth, "CbNewStepWidth");
+            this.CbNewStepWidth.Name = "CbNewStepWidth";
+            this.CbNewStepWidth.UseVisualStyleBackColor = true;
+            // 
+            // CbMoveXY
+            // 
+            resources.ApplyResources(this.CbMoveXY, "CbMoveXY");
+            this.CbMoveXY.Checked = true;
+            this.CbMoveXY.Name = "CbMoveXY";
+            this.CbMoveXY.TabStop = true;
+            this.CbMoveXY.UseVisualStyleBackColor = true;
+            // 
+            // NudNewStepWidth
+            // 
+            this.NudNewStepWidth.DecimalPlaces = 3;
+            resources.ApplyResources(this.NudNewStepWidth, "NudNewStepWidth");
+            this.NudNewStepWidth.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.NudNewStepWidth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
+            this.NudNewStepWidth.Name = "NudNewStepWidth";
+            this.NudNewStepWidth.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
             // nUDCutOffZ
             // 
-            this.nUDCutOffZ.DecimalPlaces = 1;
+            this.nUDCutOffZ.DecimalPlaces = 2;
             this.nUDCutOffZ.Increment = new decimal(new int[] {
             1,
             0,
@@ -799,6 +894,7 @@
             0,
             -2147483648});
             this.nUDCutOffZ.Name = "nUDCutOffZ";
+            this.toolTip1.SetToolTip(this.nUDCutOffZ, resources.GetString("nUDCutOffZ.ToolTip"));
             this.nUDCutOffZ.Value = new decimal(new int[] {
             1,
             0,
@@ -969,22 +1065,24 @@
             // 
             // ControlHeightMapForm
             // 
+            this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnApply);
-            this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.lblProgress);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.btnStartHeightScan);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximizeBox = false;
             this.Name = "ControlHeightMapForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ControlHeightMapForm_FormClosing);
             this.Load += new System.EventHandler(this.ControlHeightMapForm_Load);
+            this.SizeChanged += new System.EventHandler(this.ControlHeightMapForm_SizeChanged);
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.ControlHeightMapForm_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.ControlHeightMapForm_DragEnter);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDDeltaY)).EndInit();
@@ -1006,7 +1104,12 @@
             this.menuStrip1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxH)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxV)).EndInit();
             this.gB_Manipulation.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudNewStepWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDCutOffZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDZoomZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDOffsetZ)).EndInit();
@@ -1052,8 +1155,6 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label lblProgress;
-        private System.Windows.Forms.Button btnSave;
-        internal System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.NumericUpDown nUDDeltaY;
         private System.Windows.Forms.NumericUpDown nUDDeltaX;
@@ -1108,5 +1209,16 @@
         private System.Windows.Forms.CheckBox CbExtrudeEnable;
         private System.Windows.Forms.RadioButton RbScanY;
         private System.Windows.Forms.RadioButton RbScanX;
+        private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sTLToolStripMenuItem;
+        private System.Windows.Forms.CheckBox CbNewStepWidth;
+        private System.Windows.Forms.NumericUpDown NudNewStepWidth;
+        private System.Windows.Forms.PictureBox pictureBoxV;
+        private System.Windows.Forms.PictureBox pictureBoxH;
+        private System.Windows.Forms.CheckBox CbInterpolate;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton CbMoveXY;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

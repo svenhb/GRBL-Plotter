@@ -3010,4 +3010,28 @@ Zusätzlich kann die Position der Z Achse verwendet werden um z.B. die Farbmenge
   <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
     <value>Verwend Strichmuster des geschl. Pfads</value>
   </data>
+  <data name="label73.Text" xml:space="preserve">
+    <value>Übersteigt die Anzahl der Figuren diesen Wert, werden alle Figuren einer Gruppe zu einer Figur zusammengefasst.</value>
+  </data>
+  <data name="groupBox30.Text" xml:space="preserve">
+    <value>Umstellung bzgl</value>
+  </data>
+  <data name="label87.Text" xml:space="preserve">
+    <value>Sek.</value>
+  </data>
+  <data name="label86.Text" xml:space="preserve">
+    <value>Timeout für Erkennung</value>
+  </data>
+  <data name="CbDuplicateAddHeight.Text" xml:space="preserve">
+    <value>Auswahlhöhe hinzufügen</value>
+  </data>
+  <data name="CbDuplicateAddWidth.Text" xml:space="preserve">
+    <value>Auswahlbreite hinzufügen</value>
+  </data>
+  <data name="groupBox32.Text" xml:space="preserve">
+    <value>Doppelter Versatz</value>
+  </data>
+  <data name="groupBox32.ToolTip" xml:space="preserve">
+    <value>Wenden Sie einen Versatz auf die kopierte und eingefügte Auswahl an.</value>
+  </data>
 </root>

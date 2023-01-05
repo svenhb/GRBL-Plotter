@@ -3433,4 +3433,10 @@ Rimuovere 'M6' dalla coda di invio, perché grbl non può gestire questo comando
   <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
     <value>Usa il modello di trattino del percorso chiuso</value>
   </data>
+  <data name="label87.Text" xml:space="preserve">
+    <value>sec.</value>
+  </data>
+  <data name="label86.Text" xml:space="preserve">
+    <value>Timeout per il riconoscimento</value>
+  </data>
 </root>

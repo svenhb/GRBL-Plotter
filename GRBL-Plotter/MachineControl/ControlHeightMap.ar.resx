@@ -340,4 +340,34 @@
   <data name="BtnPosFromCodeDimension.Text" xml:space="preserve">
     <value>أبعاد من تحميل GCode</value>
   </data>
+  <data name="RbScanY.Text" xml:space="preserve">
+    <value>مسح Y ، بثق X</value>
+  </data>
+  <data name="RbScanX.Text" xml:space="preserve">
+    <value>مسح X ، بثق Y</value>
+  </data>
+  <data name="CbExtrudeEnable.Text" xml:space="preserve">
+    <value>دقق في محور واحد ، اقذف الآخر</value>
+  </data>
+  <data name="sTLToolStripMenuItem.Text" xml:space="preserve">
+    <value>استيراد ملف تعريف الارتفاع من المحكمة الخاصة بلبنان</value>
+  </data>
+  <data name="importToolStripMenuItem.Text" xml:space="preserve">
+    <value>يستورد</value>
+  </data>
+  <data name="GbProbing.Text" xml:space="preserve">
+    <value>استقصاء ، حدد مصدرًا لقيمة Z.</value>
+  </data>
+  <data name="CbInterpolate.Text" xml:space="preserve">
+    <value>تحقق</value>
+  </data>
+  <data name="CbNewStepWidth.Text" xml:space="preserve">
+    <value>عرض الخطوة الفردية</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>ملاحظة: لطحن خريطة الارتفاع ، يجب أن تكون القيمة القصوى مساوية أو أقل من الصفر.</value>
+  </data>
+  <data name="nUDCutOffZ.ToolTip" xml:space="preserve">
+    <value>بعد استيراد STL ، سيتم عرض ثاني أصغر قيمة</value>
+  </data>
 </root>

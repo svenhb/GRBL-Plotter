@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,6 +31,7 @@
  *            - add distortion correction, shape recognizion: don't show applied filter
  * 2021-12-11 line 1097 check if ((cameraIndex >= 0) && (cameraIndex < videosources.Count)) 
  * 2022-03-23 listSettings if (cBShapeDetection.Checked)
+ * 2023-01-02 exception line 1202, add try, catch
 */
 
 using AForge;
@@ -1196,11 +1197,19 @@ namespace GrblPlotter
         // try to set video-source, set event-handler
         private void SelectCameraSource(int index, int resolution)
         {
-            if (videoSource != null && videoSource.IsRunning)
+            try
             {
-                videoSource.SignalToStop();
-                videoSource = null;
+                if (videoSource != null && videoSource.IsRunning)
+                {
+                    videoSource.SignalToStop();
+                    videoSource = null;
+                }
             }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "SelectCameraSource - close source ");
+            }
+
             videoSource = new VideoCaptureDevice(videosources[index].MonikerString);
             ((ToolStripMenuItem)camSourceToolStripMenuItem.DropDownItems[index]).Checked = true;
 
@@ -1221,7 +1230,7 @@ namespace GrblPlotter
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "SelectCameraSource ");
+                Logger.Error(ex, "SelectCameraSource - open source ");
             }
             videoSource.NewFrame += new AForge.Video.NewFrameEventHandler(VideoSource_NewFrame);
             videoSource.Start();

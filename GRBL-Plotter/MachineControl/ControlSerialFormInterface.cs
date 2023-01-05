@@ -46,6 +46,7 @@
  * 2022-05-27 line 1496 add method MissingConfirmationLength()
  * 2022-06-23 line 1093 send $-command if  GrblState.idle OR GrblState.check
  * 2022-08-10 lock {sendBuffer.Clear(); + change order line 392
+ * 2022-11-24 line 1313 InsertVariable check length
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -1297,44 +1298,50 @@ namespace GrblPlotter
         #endregion
 
         /*********************************************************************
-         * insertVariable - replace variable e.g. '#WACX' by real value
+         *   - replace variable e.g. '#WACX' by real value
          * called from processSend()
          *********************************************************************/
         private string InsertVariable(string line)
         {
             int pos, posold = 0;
-            string variable, mykey;
             double myvalue;
+            string myvar, mykey;
+			int safetyExit = 6;
             if (line.Length > 5)        // min length needed to be replaceable: x#TOLX
             {
                 do
                 {
-                    pos = line.IndexOf('#', posold);
-                    if (pos > 0)
-                    {
-                        myvalue = 0;
-                        if ((pos + 5) <= (line.Length))
-                        { variable = line.Substring(pos, 5); }
-                        else
-                        {
-                            Logger.Error("InsertVariable pos#:{0} line-len:{1} line:'{2}'", pos, line.Length, line);
-                            AddToLog("!!! Error replacing variable: " + line);
-                            continue;
-                        }
-                        mykey = variable.Substring(1);
-                        if (gcodeVariable.ContainsKey(mykey))
-                        { myvalue = gcodeVariable[mykey]; }
-                        else if (GuiVariables.variable.ContainsKey(mykey))
-                        { myvalue = GuiVariables.variable[mykey]; }
-                        else { line += " (" + mykey + " not found)"; }
-                        if (cBStatus1.Checked || cBStatus.Checked)
-                        { AddToLog("< replace " + mykey + " = " + myvalue.ToString()); }
+                    pos = line.IndexOf('#', posold);				// not found, pos = -1
+                    if (pos > 0) 
+					{
+						if (pos <= (line.Length - 5))				// max pos exceeded?
+                        {	myvalue = 0;
+							myvar = line.Substring(pos, 5);
+							mykey = myvar.Substring(1);							// get variable
+							
+							if (gcodeVariable.ContainsKey(mykey))				// find value in gcode
+							{ myvalue = gcodeVariable[mykey]; }
+							else if (GuiVariables.variable.ContainsKey(mykey))	// find value in gui
+							{ myvalue = GuiVariables.variable[mykey]; }
+							else 
+							{ 	line += " (" + mykey + " not found)"; 
+								AddToLog("< replace NOK " + mykey + " = " + myvalue.ToString());
+								Logger.Error("InsertVariable '{0}' not found in '{1}'",mykey, line);
+							}
+							
+							if (cBStatus1.Checked || cBStatus.Checked)
+							{ AddToLog("< replace " + mykey + " = " + myvalue.ToString()); }
 
-                        line = line.Replace(variable, string.Format("{0:0.000}", myvalue));
-                        Logger.Trace("insertVariable line:{0} var:{1}  value:{2}", line, mykey, myvalue);
+							line = line.Replace(myvar, string.Format("{0:0.000}", myvalue));
+							Logger.Trace("⚠⚠⚠ InsertVariable var:{0}  value:{1} in line:{2}", mykey, myvalue, line);
+						}
+						else
+						{	Logger.Error("⚠⚠⚠ InsertVariable pos:{0} string is too short in '{1}'", pos, line); pos = -1;
+                            AddToLog("< replacement NOK, send " + line);
+                        }
                     }
                     posold = pos + 5;
-                } while (pos > 0);
+                } while ((pos > 0) && (safetyExit-- > 0));
             }
             return line.Replace(',', '.');
         }

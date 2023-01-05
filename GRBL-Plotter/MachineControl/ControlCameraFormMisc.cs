@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,6 +22,9 @@
 /* 
  * 2022-01-21 line 461 if ((realPoints.Count < 2) || (VisuGCode.fiducialsCenter.Count < 2))
  * 2022-03-23 listSettings()
+ * 2022-11-18 AutomaticFiducialDetection(): clear fiducialDetectionGrblNotIdleCounter before move
+			  extend timeout to 20 and make adjustable
+ * 2023-01-04 send process events
 */
 
 using AForge;
@@ -278,22 +281,28 @@ namespace GrblPlotter
         }
         private int fiducialDetectionProgressCounter = 0;
         private int fiducialDetectionGrblNotIdleCounter = 0;
+        private int fiducialDetectionGrblNotIdleCounterMax = 20;
         private int fiducialDetectionFail = 0;
         private readonly int fiducialDetectionFailMax = 3;
         private bool fiducialDetection = false;
         private XyPoint realPos1, realPos2;
-        private void BtnStartAutomatic_Click(object sender, EventArgs e)
+
+        public void BtnStartAutomatic_Click(object sender, EventArgs e)
+        {
+            StartFiducialDetection();
+        }
+        public void StartFiducialDetection()
         {
             cBShapeDetection.Checked = false;
             cBShapeShowFilter.Checked = false;
             fiducialDetectionProgressCounter = 1;
             fiducialDetectionGrblNotIdleCounter = 0;
+            fiducialDetectionGrblNotIdleCounterMax = (int)Properties.Settings.Default.camShapeAutoTimeout;
             VisuGCode.MarkSelectedFigure(-1);
             if (CbUseShapeRecognition.Checked)
                 timerFlowControl.Interval = 1000;
             else
                 timerFlowControl.Interval = 200;
-
             frameCounterMax = 5;
             timerFlowControl.Start();
         }
@@ -316,17 +325,21 @@ namespace GrblPlotter
             foreach (XyPoint tmp in realPoints)
             { TbRealPoints.Text += string.Format("{0}) X:{1:0.0} Y:{2:0.0}\r\n", (i++), tmp.X, tmp.Y); }
         }
-        private void AutomaticFiducialDetection()       // flow control, triggered by timer
+
+        /**********************************************************************************
+		// flow control, triggered by timer
+		***********************************************************************************/
+        private void AutomaticFiducialDetection()
         {
             if (fiducialDetectionProgressCounter == 0)
                 return;
             switch (fiducialDetectionProgressCounter)
             {
-                case 1: // set teachpoint - find actual position
+                case 1: // set teachpoint, and move to
                     {
                         if (VisuGCode.fiducialsCenter.Count == 0)
                         {
-                            SetToolStrip(Color.Fuchsia, "Fiducial detection: No list of fiducials from GCode - STOP automatic", true);
+                            SetToolStrip(Color.Fuchsia, "1) Fiducial detection 1: No list of fiducials from GCode - STOP automatic", true);
                             TbSetPoints.Text = "No list of fiducials from GCode";
                             fiducialDetectionProgressCounter = 0;
                             frameCounterMax = 10;
@@ -336,7 +349,7 @@ namespace GrblPlotter
                         {
                             if (realPoints.Count == 0)
                             {
-                                SetToolStrip(Color.Fuchsia, "Fiducial detection: No list of manual assigned points - STOP automatic", true);
+                                SetToolStrip(Color.Fuchsia, "1) Fiducial detection 1: No list of manual assigned points - STOP automatic", true);
                                 TbSetPoints.Text = "No list of manual assigned points";
                                 fiducialDetectionProgressCounter = 0;
                                 frameCounterMax = 10;
@@ -355,11 +368,12 @@ namespace GrblPlotter
 
                         teachPoint1 = (XyPoint)VisuGCode.fiducialsCenter[0];
                         Grbl.PosMarker = new XyzPoint((XyPoint)VisuGCode.fiducialsCenter[0], 0);
-                        SetToolStrip(Color.Lime, string.Format("Fiducial detection: 1) TP1/mm X:{0:0.00} Y:{1:0.00}  TP1/px X:{2:0.00} Y:{3:0.00}  count:{4}", teachPoint1.X, teachPoint1.Y, refPointInPx.X, refPointInPx.Y, VisuGCode.fiducialsCenter.Count), true);
-                        if (showLog) Logger.Trace("Fiducial detection: 1) picPx X:{0:0.00} Y:{1:0.00}", refPointInPx.X, refPointInPx.Y);
+                        SetToolStrip(Color.Lime, string.Format("1) Fiducial detection 1: TP1/mm X:{0:0.00} Y:{1:0.00}  TP1/px X:{2:0.00} Y:{3:0.00}  count:{4}", teachPoint1.X, teachPoint1.Y, refPointInPx.X, refPointInPx.Y, VisuGCode.fiducialsCenter.Count), true);
+                        if (showLog) Logger.Trace("1) Fiducial detection: 1) picPx X:{0:0.00} Y:{1:0.00}", refPointInPx.X, refPointInPx.Y);
 
                         VisuGCode.CreateMarkerPath();
                         fiducialDetectionFail = 0;
+                        fiducialDetectionGrblNotIdleCounter = 0;
 
                         if (CbUseShapeRecognition.Checked)
                         {
@@ -372,8 +386,11 @@ namespace GrblPlotter
                             }
                             else
                             {
-                                OnRaiseXYEvent(new XYEventArgs(0, 1, teachPoint1, "G90 G0"));   // move to fiducial position if automatic recognition for more accuracy
-                                if (showLog) Logger.Trace("Move to X:{0}  Y:{1}", teachPoint1.X, teachPoint1.Y);
+                                // move to fiducial position if automatic recognition for more accuracy
+                                //double dist = teachPoint1.DistanceTo(new XyPoint(Grbl.posWork));
+                                //double time = dist / 60 / Math.Min(Grbl.GetSetting(110), Grbl.GetSetting(111));  // mm/min
+                                OnRaiseXYEvent(new XYEventArgs(0, 1, teachPoint1, "G90 G0"));
+                                if (showLog) Logger.Trace("1) Move to X:{0}  Y:{1}", teachPoint1.X, teachPoint1.Y);
                                 fiducialDetectionProgressCounter++;
                             }
                         }
@@ -381,15 +398,15 @@ namespace GrblPlotter
                             fiducialDetectionProgressCounter += 2;  // jump over "wait for idle"
                         break;
                     }
-                case 2: // still moving?
+                case 2: // still moving? If not moving anymore, start recogition
                     {
                         if (Grbl.Status != GrblState.idle)
                         {
-                            if (fiducialDetectionGrblNotIdleCounter++ > 10)
+                            if (fiducialDetectionGrblNotIdleCounter++ > fiducialDetectionGrblNotIdleCounterMax)
                             {
                                 fiducialDetection = false; fiducialDetectionProgressCounter = 0;
-                                SetToolStrip(Color.Fuchsia, string.Format("Fiducial detection: 1) TP1/mm X:{0:0.00} Y:{1:0.00}  not reached - STOP automatic", teachPoint1.X, teachPoint1.Y), true);
-                                Logger.Error("Fiducial detection: 2, Grbl-Idle not reached");
+                                SetToolStrip(Color.Fuchsia, string.Format("2) Fiducial detection 1: TP1/mm X:{0:0.00} Y:{1:0.00}  not reached after {2} sec. - STOP automatic", teachPoint1.X, teachPoint1.Y, fiducialDetectionGrblNotIdleCounterMax), true);
+                                Logger.Error("2) Fiducial detection: Grbl-Idle not reached after {0} sec.", fiducialDetectionGrblNotIdleCounterMax);
                             }
                             break;
                         }
@@ -397,7 +414,7 @@ namespace GrblPlotter
                         fiducialDetection = true;				// activate shape detection
                         break;
                     }
-                case 3:
+                case 3:	// get recognition result in realPos1 and move to
                     {
                         fiducialDetection = false;
                         if (CbUseShapeRecognition.Checked)
@@ -409,20 +426,20 @@ namespace GrblPlotter
                                 {
                                     fiducialDetectionProgressCounter = 0;
                                     frameCounterMax = 10;
-                                    SetToolStrip(Color.Fuchsia, "Fiducial detection: no fiducials found in image - STOP automatic", true);
+                                    SetToolStrip(Color.Fuchsia, "3) Fiducial detection 1: no fiducials found in image - STOP automatic", true);
                                     break;
                                 }
-                                SetToolStrip(Color.Yellow, string.Format("Fiducial detection: no fiducials found try {0}/{1}", fiducialDetectionFail, fiducialDetectionFailMax), true);
+                                SetToolStrip(Color.Yellow, string.Format("3) Fiducial detection 1: no fiducials found try {0}/{1}", fiducialDetectionFail, fiducialDetectionFailMax), true);
                                 break;
                             }
                             realPos1 = TranslateFromPicCoordinate(shapeCenterInPx);
-                            SetToolStrip(Color.Lime, string.Format("Fiducial detection: 1) shape/px X:{0:0.00} Y:{1:0.00} shape/mm X:{2:0.00} Y:{3:0.00} - correct offset of current coordinate system", shapeCenterInPx.X, shapeCenterInPx.Y, realPos1.X, realPos1.Y), true);
-                            if (showLog) Logger.Trace("Shape X:{0} Y:{1}   real X:{2}  Y:{3}", shapeCenterInPx.X, shapeCenterInPx.Y, realPos1.X, realPos1.Y);
+                            SetToolStrip(Color.Lime, string.Format("3) Fiducial detection 1: shape/px X:{0:0.00} Y:{1:0.00} shape/mm X:{2:0.00} Y:{3:0.00} - correct offset of current coordinate system", shapeCenterInPx.X, shapeCenterInPx.Y, realPos1.X, realPos1.Y), true);
+                            if (showLog) Logger.Trace("3) Shape X:{0} Y:{1}   real X:{2}  Y:{3}", shapeCenterInPx.X, shapeCenterInPx.Y, realPos1.X, realPos1.Y);
                         }
                         else
                             realPos1 = realPoints[0];
 
-                        if (showLog) Logger.Trace("Fiducial detection: 1) real  X:{0:0.00} Y:{1:0.00}", realPos1.X, realPos1.Y);
+                        if (showLog) Logger.Trace("3) Fiducial detection: 1) real  X:{0:0.00} Y:{1:0.00}", realPos1.X, realPos1.Y);
                         TbRealPoints.Text = string.Format("Assinged position:\r\nX:{0:0.00} Y:{1:0.00} offset", realPos1.X, realPos1.Y);
 
                         if (CameraMount == CameraMounting.Fix)
@@ -450,13 +467,13 @@ namespace GrblPlotter
                         fiducialDetectionProgressCounter++;
                         break;
                     }
-                case 4: // set next teachpoint
+                case 4: // set next teachpoint and move to
                     {
                         if (CbUseShapeRecognition.Checked)
                         {
                             if (VisuGCode.fiducialsCenter.Count < 2)
                             {
-                                SetToolStrip(Color.Fuchsia, "Fiducial detection: Too less fiducials from GCode for next step - STOP automatic", true);
+                                SetToolStrip(Color.Fuchsia, "4) Fiducial detection 2: Too less fiducials from GCode for next step - STOP automatic", true);
                                 fiducialDetection = false;
                                 fiducialDetectionProgressCounter = 7;
                                 break;
@@ -466,7 +483,7 @@ namespace GrblPlotter
                         {
                             if ((realPoints.Count < 2) || (VisuGCode.fiducialsCenter.Count < 2))
                             {
-                                SetToolStrip(Color.Fuchsia, "Fiducial detection: Too less assigned points for next step - STOP automatic", true);
+                                SetToolStrip(Color.Fuchsia, "4) Fiducial detection 2: Too less assigned points for next step - STOP automatic", true);
                                 fiducialDetection = false;
                                 fiducialDetectionProgressCounter = 7;
                                 break;
@@ -478,11 +495,12 @@ namespace GrblPlotter
 
                         teachPoint2 = (XyPoint)VisuGCode.fiducialsCenter[1];
                         Grbl.PosMarker = new XyzPoint((XyPoint)VisuGCode.fiducialsCenter[1], 0);
-                        SetToolStrip(Color.Lime, string.Format("Fiducial detection: 2) TP2/mm X:{0:0.00} Y:{1:0.00}  TP2/px X:{2:0.00} Y:{3:0.00}", teachPoint2.X, teachPoint2.Y, refPointInPx.X, refPointInPx.Y), true);
-                        if (showLog) Logger.Trace("Fiducial detection: 2) picPx   X:{0:0.00} Y:{1:0.00}", refPointInPx.X, refPointInPx.Y);
+                        SetToolStrip(Color.Lime, string.Format("4) Fiducial detection 2: TP2/mm X:{0:0.00} Y:{1:0.00}  TP2/px X:{2:0.00} Y:{3:0.00}", teachPoint2.X, teachPoint2.Y, refPointInPx.X, refPointInPx.Y), true);
+                        if (showLog) Logger.Trace("4) Fiducial detection: 2) picPx   X:{0:0.00} Y:{1:0.00}", refPointInPx.X, refPointInPx.Y);
 
                         VisuGCode.CreateMarkerPath();
                         fiducialDetectionFail = 0;
+                        fiducialDetectionGrblNotIdleCounter = 0;
                         fiducialDetection = true;
 
                         if (CbUseShapeRecognition.Checked)
@@ -504,14 +522,15 @@ namespace GrblPlotter
                             fiducialDetectionProgressCounter += 2;  // jump over "wait for idle"
                         break;
                     }
-                case 5: // still moving?
+                case 5: // still moving? If not moving anymore, start recogition
                     {
                         if (Grbl.Status != GrblState.idle)
                         {
-                            if (fiducialDetectionGrblNotIdleCounter++ > 10)
+                            if (fiducialDetectionGrblNotIdleCounter++ > fiducialDetectionGrblNotIdleCounterMax)
                             {
                                 fiducialDetection = false; fiducialDetectionProgressCounter = 0;
-                                Logger.Error("Fiducial detection: 5, Grbl-Idle not reached");
+                                SetToolStrip(Color.Fuchsia, string.Format("5) Fiducial detection 2: TP2/mm X:{0:0.00} Y:{1:0.00}  not reached after {2} sec. - STOP automatic", teachPoint2.X, teachPoint2.Y, fiducialDetectionGrblNotIdleCounterMax), true);	// added 2022-11-18
+                                Logger.Error("5) Fiducial detection c5: Grbl-Idle not reached after {0} sec.", fiducialDetectionGrblNotIdleCounterMax);
                             }
                             break;
                         }
@@ -519,7 +538,7 @@ namespace GrblPlotter
                         fiducialDetection = true;               // activate shape detection
                         break;
                     }
-                case 6:
+                case 6: // get recognition result in realPos2 and apply rotation, scaling
                     {
                         if (CbUseShapeRecognition.Checked)
                         {
@@ -530,18 +549,18 @@ namespace GrblPlotter
                                 {
                                     fiducialDetectionProgressCounter = 0;
                                     frameCounterMax = 10;
-                                    SetToolStrip(Color.Fuchsia, "Fiducial detection: no fiducials found in image - STOP automatic", true);
+                                    SetToolStrip(Color.Fuchsia, "6) Fiducial detection 2: no fiducials found in image - STOP automatic", true);
                                     fiducialDetection = false;
                                     break;
                                 }
-                                SetToolStrip(Color.Yellow, string.Format("Fiducial detection: no fiducials found try {0}/{1}", fiducialDetectionFail, fiducialDetectionFailMax), true);
+                                SetToolStrip(Color.Yellow, string.Format("6) Fiducial detection 2: no fiducials found try {0}/{1}", fiducialDetectionFail, fiducialDetectionFailMax), true);
                                 break;
                             }
                             realPos2 = TranslateFromPicCoordinate(shapeCenterInPx);
                             if (CameraMount != CameraMounting.Fix)
                                 realPos2 += (XyPoint)Grbl.posWork;// teachPoint1;        // set new coordinates
 
-                            if (showLog) Logger.Trace("ShapePx X:{0} Y:{1}   real X:{2:0.00}  Y:{3:0.00}", shapeCenterInPx.X, shapeCenterInPx.Y, realPos2.X, realPos2.Y);
+                            if (showLog) Logger.Trace("6) ShapePx X:{0} Y:{1}   real X:{2:0.00}  Y:{3:0.00}", shapeCenterInPx.X, shapeCenterInPx.Y, realPos2.X, realPos2.Y);
                         }
                         else
                             realPos2 = realPoints[1];
@@ -555,8 +574,8 @@ namespace GrblPlotter
                         double scale = dist2 / dist1;
                         if (!Properties.Settings.Default.cameraScaleOnRotate) { scale = 1; }
 
-                        SetToolStrip(Color.Lime, string.Format("Fiducial detection: 2) shape/px X:{0} Y:{1} shape/mm X:{2:0.00} Y:{3:0.00} - correct angle:{4:0.00} scale:{5:0.00}", shapeCenterInPx.X, shapeCenterInPx.Y, realPos2.X, realPos2.Y, angleResult, scale), true);
-                        if (showLog) Logger.Trace("Fiducial detection: 2) real  X:{0:0.00} Y:{1:0.00} rotate", realPos2.X, realPos2.Y);
+                        SetToolStrip(Color.Lime, string.Format("6) Fiducial detection 2: shape/px X:{0} Y:{1} shape/mm X:{2:0.00} Y:{3:0.00} - correct angle:{4:0.00} scale:{5:0.00}", shapeCenterInPx.X, shapeCenterInPx.Y, realPos2.X, realPos2.Y, angleResult, scale), true);
+                        if (showLog) Logger.Trace("6) Fiducial detection: 2) real  X:{0:0.00} Y:{1:0.00} rotate", realPos2.X, realPos2.Y);
 
                         if (realPos1.DistanceTo(realPos2) < 1)
                         {
@@ -589,7 +608,22 @@ namespace GrblPlotter
                         break;
                     }
             }
+            if (fiducialDetectionProgressCounter > 0)
+            {
+                SendProcessEvent(new ProcessEventArgs("Fiducial", "finished"));
+            }
+            else
+            {
+                SendProcessEvent(new ProcessEventArgs("Fiducial", TbSetPoints.Text));
+            }
         }
+
+        public event EventHandler<ProcessEventArgs> RaiseProcessEvent;
+        protected virtual void SendProcessEvent(ProcessEventArgs e)
+        {
+            RaiseProcessEvent?.Invoke(this, e);
+        }
+
 
         // Process image
         private AForge.Point shapeCenterInPx, picCenter, refPointInPx;

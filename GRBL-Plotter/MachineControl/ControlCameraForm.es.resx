@@ -419,4 +419,12 @@ Mayús - "c" para borrar la lista</value>
   <data name="setMachinePositionToolStripMenuItem.Text" xml:space="preserve">
     <value>Haga clic para obtener el desplazamiento de la máquina grbl en el origen</value>
   </data>
+  <data name="cBShapeDetection.ToolTip" xml:space="preserve">
+    <value>Habilite el reconocimiento de formas en esta vista.
+No es necesario que esté habilitado para la corrección fudicial automática.</value>
+  </data>
+  <data name="CbUseShapeRecognition.ToolTip" xml:space="preserve">
+    <value>Utilice el reconocimiento de formas para encontrar fiduciales automáticamente.
+Si está deshabilitado, los fiduciales deben asignarse manualmente seleccionando en la imagen de video.</value>
+  </data>
 </root>

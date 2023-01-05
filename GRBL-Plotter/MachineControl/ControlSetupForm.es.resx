@@ -3061,4 +3061,28 @@ Además, la posición del eje Z se puede utilizar para, por ejemplo, aumentar la
   <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
     <value>Usar patrón de guiones de ruta cerrada</value>
   </data>
+  <data name="label73.Text" xml:space="preserve">
+    <value>Si la cantidad de cifras supera este valor, todas las cifras de un grupo se resumirán en una cifra.</value>
+  </data>
+  <data name="groupBox30.Text" xml:space="preserve">
+    <value>Conversión relativa</value>
+  </data>
+  <data name="label87.Text" xml:space="preserve">
+    <value>segundo.</value>
+  </data>
+  <data name="label86.Text" xml:space="preserve">
+    <value>Tiempo de espera para el reconocimiento</value>
+  </data>
+  <data name="CbDuplicateAddHeight.Text" xml:space="preserve">
+    <value>Añadir altura de selección</value>
+  </data>
+  <data name="CbDuplicateAddWidth.Text" xml:space="preserve">
+    <value>Agregar ancho de selección</value>
+  </data>
+  <data name="groupBox32.Text" xml:space="preserve">
+    <value>Compensación duplicada</value>
+  </data>
+  <data name="groupBox32.ToolTip" xml:space="preserve">
+    <value>Aplique un desplazamiento a la selección copiada e insertada.</value>
+  </data>
 </root>

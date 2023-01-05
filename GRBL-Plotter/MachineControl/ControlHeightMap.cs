@@ -32,6 +32,10 @@
  * 2022-03-13 add extrudeX and Y option
  * 2022-04-25 line 1044 BtnPosFromCodeDimension_Click change to ((GuiVariables.variable["GMIX"] < Double.MaxValue) 
  * 2022-04-28 line 833 for (int iy = 0; iy < Map.SizeY; iy++)
+ * 2022-11-07 line 1367 Nullable object must have a value -> check has value
+ * 2022-11-15 line 1332 check if ((x < map.SizeX) && (y < map.SizeY))
+ * 2022-11-29 SavePictureAsBMP: size=Map-size; importSTL; GetCoordinates round to 4 decimals
+ * 2022-12-05 seperate class into new file "ControlHeightMapClass"
 */
 
 using System;
@@ -40,6 +44,7 @@ using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
@@ -52,7 +57,9 @@ namespace GrblPlotter
         internal StringBuilder scanCode;
         internal HeightMap Map;
         private List<Point> MapIndex;
-        private Bitmap heightMapBMP;
+        private Bitmap heightMapBMP = new Bitmap(10,10);
+        private Bitmap heightMapCutH;
+        private Bitmap heightMapCutV;
         private Bitmap heightLegendBMP;
         private bool isMapOk = false;
         internal bool mapIsLoaded = false;
@@ -63,11 +70,17 @@ namespace GrblPlotter
 
         private string pathMap;
         private string pathExport;
+		private string lastFileName = "";
         private bool refreshPictureBox = true;
         private bool diyControlConnected;
         internal bool scanStarted = false;
         internal bool extrudeX = false;
         internal bool extrudeY = false;
+		
+        private int BMPsizeX = 160;
+        private int BMPsizeY = 160;
+		
+		private string pathLastSaved="";
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -190,7 +203,10 @@ namespace GrblPlotter
                         EnableControls(true);
                         scanStarted = false;
                         btnStartHeightScan.Text = "Generate Height Map";
-                        ShowHightMapBMP(heightMapBMP, BMPsizeX, isgray);
+                        lblProgress.Text = "Finish t=" + elapsed.ToString(@"hh\:mm\:ss");
+                        lblProgress.BackColor = Color.Transparent;
+
+                        ShowHightMapBMP();
                         isMapOk = true;
                         EnableControls(true);
                         progressBar1.Value = cntReceived;
@@ -248,7 +264,7 @@ namespace GrblPlotter
             if ((Map != null) && (cntReceived == cntSent))
             {
                 Map.SetZOffset(-Map.MaxHeight);
-                ShowHightMapBMP(heightMapBMP, BMPsizeX, isgray);
+                ShowHightMapBMP();
             }
         }
         private void BtnOffsetZ_Click(object sender, EventArgs e)
@@ -256,7 +272,7 @@ namespace GrblPlotter
             if ((Map != null) && (cntReceived == cntSent))
             {
                 Map.SetZOffset((double)nUDOffsetZ.Value);
-                ShowHightMapBMP(heightMapBMP, BMPsizeX, isgray);
+                ShowHightMapBMP();
             }
         }
 
@@ -265,7 +281,7 @@ namespace GrblPlotter
             if ((Map != null) && (cntReceived == cntSent))
             {
                 Map.SetZZoom((double)nUDZoomZ.Value);
-                ShowHightMapBMP(heightMapBMP, BMPsizeX, isgray);
+                ShowHightMapBMP();
             }
         }
 
@@ -274,7 +290,7 @@ namespace GrblPlotter
             if ((Map != null) && (cntReceived == cntSent))
             {
                 Map.SetZInvert();
-                ShowHightMapBMP(heightMapBMP, BMPsizeX, isgray);
+                ShowHightMapBMP();
             }
         }
 
@@ -283,63 +299,147 @@ namespace GrblPlotter
             if ((Map != null) && (cntReceived == cntSent))
             {
                 Map.SetZCutOff((double)nUDCutOffZ.Value);
-                ShowHightMapBMP(heightMapBMP, BMPsizeX, isgray);
+                ShowHightMapBMP();
             }
         }
 
-        private void SavePictureAsBMPToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void CreateHightMapBMP()
         {
+            bool interpolate = CbInterpolate.Checked;
+            //    lblProgress.Text = "Finish t=" + elapsed.ToString(@"hh\:mm\:ss");
+            //lblProgress.BackColor = Color.Transparent;
+            progressBar1.Value = 0;
             if (Map != null)
             {
-                int sizeX = 640;
-                int sizeY = Map.SizeY * sizeX / Map.SizeX;
-                Bitmap tmpBMP = new Bitmap(sizeX, sizeY);
-                CreateHightMapBMP(tmpBMP, sizeX, isgray);
-                SaveFileDialog sfd = new SaveFileDialog
+                double? z;
+                int picWidth = pictureBox1.Width;
+                int picHeight = pictureBox1.Height;
+            //    Logger.Trace("CreateHightMapBMP  x:{0}  y:{1}", picWidth,picHeight);
+
+                double stdX, stdY;
+                int mapX, mapY;
+                heightMapBMP = new Bitmap(picWidth, picHeight);
+                for (int iy = 0; iy < picHeight; iy++)
                 {
-                    Filter = "Bitmap|*.bmp"
-                };
-                if (sfd.ShowDialog() == DialogResult.OK)
-                {
-                    Logger.Info("Save Bitmap {0}", sfd.FileName);
-                    tmpBMP.Save(sfd.FileName, System.Drawing.Imaging.ImageFormat.Bmp);
+                    stdY = 1 - (double)iy / (picHeight+1);
+                    mapY = (int)(Map.SizeY * stdY);
+                    for (int ix = 0; ix < picWidth; ix++)
+                    {
+                        stdX= (double)ix / (picWidth+1);
+                        mapX= (int)(Map.SizeX * stdX);
+                        if(interpolate)
+                            z = Map.GetPoint(((Map.SizeX-1) * stdX), ((Map.SizeY-1) * stdY));
+                        else 
+                            z = Map.GetPoint(mapX, mapY);
+                        if (z!=null)
+                            heightMapBMP.SetPixel(ix, iy, GetColor(Map.MinHeight, Map.MaxHeight, (double)z, isgray));
+                    }
                 }
-                tmpBMP.Dispose();
-                sfd.Dispose();
             }
-            else
-                MessageBox.Show("No Height Map to save");
         }
 
-        private void CreateHightMapBMP(Bitmap bmp, int sizeX, bool gray)
+        private void ShowHightMapBMP(bool updateLabel = true)
         {
-            lblProgress.Text = "Finish t=" + elapsed.ToString(@"hh\:mm\:ss");
-            progressBar1.Value = 0;
-            int sizeY = Map.SizeY * sizeX / Map.SizeX;
-            double x, y, z;
-            for (int iy = 0; iy < sizeY; iy++)
+            if (updateLabel)
             {
-                y = Map.Min.Y + (sizeY - iy) * Map.Delta.Y / sizeY;
-                for (int ix = 0; ix < sizeX; ix++)
-                {
-                    x = Map.Min.X + ix * Map.Delta.X / sizeX;
-                    z = Map.InterpolateZ(x, y);
-                    bmp.SetPixel(ix, iy, GetColor(Map.MinHeight, Map.MaxHeight, z, gray));
-                }
+                lblProgress.Text = "Finish t=" + elapsed.ToString(@"hh\:mm\:ss");
+                lblProgress.BackColor = Color.Transparent;
             }
-        }
+            CreateHightMapBMP();
 
-        private void ShowHightMapBMP(Bitmap bmp, int sizeX, bool gray)
-        {
-            CreateHightMapBMP(bmp, sizeX, gray);
-            pictureBox1.Image = new Bitmap(bmp);
+            pictureBox1.Image = new Bitmap(heightMapBMP);
             pictureBox1.Refresh();
-            lblMin.Text = string.Format("{0:0.000}", Map.MinHeight);
-            lblMid.Text = string.Format("{0:0.000}", (Map.MinHeight + Map.MaxHeight) / 2);
-            lblMax.Text = string.Format("{0:0.000}", Map.MaxHeight);
+            if (Map != null)
+            { 
+                lblMin.Text = string.Format("{0:0.000}", Map.MinHeight);
+                lblMid.Text = string.Format("{0:0.000}", (Map.MinHeight + Map.MaxHeight) / 2);
+                lblMax.Text = string.Format("{0:0.000}", Map.MaxHeight); 
+            }
             pictureBox2.Image = new Bitmap(heightLegendBMP);
             pictureBox2.Refresh();
-            //    nUDCutOffZ.Value = (decimal)Map.MinHeight;
+        }
+		
+		private void ShowHightMapCutH(int sizeZ, double pos)
+		{
+            if (Map != null)
+            {
+                bool interpolate = CbInterpolate.Checked;
+                sizeZ = pictureBoxH.Height;
+                int mx,picWidth = pictureBoxH.Width;
+
+                heightMapCutH = new Bitmap(picWidth, sizeZ);
+                int iy, iz;
+                double? z;
+                double stdX, stdY;
+                double rangeZ = (Map.MaxHeight - Map.MinHeight);
+                for (int ix = 0; ix < picWidth; ix++)
+                {
+                    iy = (int)(pos * Map.SizeY);
+                    if (iy < 0) iy = 0;
+                    if (iy >= Map.SizeY) iy = Map.SizeY - 1;
+
+                    mx = ix * Map.SizeX/ picWidth;
+                    if (mx < 0) mx = 0;
+                    if (mx>= Map.SizeX) mx= Map.SizeX - 1;
+
+                    stdX = (double)ix / picWidth;
+                    if (interpolate)
+                        z = Map.GetPoint(((Map.SizeX - 1) * stdX), ((Map.SizeY - 1) * pos));
+                    else
+                        z = Map.GetPoint(mx, iy);
+
+                    if (z != null)
+                    {
+                        iz = (int)Math.Abs(((rangeZ - ((double)z - Map.MinHeight)) * sizeZ) / rangeZ);
+                        if (iz < 0) iz = 0;
+                        if (iz >= sizeZ) iz = sizeZ - 1;
+                        heightMapCutH.SetPixel(ix, iz, Color.Black);
+                    }
+                }
+                pictureBoxH.Image = new Bitmap(heightMapCutH);
+                pictureBoxH.Refresh();
+            }
+		}
+		private void ShowHightMapCutV(int sizeZ, double pos)
+		{
+            if (Map == null) return;
+            bool interpolate = CbInterpolate.Checked;
+            sizeZ = pictureBoxV.Width;
+            int mx, picHeight = pictureBoxV.Height;
+
+            heightMapCutV = new Bitmap(sizeZ, picHeight);
+            int ix,iz;
+            double? z;
+            double stdX, stdY;
+            double rangeZ = (Map.MaxHeight - Map.MinHeight);
+			for (int iy = 0; iy < picHeight; iy++)
+			{
+                ix = (int)(pos * Map.SizeX);
+                if (ix < 0) ix = 0;
+                if (ix >= Map.SizeX) ix = Map.SizeX - 1;
+
+                mx = iy * Map.SizeY / picHeight;
+                if (mx < 0) mx = 0;
+                if (mx >= Map.SizeY) mx = Map.SizeY - 1;
+
+                stdY = (double)iy / picHeight;
+                if (interpolate)
+                    z = Map.GetPoint(((Map.SizeX - 1) * pos), ((Map.SizeY - 1) * stdY));
+                else
+                    z = Map.GetPoint(ix, mx);
+
+                if (z != null)
+                {
+                    iz = (int)Math.Abs((((double)z - Map.MinHeight) * sizeZ) / rangeZ);
+                    if (iz < 0) iz = 0;
+                    if (iz >= sizeZ) iz = sizeZ - 1;
+                    heightMapCutV.SetPixel(iz, iy, Color.Black);
+                }
+            }
+            pictureBoxV.Image = new Bitmap(heightMapCutV);
+            pictureBoxV.Refresh();
+            pictureBoxV.Visible = true;
         }
 
         private bool isgray = false;
@@ -355,7 +455,7 @@ namespace GrblPlotter
             pictureBox2.Image = new Bitmap(heightLegendBMP);
             pictureBox2.Refresh();
             if (Map != null)
-                ShowHightMapBMP(heightMapBMP, BMPsizeX, isgray);
+                ShowHightMapBMP();
         }
         private static Color GetColor(double min, double max, double value, bool gray)
         {
@@ -396,8 +496,6 @@ namespace GrblPlotter
             nUDProbeDown.Enabled = enable;
             nUDProbeUp.Enabled = enable;
             nUDProbeSpeed.Enabled = enable;
-            btnSave.Enabled = enable;
-            btnLoad.Enabled = enable;
             btnOffset.Enabled = enable;
             cBGray.Enabled = enable;
             btnApply.Enabled = enable && isMapOk;
@@ -422,145 +520,19 @@ namespace GrblPlotter
         int cntReceived = 0, cntSent = 0;
 
         #region controls
-        private void BtnSave_Click(object sender, EventArgs e)
-        {
-            if (Map == null)
-            {
-                MessageBox.Show("There is no Map-data to save", "Error");
-                return;
-            }
-            SaveFileDialog sfd = new SaveFileDialog
-            {
-                InitialDirectory = pathMap//    Application.StartupPath + Datapath.Examples;
-            };
-            Cursor.Current = Cursors.WaitCursor;
-            sfd.Filter = "HeightMap|*.map";
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                Logger.Info("Save Height map {0}", sfd.FileName);
-                Map.Save(sfd.FileName);
-                pathMap = Path.GetDirectoryName(sfd.FileName);
-                pathExport = pathMap;
-            }
-            Cursor.Current = Cursors.Default;
-            sfd.Dispose();
-        }
-
-        private void BtnSaveSTL_Click(object sender, EventArgs e)
-        {
-            if (Map == null)
-            {
-                MessageBox.Show("There is no Map-data to save", "Error");
-                return;
-            }
-            SaveFileDialog sfd = new SaveFileDialog
-            {
-                InitialDirectory = pathExport//    Application.StartupPath + Datapath.Examples;
-            };
-            Cursor.Current = Cursors.WaitCursor;
-            sfd.Filter = "StereoLithography|*.stl";
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                Logger.Info("Save STL {0}", sfd.FileName);
-                Map.SaveSTL(sfd.FileName);
-                pathExport = Path.GetDirectoryName(sfd.FileName);
-            }
-            Cursor.Current = Cursors.Default;
-            sfd.Dispose();
-        }
-
-        private void BtnSaveOBJ_Click(object sender, EventArgs e)
-        {
-            if (Map == null)
-            {
-                MessageBox.Show("There is no Map-data to save", "Error");
-                return;
-            }
-            SaveFileDialog sfd = new SaveFileDialog
-            {
-                InitialDirectory = pathExport//    Application.StartupPath + Datapath.Examples;
-            };
-            Cursor.Current = Cursors.WaitCursor;
-            sfd.Filter = "3D Object Format|*.obj";
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                Logger.Info("Save OBJ {0}", sfd.FileName);
-                Map.SaveOBJ(sfd.FileName);
-                pathExport = Path.GetDirectoryName(sfd.FileName);
-            }
-            Cursor.Current = Cursors.Default;
-            sfd.Dispose();
-        }
-
-        private void BtnSaveX3D_Click(object sender, EventArgs e)
-        {
-            if (Map == null)
-            {
-                MessageBox.Show("There is no Map-data to save", "Error");
-                return;
-            }
-            SaveFileDialog sfd = new SaveFileDialog
-            {
-                InitialDirectory = pathExport//    Application.StartupPath + Datapath.Examples;
-            };
-            Cursor.Current = Cursors.WaitCursor;
-            sfd.Filter = "X3D|*.x3d";
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                Logger.Info("Save X3D {0}", sfd.FileName);
-                Map.SaveX3D(sfd.FileName);
-                pathExport = Path.GetDirectoryName(sfd.FileName);
-            }
-            Cursor.Current = Cursors.Default;
-            sfd.Dispose();
-        }
-
-        // loadHeightMap;	// in MainFormGetCodeTransform
-        private void LoadHeightMapToolStripMenuItem_Click(object sender, EventArgs e)
-        { BtnLoad_Click(sender, e); }
-        private void BtnLoad_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog sfd = new OpenFileDialog
-            {
-                InitialDirectory = pathMap,//    Application.StartupPath + Datapath.Examples;
-                Filter = "HeightMap|*.map"
-            };
-            mapIsLoaded = false;
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                cntReceived = 0; cntSent = 0;
-                if (File.Exists(sfd.FileName))
-                {
-                    Map = HeightMap.Load(sfd.FileName);
-                    //    Map.Load(sfd.FileName);
-                    lblXDim.Text = string.Format("X Min:{0} Max:{1} Step:{2}", Map.Min.X, Map.Max.X, Map.SizeX);
-                    lblYDim.Text = string.Format("Y Min:{0} Max:{1} Step:{2}", Map.Min.Y, Map.Max.Y, Map.SizeY);
-                    BMPsizeX = 240;
-                    BMPsizeY = Map.SizeY * BMPsizeX / Map.SizeX;
-                    heightMapBMP = new Bitmap(BMPsizeX, BMPsizeY);
-                    ShowHightMapBMP(heightMapBMP, BMPsizeX, isgray);
-                    isMapOk = true;
-                    EnableControls(true);
-                    mapIsLoaded = true;
-                    pathMap = Path.GetDirectoryName(sfd.FileName);
-                    pathExport = pathMap;
-                }
-            }
-            sfd.Dispose();
-        }
-
+		
         private void BtnPosLL_Click(object sender, EventArgs e)
         {
-            nUDX1.Value = (decimal)Grbl.posWork.X;
-            nUDY1.Value = (decimal)Grbl.posWork.Y;
+            nUDX1.Value = (decimal)Math.Round(Grbl.posWork.X, 2);
+            nUDY1.Value = (decimal)Math.Round(Grbl.posWork.Y, 2);
             nUDX2.Value = nUDDeltaX.Value + nUDX1.Value;
             nUDY2.Value = nUDDeltaY.Value + nUDY1.Value;
         }
 
         private void BtnPosUR_Click(object sender, EventArgs e)
         {
-            nUDX2.Value = (decimal)Grbl.posWork.X;
-            nUDY2.Value = (decimal)Grbl.posWork.Y;
+            nUDX2.Value = (decimal)Math.Round(Grbl.posWork.X, 2);
+            nUDY2.Value = (decimal)Math.Round(Grbl.posWork.Y, 2);
             decimal tmpX = nUDX2.Value - nUDX1.Value;
             decimal tmpY = nUDY2.Value - nUDY1.Value;
             nUDDeltaX.Value = (tmpX > nUDDeltaX.Minimum) ? tmpX : nUDDeltaX.Minimum;
@@ -584,8 +556,6 @@ namespace GrblPlotter
             nUDDeltaY.Value = (tmpY > nUDDeltaY.Minimum) ? tmpY : nUDDeltaY.Minimum;
         }
 
-        private int BMPsizeX = 160;
-        private int BMPsizeY = 160;
 
         private void ControlHeightMapForm_Load(object sender, EventArgs e)
         {
@@ -602,15 +572,7 @@ namespace GrblPlotter
             if (tmp <= 0) tmp = 1;
             nUDDeltaY.Value = tmp;
 
-            int legendHeight = 160;
-            heightLegendBMP = new Bitmap(2, legendHeight);
-            for (int i = 0; i < legendHeight; i++)
-            {
-                heightLegendBMP.SetPixel(0, (legendHeight - 1) - i, GetColor(0, legendHeight, i, isgray));
-                heightLegendBMP.SetPixel(1, (legendHeight - 1) - i, GetColor(0, legendHeight, i, isgray));
-            }
-            pictureBox2.Image = new Bitmap(heightLegendBMP);
-            pictureBox2.Refresh();
+            ControlHeightMapForm_SizeChanged(sender, e);
             int stepX = (int)Math.Round((nUDX2.Value - nUDX1.Value) / nUDGridX.Value);
             int stepY = (int)Math.Round((nUDY2.Value - nUDY1.Value) / nUDGridY.Value);
             lblXDim.Text = string.Format("X Min:{0} Max:{1} Step:{2}", nUDX1.Value, nUDX2.Value, stepX);
@@ -653,14 +615,16 @@ namespace GrblPlotter
                 double relposY = Map.Delta.Y - Map.Delta.Y * (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).Y) / pictureBox1.Height);
                 double posX = Map.Min.X + relposX;
                 double posY = Map.Min.Y + relposY;
-                DialogResult result;
-                result = MessageBox.Show("Move to this position? " + posX.ToString() + " ; " + posY.ToString(), "Attention", MessageBoxButtons.YesNo);
-                if (result == System.Windows.Forms.DialogResult.Yes)
-                {
-                    if ((decimal)Grbl.posWork.Z < nUDProbeUp.Value)
-                        OnRaiseXyzEvent(new XyzEventArgs(null, null, (double)nUDProbeUp.Value, "G90"));
-                    OnRaiseXyzEvent(new XyzEventArgs(posX, posY, "G90"));   // move relative and fast
-                }
+				if (Grbl.isConnected)
+                {	DialogResult result;
+					result = MessageBox.Show("Move to this position? " + posX.ToString() + " ; " + posY.ToString(), "Attention", MessageBoxButtons.YesNo);
+					if (result == System.Windows.Forms.DialogResult.Yes)
+					{
+						if ((decimal)Grbl.posWork.Z < nUDProbeUp.Value)
+							OnRaiseXyzEvent(new XyzEventArgs(null, null, (double)nUDProbeUp.Value, "G90"));
+						OnRaiseXyzEvent(new XyzEventArgs(posX, posY, "G90"));   // move relative and fast
+					}
+				}
             }
         }
         public event EventHandler<XyzEventArgs> RaiseXyzEvent;
@@ -675,18 +639,42 @@ namespace GrblPlotter
         {
             if (Map != null)
             {
-                double iX = (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).X) / pictureBox1.Width);
-                double iY = (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).Y) / pictureBox1.Height);
-                double relposX = Map.Delta.X * iX;
-                double relposY = Map.Delta.Y - Map.Delta.Y * iY;
+                double relX = (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).X) / pictureBox1.Width);
+                double relY = 1 - (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).Y) / pictureBox1.Height);
+                double relposX = Map.Delta.X * relX;
+                double relposY = Map.Delta.Y * relY;
                 double posX = Map.Min.X + relposX;
                 double posY = Map.Min.Y + relposY;
-                double? posZ = Map.GetPoint((int)(iX * Map.SizeX), (int)(iY * Map.SizeY));
-                //            ToolTip tt = new ToolTip();
-                //            tt.SetToolTip(this.pictureBox1, string.Format("X:{0:0.00} Y:{1:0.00}  Z:{2:0.00}", posX, posY, posZ));
-                tt.SetToolTip(this.pictureBox1, string.Format("X:{0:0.00} Y:{1:0.00}  Z:{2:0.00}", posX, posY, posZ));
+
+                double iX = (relX * Map.SizeX);
+                if (iX < 0) iX = 0;
+                if (iX >= Map.SizeX) iX = Map.SizeX - 1;
+
+                double iY = (relY * Map.SizeY);
+                if (iY < 0) iY = 0;
+                if (iY >= Map.SizeY) iY = Map.SizeY - 1;
+
+                double? posZ;
+                if (CbInterpolate.Checked)
+                {
+                    posZ = Map.GetPoint(iX, iY);
+                    tt.SetToolTip(this.pictureBox1, string.Format("Index X:{0:0.00} Y:{1:0.00}  \r\nPos.   X:{2:0.00} Y:{3:0.00}  \r\nZ:{4:0.00}", iX, iY, posX, posY, posZ));
+                }
+                else
+                {
+                    posZ = Map.GetPoint((int)iX, (int)iY);
+                    tt.SetToolTip(this.pictureBox1, string.Format("Index X:{0}    Y:{1}  \r\nPos.   X:{2:0.00} Y:{3:0.00}  \r\nZ:{4:0.00}", (int)iX, (int)iY, posX, posY, posZ));
+                }
+				ShowHightMapCutH(pictureBoxH.Height, relY);
+				ShowHightMapCutV(pictureBoxV.Width, relX);				
             }
         }
+        private void pictureBox1_MouseLeave(object sender, EventArgs e)
+        {
+        //    CreateHightMap(240);
+            pictureBoxV.Visible = false;
+        }
+
 
         /************************************************************************
         Generate GCode for probing
@@ -711,10 +699,10 @@ namespace GrblPlotter
                 elapsedOld = elapsed;
                 btnStartHeightScan.Text = "STOP scanning Height Map";
                 decimal x1, x2, y1, y2;
-                x1 = Math.Min(nUDX1.Value, nUDX2.Value);
-                x2 = Math.Max(nUDX1.Value, nUDX2.Value);
-                y1 = Math.Min(nUDY1.Value, nUDY2.Value);
-                y2 = Math.Max(nUDY1.Value, nUDY2.Value);
+                x1 = Math.Round(Math.Min(nUDX1.Value, nUDX2.Value), 2);
+                x2 = Math.Round(Math.Max(nUDX1.Value, nUDX2.Value), 2);
+                y1 = Math.Round(Math.Min(nUDY1.Value, nUDY2.Value), 2);
+                y2 = Math.Round(Math.Max(nUDY1.Value, nUDY2.Value), 2);
                 if (x1 == x2) x2 = x1 + 10;
                 if (y1 == y2) y2 = y1 + 10;
                 nUDX1.Value = x1; nUDX2.Value = x2; nUDY1.Value = y1; nUDY2.Value = y2;
@@ -723,12 +711,14 @@ namespace GrblPlotter
                 cntSent = 0; cntReceived = 0;
                 Gcode.ReduceGCode = true;   // reduce number format to #.# in gcode.frmtNum()
 
+                Logger.Trace("BtnStartHeightScan x1:{0} Y1:{1}  x2:{2} y2:{3}", x1, y1, x2, y2);
                 Map = new HeightMap((double)nUDGridX.Value, new Vector2((double)x1, (double)y1), new Vector2((double)x2, (double)y2));
                 MapIndex = new List<Point>();
 
                 lblXDim.Text = string.Format("X Min:{0} Max:{1} Step:{2}", Map.Min.X, Map.Max.X, Map.SizeX);
                 lblYDim.Text = string.Format("Y Min:{0} Max:{1} Step:{2}", Map.Min.Y, Map.Max.Y, Map.SizeY);
 
+				lastFileName = string.Format("New Map Min-X:{0} Y:{1} Max-X:{2} Y:{3}  Grid-X:{4} Y:{5}", Map.Min.X, Map.Min.Y, Map.Max.X, Map.Max.Y, Map.SizeX, Map.SizeY);	
                 CalculateEstimatedTime();
 
                 notifierEnable = ((double)Properties.Settings.Default.notifierMessageProgressInterval < (estimatedTime / 60));
@@ -738,7 +728,7 @@ namespace GrblPlotter
                 textBox1.Clear();
                 textBox1.Text += string.Format("(Probing Size X:{0} Y:{1} )", Map.SizeX, Map.SizeY);
                 int pixX, pixY;
-                BMPsizeX = 240;
+                BMPsizeX = pictureBox1.Width;// 240;
                 BMPsizeY = Map.SizeY * BMPsizeX / Map.SizeX;
                 heightMapBMP = new Bitmap(BMPsizeX, BMPsizeY);
                 using (Graphics graph = Graphics.FromImage(heightMapBMP))
@@ -902,6 +892,8 @@ namespace GrblPlotter
                 textBox1.Text += "\r\nCode sent\r\n" + scanCode.ToString() + "\r\n##########################\r\n";
                 progressBar1.Maximum = cntSent;
                 lblProgress.Text = string.Format("{0}%  estimated time:{1}", (100 * cntReceived / progressBar1.Maximum), GetTime(estimatedTime));
+                lblProgress.BackColor = Color.Transparent;
+
                 pictureBox1.Image = new Bitmap(heightMapBMP);
                 pictureBox1.Refresh();
                 ControlPowerSaving.SuppressStandby();
@@ -979,51 +971,6 @@ namespace GrblPlotter
             Logger.Info("calculateEstimatedTime  {0}  {1}  ", estimatedTime, GetTime(estimatedTime));
         }
 
-        /************************************************************************
-        Generate GCode for probing
-        getGCodeFromHeightMap;      			// in MainFormGetCodeTransform
-        ************************************************************************/
-        private void BtnGCode_Click(object sender, EventArgs e)
-        {
-            if ((Map != null) && (cntReceived == cntSent))
-            {
-                Vector2 tmp;
-                //          double z;
-                float gcodeZFeed = (float)Properties.Settings.Default.importGCZFeed;
-                float gcodeZUp = (float)Properties.Settings.Default.importGCZUp;
-
-                scanCode = new StringBuilder();
-                StringBuilder tmpCode = new StringBuilder();
-                tmp = Map.GetCoordinates(0, 0);
-
-                tmpCode.AppendFormat("G90 G0 F{0} Z{1}\r\n", Gcode.FrmtNum(gcodeZFeed), Gcode.FrmtNum(gcodeZUp));
-                tmpCode.AppendFormat("X{0} Y{1}\r\n", Gcode.FrmtNum((float)tmp.X), Gcode.FrmtNum((float)tmp.Y));
-                tmpCode.AppendFormat("G1\r\n");
-
-                for (int iy = 0; iy < Map.SizeY; iy++)
-                {
-                    for (int ix = 0; ix < Map.SizeX; ix++)
-                    {
-                        MoveXYZ(tmpCode, ix, iy);
-                    }
-                    if (iy < Map.SizeY - 1)
-                    {
-                        iy++;
-                        for (int ix = Map.SizeX - 1; ix >= 0; ix--)
-                        {
-                            MoveXYZ(tmpCode, ix, iy);
-                        }
-                    }
-                }
-                tmpCode.AppendFormat("G0 Z{0}\r\n", Gcode.FrmtNum(gcodeZUp));
-                tmp = Map.GetCoordinates(0, 0);
-                tmpCode.AppendFormat("G0 X{0} Y{1}\r\n", Gcode.FrmtNum((float)tmp.X), Gcode.FrmtNum((float)tmp.Y));
-
-                scanCode.AppendFormat("{0}", Gcode.GetHeader("Height Map", ""));
-                scanCode.Append(tmpCode);
-                scanCode.AppendFormat("{0}", Gcode.GetFooter());
-            }
-        }
 
         private void RbProbingZ_CheckedChanged(object sender, EventArgs e)
         {
@@ -1048,8 +995,8 @@ namespace GrblPlotter
         {
             if ((GuiVariables.variable["GMIX"] < Double.MaxValue) && (GuiVariables.variable["GMAX"] > Double.MinValue))		//(GuiVariables.variable["GMIX"] != GuiVariables.variable["GMAX"])
             {
-                decimal min = (decimal)(CbRoundUp.Checked ? Math.Floor(GuiVariables.variable["GMIX"]) : GuiVariables.variable["GMIX"]);
-                decimal max = (decimal)(CbRoundUp.Checked ? Math.Ceiling(GuiVariables.variable["GMAX"]) : GuiVariables.variable["GMAX"]);
+                decimal min = (decimal)Math.Round((CbRoundUp.Checked ? Math.Floor(GuiVariables.variable["GMIX"]) : GuiVariables.variable["GMIX"]),2);
+                decimal max = (decimal)Math.Round((CbRoundUp.Checked ? Math.Ceiling(GuiVariables.variable["GMAX"]) : GuiVariables.variable["GMAX"]),2);
                 if (min >= nUDX1.Minimum)
                     nUDX1.Value = min;
                 if (max <= nUDX2.Maximum)
@@ -1059,20 +1006,13 @@ namespace GrblPlotter
 
             if ((GuiVariables.variable["GMIY"] < Double.MaxValue) && (GuiVariables.variable["GMAY"] > Double.MinValue))		//(GuiVariables.variable["GMIY"] != GuiVariables.variable["GMAY"])
             {
-                decimal min = (decimal)(CbRoundUp.Checked ? Math.Floor(GuiVariables.variable["GMIY"]) : GuiVariables.variable["GMIY"]);
-                decimal max = (decimal)(CbRoundUp.Checked ? Math.Ceiling(GuiVariables.variable["GMAY"]) : GuiVariables.variable["GMAY"]);
+                decimal min = (decimal)Math.Round((CbRoundUp.Checked ? Math.Floor(GuiVariables.variable["GMIY"]) : GuiVariables.variable["GMIY"]),2);
+                decimal max = (decimal)Math.Round((CbRoundUp.Checked ? Math.Ceiling(GuiVariables.variable["GMAY"]) : GuiVariables.variable["GMAY"]),2);
                 if (min >= nUDY1.Minimum)
                     nUDY1.Value = min;
                 if (max <= nUDY2.Maximum)
                     nUDY2.Value = max;
             }
-        }
-
-        private void MoveXYZ(StringBuilder tmpCode, int ix, int iy)
-        {
-            Vector2 tmp = Map.GetCoordinates(ix, iy);
-            double z = (double)Map.GetPoint(ix, iy);
-            tmpCode.AppendFormat("X{0} Y{1} Z{2}\r\n", Gcode.FrmtNum((float)tmp.X), Gcode.FrmtNum((float)tmp.Y), Gcode.FrmtNum((float)z));
         }
 
         public void StopScan()
@@ -1091,6 +1031,79 @@ namespace GrblPlotter
             else
             { label.Text = txt; }
         }
+
+        private void ControlHeightMapForm_SizeChanged(object sender, EventArgs e)
+        {
+			if ((this.WindowState == FormWindowState.Minimized) || (Width == 0) || (Height == 0))
+				return;
+			
+            groupBox3.Width = Width - (620 - 270);
+            groupBox3.Height=Height - (375 - 306);
+            int left = groupBox3.Width - (270 - 206);
+            int top = groupBox3.Height - (306 - 234);
+
+
+            int origWidth = pictureBox1.Width = pictureBoxH.Width = left - 6;
+            int origHeight = pictureBox1.Height = pictureBoxV.Height = top - 34;
+
+            if (Map != null)
+            {
+                double ratio = (double)Map.SizeX / Map.SizeY;
+                int newWidth = (int)(origHeight * ratio);
+                int newHeight = (int)(origWidth / ratio);
+            //    Logger.Trace("ControlHeightMapForm_SizeChanged  ratio:{0:0.000} newx:{1}  y:{2}",ratio,newWidth,newHeight);
+                if (ratio >= 1)
+                {
+                    if (newHeight < origHeight)
+                    { pictureBox1.Height = pictureBoxV.Height = newHeight; top = newHeight + 34; }
+                    else
+                    { pictureBox1.Width = pictureBoxH.Width = newWidth; left = newWidth + 6; }
+                }
+                else
+                {
+                    if (newWidth < origWidth)
+                    { pictureBox1.Width = pictureBoxH.Width = newWidth; left = newWidth + 6; }
+                    else
+                    { pictureBox1.Height = pictureBoxV.Height = newHeight; top = newHeight + 34; }
+                }
+            }
+
+            pictureBoxV.Left = left + 15;
+            pictureBoxH.Top = top + 2;
+
+            pictureBox2.Left = left + 2;
+            pictureBox2.Height = pictureBox1.Height;
+            lblMax.Left = pictureBox2.Left + 12;
+            lblMid.Left = pictureBox2.Left + 12;
+            lblMin.Left = pictureBox2.Left + 12;
+            lblMid.Top = lblMax.Top + pictureBox1.Height / 2 -7;
+            lblMin.Top = lblMax.Top + pictureBox1.Height -14;
+
+            lblXDim.Top = groupBox3.Height - 28;
+            lblYDim.Top = groupBox3.Height - 16;
+
+            BMPsizeX = pictureBox1.Width;// 240;
+            BMPsizeY = pictureBox1.Height;
+            if (Map!=null)
+                BMPsizeY = Map.SizeY * BMPsizeX / Map.SizeX;
+
+            int legendHeight = pictureBox2.Height;
+            heightLegendBMP = new Bitmap(2, legendHeight);
+            for (int i = 0; i < legendHeight; i++)
+            {
+                heightLegendBMP.SetPixel(0, (legendHeight - 1) - i, GetColor(0, legendHeight, i, isgray));
+                heightLegendBMP.SetPixel(1, (legendHeight - 1) - i, GetColor(0, legendHeight, i, isgray));
+            }
+
+            ShowHightMapBMP(false);    // and legend
+        }
+
+        private void CbInterpolate_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowHightMapBMP();
+        }
+
+
         private void TextBoxAddThreadSave(TextBox box, string txt)
         {
             if (box.InvokeRequired)
@@ -1107,724 +1120,400 @@ namespace GrblPlotter
             { bar.Value = val; }
         }
 
-    }
-
-    public class HeightMap
-    {
-        public double?[,] Points { get; private set; }
-        public int SizeX { get; private set; }
-        public int SizeY { get; private set; }
-
-        //     internal int TotalPoints { get { return SizeX * SizeY; } }
-
-        internal Queue<Tuple<int, int>> NotProbed { get; private set; } = new Queue<Tuple<int, int>>();
-
-        internal Vector2 Min { get; private set; }
-        internal Vector2 Max { get; private set; }
-
-        internal Vector2 Delta { get { return Max - Min; } }
-
-        public double MinHeight { get; set; } = double.MaxValue;
-        public double MaxHeight { get; set; } = double.MinValue;
-
-        //        public event Action MapUpdated;
-
-        public double GridX { get { return (Max.X - Min.X) / (SizeX - 1); } }
-        public double GridY { get { return (Max.Y - Min.Y) / (SizeY - 1); } }
-
-
-        internal HeightMap(double gridSize, Vector2 min, Vector2 max)
+        /************************************************************************
+        Generate GCode from probing data
+        getGCodeFromHeightMap;      			// in MainFormGetCodeTransform
+        ************************************************************************/
+        private void BtnGCode_Click(object sender, EventArgs e)
         {
-            MinHeight = double.MaxValue;
-            MaxHeight = double.MinValue;
-
-            if (min.X == max.X) { max.X = min.X + 1; }
-            if (min.Y == max.Y) { max.Y = min.Y + 1; }
-            //                throw new Exception("Height map can't be infinitely narrow");
-
-            int pointsX = (int)Math.Ceiling((max.X - min.X) / gridSize) + 1;
-            int pointsY = (int)Math.Ceiling((max.Y - min.Y) / gridSize) + 1;
-
-            if (pointsX == 0) { pointsX = 1; }
-            if (pointsY == 0) { pointsY = 1; }
-            //        throw new Exception("Height map must have at least 4 points");
-
-            Points = new double?[pointsX, pointsY];
-
-            if (max.X < min.X)
+            if ((Map != null) && (cntReceived == cntSent))
             {
-                double a = min.X;
-                min.X = max.X;
-                max.X = a;
-            }
+                Vector2 tmp;
+                //          double z;
+                float gcodeXYFeed = (float)Properties.Settings.Default.importGCXYFeed;
+                float gcodeZFeed = (float)Properties.Settings.Default.importGCZFeed;
+                float gcodeZUp = (float)Properties.Settings.Default.importGCZUp;
 
-            if (max.Y < min.Y)
-            {
-                double a = min.Y;
-                min.Y = max.Y;
-                max.Y = a;
-            }
+				float distanceX = (float)(Map.Max.X - Map.Min.X);
+				float distanceY = (float)(Map.Max.Y - Map.Min.Y);
+				float gcodeDistance=0; 
 
-            Min = min;
-            Max = max;
+                scanCode = new StringBuilder();
+                StringBuilder tmpCode = new StringBuilder();
+                tmp = Map.GetCoordinates(0, 0);
 
-            SizeX = pointsX;
-            SizeY = pointsY;
+                double saveZ = Math.Max(gcodeZUp, gcodeZUp + Map.MaxHeight);
+                tmpCode.AppendFormat("G90 G0 F{0} Z{1}\r\n", Gcode.FrmtNum(gcodeZFeed), Gcode.FrmtNum(saveZ));
+                tmpCode.AppendFormat("G0 X{0} Y{1}\r\n", Gcode.FrmtNum((float)tmp.X), Gcode.FrmtNum((float)tmp.Y));
+                tmpCode.AppendFormat("G1 F{0}\r\n", Gcode.FrmtNum(gcodeXYFeed));
+				int gcodeLines = 6;
 
-            for (int x = 0; x < SizeX; x++)
-            {
-                for (int y = 0; y < SizeY; y++)
-                    NotProbed.Enqueue(new Tuple<int, int>(x, y));
+				if (!CbNewStepWidth.Checked)
+                {	for (int iy = 0; iy < Map.SizeY; iy++)
+					{
+						for (int ix = 0; ix < Map.SizeX; ix++)
+						{
+							MoveXYZ(tmpCode, ix, iy); gcodeLines++;
+						}
+						gcodeDistance += distanceX;
+						if (iy < Map.SizeY - 1)
+						{
+							iy++;
+							for (int ix = Map.SizeX - 1; ix >= 0; ix--)
+							{
+								MoveXYZ(tmpCode, ix, iy); gcodeLines++;
+							}
+							gcodeDistance += distanceX;
+						}
+					}
+				}
+				else
+				{	
+					if (CbMoveXY.Checked)
+					{
+						double stepX,stepY;
+						stepX = stepY = (double)NudNewStepWidth.Value;
 
-                if (++x >= SizeX)
-                    break;
+						for (double ry = Map.Min.Y; ry <= Map.Max.Y; ry+=stepY)
+						{
+							for (double rx = Map.Min.X; rx <= Map.Max.X; rx+=stepX)
+							{
+								MoveXYZ(tmpCode, rx, ry); gcodeLines++;
+							}
+                            MoveXYZ(tmpCode, Map.Max.X, ry); gcodeLines++;
+                            gcodeDistance += distanceX + (float)stepY; 
+							if (ry < Map.Max.Y)
+							{
+								ry+=stepY;
+								for (double rx = Map.Max.X; rx >= Map.Min.X; rx-=stepX)
+								{
+									MoveXYZ(tmpCode, rx, ry); gcodeLines++;
+								}
+                                MoveXYZ(tmpCode, Map.Min.X, ry); gcodeLines++;
+                                gcodeDistance += distanceX + (float)stepY; 
+							}
+						}
+					}
+					else
+					{
+						double stepX,stepY;
+						stepX = stepY = (double)NudNewStepWidth.Value;
 
-                for (int y = SizeY - 1; y >= 0; y--)
-                    NotProbed.Enqueue(new Tuple<int, int>(x, y));
-            }
-        }
+						for (double rx = Map.Min.X; rx <= Map.Max.X; rx+=stepX)
+						{
+							for (double ry = Map.Min.Y; ry <= Map.Max.Y; ry+=stepY)
+							{
+								MoveXYZ(tmpCode, rx, ry); gcodeLines++;
+							}
+                            MoveXYZ(tmpCode, rx, Map.Max.Y); gcodeLines++;
+                            gcodeDistance += distanceY + (float)stepX; 
+							if (rx < Map.Max.X)
+							{
+								rx+=stepX;
+								for (double ry = Map.Max.Y; ry >= Map.Min.Y; ry-=stepY)
+								{
+									MoveXYZ(tmpCode, rx, ry); gcodeLines++;
+								}
+                                MoveXYZ(tmpCode, rx, Map.Min.Y); gcodeLines++;
+                                gcodeDistance += distanceY + (float)stepX; 
+							}
+						}						
+					}
+				}
+				
+				Gcode.SetHeaderInfo(lastFileName, gcodeDistance, gcodeXYFeed, gcodeLines, 1);
 
-        public double InterpolateZ(double x, double y)	// find Z for given XY coordinate
-        {
-            if (x > Max.X || x < Min.X || y > Max.Y || y < Min.Y)	// out of area?
-                return MaxHeight;
+                tmpCode.AppendFormat("G0 Z{0}\r\n", Gcode.FrmtNum(saveZ));
+                tmp = Map.GetCoordinates(0, 0);
+                tmpCode.AppendFormat("G0 X{0} Y{1}\r\n", Gcode.FrmtNum((float)tmp.X), Gcode.FrmtNum((float)tmp.Y));
 
-            x -= Min.X;		// convert coordinate to index
-            y -= Min.Y;		// remove offset
-
-            x /= GridX;		// convert coordinate to index
-            y /= GridY;		// devide by resolution
-
-            int iLX = (int)Math.Floor(x);   //lower integer part
-            int iLY = (int)Math.Floor(y);
-
-            if (iLX < 0) iLX = 0;       // check range
-            if (iLY < 0) iLY = 0;
-
-            int iHX = (int)Math.Ceiling(x); //upper integer part
-            int iHY = (int)Math.Ceiling(y);
-
-            if (iHX >= SizeX) iHX = SizeX - 1;  // check range
-            if (iHY >= SizeY) iHY = SizeY - 1;
-
-            //     try
-            //     {
-            double fX = x - iLX;             //fractional part
-            double fY = y - iLY;
-
-            double hxhy = Points[iHX, iHY].GetValueOrDefault(MaxHeight);
-            double lxhy = Points[iLX, iHY].GetValueOrDefault(MaxHeight);
-            double hxly = Points[iHX, iLY].GetValueOrDefault(MaxHeight);
-            double lxly = Points[iLX, iLY].GetValueOrDefault(MaxHeight);
-            double linUpper = hxhy * fX + lxhy * (1 - fX);
-            double linLower = hxly * fX + lxly * (1 - fX);
-
-            //        double linUpper = Points[iHX, iHY].Value * fX + Points[iLX, iHY].Value * (1 - fX);       //linear immediates
-            //        double linLower = Points[iHX, iLY].Value * fX + Points[iLX, iLY].Value * (1 - fX);
-
-            return linUpper * fY + linLower * (1 - fY);     //bilinear result
-                                                            //   } catch { return MaxHeight; }
-        }
-
-        internal Vector2 GetCoordinates(int x, int y, bool applyOffset = true)
-        {
-            if (applyOffset)
-                return new Vector2(x * (Delta.X / (SizeX - 1)) + Min.X, y * (Delta.Y / (SizeY - 1)) + Min.Y);
-            else
-                return new Vector2(x * (Delta.X / (SizeX - 1)), y * (Delta.Y / (SizeY - 1)));
-        }
-
-        private HeightMap()
-        { }
-
-        public void AddPoint(int x, int y, double height)
-        {
-            Points[x, y] = height;
-
-            if (height > MaxHeight)
-                MaxHeight = height;
-            if (height < MinHeight)
-                MinHeight = height;
-        }
-        public double? GetPoint(int x, int y)
-        {
-            if ((x >= 0) && (x < SizeX) && (y >= 0) && (y < SizeY))
-                return Points[x, y];
-            return null;
-        }
-        public void SetZOffset(double offset)
-        {
-            for (int iy = 0; iy < SizeY; iy++)
-            {
-                for (int ix = 0; ix < SizeX; ix++)
-                {
-                    Points[ix, iy] = Points[ix, iy] + offset;
-                }
-            }
-            MaxHeight += offset;
-            MinHeight += offset;
-        }
-        public void SetZZoom(double zoom)
-        {
-            for (int iy = 0; iy < SizeY; iy++)
-            {
-                for (int ix = 0; ix < SizeX; ix++)
-                {
-                    Points[ix, iy] = Points[ix, iy] * zoom;
-                }
-            }
-            MaxHeight *= zoom;
-            MinHeight *= zoom;
-        }
-        public void SetZInvert()
-        {
-            for (int iy = 0; iy < SizeY; iy++)
-            {
-                for (int ix = 0; ix < SizeX; ix++)
-                {
-                    Points[ix, iy] = -Points[ix, iy];
-                }
-            }
-            double tmp = MaxHeight;
-            MaxHeight = -MinHeight;
-            MinHeight = -tmp;
-        }
-        public void SetZCutOff(double limit)
-        {
-            for (int iy = 0; iy < SizeY; iy++)
-            {
-                for (int ix = 0; ix < SizeX; ix++)
-                {
-                    if (Points[ix, iy] < limit)
-                        Points[ix, iy] = limit;
-                }
-            }
-            MinHeight = limit;
-        }
-
-        public XmlReaderSettings settings = new XmlReaderSettings()
-        { DtdProcessing = DtdProcessing.Prohibit };
-        public static HeightMap Load(string path)
-        {
-            HeightMap map = new HeightMap();
-            XmlReader content = XmlReader.Create(path);//, settings);
-            map.MaxHeight = double.MinValue;
-            map.MinHeight = double.MaxValue;
-
-            while (content.Read())
-            {
-                if (!content.IsStartElement())
-                    continue;
-
-                switch (content.Name)
-                {
-                    case "heightmap":
-                        map.Min = new Vector2(double.Parse(content["MinX"].Replace(',', '.'), NumberFormatInfo.InvariantInfo), double.Parse(content["MinY"].Replace(',', '.'), NumberFormatInfo.InvariantInfo));
-                        map.Max = new Vector2(double.Parse(content["MaxX"].Replace(',', '.'), NumberFormatInfo.InvariantInfo), double.Parse(content["MaxY"].Replace(',', '.'), NumberFormatInfo.InvariantInfo));
-                        map.SizeX = int.Parse(content["SizeX"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
-                        map.SizeY = int.Parse(content["SizeY"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
-                        map.Points = new double?[map.SizeX, map.SizeY];
-                        break;
-                    case "point":
-                        int x = int.Parse(content["X"].Replace(',', '.')), y = int.Parse(content["Y"].Replace(',', '.'), NumberFormatInfo.InvariantInfo);
-                        double height = double.Parse(content.ReadInnerXml().Replace(',', '.'), NumberFormatInfo.InvariantInfo);
-
-                        map.Points[x, y] = height;
-
-                        if (height > map.MaxHeight)
-                            map.MaxHeight = height;
-                        if (height < map.MinHeight)
-                            map.MinHeight = height;
-
-                        break;
-                }
-            }
-            for (int x = 0; x < map.SizeX; x++)
-            {
-                for (int y = 0; y < map.SizeY; y++)
-                    if (!map.Points[x, y].HasValue)
-                        map.NotProbed.Enqueue(new Tuple<int, int>(x, y));
-
-                if (++x >= map.SizeX)
-                    break;
-
-                for (int y = map.SizeY - 1; y >= 0; y--)
-                    if (!map.Points[x, y].HasValue)
-                        map.NotProbed.Enqueue(new Tuple<int, int>(x, y));
-            }
-            //       r.Dispose();
-            return map;
-        }
-
-        private static readonly string formatNumber = "0.000";
-        private static string FrmtNum(double number)     // convert float to string using format pattern
-        { return number.ToString(formatNumber); }
-
-        // vertex coordinates must be positive-definite (nonnegative and nonzero) numbers. 
-        // The StL file does not contain any scale information; the coordinates are in arbitrary units.
-        public void SaveSTL(string path)
-        {
-            StringBuilder data = new StringBuilder();
-            data.AppendLine("solid ASCII_STL_GRBL_Plotter");
-            double z0, z1, z2, z3;
-            Vector2 p0, p1, p2, p3;
-            for (int y = 0; y < (SizeY - 1); y++)
-            {
-                for (int x = 0; x < (SizeX - 1); x++)
-                {
-                    if (!Points[x, y].HasValue)
-                        continue;
-                    p0 = GetCoordinates(x, y, false);       // vertex coordinates must be positive-definite (nonnegative and nonzero) numbers. 
-                    p1 = GetCoordinates(x, y + 1, false);
-                    p2 = GetCoordinates(x + 1, y, false);
-                    p3 = GetCoordinates(x + 1, y + 1, false);
-                    z0 = -1 * Points[x, y].Value;    // vertex coordinates must be positive-definite (nonnegative and nonzero) numbers. 
-                    z1 = -1 * Points[x, y + 1].Value;
-                    z2 = -1 * Points[x + 1, y].Value;
-                    z3 = -1 * Points[x + 1, y + 1].Value;
-
-                    data.AppendLine(" facet normal 0 0 0");
-                    data.AppendLine("  outer loop");
-                    data.AppendFormat("   vertex {0} {1} {2:0.0000}\r\n", p0.X, p0.Y, z0);
-                    data.AppendFormat("   vertex {0} {1} {2:0.0000}\r\n", p1.X, p1.Y, z1);
-                    data.AppendFormat("   vertex {0} {1} {2:0.0000}\r\n", p2.X, p2.Y, z2);
-                    data.AppendLine("  endloop");
-                    data.AppendLine(" endfacet");
-
-                    data.AppendLine(" facet normal 0 0 0");
-                    data.AppendLine("  outer loop");
-                    data.AppendFormat("   vertex {0} {1} {2:0.0000}\r\n", p1.X, p1.Y, z1);
-                    data.AppendFormat("   vertex {0} {1} {2:0.0000}\r\n", p3.X, p3.Y, z3);
-                    data.AppendFormat("   vertex {0} {1} {2:0.0000}\r\n", p2.X, p2.Y, z2);
-                    data.AppendLine("  endloop");
-                    data.AppendLine(" endfacet");
-                }
-            }
-            data.AppendLine("endsolid ASCII_STL_GRBL_Plotter");
-            File.WriteAllText(path, data.ToString().Replace(',', '.'));
-            data.Clear();
-        }
-
-        // https://www.fileformat.info/format/wavefrontobj/egff.htm
-        // https://people.sc.fsu.edu/~jburkardt/data/obj/obj.html
-        // https://en.wikipedia.org/wiki/Wavefront_.obj_file
-        public void SaveOBJ(string path)
-        {
-            StringBuilder data = new StringBuilder();
-            StringBuilder data_point = new StringBuilder();
-            StringBuilder data_face = new StringBuilder();
-            Dictionary<int, StringBuilder> data_face_color = new Dictionary<int, StringBuilder>();
-
-            OBJdata_color = new StringBuilder();
-            OBJused_color = new Dictionary<Color, int>();   // to check if color is already indexed
-            OBJcolor_used = 0;
-
-            string mtl_path = Path.ChangeExtension(path, ".mtl");
-            data.AppendLine("#\r\n# GRBL_Plotter Height map");
-            data.AppendFormat("# SizeX:{0}  SizeY:{1}\r\n", SizeX, SizeY);
-            data.AppendFormat("#\r\n\r\nmtllib {0}\r\n\r\n", Path.GetFileName(mtl_path));
-            //          data.AppendLine("o HeightMap");
-            //          data.AppendLine("g map1");
-            double z0, z1;
-            Vector2 p0;
-            for (int y = 0; y < SizeY; y++)
-            {
-                for (int x = 0; x < SizeX; x++)
-                {
-                    if (!Points[x, y].HasValue)
-                        continue;
-                    p0 = GetCoordinates(x, y, false);
-                    z0 = Points[x, y].Value;
-                    data_point.AppendFormat("v {0} {1} {2:0.0000}\r\n", p0.X, p0.Y, z0);
-
-                    if ((y < (SizeY - 1)) && (x < (SizeX - 1)))
-                    {
-                        int color_index = CheckOBJColorUse(z0);
-                        if (data_face_color.ContainsKey(color_index))
-                        {
-                            data_face_color[color_index].AppendFormat("f {0} {1} {2}\r\n", SizeX * y + x + 1, SizeX * y + x + 2, SizeX * (y + 1) + x + 1);		// 1. triangle
-                        }
-                        else
-                        {
-                            data_face_color.Add(color_index, new StringBuilder());
-                            data_face_color[color_index].AppendFormat("f {0} {1} {2}\r\n", SizeX * y + x + 1, SizeX * y + x + 2, SizeX * (y + 1) + x + 1);		// 1. triangle
-                        }
-
-                        z1 = Points[x + 1, y].Value;
-                        color_index = CheckOBJColorUse(z1);
-                        if (data_face_color.ContainsKey(color_index))
-                        {
-                            data_face_color[color_index].AppendFormat("f {0} {1} {2}\r\n", SizeX * (y + 1) + x + 1, SizeX * (y + 1) + x + 2, SizeX * y + x + 2);       // 2. triangle																		
-                        }    // 2. triangle																		
-                        else
-                        {
-                            data_face_color.Add(color_index, new StringBuilder());
-                            data_face_color[color_index].AppendFormat("f {0} {1} {2}\r\n", SizeX * (y + 1) + x + 1, SizeX * (y + 1) + x + 2, SizeX * y + x + 2);       // 2. triangle																		
-                        }
-                    }
-                }
-            }
-            data_point.AppendLine("o HeightMap");
-            data_point.AppendLine("g map1");
-
-            data.Append(data_point.ToString());
-            //data.Append(data_face.ToString());
-            for (int i = 0; i < OBJcolor_used; i++)
-            {
-                if (data_face_color.ContainsKey(i))
-                {
-                    data_face.AppendFormat("usemtl c_{0}\r\n", i);
-                    data_face.Append(data_face_color[i].ToString());
-                }
-            }
-            data.Append(data_face.ToString());
-
-            File.WriteAllText(path, data.ToString().Replace(',', '.'));	// save obj file
-            File.WriteAllText(mtl_path, OBJdata_color.ToString().Replace(',', '.'));    // save mtl file		
-            OBJdata_color.Clear();
-            OBJused_color.Clear();
-            data.Clear();
-            data_point.Clear();
-            data_face.Clear();
-        }
-
-        private static Dictionary<Color, int> OBJused_color = new Dictionary<Color, int>(); // to check if color is already indexed
-        private static int OBJcolor_used = 0;
-        private static StringBuilder OBJdata_color = new StringBuilder();
-
-        private int CheckOBJColorUse(double zVal)
-        {
-            Color tmpColor = GetColor(MinHeight, MaxHeight, zVal, false);
-            if (OBJused_color.ContainsKey(tmpColor))
-            { return OBJused_color[tmpColor]; }
-            else
-            {
-                OBJused_color.Add(tmpColor, OBJcolor_used);
-                //			data_face.AppendFormat("usemtl c_{0}",OBJcolor_used);}
-                // create mtl file
-                OBJdata_color.AppendFormat("newmtl c_{0}\r\n", OBJcolor_used);
-                OBJdata_color.AppendFormat("Kd {0} {1} {2}\r\n", (double)tmpColor.R / 255, (double)tmpColor.G / 255, (double)tmpColor.B / 255);
-                OBJdata_color.AppendFormat("Ks {0} {1} {2}\r\n", (double)tmpColor.R / 255, (double)tmpColor.G / 255, (double)tmpColor.B / 255);
-                OBJdata_color.AppendFormat("Ka {0} {1} {2}\r\n", (double)tmpColor.R / 255, (double)tmpColor.G / 255, (double)tmpColor.B / 255);
-                //         OBJdata_color.AppendFormat("Ks 0.8 0.8 0.8\r\n");
-                //		OBJdata_color.AppendFormat("Ka 0.2 0.2 0.2\r\n");
-                OBJdata_color.AppendFormat("illum 2\r\n");
-                OBJdata_color.AppendFormat("Ns 40\r\n\r\n");
-
-                OBJcolor_used++;
-                return OBJcolor_used - 1;
+                scanCode.AppendFormat("{0}", Gcode.GetHeader("Height Map", ""));
+                scanCode.Append(tmpCode);
+                scanCode.AppendFormat("{0}", Gcode.GetFooter());
             }
         }
-
-        public void SaveX3D(string path)
+        private void MoveXYZ(StringBuilder tmpCode, int ix, int iy)				// expect index
         {
-            StringBuilder object_code = new StringBuilder();
-            StringBuilder color_code = new StringBuilder();
-            bool first_val = true;
-            if (true)//elevation)
-            {
-                object_code.AppendLine(" <Transform DEF='elevationgrid' containerField='children' translation='0 0 0'>");
-                object_code.AppendLine("  <Shape DEF='GRBL-Plotter Height Map' containerField='children'>");
-                object_code.AppendFormat("    <ElevationGrid creaseAngle='3.14159' solid='false' xDimension='{0}' xSpacing='1' zDimension='{1}' zSpacing='1' height='", SizeX, SizeY);
-                for (int y = (SizeY - 1); y >= 0; y--) //(int y = 0; y < SizeY; y++)
-                {
-                    for (int x = 0; x < SizeX; x++)
-                    {
-                        if (first_val) { first_val = false; }
-                        else { object_code.Append(","); color_code.Append(","); }
-                        if (x == 0) { object_code.Append("\r\n      "); color_code.Append("\r\n         "); }
-                        object_code.Append(FrmtNum(Points[x, y].Value).Replace(',', '.'));
-                        color_code.Append(GetColorString(Points[x, y].Value).Replace(',', '.'));
-                    }
-                }
-                object_code.Append("'>\r\n");
-                object_code.AppendFormat("        <Color color='{0}'/>\r\n", color_code);
-                object_code.Append("     </ElevationGrid>\r\n");
-                object_code.Append("  </Shape>\r\n");
-                object_code.Append(" </Transform>\r\n");
-            }
-            string file_head = "", file_foot = "";
-            file_head += "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n";
-            file_head += "<!DOCTYPE X3D PUBLIC \"ISO//Web3D//DTD X3D 3.0//EN\" \"http://www.web3d.org/specifications/x3d-3.0.dtd\">\r\n";
-            file_head += "<X3D profile='Immersive' >\r\n";
-            file_head += "<head></head>\r\n";
-            file_head += "<Scene>\r\n";
+            Vector2 tmp = Map.GetCoordinates(ix, iy);
+            double z = 0;
+            double? zn = Map.GetPoint(ix, iy);
 
-            file_head += "<NavigationInfo containerField='children' avatarSize='.25 1.6 .75' visibilityLimit='0' speed='10' headlight='true' type='\"EXAMINE\" \"ANY\"'/>\r\n";
-            file_head += "<Background containerField='children' skyAngle=' .7854 1.91986' skyColor='  0 .2 .70196 0 .50196 1 1 1 1' groundAngle='1.5708' groundColor='  .2 .2 .2 .8 .8 .8'/>\r\n";
+            if (zn == null) Logger.Error("MoveXYZ z=null ix:{0}  iy:{1}", ix, iy);
+            if (zn != null) z = (double)zn;
 
-            file_head += "<Transform DEF='dad_Group_light' rotation='-.286 -.914 -.286 1.66'>\r\n";
-            file_head += "  <Transform DEF='light1_t' containerField='children' translation='" + SizeY / 2 + " 0 " + 3 * SizeX + "' scale='2 2 2'>\r\n";
-            file_head += "    <SpotLight DEF='light1' containerField='children' ambientIntensity='0.000' intensity='1.000' radius='100.000' cutOffAngle='1.309' beamWidth='0.785' attenuation='1 0 0' color='1 1 1' on='true'/>\r\n";
-            file_head += "  </Transform>\r\n";
-            file_head += "</Transform>\r\n";
+            tmpCode.AppendFormat("X{0} Y{1} Z{2}\r\n", Gcode.FrmtNum((float)tmp.X), Gcode.FrmtNum((float)tmp.Y), Gcode.FrmtNum((float)z));
+        }
+        private void MoveXYZ(StringBuilder tmpCode, double rx, double ry)		// expect real coordinate
+        {
+            double? zn = Map.InterpolateZ(rx, ry);
+            double z = (double)zn;
+            if (zn == null) Logger.Error("MoveXYZ z=null rx:{0}  ry:{1}", rx, ry);
 
-            // camera static
-            var camera_static_distance = SizeX * 2;
-            var camera_static_angle = 45 * Math.PI / 180;
-            file_head += "<Transform DEF='dad_Group_static_camera' translation='" + SizeX / 2 + " 0 " + SizeY / 2 + "' rotation='-1 0 0 " + camera_static_angle + "'>\r\n";
-            file_head += " <Viewpoint DEF='Viewpoint_static_camera' containerField='children' description='Static camera' jump='true' fieldOfView='0.785' position='0 0 " + camera_static_distance + "' orientation='0 0 1 0'/>\r\n";
-            file_head += "</Transform>\r\n";
-
-            //            file_head += navi + back + light + camera + plate + text + legend;
-            file_foot += "</Scene>\r\n</X3D>\r\n";
-            string file_data = file_head.Replace(',', '.') + object_code.ToString() + file_foot;
-            File.WriteAllText(path, file_data);     // .Replace(',', '.')
-            object_code.Clear();
-            color_code.Clear();
+            tmpCode.AppendFormat("X{0} Y{1} Z{2}\r\n", Gcode.FrmtNum((float)rx), Gcode.FrmtNum((float)ry), Gcode.FrmtNum((float)z));
         }
 
-        public void Save(string path)
+        /****************************************************************
+		***** LOAD data
+		*****************************************************************/
+
+        private void ControlHeightMapForm_DragEnter(object sender, DragEventArgs e)
         {
-            XmlWriterSettings set = new XmlWriterSettings
+            e.Effect = DragDropEffects.All;
+        }
+
+        private void ControlHeightMapForm_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            string s = (string)e.Data.GetData(DataFormats.Text);
+            if (files != null)
+            { LoadExtern(files[0]); }
+            this.WindowState = FormWindowState.Normal;
+        }
+  
+		public void LoadExtern(string file)		// via drag&drop on main GUI
+        {
+            if (!File.Exists(file)) return;
+            String ext = Path.GetExtension(file).ToLower();
+			
+            try
             {
-                Indent = true
+				if (ext == ".map")
+				{	LoadMap(file, false);}	// false = don't remember path
+				if (ext == ".stl")
+				{	LoadSTL(file, false);}
+                ControlHeightMapForm_SizeChanged(null, null);
+            }
+            catch (Exception err)
+            {
+                Logger.Error(err, "LoadExtern {0} ", file);
+                MessageBox.Show("Error loading image:\r\n" + err.Message, "Error");
+            }
+
+            this.BringToFront();
+        }
+
+        // loadHeightMap;	// in MainFormGetCodeTransform
+        private void LoadHeightMapToolStripMenuItem_Click(object sender, EventArgs e)
+        { BtnLoad_Click(sender, e); }
+        private void BtnLoad_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog sfd = new OpenFileDialog
+            {
+                InitialDirectory = pathMap,//    Application.StartupPath + Datapath.Examples;
+                Filter = "HeightMap|*.map"
             };
-            XmlWriter w = XmlWriter.Create(path, set);
-            w.WriteStartDocument();
-            w.WriteStartElement("heightmap");
-            w.WriteAttributeString("MinX", Min.X.ToString().Replace(',', '.'));
-            w.WriteAttributeString("MinY", Min.Y.ToString().Replace(',', '.'));
-            w.WriteAttributeString("MaxX", Max.X.ToString().Replace(',', '.'));
-            w.WriteAttributeString("MaxY", Max.Y.ToString().Replace(',', '.'));
-            w.WriteAttributeString("SizeX", SizeX.ToString().Replace(',', '.'));
-            w.WriteAttributeString("SizeY", SizeY.ToString().Replace(',', '.'));
-
-            for (int x = 0; x < SizeX; x++)
+            mapIsLoaded = false;
+            if (sfd.ShowDialog() == DialogResult.OK)
             {
-                for (int y = 0; y < SizeY; y++)
-                {
-                    if (!Points[x, y].HasValue)
-                        continue;
-
-                    w.WriteStartElement("point");
-                    w.WriteAttributeString("X", x.ToString().Replace(',', '.'));
-                    w.WriteAttributeString("Y", y.ToString().Replace(',', '.'));
-                    w.WriteString(FrmtNum(Points[x, y].Value).Replace(',', '.'));
-                    w.WriteEndElement();
-                }
+				LoadMap(sfd.FileName);
+                ControlHeightMapForm_SizeChanged(sender, e);
             }
-            w.WriteEndElement();
-            w.Close();
+            sfd.Dispose();
         }
-
-        public static Color GetColor(double min, double max, double value, bool gray)
+		private void LoadMap(string file, bool rememberPath = true)
+		{
+			Cursor.Current = Cursors.WaitCursor;
+            cntReceived = 0; cntSent = 0;
+			if (File.Exists(file))
+			{
+				Map = HeightMap.Load(file);
+				lblXDim.Text = string.Format("X Min:{0:0.00} Max:{1:0.00} Step:{2:0.00}  Size:{3}", Map.Min.X, Map.Max.X, Map.GridX, Map.SizeX);
+				lblYDim.Text = string.Format("Y Min:{0:0.00} Max:{1:0.00} Step:{2:0.00}  Size:{3}", Map.Min.Y, Map.Max.Y, Map.GridY, Map.SizeY);
+				NudNewStepWidth.Value = (decimal)Math.Round(Map.GridX,2);
+                nUDCutOffZ.Value = (decimal)Math.Round(Map.MinHeight, 2);
+                isMapOk = true;
+				EnableControls(true);
+				mapIsLoaded = true;
+				if (rememberPath) pathMap = Path.GetDirectoryName(file);
+				Logger.Info("▀▀▀▀▀▀▀▀▀▀ Load Map size X:{0} Y:{1}  file:{2}", Map.SizeX, Map.SizeY, file);
+				lastFileName = Path.GetFileName(file);
+			}
+			Cursor.Current = Cursors.Default;			
+		}
+		
+        private void BtnLoadSTL_Click(object sender, EventArgs e)
         {
-            int R = 0, G = 0, B = 0;
-            if (gray)
+            OpenFileDialog sfd = new OpenFileDialog
             {
-                int valC = (int)(255 * (value - min) / (max - min));
-                if (valC < 0) valC = 0;
-                if (valC > 255) valC = 255;
-                R = G = B = valC;
+                InitialDirectory = pathExport,//    Application.StartupPath + Datapath.Examples;
+                Filter = "STL|*.stl"
+            };
+            mapIsLoaded = false;
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+				LoadSTL(sfd.FileName);
+                ControlHeightMapForm_SizeChanged(sender, e);
+            }
+            sfd.Dispose();
+        }
+		private void LoadSTL(string file, bool rememberPath = true)
+		{
+			Cursor.Current = Cursors.WaitCursor;
+			cntReceived = 0; cntSent = 0;
+			if (File.Exists(file))
+			{
+				Logger.Info("▀▀▀▀▀▀▀▀▀▀ Load STL file:{0}", file);
+				HeightMap tmpMap = HeightMap.ImportSTL(file);
+				if (tmpMap != null)
+				{
+					Map = tmpMap;
+					lblXDim.Text = string.Format("X Min:{0:0.00} Max:{1:0.00} Step:{2:0.00}  Size:{3}", Map.Min.X, Map.Max.X, Map.GridX, Map.SizeX);
+					lblYDim.Text = string.Format("Y Min:{0:0.00} Max:{1:0.00} Step:{2:0.00}  Size:{3}", Map.Min.Y, Map.Max.Y, Map.GridY, Map.SizeY);
+					NudNewStepWidth.Value = (decimal)Math.Round(Map.GridX,2);
+                    if ((Map.MinHeight2nd > (float)decimal.MinValue) && (Map.MinHeight2nd < (float)decimal.MaxValue))
+                        nUDCutOffZ.Value = (decimal)Math.Round(Map.MinHeight2nd,2);
+                    else
+                        nUDCutOffZ.Value = 0;
+
+                    isMapOk = true;
+					EnableControls(true);
+					mapIsLoaded = true;
+					lastFileName = Path.GetFileName(file);
+                    tabControl1.SelectedTab = tabControl1.TabPages["tabPage3"];
+                }
+				else
+				{ MessageBox.Show("Loading STL file failed", "Error"); }
+			
+				if (Map.LastError != "")
+				{	lblProgress.Text = Map.LastError;
+                    lblProgress.BackColor = Color.Yellow;
+                }
+			}
+			if (rememberPath) pathExport = Path.GetDirectoryName(file);
+			Cursor.Current = Cursors.Default;
+		}
+
+
+		/****************************************************************
+		***** SAVE data
+		*****************************************************************/
+        private void SavePictureAsBMPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Map != null)
+            {
+                Bitmap tmpBMP = new Bitmap(Map.SizeX, Map.SizeY);
+
+                double x, y, z;
+                for (int iy = 0; iy < Map.SizeY; iy++)
+                {
+                    for (int ix = 0; ix < Map.SizeX; ix++)
+                    {
+                        z = (double)Map.GetPoint(ix, (Map.SizeY-1) - iy);
+                        tmpBMP.SetPixel(ix, iy, GetColor(Map.MinHeight, Map.MaxHeight, z, isgray));
+                    }
+                }
+
+                SaveFileDialog sfd = new SaveFileDialog
+                {
+                    Filter = "Bitmap|*.bmp",
+					InitialDirectory = pathLastSaved
+                };
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    Logger.Info("Save Bitmap {0}", sfd.FileName);
+                    tmpBMP.Save(sfd.FileName, System.Drawing.Imaging.ImageFormat.Bmp);
+					pathLastSaved = Path.GetDirectoryName(sfd.FileName);					
+                }
+                tmpBMP.Dispose();
+                sfd.Dispose();
             }
             else
-            {
-                int segments = 3;
-                int valC = (int)(255 * segments * (value - min) / (max - min));
-                if (valC < 0) valC = 0;
-                if (valC > 255 * segments) valC = 255 * segments;
-
-                if ((valC >= 0) && (valC < 256 * 1))
-                { R = 0; G = valC; B = 255 - valC; }
-
-                else if ((valC >= 256) && (valC < 256 * 2))
-                { R = valC - (256 * 1); G = 255; B = 0; }
-
-                else if ((valC >= 256 * 2) && (valC < 256 * 3))
-                { R = 255; G = (256 * 3 - 1) - valC; B = 0; }
-            }
-            return Color.FromArgb(R, G, B);
+                MessageBox.Show("No Height Map to save");
         }
-        public String GetColorString(double value)
+		
+        private void BtnSave_Click(object sender, EventArgs e)
         {
-            Color tmp = GetColor(MinHeight, MaxHeight, value, false);
-            return string.Format("{0:0.00} {1:0.00} {2:0.00}", (double)tmp.R / 255, (double)tmp.G / 255, (double)tmp.B / 255);
-        }
-
-        internal void FillWithTestPattern(string pattern)
-        {
-            DataTable t = new DataTable();
-
-            for (int x = 0; x < SizeX; x++)
+            if (Map == null)
             {
-                for (int y = 0; y < SizeY; y++)
-                {
-                    double X = (x * (Max.X - Min.X)) / (SizeX - 1) + Min.X;
-                    double Y = (y * (Max.Y - Min.Y)) / (SizeY - 1) + Min.Y;
-
-                    decimal d = (decimal)t.Compute(pattern.Replace("x", X.ToString()).Replace("y", Y.ToString()), "");
-                    AddPoint(x, y, (double)d);
-                }
+                MessageBox.Show("There is no Map-data to save", "Error");
+                return;
             }
-            t.Dispose();
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                InitialDirectory = pathMap,
+				Filter = "HeightMap|*.map"
+            };
+            Cursor.Current = Cursors.WaitCursor;
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                Logger.Info("Save Height map {0}", sfd.FileName);
+                Map.Save(sfd.FileName);
+                pathMap = Path.GetDirectoryName(sfd.FileName);
+                pathExport = pathMap;
+				lastFileName = Path.GetFileName(sfd.FileName);
+            }
+            Cursor.Current = Cursors.Default;
+            sfd.Dispose();
         }
+
+        private void BtnSaveSTL_Click(object sender, EventArgs e)
+        {
+            if (Map == null)
+            {
+                MessageBox.Show("There is no Map-data to save", "Error");
+                return;
+            }
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                InitialDirectory = pathExport,
+				Filter = "StereoLithography|*.stl"
+            };
+            Cursor.Current = Cursors.WaitCursor;
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                Logger.Info("Save STL {0}", sfd.FileName);
+                Map.SaveSTL(sfd.FileName);
+                pathExport = Path.GetDirectoryName(sfd.FileName);
+            }
+            Cursor.Current = Cursors.Default;
+            sfd.Dispose();
+        }
+
+        private void BtnSaveOBJ_Click(object sender, EventArgs e)
+        {
+            if (Map == null)
+            {
+                MessageBox.Show("There is no Map-data to save", "Error");
+                return;
+            }
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                InitialDirectory = pathExport,
+				Filter = "3D Object Format|*.obj"
+            };
+            Cursor.Current = Cursors.WaitCursor;
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                Logger.Info("Save OBJ {0}", sfd.FileName);
+                Map.SaveOBJ(sfd.FileName);
+                pathExport = Path.GetDirectoryName(sfd.FileName);
+            }
+            Cursor.Current = Cursors.Default;
+            sfd.Dispose();
+        }
+
+        private void BtnSaveX3D_Click(object sender, EventArgs e)
+        {
+            if (Map == null)
+            {
+                MessageBox.Show("There is no Map-data to save", "Error");
+                return;
+            }
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                InitialDirectory = pathExport,
+				Filter = "X3D|*.x3d"
+            };
+            Cursor.Current = Cursors.WaitCursor;
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                Logger.Info("Save X3D {0}", sfd.FileName);
+                Map.SaveX3D(sfd.FileName);
+                pathExport = Path.GetDirectoryName(sfd.FileName);
+            }
+            Cursor.Current = Cursors.Default;
+            sfd.Dispose();
+        }
+
     }
-
-    public struct Vector2 : IEquatable<Vector2>
-    {
-
-        private double x;
-
-        private double y;
-
-        public Vector2(double x, double y)
-        {
-            // Pre-initialisation initialisation
-            // Implemented because a struct's variables always have to be set in the constructor before moving control
-            this.x = 0;
-            this.y = 0;
-
-            // Initialisation
-            X = x;
-            Y = y;
-        }
-
-        public double X
-        {
-            get { return x; }
-            set { x = value; }
-        }
-
-        public double Y
-        {
-            get { return y; }
-            set { y = value; }
-        }
-
-        public float Length()
-        {
-            return (float)Math.Sqrt(x * x + y * y);
-        }
-
-        public static float Distance(Vector2 a, Vector2 b)
-        {
-            double dx = a.X - b.X;
-            double dy = a.Y - b.Y;
-            return (float)Math.Sqrt(dx * dx + dy * dy);
-        }
-        public static Vector2 operator +(Vector2 v1, Vector2 v2)
-        { return Add(v1, v2); }
-        public static Vector2 Add(Vector2 v1, Vector2 v2)
-        {
-            return
-            (
-                new Vector2
-                    (
-                        v1.X + v2.X,
-                        v1.Y + v2.Y
-                    )
-            );
-        }
-
-        public static Vector2 operator -(Vector2 v1, Vector2 v2)
-        { return Subtract(v1, v2); }
-        public static Vector2 Subtract(Vector2 v1, Vector2 v2)
-        {
-            return
-            (
-                new Vector2
-                    (
-                        v1.X - v2.X,
-                        v1.Y - v2.Y
-                    )
-            );
-        }
-
-        public static Vector2 operator *(Vector2 v1, double s2)
-        { return Multiply(v1, s2); }
-        public static Vector2 Multiply(Vector2 v1, double s2)
-        {
-            return
-           (
-                new Vector2
-                (
-                    v1.X * s2,
-                    v1.Y * s2
-                )
-            );
-        }
-
-        public static Vector2 operator *(double s1, Vector2 v2)
-        { return Multiply(s1, v2); }
-        public static Vector2 Multiply(double s1, Vector2 v2)
-        {
-            return v2 * s1;
-        }
-
-        public static Vector2 operator /(Vector2 v1, double s2)
-        { return Divide(v1, s2); }
-        public static Vector2 Divide(Vector2 v1, double s2)
-        {
-            return
-            (
-                new Vector2
-                    (
-                        v1.X / s2,
-                        v1.Y / s2
-                    )
-            );
-        }
-
-        public static Vector2 operator -(Vector2 v1)
-        {
-            return Negate(v1);
-        }
-        public static Vector2 Negate(Vector2 v1)
-        {
-            return
-            (
-                new Vector2
-                    (
-                        -v1.X,
-                        -v1.Y
-                    )
-            );
-        }
-
-        public static bool operator ==(Vector2 v1, Vector2 v2)
-        {
-            return
-            (
-                Math.Abs(v1.X - v2.X) <= EqualityTolerence &&
-                Math.Abs(v1.Y - v2.Y) <= EqualityTolerence
-            );
-        }
-
-        public static bool operator !=(Vector2 v1, Vector2 v2)
-        {
-            return !(v1 == v2);
-        }
-
-        public bool Equals(Vector2 other)
-        {
-            return other == this;
-        }
-
-        public override bool Equals(object other)
-        {
-            // Convert object to Vector3
-            // Check object other is a Vector3 object
-            if (other is Vector2 otherVector)
-            {
-                // Check for equality
-                return otherVector == this;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public override int GetHashCode()
-        {
-            return
-            (
-                (int)((X + Y) % Int32.MaxValue)
-            );
-        }
-
-        public const double EqualityTolerence = double.Epsilon;
-    }
-
 }

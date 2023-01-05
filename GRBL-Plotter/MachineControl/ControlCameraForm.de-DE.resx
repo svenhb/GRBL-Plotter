@@ -485,4 +485,12 @@ Umschalt -"c" zum Löschen der Liste</value>
   <data name="setMachinePositionToolStripMenuItem.Text" xml:space="preserve">
     <value>Klicken Sie hier, um den grbl-Maschinenversatz am Ursprung zu erhalten</value>
   </data>
+  <data name="cBShapeDetection.ToolTip" xml:space="preserve">
+    <value>Aktivieren Sie die Formerkennung in dieser Ansicht.
+Muss für die automatische Bezugspunktkorrektur nicht aktiviert werden.</value>
+  </data>
+  <data name="CbUseShapeRecognition.ToolTip" xml:space="preserve">
+    <value>Verwenden Sie die Formerkennung, um Passermarken automatisch zu finden.
+Wenn deaktiviert, müssen Fiducials manuell durch Auswählen im Videobild zugewiesen werden.</value>
+  </data>
 </root>

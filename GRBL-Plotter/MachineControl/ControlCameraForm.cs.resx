@@ -425,4 +425,12 @@ Shift - "c" pro vymazání seznamu</value>
   <data name="$this.Text" xml:space="preserve">
     <value>Fotoaparát</value>
   </data>
+  <data name="cBShapeDetection.ToolTip" xml:space="preserve">
+    <value>Povolit rozpoznávání tvarů v tomto zobrazení.
+Není nutné aktivovat automatickou korekce fudicial.</value>
+  </data>
+  <data name="CbUseShapeRecognition.ToolTip" xml:space="preserve">
+    <value>Použijte rozpoznávání tvarů k automatickému vyhledání referenčních značek.
+Pokud je zakázáno, musí být referenční značky přiřazeny ručně výběrem v obraze videa.</value>
+  </data>
 </root>

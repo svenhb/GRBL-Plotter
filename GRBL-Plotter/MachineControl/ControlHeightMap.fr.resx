@@ -311,4 +311,34 @@
   <data name="BtnPosFromCodeDimension.Text" xml:space="preserve">
     <value>Dimensions du GCode chargé</value>
   </data>
+  <data name="RbScanY.Text" xml:space="preserve">
+    <value>Scanner Y, extruder X</value>
+  </data>
+  <data name="RbScanX.Text" xml:space="preserve">
+    <value>Scanner X, extruder Y</value>
+  </data>
+  <data name="CbExtrudeEnable.Text" xml:space="preserve">
+    <value>Sonder un axe, extruder l'autre</value>
+  </data>
+  <data name="sTLToolStripMenuItem.Text" xml:space="preserve">
+    <value>Importer le profil de hauteur de STL</value>
+  </data>
+  <data name="importToolStripMenuItem.Text" xml:space="preserve">
+    <value>Importer</value>
+  </data>
+  <data name="GbProbing.Text" xml:space="preserve">
+    <value>Sondage, sélectionner la source pour la valeur Z</value>
+  </data>
+  <data name="CbInterpolate.Text" xml:space="preserve">
+    <value>Interpoler</value>
+  </data>
+  <data name="CbNewStepWidth.Text" xml:space="preserve">
+    <value>Largeur de pas individuelle</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Remarque : pour le fraisage de la carte de hauteur, la valeur maximale doit être égale ou inférieure à zéro.</value>
+  </data>
+  <data name="nUDCutOffZ.ToolTip" xml:space="preserve">
+    <value>Après l'importation STL, la deuxième plus petite valeur sera affichée</value>
+  </data>
 </root>

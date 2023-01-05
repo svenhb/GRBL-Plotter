@@ -425,4 +425,12 @@ Shift -"c" 清除列表</value>
   <data name="setMachinePositionToolStripMenuItem.Text" xml:space="preserve">
     <value>单击以获取原点处的 grbl 机器偏移量</value>
   </data>
+  <data name="cBShapeDetection.ToolTip" xml:space="preserve">
+    <value>在此视图中启用形状识别。
+不需要启用自动基准更正。</value>
+  </data>
+  <data name="CbUseShapeRecognition.ToolTip" xml:space="preserve">
+    <value>使用形状识别自动查找基准点。
+如果禁用，则必须通过在视频图片中选择来手动分配基准点。</value>
+  </data>
 </root>

@@ -3284,4 +3284,28 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
     <value>Использовать штриховой узор замкнутого пути</value>
   </data>
+  <data name="label73.Text" xml:space="preserve">
+    <value>Если количество цифр превышает это значение, все цифры одной группы будут суммированы в одну цифру.</value>
+  </data>
+  <data name="groupBox30.Text" xml:space="preserve">
+    <value>Преобразование относительно</value>
+  </data>
+  <data name="label87.Text" xml:space="preserve">
+    <value>сек.</value>
+  </data>
+  <data name="label86.Text" xml:space="preserve">
+    <value>Тайм-аут для распознавания</value>
+  </data>
+  <data name="CbDuplicateAddHeight.Text" xml:space="preserve">
+    <value>Добавить высоту выделения</value>
+  </data>
+  <data name="CbDuplicateAddWidth.Text" xml:space="preserve">
+    <value>Добавить ширину выделения</value>
+  </data>
+  <data name="groupBox32.Text" xml:space="preserve">
+    <value>Дублировать смещение</value>
+  </data>
+  <data name="groupBox32.ToolTip" xml:space="preserve">
+    <value>Примените смещение к скопированному и вставленному выделению.</value>
+  </data>
 </root>

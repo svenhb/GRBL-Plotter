@@ -17918,16 +17918,13 @@ Or assign a filename containing GCode. </value>
     <value>4</value>
   </data>
   <data name="textBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>302, 268</value>
+    <value>302, 270</value>
   </data>
   <data name="textBox3.Size" type="System.Drawing.Size, System.Drawing">
     <value>350, 20</value>
   </data>
   <data name="textBox3.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
-  </data>
-  <data name="textBox3.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;textBox3.Name" xml:space="preserve">
     <value>textBox3</value>
@@ -18518,6 +18515,90 @@ Or assign a filename containing GCode. </value>
   <data name="&gt;&gt;tab10gB2.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="label87.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label87.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label87.Location" type="System.Drawing.Point, System.Drawing">
+    <value>192, 143</value>
+  </data>
+  <data name="label87.Size" type="System.Drawing.Size, System.Drawing">
+    <value>27, 13</value>
+  </data>
+  <data name="label87.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="label87.Text" xml:space="preserve">
+    <value>sec.</value>
+  </data>
+  <data name="&gt;&gt;label87.Name" xml:space="preserve">
+    <value>label87</value>
+  </data>
+  <data name="&gt;&gt;label87.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label87.Parent" xml:space="preserve">
+    <value>tab10gB3</value>
+  </data>
+  <data name="&gt;&gt;label87.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="numericUpDown16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>134, 141</value>
+  </data>
+  <data name="numericUpDown16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 20</value>
+  </data>
+  <data name="numericUpDown16.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="numericUpDown16.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown16.Name" xml:space="preserve">
+    <value>numericUpDown16</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown16.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown16.Parent" xml:space="preserve">
+    <value>tab10gB3</value>
+  </data>
+  <data name="&gt;&gt;numericUpDown16.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label86.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label86.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label86.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 143</value>
+  </data>
+  <data name="label86.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 13</value>
+  </data>
+  <data name="label86.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="label86.Text" xml:space="preserve">
+    <value>Timeout for recognition</value>
+  </data>
+  <data name="&gt;&gt;label86.Name" xml:space="preserve">
+    <value>label86</value>
+  </data>
+  <data name="&gt;&gt;label86.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label86.Parent" xml:space="preserve">
+    <value>tab10gB3</value>
+  </data>
+  <data name="&gt;&gt;label86.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="nUDShapeSizeMax.Location" type="System.Drawing.Point, System.Drawing">
     <value>192, 48</value>
   </data>
@@ -18540,7 +18621,7 @@ Or assign a filename containing GCode. </value>
     <value>tab10gB3</value>
   </data>
   <data name="&gt;&gt;nUDShapeSizeMax.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
   </data>
   <data name="nUDShapeDistMax.Location" type="System.Drawing.Point, System.Drawing">
     <value>134, 98</value>
@@ -18564,7 +18645,7 @@ Or assign a filename containing GCode. </value>
     <value>tab10gB3</value>
   </data>
   <data name="&gt;&gt;nUDShapeDistMax.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="tab10gB3lbl6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -18594,7 +18675,7 @@ Or assign a filename containing GCode. </value>
     <value>tab10gB3</value>
   </data>
   <data name="&gt;&gt;tab10gB3lbl6.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="tab10gB3lbl3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -18625,7 +18706,7 @@ Or assign a filename containing GCode. </value>
     <value>tab10gB3</value>
   </data>
   <data name="&gt;&gt;tab10gB3lbl3.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="tab10gB3lbl5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -18656,7 +18737,7 @@ Or assign a filename containing GCode. </value>
     <value>tab10gB3</value>
   </data>
   <data name="&gt;&gt;tab10gB3lbl5.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="tab10gB3lbl4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -18687,7 +18768,7 @@ Or assign a filename containing GCode. </value>
     <value>tab10gB3</value>
   </data>
   <data name="&gt;&gt;tab10gB3lbl4.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="tab10gB3lbl2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -18718,7 +18799,7 @@ Or assign a filename containing GCode. </value>
     <value>tab10gB3</value>
   </data>
   <data name="&gt;&gt;tab10gB3lbl2.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="nUDShapeDistMin.Location" type="System.Drawing.Point, System.Drawing">
     <value>134, 73</value>
@@ -18742,7 +18823,7 @@ Or assign a filename containing GCode. </value>
     <value>tab10gB3</value>
   </data>
   <data name="&gt;&gt;nUDShapeDistMin.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>10</value>
   </data>
   <data name="nUDShapeSizeMin.Location" type="System.Drawing.Point, System.Drawing">
     <value>134, 48</value>
@@ -18766,7 +18847,7 @@ Or assign a filename containing GCode. </value>
     <value>tab10gB3</value>
   </data>
   <data name="&gt;&gt;nUDShapeSizeMin.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>11</value>
   </data>
   <data name="tab10gB3lbl1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -18797,7 +18878,7 @@ Or assign a filename containing GCode. </value>
     <value>tab10gB3</value>
   </data>
   <data name="&gt;&gt;tab10gB3lbl1.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>12</value>
   </data>
   <data name="cBShapeRect.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -18828,7 +18909,7 @@ Or assign a filename containing GCode. </value>
     <value>tab10gB3</value>
   </data>
   <data name="&gt;&gt;cBShapeRect.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>13</value>
   </data>
   <data name="cBShapeCircle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -18859,13 +18940,13 @@ Or assign a filename containing GCode. </value>
     <value>tab10gB3</value>
   </data>
   <data name="&gt;&gt;cBShapeCircle.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>14</value>
   </data>
   <data name="tab10gB3.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 125</value>
   </data>
   <data name="tab10gB3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>290, 139</value>
+    <value>290, 179</value>
   </data>
   <data name="tab10gB3.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>

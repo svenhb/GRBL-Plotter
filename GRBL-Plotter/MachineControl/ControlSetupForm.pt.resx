@@ -3070,4 +3070,28 @@ Além disso, a posição do eixo Z pode ser usada para, por exemplo, aumentar a 
   <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
     <value>Usar padrão de traço de caminho fechado</value>
   </data>
+  <data name="label73.Text" xml:space="preserve">
+    <value>Se a quantidade de figuras exceder este valor, todas as figuras de um grupo serão resumidas em uma figura.</value>
+  </data>
+  <data name="groupBox30.Text" xml:space="preserve">
+    <value>Conversão relativa</value>
+  </data>
+  <data name="label87.Text" xml:space="preserve">
+    <value>seg.</value>
+  </data>
+  <data name="label86.Text" xml:space="preserve">
+    <value>Tempo limite para reconhecimento</value>
+  </data>
+  <data name="CbDuplicateAddHeight.Text" xml:space="preserve">
+    <value>Adicionar altura de seleção</value>
+  </data>
+  <data name="CbDuplicateAddWidth.Text" xml:space="preserve">
+    <value>Adicionar largura de seleção</value>
+  </data>
+  <data name="groupBox32.Text" xml:space="preserve">
+    <value>Deslocamento duplicado</value>
+  </data>
+  <data name="groupBox32.ToolTip" xml:space="preserve">
+    <value>Aplique um deslocamento à seleção copiada e inserida.</value>
+  </data>
 </root>

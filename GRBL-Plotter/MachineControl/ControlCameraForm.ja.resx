@@ -425,4 +425,12 @@ Shift- "c"でリストをクリア</value>
   <data name="setMachinePositionToolStripMenuItem.Text" xml:space="preserve">
     <value>クリックして、原点でのgrblマシンオフセットを取得します</value>
   </data>
+  <data name="cBShapeDetection.ToolTip" xml:space="preserve">
+    <value>このビューで形状認識を有効にします。
+自動基準補正を有効にする必要はありません。</value>
+  </data>
+  <data name="CbUseShapeRecognition.ToolTip" xml:space="preserve">
+    <value>形状認識を使用して基準を自動的に見つけます。
+無効にした場合、基準はビデオ画像で選択して手動で割り当てる必要があります。</value>
+  </data>
 </root>

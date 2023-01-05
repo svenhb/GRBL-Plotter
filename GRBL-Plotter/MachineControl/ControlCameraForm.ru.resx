@@ -425,4 +425,12 @@ Shift - «c», чтобы очистить список</value>
   <data name="setMachinePositionToolStripMenuItem.Text" xml:space="preserve">
     <value>Нажмите, чтобы получить машинное смещение grbl в исходной точке</value>
   </data>
+  <data name="cBShapeDetection.ToolTip" xml:space="preserve">
+    <value>Включите распознавание фигур в этом представлении.
+Не нужно включать автоматическую фудициальную коррекцию.</value>
+  </data>
+  <data name="CbUseShapeRecognition.ToolTip" xml:space="preserve">
+    <value>Используйте распознавание формы для автоматического поиска реперных знаков.
+Если эта функция отключена, реперные точки должны быть назначены вручную путем выбора на видеоизображении.</value>
+  </data>
 </root>

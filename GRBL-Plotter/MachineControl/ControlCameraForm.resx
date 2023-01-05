@@ -122,6 +122,43 @@
     <value>Center</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="cmsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>346, 220</value>
+  </data>
+  <data name="&gt;&gt;cmsPictureBox.Name" xml:space="preserve">
+    <value>cmsPictureBox</value>
+  </data>
+  <data name="&gt;&gt;cmsPictureBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="pictureBoxVideo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="pictureBoxVideo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 123</value>
+  </data>
+  <data name="pictureBoxVideo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="pictureBoxVideo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>640, 480</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="pictureBoxVideo.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxVideo.Name" xml:space="preserve">
+    <value>pictureBoxVideo</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxVideo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxVideo.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pictureBoxVideo.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="setWork00ToHereToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>345, 22</value>
   </data>
@@ -212,43 +249,6 @@
   <data name="showOverlayGraphicsToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Show overlay graphics (ruler, pen-down path, etc.)</value>
   </data>
-  <data name="cmsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>346, 220</value>
-  </data>
-  <data name="&gt;&gt;cmsPictureBox.Name" xml:space="preserve">
-    <value>cmsPictureBox</value>
-  </data>
-  <data name="&gt;&gt;cmsPictureBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="pictureBoxVideo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="pictureBoxVideo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 123</value>
-  </data>
-  <data name="pictureBoxVideo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="pictureBoxVideo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>640, 480</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="pictureBoxVideo.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxVideo.Name" xml:space="preserve">
-    <value>pictureBoxVideo</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxVideo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxVideo.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;pictureBoxVideo.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="nUDCameraZoom.Location" type="System.Drawing.Point, System.Drawing">
     <value>46, 14</value>
   </data>
@@ -300,265 +300,6 @@
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="simulateCameraToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
-  </data>
-  <data name="simulateCameraToolStripMenuItem.Text" xml:space="preserve">
-    <value>Simulate camera</value>
-  </data>
-  <data name="toolStripCameraMount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 23</value>
-  </data>
-  <data name="cameraMountToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
-  </data>
-  <data name="cameraMountToolStripMenuItem.Text" xml:space="preserve">
-    <value>Camera mount</value>
-  </data>
-  <data name="camSourceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
-  </data>
-  <data name="camSourceToolStripMenuItem.Text" xml:space="preserve">
-    <value>Video Source</value>
-  </data>
-  <data name="camSourceToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Select camera source.</value>
-  </data>
-  <data name="resetAndTeachToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 22</value>
-  </data>
-  <data name="resetAndTeachToolStripMenuItem.Text" xml:space="preserve">
-    <value>Reset and teach</value>
-  </data>
-  <data name="distortionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
-  </data>
-  <data name="distortionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Distortion correction</value>
-  </data>
-  <data name="toolStripTextBox1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
-  </data>
-  <data name="toolStripTextBox1.MaxLength" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="toolStripTextBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 23</value>
-  </data>
-  <data name="toolStripTextBox1.Text" xml:space="preserve">
-    <value>000,00</value>
-  </data>
-  <data name="toolStripTextBox1.ToolTipText" xml:space="preserve">
-    <value>Rotate video image - enter angle</value>
-  </data>
-  <data name="setRotationAngleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
-  </data>
-  <data name="setRotationAngleToolStripMenuItem.Text" xml:space="preserve">
-    <value>Picture rotation</value>
-  </data>
-  <data name="setRotationAngleToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Rotate video image - enter angle</value>
-  </data>
-  <data name="upperPositionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 22</value>
-  </data>
-  <data name="upperPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Teach Upper Position</value>
-  </data>
-  <data name="upperPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Teach camera view</value>
-  </data>
-  <data name="toolStripTextBox2.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="toolStripTextBox2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
-  </data>
-  <data name="toolStripTextBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
-  </data>
-  <data name="toolStripTextBox2.Text" xml:space="preserve">
-    <value>30</value>
-  </data>
-  <data name="toolStripTextBox2.ToolTipText" xml:space="preserve">
-    <value>in GRBL units (mm or inch)</value>
-  </data>
-  <data name="teachRadiusTopToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 22</value>
-  </data>
-  <data name="teachRadiusTopToolStripMenuItem.Text" xml:space="preserve">
-    <value>Set teach radius top</value>
-  </data>
-  <data name="lowerPositionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 22</value>
-  </data>
-  <data name="lowerPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Teach Lower Position</value>
-  </data>
-  <data name="lowerPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Teach camera view</value>
-  </data>
-  <data name="toolStripTextBox3.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="toolStripTextBox3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
-  </data>
-  <data name="toolStripTextBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
-  </data>
-  <data name="toolStripTextBox3.Text" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="toolStripTextBox3.ToolTipText" xml:space="preserve">
-    <value>in GRBL units (mm or inch)</value>
-  </data>
-  <data name="teachRadiusBottomToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 22</value>
-  </data>
-  <data name="teachRadiusBottomToolStripMenuItem.Text" xml:space="preserve">
-    <value>Set teach radius bottom</value>
-  </data>
-  <data name="teachScalingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
-  </data>
-  <data name="teachScalingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Teach scaling</value>
-  </data>
-  <data name="teachScalingToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>1) Home Plotter
-2) move camera to upper position
-3) click in picture to teach distance of top radius
-4) move camera to lower position
-5) click in picture to teach distance of bottom radius
-</value>
-  </data>
-  <data name="teachRadiusToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 22</value>
-  </data>
-  <data name="teachRadiusToolStripMenuItem.Text" xml:space="preserve">
-    <value>Teach radius</value>
-  </data>
-  <data name="toolStripTextBox4.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
-  </data>
-  <data name="toolStripTextBox4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
-  </data>
-  <data name="toolStripTextBox4.Text" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="setTeachRadiusToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 22</value>
-  </data>
-  <data name="setTeachRadiusToolStripMenuItem.Text" xml:space="preserve">
-    <value>Set teach radius</value>
-  </data>
-  <data name="teachScaling2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
-  </data>
-  <data name="teachScaling2ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Teach scaling</value>
-  </data>
-  <data name="teachScaling2ToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="setToolPositionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>287, 22</value>
-  </data>
-  <data name="setToolPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Click to set origin in 2D view</value>
-  </data>
-  <data name="setMachinePositionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>287, 22</value>
-  </data>
-  <data name="setMachinePositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Click to get grbl machine offset at origin</value>
-  </data>
-  <data name="toolPositionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
-  </data>
-  <data name="toolPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Set coordinate orign</value>
-  </data>
-  <data name="teachToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
-  </data>
-  <data name="teachToolStripMenuItem.Text" xml:space="preserve">
-    <value>Teach Camera Offset</value>
-  </data>
-  <data name="teachToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>1) Zero X,Y position
-2) Mark tool position (at X=0,Y=0)
-3) Move until marker is in center of camera view
-4) Teach actual position as offset</value>
-  </data>
-  <data name="teachOffsetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
-  </data>
-  <data name="teachOffsetToolStripMenuItem.Text" xml:space="preserve">
-    <value>Teach Offset</value>
-  </data>
-  <data name="teachOffsetToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>1) switch to 'Tool coord.' (G54)
-2) Zero X,Y position
-3) Mark tool position (at X=0,Y=0) with tool on work piece
-4) Move marker below center of camera view
-5) Teach actual position as offset
-6) switch to 'Cam coord.' (G59) - shows now X=0, Y=0</value>
-  </data>
-  <data name="teachOffsetToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="textToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 22</value>
-  </data>
-  <data name="textToolStripMenuItem.Text" xml:space="preserve">
-    <value>Text</value>
-  </data>
-  <data name="crossHairsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 22</value>
-  </data>
-  <data name="crossHairsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Cross Hairs</value>
-  </data>
-  <data name="colorsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
-  </data>
-  <data name="colorsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Colors</value>
-  </data>
-  <data name="setupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 20</value>
-  </data>
-  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
-    <value>Setup</value>
-  </data>
-  <data name="penupPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 22</value>
-  </data>
-  <data name="penupPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>Pen-up path</value>
-  </data>
-  <data name="machineLimitsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 22</value>
-  </data>
-  <data name="machineLimitsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Machine limits</value>
-  </data>
-  <data name="dimensionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 22</value>
-  </data>
-  <data name="dimensionToolStripMenuItem.Text" xml:space="preserve">
-    <value>G-Code Dimension</value>
-  </data>
-  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
-    <value>View</value>
-  </data>
   <data name="menuStripCamera.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -582,6 +323,265 @@
   </data>
   <data name="&gt;&gt;menuStripCamera.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="setupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 20</value>
+  </data>
+  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Setup</value>
+  </data>
+  <data name="simulateCameraToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="simulateCameraToolStripMenuItem.Text" xml:space="preserve">
+    <value>Simulate camera</value>
+  </data>
+  <data name="cameraMountToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="cameraMountToolStripMenuItem.Text" xml:space="preserve">
+    <value>Camera mount</value>
+  </data>
+  <data name="toolStripCameraMount.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 23</value>
+  </data>
+  <data name="camSourceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="camSourceToolStripMenuItem.Text" xml:space="preserve">
+    <value>Video Source</value>
+  </data>
+  <data name="camSourceToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Select camera source.</value>
+  </data>
+  <data name="distortionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="distortionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Distortion correction</value>
+  </data>
+  <data name="resetAndTeachToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 22</value>
+  </data>
+  <data name="resetAndTeachToolStripMenuItem.Text" xml:space="preserve">
+    <value>Reset and teach</value>
+  </data>
+  <data name="setRotationAngleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="setRotationAngleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Picture rotation</value>
+  </data>
+  <data name="setRotationAngleToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Rotate video image - enter angle</value>
+  </data>
+  <data name="toolStripTextBox1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="toolStripTextBox1.MaxLength" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="toolStripTextBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 23</value>
+  </data>
+  <data name="toolStripTextBox1.Text" xml:space="preserve">
+    <value>000,00</value>
+  </data>
+  <data name="toolStripTextBox1.ToolTipText" xml:space="preserve">
+    <value>Rotate video image - enter angle</value>
+  </data>
+  <data name="teachScalingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="teachScalingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Teach scaling</value>
+  </data>
+  <data name="teachScalingToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1) Home Plotter
+2) move camera to upper position
+3) click in picture to teach distance of top radius
+4) move camera to lower position
+5) click in picture to teach distance of bottom radius
+</value>
+  </data>
+  <data name="upperPositionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 22</value>
+  </data>
+  <data name="upperPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Teach Upper Position</value>
+  </data>
+  <data name="upperPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Teach camera view</value>
+  </data>
+  <data name="teachRadiusTopToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 22</value>
+  </data>
+  <data name="teachRadiusTopToolStripMenuItem.Text" xml:space="preserve">
+    <value>Set teach radius top</value>
+  </data>
+  <data name="toolStripTextBox2.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="toolStripTextBox2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="toolStripTextBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
+  </data>
+  <data name="toolStripTextBox2.Text" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="toolStripTextBox2.ToolTipText" xml:space="preserve">
+    <value>in GRBL units (mm or inch)</value>
+  </data>
+  <data name="lowerPositionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 22</value>
+  </data>
+  <data name="lowerPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Teach Lower Position</value>
+  </data>
+  <data name="lowerPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Teach camera view</value>
+  </data>
+  <data name="teachRadiusBottomToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 22</value>
+  </data>
+  <data name="teachRadiusBottomToolStripMenuItem.Text" xml:space="preserve">
+    <value>Set teach radius bottom</value>
+  </data>
+  <data name="toolStripTextBox3.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="toolStripTextBox3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="toolStripTextBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
+  </data>
+  <data name="toolStripTextBox3.Text" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="toolStripTextBox3.ToolTipText" xml:space="preserve">
+    <value>in GRBL units (mm or inch)</value>
+  </data>
+  <data name="teachScaling2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="teachScaling2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Teach scaling</value>
+  </data>
+  <data name="teachScaling2ToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="teachRadiusToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 22</value>
+  </data>
+  <data name="teachRadiusToolStripMenuItem.Text" xml:space="preserve">
+    <value>Teach radius</value>
+  </data>
+  <data name="setTeachRadiusToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 22</value>
+  </data>
+  <data name="setTeachRadiusToolStripMenuItem.Text" xml:space="preserve">
+    <value>Set teach radius</value>
+  </data>
+  <data name="toolStripTextBox4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="toolStripTextBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
+  </data>
+  <data name="toolStripTextBox4.Text" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="toolPositionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="toolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Set coordinate orign</value>
+  </data>
+  <data name="setToolPositionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>287, 22</value>
+  </data>
+  <data name="setToolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Click to set origin in 2D view</value>
+  </data>
+  <data name="setMachinePositionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>287, 22</value>
+  </data>
+  <data name="setMachinePositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Click to get grbl machine offset at origin</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Teach Offset</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1) switch to 'Tool coord.' (G54)
+2) Zero X,Y position
+3) Mark tool position (at X=0,Y=0) with tool on work piece
+4) Move marker below center of camera view
+5) Teach actual position as offset
+6) switch to 'Cam coord.' (G59) - shows now X=0, Y=0</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="teachToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="teachToolStripMenuItem.Text" xml:space="preserve">
+    <value>Teach Camera Offset</value>
+  </data>
+  <data name="teachToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1) Zero X,Y position
+2) Mark tool position (at X=0,Y=0)
+3) Move until marker is in center of camera view
+4) Teach actual position as offset</value>
+  </data>
+  <data name="colorsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="colorsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Colors</value>
+  </data>
+  <data name="textToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 22</value>
+  </data>
+  <data name="textToolStripMenuItem.Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="crossHairsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 22</value>
+  </data>
+  <data name="crossHairsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Cross Hairs</value>
+  </data>
+  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="penupPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 22</value>
+  </data>
+  <data name="penupPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Pen-up path</value>
+  </data>
+  <data name="machineLimitsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 22</value>
+  </data>
+  <data name="machineLimitsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Machine limits</value>
+  </data>
+  <data name="dimensionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 22</value>
+  </data>
+  <data name="dimensionToolStripMenuItem.Text" xml:space="preserve">
+    <value>G-Code Dimension</value>
   </data>
   <data name="btnApplyAngle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -876,21 +876,6 @@ Shift -"c" to clear list</value>
   <data name="&gt;&gt;GbZoom.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="BtnSetOffsetZero.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="BtnSetOffsetZero.Location" type="System.Drawing.Point, System.Drawing">
-    <value>209, 54</value>
-  </data>
-  <data name="BtnSetOffsetZero.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 23</value>
-  </data>
-  <data name="BtnSetOffsetZero.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="BtnSetOffsetZero.Text" xml:space="preserve">
-    <value>Set XY = 0;0</value>
-  </data>
   <data name="&gt;&gt;BtnSetOffsetZero.Name" xml:space="preserve">
     <value>BtnSetOffsetZero</value>
   </data>
@@ -902,21 +887,6 @@ Shift -"c" to clear list</value>
   </data>
   <data name="&gt;&gt;BtnSetOffsetZero.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="BtnSetOffsetMarker.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="BtnSetOffsetMarker.Location" type="System.Drawing.Point, System.Drawing">
-    <value>209, 19</value>
-  </data>
-  <data name="BtnSetOffsetMarker.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 23</value>
-  </data>
-  <data name="BtnSetOffsetMarker.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="BtnSetOffsetMarker.Text" xml:space="preserve">
-    <value>Set XY = Marker</value>
   </data>
   <data name="&gt;&gt;BtnSetOffsetMarker.Name" xml:space="preserve">
     <value>BtnSetOffsetMarker</value>
@@ -954,6 +924,36 @@ Shift -"c" to clear list</value>
   <data name="&gt;&gt;GbOffset.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="BtnSetOffsetZero.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnSetOffsetZero.Location" type="System.Drawing.Point, System.Drawing">
+    <value>209, 54</value>
+  </data>
+  <data name="BtnSetOffsetZero.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 23</value>
+  </data>
+  <data name="BtnSetOffsetZero.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="BtnSetOffsetZero.Text" xml:space="preserve">
+    <value>Set XY = 0;0</value>
+  </data>
+  <data name="BtnSetOffsetMarker.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnSetOffsetMarker.Location" type="System.Drawing.Point, System.Drawing">
+    <value>209, 19</value>
+  </data>
+  <data name="BtnSetOffsetMarker.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 23</value>
+  </data>
+  <data name="BtnSetOffsetMarker.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="BtnSetOffsetMarker.Text" xml:space="preserve">
+    <value>Set XY = Marker</value>
+  </data>
   <data name="lblCenterPos.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -984,21 +984,6 @@ Shift -"c" to clear list</value>
   <data name="&gt;&gt;lblCenterPos.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="label6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>253, 14</value>
-  </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>144, 63</value>
-  </data>
-  <data name="label6.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Rigth click for rotation point, keep pressed, release at desired angle</value>
-  </data>
   <data name="&gt;&gt;label6.Name" xml:space="preserve">
     <value>label6</value>
   </data>
@@ -1010,24 +995,6 @@ Shift -"c" to clear list</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="CbScale.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="CbScale.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="CbScale.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 32</value>
-  </data>
-  <data name="CbScale.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 17</value>
-  </data>
-  <data name="CbScale.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="CbScale.Text" xml:space="preserve">
-    <value>Also scale</value>
   </data>
   <data name="&gt;&gt;CbScale.Name" xml:space="preserve">
     <value>CbScale</value>
@@ -1041,24 +1008,6 @@ Shift -"c" to clear list</value>
   <data name="&gt;&gt;CbScale.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 16</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>34, 13</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Angle</value>
-  </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
   </data>
@@ -1070,24 +1019,6 @@ Shift -"c" to clear list</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="cBRotateArround0.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBRotateArround0.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBRotateArround0.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 32</value>
-  </data>
-  <data name="cBRotateArround0.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 17</value>
-  </data>
-  <data name="cBRotateArround0.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="cBRotateArround0.Text" xml:space="preserve">
-    <value>Rotate arround 0;0</value>
   </data>
   <data name="&gt;&gt;cBRotateArround0.Name" xml:space="preserve">
     <value>cBRotateArround0</value>
@@ -1125,6 +1056,75 @@ Shift -"c" to clear list</value>
   <data name="&gt;&gt;GbMeasure.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="label6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>253, 14</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 63</value>
+  </data>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Rigth click for rotation point, keep pressed, release at desired angle</value>
+  </data>
+  <data name="CbScale.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbScale.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbScale.Location" type="System.Drawing.Point, System.Drawing">
+    <value>150, 32</value>
+  </data>
+  <data name="CbScale.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 17</value>
+  </data>
+  <data name="CbScale.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="CbScale.Text" xml:space="preserve">
+    <value>Also scale</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 13</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Angle</value>
+  </data>
+  <data name="cBRotateArround0.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBRotateArround0.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBRotateArround0.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 32</value>
+  </data>
+  <data name="cBRotateArround0.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 17</value>
+  </data>
+  <data name="cBRotateArround0.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="cBRotateArround0.Text" xml:space="preserve">
+    <value>Rotate arround 0;0</value>
+  </data>
   <data name="cBShapeDetection.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1142,6 +1142,10 @@ Shift -"c" to clear list</value>
   </data>
   <data name="cBShapeDetection.Text" xml:space="preserve">
     <value>Enable shape recognition</value>
+  </data>
+  <data name="cBShapeDetection.ToolTip" xml:space="preserve">
+    <value>Enable shape recognition in this view.
+Doesn't need to be enabled for automatic fudicial correction.</value>
   </data>
   <data name="&gt;&gt;cBShapeDetection.Name" xml:space="preserve">
     <value>cBShapeDetection</value>
@@ -1275,9 +1279,6 @@ Shift -"c" to clear list</value>
   <data name="&gt;&gt;comboBox1.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="toolStripStatusLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 17</value>
-  </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 605</value>
   </data>
@@ -1302,26 +1303,11 @@ Shift -"c" to clear list</value>
   <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="toolStripStatusLabel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 17</value>
+  </data>
   <data name="tabControl1.Alignment" type="System.Windows.Forms.TabAlignment, System.Windows.Forms">
     <value>Left</value>
-  </data>
-  <data name="checkBox1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="checkBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="checkBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>177, 69</value>
-  </data>
-  <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 17</value>
-  </data>
-  <data name="checkBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
-  </data>
-  <data name="checkBox1.Text" xml:space="preserve">
-    <value>Also scale on rotation</value>
   </data>
   <data name="&gt;&gt;checkBox1.Name" xml:space="preserve">
     <value>checkBox1</value>
@@ -1334,24 +1320,6 @@ Shift -"c" to clear list</value>
   </data>
   <data name="&gt;&gt;checkBox1.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="CbUseShapeRecognition.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="CbUseShapeRecognition.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="CbUseShapeRecognition.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 70</value>
-  </data>
-  <data name="CbUseShapeRecognition.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 17</value>
-  </data>
-  <data name="CbUseShapeRecognition.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
-  </data>
-  <data name="CbUseShapeRecognition.Text" xml:space="preserve">
-    <value>Use shape recognition</value>
   </data>
   <data name="&gt;&gt;CbUseShapeRecognition.Name" xml:space="preserve">
     <value>CbUseShapeRecognition</value>
@@ -1556,6 +1524,46 @@ Shift -"c" to clear list</value>
   </data>
   <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="checkBox1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>177, 69</value>
+  </data>
+  <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 17</value>
+  </data>
+  <data name="checkBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>Also scale on rotation</value>
+  </data>
+  <data name="CbUseShapeRecognition.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbUseShapeRecognition.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbUseShapeRecognition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 70</value>
+  </data>
+  <data name="CbUseShapeRecognition.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 17</value>
+  </data>
+  <data name="CbUseShapeRecognition.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="CbUseShapeRecognition.Text" xml:space="preserve">
+    <value>Use shape recognition</value>
+  </data>
+  <data name="CbUseShapeRecognition.ToolTip" xml:space="preserve">
+    <value>Use shape recognition to find fiducials automatically.
+If disabled, fiducials must be assigned manually by selecting in the video picture.</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>

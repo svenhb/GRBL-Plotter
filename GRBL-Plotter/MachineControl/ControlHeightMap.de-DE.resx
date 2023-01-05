@@ -337,4 +337,34 @@ Achtung, das Höhenprofil sollte vorher gespeichert werden!</value>
   <data name="BtnPosFromCodeDimension.Text" xml:space="preserve">
     <value>Abmessungen aus geladenem GCode</value>
   </data>
+  <data name="RbScanY.Text" xml:space="preserve">
+    <value>Y scannen, X extrudieren</value>
+  </data>
+  <data name="RbScanX.Text" xml:space="preserve">
+    <value>X scannen, Y extrudieren</value>
+  </data>
+  <data name="CbExtrudeEnable.Text" xml:space="preserve">
+    <value>Sondiere eine Achse, extrudiere die andere</value>
+  </data>
+  <data name="sTLToolStripMenuItem.Text" xml:space="preserve">
+    <value>Höhenprofil aus STL importieren</value>
+  </data>
+  <data name="importToolStripMenuItem.Text" xml:space="preserve">
+    <value>Importieren</value>
+  </data>
+  <data name="GbProbing.Text" xml:space="preserve">
+    <value>Sondieren, Quelle für Z-Wert auswählen</value>
+  </data>
+  <data name="CbInterpolate.Text" xml:space="preserve">
+    <value>Interpolieren</value>
+  </data>
+  <data name="CbNewStepWidth.Text" xml:space="preserve">
+    <value>Individuelle Schrittweite</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Hinweis: Beim Fräsen der Höhenkarte sollte der Maximalwert gleich oder kleiner als Null sein.</value>
+  </data>
+  <data name="nUDCutOffZ.ToolTip" xml:space="preserve">
+    <value>Nach dem STL-Import wird der zweitkleinste Wert angezeigt</value>
+  </data>
 </root>

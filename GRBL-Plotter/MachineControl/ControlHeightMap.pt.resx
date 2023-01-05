@@ -311,4 +311,34 @@
   <data name="BtnPosFromCodeDimension.Text" xml:space="preserve">
     <value>Dimensões do GCode carregado</value>
   </data>
+  <data name="RbScanY.Text" xml:space="preserve">
+    <value>Escanear Y, extrudar X</value>
+  </data>
+  <data name="RbScanX.Text" xml:space="preserve">
+    <value>Escanear X, extrudar Y</value>
+  </data>
+  <data name="CbExtrudeEnable.Text" xml:space="preserve">
+    <value>Sonde um eixo, faça a extrusão do outro</value>
+  </data>
+  <data name="sTLToolStripMenuItem.Text" xml:space="preserve">
+    <value>Importar perfil de altura de STL</value>
+  </data>
+  <data name="importToolStripMenuItem.Text" xml:space="preserve">
+    <value>Importar</value>
+  </data>
+  <data name="GbProbing.Text" xml:space="preserve">
+    <value>Sondagem, selecione a fonte para o valor Z</value>
+  </data>
+  <data name="CbInterpolate.Text" xml:space="preserve">
+    <value>Interpolar</value>
+  </data>
+  <data name="CbNewStepWidth.Text" xml:space="preserve">
+    <value>Largura do passo individual</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Nota: para fresar o mapa de altura, o valor máximo deve ser igual ou menor que zero.</value>
+  </data>
+  <data name="nUDCutOffZ.ToolTip" xml:space="preserve">
+    <value>Após a importação STL, o segundo menor valor será exibido</value>
+  </data>
 </root>

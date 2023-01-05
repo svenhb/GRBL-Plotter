@@ -337,4 +337,34 @@
   <data name="BtnPosFromCodeDimension.Text" xml:space="preserve">
     <value>Размеры из загруженного GCode</value>
   </data>
+  <data name="RbScanY.Text" xml:space="preserve">
+    <value>Сканировать Y, выдавить X</value>
+  </data>
+  <data name="RbScanX.Text" xml:space="preserve">
+    <value>Сканировать X, выдавить Y</value>
+  </data>
+  <data name="CbExtrudeEnable.Text" xml:space="preserve">
+    <value>Зондируйте одну ось, выдавливайте другую</value>
+  </data>
+  <data name="sTLToolStripMenuItem.Text" xml:space="preserve">
+    <value>Импорт профиля высоты из STL</value>
+  </data>
+  <data name="importToolStripMenuItem.Text" xml:space="preserve">
+    <value>импорт</value>
+  </data>
+  <data name="GbProbing.Text" xml:space="preserve">
+    <value>Зондирование, выберите источник для значения Z</value>
+  </data>
+  <data name="CbInterpolate.Text" xml:space="preserve">
+    <value>Интерполировать</value>
+  </data>
+  <data name="CbNewStepWidth.Text" xml:space="preserve">
+    <value>Индивидуальная ширина шага</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Примечание: для фрезеровки карты высот максимальное значение должно быть меньше или равно нулю.</value>
+  </data>
+  <data name="nUDCutOffZ.ToolTip" xml:space="preserve">
+    <value>После импорта STL будет отображаться второе наименьшее значение.</value>
+  </data>
 </root>

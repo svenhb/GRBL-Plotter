@@ -3061,4 +3061,28 @@ De plus, la position de l'axe Z peut être utilisée, par exemple, pour augmente
   <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
     <value>Utiliser le modèle de tiret du chemin fermé</value>
   </data>
+  <data name="label73.Text" xml:space="preserve">
+    <value>Si le nombre de chiffres dépasse cette valeur, tous les chiffres d'un groupe seront résumés en un seul chiffre.</value>
+  </data>
+  <data name="groupBox30.Text" xml:space="preserve">
+    <value>Conversion concernant</value>
+  </data>
+  <data name="label87.Text" xml:space="preserve">
+    <value>seconde.</value>
+  </data>
+  <data name="label86.Text" xml:space="preserve">
+    <value>Délai d'attente pour la reconnaissance</value>
+  </data>
+  <data name="CbDuplicateAddHeight.Text" xml:space="preserve">
+    <value>Ajouter une hauteur de sélection</value>
+  </data>
+  <data name="CbDuplicateAddWidth.Text" xml:space="preserve">
+    <value>Ajouter une largeur de sélection</value>
+  </data>
+  <data name="groupBox32.Text" xml:space="preserve">
+    <value>Décalage en double</value>
+  </data>
+  <data name="groupBox32.ToolTip" xml:space="preserve">
+    <value>Appliquez un décalage à la sélection copiée et insérée.</value>
+  </data>
 </root>

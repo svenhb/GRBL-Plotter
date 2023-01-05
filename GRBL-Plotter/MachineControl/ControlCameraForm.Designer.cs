@@ -675,6 +675,7 @@ namespace GrblPlotter
             // 
             resources.ApplyResources(this.cBShapeDetection, "cBShapeDetection");
             this.cBShapeDetection.Name = "cBShapeDetection";
+            this.toolTip1.SetToolTip(this.cBShapeDetection, resources.GetString("cBShapeDetection.ToolTip"));
             this.cBShapeDetection.UseVisualStyleBackColor = true;
             this.cBShapeDetection.CheckedChanged += new System.EventHandler(this.CbShapeDetection_CheckedChanged);
             // 
@@ -769,6 +770,7 @@ namespace GrblPlotter
             this.CbUseShapeRecognition.Checked = true;
             this.CbUseShapeRecognition.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CbUseShapeRecognition.Name = "CbUseShapeRecognition";
+            this.toolTip1.SetToolTip(this.CbUseShapeRecognition, resources.GetString("CbUseShapeRecognition.ToolTip"));
             this.CbUseShapeRecognition.UseVisualStyleBackColor = true;
             // 
             // tabPage2

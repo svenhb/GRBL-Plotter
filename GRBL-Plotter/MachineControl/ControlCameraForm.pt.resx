@@ -423,4 +423,12 @@ Shift - "c" para limpar a lista</value>
   <data name="setMachinePositionToolStripMenuItem.Text" xml:space="preserve">
     <value>Clique para obter o deslocamento da máquina grbl na origem</value>
   </data>
+  <data name="cBShapeDetection.ToolTip" xml:space="preserve">
+    <value>Ative o reconhecimento de forma nesta exibição.
+Não precisa ser habilitado para correção fudicial automática.</value>
+  </data>
+  <data name="CbUseShapeRecognition.ToolTip" xml:space="preserve">
+    <value>Use o reconhecimento de forma para encontrar referências automaticamente.
+Se desativado, os fiduciais devem ser atribuídos manualmente selecionando na imagem do vídeo.</value>
+  </data>
 </root>

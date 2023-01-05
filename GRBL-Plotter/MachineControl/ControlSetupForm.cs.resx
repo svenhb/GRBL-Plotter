@@ -3350,4 +3350,28 @@ Kromě toho lze polohu osy Z využít např. ke zvýšení množství barvy, kdy
   <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
     <value>Použijte čárkovaný vzor uzavřené cesty</value>
   </data>
+  <data name="label73.Text" xml:space="preserve">
+    <value>Pokud počet číslic překročí tuto hodnotu, budou všechny číslice jedné skupiny shrnuty do jednoho čísla.</value>
+  </data>
+  <data name="groupBox30.Text" xml:space="preserve">
+    <value>Konverze týkající se</value>
+  </data>
+  <data name="label87.Text" xml:space="preserve">
+    <value>sek.</value>
+  </data>
+  <data name="label86.Text" xml:space="preserve">
+    <value>Časový limit pro rozpoznání</value>
+  </data>
+  <data name="CbDuplicateAddHeight.Text" xml:space="preserve">
+    <value>Přidejte výšku výběru</value>
+  </data>
+  <data name="CbDuplicateAddWidth.Text" xml:space="preserve">
+    <value>Přidejte šířku výběru</value>
+  </data>
+  <data name="groupBox32.Text" xml:space="preserve">
+    <value>Duplicitní offset</value>
+  </data>
+  <data name="groupBox32.ToolTip" xml:space="preserve">
+    <value>Použijte odsazení na zkopírovaný a vložený výběr.</value>
+  </data>
 </root>

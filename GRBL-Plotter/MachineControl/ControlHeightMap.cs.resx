@@ -336,4 +336,34 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Skenování povrchu</value>
   </data>
+  <data name="RbScanY.Text" xml:space="preserve">
+    <value>Skenovat Y, vysunout X</value>
+  </data>
+  <data name="RbScanX.Text" xml:space="preserve">
+    <value>Skenovat X, vysunout Y</value>
+  </data>
+  <data name="CbExtrudeEnable.Text" xml:space="preserve">
+    <value>Sondujte jednu osu, vytlačte druhou</value>
+  </data>
+  <data name="sTLToolStripMenuItem.Text" xml:space="preserve">
+    <value>Import výškového profilu z STL</value>
+  </data>
+  <data name="importToolStripMenuItem.Text" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="GbProbing.Text" xml:space="preserve">
+    <value>Snímání, vyberte zdroj pro hodnotu Z</value>
+  </data>
+  <data name="CbInterpolate.Text" xml:space="preserve">
+    <value>Interpolovat</value>
+  </data>
+  <data name="CbNewStepWidth.Text" xml:space="preserve">
+    <value>Individuální šířka kroku</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Poznámka: pro frézování výškové mapy by měla být max. hodnota rovna nebo menší než nula.</value>
+  </data>
+  <data name="nUDCutOffZ.ToolTip" xml:space="preserve">
+    <value>Po importu STL se zobrazí druhá nejmenší hodnota</value>
+  </data>
 </root>

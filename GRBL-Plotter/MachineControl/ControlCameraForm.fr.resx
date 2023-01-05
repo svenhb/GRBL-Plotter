@@ -419,4 +419,12 @@ Maj - "c" pour effacer la liste</value>
   <data name="setMachinePositionToolStripMenuItem.Text" xml:space="preserve">
     <value>Cliquez pour obtenir le décalage de la machine grbl à l'origine</value>
   </data>
+  <data name="cBShapeDetection.ToolTip" xml:space="preserve">
+    <value>Activez la reconnaissance de forme dans cette vue.
+N'a pas besoin d'être activé pour la correction de repère automatique.</value>
+  </data>
+  <data name="CbUseShapeRecognition.ToolTip" xml:space="preserve">
+    <value>Utilisez la reconnaissance de forme pour trouver automatiquement les repères.
+S'ils sont désactivés, les repères doivent être attribués manuellement en les sélectionnant dans l'image vidéo.</value>
+  </data>
 </root>

@@ -3360,4 +3360,28 @@ https://github.com/cprezzi/grbl-servoのGrbl-version'grbl_v1.1f_Servo.hex '、
   <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
     <value>閉じたパスのダッシュ パターンを使用する</value>
   </data>
+  <data name="label73.Text" xml:space="preserve">
+    <value>フィギュアの量がこの値を超える場合、1 つのグループのすべてのフィギュアが 1 つのフィギュアにまとめられます。</value>
+  </data>
+  <data name="groupBox30.Text" xml:space="preserve">
+    <value>変換について</value>
+  </data>
+  <data name="label87.Text" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="label86.Text" xml:space="preserve">
+    <value>認識のタイムアウト</value>
+  </data>
+  <data name="CbDuplicateAddHeight.Text" xml:space="preserve">
+    <value>選択の高さを追加</value>
+  </data>
+  <data name="CbDuplicateAddWidth.Text" xml:space="preserve">
+    <value>選択幅を追加</value>
+  </data>
+  <data name="groupBox32.Text" xml:space="preserve">
+    <value>重複オフセット</value>
+  </data>
+  <data name="groupBox32.ToolTip" xml:space="preserve">
+    <value>コピーして挿入した選択範囲にオフセットを適用します。</value>
+  </data>
 </root>

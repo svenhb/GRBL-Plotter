@@ -425,4 +425,12 @@ Shift -"c" per cancellare l'elenco</value>
   <data name="$this.Text" xml:space="preserve">
     <value>Telecamera</value>
   </data>
+  <data name="cBShapeDetection.ToolTip" xml:space="preserve">
+    <value>Abilita il riconoscimento della forma in questa vista.
+Non ha bisogno di essere abilitato per la correzione fudiciale automatica.</value>
+  </data>
+  <data name="CbUseShapeRecognition.ToolTip" xml:space="preserve">
+    <value>Usa il riconoscimento della forma per trovare automaticamente i fiducial.
+Se disabilitato, i fiducial devono essere assegnati manualmente selezionando nell'immagine video.</value>
+  </data>
 </root>

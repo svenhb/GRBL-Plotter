@@ -133,7 +133,7 @@ namespace GrblPlotter
 
         private static int figureMarkerCount;
         public static bool CodeBlocksAvailable()
-        { return (figureMarkerCount > 0); }
+        { return (figureMarkerCount > 1); }
 
         private static bool updateFigureLineNeeded = false;
         private static bool xyPosChanged;

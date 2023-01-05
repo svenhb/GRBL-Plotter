@@ -351,4 +351,22 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Scansione di superficie</value>
   </data>
+  <data name="sTLToolStripMenuItem.Text" xml:space="preserve">
+    <value>Importa il profilo dell'altezza da STL</value>
+  </data>
+  <data name="importToolStripMenuItem.Text" xml:space="preserve">
+    <value>Importare</value>
+  </data>
+  <data name="CbInterpolate.Text" xml:space="preserve">
+    <value>Interpolare</value>
+  </data>
+  <data name="CbNewStepWidth.Text" xml:space="preserve">
+    <value>Larghezza del passo individuale</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Nota: per fresare la mappa di altezza, il valore massimo deve essere uguale o minore di zero.</value>
+  </data>
+  <data name="nUDCutOffZ.ToolTip" xml:space="preserve">
+    <value>Dopo l'importazione STL, verrà visualizzato il secondo valore più piccolo</value>
+  </data>
 </root>
