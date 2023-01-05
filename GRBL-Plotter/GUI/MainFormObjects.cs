@@ -27,6 +27,7 @@
  * 2021-11-29 add SaveEncoding array
  * 2021-12-14 add log path 
  * 2022-01-02 add MakeAbsolutePath (from ControlSetup.cs)
+ * 2022-11-24 line 99 InsertVariable check length
 */
 
 using GrblPlotter.Resources;
@@ -51,6 +52,7 @@ namespace GrblPlotter
         // https://stackoverflow.com/questions/10563148/where-is-the-correct-place-to-store-my-application-specific-data#:~:text=AppData%20(maps%20to%20C%3A%5C,their%20save%20games%20into%20Environment.
         // https://docs.microsoft.com/en-us/dotnet/api/system.environment.specialfolder?view=netframework-4.7.2
         internal static string AppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);   // will be changed by MainFormUpdate()-GetAppDataPath
+        public static string Automations { get => AppDataFolder + "\\data\\automations"; }
         public static string Fonts { get => AppDataFolder + "\\data\\fonts"; }
         public static string Tools { get => AppDataFolder + "\\data\\tools"; }
         public static string Scripts { get => AppDataFolder + "\\data\\scripts"; }
@@ -92,27 +94,30 @@ namespace GrblPlotter
                 int pos, posold = 0;
                 double myvalue;
                 string myvar, mykey;
+				int safetyExit = 6;
                 do
                 {
-                    pos = line.IndexOf('#', posold);
-                    if (pos > 0)
+                    pos = line.IndexOf('#', posold);				// not found, pos = -1
+                    if (pos > 0) 
                     {
-                        //        myvalue = 0;
-                        myvar = line.Substring(pos, 5);
-                        mykey = myvar.Substring(1);
-                        if (variable.ContainsKey(mykey))
-                        {
-                            myvalue = variable[mykey];
-                            line = line.Replace(myvar, string.Format("{0:0.000}", myvalue));
-                        }
-                        /* if variable not found, perhaps it will be processed in ControlSerialForm 
-                                                else { line += " (" + mykey + " not found)"; }
-                                                line = line.Replace(myvar, string.Format("{0:0.000}", myvalue));
-                                                //                  addToLog("replace "+ mykey+" by "+ myvalue.ToString());
-                                                */
-                    }
+						if (pos <= (line.Length - 5))				// max pos exceeded?
+                        {	myvalue = 0;
+							myvar = line.Substring(pos, 5);
+							mykey = myvar.Substring(1);				// get variable
+							
+							if (variable.ContainsKey(mykey))
+							{
+								myvalue = variable[mykey];
+								line = line.Replace(myvar, string.Format("{0:0.000}", myvalue));
+							}
+							else 
+							{ 	Logger.Error("⚠⚠⚠ InsertVariable '{0}' not found in '{1}'", mykey, line);}
+						}
+						else
+						{	Logger.Error("⚠⚠⚠ InsertVariable pos:{0} string is too short in '{1}'", pos, line); pos = -1; }						
+	                }
                     posold = pos + 5;
-                } while (pos > 0);
+                } while ((pos > 0) && (safetyExit-- > 0));
             }
             return line.Replace(',', '.');
         }
@@ -640,6 +645,22 @@ namespace GrblPlotter
            }
        }
        */
+
+
+    public class ProcessEventArgs : EventArgs
+    {
+        private readonly string command;
+        private readonly string value;
+        public ProcessEventArgs(string cmd, string val)
+        {
+            command = cmd;
+            value = val;
+        }
+        public string Command
+        { get { return command; } }
+        public string Value
+        { get { return value; } }
+    }
 
     public class CmdEventArgs : EventArgs
     {

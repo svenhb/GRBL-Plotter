@@ -26,6 +26,7 @@
  * 2022-04-04 in TransformEnd() add _projector_form.Invalidate();
  * 2022-07-29 Update_GCode_Depending_Controls add try catch
  * 2022-10-19 line 258, 298 check if Graphic.GCode == null
+ * 2022-12-21 line 319 GetGCodeFromImage check if _image_form != null
 */
 using FastColoredTextBoxNS;
 using System;
@@ -314,20 +315,24 @@ namespace GrblPlotter
             Logger.Info("▀▀▀▀▀▀ GetGCodeFromImage");
             if (!isStreaming)
             {
-                SimuStop();
-                VisuGCode.pathBackground.Reset();
-                NewCodeStart(false);             // GetGCodeFromImage
-                SetFctbCodeText(_image_form.ImageGCode);
-                if (Properties.Settings.Default.importImageResoApply)
-                    penDown.Width = (float)Properties.Settings.Default.importImageReso;
-                else
-                    penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown;
-                //    SetLastLoadedFile("from image", "");
-                NewCodeEnd();                   // GetGCodeFromImage
-                FoldCodeOnLoad();
-                Properties.Settings.Default.counterImportImage += 1;
-                EventCollector.SetImport("Iimg");
-                CalculatePicScaling();          // update picScaling
+				if ((_image_form != null) && (!String.IsNullOrEmpty(_image_form.ImageGCode)))
+                {	SimuStop();
+					VisuGCode.pathBackground.Reset();
+					NewCodeStart(false);             // GetGCodeFromImage
+					SetFctbCodeText(_image_form.ImageGCode);
+					if (Properties.Settings.Default.importImageResoApply)
+						penDown.Width = (float)Properties.Settings.Default.importImageReso;
+					else
+						penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown;
+					//    SetLastLoadedFile("from image", "");
+					NewCodeEnd();                   // GetGCodeFromImage
+					FoldCodeOnLoad();
+					Properties.Settings.Default.counterImportImage += 1;
+					EventCollector.SetImport("Iimg");
+					CalculatePicScaling();          // update picScaling
+				}
+				else
+				{	Logger.Error("GetGCodeFromImage form is already closed or string is empty");}
             }
             else
                 MessageBox.Show(Localization.GetString("mainStreamingActive"));

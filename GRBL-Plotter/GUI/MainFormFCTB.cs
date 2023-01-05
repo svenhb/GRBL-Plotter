@@ -684,6 +684,7 @@ namespace GrblPlotter
 						
                             fCTBCodeClickedLineLast = fCTBCodeClickedLineNow;
                         }
+                        fCTBCode.GotoNextBookmark(fCTBCodeClickedLineNow);// .DoCaretVisible();
                     }
                     catch { }   // nothing to unbook - no problem
                     /*   catch (Exception er) { 

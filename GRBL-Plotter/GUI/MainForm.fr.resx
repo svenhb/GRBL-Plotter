@@ -1147,4 +1147,10 @@ La modification des paramètres d'importation après la première importation pe
     <value>Pliage automatique des blocs</value>
     <comment>Editor_Menu</comment>
   </data>
+  <data name="grblSetupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Configuration Grbl</value>
+  </data>
+  <data name="processAutomationToolStripMenuItem.Text" xml:space="preserve">
+    <value>Automatisation des processus</value>
+  </data>
 </root>

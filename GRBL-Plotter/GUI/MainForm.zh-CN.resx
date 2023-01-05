@@ -1200,4 +1200,10 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>自动块折叠</value>
     <comment>Editor_Menu</comment>
   </data>
+  <data name="grblSetupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Grbl设置</value>
+  </data>
+  <data name="processAutomationToolStripMenuItem.Text" xml:space="preserve">
+    <value>流程自动化</value>
+  </data>
 </root>

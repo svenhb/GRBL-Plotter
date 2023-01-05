@@ -1120,4 +1120,10 @@ Das Ändern der Importeinstellungen nach dem ersten Import kann zu unerwünschte
     <value>Automatische Blockfaltung</value>
     <comment>Editor_Menu</comment>
   </data>
+  <data name="grblSetupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Grbl-Setup</value>
+  </data>
+  <data name="processAutomationToolStripMenuItem.Text" xml:space="preserve">
+    <value>Prozessautomatisierung</value>
+  </data>
 </root>

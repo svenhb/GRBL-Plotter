@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 /*
  * 2019-10-29 localization of strings
  * 2021-07-26 code clean up / code quality
+ * 2023-01-02 GetLinkerTimestampUtc add try catch
 */
 
 
@@ -83,7 +84,10 @@ namespace GrblPlotter
         public static DateTime GetLinkerTimestampUtc(System.Reflection.Assembly assembly)
         {
             var location = assembly.Location;
-            return GetLinkerTimestampUtc(location);
+            if (!string.IsNullOrEmpty(location))
+                return GetLinkerTimestampUtc(location);
+            else
+                return DateTime.MinValue;
         }
 
         public static DateTime GetLinkerTimestampUtc(string filePath)
@@ -92,10 +96,15 @@ namespace GrblPlotter
             const int linkerTimestampOffset = 8;
             var bytes = new byte[2048];
 
-            using (var file = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            try
             {
-                file.Read(bytes, 0, bytes.Length);
+                using (var file = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                {
+                    file.Read(bytes, 0, bytes.Length);
+                }
             }
+            catch (Exception err)
+            { return DateTime.MinValue; }
 
             var headerPos = BitConverter.ToInt32(bytes, peHeaderOffset);
             var secondsSince1970 = BitConverter.ToInt32(bytes, headerPos + linkerTimestampOffset);

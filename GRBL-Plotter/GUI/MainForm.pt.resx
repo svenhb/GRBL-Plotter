@@ -1174,4 +1174,10 @@ Alterar as configurações de importação após a primeira importação pode le
     <value>Dobragem automática de blocos</value>
     <comment>Editor_Menu</comment>
   </data>
+  <data name="grblSetupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Configuração Grbl</value>
+  </data>
+  <data name="processAutomationToolStripMenuItem.Text" xml:space="preserve">
+    <value>Automação do processo</value>
+  </data>
 </root>

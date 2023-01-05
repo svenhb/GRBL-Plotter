@@ -1174,4 +1174,10 @@
     <value>Автоматическое складывание блоков</value>
     <comment>Editor_Menu</comment>
   </data>
+  <data name="grblSetupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Настройка Грбл</value>
+  </data>
+  <data name="processAutomationToolStripMenuItem.Text" xml:space="preserve">
+    <value>Автоматизация процессов</value>
+  </data>
 </root>

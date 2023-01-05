@@ -1203,4 +1203,10 @@
     <value>الطي التلقائي للكتل</value>
     <comment>Editor_Menu</comment>
   </data>
+  <data name="grblSetupToolStripMenuItem.Text" xml:space="preserve">
+    <value>إعداد Grbl</value>
+  </data>
+  <data name="processAutomationToolStripMenuItem.Text" xml:space="preserve">
+    <value>أتمتة العمليات</value>
+  </data>
 </root>

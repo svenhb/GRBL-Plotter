@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -57,6 +57,7 @@
  * 2021-11-18 add processing of accessory D0-D3 from grbl-Mega-5X - line 976
  * 2021-12-14 line 613 remove else...
  * 2022-04-19 check  if (toolStripStatusLabel0 == null) 
+ * 2023-01-02 CbLaser_CheckedChanged, CbSpindle_CheckedChanged check if Grbl.isConnected
 */
 
 using GrblPlotter.GUI;
@@ -249,6 +250,7 @@ namespace GrblPlotter
                     _serial_form.RaisePosEvent += OnRaisePosEvent;
                     _serial_form.RaiseStreamEvent += OnRaiseStreamEvent;
                 }
+
                 if (Properties.Settings.Default.ctrlUseSerialDIY)
                 { DIYControlopen(sender, e); }
 
@@ -274,6 +276,9 @@ namespace GrblPlotter
                 timerUpdateControls = true;
                 Properties.Settings.Default.guiLastStart = DateTime.Now.Ticks;
                 Properties.Settings.Default.guiLastEndReason = "";
+
+                if (Properties.Settings.Default.processOpenOnProgStart)
+                { ProcessAutomationFormOpen(sender, e); }
             }
             else
             {
@@ -352,6 +357,9 @@ namespace GrblPlotter
 
         private void SendCommand(string txt, bool jogging = false)
         {
+            if (!Grbl.isConnected)
+            { Logger.Warn("SendCommand txt:{0}  jog:{1}  - not connected", txt, jogging); }
+
             if ((jogging) && (Grbl.isVersion_0 == false))   // includes (grbl.isMarlin == false) https://github.com/gnea/grbl/wiki/Grbl-v1.1-Jogging
             {
                 string[] stringArray = { "G90", "G91", "G20", "G21", "G53" };
@@ -820,9 +828,11 @@ namespace GrblPlotter
             else
                 speed = (int)Math.Round((float)NudSpeed.Value * 10);
 
+
             if (CbSpindle.Checked)
             {
-                SendCommand(m + " S" + speed.ToString());
+                if (Grbl.isConnected)
+                    SendCommand(m + " S" + speed.ToString());
                 SetTextThreadSave(LblSpeedSetVal, speed.ToString(), Color.Yellow);
                 CbLaser.CheckedChanged -= CbLaser_CheckedChanged;
                 CbLaser.Checked = true;
@@ -834,7 +844,8 @@ namespace GrblPlotter
             }
             else
             {
-                SendCommand("M5");
+                if (Grbl.isConnected)
+                    SendCommand("M5");
                 CbLaser.CheckedChanged -= CbLaser_CheckedChanged;
                 CbLaser.Checked = false;
                 PbLaser.Visible = false;
@@ -854,12 +865,14 @@ namespace GrblPlotter
 
             if (CbLaser.Checked)
             {
-                if (_serial_form.IsLasermode) SendCommand(string.Format(culture, "$J=G91X0.0001F1000"));    // move G1 tiny step to force laser on
-                SendCommand(m + " S" + speed.ToString());
-                SetTextThreadSave(LblLaserSetVal, speed.ToString(), Color.Yellow);
-                PbLaser.Visible = true;
-                if (_serial_form.IsLasermode) SendCommand(string.Format(culture, "$J=G91X-0.0001F1000"));   // move G1 tiny step back
-
+                if (Grbl.isConnected)
+                {
+                    if (_serial_form.IsLasermode) SendCommand(string.Format(culture, "$J=G91X0.0001F1000"));    // move G1 tiny step to force laser on
+                    SendCommand(m + " S" + speed.ToString());
+                    SetTextThreadSave(LblLaserSetVal, speed.ToString(), Color.Yellow);
+                    PbLaser.Visible = true;
+                    if (_serial_form.IsLasermode) SendCommand(string.Format(culture, "$J=G91X-0.0001F1000"));   // move G1 tiny step back
+                }
                 CbSpindle.CheckedChanged -= CbSpindle_CheckedChanged;
                 CbSpindle.Checked = true;
                 NudSpeed.Value = TbLaser.Value;
@@ -869,7 +882,8 @@ namespace GrblPlotter
             }
             else
             {
-                SendCommand("M5"); PbLaser.Visible = false;
+                if (Grbl.isConnected)
+                    SendCommand("M5"); PbLaser.Visible = false;
                 CbSpindle.CheckedChanged -= CbSpindle_CheckedChanged;
                 CbSpindle.Checked = false;
                 CbSpindle.CheckedChanged += CbSpindle_CheckedChanged;
@@ -1213,7 +1227,7 @@ namespace GrblPlotter
 
         private void PictureBox1_MouseHover(object sender, EventArgs e)
         {
-            if (!pictureBox1.Focused)
+            if (!pictureBox1.Focused && Properties.Settings.Default.guiShowFormInFront)
             {
                 pictureBox1.Focus();
                 markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (picScaling * zoomFactor));
@@ -1222,7 +1236,7 @@ namespace GrblPlotter
 
         private void FCTBCode_MouseHover(object sender, EventArgs e)
         {
-            if (!fCTBCode.Focused)
+            if (!fCTBCode.Focused && Properties.Settings.Default.guiShowFormInFront)
                 fCTBCode.Focus();
         }
 
@@ -1526,7 +1540,7 @@ namespace GrblPlotter
             toolStripStatusLabel0.BackColor = toolStripStatusLabel1.BackColor = toolStripStatusLabel2.BackColor = SystemColors.Control;
         }
 
-        private void CopyContentTroClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CopyContentToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Image img = new Bitmap(pictureBox1.Width, pictureBox1.Height);
 

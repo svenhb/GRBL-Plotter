@@ -1212,4 +1212,10 @@ Změna nastavení importu po prvním importu může vést k nežádoucím efekt�
     <value>Automatické skládání bloku</value>
     <comment>Editor_Menu</comment>
   </data>
+  <data name="grblSetupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Nastavení Grbl</value>
+  </data>
+  <data name="processAutomationToolStripMenuItem.Text" xml:space="preserve">
+    <value>Procesní automatizace</value>
+  </data>
 </root>

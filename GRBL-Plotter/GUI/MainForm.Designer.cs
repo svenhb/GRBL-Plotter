@@ -486,6 +486,7 @@ namespace GrblPlotter
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.SplashScreenTimer = new System.Windows.Forms.Timer(this.components);
             this.loadTimer = new System.Windows.Forms.Timer(this.components);
+            this.processAutomationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -2302,7 +2303,7 @@ namespace GrblPlotter
             // 
             this.copyContentTroClipboardToolStripMenuItem.Name = "copyContentTroClipboardToolStripMenuItem";
             resources.ApplyResources(this.copyContentTroClipboardToolStripMenuItem, "copyContentTroClipboardToolStripMenuItem");
-            this.copyContentTroClipboardToolStripMenuItem.Click += new System.EventHandler(this.CopyContentTroClipboardToolStripMenuItem_Click);
+            this.copyContentTroClipboardToolStripMenuItem.Click += new System.EventHandler(this.CopyContentToClipboardToolStripMenuItem_Click);
             // 
             // tLPRechtsOben
             // 
@@ -3140,7 +3141,8 @@ namespace GrblPlotter
             this.control2ndGRBLToolStripMenuItem,
             this.control3rdGRBLToolStripMenuItem,
             this.projectorToolStripMenuItem,
-            this.grblSetupToolStripMenuItem});
+            this.grblSetupToolStripMenuItem,
+            this.processAutomationToolStripMenuItem});
             this.machineToolStripMenuItem.Name = "machineToolStripMenuItem";
             resources.ApplyResources(this.machineToolStripMenuItem, "machineToolStripMenuItem");
             // 
@@ -3378,6 +3380,12 @@ namespace GrblPlotter
             // loadTimer
             // 
             this.loadTimer.Tick += new System.EventHandler(this.LoadTimer_Tick);
+            // 
+            // processAutomationToolStripMenuItem
+            // 
+            this.processAutomationToolStripMenuItem.Name = "processAutomationToolStripMenuItem";
+            resources.ApplyResources(this.processAutomationToolStripMenuItem, "processAutomationToolStripMenuItem");
+            this.processAutomationToolStripMenuItem.Click += new System.EventHandler(this.ProcessAutomationFormOpen);
             // 
             // MainForm
             // 
@@ -3841,6 +3849,7 @@ namespace GrblPlotter
         private System.Windows.Forms.ToolStripMenuItem toggleBlockExpansionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem grblSetupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem italianoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem processAutomationToolStripMenuItem;
     }
 }
 

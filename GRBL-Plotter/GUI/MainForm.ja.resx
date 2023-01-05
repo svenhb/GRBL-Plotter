@@ -1200,4 +1200,10 @@ Grblのバッファーにモーションがキューイングされていて準�
     <value>自動ブロック折りたたみ</value>
     <comment>Editor_Menu</comment>
   </data>
+  <data name="grblSetupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Grblセットアップ</value>
+  </data>
+  <data name="processAutomationToolStripMenuItem.Text" xml:space="preserve">
+    <value>プロセスの自動化</value>
+  </data>
 </root>

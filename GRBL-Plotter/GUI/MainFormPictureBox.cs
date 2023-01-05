@@ -39,6 +39,7 @@
  * 2022-04-04 line 550 _projector_form.Invalidate()
  * 2022-07-29 GraphicPropertiesSetup add try catch
  * 2022-09-13 line 114/137	if ((xRange == 0) || (yRange == 0)) picScaling = 1;
+ * 2022-12-02 PictureBox1_MouseUp line 598 SetMarkerPos also if no CodeBlocks available
 */
 
 using FastColoredTextBoxNS;
@@ -606,7 +607,15 @@ namespace GrblPlotter
 
             /* select Figure if MouseDown and MouseUp position are close together */
             if (mouseDownLeftButton && (PointDistance(mouseDownPos, mouseUpPos) < 10))
-            { SetFigureSelectionOnClick(); }
+            {   SetFigureSelectionOnClick();         
+                if (!VisuGCode.CodeBlocksAvailable())
+                {
+                    fCTBCodeClickedLineNow = VisuGCode.SetPosMarkerNearBy(picAbsPos, false).lineNumber;
+                    VisuGCode.SetPosMarkerLine(fCTBCodeClickedLineNow, false);
+                //    FindFigureMarkSelection(XmlMarkerType.Node, fCTBCodeClickedLineNow, new DistanceByLine());
+                    FctbSetBookmark();
+                }
+            }
 
             if (_projector_form != null)
                 _projector_form.Invalidate();

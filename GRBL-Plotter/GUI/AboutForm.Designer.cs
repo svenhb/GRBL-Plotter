@@ -64,26 +64,23 @@ namespace GrblPlotter
             // 
             // button1
             // 
-            resources.ApplyResources(this.button1, "button1");
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            resources.ApplyResources(this.button1, "button1");
             this.button1.Name = "button1";
-            this.toolTip1.SetToolTip(this.button1, resources.GetString("button1.ToolTip"));
             this.button1.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.BackColor = System.Drawing.Color.Black;
             this.pictureBox1.Image = global::GrblPlotter.Properties.Resources.modell;
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBox1, resources.GetString("pictureBox1.ToolTip"));
             // 
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.toolTip1.SetToolTip(this.label1, resources.GetString("label1.ToolTip"));
             // 
             // linkLabel1
             // 
@@ -97,19 +94,16 @@ namespace GrblPlotter
             // 
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.toolTip1.SetToolTip(this.label3, resources.GetString("label3.ToolTip"));
             // 
             // lblVersion
             // 
             resources.ApplyResources(this.lblVersion, "lblVersion");
             this.lblVersion.Name = "lblVersion";
-            this.toolTip1.SetToolTip(this.lblVersion, resources.GetString("lblVersion.ToolTip"));
             // 
             // button2
             // 
             resources.ApplyResources(this.button2, "button2");
             this.button2.Name = "button2";
-            this.toolTip1.SetToolTip(this.button2, resources.GetString("button2.ToolTip"));
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
@@ -125,14 +119,12 @@ namespace GrblPlotter
             // 
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
-            this.toolTip1.SetToolTip(this.label4, resources.GetString("label4.ToolTip"));
             // 
             // linkLabel3
             // 
             resources.ApplyResources(this.linkLabel3, "linkLabel3");
             this.linkLabel3.Name = "linkLabel3";
             this.linkLabel3.TabStop = true;
-            this.toolTip1.SetToolTip(this.linkLabel3, resources.GetString("linkLabel3.ToolTip"));
             this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel3_LinkClicked);
             // 
             // AboutForm
@@ -153,7 +145,6 @@ namespace GrblPlotter
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AboutForm";
-            this.toolTip1.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.TopMost = true;
             this.Load += new System.EventHandler(this.AboutForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

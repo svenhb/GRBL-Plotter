@@ -1163,4 +1163,10 @@ Cambiar la configuración de importación después de la primera importación pu
     <value>Plegado automático de bloques</value>
     <comment>Editor_Menu</comment>
   </data>
+  <data name="grblSetupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Configuración Grbl</value>
+  </data>
+  <data name="processAutomationToolStripMenuItem.Text" xml:space="preserve">
+    <value>Automatización de procesos</value>
+  </data>
 </root>

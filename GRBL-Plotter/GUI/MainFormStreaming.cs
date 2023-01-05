@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,6 +31,7 @@
  * 2022-04-06 line 485 also PathId
  * 2022-06-28 line 132 don't update marker on line-nr if e.Status == GrblStreaming.setting
  * 2022-11-03 line 245 check InvoeRequired
+ * 2023-01-04 add _process_form.Feedback
 */
 
 using GrblPlotter.GUI;
@@ -215,6 +216,10 @@ namespace GrblPlotter
                     ControlPowerSaving.EnableStandby();
                     VisuGCode.ProcessedPath.ProcessedPathClear();
                     //        SetGRBLBuffer();
+
+                    if (_process_form != null)
+                        _process_form.Feedback("Stream", "reset", false);
+
                     break;
 
                 case GrblStreaming.error:
@@ -272,6 +277,9 @@ namespace GrblPlotter
                     if (Grbl.lastErrorNr == 9)  // G-code locked out during alarm or jog state -> stop streaming
                     { StopStreaming(false); }
 
+                    if (_process_form != null)
+                        _process_form.Feedback("Stream", "error", false);
+
                     break;
 
                 case GrblStreaming.ok:
@@ -318,6 +326,8 @@ namespace GrblPlotter
                         else
                             Notifier.SendMessage(msg);
                     }
+                    if (_process_form!=null)
+                        _process_form.Feedback("Stream", elapsed.ToString(@"hh\:mm\:ss"), true);
                     break;
 
                 case GrblStreaming.waitidle:
@@ -370,6 +380,10 @@ namespace GrblPlotter
 
                     if (Properties.Settings.Default.flowControlEnable) // send extra Pause-Code in MainTimer_Tick from Properties.Settings.Default.flowControlText
                         delayedSend = 2;
+
+                    if (_process_form != null)
+                        _process_form.Feedback("Stream", "", false);
+
                     break;
 
                 default:

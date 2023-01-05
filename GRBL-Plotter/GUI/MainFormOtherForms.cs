@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@
  * 2021-07-15 code clean up / code quality
  * 2022-03-06 changed from form.show(this) to .show() to be able to stay behaind main form
  * 2022-04-06 add _projector_form with monitor selection
+ * 2023-01-04 add _process_form
 */
 
 using GrblPlotter.MachineControl;
@@ -56,6 +57,7 @@ namespace GrblPlotter
         ControlSetupForm _setup_form = null;
         ControlJogPathCreator _jogPathCreator_form = null;
         ControlProjector _projector_form = null;
+        ControlProcessAutomation _process_form = null;
         GrblSetupForm _grbl_setup_form = null;
 
         #region MAIN-MENU GCode creation
@@ -290,6 +292,8 @@ namespace GrblPlotter
                 _camera_form = new ControlCameraForm();
                 _camera_form.FormClosed += FormClosed_CameraForm;
                 _camera_form.RaiseXYEvent += OnRaiseCameraClickEvent;
+                _camera_form.RaiseProcessEvent += OnRaiseCameraProcessEvent;
+
                 //               _camera_form.setPosMarker(grbl.posMarker);// visuGCode.GetPosMarker());
                 EventCollector.SetOpenForm("Fcam");
             }
@@ -307,11 +311,20 @@ namespace GrblPlotter
         private void FormClosed_CameraForm(object sender, FormClosedEventArgs e)
         { _camera_form = null; EventCollector.SetOpenForm("FCcam"); }
 
+        private void OnRaiseCameraProcessEvent(object sender, ProcessEventArgs e)
+        {
+            if (e.Command == "Fiducial")
+            {
+                if (_process_form != null)
+                { _process_form.Feedback(e.Command, e.Value, (e.Value=="finished")); }
+            }
+        }
+
 
         /********************************************************************
-         * DIY control pad - take commands and Probe-results from outside
-         * _diyControlPad
-         ********************************************************************/
+            * DIY control pad - take commands and Probe-results from outside
+            * _diyControlPad
+            ********************************************************************/
         private void DIYControlopen(object sender, EventArgs e)
         {
             if (_diyControlPad == null)
@@ -623,6 +636,78 @@ namespace GrblPlotter
         }
         private void FormClosed_Projector(object sender, FormClosedEventArgs e)
         { _projector_form = null; EventCollector.SetOpenForm("FCprj"); }
+
+
+
+        /********************************************************************
+         * ProcessAutomation - a form to automate process steps
+         * _process_form
+         ********************************************************************/
+        private void ProcessAutomationFormOpen(object sender, EventArgs e)
+        {
+            if (_process_form == null)
+            {
+                _process_form = new ControlProcessAutomation();
+                _process_form.FormClosed += FormClosed_Process;
+                _process_form.RaiseProcessEvent += OnRaiseProcessEvent;
+                EventCollector.SetOpenForm("Fprc");
+            }
+            else
+            {
+                _process_form.Visible = false;
+            }
+
+            if (Screen.AllScreens.Length > 1)
+            {
+                if ((int)Properties.Settings.Default.projectorMonitorIndex >= Screen.AllScreens.Length)
+                    Properties.Settings.Default.projectorMonitorIndex = Screen.AllScreens.Length - 1;
+
+                _process_form.StartPosition = FormStartPosition.Manual;
+                _process_form.Location = Screen.AllScreens[(int)Properties.Settings.Default.projectorMonitorIndex].WorkingArea.Location;  // selectable index
+                _process_form.FormBorderStyle = FormBorderStyle.None;     // default = Sizable
+                _process_form.Show();
+                _process_form.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                _process_form.Show(this);
+                _process_form.WindowState = FormWindowState.Normal;
+            }
+        }
+        private void FormClosed_Process(object sender, FormClosedEventArgs e)
+        { _process_form = null; EventCollector.SetOpenForm("FCprc"); }
+
+        private void OnRaiseProcessEvent(object sender, ProcessEventArgs e)
+        {
+            if (e.Command == "Load")
+            {
+                string mypath = Datapath.MakeAbsolutePath(e.Value);
+                _process_form.Feedback(e.Command, e.Value, LoadFile(mypath));
+            }
+            else if (e.Command == "G-Code")
+            {
+                SendCommand(e.Value);
+            }
+            else if (e.Command == "Fiducial")
+            {
+                if (_camera_form != null)
+                {
+                    _camera_form.StartFiducialDetection();
+                }
+                else
+                {
+                    _process_form.Feedback(e.Command, "Camera form is not open", false);
+                }
+            }
+            else if (e.Command == "Stream")
+            {
+                StartStreaming(0, fCTBCode.LinesCount - 1);
+            }
+            else if (e.Command == "CheckForm")
+            {
+                if (e.Value == "Cam") { _process_form.Feedback(e.Command, e.Value, (_camera_form != null)); }
+            }
+        }
 
 
 

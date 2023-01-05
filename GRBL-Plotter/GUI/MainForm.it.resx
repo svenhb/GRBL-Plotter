@@ -1106,7 +1106,7 @@ Aggiungi 'G54;' all'intestazione G-Code per tornare automaticamente a G54 prima 
     <value>Apre una nuova finestra per visualizzare il percorso macchina sul pezzo tramite un proiettore sopra il banco di lavoro</value>
   </data>
   <data name="grblSetupToolStripMenuItem.Text" xml:space="preserve">
-    <value>Configurazione Grbl</value>
+    <value>Configurazione grbl</value>
   </data>
   <data name="machineToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Controllo macchina</value>
@@ -1174,5 +1174,8 @@ Aggiungi 'G54;' all'intestazione G-Code per tornare automaticamente a G54 prima 
   </data>
   <data name="toolStripStatusLabel0.Text" xml:space="preserve">
     <value>[ Carica il file trascinandolo nella vista 2D o seleziona 'Ricarica file' (fai clic con il pulsante destro del mouse sulla vista 2D) per aprire l'ultimo file utilizzato. ]</value>
+  </data>
+  <data name="processAutomationToolStripMenuItem.Text" xml:space="preserve">
+    <value>Automazione del processo</value>
   </data>
 </root>
