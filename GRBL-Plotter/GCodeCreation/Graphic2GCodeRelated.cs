@@ -40,6 +40,7 @@
 * 2022-03-25 pen-up/down individual, add PU/PD
 * 2022-04-07 line 500 add warning if Z is used as normal AND tangential axis, add 
 * 2022-07-12 line 1048, 1055, 1196 add gcodeAux1Cmd, gcodeAux2Cmd at code for relative movement
+* 2022-12-02 add function SetHeaderInfo
 */
 
 using System;
@@ -1371,6 +1372,17 @@ namespace GrblPlotter
 
         private static string docTitle = "";
         private static string docDescription = "";
+		
+		public static void SetHeaderInfo(string title, float distance, float feed, int lines, int downUp)
+		{
+			Logger.Trace("SetHeaderInfo title:{0} distance:{1} feed:{2} lines:{3} downUp:{4}", title, distance, feed, lines, downUp);
+			docTitle = title;
+			gcodeDistance = distance;
+			GcodeXYFeed = feed;
+			gcodeLines = lines;
+			gcodeDownUp = downUp;
+			GcodeZApply = true;
+		}
         public static string GetHeader(string cmt, string source)
         {
             gcodeTime += gcodeDistance / GcodeXYFeed;

@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -42,6 +42,8 @@
  * 2022-04-06 add DragToolModificationTangential, add header info about some applied options
  * 2022-04-21 line 773 make limit variable: if (completeGraphic.Count > maxCount)
  * 2022-07-22 line 509 SetPenFill - also convert from "rgb("
+ * 2022-12-14 line 612 CountProperty check if txt IsNullOrEmpty
+ * 2023-01-02 possibility to overwrite maxObjectCountBeforeReducingXML
 */
 
 using System;
@@ -94,6 +96,7 @@ namespace GrblPlotter
         private static Stopwatch totalTime = new Stopwatch();
         private static int countGeometry = 0;
         private const int maxGeometry = 50000;
+        public static int maxObjectCountBeforeReducingXML = 1000; // (int)Properties.Settings.Default.importFigureMaxAmount;
 
         private static int countAuxInfo = 0;
 
@@ -197,6 +200,8 @@ namespace GrblPlotter
             if (type == SourceType.SVG)
             { graphicInformation.ApplyHatchFill = graphicInformation.ApplyHatchFill || Properties.Settings.Default.importSVGApplyFill; }    // no G2/G3 if hatch fill
 
+            maxObjectCountBeforeReducingXML = (int)Properties.Settings.Default.importFigureMaxAmount;
+
             pathBackground = new GraphicsPath();
 
             completeGraphic = new List<PathObject>();
@@ -229,6 +234,9 @@ namespace GrblPlotter
             totalTime = new Stopwatch();
             totalTime.Start();
         }
+
+        public static bool StartPath(float x, float y)
+        { return StartPath(new Point(x,y)); }
 
         public static bool StartPath(Point xy, double? useZ = null)//, CreationOptions addFunction = CreationOptions.none)
         {   // preset informations
@@ -325,6 +333,8 @@ namespace GrblPlotter
             actualPath.Dimension.ResetDimension();          // 2020-10-31
         }
 
+        public static bool AddLine(float x, float y)
+        { return AddLine(new Point(x,y)); }
         public static bool AddLine(Point xy, double? useZ = null)//, string cmt = "")
         {
             bool success = true;
@@ -608,6 +618,8 @@ namespace GrblPlotter
 
         private static void CountProperty(int index, string txt)
         {
+			if (String.IsNullOrEmpty(txt))
+				return;
             if (index < groupPropertiesCount.Length)
                 if (!groupPropertiesCount[index].ContainsKey(txt))
                     groupPropertiesCount[index].Add(txt, 1);
@@ -819,11 +831,10 @@ namespace GrblPlotter
 
             VisuGCode.xyzSize.AddDimensionXY(Graphic.actualDimension);
 
-            int maxCount = (int)Properties.Settings.Default.importFigureMaxAmount;
-            if (completeGraphic.Count > maxCount)
+            if ((maxObjectCountBeforeReducingXML > 0) && (completeGraphic.Count > maxObjectCountBeforeReducingXML))
             {
-                Logger.Info("███► CreateGCode disable figure XML code to keep usability (completeGraphic.Count > {0}), count:{1}", maxCount, completeGraphic.Count);
-                SetHeaderMessage(string.Format(" {0}-2002: high amount of Figure objects, count:{1},  max:{2}", CodeMessage.Warning, completeGraphic.Count.ToString(), maxCount.ToString()));
+                Logger.Warn("███► CreateGCode disable figure XML code to keep usability (completeGraphic.Count > {0}), count:{1}  ⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠", maxObjectCountBeforeReducingXML, completeGraphic.Count);
+                SetHeaderMessage(string.Format(" {0}-2002: high amount of Figure objects, count:{1},  max:{2}", CodeMessage.Warning, completeGraphic.Count.ToString(), maxObjectCountBeforeReducingXML.ToString()));
                 SetHeaderMessage(" Figure codes will be summarized to one Figure.");
                 graphicInformation.FigureEnable = false;
             }
