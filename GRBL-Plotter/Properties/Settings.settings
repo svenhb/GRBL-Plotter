@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GrblPlotter.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
@@ -151,6 +151,9 @@
     </Setting>
     <Setting Name="camFilterRed2" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">64</Value>
+    </Setting>
+    <Setting Name="camShapeAutoTimeout" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">20</Value>
     </Setting>
     <Setting Name="camShapeCircle" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -325,6 +328,9 @@
     </Setting>
     <Setting Name="createTextLineDistance" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="createTextSystemFont" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">Microsoft Sans Serif, 12pt</Value>
     </Setting>
     <Setting Name="ctrl4thInvert" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -656,6 +662,18 @@
     <Setting Name="gui2DColorTool" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Black</Value>
     </Setting>
+    <Setting Name="gui2DDuplicateAddDimensionX" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="gui2DDuplicateAddDimensionY" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="gui2DDuplicateOffsetX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="gui2DDuplicateOffsetY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
     <Setting Name="gui2DInfoShow" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -712,18 +730,6 @@
     </Setting>
     <Setting Name="gui2DWidthTool" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.2</Value>
-    </Setting>
-    <Setting Name="gui2DDuplicateOffsetX" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">5</Value>
-    </Setting>
-    <Setting Name="gui2DDuplicateOffsetY" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="gui2DDuplicateAddDimensionX" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="gui2DDuplicateAddDimensionY" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="guiBackgroundImageEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -1118,6 +1124,9 @@
     <Setting Name="importDepthFromWidthRamp" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importDXFDontPlot" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="ImportDXFSize" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -1499,6 +1508,9 @@
     <Setting Name="importGraphicHatchFillCross" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importGraphicHatchFillDash" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="importGraphicHatchFillDistance" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
@@ -1689,6 +1701,9 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importSVGCircleToDotZ" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importSVGDontPlot" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importSVGDPI96" Type="System.Boolean" Scope="User">
@@ -1964,6 +1979,18 @@
     <Setting Name="probingWorkpieceDiameter" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">20</Value>
     </Setting>
+    <Setting Name="processLastFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="processLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="processOpenOnProgStart" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="processSplitDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">300</Value>
+    </Setting>
     <Setting Name="projectorColorBackground" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Black</Value>
     </Setting>
@@ -2146,15 +2173,6 @@
     </Setting>
     <Setting Name="useCaseLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">?</Value>
-    </Setting>
-    <Setting Name="importDXFDontPlot" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="importSVGDontPlot" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="importGraphicHatchFillDash" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

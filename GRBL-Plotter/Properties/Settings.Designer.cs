@@ -12,7 +12,7 @@ namespace GrblPlotter.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.3.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.4.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -620,6 +620,18 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["camFilterRed2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public decimal camShapeAutoTimeout {
+            get {
+                return ((decimal)(this["camShapeAutoTimeout"]));
+            }
+            set {
+                this["camShapeAutoTimeout"] = value;
             }
         }
         
@@ -1316,6 +1328,18 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["createTextLineDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 12pt")]
+        public global::System.Drawing.Font createTextSystemFont {
+            get {
+                return ((global::System.Drawing.Font)(this["createTextSystemFont"]));
+            }
+            set {
+                this["createTextSystemFont"] = value;
             }
         }
         
@@ -2642,6 +2666,54 @@ namespace GrblPlotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool gui2DDuplicateAddDimensionX {
+            get {
+                return ((bool)(this["gui2DDuplicateAddDimensionX"]));
+            }
+            set {
+                this["gui2DDuplicateAddDimensionX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool gui2DDuplicateAddDimensionY {
+            get {
+                return ((bool)(this["gui2DDuplicateAddDimensionY"]));
+            }
+            set {
+                this["gui2DDuplicateAddDimensionY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public decimal gui2DDuplicateOffsetX {
+            get {
+                return ((decimal)(this["gui2DDuplicateOffsetX"]));
+            }
+            set {
+                this["gui2DDuplicateOffsetX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal gui2DDuplicateOffsetY {
+            get {
+                return ((decimal)(this["gui2DDuplicateOffsetY"]));
+            }
+            set {
+                this["gui2DDuplicateOffsetY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool gui2DInfoShow {
             get {
                 return ((bool)(this["gui2DInfoShow"]));
@@ -2864,54 +2936,6 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["gui2DWidthTool"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5")]
-        public decimal gui2DDuplicateOffsetX {
-            get {
-                return ((decimal)(this["gui2DDuplicateOffsetX"]));
-            }
-            set {
-                this["gui2DDuplicateOffsetX"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal gui2DDuplicateOffsetY {
-            get {
-                return ((decimal)(this["gui2DDuplicateOffsetY"]));
-            }
-            set {
-                this["gui2DDuplicateOffsetY"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool gui2DDuplicateAddDimensionX {
-            get {
-                return ((bool)(this["gui2DDuplicateAddDimensionX"]));
-            }
-            set {
-                this["gui2DDuplicateAddDimensionX"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool gui2DDuplicateAddDimensionY {
-            get {
-                return ((bool)(this["gui2DDuplicateAddDimensionY"]));
-            }
-            set {
-                this["gui2DDuplicateAddDimensionY"] = value;
             }
         }
         
@@ -4494,6 +4518,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importDXFDontPlot {
+            get {
+                return ((bool)(this["importDXFDontPlot"]));
+            }
+            set {
+                this["importDXFDontPlot"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool ImportDXFSize {
             get {
@@ -6018,6 +6054,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGraphicHatchFillDash {
+            get {
+                return ((bool)(this["importGraphicHatchFillDash"]));
+            }
+            set {
+                this["importGraphicHatchFillDash"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public decimal importGraphicHatchFillDistance {
             get {
@@ -6781,6 +6829,18 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["importSVGCircleToDotZ"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importSVGDontPlot {
+            get {
+                return ((bool)(this["importSVGDontPlot"]));
+            }
+            set {
+                this["importSVGDontPlot"] = value;
             }
         }
         
@@ -8611,36 +8671,48 @@ namespace GrblPlotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool importDXFDontPlot {
+        public bool processOpenOnProgStart {
             get {
-                return ((bool)(this["importDXFDontPlot"]));
+                return ((bool)(this["processOpenOnProgStart"]));
             }
             set {
-                this["importDXFDontPlot"] = value;
+                this["processOpenOnProgStart"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool importSVGDontPlot {
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point processLocation {
             get {
-                return ((bool)(this["importSVGDontPlot"]));
+                return ((global::System.Drawing.Point)(this["processLocation"]));
             }
             set {
-                this["importSVGDontPlot"] = value;
+                this["processLocation"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool importGraphicHatchFillDash {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string processLastFile {
             get {
-                return ((bool)(this["importGraphicHatchFillDash"]));
+                return ((string)(this["processLastFile"]));
             }
             set {
-                this["importGraphicHatchFillDash"] = value;
+                this["processLastFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("300")]
+        public int processSplitDistance {
+            get {
+                return ((int)(this["processSplitDistance"]));
+            }
+            set {
+                this["processSplitDistance"] = value;
             }
         }
     }
