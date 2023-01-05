@@ -120,9 +120,6 @@
   <data name="label11.Text" xml:space="preserve">
     <value>ライン距離</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>フォント</value>
-  </data>
   <data name="label3.Text" xml:space="preserve">
     <value>ツール：</value>
   </data>
@@ -198,10 +195,88 @@
   <data name="RbAlign1.Text" xml:space="preserve">
     <value>左</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>ラインアライメント</value>
-  </data>
   <data name="CbInsertCode.Text" xml:space="preserve">
     <value>テキストを2Dビューに挿入します（位置0; 0）</value>
+  </data>
+  <data name="CbOutline.Text" xml:space="preserve">
+    <value>概要</value>
+  </data>
+  <data name="CbOutline.ToolTip" xml:space="preserve">
+    <value>[設定 - グラフィックのインポート - パスのインポート - パスの変更] で定義されたハッチ塗りつぶしパターンで文字を塗りつぶします。</value>
+  </data>
+  <data name="CbHatchFill.Text" xml:space="preserve">
+    <value>ハッチ塗りつぶし</value>
+  </data>
+  <data name="CbHatchFill.ToolTip" xml:space="preserve">
+    <value>[設定 - グラフィックのインポート - パスのインポート - パスの変更] で定義されたハッチ塗りつぶしパターンで文字を塗りつぶします。</value>
+  </data>
+  <data name="CbWordWrap.Text" xml:space="preserve">
+    <value>ワードラップ</value>
+  </data>
+  <data name="RbFont2.Text" xml:space="preserve">
+    <value>システムフォント</value>
+  </data>
+  <data name="RbFont1.Text" xml:space="preserve">
+    <value>単線フォント (ハーシー)</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>テキストの配置</value>
+  </data>
+  <data name="BtnSelectFont.Text" xml:space="preserve">
+    <value>フォントを選択</value>
+  </data>
+  <data name="LblFont.Text" xml:space="preserve">
+    <value>フォント：</value>
+  </data>
+  <data name="LblInfoFont.Text" xml:space="preserve">
+    <value>フォント</value>
+  </data>
+  <data name="LblInfoSize.Text" xml:space="preserve">
+    <value>サイズ</value>
+  </data>
+  <data name="LblSize.Text" xml:space="preserve">
+    <value>サイズ：</value>
+  </data>
+  <data name="LblWidth.Text" xml:space="preserve">
+    <value>幅：</value>
+  </data>
+  <data name="LblHeight.Text" xml:space="preserve">
+    <value>身長：</value>
+  </data>
+  <data name="LblInfoWidth.Text" xml:space="preserve">
+    <value>10000.00</value>
+  </data>
+  <data name="LblInfoWidth.ToolTip" xml:space="preserve">
+    <value>現在のフォントサイズとワードラップ設定で作成された G コードのテキスト幅</value>
+  </data>
+  <data name="LblInfoHeight.Text" xml:space="preserve">
+    <value>10000.00</value>
+  </data>
+  <data name="LblInfoHeight.ToolTip" xml:space="preserve">
+    <value>現在のフォントサイズとワードラップ設定で作成された G コードのテキストの高さ</value>
+  </data>
+  <data name="linkLabel1.Text" xml:space="preserve">
+    <value>フリーフォント</value>
+  </data>
+  <data name="linkLabel1.ToolTip" xml:space="preserve">
+    <value>「www.dafont.com」へのリンク - 使用は自己責任で行ってください。</value>
+  </data>
+  <data name="NUDWidth.ToolTip" xml:space="preserve">
+    <value>目的のテキスト幅を設定し、それに達するように font-size を調整します。</value>
+  </data>
+  <data name="NUDHeight.ToolTip" xml:space="preserve">
+    <value>目的のテキストの高さを設定し、それに達するように font-size を調整します。</value>
+  </data>
+  <data name="BtnSetWidth.Text" xml:space="preserve">
+    <value>セットする</value>
+  </data>
+  <data name="BtnSetWidth.ToolTip" xml:space="preserve">
+    <value>指定されたテキスト幅に達するように font-size を計算して設定します</value>
+  </data>
+  <data name="BtnSetHeight.Text" xml:space="preserve">
+    <value>セットする</value>
+  </data>
+  <data name="BtnSetHeight.ToolTip" xml:space="preserve">
+    <value>指定されたテキストの高さに達するように font-size を計算して設定します</value>
   </data>
 </root>

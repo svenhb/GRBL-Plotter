@@ -138,9 +138,6 @@
   <data name="label10.ToolTip" xml:space="preserve">
     <value>Espace supplémentaire entre les lettres</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Police de caractère</value>
-  </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>proche</value>
   </data>
@@ -192,10 +189,88 @@
   <data name="RbAlign1.Text" xml:space="preserve">
     <value>La gauche</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Alignement de ligne</value>
-  </data>
   <data name="CbInsertCode.Text" xml:space="preserve">
     <value>Insérer du texte dans la vue 2D (à la position 0;0)</value>
+  </data>
+  <data name="CbOutline.Text" xml:space="preserve">
+    <value>Contour</value>
+  </data>
+  <data name="CbOutline.ToolTip" xml:space="preserve">
+    <value>Remplir les lettres avec un motif de remplissage hachuré, défini dans [Configuration - Importation de graphiques - Importation de chemin - Modifications de chemin]</value>
+  </data>
+  <data name="CbHatchFill.Text" xml:space="preserve">
+    <value>Remplissage hachuré</value>
+  </data>
+  <data name="CbHatchFill.ToolTip" xml:space="preserve">
+    <value>Remplir les lettres avec un motif de remplissage hachuré, défini dans [Configuration - Importation de graphiques - Importation de chemin - Modifications de chemin]</value>
+  </data>
+  <data name="CbWordWrap.Text" xml:space="preserve">
+    <value>Retour à la ligne</value>
+  </data>
+  <data name="RbFont2.Text" xml:space="preserve">
+    <value>Police système</value>
+  </data>
+  <data name="RbFont1.Text" xml:space="preserve">
+    <value>Police à une seule ligne (Hershey)</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Alignement du texte</value>
+  </data>
+  <data name="BtnSelectFont.Text" xml:space="preserve">
+    <value>Sélectionnez la police</value>
+  </data>
+  <data name="LblFont.Text" xml:space="preserve">
+    <value>Police de caractère:</value>
+  </data>
+  <data name="LblInfoFont.Text" xml:space="preserve">
+    <value>Police de caractère</value>
+  </data>
+  <data name="LblInfoSize.Text" xml:space="preserve">
+    <value>Taille</value>
+  </data>
+  <data name="LblSize.Text" xml:space="preserve">
+    <value>Taille:</value>
+  </data>
+  <data name="LblWidth.Text" xml:space="preserve">
+    <value>Largeur:</value>
+  </data>
+  <data name="LblHeight.Text" xml:space="preserve">
+    <value>Hauteur:</value>
+  </data>
+  <data name="LblInfoWidth.Text" xml:space="preserve">
+    <value>10000.00</value>
+  </data>
+  <data name="LblInfoWidth.ToolTip" xml:space="preserve">
+    <value>Largeur du texte du G-Code créé avec la taille de police actuelle et le réglage de retour à la ligne</value>
+  </data>
+  <data name="LblInfoHeight.Text" xml:space="preserve">
+    <value>10000.00</value>
+  </data>
+  <data name="LblInfoHeight.ToolTip" xml:space="preserve">
+    <value>Hauteur du texte du G-Code créé avec la taille de police actuelle et le réglage de retour à la ligne</value>
+  </data>
+  <data name="linkLabel1.Text" xml:space="preserve">
+    <value>Polices gratuites</value>
+  </data>
+  <data name="linkLabel1.ToolTip" xml:space="preserve">
+    <value>Lien vers 'www.dafont.com' - l'utilisation est à vos risques et périls.</value>
+  </data>
+  <data name="NUDWidth.ToolTip" xml:space="preserve">
+    <value>Définissez la largeur de texte souhaitée et adaptez la taille de la police pour l'atteindre.</value>
+  </data>
+  <data name="NUDHeight.ToolTip" xml:space="preserve">
+    <value>Définissez la hauteur de texte souhaitée et adaptez la taille de la police pour l'atteindre.</value>
+  </data>
+  <data name="BtnSetWidth.Text" xml:space="preserve">
+    <value>Positionner</value>
+  </data>
+  <data name="BtnSetWidth.ToolTip" xml:space="preserve">
+    <value>Calculer et définir la taille de la police pour atteindre la largeur de texte donnée</value>
+  </data>
+  <data name="BtnSetHeight.Text" xml:space="preserve">
+    <value>Positionner</value>
+  </data>
+  <data name="BtnSetHeight.ToolTip" xml:space="preserve">
+    <value>Calculer et définir la taille de la police pour atteindre la hauteur de texte donnée</value>
   </data>
 </root>

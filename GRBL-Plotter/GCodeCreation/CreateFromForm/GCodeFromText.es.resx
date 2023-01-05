@@ -138,9 +138,6 @@
   <data name="label10.ToolTip" xml:space="preserve">
     <value>Espacio adicional entre letras</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Fuente</value>
-  </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>Cerrar</value>
   </data>
@@ -192,10 +189,88 @@
   <data name="RbAlign1.Text" xml:space="preserve">
     <value>Izquierda</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Alineación de línea</value>
-  </data>
   <data name="CbInsertCode.Text" xml:space="preserve">
     <value>Insertar texto en la vista 2D (en la posición 0;0)</value>
+  </data>
+  <data name="CbOutline.Text" xml:space="preserve">
+    <value>Describir</value>
+  </data>
+  <data name="CbOutline.ToolTip" xml:space="preserve">
+    <value>Rellene las letras con el patrón de relleno de sombreado, definido en [Configuración - Importación de gráficos - Importación de ruta - Modificaciones de ruta]</value>
+  </data>
+  <data name="CbHatchFill.Text" xml:space="preserve">
+    <value>Relleno de escotilla</value>
+  </data>
+  <data name="CbHatchFill.ToolTip" xml:space="preserve">
+    <value>Rellene las letras con el patrón de relleno de sombreado, definido en [Configuración - Importación de gráficos - Importación de ruta - Modificaciones de ruta]</value>
+  </data>
+  <data name="CbWordWrap.Text" xml:space="preserve">
+    <value>Ajuste de línea</value>
+  </data>
+  <data name="RbFont2.Text" xml:space="preserve">
+    <value>Fuente del sistema</value>
+  </data>
+  <data name="RbFont1.Text" xml:space="preserve">
+    <value>Fuente de una sola línea (Hershey)</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Alineación del texto</value>
+  </data>
+  <data name="BtnSelectFont.Text" xml:space="preserve">
+    <value>Seleccionar fuente</value>
+  </data>
+  <data name="LblFont.Text" xml:space="preserve">
+    <value>Fuente:</value>
+  </data>
+  <data name="LblInfoFont.Text" xml:space="preserve">
+    <value>Fuente</value>
+  </data>
+  <data name="LblInfoSize.Text" xml:space="preserve">
+    <value>Tamaño</value>
+  </data>
+  <data name="LblSize.Text" xml:space="preserve">
+    <value>Tamaño:</value>
+  </data>
+  <data name="LblWidth.Text" xml:space="preserve">
+    <value>Ancho:</value>
+  </data>
+  <data name="LblHeight.Text" xml:space="preserve">
+    <value>Altura:</value>
+  </data>
+  <data name="LblInfoWidth.Text" xml:space="preserve">
+    <value>10000.00</value>
+  </data>
+  <data name="LblInfoWidth.ToolTip" xml:space="preserve">
+    <value>Ancho del texto del código G creado con el tamaño de fuente actual y la configuración de ajuste de línea</value>
+  </data>
+  <data name="LblInfoHeight.Text" xml:space="preserve">
+    <value>10000.00</value>
+  </data>
+  <data name="LblInfoHeight.ToolTip" xml:space="preserve">
+    <value>Altura del texto del código G creado con el tamaño de fuente actual y la configuración de ajuste de línea</value>
+  </data>
+  <data name="linkLabel1.Text" xml:space="preserve">
+    <value>fuentes gratis</value>
+  </data>
+  <data name="linkLabel1.ToolTip" xml:space="preserve">
+    <value>Enlace a 'www.dafont.com' - el uso es bajo su propio riesgo.</value>
+  </data>
+  <data name="NUDWidth.ToolTip" xml:space="preserve">
+    <value>Establezca el ancho de texto deseado y adapte el tamaño de fuente para alcanzarlo.</value>
+  </data>
+  <data name="NUDHeight.ToolTip" xml:space="preserve">
+    <value>Establezca la altura de texto deseada y adapte el tamaño de fuente para alcanzarlo.</value>
+  </data>
+  <data name="BtnSetWidth.Text" xml:space="preserve">
+    <value>colocar</value>
+  </data>
+  <data name="BtnSetWidth.ToolTip" xml:space="preserve">
+    <value>Calcule y configure el tamaño de fuente para alcanzar el ancho de texto dado</value>
+  </data>
+  <data name="BtnSetHeight.Text" xml:space="preserve">
+    <value>colocar</value>
+  </data>
+  <data name="BtnSetHeight.ToolTip" xml:space="preserve">
+    <value>Calcule y configure el tamaño de fuente para alcanzar la altura del texto dada</value>
   </data>
 </root>

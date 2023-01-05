@@ -138,9 +138,6 @@
   <data name="label10.ToolTip" xml:space="preserve">
     <value>字母之间的额外空间</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>字形</value>
-  </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>关</value>
   </data>
@@ -195,13 +192,91 @@
   <data name="RbAlign1.Text" xml:space="preserve">
     <value>剩下</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>线对齐</value>
-  </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>G代码</value>
   </data>
   <data name="CbInsertCode.Text" xml:space="preserve">
     <value>将文本插入 2D 视图（在位置 0;0）</value>
+  </data>
+  <data name="CbOutline.Text" xml:space="preserve">
+    <value>大纲</value>
+  </data>
+  <data name="CbOutline.ToolTip" xml:space="preserve">
+    <value>用影线填充图案填充字母，在[设置-图形导入-路径导入-路径修改]中定义</value>
+  </data>
+  <data name="CbHatchFill.Text" xml:space="preserve">
+    <value>影线填充</value>
+  </data>
+  <data name="CbHatchFill.ToolTip" xml:space="preserve">
+    <value>用影线填充图案填充字母，在[设置-图形导入-路径导入-路径修改]中定义</value>
+  </data>
+  <data name="CbWordWrap.Text" xml:space="preserve">
+    <value>自动换行</value>
+  </data>
+  <data name="RbFont2.Text" xml:space="preserve">
+    <value>系统字体</value>
+  </data>
+  <data name="RbFont1.Text" xml:space="preserve">
+    <value>单行字体 (Hershey)</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>文本对齐</value>
+  </data>
+  <data name="BtnSelectFont.Text" xml:space="preserve">
+    <value>选择字体</value>
+  </data>
+  <data name="LblFont.Text" xml:space="preserve">
+    <value>字体：</value>
+  </data>
+  <data name="LblInfoFont.Text" xml:space="preserve">
+    <value>字体</value>
+  </data>
+  <data name="LblInfoSize.Text" xml:space="preserve">
+    <value>尺寸</value>
+  </data>
+  <data name="LblSize.Text" xml:space="preserve">
+    <value>尺寸：</value>
+  </data>
+  <data name="LblWidth.Text" xml:space="preserve">
+    <value>宽度：</value>
+  </data>
+  <data name="LblHeight.Text" xml:space="preserve">
+    <value>高度：</value>
+  </data>
+  <data name="LblInfoWidth.Text" xml:space="preserve">
+    <value>10000.00</value>
+  </data>
+  <data name="LblInfoWidth.ToolTip" xml:space="preserve">
+    <value>使用当前字体大小和自动换行设置创建的 G 代码的文本宽度</value>
+  </data>
+  <data name="LblInfoHeight.Text" xml:space="preserve">
+    <value>10000.00</value>
+  </data>
+  <data name="LblInfoHeight.ToolTip" xml:space="preserve">
+    <value>使用当前字体大小和自动换行设置创建的 G 代码的文本高度</value>
+  </data>
+  <data name="linkLabel1.Text" xml:space="preserve">
+    <value>免费字体</value>
+  </data>
+  <data name="linkLabel1.ToolTip" xml:space="preserve">
+    <value>链接到“www.dafont.com” - 使用风险由您自行承担。</value>
+  </data>
+  <data name="NUDWidth.ToolTip" xml:space="preserve">
+    <value>设置所需的文本宽度并调整字体大小以达到它。</value>
+  </data>
+  <data name="NUDHeight.ToolTip" xml:space="preserve">
+    <value>设置所需的文本高度并调整字体大小以达到它。</value>
+  </data>
+  <data name="BtnSetWidth.Text" xml:space="preserve">
+    <value>放</value>
+  </data>
+  <data name="BtnSetWidth.ToolTip" xml:space="preserve">
+    <value>计算并设置字体大小以达到给定的文本宽度</value>
+  </data>
+  <data name="BtnSetHeight.Text" xml:space="preserve">
+    <value>放</value>
+  </data>
+  <data name="BtnSetHeight.ToolTip" xml:space="preserve">
+    <value>计算并设置字体大小以达到给定的文本高度</value>
   </data>
 </root>

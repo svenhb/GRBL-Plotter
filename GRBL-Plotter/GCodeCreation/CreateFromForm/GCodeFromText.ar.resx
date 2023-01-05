@@ -120,9 +120,6 @@
   <data name="label11.Text" xml:space="preserve">
     <value>خط المسافة</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>الخط</value>
-  </data>
   <data name="label3.Text" xml:space="preserve">
     <value>الأداة:</value>
   </data>
@@ -198,10 +195,88 @@
   <data name="RbAlign1.Text" xml:space="preserve">
     <value>اليسار</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>محاذاة الخط</value>
-  </data>
   <data name="CbInsertCode.Text" xml:space="preserve">
     <value>أدخل نصًا في عرض ثنائي الأبعاد (في الموضع 0 ؛ 0)</value>
+  </data>
+  <data name="CbOutline.Text" xml:space="preserve">
+    <value>الخطوط العريضة</value>
+  </data>
+  <data name="CbOutline.ToolTip" xml:space="preserve">
+    <value>تعبئة الأحرف بنمط تعبئة الفتحة المحدد في [الإعداد - استيراد الرسومات - استيراد المسار - تعديلات المسار]</value>
+  </data>
+  <data name="CbHatchFill.Text" xml:space="preserve">
+    <value>ملء هاتش</value>
+  </data>
+  <data name="CbHatchFill.ToolTip" xml:space="preserve">
+    <value>تعبئة الأحرف بنمط تعبئة الفتحة المحدد في [الإعداد - استيراد الرسومات - استيراد المسار - تعديلات المسار]</value>
+  </data>
+  <data name="CbWordWrap.Text" xml:space="preserve">
+    <value>التفاف النص</value>
+  </data>
+  <data name="RbFont2.Text" xml:space="preserve">
+    <value>خط النظام</value>
+  </data>
+  <data name="RbFont1.Text" xml:space="preserve">
+    <value>خط أحادي الخط (هيرشي)</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>محاذاة النص</value>
+  </data>
+  <data name="BtnSelectFont.Text" xml:space="preserve">
+    <value>حدد الخط</value>
+  </data>
+  <data name="LblFont.Text" xml:space="preserve">
+    <value>الخط:</value>
+  </data>
+  <data name="LblInfoFont.Text" xml:space="preserve">
+    <value>الخط</value>
+  </data>
+  <data name="LblInfoSize.Text" xml:space="preserve">
+    <value>بحجم</value>
+  </data>
+  <data name="LblSize.Text" xml:space="preserve">
+    <value>بحجم:</value>
+  </data>
+  <data name="LblWidth.Text" xml:space="preserve">
+    <value>عرض:</value>
+  </data>
+  <data name="LblHeight.Text" xml:space="preserve">
+    <value>ارتفاع:</value>
+  </data>
+  <data name="LblInfoWidth.Text" xml:space="preserve">
+    <value>10000.00</value>
+  </data>
+  <data name="LblInfoWidth.ToolTip" xml:space="preserve">
+    <value>عرض نص G-Code الذي تم إنشاؤه مع حجم الخط الحالي وإعداد التفاف النص</value>
+  </data>
+  <data name="LblInfoHeight.Text" xml:space="preserve">
+    <value>10000.00</value>
+  </data>
+  <data name="LblInfoHeight.ToolTip" xml:space="preserve">
+    <value>ارتفاع نص G-Code الذي تم إنشاؤه باستخدام حجم الخط الحالي وإعداد التفاف النص</value>
+  </data>
+  <data name="linkLabel1.Text" xml:space="preserve">
+    <value>الخطوط المجانية</value>
+  </data>
+  <data name="linkLabel1.ToolTip" xml:space="preserve">
+    <value>رابط "www.dafont.com" - الاستخدام على مسؤوليتك الخاصة.</value>
+  </data>
+  <data name="NUDWidth.ToolTip" xml:space="preserve">
+    <value>قم بتعيين عرض النص المطلوب وتكييف حجم الخط للوصول إليه.</value>
+  </data>
+  <data name="NUDHeight.ToolTip" xml:space="preserve">
+    <value>قم بتعيين ارتفاع النص المطلوب وتكييف حجم الخط للوصول إليه.</value>
+  </data>
+  <data name="BtnSetWidth.Text" xml:space="preserve">
+    <value>تعيين</value>
+  </data>
+  <data name="BtnSetWidth.ToolTip" xml:space="preserve">
+    <value>حساب وضبط حجم الخط للوصول إلى عرض نص معين</value>
+  </data>
+  <data name="BtnSetHeight.Text" xml:space="preserve">
+    <value>تعيين</value>
+  </data>
+  <data name="BtnSetHeight.ToolTip" xml:space="preserve">
+    <value>حساب وتعيين حجم الخط للوصول إلى ارتفاع النص المحدد</value>
   </data>
 </root>

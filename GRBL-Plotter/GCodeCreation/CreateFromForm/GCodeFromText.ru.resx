@@ -138,9 +138,6 @@
   <data name="label10.ToolTip" xml:space="preserve">
     <value>Дополнительный пробел между буквами</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Шрифт</value>
-  </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>близко</value>
   </data>
@@ -195,13 +192,91 @@
   <data name="RbAlign1.Text" xml:space="preserve">
     <value>Левый</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Выравнивание линии</value>
-  </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>G-код</value>
   </data>
   <data name="CbInsertCode.Text" xml:space="preserve">
     <value>Вставить текст в 2D-вид (в позиции 0;0)</value>
+  </data>
+  <data name="CbOutline.Text" xml:space="preserve">
+    <value>Контур</value>
+  </data>
+  <data name="CbOutline.ToolTip" xml:space="preserve">
+    <value>Заполните буквы образцом штриховки, заданным в [Настройка — Импорт графики — Импорт контура — Модификации контура]</value>
+  </data>
+  <data name="CbHatchFill.Text" xml:space="preserve">
+    <value>Заполнение люка</value>
+  </data>
+  <data name="CbHatchFill.ToolTip" xml:space="preserve">
+    <value>Заполните буквы образцом штриховки, заданным в [Настройка — Импорт графики — Импорт контура — Модификации контура]</value>
+  </data>
+  <data name="CbWordWrap.Text" xml:space="preserve">
+    <value>Перенос слова</value>
+  </data>
+  <data name="RbFont2.Text" xml:space="preserve">
+    <value>Системный шрифт</value>
+  </data>
+  <data name="RbFont1.Text" xml:space="preserve">
+    <value>Однострочный шрифт (Hershey)</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Выравнивание текста</value>
+  </data>
+  <data name="BtnSelectFont.Text" xml:space="preserve">
+    <value>Выберите шрифт</value>
+  </data>
+  <data name="LblFont.Text" xml:space="preserve">
+    <value>Шрифт:</value>
+  </data>
+  <data name="LblInfoFont.Text" xml:space="preserve">
+    <value>Шрифт</value>
+  </data>
+  <data name="LblInfoSize.Text" xml:space="preserve">
+    <value>Размер</value>
+  </data>
+  <data name="LblSize.Text" xml:space="preserve">
+    <value>Размер:</value>
+  </data>
+  <data name="LblWidth.Text" xml:space="preserve">
+    <value>Ширина:</value>
+  </data>
+  <data name="LblHeight.Text" xml:space="preserve">
+    <value>Рост:</value>
+  </data>
+  <data name="LblInfoWidth.Text" xml:space="preserve">
+    <value>10000.00</value>
+  </data>
+  <data name="LblInfoWidth.ToolTip" xml:space="preserve">
+    <value>Ширина текста созданного G-кода с текущим размером шрифта и настройкой переноса слов</value>
+  </data>
+  <data name="LblInfoHeight.Text" xml:space="preserve">
+    <value>10000.00</value>
+  </data>
+  <data name="LblInfoHeight.ToolTip" xml:space="preserve">
+    <value>Высота текста созданного G-кода с текущим размером шрифта и настройкой переноса слов</value>
+  </data>
+  <data name="linkLabel1.Text" xml:space="preserve">
+    <value>Бесплатные шрифты</value>
+  </data>
+  <data name="linkLabel1.ToolTip" xml:space="preserve">
+    <value>Ссылка на 'www.dafont.com' - использование на свой страх и риск.</value>
+  </data>
+  <data name="NUDWidth.ToolTip" xml:space="preserve">
+    <value>Установите желаемую ширину текста и адаптируйте размер шрифта для ее достижения.</value>
+  </data>
+  <data name="NUDHeight.ToolTip" xml:space="preserve">
+    <value>Установите желаемую высоту текста и адаптируйте размер шрифта для ее достижения.</value>
+  </data>
+  <data name="BtnSetWidth.Text" xml:space="preserve">
+    <value>установлен</value>
+  </data>
+  <data name="BtnSetWidth.ToolTip" xml:space="preserve">
+    <value>Рассчитать и установить размер шрифта для достижения заданной ширины текста</value>
+  </data>
+  <data name="BtnSetHeight.Text" xml:space="preserve">
+    <value>установлен</value>
+  </data>
+  <data name="BtnSetHeight.ToolTip" xml:space="preserve">
+    <value>Рассчитать и установить размер шрифта для достижения заданной высоты текста</value>
   </data>
 </root>

@@ -120,9 +120,6 @@
   <data name="label11.Text" xml:space="preserve">
     <value>Distância da linha</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Fonte</value>
-  </data>
   <data name="label10.Text" xml:space="preserve">
     <value>Distância da letra</value>
   </data>
@@ -192,10 +189,88 @@
   <data name="RbAlign1.Text" xml:space="preserve">
     <value>Deixou</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Alinhamento de linha</value>
-  </data>
   <data name="CbInsertCode.Text" xml:space="preserve">
     <value>Inserir texto na visualização 2D (na posição 0;0)</value>
+  </data>
+  <data name="CbOutline.Text" xml:space="preserve">
+    <value>Contorno</value>
+  </data>
+  <data name="CbOutline.ToolTip" xml:space="preserve">
+    <value>Letras de preenchimento com padrão de preenchimento de hachura, definido em [Configuração - Importação de gráficos - Importação de caminho - Modificações de caminho]</value>
+  </data>
+  <data name="CbHatchFill.Text" xml:space="preserve">
+    <value>Preenchimento de hachura</value>
+  </data>
+  <data name="CbHatchFill.ToolTip" xml:space="preserve">
+    <value>Letras de preenchimento com padrão de preenchimento de hachura, definido em [Configuração - Importação de gráficos - Importação de caminho - Modificações de caminho]</value>
+  </data>
+  <data name="CbWordWrap.Text" xml:space="preserve">
+    <value>Quebra de linha</value>
+  </data>
+  <data name="RbFont2.Text" xml:space="preserve">
+    <value>Fonte do sistema</value>
+  </data>
+  <data name="RbFont1.Text" xml:space="preserve">
+    <value>Fonte de linha única (Hershey)</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Alinhamento de texto</value>
+  </data>
+  <data name="BtnSelectFont.Text" xml:space="preserve">
+    <value>Selecione a fonte</value>
+  </data>
+  <data name="LblFont.Text" xml:space="preserve">
+    <value>Fonte:</value>
+  </data>
+  <data name="LblInfoFont.Text" xml:space="preserve">
+    <value>Fonte</value>
+  </data>
+  <data name="LblInfoSize.Text" xml:space="preserve">
+    <value>Tamanho</value>
+  </data>
+  <data name="LblSize.Text" xml:space="preserve">
+    <value>Tamanho:</value>
+  </data>
+  <data name="LblWidth.Text" xml:space="preserve">
+    <value>Largura:</value>
+  </data>
+  <data name="LblHeight.Text" xml:space="preserve">
+    <value>Altura:</value>
+  </data>
+  <data name="LblInfoWidth.Text" xml:space="preserve">
+    <value>10.000,00</value>
+  </data>
+  <data name="LblInfoWidth.ToolTip" xml:space="preserve">
+    <value>Largura do texto do G-Code criado com tamanho de fonte atual e configuração de quebra de linha</value>
+  </data>
+  <data name="LblInfoHeight.Text" xml:space="preserve">
+    <value>10.000,00</value>
+  </data>
+  <data name="LblInfoHeight.ToolTip" xml:space="preserve">
+    <value>Altura do texto do G-Code criado com tamanho de fonte atual e configuração de quebra de linha</value>
+  </data>
+  <data name="linkLabel1.Text" xml:space="preserve">
+    <value>Fontes gratuitas</value>
+  </data>
+  <data name="linkLabel1.ToolTip" xml:space="preserve">
+    <value>Link para 'www.dafont.com' - o uso é por sua conta e risco.</value>
+  </data>
+  <data name="NUDWidth.ToolTip" xml:space="preserve">
+    <value>Defina a largura do texto desejada e adapte o tamanho da fonte para alcançá-la.</value>
+  </data>
+  <data name="NUDHeight.ToolTip" xml:space="preserve">
+    <value>Defina a altura do texto desejada e adapte o tamanho da fonte para alcançá-la.</value>
+  </data>
+  <data name="BtnSetWidth.Text" xml:space="preserve">
+    <value>definir</value>
+  </data>
+  <data name="BtnSetWidth.ToolTip" xml:space="preserve">
+    <value>Calcule e defina o tamanho da fonte para atingir a largura do texto</value>
+  </data>
+  <data name="BtnSetHeight.Text" xml:space="preserve">
+    <value>definir</value>
+  </data>
+  <data name="BtnSetHeight.ToolTip" xml:space="preserve">
+    <value>Calcule e defina o tamanho da fonte para atingir a altura do texto</value>
   </data>
 </root>

@@ -135,9 +135,6 @@
   <data name="RbAlign1.Text" xml:space="preserve">
     <value>sinistra</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Allineamento della linea</value>
-  </data>
   <data name="cBLineBreak.Text" xml:space="preserve">
     <value>Interruzione di riga dopo (stimata)</value>
   </data>
@@ -155,9 +152,6 @@
   </data>
   <data name="label10.ToolTip" xml:space="preserve">
     <value>Spazio aggiuntivo tra le lettere</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Font</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>Chiudere</value>
@@ -203,5 +197,86 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Crea codice G dal testo</value>
+  </data>
+  <data name="CbOutline.Text" xml:space="preserve">
+    <value>Schema</value>
+  </data>
+  <data name="CbOutline.ToolTip" xml:space="preserve">
+    <value>Riempi le lettere con un motivo di riempimento a tratteggio, definito in [Setup - Importazione grafica - Importazione percorso - Modifiche percorso]</value>
+  </data>
+  <data name="CbHatchFill.Text" xml:space="preserve">
+    <value>Riempimento tratteggio</value>
+  </data>
+  <data name="CbHatchFill.ToolTip" xml:space="preserve">
+    <value>Riempi le lettere con un motivo di riempimento a tratteggio, definito in [Setup - Importazione grafica - Importazione percorso - Modifiche percorso]</value>
+  </data>
+  <data name="CbWordWrap.Text" xml:space="preserve">
+    <value>A capo automatico</value>
+  </data>
+  <data name="RbFont2.Text" xml:space="preserve">
+    <value>Carattere di sistema</value>
+  </data>
+  <data name="RbFont1.Text" xml:space="preserve">
+    <value>Carattere a riga singola (Hershey)</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Allineamento del testo</value>
+  </data>
+  <data name="BtnSelectFont.Text" xml:space="preserve">
+    <value>Seleziona carattere</value>
+  </data>
+  <data name="LblFont.Text" xml:space="preserve">
+    <value>Font:</value>
+  </data>
+  <data name="LblInfoFont.Text" xml:space="preserve">
+    <value>Font</value>
+  </data>
+  <data name="LblInfoSize.Text" xml:space="preserve">
+    <value>Misurare</value>
+  </data>
+  <data name="LblSize.Text" xml:space="preserve">
+    <value>Misurare:</value>
+  </data>
+  <data name="LblWidth.Text" xml:space="preserve">
+    <value>Larghezza:</value>
+  </data>
+  <data name="LblHeight.Text" xml:space="preserve">
+    <value>Altezza:</value>
+  </data>
+  <data name="LblInfoWidth.Text" xml:space="preserve">
+    <value>10000,00</value>
+  </data>
+  <data name="LblInfoWidth.ToolTip" xml:space="preserve">
+    <value>Larghezza del testo del codice G creato con la dimensione del carattere corrente e l'impostazione di a capo automatico</value>
+  </data>
+  <data name="LblInfoHeight.Text" xml:space="preserve">
+    <value>10000,00</value>
+  </data>
+  <data name="LblInfoHeight.ToolTip" xml:space="preserve">
+    <value>Altezza del testo del codice G creato con la dimensione del carattere corrente e l'impostazione di a capo automatico</value>
+  </data>
+  <data name="linkLabel1.Text" xml:space="preserve">
+    <value>Font gratuiti</value>
+  </data>
+  <data name="linkLabel1.ToolTip" xml:space="preserve">
+    <value>Link a 'www.dafont.com' - l'utilizzo è a proprio rischio.</value>
+  </data>
+  <data name="NUDWidth.ToolTip" xml:space="preserve">
+    <value>Imposta la larghezza del testo desiderata e adatta la dimensione del carattere per raggiungerla.</value>
+  </data>
+  <data name="NUDHeight.ToolTip" xml:space="preserve">
+    <value>Imposta l'altezza del testo desiderata e adatta la dimensione del carattere per raggiungerla.</value>
+  </data>
+  <data name="BtnSetWidth.Text" xml:space="preserve">
+    <value>impostare</value>
+  </data>
+  <data name="BtnSetWidth.ToolTip" xml:space="preserve">
+    <value>Calcola e imposta la dimensione del carattere per raggiungere una determinata larghezza del testo</value>
+  </data>
+  <data name="BtnSetHeight.Text" xml:space="preserve">
+    <value>impostare</value>
+  </data>
+  <data name="BtnSetHeight.ToolTip" xml:space="preserve">
+    <value>Calcola e imposta la dimensione del carattere per raggiungere l'altezza del testo specificata</value>
   </data>
 </root>

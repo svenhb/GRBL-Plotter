@@ -215,7 +215,7 @@ namespace GrblPlotter
             {
                 List<string> newLines = new List<string>();
                 string oneLine = "";
-                string[] words = GCText.Split(' ');
+                string[] words = GCText.Split(' ');             //GCText.Split(new char[] {' ','-'}); // split also at '-', but keep
                 double hScale = letterWidth + GCFontDistance;
                 double space = 0;
                 int charCount = 0;

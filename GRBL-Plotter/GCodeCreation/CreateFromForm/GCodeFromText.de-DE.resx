@@ -187,10 +187,91 @@ in Setup SVG-Import </value>
   <data name="RbAlign1.Text" xml:space="preserve">
     <value>links</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Zeilenausrichtung</value>
-  </data>
   <data name="CbInsertCode.Text" xml:space="preserve">
     <value>Text in 2D-Ansicht einfügen (an Position 0;0)</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Beenden</value>
+  </data>
+  <data name="CbOutline.Text" xml:space="preserve">
+    <value>Umriss</value>
+  </data>
+  <data name="CbOutline.ToolTip" xml:space="preserve">
+    <value>Buchstaben mit Schraffurfüllmuster füllen, definiert in [Setup - Grafikimport - Pfadimport - Pfadänderungen]</value>
+  </data>
+  <data name="CbHatchFill.Text" xml:space="preserve">
+    <value>Schraffur</value>
+  </data>
+  <data name="CbHatchFill.ToolTip" xml:space="preserve">
+    <value>Buchstaben mit Schraffurfüllmuster füllen, definiert in [Setup - Grafikimport - Pfadimport - Pfadänderungen]</value>
+  </data>
+  <data name="CbWordWrap.Text" xml:space="preserve">
+    <value>Zeilenumbruch</value>
+  </data>
+  <data name="RbFont2.Text" xml:space="preserve">
+    <value>Systemschrift</value>
+  </data>
+  <data name="RbFont1.Text" xml:space="preserve">
+    <value>Einzeilige Schriftart (Hershey)</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Textausrichtung</value>
+  </data>
+  <data name="BtnSelectFont.Text" xml:space="preserve">
+    <value>Schriftart auswählen</value>
+  </data>
+  <data name="LblFont.Text" xml:space="preserve">
+    <value>Schriftart:</value>
+  </data>
+  <data name="LblInfoFont.Text" xml:space="preserve">
+    <value>Schriftart</value>
+  </data>
+  <data name="LblInfoSize.Text" xml:space="preserve">
+    <value>Größe</value>
+  </data>
+  <data name="LblSize.Text" xml:space="preserve">
+    <value>Größe:</value>
+  </data>
+  <data name="LblWidth.Text" xml:space="preserve">
+    <value>Breite:</value>
+  </data>
+  <data name="LblHeight.Text" xml:space="preserve">
+    <value>Höhe:</value>
+  </data>
+  <data name="LblInfoWidth.Text" xml:space="preserve">
+    <value>10000,00</value>
+  </data>
+  <data name="LblInfoWidth.ToolTip" xml:space="preserve">
+    <value>Textbreite des erstellten G-Codes mit aktueller Schriftgröße und Zeilenumbrucheinstellung</value>
+  </data>
+  <data name="LblInfoHeight.Text" xml:space="preserve">
+    <value>10000,00</value>
+  </data>
+  <data name="LblInfoHeight.ToolTip" xml:space="preserve">
+    <value>Texthöhe des erstellten G-Codes mit aktueller Schriftgröße und Zeilenumbrucheinstellung</value>
+  </data>
+  <data name="linkLabel1.Text" xml:space="preserve">
+    <value>Kostenlose Schriftarten</value>
+  </data>
+  <data name="linkLabel1.ToolTip" xml:space="preserve">
+    <value>Link zu 'www.dafont.com' - die Nutzung erfolgt auf eigene Gefahr.</value>
+  </data>
+  <data name="NUDWidth.ToolTip" xml:space="preserve">
+    <value>Stellen Sie die gewünschte Textbreite ein und passen Sie die Schriftgröße an, um sie zu erreichen.</value>
+  </data>
+  <data name="NUDHeight.ToolTip" xml:space="preserve">
+    <value>Stellen Sie die gewünschte Texthöhe ein und passen Sie die Schriftgröße an, um sie zu erreichen.</value>
+  </data>
+  <data name="BtnSetWidth.Text" xml:space="preserve">
+    <value>einstellen</value>
+  </data>
+  <data name="BtnSetWidth.ToolTip" xml:space="preserve">
+    <value>Berechnen und setzen Sie die Schriftgröße, um die angegebene Textbreite zu erreichen</value>
+  </data>
+  <data name="BtnSetHeight.Text" xml:space="preserve">
+    <value>einstellen</value>
+  </data>
+  <data name="BtnSetHeight.ToolTip" xml:space="preserve">
+    <value>Berechnen und setzen Sie die Schriftgröße, um die angegebene Texthöhe zu erreichen</value>
   </data>
 </root>

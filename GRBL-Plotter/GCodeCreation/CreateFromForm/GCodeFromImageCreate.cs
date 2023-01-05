@@ -219,6 +219,7 @@ namespace GrblPlotter
 
                     if (cBGCodeOutline.Checked)
                     {
+						Logger.Trace("ConvertColorMap -Outline  shrink:{0}  by:{1:0.000}", cBGCodeOutlineShrink.Checked, ((float)0.5 / resoOutlineX));
                         int smoothCnt = (int)nUDGCodeOutlineSmooth.Value;
                         if (!cBGCodeOutlineSmooth.Checked)
                             smoothCnt = 0;
@@ -257,6 +258,7 @@ namespace GrblPlotter
 
                     if (cBGCodeFill.Checked)
                     {
+						Logger.Trace("ConvertColorMap -Fill  shrink:{0}  by:{1:0.000}", cBGCodeOutlineShrink.Checked, shrink);
                         int factor = resoFactorX;
                         int start = factor / 2;
                         // if (cBGCodeOutlineShrink.Checked)
