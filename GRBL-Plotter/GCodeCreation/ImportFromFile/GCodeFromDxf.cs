@@ -74,6 +74,7 @@
  * 2022-03-19 line 729 2nd CalcQuadraticBezier start index at 2 not 3
  * 2022-05-18 line 295 check via ContainsKey
  * 2022-06-14 line 387 skip entity if layer is invisible or printing is disabled
+ * 2022-11-10 line 445 check IsNullOrEmpty(dashType)
 */
 
 using DXFLib;
@@ -408,7 +409,7 @@ namespace GrblPlotter //DXFImporter
             /* get color        */
             dxfColorNr = entity.ColorNumber;
             if (dxfColorNr > 255)                           // DXF 256 = color BYLAYER
-                if (layerColor.ContainsKey(layerName))
+                if (!String.IsNullOrEmpty(layerName) && layerColor.ContainsKey(layerName))
                     dxfColorNr = layerColor[layerName];
                 else if (dxfColorNr == 0)                       // DXF 0 = color BYBLOCK
                     dxfColorNr = dxfBlockColorNr;
@@ -430,7 +431,7 @@ namespace GrblPlotter //DXFImporter
             if (dxfLineWeigth == -1) dxfLineWeigth = dxfBlockLineWeigth;        // -1 = ByBlock
             else if (dxfLineWeigth == -2)                                       // -2 = ByLayer
             {
-                if (layerLineWeigth.ContainsKey(layerName))
+                if (!String.IsNullOrEmpty(layerName) && layerLineWeigth.ContainsKey(layerName))
                     dxfLineWeigth = layerLineWeigth[layerName];
             }
             else if (dxfLineWeigth == -3)                                       // -3 = Standard
@@ -441,8 +442,8 @@ namespace GrblPlotter //DXFImporter
             {
                 if ((layerLType != null) && (layerName != null) && (layerLType.ContainsKey(layerName)))              // check if layer name is known
                 {
-                    string dashType = layerLType[layerName];        // get name of pattern
-                    if (lineTypes.ContainsKey(dashType))            // check if pattern name is known
+                    string dashType = layerLType[layerName];        							// get name of pattern
+					if (!String.IsNullOrEmpty(dashType) && lineTypes.ContainsKey(dashType))    // check if pattern name is known
                         Graphic.SetDash(lineTypes[dashType]);
                 }
             }

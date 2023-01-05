@@ -84,6 +84,7 @@
  * 2022-09-29 line 539, 603, 624 add (attributeFill != "none"))
  * 2022-09-30 line 1330 SVGStartPath -> SetGeometry = startPath to continue figure
  * 2022-11-04 line 845 dash pattern - convert px to mm
+ * 2022-12-09 line 1290 ParsePathCommand check if string is empty
 */
 
 /* SetHeaderMessages...
@@ -1287,7 +1288,9 @@ namespace GrblPlotter
         /// </summary>
         private static int ParsePathCommand(string svgPath) // process single command 'M' or 'V', etc. with it's coordinate
         {
-            var command = svgPath.Take(1).Single();
+			if (String.IsNullOrEmpty(svgPath))		// LaserGRBL Issue #1969 
+				return 0;
+            var command = svgPath.Take(1).Single();	// System.IndexOutOfRangeException: Index was outside the bounds of the array.
             logSource = "path " + svgPath;
             char cmd = char.ToUpper(command);
             bool absolute = (cmd == command);
