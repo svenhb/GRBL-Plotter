@@ -110,6 +110,9 @@ namespace GrblPlotter
             LblInfoFont.Text = textFont.FontFamily.Name.ToString();
             initColor = textColor = tBText.ForeColor;
 			
+			Logger.Info("TextForm_Load initFont:'{0}'", initFont);
+			Logger.Info("TextForm_Load textFont:'{0}'", textFont);
+			
 			if ((textFont == null) || (textFont.Size == null))
 			{
 				Logger.Error("TextForm_Load font unknown '{0}'", textFont);
@@ -459,15 +462,22 @@ namespace GrblPlotter
         }
         private void ShowTextSize()
         {
-            if (textFont.Size != null)
-                Graphic.SetFont(textFont);      // ShowTextSize
-            else
-            { textFont = initFont; Graphic.SetFont(textFont); }// ShowTextSize
+			try
+			{
+				if (textFont.Size != null)
+					Graphic.SetFont(textFont);      // ShowTextSize
+				else
+				{ textFont = initFont; Graphic.SetFont(textFont); }// ShowTextSize
 
-            RectangleF b = Graphic.GetTextBounds(GetWrappedText(), StringAlignment.Near);
-            LblInfoSize.Text = string.Format("{0} pt", textFont.Size);
-            LblInfoWidth.Text = string.Format("{0,9:0.00}", b.Width);
-            LblInfoHeight.Text = string.Format("{0,9:0.00}", b.Height);
+				RectangleF b = Graphic.GetTextBounds(GetWrappedText(), StringAlignment.Near);
+				LblInfoSize.Text = string.Format("{0} pt", textFont.Size);
+				LblInfoWidth.Text = string.Format("{0,9:0.00}", b.Width);
+				LblInfoHeight.Text = string.Format("{0,9:0.00}", b.Height);
+			}
+            catch (Exception err)
+            {
+                Logger.Error(err, "ShowTextSize textFont.Name:'{0}'  textFont.Size:'{1}' ", textFont.FontFamily.Name, textFont.Size);
+            }
         }
         private void LinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
