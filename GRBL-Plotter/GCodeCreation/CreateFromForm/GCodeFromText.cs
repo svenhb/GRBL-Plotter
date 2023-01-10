@@ -29,6 +29,8 @@
  * 2022-03-04 check max in NudFontSize_ValueChanged
  * 2022-09-30 line 155 disable ApplyHatchFill (from SVG import)
  * 2022-12-30 add win system font choice, word wrap
+ * 2023-01-06 ShowTextSize - check if (textFont.Size != null)
+ * 2023-01-10 check font before 1st use
 */
 
 using System;
@@ -107,6 +109,13 @@ namespace GrblPlotter
             textFont = Properties.Settings.Default.createTextSystemFont;
             LblInfoFont.Text = textFont.FontFamily.Name.ToString();
             initColor = textColor = tBText.ForeColor;
+			
+			if ((textFont == null) || (textFont.Size == null))
+			{
+				Logger.Error("TextForm_Load font unknown '{0}'", textFont);
+				textFont = initFont; 
+			}
+			
             ShowTextSize();
             RbFont1_CheckedChanged(sender, e);
 
@@ -214,7 +223,7 @@ namespace GrblPlotter
 
                     Graphic.SetPenFill(tBText.ForeColor.ToKnownColor().ToString());
                 */
-                Graphic.SetFont(tBText.Font, cBPauseChar.Checked);
+                Graphic.SetFont(tBText.Font, cBPauseChar.Checked);      // CreateText
 
                 StringAlignment alignment = StringAlignment.Near;
                 if (RbAlign2.Checked) { alignment = StringAlignment.Center; }
@@ -450,7 +459,11 @@ namespace GrblPlotter
         }
         private void ShowTextSize()
         {
-            Graphic.SetFont(textFont);
+            if (textFont.Size != null)
+                Graphic.SetFont(textFont);      // ShowTextSize
+            else
+            { textFont = initFont; Graphic.SetFont(textFont); }// ShowTextSize
+
             RectangleF b = Graphic.GetTextBounds(GetWrappedText(), StringAlignment.Near);
             LblInfoSize.Text = string.Format("{0} pt", textFont.Size);
             LblInfoWidth.Text = string.Format("{0,9:0.00}", b.Width);
