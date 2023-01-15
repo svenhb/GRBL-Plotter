@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,14 +20,13 @@
  * 2020-07-05 Code adapted from Evil Mad Scientist eggbot_hatch.py
  * 2021-07-14 code clean up / code quality
  * 2022-11-04 line 57 set dash pattern to 0
+ * 2023-01-15 line 90 bug-fix in log-output
 */
 
 
 using System;
 using System.Collections.Generic;
 using System.Windows;
-
-//#pragma warning disable CA1305
 
 namespace GrblPlotter
 {
@@ -47,12 +46,13 @@ namespace GrblPlotter
             bool fillColor = graphicInformation.ApplyHatchFill;	// only hatch if fillColor is set
 
             bool applyDash = Properties.Settings.Default.importGraphicHatchFillDash;
-            Logger.Trace("...HatchFill distance:{0} angle:{1} cross:{2}  dash:{3}", distance, angle, cross, applyDash);
+            int maxObject = graphicToFill.Count;
+
+            Logger.Trace("...HatchFill objects:{0}  distance:{1} angle:{2} cross:{3}  dash:{4}", maxObject, distance, angle, cross, applyDash);
 
             List<Point[]> hatchPattern = new List<Point[]>();
             List<Point[]> finalPattern = new List<Point[]>();
 
-            int maxObject = graphicToFill.Count;
             List<PathObject> tmpPath = new List<PathObject>();
             Dimensions pathDimension = new Dimensions();
 
@@ -85,9 +85,7 @@ namespace GrblPlotter
                         { Logger.Trace("no dim"); continue; }
 
                         // collect paths of same id, process if id changes
-                        //                        nextIsSameHatch = ((index != (maxObject - 1)) && (graphicToFill[index].Info.id == graphicToFill[index + 1].Info.id));
-                        //             nextIsSameHatch = ((index < (maxObject-1)) && (graphicToFill[index].Info.Id == graphicToFill[index + 1].Info.Id) && (graphicToFill[index + 1] is ItemPath) && (IsEqual(graphicToFill[index + 1].Start, graphicToFill[index + 1].End)));
-                        if (logModification) Logger.Trace("  Add to PathData ID:{0}  nextIsSameHatch:{1}  max:{2}  index:{3}  id_now:{4}  id_next:{5}  fill:{6}", PathData.Info.Id, nextIsSameHatch, maxObject, index, graphicToFill[index].Info.Id, graphicToFill[index + 1].Info.Id, fill);
+                        if (logModification && (index < (maxObject - 1))) Logger.Trace("  Add to PathData ID:{0}  nextIsSameHatch:{1}  max:{2}  index:{3}  id_now:{4}  id_next:{5}  fill:{6}", PathData.Info.Id, nextIsSameHatch, maxObject, index, graphicToFill[index].Info.Id, graphicToFill[index + 1].Info.Id, fill);
                         if (nextIsSameHatch)
                         { continue; }
 
@@ -241,10 +239,7 @@ namespace GrblPlotter
             {
                 if (path is ItemPath ipath)
                 {
-                    //ItemPath ipath = (ItemPath)path;
-
                     p3 = ipath.Path[0].MoveTo;
-                    //                    if ((logFlags & (uint)LogEnable.PathModification) > 0) Logger.Trace("   ClipLineByPolygone p3.x:{0:0.00} p3.y:{1:0.00}    {2}", p3.X,p3.Y, ipath.Info.id);
 
                     for (int k = 1; k < ipath.Path.Count; k++)
                     {
@@ -320,10 +315,8 @@ namespace GrblPlotter
             if (d_and_a.Count == 0)
                 return;
 
-
             // d_and_a.sort() - by s
             d_and_a.Sort((x, y) => x.s.CompareTo(y.s));
-
 
             // Remove duplicate intersections
             int n = d_and_a.Count;
