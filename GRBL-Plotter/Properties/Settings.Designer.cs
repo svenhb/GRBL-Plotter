@@ -4110,7 +4110,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.0001")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.001")]
         public decimal importAssumeAsEqualDistance {
             get {
                 return ((decimal)(this["importAssumeAsEqualDistance"]));
@@ -7938,6 +7938,54 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string processLastFile {
+            get {
+                return ((string)(this["processLastFile"]));
+            }
+            set {
+                this["processLastFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point processLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["processLocation"]));
+            }
+            set {
+                this["processLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool processOpenOnProgStart {
+            get {
+                return ((bool)(this["processOpenOnProgStart"]));
+            }
+            set {
+                this["processOpenOnProgStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("300")]
+        public int processSplitDistance {
+            get {
+                return ((int)(this["processSplitDistance"]));
+            }
+            set {
+                this["processSplitDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Black")]
         public global::System.Drawing.Color projectorColorBackground {
             get {
@@ -8665,54 +8713,6 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["useCaseLastLoaded"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool processOpenOnProgStart {
-            get {
-                return ((bool)(this["processOpenOnProgStart"]));
-            }
-            set {
-                this["processOpenOnProgStart"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point processLocation {
-            get {
-                return ((global::System.Drawing.Point)(this["processLocation"]));
-            }
-            set {
-                this["processLocation"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string processLastFile {
-            get {
-                return ((string)(this["processLastFile"]));
-            }
-            set {
-                this["processLastFile"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("300")]
-        public int processSplitDistance {
-            get {
-                return ((int)(this["processSplitDistance"]));
-            }
-            set {
-                this["processSplitDistance"] = value;
             }
         }
     }

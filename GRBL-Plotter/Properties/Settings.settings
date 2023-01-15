@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version='1.0' encoding='utf-8'?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GrblPlotter.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
@@ -1023,7 +1023,7 @@
       <Value Profile="(Default)">50</Value>
     </Setting>
     <Setting Name="importAssumeAsEqualDistance" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0.0001</Value>
+      <Value Profile="(Default)">0.001</Value>
     </Setting>
     <Setting Name="importBarcode1DHeight" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">20</Value>
