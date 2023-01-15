@@ -269,8 +269,7 @@ Desmarcada: o último segmento de linha é mais curto, todo o outro comprimento 
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
-    <value>Evite comandos G2 / 3
-Largura do passo na circunferência</value>
+    <value>Evite comandos G2/3</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">

@@ -97,20 +97,34 @@ namespace GrblPlotter
                 textBox1.Text = "Start process automation:\r\n";
                 processStep = 0;
                 isRunning = true;
+                stepTriggered = false;
                 stepCompleted = false;
                 timer1.Enabled = true;
                 LblCount.Text = "1";
+
+                LblInfo.Text = "Script is running";
+                LblInfo.BackColor = Color.Yellow;
+                BtnStart.BackColor = Color.Yellow;
+                Logger.Trace("+++ Start automation +++");
             }
         }
 
         private void BtnStop_Click(object sender, EventArgs e)
         {
             SendProcessEvent(new ProcessEventArgs("CheckForm", "Cam"));
+            if (isRunning && !stepCompleted)
+            {
+                LblInfo.Text = "Wait for finishing line " + (processStep + 1).ToString();
+                BtnStart.BackColor = LblInfo.BackColor = Color.Yellow;
+            }
+            else
+            {
+                BtnStart.Enabled = CheckData();
+            }
             processStep = 0;
             isRunning = false;
-            stepCompleted = false;
             timer1.Enabled = false;
-            BtnStart.Enabled = CheckData();
+            Logger.Trace("+++ Stop automation +++");
         }
 
 
@@ -235,7 +249,7 @@ namespace GrblPlotter
                         SetDGVToolTip(i, "jump target nok");
                     }
                     else
-                    { processJumpTo = line-1; SetDGVToolTip(i, "Line is ok"); }
+                    { processJumpTo = line - 1; SetDGVToolTip(i, "Line is ok"); }
 
                     if (ok && (vals.Length > 1))
                     {
@@ -268,8 +282,17 @@ namespace GrblPlotter
                 }
 
                 finalOK = finalOK && ok;
+                if (finalOK)
+                {
+                    LblInfo.Text = "Ready to start";
+                    BtnStart.BackColor = LblInfo.BackColor = Color.Lime;
+                }
+                else
+                {
+                    LblInfo.Text = "Not ready";
+                    BtnStart.BackColor = LblInfo.BackColor = Color.Fuchsia;
+                }
             }
-
             return finalOK;
         }
 
@@ -304,8 +327,8 @@ namespace GrblPlotter
                         processAction = action;
                         processValue = value;
 
-                        Logger.Trace("Automatic {0})  {1}  {2}  count:{3}", processStep, action, value, processCount);
-                        textBox1.AppendText( string.Format("{0})  {1}  {2}   ", lineNr, action, value));
+                        Logger.Trace("Timer line:{0})  {1}  {2}  count:{3}", (processStep + 1), action, value, processCount);
+                        textBox1.AppendText(string.Format("{0})  {1}  {2}   ", lineNr, action, value));
 
                         if (action.Contains("Load"))
                         {
@@ -331,7 +354,7 @@ namespace GrblPlotter
                             processCount--;
                             if ((processCount > 0) || (processCount < 0))
                             {
-                                for (int k= processJumpTo; k<= processStep; k++)
+                                for (int k = processJumpTo; k <= processStep; k++)
                                     dataGridView1.Rows[k].DefaultCellStyle.BackColor = Color.White;
 
                                 processStep = processJumpTo;
@@ -343,7 +366,7 @@ namespace GrblPlotter
                                 processStep++;
                             }
 
-                            textBox1.AppendText( string.Format("  count:{0}  jump to:{1}  OK\r\n", processCount, processStep + 1));
+                            textBox1.AppendText(string.Format("  count:{0}  jump to:{1}  OK\r\n", processCount, processStep + 1));
                             LblCount.Text = Math.Abs(processCount).ToString();
 
                             stepTriggered = false;
@@ -357,6 +380,7 @@ namespace GrblPlotter
                         isRunning = false;
                         stepCompleted = false;
                         timer1.Enabled = false;
+                        Logger.Trace("Timer finish");
                     }
                 }
                 else if (stepCompleted)
@@ -386,25 +410,31 @@ namespace GrblPlotter
                 {
                     if (!resultOk)
                     {
-                        dataGridView1.Rows[processStep].DefaultCellStyle.BackColor = Color.Fuchsia;
+                        LblInfo.BackColor = dataGridView1.Rows[processStep].DefaultCellStyle.BackColor = Color.Fuchsia;
                         SetDGVToolTip(processStep, value);
-                        textBox1.AppendText( string.Format("NOK  {0}  {1}  \r\n", action, value));
+                        textBox1.AppendText(string.Format("NOK  {0}  {1}  \r\n", action, value));
                     }
                     else
                     {
                         dataGridView1.Rows[processStep].DefaultCellStyle.BackColor = Color.LightGreen;
                         stepCompleted = true;
-                        textBox1.AppendText( string.Format(" {0} OK\r\n",value));
+                        textBox1.AppendText(string.Format(" {0} OK\r\n", value));
                     }
                 }
             }
             Logger.Trace("Feedback '{0}'  '{1}'  '{2}'", action, value, processAction);
+            if (!isRunning)
+            {
+                bool ok = BtnStart.Enabled = CheckData();
+                if (ok) { BtnStart.BackColor = Color.Lime; }
+                else { BtnStart.BackColor = Color.Fuchsia; }
+            }
         }
 
         private void ControlProcessAutomation_SizeChanged(object sender, EventArgs e)
         {
             dataGridView1.Width = splitContainer1.Width - 10;
-            dataGridView1.Height = splitContainer1.SplitterDistance - 93;
+            dataGridView1.Height = splitContainer1.SplitterDistance - 110;
             LblLoaded.Width = Width - 200;
 
             int part = (dataGridView1.Width - 10) / 10;
@@ -418,7 +448,7 @@ namespace GrblPlotter
 
         private void splitContainer1_Panel1_SizeChanged(object sender, EventArgs e)
         {
-            dataGridView1.Height = splitContainer1.SplitterDistance - 93;
+            dataGridView1.Height = splitContainer1.SplitterDistance - 110;
         }
 
         private void BtnLoad_Click(object sender, EventArgs e)

@@ -59,6 +59,7 @@ namespace GrblPlotter
             this.label3 = new System.Windows.Forms.Label();
             this.LblLoaded = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.LblInfo = new System.Windows.Forms.Label();
             this.Lblxml = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -139,6 +140,7 @@ namespace GrblPlotter
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.LblInfo);
             this.splitContainer1.Panel1.Controls.Add(this.Lblxml);
             this.splitContainer1.Panel1.Controls.Add(this.dataGridView1);
             this.splitContainer1.Panel1.Controls.Add(this.LblCount);
@@ -155,6 +157,12 @@ namespace GrblPlotter
             // 
             this.splitContainer1.Panel2.Controls.Add(this.textBox1);
             this.splitContainer1.SplitterDistance = global::GrblPlotter.Properties.Settings.Default.processSplitDistance;
+            // 
+            // LblInfo
+            // 
+            this.LblInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            resources.ApplyResources(this.LblInfo, "LblInfo");
+            this.LblInfo.Name = "LblInfo";
             // 
             // Lblxml
             // 
@@ -206,5 +214,6 @@ namespace GrblPlotter
         private System.Windows.Forms.Label LblLoaded;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label Lblxml;
+        private System.Windows.Forms.Label LblInfo;
     }
 }

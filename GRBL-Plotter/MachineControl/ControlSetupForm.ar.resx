@@ -740,8 +740,7 @@
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
-    <value>تجنب أوامر G2 / 3
-عرض الخطوة على محيط</value>
+    <value>تجنب أوامر G2 / 3</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">

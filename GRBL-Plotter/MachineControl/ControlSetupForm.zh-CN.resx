@@ -290,8 +290,7 @@
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
-    <value>避免使用G2 / 3命令
-角度步幅（度）</value>
+    <value>避免 G2/3 命令</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">

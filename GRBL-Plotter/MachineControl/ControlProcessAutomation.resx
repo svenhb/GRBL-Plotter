@@ -145,7 +145,7 @@
     <value>splitContainer1.Panel1</value>
   </data>
   <data name="&gt;&gt;BtnStart.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="BtnStop.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -172,7 +172,7 @@
     <value>splitContainer1.Panel1</value>
   </data>
   <data name="&gt;&gt;BtnStop.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="LblCount.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -202,7 +202,7 @@
     <value>splitContainer1.Panel1</value>
   </data>
   <data name="&gt;&gt;LblCount.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -232,13 +232,13 @@
     <value>splitContainer1.Panel1</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="dataGridView1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 90</value>
+    <value>3, 113</value>
   </data>
   <data name="dataGridView1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>479, 207</value>
+    <value>479, 184</value>
   </data>
   <data name="dataGridView1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -253,7 +253,7 @@
     <value>splitContainer1.Panel1</value>
   </data>
   <data name="&gt;&gt;dataGridView1.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="textBox1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -320,7 +320,7 @@
     <value>splitContainer1.Panel1</value>
   </data>
   <data name="&gt;&gt;BtnLoad.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -350,7 +350,7 @@
     <value>splitContainer1.Panel1</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="LblLoaded.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -383,7 +383,7 @@
     <value>splitContainer1.Panel1</value>
   </data>
   <data name="&gt;&gt;LblLoaded.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="splitContainer1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -393,6 +393,36 @@
   </data>
   <data name="splitContainer1.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
     <value>Horizontal</value>
+  </data>
+  <data name="LblInfo.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 12pt</value>
+  </data>
+  <data name="LblInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>204, 32</value>
+  </data>
+  <data name="LblInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 52</value>
+  </data>
+  <data name="LblInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="LblInfo.Text" xml:space="preserve">
+    <value>No script loaded</value>
+  </data>
+  <data name="LblInfo.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;LblInfo.Name" xml:space="preserve">
+    <value>LblInfo</value>
+  </data>
+  <data name="&gt;&gt;LblInfo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblInfo.Parent" xml:space="preserve">
+    <value>splitContainer1.Panel1</value>
+  </data>
+  <data name="&gt;&gt;LblInfo.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="Lblxml.Location" type="System.Drawing.Point, System.Drawing">
     <value>291, 5</value>
@@ -432,7 +462,7 @@
     <value>splitContainer1.Panel1</value>
   </data>
   <data name="&gt;&gt;Lblxml.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="checkBox1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -441,7 +471,7 @@
     <value>NoControl</value>
   </data>
   <data name="checkBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>150, 65</value>
+    <value>3, 90</value>
   </data>
   <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>182, 17</value>
@@ -462,7 +492,7 @@
     <value>splitContainer1.Panel1</value>
   </data>
   <data name="&gt;&gt;checkBox1.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="&gt;&gt;splitContainer1.Panel1.Name" xml:space="preserve">
     <value>splitContainer1.Panel1</value>

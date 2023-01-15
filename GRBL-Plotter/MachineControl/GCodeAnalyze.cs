@@ -318,7 +318,7 @@ namespace GrblPlotter
             int countZ = 0;
             int lastMotion = 0;
 
-            Logger.Info("▽▽▽▽ GetGCodeLines Count:{0}  Show colors if no XML-Tags:{1}  Show pen-up path arrows:{2}  Show pen-up path Ids:{3}  Use BackgroundWorker:{4}", oldCode.Count, showColors, showArrow, showId, (worker != null));
+            Logger.Info("▽▽▽▽ GetGCodeLines Count:{0} skip:{1}   Show colors if no XML-Tags:{2}  Show pen-up path arrows:{3}  Show pen-up path Ids:{4}  Use BackgroundWorker:{5}", oldCode.Count, skipLimit, showColors, showArrow, showId, (worker != null));
             if (oldCode.Count > skipLimit) // huge amount of code, reduce time consuming functionality
             {
                 Logger.Info("⚠⚠⚠⚠ Huge amount of code (> {0} lines), reduce time consuming functionality (no pen-up-path-arrows/-ids, no colored pen-down-paths) !!!!!", skipLimit);

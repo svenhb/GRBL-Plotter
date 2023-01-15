@@ -509,12 +509,12 @@ Unchecked: Das letzte Segment ist kürzer, alle anderen haben die vorgegebene L�
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
-    <value>Ersetze G2/3 durch Linien
-Max. Winkelabweichung</value>
+    <value>Ersetze G2/3 durch Linien</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
-    <value>Ersetze G2/3 Befehle durch Liniensegmente</value>
+    <value>Konvertiert Kreise und Bögen in Liniensegmente - erforderlich, wenn unterschiedliche X- und Y-Skalen benötigt werden.
+Wenn die Schrittweite &gt; die Hälfte des Radius ist, wird sie automatisch verringert</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="tBImportGCSubroutine.ToolTip" xml:space="preserve">

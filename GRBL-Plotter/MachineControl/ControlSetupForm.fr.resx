@@ -286,8 +286,7 @@ Décoché: le dernier segment est plus court, tous les autres exactement la mêm
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
-    <value>Évitez les commandes G2 / 3
-Angle largeur de pas en degrés</value>
+    <value>Évitez les commandes G2/3</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">

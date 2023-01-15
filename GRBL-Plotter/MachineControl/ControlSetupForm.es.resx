@@ -286,8 +286,7 @@ Sin marcar: el último linesegment es más corto, el resto de la longitud exacta
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
-    <value>Evita los comandos G2 / 3
-Ancho de paso angular en grados</value>
+    <value>Evite los comandos G2/3</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">

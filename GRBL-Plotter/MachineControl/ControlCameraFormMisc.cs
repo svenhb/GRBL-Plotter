@@ -25,6 +25,7 @@
  * 2022-11-18 AutomaticFiducialDetection(): clear fiducialDetectionGrblNotIdleCounter before move
 			  extend timeout to 20 and make adjustable
  * 2023-01-04 send process events
+ * 2023-01-06 line 734 check list.count
 */
 
 using AForge;
@@ -604,18 +605,19 @@ namespace GrblPlotter
                     {
                         fiducialDetectionProgressCounter = 0;
                         frameCounterMax = 10;
+                        SendProcessEvent(new ProcessEventArgs("Fiducial", "finished"));
                         ResetToolStrip();
                         break;
                     }
             }
-            if (fiducialDetectionProgressCounter > 0)
+       /*     if (fiducialDetectionProgressCounter > 6)
             {
                 SendProcessEvent(new ProcessEventArgs("Fiducial", "finished"));
             }
             else
             {
                 SendProcessEvent(new ProcessEventArgs("Fiducial", TbSetPoints.Text));
-            }
+            }*/
         }
 
         public event EventHandler<ProcessEventArgs> RaiseProcessEvent;
@@ -707,6 +709,7 @@ namespace GrblPlotter
             for (int i = 0, n = blobs.Length; i < n; i++)
             {
                 List<IntPoint> edgePoints = blobCounter.GetBlobsEdgePoints(blobs[i]);
+
                 //    System.Single myRadius;
                 if (Properties.Settings.Default.camShapeCircle && shapeChecker.IsCircle(edgePoints, out AForge.Point center, out System.Single myRadius))
                 {
@@ -730,24 +733,28 @@ namespace GrblPlotter
                         if (showLog) Logger.Trace("Shape r:{0}  min:{1}  max:{2}   refPosPx {3:0.0} {4:0.0}   centerPosPx {5:0.0} {6:0.0}", myRadius, shapeMin, shapeMax, refPointInPx.X, refPointInPx.Y, center.X, center.Y);
                     }
                 }
+
                 //   List<IntPoint> corners;
                 if (Properties.Settings.Default.camShapeRect && shapeChecker.IsQuadrilateral(edgePoints, out List<IntPoint> corners))  //.IsConvexPolygon
                 {
-                    IntPoint centxy;        // minxy, maxxy,
-                    if (!fiducialDetection)
-                    { g.DrawPolygon(yellowPen, ToPointsArray(corners)); }
-
-                    PointsCloud.GetBoundingRectangle(corners, out IntPoint minxy, out IntPoint maxxy);
-                    centxy = (minxy + maxxy) / 2;
-                    if ((centxy.X < 1) || (centxy.Y < 1))
-                        continue;
-                    shapeFound = true;
-                    distance = picCenter.DistanceTo(centxy);// PointsCloud.GetCenterOfGravity(corners));
-                    if (lowestDistance > Math.Abs(distance))
+                    if (corners.Count > 0)
                     {
-                        lowestDistance = Math.Abs(distance);
-                        shapeCenterInPx = centxy;// PointsCloud.GetCenterOfGravity(corners);
-                        shapeRadius = maxxy.DistanceTo(minxy) / 2;// 50;
+                        IntPoint centxy;        // minxy, maxxy,
+                        if (!fiducialDetection)
+                        { g.DrawPolygon(yellowPen, ToPointsArray(corners)); }
+
+                        PointsCloud.GetBoundingRectangle(corners, out IntPoint minxy, out IntPoint maxxy);
+                        centxy = (minxy + maxxy) / 2;
+                        if ((centxy.X < 1) || (centxy.Y < 1))
+                            continue;
+                        shapeFound = true;
+                        distance = picCenter.DistanceTo(centxy);// PointsCloud.GetCenterOfGravity(corners));
+                        if (lowestDistance > Math.Abs(distance))
+                        {
+                            lowestDistance = Math.Abs(distance);
+                            shapeCenterInPx = centxy;// PointsCloud.GetCenterOfGravity(corners);
+                            shapeRadius = maxxy.DistanceTo(minxy) / 2;// 50;
+                        }
                     }
                 }
 

@@ -748,8 +748,7 @@ gcodeを縮小する際の問題を回避するため。</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
-    <value>G2 / 3コマンドを避ける
-円周上のステップ幅</value>
+    <value>G2/3 コマンドを避ける</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
