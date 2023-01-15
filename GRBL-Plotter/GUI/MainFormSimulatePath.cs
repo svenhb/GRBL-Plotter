@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@
  * 2021-12-02 add range test for index
  * 2022-03-29 line 115 check if (_serial_form != null)
  * 2022-04-07 reset codeInfo on start
+ * 2023-01-07 use SetTextThreadSave(lbInfo...
 */
 
 using System;
@@ -71,8 +72,10 @@ namespace GrblPlotter
                 UpdateWholeApplication();
 
             pbFile.Maximum = fCTBCode.LinesCount;
-            if (LineIsInRange(fCTBCodeClickedLineLast)) 
+
+            if (LineIsInRange(fCTBCodeClickedLineLast))
                 fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
+
             btnSimulate.Text = Localization.GetString("mainSimuStop");
             simuLine = 0;
             fCTBCodeClickedLineNow = simuLine;
@@ -142,11 +145,19 @@ namespace GrblPlotter
 
             if (LineIsInRange(simuLine))   //(simuLine >= 0)
             {
-                lbInfo.Text = string.Format("Line {0}: {1}", (simuLine + 1), fCTBCode.Lines[simuLine]);
+                SetTextThreadSave(lbInfo, string.Format("Line {0}: {1}", (simuLine + 1), fCTBCode.Lines[simuLine]));
+
                 fCTBCode.Selection = fCTBCode.GetLine(simuLine);
+
                 if (LineIsInRange(fCTBCodeClickedLineLast))
                     fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
-                fCTBCode.BookmarkLine(simuLine);
+
+                //    fCTBCode.BookmarkLine(simuLine);
+                if (this.fCTBCode.InvokeRequired)
+                { this.fCTBCode.BeginInvoke((MethodInvoker)delegate () { this.fCTBCode.BookmarkLine(simuLine); }); }
+                else
+                { this.fCTBCode.BookmarkLine(simuLine); }
+
                 fCTBCode.DoCaretVisible();
                 fCTBCodeClickedLineLast = simuLine;
                 pictureBox1.Invalidate(); // avoid too much events
@@ -158,7 +169,7 @@ namespace GrblPlotter
             }
             else
             {
-                lbInfo.Text = string.Format("Line {0}", (simuLine + 1));
+                SetTextThreadSave(lbInfo, string.Format("Line {0}", (simuLine + 1)));
                 SimuStop();
                 simuLine = 0;   // Math.Abs(simuLine);
                 VisuGCode.Simulation.Reset();
@@ -172,12 +183,18 @@ namespace GrblPlotter
 
                 if (LineIsInRange(fCTBCodeClickedLineLast))
                     fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
-                fCTBCode.BookmarkLine(simuLine);
+
+                //    fCTBCode.BookmarkLine(simuLine);
+                if (this.fCTBCode.InvokeRequired)
+                { this.fCTBCode.BeginInvoke((MethodInvoker)delegate () { this.fCTBCode.BookmarkLine(simuLine); }); }
+                else
+                { this.fCTBCode.BookmarkLine(simuLine); }
+
                 fCTBCode.DoCaretVisible();
                 fCTBCodeClickedLineLast = simuLine;
                 VisuGCode.Simulation.pathSimulation.Reset();
                 pictureBox1.Invalidate(); // avoid too much events
-                lbInfo.Text = string.Format("Simulation finished");
+                SetTextThreadSave(lbInfo, string.Format("Simulation finished"));
                 return;
             }
             if (pbFile.Maximum < simuLine)

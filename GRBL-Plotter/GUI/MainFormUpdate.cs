@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@
  * 2021-11-18 add processing of accessory D0-D3 from grbl-Mega-5X - line 210
  * 2021-11-22 change reg-key to get data-path from installation
  * 2021-12-14 change log path
+ * 2023-01-10 line 132 get user.config path, change from PerUserRoaming to PerUserRoamingAndLocal
 */
 
 using Microsoft.Win32;
@@ -128,7 +129,7 @@ namespace GrblPlotter
             NLog.LogManager.Configuration.Variables["basedir"] = Datapath.LogFiles;
             Logger.Info("GetAppDataPath from {0}: {1}", src, Datapath.AppDataFolder);
             Logger.Info("Application path: {0}", Datapath.Application);
-            Logger.Info("user.config path: {0}", ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoaming).FilePath);
+            Logger.Info("user.config path: {0}", ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath);
         }
 
         private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)

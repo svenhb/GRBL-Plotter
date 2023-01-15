@@ -32,6 +32,7 @@
  * 2022-06-28 line 132 don't update marker on line-nr if e.Status == GrblStreaming.setting
  * 2022-11-03 line 245 check InvoeRequired
  * 2023-01-04 add _process_form.Feedback
+ * 2023-01-06 line 579 error handling - check if line is in range
 */
 
 using GrblPlotter.GUI;
@@ -576,9 +577,14 @@ namespace GrblPlotter
                                 Logger.Info("StartStreaming fiducials: exclude line:{0} to:{1}", tmp.LineStart, tmp.LineEnd);
                                 for (int lnr = tmp.LineStart; lnr <= tmp.LineEnd; lnr++)
                                 {
-                                    Logger.Trace(" - {0}", fCTBCode.GetLineText(lnr));
-                                    fCTBCode.Selection = fCTBCode.GetLine(lnr);
-                                    fCTBCode.SelectedText = "(" + fCTBCode.GetLineText(lnr) + ")";  // remove fiducial code
+                                    if (LineIsInRange(lnr))
+                                    {
+                                        Logger.Trace(" - {0}", fCTBCode.GetLineText(lnr));
+                                        fCTBCode.Selection = fCTBCode.GetLine(lnr);
+                                        fCTBCode.SelectedText = "(" + fCTBCode.GetLineText(lnr) + ")";  // remove fiducial code
+                                    }
+                                    else
+                                    {   Logger.Error("StartStreaming, remove fiducials at line {0}",lnr); }
                                 }
                             }
                         }
