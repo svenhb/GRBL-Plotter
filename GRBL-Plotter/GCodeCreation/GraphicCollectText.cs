@@ -18,6 +18,7 @@
 */
 /*
  * 2022-12-29 new function to add text from windows font
+ * 2023-01-26 SetGeometry, remove \r
 */
 
 using NLog;
@@ -25,8 +26,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.IO;
-using System.Linq;
 
 namespace GrblPlotter
 {
@@ -55,10 +54,12 @@ namespace GrblPlotter
             RectangleF box = GetTextBounds(text, alignment);
             List<short> pathsPerChar = new List<short>();
 
+            SetHeaderInfo(string.Format(" Used font:'{0}', Size:{1}", fontFamily.Name, fontSize));
+
             if (true)    /* do whole conversion in one - disadvantage: each path gernerates a figure = 2 figures for '0', 'A', 'P'... */
             {
                 //    ox = -box.Width;//-GetGlyphProperty(text[0], 0) * fontSize;  // get LSB
-               // oy = -box.Height;
+                // oy = -box.Height;
                 using (var path = new GraphicsPath())                   // do whole text in one go
                 {
                     DrawGlyphPath(path, new PointF(ox, oy), new PointF(ox, oy + yOffset), rotation, text, alignment);
@@ -67,62 +68,62 @@ namespace GrblPlotter
                     ExtractGlyphPath(path, pathOffset, text, pathsPerChar);     // StartPath & Graphic.StopPath
                 }
             }
-            else      /* alternative function converts char by char - all char related paths in one figure. But kerning is not applied */
-            {
-                yOffset = box.Height;
-
-                RectangleF lineBox;
-
-                float xOffsetBounds, xOffsetAlignment;
-
-                float width = 0;
-                float tmpWidth;
-
-                string[] lines = text.Split('\n');
-                string textline;
-                foreach (string tl in lines)
+            /*    else      // alternative function converts char by char - all char related paths in one figure. But kerning is not applied 
                 {
-                    textline = tl.Replace('\r', ' ');
+                    yOffset = box.Height;
 
-                    List<float> posX = new List<float>
+                    RectangleF lineBox;
+
+                    float xOffsetBounds, xOffsetAlignment;
+
+                    float width = 0;
+                    float tmpWidth;
+
+                    string[] lines = text.Split('\n');
+                    string textline;
+                    foreach (string tl in lines)
                     {
-                        0f                                      // first glyph starts at zero
-                    };
+                        textline = tl.Replace('\r', ' ');
 
-                    lineBox = GetTextBounds(textline, alignment);
-                    xOffsetAlignment = 0;
-                    if (alignment == StringAlignment.Center)
-                        xOffsetAlignment = (box.Width - lineBox.Width) / 2;
-                    else if (alignment == StringAlignment.Far)
-                        xOffsetAlignment = box.Width - lineBox.Width;
-
-                    xOffsetBounds = 0;  // GetGlyphProperty(textline[0], 0) * fontSize;  // get LSB
-
-                    width = 0;
-                    for (int i = 0; i < textline.Length; i++)   // get individual xOffset for each char of this line
-                    {
-                        tmpWidth = GetGlyphProperty(textline[i], 1) * fontSize; // AdvanceWidths
-                        width += tmpWidth;
-                        posX.Add(width);
-                    }
-                    posX.Add(width);
-
-                    using (var path = new GraphicsPath())       // do char by char to adjust e.g. dx individual
-                    {
-                        int ci;
-                        for (int i = 0; i < textline.Length; i++)
+                        List<float> posX = new List<float>
                         {
-                            ox = posX[i] + xOffsetAlignment - xOffsetBounds;
-                            oy = -yOffset;
+                            0f                                      // first glyph starts at zero
+                        };
 
-                            DrawGlyphPath(path, new PointF(ox, oy), new PointF(ox, oy + yOffset), 0, textline[i].ToString(), StringAlignment.Near);
-                            ExtractGlyphPath(path, new PointF(0, 0), textline.Substring(i, 1), pathsPerChar, true);            // StartPath & Graphic.StopPath
+                        lineBox = GetTextBounds(textline, alignment);
+                        xOffsetAlignment = 0;
+                        if (alignment == StringAlignment.Center)
+                            xOffsetAlignment = (box.Width - lineBox.Width) / 2;
+                        else if (alignment == StringAlignment.Far)
+                            xOffsetAlignment = box.Width - lineBox.Width;
+
+                        xOffsetBounds = 0;  // GetGlyphProperty(textline[0], 0) * fontSize;  // get LSB
+
+                        width = 0;
+                        for (int i = 0; i < textline.Length; i++)   // get individual xOffset for each char of this line
+                        {
+                            tmpWidth = GetGlyphProperty(textline[i], 1) * fontSize; // AdvanceWidths
+                            width += tmpWidth;
+                            posX.Add(width);
                         }
-                    }
+                        posX.Add(width);
 
-                    yOffset -= box.Height / lines.Count();
-                }
-            }
+                        using (var path = new GraphicsPath())       // do char by char to adjust e.g. dx individual
+                        {
+                        //    int ci;
+                            for (int i = 0; i < textline.Length; i++)
+                            {
+                                ox = posX[i] + xOffsetAlignment - xOffsetBounds;
+                                oy = -yOffset;
+
+                                DrawGlyphPath(path, new PointF(ox, oy), new PointF(ox, oy + yOffset), 0, textline[i].ToString(), StringAlignment.Near);
+                                ExtractGlyphPath(path, new PointF(0, 0), textline.Substring(i, 1), pathsPerChar, true);            // StartPath & Graphic.StopPath
+                            }
+                        }
+
+                        yOffset -= box.Height / lines.Count();
+                    }
+                }*/
 
         }
 
@@ -211,7 +212,7 @@ namespace GrblPlotter
 
             PointF[] tmpP = extractPath.PathPoints;
             byte[] types = extractPath.PathTypes;
-            bool setGeometry = true;
+            //    bool setGeometry = true;
             byte type;
             int charIndex = 0;
             char c = ' ';
@@ -219,7 +220,10 @@ namespace GrblPlotter
             int pathIndex;
             pathIndex = pathsPerChar[charIndex];
             if (pathIndex > 0)
-                SetGeometry(string.Format("Path '{0}'", text[charIndex]));
+            {
+                string ctmp = string.Format("{0}", text[charIndex]);
+                SetGeometry(string.Format("Path '{0}'", ctmp.Replace('\r', ' ')));
+            }
             charIndex++;
 
             for (int gpi = 0; gpi < tmpP.Length; gpi++)
@@ -246,11 +250,12 @@ namespace GrblPlotter
                             charIndex++;
                         } while (pathIndex <= 0);
 
-                        SetGeometry(string.Format("Path '{0}'", c));
+                        string ctmp = string.Format("{0}", c);
+                        SetGeometry(string.Format("Path '{0}'", ctmp.Replace('\r', ' ')));
                     }
                     StartPath(gpc.X + offset.X + offsetX, gpc.Y + offset.Y + offsetY);
                     gpcStart = gpc;
-                    if (onlyOneFigure) { setGeometry = false; }
+                    //    if (onlyOneFigure) { setGeometry = false; }
 
                     pathIndex--;
                 }

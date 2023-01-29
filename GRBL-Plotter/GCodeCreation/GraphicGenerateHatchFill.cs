@@ -62,7 +62,7 @@ namespace GrblPlotter
             for (int index = 0; index < maxObject; index++)
             {
                 PathObject itemNow = graphicToFill[index];
-                ItemPath itemNext;
+            //    ItemPath itemNext;
                 if (itemNow is ItemPath PathData)
                 {
                     nextIsSameHatch = false;

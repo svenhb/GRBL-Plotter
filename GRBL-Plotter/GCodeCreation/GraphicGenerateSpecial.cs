@@ -267,7 +267,6 @@ namespace GrblPlotter
                             angle1 = GcodeMath.GetAlpha(pStart, pNow);
                             angle2 = GcodeMath.GetAlpha(pNow, pNext);
                             angleDiff = 180 * (angle2 - angle1) / Math.PI;
-                            double angleDiffOrig = angleDiff;
 
                             while (angleDiff < -180) { angleDiff += 360; }
                             angleDiff = Math.Abs(angleDiff);

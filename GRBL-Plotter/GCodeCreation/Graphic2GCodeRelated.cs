@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -41,6 +41,7 @@
 * 2022-04-07 line 500 add warning if Z is used as normal AND tangential axis, add 
 * 2022-07-12 line 1048, 1055, 1196 add gcodeAux1Cmd, gcodeAux2Cmd at code for relative movement
 * 2022-12-02 add function SetHeaderInfo
+* 2023-01-28 add %NM tag, to keep code-line when synthezising code
 */
 
 using System;
@@ -701,10 +702,10 @@ namespace GrblPlotter
                     gcodeValue.AppendFormat("M{0} S0 (Lasermode: S0 instead of M5 to switch laser off)\r\n", GcodeSpindleCmd);  //2022-03-15
                     if ((!GcodeZApply) && (LastMovewasG0))
                     {
-                        gcodeValue.AppendFormat("G91 X0.001 F{0} (use Laser mode)\r\n", GcodeXYFeed);
-                        gcodeValue.AppendFormat("G91 X-0.001     (G1 move to activate laser)\r\n");
+                        gcodeValue.AppendFormat("G91 G1 X0.001 F{0} ( %NM use Laser mode)\r\n", GcodeXYFeed);
+                        gcodeValue.AppendFormat("G91 G1 X-0.001     ( %NM G1 move to activate laser)\r\n");
                         if (!GcodeRelative)
-                        { gcodeValue.AppendFormat("G90\r\n"); }
+                        { gcodeValue.AppendFormat("G90 ( %NM )\r\n"); }
                         //        Move(gcodeValue, 1, lastx + 0.001f, lasty + 0.001f, false, "");
                         //        Move(gcodeValue, 1, lastx - 0.001f, lasty - 0.001f, false, "");
                     }
@@ -757,7 +758,7 @@ namespace GrblPlotter
                 }
             }
             if (!penUpApplied)
-                gcodeValue.AppendLine("(PU)");	// mark pen down
+                gcodeValue.AppendLine("(PU)");	// mark pen up
         }
 
         private static double lastx, lasty, lastz;
@@ -1372,17 +1373,17 @@ namespace GrblPlotter
 
         private static string docTitle = "";
         private static string docDescription = "";
-		
-		public static void SetHeaderInfo(string title, float distance, float feed, int lines, int downUp)
-		{
-			Logger.Trace("SetHeaderInfo title:{0} distance:{1} feed:{2} lines:{3} downUp:{4}", title, distance, feed, lines, downUp);
-			docTitle = title;
-			gcodeDistance = distance;
-			GcodeXYFeed = feed;
-			gcodeLines = lines;
-			gcodeDownUp = downUp;
-			GcodeZApply = true;
-		}
+
+        public static void SetHeaderInfo(string title, float distance, float feed, int lines, int downUp)
+        {
+            Logger.Trace("SetHeaderInfo title:{0} distance:{1} feed:{2} lines:{3} downUp:{4}", title, distance, feed, lines, downUp);
+            docTitle = title;
+            gcodeDistance = distance;
+            GcodeXYFeed = feed;
+            gcodeLines = lines;
+            gcodeDownUp = downUp;
+            GcodeZApply = true;
+        }
         public static string GetHeader(string cmt, string source)
         {
             gcodeTime += gcodeDistance / GcodeXYFeed;
