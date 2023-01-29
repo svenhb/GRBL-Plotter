@@ -1,0 +1,3386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cBshowImportDialog.Text" xml:space="preserve">
+    <value>グラフィックのインポート時に「ユースケース」の選択を表示</value>
+    <comment>TabPage1</comment>
+  </data>
+  <data name="btnReloadFile.Text" xml:space="preserve">
+    <value>SVG、DXF、ドリルファイルをリロードする</value>
+    <comment>TabPage1</comment>
+  </data>
+  <data name="btnReloadFile.ToolTip" xml:space="preserve">
+    <value>インポート中にデータをリロードして新しい設定を適用する</value>
+    <comment>TabPage1</comment>
+  </data>
+  <data name="cBToolTableDefault.Text" xml:space="preserve">
+    <value>デフォルトのツールnrのみを使用してください。</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBToolTableUse.Text" xml:space="preserve">
+    <value>ツールテーブルからXYフィードなどを設定し、
+次のページ「Gコード生成」で項目を選択します</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1gB5.Text" xml:space="preserve">
+    <value>ツールテーブル</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGSortInvert.Text" xml:space="preserve">
+    <value>ソート順を元に戻す</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="rBImportSVGSort1.Text" xml:space="preserve">
+    <value>グループをグループプロパティで並べ替える-昇順</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="rBImportSVGSort2.Text" xml:space="preserve">
+    <value>グループをツール番号で並べ替える-昇順</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="rBImportSVGSort0.Text" xml:space="preserve">
+    <value>並べ替えなし</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGGroup.Text" xml:space="preserve">
+    <value>同じ色のオブジェクトをグループ化=同じツール</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGGroup.ToolTip" xml:space="preserve">
+    <value>同じ色のグループオブジェクト=ツールNr。</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1gB4.Text" xml:space="preserve">
+    <value>オブジェクトのグループ化とソート</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>円弧の周囲のステップ幅</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportDXFSwitchWhite.Text" xml:space="preserve">
+    <value>ペンカラーの白を黒として処理します</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportDXFSwitchWhite.ToolTip" xml:space="preserve">
+    <value>LibreCADは、黒い背景に白いペンの色を表示します。しかし、実際のペンの色は黒です。</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportDXFIndexToolNr.Text" xml:space="preserve">
+    <value>ツールnrとしてカラーインデックス（+1）を使用します。 （色の代わりに）</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportDXFIndexToolNr.ToolTip" xml:space="preserve">
+    <value>DXF形式は、0〜255のカラーインデックスを使用します。このインデックス+ 1は、ツール番号として使用されます。</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1gB3.Text" xml:space="preserve">
+    <value>DXFインポート</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGNodesOnly.Text" xml:space="preserve">
+    <value>プロセスパスノードのみ</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGNodesOnly.ToolTip" xml:space="preserve">
+    <value>ペンダウン/アップアクションのノード（ラインの終点など）のみを処理します。
+このオプションは、釘の位置を事前にドリルするストリングアート用です。
+Inkscapeでは、最初にオブジェクトをパス「パス-オブジェクトからパス」に変換し、
+次に、「拡張機能-パスの変更-ノードの追加」を使用してノードを追加し、パスに沿ってノードを追加します。</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="checkBox4.Text" xml:space="preserve">
+    <value>折りたたみコードブロック</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="checkBox4.ToolTip" xml:space="preserve">
+    <value>グラフィック関連のコメントをGCodeに追加します</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="label58.Text" xml:space="preserve">
+    <value>回</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="nUDImportRepeat.ToolTip" xml:space="preserve">
+    <value>生成されたコードをn回繰り返します（たとえば、弱いレーザーが厚い材料を切断する場合）</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGRepeat.Text" xml:space="preserve">
+    <value>完全なコードを繰り返す（弱いレーザー）</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGRepeat.ToolTip" xml:space="preserve">
+    <value>生成されたコードをn回繰り返します（たとえば、弱いレーザーが厚い材料を切断する場合）</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportUnitGCode.Text" xml:space="preserve">
+    <value>G20（インチ）/ G21（mm）Gコードを追加</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportUnitGCode.ToolTip" xml:space="preserve">
+    <value>GCodeにG20 / G21コマンドを追加します。 G21がデフォルトです。</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="rBImportUnitInch.Text" xml:space="preserve">
+    <value>インチ</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportUnitInch.ToolTip" xml:space="preserve">
+    <value>G20コマンド</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl1.Text" xml:space="preserve">
+    <value>ターゲットユニットとディスプレイ</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl1.ToolTip" xml:space="preserve">
+    <value>インポートファイル内にユニットが指定されている場合は、ターゲットユニットに変換してください</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="rBImportUnitmm.Text" xml:space="preserve">
+    <value>mm</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportUnitmm.ToolTip" xml:space="preserve">
+    <value>G21コマンド</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGPauseP.Text" xml:space="preserve">
+    <value>各ペンを押す前に一時停止（M0）</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGPauseE.Text" xml:space="preserve">
+    <value>各パスの前に一時停止（M0）</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>最小</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="nUDImportReduce.ToolTip" xml:space="preserve">
+    <value>このオプションは、gcodeサイズを最小化するために、指定された値より小さい移動をスキップします。</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGReduce.Text" xml:space="preserve">
+    <value>非常に短い動きを削除&lt;</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGReduce.ToolTip" xml:space="preserve">
+    <value>このオプションは、gcodeサイズを最小化するために、指定された値より小さい移動をスキップします。</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGComments.Text" xml:space="preserve">
+    <value>追加のインポートコメント</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGComments.ToolTip" xml:space="preserve">
+    <value>グラフィック関連のコメントをGCodeに追加します</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="nUDImportSVGSegemnts.ToolTip" xml:space="preserve">
+    <value>曲線は線分で描かれます。 セグメントが多いほど、曲線はより正確になります。</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl2.Text" xml:space="preserve">
+    <value>曲線、スプラインの線分数</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl2.ToolTip" xml:space="preserve">
+    <value>曲線は線分で描かれます。 セグメントが多いほど、曲線はより正確になります。</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1gB1.Text" xml:space="preserve">
+    <value>グラフィックスインポート全般</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl3.Text" xml:space="preserve">
+    <value>DPI設定</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVG_DPI_72.ToolTip" xml:space="preserve">
+    <value>Adobe Illustratorは72 dpiを使用します</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVG_DPI_96.ToolTip" xml:space="preserve">
+    <value>96 dpiはデフォルトのスケーリングです</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGResize.Text" xml:space="preserve">
+    <value>グラフィックのサイズを最大に変更してみてください。 XまたはY次元</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGResize.ToolTip" xml:space="preserve">
+    <value>gcodeを生成する前に、グラフィックスを指定された単位にスケーリングしてみてください。
+gcodeを縮小する際の問題を回避するため。</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="nUDSVGScale.ToolTip" xml:space="preserve">
+    <value>gcodeを生成する前に、グラフィックスを指定された単位にスケーリングしてみてください。</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="lblSVGScale.Text" xml:space="preserve">
+    <value>単位</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_1gB2.Text" xml:space="preserve">
+    <value>SVGインポート</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tabPage9.Text" xml:space="preserve">
+    <value>パスのインポート</value>
+    <comment>TabPage</comment>
+  </data>
+  <data name="checkBox2.Text" xml:space="preserve">
+    <value>レーザーモード（レーザーをオフにするには、M5ではなくS0を使用します）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="rBImportGCSpindleCmd2.ToolTip" xml:space="preserve">
+    <value>'M4'を送信して、スピンドルカウンターを時計回りにオンにします
+レーザーモードでのダイナミックレーザーパワーモード</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl6.Text" xml:space="preserve">
+    <value>方向/レーザーモード</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="rBImportGCSpindleCmd1.ToolTip" xml:space="preserve">
+    <value>「M3」を送信して、スピンドルクロックを有効にします
+レーザーモードでの一定レーザー出力モード</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl7.Text" xml:space="preserve">
+    <value>スピンドル「オン」後の遅延</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl5.Text" xml:space="preserve">
+    <value>スピンドル速度/レーザー出力</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl5.ToolTip" xml:space="preserve">
+    <value>彫刻のスピンドル速度</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCSpindleDelay.ToolTip" xml:space="preserve">
+    <value>スピンドルオン後の遅延を秒単位で挿入します（スピンドル電源がオフの場合にリセットの時間を確保するため）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCSSpeed.ToolTip" xml:space="preserve">
+    <value>彫刻のスピンドル速度</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTTSSpeed.Text" xml:space="preserve">
+    <value>ツールテーブルから</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTTSSpeed.ToolTip" xml:space="preserve">
+    <value>「ツール変更の追加」と「ツール変更の実行」が有効になっている場合、インポート中にツールテーブルから値が取得されます</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB2.Text" xml:space="preserve">
+    <value>スピンドル/レーザー</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCToolM0.Text" xml:space="preserve">
+    <value>代わりに一時停止（M0）を追加</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
+    <value>手動でツールを変更するには、M06（ツール変更）コマンドをM0（一時停止）に置き換えます。</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTool.Text" xml:space="preserve">
+    <value>ツール変更コマンドTx M06の追加</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
+    <value>情報が利用可能な場合は、Tx M06コマンドでツール変更アクションを実行します-[ツール変更]タブをチェックします。</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCComments.Text" xml:space="preserve">
+    <value>追加のGコードコメント</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCComments.ToolTip" xml:space="preserve">
+    <value>GCodeにコメントを追加します</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTTXYFeed.Text" xml:space="preserve">
+    <value>ツールテーブルから</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTTXYFeed.ToolTip" xml:space="preserve">
+    <value>「ツール変更の追加」と「ツール変更の実行」が有効になっている場合、インポート中にツールテーブルから値が取得されます</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl1.Text" xml:space="preserve">
+    <value>小数位</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl1.ToolTip" xml:space="preserve">
+    <value>gcodeの座標の小数点以下の桁数。</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tBImportGCHeader.ToolTip" xml:space="preserve">
+    <value>リセット後のGRBLステータス：G0、G54、G17、G90、G94、G21、G40、G49、M0、M5、M9
+この言葉を設定する必要はありません</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl4.Text" xml:space="preserve">
+    <value>XY送り速度</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl4.ToolTip" xml:space="preserve">
+    <value>XまたはYディメンションを使用したG1,2,3コマンドの送り速度</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl2.Text" xml:space="preserve">
+    <value>Gコードヘッダー</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl2.ToolTip" xml:space="preserve">
+    <value>リセット後のGRBLステータス：G0、G54、G17、G90、G94、G21、G40、G49、M0、M5、M9
+この言葉を設定する必要はありません</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCFeedXY.ToolTip" xml:space="preserve">
+    <value>XまたはYディメンションを使用したG1,2,3コマンドの送り速度</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl3.Text" xml:space="preserve">
+    <value>Gコードフッター</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportDecPlaces.ToolTip" xml:space="preserve">
+    <value>gcodeの座標の小数点以下の桁数。</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB1.Text" xml:space="preserve">
+    <value>全般</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCZIncStartZero.Text" xml:space="preserve">
+    <value>Z = 0から開始</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCZIncStartZero.ToolTip" xml:space="preserve">
+    <value>最初のパスにZ = 0を使用します</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTTZAxis.Text" xml:space="preserve">
+    <value>ツールテーブルから</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTTZAxis.ToolTip" xml:space="preserve">
+    <value>「ツール変更の追加」および「ツール変更の実行」が有効な場合、インポート中にすべてのZ値がツールテーブルから取得されます。</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl35.Text" xml:space="preserve">
+    <value>パスごとの深さ</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl35.ToolTip" xml:space="preserve">
+    <value>最大 Z値の増分</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCZIncEnable.Text" xml:space="preserve">
+    <value>複数のパスを使用する</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCZIncEnable.ToolTip" xml:space="preserve">
+    <value>Z深度を増やしながらパスを繰り返して、最終深度に到達します
+他のペンアップ/ダウンオプションでは使用できません！</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUseZ.Text" xml:space="preserve">
+    <value>Z軸とスピンドルを使用する</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUseZ.ToolTip" xml:space="preserve">
+    <value>Z軸の動きをGコードに挿入する</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl32.Text" xml:space="preserve">
+    <value>Z高の保存</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2lbl32.ToolTip" xml:space="preserve">
+    <value>ワークピースの表面からの高さ-正でなければなりません</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCZUp.ToolTip" xml:space="preserve">
+    <value>ワークピースの表面からの高さ-正でなければなりません</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCFeedZ.ToolTip" xml:space="preserve">
+    <value>G1コマンドのためにワークピースに移動するときの速度</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl33.Text" xml:space="preserve">
+    <value>Z-Height彫刻</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2lbl33.ToolTip" xml:space="preserve">
+    <value>ワークピースの表面下の最終深さ-負でなければなりません</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCZDown.ToolTip" xml:space="preserve">
+    <value>ワークピースの表面下の最終深さ-負でなければなりません</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl31.Text" xml:space="preserve">
+    <value>Z送り速度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2lbl31.ToolTip" xml:space="preserve">
+    <value>ワークに移動するときの速度</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB3.ToolTip" xml:space="preserve">
+    <value>Z軸の動きをGコードに挿入</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl51.Text" xml:space="preserve">
+    <value>M3 M4の選択と遅延のスピンドル設定を確認してください</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUseSpindle.Text" xml:space="preserve">
+    <value>スピンドルのオン/オフ</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUseSpindle.ToolTip" xml:space="preserve">
+    <value>「ペンアップ」コマンドでスピンドルを「オフ」、「ペンダウン」コマンドで「オン」に切り替えます（レーザー彫刻機用）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB5.Text" xml:space="preserve">
+    <value>ペンダウン/アップによるスピンドルのオン/オフ（レーザー用）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB5.ToolTip" xml:space="preserve">
+    <value>「ペンアップ」コマンドでスピンドルを「オフ」、「ペンダウン」コマンドで「オン」に切り替えます（レーザー彫刻機用）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl62.Text" xml:space="preserve">
+    <value>ペンダウン</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2lbl61.Text" xml:space="preserve">
+    <value>ペンアップ</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCUseIndividual.Text" xml:space="preserve">
+    <value>個々のコマンドを使用します（「;」で行を分けます）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB6.Text" xml:space="preserve">
+    <value>ペンダウン/アップの個々のコマンド</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUsePWM.Text" xml:space="preserve">
+    <value>PWMとしてのスピンドル速度</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUsePWM.ToolTip" xml:space="preserve">
+    <value>スピンドル速度を介してRC-Servoを制御します（1ms-2ms PWM出力を生成するために特別なGRBLバージョンが必要です）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCDlyDown.ToolTip" xml:space="preserve">
+    <value>G4を挿入：次のコマンドまでの遅延（秒）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCDlyUp.ToolTip" xml:space="preserve">
+    <value>G4を挿入：次のコマンドまでの遅延（秒）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCPWMDown.ToolTip" xml:space="preserve">
+    <value>ペンダウンのスピンドル速度</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCPWMUp.ToolTip" xml:space="preserve">
+    <value>ペンアップのスピンドル速度</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB4.Text" xml:space="preserve">
+    <value>サーボ制御</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB4.ToolTip" xml:space="preserve">
+    <value>スピンドル速度を介してRC-Servoを制御します（1ms-2ms PWM出力を生成するには特別なGRBLバージョンが必要です）</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB7.Text" xml:space="preserve">
+    <value>ペンアップ/ダウン翻訳</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tabPage10.Text" xml:space="preserve">
+    <value>Gコード生成</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_3lbl31.Text" xml:space="preserve">
+    <value>メニューGCode変換、ZからSへの変換の設定</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3lbl33.Text" xml:space="preserve">
+    <value>最大Zでの最小S</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3lbl32.Text" xml:space="preserve">
+    <value>最小Zでの最大S</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3gB3.Text" xml:space="preserve">
+    <value>Z軸をスピンドル速度Sに変換する</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3lbl41.Text" xml:space="preserve">
+    <value>他のオプションでは動作しない可能性があります</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCRelative.Text" xml:space="preserve">
+    <value>相対運動</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCRelative.ToolTip" xml:space="preserve">
+    <value>G91の相対運動を計算する
+注：「ペンインデックスでオブジェクトを並べ替える」は使用しないでください。</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCCompress.Text" xml:space="preserve">
+    <value>Gコードの圧縮</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCCompress.ToolTip" xml:space="preserve">
+    <value>冗長データをスキップします。
+注：「ペンインデックスでオブジェクトを並べ替える」は使用しないでください。</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3gB4.Text" xml:space="preserve">
+    <value>実験的</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="nUDImportGCDragKnifePercent.ToolTip" xml:space="preserve">
+    <value>Z深度に応じてオフセットを計算する</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCDragKnifePercent.Text" xml:space="preserve">
+    <value>Z深度からの％</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCDragKnifePercent.ToolTip" xml:space="preserve">
+    <value>Z深度に応じてオフセットを計算する</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="lblDrag2.Text" xml:space="preserve">
+    <value>旋回角度</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="lblDrag2.ToolTip" xml:space="preserve">
+    <value>円弧を追加する前の角度の変更</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="lblDrag1.Text" xml:space="preserve">
+    <value>中心からのオフセット</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="lblDrag1.ToolTip" xml:space="preserve">
+    <value>回転中心からのオフセット。 ドラッグナイフの場合、通常は約0.3 mmです。</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="nUDImportGCDragKnifeAngle.ToolTip" xml:space="preserve">
+    <value>円弧を追加する前の角度の変更</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCDragKnifeLength.ToolTip" xml:space="preserve">
+    <value>回転中心からのオフセット。 ドラッグナイフの場合、通常は約0.3 mmです。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCDragKnife.Text" xml:space="preserve">
+    <value>ドラッグツール補正</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCDragKnife.ToolTip" xml:space="preserve">
+    <value>ドラッグナイフまたはブラシを使用する場合のオフセットの補正</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3gB2.Text" xml:space="preserve">
+    <value>ドラッグツール補正</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="nUDImportGCSegment.ToolTip" xml:space="preserve">
+    <value>円弧の周囲のステップ幅。
+値が&gt;弧半径の場合、値は自動的に減少します。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCSubFirst.Text" xml:space="preserve">
+    <value>パスの先頭にも挿入</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="btnShowScriptSub.Text" xml:space="preserve">
+    <value>見せる</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="btnShowScriptSub.ToolTip" xml:space="preserve">
+    <value>クリックしてファイルの内容を表示</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.Text" xml:space="preserve">
+    <value>等距離セグメント</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.ToolTip" xml:space="preserve">
+    <value>チェックあり：行は同じ長さのセグメントに分割されます（&lt;=指定された長さ）
+チェックなし：最後の線分は短く、他のすべての正確な長さ</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCNoArcs.Text" xml:space="preserve">
+    <value>G2/3 コマンドを避ける</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
+    <value>円と円弧を線分に変換-異なるXとYスケールが必要な場合に必要</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tBImportGCSubroutine.ToolTip" xml:space="preserve">
+    <value>サブルーチンを含むファイルへのパス</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCSubEnable.Text" xml:space="preserve">
+    <value>サブルーチンを挿入</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCSubEnable.ToolTip" xml:space="preserve">
+    <value>セグメント長ごとにサブルーチンを挿入します。</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCLineSegments.Text" xml:space="preserve">
+    <value>G1ラインをセグメントに分割する
+最大で 単位の長さ</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCLineSegments.ToolTip" xml:space="preserve">
+    <value>長い直線の動きを最大の短い動きにカットします。 与えられた長さ。
+「相対運動」で使用しないでください</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3gB1.Text" xml:space="preserve">
+    <value>元の動きを分割</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tabPage11.Text" xml:space="preserve">
+    <value>Gコードの変更</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_4lbl1.Text" xml:space="preserve">
+    <value>最終ロード：</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="tBUseCaseSetting1.Text" xml:space="preserve">
+    <value>ユースケースを選択して設定を確認します</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="tab1_4lbl2.Text" xml:space="preserve">
+    <value>ユースケースに関する情報を書く</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnDelete.Text" xml:space="preserve">
+    <value>選択を削除します</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnDelete.ToolTip" xml:space="preserve">
+    <value>選択したユースケースを削除する</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnUseCaseSave.Text" xml:space="preserve">
+    <value>「ユースケース」を保存する</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnUseCaseSave.ToolTip" xml:space="preserve">
+    <value>現在のインポート設定をユースケースとして保存する</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnUseCaseLoad.Text" xml:space="preserve">
+    <value>選択したロード</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnUseCaseLoad.ToolTip" xml:space="preserve">
+    <value>選択したユースケースの設定を読み込む</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="tab1_4gB1.Text" xml:space="preserve">
+    <value>インポート設定を「ユースケース」として保存する</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="tabPage15.Text" xml:space="preserve">
+    <value>ユースケース</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>グラフィックのインポート</value>
+    <comment>TabPage1</comment>
+  </data>
+  <data name="lblToolListChanged.Text" xml:space="preserve">
+    <value>-</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnDeleteToolTable.Text" xml:space="preserve">
+    <value>選択したリストを削除</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnDeleteToolTable.ToolTip" xml:space="preserve">
+    <value>選択したツールテーブルを削除</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="lblToolListLoaded.Text" xml:space="preserve">
+    <value>空の</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>最後に読み込まれたツールテーブル：</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnLoadToolTable.Text" xml:space="preserve">
+    <value>選択したロード</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnLoadToolTable.ToolTip" xml:space="preserve">
+    <value>選択したツールテーブルを読み込む</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnToolExport.Text" xml:space="preserve">
+    <value>ツールテーブルを保存</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnToolExport.ToolTip" xml:space="preserve">
+    <value>現在のツールテーブルをcsvファイルに保存する</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="tab2gB1.Text" xml:space="preserve">
+    <value>ツールテーブル</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="cBToolLaser.Text" xml:space="preserve">
+    <value>レーザー関連</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="cBToolLaser.ToolTip" xml:space="preserve">
+    <value>見える列を減らす</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnReNumberTools.Text" xml:space="preserve">
+    <value>番号を付け直す</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnMoveToolXY.Text" xml:space="preserve">
+    <value>マークされた行のXY位置に移動</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="tab2gB2lbl1.Text" xml:space="preserve">
+    <value>工具テーブル内の工具位置へのオフセット（X、Y、Z）</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column1.HeaderText" xml:space="preserve">
+    <value>Nr。</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column1.ToolTipText" xml:space="preserve">
+    <value>工具番号</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column2.HeaderText" xml:space="preserve">
+    <value>色</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column2.ToolTipText" xml:space="preserve">
+    <value>6桁の16進数のペンの色。 クリックして明るさで並べ替えます。</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column3.HeaderText" xml:space="preserve">
+    <value>名</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column3.ToolTipText" xml:space="preserve">
+    <value>ツールの名前</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column4.ToolTipText" xml:space="preserve">
+    <value>交換ポジションX</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column5.ToolTipText" xml:space="preserve">
+    <value>交換ポジションY</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column6.ToolTipText" xml:space="preserve">
+    <value>交換ポジションZ</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column7.ToolTipText" xml:space="preserve">
+    <value>ツールの直径</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column8.ToolTipText" xml:space="preserve">
+    <value>XY移動の送り速度</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column10.HeaderText" xml:space="preserve">
+    <value>Zスピード</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column10.ToolTipText" xml:space="preserve">
+    <value>Z移動の送り速度</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column15.HeaderText" xml:space="preserve">
+    <value>Z保存</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column15.ToolTipText" xml:space="preserve">
+    <value>ワーク上の高さを節約</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column9.HeaderText" xml:space="preserve">
+    <value>Zディープ</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column9.ToolTipText" xml:space="preserve">
+    <value>最終Z深度</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column13.HeaderText" xml:space="preserve">
+    <value>Z増分</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column13.ToolTipText" xml:space="preserve">
+    <value>最大 パスごとのZ増分</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column11.HeaderText" xml:space="preserve">
+    <value>主軸</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column11.ToolTipText" xml:space="preserve">
+    <value>スピンドルの回転速度</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column12.HeaderText" xml:space="preserve">
+    <value>ステップオーバー</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column12.ToolTipText" xml:space="preserve">
+    <value>平行経路間の工具直径の距離</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column14.ToolTipText" xml:space="preserve">
+    <value>ツール変更コマンドの後に適用するコード</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="tab2gB2.Text" xml:space="preserve">
+    <value>ツールテーブル-マシン座標の位置！ ホーミングは、事前の使用をお勧めします。</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="tabPage14.Text" xml:space="preserve">
+    <value>ツールテーブル</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="nUDToolChangeEmpty.ToolTip" xml:space="preserve">
+    <value>ツールnrを使用します。 これはツールの表にリストされていません。</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="cBToolChangeEmpty.Text" xml:space="preserve">
+    <value>最後に「ロード」ツール番号によってスピンドルを空にします。</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="cBToolChangeEmpty.ToolTip" xml:space="preserve">
+    <value>存在しないツールを最終コマンドとしてロードすることにより、最後に使用したツールを削除します。</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="label61.Text" xml:space="preserve">
+    <value>仕組み：
+ツールを変更するには、GCodeにTx M6コマンドを使用します。
+（Arduinoまたは他のコントローラー上の）grblへのストリーミング中に、ツール変更コマンドはGRBL-Plotterによって解釈され、スクリプトgcodeが挿入されます。
+
+「Tx」コマンドに注意し、ツール番号「x」を取得します
+ツール番号 'x'のツール変更座標を実際のツールテーブルから変数TOAX、TOAY、TOAZに読み取ります。
+
+「M6」コマンドに注意してください
+ツールがスピンドルにある場合
+スクリプトコード 'REMOVE'を挿入します（最後のツール座標にはここTOLX、Y、Zを使用します）
+スクリプトコード「SELECT」をsend-queueに挿入します（ここではTOAX、Y、Zツール座標を使用します）
+スクリプトコード「PICK UP」を挿入
+スクリプトコード「PROBE」を挿入
+実際のツール座標（TOAX、Y、Zを最後の座標にコピーします。TOLX、Y、Z）
+grblはこのコマンドを処理できないため、送信キューから「M6」を削除します。</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_4.Text" xml:space="preserve">
+    <value>4）プローブツール</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_4.ToolTip" xml:space="preserve">
+    <value>クリックしてファイルの内容を表示</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="tBToolChangeScriptProbe.ToolTip" xml:space="preserve">
+    <value>4番目のプローブツール長</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_2.Text" xml:space="preserve">
+    <value>2）SELECTツール</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_2.ToolTip" xml:space="preserve">
+    <value>クリックしてファイルの内容を表示</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="tBToolChangeScriptSelect.ToolTip" xml:space="preserve">
+    <value>2番目は、スピンドルの前に新しいツールを持ち込みます</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_1.Text" xml:space="preserve">
+    <value>1）取り外しツール（スピンドルの場合）</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_1.ToolTip" xml:space="preserve">
+    <value>クリックしてファイルの内容を表示</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="tBToolChangeScriptPut.ToolTip" xml:space="preserve">
+    <value>最初に古いツールをスパイドルから削除する必要があります（初回を除く）</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_3.Text" xml:space="preserve">
+    <value>3）ピックアップツール</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_3.ToolTip" xml:space="preserve">
+    <value>クリックしてファイルの内容を表示</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="tBToolChangeScriptGet.ToolTip" xml:space="preserve">
+    <value>3番目の新しいツールのピックアップ</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="cBToolChange.Text" xml:space="preserve">
+    <value>Tx M06でツールの変更を実行する</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="cBToolChange.ToolTip" xml:space="preserve">
+    <value>Tx M06コマンドで次のスクリプトを実行します</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="gBToolChange.Text" xml:space="preserve">
+    <value>ツール交換セットアップ</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="tabPage8.Text" xml:space="preserve">
+    <value>ツール交換</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="cBresetSendCode.Text" xml:space="preserve">
+    <value>リセット後に次のGコードを送信</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tBresetSendCode.ToolTip" xml:space="preserve">
+    <value>通常のGCodeを割り当て、「;」を使用してコードを異なる行に分けます セパレータとして。
+または、GCodeを含むファイル名を割り当てます。</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="cBrestoreCoordReset.Text" xml:space="preserve">
+    <value>リセット後に作業座標を復元し、デフォルトの送り速度を設定します</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB2.Text" xml:space="preserve">
+    <value>grblリセット後の動作</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB3lbl1.Text" xml:space="preserve">
+    <value>自動検出の前提：
+デフォルト（Arduino Uno / Nano）-127バイト
+3軸以上（Mega2560）-255バイト</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="checkBox3.Text" xml:space="preserve">
+    <value>自動検出</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB3.Text" xml:space="preserve">
+    <value>grblバッファーサイズ</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="cBpollIntervalReduce.Text" xml:space="preserve">
+    <value>周波数を下げる gcodeをストリーミングするとき</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB1lbl1.Text" xml:space="preserve">
+    <value>grblステータスレポートの更新頻度を設定します。 コントローラーのストレスが大きいほど。</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB1.Text" xml:space="preserve">
+    <value>ステータスポーリング頻度</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="cBsimulation.Text" xml:space="preserve">
+    <value>接続されたgrblのシミュレーション</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>通常のGCodeを割り当て、「;」を使用してコードを異なる行に分けます セパレータとして。
+または、GCodeを含むファイル名を割り当てます。</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>一時停止または停止時に次のgcodeを送信します</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB4.Text" xml:space="preserve">
+    <value>ストリーミングのフロー制御</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tabPage13.Text" xml:space="preserve">
+    <value>フロー制御</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="cBExtendedLogging.Text" xml:space="preserve">
+    <value>拡張ログを有効にする</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerialPortFixer.Text" xml:space="preserve">
+    <value>シリアルポートフィクサーを適用する</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerialPortFixer.ToolTip" xml:space="preserve">
+    <value>アプリケーションを閉じるときのエラーを防ぐのに役立ちます</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB9.Text" xml:space="preserve">
+    <value>特別なコンテンツを貼り付け</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="btnMachineRangeGet.Text" xml:space="preserve">
+    <value>設定$ 130〜$ 132から範囲を取得</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB5lbl4.Text" xml:space="preserve">
+    <value>マシンのホーミング、移動
+最小X、最小Y、最大Z
+ノートマシン座標</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBMachineLimitsAlarm.Text" xml:space="preserve">
+    <value>制限を超えるアラーム（XおよびY）</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBMachineLimitsShow.Text" xml:space="preserve">
+    <value>マシンの制限を表示</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB5lbl3.Text" xml:space="preserve">
+    <value>マシントラベルZ</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB5lbl2.Text" xml:space="preserve">
+    <value>マシントラベルY</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB5lbl1.Text" xml:space="preserve">
+    <value>マシントラベルX</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB5.Text" xml:space="preserve">
+    <value>機械エリア</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerialDIY.Text" xml:space="preserve">
+    <value>プログラムでシリアルポートを開きます。 開始</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB2.Text" xml:space="preserve">
+    <value>シリアル接続を介したDIYコントロールパッド</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB6lbl2.Text" xml:space="preserve">
+    <value>2Dビューの4番目の軸のサイズは、gcode変換メニューの回転直径で変更できます</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>2Dビューで4番目の軸を反転</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="radioButton2.Text" xml:space="preserve">
+    <value>Y上の4番目の軸を表示</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="radioButton1.Text" xml:space="preserve">
+    <value>X上の4番目の軸を表示</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cB4thUse.Text" xml:space="preserve">
+    <value>ステータスとコントロールを表示する</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB6lbl1.Text" xml:space="preserve">
+    <value>4番目の軸の名前</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB6.Text" xml:space="preserve">
+    <value>GRBL 4軸（特別版）</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8lbl2.Text" xml:space="preserve">
+    <value>主軸</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8lbl2.ToolTip" xml:space="preserve">
+    <value>この設定は、軸の置換を無効にするときに設定されます</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tBRotarySetupOff.ToolTip" xml:space="preserve">
+    <value>この設定は、軸の置換を無効にするときに設定されます</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBRotarySetupApply.Text" xml:space="preserve">
+    <value>フォームを閉じるときに設定を適用する</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBRotarySetupApply.ToolTip" xml:space="preserve">
+    <value>置換を有効または無効にするときにgrbl設定を自動的に調整する</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tBRotarySetupOn.ToolTip" xml:space="preserve">
+    <value>この設定は、軸置換を有効にするときに設定されます</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8lbl1.Text" xml:space="preserve">
+    <value>回転軸</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8lbl1.ToolTip" xml:space="preserve">
+    <value>この設定は、軸置換を有効にするときに設定されます</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8.Text" xml:space="preserve">
+    <value>交換された軸のGRBLセットアップ</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="label30.Text" xml:space="preserve">
+    <value>単位</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB7lbl2.Text" xml:space="preserve">
+    <value>部品の直径</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB7lbl2.ToolTip" xml:space="preserve">
+    <value>関係距離&lt;=&gt;角度の円周を計算する必要があります</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>単位</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB7lbl1.Text" xml:space="preserve">
+    <value>360°に対応</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="rBRotaryY.Text" xml:space="preserve">
+    <value>Y軸</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBRotarySubstitute.Text" xml:space="preserve">
+    <value>軸置換を使用する</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB7.Text" xml:space="preserve">
+    <value>回転軸制御（XまたはY軸の代わり）</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBCtrlCommentOut.Text" xml:space="preserve">
+    <value>不明なGCodeをコメントアウトします</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBCtrlCommentOut.ToolTip" xml:space="preserve">
+    <value>GRBLからのエラーを回避するために、括弧内の不明なGCodeを非表示にします</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="rBCtrlReplaceM4.Text" xml:space="preserve">
+    <value>「M4」を「M3」に置き換えます</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="rBCtrlReplaceM4.ToolTip" xml:space="preserve">
+    <value>M3コンスタントレーザーパワーモード</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="rBCtrlReplaceM3.Text" xml:space="preserve">
+    <value>「M3」を「M4」に置き換えます</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="rBCtrlReplaceM3.ToolTip" xml:space="preserve">
+    <value>M4ダイナミックレーザーパワーモード：</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBCtrlMCmd.Text" xml:space="preserve">
+    <value>「スピンドルオン」コマンドの変換</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBCtrlMCmd.ToolTip" xml:space="preserve">
+    <value>有効にすると、GCodeファイルのロード中に、M3またはM4コマンドがM4またはM3コマンドに置き換えられてアクティブになります
+M3コンスタントレーザーパワーモード
+または
+M4ダイナミックレーザーパワーモード</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB4.Text" xml:space="preserve">
+    <value>「レーザーモード」</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab5gB3.Text" xml:space="preserve">
+    <value>GCodeをロード</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerial2.Text" xml:space="preserve">
+    <value>プログラムで2番目のシリアルポートを開きます。 開始</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerial2.ToolTip" xml:space="preserve">
+    <value>2番目のCOMポートを開いて、2番目のGRBLを制御します。 ツールチェンジャーまたは第4軸に便利です。</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerialMinimize.Text" xml:space="preserve">
+    <value>接続後のシリアルフォームの最小化</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerialMinimize.ToolTip" xml:space="preserve">
+    <value>成功した接続後のシリアルウィンドウを最小化します</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB1.Text" xml:space="preserve">
+    <value>シリアル接続</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBBackgroundImage.Text" xml:space="preserve">
+    <value>ストリーミング中のリアルタイムパス更新を無効にします。
+CPU負荷を節約し、ストリーミング中のズームを無効にします</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBcheckupdate.Text" xml:space="preserve">
+    <value>GitHubで新しいGRBL-Plotterリリースを確認する</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab6lbl1.Text" xml:space="preserve">
+    <value>通常のGCodeを割り当て、「;」を使用してコードを別の行に分けます セパレータとして。
+または、GCodeを含むファイル名を割り当てます。
+相対ファイルパスはここから始まります。</value>
+    <comment>TabPage6</comment>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>仮想ジョイスティック</value>
+    <comment>TabPage6</comment>
+  </data>
+  <data name="cBGPEnable.Text" xml:space="preserve">
+    <value>GUIでGamePadコントロールを有効にする</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="cBRInvert.Text" xml:space="preserve">
+    <value>反転方向</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="cBZInvert.Text" xml:space="preserve">
+    <value>反転方向</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="cBYInvert.Text" xml:space="preserve">
+    <value>反転方向</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="cBXInvert.Text" xml:space="preserve">
+    <value>反転方向</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="tab7gB1lbl1.Text" xml:space="preserve">
+    <value>GamePadのボタンを押して、ボタンの割り当てを確認します。
+
+通常のGCode（「カスタムボタン」のルールをチェック）または編集ボックス内の特別な機能を割り当てます。
+
+特別な機能（＃で始まる）：
+#Start（ストリーミングを開始）
+#Stop（ストリーミングを停止）
+＃F-10（-1、100、+ 1、+ 10フィーダーオーバーライド）
+＃S-10（-1、100、+ 1、+ 10スピンドルspd o。）
+#FEEDHOLD
+＃履歴書
+＃キラーラ
+#RST（CTRL-Xによるソフトリセット）
+#HRST（DTR / RTSを介したハードウェアリセット）
+
+軸と方向反転を割り当てる
+更新間隔= 50ms。
+
+GUIでGamePadを使用するには、セットアップウィンドウを閉じる必要があります。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblgp.Text" xml:space="preserve">
+    <value>GamePadからのメッセージ</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="tab7gB1.Text" xml:space="preserve">
+    <value>GamePadボタンの割り当て</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage6.Text" xml:space="preserve">
+    <value>2D-ビュー/エディター</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="cBKeepPenWidth.Text" xml:space="preserve">
+    <value>ズーム時にペン幅を変更しないでください</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDRotaryInfo.ToolTip" xml:space="preserve">
+    <value>ペン幅</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorRotaryInfo.Text" xml:space="preserve">
+    <value>ロータリー情報</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorMachineLimit.Text" xml:space="preserve">
+    <value>マシン制限</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tab8gB2lbl2.Text" xml:space="preserve">
+    <value>ペン幅はmm単位で設定されます。 インチに切り替えると、幅が調整されます。</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tab8gB2lbl1.Text" xml:space="preserve">
+    <value>ペン幅</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDHeightMap.ToolTip" xml:space="preserve">
+    <value>ペン幅</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorHeightMap.Text" xml:space="preserve">
+    <value>高さマップ</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDMarker.ToolTip" xml:space="preserve">
+    <value>ペン幅</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorMarker.Text" xml:space="preserve">
+    <value>マーカー</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDTool.ToolTip" xml:space="preserve">
+    <value>ペン幅</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDPenDown.ToolTip" xml:space="preserve">
+    <value>ペン幅</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDPenUp.ToolTip" xml:space="preserve">
+    <value>ペン幅</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDRuler.ToolTip" xml:space="preserve">
+    <value>ペン幅</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorTool.Text" xml:space="preserve">
+    <value>ツール</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorPenDown.Text" xml:space="preserve">
+    <value>ペンダウン</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorPenUp.Text" xml:space="preserve">
+    <value>ペンアップ</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorRuler.Text" xml:space="preserve">
+    <value>定規</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorBackground.Text" xml:space="preserve">
+    <value>バックグラウンド</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tab8gB2.Text" xml:space="preserve">
+    <value>描画色</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="label77.Text" xml:space="preserve">
+    <value>A、B、Cステップ幅+速度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab8gB1lbl2.Text" xml:space="preserve">
+    <value>「変更を適用」を押して、ジョイスティックコントロールのサイズを変更します</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tab8gB1lbl1.Text" xml:space="preserve">
+    <value>最大 ジョイスティックコントロールのサイズ（ピクセル）</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnJoyZCalc.Text" xml:space="preserve">
+    <value>計算 最高速度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnJoyZCalc.ToolTip" xml:space="preserve">
+    <value>0.5秒の繰り返し率内でステップ幅に到達する速度を計算します</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Zステップ幅+速度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>XYステップ幅+速度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnJoyXYCalc.ToolTip" xml:space="preserve">
+    <value>0.5秒の繰り返し率内でステップ幅に到達する速度を計算します</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tab8gB1.Text" xml:space="preserve">
+    <value>仮想ジョイスティックのセットアップ</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>カメラ</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnOpenHotkeys.Text" xml:space="preserve">
+    <value>メモ帳でhotkeys.xmlを開きます</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="lblPathHotkeys.Text" xml:space="preserve">
+    <value>パス</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="btnHotkeyRefresh.Text" xml:space="preserve">
+    <value>hotkey.xmlをリロードする</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="tab9gB1lbl2.Text" xml:space="preserve">
+    <value>hotkeys.xmlのコンテンツ（外部で編集する必要があります。[変更を適用]を押して割り当てを更新します）：</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="tab9gB1lbl1.Text" xml:space="preserve">
+    <value>ここでキーデータを確認します（クリップボードにコピーされます）：</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="tB_kP_Left1.Text" xml:space="preserve">
+    <value>A、コントロール、Alt</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab9gB1.Text" xml:space="preserve">
+    <value>ホットキー</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="tab10lbl1.Text" xml:space="preserve">
+    <value>設定を名前付きパラメーターセットに保存し、カメラウィンドウで呼び出して形状認識動作を変更します。 名前を変更した後、カメラウィンドウを閉じる/開きます。</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetSave4.Text" xml:space="preserve">
+    <value>セーブ</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetLoad4.Text" xml:space="preserve">
+    <value>負荷</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetSave3.Text" xml:space="preserve">
+    <value>セーブ</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetLoad3.Text" xml:space="preserve">
+    <value>負荷</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetSave2.Text" xml:space="preserve">
+    <value>セーブ</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetLoad2.Text" xml:space="preserve">
+    <value>負荷</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetSave1.Text" xml:space="preserve">
+    <value>セーブ</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetLoad1.Text" xml:space="preserve">
+    <value>負荷</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="cBFilterOuside.Text" xml:space="preserve">
+    <value>指定された色範囲の外側にあるピクセル</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB2lbl3.Text" xml:space="preserve">
+    <value>青い</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB2lbl2.Text" xml:space="preserve">
+    <value>緑</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB2lbl1.Text" xml:space="preserve">
+    <value>赤</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB3lbl3.Text" xml:space="preserve">
+    <value>最大許容歪み</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB3lbl5.Text" xml:space="preserve">
+    <value>ピクセル</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab10gB3lbl4.Text" xml:space="preserve">
+    <value>ピクセル</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab10gB3lbl2.Text" xml:space="preserve">
+    <value>許容歪み最小</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB3lbl1.Text" xml:space="preserve">
+    <value>最小 最大 形状のサイズ</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="cBShapeRect.Text" xml:space="preserve">
+    <value>矩形</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="cBShapeCircle.Text" xml:space="preserve">
+    <value>サークル</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB3.Text" xml:space="preserve">
+    <value>形状認識</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB1.Text" xml:space="preserve">
+    <value>形状認識の設定</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab11gB1lbl3.Text" xml:space="preserve">
+    <value>EggBot Inkscapeプラグインに関する説明</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="linkLabel14.Text" xml:space="preserve">
+    <value>塗りつぶし領域の作成</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab11gB1lbl2.Text" xml:space="preserve">
+    <value>Inkscapeの便利な拡張機能</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="tab11gB1lbl1.Text" xml:space="preserve">
+    <value>グラフィックプログラム</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel13.Text" xml:space="preserve">
+    <value>EggBot_extensions</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel12.Text" xml:space="preserve">
+    <value>Inkscape</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab11gB1.Text" xml:space="preserve">
+    <value>SVGの作成、変更</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="linkLabel15.Text" xml:space="preserve">
+    <value>GithubのDraradech / jigsaw.htmlによるジグソージェネレーター</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel11.Text" xml:space="preserve">
+    <value>www.templatemaker.nl</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel10.Text" xml:space="preserve">
+    <value>maker.js</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab11gB3.Text" xml:space="preserve">
+    <value>SVG図面をオンラインで作成する</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="linkLabel9.Text" xml:space="preserve">
+    <value>www.dafont.com</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab11gB4.Text" xml:space="preserve">
+    <value>フリーフォント、例： ステンシルまたはポップアップ用</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="linkLabel8.Text" xml:space="preserve">
+    <value>linuxcncでのGCodeの概要</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel7.Text" xml:space="preserve">
+    <value>GitHubのGRBL</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab11gB5.Text" xml:space="preserve">
+    <value>GRBLおよびGCode関連</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="tab11gB2lbl1.Text" xml:space="preserve">
+    <value>注：IEブラウザーではドラッグアンドドロップは機能しませんが、Google Chromeでは機能します</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="tab11gB2.Text" xml:space="preserve">
+    <value>無料のSVGグラフィックソース（ドラッグアンドドロップ機能付き）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage5.Text" xml:space="preserve">
+    <value>WWWリンク</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="btnApplyChangings.Text" xml:space="preserve">
+    <value>変更を適用する</value>
+    <comment>TabPage0</comment>
+  </data>
+  <data name="btnApplyChangings.ToolTip" xml:space="preserve">
+    <value>ボタンを押すと、新しい設定がカスタムボタンにすぐに適用されます。
+通常、他の設定は変更時に保存されます。</value>
+    <comment>TabPage0</comment>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>セットアップ</value>
+    <comment>Form</comment>
+  </data>
+  <data name="cBcheckupdate.ToolTip" xml:space="preserve">
+    <value>GRBL-Plotterを起動するたびに、新しいプログラムバージョンを確認します。
+github.com/svenhb/GRBL-Plotterで最初に試す
+svenhb.bplaced.netでの2回目の試行</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>プログラム制御</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab6lbl2.Text" xml:space="preserve">
+    <value>フィールドが空の場合、ボタン13〜16は非表示になります。</value>
+    <comment>TabPage6</comment>
+  </data>
+  <data name="Column20.HeaderText" xml:space="preserve">
+    <value>Nr。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column21.HeaderText" xml:space="preserve">
+    <value>ラベル</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column22.HeaderText" xml:space="preserve">
+    <value>Gコード</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab7gB2lbl3.Text" xml:space="preserve">
+    <value>与えられた値を下回る最小ステップ幅</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab7gB2lbl5.Text" xml:space="preserve">
+    <value>送り速度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab7gB2lbl4.Text" xml:space="preserve">
+    <value>単位</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDMinimum.ToolTip" xml:space="preserve">
+    <value>この値とデッドゾーンの間で、指定されたステップ幅と送り速度が送信されます-ジョイスティック軸が1つだけアクティブになっている場合。
+この場合、繰り返し間隔は50ミリ秒ではなく200ミリ秒です。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab7gB2lbl2.Text" xml:space="preserve">
+    <value>デッドゾーン</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab7gB2lbl1.Text" xml:space="preserve">
+    <value>中心位置のオフセット</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDOffset.ToolTip" xml:space="preserve">
+    <value>中心位置で「0」を取得するための減算。
+オフセットを変更した後、ジョイスティックを動かします。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDDead.ToolTip" xml:space="preserve">
+    <value>ジョグコマンドを送信する前に到達する最小値。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>アナログジョイスティックの設定</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValR.Text" xml:space="preserve">
+    <value>-</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValR.ToolTip" xml:space="preserve">
+    <value>オフセットが適用された値</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValY.Text" xml:space="preserve">
+    <value>-</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValY.ToolTip" xml:space="preserve">
+    <value>オフセットが適用された値</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValZ.Text" xml:space="preserve">
+    <value>-</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValZ.ToolTip" xml:space="preserve">
+    <value>オフセットが適用された値</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValX.Text" xml:space="preserve">
+    <value>-</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValX.ToolTip" xml:space="preserve">
+    <value>オフセットが適用された値</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tBRAxis.ToolTip" xml:space="preserve">
+    <value>移動するGコード軸</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tBZAxis.ToolTip" xml:space="preserve">
+    <value>移動するGコード軸</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tBYAxis.ToolTip" xml:space="preserve">
+    <value>移動するGコード軸</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tBXAxis.ToolTip" xml:space="preserve">
+    <value>移動するGコード軸</value>
+    <comment>ok</comment>
+  </data>
+  <data name="trackBarR.ToolTip" xml:space="preserve">
+    <value>ジョイスティックRチャンネルの価値</value>
+    <comment>ok</comment>
+  </data>
+  <data name="trackBarZ.ToolTip" xml:space="preserve">
+    <value>ジョイスティックZチャンネルの価値</value>
+    <comment>ok</comment>
+  </data>
+  <data name="trackBarY.ToolTip" xml:space="preserve">
+    <value>ジョイスティックYチャンネルの価値</value>
+    <comment>ok</comment>
+  </data>
+  <data name="trackBarX.ToolTip" xml:space="preserve">
+    <value>Joystick Xチャンネルの価値</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBgrblTranslate.Text" xml:space="preserve">
+    <value>grblメッセージを翻訳する</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBgrblTranslate.ToolTip" xml:space="preserve">
+    <value>IDLE、RUN、HOLDなどのgrblメッセージを翻訳する</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDFeedrate.ToolTip" xml:space="preserve">
+    <value>ジョギングの送り速度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDStepwidth.ToolTip" xml:space="preserve">
+    <value>ジョギングのためのステップ</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCTangential.Text" xml:space="preserve">
+    <value>接線軸を追加</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_3gB5.Text" xml:space="preserve">
+    <value>接線軸コマンド</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGSort3.Text" xml:space="preserve">
+    <value>パスの長さでグループを並べ替える-降順</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="lblDImportGCTangential3.Text" xml:space="preserve">
+    <value>ターンあたりのユニット</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblDImportGCTangential2.Text" xml:space="preserve">
+    <value>旋回角度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblDImportGCTangential2.ToolTip" xml:space="preserve">
+    <value>角度の変化がスイベル角度より大きい場合、
+Z軸が上に移動します
+軸が回る
+Z軸が下に移動します</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCTangentialSwivel.ToolTip" xml:space="preserve">
+    <value>ナイフを上げて、回して、下げる前に角度を変える</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblDImportGCTangential1.Text" xml:space="preserve">
+    <value>接線軸の名前</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportLasermode.Text" xml:space="preserve">
+    <value>レーザーモード（レーザーをオフにするにはM5ではなくS0を使用）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2gB3.Text" xml:space="preserve">
+    <value>Z軸</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="Column14.HeaderText" xml:space="preserve">
+    <value>Gコード</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnJoyXYCalc.Text" xml:space="preserve">
+    <value>計算 最高速度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab10gB2.Text" xml:space="preserve">
+    <value>カラーフィルター</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCTangentialRange.Text" xml:space="preserve">
+    <value>工具角度を&gt; = 0°、&lt;360°に制限</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCTangentialRange.ToolTip" xml:space="preserve">
+    <value>このオプションを使用して、0°未満および360°を超える角度を回避します。
+G2 / 3では機能しません-「G2 / 3コマンドを回避する」を有効にします</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGCircleToDot.Text" xml:space="preserve">
+    <value>円の半径を点の深さに変換します</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDSimulation.ToolTip" xml:space="preserve">
+    <value>ペン幅</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnColorSimulation.Text" xml:space="preserve">
+    <value>シミュレーション</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>画像変換</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>静止画像をプロットに適した波線に変換します</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>画像ファイルから点描と「TSPアート」を作成します。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab11gB1lbl1a.Text" xml:space="preserve">
+    <value>Inkscape拡張</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel16.Text" xml:space="preserve">
+    <value>Inkscape拡張</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGCircleToDotZ.Text" xml:space="preserve">
+    <value>円の半径を点の深さに変換します</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGCircleToDotZ.ToolTip" xml:space="preserve">
+    <value>奥行きは「Z-height」の彫刻に限定されています。
+アイデア：皿穴を使用して円の直径を設定します</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGCircleToDot.ToolTip" xml:space="preserve">
+    <value>ドリルを使用して、円の中心を「Z-Height」の深さで刻印します</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicOffsetOrigin.Text" xml:space="preserve">
+    <value>グラフィックスの原点を0; 0にオフセット</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicOffsetOrigin.ToolTip" xml:space="preserve">
+    <value>インポートしたグラフィックの左下端をxy座標0; 0に設定します</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicSortDistance.Text" xml:space="preserve">
+    <value>最短の接続でオブジェクトを並べ替え、マージする</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicSortDistance.ToolTip" xml:space="preserve">
+    <value>オブジェクトは、開始座標と終了座標の間の最も近い距離で並べ替えられ、オブジェクトの有効なパスが逆になります。
+同じ開始座標と終了座標を持つオブジェクトがマージされます。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage16.Text" xml:space="preserve">
+    <value>フォーマット関連</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>パスの解釈</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>パスの繰り返し（弱いレーザーの場合）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Gコードの外観</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>フロー制御</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_1_2lbl2.Text" xml:space="preserve">
+    <value>等しいと見なされる距離</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_1_2lbl2.ToolTip" xml:space="preserve">
+    <value>小さな隙間が埋められます</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage17.Text" xml:space="preserve">
+    <value>一般的なオプション</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage20.Text" xml:space="preserve">
+    <value>パスの変更</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage18.Text" xml:space="preserve">
+    <value>クリッピング</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage19.Text" xml:space="preserve">
+    <value>グループ化とツール</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage21.Text" xml:space="preserve">
+    <value>プログラムの動作</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage22.Text" xml:space="preserve">
+    <value>プログラム出演</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>CSVインポート（* .csv、*。dat）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>デリメータ</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>行から始まる値</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Y値</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>X値</value>
+    <comment>ok</comment>
+  </data>
+  <data name="radioButton4.Text" xml:space="preserve">
+    <value>座標をドットとして処理</value>
+    <comment>ok</comment>
+  </data>
+  <data name="radioButton3.Text" xml:space="preserve">
+    <value>座標を線で結ぶ</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>規模</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>カラム</value>
+    <comment>ok</comment>
+  </data>
+  <data name="checkBox8.Text" xml:space="preserve">
+    <value>プロセスZも（ドットのみ）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="checkBox7.Text" xml:space="preserve">
+    <value>自動認識を試す</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGRepeat2.Text" xml:space="preserve">
+    <value>パスごとにパスを繰り返す</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGRepeat1.Text" xml:space="preserve">
+    <value>完全なコードを繰り返す</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBHatchFill.Text" xml:space="preserve">
+    <value>閉じたパスを埋める</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicHatchFillInset.Text" xml:space="preserve">
+    <value>エッジからのインセットフィル</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicHatchFillChangeAngle.Text" xml:space="preserve">
+    <value>各パスの後で角度を変更する</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicHatchFillCross.Text" xml:space="preserve">
+    <value>クロスハッチ</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblHatchFill2.Text" xml:space="preserve">
+    <value>ライン角度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblHatchFill1.Text" xml:space="preserve">
+    <value>ライン距離</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicHatchFill.Text" xml:space="preserve">
+    <value>ハッチ塗りつぶし</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblDImportGCTangential4.Text" xml:space="preserve">
+    <value>偏差が&gt;の場合、正しい開始角度</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblDImportGCTangential4.ToolTip" xml:space="preserve">
+    <value>角度の変化がこの角度より大きい場合、単一の回転コマンドが挿入されます</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCTangentialSwivel2.ToolTip" xml:space="preserve">
+    <value>ナイフを上げる、回す、下げる前の角度の変化</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBClipping.Text" xml:space="preserve">
+    <value>クリッピング/タイリング</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>クリッピング/タイリング寸法幅/高さ</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGraphicClipOffsetY.ToolTip" xml:space="preserve">
+    <value>タイルのX次元</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGraphicClipOffsetX.ToolTip" xml:space="preserve">
+    <value>タイルのX次元</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportGraphicClip1.Text" xml:space="preserve">
+    <value>グラフィックをタイルに変換する</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportGraphicClip0.Text" xml:space="preserve">
+    <value>左下のポイントX / Yでクリップ：</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportGraphicClip0.ToolTip" xml:space="preserve">
+    <value>結果</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGraphicClipHeight.ToolTip" xml:space="preserve">
+    <value>タイルのY次元</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGraphicTileClipWidth.ToolTip" xml:space="preserve">
+    <value>タイルのX次元</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicTile.Text" xml:space="preserve">
+    <value>クリッピングまたはタイリングを適用する</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicTile.ToolTip" xml:space="preserve">
+    <value>グラフィック全体をタイルにカットして、個別にドレーヌします</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>タイルの前のGCode</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label11.ToolTip" xml:space="preserve">
+    <value>次のタイルが処理される前に適用するGCode。
+例えば。 手動で用紙を移動する場合は「M0」で一時停止するか、「（^ 2 G91 X100）」で2番目のgrbl-controllerのXを移動して用紙を移動します。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicClipOffsetApply.Text" xml:space="preserve">
+    <value>クリッピング領域/タイルの原点を0に設定; 0</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGSort4.Text" xml:space="preserve">
+    <value>グループをオブジェクトの寸法で並べ替える-昇順</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_1_4gB2.Text" xml:space="preserve">
+    <value>グループ化してTool-Nrを選択するプロパティ。 経由して</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem3.Text" xml:space="preserve">
+    <value>レイヤーごとにグループ化（ツール名〜=レイヤー）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem3.ToolTip" xml:space="preserve">
+    <value>グラフィックレイヤーでグループ化し、最適なツール名に従ってツール番号を選択します</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem2.Text" xml:space="preserve">
+    <value>ペン幅でグループ化（ツール直径〜=ペン幅）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem2.ToolTip" xml:space="preserve">
+    <value>ペン幅でグループ化し、最適な工具径に応じて工具番号を選択します</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem1.Text" xml:space="preserve">
+    <value>ペンの色でグループ化（Tool-Color〜= pen-color）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem1.ToolTip" xml:space="preserve">
+    <value>ペンの色でグループ化し、最適な工具の色に応じて工具番号を選択します</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage26.Text" xml:space="preserve">
+    <value>プログラム制御</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>コードがマシンの寸法を超えた場合に通知を受け取る</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage23.Text" xml:space="preserve">
+    <value>カスタムボタン</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage24.Text" xml:space="preserve">
+    <value>ゲームパッド</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>編集者</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>エディターの行間</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_1_4gB3.Text" xml:space="preserve">
+    <value>グループを並べ替える</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column16.ToolTipText" xml:space="preserve">
+    <value>交換ポジションA</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox13.Text" xml:space="preserve">
+    <value>grbl接続</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage25.Text" xml:space="preserve">
+    <value>フロー制御</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>マックス</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportPenWidthToZMax.ToolTip" xml:space="preserve">
+    <value>ペンの最大幅はこの深さに変換されますが、「Gコード生成」のZ-Height彫刻によって制限されます</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportPenWidthToZMin.ToolTip" xml:space="preserve">
+    <value>ペンの最小幅はこの深さに変換されます</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportPenWidthToZ.Text" xml:space="preserve">
+    <value>ペンの幅をZ値に変換します</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportPenWidthToZ.ToolTip" xml:space="preserve">
+    <value>ペンの幅は、奥行きのZ値として処理されます。
+最大深度は、Z-Height彫刻によって制限されます。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_3gB8.Text" xml:space="preserve">
+    <value>閉じたパスのオーバーラップ</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPathModification.Text" xml:space="preserve">
+    <value>この変更により、「G2 / G3コマンドを回避」が有効になります</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBDashedLine2.Text" xml:space="preserve">
+    <value>ペンアップのG0</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBDashedLine2.ToolTip" xml:space="preserve">
+    <value>スムーズな動きのためのデフォルトはG1です。
+メカニックへのストレスが少ない</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBDashedLine1.Text" xml:space="preserve">
+    <value>破線パターンの処理</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBDashedLine1.ToolTip" xml:space="preserve">
+    <value>破線を実際のペンの上下に変換</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBPathOverlapEnable.Text" xml:space="preserve">
+    <value>パスの重複</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBPathOverlapEnable.ToolTip" xml:space="preserve">
+    <value>閉じたパスを終了したら、最初から開始して、指定された距離を移動します。
+レーザーカッターに便利です。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnReloadSettings.Text" xml:space="preserve">
+    <value>すべての設定をデフォルトに設定</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Zを次の範囲に変換します。
+（「Z-Height engrave」を超えることはありません）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBCreateZValue.Text" xml:space="preserve">
+    <value>Z値を作成</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>雑多</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Eメール</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBShowStreamingProgress.Text" xml:space="preserve">
+    <value>2D-Viewでストリーミングの進行状況を表示する</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab4gB5.Text" xml:space="preserve">
+    <value>Gコードのストリーミング中</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicSortDistanceRotatePath.Text" xml:space="preserve">
+    <value>閉じたパスで新しい開始点を許可する</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportPenWidthToZRamp.Text" xml:space="preserve">
+    <value>ステップの代わりにランプを適用する</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblImportPenWidthToZWarning.Text" xml:space="preserve">
+    <value>注意：Z-Engraveは最大値を制限します。 深さ！</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblGroupInfo.Text" xml:space="preserve">
+    <value>プロパティが1つしか見つからない場合（1つの色など）、グループ化はキャンセルされます。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBLineEndEnable.Text" xml:space="preserve">
+    <value>テキストを適用</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_3gB6.Text" xml:space="preserve">
+    <value>Gコードの作成</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>M19のタイプ値（拡張）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>M15（ナイフ）のタイプ値</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>D2のタイプ値（ピン）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBGerberGeometryEnable.Text" xml:space="preserve">
+    <value>タイプ値をGコード図タグで指定します</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_3gB7.Text" xml:space="preserve">
+    <value>ガーバーインポート</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem4.Text" xml:space="preserve">
+    <value>タイプ</value>
+    <comment>ok</comment>
+  </data>
+  <data name="checkBox5.Text" xml:space="preserve">
+    <value>オブジェクトが塗りつぶされている場合はハッチ塗りつぶしを適用します</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBDisableProgramPause.Text" xml:space="preserve">
+    <value>特別な一時停止モードを無効にし、M0を通過させる</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBDisableProgramPause.ToolTip" xml:space="preserve">
+    <value>無効にすると、ストリーミングはM0で停止し、パーサーの状態が保存されます（ただし、M0はコントローラーに送信されません）。その後、ユーザーはマシンを制御できます。
+一時停止後、パーサーの状態が復元され、ストリーミングが続行されます。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cB2DViewFigureId.Text" xml:space="preserve">
+    <value>次の文字のIDを表示します</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cB2DViewDirectionArrow.Text" xml:space="preserve">
+    <value>ペムアップパスを表示</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox14.Text" xml:space="preserve">
+    <value>2Dビュー</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBColorModeEnable.Text" xml:space="preserve">
+    <value>カラーモード</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBColorModeEnable.ToolTip" xml:space="preserve">
+    <value>ペンダウンパスは、インポートされたグラフィック（SVGまたはDXF）のように色と幅で表示されます</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label32.Text" xml:space="preserve">
+    <value>ツール交換前のGコード</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>特別な一時停止モードにより、ユーザーはマシンを使用できます。 一時停止が終了すると、最後のプロセス座標とマシンステータスが復元され、ストリーミングが続行されます。
+通常のM0はフィードホールドを開始しますが、マシンを使用することはできません。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBStreanProtocoll2.Text" xml:space="preserve">
+    <value>単純な送信応答</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>ストリーミングプロトコル：</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBStreanProtocoll1.Text" xml:space="preserve">
+    <value>文字カウント</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab4gB7.Text" xml:space="preserve">
+    <value>ストリーミングプロパティ</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBCodeCreationLineNumbers.Text" xml:space="preserve">
+    <value>行番号を追加する</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cbNotifierMsg1.Text" xml:space="preserve">
+    <value>頻繁な進捗状況の更新（分）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifierMsg1.Text" xml:space="preserve">
+    <value>終了メッセージ</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox16.Text" xml:space="preserve">
+    <value>通知</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btn_notifierMail_Test.Text" xml:space="preserve">
+    <value>テストメールを送信する</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier8.Text" xml:space="preserve">
+    <value>件名</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier7.Text" xml:space="preserve">
+    <value>メールする</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier6.Text" xml:space="preserve">
+    <value>メールから</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier3.Text" xml:space="preserve">
+    <value>港</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier5.Text" xml:space="preserve">
+    <value>パスワード</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier2.Text" xml:space="preserve">
+    <value>住所</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier4.Text" xml:space="preserve">
+    <value>ユーザー名</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox15.Text" xml:space="preserve">
+    <value>SMTPサーバー</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier1.Text" xml:space="preserve">
+    <value>メールアカウントのSMTPサーバーアクセスを設定する
+注：多くの場合、「電子メールから」はSMTPメールボックスの電子メールと同じである必要があります。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabControl5_Level2.Text" xml:space="preserve">
+    <value>通知機能</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label33.Text" xml:space="preserve">
+    <value>メール：安全上の理由から、「ゴミ箱」メールアカウントを使用する必要があります。パスワードを暗号化された形式で保存することはできません。
+
+Pushbullet：安全上の理由から、「ゴミ箱」アカウントを使用する必要があります。アクセストークンを暗号化された形式で保存することはできません。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox17.Text" xml:space="preserve">
+    <value>安全上の注意</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cbNotifierTitle.Text" xml:space="preserve">
+    <value>タイトルにストリーミングの進行状況を追加する</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifierPBToken.Text" xml:space="preserve">
+    <value>APIアクセストークン</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifierPBChannel.Text" xml:space="preserve">
+    <value>チャネル（メモを送信するには空のままにします）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cbNotifierEmailEnable.Text" xml:space="preserve">
+    <value>電子メール通知を有効にする</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cbNotifierPBEnable.Text" xml:space="preserve">
+    <value>プッシュビュレット通知を有効にする</value>
+    <comment>ok</comment>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>テストメッセージを送信する</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>Y方向の番号</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label37.Text" xml:space="preserve">
+    <value>X方向の番号</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label36.Text" xml:space="preserve">
+    <value>グラフィック間の距離</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGraphicMultiplyGraphicsEnable.Text" xml:space="preserve">
+    <value>グラフィックを増やす</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label45.Text" xml:space="preserve">
+    <value>層</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>ペン幅</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>ペンの色</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox21.Text" xml:space="preserve">
+    <value>グループ化のプロパティ</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGraphicAddFrameRadius.Text" xml:space="preserve">
+    <value>角を丸める</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>グラフィックまでの距離</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGraphicAddFrameEnable.Text" xml:space="preserve">
+    <value>フレームを描く</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>パスアドオン</value>
+    <comment>ok</comment>
+  </data>
+  <data name="checkBox6.Text" xml:space="preserve">
+    <value>プログラムの起動時に3番目のシリアルインターフェイスを開きます</value>
+    <comment>ok</comment>
+  </data>
+  <data name="checkBox6.ToolTip" xml:space="preserve">
+    <value>2番目のGRBLを制御するために2番目のCOMポートを開きます。 ツールチェンジャーまたは4番目の軸に役立ちます。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicClipSkipCode.Text" xml:space="preserve">
+    <value>最初のタイルのコードをスキップします（xy = 0; 0）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>変数：
+#INDX #INDY xまたはy方向のタイルのインデックス（例：0、1、2 ...）
+#OFFX #OFFY xまたはy方向のタイルのオフセット（例：0、200、400 ...）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label47.Text" xml:space="preserve">
+    <value>秒</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label46.Text" xml:space="preserve">
+    <value>スクリプト後の遅延</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCPWMSkipM30.Text" xml:space="preserve">
+    <value>コマンドM30をスキップ</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCPWMSkipM30.ToolTip" xml:space="preserve">
+    <value>コマンドM30「プログラム終了」をスキップして、パーサー状態をリセットすることによってスピンドルがオフになるのを回避します。これにより、サーボが位置「0」に移動します。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMDown.Text" xml:space="preserve">
+    <value>ペンダウン</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMUp.Text" xml:space="preserve">
+    <value>ペンアップ</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCPWMSendCode.Text" xml:space="preserve">
+    <value>サーボを制御するコマンドを送信します</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCPWMSendCode.ToolTip" xml:space="preserve">
+    <value>値の変更時にコマンドを送信する</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGRepeatHF.Text" xml:space="preserve">
+    <value>すべて</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGRepeatHF.ToolTip" xml:space="preserve">
+    <value>ヘッダーとフッターが含まれています</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label48.Text" xml:space="preserve">
+    <value>距離</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGraphicLeadInEnable.Text" xml:space="preserve">
+    <value>ランプ</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBPathAddOn3.Text" xml:space="preserve">
+    <value>ペンダウンのランプ（Z軸またはPWM）</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBPathAddOn3.ToolTip" xml:space="preserve">
+    <value>ペン/ブラシの使用にのみ役立ちます</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBPathAddOn2.Text" xml:space="preserve">
+    <value>かける</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBPathAddOn1.Text" xml:space="preserve">
+    <value>フレーム</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMZero.Text" xml:space="preserve">
+    <value>ペンゼロ</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMZero.ToolTip" xml:space="preserve">
+    <value>ペンが表面に触れる
+ランプ操作にのみ必要</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCPWMZero.ToolTip" xml:space="preserve">
+    <value>ペンゼロのスピンドル速度
+ランプ操作にのみ必要</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblInfoPWM.ToolTip" xml:space="preserve">
+    <value>可能な最大値は「$ 30」（デフォルト= 1000）で設定され、最小値は$ 31（デフォルト= 0）で設定されます。
+https://github.com/cprezzi/grbl-servoのGrbl-version'grbl_v1.1f_Servo.hex '、
+0.5msから2.5msの出力に31ステップを使用します（cpu_map.hを参照）。
+実際に使用できる範囲は$ 30 = 31、$ 31 = 0になります。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMDown.ToolTip" xml:space="preserve">
+    <value>ペンを一番下に移動します</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
+    <value>ペンを一番上に移動します</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBCtrlToolTable.Text" xml:space="preserve">
+    <value>2Dビュー：ツールリストの色を使用</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBCtrlToolTable.ToolTip" xml:space="preserve">
+    <value>GコードのS、Z、F値を分析して、ツールリストからツールパスに色を割り当てます</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label66.Text" xml:space="preserve">
+    <value>最大位置Z</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label65.Text" xml:space="preserve">
+    <value>最小位置Y</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label63.Text" xml:space="preserve">
+    <value>最小位置X</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>サブルーチンの前後のペンアップ/ダウン</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage12.Text" xml:space="preserve">
+    <value>Z軸</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnPWMAdvanced.Text" xml:space="preserve">
+    <value>高度な設定</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnPWMAdvanced.ToolTip" xml:space="preserve">
+    <value>さらにサーボ位置を表示</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP94.ToolTip" xml:space="preserve">
+    <value>サブルーチンの数</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCDlyP94.ToolTip" xml:space="preserve">
+    <value>G4を挿入：次のコマンドまでの秒単位の遅延</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP93.ToolTip" xml:space="preserve">
+    <value>サブルーチンの数</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP92.ToolTip" xml:space="preserve">
+    <value>サブルーチンの数「ペンダウン」</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCDlyP93.ToolTip" xml:space="preserve">
+    <value>G4を挿入：次のコマンドまでの秒単位の遅延</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP91.ToolTip" xml:space="preserve">
+    <value>サブルーチンの数</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMFunction.Text" xml:space="preserve">
+    <value>関数</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMFunction.ToolTip" xml:space="preserve">
+    <value>サブルーチンの機能</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMSub.Text" xml:space="preserve">
+    <value>サブ</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMSub.ToolTip" xml:space="preserve">
+    <value>サブルーチンの数</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP90.ToolTip" xml:space="preserve">
+    <value>サブルーチンの数「ペンアップ」</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label55.Text" xml:space="preserve">
+    <value>後の遅延</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label55.ToolTip" xml:space="preserve">
+    <value>新しいPWM値を適用した後の遅延</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label56.Text" xml:space="preserve">
+    <value>PWM</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label56.ToolTip" xml:space="preserve">
+    <value>PWM値</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnPWMInc.Text" xml:space="preserve">
+    <value>Inc 10</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnPWMInc.ToolTip" xml:space="preserve">
+    <value>PWMインクリメント値1、10、または100</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCLineSegment.ToolTip" xml:space="preserve">
+    <value>値が0の場合、「パスの先頭にも挿入」のみが処理されます。</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBFCTBBlockExpandKeepLastOpen.Text" xml:space="preserve">
+    <value>最後に選択したブロックを展開したままにします</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBFCTBBlockExpandOnSelect.Text" xml:space="preserve">
+    <value>2Dビューをクリックすると、コードブロックが展開されます</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label51.Text" xml:space="preserve">
+    <value>クリップされたパスを境界を超えて延長します</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCUseSpindle2.Text" xml:space="preserve">
+    <value>主軸</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label67.ToolTip" xml:space="preserve">
+    <value>サブルーチンの数「ペンダウン」</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label64.ToolTip" xml:space="preserve">
+    <value>サブルーチンの数「ペンアップ」</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage28.Text" xml:space="preserve">
+    <value>主軸</value>
+    <comment>ok</comment>
+  </data>
+  <data name="color.HeaderText" xml:space="preserve">
+    <value>色</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label50.Text" xml:space="preserve">
+    <value>後の距離</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGraphicLeadOutEnable.Text" xml:space="preserve">
+    <value>リードアウト</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportGCSpindleCmd2.Text" xml:space="preserve">
+    <value>「M4」CCW</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportGCSpindleCmd1.Text" xml:space="preserve">
+    <value>「M3」CW</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCUseIndividual2.Text" xml:space="preserve">
+    <value>個人</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCUsePWM2.Text" xml:space="preserve">
+    <value>PWM</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCUseZ2.Text" xml:space="preserve">
+    <value>Z軸</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage27.Text" xml:space="preserve">
+    <value>PWM</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage29.Text" xml:space="preserve">
+    <value>個人</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label62.Text" xml:space="preserve">
+    <value>注：ツールテーブルがアクティブになっている場合、図の元の色は使用されているツールの色に置き換えられます</value>
+  </data>
+  <data name="label60.Text" xml:space="preserve">
+    <value>工具角度</value>
+  </data>
+  <data name="groupBox22.Text" xml:space="preserve">
+    <value>Vツール</value>
+  </data>
+  <data name="label57.Text" xml:space="preserve">
+    <value>形状仕上げ後の送り</value>
+  </data>
+  <data name="label54.Text" xml:space="preserve">
+    <value>Z-シェイプの前後のカットの高さ（Zが有効になっている場合）</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNotchLift.Text" xml:space="preserve">
+    <value>ノッチ後のリフトツール</value>
+  </data>
+  <data name="label59.Text" xml:space="preserve">
+    <value>Z-ノッチ彫刻の高さ（Zが有効になっている場合）</value>
+  </data>
+  <data name="label53.Text" xml:space="preserve">
+    <value>最小カーブのノッチからノッチまでの距離</value>
+  </data>
+  <data name="label52.Text" xml:space="preserve">
+    <value>切り欠きの長さ（ワークピース幅）</value>
+  </data>
+  <data name="groupBox20.Text" xml:space="preserve">
+    <value>ノッチプロパティ</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedInvert.Text" xml:space="preserve">
+    <value>送り方向を反転</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedX.Text" xml:space="preserve">
+    <value>X軸にフィード、Y軸にノッチ</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedY.Text" xml:space="preserve">
+    <value>Y軸にフィード、X軸にノッチ</value>
+  </data>
+  <data name="groupBox19.Text" xml:space="preserve">
+    <value>フィードとノッチの方向</value>
+  </data>
+  <data name="cBImportGraphicDevelopEnable.Text" xml:space="preserve">
+    <value>図の開発を適用します</value>
+  </data>
+  <data name="gBDevelop.Text" xml:space="preserve">
+    <value>2D形状の輪郭を展開に変換します</value>
+  </data>
+  <data name="tabPage30.Text" xml:space="preserve">
+    <value>特別な変換</value>
+  </data>
+  <data name="cBImportDXFUseZ.Text" xml:space="preserve">
+    <value>Z情報をインポートする</value>
+  </data>
+  <data name="tab1_3lbl34.Text" xml:space="preserve">
+    <value>Z&gt; 0でのS</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="Column4.HeaderText" xml:space="preserve">
+    <value>位置X</value>
+  </data>
+  <data name="Column5.HeaderText" xml:space="preserve">
+    <value>位置Y</value>
+  </data>
+  <data name="Column6.HeaderText" xml:space="preserve">
+    <value>位置Z</value>
+  </data>
+  <data name="Column16.HeaderText" xml:space="preserve">
+    <value>位置A</value>
+  </data>
+  <data name="Column7.HeaderText" xml:space="preserve">
+    <value>ツールØ</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column8.HeaderText" xml:space="preserve">
+    <value>XY速度</value>
+  </data>
+  <data name="tab4gB6.Text" xml:space="preserve">
+    <value>特別な</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.Text" xml:space="preserve">
+    <value>元のタイル位置を表示する</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.ToolTip" xml:space="preserve">
+    <value>元のタイル位置を表示する</value>
+  </data>
+  <data name="cBImportGraphicClipOffsetApply.ToolTip" xml:space="preserve">
+    <value>タイルの原点を0に設定します; 0</value>
+  </data>
+  <data name="btnColorDimension.Text" xml:space="preserve">
+    <value>寸法</value>
+  </data>
+  <data name="btnColorBackgroundPath.Text" xml:space="preserve">
+    <value>情報パス</value>
+  </data>
+  <data name="checkBox9.Text" xml:space="preserve">
+    <value>GコードをUnicodeUTF-16（それ以外の場合はASCII）として保存します</value>
+  </data>
+  <data name="LblImportGraphicDevelopNotchDistance.Text" xml:space="preserve">
+    <value>最小曲線のノッチからノッチまでの距離</value>
+  </data>
+  <data name="LblCameraFiducial.Text" xml:space="preserve">
+    <value>基準のグラフィックレイヤーまたは図の名前</value>
+  </data>
+  <data name="groupBox23.Text" xml:space="preserve">
+    <value>基準</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.Text" xml:space="preserve">
+    <value>ストリーミング中にタイルを0; 0の原点に移動します</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.ToolTip" xml:space="preserve">
+    <value>タイルをgrblツールの位置に適合させるために、ストリーミング中にタイルを原点0; 0に移動します。</value>
+  </data>
+  <data name="CbImportGraphicDevelopNoCurve.Text" xml:space="preserve">
+    <value>カーブなし</value>
+  </data>
+  <data name="CbCameraFiducialSkip.Text" xml:space="preserve">
+    <value>ストリーミング中に基準点のGコードをスキップする</value>
+  </data>
+  <data name="LblShowVertex.Text" xml:space="preserve">
+    <value>パスノードマーカーのタイプとサイズ</value>
+  </data>
+  <data name="CbShowVertexEnable.Text" xml:space="preserve">
+    <value>ペンダウンパスノードを表示します</value>
+  </data>
+  <data name="groupBox24.Text" xml:space="preserve">
+    <value>ピンの説明（「アクセサリの状態を上書きする」）</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>ロギング</value>
+  </data>
+  <data name="LblSaveEncoding.Text" xml:space="preserve">
+    <value>Gコードストレージのコーディング</value>
+  </data>
+  <data name="checkBox11.Text" xml:space="preserve">
+    <value>保存時にすべてのコメントを削除する</value>
+  </data>
+  <data name="cBExtendedLoggingCOM.Text" xml:space="preserve">
+    <value>シリアルCOM /ストリーミング</value>
+  </data>
+  <data name="groupBox25.Text" xml:space="preserve">
+    <value>ロギング</value>
+  </data>
+  <data name="BtnAccessoryRefresh.Text" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="BtnAccessoryMistReset.Text" xml:space="preserve">
+    <value>リセット</value>
+  </data>
+  <data name="BtnAccessoryFloodReset.Text" xml:space="preserve">
+    <value>リセット</value>
+  </data>
+  <data name="BtnAccessorySpindleReset.Text" xml:space="preserve">
+    <value>リセット</value>
+  </data>
+  <data name="LblAccessoryMist.Text" xml:space="preserve">
+    <value>靄：</value>
+  </data>
+  <data name="LblAccessoryFlood.Text" xml:space="preserve">
+    <value>洪水：</value>
+  </data>
+  <data name="LblAccessorySpindle.Text" xml:space="preserve">
+    <value>スピンドル：</value>
+  </data>
+  <data name="GbAccessoryRunTime.Text" xml:space="preserve">
+    <value>アクセサリの実行時間（ミリ秒）</value>
+  </data>
+  <data name="LbLAuxDescription.Text" xml:space="preserve">
+    <value>このオプションを使用して、距離に依存する量で塗料をポンピングまたはフィラメントに供給する追加の軸を制御します。
+さらに、Z軸の位置を使用して、たとえば、ブラシがキャンバスを強く押したときにペイントの量を増やすことができます。</value>
+  </data>
+  <data name="CbAux2ZMode.Items" xml:space="preserve">
+    <value>正と負のZを符号付きで使用</value>
+  </data>
+  <data name="CbAux2ZMode.Items1" xml:space="preserve">
+    <value>posとnegZabsoluteを使用する</value>
+  </data>
+  <data name="CbAux2ZMode.Items2" xml:space="preserve">
+    <value>posZのみを使用してください</value>
+  </data>
+  <data name="CbAux2ZMode.Items3" xml:space="preserve">
+    <value>ネガZのみを使用</value>
+  </data>
+  <data name="LblAux12.Text" xml:space="preserve">
+    <value>要素</value>
+  </data>
+  <data name="CbAux2ZUse.Text" xml:space="preserve">
+    <value>Zを検討する</value>
+  </data>
+  <data name="groupBox28.Text" xml:space="preserve">
+    <value>現在のZ値を掛ける</value>
+  </data>
+  <data name="LblAux11.Text" xml:space="preserve">
+    <value>要素</value>
+  </data>
+  <data name="LblAux10.Text" xml:space="preserve">
+    <value>軸</value>
+  </data>
+  <data name="CbAux2SumUp.Text" xml:space="preserve">
+    <value>絶対値</value>
+  </data>
+  <data name="CbAux2SumUp.ToolTip" xml:space="preserve">
+    <value>絶対値：G90距離モードと同様に、距離値が合計されます。</value>
+  </data>
+  <data name="NudAux2Factor.ToolTip" xml:space="preserve">
+    <value>軸の値を計算するための係数=距離*係数</value>
+  </data>
+  <data name="CbAux2Enable.Text" xml:space="preserve">
+    <value>距離関連コマンドの追加2</value>
+  </data>
+  <data name="CbAux1ZMode.Items" xml:space="preserve">
+    <value>正と負のZを符号付きで使用</value>
+  </data>
+  <data name="CbAux1ZMode.Items1" xml:space="preserve">
+    <value>posとnegZabsoluteを使用する</value>
+  </data>
+  <data name="CbAux1ZMode.Items2" xml:space="preserve">
+    <value>posZのみを使用してください</value>
+  </data>
+  <data name="CbAux1ZMode.Items3" xml:space="preserve">
+    <value>ネガZのみを使用</value>
+  </data>
+  <data name="LblAux3.Text" xml:space="preserve">
+    <value>要素</value>
+  </data>
+  <data name="CbAux1ZUse.Text" xml:space="preserve">
+    <value>Zを検討する</value>
+  </data>
+  <data name="groupBox27.Text" xml:space="preserve">
+    <value>現在のZ値を掛ける</value>
+  </data>
+  <data name="LblAux2.Text" xml:space="preserve">
+    <value>要素</value>
+  </data>
+  <data name="LblAux1.Text" xml:space="preserve">
+    <value>軸</value>
+  </data>
+  <data name="CbAux1SumUp.Text" xml:space="preserve">
+    <value>絶対値</value>
+  </data>
+  <data name="CbAux1SumUp.ToolTip" xml:space="preserve">
+    <value>絶対値：G90距離モードと同様に、距離値が合計されます。</value>
+  </data>
+  <data name="NudAux1Factor.ToolTip" xml:space="preserve">
+    <value>軸の値を計算するための係数=距離*係数</value>
+  </data>
+  <data name="CbAux1Enable.Text" xml:space="preserve">
+    <value>距離関連コマンドの追加1</value>
+  </data>
+  <data name="groupBox26.Text" xml:space="preserve">
+    <value>ペイントポンプまたはフィラメントフィーダーの距離関連値</value>
+  </data>
+  <data name="tabPage31.Text" xml:space="preserve">
+    <value>コマンド拡張</value>
+  </data>
+  <data name="checkBox12.Text" xml:space="preserve">
+    <value>他のフォームを常に前面に表示する（例：セットアップフォーム）</value>
+  </data>
+  <data name="label68.Text" xml:space="preserve">
+    <value>ピクセル単位のサイズ</value>
+  </data>
+  <data name="groupBox29.Text" xml:space="preserve">
+    <value>その他</value>
+  </data>
+  <data name="checkBox10.Text" xml:space="preserve">
+    <value>ピンの状態を表示</value>
+  </data>
+  <data name="label69.Text" xml:space="preserve">
+    <value>モニター番号ウィンドウを開く</value>
+  </data>
+  <data name="BtnProjectorColorBackground.Text" xml:space="preserve">
+    <value>バックグラウンド</value>
+  </data>
+  <data name="BtnProjectorColorDimension.Text" xml:space="preserve">
+    <value>寸法</value>
+  </data>
+  <data name="BtnProjectorColorRuler.Text" xml:space="preserve">
+    <value>定規</value>
+  </data>
+  <data name="BtnProjectorColorPenUp.Text" xml:space="preserve">
+    <value>ペンアップ</value>
+  </data>
+  <data name="BtnProjectorColorPenDown.Text" xml:space="preserve">
+    <value>ペンダウン</value>
+  </data>
+  <data name="CbProjectorMarker.Text" xml:space="preserve">
+    <value>見せる</value>
+  </data>
+  <data name="CbProjectorTool.Text" xml:space="preserve">
+    <value>見せる</value>
+  </data>
+  <data name="CbProjectorPenUp.Text" xml:space="preserve">
+    <value>見せる</value>
+  </data>
+  <data name="CbProjectorRuler.Text" xml:space="preserve">
+    <value>見せる</value>
+  </data>
+  <data name="CbProjectorDimension.Text" xml:space="preserve">
+    <value>見せる</value>
+  </data>
+  <data name="LblProjector1.Text" xml:space="preserve">
+    <value>色</value>
+  </data>
+  <data name="tabPage32.Text" xml:space="preserve">
+    <value>プロジェクター</value>
+  </data>
+  <data name="BtnProjectorColorTool.Text" xml:space="preserve">
+    <value>ツール</value>
+  </data>
+  <data name="BtnProjectorColorMarker.Text" xml:space="preserve">
+    <value>マーカー</value>
+  </data>
+  <data name="LblProjector2.Text" xml:space="preserve">
+    <value>ペン幅</value>
+  </data>
+  <data name="LblProjector5.Text" xml:space="preserve">
+    <value>オフセットY</value>
+  </data>
+  <data name="LblProjector4.Text" xml:space="preserve">
+    <value>オフセットX</value>
+  </data>
+  <data name="LblProjector3.Text" xml:space="preserve">
+    <value>スケーリング（マシンの制限にも依存します）</value>
+  </data>
+  <data name="GbProjector.Text" xml:space="preserve">
+    <value>プロジェクターフォームの色</value>
+  </data>
+  <data name="label71.Text" xml:space="preserve">
+    <value>実際に測定された幅</value>
+  </data>
+  <data name="label70.Text" xml:space="preserve">
+    <value>グラフィック幅</value>
+  </data>
+  <data name="BtnProjectorCalc.Text" xml:space="preserve">
+    <value>スケーリングを計算する</value>
+  </data>
+  <data name="GbProjectorCalc.Text" xml:space="preserve">
+    <value>スケーリングを計算する</value>
+  </data>
+  <data name="cBImportGCZPreventSpindle.Text" xml:space="preserve">
+    <value>スピンドルをオンにしないでください</value>
+  </data>
+  <data name="cBImportGCDragKnifeUse.Text" xml:space="preserve">
+    <value>ドラッグナイフの使用（開始方向は常に0°度=右）</value>
+  </data>
+  <data name="CbMarlin.Text" xml:space="preserve">
+    <value>マーリンに接続する</value>
+  </data>
+  <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
+    <value>スケーリングとオフセット</value>
+  </data>
+  <data name="label72.Text" xml:space="preserve">
+    <value>表示オプションをスキップする前の千行</value>
+  </data>
+  <data name="NudCtrlImportSkip.ToolTip" xml:space="preserve">
+    <value>表示オプションをスキップする前に超える行数（千倍）。</value>
+  </data>
+  <data name="RbWireBenderAnglePcnt.Text" xml:space="preserve">
+    <value>パーセンテージとして使用</value>
+  </data>
+  <data name="RbWireBenderAngleAbs.Text" xml:space="preserve">
+    <value>絶対値を使用</value>
+  </data>
+  <data name="label83.Text" xml:space="preserve">
+    <value>ワイヤーを切る</value>
+  </data>
+  <data name="label82.Text" xml:space="preserve">
+    <value>ペグを無効にする</value>
+  </data>
+  <data name="label81.Text" xml:space="preserve">
+    <value>ペグアクティブ</value>
+  </data>
+  <data name="textBox6.ToolTip" xml:space="preserve">
+    <value>ここでコマンドを適用して、ワイヤーを切断します</value>
+  </data>
+  <data name="textBox5.ToolTip" xml:space="preserve">
+    <value>ここでコマンドを適用して、曲げペグを無効にします</value>
+  </data>
+  <data name="textBox4.ToolTip" xml:space="preserve">
+    <value>ここでコマンドを適用して、曲げペグをアクティブにします</value>
+  </data>
+  <data name="label80.Text" xml:space="preserve">
+    <value>特定のアクションのGコード（「;」またはset script-pathを使用した個別のコマンド）：</value>
+  </data>
+  <data name="label74.Text" xml:space="preserve">
+    <value>曲げ半径</value>
+  </data>
+  <data name="label75.Text" xml:space="preserve">
+    <value>ワイヤ送給用のX軸</value>
+  </data>
+  <data name="label76.Text" xml:space="preserve">
+    <value>曲げ角度のY軸</value>
+  </data>
+  <data name="groupBox31.Text" xml:space="preserve">
+    <value>機械パラメータ</value>
+  </data>
+  <data name="label79.Text" xml:space="preserve">
+    <value>線径</value>
+  </data>
+  <data name="label78.Text" xml:space="preserve">
+    <value>角度を追加して、目的の角度に到達します</value>
+  </data>
+  <data name="CbWireBenderEnable.Text" xml:space="preserve">
+    <value>ワイヤーベンダーのコードを生成する</value>
+  </data>
+  <data name="GbWireBender.Text" xml:space="preserve">
+    <value>ワイヤーベンダー</value>
+  </data>
+  <data name="tabPage33.Text" xml:space="preserve">
+    <value>その他</value>
+  </data>
+  <data name="CbImportDXFDontPlot.Text" xml:space="preserve">
+    <value>隠しレイヤーをスキップする</value>
+  </data>
+  <data name="CbImportDXFDontPlot.ToolTip" xml:space="preserve">
+    <value>レイヤーが表示されていないか、LibreCADで印刷が無効になっている場合、レイヤーはインポートされません</value>
+  </data>
+  <data name="CbImportSVGDontPlot.Text" xml:space="preserve">
+    <value>隠しレイヤーをスキップする</value>
+  </data>
+  <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
+    <value>レイヤーまたはオブジェクトがInkscapeに表示されていない場合、レイヤーまたはオブジェクトはインポートされません。</value>
+  </data>
+  <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
+    <value>閉じたパスのダッシュ パターンを使用する</value>
+  </data>
+  <data name="label73.Text" xml:space="preserve">
+    <value>フィギュアの量がこの値を超える場合、1 つのグループのすべてのフィギュアが 1 つのフィギュアにまとめられます。</value>
+  </data>
+  <data name="groupBox30.Text" xml:space="preserve">
+    <value>変換について</value>
+  </data>
+  <data name="label87.Text" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="label86.Text" xml:space="preserve">
+    <value>認識のタイムアウト</value>
+  </data>
+  <data name="CbDuplicateAddHeight.Text" xml:space="preserve">
+    <value>選択の高さを追加</value>
+  </data>
+  <data name="CbDuplicateAddWidth.Text" xml:space="preserve">
+    <value>選択幅を追加</value>
+  </data>
+  <data name="groupBox32.Text" xml:space="preserve">
+    <value>重複オフセット</value>
+  </data>
+  <data name="groupBox32.ToolTip" xml:space="preserve">
+    <value>コピーして挿入した選択範囲にオフセットを適用します。</value>
+  </data>
+</root>
