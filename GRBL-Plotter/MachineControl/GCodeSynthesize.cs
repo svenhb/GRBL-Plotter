@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,9 +20,11 @@
 	Synthsize GCode after transforming
 */
 /* 
- * 2021-07-09 split code from GCodeVisuAndTransform
- * 2022-01-04 fix convertZtoS problem #245
+* 2021-07-09 split code from GCodeVisuAndTransform
+* 2022-01-04 fix convertZtoS problem #245
+* 2023-01-28 add %NM tag, to keep code-line when synthezising code
 */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -106,15 +108,13 @@ namespace GrblPlotter
 
                 if (gcline.codeLine.IndexOf("%START_HIDECODE") >= 0) { hide_code = true; }
                 if (gcline.codeLine.IndexOf("%STOP_HIDECODE") >= 0) { hide_code = false; }
+                if (gcline.codeLine.IndexOf("%NM ") >= 0) { gcline.isNoMove = true; }
 
                 #region replace circle by lines
                 // replace code-line G1,G2,G3 by new codelines and add to newCode
                 if ((!hide_code) && (replaceG23))                   // replace circles
                 {
                     Gcode.Setup(false);                             // don't apply intermediate Z steps in certain sub functions
-                                                                    //gcode.lastx = (float)lastActualX;
-                                                                    // gcode.lasty = (float)lastActualY;
-                                                                    //gcode.lastz = (float)lastActualZ;
                     Gcode.SetLastxyz(lastActualX, lastActualY, lastActualZ);
                     Gcode.GcodeXYFeed = gcline.feedRate;
                     if (gcline.isdistanceModeG90)

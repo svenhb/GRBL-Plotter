@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -34,6 +34,7 @@
  * 2022-01-17 Avoid grbl-error:20 if T01M06 but "Perform tool change" not enabled line 272;  AddCodeFromFile - no error if filename = "" line 354
  * 2022-05-27 line 650 keep size of sendBuffer small
  * 2022-08-10 lock {sendBuffer.Clear();
+ * 2023-01-25 #321 line 757 remove streamingBuffer.LineWasSent();
  */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -649,7 +650,10 @@ namespace GrblPlotter
             // progressbar.value is int
             int codeFinish = 0;
             if (streamingBuffer.Count != 0)
+            {
                 codeFinish = (int)Math.Ceiling((float)lineNrConfirmed * 100 / streamingBuffer.MaxLineNr) + 1;      // to reach 100%
+                Logger.Info("SendStreamEvent codeFinish:{0}  lineNrConfirmed:{1}  streamingBuffer.MaxLineNr:{2}", codeFinish, lineNrConfirmed, streamingBuffer.MaxLineNr);
+            }
             int buffFinish = 0;
             if (grblBufferSize != 0)
                 buffFinish = (int)Math.Ceiling((float)(grblBufferSize - grblBufferFree) * 100 / grblBufferSize) + 1; // to reach 100%
@@ -749,14 +753,13 @@ namespace GrblPlotter
                     #endregion
 
                     if (isMarlin)
-                    {
-                        if (updateMarlinPosition || (--insertMarlinCounter <= 0))
-                        {   //requestSend("M114", streamingBuffer.GetSentLineNr(), false);    // insert getPosition commands
+                    {	// frequently insert M114 command into sendBuffer
+                        if (updateMarlinPosition)// || (--insertMarlinCounter <= 0))
+                        {   
                             sendBuffer.Add("M114", streamingBuffer.GetSentLineNr());
+                            streamingBuffer.Add("()", streamingBuffer.Count);      // streamingBuffer.Count will be checked later
                             getMarlinPositionWasSent = true;
-                            streamingBuffer.LineWasSent();
                             streamingStateOld = streamingStateNow;
-                            lengthToSend = streamingBuffer.LengthSent() + 1;    // update while-variable
                             insertMarlinCounter = insertMarlinCounterReload;
                         }
                         updateMarlinPosition = false;
@@ -817,7 +820,10 @@ namespace GrblPlotter
                 streamingStateOld = streamingStateNow;
 
                 if (streamingBuffer.IndexConfirmed >= streamingBuffer.Count)
-                { StreamingFinish(); }
+                {
+                    Logger.Info("StreamingIDLE -> StreamingFinish");
+                    StreamingFinish(); 
+                }
             }
         }
 

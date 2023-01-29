@@ -18,6 +18,7 @@
 */
 /* 
  * 2023-01-05 new feature
+ * 2023-01-26 line 186 check for 3 columns
 */
 
 using System;
@@ -140,11 +141,11 @@ namespace GrblPlotter
                 ds.ReadXml(xmlFile);
                 dataGridView1.Columns.Clear();
                 dataGridView1.DataSource = ds.Tables[0];
-                DataGridViewColumn column = dataGridView1.Columns[0];
+                //    DataGridViewColumn column = dataGridView1.Columns[0];
 
                 foreach (DataGridViewColumn Column in dataGridView1.Columns)
                 {
-                    column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                    Column.SortMode = DataGridViewColumnSortMode.NotSortable;
                 }
                 BtnStart.Enabled = CheckData();
             }
@@ -181,8 +182,17 @@ namespace GrblPlotter
                 if (string.IsNullOrEmpty(action))
                 {
                     textBox1.Text += string.Format("{0}) action=null\r\n", lineNr);
+   					return false;
+					break;
+                }
+
+                if (dataGridView1.Rows[i].Cells.Count < 3)
+                {
+                    MessageBox.Show("At least 3 columns are needed, please check your XML file.", "Error");
+					return false;
                     break;
                 }
+
                 value = (string)dataGridView1.Rows[i].Cells[1].Value;
                 ok = true;
 

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@
  * 2021-09-01 line 145 new loop: for (int i = 0; i < rxBuff.Length; i++) // old foreach (byte rxTmpChart in rxBuff)
  * 2022-03-19 add EventCollector on send error
  * 2022-11-13 line 127 check if rtbLog is null
+ * 2023-01-24 close serialPort on FormClosing
 */
 using System;
 using System.Collections.Generic;
@@ -285,9 +286,12 @@ namespace GrblPlotter
         private void ControlDIYControlPad_FormClosing(object sender, FormClosingEventArgs e)
         {
             Logger.Trace("++++++ ControlDIYControlPad Stop ++++++");
+			serialPort.DataReceived -= SerialPort_DataReceived;
+			ClosePort();
             Properties.Settings.Default.serialPortDIY = cbPort.Text;
             Properties.Settings.Default.serialBaudDIY = cbBaud.Text;
             Properties.Settings.Default.locationSerForm4 = Location;
+            Properties.Settings.Default.Save();
         }
 
         private void ControlDIYControlPad_Resize(object sender, EventArgs e)

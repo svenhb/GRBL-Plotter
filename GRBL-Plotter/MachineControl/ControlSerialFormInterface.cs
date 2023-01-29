@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -158,13 +158,16 @@ namespace GrblPlotter
                             AddToLog("< ok");   // string.Format("< {0}", rxString)); // < ok
                     }
                 }
-                else
-                    getMarlinPositionWasSent = false;
+            //    else
+                getMarlinPositionWasSent = false;
 
                 if (isStreaming)
                 {
                     if (streamingBuffer.IndexConfirmed >= streamingBuffer.Count)
-                    { StreamingFinish(); }
+                    {
+                        Logger.Info("ProcessMarlinMessages [Program end]");
+                        StreamingFinish(); 
+                    }
                 }
             }
             /***** Marlin start up *****/
@@ -397,6 +400,7 @@ namespace GrblPlotter
             else if (rxLine == "($END)")
             {
                 AddToLog("[Program end: " + GetTimeStampString() + " ]");
+                Logger.Info("ProcessGrblOkMessage [Program end]");
                 StreamingFinish();      // reset streaming, clear sendBuffer, streamingBuffer, ListAccessoryStateRunTime
             }
         }
@@ -418,7 +422,7 @@ namespace GrblPlotter
                 Logger.Error("processGrblRealTimeStatus dataField.Length<=2: '{0}'", text);
                 return;
             }
-            string machineState = dataField[0].Trim(' ');       // Valid states types: Idle, Run, Hold, Jog, Alarm, Door, Check, Home, Sleep
+            string _machineState = dataField[0].Trim(' ');       // Valid states types: Idle, Run, Hold, Jog, Alarm, Door, Check, Home, Sleep
                                                                 // The first (Machine State) and second (Current Position) data fields are always included in every report.
                                                                 // Assume any following data field may or may not exist and can be in any order.
             if (IsGrblVers0)	//	handle old format from grbl vers. 0.9
@@ -517,7 +521,7 @@ namespace GrblPlotter
                     }
                 }
             }   // if (isGrblVers0)
-            grblStateNow = Grbl.ParseStatus(machineState);            // get actual state
+            grblStateNow = Grbl.ParseStatus(_machineState);            // get actual state
             lblSrState.BackColor = Grbl.GrblStateColor(grblStateNow);
             lblSrState.Text = Grbl.StatusToText(grblStateNow);  // status;
 

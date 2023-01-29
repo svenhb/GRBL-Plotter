@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -183,7 +183,6 @@ namespace GrblPlotter
             if (logDetailed) Logger.Trace("  SetPosMarkerLineSimple line:{0} ", line);
             if (line < 0) return;
 
-            int figureNr;
             XyPoint center = new XyPoint(0, 0);
             bool showCenter = false;
             try
@@ -370,7 +369,7 @@ namespace GrblPlotter
 
         public static void MarkSelectedNode(DistanceByLine markerProperties)
         {
-            CoordByLine before, now, after;
+            CoordByLine before, after;
             bool beforeOk, afterOk;
 
             if ((coordList == null) || (coordList.Count == 0))

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -135,8 +135,8 @@ namespace GrblPlotter
         private bool isMarlin = false;
         private bool updateMarlinPosition = false;
         private bool getMarlinPositionWasSent = false;
-        private readonly int insertMarlinCounterReload = 10;
-        private int insertMarlinCounter = 10;
+        private readonly int insertMarlinCounterReload = 5;
+        private int insertMarlinCounter = 5;
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -418,6 +418,7 @@ namespace GrblPlotter
                         if (isMarlin)
                         {
                             if (!isStreaming) { SerialPortDataSend("M114" + lineEndTXmarlin); getMarlinPositionWasSent = true; }    // marlin pos request
+							// if isSteaming, insert M114 in PreProcessStreaming
                             updateMarlinPosition = true;
                         }
                         else

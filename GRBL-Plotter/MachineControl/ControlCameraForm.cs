@@ -32,6 +32,8 @@
  * 2021-12-11 line 1097 check if ((cameraIndex >= 0) && (cameraIndex < videosources.Count)) 
  * 2022-03-23 listSettings if (cBShapeDetection.Checked)
  * 2023-01-02 exception line 1202, add try, catch
+ * 2023-01-22 line 546 use lock (Object is currently in use elsewhere. Source: System.Drawing Target:)
+ * 2023-01-24 check range of index in line 1218
 */
 
 using AForge;
@@ -541,9 +543,12 @@ namespace GrblPlotter
             // show drawing from MainForm (static members of class GCodeVisualization)
             if (showOverlay)
             {
-                e.Graphics.DrawPath(penRuler, VisuGCode.pathRuler);
-                e.Graphics.DrawPath(penMarker, VisuGCode.pathMarker);
-                e.Graphics.DrawPath(penDown, VisuGCode.pathPenDown);
+                lock (penRuler)
+                    e.Graphics.DrawPath(penRuler, VisuGCode.pathRuler);
+                lock (penMarker)
+                    e.Graphics.DrawPath(penMarker, VisuGCode.pathMarker);
+                lock (penDown)
+                    e.Graphics.DrawPath(penDown, VisuGCode.pathPenDown);
 
                 if (penupPathToolStripMenuItem.Checked)
                     e.Graphics.DrawPath(penUp, VisuGCode.pathPenUp);
@@ -1210,8 +1215,14 @@ namespace GrblPlotter
                 Logger.Error(ex, "SelectCameraSource - close source ");
             }
 
-            videoSource = new VideoCaptureDevice(videosources[index].MonikerString);
-            ((ToolStripMenuItem)camSourceToolStripMenuItem.DropDownItems[index]).Checked = true;
+			if (index >= videosources.Count)
+			{	index = videosources.Count - 1;}
+		
+			if (index < 0)
+				return;
+			
+			videoSource = new VideoCaptureDevice(videosources[index].MonikerString);
+			((ToolStripMenuItem)camSourceToolStripMenuItem.DropDownItems[index]).Checked = true;
 
             try
             {

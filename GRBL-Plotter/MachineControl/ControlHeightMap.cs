@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -36,18 +36,15 @@
  * 2022-11-15 line 1332 check if ((x < map.SizeX) && (y < map.SizeY))
  * 2022-11-29 SavePictureAsBMP: size=Map-size; importSTL; GetCoordinates round to 4 decimals
  * 2022-12-05 seperate class into new file "ControlHeightMapClass"
+ * 2023-01-28 line 1363 check if in range nUDCutOffZ.Minimum / Max
 */
 
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
-using System.Xml;
 
 namespace GrblPlotter
 {
@@ -57,7 +54,7 @@ namespace GrblPlotter
         internal StringBuilder scanCode;
         internal HeightMap Map;
         private List<Point> MapIndex;
-        private Bitmap heightMapBMP = new Bitmap(10,10);
+        private Bitmap heightMapBMP = new Bitmap(10, 10);
         private Bitmap heightMapCutH;
         private Bitmap heightMapCutV;
         private Bitmap heightLegendBMP;
@@ -70,17 +67,17 @@ namespace GrblPlotter
 
         private string pathMap;
         private string pathExport;
-		private string lastFileName = "";
+        private string lastFileName = "";
         private bool refreshPictureBox = true;
         private bool diyControlConnected;
         internal bool scanStarted = false;
         internal bool extrudeX = false;
         internal bool extrudeY = false;
-		
+
         private int BMPsizeX = 160;
         private int BMPsizeY = 160;
-		
-		private string pathLastSaved="";
+
+        private string pathLastSaved = "";
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -315,24 +312,24 @@ namespace GrblPlotter
                 double? z;
                 int picWidth = pictureBox1.Width;
                 int picHeight = pictureBox1.Height;
-            //    Logger.Trace("CreateHightMapBMP  x:{0}  y:{1}", picWidth,picHeight);
+                //    Logger.Trace("CreateHightMapBMP  x:{0}  y:{1}", picWidth,picHeight);
 
                 double stdX, stdY;
                 int mapX, mapY;
                 heightMapBMP = new Bitmap(picWidth, picHeight);
                 for (int iy = 0; iy < picHeight; iy++)
                 {
-                    stdY = 1 - (double)iy / (picHeight+1);
+                    stdY = 1 - (double)iy / (picHeight + 1);
                     mapY = (int)(Map.SizeY * stdY);
                     for (int ix = 0; ix < picWidth; ix++)
                     {
-                        stdX= (double)ix / (picWidth+1);
-                        mapX= (int)(Map.SizeX * stdX);
-                        if(interpolate)
-                            z = Map.GetPoint(((Map.SizeX-1) * stdX), ((Map.SizeY-1) * stdY));
-                        else 
+                        stdX = (double)ix / (picWidth + 1);
+                        mapX = (int)(Map.SizeX * stdX);
+                        if (interpolate)
+                            z = Map.GetPoint(((Map.SizeX - 1) * stdX), ((Map.SizeY - 1) * stdY));
+                        else
                             z = Map.GetPoint(mapX, mapY);
-                        if (z!=null)
+                        if (z != null)
                             heightMapBMP.SetPixel(ix, iy, GetColor(Map.MinHeight, Map.MaxHeight, (double)z, isgray));
                     }
                 }
@@ -351,27 +348,27 @@ namespace GrblPlotter
             pictureBox1.Image = new Bitmap(heightMapBMP);
             pictureBox1.Refresh();
             if (Map != null)
-            { 
+            {
                 lblMin.Text = string.Format("{0:0.000}", Map.MinHeight);
                 lblMid.Text = string.Format("{0:0.000}", (Map.MinHeight + Map.MaxHeight) / 2);
-                lblMax.Text = string.Format("{0:0.000}", Map.MaxHeight); 
+                lblMax.Text = string.Format("{0:0.000}", Map.MaxHeight);
             }
             pictureBox2.Image = new Bitmap(heightLegendBMP);
             pictureBox2.Refresh();
         }
-		
-		private void ShowHightMapCutH(int sizeZ, double pos)
-		{
+
+        private void ShowHightMapCutH(int sizeZ, double pos)
+        {
             if (Map != null)
             {
                 bool interpolate = CbInterpolate.Checked;
-                sizeZ = pictureBoxH.Height;
-                int mx,picWidth = pictureBoxH.Width;
+            //    sizeZ = pictureBoxH.Height;
+                int mx, picWidth = pictureBoxH.Width;
 
                 heightMapCutH = new Bitmap(picWidth, sizeZ);
                 int iy, iz;
                 double? z;
-                double stdX, stdY;
+                double stdX;
                 double rangeZ = (Map.MaxHeight - Map.MinHeight);
                 for (int ix = 0; ix < picWidth; ix++)
                 {
@@ -379,9 +376,9 @@ namespace GrblPlotter
                     if (iy < 0) iy = 0;
                     if (iy >= Map.SizeY) iy = Map.SizeY - 1;
 
-                    mx = ix * Map.SizeX/ picWidth;
+                    mx = ix * Map.SizeX / picWidth;
                     if (mx < 0) mx = 0;
-                    if (mx>= Map.SizeX) mx= Map.SizeX - 1;
+                    if (mx >= Map.SizeX) mx = Map.SizeX - 1;
 
                     stdX = (double)ix / picWidth;
                     if (interpolate)
@@ -400,21 +397,21 @@ namespace GrblPlotter
                 pictureBoxH.Image = new Bitmap(heightMapCutH);
                 pictureBoxH.Refresh();
             }
-		}
-		private void ShowHightMapCutV(int sizeZ, double pos)
-		{
+        }
+        private void ShowHightMapCutV(int sizeZ, double pos)
+        {
             if (Map == null) return;
             bool interpolate = CbInterpolate.Checked;
-            sizeZ = pictureBoxV.Width;
+         //   sizeZ = pictureBoxV.Width;
             int mx, picHeight = pictureBoxV.Height;
 
             heightMapCutV = new Bitmap(sizeZ, picHeight);
-            int ix,iz;
+            int ix, iz;
             double? z;
-            double stdX, stdY;
+            double stdY;
             double rangeZ = (Map.MaxHeight - Map.MinHeight);
-			for (int iy = 0; iy < picHeight; iy++)
-			{
+            for (int iy = 0; iy < picHeight; iy++)
+            {
                 ix = (int)(pos * Map.SizeX);
                 if (ix < 0) ix = 0;
                 if (ix >= Map.SizeX) ix = Map.SizeX - 1;
@@ -520,7 +517,7 @@ namespace GrblPlotter
         int cntReceived = 0, cntSent = 0;
 
         #region controls
-		
+
         private void BtnPosLL_Click(object sender, EventArgs e)
         {
             nUDX1.Value = (decimal)Math.Round(Grbl.posWork.X, 2);
@@ -615,16 +612,17 @@ namespace GrblPlotter
                 double relposY = Map.Delta.Y - Map.Delta.Y * (Convert.ToDouble(pictureBox1.PointToClient(MousePosition).Y) / pictureBox1.Height);
                 double posX = Map.Min.X + relposX;
                 double posY = Map.Min.Y + relposY;
-				if (Grbl.isConnected)
-                {	DialogResult result;
-					result = MessageBox.Show("Move to this position? " + posX.ToString() + " ; " + posY.ToString(), "Attention", MessageBoxButtons.YesNo);
-					if (result == System.Windows.Forms.DialogResult.Yes)
-					{
-						if ((decimal)Grbl.posWork.Z < nUDProbeUp.Value)
-							OnRaiseXyzEvent(new XyzEventArgs(null, null, (double)nUDProbeUp.Value, "G90"));
-						OnRaiseXyzEvent(new XyzEventArgs(posX, posY, "G90"));   // move relative and fast
-					}
-				}
+                if (Grbl.isConnected)
+                {
+                    DialogResult result;
+                    result = MessageBox.Show("Move to this position? " + posX.ToString() + " ; " + posY.ToString(), "Attention", MessageBoxButtons.YesNo);
+                    if (result == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        if ((decimal)Grbl.posWork.Z < nUDProbeUp.Value)
+                            OnRaiseXyzEvent(new XyzEventArgs(null, null, (double)nUDProbeUp.Value, "G90"));
+                        OnRaiseXyzEvent(new XyzEventArgs(posX, posY, "G90"));   // move relative and fast
+                    }
+                }
             }
         }
         public event EventHandler<XyzEventArgs> RaiseXyzEvent;
@@ -665,13 +663,13 @@ namespace GrblPlotter
                     posZ = Map.GetPoint((int)iX, (int)iY);
                     tt.SetToolTip(this.pictureBox1, string.Format("Index X:{0}    Y:{1}  \r\nPos.   X:{2:0.00} Y:{3:0.00}  \r\nZ:{4:0.00}", (int)iX, (int)iY, posX, posY, posZ));
                 }
-				ShowHightMapCutH(pictureBoxH.Height, relY);
-				ShowHightMapCutV(pictureBoxV.Width, relX);				
+                ShowHightMapCutH(pictureBoxH.Height, relY);
+                ShowHightMapCutV(pictureBoxV.Width, relX);
             }
         }
-        private void pictureBox1_MouseLeave(object sender, EventArgs e)
+        private void PictureBox1_MouseLeave(object sender, EventArgs e)
         {
-        //    CreateHightMap(240);
+            //    CreateHightMap(240);
             pictureBoxV.Visible = false;
         }
 
@@ -718,7 +716,7 @@ namespace GrblPlotter
                 lblXDim.Text = string.Format("X Min:{0} Max:{1} Step:{2}", Map.Min.X, Map.Max.X, Map.SizeX);
                 lblYDim.Text = string.Format("Y Min:{0} Max:{1} Step:{2}", Map.Min.Y, Map.Max.Y, Map.SizeY);
 
-				lastFileName = string.Format("New Map Min-X:{0} Y:{1} Max-X:{2} Y:{3}  Grid-X:{4} Y:{5}", Map.Min.X, Map.Min.Y, Map.Max.X, Map.Max.Y, Map.SizeX, Map.SizeY);	
+                lastFileName = string.Format("New Map Min-X:{0} Y:{1} Max-X:{2} Y:{3}  Grid-X:{4} Y:{5}", Map.Min.X, Map.Min.Y, Map.Max.X, Map.Max.Y, Map.SizeX, Map.SizeY);
                 CalculateEstimatedTime();
 
                 notifierEnable = ((double)Properties.Settings.Default.notifierMessageProgressInterval < (estimatedTime / 60));
@@ -995,8 +993,8 @@ namespace GrblPlotter
         {
             if ((GuiVariables.variable["GMIX"] < Double.MaxValue) && (GuiVariables.variable["GMAX"] > Double.MinValue))		//(GuiVariables.variable["GMIX"] != GuiVariables.variable["GMAX"])
             {
-                decimal min = (decimal)Math.Round((CbRoundUp.Checked ? Math.Floor(GuiVariables.variable["GMIX"]) : GuiVariables.variable["GMIX"]),2);
-                decimal max = (decimal)Math.Round((CbRoundUp.Checked ? Math.Ceiling(GuiVariables.variable["GMAX"]) : GuiVariables.variable["GMAX"]),2);
+                decimal min = (decimal)Math.Round((CbRoundUp.Checked ? Math.Floor(GuiVariables.variable["GMIX"]) : GuiVariables.variable["GMIX"]), 2);
+                decimal max = (decimal)Math.Round((CbRoundUp.Checked ? Math.Ceiling(GuiVariables.variable["GMAX"]) : GuiVariables.variable["GMAX"]), 2);
                 if (min >= nUDX1.Minimum)
                     nUDX1.Value = min;
                 if (max <= nUDX2.Maximum)
@@ -1006,8 +1004,8 @@ namespace GrblPlotter
 
             if ((GuiVariables.variable["GMIY"] < Double.MaxValue) && (GuiVariables.variable["GMAY"] > Double.MinValue))		//(GuiVariables.variable["GMIY"] != GuiVariables.variable["GMAY"])
             {
-                decimal min = (decimal)Math.Round((CbRoundUp.Checked ? Math.Floor(GuiVariables.variable["GMIY"]) : GuiVariables.variable["GMIY"]),2);
-                decimal max = (decimal)Math.Round((CbRoundUp.Checked ? Math.Ceiling(GuiVariables.variable["GMAY"]) : GuiVariables.variable["GMAY"]),2);
+                decimal min = (decimal)Math.Round((CbRoundUp.Checked ? Math.Floor(GuiVariables.variable["GMIY"]) : GuiVariables.variable["GMIY"]), 2);
+                decimal max = (decimal)Math.Round((CbRoundUp.Checked ? Math.Ceiling(GuiVariables.variable["GMAY"]) : GuiVariables.variable["GMAY"]), 2);
                 if (min >= nUDY1.Minimum)
                     nUDY1.Value = min;
                 if (max <= nUDY2.Maximum)
@@ -1034,11 +1032,11 @@ namespace GrblPlotter
 
         private void ControlHeightMapForm_SizeChanged(object sender, EventArgs e)
         {
-			if ((this.WindowState == FormWindowState.Minimized) || (Width == 0) || (Height == 0))
-				return;
-			
+            if ((this.WindowState == FormWindowState.Minimized) || (Width == 0) || (Height == 0))
+                return;
+
             groupBox3.Width = Width - (620 - 270);
-            groupBox3.Height=Height - (375 - 306);
+            groupBox3.Height = Height - (375 - 306);
             int left = groupBox3.Width - (270 - 206);
             int top = groupBox3.Height - (306 - 234);
 
@@ -1051,7 +1049,7 @@ namespace GrblPlotter
                 double ratio = (double)Map.SizeX / Map.SizeY;
                 int newWidth = (int)(origHeight * ratio);
                 int newHeight = (int)(origWidth / ratio);
-            //    Logger.Trace("ControlHeightMapForm_SizeChanged  ratio:{0:0.000} newx:{1}  y:{2}",ratio,newWidth,newHeight);
+                //    Logger.Trace("ControlHeightMapForm_SizeChanged  ratio:{0:0.000} newx:{1}  y:{2}",ratio,newWidth,newHeight);
                 if (ratio >= 1)
                 {
                     if (newHeight < origHeight)
@@ -1076,15 +1074,15 @@ namespace GrblPlotter
             lblMax.Left = pictureBox2.Left + 12;
             lblMid.Left = pictureBox2.Left + 12;
             lblMin.Left = pictureBox2.Left + 12;
-            lblMid.Top = lblMax.Top + pictureBox1.Height / 2 -7;
-            lblMin.Top = lblMax.Top + pictureBox1.Height -14;
+            lblMid.Top = lblMax.Top + pictureBox1.Height / 2 - 7;
+            lblMin.Top = lblMax.Top + pictureBox1.Height - 14;
 
             lblXDim.Top = groupBox3.Height - 28;
             lblYDim.Top = groupBox3.Height - 16;
 
             BMPsizeX = pictureBox1.Width;// 240;
             BMPsizeY = pictureBox1.Height;
-            if (Map!=null)
+            if (Map != null)
                 BMPsizeY = Map.SizeY * BMPsizeX / Map.SizeX;
 
             int legendHeight = pictureBox2.Height;
@@ -1134,9 +1132,9 @@ namespace GrblPlotter
                 float gcodeZFeed = (float)Properties.Settings.Default.importGCZFeed;
                 float gcodeZUp = (float)Properties.Settings.Default.importGCZUp;
 
-				float distanceX = (float)(Map.Max.X - Map.Min.X);
-				float distanceY = (float)(Map.Max.Y - Map.Min.Y);
-				float gcodeDistance=0; 
+                float distanceX = (float)(Map.Max.X - Map.Min.X);
+                float distanceY = (float)(Map.Max.Y - Map.Min.Y);
+                float gcodeDistance = 0;
 
                 scanCode = new StringBuilder();
                 StringBuilder tmpCode = new StringBuilder();
@@ -1146,82 +1144,83 @@ namespace GrblPlotter
                 tmpCode.AppendFormat("G90 G0 F{0} Z{1}\r\n", Gcode.FrmtNum(gcodeZFeed), Gcode.FrmtNum(saveZ));
                 tmpCode.AppendFormat("G0 X{0} Y{1}\r\n", Gcode.FrmtNum((float)tmp.X), Gcode.FrmtNum((float)tmp.Y));
                 tmpCode.AppendFormat("G1 F{0}\r\n", Gcode.FrmtNum(gcodeXYFeed));
-				int gcodeLines = 6;
+                int gcodeLines = 6;
 
-				if (!CbNewStepWidth.Checked)
-                {	for (int iy = 0; iy < Map.SizeY; iy++)
-					{
-						for (int ix = 0; ix < Map.SizeX; ix++)
-						{
-							MoveXYZ(tmpCode, ix, iy); gcodeLines++;
-						}
-						gcodeDistance += distanceX;
-						if (iy < Map.SizeY - 1)
-						{
-							iy++;
-							for (int ix = Map.SizeX - 1; ix >= 0; ix--)
-							{
-								MoveXYZ(tmpCode, ix, iy); gcodeLines++;
-							}
-							gcodeDistance += distanceX;
-						}
-					}
-				}
-				else
-				{	
-					if (CbMoveXY.Checked)
-					{
-						double stepX,stepY;
-						stepX = stepY = (double)NudNewStepWidth.Value;
+                if (!CbNewStepWidth.Checked)
+                {
+                    for (int iy = 0; iy < Map.SizeY; iy++)
+                    {
+                        for (int ix = 0; ix < Map.SizeX; ix++)
+                        {
+                            MoveXYZ(tmpCode, ix, iy); gcodeLines++;
+                        }
+                        gcodeDistance += distanceX;
+                        if (iy < Map.SizeY - 1)
+                        {
+                            iy++;
+                            for (int ix = Map.SizeX - 1; ix >= 0; ix--)
+                            {
+                                MoveXYZ(tmpCode, ix, iy); gcodeLines++;
+                            }
+                            gcodeDistance += distanceX;
+                        }
+                    }
+                }
+                else
+                {
+                    if (CbMoveXY.Checked)
+                    {
+                        double stepX, stepY;
+                        stepX = stepY = (double)NudNewStepWidth.Value;
 
-						for (double ry = Map.Min.Y; ry <= Map.Max.Y; ry+=stepY)
-						{
-							for (double rx = Map.Min.X; rx <= Map.Max.X; rx+=stepX)
-							{
-								MoveXYZ(tmpCode, rx, ry); gcodeLines++;
-							}
+                        for (double ry = Map.Min.Y; ry <= Map.Max.Y; ry += stepY)
+                        {
+                            for (double rx = Map.Min.X; rx <= Map.Max.X; rx += stepX)
+                            {
+                                MoveXYZ(tmpCode, rx, ry); gcodeLines++;
+                            }
                             MoveXYZ(tmpCode, Map.Max.X, ry); gcodeLines++;
-                            gcodeDistance += distanceX + (float)stepY; 
-							if (ry < Map.Max.Y)
-							{
-								ry+=stepY;
-								for (double rx = Map.Max.X; rx >= Map.Min.X; rx-=stepX)
-								{
-									MoveXYZ(tmpCode, rx, ry); gcodeLines++;
-								}
+                            gcodeDistance += distanceX + (float)stepY;
+                            if (ry < Map.Max.Y)
+                            {
+                                ry += stepY;
+                                for (double rx = Map.Max.X; rx >= Map.Min.X; rx -= stepX)
+                                {
+                                    MoveXYZ(tmpCode, rx, ry); gcodeLines++;
+                                }
                                 MoveXYZ(tmpCode, Map.Min.X, ry); gcodeLines++;
-                                gcodeDistance += distanceX + (float)stepY; 
-							}
-						}
-					}
-					else
-					{
-						double stepX,stepY;
-						stepX = stepY = (double)NudNewStepWidth.Value;
+                                gcodeDistance += distanceX + (float)stepY;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        double stepX, stepY;
+                        stepX = stepY = (double)NudNewStepWidth.Value;
 
-						for (double rx = Map.Min.X; rx <= Map.Max.X; rx+=stepX)
-						{
-							for (double ry = Map.Min.Y; ry <= Map.Max.Y; ry+=stepY)
-							{
-								MoveXYZ(tmpCode, rx, ry); gcodeLines++;
-							}
+                        for (double rx = Map.Min.X; rx <= Map.Max.X; rx += stepX)
+                        {
+                            for (double ry = Map.Min.Y; ry <= Map.Max.Y; ry += stepY)
+                            {
+                                MoveXYZ(tmpCode, rx, ry); gcodeLines++;
+                            }
                             MoveXYZ(tmpCode, rx, Map.Max.Y); gcodeLines++;
-                            gcodeDistance += distanceY + (float)stepX; 
-							if (rx < Map.Max.X)
-							{
-								rx+=stepX;
-								for (double ry = Map.Max.Y; ry >= Map.Min.Y; ry-=stepY)
-								{
-									MoveXYZ(tmpCode, rx, ry); gcodeLines++;
-								}
+                            gcodeDistance += distanceY + (float)stepX;
+                            if (rx < Map.Max.X)
+                            {
+                                rx += stepX;
+                                for (double ry = Map.Max.Y; ry >= Map.Min.Y; ry -= stepY)
+                                {
+                                    MoveXYZ(tmpCode, rx, ry); gcodeLines++;
+                                }
                                 MoveXYZ(tmpCode, rx, Map.Min.Y); gcodeLines++;
-                                gcodeDistance += distanceY + (float)stepX; 
-							}
-						}						
-					}
-				}
-				
-				Gcode.SetHeaderInfo(lastFileName, gcodeDistance, gcodeXYFeed, gcodeLines, 1);
+                                gcodeDistance += distanceY + (float)stepX;
+                            }
+                        }
+                    }
+                }
+
+                Gcode.SetHeaderInfo(lastFileName, gcodeDistance, gcodeXYFeed, gcodeLines, 1);
 
                 tmpCode.AppendFormat("G0 Z{0}\r\n", Gcode.FrmtNum(saveZ));
                 tmp = Map.GetCoordinates(0, 0);
@@ -1264,23 +1263,22 @@ namespace GrblPlotter
         private void ControlHeightMapForm_DragDrop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            string s = (string)e.Data.GetData(DataFormats.Text);
             if (files != null)
             { LoadExtern(files[0]); }
             this.WindowState = FormWindowState.Normal;
         }
-  
-		public void LoadExtern(string file)		// via drag&drop on main GUI
+
+        public void LoadExtern(string file)		// via drag&drop on main GUI
         {
             if (!File.Exists(file)) return;
             String ext = Path.GetExtension(file).ToLower();
-			
+
             try
             {
-				if (ext == ".map")
-				{	LoadMap(file, false);}	// false = don't remember path
-				if (ext == ".stl")
-				{	LoadSTL(file, false);}
+                if (ext == ".map")
+                { LoadMap(file, false); }   // false = don't remember path
+                if (ext == ".stl")
+                { LoadSTL(file, false); }
                 ControlHeightMapForm_SizeChanged(null, null);
             }
             catch (Exception err)
@@ -1305,32 +1303,32 @@ namespace GrblPlotter
             mapIsLoaded = false;
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-				LoadMap(sfd.FileName);
+                LoadMap(sfd.FileName);
                 ControlHeightMapForm_SizeChanged(sender, e);
             }
             sfd.Dispose();
         }
-		private void LoadMap(string file, bool rememberPath = true)
-		{
-			Cursor.Current = Cursors.WaitCursor;
+        private void LoadMap(string file, bool rememberPath = true)
+        {
+            Cursor.Current = Cursors.WaitCursor;
             cntReceived = 0; cntSent = 0;
-			if (File.Exists(file))
-			{
-				Map = HeightMap.Load(file);
-				lblXDim.Text = string.Format("X Min:{0:0.00} Max:{1:0.00} Step:{2:0.00}  Size:{3}", Map.Min.X, Map.Max.X, Map.GridX, Map.SizeX);
-				lblYDim.Text = string.Format("Y Min:{0:0.00} Max:{1:0.00} Step:{2:0.00}  Size:{3}", Map.Min.Y, Map.Max.Y, Map.GridY, Map.SizeY);
-				NudNewStepWidth.Value = (decimal)Math.Round(Map.GridX,2);
+            if (File.Exists(file))
+            {
+                Map = HeightMap.Load(file);
+                lblXDim.Text = string.Format("X Min:{0:0.00} Max:{1:0.00} Step:{2:0.00}  Size:{3}", Map.Min.X, Map.Max.X, Map.GridX, Map.SizeX);
+                lblYDim.Text = string.Format("Y Min:{0:0.00} Max:{1:0.00} Step:{2:0.00}  Size:{3}", Map.Min.Y, Map.Max.Y, Map.GridY, Map.SizeY);
+                NudNewStepWidth.Value = (decimal)Math.Round(Map.GridX, 2);
                 nUDCutOffZ.Value = (decimal)Math.Round(Map.MinHeight, 2);
                 isMapOk = true;
-				EnableControls(true);
-				mapIsLoaded = true;
-				if (rememberPath) pathMap = Path.GetDirectoryName(file);
-				Logger.Info("▀▀▀▀▀▀▀▀▀▀ Load Map size X:{0} Y:{1}  file:{2}", Map.SizeX, Map.SizeY, file);
-				lastFileName = Path.GetFileName(file);
-			}
-			Cursor.Current = Cursors.Default;			
-		}
-		
+                EnableControls(true);
+                mapIsLoaded = true;
+                if (rememberPath) pathMap = Path.GetDirectoryName(file);
+                Logger.Info("▀▀▀▀▀▀▀▀▀▀ Load Map size X:{0} Y:{1}  file:{2}", Map.SizeX, Map.SizeY, file);
+                lastFileName = Path.GetFileName(file);
+            }
+            Cursor.Current = Cursors.Default;
+        }
+
         private void BtnLoadSTL_Click(object sender, EventArgs e)
         {
             OpenFileDialog sfd = new OpenFileDialog
@@ -1341,50 +1339,52 @@ namespace GrblPlotter
             mapIsLoaded = false;
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-				LoadSTL(sfd.FileName);
+                LoadSTL(sfd.FileName);
                 ControlHeightMapForm_SizeChanged(sender, e);
             }
             sfd.Dispose();
         }
-		private void LoadSTL(string file, bool rememberPath = true)
-		{
-			Cursor.Current = Cursors.WaitCursor;
-			cntReceived = 0; cntSent = 0;
-			if (File.Exists(file))
-			{
-				Logger.Info("▀▀▀▀▀▀▀▀▀▀ Load STL file:{0}", file);
-				HeightMap tmpMap = HeightMap.ImportSTL(file);
-				if (tmpMap != null)
-				{
-					Map = tmpMap;
-					lblXDim.Text = string.Format("X Min:{0:0.00} Max:{1:0.00} Step:{2:0.00}  Size:{3}", Map.Min.X, Map.Max.X, Map.GridX, Map.SizeX);
-					lblYDim.Text = string.Format("Y Min:{0:0.00} Max:{1:0.00} Step:{2:0.00}  Size:{3}", Map.Min.Y, Map.Max.Y, Map.GridY, Map.SizeY);
-					NudNewStepWidth.Value = (decimal)Math.Round(Map.GridX,2);
-                    if ((Map.MinHeight2nd > (float)decimal.MinValue) && (Map.MinHeight2nd < (float)decimal.MaxValue))
-                        nUDCutOffZ.Value = (decimal)Math.Round(Map.MinHeight2nd,2);
+        private void LoadSTL(string file, bool rememberPath = true)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            cntReceived = 0; cntSent = 0;
+            if (File.Exists(file))
+            {
+                Logger.Info("▀▀▀▀▀▀▀▀▀▀ Load STL file:{0}", file);
+                HeightMap tmpMap = HeightMap.ImportSTL(file);
+                if (tmpMap != null)
+                {
+                    Map = tmpMap;
+                    lblXDim.Text = string.Format("X Min:{0:0.00} Max:{1:0.00} Step:{2:0.00}  Size:{3}", Map.Min.X, Map.Max.X, Map.GridX, Map.SizeX);
+                    lblYDim.Text = string.Format("Y Min:{0:0.00} Max:{1:0.00} Step:{2:0.00}  Size:{3}", Map.Min.Y, Map.Max.Y, Map.GridY, Map.SizeY);
+                    NudNewStepWidth.Value = (decimal)Math.Round(Map.GridX, 2);
+                //    if ((Map.MinHeight2nd > (float)decimal.MinValue + 1) && (Map.MinHeight2nd < (float)decimal.MaxValue - 1))
+                    if ((Map.MinHeight2nd > (float)nUDCutOffZ.Minimum) && (Map.MinHeight2nd < (float)nUDCutOffZ.Maximum))
+                        nUDCutOffZ.Value = (decimal)Math.Round(Map.MinHeight2nd, 2);
                     else
                         nUDCutOffZ.Value = 0;
 
                     isMapOk = true;
-					EnableControls(true);
-					mapIsLoaded = true;
-					lastFileName = Path.GetFileName(file);
+                    EnableControls(true);
+                    mapIsLoaded = true;
+                    lastFileName = Path.GetFileName(file);
                     tabControl1.SelectedTab = tabControl1.TabPages["tabPage3"];
                 }
-				else
-				{ MessageBox.Show("Loading STL file failed", "Error"); }
-			
-				if (Map.LastError != "")
-				{	lblProgress.Text = Map.LastError;
+                else
+                { MessageBox.Show("Loading STL file failed", "Error"); }
+
+                if (Map.LastError != "")
+                {
+                    lblProgress.Text = Map.LastError;
                     lblProgress.BackColor = Color.Yellow;
                 }
-			}
-			if (rememberPath) pathExport = Path.GetDirectoryName(file);
-			Cursor.Current = Cursors.Default;
-		}
+            }
+            if (rememberPath) pathExport = Path.GetDirectoryName(file);
+            Cursor.Current = Cursors.Default;
+        }
 
 
-		/****************************************************************
+        /****************************************************************
 		***** SAVE data
 		*****************************************************************/
         private void SavePictureAsBMPToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1393,12 +1393,12 @@ namespace GrblPlotter
             {
                 Bitmap tmpBMP = new Bitmap(Map.SizeX, Map.SizeY);
 
-                double x, y, z;
+                double z;
                 for (int iy = 0; iy < Map.SizeY; iy++)
                 {
                     for (int ix = 0; ix < Map.SizeX; ix++)
                     {
-                        z = (double)Map.GetPoint(ix, (Map.SizeY-1) - iy);
+                        z = (double)Map.GetPoint(ix, (Map.SizeY - 1) - iy);
                         tmpBMP.SetPixel(ix, iy, GetColor(Map.MinHeight, Map.MaxHeight, z, isgray));
                     }
                 }
@@ -1406,13 +1406,13 @@ namespace GrblPlotter
                 SaveFileDialog sfd = new SaveFileDialog
                 {
                     Filter = "Bitmap|*.bmp",
-					InitialDirectory = pathLastSaved
+                    InitialDirectory = pathLastSaved
                 };
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     Logger.Info("Save Bitmap {0}", sfd.FileName);
                     tmpBMP.Save(sfd.FileName, System.Drawing.Imaging.ImageFormat.Bmp);
-					pathLastSaved = Path.GetDirectoryName(sfd.FileName);					
+                    pathLastSaved = Path.GetDirectoryName(sfd.FileName);
                 }
                 tmpBMP.Dispose();
                 sfd.Dispose();
@@ -1420,7 +1420,7 @@ namespace GrblPlotter
             else
                 MessageBox.Show("No Height Map to save");
         }
-		
+
         private void BtnSave_Click(object sender, EventArgs e)
         {
             if (Map == null)
@@ -1431,7 +1431,7 @@ namespace GrblPlotter
             SaveFileDialog sfd = new SaveFileDialog
             {
                 InitialDirectory = pathMap,
-				Filter = "HeightMap|*.map"
+                Filter = "HeightMap|*.map"
             };
             Cursor.Current = Cursors.WaitCursor;
             if (sfd.ShowDialog() == DialogResult.OK)
@@ -1440,7 +1440,7 @@ namespace GrblPlotter
                 Map.Save(sfd.FileName);
                 pathMap = Path.GetDirectoryName(sfd.FileName);
                 pathExport = pathMap;
-				lastFileName = Path.GetFileName(sfd.FileName);
+                lastFileName = Path.GetFileName(sfd.FileName);
             }
             Cursor.Current = Cursors.Default;
             sfd.Dispose();
@@ -1456,7 +1456,7 @@ namespace GrblPlotter
             SaveFileDialog sfd = new SaveFileDialog
             {
                 InitialDirectory = pathExport,
-				Filter = "StereoLithography|*.stl"
+                Filter = "StereoLithography|*.stl"
             };
             Cursor.Current = Cursors.WaitCursor;
             if (sfd.ShowDialog() == DialogResult.OK)
@@ -1479,7 +1479,7 @@ namespace GrblPlotter
             SaveFileDialog sfd = new SaveFileDialog
             {
                 InitialDirectory = pathExport,
-				Filter = "3D Object Format|*.obj"
+                Filter = "3D Object Format|*.obj"
             };
             Cursor.Current = Cursors.WaitCursor;
             if (sfd.ShowDialog() == DialogResult.OK)
@@ -1502,7 +1502,7 @@ namespace GrblPlotter
             SaveFileDialog sfd = new SaveFileDialog
             {
                 InitialDirectory = pathExport,
-				Filter = "X3D|*.x3d"
+                Filter = "X3D|*.x3d"
             };
             Cursor.Current = Cursors.WaitCursor;
             if (sfd.ShowDialog() == DialogResult.OK)
