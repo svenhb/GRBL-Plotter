@@ -31,6 +31,9 @@
  * 2022-12-30 add win system font choice, word wrap
  * 2023-01-06 ShowTextSize - check if (textFont.Size != null)
  * 2023-01-10 check font before 1st use
+ * 2023-01-18 tBText.Invalidate after rezising the form
+ * 2023-01-26 BtnSelectFont_Click add try/catch for tBText.Font = fontDialog1.Font;	// probably the cause of "Only TrueType fonts are supported. This is not a TrueType font."
+ * 2023-01-29 check font size after width/heigth calc
 */
 
 using System;
@@ -109,16 +112,16 @@ namespace GrblPlotter
             textFont = Properties.Settings.Default.createTextSystemFont;
             LblInfoFont.Text = textFont.FontFamily.Name.ToString();
             initColor = textColor = tBText.ForeColor;
-			
-			Logger.Info("TextForm_Load initFont:'{0}'", initFont);
-			Logger.Info("TextForm_Load textFont:'{0}'", textFont);
-			
-			if ((textFont == null) || (textFont.Size == null))
-			{
-				Logger.Error("TextForm_Load font unknown '{0}'", textFont);
-				textFont = initFont; 
-			}
-			
+
+            Logger.Info("TextForm_Load initFont:'{0}'", initFont);
+            Logger.Info("TextForm_Load textFont:'{0}'", textFont);
+
+            if ((textFont == null) || (textFont.Size == null))
+            {
+                Logger.Error("TextForm_Load font unknown '{0}'", textFont);
+                textFont = initFont;
+            }
+
             ShowTextSize();
             RbFont1_CheckedChanged(sender, e);
 
@@ -216,16 +219,6 @@ namespace GrblPlotter
             }
             else
             {
-                Color c = tBText.ForeColor;
-                //    Graphic.SetPenColor(c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2"));
-
-                /*    if (CbOutline.Checked)
-                        Graphic.SetPenColor(tBText.ForeColor.ToKnownColor().ToString());
-                    else
-                        Graphic.SetPenColor("none");
-
-                    Graphic.SetPenFill(tBText.ForeColor.ToKnownColor().ToString());
-                */
                 Graphic.SetFont(tBText.Font, cBPauseChar.Checked);      // CreateText
 
                 StringAlignment alignment = StringAlignment.Near;
@@ -241,8 +234,8 @@ namespace GrblPlotter
         private string GetWrappedText()
         {
             string text = tBText.Text;
-            int charPos = 0;
-            int lineLength = 0;
+            int charPos;
+            int lineLength;
             int maxCharPerLine = tBText.Text.Length;
             if (CbWordWrap.Enabled && (tBText.Lines.Count() > 0))
             {
@@ -305,6 +298,7 @@ namespace GrblPlotter
             tabControl1.Height = Height - 36;
             panel1.Height = Height - 76;
 
+            tBText.Invalidate();
             ShowTextSize();
         }
 
@@ -414,10 +408,21 @@ namespace GrblPlotter
 
             if (fontDialog1.ShowDialog() != DialogResult.Cancel)
             {
-                textFont = tBText.Font = fontDialog1.Font;
+                Logger.Info("BtnSelectFont_Click: Font:'{0}'", fontDialog1.Font.FontFamily.Name);
+                try
+                {
+                    tBText.Font = fontDialog1.Font;                     // probably the cause of "Only TrueType fonts are supported. This is not a TrueType font."
+                }
+                catch (Exception err)
+                {
+                    Logger.Error(err, "BtnSelectFont_Click: Font:'{0}' ", fontDialog1.Font.FontFamily.Name);
+                    EventCollector.StoreException("SelFont " + err.Message);
+                    MessageBox.Show(err.Message, "Error");
+                    return;
+                }
+                textFont = fontDialog1.Font;
                 LblInfoFont.Text = textFont.FontFamily.Name.ToString();
                 textColor = tBText.ForeColor = fontDialog1.Color;
-
                 ShowTextSize();
             }
         }
@@ -456,27 +461,27 @@ namespace GrblPlotter
             }
         }
 
-        private void tBText_TextChanged(object sender, EventArgs e)
+        private void TbText_TextChanged(object sender, EventArgs e)
         {
             ShowTextSize();
         }
         private void ShowTextSize()
         {
-			try
-			{
-				if (textFont.Size != null)
-					Graphic.SetFont(textFont);      // ShowTextSize
-				else
-				{ textFont = initFont; Graphic.SetFont(textFont); }// ShowTextSize
+            try
+            {
+                if ((textFont.Size != null) && (textFont.FontFamily != null))
+                    Graphic.SetFont(textFont);      // ShowTextSize
+                else
+                { textFont = initFont; Graphic.SetFont(textFont); }// ShowTextSize
 
-				RectangleF b = Graphic.GetTextBounds(GetWrappedText(), StringAlignment.Near);
-				LblInfoSize.Text = string.Format("{0} pt", textFont.Size);
-				LblInfoWidth.Text = string.Format("{0,9:0.00}", b.Width);
-				LblInfoHeight.Text = string.Format("{0,9:0.00}", b.Height);
-			}
+                RectangleF b = Graphic.GetTextBounds(GetWrappedText(), StringAlignment.Near);
+                LblInfoSize.Text = string.Format("{0} pt", textFont.Size);
+                LblInfoWidth.Text = string.Format("{0,9:0.00}", b.Width);
+                LblInfoHeight.Text = string.Format("{0,9:0.00}", b.Height);
+            }
             catch (Exception err)
             {
-                Logger.Error(err, "ShowTextSize textFont.Name:'{0}'  textFont.Size:'{1}' ", textFont.FontFamily.Name, textFont.Size);
+                Logger.Error(err, "ShowTextSize ");// textFont.Name:'{0}'  textFont.Size:'{1}' ", textFont.FontFamily.Name, textFont.Size);
             }
         }
         private void LinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -497,23 +502,35 @@ namespace GrblPlotter
         {
             RectangleF b = Graphic.GetTextBounds(tBText.Text, StringAlignment.Near);
             float newSize = (float)NUDWidth.Value * textFont.Size / b.Width;
-            textFont = new Font(textFont.Name, newSize, textFont.Style);
-            tBText.Font = textFont;
-            ShowTextSize();
+            if ((newSize > 0) && (newSize < Single.MaxValue))
+            {
+                textFont = new Font(textFont.Name, newSize, textFont.Style);
+                tBText.Font = textFont;
+                ShowTextSize();
+            }
+            else
+            { MessageBox.Show("Desired width causes invalid font size. Please choose other width.", "Error"); }
         }
 
         private void BtnSetHeight_Click(object sender, EventArgs e)
         {
             RectangleF b = Graphic.GetTextBounds(tBText.Text, StringAlignment.Near);
             float newSize = (float)NUDHeight.Value * textFont.Size / b.Height;
-            textFont = new Font(textFont.Name, newSize, textFont.Style);
-            tBText.Font = textFont;
-            ShowTextSize();
+            if ((newSize > 0) && (newSize < Single.MaxValue))
+            {
+                textFont = new Font(textFont.Name, newSize, textFont.Style);
+                tBText.Font = textFont;
+                ShowTextSize();
+            }
+            else
+            { MessageBox.Show("Desired heigth causes invalid font size. Please choose other heigth.", "Error"); }
         }
 
         private void CbWordWrap_CheckedChanged(object sender, EventArgs e)
         {
-            tBText.WordWrap = CbWordWrap.Checked;
+            bool isWrapped = tBText.WordWrap = CbWordWrap.Checked;
+            BtnSetWidth.Enabled = BtnSetHeight.Enabled = !isWrapped;
+            NUDHeight.Enabled = NUDWidth.Enabled = !isWrapped;
             ShowTextSize();
         }
 

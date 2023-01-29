@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@
  * 2021-06-26 gcode.setup(false) disable InsertSubroutine, LineSegmentation. Tab 2,3 disable cBNoZUp
  * 2021-07-14 code clean up / code quality
  * 2021-11-23 set default for tprop
+ * 2023-01-17 add try catch in ShapeToGCode_Load
 */
 
 using System;
@@ -703,21 +704,27 @@ namespace GrblPlotter
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { CenterToScreen(); }
 
-            nUDToolDiameter.Value = Properties.Settings.Default.createShapeToolDiameter;
-            nUDToolZStep.Value = Properties.Settings.Default.createShapeToolZStep;
-            nUDToolFeedXY.Value = Properties.Settings.Default.createShapeToolFeedXY;
-            nUDToolFeedZ.Value = Properties.Settings.Default.createShapeToolFeedZ;
-            nUDToolOverlap.Value = Properties.Settings.Default.createShapeToolOverlap;
-            nUDToolSpindleSpeed.Value = Properties.Settings.Default.createShapeToolSpindleSpeed;
-            nUDShapeX.Value = Properties.Settings.Default.createShapeX;
-            nUDShapeY.Value = Properties.Settings.Default.createShapeY;
-            nUDShapeR.Value = Properties.Settings.Default.createShapeR;
-            cBMoveTo00.Checked = Properties.Settings.Default.createShapeMovo00;
-            cBNoZUp.Checked = Properties.Settings.Default.createShapeNoZUp;
+			try
+			{
+				nUDToolDiameter.Value = Properties.Settings.Default.createShapeToolDiameter;
+				nUDToolZStep.Value = Properties.Settings.Default.createShapeToolZStep;
+				nUDToolFeedXY.Value = Properties.Settings.Default.createShapeToolFeedXY;
+				nUDToolFeedZ.Value = Properties.Settings.Default.createShapeToolFeedZ;
+				nUDToolOverlap.Value = Properties.Settings.Default.createShapeToolOverlap;
+				nUDToolSpindleSpeed.Value = Properties.Settings.Default.createShapeToolSpindleSpeed;
+				nUDShapeX.Value = Properties.Settings.Default.createShapeX;
+				nUDShapeY.Value = Properties.Settings.Default.createShapeY;
+				nUDShapeR.Value = Properties.Settings.Default.createShapeR;
+				cBMoveTo00.Checked = Properties.Settings.Default.createShapeMovo00;
+				cBNoZUp.Checked = Properties.Settings.Default.createShapeNoZUp;
 
-            nUDRZRadius.Value = Properties.Settings.Default.createShapeRZRadius;
-            nUDRZWidth.Value = Properties.Settings.Default.createShapeRZWidth;
-            nUDRZStep.Value = Properties.Settings.Default.createShapeRZStep;
+				nUDRZRadius.Value = Properties.Settings.Default.createShapeRZRadius;
+				nUDRZWidth.Value = Properties.Settings.Default.createShapeRZWidth;
+				nUDRZStep.Value = Properties.Settings.Default.createShapeRZStep;
+				
+				nUDImportGCZDown.Value = Properties.Settings.Default.importGCZDown;
+			}
+			catch {}
 
             switch (Properties.Settings.Default.createShapeType)
             {
@@ -731,7 +738,6 @@ namespace GrblPlotter
                     rBShape1.Checked = true;    // rectangle
                     break;
             }
-            nUDImportGCZDown.Value = Properties.Settings.Default.importGCZDown;
             switch (Properties.Settings.Default.createShapeToolPath)
             {
                 case 2:

@@ -558,7 +558,7 @@ namespace GrblPlotter
             /**********************/
             DisableControlEvents();
 
-            bool useColorMode = tabControl2.SelectedIndex == 0;
+            bool _useColorMode = tabControl2.SelectedIndex == 0;
             useFullReso = (cBGCodeOutline.Checked && gBgcodeSelection.Enabled);             // && useColorMode
             UpdateLabels();
             lblStatus.Text = "Apply color corrections...";
@@ -669,7 +669,7 @@ namespace GrblPlotter
                     adjustedImage = filterRGB.Apply(grayImage);
                 }
 
-                if (useColorMode)
+                if (_useColorMode)
                     CountResultColors();            // get all applied toolTable-colors and its count
                 else
                     CountResultColorsGray();        // get all applied gray-colors and its count
@@ -677,7 +677,7 @@ namespace GrblPlotter
                 /*********************
 				***** COLOR MODE *****
 				**********************/
-                if (useColorMode && cBReduceColorsToolTable.Checked)		// for Color Mode
+                if (_useColorMode && cBReduceColorsToolTable.Checked)		// for Color Mode
                 {
                     ToolTable.SetAllSelected(true);     //  enable all tools
                     List<Color> myPalette = new List<Color>();
@@ -748,7 +748,7 @@ namespace GrblPlotter
 				***** Grayscale MODE *****
 				**************************/
                 else
-                if (!useColorMode && cBReduceColorsToolTable.Checked)		// for Grayscale Mode!!!
+                if (!_useColorMode && cBReduceColorsToolTable.Checked)		// for Grayscale Mode!!!
                 {
                     List<Color> myPalette = new List<Color>();
                     ColorImageQuantizer ciq = new ColorImageQuantizer(new MedianCutQuantizer());

@@ -660,7 +660,7 @@ namespace GrblPlotter
             this.tBText.ForeColor = System.Drawing.Color.Black;
             this.tBText.Name = "tBText";
             this.tBText.Text = global::GrblPlotter.Properties.Settings.Default.createTextFontText;
-            this.tBText.TextChanged += new System.EventHandler(this.tBText_TextChanged);
+            this.tBText.TextChanged += new System.EventHandler(this.TbText_TextChanged);
             // 
             // cBLineBreak
             // 

@@ -14,6 +14,7 @@
  * 2020-12-16 Add dispose function for class Code93 and class Code128
  * 2021-07-02 code clean up / code quality
  * 2022-01-08 line 3080 add if (Encoded.Length > 1)
+ * 2023-01-27 add try/catch and return after error
 */
 
 using System;
@@ -95,7 +96,11 @@ namespace GrblPlotter.BarcodeCreation
         /// </summary>
         private string Encode_Codabar()
         {
-            if (Raw_Data.Length < 2) Error("ECODABAR-1: Data format invalid. (Invalid length)");
+            if (Raw_Data.Length < 2)
+            {
+                Error("ECODABAR-1: Data format invalid. (Invalid length)");
+                return "";
+            }
 
             //check first char to make sure its a start/stop char
             switch (Raw_Data[0].ToString(culture).ToUpper(culture).Trim())
@@ -106,6 +111,7 @@ namespace GrblPlotter.BarcodeCreation
                 case "D": break;
                 default:
                     Error("ECODABAR-2: Data format invalid. (Invalid START character)");
+                    return "";
                     break;
             }//switch
 
@@ -118,6 +124,7 @@ namespace GrblPlotter.BarcodeCreation
                 case "D": break;
                 default:
                     Error("ECODABAR-3: Data format invalid. (Invalid STOP character)");
+                    return "";
                     break;
             }//switch
 
@@ -137,8 +144,10 @@ namespace GrblPlotter.BarcodeCreation
 
             //now that all the valid non-numeric chars have been replaced with a number check if all numeric exist
             if (!CheckNumericOnly(temp))
+            {
                 Error("ECODABAR-4: Data contains invalid  characters.");
-
+                return "";
+            }
             string result = "";
 
             foreach (char c in Raw_Data)
@@ -219,16 +228,22 @@ namespace GrblPlotter.BarcodeCreation
         /// </summary>
         private string Encode_UPCA()
         {
+            string result = "101"; //start with guard bars
+
             //check length of input
             if (Raw_Data.Length != 11 && Raw_Data.Length != 12)
+            {
                 Error("EUPCA-1: Data length invalid. (Length must be 11 or 12)");
+                return result;
+            }
 
             if (!CheckNumericOnly(Raw_Data))
+            {
                 Error("EUPCA-2: Numeric Data Only");
+                return result;
+            }
 
             CheckDigit();
-
-            string result = "101"; //start with guard bars
 
             //first number
             result += UPC_CodeA[Int32.Parse(Raw_Data[0].ToString(culture))];
@@ -491,10 +506,16 @@ namespace GrblPlotter.BarcodeCreation
         {
             //check length of input
             if (Raw_Data.Length < 12 || Raw_Data.Length > 13)
-            { Error("EEAN13-1: Data length invalid. (Length must be 12 or 13)"); return ""; }
+            {
+                Error("EEAN13-1: Data length invalid. (Length must be 12 or 13)");
+                return "";
+            }
 
             if (!CheckNumericOnly(Raw_Data))
-            { Error("EEAN13-2: Numeric Data Only"); return ""; }
+            {
+                Error("EEAN13-2: Numeric Data Only");
+                return "";
+            }
 
             string patterncode = EAN_Pattern[Int32.Parse(Raw_Data[0].ToString())];
             string result = "101";
@@ -765,14 +786,20 @@ namespace GrblPlotter.BarcodeCreation
         /// </summary>
         private string Encode_Interleaved2of5()
         {
+            string result = "1010";
             //check length of input (only even if no checkdigit, else with check digit odd)
             if (Raw_Data.Length % 2 != (Encoded_Type == TYPE.Interleaved2of5_Mod10 ? 1 : 0))
+            {
                 Error("EI25-1: Data length invalid.");
+                return result;
+            }
 
             if (!CheckNumericOnly(Raw_Data))
+            {
                 Error("EI25-2: Numeric Data Only");
+                return result;
+            }
 
-            string result = "1010";
             string data = Raw_Data + (Encoded_Type == TYPE.Interleaved2of5_Mod10 ? CalculateMod10CheckDigit().ToString() : "");
 
             for (int i = 0; i < data.Length; i += 2)
@@ -858,17 +885,26 @@ namespace GrblPlotter.BarcodeCreation
         /// </summary>
         private string Encode_Standard2of5()
         {
-            if (!CheckNumericOnly(Raw_Data))
-                Error("ES25-1: Numeric Data Only");
-
             string result = "11011010";
-
-            foreach (char c in Raw_Data)
+            if (!CheckNumericOnly(Raw_Data))
             {
-                result += S25_Code[Int32.Parse(c.ToString())];
-            }//foreach
+                Error("ES25-1: Numeric Data Only");
+                return result;
+            }
+            try
+            {
+                foreach (char c in Raw_Data)
+                {
+                    result += S25_Code[Int32.Parse(c.ToString())];
+                }//foreach
 
-            result += Encoded_Type == TYPE.Standard2of5_Mod10 ? S25_Code[CalculateMod10CheckDigit()] : "";
+                result += Encoded_Type == TYPE.Standard2of5_Mod10 ? S25_Code[CalculateMod10CheckDigit()] : "";
+            }
+            catch (Exception err)
+            {
+                Error("ES25-1: " + err.Message);
+                return result;
+            }
 
             //add ending bars
             result += "1101011";
@@ -884,7 +920,6 @@ namespace GrblPlotter.BarcodeCreation
                 sum += Raw_Data[i] * (even ? 3 : 1);
                 even = !even;
             }
-
             return sum % 10;
         }
 
@@ -969,9 +1004,9 @@ namespace GrblPlotter.BarcodeCreation
                 catch
                 {
                     if (_AllowExtended)
-                        Error("EC39-1: Invalid data.");
+                    { Error("EC39-1: Invalid data."); return ""; }
                     else
-                        Error("EC39-1: Invalid data. (Try using Extended Code39)");
+                    { Error("EC39-1: Invalid data. (Try using Extended Code39)"); return ""; }
                     // throw;
                 }//catch
             }//foreach
@@ -1200,6 +1235,7 @@ namespace GrblPlotter.BarcodeCreation
                 case 11: break;
                 default:
                     Error("EPOSTNET-2: Invalid data length. (5, 6, 9, or 11 digits only)");
+                    return "";
                     break;
             }//switch
 
@@ -1261,7 +1297,10 @@ namespace GrblPlotter.BarcodeCreation
         private string Encode_ISBN_Bookland()
         {
             if (!CheckNumericOnly(Raw_Data))
+            {
                 Error("EBOOKLANDISBN-1: Numeric Data Only");
+                return "";
+            }
 
             string type = "UNKNOWN";
             if (Raw_Data.Length == 10 || Raw_Data.Length == 9)
@@ -1281,7 +1320,11 @@ namespace GrblPlotter.BarcodeCreation
             }//else if
 
             //check to see if its an unknown type
-            if (type == "UNKNOWN") Error("EBOOKLANDISBN-2: Invalid input.  Must start with 978 and be length must be 9, 10, 12, 13 characters.");
+            if (type == "UNKNOWN")
+            {
+                Error("EBOOKLANDISBN-2: Invalid input.  Must start with 978 and be length must be 9, 10, 12, 13 characters.");
+                return "";
+            }
 
             EAN13 ean13 = new EAN13(Raw_Data);
             return ean13.Encoded_Value;
@@ -1312,9 +1355,17 @@ namespace GrblPlotter.BarcodeCreation
         /// </summary>
         private string Encode_JAN13()
         {
-            if (!Raw_Data.StartsWith("49")) Error("EJAN13-1: Invalid Country Code for JAN13 (49 required)");
+            if (!Raw_Data.StartsWith("49"))
+            {
+                Error("EJAN13-1: Invalid Country Code for JAN13 (49 required)");
+                return "";
+            }
+
             if (!CheckNumericOnly(Raw_Data))
+            {
                 Error("EJAN13-2: Numeric Data Only");
+                return "";
+            }
 
             EAN13 ean13 = new EAN13(Raw_Data);
             return ean13.Encoded_Value;
@@ -1350,10 +1401,17 @@ namespace GrblPlotter.BarcodeCreation
         /// </summary>
         private string Encode_UPCSupplemental_2()
         {
-            if (Raw_Data.Length != 2) Error("EUPC-SUP2-1: Invalid data length. (Length = 2 required)");
+            if (Raw_Data.Length != 2)
+            {
+                Error("EUPC-SUP2-1: Invalid data length. (Length = 2 required)");
+                return "";
+            }
 
             if (!CheckNumericOnly(Raw_Data))
+            {
                 Error("EUPC-SUP2-2: Numeric Data Only");
+                return "";
+            }
 
             string pattern = "";
 
@@ -1364,6 +1422,7 @@ namespace GrblPlotter.BarcodeCreation
             catch
             {
                 Error("EUPC-SUP2-3: Invalid Data. (Numeric only)");
+                return "";
                 //throw;
             }
 
@@ -1420,7 +1479,10 @@ namespace GrblPlotter.BarcodeCreation
         {
             //check for non-numeric chars
             if (!CheckNumericOnly(Raw_Data))
+            {
                 Error("EMSI-1: Numeric Data Only");
+                return "";
+            }
 
             string PreEncoded = Raw_Data;
 
@@ -1532,10 +1594,17 @@ namespace GrblPlotter.BarcodeCreation
         /// </summary>
         private string Encode_UPCSupplemental_5()
         {
-            if (Raw_Data.Length != 5) Error("EUPC-SUP5-1: Invalid data length. (Length = 5 required)");
+            if (Raw_Data.Length != 5)
+            {
+                Error("EUPC-SUP5-1: Invalid data length. (Length = 5 required)");
+                return "";
+            }
 
             if (!CheckNumericOnly(Raw_Data))
+            {
                 Error("EUPCA-2: Numeric Data Only");
+                return "";
+            }
 
             //calculate the checksum digit
             int even = 0;
@@ -1618,15 +1687,24 @@ namespace GrblPlotter.BarcodeCreation
         private string Encode_UPCE()
         {
             if (Raw_Data.Length != 6 && Raw_Data.Length != 8 && Raw_Data.Length != 12)
+            {
                 Error("EUPCE-1: Invalid data length. (8 or 12 numbers only)");
+                return "";
+            }
 
             if (!CheckNumericOnly(Raw_Data))
+            {
                 Error("EUPCE-2: Numeric only.");
+                return "";
+            }
 
             //check for a valid number system
             int NumberSystem = Int32.Parse(Raw_Data[0].ToString());
             if (NumberSystem != 0 && NumberSystem != 1)
+            {
                 Error("EUPCE-3: Invalid Number System (only 0 & 1 are valid)");
+                return "";
+            }
 
             int CheckDigit = Int32.Parse(Raw_Data[Raw_Data.Length - 1].ToString());
 
@@ -1667,7 +1745,10 @@ namespace GrblPlotter.BarcodeCreation
                     UPCECode += ProductCode[4]; //last digit of product
                 }//else if
                 else
+                {
                     Error("EUPCE-4: Illegal UPC-A entered for conversion.  Unable to convert.");
+                    return "";
+                }
 
                 Raw_Data = UPCECode;
             }//if
@@ -1731,7 +1812,11 @@ namespace GrblPlotter.BarcodeCreation
             Raw_Data = input;
 
             //check numeric only
-            if (!CheckNumericOnly(Raw_Data)) Error("EEAN8-2: Numeric only.");
+            if (!CheckNumericOnly(Raw_Data))
+            {
+                Error("EEAN8-2: Numeric only.");
+                return;
+            }
 
             CheckDigit();
         }
@@ -1740,26 +1825,38 @@ namespace GrblPlotter.BarcodeCreation
         /// </summary>
         private string Encode_EAN8()
         {
-            //check length
-            if (Raw_Data.Length != 8 && Raw_Data.Length != 7) Error("EEAN8-1: Invalid data length. (7 or 8 numbers only)");
-
             //encode the data
             string result = "101";
 
-            //first half (Encoded using left hand / odd parity)
-            for (int i = 0; i < Raw_Data.Length / 2; i++)
+            //check length
+            if (Raw_Data.Length != 8 && Raw_Data.Length != 7)
             {
-                result += EAN_CodeA[Int32.Parse(Raw_Data[i].ToString())];
-            }//for
+                Error("EEAN8-1: Invalid data length. (7 or 8 numbers only)");
+                return result;
+            }
 
-            //center guard bars
-            result += "01010";
-
-            //second half (Encoded using right hand / even parity)
-            for (int i = Raw_Data.Length / 2; i < Raw_Data.Length; i++)
+            try
             {
-                result += EAN_CodeC[Int32.Parse(Raw_Data[i].ToString())];
-            }//for
+                //first half (Encoded using left hand / odd parity)
+                for (int i = 0; i < Raw_Data.Length / 2; i++)
+                {
+                    result += EAN_CodeA[Int32.Parse(Raw_Data[i].ToString())];
+                }//for
+
+                //center guard bars
+                result += "01010";
+
+                //second half (Encoded using right hand / even parity)
+                for (int i = Raw_Data.Length / 2; i < Raw_Data.Length; i++)
+                {
+                    result += EAN_CodeC[Int32.Parse(Raw_Data[i].ToString())];
+                }//for
+            }
+            catch (Exception err)
+            {
+                Error("EEAN8-1: " + err.Message);
+                return result;
+            }
 
             result += "101";
 
@@ -1826,7 +1923,10 @@ namespace GrblPlotter.BarcodeCreation
         private string Encode_Code11()
         {
             if (!CheckNumericOnly(Raw_Data.Replace("-", "")))
+            {
                 Error("EC11-1: Numeric data and '-' Only");
+                return "";
+            }
 
             //calculate the checksums
             int weight = 1;
@@ -2198,6 +2298,7 @@ namespace GrblPlotter.BarcodeCreation
                             else if (c != FNC1)
                             {
                                 Error("EC128-6: Only numeric values can be encoded with C128-C (Invalid char at position " + x + ").");
+                                return;
                             }
                         }
 
@@ -2261,6 +2362,7 @@ namespace GrblPlotter.BarcodeCreation
                         break;
                     default:
                         Error("EC128-4: Unknown start type in fixed type encoding.");
+                        return;
                         break;
                 }
             }//if
@@ -2304,7 +2406,10 @@ namespace GrblPlotter.BarcodeCreation
                                     error = true;
 
                                     if (col++ > CurrentCodeSet.ItemArray.Length)
+                                    {
                                         Error("No start character found in CurrentCodeSet.");
+                                        return;
+                                    }
                                     // throw;
                                 }//catch
                             }//while
@@ -2369,7 +2474,10 @@ namespace GrblPlotter.BarcodeCreation
                 }//switch              
 
                 if (E_Row == null || E_Row.Length <= 0)
+                {
                     Error("EC128-5: Could not find encoding of a value( " + s1 + " ) in C128 type " + this.type.ToString());
+                    return Encoded_Data;
+                }
 
                 Encoded_Data += E_Row[0]["Encoding"].ToString();
                 _EncodedData.Add(E_Row[0]["Encoding"].ToString());
@@ -2442,14 +2550,21 @@ namespace GrblPlotter.BarcodeCreation
         /// </summary>
         private string Encode_ITF14()
         {
+            string result = "1010";
+
             //check length of input
             if (Raw_Data.Length > 14 || Raw_Data.Length < 13)
+            {
                 Error("EITF14-1: Data length invalid. (Length must be 13 or 14)");
+                return result;
+            }
 
             if (!CheckNumericOnly(Raw_Data))
+            {
                 Error("EITF14-2: Numeric data only.");
+                return result;
+            }
 
-            string result = "1010";
 
             for (int i = 0; i < Raw_Data.Length; i += 2)
             {
@@ -2801,7 +2916,10 @@ namespace GrblPlotter.BarcodeCreation
             try
             {
                 if ((input.Length % 2) > 0)
+                {
                     Error("ETELEPEN-3: Numeric encoding attempted on odd number of characters");
+                    return;
+                }
 
                 for (int i = 0; i < input.Length; i += 2)
                 {
