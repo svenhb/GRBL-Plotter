@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -540,7 +540,7 @@ namespace GrblPlotter
                                 Graphic.SetPathId(href);
                                 if (attributeStroke != "") Graphic.SetPenColor(attributeStroke.StartsWith("#") ? attributeStroke.Substring(1) : attributeStroke);
                                 if ((attributeFill != "") && (attributeFill != "none"))
-									Graphic.SetPenFill(attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
+                                    Graphic.SetPenFill(attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
 
                                 if (id.Name == (nspace + "path"))
                                 {
@@ -625,7 +625,7 @@ namespace GrblPlotter
                 attributeFill = element.Attribute("fill").Value;
                 logSource = "ParseAttributs: fill2: " + attributeFill;
                 if ((attributeFill.Length > 1) && (attributeFill != "none"))
-					Graphic.SetPenFill(attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
+                    Graphic.SetPenFill(attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
             }
             if (element.Attribute("stroke-width") != null)
             {
@@ -841,10 +841,10 @@ namespace GrblPlotter
                         double[] dash = Array.ConvertAll(pattern,
                                s => double.TryParse(s, System.Globalization.NumberStyles.Float, System.Globalization.NumberFormatInfo.InvariantInfo, out double tmp) ? tmp : 0);    //(tmp * (double)gcodeScale) : 0);
                         if (logEnable) Logger.Debug("SetDashPattern:{0}", dasharray);
-						
-						for (int k=0; k < dash.Length; k++)
-						{	dash[k] = dash[k] / factor_Mm2Px;}	// convert px to mm
-					
+
+                        for (int k = 0; k < dash.Length; k++)
+                        { dash[k] = dash[k] / factor_Mm2Px; }   // convert px to mm
+
                         Graphic.SetDash(dash);
                     }
                 }
@@ -863,9 +863,6 @@ namespace GrblPlotter
 
             foreach (var form in forms)
             {
-                int maxCount = svgCode.Elements(nspace + form).Count();
-                int pathCount = 0;
-
                 foreach (var pathElement in svgCode.Elements(nspace + form))
                 {
                     ParseBasicElement(pathElement, level);
@@ -881,7 +878,6 @@ namespace GrblPlotter
 
             Logger.Info("►►► ParseBasicElement {0}", elementText);
 
-            int pathCount = 0;
             string pathElementString = pathElement.ToString();
             pathElementString = pathElementString.Substring(0, Math.Min(100, pathElementString.Length));
 
@@ -1288,8 +1284,8 @@ namespace GrblPlotter
         /// </summary>
         private static int ParsePathCommand(string svgPath) // process single command 'M' or 'V', etc. with it's coordinate
         {
-			if (String.IsNullOrEmpty(svgPath))		// LaserGRBL Issue #1969 
-				return 0;
+            if (String.IsNullOrEmpty(svgPath))      // LaserGRBL Issue #1969 
+                return 0;
             var command = svgPath.Take(1).Single();	// System.IndexOutOfRangeException: Index was outside the bounds of the array.
             logSource = "path " + svgPath;
             char cmd = char.ToUpper(command);

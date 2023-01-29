@@ -63,7 +63,7 @@ namespace GrblPlotter
             TextProperties origTextProp = new TextProperties(newTextProp);	    // reset properties after each node, preset with prev node
             int textPathCount = 0;
             int textPathCharIndex = newTextPathCharIndex;
-            string tmpText, txt;
+            string txt;
             int nodeMax = pathElement.Nodes().Count();
             int nodeCount = 0;
             foreach (var node in pathElement.Nodes())
@@ -179,7 +179,7 @@ namespace GrblPlotter
             //    Logger.Trace("stripWhiteSpace out:'{0}'", retVal);
             return retVal;
         }
-        
+
 
         private static PointF ProcessTextPath(XElement pathElement, TextProperties textProp, PointF origin, int level)
         {
@@ -203,7 +203,7 @@ namespace GrblPlotter
                         if (id.Name == (nspace + "path"))
                         {
                             lastTransformMatrix.SetIdentity();
-                    //        lastTransformMatrix = ParseTransform(id, false, level);
+                            //        lastTransformMatrix = ParseTransform(id, false, level);
                             ParseAttributs(id);
 
                             if (id.Attribute("d") != null)
@@ -281,7 +281,7 @@ namespace GrblPlotter
             if ((!string.IsNullOrEmpty(txt)) && (textOnPath.PointCount > 0))
             {
                 //         lastTransformMatrix = System.Windows.Media.Matrix.Multiply(lastTransformMatrix, matrixElement);
-            //    lastTransformMatrix = System.Windows.Media.Matrix.Multiply(matrixGroup[1],lastTransformMatrix);	// '1' = 1st g-level
+                //    lastTransformMatrix = System.Windows.Media.Matrix.Multiply(matrixGroup[1],lastTransformMatrix);	// '1' = 1st g-level
                 Matrix tmpM = new Matrix((float)lastTransformMatrix.M11, (float)lastTransformMatrix.M12, (float)lastTransformMatrix.M21, (float)lastTransformMatrix.M22,
                                         (float)lastTransformMatrix.OffsetX, (float)lastTransformMatrix.OffsetY);
                 textOnPath.Transform(tmpM);
@@ -401,10 +401,10 @@ namespace GrblPlotter
             public TextProperties(TextProperties temp)
             {
                 Array.Resize(ref x, temp.x.Length); temp.x.CopyTo(x, 0);
-                Array.Resize(ref y, temp.y.Length); temp.y.CopyTo(y, 0);   
-                Array.Resize(ref dx, temp.dx.Length); temp.dx.CopyTo(dx, 0);    
-                Array.Resize(ref dy, temp.dy.Length); temp.dy.CopyTo(dy, 0);    
-                Array.Resize(ref r, temp.r.Length); temp.r.CopyTo(r, 0);	
+                Array.Resize(ref y, temp.y.Length); temp.y.CopyTo(y, 0);
+                Array.Resize(ref dx, temp.dx.Length); temp.dx.CopyTo(dx, 0);
+                Array.Resize(ref dy, temp.dy.Length); temp.dy.CopyTo(dy, 0);
+                Array.Resize(ref r, temp.r.Length); temp.r.CopyTo(r, 0);
                 textFontFamily = temp.textFontFamily;
                 textFontWeight = temp.textFontWeight;
                 textFontStyle = temp.textFontStyle;
@@ -590,9 +590,10 @@ namespace GrblPlotter
                 {
                     fill = element.Attribute("fill").Value;
                     if (stroke == "")
-					{	if (fill != "none")	{stroke = fill;}
-						else	{stroke = "black";}
-					}
+                    {
+                        if (fill != "none") { stroke = fill; }
+                        else { stroke = "black"; }
+                    }
                 }
                 if (element.Attribute("stroke") != null) stroke = element.Attribute("stroke").Value;
 
@@ -624,7 +625,6 @@ namespace GrblPlotter
                 if (size > 0)
                 {
                     float[] result = new float[size];
-                    double test;
                     for (int i = 0; i < size; i++)
                     {
                         result[i] = ConvertToPixel(parts[i]);
@@ -686,7 +686,7 @@ namespace GrblPlotter
                 Logger.Trace("● ExportString '{0}'  pureText:{1}  start-X:{2:0.00}  textLen:{3:0.00}   spaceWidth:{4:0.00}   fontSize:{5:0.00}", text, isPureText, GetX(0), posX[text.Length], spaceWidth, fontSize);
 
                 if (stroke != "") { Graphic.SetPenColor(stroke.StartsWith("#") ? stroke.Substring(1) : stroke); }  //Logger.Info("SetPenColor '{0}'", stroke); 
-                if ((fill != "") && (fill != "none")){ Graphic.SetPenFill(fill.StartsWith("#") ? fill.Substring(1) : fill); }     //Logger.Info("SetPenFill  '{0}'", fill); 
+                if ((fill != "") && (fill != "none")) { Graphic.SetPenFill(fill.StartsWith("#") ? fill.Substring(1) : fill); }     //Logger.Info("SetPenFill  '{0}'", fill); 
 
                 float oxOrig = GetX(0) + GetdX(0);
                 float ox = oxOrig - xOffsetBounds + spaceWidthStartApply + XOffsetLSB;
@@ -748,7 +748,7 @@ namespace GrblPlotter
                 {
                     string testChar = "#";
                     float tmpWidth = GetCharWidth(testChar + testChar).Width;
-                    float r, width;
+                    float angle, width;
                     PointF origin;
                     List<float> posX = new List<float>();
                     List<float> GlyphWidth = new List<float>();
@@ -757,7 +757,7 @@ namespace GrblPlotter
                     {
                         width = GetCharWidth(testChar + text.Substring(0, i) + testChar).Width - tmpWidth + textLetterSpacing * i;
                         posX.Add(width);
-                    //    width = GetCharWidth(testChar + text.Substring(i, 1) + testChar).Width - tmpWidth;
+                        //    width = GetCharWidth(testChar + text.Substring(i, 1) + testChar).Width - tmpWidth;
                         width = GetGlyphProperty(text[i], 1) * fontSize;
                         GlyphWidth.Add(width);
                     }
@@ -789,12 +789,12 @@ namespace GrblPlotter
                             origin = getPathPos(xpos, ref pIndex);
 
                             if (pIndex > 0)
-                                r = GetAngle(pPath[pIndex - 1], pPath[pIndex + 1]);
+                                angle = GetAngle(pPath[pIndex - 1], pPath[pIndex + 1]);
                             else
-                                r = GetAngle(pPath[pIndex], pPath[pIndex + 1]);
+                                angle = GetAngle(pPath[pIndex], pPath[pIndex + 1]);
 
-                     //       Logger.Trace("●  ExportTextOnPath '{0}' x:{1}  y:{2}", text[i],origin.X,origin.Y);
-                            DrawGlyphPath(path, new PointF(origin.X, origin.Y - yOffset), new PointF(origin.X, origin.Y), r, text[i].ToString(), StringAlignment.Center);
+                            //       Logger.Trace("●  ExportTextOnPath '{0}' x:{1}  y:{2}", text[i],origin.X,origin.Y);
+                            DrawGlyphPath(path, new PointF(origin.X, origin.Y - yOffset), new PointF(origin.X, origin.Y), angle, text[i].ToString(), StringAlignment.Center);
                             ExtractGlyphPath(path, new PointF(0, 0), "textPath '" + text[i] + "'");            // StartPath & Graphic.StopPath
                         }
                     }
@@ -803,7 +803,7 @@ namespace GrblPlotter
                     PointF getPathPos(float s, ref int index)
                     {
                         double dc, distanceOld = 0, distance = 0;
-                        float dx, dy, x, y, lx = pPath[0].X, ly = pPath[0].Y;
+                        float x, y, lx = pPath[0].X, ly = pPath[0].Y;
 
                         for (int i = 0; i < pPath.Length - 1; i++)
                         {
@@ -823,9 +823,9 @@ namespace GrblPlotter
                                 double ratio = needed / dc;
                                 x = (float)ratio * x;
                                 y = (float)ratio * y;
-                             //   double tc = Math.Sqrt(x * x + y * y);
-                             //   float nx = pPath[i].X + x, ny = pPath[i].Y + y;
-                             //   Logger.Info("getPathIndex > s:{0:0.00}   distance:{1:0.00}  distanceOld:{2:0.00}  delta:{3:0.00}  needed:{4:0.00}  corrected:{5:0.00}  x:{6:0.00}  y:{7:0.00}  index:{8}", s, distance, distanceOld, dc, needed, (distanceOld + tc), nx, ny, i);
+                                //   double tc = Math.Sqrt(x * x + y * y);
+                                //   float nx = pPath[i].X + x, ny = pPath[i].Y + y;
+                                //   Logger.Info("getPathIndex > s:{0:0.00}   distance:{1:0.00}  distanceOld:{2:0.00}  delta:{3:0.00}  needed:{4:0.00}  corrected:{5:0.00}  x:{6:0.00}  y:{7:0.00}  index:{8}", s, distance, distanceOld, dc, needed, (distanceOld + tc), nx, ny, i);
                                 i--;
                                 if (i < 0) i = 0;
                                 return new PointF(pPath[i].X + x, pPath[i].Y + y);
@@ -932,7 +932,7 @@ namespace GrblPlotter
             private float GetPathLength(GraphicsPath toPath)
             {
                 PointF[] tmpP = toPath.PathPoints;
-                PointF pLast, pNew, pDelta;
+                PointF pLast, pNew;
                 float length = 0;
 
                 pLast = tmpP[0];
