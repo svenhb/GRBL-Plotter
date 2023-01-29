@@ -33,6 +33,8 @@
  * 2022-11-03 line 245 check InvoeRequired
  * 2023-01-04 add _process_form.Feedback
  * 2023-01-06 line 579 error handling - check if line is in range
+ * 2023-01-29 line 182 ProcessedPathLine(actualCodeLine);//.CodeLineConfirmed);
+ *            line 153 removed line selection
 */
 
 using GrblPlotter.GUI;
@@ -146,12 +148,13 @@ namespace GrblPlotter
                 if (actualCodeLine < 0) actualCodeLine = 0;
                 if (e.CodeLineSent >= fCTBCode.LinesCount)
                     actualCodeLine = fCTBCode.LinesCount - 1;
-                try
-                { fCTBCode.Selection = fCTBCode.GetLine(actualCodeLine); }
-                catch (Exception err) 
-				{ 	Logger.Error(err, "OnRaiseStreamEvent - fCTBCode.Selection = fCTBCode.GetLine(actualCodeLine)"); 
-					EventCollector.SetStreaming("Sfctb0");
-				}
+
+                /*   try   // disabled in 1.6.8.4 2023-01-29
+                   { fCTBCode.Selection = fCTBCode.GetLine(actualCodeLine); }
+                   catch (Exception err) 
+                   { 	Logger.Error(err, "OnRaiseStreamEvent - fCTBCode.Selection = fCTBCode.GetLine(actualCodeLine)"); 
+                       EventCollector.SetStreaming("Sfctb0");
+                   }*/
 
                 fCTBCodeClickedLineNow = actualCodeLine - 1;
                 if (fCTBCodeClickedLineNow < 0) fCTBCodeClickedLineNow = 0;
@@ -159,25 +162,24 @@ namespace GrblPlotter
                 FctbSetBookmark();         // set Bookmark and marker in 2D-View
                 VisuGCode.SetPosMarkerLine(fCTBCodeClickedLineNow, false);
 
-                try
-                {
-                    if (this.fCTBCode.InvokeRequired)
-                    { this.fCTBCode.BeginInvoke((MethodInvoker)delegate () { this.fCTBCode.DoCaretVisible(); }); }
-                    else
-                    { this.fCTBCode.DoCaretVisible(); }
-                }
-                catch (Exception er)
-                {
-                    Logger.Error(er, "OnRaiseStreamEvent fCTBCode.InvokeRequired ");
-					EventCollector.SetStreaming("Sfctb1");
-                }
+                /*    try   // disabled in 1.6.8.4 2023-01-29
+                    {
+                        if (this.fCTBCode.InvokeRequired)
+                        { this.fCTBCode.BeginInvoke((MethodInvoker)delegate () { this.fCTBCode.DoCaretVisible(); }); }
+                        else
+                        { this.fCTBCode.DoCaretVisible(); }
+                    }
+                    catch (Exception er)
+                    {
+                        Logger.Error(er, "OnRaiseStreamEvent fCTBCode.InvokeRequired ");
+                        EventCollector.SetStreaming("Sfctb1");
+                    }*/
             }
 
             if (_diyControlPad != null)
                 _diyControlPad.SendFeedback("[" + e.Status.ToString() + "]");
 
-            //    if (Properties.Settings.Default.guiProgressShow)
-            VisuGCode.ProcessedPath.ProcessedPathLine(e.CodeLineConfirmed);		// in GCodeSimulate.cs
+            VisuGCode.ProcessedPath.ProcessedPathLine(actualCodeLine);//.CodeLineConfirmed);		// in GCodeSimulate.cs
 
             if (logStreaming)
                 Logger.Trace("### OnRaiseStreamEvent  {0}  line {1} ", e.Status.ToString(), e.CodeLineSent);
@@ -662,7 +664,7 @@ namespace GrblPlotter
         private void StopStreaming(bool showMessage)
         {
             Logger.Info("⏹⏹  Stop streaming at line {0}", (fCTBCodeClickedLineNow + 1));
-            StatusStripSet(1, string.Format("{0} {1} {0}", DateTime.Now.ToString("HH:mm:ss"), Localization.GetString("statusStripeStreamingStop"), (fCTBCodeClickedLineNow + 1)), Color.Yellow);        // Streaming STOP at line
+            StatusStripSet(1, string.Format("{0} {1} {2}", DateTime.Now.ToString("HH:mm:ss"), Localization.GetString("statusStripeStreamingStop"), (fCTBCodeClickedLineNow + 1)), Color.Yellow);        // Streaming STOP at line
             StatusStripColor(0, Color.White);
 
             showPicBoxBgImage = false;                 // don't show background image anymore

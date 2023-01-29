@@ -264,8 +264,8 @@ namespace GrblPlotter
             double yRange = (maxy - miny);
             if ((xRange > 0) && (yRange > 0))
             {
-                double picScaling = Math.Min(pictureBox1.Width / (xRange), pictureBox1.Height / (yRange));               // calculate scaling px/unit
-                e.ScaleTransform((float)picScaling, (float)-picScaling);        // apply scaling (flip Y)
+                double _picScaling = Math.Min(pictureBox1.Width / (xRange), pictureBox1.Height / (yRange));               // calculate scaling px/unit
+                e.ScaleTransform((float)_picScaling, (float)-_picScaling);        // apply scaling (flip Y)
                 e.TranslateTransform((float)-minx, (float)(-yRange - miny));    // apply offset
             }
         }
@@ -664,52 +664,63 @@ namespace GrblPlotter
             {
                 if (manualEdit) { NewCodeEnd(); }
 
-                if ((transformType == SelectionHandle.Handle.None) && VisuGCode.CodeBlocksAvailable() && !isStreaming)
-                {
-                    if (expandGCode)    //Properties.Settings.Default.FCTBBlockExpandOnSelect)
-                    { foldLevel = foldLevelSelected; }
+				if (VisuGCode.CodeBlocksAvailable() && !isStreaming)
+				{	
+			
+					/* 1. get selection whish: group, figure, node */
+					bool modKeyAlt = (Panel.ModifierKeys == Keys.Alt);          // Keys.Alt find line with coord nearby, mark / unmark Figure
+					bool modKeyCtrl = (Panel.ModifierKeys == Keys.Control);     // Keys.Control find line with coord nearby, mark / unmark Group
+					bool modKeyShift = (Panel.ModifierKeys == Keys.Shift);      // Keys.Shift find line with coord nearby, mark / unmark Tile
+						
+					if (transformType == SelectionHandle.Handle.None)
+					{
+						if (expandGCode)    //Properties.Settings.Default.FCTBBlockExpandOnSelect)
+						{ foldLevel = foldLevelSelected; }
 
-                    /* 1. get selection whish: group, figure, node */
-                    bool modKeyAlt = (Panel.ModifierKeys == Keys.Alt);          // Keys.Alt find line with coord nearby, mark / unmark Figure
-                    bool modKeyCtrl = (Panel.ModifierKeys == Keys.Control);     // Keys.Control find line with coord nearby, mark / unmark Group
-                    bool modKeyShift = (Panel.ModifierKeys == Keys.Shift);      // Keys.Shift find line with coord nearby, mark / unmark Tile
+				//		/* 1. get selection whish: group, figure, node */
+				//		bool modKeyAlt = (Panel.ModifierKeys == Keys.Alt);          // Keys.Alt find line with coord nearby, mark / unmark Figure
+				//		bool modKeyCtrl = (Panel.ModifierKeys == Keys.Control);     // Keys.Control find line with coord nearby, mark / unmark Group
+				//		bool modKeyShift = (Panel.ModifierKeys == Keys.Shift);      // Keys.Shift find line with coord nearby, mark / unmark Tile
 
-                    markerType = XmlMarkerType.Figure;
-                    if (modKeyAlt) { markerType = XmlMarkerType.Node; }
-                    else if (modKeyCtrl) { markerType = XmlMarkerType.Group; }
-                    else if (modKeyShift) { markerType = XmlMarkerType.Tile; }
+						markerType = XmlMarkerType.Figure;
+						if (modKeyAlt) { markerType = XmlMarkerType.Node; }
+						else if (modKeyCtrl) { markerType = XmlMarkerType.Group; }
+						else if (modKeyShift) { markerType = XmlMarkerType.Tile; }
 
-                    /* 2. find corresponding Gcode-line, by click coordinate picAbsPos */
-                    SelectionHandle.SelectedMarkerType = lastMarkerType = markerType;
-                    VisuGCode.MarkerSize = markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (picScaling * zoomFactor));
-                    DistanceByLine markerProperties = VisuGCode.SetPosMarkerNearBy(picAbsPos, (markerType == XmlMarkerType.Node));  // find line with coord nearby, mark / unmark figure in GCodeVisuAndTransform.cs
+						/* 2. find corresponding Gcode-line, by click coordinate picAbsPos */
+						SelectionHandle.SelectedMarkerType = lastMarkerType = markerType;
+						VisuGCode.MarkerSize = markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (picScaling * zoomFactor));
+						DistanceByLine markerProperties = VisuGCode.SetPosMarkerNearBy(picAbsPos, (markerType == XmlMarkerType.Node));  // find line with coord nearby, mark / unmark figure in GCodeVisuAndTransform.cs
 
-                    clickedLineNr = markerProperties.lineNumber;
+						clickedLineNr = markerProperties.lineNumber;
 
-                    /* Switch selection if Text is selected */
-                    if (LineIsInRange(clickedLineNr) && XmlMarker.GetGroup(clickedLineNr))
-                    {
-                        if (XmlMarker.lastGroup.Type == "Text")             // reverse marking figure / group if text
-                        {
-                            if (!modKeyCtrl && SelectionHandle.IsActive)
-                            { markerType = XmlMarkerType.Group; }
-                            else
-                            { markerType = XmlMarkerType.Figure; }
-                        }
-                    }
+						/* Switch selection if Text is selected */
+						if (LineIsInRange(clickedLineNr) && XmlMarker.GetGroup(clickedLineNr))
+						{
+							if (XmlMarker.lastGroup.Type == "Text")             // reverse marking figure / group if text
+							{
+								if (!modKeyCtrl && SelectionHandle.IsActive)
+								{ markerType = XmlMarkerType.Group; }
+								else
+								{ markerType = XmlMarkerType.Figure; }
+							}
+						}
 
-                    if (logDetailed)
-                        Logger.Trace("🗲🗲🗲 SetFigureSelectionOnClick markerType:{0}  found line:{1}", markerType, clickedLineNr);
+						if (logDetailed)
+							Logger.Trace("🗲🗲🗲 SetFigureSelectionOnClick markerType:{0}  found line:{1}", markerType, clickedLineNr);
 
-                    fCTBCodeClickedLineNow = clickedLineNr;
+						fCTBCodeClickedLineNow = clickedLineNr;
 
-                    /* check if line-nr is within tile, group or figure and highlight GCode */
-                    /* highlight selected figure or group */
-                    FindFigureMarkSelection(markerType, clickedLineNr, markerProperties);//
-                    selectionPathOrig = (GraphicsPath)VisuGCode.pathMarkSelection.Clone();
+						/* check if line-nr is within tile, group or figure and highlight GCode */
+						/* highlight selected figure or group */
+						FindFigureMarkSelection(markerType, clickedLineNr, markerProperties);//
+						selectionPathOrig = (GraphicsPath)VisuGCode.pathMarkSelection.Clone();
 
-                    FoldBlocksByLevel(markerType, clickedLineNr);
-                }
+						FoldBlocksByLevel(markerType, clickedLineNr);
+					}
+					else if (false)
+					{}
+				}
                 cmsPicBoxMoveToMarkedPosition.ToolTipText = "Work X: " + Grbl.PosMarker.X.ToString() + "   Y: " + Grbl.PosMarker.Y.ToString();
                 if (VisuGCode.CodeBlocksAvailable())
                     StatusStripSet(1, Localization.GetString("statusStripeClickKeys2"), Color.LightGreen);

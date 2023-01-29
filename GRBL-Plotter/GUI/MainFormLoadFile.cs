@@ -54,6 +54,7 @@
  * 2022-12-02 open HeightMap form on drag&drop of *.map or *.stl
  * 2022-12-07 line 1220 LoadGcode check _serial_form != null, fCTBCode != null
  * 2023-01-02 bug fix in LoadFromClipboard
+ * 2023-01-24 line 1500 add ESC function - deselect paths
 */
 /*   96 #region MAIN-MENU FILE
  * 1483 MainForm_KeyDown  
@@ -285,8 +286,8 @@ namespace GrblPlotter
 
             fCTBCode.Refresh();
 
-            float markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / picScaling);
-            VisuGCode.CalcDrawingArea(markerSize);                                // calc ruler dimension
+            float _markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / picScaling);
+            VisuGCode.CalcDrawingArea(_markerSize);                                // calc ruler dimension
             VisuGCode.DrawMachineLimit();
             showPaths = true;
 
@@ -308,8 +309,8 @@ namespace GrblPlotter
             VisuGCode.MarkSelectedFigure(-1);
 
             CalculatePicScaling();              // update picScaling
-            markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (picScaling));
-            VisuGCode.CreateMarkerPath(markerSize);
+            _markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (picScaling));
+            VisuGCode.CreateMarkerPath(_markerSize);
 
             pictureBox1.Invalidate();                                   // resfresh view
             Application.DoEvents();                                     // after creating drawing paths
@@ -1495,7 +1496,13 @@ namespace GrblPlotter
                     pictureBox1.Invalidate();
                     e.SuppressKeyPress = true;
                 }
-
+                else if (e.KeyCode == Keys.Escape)    // escape = deselct
+                {
+					SelectionHandle.ClearSelected();
+					VisuGCode.MarkSelectedFigure(-1);					
+			        pictureBox1.Invalidate();
+                    e.SuppressKeyPress = true;
+				}
                 else if ((e.KeyCode == Keys.Right) || (e.KeyCode == Keys.NumPad6))
                 { MoveView(-1, 0); }
                 else if ((e.KeyCode == Keys.Left) || (e.KeyCode == Keys.NumPad4))

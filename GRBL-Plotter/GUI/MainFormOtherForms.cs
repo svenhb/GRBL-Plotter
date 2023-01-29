@@ -23,6 +23,8 @@
  * 2022-03-06 changed from form.show(this) to .show() to be able to stay behaind main form
  * 2022-04-06 add _projector_form with monitor selection
  * 2023-01-04 add _process_form
+ * 2023-01-24 line 369 check if _diyControlPad != null
+ * 2023-01-27 processAutomation removed fullScreen on start (like in ProjectorToolStrip)
 */
 
 using GrblPlotter.MachineControl;
@@ -366,7 +368,9 @@ namespace GrblPlotter
                     if (double.TryParse(num, out double myZ))
                     { alternateZ = myZ; }
                     else
-                    { _diyControlPad.SendFeedback("Error in parsing " + num, true); }
+                    { 	if (_diyControlPad != null)
+						{_diyControlPad.SendFeedback("Error in parsing " + num, true); }
+					}
                 }
             }
         }
@@ -657,22 +661,8 @@ namespace GrblPlotter
                 _process_form.Visible = false;
             }
 
-            if (Screen.AllScreens.Length > 1)
-            {
-                if ((int)Properties.Settings.Default.projectorMonitorIndex >= Screen.AllScreens.Length)
-                    Properties.Settings.Default.projectorMonitorIndex = Screen.AllScreens.Length - 1;
-
-                _process_form.StartPosition = FormStartPosition.Manual;
-                _process_form.Location = Screen.AllScreens[(int)Properties.Settings.Default.projectorMonitorIndex].WorkingArea.Location;  // selectable index
-                _process_form.FormBorderStyle = FormBorderStyle.None;     // default = Sizable
-                _process_form.Show();
-                _process_form.WindowState = FormWindowState.Maximized;
-            }
-            else
-            {
-                _process_form.Show(this);
-                _process_form.WindowState = FormWindowState.Normal;
-            }
+			_process_form.Show(this);
+			_process_form.WindowState = FormWindowState.Normal;
         }
         private void FormClosed_Process(object sender, FormClosedEventArgs e)
         { _process_form = null; EventCollector.SetOpenForm("FCprc"); }

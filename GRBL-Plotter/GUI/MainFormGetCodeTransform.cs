@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@
  * 2022-07-29 Update_GCode_Depending_Controls add try catch
  * 2022-10-19 line 258, 298 check if Graphic.GCode == null
  * 2022-12-21 line 319 GetGCodeFromImage check if _image_form != null
+ * 2023-01-28 add AfterImport to bring main GUI to front after getting gcode
 */
 using FastColoredTextBoxNS;
 using System;
@@ -252,26 +253,84 @@ namespace GrblPlotter
                 StatusStripSet(1, importOptions, Color.Yellow);
             }
         }
+
+        private void AfterImport(string source = "")
+        {
+            if (source != "")
+                EventCollector.SetImport(source);
+            this.BringToFront();
+        }
+
+        // Create GCode forms
         private void GetGCodeFromText(object sender, EventArgs e)
         {
             if (!isStreaming)
             {
-				string tmpCode = "(no gcode)";
-				if (Graphic.GCode != null)
-				{	tmpCode = Graphic.GCode.ToString();}
+                string tmpCode = "(no gcode)";
+                if (Graphic.GCode != null)
+                { tmpCode = Graphic.GCode.ToString(); }
                 InsertCodeFromForm(tmpCode, "from text");
-//                InsertCodeFromForm(Graphic.GCode.ToString(), "from text");
+                //                InsertCodeFromForm(Graphic.GCode.ToString(), "from text");
                 Properties.Settings.Default.counterImportText += 1;
                 string source = "Itxt";
                 if (Properties.Settings.Default.fromFormInsertEnable)
                     source = "I" + source;
-                EventCollector.SetImport(source);
+                AfterImport(source);
             }
             else
                 MessageBox.Show(Localization.GetString("mainStreamingActive"), Localization.GetString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Stop);
         }
 
-        // handle event from create Shape
+        private void GetGCodeFromBarcode(object sender, EventArgs e)
+        {
+            Logger.Info("▀▀▀▀▀▀ GetGCodeFromBarcode");
+            if (!isStreaming)
+            {
+                string tmpCode = "(no gcode)";
+                if (Graphic.GCode != null)
+                { tmpCode = Graphic.GCode.ToString(); }
+                InsertCodeFromForm(tmpCode, "from barcode");
+                Properties.Settings.Default.counterImportBarcode += 1;
+                string source = "Ibqr";
+                if (Properties.Settings.Default.fromFormInsertEnable)
+                    source = "I" + source;
+                AfterImport(source);
+            }
+            else
+                MessageBox.Show(Localization.GetString("mainStreamingActive"));
+
+            Cursor.Current = Cursors.Default;
+        }
+
+        private void GetGCodeFromImage(object sender, EventArgs e)
+        {
+            Logger.Info("▀▀▀▀▀▀ GetGCodeFromImage");
+            if (!isStreaming)
+            {
+                if ((_image_form != null) && (!String.IsNullOrEmpty(_image_form.ImageGCode)))
+                {
+                    SimuStop();
+                    VisuGCode.pathBackground.Reset();
+                    NewCodeStart(false);             // GetGCodeFromImage
+                    SetFctbCodeText(_image_form.ImageGCode);
+                    if (Properties.Settings.Default.importImageResoApply)
+                        penDown.Width = (float)Properties.Settings.Default.importImageReso;
+                    else
+                        penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown;
+                    //    SetLastLoadedFile("from image", "");
+                    NewCodeEnd();                   // GetGCodeFromImage
+                    FoldCodeOnLoad();
+                    Properties.Settings.Default.counterImportImage += 1;
+                    AfterImport("Iimg");
+                    CalculatePicScaling();          // update picScaling
+                }
+                else
+                { Logger.Error("GetGCodeFromImage form is already closed or string is empty"); }
+            }
+            else
+                MessageBox.Show(Localization.GetString("mainStreamingActive"));
+        }
+
         private void GetGCodeFromShape(object sender, EventArgs e)
         {
             Logger.Info("▀▀▀▀▀▀ GetGCodeFromShape");
@@ -282,57 +341,7 @@ namespace GrblPlotter
                 string source = "Ishp";
                 if (Properties.Settings.Default.fromFormInsertEnable)
                     source = "I" + source;
-                EventCollector.SetImport(source);
-            }
-            else
-                MessageBox.Show(Localization.GetString("mainStreamingActive"));
-        }
-
-        private void GetGCodeFromBarcode(object sender, EventArgs e)
-        {
-            Logger.Info("▀▀▀▀▀▀ GetGCodeFromBarcode");
-            if (!isStreaming)
-            {
-				string tmpCode = "(no gcode)";
-				if (Graphic.GCode != null)
-				{	tmpCode = Graphic.GCode.ToString();}
-                InsertCodeFromForm(tmpCode, "from barcode");
-                Properties.Settings.Default.counterImportBarcode += 1;
-                string source = "Ibqr";
-                if (Properties.Settings.Default.fromFormInsertEnable)
-                    source = "I" + source;
-                EventCollector.SetImport(source);
-            }
-            else
-                MessageBox.Show(Localization.GetString("mainStreamingActive"));
-
-            Cursor.Current = Cursors.Default;
-        }
-
-        // handle event from create Image form
-        private void GetGCodeFromImage(object sender, EventArgs e)
-        {
-            Logger.Info("▀▀▀▀▀▀ GetGCodeFromImage");
-            if (!isStreaming)
-            {
-				if ((_image_form != null) && (!String.IsNullOrEmpty(_image_form.ImageGCode)))
-                {	SimuStop();
-					VisuGCode.pathBackground.Reset();
-					NewCodeStart(false);             // GetGCodeFromImage
-					SetFctbCodeText(_image_form.ImageGCode);
-					if (Properties.Settings.Default.importImageResoApply)
-						penDown.Width = (float)Properties.Settings.Default.importImageReso;
-					else
-						penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown;
-					//    SetLastLoadedFile("from image", "");
-					NewCodeEnd();                   // GetGCodeFromImage
-					FoldCodeOnLoad();
-					Properties.Settings.Default.counterImportImage += 1;
-					EventCollector.SetImport("Iimg");
-					CalculatePicScaling();          // update picScaling
-				}
-				else
-				{	Logger.Error("GetGCodeFromImage form is already closed or string is empty");}
+                AfterImport(source);
             }
             else
                 MessageBox.Show(Localization.GetString("mainStreamingActive"));
@@ -437,7 +446,7 @@ namespace GrblPlotter
 
         private void TransformStart(string action)//, bool resetMark = true)
         {
-			Logger.Info("▼▼▼▼▼▼ TransformStart {0}", action);
+            Logger.Info("▼▼▼▼▼▼ TransformStart {0}", action);
             Cursor.Current = Cursors.WaitCursor;
             UnDo.SetCode(fCTBCode.Text, action, this);
             showPicBoxBgImage = false;                      // don't show background image anymore
@@ -461,7 +470,7 @@ namespace GrblPlotter
             resetView = false;
             if (_projector_form != null)
                 _projector_form.Invalidate();
-			Logger.Info("▲▲▲▲▲▲ TransformEnd");
+            Logger.Info("▲▲▲▲▲▲ TransformEnd");
         }
 
         private void BtnOffsetApply_Click(object sender, EventArgs e)
@@ -925,6 +934,7 @@ namespace GrblPlotter
         {
             fCTBCode.Text = UnDo.GetCode();
             TransformEnd();
+            SelectionHandle.ClearSelected();
         }
     }
 

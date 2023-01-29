@@ -103,7 +103,7 @@ namespace GrblPlotter
                     file.Read(bytes, 0, bytes.Length);
                 }
             }
-            catch (Exception err)
+            catch
             { return DateTime.MinValue; }
 
             var headerPos = BitConverter.ToInt32(bytes, peHeaderOffset);
