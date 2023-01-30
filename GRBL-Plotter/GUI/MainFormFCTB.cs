@@ -46,7 +46,7 @@
  * 2022-11-04 FctbSetBookmark unbook 5 lines before
  * 2023-01-22 line 90 ClearStyle();
  * 2023-01-24 FctbCode_Click add selectionPathOrig = (GraphicsPath)VisuGCode.pathMarkSelection.Clone();
- * 2023-01-29 line 707 GotoNextBookmark(fCTBCodeClickedLineNow-1)
+ * 2023-01-29 line 719 GotoNextBookmark(fCTBCodeClickedLineNow-1), FctbSetBookmark add=10, if (fCTBCodeClickedLineNow < 20)
 */
 
 using FastColoredTextBoxNS;

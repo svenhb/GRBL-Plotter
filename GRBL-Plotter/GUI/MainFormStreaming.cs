@@ -34,7 +34,7 @@
  * 2023-01-04 add _process_form.Feedback
  * 2023-01-06 line 579 error handling - check if line is in range
  * 2023-01-29 line 182 ProcessedPathLine(actualCodeLine);//.CodeLineConfirmed);
- *            line 153 removed line selection
+ *            line 153 removed line selection (to hoghlight line)
 */
 
 using GrblPlotter.GUI;
