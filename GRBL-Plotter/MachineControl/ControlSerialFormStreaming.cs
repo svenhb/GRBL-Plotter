@@ -35,6 +35,7 @@
  * 2022-05-27 line 650 keep size of sendBuffer small
  * 2022-08-10 lock {sendBuffer.Clear();
  * 2023-01-25 #321 line 757 remove streamingBuffer.LineWasSent();
+ * 2023-01-29 line 757 streamingBuffer.Add to increment streamingBuffer.Count
  */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -650,13 +651,10 @@ namespace GrblPlotter
             // progressbar.value is int
             int codeFinish = 0;
             if (streamingBuffer.Count != 0)
-            {
-                codeFinish = (int)Math.Ceiling((float)lineNrConfirmed * 100 / streamingBuffer.MaxLineNr) + 1;      // to reach 100%
-                Logger.Info("SendStreamEvent codeFinish:{0}  lineNrConfirmed:{1}  streamingBuffer.MaxLineNr:{2}", codeFinish, lineNrConfirmed, streamingBuffer.MaxLineNr);
-            }
+            {   codeFinish = (int)Math.Ceiling((float)lineNrConfirmed * 100 / streamingBuffer.MaxLineNr) + 1; }     	// to reach 100%
             int buffFinish = 0;
             if (grblBufferSize != 0)
-                buffFinish = (int)Math.Ceiling((float)(grblBufferSize - grblBufferFree) * 100 / grblBufferSize) + 1; // to reach 100%
+            {   buffFinish = (int)Math.Ceiling((float)(grblBufferSize - grblBufferFree) * 100 / grblBufferSize) + 1; }	// to reach 100%
 
             if (codeFinish > 100) { codeFinish = 100; }
             if (buffFinish > 100) { buffFinish = 100; }

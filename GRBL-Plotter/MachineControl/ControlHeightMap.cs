@@ -36,7 +36,7 @@
  * 2022-11-15 line 1332 check if ((x < map.SizeX) && (y < map.SizeY))
  * 2022-11-29 SavePictureAsBMP: size=Map-size; importSTL; GetCoordinates round to 4 decimals
  * 2022-12-05 seperate class into new file "ControlHeightMapClass"
- * 2023-01-28 line 1363 check if in range nUDCutOffZ.Minimum / Max
+ * 2023-01-28 line 363 check if in range nUDCutOffZ.Minimum / Max
 */
 
 using System;
