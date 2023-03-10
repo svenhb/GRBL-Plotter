@@ -7,7 +7,7 @@ Needs to be read from the bottom up ;-)
 * Create Shapes: save shape-settings in XML
 * Z several passes, add noZUp
  
-### 2022-08 Version 1.6.8.x 
+### 2023-01 Version 1.6.8.x 
 * Create text from installed windows-font
 * Process automation (not well tested, new feature. XML script must be edit in external editor)
 * Height map import STL and sectional view (only tested with source given below)
