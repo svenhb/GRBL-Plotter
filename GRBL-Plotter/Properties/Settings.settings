@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GrblPlotter.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
@@ -851,6 +851,9 @@
     <Setting Name="guiExtendedLoggingEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="guiJoystickApperance1" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="guiJoystickASpeed1" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">10</Value>
     </Setting>
@@ -1386,6 +1389,9 @@
       <Value Profile="(Default)">1000</Value>
     </Setting>
     <Setting Name="importGCZIncEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCZIncNoZUp" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGCZIncrement" Type="System.Decimal" Scope="User">
