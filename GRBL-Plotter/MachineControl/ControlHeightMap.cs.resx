@@ -366,4 +366,10 @@
   <data name="nUDCutOffZ.ToolTip" xml:space="preserve">
     <value>Po importu STL se zobrazí druhá nejmenší hodnota</value>
   </data>
+  <data name="RbScanYX.ToolTip" xml:space="preserve">
+    <value>Sloupec po sloupci cik-cak</value>
+  </data>
+  <data name="RbScanXY.ToolTip" xml:space="preserve">
+    <value>Řádek po řádku cik-cak</value>
+  </data>
 </root>

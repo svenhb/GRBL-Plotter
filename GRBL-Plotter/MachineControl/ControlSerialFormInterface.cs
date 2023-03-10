@@ -47,6 +47,7 @@
  * 2022-06-23 line 1093 send $-command if  GrblState.idle OR GrblState.check
  * 2022-08-10 lock {sendBuffer.Clear(); + change order line 392
  * 2022-11-24 line 1313 InsertVariable check length
+ * 2023-03-09 l:1165 sort out jog command
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -158,7 +159,7 @@ namespace GrblPlotter
                             AddToLog("< ok");   // string.Format("< {0}", rxString)); // < ok
                     }
                 }
-            //    else
+                //    else
                 getMarlinPositionWasSent = false;
 
                 if (isStreaming)
@@ -166,7 +167,7 @@ namespace GrblPlotter
                     if (streamingBuffer.IndexConfirmed >= streamingBuffer.Count)
                     {
                         Logger.Info("ProcessMarlinMessages [Program end]");
-                        StreamingFinish(); 
+                        StreamingFinish();
                     }
                 }
             }
@@ -423,8 +424,8 @@ namespace GrblPlotter
                 return;
             }
             string _machineState = dataField[0].Trim(' ');       // Valid states types: Idle, Run, Hold, Jog, Alarm, Door, Check, Home, Sleep
-                                                                // The first (Machine State) and second (Current Position) data fields are always included in every report.
-                                                                // Assume any following data field may or may not exist and can be in any order.
+                                                                 // The first (Machine State) and second (Current Position) data fields are always included in every report.
+                                                                 // Assume any following data field may or may not exist and can be in any order.
             if (IsGrblVers0)	//	handle old format from grbl vers. 0.9
             {
                 if (dataField.Length > 3)   // get 1st part
@@ -1160,7 +1161,9 @@ namespace GrblPlotter
                             {
                                 line = sendBuffer.GetSentLine();    // needed?
                                 int sendLength = (line.Length + 1);
-                                if (line.StartsWith("$"))
+                                if (line.StartsWith("$J"))          // sort out jog command
+                                { }
+                                else if (line.StartsWith("$"))
                                 {
                                     if (!((grblStateNow == GrblState.idle) || (grblStateNow == GrblState.check)))	// only send if 1st grbl is IDLE
                                         break;
@@ -1310,37 +1313,40 @@ namespace GrblPlotter
             int pos, posold = 0;
             double myvalue;
             string myvar, mykey;
-			int safetyExit = 6;
+            int safetyExit = 6;
             if (line.Length > 5)        // min length needed to be replaceable: x#TOLX
             {
                 do
                 {
                     pos = line.IndexOf('#', posold);				// not found, pos = -1
-                    if (pos > 0) 
-					{
-						if (pos <= (line.Length - 5))				// max pos exceeded?
-                        {	myvalue = 0;
-							myvar = line.Substring(pos, 5);
-							mykey = myvar.Substring(1);							// get variable
-							
-							if (gcodeVariable.ContainsKey(mykey))				// find value in gcode
-							{ myvalue = gcodeVariable[mykey]; }
-							else if (GuiVariables.variable.ContainsKey(mykey))	// find value in gui
-							{ myvalue = GuiVariables.variable[mykey]; }
-							else 
-							{ 	line += " (" + mykey + " not found)"; 
-								AddToLog("< replace NOK " + mykey + " = " + myvalue.ToString());
-								Logger.Error("InsertVariable '{0}' not found in '{1}'",mykey, line);
-							}
-							
-							if (cBStatus1.Checked || cBStatus.Checked)
-							{ AddToLog("< replace " + mykey + " = " + myvalue.ToString()); }
+                    if (pos > 0)
+                    {
+                        if (pos <= (line.Length - 5))				// max pos exceeded?
+                        {
+                            myvalue = 0;
+                            myvar = line.Substring(pos, 5);
+                            mykey = myvar.Substring(1);                         // get variable
 
-							line = line.Replace(myvar, string.Format("{0:0.000}", myvalue));
-							Logger.Trace("⚠⚠⚠ InsertVariable var:{0}  value:{1} in line:{2}", mykey, myvalue, line);
-						}
-						else
-						{	Logger.Error("⚠⚠⚠ InsertVariable pos:{0} string is too short in '{1}'", pos, line); pos = -1;
+                            if (gcodeVariable.ContainsKey(mykey))               // find value in gcode
+                            { myvalue = gcodeVariable[mykey]; }
+                            else if (GuiVariables.variable.ContainsKey(mykey))  // find value in gui
+                            { myvalue = GuiVariables.variable[mykey]; }
+                            else
+                            {
+                                line += " (" + mykey + " not found)";
+                                AddToLog("< replace NOK " + mykey + " = " + myvalue.ToString());
+                                Logger.Error("InsertVariable '{0}' not found in '{1}'", mykey, line);
+                            }
+
+                            if (cBStatus1.Checked || cBStatus.Checked)
+                            { AddToLog("< replace " + mykey + " = " + myvalue.ToString()); }
+
+                            line = line.Replace(myvar, string.Format("{0:0.000}", myvalue));
+                            Logger.Trace("⚠⚠⚠ InsertVariable var:{0}  value:{1} in line:{2}", mykey, myvalue, line);
+                        }
+                        else
+                        {
+                            Logger.Error("⚠⚠⚠ InsertVariable pos:{0} string is too short in '{1}'", pos, line); pos = -1;
                             AddToLog("< replacement NOK, send " + line);
                         }
                     }

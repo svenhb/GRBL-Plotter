@@ -370,4 +370,10 @@
   <data name="nUDCutOffZ.ToolTip" xml:space="preserve">
     <value>STL导入后，会显示第二小的值</value>
   </data>
+  <data name="RbScanYX.ToolTip" xml:space="preserve">
+    <value>逐列之字形</value>
+  </data>
+  <data name="RbScanXY.ToolTip" xml:space="preserve">
+    <value>逐行之字形</value>
+  </data>
 </root>

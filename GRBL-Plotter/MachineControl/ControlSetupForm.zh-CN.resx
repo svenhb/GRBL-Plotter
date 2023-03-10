@@ -3363,4 +3363,22 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   <data name="groupBox32.ToolTip" xml:space="preserve">
     <value>对复制和插入的选择应用偏移量。</value>
   </data>
+  <data name="cBImportGCZIncNoZUp.Text" xml:space="preserve">
+    <value>避免 Z-up 危险，如果路径有不同的开始和停止坐标！</value>
+  </data>
+  <data name="cBImportGCZIncNoZUp.ToolTip" xml:space="preserve">
+    <value>每次通过后都不会将 Z 提升到安全高度</value>
+  </data>
+  <data name="groupBox33.Text" xml:space="preserve">
+    <value>操纵杆外观</value>
+  </data>
+  <data name="GbSeveralPasses.Text" xml:space="preserve">
+    <value>几次通过</value>
+  </data>
+  <data name="RbApperance2.Text" xml:space="preserve">
+    <value>经典按钮</value>
+  </data>
+  <data name="RbApperance1.Text" xml:space="preserve">
+    <value>敏感区</value>
+  </data>
 </root>

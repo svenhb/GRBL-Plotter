@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -378,6 +378,12 @@ namespace GrblPlotter
             this.cBImportGCUseZ2 = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage12 = new System.Windows.Forms.TabPage();
+            this.GbSeveralPasses = new System.Windows.Forms.GroupBox();
+            this.tab1_2lbl35 = new System.Windows.Forms.Label();
+            this.cBImportGCZIncNoZUp = new System.Windows.Forms.CheckBox();
+            this.cBImportGCZIncEnable = new System.Windows.Forms.CheckBox();
+            this.nUDImportGCZIncrement = new System.Windows.Forms.NumericUpDown();
+            this.cBImportGCZIncStartZero = new System.Windows.Forms.CheckBox();
             this.tab1_2gB3 = new System.Windows.Forms.GroupBox();
             this.cBImportGCZPreventSpindle = new System.Windows.Forms.CheckBox();
             this.label67 = new System.Windows.Forms.Label();
@@ -386,10 +392,6 @@ namespace GrblPlotter
             this.nUDImportGCFeedZ = new System.Windows.Forms.NumericUpDown();
             this.nUDImportGCZUp = new System.Windows.Forms.NumericUpDown();
             this.nUDImportGCZDown = new System.Windows.Forms.NumericUpDown();
-            this.cBImportGCZIncStartZero = new System.Windows.Forms.CheckBox();
-            this.nUDImportGCZIncrement = new System.Windows.Forms.NumericUpDown();
-            this.tab1_2lbl35 = new System.Windows.Forms.Label();
-            this.cBImportGCZIncEnable = new System.Windows.Forms.CheckBox();
             this.cBImportGCUseZ = new System.Windows.Forms.CheckBox();
             this.tab1_2lbl32 = new System.Windows.Forms.Label();
             this.tab1_2lbl33 = new System.Windows.Forms.Label();
@@ -1042,6 +1044,9 @@ namespace GrblPlotter
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.cBshowImportDialog = new System.Windows.Forms.CheckBox();
+            this.groupBox33 = new System.Windows.Forms.GroupBox();
+            this.RbApperance1 = new System.Windows.Forms.RadioButton();
+            this.RbApperance2 = new System.Windows.Forms.RadioButton();
             this.tabControl_Level1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl1_Level2.SuspendLayout();
@@ -1154,11 +1159,12 @@ namespace GrblPlotter
             this.tab1_2gB7.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage12.SuspendLayout();
+            this.GbSeveralPasses.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZIncrement)).BeginInit();
             this.tab1_2gB3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCFeedZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZUp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZIncrement)).BeginInit();
             this.tabPage27.SuspendLayout();
             this.tab1_2gB4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDlyP94)).BeginInit();
@@ -1349,6 +1355,7 @@ namespace GrblPlotter
             this.tab11gB4.SuspendLayout();
             this.tab11gB5.SuspendLayout();
             this.tab11gB2.SuspendLayout();
+            this.groupBox33.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl_Level1
@@ -4465,10 +4472,75 @@ namespace GrblPlotter
             // 
             // tabPage12
             // 
+            this.tabPage12.Controls.Add(this.GbSeveralPasses);
             this.tabPage12.Controls.Add(this.tab1_2gB3);
             resources.ApplyResources(this.tabPage12, "tabPage12");
             this.tabPage12.Name = "tabPage12";
             this.tabPage12.UseVisualStyleBackColor = true;
+            // 
+            // GbSeveralPasses
+            // 
+            this.GbSeveralPasses.Controls.Add(this.tab1_2lbl35);
+            this.GbSeveralPasses.Controls.Add(this.cBImportGCZIncNoZUp);
+            this.GbSeveralPasses.Controls.Add(this.cBImportGCZIncEnable);
+            this.GbSeveralPasses.Controls.Add(this.nUDImportGCZIncrement);
+            this.GbSeveralPasses.Controls.Add(this.cBImportGCZIncStartZero);
+            resources.ApplyResources(this.GbSeveralPasses, "GbSeveralPasses");
+            this.GbSeveralPasses.Name = "GbSeveralPasses";
+            this.GbSeveralPasses.TabStop = false;
+            // 
+            // tab1_2lbl35
+            // 
+            resources.ApplyResources(this.tab1_2lbl35, "tab1_2lbl35");
+            this.tab1_2lbl35.Name = "tab1_2lbl35";
+            this.toolTip1.SetToolTip(this.tab1_2lbl35, resources.GetString("tab1_2lbl35.ToolTip"));
+            // 
+            // cBImportGCZIncNoZUp
+            // 
+            this.cBImportGCZIncNoZUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.cBImportGCZIncNoZUp.Checked = global::GrblPlotter.Properties.Settings.Default.importGCZIncNoZUp;
+            this.cBImportGCZIncNoZUp.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGCZIncNoZUp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.cBImportGCZIncNoZUp, "cBImportGCZIncNoZUp");
+            this.cBImportGCZIncNoZUp.Name = "cBImportGCZIncNoZUp";
+            this.toolTip1.SetToolTip(this.cBImportGCZIncNoZUp, resources.GetString("cBImportGCZIncNoZUp.ToolTip"));
+            this.cBImportGCZIncNoZUp.UseVisualStyleBackColor = false;
+            // 
+            // cBImportGCZIncEnable
+            // 
+            resources.ApplyResources(this.cBImportGCZIncEnable, "cBImportGCZIncEnable");
+            this.cBImportGCZIncEnable.Checked = global::GrblPlotter.Properties.Settings.Default.importGCZIncEnable;
+            this.cBImportGCZIncEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGCZIncEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCZIncEnable.Name = "cBImportGCZIncEnable";
+            this.toolTip1.SetToolTip(this.cBImportGCZIncEnable, resources.GetString("cBImportGCZIncEnable.ToolTip"));
+            this.cBImportGCZIncEnable.UseVisualStyleBackColor = true;
+            this.cBImportGCZIncEnable.CheckedChanged += new System.EventHandler(this.CbImportGCTool_CheckedChanged);
+            // 
+            // nUDImportGCZIncrement
+            // 
+            this.nUDImportGCZIncrement.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGCZIncrement", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCZIncrement.DecimalPlaces = 2;
+            this.nUDImportGCZIncrement.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDImportGCZIncrement, "nUDImportGCZIncrement");
+            this.nUDImportGCZIncrement.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nUDImportGCZIncrement.Name = "nUDImportGCZIncrement";
+            this.nUDImportGCZIncrement.Value = global::GrblPlotter.Properties.Settings.Default.importGCZIncrement;
+            // 
+            // cBImportGCZIncStartZero
+            // 
+            resources.ApplyResources(this.cBImportGCZIncStartZero, "cBImportGCZIncStartZero");
+            this.cBImportGCZIncStartZero.Checked = global::GrblPlotter.Properties.Settings.Default.importGCZIncStartZero;
+            this.cBImportGCZIncStartZero.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGCZIncStartZero", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCZIncStartZero.Name = "cBImportGCZIncStartZero";
+            this.toolTip1.SetToolTip(this.cBImportGCZIncStartZero, resources.GetString("cBImportGCZIncStartZero.ToolTip"));
+            this.cBImportGCZIncStartZero.UseVisualStyleBackColor = true;
             // 
             // tab1_2gB3
             // 
@@ -4480,10 +4552,6 @@ namespace GrblPlotter
             this.tab1_2gB3.Controls.Add(this.nUDImportGCFeedZ);
             this.tab1_2gB3.Controls.Add(this.nUDImportGCZUp);
             this.tab1_2gB3.Controls.Add(this.nUDImportGCZDown);
-            this.tab1_2gB3.Controls.Add(this.cBImportGCZIncStartZero);
-            this.tab1_2gB3.Controls.Add(this.nUDImportGCZIncrement);
-            this.tab1_2gB3.Controls.Add(this.tab1_2lbl35);
-            this.tab1_2gB3.Controls.Add(this.cBImportGCZIncEnable);
             this.tab1_2gB3.Controls.Add(this.cBImportGCUseZ);
             this.tab1_2gB3.Controls.Add(this.tab1_2lbl32);
             this.tab1_2gB3.Controls.Add(this.tab1_2lbl33);
@@ -4590,49 +4658,6 @@ namespace GrblPlotter
             this.toolTip1.SetToolTip(this.nUDImportGCZDown, resources.GetString("nUDImportGCZDown.ToolTip"));
             this.nUDImportGCZDown.Value = global::GrblPlotter.Properties.Settings.Default.importGCZDown;
             this.nUDImportGCZDown.ValueChanged += new System.EventHandler(this.NudImportPenWidthToZMin_ValueChanged);
-            // 
-            // cBImportGCZIncStartZero
-            // 
-            resources.ApplyResources(this.cBImportGCZIncStartZero, "cBImportGCZIncStartZero");
-            this.cBImportGCZIncStartZero.Checked = global::GrblPlotter.Properties.Settings.Default.importGCZIncStartZero;
-            this.cBImportGCZIncStartZero.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGCZIncStartZero", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCZIncStartZero.Name = "cBImportGCZIncStartZero";
-            this.toolTip1.SetToolTip(this.cBImportGCZIncStartZero, resources.GetString("cBImportGCZIncStartZero.ToolTip"));
-            this.cBImportGCZIncStartZero.UseVisualStyleBackColor = true;
-            // 
-            // nUDImportGCZIncrement
-            // 
-            this.nUDImportGCZIncrement.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGCZIncrement", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGCZIncrement.DecimalPlaces = 2;
-            this.nUDImportGCZIncrement.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDImportGCZIncrement, "nUDImportGCZIncrement");
-            this.nUDImportGCZIncrement.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.nUDImportGCZIncrement.Name = "nUDImportGCZIncrement";
-            this.nUDImportGCZIncrement.Value = global::GrblPlotter.Properties.Settings.Default.importGCZIncrement;
-            // 
-            // tab1_2lbl35
-            // 
-            resources.ApplyResources(this.tab1_2lbl35, "tab1_2lbl35");
-            this.tab1_2lbl35.Name = "tab1_2lbl35";
-            this.toolTip1.SetToolTip(this.tab1_2lbl35, resources.GetString("tab1_2lbl35.ToolTip"));
-            // 
-            // cBImportGCZIncEnable
-            // 
-            resources.ApplyResources(this.cBImportGCZIncEnable, "cBImportGCZIncEnable");
-            this.cBImportGCZIncEnable.Checked = global::GrblPlotter.Properties.Settings.Default.importGCZIncEnable;
-            this.cBImportGCZIncEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGCZIncEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBImportGCZIncEnable.Name = "cBImportGCZIncEnable";
-            this.toolTip1.SetToolTip(this.cBImportGCZIncEnable, resources.GetString("cBImportGCZIncEnable.ToolTip"));
-            this.cBImportGCZIncEnable.UseVisualStyleBackColor = true;
-            this.cBImportGCZIncEnable.CheckedChanged += new System.EventHandler(this.CbImportGCTool_CheckedChanged);
             // 
             // cBImportGCUseZ
             // 
@@ -8834,6 +8859,7 @@ namespace GrblPlotter
             // 
             // tab8gB1
             // 
+            this.tab8gB1.Controls.Add(this.groupBox33);
             this.tab8gB1.Controls.Add(this.label77);
             this.tab8gB1.Controls.Add(this.nUDJoyASpeed5);
             this.tab8gB1.Controls.Add(this.nUDJoyASpeed4);
@@ -10837,6 +10863,30 @@ namespace GrblPlotter
             this.cBshowImportDialog.Name = "cBshowImportDialog";
             this.cBshowImportDialog.UseVisualStyleBackColor = true;
             // 
+            // groupBox33
+            // 
+            this.groupBox33.Controls.Add(this.RbApperance2);
+            this.groupBox33.Controls.Add(this.RbApperance1);
+            resources.ApplyResources(this.groupBox33, "groupBox33");
+            this.groupBox33.Name = "groupBox33";
+            this.groupBox33.TabStop = false;
+            // 
+            // RbApperance1
+            // 
+            resources.ApplyResources(this.RbApperance1, "RbApperance1");
+            this.RbApperance1.Checked = global::GrblPlotter.Properties.Settings.Default.guiJoystickApperance1;
+            this.RbApperance1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "guiJoystickApperance1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.RbApperance1.Name = "RbApperance1";
+            this.RbApperance1.TabStop = true;
+            this.RbApperance1.UseVisualStyleBackColor = true;
+            // 
+            // RbApperance2
+            // 
+            resources.ApplyResources(this.RbApperance2, "RbApperance2");
+            this.RbApperance2.Name = "RbApperance2";
+            this.RbApperance2.TabStop = true;
+            this.RbApperance2.UseVisualStyleBackColor = true;
+            // 
             // ControlSetupForm
             // 
             resources.ApplyResources(this, "$this");
@@ -10998,12 +11048,14 @@ namespace GrblPlotter
             this.tab1_2gB7.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage12.ResumeLayout(false);
+            this.GbSeveralPasses.ResumeLayout(false);
+            this.GbSeveralPasses.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZIncrement)).EndInit();
             this.tab1_2gB3.ResumeLayout(false);
             this.tab1_2gB3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCFeedZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZUp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCZIncrement)).EndInit();
             this.tabPage27.ResumeLayout(false);
             this.tab1_2gB4.ResumeLayout(false);
             this.tab1_2gB4.PerformLayout();
@@ -11257,6 +11309,8 @@ namespace GrblPlotter
             this.tab11gB5.PerformLayout();
             this.tab11gB2.ResumeLayout(false);
             this.tab11gB2.PerformLayout();
+            this.groupBox33.ResumeLayout(false);
+            this.groupBox33.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -12239,5 +12293,10 @@ namespace GrblPlotter
         private System.Windows.Forms.Label label87;
         private System.Windows.Forms.NumericUpDown numericUpDown16;
         private System.Windows.Forms.Label label86;
+        private System.Windows.Forms.CheckBox cBImportGCZIncNoZUp;
+        private System.Windows.Forms.GroupBox GbSeveralPasses;
+        private System.Windows.Forms.GroupBox groupBox33;
+        private System.Windows.Forms.RadioButton RbApperance2;
+        private System.Windows.Forms.RadioButton RbApperance1;
     }
 }

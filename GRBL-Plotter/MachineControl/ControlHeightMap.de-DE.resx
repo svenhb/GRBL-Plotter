@@ -367,4 +367,10 @@ Achtung, das Höhenprofil sollte vorher gespeichert werden!</value>
   <data name="nUDCutOffZ.ToolTip" xml:space="preserve">
     <value>Nach dem STL-Import wird der zweitkleinste Wert angezeigt</value>
   </data>
+  <data name="RbScanYX.ToolTip" xml:space="preserve">
+    <value>Spalte für Spalte im Zickzack</value>
+  </data>
+  <data name="RbScanXY.ToolTip" xml:space="preserve">
+    <value>Zeile für Zeile im Zickzack</value>
+  </data>
 </root>

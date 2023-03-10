@@ -3359,4 +3359,22 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="groupBox32.ToolTip" xml:space="preserve">
     <value>قم بتطبيق الإزاحة على التحديد المنسوخ والمُدرج.</value>
   </data>
+  <data name="cBImportGCZIncNoZUp.Text" xml:space="preserve">
+    <value>تجنب Z-up DANGEROUS ، إذا كانت المسارات لها إحداثيات بداية وإيقاف مختلفة!</value>
+  </data>
+  <data name="cBImportGCZIncNoZUp.ToolTip" xml:space="preserve">
+    <value>لا ترفع Z إلى الارتفاع الآمن بعد كل تمريرة</value>
+  </data>
+  <data name="groupBox33.Text" xml:space="preserve">
+    <value>مظهر عصا التحكم</value>
+  </data>
+  <data name="GbSeveralPasses.Text" xml:space="preserve">
+    <value>عدة تمريرات</value>
+  </data>
+  <data name="RbApperance2.Text" xml:space="preserve">
+    <value>الأزرار الكلاسيكية</value>
+  </data>
+  <data name="RbApperance1.Text" xml:space="preserve">
+    <value>منطقة حساسة</value>
+  </data>
 </root>

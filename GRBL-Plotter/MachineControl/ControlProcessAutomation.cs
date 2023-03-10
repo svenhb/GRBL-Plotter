@@ -19,6 +19,7 @@
 /* 
  * 2023-01-05 new feature
  * 2023-01-26 line 186 check for 3 columns
+ * 2023-02-23 line 422 Feedback check index 
 */
 
 using System;
@@ -418,18 +419,23 @@ namespace GrblPlotter
             {
                 if (stepTriggered)
                 {
-                    if (!resultOk)
-                    {
-                        LblInfo.BackColor = dataGridView1.Rows[processStep].DefaultCellStyle.BackColor = Color.Fuchsia;
-                        SetDGVToolTip(processStep, value);
-                        textBox1.AppendText(string.Format("NOK  {0}  {1}  \r\n", action, value));
-                    }
-                    else
-                    {
-                        dataGridView1.Rows[processStep].DefaultCellStyle.BackColor = Color.LightGreen;
-                        stepCompleted = true;
-                        textBox1.AppendText(string.Format(" {0} OK\r\n", value));
-                    }
+					if ((dataGridView1 != null) && (processStep < dataGridView1.Rows.Count))
+                    {	
+						if (!resultOk)
+						{
+							LblInfo.BackColor = dataGridView1.Rows[processStep].DefaultCellStyle.BackColor = Color.Fuchsia;
+							SetDGVToolTip(processStep, value);
+							textBox1.AppendText(string.Format("NOK  {0}  {1}  \r\n", action, value));
+						}
+						else
+						{
+							dataGridView1.Rows[processStep].DefaultCellStyle.BackColor = Color.LightGreen;
+							stepCompleted = true;
+							textBox1.AppendText(string.Format(" {0} OK\r\n", value));
+						}
+					}
+					else
+					{	 Logger.Warn("Feedback failed processStep:{0} ", processStep);}
                 }
             }
             Logger.Trace("Feedback '{0}'  '{1}'  '{2}'", action, value, processAction);

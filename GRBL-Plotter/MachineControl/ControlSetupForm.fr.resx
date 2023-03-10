@@ -3084,4 +3084,22 @@ De plus, la position de l'axe Z peut être utilisée, par exemple, pour augmente
   <data name="groupBox32.ToolTip" xml:space="preserve">
     <value>Appliquez un décalage à la sélection copiée et insérée.</value>
   </data>
+  <data name="cBImportGCZIncNoZUp.Text" xml:space="preserve">
+    <value>Évitez Z-up DANGEREUX, si les chemins ont des coordonnées de départ et d'arrêt différentes !</value>
+  </data>
+  <data name="cBImportGCZIncNoZUp.ToolTip" xml:space="preserve">
+    <value>N'élève pas Z à la hauteur de sécurité après chaque passage</value>
+  </data>
+  <data name="groupBox33.Text" xml:space="preserve">
+    <value>Apparence de la manette</value>
+  </data>
+  <data name="GbSeveralPasses.Text" xml:space="preserve">
+    <value>Plusieurs passes</value>
+  </data>
+  <data name="RbApperance2.Text" xml:space="preserve">
+    <value>Boutons classiques</value>
+  </data>
+  <data name="RbApperance1.Text" xml:space="preserve">
+    <value>Zone sensible</value>
+  </data>
 </root>

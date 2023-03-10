@@ -3307,4 +3307,22 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   <data name="groupBox32.ToolTip" xml:space="preserve">
     <value>Примените смещение к скопированному и вставленному выделению.</value>
   </data>
+  <data name="cBImportGCZIncNoZUp.Text" xml:space="preserve">
+    <value>Избегайте Z-up ОПАСНО, если пути имеют разные координаты начала и конца!</value>
+  </data>
+  <data name="cBImportGCZIncNoZUp.ToolTip" xml:space="preserve">
+    <value>Не поднимает Z на безопасную высоту после каждого прохода</value>
+  </data>
+  <data name="groupBox33.Text" xml:space="preserve">
+    <value>Внешний вид джойстика</value>
+  </data>
+  <data name="GbSeveralPasses.Text" xml:space="preserve">
+    <value>Несколько проходов</value>
+  </data>
+  <data name="RbApperance2.Text" xml:space="preserve">
+    <value>Классические кнопки</value>
+  </data>
+  <data name="RbApperance1.Text" xml:space="preserve">
+    <value>Чувствительная область</value>
+  </data>
 </root>

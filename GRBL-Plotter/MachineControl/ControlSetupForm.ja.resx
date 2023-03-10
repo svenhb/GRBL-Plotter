@@ -3383,4 +3383,22 @@ https://github.com/cprezzi/grbl-servoのGrbl-version'grbl_v1.1f_Servo.hex '、
   <data name="groupBox32.ToolTip" xml:space="preserve">
     <value>コピーして挿入した選択範囲にオフセットを適用します。</value>
   </data>
+  <data name="cBImportGCZIncNoZUp.Text" xml:space="preserve">
+    <value>パスが異なる開始座標と終了座標を持っている場合は、危険です。Z アップは避けてください。</value>
+  </data>
+  <data name="cBImportGCZIncNoZUp.ToolTip" xml:space="preserve">
+    <value>各パスの後、Z を安全な高さまで上げない</value>
+  </data>
+  <data name="groupBox33.Text" xml:space="preserve">
+    <value>ジョイスティックの外観</value>
+  </data>
+  <data name="GbSeveralPasses.Text" xml:space="preserve">
+    <value>いくつかのパス</value>
+  </data>
+  <data name="RbApperance2.Text" xml:space="preserve">
+    <value>クラシック ボタン</value>
+  </data>
+  <data name="RbApperance1.Text" xml:space="preserve">
+    <value>センシティブエリア</value>
+  </data>
 </root>

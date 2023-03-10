@@ -3374,4 +3374,22 @@ Kromě toho lze polohu osy Z využít např. ke zvýšení množství barvy, kdy
   <data name="groupBox32.ToolTip" xml:space="preserve">
     <value>Použijte odsazení na zkopírovaný a vložený výběr.</value>
   </data>
+  <data name="cBImportGCZIncNoZUp.Text" xml:space="preserve">
+    <value>Vyhněte se Z-up NEBEZPEČNÉ, pokud cesty mají různé počáteční a koncové souřadnice!</value>
+  </data>
+  <data name="cBImportGCZIncNoZUp.ToolTip" xml:space="preserve">
+    <value>Nezvedá Z do bezpečné výšky po každém průjezdu</value>
+  </data>
+  <data name="groupBox33.Text" xml:space="preserve">
+    <value>Vzhled joysticku</value>
+  </data>
+  <data name="GbSeveralPasses.Text" xml:space="preserve">
+    <value>Několik průchodů</value>
+  </data>
+  <data name="RbApperance2.Text" xml:space="preserve">
+    <value>Klasické knoflíky</value>
+  </data>
+  <data name="RbApperance1.Text" xml:space="preserve">
+    <value>Citlivá oblast</value>
+  </data>
 </root>

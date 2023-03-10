@@ -117,13 +117,101 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="nUDGridX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>165, 125</value>
+  </data>
+  <data name="nUDGridX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 20</value>
+  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="nUDGridX.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="nUDGridX.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;nUDGridX.Name" xml:space="preserve">
+    <value>nUDGridX</value>
+  </data>
+  <data name="&gt;&gt;nUDGridX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDGridX.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;nUDGridX.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="RbScanYX.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="RbScanYX.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="RbScanYX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>264, 126</value>
+  </data>
+  <data name="RbScanYX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 17</value>
+  </data>
+  <data name="RbScanYX.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="RbScanYX.Text" xml:space="preserve">
+    <value>YX</value>
+  </data>
+  <data name="RbScanYX.ToolTip" xml:space="preserve">
+    <value>Column by column zig-zag</value>
+  </data>
+  <data name="&gt;&gt;RbScanYX.Name" xml:space="preserve">
+    <value>RbScanYX</value>
+  </data>
+  <data name="&gt;&gt;RbScanYX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RbScanYX.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;RbScanYX.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="RbScanXY.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="RbScanXY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>223, 126</value>
+  </data>
+  <data name="RbScanXY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 17</value>
+  </data>
+  <data name="RbScanXY.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="RbScanXY.Text" xml:space="preserve">
+    <value>XY</value>
+  </data>
+  <data name="RbScanXY.ToolTip" xml:space="preserve">
+    <value>Line by line zig-zag</value>
+  </data>
+  <data name="&gt;&gt;RbScanXY.Name" xml:space="preserve">
+    <value>RbScanXY</value>
+  </data>
+  <data name="&gt;&gt;RbScanXY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RbScanXY.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;RbScanXY.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="RbScanY.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="RbScanY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 189</value>
+    <value>6, 43</value>
   </data>
   <data name="RbScanY.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 17</value>
@@ -141,47 +229,19 @@
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;RbScanY.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>GbExtrude</value>
   </data>
   <data name="&gt;&gt;RbScanY.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="RbScanX.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="RbScanX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 172</value>
-  </data>
-  <data name="RbScanX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 17</value>
-  </data>
-  <data name="RbScanX.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="RbScanX.Text" xml:space="preserve">
-    <value>Scan X, extrude Y</value>
-  </data>
-  <data name="&gt;&gt;RbScanX.Name" xml:space="preserve">
-    <value>RbScanX</value>
-  </data>
-  <data name="&gt;&gt;RbScanX.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;RbScanX.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;RbScanX.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="CbExtrudeEnable.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="CbExtrudeEnable.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="CbExtrudeEnable.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 152</value>
+    <value>1, 9</value>
   </data>
   <data name="CbExtrudeEnable.Size" type="System.Drawing.Size, System.Drawing">
     <value>164, 17</value>
@@ -199,10 +259,58 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;CbExtrudeEnable.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>GbExtrude</value>
   </data>
   <data name="&gt;&gt;CbExtrudeEnable.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="RbScanX.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="RbScanX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 27</value>
+  </data>
+  <data name="RbScanX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 17</value>
+  </data>
+  <data name="RbScanX.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="RbScanX.Text" xml:space="preserve">
+    <value>Scan X, extrude Y</value>
+  </data>
+  <data name="&gt;&gt;RbScanX.Name" xml:space="preserve">
+    <value>RbScanX</value>
+  </data>
+  <data name="&gt;&gt;RbScanX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RbScanX.Parent" xml:space="preserve">
+    <value>GbExtrude</value>
+  </data>
+  <data name="&gt;&gt;RbScanX.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="GbExtrude.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 146</value>
+  </data>
+  <data name="GbExtrude.Size" type="System.Drawing.Size, System.Drawing">
+    <value>305, 65</value>
+  </data>
+  <data name="GbExtrude.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;GbExtrude.Name" xml:space="preserve">
+    <value>GbExtrude</value>
+  </data>
+  <data name="&gt;&gt;GbExtrude.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GbExtrude.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;GbExtrude.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="CbRoundUp.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -232,7 +340,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;CbRoundUp.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="BtnPosFromCodeDimension.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -259,13 +367,13 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;BtnPosFromCodeDimension.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="BtnMoveUR.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="BtnMoveUR.Location" type="System.Drawing.Point, System.Drawing">
-    <value>222, 183</value>
+    <value>228, 183</value>
   </data>
   <data name="BtnMoveUR.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -289,13 +397,13 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;BtnMoveUR.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="BtnMoveLL.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="BtnMoveLL.Location" type="System.Drawing.Point, System.Drawing">
-    <value>141, 183</value>
+    <value>228, 172</value>
   </data>
   <data name="BtnMoveLL.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -319,7 +427,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;BtnMoveLL.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="nUDDeltaY.Location" type="System.Drawing.Point, System.Drawing">
     <value>161, 53</value>
@@ -343,7 +451,7 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;nUDDeltaY.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="nUDDeltaX.Location" type="System.Drawing.Point, System.Drawing">
     <value>97, 53</value>
@@ -367,10 +475,10 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;nUDDeltaX.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="nUDGridY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>198, 125</value>
+    <value>162, 138</value>
   </data>
   <data name="nUDGridY.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 20</value>
@@ -394,30 +502,6 @@
     <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;nUDGridY.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="nUDGridX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>162, 125</value>
-  </data>
-  <data name="nUDGridX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 20</value>
-  </data>
-  <data name="nUDGridX.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="nUDGridX.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;nUDGridX.Name" xml:space="preserve">
-    <value>nUDGridX</value>
-  </data>
-  <data name="&gt;&gt;nUDGridX.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDGridX.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;nUDGridX.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
@@ -457,7 +541,7 @@
     <value>224, 72</value>
   </data>
   <data name="btnPosUR.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 23</value>
+    <value>85, 23</value>
   </data>
   <data name="btnPosUR.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -489,7 +573,7 @@
     <value>224, 30</value>
   </data>
   <data name="btnPosLL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 23</value>
+    <value>85, 23</value>
   </data>
   <data name="btnPosLL.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -761,10 +845,10 @@
     <value>22</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 3</value>
+    <value>3, 3</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>309, 212</value>
+    <value>315, 215</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -903,7 +987,7 @@
     <value>6</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Save height</value>
+    <value>Safe height</value>
   </data>
   <data name="&gt;&gt;label7.Name" xml:space="preserve">
     <value>label7</value>
@@ -1030,7 +1114,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnStartHeightScan.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="progressBar1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1054,7 +1138,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;progressBar1.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="textBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 3</value>
@@ -1117,7 +1201,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblProgress.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1296,7 +1380,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnApply.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="lblXDim.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1440,7 +1524,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="CbInterpolate.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1578,7 +1662,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="btnOffsetZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1739,6 +1823,33 @@
   <data name="&gt;&gt;btnGCode.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="nUDCutOffZ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 106</value>
+  </data>
+  <data name="nUDCutOffZ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
+  </data>
+  <data name="nUDCutOffZ.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="nUDCutOffZ.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="nUDCutOffZ.ToolTip" xml:space="preserve">
+    <value>After STL import, the second smallest value will be displayed</value>
+  </data>
+  <data name="&gt;&gt;nUDCutOffZ.Name" xml:space="preserve">
+    <value>nUDCutOffZ</value>
+  </data>
+  <data name="&gt;&gt;nUDCutOffZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDCutOffZ.Parent" xml:space="preserve">
+    <value>gB_Manipulation</value>
+  </data>
+  <data name="&gt;&gt;nUDCutOffZ.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="radioButton2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1848,7 +1959,7 @@
     <value>6, 140</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>297, 66</value>
+    <value>303, 66</value>
   </data>
   <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>40</value>
@@ -1869,7 +1980,7 @@
     <value>165, 13</value>
   </data>
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 134</value>
+    <value>144, 134</value>
   </data>
   <data name="label12.TabIndex" type="System.Int32, mscorlib">
     <value>37</value>
@@ -1888,33 +1999,6 @@
   </data>
   <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="nUDCutOffZ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 106</value>
-  </data>
-  <data name="nUDCutOffZ.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 20</value>
-  </data>
-  <data name="nUDCutOffZ.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
-  </data>
-  <data name="nUDCutOffZ.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="nUDCutOffZ.ToolTip" xml:space="preserve">
-    <value>After STL import, the second smallest value will be displayed</value>
-  </data>
-  <data name="&gt;&gt;nUDCutOffZ.Name" xml:space="preserve">
-    <value>nUDCutOffZ</value>
-  </data>
-  <data name="&gt;&gt;nUDCutOffZ.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDCutOffZ.Parent" xml:space="preserve">
-    <value>gB_Manipulation</value>
-  </data>
-  <data name="&gt;&gt;nUDCutOffZ.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <data name="nUDZoomZ.Location" type="System.Drawing.Point, System.Drawing">
     <value>90, 61</value>
@@ -1968,10 +2052,10 @@
     <value>False</value>
   </data>
   <data name="gB_Manipulation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 3</value>
+    <value>3, 3</value>
   </data>
   <data name="gB_Manipulation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>309, 212</value>
+    <value>315, 215</value>
   </data>
   <data name="gB_Manipulation.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
@@ -1991,39 +2075,6 @@
   </data>
   <data name="&gt;&gt;gB_Manipulation.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="lblInfo.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblInfo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 267</value>
-  </data>
-  <data name="lblInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>25, 13</value>
-  </data>
-  <data name="lblInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
-  </data>
-  <data name="lblInfo.Text" xml:space="preserve">
-    <value>Info</value>
-  </data>
-  <data name="lblInfo.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;lblInfo.Name" xml:space="preserve">
-    <value>lblInfo</value>
-  </data>
-  <data name="&gt;&gt;lblInfo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblInfo.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblInfo.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -2053,7 +2104,7 @@
     <value>0</value>
   </data>
   <data name="NudXYFeedrate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>253, 16</value>
+    <value>259, 16</value>
   </data>
   <data name="NudXYFeedrate.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 20</value>
@@ -2231,7 +2282,7 @@
     <value>155, 52</value>
   </data>
   <data name="GbProbingDiy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 154</value>
+    <value>154, 154</value>
   </data>
   <data name="GbProbingDiy.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -2279,10 +2330,10 @@
     <value>5</value>
   </data>
   <data name="GbProbing.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 3</value>
+    <value>3, 3</value>
   </data>
   <data name="GbProbing.Size" type="System.Drawing.Size, System.Drawing">
-    <value>309, 212</value>
+    <value>315, 215</value>
   </data>
   <data name="GbProbing.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -2484,6 +2535,9 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblInfo.Text" xml:space="preserve">
+    <value />
   </data>
   <data name="btnLoad.Text" xml:space="preserve">
     <value />

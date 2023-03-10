@@ -3439,4 +3439,22 @@ Rimuovere 'M6' dalla coda di invio, perché grbl non può gestire questo comando
   <data name="label86.Text" xml:space="preserve">
     <value>Timeout per il riconoscimento</value>
   </data>
+  <data name="cBImportGCZIncNoZUp.Text" xml:space="preserve">
+    <value>Evita Z-up PERICOLOSO, se i percorsi hanno coordinate di inizio e fine diverse!</value>
+  </data>
+  <data name="cBImportGCZIncNoZUp.ToolTip" xml:space="preserve">
+    <value>Non alza Z all'altezza di sicurezza dopo ogni passaggio</value>
+  </data>
+  <data name="groupBox33.Text" xml:space="preserve">
+    <value>Aspetto del joystick</value>
+  </data>
+  <data name="GbSeveralPasses.Text" xml:space="preserve">
+    <value>Diversi passaggi</value>
+  </data>
+  <data name="RbApperance2.Text" xml:space="preserve">
+    <value>Bottoni classici</value>
+  </data>
+  <data name="RbApperance1.Text" xml:space="preserve">
+    <value>Zona sensibile</value>
+  </data>
 </root>

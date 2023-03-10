@@ -266,6 +266,11 @@ namespace GrblPlotter
 
             CbAux1ZMode.SelectedIndex = Properties.Settings.Default.importGCAux1ZMode;
             CbAux2ZMode.SelectedIndex = Properties.Settings.Default.importGCAux2ZMode;
+
+            if (Properties.Settings.Default.guiJoystickApperance1)
+                RbApperance1.Checked = true;
+            else
+                RbApperance2.Checked = true;
         }
 
         private void SaveSettings()
@@ -1019,9 +1024,9 @@ namespace GrblPlotter
                 cBImportLasermode.BackColor = Color.Transparent;
 
             if (cBImportGCUseZ.Checked)
-            { tab1_2gB3.BackColor = cBImportGCUseZ2.BackColor = Color.Yellow; }
+            { GbSeveralPasses.BackColor = tab1_2gB3.BackColor = cBImportGCUseZ2.BackColor = Color.Yellow; }
             else
-            { tab1_2gB3.BackColor = cBImportGCUseZ2.BackColor = inactive; }
+            { GbSeveralPasses.BackColor = tab1_2gB3.BackColor = cBImportGCUseZ2.BackColor = inactive; }
 
             if (cBImportGCUsePWM.Checked)
             { tab1_2gB4.BackColor = cBImportGCUsePWM2.BackColor = Color.Yellow; }
@@ -1371,7 +1376,7 @@ namespace GrblPlotter
             //			if (cBImportGCTangential.Checked)
             //			{	cBImportGCZIncEnable.Enabled = false; cBImportGCZIncEnable.Checked=false; }
             tab1_2lbl35.Enabled = (optionUseZ && cBImportGCZIncEnable.Checked);
-            cBImportGCZIncStartZero.Enabled = (optionUseZ && cBImportGCZIncEnable.Checked);
+            cBImportGCZIncNoZUp.Enabled = cBImportGCZIncStartZero.Enabled = (optionUseZ && cBImportGCZIncEnable.Checked);
             nUDImportGCZIncrement.Enabled = (optionUseZ && !(cBImportGCTTZAxis.Checked && cBImportGCTTZAxis.Enabled) && cBImportGCZIncEnable.Checked);
 
             nUDImportGCFeedXY.Enabled = !(cBImportGCTTXYFeed.Checked && cBImportGCTTXYFeed.Enabled);

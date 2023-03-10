@@ -369,4 +369,10 @@
   <data name="nUDCutOffZ.ToolTip" xml:space="preserve">
     <value>Dopo l'importazione STL, verrà visualizzato il secondo valore più piccolo</value>
   </data>
+  <data name="RbScanYX.ToolTip" xml:space="preserve">
+    <value>Colonna per colonna a zig-zag</value>
+  </data>
+  <data name="RbScanXY.ToolTip" xml:space="preserve">
+    <value>Riga per riga a zig-zag</value>
+  </data>
 </root>

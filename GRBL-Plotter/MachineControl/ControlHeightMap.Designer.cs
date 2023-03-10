@@ -99,6 +99,7 @@
             this.btnInvertZ = new System.Windows.Forms.Button();
             this.btnCutOffZ = new System.Windows.Forms.Button();
             this.btnGCode = new System.Windows.Forms.Button();
+            this.nUDCutOffZ = new System.Windows.Forms.NumericUpDown();
             this.gB_Manipulation = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -106,10 +107,8 @@
             this.CbMoveXY = new System.Windows.Forms.RadioButton();
             this.NudNewStepWidth = new System.Windows.Forms.NumericUpDown();
             this.label12 = new System.Windows.Forms.Label();
-            this.nUDCutOffZ = new System.Windows.Forms.NumericUpDown();
             this.nUDZoomZ = new System.Windows.Forms.NumericUpDown();
             this.nUDOffsetZ = new System.Windows.Forms.NumericUpDown();
-            this.lblInfo = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -124,6 +123,9 @@
             this.RbProbingZ = new System.Windows.Forms.RadioButton();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.GbExtrude = new System.Windows.Forms.GroupBox();
+            this.RbScanXY = new System.Windows.Forms.RadioButton();
+            this.RbScanYX = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDDeltaY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDDeltaX)).BeginInit();
@@ -143,10 +145,10 @@
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDCutOffZ)).BeginInit();
             this.gB_Manipulation.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudNewStepWidth)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDCutOffZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDZoomZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDOffsetZ)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -157,13 +159,15 @@
             this.GbProbingDiy.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.GbExtrude.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.RbScanY);
-            this.groupBox1.Controls.Add(this.RbScanX);
-            this.groupBox1.Controls.Add(this.CbExtrudeEnable);
+            this.groupBox1.Controls.Add(this.nUDGridX);
+            this.groupBox1.Controls.Add(this.RbScanYX);
+            this.groupBox1.Controls.Add(this.RbScanXY);
+            this.groupBox1.Controls.Add(this.GbExtrude);
             this.groupBox1.Controls.Add(this.CbRoundUp);
             this.groupBox1.Controls.Add(this.BtnPosFromCodeDimension);
             this.groupBox1.Controls.Add(this.BtnMoveUR);
@@ -171,7 +175,6 @@
             this.groupBox1.Controls.Add(this.nUDDeltaY);
             this.groupBox1.Controls.Add(this.nUDDeltaX);
             this.groupBox1.Controls.Add(this.nUDGridY);
-            this.groupBox1.Controls.Add(this.nUDGridX);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.btnPosUR);
             this.groupBox1.Controls.Add(this.btnPosLL);
@@ -801,6 +804,33 @@
             this.btnGCode.UseVisualStyleBackColor = true;
             this.btnGCode.Click += new System.EventHandler(this.BtnGCode_Click);
             // 
+            // nUDCutOffZ
+            // 
+            this.nUDCutOffZ.DecimalPlaces = 2;
+            this.nUDCutOffZ.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.nUDCutOffZ, "nUDCutOffZ");
+            this.nUDCutOffZ.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nUDCutOffZ.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.nUDCutOffZ.Name = "nUDCutOffZ";
+            this.toolTip1.SetToolTip(this.nUDCutOffZ, resources.GetString("nUDCutOffZ.ToolTip"));
+            this.nUDCutOffZ.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // gB_Manipulation
             // 
             this.gB_Manipulation.Controls.Add(this.groupBox2);
@@ -874,33 +904,6 @@
             resources.ApplyResources(this.label12, "label12");
             this.label12.Name = "label12";
             // 
-            // nUDCutOffZ
-            // 
-            this.nUDCutOffZ.DecimalPlaces = 2;
-            this.nUDCutOffZ.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            resources.ApplyResources(this.nUDCutOffZ, "nUDCutOffZ");
-            this.nUDCutOffZ.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.nUDCutOffZ.Minimum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            -2147483648});
-            this.nUDCutOffZ.Name = "nUDCutOffZ";
-            this.toolTip1.SetToolTip(this.nUDCutOffZ, resources.GetString("nUDCutOffZ.ToolTip"));
-            this.nUDCutOffZ.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
             // nUDZoomZ
             // 
             this.nUDZoomZ.DecimalPlaces = 1;
@@ -937,11 +940,6 @@
             0,
             -2147483648});
             this.nUDOffsetZ.Name = "nUDOffsetZ";
-            // 
-            // lblInfo
-            // 
-            resources.ApplyResources(this.lblInfo, "lblInfo");
-            this.lblInfo.Name = "lblInfo";
             // 
             // tabControl1
             // 
@@ -1063,13 +1061,36 @@
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // GbExtrude
+            // 
+            this.GbExtrude.Controls.Add(this.RbScanY);
+            this.GbExtrude.Controls.Add(this.CbExtrudeEnable);
+            this.GbExtrude.Controls.Add(this.RbScanX);
+            resources.ApplyResources(this.GbExtrude, "GbExtrude");
+            this.GbExtrude.Name = "GbExtrude";
+            this.GbExtrude.TabStop = false;
+            // 
+            // RbScanXY
+            // 
+            resources.ApplyResources(this.RbScanXY, "RbScanXY");
+            this.RbScanXY.Checked = true;
+            this.RbScanXY.Name = "RbScanXY";
+            this.toolTip1.SetToolTip(this.RbScanXY, resources.GetString("RbScanXY.ToolTip"));
+            this.RbScanXY.UseVisualStyleBackColor = true;
+            // 
+            // RbScanYX
+            // 
+            resources.ApplyResources(this.RbScanYX, "RbScanYX");
+            this.RbScanYX.Name = "RbScanYX";
+            this.toolTip1.SetToolTip(this.RbScanYX, resources.GetString("RbScanYX.ToolTip"));
+            this.RbScanYX.UseVisualStyleBackColor = true;
+            // 
             // ControlHeightMapForm
             // 
             this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.lblProgress);
@@ -1106,11 +1127,11 @@
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDCutOffZ)).EndInit();
             this.gB_Manipulation.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudNewStepWidth)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDCutOffZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDZoomZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDOffsetZ)).EndInit();
             this.tabControl1.ResumeLayout(false);
@@ -1123,6 +1144,8 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.GbExtrude.ResumeLayout(false);
+            this.GbExtrude.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1186,7 +1209,6 @@
         private System.Windows.Forms.Button btnCutOffZ;
         private System.Windows.Forms.NumericUpDown nUDCutOffZ;
         internal System.Windows.Forms.Button btnGCode;
-        private System.Windows.Forms.Label lblInfo;
         private System.Windows.Forms.ToolStripMenuItem saveMapAsOBJToolStripMenuItem;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
@@ -1220,5 +1242,8 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton CbMoveXY;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton RbScanYX;
+        private System.Windows.Forms.RadioButton RbScanXY;
+        private System.Windows.Forms.GroupBox GbExtrude;
     }
 }

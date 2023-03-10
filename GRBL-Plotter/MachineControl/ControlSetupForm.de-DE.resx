@@ -3034,4 +3034,22 @@ Zusätzlich kann die Position der Z Achse verwendet werden um z.B. die Farbmenge
   <data name="groupBox32.ToolTip" xml:space="preserve">
     <value>Wenden Sie einen Versatz auf die kopierte und eingefügte Auswahl an.</value>
   </data>
+  <data name="cBImportGCZIncNoZUp.Text" xml:space="preserve">
+    <value>Vermeidet Z-up GEFÄHRLICH, wenn Pfade unterschiedliche Start- und Stoppkoordinaten haben!</value>
+  </data>
+  <data name="cBImportGCZIncNoZUp.ToolTip" xml:space="preserve">
+    <value>Hebt Z nicht nach jedem Durchgang auf sichere Höhe</value>
+  </data>
+  <data name="groupBox33.Text" xml:space="preserve">
+    <value>Aussehen des Joysticks</value>
+  </data>
+  <data name="GbSeveralPasses.Text" xml:space="preserve">
+    <value>Mehrere Durchgänge</value>
+  </data>
+  <data name="RbApperance2.Text" xml:space="preserve">
+    <value>Klassische Knöpfe</value>
+  </data>
+  <data name="RbApperance1.Text" xml:space="preserve">
+    <value>Empfindlicher Bereich</value>
+  </data>
 </root>

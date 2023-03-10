@@ -37,6 +37,7 @@
  * 2022-11-29 SavePictureAsBMP: size=Map-size; importSTL; GetCoordinates round to 4 decimals
  * 2022-12-05 seperate class into new file "ControlHeightMapClass"
  * 2023-01-28 line 363 check if in range nUDCutOffZ.Minimum / Max
+ * 2023-02-20 optional y-x scan
 */
 
 using System;
@@ -362,7 +363,7 @@ namespace GrblPlotter
             if (Map != null)
             {
                 bool interpolate = CbInterpolate.Checked;
-            //    sizeZ = pictureBoxH.Height;
+                //    sizeZ = pictureBoxH.Height;
                 int mx, picWidth = pictureBoxH.Width;
 
                 heightMapCutH = new Bitmap(picWidth, sizeZ);
@@ -402,7 +403,7 @@ namespace GrblPlotter
         {
             if (Map == null) return;
             bool interpolate = CbInterpolate.Checked;
-         //   sizeZ = pictureBoxV.Width;
+            //   sizeZ = pictureBoxV.Width;
             int mx, picHeight = pictureBoxV.Height;
 
             heightMapCutV = new Bitmap(sizeZ, picHeight);
@@ -743,59 +744,32 @@ namespace GrblPlotter
                 extrudeX = CbExtrudeEnable.Checked && !RbScanX.Checked;    // scan Y axis, extrude in X
                 extrudeY = CbExtrudeEnable.Checked && RbScanX.Checked;     // scan X axis, extrude in Y
                 bool noExtrude = !CbExtrudeEnable.Checked;
+                bool scanXY = RbScanXY.Checked;
 
                 if (noExtrude)
                 {
-                    for (int iy = 0; iy < Map.SizeY; iy++)
-                    {
-                        tmp = Map.GetCoordinates(0, iy);
-                        if (useZ) scanCode.AppendFormat("G0Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeUp.Value));
-                        if (CbUseG1.Checked)
-                        { scanCode.AppendFormat("G1Y{0}F{1}\r\n", Gcode.FrmtNum((float)tmp.Y), NudXYFeedrate.Value); }
-                        else
-                        { scanCode.AppendFormat("G0Y{0}\r\n", Gcode.FrmtNum((float)tmp.Y)); }
-
-                        pixY = iy * BMPsizeY / Map.SizeY;
-                        for (int ix = 0; ix < Map.SizeX; ix++)
+                    if (scanXY)
+                    {   // start upper-left (x=0, y=max) then line by líne zig-zag
+                        for (int iy = 0; iy < Map.SizeY; iy++)
                         {
-                            pixX = ix * BMPsizeX / Map.SizeX;
-                            heightMapBMP.SetPixel(pixX, pixY, Color.FromArgb(255, 00, 00));
-                            tmp = Map.GetCoordinates(ix, iy);
-                            MapIndex.Add(new Point(ix, iy));
-
-                            if (useZ) scanCode.AppendFormat("G0Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeUp.Value));  // save Z pos
-
-                            if (CbUseG1.Checked)
-                            { scanCode.AppendFormat("G1X{0}F{1}\r\n", Gcode.FrmtNum((float)tmp.X), NudXYFeedrate.Value); }
-                            else
-                            { scanCode.AppendFormat("G0X{0}\r\n", Gcode.FrmtNum((float)tmp.X)); }
-
-                            if (!useZ)
-                            { scanCode.AppendFormat("($PROBE)\r\n"); }
-                            else
-                            { scanCode.AppendFormat("G38.3Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeDown.Value)); }
-
-                            cntSent++;
-                        }
-                        if (iy < Map.SizeY - 1)
-                        {
-                            iy++;
-                            tmp = Map.GetCoordinates(0, iy);       //?
-
+                            tmp = Map.GetCoordinates(0, iy);
                             if (useZ) scanCode.AppendFormat("G0Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeUp.Value));
                             if (CbUseG1.Checked)
                             { scanCode.AppendFormat("G1Y{0}F{1}\r\n", Gcode.FrmtNum((float)tmp.Y), NudXYFeedrate.Value); }
                             else
                             { scanCode.AppendFormat("G0Y{0}\r\n", Gcode.FrmtNum((float)tmp.Y)); }
 
-                            for (int ix = Map.SizeX - 1; ix >= 0; ix--)
+                            pixY = iy * BMPsizeY / Map.SizeY;
+                            for (int ix = 0; ix < Map.SizeX; ix++)  // from left to right
                             {
                                 pixX = ix * BMPsizeX / Map.SizeX;
-                                heightMapBMP.SetPixel(pixX, pixY, Color.FromArgb(100, 100, 100));
+                                heightMapBMP.SetPixel(pixX, pixY, Color.FromArgb(255, 00, 00));
                                 tmp = Map.GetCoordinates(ix, iy);
                                 MapIndex.Add(new Point(ix, iy));
 
-                                if (useZ) scanCode.AppendFormat("G0Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeUp.Value));
+                                AddScanCode(tmp, useZ);
+                                /*
+                                if (useZ) scanCode.AppendFormat("G0Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeUp.Value));  // save Z pos
 
                                 if (CbUseG1.Checked)
                                 { scanCode.AppendFormat("G1X{0}F{1}\r\n", Gcode.FrmtNum((float)tmp.X), NudXYFeedrate.Value); }
@@ -806,9 +780,88 @@ namespace GrblPlotter
                                 { scanCode.AppendFormat("($PROBE)\r\n"); }
                                 else
                                 { scanCode.AppendFormat("G38.3Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeDown.Value)); }
+                                */
                                 cntSent++;
                             }
+                            if (iy < Map.SizeY - 1)
+                            {
+                                iy++;
+                                tmp = Map.GetCoordinates(0, iy);       //?
 
+                                if (useZ) scanCode.AppendFormat("G0Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeUp.Value));
+                                if (CbUseG1.Checked)
+                                { scanCode.AppendFormat("G1Y{0}F{1}\r\n", Gcode.FrmtNum((float)tmp.Y), NudXYFeedrate.Value); }
+                                else
+                                { scanCode.AppendFormat("G0Y{0}\r\n", Gcode.FrmtNum((float)tmp.Y)); }
+
+                                for (int ix = Map.SizeX - 1; ix >= 0; ix--)     // from right to left
+                                {
+                                    pixX = ix * BMPsizeX / Map.SizeX;
+                                    heightMapBMP.SetPixel(pixX, pixY, Color.FromArgb(100, 100, 100));
+                                    tmp = Map.GetCoordinates(ix, iy);
+                                    MapIndex.Add(new Point(ix, iy));
+
+                                    AddScanCode(tmp, useZ);
+                                    /*
+                                    if (useZ) scanCode.AppendFormat("G0Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeUp.Value));
+
+                                    if (CbUseG1.Checked)
+                                    { scanCode.AppendFormat("G1X{0}F{1}\r\n", Gcode.FrmtNum((float)tmp.X), NudXYFeedrate.Value); }
+                                    else
+                                    { scanCode.AppendFormat("G0X{0}\r\n", Gcode.FrmtNum((float)tmp.X)); }
+
+                                    if (!useZ)
+                                    { scanCode.AppendFormat("($PROBE)\r\n"); }
+                                    else
+                                    { scanCode.AppendFormat("G38.3Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeDown.Value)); }
+                                    */
+                                    cntSent++;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {   // start lower-left (x=0, y=0) then col by col zig-zag
+                        for (int ix = 0; ix < Map.SizeX; ix++)
+                        {
+                            tmp = Map.GetCoordinates(ix, 0);
+                            if (useZ) scanCode.AppendFormat("G0Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeUp.Value));
+                            if (CbUseG1.Checked)
+                            { scanCode.AppendFormat("G1Y{0}F{1}\r\n", Gcode.FrmtNum((float)tmp.Y), NudXYFeedrate.Value); }
+                            else
+                            { scanCode.AppendFormat("G0Y{0}\r\n", Gcode.FrmtNum((float)tmp.Y)); }
+
+                            pixX = ix * BMPsizeX / Map.SizeX;
+                            for (int iy = 0; iy < Map.SizeY; iy++)  // from bottom to top
+                            {
+                                pixY = iy * BMPsizeY / Map.SizeY;
+                                heightMapBMP.SetPixel(pixX, pixY, Color.FromArgb(255, 00, 00));
+                                tmp = Map.GetCoordinates(ix, iy);
+                                MapIndex.Add(new Point(ix, iy));
+                                AddScanCode(tmp, useZ);
+                                cntSent++;
+                            }
+                            if (ix < Map.SizeX - 1)
+                            {
+                                ix++;
+                                tmp = Map.GetCoordinates(ix, 0);
+
+                                if (useZ) scanCode.AppendFormat("G0Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeUp.Value));
+                                if (CbUseG1.Checked)
+                                { scanCode.AppendFormat("G1Y{0}F{1}\r\n", Gcode.FrmtNum((float)tmp.Y), NudXYFeedrate.Value); }
+                                else
+                                { scanCode.AppendFormat("G0Y{0}\r\n", Gcode.FrmtNum((float)tmp.Y)); }
+
+                                for (int iy = Map.SizeY - 1; iy >= 0; iy--)     // from right to left
+                                {
+                                    pixY = iy * BMPsizeY / Map.SizeY;
+                                    heightMapBMP.SetPixel(pixX, pixY, Color.FromArgb(255, 00, 00));
+                                    tmp = Map.GetCoordinates(ix, iy);
+                                    MapIndex.Add(new Point(ix, iy));
+                                    AddScanCode(tmp, useZ);
+                                    cntSent++;
+                                }
+                            }
                         }
                     }
                 }
@@ -831,6 +884,8 @@ namespace GrblPlotter
                         tmp = Map.GetCoordinates(ix, iy);
                         MapIndex.Add(new Point(ix, iy));
 
+                        AddScanCode(tmp, useZ);
+                        /*
                         if (useZ) scanCode.AppendFormat("G0Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeUp.Value));  // save Z pos
 
                         if (CbUseG1.Checked)
@@ -842,7 +897,7 @@ namespace GrblPlotter
                         { scanCode.AppendFormat("($PROBE)\r\n"); }
                         else
                         { scanCode.AppendFormat("G38.3Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeDown.Value)); }
-
+                        */
                         cntSent++;
                     }
 
@@ -866,6 +921,8 @@ namespace GrblPlotter
                         tmp = Map.GetCoordinates(ix, iy);
                         MapIndex.Add(new Point(ix, iy));
 
+                        AddScanCode(tmp, useZ);
+                        /*
                         if (useZ) scanCode.AppendFormat("G0Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeUp.Value));  // save Z pos
 
                         if (CbUseG1.Checked)
@@ -877,7 +934,7 @@ namespace GrblPlotter
                         { scanCode.AppendFormat("($PROBE)\r\n"); }
                         else
                         { scanCode.AppendFormat("G38.3Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeDown.Value)); }
-
+                        */
                         cntSent++;
                     }
                 }
@@ -934,6 +991,22 @@ namespace GrblPlotter
                 scanStarted = false;
             }
         }
+
+        private void AddScanCode(Vector2 tmp, bool useZ)
+        {
+            if (useZ) scanCode.AppendFormat("G0Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeUp.Value));  // save Z pos
+
+            if (CbUseG1.Checked)
+            { scanCode.AppendFormat("G1X{0}F{1}\r\n", Gcode.FrmtNum((float)tmp.X), NudXYFeedrate.Value); }
+            else
+            { scanCode.AppendFormat("G0X{0}\r\n", Gcode.FrmtNum((float)tmp.X)); }
+
+            if (!useZ)
+            { scanCode.AppendFormat("($PROBE)\r\n"); }
+            else
+            { scanCode.AppendFormat("G38.3Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeDown.Value)); }
+        }
+
         private string GetTime(int seconds)
         {
             TimeSpan time = TimeSpan.FromSeconds(seconds);
@@ -1358,7 +1431,7 @@ namespace GrblPlotter
                     lblXDim.Text = string.Format("X Min:{0:0.00} Max:{1:0.00} Step:{2:0.00}  Size:{3}", Map.Min.X, Map.Max.X, Map.GridX, Map.SizeX);
                     lblYDim.Text = string.Format("Y Min:{0:0.00} Max:{1:0.00} Step:{2:0.00}  Size:{3}", Map.Min.Y, Map.Max.Y, Map.GridY, Map.SizeY);
                     NudNewStepWidth.Value = (decimal)Math.Round(Map.GridX, 2);
-                //    if ((Map.MinHeight2nd > (float)decimal.MinValue + 1) && (Map.MinHeight2nd < (float)decimal.MaxValue - 1))
+                    //    if ((Map.MinHeight2nd > (float)decimal.MinValue + 1) && (Map.MinHeight2nd < (float)decimal.MaxValue - 1))
                     if ((Map.MinHeight2nd > (float)nUDCutOffZ.Minimum) && (Map.MinHeight2nd < (float)nUDCutOffZ.Maximum))
                         nUDCutOffZ.Value = (decimal)Math.Round(Map.MinHeight2nd, 2);
                     else

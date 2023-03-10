@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -36,6 +36,7 @@
  * 2021-09-10 add new properties 2DView colors
  * 2021-11-02 add new properties fiducials
  * 2022-02-23 add Command extension settings
+ * 2023-03-05 add importGCZIncNoZUp
 */
 
 using System;
@@ -352,6 +353,7 @@ namespace GrblPlotter
                 Write("Z Inc Enable", setup.importGCZIncEnable.ToString(), section);
                 Write("Z Increment at zero", setup.importGCZIncStartZero.ToString(), section);
                 Write("Z Increment", setup.importGCZIncrement.ToString(), section);
+        //        Write("Z Increment no up", setup.importGCZIncNoZUp.ToString(), section);
             }
 
             Write("Spindle Toggle", setup.importGCSpindleToggle.ToString(), section);
@@ -928,6 +930,7 @@ namespace GrblPlotter
             if (SetVariable(ref tmpbool, section, "Z Inc Enable")) { setup.importGCZIncEnable = tmpbool; }
             if (SetVariable(ref tmpbool, section, "Z Increment at zero")) { setup.importGCZIncStartZero = tmpbool; }
             if (SetVariable(ref tmpdeci, section, "Z Increment")) { setup.importGCZIncrement = tmpdeci; }
+            if (SetVariable(ref tmpdeci, section, "Z Increment no up")) { setup.importGCZIncNoZUp = tmpbool; }
             //         if (setVariable(ref tmpbool, section, "Z Increment from TT")){ setup.importGCTTZIncrement = tmpbool; }
 
             if (SetVariable(ref tmpbool, section, "Spindle Toggle")) { setup.importGCSpindleToggle = tmpbool; }

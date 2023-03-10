@@ -370,4 +370,10 @@
   <data name="nUDCutOffZ.ToolTip" xml:space="preserve">
     <value>بعد استيراد STL ، سيتم عرض ثاني أصغر قيمة</value>
   </data>
+  <data name="RbScanYX.ToolTip" xml:space="preserve">
+    <value>العمود بعمود منعرج zig-zag</value>
+  </data>
+  <data name="RbScanXY.ToolTip" xml:space="preserve">
+    <value>سطر بخط متعرج</value>
+  </data>
 </root>

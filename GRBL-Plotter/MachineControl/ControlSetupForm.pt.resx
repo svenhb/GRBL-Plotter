@@ -3093,4 +3093,22 @@ Além disso, a posição do eixo Z pode ser usada para, por exemplo, aumentar a 
   <data name="groupBox32.ToolTip" xml:space="preserve">
     <value>Aplique um deslocamento à seleção copiada e inserida.</value>
   </data>
+  <data name="cBImportGCZIncNoZUp.Text" xml:space="preserve">
+    <value>Evite Z-up PERIGOSO, se os caminhos tiverem diferentes coordenadas de início e parada!</value>
+  </data>
+  <data name="cBImportGCZIncNoZUp.ToolTip" xml:space="preserve">
+    <value>Não eleva Z para uma altura segura após cada passagem</value>
+  </data>
+  <data name="groupBox33.Text" xml:space="preserve">
+    <value>Aparência do joystick</value>
+  </data>
+  <data name="GbSeveralPasses.Text" xml:space="preserve">
+    <value>Várias passagens</value>
+  </data>
+  <data name="RbApperance2.Text" xml:space="preserve">
+    <value>Botões clássicos</value>
+  </data>
+  <data name="RbApperance1.Text" xml:space="preserve">
+    <value>área sensível</value>
+  </data>
 </root>

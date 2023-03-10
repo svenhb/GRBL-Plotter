@@ -520,7 +520,7 @@
     <value>29</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
-    <value>Save distance</value>
+    <value>Safe distance</value>
   </data>
   <data name="label14.ToolTip" xml:space="preserve">
     <value>Retract by this distance after success probing</value>
@@ -1025,7 +1025,7 @@ Finally move to center</value>
     <value>45</value>
   </data>
   <data name="btnSaveTL.Text" xml:space="preserve">
-    <value>Move Z to save pos.</value>
+    <value>Move Z to safe pos.</value>
   </data>
   <data name="btnSaveTL.ToolTip" xml:space="preserve">
     <value>Use G90 absolute coordinate</value>
