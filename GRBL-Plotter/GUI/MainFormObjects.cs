@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@
  * 2021-12-14 add log path 
  * 2022-01-02 add MakeAbsolutePath (from ControlSetup.cs)
  * 2022-11-24 line 99 InsertVariable check length
+ * 2023-03-04 l:68 f:Datapath add path for "data"
 */
 
 using GrblPlotter.Resources;
@@ -64,6 +65,7 @@ namespace GrblPlotter
         public static string Jogpath { get => AppDataFolder + "\\data\\jogpaths"; }
         public static string RecentFile { get => AppDataFolder + "\\Recent.txt"; }
         public static string LogFiles { get => AppDataFolder + "\\logfiles"; }
+        public static string Data { get => AppDataFolder + "\\data"; }
 
 
         public static string MakeAbsolutePath(string fileName)
@@ -94,28 +96,28 @@ namespace GrblPlotter
                 int pos, posold = 0;
                 double myvalue;
                 string myvar, mykey;
-				int safetyExit = 6;
+                int safetyExit = 6;
                 do
                 {
                     pos = line.IndexOf('#', posold);				// not found, pos = -1
-                    if (pos > 0) 
+                    if (pos > 0)
                     {
-						if (pos <= (line.Length - 5))				// max pos exceeded?
-                        {	myvalue = 0;
-							myvar = line.Substring(pos, 5);
-							mykey = myvar.Substring(1);				// get variable
-							
-							if (variable.ContainsKey(mykey))
-							{
-								myvalue = variable[mykey];
-								line = line.Replace(myvar, string.Format("{0:0.000}", myvalue));
-							}
-							else 
-							{ 	Logger.Error("⚠⚠⚠ InsertVariable '{0}' not found in '{1}'", mykey, line);}
-						}
-						else
-						{	Logger.Error("⚠⚠⚠ InsertVariable pos:{0} string is too short in '{1}'", pos, line); pos = -1; }						
-	                }
+                        if (pos <= (line.Length - 5))				// max pos exceeded?
+                        {
+                            myvar = line.Substring(pos, 5);
+                            mykey = myvar.Substring(1);             // get variable
+
+                            if (variable.ContainsKey(mykey))
+                            {
+                                myvalue = variable[mykey];
+                                line = line.Replace(myvar, string.Format("{0:0.000}", myvalue));
+                            }
+                            else
+                            { Logger.Error("⚠⚠⚠ InsertVariable '{0}' not found in '{1}'", mykey, line); }
+                        }
+                        else
+                        { Logger.Error("⚠⚠⚠ InsertVariable pos:{0} string is too short in '{1}'", pos, line); pos = -1; }
+                    }
                     posold = pos + 5;
                 } while ((pos > 0) && (safetyExit-- > 0));
             }
@@ -752,8 +754,7 @@ namespace GrblPlotter
         }
         public static string GetCode()
         {
-            if (form != null)
-                form.SetUndoText("");
+            form?.SetUndoText("");
             return unDoCode;
         }
     }

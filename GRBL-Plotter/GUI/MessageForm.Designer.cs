@@ -33,6 +33,9 @@
             this.tBInfo = new System.Windows.Forms.TextBox();
             this.btnContinue = new System.Windows.Forms.Button();
             this.lblInfo = new System.Windows.Forms.Label();
+            this.ColorPanel = new System.Windows.Forms.Panel();
+            this.LblHex = new System.Windows.Forms.Label();
+            this.ColorPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnClose
@@ -78,12 +81,31 @@
             this.lblInfo.Text = "label1";
             this.lblInfo.Visible = false;
             // 
+            // ColorPanel
+            // 
+            this.ColorPanel.BackColor = System.Drawing.Color.Transparent;
+            this.ColorPanel.Controls.Add(this.LblHex);
+            this.ColorPanel.Location = new System.Drawing.Point(16, 84);
+            this.ColorPanel.Name = "ColorPanel";
+            this.ColorPanel.Size = new System.Drawing.Size(238, 40);
+            this.ColorPanel.TabIndex = 5;
+            // 
+            // LblHex
+            // 
+            this.LblHex.AutoSize = true;
+            this.LblHex.Location = new System.Drawing.Point(12, 14);
+            this.LblHex.Name = "LblHex";
+            this.LblHex.Size = new System.Drawing.Size(31, 13);
+            this.LblHex.TabIndex = 0;
+            this.LblHex.Text = "Color";
+            // 
             // MessageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(284, 161);
+            this.Controls.Add(this.ColorPanel);
             this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.btnContinue);
             this.Controls.Add(this.tBInfo);
@@ -97,6 +119,8 @@
             this.Text = "MessageForm";
             this.Load += new System.EventHandler(this.MessageForm_Load);
             this.SizeChanged += new System.EventHandler(this.MessageForm_SizeChanged);
+            this.ColorPanel.ResumeLayout(false);
+            this.ColorPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -108,5 +132,7 @@
         private System.Windows.Forms.TextBox tBInfo;
         private System.Windows.Forms.Button btnContinue;
         private System.Windows.Forms.Label lblInfo;
+        private System.Windows.Forms.Panel ColorPanel;
+        private System.Windows.Forms.Label LblHex;
     }
 }

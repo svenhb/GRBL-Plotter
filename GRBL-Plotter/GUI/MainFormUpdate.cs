@@ -24,6 +24,7 @@
  * 2021-11-22 change reg-key to get data-path from installation
  * 2021-12-14 change log path
  * 2023-01-10 line 132 get user.config path, change from PerUserRoaming to PerUserRoamingAndLocal
+ * 2023-03-07 l:480 f:JoystickSetup() set joystick raster; l:560 f:UpdateControlEnablesInvoked show/hide stop
 */
 
 using Microsoft.Win32;
@@ -34,6 +35,7 @@ using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using virtualJoystick;
 
 namespace GrblPlotter
 {
@@ -244,8 +246,7 @@ namespace GrblPlotter
             else
                 StatusStripClear(0);
 
-            if (_projector_form != null)
-                _projector_form.Invalidate();
+            _projector_form?.Invalidate();
         }
 
         private void UpdateWholeApplication()	// after ini file, setup change, update controls
@@ -471,6 +472,19 @@ namespace GrblPlotter
             virtualJoystickA.JoystickLabel = joystickAStep;
             virtualJoystickB.JoystickLabel = joystickAStep;
             virtualJoystickC.JoystickLabel = joystickAStep;
+
+            int raster = 5;
+            if (!Properties.Settings.Default.guiJoystickApperance1)
+            {   raster = 1;
+                cBSendJogStop.Enabled = false;
+			}
+			else
+			{ cBSendJogStop.Enabled = true; }
+            virtualJoystickXY.JoystickRaster = raster;
+            virtualJoystickZ.JoystickRaster = raster;
+            virtualJoystickA.JoystickRaster = raster;
+            virtualJoystickB.JoystickRaster = raster;
+            virtualJoystickC.JoystickRaster = raster;
         }
 
         // update controls on Main form (disable if streaming or no serial)
@@ -499,6 +513,8 @@ namespace GrblPlotter
             virtualJoystickA.Enabled = isConnected && (!isStreaming || allowControl);
             virtualJoystickZ.Enabled = isConnected && (!isStreaming || allowControl);
             virtualJoystickXY.Enabled = isConnected && (!isStreaming || allowControl);
+            virtualJoystickXY.Invalidate();
+
             btnHome.Enabled = isConnected & !isStreaming | allowControl;
             btnZeroX.Enabled = isConnected & !isStreaming | allowControl;
             btnZeroY.Enabled = isConnected & !isStreaming | allowControl;
@@ -549,7 +565,8 @@ namespace GrblPlotter
 
             if (!Grbl.isVersion_0)
             {
-                btnJogStop.Visible = true;
+                virtualJoystickXY.ShowStop = virtualJoystickZ.ShowStop = btnJogStop.Visible = true;
+				virtualJoystickA.ShowStop = virtualJoystickB.ShowStop = virtualJoystickC.ShowStop = true;
                 gBoxOverride.Enabled = isConnected;
                 tableLayoutPanel4.RowStyles[0].Height = 30f;
                 tableLayoutPanel4.RowStyles[1].Height = 30f;
@@ -557,7 +574,8 @@ namespace GrblPlotter
             }
             else
             {
-                btnJogStop.Visible = false;
+                virtualJoystickXY.ShowStop = virtualJoystickZ.ShowStop =btnJogStop.Visible = false;
+				virtualJoystickA.ShowStop = virtualJoystickB.ShowStop = virtualJoystickC.ShowStop = false;
                 gBoxOverride.Enabled = false;
                 tableLayoutPanel4.RowStyles[0].Height = 40f;
                 tableLayoutPanel4.RowStyles[1].Height = 0f;

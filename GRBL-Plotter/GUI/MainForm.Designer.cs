@@ -464,6 +464,7 @@ namespace GrblPlotter
             this.control3rdGRBLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projectorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grblSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.processAutomationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewRuler = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripViewInfo = new System.Windows.Forms.ToolStripMenuItem();
@@ -486,7 +487,6 @@ namespace GrblPlotter
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.SplashScreenTimer = new System.Windows.Forms.Timer(this.components);
             this.loadTimer = new System.Windows.Forms.Timer(this.components);
-            this.processAutomationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -1095,6 +1095,7 @@ namespace GrblPlotter
             this.virtualJoystickA.JoystickStanby = System.Drawing.Color.Orange;
             this.virtualJoystickA.JoystickText = "A";
             this.virtualJoystickA.Name = "virtualJoystickA";
+            this.virtualJoystickA.ShowStop = true;
             this.virtualJoystickA.TabStop = false;
             this.toolTip1.SetToolTip(this.virtualJoystickA, resources.GetString("virtualJoystickA.ToolTip"));
             this.virtualJoystickA.JoyStickEvent += new virtualJoystick.JogEventHandler(this.VirtualJoystickA_JoyStickEvent);
@@ -1120,6 +1121,7 @@ namespace GrblPlotter
             this.virtualJoystickXY.JoystickStanby = System.Drawing.Color.Orange;
             this.virtualJoystickXY.JoystickText = "X / Y";
             this.virtualJoystickXY.Name = "virtualJoystickXY";
+            this.virtualJoystickXY.ShowStop = true;
             this.virtualJoystickXY.TabStop = false;
             this.toolTip1.SetToolTip(this.virtualJoystickXY, resources.GetString("virtualJoystickXY.ToolTip"));
             this.virtualJoystickXY.JoyStickEvent += new virtualJoystick.JogEventHandler(this.VirtualJoystickXY_JoyStickEvent);
@@ -1145,6 +1147,7 @@ namespace GrblPlotter
             this.virtualJoystickZ.JoystickStanby = System.Drawing.Color.Orange;
             this.virtualJoystickZ.JoystickText = "Z";
             this.virtualJoystickZ.Name = "virtualJoystickZ";
+            this.virtualJoystickZ.ShowStop = true;
             this.virtualJoystickZ.TabStop = false;
             this.toolTip1.SetToolTip(this.virtualJoystickZ, resources.GetString("virtualJoystickZ.ToolTip"));
             this.virtualJoystickZ.JoyStickEvent += new virtualJoystick.JogEventHandler(this.VirtualJoystickZ_JoyStickEvent);
@@ -1170,6 +1173,7 @@ namespace GrblPlotter
             this.virtualJoystickB.JoystickStanby = System.Drawing.Color.Orange;
             this.virtualJoystickB.JoystickText = "B";
             this.virtualJoystickB.Name = "virtualJoystickB";
+            this.virtualJoystickB.ShowStop = true;
             this.virtualJoystickB.TabStop = false;
             this.toolTip1.SetToolTip(this.virtualJoystickB, resources.GetString("virtualJoystickB.ToolTip"));
             this.virtualJoystickB.JoyStickEvent += new virtualJoystick.JogEventHandler(this.VirtualJoystickB_JoyStickEvent);
@@ -1195,6 +1199,7 @@ namespace GrblPlotter
             this.virtualJoystickC.JoystickStanby = System.Drawing.Color.Orange;
             this.virtualJoystickC.JoystickText = "C";
             this.virtualJoystickC.Name = "virtualJoystickC";
+            this.virtualJoystickC.ShowStop = true;
             this.virtualJoystickC.TabStop = false;
             this.toolTip1.SetToolTip(this.virtualJoystickC, resources.GetString("virtualJoystickC.ToolTip"));
             this.virtualJoystickC.JoyStickEvent += new virtualJoystick.JogEventHandler(this.VirtualJoystickC_JoyStickEvent);
@@ -3225,6 +3230,12 @@ namespace GrblPlotter
             resources.ApplyResources(this.grblSetupToolStripMenuItem, "grblSetupToolStripMenuItem");
             this.grblSetupToolStripMenuItem.Click += new System.EventHandler(this.GrblSetupToolStripMenuItem_Click);
             // 
+            // processAutomationToolStripMenuItem
+            // 
+            this.processAutomationToolStripMenuItem.Name = "processAutomationToolStripMenuItem";
+            resources.ApplyResources(this.processAutomationToolStripMenuItem, "processAutomationToolStripMenuItem");
+            this.processAutomationToolStripMenuItem.Click += new System.EventHandler(this.ProcessAutomationFormOpen);
+            // 
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -3380,12 +3391,6 @@ namespace GrblPlotter
             // loadTimer
             // 
             this.loadTimer.Tick += new System.EventHandler(this.LoadTimer_Tick);
-            // 
-            // processAutomationToolStripMenuItem
-            // 
-            this.processAutomationToolStripMenuItem.Name = "processAutomationToolStripMenuItem";
-            resources.ApplyResources(this.processAutomationToolStripMenuItem, "processAutomationToolStripMenuItem");
-            this.processAutomationToolStripMenuItem.Click += new System.EventHandler(this.ProcessAutomationFormOpen);
             // 
             // MainForm
             // 

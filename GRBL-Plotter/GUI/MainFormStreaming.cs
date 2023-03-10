@@ -35,6 +35,7 @@
  * 2023-01-06 line 579 error handling - check if line is in range
  * 2023-01-29 line 182 ProcessedPathLine(actualCodeLine);//.CodeLineConfirmed);
  *            line 153 removed line selection (to hoghlight line)
+ * 2023-03-09 simplify NULL check
 */
 
 using GrblPlotter.GUI;
@@ -176,8 +177,7 @@ namespace GrblPlotter
                     }*/
             }
 
-            if (_diyControlPad != null)
-                _diyControlPad.SendFeedback("[" + e.Status.ToString() + "]");
+            _diyControlPad?.SendFeedback("[" + e.Status.ToString() + "]");
 
             VisuGCode.ProcessedPath.ProcessedPathLine(actualCodeLine);//.CodeLineConfirmed);		// in GCodeSimulate.cs
 
@@ -213,15 +213,13 @@ namespace GrblPlotter
                     //        StatusStripClear(1, 2);//, "grblStreaming.reset");
                     toolTip1.SetToolTip(lbInfo, lbInfo.Text);
                     timerUpdateControls = true; timerUpdateControlSource = "grblStreaming.reset";//updateControls();
-                    if (_coordSystem_form != null)
-                        _coordSystem_form.ShowValues();
+                    _coordSystem_form?.ShowValues();
 
                     ControlPowerSaving.EnableStandby();
                     VisuGCode.ProcessedPath.ProcessedPathClear();
                     //        SetGRBLBuffer();
 
-                    if (_process_form != null)
-                        _process_form.Feedback("Stream", "reset", false);
+                    _process_form?.Feedback("Stream", "reset", false);
 
                     break;
 
@@ -280,8 +278,7 @@ namespace GrblPlotter
                     if (Grbl.lastErrorNr == 9)  // G-code locked out during alarm or jog state -> stop streaming
                     { StopStreaming(false); }
 
-                    if (_process_form != null)
-                        _process_form.Feedback("Stream", "error", false);
+                    _process_form?.Feedback("Stream", "error", false);
 
                     break;
 
@@ -329,8 +326,7 @@ namespace GrblPlotter
                         else
                             Notifier.SendMessage(msg);
                     }
-                    if (_process_form!=null)
-                        _process_form.Feedback("Stream", elapsed.ToString(@"hh\:mm\:ss"), true);
+                    _process_form?.Feedback("Stream", elapsed.ToString(@"hh\:mm\:ss"), true);
                     break;
 
                 case GrblStreaming.waitidle:
@@ -384,8 +380,7 @@ namespace GrblPlotter
                     if (Properties.Settings.Default.flowControlEnable) // send extra Pause-Code in MainTimer_Tick from Properties.Settings.Default.flowControlText
                         delayedSend = 2;
 
-                    if (_process_form != null)
-                        _process_form.Feedback("Stream", "", false);
+                    _process_form?.Feedback("Stream", "", false);
 
                     break;
 

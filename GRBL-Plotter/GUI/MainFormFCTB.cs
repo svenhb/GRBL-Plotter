@@ -47,6 +47,8 @@
  * 2023-01-22 line 90 ClearStyle();
  * 2023-01-24 FctbCode_Click add selectionPathOrig = (GraphicsPath)VisuGCode.pathMarkSelection.Clone();
  * 2023-01-29 line 719 GotoNextBookmark(fCTBCodeClickedLineNow-1), FctbSetBookmark add=10, if (fCTBCodeClickedLineNow < 20)
+ * 2023-02-18 line 375 check  if (selStartGrp.iLine < 0)
+
 */
 
 using FastColoredTextBoxNS;
@@ -370,6 +372,8 @@ namespace GrblPlotter
                 {    // add startGroup for existing figures
                     Place selStartGrp;
                     selStartGrp.iLine = XmlMarker.FindInsertPositionFigureMostBottom(insertLineNr);
+                    if (selStartGrp.iLine < 0)
+                        selStartGrp.iLine = insertLineNr;
                     selStartGrp.iChar = 0;
                     Range mySelectionGrp = new Range(fCTBCode);
                     mySelectionGrp.Start = mySelectionGrp.End = selStartGrp;

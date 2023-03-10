@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@
  * 2021-09-30 no VisuGCode.ProcessedPath.ProcessedPathDraw if VisuGCode.largeDataAmount
  * 2021-11-18 add processing of accessory D0-D3 from grbl-Mega-5X - line 139
  * 2022-02-24
+ * 2023-03-09 simplify NULL check; case GrblState.unknown: UpdateControlEnables();
 */
 
 using System;
@@ -188,8 +189,7 @@ namespace GrblPlotter
         }
         private void ProcessOverrideValues(string txt)
         {
-            if (_streaming_form2 != null)
-            { _streaming_form2.ShowOverrideValues(txt); }
+            _streaming_form2?.ShowOverrideValues(txt);
 
             string[] value = txt.Split(',');
             if (value.Length > 2)
@@ -202,8 +202,7 @@ namespace GrblPlotter
 
         private void ProcessOverrideCurrentFeedSpeed(string txt)
         {
-            if (_streaming_form2 != null)
-            { _streaming_form2.ShowActualValues(txt); }
+            _streaming_form2?.ShowActualValues(txt);
 
             string[] value = txt.Split(',');
             if (value.Length > 1)
@@ -337,8 +336,7 @@ namespace GrblPlotter
                         StatusStripSet(1, Grbl.StatusToText(machineStatus) + " " + Grbl.lastMessage, Grbl.GrblStateColor(machineStatus));
                         StatusStripSet(2, lblInfoText, Color.Yellow);
                         Grbl.lastMessage = "";
-                        if (_heightmap_form != null)
-                            _heightmap_form.StopScan();
+                        _heightmap_form?.StopScan();
                         break;
 
                     case GrblState.check:
@@ -378,7 +376,7 @@ namespace GrblPlotter
 
                     case GrblState.unknown:
                         //      timerUpdateControlSource = "grblState.unknown";
-                        //      updateControls();
+                        UpdateControlEnables();
                         break;
 
                     case GrblState.notConnected:
@@ -411,11 +409,9 @@ namespace GrblPlotter
             if (cmd.changed)
             {
                 actualFR = cmd.FR.ToString();
-                if (_streaming_form != null)
-                    _streaming_form.ShowValueFR(actualFR);
+                _streaming_form?.ShowValueFR(actualFR);
                 actualSS = cmd.SS.ToString();
-                if (_streaming_form != null)
-                    _streaming_form.ShowValueSS(actualSS);
+                _streaming_form?.ShowValueSS(actualSS);
 
                 if (Grbl.isVersion_0)
                 {

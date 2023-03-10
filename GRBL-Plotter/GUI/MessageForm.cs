@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,9 +19,11 @@
 
 /* 
  * 2021-07-02 code clean up / code quality
+ * 2023-03-07 l:40 f:ShowMessage get color from message and set panel color
 */
 using System;
 using System.Drawing;
+using System.Runtime.ConstrainedExecution;
 using System.Windows.Forms;
 
 namespace GrblPlotter
@@ -36,12 +38,24 @@ namespace GrblPlotter
         public void ShowMessage(string headline, string text, int mode)
         {
             if (mode == 1)
-            {
+            {				
+				int r1 = text.IndexOf('[');
+				int r2 = text.IndexOf(']');
+				if ((r1 > 0) && (r2 > r1))
+				{
+					string hex = text.Substring(r1+1, r2-r1-1);
+                    text = text.Substring(0, r1);
+                    LblHex.Text = hex;
+                    try
+                    {   ColorPanel.BackColor = System.Drawing.ColorTranslator.FromHtml(hex);
+                        LblHex.ForeColor = ContrastColor(System.Drawing.ColorTranslator.FromHtml(hex));
+                    }
+                    catch { }
+                }
                 this.Text = headline;
                 lblInfo.Text = text;
                 lblInfo.Visible = true;
                 this.BackColor = Color.Yellow;
-
             }
             else
             {
@@ -57,6 +71,8 @@ namespace GrblPlotter
                 this.Height = 600;
                 this.Top = 0;
                 this.Left = 400;
+
+                ColorPanel.Visible = LblHex.Visible = false;
             }
         }
 
@@ -79,6 +95,18 @@ namespace GrblPlotter
               this.Height = 600;
               this.Top = 0;
               this.Left = 400;*/
+        }
+
+        private static Color ContrastColor(Color myColor)
+        {
+            int d;
+            // Counting the perceptive luminance - human eye favors green color... 
+            double a = 1 - (0.299 * myColor.R + 0.587 * myColor.G + 0.114 * myColor.B) / 255;
+            if (a < 0.5)
+                d = 0; // bright colors - black font
+            else
+                d = 255; // dark colors - white font
+            return Color.FromArgb(d, d, d);
         }
     }
 }

@@ -55,6 +55,7 @@
  * 2022-12-07 line 1220 LoadGcode check _serial_form != null, fCTBCode != null
  * 2023-01-02 bug fix in LoadFromClipboard
  * 2023-01-24 line 1500 add ESC function - deselect paths
+ * 2023-03-04 line 778 check if text is null
 */
 /*   96 #region MAIN-MENU FILE
  * 1483 MainForm_KeyDown  
@@ -320,8 +321,7 @@ namespace GrblPlotter
                 timerShowGCodeError = true;
             }
 
-            if (_projector_form != null)
-                _projector_form.Invalidate();
+            _projector_form?.Invalidate();
 
             // https://docs.microsoft.com/de-de/dotnet/desktop/winforms/automatic-scaling-in-windows-forms?view=netframeworkdesktop-4.8
             // PerformAutoScale();		// absichtlich
@@ -550,8 +550,7 @@ namespace GrblPlotter
                         }
                         finally
                         {
-                            if (fs != null)
-                                fs.Dispose();
+                            fs?.Dispose();
                         }
                     }
                     catch (IOException)
@@ -605,8 +604,7 @@ namespace GrblPlotter
         {
             lastLoadSource = text; showPaths = true;
             lastLoadFile = file;
-            if (_setup_form != null)
-            { _setup_form.SetLastLoadedFile(lastLoadSource); }
+            _setup_form?.SetLastLoadedFile(lastLoadSource);
         }
         private void GetURL(string filename)
         {
@@ -649,10 +647,7 @@ namespace GrblPlotter
             }
             finally
             {
-                if (response != null)
-                {
-                    response.Close();
-                }
+                response?.Close();
             }
 
             var parts = tBURL.Text.Split('.');
@@ -780,8 +775,13 @@ namespace GrblPlotter
                     checkContent = (String)iData.GetData(DataFormats.Text);
                     source = "Clipboard";
                 }
+                else if (!string.IsNullOrEmpty(text))
+                { checkContent = text; }
                 else
-                    checkContent = text;
+                {
+                    Logger.Info(" Nothing to do? ");
+                    return;
+                }
 
                 if (checkContent.StartsWith("http"))
                 {
@@ -802,8 +802,7 @@ namespace GrblPlotter
                     {
                         stream = (MemoryStream)iData.GetData("text");
                         byte[] bytes = stream.ToArray();
-                        if (stream != null)
-                            stream.Dispose();
+                        stream?.Dispose();
                         txt += System.Text.Encoding.Default.GetString(bytes);
                     }
                     else
@@ -836,8 +835,7 @@ namespace GrblPlotter
                     {
                         stream = (MemoryStream)iData.GetData("text");
                         byte[] bytes = stream.ToArray();
-                        if (stream != null)
-                            stream.Dispose();
+                        stream?.Dispose();
                         txt = System.Text.Encoding.Default.GetString(bytes);
                     }
                     else
@@ -937,8 +935,7 @@ namespace GrblPlotter
                 { tmp += format + "\r\n"; }
                 MessageBox.Show(tmp);
             }
-            if (stream != null)
-                stream.Dispose();
+            stream?.Dispose();
         }
 
 
@@ -1128,8 +1125,7 @@ namespace GrblPlotter
             NewCodeEnd(true);               // StartConvert code was imported, no need to check for bad GCode
             FoldCodeOnLoad();
             //    UpdateControlEnables(); 
-            if (_camera_form != null)
-            { _camera_form.NewDrawing(); }
+            _camera_form?.NewDrawing();
         }
 
         int loadTimerStep = -1;
@@ -1140,8 +1136,7 @@ namespace GrblPlotter
                 switch (loadTimerStep)
                 {
                     case 1:
-                        if (loadTimer != null)
-                            loadTimer.Stop();
+                        loadTimer?.Stop();
                         NewCodeEnd(true);               // timer will be started here again
                         break;
                     case 2:
@@ -1150,8 +1145,7 @@ namespace GrblPlotter
                         loadTimerStep++;
                         break;
                     default:
-                        if (loadTimer != null)
-                            loadTimer.Stop();
+                        loadTimer?.Stop();
                         break;
                 }
             }
@@ -1230,8 +1224,7 @@ namespace GrblPlotter
                     }
                     finally
                     {
-                        if (fs != null)
-                            fs.Dispose();
+                        fs?.Dispose();
                     }
                 }
 
@@ -1498,11 +1491,11 @@ namespace GrblPlotter
                 }
                 else if (e.KeyCode == Keys.Escape)    // escape = deselct
                 {
-					SelectionHandle.ClearSelected();
-					VisuGCode.MarkSelectedFigure(-1);					
-			        pictureBox1.Invalidate();
+                    SelectionHandle.ClearSelected();
+                    VisuGCode.MarkSelectedFigure(-1);
+                    pictureBox1.Invalidate();
                     e.SuppressKeyPress = true;
-				}
+                }
                 else if ((e.KeyCode == Keys.Right) || (e.KeyCode == Keys.NumPad6))
                 { MoveView(-1, 0); }
                 else if ((e.KeyCode == Keys.Left) || (e.KeyCode == Keys.NumPad4))

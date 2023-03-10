@@ -58,6 +58,8 @@
  * 2021-12-14 line 613 remove else...
  * 2022-04-19 check  if (toolStripStatusLabel0 == null) 
  * 2023-01-02 CbLaser_CheckedChanged, CbSpindle_CheckedChanged check if Grbl.isConnected
+ * 2023-03-07 l:714/786/811 f:VirtualJoystickXY/Z/A_move if index =0 stop Jog -> if (!Grbl.isVersion_0) SendRealtimeCommand(133);
+ * 2023-03-09 l:1213 bugfix start streaming
 */
 
 using GrblPlotter.GUI;
@@ -693,7 +695,7 @@ namespace GrblPlotter
         }
 
         private void VirtualJoystickXY_JoyStickEvent(object sender, JogEventArgs e)
-        { VirtualJoystickXY_move(e.JogPosX, e.JogPosY); }
+        { 	VirtualJoystickXY_move(e.JogPosX, e.JogPosY); 		}
         private void VirtualJoystickXY_move(int index_X, int index_Y)
         {
             int indexX = Math.Abs(index_X);
@@ -709,6 +711,10 @@ namespace GrblPlotter
             { indexY = joystickXYStep.Length - 1; index_Y = indexY; }
             if (indexY < 0)
             { indexY = 0; index_Y = 0; }
+		
+			if ((index_X == 0) && (index_Y == 0))
+			{	if (!Grbl.isVersion_0) SendRealtimeCommand(133); return;}
+		
             int speed = (int)Math.Max(joystickXYSpeed[indexX], joystickXYSpeed[indexY]);
             String strX = Gcode.FrmtNum(joystickXYStep[indexX] * dirX);
             String strY = Gcode.FrmtNum(joystickXYStep[indexY] * dirY);
@@ -778,6 +784,9 @@ namespace GrblPlotter
             if (indexZ < 0)
             { indexZ = 0; }
 
+			if (index_Z == 0)
+			{	if (!Grbl.isVersion_0) SendRealtimeCommand(133); return;}
+
             virtualJoystickZ_lastIndex = indexZ;
             int speed = (int)joystickZSpeed[indexZ];
             String strZ = Gcode.FrmtNum(joystickZStep[indexZ] * dirZ);
@@ -799,6 +808,9 @@ namespace GrblPlotter
             { indexA = joystickAStep.Length - 1; }
             if (indexA < 0)
             { indexA = 0; }
+
+			if (index_A == 0)
+			{	if (!Grbl.isVersion_0) SendRealtimeCommand(133); return;}
 
             virtualJoystickA_lastIndex = indexA;
             int speed = (int)joystickASpeed[indexA];
@@ -1199,10 +1211,10 @@ namespace GrblPlotter
                 return false;
 
             bool commandFound = false;
-            if (command.ToLower(culture).IndexOf("#start") >= 0) { BtnStreamStart_Click(this, null); commandFound = true; }
+            if (command.ToLower(culture).IndexOf("#start") >= 0) { StartStreaming(0, fCTBCode.LinesCount - 1); commandFound = true; }   //  BtnStreamStart_Click(this, null); commandFound = true; }
             else if (command.ToLower(culture).IndexOf("#stop") >= 0) { BtnStreamStop_Click(this, EventArgs.Empty); commandFound = true; }
             else if (command.ToLower(culture).IndexOf("#f100") >= 0) { SendRealtimeCommand(144); commandFound = true; }
-            else if (command.ToLower(culture).IndexOf("#f+10") >= 0) { SendRealtimeCommand(145); commandFound = true; }
+            else if (command.ToLower(culture).IndexOf("#f+10") >= 0) {  SendRealtimeCommand(145); commandFound = true; }
             else if (command.ToLower(culture).IndexOf("#f-10") >= 0) { SendRealtimeCommand(146); commandFound = true; }
             else if (command.ToLower(culture).IndexOf("#f+1") >= 0) { SendRealtimeCommand(147); commandFound = true; }
             else if (command.ToLower(culture).IndexOf("#f-1") >= 0) { SendRealtimeCommand(148); commandFound = true; }
@@ -1563,19 +1575,19 @@ namespace GrblPlotter
 
         private void ShowFormsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_serial_form != null) _serial_form.BringToFront();
-            if (_text_form != null) _text_form.BringToFront();
-            if (_image_form != null) _image_form.BringToFront();
-            if (_shape_form != null) _shape_form.BringToFront();
-            if (_barcode_form != null) _barcode_form.BringToFront();
+            _serial_form?.BringToFront();
+            _text_form?.BringToFront();
+            _image_form?.BringToFront();
+            _shape_form?.BringToFront();
+            _barcode_form?.BringToFront();
 
-            if (_setup_form != null) _setup_form.BringToFront();
-            if (_camera_form != null) _camera_form.BringToFront();
-            if (_coordSystem_form != null) _coordSystem_form.BringToFront();
-            if (_laser_form != null) _laser_form.BringToFront();
-            if (_probing_form != null) _probing_form.BringToFront();
-            if (_heightmap_form != null) _heightmap_form.BringToFront();
-            if (_grbl_setup_form != null) _grbl_setup_form.BringToFront();
+            _setup_form?.BringToFront();
+            _camera_form?.BringToFront();
+            _coordSystem_form?.BringToFront();
+            _laser_form?.BringToFront();
+            _probing_form?.BringToFront();
+            _heightmap_form?.BringToFront();
+            _grbl_setup_form?.BringToFront();
 
             //   _streaming_form.SendToBack();
         }
