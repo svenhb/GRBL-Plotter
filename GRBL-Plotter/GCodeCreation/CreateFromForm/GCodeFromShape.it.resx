@@ -288,4 +288,34 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Crea codice G da forme</value>
   </data>
+  <data name="BtnDeleteShape.Text" xml:space="preserve">
+    <value>Eliminare</value>
+  </data>
+  <data name="BtnDeleteShape.ToolTip" xml:space="preserve">
+    <value>Elimina la forma selezionata</value>
+  </data>
+  <data name="BtnApplyShape.Text" xml:space="preserve">
+    <value>Fare domanda a</value>
+  </data>
+  <data name="BtnApplyShape.ToolTip" xml:space="preserve">
+    <value>Applica le impostazioni della forma selezionata</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Carica le impostazioni della forma</value>
+  </data>
+  <data name="TbShapeName.ToolTip" xml:space="preserve">
+    <value>Testo per</value>
+  </data>
+  <data name="BtnAddShape.Text" xml:space="preserve">
+    <value>Salva come</value>
+  </data>
+  <data name="BtnAddShape.ToolTip" xml:space="preserve">
+    <value>Salva le impostazioni con il nome qui sotto</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Salva le impostazioni della forma</value>
+  </data>
+  <data name="cBNoZUp.ToolTip" xml:space="preserve">
+    <value>Non sollevare Z ad un'altezza di sicurezza dopo ogni passaggio</value>
+  </data>
 </root>

@@ -29,6 +29,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
+using static GrblPlotter.Graphic;
 
 namespace GrblPlotter
 {
@@ -204,7 +205,7 @@ namespace GrblPlotter
 
                     finalString.AppendLine("\r\n( +++++ Tool change +++++ )");
 
-                    Gcode.Tool(finalString, toolNr, ToolTable.IndexName());  // + svgPalette.pixelCount());
+                    Gcode.Tool(finalString, toolNr, ToolTable.IndexName() + " [" + ColorTranslator.ToHtml(ToolTable.IndexColor()) + "]");  // + svgPalette.pixelCount());
                     if (useResoAsPenWidth) penWidth = resoOutlineX;
                     else penWidth = ToolTable.IndexWidth();
 

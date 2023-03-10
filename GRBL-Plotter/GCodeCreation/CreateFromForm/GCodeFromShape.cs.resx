@@ -288,4 +288,34 @@
   <data name="CbInsertCode.Text" xml:space="preserve">
     <value>Vložit tvar do 2D pohledu (na pozici 0;0)</value>
   </data>
+  <data name="BtnDeleteShape.Text" xml:space="preserve">
+    <value>Vymazat</value>
+  </data>
+  <data name="BtnDeleteShape.ToolTip" xml:space="preserve">
+    <value>Smazat vybraný tvar</value>
+  </data>
+  <data name="BtnApplyShape.Text" xml:space="preserve">
+    <value>Aplikovat</value>
+  </data>
+  <data name="BtnApplyShape.ToolTip" xml:space="preserve">
+    <value>Použít nastavení vybraného tvaru</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Načíst nastavení tvaru</value>
+  </data>
+  <data name="TbShapeName.ToolTip" xml:space="preserve">
+    <value>Text pro</value>
+  </data>
+  <data name="BtnAddShape.Text" xml:space="preserve">
+    <value>Uložit jako</value>
+  </data>
+  <data name="BtnAddShape.ToolTip" xml:space="preserve">
+    <value>Uložte nastavení s názvem níže</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Uložit nastavení tvaru</value>
+  </data>
+  <data name="cBNoZUp.ToolTip" xml:space="preserve">
+    <value>Po každém přejezdu nezvedejte Z do bezpečné výšky</value>
+  </data>
 </root>

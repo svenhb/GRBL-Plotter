@@ -276,4 +276,34 @@
   <data name="CbInsertCode.Text" xml:space="preserve">
     <value>Вставить фигуру в 2D-вид (в позиции 0;0)</value>
   </data>
+  <data name="BtnDeleteShape.Text" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="BtnDeleteShape.ToolTip" xml:space="preserve">
+    <value>Удалить выбранную форму</value>
+  </data>
+  <data name="BtnApplyShape.Text" xml:space="preserve">
+    <value>Применять</value>
+  </data>
+  <data name="BtnApplyShape.ToolTip" xml:space="preserve">
+    <value>Применить настройки выбранной фигуры</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Загрузить настройки формы</value>
+  </data>
+  <data name="TbShapeName.ToolTip" xml:space="preserve">
+    <value>Текст для</value>
+  </data>
+  <data name="BtnAddShape.Text" xml:space="preserve">
+    <value>Сохранить как</value>
+  </data>
+  <data name="BtnAddShape.ToolTip" xml:space="preserve">
+    <value>Сохранить настройки с именем ниже</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Сохранить настройки формы</value>
+  </data>
+  <data name="cBNoZUp.ToolTip" xml:space="preserve">
+    <value>Не поднимайте Z на безопасную высоту после каждого прохода</value>
+  </data>
 </root>

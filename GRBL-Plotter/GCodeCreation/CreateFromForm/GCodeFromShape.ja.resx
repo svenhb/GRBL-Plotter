@@ -288,4 +288,34 @@
   <data name="CbInsertCode.Text" xml:space="preserve">
     <value>形状を2Dビューに挿入します（位置0; 0）</value>
   </data>
+  <data name="BtnDeleteShape.Text" xml:space="preserve">
+    <value>消去</value>
+  </data>
+  <data name="BtnDeleteShape.ToolTip" xml:space="preserve">
+    <value>選択した図形を削除</value>
+  </data>
+  <data name="BtnApplyShape.Text" xml:space="preserve">
+    <value>申し込み</value>
+  </data>
+  <data name="BtnApplyShape.ToolTip" xml:space="preserve">
+    <value>選択した形状の設定を適用</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>形状設定を読み込む</value>
+  </data>
+  <data name="TbShapeName.ToolTip" xml:space="preserve">
+    <value>のテキスト</value>
+  </data>
+  <data name="BtnAddShape.Text" xml:space="preserve">
+    <value>名前を付けて保存</value>
+  </data>
+  <data name="BtnAddShape.ToolTip" xml:space="preserve">
+    <value>以下の名前で設定を保存します</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>シェイプ設定を保存</value>
+  </data>
+  <data name="cBNoZUp.ToolTip" xml:space="preserve">
+    <value>各パスの後、Z を安全な高さまで上げないでください</value>
+  </data>
 </root>

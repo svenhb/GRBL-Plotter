@@ -28,15 +28,20 @@
  * 2021-07-14 code clean up / code quality
  * 2021-11-23 set default for tprop
  * 2023-01-17 add try catch in ShapeToGCode_Load
+ * 2023-03-04 add save/load/select shapes
 */
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Globalization;
+using System.IO;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace GrblPlotter
 {
@@ -56,6 +61,26 @@ namespace GrblPlotter
         private Image picBevelOn = Properties.Resources.rndOn;
         private ToolProp tprop = new ToolProp();
         private readonly ToolProp torig = new ToolProp();
+
+        internal class PathProp
+        {
+            internal int origin = 7;	// 1 - 9
+            internal int type = 1;		// 1 - 3 on, outside, inside shape
+        }
+        internal class ShapeProp
+        {
+            internal int type = 1;		// 1 - 3 rect, round-rect, circle
+            internal double dimX = 10, dimY = 10, dimR = 1;
+            internal bool pocket = false;
+        }
+        internal class ShapeFull
+        {
+            internal string name = "";
+            internal ToolProp tool = new ToolProp();
+            internal PathProp path = new PathProp();
+            internal ShapeProp shape = new ShapeProp();
+        }
+        internal List<ShapeFull> Shapes = new List<ShapeFull>();
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -93,8 +118,7 @@ namespace GrblPlotter
             path = PathBackground;      // create background path
             path.StartFigure();
 
-            Gcode.Tool(gcodeString, tprop.Toolnr, tprop.Name);
-            //       if (!Properties.Settings.Default.importGCSpindleToggle) gcode.SpindleOn(gcodeString, "Start");
+            Gcode.Tool(gcodeString, tprop.Toolnr, tprop.Name + " [" + ColorTranslator.ToHtml(tprop.Color) + "]");                                                                                                                                                //       if (!Properties.Settings.Default.importGCSpindleToggle) gcode.SpindleOn(gcodeString, "Start");
 
             float x, y, rShape, d, dTool, dToolOffset, overlap, rTool, rToolOffset, zStep;
             float zStart = 0;
@@ -704,82 +728,34 @@ namespace GrblPlotter
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { CenterToScreen(); }
 
-			try
-			{
-				nUDToolDiameter.Value = Properties.Settings.Default.createShapeToolDiameter;
-				nUDToolZStep.Value = Properties.Settings.Default.createShapeToolZStep;
-				nUDToolFeedXY.Value = Properties.Settings.Default.createShapeToolFeedXY;
-				nUDToolFeedZ.Value = Properties.Settings.Default.createShapeToolFeedZ;
-				nUDToolOverlap.Value = Properties.Settings.Default.createShapeToolOverlap;
-				nUDToolSpindleSpeed.Value = Properties.Settings.Default.createShapeToolSpindleSpeed;
-				nUDShapeX.Value = Properties.Settings.Default.createShapeX;
-				nUDShapeY.Value = Properties.Settings.Default.createShapeY;
-				nUDShapeR.Value = Properties.Settings.Default.createShapeR;
-				cBMoveTo00.Checked = Properties.Settings.Default.createShapeMovo00;
-				cBNoZUp.Checked = Properties.Settings.Default.createShapeNoZUp;
+            try
+            {
+                nUDToolDiameter.Value = Properties.Settings.Default.createShapeToolDiameter;
+                nUDToolZStep.Value = Properties.Settings.Default.createShapeToolZStep;
+                nUDToolFeedXY.Value = Properties.Settings.Default.createShapeToolFeedXY;
+                nUDToolFeedZ.Value = Properties.Settings.Default.createShapeToolFeedZ;
+                nUDToolOverlap.Value = Properties.Settings.Default.createShapeToolOverlap;
+                nUDToolSpindleSpeed.Value = Properties.Settings.Default.createShapeToolSpindleSpeed;
+                nUDShapeX.Value = Properties.Settings.Default.createShapeX;
+                nUDShapeY.Value = Properties.Settings.Default.createShapeY;
+                nUDShapeR.Value = Properties.Settings.Default.createShapeR;
+                cBMoveTo00.Checked = Properties.Settings.Default.createShapeMovo00;
+                cBNoZUp.Checked = Properties.Settings.Default.createShapeNoZUp;
 
-				nUDRZRadius.Value = Properties.Settings.Default.createShapeRZRadius;
-				nUDRZWidth.Value = Properties.Settings.Default.createShapeRZWidth;
-				nUDRZStep.Value = Properties.Settings.Default.createShapeRZStep;
-				
-				nUDImportGCZDown.Value = Properties.Settings.Default.importGCZDown;
-			}
-			catch {}
+                nUDRZRadius.Value = Properties.Settings.Default.createShapeRZRadius;
+                nUDRZWidth.Value = Properties.Settings.Default.createShapeRZWidth;
+                nUDRZStep.Value = Properties.Settings.Default.createShapeRZStep;
 
-            switch (Properties.Settings.Default.createShapeType)
-            {
-                case 2:
-                    rBShape2.Checked = true;    // circle
-                    break;
-                case 3:
-                    rBShape3.Checked = true;    // rectangle round edge
-                    break;
-                default:
-                    rBShape1.Checked = true;    // rectangle
-                    break;
+                nUDImportGCZDown.Value = Properties.Settings.Default.importGCZDown;
             }
-            switch (Properties.Settings.Default.createShapeToolPath)
-            {
-                case 2:
-                    rBToolpath2.Checked = true;     // outside shape
-                    break;
-                case 3:
-                    rBToolpath3.Checked = true;     // inside shape
-                    break;
-                default:
-                    rBToolpath1.Checked = true;     // on shape
-                    break;
-            }
-            switch (Properties.Settings.Default.createShapeOrigin)
-            {
-                case 1:
-                    rBOrigin1.Checked = true;
-                    break;
-                case 2:
-                    rBOrigin2.Checked = true;
-                    break;
-                case 3:
-                    rBOrigin3.Checked = true;
-                    break;
-                case 4:
-                    rBOrigin4.Checked = true;
-                    break;
-                case 6:
-                    rBOrigin6.Checked = true;
-                    break;
-                case 7:
-                    rBOrigin7.Checked = true;
-                    break;
-                case 8:
-                    rBOrigin8.Checked = true;
-                    break;
-                case 9:
-                    rBOrigin9.Checked = true;
-                    break;
-                default:
-                    rBOrigin5.Checked = true;
-                    break;
-            }
+            catch { }
+
+            SetShapeID(Properties.Settings.Default.createShapeType);
+            SetToolpathID(Properties.Settings.Default.createShapeToolPath);
+            SetOriginID(Properties.Settings.Default.createShapeOrigin);
+
+            SaveOrigToolProperties();	// needed in CBToolSet_CheckedChanged
+
             int toolCount = ToolTable.Init(" (ShapeToGCode_Load)");   // get max index
             ToolProp tmpTool;
             bool defaultToolFound = false;
@@ -808,6 +784,9 @@ namespace GrblPlotter
             rB2.Image = (Image)picBevelOff.Clone(); rB2.Image.RotateFlip((RotateFlipType.Rotate90FlipNone));
             rB3.Image = (Image)picBevelOff.Clone(); rB3.Image.RotateFlip((RotateFlipType.Rotate180FlipNone));
             rB4.Image = (Image)picBevelOff.Clone(); rB4.Image.RotateFlip((RotateFlipType.Rotate270FlipNone));
+
+            LoadXML(Datapath.Data + "\\simpleshapes.xml");
+            Update_ShapeSelection(0);
         }
 
         private void ShapeToGCode_FormClosing(object sender, FormClosingEventArgs e)
@@ -834,26 +813,69 @@ namespace GrblPlotter
             Properties.Settings.Default.createShapeRZWidth = nUDRZWidth.Value;
             Properties.Settings.Default.createShapeRZStep = nUDRZStep.Value;
 
+            Properties.Settings.Default.createShapeType = GetShapeID();
 
-            if (rBShape1.Checked) Properties.Settings.Default.createShapeType = 1;
-            if (rBShape2.Checked) Properties.Settings.Default.createShapeType = 2;
-            if (rBShape3.Checked) Properties.Settings.Default.createShapeType = 3;
             Properties.Settings.Default.importGCZDown = nUDImportGCZDown.Value;
-            if (rBToolpath1.Checked) Properties.Settings.Default.createShapeToolPath = 1;
-            if (rBToolpath2.Checked) Properties.Settings.Default.createShapeToolPath = 2;
-            if (rBToolpath3.Checked) Properties.Settings.Default.createShapeToolPath = 3;
-            if (rBOrigin1.Checked) Properties.Settings.Default.createShapeOrigin = 1;
-            if (rBOrigin2.Checked) Properties.Settings.Default.createShapeOrigin = 2;
-            if (rBOrigin3.Checked) Properties.Settings.Default.createShapeOrigin = 3;
-            if (rBOrigin4.Checked) Properties.Settings.Default.createShapeOrigin = 4;
-            if (rBOrigin5.Checked) Properties.Settings.Default.createShapeOrigin = 5;
-            if (rBOrigin6.Checked) Properties.Settings.Default.createShapeOrigin = 6;
-            if (rBOrigin7.Checked) Properties.Settings.Default.createShapeOrigin = 7;
-            if (rBOrigin8.Checked) Properties.Settings.Default.createShapeOrigin = 8;
-            if (rBOrigin9.Checked) Properties.Settings.Default.createShapeOrigin = 9;
+            Properties.Settings.Default.createShapeToolPath = GetToolpathID();
+
+            Properties.Settings.Default.createShapeOrigin = GetOriginID();
             Properties.Settings.Default.Save();
         }
-
+        private int GetShapeID()
+        {
+            int id = 1;
+            if (rBShape2.Checked) id = 2;
+            else if (rBShape3.Checked) id = 3;
+            return id;
+        }
+        private void SetShapeID(int id)
+        {
+            if (id == 1) { rBShape1.Checked = true; }        // rectangle
+            else if (id == 2) { rBShape2.Checked = true; }
+            else if (id == 3) { rBShape3.Checked = true; }
+            else { rBShape1.Checked = true; }
+        }
+        private int GetToolpathID()
+        {
+            int id = 1;
+            if (rBToolpath2.Checked) id = 2;
+            else if (rBToolpath3.Checked) id = 3;
+            return id;
+        }
+        private void SetToolpathID(int id)
+        {
+            if (id == 1) { rBToolpath1.Checked = true; }
+            else if (id == 2) { rBToolpath2.Checked = true; }
+            else if (id == 3) { rBToolpath3.Checked = true; }
+            else { rBToolpath1.Checked = true; }
+        }
+        private int GetOriginID()
+        {
+            int id = 0;
+            if (rBOrigin1.Checked) id = 1;
+            else if (rBOrigin2.Checked) id = 2;
+            else if (rBOrigin3.Checked) id = 3;
+            else if (rBOrigin4.Checked) id = 4;
+            else if (rBOrigin5.Checked) id = 5;
+            else if (rBOrigin6.Checked) id = 6;
+            else if (rBOrigin7.Checked) id = 7;
+            else if (rBOrigin8.Checked) id = 8;
+            else if (rBOrigin9.Checked) id = 9;
+            return id;
+        }
+        private void SetOriginID(int id)
+        {
+            if (id == 1) { rBOrigin1.Checked = true; }
+            else if (id == 2) { rBOrigin2.Checked = true; }
+            else if (id == 3) { rBOrigin3.Checked = true; }
+            else if (id == 4) { rBOrigin4.Checked = true; }
+            else if (id == 5) { rBOrigin5.Checked = true; }
+            else if (id == 6) { rBOrigin6.Checked = true; }
+            else if (id == 7) { rBOrigin7.Checked = true; }
+            else if (id == 8) { rBOrigin8.Checked = true; }
+            else if (id == 9) { rBOrigin9.Checked = true; }
+            else { rBOrigin5.Checked = true; }
+        }
         private void NudShapeR_ValueChanged(object sender, EventArgs e)
         {
             if (rBShape2.Checked)
@@ -862,6 +884,7 @@ namespace GrblPlotter
                 if (nUDShapeR.Value > min / 2)
                     CheckSetValue(nUDShapeR, min / 2);
             }
+            CreateSaveName();
         }
 
         private void CBToolSet_CheckedChanged(object sender, EventArgs e)
@@ -893,13 +916,7 @@ namespace GrblPlotter
 
         private void SaveOrigToolProperties()
         {
-            torig.Diameter = (float)nUDToolDiameter.Value;
-            torig.FeedXY = (float)nUDToolFeedXY.Value;
-            torig.FinalZ = (float)nUDImportGCZDown.Value;
-            torig.StepZ = (float)nUDToolZStep.Value;
-            torig.FeedZ = (float)nUDToolFeedZ.Value;
-            torig.Overlap = (float)nUDToolOverlap.Value;
-            torig.SpindleSpeed = (float)nUDToolSpindleSpeed.Value;
+            FillToolProp(torig);
             Logger.Info(culture, "Save Tool dia:{0}, feedXY:{1}, finalZ:{2}, stepZ:{3}, feedZ:{4}, overlap:{5}, spindle:{6}", torig.Diameter, torig.FeedXY, torig.FinalZ, torig.StepZ, torig.FeedZ, torig.Overlap, torig.SpindleSpeed);
         }
         private void CBTool_SelectedIndexChanged(object sender, EventArgs e)
@@ -1020,6 +1037,196 @@ namespace GrblPlotter
             SetImage(rB2, rB2.Checked);
             SetImage(rB3, rB3.Checked);
             SetImage(rB4, rB4.Checked);
+        }
+
+
+
+        private readonly XmlReaderSettings settings = new XmlReaderSettings()
+        { DtdProcessing = DtdProcessing.Prohibit };
+
+        private void SaveXML(string fileName)
+        {
+            if (File.Exists(fileName))
+                File.Delete(fileName);
+
+            XmlWriterSettings set = new XmlWriterSettings
+            {
+                Indent = true
+            };
+            XmlWriter xmlWrite = XmlWriter.Create(fileName, set);
+            xmlWrite.WriteStartDocument();
+            xmlWrite.WriteStartElement("simpleshapes");
+
+            // https://www.c-sharpcorner.com/UploadFile/mahesh/understanding-and-using-graphics-paths-in-gdi/
+            foreach (var shape in Shapes)
+            {
+
+                xmlWrite.WriteStartElement("simpleshape");
+                xmlWrite.WriteAttributeString("name", shape.name);
+
+                xmlWrite.WriteStartElement("tool");
+                shape.tool.WriteAttributes(xmlWrite);
+                xmlWrite.WriteEndElement();
+
+                xmlWrite.WriteStartElement("path");
+                xmlWrite.WriteAttributeString("origin", shape.path.origin.ToString().Replace(',', '.'));
+                xmlWrite.WriteAttributeString("type", shape.path.type.ToString().Replace(',', '.'));
+                xmlWrite.WriteEndElement();
+
+                xmlWrite.WriteStartElement("shape");
+                xmlWrite.WriteAttributeString("type", shape.shape.type.ToString().Replace(',', '.'));
+                xmlWrite.WriteAttributeString("x", shape.shape.dimX.ToString().Replace(',', '.'));
+                xmlWrite.WriteAttributeString("y", shape.shape.dimY.ToString().Replace(',', '.'));
+                xmlWrite.WriteAttributeString("r", shape.shape.dimR.ToString().Replace(',', '.'));
+                xmlWrite.WriteAttributeString("p", shape.shape.pocket.ToString().Replace(',', '.'));
+                xmlWrite.WriteEndElement();
+
+                xmlWrite.WriteEndElement();
+            }
+            xmlWrite.WriteEndElement();
+            xmlWrite.Close();
+            Logger.Trace("SaveXML to '{0}'", fileName);
+        }
+
+
+        private void LoadXML(string fileName)
+        {
+
+            if (!File.Exists(fileName))
+                return;// false;
+
+            Shapes.Clear();
+            int shapeIndex = -1;
+            XmlReader xmlRead = XmlReader.Create(fileName, settings);
+            while (xmlRead.Read())
+            {
+                if (!xmlRead.IsStartElement())
+                    continue;
+
+                switch (xmlRead.Name)
+                {
+                    case "simpleshape":
+                        Shapes.Add(new ShapeFull());
+                        shapeIndex = Shapes.Count - 1;
+                        if (xmlRead["name"].Length > 0) { Shapes[shapeIndex].name = xmlRead["name"]; }
+                        break;
+                    case "tool":
+                        if (shapeIndex >= 0)
+                        {
+                            Shapes[shapeIndex].tool.ReadAttributes(xmlRead);
+                        }
+                        break;
+                    case "path":
+                        if (shapeIndex >= 0)
+                        {
+                            if (xmlRead["origin"].Length > 0) { Shapes[shapeIndex].path.origin = int.Parse(xmlRead["origin"], NumberFormatInfo.InvariantInfo); }
+                            if (xmlRead["type"].Length > 0) { Shapes[shapeIndex].path.type = int.Parse(xmlRead["type"], NumberFormatInfo.InvariantInfo); }
+                        }
+                        break;
+                    case "shape":
+                        {
+                            if (xmlRead["type"].Length > 0) { Shapes[shapeIndex].shape.type = int.Parse(xmlRead["type"], NumberFormatInfo.InvariantInfo); }
+                            if (xmlRead["x"].Length > 0) { Shapes[shapeIndex].shape.dimX = double.Parse(xmlRead["x"].Replace(',', '.'), NumberFormatInfo.InvariantInfo); }
+                            if (xmlRead["y"].Length > 0) { Shapes[shapeIndex].shape.dimY = double.Parse(xmlRead["y"].Replace(',', '.'), NumberFormatInfo.InvariantInfo); }
+                            if (xmlRead["r"].Length > 0) { Shapes[shapeIndex].shape.dimR = double.Parse(xmlRead["r"].Replace(',', '.'), NumberFormatInfo.InvariantInfo); }
+                            if (xmlRead["p"].Length > 0) { Shapes[shapeIndex].shape.pocket = xmlRead["p"] == "true"; }
+                        }
+                        break;
+                }
+            }
+            xmlRead.Close();
+
+        }
+
+        private void Update_ShapeSelection(int select)
+        {
+            CbShapeSelection.Items.Clear();
+            if (Shapes.Count > 0)
+            {
+                foreach (var shape in Shapes)
+                { CbShapeSelection.Items.Add(shape.name); }
+
+                int index = 0;
+
+                if (select < Shapes.Count)
+                    index = select;
+
+                CbShapeSelection.SelectedItem = index;
+
+                CbShapeSelection.Text = CbShapeSelection.Items[index].ToString();
+            }
+        }
+
+        private void BtnAddShape_Click(object sender, EventArgs e)
+        {
+            Shapes.Add(new ShapeFull());
+            int shapeIndex = Shapes.Count - 1;
+
+            FillToolProp(Shapes[shapeIndex].tool);
+
+            Shapes[shapeIndex].path.type = GetToolpathID();
+            Shapes[shapeIndex].path.origin = GetOriginID();
+
+            Shapes[shapeIndex].shape.dimX = (double)nUDShapeX.Value;
+            Shapes[shapeIndex].shape.dimY = (double)nUDShapeY.Value;
+            Shapes[shapeIndex].shape.dimR = (double)nUDShapeR.Value;
+            Shapes[shapeIndex].shape.pocket = cBToolpathPocket.Checked;
+            Shapes[shapeIndex].shape.type = GetShapeID();
+
+            Shapes[shapeIndex].name = TbShapeName.Text;
+
+            SaveXML(Datapath.Data + "\\simpleshapes.xml");
+            Update_ShapeSelection(shapeIndex);
+        }
+
+        private void BtnApplyShape_Click(object sender, EventArgs e)
+        {
+            int index = CbShapeSelection.SelectedIndex;
+            if ((index >= 0) && (index < Shapes.Count))
+            {
+                cBToolSet.Checked = false;
+
+                SetToolProperties(Shapes[index].tool);
+                SetToolpathID(Shapes[index].path.type);
+                SetOriginID(Shapes[index].path.origin);
+                SetShapeID(Shapes[index].shape.type);
+                nUDShapeX.Value = (decimal)Shapes[index].shape.dimX;
+                nUDShapeY.Value = (decimal)Shapes[index].shape.dimY;
+                nUDShapeR.Value = (decimal)Shapes[index].shape.dimR;
+
+                TbShapeName.Text = Shapes[index].name;
+            }
+        }
+
+        private void BtnDeleteShape_Click(object sender, EventArgs e)
+        {
+            int index = CbShapeSelection.SelectedIndex;
+            if ((index >= 0) && (index < Shapes.Count))
+            {
+                Shapes.RemoveAt(index);
+            }
+            else
+            { CbShapeSelection.Text = "-"; }
+            SaveXML(Datapath.Data + "\\simpleshapes.xml");
+            Update_ShapeSelection(index);
+        }
+
+        private void FillToolProp(ToolProp tmp)
+        {
+            tmp.Diameter = (float)nUDToolDiameter.Value;
+            tmp.FeedXY = (float)nUDToolFeedXY.Value;
+            tmp.FinalZ = (float)nUDImportGCZDown.Value;
+            tmp.StepZ = (float)nUDToolZStep.Value;
+            tmp.FeedZ = (float)nUDToolFeedZ.Value;
+            tmp.Overlap = (float)nUDToolOverlap.Value;
+            tmp.SpindleSpeed = (float)nUDToolSpindleSpeed.Value;
+        }
+
+        private void CreateSaveName()
+        {
+            string[] shapes = { "", "Rect", "RndRect", "Circle", "" };
+            string name = string.Format("{0}_{1:0.0}_{2:0.0}_{3:0.0}", shapes[GetShapeID()], nUDShapeX.Value, nUDShapeY.Value, nUDShapeR.Value);
+            TbShapeName.Text = name;
         }
     }
 }

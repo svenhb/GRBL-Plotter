@@ -270,4 +270,34 @@
   <data name="CbInsertCode.Text" xml:space="preserve">
     <value>Form in 2D-Ansicht einfügen (an Position 0;0)</value>
   </data>
+  <data name="BtnDeleteShape.Text" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="BtnDeleteShape.ToolTip" xml:space="preserve">
+    <value>Ausgewählte Form löschen</value>
+  </data>
+  <data name="BtnApplyShape.Text" xml:space="preserve">
+    <value>Anwenden</value>
+  </data>
+  <data name="BtnApplyShape.ToolTip" xml:space="preserve">
+    <value>Wendet die Einstellungen der ausgewählten Form an</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Einstellungen laden</value>
+  </data>
+  <data name="TbShapeName.ToolTip" xml:space="preserve">
+    <value>Texte für</value>
+  </data>
+  <data name="BtnAddShape.Text" xml:space="preserve">
+    <value>Speichern als</value>
+  </data>
+  <data name="BtnAddShape.ToolTip" xml:space="preserve">
+    <value>Speichert die Einstellungen mit dem Namen unten</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Einstellungen speichern</value>
+  </data>
+  <data name="cBNoZUp.ToolTip" xml:space="preserve">
+    <value>Z nicht nach jedem Durchgang auf eine sichere Höhe heben</value>
+  </data>
 </root>

@@ -276,4 +276,34 @@
   <data name="CbInsertCode.Text" xml:space="preserve">
     <value>Insertar forma en vista 2D (en la posición 0;0)</value>
   </data>
+  <data name="BtnDeleteShape.Text" xml:space="preserve">
+    <value>Borrar</value>
+  </data>
+  <data name="BtnDeleteShape.ToolTip" xml:space="preserve">
+    <value>Eliminar forma seleccionada</value>
+  </data>
+  <data name="BtnApplyShape.Text" xml:space="preserve">
+    <value>Aplicar</value>
+  </data>
+  <data name="BtnApplyShape.ToolTip" xml:space="preserve">
+    <value>Aplicar la configuración de la forma seleccionada</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Configuración de la forma de carga</value>
+  </data>
+  <data name="TbShapeName.ToolTip" xml:space="preserve">
+    <value>Texto para</value>
+  </data>
+  <data name="BtnAddShape.Text" xml:space="preserve">
+    <value>Guardar como</value>
+  </data>
+  <data name="BtnAddShape.ToolTip" xml:space="preserve">
+    <value>Guardar la configuración con el nombre a continuación</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Guardar configuración de forma</value>
+  </data>
+  <data name="cBNoZUp.ToolTip" xml:space="preserve">
+    <value>No levante Z a una altura segura después de cada pasada</value>
+  </data>
 </root>

@@ -288,4 +288,34 @@
   <data name="CbInsertCode.Text" xml:space="preserve">
     <value>أدخل الشكل في عرض ثنائي الأبعاد (في الموضع 0 ؛ 0)</value>
   </data>
+  <data name="BtnDeleteShape.Text" xml:space="preserve">
+    <value>يمسح</value>
+  </data>
+  <data name="BtnDeleteShape.ToolTip" xml:space="preserve">
+    <value>حذف الشكل المحدد</value>
+  </data>
+  <data name="BtnApplyShape.Text" xml:space="preserve">
+    <value>يتقدم</value>
+  </data>
+  <data name="BtnApplyShape.ToolTip" xml:space="preserve">
+    <value>تطبيق إعدادات الشكل المحدد</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>تحميل إعدادات الشكل</value>
+  </data>
+  <data name="TbShapeName.ToolTip" xml:space="preserve">
+    <value>نص لـ</value>
+  </data>
+  <data name="BtnAddShape.Text" xml:space="preserve">
+    <value>حفظ باسم</value>
+  </data>
+  <data name="BtnAddShape.ToolTip" xml:space="preserve">
+    <value>حفظ الإعدادات بالاسم أدناه</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>حفظ إعدادات الشكل</value>
+  </data>
+  <data name="cBNoZUp.ToolTip" xml:space="preserve">
+    <value>لا ترفع Z إلى ارتفاع آمن بعد كل تمريرة</value>
+  </data>
 </root>
