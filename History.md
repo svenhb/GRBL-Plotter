@@ -1,6 +1,17 @@
 ## History
 Needs to be read from the bottom up ;-)  
  
+### 2023-03 Version 1.6.9.x 
+* VirtualJoyStick optional "Classic buttons" https://grbl-plotter.de/index.php?id=gui&setlang=en#CT
+* Tool change message box shows colored panel
+* Create Shapes: save shape-settings in XML
+* Z several passes, add noZUp
+ 
+### 2022-08 Version 1.6.8.x 
+* Create text from installed windows-font
+* Process automation (not well tested, new feature. XML script must be edit in external editor)
+* Height map import STL and sectional view (only tested with source given below)
+ 
 ### 2022-08 Version 1.6.7.x 
 * Bug fix in dash pattern for arcs and circles 
 * Italian languange
