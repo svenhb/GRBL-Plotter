@@ -4,6 +4,17 @@ Ein  GRBL GCode-Sender unter windows mit DotNET 4.0 (funktioniert auch mit Windo
 Geschrieben in C# VisualStudio 2019.  
 Wenn dir GRBL-Plotter gefällt, zeige es mir durch eine kleine Spende :-) [![Donate](https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WK8ATWHC872JU)   
   
+ ### Neu in Version 1.6.9.x 
+* VirtualJoyStick optional "Classic buttons" https://grbl-plotter.de/index.php?id=gui&setlang=en#CT
+* Tool change message box zeigt Farbe an
+* Create Shapes: save shape-settings in XML
+* Z several passes, add noZUp
+ 
+### Neu in Version 1.6.8.x 
+* Create text from installed windows-font
+* Process automation (not well tested, new feature. XML script must be edit in external editor)
+* Height map import STL and sectional view (only tested with source given below)
+* 
 ### Neu in Version 1.6.7.x
 * SVG-Text import (nicht alle SVG-Text Optionen werden unterstützt)
 * GRBL-Setup Fenster
