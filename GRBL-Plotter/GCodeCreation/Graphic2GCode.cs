@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -39,6 +39,7 @@
  * 2022-03-29 function 'arc' line 900 if full circle, end_angle = start_angle+360° issue #270
  * 2022-04-04 line 547 change "PathID" to "PathId"
  * 2022-11-04 change dash-apply algorithm in MoveToDashed to continue pattern in next move-segement 
+ * 2023-03-07 l:256 f:CreateGCode  add color to ToolChange call "[color]"
 */
 
 using System;
@@ -252,7 +253,7 @@ namespace GrblPlotter
                 }
 
                 if (logEnable) Logger.Trace("CreateGCode-Group  toolNr:{0}  name:{1}", groupObject.ToolNr, groupObject.ToolName);
-                ToolChange(groupObject.ToolNr, groupObject.ToolName);   // add tool change commands (if enabled) and set XYFeed etc.
+                ToolChange(groupObject.ToolNr, groupObject.ToolName + " [" + groupObject.GroupPath[0].Info.GroupAttributes[(int)GroupOption.ByColor] + "]");   // add tool change commands (if enabled) and set XYFeed etc.
 
                 foreach (PathObject pathObject in groupObject.GroupPath)
                 {
@@ -825,9 +826,9 @@ namespace GrblPlotter
 			double dFull = Math.Sqrt(dX * dX + dY * dY);
 			double dToGo = dFull;
 			double xx = lastGC.X, yy = lastGC.Y;		// intermediate pos
-			double ddx = 0, ddy = 0;					// dash distance
+			double ddx, ddy;					// dash distance
 			string dashInfo="";
-			Point pNext = coordxy;
+			Point pNext;
 			
 			while (dToGo > 0)
 			{

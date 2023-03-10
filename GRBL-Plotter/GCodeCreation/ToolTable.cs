@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,6 +27,8 @@
  * 2021-08-26 GetToolColor remove leading '#'
  * 2021-12-09 set default tool-nr=1
  * 2022-07-29 Init add try catch
+ * 2023-03-03 add xmlAtrribute
+ * 2023-03-08 l:87 f:ToolProp add WriteAttributes ReadAttributes for XML data
 */
 
 using System;
@@ -35,6 +37,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Xml;
 
 namespace GrblPlotter
 {
@@ -80,6 +83,49 @@ namespace GrblPlotter
 
         public void ResetPathProperties()
         { ColorPresent = false; ToolSelected = false; CodeSize = 0; CodeDimension = 0; PixelCount = 0; Diff = int.MaxValue; }
+		
+		public void WriteAttributes(XmlWriter xmlWrite)
+		{
+		//	xmlWrite.WriteAttributeString("tnr", Toolnr.ToString().Replace(',', '.'));
+			xmlWrite.WriteAttributeString("dia", Diameter.ToString().Replace(',', '.'));
+			xmlWrite.WriteAttributeString("stz", StepZ.ToString().Replace(',', '.'));
+			xmlWrite.WriteAttributeString("fnz", FinalZ.ToString().Replace(',', '.'));
+			xmlWrite.WriteAttributeString("fxy", FeedXY.ToString().Replace(',', '.'));
+			xmlWrite.WriteAttributeString("fz", FeedZ.ToString().Replace(',', '.'));
+			xmlWrite.WriteAttributeString("ovl", Overlap.ToString().Replace(',', '.'));
+			xmlWrite.WriteAttributeString("spd", SpindleSpeed.ToString().Replace(',', '.'));
+		}
+		
+		public void ReadAttributes(XmlReader xmlRead)
+		{                    
+			float? tmp;
+			tmp = ReadAttribute(xmlRead, "dia"); if(tmp!=null) {Diameter = (float)tmp;}
+			tmp = ReadAttribute(xmlRead, "stz"); if(tmp!=null) {StepZ = (float)tmp;}
+			tmp = ReadAttribute(xmlRead, "fnz"); if(tmp!=null) {FinalZ = (float)tmp;}
+			tmp = ReadAttribute(xmlRead, "fxy"); if(tmp!=null) {FeedXY = (float)tmp;}
+			tmp = ReadAttribute(xmlRead, "fz");  if(tmp!=null) {FeedZ = (float)tmp;}
+			tmp = ReadAttribute(xmlRead, "ovl"); if(tmp!=null) {Overlap = (float)tmp;}
+			tmp = ReadAttribute(xmlRead, "spd"); if(tmp!=null) {SpindleSpeed = (float)tmp;}
+			
+			/*
+			if (xmlRead["dia"].Length > 0) { Diameter = float.Parse(xmlRead["dia"].Replace(',', '.'), NumberFormatInfo.InvariantInfo); }
+			if (xmlRead["stz"].Length > 0) { StepZ = float.Parse(xmlRead["stz"].Replace(',', '.'), NumberFormatInfo.InvariantInfo); }
+			if (xmlRead["fnz"].Length > 0) { FinalZ = float.Parse(xmlRead["fnz"].Replace(',', '.'), NumberFormatInfo.InvariantInfo); }
+			if (xmlRead["fxy"].Length > 0) { FeedXY = float.Parse(xmlRead["fxy"].Replace(',', '.'), NumberFormatInfo.InvariantInfo); }
+			if (xmlRead["fz"].Length > 0)  { FeedZ = float.Parse(xmlRead["fz"].Replace(',', '.'), NumberFormatInfo.InvariantInfo); }
+			if (xmlRead["ovl"].Length > 0) { Overlap = float.Parse(xmlRead["ovl"].Replace(',', '.'), NumberFormatInfo.InvariantInfo); }
+			if (xmlRead["spd"].Length > 0) { SpindleSpeed = float.Parse(xmlRead["spd"].Replace(',', '.'), NumberFormatInfo.InvariantInfo); }*/
+		}
+		private float? ReadAttribute(XmlReader xmlRead, string att)
+		{
+			try
+			{
+				if (xmlRead[att].Length > 0) { return float.Parse(xmlRead[att].Replace(',', '.'), NumberFormatInfo.InvariantInfo); }
+			}
+			catch
+			{}	
+			return null;
+		}
     }
 
     internal static class ToolTable

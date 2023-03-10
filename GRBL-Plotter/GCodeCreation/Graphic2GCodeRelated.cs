@@ -42,6 +42,9 @@
 * 2022-07-12 line 1048, 1055, 1196 add gcodeAux1Cmd, gcodeAux2Cmd at code for relative movement
 * 2022-12-02 add function SetHeaderInfo
 * 2023-01-28 add %NM tag, to keep code-line when synthezising code
+* 2023-02-18 line 280 preventSpindle
+* 2023-03-05 l:1544/1633 f:Drill/IntermediateZ add gcodeZNoUp
+* 2023-03-06 l:1314 f:Tool remove space in output "M0 (Tool:{0}  Color:{1})\r\n"
 */
 
 using System;
@@ -90,6 +93,7 @@ namespace GrblPlotter
         public static float GcodeZFeed { get; set; } //= 499;           // Z feed to apply for G1
         private static bool gcodeZFeedToolTable = false;// from Tool Table
         public static float GcodeZInc { get; set; } //= 1;
+        private static bool gcodeZNoUp = false;                         // no pen-up after a pass
         public static bool GcodeZPreventSpindle { get; set; } //= 1;
 
         private static bool PreventSpindle { get; set; }
@@ -216,6 +220,7 @@ namespace GrblPlotter
             GcodeZFeed = (float)Properties.Settings.Default.importGCZFeed;
             gcodeZFeedToolTable = useValueFromToolTable && Properties.Settings.Default.importGCTTZAxis;
             GcodeZInc = (float)Properties.Settings.Default.importGCZIncrement;             // depth per pass
+            gcodeZNoUp = Properties.Settings.Default.importGCZIncNoZUp;
             GcodeZPreventSpindle = Properties.Settings.Default.importGCZPreventSpindle;
 
             repeatZ = convertGraphics && Properties.Settings.Default.importGCZIncEnable;    // do final Z in several passes?
@@ -275,7 +280,9 @@ namespace GrblPlotter
             gcodeAuxiliaryValue1Name = Properties.Settings.Default.importGCAux1Axis;
             gcodeAuxiliaryValue2Name = Properties.Settings.Default.importGCAux2Axis;
 
-            PreventSpindle = GcodeZPreventSpindle && !gcodeSpindleToggle; //(&& dragtool && ...)
+            // prevent spindle/laser-on on job start
+            //   PreventSpindle = GcodeZPreventSpindle && !gcodeSpindleToggle; //(&& dragtool && ...)
+            PreventSpindle = GcodeZPreventSpindle || gcodeSpindleToggle; //(&& dragtool && ...)
 
             gcodeZLeadInEnable = false;
             gcodeZLeadOutEnable = false;
@@ -549,7 +556,7 @@ namespace GrblPlotter
                         if (!gcodeToolChange)   // spindle on if no tool change
                         {
                             if (gcodeComments) cmt = " (" + cmto + " spindle )";
-                            else cmt = "";
+                            else cmt = "job start";
                             if (!PreventSpindle)
                                 SpindleOn(gcodeValue, cmt);
                             else gcodeValue.AppendFormat("( {0}-3003: Spindle stays off )\r\n", CodeMessage.Attention);
@@ -655,8 +662,7 @@ namespace GrblPlotter
             if (!penDownApplied)
                 tmpString.AppendLine("(PD)");	// mark pen down
             //   lastCharCount = tmpString.Length;
-            if (gcodeValue != null)
-                gcodeValue.Append(tmpString);
+            gcodeValue?.Append(tmpString);
 
         }
 
@@ -1035,7 +1041,7 @@ namespace GrblPlotter
                     gcodeTmp.AppendFormat("{0}\r\n", cmt);
                     if (isneeded)
                     {
-                        if (gcodeString != null) gcodeString.Append(gcodeTmp);
+                        gcodeString?.Append(gcodeTmp);
                     }
                 }
             }
@@ -1137,7 +1143,7 @@ namespace GrblPlotter
             {
                 gcodeTangentialCommand = string.Format(" {0}{1}", gcodeTangentialName, FrmtNum(gcodeTangentialAngle));
                 if (writeCode && (Math.Abs(lasta - angle) > gcodeTangentialAngleDevi))
-                { if (gcodeValue != null) gcodeValue.AppendFormat("G{0}{1}\r\n", FrmtCode(1), gcodeTangentialCommand); }
+                { gcodeValue?.AppendFormat("G{0}{1}\r\n", FrmtCode(1), gcodeTangentialCommand); }
                 lasta = angle;
             }
             else gcodeTangentialCommand = "";
@@ -1305,7 +1311,7 @@ namespace GrblPlotter
                 toolCmd = string.Format("T{0:D2} M{1} {2}", toolnr, FrmtCode(6), cmtx);
 
                 if (gcodeToolChangeM0)
-                { gcodeValue.AppendFormat("M0 (Tool: {0}  Color: {1})\r\n", toolnr, cmt); gcodeLines++; }
+                { gcodeValue.AppendFormat("M0 (Tool:{0}  Color:{1})\r\n", toolnr, cmt); gcodeLines++; }
                 else
                 { gcodeValue.AppendFormat("{0}\r\n", toolCmd); gcodeLines++; }
                 gcodeToolCounter++;
@@ -1512,7 +1518,7 @@ namespace GrblPlotter
         public static void Comment(StringBuilder gcodeValue, string cmt)
         {
             if (!string.IsNullOrEmpty(cmt) && (cmt.Length > 1))
-            { if (gcodeValue != null) gcodeValue.AppendFormat("({0})\r\n", cmt); }
+            { gcodeValue?.AppendFormat("({0})\r\n", cmt); }
         }
 
         private static void Drill(StringBuilder gcodeString)
@@ -1544,7 +1550,10 @@ namespace GrblPlotter
                 }
                 gcodeString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", FrmtCode(1), FrmtNum(zStep), GcodeZFeed, cmt);    // Router down
                 gcodeDownUp++;
-                gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", FrmtCode(0), FrmtNum(GcodeZUp), "");                  // Router up
+
+                if (!gcodeZNoUp)
+                    gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", FrmtCode(0), FrmtNum(GcodeZUp), "");                  // Router up
+
                 Comment(gcodeString, XmlMarker.PassEnd + ">"); //+ passCount.ToString() + ">");
                 passCount++;
 
@@ -1585,9 +1594,10 @@ namespace GrblPlotter
                 gcodeFigureLines--; // avoid double count
 
                 // PenDown
-                if (gcodeSpindleToggle && !gcodeUseLasermode) SpindleOn(gcodeString, "toggle");
-                gcodeString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", FrmtCode(1), FrmtNum(zStep), GcodeZFeed, cmt);    // Router down
-                if (gcodeUseLasermode) SpindleOn(gcodeString, "lasermode");
+                if (gcodeSpindleToggle && !gcodeUseLasermode) SpindleOn(gcodeString, "toggle");                     // send M3/4 + G4 delay
+                gcodeString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", FrmtCode(1), FrmtNum(zStep), GcodeZFeed, cmt);   // Router down
+                if (gcodeUseLasermode) SpindleOn(gcodeString, "lasermode");                                         // send S1000
+
                 if (GcodePWMEnable)
                 {
                     if (gcodeComments) gcodeString.AppendFormat("({0})\r\n", "Pen down: Servo control");
@@ -1619,9 +1629,13 @@ namespace GrblPlotter
                     gcodeTime += GcodePwmDlyUp;
                     gcodeLines++;
                 }
-                if (gcodeUseLasermode) SpindleOff(gcodeString, "lasermode");
-                gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", FrmtCode(0), FrmtNum(GcodeZUp), "");                  // Router up
-                if (gcodeSpindleToggle && !gcodeUseLasermode) SpindleOff(gcodeString, "toggle");
+
+                if (!gcodeZNoUp)
+                {
+                    if (gcodeUseLasermode) SpindleOff(gcodeString, "lasermode");                        // send S0
+                    gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", FrmtCode(0), FrmtNum(GcodeZUp), "");  // Router up
+                    if (gcodeSpindleToggle && !gcodeUseLasermode) SpindleOff(gcodeString, "toggle");    // send M5
+                }
 
                 Comment(gcodeString, XmlMarker.PassEnd + ">"); //+ passCount.ToString() + ">");
                 passCount++;
