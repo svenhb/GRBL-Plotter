@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -75,6 +75,7 @@
  * 2022-05-18 line 295 check via ContainsKey
  * 2022-06-14 line 387 skip entity if layer is invisible or printing is disabled
  * 2022-11-10 line 445 check IsNullOrEmpty(dashType)
+ * 2023-02-05 line 324 check if (!lineTypes.ContainsKey(lt.LineTypeName)) before add
 */
 
 using DXFLib;
@@ -335,7 +336,8 @@ namespace GrblPlotter //DXFImporter
                             tmp[i] = Math.Abs(lt.Elements[i].Length);
                         pattern += string.Format(" {0} ", lt.Elements[i].Length);
                     }
-                    lineTypes.Add(lt.LineTypeName, tmp);
+                    if (!lineTypes.ContainsKey(lt.LineTypeName))
+                        lineTypes.Add(lt.LineTypeName, tmp);
                 }
             }
 
