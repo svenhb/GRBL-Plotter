@@ -479,7 +479,7 @@ Achtung: Nicht mit "Sortiere Objekte nach Stiftummer" verwenden</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCDragKnife.ToolTip" xml:space="preserve">
-    <value>Kompensiere Offset bei Benutzung von Schleppmesser oder Pinsel </value>
+    <value>Kompensiert Offset bei Benutzung von Schleppmesser oder Pinsel </value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="nUDImportGCSegment.ToolTip" xml:space="preserve">
@@ -496,7 +496,7 @@ Wenn der Wert&gt; Bogenradius ist, wird der Wert automatisch verringert.</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="btnShowScriptSub.ToolTip" xml:space="preserve">
-    <value>Klicken Sie hier, um den Dateiinhalt anzuzeigen</value>
+    <value>Klicke hier, um den Dateiinhalt anzuzeigen</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCLineSegmentsEquidistant.Text" xml:space="preserve">
@@ -560,7 +560,7 @@ Don't use with "Relative movements"</value>
     <comment>TabPage1_4</comment>
   </data>
   <data name="btnUseCaseSave.ToolTip" xml:space="preserve">
-    <value>Speichern Sie die aktuellen Importeinstellungen als Anwendungsfall</value>
+    <value>Speichert die aktuellen Importeinstellungen als Anwendungsfall</value>
     <comment>TabPage1_4</comment>
   </data>
   <data name="btnUseCaseLoad.Text" xml:space="preserve">
@@ -568,7 +568,7 @@ Don't use with "Relative movements"</value>
     <comment>TabPage1_4</comment>
   </data>
   <data name="btnUseCaseLoad.ToolTip" xml:space="preserve">
-    <value>Laden Sie die Einstellungen des ausgewählten Anwendungsfalls</value>
+    <value>Lädt die Einstellungen des ausgewählten Anwendungsfalls</value>
     <comment>TabPage1_4</comment>
   </data>
   <data name="tabPage15.Text" xml:space="preserve">
@@ -596,7 +596,7 @@ Don't use with "Relative movements"</value>
     <comment>TabPage2</comment>
   </data>
   <data name="btnLoadToolTable.ToolTip" xml:space="preserve">
-    <value>Laden Sie die ausgewählte Werkzeugtabelle</value>
+    <value>Lädt die ausgewählte Werkzeugtabelle</value>
     <comment>TabPage2</comment>
   </data>
   <data name="btnToolExport.Text" xml:space="preserve">
@@ -628,7 +628,7 @@ Don't use with "Relative movements"</value>
     <comment>TabPage2</comment>
   </data>
   <data name="Column2.ToolTipText" xml:space="preserve">
-    <value>Stiftfarbe in 6-stelligem Hex. Klicken Sie, um nach Helligkeit zu sortieren.</value>
+    <value>Stiftfarbe in 6-stelligem Hex. Klicke, um nach Helligkeit zu sortieren.</value>
     <comment>TabPage2</comment>
   </data>
   <data name="Column7.HeaderText" xml:space="preserve">
@@ -672,7 +672,7 @@ Don't use with "Relative movements"</value>
     <comment>TabPage2</comment>
   </data>
   <data name="nUDToolChangeEmpty.ToolTip" xml:space="preserve">
-    <value>Verwenden Sie ein Werkzeug Nr. die nicht in der Werkzeugtabelle aufgeführt ist.</value>
+    <value>Verwende eine Werkzeug Nr. die nicht in der Werkzeugtabelle aufgeführt ist.</value>
     <comment>TabPage3</comment>
   </data>
   <data name="cBToolChangeEmpty.Text" xml:space="preserve">
@@ -680,7 +680,7 @@ Don't use with "Relative movements"</value>
     <comment>TabPage3</comment>
   </data>
   <data name="cBToolChangeEmpty.ToolTip" xml:space="preserve">
-    <value>Entfernen Sie das zuletzt verwendete Werkzeug, indem Sie ein nicht vorhandenes Werkzeug als letzten Befehl laden.</value>
+    <value>Entferne das zuletzt verwendete Werkzeug, indem Sie ein nicht vorhandenes Werkzeug als letzten Befehl laden.</value>
     <comment>TabPage3</comment>
   </data>
   <data name="label61.Text" xml:space="preserve">
@@ -991,11 +991,11 @@ Zweiter Versuch auf svenhb.bplaced.net </value>
     <comment>TabPage8</comment>
   </data>
   <data name="btnJoyZCalc.ToolTip" xml:space="preserve">
-    <value>Berechnen Sie die Geschwindigkeiten, um die Schrittweite innerhalb einer Wiederholrate von 0,5 Sekunden zu erreichen</value>
+    <value>Berechnet die Geschwindigkeiten, um die Schrittweite innerhalb einer Wiederholrate von 0,5 Sekunden zu erreichen</value>
     <comment>TabPage8</comment>
   </data>
   <data name="btnJoyXYCalc.ToolTip" xml:space="preserve">
-    <value>Berechnen Sie die Geschwindigkeiten, um die Schrittweite innerhalb einer Wiederholrate von 0,5 Sekunden zu erreichen</value>
+    <value>Berechnet die Geschwindigkeiten, um die Schrittweite innerhalb einer Wiederholrate von 0,5 Sekunden zu erreichen</value>
     <comment>TabPage8</comment>
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
@@ -1063,7 +1063,7 @@ Zweiter Versuch auf svenhb.bplaced.net </value>
     <comment>Form</comment>
   </data>
   <data name="btnApplyChangings.ToolTip" xml:space="preserve">
-    <value>Drücken Sie die Taste, um neue Einstellungen sofort auf benutzerdefinierte Tasten anzuwenden.
+    <value>Drücke die Taste, um neue Einstellungen sofort auf benutzerdefinierte Tasten anzuwenden.
 Andere Einstellungen werden normalerweise beim Ändern gespeichert.</value>
     <comment>TabPage0</comment>
   </data>
@@ -1320,7 +1320,7 @@ Andere Einstellungen werden normalerweise beim Ändern gespeichert.</value>
     <comment>TabPage4</comment>
   </data>
   <data name="tBresetSendCode.ToolTip" xml:space="preserve">
-    <value>Ordnen Sie den regulären GCode zu, trennen Sie den Code mit ';' als Trennzeichen.
+    <value>Ordne den regulären GCode zu, trennen Sie den Code mit ';' als Trennzeichen.
 Oder weisen Sie einen Dateinamen zu, der GCode enthält.</value>
     <comment>TabPage4</comment>
   </data>
@@ -1709,7 +1709,7 @@ Die Z-Achse wird nach unten verschoben</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportGCTangentialRange.ToolTip" xml:space="preserve">
-    <value>Verwenden Sie diese Option, um Winkel unter 0 ° und über 360 ° zu vermeiden.
+    <value>Verwende diese Option, um Winkel unter 0 ° und über 360 ° zu vermeiden.
 Funktioniert nicht mit G2 / 3 - aktiviere 'G2 / 3-Befehle vermeiden'</value>
     <comment>ok</comment>
   </data>
@@ -1743,7 +1743,7 @@ Idee: Verwendung eines Senkers, um den Kreisadurchmesser festzulegen</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportSVGCircleToDot.ToolTip" xml:space="preserve">
-    <value>Verwenden Sie einen Bohrer, um die Kreismitte mit der Tiefe der Gravur "Z-Höhe" zu markieren</value>
+    <value>Verwende einen Bohrer, um die Kreismitte mit der Tiefe der Gravur "Z-Höhe" zu markieren</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportGraphicOffsetOrigin.Text" xml:space="preserve">
@@ -1860,7 +1860,7 @@ Objekte mit derselben Start- und Endkoordinate werden zusammengeführt.</value>
     <comment>ok</comment>
   </data>
   <data name="checkBox7.Text" xml:space="preserve">
-    <value>Versuchen Sie die automatische Erkennung</value>
+    <value>Versuche die automatische Erkennung</value>
     <comment>ok</comment>
   </data>
   <data name="rBImportSVGRepeat2.Text" xml:space="preserve">
@@ -1928,7 +1928,7 @@ Objekte mit derselben Start- und Endkoordinate werden zusammengeführt.</value>
     <comment>ok</comment>
   </data>
   <data name="rBImportGraphicClip1.Text" xml:space="preserve">
-    <value>Konvertieren Sie Grafiken in Kacheln</value>
+    <value>Konvertiert Grafiken in Kacheln</value>
     <comment>ok</comment>
   </data>
   <data name="rBImportGraphicClip0.Text" xml:space="preserve">
@@ -1952,7 +1952,7 @@ Objekte mit derselben Start- und Endkoordinate werden zusammengeführt.</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportGraphicTile.ToolTip" xml:space="preserve">
-    <value>Schneiden Sie die gesamte Grafik in Kacheln, um sie separat zu entleeren</value>
+    <value>Schneidet die gesamte Grafik in Kacheln, um sie separat zu zeichnen</value>
     <comment>ok</comment>
   </data>
   <data name="label11.Text" xml:space="preserve">
@@ -1981,7 +1981,7 @@ Z.B. 'M0' zum Anhalten für manuelles Verschieben von Papier oder '(^ 2 G91 X100
     <comment>ok</comment>
   </data>
   <data name="rBImportSVGGroupItem3.ToolTip" xml:space="preserve">
-    <value>Gruppieren Sie nach Grafikebenen und wählen Sie die Werkzeugnummer entsprechend dem am besten geeigneten Werkzeugnamen aus</value>
+    <value>Gruppiere nach Grafikebenen und wähle die Werkzeugnummer entsprechend dem am besten geeigneten Werkzeugnamen aus</value>
     <comment>ok</comment>
   </data>
   <data name="rBImportSVGGroupItem2.Text" xml:space="preserve">
@@ -1989,7 +1989,7 @@ Z.B. 'M0' zum Anhalten für manuelles Verschieben von Papier oder '(^ 2 G91 X100
     <comment>ok</comment>
   </data>
   <data name="rBImportSVGGroupItem2.ToolTip" xml:space="preserve">
-    <value>Gruppieren Sie nach Stiftbreite und wählen Sie die Werkzeugnummer entsprechend dem am besten geeigneten Werkzeugdurchmesser aus</value>
+    <value>Gruppiere nach Stiftbreite und wähle die Werkzeugnummer entsprechend dem am besten geeigneten Werkzeugdurchmesser aus</value>
     <comment>ok</comment>
   </data>
   <data name="rBImportSVGGroupItem1.Text" xml:space="preserve">
@@ -1997,7 +1997,7 @@ Z.B. 'M0' zum Anhalten für manuelles Verschieben von Papier oder '(^ 2 G91 X100
     <comment>ok</comment>
   </data>
   <data name="rBImportSVGGroupItem1.ToolTip" xml:space="preserve">
-    <value>Gruppieren Sie nach Stiftfarbe und wählen Sie die Werkzeugnummer entsprechend der am besten geeigneten Werkzeugfarbe aus</value>
+    <value>Gruppiere nach Stiftfarbe und wähle die Werkzeugnummer entsprechend der am besten geeigneten Werkzeugfarbe aus</value>
     <comment>ok</comment>
   </data>
   <data name="tabPage26.Text" xml:space="preserve">
@@ -2045,7 +2045,7 @@ Z.B. 'M0' zum Anhalten für manuelles Verschieben von Papier oder '(^ 2 G91 X100
     <comment>ok</comment>
   </data>
   <data name="cBImportPenWidthToZ.Text" xml:space="preserve">
-    <value>Übersetzen Sie die Stiftbreite in den Z-Wert</value>
+    <value>Übersetzt die Stiftbreite in den Z-Wert</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportPenWidthToZ.ToolTip" xml:space="preserve">
@@ -2071,7 +2071,7 @@ weniger Stress für die Mechanik</value>
     <comment>ok</comment>
   </data>
   <data name="cBDashedLine1.ToolTip" xml:space="preserve">
-    <value>Konvertieren Sie die gestrichelte Linie in echte Stift-Auf / Ab</value>
+    <value>Konvertiert die gestrichelte Linie in echte Stift-Auf / Ab</value>
     <comment>ok</comment>
   </data>
   <data name="cBPathOverlapEnable.Text" xml:space="preserve">
@@ -2079,7 +2079,7 @@ weniger Stress für die Mechanik</value>
     <comment>ok</comment>
   </data>
   <data name="cBPathOverlapEnable.ToolTip" xml:space="preserve">
-    <value>Beginnen Sie nach Beendigung eines geschlossenen Pfades am Anfang und bewegen Sie sich für eine bestimmte Strecke.
+    <value>Beginnt nach Beendigung eines geschlossenen Pfades am Anfang und wiederholt eine bestimmte Strecke.
 Nützlich für Laserschneider.</value>
     <comment>ok</comment>
   </data>
@@ -2392,7 +2392,7 @@ Pushbullet: Aus Sicherheitsgründen sollten Sie ein "Papierkorb" -Konto verwende
     <comment>ok</comment>
   </data>
   <data name="cBImportGCPWMSkipM30.ToolTip" xml:space="preserve">
-    <value>Überspringen Sie den Befehl M30 'Programmede', um ein Ausschalten der Spindel durch Zurücksetzen des Parser-Status zu vermeiden, wodurch sich das Servo auf die Position '0' bewegt.</value>
+    <value>Überspringe den Befehl M30 'Programmede', um ein Ausschalten der Spindel durch Zurücksetzen des Parser-Status zu vermeiden, wodurch sich das Servo auf die Position '0' bewegt.</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportGCPWMSendCode.Text" xml:space="preserve">
@@ -2957,13 +2957,13 @@ Zusätzlich kann die Position der Z Achse verwendet werden um z.B. die Farbmenge
     <value>Peg aktiv</value>
   </data>
   <data name="textBox6.ToolTip" xml:space="preserve">
-    <value>Wenden Sie hier Befehle an, um den Draht zu schneiden</value>
+    <value>Wende hier Befehle an, um den Draht zu schneiden</value>
   </data>
   <data name="textBox5.ToolTip" xml:space="preserve">
-    <value>Wenden Sie hier Befehle an, um das Biegen von Zapfen zu deaktivieren</value>
+    <value>Wende hier Befehle an, um das Biegen von Zapfen zu deaktivieren</value>
   </data>
   <data name="textBox4.ToolTip" xml:space="preserve">
-    <value>Wenden Sie hier Befehle an, um Biegestifte zu aktivieren</value>
+    <value>Wende hier Befehle an, um Biegestifte zu aktivieren</value>
   </data>
   <data name="label80.Text" xml:space="preserve">
     <value>G-Code für bestimmte Aktionen (getrennte Befehle mit ';' oder Skriptpfad setzen):</value>
@@ -3032,7 +3032,7 @@ Zusätzlich kann die Position der Z Achse verwendet werden um z.B. die Farbmenge
     <value>Doppelter Versatz</value>
   </data>
   <data name="groupBox32.ToolTip" xml:space="preserve">
-    <value>Wenden Sie einen Versatz auf die kopierte und eingefügte Auswahl an.</value>
+    <value>Wendet einen Versatz auf die kopierte und eingefügte Auswahl an.</value>
   </data>
   <data name="cBImportGCZIncNoZUp.Text" xml:space="preserve">
     <value>Vermeidet Z-up GEFÄHRLICH, wenn Pfade unterschiedliche Start- und Stoppkoordinaten haben!</value>

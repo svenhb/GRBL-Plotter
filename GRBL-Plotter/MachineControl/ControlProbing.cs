@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@
  * 2021-07-14 code clean up / code quality
  * 2021-12-22 check if is connected to grbl before sending code - 452, 706, 803
  * 2022-01-07 SetProgressxx .Value=0
+ * 2023-03-15 l:900 f:ControlProbing_Click keep nUD..Z disabled
 */
 
 using System;
@@ -897,7 +898,8 @@ namespace GrblPlotter
         {
             SetNudEnable(0, true);
             SetNudEnable(1, true);
-            SetNudEnable(2, true);
+            bool isActive = (rBCF1.Checked && (tabControl1.SelectedIndex == 1));
+            SetNudEnable(2, !isActive);
         }
 
         private void RbProbeCoord1_CheckedChanged(object sender, EventArgs e)

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@
  * 2021-09-29 add fiducialDimension
  * 2021-11-30 line 451 check if index < objec.count
  * 2021-12-13 bug fix line 843 && (pathInfoMarker.Any())
+ * 2023-03-17 l:398 f:GetGCodeLines avoid same log twice
 */
 
 using System;
@@ -50,6 +51,7 @@ namespace GrblPlotter
             public float width = 0;
             public Pen pen;
             public PointF offsetView;
+			
             public PathData()
             {
                 path = new GraphicsPath();
@@ -317,6 +319,8 @@ namespace GrblPlotter
             int skipLimit = (int)Properties.Settings.Default.ctrlImportSkip * 1000;
             int countZ = 0;
             int lastMotion = 0;
+			string newPathProp;
+			string oldPathProp="";
 
             Logger.Info("▽▽▽▽ GetGCodeLines Count:{0} skip:{1}   Show colors if no XML-Tags:{2}  Show pen-up path arrows:{3}  Show pen-up path Ids:{4}  Use BackgroundWorker:{5}", oldCode.Count, skipLimit, showColors, showArrow, showId, (worker != null));
             if (oldCode.Count > skipLimit) // huge amount of code, reduce time consuming functionality
@@ -334,7 +338,7 @@ namespace GrblPlotter
             if (showColors)
                 ToolTable.Init(" (GetGCodeLines)");
 
-            if (worker != null) worker.ReportProgress(0, new MyUserState { Value = 0, Content = "Analyse GCode..." });
+            worker?.ReportProgress(0, new MyUserState { Value = 0, Content = "Analyse GCode..." });
             int progressMain;
             float progressMainFactor = 1;
             if (showArrow || showId) progressMainFactor = 0.5f;
@@ -375,7 +379,8 @@ namespace GrblPlotter
                     if (newLine.wasSetXY && (lastMotion == 0) && (modal.motionMode > 0))// else if G1/2/3 XY F				
                     {
                         string log = string.Format("Line {0} ", (newLine.lineNumber + 1));
-                        log += string.Format("F:{0} S:{1} Z:{2:0.000} ", HalfTone.lastF, HalfTone.lastS, HalfTone.lastZ);
+                        newPathProp = string.Format("F:{0} S:{1} Z:{2:0.000} ", HalfTone.lastF, HalfTone.lastS, HalfTone.lastZ);
+						log += newPathProp;
                         ToolProp penProp = new ToolProp(1, Properties.Settings.Default.gui2DColorPenDown, "PenDown")
                         {
                             Diameter = (float)Properties.Settings.Default.gui2DWidthPenDown
@@ -389,7 +394,11 @@ namespace GrblPlotter
                         pathActualDown = pathObject[pathObject.Count - 1].path;
                         log += string.Format("Set tool nr:{0} color:{1} figureMarkerCount:{2}", penProp.Toolnr, ColorTranslator.ToHtml(penProp.Color), figureMarkerCount);
                         if (penProp.Toolnr < 0)
-                            Logger.Trace("Tool not found: {0}", log);
+                        {    
+							if (!String.Equals(newPathProp,oldPathProp))
+							{	Logger.Trace("!!!!!!!!!!!!!!  Tool not found: {0}  !!!!!!!!!!!!!!!", log);}
+							oldPathProp = newPathProp;
+						}
                     }
                     if (newLine.wasSetXY)
                         lastMotion = modal.motionMode;
@@ -511,7 +520,7 @@ namespace GrblPlotter
                 }
             }
 
-            if (worker != null) worker.ReportProgress(100, new MyUserState { Value = 100, Content = "Wait for update of text editor" });
+            worker?.ReportProgress(100, new MyUserState { Value = 100, Content = "Wait for update of text editor" });
             Logger.Info("△△△△ GetGCodeLines finish");
             return true;
         }
@@ -867,7 +876,7 @@ namespace GrblPlotter
 
         private static void ModifyPenUpPath(BackgroundWorker worker, DoWorkEventArgs e, ref int progressSubOld, double progressMainFactor, bool showArrow, bool showId)
         {
-            if (worker != null) worker.ReportProgress(0, new MyUserState { Value = 50, Content = "Pen-up path: Add dir-arrows and figure-Ids" });
+            worker?.ReportProgress(0, new MyUserState { Value = 50, Content = "Pen-up path: Add dir-arrows and figure-Ids" });
             int count = 0;
             if ((pathInfoMarker != null) && (pathInfoMarker.Any()))
             {

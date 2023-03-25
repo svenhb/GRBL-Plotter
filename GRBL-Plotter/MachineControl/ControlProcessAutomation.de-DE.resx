@@ -127,7 +127,7 @@
     <value>Wiederholungen:</value>
   </data>
   <data name="textBox1.Text" xml:space="preserve">
-    <value>Erstelle eine XML-Datei in diesem Format und laden sie:</value>
+    <value>Erstelle eine XML-Datei in diesem Format und lade sie:</value>
   </data>
   <data name="BtnLoad.Text" xml:space="preserve">
     <value>Skript laden</value>

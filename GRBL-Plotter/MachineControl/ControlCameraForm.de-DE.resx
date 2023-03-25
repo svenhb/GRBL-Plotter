@@ -278,10 +278,10 @@ um Abhängig von der Z-Position die richtige Grafikskalierung zu berechnen
 Drücke diesen Knopf um den G-Code um diesen Winkel zu drehen</value>
   </data>
   <data name="btnCamCoordTool.ToolTip" xml:space="preserve">
-    <value>Bewegen Sie die aktuelle Werkzeugposition unter die Kamera</value>
+    <value>Bewegt die aktuelle Werkzeugposition unter die Kamera</value>
   </data>
   <data name="cBCamCoordMove.ToolTip" xml:space="preserve">
-    <value>Wenden Sie den Kameraversatz auf Grafiken an</value>
+    <value>Wendet den Kameraversatz auf die Grafik an</value>
   </data>
   <data name="lblAngle.Location" type="System.Drawing.Point, System.Drawing">
     <value>50, 16</value>
@@ -290,7 +290,7 @@ Drücke diesen Knopf um den G-Code um diesen Winkel zu drehen</value>
     <value>Gemessener Winkel</value>
   </data>
   <data name="btnCamCoordCam.ToolTip" xml:space="preserve">
-    <value>Bewegen Sie die aktuelle Kameraposition unter das Werkzeug</value>
+    <value>Bewegt die aktuelle Kameraposition unter das Werkzeug</value>
   </data>
   <data name="lblOffset.Location" type="System.Drawing.Point, System.Drawing">
     <value>283, 18</value>
@@ -483,14 +483,14 @@ Umschalt -"c" zum Löschen der Liste</value>
     <value>Overlay-Grafiken anzeigen (Lineal, Stift-nach-unten-Pfad usw.)</value>
   </data>
   <data name="setMachinePositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Klicken Sie hier, um den grbl-Maschinenversatz am Ursprung zu erhalten</value>
+    <value>Klicke hier, um den grbl-Maschinenversatz am Ursprung zu erhalten</value>
   </data>
   <data name="cBShapeDetection.ToolTip" xml:space="preserve">
-    <value>Aktivieren Sie die Formerkennung in dieser Ansicht.
+    <value>Aktiviere die Formerkennung in dieser Ansicht.
 Muss für die automatische Bezugspunktkorrektur nicht aktiviert werden.</value>
   </data>
   <data name="CbUseShapeRecognition.ToolTip" xml:space="preserve">
-    <value>Verwenden Sie die Formerkennung, um Passermarken automatisch zu finden.
+    <value>Verwende die Formerkennung, um Passermarken automatisch zu finden.
 Wenn deaktiviert, müssen Fiducials manuell durch Auswählen im Videobild zugewiesen werden.</value>
   </data>
 </root>

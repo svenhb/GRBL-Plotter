@@ -166,6 +166,7 @@ namespace GrblPlotter
             this.tab1_1lbl2 = new System.Windows.Forms.Label();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.gBPathAddOn3 = new System.Windows.Forms.GroupBox();
+            this.cBimportGraphicLeadTopZUp = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label50 = new System.Windows.Forms.Label();
             this.nUDimportGraphicLeadOutDistance = new System.Windows.Forms.NumericUpDown();
@@ -870,6 +871,9 @@ namespace GrblPlotter
             this.lblButtons7 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tab8gB1 = new System.Windows.Forms.GroupBox();
+            this.groupBox33 = new System.Windows.Forms.GroupBox();
+            this.RbApperance2 = new System.Windows.Forms.RadioButton();
+            this.RbApperance1 = new System.Windows.Forms.RadioButton();
             this.label77 = new System.Windows.Forms.Label();
             this.nUDJoyASpeed5 = new System.Windows.Forms.NumericUpDown();
             this.nUDJoyASpeed4 = new System.Windows.Forms.NumericUpDown();
@@ -1044,9 +1048,6 @@ namespace GrblPlotter
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.cBshowImportDialog = new System.Windows.Forms.CheckBox();
-            this.groupBox33 = new System.Windows.Forms.GroupBox();
-            this.RbApperance1 = new System.Windows.Forms.RadioButton();
-            this.RbApperance2 = new System.Windows.Forms.RadioButton();
             this.tabControl_Level1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl1_Level2.SuspendLayout();
@@ -1280,6 +1281,7 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.trackBarX)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.tab8gB1.SuspendLayout();
+            this.groupBox33.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyASpeed5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyASpeed4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyASpeed3)).BeginInit();
@@ -1355,7 +1357,6 @@ namespace GrblPlotter
             this.tab11gB4.SuspendLayout();
             this.tab11gB5.SuspendLayout();
             this.tab11gB2.SuspendLayout();
-            this.groupBox33.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl_Level1
@@ -2335,6 +2336,7 @@ namespace GrblPlotter
             // gBPathAddOn3
             // 
             this.gBPathAddOn3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.gBPathAddOn3.Controls.Add(this.cBimportGraphicLeadTopZUp);
             this.gBPathAddOn3.Controls.Add(this.pictureBox1);
             this.gBPathAddOn3.Controls.Add(this.label50);
             this.gBPathAddOn3.Controls.Add(this.nUDimportGraphicLeadOutDistance);
@@ -2347,6 +2349,14 @@ namespace GrblPlotter
             this.gBPathAddOn3.TabStop = false;
             this.gBPathAddOn3.Tag = "In graphic2GCode startPath";
             this.toolTip1.SetToolTip(this.gBPathAddOn3, resources.GetString("gBPathAddOn3.ToolTip"));
+            // 
+            // cBimportGraphicLeadTopZUp
+            // 
+            resources.ApplyResources(this.cBimportGraphicLeadTopZUp, "cBimportGraphicLeadTopZUp");
+            this.cBimportGraphicLeadTopZUp.Checked = global::GrblPlotter.Properties.Settings.Default.importGraphicLeadTopZUp;
+            this.cBimportGraphicLeadTopZUp.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGraphicLeadTopZUp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBimportGraphicLeadTopZUp.Name = "cBimportGraphicLeadTopZUp";
+            this.cBimportGraphicLeadTopZUp.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
@@ -2364,6 +2374,12 @@ namespace GrblPlotter
             // nUDimportGraphicLeadOutDistance
             // 
             this.nUDimportGraphicLeadOutDistance.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGraphicLeadOutDistance", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDimportGraphicLeadOutDistance.DecimalPlaces = 1;
+            this.nUDimportGraphicLeadOutDistance.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
             resources.ApplyResources(this.nUDimportGraphicLeadOutDistance, "nUDimportGraphicLeadOutDistance");
             this.nUDimportGraphicLeadOutDistance.Maximum = new decimal(new int[] {
             1000,
@@ -2394,6 +2410,12 @@ namespace GrblPlotter
             // nUDimportGraphicLeadInDistance
             // 
             this.nUDimportGraphicLeadInDistance.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGraphicLeadInDistance", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDimportGraphicLeadInDistance.DecimalPlaces = 1;
+            this.nUDimportGraphicLeadInDistance.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
             resources.ApplyResources(this.nUDimportGraphicLeadInDistance, "nUDimportGraphicLeadInDistance");
             this.nUDimportGraphicLeadInDistance.Maximum = new decimal(new int[] {
             1000,
@@ -8908,6 +8930,30 @@ namespace GrblPlotter
             this.tab8gB1.Name = "tab8gB1";
             this.tab8gB1.TabStop = false;
             // 
+            // groupBox33
+            // 
+            this.groupBox33.Controls.Add(this.RbApperance2);
+            this.groupBox33.Controls.Add(this.RbApperance1);
+            resources.ApplyResources(this.groupBox33, "groupBox33");
+            this.groupBox33.Name = "groupBox33";
+            this.groupBox33.TabStop = false;
+            // 
+            // RbApperance2
+            // 
+            resources.ApplyResources(this.RbApperance2, "RbApperance2");
+            this.RbApperance2.Name = "RbApperance2";
+            this.RbApperance2.TabStop = true;
+            this.RbApperance2.UseVisualStyleBackColor = true;
+            // 
+            // RbApperance1
+            // 
+            resources.ApplyResources(this.RbApperance1, "RbApperance1");
+            this.RbApperance1.Checked = global::GrblPlotter.Properties.Settings.Default.guiJoystickApperance1;
+            this.RbApperance1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "guiJoystickApperance1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.RbApperance1.Name = "RbApperance1";
+            this.RbApperance1.TabStop = true;
+            this.RbApperance1.UseVisualStyleBackColor = true;
+            // 
             // label77
             // 
             resources.ApplyResources(this.label77, "label77");
@@ -10863,30 +10909,6 @@ namespace GrblPlotter
             this.cBshowImportDialog.Name = "cBshowImportDialog";
             this.cBshowImportDialog.UseVisualStyleBackColor = true;
             // 
-            // groupBox33
-            // 
-            this.groupBox33.Controls.Add(this.RbApperance2);
-            this.groupBox33.Controls.Add(this.RbApperance1);
-            resources.ApplyResources(this.groupBox33, "groupBox33");
-            this.groupBox33.Name = "groupBox33";
-            this.groupBox33.TabStop = false;
-            // 
-            // RbApperance1
-            // 
-            resources.ApplyResources(this.RbApperance1, "RbApperance1");
-            this.RbApperance1.Checked = global::GrblPlotter.Properties.Settings.Default.guiJoystickApperance1;
-            this.RbApperance1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "guiJoystickApperance1", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.RbApperance1.Name = "RbApperance1";
-            this.RbApperance1.TabStop = true;
-            this.RbApperance1.UseVisualStyleBackColor = true;
-            // 
-            // RbApperance2
-            // 
-            resources.ApplyResources(this.RbApperance2, "RbApperance2");
-            this.RbApperance2.Name = "RbApperance2";
-            this.RbApperance2.TabStop = true;
-            this.RbApperance2.UseVisualStyleBackColor = true;
-            // 
             // ControlSetupForm
             // 
             resources.ApplyResources(this, "$this");
@@ -11220,6 +11242,8 @@ namespace GrblPlotter
             this.tabPage1.ResumeLayout(false);
             this.tab8gB1.ResumeLayout(false);
             this.tab8gB1.PerformLayout();
+            this.groupBox33.ResumeLayout(false);
+            this.groupBox33.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyASpeed5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyASpeed4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDJoyASpeed3)).EndInit();
@@ -11309,8 +11333,6 @@ namespace GrblPlotter
             this.tab11gB5.PerformLayout();
             this.tab11gB2.ResumeLayout(false);
             this.tab11gB2.PerformLayout();
-            this.groupBox33.ResumeLayout(false);
-            this.groupBox33.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -12298,5 +12320,6 @@ namespace GrblPlotter
         private System.Windows.Forms.GroupBox groupBox33;
         private System.Windows.Forms.RadioButton RbApperance2;
         private System.Windows.Forms.RadioButton RbApperance1;
+        private System.Windows.Forms.CheckBox cBimportGraphicLeadTopZUp;
     }
 }

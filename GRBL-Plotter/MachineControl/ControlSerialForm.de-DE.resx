@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="cbPort.ToolTip" xml:space="preserve">
-    <value>Wählen Sie eine freie serielle Schnittstelle</value>
+    <value>Wähle eine freie serielle Schnittstelle</value>
   </data>
   <data name="cbBaud.ToolTip" xml:space="preserve">
     <value>Geschwindigkeit auswählen</value>
@@ -188,18 +188,18 @@ Oder schließt den offenen COM Port</value>
     <value>Zeilennummer (muss in config.h aktiviert sein)</value>
   </data>
   <data name="btnCheckGRBL.ToolTip" xml:space="preserve">
-    <value>Überprüfen Sie das GRBL-Setup auf Höchst- und Mindestwerte
+    <value>Überprüft das GRBL-Setup auf Höchst- und Mindestwerte
 Nicht für GRBL Vers. &lt;1,0</value>
   </data>
   <data name="btnGRBLReset.ToolTip" xml:space="preserve">
     <value>Soft Reset über STRG-X</value>
   </data>
   <data name="btnGRBLHardReset.ToolTip" xml:space="preserve">
-    <value>Versuchen Sie es mit einem harten Reset über DTR / RTS
+    <value>Versuche es mit einem harten Reset über DTR / RTS
 Erfolg hängt von der Hardware ab (DTR, RTS verkabelt?)</value>
   </data>
   <data name="btnGRBLCmndParser.ToolTip" xml:space="preserve">
-    <value>Zeigen Sie den Status des G-code-Parsers an</value>
+    <value>Zeigt den Status des G-code-Parsers an</value>
   </data>
   <data name="btnGRBLCmndBuild.ToolTip" xml:space="preserve">
     <value>Build-Informationen anzeigen</value>

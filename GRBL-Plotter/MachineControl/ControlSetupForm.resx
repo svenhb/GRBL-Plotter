@@ -2892,11 +2892,44 @@ As more segments as more prezice the curve is.</value>
   <data name="&gt;&gt;tabPage17.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="cBimportGraphicLeadTopZUp.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBimportGraphicLeadTopZUp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBimportGraphicLeadTopZUp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 62</value>
+  </data>
+  <data name="cBimportGraphicLeadTopZUp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 17</value>
+  </data>
+  <data name="cBimportGraphicLeadTopZUp.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="cBimportGraphicLeadTopZUp.Text" xml:space="preserve">
+    <value>Start ramp at Pen-Up</value>
+  </data>
+  <data name="cBimportGraphicLeadTopZUp.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;cBimportGraphicLeadTopZUp.Name" xml:space="preserve">
+    <value>cBimportGraphicLeadTopZUp</value>
+  </data>
+  <data name="&gt;&gt;cBimportGraphicLeadTopZUp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBimportGraphicLeadTopZUp.Parent" xml:space="preserve">
+    <value>gBPathAddOn3</value>
+  </data>
+  <data name="&gt;&gt;cBimportGraphicLeadTopZUp.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 62</value>
+    <value>6, 86</value>
   </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>258, 180</value>
@@ -2917,7 +2950,7 @@ As more segments as more prezice the curve is.</value>
     <value>gBPathAddOn3</value>
   </data>
   <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="label50.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2951,7 +2984,7 @@ As more segments as more prezice the curve is.</value>
     <value>gBPathAddOn3</value>
   </data>
   <data name="&gt;&gt;label50.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="nUDimportGraphicLeadOutDistance.Location" type="System.Drawing.Point, System.Drawing">
     <value>221, 36</value>
@@ -2978,7 +3011,7 @@ As more segments as more prezice the curve is.</value>
     <value>gBPathAddOn3</value>
   </data>
   <data name="&gt;&gt;nUDimportGraphicLeadOutDistance.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="cBimportGraphicLeadOutEnable.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3012,7 +3045,7 @@ As more segments as more prezice the curve is.</value>
     <value>gBPathAddOn3</value>
   </data>
   <data name="&gt;&gt;cBimportGraphicLeadOutEnable.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="label48.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3043,7 +3076,7 @@ As more segments as more prezice the curve is.</value>
     <value>gBPathAddOn3</value>
   </data>
   <data name="&gt;&gt;label48.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="nUDimportGraphicLeadInDistance.Location" type="System.Drawing.Point, System.Drawing">
     <value>221, 13</value>
@@ -3067,7 +3100,7 @@ As more segments as more prezice the curve is.</value>
     <value>gBPathAddOn3</value>
   </data>
   <data name="&gt;&gt;nUDimportGraphicLeadInDistance.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="cBimportGraphicLeadInEnable.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3079,13 +3112,13 @@ As more segments as more prezice the curve is.</value>
     <value>6, 16</value>
   </data>
   <data name="cBimportGraphicLeadInEnable.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 17</value>
+    <value>85, 17</value>
   </data>
   <data name="cBimportGraphicLeadInEnable.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="cBimportGraphicLeadInEnable.Text" xml:space="preserve">
-    <value>Ramp</value>
+    <value>Ramp in/out</value>
     <comment>ok</comment>
   </data>
   <data name="&gt;&gt;cBimportGraphicLeadInEnable.Name" xml:space="preserve">
@@ -3098,13 +3131,13 @@ As more segments as more prezice the curve is.</value>
     <value>gBPathAddOn3</value>
   </data>
   <data name="&gt;&gt;cBimportGraphicLeadInEnable.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="gBPathAddOn3.Location" type="System.Drawing.Point, System.Drawing">
     <value>570, 6</value>
   </data>
   <data name="gBPathAddOn3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 248</value>
+    <value>270, 272</value>
   </data>
   <data name="gBPathAddOn3.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -3329,7 +3362,7 @@ As more segments as more prezice the curve is.</value>
     <value>288, 6</value>
   </data>
   <data name="gBPathAddOn2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 248</value>
+    <value>270, 272</value>
   </data>
   <data name="gBPathAddOn2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -3661,7 +3694,7 @@ As more segments as more prezice the curve is.</value>
     <value>6, 6</value>
   </data>
   <data name="gBPathAddOn1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 248</value>
+    <value>270, 272</value>
   </data>
   <data name="gBPathAddOn1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -22946,6 +22979,9 @@ Setup window must be closed to use Gamepad in GUI.
   <data name="RbApperance2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="RbApperance2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="RbApperance2.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 44</value>
   </data>
@@ -22973,11 +23009,14 @@ Setup window must be closed to use Gamepad in GUI.
   <data name="RbApperance1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="RbApperance1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="RbApperance1.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 19</value>
   </data>
   <data name="RbApperance1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 17</value>
+    <value>92, 17</value>
   </data>
   <data name="RbApperance1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>

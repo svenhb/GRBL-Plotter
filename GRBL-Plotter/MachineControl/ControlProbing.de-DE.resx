@@ -226,7 +226,7 @@ Abschließend wird die Mitte angefahren</value>
     <value>Gemessener Korrekturwinkel</value>
   </data>
   <data name="label19.Text" xml:space="preserve">
-    <value>Wählen Sie die Kante für die zu erkennende Ecke aus.
+    <value>Wähle die Kante für die zu erkennende Ecke aus.
 Die Werkzeugspitze vor die Kante legen.
 In den Ecken wird zuerst X und dann Y geprüft.
 Z wird zuletzt geprüft.
@@ -293,11 +293,11 @@ Z fährt in die Ausgangsposition zurück</value>
   </data>
   <data name="label21.Text" xml:space="preserve">
     <value>Innenkontur:
-Setzen Sie die Werkzeugspitze fast zentriert in das Loch des Werkstücks.
+Setze die Werkzeugspitze fast zentriert in das Loch des Werkstücks.
 Z wird nicht bewegt.
 
 Außenkontur:
-Setzen Sie die Werkzeugspitze wie bei der Kantenerkennung auf die linke Seite des Werkstücks</value>
+Setze die Werkzeugspitze wie bei der Kantenerkennung auf die linke Seite des Werkstücks</value>
   </data>
   <data name="lblCFProgressInfo.Text" xml:space="preserve">
     <value>Fortschritt</value>
