@@ -17,34 +17,36 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 /*
-* 2018-07 add line segmentation and subroutine insertion
-* 2018-08 add drag tool compensation
-* 2019-05 line 398 correct start pos. for gcodeDragCompensation if lastMovewasG0
-* 2019-06 add depth per pass for final Z depth
-* 2019-09 add toolInfo.gcode
-* 2020-01 add trace level loggerTraceImport to hide log of any gcode command during import
-* 2020-01 add tiny G1 moves for Pen down/up in lasermode only - to be able making dots
-* 2020-12-30 add N-Number
-* 2021-02-20 add subroutine for pen-up/down for use in tool-change scripts
-* 2021-02-28 in jobStart() line 415, call PenUp() code, to lift also servo
-* 2021-03-07 in jobStart() bug-fix: call PenUp() code only if !gcodeZApply
-* 2021-03-26 line 1130 change comments
-* 2021-04-18 function insertSubroutine line 765 add option to add pen-up /-down before/after subroutine call
-* 2021-05-07 if gcodeLineSegmentLength==0, no segmentation, but at begin of path.
-* 2021-05-12 new order of subroutine numbering line 300
-* 2021-06-26 gcode.setup(false) disable InsertSubroutine, LineSegmentation
-* 2021-07-27 code clean up / code quality
-* 2021-07-29 add PD, PU marker if no Pen-up/down translation is selected
-* 2022-01-02 make gcodeZApply and gcodePWMEnable public
-* 2022-02-08 For functions Arc, MoveArc and SplitArc switch to double (15 digits) for coordinates (before float with 7 digits)
-* 2022-03-25 pen-up/down individual, add PU/PD
-* 2022-04-07 line 500 add warning if Z is used as normal AND tangential axis, add 
-* 2022-07-12 line 1048, 1055, 1196 add gcodeAux1Cmd, gcodeAux2Cmd at code for relative movement
-* 2022-12-02 add function SetHeaderInfo
-* 2023-01-28 add %NM tag, to keep code-line when synthezising code
-* 2023-02-18 line 280 preventSpindle
-* 2023-03-05 l:1544/1633 f:Drill/IntermediateZ add gcodeZNoUp
-* 2023-03-06 l:1314 f:Tool remove space in output "M0 (Tool:{0}  Color:{1})\r\n"
+ * 2018-07 add line segmentation and subroutine insertion
+ * 2018-08 add drag tool compensation
+ * 2019-05 line 398 correct start pos. for gcodeDragCompensation if lastMovewasG0
+ * 2019-06 add depth per pass for final Z depth
+ * 2019-09 add toolInfo.gcode
+ * 2020-01 add trace level loggerTraceImport to hide log of any gcode command during import
+ * 2020-01 add tiny G1 moves for Pen down/up in lasermode only - to be able making dots
+ * 2020-12-30 add N-Number
+ * 2021-02-20 add subroutine for pen-up/down for use in tool-change scripts
+ * 2021-02-28 in jobStart() line 415, call PenUp() code, to lift also servo
+ * 2021-03-07 in jobStart() bug-fix: call PenUp() code only if !gcodeZApply
+ * 2021-03-26 line 1130 change comments
+ * 2021-04-18 function insertSubroutine line 765 add option to add pen-up /-down before/after subroutine call
+ * 2021-05-07 if gcodeLineSegmentLength==0, no segmentation, but at begin of path.
+ * 2021-05-12 new order of subroutine numbering line 300
+ * 2021-06-26 gcode.setup(false) disable InsertSubroutine, LineSegmentation
+ * 2021-07-27 code clean up / code quality
+ * 2021-07-29 add PD, PU marker if no Pen-up/down translation is selected
+ * 2022-01-02 make gcodeZApply and gcodePWMEnable public
+ * 2022-02-08 For functions Arc, MoveArc and SplitArc switch to double (15 digits) for coordinates (before float with 7 digits)
+ * 2022-03-25 pen-up/down individual, add PU/PD
+ * 2022-04-07 line 500 add warning if Z is used as normal AND tangential axis, add 
+ * 2022-07-12 line 1048, 1055, 1196 add gcodeAux1Cmd, gcodeAux2Cmd at code for relative movement
+ * 2022-12-02 add function SetHeaderInfo
+ * 2023-01-28 add %NM tag, to keep code-line when synthezising code
+ * 2023-02-18 line 280 preventSpindle
+ * 2023-03-05 l:1544/1633 f:Drill/IntermediateZ add gcodeZNoUp
+ * 2023-03-06 l:1314 f:Tool remove space in output "M0 (Tool:{0}  Color:{1})\r\n"
+ * 2023-03-14 l:1133 f:ClearLeadOut()	added
+ * 2023-03-15 l:746 f:PenUp add F-value
 */
 
 using System;
@@ -742,7 +744,7 @@ namespace GrblPlotter
                         else
                         {
                             if (gcodeZLeadOutEnable)
-                            { gcodeValue.AppendFormat("G{0} X{1} Y{2} Z{3} {4}\r\n", FrmtCode(0), FrmtNum(gcodeZLeadOutXY.X), FrmtNum(gcodeZLeadOutXY.Y), FrmtNum(GcodeZUp), comment); }
+                            { gcodeValue.AppendFormat("G{0} X{1} Y{2} Z{3} F{4} {5}\r\n", FrmtCode(1), FrmtNum(gcodeZLeadOutXY.X), FrmtNum(gcodeZLeadOutXY.Y), FrmtNum(GcodeZUp), GcodeZFeed, comment); }
                             else
                             { gcodeValue.AppendFormat("G{0} Z{1} {2}\r\n", FrmtCode(0), FrmtNum(GcodeZUp), comment); }
                         }// use G0 without feedrate
@@ -1130,6 +1132,8 @@ namespace GrblPlotter
             gcodeZLeadInXY = new XyPoint(xy);
             gcodeZLeadInEnable = true;
         }
+        public static void ClearLeadOut()
+        { gcodeZLeadOutEnable = false; }
         public static void SetZEndPos(Point xy)
         {
             gcodeZLeadOutXY = new XyPoint(xy);
@@ -1294,7 +1298,7 @@ namespace GrblPlotter
             }
         }
 
-        public static void Tool(StringBuilder gcodeValue, int toolnr, string cmt)
+        public static void Tool(StringBuilder gcodeValue, int toolnr, int objectCount, string cmt)
         {
             if (string.IsNullOrEmpty(cmt)) cmt = "";
             if (gcodeValue == null) return;
@@ -1316,7 +1320,10 @@ namespace GrblPlotter
                 { gcodeValue.AppendFormat("{0}\r\n", toolCmd); gcodeLines++; }
                 gcodeToolCounter++;
                 gcodeLines++;
-                gcodeToolText += string.Format("( {0} ToolNr: {1:D2}, Name: {2})\r\n", gcodeToolCounter, toolnr, cmt);
+                string objects = "";
+                if (objectCount > 0) 
+                    objects = string.Format("Cnt: {0,3} ", objectCount);
+                gcodeToolText += string.Format("( {0} ToolNr: {1:D2} {2} Name: {3} )\r\n", gcodeToolCounter, toolnr, objects, cmt);
 
                 remainingC = (float)Properties.Settings.Default.importGCLineSegmentLength;	// start with full segment length
 

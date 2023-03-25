@@ -40,6 +40,7 @@
  * 2022-04-04 line 547 change "PathID" to "PathId"
  * 2022-11-04 change dash-apply algorithm in MoveToDashed to continue pattern in next move-segement 
  * 2023-03-07 l:256 f:CreateGCode  add color to ToolChange call "[color]"
+ * 2023-03-14 l:610 f:StartPath	importGraphicLeadInEnable optional start at GcodeZUp value
 */
 
 using System;
@@ -73,9 +74,9 @@ namespace GrblPlotter
 
         public static int PathCount { get; set; } = 0;
         public static bool FigureEndTagWasSet { get; set; } = true;
-		
+
         private static double[] PathDashArray;
-		private static int PathDashArrayIndex = 0;
+        private static int PathDashArrayIndex = 0;
         private static bool PathDashArrayIndexChanged = false;
         private static double PathDashArrayDistance = 0;
         private static bool PathDashArrayPenIsUp = false;
@@ -253,7 +254,7 @@ namespace GrblPlotter
                 }
 
                 if (logEnable) Logger.Trace("CreateGCode-Group  toolNr:{0}  name:{1}", groupObject.ToolNr, groupObject.ToolName);
-                ToolChange(groupObject.ToolNr, groupObject.ToolName + " [" + groupObject.GroupPath[0].Info.GroupAttributes[(int)GroupOption.ByColor] + "]");   // add tool change commands (if enabled) and set XYFeed etc.
+                ToolChange(groupObject.ToolNr, groupObject.GroupPath.Count, groupObject.ToolName + " [" + groupObject.GroupPath[0].Info.GroupAttributes[(int)GroupOption.ByColor] + "]");   // add tool change commands (if enabled) and set XYFeed etc.
 
                 foreach (PathObject pathObject in groupObject.GroupPath)
                 {
@@ -496,7 +497,7 @@ namespace GrblPlotter
                 /* create ramp on pen up */
                 if (Properties.Settings.Default.importGCZEnable && Properties.Settings.Default.importGraphicLeadOutEnable)
                 {
-                    index = PathData.Path.Count - 1;
+                /*    index = PathData.Path.Count - 1;
                     double angle = GcodeMath.GetAlpha(PathData.Path[index - 1].MoveTo, PathData.Path[index].MoveTo);
                     double angleRad = (double)Properties.Settings.Default.importGraphicLeadOutDistance * Math.PI / 180;
                     double zDelta = Gcode.GcodeZUp - Gcode.GcodeZDown;
@@ -506,7 +507,7 @@ namespace GrblPlotter
                     Point startPenUp = PathData.Path[index].MoveTo;
                     startPenUp.X += offsetX;
                     startPenUp.Y += offsetY;
-                    Gcode.SetZEndPos(startPenUp);
+                    Gcode.SetZEndPos(startPenUp);*/
                 }
                 StopPath("PU");
                 if (graphicInfo.OptionSpecialWireBend)
@@ -645,21 +646,22 @@ namespace GrblPlotter
         private static bool overWriteId = false;
         private static int StartPath(PathObject pathObject, int toolNr, string toolCmt, string penCmt = "")//string cmt)
         {
-            Point endPenUp = pathObject.Start;
-            Point startPenDown = new Point(endPenUp.X, endPenUp.Y);
+            Point startRamp = pathObject.Start;
+            Point startPenDown = new Point(startRamp.X, startRamp.Y);
             double angle = pathObject.StartAngle;
             int iDToSet = PathCount;
             if (overWriteId && (pathObject.FigureId > 0))
                 iDToSet = pathObject.FigureId;
 
-			if (Properties.Settings.Default.importLineDashPattern && (PathDashArray != null) && (PathDashArray.Length > 1))
-			{	string dash = "";
-				for (int k=0; k<PathDashArray.Length; k++)
-				{	dash += string.Format("{0}:{1:0.000}; ",k,PathDashArray[k]);}
-            
-				if (logCoordinates) Logger.Trace("  StartPath dash pattern: {0}", dash);
-			}
-					
+            if (Properties.Settings.Default.importLineDashPattern && (PathDashArray != null) && (PathDashArray.Length > 1))
+            {
+                string dash = "";
+                for (int k = 0; k < PathDashArray.Length; k++)
+                { dash += string.Format("{0}:{1:0.000}; ", k, PathDashArray[k]); }
+
+                if (logCoordinates) Logger.Trace("  StartPath dash pattern: {0}", dash);
+            }
+
             PenUp("StartPath");   // Don't set xmlMarker.figureEnd
             PathDashArrayIndex = 0;
             PathDashArrayDistance = 0;
@@ -692,35 +694,44 @@ namespace GrblPlotter
                 if (pauseBeforePath) { Gcode.Pause(gcodeString, "Pause before path"); }
 
                 if (toolNr >= 0)
-                    ToolChange(toolNr, toolCmt);   // add tool change commands (if enabled) and set XYFeed etc.
+                    ToolChange(toolNr, 1, toolCmt);   // add tool change commands (if enabled) and set XYFeed etc.
             }
 
             double setangle = 180 * angle / Math.PI;
             Gcode.SetTangential(gcodeString, setangle, false);
 
-            /* create ramp on pen down */
+            /* create ramp on pen-down AND pen-up
+			---p0\            /p3----
+				  \p1------p2/
+			without ramp: p1 pen-down,  p2 pen-up
+			with  leadin :  p0 ramp to p1
+			with  leadout:  p2 ramp to p3
+			*/
             if (Properties.Settings.Default.importGraphicLeadInEnable)
             {
                 if (Properties.Settings.Default.importGCZEnable)
                 {      // Z movement
                     double leadIn = (double)Properties.Settings.Default.importGraphicLeadInDistance;
-                    //          double zDelta = gcode.gcodeZUp - gcode.gcodeZDown;
-                    //          double leadIn = zDelta * Math.Tan(angleRad);
-                    double offsetX = leadIn * Math.Cos(angle + Math.PI);
-                    double offsetY = leadIn * Math.Sin(angle + Math.PI);
-                    endPenUp.X += offsetX;
-                    endPenUp.Y += offsetY;
+                //    float startZ = 0;
+                    if (true)		//Properties.Settings.Default.importGraphicLeadTopZUp)        //startAtPenUp)
+                    {
+                    //    startZ = Gcode.GcodeZUp;
+                        leadIn = (Math.Abs(Gcode.GcodeZDown) + Math.Abs(Gcode.GcodeZUp)) * leadIn / Math.Abs(Gcode.GcodeZDown);   // extend distance
+                    }
+                    startRamp.X += leadIn * Math.Cos(angle + Math.PI);
+                    startRamp.Y += leadIn * Math.Sin(angle + Math.PI);
 
-                    Gcode.MoveToRapid(gcodeString, endPenUp, "");   // move to start of ramp
-                    float tmpZ = Gcode.GcodeZDown;
-                    Gcode.ClearLeadIn();
-                    Gcode.GcodeZDown = 0;
-                    PenDown(penCmt);                            // will do XYZ move
-                    penIsDown = false;
-                    Gcode.GcodeZDown = tmpZ;
+                    Gcode.MoveToRapid(gcodeString, startRamp, "");   // move to start of ramp
+                //    float tmpZ = Gcode.GcodeZDown;
+                //    Gcode.ClearLeadIn();
+                //    Gcode.GcodeZDown = startZ;
+                //    PenDown(penCmt + " ramp-start");                            // will do XYZ move
+                //    penIsDown = false;
+                //    Gcode.GcodeZDown = tmpZ;
 
                     Gcode.SetZStartPos(startPenDown);           // set pos where Z is completly down
-                    PenDown(penCmt);                            // will do XYZ move
+                    PenDown(penCmt + " ramp");                            // will do XYZ move
+                    Gcode.ClearLeadIn();
                 }
                 else if (Properties.Settings.Default.importGCPWMEnable)
                 {   // PWM in steps
@@ -730,9 +741,9 @@ namespace GrblPlotter
                     double pwmDelta = pwmUp - (double)Properties.Settings.Default.importGCPWMDown;
                     double factorX = Math.Cos(angle + Math.PI);
                     double factorY = Math.Sin(angle + Math.PI);
-                    endPenUp.X += factorX * leadIn;
-                    endPenUp.Y += factorY * leadIn;
-                    Gcode.MoveToRapid(gcodeString, endPenUp, "");
+                    startRamp.X += factorX * leadIn;
+                    startRamp.Y += factorY * leadIn;
+                    Gcode.MoveToRapid(gcodeString, startRamp, "");
                     double pwmDown;
 
                     steps = Math.Abs(pwmDelta / 10);
@@ -741,8 +752,8 @@ namespace GrblPlotter
                     Gcode.ApplyXYFeedRate = true;
                     for (int stp = 0; stp < steps; stp++)     // create ramp step by step
                     {
-                        startPenDown.X = endPenUp.X - factorX * stp * leadIn / steps;
-                        startPenDown.Y = endPenUp.Y - factorY * stp * leadIn / steps;
+                        startPenDown.X = startRamp.X - factorX * stp * leadIn / steps;
+                        startPenDown.Y = startRamp.Y - factorY * stp * leadIn / steps;
                         Gcode.MoveTo(gcodeString, startPenDown, "");
 
                         pwmDown = pwmUp - stp * pwmDelta / steps;
@@ -758,12 +769,32 @@ namespace GrblPlotter
             }
             else
             {
-                Gcode.MoveToRapid(gcodeString, endPenUp, "");
+                Gcode.MoveToRapid(gcodeString, startRamp, "");
                 PenDown(penCmt);
             }
-            if (logCoordinates) Logger.Trace("  StartPath at x{0:0.000} y{1:0.000} a={2:0.00}", endPenUp.X, endPenUp.Y, setangle);
+            if (logCoordinates) Logger.Trace("  StartPath at x{0:0.000} y{1:0.000} a={2:0.00}", startRamp.X, startRamp.Y, setangle);
 
-            lastGC = startPenDown;  // endPenUp;
+            if (Properties.Settings.Default.importGraphicLeadInEnable)		// importGraphicLeadOutEnable)
+            {
+                if (Properties.Settings.Default.importGCZEnable)
+                {   
+                    Point endRamp = pathObject.End;
+                    if (pathObject is ItemPath pathObjectPath)
+                    {
+                        if (pathObjectPath.Path.Count >= 2)
+                        {
+                            angle = GcodeMath.GetAlpha(pathObjectPath.Path[pathObjectPath.Path.Count - 2].MoveTo, pathObjectPath.Path[pathObjectPath.Path.Count - 1].MoveTo);
+                            double leadOut = (double)Properties.Settings.Default.importGraphicLeadInDistance;       // importGraphicLeadOutDistance;
+                            leadOut = (Math.Abs(Gcode.GcodeZDown) + Math.Abs(Gcode.GcodeZUp)) * leadOut / Math.Abs(Gcode.GcodeZDown);  // extend distance
+                            endRamp.X -= leadOut * Math.Cos(angle + Math.PI);   //offsetX;
+                            endRamp.Y -= leadOut * Math.Sin(angle + Math.PI);   //offsetY;
+                            Gcode.SetZEndPos(endRamp);           // set pos where Z is completly up
+                        }
+                    }
+                }
+            }
+
+            lastGC = startPenDown;  // startRamp;
             return iDToSet;	//PathCount;
         }
 
@@ -782,8 +813,11 @@ namespace GrblPlotter
         /// </summary>
         private static void StopPath(string cmt)
         {
+            if (Properties.Settings.Default.importGraphicLeadInEnable) // importGraphicLeadOutEnable)
+                cmt += " ramp";
             if (logCoordinates) Logger.Trace("  StopPath {0}", cmt);
             PenUp(cmt);
+            Gcode.ClearLeadOut();
         }
 
         /// <summary>
@@ -791,12 +825,12 @@ namespace GrblPlotter
         /// </summary>
         private static void MoveTo(Point coordxy, double newZ, double tangAngle, string cmt)
         {
-			bool applyDashPattern = Properties.Settings.Default.importLineDashPattern && (PathDashArray != null) && (PathDashArray.Length > 1);
-			
+            bool applyDashPattern = Properties.Settings.Default.importLineDashPattern && (PathDashArray != null) && (PathDashArray.Length > 1);
+
             if (!useAlternitveZ && !applyDashPattern)    //Properties.Settings.Default.importDepthFromWidthRamp)
                 PenDown(cmt);   //  + " moveto"                      // also process tangetial axis
             double setangle = 180 * tangAngle / Math.PI;
-			
+
             if (logCoordinates) Logger.Trace(" MoveTo X{0:0.000} Y{1:0.000} A{2:0.00}  useAlternitveZ:{3}  applyDashPattern:{4}", coordxy.X, coordxy.Y, setangle, useAlternitveZ, applyDashPattern);
             Gcode.SetTangential(gcodeString, setangle, true);
             Gcode.SetAux1DistanceCommand(setAux1FinalDistance);
@@ -806,9 +840,9 @@ namespace GrblPlotter
                 Gcode.Move(gcodeString, 1, coordxy.X, coordxy.Y, (float)newZ, true, cmt);
             else if (applyDashPattern)
                 MoveToDashed(coordxy, cmt);
-			else
-				Gcode.MoveTo(gcodeString, coordxy, cmt); 
-			
+            else
+                Gcode.MoveTo(gcodeString, coordxy, cmt);
+
             lastGC = coordxy;
         }
 
@@ -819,80 +853,83 @@ namespace GrblPlotter
             if (logCoordinates) Logger.Trace("  MoveToDashed from X:{0:0.000} Y:{1:0.000}  to X:{0:0.000} Y:{1:0.000}", lastGC.X, lastGC.Y, coordxy.X, coordxy.Y);
 
             if (logCoordinates) Logger.Trace("  MoveToDashed enabled:{0} length:{1}", Properties.Settings.Default.importLineDashPattern, PathDashArray.Length);
-			
-			bool penUpG1 = !Properties.Settings.Default.importLineDashPatternG0;
-			double dX = coordxy.X - lastGC.X;			// full distance
-			double dY = coordxy.Y - lastGC.Y;
-			double dFull = Math.Sqrt(dX * dX + dY * dY);
-			double dToGo = dFull;
-			double xx = lastGC.X, yy = lastGC.Y;		// intermediate pos
-			double ddx, ddy;					// dash distance
-			string dashInfo="";
-			Point pNext;
-			
-			while (dToGo > 0)
-			{
-				if (logCoordinates) Logger.Trace("  -0 dToGo:{0:0.000}  PathDashArrayIndex:{1}  PathDashArrayDistance:{2:0.000}   PathDashArrayPenIsUp:{3}", dToGo, PathDashArrayIndex, PathDashArrayDistance, PathDashArrayPenIsUp);
 
-				if (PathDashArrayDistance <= 0)         // get distance
-				{
-					if (PathDashArrayIndex >= PathDashArray.Length) PathDashArrayIndex = 0;
-					PathDashArrayDistance = Math.Abs(PathDashArray[PathDashArrayIndex]);		// only allow positive distance
-					
-					if (logCoordinates) Logger.Trace("   1 Load PathDashArrayIndex:{0}  PathDashArrayDistance:{1:0.00}",PathDashArrayIndex,PathDashArrayDistance);
-					
-					PathDashArrayIndex++;
-					PathDashArrayIndexChanged = true;
-				}
+            bool penUpG1 = !Properties.Settings.Default.importLineDashPatternG0;
+            double dX = coordxy.X - lastGC.X;           // full distance
+            double dY = coordxy.Y - lastGC.Y;
+            double dFull = Math.Sqrt(dX * dX + dY * dY);
+            double dToGo = dFull;
+            double xx = lastGC.X, yy = lastGC.Y;        // intermediate pos
+            double ddx, ddy;                    // dash distance
+            string dashInfo = "";
+            Point pNext;
 
-				if (PathDashArrayIndexChanged)
-				{
-					if ((PathDashArrayIndex % 2) == 0)      // pen-up/ down depending on dash index
-					{ 	if (logCoordinates) Logger.Trace("   1 PenUp");
-						PenUp("MoveToDashed"); PathDashArrayPenIsUp = true; 
-					}
-					else
-					{ 	if (logCoordinates) Logger.Trace("   1 PenDown");
-						PenDown("MoveToDashed"); PathDashArrayPenIsUp = false; 
-					}
-					PathDashArrayIndexChanged = false;
-				}
-				if (logCoordinates) Logger.Trace("   2 dToGo:{0:0.000}  PathDashArrayDistance:{1:0.000}   PathDashArrayPenIsUp:{2}", dToGo, PathDashArrayDistance, PathDashArrayPenIsUp);
+            while (dToGo > 0)
+            {
+                if (logCoordinates) Logger.Trace("  -0 dToGo:{0:0.000}  PathDashArrayIndex:{1}  PathDashArrayDistance:{2:0.000}   PathDashArrayPenIsUp:{3}", dToGo, PathDashArrayIndex, PathDashArrayDistance, PathDashArrayPenIsUp);
 
-				if (dToGo <= PathDashArrayDistance)     // no dash-change in this move
-				{
+                if (PathDashArrayDistance <= 0)         // get distance
+                {
+                    if (PathDashArrayIndex >= PathDashArray.Length) PathDashArrayIndex = 0;
+                    PathDashArrayDistance = Math.Abs(PathDashArray[PathDashArrayIndex]);        // only allow positive distance
+
+                    if (logCoordinates) Logger.Trace("   1 Load PathDashArrayIndex:{0}  PathDashArrayDistance:{1:0.00}", PathDashArrayIndex, PathDashArrayDistance);
+
+                    PathDashArrayIndex++;
+                    PathDashArrayIndexChanged = true;
+                }
+
+                if (PathDashArrayIndexChanged)
+                {
+                    if ((PathDashArrayIndex % 2) == 0)      // pen-up/ down depending on dash index
+                    {
+                        if (logCoordinates) Logger.Trace("   1 PenUp");
+                        PenUp("MoveToDashed"); PathDashArrayPenIsUp = true;
+                    }
+                    else
+                    {
+                        if (logCoordinates) Logger.Trace("   1 PenDown");
+                        PenDown("MoveToDashed"); PathDashArrayPenIsUp = false;
+                    }
+                    PathDashArrayIndexChanged = false;
+                }
+                if (logCoordinates) Logger.Trace("   2 dToGo:{0:0.000}  PathDashArrayDistance:{1:0.000}   PathDashArrayPenIsUp:{2}", dToGo, PathDashArrayDistance, PathDashArrayPenIsUp);
+
+                if (dToGo <= PathDashArrayDistance)     // no dash-change in this move
+                {
                     //dashInfo = String.Format("dash match dToGo:{0:0.000}  array:{1:0.000}", dToGo, PathDashArrayDistance);
                     if (gcodeComments) dashInfo = String.Format("{0:0.000}", PathDashArrayDistance);
                     PathDashArrayDistance -= dToGo;
-					dToGo = 0;
-					pNext = coordxy;
-				}
-				else									// do inermediate step
-				{	dToGo -= PathDashArrayDistance;
-					ddx = PathDashArrayDistance * dX / dFull;
-					ddy = PathDashArrayDistance * dY / dFull;
-					xx += ddx;							// new pos.
-					yy += ddy;
+                    dToGo = 0;
+                    pNext = coordxy;
+                }
+                else                                    // do inermediate step
+                {
+                    dToGo -= PathDashArrayDistance;
+                    ddx = PathDashArrayDistance * dX / dFull;
+                    ddy = PathDashArrayDistance * dY / dFull;
+                    xx += ddx;                          // new pos.
+                    yy += ddy;
                     //dashInfo = PathDashArrayDistance.ToString();
                     if (gcodeComments) dashInfo = String.Format("{0:0.000}", PathDashArrayDistance);
-                    PathDashArrayDistance = 0;		
-					pNext = new Point(xx, yy);
-				}
+                    PathDashArrayDistance = 0;
+                    pNext = new Point(xx, yy);
+                }
 
                 if (PathDashArrayPenIsUp)
-				{
+                {
                     if (gcodeComments) dashInfo = "pen-up dash:" + dashInfo;
-                    if (logCoordinates) Logger.Trace("   3 MoveTo PenUp x:{0:0.00}  y:{1:0.00}  dToGo:{2:0.000}  PathDashArrayDistance:{3:0.000}",pNext.X, pNext.Y, dToGo, PathDashArrayDistance);
-					if (penUpG1) Gcode.MoveToNoFeed(gcodeString, pNext, dashInfo);
-					else Gcode.MoveToRapid(gcodeString, pNext, dashInfo);
-				}
-				else
-				{
+                    if (logCoordinates) Logger.Trace("   3 MoveTo PenUp x:{0:0.00}  y:{1:0.00}  dToGo:{2:0.000}  PathDashArrayDistance:{3:0.000}", pNext.X, pNext.Y, dToGo, PathDashArrayDistance);
+                    if (penUpG1) Gcode.MoveToNoFeed(gcodeString, pNext, dashInfo);
+                    else Gcode.MoveToRapid(gcodeString, pNext, dashInfo);
+                }
+                else
+                {
                     if (gcodeComments) dashInfo = "pen-down dash:" + dashInfo;
-                    if (logCoordinates) Logger.Trace("   3 MoveTo PenDown x:{0:0.00}  y:{1:0.00}  dToGo:{2:0.000}  PathDashArrayDistance:{3:0.000}",pNext.X, pNext.Y, dToGo, PathDashArrayDistance);
-					Gcode.MoveTo(gcodeString, pNext, dashInfo);
-				}
-			}
+                    if (logCoordinates) Logger.Trace("   3 MoveTo PenDown x:{0:0.00}  y:{1:0.00}  dToGo:{2:0.000}  PathDashArrayDistance:{3:0.000}", pNext.X, pNext.Y, dToGo, PathDashArrayDistance);
+                    Gcode.MoveTo(gcodeString, pNext, dashInfo);
+                }
+            }
         }
 
         private static void Arc(bool isG2, Point endPos, Point centerPos, double tangStart, double tangEnd)//, string cmt) remove newZ
@@ -1034,8 +1071,8 @@ namespace GrblPlotter
         /// <summary>
         /// Insert tool change command
         /// </summary>
-        private static void ToolChange(int toolnr, string cmt = "")
-        { Gcode.Tool(gcodeString, toolnr, cmt); }  // add tool change commands (if enabled) and set XYFeed etc.
+        private static void ToolChange(int toolnr, int objectCount, string cmt = "")
+        { Gcode.Tool(gcodeString, toolnr, objectCount, cmt); }  // add tool change commands (if enabled) and set XYFeed etc.
 
 
         /// <summary>
