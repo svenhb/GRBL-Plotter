@@ -3426,6 +3426,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool guiJoystickApperance1 {
+            get {
+                return ((bool)(this["guiJoystickApperance1"]));
+            }
+            set {
+                this["guiJoystickApperance1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("10")]
         public decimal guiJoystickASpeed1 {
             get {
@@ -5569,6 +5581,18 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["importGCZIncEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCZIncNoZUp {
+            get {
+                return ((bool)(this["importGCZIncNoZUp"]));
+            }
+            set {
+                this["importGCZIncNoZUp"] = value;
             }
         }
         
@@ -8719,24 +8743,12 @@ namespace GrblPlotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool importGCZIncNoZUp {
+        public bool importGraphicLeadTopZUp {
             get {
-                return ((bool)(this["importGCZIncNoZUp"]));
+                return ((bool)(this["importGraphicLeadTopZUp"]));
             }
             set {
-                this["importGCZIncNoZUp"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool guiJoystickApperance1 {
-            get {
-                return ((bool)(this["guiJoystickApperance1"]));
-            }
-            set {
-                this["guiJoystickApperance1"] = value;
+                this["importGraphicLeadTopZUp"] = value;
             }
         }
     }
