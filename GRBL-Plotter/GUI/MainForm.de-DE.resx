@@ -134,11 +134,11 @@
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodePasteSpecial1.Text" xml:space="preserve">
-    <value>Fügen Sie 'PenUp' ein</value>
+    <value>Fügt 'PenUp' ein</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodePasteSpecial2.Text" xml:space="preserve">
-    <value>Fügen Sie 'PenDown' ein</value>
+    <value>Fügt 'PenDown' ein</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsFindDialog.Text" xml:space="preserve">
@@ -628,7 +628,7 @@ Fügen Sie 'G54;' to G-Code-Header, um vor dem Streaming von G-Code automatisch 
     <comment>Menu131</comment>
   </data>
   <data name="tBURL.Text" xml:space="preserve">
-    <value>Fügen Sie hier die URL der SVG-/DXF-Datei ein</value>
+    <value>Füge hier die URL der SVG-/DXF-Datei ein</value>
     <comment>2DView</comment>
   </data>
   <data name="unDoToolStripMenuItem.Text" xml:space="preserve">
@@ -664,10 +664,10 @@ Fügen Sie 'G54;' to G-Code-Header, um vor dem Streaming von G-Code automatisch 
     <comment>ToolTip</comment>
   </data>
   <data name="startStreamingAtLineToolStripMenuItem.Text" xml:space="preserve">
-    <value>Starten Sie das Streaming ab Zeile</value>
+    <value>Startet das Streaming ab Zeile</value>
   </data>
   <data name="startStreamingAtLineToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Legen Sie hier die Startzeile fest, wenn G-Code nicht bei Zeile 0 beginnen darf</value>
+    <value>Lege hier die Startzeile fest, wenn G-Code nicht bei Zeile 0 beginnen soll</value>
     <comment>2DView_Menu</comment>
   </data>
   <data name="gBoxOverride.Text" xml:space="preserve">
@@ -832,7 +832,7 @@ Fügen Sie 'G54;' to G-Code-Header, um vor dem Streaming von G-Code automatisch 
     <value>Datei neu laden</value>
   </data>
   <data name="cmsPicBoxMarkFirstPos.Text" xml:space="preserve">
-    <value>Markieren Sie den ersten Punkt des ausgewählten Pfads</value>
+    <value>Markiert den ersten Punkt des ausgewählten Pfads</value>
   </data>
   <data name="cmsPicBoxDeletePath.Text" xml:space="preserve">
     <value>Ausgewählten Pfad löschen</value>
@@ -847,7 +847,7 @@ Fügen Sie 'G54;' to G-Code-Header, um vor dem Streaming von G-Code automatisch 
     <value>Versatz auf GCode anwenden</value>
   </data>
   <data name="cmsPicBoxSetGCodeAsBackground.Text" xml:space="preserve">
-    <value>Stellen Sie den G-Code als Hintergrund ein</value>
+    <value>Stellt den G-Code im Hintergrund dar</value>
   </data>
   <data name="cmsPicBoxClearBackground.Text" xml:space="preserve">
     <value>Hintergrund löschen</value>
@@ -916,31 +916,31 @@ Fügen Sie 'G54;' to G-Code-Header, um vor dem Streaming von G-Code automatisch 
     <value>'Group' XML-Tags entfernen</value>
   </data>
   <data name="cmsCodeBlocksRemoveAll.Text" xml:space="preserve">
-    <value>Entfernen Sie alle XML-Tags</value>
+    <value>Entferne alle XML-Tags</value>
   </data>
   <data name="cmsEditMode.AccessibleDescription" xml:space="preserve">
     <value>Im Bearbeitungsmodus ist die automatische Auswahl von Gruppen deaktiviert</value>
   </data>
   <data name="cmsCodeSelect.AccessibleDescription" xml:space="preserve">
-    <value>Wählen Sie den vollständigen Code</value>
+    <value>Auswählen des gesammten Codes</value>
   </data>
   <data name="cmsCodeCopy.AccessibleDescription" xml:space="preserve">
-    <value>Kopieren Sie die Auswahl in die Zwischenablage</value>
+    <value>Kopiert die Auswahl in die Zwischenablage</value>
   </data>
   <data name="cmsCodePaste.AccessibleDescription" xml:space="preserve">
     <value>Editor löschen und aus der Zwischenablage einfügen</value>
   </data>
   <data name="cmsCodePasteSpecial1.AccessibleDescription" xml:space="preserve">
-    <value>Fügen Sie den G-Code "Pen up" vor die aktuelle Zeile ein</value>
+    <value>Fügt den G-Code "Pen up" vor die aktuelle Zeile ein</value>
   </data>
   <data name="cmsCodePasteSpecial2.AccessibleDescription" xml:space="preserve">
-    <value>Fügen Sie den G-Code "Pen down" vor die aktuelle Zeile ein</value>
+    <value>Fügt den G-Code "Pen down" vor die aktuelle Zeile ein</value>
   </data>
   <data name="cmsFindDialog.AccessibleDescription" xml:space="preserve">
-    <value>Öffnen Sie "Dialogfeld suchen" im "Schnellfarbigen Textfeld".</value>
+    <value>Öffnet "Dialogfeld suchen" </value>
   </data>
   <data name="cmsReplaceDialog.AccessibleDescription" xml:space="preserve">
-    <value>Öffnen Sie "Dialogfeld ersetzen" </value>
+    <value>Öffnt "Dialogfeld ersetzen" </value>
   </data>
   <data name="cmsUpdate2DView.AccessibleDescription" xml:space="preserve">
     <value>G-Code neu vom Editor einlesen, um die 2D-Ansicht zu aktualisieren</value>
@@ -1000,13 +1000,13 @@ Fügen Sie 'G54;' to G-Code-Header, um vor dem Streaming von G-Code automatisch 
     <value>Pen Up</value>
   </data>
   <data name="BtnPenUp.ToolTip" xml:space="preserve">
-    <value>Verwenden Sie die Einstellungen von Setup-Servo-PWM</value>
+    <value>Verwendung der Einstellungen von Setup-Servo-PWM</value>
   </data>
   <data name="BtnPenDown.Text" xml:space="preserve">
     <value>Pen Down</value>
   </data>
   <data name="BtnPenDown.ToolTip" xml:space="preserve">
-    <value>Verwenden Sie die Einstellungen von Setup-Servo-PWM</value>
+    <value>Verwendung der Einstellungen von Setup-Servo-PWM</value>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>Router</value>
@@ -1081,7 +1081,7 @@ Das Ändern der Importeinstellungen nach dem ersten Import kann zu unerwünschte
     <comment>20220428</comment>
   </data>
   <data name="cmsPicBoxPasteFromClipboard.ToolTipText" xml:space="preserve">
-    <value>Verarbeiten Sie Daten aus der Zwischenablage, wie SVG, DXF, TXT (SVG oder GCode) oder Bild</value>
+    <value>Verarbeitet die Daten aus der Zwischenablage, wie SVG, DXF, TXT (SVG oder GCode) oder Bild</value>
     <comment>20220428</comment>
   </data>
   <data name="cmsPicBoxReloadFile.ToolTipText" xml:space="preserve">
@@ -1113,7 +1113,7 @@ Das Ändern der Importeinstellungen nach dem ersten Import kann zu unerwünschte
     <comment>20220428</comment>
   </data>
   <data name="copyContentTroClipboardToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Kopieren Sie das 2D-View-Bild in die Zwischenablage</value>
+    <value>Kopiert das 2D-View-Bild in die Zwischenablage</value>
     <comment>20220428</comment>
   </data>
   <data name="toggleBlockExpansionToolStripMenuItem.Text" xml:space="preserve">

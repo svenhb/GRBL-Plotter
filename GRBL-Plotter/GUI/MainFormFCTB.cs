@@ -48,7 +48,8 @@
  * 2023-01-24 FctbCode_Click add selectionPathOrig = (GraphicsPath)VisuGCode.pathMarkSelection.Clone();
  * 2023-01-29 line 719 GotoNextBookmark(fCTBCodeClickedLineNow-1), FctbSetBookmark add=10, if (fCTBCodeClickedLineNow < 20)
  * 2023-02-18 line 375 check  if (selStartGrp.iLine < 0)
-
+ * 2023-03-11 l:777/790 Requested Clipboard operation did not succeed. 
+ * 2023-03-15 l:740 f:CmsFctb_ItemClicked - if (e.ClickedItem.Name == "cmsCodeCopy") -> if no selection copy all to clipboard
 */
 
 using FastColoredTextBoxNS;
@@ -739,7 +740,12 @@ namespace GrblPlotter
             else if (e.ClickedItem.Name == "cmsCodeCopy")
             {
                 if (fCTBCode.SelectedText.Length > 0)
-                    fCTBCode.Copy();
+                { 	fCTBCode.Copy();}
+				else
+				{
+					fCTBCode.SelectAll();
+					fCTBCode.Copy();
+				}
             }
             else if (e.ClickedItem.Name == "cmsCodePaste")
             {       //fCTBCode.Paste();
@@ -772,9 +778,9 @@ namespace GrblPlotter
                 SetTextSelection(fCTBCodeClickedLineNow, fCTBCodeClickedLineNow);
                 gcodeString.Append(fCTBCode.SelectedText.Replace("G01", "G00") + " (modified)");
                 if (!string.IsNullOrEmpty(gcodeString.ToString()))
-                    Clipboard.SetText(gcodeString.ToString());
+                {    Clipboard.SetText(gcodeString.ToString());
                 fCTBCode.Paste();
-                FctbSetBookmark();
+                FctbSetBookmark();}	// 2023-03-11
             }
             else if (e.ClickedItem.Name == "cmsCodePasteSpecial2")  // Pen down
             {
@@ -785,9 +791,9 @@ namespace GrblPlotter
                 SetTextSelection(fCTBCodeClickedLineNow, fCTBCodeClickedLineNow);
                 gcodeString.Append(fCTBCode.SelectedText.Replace("G00", "G01") + " F" + Gcode.GcodeXYFeed + " (modified)");
                 if (!string.IsNullOrEmpty(gcodeString.ToString()))
-                    Clipboard.SetText(gcodeString.ToString());
+                {    Clipboard.SetText(gcodeString.ToString());
                 fCTBCode.Paste();
-                FctbSetBookmark();
+                FctbSetBookmark();}	// 2023-03-11
             }
             else if (e.ClickedItem.Name == "cmsCodeSendLine")
             {

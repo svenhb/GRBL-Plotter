@@ -130,7 +130,7 @@
     <value>Stoppe das Streaming bei Zeile</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Nachdem Sie auf Start gedrückt haben, werden die Daten geladen und das Streaming bleibt im Pause-Modus, drücken Sie erneut auf Start (Linksklick), um fortzufahren.</value>
+    <value>Nachdem auf Start gedrückt wurde, werden die Daten geladen und das Streaming bleibt im Pause-Modus, drücken erneut auf Start (Linksklick), um fortzufahren.</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Parser-Status</value>

@@ -139,7 +139,7 @@
   <data name="label3.Text" xml:space="preserve">
     <value>Mögliche Variablen sind Grafikpositionen MIn., MAx. und CenTer-Werte für X, Y und Z:
 #GMIX, #GMAX, #GCTX; #GMIY, #GMAY, #GCTY; #GMIZ, #GMAZ, #GCTZ
-Überprüfen Sie das GamePad-Setup auf weitere Variablen.</value>
+Überprüfe das GamePad-Setup auf weitere Variablen.</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 13</value>
@@ -148,7 +148,7 @@
     <value>Knopffarbe</value>
   </data>
   <data name="btnSetColor.Text" xml:space="preserve">
-    <value>Klicken Sie, um zu ändern</value>
+    <value>Klicke, um zu ändern</value>
   </data>
   <data name="btnDelete.Text" xml:space="preserve">
     <value>Löschen</value>
