@@ -127,7 +127,7 @@
     <value>Bild in Zwischenablage kopieren</value>
   </data>
   <data name="btnCheckBarcode1D.Text" xml:space="preserve">
-    <value>Überprüfen Sie den Barcode</value>
+    <value>Überprüfe den Barcode</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
     <value>Barcode-Höhe</value>
@@ -172,7 +172,7 @@
     <value>Logo einfügen</value>
   </data>
   <data name="btnCheckBarcode2D.Text" xml:space="preserve">
-    <value>Überprüfen Sie den QR-Code</value>
+    <value>Überprüft den QR-Code</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Resultierende Barcodebreite</value>

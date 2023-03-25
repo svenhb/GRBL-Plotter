@@ -205,7 +205,7 @@ namespace GrblPlotter
 
                     finalString.AppendLine("\r\n( +++++ Tool change +++++ )");
 
-                    Gcode.Tool(finalString, toolNr, ToolTable.IndexName() + " [" + ColorTranslator.ToHtml(ToolTable.IndexColor()) + "]");  // + svgPalette.pixelCount());
+                    Gcode.Tool(finalString, toolNr, 0, ToolTable.IndexName() + " [" + ColorTranslator.ToHtml(ToolTable.IndexColor()) + "]");  // + svgPalette.pixelCount());
                     if (useResoAsPenWidth) penWidth = resoOutlineX;
                     else penWidth = ToolTable.IndexWidth();
 

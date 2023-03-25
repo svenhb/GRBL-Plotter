@@ -237,13 +237,13 @@
     <value>Abstand in Farbton (0 ° -360 °) + Farbsättigung + Farbhelligkeit</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Ordnen Sie die Bildfarben den Farben der Werkzeugtabellen zu</value>
+    <value>Ordnet die Bildfarben den Farben der Werkzeugtabellen zu</value>
   </data>
   <data name="btnTest.Text" xml:space="preserve">
     <value>Vorschau</value>
   </data>
   <data name="btnTest.ToolTip" xml:space="preserve">
-    <value>Halten Sie die Taste gedrückt, um das Bild mit den Farben aus der Werkzeugtabelle zu überprüfen</value>
+    <value>Halte die Taste gedrückt, um das Bild mit den Farben aus der Werkzeugtabelle zu überprüfen</value>
   </data>
   <data name="nUDColorPercent.ToolTip" xml:space="preserve">
     <value>Mindest Vorkommen einer Farbe in Prozent</value>
@@ -271,7 +271,7 @@ unter dem angegebenen Prozentwert werden in die nächstgelegene Farbe umgewandel
     <value>Pfad verkleinern</value>
   </data>
   <data name="cBGCodeOutlineShrink.ToolTip" xml:space="preserve">
-    <value>Verkleinern Sie den Pfad, um die Stiftbreite auszugleichen</value>
+    <value>Verkleinert den Pfad, um die Stiftbreite auszugleichen</value>
   </data>
   <data name="groupBox6.Text" xml:space="preserve">
     <value>Farbersetzung</value>
@@ -436,7 +436,7 @@ unter dem angegebenen Prozentwert werden in die nächstgelegene Farbe umgewandel
     <value>aus 2D-Ansicht</value>
   </data>
   <data name="rbEngravingPattern4.ToolTip" xml:space="preserve">
-    <value>Laden Sie eine SVG- oder DXF-Grafik als Muster für das Bild.</value>
+    <value>Lädt eine SVG- oder DXF-Grafik als Muster für das Bild.</value>
   </data>
   <data name="rbEngravingPattern3.Text" xml:space="preserve">
     <value>Spiral</value>
@@ -448,7 +448,7 @@ unter dem angegebenen Prozentwert werden in die nächstgelegene Farbe umgewandel
     <value>Nur von links nach rechts</value>
   </data>
   <data name="cBOnlyLeftToRight.ToolTip" xml:space="preserve">
-    <value>Zeichnen Sie nur aus einer Richtung, um Versätze zu vermeiden</value>
+    <value>Zeichnet nur aus einer Richtung, um Versätze zu vermeiden</value>
   </data>
   <data name="Cb2DViewHide0.Text" xml:space="preserve">
     <value>2D-Ansicht ausblenden 0</value>
@@ -500,19 +500,19 @@ Farbfilter und Effekte werden bei der Generierung von Graustufen berücksichtigt
     <value>Werkzeugwechsel auf Tx M06 durchführen</value>
   </data>
   <data name="cBToolChange.ToolTip" xml:space="preserve">
-    <value>Führen Sie die folgenden Skripte für Tx M06-Befehle aus</value>
+    <value>Führe die folgenden Skripte für Tx M06-Befehle aus</value>
   </data>
   <data name="cBImportGCToolM0.Text" xml:space="preserve">
-    <value>Fügen Sie stattdessen Pause (M0) hinzu</value>
+    <value>Füge stattdessen Pause (M0) hinzu</value>
   </data>
   <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
-    <value>Ersetzen Sie jeden M06-Befehl (Werkzeugwechsel) durch M0 (Pause) für den manuellen Werkzeugwechsel.</value>
+    <value>Ersetze jeden M06-Befehl (Werkzeugwechsel) durch M0 (Pause) für den manuellen Werkzeugwechsel.</value>
   </data>
   <data name="cBImportGCTool.Text" xml:space="preserve">
     <value>Werkzeugwechselbefehl Tx M06 hinzufügen</value>
   </data>
   <data name="cBImportGCTool.ToolTip" xml:space="preserve">
-    <value>Führen Sie die Werkzeugwechselaktion für Tx M06-Befehle durch, wenn Informationen verfügbar sind – überprüfen Sie die Registerkarte „Werkzeugwechsel“.</value>
+    <value>Führe die Werkzeugwechselaktion für Tx M06-Befehle durch, wenn Informationen verfügbar sind – überprüfe die Registerkarte „Werkzeugwechsel“.</value>
   </data>
   <data name="RbStartGrayZ.Text" xml:space="preserve">
     <value>Grauwert als Z (Tiefe)</value>

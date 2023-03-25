@@ -29,6 +29,7 @@
  * 2021-11-23 set default for tprop
  * 2023-01-17 add try catch in ShapeToGCode_Load
  * 2023-03-04 add save/load/select shapes
+ * 2023-03-14 l:1226 f:BtnApplyShape_Click check min/max before setting the value; save also avoidZUp, finalMove0, insertShape
 */
 
 using System;
@@ -62,6 +63,13 @@ namespace GrblPlotter
         private ToolProp tprop = new ToolProp();
         private readonly ToolProp torig = new ToolProp();
 
+		internal class AppProp
+		{
+			internal bool avoidZUp = false;
+			internal bool finalMove0=false;
+			internal bool insertShape = false;
+		}
+
         internal class PathProp
         {
             internal int origin = 7;	// 1 - 9
@@ -79,6 +87,7 @@ namespace GrblPlotter
             internal ToolProp tool = new ToolProp();
             internal PathProp path = new PathProp();
             internal ShapeProp shape = new ShapeProp();
+			internal AppProp app = new AppProp();
         }
         internal List<ShapeFull> Shapes = new List<ShapeFull>();
 
@@ -118,7 +127,7 @@ namespace GrblPlotter
             path = PathBackground;      // create background path
             path.StartFigure();
 
-            Gcode.Tool(gcodeString, tprop.Toolnr, tprop.Name + " [" + ColorTranslator.ToHtml(tprop.Color) + "]");                                                                                                                                                //       if (!Properties.Settings.Default.importGCSpindleToggle) gcode.SpindleOn(gcodeString, "Start");
+            Gcode.Tool(gcodeString, tprop.Toolnr, 0, tprop.Name + " [" + ColorTranslator.ToHtml(tprop.Color) + "]");                                                                                                                                                //       if (!Properties.Settings.Default.importGCSpindleToggle) gcode.SpindleOn(gcodeString, "Start");
 
             float x, y, rShape, d, dTool, dToolOffset, overlap, rTool, rToolOffset, zStep;
             float zStart = 0;
@@ -957,8 +966,16 @@ namespace GrblPlotter
             }
         }
 
-        private static void CheckSetValue(NumericUpDown nUDcontrol, decimal val)
+        private static void CheckSetValue(NumericUpDown nUDcontrol, decimal val, bool setExtreme=false)
         {
+			if (setExtreme)
+			{
+				if (val < nUDcontrol.Minimum) {val = nUDcontrol.Minimum;}
+				if (val > nUDcontrol.Maximum) {val = nUDcontrol.Maximum;}
+				nUDcontrol.Value = val;
+				return;
+			}
+			
             if ((val <= nUDcontrol.Maximum) && (val >= nUDcontrol.Minimum))
             { nUDcontrol.Value = val; }
             else
@@ -1078,7 +1095,13 @@ namespace GrblPlotter
                 xmlWrite.WriteAttributeString("x", shape.shape.dimX.ToString().Replace(',', '.'));
                 xmlWrite.WriteAttributeString("y", shape.shape.dimY.ToString().Replace(',', '.'));
                 xmlWrite.WriteAttributeString("r", shape.shape.dimR.ToString().Replace(',', '.'));
-                xmlWrite.WriteAttributeString("p", shape.shape.pocket.ToString().Replace(',', '.'));
+                xmlWrite.WriteAttributeString("p", shape.shape.pocket.ToString());
+                xmlWrite.WriteEndElement();
+
+                xmlWrite.WriteStartElement("app");
+                xmlWrite.WriteAttributeString("azup", shape.app.avoidZUp.ToString());
+                xmlWrite.WriteAttributeString("finm", shape.app.finalMove0.ToString());
+                xmlWrite.WriteAttributeString("insh", shape.app.insertShape.ToString());
                 xmlWrite.WriteEndElement();
 
                 xmlWrite.WriteEndElement();
@@ -1129,8 +1152,15 @@ namespace GrblPlotter
                             if (xmlRead["x"].Length > 0) { Shapes[shapeIndex].shape.dimX = double.Parse(xmlRead["x"].Replace(',', '.'), NumberFormatInfo.InvariantInfo); }
                             if (xmlRead["y"].Length > 0) { Shapes[shapeIndex].shape.dimY = double.Parse(xmlRead["y"].Replace(',', '.'), NumberFormatInfo.InvariantInfo); }
                             if (xmlRead["r"].Length > 0) { Shapes[shapeIndex].shape.dimR = double.Parse(xmlRead["r"].Replace(',', '.'), NumberFormatInfo.InvariantInfo); }
-                            if (xmlRead["p"].Length > 0) { Shapes[shapeIndex].shape.pocket = xmlRead["p"] == "true"; }
+                            if (xmlRead["p"].Length > 0) { Shapes[shapeIndex].shape.pocket = (xmlRead["p"].ToLower() == "true"); }
                         }
+                        break;
+                    case "app":
+                        {
+                            if (xmlRead["azup"].Length > 0) { Shapes[shapeIndex].app.avoidZUp = (xmlRead["azup"].ToLower() == "true"); }
+                            if (xmlRead["finm"].Length > 0) { Shapes[shapeIndex].app.finalMove0 = (xmlRead["finm"].ToLower() == "true"); }
+                            if (xmlRead["insh"].Length > 0) { Shapes[shapeIndex].app.insertShape = (xmlRead["insh"].ToLower() == "true"); }
+						}
                         break;
                 }
             }
@@ -1173,6 +1203,10 @@ namespace GrblPlotter
             Shapes[shapeIndex].shape.pocket = cBToolpathPocket.Checked;
             Shapes[shapeIndex].shape.type = GetShapeID();
 
+            Shapes[shapeIndex].app.avoidZUp = cBNoZUp.Checked;
+            Shapes[shapeIndex].app.finalMove0 = cBMoveTo00.Checked;
+            Shapes[shapeIndex].app.insertShape = CbInsertCode.Checked;
+
             Shapes[shapeIndex].name = TbShapeName.Text;
 
             SaveXML(Datapath.Data + "\\simpleshapes.xml");
@@ -1189,11 +1223,17 @@ namespace GrblPlotter
                 SetToolProperties(Shapes[index].tool);
                 SetToolpathID(Shapes[index].path.type);
                 SetOriginID(Shapes[index].path.origin);
+				
                 SetShapeID(Shapes[index].shape.type);
-                nUDShapeX.Value = (decimal)Shapes[index].shape.dimX;
-                nUDShapeY.Value = (decimal)Shapes[index].shape.dimY;
-                nUDShapeR.Value = (decimal)Shapes[index].shape.dimR;
-
+                CheckSetValue(nUDShapeX, (decimal)Shapes[index].shape.dimX, true);
+                CheckSetValue(nUDShapeY, (decimal)Shapes[index].shape.dimY, true);
+                CheckSetValue(nUDShapeR, (decimal)Shapes[index].shape.dimR, true);
+				cBToolpathPocket.Checked = Shapes[index].shape.pocket;
+				
+				cBNoZUp.Checked = Shapes[index].app.avoidZUp;
+				cBMoveTo00.Checked = Shapes[index].app.finalMove0;
+				CbInsertCode.Checked = Shapes[index].app.insertShape;
+				
                 TbShapeName.Text = Shapes[index].name;
             }
         }
