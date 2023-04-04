@@ -123,12 +123,6 @@
   <data name="cbBaud.ToolTip" xml:space="preserve">
     <value>Selecionar velocidade</value>
   </data>
-  <data name="btnOpenPort.Text" xml:space="preserve">
-    <value>Abrir</value>
-  </data>
-  <data name="btnOpenPort.ToolTip" xml:space="preserve">
-    <value>Abra a porta COM selecionada com a velocidade selecionada</value>
-  </data>
   <data name="btnScanPort.Text" xml:space="preserve">
     <value>Procurar</value>
   </data>
@@ -190,13 +184,6 @@
     <value>Substituir valores para alimentação, corredeiras e velocidade em%</value>
   </data>
   <data name="lblSrA.ToolTip" xml:space="preserve">
-    <value>Estado do acessório 
-S = eixo CW, 
-C = eixo CCW, 
-F = corante flutuante, 
-M = líquido refrigerante</value>
-  </data>
-  <data name="label11.ToolTip" xml:space="preserve">
     <value>Estado do acessório 
 S = eixo CW, 
 C = eixo CCW, 

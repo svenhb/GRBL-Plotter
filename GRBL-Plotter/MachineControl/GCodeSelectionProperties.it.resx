@@ -117,126 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="cbPort.ToolTip" xml:space="preserve">
-    <value>無料のシリアルポートを選択</value>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Larghezza della penna</value>
   </data>
-  <data name="cbBaud.ToolTip" xml:space="preserve">
-    <value>速度を選択</value>
+  <data name="BtnAttributeColor.Text" xml:space="preserve">
+    <value>Colore della penna</value>
   </data>
-  <data name="btnScanPort.Text" xml:space="preserve">
-    <value>スキャンポート</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Proprietà</value>
   </data>
-  <data name="btnScanPort.ToolTip" xml:space="preserve">
-    <value>空きポートをスキャンする</value>
+  <data name="BtnCancel.Text" xml:space="preserve">
+    <value>Annulla</value>
   </data>
-  <data name="btnClear.Text" xml:space="preserve">
-    <value>ログをクリア</value>
+  <data name="BtnOK.Text" xml:space="preserve">
+    <value>OK</value>
   </data>
-  <data name="btnClear.ToolTip" xml:space="preserve">
-    <value>上記のリストをクリア</value>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Centro X</value>
   </data>
-  <data name="btnSend.Text" xml:space="preserve">
-    <value>送る</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Centro Y</value>
   </data>
-  <data name="btnSend.ToolTip" xml:space="preserve">
-    <value>押してコマンドを送信</value>
-  </data>
-  <data name="btnGRBLCommand0.ToolTip" xml:space="preserve">
-    <value>ヘルプ：すべてのGRBLコマンドのリストを取得する</value>
-  </data>
-  <data name="btnGRBLCommand1.ToolTip" xml:space="preserve">
-    <value>Grbl設定を表示する</value>
-  </data>
-  <data name="btnGRBLCommand2.ToolTip" xml:space="preserve">
-    <value>Gコードパラメーターを表示する</value>
-  </data>
-  <data name="btnGRBLCommand3.ToolTip" xml:space="preserve">
-    <value>スタートアップブロックを表示する</value>
-  </data>
-  <data name="btnGRBLCommand4.ToolTip" xml:space="preserve">
-    <value>アラームロックを解除</value>
-  </data>
-  <data name="lblSrPos.ToolTip" xml:space="preserve">
-    <value>仕事のポスト</value>
-  </data>
-  <data name="label2.ToolTip" xml:space="preserve">
-    <value>バッファ状態（10ドル= 2で有効にする必要があります）</value>
-  </data>
-  <data name="lblSrBf.ToolTip" xml:space="preserve">
-    <value>バッファ状態（10ドル= 2で有効にする必要があります）</value>
-  </data>
-  <data name="label4.ToolTip" xml:space="preserve">
-    <value>現在の送り（mm / min）および速度（RPM）</value>
-  </data>
-  <data name="lblSrFS.ToolTip" xml:space="preserve">
-    <value>現在の送り（mm / min）および速度（RPM）</value>
-  </data>
-  <data name="lblSrPn.ToolTip" xml:space="preserve">
-    <value>XYZ、プローブ、ドア、ホールド、ソフトリセット、サイクルスタートの入力ピン状態</value>
-  </data>
-  <data name="label7.ToolTip" xml:space="preserve">
-    <value>XYZ、プローブ、ドア、ホールド、ソフトリセット、サイクルスタートの入力ピン状態</value>
-  </data>
-  <data name="lblSrOv.ToolTip" xml:space="preserve">
-    <value>フィード、急流、速度の値を％で上書き</value>
-  </data>
-  <data name="label9.ToolTip" xml:space="preserve">
-    <value>フィード、急流、速度の値を％で上書き</value>
-  </data>
-  <data name="lblSrA.ToolTip" xml:space="preserve">
-    <value>付属品の状態S =スピンドルCW、C =スピンドルCCW、F = floot colant、M =ミストクーラント</value>
-  </data>
-  <data name="lblSrLn.ToolTip" xml:space="preserve">
-    <value>行番号（config.hで有効にする必要があります）</value>
-  </data>
-  <data name="label13.ToolTip" xml:space="preserve">
-    <value>行番号（config.hで有効にする必要があります）</value>
-  </data>
-  <data name="btnCheckGRBL.Text" xml:space="preserve">
-    <value>GRBLを確認する</value>
-  </data>
-  <data name="btnCheckGRBL.ToolTip" xml:space="preserve">
-    <value>GRBLセットアップで最大および最小制限を確認してください
-GRBL Vers用ではありません。 &lt;1.0</value>
-  </data>
-  <data name="btnGRBLReset.ToolTip" xml:space="preserve">
-    <value>CTRL-Xによるソフトリセット</value>
-  </data>
-  <data name="btnGRBLHardReset.ToolTip" xml:space="preserve">
-    <value>DTR / RTSによるハードリセットを試してください
-成功は使用するハードウェア（DTR、RTS有線？）に依存します</value>
-  </data>
-  <data name="btnGRBLCmndParser.ToolTip" xml:space="preserve">
-    <value>Gコードパーサーの状態を表示する</value>
-  </data>
-  <data name="btnGRBLCmndBuild.ToolTip" xml:space="preserve">
-    <value>ビルド情報を見る</value>
-  </data>
-  <data name="cBStatus.Text" xml:space="preserve">
-    <value>リアルタイムステータスレポートを表示</value>
-  </data>
-  <data name="cBStatus.ToolTip" xml:space="preserve">
-    <value>元の受信GRBLステータスレポートを表示する</value>
-  </data>
-  <data name="lblSrState.Text" xml:space="preserve">
-    <value>状態</value>
-  </data>
-  <data name="cBStatus1.ToolTip" xml:space="preserve">
-    <value>ストリーミング中に送信および処理されたコマンドを表示する</value>
+  <data name="label4.Text" xml:space="preserve">
+    <value>incremento del valore per i numeri sopra</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>リアルタイムステータスレポート</value>
+    <value>Coordinate</value>
   </data>
-  <data name="pasteCodeFromClipboardToolStripMenuItem.Text" xml:space="preserve">
-    <value>クリップボードからコードを貼り付ける</value>
-  </data>
-  <data name="copySelectionToClipboardToolStripMenuItem.Text" xml:space="preserve">
-    <value>選択範囲をクリップボードにコピー</value>
-  </data>
-  <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
-    <value>すべて選択</value>
-  </data>
-  <data name="LblAccessoryState.ToolTip" xml:space="preserve">
-    <value>付属品の状態S =スピンドルCW、C =スピンドルCCW、F = floot colant、M =ミストクーラント</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Proprietà</value>
   </data>
 </root>

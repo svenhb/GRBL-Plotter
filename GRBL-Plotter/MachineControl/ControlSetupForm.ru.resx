@@ -1638,32 +1638,16 @@ min X, min Y и max Z.
     <value>Настройки аналогового джойстика</value>
     <comment>ok</comment>
   </data>
-  <data name="lblValR.Text" xml:space="preserve">
-    <value>-</value>
-    <comment>ok</comment>
-  </data>
   <data name="lblValR.ToolTip" xml:space="preserve">
     <value>Значение с примененным смещением</value>
-    <comment>ok</comment>
-  </data>
-  <data name="lblValY.Text" xml:space="preserve">
-    <value>-</value>
     <comment>ok</comment>
   </data>
   <data name="lblValY.ToolTip" xml:space="preserve">
     <value>Значение с примененным смещением</value>
     <comment>ok</comment>
   </data>
-  <data name="lblValZ.Text" xml:space="preserve">
-    <value>-</value>
-    <comment>ok</comment>
-  </data>
   <data name="lblValZ.ToolTip" xml:space="preserve">
     <value>Значение с примененным смещением</value>
-    <comment>ok</comment>
-  </data>
-  <data name="lblValX.Text" xml:space="preserve">
-    <value>-</value>
     <comment>ok</comment>
   </data>
   <data name="lblValX.ToolTip" xml:space="preserve">
@@ -3324,5 +3308,8 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   </data>
   <data name="RbApperance1.Text" xml:space="preserve">
     <value>Чувствительная область</value>
+  </data>
+  <data name="label88.Text" xml:space="preserve">
+    <value>твердо:</value>
   </data>
 </root>

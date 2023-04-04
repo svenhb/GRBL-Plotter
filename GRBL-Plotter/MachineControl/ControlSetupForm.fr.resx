@@ -1630,32 +1630,16 @@ Déplacez le joystick après avoir modifié le décalage.</value>
     <value>Paramètres du joystick analogique</value>
     <comment>ok</comment>
   </data>
-  <data name="lblValR.Text" xml:space="preserve">
-    <value>-</value>
-    <comment>ok</comment>
-  </data>
   <data name="lblValR.ToolTip" xml:space="preserve">
     <value>Valeur avec décalage appliqué</value>
-    <comment>ok</comment>
-  </data>
-  <data name="lblValY.Text" xml:space="preserve">
-    <value>-</value>
     <comment>ok</comment>
   </data>
   <data name="lblValY.ToolTip" xml:space="preserve">
     <value>Valeur avec décalage appliqué</value>
     <comment>ok</comment>
   </data>
-  <data name="lblValZ.Text" xml:space="preserve">
-    <value>-</value>
-    <comment>ok</comment>
-  </data>
   <data name="lblValZ.ToolTip" xml:space="preserve">
     <value>Valeur avec décalage appliqué</value>
-    <comment>ok</comment>
-  </data>
-  <data name="lblValX.Text" xml:space="preserve">
-    <value>-</value>
     <comment>ok</comment>
   </data>
   <data name="lblValX.ToolTip" xml:space="preserve">
@@ -3101,5 +3085,8 @@ De plus, la position de l'axe Z peut être utilisée, par exemple, pour augmente
   </data>
   <data name="RbApperance1.Text" xml:space="preserve">
     <value>Zone sensible</value>
+  </data>
+  <data name="label88.Text" xml:space="preserve">
+    <value>ferme.:</value>
   </data>
 </root>

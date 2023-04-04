@@ -123,12 +123,6 @@
   <data name="cbBaud.ToolTip" xml:space="preserve">
     <value>Sélectionnez la vitesse</value>
   </data>
-  <data name="btnOpenPort.Text" xml:space="preserve">
-    <value>Ouvert</value>
-  </data>
-  <data name="btnOpenPort.ToolTip" xml:space="preserve">
-    <value>Ouvrez le port COM sélectionné avec la vitesse sélectionnée. Ou fermez le port COM ouvert</value>
-  </data>
   <data name="btnScanPort.Text" xml:space="preserve">
     <value>Ports de numérisation</value>
   </data>
@@ -155,13 +149,6 @@
   </data>
   <data name="btnGRBLCommand4.ToolTip" xml:space="preserve">
     <value>Tuer l'alarme</value>
-  </data>
-  <data name="label11.ToolTip" xml:space="preserve">
-    <value>Etat accessoire 
-S = broche dans le sens de la broche, 
-C = broche dans le sens de la longueur, 
-F = coloration de la tige, 
-M = agent de refroidissement par brouillard</value>
   </data>
   <data name="btnCheckGRBL.Text" xml:space="preserve">
     <value>Vérifiez GRBL</value>

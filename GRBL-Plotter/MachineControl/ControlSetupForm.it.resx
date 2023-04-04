@@ -1531,9 +1531,6 @@
     <value>Invia messaggio di prova</value>
     <comment>ok</comment>
   </data>
-  <data name="groupBox18.Text" xml:space="preserve">
-    <value>Proiettile</value>
-  </data>
   <data name="groupBox17.Text" xml:space="preserve">
     <value>Note di sicurezza</value>
     <comment>ok</comment>
@@ -1585,9 +1582,6 @@
   <data name="tab6lbl2.Text" xml:space="preserve">
     <value>I pulsanti da 13 a 16 sono nascosti quando i campi sono vuoti</value>
     <comment>TabPage6</comment>
-  </data>
-  <data name="lblFilePath.Text" xml:space="preserve">
-    <value>etichetta47</value>
   </data>
   <data name="Column20.HeaderText" xml:space="preserve">
     <value>nr.</value>
@@ -3203,22 +3197,6 @@ Rimuovere 'M6' dalla coda di invio, perché grbl non può gestire questo comando
     <value>Impostazioni del joystick analogico</value>
     <comment>ok</comment>
   </data>
-  <data name="lblValR.Text" xml:space="preserve">
-    <value>-</value>
-    <comment>ok</comment>
-  </data>
-  <data name="lblValY.Text" xml:space="preserve">
-    <value>-</value>
-    <comment>ok</comment>
-  </data>
-  <data name="lblValZ.Text" xml:space="preserve">
-    <value>-</value>
-    <comment>ok</comment>
-  </data>
-  <data name="lblValX.Text" xml:space="preserve">
-    <value>-</value>
-    <comment>ok</comment>
-  </data>
   <data name="cBGPEnable.Text" xml:space="preserve">
     <value>Abilita il controllo del gamepad nella GUI</value>
     <comment>TabPage7</comment>
@@ -3456,5 +3434,8 @@ Rimuovere 'M6' dalla coda di invio, perché grbl non può gestire questo comando
   </data>
   <data name="RbApperance1.Text" xml:space="preserve">
     <value>Zona sensibile</value>
+  </data>
+  <data name="label88.Text" xml:space="preserve">
+    <value>ferma.:</value>
   </data>
 </root>

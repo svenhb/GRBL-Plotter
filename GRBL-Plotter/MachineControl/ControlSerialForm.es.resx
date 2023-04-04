@@ -123,12 +123,6 @@
   <data name="cbBaud.ToolTip" xml:space="preserve">
     <value>Seleccionar velocidad</value>
   </data>
-  <data name="btnOpenPort.Text" xml:space="preserve">
-    <value>Conectar</value>
-  </data>
-  <data name="btnOpenPort.ToolTip" xml:space="preserve">
-    <value>Abra el puerto COM seleccionado con la velocidad seleccionada. O cierre el puerto COM abierto</value>
-  </data>
   <data name="btnScanPort.Text" xml:space="preserve">
     <value>Escanear puertos</value>
   </data>
@@ -155,13 +149,6 @@
   </data>
   <data name="btnGRBLCommand4.ToolTip" xml:space="preserve">
     <value>Matar bloqueo de alarma</value>
-  </data>
-  <data name="label11.ToolTip" xml:space="preserve">
-    <value>Estado del accesorio 
-S = husillo CW, 
-C = husillo CCW, 
-F = colant floot, 
-M = refrigerante por neblina</value>
   </data>
   <data name="btnCheckGRBL.Text" xml:space="preserve">
     <value>Comprobar GRBL</value>

@@ -1589,32 +1589,16 @@ Bewegen Sie den Joystick, nachdem Sie den Versatz geändert haben.</value>
     <value>Analoge Joystick-Einstellungen</value>
     <comment>ok</comment>
   </data>
-  <data name="lblValR.Text" xml:space="preserve">
-    <value>-</value>
-    <comment>ok</comment>
-  </data>
   <data name="lblValR.ToolTip" xml:space="preserve">
     <value>Wert mit angewendetem Offset</value>
-    <comment>ok</comment>
-  </data>
-  <data name="lblValY.Text" xml:space="preserve">
-    <value>-</value>
     <comment>ok</comment>
   </data>
   <data name="lblValY.ToolTip" xml:space="preserve">
     <value>Wert mit angewendetem Offset</value>
     <comment>ok</comment>
   </data>
-  <data name="lblValZ.Text" xml:space="preserve">
-    <value>-</value>
-    <comment>ok</comment>
-  </data>
   <data name="lblValZ.ToolTip" xml:space="preserve">
     <value>Wert mit angewendetem Offset</value>
-    <comment>ok</comment>
-  </data>
-  <data name="lblValX.Text" xml:space="preserve">
-    <value>-</value>
     <comment>ok</comment>
   </data>
   <data name="lblValX.ToolTip" xml:space="preserve">
@@ -3051,5 +3035,8 @@ Zusätzlich kann die Position der Z Achse verwendet werden um z.B. die Farbmenge
   </data>
   <data name="RbApperance1.Text" xml:space="preserve">
     <value>Empfindlicher Bereich</value>
+  </data>
+  <data name="label88.Text" xml:space="preserve">
+    <value>fest:</value>
   </data>
 </root>

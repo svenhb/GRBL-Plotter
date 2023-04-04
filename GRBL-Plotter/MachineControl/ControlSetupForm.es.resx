@@ -1630,32 +1630,16 @@ Mueva el joystick después de cambiar el desplazamiento.</value>
     <value>Configuración de joystick analógico</value>
     <comment>ok</comment>
   </data>
-  <data name="lblValR.Text" xml:space="preserve">
-    <value>-</value>
-    <comment>ok</comment>
-  </data>
   <data name="lblValR.ToolTip" xml:space="preserve">
     <value>Valor con desplazamiento aplicado</value>
-    <comment>ok</comment>
-  </data>
-  <data name="lblValY.Text" xml:space="preserve">
-    <value>-</value>
     <comment>ok</comment>
   </data>
   <data name="lblValY.ToolTip" xml:space="preserve">
     <value>Valor con desplazamiento aplicado</value>
     <comment>ok</comment>
   </data>
-  <data name="lblValZ.Text" xml:space="preserve">
-    <value>-</value>
-    <comment>ok</comment>
-  </data>
   <data name="lblValZ.ToolTip" xml:space="preserve">
     <value>Valor con desplazamiento aplicado</value>
-    <comment>ok</comment>
-  </data>
-  <data name="lblValX.Text" xml:space="preserve">
-    <value>-</value>
     <comment>ok</comment>
   </data>
   <data name="lblValX.ToolTip" xml:space="preserve">
@@ -3101,5 +3085,8 @@ Además, la posición del eje Z se puede utilizar para, por ejemplo, aumentar la
   </data>
   <data name="RbApperance1.Text" xml:space="preserve">
     <value>Área sensitiva</value>
+  </data>
+  <data name="label88.Text" xml:space="preserve">
+    <value>firme:</value>
   </data>
 </root>

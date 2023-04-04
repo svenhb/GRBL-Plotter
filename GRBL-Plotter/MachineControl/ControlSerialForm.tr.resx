@@ -118,125 +118,170 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="cbPort.ToolTip" xml:space="preserve">
-    <value>無料のシリアルポートを選択</value>
+    <value>Ücretsiz seri bağlantı noktası seçin</value>
   </data>
   <data name="cbBaud.ToolTip" xml:space="preserve">
-    <value>速度を選択</value>
+    <value>hız seç</value>
+  </data>
+  <data name="BtnOpenPortSerial.Text" xml:space="preserve">
+    <value>Açık</value>
+  </data>
+  <data name="BtnOpenPortSerial.ToolTip" xml:space="preserve">
+    <value>Seçilen COM portunu seçilen hızda aç</value>
   </data>
   <data name="btnScanPort.Text" xml:space="preserve">
-    <value>スキャンポート</value>
+    <value>Tarama Bağlantı Noktaları</value>
   </data>
   <data name="btnScanPort.ToolTip" xml:space="preserve">
-    <value>空きポートをスキャンする</value>
-  </data>
-  <data name="btnClear.Text" xml:space="preserve">
-    <value>ログをクリア</value>
-  </data>
-  <data name="btnClear.ToolTip" xml:space="preserve">
-    <value>上記のリストをクリア</value>
-  </data>
-  <data name="btnSend.Text" xml:space="preserve">
-    <value>送る</value>
-  </data>
-  <data name="btnSend.ToolTip" xml:space="preserve">
-    <value>押してコマンドを送信</value>
-  </data>
-  <data name="btnGRBLCommand0.ToolTip" xml:space="preserve">
-    <value>ヘルプ：すべてのGRBLコマンドのリストを取得する</value>
-  </data>
-  <data name="btnGRBLCommand1.ToolTip" xml:space="preserve">
-    <value>Grbl設定を表示する</value>
-  </data>
-  <data name="btnGRBLCommand2.ToolTip" xml:space="preserve">
-    <value>Gコードパラメーターを表示する</value>
-  </data>
-  <data name="btnGRBLCommand3.ToolTip" xml:space="preserve">
-    <value>スタートアップブロックを表示する</value>
-  </data>
-  <data name="btnGRBLCommand4.ToolTip" xml:space="preserve">
-    <value>アラームロックを解除</value>
-  </data>
-  <data name="lblSrPos.ToolTip" xml:space="preserve">
-    <value>仕事のポスト</value>
-  </data>
-  <data name="label2.ToolTip" xml:space="preserve">
-    <value>バッファ状態（10ドル= 2で有効にする必要があります）</value>
-  </data>
-  <data name="lblSrBf.ToolTip" xml:space="preserve">
-    <value>バッファ状態（10ドル= 2で有効にする必要があります）</value>
-  </data>
-  <data name="label4.ToolTip" xml:space="preserve">
-    <value>現在の送り（mm / min）および速度（RPM）</value>
-  </data>
-  <data name="lblSrFS.ToolTip" xml:space="preserve">
-    <value>現在の送り（mm / min）および速度（RPM）</value>
-  </data>
-  <data name="lblSrPn.ToolTip" xml:space="preserve">
-    <value>XYZ、プローブ、ドア、ホールド、ソフトリセット、サイクルスタートの入力ピン状態</value>
-  </data>
-  <data name="label7.ToolTip" xml:space="preserve">
-    <value>XYZ、プローブ、ドア、ホールド、ソフトリセット、サイクルスタートの入力ピン状態</value>
-  </data>
-  <data name="lblSrOv.ToolTip" xml:space="preserve">
-    <value>フィード、急流、速度の値を％で上書き</value>
-  </data>
-  <data name="label9.ToolTip" xml:space="preserve">
-    <value>フィード、急流、速度の値を％で上書き</value>
-  </data>
-  <data name="lblSrA.ToolTip" xml:space="preserve">
-    <value>付属品の状態S =スピンドルCW、C =スピンドルCCW、F = floot colant、M =ミストクーラント</value>
-  </data>
-  <data name="lblSrLn.ToolTip" xml:space="preserve">
-    <value>行番号（config.hで有効にする必要があります）</value>
-  </data>
-  <data name="label13.ToolTip" xml:space="preserve">
-    <value>行番号（config.hで有効にする必要があります）</value>
-  </data>
-  <data name="btnCheckGRBL.Text" xml:space="preserve">
-    <value>GRBLを確認する</value>
-  </data>
-  <data name="btnCheckGRBL.ToolTip" xml:space="preserve">
-    <value>GRBLセットアップで最大および最小制限を確認してください
-GRBL Vers用ではありません。 &lt;1.0</value>
-  </data>
-  <data name="btnGRBLReset.ToolTip" xml:space="preserve">
-    <value>CTRL-Xによるソフトリセット</value>
-  </data>
-  <data name="btnGRBLHardReset.ToolTip" xml:space="preserve">
-    <value>DTR / RTSによるハードリセットを試してください
-成功は使用するハードウェア（DTR、RTS有線？）に依存します</value>
-  </data>
-  <data name="btnGRBLCmndParser.ToolTip" xml:space="preserve">
-    <value>Gコードパーサーの状態を表示する</value>
-  </data>
-  <data name="btnGRBLCmndBuild.ToolTip" xml:space="preserve">
-    <value>ビルド情報を見る</value>
-  </data>
-  <data name="cBStatus.Text" xml:space="preserve">
-    <value>リアルタイムステータスレポートを表示</value>
-  </data>
-  <data name="cBStatus.ToolTip" xml:space="preserve">
-    <value>元の受信GRBLステータスレポートを表示する</value>
-  </data>
-  <data name="lblSrState.Text" xml:space="preserve">
-    <value>状態</value>
-  </data>
-  <data name="cBStatus1.ToolTip" xml:space="preserve">
-    <value>ストリーミング中に送信および処理されたコマンドを表示する</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>リアルタイムステータスレポート</value>
+    <value>Boş bağlantı noktalarını tara</value>
   </data>
   <data name="pasteCodeFromClipboardToolStripMenuItem.Text" xml:space="preserve">
-    <value>クリップボードからコードを貼り付ける</value>
+    <value>Panodan Kodu Yapıştır</value>
   </data>
   <data name="copySelectionToClipboardToolStripMenuItem.Text" xml:space="preserve">
-    <value>選択範囲をクリップボードにコピー</value>
+    <value>Seçimi panoya kopyala</value>
   </data>
   <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
-    <value>すべて選択</value>
+    <value>Hepsini seç</value>
+  </data>
+  <data name="btnClear.Text" xml:space="preserve">
+    <value>Günlüğü Temizle</value>
+  </data>
+  <data name="btnClear.ToolTip" xml:space="preserve">
+    <value>Yukarıdaki listeyi temizle</value>
+  </data>
+  <data name="btnSend.Text" xml:space="preserve">
+    <value>Göndermek</value>
+  </data>
+  <data name="btnSend.ToolTip" xml:space="preserve">
+    <value>Komut göndermek için basın</value>
+  </data>
+  <data name="btnGRBLCommand0.Text" xml:space="preserve">
+    <value>$</value>
+  </data>
+  <data name="btnGRBLCommand0.ToolTip" xml:space="preserve">
+    <value>Yardım: Tüm GRBL komutlarının listesini alın</value>
+  </data>
+  <data name="btnGRBLCommand1.Text" xml:space="preserve">
+    <value>$$</value>
+  </data>
+  <data name="btnGRBLCommand1.ToolTip" xml:space="preserve">
+    <value>Gbl ayarlarını görüntüle</value>
+  </data>
+  <data name="btnGRBLCommand2.Text" xml:space="preserve">
+    <value>$#</value>
+  </data>
+  <data name="btnGRBLCommand2.ToolTip" xml:space="preserve">
+    <value>g kodu parametrelerini görüntüleyin</value>
+  </data>
+  <data name="btnGRBLCommand3.ToolTip" xml:space="preserve">
+    <value>Başlangıç ​​bloklarını görüntüle</value>
+  </data>
+  <data name="btnGRBLCommand4.ToolTip" xml:space="preserve">
+    <value>Alarm kilidini öldür</value>
+  </data>
+  <data name="lblSrPos.ToolTip" xml:space="preserve">
+    <value>İş Pozisyonu</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value>Tampon Durumu ($10=2 aracılığıyla etkinleştirilmesi gerekir)</value>
+  </data>
+  <data name="lblSrBf.ToolTip" xml:space="preserve">
+    <value>Tampon Durumu ($10=2 aracılığıyla etkinleştirilmesi gerekir)</value>
+  </data>
+  <data name="label4.ToolTip" xml:space="preserve">
+    <value>Mevcut İlerleme (mm/dak) ve Hız (RPM)</value>
+  </data>
+  <data name="lblSrFS.ToolTip" xml:space="preserve">
+    <value>Mevcut İlerleme (mm/dak) ve Hız (RPM)</value>
+  </data>
+  <data name="lblSrPn.ToolTip" xml:space="preserve">
+    <value>XYZ, Prob, Kapı, Tutma, yumuşak Sıfırlama, döngü Başlatma için Giriş Pin Durumu</value>
+  </data>
+  <data name="label7.ToolTip" xml:space="preserve">
+    <value>XYZ, Prob, Kapı, Tutma, yumuşak Sıfırlama, döngü Başlatma için Giriş Pin Durumu</value>
+  </data>
+  <data name="lblSrOv.ToolTip" xml:space="preserve">
+    <value>İlerleme, hız ve hız için % olarak geçersiz kılma Değerleri</value>
+  </data>
+  <data name="label9.ToolTip" xml:space="preserve">
+    <value>İlerleme, hız ve hız için % olarak geçersiz kılma Değerleri</value>
+  </data>
+  <data name="lblSrA.ToolTip" xml:space="preserve">
+    <value>Aksesuar Durumu S=iş mili CW, C=iş mili CCW, F=floot soğutma sıvısı, M=buğulu soğutma sıvısı</value>
   </data>
   <data name="LblAccessoryState.ToolTip" xml:space="preserve">
-    <value>付属品の状態S =スピンドルCW、C =スピンドルCCW、F = floot colant、M =ミストクーラント</value>
+    <value>Aksesuar Durumu S=iş mili CW, C=iş mili CCW, F=floot soğutma sıvısı, M=buğulu soğutma sıvısı</value>
+  </data>
+  <data name="lblSrLn.ToolTip" xml:space="preserve">
+    <value>Satır Numarası (config.h'de etkinleştirilmesi gerekir)</value>
+  </data>
+  <data name="label13.ToolTip" xml:space="preserve">
+    <value>Satır Numarası (config.h'de etkinleştirilmesi gerekir)</value>
+  </data>
+  <data name="btnCheckGRBL.Text" xml:space="preserve">
+    <value>GRBL'yi kontrol edin</value>
+  </data>
+  <data name="btnCheckGRBL.ToolTip" xml:space="preserve">
+    <value>Maksimum ve minimum sınırlar için GRBL kurulumunu kontrol edin
+GRBL Vers için değil. &lt; 1.0</value>
+  </data>
+  <data name="btnGRBLReset.Text" xml:space="preserve">
+    <value>SIFIRLA</value>
+  </data>
+  <data name="btnGRBLReset.ToolTip" xml:space="preserve">
+    <value>CTRL-X ile Yumuşak Sıfırlama</value>
+  </data>
+  <data name="btnGRBLHardReset.Text" xml:space="preserve">
+    <value>RST</value>
+  </data>
+  <data name="btnGRBLHardReset.ToolTip" xml:space="preserve">
+    <value>DTR / RTS aracılığıyla Sert Sıfırlamayı deneyin
+Başarı, kullanılan donanıma bağlıdır (DTR, RTS kablolu?)</value>
+  </data>
+  <data name="btnGRBLCmndParser.ToolTip" xml:space="preserve">
+    <value>g kodu ayrıştırıcı durumunu görüntüle</value>
+  </data>
+  <data name="btnGRBLCmndBuild.ToolTip" xml:space="preserve">
+    <value>Derleme bilgilerini görüntüle</value>
+  </data>
+  <data name="cBStatus.Text" xml:space="preserve">
+    <value>Gerçek Zamanlı Durum Raporunu Göster</value>
+  </data>
+  <data name="cBStatus.ToolTip" xml:space="preserve">
+    <value>Alınan orijinal GRBL durum raporlarını göster</value>
+  </data>
+  <data name="cBStatus1.ToolTip" xml:space="preserve">
+    <value>Akış sırasında gönderilen ve işlenen komutları göster</value>
+  </data>
+  <data name="lblSrState.Text" xml:space="preserve">
+    <value>Durum</value>
+  </data>
+  <data name="cBCommand.Items" xml:space="preserve">
+    <value>$H (Homing)</value>
+  </data>
+  <data name="cBCommand.Items1" xml:space="preserve">
+    <value>G90 G1 X1 F500 (mutlak)</value>
+  </data>
+  <data name="cBCommand.Items2" xml:space="preserve">
+    <value>G91 G1 X1 F500 (bağıl)</value>
+  </data>
+  <data name="cBCommand.Items3" xml:space="preserve">
+    <value>$32=1 (Lazer modu açık)</value>
+  </data>
+  <data name="cBCommand.Items4" xml:space="preserve">
+    <value>$32=0 (Lazer modu kapalı)</value>
+  </data>
+  <data name="btnCheckGRBLResult.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Gerçek Zamanlı Durum Raporu</value>
+  </data>
+  <data name="LblEthernetPort.Text" xml:space="preserve">
+    <value>Liman:</value>
+  </data>
+  <data name="BtnOpenPortEthernet.Text" xml:space="preserve">
+    <value>Bağlamak</value>
   </data>
 </root>

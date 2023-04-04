@@ -1834,32 +1834,16 @@ svenhb.bplaced.netでの2回目の試行</value>
     <value>アナログジョイスティックの設定</value>
     <comment>ok</comment>
   </data>
-  <data name="lblValR.Text" xml:space="preserve">
-    <value>-</value>
-    <comment>ok</comment>
-  </data>
   <data name="lblValR.ToolTip" xml:space="preserve">
     <value>オフセットが適用された値</value>
-    <comment>ok</comment>
-  </data>
-  <data name="lblValY.Text" xml:space="preserve">
-    <value>-</value>
     <comment>ok</comment>
   </data>
   <data name="lblValY.ToolTip" xml:space="preserve">
     <value>オフセットが適用された値</value>
     <comment>ok</comment>
   </data>
-  <data name="lblValZ.Text" xml:space="preserve">
-    <value>-</value>
-    <comment>ok</comment>
-  </data>
   <data name="lblValZ.ToolTip" xml:space="preserve">
     <value>オフセットが適用された値</value>
-    <comment>ok</comment>
-  </data>
-  <data name="lblValX.Text" xml:space="preserve">
-    <value>-</value>
     <comment>ok</comment>
   </data>
   <data name="lblValX.ToolTip" xml:space="preserve">
@@ -3400,5 +3384,8 @@ https://github.com/cprezzi/grbl-servoのGrbl-version'grbl_v1.1f_Servo.hex '、
   </data>
   <data name="RbApperance1.Text" xml:space="preserve">
     <value>センシティブエリア</value>
+  </data>
+  <data name="label88.Text" xml:space="preserve">
+    <value>しっかり：</value>
   </data>
 </root>

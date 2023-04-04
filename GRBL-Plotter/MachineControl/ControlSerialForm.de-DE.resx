@@ -123,13 +123,6 @@
   <data name="cbBaud.ToolTip" xml:space="preserve">
     <value>Geschwindigkeit auswählen</value>
   </data>
-  <data name="btnOpenPort.Text" xml:space="preserve">
-    <value>Öffnen</value>
-  </data>
-  <data name="btnOpenPort.ToolTip" xml:space="preserve">
-    <value>Öffne den ausgewählten COM Port mit ausgewählter Geschwindigkeit
-Oder schließt den offenen COM Port</value>
-  </data>
   <data name="btnScanPort.ToolTip" xml:space="preserve">
     <value>Suche nach freien COM Ports</value>
   </data>

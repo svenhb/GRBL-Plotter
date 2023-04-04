@@ -123,12 +123,6 @@
   <data name="cbBaud.ToolTip" xml:space="preserve">
     <value>اختر السرعة</value>
   </data>
-  <data name="btnOpenPort.Text" xml:space="preserve">
-    <value>افتح</value>
-  </data>
-  <data name="btnOpenPort.ToolTip" xml:space="preserve">
-    <value>افتح منفذ COM المحدد بالسرعة المحددة</value>
-  </data>
   <data name="btnScanPort.Text" xml:space="preserve">
     <value>مسح المنافذ</value>
   </data>
@@ -190,9 +184,6 @@
     <value>تجاوز قيم الخلاصة ، والسرعة في النسبة المئوية</value>
   </data>
   <data name="lblSrA.ToolTip" xml:space="preserve">
-    <value>حالة الملحقات S = محور الدوران CW ، C = محور الدوران CCW ، F = عمود الدوران ، M = ضباب التبريد</value>
-  </data>
-  <data name="label11.ToolTip" xml:space="preserve">
     <value>حالة الملحقات S = محور الدوران CW ، C = محور الدوران CCW ، F = عمود الدوران ، M = ضباب التبريد</value>
   </data>
   <data name="lblSrLn.ToolTip" xml:space="preserve">

@@ -1631,32 +1631,16 @@ Mova o joystick após alterar o deslocamento.</value>
     <value>Configurações do joystick analógico</value>
     <comment>ok</comment>
   </data>
-  <data name="lblValR.Text" xml:space="preserve">
-    <value>-</value>
-    <comment>ok</comment>
-  </data>
   <data name="lblValR.ToolTip" xml:space="preserve">
     <value>Valor com deslocamento aplicado</value>
-    <comment>ok</comment>
-  </data>
-  <data name="lblValY.Text" xml:space="preserve">
-    <value>-</value>
     <comment>ok</comment>
   </data>
   <data name="lblValY.ToolTip" xml:space="preserve">
     <value>Valor com deslocamento aplicado</value>
     <comment>ok</comment>
   </data>
-  <data name="lblValZ.Text" xml:space="preserve">
-    <value>-</value>
-    <comment>ok</comment>
-  </data>
   <data name="lblValZ.ToolTip" xml:space="preserve">
     <value>Valor com deslocamento aplicado</value>
-    <comment>ok</comment>
-  </data>
-  <data name="lblValX.Text" xml:space="preserve">
-    <value>-</value>
     <comment>ok</comment>
   </data>
   <data name="lblValX.ToolTip" xml:space="preserve">
@@ -3110,5 +3094,8 @@ Além disso, a posição do eixo Z pode ser usada para, por exemplo, aumentar a 
   </data>
   <data name="RbApperance1.Text" xml:space="preserve">
     <value>área sensível</value>
+  </data>
+  <data name="label88.Text" xml:space="preserve">
+    <value>firme.:</value>
   </data>
 </root>

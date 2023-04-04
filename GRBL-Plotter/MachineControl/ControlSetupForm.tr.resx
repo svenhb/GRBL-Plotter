@@ -1,0 +1,3415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Grafik içe aktarma</value>
+    <comment>TabPage1</comment>
+  </data>
+  <data name="tabPage14.Text" xml:space="preserve">
+    <value>alet tablosu</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="tabPage8.Text" xml:space="preserve">
+    <value>Takım değiştirme</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="tabPage13.Text" xml:space="preserve">
+    <value>program başlangıcı</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tabPage26.Text" xml:space="preserve">
+    <value>program kontrolü</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab4gB7.Text" xml:space="preserve">
+    <value>Akış özellikleri</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab4gB6.Text" xml:space="preserve">
+    <value>Özel</value>
+  </data>
+  <data name="tab4gB5.Text" xml:space="preserve">
+    <value>G Kodunun akışı sırasında</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab4gB1.Text" xml:space="preserve">
+    <value>Durum anketi sıklığı</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="label88.Text" xml:space="preserve">
+    <value>düzeltmeyi kullan:</value>
+  </data>
+  <data name="tab4gB3lbl1.Text" xml:space="preserve">
+    <value>Otomatik algılama şunları varsayar:
+Varsayılan (Arduino Uno/Nano) - 127 bayt
+3'ten fazla eksen (Mega2560)- 255 bayt</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="checkBox3.Text" xml:space="preserve">
+    <value>Otomatik olarak algıla</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB3.Text" xml:space="preserve">
+    <value>grbl arabellek boyutu</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB2.Text" xml:space="preserve">
+    <value>grbl RESET'ten sonraki davranış</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB4.Text" xml:space="preserve">
+    <value>Akış için akış kontrolü</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tabPage25.Text" xml:space="preserve">
+    <value>Akış kontrolü</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Kamera</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tabControl5_Level2.Text" xml:space="preserve">
+    <value>Bildirici</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage21.Text" xml:space="preserve">
+    <value>Program davranışı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage22.Text" xml:space="preserve">
+    <value>Program görünümü</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage5.Text" xml:space="preserve">
+    <value>WWW Bağlantıları</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="tabPage9.Text" xml:space="preserve">
+    <value>Yol içe aktarma</value>
+    <comment>TabPage</comment>
+  </data>
+  <data name="tabPage16.Text" xml:space="preserve">
+    <value>Biçimle ilgili</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_3gB7.Text" xml:space="preserve">
+    <value>Gerber İthalatı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>M19 için tip değeri (gelişmiş)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>M15 (Bıçak) için tip değeri</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>D2 için değer yazın (Kalem)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBGerberGeometryEnable.Text" xml:space="preserve">
+    <value>Tip değerini G Kodu şekil etiketinde belirtin</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_3gB6.Text" xml:space="preserve">
+    <value>G Kodu oluşturma</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBLineEndEnable.Text" xml:space="preserve">
+    <value>Metni satır sonuna uygula</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBCodeCreationLineNumbers.Text" xml:space="preserve">
+    <value>Satır numaraları ekle</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>CSV İçe Aktarma (*.csv, *.dat)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>sınırlandırıcı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Satırdan başlayan değerler</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Y Değeri</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>X Değeri</value>
+    <comment>ok</comment>
+  </data>
+  <data name="radioButton4.Text" xml:space="preserve">
+    <value>Koordinatları nokta olarak işle</value>
+    <comment>ok</comment>
+  </data>
+  <data name="radioButton3.Text" xml:space="preserve">
+    <value>Koordinatları çizgilerle birleştir</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Ölçek</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Kolon</value>
+    <comment>ok</comment>
+  </data>
+  <data name="checkBox8.Text" xml:space="preserve">
+    <value>İşlem Z de (Yalnızca nokta)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="checkBox7.Text" xml:space="preserve">
+    <value>Otomatik tanımayı deneyin</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_1gB3.Text" xml:space="preserve">
+    <value>DXF İçe Aktarma</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="CbImportDXFDontPlot.Text" xml:space="preserve">
+    <value>Gizli katmanları atla</value>
+  </data>
+  <data name="CbImportDXFDontPlot.ToolTip" xml:space="preserve">
+    <value>LibreCAD'de katman görünmüyorsa veya yazdırma devre dışıysa, katman içe aktarılmaz</value>
+  </data>
+  <data name="cBImportDXFUseZ.Text" xml:space="preserve">
+    <value>Z bilgilerini içe aktar</value>
+  </data>
+  <data name="cBImportDXFSwitchWhite.Text" xml:space="preserve">
+    <value>Kalem rengi beyazı siyah olarak ele alın</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportDXFSwitchWhite.ToolTip" xml:space="preserve">
+    <value>LibreCAD, siyah zemin üzerine beyaz kalem rengini gösterir. Ama gerçek kalem rengi siyahtır.</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportDXFIndexToolNr.Text" xml:space="preserve">
+    <value>Takım numarası olarak renk indeksini (+1) kullanın. (renk yerine)</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportDXFIndexToolNr.ToolTip" xml:space="preserve">
+    <value>DXF formatı, 0'dan 255'e kadar renk indeksini kullanır. Bu indeks+1 takım numarası olarak kullanılacaktır.</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1gB2.Text" xml:space="preserve">
+    <value>SVG'yi İçe Aktarma</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="CbImportSVGDontPlot.Text" xml:space="preserve">
+    <value>Gizli katmanları atla</value>
+  </data>
+  <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
+    <value>Katman veya nesne Inkscape'te görünmüyorsa, katman veya nesne içe aktarılmaz.</value>
+  </data>
+  <data name="checkBox5.Text" xml:space="preserve">
+    <value>Nesne doluysa tarama dolgusu uygula</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDSVGScale.ToolTip" xml:space="preserve">
+    <value>gcode oluşturmadan önce grafikleri verilen birimlere göre ölçeklendirmeye çalışın,</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl3.Text" xml:space="preserve">
+    <value>DPI Ayarı</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVG_DPI_72.Text" xml:space="preserve">
+    <value>72 dpi</value>
+  </data>
+  <data name="cBImportSVG_DPI_72.ToolTip" xml:space="preserve">
+    <value>72 dpi, Adobe Illustrator tarafından kullanılır</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVG_DPI_96.Text" xml:space="preserve">
+    <value>96 dpi</value>
+  </data>
+  <data name="cBImportSVG_DPI_96.ToolTip" xml:space="preserve">
+    <value>96 dpi varsayılan ölçeklendirmedir</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGResize.Text" xml:space="preserve">
+    <value>Grafiği maksimum boyuta getirmeyi deneyin. X veya Y boyutu</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGResize.ToolTip" xml:space="preserve">
+    <value>gcode oluşturmadan önce grafikleri verilen birimlere göre ölçeklendirmeye çalışın,
+gcode'u küçültürken sorunları önlemek için.</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="lblSVGScale.Text" xml:space="preserve">
+    <value>birimler</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage17.Text" xml:space="preserve">
+    <value>Genel seçenekler</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Yol yorumu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBCreateZValue.Text" xml:space="preserve">
+    <value>Z değeri oluştur</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblImportPenWidthToZWarning.Text" xml:space="preserve">
+    <value>Dikkat: Z-Engrave, maks. derinlik!</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportPenWidthToZRamp.Text" xml:space="preserve">
+    <value>Adım yerine rampa uygula</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGCircleToDotZ.Text" xml:space="preserve">
+    <value>'Daire' yarıçapını nokta derinliğine dönüştürün</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGCircleToDotZ.ToolTip" xml:space="preserve">
+    <value>Derinlik 'Z-Yüksekliği gravürü' ile sınırlıdır.
+Fikir: daire boyutunu kontrol etmek için bir havşa kullanın</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Z'yi şu aralığa çevirin:
+('Z-Yükseklik gravürü' aşılmayacaktır)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGCircleToDot.Text" xml:space="preserve">
+    <value>'Daire' merkezini noktaya dönüştürün (delme için)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGCircleToDot.ToolTip" xml:space="preserve">
+    <value>'Z-Yüksekliği' oyma derinliği ile daire merkezini işaretlemek için bir matkap kullanın</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>maks.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportPenWidthToZ.Text" xml:space="preserve">
+    <value>Kalem genişliğini Z değerine çevir</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportPenWidthToZ.ToolTip" xml:space="preserve">
+    <value>Kalem genişliği, derinlik için Z değeri olarak işlenecektir.
+Maksimum derinlik, Z-Yüksekliği gravürü ile sınırlanacaktır.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportPenWidthToZMin.ToolTip" xml:space="preserve">
+    <value>En küçük kalem genişliği bu derinliğe çevrilecek</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>dak.</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="nUDImportPenWidthToZMax.ToolTip" xml:space="preserve">
+    <value>En geniş kalem genişliği bu derinliğe çevrilir - ancak 'G Kodu oluşturma'daki Z Yüksekliği gravürü ile sınırlıdır</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBDashedLine2.Text" xml:space="preserve">
+    <value>Kalem açıkken G0</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBDashedLine2.ToolTip" xml:space="preserve">
+    <value>Yumuşak bir hareket için varsayılan G1'dir,
+mekanik için daha az stres</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGNodesOnly.Text" xml:space="preserve">
+    <value>Yalnızca işlem yolu düğümleri</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGNodesOnly.ToolTip" xml:space="preserve">
+    <value>Kalem aşağı/yukarı eylemi için yalnızca işlem düğümleri (örneğin, satırların bitiş noktaları).
+Bu seçenek, ip sanatının çivi konumlarını önceden delmesi için tasarlanmıştır.
+Inkscape'te, önce nesneleri 'Yol - Nesneden Yola' yoluna dönüştürün,
+daha sonra bir yol boyunca ek düğümleri dağıtmak için 'Uzantılar - Yolu Değiştir - Düğüm ekle' aracılığıyla düğümler ekleyin.</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBDashedLine1.Text" xml:space="preserve">
+    <value>İşlem kesikli çizgi deseni</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBDashedLine1.ToolTip" xml:space="preserve">
+    <value>Kesikli çizgiyi gerçek kalem yukarı/aşağı çevir</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Yol tekrarı (zayıf lazer için)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGRepeatHF.Text" xml:space="preserve">
+    <value>Tüm</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGRepeatHF.ToolTip" xml:space="preserve">
+    <value>Üstbilgi ve altbilgi içerir</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportRepeat.ToolTip" xml:space="preserve">
+    <value>Oluşturulan kodu n kez tekrarlayın (örn. zayıf lazerlerin daha kalın malzemeleri kesmesi için)</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="rBImportSVGRepeat2.Text" xml:space="preserve">
+    <value>Yola göre yolu tekrarla</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGRepeat1.Text" xml:space="preserve">
+    <value>Tam kodu tekrarla</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGRepeat.Text" xml:space="preserve">
+    <value>Kodu tekrarla</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGRepeat.ToolTip" xml:space="preserve">
+    <value>Oluşturulan kodu n kez tekrarlayın (örn. zayıf lazerlerin daha kalın malzemeleri kesmesi için)</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="label58.Text" xml:space="preserve">
+    <value>zamanlar</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>G Kodu görünümü</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGComments.Text" xml:space="preserve">
+    <value>Ek içe aktarma yorumları</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGComments.ToolTip" xml:space="preserve">
+    <value>GCode'a grafiklerle ilgili yorumlar ekleyin</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="checkBox4.Text" xml:space="preserve">
+    <value>Kod bloklarını katla</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="checkBox4.ToolTip" xml:space="preserve">
+    <value>GCode'a grafiklerle ilgili yorumlar ekleyin</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Akış kontrolü</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGPauseE.Text" xml:space="preserve">
+    <value>Her yoldan önce duraklat (M0)</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGPauseP.Text" xml:space="preserve">
+    <value>Her kalem bırakmadan önce duraklat (M0)</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1gB1.Text" xml:space="preserve">
+    <value>Grafik içe aktarma genel</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportGraphicSortDistanceRotatePath.Text" xml:space="preserve">
+    <value>Kapalı yolda yeni başlangıç ​​noktasına izin ver</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Yayların çevresinde adım genişliği</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCSegment.ToolTip" xml:space="preserve">
+    <value>Yay çevresinde adım genişliği.
+Değer &gt; yay yarıçapı ise, değer otomatik olarak azaltılacaktır.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportReduce.ToolTip" xml:space="preserve">
+    <value>Bu seçenek, gcode boyutunu en aza indirmek için verilen değerden daha küçük hareketleri atlar.</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="nUDImportSVGSegemnts.ToolTip" xml:space="preserve">
+    <value>Eğriler çizgi parçaları tarafından çizilecektir. Ne kadar çok segment, o kadar çok prezice eğridir.</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1_2lbl2.Text" xml:space="preserve">
+    <value>Eşit kabul edilecek mesafe</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_1_2lbl2.ToolTip" xml:space="preserve">
+    <value>Küçük boşluklar kapatılacak</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCNoArcs.Text" xml:space="preserve">
+    <value>G2/3 komutlarından kaçının</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
+    <value>Daireleri ve yayları çizgi parçalarına dönüştürün - farklı X ve Y ölçeği gerekiyorsa gereklidir.
+Adım genişliği yarıçapın yarısından büyükse otomatik olarak azaltılır</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGraphicOffsetOrigin.Text" xml:space="preserve">
+    <value>Grafik orijinini 0;0'a kaydır</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicOffsetOrigin.ToolTip" xml:space="preserve">
+    <value>İçe aktarılan grafiğin sol alt kenarını xy koordinatı 0;0 olarak ayarla</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicSortDistance.Text" xml:space="preserve">
+    <value>Nesneleri en kısa bağlantılara göre sıralayın ve birleştirin</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicSortDistance.ToolTip" xml:space="preserve">
+    <value>Nesnelerin yararlı yolu tersine çevrilecekse, nesneler başlangıç ​​ve bitiş koordinatları arasındaki yakın mesafeye göre sıralanacaktır.
+Başlangıç ​​ve bitiş koordinatları aynı olan nesneler birleştirilir.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportUnitGCode.Text" xml:space="preserve">
+    <value>G20 (inç)/ G21 (mm) G Kodu ekleyin</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportUnitGCode.ToolTip" xml:space="preserve">
+    <value>GCode'da G20 / G21 komutunu ekleyin. G21 varsayılandır.</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="rBImportUnitInch.Text" xml:space="preserve">
+    <value>inç</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportUnitInch.ToolTip" xml:space="preserve">
+    <value>G20 komutu</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl1.Text" xml:space="preserve">
+    <value>Hedef birimler ve ekran</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl1.ToolTip" xml:space="preserve">
+    <value>İçe aktarma dosyasında herhangi bir birim verilirse, hedef birimlere dönüştürmeyi deneyin</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="rBImportUnitmm.ToolTip" xml:space="preserve">
+    <value>G21 komutu</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGReduce.Text" xml:space="preserve">
+    <value>Çok kısa hamleleri kaldır &lt;</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGReduce.ToolTip" xml:space="preserve">
+    <value>Bu seçenek, gcode boyutunu en aza indirmek için verilen değerden daha küçük hareketleri atlar.</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl2.Text" xml:space="preserve">
+    <value>Eğrilerdeki, spline'lardaki çizgi parçalarının sayısı</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1lbl2.ToolTip" xml:space="preserve">
+    <value>Bezier-eğrileri ve yaylar çizgi parçaları ile çizilecektir.
+Ne kadar çok segment, o kadar çok prezice eğridir.</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>Yol eklentileri</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBPathAddOn3.Text" xml:space="preserve">
+    <value>Kalem aşağı (Z ekseni veya PWM) üzerinde rampa</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBPathAddOn3.ToolTip" xml:space="preserve">
+    <value>Yalnızca kalem/fırça kullanımı için kullanışlıdır</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGraphicLeadTopZUp.Text" xml:space="preserve">
+    <value>Pen-Up'ta başlangıç ​​rampası</value>
+  </data>
+  <data name="label50.Text" xml:space="preserve">
+    <value>Sonra mesafe</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGraphicLeadOutEnable.Text" xml:space="preserve">
+    <value>Önden gitmek</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label48.Text" xml:space="preserve">
+    <value>Mesafe</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGraphicLeadInEnable.Text" xml:space="preserve">
+    <value>Rampa giriş/çıkış</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBPathAddOn2.Text" xml:space="preserve">
+    <value>Çarpmak</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label38.Text" xml:space="preserve">
+    <value>Y yönündeki sayı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label37.Text" xml:space="preserve">
+    <value>X yönündeki sayı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label36.Text" xml:space="preserve">
+    <value>Grafikler arasındaki mesafe</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGraphicMultiplyGraphicsEnable.Text" xml:space="preserve">
+    <value>grafikleri çoğaltın</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBPathAddOn1.Text" xml:space="preserve">
+    <value>Çerçeve</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox21.Text" xml:space="preserve">
+    <value>Gruplama özellikleri</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label45.Text" xml:space="preserve">
+    <value>Katman</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>kalem genişliği</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label39.Text" xml:space="preserve">
+    <value>Kalem rengi</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGraphicAddFrameRadius.Text" xml:space="preserve">
+    <value>köşeyi yuvarla</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>Grafiğe uzaklık</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBimportGraphicAddFrameEnable.Text" xml:space="preserve">
+    <value>Cer makinesi</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage20.Text" xml:space="preserve">
+    <value>Yol değişiklikleri</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_3gB8.Text" xml:space="preserve">
+    <value>Kapalı yol çakışması</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBPathOverlapEnable.Text" xml:space="preserve">
+    <value>Yol çakışması</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBPathOverlapEnable.ToolTip" xml:space="preserve">
+    <value>Kapalı bir yolu bitirdikten sonra baştan başlayın ve verilen mesafe kadar ilerleyin.
+Lazer kesici için kullanışlıdır.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPathModification.Text" xml:space="preserve">
+    <value>Bu değişikliklerden herhangi biri "G2/G3 komutlarından kaçın"ı etkinleştirecektir.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBHatchFill.Text" xml:space="preserve">
+    <value>Kapalı yolları doldurun</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
+    <value>Kapalı yolun tire desenini kullan</value>
+  </data>
+  <data name="cBImportGraphicHatchFillInset.Text" xml:space="preserve">
+    <value>Kenarlardan ek dolgu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicHatchFillChangeAngle.Text" xml:space="preserve">
+    <value>Her yoldan sonra açıyı değiştir</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicHatchFillCross.Text" xml:space="preserve">
+    <value>Çapraz tarama</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblHatchFill2.Text" xml:space="preserve">
+    <value>çizgi açısı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblHatchFill1.Text" xml:space="preserve">
+    <value>Hat mesafesi</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicHatchFill.Text" xml:space="preserve">
+    <value>ambar dolgusu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_3gB5.Text" xml:space="preserve">
+    <value>Teğetsel eksen komutları</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCTangentialSwivel2.ToolTip" xml:space="preserve">
+    <value>Bıçak kaldırılmadan, döndürülmeden ve indirilmeden önce açı değişikliği</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCTangentialSwivel.ToolTip" xml:space="preserve">
+    <value>Bıçak kaldırılmadan, döndürülmeden ve indirilmeden önce açı değişikliği</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblDImportGCTangential4.Text" xml:space="preserve">
+    <value>Sapma &gt; ise doğru başlangıç ​​açısı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblDImportGCTangential4.ToolTip" xml:space="preserve">
+    <value>Açıdaki değişiklik bu açıdan daha büyükse, tek bir dönüş komutu eklenecektir.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCTangentialRange.Text" xml:space="preserve">
+    <value>Takım açısını &gt;= 0°, &lt; 360° ile sınırlayın</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCTangentialRange.ToolTip" xml:space="preserve">
+    <value>0°'nin altındaki ve 360°'nin üzerindeki açılardan kaçınmak için bu seçeneği kullanın.
+G2/3 ile çalışmaz - 'G2/3 komutlarından kaçının' seçeneğini etkinleştirin</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblDImportGCTangential3.Text" xml:space="preserve">
+    <value>Dönüş başına birim</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblDImportGCTangential2.Text" xml:space="preserve">
+    <value>Dönme açısı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblDImportGCTangential2.ToolTip" xml:space="preserve">
+    <value>Açıdaki değişiklik döndürme açısından daha büyükse,
+Z ekseni yukarı taşınacak
+eksen dönecek
+Z ekseni aşağı taşınacak</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblDImportGCTangential1.Text" xml:space="preserve">
+    <value>Teğet eksenin adı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCTangential.Text" xml:space="preserve">
+    <value>Teğet eksen ekle</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_3gB2.Text" xml:space="preserve">
+    <value>Sürükleme aracı telafisi</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCDragKnifeUse.Text" xml:space="preserve">
+    <value>Sürükleme bıçağının kullanılması (başlangıç ​​yönü her zaman 0° derece = sağa doğrudur)</value>
+  </data>
+  <data name="nUDImportGCDragKnifeAngle.ToolTip" xml:space="preserve">
+    <value>Yay eklemeden önce açıyı değiştirin</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCDragKnifePercent.ToolTip" xml:space="preserve">
+    <value>Ofseti Z derinliğine göre hesapla</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCDragKnifeLength.ToolTip" xml:space="preserve">
+    <value>Dönme merkezinden ofset. Sürükleme bıçağı için genellikle 0,3 mm civarındadır.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCDragKnifePercent.Text" xml:space="preserve">
+    <value>Z derinliğinden % olarak</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCDragKnifePercent.ToolTip" xml:space="preserve">
+    <value>Ofseti Z derinliğine göre hesapla</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="lblDrag2.Text" xml:space="preserve">
+    <value>Dönme açısı</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="lblDrag2.ToolTip" xml:space="preserve">
+    <value>Yay eklemeden önce açıyı değiştirin</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="lblDrag1.Text" xml:space="preserve">
+    <value>merkezden ofset</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="lblDrag1.ToolTip" xml:space="preserve">
+    <value>Dönme merkezinden ofset. Sürükleme bıçağı için genellikle 0,3 mm civarındadır.</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCDragKnife.Text" xml:space="preserve">
+    <value>Sürükleme aracı telafisi</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCDragKnife.ToolTip" xml:space="preserve">
+    <value>Sürükleme bıçağı veya fırça kullanırken ofseti telafi edin</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tabPage18.Text" xml:space="preserve">
+    <value>Kırpma</value>
+    <comment>ok</comment>
+  </data>
+  <data name="gBClipping.Text" xml:space="preserve">
+    <value>Kırpma / Döşeme</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGraphicClipOffsetY.ToolTip" xml:space="preserve">
+    <value>Döşemenin X boyutu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGraphicClipHeight.ToolTip" xml:space="preserve">
+    <value>Döşemenin Y boyutu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGraphicClipOffsetX.ToolTip" xml:space="preserve">
+    <value>Döşemenin X boyutu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGraphicTileClipWidth.ToolTip" xml:space="preserve">
+    <value>Döşemenin X boyutu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Kırpma / Döşeme boyutu genişlik / yükseklik</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportGraphicClip1.Text" xml:space="preserve">
+    <value>Grafikleri kutucuklara dönüştürün</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportGraphicClip0.Text" xml:space="preserve">
+    <value>Sol alt X / Y noktasında klipsleyin:</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportGraphicClip0.ToolTip" xml:space="preserve">
+    <value>Sonuç</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicTile.Text" xml:space="preserve">
+    <value>Kırpma veya döşeme uygulama</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicTile.ToolTip" xml:space="preserve">
+    <value>Tüm grafiği ayrı ayrı çizilecek karolara ayırın</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.Text" xml:space="preserve">
+    <value>Döşemeleri 0'a taşır; Akış sırasında 0 kaynak</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPositionShift.ToolTip" xml:space="preserve">
+    <value>Döşemeleri başlangıç ​​noktasına taşır 0; Akış sırasında bunları grbl aracı konumuna uyarlamak için 0</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.Text" xml:space="preserve">
+    <value>orijini göster döşeme konumu</value>
+  </data>
+  <data name="cBImportGraphicClipShowOrigPosition.ToolTip" xml:space="preserve">
+    <value>Şekillerin orijinal konumlarını göster</value>
+  </data>
+  <data name="label51.Text" xml:space="preserve">
+    <value>Kırpılmış yolu sınırın ötesine uzat</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicClipSkipCode.Text" xml:space="preserve">
+    <value>1. karo için atlama kodu (xy=0;0)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>Değişkenler:
+#INDX #INDY x veya y yönü için döşeme dizini (ör. 0, 1, 2 ...)
+#OFFX #OFFY döşemenin x veya y yönü için ofseti (ör. 0, 200, 400 ...)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Döşemeden önce GCode</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label11.ToolTip" xml:space="preserve">
+    <value>Sonraki kutucuk işlenmeden önce uygulanacak GCode.
+Örneğin. Manuel kağıt taşımayı duraklatmak için 'M0' veya kağıdı taşımak için 2. grbl denetleyicisinin X'ini hareket ettirmek için '(^2 G91 X100)'.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicClipOffsetApply.Text" xml:space="preserve">
+    <value>Kutucukların orijinini 0;0 olarak ayarla</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGraphicClipOffsetApply.ToolTip" xml:space="preserve">
+    <value>Kırpılan bölgenin / döşemelerin kaynağını 0;0 olarak ayarla</value>
+  </data>
+  <data name="tabPage19.Text" xml:space="preserve">
+    <value>Gruplama ve araçlar</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox30.Text" xml:space="preserve">
+    <value>İlgili dönüştürme</value>
+  </data>
+  <data name="label73.Text" xml:space="preserve">
+    <value>Rakamların miktarı bu değeri aşarsa, bir gruptaki tüm rakamlar tek bir rakama özetlenir.</value>
+  </data>
+  <data name="tab1_1gB5.Text" xml:space="preserve">
+    <value>alet tablosu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label62.Text" xml:space="preserve">
+    <value>Not: Alet tablosu etkinleştirilirse, şekillerin orijinal renkleri kullanılan alet renkleri ile değiştirilir.</value>
+  </data>
+  <data name="cBToolTableDefault.Text" xml:space="preserve">
+    <value>yalnızca varsayılan araç numarasını kullanın.</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBToolTableUse.Text" xml:space="preserve">
+    <value>Alet tablosundan XY-Feed vb. ayarlayın,
+sonraki sayfadaki öğeleri seçin 'G Kodu oluşturma'</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1gB4.Text" xml:space="preserve">
+    <value>Nesnelerin gruplandırılması ve sıralanması</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="lblGroupInfo.Text" xml:space="preserve">
+    <value>Yalnızca bir özellik bulunursa gruplandırma iptal edilir (örn. tek renk)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_1_4gB3.Text" xml:space="preserve">
+    <value>Grupları sırala</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGSort1.Text" xml:space="preserve">
+    <value>grupları group özelliğine göre sırala - artan</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="rBImportSVGSort0.Text" xml:space="preserve">
+    <value>sıralama yok</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="rBImportSVGSort3.Text" xml:space="preserve">
+    <value>grupları yol uzunluğuna göre sırala - azalan</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="rBImportSVGSort4.Text" xml:space="preserve">
+    <value>grupları nesne boyutuna göre sırala - artan</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGSort2.Text" xml:space="preserve">
+    <value>grupları araç numarasına göre sırala - artan</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGSortInvert.Text" xml:space="preserve">
+    <value>sıralama düzenini geri al</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tab1_1_4gB2.Text" xml:space="preserve">
+    <value>Özelliği gruplandırın ve Tool-Nr'yi seçin. aracılığıyla</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem4.Text" xml:space="preserve">
+    <value>Tip</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem3.Text" xml:space="preserve">
+    <value>Katmana göre gruplandırın (Araç Adı ~= katman)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem3.ToolTip" xml:space="preserve">
+    <value>Grafik katmanına göre gruplandırın ve en uygun takım adına göre takım numarasını seçin</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem2.Text" xml:space="preserve">
+    <value>Kalem genişliğine göre gruplama (Takım Çapı ~= kalem genişliği)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem2.ToolTip" xml:space="preserve">
+    <value>Kalem genişliğine göre gruplayın ve en uygun takım çapına göre takım numarasını seçin</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem1.Text" xml:space="preserve">
+    <value>Kalem rengine göre gruplandırma (Araç-Renk ~= kalem-rengi)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportSVGGroupItem1.ToolTip" xml:space="preserve">
+    <value>Kalem rengine göre gruplayın ve en uygun takım rengine göre takım numarasını seçin</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportSVGGroup.Text" xml:space="preserve">
+    <value>Aynı özelliğin grup nesneleri</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="cBImportSVGGroup.ToolTip" xml:space="preserve">
+    <value>Aynı renkteki grup nesnesi = Alet No.</value>
+    <comment>TabPage1_1</comment>
+  </data>
+  <data name="tabPage30.Text" xml:space="preserve">
+    <value>Özel dönüşüm</value>
+  </data>
+  <data name="GbWireBender.Text" xml:space="preserve">
+    <value>Tel bükücü</value>
+  </data>
+  <data name="RbWireBenderAnglePcnt.Text" xml:space="preserve">
+    <value>Yüzde olarak kullan</value>
+  </data>
+  <data name="RbWireBenderAngleAbs.Text" xml:space="preserve">
+    <value>mutlak değer kullan</value>
+  </data>
+  <data name="groupBox31.Text" xml:space="preserve">
+    <value>makine parametresi</value>
+  </data>
+  <data name="label83.Text" xml:space="preserve">
+    <value>tel kes</value>
+  </data>
+  <data name="label82.Text" xml:space="preserve">
+    <value>Peg devre dışı</value>
+  </data>
+  <data name="label81.Text" xml:space="preserve">
+    <value>Sabitleme etkin</value>
+  </data>
+  <data name="textBox6.ToolTip" xml:space="preserve">
+    <value>Kabloyu kesmek için komutları buraya uygulayın</value>
+  </data>
+  <data name="textBox5.ToolTip" xml:space="preserve">
+    <value>Bükme mandallarını devre dışı bırakmak için komutları buraya uygulayın</value>
+  </data>
+  <data name="textBox4.ToolTip" xml:space="preserve">
+    <value>Bükme mandallarını etkinleştirmek için komutları buraya uygulayın</value>
+  </data>
+  <data name="label80.Text" xml:space="preserve">
+    <value>Belirli eylemler için G Kodu (komutları ';' ile ayırın veya komut dosyası yolunu ayarlayın):</value>
+  </data>
+  <data name="label74.Text" xml:space="preserve">
+    <value>Bükülme yarıçapı</value>
+  </data>
+  <data name="label75.Text" xml:space="preserve">
+    <value>Tel besleme için X Ekseni</value>
+  </data>
+  <data name="label76.Text" xml:space="preserve">
+    <value>Büküm açısı için Y Ekseni</value>
+  </data>
+  <data name="label79.Text" xml:space="preserve">
+    <value>tel çapı</value>
+  </data>
+  <data name="label78.Text" xml:space="preserve">
+    <value>İstenilen açıya ulaşmak için açı ekleme</value>
+  </data>
+  <data name="CbWireBenderEnable.Text" xml:space="preserve">
+    <value>Tel bükücü için kod oluştur</value>
+  </data>
+  <data name="gBDevelop.Text" xml:space="preserve">
+    <value>2D şeklin dış hatlarını bir geliştirmeye dönüştürün</value>
+  </data>
+  <data name="groupBox22.Text" xml:space="preserve">
+    <value>V-Aracı</value>
+  </data>
+  <data name="label60.Text" xml:space="preserve">
+    <value>Takım açısı</value>
+  </data>
+  <data name="label57.Text" xml:space="preserve">
+    <value>Bir şekli bitirdikten sonra ilerleyin</value>
+  </data>
+  <data name="label54.Text" xml:space="preserve">
+    <value>Şekilden önce/sonra kesim için Z-Yüksekliği (Z etkinse)</value>
+  </data>
+  <data name="groupBox20.Text" xml:space="preserve">
+    <value>çentik özellikleri</value>
+  </data>
+  <data name="CbImportGraphicDevelopNoCurve.Text" xml:space="preserve">
+    <value>eğri yok</value>
+  </data>
+  <data name="cBDImportGraphicDevelopNotchLift.Text" xml:space="preserve">
+    <value>Aleti çentikten sonra kaldırın</value>
+  </data>
+  <data name="label59.Text" xml:space="preserve">
+    <value>Çentik işleme için Z Yüksekliği (Z etkinleştirildiyse)</value>
+  </data>
+  <data name="LblImportGraphicDevelopNotchDistance.Text" xml:space="preserve">
+    <value>dak. eğrilerde çentikten çentiğe olan mesafe</value>
+  </data>
+  <data name="label52.Text" xml:space="preserve">
+    <value>Çentik uzunluğu (iş parçası genişliği)</value>
+  </data>
+  <data name="groupBox19.Text" xml:space="preserve">
+    <value>Besleme ve çentik yönü</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedInvert.Text" xml:space="preserve">
+    <value>Besleme yönünü ters çevir</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedX.Text" xml:space="preserve">
+    <value>X ekseninde ilerleme, Y ekseninde çentik</value>
+  </data>
+  <data name="rBImportGraphicDevelopFeedY.Text" xml:space="preserve">
+    <value>Y ekseninde ilerleme, X ekseninde çentik</value>
+  </data>
+  <data name="cBImportGraphicDevelopEnable.Text" xml:space="preserve">
+    <value>Şekil geliştirmeyi uygula</value>
+  </data>
+  <data name="tabPage31.Text" xml:space="preserve">
+    <value>Komut uzantısı</value>
+  </data>
+  <data name="groupBox26.Text" xml:space="preserve">
+    <value>Boya pompası veya filament besleyici için mesafeye bağlı değer</value>
+  </data>
+  <data name="LbLAuxDescription.Text" xml:space="preserve">
+    <value>Boya pompalayan veya mesafeye bağlı bir miktarda filament besleyen ek bir ekseni kontrol etmek için bu seçeneği kullanın.
+Ek olarak, Z ekseninin konumu örn. fırça tuvale daha fazla bastırdığında boya miktarını artırın.</value>
+  </data>
+  <data name="groupBox28.Text" xml:space="preserve">
+    <value>Geçerli Z değeri ile çarpın</value>
+  </data>
+  <data name="CbAux2ZMode.Items" xml:space="preserve">
+    <value>Konum ve neg Z'yi işaretiyle kullanın</value>
+  </data>
+  <data name="CbAux2ZMode.Items1" xml:space="preserve">
+    <value>konum ve neg Z mutlak kullan</value>
+  </data>
+  <data name="CbAux2ZMode.Items2" xml:space="preserve">
+    <value>Sadece konum Z'yi kullanın</value>
+  </data>
+  <data name="CbAux2ZMode.Items3" xml:space="preserve">
+    <value>Sadece neg Z kullan</value>
+  </data>
+  <data name="LblAux12.Text" xml:space="preserve">
+    <value>faktör</value>
+  </data>
+  <data name="CbAux2ZUse.Text" xml:space="preserve">
+    <value>Z'yi dahil et</value>
+  </data>
+  <data name="LblAux11.Text" xml:space="preserve">
+    <value>faktör</value>
+  </data>
+  <data name="LblAux10.Text" xml:space="preserve">
+    <value>eksen</value>
+  </data>
+  <data name="CbAux2SumUp.Text" xml:space="preserve">
+    <value>Mutlak değer</value>
+  </data>
+  <data name="CbAux2SumUp.ToolTip" xml:space="preserve">
+    <value>Mutlak değer: G90 mesafe modu gibi, mesafe değerleri toplanacaktır.</value>
+  </data>
+  <data name="NudAux2Factor.ToolTip" xml:space="preserve">
+    <value>Eksen değerini hesaplayacak faktör = mesafe * faktör</value>
+  </data>
+  <data name="CbAux2Enable.Text" xml:space="preserve">
+    <value>Mesafeyle ilgili komut ekle 2</value>
+  </data>
+  <data name="groupBox27.Text" xml:space="preserve">
+    <value>Geçerli Z değeri ile çarpın</value>
+  </data>
+  <data name="CbAux1ZMode.Items" xml:space="preserve">
+    <value>Konum ve neg Z'yi işaretiyle kullanın</value>
+  </data>
+  <data name="CbAux1ZMode.Items1" xml:space="preserve">
+    <value>konum ve neg Z mutlak kullan</value>
+  </data>
+  <data name="CbAux1ZMode.Items2" xml:space="preserve">
+    <value>Sadece konum Z'yi kullanın</value>
+  </data>
+  <data name="CbAux1ZMode.Items3" xml:space="preserve">
+    <value>Sadece neg Z kullan</value>
+  </data>
+  <data name="LblAux3.Text" xml:space="preserve">
+    <value>faktör</value>
+  </data>
+  <data name="CbAux1ZUse.Text" xml:space="preserve">
+    <value>Z'yi dahil et</value>
+  </data>
+  <data name="LblAux2.Text" xml:space="preserve">
+    <value>faktör</value>
+  </data>
+  <data name="LblAux1.Text" xml:space="preserve">
+    <value>eksen</value>
+  </data>
+  <data name="CbAux1SumUp.Text" xml:space="preserve">
+    <value>Mutlak değer</value>
+  </data>
+  <data name="CbAux1SumUp.ToolTip" xml:space="preserve">
+    <value>Mutlak değer: G90 mesafe modu gibi, mesafe değerleri toplanacaktır.</value>
+  </data>
+  <data name="NudAux1Factor.ToolTip" xml:space="preserve">
+    <value>Eksen değerini hesaplayacak faktör = mesafe * faktör</value>
+  </data>
+  <data name="CbAux1Enable.Text" xml:space="preserve">
+    <value>Mesafeyle ilgili komut ekle 1</value>
+  </data>
+  <data name="tabPage10.Text" xml:space="preserve">
+    <value>G Kodu oluşturma</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB1.Text" xml:space="preserve">
+    <value>Genel</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="label32.Text" xml:space="preserve">
+    <value>Takım Değiştirmeden Önce G Kodu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCFeedXY.ToolTip" xml:space="preserve">
+    <value>X veya Y boyutunu kullanan G1,2,3 komutları için ilerleme hızı</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB2.Text" xml:space="preserve">
+    <value>Mil / Lazer</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="btnCheckSpindle.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="nUDImportGCSSpeed.ToolTip" xml:space="preserve">
+    <value>Gravür için mil hızı</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCSpindleDelay.ToolTip" xml:space="preserve">
+    <value>İş mili açıldıktan sonra saniyeler içinde Gecikme ekleyin (iş mili gücü kapalıysa sıfırlama için zamana sahip olmak için)</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportLasermode.Text" xml:space="preserve">
+    <value>Lazer modu (Lazeri kapatmak için M5 yerine S0'ı kullanın)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportGCSpindleCmd2.Text" xml:space="preserve">
+    <value>'M4' CCW</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportGCSpindleCmd2.ToolTip" xml:space="preserve">
+    <value>İş milini saat yönünün tersine açmak için 'M4' gönderin
+Lazer Modunda Dinamik Lazer Gücü Modu</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl6.Text" xml:space="preserve">
+    <value>Yön / Lazer modu</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="rBImportGCSpindleCmd1.Text" xml:space="preserve">
+    <value>'M3' CW'si</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBImportGCSpindleCmd1.ToolTip" xml:space="preserve">
+    <value>İş milini saat yönünde açmak için 'M3' gönderin
+Lazer Modunda Sabit Lazer Gücü Modu</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl7.Text" xml:space="preserve">
+    <value>İş Mili "AÇIK" olduktan sonraki gecikme</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl5.Text" xml:space="preserve">
+    <value>Mil Hızı / Lazer gücü</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl5.ToolTip" xml:space="preserve">
+    <value>Gravür için mil hızı</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTTSSpeed.Text" xml:space="preserve">
+    <value>alet tablosundan</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTTSSpeed.ToolTip" xml:space="preserve">
+    <value>'Takım Değişikliği Ekle' ve 'Takım Değişikliği Gerçekleştir' etkinleştirildiyse, içe aktarma sırasında alet tablosundan değer alınacaktır</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCToolM0.Text" xml:space="preserve">
+    <value>Bunun yerine Duraklat (M0) ekleyin</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
+    <value>Manuel takım değişimi için herhangi bir M06 (takım değiştirme) komutunu M0 (duraklatma) ile değiştirin.</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTool.Text" xml:space="preserve">
+    <value>Takım Değiştirme komutu ekle Tx M06</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
+    <value>Bilgi varsa, Tx M06 komutlarında takım değiştirme eylemini gerçekleştirin - 'Takım değiştirme' sekmesini kontrol edin.</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCComments.Text" xml:space="preserve">
+    <value>Ek G Kodu yorumları</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCComments.ToolTip" xml:space="preserve">
+    <value>GCode'a biraz daha yorum ekleyin</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTTXYFeed.Text" xml:space="preserve">
+    <value>alet tablosundan</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTTXYFeed.ToolTip" xml:space="preserve">
+    <value>'Takım Değişikliği Ekle' ve 'Takım Değişikliği Gerçekleştir' etkinleştirildiyse, içe aktarma sırasında alet tablosundan değer alınacaktır</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl1.Text" xml:space="preserve">
+    <value>Ondalık</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl1.ToolTip" xml:space="preserve">
+    <value>Gcode'daki koordinatlar için ondalık basamaklar.</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tBImportGCHeader.ToolTip" xml:space="preserve">
+    <value>Sıfırlamadan sonra GRBL-Durum: G0, G54, G17, G90, G94, G21, G40, G49, M0, M5, M9
+Bu kelimeleri ayarlamanıza gerek yok</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl4.Text" xml:space="preserve">
+    <value>XY İlerleme Hızı</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl4.ToolTip" xml:space="preserve">
+    <value>X veya Y boyutunu kullanan G1,2,3 komutları için ilerleme hızı</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl2.Text" xml:space="preserve">
+    <value>G Kodu Başlığı</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl2.ToolTip" xml:space="preserve">
+    <value>Sıfırlamadan sonra GRBL-Durum: G0, G54, G17, G90, G94, G21, G40, G49, M0, M5, M9
+Bu kelimeleri ayarlamanıza gerek yok</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl3.Text" xml:space="preserve">
+    <value>G Kodu Alt Bilgisi</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportDecPlaces.ToolTip" xml:space="preserve">
+    <value>Gcode'daki koordinatlar için ondalık basamaklar.</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB7.Text" xml:space="preserve">
+    <value>Kalem yukarı / aşağı çeviri</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUseIndividual2.Text" xml:space="preserve">
+    <value>Bireysel</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCUseSpindle2.Text" xml:space="preserve">
+    <value>Mil / Lazer</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCUsePWM2.Text" xml:space="preserve">
+    <value>PWM</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCUseZ2.Text" xml:space="preserve">
+    <value>Z ekseni</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage12.Text" xml:space="preserve">
+    <value>Z ekseni</value>
+    <comment>ok</comment>
+  </data>
+  <data name="GbSeveralPasses.Text" xml:space="preserve">
+    <value>Birkaç geçiş</value>
+  </data>
+  <data name="tab1_2lbl35.Text" xml:space="preserve">
+    <value>Geçiş başına derinlik</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl35.ToolTip" xml:space="preserve">
+    <value>Maks. Z değeri artışı</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCZIncNoZUp.Text" xml:space="preserve">
+    <value>Yolların farklı başlangıç ​​ve bitiş koordinatları varsa Z-up TEHLİKELİ kaçının!</value>
+  </data>
+  <data name="cBImportGCZIncNoZUp.ToolTip" xml:space="preserve">
+    <value>Her geçişten sonra Z'yi güvenli yüksekliğe yükseltmez</value>
+  </data>
+  <data name="cBImportGCZIncEnable.Text" xml:space="preserve">
+    <value>Birkaç geçiş kullan</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCZIncEnable.ToolTip" xml:space="preserve">
+    <value>Nihai derinliğe ulaşmak için artan Z derinliği ile yolu tekrarlayın
+Diğer kalem yukarı/aşağı seçenekleriyle kullanılamaz!</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCZIncStartZero.Text" xml:space="preserve">
+    <value>Z=0'dan başla</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCZIncStartZero.ToolTip" xml:space="preserve">
+    <value>İlk geçiş için Z=0 kullanın</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB3.Text" xml:space="preserve">
+    <value>Z ekseni</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB3.ToolTip" xml:space="preserve">
+    <value>Z Ekseni hareketlerini G Koduna ekle</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCZPreventSpindle.Text" xml:space="preserve">
+    <value>Mili açmayın</value>
+  </data>
+  <data name="label67.ToolTip" xml:space="preserve">
+    <value>'Kalem aşağı' alt program sayısı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label64.ToolTip" xml:space="preserve">
+    <value>'Kalem yukarı' alt program sayısı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCTTZAxis.Text" xml:space="preserve">
+    <value>alet tablosundan</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCTTZAxis.ToolTip" xml:space="preserve">
+    <value>"Takım Değişikliği Ekle" ve "Takım Değişikliği Gerçekleştir" etkinleştirilirse, içe aktarma sırasında tüm Z değerleri alet tablosundan alınacaktır.</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCFeedZ.ToolTip" xml:space="preserve">
+    <value>G1 komutu için iş parçasına hareket ederken hız</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCZUp.ToolTip" xml:space="preserve">
+    <value>İş parçası yüzeyinin üzerindeki yükseklik - pozitif olmalıdır</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCZDown.ToolTip" xml:space="preserve">
+    <value>İş parçası yüzeyinin altındaki nihai derinlik - negatif olmalıdır</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUseZ.Text" xml:space="preserve">
+    <value>Z Eksenini ve iş milini kullanın</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUseZ.ToolTip" xml:space="preserve">
+    <value>Z Ekseni hareketlerini G Koduna ekle</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl32.Text" xml:space="preserve">
+    <value>Z Yüksekliği kasası</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2lbl32.ToolTip" xml:space="preserve">
+    <value>İş parçası yüzeyinin üzerindeki yükseklik - pozitif olmalıdır</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl33.Text" xml:space="preserve">
+    <value>Z-Yükseklik oyma</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2lbl33.ToolTip" xml:space="preserve">
+    <value>İş parçası yüzeyinin altındaki nihai derinlik - negatif olmalıdır</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl31.Text" xml:space="preserve">
+    <value>Z İlerleme Hızı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2lbl31.ToolTip" xml:space="preserve">
+    <value>İş parçasına girerken hız</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tabPage27.Text" xml:space="preserve">
+    <value>PWM</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2gB4.Text" xml:space="preserve">
+    <value>Servo Kontrol</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB4.ToolTip" xml:space="preserve">
+    <value>İş mili hızıyla RC-Servo'yu kontrol edin (1ms - 2ms PWM çıkışı oluşturmak için özel GRBL versiyonu gereklidir)</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="btnPWMAdvanced.Text" xml:space="preserve">
+    <value>Gelişmiş Ayarlar</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnPWMAdvanced.ToolTip" xml:space="preserve">
+    <value>Diğer servo konumlarını göster</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP94.ToolTip" xml:space="preserve">
+    <value>Alt program sayısı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCDlyP94.ToolTip" xml:space="preserve">
+    <value>G4'ü ekle: sonraki komuttan önceki saniye cinsinden gecikme</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP93.ToolTip" xml:space="preserve">
+    <value>Alt program sayısı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP92.ToolTip" xml:space="preserve">
+    <value>'Kalem aşağı' alt program sayısı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCDlyP93.ToolTip" xml:space="preserve">
+    <value>G4'ü ekle: sonraki komuttan önceki saniye cinsinden gecikme</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP91.ToolTip" xml:space="preserve">
+    <value>Alt program sayısı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMFunction.Text" xml:space="preserve">
+    <value>İşlev</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMFunction.ToolTip" xml:space="preserve">
+    <value>alt programın işlevi</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMSub.Text" xml:space="preserve">
+    <value>Alt</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMSub.ToolTip" xml:space="preserve">
+    <value>Alt program sayısı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblPWMP90.ToolTip" xml:space="preserve">
+    <value>'Kalem yukarı' alt program sayısı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label55.Text" xml:space="preserve">
+    <value>sonra gecikme</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label55.ToolTip" xml:space="preserve">
+    <value>Yeni PWM değeri uygulandıktan sonraki gecikme</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label56.Text" xml:space="preserve">
+    <value>PWM</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label56.ToolTip" xml:space="preserve">
+    <value>PWM değeri</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnPWMInc.Text" xml:space="preserve">
+    <value>10 numara</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnPWMInc.ToolTip" xml:space="preserve">
+    <value>PWM Artış değeri 1, 10 veya 100</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMZero.Text" xml:space="preserve">
+    <value>Kalem Sıfır</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMZero.ToolTip" xml:space="preserve">
+    <value>Kalem yüzeye dokunur
+Yalnızca giriş işlemi için gereklidir</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCPWMZero.ToolTip" xml:space="preserve">
+    <value>Sıfır kalem için iş mili hızı
+Yalnızca giriş işlemi için gereklidir</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblInfoPWM.ToolTip" xml:space="preserve">
+    <value>Mümkün olan maks. değer 30$ (varsayılan=1000), min. 31$ (varsayılan=0) üzerinden ayarlanır.
+https://github.com/cprezzi/grbl-servo'dan Grbl sürümü 'grbl_v1.1f_Servo.hex',
+0,5 ms ile 2,5 ms arası çıktı için 31 adım kullanır (bkz. cpu_map.h).
+Gerçek kullanılabilir aralık 30$=31, 31$=0 olacaktır.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMDown.Text" xml:space="preserve">
+    <value>Kalem Aşağı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMDown.ToolTip" xml:space="preserve">
+    <value>Kalemi en aşağı hareket ettirin</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMUp.Text" xml:space="preserve">
+    <value>Kalem Yukarı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnGCPWMUp.ToolTip" xml:space="preserve">
+    <value>Kalemi en yukarı taşı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCPWMSendCode.Text" xml:space="preserve">
+    <value>Kontrol etmek için komut gönder</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCPWMSendCode.ToolTip" xml:space="preserve">
+    <value>Değer değişikliğinde komut gönder</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCPWMSkipM30.Text" xml:space="preserve">
+    <value>M30 komutunu atla</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCPWMSkipM30.ToolTip" xml:space="preserve">
+    <value>Servonun '0' konumuna hareket etmesine neden olan ayrıştırıcı durumunu sıfırlayarak iş milinin kapatılmasını önlemek için M30 'Program sonu' komutunu atlayın.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCPWMUp.ToolTip" xml:space="preserve">
+    <value>Kalem yukarı için iş mili hızı</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCDlyUp.ToolTip" xml:space="preserve">
+    <value>G4'ü ekle: sonraki komuttan önceki saniye cinsinden gecikme</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCPWMDown.ToolTip" xml:space="preserve">
+    <value>Kalem aşağı için iş mili hızı</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="nUDImportGCDlyDown.ToolTip" xml:space="preserve">
+    <value>G4'ü ekle: sonraki komuttan önceki saniye cinsinden gecikme</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUsePWM.Text" xml:space="preserve">
+    <value>PWM Olarak İş Mili Hızı</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUsePWM.ToolTip" xml:space="preserve">
+    <value>İş mili hızıyla RC-Servo'yu kontrol edin (1ms - 2ms PWM çıkışı oluşturmak için özel GRBL versiyonu gereklidir)</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tabPage28.Text" xml:space="preserve">
+    <value>Mil / Lazer</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2gB5.Text" xml:space="preserve">
+    <value>Kalem Aşağı/Yukarı ile Mil Açma/Kapama (Lazer için)</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2gB5.ToolTip" xml:space="preserve">
+    <value>Mili 'Kalem yukarı' ile 'kapalı' ve 'Kalem aşağı' komutları ile 'açık' (lazer kazıyıcı için)</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl51.Text" xml:space="preserve">
+    <value>M3 M4 seçimi ve gecikmesi için Mil ayarlarını kontrol edin</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUseSpindle.Text" xml:space="preserve">
+    <value>Mil Açık/Kapalı</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBImportGCUseSpindle.ToolTip" xml:space="preserve">
+    <value>Mili 'Kalem yukarı' ile 'kapalı' ve 'Kalem aşağı' komutları ile 'açık' (lazer kazıyıcı için)
+M3 M4 seçimi ve gecikmesi için Mil ayarlarını kontrol edin</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tabPage29.Text" xml:space="preserve">
+    <value>Bireysel</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2gB6.Text" xml:space="preserve">
+    <value>Kalem Aşağı/Yukarı için ayrı komutlar</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tab1_2lbl62.Text" xml:space="preserve">
+    <value>Kalem Aşağı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab1_2lbl61.Text" xml:space="preserve">
+    <value>Kalem Yukarı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCUseIndividual.Text" xml:space="preserve">
+    <value>Bireysel komutları kullanın (';' ile ayrı satırlar)</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="tabPage11.Text" xml:space="preserve">
+    <value>G Kodu değişikliği</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3gB3.Text" xml:space="preserve">
+    <value>Z Eksenini İş Mili hızı S'ye dönüştürün</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3lbl31.Text" xml:space="preserve">
+    <value>Menü GCode Dönüşümü, Z'yi S'ye Dönüştürme Ayarları</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3lbl33.Text" xml:space="preserve">
+    <value>Minimum S, maksimum Z'de</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3lbl32.Text" xml:space="preserve">
+    <value>Minimum Z'de maksimum S</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3gB4.Text" xml:space="preserve">
+    <value>Deneysel</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3lbl41.Text" xml:space="preserve">
+    <value>Diğer seçeneklerle çalışmayabilir</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCRelative.Text" xml:space="preserve">
+    <value>Bağıl hareketler</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCRelative.ToolTip" xml:space="preserve">
+    <value>G91 için bağıl hareketleri hesaplayın
+Not: 'Nesneleri kalem dizinine göre sırala' seçeneğini kullanmayın</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCCompress.Text" xml:space="preserve">
+    <value>G Kodunu Sıkıştır</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCCompress.ToolTip" xml:space="preserve">
+    <value>Gereksiz verileri atlar.
+Not: 'Nesneleri kalem dizinine göre sırala' seçeneğini kullanmayın</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tab1_3gB1.Text" xml:space="preserve">
+    <value>Gereksiz verileri atlar.</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
+    <value>Alt programdan önce/sonra pen-up/-down uygulayın</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDImportGCLineSegment.ToolTip" xml:space="preserve">
+    <value>Değer 0 ise, yalnızca 'Yolun başına da ekle' işlenir</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBImportGCSubFirst.Text" xml:space="preserve">
+    <value>Yolun başına da ekle</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="btnShowScriptSub.Text" xml:space="preserve">
+    <value>göstermek</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="btnShowScriptSub.ToolTip" xml:space="preserve">
+    <value>Dosya içeriğini göstermek için tıklayın</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.Text" xml:space="preserve">
+    <value>eşit mesafeli segmentseks'</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCLineSegmentsEquidistant.ToolTip" xml:space="preserve">
+    <value>Kontrol edildi: Bir çizgi, aynı uzunluktaki parçalara bölünecek ( &lt;= verilen uzunluk)
+İşaretlenmemiş: son satır parçası daha kısadır, diğer tüm uzunluklar tam olarak verilmiştir</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tBImportGCSubroutine.ToolTip" xml:space="preserve">
+    <value>Alt program ile dosya yolu</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCSubEnable.Text" xml:space="preserve">
+    <value>Alt program ekle</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCSubEnable.ToolTip" xml:space="preserve">
+    <value>Her segment uzunluğunda alt program ekleyin.</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCLineSegments.Text" xml:space="preserve">
+    <value>G1 hatlarını maks. birim cinsinden uzunluk. 0 = bölme yok.</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="cBImportGCLineSegments.ToolTip" xml:space="preserve">
+    <value>Uzun düz hareketleri maks. verilen uzunluk
+"Göreceli hareketler" ile kullanmayın</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="tabPage15.Text" xml:space="preserve">
+    <value>Kullanım örnekleri</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="tab1_4gB1.Text" xml:space="preserve">
+    <value>İçe aktarma ayarlarını "kullanım durumu" olarak kaydedin</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="tab1_4lbl1.Text" xml:space="preserve">
+    <value>Son yüklenen:</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="tBUseCaseSetting1.Text" xml:space="preserve">
+    <value>Ayarları görmek için kullanım durumunu seçin</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="tab1_4lbl2.Text" xml:space="preserve">
+    <value>Kullanım durumu hakkında bilgi yazın</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnDelete.Text" xml:space="preserve">
+    <value>Silme seçildi</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnDelete.ToolTip" xml:space="preserve">
+    <value>Seçilen kullanım durumunu sil</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnUseCaseSave.Text" xml:space="preserve">
+    <value>'Kullanım durumunu' kaydet</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnUseCaseSave.ToolTip" xml:space="preserve">
+    <value>Geçerli içe aktarma ayarlarını bir kullanım durumu olarak kaydedin</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnUseCaseLoad.Text" xml:space="preserve">
+    <value>Seçileni yükle</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="btnUseCaseLoad.ToolTip" xml:space="preserve">
+    <value>Seçilen kullanım durumunun ayarlarını yükle</value>
+    <comment>TabPage1_4</comment>
+  </data>
+  <data name="tab2gB1.Text" xml:space="preserve">
+    <value>Alet tabloları</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="lblToolListChanged.Text" xml:space="preserve">
+    <value>-</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnDeleteToolTable.Text" xml:space="preserve">
+    <value>Seçilen listeyi sil</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnDeleteToolTable.ToolTip" xml:space="preserve">
+    <value>Seçilen alet tablosunu sil</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="lblToolListLoaded.Text" xml:space="preserve">
+    <value>boş</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Son yüklenen alet tablosu:</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnLoadToolTable.Text" xml:space="preserve">
+    <value>Seçileni yükle</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnLoadToolTable.ToolTip" xml:space="preserve">
+    <value>Seçilen alet tablosunu yükle</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnToolExport.Text" xml:space="preserve">
+    <value>Alet tablosunu kaydet</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnToolExport.ToolTip" xml:space="preserve">
+    <value>Geçerli alet tablosunu csv dosyasına kaydet</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="tab2gB2.Text" xml:space="preserve">
+    <value>Alet tablosu - makine koordinatlarındaki konumlar! Hedef arama, önceden kullanılması önerilir.</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="cBToolLaser.Text" xml:space="preserve">
+    <value>Lazerle ilgili</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="cBToolLaser.ToolTip" xml:space="preserve">
+    <value>Görünür sütunları azalt</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnReNumberTools.Text" xml:space="preserve">
+    <value>yeniden numaralandırmak</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="btnMoveToolXY.Text" xml:space="preserve">
+    <value>İşaretli satırın XY konumuna git</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="tab2gB2lbl1.Text" xml:space="preserve">
+    <value>Alet tablosundaki alet konumlarına ofset (X,Y,Z)</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column1.HeaderText" xml:space="preserve">
+    <value>No.</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column1.ToolTipText" xml:space="preserve">
+    <value>Alet numarası</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column2.HeaderText" xml:space="preserve">
+    <value>Renk</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column2.ToolTipText" xml:space="preserve">
+    <value>6 basamaklı onaltılık kalem rengi. Parlaklığa göre sıralamak için tıklayın.</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column3.HeaderText" xml:space="preserve">
+    <value>İsim</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column3.ToolTipText" xml:space="preserve">
+    <value>aracın adı</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column4.HeaderText" xml:space="preserve">
+    <value>Poz. X</value>
+  </data>
+  <data name="Column4.ToolTipText" xml:space="preserve">
+    <value>Değişim pozisyonu X</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column5.HeaderText" xml:space="preserve">
+    <value>Poz. Y</value>
+  </data>
+  <data name="Column5.ToolTipText" xml:space="preserve">
+    <value>Değişim pozisyonu Y</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column6.HeaderText" xml:space="preserve">
+    <value>Poz. Z</value>
+  </data>
+  <data name="Column6.ToolTipText" xml:space="preserve">
+    <value>Değişim pozisyonu Z</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column16.HeaderText" xml:space="preserve">
+    <value>Poz. A</value>
+  </data>
+  <data name="Column16.ToolTipText" xml:space="preserve">
+    <value>Değişim pozisyonu A</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column7.HeaderText" xml:space="preserve">
+    <value>takım çapı</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column7.ToolTipText" xml:space="preserve">
+    <value>aletin çapı</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column8.HeaderText" xml:space="preserve">
+    <value>XY Hızı</value>
+  </data>
+  <data name="Column8.ToolTipText" xml:space="preserve">
+    <value>XY hareketleri için ilerleme hızı</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column10.HeaderText" xml:space="preserve">
+    <value>Z Hızı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column10.ToolTipText" xml:space="preserve">
+    <value>Z hareketleri için ilerleme hızı</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column15.HeaderText" xml:space="preserve">
+    <value>Z Kasa</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column15.ToolTipText" xml:space="preserve">
+    <value>İş parçasının üzerinde güvenli yükseklik</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column9.HeaderText" xml:space="preserve">
+    <value>Z Derin</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column9.ToolTipText" xml:space="preserve">
+    <value>Nihai Z derinliği</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column13.HeaderText" xml:space="preserve">
+    <value>Z A.Ş.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column13.ToolTipText" xml:space="preserve">
+    <value>Maks. Geçiş başına Z artışı</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column11.HeaderText" xml:space="preserve">
+    <value>Mil</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column11.ToolTipText" xml:space="preserve">
+    <value>Milin dönüş hızı</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column12.HeaderText" xml:space="preserve">
+    <value>Adım atmak</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column12.ToolTipText" xml:space="preserve">
+    <value>Paralel yollar arasındaki takım çapındaki mesafe</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="Column14.HeaderText" xml:space="preserve">
+    <value>G Kodu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column14.ToolTipText" xml:space="preserve">
+    <value>Takım değiştirme komutundan sonra uygulanacak kod</value>
+    <comment>TabPage2</comment>
+  </data>
+  <data name="gBToolChange.Text" xml:space="preserve">
+    <value>Takım değiştirme kurulumu</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="label47.Text" xml:space="preserve">
+    <value>saniye</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label46.Text" xml:space="preserve">
+    <value>Komut dosyasından sonra gecikme</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDToolChangeEmpty.ToolTip" xml:space="preserve">
+    <value>No.lu bir araç kullanın. alet tablosunda listelenmeyen.</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="btnFileDialogTT4.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="btnFileDialogTT3.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="btnFileDialogTT2.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="btnFileDialogTT1.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="cBToolChangeEmpty.Text" xml:space="preserve">
+    <value>Son olarak iş milini 'yükleme' alet no. ile boşaltın:</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="cBToolChangeEmpty.ToolTip" xml:space="preserve">
+    <value>Var olmayan bir aracı son komut olarak yükleyerek son kullanılan aracı kaldırın.</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="label61.Text" xml:space="preserve">
+    <value>O nasıl çalışır:
+Takım değişimi için Tx M6 komutlarıyla GCode'a sahip olun.
+grbl'ye akış sırasında (Arduino veya diğer denetleyicide), araç değiştirme komutu GRBL-Plotter tarafından yorumlanacak ve komut dosyası gcode eklenecektir:
+
+'Tx' komutuna dikkat edin, 'x' takım numarasını alın
+Gerçek takım tablosundan TOAX, TOAY, TOAZ değişkenlerine 'x' takım numarası için takım değiştirme koordinatlarını okuyun.
+
+'M6' komutuna dikkat edin
+Alet iş milindeyse
+'REMOVE' komut dosyası kodunu girin (burada son araç koordinatları için TOLX,Y,Z kullanın)
+Gönderme kuyruğuna komut dosyası kodu 'SELECT' ekleyin (burada TOAX,Y,Z araç koordinatlarını kullanın)
+'PICK UP' komut dosyası kodunu ekleyin
+Komut dosyası kodu 'PROBE' ekle
+Gerçek takım koordinatlarını kopyalayın (TOAX,Y,Z'den son koordinata. TOLX,Y,Z)
+'M6'yı gönderme kuyruğundan kaldırın, çünkü grbl bu komutu işleyemez.</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_4.Text" xml:space="preserve">
+    <value>4) PROB aracı</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_4.ToolTip" xml:space="preserve">
+    <value>Dosya içeriğini göstermek için tıklayın</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="tBToolChangeScriptProbe.ToolTip" xml:space="preserve">
+    <value>4. sonda aleti uzunluğu</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_2.Text" xml:space="preserve">
+    <value>2) SEÇ aracı</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_2.ToolTip" xml:space="preserve">
+    <value>Dosya içeriğini göstermek için tıklayın</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="tBToolChangeScriptSelect.ToolTip" xml:space="preserve">
+    <value>2. iş milinin önüne yeni takım getirin</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_1.Text" xml:space="preserve">
+    <value>1) Aleti ÇIKARIN (mildeyse)</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_1.ToolTip" xml:space="preserve">
+    <value>Dosya içeriğini göstermek için tıklayın</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="tBToolChangeScriptPut.ToolTip" xml:space="preserve">
+    <value>Öncelikle eski takımın milden çıkarılması gerekir (ilk sefer hariç)</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_3.Text" xml:space="preserve">
+    <value>3) TOPLAMA aracı</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="lbl_3.ToolTip" xml:space="preserve">
+    <value>Dosya içeriğini göstermek için tıklayın</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="tBToolChangeScriptGet.ToolTip" xml:space="preserve">
+    <value>3. yeni araç almak</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="cBToolChange.Text" xml:space="preserve">
+    <value>Tx M06'da takım değiştirme gerçekleştirin</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="cBToolChange.ToolTip" xml:space="preserve">
+    <value>Tx M06 komutlarında aşağıdaki komut dosyalarını yürütün</value>
+    <comment>TabPage3</comment>
+  </data>
+  <data name="groupBox24.Text" xml:space="preserve">
+    <value>Pin açıklaması (Aksesuar durumlarını geçersiz kılar)</value>
+  </data>
+  <data name="label53.Text" xml:space="preserve">
+    <value>Mega 2560 pin durumu
+https://github.com/fra589/grbl-Mega-5X/wiki/grbl-Mega-5X-pin çıkışı</value>
+  </data>
+  <data name="checkBox10.Text" xml:space="preserve">
+    <value>Sabitleme durumunu göster</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Kerestecilik</value>
+  </data>
+  <data name="cBExtendedLogging.Text" xml:space="preserve">
+    <value>Genişletilmiş günlüğe kaydetmeyi etkinleştir</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="groupBox11.Text" xml:space="preserve">
+    <value>Çeşitli</value>
+    <comment>ok</comment>
+  </data>
+  <data name="LblSaveEncoding.Text" xml:space="preserve">
+    <value>G Kodu kodlamasını kaydet</value>
+  </data>
+  <data name="checkBox11.Text" xml:space="preserve">
+    <value>Kaydederken tüm yorumları kaldır</value>
+  </data>
+  <data name="checkBox9.Text" xml:space="preserve">
+    <value>G-Code'u unicode UTF-16 (aksi takdirde ASCII) olarak kaydedin</value>
+  </data>
+  <data name="checkBox2.Text" xml:space="preserve">
+    <value>Panodan kod yapıştırmak için kayıt defterini sık sık kontrol edin</value>
+    <comment>TabPage1_2</comment>
+  </data>
+  <data name="cBcheckupdate.Text" xml:space="preserve">
+    <value>GitHub'da yeni GRBL-Plotter sürümünü kontrol edin</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBcheckupdate.ToolTip" xml:space="preserve">
+    <value>GRBL-Plotter'ın her başlangıcında yeni bir program sürümü olup olmadığını kontrol edin:
+github.com/svenhb/GRBL-Plotter'da 1. deneme
+svenhb.bplaced.net'te 2. deneme</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB3.Text" xml:space="preserve">
+    <value>G-Kodunu Yükle</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="label72.Text" xml:space="preserve">
+    <value>bin satır, görüntüleme seçeneklerini atlamadan önce</value>
+  </data>
+  <data name="NudCtrlImportSkip.ToolTip" xml:space="preserve">
+    <value>Görüntüleme seçeneklerini atlamadan önce aşılması gereken satır miktarı (bin kere).</value>
+  </data>
+  <data name="cBCtrlToolTable.Text" xml:space="preserve">
+    <value>2B görünüm: araç tablosundan renkleri alın</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBCtrlToolTable.ToolTip" xml:space="preserve">
+    <value>Alet tablosundan alet yoluna renk atamak için G Kodunda S, Z ve F değerlerini analiz edin</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBCtrlCommentOut.Text" xml:space="preserve">
+    <value>Bilinmeyen G-Code'u yorumlayın</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBCtrlCommentOut.ToolTip" xml:space="preserve">
+    <value>GRBL'den kaynaklanan hataları önlemek için bilinmeyen G Kodunu köşeli parantez içinde gizleyin</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB4.Text" xml:space="preserve">
+    <value>"Lazer Modu"</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBCtrlReplaceM4.Text" xml:space="preserve">
+    <value>'M4'ü 'M3' ile değiştirin</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="rBCtrlReplaceM4.ToolTip" xml:space="preserve">
+    <value>M3 Sabit Lazer Gücü Modu</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="rBCtrlReplaceM3.Text" xml:space="preserve">
+    <value>'M3'ü 'M4' ile değiştirin</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="rBCtrlReplaceM3.ToolTip" xml:space="preserve">
+    <value>M4 Dinamik Lazer Gücü Modu:</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBCtrlMCmd.Text" xml:space="preserve">
+    <value>'Mil Açık' komutlarını dönüştürün</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBCtrlMCmd.ToolTip" xml:space="preserve">
+    <value>Etkinleştirilirse, bir GCode dosyası yüklenirken M3 veya M4 komutları, etkinleştirmek için M4 veya M3 komutları ile değiştirilecektir.
+M3 Sabit Lazer Gücü Modu
+veya
+M4 Dinamik Lazer Gücü Modu</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB1.Text" xml:space="preserve">
+    <value>seri bağlantı</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="groupBox13.Text" xml:space="preserve">
+    <value>grbl bağlantısı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="CbMarlin.Text" xml:space="preserve">
+    <value>Marlin'e bağlan</value>
+  </data>
+  <data name="checkBox6.Text" xml:space="preserve">
+    <value>Program başladığında 3. bir seri arayüz açar</value>
+    <comment>ok</comment>
+  </data>
+  <data name="checkBox6.ToolTip" xml:space="preserve">
+    <value>2. GRBL'yi kontrol etmek için 2. COM bağlantı noktasını açar. Takım değiştiriciler veya 4. eksen için kullanışlıdır.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBSerialMinimize.Text" xml:space="preserve">
+    <value>Bağlantıdan sonra seri formları simge durumuna küçült</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerialMinimize.ToolTip" xml:space="preserve">
+    <value>Başarılı bağlantıdan sonra seri pencereleri en aza indirecek</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerial2.Text" xml:space="preserve">
+    <value>Programda 2. seri bağlantı noktasını açın. başlangıç</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerial2.ToolTip" xml:space="preserve">
+    <value>Opens a 2nd COM port to control a 2nd GRBL. Usefull for tool changer or 4th axis.</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB2.Text" xml:space="preserve">
+    <value>DIY controlpad via serial connection</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerialDIY.Text" xml:space="preserve">
+    <value>Open serial port on prog. start</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerialPortFixer.Text" xml:space="preserve">
+    <value>Apply serial port fixer</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBSerialPortFixer.ToolTip" xml:space="preserve">
+    <value>It may helps to prevent errors when closing application</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="groupBox25.Text" xml:space="preserve">
+    <value>Logging</value>
+  </data>
+  <data name="BtnOpenLogFile.Text" xml:space="preserve">
+    <value>Open logfile</value>
+  </data>
+  <data name="cBExtendedLoggingCOM.Text" xml:space="preserve">
+    <value>Serial COM / streaming</value>
+  </data>
+  <data name="GbAccessoryRunTime.Text" xml:space="preserve">
+    <value>Aksesuar çalışma süreleri (ms)</value>
+  </data>
+  <data name="BtnAccessoryRefresh.Text" xml:space="preserve">
+    <value>Yenile</value>
+  </data>
+  <data name="BtnAccessoryMistReset.Text" xml:space="preserve">
+    <value>Sıfırla</value>
+  </data>
+  <data name="BtnAccessoryFloodReset.Text" xml:space="preserve">
+    <value>Sıfırla</value>
+  </data>
+  <data name="BtnAccessorySpindleReset.Text" xml:space="preserve">
+    <value>Sıfırla</value>
+  </data>
+  <data name="LblAccessoryMist.Text" xml:space="preserve">
+    <value>Sis:</value>
+  </data>
+  <data name="LblAccessoryFlood.Text" xml:space="preserve">
+    <value>Sel basmak:</value>
+  </data>
+  <data name="LblAccessorySpindle.Text" xml:space="preserve">
+    <value>Mil:</value>
+  </data>
+  <data name="tab5gB5.Text" xml:space="preserve">
+    <value>makine alanı</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="btnMachineRangeGet.Text" xml:space="preserve">
+    <value>130$-132$ ayarlarından menzil elde edin</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="label66.Text" xml:space="preserve">
+    <value>Maks konum Z</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label65.Text" xml:space="preserve">
+    <value>Minimum konum Y</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab5gB5lbl4.Text" xml:space="preserve">
+    <value>Makineyi hedef konumuna getirin, min X, min Y ve maks Z'ye gidin.
+Makine koordinatlarını not edin</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="label63.Text" xml:space="preserve">
+    <value>Minimum konum X</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBMachineLimitsAlarm.Text" xml:space="preserve">
+    <value>Limit aşıldığında alarm (X ve Y)</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBMachineLimitsShow.Text" xml:space="preserve">
+    <value>Makine sınırlarını göster</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB5lbl3.Text" xml:space="preserve">
+    <value>Makine hareketi Z</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB5lbl2.Text" xml:space="preserve">
+    <value>Makine hareketi Y</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB5lbl1.Text" xml:space="preserve">
+    <value>Makine hareketi X</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Kod makine boyutlarını aşarsa bildirim alın</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab5gB6.Text" xml:space="preserve">
+    <value>GRBL 4. eksen (özel sürüm)</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB6lbl2.Text" xml:space="preserve">
+    <value>2B görünümde 4. eksenin boyutu, gcode dönüştürme menüsündeki döner çap aracılığıyla değiştirilebilir</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>2B görünümde 4. ekseni ters çevir</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="radioButton2.Text" xml:space="preserve">
+    <value>4. ekseni Y üzerinden göster</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="radioButton1.Text" xml:space="preserve">
+    <value>X üzerinde 4. ekseni göster</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cB4thUse.Text" xml:space="preserve">
+    <value>Durumu ve kontrolleri göster</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB6lbl1.Text" xml:space="preserve">
+    <value>4. eksenin adı</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB7.Text" xml:space="preserve">
+    <value>Döner eksen kontrolü (X veya Y ekseni yerine)</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8.Text" xml:space="preserve">
+    <value>Değiştirilen eksen için GRBL Kurulumu</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tBRotarySetupOff.ToolTip" xml:space="preserve">
+    <value>Bu ayar, eksen değiştirme devre dışı bırakıldığında ayarlanacaktır.</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tBRotarySetupOn.ToolTip" xml:space="preserve">
+    <value>Bu ayar, eksen değiştirme etkinleştirildiğinde ayarlanacaktır.</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8lbl2.Text" xml:space="preserve">
+    <value>Birincil Eksen</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8lbl2.ToolTip" xml:space="preserve">
+    <value>Bu ayar, eksen değiştirme devre dışı bırakıldığında ayarlanacaktır.</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBRotarySetupApply.Text" xml:space="preserve">
+    <value>Form kapanışında ayarları uygula</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBRotarySetupApply.ToolTip" xml:space="preserve">
+    <value>Değiştirmeyi etkinleştirirken veya devre dışı bırakırken grbl ayarlarını otomatik olarak uyarla</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8lbl1.Text" xml:space="preserve">
+    <value>Döner Eksen</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB8lbl1.ToolTip" xml:space="preserve">
+    <value>Bu ayar, eksen değiştirme etkinleştirildiğinde ayarlanacaktır.</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="label30.Text" xml:space="preserve">
+    <value>birimler</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB7lbl2.Text" xml:space="preserve">
+    <value>parça çapı</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB7lbl2.ToolTip" xml:space="preserve">
+    <value>İlişki mesafesi &lt;=&gt; açı için çevreyi hesaplamak için gerekli</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>birimler</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab5gB7lbl1.Text" xml:space="preserve">
+    <value>360° şuna karşılık gelir:</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="rBRotaryY.Text" xml:space="preserve">
+    <value>Y ekseni</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="rBRotaryX.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="cBRotarySubstitute.Text" xml:space="preserve">
+    <value>Eksen değiştirmeyi kullan</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>Özel duraklatma modu, kullanıcının makineyi kullanmasına izin verir. Duraklamayı bitirdikten sonra, son işlem koordinatı ve makine durumu geri yüklenecek ve akış devam edecektir.
+Oysa normal bir M0, makineyi kullanma olasılığı olmadan bir besleme tutmayı başlatır.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBStreanProtocoll2.Text" xml:space="preserve">
+    <value>Basit Yanıt Gönderme ('tamam' modu)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>Akış protokolü:</value>
+    <comment>ok</comment>
+  </data>
+  <data name="rBStreanProtocoll1.Text" xml:space="preserve">
+    <value>Karakter Sayma (doldurma arabelleği)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBDisableProgramPause.Text" xml:space="preserve">
+    <value>Özel duraklatma modunu devre dışı bırakın, M0'dan geçin</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBDisableProgramPause.ToolTip" xml:space="preserve">
+    <value>Devre dışı bırakılırsa akış M0'da durdurulur ve ayrıştırıcı durumu kaydedilir (ancak M0 denetleyiciye gönderilmez), ardından kullanıcı makineyi kontrol edebilir.
+Duraklamadan sonra, ayrıştırıcı durumu geri yüklenecek ve akışa devam edilecektir.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBgrblTranslate.Text" xml:space="preserve">
+    <value>grbl mesajlarını çevir</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBgrblTranslate.ToolTip" xml:space="preserve">
+    <value>IDLE, RUN, HOLD gibi grbl mesajlarını çevirin</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBsimulation.Text" xml:space="preserve">
+    <value>Bağlı grbl'yi simüle et</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="cBShowStreamingProgress.Text" xml:space="preserve">
+    <value>Akış ilerlemesini 2B Görünümde göster</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBBackgroundImage.Text" xml:space="preserve">
+    <value>Akış sırasında gerçek zamanlı yol güncellemesini devre dışı bırakın.
+CPU yükünden tasarruf sağlar, akış sırasında yakınlaştırmayı devre dışı bırakır</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="cBpollIntervalReduce.Text" xml:space="preserve">
+    <value>frekansı azaltın gcode akışı yaparken.
+Senkronizasyonu kullanın. RX modu.</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab4gB1lbl1.Text" xml:space="preserve">
+    <value>grbl durum raporu için güncelleme sıklığını ayarlayın. Denetleyici için daha fazla stres kadar yüksek.</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="cBresetSendCode.Text" xml:space="preserve">
+    <value>Sıfırlamadan sonra aşağıdaki G Kodunu gönder</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tBresetSendCode.ToolTip" xml:space="preserve">
+    <value>Normal GCode atayın, ';' kullanarak kodu farklı satırlara ayırın seperatör olarak
+Veya GCode içeren bir dosya adı atayın.</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="cBrestoreCoordReset.Text" xml:space="preserve">
+    <value>Sıfırlamadan sonra Çalışma koordinatlarını geri yükleyin ve varsayılan besleme hızını ayarlayın</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tBflowControl.ToolTip" xml:space="preserve">
+    <value>Normal GCode atayın, ';' kullanarak kodu farklı satırlara ayırın seperatör olarak
+Veya GCode içeren bir dosya adı atayın.</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="cBflowControl.Text" xml:space="preserve">
+    <value>Duraklatma veya durdurma sırasında aşağıdaki gcode'u gönder</value>
+    <comment>TabPage4</comment>
+  </data>
+  <data name="tab10gB1.Text" xml:space="preserve">
+    <value>Şekil tanıma ayarları</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="groupBox23.Text" xml:space="preserve">
+    <value>referanslar</value>
+  </data>
+  <data name="CbCameraFiducialSkip.Text" xml:space="preserve">
+    <value>Akış sırasında referans noktaların G kodunu atlayın</value>
+  </data>
+  <data name="LblCameraFiducial.Text" xml:space="preserve">
+    <value>Referanslar için grafik katmanının veya şeklin adı</value>
+  </data>
+  <data name="tab10lbl1.Text" xml:space="preserve">
+    <value>Ayarları adlandırılmış parametre setlerine kaydedin ve şekil tanıma davranışını değiştirmek için bunları kamera penceresinden çağırın. Adları değiştirdikten sonra Kamera penceresini kapatın/açın.</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetSave4.Text" xml:space="preserve">
+    <value>kaydetmek</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetLoad4.Text" xml:space="preserve">
+    <value>yük</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetSave3.Text" xml:space="preserve">
+    <value>kaydetmek</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetLoad3.Text" xml:space="preserve">
+    <value>yük</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetSave2.Text" xml:space="preserve">
+    <value>kaydetmek</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetLoad2.Text" xml:space="preserve">
+    <value>yük</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetSave1.Text" xml:space="preserve">
+    <value>kaydetmek</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="btnShapeSetLoad1.Text" xml:space="preserve">
+    <value>yük</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="cBFilterOuside.Text" xml:space="preserve">
+    <value>Belirtilen renk aralıklarının dışında doldurulmuş piksel</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB2lbl3.Text" xml:space="preserve">
+    <value>Mavi</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB2lbl2.Text" xml:space="preserve">
+    <value>Yeşil</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB2lbl1.Text" xml:space="preserve">
+    <value>Kırmızı</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB3.Text" xml:space="preserve">
+    <value>şekil tanıma</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="label87.Text" xml:space="preserve">
+    <value>saniye</value>
+  </data>
+  <data name="label86.Text" xml:space="preserve">
+    <value>Tanıma için zaman aşımı</value>
+  </data>
+  <data name="tab10gB3lbl3.Text" xml:space="preserve">
+    <value>Kabul edilebilir bozulma maks.</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB3lbl5.Text" xml:space="preserve">
+    <value>piksel</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab10gB3lbl4.Text" xml:space="preserve">
+    <value>birimler</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab10gB3lbl2.Text" xml:space="preserve">
+    <value>Kabul edilebilir distorsiyon min.</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="tab10gB3lbl1.Text" xml:space="preserve">
+    <value>dak. maks. şeklin boyutu</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="cBShapeRect.Text" xml:space="preserve">
+    <value>Dikdörtgen</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="cBShapeCircle.Text" xml:space="preserve">
+    <value>Daire</value>
+    <comment>TabPage10</comment>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>Test mesajı gönder</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifierPBChannel.Text" xml:space="preserve">
+    <value>Kanal (not göndermek için boş bırakın)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cbNotifierPBEnable.Text" xml:space="preserve">
+    <value>Pushbullet bildirimini etkinleştir</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifierPBToken.Text" xml:space="preserve">
+    <value>API Erişim Simgesi</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox17.Text" xml:space="preserve">
+    <value>Güvenlik notları</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label33.Text" xml:space="preserve">
+    <value>E-posta: güvenlik nedenleriyle bir 'çöp' e-posta hesabı kullanmalısınız, şifre şifrelenmiş biçimde kaydedilemez.
+
+Pushbullet: güvenlik nedeniyle bir 'çöp' hesabı kullanmalısınız, erişim belirteci şifrelenmiş biçimde kaydedilemez.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox16.Text" xml:space="preserve">
+    <value>Bildirimler</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cbNotifierTitle.Text" xml:space="preserve">
+    <value>Başlığa akış ilerlemesini ekle</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cbNotifierMsg1.Text" xml:space="preserve">
+    <value>Sık ilerleme güncellemesi (dakika)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier8.Text" xml:space="preserve">
+    <value>Başlık / Konu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifierMsg1.Text" xml:space="preserve">
+    <value>Mesajı bitir</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>E-posta</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cbNotifierEmailEnable.Text" xml:space="preserve">
+    <value>E-posta bildirimini etkinleştir</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btn_notifierMail_Test.Text" xml:space="preserve">
+    <value>test postası gönder</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier7.Text" xml:space="preserve">
+    <value>e-posta için</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier6.Text" xml:space="preserve">
+    <value>E-postadan</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox15.Text" xml:space="preserve">
+    <value>SMTP sunucusu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier3.Text" xml:space="preserve">
+    <value>Liman</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier5.Text" xml:space="preserve">
+    <value>Şifre</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier2.Text" xml:space="preserve">
+    <value>Adres</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier4.Text" xml:space="preserve">
+    <value>Kullanıcı adı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblNotifier1.Text" xml:space="preserve">
+    <value>E-posta hesabınız için SMTP-Sunucu erişimini ayarlayın
+Not: genellikle "E-postadan", SMTP posta kutusu e-postası ile aynı olmalıdır.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage23.Text" xml:space="preserve">
+    <value>Özel Düğmeler</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab6lbl1.Text" xml:space="preserve">
+    <value>Normal GCode atayın, ';' kullanarak kodu farklı satırlara ayırın seperatör olarak
+Veya GCode içeren bir dosya adı atayın.
+Göreceli dosya yolu buradan başlar:</value>
+    <comment>TabPage6</comment>
+  </data>
+  <data name="tab6lbl2.Text" xml:space="preserve">
+    <value>Alanlar boş olduğunda 13 ile 16 arasındaki düğmeler gizlenir</value>
+    <comment>TabPage6</comment>
+  </data>
+  <data name="Column20.HeaderText" xml:space="preserve">
+    <value>No.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column21.HeaderText" xml:space="preserve">
+    <value>Etiket</value>
+    <comment>ok</comment>
+  </data>
+  <data name="Column22.HeaderText" xml:space="preserve">
+    <value>G Kodu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="color.HeaderText" xml:space="preserve">
+    <value>Renk</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Kısayol Tuşları</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="tab9gB1.Text" xml:space="preserve">
+    <value>Kısayol Tuşları</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="btnOpenHotkeys.Text" xml:space="preserve">
+    <value>hotkeys.xml dosyasını not defterinde açın</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="lblPathHotkeys.Text" xml:space="preserve">
+    <value>Yol</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="btnHotkeyRefresh.Text" xml:space="preserve">
+    <value>hotkey.xml dosyasını yeniden yükle</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="tab9gB1lbl2.Text" xml:space="preserve">
+    <value>hotkeys.xml içeriği (harici olarak düzenlenmelidir, atamayı güncellemek için 'Değişiklikleri uygula'ya basın):</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="tab9gB1lbl1.Text" xml:space="preserve">
+    <value>Önemli verileri buradan kontrol edin (panoya kopyalanacak):</value>
+    <comment>TabPage9</comment>
+  </data>
+  <data name="tB_kP_Left1.Text" xml:space="preserve">
+    <value>A, Kontrol, Alt</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage24.Text" xml:space="preserve">
+    <value>Gamepad</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab7gB1.Text" xml:space="preserve">
+    <value>Gamepad Düğme ataması</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Analog Joystick ayarları</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab7gB2lbl3.Text" xml:space="preserve">
+    <value>Verilen değerin altında minimum adım genişliği (yalnızca bir eksen kullanımdaysa)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab7gB2lbl5.Text" xml:space="preserve">
+    <value>İlerleme hızı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDFeedrate.ToolTip" xml:space="preserve">
+    <value>Hızlı hareket için ilerleme hızı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDStepwidth.ToolTip" xml:space="preserve">
+    <value>Jogging için adım atın</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab7gB2lbl4.Text" xml:space="preserve">
+    <value>birimler</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDMinimum.ToolTip" xml:space="preserve">
+    <value>Bu değer ile ölü bölge arasında, yalnızca bir joystick ekseni etkinleştirilirse, verilen adım genişliği ve ilerleme hızı gönderilecektir.
+Bu durumda tekrar aralığı 50 ms yerine 200 ms'dir.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab7gB2lbl2.Text" xml:space="preserve">
+    <value>Ölü bölge - Hızlı koşmayı durdur</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab7gB2lbl1.Text" xml:space="preserve">
+    <value>Merkez konumu için ofset</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDOffset.ToolTip" xml:space="preserve">
+    <value>Orta konumda '0' elde etmek için çıkarın.
+Ofseti değiştirdikten sonra joystick'i hareket ettirin.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDDead.ToolTip" xml:space="preserve">
+    <value>Herhangi bir hareket komutu göndermeden önce ulaşılması gereken minimum değer.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValR.ToolTip" xml:space="preserve">
+    <value>Uygulanan ofset ile değer</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValY.ToolTip" xml:space="preserve">
+    <value>Uygulanan ofset ile değer</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValZ.ToolTip" xml:space="preserve">
+    <value>Uygulanan ofset ile değer</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblValX.ToolTip" xml:space="preserve">
+    <value>Uygulanan ofset ile değer</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBGPEnable.Text" xml:space="preserve">
+    <value>GUI'de Gamepad kontrolünü etkinleştirin</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="cBRInvert.Text" xml:space="preserve">
+    <value>yönü ters çevir</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="cBZInvert.Text" xml:space="preserve">
+    <value>yönü ters çevir</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="cBYInvert.Text" xml:space="preserve">
+    <value>yönü ters çevir</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="cBXInvert.Text" xml:space="preserve">
+    <value>yönü ters çevir</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="tBRAxis.ToolTip" xml:space="preserve">
+    <value>Taşınacak GCode ekseni</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tBZAxis.ToolTip" xml:space="preserve">
+    <value>Taşınacak GCode ekseni</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tBYAxis.ToolTip" xml:space="preserve">
+    <value>Taşınacak GCode ekseni</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tBXAxis.ToolTip" xml:space="preserve">
+    <value>Taşınacak GCode ekseni</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab7gB1lbl1.Text" xml:space="preserve">
+    <value>Düğme atamasını kontrol etmek için Gamepad'inizdeki düğmelere basın.
+
+Düzenleme kutularının içine normal GCode ("Özel Düğmeler" kurallarını kontrol edin) veya özel işlevler atayın.
+
+Özel işlevler (# ile başlar):
+#Başlat (Akışa başla)
+#Durdur (Akışı durdur)
+#F-10 (-1, 100, +1, +10 Besleyici geçersiz kılma)
+#S-10 (-1, 100, +1, +10 İş mili hızı o.)
+#FEEDHOLD
+#SÜRDÜRMEK
+#KILLALARM
+#RST (CTRL-X ile yazılımdan sıfırlama)
+#HRST (DTR/RTS aracılığıyla donanım sıfırlama)
+
+Eksen ve yön tersini atama
+Yenileme aralığı = 50ms.
+
+Gamepad'i GUI'de kullanmak için kurulum penceresi kapatılmalıdır.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="lblgp.Text" xml:space="preserve">
+    <value>Gamepad'den Mesaj</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="trackBarR.ToolTip" xml:space="preserve">
+    <value>Joystick R kanalının değeri</value>
+    <comment>ok</comment>
+  </data>
+  <data name="trackBarZ.ToolTip" xml:space="preserve">
+    <value>Joystick Z kanalının değeri</value>
+    <comment>ok</comment>
+  </data>
+  <data name="trackBarY.ToolTip" xml:space="preserve">
+    <value>Joystick Y kanalının değeri</value>
+    <comment>ok</comment>
+  </data>
+  <data name="trackBarX.ToolTip" xml:space="preserve">
+    <value>Joystick X kanalının değeri</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Sanal Oyun Çubuğu</value>
+    <comment>TabPage6</comment>
+  </data>
+  <data name="tab8gB1.Text" xml:space="preserve">
+    <value>Sanal Oyun Çubuğu kurulumu</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="groupBox33.Text" xml:space="preserve">
+    <value>Joystick görünümü</value>
+  </data>
+  <data name="RbApperance2.Text" xml:space="preserve">
+    <value>Klasik düğmeler</value>
+  </data>
+  <data name="RbApperance1.Text" xml:space="preserve">
+    <value>Hassas bölge</value>
+  </data>
+  <data name="label77.Text" xml:space="preserve">
+    <value>ABC
+Adım genişliği Hız</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab8gB1lbl2.Text" xml:space="preserve">
+    <value>Joystick kontrollerini yeniden boyutlandırmak için 'Değişiklikleri uygula'ya basın</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tab8gB1lbl1.Text" xml:space="preserve">
+    <value>Maks. Joystick kontrollerinin piksel cinsinden boyutu</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnJoyZCalc.Text" xml:space="preserve">
+    <value>hesap. en iyi hız</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnJoyZCalc.ToolTip" xml:space="preserve">
+    <value>0,5 saniyelik tekrarlama oranı içinde adım genişliğine ulaşmak için Hızları hesaplayın</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Z
+Adım genişliği Hız</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>XY
+Adım genişliği Hız</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnJoyXYCalc.Text" xml:space="preserve">
+    <value>hesap. en iyi hız</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnJoyXYCalc.ToolTip" xml:space="preserve">
+    <value>0,5 saniyelik tekrarlama oranı içinde adım genişliğine ulaşmak için Hızları hesaplayın</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tabPage6.Text" xml:space="preserve">
+    <value>2B Görünüm / Düzenleyici</value>
+    <comment>TabPage7</comment>
+  </data>
+  <data name="groupBox14.Text" xml:space="preserve">
+    <value>2B Görünüm</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox32.Text" xml:space="preserve">
+    <value>Yinelenen ofset</value>
+  </data>
+  <data name="groupBox32.ToolTip" xml:space="preserve">
+    <value>Kopyalanan ve eklenen seçime bir kaydırma uygulayın.</value>
+  </data>
+  <data name="CbDuplicateAddHeight.Text" xml:space="preserve">
+    <value>Seçim yüksekliği ekle</value>
+  </data>
+  <data name="CbDuplicateAddWidth.Text" xml:space="preserve">
+    <value>Seçim genişliği ekle</value>
+  </data>
+  <data name="LblShowVertex.Text" xml:space="preserve">
+    <value>Yol düğümü işaretçisinin türü ve boyutu</value>
+  </data>
+  <data name="CbShowVertexEnable.Text" xml:space="preserve">
+    <value>Kalem aşağı yol düğümlerini görüntüler</value>
+  </data>
+  <data name="cB2DViewFigureId.Text" xml:space="preserve">
+    <value>Pen-up sonraki şekil kimliğini göster</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cB2DViewDirectionArrow.Text" xml:space="preserve">
+    <value>Kalem yukarı yön okunu göster</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBKeepPenWidth.Text" xml:space="preserve">
+    <value>Yakınlaştırma sırasında kalem genişliğini değiştirme</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox12.Text" xml:space="preserve">
+    <value>Editör</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBFCTBBlockExpandKeepLastOpen.Text" xml:space="preserve">
+    <value>Son seçilen bloğu genişletilmiş halde tut</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBFCTBBlockExpandOnSelect.Text" xml:space="preserve">
+    <value>2B görünümde tıklamayla kod bloğunu genişletin</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Düzenleyici satır mesafesi</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab8gB2.Text" xml:space="preserve">
+    <value>çizim renkleri</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="label68.Text" xml:space="preserve">
+    <value>px cinsinden boyut</value>
+  </data>
+  <data name="btnColorDimension.Text" xml:space="preserve">
+    <value>Boyut</value>
+  </data>
+  <data name="btnColorBackgroundPath.Text" xml:space="preserve">
+    <value>Bilgi Yolu</value>
+  </data>
+  <data name="cBColorModeEnable.Text" xml:space="preserve">
+    <value>Renk Modu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="cBColorModeEnable.ToolTip" xml:space="preserve">
+    <value>Kalem aşağı yolu, içe aktarılan grafik (SVG veya DXF) gibi renk ve genişlikte gösterilecektir.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDSimulation.ToolTip" xml:space="preserve">
+    <value>kalem genişliği</value>
+    <comment>ok</comment>
+  </data>
+  <data name="btnColorSimulation.Text" xml:space="preserve">
+    <value>Simülasyon</value>
+    <comment>ok</comment>
+  </data>
+  <data name="nUDRotaryInfo.ToolTip" xml:space="preserve">
+    <value>kalem genişliği</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorRotaryInfo.Text" xml:space="preserve">
+    <value>Rotary Bilgisi</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorMachineLimit.Text" xml:space="preserve">
+    <value>Makine Sınırı</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tab8gB2lbl2.Text" xml:space="preserve">
+    <value>Kalem genişliği mm birimleri için ayarlanmıştır. İnç'e geçerken genişlik uyarlanacaktır.</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tab8gB2lbl1.Text" xml:space="preserve">
+    <value>kalem genişliği</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDHeightMap.ToolTip" xml:space="preserve">
+    <value>kalem genişliği</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorHeightMap.Text" xml:space="preserve">
+    <value>Yükseklik Haritası</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDMarker.ToolTip" xml:space="preserve">
+    <value>kalem genişliği</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorMarker.Text" xml:space="preserve">
+    <value>İşaretleyici</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDTool.ToolTip" xml:space="preserve">
+    <value>kalem genişliği</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDPenDown.ToolTip" xml:space="preserve">
+    <value>kalem genişliği</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDPenUp.ToolTip" xml:space="preserve">
+    <value>kalem genişliği</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="nUDRuler.ToolTip" xml:space="preserve">
+    <value>kalem genişliği</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorTool.Text" xml:space="preserve">
+    <value>Alet</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorPenDown.Text" xml:space="preserve">
+    <value>Kalem Aşağı</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorPenUp.Text" xml:space="preserve">
+    <value>Kalem Yukarı</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorRuler.Text" xml:space="preserve">
+    <value>Cetvel</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="btnColorBackground.Text" xml:space="preserve">
+    <value>Arka plan</value>
+    <comment>TabPage8</comment>
+  </data>
+  <data name="tabPage32.Text" xml:space="preserve">
+    <value>projektör</value>
+  </data>
+  <data name="GbProjector.Text" xml:space="preserve">
+    <value>Projektör formu için renkler</value>
+  </data>
+  <data name="CbProjectorScaleEnable.Text" xml:space="preserve">
+    <value>Ölçekleme ve Ofset</value>
+  </data>
+  <data name="GbProjectorCalc.Text" xml:space="preserve">
+    <value>Ölçeklendirmeyi hesapla</value>
+  </data>
+  <data name="label71.Text" xml:space="preserve">
+    <value>Gerçek ölçülen genişlik</value>
+  </data>
+  <data name="label70.Text" xml:space="preserve">
+    <value>Grafik genişliği</value>
+  </data>
+  <data name="BtnProjectorCalc.Text" xml:space="preserve">
+    <value>Ölçeklendirmeyi hesapla</value>
+  </data>
+  <data name="LblProjector3.Text" xml:space="preserve">
+    <value>Ölçeklendirme (makine sınırlarına da bağlıdır)</value>
+  </data>
+  <data name="LblProjector5.Text" xml:space="preserve">
+    <value>Ofset Y</value>
+  </data>
+  <data name="LblProjector4.Text" xml:space="preserve">
+    <value>Ofset X</value>
+  </data>
+  <data name="label69.Text" xml:space="preserve">
+    <value>monitör numarası pencereyi açmak için</value>
+  </data>
+  <data name="BtnProjectorColorBackground.Text" xml:space="preserve">
+    <value>Arka plan</value>
+  </data>
+  <data name="BtnProjectorColorDimension.Text" xml:space="preserve">
+    <value>Boyut</value>
+  </data>
+  <data name="BtnProjectorColorRuler.Text" xml:space="preserve">
+    <value>Cetvel</value>
+  </data>
+  <data name="BtnProjectorColorPenUp.Text" xml:space="preserve">
+    <value>Pen-Up</value>
+  </data>
+  <data name="BtnProjectorColorPenDown.Text" xml:space="preserve">
+    <value>Kalem Aşağı</value>
+  </data>
+  <data name="CbProjectorMarker.Text" xml:space="preserve">
+    <value>Göstermek</value>
+  </data>
+  <data name="BtnProjectorColorTool.Text" xml:space="preserve">
+    <value>Alet</value>
+  </data>
+  <data name="CbProjectorTool.Text" xml:space="preserve">
+    <value>Göstermek</value>
+  </data>
+  <data name="BtnProjectorColorMarker.Text" xml:space="preserve">
+    <value>İşaretleyici</value>
+  </data>
+  <data name="CbProjectorPenUp.Text" xml:space="preserve">
+    <value>Göstermek</value>
+  </data>
+  <data name="LblProjector2.Text" xml:space="preserve">
+    <value>kalem genişliği</value>
+  </data>
+  <data name="CbProjectorRuler.Text" xml:space="preserve">
+    <value>Göstermek</value>
+  </data>
+  <data name="CbProjectorDimension.Text" xml:space="preserve">
+    <value>Göstermek</value>
+  </data>
+  <data name="LblProjector1.Text" xml:space="preserve">
+    <value>Renk</value>
+  </data>
+  <data name="tabPage33.Text" xml:space="preserve">
+    <value>Çeşitli</value>
+  </data>
+  <data name="groupBox29.Text" xml:space="preserve">
+    <value>Çeşitli</value>
+  </data>
+  <data name="checkBox12.Text" xml:space="preserve">
+    <value>Diğer formları her zaman önde göster (örn. Kurulum formu)</value>
+  </data>
+  <data name="btnReloadSettings.Text" xml:space="preserve">
+    <value>Tüm ayarları yeniden yükle</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab5gB9.Text" xml:space="preserve">
+    <value>Özel içeriği yapıştır</value>
+    <comment>TabPage5</comment>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Görüntü dönüştürme</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Durağan görüntüleri çizime uygun dalgalı çizgilere dönüştürür</value>
+    <comment>ok</comment>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Görüntü dosyalarından noktalı çizimler ve "TSP sanatı" oluşturur.</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab11gB1.Text" xml:space="preserve">
+    <value>SVG oluşturma, değiştirme</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="tab11gB1lbl1a.Text" xml:space="preserve">
+    <value>Inkscape uzantıları</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel16.Text" xml:space="preserve">
+    <value>Inkscape uzantıları</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab11gB1lbl3.Text" xml:space="preserve">
+    <value>EggBot Inkscape eklentisi hakkında açıklama</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="linkLabel14.Text" xml:space="preserve">
+    <value>Doldurulmuş bölgeler oluşturma</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab11gB1lbl2.Text" xml:space="preserve">
+    <value>Inkscape için faydalı uzantılar</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="tab11gB1lbl1.Text" xml:space="preserve">
+    <value>grafik programı</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel13.Text" xml:space="preserve">
+    <value>EggBot_extensions</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel12.Text" xml:space="preserve">
+    <value>Inkscape</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab11gB3.Text" xml:space="preserve">
+    <value>Çevrimiçi SVG çizimleri oluşturun</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="linkLabel15.Text" xml:space="preserve">
+    <value>Github'da Draradech/jigsaw.html tarafından hazırlanan yapboz oluşturucu</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel11.Text" xml:space="preserve">
+    <value>www.templatemaker.nl</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel10.Text" xml:space="preserve">
+    <value>yapıcı.js</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab11gB4.Text" xml:space="preserve">
+    <value>Ücretsiz yazı tipleri, örn. şablon veya açılır pencere için</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="linkLabel9.Text" xml:space="preserve">
+    <value>www.dafont.com</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab11gB5.Text" xml:space="preserve">
+    <value>GRBL ve GCode ile ilgili</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="linkLabel8.Text" xml:space="preserve">
+    <value>Linuxcnc'de GCode'a genel bakış</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel7.Text" xml:space="preserve">
+    <value>GitHub'da GRBL</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab11gB2.Text" xml:space="preserve">
+    <value>Ücretsiz SVG grafik kaynakları (sürükle ve bırak özellikli)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="tab11gB2lbl1.Text" xml:space="preserve">
+    <value>Not: sürükle ve bırak, IE-Browser ile değil, Google Chrome ile çalışır</value>
+    <comment>TabPage11</comment>
+  </data>
+  <data name="btnReloadFile.Text" xml:space="preserve">
+    <value>SVG, DXF, HPGL, Drill dosyasını yeniden yükleyin</value>
+    <comment>TabPage1</comment>
+  </data>
+  <data name="btnReloadFile.ToolTip" xml:space="preserve">
+    <value>İçe aktarma sırasında yeni ayarları uygulamak için verileri yeniden yükleyin</value>
+    <comment>TabPage1</comment>
+  </data>
+  <data name="btnApplyChangings.Text" xml:space="preserve">
+    <value>Değişiklikleri uygula</value>
+    <comment>TabPage0</comment>
+  </data>
+  <data name="btnApplyChangings.ToolTip" xml:space="preserve">
+    <value>Yeni ayarları özel düğmelere hemen uygulamak için düğmesine basın.
+Diğer ayarlar genellikle değiştirildiğinde saklanacaktır.</value>
+    <comment>TabPage0</comment>
+  </data>
+  <data name="cBshowImportDialog.Text" xml:space="preserve">
+    <value>Grafik içe aktarmada 'kullanım durumu' seçimini göster</value>
+    <comment>TabPage1</comment>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Kurmak</value>
+    <comment>Form</comment>
+  </data>
+</root>

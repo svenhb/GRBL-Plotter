@@ -1826,32 +1826,16 @@ M4 وضع الطاقة ليزر ديناميكي</value>
     <value>إعدادات جويستيك التناظرية</value>
     <comment>ok</comment>
   </data>
-  <data name="lblValR.Text" xml:space="preserve">
-    <value>-</value>
-    <comment>ok</comment>
-  </data>
   <data name="lblValR.ToolTip" xml:space="preserve">
     <value>القيمة مع الإزاحة المطبقة</value>
-    <comment>ok</comment>
-  </data>
-  <data name="lblValY.Text" xml:space="preserve">
-    <value>-</value>
     <comment>ok</comment>
   </data>
   <data name="lblValY.ToolTip" xml:space="preserve">
     <value>القيمة مع الإزاحة المطبقة</value>
     <comment>ok</comment>
   </data>
-  <data name="lblValZ.Text" xml:space="preserve">
-    <value>-</value>
-    <comment>ok</comment>
-  </data>
   <data name="lblValZ.ToolTip" xml:space="preserve">
     <value>القيمة مع الإزاحة المطبقة</value>
-    <comment>ok</comment>
-  </data>
-  <data name="lblValX.Text" xml:space="preserve">
-    <value>-</value>
     <comment>ok</comment>
   </data>
   <data name="lblValX.ToolTip" xml:space="preserve">
@@ -3376,5 +3360,8 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   </data>
   <data name="RbApperance1.Text" xml:space="preserve">
     <value>منطقة حساسة</value>
+  </data>
+  <data name="label88.Text" xml:space="preserve">
+    <value>بثبات:</value>
   </data>
 </root>

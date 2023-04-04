@@ -41,7 +41,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.nUDDiameter = new System.Windows.Forms.NumericUpDown();
+            this.nUDProbeDiameter = new System.Windows.Forms.NumericUpDown();
             this.nUDOffsetX = new System.Windows.Forms.NumericUpDown();
             this.nUDOffsetY = new System.Windows.Forms.NumericUpDown();
             this.nUDOffsetZ = new System.Windows.Forms.NumericUpDown();
@@ -65,11 +65,15 @@
             this.cBSetCoordTL = new System.Windows.Forms.CheckBox();
             this.btnSaveTL = new System.Windows.Forms.Button();
             this.cBSetCenterZero = new System.Windows.Forms.CheckBox();
+            this.nUDFindCenterAngle = new System.Windows.Forms.NumericUpDown();
             this.gBMovement = new System.Windows.Forms.GroupBox();
+            this.nUDProbeFeedZ = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.nUDProbeFeed = new System.Windows.Forms.NumericUpDown();
+            this.nUDProbeFeedXY = new System.Windows.Forms.NumericUpDown();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label20 = new System.Windows.Forms.Label();
@@ -90,14 +94,16 @@
             this.rB2 = new System.Windows.Forms.RadioButton();
             this.rB1 = new System.Windows.Forms.RadioButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.cBFindCenterStartFromCenter = new System.Windows.Forms.CheckBox();
+            this.lblCFAngle = new System.Windows.Forms.Label();
             this.lblCFStatus = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
             this.lblCFProgressInfo = new System.Windows.Forms.Label();
             this.btnStartCF = new System.Windows.Forms.Button();
             this.lblCFProgress = new System.Windows.Forms.Label();
             this.progressBarCF = new System.Windows.Forms.ProgressBar();
             this.btnCancelCF = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnClearTL = new System.Windows.Forms.Button();
             this.pBTL = new System.Windows.Forms.PictureBox();
@@ -115,7 +121,7 @@
             this.rBProbeCoord1 = new System.Windows.Forms.RadioButton();
             this.label11 = new System.Windows.Forms.Label();
             this.gBHardware.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDDiameter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDProbeDiameter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDOffsetX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDOffsetY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDOffsetZ)).BeginInit();
@@ -129,8 +135,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDProbeTravelZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDProbeTravelY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDProbeTravelX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDFindCenterAngle)).BeginInit();
             this.gBMovement.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDProbeFeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDProbeFeedZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDProbeFeedXY)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -177,7 +185,7 @@
             this.gBHardware.Controls.Add(this.label7);
             this.gBHardware.Controls.Add(this.label6);
             this.gBHardware.Controls.Add(this.label5);
-            this.gBHardware.Controls.Add(this.nUDDiameter);
+            this.gBHardware.Controls.Add(this.nUDProbeDiameter);
             this.gBHardware.Controls.Add(this.nUDOffsetX);
             this.gBHardware.Controls.Add(this.nUDOffsetY);
             this.gBHardware.Controls.Add(this.nUDOffsetZ);
@@ -203,19 +211,19 @@
             resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
             // 
-            // nUDDiameter
+            // nUDProbeDiameter
             // 
-            this.nUDDiameter.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "probingToolDiameter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDDiameter.DecimalPlaces = 3;
-            resources.ApplyResources(this.nUDDiameter, "nUDDiameter");
-            this.nUDDiameter.Minimum = new decimal(new int[] {
+            this.nUDProbeDiameter.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "probingToolDiameter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDProbeDiameter.DecimalPlaces = 3;
+            resources.ApplyResources(this.nUDProbeDiameter, "nUDProbeDiameter");
+            this.nUDProbeDiameter.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             196608});
-            this.nUDDiameter.Name = "nUDDiameter";
-            this.toolTip1.SetToolTip(this.nUDDiameter, resources.GetString("nUDDiameter.ToolTip"));
-            this.nUDDiameter.Value = global::GrblPlotter.Properties.Settings.Default.probingToolDiameter;
+            this.nUDProbeDiameter.Name = "nUDProbeDiameter";
+            this.toolTip1.SetToolTip(this.nUDProbeDiameter, resources.GetString("nUDProbeDiameter.ToolTip"));
+            this.nUDProbeDiameter.Value = global::GrblPlotter.Properties.Settings.Default.probingToolDiameter;
             // 
             // nUDOffsetX
             // 
@@ -463,8 +471,31 @@
             this.toolTip1.SetToolTip(this.cBSetCenterZero, resources.GetString("cBSetCenterZero.ToolTip"));
             this.cBSetCenterZero.UseVisualStyleBackColor = true;
             // 
+            // nUDFindCenterAngle
+            // 
+            this.nUDFindCenterAngle.Increment = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDFindCenterAngle, "nUDFindCenterAngle");
+            this.nUDFindCenterAngle.Maximum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            0});
+            this.nUDFindCenterAngle.Minimum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            -2147483648});
+            this.nUDFindCenterAngle.Name = "nUDFindCenterAngle";
+            this.toolTip1.SetToolTip(this.nUDFindCenterAngle, resources.GetString("nUDFindCenterAngle.ToolTip"));
+            this.nUDFindCenterAngle.ValueChanged += new System.EventHandler(this.NudFindCenterAngle_ValueChanged);
+            // 
             // gBMovement
             // 
+            this.gBMovement.Controls.Add(this.nUDProbeFeedZ);
             this.gBMovement.Controls.Add(this.nUDProbeFinalZ);
             this.gBMovement.Controls.Add(this.nUDProbeFinalY);
             this.gBMovement.Controls.Add(this.nUDProbeFinalX);
@@ -476,16 +507,40 @@
             this.gBMovement.Controls.Add(this.label9);
             this.gBMovement.Controls.Add(this.label10);
             this.gBMovement.Controls.Add(this.nUDProbeTravelY);
-            this.gBMovement.Controls.Add(this.nUDProbeFeed);
+            this.gBMovement.Controls.Add(this.nUDProbeFeedXY);
             this.gBMovement.Controls.Add(this.nUDProbeTravelX);
             this.gBMovement.Controls.Add(this.label2);
             this.gBMovement.Controls.Add(this.label14);
             this.gBMovement.Controls.Add(this.lblProbeFinal);
             this.gBMovement.Controls.Add(this.label3);
+            this.gBMovement.Controls.Add(this.label13);
+            this.gBMovement.Controls.Add(this.label15);
             resources.ApplyResources(this.gBMovement, "gBMovement");
             this.gBMovement.Name = "gBMovement";
             this.gBMovement.TabStop = false;
             this.gBMovement.Enter += new System.EventHandler(this.ControlProbing_Click);
+            // 
+            // nUDProbeFeedZ
+            // 
+            this.nUDProbeFeedZ.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "probingFeedZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDProbeFeedZ.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.nUDProbeFeedZ, "nUDProbeFeedZ");
+            this.nUDProbeFeedZ.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nUDProbeFeedZ.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nUDProbeFeedZ.Name = "nUDProbeFeedZ";
+            this.nUDProbeFeedZ.Value = global::GrblPlotter.Properties.Settings.Default.probingFeedZ;
             // 
             // label8
             // 
@@ -502,27 +557,37 @@
             resources.ApplyResources(this.label10, "label10");
             this.label10.Name = "label10";
             // 
-            // nUDProbeFeed
+            // nUDProbeFeedXY
             // 
-            this.nUDProbeFeed.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "probingFeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDProbeFeed.Increment = new decimal(new int[] {
+            this.nUDProbeFeedXY.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "probingFeedXY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDProbeFeedXY.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            resources.ApplyResources(this.nUDProbeFeed, "nUDProbeFeed");
-            this.nUDProbeFeed.Maximum = new decimal(new int[] {
+            resources.ApplyResources(this.nUDProbeFeedXY, "nUDProbeFeedXY");
+            this.nUDProbeFeedXY.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.nUDProbeFeed.Minimum = new decimal(new int[] {
+            this.nUDProbeFeedXY.Minimum = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.nUDProbeFeed.Name = "nUDProbeFeed";
-            this.nUDProbeFeed.Value = global::GrblPlotter.Properties.Settings.Default.probingFeed;
+            this.nUDProbeFeedXY.Name = "nUDProbeFeedXY";
+            this.nUDProbeFeedXY.Value = global::GrblPlotter.Properties.Settings.Default.probingFeedXY;
+            // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
+            // 
+            // label15
+            // 
+            resources.ApplyResources(this.label15, "label15");
+            this.label15.Name = "label15";
             // 
             // tabControl1
             // 
@@ -680,9 +745,11 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.cBFindCenterStartFromCenter);
+            this.tabPage2.Controls.Add(this.lblCFAngle);
+            this.tabPage2.Controls.Add(this.nUDFindCenterAngle);
             this.tabPage2.Controls.Add(this.nUDWorkpieceDiameter);
             this.tabPage2.Controls.Add(this.lblCFStatus);
-            this.tabPage2.Controls.Add(this.label21);
             this.tabPage2.Controls.Add(this.lblCFProgressInfo);
             this.tabPage2.Controls.Add(this.btnStartCF);
             this.tabPage2.Controls.Add(this.lblCFProgress);
@@ -691,19 +758,26 @@
             this.tabPage2.Controls.Add(this.rBCF2);
             this.tabPage2.Controls.Add(this.rBCF1);
             this.tabPage2.Controls.Add(this.label22);
+            this.tabPage2.Controls.Add(this.label21);
             resources.ApplyResources(this.tabPage2, "tabPage2");
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // cBFindCenterStartFromCenter
+            // 
+            resources.ApplyResources(this.cBFindCenterStartFromCenter, "cBFindCenterStartFromCenter");
+            this.cBFindCenterStartFromCenter.Name = "cBFindCenterStartFromCenter";
+            this.cBFindCenterStartFromCenter.UseVisualStyleBackColor = true;
+            // 
+            // lblCFAngle
+            // 
+            resources.ApplyResources(this.lblCFAngle, "lblCFAngle");
+            this.lblCFAngle.Name = "lblCFAngle";
             // 
             // lblCFStatus
             // 
             resources.ApplyResources(this.lblCFStatus, "lblCFStatus");
             this.lblCFStatus.Name = "lblCFStatus";
-            // 
-            // label21
-            // 
-            resources.ApplyResources(this.label21, "label21");
-            this.label21.Name = "label21";
             // 
             // lblCFProgressInfo
             // 
@@ -738,6 +812,11 @@
             // 
             resources.ApplyResources(this.label22, "label22");
             this.label22.Name = "label22";
+            // 
+            // label21
+            // 
+            resources.ApplyResources(this.label21, "label21");
+            this.label21.Name = "label21";
             // 
             // tabPage3
             // 
@@ -811,6 +890,7 @@
             // timer1
             // 
             this.timer1.Enabled = true;
+            this.timer1.Interval = 200;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // gBCoordinates
@@ -867,7 +947,7 @@
             this.Click += new System.EventHandler(this.ControlProbing_Click);
             this.gBHardware.ResumeLayout(false);
             this.gBHardware.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDDiameter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDProbeDiameter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDOffsetX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDOffsetY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDOffsetZ)).EndInit();
@@ -881,9 +961,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDProbeTravelZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDProbeTravelY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDProbeTravelX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDFindCenterAngle)).EndInit();
             this.gBMovement.ResumeLayout(false);
             this.gBMovement.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDProbeFeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDProbeFeedZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDProbeFeedXY)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -902,10 +984,10 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.NumericUpDown nUDDiameter;
+        private System.Windows.Forms.NumericUpDown nUDProbeDiameter;
         private System.Windows.Forms.NumericUpDown nUDProbeTravelX;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown nUDProbeFeed;
+        private System.Windows.Forms.NumericUpDown nUDProbeFeedXY;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown nUDOffsetZ;
         private System.Windows.Forms.NumericUpDown nUDOffsetY;
@@ -982,5 +1064,11 @@
         private System.Windows.Forms.Button btnSaveTL;
         private System.Windows.Forms.CheckBox cBSetCenterZero;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblCFAngle;
+        private System.Windows.Forms.NumericUpDown nUDFindCenterAngle;
+        private System.Windows.Forms.CheckBox cBFindCenterStartFromCenter;
+        private System.Windows.Forms.NumericUpDown nUDProbeFeedZ;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label15;
     }
 }

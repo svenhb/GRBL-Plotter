@@ -661,6 +661,7 @@ namespace GrblPlotter
             this.tab4gB1lbl1 = new System.Windows.Forms.Label();
             this.cBoxPollInterval = new System.Windows.Forms.ComboBox();
             this.tab4gB3 = new System.Windows.Forms.GroupBox();
+            this.label88 = new System.Windows.Forms.Label();
             this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
             this.tab4gB3lbl1 = new System.Windows.Forms.Label();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
@@ -2180,7 +2181,7 @@ namespace GrblPlotter
             1,
             0,
             0,
-            196608});
+            131072});
             this.nUDImportGCSegment.Name = "nUDImportGCSegment";
             this.toolTip1.SetToolTip(this.nUDImportGCSegment, resources.GetString("nUDImportGCSegment.ToolTip"));
             this.nUDImportGCSegment.Value = global::GrblPlotter.Properties.Settings.Default.importGCSegment;
@@ -2217,7 +2218,7 @@ namespace GrblPlotter
             1,
             0,
             0,
-            196608});
+            131072});
             this.nUDImportReduce.Name = "nUDImportReduce";
             this.toolTip1.SetToolTip(this.nUDImportReduce, resources.GetString("nUDImportReduce.ToolTip"));
             this.nUDImportReduce.Value = global::GrblPlotter.Properties.Settings.Default.importRemoveShortMovesLimit;
@@ -7121,9 +7122,9 @@ namespace GrblPlotter
             // 
             // cBpollIntervalReduce
             // 
-            resources.ApplyResources(this.cBpollIntervalReduce, "cBpollIntervalReduce");
             this.cBpollIntervalReduce.Checked = global::GrblPlotter.Properties.Settings.Default.grblPollIntervalReduce;
             this.cBpollIntervalReduce.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "grblPollIntervalReduce", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.cBpollIntervalReduce, "cBpollIntervalReduce");
             this.cBpollIntervalReduce.Name = "cBpollIntervalReduce";
             this.cBpollIntervalReduce.UseVisualStyleBackColor = true;
             // 
@@ -7148,12 +7149,18 @@ namespace GrblPlotter
             // tab4gB3
             // 
             this.tab4gB3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tab4gB3.Controls.Add(this.label88);
             this.tab4gB3.Controls.Add(this.numericUpDown6);
             this.tab4gB3.Controls.Add(this.tab4gB3lbl1);
             this.tab4gB3.Controls.Add(this.checkBox3);
             resources.ApplyResources(this.tab4gB3, "tab4gB3");
             this.tab4gB3.Name = "tab4gB3";
             this.tab4gB3.TabStop = false;
+            // 
+            // label88
+            // 
+            resources.ApplyResources(this.label88, "label88");
+            this.label88.Name = "label88";
             // 
             // numericUpDown6
             // 
@@ -11175,7 +11182,6 @@ namespace GrblPlotter
             this.tab4gB5.ResumeLayout(false);
             this.tab4gB5.PerformLayout();
             this.tab4gB1.ResumeLayout(false);
-            this.tab4gB1.PerformLayout();
             this.tab4gB3.ResumeLayout(false);
             this.tab4gB3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
@@ -12321,5 +12327,6 @@ namespace GrblPlotter
         private System.Windows.Forms.RadioButton RbApperance2;
         private System.Windows.Forms.RadioButton RbApperance1;
         private System.Windows.Forms.CheckBox cBimportGraphicLeadTopZUp;
+        private System.Windows.Forms.Label label88;
     }
 }

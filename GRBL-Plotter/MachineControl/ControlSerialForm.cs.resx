@@ -123,12 +123,6 @@
   <data name="cbBaud.ToolTip" xml:space="preserve">
     <value>Vyberte rychlost</value>
   </data>
-  <data name="btnOpenPort.Text" xml:space="preserve">
-    <value>Otevřeno</value>
-  </data>
-  <data name="btnOpenPort.ToolTip" xml:space="preserve">
-    <value>Otevřete vybraný COM port s vybranou rychlostí</value>
-  </data>
   <data name="btnScanPort.Text" xml:space="preserve">
     <value>Skenování portů</value>
   </data>

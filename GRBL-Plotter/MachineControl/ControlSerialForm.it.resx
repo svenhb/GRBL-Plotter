@@ -269,9 +269,6 @@ Il successo dipende dall'hardware utilizzato (DTR, RTS cablato?)</value>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Rapporto sullo stato in tempo reale</value>
   </data>
-  <data name="TbEthernetIP.Text" xml:space="preserve">
-    <value>192.168.2.122</value>
-  </data>
   <data name="LblEthernetPort.Text" xml:space="preserve">
     <value>Porta:</value>
   </data>

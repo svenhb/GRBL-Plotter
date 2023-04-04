@@ -123,12 +123,6 @@
   <data name="cbBaud.ToolTip" xml:space="preserve">
     <value>选择速度</value>
   </data>
-  <data name="btnOpenPort.Text" xml:space="preserve">
-    <value>打开</value>
-  </data>
-  <data name="btnOpenPort.ToolTip" xml:space="preserve">
-    <value>以选定的速度打开选定的COM端口。 或关闭打开的COM端口</value>
-  </data>
   <data name="btnScanPort.Text" xml:space="preserve">
     <value>扫描端口</value>
   </data>
@@ -155,13 +149,6 @@
   </data>
   <data name="btnGRBLCommand4.ToolTip" xml:space="preserve">
     <value>杀死警报锁</value>
-  </data>
-  <data name="label11.ToolTip" xml:space="preserve">
-    <value>附件状态
-S =主轴CW，
-C =主轴CCW，
-F =防洪线，
-M =冷却液</value>
   </data>
   <data name="btnCheckGRBL.Text" xml:space="preserve">
     <value>检查GRBL</value>

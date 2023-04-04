@@ -123,12 +123,6 @@
   <data name="cbBaud.ToolTip" xml:space="preserve">
     <value>Выберите скорость</value>
   </data>
-  <data name="btnOpenPort.Text" xml:space="preserve">
-    <value>Открыть</value>
-  </data>
-  <data name="btnOpenPort.ToolTip" xml:space="preserve">
-    <value>Откройте выбранный COM-порт с выбранной скоростью. Или закройте открытый COM-порт</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnScanPort.Size" type="System.Drawing.Size, System.Drawing">
     <value>85, 23</value>
@@ -200,13 +194,6 @@
     <value>Значения переопределения для подачи, порогов и скорости в%</value>
   </data>
   <data name="lblSrA.ToolTip" xml:space="preserve">
-    <value>Состояние аксессуара 
-S = шпиндель CW, 
-C = шпиндель против часовой стрелки, 
-F = колонтитул, 
-M = туманная охлаждающая жидкость</value>
-  </data>
-  <data name="label11.ToolTip" xml:space="preserve">
     <value>Состояние аксессуара 
 S = шпиндель CW, 
 C = шпиндель против часовой стрелки, 

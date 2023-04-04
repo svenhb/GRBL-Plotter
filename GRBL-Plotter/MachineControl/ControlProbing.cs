@@ -26,6 +26,8 @@
  * 2021-12-22 check if is connected to grbl before sending code - 452, 706, 803
  * 2022-01-07 SetProgressxx .Value=0
  * 2023-03-15 l:900 f:ControlProbing_Click keep nUD..Z disabled
+ * 2023-03-31 l:763 f:BtnStartCF_Click add rotation angle for probing center finder also l:452 rBCF1.Image rotate image
+ * 2023-04-04 add log-info to COM CNC window
 */
 
 using System;
@@ -39,7 +41,6 @@ namespace GrblPlotter
     {
         private enum ProbingMode { noProbing, edgeFinder, centerFinder, toolLenght }
 
-        //    private ArrayList gcodeString = new ArrayList();
         private const string ProbeCommand = "G91 G38.3";
         private string CoordCommand = "G10 L2 P0";        // G92
         private bool useG92 = false;
@@ -52,7 +53,6 @@ namespace GrblPlotter
         private const int stateCommandsMax = 40;
         private readonly string[] stateCommands = new string[stateCommandsMax];
 
-
         private readonly XyzPoint[] probingValues = { new XyzPoint(), new XyzPoint(), new XyzPoint(), new XyzPoint(), new XyzPoint() };
         private XyPoint probePosOld = new XyPoint(0, 0);
         private XyPoint probePosNew = new XyPoint(0, 0);
@@ -64,17 +64,16 @@ namespace GrblPlotter
         private string probingMoveSave = "";
         private string probingAxisX = "";
         private string probingAxisY = "";
-        //        private string probingAxisZ = "";
 
         private bool probeX = false, probeY = false;
         private int probingCount = 0;
         private bool updateProgress = false;
-        //    private decimal progressDistance = 1;
         private double angle = 0;
 
         private ProbingMode probingAction = ProbingMode.noProbing;
         private GrblState grblStateNow = GrblState.run;
         private bool isIdle = false;    // trigger to send commands
+		private int idleTimeOut = 5;
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -117,6 +116,9 @@ namespace GrblPlotter
             NudOffset_ValueChanged(sender, e);  // set minimum values of Save position
         }
 
+        /***************************************************************************/
+        // get grbl status from MainFormInterface ProcessStatus line 395
+        /***************************************************************************/
         internal GrblState SetGrblSaState
         {
             set
@@ -146,7 +148,7 @@ namespace GrblPlotter
         }
 
         /***************************************************************************/
-        // get height information from main-GUI OnRaisePosEvent line 192
+        // get height information from MainFormInterface OnRaisePosEvent line 370
         /***************************************************************************/
         internal XyzPoint SetPosProbe
         {
@@ -179,8 +181,8 @@ namespace GrblPlotter
                         }
                         else if (probingAction == ProbingMode.toolLenght)
                         {
-                            ProbingFinishCF();
-                            lblCFProgress.Text = Localization.GetString("probingFail1");//"Fail: no contact";
+                            ProbingFinishTL();
+                            lblTLProgress.Text = Localization.GetString("probingFail1");//"Fail: no contact";
                         }
                     }
                 }
@@ -192,7 +194,6 @@ namespace GrblPlotter
                 double tmpProbePos = probePos.X - (double)probingOffset[0];
                 string tmpEF = string.Format("Ok X:{0}", probePos.X);
 
-                //   double angle = 
                 if (probingAxisIndex == 1) { tmpProbePos = probePos.Y - (double)probingOffset[1]; tmpEF = string.Format("Ok Y:{0}", probePos.Y); }
                 if (probingAxisIndex == 2) { tmpProbePos = probePos.Z - (double)probingOffset[2]; tmpEF = string.Format("Ok Z:{0}", probePos.Z); }
 
@@ -208,7 +209,7 @@ namespace GrblPlotter
                 {
                     if ((probingAxisIndex >= 0) && (probingAxisIndex <= 2))
                     {
-                        SendCommandEvent(new CmdEventArgs((string.Format("{0} {1}{2}", CoordCommand, probingAxis[probingAxisIndex], tmpProbePos).Replace(',', '.'))));
+                        SendCommandEvent(new CmdEventArgs((string.Format("{0} {1}{2:0.000}", CoordCommand, probingAxis[probingAxisIndex], tmpProbePos).Replace(',', '.'))));
                         probingMoveSave = string.Format("G90 G00 {0}{1} (move to save pos.)", probingAxis[probingAxisIndex], probingSave[probingAxisIndex]);    // will be sent in timer1_Tick
                         lblEFProgress.Text = tmpEF;
                     }
@@ -218,37 +219,45 @@ namespace GrblPlotter
                         angle += 180;
                     if (probeX)
                         angle -= 90;
-                    //         else if (probeY)
-                    //             angle = -angle;
+
                     tBAngle.Text = string.Format("{0:0.00}", angle);
                 }
                 else if (probingAction == ProbingMode.centerFinder)
                 {
                     probingValues[probingValuesIndex++] = probePos;
 
-                    if (probingValuesIndex == 2)    // calc center and apply
+                    if (probingValuesIndex == 2)   // calc center and apply
                     {
                         double centerX = (probingValues[0].X + probingValues[1].X) / 2;
-                        SendCommandEvent(new CmdEventArgs((string.Format("{0} X{1}", CoordCommand, centerX).Replace(',', '.'))));
-                        if (rBCF1.Checked)
-                            stateCommands[4] = string.Format("G90 G00 X{0};", 0);
-                        else
-                            stateCommands[9] = string.Format("G90 G00 X{0};", 0);
+                        double centerY = (probingValues[0].Y + probingValues[1].Y) / 2;
+                        Logger.Trace("stateMachineCF index:{0} p1:{1:0.0};{2:0.0} p2:{3:0.0};{4:0.0}  center:{5:0.0};{6:0.0}", probingValuesIndex, probingValues[0].X, probingValues[0].Y, probingValues[1].X, probingValues[1].Y, centerX, centerY);
 
-                        lblCFStatus.Text = Localization.GetString("probingSetCenter") + " X";//"Set center X";
-                        lblCFProgress.Text = string.Format("Ok X:{0}", probePos.X);
+                        SendCommandEvent(new CmdEventArgs((string.Format("{0} X{1:0.000} Y{2:0.000}", CoordCommand, centerX, centerY).Replace(',', '.'))));
+                        if (rBCF1.Checked)
+                        {
+                            stateCommands[4] = string.Format("G90 G00 X{0} Y{1};( 2 move to center x);", 0, 0);
+                            stateCommands[6] = string.Format("G90 G00 X{0} Y{1};( 3 move to center x);", 0, 0);
+                        }
+                        else
+                        { stateCommands[9] = string.Format("G90 G00 X{0} Y{1};( 2 move to center y);", 0, 0); }
+
+                        lblCFStatus.Text = Localization.GetString("probingSetCenter") + " X/Y";//"Set center X";
+                        lblCFProgress.Text = string.Format("Ok X:{0} Y:{1}", probePos.X, probePos.Y);
                     }
 
                     if (probingValuesIndex > 3)
-                    {   //double centerX = (probingValues[0].X + probingValues[1].X) / 2;
+                    {
+                        double centerX = (probingValues[2].X + probingValues[3].X) / 2;
                         double centerY = (probingValues[2].Y + probingValues[3].Y) / 2;
-                        SendCommandEvent(new CmdEventArgs((string.Format("{0} Y{1}", CoordCommand, centerY).Replace(',', '.'))));
+                        Logger.Trace("stateMachineCF index:{0} p1:{1:0.0};{2:0.0} p2:{3:0.0};{4:0.0}  center:{5:0.0};{6:0.0}", probingValuesIndex, probingValues[0].X, probingValues[0].Y, probingValues[1].X, probingValues[1].Y, centerX, centerY);
+                        SendCommandEvent(new CmdEventArgs((string.Format("{0} X{1:0.000} Y{2:0.000}", CoordCommand, centerX, centerY).Replace(',', '.'))));
                         if (rBCF1.Checked)
-                            stateCommands[9] = string.Format("G90 G00 Y{0};", 0);
+                        { stateCommands[8] = string.Format("G90 G00 X{0} Y{1};( 4 move to center y);", 0, 0); }
                         else
-                            stateCommands[20] = string.Format("G90 G00 Y{0};", 0);
-                        lblCFStatus.Text = Localization.GetString("probingSetCenter") + " Y";//"Set center Y";
-                        lblCFProgress.Text = string.Format("Ok Y:{0}", probePos.Y);
+                        { stateCommands[20] = string.Format("G90 G00 X{0} Y{1};( 4 move to center y);", 0, 0); }
+
+                        lblCFStatus.Text = Localization.GetString("probingSetCenter") + " X/Y";//"Set center Y";
+                        lblCFProgress.Text = string.Format("Ok X:{0} Y:{1}", centerX, centerY);
                     }
                 }
                 else if (probingAction == ProbingMode.toolLenght)
@@ -265,6 +274,9 @@ namespace GrblPlotter
             get { return probePos; }
         }
 
+        /***************************************************************************/
+        // timer interval 200ms
+        /***************************************************************************/
         private void Timer1_Tick(object sender, EventArgs e)
         {
             if (updateProgress)
@@ -272,7 +284,7 @@ namespace GrblPlotter
                 if (probingAction == ProbingMode.edgeFinder)
                 {
                     progressBarEF.Increment(1);
-                    lblEFProgress.Text = string.Format("{0:0.00} units", (progressBarEF.Maximum - progressBarEF.Value) * nUDProbeFeed.Value / 600);
+                    lblEFProgress.Text = string.Format("{0:0.00} units", (progressBarEF.Maximum - progressBarEF.Value) * nUDProbeFeedXY.Value / 600);
                     if (progressBarEF.Value >= probingTime)
                     {
                         lblEFProgress.Text = Localization.GetString("probingTimeOut");// "Time out";
@@ -282,7 +294,7 @@ namespace GrblPlotter
                 else if (probingAction == ProbingMode.centerFinder)
                 {
                     progressBarCF.Increment(1);
-                    lblCFProgress.Text = string.Format("{0:0.00} units", (progressBarCF.Maximum - progressBarCF.Value) * nUDProbeFeed.Value / 600);
+                    lblCFProgress.Text = string.Format("{0:0.00} units", (progressBarCF.Maximum - progressBarCF.Value) * nUDProbeFeedXY.Value / 600);
                     if (progressBarCF.Value >= probingTime)
                     {
                         lblCFProgress.Text = Localization.GetString("probingTimeOut");// "Time out";
@@ -292,7 +304,7 @@ namespace GrblPlotter
                 else if (probingAction == ProbingMode.toolLenght)
                 {
                     progressBarTL.Increment(1);
-                    lblTLProgress.Text = string.Format("{0:0.00} units", (progressBarTL.Maximum - progressBarTL.Value) * nUDProbeFeed.Value / 600);
+                    lblTLProgress.Text = string.Format("{0:0.00} units", (progressBarTL.Maximum - progressBarTL.Value) * nUDProbeFeedXY.Value / 600);
                     if (progressBarTL.Value >= probingTime)
                     {
                         lblTLProgress.Text = Localization.GetString("probingTimeOut");// "Time out";
@@ -317,13 +329,23 @@ namespace GrblPlotter
                     else if (probingAction == ProbingMode.toolLenght)
                         isIdle = StateMachineTL();
                 }
-
-                //        if (probingAction == probingMode.noProbing)
-                //        { lblEFProgress.Text = ""; lblCFProgress.Text = ""; lblTLProgress.Text = ""; }
+            }
+            else
+            {
+                //if (probingAction == ProbingMode.centerFinder)
+                {
+					if (idleTimeOut-- <= 0)
+                    {	
+						if (Grbl.Status == GrblState.idle)  // also poll status
+							isIdle = true;
+					
+						idleTimeOut = 5;
+					}
+                }
             }
         }
 
-        private bool StateMachineEF()
+        private bool StateMachineEF()	// edgeFinder
         {
             bool goon = false;
             Logger.Trace("stateMachineEF probingCount:{0}", probingCount);
@@ -368,58 +390,63 @@ namespace GrblPlotter
             return goon;
         }
 
-        private bool StateMachineCF()
+        private bool StateMachineCF()	// centerFinder
         {
             SendCommandEvent(new CmdEventArgs(stateCommands[probingCount].Replace(',', '.')));
             Logger.Trace("stateMachineCF probingCount:{0}", probingCount);
             if (rBCF1.Checked)
             {
-                if (probingCount == 3)
-                    SetProgressCF(nUDWorkpieceDiameter.Value);
-                if (new[] { 5, 7 }.Contains(probingCount))
+                if (new[] { 3, 5, 7 }.Contains(probingCount))
                 {
                     SetProgressCF(nUDWorkpieceDiameter.Value);
-                    lblEFProgressInfo.Text = Localization.GetString("probingProbingOn") + " Y"; //"Probing on X";
+                    string txt = Localization.GetString("probingProbingOn") + " " + ((probingCount + 1) / 2).ToString("D1");
+                    //lblEFProgressInfo.Text = txt; //"Probing on X";
+                    lblCFStatus.Text = txt;
                 }
 
-                if (probingCount == 8)
-                    lblCFStatus.Text = Localization.GetString("probingCenter");// "Move to center";
-
-                if (probingCount > 8)
+                else if (new[] { 2, 4, 6 }.Contains(probingCount))
                 {
+                    lblCFStatus.Text = Localization.GetString("probingCenter");
+                }
+
+                if (probingCount > 7)
+                {
+                    lblCFStatus.Text = Localization.GetString("probingFinish");
                     ProbingFinishCF();
-                    //           lblCFProgress.Text = Localization.getString("probingFinish");//"Finish";
                 }
             }
             else
             {
-
-                if (probingCount == 6)
-                    SetProgressCF(nUDWorkpieceDiameter.Value);
-                if (new[] { 12, 17 }.Contains(probingCount))
+                if (new[] { 6, 12, 17 }.Contains(probingCount))
                 {
                     SetProgressCF(nUDWorkpieceDiameter.Value);
-                    lblEFProgressInfo.Text = Localization.GetString("probingProbingOn") + " Y"; //"Probing on X";
+                    string txt = Localization.GetString("probingProbingOn") + " " + ((probingCount + 1) / 2).ToString("D1");
+                    lblCFStatus.Text = txt;
                 }
-
-                if (probingCount == 19)
-                    lblCFStatus.Text = Localization.GetString("probingCenter");//"Move to center";
+                else if (new[] { 7, 13 }.Contains(probingCount))
+                {
+                    lblCFStatus.Text = "move to next probing pos";
+                }
+                if (probingCount == 18)
+                    lblCFStatus.Text = Localization.GetString("probingCenter");
 
                 if (probingCount > 19)
-                    ProbingFinishCF();
+                {
+                    lblCFStatus.Text = Localization.GetString("probingFinish");
+                    ProbingFinishCF(); 
+                }
             }
             probingCount++;
             return false;
         }
 
-        private bool StateMachineTL()
+        private bool StateMachineTL()	// toolLength
         {
             SendCommandEvent(new CmdEventArgs(stateCommands[probingCount].Replace(',', '.')));
 
             if (probingCount > 1)
             {
                 ProbingFinishTL();
-                //         lblTLProgress.Text = Localization.getString("probingFinish");//"Finish";
             }
             probingCount++;
             return false;
@@ -448,15 +475,34 @@ namespace GrblPlotter
         {
             btnStartCF.Enabled = true;
             bool isActive = (((RadioButton)sender).Name == "rBCF1");
-            rBCF1.Image = isActive ? Properties.Resources.cfOn1 : Properties.Resources.cfOff1;
-            rBCF2.Image = !isActive ? Properties.Resources.cfOn2 : Properties.Resources.cfOff2;
+            rBCF1.Image = RotateImageUsi(isActive ? Properties.Resources.cfOn1 : Properties.Resources.cfOff1, -(float)nUDFindCenterAngle.Value);
+            rBCF2.Image = RotateImageUsi(!isActive ? Properties.Resources.cfOn2 : Properties.Resources.cfOff2, -(float)nUDFindCenterAngle.Value);
+
+            cBFindCenterStartFromCenter.Enabled = !isActive;
 
             SetNudEnable(0, true);
             SetNudEnable(1, true);
             SetNudEnable(2, !isActive);
         }
+        private void NudFindCenterAngle_ValueChanged(object sender, EventArgs e)
+        {
+            rBCF1.Image = RotateImageUsi(rBCF1.Checked ? Properties.Resources.cfOn1 : Properties.Resources.cfOff1, -(float)nUDFindCenterAngle.Value);
+            rBCF2.Image = RotateImageUsi(rBCF2.Checked ? Properties.Resources.cfOn2 : Properties.Resources.cfOff2, -(float)nUDFindCenterAngle.Value);
+        }
 
-
+        private Bitmap RotateImageUsi(Bitmap bitmap, float angle)
+        {
+            Bitmap returnBitmap = new Bitmap(bitmap.Width, bitmap.Height);
+            Color col = bitmap.GetPixel(1, 1);
+            Graphics graphics = Graphics.FromImage(returnBitmap);
+            graphics.FillRectangle(new SolidBrush(col), 0, 0, bitmap.Width, bitmap.Height);
+            graphics.FillEllipse(new SolidBrush(Color.White), 0, 0, bitmap.Width, bitmap.Height);
+            graphics.TranslateTransform((float)bitmap.Width / 2, (float)bitmap.Height / 2);
+            graphics.RotateTransform(angle);
+            graphics.TranslateTransform(-(float)bitmap.Width / 2, -(float)bitmap.Height / 2);
+            graphics.DrawImage(bitmap, new Point(0, 0));
+            return returnBitmap;
+        }
 
         #region edgeFinder
         private void BtnStartEF_Click(object sender, EventArgs e)
@@ -477,6 +523,7 @@ namespace GrblPlotter
             ZatX = 0; ZatY = 0;
 
             FillStrings();      // check which axis to probe, set probeX, probeY, CMD-Strings
+            SendCommandEvent(new CmdEventArgs("(----- Start Edge finder -----);"));
             SendCommandEvent(new CmdEventArgs("G91"));
 
             if (!ProbeAxisX())          // if X, then Y and Z will started via Timer / stateMachine
@@ -499,9 +546,10 @@ namespace GrblPlotter
         private void BtnCancelEF_Click(object sender, EventArgs e)
         {
             ProbingFinishEF();
-            lblEFProgressInfo.Text = Localization.GetString("probingCancel1"); //"Probing canceled";
+            lblEFStatus.Text = Localization.GetString("probingCancel1"); //"Probing canceled";
             if (!isIdle)
                 lblEFProgress.Text = Localization.GetString("probingCancel2"); //"Process last command";
+            SendCommandEvent(new CmdEventArgs("G1;"));
         }
         private void ProbingFinishEF()
         {
@@ -513,8 +561,6 @@ namespace GrblPlotter
             probingMoveSave = "";
             btnCancelEF.Enabled = false;
             btnStartEF.Enabled = true;
-            //           btnCancelCF.Enabled = false;
-            //           btnStartCF.Enabled = true;
             probingAction = ProbingMode.noProbing;
             progressBarEF.Value = 0;        // 2021-01-05
             SetRBEnable(cBnow, true);
@@ -522,8 +568,7 @@ namespace GrblPlotter
 
         private void SetProgressEF(decimal maxTravel)
         {
-            //    progressDistance = maxTravel;
-            probingTime = (int)((maxTravel / nUDProbeFeed.Value) * 60 * 10);    // distance(mm) / speed(mm/min) *60(sec) 100 ms
+            probingTime = (int)((maxTravel / nUDProbeFeedXY.Value) * 60 * 10);    // distance(mm) / speed(mm/min) *60(sec) 100 ms
             progressBarEF.Minimum = 0;
             progressBarEF.Value = 0;
             progressBarEF.Maximum = (int)probingTime;
@@ -555,21 +600,21 @@ namespace GrblPlotter
             { probeString = ProbeToward_Z(); }
 
             if ((rB1.Checked) || (rB4.Checked) || (rB7.Checked))        // probe from left to right
-            { probeString = ProbeToward_E(); probeX = true; ZatX = nUDDiameter.Value; }
+            { probeString = ProbeToward_E(); probeX = true; ZatX = nUDProbeDiameter.Value; }
             else if ((rB3.Checked) || (rB6.Checked) || (rB9.Checked))   // probe from right to left
-            { probeString = ProbeToward_W(); probeX = true; ZatX = -nUDDiameter.Value; }
+            { probeString = ProbeToward_W(); probeX = true; ZatX = -nUDProbeDiameter.Value; }
             probingAxisX = probeString;
 
             probeString = "";
             if ((rB1.Checked) || (rB2.Checked) || (rB3.Checked))
-            { probeString = ProbeToward_S(); probeY = true; ZatY = -nUDDiameter.Value; }
+            { probeString = ProbeToward_S(); probeY = true; ZatY = -nUDProbeDiameter.Value; }
             else if ((rB7.Checked) || (rB8.Checked) || (rB9.Checked))
-            { probeString = ProbeToward_N(); probeY = true; ZatY = nUDDiameter.Value; }
+            { probeString = ProbeToward_N(); probeY = true; ZatY = nUDProbeDiameter.Value; }
             probingAxisY = probeString;
 
 
-            decimal moveY = nUDDiameter.Value + nUDProbeTravelY.Value;
-            decimal moveX = nUDDiameter.Value + nUDProbeSaveX.Value;
+            decimal moveY = nUDProbeDiameter.Value + nUDProbeTravelY.Value;
+            decimal moveX = nUDProbeDiameter.Value + nUDProbeSaveX.Value;
 
             // X is save after 1st probing, move to Y pos for Y probing
             if ((rB1.Checked) || (rB3.Checked)) // adjust for -Y probing
@@ -600,7 +645,7 @@ namespace GrblPlotter
                 probingAxisIndex = 0;
                 SetProgressEF(nUDProbeTravelX.Value);
                 SendCommandEvent(new CmdEventArgs(probingAxisX.Replace(',', '.')));
-                lblEFProgressInfo.Text = Localization.GetString("probingProbingOn") + " X"; //"Probing on X";
+                lblEFStatus.Text = Localization.GetString("probingProbingOn") + " X"; //"Probing on X";
                 lblEFProgress.Text = "";
                 Logger.Trace("probeAxisX()");
             }
@@ -613,7 +658,7 @@ namespace GrblPlotter
                 probingAxisIndex = 1;
                 SetProgressEF(nUDProbeTravelY.Value);
                 SendCommandEvent(new CmdEventArgs(probingAxisY.Replace(',', '.')));
-                lblEFProgressInfo.Text = Localization.GetString("probingProbingOn") + " Y"; //"Probing on Y";
+                lblEFStatus.Text = Localization.GetString("probingProbingOn") + " Y"; //"Probing on Y";
                 lblEFProgress.Text = "";
                 Logger.Trace("probeAxisY()");
             }
@@ -625,7 +670,7 @@ namespace GrblPlotter
             string probeString;
             probeString = ProbeToward_Z();
             SendCommandEvent(new CmdEventArgs(probeString.Replace(',', '.')));
-            lblEFProgressInfo.Text = Localization.GetString("probingProbingOn") + " Z"; //"Probing on Z";
+            lblEFStatus.Text = Localization.GetString("probingProbingOn") + " Z"; //"Probing on Z";
             lblEFProgress.Text = "";
             Logger.Trace("probeAxisZ()");
             return probeY;
@@ -634,39 +679,39 @@ namespace GrblPlotter
         private string ProbeToward_E()    // probe towards direction east (right = +X)
         {
             decimal addon = 0;
-            if (cBSetCenterZero.Checked) { addon = -nUDDiameter.Value / 2; }    // set tool center as zero
+            if (cBSetCenterZero.Checked) { addon = -nUDProbeDiameter.Value / 2; }    // set tool center as zero
 
             probingOffset[0] = -nUDOffsetX.Value + addon;
             probingSave[0] = -nUDProbeSaveX.Value + addon;
-            return string.Format("{0} X{1} F{2};", ProbeCommand, nUDProbeTravelX.Value, nUDProbeFeed.Value);
+            return string.Format("{0} X{1} F{2};( probe to the right );", ProbeCommand, nUDProbeTravelX.Value, nUDProbeFeedXY.Value);
         }
         private string ProbeToward_W()    // probe towards direction west (left = -X)
         {
             decimal addon = 0;
-            if (cBSetCenterZero.Checked) { addon = nUDDiameter.Value / 2; }    // set tool center as zero
+            if (cBSetCenterZero.Checked) { addon = nUDProbeDiameter.Value / 2; }    // set tool center as zero
 
             probingOffset[0] = nUDOffsetX.Value + addon;
             probingSave[0] = nUDProbeSaveX.Value + addon;
-            return string.Format("{0} X-{1} F{2};", ProbeCommand, nUDProbeTravelX.Value, nUDProbeFeed.Value);
+            return string.Format("{0} X-{1} F{2};( probe to the left );", ProbeCommand, nUDProbeTravelX.Value, nUDProbeFeedXY.Value);
         }
 
         private string ProbeToward_N()    // probe towards direction north (up = +Y)
         {
             decimal addon = 0;
-            if (cBSetCenterZero.Checked) { addon = -nUDDiameter.Value / 2; }    // set tool center as zero
+            if (cBSetCenterZero.Checked) { addon = -nUDProbeDiameter.Value / 2; }    // set tool center as zero
 
             probingOffset[1] = -nUDOffsetY.Value + addon;
             probingSave[1] = -nUDProbeSaveY.Value + addon;
-            return string.Format("{0} Y{1} F{2};", ProbeCommand, nUDProbeTravelY.Value, nUDProbeFeed.Value);
+            return string.Format("{0} Y{1} F{2};( probe to the rear );", ProbeCommand, nUDProbeTravelY.Value, nUDProbeFeedXY.Value);
         }
         private string ProbeToward_S()    // probe towards direction south (down = -Y)
         {
             decimal addon = 0;
-            if (cBSetCenterZero.Checked) { addon = nUDDiameter.Value / 2; }    // set tool center as zero
+            if (cBSetCenterZero.Checked) { addon = nUDProbeDiameter.Value / 2; }    // set tool center as zero
 
             probingOffset[1] = nUDOffsetY.Value + addon;
             probingSave[1] = nUDProbeSaveY.Value + addon;
-            return string.Format("{0} Y-{1} F{2};", ProbeCommand, nUDProbeTravelY.Value, nUDProbeFeed.Value);
+            return string.Format("{0} Y-{1} F{2};( probe to the front );", ProbeCommand, nUDProbeTravelY.Value, nUDProbeFeedXY.Value);
         }
 
         private string ProbeToward_Z()    // probe towards direction east
@@ -674,7 +719,7 @@ namespace GrblPlotter
             probingOffset[2] = nUDOffsetZ.Value;
             probingSave[2] = nUDProbeSaveZ.Value;
             SetProgressEF(nUDProbeTravelZ.Value);
-            return string.Format("{0} Z-{1} F{2};", ProbeCommand, nUDProbeTravelZ.Value, nUDProbeFeed.Value);
+            return string.Format("{0} Z-{1} F{2};( probe down );", ProbeCommand, nUDProbeTravelZ.Value, nUDProbeFeedZ.Value);
         }
 
         public void BtnGetAngleEFClick(object sender, EventArgs e)
@@ -729,7 +774,6 @@ namespace GrblPlotter
             }
             btnCancelCF.Enabled = true;
             btnStartCF.Enabled = false;
-            lblEFProgressInfo.Text = Localization.GetString("probingProbingOn") + " X"; //"Probing on X";
             lblCFProgress.Text = "";
             lblCFStatus.Text = "";
             probingValuesIndex = 0;
@@ -739,59 +783,82 @@ namespace GrblPlotter
             for (int i = 0; i < stateCommandsMax; i++)
                 stateCommands[i] = "";
 
-            probeStartMachine = Grbl.posMachine;
+            probeStartMachine = Grbl.posMachine;		// save actual position
             probingValuesIndex = 0;
             int k = 1;
+
+            string moveBack = string.Format("G53 G00 X{0} Y{1};", probeStartMachine.X, probeStartMachine.Y);    // G53 Move in Machine Coordinates back to stored position
+            double angleDeg = (double)nUDFindCenterAngle.Value;
+            decimal wpd = nUDWorkpieceDiameter.Value;
+            XyzPoint findPos;
+
             if (rBCF1.Checked)
             {
-                stateCommands[k++] = string.Format("{0} X-{1} F{2};", ProbeCommand, nUDWorkpieceDiameter.Value, nUDProbeFeed.Value);    // index=1 will be send below
-                stateCommands[k++] = string.Format("G53 G00 X{0};", probeStartMachine.X);
-                stateCommands[k++] = string.Format("{0} X{1} F{2};", ProbeCommand, nUDWorkpieceDiameter.Value, nUDProbeFeed.Value);
-                stateCommands[k++] = string.Format("G53 G00 X{0};", probeStartMachine.X);                                               // replace 4
-                stateCommands[k++] = string.Format("{0} Y-{1} F{2};", ProbeCommand, nUDWorkpieceDiameter.Value, nUDProbeFeed.Value);
-                stateCommands[k++] = string.Format("G53 G00 Y{0};", probeStartMachine.Y);
-                stateCommands[k++] = string.Format("{0} Y{1} F{2};", ProbeCommand, nUDWorkpieceDiameter.Value, nUDProbeFeed.Value);
-                stateCommands[k++] = string.Format("G53 G00 Y{0};", probeStartMachine.Y);
+                findPos = RotateXY00(-wpd, 0, angleDeg); stateCommands[k++] = string.Format("{0} X{1:0.000} Y{2:0.000} F{3};( 1 probe to the left by 'Workpiece diameter');", ProbeCommand, findPos.X, findPos.Y, nUDProbeFeedXY.Value);
+                stateCommands[k++] = moveBack;  // k=2
+                findPos = RotateXY00(wpd, 0, angleDeg); stateCommands[k++] = string.Format("{0} X{1:0.000} Y{2:0.000} F{3};( 2 probe to the right by 'Workpiece diameter');", ProbeCommand, findPos.X, findPos.Y, nUDProbeFeedXY.Value);
+                stateCommands[k++] = moveBack;  // k=4 - will be replaced in 238
+                findPos = RotateXY00(0, -wpd, angleDeg); stateCommands[k++] = string.Format("{0} X{1:0.000} Y{2:0.000} F{3};( 3 probe to front by 'Workpiece diameter');", ProbeCommand, findPos.X, findPos.Y, nUDProbeFeedXY.Value);
+                stateCommands[k++] = moveBack;  // k=6 - will be replaced in 239
+                findPos = RotateXY00(0, wpd, angleDeg); stateCommands[k++] = string.Format("{0} X{1:0.000} Y{2:0.000} F{3};( 4 probe back by 'Workpiece diameter');", ProbeCommand, findPos.X, findPos.Y, nUDProbeFeedXY.Value);
+                stateCommands[k++] = moveBack;  // k=8 - will be replaced in 256 stateCommands[8] = string.Format("G90 G00 X{0} Y{1} ( move to center y);", 0, 0);
             }
             else
-            {
-                stateCommands[k++] = string.Format("{0} X{1} F{2};", ProbeCommand, nUDProbeTravelX.Value, nUDProbeFeed.Value);  // probe 0
-                stateCommands[k++] = string.Format("G91 G00 X-{0};", nUDProbeSaveX.Value);
-                stateCommands[k++] = string.Format("Z{0};", nUDProbeTravelZ.Value);
-                stateCommands[k++] = string.Format("X{0};", (nUDWorkpieceDiameter.Value + 2 * nUDProbeSaveX.Value + nUDDiameter.Value));
-                stateCommands[k++] = string.Format("Z-{0}", nUDProbeTravelZ.Value);
-                // k=6
-                stateCommands[k++] = string.Format("{0} X-{1} F{2};", ProbeCommand, nUDProbeTravelX.Value, nUDProbeFeed.Value); // probe 1
-                stateCommands[k++] = string.Format("G91 G00 X{0};", nUDProbeSaveX.Value);
-                stateCommands[k++] = string.Format("Z{0};", nUDProbeTravelZ.Value);
-                stateCommands[k++] = string.Format("X-{0};", (nUDProbeSaveX.Value + nUDWorkpieceDiameter.Value / 2));         // 9 will be replaced
-                stateCommands[k++] = string.Format("G91 G00 Y-{0};", (nUDProbeTravelY.Value + nUDWorkpieceDiameter.Value / 2));
-                stateCommands[k++] = string.Format("Z-{0}", nUDProbeTravelZ.Value);
-                // 12
-                stateCommands[k++] = string.Format("{0} Y{1} F{2};", ProbeCommand, nUDWorkpieceDiameter.Value, nUDProbeFeed.Value); // probe 2
-                stateCommands[k++] = string.Format("G91 G00 Y-{0};", nUDProbeSaveY.Value);
-                stateCommands[k++] = string.Format("Z{0};", nUDProbeTravelZ.Value);
-                stateCommands[k++] = string.Format("Y{0};", (nUDWorkpieceDiameter.Value + 2 * nUDProbeSaveY.Value + nUDDiameter.Value));
-                stateCommands[k++] = string.Format("Z-{0}", nUDProbeTravelZ.Value);
+            {   // k=1 probe to the right
+                if (cBFindCenterStartFromCenter.Checked)
+                {
+                    findPos = RotateXY00(-(wpd / 2 + nUDProbeDiameter.Value / 2 + 2 * nUDProbeSaveY.Value), 0, angleDeg);
+                    stateCommands[k] = string.Format("G91 G00 X{0:0.000} Y{1:0.000} F{2};( 0 move to start by WpD/2 + PD/2 + 2*SD);", findPos.X, findPos.Y, nUDProbeFeedXY.Value);
+                    stateCommands[k] += string.Format("Z-{0};( 0 move down by 'Max. probing distance' Z);", nUDProbeTravelZ.Value);
+                }
+
+                findPos = RotateXY00(nUDProbeTravelX.Value, 0, angleDeg); stateCommands[k++] += string.Format("{0} X{1:0.000} Y{2:0.000} F{3};( 1 probe to the right by 'Max. probing distance' X);", ProbeCommand, findPos.X, findPos.Y, nUDProbeFeedXY.Value);
+                findPos = RotateXY00(-nUDProbeSaveX.Value, 0, angleDeg); stateCommands[k++] = string.Format("G91 G00 X{0:0.000} Y{1:0.000} F{2};( 1 retract by 'Safe distance' X);", findPos.X, findPos.Y, nUDProbeFeedXY.Value);
+                stateCommands[k++] = string.Format("Z{0};( 1 move up by 'Max. probing distance' Z);", nUDProbeTravelZ.Value);
+                findPos = RotateXY00((wpd + 2 * nUDProbeSaveX.Value + nUDProbeDiameter.Value), 0, angleDeg);
+                stateCommands[k++] = string.Format("X{0:0.000} Y{1:0.000};( 1 move to pos 2 by WpD + PD + 2*SD);", findPos.X, findPos.Y);
+                stateCommands[k++] = string.Format("Z-{0};( 2 move down by 'Max. probing distance' Z)", nUDProbeTravelZ.Value);
+
+                // k=6 probe to the left
+                findPos = RotateXY00(-nUDProbeTravelX.Value, 0, angleDeg); stateCommands[k++] = string.Format("{0} X{1:0.000} Y{2:0.000} F{3};( 2 probe to the left by 'Max. probing distance' X);", ProbeCommand, findPos.X, findPos.Y, nUDProbeFeedXY.Value);
+                findPos = RotateXY00(nUDProbeSaveX.Value, 0, angleDeg); stateCommands[k++] = string.Format("G91 G00 X{0:0.000} Y{1:0.000} F{2};( 2 retract by 'Safe distance' X);", findPos.X, findPos.Y, nUDProbeFeedXY.Value);
+                stateCommands[k++] = string.Format("Z{0};( 2 move up by 'Max. probing distance' Z);", nUDProbeTravelZ.Value);
+                findPos = RotateXY00(-(nUDProbeSaveX.Value + wpd / 2), 0, angleDeg);
+                stateCommands[k++] = string.Format("X{0:0.000} Y{1:0.000};( 1 move to pos 2 by WpD/2 + PD + 2*SD);", findPos.X, findPos.Y);// 9 will be replaced
+                findPos = RotateXY00(0, -(wpd / 2 + nUDProbeDiameter.Value / 2 + 2 * nUDProbeSaveY.Value), angleDeg);
+                stateCommands[k++] = string.Format("G91 G00 X{0:0.000} Y{1:0.000} F{2};( 2 move to 3 by WpD/2 + PD/2 + 2*SD);", findPos.X, findPos.Y, nUDProbeFeedXY.Value);
+                stateCommands[k++] = string.Format("Z-{0};( 3 move down by 'Max. probing distance' Z);", nUDProbeTravelZ.Value);
+
+                // k=12
+                findPos = RotateXY00(0, nUDProbeTravelY.Value, angleDeg); stateCommands[k++] = string.Format("{0} X{1:0.000} Y{2:0.000} F{3};( 3 probe to the rear by 'Max. probing distance' Y);", ProbeCommand, findPos.X, findPos.Y, nUDProbeFeedXY.Value);
+                findPos = RotateXY00(0, -nUDProbeSaveY.Value, angleDeg); stateCommands[k++] = string.Format("G91 G00 X{0:0.000} Y{1:0.000} F{2};( 3 retract by 'Safe distance' Y);", findPos.X, findPos.Y, nUDProbeFeedXY.Value);
+                stateCommands[k++] = string.Format("Z{0};( 3 move up by 'Max. probing distance' Z);", nUDProbeTravelZ.Value);
+                findPos = RotateXY00(0, (2 * nUDProbeSaveX.Value + wpd + nUDProbeDiameter.Value), angleDeg);
+                stateCommands[k++] = string.Format("X{0:0.000} Y{1:0.000};( 3 move to pos 4 by WpD + PD + 2*SD);", findPos.X, findPos.Y);// 9 will be replaced
+                stateCommands[k++] = string.Format("Z-{0};( 4 move down by 'Max. probing distance' Z);", nUDProbeTravelZ.Value);
+
                 // 17
-                stateCommands[k++] = string.Format("{0} Y-{1} F{2};", ProbeCommand, nUDWorkpieceDiameter.Value, nUDProbeFeed.Value);    // probe 3
-                stateCommands[k++] = string.Format("G91 G00 Y{0};", nUDProbeSaveY.Value);
-                stateCommands[k++] = string.Format("Z{0};", nUDProbeTravelZ.Value);
-                stateCommands[k++] = string.Format("G53 G00 Y{0};", probeStartMachine.Y);
+                findPos = RotateXY00(0, -nUDProbeTravelY.Value, angleDeg); stateCommands[k++] = string.Format("{0} X{1:0.000} Y{2:0.000} F{3};( 4 probe to the front by 'Max. probing distance' Y);", ProbeCommand, findPos.X, findPos.Y, nUDProbeFeedXY.Value);
+                findPos = RotateXY00(0, nUDProbeSaveY.Value, angleDeg); stateCommands[k++] = string.Format("G91 G00 X{0:0.000} Y{1:0.000} F{2};( 4 retract by 'Safe distance' Y);", findPos.X, findPos.Y, nUDProbeFeedXY.Value);
+                stateCommands[k++] = string.Format("Z{0};( 4 move up by 'Max. probing distance' Z);", nUDProbeTravelZ.Value);
+                stateCommands[k++] = string.Format("G53 G00 Y{0};", probeStartMachine.Y); // overwrite in 258: stateCommands[20] = string.Format("G90 G00 X{0} Y{1};", 0, 0);
             }
 
             probingCount = 1;
+            SendCommandEvent(new CmdEventArgs("(----- Start Center finder -----);"));
             SendCommandEvent(new CmdEventArgs(stateCommands[probingCount++].Replace(',', '.')));
             SetProgressCF(nUDWorkpieceDiameter.Value);
+            lblCFStatus.Text = Localization.GetString("probingProbingOn") + " 1";
             isIdle = false;
             timer1.Enabled = true;
         }
         private void BtnCancelCF_Click(object sender, EventArgs e)
         {
             ProbingFinishCF();
-            lblCFProgressInfo.Text = Localization.GetString("probingCancel1"); //"Probing canceled";
+            lblCFStatus.Text = Localization.GetString("probingCancel1"); //"Probing canceled";
             if (!isIdle)
                 lblCFProgress.Text = Localization.GetString("probingCancel2"); //"Process last command";
+            SendCommandEvent(new CmdEventArgs("G1;"));
         }
         private void ProbingFinishCF()
         {
@@ -808,7 +875,7 @@ namespace GrblPlotter
         private void SetProgressCF(decimal maxTravel)
         {
             //    progressDistance = maxTravel;
-            probingTime = (int)((maxTravel / nUDProbeFeed.Value) * 60 * 10);    // distance(mm) / speed(mm/min) *60(sec) 100 ms
+            probingTime = (int)((maxTravel / nUDProbeFeedXY.Value) * 60 * 10);    // distance(mm) / speed(mm/min) *60(sec) 100 ms
             progressBarCF.Minimum = 0;
             progressBarCF.Value = 0;
             progressBarCF.Maximum = (int)probingTime;
@@ -826,9 +893,9 @@ namespace GrblPlotter
                 return;
             }
 
-            lblEFProgressInfo.Text = Localization.GetString("probingProbingOn") + " Z"; //"Probing on X";
+            lblTLStatus.Text = Localization.GetString("probingProbingOn") + " Z"; //"Probing on X";
             lblTLProgress.Text = "";
-            lblTLStatus.Text = "";
+ //           lblTLStatus.Text = "";
             probingValuesIndex = 0;
             probingAction = ProbingMode.toolLenght;
             SetRBEnable(cBnow, false);
@@ -839,11 +906,12 @@ namespace GrblPlotter
             probeStartMachine = Grbl.posMachine;
             probingValuesIndex = 0;
             int k = 1;
-            stateCommands[k++] = string.Format("{0} Z-{1} F{2};", ProbeCommand, nUDProbeTravelZ.Value, nUDProbeFeed.Value);    // index=1 will be send below
+            stateCommands[k++] = string.Format("{0} Z-{1} F{2};", ProbeCommand, nUDProbeTravelZ.Value, nUDProbeFeedZ.Value);    // index=1 will be send below
             stateCommands[k++] = string.Format("G53 G00 Z{0};", probeStartMachine.Z);
             //        stateCommands[k++] = string.Format("G91 G00 Z{0};", nUDProbeTravelZ.Value);
 
             probingCount = 1;
+            SendCommandEvent(new CmdEventArgs("(----- Start Tool length -----);"));
             SendCommandEvent(new CmdEventArgs(stateCommands[probingCount++].Replace(',', '.')));
             SetProgressTL(nUDProbeTravelZ.Value);
             isIdle = false;
@@ -861,8 +929,7 @@ namespace GrblPlotter
 
         private void SetProgressTL(decimal maxTravel)
         {
-            //    progressDistance = maxTravel;
-            probingTime = (int)((maxTravel / nUDProbeFeed.Value) * 60 * 10);    // distance(mm) / speed(mm/min) *60(sec) 100 ms
+            probingTime = (int)((maxTravel / nUDProbeFeedXY.Value) * 60 * 10);    // distance(mm) / speed(mm/min) *60(sec) 100 ms
             progressBarTL.Minimum = 0;
             progressBarTL.Value = 0;
             progressBarTL.Maximum = (int)probingTime;
@@ -874,23 +941,29 @@ namespace GrblPlotter
         private void BtnCancelTL_Click(object sender, EventArgs e)
         {
             ProbingFinishTL();
-            lblTLProgressInfo.Text = Localization.GetString("probingCancel1"); //"Probing canceled";
+            lblTLStatus.Text = Localization.GetString("probingCancel1"); //"Probing canceled";
             if (!isIdle)
                 lblTLProgress.Text = Localization.GetString("probingCancel2"); //"Process last command";
+            SendCommandEvent(new CmdEventArgs("G1"));
         }
 
         #endregion
 
 
+        private XyzPoint RotateXY00(decimal X, decimal Y, double angleDeg)
+        {
+            XyzPoint tP = new XyzPoint
+            {
+                X = (double)X * Math.Cos(angleDeg * Math.PI / 180) - (double)Y * Math.Sin(angleDeg * Math.PI / 180),
+                Y = (double)X * Math.Sin(angleDeg * Math.PI / 180) + (double)Y * Math.Cos(angleDeg * Math.PI / 180)
+            };
+            return tP;
+        }
+
         public event EventHandler<CmdEventArgs> RaiseCmdEvent;
         protected virtual void SendCommandEvent(CmdEventArgs e)
         {
             RaiseCmdEvent?.Invoke(this, e);
-            /*    EventHandler<CmdEventArgs> handler = RaiseCmdEvent;
-                if (handler != null)
-                {
-                    handler(this, e);
-                }*/
         }
 
 

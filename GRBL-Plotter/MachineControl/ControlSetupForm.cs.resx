@@ -2668,32 +2668,16 @@ Po změně offsetu pohněte joystickem.</value>
     <value>Nastavení analogového joysticku</value>
     <comment>ok</comment>
   </data>
-  <data name="lblValR.Text" xml:space="preserve">
-    <value>-</value>
-    <comment>ok</comment>
-  </data>
   <data name="lblValR.ToolTip" xml:space="preserve">
     <value>Hodnota s aplikovaným offsetem</value>
-    <comment>ok</comment>
-  </data>
-  <data name="lblValY.Text" xml:space="preserve">
-    <value>-</value>
     <comment>ok</comment>
   </data>
   <data name="lblValY.ToolTip" xml:space="preserve">
     <value>Hodnota s aplikovaným offsetem</value>
     <comment>ok</comment>
   </data>
-  <data name="lblValZ.Text" xml:space="preserve">
-    <value>-</value>
-    <comment>ok</comment>
-  </data>
   <data name="lblValZ.ToolTip" xml:space="preserve">
     <value>Hodnota s aplikovaným offsetem</value>
-    <comment>ok</comment>
-  </data>
-  <data name="lblValX.Text" xml:space="preserve">
-    <value>-</value>
     <comment>ok</comment>
   </data>
   <data name="lblValX.ToolTip" xml:space="preserve">
@@ -3391,5 +3375,8 @@ Kromě toho lze polohu osy Z využít např. ke zvýšení množství barvy, kdy
   </data>
   <data name="RbApperance1.Text" xml:space="preserve">
     <value>Citlivá oblast</value>
+  </data>
+  <data name="label88.Text" xml:space="preserve">
+    <value>pevně:</value>
   </data>
 </root>
