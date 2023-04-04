@@ -1,0 +1,510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="grblAlarm" xml:space="preserve">
+    <value>Alarm</value>
+  </data>
+  <data name="grblCheck" xml:space="preserve">
+    <value>Kontrol etmek</value>
+  </data>
+  <data name="grblDoor" xml:space="preserve">
+    <value>Kapı</value>
+  </data>
+  <data name="grblHold" xml:space="preserve">
+    <value>Tutmak</value>
+  </data>
+  <data name="grblHome" xml:space="preserve">
+    <value>Ev</value>
+  </data>
+  <data name="grblIdle" xml:space="preserve">
+    <value>Boşta</value>
+  </data>
+  <data name="grblJog" xml:space="preserve">
+    <value>Koşu</value>
+  </data>
+  <data name="grblProbe" xml:space="preserve">
+    <value>İncelemek, bulmak</value>
+  </data>
+  <data name="grblRun" xml:space="preserve">
+    <value>Koşmak</value>
+  </data>
+  <data name="grblSleep" xml:space="preserve">
+    <value>Uyumak</value>
+  </data>
+  <data name="grblNotConnected" xml:space="preserve">
+    <value>grbl denetleyicisi bağlı değil!\r\nİstenen eylem gerçekleştirilemiyor!</value>
+  </data>
+  <data name="mainAttention" xml:space="preserve">
+    <value>Dikkat</value>
+  </data>
+  <data name="mainHelpLanguage" xml:space="preserve">
+    <value>Çeviriyi geliştirmekten çekinmeyin</value>
+  </data>
+  <data name="mainHotkeyError" xml:space="preserve">
+    <value>'hotkeys.xml' dosyası bulunamadı, kısayol tuşu ayarlanmadı!</value>
+  </data>
+  <data name="mainHotkeyError1" xml:space="preserve">
+    <value>Bilinmeyen eylem:</value>
+  </data>
+  <data name="mainHotkeyError2" xml:space="preserve">
+    <value>Hotkey.xml hatası</value>
+  </data>
+  <data name="mainInfoCheckCode" xml:space="preserve">
+    <value>G Kodunu Kontrol Edin</value>
+  </data>
+  <data name="mainInfoErrorLine" xml:space="preserve">
+    <value>Satırdan önce hata</value>
+  </data>
+  <data name="mainInfoFinishCheck" xml:space="preserve">
+    <value>G-Code'u kontrol etmeyi bitirin</value>
+  </data>
+  <data name="mainInfoFinishSend" xml:space="preserve">
+    <value>G Kodu göndermeyi bitir</value>
+  </data>
+  <data name="mainInfoKill" xml:space="preserve">
+    <value>Devam etmek için 'Alarmı Sonlandır'a basın ('$X')</value>
+  </data>
+  <data name="mainInfoLaserModeOff" xml:space="preserve">
+    <value>Lazer Modu etkin değil $32=0</value>
+  </data>
+  <data name="mainInfoLaserModeOn" xml:space="preserve">
+    <value>Lazer Modu etkin $32=1</value>
+  </data>
+  <data name="mainInfoPause" xml:space="preserve">
+    <value>Akışı duraklatın - oynat düğmesine basın (</value>
+  </data>
+  <data name="mainInfoProbing" xml:space="preserve">
+    <value>Sondaj</value>
+  </data>
+  <data name="mainInfoResume" xml:space="preserve">
+    <value>Devam etmek için 'Devam Et'e basın</value>
+  </data>
+  <data name="mainInfoSendCode" xml:space="preserve">
+    <value>G Kodu Gönder</value>
+  </data>
+  <data name="mainInfoStopStream" xml:space="preserve">
+    <value>Akışı DURDUR (</value>
+  </data>
+  <data name="mainInfoStopStream2" xml:space="preserve">
+    <value>Akışı DURDUR ( Hat</value>
+  </data>
+  <data name="mainInfoToolChange" xml:space="preserve">
+    <value>Alet değişimi...</value>
+  </data>
+  <data name="mainInfoUndo" xml:space="preserve">
+    <value>Son işlemi geri al</value>
+  </data>
+  <data name="mainInfoWaitIdle" xml:space="preserve">
+    <value>IDLE için bekleyin, ardından duraklatın (</value>
+  </data>
+  <data name="mainLimits1" xml:space="preserve">
+    <value>Bir sonraki hamle makine sınırlarını aşacak!\r</value>
+  </data>
+  <data name="mainLimits2" xml:space="preserve">
+    <value>\r\n Yine de hareket etmek için 'Tamam'a basın</value>
+  </data>
+  <data name="mainLimits3" xml:space="preserve">
+    <value>Grafik boyutu makine boyutunu aşıyor!\r\nMakineye zarar vermemek için dönüştürme önerilir!</value>
+  </data>
+  <data name="mainLoadError" xml:space="preserve">
+    <value>Yeni dosya yüklenmeden önce akış durdurulmalıdır</value>
+  </data>
+  <data name="mainLoadError1" xml:space="preserve">
+    <value>Dosya bulunamadı: '</value>
+  </data>
+  <data name="mainLoadError2" xml:space="preserve">
+    <value>URL uzantısı 'svg' veya 'dxf' değil\r\nYine de SVG içe aktarmayı deneyin, ancak 'Son Dosya' listesini ayarlamadan.</value>
+  </data>
+  <data name="mainLoadError3" xml:space="preserve">
+    <value>Dosya uzantısı desteklenmiyor'</value>
+  </data>
+  <data name="mainParseError" xml:space="preserve">
+    <value>geçerli bir numara değil</value>
+  </data>
+  <data name="mainParseError1" xml:space="preserve">
+    <value>Geçerli bir sayı değil, satırı 0 olarak ayarlayın</value>
+  </data>
+  <data name="mainPauseStream" xml:space="preserve">
+    <value>Akışı duraklatın - oynat'a basın</value>
+  </data>
+  <data name="mainPauseStream1" xml:space="preserve">
+    <value>Son iş satırda duraklatıldı</value>
+  </data>
+  <data name="mainPauseStream2" xml:space="preserve">
+    <value>,\r\nişe devam etmek istiyor musunuz?</value>
+  </data>
+  <data name="mainProblem" xml:space="preserve">
+    <value>Sorun</value>
+  </data>
+  <data name="mainProgress" xml:space="preserve">
+    <value>İlerlemek</value>
+  </data>
+  <data name="mainQuit" xml:space="preserve">
+    <value>GRBL-Plotter'dan çıkılsın mı?</value>
+  </data>
+  <data name="mainSimuSpeed" xml:space="preserve">
+    <value>Hız</value>
+  </data>
+  <data name="mainSimuStart" xml:space="preserve">
+    <value>Yol simülasyonunu başlat</value>
+  </data>
+  <data name="mainSimuStop" xml:space="preserve">
+    <value>Simülasyonu durdur</value>
+  </data>
+  <data name="mainStreamingActive" xml:space="preserve">
+    <value>Akış hala etkin - Durdur'a basın ve tekrar deneyin</value>
+  </data>
+  <data name="mainToolChange" xml:space="preserve">
+    <value>Alet / Kalem değişimi!</value>
+  </data>
+  <data name="mainToolChange1" xml:space="preserve">
+    <value>Alet değişikliği gerekli:\r</value>
+  </data>
+  <data name="mainToolChange2" xml:space="preserve">
+    <value>\rdevam etmek için başlat'a basın.</value>
+  </data>
+  <data name="mainUnknownCode" xml:space="preserve">
+    <value>Bazı bilinmeyen G-Kodları düzeltildi:\r\n</value>
+  </data>
+  <data name="probingCancel1" xml:space="preserve">
+    <value>İnceleme iptal edildi</value>
+  </data>
+  <data name="probingCancel2" xml:space="preserve">
+    <value>Son komutu işle</value>
+  </data>
+  <data name="probingCenter" xml:space="preserve">
+    <value>Merkeze taşı</value>
+  </data>
+  <data name="probingFail1" xml:space="preserve">
+    <value>Başarısız: temas yok</value>
+  </data>
+  <data name="probingFail2" xml:space="preserve">
+    <value>Taramayı iptal et</value>
+  </data>
+  <data name="probingFinish" xml:space="preserve">
+    <value>Sona ermek</value>
+  </data>
+  <data name="probingProbingOn" xml:space="preserve">
+    <value>üzerinde araştırma</value>
+  </data>
+  <data name="probingSetCenter" xml:space="preserve">
+    <value>Merkezi ayarla</value>
+  </data>
+  <data name="probingTimeOut" xml:space="preserve">
+    <value>Zaman aşımı</value>
+  </data>
+  <data name="serialClose" xml:space="preserve">
+    <value>Kapalı</value>
+  </data>
+  <data name="serialCloseError" xml:space="preserve">
+    <value>Seri Bağlantı gerekli.\r\nBunun yerine ana pencereyi kapat</value>
+  </data>
+  <data name="serialOpen" xml:space="preserve">
+    <value>Açık</value>
+  </data>
+  <data name="statusStripeCheckCOM" xml:space="preserve">
+    <value>Daha fazla bilgi için COM penceresini kontrol edin</value>
+  </data>
+  <data name="statusStripeClickKeys" xml:space="preserve">
+    <value>Şekil'i seçmek için Alt-Tıklayın; Grup'u seçmek için Control-Tıkla; Döşeme'yi seçmek için Shift-Tıklayın; Veya XML Etiketine tıklayın</value>
+  </data>
+  <data name="statusStripeClickKeys2" xml:space="preserve">
+    <value>Tıklayın: Şekil'i işaretleyin; Control-Tıkla: Grubu işaretleyin; Shift-Click: Döşemeyi işaretleyin;Alt-Click: GCode satırını göster</value>
+  </data>
+  <data name="statusStripeDownKeys" xml:space="preserve">
+    <value>Seçilen Bloğu bir aşağı taşımak için Control-Down; Sona gitmek için Control-Shift-Down</value>
+  </data>
+  <data name="statusStripeEditModeOn" xml:space="preserve">
+    <value>Düzenleme modu açık - bitirmek için 2B görünüme tıklayın</value>
+  </data>
+  <data name="statusStripeFileLoad" xml:space="preserve">
+    <value>dosya yükleme</value>
+  </data>
+  <data name="statusStripeFileNotFound" xml:space="preserve">
+    <value>Dosya bulunamadı - listeden kaldır</value>
+  </data>
+  <data name="statusStripeGrblResetNeeded" xml:space="preserve">
+    <value>Belki de seri bağlantı noktası kilitlidir ve GRBL-Plotter'ın yeniden başlatılması gerekiyor</value>
+  </data>
+  <data name="statusStripeResetNeeded" xml:space="preserve">
+    <value>Muhtemelen denetleyicinin sıfırlanması gerekiyor</value>
+  </data>
+  <data name="statusStripeSelectionMoved" xml:space="preserve">
+    <value>Seçimi taşıyan</value>
+  </data>
+  <data name="statusStripeStreamingStatusSaved" xml:space="preserve">
+    <value>Akış durumu ve G-Kodu '_lastProcessed.nc' dosyasına kaydedilir. Program yeniden başlatıldıktan sonra devam etmek mümkündür.</value>
+  </data>
+  <data name="statusStripeUpKeys" xml:space="preserve">
+    <value>Seçilen Bloğu bir yukarı taşımak için Control-Up; En üste gitmek için Control-Shift-Up</value>
+  </data>
+  <data name="statusStripeCheckUpdate" xml:space="preserve">
+    <value>'GitHub'da yeni GRBL-Plotter sürümünü kontrol edin' - [Kurulum - Program kontrolü]'nde devre dışı bırakılabilir</value>
+  </data>
+  <data name="cameraMountFix" xml:space="preserve">
+    <value>Monte edilmiş kamerayı sabitleyin</value>
+  </data>
+  <data name="cameraMountXy" xml:space="preserve">
+    <value>XY platformuna monte edilmiş kamera</value>
+  </data>
+  <data name="cameraMountXyz" xml:space="preserve">
+    <value>Z eksenine monte edilmiş kamera</value>
+  </data>
+  <data name="cameraSetRadius" xml:space="preserve">
+    <value>Yarıçapı ayarla</value>
+  </data>
+  <data name="cameraScaling" xml:space="preserve">
+    <value>ölçekleme</value>
+  </data>
+  <data name="cameraTeachRadius" xml:space="preserve">
+    <value>daire yarıçapını öğret</value>
+  </data>
+  <data name="cameraForUpperPos" xml:space="preserve">
+    <value>üst kamera konumu için</value>
+  </data>
+  <data name="cameraForLowerPos" xml:space="preserve">
+    <value>alt kamera konumu için</value>
+  </data>
+  <data name="cameraQuit" xml:space="preserve">
+    <value>Öğretimden çıkmak için 'ESC'ye basın.</value>
+  </data>
+  <data name="cameraSetMount" xml:space="preserve">
+    <value>Kamera montajını şu şekilde ayarla:</value>
+  </data>
+  <data name="cameraSetCrossHairs" xml:space="preserve">
+    <value>Artı işareti konumunu ayarlamak için tıklayın</value>
+  </data>
+  <data name="cameraSetDistortion" xml:space="preserve">
+    <value>Bozuk dikdörtgenin dört kenarını öğretin (oran 4:3). İptal etmek için ESC'ye basın.</value>
+  </data>
+  <data name="cameraNoCamera" xml:space="preserve">
+    <value>Kamera kaynağı bulunamadı. Bir kamera bağladıktan sonra bu pencereyi kapatıp açın.</value>
+  </data>
+  <data name="cameraNextClick" xml:space="preserve">
+    <value>Sonraki tıklama, kamera görüntüsünün ölçeklenmesini\r\n öğretecek</value>
+  </data>
+  <data name="cameraDistortionMarker" xml:space="preserve">
+    <value>Bozulma işaretçisi</value>
+  </data>
+  <data name="probing" xml:space="preserve">
+    <value>araştırmak</value>
+  </data>
+  <data name="scan" xml:space="preserve">
+    <value>taramak</value>
+  </data>
+  <data name="heightScan" xml:space="preserve">
+    <value>yükseklik taraması</value>
+  </data>
+  <data name="useCaseInfo" xml:space="preserve">
+    <value>Kullanım senaryosu, belirli bir makine ve/veya uygulama için ayarları yapmak üzere önceden ayarlanmış bir kurulumdur.\r\nSeçilen ve uygulanan kullanım senaryosunun ayarları, grafiklerin içe aktarılmasından sonra da korunur.\r\nBir kullanım senaryosu gerekir erişilebilir olması için \data\usecases içinde saklanmalıdır.\r\nAyrıca dışa aktarılan makine ayarları ve alt kümeleri kullanılabilir.</value>
+  </data>
+  <data name="useCaseInfo2" xml:space="preserve">
+    <value>Bilgi</value>
+  </data>
+  <data name="useCaseHeader1" xml:space="preserve">
+    <value>Mevcut ayarları kullan (son yüklenen: '{0}')</value>
+  </data>
+  <data name="useCaseHeader2" xml:space="preserve">
+    <value>'{0}' ayarları</value>
+  </data>
+  <data name="useCaseItem0" xml:space="preserve">
+    <value>### Şuanki ayarlar ###</value>
+  </data>
+  <data name="codeMessage_1_unknowncommand" xml:space="preserve">
+    <value>Verilen komut bilinmiyor veya desteklenmiyor, açıklığa kavuşturmak için github'da bir sorun başlatın.</value>
+  </data>
+  <data name="codeMessage_2_highdataamount" xml:space="preserve">
+    <value>Tek, seçilebilir, rakamların miktarı verilen maksimum değeri aşar ve performansı düşürür. \r\nTüm rakamlar tek bir rakamda özetlenmiştir.\r\nSınır\r\n[Kurulum - Grafik içe aktarma - Yol içe aktarma - Gruplama ve araçlar - İlgili kaygı] içinde ayarlanabilir.</value>
+  </data>
+  <data name="codeMessage_2_zdoubletang" xml:space="preserve">
+    <value>Z ekseni iki kez atanır: teğet eksen VE Kalem yukarı/aşağı ekseni olarak. \r\nBu, garip ve öngörülemeyen davranışlara neden olur.</value>
+  </data>
+  <data name="codeMessage_3_spindlestaysoff" xml:space="preserve">
+    <value>M3|M4 / M5 komutu gönderilmeyecek! -&gt; Mil kapalı kalır. \r\n\r\n[Kurulum - Grafikleri içe aktarma - G-Kodu oluşturma - Z ekseni Kalem yukarı/aşağı çevirisi] içindeki seçeneği kontrol edin \r\n☐ İş milini açmayın</value>
+  </data>
+  <data name="codeMessage_3_zdoubleaux" xml:space="preserve">
+    <value>Z ekseni iki kez atanır: yardımcı eksen olarak VE Kalem yukarı/aşağı ekseni olarak. \r\nBu, garip ve öngörülemeyen davranışlara neden olur.</value>
+  </data>
+  <data name="codeMessage_3_zdoubletang" xml:space="preserve">
+    <value>Z ekseni iki kez atanır: teğet eksen VE Kalem yukarı/aşağı ekseni olarak. \r\nBu, garip ve öngörülemeyen davranışlara neden olur.</value>
+  </data>
+  <data name="codeMessage_attention" xml:space="preserve">
+    <value>Dikkat</value>
+  </data>
+  <data name="codeMessage_error" xml:space="preserve">
+    <value>Hata</value>
+  </data>
+  <data name="codeMessage_warning" xml:space="preserve">
+    <value>Uyarı</value>
+  </data>
+  <data name="codeMessage_1202_dontplot" xml:space="preserve">
+    <value>Katman görünmüyor veya katmanın yazdırılması devre dışı. Kontrol etmek:
+https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlist</value>
+  </data>
+  <data name="codeMessage_1302_dontplot" xml:space="preserve">
+    <value>Görünürlük özelliği nedeniyle katman, yol veya nesne görünmüyor.</value>
+  </data>
+  <data name="statusStripeButtonBlocked" xml:space="preserve">
+    <value>Akış sırasında özel düğme engellendi</value>
+  </data>
+  <data name="statusStripeStreamingPause" xml:space="preserve">
+    <value>Akış DURAKLATILDI</value>
+  </data>
+  <data name="statusStripeStreamingContinue" xml:space="preserve">
+    <value>Akışa devam et</value>
+  </data>
+  <data name="statusStripeStreamingCheck" xml:space="preserve">
+    <value>G-Code'u grbl denetleyicisinde kontrol edin</value>
+  </data>
+  <data name="statusStripeStreamingStop" xml:space="preserve">
+    <value>Akış hattında DURDUR</value>
+  </data>
+  <data name="statusStripeStreamingStart" xml:space="preserve">
+    <value>Akış hattından BAŞLAT</value>
+  </data>
+  <data name="statusStripeStreamingFinish" xml:space="preserve">
+    <value>Akış şu tarihten sonra TAMAMLANDI:</value>
+  </data>
+  <data name="codeMessage_1102_dontplot" xml:space="preserve">
+    <value>Layer, path or object is not visible because of visibility attribute.</value>
+  </data>
+  <data name="codeMessage_1103_elementsupport" xml:space="preserve">
+    <value>Görünürlük özelliği nedeniyle katman, yol veya nesne görünmüyor.
+Desteklenmeyen bir SVG-XML Desteklenmeyen bir SVG-XML öğesi bulundu.
+Ortaya çıkan görüntü beklenenden farklı görünebilir.
+Olası geçici çözüm: nesneyi path.element'e dönüştürmeye çalışın bulundu.
+Ortaya çıkan görüntü beklenenden farklı görünebilir.
+Olası geçici çözüm: nesneyi yola dönüştürmeyi deneyin.</value>
+  </data>
+  <data name="codeMessage_1104_elementuk" xml:space="preserve">
+    <value>Bilinmeyen bir SVG-XML öğesi bulundu.
+Ortaya çıkan görüntü beklenenden farklı görünebilir.
+Olası geçici çözüm: nesneyi yola dönüştürmeyi deneyin.</value>
+  </data>
+  <data name="codeMessage_1105_textpath" xml:space="preserve">
+    <value>Bir 'textPath' öğesi içinde bir 'tspan' öğesi bulundu. Bu kombinasyon desteklenmiyor.
+Ortaya çıkan görüntü beklenenden farklı görünebilir.
+Olası geçici çözüm: nesneyi yola dönüştürmeyi deneyin.</value>
+  </data>
+  <data name="codeMessage_1106_attributesupport" xml:space="preserve">
+    <value>Desteklenmeyen bir SVG-XML özelliği bulundu.
+Ortaya çıkan görüntü beklenenden farklı görünebilir.
+Olası geçici çözüm: nesneyi yola dönüştürmeyi deneyin.</value>
+  </data>
+</root>
