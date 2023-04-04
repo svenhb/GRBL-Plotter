@@ -156,10 +156,6 @@
     <value>Gebiet des Höhenprofils</value>
     <comment>GroupBox</comment>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Sondieren</value>
-    <comment>GroupBox</comment>
-  </data>
   <data name="btnOffset.Text" xml:space="preserve">
     <value>Setze max. Wert = 0</value>
     <comment>Button</comment>
@@ -184,14 +180,6 @@
   <data name="btnStartHeightScan.ToolTip" xml:space="preserve">
     <value>Sende Befehle um Höhenprofil einzulesen</value>
     <comment>ToolTip</comment>
-  </data>
-  <data name="btnSave.Text" xml:space="preserve">
-    <value>Höhenprofil speichern</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnLoad.Text" xml:space="preserve">
-    <value>Höhenprofil laden</value>
-    <comment>Button</comment>
   </data>
   <data name="btnApply.Text" xml:space="preserve">
     <value>Höhenprofil anwenden</value>
@@ -294,9 +282,6 @@ Achtung, das Höhenprofil sollte vorher gespeichert werden!</value>
     <value>Manipulation</value>
     <comment>GroupBox</comment>
   </data>
-  <data name="lblInfo.Text" xml:space="preserve">
-    <value>Info</value>
-  </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>Zu scannender Bereich</value>
   </data>
@@ -318,9 +303,6 @@ Achtung, das Höhenprofil sollte vorher gespeichert werden!</value>
   </data>
   <data name="RbProbingZ.Text" xml:space="preserve">
     <value>Z-Achse (G38.3Z)</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Antasten, Quelle für Z-Wert auswählen</value>
   </data>
   <data name="tabPage2.Text" xml:space="preserve">
     <value>Sondieren</value>

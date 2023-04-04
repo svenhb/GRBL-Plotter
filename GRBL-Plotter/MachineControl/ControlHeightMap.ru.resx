@@ -142,10 +142,6 @@
   <data name="label6.Text" xml:space="preserve">
     <value>Максимальная глубина</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>зондирование</value>
-    <comment>GroupBox</comment>
-  </data>
   <data name="btnStartHeightScan.Text" xml:space="preserve">
     <value>Создать карту высот</value>
     <comment>Button</comment>
@@ -153,14 +149,6 @@
   <data name="btnStartHeightScan.ToolTip" xml:space="preserve">
     <value>Отправить команды сканирования карты высот</value>
     <comment>ToolTip</comment>
-  </data>
-  <data name="btnSave.Text" xml:space="preserve">
-    <value>Сохранить карту высот</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnLoad.Text" xml:space="preserve">
-    <value>Загрузить карту высот</value>
-    <comment>Button</comment>
   </data>
   <data name="btnApply.Text" xml:space="preserve">
     <value>Применить карту высот</value>
@@ -294,9 +282,6 @@
     <value>Смещение Z</value>
     <comment>Button</comment>
   </data>
-  <data name="lblInfo.Text" xml:space="preserve">
-    <value>Информация</value>
-  </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>Область для сканирования</value>
   </data>
@@ -318,9 +303,6 @@
   </data>
   <data name="RbProbingZ.Text" xml:space="preserve">
     <value>Ось Z (G38.3Z)</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Зондирование, выберите источник для значения Z</value>
   </data>
   <data name="tabPage2.Text" xml:space="preserve">
     <value>Зондирование</value>

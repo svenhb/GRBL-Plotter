@@ -293,9 +293,6 @@ Pressione o botão para transformar o código G com o ângulo medido.
   <data name="cBCamCoordMove.Text" xml:space="preserve">
     <value>Mover o palco</value>
   </data>
-  <data name="lblAngle.Text" xml:space="preserve">
-    <value>0,00 °</value>
-  </data>
   <data name="btnCamCoordCam.Text" xml:space="preserve">
     <value>G59 Camera coord</value>
   </data>

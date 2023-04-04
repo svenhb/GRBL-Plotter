@@ -150,9 +150,6 @@
   <data name="gBHardware.Text" xml:space="preserve">
     <value>Hardware Abmessungen</value>
   </data>
-  <data name="nUDDiameter.ToolTip" xml:space="preserve">
-    <value>Durchmesser der Tastspitze oder des Fräserkopfes zur Berechnung der Nullposition</value>
-  </data>
   <data name="nUDOffsetX.ToolTip" xml:space="preserve">
     <value>Offset to probed zero position, caused by touch plate, gage block or aluminum foil</value>
   </data>
@@ -238,9 +235,6 @@ Sondenkante ein zweites Mal an einer anderen Position, um den Winkel zu bestimme
   <data name="btnStartEF.Text" xml:space="preserve">
     <value>Start</value>
   </data>
-  <data name="lblEFProgress.Text" xml:space="preserve">
-    <value>Status</value>
-  </data>
   <data name="btnCancelEF.Text" xml:space="preserve">
     <value>Abbruch</value>
   </data>
@@ -282,31 +276,23 @@ Z fährt in die Ausgangsposition zurück</value>
   <data name="btnStartTL.Text" xml:space="preserve">
     <value>Start</value>
   </data>
-  <data name="lblTLProgress.Text" xml:space="preserve">
-    <value>Status</value>
-  </data>
-  <data name="button2.Text" xml:space="preserve">
-    <value>Abbruch</value>
-  </data>
   <data name="tabPage3.Text" xml:space="preserve">
     <value>Werkzeuglänge</value>
   </data>
   <data name="label21.Text" xml:space="preserve">
     <value>Innenkontur:
-Setze die Werkzeugspitze fast zentriert in das Loch des Werkstücks.
-Z wird nicht bewegt.
+Setzen Sie die Sonde fast zentriert in das Loch des Werkstücks ein.
+Z wird nicht verschoben.
 
 Außenkontur:
-Setze die Werkzeugspitze wie bei der Kantenerkennung auf die linke Seite des Werkstücks</value>
+Sonde auf der linken Seite des Werkstücks platzieren, wie bei der Kantenerkennung.
+Oder aktivieren Sie „Von Mitte starten“ und platzieren Sie den Messtaster mittig über dem Werkstück.</value>
   </data>
   <data name="lblCFProgressInfo.Text" xml:space="preserve">
     <value>Fortschritt</value>
   </data>
   <data name="btnStartCF.Text" xml:space="preserve">
     <value>Start</value>
-  </data>
-  <data name="lblCFProgress.Text" xml:space="preserve">
-    <value>Status</value>
   </data>
   <data name="btnCancelCF.Text" xml:space="preserve">
     <value>Abbruch</value>
@@ -335,5 +321,20 @@ Normalerweise wird der Rand des Werkzeugs (Messtaster / Fräser) zum Definieren 
   </data>
   <data name="btnCancelTL.Text" xml:space="preserve">
     <value>Abbruch</value>
+  </data>
+  <data name="nUDProbeDiameter.ToolTip" xml:space="preserve">
+    <value>Durchmesser der Tastspitze oder des Messerkopfes zur Berechnung der Nullposition</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.Text" xml:space="preserve">
+    <value>Beginne in der Mitte</value>
+  </data>
+  <data name="lblCFAngle.Text" xml:space="preserve">
+    <value>Sondierungsmuster drehen</value>
+  </data>
+  <data name="nUDFindCenterAngle.ToolTip" xml:space="preserve">
+    <value>Winkel in Grad um Sondierungsrichtungen zu drehen</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>Werkstückdurchmesser</value>
   </data>
 </root>

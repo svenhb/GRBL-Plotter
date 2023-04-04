@@ -147,10 +147,6 @@
     <value>Use a pos.</value>
     <comment>Button</comment>
   </data>
-  <data name="btnLoad.Text" xml:space="preserve">
-    <value>Mapa de altura de carga</value>
-    <comment>Button</comment>
-  </data>
   <data name="btnStartHeightScan.ToolTip" xml:space="preserve">
     <value>Enviar comandos de verificação de mapa de altura</value>
     <comment>ToolTip</comment>
@@ -167,10 +163,6 @@
   </data>
   <data name="btnCutOffZ.Text" xml:space="preserve">
     <value>Z cortado !!!</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnSave.Text" xml:space="preserve">
-    <value>Salvar mapa de altura</value>
     <comment>Button</comment>
   </data>
   <data name="btnApply.Text" xml:space="preserve">
@@ -213,10 +205,6 @@
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Definir Área para digitalizar informações de altura</value>
-    <comment>GroupBox</comment>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Sondagem</value>
     <comment>GroupBox</comment>
   </data>
   <data name="label6.Text" xml:space="preserve">
@@ -268,9 +256,6 @@
   <data name="saveMapAsOBJToolStripMenuItem.Text" xml:space="preserve">
     <value>Salvar mapa como OBJ</value>
   </data>
-  <data name="lblInfo.Text" xml:space="preserve">
-    <value>Informações</value>
-  </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>Área para escanear</value>
   </data>
@@ -292,9 +277,6 @@
   </data>
   <data name="RbProbingZ.Text" xml:space="preserve">
     <value>Eixo Z (G38.3Z)</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Sondagem, selecione a fonte para o valor Z</value>
   </data>
   <data name="tabPage2.Text" xml:space="preserve">
     <value>Sondagem</value>
@@ -346,5 +328,9 @@
   </data>
   <data name="RbScanXY.ToolTip" xml:space="preserve">
     <value>Linha por linha em zig-zag</value>
+  </data>
+  <data name="btnOffset.Text" xml:space="preserve">
+    <value>definir máx. valor = 0,0</value>
+    <comment>Button</comment>
   </data>
 </root>

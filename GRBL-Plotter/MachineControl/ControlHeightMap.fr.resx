@@ -142,10 +142,6 @@
   <data name="label6.Text" xml:space="preserve">
     <value>profondeur max</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Sondage</value>
-    <comment>GroupBox</comment>
-  </data>
   <data name="btnStartHeightScan.Text" xml:space="preserve">
     <value>Générer une carte de hauteur</value>
     <comment>Button</comment>
@@ -153,14 +149,6 @@
   <data name="btnStartHeightScan.ToolTip" xml:space="preserve">
     <value>Envoyer des commandes d'analyse de carte de hauteur</value>
     <comment>ToolTip</comment>
-  </data>
-  <data name="btnSave.Text" xml:space="preserve">
-    <value>Enregistrer la carte de hauteur</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnLoad.Text" xml:space="preserve">
-    <value>Hauteur de chargement</value>
-    <comment>Button</comment>
   </data>
   <data name="btnApply.Text" xml:space="preserve">
     <value>Appliquer la carte de hauteur</value>
@@ -268,9 +256,6 @@
     <value>Manipulation</value>
     <comment>GroupBox</comment>
   </data>
-  <data name="lblInfo.Text" xml:space="preserve">
-    <value>Info</value>
-  </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>Zone à scanner</value>
   </data>
@@ -292,9 +277,6 @@
   </data>
   <data name="RbProbingZ.Text" xml:space="preserve">
     <value>Axe Z (G38.3Z)</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Sondage, sélectionnez la source pour la valeur Z</value>
   </data>
   <data name="tabPage2.Text" xml:space="preserve">
     <value>Sondage</value>
@@ -346,5 +328,9 @@
   </data>
   <data name="RbScanXY.ToolTip" xml:space="preserve">
     <value>Ligne par ligne en zigzag</value>
+  </data>
+  <data name="btnOffset.Text" xml:space="preserve">
+    <value>définir max. valeur = 0,0</value>
+    <comment>Button</comment>
   </data>
 </root>

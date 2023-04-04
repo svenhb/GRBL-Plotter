@@ -131,9 +131,6 @@
   <data name="lblProgress.Text" xml:space="preserve">
     <value>تم الانتهاء من</value>
   </data>
-  <data name="lblInfo.Text" xml:space="preserve">
-    <value>معلومات</value>
-  </data>
   <data name="cBGray.ToolTip" xml:space="preserve">
     <value>إظهار صورة النتيجة في تدرج الرمادي لاستخدامها مرة أخرى كصورة خريطة هايت</value>
     <comment>ToolTip</comment>
@@ -151,10 +148,6 @@
   </data>
   <data name="btnPosLL.Text" xml:space="preserve">
     <value>استخدام Pos الفعلي.</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnLoad.Text" xml:space="preserve">
-    <value>تحميل خريطة الارتفاع</value>
     <comment>Button</comment>
   </data>
   <data name="btnStartHeightScan.ToolTip" xml:space="preserve">
@@ -176,10 +169,6 @@
   </data>
   <data name="btnCutOffZ.Text" xml:space="preserve">
     <value>Z قطع!</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnSave.Text" xml:space="preserve">
-    <value>حفظ خريطة الارتفاع</value>
     <comment>Button</comment>
   </data>
   <data name="btnApply.Text" xml:space="preserve">
@@ -230,10 +219,6 @@
   <data name="btnOffset.Text" xml:space="preserve">
     <value>تعيين كحد أقصى. القيمة = 0.0</value>
     <comment>Button</comment>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>جس</value>
-    <comment>GroupBox</comment>
   </data>
   <data name="lblMid.Text" xml:space="preserve">
     <value>منتصف</value>
@@ -321,9 +306,6 @@
   </data>
   <data name="RbProbingZ.Text" xml:space="preserve">
     <value>المحور Z (G38.3Z)</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>باستخدام المحور Z (G38.3Z)</value>
   </data>
   <data name="tabPage2.Text" xml:space="preserve">
     <value>استقصاء ، حدد مصدرًا لقيمة Z.</value>

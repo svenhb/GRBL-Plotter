@@ -298,9 +298,6 @@
   <data name="menuStripCamera.Text" xml:space="preserve">
     <value>القائمة</value>
   </data>
-  <data name="lblAngle.Text" xml:space="preserve">
-    <value>0.00 درجة</value>
-  </data>
   <data name="TbSetPoints.Text" xml:space="preserve">
     <value>الإحداثيات الإيمانية:</value>
   </data>

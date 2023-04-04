@@ -118,316 +118,319 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="setWork00ToHereToolStripMenuItem.Text" xml:space="preserve">
-    <value>Zde nastavte pracovní souřadnice 0;0</value>
+    <value>Çalışma koordinatını 0;0 burada ayarlayın</value>
   </data>
   <data name="setWork00ToHereToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Nastaví počátek pracovní souřadnice na klepnutou pozici ve 2D pohledu</value>
+    <value>Çalışma koordinatının orijinini 2B görünümde tıklanan konuma ayarlar</value>
   </data>
   <data name="compensateAngleToolStripMenuItem.Text" xml:space="preserve">
-    <value>Použijte úhel na G-kód</value>
+    <value>Açıyı G Koduna uygula</value>
   </data>
   <data name="compensateAngleToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Aplikuje žlutě označený úhel na G kód</value>
+    <value>Sarı işaretli açıyı G koduna uygular</value>
   </data>
   <data name="FiducialAddCoordinateIn2DViewToolStripMenuItem.Text" xml:space="preserve">
-    <value>Přidejte základní souřadnice z 2D zobrazení do základního seznamu</value>
+    <value>2B görünümden referans listesine referans koordinatı ekleyin</value>
   </data>
   <data name="FiducialAddCoordinateIn2DViewToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Přidejte výchozí souřadnice pozice, na kterou jste klikli, uvnitř 2D pohledu do základního seznamu</value>
+    <value>2D görünümün içindeki tıklanan konumun referans koordinatlarını referans listesine ekleyin</value>
   </data>
   <data name="FiducialRemoveLastToolStripMenuItem.Text" xml:space="preserve">
-    <value>Odstraňte poslední referenční číslo</value>
+    <value>Son referansı kaldır</value>
   </data>
   <data name="FiducialRemoveLastToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Odebrat poslední přidanou fiduciář ze seznamu fiduciář</value>
+    <value>Son eklenen referansı referans listesinden kaldır</value>
   </data>
   <data name="FiducialListClearToolStripMenuItem.Text" xml:space="preserve">
-    <value>Přehledný základní seznam</value>
+    <value>Güvenilir listeyi temizle</value>
   </data>
   <data name="FiducialListClearToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Přehledný základní seznam</value>
+    <value>Güvenilir listeyi temizle</value>
   </data>
   <data name="ReferenceAddPointInImageToolStripMenuItem.Text" xml:space="preserve">
-    <value>Přidejte referenční bod z obrázku do přiřazeného seznamu</value>
+    <value>Resimden atanmış listeye referans noktası ekle</value>
   </data>
   <data name="ReferenceAddPointInImageToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Přidejte referenční bod z obrázku do přiřazeného seznamu</value>
+    <value>Resimden atanmış listeye referans noktası ekle</value>
   </data>
   <data name="ReferenceRemoveLastPointToolStripMenuItem.Text" xml:space="preserve">
-    <value>Odstraňte poslední referenční bod</value>
+    <value>Son referans noktasını kaldır</value>
   </data>
   <data name="ReferenceRemoveLastPointToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Odebrat poslední přidaný referenční bod z přiřazeného seznamu</value>
+    <value>Atanan listeden son eklenen referans noktasını kaldır</value>
   </data>
   <data name="ReferenceClearListToolStripMenuItem.Text" xml:space="preserve">
-    <value>Vymazat seznam referenčních bodů (přiřazených).</value>
+    <value>Referans noktası (atanan) listesini temizle</value>
   </data>
   <data name="ReferenceClearListToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Vymazat seznam referenčních bodů (přiřazených).</value>
+    <value>Referans noktası (atanan) listesini temizle</value>
   </data>
   <data name="showOverlayGraphicsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Zobrazit překryvnou grafiku</value>
+    <value>Yer paylaşımlı grafikleri göster</value>
   </data>
   <data name="showOverlayGraphicsToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Zobrazit překryvnou grafiku (pravítko, dráha pera dolů atd.)</value>
+    <value>Bindirme grafiklerini göster (cetvel, kalem yolu vb.)</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Zvětšení</value>
-  </data>
-  <data name="simulateCameraToolStripMenuItem.Text" xml:space="preserve">
-    <value>Simulovat fotoaparát</value>
-  </data>
-  <data name="cameraMountToolStripMenuItem.Text" xml:space="preserve">
-    <value>Držák fotoaparátu</value>
-  </data>
-  <data name="camSourceToolStripMenuItem.Text" xml:space="preserve">
-    <value>Zdroj videa</value>
-  </data>
-  <data name="camSourceToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Vyberte zdroj fotoaparátu.</value>
-  </data>
-  <data name="resetAndTeachToolStripMenuItem.Text" xml:space="preserve">
-    <value>Resetovat a učit</value>
-  </data>
-  <data name="distortionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Korekce zkreslení</value>
-  </data>
-  <data name="toolStripTextBox1.ToolTipText" xml:space="preserve">
-    <value>Otočit obraz videa – zadejte úhel</value>
-  </data>
-  <data name="setRotationAngleToolStripMenuItem.Text" xml:space="preserve">
-    <value>Otočení obrázku</value>
-  </data>
-  <data name="setRotationAngleToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Otočit obraz videa – zadejte úhel</value>
-  </data>
-  <data name="upperPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Učte horní pozici</value>
-  </data>
-  <data name="upperPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Učte pohled kamery</value>
-  </data>
-  <data name="toolStripTextBox2.ToolTipText" xml:space="preserve">
-    <value>v jednotkách GRBL (mm nebo palce)</value>
-  </data>
-  <data name="teachRadiusTopToolStripMenuItem.Text" xml:space="preserve">
-    <value>Nastavte horní poloměr učení</value>
-  </data>
-  <data name="lowerPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Naučte nižší pozici</value>
-  </data>
-  <data name="lowerPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Učte pohled kamery</value>
-  </data>
-  <data name="toolStripTextBox3.ToolTipText" xml:space="preserve">
-    <value>v jednotkách GRBL (mm nebo palce)</value>
-  </data>
-  <data name="teachRadiusBottomToolStripMenuItem.Text" xml:space="preserve">
-    <value>Nastavte spodní poloměr učení</value>
-  </data>
-  <data name="teachScalingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Naučte škálování</value>
-  </data>
-  <data name="teachScalingToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>1) Domácí plotr
-2) přesuňte kameru do horní polohy
-3) kliknutím na obrázek naučte vzdálenost horního poloměru
-4) přesuňte kameru do nižší polohy
-5) klikněte na obrázek pro naučení vzdálenosti spodního poloměru</value>
-  </data>
-  <data name="teachRadiusToolStripMenuItem.Text" xml:space="preserve">
-    <value>Naučte rádius</value>
-  </data>
-  <data name="setTeachRadiusToolStripMenuItem.Text" xml:space="preserve">
-    <value>Nastavte rádius učení</value>
-  </data>
-  <data name="teachScaling2ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Naučte škálování</value>
-  </data>
-  <data name="setToolPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Kliknutím nastavíte počátek ve 2D pohledu</value>
-  </data>
-  <data name="setMachinePositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Kliknutím získáte offset stroje grbl na počátku</value>
-  </data>
-  <data name="toolPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Nastavte orign souřadnic</value>
-  </data>
-  <data name="teachToolStripMenuItem.Text" xml:space="preserve">
-    <value>Naučte posun kamery</value>
-  </data>
-  <data name="teachToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>1) Poloha nula X,Y
-2) Označte polohu nástroje (při X=0, Y=0)
-3) Pohybujte se, dokud nebude značka ve středu pohledu kamery
-4) Naučte skutečnou polohu jako offset</value>
-  </data>
-  <data name="teachOffsetToolStripMenuItem.Text" xml:space="preserve">
-    <value>Naučte Offset</value>
-  </data>
-  <data name="teachOffsetToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>1) přepněte na „Coord nástroje“. (G54)
-2) Poloha nula X,Y
-3) Označte polohu nástroje (při X=0,Y=0) nástrojem na obrobku
-4) Přesuňte značku pod střed pohledu kamery
-5) Naučte skutečnou polohu jako offset
-6) přepněte na 'Cam coord.' (G59) - nyní ukazuje X=0, Y=0</value>
-  </data>
-  <data name="textToolStripMenuItem.Text" xml:space="preserve">
-    <value>Text</value>
-  </data>
-  <data name="crossHairsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Zaměřovací kříž</value>
-  </data>
-  <data name="colorsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Barvy</value>
-  </data>
-  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
-    <value>Založit</value>
-  </data>
-  <data name="penupPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>Cesta k peru</value>
-  </data>
-  <data name="machineLimitsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Limity stroje</value>
-  </data>
-  <data name="dimensionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Rozměr G-kódu</value>
-  </data>
-  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
-    <value>Pohled</value>
+    <value>yakınlaştır</value>
   </data>
   <data name="menuStripCamera.Text" xml:space="preserve">
-    <value>menuStrip1</value>
+    <value>menüŞerit1</value>
+  </data>
+  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kurmak</value>
+  </data>
+  <data name="simulateCameraToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kamerayı simüle et</value>
+  </data>
+  <data name="cameraMountToolStripMenuItem.Text" xml:space="preserve">
+    <value>kamera montajı</value>
+  </data>
+  <data name="camSourceToolStripMenuItem.Text" xml:space="preserve">
+    <value>Video kaynağı</value>
+  </data>
+  <data name="camSourceToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Kamera kaynağını seçin.</value>
+  </data>
+  <data name="distortionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Bozulma düzeltmesi</value>
+  </data>
+  <data name="resetAndTeachToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sıfırla ve öğret</value>
+  </data>
+  <data name="setRotationAngleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Resim döndürme</value>
+  </data>
+  <data name="setRotationAngleToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Video görüntüsünü döndür - açıyı girin</value>
+  </data>
+  <data name="toolStripTextBox1.Text" xml:space="preserve">
+    <value>000,00</value>
+  </data>
+  <data name="toolStripTextBox1.ToolTipText" xml:space="preserve">
+    <value>Video görüntüsünü döndür - açıyı girin</value>
+  </data>
+  <data name="teachScalingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ölçeklendirmeyi öğretin</value>
+  </data>
+  <data name="teachScalingToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1) Ev Plotter
+2) kamerayı üst konuma getirin
+3) üst yarıçap mesafesini öğretmek için resme tıklayın
+4) kamerayı alt konuma getirin
+5) alt yarıçap mesafesini öğretmek için resme tıklayın</value>
+  </data>
+  <data name="upperPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Üst Pozisyonu Öğret</value>
+  </data>
+  <data name="upperPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Kamera görünümünü öğret</value>
+  </data>
+  <data name="teachRadiusTopToolStripMenuItem.Text" xml:space="preserve">
+    <value>Öğretme yarıçapını üst olarak ayarla</value>
+  </data>
+  <data name="toolStripTextBox2.ToolTipText" xml:space="preserve">
+    <value>GRBL birimlerinde (mm veya inç)</value>
+  </data>
+  <data name="lowerPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Alt Pozisyonu Öğret</value>
+  </data>
+  <data name="lowerPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Kamera görünümünü öğret</value>
+  </data>
+  <data name="teachRadiusBottomToolStripMenuItem.Text" xml:space="preserve">
+    <value>Öğretme yarıçapını alt olarak ayarla</value>
+  </data>
+  <data name="toolStripTextBox3.ToolTipText" xml:space="preserve">
+    <value>GRBL birimlerinde (mm veya inç)</value>
+  </data>
+  <data name="teachScaling2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ölçeklendirmeyi öğretin</value>
+  </data>
+  <data name="teachRadiusToolStripMenuItem.Text" xml:space="preserve">
+    <value>Yarıçap öğret</value>
+  </data>
+  <data name="setTeachRadiusToolStripMenuItem.Text" xml:space="preserve">
+    <value>Öğretme yarıçapını ayarla</value>
+  </data>
+  <data name="toolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Koordinat orijinini ayarla</value>
+  </data>
+  <data name="setToolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>2B görünümde orijini ayarlamak için tıklayın</value>
+  </data>
+  <data name="setMachinePositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kaynakta grbl makine ofsetini almak için tıklayın</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ofseti Öğret</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1) 'Araç koordinatörü'ne geçin. (G54)
+2) Sıfır X,Y konumu
+3) Takım konumunu (X=0,Y=0'da) iş parçası üzerindeki takımla işaretleyin
+4) İşaretçiyi kamera görüntüsünün merkezinin altına taşıyın
+5) Gerçek konumu ofset olarak öğretin
+6) 'Kamera koordinatı'na geçin. (G59) - şimdi X=0, Y=0'ı gösterir</value>
+  </data>
+  <data name="teachToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kamera Ofsetini Öğret</value>
+  </data>
+  <data name="teachToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>1) Sıfır X,Y konumu
+2) Takım konumunu işaretleyin (X=0,Y=0'da)
+3) İşaretçi kamera görüntüsünün ortasına gelene kadar hareket ettirin
+4) Gerçek konumu ofset olarak öğretin</value>
+  </data>
+  <data name="colorsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Renkler</value>
+  </data>
+  <data name="textToolStripMenuItem.Text" xml:space="preserve">
+    <value>Metin</value>
+  </data>
+  <data name="crossHairsToolStripMenuItem.Text" xml:space="preserve">
+    <value>çapraz kıllar</value>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>Görüş</value>
+  </data>
+  <data name="penupPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kalem yolu</value>
+  </data>
+  <data name="machineLimitsToolStripMenuItem.Text" xml:space="preserve">
+    <value>makine limitleri</value>
+  </data>
+  <data name="dimensionToolStripMenuItem.Text" xml:space="preserve">
+    <value>G Kodu Boyutu</value>
   </data>
   <data name="btnApplyAngle.Text" xml:space="preserve">
-    <value>Použijte úhel na G-kód</value>
+    <value>Açıyı G Koduna Uygula</value>
   </data>
   <data name="btnApplyAngle.ToolTip" xml:space="preserve">
-    <value>Pomocí pravého tlačítka myši změřte úhel.
-Stiskněte tlačítko pro transformaci G-kódu s naměřeným úhlem.</value>
+    <value>Açıyı ölçmek için farenin sağ düğmesini kullanın.
+G-Kodunu ölçülen açıyla dönüştürmek için düğmesine basın.</value>
   </data>
   <data name="btnCamCoordTool.Text" xml:space="preserve">
-    <value>G54 Souřadnice nástroje.</value>
+    <value>G54 Alet koordinatı</value>
   </data>
   <data name="btnCamCoordTool.ToolTip" xml:space="preserve">
-    <value>Přesunout aktuální pozici nástroje pod kameru</value>
+    <value>Geçerli Araç konumunu kameranın altına taşı</value>
   </data>
   <data name="cBCamCoordMove.Text" xml:space="preserve">
-    <value>Přesuňte jeviště</value>
+    <value>Aşamayı taşı</value>
   </data>
   <data name="cBCamCoordMove.ToolTip" xml:space="preserve">
-    <value>Použít offset kamery na grafiku</value>
+    <value>Grafiklere kamera ofseti uygulama</value>
   </data>
   <data name="lblAngle.ToolTip" xml:space="preserve">
-    <value>Měřený úhel</value>
+    <value>Ölçülen Açı</value>
   </data>
   <data name="btnCamCoordCam.Text" xml:space="preserve">
-    <value>Koordinátor fotoaparátu G59</value>
+    <value>G59 Kamera koordinatı</value>
   </data>
   <data name="btnCamCoordCam.ToolTip" xml:space="preserve">
-    <value>Přesuňte aktuální pozici kamery pod nástroj</value>
+    <value>Geçerli kamera konumunu Aracın altına taşı</value>
   </data>
   <data name="TbSetPoints.Text" xml:space="preserve">
-    <value>Výchozí souřadnice:</value>
+    <value>Referans koordinatları:</value>
   </data>
   <data name="TbSetPoints.ToolTip" xml:space="preserve">
-    <value>Výchozí souřadnice: Budou použity pouze 1. a 2. souřadnice.
-Získejte souřadnice referenčních značek z importované grafiky nebo je shromážděte ručně:
-Ctrl-Klikněte pro označení,
-"a" pro připojení k seznamu,
-"c" pro vymazání seznamu.</value>
+    <value>Referans koordinatları: Sadece 1. ve 2. kullanılacaktır.
+Referans koordinatlarını içe aktarılan grafikten alın veya manuel olarak toplayın:
+Ctrl-İşaretlemek için tıklayın,
+Listeye eklenecek "a",
+Listeyi temizlemek için "c"</value>
   </data>
   <data name="TbRealPoints.Text" xml:space="preserve">
-    <value>Přidělené souřadnice:</value>
+    <value>Atanan koordinatlar:</value>
   </data>
   <data name="TbRealPoints.ToolTip" xml:space="preserve">
-    <value>Přidělené souřadnice:
-Sbírejte body ručně:
-Shift-Klikněte pro přidání bodu,
-Shift - "c" pro vymazání seznamu</value>
+    <value>Atanan koordinatlar:
+Puanları manuel olarak toplayın:
+Nokta eklemek için Shift-Tıklayın,
+Listeyi temizlemek için Shift - "c"</value>
   </data>
   <data name="btnAutoCenter.Text" xml:space="preserve">
-    <value>Přejděte na červený kruh</value>
+    <value>Kırmızı daireye git</value>
   </data>
   <data name="btnAutoCenter.ToolTip" xml:space="preserve">
-    <value>Přidejte pozici do "Assigned points" a pohybujte nástrojem</value>
+    <value>"Atanan noktalara" konum ekleyin ve aracı hareket ettirin</value>
   </data>
   <data name="GbZoom.Text" xml:space="preserve">
-    <value>Fotoaparát</value>
-  </data>
-  <data name="BtnSetOffsetZero.Text" xml:space="preserve">
-    <value>Nastavte XY = 0;0</value>
-  </data>
-  <data name="BtnSetOffsetMarker.Text" xml:space="preserve">
-    <value>Nastavte XY = Marker</value>
+    <value>Kamera</value>
   </data>
   <data name="GbOffset.Text" xml:space="preserve">
-    <value>Offset / Pohyb kamery</value>
+    <value>Kamera Ofseti / Hareketi</value>
+  </data>
+  <data name="BtnSetOffsetZero.Text" xml:space="preserve">
+    <value>XY'yi = 0;0 olarak ayarla</value>
+  </data>
+  <data name="BtnSetOffsetMarker.Text" xml:space="preserve">
+    <value>XY'yi Ayarla = İşaretçi</value>
   </data>
   <data name="lblCenterPos.Text" xml:space="preserve">
-    <value>Nebyl nalezen žádný tvar</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Klikněte pravým tlačítkem pro bod otáčení, držte stisknuté a uvolněte v požadovaném úhlu</value>
-  </data>
-  <data name="CbScale.Text" xml:space="preserve">
-    <value>Také měřítko</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Úhel</value>
-  </data>
-  <data name="cBRotateArround0.Text" xml:space="preserve">
-    <value>Otočit kolem 0;0</value>
+    <value>şekil bulunamadı</value>
   </data>
   <data name="GbMeasure.Text" xml:space="preserve">
-    <value>Změřte úhel</value>
+    <value>Ölçü açısı</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Dönme noktası için sağ tıklayın, basılı tutun, istediğiniz açıda bırakın</value>
+  </data>
+  <data name="CbScale.Text" xml:space="preserve">
+    <value>Ayrıca ölçeklendir</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Açı</value>
+  </data>
+  <data name="cBRotateArround0.Text" xml:space="preserve">
+    <value>0;0 civarında döndür</value>
   </data>
   <data name="cBShapeDetection.Text" xml:space="preserve">
-    <value>Povolit rozpoznávání tvarů</value>
-  </data>
-  <data name="BtnStartAutomatic.Text" xml:space="preserve">
-    <value>Spusťte automatickou korekci základny</value>
-  </data>
-  <data name="cBShapeShowFilter.Text" xml:space="preserve">
-    <value>Zobrazit použité filtry</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Vyberte sadu filtrů pro základní rozpoznávání</value>
-  </data>
-  <data name="checkBox1.Text" xml:space="preserve">
-    <value>Také měřítko při otáčení</value>
-  </data>
-  <data name="CbUseShapeRecognition.Text" xml:space="preserve">
-    <value>Použijte rozpoznávání tvarů</value>
-  </data>
-  <data name="tabPage1.Text" xml:space="preserve">
-    <value>Automatický režim</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Tvar blízko značky je červený</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Filtry lze nastavit v [Nastavení - Chování programu - Fotoaparát]</value>
-  </data>
-  <data name="tabPage2.Text" xml:space="preserve">
-    <value>Rozpoznávání tvaru</value>
-  </data>
-  <data name="tabPage3.Text" xml:space="preserve">
-    <value>Manuální režim</value>
-  </data>
-  <data name="tabPage4.Text" xml:space="preserve">
-    <value>Nastavte offsety</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Fotoaparát</value>
+    <value>Şekil tanımayı etkinleştir</value>
   </data>
   <data name="cBShapeDetection.ToolTip" xml:space="preserve">
-    <value>Povolit rozpoznávání tvarů v tomto zobrazení.
-Není nutné aktivovat automatickou korekce fudicial.</value>
+    <value>Bu görünümde şekil tanımayı etkinleştirin.
+Otomatik fudicial düzeltme için etkinleştirilmesi gerekmez.</value>
+  </data>
+  <data name="BtnStartAutomatic.Text" xml:space="preserve">
+    <value>Otomatik referans düzeltmeyi başlat</value>
+  </data>
+  <data name="cBShapeShowFilter.Text" xml:space="preserve">
+    <value>Uygulanan filtreleri göster</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Güvene dayalı tanıma için filtre seti seçin</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Otomatik mod</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>İşaretçiye yakın şekil kırmızı</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Filtreler, [Kurulum - Program davranışı - Kamera]'da ayarlanabilir</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>şekil tanıma</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Manuel mod</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Ofsetleri ayarla</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>Ayrıca dönüşte ölçeklendir</value>
+  </data>
+  <data name="CbUseShapeRecognition.Text" xml:space="preserve">
+    <value>Şekil tanımayı kullan</value>
   </data>
   <data name="CbUseShapeRecognition.ToolTip" xml:space="preserve">
-    <value>Použijte rozpoznávání tvarů k automatickému vyhledání referenčních značek.
-Pokud je zakázáno, musí být referenční značky přiřazeny ručně výběrem v obraze videa.</value>
+    <value>Referansları otomatik olarak bulmak için şekil tanımayı kullanın.
+Devre dışıysa, referanslar video resminde seçilerek manuel olarak atanmalıdır.</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Kamera</value>
   </data>
 </root>

@@ -289,9 +289,6 @@ Presione el botón para transformar G-Code con el ángulo medido.</value>
   <data name="cBCamCoordMove.Text" xml:space="preserve">
     <value>Mover escenario</value>
   </data>
-  <data name="lblAngle.Text" xml:space="preserve">
-    <value>0,00 °</value>
-  </data>
   <data name="btnCamCoordCam.Text" xml:space="preserve">
     <value>Coord de cámara G59</value>
   </data>

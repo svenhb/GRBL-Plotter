@@ -117,245 +117,260 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label9.Text" xml:space="preserve">
-    <value>边缘长度</value>
+  <data name="RbScanYX.ToolTip" xml:space="preserve">
+    <value>Sütun sütun zikzak</value>
+  </data>
+  <data name="RbScanXY.Text" xml:space="preserve">
+    <value>XY</value>
+  </data>
+  <data name="RbScanXY.ToolTip" xml:space="preserve">
+    <value>Satır satır zikzak</value>
+  </data>
+  <data name="RbScanY.Text" xml:space="preserve">
+    <value>Y'yi tara, X'i çıkart</value>
+  </data>
+  <data name="CbExtrudeEnable.Text" xml:space="preserve">
+    <value>Bir ekseni araştırın, diğerini çıkartın</value>
+  </data>
+  <data name="RbScanX.Text" xml:space="preserve">
+    <value>X'i tara, Y'yi çıkart</value>
+  </data>
+  <data name="CbRoundUp.Text" xml:space="preserve">
+    <value>Hesabı yuvarlamak</value>
+  </data>
+  <data name="BtnPosFromCodeDimension.Text" xml:space="preserve">
+    <value>Yüklenen GCode'dan boyutlar</value>
+  </data>
+  <data name="BtnMoveUR.Text" xml:space="preserve">
+    <value>🡵'ya taşı</value>
+  </data>
+  <data name="BtnMoveLL.Text" xml:space="preserve">
+    <value>🡷'a taşı</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Izgara boyutu X ve Y (püre genişliği)</value>
+  </data>
+  <data name="btnPosUR.Text" xml:space="preserve">
+    <value>Pozisyon alın. 🡵</value>
+    <comment>Button</comment>
   </data>
   <data name="btnPosUR.ToolTip" xml:space="preserve">
-    <value>获取实际机器位置并设置右上角坐标</value>
+    <value>Gerçek makine konumunu alın ve sağ üst koordinatları ayarlayın</value>
     <comment>ToolTip</comment>
+  </data>
+  <data name="btnPosLL.Text" xml:space="preserve">
+    <value>Pozisyon alın. 🡷</value>
+    <comment>Button</comment>
   </data>
   <data name="btnPosLL.ToolTip" xml:space="preserve">
-    <value>获取实际机器位置并设置左下角坐标</value>
+    <value>Gerçek makine konumunu alın ve sol alt koordinatları ayarlayın</value>
     <comment>ToolTip</comment>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>🡷 Sol alt</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>🡘🡙 Kenar uzunluğu</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>🡵 Sağ üst</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>高度剖面面积</value>
+    <value>Yükseklik bilgilerini taramak için Alanı tanımlayın</value>
     <comment>GroupBox</comment>
   </data>
-  <data name="btnOffset.ToolTip" xml:space="preserve">
-    <value>从所有Z值中删除偏移</value>
-    <comment>ToolTip</comment>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Maksimum derinlik</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>节省身高</value>
+    <value>Güvenli yükseklik</value>
   </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>最大深度</value>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Z İlerleme hızı</value>
+  </data>
+  <data name="btnOffset.Text" xml:space="preserve">
+    <value>maks. değer = 0.0</value>
+    <comment>Button</comment>
+  </data>
+  <data name="btnOffset.ToolTip" xml:space="preserve">
+    <value>Ofseti tüm Z değerlerinden kaldır</value>
+    <comment>ToolTip</comment>
   </data>
   <data name="btnStartHeightScan.Text" xml:space="preserve">
-    <value>生成高度图</value>
+    <value>Yükseklik Haritası Oluştur</value>
     <comment>Button</comment>
   </data>
   <data name="btnStartHeightScan.ToolTip" xml:space="preserve">
-    <value>发送高度图扫描命令</value>
+    <value>Yükseklik haritası tarama komutlarını gönder</value>
     <comment>ToolTip</comment>
   </data>
+  <data name="lblProgress.Text" xml:space="preserve">
+    <value>Bitti</value>
+  </data>
+  <data name="lblMin.Text" xml:space="preserve">
+    <value>dakika</value>
+  </data>
+  <data name="lblMax.Text" xml:space="preserve">
+    <value>maks.</value>
+  </data>
+  <data name="lblMid.Text" xml:space="preserve">
+    <value>orta</value>
+  </data>
   <data name="btnApply.Text" xml:space="preserve">
-    <value>套用高度图</value>
+    <value>Yükseklik Haritasını Uygula</value>
     <comment>Button</comment>
   </data>
   <data name="btnApply.ToolTip" xml:space="preserve">
-    <value>自动调平：将海拔剖面应用于G代码</value>
+    <value>Yükseklik haritasını ana pencerede G-Code'a uygula</value>
     <comment>ToolTip</comment>
   </data>
   <data name="loadHeightMapToolStripMenuItem.Text" xml:space="preserve">
-    <value>打开高度轮廓</value>
+    <value>Yük Yüksekliği Haritası</value>
     <comment>Menu</comment>
   </data>
   <data name="saveHeightMapToolStripMenuItem.Text" xml:space="preserve">
-    <value>保存高度轮廓</value>
+    <value>Yükseklik Haritasını Kaydet</value>
     <comment>Menu</comment>
   </data>
+  <data name="sTLToolStripMenuItem.Text" xml:space="preserve">
+    <value>STL'den yükseklik profilini içe aktar</value>
+  </data>
+  <data name="importToolStripMenuItem.Text" xml:space="preserve">
+    <value>İçe aktarmak</value>
+  </data>
   <data name="savePictureAsBMPToolStripMenuItem.Text" xml:space="preserve">
-    <value>另存为BMP</value>
+    <value>Resmi BMP Olarak Kaydet</value>
     <comment>Menu</comment>
   </data>
   <data name="saveMapAsSTLToolStripMenuItem.Text" xml:space="preserve">
-    <value>另存为STL</value>
+    <value>Haritayı STL Olarak Kaydet</value>
     <comment>Menu</comment>
   </data>
+  <data name="saveMapAsOBJToolStripMenuItem.Text" xml:space="preserve">
+    <value>Haritayı OBJ Olarak Kaydet</value>
+  </data>
   <data name="saveMapAsX3DToolStripMenuItem.Text" xml:space="preserve">
-    <value>另存为X3D</value>
+    <value>Haritayı X3D Olarak Kaydet</value>
     <comment>Menu</comment>
   </data>
   <data name="savePictureAsBWBMPToolStripMenuItem.Text" xml:space="preserve">
-    <value>出口</value>
+    <value>İhracat</value>
     <comment>Menu</comment>
   </data>
+  <data name="CbInterpolate.Text" xml:space="preserve">
+    <value>enterpolasyon</value>
+  </data>
   <data name="cBGray.Text" xml:space="preserve">
-    <value>灰阶</value>
+    <value>gri tonlama</value>
     <comment>CheckBox</comment>
   </data>
   <data name="cBGray.ToolTip" xml:space="preserve">
-    <value>以灰度显示结果图片，以进一步用作高度图图像</value>
+    <value>Yükseklik haritası görüntüsü olarak daha fazla kullanmak için sonuç resmini gri tonlamalı olarak göster</value>
     <comment>ToolTip</comment>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
-    <value>结果</value>
+    <value>Sonuç</value>
     <comment>GroupBox</comment>
   </data>
+  <data name="btnOffsetZ.Text" xml:space="preserve">
+    <value>Z Ofseti</value>
+    <comment>Button</comment>
+  </data>
   <data name="btnOffsetZ.ToolTip" xml:space="preserve">
-    <value>给定偏移量到所有Z值</value>
+    <value>Verilen ofseti tüm Z değerlerine ekle</value>
     <comment>ToolTip</comment>
   </data>
+  <data name="btnZoomZ.Text" xml:space="preserve">
+    <value>Z Yakınlaştır</value>
+  </data>
   <data name="btnZoomZ.ToolTip" xml:space="preserve">
-    <value>将所有Z值与给定值相乘</value>
+    <value>Tüm Z değerlerini verilen değerle çarpın</value>
     <comment>ToolTip</comment>
   </data>
   <data name="btnInvertZ.Text" xml:space="preserve">
-    <value>反转Z</value>
+    <value>Z'yi Ters Çevir</value>
     <comment>Button</comment>
   </data>
   <data name="btnInvertZ.ToolTip" xml:space="preserve">
-    <value>切换Z值的符号</value>
+    <value>Z değerlerinin işaretini değiştir</value>
     <comment>ToolTip</comment>
   </data>
   <data name="btnCutOffZ.Text" xml:space="preserve">
-    <value>Z切断</value>
+    <value>Z Kes !!!</value>
     <comment>Button</comment>
   </data>
   <data name="btnCutOffZ.ToolTip" xml:space="preserve">
-    <value>切断低于给定值的Z值。 使用切断功能之前，最好保存数据！</value>
+    <value>Verilen değerin altındaki Z değerlerini kesin. Kesmeyi kullanmadan önce verileri daha iyi kaydedin!</value>
     <comment>ToolTip</comment>
   </data>
   <data name="btnGCode.Text" xml:space="preserve">
-    <value>生成G代码</value>
+    <value>G Kodu Oluştur</value>
     <comment>Button</comment>
   </data>
   <data name="btnGCode.ToolTip" xml:space="preserve">
-    <value>生成G代码以回溯高度图</value>
+    <value>Yükseklik haritasını yeniden izlemek için G Kodu oluşturun</value>
     <comment>ToolTip</comment>
   </data>
-  <data name="gB_Manipulation.Text" xml:space="preserve">
-    <value>操作</value>
-    <comment>GroupBox</comment>
+  <data name="nUDCutOffZ.ToolTip" xml:space="preserve">
+    <value>STL içe aktarma işleminden sonra ikinci en küçük değer görüntülenecektir</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>表面扫描</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>网格尺寸X和Y（混搭宽度）</value>
-  </data>
-  <data name="btnPosUR.Text" xml:space="preserve">
-    <value>使用实际的位置。</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnPosLL.Text" xml:space="preserve">
-    <value>使用实际的位置。</value>
-    <comment>Button</comment>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>右上方</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>左下</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>探测速度Z</value>
-  </data>
-  <data name="saveMapAsOBJToolStripMenuItem.Text" xml:space="preserve">
-    <value>另存为OBJ</value>
-  </data>
-  <data name="BtnMoveUR.Text" xml:space="preserve">
-    <value>移到🡵</value>
-  </data>
-  <data name="BtnMoveLL.Text" xml:space="preserve">
-    <value>移步🡷</value>
-  </data>
-  <data name="btnOffset.Text" xml:space="preserve">
-    <value>设置最大值值 = 0.0</value>
-    <comment>Button</comment>
-  </data>
-  <data name="lblProgress.Text" xml:space="preserve">
-    <value>完成的</value>
-  </data>
-  <data name="lblMin.Text" xml:space="preserve">
-    <value>分钟</value>
-  </data>
-  <data name="lblMax.Text" xml:space="preserve">
-    <value>最大限度</value>
-  </data>
-  <data name="lblMid.Text" xml:space="preserve">
-    <value>中</value>
-  </data>
-  <data name="btnOffsetZ.Text" xml:space="preserve">
-    <value>Z 偏移</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnZoomZ.Text" xml:space="preserve">
-    <value>Z 变焦</value>
-  </data>
-  <data name="tabPage1.Text" xml:space="preserve">
-    <value>扫描区域</value>
-  </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>XY 进给率</value>
-  </data>
-  <data name="CbUseG1.Text" xml:space="preserve">
-    <value>使用 G1 进行 XY 移动（否则为 G0）</value>
-  </data>
-  <data name="RbProbingDiy.Text" xml:space="preserve">
-    <value>来自 DIY-Control</value>
-  </data>
-  <data name="LblConnected.Text" xml:space="preserve">
-    <value>DIY 控制未连接</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>使用上次从 DIY-Control 接收到的“(PRB:Zxxx)”Z 值作为深度信息。
-（xxx = Z 值）</value>
-  </data>
-  <data name="RbProbingZ.Text" xml:space="preserve">
-    <value>Z轴（G38.3Z）</value>
-  </data>
-  <data name="tabPage2.Text" xml:space="preserve">
-    <value>探测</value>
-  </data>
-  <data name="tabPage3.Text" xml:space="preserve">
-    <value>结果操作</value>
-  </data>
-  <data name="tabPage4.Text" xml:space="preserve">
-    <value>输出</value>
-  </data>
-  <data name="CbRoundUp.Text" xml:space="preserve">
-    <value>围捕</value>
-  </data>
-  <data name="BtnPosFromCodeDimension.Text" xml:space="preserve">
-    <value>已加载 GCode 的尺寸</value>
-  </data>
-  <data name="RbScanY.Text" xml:space="preserve">
-    <value>扫描 Y，挤出 X</value>
-  </data>
-  <data name="RbScanX.Text" xml:space="preserve">
-    <value>扫描 X，挤出 Y</value>
-  </data>
-  <data name="CbExtrudeEnable.Text" xml:space="preserve">
-    <value>探测一个轴，挤压另一个</value>
-  </data>
-  <data name="sTLToolStripMenuItem.Text" xml:space="preserve">
-    <value>从 STL 获取地图</value>
-  </data>
-  <data name="importToolStripMenuItem.Text" xml:space="preserve">
-    <value>进口</value>
-  </data>
-  <data name="GbProbing.Text" xml:space="preserve">
-    <value>探测，选择 Z 值的来源</value>
-  </data>
-  <data name="CbInterpolate.Text" xml:space="preserve">
-    <value>插</value>
+  <data name="radioButton2.Text" xml:space="preserve">
+    <value>YX</value>
   </data>
   <data name="CbNewStepWidth.Text" xml:space="preserve">
-    <value>个人步幅</value>
+    <value>Bireysel adım genişliği</value>
+  </data>
+  <data name="CbMoveXY.Text" xml:space="preserve">
+    <value>XY</value>
   </data>
   <data name="label12.Text" xml:space="preserve">
-    <value>注意：对于铣削高度图，最大。值应等于或小于零。</value>
+    <value>Not: yükseklik haritasının frezelenmesi için maks. değeri sıfıra eşit veya sıfırdan küçük olmalıdır.</value>
   </data>
-  <data name="nUDCutOffZ.ToolTip" xml:space="preserve">
-    <value>STL导入后，会显示第二小的值</value>
+  <data name="gB_Manipulation.Text" xml:space="preserve">
+    <value>manipülasyon</value>
+    <comment>GroupBox</comment>
   </data>
-  <data name="RbScanYX.ToolTip" xml:space="preserve">
-    <value>逐列之字形</value>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Taranacak alan</value>
   </data>
-  <data name="RbScanXY.ToolTip" xml:space="preserve">
-    <value>逐行之字形</value>
+  <data name="label11.Text" xml:space="preserve">
+    <value>XY İlerleme hızı</value>
+  </data>
+  <data name="CbUseG1.Text" xml:space="preserve">
+    <value>XY hareketi için G1'i kullanın (aksi halde G0)</value>
+  </data>
+  <data name="RbProbingDiy.Text" xml:space="preserve">
+    <value>DIY-Control'den</value>
+  </data>
+  <data name="LblConnected.Text" xml:space="preserve">
+    <value>DIY Kontrolü bağlı değil</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Derinlik bilgisi olarak DIY-Control'den son alınan "(PRB:Zxxx)" Z-değerini kullanır .
+(xxx = Z değeri)</value>
+  </data>
+  <data name="RbProbingZ.Text" xml:space="preserve">
+    <value>Z ekseni (G38.3Z)</value>
+  </data>
+  <data name="GbProbing.Text" xml:space="preserve">
+    <value>Tarama, Z değeri için kaynak seçin</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Sondaj</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Sonuç manipülasyonu</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Çıktı</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Yüzey taraması</value>
   </data>
 </root>

@@ -141,9 +141,6 @@
   <data name="cBZProbing.Text" xml:space="preserve">
     <value>探针Z也</value>
   </data>
-  <data name="nUDDiameter.ToolTip" xml:space="preserve">
-    <value>探针或刀头直径以计算零位</value>
-  </data>
   <data name="nUDOffsetX.ToolTip" xml:space="preserve">
     <value>由触摸板或铝箔引起的偏移到探测的零位置</value>
   </data>
@@ -161,12 +158,6 @@
   </data>
   <data name="label14.ToolTip" xml:space="preserve">
     <value>成功扫描后，向后行驶此距离</value>
-  </data>
-  <data name="label18.Text" xml:space="preserve">
-    <value>探测后的最终位置</value>
-  </data>
-  <data name="label18.ToolTip" xml:space="preserve">
-    <value>探测后的最终位置</value>
   </data>
   <data name="nUDProbeFinalZ.ToolTip" xml:space="preserve">
     <value>探测后的最终位置</value>
@@ -210,9 +201,6 @@ Z最后检查。</value>
   <data name="btnStartEF.Text" xml:space="preserve">
     <value>开始</value>
   </data>
-  <data name="lblEFProgress.Text" xml:space="preserve">
-    <value>状态</value>
-  </data>
   <data name="btnCancelEF.Text" xml:space="preserve">
     <value>取消</value>
   </data>
@@ -228,9 +216,6 @@ Z最后检查。</value>
   <data name="btnStartCF.Text" xml:space="preserve">
     <value>开始</value>
   </data>
-  <data name="lblCFProgress.Text" xml:space="preserve">
-    <value>状态</value>
-  </data>
   <data name="btnCancelCF.Text" xml:space="preserve">
     <value>取消</value>
   </data>
@@ -242,11 +227,12 @@ Z最后检查。</value>
   </data>
   <data name="label21.Text" xml:space="preserve">
     <value>内部轮廓：
-将刀尖放在工件的孔中，几乎居中。
-Z将不会移动。
+将探头放在工件的孔内，几乎居中。
+Z不会动。
 
 外轮廓：
-将刀尖放在工件的左侧，以进行边缘检测</value>
+将探头放在工件的左侧，作为边缘检测。
+或者启用“从中心开始”并将探头置于工件上方的中心位置。</value>
   </data>
   <data name="nUDWorkpieceDiameter.ToolTip" xml:space="preserve">
     <value>工件直径以确定探测距离</value>
@@ -304,12 +290,6 @@ Z将移回起始位置</value>
   <data name="btnStartTL.Text" xml:space="preserve">
     <value>开始</value>
   </data>
-  <data name="lblTLProgress.Text" xml:space="preserve">
-    <value>状态</value>
-  </data>
-  <data name="button2.Text" xml:space="preserve">
-    <value>取消</value>
-  </data>
   <data name="gBCoordinates.Text" xml:space="preserve">
     <value>座标</value>
   </data>
@@ -343,5 +323,17 @@ Z将移回起始位置</value>
   </data>
   <data name="label22.Text" xml:space="preserve">
     <value>工件直径</value>
+  </data>
+  <data name="nUDProbeDiameter.ToolTip" xml:space="preserve">
+    <value>用于计算零位的探针或刀头的直径</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.Text" xml:space="preserve">
+    <value>从中心开始</value>
+  </data>
+  <data name="lblCFAngle.Text" xml:space="preserve">
+    <value>旋转探测模式</value>
+  </data>
+  <data name="nUDFindCenterAngle.ToolTip" xml:space="preserve">
+    <value>角度（度）旋转探测方向</value>
   </data>
 </root>

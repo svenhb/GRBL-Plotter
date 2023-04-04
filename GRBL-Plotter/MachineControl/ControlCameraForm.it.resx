@@ -319,9 +319,6 @@ Premere il pulsante per trasformare il codice G con l'angolo misurato.</value>
   <data name="cBCamCoordMove.ToolTip" xml:space="preserve">
     <value>Applicare l'offset della telecamera alla grafica</value>
   </data>
-  <data name="lblAngle.Text" xml:space="preserve">
-    <value>0,00°</value>
-  </data>
   <data name="lblAngle.ToolTip" xml:space="preserve">
     <value>Angolo misurato</value>
   </data>

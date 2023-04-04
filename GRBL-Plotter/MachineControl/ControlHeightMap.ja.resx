@@ -131,9 +131,6 @@
   <data name="lblProgress.Text" xml:space="preserve">
     <value>完成した</value>
   </data>
-  <data name="lblInfo.Text" xml:space="preserve">
-    <value>情報</value>
-  </data>
   <data name="cBGray.ToolTip" xml:space="preserve">
     <value>高さマップ画像としてさらに使用するために、結果画像をグレースケールで表示します</value>
     <comment>ToolTip</comment>
@@ -151,10 +148,6 @@
   </data>
   <data name="btnPosLL.Text" xml:space="preserve">
     <value>実際のPosを使用します。</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnLoad.Text" xml:space="preserve">
-    <value>積載高さマップ</value>
     <comment>Button</comment>
   </data>
   <data name="btnStartHeightScan.ToolTip" xml:space="preserve">
@@ -176,10 +169,6 @@
   </data>
   <data name="btnCutOffZ.Text" xml:space="preserve">
     <value>Zカットオフ!!!</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnSave.Text" xml:space="preserve">
-    <value>高さマップを保存</value>
     <comment>Button</comment>
   </data>
   <data name="btnApply.Text" xml:space="preserve">
@@ -230,10 +219,6 @@
   <data name="btnOffset.Text" xml:space="preserve">
     <value>最大設定 値= 0.0</value>
     <comment>Button</comment>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>プロービング</value>
-    <comment>GroupBox</comment>
   </data>
   <data name="lblMid.Text" xml:space="preserve">
     <value>半ば</value>
@@ -321,9 +306,6 @@
   </data>
   <data name="RbProbingZ.Text" xml:space="preserve">
     <value>Z軸（G38.3Z）</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>プロービング、Z値のソースを選択</value>
   </data>
   <data name="tabPage2.Text" xml:space="preserve">
     <value>プロービング</value>

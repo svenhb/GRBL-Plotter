@@ -141,9 +141,6 @@
   <data name="cBZProbing.Text" xml:space="preserve">
     <value>Sonda Z también</value>
   </data>
-  <data name="nUDDiameter.ToolTip" xml:space="preserve">
-    <value>Diámetro de punta de sondeo o cabezal de corte para calcular la posición cero</value>
-  </data>
   <data name="nUDOffsetX.ToolTip" xml:space="preserve">
     <value>Desplazado a la posición cero de la sonda, causado por una placa táctil o papel de aluminio</value>
   </data>
@@ -161,12 +158,6 @@
   </data>
   <data name="label14.ToolTip" xml:space="preserve">
     <value>Después de un escaneo exitoso, conduzca de regreso a esta distancia</value>
-  </data>
-  <data name="label18.Text" xml:space="preserve">
-    <value>Posición final después de sondear</value>
-  </data>
-  <data name="label18.ToolTip" xml:space="preserve">
-    <value>Posición final después de sondear</value>
   </data>
   <data name="nUDProbeFinalZ.ToolTip" xml:space="preserve">
     <value>Posición final después de sondear</value>
@@ -210,9 +201,6 @@ Z se verifica en último lugar.</value>
   <data name="btnStartEF.Text" xml:space="preserve">
     <value>comienzo</value>
   </data>
-  <data name="lblEFProgress.Text" xml:space="preserve">
-    <value>Statut</value>
-  </data>
   <data name="btnCancelEF.Text" xml:space="preserve">
     <value>Cancelar</value>
   </data>
@@ -228,9 +216,6 @@ Z se verifica en último lugar.</value>
   <data name="btnStartCF.Text" xml:space="preserve">
     <value>comienzo</value>
   </data>
-  <data name="lblCFProgress.Text" xml:space="preserve">
-    <value>Statut</value>
-  </data>
   <data name="btnCancelCF.Text" xml:space="preserve">
     <value>Cancelar</value>
   </data>
@@ -242,11 +227,12 @@ Z se verifica en último lugar.</value>
   </data>
   <data name="label21.Text" xml:space="preserve">
     <value>Contorno interior:
-Coloque la punta de la herramienta dentro del orificio de la pieza de trabajo, casi centrada.
+Coloque la sonda dentro del orificio de la pieza de trabajo, casi centrada.
 Z no se moverá.
 
 Contorno exterior:
-Coloque la punta de la herramienta en el lado izquierdo de la pieza de trabajo, como para detectar bordes</value>
+Coloque la sonda en el lado izquierdo de la pieza de trabajo, como para la detección de bordes.
+O habilite 'Comenzar desde el centro' y coloque la sonda centrada sobre la pieza de trabajo.</value>
   </data>
   <data name="nUDWorkpieceDiameter.ToolTip" xml:space="preserve">
     <value>Diámetro de la pieza de trabajo para determinar la distancia de sondeo.</value>
@@ -304,12 +290,6 @@ Z retrocederá a la posición inicial</value>
   <data name="btnStartTL.Text" xml:space="preserve">
     <value>comienzo</value>
   </data>
-  <data name="lblTLProgress.Text" xml:space="preserve">
-    <value>Statut</value>
-  </data>
-  <data name="button2.Text" xml:space="preserve">
-    <value>Cancelar</value>
-  </data>
   <data name="gBCoordinates.Text" xml:space="preserve">
     <value>Coordenadas</value>
   </data>
@@ -340,5 +320,20 @@ Por lo general, el borde de la herramienta (sonda / cortador) se utiliza para de
   </data>
   <data name="btnCancelTL.Text" xml:space="preserve">
     <value>Cancelar</value>
+  </data>
+  <data name="nUDProbeDiameter.ToolTip" xml:space="preserve">
+    <value>Diámetro de la punta de sondeo o cabezal de corte para calcular la posición cero</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.Text" xml:space="preserve">
+    <value>Empezar desde el centro</value>
+  </data>
+  <data name="lblCFAngle.Text" xml:space="preserve">
+    <value>Rotar patrón de sondeo</value>
+  </data>
+  <data name="nUDFindCenterAngle.ToolTip" xml:space="preserve">
+    <value>Ángulo en grados para rotar las direcciones de palpado</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>diámetro de la pieza</value>
   </data>
 </root>

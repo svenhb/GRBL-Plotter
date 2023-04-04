@@ -189,14 +189,6 @@
   <data name="lblProgress.Text" xml:space="preserve">
     <value>Hotovo</value>
   </data>
-  <data name="btnSave.Text" xml:space="preserve">
-    <value>Uložit mapu výšky</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnLoad.Text" xml:space="preserve">
-    <value>Načíst mapu výšky</value>
-    <comment>Button</comment>
-  </data>
   <data name="lblMin.Text" xml:space="preserve">
     <value>min</value>
   </data>
@@ -296,9 +288,6 @@
     <value>Manipulace</value>
     <comment>GroupBox</comment>
   </data>
-  <data name="lblInfo.Text" xml:space="preserve">
-    <value>Info</value>
-  </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>Oblast pro skenování</value>
   </data>
@@ -320,9 +309,6 @@
   </data>
   <data name="RbProbingZ.Text" xml:space="preserve">
     <value>Osa Z (G38.3Z)</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Snímání, vyberte zdroj pro hodnotu Z</value>
   </data>
   <data name="tabPage2.Text" xml:space="preserve">
     <value>Sondování</value>

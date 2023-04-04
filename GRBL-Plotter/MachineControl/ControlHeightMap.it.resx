@@ -204,14 +204,6 @@
   <data name="lblProgress.Text" xml:space="preserve">
     <value>Finito</value>
   </data>
-  <data name="btnSave.Text" xml:space="preserve">
-    <value>Salva la mappa dell'altezza</value>
-    <comment>Button</comment>
-  </data>
-  <data name="btnLoad.Text" xml:space="preserve">
-    <value>Carica la mappa dell'altezza</value>
-    <comment>Button</comment>
-  </data>
   <data name="lblMin.Text" xml:space="preserve">
     <value>min</value>
   </data>
@@ -310,9 +302,6 @@
   <data name="gB_Manipulation.Text" xml:space="preserve">
     <value>Manipolazione</value>
     <comment>GroupBox</comment>
-  </data>
-  <data name="lblInfo.Text" xml:space="preserve">
-    <value>Informazioni</value>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>Area da scansionare</value>

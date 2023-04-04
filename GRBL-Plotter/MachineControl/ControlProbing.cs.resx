@@ -144,9 +144,6 @@
   <data name="cBZProbing.ToolTip" xml:space="preserve">
     <value>Po úspěšném nasnímání hrany nebo rohu sondy Z nakonec</value>
   </data>
-  <data name="nUDDiameter.ToolTip" xml:space="preserve">
-    <value>Průměr snímacího hrotu nebo řezné hlavy pro výpočet nulové polohy</value>
-  </data>
   <data name="nUDOffsetX.ToolTip" xml:space="preserve">
     <value>Offset k nulové poloze sondy, způsobený měřidlem nebo hliníkovou fólií</value>
   </data>
@@ -268,11 +265,12 @@ Pro získání úhlu zjistěte hranu sondy podruhé na jiné pozici.</value>
   </data>
   <data name="label21.Text" xml:space="preserve">
     <value>Vnitřní obrys:
-Umístěte hrot nástroje do otvoru obrobku, téměř vycentrovaný.
+Umístěte sondu do otvoru obrobku, téměř vycentrujte.
 Z se nepohne.
 
 Vnější obrys:
-Umístěte špičku nástroje na levou stranu obrobku, jako při detekci hran</value>
+Umístěte sondu na levou stranu obrobku, jako při detekci hran.
+Nebo povolte 'Start from center' a umístěte sondu na střed nad obrobek.</value>
   </data>
   <data name="lblCFProgressInfo.Text" xml:space="preserve">
     <value>Pokrok</value>
@@ -326,5 +324,17 @@ Z se vrátí zpět do výchozí polohy</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Snímání a korekce délky nástroje</value>
+  </data>
+  <data name="nUDProbeDiameter.ToolTip" xml:space="preserve">
+    <value>Průměr snímacího hrotu nebo řezné hlavy pro výpočet nulové polohy</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.Text" xml:space="preserve">
+    <value>Začněte od středu</value>
+  </data>
+  <data name="lblCFAngle.Text" xml:space="preserve">
+    <value>Otočte snímací vzor</value>
+  </data>
+  <data name="nUDFindCenterAngle.ToolTip" xml:space="preserve">
+    <value>Úhel ve stupních pro otáčení směrů snímání</value>
   </data>
 </root>

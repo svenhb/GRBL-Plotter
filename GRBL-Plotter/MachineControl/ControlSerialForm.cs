@@ -64,6 +64,8 @@
  * 2022-01-04 change readtimeout from 500 to 1000
  * 2022-01-07 OnKeyDown add try/catch
  * 2022-04-08 line 463 remove if
+ * 2023-03-29 l:930 f:SerialPort1_DataReceived add option to use Invoke -> lowLevelPerformance
+ * 2023-03-31 l:266 f:SerialForm_FormClosing improove shut-down behavior
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -135,8 +137,10 @@ namespace GrblPlotter
         private bool isMarlin = false;
         private bool updateMarlinPosition = false;
         private bool getMarlinPositionWasSent = false;
-        private readonly int insertMarlinCounterReload = 5;
-        private int insertMarlinCounter = 5;
+    //    private readonly int insertMarlinCounterReload = 5;
+    //    private int insertMarlinCounter = 5;
+
+        private bool lowLevelPerformance = false;// Properties.Settings.Default.grblPollIntervalReduce
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -257,26 +261,34 @@ namespace GrblPlotter
             Logger.Trace("====== Try closing SerialForm {0} {1}", iamSerial, e.CloseReason);
             if ((e.CloseReason.ToString() == "ApplicationExitCall") || (e.CloseReason.ToString() == "FormOwnerClosing"))
             {
-                isDataProcessing = false;
+            //    isDataProcessing = false;
                 if (countShutdown == 0)
                 {
+                    timerSerial.Stop();
+                    countShutdown = 5;
+                    StopStreaming(true);    // isNotStartup = true
+				//	lowLevelPerformance = false;	// hope to reduce shut-down time 2023-03-31
                     serialPort.DataReceived -= (this.SerialPort1_DataReceived); // stop receiving data
                                                                                 //    JustgrblReset();    // nötig?
-                    StopStreaming(true);    // isNotStartup = true
-                    timerSerial.Stop();
                     timerSerial.Interval = 1000;
                     timerSerial.Start();
+                    if (lowLevelPerformance)
+                        Close();
                     DisconnectFromGrbl(null, null);   // ClosePortSerial();
-                    if (reader != null) reader.Dispose();
-                    countShutdown = 5;
+                    reader?.Dispose();
                 }
                 e.Cancel = false;
                 flag_closeForm = true;
+                isDataProcessing = false;
                 Logger.Info("====== SerialForm {0} STOP ======", iamSerial);
+                AddToLog("SerialForm STOP 1");
             }
-            else
+            else 
             {
-                MessageBox.Show(Localization.GetString("serialCloseError"), Localization.GetString("mainAttention"));    //"Serial Connection is needed.\r\nClose main window instead","Attention");
+                if (countShutdown == 0)
+                {
+                    MessageBox.Show(Localization.GetString("serialCloseError"), Localization.GetString("mainAttention"));    //"Serial Connection is needed.\r\nClose main window instead","Attention");
+                }
                 e.Cancel = true;
                 Logger.Trace("------ Closing SerialForm {0} canceled", iamSerial);
             }
@@ -408,7 +420,7 @@ namespace GrblPlotter
             SerialPortOpenLast = SerialPortOpen;
 
 
-            if (IsConnectedToGrbl() && !serialPortError)
+            if (IsConnectedToGrbl() && !serialPortError && (countShutdown == 0))
             {
                 /* poll status */
                 try
@@ -418,7 +430,7 @@ namespace GrblPlotter
                         if (isMarlin)
                         {
                             if (!isStreaming) { SerialPortDataSend("M114" + lineEndTXmarlin); getMarlinPositionWasSent = true; }    // marlin pos request
-							// if isSteaming, insert M114 in PreProcessStreaming
+                                                                                                                                    // if isSteaming, insert M114 in PreProcessStreaming
                             updateMarlinPosition = true;
                         }
                         else
@@ -527,7 +539,7 @@ namespace GrblPlotter
                     { grblStateLast = GrblState.unknown; }
                 }
 
-                trgEvent = true;
+                trgEvent = true;    // in TimerSerial_Tick
 
 
                 /* preProcessStreaming and  processSend may block further timer-code */
@@ -538,7 +550,8 @@ namespace GrblPlotter
                     if (!isStreamingRequestPause && !isStreamingPause)
                     { PreProcessStreaming(); }          // TimerSerial_Tick
 
-                    StreamingMonitor();	// ControlSerialFormStreaming.cs
+                    if (!lowLevelPerformance)
+                        StreamingMonitor();	// ControlSerialFormStreaming.cs
                 }
                 if (!waitForIdle)
                 { ProcessSend(); }      // TimerSerial_Tick
@@ -742,9 +755,10 @@ namespace GrblPlotter
                 if (serialPort.IsOpen)
                 {
                     Logger.Info("Ser:{0}, ==== closePort {1} ====", iamSerial, actualPort);
+                    AddToLog("SerialForm STOP 2");
                     serialPort.Close();
                 }
-                serialPort.Dispose();
+                //   serialPort.Dispose();
                 if (!isStreaming)
                     SerialPortOpenLast = false;     // avoid connection lost error
                 SaveSettings();
@@ -921,8 +935,12 @@ namespace GrblPlotter
                     rxString = string.Empty;
                     rxString = serialPort.ReadTo(lineEndRX).Trim();  //read line from grbl, discard CR LF
                     isDataProcessing = true;
-                    this.BeginInvoke(new EventHandler(ProcessMessages));        //tigger rx process 2020-09-16 change from Invoke to BeginInvoke
-                    while ((serialPort.IsOpen) && isDataProcessing)// && !blockSend)   //wait previous data line processed done
+                    if (!lowLevelPerformance)
+                        this.BeginInvoke(new EventHandler(ProcessMessages));        //tigger rx process 2020-09-16 change from Invoke to BeginInvoke
+                    else
+                        this.Invoke(new EventHandler(ProcessMessages));             // 2023-03-29 add option for slow PCs
+
+                    while ((serialPort.IsOpen) && isDataProcessing && (countShutdown == 0))// && !blockSend)   //wait previous data line processed done
                     { }
                 }
                 catch (TimeoutException err1)
@@ -1077,7 +1095,8 @@ namespace GrblPlotter
         private bool SerialPortDataSend(string tmp)
         {
             if (logTransmit) Logger.Trace("SerialPortDataSend data:{0} IsConnectedToGrbl:{1} Connected:{2} useEthernet:{3}  serOpen:{4}", tmp, IsConnectedToGrbl(), Connected, useEthernet, serialPort.IsOpen);
-            if (IsConnectedToGrbl() && (!string.IsNullOrEmpty(tmp)))
+            //   if (IsConnectedToGrbl() && (!string.IsNullOrEmpty(tmp)))
+            if (!string.IsNullOrEmpty(tmp))
             {
                 //   useEthernet = CbEthernetUse.Checked;
                 if (!useEthernet)
@@ -1286,8 +1305,13 @@ namespace GrblPlotter
 
         private void CbStatus1_CheckedChanged(object sender, EventArgs e)
         {
-            if (cBStatus1.Checked) Logger.Info("Status1 Enable");
-            else Logger.Info("Status1 Disable");
+            if (cBStatus1.Checked)
+            {
+                Logger.Info("Status1 Enable");
+                AddToLog(string.Format("TX> {0,-28} {1,2} {2,3}  line-Nr", "Code line", " len", "free "));
+            }
+            else
+            { Logger.Info("Status1 Disable"); }
         }
 
         private void BtnClear_Click(object sender, EventArgs e)

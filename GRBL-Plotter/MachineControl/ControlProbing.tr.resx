@@ -118,222 +118,224 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label1.Text" xml:space="preserve">
-    <value>Diamètre de la fraise</value>
+    <value>Prob / kesici çapı (PD)</value>
   </data>
   <data name="label1.ToolTip" xml:space="preserve">
-    <value>Diamètre de la pointe de sonde ou de la tête de coupe pour calculer la position zéro</value>
+    <value>Sıfır konumunu hesaplamak için prob ucunun veya kesici kafasının çapı</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Max. Distance de sondage</value>
+    <value>Maks. Prob mesafesi (MPD)</value>
   </data>
   <data name="label2.ToolTip" xml:space="preserve">
-    <value>Distance maximale à déplacer pour trouver un bord</value>
+    <value>Bir kenar bulmak için hareket edilecek maksimum mesafe</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Taux d'alimentation</value>
+    <value>Tarama besleme hızı</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Palpage offset</value>
+    <value>Dokunmatik plaka boyutu</value>
   </data>
   <data name="label4.ToolTip" xml:space="preserve">
-    <value>Décalage par rapport à la position zéro détectée, provoqué par une plaque tactile ou une feuille d'aluminium</value>
+    <value>Dokunmatik plaka, mastar bloğu veya alüminyum folyonun neden olduğu problanmış sıfır konumuna ofset</value>
   </data>
   <data name="cBZProbing.Text" xml:space="preserve">
-    <value>La sonde Z aussi</value>
-  </data>
-  <data name="nUDOffsetX.ToolTip" xml:space="preserve">
-    <value>Décalage par rapport à la position zéro détectée, provoqué par une plaque tactile ou une feuille d'aluminium</value>
-  </data>
-  <data name="nUDOffsetY.ToolTip" xml:space="preserve">
-    <value>Décalage par rapport à la position zéro détectée, provoqué par une plaque tactile ou une feuille d'aluminium</value>
-  </data>
-  <data name="nUDOffsetZ.ToolTip" xml:space="preserve">
-    <value>Décalage par rapport à la position zéro détectée, provoqué par une plaque tactile ou une feuille d'aluminium</value>
-  </data>
-  <data name="gBHardware.Text" xml:space="preserve">
-    <value>Dimensions du matériel</value>
-  </data>
-  <data name="label14.Text" xml:space="preserve">
-    <value>Distance de sécurité</value>
-  </data>
-  <data name="label14.ToolTip" xml:space="preserve">
-    <value>Après une numérisation réussie, revenez sur cette distance</value>
-  </data>
-  <data name="nUDProbeFinalZ.ToolTip" xml:space="preserve">
-    <value>Position finale après le sondage</value>
-  </data>
-  <data name="nUDProbeFinalY.ToolTip" xml:space="preserve">
-    <value>Position finale après le sondage</value>
-  </data>
-  <data name="nUDProbeFinalX.ToolTip" xml:space="preserve">
-    <value>Position finale après le sondage</value>
-  </data>
-  <data name="nUDProbeSaveZ.ToolTip" xml:space="preserve">
-    <value>Après une numérisation réussie, revenez sur cette distance</value>
-  </data>
-  <data name="nUDProbeSaveY.ToolTip" xml:space="preserve">
-    <value>Après une numérisation réussie, revenez sur cette distance</value>
-  </data>
-  <data name="nUDProbeSaveX.ToolTip" xml:space="preserve">
-    <value>Après une numérisation réussie, revenez sur cette distance</value>
-  </data>
-  <data name="nUDProbeTravelZ.ToolTip" xml:space="preserve">
-    <value>Distance maximale à déplacer pour trouver un bord</value>
-  </data>
-  <data name="nUDProbeTravelY.ToolTip" xml:space="preserve">
-    <value>Distance maximale à déplacer pour trouver un bord</value>
-  </data>
-  <data name="nUDProbeTravelX.ToolTip" xml:space="preserve">
-    <value>Distance maximale à déplacer pour trouver un bord</value>
-  </data>
-  <data name="gBMovement.Text" xml:space="preserve">
-    <value>Mouvement de la sonde</value>
-  </data>
-  <data name="label19.Text" xml:space="preserve">
-    <value>Sélectionnez le bord ou le coin à reconnaître.
-Déplacez la pointe de l'outil devant le bord.
-Dans les coins, X puis Y sont cochés.
-Z est vérifié en dernier.</value>
-  </data>
-  <data name="lblEFProgressInfo.Text" xml:space="preserve">
-    <value>Le progrès</value>
-  </data>
-  <data name="btnStartEF.Text" xml:space="preserve">
-    <value>Début</value>
-  </data>
-  <data name="btnCancelEF.Text" xml:space="preserve">
-    <value>Annuler</value>
-  </data>
-  <data name="rB5.Text" xml:space="preserve">
-    <value>Seulement z</value>
-  </data>
-  <data name="tabPage1.Text" xml:space="preserve">
-    <value>Tranchant</value>
-  </data>
-  <data name="lblCFProgressInfo.Text" xml:space="preserve">
-    <value>Le progrès</value>
-  </data>
-  <data name="btnStartCF.Text" xml:space="preserve">
-    <value>Début</value>
-  </data>
-  <data name="btnCancelCF.Text" xml:space="preserve">
-    <value>Annuler</value>
-  </data>
-  <data name="tabPage2.Text" xml:space="preserve">
-    <value>Chercheur de centre</value>
-  </data>
-  <data name="tabPage3.Text" xml:space="preserve">
-    <value>Longueur de l'outil</value>
-  </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>Contour intérieur :
-Placez la sonde à l'intérieur du trou de la pièce, presque centrée.
-Z ne bougera pas.
-
-Contour extérieur :
-Placez la sonde sur le côté gauche de la pièce, comme pour la détection des bords.
-Ou activez 'Démarrer à partir du centre' et placez la sonde centrée au-dessus de la pièce.</value>
-  </data>
-  <data name="nUDWorkpieceDiameter.ToolTip" xml:space="preserve">
-    <value>Diamètre de la pièce à usiner pour déterminer la distance de palpage</value>
-  </data>
-  <data name="lblProbeFinal.ToolTip" xml:space="preserve">
-    <value>Position finale après le sondage</value>
-  </data>
-  <data name="rBCF2.ToolTip" xml:space="preserve">
-    <value>Trouver le centre et régler 0; 0
-Z up = Z start + Z sondage
-Enfin déplacer au centre</value>
-  </data>
-  <data name="rBCF1.ToolTip" xml:space="preserve">
-    <value>Trouver le centre et régler 0; 0
-Enfin déplacer au centre</value>
-  </data>
-  <data name="btnGetAngleEF.Text" xml:space="preserve">
-    <value>Faire pivoter le code G par angle</value>
-  </data>
-  <data name="btnGetAngleEF.ToolTip" xml:space="preserve">
-    <value>L'angle de correction sera calculé à partir de la verticale de la pièce à usiner (palpage X) ou horizontale (palpage Y)</value>
-  </data>
-  <data name="tBAngle.ToolTip" xml:space="preserve">
-    <value>L'angle de correction sera calculé à partir de la verticale de la pièce à usiner (palpage X) ou horizontale (palpage Y)</value>
-  </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>Angle de correction mesuré</value>
-  </data>
-  <data name="btnSaveTL.Text" xml:space="preserve">
-    <value>Conduire Z en position de sécurité</value>
-  </data>
-  <data name="btnSaveTL.ToolTip" xml:space="preserve">
-    <value>Utiliser les coordonnées absolues G90</value>
-  </data>
-  <data name="cBSetCoordTL.Text" xml:space="preserve">
-    <value>Utiliser la coordonnée Z G92 pour le 1er outil</value>
-  </data>
-  <data name="cBSetCoordTL.ToolTip" xml:space="preserve">
-    <value>Set G92 Z</value>
-  </data>
-  <data name="btnClearTL.Text" xml:space="preserve">
-    <value>Effacer la longueur de l'outil</value>
-  </data>
-  <data name="label12.Text" xml:space="preserve">
-    <value>1. Obtenir la longueur d'outil pour le 1er outil
-2. Utilisez G92 pour définir Z zéro
-3. Après le changement d'outil, il suffit de mesurer à nouveau la longueur de l'outil, la coordonnée Z sera alors corrigée.
-
-Après palpage de la longueur d'outil:
-Z reviendra à la position de départ</value>
-  </data>
-  <data name="lblTLProgressInfo.Text" xml:space="preserve">
-    <value>Le progrès</value>
-  </data>
-  <data name="btnStartTL.Text" xml:space="preserve">
-    <value>Début</value>
-  </data>
-  <data name="gBCoordinates.Text" xml:space="preserve">
-    <value>Les coordonnées</value>
-  </data>
-  <data name="rBProbeCoord1.Text" xml:space="preserve">
-    <value>Utiliser G10 L2 P0 - Définir coord. (G54-G59)</value>
-  </data>
-  <data name="rBProbeCoord2.Text" xml:space="preserve">
-    <value>Utilisez G92</value>
-  </data>
-  <data name="btnProbeCoordClear.Text" xml:space="preserve">
-    <value>Clair G92</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Palpage et décalage de longueur d'outil</value>
+    <value>Prob Z ayrıca</value>
   </data>
   <data name="cBZProbing.ToolTip" xml:space="preserve">
-    <value>La sonde Z enfin, après avoir réussi à sonder le bord ou le coin</value>
+    <value>Başarılı bir kenar veya köşe araştırmasından sonra nihayet Z Sondası</value>
   </data>
-  <data name="cBSetCenterZero.Text" xml:space="preserve">
-    <value>Définir le centre de l'outil à zéro</value>
-  </data>
-  <data name="cBSetCenterZero.ToolTip" xml:space="preserve">
-    <value>Si cette case est cochée, le centre de l'outil (palpeur / couteau) définit la position zéro.
-Habituellement, la bordure de l'outil (palpeur / couteau) est utilisée pour définir le zéro.</value>
-  </data>
-  <data name="lblProbeFinal.Text" xml:space="preserve">
-    <value>Position finale après sondage</value>
-  </data>
-  <data name="btnCancelTL.Text" xml:space="preserve">
-    <value>Annuler</value>
+  <data name="gBHardware.Text" xml:space="preserve">
+    <value>Donanım boyutları</value>
   </data>
   <data name="nUDProbeDiameter.ToolTip" xml:space="preserve">
-    <value>Diamètre de la pointe du palpeur ou de la tête de coupe pour calculer la position zéro</value>
+    <value>Sıfır konumunu hesaplamak için prob ucunun veya kesici kafasının çapı</value>
   </data>
-  <data name="cBFindCenterStartFromCenter.Text" xml:space="preserve">
-    <value>Partir du centre</value>
+  <data name="nUDOffsetX.ToolTip" xml:space="preserve">
+    <value>Gösterge bloğu veya alüminyum folyonun neden olduğu, problanmış sıfır konumuna ofset</value>
   </data>
-  <data name="lblCFAngle.Text" xml:space="preserve">
-    <value>Faire pivoter le modèle de sondage</value>
+  <data name="nUDOffsetY.ToolTip" xml:space="preserve">
+    <value>Gösterge bloğu veya alüminyum folyonun neden olduğu problanmış sıfır konumuna ofset</value>
+  </data>
+  <data name="nUDOffsetZ.ToolTip" xml:space="preserve">
+    <value>Gösterge bloğu veya alüminyum folyonun neden olduğu problanmış sıfır konumuna ofset</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Güvenli mesafe (SD)</value>
+  </data>
+  <data name="label14.ToolTip" xml:space="preserve">
+    <value>Başarılı araştırmadan sonra bu mesafe kadar geri çekil</value>
+  </data>
+  <data name="lblProbeFinal.Text" xml:space="preserve">
+    <value>Sondajdan sonraki son konum</value>
+  </data>
+  <data name="lblProbeFinal.ToolTip" xml:space="preserve">
+    <value>Son olarak bu pozisyona geçin</value>
+  </data>
+  <data name="nUDWorkpieceDiameter.ToolTip" xml:space="preserve">
+    <value>Problama mesafesini belirlemek için iş parçasının çapı</value>
+  </data>
+  <data name="nUDProbeFinalZ.ToolTip" xml:space="preserve">
+    <value>Son olarak bu pozisyona geçin</value>
+  </data>
+  <data name="nUDProbeFinalY.ToolTip" xml:space="preserve">
+    <value>Son olarak bu pozisyona geçin</value>
+  </data>
+  <data name="nUDProbeFinalX.ToolTip" xml:space="preserve">
+    <value>Son olarak bu pozisyona geçin</value>
+  </data>
+  <data name="nUDProbeSaveZ.ToolTip" xml:space="preserve">
+    <value>Başarılı araştırmadan sonra bu mesafe kadar geri çekil</value>
+  </data>
+  <data name="nUDProbeSaveY.ToolTip" xml:space="preserve">
+    <value>Başarılı araştırmadan sonra bu mesafe kadar geri çekil</value>
+  </data>
+  <data name="nUDProbeSaveX.ToolTip" xml:space="preserve">
+    <value>Başarılı araştırmadan sonra bu mesafe kadar geri çekil</value>
+  </data>
+  <data name="nUDProbeTravelZ.ToolTip" xml:space="preserve">
+    <value>Bir kenar bulmak için hareket edilecek maksimum mesafe</value>
+  </data>
+  <data name="nUDProbeTravelY.ToolTip" xml:space="preserve">
+    <value>Bir kenar bulmak için hareket edilecek maksimum mesafe</value>
+  </data>
+  <data name="nUDProbeTravelX.ToolTip" xml:space="preserve">
+    <value>Bir kenar bulmak için hareket edilecek maksimum mesafe</value>
+  </data>
+  <data name="rBCF2.ToolTip" xml:space="preserve">
+    <value>Merkezi bulun ve 0;0 olarak ayarlayın
+Z yukarı = Z başlatma + Z tarama
+Son olarak merkeze taşı</value>
+  </data>
+  <data name="rBCF1.ToolTip" xml:space="preserve">
+    <value>Merkezi bulun ve 0;0 olarak ayarlayın
+Son olarak merkeze taşı</value>
+  </data>
+  <data name="btnGetAngleEF.Text" xml:space="preserve">
+    <value>G-Kodunu açıyla döndür</value>
+  </data>
+  <data name="btnGetAngleEF.ToolTip" xml:space="preserve">
+    <value>Düzeltme açısı, iş parçasının dikey (X problama) veya yatay kenar (Y problama) şeklinde hesaplanacaktır.</value>
+  </data>
+  <data name="tBAngle.ToolTip" xml:space="preserve">
+    <value>Düzeltme açısı, iş parçasının dikey (X problama) veya yatay kenar (Y problama) şeklinde hesaplanacaktır.</value>
+  </data>
+  <data name="cBSetCoordTL.Text" xml:space="preserve">
+    <value>G92 Z koordinatını ayarlayın. 1. alet için</value>
+  </data>
+  <data name="cBSetCoordTL.ToolTip" xml:space="preserve">
+    <value>G92 Z'yi ayarlayın</value>
+  </data>
+  <data name="btnSaveTL.Text" xml:space="preserve">
+    <value>Z'yi güvenli konuma taşıyın.</value>
+  </data>
+  <data name="btnSaveTL.ToolTip" xml:space="preserve">
+    <value>G90 mutlak koordinatını kullan</value>
+  </data>
+  <data name="cBSetCenterZero.Text" xml:space="preserve">
+    <value>Takım merkezini sıfır olarak ayarla</value>
+  </data>
+  <data name="cBSetCenterZero.ToolTip" xml:space="preserve">
+    <value>İşaretlenirse, takım (prob / kesici) merkezi sıfır konumunu tanımlar.
+Genellikle aletin (prob / kesici) kenarlığı sıfırı tanımlamak için kullanılır.</value>
   </data>
   <data name="nUDFindCenterAngle.ToolTip" xml:space="preserve">
-    <value>Angle en degrés. pour faire pivoter les directions de palpage</value>
+    <value>Derece cinsinden açı tarama yönlerini döndürmek için</value>
+  </data>
+  <data name="gBMovement.Text" xml:space="preserve">
+    <value>Prob hareketi</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Kenar bulucu</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Ölçülen düzeltme açısı</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Tespit edilecek kenarı veya köşeyi seçin.
+Alet ucunu kenarın önüne yerleştirin.
+Köşelerde, önce X, ardından Y incelenecektir.
+Z en son incelenecektir.
+
+Açı elde etmek için kenarı başka bir konumda 2. kez inceleyin.</value>
+  </data>
+  <data name="lblEFProgressInfo.Text" xml:space="preserve">
+    <value>İlerlemek</value>
+  </data>
+  <data name="btnStartEF.Text" xml:space="preserve">
+    <value>Başlangıç</value>
+  </data>
+  <data name="btnCancelEF.Text" xml:space="preserve">
+    <value>İptal etmek</value>
+  </data>
+  <data name="rB5.Text" xml:space="preserve">
+    <value>sadece Z</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Merkez bulucu</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.Text" xml:space="preserve">
+    <value>merkezden başla</value>
+  </data>
+  <data name="lblCFAngle.Text" xml:space="preserve">
+    <value>Tarama düzenini döndür</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>İç kontur:
+Probu iş parçasının deliğine neredeyse ortalanmış şekilde yerleştirin.
+Z hareket etmeyecek.
+
+Dış kontur:
+Kenar algılamada olduğu gibi probu iş parçasının sol tarafına yerleştirin.
+Veya 'Merkezden başla' seçeneğini etkinleştirin ve probu iş parçasının üzerine ortalayın.</value>
+  </data>
+  <data name="lblCFProgressInfo.Text" xml:space="preserve">
+    <value>İlerlemek</value>
+  </data>
+  <data name="btnStartCF.Text" xml:space="preserve">
+    <value>Başlangıç</value>
+  </data>
+  <data name="btnCancelCF.Text" xml:space="preserve">
+    <value>İptal etmek</value>
   </data>
   <data name="label22.Text" xml:space="preserve">
-    <value>Diamètre de la pièce</value>
+    <value>İş parçası çapı (WpD)</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Takım uzunluğu</value>
+  </data>
+  <data name="btnClearTL.Text" xml:space="preserve">
+    <value>Takım uzunluğu ofsetini temizle</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>1. 1. takım için takım uzunluğunu alın
+2. Z'yi sıfıra ayarlamak için G92'yi kullanın
+3. Takım değiştirdikten sonra, sadece takım uzunluğunu tekrar ölçün, Z koordinatı düzeltilecektir.
+
+Takım uzunluğu taramasından sonra:
+Z, başlangıç ​​konumuna geri döner</value>
+  </data>
+  <data name="lblTLProgressInfo.Text" xml:space="preserve">
+    <value>İlerlemek</value>
+  </data>
+  <data name="btnStartTL.Text" xml:space="preserve">
+    <value>Başlangıç</value>
+  </data>
+  <data name="btnCancelTL.Text" xml:space="preserve">
+    <value>İptal etmek</value>
+  </data>
+  <data name="gBCoordinates.Text" xml:space="preserve">
+    <value>koordinatlar</value>
+  </data>
+  <data name="btnProbeCoordClear.Text" xml:space="preserve">
+    <value>G92'yi Temizle</value>
+  </data>
+  <data name="rBProbeCoord2.Text" xml:space="preserve">
+    <value>G92'yi kullanın</value>
+  </data>
+  <data name="rBProbeCoord1.Text" xml:space="preserve">
+    <value>G10 L2 P0 - Koordinatı ayarla'yı kullanın. (G54-G59)</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Problama ve Takım Uzunluğu Ofseti</value>
   </data>
 </root>

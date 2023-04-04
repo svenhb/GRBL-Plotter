@@ -144,9 +144,6 @@
   <data name="cBZProbing.ToolTip" xml:space="preserve">
     <value>エッジまたはコーナーのプローブに成功した後、最後にプローブZ</value>
   </data>
-  <data name="nUDDiameter.ToolTip" xml:space="preserve">
-    <value>ゼロ位置を計算するためのプローブチップまたはカッターヘッドの直径</value>
-  </data>
   <data name="nUDOffsetX.ToolTip" xml:space="preserve">
     <value>ゲージブロックまたはアルミ箔が原因でプローブされたゼロ位置へのオフセット</value>
   </data>
@@ -270,12 +267,13 @@ Zは最後にプローブされます。
     <value>ワーク径</value>
   </data>
   <data name="label21.Text" xml:space="preserve">
-    <value>内側の輪郭：
-工具の先端をワークの穴のほぼ中央に置きます。
+    <value>内側の輪郭:
+ワークピースの穴の内側にプローブをほぼ中央に配置します。
 Zは移動しません。
 
-外輪郭：
-エッジ検出に関しては、ワークピースの左側にツールチップを置きます</value>
+外側の輪郭:
+エッジ検出と同様に、プローブをワークピースの左側に置きます。
+または、「中心から開始」を有効にして、ワークピースの中心にプローブを配置します。</value>
   </data>
   <data name="lblCFProgressInfo.Text" xml:space="preserve">
     <value>進捗</value>
@@ -326,5 +324,17 @@ Zは開始位置に戻ります</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>プローブと工具長オフセット</value>
+  </data>
+  <data name="nUDProbeDiameter.ToolTip" xml:space="preserve">
+    <value>ゼロ位置を計算するためのプロービングチップまたはカッターヘッドの直径</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.Text" xml:space="preserve">
+    <value>中心からスタート</value>
+  </data>
+  <data name="lblCFAngle.Text" xml:space="preserve">
+    <value>プローブパターンを回転</value>
+  </data>
+  <data name="nUDFindCenterAngle.ToolTip" xml:space="preserve">
+    <value>角度 (度)探査方向を回転させる</value>
   </data>
 </root>

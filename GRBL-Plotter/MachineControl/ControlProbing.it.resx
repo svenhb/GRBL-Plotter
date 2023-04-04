@@ -144,9 +144,6 @@
   <data name="cBZProbing.ToolTip" xml:space="preserve">
     <value>Infine, la sonda Z, dopo la tastatura di spigoli o spigoli riuscita</value>
   </data>
-  <data name="nUDDiameter.ToolTip" xml:space="preserve">
-    <value>Diametro della punta di tastatura o della testa di taglio per calcolare la posizione zero</value>
-  </data>
   <data name="nUDOffsetX.ToolTip" xml:space="preserve">
     <value>Offset alla posizione zero sondata, causato dal blocco di riscontro o dal foglio di alluminio</value>
   </data>
@@ -269,11 +266,12 @@ Sonda il bordo una seconda volta su un'altra posizione per ottenere l'angolo.</v
   </data>
   <data name="label21.Text" xml:space="preserve">
     <value>Contorno interno:
-Posizionare la punta dell'utensile all'interno del foro del pezzo da lavorare, quasi al centro.
-Z non si sposterà.
+Posizionare la sonda all'interno del foro del pezzo da lavorare, quasi al centro.
+Z non si muoverà.
 
 Contorno esterno:
-Posizionare la punta dell'utensile sul lato sinistro del pezzo da lavorare, come per il rilevamento del bordo</value>
+Posizionare la sonda sul lato sinistro del pezzo, come per il rilevamento del bordo.
+Oppure abilitare 'Inizia dal centro' e posizionare la sonda centrata sopra il pezzo.</value>
   </data>
   <data name="lblCFProgressInfo.Text" xml:space="preserve">
     <value>Progresso</value>
@@ -324,5 +322,17 @@ Posizionare la punta dell'utensile sul lato sinistro del pezzo da lavorare, come
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Sondaggio e offset lunghezza utensile</value>
+  </data>
+  <data name="nUDProbeDiameter.ToolTip" xml:space="preserve">
+    <value>Diametro della punta di tastatura o della testa di taglio per calcolare la posizione zero</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.Text" xml:space="preserve">
+    <value>Inizia dal centro</value>
+  </data>
+  <data name="lblCFAngle.Text" xml:space="preserve">
+    <value>Ruota modello di tastatura</value>
+  </data>
+  <data name="nUDFindCenterAngle.ToolTip" xml:space="preserve">
+    <value>Angolo in gradi per ruotare le direzioni di tastatura</value>
   </data>
 </root>

@@ -141,9 +141,6 @@
   <data name="cBZProbing.Text" xml:space="preserve">
     <value>Зонд Z также</value>
   </data>
-  <data name="nUDDiameter.ToolTip" xml:space="preserve">
-    <value>Диаметр зонда или режущей головки для расчета нулевого положения</value>
-  </data>
   <data name="nUDOffsetX.ToolTip" xml:space="preserve">
     <value>Смещение в нулевое положение зонда, вызванное сенсорной пластиной или алюминиевой фольгой</value>
   </data>
@@ -161,12 +158,6 @@
   </data>
   <data name="label14.ToolTip" xml:space="preserve">
     <value>После успешного сканирования возвращайтесь на это расстояние</value>
-  </data>
-  <data name="label18.Text" xml:space="preserve">
-    <value>Конечная позиция после исследования</value>
-  </data>
-  <data name="label18.ToolTip" xml:space="preserve">
-    <value>Конечная позиция после исследования</value>
   </data>
   <data name="nUDProbeFinalZ.ToolTip" xml:space="preserve">
     <value>Конечная позиция после исследования</value>
@@ -210,9 +201,6 @@ Z проверяется последним.</value>
   <data name="btnStartEF.Text" xml:space="preserve">
     <value>Начало</value>
   </data>
-  <data name="lblEFProgress.Text" xml:space="preserve">
-    <value>Статус</value>
-  </data>
   <data name="btnCancelEF.Text" xml:space="preserve">
     <value>Отмена</value>
   </data>
@@ -228,9 +216,6 @@ Z проверяется последним.</value>
   <data name="btnStartCF.Text" xml:space="preserve">
     <value>Начало</value>
   </data>
-  <data name="lblCFProgress.Text" xml:space="preserve">
-    <value>Статус</value>
-  </data>
   <data name="btnCancelCF.Text" xml:space="preserve">
     <value>Отмена</value>
   </data>
@@ -242,11 +227,12 @@ Z проверяется последним.</value>
   </data>
   <data name="label21.Text" xml:space="preserve">
     <value>Внутренний контур:
-Поместите наконечник инструмента в отверстие заготовки, почти по центру.
+Поместите зонд в отверстие заготовки, почти по центру.
 Z не будет перемещен.
 
 Внешний контур:
-Поместите острие инструмента на левой стороне заготовки, как для определения кромки</value>
+Поместите щуп на левую сторону заготовки, как при обнаружении краев.
+Или включите «Начать от центра» и поместите датчик по центру над заготовкой.</value>
   </data>
   <data name="nUDWorkpieceDiameter.ToolTip" xml:space="preserve">
     <value>Диаметр заготовки для определения расстояния зондирования</value>
@@ -304,12 +290,6 @@ Z вернется в исходное положение</value>
   <data name="btnStartTL.Text" xml:space="preserve">
     <value>Начало</value>
   </data>
-  <data name="lblTLProgress.Text" xml:space="preserve">
-    <value>Статус</value>
-  </data>
-  <data name="button2.Text" xml:space="preserve">
-    <value>Отмена</value>
-  </data>
   <data name="gBCoordinates.Text" xml:space="preserve">
     <value>Координаты</value>
   </data>
@@ -343,5 +323,17 @@ Z вернется в исходное положение</value>
   </data>
   <data name="label22.Text" xml:space="preserve">
     <value>Диаметр заготовки</value>
+  </data>
+  <data name="nUDProbeDiameter.ToolTip" xml:space="preserve">
+    <value>Диаметр измерительного наконечника или режущей головки для расчета нулевой позиции</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.Text" xml:space="preserve">
+    <value>Начать с центра</value>
+  </data>
+  <data name="lblCFAngle.Text" xml:space="preserve">
+    <value>Повернуть шаблон зондирования</value>
+  </data>
+  <data name="nUDFindCenterAngle.ToolTip" xml:space="preserve">
+    <value>Угол в град. вращать направления зондирования</value>
   </data>
 </root>

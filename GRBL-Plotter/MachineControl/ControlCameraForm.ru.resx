@@ -295,9 +295,6 @@
   <data name="cBCamCoordMove.Text" xml:space="preserve">
     <value>Переместить этап</value>
   </data>
-  <data name="lblAngle.Text" xml:space="preserve">
-    <value>0,00 °</value>
-  </data>
   <data name="btnCamCoordCam.Text" xml:space="preserve">
     <value>G59 Координатор камеры</value>
   </data>

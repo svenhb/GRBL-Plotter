@@ -298,9 +298,6 @@
   <data name="menuStripCamera.Text" xml:space="preserve">
     <value>menuStrip1</value>
   </data>
-  <data name="lblAngle.Text" xml:space="preserve">
-    <value>0.00°</value>
-  </data>
   <data name="TbSetPoints.Text" xml:space="preserve">
     <value>基準座標：</value>
   </data>

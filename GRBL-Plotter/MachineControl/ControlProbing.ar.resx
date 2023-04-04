@@ -144,9 +144,6 @@
   <data name="cBZProbing.ToolTip" xml:space="preserve">
     <value>دقق في النهاية ، بعد اختبار الحافة أو الزاوية الناجحة</value>
   </data>
-  <data name="nUDDiameter.ToolTip" xml:space="preserve">
-    <value>قطر رأس السبر أو رأس السبر لحساب نقطة الصفر</value>
-  </data>
   <data name="nUDOffsetX.ToolTip" xml:space="preserve">
     <value>إزاحة إلى موضع صفري مجبر ، ناتج عن كتلة غيج أو رقائق ألمنيوم</value>
   </data>
@@ -271,11 +268,12 @@ Z up = Z start + Z probing
   </data>
   <data name="label21.Text" xml:space="preserve">
     <value>كفاف داخلي:
-ضع طرف الأداة داخل فتحة قطعة العمل ، مركزة تقريبًا.
-لن يتم نقل Z.
+ضع المجس داخل فتحة قطعة العمل ، في المنتصف تقريبًا.
+لن يتحرك Z.
 
-خارج محيط:
-ضع طرف الأداة على الجانب الأيسر من قطعة العمل ، مثل اكتشاف الحافة</value>
+محيط خارجي:
+ضع المسبار على الجانب الأيسر من قطعة العمل ، بالنسبة لاكتشاف الحافة.
+أو قم بتمكين "البدء من المركز" ووضع المجس في المنتصف فوق قطعة الشغل.</value>
   </data>
   <data name="lblCFProgressInfo.Text" xml:space="preserve">
     <value>تقدم</value>
@@ -326,5 +324,17 @@ Z up = Z start + Z probing
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>التحقيق وإزاحة طول الأداة</value>
+  </data>
+  <data name="nUDProbeDiameter.ToolTip" xml:space="preserve">
+    <value>قطر رأس المجس أو رأس القاطع لحساب موضع الصفر</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.Text" xml:space="preserve">
+    <value>ابدأ من المركز</value>
+  </data>
+  <data name="lblCFAngle.Text" xml:space="preserve">
+    <value>تدوير نمط الفحص</value>
+  </data>
+  <data name="nUDFindCenterAngle.ToolTip" xml:space="preserve">
+    <value>الزاوية بالدرجة. لتدوير اتجاهات التحقيق</value>
   </data>
 </root>

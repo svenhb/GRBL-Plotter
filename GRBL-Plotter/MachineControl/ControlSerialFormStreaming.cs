@@ -36,6 +36,9 @@
  * 2022-08-10 lock {sendBuffer.Clear();
  * 2023-01-25 #321 line 757 remove streamingBuffer.LineWasSent();
  * 2023-01-29 line 757 streamingBuffer.Add to increment streamingBuffer.Count
+ * 2023-03-29 l:112, 583, 689, 851 add option lowLevelPerformance
+ * 2023-03-30 l:309 add "M0" to tool change command (to allow manual tool change on TxM06 command)
+ * 2023-04-01 l:200 f:StartStreaming bug fix, subroutine number should be usable with 4 digits
  */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -93,13 +96,17 @@ namespace GrblPlotter
         ****************************************************************************/
         public void StartStreaming(IList<string> gCodeList, int startAtLine, int stopAtLine, bool check)
         {
+            lowLevelPerformance = Properties.Settings.Default.grblPollIntervalReduce;
             grblCharacterCounting = Properties.Settings.Default.grblStreamingProtocol1 && !isMarlin;
             Logger.Info("▼▼▼▼▼ Ser:{0} startStreaming at line:{1} to line:{2} ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼", iamSerial, startAtLine, stopAtLine);
-            string infoProtocol = "Streaming Protocol: Simple Send-Response";
 
-            if (grblCharacterCounting)
-                infoProtocol = "Streaming Protocol: Character-Counting";
-            Logger.Info("{0}", infoProtocol);
+            string infoProtocol = "Streaming Protocol: ";
+            infoProtocol += grblCharacterCounting ? "Character-Counting" : "Simple Send -Response";
+
+            string infoLowPerformance = "RX-mode: ";
+            infoLowPerformance += lowLevelPerformance ? "sync." : "async.";
+
+            Logger.Info("{0} | {1}", infoProtocol, infoLowPerformance);
 
             UpdateLogging();
 
@@ -107,7 +114,7 @@ namespace GrblPlotter
             grblBufferFree = Grbl.RX_BUFFER_SIZE;
             Logger.Info("Set Buffer Free:{0}  Size:{1}", grblBufferFree, grblBufferSize);
 
-            if (Properties.Settings.Default.grblPollIntervalReduce)
+            if (lowLevelPerformance)
             { timerSerial.Interval = Grbl.pollInterval * 2; }
             else
             { timerSerial.Interval = Grbl.pollInterval; }
@@ -151,7 +158,7 @@ namespace GrblPlotter
             {
                 if (logStreamData) AddToLog("* Logging enabled");
                 AddToLog("[Start streaming - no echo at " + GetTimeStampString() + " ]");
-                AddToLog("[" + infoProtocol + "]");
+                AddToLog("[" + infoProtocol + " | " + infoLowPerformance + "]");
                 if (useSerial2) AddToLog("[Use serial 2]");
                 if (useSerial3) AddToLog("[Use serial 3]");
             }
@@ -189,7 +196,7 @@ namespace GrblPlotter
             {
                 if (gCode[i].Contains("O"))     // find and store subroutines - nothing else
                 {
-                    int cmdONr = Gcode.GetCodeNrFromGCode('O', gCode[i]);
+                    int cmdONr = (int)FindDouble("O", -1, gCode[i]); //Gcode.GetCodeNrFromGCode4Digit('O', gCode[i]);
                     if (cmdONr <= 0)
                         continue;
                     Logger.Trace("Add subroutine O{0}", cmdONr);
@@ -295,11 +302,12 @@ namespace GrblPlotter
                             {
                                 tmp = "(" + tmp + ")";
                                 if (Properties.Settings.Default.ctrlToolChange)
-                                { InsertToolChangeCode(i, ref tmpToolInSpindle); }// insert external script-code and insert variables 
+                                { 	InsertToolChangeCode(i, ref tmpToolInSpindle); }// insert external script-code and insert variables 
                                 else
                                 {
                                     AddToLog(tmp + " !!! Tool change is disabled");
                                     Logger.Warn("⚠ Found '{0}' but tool change is disabled in [Setup - Tool change]", tmp);
+									tmp = "M0 " + tmp;
                                 }
                             }
                             if (cmdMNr == 30)
@@ -323,7 +331,7 @@ namespace GrblPlotter
                     streamingBuffer.Add("M30", stopAtLine);    // add end
                 }
                 streamingBuffer.Add("($END)", stopAtLine);        // add gcode line to list to send
-            //    streamingBuffer.Add("()", stopAtLine);            // add gcode line to list to send
+                                                                  //    streamingBuffer.Add("()", stopAtLine);            // add gcode line to list to send
             }   // lock
             timerSerial.Start();
 
@@ -578,9 +586,9 @@ namespace GrblPlotter
                 isStreamingCheck = false;
             }
             UpdateControls();
-            if (Properties.Settings.Default.grblPollIntervalReduce)
+            if (lowLevelPerformance)
             {
-                timerSerial.Interval = Grbl.pollInterval;
+                timerSerial.Interval = Grbl.pollInterval;   // set back original value
                 countMissingStatusReport = (int)(10000 / timerSerial.Interval);
             }
         }
@@ -596,11 +604,11 @@ namespace GrblPlotter
 
             if (isStopping)		// 20200717
             {
-				lock (sendDataLock)
-				{
-					streamingBuffer.Clear();    // ResetStreaming
-					sendBuffer.Clear();         // ResetStreaming
-				}
+                lock (sendDataLock)
+                {
+                    streamingBuffer.Clear();    // ResetStreaming
+                    sendBuffer.Clear();         // ResetStreaming
+                }
                 grblBufferFree = grblBufferSize;
             }
             Grbl.lastMessage = "";
@@ -630,7 +638,10 @@ namespace GrblPlotter
                 if ((streamingStateOld != streamingStateNow) || allowStreamingEvent)
                 {
                     if (streamingStateNow != GrblStreaming.pause)
-                    { if (trgEvent) SendStreamEvent(streamingStateNow); trgEvent = false; }  // streaming processOkStreaming
+                    {
+                        if (trgEvent) { SendStreamEvent(streamingStateNow); } // streaming processOkStreaming
+                        trgEvent = false;
+                    }
                     streamingStateOld = streamingStateNow;      //grblStatus = oldStatus;
                     allowStreamingEvent = false;
                 }
@@ -638,6 +649,7 @@ namespace GrblPlotter
         }
 
         /*****  sendStreamEvent update main prog  *****/
+		/* update only on  streamingStateNow change or 'ok' synchronized with timer via trgEvent=true*/
         private void SendStreamEvent(GrblStreaming status, int linePause = -1)
         {
             int lineNrSent = streamingBuffer.GetSentLineNr();
@@ -651,10 +663,10 @@ namespace GrblPlotter
             // progressbar.value is int
             int codeFinish = 0;
             if (streamingBuffer.Count != 0)
-            {   codeFinish = (int)Math.Ceiling((float)lineNrConfirmed * 100 / streamingBuffer.MaxLineNr) + 1; }     	// to reach 100%
+            { codeFinish = (int)Math.Ceiling((float)lineNrConfirmed * 100 / streamingBuffer.MaxLineNr) + 1; }     	// to reach 100%
             int buffFinish = 0;
             if (grblBufferSize != 0)
-            {   buffFinish = (int)Math.Ceiling((float)(grblBufferSize - grblBufferFree) * 100 / grblBufferSize) + 1; }	// to reach 100%
+            { buffFinish = (int)Math.Ceiling((float)(grblBufferSize - grblBufferFree) * 100 / grblBufferSize) + 1; }	// to reach 100%
 
             if (codeFinish > 100) { codeFinish = 100; }
             if (buffFinish > 100) { buffFinish = 100; }
@@ -681,12 +693,16 @@ namespace GrblPlotter
          **********************************************************************************/
         private void PreProcessStreaming()
         {
-            int lengthFree = sendBuffer.MissingConfirmationLength();        // 2022-05-27 keep sendBuffer small, for short reaction time on pause request
-            if (lengthFree > grblBufferSize)
+            if (!lowLevelPerformance)
             {
-                //Logger.Trace("PreProcessStreaming abort- MissingConfirmationLength:{0}  size:{1}", lengthFree, grblBufferSize);
-                return;
+                int lengthFree = sendBuffer.MissingConfirmationLength();        // 2022-05-27 keep sendBuffer small, for short reaction time on pause request
+                if (lengthFree > grblBufferSize)
+                {
+                    //Logger.Trace("PreProcessStreaming abort- MissingConfirmationLength:{0}  size:{1}", lengthFree, grblBufferSize);
+                    return;
+                }
             }
+
             if (waitForIdle || isStreamingRequestPause || (countPreventIdle > 0))
             {
                 Logger.Trace("PreProcessStreaming abort- waitForIdle:{0}  isStreamingRequestPause:{1}  countPreventIdle:{2}", waitForIdle, isStreamingRequestPause, countPreventIdle);
@@ -753,12 +769,12 @@ namespace GrblPlotter
                     if (isMarlin)
                     {	// frequently insert M114 command into sendBuffer
                         if (updateMarlinPosition)// || (--insertMarlinCounter <= 0))
-                        {   
+                        {
                             sendBuffer.Add("M114", streamingBuffer.GetSentLineNr());
                             streamingBuffer.Add("()", streamingBuffer.Count);      // streamingBuffer.Count will be checked later
                             getMarlinPositionWasSent = true;
                             streamingStateOld = streamingStateNow;
-                            insertMarlinCounter = insertMarlinCounterReload;
+                        //    insertMarlinCounter = insertMarlinCounterReload;
                         }
                         updateMarlinPosition = false;
                     }
@@ -772,7 +788,10 @@ namespace GrblPlotter
             }   // while
 
             if (streamingStateNow != GrblStreaming.pause)
-            { if (trgEvent) SendStreamEvent(streamingStateNow); trgEvent = false; }    // streaming in preProcessStreaming
+            {
+                if (trgEvent) { SendStreamEvent(streamingStateNow); } // streaming in preProcessStreaming
+                trgEvent = false;
+            }
         }
 
 
@@ -820,7 +839,7 @@ namespace GrblPlotter
                 if (streamingBuffer.IndexConfirmed >= streamingBuffer.Count)
                 {
                     Logger.Info("StreamingIDLE -> StreamingFinish");
-                    StreamingFinish(); 
+                    StreamingFinish();
                 }
             }
         }
@@ -836,9 +855,9 @@ namespace GrblPlotter
             streamingStateNow = GrblStreaming.finish;
 
             OnRaiseStreamEvent(new StreamEventArgs(streamingBuffer.MaxLineNr, streamingBuffer.MaxLineNr, 100, 0, GrblStreaming.finish));
-            if (Properties.Settings.Default.grblPollIntervalReduce)
+            if (lowLevelPerformance)
             {
-                timerSerial.Interval = Grbl.pollInterval;
+                timerSerial.Interval = Grbl.pollInterval;   // set back original value
                 countMissingStatusReport = (int)(10000 / timerSerial.Interval);
             }
             ResetStreaming();       // sendBuffer.Clear(); streamingBuffer.Clear();

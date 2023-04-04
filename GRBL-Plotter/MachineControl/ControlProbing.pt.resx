@@ -144,9 +144,6 @@
   <data name="cBZProbing.ToolTip" xml:space="preserve">
     <value>Teste Z finalmente, após uma sondagem bem-sucedida na borda ou no canto</value>
   </data>
-  <data name="nUDDiameter.ToolTip" xml:space="preserve">
-    <value>Diâmetro da ponta de sondagem ou da cabeça do cortador para calcular a posição zero</value>
-  </data>
   <data name="nUDOffsetX.ToolTip" xml:space="preserve">
     <value>Deslocamento para a posição zero sondada, causada por bloco de medição ou folha de alumínio</value>
   </data>
@@ -272,12 +269,12 @@ Borda da sonda uma segunda vez em outra posição para obter ângulo.
   </data>
   <data name="label21.Text" xml:space="preserve">
     <value>Contorno interno:
-Coloque a ponta da ferramenta dentro do orifício da peça de trabalho, quase centrado.
+Coloque a sonda dentro do orifício da peça de trabalho, quase centralizada.
 Z não será movido.
 
-Contorno externo:
-Coloque a ponta da ferramenta no lado esquerdo da peça de trabalho, como para detecção de arestas
-</value>
+Contorno exterior:
+Coloque a sonda no lado esquerdo da peça de trabalho, como para detecção de borda.
+Ou ative 'Iniciar do centro' e posicione o apalpador centralizado acima da peça de trabalho.</value>
   </data>
   <data name="lblCFProgressInfo.Text" xml:space="preserve">
     <value>Progresso</value>
@@ -329,5 +326,20 @@ Z voltará à posição inicial
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Sondagem e deslocamento do comprimento da ferramenta</value>
+  </data>
+  <data name="nUDProbeDiameter.ToolTip" xml:space="preserve">
+    <value>Diâmetro da ponta de apalpação ou cabeça de corte para calcular a posição zero</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.Text" xml:space="preserve">
+    <value>Comece do centro</value>
+  </data>
+  <data name="lblCFAngle.Text" xml:space="preserve">
+    <value>Girar padrão de sondagem</value>
+  </data>
+  <data name="nUDFindCenterAngle.ToolTip" xml:space="preserve">
+    <value>Ângulo em graus para girar as direções de sondagem</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>Diâmetro da peça de trabalho</value>
   </data>
 </root>

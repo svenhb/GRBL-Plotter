@@ -295,9 +295,6 @@
   <data name="cBCamCoordMove.Text" xml:space="preserve">
     <value>移动舞台</value>
   </data>
-  <data name="lblAngle.Text" xml:space="preserve">
-    <value>0.00°</value>
-  </data>
   <data name="btnCamCoordCam.Text" xml:space="preserve">
     <value>G59 相机坐标</value>
   </data>
