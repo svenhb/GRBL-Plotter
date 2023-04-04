@@ -1541,6 +1541,9 @@
     <Setting Name="importGraphicLeadOutEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importGraphicLeadTopZUp" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="importGraphicMultiplyGraphicsDimX" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
@@ -1940,7 +1943,10 @@
     <Setting Name="probingEdgeZ" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="probingFeed" Type="System.Decimal" Scope="User">
+    <Setting Name="probingFeedXY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="probingFeedZ" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="probingFinalX" Type="System.Decimal" Scope="User">
@@ -2179,9 +2185,6 @@
     </Setting>
     <Setting Name="useCaseLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">?</Value>
-    </Setting>
-    <Setting Name="importGraphicLeadTopZUp" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

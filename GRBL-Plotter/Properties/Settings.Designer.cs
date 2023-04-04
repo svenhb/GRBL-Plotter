@@ -6186,6 +6186,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGraphicLeadTopZUp {
+            get {
+                return ((bool)(this["importGraphicLeadTopZUp"]));
+            }
+            set {
+                this["importGraphicLeadTopZUp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public decimal importGraphicMultiplyGraphicsDimX {
             get {
@@ -7783,12 +7795,24 @@ namespace GrblPlotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("100")]
-        public decimal probingFeed {
+        public decimal probingFeedXY {
             get {
-                return ((decimal)(this["probingFeed"]));
+                return ((decimal)(this["probingFeedXY"]));
             }
             set {
-                this["probingFeed"] = value;
+                this["probingFeedXY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public decimal probingFeedZ {
+            get {
+                return ((decimal)(this["probingFeedZ"]));
+            }
+            set {
+                this["probingFeedZ"] = value;
             }
         }
         
@@ -8737,18 +8761,6 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["useCaseLastLoaded"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool importGraphicLeadTopZUp {
-            get {
-                return ((bool)(this["importGraphicLeadTopZUp"]));
-            }
-            set {
-                this["importGraphicLeadTopZUp"] = value;
             }
         }
     }
