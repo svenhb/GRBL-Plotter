@@ -117,28 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BtnStart.Text" xml:space="preserve">
-    <value>Comece a transmitir</value>
+  <data name="linkLabel1.Text" xml:space="preserve">
+    <value>GitHub'da GRBL-Plotter'ı ziyaret edin</value>
   </data>
-  <data name="BtnCancel.Text" xml:space="preserve">
-    <value>Cancelar</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Comece a transmitir na linha</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Pare de transmitir na linha</value>
+  <data name="linkLabel1.ToolTip" xml:space="preserve">
+    <value>Tarayıcıyı açın ve 'https://github.com/svenhb/GRBL-Plotter' adresini ziyaret edin</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Após pressionar start, os dados serão carregados e o streaming permanecerá no modo de pausa, pressione start novamente (clique com o botão esquerdo) para continuar.</value>
+    <value>Sürüm</value>
+  </data>
+  <data name="button2.Text" xml:space="preserve">
+    <value>Güncellemeleri kontrol ediniz</value>
+  </data>
+  <data name="linkLabel2.Text" xml:space="preserve">
+    <value>Veri yolu</value>
+  </data>
+  <data name="linkLabel2.ToolTip" xml:space="preserve">
+    <value>Açık dosya</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Estado do analisador</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Posição</value>
+    <value>Veri yolu:</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Seção de fluxo de GCode</value>
+    <value>Hakkında</value>
   </data>
 </root>

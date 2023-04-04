@@ -378,7 +378,7 @@ namespace GrblPlotter
                 }
             }
             txt = GuiVariables.InsertVariable(txt);			// will be filled in MainFormLoadFile.cs 1617, defined in MainFormObjects.cs
-            if ((_serial_form != null) && (!_serial_form.RequestSend(txt)))     // check if COM is still open
+            if ((_serial_form != null) && (!_serial_form.RequestSend(txt, true)))     // check if COM is still open
             {
                 timerUpdateControlSource = "sendCommand";
                 UpdateControlEnables();	// no connection, disable buttons

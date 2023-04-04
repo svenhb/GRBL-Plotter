@@ -20,10 +20,11 @@
 /* 
  * 2021-07-02 code clean up / code quality
  * 2023-03-07 l:40 f:ShowMessage get color from message and set panel color
+ * 2023-03-31 l:65 f:ShowMessage reduce size if there is no color to show / check if hex-num / replace label by textBox
 */
 using System;
 using System.Drawing;
-using System.Runtime.ConstrainedExecution;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace GrblPlotter
@@ -38,24 +39,37 @@ namespace GrblPlotter
         public void ShowMessage(string headline, string text, int mode)
         {
             if (mode == 1)
-            {				
-				int r1 = text.IndexOf('[');
-				int r2 = text.IndexOf(']');
-				if ((r1 > 0) && (r2 > r1))
-				{
-					string hex = text.Substring(r1+1, r2-r1-1);
-                    text = text.Substring(0, r1);
+            {
+                int r1 = text.IndexOf('[');
+                int r2 = text.IndexOf(']');
+                if ((r1 > 0) && (r2 > r1))
+                {
+                    string hex = text.Substring(r1 + 1, r2 - r1 - 1);
+                    text = text.Substring(0, r1) + text.Substring(r2 + 1);
+
+                    if (Int32.TryParse(hex, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out int numericValue))
+                    { hex = "#" + hex; }        // then # is missing
+
                     LblHex.Text = hex;
                     try
-                    {   ColorPanel.BackColor = System.Drawing.ColorTranslator.FromHtml(hex);
+                    {
+                        ColorPanel.BackColor = System.Drawing.ColorTranslator.FromHtml(hex);
                         LblHex.ForeColor = ContrastColor(System.Drawing.ColorTranslator.FromHtml(hex));
                     }
                     catch { }
                 }
+                else
+                {
+                    this.SizeChanged -= MessageForm_SizeChanged;
+                    ColorPanel.Visible = LblHex.Visible = false;
+                    btnContinue.Top = btnClose.Top = 126;
+                    Height = 186;
+                }
+
                 this.Text = headline;
-                lblInfo.Text = text;
-                lblInfo.Visible = true;
-                this.BackColor = Color.Yellow;
+                tBInfo2.Text = text;
+                tBInfo2.Visible = true;
+                this.BackColor = tBInfo2.BackColor = Color.Yellow;
             }
             else
             {

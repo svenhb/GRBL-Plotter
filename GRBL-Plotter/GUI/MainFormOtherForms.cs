@@ -317,8 +317,7 @@ namespace GrblPlotter
         {
             if (e.Command == "Fiducial")
             {
-                if (_process_form != null)
-                { _process_form.Feedback(e.Command, e.Value, (e.Value=="finished")); }
+                _process_form?.Feedback(e.Command, e.Value, (e.Value=="finished"));
             }
         }
 
@@ -368,8 +367,7 @@ namespace GrblPlotter
                     if (double.TryParse(num, out double myZ))
                     { alternateZ = myZ; }
                     else
-                    { 	if (_diyControlPad != null)
-						{_diyControlPad.SendFeedback("Error in parsing " + num, true); }
+                    { 	_diyControlPad?.SendFeedback("Error in parsing " + num, true);
 					}
                 }
             }

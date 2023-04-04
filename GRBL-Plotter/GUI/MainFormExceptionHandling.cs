@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
  * 2021-12-10 new
  * 2022-04-01 add UrlEncode line 218
  * 2022-07-29 show abort dialog after 3 exceptions
+ * 2023-03-30 l:84 f:ShowException add try catch
 */
 
 using System;
@@ -81,23 +82,26 @@ namespace GrblPlotter
 
         private void ShowException(Exception ex, string source, bool showAbortMessage)
         {
-            Logger.Error(ex, "ShowException {0} - Quit GRBL Plotter? ", source);
-            if (ex != null)
-            {
-                MessageBox.Show(ex.Message + "\r\n\r\n" + GetAllFootprints(ex) + "\r\n\r\nCheck " + Datapath.AppDataFolder + "\\logfile.txt", "Main Form " + source);
-                EventCollector.StoreException(source + ": " + GetAllFootprints(ex, false));
-            }
-            else
-            {
-                Logger.Error("ShowException - Exception is NULL");
-                EventCollector.StoreException("Exception is null");
-            }
-            if (showAbortMessage && MessageBox.Show(Localization.GetString("mainQuit"), Localization.GetString("mainProblem"), MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                Properties.Settings.Default.guiLastEnd = DateTime.Now.Ticks;
-                EventCollector.SetEnd(true);
-                Application.Exit();
-            }
+			try
+            {	Logger.Error(ex, "ShowException {0} - Quit GRBL Plotter? ", source);
+				if (ex != null)
+				{
+					MessageBox.Show(ex.Message + "\r\n\r\n" + GetAllFootprints(ex) + "\r\n\r\nCheck " + Datapath.AppDataFolder + "\\logfile.txt", "Main Form " + source);
+					EventCollector.StoreException(source + ": " + GetAllFootprints(ex, false));
+				}
+				else
+				{
+					Logger.Error("ShowException - Exception is NULL");
+					EventCollector.StoreException("Exception is null");
+				}
+				if (showAbortMessage && MessageBox.Show(Localization.GetString("mainQuit"), Localization.GetString("mainProblem"), MessageBoxButtons.YesNo) == DialogResult.Yes)
+				{
+					Properties.Settings.Default.guiLastEnd = DateTime.Now.Ticks;
+					EventCollector.SetEnd(true);
+					Application.Exit();
+				}
+			}
+			catch {}	// caused UnhandledException: Index exceeds array bounds
         }
 
         private void ShowIoException(string source, string fileName)

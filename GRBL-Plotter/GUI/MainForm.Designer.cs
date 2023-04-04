@@ -395,6 +395,7 @@ namespace GrblPlotter
             this.franzToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.italianoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.czechToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.türkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chinesischToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.arabischToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.japanischToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -2699,6 +2700,7 @@ namespace GrblPlotter
             this.franzToolStripMenuItem,
             this.italianoToolStripMenuItem,
             this.czechToolStripMenuItem,
+            this.türkToolStripMenuItem,
             this.chinesischToolStripMenuItem,
             this.arabischToolStripMenuItem,
             this.japanischToolStripMenuItem});
@@ -2752,6 +2754,12 @@ namespace GrblPlotter
             this.czechToolStripMenuItem.Name = "czechToolStripMenuItem";
             resources.ApplyResources(this.czechToolStripMenuItem, "czechToolStripMenuItem");
             this.czechToolStripMenuItem.Click += new System.EventHandler(this.CzechToolStripMenuItem_Click);
+            // 
+            // türkToolStripMenuItem
+            // 
+            this.türkToolStripMenuItem.Name = "türkToolStripMenuItem";
+            resources.ApplyResources(this.türkToolStripMenuItem, "türkToolStripMenuItem");
+            this.türkToolStripMenuItem.Click += new System.EventHandler(this.TürkToolStripMenuItem_Click);
             // 
             // chinesischToolStripMenuItem
             // 
@@ -3855,6 +3863,7 @@ namespace GrblPlotter
         private System.Windows.Forms.ToolStripMenuItem grblSetupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem italianoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem processAutomationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem türkToolStripMenuItem;
     }
 }
 

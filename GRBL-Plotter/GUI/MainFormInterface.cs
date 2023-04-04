@@ -536,6 +536,7 @@ namespace GrblPlotter
                     if (!Grbl.isMarlin) _serial_form.AddToLog("* Buffer size was manually set to " + Grbl.RX_BUFFER_SIZE + " bytes!\r* Check [Setup - Flow control]");
                     Logger.Info("Buffer size was set manually to {0} [Setup - Flow control - grbl buffer size]  Grbl.axisCount:{1}", Grbl.RX_BUFFER_SIZE, Grbl.axisCount);
                 }
+                StatusStripClear(0);
                 if (!Grbl.isMarlin) StatusStripSet(2, string.Format("grbl-controller connected: vers: {0}, axis: {1}, buffer: {2}", _serial_form.GrblVers, Grbl.axisCount, Grbl.RX_BUFFER_SIZE), Color.Lime);
                 else StatusStripSet(2, string.Format("Marlin connected: axis: {0}", Grbl.axisCount), Color.Lime);
 

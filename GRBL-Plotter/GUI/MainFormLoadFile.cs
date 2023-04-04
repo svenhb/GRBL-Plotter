@@ -1475,6 +1475,15 @@ namespace GrblPlotter
             TryRestart();
         }
 
+        private void TürkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.guiLanguage = "TR";
+            MessageBox.Show("GRBL-Plotter'ın yeniden başlatılması gerekiyor.\r\n" +
+                "Çeviriyi geliştirmek için, önerilen düzeltmeyle ilgili bir sorunu şu adreste açın: https://github.com/svenhb/GRBL-Plotter/issues", "Dikkat");
+            TryRestart();
+        }
+
+
         #endregion
 
         // Ctrl-V to paste graphics

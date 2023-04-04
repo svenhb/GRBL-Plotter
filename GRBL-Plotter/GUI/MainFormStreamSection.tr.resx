@@ -118,27 +118,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BtnStart.Text" xml:space="preserve">
-    <value>Comece a transmitir</value>
+    <value>Akışı başlat</value>
   </data>
   <data name="BtnCancel.Text" xml:space="preserve">
-    <value>Cancelar</value>
+    <value>İptal etmek</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Comece a transmitir na linha</value>
+    <value>Sırada akışı başlat</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Pare de transmitir na linha</value>
+    <value>Hatta akışı durdur</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Após pressionar start, os dados serão carregados e o streaming permanecerá no modo de pausa, pressione start novamente (clique com o botão esquerdo) para continuar.</value>
+    <value>Başlat'a bastıktan sonra, veriler yüklenir ve akış duraklama modunda kalır, devam etmek için yeniden başlat'a basın (sol tıklama).</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Estado do analisador</value>
+    <value>Ayrıştırıcı durumu</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>Posição</value>
+    <value>Konum</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Seção de fluxo de GCode</value>
+    <value>GCode'un akış bölümü</value>
   </data>
 </root>

@@ -118,1098 +118,1082 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="unDo3ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Vrátit zpět poslední akci</value>
+    <value>Son işlemi geri al</value>
   </data>
   <data name="cmsEditorHotkeys.AccessibleDescription" xml:space="preserve">
-    <value>Zobrazit okno s výchozími horkými klávesami pro "Rychle barevné textové pole"</value>
+    <value>"Hızlı Renkli Metin Kutusu" için varsayılan kısayol tuşlarına sahip pencereyi göster</value>
   </data>
   <data name="cmsEditorHotkeys.Text" xml:space="preserve">
-    <value>Zobrazit klávesové zkratky editoru</value>
+    <value>Düzenleyici kısayol tuşlarını göster</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodeBlocksFold.AccessibleDescription" xml:space="preserve">
-    <value>Kódové bloky jsou G-kód obklopený prvky XML, jako je „Skupina“ nebo „Obrázek“</value>
+    <value>Kod Blokları, "Şekil" veya "Grup" gibi XML Öğeleri ile çevrelenmiş G Kodudur</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="foldCodeBlocks1stLevelToolStripMenuItem.Text" xml:space="preserve">
-    <value>Přeložte bloky kódu 1. úrovně</value>
+    <value>Katlama kodu blokları 1. düzey</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="foldCodeBlocks2ndLevelToolStripMenuItem.Text" xml:space="preserve">
-    <value>Přeložte bloky kódu 2. úrovně</value>
+    <value>Katlama kodu blokları 2. düzey</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="foldCodeBlocks3rdLevelToolStripMenuItem.Text" xml:space="preserve">
-    <value>Přeložte kódové bloky 3. úrovně</value>
+    <value>Katlama kodu blokları 3. düzey</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="expandCodeBlocksToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Rozbalte bloky kódu</value>
+    <value>Kod bloklarını genişlet</value>
+    <comment>Editor_Menu</comment>
+  </data>
+  <data name="toggleBlockExpansionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Otomatik blok katlama</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodeBlocksFold.Text" xml:space="preserve">
-    <value>Skládací bloky kódu</value>
+    <value>Kod Bloklarını Katla</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodeBlocksMove.AccessibleDescription" xml:space="preserve">
-    <value>Kódové bloky jsou G-kód obklopený prvky XML, jako je „Skupina“ nebo „Obrázek“</value>
+    <value>Kod Blokları, "Şekil" veya "Grup" gibi XML Öğeleri ile çevrelenmiş G Kodudur</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsFCTBMoveSelectedCodeBlockMostUp.Text" xml:space="preserve">
-    <value>Přesuňte vybraný blok kódu nejvíce nahoru</value>
+    <value>Seçili kod bloğunu en yukarı taşı</value>
   </data>
   <data name="cmsFCTBMoveSelectedCodeBlockUp.Text" xml:space="preserve">
-    <value>Přesuňte vybraný blok kódu nahoru</value>
+    <value>Seçili kod bloğunu yukarı taşı</value>
   </data>
   <data name="cmsFCTBMoveSelectedCodeBlockDown.Text" xml:space="preserve">
-    <value>Posuňte vybraný blok kódu dolů</value>
+    <value>Seçili kod bloğunu aşağı taşı</value>
   </data>
   <data name="cmsFCTBMoveSelectedCodeBlockMostDown.Text" xml:space="preserve">
-    <value>Posuňte vybraný blok kódu nejvíce dolů</value>
+    <value>Seçili kod bloğunu en aşağı taşı</value>
   </data>
   <data name="cmsCodeBlocksMove.Text" xml:space="preserve">
-    <value>Přesunout bloky kódu</value>
+    <value>Kod Bloklarını Taşı</value>
   </data>
   <data name="cmsCodeBlocksSortReverse.Text" xml:space="preserve">
-    <value>Opačné pořadí řazení</value>
+    <value>Ters sıralama düzeni</value>
   </data>
   <data name="cmsCodeBlocksSortById.Text" xml:space="preserve">
-    <value>Seřadit podle 'ID'</value>
+    <value>'Kimlik'e göre sırala</value>
   </data>
   <data name="cmsCodeBlocksSortByColor.Text" xml:space="preserve">
-    <value>Seřadit podle 'Barva pera'</value>
+    <value>'Kalem Rengi'ne göre sırala</value>
   </data>
   <data name="sortByPenWidthToolStripMenuItem.Text" xml:space="preserve">
-    <value>Seřadit podle 'Šířka pera'</value>
+    <value>'Kalem Genişliği'ne göre sırala</value>
   </data>
   <data name="sortByLayerToolStripMenuItem.Text" xml:space="preserve">
-    <value>Seřadit podle 'Vrstva'</value>
+    <value>'Katman'a göre sırala</value>
   </data>
   <data name="sortByTypeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Seřadit podle 'Typ'</value>
+    <value>'Tür'e göre sırala</value>
   </data>
   <data name="cmsCodeBlocksSortByGeometry.Text" xml:space="preserve">
-    <value>Seřadit podle 'Geometrie'</value>
+    <value>'Geometri'ye göre sırala</value>
   </data>
   <data name="cmsCodeBlocksSortByToolNr.Text" xml:space="preserve">
-    <value>Seřadit podle 'ToolNr'</value>
+    <value>'AraçNr'ye göre sırala</value>
   </data>
   <data name="cmsCodeBlocksSortByToolName.Text" xml:space="preserve">
-    <value>Seřadit podle 'Název_nástroje'</value>
+    <value>'AraçAdı'na göre sırala</value>
   </data>
   <data name="cmsCodeBlocksSortByCodeSize.Text" xml:space="preserve">
-    <value>Seřadit podle 'CodeSize'</value>
+    <value>'KodBoyutu'na göre sırala</value>
   </data>
   <data name="cmsCodeBlocksSortByCodeArea.Text" xml:space="preserve">
-    <value>Seřadit podle 'CodeArea'</value>
+    <value>'KodAlanına' göre sırala</value>
   </data>
   <data name="cmsCodeBlocksSortByDistance.Text" xml:space="preserve">
-    <value>Seřadit podle Vzdálenost</value>
+    <value>Mesafeye Göre Sırala</value>
   </data>
   <data name="cmsCodeBlocksSort.Text" xml:space="preserve">
-    <value>Třídit bloky kódu</value>
+    <value>Kod Bloklarını Sırala</value>
   </data>
   <data name="cmsCodeBlocksRemoveGroup.Text" xml:space="preserve">
-    <value>Odstraňte značky XML 'Group'</value>
+    <value>'Grup' XML Etiketlerini Kaldır</value>
   </data>
   <data name="cmsCodeBlocksRemoveAll.Text" xml:space="preserve">
-    <value>Odebrat všechny značky XML</value>
+    <value>Tüm XML Etiketlerini Kaldır</value>
   </data>
   <data name="cmsEditMode.AccessibleDescription" xml:space="preserve">
-    <value>V režimu úprav je automatický výběr skupin zakázán</value>
+    <value>Düzenleme Modunda otomatik grup seçimi devre dışı bırakılır</value>
   </data>
   <data name="cmsEditMode.Text" xml:space="preserve">
-    <value>Přepnout režim úprav</value>
+    <value>Düzenleme Modunu Değiştir</value>
   </data>
   <data name="cmsCodeSelect.AccessibleDescription" xml:space="preserve">
-    <value>Vyberte úplný kód</value>
+    <value>Tam kodu seçin</value>
   </data>
   <data name="cmsCodeSelect.Text" xml:space="preserve">
-    <value>Vybrat vše</value>
+    <value>Hepsini seç</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodeCopy.AccessibleDescription" xml:space="preserve">
-    <value>Zkopírujte výběr do schránky</value>
+    <value>Seçimi panoya kopyala</value>
   </data>
   <data name="cmsCodeCopy.Text" xml:space="preserve">
-    <value>Zkopírovat do schránky</value>
+    <value>Panoya kopyala</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodePaste.AccessibleDescription" xml:space="preserve">
-    <value>Vymazat editor a vložit ze schránky</value>
+    <value>Düzenleyiciyi temizle ve panodan yapıştır</value>
   </data>
   <data name="cmsCodePaste.Text" xml:space="preserve">
-    <value>Vložit ze schránky</value>
+    <value>Panodan yapıştır</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodePasteSpecial1.AccessibleDescription" xml:space="preserve">
-    <value>Vložte "Pen up" G-Code před aktuální řádek</value>
+    <value>Geçerli satırın önüne "Pen up" G-Kodu ekleyin</value>
   </data>
   <data name="cmsCodePasteSpecial1.Text" xml:space="preserve">
-    <value>Vložit 'PenUp'</value>
+    <value>'PenUp' ekle</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodePasteSpecial2.AccessibleDescription" xml:space="preserve">
-    <value>Před aktuální řádek vložte G-kód „Per down“.</value>
+    <value>Geçerli satırın önüne "Kalem aşağı" G-Kodunu ekleyin</value>
   </data>
   <data name="cmsCodePasteSpecial2.Text" xml:space="preserve">
-    <value>Vložit „PenDown“</value>
+    <value>'PenDown' ekle</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsFindDialog.AccessibleDescription" xml:space="preserve">
-    <value>Otevřete „Dialog Najít“ z „Rychle barevné textové pole“</value>
+    <value>"Hızlı Renkli Metin Kutusu"ndan "Bul Diyalogu"nu açın</value>
   </data>
   <data name="cmsFindDialog.Text" xml:space="preserve">
-    <value>Najít dialog</value>
+    <value>Diyalog Bul</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsReplaceDialog.AccessibleDescription" xml:space="preserve">
-    <value>Otevřete "Nahradit dialog" z "Rychle barevné textové pole"</value>
+    <value>"Hızlı Renkli Metin Kutusu"ndan "Değiştir İletişim Kutusunu" açın</value>
   </data>
   <data name="cmsReplaceDialog.Text" xml:space="preserve">
-    <value>Nahradit dialog</value>
+    <value>İletişim kutusunu değiştir</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodeSendLine.Text" xml:space="preserve">
-    <value>Pošlete označenou čáru směrem na GRBL</value>
+    <value>İşaretli satırı GRBL'ye gönder</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCommentOut.Text" xml:space="preserve">
-    <value>Zakomentujte neznámý G-Code</value>
+    <value>Bilinmeyen G-Code'u yorumlayın</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsUpdate2DView.AccessibleDescription" xml:space="preserve">
-    <value>Zpracujte G-Code z editoru a aktualizujte 2D-View</value>
+    <value>2D-View'u güncellemek için editörden G-Code'u işleyin</value>
   </data>
   <data name="cmsUpdate2DView.Text" xml:space="preserve">
-    <value>Aktualizujte 2D zobrazení</value>
+    <value>2B görünümü güncelle</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="fCTBCode.Text" xml:space="preserve">
-    <value>(Vložte G-Code nebo načtěte soubor)</value>
+    <value>(G-Code yapıştırın veya dosya yükleyin)</value>
     <comment>Editor</comment>
   </data>
   <data name="btnSimulateSlower.ToolTip" xml:space="preserve">
-    <value>Poloviční rychlost simulace</value>
+    <value>Yarım simülasyon hızı</value>
   </data>
   <data name="btnSimulateFaster.ToolTip" xml:space="preserve">
-    <value>Dvojitá rychlost simulace</value>
+    <value>Çift simülasyon hızı</value>
   </data>
   <data name="btnSimulate.Text" xml:space="preserve">
-    <value>Spusťte simulaci cesty</value>
+    <value>Yol simülasyonunu başlat</value>
   </data>
   <data name="lbInfo.Text" xml:space="preserve">
-    <value>Zpráva</value>
+    <value>İleti</value>
     <comment>groupBox_Streaming</comment>
   </data>
   <data name="btnStreamStop.ToolTip" xml:space="preserve">
-    <value>Zastavit odesílání kódu do GRBL</value>
+    <value>GRBL'ye kod göndermeyi durdur</value>
     <comment>groupBox_Streaming</comment>
   </data>
   <data name="btnStreamCheck.Text" xml:space="preserve">
-    <value>Kontrolní kód</value>
+    <value>Kodu kontrol et</value>
     <comment>groupBox_Streaming</comment>
   </data>
   <data name="btnStreamCheck.ToolTip" xml:space="preserve">
-    <value>Tím se přepne analyzátor gcode Grbl tak, aby vzal všechny příchozí bloky a úplně je zpracoval, jako by to bylo za normálního provozu, ale nepohybuje žádnou z os, ignoruje prodlevy a vypne vřeteno a chladicí kapalinu. Toto je zamýšleno jako způsob, jak poskytnout uživateli způsob, jak zkontrolovat, jak si jejich nový program G-code vede pomocí analyzátoru Grbl a monitorovat případné chyby (a kontroluje překročení měkkých limitů, je-li povoleno).</value>
+    <value>Bu, Grbl'nin gcode ayrıştırıcısını normal çalışmada olduğu gibi tüm gelen blokları alacak ve tamamen işleyecek şekilde değiştirir, ancak eksenlerin hiçbirini hareket ettirmez, beklemeleri yok sayar ve iş milini ve soğutma sıvısını kapatır. Bu, kullanıcıya yeni G-kodu programının Grbl'ın ayrıştırıcısı ile nasıl çalıştığını kontrol etmesi ve herhangi bir hatayı izlemesi (ve etkinleştirilmişse yumuşak limit ihlallerini kontrol etmesi) için bir yol sağlamayı amaçlamaktadır.</value>
   </data>
   <data name="lblElapsed.Text" xml:space="preserve">
-    <value>Čas</value>
+    <value>Zaman</value>
     <comment>groupBox_Streaming</comment>
   </data>
   <data name="lblFileProgress.Text" xml:space="preserve">
-    <value>Pokrok</value>
+    <value>İlerlemek</value>
     <comment>groupBox_Streaming</comment>
   </data>
   <data name="btnStreamStart.ToolTip" xml:space="preserve">
-    <value>Odešlete kód z textového editoru do GRBL
-Kliknutím pravým tlačítkem vyberte číslo startovní řady</value>
+    <value>Metin düzenleyiciden GRBL'ye kod gönderin
+Başlangıç ​​satırı numarasını seçmek için sağ tıklayın</value>
     <comment>groupBox_Streaming</comment>
   </data>
   <data name="gBoxStream.Text" xml:space="preserve">
-    <value>Streamování G-Code</value>
+    <value>G Kodu Akışı</value>
     <comment>groupBox_Streaming</comment>
   </data>
+  <data name="btnLimitExceed.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
   <data name="btnOffsetApply.Text" xml:space="preserve">
-    <value>Použít odsazení</value>
+    <value>Ofset Uygula</value>
     <comment>groupBox_Dimension</comment>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>Offset Y</value>
+    <value>Ofset Y</value>
     <comment>groupBox_Dimension</comment>
   </data>
   <data name="label6.ToolTip" xml:space="preserve">
-    <value>Offset Y</value>
+    <value>Ofset Y</value>
     <comment>groupBox_Dimension</comment>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Offset X</value>
+    <value>Ofset X</value>
     <comment>groupBox_Dimension</comment>
   </data>
   <data name="label1.ToolTip" xml:space="preserve">
-    <value>Offset X</value>
+    <value>Ofset X</value>
     <comment>groupBox_Dimension</comment>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
-    <value>Původ XY</value>
+    <value>Menşei XY</value>
     <comment>groupBox_Dimension</comment>
   </data>
   <data name="lbDimension.Text" xml:space="preserve">
-    <value>Rozměry</value>
+    <value>boyutlar</value>
     <comment>groupBox_Dimension</comment>
   </data>
   <data name="gBoxDimension.Text" xml:space="preserve">
-    <value>Rozměr G-kódu</value>
+    <value>G Kodu Boyutu</value>
     <comment>groupBox_Dimension</comment>
   </data>
-  <data name="label13.Text" xml:space="preserve">
-    <value>Soubor:</value>
+  <data name="gBOverrideRGB.Text" xml:space="preserve">
+    <value>Ani</value>
+    <comment>groupBox_Override1</comment>
   </data>
   <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
-    <value>Zobrazuje stav pinu D3 (grbl-Mega-5X), kliknutím odešlete „M64 P3 (on)“ nebo „M65 P3 (off)“ v závislosti na stavu</value>
+    <value>D3 pininin (grbl-Mega-5X) durumunu gösterir, duruma göre 'M64 P3 (açık)' veya 'M65 P3 (kapalı)' gönder seçeneğine tıklayın</value>
   </data>
   <data name="BtnOverrideD2.ToolTip" xml:space="preserve">
-    <value>Zobrazuje stav pinu D2 (grbl-Mega-5X), kliknutím odešlete „M64 P2 (on)“ nebo „M65 P2 (off)“ v závislosti na stavu</value>
+    <value>D2 pininin (grbl-Mega-5X) durumunu gösterir, duruma bağlı olarak 'M64 P2 (açık)' veya 'M65 P2 (kapalı)' gönder üzerine tıklayın</value>
   </data>
   <data name="BtnOverrideD1.ToolTip" xml:space="preserve">
-    <value>Zobrazuje stav pinu D1 (grbl-Mega-5X), kliknutím odešlete „M64 P1 (on)“ nebo „M65 P1 (off)“ v závislosti na stavu</value>
+    <value>D1 pininin (grbl-Mega-5X) durumunu gösterir, duruma göre 'M64 P1 (açık)' veya 'M65 P1 (kapalı)' gönder seçeneğine tıklayın</value>
   </data>
   <data name="BtnOverrideD0.ToolTip" xml:space="preserve">
-    <value>Zobrazuje stav kolíku D0 (grbl-Mega-5X), kliknutím odešlete „M64 P0 (zapnuto)“ nebo „M65 P0 (vypnuto)“ v závislosti na stavu</value>
+    <value>D0 pininin (grbl-Mega-5X) durumunu gösterir, duruma göre 'M64 P0 (açık)' veya 'M65 P0 (kapalı)' gönder seçeneğine tıklayın</value>
   </data>
   <data name="btnOverrideSpindle.Text" xml:space="preserve">
-    <value>Vřeteno CW</value>
+    <value>Mil CW</value>
   </data>
   <data name="btnOverrideSpindle.ToolTip" xml:space="preserve">
-    <value>Funguje pouze ve stavu HOLD</value>
+    <value>Yalnızca HOLD durumunda çalışır</value>
     <comment>groupBox_Override2</comment>
-  </data>
-  <data name="btnOverrideMist.Text" xml:space="preserve">
-    <value>Mlha</value>
   </data>
   <data name="btnOverrideMist.ToolTip" xml:space="preserve">
-    <value>M7 nemusí být povoleno v grbl</value>
+    <value>M7, grbl'de etkin olmayabilir</value>
     <comment>groupBox_Override2</comment>
   </data>
-  <data name="btnOverrideFlood.Text" xml:space="preserve">
-    <value>Zaplavit</value>
-  </data>
   <data name="gBOverrideASGB.Text" xml:space="preserve">
-    <value>Přepnout stavy příslušenství</value>
+    <value>Aksesuar Durumlarını Değiştir</value>
     <comment>groupBox_Override2</comment>
   </data>
   <data name="lblStatusFeed.Text" xml:space="preserve">
-    <value>skutečné krmivo</value>
+    <value>gerçek besleme</value>
     <comment>groupBox_Override3</comment>
   </data>
   <data name="lblStatusFeed.ToolTip" xml:space="preserve">
-    <value>Skutečná rychlost posuvu v mm/min nebo palcích/min (v závislosti na $13)</value>
+    <value>Mm/dak veya inç/dak cinsinden gerçek ilerleme hızı (13 $'a bağlı olarak)</value>
     <comment>groupBox_Override3</comment>
   </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Soubor:</value>
-  </data>
   <data name="gBOverrideFRGB.Text" xml:space="preserve">
-    <value>Krmit</value>
+    <value>Beslemek</value>
     <comment>groupBox_Override3</comment>
   </data>
   <data name="lblStatusSpeed.Text" xml:space="preserve">
-    <value>skutečná rychlost</value>
+    <value>gerçek hız</value>
     <comment>groupBox_Override3</comment>
   </data>
   <data name="lblStatusSpeed.ToolTip" xml:space="preserve">
-    <value>Skutečné otáčky vřetena v ot./min</value>
+    <value>RPM cinsinden gerçek iş mili hızı</value>
     <comment>groupBox_Override3</comment>
   </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Soubor:</value>
-  </data>
   <data name="gBOverrideSSGB.Text" xml:space="preserve">
-    <value>Rychlost vřetena</value>
+    <value>Mil Hızı</value>
     <comment>groupBox_Override3</comment>
   </data>
   <data name="gBoxOverride.Text" xml:space="preserve">
-    <value>Přepsání (pouze grbl 1.1) – kliknutím rozbalíte / zmenšíte</value>
+    <value>Geçersiz kılmalar (yalnızca grbl 1.1) - genişletmek / küçültmek için tıklayın</value>
     <comment>groupBox_Override3</comment>
   </data>
-  <data name="cBServoButtons.Text" xml:space="preserve">
-    <value>Zobrazit pero nahoru/dolů</value>
-  </data>
   <data name="btnJogStop.Text" xml:space="preserve">
-    <value>PŘESTAŇTE běhat</value>
+    <value>Jogging'i DURDUR</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnJogStop.ToolTip" xml:space="preserve">
-    <value>Zastavte aktuální joggingový pohyb</value>
+    <value>Geçerli hızlı hareket hareketini durdur</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnJogZeroA.ToolTip" xml:space="preserve">
-    <value>Pošlete G90 G0 A(nebo B,C)0</value>
+    <value>G90 G0 A(veya B,C)0 gönder</value>
   </data>
   <data name="btnJogZeroX.ToolTip" xml:space="preserve">
-    <value>Pošlete G90 G0 X0</value>
-  </data>
-  <data name="btnJogZeroXY.Text" xml:space="preserve">
-    <value>Pohyb XY=0</value>
+    <value>G90 G0 X0 gönder</value>
   </data>
   <data name="btnJogZeroXY.ToolTip" xml:space="preserve">
-    <value>Pošlete G90 G0 X0 Y0</value>
-  </data>
-  <data name="btnJogZeroY.Text" xml:space="preserve">
-    <value>Y=0</value>
+    <value>G90 G0 X0 Y0 gönder</value>
   </data>
   <data name="btnJogZeroY.ToolTip" xml:space="preserve">
-    <value>Pošlete G90 G0 Y0</value>
-  </data>
-  <data name="btnJogZeroZ.Text" xml:space="preserve">
-    <value>Z=0</value>
+    <value>G90 G0 Y0 gönder</value>
   </data>
   <data name="btnJogZeroZ.ToolTip" xml:space="preserve">
-    <value>Pošlete G90 G0 Z0</value>
+    <value>G90 G0 Z0 gönder</value>
   </data>
-  <data name="cBMoveG0.Text" xml:space="preserve">
-    <value>použijte G0</value>
+  <data name="cBMoveG0.ToolTip" xml:space="preserve">
+    <value>G0 hızlı hareket komutunu kullanın - hızlı hareket DURDUR çalışmaz</value>
   </data>
   <data name="gB_Jog0.Text" xml:space="preserve">
-    <value>Přesunout do</value>
+    <value>Taşınmak</value>
   </data>
   <data name="gB_Jogging.Text" xml:space="preserve">
-    <value>Ovládání / Jogging</value>
+    <value>Kontrol / Koşu</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="virtualJoystickA.ToolTip" xml:space="preserve">
-    <value>Jog 4. osa</value>
+    <value>4. ekseni hareket ettir</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="virtualJoystickXY.ToolTip" xml:space="preserve">
-    <value>Jog X a Y osa</value>
+    <value>X ve Y eksenini hareket ettirin</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="virtualJoystickZ.ToolTip" xml:space="preserve">
-    <value>Jog Z osa</value>
+    <value>Z eksenini hareket ettir</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="virtualJoystickB.ToolTip" xml:space="preserve">
-    <value>Jog 4. osa</value>
+    <value>4. ekseni hareket ettir</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="virtualJoystickC.ToolTip" xml:space="preserve">
-    <value>Jog 4. osa</value>
+    <value>4. ekseni hareket ettir</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="cBSendJogStop.Text" xml:space="preserve">
-    <value>STOP běhání s myší nahoru</value>
+    <value>Fare yukarı kaldırıldığında Jogging'i DURDUR</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnOverrideDoor.Text" xml:space="preserve">
-    <value>Dveře</value>
+    <value>Kapı</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnOverrideDoor.ToolTip" xml:space="preserve">
-    <value>Ačkoli je tento příkaz obvykle připojen ke vstupnímu kolíku pro detekci otevření bezpečnostních dveří, umožňuje GUI pomocí tohoto příkazu aktivovat chování bezpečnostních dveří.
-Okamžitě přejde do stavu DOOR a deaktivuje vřeteno a chladicí kapalinu. Pokud je stroj v pohybu, zpomalí až do zastavení a poté se pozastaví.
-Pokud je proveden během navádění, Grbl místo toho zastaví pohyb a spustí alarm navádění.
-Pokud je již ve stavu pozastavení nebo HOLD, nahradí jej stav DOOR.
-Pokud je povolena možnost parkování v době kompilace, Grbl zaparkuje vřeteno na určené místo.
-Příkaz se provede, když je Grbl ve stavu IDLE, HOLD, RUN, HOMING nebo JOG. Jinak se to ignoruje.
-Pokud provádíte krokování, bezpečnostní dveře zruší krokování a všechny pohyby ve frontě ve vyrovnávací paměti plánovače. Když jsou bezpečnostní dveře zavřeny a obnoveny, Grbl se vrátí do stavu NEČINNOSTI.
-Vstupní kolík je k dispozici pro připojení tlačítka nebo přepínače, pokud je povolen s možností kompilace.</value>
+    <value>Bir güvenlik kapısının açılmasını algılamak için tipik olarak bir giriş pimine bağlı olmasına rağmen, bu komut bir GUI'nin bu komutla güvenlik kapısı davranışını etkinleştirmesine izin verir.
+Hemen KAPI durumuna geçer ve iş mili ile soğutma sıvısını devre dışı bırakır. Hareket halindeyken makine yavaşlayarak durur ve ardından askıya alınır.
+Hedef arama sırasında yürütülürse, Grbl bunun yerine hareketi durduracak ve bir hedef arama alarmı verecektir.
+Halihazırda askıda veya HOLD durumundaysa, KAPI durumu onun yerine geçer.
+Park derleme zamanı seçeneği etkinleştirilirse, Grbl iş milini belirli bir konuma park eder.
+Komut, Grbl bir BOŞTA, HOLD, RUN, HOMING veya JOG durumundayken yürütülür. Aksi halde göz ardı edilir.
+Yavaş hareket ediliyorsa, bir güvenlik kapısı yavaş hareketi ve planlayıcı arabelleğindeki tüm sıralı hareketleri iptal eder. Güvenlik kapısı kapatılıp devam ettirildiğinde, Grbl IDLE durumuna geri dönecektir.
+Bir derleme zamanı seçeneğiyle etkinleştirildiyse, bir düğmeyi veya anahtarı bağlamak için bir giriş pini mevcuttur.</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnResume.Text" xml:space="preserve">
-    <value>Životopis</value>
+    <value>Sürdürmek</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnResume.ToolTip" xml:space="preserve">
-    <value>Příkaz spuštění nebo obnovení cyklu '~' lze vydat kdykoli, protože se jedná o příkaz v reálném čase.
-Když má Grbl ve vyrovnávací paměti ve frontě pohyby a je připraven jít, spustí se příkaz ~ cycle start
-začněte provádět vyrovnávací paměť a Grbl začne pohybovat osami.</value>
+    <value>Gerçek zamanlı bir komut olduğu için döngü başlatma veya devam ettirme komutu '~' herhangi bir zamanda verilebilir.
+Grbl, arabelleğinde sıraya alınmış hareketlere sahip olduğunda ve gitmeye hazır olduğunda, ~ döngü başlatma komutu
+tamponu çalıştırmaya başlayın ve Grbl eksenleri hareket ettirmeye başlayacaktır.</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnFeedHold.Text" xml:space="preserve">
-    <value>Zastavení podávání</value>
+    <value>Besleme Bekletme</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnFeedHold.ToolTip" xml:space="preserve">
-    <value>Příkaz podržení kanálu '!' řízeným zpomalením zastaví aktivní cyklus, aby nedošlo ke ztrátě polohy.
-Je také v reálném čase a může být kdykoli aktivován. Po dokončení nebo pozastavení bude Grbl čekat na příkaz ke spuštění cyklu
-je vydáno k obnovení programu. Zastavení podávání může pouze pozastavit cyklus a neovlivní navádění nebo jakýkoli jiný proces.
-Pokud potřebujete zastavit cyklus uprostřed programu a nemůžete si dovolit ztrátu pozice, proveďte pozastavení posuvu, aby Grbl přinesl
-vše řízeně zastavit. Po dokončení můžete provést reset. Vždy se pokuste provést pozastavení kanálu, kdykoli
-stroj je v chodu, než dojde k resetování, samozřejmě kromě případu, kdy dojde k nějaké nouzové situaci.</value>
+    <value>Besleme tutma komutu '!' konumu kaybetmemek için kontrollü bir yavaşlama yoluyla aktif çevrimi durduracaktır.
+Aynı zamanda gerçek zamanlı ve herhangi bir zamanda etkinleştirilebilir. Bittiğinde veya duraklatıldığında, Grbl bir döngü başlatma komutu gelene kadar bekleyecektir.
+programı devam ettirmek için verilir. Besleme tutma yalnızca bir döngüyü duraklatabilir ve hedef aramayı veya başka herhangi bir işlemi etkilemez.
+Programın ortasında bir döngüyü durdurmanız gerekiyorsa ve konum kaybetmeyi göze alamıyorsanız, Grbl'nin
+her şey kontrollü bir şekilde durdurulur. Bittiğinde, bir sıfırlama düzenleyebilirsiniz. Her zaman bir besleme bekletmeyi yürütmeye çalışın.
+Makine, elbette bazı acil durumlar dışında, sıfırlamaya basmadan önce çalışıyor.</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnKillAlarm.Text" xml:space="preserve">
-    <value>Kill Alarm</value>
+    <value>Alarmı Kapat</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnKillAlarm.ToolTip" xml:space="preserve">
-    <value>Grblův alarmový režim je stav, kdy se něco kriticky pokazilo,
-jako je pevný limit nebo přerušení během cyklu, nebo pokud Grbl nezná svou pozici.
-Ve výchozím nastavení, pokud máte povoleno navádění a zapnete Arduino, vstoupí Grbl
-stav alarmu, protože nezná svou polohu. Režim budíku vše uzamkne
-Příkazy G-kódu, dokud nebude proveden cyklus navádění „$H“. Nebo pokud uživatel potřebuje
-přepsat zámek alarmu a přesunout jejich osy mimo jejich koncové spínače, například '$X' kill alarm lock
-přepíše zámky a umožní, aby funkce G-kódu znovu fungovaly.</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
-  <data name="btnReset.Text" xml:space="preserve">
-    <value>RESETOVAT</value>
+    <value>Grbl'ın alarm modu, bir şeylerin kritik derecede yanlış gittiği bir durumdur.
+bir döngü sırasında sabit limit veya iptal gibi veya Grbl konumunu bilmiyorsa.
+Varsayılan olarak, hedef aramayı etkinleştirdiyseniz ve Arduino'yu açtıysanız, Grbl girer
+alarm durumu, çünkü konumunu bilmiyor. Alarm modu tümünü kilitleyecektir.
+'$H' hedef arama döngüsü gerçekleştirilene kadar G kodu komutları. Veya bir kullanıcının ihtiyacı varsa
+eksenlerini limit anahtarlarından çıkarmak için alarm kilidini geçersiz kılmak için, örneğin '$X' alarm kilidini öldür
+kilitleri geçersiz kılacak ve G kodu işlevlerinin tekrar çalışmasına izin verecektir.</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnReset.ToolTip" xml:space="preserve">
-    <value>Toto je Grblův příkaz pro měkký reset 'Ctrl-x'. Je to v reálném čase a lze je odeslat kdykoli.
-Jak název napovídá, resetuje Grbl, ale kontrolovaným způsobem zachová polohu vašeho stroje,
-a vše se děje bez vypínání vašeho Arduina. Jediný případ, kdy mohl měkký reset
-ztráta pozice je, když nastanou problémy a steppery byly zabity, když se pohybovali.
-Pokud ano, ohlásí, zda se Grblovo sledování polohy stroje ztratilo.
-Nekontrolované zpomalení totiž může vést ke ztrátě kroků a Grbl nemá zpětnou vazbu
-na kolik ztratil (to je problém stepperů obecně). V opačném případě se Grbl pouze znovu inicializuje,
- spustit startovací linky a pokračovat ve své veselé cestě.</value>
+    <value>Bu, Grbl'nin 'Ctrl-x' yazılım sıfırlama komutudur. Gerçek zamanlı ve herhangi bir zamanda gönderilebilir.
+Adından da anlaşılacağı gibi, Grbl'yi sıfırlar, ancak kontrollü bir şekilde makine konumunuzu korur,
+ve hepsi Arduino'nuzu kapatmadan yapılır. Yumuşak sıfırlamanın yapabileceği tek zamanlar
+Pozisyon kaybetmek, sorunların ortaya çıktığı ve adım atanların hareket ederken öldürüldüğü zamandır.
+Eğer öyleyse, Grbl'nin makine konumunu izlemesinin kaybolup kaybolmadığını bildirecektir.
+Bunun nedeni, kontrolsüz bir yavaşlamanın adımların kaybedilmesine yol açabilmesi ve Grbl'in geri bildiriminin olmamasıdır.
+ne kadar kaybettiğine göre (genel olarak steplerin sorunu budur). Aksi takdirde, Grbl yeniden başlatılacak,
+ başlangıç ​​satırlarını çalıştırın ve neşeli yoluna devam edin.</value>
     <comment>groupBox_Jogging</comment>
   </data>
-  <data name="unDo2ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Vrátit zpět poslední akci</value>
-    <comment>Menu131</comment>
-  </data>
-  <data name="cmsPicBoxMoveToMarkedPosition.Text" xml:space="preserve">
-    <value>Přesuňte se na označenou pozici G0</value>
-  </data>
-  <data name="cmsPicBoxZeroXYAtMarkedPosition.Text" xml:space="preserve">
-    <value>Nula XY na označené pozici G10 L20</value>
-  </data>
-  <data name="cmsPicBoxMoveGraphicsOrigin.Text" xml:space="preserve">
-    <value>Offset grafiky podle pozice značky</value>
-  </data>
-  <data name="cmsPicBoxResetZooming.Text" xml:space="preserve">
-    <value>Obnovit přiblížení</value>
-  </data>
-  <data name="cmsPicBoxPasteFromClipboard.Text" xml:space="preserve">
-    <value>Vložit ze schránky</value>
-  </data>
-  <data name="cmsPicBoxReloadFile.Text" xml:space="preserve">
-    <value>Znovu načíst soubor</value>
-  </data>
-  <data name="deletenotMarkToolStripMenuItem.Text" xml:space="preserve">
-    <value>Označit kód (bez smazání)</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="deletenotMarkToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Kliknutím přepnete</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="cmsPicBoxMarkFirstPos.Text" xml:space="preserve">
-    <value>Označte první bod vybrané cesty</value>
-  </data>
-  <data name="cmsPicBoxDeletePath.Text" xml:space="preserve">
-    <value>Smazat vybranou cestu</value>
-  </data>
-  <data name="cmsPicBoxDeletePath.ToolTipText" xml:space="preserve">
-    <value>Smazat vybranou cestu</value>
-  </data>
-  <data name="cmsPicBoxCropSelectedPath.Text" xml:space="preserve">
-    <value>Oříznout vybranou cestu (vyříznout)</value>
-  </data>
-  <data name="cmsPicBoxMoveSelectedPathInCode.Text" xml:space="preserve">
-    <value>Použít offset na GCode</value>
-  </data>
-  <data name="cmsPicBoxReverseSelectedPath.Text" xml:space="preserve">
-    <value>Obrátit vybranou cestu</value>
-  </data>
-  <data name="cmsPicBoxRotateSelectedPath.Text" xml:space="preserve">
-    <value>Otočit vybranou cestu</value>
-  </data>
-  <data name="cmsPicBoxSetGCodeAsBackground.Text" xml:space="preserve">
-    <value>Nastavte G-Code jako pozadí</value>
-  </data>
-  <data name="cmsPicBoxClearBackground.Text" xml:space="preserve">
-    <value>Jasné pozadí</value>
-  </data>
-  <data name="copyContentTroClipboardToolStripMenuItem.Text" xml:space="preserve">
-    <value>Zkopírujte obsah do schránky</value>
-  </data>
-  <data name="tBURL.Text" xml:space="preserve">
-    <value>Sem vložte adresu URL souboru SVG / DXF</value>
-    <comment>2DView</comment>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Vlastní tlačítka</value>
-    <comment>groupBox_Custom</comment>
-  </data>
-  <data name="btnZeroC.Text" xml:space="preserve">
-    <value>nula C</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroC.ToolTip" xml:space="preserve">
-    <value>Nastavte pracovní souřadnici C na nulu</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroB.Text" xml:space="preserve">
-    <value>nula B</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroB.ToolTip" xml:space="preserve">
-    <value>Nastavte pracovní souřadnici B na nulu</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="lblCurrentG.ToolTip" xml:space="preserve">
-    <value>Výchozí souřadnicový systém = G54
-Souřadnicový systém kamery = G59
-Přidat 'G54;' do hlavičky G-Code, aby se před streamováním G-Code automaticky přepnul zpět na G54</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="label_status0.Text" xml:space="preserve">
-    <value>Postavení:</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroA.Text" xml:space="preserve">
-    <value>Nula Z</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroA.ToolTip" xml:space="preserve">
-    <value>Nastavte pracovní souřadnice na nulu</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnHome.Text" xml:space="preserve">
-    <value>Domov</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnHome.ToolTip" xml:space="preserve">
-    <value>Spustit navádění (pokud je povoleno v GRBL)</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroXYZ.Text" xml:space="preserve">
-    <value>Nula XYZ</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroXYZ.ToolTip" xml:space="preserve">
-    <value>Nastavte pracovní souřadnice X,Y,Z na nulu</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroXY.Text" xml:space="preserve">
-    <value>Nula XY</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroXY.ToolTip" xml:space="preserve">
-    <value>Nastavte pracovní souřadnice X,Y na nulu</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroZ.Text" xml:space="preserve">
-    <value>Nula Z</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroZ.ToolTip" xml:space="preserve">
-    <value>Nastavte pracovní Z souřadnici na nulu</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroY.Text" xml:space="preserve">
-    <value>nula Y</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroY.ToolTip" xml:space="preserve">
-    <value>Nastavte pracovní souřadnici Y na nulu</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroX.Text" xml:space="preserve">
-    <value>nula X</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="btnZeroX.ToolTip" xml:space="preserve">
-    <value>Nastavte pracovní X souřadnici na nulu</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="label_status.Text" xml:space="preserve">
-    <value>Postavení</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="groupBoxCoordinates.Text" xml:space="preserve">
-    <value>Souřadnice nástroje (práce / stroj)</value>
-    <comment>groupBox_Tool_Coord</comment>
-  </data>
-  <data name="loadToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Otevřít soubor</value>
-    <comment>Menu111</comment>
-  </data>
-  <data name="loadToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Otevřete soubor G-Code nebo SVG</value>
-    <comment>Menu111</comment>
-  </data>
-  <data name="toolStripMenuItem2.Text" xml:space="preserve">
-    <value>Otevřete Nedávný soubor</value>
-    <comment>Menu112</comment>
-  </data>
-  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Uložit G-Code</value>
-    <comment>Menu113</comment>
-  </data>
-  <data name="saveToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Uložte zobrazený G-kód do souboru</value>
-    <comment>Menu113</comment>
-  </data>
-  <data name="setupToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Založit</value>
-    <comment>Menu114</comment>
-  </data>
-  <data name="saveMachineParametersToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Exportovat nastavení stroje</value>
-    <comment>Menu115</comment>
-  </data>
-  <data name="saveMachineParametersToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Exportujte nastavení GUI (definice tlačítek, parametry joysticku) do souboru INI</value>
-    <comment>Menu115</comment>
-  </data>
-  <data name="loadMachineParametersToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Importovat nastavení stroje</value>
-    <comment>Menu116</comment>
-  </data>
-  <data name="loadMachineParametersToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Importujte nastavení GUI (definice tlačítek, parametry joysticku) ze souboru INI</value>
-    <comment>Menu116</comment>
-  </data>
-  <data name="toolStripMenuItem3.Text" xml:space="preserve">
-    <value>Jazyk</value>
-    <comment>Menu117</comment>
-  </data>
-  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
-    <value>Výstup</value>
-  </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Soubor</value>
-    <comment>Menu11</comment>
-  </data>
-  <data name="textWizzardToolStripMenuItem.Text" xml:space="preserve">
-    <value>Vytvořit &amp;Text</value>
-    <comment>Menu121</comment>
-  </data>
-  <data name="textWizzardToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Jednoduchý copywriting s fonty Hershey</value>
-    <comment>Menu121</comment>
-  </data>
-  <data name="createBarcodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Vytvořte čárový kód</value>
-  </data>
-  <data name="imageToolStripMenuItem.Text" xml:space="preserve">
-    <value>Převést &amp;obrázek</value>
-    <comment>Menu122</comment>
-  </data>
-  <data name="createSimpleShapesToolStripMenuItem.Text" xml:space="preserve">
-    <value>Vytvořte jednoduché Sh&amp;apes</value>
-    <comment>Menu123</comment>
-  </data>
-  <data name="createSimpleShapesToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Kruh nebo obdélník, volitelně se zaoblenými rohy, volitelně jako taška</value>
-    <comment>Menu123</comment>
-  </data>
-  <data name="createJogPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>Vytvořte Jog cestu</value>
-  </data>
-  <data name="startExtensionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Rozšíření</value>
-  </data>
-  <data name="createGCodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Vytvoření G-kódu</value>
-    <comment>Menu12</comment>
-  </data>
-  <data name="unDoToolStripMenuItem.Text" xml:space="preserve">
-    <value>Vrátit zpět poslední akci</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="mirrorXToolStripMenuItem.Text" xml:space="preserve">
-    <value>Zrcadlo X (&amp;horizontální)</value>
-    <comment>Menu131</comment>
-  </data>
-  <data name="mirrorYToolStripMenuItem.Text" xml:space="preserve">
-    <value>Zrcadlo Y (&amp;vertikální)</value>
-    <comment>Menu131</comment>
-  </data>
-  <data name="mirrorRotaryToolStripMenuItem.Text" xml:space="preserve">
-    <value>Zrcadlo Rotační osa</value>
-    <comment>Menu131</comment>
-  </data>
-  <data name="rotate90ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Otočit o +90° (ccw)</value>
-    <comment>Menu132</comment>
-  </data>
-  <data name="rotate90ToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Otočit -90° (cw)</value>
-    <comment>Menu132</comment>
-  </data>
-  <data name="rotate180ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Otočit o 180°</value>
-    <comment>Menu132</comment>
-  </data>
-  <data name="rotateFreeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Otočit o ...°</value>
-    <comment>Menu132</comment>
-  </data>
-  <data name="sToolStripMenuItem.Text" xml:space="preserve">
-    <value>Měřítko XY o...%</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="skalierenXYToolStripMenuItem.Text" xml:space="preserve">
-    <value>Měřítko XY sada X=... jednotek</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="skalierenXYUmXUnitsZuErreichenToolStripMenuItem.Text" xml:space="preserve">
-    <value>Měřítko XY nastaveno Y=... jednotek</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="skaliereXUmToolStripMenuItem.Text" xml:space="preserve">
-    <value>Měřítko X o ... %</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="skaliereXUmToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>G2 / G3 nejsou podporovány</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="skaliereAufXUnitsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Měřítko X sada X=... jednotek</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="skaliereAufXUnitsToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>G2 / G3 nejsou podporovány</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="skaliereYUmToolStripMenuItem.Text" xml:space="preserve">
-    <value>Měřítko Y o ... %</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="skaliereYUmToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>G2 / G3 nejsou podporovány</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="skaliereAufYUnitsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Měřítko Y nastaveno Y=... jednotek</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="skaliereAufYUnitsToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>G2 / G3 nejsou podporovány</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="rotaryDimaeterToolStripMenuItem.Text" xml:space="preserve">
-    <value>Rotační průměr</value>
-    <comment>Menu132</comment>
-  </data>
-  <data name="rotaryDimaeterToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Nastavte Průměr součásti pro rotační osu</value>
-    <comment>Menu132</comment>
-  </data>
-  <data name="skaliereXAufDrehachseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Měřítko X na ...° (rotační osa)</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="skaliereXAufDrehachseToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>G2 / G3 nejsou podporovány</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="skaliereYAufDrehachseToolStripMenuItem.Text" xml:space="preserve">
-    <value>Měřítko Y na ...° (rotační osa)</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="skaliereYAufDrehachseToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>G2 / G3 nejsou podporovány</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="toolStrip_RadiusComp.Text" xml:space="preserve">
-    <value>Kompenzace poloměru</value>
-    <comment>Menu133</comment>
-  </data>
-  <data name="ersetzteG23DurchLinienToolStripMenuItem.Text" xml:space="preserve">
-    <value>Nahraďte G2/3 řádky</value>
-    <comment>Menu134</comment>
-  </data>
-  <data name="convertZToSspindleSpeedToolStripMenuItem.Text" xml:space="preserve">
-    <value>Převést Z na S (otáčky vřetena)</value>
-    <comment>Menu134</comment>
-  </data>
-  <data name="convertZToSspindleSpeedToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Nastavte maximální otáčky vřetena na minimální Z in
-[Nastavení - Import grafiky - Úprava G-Code]</value>
-    <comment>Menu134</comment>
-  </data>
-  <data name="removeAnyZMoveToolStripMenuItem.Text" xml:space="preserve">
-    <value>Odstraňte jakýkoli pohyb Z</value>
-    <comment>Menu134</comment>
-  </data>
-  <data name="gCodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>G-kód T&amp;transformace</value>
-    <comment>Menu13</comment>
-  </data>
-  <data name="probingToolLengthToolStripMenuItem.Text" xml:space="preserve">
-    <value>Snímání / Délka nástroje</value>
-    <comment>Menu141</comment>
-  </data>
-  <data name="surfaceScanHeightMapToolStripMenuItem.Text" xml:space="preserve">
-    <value>Povrchový sken / Výšková mapa</value>
-    <comment>Menu142</comment>
-  </data>
-  <data name="jogPathCreatorToolStripMenuItem.Text" xml:space="preserve">
-    <value>Tvůrce běžecké cesty</value>
-  </data>
-  <data name="workpieceToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Obrobek</value>
-    <comment>Menu14</comment>
-  </data>
-  <data name="edgeFinderToolStripMenuItem.Text" xml:space="preserve">
-    <value>Sondování</value>
-    <comment>Menu14</comment>
-  </data>
-  <data name="heightMapToolStripMenuItem.Text" xml:space="preserve">
-    <value>Skenování povrchu</value>
-    <comment>Menu141</comment>
-  </data>
-  <data name="laserToolsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Laserové nástroje</value>
-    <comment>Menu141</comment>
-  </data>
-  <data name="coordinateSystemsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Souřadnicové systémy</value>
-    <comment>Menu141</comment>
-  </data>
-  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
-    <value>DIY ovládání</value>
-    <comment>Menu141</comment>
-  </data>
-  <data name="setupToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Nastavení GUI a import parametrů</value>
-    <comment>Menu141</comment>
-  </data>
-  <data name="toolStripMenuItem1.Text" xml:space="preserve">
-    <value>Zobrazit fotoaparát</value>
-    <comment>Menu141</comment>
-  </data>
-  <data name="toolStripMenuItem1.ToolTipText" xml:space="preserve">
-    <value>Zobrazit snímek z fotoaparátu</value>
-    <comment>Menu141</comment>
-  </data>
-  <data name="toolStrip_tb_StreamLine.ToolTipText" xml:space="preserve">
-    <value>Označená čára</value>
-    <comment>ToolTip</comment>
-  </data>
-  <data name="startStreamingAtLineToolStripMenuItem.Text" xml:space="preserve">
-    <value>Začněte streamovat na řádku</value>
-  </data>
-  <data name="startStreamingAtLineToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Zde nastavte počáteční řádek, pokud G-Code nesmí začínat na řádku 0</value>
-    <comment>2DView_Menu</comment>
-  </data>
-  <data name="controlStreamingToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ovládání streamování</value>
-    <comment>Menu142</comment>
-  </data>
-  <data name="controlStreamingToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Přepsání rychlosti posuvu a rychlosti vřetena</value>
-    <comment>Menu142</comment>
-  </data>
-  <data name="control2ndGRBLToolStripMenuItem.Text" xml:space="preserve">
-    <value>Ovládání 2. GRBL</value>
-    <comment>Menu142</comment>
-  </data>
-  <data name="control2ndGRBLToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Otevře jednoduché okno pro ovládání druhého ovladače GRBL</value>
-    <comment>Menu142</comment>
-  </data>
-  <data name="machineToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Ovládání stroje</value>
-    <comment>Menu14</comment>
-  </data>
-  <data name="toolStripViewRuler.Text" xml:space="preserve">
-    <value>Pravítko</value>
-    <comment>Menu151</comment>
-  </data>
-  <data name="toolStripViewInfo.Text" xml:space="preserve">
-    <value>Info</value>
-    <comment>Menu151</comment>
-  </data>
-  <data name="toolStripViewPenUp.Text" xml:space="preserve">
-    <value>Pen-Up cesta</value>
-    <comment>Menu151</comment>
-  </data>
-  <data name="toolStripViewMachineFix.Text" xml:space="preserve">
-    <value>Pevná oblast stroje</value>
-    <comment>Menu151</comment>
-  </data>
-  <data name="toolStripViewMachineFix.ToolTipText" xml:space="preserve">
-    <value>Limit a offset lze nastavit pomocí 'Setup' - 'Control' - 'Maschine area'</value>
-    <comment>Menu151</comment>
-  </data>
-  <data name="toolStripViewMachine.Text" xml:space="preserve">
-    <value>Limity stroje</value>
-    <comment>Menu151</comment>
-  </data>
-  <data name="toolStripViewMachine.ToolTipText" xml:space="preserve">
-    <value>Limit a offset lze nastavit pomocí 'Setup' - 'Control' - 'Maschine area'</value>
-    <comment>Menu151</comment>
-  </data>
-  <data name="toolStripViewDimension.Text" xml:space="preserve">
-    <value>Rozměr G-kódu</value>
-  </data>
-  <data name="toolStripViewTool.Text" xml:space="preserve">
-    <value>Stůl na nářadí</value>
-    <comment>Menu151</comment>
-  </data>
-  <data name="toolStripViewTool.ToolTipText" xml:space="preserve">
-    <value>Limit a offset lze nastavit pomocí 'Nastavení' - 'Nastavení výměny nástroje' - 'Tabulka nástrojů'</value>
-    <comment>Menu151</comment>
-  </data>
-  <data name="toolStripViewBackground.Text" xml:space="preserve">
-    <value>Pozadí</value>
-    <comment>Menu151</comment>
-  </data>
-  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
-    <value>Pohled</value>
-    <comment>Menu15</comment>
-  </data>
-  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;O</value>
-    <comment>Menu16</comment>
-  </data>
-  <data name="toolStripStatusLabel0.Text" xml:space="preserve">
-    <value>[ Načtěte soubor přetažením do 2D zobrazení nebo vyberte 'Znovu načíst soubor' (klikněte pravým tlačítkem na 2D zobrazení) a otevřete naposledy použitý soubor. ]</value>
-  </data>
-  <data name="LanguageToolStripMenuItem3.Text" xml:space="preserve">
-    <value>Jazyk</value>
-  </data>
-  <data name="cBMoveG0.ToolTip" xml:space="preserve">
-    <value>Použijte příkaz rychlého pohybu G0 - STOP jogging nebude fungovat</value>
-  </data>
   <data name="CbSpindle.Text" xml:space="preserve">
-    <value>Vřeteno CW</value>
+    <value>Mil Açık</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="CbCoolant.Text" xml:space="preserve">
-    <value>Chladicí kapalina</value>
+    <value>soğutma sıvısı</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="CbTool.Text" xml:space="preserve">
-    <value>Nástroj je ve vřetenu</value>
+    <value>Takım Milde</value>
     <comment>groupBox_Jogging</comment>
   </data>
-  <data name="BtnPenUp.Text" xml:space="preserve">
-    <value>Pen Up</value>
-  </data>
-  <data name="BtnPenUp.ToolTip" xml:space="preserve">
-    <value>Použijte nastavení z Setup-Servo-PWM</value>
-  </data>
-  <data name="BtnPenDown.Text" xml:space="preserve">
-    <value>Pen Down</value>
-  </data>
-  <data name="BtnPenDown.ToolTip" xml:space="preserve">
-    <value>Použijte nastavení z Setup-Servo-PWM</value>
-  </data>
   <data name="tabPage1.Text" xml:space="preserve">
-    <value>Směrovač</value>
+    <value>Yönlendirici</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>Použije hodnoty povoleného překladu perem nahoru / dolů pro Z a PWM</value>
+    <value>Z ve PWM için etkin Pen -up/ -down çevirisinin değerlerini uygular</value>
   </data>
   <data name="BtnPenZero.Text" xml:space="preserve">
-    <value>Pen Zero</value>
+    <value>Kalem Sıfır</value>
+  </data>
+  <data name="BtnPenUp.Text" xml:space="preserve">
+    <value>Kalem Yukarı</value>
+  </data>
+  <data name="BtnPenUp.ToolTip" xml:space="preserve">
+    <value>Setup-Servo-PWM'deki ayarları kullanın</value>
+  </data>
+  <data name="BtnPenDown.Text" xml:space="preserve">
+    <value>Kalem Aşağı</value>
+  </data>
+  <data name="BtnPenDown.ToolTip" xml:space="preserve">
+    <value>Setup-Servo-PWM'deki ayarları kullanın</value>
   </data>
   <data name="tabPage2.Text" xml:space="preserve">
-    <value>Plotter</value>
+    <value>çizici</value>
   </data>
   <data name="CbLasermode.Text" xml:space="preserve">
-    <value>Laserový režim</value>
+    <value>lazer modu</value>
   </data>
   <data name="RbLaserM4.Text" xml:space="preserve">
-    <value>M4 Dynamic Pwr.</value>
+    <value>M4 Dinamik güç</value>
   </data>
   <data name="RbLaserM3.Text" xml:space="preserve">
-    <value>M3 Konstantní pwr.</value>
+    <value>M3 Sabit güç</value>
   </data>
   <data name="CbLaser.Text" xml:space="preserve">
-    <value>Laser zapnutý</value>
+    <value>Lazer Açık</value>
   </data>
   <data name="tabPage3.Text" xml:space="preserve">
-    <value>Laser</value>
+    <value>Lazer</value>
   </data>
-  <data name="CbAddGraphic.Text" xml:space="preserve">
-    <value>Přidejte importovanou grafiku do 2D zobrazení</value>
+  <data name="unDo2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Son işlemi geri al</value>
+    <comment>Menu131</comment>
   </data>
-  <data name="laserToolsToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Nástroj pro nalezení nejlepšího nastavení laseru</value>
-  </data>
-  <data name="coordinateSystemsToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Zkontrolujte a kontrolujte všechny grbl souřadnice</value>
-  </data>
-  <data name="control3rdGRBLToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Otevře jednoduché okno pro ovládání jednotky přes 3. sériový com</value>
-  </data>
-  <data name="projectorToolStripMenuItem.Text" xml:space="preserve">
-    <value>Projektor</value>
-  </data>
-  <data name="projectorToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Otevře nové okno pro zobrazení dráhy stroje na obrobku prostřednictvím projektoru nad pracovním stolem</value>
-  </data>
-  <data name="showFormsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Formy dopředu</value>
-  </data>
-  <data name="showFormsToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Přenese všechny otevřené formuláře GRBL-Plotter (např. vytváření textu) na začátek pořadí z</value>
-  </data>
-  <data name="CbAddGraphic.ToolTip" xml:space="preserve">
-    <value>Pokud je povoleno, nový importovaný G-kód bude vložen do již existujícího kódu.
-Změna nastavení importu po prvním importu může vést k nežádoucím efektům.</value>
-  </data>
-  <data name="cmsPicBoxDuplicatePath.Text" xml:space="preserve">
-    <value>Duplikovat vybranou cestu</value>
-  </data>
-  <data name="cmsPicBoxShowProperties.Text" xml:space="preserve">
-    <value>Vlastnosti vybrané cesty</value>
+  <data name="cmsPicBoxMoveToMarkedPosition.Text" xml:space="preserve">
+    <value>G0 işaretli konuma git</value>
   </data>
   <data name="cmsPicBoxMoveToMarkedPosition.ToolTipText" xml:space="preserve">
-    <value>Přesuňte nástroj do označené pozice</value>
+    <value>Aleti işaretli konuma taşı</value>
     <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxZeroXYAtMarkedPosition.Text" xml:space="preserve">
+    <value>İşaretli konumda sıfır XY G10 L20</value>
   </data>
   <data name="cmsPicBoxZeroXYAtMarkedPosition.ToolTipText" xml:space="preserve">
-    <value>Nastavte aktuální souřadný systém na nulu na označené pozici</value>
+    <value>Gerçek koordinat sistemini işaretli konumda sıfıra ayarla</value>
     <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxMoveGraphicsOrigin.Text" xml:space="preserve">
+    <value>İşaretçi Konumuna göre ofset grafikleri</value>
+  </data>
+  <data name="cmsPicBoxResetZooming.Text" xml:space="preserve">
+    <value>Yakınlaştırmayı Sıfırla</value>
+  </data>
+  <data name="cmsPicBoxPasteFromClipboard.Text" xml:space="preserve">
+    <value>Panodan Yapıştır</value>
   </data>
   <data name="cmsPicBoxPasteFromClipboard.ToolTipText" xml:space="preserve">
-    <value>Zpracování dat ze schránky, jako jsou SVG, DXF, TXT (SVG nebo GCode) nebo obrázek</value>
+    <value>SVG, DXF, TXT (SVG veya GCode) veya görüntü gibi panodaki verileri işleyin</value>
     <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxReloadFile.Text" xml:space="preserve">
+    <value>Dosyayı Yeniden Yükle</value>
   </data>
   <data name="cmsPicBoxReloadFile.ToolTipText" xml:space="preserve">
-    <value>Znovu načíst naposledy načtený soubor</value>
+    <value>Son yüklenen dosyayı yeniden yükle</value>
     <comment>20220428</comment>
+  </data>
+  <data name="deletenotMarkToolStripMenuItem.Text" xml:space="preserve">
+    <value>İşaret kodu (silme yok)</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="deletenotMarkToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Geçiş yapmak için tıklayın</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="cmsPicBoxMarkFirstPos.Text" xml:space="preserve">
+    <value>Seçilen yolun ilk noktasını işaretle</value>
+  </data>
+  <data name="cmsPicBoxShowProperties.Text" xml:space="preserve">
+    <value>Seçilen yolun özellikleri</value>
   </data>
   <data name="cmsPicBoxShowProperties.ToolTipText" xml:space="preserve">
-    <value>Zobrazit nebo upravit vlastnosti vybraného obrázku nebo skupiny</value>
+    <value>Seçili şekil veya grubun özelliklerini göster veya düzenle</value>
     <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxDuplicatePath.Text" xml:space="preserve">
+    <value>Seçilen yolu kopyala</value>
   </data>
   <data name="cmsPicBoxDuplicatePath.ToolTipText" xml:space="preserve">
-    <value>Duplicitní obrázek nebo skupina s volitelným odsazením (zkontrolujte [Nastavení - Vzhled programu - 2D-View / Editor]</value>
+    <value>İsteğe bağlı ofset ile yinelenen şekil veya grup ([Kurulum - Program görünümü - 2B Görünüm / Düzenleyici] öğesini kontrol edin)</value>
     <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxDeletePath.Text" xml:space="preserve">
+    <value>Seçilen yolu sil</value>
+  </data>
+  <data name="cmsPicBoxDeletePath.ToolTipText" xml:space="preserve">
+    <value>Seçilen şekli veya grubu sil</value>
+  </data>
+  <data name="cmsPicBoxCropSelectedPath.Text" xml:space="preserve">
+    <value>Seçilen yolu kırp (kesip çıkar)</value>
   </data>
   <data name="cmsPicBoxCropSelectedPath.ToolTipText" xml:space="preserve">
-    <value>Ořízněte (uvolněte) vybranou postavu nebo skupinu</value>
+    <value>Seçilen figürü veya grubu kırpın (bırakın)</value>
     <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxMoveSelectedPathInCode.Text" xml:space="preserve">
+    <value>GCode'a ofset uygula</value>
+  </data>
+  <data name="cmsPicBoxReverseSelectedPath.Text" xml:space="preserve">
+    <value>Seçilen yolu ters çevir</value>
   </data>
   <data name="cmsPicBoxReverseSelectedPath.ToolTipText" xml:space="preserve">
-    <value>Opačné pořadí uzlu cesty - možné pouze po importu grafiky</value>
+    <value>Yol düğümünün ters sırası - yalnızca grafiğin içe aktarılmasından sonra mümkündür</value>
     <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxRotateSelectedPath.Text" xml:space="preserve">
+    <value>Seçilen yolu döndür</value>
   </data>
   <data name="cmsPicBoxRotateSelectedPath.ToolTipText" xml:space="preserve">
-    <value>Otočit počáteční uzel vybrané cesty na pozici kliknutí – možné pouze po importu grafiky</value>
+    <value>Seçilen yolun başlangıç ​​düğümünü tıklama konumuna döndürme - yalnızca grafiğin içe aktarılmasından sonra mümkündür</value>
     <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxSetGCodeAsBackground.Text" xml:space="preserve">
+    <value>G-Code'u Arka Plan Olarak Ayarla</value>
   </data>
   <data name="cmsPicBoxSetGCodeAsBackground.ToolTipText" xml:space="preserve">
-    <value>Zkopírujte vybranou cestu na pozadí</value>
+    <value>Seçilen yolu arka plana kopyala</value>
     <comment>20220428</comment>
+  </data>
+  <data name="cmsPicBoxClearBackground.Text" xml:space="preserve">
+    <value>Arka Planı Temizle</value>
+  </data>
+  <data name="copyContentTroClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>İçeriği Panoya kopyala</value>
   </data>
   <data name="copyContentTroClipboardToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>Zkopírujte obrázek 2D-View do schránky</value>
+    <value>2D-View görüntüsünü panoya kopyala</value>
     <comment>20220428</comment>
   </data>
-  <data name="toggleBlockExpansionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Automatické skládání bloku</value>
-    <comment>Editor_Menu</comment>
+  <data name="tBURL.Text" xml:space="preserve">
+    <value>SVG / DXF dosyasının URL'sini buraya yapıştırın</value>
+    <comment>2DView</comment>
+  </data>
+  <data name="CbAddGraphic.Text" xml:space="preserve">
+    <value>2B görünüme içe aktarılan grafiği ekleyin</value>
+  </data>
+  <data name="CbAddGraphic.ToolTip" xml:space="preserve">
+    <value>Etkinleştirilirse, içe aktarılan yeni G-Kodu mevcut koda eklenecektir.
+İlk içe aktarmadan sonra içe aktarma ayarlarının değiştirilmesi istenmeyen etkilere neden olabilir.</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Özel Düğmeler</value>
+    <comment>groupBox_Custom</comment>
+  </data>
+  <data name="btnZeroC.Text" xml:space="preserve">
+    <value>Sıfır C</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroC.ToolTip" xml:space="preserve">
+    <value>İş C koordinatını sıfıra ayarla</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroB.Text" xml:space="preserve">
+    <value>Sıfır B</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroB.ToolTip" xml:space="preserve">
+    <value>İş B koordinatını sıfıra ayarla</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="lblCurrentG.ToolTip" xml:space="preserve">
+    <value>Varsayılan koordinat sistemi = G54
+Kamera koordinat sistemi = G59
+'G54;' ekleyin G-Code akışından önce otomatik olarak G54'e geri dönmek için G-Code başlığına</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="label_status0.Text" xml:space="preserve">
+    <value>Durum:</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroA.Text" xml:space="preserve">
+    <value>Sıfır Z</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroA.ToolTip" xml:space="preserve">
+    <value>İş koordinatını sıfıra ayarla</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnHome.Text" xml:space="preserve">
+    <value>Ev</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnHome.ToolTip" xml:space="preserve">
+    <value>Hedef Aramayı Başlat (GRBL'de etkinleştirilmişse)</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroXYZ.Text" xml:space="preserve">
+    <value>sıfır XYZ</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroXYZ.ToolTip" xml:space="preserve">
+    <value>İş X,Y,Z koordinatını sıfıra ayarla</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroXY.Text" xml:space="preserve">
+    <value>sıfır XY</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroXY.ToolTip" xml:space="preserve">
+    <value>İş X,Y koordinatını sıfıra ayarla</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="btnZeroZ.Text" xml:space="preserve">
+    <value>Sıfır Z</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroZ.ToolTip" xml:space="preserve">
+    <value>İş Z koordinatını sıfıra ayarla</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="btnZeroY.Text" xml:space="preserve">
+    <value>Sıfır Y</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroY.ToolTip" xml:space="preserve">
+    <value>İş Y koordinatını sıfıra ayarla</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="btnZeroX.Text" xml:space="preserve">
+    <value>Sıfır X</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroX.ToolTip" xml:space="preserve">
+    <value>İş X koordinatını sıfıra ayarla</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="label_status.Text" xml:space="preserve">
+    <value>Durum</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="groupBoxCoordinates.Text" xml:space="preserve">
+    <value>Takım Koordinatları (İş / Makine)</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="loadToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Açık dosya</value>
+    <comment>Menu111</comment>
+  </data>
+  <data name="loadToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G-Code veya SVG dosyasını açın</value>
+    <comment>Menu111</comment>
+  </data>
+  <data name="toolStripMenuItem2.Text" xml:space="preserve">
+    <value>Son Dosyayı Aç</value>
+    <comment>Menu112</comment>
+  </data>
+  <data name="saveToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;G Kodunu Kaydet</value>
+    <comment>Menu113</comment>
+  </data>
+  <data name="saveToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Görüntülenen G-Kodunu bir dosyaya kaydedin</value>
+    <comment>Menu113</comment>
+  </data>
+  <data name="setupToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Kurmak</value>
+    <comment>Menu114</comment>
+  </data>
+  <data name="saveMachineParametersToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Makine Ayarlarını Dışa Aktar</value>
+    <comment>Menu115</comment>
+  </data>
+  <data name="saveMachineParametersToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>GUI Ayarlarını (Düğme tanımları, Joystick parametreleri) bir INI dosyasına aktarın</value>
+    <comment>Menu115</comment>
+  </data>
+  <data name="loadMachineParametersToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Makine Ayarlarını İçe Aktar</value>
+    <comment>Menu116</comment>
+  </data>
+  <data name="loadMachineParametersToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Bir INI dosyasından GUI Ayarlarını (Düğme tanımları, Joystick parametreleri) içe aktarın</value>
+    <comment>Menu116</comment>
+  </data>
+  <data name="LanguageToolStripMenuItem3.Text" xml:space="preserve">
+    <value>Dil</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>çıkış</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Dosya</value>
+    <comment>Menu11</comment>
+  </data>
+  <data name="textWizzardToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Metin Oluştur</value>
+    <comment>Menu121</comment>
+  </data>
+  <data name="textWizzardToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Hershey yazı tipleriyle basit metin yazarlığı</value>
+    <comment>Menu121</comment>
+  </data>
+  <data name="createBarcodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Barkod Oluştur</value>
+  </data>
+  <data name="imageToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Görüntüyü Dönüştür</value>
+    <comment>Menu122</comment>
+  </data>
+  <data name="createSimpleShapesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Basit Şe&amp;killer Yaratın</value>
+    <comment>Menu123</comment>
+  </data>
+  <data name="createSimpleShapesToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Daire veya dikdörtgen, isteğe göre köşeleri yuvarlatılmış, isteğe bağlı olarak çanta olarak</value>
+    <comment>Menu123</comment>
+  </data>
+  <data name="createJogPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Yürüyüş yolu oluştur</value>
+  </data>
+  <data name="startExtensionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Uzantılar</value>
+  </data>
+  <data name="createGCodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>G Kodu &amp;Oluşturma</value>
+    <comment>Menu12</comment>
+  </data>
+  <data name="unDoToolStripMenuItem.Text" xml:space="preserve">
+    <value>Son işlemi geri al</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="mirrorXToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ayna X (&amp;yatay)</value>
+    <comment>Menu131</comment>
+  </data>
+  <data name="mirrorYToolStripMenuItem.Text" xml:space="preserve">
+    <value>Y Aynalama (&amp;dikey)</value>
+    <comment>Menu131</comment>
+  </data>
+  <data name="mirrorRotaryToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ayna Döner ekseni</value>
+    <comment>Menu131</comment>
+  </data>
+  <data name="rotate90ToolStripMenuItem.Text" xml:space="preserve">
+    <value>+90° döndür (ccw)</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="rotate90ToolStripMenuItem1.Text" xml:space="preserve">
+    <value>-90° döndür (cw)</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="rotate180ToolStripMenuItem.Text" xml:space="preserve">
+    <value>180° döndür</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="rotateFreeToolStripMenuItem.Text" xml:space="preserve">
+    <value>...° döndür</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="sToolStripMenuItem.Text" xml:space="preserve">
+    <value>XY'yi ...% oranında ölçeklendirin</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skalierenXYToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ölçek XY set X=... birimler</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skalierenXYUmXUnitsZuErreichenToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ölçek XY set Y=... birimler</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereXUmToolStripMenuItem.Text" xml:space="preserve">
+    <value>X'i ...% oranında ölçeklendirin</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereXUmToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 desteklenmiyor</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereAufXUnitsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ölçek X set X=... birimler</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereAufXUnitsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 desteklenmiyor</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereYUmToolStripMenuItem.Text" xml:space="preserve">
+    <value>Y'yi ...% oranında ölçeklendirin</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereYUmToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 desteklenmiyor</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereAufYUnitsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ölçek Y set Y=... birimler</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereAufYUnitsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 desteklenmiyor</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="rotaryDimaeterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Döner çap</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="rotaryDimaeterToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Döner eksen için parça Çapını ayarlayın</value>
+    <comment>Menu132</comment>
+  </data>
+  <data name="skaliereXAufDrehachseToolStripMenuItem.Text" xml:space="preserve">
+    <value>X'i ...°'ye ölçeklendirin (Döner eksen)</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereXAufDrehachseToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 desteklenmiyor</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereYAufDrehachseToolStripMenuItem.Text" xml:space="preserve">
+    <value>Y'yi ...°'ye ölçeklendirin (Döner eksen)</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="skaliereYAufDrehachseToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G2 / G3 desteklenmiyor</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="toolStrip_RadiusComp.Text" xml:space="preserve">
+    <value>Yarıçap telafisi</value>
+    <comment>Menu133</comment>
+  </data>
+  <data name="ersetzteG23DurchLinienToolStripMenuItem.Text" xml:space="preserve">
+    <value>G2/3'ü satırlarla değiştirin</value>
+    <comment>Menu134</comment>
+  </data>
+  <data name="convertZToSspindleSpeedToolStripMenuItem.Text" xml:space="preserve">
+    <value>Z'yi S'ye dönüştür (iş mili hızı)</value>
+    <comment>Menu134</comment>
+  </data>
+  <data name="convertZToSspindleSpeedToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Minimum Z inç için maksimum İş Mili hızını ayarlayın
+[Kurulum - Grafikleri içe aktarma - G Kodu değişikliği]</value>
+    <comment>Menu134</comment>
+  </data>
+  <data name="removeAnyZMoveToolStripMenuItem.Text" xml:space="preserve">
+    <value>Herhangi bir Z hareketini kaldırın</value>
+    <comment>Menu134</comment>
+  </data>
+  <data name="gCodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>G Kodu T&amp;dönüşüm</value>
+    <comment>Menu13</comment>
+  </data>
+  <data name="probingToolLengthToolStripMenuItem.Text" xml:space="preserve">
+    <value>Problama / Takım uzunluğu</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="surfaceScanHeightMapToolStripMenuItem.Text" xml:space="preserve">
+    <value>Yüzey taraması / Yükseklik haritası</value>
+    <comment>Menu142</comment>
+  </data>
+  <data name="jogPathCreatorToolStripMenuItem.Text" xml:space="preserve">
+    <value>Yürüyüş yolu yaratıcısı</value>
+  </data>
+  <data name="workpieceToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;İş parçası</value>
+    <comment>Menu14</comment>
+  </data>
+  <data name="edgeFinderToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sondaj</value>
+    <comment>Menu14</comment>
+  </data>
+  <data name="heightMapToolStripMenuItem.Text" xml:space="preserve">
+    <value>Yüzey taraması</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="laserToolsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Lazer araçları</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="laserToolsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>En iyi lazer ayarlarını bulmak için araç</value>
+  </data>
+  <data name="coordinateSystemsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Koordinat sistemleri</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="coordinateSystemsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Tüm grbl koordinatlarını kontrol edin ve kontrol edin</value>
+  </data>
+  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
+    <value>kendin yap kontrolü</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="setupToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>GUI'yi kurun ve parametreleri içe aktarın</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="toolStripMenuItem1.Text" xml:space="preserve">
+    <value>Kamerayı Göster</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="toolStripMenuItem1.ToolTipText" xml:space="preserve">
+    <value>Kamera resmini göster</value>
+    <comment>Menu141</comment>
+  </data>
+  <data name="toolStrip_tb_StreamLine.ToolTipText" xml:space="preserve">
+    <value>işaretli çizgi</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="startStreamingAtLineToolStripMenuItem.Text" xml:space="preserve">
+    <value>Satırda Akışı Başlat</value>
+  </data>
+  <data name="startStreamingAtLineToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>G Kodunun 0 satırında başlamaması gerekiyorsa başlangıç ​​satırını burada ayarlayın</value>
+    <comment>2DView_Menu</comment>
+  </data>
+  <data name="controlStreamingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kontrol Akışı</value>
+    <comment>Menu142</comment>
+  </data>
+  <data name="controlStreamingToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>İlerleme hızını ve İş Mili hızını geçersiz kıl</value>
+    <comment>Menu142</comment>
+  </data>
+  <data name="control2ndGRBLToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kontrol 2. GRBL</value>
+    <comment>Menu142</comment>
+  </data>
+  <data name="control2ndGRBLToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>İkinci bir GRBL denetleyicisini kontrol etmek için basit bir pencere açar</value>
+    <comment>Menu142</comment>
+  </data>
+  <data name="control3rdGRBLToolStripMenuItem.Text" xml:space="preserve">
+    <value>3. seri COM'u kontrol edin</value>
+  </data>
+  <data name="control3rdGRBLToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Bir birimi 3. bir seri iletişim yoluyla kontrol etmek için basit bir pencere açar</value>
+  </data>
+  <data name="projectorToolStripMenuItem.Text" xml:space="preserve">
+    <value>projektör</value>
+  </data>
+  <data name="projectorToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Çalışma tezgahının üzerindeki bir projektör aracılığıyla iş parçası üzerindeki makine yolunu görüntülemek için yeni bir pencere açar</value>
   </data>
   <data name="grblSetupToolStripMenuItem.Text" xml:space="preserve">
-    <value>Nastavení Grbl</value>
+    <value>Grbl Kurulumu</value>
   </data>
   <data name="processAutomationToolStripMenuItem.Text" xml:space="preserve">
-    <value>Procesní automatizace</value>
+    <value>Proses otomasyonu</value>
+  </data>
+  <data name="machineToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Makine kontrolü</value>
+    <comment>Menu14</comment>
+  </data>
+  <data name="toolStripViewRuler.Text" xml:space="preserve">
+    <value>Cetvel</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewInfo.Text" xml:space="preserve">
+    <value>Bilgi</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewPenUp.Text" xml:space="preserve">
+    <value>Pen-Up yolu</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewMachineFix.Text" xml:space="preserve">
+    <value>Sabit Makine alanı</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewMachineFix.ToolTipText" xml:space="preserve">
+    <value>Limit ve ofset 'Kurulum' - 'Kontrol' - 'Makine alanı' aracılığıyla ayarlanabilir</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewMachine.Text" xml:space="preserve">
+    <value>makine limitleri</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewMachine.ToolTipText" xml:space="preserve">
+    <value>Limit ve ofset 'Kurulum' - 'Kontrol' - 'Makine alanı' aracılığıyla ayarlanabilir</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewDimension.Text" xml:space="preserve">
+    <value>G Kodu Boyutu</value>
+  </data>
+  <data name="toolStripViewTool.Text" xml:space="preserve">
+    <value>alet tablosu</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewTool.ToolTipText" xml:space="preserve">
+    <value>Limit ve ofset 'Kurulum' - 'Takım değiştirme ayarı' - 'Alet tablosu' yoluyla ayarlanabilir</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="toolStripViewBackground.Text" xml:space="preserve">
+    <value>Arka plan</value>
+    <comment>Menu151</comment>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>Görüş</value>
+    <comment>Menu15</comment>
+  </data>
+  <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Hakkında</value>
+    <comment>Menu16</comment>
+  </data>
+  <data name="logToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kayıt</value>
+  </data>
+  <data name="showFormsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Öne doğru formlar</value>
+  </data>
+  <data name="showFormsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Tüm açık GRBL-Plotter formlarını (ör. Metin oluşturma) z sırasının önüne getirir</value>
+  </data>
+  <data name="toolStripStatusLabel0.Text" xml:space="preserve">
+    <value>[ Dosyayı sürükleyip bırakarak 2B görünüme yükleyin veya son kullanılan dosyayı açmak için 'Dosyayı Yeniden Yükle'yi seçin (2B görünüme sağ tıklayın). ]</value>
   </data>
 </root>

@@ -117,28 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BtnStart.Text" xml:space="preserve">
-    <value>Comece a transmitir</value>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>İptal etmek</value>
   </data>
-  <data name="BtnCancel.Text" xml:space="preserve">
-    <value>Cancelar</value>
+  <data name="btnApply.Text" xml:space="preserve">
+    <value>Değişiklikleri uygula</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Comece a transmitir na linha</value>
+    <value>düğme metni</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Pare de transmitir na linha</value>
+    <value>GCode veya dosya adı</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Após pressionar start, os dados serão carregados e o streaming permanecerá no modo de pausa, pressione start novamente (clique com o botão esquerdo) para continuar.</value>
+    <value>Muhtemel değişkenler Grafik pozisyonları MIn., MAx. ve X,Y ve Z için Merkez değerleri:
+#GMIX, #GMAX, #GCTX; #GMIY, #GMAY, #GCTY; #GMIZ, #GMAZ, #GCTZ
+Diğer değişkenler için GamePad kurulumunu kontrol edin.</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Estado do analisador</value>
+    <value>Düğme rengi</value>
   </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Posição</value>
+  <data name="btnSetColor.Text" xml:space="preserve">
+    <value>değiştirmek için tıklayın</value>
+  </data>
+  <data name="btnDelete.Text" xml:space="preserve">
+    <value>Silmek</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Seção de fluxo de GCode</value>
+    <value>Özel Düğmeyi Düzenle</value>
   </data>
 </root>

@@ -36,6 +36,8 @@
  * 2023-01-29 line 182 ProcessedPathLine(actualCodeLine);//.CodeLineConfirmed);
  *            line 153 removed line selection (to hoghlight line)
  * 2023-03-09 simplify NULL check
+ * 2023-03-30 l:360 f:OnRaiseStreamEvent GrblStreaming.pause: add message also on TxM06
+ * 2023-03-31 l:504 f:StartStreaming SetEditMode(false)
 */
 
 using GrblPlotter.GUI;
@@ -250,24 +252,24 @@ namespace GrblPlotter
 
                         try
                         {
-                         //   if (actualCodeLine < fCTBCode.LinesCount)
+                            //   if (actualCodeLine < fCTBCode.LinesCount)
                             if (LineIsInRange(actualCodeLine - 1))
                             {    //fCTBCode.BookmarkLine(actualCodeLine - 1);
-								if (this.fCTBCode.InvokeRequired)
-								{ this.fCTBCode.BeginInvoke((MethodInvoker)delegate () { this.fCTBCode.BookmarkLine(actualCodeLine - 1); }); }
-								else
-								{ this.fCTBCode.BookmarkLine(actualCodeLine - 1); }
-							}
+                                if (this.fCTBCode.InvokeRequired)
+                                { this.fCTBCode.BeginInvoke((MethodInvoker)delegate () { this.fCTBCode.BookmarkLine(actualCodeLine - 1); }); }
+                                else
+                                { this.fCTBCode.BookmarkLine(actualCodeLine - 1); }
+                            }
                             //fCTBCode.DoSelectionVisible();
-							if (this.fCTBCode.InvokeRequired)
-							{ this.fCTBCode.BeginInvoke((MethodInvoker)delegate () { this.fCTBCode.DoSelectionVisible(); }); }
-							else
-							{ this.fCTBCode.DoSelectionVisible(); }							
+                            if (this.fCTBCode.InvokeRequired)
+                            { this.fCTBCode.BeginInvoke((MethodInvoker)delegate () { this.fCTBCode.DoSelectionVisible(); }); }
+                            else
+                            { this.fCTBCode.DoSelectionVisible(); }
                         }
                         catch (Exception er)
                         {
                             Logger.Error(er, "OnRaiseStreamEvent fCTBCode GrblStreaming.error ");
-							EventCollector.SetStreaming("Sfctb2");
+                            EventCollector.SetStreaming("Sfctb2");
                         }
 
                     }
@@ -357,11 +359,19 @@ namespace GrblPlotter
                             Logger.Trace("OnRaiseStreamEvent - fCTBCodeClickedLineNow is out of range:{0}  count:{1}", fCTBCodeClickedLineNow, fCTBCode.Lines.Count);
                     }
 
+					/***** Show tool exchange message box *****/
                     for (int tmpLine = (fCTBCodeClickedLineNow - 2); tmpLine <= (fCTBCodeClickedLineNow + 2); tmpLine++)
-                    {   // find correct line
-                        if (LineIsInRange(tmpLine) && fCTBCode.Lines[tmpLine].Contains("M0") && fCTBCode.Lines[tmpLine].Contains("Tool"))  // keyword set in gcodeRelated 1132
-                        { signalShowToolExchangeMessage = true; signalShowToolExchangeLine = tmpLine; if (logStreaming) Logger.Trace("OnRaiseStreamEvent trigger ToolExchangeMessage"); break; }
+                    {   // find correct line - GRBL-Plotter generated = "M0 (Tool:46  Color:Black (46) = 000000)"
+						// other tool generated: "( Tool #6 "Bohrer 0.8mm" / Diameter 0.8 mm )"
+                        //if (LineIsInRange(tmpLine) && fCTBCode.Lines[tmpLine].Contains("M0") && fCTBCode.Lines[tmpLine].Contains("Tool"))  // keyword set in gcodeRelated 1132
+                        if (LineIsInRange(tmpLine) && (!fCTBCode.Lines[tmpLine].Contains("(<")) && fCTBCode.Lines[tmpLine].ToLower().Contains("tool"))  // keyword set in gcodeRelated 1132
+                        { 	signalShowToolExchangeMessage = true; 
+							signalShowToolExchangeLine = tmpLine; 
+							if (logStreaming) { Logger.Trace("OnRaiseStreamEvent trigger ToolExchangeMessage"); } 
+							break; 
+						}
                     }
+					
                     if (notifierEnable) Notifier.SendMessage("grbl Pause", "Pause");
                     break;
 
@@ -407,7 +417,7 @@ namespace GrblPlotter
             {
                 string tool = "unknown";
                 if (LineIsInRange(signalShowToolExchangeLine))
-                    tool = fCTBCode.Lines[signalShowToolExchangeLine];
+                    tool = fCTBCode.Lines[signalShowToolExchangeLine];  // "M0 (Tool:46  Color:Black (46) = 000000)"
                 int c1 = tool.IndexOf('(');
                 if ((c1 > 0) && (c1 < (tool.Length - 1)))
                 {
@@ -416,6 +426,7 @@ namespace GrblPlotter
                     tool = tool.Replace("Color", "\r  Color");
                 }
                 string msg = Localization.GetString("mainToolChange1") + "  " + tool + "\r" + Localization.GetString("mainToolChange2");
+                Logger.Info("ShowToolChangeMessage: {0}", msg.Replace("\r", ";").Replace("\n", ""));
                 Notifier.SendMessage(msg, "Tool change");
                 f.ShowMessage(Localization.GetString("mainToolChange"), msg, 1);
                 var result = f.ShowDialog(this);
@@ -491,14 +502,15 @@ namespace GrblPlotter
                 if (!isStreaming)
                 {
                     ClearErrorLines();
+					SetEditMode(false);
                     Logger.Info("►►►►  Start streaming at line:{0} to line:{1} showProgress:{2}  backgroundImage:{3}", startLine, endLine, Properties.Settings.Default.guiProgressShow, Properties.Settings.Default.guiBackgroundImageEnable);
                     StatusStripSet(0, string.Format("{0} {1}: {2} to {3}", DateTime.Now.ToString("HH:mm:ss"), Localization.GetString("statusStripeStreamingStart"), startLine, endLine), Color.Lime);   // Streaming START from line
                     StatusStripClear(1, 2);
 
                     EventCollector.SetStreaming("Strt");
                     // ExpandCodeBlocksToolStripMenuItem_Click(null, null);
-					try { fCTBCode.ExpandAllFoldingBlocks(); foldLevel = 0; fCTBCode.DoCaretVisible(); }
-					catch (Exception err) { Logger.Error(err, "StartStreaming  ExpandAllFoldingBlocks"); }
+                    try { fCTBCode.ExpandAllFoldingBlocks(); foldLevel = 0; fCTBCode.DoCaretVisible(); }
+                    catch (Exception err) { Logger.Error(err, "StartStreaming  ExpandAllFoldingBlocks"); }
 
                     VisuGCode.ProcessedPath.ProcessedPathClear();
                     MainTimer.Stop();
@@ -581,7 +593,7 @@ namespace GrblPlotter
                                         fCTBCode.SelectedText = "(" + fCTBCode.GetLineText(lnr) + ")";  // remove fiducial code
                                     }
                                     else
-                                    {   Logger.Error("StartStreaming, remove fiducials at line {0}",lnr); }
+                                    { Logger.Error("StartStreaming, remove fiducials at line {0}", lnr); }
                                 }
                             }
                         }
@@ -602,7 +614,7 @@ namespace GrblPlotter
                     VisuGCode.SetPathAsLandMark(false);//clear = false
                     ControlPowerSaving.SuppressStandby();
 
-            //        this.Icon = Properties.Resources.Icon2;  // set icon
+                    //        this.Icon = Properties.Resources.Icon2;  // set icon
                 }
                 else
                 {
