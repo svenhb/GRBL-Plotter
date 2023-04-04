@@ -135,9 +135,6 @@
   <data name="label11.Text" xml:space="preserve">
     <value>Autentizace</value>
   </data>
-  <data name="lblWidth2D.Text" xml:space="preserve">
-    <value>20</value>
-  </data>
   <data name="cBBorder2D.Text" xml:space="preserve">
     <value>Nakreslete hranici</value>
   </data>
@@ -209,9 +206,6 @@
   </data>
   <data name="label9.Text" xml:space="preserve">
     <value>Řádky na modul</value>
-  </data>
-  <data name="lblWidth1D.Text" xml:space="preserve">
-    <value>20</value>
   </data>
   <data name="radioButton1.Text" xml:space="preserve">
     <value>žádné ověření.</value>

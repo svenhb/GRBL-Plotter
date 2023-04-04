@@ -318,9 +318,6 @@
   <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
     <value>从剪贴板粘贴</value>
   </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>如果不需要，请取消选择颜色</value>
-  </data>
   <data name="rbModeDither.Text" xml:space="preserve">
     <value>抖动</value>
   </data>
@@ -366,20 +363,11 @@
   <data name="rBMode2.ToolTip" xml:space="preserve">
     <value>色相距离（0°-360°）+色饱和度+色亮度</value>
   </data>
-  <data name="label7.ToolTip" xml:space="preserve">
-    <value>寻找最佳配色的方法
-0：RGB空间中的空间：Math.Sqrt（（c1.R-c2.R）*（c1.R-c2.R）+（c1.G-c2.G）*（c1.G-c2.G ）+（c1.B-c2.B）*（c1.B-c2.B））;}
-1：在色彩空间中的距离（0°-360°）
-2：色彩空间中的距离（0°-360°）+饱和度+亮度</value>
-  </data>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>预设值</value>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>影像校正</value>
-  </data>
-  <data name="tabPage3.Text" xml:space="preserve">
-    <value>换色</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>最大Z（白色）</value>
@@ -566,9 +554,30 @@
     <value>灰度处理</value>
   </data>
   <data name="RbGrayscaleVector.Text" xml:space="preserve">
-    <value>向量化</value>
+    <value>矢量化</value>
   </data>
-  <data name="radioButton2.Text" xml:space="preserve">
+  <data name="CbBlackWhiteEnable.Text" xml:space="preserve">
+    <value>黑与白</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>黑白过门槛</value>
+  </data>
+  <data name="CBoxPatternFiles.Text" xml:space="preserve">
+    <value>选择示例模式</value>
+  </data>
+  <data name="RbStartGrayS.Text" xml:space="preserve">
+    <value>灰度值作为主轴转速（PWM）</value>
+  </data>
+  <data name="tabPageSetup.Text" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="RbGrayscalePattern.Text" xml:space="preserve">
     <value>图案</value>
+  </data>
+  <data name="tabPageSize.Text" xml:space="preserve">
+    <value>尺寸/图案</value>
+  </data>
+  <data name="GbToolEnable.Text" xml:space="preserve">
+    <value>如果不需要，请取消选择颜色</value>
   </data>
 </root>

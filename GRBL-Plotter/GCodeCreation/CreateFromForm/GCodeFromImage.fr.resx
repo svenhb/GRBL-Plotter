@@ -318,9 +318,6 @@
   <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
     <value>Coller du presse-papier</value>
   </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>Désélectionne les couleurs si nécessaire</value>
-  </data>
   <data name="rbModeDither.Text" xml:space="preserve">
     <value>Tramage</value>
   </data>
@@ -366,20 +363,11 @@
   <data name="rBMode2.ToolTip" xml:space="preserve">
     <value>Distance en nuance de couleur (0 ° à 360 °) + saturation en couleur + luminosité en couleur</value>
   </data>
-  <data name="label7.ToolTip" xml:space="preserve">
-    <value>Méthode pour trouver la couleur la plus adaptée
-0: espace dans l'espace RVB: Math.Sqrt ((c1.R - c2.R) * (c1.R - c2.R) + (c1.G - c2.G) * (c1.G - c2.G ) + (c1.B - c2.B) * (c1.B - c2.B)); }
-1: distance dans l'espace colorimétrique (0 ° à 360 °)
-2: distance dans l'espace colorimétrique (0 ° à 360 °) + saturation + luminosité</value>
-  </data>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>Préréglé</value>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>Correction d'image</value>
-  </data>
-  <data name="tabPage3.Text" xml:space="preserve">
-    <value>Remplacement de la couleur</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Z max (blanc)</value>
@@ -553,7 +541,22 @@ Les filtres de couleur et les effets seront pris en compte lors de la générati
   <data name="RbGrayscaleVector.Text" xml:space="preserve">
     <value>Vectoriser</value>
   </data>
-  <data name="radioButton2.Text" xml:space="preserve">
-    <value>Modèle</value>
+  <data name="CbBlackWhiteEnable.Text" xml:space="preserve">
+    <value>Noir et blanc</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Noir et blanc via seuil</value>
+  </data>
+  <data name="CBoxPatternFiles.Text" xml:space="preserve">
+    <value>Sélectionnez un exemple de motif</value>
+  </data>
+  <data name="RbStartGrayS.Text" xml:space="preserve">
+    <value>Valeur de gris comme vitesse de broche (PWM)</value>
+  </data>
+  <data name="tabPageSize.Text" xml:space="preserve">
+    <value>Taille / Motif</value>
+  </data>
+  <data name="GbToolEnable.Text" xml:space="preserve">
+    <value>Désélectionnez les couleurs si vous n'en avez pas besoin</value>
   </data>
 </root>

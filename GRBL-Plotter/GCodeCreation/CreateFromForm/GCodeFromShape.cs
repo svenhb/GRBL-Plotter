@@ -795,7 +795,7 @@ namespace GrblPlotter
             rB4.Image = (Image)picBevelOff.Clone(); rB4.Image.RotateFlip((RotateFlipType.Rotate270FlipNone));
 
             LoadXML(Datapath.Data + "\\simpleshapes.xml");
-            Update_ShapeSelection(0);
+            Update_ShapeSelection(-1);
         }
 
         private void ShapeToGCode_FormClosing(object sender, FormClosingEventArgs e)
@@ -1177,13 +1177,15 @@ namespace GrblPlotter
                 { CbShapeSelection.Items.Add(shape.name); }
 
                 int index = 0;
+                if (select >= 0)
+                {
+                    if (select < Shapes.Count)
+                        index = select;
 
-                if (select < Shapes.Count)
-                    index = select;
+                    CbShapeSelection.SelectedItem = index;
 
-                CbShapeSelection.SelectedItem = index;
-
-                CbShapeSelection.Text = CbShapeSelection.Items[index].ToString();
+                    CbShapeSelection.Text = CbShapeSelection.Items[index].ToString();
+                }
             }
         }
 

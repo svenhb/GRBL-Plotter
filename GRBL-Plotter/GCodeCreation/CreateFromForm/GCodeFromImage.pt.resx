@@ -177,12 +177,6 @@
   <data name="btnPresetCorrection3.ToolTip" xml:space="preserve">
     <value>Tente usar o mínimo de cores possível, descartando cores abaixo de uma certa porcentagem</value>
   </data>
-  <data name="label7.ToolTip" xml:space="preserve">
-    <value>Método para encontrar a melhor cor correspondente
-0: Espaço no espaço RGB: Math.Sqrt ((c1.R - c2.R) * (c1.R - c2.R) + (c1.G - c2.G) * (c1.G - c2.G) + (c1.B - c2.B) * (c1.B - c2.B)); }
-1: distância no espaço de cores (0 ° -360 °)
-2: distância no espaço de cores (0 ° -360 °) + saturação + brilho</value>
-  </data>
   <data name="label14.ToolTip" xml:space="preserve">
     <value>O filtro faz a filtragem dos canais de cores limpando os valores (definidos para preto), que estão dentro / fora da faixa do valor especificado.
 </value>
@@ -234,9 +228,6 @@
   </data>
   <data name="tBRMin.ToolTip" xml:space="preserve">
     <value>Valores vermelhos abaixo disso, serão definidos como zero</value>
-  </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>Desmarque as cores se não for necessário</value>
   </data>
   <data name="btnPresetCorrection3.Text" xml:space="preserve">
     <value>Quadrinhos - poucas cores</value>
@@ -350,9 +341,6 @@ O filtro permite preencher determinados intervalos de canais de cores RGB com o 
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>Tamanho da saída em unidades</value>
-  </data>
-  <data name="tabPage3.Text" xml:space="preserve">
-    <value>Substituição de cores</value>
   </data>
   <data name="label16.Text" xml:space="preserve">
     <value>Último carregamento:</value>
@@ -544,7 +532,22 @@ Filtros de cores e efeitos serão considerados na geração de tons de cinza.</v
   <data name="RbGrayscaleVector.Text" xml:space="preserve">
     <value>Vetorizar</value>
   </data>
-  <data name="radioButton2.Text" xml:space="preserve">
-    <value>Padrão</value>
+  <data name="CbBlackWhiteEnable.Text" xml:space="preserve">
+    <value>Preto e branco</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Preto e branco via limiar</value>
+  </data>
+  <data name="CBoxPatternFiles.Text" xml:space="preserve">
+    <value>Selecione padrão de exemplo</value>
+  </data>
+  <data name="RbStartGrayS.Text" xml:space="preserve">
+    <value>Valor cinza como velocidade do fuso (PWM)</value>
+  </data>
+  <data name="tabPageSize.Text" xml:space="preserve">
+    <value>Tamanho / Padrão</value>
+  </data>
+  <data name="GbToolEnable.Text" xml:space="preserve">
+    <value>Desmarque as cores se não for necessário</value>
   </data>
 </root>

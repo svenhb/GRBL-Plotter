@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cBNoZUp.Text" xml:space="preserve">
+    <value>Z-up'tan kaçının</value>
+  </data>
+  <data name="cBNoZUp.ToolTip" xml:space="preserve">
+    <value>Her geçişten sonra Z'yi güvenli bir yüksekliğe yükseltmeyin</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Alet:</value>
+  </data>
+  <data name="cBToolSet.Text" xml:space="preserve">
+    <value>Alet tablosundan değerleri al</value>
+  </data>
+  <data name="nUDToolOverlap.ToolTip" xml:space="preserve">
+    <value>Takım çapı olarak iki yol arasındaki mesafe (bir cep yaparken). %100 = takım çapı adım genişliği.</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Örtüşmek %</value>
+  </data>
+  <data name="label16.ToolTip" xml:space="preserve">
+    <value>Takım çapı olarak iki yol arasındaki mesafe (bir cep yaparken). %100 = takım çapı adım genişliği.</value>
+  </data>
+  <data name="nUDToolSpindleSpeed.ToolTip" xml:space="preserve">
+    <value>Mil hızı</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Mil-Spd</value>
+  </data>
+  <data name="nUDToolFeedZ.ToolTip" xml:space="preserve">
+    <value>Z için besleme hızı</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Besleme-Z</value>
+  </data>
+  <data name="nUDToolFeedXY.ToolTip" xml:space="preserve">
+    <value>XY yönü için ilerleme hızı</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Besleme-XY</value>
+  </data>
+  <data name="nUDToolZStep.ToolTip" xml:space="preserve">
+    <value>Geçiş başına derinlik (nihai derinlik değil)</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Z+</value>
+  </data>
+  <data name="nUDToolDiameter.ToolTip" xml:space="preserve">
+    <value>Ofset yolu ofsetini hesaplamak için takım çapı</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Çap</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Alet</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Y-Boyutu</value>
+  </data>
+  <data name="cBToolpathPocket.Text" xml:space="preserve">
+    <value>Cep Oluştur</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>X-Boyutu</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>yarıçap</value>
+  </data>
+  <data name="rBShape2.Text" xml:space="preserve">
+    <value>Dikdörtgen yuvarlak kenar</value>
+  </data>
+  <data name="rBShape1.Text" xml:space="preserve">
+    <value>Dikdörtgen</value>
+  </data>
+  <data name="rBShape3.Text" xml:space="preserve">
+    <value>Daire</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Şekil</value>
+  </data>
+  <data name="nUDImportGCZDown.ToolTip" xml:space="preserve">
+    <value>Şeklin son derinliği</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Derinlik (Z)</value>
+  </data>
+  <data name="rBToolpath2.Text" xml:space="preserve">
+    <value>şeklin dışında</value>
+  </data>
+  <data name="rBToolpath3.Text" xml:space="preserve">
+    <value>şeklin içinde</value>
+  </data>
+  <data name="rBToolpath1.Text" xml:space="preserve">
+    <value>Şekil üzerinde (gravür)</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>takım yolu</value>
+  </data>
+  <data name="btnApply.Text" xml:space="preserve">
+    <value>G Kodu Oluştur</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Menşei</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Kapalı</value>
+  </data>
+  <data name="nUDRZRadius.ToolTip" xml:space="preserve">
+    <value>Z yönündeki yarıçap</value>
+  </data>
+  <data name="nUDRZWidth.ToolTip" xml:space="preserve">
+    <value>Yuvarlama genişliği</value>
+  </data>
+  <data name="nUDRZStep.ToolTip" xml:space="preserve">
+    <value>Maks. birimlerde 1/4 daireye izin verilen sapma</value>
+  </data>
+  <data name="BtnAddShape.Text" xml:space="preserve">
+    <value>Farklı kaydet</value>
+  </data>
+  <data name="BtnAddShape.ToolTip" xml:space="preserve">
+    <value>Ayarları aşağıdaki adla kaydedin</value>
+  </data>
+  <data name="TbShapeName.ToolTip" xml:space="preserve">
+    <value>Şunun için metin yaz:</value>
+  </data>
+  <data name="BtnApplyShape.Text" xml:space="preserve">
+    <value>Uygula</value>
+  </data>
+  <data name="BtnApplyShape.ToolTip" xml:space="preserve">
+    <value>Seçilen şeklin ayarlarını uygula</value>
+  </data>
+  <data name="BtnDeleteShape.Text" xml:space="preserve">
+    <value>Silmek</value>
+  </data>
+  <data name="BtnDeleteShape.ToolTip" xml:space="preserve">
+    <value>Seçili şekli sil</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Şekil ayarlarını yükle</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Şekil ayarlarını kaydet</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Dikdörtgen / Daire</value>
+  </data>
+  <data name="rBBevel1.Text" xml:space="preserve">
+    <value>yuvarlak</value>
+  </data>
+  <data name="rBBevel2.Text" xml:space="preserve">
+    <value>Eğim</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Yarıçap / Mesafe</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Kenar şekli</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Eğim / Yuvarlama</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Silindirik freze bıçağı için yol hesaplaması</value>
+  </data>
+  <data name="rBRoundZYT.Text" xml:space="preserve">
+    <value>Yarıçap Z-Y-üstte, genişlik X'te</value>
+  </data>
+  <data name="rBRoundZYB.Text" xml:space="preserve">
+    <value>Z-Y-altta yarıçap, X'te genişlik</value>
+  </data>
+  <data name="rBRoundZXL.Text" xml:space="preserve">
+    <value>Z-X-solda yarıçap, Y'de genişlik</value>
+  </data>
+  <data name="rBRoundZXR.Text" xml:space="preserve">
+    <value>Z-X-sağda yarıçap, Y'de genişlik</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Yuvarlama konumu</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>yarıçap</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Sapma</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Genişlik</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>boyutlar</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Z'yi yuvarla</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Derinlik</value>
+  </data>
+  <data name="cBMoveTo00.Text" xml:space="preserve">
+    <value>Sonunda 0;0'a git</value>
+  </data>
+  <data name="CbInsertCode.Text" xml:space="preserve">
+    <value>2B görünüme şekil ekle (0;0 konumunda)</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Şekillerden G Kodu Oluşturun</value>
+  </data>
+</root>

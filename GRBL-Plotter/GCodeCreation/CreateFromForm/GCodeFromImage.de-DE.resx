@@ -336,12 +336,6 @@ unter dem angegebenen Prozentwert werden in die nächstgelegene Farbe umgewandel
   <data name="cBFilterEdge.Text" xml:space="preserve">
     <value>Kantenfilter</value>
   </data>
-  <data name="tabPage3.Text" xml:space="preserve">
-    <value>Farbersetzung</value>
-  </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>Abwählen von Farben</value>
-  </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Aus dem Setup-Formular</value>
   </data>
@@ -368,12 +362,6 @@ unter dem angegebenen Prozentwert werden in die nächstgelegene Farbe umgewandel
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Erzeuge G-Code aus Bild</value>
-  </data>
-  <data name="label7.ToolTip" xml:space="preserve">
-    <value>Methode um am besten passende Farbe zu finden
-0: Abstand im RGB-Raum: Math.Sqrt((c1.R - c2.R) * (c1.R - c2.R) + (c1.G - c2.G) * (c1.G - c2.G) + (c1.B - c2.B)*(c1.B - c2.B)); }
-1: Abstand im Farbraum (0°-360°)
-2: Abstand im Farbraum (0°-360°) + Sättigung + Helligkeit</value>
   </data>
   <data name="rBMode0.ToolTip" xml:space="preserve">
     <value>Abstand im RGB-Raum: Math.Sqrt ((c1.R - c2.R) * (c1.R - c2.R) + (c1.G - c2.G) * (c1.G - c2.G) + (c1.B - c2.B) * (c1.B - c2.B)); }</value>
@@ -529,7 +517,22 @@ Farbfilter und Effekte werden bei der Generierung von Graustufen berücksichtigt
   <data name="RbGrayscaleVector.Text" xml:space="preserve">
     <value>Vektorisieren</value>
   </data>
-  <data name="radioButton2.Text" xml:space="preserve">
-    <value>Muster</value>
+  <data name="CbBlackWhiteEnable.Text" xml:space="preserve">
+    <value>Schwarz und weiß</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Schwarzweiß über Schwelle</value>
+  </data>
+  <data name="CBoxPatternFiles.Text" xml:space="preserve">
+    <value>Beispielmuster auswählen</value>
+  </data>
+  <data name="RbStartGrayS.Text" xml:space="preserve">
+    <value>Grauwert als Spindeldrehzahl (PWM)</value>
+  </data>
+  <data name="tabPageSize.Text" xml:space="preserve">
+    <value>Größe / Muster</value>
+  </data>
+  <data name="GbToolEnable.Text" xml:space="preserve">
+    <value>Deaktiviere Farben, wenn sie nicht benötigt werden</value>
   </data>
 </root>

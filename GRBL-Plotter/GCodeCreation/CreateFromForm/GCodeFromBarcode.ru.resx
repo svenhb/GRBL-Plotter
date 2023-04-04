@@ -135,9 +135,6 @@
   <data name="label5.Text" xml:space="preserve">
     <value>Тип штрих-кода</value>
   </data>
-  <data name="lblWidth1D.Text" xml:space="preserve">
-    <value>20</value>
-  </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Результирующая ширина штрих-кода</value>
   </data>
@@ -200,9 +197,6 @@
   </data>
   <data name="btnCheckBarcode2D.Text" xml:space="preserve">
     <value>Проверьте QR-код</value>
-  </data>
-  <data name="lblWidth2D.Text" xml:space="preserve">
-    <value>20</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Результирующая ширина штрих-кода</value>

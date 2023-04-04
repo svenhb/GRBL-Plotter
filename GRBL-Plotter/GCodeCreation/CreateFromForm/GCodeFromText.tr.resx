@@ -117,103 +117,166 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnGenerateBarcode1D.Text" xml:space="preserve">
-    <value>Genera codice a barre</value>
-  </data>
-  <data name="btnGenerateBarcode2D.Text" xml:space="preserve">
-    <value>Genera QR-Code</value>
-  </data>
-  <data name="btnClipboardBarcode1D.Text" xml:space="preserve">
-    <value>Copia l'immagine negli appunti</value>
-  </data>
-  <data name="btnCheckBarcode1D.Text" xml:space="preserve">
-    <value>Controlla il codice a barre</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Altezza del codice a barre</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Tipo di codice a barre</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Larghezza del codice a barre risultante</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Righe per modulo</value>
-  </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Scan-gap / Larghezza penna / Diametro utensile</value>
+    <value>Harf yüksekliği</value>
   </data>
-  <data name="tabPage1.Text" xml:space="preserve">
-    <value>Codice a barre</value>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value>Harflerin yüksekliği</value>
   </data>
-  <data name="btnLogoInvert.Text" xml:space="preserve">
-    <value>Inverti immagine</value>
-  </data>
-  <data name="btnLogoFromFile.Text" xml:space="preserve">
-    <value>Carica da file</value>
-  </data>
-  <data name="btnLogoFromClipboard.Text" xml:space="preserve">
-    <value>Incolla dagli Appunti</value>
-  </data>
-  <data name="gBLogo.Text" xml:space="preserve">
-    <value>Logo</value>
-  </data>
-  <data name="tPQR1.Text" xml:space="preserve">
-    <value>Testo</value>
-  </data>
-  <data name="tPQR2.Text" xml:space="preserve">
-    <value>URL</value>
-  </data>
-  <data name="radioButton1.Text" xml:space="preserve">
-    <value>nessuna autenticazione</value>
-  </data>
-  <data name="cBWLAN1.Text" xml:space="preserve">
-    <value>è nascosto</value>
+  <data name="btnApply.Text" xml:space="preserve">
+    <value>G Kodu Oluştur</value>
   </data>
   <data name="label11.Text" xml:space="preserve">
-    <value>Autenticazione</value>
+    <value>Hat mesafesi</value>
   </data>
-  <data name="rBWLAN2.Text" xml:space="preserve">
-    <value>WEP</value>
-  </data>
-  <data name="rBWLAN1.Text" xml:space="preserve">
-    <value>WPA/WPA2</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Parola d'ordine</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>SSID</value>
-  </data>
-  <data name="tabPage3.Text" xml:space="preserve">
-    <value>WLAN</value>
-  </data>
-  <data name="btnClipboardBarcode2D.Text" xml:space="preserve">
-    <value>Copia l'immagine negli appunti</value>
-  </data>
-  <data name="cBInsertLogo.Text" xml:space="preserve">
-    <value>Inserisci il logo</value>
-  </data>
-  <data name="btnCheckBarcode2D.Text" xml:space="preserve">
-    <value>Controlla il codice QR</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Larghezza del codice a barre risultante</value>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Righe per modulo</value>
+  <data name="label11.ToolTip" xml:space="preserve">
+    <value>Çizgiler arasındaki mesafe</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
-    <value>Scan-gap / Larghezza penna / Diametro utensile</value>
+    <value>Harf mesafesi</value>
   </data>
-  <data name="cBBorder2D.Text" xml:space="preserve">
-    <value>Disegna il bordo</value>
+  <data name="label10.ToolTip" xml:space="preserve">
+    <value>Harfler arasında ek boşluk</value>
   </data>
-  <data name="tabPage2.Text" xml:space="preserve">
-    <value>QR Code</value>
+  <data name="RbAlign3.Text" xml:space="preserve">
+    <value>Sağ</value>
+  </data>
+  <data name="RbAlign2.Text" xml:space="preserve">
+    <value>merkez</value>
+  </data>
+  <data name="RbAlign1.Text" xml:space="preserve">
+    <value>sol</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Kapalı</value>
+  </data>
+  <data name="CbOutline.Text" xml:space="preserve">
+    <value>Anahat</value>
+  </data>
+  <data name="CbOutline.ToolTip" xml:space="preserve">
+    <value>Harfleri, [Kurulum - Grafikleri içe aktarma - Yolu içe aktarma - Yol değişiklikleri] bölümünde tanımlanan tarama dolgu deseniyle doldurun</value>
+  </data>
+  <data name="cBToolTable.Text" xml:space="preserve">
+    <value>Alet tablosundan değerleri al</value>
+  </data>
+  <data name="cBToolTable.ToolTip" xml:space="preserve">
+    <value>Bir kelime içinde, harfin son noktasını sonraki harfin ilk noktasıyla birleştirin</value>
+  </data>
+  <data name="CbHatchFill.Text" xml:space="preserve">
+    <value>ambar dolgusu</value>
+  </data>
+  <data name="CbHatchFill.ToolTip" xml:space="preserve">
+    <value>Harfleri, [Kurulum - Grafikleri içe aktarma - Yolu içe aktarma - Yol değişiklikleri] bölümünde tanımlanan tarama dolgu deseniyle doldurun</value>
+  </data>
+  <data name="cBConnectLetter.Text" xml:space="preserve">
+    <value>Harfleri birleştir (yalnızca hershey)</value>
+  </data>
+  <data name="cBConnectLetter.ToolTip" xml:space="preserve">
+    <value>Bir kelime içinde, harfin son noktasını sonraki harfin ilk noktasıyla birleştirin</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Alet:</value>
+  </data>
+  <data name="cBPauseLine.Text" xml:space="preserve">
+    <value>Satırdan Önce Duraklat Ekle</value>
+  </data>
+  <data name="cBPauseWord.Text" xml:space="preserve">
+    <value>Kelimeden önce Duraklat ekle</value>
+  </data>
+  <data name="cBPauseChar.Text" xml:space="preserve">
+    <value>Harften önce duraklama ekle</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>SVG-Import Kurulumundaki diğer G Kodu ayarları</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>G Kodu</value>
+  </data>
+  <data name="CbWordWrap.Text" xml:space="preserve">
+    <value>kelime sarma</value>
+  </data>
+  <data name="RbFont2.Text" xml:space="preserve">
+    <value>Sistem yazı tipi</value>
+  </data>
+  <data name="RbFont1.Text" xml:space="preserve">
+    <value>Tek satırlık yazı tipi (Hershey)</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Metin hizalama</value>
   </data>
   <data name="CbInsertCode.Text" xml:space="preserve">
-    <value>Inserisci il codice nella vista 2D (alla posizione 0;0)</value>
+    <value>Metni 2B görünüme ekleyin (0;0 konumunda)</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Metin oluşturma</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Hersey Yazı tipi bilgisi</value>
+  </data>
+  <data name="BtnSelectFont.Text" xml:space="preserve">
+    <value>yazı tipi seç</value>
+  </data>
+  <data name="LblFont.Text" xml:space="preserve">
+    <value>Yazı tipi:</value>
+  </data>
+  <data name="LblInfoFont.Text" xml:space="preserve">
+    <value>Yazı tipi</value>
+  </data>
+  <data name="LblInfoSize.Text" xml:space="preserve">
+    <value>Boyut</value>
+  </data>
+  <data name="LblSize.Text" xml:space="preserve">
+    <value>Boyut:</value>
+  </data>
+  <data name="LblWidth.Text" xml:space="preserve">
+    <value>Genişlik:</value>
+  </data>
+  <data name="LblHeight.Text" xml:space="preserve">
+    <value>Yükseklik:</value>
+  </data>
+  <data name="LblInfoWidth.Text" xml:space="preserve">
+    <value>10000.00</value>
+  </data>
+  <data name="LblInfoWidth.ToolTip" xml:space="preserve">
+    <value>Geçerli yazı tipi boyutu ve kelime kaydırma ayarı ile oluşturulan G Kodunun metin genişliği</value>
+  </data>
+  <data name="LblInfoHeight.Text" xml:space="preserve">
+    <value>10000.00</value>
+  </data>
+  <data name="LblInfoHeight.ToolTip" xml:space="preserve">
+    <value>Geçerli yazı tipi boyutu ve kelime kaydırma ayarıyla oluşturulan G Kodunun metin yüksekliği</value>
+  </data>
+  <data name="linkLabel1.Text" xml:space="preserve">
+    <value>ücretsiz yazı tipleri</value>
+  </data>
+  <data name="linkLabel1.ToolTip" xml:space="preserve">
+    <value>'www.dafont.com' bağlantısı - kullanım riski size aittir.</value>
+  </data>
+  <data name="NUDWidth.ToolTip" xml:space="preserve">
+    <value>İstenen metin genişliğini ayarlayın ve buna ulaşmak için yazı tipi boyutunu ayarlayın.</value>
+  </data>
+  <data name="NUDHeight.ToolTip" xml:space="preserve">
+    <value>İstenen metin yüksekliğini ayarlayın ve buna ulaşmak için yazı tipi boyutunu ayarlayın.</value>
+  </data>
+  <data name="BtnSetWidth.Text" xml:space="preserve">
+    <value>ayarlamak</value>
+  </data>
+  <data name="BtnSetWidth.ToolTip" xml:space="preserve">
+    <value>Verilen metin genişliğine ulaşmak için yazı tipi boyutunu hesaplayın ve ayarlayın</value>
+  </data>
+  <data name="BtnSetHeight.Text" xml:space="preserve">
+    <value>ayarlamak</value>
+  </data>
+  <data name="BtnSetHeight.ToolTip" xml:space="preserve">
+    <value>Verilen metin yüksekliğine ulaşmak için yazı tipi boyutunu hesaplayın ve ayarlayın</value>
+  </data>
+  <data name="cBLineBreak.Text" xml:space="preserve">
+    <value>Şundan sonra satır sonu (tahmini)</value>
+  </data>
+  <data name="cBLineBreak.ToolTip" xml:space="preserve">
+    <value>Sözcük uzunluğunu tahmin eder ve belirtilen uzunluktan sonra bir satır sonu ekler</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Metinden G Kodu Oluşturun</value>
   </data>
 </root>

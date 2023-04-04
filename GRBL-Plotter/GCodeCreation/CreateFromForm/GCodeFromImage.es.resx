@@ -318,9 +318,6 @@
   <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
     <value>Pegar desde el portapapeles</value>
   </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>Anule la selección de colores si no es necesario</value>
-  </data>
   <data name="rbModeDither.Text" xml:space="preserve">
     <value>Tramado</value>
   </data>
@@ -366,12 +363,6 @@
   <data name="rBMode2.ToolTip" xml:space="preserve">
     <value>Distancia en tono de color (0 ° -360 °) + saturación de color + brillo de color</value>
   </data>
-  <data name="label7.ToolTip" xml:space="preserve">
-    <value>Método para encontrar el mejor color a juego
-0: espacio en espacio RGB: Math.Sqrt ((c1.R - c2.R) * (c1.R - c2.R) + (c1.G - c2.G) * (c1.G - c2.G ) + (c1.B - c2.B) * (c1.B - c2.B)); }
-1: distancia en el espacio de color (0 ° -360 °)
-2: distancia en el espacio de color (0 ° -360 °) + saturación + brillo</value>
-  </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Z max (blanco)</value>
   </data>
@@ -383,9 +374,6 @@
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>Corrección de imagen</value>
-  </data>
-  <data name="tabPage3.Text" xml:space="preserve">
-    <value>Reemplazo de color</value>
   </data>
   <data name="rBMode0.ToolTip" xml:space="preserve">
     <value>Distancia en el espacio RGB: Math.Sqrt ((c1.R - c2.R) * (c1.R - c2.R) + (c1.G - c2.G) * (c1.G - c2.G) + (c1.B - c2.B) * (c1.B - c2.B)); }</value>
@@ -553,7 +541,22 @@ Se tendrán en cuenta los filtros de color y los efectos al generar escala de gr
   <data name="RbGrayscaleVector.Text" xml:space="preserve">
     <value>vectorizar</value>
   </data>
-  <data name="radioButton2.Text" xml:space="preserve">
-    <value>Patrón</value>
+  <data name="CbBlackWhiteEnable.Text" xml:space="preserve">
+    <value>En blanco y negro</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Blanco y negro a través del umbral</value>
+  </data>
+  <data name="CBoxPatternFiles.Text" xml:space="preserve">
+    <value>Seleccionar patrón de ejemplo</value>
+  </data>
+  <data name="RbStartGrayS.Text" xml:space="preserve">
+    <value>Valor gris como velocidad del husillo (PWM)</value>
+  </data>
+  <data name="tabPageSize.Text" xml:space="preserve">
+    <value>Tamaño / Patrón</value>
+  </data>
+  <data name="GbToolEnable.Text" xml:space="preserve">
+    <value>Anule la selección de colores si no es necesario</value>
   </data>
 </root>

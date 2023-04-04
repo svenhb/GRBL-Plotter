@@ -183,12 +183,6 @@
   <data name="btnPresetCorrection3.ToolTip" xml:space="preserve">
     <value>حاول استخدام أقل عدد ممكن من الألوان من خلال التخلص من الألوان التي تقل عن نسبة معينة</value>
   </data>
-  <data name="label7.ToolTip" xml:space="preserve">
-    <value>طريقة للعثور على أفضل لون مطابق
-0: مساحة في مساحة RGB: Math.Sqrt ((c1.R - c2.R) * (c1.R - c2.R) + (c1.G - c2.G) * (c1.G - c2.G) + (c1.B - c2.B) * (c1.B - c2.B)) ؛ }
-1: المسافة في مساحة اللون (0 ° -360 °)
-2: المسافة في مساحة اللون (0 ° -360 °) + التشبع + السطوع</value>
-  </data>
   <data name="label14.ToolTip" xml:space="preserve">
     <value>يقوم المرشح بترشيح قنوات اللون عن طريق مسح القيم (المعينة إلى الأسود) ، والتي تكون داخل / خارج نطاق القيمة المحددة.</value>
   </data>
@@ -248,9 +242,6 @@
   </data>
   <data name="tBRMin.ToolTip" xml:space="preserve">
     <value>القيم الحمراء أدناه ، سيتم ضبطها على الصفر</value>
-  </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>قم بإلغاء تحديد الألوان إذا لم تكن هناك حاجة لذلك</value>
   </data>
   <data name="btnPresetCorrection3.Text" xml:space="preserve">
     <value>هزلية - بعض الألوان</value>
@@ -378,9 +369,6 @@
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>حجم الانتاج في وحدات</value>
-  </data>
-  <data name="tabPage3.Text" xml:space="preserve">
-    <value>استبدال اللون</value>
   </data>
   <data name="label16.Text" xml:space="preserve">
     <value>آخر تحميل:</value>
@@ -572,7 +560,28 @@
   <data name="RbGrayscaleVector.Text" xml:space="preserve">
     <value>فيكتور</value>
   </data>
-  <data name="radioButton2.Text" xml:space="preserve">
+  <data name="CbBlackWhiteEnable.Text" xml:space="preserve">
+    <value>اسود و ابيض</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>أبيض وأسود عبر العتبة</value>
+  </data>
+  <data name="CBoxPatternFiles.Text" xml:space="preserve">
+    <value>حدد نموذجًا للنمط</value>
+  </data>
+  <data name="RbStartGrayS.Text" xml:space="preserve">
+    <value>القيمة الرمادية كسرعة المغزل (PWM)</value>
+  </data>
+  <data name="tabPageSetup.Text" xml:space="preserve">
+    <value>يبدأ</value>
+  </data>
+  <data name="RbGrayscalePattern.Text" xml:space="preserve">
     <value>نمط</value>
+  </data>
+  <data name="tabPageSize.Text" xml:space="preserve">
+    <value>الحجم / النمط</value>
+  </data>
+  <data name="GbToolEnable.Text" xml:space="preserve">
+    <value>قم بإلغاء تحديد الألوان إذا لم تكن هناك حاجة إليها</value>
   </data>
 </root>

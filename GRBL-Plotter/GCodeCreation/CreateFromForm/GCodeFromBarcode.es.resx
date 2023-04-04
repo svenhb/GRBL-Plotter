@@ -135,9 +135,6 @@
   <data name="label5.Text" xml:space="preserve">
     <value>Tipo de código de barras</value>
   </data>
-  <data name="lblWidth1D.Text" xml:space="preserve">
-    <value>20</value>
-  </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Ancho de código de barras resultante</value>
   </data>
@@ -200,9 +197,6 @@
   </data>
   <data name="btnCheckBarcode2D.Text" xml:space="preserve">
     <value>Verifique el código QR</value>
-  </data>
-  <data name="lblWidth2D.Text" xml:space="preserve">
-    <value>20</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Ancho de código de barras resultante</value>

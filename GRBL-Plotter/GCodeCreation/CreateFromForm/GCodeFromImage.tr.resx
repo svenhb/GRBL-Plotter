@@ -118,468 +118,473 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="lblInfo1.Text" xml:space="preserve">
-    <value>Informazioni</value>
+    <value>Bilgi</value>
   </data>
   <data name="btnKeepSizeReso.Text" xml:space="preserve">
-    <value>Mantieni orig. dimensione px, cal. Risoluzione</value>
+    <value>orijini koru. piksel boyutu, hesap. Çözünürlük</value>
   </data>
   <data name="btnKeepSizeWidth.Text" xml:space="preserve">
-    <value>Mantieni orig. dimensione px, cal. Larghezza</value>
+    <value>orijini koru. piksel boyutu, hesap. Genişlik</value>
   </data>
   <data name="lblSizeOrig.Text" xml:space="preserve">
-    <value>Dimensione</value>
+    <value>Boyut</value>
   </data>
   <data name="nUDResoX.ToolTip" xml:space="preserve">
-    <value>La distanza tra le righe dovrebbe corrispondere alla larghezza della penna</value>
+    <value>Çizgiler arasındaki mesafe, kalem genişliğine uygun olmalıdır</value>
   </data>
   <data name="lblSizeResult.Text" xml:space="preserve">
-    <value>Dimensione</value>
+    <value>Boyut</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Larghezza</value>
+    <value>Genişlik</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>Risoluzione X / larghezza penna</value>
+    <value>Çözünürlük X / kalem genişliği</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>Altezza</value>
+    <value>Yükseklik</value>
   </data>
   <data name="cbLockRatio.Text" xml:space="preserve">
-    <value>mantenere il rapporto</value>
+    <value>oranı koru</value>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
-    <value>Formato di output in unità</value>
+    <value>Birim cinsinden çıktı boyutu</value>
   </data>
   <data name="label18.Text" xml:space="preserve">
-    <value>Distanza di linea</value>
+    <value>Hat mesafesi</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Gamma</value>
+    <value>Gama</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Contrasto</value>
+    <value>Zıtlık</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Luminosità</value>
+    <value>Parlaklık</value>
   </data>
   <data name="groupBox10.Text" xml:space="preserve">
-    <value>Estrai CMYK / RGB</value>
+    <value>CMYK / RGB'yi çıkarın</value>
   </data>
   <data name="cbGrayscaleChannel.Text" xml:space="preserve">
-    <value>Canale singolo colore</value>
+    <value>Tek renkli kanal</value>
   </data>
   <data name="cbGrayscale.Text" xml:space="preserve">
-    <value>Scala di grigi</value>
+    <value>gri tonlama</value>
   </data>
   <data name="rbModeDither.Text" xml:space="preserve">
-    <value>Dithering</value>
+    <value>titreme</value>
   </data>
   <data name="rbModeGray.Text" xml:space="preserve">
-    <value>Scala di grigi</value>
+    <value>gri tonlama</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>Conversione in scala di grigi/bianco e nero</value>
+    <value>Gri tonlama / siyah beyaz dönüştürme</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Soglia</value>
+    <value>Eşik</value>
   </data>
   <data name="CbBlackWhiteEnable.Text" xml:space="preserve">
-    <value>Bianco e nero</value>
+    <value>Siyah ve beyaz</value>
   </data>
   <data name="groupBox8.Text" xml:space="preserve">
-    <value>Bianco e nero tramite soglia</value>
+    <value>Eşik üzerinden siyah ve beyaz</value>
   </data>
   <data name="btnInvert.ToolTip" xml:space="preserve">
-    <value>Inverti i colori</value>
+    <value>Renkleri ters çevir</value>
   </data>
   <data name="btnHorizMirror.ToolTip" xml:space="preserve">
-    <value>Capovolgimento orizzontale</value>
+    <value>yatay çevirme</value>
   </data>
   <data name="btnVertMirror.ToolTip" xml:space="preserve">
-    <value>Capovolgimento verticale</value>
+    <value>Dikey çevirme</value>
   </data>
   <data name="btnRotateRight.ToolTip" xml:space="preserve">
-    <value>Ruota l'immagine di 90° in senso orario</value>
+    <value>Resmi 90° sağa döndür</value>
   </data>
   <data name="btnRotateLeft.ToolTip" xml:space="preserve">
-    <value>Ruota l'immagine di 90° in senso antiorario</value>
+    <value>Resmi 90° ccw döndür</value>
   </data>
   <data name="CBoxPatternFiles.Text" xml:space="preserve">
-    <value>Seleziona modello di esempio</value>
+    <value>Örnek desen seçin</value>
   </data>
   <data name="BtnReloadPattern.Text" xml:space="preserve">
-    <value>Ricarica il modello</value>
+    <value>Deseni yeniden yükle</value>
   </data>
   <data name="CbPenUpOn0.Text" xml:space="preserve">
-    <value>Pen-up su 0</value>
+    <value>0'da kalem-up</value>
   </data>
   <data name="nUDResoY.ToolTip" xml:space="preserve">
-    <value>La distanza tra le righe dovrebbe corrispondere alla larghezza della penna</value>
+    <value>Çizgiler arasındaki mesafe, kalem genişliğine uygun olmalıdır</value>
   </data>
   <data name="cBCompress.Text" xml:space="preserve">
-    <value>comprimere il codice</value>
+    <value>sıkıştırma Kodu</value>
   </data>
   <data name="cBCompress.ToolTip" xml:space="preserve">
-    <value>Evita l'overhead del codice per uno streaming più veloce</value>
+    <value>Daha hızlı akış için kod yükünden kaçının</value>
   </data>
   <data name="Cb2DViewHide0.Text" xml:space="preserve">
-    <value>Nascondi vista 2D 0</value>
+    <value>2B görünüm gizle 0</value>
   </data>
   <data name="Cb2DViewHide0.ToolTip" xml:space="preserve">
-    <value>Nella vista 2D non mostra il valore bianco (larghezza penna = 0)</value>
+    <value>2B görünümde beyaz değeri gösterme (kalem genişliği = 0)</value>
   </data>
   <data name="groupBox7.Text" xml:space="preserve">
-    <value>Proprietà</value>
+    <value>Özellikler</value>
   </data>
   <data name="rbEngravingPattern4.Text" xml:space="preserve">
-    <value>dalla vista 2D</value>
+    <value>2B görünümden</value>
   </data>
   <data name="rbEngravingPattern4.ToolTip" xml:space="preserve">
-    <value>Carica un elemento grafico SVG o DXF come modello per l'immagine.</value>
+    <value>Görüntü için model olarak bir SVG veya DXF grafiği yükleyin.</value>
   </data>
   <data name="rbEngravingPattern3.Text" xml:space="preserve">
-    <value>Spirale</value>
+    <value>Sarmal</value>
   </data>
   <data name="rbEngravingPattern3.ToolTip" xml:space="preserve">
-    <value>Motivo a spirale generato internamente. 'Distanza della linea' = aumento del raggio per giro.</value>
+    <value>Dahili olarak oluşturulan sarmal model. 'Hat mesafesi' = dönüş başına yarıçap artışı.</value>
   </data>
   <data name="label25.Text" xml:space="preserve">
-    <value>Centro-pos. di modello</value>
+    <value>Merkez poz. desen</value>
   </data>
   <data name="cBOnlyLeftToRight.Text" xml:space="preserve">
-    <value>Solo da sinistra a destra</value>
+    <value>Sadece soldan sağa</value>
   </data>
   <data name="cBOnlyLeftToRight.ToolTip" xml:space="preserve">
-    <value>Disegna solo da una direzione per evitare offset</value>
+    <value>Ofsetleri önlemek için yalnızca bir yönden çizin</value>
   </data>
   <data name="rbEngravingPattern2.Text" xml:space="preserve">
-    <value>diagonale</value>
+    <value>diyagonal</value>
   </data>
   <data name="rbEngravingPattern1.Text" xml:space="preserve">
-    <value>orizzontale</value>
+    <value>yatay</value>
   </data>
   <data name="GbGcodeDirection.Text" xml:space="preserve">
-    <value>Direzione/modello della trama</value>
+    <value>Çizim yönü / deseni</value>
   </data>
   <data name="btnGenerate.Text" xml:space="preserve">
-    <value>Crea codice G</value>
+    <value>G Kodu Oluştur</value>
   </data>
   <data name="copyToolStripMenuItem.Text" xml:space="preserve">
-    <value>copia</value>
+    <value>kopyala</value>
   </data>
   <data name="setAsOriginalToolStripMenuItem.Text" xml:space="preserve">
-    <value>Imposta come originale</value>
+    <value>Orijinal olarak ayarla</value>
   </data>
   <data name="lblImageSource.Text" xml:space="preserve">
-    <value>originale</value>
+    <value>orijinal</value>
   </data>
   <data name="label12.Text" xml:space="preserve">
-    <value>Cambio di tonalità</value>
+    <value>ton kayması</value>
   </data>
   <data name="tBarHueShift.ToolTip" xml:space="preserve">
-    <value>Nella gamma di colori HSV, aggiungi valore a HUE</value>
+    <value>HSV renk aralığında, HUE'ye değer katın</value>
   </data>
   <data name="nUDMaxColors.ToolTip" xml:space="preserve">
-    <value>Massimo importo = max. voci della tabella degli strumenti</value>
+    <value>Maks. miktar = maks. araç tablosu girişleri</value>
   </data>
   <data name="lblColors.Text" xml:space="preserve">
-    <value>Conteggio colori</value>
+    <value>renk sayısı</value>
   </data>
   <data name="cbExceptColor.Text" xml:space="preserve">
-    <value>Colore d'eccezione</value>
+    <value>İstisna Renk</value>
   </data>
   <data name="cbExceptColor.ToolTip" xml:space="preserve">
-    <value>Fare clic con il tasto sinistro all'interno dell'immagine per selezionare il colore che non verrà disegnato</value>
+    <value>Çizilmeyecek rengi seçmek için resmin içine sol tıklayın</value>
   </data>
   <data name="cbSkipToolOrder.Text" xml:space="preserve">
-    <value>Salta orig. strumento nr. utilizzare sequenziale nr.</value>
+    <value>orijinali atla araç numarası sıra numarası kullan</value>
   </data>
   <data name="cbSkipToolOrder.ToolTip" xml:space="preserve">
-    <value>Invece di utilizzare il numero utensile dalla tabella utensili (es. 3,7,9) gli utensili verranno contati in ordine crescente (1,2,3)</value>
+    <value>Alet tablosundaki alet numarasını (örn. 3,7,9) kullanmak yerine, aletler artan sırada (1,2,3) sayılacaktır.</value>
   </data>
   <data name="tBRMin.ToolTip" xml:space="preserve">
-    <value>Rosso I valori al di sotto di questo verranno impostati su zero</value>
+    <value>Bunun altındaki Kırmızı Değerler, sıfır olarak ayarlanacaktır.</value>
   </data>
   <data name="tBRMax.ToolTip" xml:space="preserve">
-    <value>Rosso I valori superiori a questo verranno impostati su zero</value>
+    <value>Bunun üzerindeki Kırmızı Değerler, sıfır olarak ayarlanacaktır.</value>
   </data>
   <data name="tBGMax.ToolTip" xml:space="preserve">
-    <value>Verde I valori superiori a questo verranno impostati su zero</value>
+    <value>Bunun üzerindeki Yeşil Değerler, sıfır olarak ayarlanacaktır.</value>
   </data>
   <data name="tBGMin.ToolTip" xml:space="preserve">
-    <value>Verde I valori al di sotto di questo verranno impostati su zero</value>
+    <value>Bunun altındaki Yeşil Değerler, sıfır olarak ayarlanacaktır.</value>
   </data>
   <data name="tBBMax.ToolTip" xml:space="preserve">
-    <value>I valori blu al di sopra di questo verranno impostati a zero</value>
+    <value>Mavi Bunun üzerindeki değerler, sıfır olarak ayarlanacaktır.</value>
   </data>
   <data name="tBBMin.ToolTip" xml:space="preserve">
-    <value>Blu I valori al di sotto di questo verranno impostati a zero</value>
+    <value>Bunun altındaki Mavi Değerler, sıfır olarak ayarlanacaktır.</value>
   </data>
   <data name="label13.ToolTip" xml:space="preserve">
-    <value>Il filtro esegue il filtraggio dei canali di colore cancellando i valori (impostati su nero), che si trovano all'interno/al di fuori dell'intervallo del valore specificato.Il filtro consente di riempire determinati intervalli di canali di colore RGB con un valore specificato.</value>
+    <value>Filtre, belirtilen değer aralığının içinde/dışında bulunan değerleri (siyah olarak ayarlanmış) temizleyerek renk kanallarının filtrelemesini yapar.
+Filtre, belirli RGB renk kanalı aralıklarını belirtilen değerle doldurmaya izin verir.</value>
   </data>
   <data name="label14.ToolTip" xml:space="preserve">
-    <value>cap. f g</value>
+    <value>Filtre, belirtilen değer aralığının içinde/dışında bulunan değerleri (siyah olarak ayarlanmış) temizleyerek renk kanallarının filtrelemesini yapar.</value>
   </data>
   <data name="label15.ToolTip" xml:space="preserve">
-    <value>Il filtro esegue il filtraggio dei canali di colore cancellando i valori (impostati su nero), che si trovano all'interno/al di fuori dell'intervallo del valore specificato.</value>
+    <value>Filtre, belirtilen değer aralığının içinde/dışında bulunan değerleri (siyah olarak ayarlanmış) temizleyerek renk kanallarının filtrelemesini yapar.</value>
   </data>
   <data name="rBMode0.Text" xml:space="preserve">
-    <value>Distanza nello spazio RGB</value>
+    <value>RGB Alanında Mesafe</value>
   </data>
   <data name="rBMode0.ToolTip" xml:space="preserve">
-    <value>Distanza nello spazio RGB: Math.Sqrt((c1.R - ​​c2.R) * (c1.R - ​​c2.R) + (c1.G - c2.G) * (c1.G - c2.G) + (c1.B - c2.B)*(c1.B - c2.B)); }</value>
+    <value>RGB Uzayında Uzaklık: Math.Sqrt((c1.R - ​​c2.R) * (c1.R - ​​c2.R) + (c1.G - c2.G) * (c1.G - c2.G) + (c1.B - c2.B)*(c1.B - c2.B)); }</value>
   </data>
   <data name="rBMode1.Text" xml:space="preserve">
-    <value>Distanza in tonalità di colore (0°-360°)</value>
+    <value>Renk tonunda mesafe (0°-360°)</value>
   </data>
   <data name="rBMode1.ToolTip" xml:space="preserve">
-    <value>Distanza in tonalità di colore (0°-360°)</value>
+    <value>Renk tonunda mesafe (0°-360°)</value>
   </data>
   <data name="rBMode2.Text" xml:space="preserve">
-    <value>Distanza in colore-tonalità,-sab.,-luminoso.</value>
+    <value>Mesafe renk tonu,-doymuş,-parlak.</value>
   </data>
   <data name="rBMode2.ToolTip" xml:space="preserve">
-    <value>Distanza nella tonalità del colore (0°-360°) + saturazione del colore + luminosità del colore</value>
+    <value>Renk tonu mesafesi (0°-360°) + renk doygunluğu + renk parlaklığı</value>
   </data>
   <data name="btnTest.Text" xml:space="preserve">
-    <value>Anteprima</value>
+    <value>Ön izleme</value>
   </data>
   <data name="btnTest.ToolTip" xml:space="preserve">
-    <value>Tenere premuto il pulsante per controllare l'immagine con i colori dalla tabella degli strumenti</value>
+    <value>Alet tablosundaki renklerle resmi kontrol etmek için düğmeyi basılı tutun</value>
   </data>
   <data name="nUDColorPercent.ToolTip" xml:space="preserve">
-    <value>Limite minimo % dell'occorrenza del colore</value>
+    <value>Renk oluşumunun minimum limit %'si</value>
   </data>
   <data name="btnPresetCorrection3.Text" xml:space="preserve">
-    <value>Comico - pochi colori</value>
+    <value>Komik - birkaç renk</value>
   </data>
   <data name="btnPresetCorrection3.ToolTip" xml:space="preserve">
-    <value>Cerca di utilizzare il minor numero di colori possibile, scartando i colori al di sotto di una certa percentuale</value>
+    <value>Belirli bir oranın altındaki renkleri atarak mümkün olduğunca az renk kullanmaya çalışın.</value>
   </data>
   <data name="btnShowSettings.Text" xml:space="preserve">
-    <value>mostra Impostazioni</value>
+    <value>ayarları göster</value>
   </data>
   <data name="btnShowSettings.ToolTip" xml:space="preserve">
-    <value>Mostra i valori di correzione applicati</value>
+    <value>Uygulanan düzeltme değerlerini göster</value>
   </data>
   <data name="btnShowOrig.Text" xml:space="preserve">
-    <value>Originale</value>
+    <value>orijinal</value>
   </data>
   <data name="btnShowOrig.ToolTip" xml:space="preserve">
-    <value>Premere per vedere l'immagine originale non modificata</value>
+    <value>Orijinal değiştirilmemiş resmi görmek için basın</value>
   </data>
   <data name="nUDGCodeOutlineSmooth.ToolTip" xml:space="preserve">
-    <value>Cicli di lisciatura</value>
+    <value>Yumuşatma döngüleri</value>
   </data>
   <data name="cBGCodeOutlineShrink.Text" xml:space="preserve">
-    <value>Riduci il percorso</value>
+    <value>Yolu küçült</value>
   </data>
   <data name="cBGCodeOutlineShrink.ToolTip" xml:space="preserve">
-    <value>Riduci il percorso per compensare la larghezza della penna</value>
+    <value>Kalem genişliğini telafi etmek için yolu daraltın</value>
   </data>
   <data name="btnGetPWMValues.Text" xml:space="preserve">
-    <value>Ottieni le impostazioni del servo-PWM</value>
+    <value>Servo-PWM ayarlarını alın</value>
   </data>
   <data name="btnGetPWMValues.ToolTip" xml:space="preserve">
-    <value>Ottieni i valori per RC-Servo Pen-down e Pen-Zero dalla finestra di dialogo di configurazione</value>
+    <value>Kurulum iletişim kutusundan RC-Servo Pen-down ve Pen-Zero için değerleri alın</value>
   </data>
   <data name="cBToolChange.Text" xml:space="preserve">
-    <value>Eseguire il cambio utensile su Tx M06</value>
+    <value>Tx M06'da takım değiştirme gerçekleştirin</value>
   </data>
   <data name="cBToolChange.ToolTip" xml:space="preserve">
-    <value>Eseguire i seguenti script sui comandi Tx M06</value>
+    <value>Tx M06 komutlarında aşağıdaki komut dosyalarını yürütün</value>
   </data>
   <data name="cBImportGCToolM0.Text" xml:space="preserve">
-    <value>Aggiungi invece Pausa (M0).</value>
+    <value>Bunun yerine Duraklat (M0) ekleyin</value>
   </data>
   <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
-    <value>Sostituire qualsiasi comando M06 (cambio utensile) con M0 (pausa) per il cambio utensile manuale.</value>
+    <value>Manuel takım değişimi için herhangi bir M06 (takım değiştirme) komutunu M0 (duraklatma) ile değiştirin.</value>
   </data>
   <data name="cBImportGCTool.Text" xml:space="preserve">
-    <value>Aggiungi comando cambio utensile Tx M06</value>
+    <value>Takım Değiştirme komutu ekle Tx M06</value>
   </data>
   <data name="cBImportGCTool.ToolTip" xml:space="preserve">
-    <value>Eseguire l'azione di cambio utensile sui comandi Tx M06 se le informazioni sono disponibili - controllare la scheda 'Cambio utensile'.</value>
+    <value>Bilgi varsa, Tx M06 komutlarında takım değiştirme eylemini gerçekleştirin - 'Takım değiştirme' sekmesini kontrol edin.</value>
   </data>
   <data name="nUDSBottom.ToolTip" xml:space="preserve">
-    <value>Valore più basso</value>
+    <value>Düşük değer</value>
   </data>
   <data name="nUDZBottom.ToolTip" xml:space="preserve">
-    <value>Valore più basso</value>
+    <value>Düşük değer</value>
   </data>
   <data name="groupBox6.Text" xml:space="preserve">
-    <value>Modalità sostituzione colore</value>
+    <value>Renk değiştirme modu</value>
   </data>
   <data name="loadPictureToolStripMenuItem.Text" xml:space="preserve">
-    <value>Carica immagine</value>
+    <value>Resim Yükle</value>
   </data>
   <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
-    <value>Incolla dagli appunti</value>
+    <value>Panodan yapıştır</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>Z max (bianco)</value>
+    <value>Z maks (beyaz)</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>Z min (nero)</value>
+    <value>Z dak (siyah)</value>
   </data>
   <data name="RbStartGrayS.Text" xml:space="preserve">
-    <value>Valore grigio come velocità mandrino (PWM)</value>
+    <value>İş mili hızı (PWM) olarak gri değer</value>
   </data>
   <data name="label22.Text" xml:space="preserve">
-    <value>S min (bianco)</value>
+    <value>S dk (beyaz)</value>
   </data>
   <data name="label23.Text" xml:space="preserve">
-    <value>S max (nero)</value>
+    <value>S maks (siyah)</value>
   </data>
   <data name="cBPreview.Text" xml:space="preserve">
-    <value>Anteprima con i colori dalla tabella degli strumenti</value>
+    <value>Alet tablosundan renklerle ön izleme</value>
   </data>
   <data name="cBResolutionPenWidth.Text" xml:space="preserve">
-    <value>Larghezza della penna dalla risoluzione</value>
+    <value>Çözünürlükten kalem genişliği</value>
   </data>
   <data name="checkBox1.Text" xml:space="preserve">
-    <value>Modalità colore penna giù</value>
+    <value>Kalem aşağı renk modu</value>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
-    <value>Visualizza in vista 2D</value>
+    <value>2B Görünümde Görüntüle</value>
   </data>
   <data name="btnLoad.Text" xml:space="preserve">
-    <value>Carica e applica caso d'uso</value>
+    <value>Kullanım senaryosunu yükleyin ve uygulayın</value>
   </data>
   <data name="label16.Text" xml:space="preserve">
-    <value>Ultimo caricato:</value>
+    <value>Son yüklenen:</value>
   </data>
   <data name="GbUseCaseLoad.Text" xml:space="preserve">
-    <value>Carica caso d'uso</value>
+    <value>Kullanım senaryosunu yükle</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>Dal modulo di installazione</value>
+    <value>Kurulum formundan</value>
   </data>
   <data name="label19.Text" xml:space="preserve">
-    <value>Selezione e contenuto della tabella utensili:</value>
+    <value>Alet tablosu seçimi ve içeriği:</value>
   </data>
   <data name="CboxToolTable.Text" xml:space="preserve">
-    <value>Contenuto della tabella degli strumenti</value>
+    <value>Alet tablosunun içeriği</value>
   </data>
   <data name="CboxToolFiles.Text" xml:space="preserve">
-    <value>Ultima tabella utensili caricata</value>
+    <value>Son yüklenen alet tablosu</value>
   </data>
   <data name="label28.Text" xml:space="preserve">
-    <value>Per pennarelli, matite colorate, acquerelli...
-Utilizza una tabella degli strumenti per assegnare i colori degli strumenti ai colori dell'immagine e raggrupparli. La quantità di colori può essere ridotta applicando filtri.
-È possibile applicare il cambio utensile manuale o automatico.</value>
+    <value>Keçeli kalemler, renkli kalemler, sulu boyalar için...
+Araç renklerini görüntü renklerine atamak ve bunları gruplandırmak için bir araç tablosu kullanır. Filtre uygulanarak renk miktarı azaltılabilir.
+Manuel veya otomatik takım değiştirme uygulanabilir.</value>
   </data>
   <data name="tabPage2Color.Text" xml:space="preserve">
-    <value>Modalità colore</value>
+    <value>Renk modu</value>
   </data>
   <data name="RbStartGrayZ.Text" xml:space="preserve">
-    <value>Valore di grigio come Z (profondità)</value>
+    <value>Z (derinlik) olarak gri değer</value>
   </data>
   <data name="LblStartGrayMode.Text" xml:space="preserve">
-    <value>Per router, laser o penna o pennello monocolore
-Utilizza il valore della scala di grigi (0 - 255) per controllare la profondità o la potenza dello strumento.Durante la generazione della scala di grigi verranno presi in considerazione i filtri e gli effetti di colore.</value>
+    <value>Yönlendirici, lazer veya tek renkli kalem veya fırça için
+Aletin derinliğini veya gücünü kontrol etmek için gri tonlama değerini (0 - 255) kullanır.
+Gri tonlama oluşturulurken renk filtreleri ve efektler dikkate alınacaktır.</value>
   </data>
   <data name="cBLaserModeOffEnd.Text" xml:space="preserve">
-    <value>Modalità laser OFF alla fine del codice G</value>
+    <value>G kodu sonunda lazer modu KAPALI</value>
   </data>
   <data name="cBLaserModeOnStart.Text" xml:space="preserve">
-    <value>Lasermode ON all'inizio del codice G</value>
+    <value>G kodu başlangıcında lazer modu AÇIK</value>
   </data>
   <data name="tabPage2Gray.Text" xml:space="preserve">
-    <value>Modalità scala di grigi B/N</value>
+    <value>S/B Gri tonlama modu</value>
   </data>
   <data name="tabPageSetup.Text" xml:space="preserve">
-    <value>Inizio</value>
+    <value>Başlangıç</value>
   </data>
   <data name="RbGrayscaleVector.Text" xml:space="preserve">
-    <value>Vettorizza</value>
+    <value>vektörleştir</value>
   </data>
   <data name="RbGrayscalePattern.Text" xml:space="preserve">
-    <value>Modello</value>
+    <value>Model</value>
   </data>
   <data name="GbGrayscaleProcess.Text" xml:space="preserve">
-    <value>Elaborazione in scala di grigi</value>
+    <value>Gri tonlamalı işleme</value>
   </data>
   <data name="label17.Text" xml:space="preserve">
-    <value>Raccoglie aree dello stesso colore</value>
+    <value>Aynı renkteki alanları toplar</value>
   </data>
   <data name="cBGCodeFill.Text" xml:space="preserve">
-    <value>Riempi le aree</value>
+    <value>Alanları doldurun</value>
   </data>
   <data name="cBGCodeOutline.Text" xml:space="preserve">
-    <value>Disegna il contorno</value>
+    <value>Taslak çiz</value>
   </data>
   <data name="cBGCodeOutlineSmooth.Text" xml:space="preserve">
-    <value>liscio</value>
+    <value>düz</value>
   </data>
   <data name="gBgcodeSelection.Text" xml:space="preserve">
-    <value>Vettorizzazione</value>
+    <value>vektörizasyon</value>
   </data>
   <data name="tabPageSize.Text" xml:space="preserve">
-    <value>Taglia/Modello</value>
+    <value>Boyut / Desen</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
-    <value>Elenco strumenti ordinato per occorrenza</value>
+    <value>Olaya göre sıralanmış araç listesi</value>
   </data>
   <data name="GbToolEnable.Text" xml:space="preserve">
-    <value>Deseleziona i colori se non necessario</value>
+    <value>Gerekmiyorsa renklerin seçimini kaldırın</value>
+  </data>
+  <data name="LblExceptionValue.Text" xml:space="preserve">
+    <value>-</value>
   </data>
   <data name="cBReduceColorsToolTable.Text" xml:space="preserve">
-    <value>Riduci i colori</value>
+    <value>Renkleri azalt</value>
   </data>
   <data name="cBReduceColorsDithering.Text" xml:space="preserve">
-    <value>Dithering</value>
+    <value>titreme</value>
   </data>
   <data name="groupBox5.Text" xml:space="preserve">
-    <value>Riduzione del colore</value>
+    <value>Renk azaltma</value>
   </data>
   <data name="btnPresetCorrection4.Text" xml:space="preserve">
-    <value>Contorno (non tornare indietro)</value>
+    <value>Kontur (geri dönüş yok)</value>
   </data>
   <data name="btnPresetCorrection2.Text" xml:space="preserve">
-    <value>Grafica - molti colori</value>
+    <value>Grafik - birçok renk</value>
   </data>
   <data name="btnResetCorrection.Text" xml:space="preserve">
-    <value>AZZERA valori</value>
+    <value>SIFIRLAMA değerleri</value>
   </data>
   <data name="btnPresetCorrection1.Text" xml:space="preserve">
-    <value>Immagine - sfondo scuro</value>
+    <value>Resim - koyu arka plan</value>
   </data>
   <data name="groupBox9.Text" xml:space="preserve">
-    <value>Procedura guidata di conversione</value>
+    <value>Dönüşüm Sihirbazı</value>
   </data>
   <data name="tabPage4.Text" xml:space="preserve">
-    <value>Preimpostato</value>
+    <value>ön ayar</value>
   </data>
   <data name="cBFilterEdge.Text" xml:space="preserve">
-    <value>Filtro perimetrale</value>
+    <value>Kenar filtresi</value>
   </data>
   <data name="cBFilterRemoveArtefact.Text" xml:space="preserve">
-    <value>Rimuovere i singoli pixel</value>
+    <value>Tek pikselleri kaldır</value>
   </data>
   <data name="cBPosterize.Text" xml:space="preserve">
-    <value>Posterizzazione</value>
+    <value>posterleştirme</value>
   </data>
   <data name="cBFilterHistogram.Text" xml:space="preserve">
-    <value>Equalizzazione dell'istogramma</value>
+    <value>Histogram Eşitleme</value>
   </data>
   <data name="GbSpecialEffects.Text" xml:space="preserve">
-    <value>Effetti speciali</value>
+    <value>Özel efektler</value>
   </data>
   <data name="GbColorEffects.Text" xml:space="preserve">
-    <value>Effetti di colore</value>
+    <value>Renk efektleri</value>
   </data>
   <data name="label11.Text" xml:space="preserve">
-    <value>Saturazione</value>
+    <value>Doyma</value>
   </data>
   <data name="GbCOlorCorrection.Text" xml:space="preserve">
-    <value>Correzione del colore</value>
+    <value>Renk düzeltmesi</value>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
-    <value>Correzione del colore</value>
+    <value>Renk düzeltmesi</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Crea codice G dall'immagine</value>
+    <value>Görüntüden G Kodu Oluşturun</value>
   </data>
 </root>

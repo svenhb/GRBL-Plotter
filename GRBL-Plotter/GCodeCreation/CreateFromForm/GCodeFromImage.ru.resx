@@ -318,9 +318,6 @@
   <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
     <value>Вставить из буфера обмена</value>
   </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>Отмените выбор цветов, если не требуется</value>
-  </data>
   <data name="rbModeDither.Text" xml:space="preserve">
     <value>Смешение</value>
   </data>
@@ -366,20 +363,11 @@
   <data name="rBMode2.ToolTip" xml:space="preserve">
     <value>Расстояние в цветовом оттенке (0 ° -360 °) + насыщенность цвета + яркость цвета</value>
   </data>
-  <data name="label7.ToolTip" xml:space="preserve">
-    <value>Метод, чтобы найти лучший подходящий цвет
-0: пространство в RGB-пространстве: Math.Sqrt ((c1.R - c2.R) * (c1.R - c2.R) + (c1.G - c2.G) * (c1.G - c2.G ) + (c1.B - c2.B) * (c1.B - c2.B)); }
-1: расстояние в цветовом пространстве (0 ° -360 °)
-2: расстояние в цветовом пространстве (0 ° -360 °) + насыщенность + яркость</value>
-  </data>
   <data name="tabPage4.Text" xml:space="preserve">
     <value>Предустановленная</value>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>Коррекция изображения</value>
-  </data>
-  <data name="tabPage3.Text" xml:space="preserve">
-    <value>Замена цвета</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Z max (белый)</value>
@@ -559,7 +547,34 @@
   <data name="RbGrayscaleVector.Text" xml:space="preserve">
     <value>Векторизовать</value>
   </data>
-  <data name="radioButton2.Text" xml:space="preserve">
+  <data name="lblSizeOrig.Text" xml:space="preserve">
+    <value>Размер</value>
+  </data>
+  <data name="lblSizeResult.Text" xml:space="preserve">
+    <value>Размер</value>
+  </data>
+  <data name="CbBlackWhiteEnable.Text" xml:space="preserve">
+    <value>Черное и белое</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Черное и белое через порог</value>
+  </data>
+  <data name="CBoxPatternFiles.Text" xml:space="preserve">
+    <value>Выберите пример шаблона</value>
+  </data>
+  <data name="RbStartGrayS.Text" xml:space="preserve">
+    <value>Значение серого как скорость шпинделя (ШИМ)</value>
+  </data>
+  <data name="tabPageSetup.Text" xml:space="preserve">
+    <value>Начинать</value>
+  </data>
+  <data name="RbGrayscalePattern.Text" xml:space="preserve">
     <value>Шаблон</value>
+  </data>
+  <data name="tabPageSize.Text" xml:space="preserve">
+    <value>Размер/узор</value>
+  </data>
+  <data name="GbToolEnable.Text" xml:space="preserve">
+    <value>Отмените выбор цветов, если они не нужны</value>
   </data>
 </root>

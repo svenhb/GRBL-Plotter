@@ -307,12 +307,6 @@ Filtr umožňuje vyplnit určité rozsahy barevných kanálů RGB zadanou hodnot
   <data name="label7.Text" xml:space="preserve">
     <value>Mapujte barvy obrázku na barvy tabulky nástrojů</value>
   </data>
-  <data name="label7.ToolTip" xml:space="preserve">
-    <value>Metoda k nalezení nejvhodnější barvy
-0: Prostor v prostoru RGB: Math.Sqrt ((c1.R - ​​c2.R) * (c1.R - ​​c2.R) + (c1.G - c2.G) * (c1.G - c2.G ) + (cl.B - c2.B) * (cl.B - c2.B)); }
-1: vzdálenost v barevném prostoru (0 ° -360 °)
-2: vzdálenost v barevném prostoru (0 ° -360 °) + sytost + jas</value>
-  </data>
   <data name="btnTest.Text" xml:space="preserve">
     <value>Náhled</value>
   </data>
@@ -418,9 +412,6 @@ Filtr umožňuje vyplnit určité rozsahy barevných kanálů RGB zadanou hodnot
   <data name="cBPosterize.Text" xml:space="preserve">
     <value>Posterizace</value>
   </data>
-  <data name="tabPage3.Text" xml:space="preserve">
-    <value>Výměna barvy</value>
-  </data>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Redukce barev</value>
   </data>
@@ -451,9 +442,6 @@ Filtr umožňuje vyplnit určité rozsahy barevných kanálů RGB zadanou hodnot
   <data name="label11.Text" xml:space="preserve">
     <value>Nasycení</value>
   </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>Zrušte výběr barev, pokud to není potřeba</value>
-  </data>
   <data name="gBgcodeSelection.Text" xml:space="preserve">
     <value>Kreslit výběr</value>
   </data>
@@ -477,9 +465,6 @@ Filtr umožňuje vyplnit určité rozsahy barevných kanálů RGB zadanou hodnot
   </data>
   <data name="cBResolutionPenWidth.Text" xml:space="preserve">
     <value>Šířka pera od rozlišení</value>
-  </data>
-  <data name="tabPage6.Text" xml:space="preserve">
-    <value>Z nebo S</value>
   </data>
   <data name="cBLaserModeOffEnd.Text" xml:space="preserve">
     <value>Laserový režim VYP na konci G kódu</value>
@@ -572,7 +557,22 @@ Při generování stupňů šedi budou brány v úvahu barevné filtry a efekty.
   <data name="RbGrayscaleVector.Text" xml:space="preserve">
     <value>Vektorizovat</value>
   </data>
-  <data name="radioButton2.Text" xml:space="preserve">
-    <value>Vzor</value>
+  <data name="CbBlackWhiteEnable.Text" xml:space="preserve">
+    <value>Černý a bílý</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Černá a bílá přes práh</value>
+  </data>
+  <data name="CBoxPatternFiles.Text" xml:space="preserve">
+    <value>Vyberte vzorový vzor</value>
+  </data>
+  <data name="RbStartGrayS.Text" xml:space="preserve">
+    <value>Šedá hodnota jako otáčky vřetena (PWM)</value>
+  </data>
+  <data name="tabPageSize.Text" xml:space="preserve">
+    <value>Velikost / Vzor</value>
+  </data>
+  <data name="GbToolEnable.Text" xml:space="preserve">
+    <value>Zrušte výběr barev, pokud to není potřeba</value>
   </data>
 </root>
