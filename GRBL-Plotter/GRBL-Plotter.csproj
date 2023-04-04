@@ -850,6 +850,9 @@
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.ru.resx">
       <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.tr.resx">
+      <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.zh-CN.resx">
       <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
     </EmbeddedResource>
@@ -860,16 +863,25 @@
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromImage.it.resx">
       <DependentUpon>GCodeFromImage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromImage.tr.resx">
+      <DependentUpon>GCodeFromImage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromShape.cs.resx">
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromShape.it.resx">
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromShape.tr.resx">
+      <DependentUpon>GCodeFromShape.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromText.cs.resx">
       <DependentUpon>GCodeFromText.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromText.it.resx">
+      <DependentUpon>GCodeFromText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromText.tr.resx">
       <DependentUpon>GCodeFromText.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\AboutForm.ar.resx">
@@ -900,6 +912,9 @@
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\AboutForm.ru.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AboutForm.tr.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\AboutForm.zh-CN.resx">
@@ -999,6 +1014,9 @@
     <EmbeddedResource Include="GUI\ButtonEdit.ru.resx">
       <DependentUpon>ButtonEdit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ButtonEdit.tr.resx">
+      <DependentUpon>ButtonEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\ButtonEdit.zh-CN.resx">
       <DependentUpon>ButtonEdit.cs</DependentUpon>
     </EmbeddedResource>
@@ -1006,6 +1024,9 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\MainForm.it.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MainForm.tr.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\MainFormStreamSection.ar.resx">
@@ -1036,6 +1057,9 @@
       <DependentUpon>MainFormStreamSection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\MainFormStreamSection.ru.resx">
+      <DependentUpon>MainFormStreamSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MainFormStreamSection.tr.resx">
       <DependentUpon>MainFormStreamSection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\MainFormStreamSection.zh-CN.resx">
@@ -1083,6 +1107,9 @@
     <EmbeddedResource Include="MachineControl\ControlCameraForm.ru.resx">
       <DependentUpon>ControlCameraForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlCameraForm.tr.resx">
+      <DependentUpon>ControlCameraForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlCameraForm.zh-CN.resx">
       <DependentUpon>ControlCameraForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1122,6 +1149,9 @@
     <EmbeddedResource Include="MachineControl\ControlHeightMap.ru.resx">
       <DependentUpon>ControlHeightMap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlHeightMap.tr.resx">
+      <DependentUpon>ControlHeightMap.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlHeightMap.zh-CN.resx">
       <DependentUpon>ControlHeightMap.cs</DependentUpon>
     </EmbeddedResource>
@@ -1150,6 +1180,9 @@
       <DependentUpon>ControlJogPathCreator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlJogPathCreator.ru.resx">
+      <DependentUpon>ControlJogPathCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlJogPathCreator.tr.resx">
       <DependentUpon>ControlJogPathCreator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlJogPathCreator.zh-CN.resx">
@@ -1186,6 +1219,9 @@
     <EmbeddedResource Include="MachineControl\ControlLaser.ru.resx">
       <DependentUpon>ControlLaser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlLaser.tr.resx">
+      <DependentUpon>ControlLaser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlLaser.zh-CN.resx">
       <DependentUpon>ControlLaser.cs</DependentUpon>
     </EmbeddedResource>
@@ -1217,6 +1253,9 @@
       <DependentUpon>ControlProbing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlProbing.ru.resx">
+      <DependentUpon>ControlProbing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlProbing.tr.resx">
       <DependentUpon>ControlProbing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlProbing.zh-CN.resx">
@@ -1252,6 +1291,9 @@
     <EmbeddedResource Include="MachineControl\ControlProcessAutomation.ru.resx">
       <DependentUpon>ControlProcessAutomation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlProcessAutomation.tr.resx">
+      <DependentUpon>ControlProcessAutomation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlProcessAutomation.zh-CN.resx">
       <DependentUpon>ControlProcessAutomation.cs</DependentUpon>
     </EmbeddedResource>
@@ -1280,6 +1322,9 @@
       <DependentUpon>ControlProjector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlProjector.ru.resx">
+      <DependentUpon>ControlProjector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlProjector.tr.resx">
       <DependentUpon>ControlProjector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlProjector.zh-CN.resx">
@@ -1317,6 +1362,9 @@
       <DependentUpon>ControlSerialForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSerialForm.tr.resx">
+      <DependentUpon>ControlSerialForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSerialForm.zh-CN.resx">
       <DependentUpon>ControlSerialForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -1351,41 +1399,56 @@
     <EmbeddedResource Include="MachineControl\ControlSetupForm.ru.resx">
       <DependentUpon>ControlSetupForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSetupForm.tr.resx">
+      <DependentUpon>ControlSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupForm.zh-CN.resx">
       <DependentUpon>ControlSetupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupUseCase.ar.resx">
       <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupUseCase.cs.resx">
       <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupUseCase.de-DE.resx">
       <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupUseCase.es.resx">
       <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupUseCase.fr.resx">
       <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupUseCase.it.resx">
       <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupUseCase.ja.resx">
       <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupUseCase.pt.resx">
       <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupUseCase.resx">
       <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupUseCase.ru.resx">
       <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSetupUseCase.tr.resx">
+      <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupUseCase.zh-CN.resx">
       <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlStreamingForm.de-DE.resx">
       <DependentUpon>ControlStreamingForm.cs</DependentUpon>
@@ -1460,6 +1523,9 @@
       <DependentUpon>GCodeSelectionProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\GCodeSelectionProperties.ru.resx">
+      <DependentUpon>GCodeSelectionProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\GCodeSelectionProperties.tr.resx">
       <DependentUpon>GCodeSelectionProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\GCodeSelectionProperties.zh-CN.resx">
@@ -1663,6 +1729,7 @@
       <LastGenOutput>ResStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ResStrings.ru.resx" />
+    <EmbeddedResource Include="Resources\ResStrings.tr.resx" />
     <EmbeddedResource Include="Resources\ResStrings.zh-CN.resx" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
