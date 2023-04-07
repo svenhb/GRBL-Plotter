@@ -38,6 +38,7 @@
  * 2023-03-09 simplify NULL check
  * 2023-03-30 l:360 f:OnRaiseStreamEvent GrblStreaming.pause: add message also on TxM06
  * 2023-03-31 l:504 f:StartStreaming SetEditMode(false)
+ * 2023-04-07 l:368 f:OnRaiseStreamEvent check for "tool" in different languages (de, fr, it) 
 */
 
 using GrblPlotter.GUI;
@@ -362,9 +363,11 @@ namespace GrblPlotter
 					/***** Show tool exchange message box *****/
                     for (int tmpLine = (fCTBCodeClickedLineNow - 2); tmpLine <= (fCTBCodeClickedLineNow + 2); tmpLine++)
                     {   // find correct line - GRBL-Plotter generated = "M0 (Tool:46  Color:Black (46) = 000000)"
-						// other tool generated: "( Tool #6 "Bohrer 0.8mm" / Diameter 0.8 mm )"
+                        // other tool generated: "( Tool #6 "Bohrer 0.8mm" / Diameter 0.8 mm )"
                         //if (LineIsInRange(tmpLine) && fCTBCode.Lines[tmpLine].Contains("M0") && fCTBCode.Lines[tmpLine].Contains("Tool"))  // keyword set in gcodeRelated 1132
-                        if (LineIsInRange(tmpLine) && (!fCTBCode.Lines[tmpLine].Contains("(<")) && fCTBCode.Lines[tmpLine].ToLower().Contains("tool"))  // keyword set in gcodeRelated 1132
+                        string toTest = fCTBCode.Lines[tmpLine].ToLower();
+                        bool containsTool = toTest.Contains("tool") || toTest.Contains("werkzeug") || toTest.Contains("outil") || toTest.Contains("utensil") || toTest.Contains("erram") || toTest.Contains("具");
+                        if (LineIsInRange(tmpLine) && (!fCTBCode.Lines[tmpLine].Contains("(<")) && containsTool)    //fCTBCode.Lines[tmpLine].ToLower().Contains("tool"))  // keyword set in gcodeRelated 1132
                         { 	signalShowToolExchangeMessage = true; 
 							signalShowToolExchangeLine = tmpLine; 
 							if (logStreaming) { Logger.Trace("OnRaiseStreamEvent trigger ToolExchangeMessage"); } 
