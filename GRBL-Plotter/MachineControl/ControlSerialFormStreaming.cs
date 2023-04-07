@@ -39,6 +39,7 @@
  * 2023-03-29 l:112, 583, 689, 851 add option lowLevelPerformance
  * 2023-03-30 l:309 add "M0" to tool change command (to allow manual tool change on TxM06 command)
  * 2023-04-01 l:200 f:StartStreaming bug fix, subroutine number should be usable with 4 digits
+ * 2023-04-07 l:198 f: f:StartStreaming skip line if starts with "("; l:482 f:FindDouble -> change to TryParse
  */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -194,7 +195,10 @@ namespace GrblPlotter
             bool useSubroutine = false;
             for (int i = startAtLine; i < gCode.Length; i++)
             {
-                if (gCode[i].Contains("O"))     // find and store subroutines - nothing else
+                if (gCode[i].Trim().StartsWith("("))    // don't care about comments
+                    continue;
+
+                if (gCode[i].Contains("O"))             // find and store subroutines - nothing else
                 {
                     int cmdONr = (int)FindDouble("O", -1, gCode[i]); //Gcode.GetCodeNrFromGCode4Digit('O', gCode[i]);
                     if (cmdONr <= 0)
@@ -474,7 +478,12 @@ namespace GrblPlotter
             }
             if (num.Length < 1)
                 return notfound;
-            return double.Parse(num, System.Globalization.NumberFormatInfo.InvariantInfo);
+
+            if (double.TryParse(num, out double parsed))
+                return parsed;
+
+            Logger.Warn("FindDouble {0}  {1}", start, txt);
+            return notfound;
         }
 
         /************************************************************************
