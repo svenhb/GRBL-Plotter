@@ -2,8 +2,9 @@
 ; 1.0.2.0 add CS subfolder
 ; 1.0.3.0 change permission from users-modify to everyone-modify
 ; 1.0.4.0 add IT subfolder
+; 1.0.5.0 add TR subfolder
 
-#define MySetupVersion "1.0.4.0"
+#define MySetupVersion "1.0.5.0"
 #define MyAppName "GRBL-Plotter"
 #define MyAppExeName "GRBL-Plotter.exe"
 #define MyAppPublisher "GRBL-Plotter"
@@ -25,7 +26,7 @@ DefaultGroupName={#MyAppName}
 UninstallDisplayIcon={app}\{#MyAppExeName}
 OutputDir=Output
 OutputBaseFilename=GRBL-Plotter_Setup
-AppCopyright=Copyright © 2015-2022 SH
+AppCopyright=Copyright © 2015-2023 SH
 WizardImageFile=image_modell_328.bmp
 WizardSmallImageFile=image_modell_55.bmp
 WizardStyle=modern
@@ -49,7 +50,7 @@ Name: "pt"; MessagesFile: "compiler:Languages\Portuguese.isl"
 Name: "sp"; MessagesFile: "compiler:Languages\Spanish.isl"
 Name: "fr"; MessagesFile: "compiler:Languages\French.isl"
 Name: "it"; MessagesFile: "compiler:Languages\Italian.isl"
-Name: "cs"; MessagesFile: "compiler:Languages\Czech.isl"
+Name: "tr"; MessagesFile: "compiler:Languages\Turkish.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
@@ -65,6 +66,7 @@ Source: "{#MyReleasePath}de-DE\*"; DestDir: "{app}\de-DE"; Flags: ignoreversion
 Source: "{#MyReleasePath}es\*"; DestDir: "{app}\es"; Flags: ignoreversion
 Source: "{#MyReleasePath}fr\*"; DestDir: "{app}\fr"; Flags: ignoreversion
 Source: "{#MyReleasePath}it\*"; DestDir: "{app}\it"; Flags: ignoreversion
+Source: "{#MyReleasePath}tr\*"; DestDir: "{app}\tr"; Flags: ignoreversion
 Source: "{#MyReleasePath}ja\*"; DestDir: "{app}\ja"; Flags: ignoreversion
 Source: "{#MyReleasePath}pt\*"; DestDir: "{app}\pt"; Flags: ignoreversion
 Source: "{#MyReleasePath}ru\*"; DestDir: "{app}\ru"; Flags: ignoreversion
