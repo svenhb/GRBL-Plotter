@@ -188,6 +188,7 @@ namespace GrblPlotter
             public string ListOptions()
             {
                 string importOptions = "";
+                if (Properties.Settings.Default.importGraphicFilterEnable) importOptions += "<FILTER> ";
                 if (DxfImportZ) importOptions += "<DXF Z> ";
                 if (OptionSpecialDevelop || OptionSpecialWireBend) importOptions += "<Special conversion!> ";
                 if (ConvertArcToLine) importOptions += "<Arc to Line> ";
@@ -397,7 +398,7 @@ namespace GrblPlotter
 
             public string List()
             {
-                string attr = string.Format("Attr[0]:'{0}', AttrColor:'{1}', AttrWidth:'{2}', AttrLayer:'{3}', AttrTile:'{4}', AttrType:'{5}'", this.GroupAttributes[0], this.GroupAttributes[1], this.GroupAttributes[2], this.GroupAttributes[3], this.GroupAttributes[4], this.GroupAttributes[5]);
+                string attr = string.Format("Attr[0]:'{0}', AttrColor:'{1}', AttrFill:'{6}', AttrWidth:'{2}', AttrLayer:'{3}', AttrTile:'{4}', AttrType:'{5}'", this.GroupAttributes[0], this.GroupAttributes[1], this.GroupAttributes[2], this.GroupAttributes[3], this.GroupAttributes[4], this.GroupAttributes[5], this.GroupAttributes[6]);
                 return string.Format("Id:{0}, pathId:{1}, penColorId:{2}, PathGeo:{3}, AuxInfo:{4}   {5}", this.Id, this.PathId, this.PenColorId, this.PathGeometry, this.AuxInfo, attr);
             }
         };

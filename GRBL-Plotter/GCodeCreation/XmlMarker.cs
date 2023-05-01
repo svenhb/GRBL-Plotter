@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@
  * 2021-07-02 code clean up / code quality
  * 2021-09-02 read XML attribute OffsetX, -Y
  * 2022-04-04 change PathId from int to string
+ * 2023-04-15 improove GetFigure, GetGroup, GetTile
 */
 
 using System;
@@ -63,6 +64,7 @@ namespace GrblPlotter
 
         internal class BlockData
         {
+            public int MyIndex { get; set; }
             public int LineStart { get; set; }           // line nr. in editor
             public int LineEnd { get; set; }             // line nr. in editor
             public XyPoint PosStart { get; set; }        // xy position
@@ -381,6 +383,7 @@ namespace GrblPlotter
             //            Logger.Trace("   setBlockData");
             header.LineEnd = Math.Min(header.LineEnd, lineStart);   // lowest block-line = end of header
             BlockData tmp = new BlockData();
+            tmp.MyIndex = 0;
             tmp.LineStart = lineStart; tmp.Reverse = false;
             tmp.Id = tmp.ToolNr = tmp.CodeSize = tmp.CodeArea = -1;
             tmp.PenWidth = tmp.PathLength = tmp.PathArea = -1;
@@ -412,6 +415,7 @@ namespace GrblPlotter
         public static void FinishFigure(int lineEnd)
         {
             tmpFigure.LineEnd = lineEnd;
+            tmpFigure.MyIndex = listFigures.Count;
             listFigures.Add(tmpFigure);
             footer.LineStart = footer.LineEnd = Math.Max(footer.LineStart, lineEnd);   // highest block-line = start of footer
         }
@@ -430,6 +434,32 @@ namespace GrblPlotter
             }
             return false;
         }
+
+        internal static bool GetFigureFirst(ref BlockData tmp)
+        {
+            if (listFigures.Count > 0)
+            { tmp = listFigures[0]; return true; }
+            return false;
+        }
+        internal static bool GetFigurePrev(ref BlockData tmp)
+        {
+            if ((listFigures.Count > 0) && (lastFigure.MyIndex > 0))
+            { tmp = listFigures[lastFigure.MyIndex - 1]; return true; }
+            return false;
+        }
+        internal static bool GetFigureNext(ref BlockData tmp)
+        {
+            if ((listFigures.Count > 0) && (lastFigure.MyIndex < listFigures.Count - 1))
+            { tmp = listFigures[lastFigure.MyIndex + 1]; return true; }
+            return false;
+        }
+        internal static bool GetFigureLast(ref BlockData tmp)
+        {
+            if (listFigures.Count > 0)
+            { tmp = listFigures[listFigures.Count - 1]; return true; }
+            return false;
+        }
+
         public static bool GetFigure(int lineNR)
         { return GetFigure(lineNR, 0); }
         public static bool GetFigure(int lineNR, int search)
@@ -438,39 +468,15 @@ namespace GrblPlotter
             {
                 if (search <= -1)     // search start/end before actual block
                 {
-                    BlockData tmp = listFigures[0];
-                    if ((lineNR >= tmp.LineStart) && (lineNR <= tmp.LineEnd))   // actual block is first block
-                        return false;
-
-                    lastFigure.LineStart = listFigures[0].LineStart;
-                    for (int i = 1; i < listFigures.Count; i++)
-                    {
-                        if ((lineNR >= listFigures[i].LineStart) && (lineNR <= listFigures[i].LineEnd))
-                        {
-                            lastFigure.LineEnd = listFigures[i - 1].LineEnd;
-                            if (search == -1)
-                                lastFigure.LineStart = listFigures[i - 1].LineStart;
-                            return true;
-                        }
-                    }
+                    if (lastFigure.MyIndex > 0)
+                    { lastFigure = listFigures[lastFigure.MyIndex - 1]; return true; }
+                    return false;
                 }
                 else if (search >= 1)     // search start/end before actual block
                 {
-                    BlockData tmp = listFigures[listFigures.Count - 1];
-                    if ((lineNR >= tmp.LineStart) && (lineNR <= tmp.LineEnd))   // actual block is last block
-                        return false;
-
-                    lastFigure.LineEnd = listFigures[listFigures.Count - 1].LineEnd;
-                    for (int i = listFigures.Count - 1; i >= 0; i--)
-                    {
-                        if ((lineNR >= listFigures[i].LineStart) && (lineNR <= listFigures[i].LineEnd))
-                        {
-                            lastFigure.LineStart = listFigures[i + 1].LineStart;
-                            if (search == 1)
-                                lastFigure.LineEnd = listFigures[i + 1].LineEnd;
-                            return true;
-                        }
-                    }
+                    if (lastFigure.MyIndex < listFigures.Count - 1)
+                    { lastFigure = listFigures[lastFigure.MyIndex + 1]; return true; }
+                    return false;
                 }
                 else
                 {
@@ -568,53 +574,56 @@ namespace GrblPlotter
         public static void FinishGroup(int lineEnd)
         {
             tmpGroup.LineEnd = lineEnd;
+            tmpGroup.MyIndex = listGroups.Count;
             listGroups.Add(tmpGroup);
             footer.LineStart = footer.LineEnd = Math.Max(footer.LineStart, lineEnd);   // highest block-line = start of footer
         }
         public static int GetGroupCount()
         { return listGroups.Count; }
 
+        internal static bool GetGroupFirst(ref BlockData tmp)
+        {
+            if (listGroups.Count > 0)
+            { tmp = listGroups[0]; return true; }
+            return false;
+        }
+        internal static bool GetGroupPrev(ref BlockData tmp)
+        {
+            if ((listGroups.Count > 0) && (lastGroup.MyIndex > 0))
+            { tmp = listGroups[lastGroup.MyIndex - 1]; return true; }
+            return false;
+        }
+        internal static bool GetGroupNext(ref BlockData tmp)
+        {
+            if ((listGroups.Count > 0) && (lastGroup.MyIndex < listGroups.Count - 1))
+            { tmp = listGroups[lastGroup.MyIndex + 1]; return true; }
+            return false;
+        }
+        internal static bool GetGroupLast(ref BlockData tmp)
+        {
+            if (listGroups.Count > 0)
+            { tmp = listGroups[listGroups.Count - 1]; return true; }
+            return false;
+        }
+
         public static bool GetGroup(int lineNR)
         { return GetGroup(lineNR, 0); }
+
         public static bool GetGroup(int lineNR, int search)
         {
             if (listGroups.Count > 0)
             {
                 if (search <= -1)     // search start/end before actual block
                 {
-                    BlockData tmp = listGroups[0];
-                    if ((lineNR >= tmp.LineStart) && (lineNR <= tmp.LineEnd))   // actual block is first block
-                        return false;
-
-                    lastGroup.LineStart = listGroups[0].LineStart;
-                    for (int i = 1; i < listGroups.Count; i++)
-                    {
-                        if ((lineNR >= listGroups[i].LineStart) && (lineNR <= listGroups[i].LineEnd))
-                        {
-                            lastGroup.LineEnd = listGroups[i - 1].LineEnd;
-                            if (search == -1)
-                                lastGroup.LineStart = listGroups[i - 1].LineStart;
-                            return true;
-                        }
-                    }
+                    if (lastGroup.MyIndex > 0)
+                    { lastGroup = listGroups[lastGroup.MyIndex - 1]; return true; }
+                    return false;
                 }
                 else if (search >= 1)     // search start/end before actual block
                 {
-                    BlockData tmp = listGroups[listGroups.Count - 1];
-                    if ((lineNR >= tmp.LineStart) && (lineNR <= tmp.LineEnd))   // actual block is last block
-                        return false;
-
-                    lastGroup.LineEnd = listGroups[listGroups.Count - 1].LineEnd;
-                    for (int i = listGroups.Count - 1; i >= 0; i--)
-                    {
-                        if ((lineNR >= listGroups[i].LineStart) && (lineNR <= listGroups[i].LineEnd))
-                        {
-                            lastGroup.LineStart = listGroups[i + 1].LineStart;
-                            if (search == 1)
-                                lastGroup.LineEnd = listGroups[i + 1].LineEnd;
-                            return true;
-                        }
-                    }
+                    if (lastGroup.MyIndex < listGroups.Count - 1)
+                    { lastGroup = listGroups[lastGroup.MyIndex + 1]; return true; }
+                    return false;
                 }
                 else
                 {
@@ -691,6 +700,7 @@ namespace GrblPlotter
         public static void FinishTile(int lineEnd)
         {
             tmpTile.LineEnd = lineEnd;
+            tmpTile.MyIndex = listTiles.Count;
             listTiles.Add(tmpTile);
             footer.LineStart = footer.LineEnd = Math.Max(footer.LineStart, lineEnd);   // highest block-line = start of footer
         }
@@ -705,39 +715,15 @@ namespace GrblPlotter
             {
                 if (search <= -1)     // search start/end before actual block
                 {
-                    BlockData tmp = listTiles[0];
-                    if ((lineNR >= tmp.LineStart) && (lineNR <= tmp.LineEnd))   // actual block is first block
-                        return false;
-
-                    lastTile.LineStart = listTiles[0].LineStart;
-                    for (int i = 1; i < listTiles.Count; i++)
-                    {
-                        if ((lineNR >= listTiles[i].LineStart) && (lineNR <= listTiles[i].LineEnd))
-                        {
-                            lastTile.LineEnd = listTiles[i - 1].LineEnd;
-                            if (search == -1)
-                                lastTile.LineStart = listTiles[i - 1].LineStart;
-                            return true;
-                        }
-                    }
+                    if (lastTile.MyIndex > 0)
+                    { lastTile = listTiles[lastTile.MyIndex - 1]; return true; }
+                    return false;
                 }
                 else if (search >= 1)     // search start/end before actual block
                 {
-                    BlockData tmp = listTiles[listTiles.Count - 1];
-                    if ((lineNR >= tmp.LineStart) && (lineNR <= tmp.LineEnd))   // actual block is last block
-                        return false;
-
-                    lastTile.LineEnd = listTiles[listTiles.Count - 1].LineEnd;
-                    for (int i = listTiles.Count - 1; i >= 0; i--)
-                    {
-                        if ((lineNR >= listTiles[i].LineStart) && (lineNR <= listTiles[i].LineEnd))
-                        {
-                            lastTile.LineStart = listTiles[i + 1].LineStart;
-                            if (search == 1)
-                                lastTile.LineEnd = listTiles[i + 1].LineEnd;
-                            return true;
-                        }
-                    }
+                    if (lastTile.MyIndex < listTiles.Count - 1)
+                    { lastTile = listTiles[lastTile.MyIndex + 1]; return true; }
+                    return false;
                 }
                 else
                 {

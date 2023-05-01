@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,7 +21,9 @@
  * 2021-10-29 bugfix in RemoveIntermediateSteps
  * 2021-11-16 bugfix RemoveIntermediateSteps, RemoveShortMoves
  * 2022-01-24 add CalculateDistances
- line 1300
+ * 2023-04-12 l:364 f:ClipCode only remove offset, if option is enabled
+ * 2023-04-22 l:1280 f: HasSameProperties loop until 6
+ * 2023-04-25 l:845 f:FilterProperties new function; only show tile-id if needed
 */
 
 using System;
@@ -323,7 +325,7 @@ namespace GrblPlotter
                     length = 0;
                 }
                 coordByLine = string.Format("x1:{0,6:0.00} y1:{1,6:0.00}  x2:{2,6:0.00} y2:{3,6:0.00}  reversed:{4}", graphicItem.Start.X, graphicItem.Start.Y, graphicItem.End.X, graphicItem.End.Y, reversed);
-                info = string.Format(" color:'{0}' width:'{1}' layer:'{2}' length:'{3:0.00}'", graphicItem.Info.GroupAttributes[1], graphicItem.Info.GroupAttributes[2], graphicItem.Info.GroupAttributes[3], length);   // index 0 not used
+                info = string.Format(" color:'{0}' fill:'{1}' width:'{2}' layer:'{3}' length:'{4:0.00}'", graphicItem.Info.GroupAttributes[1], graphicItem.Info.GroupAttributes[6], graphicItem.Info.GroupAttributes[2], graphicItem.Info.GroupAttributes[3], length);   // index 0 not used
                 if (logEnable) Logger.Trace("    graphicItem Id:{0,3} pathId:{1,-12} Geo:{2,-8}  {3}   Points:{4,3}  Coord:{5}", graphicItem.Info.Id, graphicItem.Info.PathId, graphicItem.Info.PathGeometry, info, cnt, coordByLine);
 
                 if (logCoordinates)
@@ -358,11 +360,21 @@ namespace GrblPlotter
 
             Point clipMin = new Point(0, 0);
             Point clipMax = new Point(tileSizeX, tileSizeY);
-            if (logEnable) Logger.Trace("...ClipCode Path min X:{0:0.0} Y:{1:0.0} max X:{2:0.0} Y:{3:0.0} ##################################################################", clipMin.X, clipMin.Y, clipMax.X, clipMax.Y);
+            if (logEnable) Logger.Trace("...ClipCode Path min X:{0:0.0} Y:{1:0.0} max X:{2:0.0} Y:{3:0.0}  off X:{4:0.0} Y:{5:0.0} ##################################################################", clipMin.X, clipMin.Y, clipMax.X, clipMax.Y, actualDimension.minx, actualDimension.miny);
 
-            RemoveOffset(completeGraphic, actualDimension.minx, actualDimension.miny);
+            /* rotate before clipping */
+            if (Properties.Settings.Default.importGraphicClipAngleEnable)
+                Rotate(completeGraphic, (double)Properties.Settings.Default.importGraphicClipAngle, tileSizeX / 2, tileSizeY / 2);
 
-            if (log) ListGraphicObjects(completeGraphic);
+            if (graphicInformation.OptionOffsetCode)
+            {
+                Logger.Info("...ClipCode Remove offset1, X: {0:0.000} , Y: {1:0.000}", actualDimension.minx, actualDimension.miny);
+                SetHeaderInfo(string.Format(" Graphic offset: {0:0.00} {1:0.00} ", -actualDimension.minx, -actualDimension.miny));
+                RemoveOffset(completeGraphic, actualDimension.minx, actualDimension.miny);
+            }
+
+            //    if (log) ListGraphicObjects(completeGraphic);
+            if (logEnable) Logger.Trace("....ClipCode GraphicObjects:{0} ", completeGraphic.Count);
 
             if ((tileSizeX <= 0) || (tileSizeY <= 0))
             {
@@ -372,6 +384,7 @@ namespace GrblPlotter
 
             int tilesX = (int)Math.Ceiling(actualDimension.maxx / tileSizeX);        // loop through all possible tiles
             int tilesY = (int)Math.Ceiling(actualDimension.maxy / tileSizeY);
+            if (logEnable) Logger.Trace("....ClipCode Tiles X:{0} Y:{1}", tilesX, tilesY);
             int tileNr = 0;
 
             string tileID;
@@ -404,6 +417,7 @@ namespace GrblPlotter
                 tmpY = (float)Properties.Settings.Default.importGraphicClipOffsetY;
                 System.Drawing.RectangleF pathRect = new System.Drawing.RectangleF(tmpX, tmpY, (float)tileSizeX, (float)tileSizeY);
                 pathBackground.AddRectangle(pathRect);
+                tilesX = tilesY = 1;		// not needed, a break is applied at the end of the loop
             }
 
             Matrix matrix = new Matrix();
@@ -412,6 +426,10 @@ namespace GrblPlotter
             int tileShowNr = 1;
 
             //	bool applyOffset = Properties.Settings.Default.importGraphicClipOffsetX;
+
+            int clippedLines = 0;
+            int clipCalls = 0;
+            int clipOk = 0;
 
             for (int indexY = 0; indexY < tilesY; indexY++)
             {
@@ -457,12 +475,12 @@ namespace GrblPlotter
                     }
 
                     tileID = string.Format("{0}_X{1}_Y{2}", tileNr, indexX, indexY);
-                    CountProperty((int)GroupOption.ByTile, tileID);
+                    if (doTilingNotClipping) CountProperty((int)GroupOption.ByTile, tileID);
                     tileCommand = GetTileCommand(indexX, indexY, tileSizeX, tileSizeY);// new 2020-12-14
                     if ((indexX == 0) && (indexY == 0) && Properties.Settings.Default.importGraphicClipSkipCode)
                     { tileCommand = ""; }
 
-                    if (log) Logger.Trace("New tile {0} +++++++++++++++++++++++++++++++++++++++", tileID);
+                    if (log) Logger.Trace("New tile {0} iX:{1}  iY:{2} +++++++++++++++++++++++++++++++++++++++", tileID, indexX, indexY);
                     int foreachcnt = 1;
 
                     foreach (PathObject graphicItem in completeGraphic)
@@ -489,7 +507,7 @@ namespace GrblPlotter
                             tilePath = new ItemPath(new Point(pStart.X, pStart.Y));
                             tilePath.Info.CopyData(graphicItem.Info);              // preset global info for GROUP
                                                                                    //               tilePath.Info.clipInfo = string.Format("{0}_X{1}_Y{2}", tileNr, indexX, indexY);
-                            tilePath.Info.SetGroupAttribute((int)GroupOption.ByTile, tileID);
+                            if (doTilingNotClipping) tilePath.Info.SetGroupAttribute((int)GroupOption.ByTile, tileID);
                             if (actualDashArray.Length > 0)
                             {
                                 tilePath.DashArray = new double[actualDashArray.Length];
@@ -504,8 +522,12 @@ namespace GrblPlotter
                                 origEnd = item.Path[i].MoveTo;
                                 pEnd = new Point(origEnd.X, origEnd.Y);
 
+                                clipCalls++;
+                                //    Logger.Trace("call ClipLine {0}  x1:{1:0.0} y1:{2:0.0}  x2:{3:0.0} y2:{4:0.0}  xMin:{5:0.0} yMin:{6:0.0}  xMax:{7:0.0} yMax:{8:0.0}", clipCalls, pStart.X, pStart.Y, pEnd.X, pEnd.Y, clipMin.X, clipMin.Y, clipMax.X, clipMax.Y);
+
                                 if (ClipLine(ref pStart, ref pEnd, clipMin, clipMax))   // true: line needs to be clipped
                                 {
+                                    clipOk++;
                                     if (origStart != pStart)		// path was clipped, store old path, start new path, becaue pen-up/down is needed
                                     {
                                         if (tilePath.Path.Count > 1)
@@ -513,7 +535,7 @@ namespace GrblPlotter
                                         tilePath = new ItemPath(new Point(pStart.X, pStart.Y)); // start new path with clipped start position
                                         tilePath.Info.CopyData(graphicItem.Info);               // preset global info for GROUP
                                                                                                 //                           tilePath.Info.clipInfo = string.Format("{0}_X{1}_Y{2}", tileNr, indexX, indexY);
-                                        tilePath.Info.SetGroupAttribute((int)GroupOption.ByTile, tileID);// string.Format("{0}_X{1}_Y{2}", tileNr, indexX, indexY));
+                                        if (doTilingNotClipping) tilePath.Info.SetGroupAttribute((int)GroupOption.ByTile, tileID);// string.Format("{0}_X{1}_Y{2}", tileNr, indexX, indexY));
                                         if (actualDashArray.Length > 0)
                                         {
                                             tilePath.DashArray = new double[actualDashArray.Length];
@@ -524,6 +546,7 @@ namespace GrblPlotter
                                     if (pStart != pEnd)             // avoid zero length path
                                     {
                                         tilePath.Add(pEnd, item.Path[i].Depth, 0); //Logger.Trace("   start!=end ID:{0} i:{1} at end start x:{2} y:{3}  end x:{4} y:{5}", item.Info.id, i, pStart.X, pStart.Y, pEnd.X, pEnd.Y);
+                                        clippedLines++;
                                     }
                                     if (origEnd != pEnd)			// path was clipped, store old path, start new path, becaue pen-up/down is needed
                                     {
@@ -535,7 +558,7 @@ namespace GrblPlotter
                                             tilePath = new ItemPath();
                                             tilePath.Info.CopyData(graphicItem.Info);               // preset global info for GROUP
                                                                                                     //							tilePath.Info.clipInfo = string.Format("{0}_X{1}_Y{2}", tileNr, indexX, indexY);
-                                            tilePath.Info.SetGroupAttribute((int)GroupOption.ByTile, tileID);  // string.Format("{0}_X{1}_Y{2}", tileNr, indexX, indexY));
+                                            if (doTilingNotClipping) tilePath.Info.SetGroupAttribute((int)GroupOption.ByTile, tileID);  // string.Format("{0}_X{1}_Y{2}", tileNr, indexX, indexY));
                                             if (actualDashArray.Length > 0)
                                             {
                                                 tilePath.DashArray = new double[actualDashArray.Length];
@@ -548,7 +571,7 @@ namespace GrblPlotter
                             if (tilePath.Path.Count > 1)
                                 finalPathList.Add(tilePath);
                         }
-                        else
+                        else  // isDot
                         {
                             if (WithinRectangle(graphicItem.Start, clipMin, clipMax))        // else must be Dot
                             {
@@ -562,10 +585,14 @@ namespace GrblPlotter
                     }
                     tileOneDimension.AddDimensionXY(tilePath.Dimension);
 
-                    if (log) ListGraphicObjects(finalPathList);
+                    //    if (log) ListGraphicObjects(finalPathList);
+                    if (logEnable) Logger.Trace("....ClipCode finalPathList:{0} ", finalPathList.Count);
 
                     if (Properties.Settings.Default.importGraphicClipOffsetApply)
+                    {
+                        Logger.Info("...ClipCode Remove offset2, X: {0:0.000} , Y: {1:0.000}", clipMin.X, clipMin.Y);
                         RemoveOffset(finalPathList, clipMin.X, clipMin.Y);
+                    }
 
                     SortByDistance(finalPathList);                 // sort objects of current tile
 
@@ -584,7 +611,10 @@ namespace GrblPlotter
                 }	// for X
                 if (Properties.Settings.Default.importGraphicClip)		// just clipping one tile: stop Y
                     break;
-            }	// for Y
+            }   // for Y
+
+            if (logEnable) Logger.Trace("....ClipCode clipCalls:{0}  clipOk:{1}  clippedLines:{2}", clipCalls, clipOk, clippedLines);
+
             completeGraphic.Clear();
             matrix.Dispose();
             foreach (PathObject tile in tileGraphicAll)     // add tile to full graphic
@@ -656,6 +686,7 @@ namespace GrblPlotter
             //  bool pEndChanged = K2 > 0;
             while ((K1 > 0) || (K2 > 0))    // muss wenigstens eine der Koordinaten irgendwo geclippt werden ?
             {
+                //        Logger.Trace(".....ClipLine K1:{0}  K2:{1}",K1,K2);
                 if ((K1 & K2) > 0)     // logisches AND der beiden Koordinaten Flags ungleich 0 ?
                     return false;  // beide Punkte liegen jeweils auf der gleichen Seite außerhalb des Rechtecks
 
@@ -811,8 +842,89 @@ namespace GrblPlotter
         }
         #endregion
 
+        // keep or remove list
+        private static void FilterProperties(List<PathObject> graphicToFilter)
+        {
+            bool doRemove = Properties.Settings.Default.importGraphicFilterChoiceRemove;
+            string listRemove = Properties.Settings.Default.importGraphicFilterListRemove;
+            string listKeep = Properties.Settings.Default.importGraphicFilterListKeep;
+            string needle;
+            if (doRemove)
+            {
+                if (string.IsNullOrEmpty(listRemove))
+                    return;
+                Logger.Warn("FilterProperties remove figures with following pen-color or pen-width: {0}", listRemove);
+                string tmp;
+                for (int i = graphicToFilter.Count - 1; i >= 0; i--)
+                {
+                    if (!string.IsNullOrEmpty(graphicToFilter[i].Info.GroupAttributes[(int)GroupOption.ByColor]))
+                        if (listRemove.Contains(graphicToFilter[i].Info.GroupAttributes[(int)GroupOption.ByColor]))
+                        {
+                            graphicToFilter.RemoveAt(i);
+                            continue;
+                        }
+                    if (!string.IsNullOrEmpty(graphicToFilter[i].Info.GroupAttributes[(int)GroupOption.ByWidth]))
+                        if (listRemove.Contains(graphicToFilter[i].Info.GroupAttributes[(int)GroupOption.ByWidth]))
+                        {
+                            graphicToFilter.RemoveAt(i);
+                            continue;
+                        }
+                }
+            }
+            else    // keep
+            {
+                if (string.IsNullOrEmpty(listKeep))
+                    return;
+                Logger.Warn("FilterProperties keep only figures with following pen-color or pen-width: {0}", listKeep);
+                for (int i = graphicToFilter.Count - 1; i >= 0; i--)
+                {
+                    needle = graphicToFilter[i].Info.GroupAttributes[(int)GroupOption.ByColor];
+                    if (!string.IsNullOrEmpty(needle) && listKeep.Contains(needle))
+                    {
+                        continue;
+                    }
+                    needle = graphicToFilter[i].Info.GroupAttributes[(int)GroupOption.ByWidth];
+                    if (!string.IsNullOrEmpty(needle) && listKeep.Contains(needle))
+                    {
+                        continue;
+                    }
+                    graphicToFilter.RemoveAt(i);
+                }
+            }
+        }
+
+        private static void Rotate(List<PathObject> graphicToRotate, double angle, double offsetX, double offsetY)
+        {
+            System.Diagnostics.StackTrace s = new System.Diagnostics.StackTrace(System.Threading.Thread.CurrentThread, true);
+
+            //           MessageBox.Show("Methode B wurde von Methode " + s.GetFrame(1).GetMethod().Name + " aufgerufen");
+            if (logEnable) Logger.Trace("...Rotate a:{0:0.00} X:{1:0.00} Y:{2:0.00} caller:{3} --------------------------------------", angle, offsetX, offsetY, s.GetFrame(1).GetMethod().Name);
+            foreach (PathObject item in graphicToRotate)    // dot or path
+            {
+                item.Start = RotatePoint(item.Start, angle, offsetX, offsetY);
+                item.End = RotatePoint(item.End, angle, offsetX, offsetY);
+                if (item is ItemPath PathData)
+                {
+                    //ItemPath PathData = (ItemPath)item;
+                    foreach (GCodeMotion entity in PathData.Path)
+                    { entity.MoveTo = RotatePoint(entity.MoveTo, angle, offsetX, offsetY); ; }
+                    //PathData.Dimension.OffsetXY(-offsetX, -offsetY);
+                }
+            }
+            actualDimension.OffsetXY(-offsetX, -offsetY);
+        }
+
+        private static Point RotatePoint(Point p, double angle, double offX, double offY)
+        {
+            double newvalx = (p.X - offX) * Math.Cos(angle * Math.PI / 180) - (p.Y - offY) * Math.Sin(angle * Math.PI / 180);
+            double newvaly = (p.X - offX) * Math.Sin(angle * Math.PI / 180) + (p.Y - offY) * Math.Cos(angle * Math.PI / 180);
+            Point pn = new Point(newvalx + offX, newvaly + offY);
+            return pn;
+        }
+
         public static void ScaleXY(double scaleX, double scaleY)	// scaleX != scaleY will not work for arc!
         { Scale(completeGraphic, scaleX, scaleY); }
+
         private static void Scale(List<PathObject> graphicToOffset, double scaleX, double scaleY)
         {
             if (logEnable) Logger.Trace("...Scale scaleX:{0:0.00} scaleY:{1:0.00} ", scaleX, scaleY);
@@ -1183,7 +1295,7 @@ namespace GrblPlotter
             //            bool checkAll = false;// true;
             if (graphicInformation.GroupEnable)
             {
-                for (int i = 1; i <= 5; i++)    // GroupOptions { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByType = 4, ByTile = 5};
+                for (int i = 1; i <= 6; i++)    // GroupOptions { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByType = 4, ByTile = 5, ByFill = 6, Label = 7};
                 {
                     if (logDetailed) Logger.Trace("  hasSameProperties - GroupEnable-Option:{0} a:'{1}'  b:'{2}'", i, a.Info.GroupAttributes[i], b.Info.GroupAttributes[i]);
                     sameProperties = a.Info.GroupAttributes[i] == b.Info.GroupAttributes[i];

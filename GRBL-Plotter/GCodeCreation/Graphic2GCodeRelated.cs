@@ -47,6 +47,7 @@
  * 2023-03-06 l:1314 f:Tool remove space in output "M0 (Tool:{0}  Color:{1})\r\n"
  * 2023-03-14 l:1133 f:ClearLeadOut()	added
  * 2023-03-15 l:746 f:PenUp add F-value
+ * 2023-04-19 l:1316 f:Tool  add the key-word "tool" into the comment
 */
 
 using System;
@@ -1310,9 +1311,9 @@ namespace GrblPlotter
             if (gcodeToolChange)                // otherweise no command needed
             {
                 if (GcodeZApply) Gcode.SpindleOff(gcodeValue, "Stop spindle - Option Z-Axis");
-                string cmtx = "";
-                if (cmt.Length > 0) cmtx = string.Format("({0})", cmt);
-                toolCmd = string.Format("T{0:D2} M{1} {2}", toolnr, FrmtCode(6), cmtx);
+            //    string cmtx = "";
+            //    if (cmt.Length > 0) cmtx = string.Format("(Tool:{0} {1})", toolnr, cmt);
+                toolCmd = string.Format("T{0:D2} M{1} (Tool:{2} {3})", toolnr, FrmtCode(6), toolnr, cmt);
 
                 if (gcodeToolChangeM0)
                 { gcodeValue.AppendFormat("M0 (Tool:{0}  Color:{1})\r\n", toolnr, cmt); gcodeLines++; }
@@ -1413,7 +1414,7 @@ namespace GrblPlotter
                 if (cmd.Length > 1)
                 { header_end += string.Format("{0} (Setup - GCode-Header)\r\n", cmd.Trim()); gcodeLines++; }
             if (GcodeRelative)
-            { header_end += string.Format("G91 (Setup relative movement)\r\n"); gcodeLines++; }
+            { header_end += string.Format("G91 (Setup RELATIVE movement)\r\n"); gcodeLines++; }
             else
             { header_end += string.Format("G90\r\n"); gcodeLines++; }
 

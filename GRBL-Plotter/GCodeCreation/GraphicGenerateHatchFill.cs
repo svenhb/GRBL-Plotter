@@ -72,6 +72,8 @@ namespace GrblPlotter
                     if (IsEqual(PathData.Start, PathData.End) && (PathData.Path.Count > 2))      //(PathData.Start.X == PathData.End.X) && (PathData.Start.Y == PathData.End.Y))
                     {
                         string fill = PathData.Info.GroupAttributes[(int)GroupOption.ByFill];
+                        Logger.Trace("### HatchFill '{0}'",fill);
+
                         if (fillColor && ((string.IsNullOrEmpty(fill)) || (fill == "none")))	// SVG: only hatch if fillColor is set
                         {   //Logger.Trace("no fill");
                             continue;

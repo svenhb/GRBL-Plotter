@@ -44,6 +44,11 @@
  * 2022-07-22 line 509 SetPenFill - also convert from "rgb("
  * 2022-12-14 line 612 CountProperty check if txt IsNullOrEmpty
  * 2023-01-02 possibility to overwrite maxObjectCountBeforeReducingXML
+ * 2023-04-10 l:524 f:ConvertFromRGB new function to parse also % -> rgb(80.392%, 52.157%, 24.706%)
+ * 2023-04-11 l:694 f:CreateGCode && !graphicInformation.OptionClipCode
+ * 2023-04-12 l:726 f:CreateGCode    disable VisuGCode.CalcDrawingArea();    to get rid of InvalidOperationException
+ * 2023-04-18 l:700 f:CreateGCode add GCode-Header output Graphic offset
+ * 2023-04-25 l:745 f:CreateGCode add filtering
 */
 
 using System;
@@ -99,6 +104,8 @@ namespace GrblPlotter
         public static int maxObjectCountBeforeReducingXML = 1000; // (int)Properties.Settings.Default.importFigureMaxAmount;
 
         private static int countAuxInfo = 0;
+
+        private static int countWarnDimNotSet = 0;
 
         internal static GraphicInformationClass graphicInformation = new GraphicInformationClass();
 
@@ -233,10 +240,12 @@ namespace GrblPlotter
             stopwatch.Start();
             totalTime = new Stopwatch();
             totalTime.Start();
+
+            countWarnDimNotSet = 0;
         }
 
         public static bool StartPath(float x, float y)
-        { return StartPath(new Point(x,y)); }
+        { return StartPath(new Point(x, y)); }
 
         public static bool StartPath(Point xy, double? useZ = null)//, CreationOptions addFunction = CreationOptions.none)
         {   // preset informations
@@ -253,7 +262,7 @@ namespace GrblPlotter
             else
             { lastPath = actualPath; }                                      // continoue actualPath
 
-            actualPath.Info.CopyData(actualPathInfo);       // preset global info for GROUP
+            actualPath.Info.CopyData(actualPathInfo);                       // preset global info for GROUP
 
             // only continue last path if same layer, color, dash-pattern - if enabled
             if ((lastPath is ItemPath apath) && (objectCount > 0) && HasSameProperties(apath, (ItemPath)actualPath) && (IsEqual(xy, lastPoint)))
@@ -294,6 +303,9 @@ namespace GrblPlotter
             lastPoint = xy;
             setNewId = false;
             lastOption = CreationOption.none;
+
+            //    actualPathInfo.SetGroupAttribute((int)GroupOption.ByFill, "");  // reset fill
+
             return success;
         }
         public static void StopPath()
@@ -303,7 +315,7 @@ namespace GrblPlotter
         {
             if (!actualPath.Dimension.IsXYSet())                    // 2020-10-31
             {
-                if (logEnable) { Logger.Trace("⚠ StopPath dimension not set - skip1"); }
+                if (logEnable && (countWarnDimNotSet++ < 10)) { Logger.Trace("⚠ StopPath dimension not set - skip1"); }
                 return;
             }
 
@@ -317,7 +329,7 @@ namespace GrblPlotter
                     if (logCoordinates) { Logger.Trace("▲ StopPath completeGraphic.Add {0}", completeGraphic.Count); }
                 }
                 else
-                { if (logEnable) Logger.Trace("⚠ StopPath dimension not set - skip2"); }
+                { if (logEnable && (countWarnDimNotSet++ < 10)) Logger.Trace("⚠ StopPath dimension not set - skip2"); }
             }
             if (logCoordinates) { Logger.Trace("▲ StopPath  cnt:{0}  cmt:{1} {2}", (objectCount - 1), cmt, actualPath.Info.List()); }
             if (logCoordinates) { Logger.Trace("▲   StopPath Dimension  {0}  cmt:{1} {2}", actualPath.Dimension.GetXYString(), cmt, actualPath.Info.List()); }
@@ -334,7 +346,7 @@ namespace GrblPlotter
         }
 
         public static bool AddLine(float x, float y)
-        { return AddLine(new Point(x,y)); }
+        { return AddLine(new Point(x, y)); }
         public static bool AddLine(Point xy, double? useZ = null)//, string cmt = "")
         {
             bool success = true;
@@ -478,7 +490,7 @@ namespace GrblPlotter
                 Logger.Error(" Error SetLabel '{0}'", txt);
         }
 
-        public static void SetPenWidth(string txt)	// DXF: 0 - 2.11mm = 0 - 211		SVG: 0.000 - ?  Convert with to mm, then to string in importClass
+        public static bool SetPenWidth(string txt)	// DXF: 0 - 2.11mm = 0 - 211		SVG: 0.000 - ?  Convert with to mm, then to string in importClass
         {
             if (logProperties) Logger.Trace("Set PenWidth '{0}'", txt);
             //           setNewId = true;        // active 2020-10-25
@@ -487,24 +499,32 @@ namespace GrblPlotter
             if (!actualPathInfo.SetGroupAttribute(tmpIndex, txt))
                 Logger.Error(" Error SetPenWidth '{0}'", txt);
             graphicInformation.SetPenWidth(txt);        // find min / max values
+			
+			if (!Properties.Settings.Default.importGraphicFilterEnable)					
+				return true;																// no filter
+			if (Properties.Settings.Default.importGraphicFilterChoiceRemove)				// check remove list
+			{
+				if (Properties.Settings.Default.importGraphicFilterListRemove.Contains(txt))
+					return false;															// value is in remove list
+				else
+					return true;
+			}
+			else
+			{
+				if (Properties.Settings.Default.importGraphicFilterListKeep.Contains(txt))
+					return true;															// value is in keep list
+				else
+					return false;
+			}
+			return true;			
         }
 
-        public static void SetPenColor(string txt)
+        public static bool SetPenColor(string txt)
         {
-            if (string.IsNullOrEmpty(txt)) return;
+            if (string.IsNullOrEmpty(txt)) return true;
             if (txt.StartsWith("rgb("))
             {
-                String[] colors = txt.Substring(4, txt.Length - 5).Split(',');
-                System.Drawing.Color color = System.Drawing.Color.FromArgb(
-                    Int32.Parse(colors[0].Trim()),
-                    Int32.Parse(colors[1].Trim()),
-                    Int32.Parse(colors[2].Trim())
-                    );
-                string ntxt = System.Drawing.ColorTranslator.ToHtml(color);
-                Logger.Info("SetPenColor convert '{0}' to '{1}'", txt, ntxt);
-                txt = ntxt;
-                if (txt.StartsWith("#"))
-                    txt = txt.Substring(1);
+                txt = ConvertFromRGB(txt);
             }
             if (logProperties) Logger.Trace("SetPenColor '{0}'", txt);
 
@@ -513,6 +533,24 @@ namespace GrblPlotter
             CountProperty(tmpIndex, txt);
             if (!actualPathInfo.SetGroupAttribute(tmpIndex, txt))
                 Logger.Error(" Error SetPenColor '{0}'", txt);
+			
+			if (!Properties.Settings.Default.importGraphicFilterEnable)
+				return true;
+			if (Properties.Settings.Default.importGraphicFilterChoiceRemove)
+			{
+				if (Properties.Settings.Default.importGraphicFilterListRemove.Contains(txt))
+					return false;		
+				else
+					return true;
+			}
+			else
+			{
+                if (Properties.Settings.Default.importGraphicFilterListKeep.Contains(txt))
+                    return true; 
+                else
+                    return false;
+			}
+			return true;
         }
 
         public static void SetPenFill(string txt)
@@ -520,17 +558,7 @@ namespace GrblPlotter
             if (string.IsNullOrEmpty(txt)) return;
             if (txt.StartsWith("rgb("))
             {
-                String[] colors = txt.Substring(4, txt.Length - 5).Split(',');
-                System.Drawing.Color color = System.Drawing.Color.FromArgb(
-                    Int32.Parse(colors[0].Trim()),
-                    Int32.Parse(colors[1].Trim()),
-                    Int32.Parse(colors[2].Trim())
-                    );
-                string ntxt = System.Drawing.ColorTranslator.ToHtml(color);
-                Logger.Info("SetPenFill convert '{0}' to '{1}'", txt, ntxt);
-                txt = ntxt;
-                if (txt.StartsWith("#"))
-                    txt = txt.Substring(1);
+                txt = ConvertFromRGB(txt);
             }
             if (logProperties) Logger.Trace("SetPenFill '{0}'", txt);
 
@@ -539,6 +567,41 @@ namespace GrblPlotter
             CountProperty(tmpIndex, txt);
             if (!actualPathInfo.SetGroupAttribute(tmpIndex, txt))
                 Logger.Error(" Error SetPenFill '{0}'", txt);
+        }
+
+        private static string ConvertFromRGB(string txt)
+        {
+            bool isPercent = txt.Contains("%");
+            string txt1 = txt.Substring(4);
+            String[] colors = txt1.Split(',');
+
+            string num1 = colors[0].Replace("%", "").Trim(), num2 = colors[1].Replace("%", "").Trim(), num3 = colors[2].Replace("%", "").Replace(")", "").Trim();
+            string ntxt = "";
+            if (double.TryParse(num1, System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out double col1) &&
+                double.TryParse(num2, System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out double col2) &&
+                double.TryParse(num3, System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out double col3))
+            {
+                //    Logger.Info("ConvertFromRGB1 {0} {1} {2}", col1, col2, col3);
+
+                if (isPercent)
+                { col1 *= 2.55; col2 *= 2.55; col3 *= 2.55; }
+                col1 = Math.Round(col1);
+                col2 = Math.Round(col2);
+                col3 = Math.Round(col3);
+                //    Logger.Info("ConvertFromRGB2 {0} {1} {2}", col1, col2, col3);
+
+                if (col1 > 255) col1 = 255;
+                if (col2 > 255) col2 = 255;
+                if (col3 > 255) col3 = 255;
+                System.Drawing.Color color = System.Drawing.Color.FromArgb((int)col1, (int)col2, (int)col3);
+                ntxt = System.Drawing.ColorTranslator.ToHtml(color);
+            }
+            //    Logger.Info("ConvertFromRGB convert '{0}' to '{1}'", txt, ntxt);
+            txt = ntxt;
+            if (txt.StartsWith("#"))
+                txt = txt.Substring(1);
+
+            return txt;
         }
 
         public static void SetPenColorId(int id)
@@ -618,8 +681,9 @@ namespace GrblPlotter
 
         private static void CountProperty(int index, string txt)
         {
-			if (String.IsNullOrEmpty(txt))
-				return;
+            //    if (String.IsNullOrEmpty(txt))
+            if (txt == null)
+                return;
             if (index < groupPropertiesCount.Length)
                 if (!groupPropertiesCount[index].ContainsKey(txt))
                     groupPropertiesCount[index].Add(txt, 1);
@@ -633,6 +697,8 @@ namespace GrblPlotter
 
         public static bool CreateGCode()//Final(BackgroundWorker backgroundWorker, DoWorkEventArgs e)
         {
+            if (logEnable && (countWarnDimNotSet > 0)) { Logger.Trace("⚠ StopPath dimension not set - skip1 further count: {0}", countWarnDimNotSet); }
+
             if (completeGraphic.Count == 0) //actualPath.Path.Count == 0)
             {
                 Logger.Warn("◆◆◆CreateGCode - path is empty");
@@ -657,7 +723,7 @@ namespace GrblPlotter
                 if (!graphicInformation.DxfImportZ)
                 {
                     Logger.Info("{0} Remove short moves below: {1}", loggerTag, Properties.Settings.Default.importRemoveShortMovesLimit);
-                    if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Remove short moves" });
+                    backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Remove short moves" });
                     RemoveIntermediateSteps(completeGraphic);
                     RemoveShortMoves(completeGraphic, (double)Properties.Settings.Default.importRemoveShortMovesLimit);
                 }
@@ -675,12 +741,13 @@ namespace GrblPlotter
 
 
             /* remove offset */
-            if (!cancelByWorker && graphicInformation.OptionOffsetCode)  // || (Properties.Settings.Default.importGraphicTile) 
+            if (!cancelByWorker && graphicInformation.OptionOffsetCode && !graphicInformation.OptionClipCode)  // || (Properties.Settings.Default.importGraphicTile) 
             {
                 Logger.Info("{0} Remove offset, X: {1:0.000} , Y: {2:0.000}", loggerTag, actualDimension.minx, actualDimension.miny);
+                SetHeaderInfo(string.Format(" Graphic offset: {0:0.00} {1:0.00} ", -actualDimension.minx, -actualDimension.miny));
                 SetHeaderInfo(string.Format(" Original graphic dimension min:{0:0.000};{1:0.000}  max:{2:0.000};{3:0.000}", actualDimension.minx, actualDimension.miny, actualDimension.maxx, actualDimension.maxy));
                 if (logEnable) Logger.Trace("call RemoveOffset");
-                if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Remove Offset..." });
+                backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Remove Offset..." });
                 RemoveOffset(completeGraphic, actualDimension.minx, actualDimension.miny);
             }
 
@@ -698,22 +765,30 @@ namespace GrblPlotter
             //           if (Properties.Settings.Default.importSVGNodesOnly)         { SetDotOnly(); }
 
             /* show original graphics in 2D-view */
-            if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Create backgroud graphic..." });
+            backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Create backgroud graphic..." });
             object lockObject = new object();
             Logger.Info("●●● Show original graphics in 2D-view");
             lock (lockObject)
             { CreateGraphicsPath(completeGraphic, VisuGCode.pathBackground); }
 
             VisuGCode.xyzSize.AddDimensionXY(Graphic.actualDimension);
-            VisuGCode.CalcDrawingArea();                                // calc ruler dimension
-            if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt * 100 / maxOpt), Content = "show" });
+            //    VisuGCode.CalcDrawingArea();                                // calc ruler dimension
+            backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt * 100 / maxOpt), Content = "show" });
 
             if (logModification) { ListGraphicObjects(completeGraphic); }
+
+            /* Filter (remove or keep paths with specific properties) */
+            if (!cancelByWorker && Properties.Settings.Default.importGraphicFilterEnable)
+            {
+                Logger.Info("{0} Filter properties: ", loggerTag);
+                FilterProperties(completeGraphic);
+                SetHeaderInfo(string.Format(" Option: Filter properties"));
+            }
 
             /* hatch fill */
             if (!cancelByWorker && (graphicInformation.ApplyHatchFill || graphicInformation.OptionHatchFill))
             {
-                if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Generate hatch fill..." });
+                backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Generate hatch fill..." });
                 Logger.Info("{0} Hatch fill", loggerTag);
                 HatchFill(completeGraphic);
                 SetHeaderInfo(string.Format(" Option: Hatch fill distance:{0:0.00} angle:{1:0.00}", Properties.Settings.Default.importGraphicHatchFillDistance, Properties.Settings.Default.importGraphicHatchFillAngle));
@@ -722,7 +797,7 @@ namespace GrblPlotter
             /* repeate paths */
             if (!cancelByWorker && graphicInformation.OptionRepeatCode && !Properties.Settings.Default.importRepeatComplete)
             {
-                if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Repeat paths(" + countGeometry.ToString() + " elements)..." });
+                backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Repeat paths(" + countGeometry.ToString() + " elements)..." });
                 Logger.Info("{0} Repeate paths, count: {1}", loggerTag, Properties.Settings.Default.importRepeatCnt);
                 RepeatPaths(completeGraphic, (int)Properties.Settings.Default.importRepeatCnt);
                 SetHeaderInfo(string.Format(" Option: Repeat paths/code count:{0} ", Properties.Settings.Default.importRepeatCnt));
@@ -731,12 +806,12 @@ namespace GrblPlotter
             /* sort by distance and merge paths with same start / end coordinates*/
             if (!cancelByWorker && graphicInformation.OptionSortCode)
             {
-                if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Sort elements 1) merge paths (" + countGeometry.ToString() + " elements)" });
+                backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Sort elements 1) merge paths (" + countGeometry.ToString() + " elements)" });
                 Logger.Info("{0} Merge paths", loggerTag);
                 MergeFigures(completeGraphic);
                 if (!cancelByWorker)
                 {
-                    if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Sort elements 2) sort by distance (" + countGeometry.ToString() + " elements)" });
+                    backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Sort elements 2) sort by distance (" + countGeometry.ToString() + " elements)" });
                     Logger.Info("{0} Sort by distance", loggerTag);
                     SortByDistance(completeGraphic);
                 }
@@ -745,7 +820,7 @@ namespace GrblPlotter
             /* Drag Tool path modification*/
             if (!cancelByWorker && graphicInformation.OptionDragTool)
             {
-                if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Calculate drag tool paths (of " + countGeometry.ToString() + " elements)..." });
+                backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Calculate drag tool paths (of " + countGeometry.ToString() + " elements)..." });
                 Logger.Info("◆◆◆ Drag Tool path modification - use also tangential axis:{0}", graphicInformation.OptionTangentialAxis);
                 if (graphicInformation.OptionTangentialAxis)
                 {
@@ -762,7 +837,7 @@ namespace GrblPlotter
             /* clipping or tiling of whole graphic */
             if (!cancelByWorker && graphicInformation.OptionClipCode)
             {
-                if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Apply clipping (on " + countGeometry.ToString() + " elements)..." });
+                backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Apply clipping (on " + countGeometry.ToString() + " elements)..." });
                 Logger.Info("◆◆◆ clipping or tiling of whole graphic");
                 ClipCode((double)Properties.Settings.Default.importGraphicTileX, (double)Properties.Settings.Default.importGraphicTileY, (double)Properties.Settings.Default.importGraphicTileAddOnX);
                 SetHeaderInfo(string.Format(" Option: Clipping/Tiling size X:{0:0.00} Y:{1:0.00}", Properties.Settings.Default.importGraphicTileX, Properties.Settings.Default.importGraphicTileY));
@@ -771,7 +846,7 @@ namespace GrblPlotter
             /* extend closed path for laser cutting to avoid a "nose" at start/end position */
             if (!cancelByWorker && graphicInformation.OptionExtendPath)
             {
-                if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Extend closed paths..." });
+                backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Extend closed paths..." });
                 Logger.Info("◆◆◆ Extend closed path");
                 ExtendClosedPaths(completeGraphic, (double)Properties.Settings.Default.importGraphicExtendPathValue);
                 SetHeaderInfo(string.Format(" Option: Extend path by {0:0.00}", Properties.Settings.Default.importGraphicExtendPathValue));
@@ -780,7 +855,7 @@ namespace GrblPlotter
             /* calculate tangential axis - paths may be splitted, do not merge afterwards!*/
             if (!cancelByWorker && graphicInformation.OptionTangentialAxis)
             {
-                if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Calculate tangential axis (for " + countGeometry.ToString() + " elements)..." });
+                backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Calculate tangential axis (for " + countGeometry.ToString() + " elements)..." });
                 Logger.Info("●●● Calculate tangential axis ");
                 CalculateTangentialAxis();
                 SetHeaderInfo(string.Format(" Option: Tangential axis: '{0}'", Properties.Settings.Default.importGCTangentialAxis));
@@ -844,7 +919,7 @@ namespace GrblPlotter
             /* group objects by color/width/layer/tile-nr */
             if (!cancelByWorker && graphicInformation.GroupEnable)
             {
-                if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Group " + countGeometry.ToString() + " elements..." });
+                backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Group " + countGeometry.ToString() + " elements..." });
 
                 // add tile-tags and group
                 if (graphicInformation.OptionClipCode && !Properties.Settings.Default.importGraphicClip)
