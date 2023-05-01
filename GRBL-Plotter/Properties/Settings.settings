@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GrblPlotter.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
@@ -645,6 +645,9 @@
       <Value Profile="(Default)">Red</Value>
     </Setting>
     <Setting Name="gui2DColorPenDownModeEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="gui2DColorPenDownModeWidth" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="gui2DColorPenUp" Type="System.Drawing.Color" Scope="User">
@@ -1439,11 +1442,20 @@
     <Setting Name="importGraphicClip" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="importGraphicClipAngle" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="importGraphicClipAngleEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="importGraphicClipEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGraphicClipGCode" Type="System.String" Scope="User">
       <Value Profile="(Default)">(^2 G0 X#OFFX Y#OFFY)  (set offset via 2nd grbl)</Value>
+    </Setting>
+    <Setting Name="importGraphicClipGetDimAuto" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGraphicClipOffsetApply" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -1501,6 +1513,18 @@
     </Setting>
     <Setting Name="importGraphicExtendPathValue" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importGraphicFilterChoiceRemove" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGraphicFilterEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGraphicFilterListKeep" Type="System.String" Scope="User">
+      <Value Profile="(Default)">FFFFFF;BBBBBB</Value>
+    </Setting>
+    <Setting Name="importGraphicFilterListRemove" Type="System.String" Scope="User">
+      <Value Profile="(Default)">FFFFFF;BBBBBB</Value>
     </Setting>
     <Setting Name="importGraphicHatchFillAngle" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">30</Value>

@@ -2605,6 +2605,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool gui2DColorPenDownModeWidth {
+            get {
+                return ((bool)(this["gui2DColorPenDownModeWidth"]));
+            }
+            set {
+                this["gui2DColorPenDownModeWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Green")]
         public global::System.Drawing.Color gui2DColorPenUp {
             get {
@@ -5778,6 +5790,30 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal importGraphicClipAngle {
+            get {
+                return ((decimal)(this["importGraphicClipAngle"]));
+            }
+            set {
+                this["importGraphicClipAngle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGraphicClipAngleEnable {
+            get {
+                return ((bool)(this["importGraphicClipAngleEnable"]));
+            }
+            set {
+                this["importGraphicClipAngleEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool importGraphicClipEnable {
             get {
@@ -5797,6 +5833,18 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["importGraphicClipGCode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGraphicClipGetDimAuto {
+            get {
+                return ((bool)(this["importGraphicClipGetDimAuto"]));
+            }
+            set {
+                this["importGraphicClipGetDimAuto"] = value;
             }
         }
         
@@ -6025,6 +6073,54 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["importGraphicExtendPathValue"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importGraphicFilterChoiceRemove {
+            get {
+                return ((bool)(this["importGraphicFilterChoiceRemove"]));
+            }
+            set {
+                this["importGraphicFilterChoiceRemove"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGraphicFilterEnable {
+            get {
+                return ((bool)(this["importGraphicFilterEnable"]));
+            }
+            set {
+                this["importGraphicFilterEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("FFFFFF;BBBBBB")]
+        public string importGraphicFilterListKeep {
+            get {
+                return ((string)(this["importGraphicFilterListKeep"]));
+            }
+            set {
+                this["importGraphicFilterListKeep"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("FFFFFF;BBBBBB")]
+        public string importGraphicFilterListRemove {
+            get {
+                return ((string)(this["importGraphicFilterListRemove"]));
+            }
+            set {
+                this["importGraphicFilterListRemove"] = value;
             }
         }
         
