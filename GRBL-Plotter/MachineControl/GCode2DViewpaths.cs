@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@
  * 2021-09-30 take care for inch:  if (!Properties.Settings.Default.importUnitmm || (modal.unitsMode == 20))
  * 2021-11-18 show path-nodes gui2DShowVertexEnable - will be switched off on prog-start	 
  * 2022-04-07 DrawHeightMap add side-view of shape at y=0 and x=0 (below and left of hight-map grid)
+ * 2023-04-11 l:683 f:CreateRuler lock object to avoid 'object is currently in use elsewhere'
 */
 
 using System;
@@ -672,6 +673,8 @@ namespace GrblPlotter
             }
         }
 
+        private static object lockObject = new object();
+
         // Add ruler with division
         internal static void CreateRuler(GraphicsPath path, DrawingProperties dP)
         {
@@ -712,7 +715,10 @@ namespace GrblPlotter
             float x, y;
             for (float i = dP.minX; i < dP.maxX; i++)          // horizontal ruler
             {
-                path.StartFigure();
+                lock (lockObject)
+                {
+                    path.StartFigure();
+                }
                 x = (float)i * unit / (float)divider;
                 if (i % divider_short == 0)
                 {
@@ -741,7 +747,7 @@ namespace GrblPlotter
                         pathGrid10.StartFigure();
                     }
                     else if (rangeX < show_short)
-                    { path.AddLine(x, 0, x, -length2); }  	// 5
+                    { path.AddLine(x, 0, x, -length2); }    // 5
                 }
                 else if (dP.maxX < show_smallest)
                 {
@@ -749,10 +755,14 @@ namespace GrblPlotter
                 }
                 pathGrid1.AddLine(x, dP.minY, x, dP.maxY);
                 pathGrid1.StartFigure();
+
             }
             for (float i = dP.minY; i < dP.maxY; i++)          // vertical ruler
             {
-                path.StartFigure();
+                lock (lockObject)
+                {
+                    path.StartFigure();
+                }
                 y = (float)i * unit / (float)divider;
                 if (i % divider_short == 0)
                 {
@@ -781,7 +791,7 @@ namespace GrblPlotter
                         pathGrid10.StartFigure();
                     }
                     else if (rangeY < show_short)
-                    { path.AddLine(0, y, -length2, y); } 	// 5
+                    { path.AddLine(0, y, -length2, y); }    // 5
                 }
                 else if (dP.maxY < show_smallest)
                 {

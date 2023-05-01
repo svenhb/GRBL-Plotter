@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -32,6 +32,7 @@
  * 2021-11-23 line 79 add try/catch
  * 2022-01-02 move MakeAbsolutePath to class Datapath
  * 2022-06-25 line 1692 SetZeroMinMax add try catch
+ * 2023-04-27 add new tab 'filter'; highlight tabs with enabled options
 */
 
 using System;
@@ -52,6 +53,28 @@ namespace GrblPlotter
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
+        internal string lastMarkedColor = "";
+        internal string lastMarkedWidth = "";
+
+        public string LastMarkedColor
+        {
+            set
+            {
+                lastMarkedColor = value;
+                BtnGetFilterValueRemoveColor.Text = value;
+                BtnGetFilterValueKeepColor.Text = value;
+            }
+        }
+        internal string LastMarkedWidth
+        {
+            set
+            {
+                lastMarkedWidth = value;
+                BtnGetFilterValueRemoveWidth.Text = value;
+                BtnGetFilterValueKeepWidth.Text = value;
+            }
+        }
 
         public ControlSetupForm()
         {
@@ -100,6 +123,7 @@ namespace GrblPlotter
             FillToolTableFileList(Datapath.Tools);
             FillUseCaseFileList(Datapath.Usecases);
             lblToolListLoaded.Text = Properties.Settings.Default.toolTableLastLoaded;
+            tab2gB1.Text += " ( " + Datapath.Tools + " )";
 
             string text;
             string[] parts;// = new string[] { "-", "(-)" };
@@ -271,6 +295,15 @@ namespace GrblPlotter
                 RbApperance1.Checked = true;
             else
                 RbApperance2.Checked = true;
+
+            if (Properties.Settings.Default.importGraphicFilterChoiceRemove)
+            {
+                RbimportGraphicFilterChoiceRemove1.Checked = true; //GbFilterRemove.BackColor = Color.Yellow; GbFilterKeep.BackColor = Color.WhiteSmoke;
+            }
+            else
+            {
+                RbimportGraphicFilterChoiceRemove2.Checked = true; //GbFilterRemove.BackColor = Color.WhiteSmoke; GbFilterKeep.BackColor = Color.Yellow;
+            }
         }
 
         private void SaveSettings()
@@ -844,7 +877,7 @@ namespace GrblPlotter
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog
             {
-                InitialDirectory = importPath,
+                InitialDirectory = Path.GetFullPath(Properties.Settings.Default.toolTableLastLoaded),//importPath,
                 Filter = "CSV File|*.csv",
                 Title = "Load Tool List"
             };
@@ -858,8 +891,8 @@ namespace GrblPlotter
         {
             ImportCSVToDgv(filename);
             Properties.Settings.Default.toolTableOriginal = true;
-            Properties.Settings.Default.toolTableLastLoaded = Path.GetFileName(filename);
-            lblToolListLoaded.Text = Path.GetFileName(filename);
+            Properties.Settings.Default.toolTableLastLoaded = filename; // Path.GetFileName(filename);
+            lblToolListLoaded.Text = (filename.Contains(Datapath.Tools)) ? Path.GetFileName(filename) : filename;
             lblToolListChanged.Text = "orginal";
             lblToolListChanged.BackColor = Color.Transparent;
             ExportDgvToCSV(defaultToolList);
@@ -988,6 +1021,12 @@ namespace GrblPlotter
 
         private void HighlightPenOptions_Click(object sender, EventArgs e)
         {
+
+            if (cBImportGCRelative.Checked)
+                cBImportGCRelative.BackColor = Color.Yellow;
+            else
+                cBImportGCRelative.BackColor = Color.Transparent;
+
             if (cBImportSVGRepeat.Checked)
                 cBImportSVGRepeat.BackColor = Color.Yellow;
             else
@@ -998,6 +1037,16 @@ namespace GrblPlotter
             else
                 gBClipping.BackColor = Color.WhiteSmoke;
 
+            if (CbimportGraphicFilterEnable.Checked)
+                GbFilter.BackColor = Color.Yellow;
+            else
+                GbFilter.BackColor = Color.WhiteSmoke;
+
+            /*    if (RbimportGraphicFilterChoiceRemove1.Checked)
+                { GbFilterRemove.BackColor = Color.Yellow; GbFilterKeep.BackColor = Color.WhiteSmoke; }
+                else
+                { GbFilterRemove.BackColor = Color.WhiteSmoke; GbFilterKeep.BackColor = Color.Yellow; }
+            */
             if (cBDashedLine1.Checked)
             { cBDashedLine1.BackColor = cBDashedLine2.BackColor = Color.Yellow; }
             else
@@ -1115,7 +1164,7 @@ namespace GrblPlotter
         {
             OpenFileDialog opnDlg = new OpenFileDialog();
             string ipath = Datapath.MakeAbsolutePath(tmp.Text);
-            Logger.Info("SetFilePath initiial: box:{☺}   makeAbsolute:{1}", tmp.Text, ipath);
+            Logger.Info("SetFilePath initiial: box:{0}   makeAbsolute:{1}", tmp.Text, ipath);
             opnDlg.InitialDirectory = ipath.Substring(0, ipath.LastIndexOf("\\"));
             opnDlg.Filter = "GCode (*.nc)|*.nc|All Files (*.*)|*.*";
             //            MessageBox.Show(opnDlg.InitialDirectory+"\r\n"+ Application.StartupPath);
@@ -1123,7 +1172,7 @@ namespace GrblPlotter
             {
                 FileInfo f = new FileInfo(opnDlg.FileName);
                 string path;
-                Logger.Info("SetFilePath DirectoryName:{☺}   Datapath.AppDataFolder:{1}", f.DirectoryName, Datapath.AppDataFolder);
+                Logger.Info("SetFilePath DirectoryName:{0}   Datapath.AppDataFolder:{1}", f.DirectoryName, Datapath.AppDataFolder);
                 if (f.DirectoryName == Datapath.AppDataFolder)
                     path = f.Name;  // only file name
                 else if (f.DirectoryName.StartsWith(Datapath.AppDataFolder))
@@ -1133,7 +1182,7 @@ namespace GrblPlotter
                 if (path.StartsWith(@".\"))
                     path = path.Substring(2);
                 tmp.Text = path;
-                Logger.Info("SetFilePath changed: box:{☺}   makeAbsolute:{1}", path, opnDlg.FileName);
+                Logger.Info("SetFilePath changed: box:{0}   makeAbsolute:{1}", path, opnDlg.FileName);
             }
             opnDlg.Dispose();
         }
@@ -1497,7 +1546,6 @@ namespace GrblPlotter
                 Filter = "Use cases (*.ini)|*.ini",
                 FileName = "new_use_case.ini"
             };
-            sfd.Dispose();
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -1521,6 +1569,7 @@ namespace GrblPlotter
                 MyIni.WriteImport();
             }
             FillUseCaseFileList(Datapath.Usecases);
+            sfd.Dispose();
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
@@ -1902,6 +1951,212 @@ namespace GrblPlotter
         private void CbProjectorScaleEnable_CheckedChanged(object sender, EventArgs e)
         {
             GbProjectorScale.Enabled = CbProjectorScaleEnable.Checked;
+        }
+
+        private void BtnLoadToolTableDialog_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnImportGraphicClipGetDim_Click(object sender, EventArgs e)
+        {
+            if (VisuGCode.clipDimension.X > 0)
+                nUDImportGraphicClipWidth.Value = (decimal)VisuGCode.clipDimension.X;
+            if (VisuGCode.clipDimension.Y > 0)
+                nUDImportGraphicClipHeight.Value = (decimal)VisuGCode.clipDimension.Y;
+            Logger.Trace("Setup clipDimension {0:0.00} {1:0.00}", VisuGCode.clipDimension.X, VisuGCode.clipDimension.Y);
+        }
+
+        private void BtnImportGraphicClipGetOff_Click(object sender, EventArgs e)
+        {
+            if (VisuGCode.clipOffset.X >= 0)
+                nUDImportGraphicClipOffsetX.Value = (decimal)VisuGCode.clipOffset.X;
+            if (VisuGCode.clipOffset.Y >= 0)
+                nUDImportGraphicClipOffsetY.Value = (decimal)VisuGCode.clipOffset.Y;
+            Logger.Trace("Setup clipOffset {0:0.00} {1:0.00}", VisuGCode.clipOffset.X, VisuGCode.clipOffset.Y);
+        }
+
+        private void CbimportGraphicFilterEnable_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CbimportGraphicFilterEnable.Checked)
+                GbFilter.BackColor = Color.Yellow;
+            else
+                GbFilter.BackColor = Color.WhiteSmoke;
+        }
+
+        private void BtnGetFilterValueRemove_Click(object sender, EventArgs e)
+        {
+            string tmp;
+            Button clickedButton = sender as Button;
+            if (clickedButton.Name == "BtnGetFilterValueRemoveWidth")      //(rBImportSVGGroupItem2.Checked)
+                tmp = lastMarkedWidth;
+            else
+                tmp = lastMarkedColor;
+            if (!string.IsNullOrEmpty(tmp) && (tmp != "0"))
+                TbimportGraphicFilterListRemove.Text += tmp + ";";
+            Logger.Trace("Setup BtnGetFilterValue Remove '{0}'", tmp);
+        }
+
+        private void BtnGetFilterValueKeep_Click(object sender, EventArgs e)
+        {
+            string tmp;
+            Button clickedButton = sender as Button;
+            if (clickedButton.Name == "BtnGetFilterValueKeepWidth")       //(rBImportSVGGroupItem2.Checked)
+                tmp = lastMarkedWidth;
+            else
+                tmp = lastMarkedColor;
+            if (!string.IsNullOrEmpty(tmp) && (tmp != "0"))
+                TbimportGraphicFilterListKeep.Text += tmp + ";";
+            Logger.Trace("Setup BtnGetFilterValue Keep '{0}'", tmp);
+        }
+
+        private void BtnGetFilterValueClear_Click(object sender, EventArgs e)
+        {
+            TbimportGraphicFilterListRemove.Text = TbimportGraphicFilterListKeep.Text = "";
+        }
+
+        private void BtnGetFilterLoad_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog
+            {
+                InitialDirectory = Datapath.Filter,
+                Filter = "Filter list|*.ini",
+                Title = "Load filter list "
+            };
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                var MyIni = new IniFile(openFileDialog1.FileName);
+                Logger.Trace("Load Filter list   {0}", openFileDialog1.FileName);
+                MyIni.ReadImport();   // ReadAll();
+            }
+            openFileDialog1.Dispose();
+
+            if (Properties.Settings.Default.importGraphicFilterChoiceRemove)
+                RbimportGraphicFilterChoiceRemove1.Checked = true;
+            else
+                RbimportGraphicFilterChoiceRemove2.Checked = true;
+        }
+
+        private void BtnGetFilterSave_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                InitialDirectory = Datapath.Filter,
+                Filter = "Filter list|*.ini",
+                FileName = "Filter.ini"
+            };
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    if (File.Exists(sfd.FileName))
+                        File.Delete(sfd.FileName);
+                }
+                catch (IOException err)
+                {
+                    EventCollector.StoreException("Error BtnGetFilterSave_Click:" + sfd.FileName);
+                    Logger.Error(err, "BtnGetFilterSave_Click IOException:{0}", sfd.FileName);
+                    MessageBox.Show("Could not delete old " + sfd.FileName, "Error");
+                    return;
+                }
+                catch
+                {//(Exception err) { 
+                    throw;      // unknown exception...
+                }
+
+                string txt = "[Graphics Import]\r\n";
+                txt += "Filter remove=" + Properties.Settings.Default.importGraphicFilterChoiceRemove.ToString() + "\r\n";
+                txt += "Filter list remove=" + Properties.Settings.Default.importGraphicFilterListRemove + "\r\n";
+                txt += "Filter list keep=" + Properties.Settings.Default.importGraphicFilterListKeep + "\r\n";
+                File.WriteAllText(sfd.FileName, txt);
+            }
+            sfd.Dispose();
+        }
+
+        private void TabControl2_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            TabPage page = tabControl1_Level2.TabPages[e.Index];
+            if (IsOptionEnabledTabControl2(e.Index))
+                e.Graphics.FillRectangle(new SolidBrush(Color.Yellow), e.Bounds);
+            else
+                e.Graphics.FillRectangle(new SolidBrush((e.State == DrawItemState.Selected) ? Color.White : page.BackColor), e.Bounds);
+
+            Rectangle paddedBounds = e.Bounds;
+            int yOffset = (e.State == DrawItemState.Selected) ? -2 : 1;
+            paddedBounds.Offset(1, yOffset);
+            TextRenderer.DrawText(e.Graphics, page.Text, e.Font, paddedBounds, page.ForeColor);
+        }
+        private bool IsOptionEnabledTabControl2(int tabIndex)
+        {
+            var prop = Properties.Settings.Default;
+            switch (tabIndex)
+            {
+                case 0:
+                    return (prop.importSVGApplyFill);
+                    break;
+                case 1:
+                    return (prop.importGCZEnable && prop.importGCZIncEnable && prop.importGCZIncNoZUp);
+                    break;
+                case 2:
+                    return (prop.importGCLineSegmentation || prop.importGCRelative);// || prop.importGraphicLeadOutEnable);
+                    break;
+                default:
+                    break;
+
+            }
+            return false;
+        }
+
+        private void TabControl3_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            TabPage page = tabControl3.TabPages[e.Index];
+            if (IsOptionEnabledTabControl3(e.Index))
+                e.Graphics.FillRectangle(new SolidBrush(Color.Yellow), e.Bounds);
+            else
+                e.Graphics.FillRectangle(new SolidBrush((e.State == DrawItemState.Selected) ? Color.White : page.BackColor), e.Bounds);
+
+            Rectangle paddedBounds = e.Bounds;
+            int yOffset = (e.State == DrawItemState.Selected) ? -2 : 1;
+            paddedBounds.Offset(1, yOffset);
+            TextRenderer.DrawText(e.Graphics, page.Text, e.Font, paddedBounds, page.ForeColor);
+        }
+
+        private bool IsOptionEnabledTabControl3(int tabIndex)
+        {
+            var prop = Properties.Settings.Default;
+            switch (tabIndex)
+            {
+                case 0:
+                    break;
+                case 1:
+                    return (prop.importSVGNodesOnly || prop.importDepthFromWidth || prop.importSVGCircleToDot);
+                    break;
+                case 2:
+                    return (prop.importGraphicAddFrameEnable || prop.importGraphicMultiplyGraphicsEnable || prop.importGraphicLeadInEnable);// || prop.importGraphicLeadOutEnable);
+                    break;
+                case 3:
+                    return (prop.importGCDragKnifeEnable || prop.importGCTangentialEnable || prop.importGraphicHatchFillEnable || prop.importGraphicExtendPathEnable);
+                    break;
+                case 4:
+                    return (prop.importGraphicClipEnable);
+                    break;
+                case 5:
+                    return (prop.importGCToolTableUse);
+                    break;
+                case 6:
+                    return (prop.importGraphicFilterEnable);
+                    break;
+                case 7:
+                    return (prop.importGraphicDevelopmentFeedInvert || prop.importGraphicWireBenderEnable);
+                    break;
+                case 8:
+                    return (prop.importGCAux1Enable || prop.importGCAux2Enable);
+                    break;
+                default:
+                    break;
+
+            }
+            return false;
         }
     }
 }

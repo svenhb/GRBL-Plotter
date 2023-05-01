@@ -2333,7 +2333,7 @@ M4 Dinamik Lazer Gücü Modu</value>
     <value>Logging</value>
   </data>
   <data name="BtnOpenLogFile.Text" xml:space="preserve">
-    <value>Open logfile</value>
+    <value>Günlük dosyasını aç</value>
   </data>
   <data name="cBExtendedLoggingCOM.Text" xml:space="preserve">
     <value>Serial COM / streaming</value>
@@ -3411,5 +3411,142 @@ Diğer ayarlar genellikle değiştirildiğinde saklanacaktır.</value>
   <data name="$this.Text" xml:space="preserve">
     <value>Kurmak</value>
     <comment>Form</comment>
+  </data>
+  <data name="BtnImportGraphicClipGetOff.Text" xml:space="preserve">
+    <value>GCode'dan ofset uygula</value>
+  </data>
+  <data name="BtnImportGraphicClipGetOff.ToolTip" xml:space="preserve">
+    <value>'Grafik orijinini 0;0'a kaydır' uygulanırsa hesaplanan ofset uygulandı.
+GCode başlık bölümünde verilmiştir: 'Graphic offset'.</value>
+  </data>
+  <data name="BtnImportGraphicClipGetDim.Text" xml:space="preserve">
+    <value>SVG'den boyut uygula</value>
+  </data>
+  <data name="BtnImportGraphicClipGetDim.ToolTip" xml:space="preserve">
+    <value>SVG grafiklerinin boyutu - 'genişlik' ve 'yükseklik'.
+GCode başlık bölümünde verilmiştir: 'SVG dimension'.</value>
+  </data>
+  <data name="nUDImportGraphicClipWidth.ToolTip" xml:space="preserve">
+    <value>Döşemenin X boyutu</value>
+  </data>
+  <data name="CbImportGraphicClipGetDimAuto.Text" xml:space="preserve">
+    <value>İçe aktarmada otomatik uygulama</value>
+  </data>
+  <data name="CbImportGraphicClipGetDimAuto.ToolTip" xml:space="preserve">
+    <value>İçe aktarma sırasında değerleri otomatik olarak uygula</value>
+  </data>
+  <data name="BtnGetFilterSave.Text" xml:space="preserve">
+    <value>bilgisayara kaydet</value>
+  </data>
+  <data name="BtnGetFilterLoad.Text" xml:space="preserve">
+    <value>yük filtreleri</value>
+  </data>
+  <data name="BtnGetFilterValueClear.Text" xml:space="preserve">
+    <value>metni sil</value>
+  </data>
+  <data name="RbimportGraphicFilterChoiceRemove2.Text" xml:space="preserve">
+    <value>nesneleri tutmak</value>
+  </data>
+  <data name="RbimportGraphicFilterChoiceRemove1.Text" xml:space="preserve">
+    <value>nesneleri kaldır</value>
+  </data>
+  <data name="CbimportGraphicFilterEnable.Text" xml:space="preserve">
+    <value>Filtrenin kalem rengine veya kalem genişliğine göre etkinleştirilmesi</value>
+  </data>
+  <data name="GbFilter.Text" xml:space="preserve">
+    <value>Nesneleri özelliklerine göre tut veya kaldır</value>
+  </data>
+  <data name="tabPage34.Text" xml:space="preserve">
+    <value>filtre</value>
+  </data>
+  <data name="BtnLoadToolTableDialog.ToolTip" xml:space="preserve">
+    <value>Alet tablosunu başka bir konumdan yükleyin</value>
+  </data>
+  <data name="label89.Text" xml:space="preserve">
+    <value>Bu özelliklere sahip tüm nesneleri kaldırın (';' ile ayırın)</value>
+  </data>
+  <data name="label90.Text" xml:space="preserve">
+    <value>Tüm nesneleri bu özelliklere sahip tutun (';' ile ayırın)</value>
+  </data>
+  <data name="CbImportGraphicClipAngleEnable.Text" xml:space="preserve">
+    <value>Dönüş</value>
+  </data>
+  <data name="cBColorModeWidth.Text" xml:space="preserve">
+    <value>+ genişlik</value>
+  </data>
+  <data name="cBColorModeWidth.ToolTip" xml:space="preserve">
+    <value>Ayrıca içe aktarılan kalem genişliğini 2B görünüme uygular</value>
+  </data>
+  <data name="BtnGetFilterValueRemove.Text" xml:space="preserve">
+    <value>Almak</value>
+  </data>
+  <data name="BtnGetFilterValueKeep.Text" xml:space="preserve">
+    <value>renk ithalatı</value>
+  </data>
+  <data name="pathImport1.Text" xml:space="preserve">
+    <value>Biçimle ilgili</value>
+  </data>
+  <data name="pathImport2.Text" xml:space="preserve">
+    <value>Genel seçenekler</value>
+  </data>
+  <data name="pathImport3.Text" xml:space="preserve">
+    <value>Yol eklentileri</value>
+  </data>
+  <data name="pathImport4.Text" xml:space="preserve">
+    <value>Yol değişiklikleri</value>
+  </data>
+  <data name="pathImport5.Text" xml:space="preserve">
+    <value>Kırpma</value>
+  </data>
+  <data name="pathImport6.Text" xml:space="preserve">
+    <value>Gruplama ve araçlar</value>
+  </data>
+  <data name="BtnGetFilterSave.ToolTip" xml:space="preserve">
+    <value>../data/filters içindeki filtre ayarlarını bir ini dosyası olarak kaydedin</value>
+  </data>
+  <data name="BtnGetFilterLoad.ToolTip" xml:space="preserve">
+    <value>../data/filters adresinden filtre ayarlarını yükleyin</value>
+  </data>
+  <data name="BtnGetFilterValueClear.ToolTip" xml:space="preserve">
+    <value>Metin alanlarını sil</value>
+  </data>
+  <data name="BtnGetFilterValueKeep.ToolTip" xml:space="preserve">
+    <value>Seçilen karakterin veya grubun rengini ekler</value>
+  </data>
+  <data name="BtnGetFilterValueRemove.ToolTip" xml:space="preserve">
+    <value>Seçilen karakterin veya grubun rengini ekler</value>
+  </data>
+  <data name="pathImport7.Text" xml:space="preserve">
+    <value>filtre</value>
+  </data>
+  <data name="pathImport8.Text" xml:space="preserve">
+    <value>Özel dönüşüm</value>
+  </data>
+  <data name="pathImport9.Text" xml:space="preserve">
+    <value>Komut uzantısı</value>
+  </data>
+  <data name="graphicImport1.Text" xml:space="preserve">
+    <value>Yol içe aktarma</value>
+  </data>
+  <data name="graphicImport2.Text" xml:space="preserve">
+    <value>G Kodu oluşturma</value>
+  </data>
+  <data name="graphicImport3.Text" xml:space="preserve">
+    <value>G Kodu değişikliği</value>
+  </data>
+  <data name="graphicImport4.Text" xml:space="preserve">
+    <value>Kullanım örnekleri</value>
+  </data>
+  <data name="BtnGetFilterValueKeepWidth.ToolTip" xml:space="preserve">
+    <value>Seçilen karakterin veya grubun rengini ekler</value>
+  </data>
+  <data name="BtnGetFilterValueKeepColor.ToolTip" xml:space="preserve">
+    <value>Seçilen karakterin veya grubun rengini ekler</value>
+  </data>
+  <data name="BtnGetFilterValueRemoveWidth.ToolTip" xml:space="preserve">
+    <value>Seçilen karakterin veya grubun rengini ekler</value>
+  </data>
+  <data name="BtnGetFilterValueRemoveColor.ToolTip" xml:space="preserve">
+    <value>Seçilen karakterin veya grubun rengini ekler</value>
   </data>
 </root>

@@ -70,9 +70,9 @@ namespace GrblPlotter
             this.tabControl_Level1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabControl1_Level2 = new System.Windows.Forms.TabControl();
-            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.graphicImport1 = new System.Windows.Forms.TabPage();
             this.tabControl3 = new System.Windows.Forms.TabControl();
-            this.tabPage16 = new System.Windows.Forms.TabPage();
+            this.pathImport1 = new System.Windows.Forms.TabPage();
             this.tab1_3gB7 = new System.Windows.Forms.GroupBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -118,7 +118,7 @@ namespace GrblPlotter
             this.cBImportSVG_DPI_96 = new System.Windows.Forms.RadioButton();
             this.cBImportSVGResize = new System.Windows.Forms.CheckBox();
             this.lblSVGScale = new System.Windows.Forms.Label();
-            this.tabPage17 = new System.Windows.Forms.TabPage();
+            this.pathImport2 = new System.Windows.Forms.TabPage();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.gBCreateZValue = new System.Windows.Forms.GroupBox();
             this.lblImportPenWidthToZWarning = new System.Windows.Forms.Label();
@@ -164,7 +164,7 @@ namespace GrblPlotter
             this.rBImportUnitmm = new System.Windows.Forms.RadioButton();
             this.cBImportSVGReduce = new System.Windows.Forms.CheckBox();
             this.tab1_1lbl2 = new System.Windows.Forms.Label();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.pathImport3 = new System.Windows.Forms.TabPage();
             this.gBPathAddOn3 = new System.Windows.Forms.GroupBox();
             this.cBimportGraphicLeadTopZUp = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -194,7 +194,7 @@ namespace GrblPlotter
             this.label35 = new System.Windows.Forms.Label();
             this.nUDimportGraphicAddFrameDistance = new System.Windows.Forms.NumericUpDown();
             this.cBimportGraphicAddFrameEnable = new System.Windows.Forms.CheckBox();
-            this.tabPage20 = new System.Windows.Forms.TabPage();
+            this.pathImport4 = new System.Windows.Forms.TabPage();
             this.tab1_3gB8 = new System.Windows.Forms.GroupBox();
             this.nUDPathOverlapValue = new System.Windows.Forms.NumericUpDown();
             this.cBPathOverlapEnable = new System.Windows.Forms.CheckBox();
@@ -231,12 +231,17 @@ namespace GrblPlotter
             this.lblDrag2 = new System.Windows.Forms.Label();
             this.lblDrag1 = new System.Windows.Forms.Label();
             this.cBImportGCDragKnife = new System.Windows.Forms.CheckBox();
-            this.tabPage18 = new System.Windows.Forms.TabPage();
+            this.pathImport5 = new System.Windows.Forms.TabPage();
             this.gBClipping = new System.Windows.Forms.GroupBox();
+            this.NudImportGraphicClipAngle = new System.Windows.Forms.NumericUpDown();
+            this.CbImportGraphicClipAngleEnable = new System.Windows.Forms.CheckBox();
+            this.CbImportGraphicClipGetDimAuto = new System.Windows.Forms.CheckBox();
+            this.BtnImportGraphicClipGetOff = new System.Windows.Forms.Button();
+            this.BtnImportGraphicClipGetDim = new System.Windows.Forms.Button();
             this.nUDImportGraphicClipOffsetY = new System.Windows.Forms.NumericUpDown();
             this.nUDImportGraphicClipHeight = new System.Windows.Forms.NumericUpDown();
             this.nUDImportGraphicClipOffsetX = new System.Windows.Forms.NumericUpDown();
-            this.nUDImportGraphicTileClipWidth = new System.Windows.Forms.NumericUpDown();
+            this.nUDImportGraphicClipWidth = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.rBImportGraphicClip1 = new System.Windows.Forms.RadioButton();
             this.rBImportGraphicClip0 = new System.Windows.Forms.RadioButton();
@@ -251,7 +256,7 @@ namespace GrblPlotter
             this.label11 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.cBImportGraphicClipOffsetApply = new System.Windows.Forms.CheckBox();
-            this.tabPage19 = new System.Windows.Forms.TabPage();
+            this.pathImport6 = new System.Windows.Forms.TabPage();
             this.groupBox30 = new System.Windows.Forms.GroupBox();
             this.label73 = new System.Windows.Forms.Label();
             this.NudConversionMaxFigures = new System.Windows.Forms.NumericUpDown();
@@ -275,7 +280,25 @@ namespace GrblPlotter
             this.rBImportSVGGroupItem2 = new System.Windows.Forms.RadioButton();
             this.rBImportSVGGroupItem1 = new System.Windows.Forms.RadioButton();
             this.cBImportSVGGroup = new System.Windows.Forms.CheckBox();
-            this.tabPage30 = new System.Windows.Forms.TabPage();
+            this.pathImport7 = new System.Windows.Forms.TabPage();
+            this.GbFilter = new System.Windows.Forms.GroupBox();
+            this.BtnGetFilterSave = new System.Windows.Forms.Button();
+            this.BtnGetFilterLoad = new System.Windows.Forms.Button();
+            this.BtnGetFilterValueClear = new System.Windows.Forms.Button();
+            this.RbimportGraphicFilterChoiceRemove2 = new System.Windows.Forms.RadioButton();
+            this.GbFilterKeep = new System.Windows.Forms.GroupBox();
+            this.BtnGetFilterValueKeepWidth = new System.Windows.Forms.Button();
+            this.BtnGetFilterValueKeepColor = new System.Windows.Forms.Button();
+            this.TbimportGraphicFilterListKeep = new System.Windows.Forms.TextBox();
+            this.label90 = new System.Windows.Forms.Label();
+            this.RbimportGraphicFilterChoiceRemove1 = new System.Windows.Forms.RadioButton();
+            this.GbFilterRemove = new System.Windows.Forms.GroupBox();
+            this.BtnGetFilterValueRemoveWidth = new System.Windows.Forms.Button();
+            this.BtnGetFilterValueRemoveColor = new System.Windows.Forms.Button();
+            this.TbimportGraphicFilterListRemove = new System.Windows.Forms.TextBox();
+            this.label89 = new System.Windows.Forms.Label();
+            this.CbimportGraphicFilterEnable = new System.Windows.Forms.CheckBox();
+            this.pathImport8 = new System.Windows.Forms.TabPage();
             this.GbWireBender = new System.Windows.Forms.GroupBox();
             this.RbWireBenderAnglePcnt = new System.Windows.Forms.RadioButton();
             this.RbWireBenderAngleAbs = new System.Windows.Forms.RadioButton();
@@ -320,7 +343,7 @@ namespace GrblPlotter
             this.rBImportGraphicDevelopFeedX = new System.Windows.Forms.RadioButton();
             this.rBImportGraphicDevelopFeedY = new System.Windows.Forms.RadioButton();
             this.cBImportGraphicDevelopEnable = new System.Windows.Forms.CheckBox();
-            this.tabPage31 = new System.Windows.Forms.TabPage();
+            this.pathImport9 = new System.Windows.Forms.TabPage();
             this.groupBox26 = new System.Windows.Forms.GroupBox();
             this.LbLAuxDescription = new System.Windows.Forms.Label();
             this.groupBox28 = new System.Windows.Forms.GroupBox();
@@ -345,7 +368,7 @@ namespace GrblPlotter
             this.NudAux1Factor = new System.Windows.Forms.NumericUpDown();
             this.CbAux1Axis = new System.Windows.Forms.ComboBox();
             this.CbAux1Enable = new System.Windows.Forms.CheckBox();
-            this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.graphicImport2 = new System.Windows.Forms.TabPage();
             this.tab1_2gB1 = new System.Windows.Forms.GroupBox();
             this.label32 = new System.Windows.Forms.Label();
             this.tBImportGCToolChange = new System.Windows.Forms.TextBox();
@@ -439,7 +462,7 @@ namespace GrblPlotter
             this.tab1_2lbl62 = new System.Windows.Forms.Label();
             this.tab1_2lbl61 = new System.Windows.Forms.Label();
             this.cBImportGCUseIndividual = new System.Windows.Forms.CheckBox();
-            this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.graphicImport3 = new System.Windows.Forms.TabPage();
             this.tab1_3gB3 = new System.Windows.Forms.GroupBox();
             this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
@@ -462,7 +485,7 @@ namespace GrblPlotter
             this.tBImportGCSubroutine = new System.Windows.Forms.TextBox();
             this.cBImportGCSubEnable = new System.Windows.Forms.CheckBox();
             this.cBImportGCLineSegments = new System.Windows.Forms.CheckBox();
-            this.tabPage15 = new System.Windows.Forms.TabPage();
+            this.graphicImport4 = new System.Windows.Forms.TabPage();
             this.tab1_4gB1 = new System.Windows.Forms.GroupBox();
             this.lblLastUseCase = new System.Windows.Forms.Label();
             this.tab1_4lbl1 = new System.Windows.Forms.Label();
@@ -476,6 +499,7 @@ namespace GrblPlotter
             this.lBUseCase = new System.Windows.Forms.ListBox();
             this.tabPage14 = new System.Windows.Forms.TabPage();
             this.tab2gB1 = new System.Windows.Forms.GroupBox();
+            this.BtnLoadToolTableDialog = new System.Windows.Forms.Button();
             this.lblToolListChanged = new System.Windows.Forms.Label();
             this.btnDeleteToolTable = new System.Windows.Forms.Button();
             this.lblToolListLoaded = new System.Windows.Forms.Label();
@@ -941,6 +965,7 @@ namespace GrblPlotter
             this.nUDFCTBLineInterval = new System.Windows.Forms.NumericUpDown();
             this.label12 = new System.Windows.Forms.Label();
             this.tab8gB2 = new System.Windows.Forms.GroupBox();
+            this.cBColorModeWidth = new System.Windows.Forms.CheckBox();
             this.nUDToolSize = new System.Windows.Forms.NumericUpDown();
             this.label68 = new System.Windows.Forms.Label();
             this.btnColorDimension = new System.Windows.Forms.Button();
@@ -1052,9 +1077,9 @@ namespace GrblPlotter
             this.tabControl_Level1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl1_Level2.SuspendLayout();
-            this.tabPage9.SuspendLayout();
+            this.graphicImport1.SuspendLayout();
             this.tabControl3.SuspendLayout();
-            this.tabPage16.SuspendLayout();
+            this.pathImport1.SuspendLayout();
             this.tab1_3gB7.SuspendLayout();
             this.tab1_3gB6.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -1068,7 +1093,7 @@ namespace GrblPlotter
             this.tab1_1gB3.SuspendLayout();
             this.tab1_1gB2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSVGScale)).BeginInit();
-            this.tabPage17.SuspendLayout();
+            this.pathImport2.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.gBCreateZValue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportPenWidthToZMin)).BeginInit();
@@ -1082,7 +1107,7 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportReduce)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportSVGSegemnts)).BeginInit();
-            this.tabPage7.SuspendLayout();
+            this.pathImport3.SuspendLayout();
             this.gBPathAddOn3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDimportGraphicLeadOutDistance)).BeginInit();
@@ -1095,7 +1120,7 @@ namespace GrblPlotter
             this.groupBox21.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDimportGraphicAddFramePenWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDimportGraphicAddFrameDistance)).BeginInit();
-            this.tabPage20.SuspendLayout();
+            this.pathImport4.SuspendLayout();
             this.tab1_3gB8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDPathOverlapValue)).BeginInit();
             this.gBHatchFill.SuspendLayout();
@@ -1111,15 +1136,16 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifeAngle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifePercent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifeLength)).BeginInit();
-            this.tabPage18.SuspendLayout();
+            this.pathImport5.SuspendLayout();
             this.gBClipping.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudImportGraphicClipAngle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicClipOffsetY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicClipHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicClipOffsetX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicTileClipWidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicClipWidth)).BeginInit();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicTileClipAddOnX)).BeginInit();
-            this.tabPage19.SuspendLayout();
+            this.pathImport6.SuspendLayout();
             this.groupBox30.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudConversionMaxFigures)).BeginInit();
             this.tab1_1gB5.SuspendLayout();
@@ -1127,7 +1153,11 @@ namespace GrblPlotter
             this.tab1_1gB4.SuspendLayout();
             this.tab1_1_4gB3.SuspendLayout();
             this.tab1_1_4gB2.SuspendLayout();
-            this.tabPage30.SuspendLayout();
+            this.pathImport7.SuspendLayout();
+            this.GbFilter.SuspendLayout();
+            this.GbFilterKeep.SuspendLayout();
+            this.GbFilterRemove.SuspendLayout();
+            this.pathImport8.SuspendLayout();
             this.GbWireBender.SuspendLayout();
             this.groupBox31.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudWireBenderRadius)).BeginInit();
@@ -1143,7 +1173,7 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.NudImportGraphicDevelopNotchDistance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicDevelopNotchZCut)).BeginInit();
             this.groupBox19.SuspendLayout();
-            this.tabPage31.SuspendLayout();
+            this.pathImport9.SuspendLayout();
             this.groupBox26.SuspendLayout();
             this.groupBox28.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudAux2ZFactor)).BeginInit();
@@ -1151,7 +1181,7 @@ namespace GrblPlotter
             this.groupBox27.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudAux1ZFactor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudAux1Factor)).BeginInit();
-            this.tabPage10.SuspendLayout();
+            this.graphicImport2.SuspendLayout();
             this.tab1_2gB1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCFeedXY)).BeginInit();
             this.tab1_2gB2.SuspendLayout();
@@ -1182,7 +1212,7 @@ namespace GrblPlotter
             this.tab1_2gB5.SuspendLayout();
             this.tabPage29.SuspendLayout();
             this.tab1_2gB6.SuspendLayout();
-            this.tabPage11.SuspendLayout();
+            this.graphicImport3.SuspendLayout();
             this.tab1_3gB3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
@@ -1190,7 +1220,7 @@ namespace GrblPlotter
             this.tab1_3gB4.SuspendLayout();
             this.tab1_3gB1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCLineSegment)).BeginInit();
-            this.tabPage15.SuspendLayout();
+            this.graphicImport4.SuspendLayout();
             this.tab1_4gB1.SuspendLayout();
             this.tabPage14.SuspendLayout();
             this.tab2gB1.SuspendLayout();
@@ -1382,45 +1412,50 @@ namespace GrblPlotter
             // 
             // tabControl1_Level2
             // 
-            this.tabControl1_Level2.Controls.Add(this.tabPage9);
-            this.tabControl1_Level2.Controls.Add(this.tabPage10);
-            this.tabControl1_Level2.Controls.Add(this.tabPage11);
-            this.tabControl1_Level2.Controls.Add(this.tabPage15);
+            this.tabControl1_Level2.Controls.Add(this.graphicImport1);
+            this.tabControl1_Level2.Controls.Add(this.graphicImport2);
+            this.tabControl1_Level2.Controls.Add(this.graphicImport3);
+            this.tabControl1_Level2.Controls.Add(this.graphicImport4);
+            this.tabControl1_Level2.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             resources.ApplyResources(this.tabControl1_Level2, "tabControl1_Level2");
             this.tabControl1_Level2.Name = "tabControl1_Level2";
             this.tabControl1_Level2.SelectedIndex = 0;
+            this.tabControl1_Level2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.TabControl2_DrawItem);
             // 
-            // tabPage9
+            // graphicImport1
             // 
-            this.tabPage9.Controls.Add(this.tabControl3);
-            resources.ApplyResources(this.tabPage9, "tabPage9");
-            this.tabPage9.Name = "tabPage9";
-            this.tabPage9.UseVisualStyleBackColor = true;
+            this.graphicImport1.Controls.Add(this.tabControl3);
+            resources.ApplyResources(this.graphicImport1, "graphicImport1");
+            this.graphicImport1.Name = "graphicImport1";
+            this.graphicImport1.UseVisualStyleBackColor = true;
             // 
             // tabControl3
             // 
-            this.tabControl3.Controls.Add(this.tabPage16);
-            this.tabControl3.Controls.Add(this.tabPage17);
-            this.tabControl3.Controls.Add(this.tabPage7);
-            this.tabControl3.Controls.Add(this.tabPage20);
-            this.tabControl3.Controls.Add(this.tabPage18);
-            this.tabControl3.Controls.Add(this.tabPage19);
-            this.tabControl3.Controls.Add(this.tabPage30);
-            this.tabControl3.Controls.Add(this.tabPage31);
+            this.tabControl3.Controls.Add(this.pathImport1);
+            this.tabControl3.Controls.Add(this.pathImport2);
+            this.tabControl3.Controls.Add(this.pathImport3);
+            this.tabControl3.Controls.Add(this.pathImport4);
+            this.tabControl3.Controls.Add(this.pathImport5);
+            this.tabControl3.Controls.Add(this.pathImport6);
+            this.tabControl3.Controls.Add(this.pathImport7);
+            this.tabControl3.Controls.Add(this.pathImport8);
+            this.tabControl3.Controls.Add(this.pathImport9);
+            this.tabControl3.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             resources.ApplyResources(this.tabControl3, "tabControl3");
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
+            this.tabControl3.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.TabControl3_DrawItem);
             // 
-            // tabPage16
+            // pathImport1
             // 
-            this.tabPage16.Controls.Add(this.tab1_3gB7);
-            this.tabPage16.Controls.Add(this.tab1_3gB6);
-            this.tabPage16.Controls.Add(this.groupBox6);
-            this.tabPage16.Controls.Add(this.tab1_1gB3);
-            this.tabPage16.Controls.Add(this.tab1_1gB2);
-            resources.ApplyResources(this.tabPage16, "tabPage16");
-            this.tabPage16.Name = "tabPage16";
-            this.tabPage16.UseVisualStyleBackColor = true;
+            this.pathImport1.Controls.Add(this.tab1_3gB7);
+            this.pathImport1.Controls.Add(this.tab1_3gB6);
+            this.pathImport1.Controls.Add(this.groupBox6);
+            this.pathImport1.Controls.Add(this.tab1_1gB3);
+            this.pathImport1.Controls.Add(this.tab1_1gB2);
+            resources.ApplyResources(this.pathImport1, "pathImport1");
+            this.pathImport1.Name = "pathImport1";
+            this.pathImport1.UseVisualStyleBackColor = true;
             // 
             // tab1_3gB7
             // 
@@ -1835,16 +1870,16 @@ namespace GrblPlotter
             resources.ApplyResources(this.lblSVGScale, "lblSVGScale");
             this.lblSVGScale.Name = "lblSVGScale";
             // 
-            // tabPage17
+            // pathImport2
             // 
-            this.tabPage17.Controls.Add(this.groupBox9);
-            this.tabPage17.Controls.Add(this.groupBox5);
-            this.tabPage17.Controls.Add(this.groupBox8);
-            this.tabPage17.Controls.Add(this.groupBox4);
-            this.tabPage17.Controls.Add(this.tab1_1gB1);
-            resources.ApplyResources(this.tabPage17, "tabPage17");
-            this.tabPage17.Name = "tabPage17";
-            this.tabPage17.UseVisualStyleBackColor = true;
+            this.pathImport2.Controls.Add(this.groupBox9);
+            this.pathImport2.Controls.Add(this.groupBox5);
+            this.pathImport2.Controls.Add(this.groupBox8);
+            this.pathImport2.Controls.Add(this.groupBox4);
+            this.pathImport2.Controls.Add(this.tab1_1gB1);
+            resources.ApplyResources(this.pathImport2, "pathImport2");
+            this.pathImport2.Name = "pathImport2";
+            this.pathImport2.UseVisualStyleBackColor = true;
             // 
             // groupBox9
             // 
@@ -2325,14 +2360,14 @@ namespace GrblPlotter
             this.tab1_1lbl2.Name = "tab1_1lbl2";
             this.toolTip1.SetToolTip(this.tab1_1lbl2, resources.GetString("tab1_1lbl2.ToolTip"));
             // 
-            // tabPage7
+            // pathImport3
             // 
-            this.tabPage7.Controls.Add(this.gBPathAddOn3);
-            this.tabPage7.Controls.Add(this.gBPathAddOn2);
-            this.tabPage7.Controls.Add(this.gBPathAddOn1);
-            resources.ApplyResources(this.tabPage7, "tabPage7");
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.UseVisualStyleBackColor = true;
+            this.pathImport3.Controls.Add(this.gBPathAddOn3);
+            this.pathImport3.Controls.Add(this.gBPathAddOn2);
+            this.pathImport3.Controls.Add(this.gBPathAddOn1);
+            resources.ApplyResources(this.pathImport3, "pathImport3");
+            this.pathImport3.Name = "pathImport3";
+            this.pathImport3.UseVisualStyleBackColor = true;
             // 
             // gBPathAddOn3
             // 
@@ -2618,16 +2653,16 @@ namespace GrblPlotter
             this.cBimportGraphicAddFrameEnable.UseVisualStyleBackColor = true;
             this.cBimportGraphicAddFrameEnable.CheckedChanged += new System.EventHandler(this.HighlightPenOptions_Click);
             // 
-            // tabPage20
+            // pathImport4
             // 
-            this.tabPage20.Controls.Add(this.tab1_3gB8);
-            this.tabPage20.Controls.Add(this.lblPathModification);
-            this.tabPage20.Controls.Add(this.gBHatchFill);
-            this.tabPage20.Controls.Add(this.tab1_3gB5);
-            this.tabPage20.Controls.Add(this.tab1_3gB2);
-            resources.ApplyResources(this.tabPage20, "tabPage20");
-            this.tabPage20.Name = "tabPage20";
-            this.tabPage20.UseVisualStyleBackColor = true;
+            this.pathImport4.Controls.Add(this.tab1_3gB8);
+            this.pathImport4.Controls.Add(this.lblPathModification);
+            this.pathImport4.Controls.Add(this.gBHatchFill);
+            this.pathImport4.Controls.Add(this.tab1_3gB5);
+            this.pathImport4.Controls.Add(this.tab1_3gB2);
+            resources.ApplyResources(this.pathImport4, "pathImport4");
+            this.pathImport4.Name = "pathImport4";
+            this.pathImport4.UseVisualStyleBackColor = true;
             // 
             // tab1_3gB8
             // 
@@ -3031,20 +3066,25 @@ namespace GrblPlotter
             this.cBImportGCDragKnife.UseVisualStyleBackColor = true;
             this.cBImportGCDragKnife.CheckedChanged += new System.EventHandler(this.CbImportGCDragKnife_CheckedChanged);
             // 
-            // tabPage18
+            // pathImport5
             // 
-            this.tabPage18.Controls.Add(this.gBClipping);
-            resources.ApplyResources(this.tabPage18, "tabPage18");
-            this.tabPage18.Name = "tabPage18";
-            this.tabPage18.UseVisualStyleBackColor = true;
+            this.pathImport5.Controls.Add(this.gBClipping);
+            resources.ApplyResources(this.pathImport5, "pathImport5");
+            this.pathImport5.Name = "pathImport5";
+            this.pathImport5.UseVisualStyleBackColor = true;
             // 
             // gBClipping
             // 
             this.gBClipping.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.gBClipping.Controls.Add(this.NudImportGraphicClipAngle);
+            this.gBClipping.Controls.Add(this.CbImportGraphicClipAngleEnable);
+            this.gBClipping.Controls.Add(this.CbImportGraphicClipGetDimAuto);
+            this.gBClipping.Controls.Add(this.BtnImportGraphicClipGetOff);
+            this.gBClipping.Controls.Add(this.BtnImportGraphicClipGetDim);
             this.gBClipping.Controls.Add(this.nUDImportGraphicClipOffsetY);
             this.gBClipping.Controls.Add(this.nUDImportGraphicClipHeight);
             this.gBClipping.Controls.Add(this.nUDImportGraphicClipOffsetX);
-            this.gBClipping.Controls.Add(this.nUDImportGraphicTileClipWidth);
+            this.gBClipping.Controls.Add(this.nUDImportGraphicClipWidth);
             this.gBClipping.Controls.Add(this.label3);
             this.gBClipping.Controls.Add(this.rBImportGraphicClip1);
             this.gBClipping.Controls.Add(this.rBImportGraphicClip0);
@@ -3054,10 +3094,65 @@ namespace GrblPlotter
             this.gBClipping.Name = "gBClipping";
             this.gBClipping.TabStop = false;
             // 
+            // NudImportGraphicClipAngle
+            // 
+            this.NudImportGraphicClipAngle.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGraphicClipAngle", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.NudImportGraphicClipAngle.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.NudImportGraphicClipAngle, "NudImportGraphicClipAngle");
+            this.NudImportGraphicClipAngle.Maximum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            0});
+            this.NudImportGraphicClipAngle.Minimum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            -2147483648});
+            this.NudImportGraphicClipAngle.Name = "NudImportGraphicClipAngle";
+            this.NudImportGraphicClipAngle.Value = global::GrblPlotter.Properties.Settings.Default.importGraphicClipAngle;
+            // 
+            // CbImportGraphicClipAngleEnable
+            // 
+            resources.ApplyResources(this.CbImportGraphicClipAngleEnable, "CbImportGraphicClipAngleEnable");
+            this.CbImportGraphicClipAngleEnable.Checked = global::GrblPlotter.Properties.Settings.Default.importGraphicClipAngleEnable;
+            this.CbImportGraphicClipAngleEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGraphicClipAngleEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbImportGraphicClipAngleEnable.Name = "CbImportGraphicClipAngleEnable";
+            this.CbImportGraphicClipAngleEnable.UseVisualStyleBackColor = true;
+            // 
+            // CbImportGraphicClipGetDimAuto
+            // 
+            resources.ApplyResources(this.CbImportGraphicClipGetDimAuto, "CbImportGraphicClipGetDimAuto");
+            this.CbImportGraphicClipGetDimAuto.Checked = global::GrblPlotter.Properties.Settings.Default.importGraphicClipGetDimAuto;
+            this.CbImportGraphicClipGetDimAuto.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGraphicClipGetDimAuto", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbImportGraphicClipGetDimAuto.Name = "CbImportGraphicClipGetDimAuto";
+            this.toolTip1.SetToolTip(this.CbImportGraphicClipGetDimAuto, resources.GetString("CbImportGraphicClipGetDimAuto.ToolTip"));
+            this.CbImportGraphicClipGetDimAuto.UseVisualStyleBackColor = true;
+            // 
+            // BtnImportGraphicClipGetOff
+            // 
+            resources.ApplyResources(this.BtnImportGraphicClipGetOff, "BtnImportGraphicClipGetOff");
+            this.BtnImportGraphicClipGetOff.Name = "BtnImportGraphicClipGetOff";
+            this.toolTip1.SetToolTip(this.BtnImportGraphicClipGetOff, resources.GetString("BtnImportGraphicClipGetOff.ToolTip"));
+            this.BtnImportGraphicClipGetOff.UseVisualStyleBackColor = true;
+            this.BtnImportGraphicClipGetOff.Click += new System.EventHandler(this.BtnImportGraphicClipGetOff_Click);
+            // 
+            // BtnImportGraphicClipGetDim
+            // 
+            resources.ApplyResources(this.BtnImportGraphicClipGetDim, "BtnImportGraphicClipGetDim");
+            this.BtnImportGraphicClipGetDim.Name = "BtnImportGraphicClipGetDim";
+            this.toolTip1.SetToolTip(this.BtnImportGraphicClipGetDim, resources.GetString("BtnImportGraphicClipGetDim.ToolTip"));
+            this.BtnImportGraphicClipGetDim.UseVisualStyleBackColor = true;
+            this.BtnImportGraphicClipGetDim.Click += new System.EventHandler(this.BtnImportGraphicClipGetDim_Click);
+            // 
             // nUDImportGraphicClipOffsetY
             // 
             this.nUDImportGraphicClipOffsetY.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGraphicClipOffsetY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGraphicClipOffsetY.DecimalPlaces = 1;
+            this.nUDImportGraphicClipOffsetY.DecimalPlaces = 2;
             this.nUDImportGraphicClipOffsetY.Increment = new decimal(new int[] {
             10,
             0,
@@ -3065,12 +3160,12 @@ namespace GrblPlotter
             0});
             resources.ApplyResources(this.nUDImportGraphicClipOffsetY, "nUDImportGraphicClipOffsetY");
             this.nUDImportGraphicClipOffsetY.Maximum = new decimal(new int[] {
-            100000,
+            10000000,
             0,
             0,
             0});
             this.nUDImportGraphicClipOffsetY.Minimum = new decimal(new int[] {
-            100000,
+            10000000,
             0,
             0,
             -2147483648});
@@ -3081,7 +3176,7 @@ namespace GrblPlotter
             // nUDImportGraphicClipHeight
             // 
             this.nUDImportGraphicClipHeight.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGraphicTileY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGraphicClipHeight.DecimalPlaces = 1;
+            this.nUDImportGraphicClipHeight.DecimalPlaces = 2;
             this.nUDImportGraphicClipHeight.Increment = new decimal(new int[] {
             10,
             0,
@@ -3105,7 +3200,7 @@ namespace GrblPlotter
             // nUDImportGraphicClipOffsetX
             // 
             this.nUDImportGraphicClipOffsetX.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGraphicClipOffsetX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGraphicClipOffsetX.DecimalPlaces = 1;
+            this.nUDImportGraphicClipOffsetX.DecimalPlaces = 2;
             this.nUDImportGraphicClipOffsetX.Increment = new decimal(new int[] {
             10,
             0,
@@ -3113,12 +3208,12 @@ namespace GrblPlotter
             0});
             resources.ApplyResources(this.nUDImportGraphicClipOffsetX, "nUDImportGraphicClipOffsetX");
             this.nUDImportGraphicClipOffsetX.Maximum = new decimal(new int[] {
-            100000,
+            10000000,
             0,
             0,
             0});
             this.nUDImportGraphicClipOffsetX.Minimum = new decimal(new int[] {
-            100000,
+            10000000,
             0,
             0,
             -2147483648});
@@ -3126,29 +3221,29 @@ namespace GrblPlotter
             this.toolTip1.SetToolTip(this.nUDImportGraphicClipOffsetX, resources.GetString("nUDImportGraphicClipOffsetX.ToolTip"));
             this.nUDImportGraphicClipOffsetX.Value = global::GrblPlotter.Properties.Settings.Default.importGraphicClipOffsetX;
             // 
-            // nUDImportGraphicTileClipWidth
+            // nUDImportGraphicClipWidth
             // 
-            this.nUDImportGraphicTileClipWidth.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGraphicTileX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDImportGraphicTileClipWidth.DecimalPlaces = 1;
-            this.nUDImportGraphicTileClipWidth.Increment = new decimal(new int[] {
+            this.nUDImportGraphicClipWidth.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGraphicTileX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGraphicClipWidth.DecimalPlaces = 2;
+            this.nUDImportGraphicClipWidth.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            resources.ApplyResources(this.nUDImportGraphicTileClipWidth, "nUDImportGraphicTileClipWidth");
-            this.nUDImportGraphicTileClipWidth.Maximum = new decimal(new int[] {
+            resources.ApplyResources(this.nUDImportGraphicClipWidth, "nUDImportGraphicClipWidth");
+            this.nUDImportGraphicClipWidth.Maximum = new decimal(new int[] {
             100000,
             0,
             0,
             0});
-            this.nUDImportGraphicTileClipWidth.Minimum = new decimal(new int[] {
+            this.nUDImportGraphicClipWidth.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.nUDImportGraphicTileClipWidth.Name = "nUDImportGraphicTileClipWidth";
-            this.toolTip1.SetToolTip(this.nUDImportGraphicTileClipWidth, resources.GetString("nUDImportGraphicTileClipWidth.ToolTip"));
-            this.nUDImportGraphicTileClipWidth.Value = global::GrblPlotter.Properties.Settings.Default.importGraphicTileX;
+            this.nUDImportGraphicClipWidth.Name = "nUDImportGraphicClipWidth";
+            this.toolTip1.SetToolTip(this.nUDImportGraphicClipWidth, resources.GetString("nUDImportGraphicClipWidth.ToolTip"));
+            this.nUDImportGraphicClipWidth.Value = global::GrblPlotter.Properties.Settings.Default.importGraphicTileX;
             // 
             // label3
             // 
@@ -3269,14 +3364,14 @@ namespace GrblPlotter
             this.toolTip1.SetToolTip(this.cBImportGraphicClipOffsetApply, resources.GetString("cBImportGraphicClipOffsetApply.ToolTip"));
             this.cBImportGraphicClipOffsetApply.UseVisualStyleBackColor = true;
             // 
-            // tabPage19
+            // pathImport6
             // 
-            this.tabPage19.Controls.Add(this.groupBox30);
-            this.tabPage19.Controls.Add(this.tab1_1gB5);
-            this.tabPage19.Controls.Add(this.tab1_1gB4);
-            resources.ApplyResources(this.tabPage19, "tabPage19");
-            this.tabPage19.Name = "tabPage19";
-            this.tabPage19.UseVisualStyleBackColor = true;
+            this.pathImport6.Controls.Add(this.groupBox30);
+            this.pathImport6.Controls.Add(this.tab1_1gB5);
+            this.pathImport6.Controls.Add(this.tab1_1gB4);
+            resources.ApplyResources(this.pathImport6, "pathImport6");
+            this.pathImport6.Name = "pathImport6";
+            this.pathImport6.UseVisualStyleBackColor = true;
             // 
             // groupBox30
             // 
@@ -3493,13 +3588,159 @@ namespace GrblPlotter
             this.cBImportSVGGroup.UseVisualStyleBackColor = true;
             this.cBImportSVGGroup.CheckedChanged += new System.EventHandler(this.CbImportSVGGroup_CheckedChanged);
             // 
-            // tabPage30
+            // pathImport7
             // 
-            this.tabPage30.Controls.Add(this.GbWireBender);
-            this.tabPage30.Controls.Add(this.gBDevelop);
-            resources.ApplyResources(this.tabPage30, "tabPage30");
-            this.tabPage30.Name = "tabPage30";
-            this.tabPage30.UseVisualStyleBackColor = true;
+            this.pathImport7.Controls.Add(this.GbFilter);
+            resources.ApplyResources(this.pathImport7, "pathImport7");
+            this.pathImport7.Name = "pathImport7";
+            this.pathImport7.UseVisualStyleBackColor = true;
+            // 
+            // GbFilter
+            // 
+            this.GbFilter.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.GbFilter.Controls.Add(this.BtnGetFilterSave);
+            this.GbFilter.Controls.Add(this.BtnGetFilterLoad);
+            this.GbFilter.Controls.Add(this.BtnGetFilterValueClear);
+            this.GbFilter.Controls.Add(this.RbimportGraphicFilterChoiceRemove2);
+            this.GbFilter.Controls.Add(this.GbFilterKeep);
+            this.GbFilter.Controls.Add(this.RbimportGraphicFilterChoiceRemove1);
+            this.GbFilter.Controls.Add(this.GbFilterRemove);
+            this.GbFilter.Controls.Add(this.CbimportGraphicFilterEnable);
+            resources.ApplyResources(this.GbFilter, "GbFilter");
+            this.GbFilter.Name = "GbFilter";
+            this.GbFilter.TabStop = false;
+            // 
+            // BtnGetFilterSave
+            // 
+            resources.ApplyResources(this.BtnGetFilterSave, "BtnGetFilterSave");
+            this.BtnGetFilterSave.Name = "BtnGetFilterSave";
+            this.toolTip1.SetToolTip(this.BtnGetFilterSave, resources.GetString("BtnGetFilterSave.ToolTip"));
+            this.BtnGetFilterSave.UseVisualStyleBackColor = true;
+            this.BtnGetFilterSave.Click += new System.EventHandler(this.BtnGetFilterSave_Click);
+            // 
+            // BtnGetFilterLoad
+            // 
+            resources.ApplyResources(this.BtnGetFilterLoad, "BtnGetFilterLoad");
+            this.BtnGetFilterLoad.Name = "BtnGetFilterLoad";
+            this.toolTip1.SetToolTip(this.BtnGetFilterLoad, resources.GetString("BtnGetFilterLoad.ToolTip"));
+            this.BtnGetFilterLoad.UseVisualStyleBackColor = true;
+            this.BtnGetFilterLoad.Click += new System.EventHandler(this.BtnGetFilterLoad_Click);
+            // 
+            // BtnGetFilterValueClear
+            // 
+            resources.ApplyResources(this.BtnGetFilterValueClear, "BtnGetFilterValueClear");
+            this.BtnGetFilterValueClear.Name = "BtnGetFilterValueClear";
+            this.toolTip1.SetToolTip(this.BtnGetFilterValueClear, resources.GetString("BtnGetFilterValueClear.ToolTip"));
+            this.BtnGetFilterValueClear.UseVisualStyleBackColor = true;
+            this.BtnGetFilterValueClear.Click += new System.EventHandler(this.BtnGetFilterValueClear_Click);
+            // 
+            // RbimportGraphicFilterChoiceRemove2
+            // 
+            resources.ApplyResources(this.RbimportGraphicFilterChoiceRemove2, "RbimportGraphicFilterChoiceRemove2");
+            this.RbimportGraphicFilterChoiceRemove2.Name = "RbimportGraphicFilterChoiceRemove2";
+            this.RbimportGraphicFilterChoiceRemove2.UseVisualStyleBackColor = true;
+            // 
+            // GbFilterKeep
+            // 
+            this.GbFilterKeep.Controls.Add(this.BtnGetFilterValueKeepWidth);
+            this.GbFilterKeep.Controls.Add(this.BtnGetFilterValueKeepColor);
+            this.GbFilterKeep.Controls.Add(this.TbimportGraphicFilterListKeep);
+            this.GbFilterKeep.Controls.Add(this.label90);
+            resources.ApplyResources(this.GbFilterKeep, "GbFilterKeep");
+            this.GbFilterKeep.Name = "GbFilterKeep";
+            this.GbFilterKeep.TabStop = false;
+            // 
+            // BtnGetFilterValueKeepWidth
+            // 
+            resources.ApplyResources(this.BtnGetFilterValueKeepWidth, "BtnGetFilterValueKeepWidth");
+            this.BtnGetFilterValueKeepWidth.Name = "BtnGetFilterValueKeepWidth";
+            this.toolTip1.SetToolTip(this.BtnGetFilterValueKeepWidth, resources.GetString("BtnGetFilterValueKeepWidth.ToolTip"));
+            this.BtnGetFilterValueKeepWidth.UseVisualStyleBackColor = true;
+            this.BtnGetFilterValueKeepWidth.Click += new System.EventHandler(this.BtnGetFilterValueKeep_Click);
+            // 
+            // BtnGetFilterValueKeepColor
+            // 
+            resources.ApplyResources(this.BtnGetFilterValueKeepColor, "BtnGetFilterValueKeepColor");
+            this.BtnGetFilterValueKeepColor.Name = "BtnGetFilterValueKeepColor";
+            this.toolTip1.SetToolTip(this.BtnGetFilterValueKeepColor, resources.GetString("BtnGetFilterValueKeepColor.ToolTip"));
+            this.BtnGetFilterValueKeepColor.UseVisualStyleBackColor = true;
+            this.BtnGetFilterValueKeepColor.Click += new System.EventHandler(this.BtnGetFilterValueKeep_Click);
+            // 
+            // TbimportGraphicFilterListKeep
+            // 
+            this.TbimportGraphicFilterListKeep.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "importGraphicFilterListKeep", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.TbimportGraphicFilterListKeep, "TbimportGraphicFilterListKeep");
+            this.TbimportGraphicFilterListKeep.Name = "TbimportGraphicFilterListKeep";
+            this.TbimportGraphicFilterListKeep.Text = global::GrblPlotter.Properties.Settings.Default.importGraphicFilterListKeep;
+            // 
+            // label90
+            // 
+            resources.ApplyResources(this.label90, "label90");
+            this.label90.Name = "label90";
+            // 
+            // RbimportGraphicFilterChoiceRemove1
+            // 
+            resources.ApplyResources(this.RbimportGraphicFilterChoiceRemove1, "RbimportGraphicFilterChoiceRemove1");
+            this.RbimportGraphicFilterChoiceRemove1.Checked = global::GrblPlotter.Properties.Settings.Default.importGraphicFilterChoiceRemove;
+            this.RbimportGraphicFilterChoiceRemove1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGraphicFilterChoiceRemove", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.RbimportGraphicFilterChoiceRemove1.Name = "RbimportGraphicFilterChoiceRemove1";
+            this.RbimportGraphicFilterChoiceRemove1.TabStop = true;
+            this.RbimportGraphicFilterChoiceRemove1.UseVisualStyleBackColor = true;
+            // 
+            // GbFilterRemove
+            // 
+            this.GbFilterRemove.Controls.Add(this.BtnGetFilterValueRemoveWidth);
+            this.GbFilterRemove.Controls.Add(this.BtnGetFilterValueRemoveColor);
+            this.GbFilterRemove.Controls.Add(this.TbimportGraphicFilterListRemove);
+            this.GbFilterRemove.Controls.Add(this.label89);
+            resources.ApplyResources(this.GbFilterRemove, "GbFilterRemove");
+            this.GbFilterRemove.Name = "GbFilterRemove";
+            this.GbFilterRemove.TabStop = false;
+            // 
+            // BtnGetFilterValueRemoveWidth
+            // 
+            resources.ApplyResources(this.BtnGetFilterValueRemoveWidth, "BtnGetFilterValueRemoveWidth");
+            this.BtnGetFilterValueRemoveWidth.Name = "BtnGetFilterValueRemoveWidth";
+            this.toolTip1.SetToolTip(this.BtnGetFilterValueRemoveWidth, resources.GetString("BtnGetFilterValueRemoveWidth.ToolTip"));
+            this.BtnGetFilterValueRemoveWidth.UseVisualStyleBackColor = true;
+            this.BtnGetFilterValueRemoveWidth.Click += new System.EventHandler(this.BtnGetFilterValueRemove_Click);
+            // 
+            // BtnGetFilterValueRemoveColor
+            // 
+            resources.ApplyResources(this.BtnGetFilterValueRemoveColor, "BtnGetFilterValueRemoveColor");
+            this.BtnGetFilterValueRemoveColor.Name = "BtnGetFilterValueRemoveColor";
+            this.toolTip1.SetToolTip(this.BtnGetFilterValueRemoveColor, resources.GetString("BtnGetFilterValueRemoveColor.ToolTip"));
+            this.BtnGetFilterValueRemoveColor.UseVisualStyleBackColor = true;
+            this.BtnGetFilterValueRemoveColor.Click += new System.EventHandler(this.BtnGetFilterValueRemove_Click);
+            // 
+            // TbimportGraphicFilterListRemove
+            // 
+            this.TbimportGraphicFilterListRemove.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "importGraphicFilterListRemove", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.TbimportGraphicFilterListRemove, "TbimportGraphicFilterListRemove");
+            this.TbimportGraphicFilterListRemove.Name = "TbimportGraphicFilterListRemove";
+            this.TbimportGraphicFilterListRemove.Text = global::GrblPlotter.Properties.Settings.Default.importGraphicFilterListRemove;
+            // 
+            // label89
+            // 
+            resources.ApplyResources(this.label89, "label89");
+            this.label89.Name = "label89";
+            // 
+            // CbimportGraphicFilterEnable
+            // 
+            resources.ApplyResources(this.CbimportGraphicFilterEnable, "CbimportGraphicFilterEnable");
+            this.CbimportGraphicFilterEnable.Checked = global::GrblPlotter.Properties.Settings.Default.importGraphicFilterEnable;
+            this.CbimportGraphicFilterEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGraphicFilterEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbimportGraphicFilterEnable.Name = "CbimportGraphicFilterEnable";
+            this.CbimportGraphicFilterEnable.UseVisualStyleBackColor = true;
+            this.CbimportGraphicFilterEnable.CheckedChanged += new System.EventHandler(this.CbimportGraphicFilterEnable_CheckedChanged);
+            // 
+            // pathImport8
+            // 
+            this.pathImport8.Controls.Add(this.GbWireBender);
+            this.pathImport8.Controls.Add(this.gBDevelop);
+            resources.ApplyResources(this.pathImport8, "pathImport8");
+            this.pathImport8.Name = "pathImport8";
+            this.pathImport8.UseVisualStyleBackColor = true;
             // 
             // GbWireBender
             // 
@@ -3931,12 +4172,12 @@ namespace GrblPlotter
             this.cBImportGraphicDevelopEnable.UseVisualStyleBackColor = true;
             this.cBImportGraphicDevelopEnable.CheckedChanged += new System.EventHandler(this.CbImportGraphicDevelopEnable_CheckedChanged);
             // 
-            // tabPage31
+            // pathImport9
             // 
-            this.tabPage31.Controls.Add(this.groupBox26);
-            resources.ApplyResources(this.tabPage31, "tabPage31");
-            this.tabPage31.Name = "tabPage31";
-            this.tabPage31.UseVisualStyleBackColor = true;
+            this.pathImport9.Controls.Add(this.groupBox26);
+            resources.ApplyResources(this.pathImport9, "pathImport9");
+            this.pathImport9.Name = "pathImport9";
+            this.pathImport9.UseVisualStyleBackColor = true;
             // 
             // groupBox26
             // 
@@ -4171,13 +4412,13 @@ namespace GrblPlotter
             this.CbAux1Enable.Name = "CbAux1Enable";
             this.CbAux1Enable.UseVisualStyleBackColor = true;
             // 
-            // tabPage10
+            // graphicImport2
             // 
-            this.tabPage10.Controls.Add(this.tab1_2gB1);
-            this.tabPage10.Controls.Add(this.tab1_2gB7);
-            resources.ApplyResources(this.tabPage10, "tabPage10");
-            this.tabPage10.Name = "tabPage10";
-            this.tabPage10.UseVisualStyleBackColor = true;
+            this.graphicImport2.Controls.Add(this.tab1_2gB1);
+            this.graphicImport2.Controls.Add(this.tab1_2gB7);
+            resources.ApplyResources(this.graphicImport2, "graphicImport2");
+            this.graphicImport2.Name = "graphicImport2";
+            this.graphicImport2.UseVisualStyleBackColor = true;
             // 
             // tab1_2gB1
             // 
@@ -5106,14 +5347,14 @@ namespace GrblPlotter
             this.cBImportGCUseIndividual.UseVisualStyleBackColor = true;
             this.cBImportGCUseIndividual.CheckedChanged += new System.EventHandler(this.CbImportGCUseIndividual_CheckedChanged);
             // 
-            // tabPage11
+            // graphicImport3
             // 
-            this.tabPage11.Controls.Add(this.tab1_3gB3);
-            this.tabPage11.Controls.Add(this.tab1_3gB4);
-            this.tabPage11.Controls.Add(this.tab1_3gB1);
-            resources.ApplyResources(this.tabPage11, "tabPage11");
-            this.tabPage11.Name = "tabPage11";
-            this.tabPage11.UseVisualStyleBackColor = true;
+            this.graphicImport3.Controls.Add(this.tab1_3gB3);
+            this.graphicImport3.Controls.Add(this.tab1_3gB4);
+            this.graphicImport3.Controls.Add(this.tab1_3gB1);
+            resources.ApplyResources(this.graphicImport3, "graphicImport3");
+            this.graphicImport3.Name = "graphicImport3";
+            this.graphicImport3.UseVisualStyleBackColor = true;
             // 
             // tab1_3gB3
             // 
@@ -5222,6 +5463,7 @@ namespace GrblPlotter
             this.cBImportGCRelative.Name = "cBImportGCRelative";
             this.toolTip1.SetToolTip(this.cBImportGCRelative, resources.GetString("cBImportGCRelative.ToolTip"));
             this.cBImportGCRelative.UseVisualStyleBackColor = true;
+            this.cBImportGCRelative.CheckedChanged += new System.EventHandler(this.HighlightPenOptions_Click);
             // 
             // cBImportGCCompress
             // 
@@ -5335,12 +5577,12 @@ namespace GrblPlotter
             this.cBImportGCLineSegments.UseVisualStyleBackColor = true;
             this.cBImportGCLineSegments.CheckedChanged += new System.EventHandler(this.CbImportGCLineSegments_CheckedChanged);
             // 
-            // tabPage15
+            // graphicImport4
             // 
-            this.tabPage15.Controls.Add(this.tab1_4gB1);
-            resources.ApplyResources(this.tabPage15, "tabPage15");
-            this.tabPage15.Name = "tabPage15";
-            this.tabPage15.UseVisualStyleBackColor = true;
+            this.graphicImport4.Controls.Add(this.tab1_4gB1);
+            resources.ApplyResources(this.graphicImport4, "graphicImport4");
+            this.graphicImport4.Name = "graphicImport4";
+            this.graphicImport4.UseVisualStyleBackColor = true;
             // 
             // tab1_4gB1
             // 
@@ -5435,6 +5677,7 @@ namespace GrblPlotter
             // 
             // tab2gB1
             // 
+            this.tab2gB1.Controls.Add(this.BtnLoadToolTableDialog);
             this.tab2gB1.Controls.Add(this.lblToolListChanged);
             this.tab2gB1.Controls.Add(this.btnDeleteToolTable);
             this.tab2gB1.Controls.Add(this.lblToolListLoaded);
@@ -5445,6 +5688,14 @@ namespace GrblPlotter
             resources.ApplyResources(this.tab2gB1, "tab2gB1");
             this.tab2gB1.Name = "tab2gB1";
             this.tab2gB1.TabStop = false;
+            // 
+            // BtnLoadToolTableDialog
+            // 
+            resources.ApplyResources(this.BtnLoadToolTableDialog, "BtnLoadToolTableDialog");
+            this.BtnLoadToolTableDialog.Name = "BtnLoadToolTableDialog";
+            this.toolTip1.SetToolTip(this.BtnLoadToolTableDialog, resources.GetString("BtnLoadToolTableDialog.ToolTip"));
+            this.BtnLoadToolTableDialog.UseVisualStyleBackColor = true;
+            this.BtnLoadToolTableDialog.Click += new System.EventHandler(this.BtnToolImport_Click);
             // 
             // lblToolListChanged
             // 
@@ -9751,6 +10002,7 @@ namespace GrblPlotter
             // 
             // tab8gB2
             // 
+            this.tab8gB2.Controls.Add(this.cBColorModeWidth);
             this.tab8gB2.Controls.Add(this.nUDToolSize);
             this.tab8gB2.Controls.Add(this.label68);
             this.tab8gB2.Controls.Add(this.btnColorDimension);
@@ -9779,6 +10031,16 @@ namespace GrblPlotter
             resources.ApplyResources(this.tab8gB2, "tab8gB2");
             this.tab8gB2.Name = "tab8gB2";
             this.tab8gB2.TabStop = false;
+            // 
+            // cBColorModeWidth
+            // 
+            resources.ApplyResources(this.cBColorModeWidth, "cBColorModeWidth");
+            this.cBColorModeWidth.Checked = global::GrblPlotter.Properties.Settings.Default.gui2DColorPenDownModeWidth;
+            this.cBColorModeWidth.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBColorModeWidth.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "gui2DColorPenDownModeWidth", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBColorModeWidth.Name = "cBColorModeWidth";
+            this.toolTip1.SetToolTip(this.cBColorModeWidth, resources.GetString("cBColorModeWidth.ToolTip"));
+            this.cBColorModeWidth.UseVisualStyleBackColor = true;
             // 
             // nUDToolSize
             // 
@@ -10931,9 +11193,9 @@ namespace GrblPlotter
             this.tabControl_Level1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabControl1_Level2.ResumeLayout(false);
-            this.tabPage9.ResumeLayout(false);
+            this.graphicImport1.ResumeLayout(false);
             this.tabControl3.ResumeLayout(false);
-            this.tabPage16.ResumeLayout(false);
+            this.pathImport1.ResumeLayout(false);
             this.tab1_3gB7.ResumeLayout(false);
             this.tab1_3gB7.PerformLayout();
             this.tab1_3gB6.ResumeLayout(false);
@@ -10952,7 +11214,7 @@ namespace GrblPlotter
             this.tab1_1gB2.ResumeLayout(false);
             this.tab1_1gB2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDSVGScale)).EndInit();
-            this.tabPage17.ResumeLayout(false);
+            this.pathImport2.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
             this.gBCreateZValue.ResumeLayout(false);
@@ -10972,7 +11234,7 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportReduce)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportSVGSegemnts)).EndInit();
-            this.tabPage7.ResumeLayout(false);
+            this.pathImport3.ResumeLayout(false);
             this.gBPathAddOn3.ResumeLayout(false);
             this.gBPathAddOn3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -10989,8 +11251,8 @@ namespace GrblPlotter
             this.groupBox21.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDimportGraphicAddFramePenWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDimportGraphicAddFrameDistance)).EndInit();
-            this.tabPage20.ResumeLayout(false);
-            this.tabPage20.PerformLayout();
+            this.pathImport4.ResumeLayout(false);
+            this.pathImport4.PerformLayout();
             this.tab1_3gB8.ResumeLayout(false);
             this.tab1_3gB8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDPathOverlapValue)).EndInit();
@@ -11010,17 +11272,18 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifeAngle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifePercent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCDragKnifeLength)).EndInit();
-            this.tabPage18.ResumeLayout(false);
+            this.pathImport5.ResumeLayout(false);
             this.gBClipping.ResumeLayout(false);
             this.gBClipping.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudImportGraphicClipAngle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicClipOffsetY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicClipHeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicClipOffsetX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicTileClipWidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicClipWidth)).EndInit();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicTileClipAddOnX)).EndInit();
-            this.tabPage19.ResumeLayout(false);
+            this.pathImport6.ResumeLayout(false);
             this.groupBox30.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.NudConversionMaxFigures)).EndInit();
             this.tab1_1gB5.ResumeLayout(false);
@@ -11032,7 +11295,14 @@ namespace GrblPlotter
             this.tab1_1_4gB3.PerformLayout();
             this.tab1_1_4gB2.ResumeLayout(false);
             this.tab1_1_4gB2.PerformLayout();
-            this.tabPage30.ResumeLayout(false);
+            this.pathImport7.ResumeLayout(false);
+            this.GbFilter.ResumeLayout(false);
+            this.GbFilter.PerformLayout();
+            this.GbFilterKeep.ResumeLayout(false);
+            this.GbFilterKeep.PerformLayout();
+            this.GbFilterRemove.ResumeLayout(false);
+            this.GbFilterRemove.PerformLayout();
+            this.pathImport8.ResumeLayout(false);
             this.GbWireBender.ResumeLayout(false);
             this.GbWireBender.PerformLayout();
             this.groupBox31.ResumeLayout(false);
@@ -11053,7 +11323,7 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGraphicDevelopNotchZCut)).EndInit();
             this.groupBox19.ResumeLayout(false);
             this.groupBox19.PerformLayout();
-            this.tabPage31.ResumeLayout(false);
+            this.pathImport9.ResumeLayout(false);
             this.groupBox26.ResumeLayout(false);
             this.groupBox26.PerformLayout();
             this.groupBox28.ResumeLayout(false);
@@ -11064,7 +11334,7 @@ namespace GrblPlotter
             this.groupBox27.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudAux1ZFactor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudAux1Factor)).EndInit();
-            this.tabPage10.ResumeLayout(false);
+            this.graphicImport2.ResumeLayout(false);
             this.tab1_2gB1.ResumeLayout(false);
             this.tab1_2gB1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCFeedXY)).EndInit();
@@ -11103,7 +11373,7 @@ namespace GrblPlotter
             this.tabPage29.ResumeLayout(false);
             this.tab1_2gB6.ResumeLayout(false);
             this.tab1_2gB6.PerformLayout();
-            this.tabPage11.ResumeLayout(false);
+            this.graphicImport3.ResumeLayout(false);
             this.tab1_3gB3.ResumeLayout(false);
             this.tab1_3gB3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
@@ -11114,7 +11384,7 @@ namespace GrblPlotter
             this.tab1_3gB1.ResumeLayout(false);
             this.tab1_3gB1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCLineSegment)).EndInit();
-            this.tabPage15.ResumeLayout(false);
+            this.graphicImport4.ResumeLayout(false);
             this.tab1_4gB1.ResumeLayout(false);
             this.tab1_4gB1.PerformLayout();
             this.tabPage14.ResumeLayout(false);
@@ -11632,9 +11902,9 @@ namespace GrblPlotter
         private System.Windows.Forms.CheckBox cBImportDXFIndexToolNr;
         private System.Windows.Forms.NumericUpDown nUDImportGCDragKnifeAngle;
         private System.Windows.Forms.TabControl tabControl1_Level2;
-        private System.Windows.Forms.TabPage tabPage9;
-        private System.Windows.Forms.TabPage tabPage10;
-        private System.Windows.Forms.TabPage tabPage11;
+        private System.Windows.Forms.TabPage graphicImport1;
+        private System.Windows.Forms.TabPage graphicImport2;
+        private System.Windows.Forms.TabPage graphicImport3;
         private System.Windows.Forms.CheckBox cBImportGCTTXYFeed;
         private System.Windows.Forms.CheckBox cBImportGCTTSSpeed;
         private System.Windows.Forms.Label tab1_2lbl1;
@@ -11781,7 +12051,7 @@ namespace GrblPlotter
         private System.Windows.Forms.GroupBox tab11gB4;
         private System.Windows.Forms.LinkLabel linkLabel11;
         private System.Windows.Forms.CheckBox cBDashedLine1;
-        private System.Windows.Forms.TabPage tabPage15;
+        private System.Windows.Forms.TabPage graphicImport4;
         private System.Windows.Forms.GroupBox tab1_4gB1;
         private System.Windows.Forms.Label tab1_4lbl2;
         private System.Windows.Forms.Button btnDelete;
@@ -11851,20 +12121,20 @@ namespace GrblPlotter
         private System.Windows.Forms.CheckBox cBImportGraphicSortDistance;
         private System.Windows.Forms.CheckBox cBImportGraphicOffsetOrigin;
         private System.Windows.Forms.CheckBox cBImportGraphicTile;
-        private System.Windows.Forms.NumericUpDown nUDImportGraphicTileClipWidth;
+        private System.Windows.Forms.NumericUpDown nUDImportGraphicClipWidth;
         private System.Windows.Forms.NumericUpDown nUDImportGraphicClipHeight;
         private System.Windows.Forms.TabControl tabControl3;
-        private System.Windows.Forms.TabPage tabPage16;
-        private System.Windows.Forms.TabPage tabPage17;
+        private System.Windows.Forms.TabPage pathImport1;
+        private System.Windows.Forms.TabPage pathImport2;
         private System.Windows.Forms.GroupBox gBClipping;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown nUDImportGraphicClipOffsetY;
         private System.Windows.Forms.NumericUpDown nUDImportGraphicClipOffsetX;
         private System.Windows.Forms.RadioButton rBImportGraphicClip1;
         private System.Windows.Forms.RadioButton rBImportGraphicClip0;
-        private System.Windows.Forms.TabPage tabPage18;
+        private System.Windows.Forms.TabPage pathImport5;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TabPage tabPage19;
+        private System.Windows.Forms.TabPage pathImport6;
         private System.Windows.Forms.CheckBox cBImportGraphicClipOffsetApply;
         private System.Windows.Forms.GroupBox tab1_1_4gB2;
         private System.Windows.Forms.RadioButton rBImportSVGGroupItem3;
@@ -11909,7 +12179,7 @@ namespace GrblPlotter
         private System.Windows.Forms.CheckBox cBLog2;
         private System.Windows.Forms.CheckBox cBLog1;
         private System.Windows.Forms.GroupBox gBLoggingOptions;
-        private System.Windows.Forms.TabPage tabPage20;
+        private System.Windows.Forms.TabPage pathImport4;
         private System.Windows.Forms.TabPage tabPage21;
         private System.Windows.Forms.TabControl tabControl4_Level2;
         private System.Windows.Forms.TabPage tabPage25;
@@ -12036,7 +12306,7 @@ namespace GrblPlotter
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.CheckBox cBImportGraphicClipSkipCode;
         private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.TabPage pathImport3;
         private System.Windows.Forms.GroupBox gBPathAddOn2;
         private System.Windows.Forms.NumericUpDown nUDimportGraphicMultiplyGraphicsDimY;
         private System.Windows.Forms.Label label38;
@@ -12127,7 +12397,7 @@ namespace GrblPlotter
         private System.Windows.Forms.Label label67;
         private System.Windows.Forms.Label label64;
         private System.Windows.Forms.Button btnPWMAdvanced;
-        private System.Windows.Forms.TabPage tabPage30;
+        private System.Windows.Forms.TabPage pathImport8;
         private System.Windows.Forms.GroupBox gBDevelop;
         private System.Windows.Forms.CheckBox cBImportGraphicDevelopEnable;
         private System.Windows.Forms.Label label52;
@@ -12198,7 +12468,7 @@ namespace GrblPlotter
         private System.Windows.Forms.ComboBox CbAux1Axis;
         private System.Windows.Forms.CheckBox CbAux1Enable;
         private System.Windows.Forms.CheckBox CbAux1SumUp;
-        private System.Windows.Forms.TabPage tabPage31;
+        private System.Windows.Forms.TabPage pathImport9;
         private System.Windows.Forms.Label LblAux2;
         private System.Windows.Forms.Label LblAux1;
         private System.Windows.Forms.NumericUpDown NudAux1ZFactor;
@@ -12328,5 +12598,30 @@ namespace GrblPlotter
         private System.Windows.Forms.RadioButton RbApperance1;
         private System.Windows.Forms.CheckBox cBimportGraphicLeadTopZUp;
         private System.Windows.Forms.Label label88;
+        private System.Windows.Forms.Button BtnLoadToolTableDialog;
+        private System.Windows.Forms.Button BtnImportGraphicClipGetOff;
+        private System.Windows.Forms.Button BtnImportGraphicClipGetDim;
+        private System.Windows.Forms.CheckBox CbImportGraphicClipGetDimAuto;
+        private System.Windows.Forms.CheckBox CbImportGraphicClipAngleEnable;
+        private System.Windows.Forms.NumericUpDown NudImportGraphicClipAngle;
+        private System.Windows.Forms.TabPage pathImport7;
+        private System.Windows.Forms.GroupBox GbFilter;
+        private System.Windows.Forms.RadioButton RbimportGraphicFilterChoiceRemove1;
+        private System.Windows.Forms.RadioButton RbimportGraphicFilterChoiceRemove2;
+        private System.Windows.Forms.CheckBox CbimportGraphicFilterEnable;
+        private System.Windows.Forms.GroupBox GbFilterKeep;
+        private System.Windows.Forms.Label label90;
+        private System.Windows.Forms.TextBox TbimportGraphicFilterListKeep;
+        private System.Windows.Forms.GroupBox GbFilterRemove;
+        private System.Windows.Forms.Label label89;
+        private System.Windows.Forms.TextBox TbimportGraphicFilterListRemove;
+        private System.Windows.Forms.CheckBox cBColorModeWidth;
+        private System.Windows.Forms.Button BtnGetFilterValueKeepColor;
+        private System.Windows.Forms.Button BtnGetFilterValueRemoveColor;
+        private System.Windows.Forms.Button BtnGetFilterValueClear;
+        private System.Windows.Forms.Button BtnGetFilterSave;
+        private System.Windows.Forms.Button BtnGetFilterLoad;
+        private System.Windows.Forms.Button BtnGetFilterValueRemoveWidth;
+        private System.Windows.Forms.Button BtnGetFilterValueKeepWidth;
     }
 }

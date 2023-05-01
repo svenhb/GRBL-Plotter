@@ -3368,4 +3368,147 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   <data name="label88.Text" xml:space="preserve">
     <value>牢牢：</value>
   </data>
+  <data name="cBimportGraphicLeadTopZUp.Text" xml:space="preserve">
+    <value>在 Pen-Up 处开始斜坡</value>
+  </data>
+  <data name="BtnImportGraphicClipGetOff.Text" xml:space="preserve">
+    <value>从 GCode 应用偏移量</value>
+  </data>
+  <data name="BtnImportGraphicClipGetOff.ToolTip" xml:space="preserve">
+    <value>如果应用了“将图形原点偏移到 0;0”，则应用计算出的偏移量。
+在 GCode 标头部分给出：“Graphic offset”。</value>
+  </data>
+  <data name="BtnImportGraphicClipGetDim.Text" xml:space="preserve">
+    <value>应用来自 SVG 的尺寸</value>
+  </data>
+  <data name="BtnImportGraphicClipGetDim.ToolTip" xml:space="preserve">
+    <value>SVG 图形的尺寸 - “宽度”和“高度”。
+在 GCode 标头部分给出：“SVG dimension”。</value>
+  </data>
+  <data name="nUDImportGraphicClipWidth.ToolTip" xml:space="preserve">
+    <value>瓷砖的X尺寸</value>
+  </data>
+  <data name="CbImportGraphicClipGetDimAuto.Text" xml:space="preserve">
+    <value>导入时自动应用</value>
+  </data>
+  <data name="CbImportGraphicClipGetDimAuto.ToolTip" xml:space="preserve">
+    <value>导入期间自动应用值</value>
+  </data>
+  <data name="BtnGetFilterSave.Text" xml:space="preserve">
+    <value>保存在电脑上</value>
+  </data>
+  <data name="BtnGetFilterLoad.Text" xml:space="preserve">
+    <value>加载过滤器</value>
+  </data>
+  <data name="BtnGetFilterValueClear.Text" xml:space="preserve">
+    <value>删除文本</value>
+  </data>
+  <data name="RbimportGraphicFilterChoiceRemove2.Text" xml:space="preserve">
+    <value>保留对象</value>
+  </data>
+  <data name="RbimportGraphicFilterChoiceRemove1.Text" xml:space="preserve">
+    <value>删除对象</value>
+  </data>
+  <data name="CbimportGraphicFilterEnable.Text" xml:space="preserve">
+    <value>通过笔颜色或笔宽激活过滤器</value>
+  </data>
+  <data name="GbFilter.Text" xml:space="preserve">
+    <value>按属性保留或删除对象</value>
+  </data>
+  <data name="tabPage34.Text" xml:space="preserve">
+    <value>筛选</value>
+  </data>
+  <data name="BtnLoadToolTableDialog.ToolTip" xml:space="preserve">
+    <value>从其他位置加载工具表</value>
+  </data>
+  <data name="BtnOpenLogFile.Text" xml:space="preserve">
+    <value>打开日志文件</value>
+  </data>
+  <data name="label89.Text" xml:space="preserve">
+    <value>删除具有这些属性的所有对象（用“;”分隔）</value>
+  </data>
+  <data name="label90.Text" xml:space="preserve">
+    <value>保留所有具有这些属性的对象（用“;”分隔）</value>
+  </data>
+  <data name="CbImportGraphicClipAngleEnable.Text" xml:space="preserve">
+    <value>转动</value>
+  </data>
+  <data name="cBColorModeWidth.Text" xml:space="preserve">
+    <value>+ 宽度</value>
+  </data>
+  <data name="cBColorModeWidth.ToolTip" xml:space="preserve">
+    <value>还将导入的笔宽应用于 2D 视图</value>
+  </data>
+  <data name="BtnGetFilterValueRemove.Text" xml:space="preserve">
+    <value>收到</value>
+  </data>
+  <data name="BtnGetFilterValueKeep.Text" xml:space="preserve">
+    <value>颜色导入</value>
+  </data>
+  <data name="pathImport1.Text" xml:space="preserve">
+    <value>格式相关</value>
+  </data>
+  <data name="pathImport2.Text" xml:space="preserve">
+    <value>常规选项</value>
+  </data>
+  <data name="pathImport3.Text" xml:space="preserve">
+    <value>路径附件</value>
+  </data>
+  <data name="pathImport4.Text" xml:space="preserve">
+    <value>路径修改</value>
+  </data>
+  <data name="pathImport5.Text" xml:space="preserve">
+    <value>剪裁</value>
+  </data>
+  <data name="pathImport6.Text" xml:space="preserve">
+    <value>分组和工具</value>
+  </data>
+  <data name="BtnGetFilterSave.ToolTip" xml:space="preserve">
+    <value>将 ../data/filters 中的过滤器设置保存为 ini 文件</value>
+  </data>
+  <data name="BtnGetFilterLoad.ToolTip" xml:space="preserve">
+    <value>从 ../data/filters 加载过滤器设置</value>
+  </data>
+  <data name="BtnGetFilterValueClear.ToolTip" xml:space="preserve">
+    <value>删除文本字段</value>
+  </data>
+  <data name="BtnGetFilterValueKeep.ToolTip" xml:space="preserve">
+    <value>添加所选字符或组的颜色</value>
+  </data>
+  <data name="BtnGetFilterValueRemove.ToolTip" xml:space="preserve">
+    <value>添加所选字符或组的颜色</value>
+  </data>
+  <data name="pathImport7.Text" xml:space="preserve">
+    <value>筛选</value>
+  </data>
+  <data name="pathImport8.Text" xml:space="preserve">
+    <value>特殊转换</value>
+  </data>
+  <data name="pathImport9.Text" xml:space="preserve">
+    <value>命令扩展</value>
+  </data>
+  <data name="graphicImport1.Text" xml:space="preserve">
+    <value>路径导入</value>
+  </data>
+  <data name="graphicImport2.Text" xml:space="preserve">
+    <value>G代码生成</value>
+  </data>
+  <data name="graphicImport3.Text" xml:space="preserve">
+    <value>G代码修改</value>
+  </data>
+  <data name="graphicImport4.Text" xml:space="preserve">
+    <value>用例</value>
+  </data>
+  <data name="BtnGetFilterValueKeepWidth.ToolTip" xml:space="preserve">
+    <value>添加所选字符或组的颜色</value>
+  </data>
+  <data name="BtnGetFilterValueKeepColor.ToolTip" xml:space="preserve">
+    <value>添加所选字符或组的颜色</value>
+  </data>
+  <data name="BtnGetFilterValueRemoveWidth.ToolTip" xml:space="preserve">
+    <value>添加所选字符或组的颜色</value>
+  </data>
+  <data name="BtnGetFilterValueRemoveColor.ToolTip" xml:space="preserve">
+    <value>添加所选字符或组的颜色</value>
+  </data>
 </root>

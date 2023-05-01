@@ -760,7 +760,7 @@ Osa Z bude posunuta dolů</value>
     <comment>ok</comment>
   </data>
   <data name="nUDImportGraphicClipOffsetY.ToolTip" xml:space="preserve">
-    <value>Rozměr X dlaždice</value>
+    <value>Y offset oblasti oříznutí</value>
     <comment>ok</comment>
   </data>
   <data name="nUDImportGraphicClipHeight.ToolTip" xml:space="preserve">
@@ -768,7 +768,7 @@ Osa Z bude posunuta dolů</value>
     <comment>ok</comment>
   </data>
   <data name="nUDImportGraphicClipOffsetX.ToolTip" xml:space="preserve">
-    <value>Rozměr X dlaždice</value>
+    <value>X offset oblasti oříznutí</value>
     <comment>ok</comment>
   </data>
   <data name="nUDImportGraphicTileClipWidth.ToolTip" xml:space="preserve">
@@ -3378,5 +3378,148 @@ Kromě toho lze polohu osy Z využít např. ke zvýšení množství barvy, kdy
   </data>
   <data name="label88.Text" xml:space="preserve">
     <value>pevně:</value>
+  </data>
+  <data name="cBimportGraphicLeadTopZUp.Text" xml:space="preserve">
+    <value>Startovací rampa v Pen-Up</value>
+  </data>
+  <data name="BtnImportGraphicClipGetOff.Text" xml:space="preserve">
+    <value>Použít offset od GCode</value>
+  </data>
+  <data name="BtnImportGraphicClipGetOff.ToolTip" xml:space="preserve">
+    <value>Použije se vypočítaný offset, pokud je použito 'Offset graphics origin to 0;0'.
+Uvedeno v sekci záhlaví GCode: 'Graphic offset'.</value>
+  </data>
+  <data name="BtnImportGraphicClipGetDim.Text" xml:space="preserve">
+    <value>Použít rozměr z SVG</value>
+  </data>
+  <data name="BtnImportGraphicClipGetDim.ToolTip" xml:space="preserve">
+    <value>Rozměr grafiky SVG - 'šířka' a 'výška'.
+Uvedeno v sekci záhlaví GCode: 'SVG dimension'.</value>
+  </data>
+  <data name="nUDImportGraphicClipWidth.ToolTip" xml:space="preserve">
+    <value>Rozměr X dlaždice</value>
+  </data>
+  <data name="CbImportGraphicClipGetDimAuto.Text" xml:space="preserve">
+    <value>Automaticky použít při importu</value>
+  </data>
+  <data name="CbImportGraphicClipGetDimAuto.ToolTip" xml:space="preserve">
+    <value>Použít hodnoty automaticky během importu</value>
+  </data>
+  <data name="BtnGetFilterSave.Text" xml:space="preserve">
+    <value>Uložit do počítače</value>
+  </data>
+  <data name="BtnGetFilterLoad.Text" xml:space="preserve">
+    <value>zátěžové filtry</value>
+  </data>
+  <data name="BtnGetFilterValueClear.Text" xml:space="preserve">
+    <value>smazat text</value>
+  </data>
+  <data name="RbimportGraphicFilterChoiceRemove2.Text" xml:space="preserve">
+    <value>uchovávat předměty</value>
+  </data>
+  <data name="RbimportGraphicFilterChoiceRemove1.Text" xml:space="preserve">
+    <value>odstranit předměty</value>
+  </data>
+  <data name="CbimportGraphicFilterEnable.Text" xml:space="preserve">
+    <value>Aktivace filtru podle barvy pera nebo šířky pera</value>
+  </data>
+  <data name="GbFilter.Text" xml:space="preserve">
+    <value>Ponechat nebo odebrat objekty podle vlastností</value>
+  </data>
+  <data name="tabPage34.Text" xml:space="preserve">
+    <value>filtr</value>
+  </data>
+  <data name="BtnLoadToolTableDialog.ToolTip" xml:space="preserve">
+    <value>Načtěte tabulku nástrojů z jiného místa</value>
+  </data>
+  <data name="BtnOpenLogFile.Text" xml:space="preserve">
+    <value>Otevřete soubor protokolu</value>
+  </data>
+  <data name="label89.Text" xml:space="preserve">
+    <value>Odeberte všechny objekty s těmito vlastnostmi (oddělte je ';')</value>
+  </data>
+  <data name="label90.Text" xml:space="preserve">
+    <value>Ponechat všechny objekty s těmito vlastnostmi (oddělené znakem ';')</value>
+  </data>
+  <data name="CbImportGraphicClipAngleEnable.Text" xml:space="preserve">
+    <value>Otočit se</value>
+  </data>
+  <data name="cBColorModeWidth.Text" xml:space="preserve">
+    <value>+ šířka</value>
+  </data>
+  <data name="cBColorModeWidth.ToolTip" xml:space="preserve">
+    <value>Také použije importovanou šířku pera na 2D pohled</value>
+  </data>
+  <data name="BtnGetFilterValueRemove.Text" xml:space="preserve">
+    <value>Dostávat</value>
+  </data>
+  <data name="BtnGetFilterValueKeep.Text" xml:space="preserve">
+    <value>import barev</value>
+  </data>
+  <data name="pathImport1.Text" xml:space="preserve">
+    <value>Související s formátem</value>
+  </data>
+  <data name="pathImport2.Text" xml:space="preserve">
+    <value>Obecné možnosti</value>
+  </data>
+  <data name="pathImport3.Text" xml:space="preserve">
+    <value>Doplňky cesty</value>
+  </data>
+  <data name="pathImport4.Text" xml:space="preserve">
+    <value>Úpravy cest</value>
+  </data>
+  <data name="pathImport5.Text" xml:space="preserve">
+    <value>Výstřižek</value>
+  </data>
+  <data name="pathImport6.Text" xml:space="preserve">
+    <value>Seskupování a nástroje</value>
+  </data>
+  <data name="BtnGetFilterSave.ToolTip" xml:space="preserve">
+    <value>Uložte nastavení filtru do ../data/filters jako soubor ini</value>
+  </data>
+  <data name="BtnGetFilterLoad.ToolTip" xml:space="preserve">
+    <value>Načtěte nastavení filtru z ../data/filters</value>
+  </data>
+  <data name="BtnGetFilterValueClear.ToolTip" xml:space="preserve">
+    <value>Odstraňte textová pole</value>
+  </data>
+  <data name="BtnGetFilterValueKeep.ToolTip" xml:space="preserve">
+    <value>Přidá barvu vybraného znaku nebo skupiny</value>
+  </data>
+  <data name="BtnGetFilterValueRemove.ToolTip" xml:space="preserve">
+    <value>Přidá barvu vybraného znaku nebo skupiny</value>
+  </data>
+  <data name="pathImport7.Text" xml:space="preserve">
+    <value>filtr</value>
+  </data>
+  <data name="pathImport8.Text" xml:space="preserve">
+    <value>Speciální konverze</value>
+  </data>
+  <data name="pathImport9.Text" xml:space="preserve">
+    <value>rozšíření příkazu</value>
+  </data>
+  <data name="graphicImport1.Text" xml:space="preserve">
+    <value>Import cesty</value>
+  </data>
+  <data name="graphicImport2.Text" xml:space="preserve">
+    <value>Generování G-kódu</value>
+  </data>
+  <data name="graphicImport3.Text" xml:space="preserve">
+    <value>Úprava G-kódu</value>
+  </data>
+  <data name="graphicImport4.Text" xml:space="preserve">
+    <value>Případy užití</value>
+  </data>
+  <data name="BtnGetFilterValueKeepWidth.ToolTip" xml:space="preserve">
+    <value>Přidá barvu vybraného znaku nebo skupiny</value>
+  </data>
+  <data name="BtnGetFilterValueKeepColor.ToolTip" xml:space="preserve">
+    <value>Přidá barvu vybraného znaku nebo skupiny</value>
+  </data>
+  <data name="BtnGetFilterValueRemoveWidth.ToolTip" xml:space="preserve">
+    <value>Přidá barvu vybraného znaku nebo skupiny</value>
+  </data>
+  <data name="BtnGetFilterValueRemoveColor.ToolTip" xml:space="preserve">
+    <value>Přidá barvu vybraného znaku nebo skupiny</value>
   </data>
 </root>

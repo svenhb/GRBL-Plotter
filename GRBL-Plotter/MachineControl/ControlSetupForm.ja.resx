@@ -3388,4 +3388,147 @@ https://github.com/cprezzi/grbl-servoのGrbl-version'grbl_v1.1f_Servo.hex '、
   <data name="label88.Text" xml:space="preserve">
     <value>しっかり：</value>
   </data>
+  <data name="cBimportGraphicLeadTopZUp.Text" xml:space="preserve">
+    <value>ペンアップでランプを開始</value>
+  </data>
+  <data name="BtnImportGraphicClipGetOff.Text" xml:space="preserve">
+    <value>GCode からオフセットを適用する</value>
+  </data>
+  <data name="BtnImportGraphicClipGetOff.ToolTip" xml:space="preserve">
+    <value>「Offset graphics origin to 0;0」が適用されている場合は、計算されたオフセットが適用されます。
+GCode ヘッダー セクションで指定: 「グラフィック オフセット」。</value>
+  </data>
+  <data name="BtnImportGraphicClipGetDim.Text" xml:space="preserve">
+    <value>SVG から寸法を適用</value>
+  </data>
+  <data name="BtnImportGraphicClipGetDim.ToolTip" xml:space="preserve">
+    <value>SVG グラフィックスの寸法 - 「幅」と「高さ」。
+GCode ヘッダー セクションで指定: 'SVG dimension'。</value>
+  </data>
+  <data name="nUDImportGraphicClipWidth.ToolTip" xml:space="preserve">
+    <value>タイルのX次元</value>
+  </data>
+  <data name="CbImportGraphicClipGetDimAuto.Text" xml:space="preserve">
+    <value>インポート時に自動適用</value>
+  </data>
+  <data name="CbImportGraphicClipGetDimAuto.ToolTip" xml:space="preserve">
+    <value>インポート中に値を自動的に適用する</value>
+  </data>
+  <data name="BtnGetFilterSave.Text" xml:space="preserve">
+    <value>パソコンに保存</value>
+  </data>
+  <data name="BtnGetFilterLoad.Text" xml:space="preserve">
+    <value>ロード フィルタ</value>
+  </data>
+  <data name="BtnGetFilterValueClear.Text" xml:space="preserve">
+    <value>テキストを削除</value>
+  </data>
+  <data name="RbimportGraphicFilterChoiceRemove2.Text" xml:space="preserve">
+    <value>オブジェクトを保持</value>
+  </data>
+  <data name="RbimportGraphicFilterChoiceRemove1.Text" xml:space="preserve">
+    <value>オブジェクトを削除</value>
+  </data>
+  <data name="CbimportGraphicFilterEnable.Text" xml:space="preserve">
+    <value>ペンの色またはペンの幅によるフィルターのアクティブ化</value>
+  </data>
+  <data name="GbFilter.Text" xml:space="preserve">
+    <value>プロパティによるオブジェクトの保持または削除</value>
+  </data>
+  <data name="tabPage34.Text" xml:space="preserve">
+    <value>フィルター</value>
+  </data>
+  <data name="BtnLoadToolTableDialog.ToolTip" xml:space="preserve">
+    <value>別の場所から工具テーブルをロードする</value>
+  </data>
+  <data name="BtnOpenLogFile.Text" xml:space="preserve">
+    <value>ログファイルを開く</value>
+  </data>
+  <data name="label89.Text" xml:space="preserve">
+    <value>これらのプロパティを持つすべてのオブジェクトを削除します (「;」で区切ります)</value>
+  </data>
+  <data name="label90.Text" xml:space="preserve">
+    <value>これらのプロパティを持つすべてのオブジェクトを保持します (「;」で区切ります)</value>
+  </data>
+  <data name="CbImportGraphicClipAngleEnable.Text" xml:space="preserve">
+    <value>振り向く</value>
+  </data>
+  <data name="cBColorModeWidth.Text" xml:space="preserve">
+    <value>+幅</value>
+  </data>
+  <data name="cBColorModeWidth.ToolTip" xml:space="preserve">
+    <value>インポートされたペン幅も 2D ビューに適用します</value>
+  </data>
+  <data name="BtnGetFilterValueRemove.Text" xml:space="preserve">
+    <value>受け取る</value>
+  </data>
+  <data name="BtnGetFilterValueKeep.Text" xml:space="preserve">
+    <value>カラーインポート</value>
+  </data>
+  <data name="pathImport1.Text" xml:space="preserve">
+    <value>フォーマット関連</value>
+  </data>
+  <data name="pathImport2.Text" xml:space="preserve">
+    <value>一般的なオプション</value>
+  </data>
+  <data name="pathImport3.Text" xml:space="preserve">
+    <value>パスアドオン</value>
+  </data>
+  <data name="pathImport4.Text" xml:space="preserve">
+    <value>パスの変更</value>
+  </data>
+  <data name="pathImport5.Text" xml:space="preserve">
+    <value>クリッピング</value>
+  </data>
+  <data name="pathImport6.Text" xml:space="preserve">
+    <value>グループ化とツール</value>
+  </data>
+  <data name="BtnGetFilterSave.ToolTip" xml:space="preserve">
+    <value>フィルター設定を ../data/filters に ini ファイルとして保存します。</value>
+  </data>
+  <data name="BtnGetFilterLoad.ToolTip" xml:space="preserve">
+    <value>../data/filters からフィルター設定を読み込む</value>
+  </data>
+  <data name="BtnGetFilterValueClear.ToolTip" xml:space="preserve">
+    <value>テキスト フィールドを削除する</value>
+  </data>
+  <data name="BtnGetFilterValueKeep.ToolTip" xml:space="preserve">
+    <value>選択した文字またはグループの色を追加します</value>
+  </data>
+  <data name="BtnGetFilterValueRemove.ToolTip" xml:space="preserve">
+    <value>選択した文字またはグループの色を追加します</value>
+  </data>
+  <data name="pathImport7.Text" xml:space="preserve">
+    <value>フィルター</value>
+  </data>
+  <data name="pathImport8.Text" xml:space="preserve">
+    <value>特別な変換</value>
+  </data>
+  <data name="pathImport9.Text" xml:space="preserve">
+    <value>コマンド拡張</value>
+  </data>
+  <data name="graphicImport1.Text" xml:space="preserve">
+    <value>パスのインポート</value>
+  </data>
+  <data name="graphicImport2.Text" xml:space="preserve">
+    <value>Gコード生成</value>
+  </data>
+  <data name="graphicImport3.Text" xml:space="preserve">
+    <value>Gコードの変更</value>
+  </data>
+  <data name="graphicImport4.Text" xml:space="preserve">
+    <value>ユースケース</value>
+  </data>
+  <data name="BtnGetFilterValueKeepWidth.ToolTip" xml:space="preserve">
+    <value>選択した文字またはグループの色を追加します</value>
+  </data>
+  <data name="BtnGetFilterValueKeepColor.ToolTip" xml:space="preserve">
+    <value>選択した文字またはグループの色を追加します</value>
+  </data>
+  <data name="BtnGetFilterValueRemoveWidth.ToolTip" xml:space="preserve">
+    <value>選択した文字またはグループの色を追加します</value>
+  </data>
+  <data name="BtnGetFilterValueRemoveColor.ToolTip" xml:space="preserve">
+    <value>選択した文字またはグループの色を追加します</value>
+  </data>
 </root>

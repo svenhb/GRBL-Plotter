@@ -28,6 +28,8 @@
  * 2021-11-30 line 451 check if index < objec.count
  * 2021-12-13 bug fix line 843 && (pathInfoMarker.Any())
  * 2023-03-17 l:398 f:GetGCodeLines avoid same log twice
+ * 2023-04-18 add clipDimension, clipOffset, isHeaderSection to be read from GCode-Header, too feed buttons in setup-clipping
+ * 2023-04-26 l:822 f:ProcessXmlTagStart pen width option
 */
 
 using System;
@@ -51,7 +53,7 @@ namespace GrblPlotter
             public float width = 0;
             public Pen pen;
             public PointF offsetView;
-			
+
             public PathData()
             {
                 path = new GraphicsPath();
@@ -141,6 +143,7 @@ namespace GrblPlotter
         private static bool xyPosChanged;
         private static bool figureActive = false;
         private static bool tileActive = false;
+        private static int tileCount = 0;
         internal static bool ShiftTilePaths { get; set; }
 
         private static bool tangentialAxisEnable = false;
@@ -173,6 +176,10 @@ namespace GrblPlotter
         private static bool fiducialEnable = false;
         private static Dimensions fiducialDimension = new Dimensions();
         private static string fiducialLabel = "Fiducials";
+
+        internal static XyPoint clipDimension = new XyPoint(-1, -1);
+        internal static XyPoint clipOffset = new XyPoint(-1, -1);
+        private static bool isHeaderSection = false;
 
         internal static bool largeDataAmount = false;
         internal static int numberDataLines = 0;
@@ -271,6 +278,10 @@ namespace GrblPlotter
             fiducialEnable = false;
             fiducialLabel = Properties.Settings.Default.importFiducialLabel;
 
+            clipDimension = new XyPoint();
+            clipOffset = new XyPoint();
+            isHeaderSection = false;
+
             modal = new ModalGroup();               // clear
             XmlMarker.Reset();                      // reset lists, holding marker line numbers
             oldLine.ResetAll(Grbl.posWork);         // reset coordinates and parser modes, set initial pos
@@ -281,6 +292,7 @@ namespace GrblPlotter
             showHalftonePath.Clear();
 
             figureMarkerCount = 0;
+            tileCount = 0;
             lastFigureNumber = -1;
             lastFigureNumbers.Clear();
             pathActualDown = null;
@@ -319,8 +331,8 @@ namespace GrblPlotter
             int skipLimit = (int)Properties.Settings.Default.ctrlImportSkip * 1000;
             int countZ = 0;
             int lastMotion = 0;
-			string newPathProp;
-			string oldPathProp="";
+            string newPathProp;
+            string oldPathProp = "";
 
             Logger.Info("▽▽▽▽ GetGCodeLines Count:{0} skip:{1}   Show colors if no XML-Tags:{2}  Show pen-up path arrows:{3}  Show pen-up path Ids:{4}  Use BackgroundWorker:{5}", oldCode.Count, skipLimit, showColors, showArrow, showId, (worker != null));
             if (oldCode.Count > skipLimit) // huge amount of code, reduce time consuming functionality
@@ -380,7 +392,7 @@ namespace GrblPlotter
                     {
                         string log = string.Format("Line {0} ", (newLine.lineNumber + 1));
                         newPathProp = string.Format("F:{0} S:{1} Z:{2:0.000} ", HalfTone.lastF, HalfTone.lastS, HalfTone.lastZ);
-						log += newPathProp;
+                        log += newPathProp;
                         ToolProp penProp = new ToolProp(1, Properties.Settings.Default.gui2DColorPenDown, "PenDown")
                         {
                             Diameter = (float)Properties.Settings.Default.gui2DWidthPenDown
@@ -394,11 +406,11 @@ namespace GrblPlotter
                         pathActualDown = pathObject[pathObject.Count - 1].path;
                         log += string.Format("Set tool nr:{0} color:{1} figureMarkerCount:{2}", penProp.Toolnr, ColorTranslator.ToHtml(penProp.Color), figureMarkerCount);
                         if (penProp.Toolnr < 0)
-                        {    
-							if (!String.Equals(newPathProp,oldPathProp))
-							{	Logger.Trace("!!!!!!!!!!!!!!  Tool not found: {0}  !!!!!!!!!!!!!!!", log);}
-							oldPathProp = newPathProp;
-						}
+                        {
+                            if (!String.Equals(newPathProp, oldPathProp))
+                            { Logger.Trace("!!!!!!!!!!!!!!  Tool not found: {0}  !!!!!!!!!!!!!!!", log); }
+                            oldPathProp = newPathProp;
+                        }
                     }
                     if (newLine.wasSetXY)
                         lastMotion = modal.motionMode;
@@ -497,6 +509,30 @@ namespace GrblPlotter
                         FindAddSubroutine(modal.pWord, GCode, modal.lWord, processSubs);      // scan complete GCode for matching O-word
                 }
 
+                if (isHeaderSection)
+                {
+                    if (singleLine.Contains("SVG DIMENSION") && singleLine.Contains(":"))
+                    {
+                        var tmpLine = singleLine.Split(':');
+                        var tmpVals = tmpLine[1].Trim().Split(' ');
+                        if (double.TryParse(tmpVals[0], System.Globalization.NumberStyles.Float, System.Globalization.NumberFormatInfo.InvariantInfo, out double parsed1))
+                        { clipDimension.X = parsed1; }
+                        if (double.TryParse(tmpVals[1], System.Globalization.NumberStyles.Float, System.Globalization.NumberFormatInfo.InvariantInfo, out double parsed2))
+                        { clipDimension.Y = parsed2; }
+                        Logger.Trace("----- clipDimension {0} -> {1:0.00} {2:0.00}", singleLine, clipDimension.X, clipDimension.Y);
+                    }
+                    else if (singleLine.Contains("GRAPHIC OFFSET") && singleLine.Contains(":"))
+                    {
+                        var tmpLine = singleLine.Split(':');
+                        var tmpVals = tmpLine[1].Trim().Split(' ');
+                        if (double.TryParse(tmpVals[0], System.Globalization.NumberStyles.Float, System.Globalization.NumberFormatInfo.InvariantInfo, out double parsed1))
+                        { clipOffset.X = parsed1; }
+                        if (double.TryParse(tmpVals[1], System.Globalization.NumberStyles.Float, System.Globalization.NumberFormatInfo.InvariantInfo, out double parsed2))
+                        { clipOffset.Y = parsed2; }
+                        Logger.Trace("----- clipOffset {0} -> {1:0.00} {2:0.00}", singleLine, clipOffset.X, clipOffset.Y);
+                    }
+                }
+
                 if (singleLine.Contains("</"))
                 {
                     ProcessXmlTagEnd(GCode[lineNr], lineNr);
@@ -522,6 +558,8 @@ namespace GrblPlotter
 
             worker?.ReportProgress(100, new MyUserState { Value = 100, Content = "Wait for update of text editor" });
             Logger.Info("△△△△ GetGCodeLines finish");
+            if (figureMarkerCount == 0)
+                figureMarkerCount = tileCount;
             return true;
         }
 
@@ -746,6 +784,7 @@ namespace GrblPlotter
                     ShiftTilePaths = true;
                 }
                 tileActive = true;
+                tileCount++;
             }
             /* Process Group marker */
             else if (line.Contains(XmlMarker.GroupStart))                   // check if marker available
@@ -780,7 +819,12 @@ namespace GrblPlotter
 
                 if (Properties.Settings.Default.gui2DColorPenDownModeEnable)// && !largeDataAmount)    // Graphic.SizeOk())    // enable color mode 
                 {
-                    PathData tmp = new PathData(XmlMarker.tmpFigure.PenColor, XmlMarker.tmpFigure.PenWidth, offset2DView);      // set color, width, pendownpath
+                    PathData tmp;
+                    if (Properties.Settings.Default.gui2DColorPenDownModeWidth)
+						tmp = new PathData(XmlMarker.tmpFigure.PenColor, XmlMarker.tmpFigure.PenWidth, offset2DView);      // set color, width, pendownpath
+					else
+						tmp = new PathData(XmlMarker.tmpFigure.PenColor, (double)Properties.Settings.Default.gui2DWidthPenDown, offset2DView);      // set color, width, pendownpath
+						
                     pathObject.Add(tmp);
                     pathActualDown = pathObject[pathObject.Count - 1].path;
                 }
@@ -811,6 +855,8 @@ namespace GrblPlotter
                     Logger.Info("showHalftoneZ min:{0}  max:{1}  width:{2}", HalfTone.showHalftoneMin, HalfTone.showHalftoneMax, HalfTone.showHalftoneWidth);
                 }
             }
+            else if (line.Contains(XmlMarker.HeaderStart))
+            { isHeaderSection = true; }
         }
 
         private static void ProcessXmlTagEnd(string line, int lineNr)
@@ -847,6 +893,8 @@ namespace GrblPlotter
             /* Process Tile end */
             else if (line.Contains(XmlMarker.TileEnd))                    // check if marker available
             { XmlMarker.FinishTile(lineNr); }
+            else if (line.Contains(XmlMarker.HeaderEnd))
+            { isHeaderSection = false; }
         }
 
         private static void ProcessHalftoneData()

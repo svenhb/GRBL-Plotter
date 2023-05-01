@@ -2177,11 +2177,11 @@ M4 وضع الطاقة ليزر ديناميكي</value>
     <comment>ok</comment>
   </data>
   <data name="nUDImportGraphicClipOffsetY.ToolTip" xml:space="preserve">
-    <value>البعد X للبلاط</value>
+    <value>إزاحة منطقة القطع</value>
     <comment>ok</comment>
   </data>
   <data name="nUDImportGraphicClipOffsetX.ToolTip" xml:space="preserve">
-    <value>البعد X للبلاط</value>
+    <value>إزاحة X لمنطقة القطع</value>
     <comment>ok</comment>
   </data>
   <data name="rBImportGraphicClip1.Text" xml:space="preserve">
@@ -3363,5 +3363,148 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   </data>
   <data name="label88.Text" xml:space="preserve">
     <value>بثبات:</value>
+  </data>
+  <data name="cBimportGraphicLeadTopZUp.Text" xml:space="preserve">
+    <value>ابدأ منحدر في Pen-Up</value>
+  </data>
+  <data name="BtnImportGraphicClipGetOff.Text" xml:space="preserve">
+    <value>تطبيق الإزاحة من GCode</value>
+  </data>
+  <data name="BtnImportGraphicClipGetOff.ToolTip" xml:space="preserve">
+    <value>تم تطبيق الإزاحة المحسوبة ، إذا تم تطبيق "تعويض أصل الرسومات إلى 0 ؛ 0".
+يرد في قسم رأس GCode: "Graphic offset".</value>
+  </data>
+  <data name="BtnImportGraphicClipGetDim.Text" xml:space="preserve">
+    <value>تطبيق البعد من SVG</value>
+  </data>
+  <data name="BtnImportGraphicClipGetDim.ToolTip" xml:space="preserve">
+    <value>أبعاد رسومات SVG - "العرض" و "الارتفاع".
+معطى في قسم رأس GCode: "SVG dimension".</value>
+  </data>
+  <data name="nUDImportGraphicClipWidth.ToolTip" xml:space="preserve">
+    <value>البعد X للبلاط</value>
+  </data>
+  <data name="CbImportGraphicClipGetDimAuto.Text" xml:space="preserve">
+    <value>تطبيق تلقائي عند الاستيراد</value>
+  </data>
+  <data name="CbImportGraphicClipGetDimAuto.ToolTip" xml:space="preserve">
+    <value>قم بتطبيق القيم تلقائيًا أثناء الاستيراد</value>
+  </data>
+  <data name="BtnGetFilterSave.Text" xml:space="preserve">
+    <value>حفظ على الكمبيوتر</value>
+  </data>
+  <data name="BtnGetFilterLoad.Text" xml:space="preserve">
+    <value>مرشحات الحمل</value>
+  </data>
+  <data name="BtnGetFilterValueClear.Text" xml:space="preserve">
+    <value>حذف النص</value>
+  </data>
+  <data name="RbimportGraphicFilterChoiceRemove2.Text" xml:space="preserve">
+    <value>احتفظ بالأشياء</value>
+  </data>
+  <data name="RbimportGraphicFilterChoiceRemove1.Text" xml:space="preserve">
+    <value>إزالة الأشياء</value>
+  </data>
+  <data name="CbimportGraphicFilterEnable.Text" xml:space="preserve">
+    <value>تفعيل المرشح حسب لون القلم أو عرض القلم</value>
+  </data>
+  <data name="GbFilter.Text" xml:space="preserve">
+    <value>احتفظ أو أزل الأشياء حسب الخصائص</value>
+  </data>
+  <data name="tabPage34.Text" xml:space="preserve">
+    <value>منقي</value>
+  </data>
+  <data name="BtnLoadToolTableDialog.ToolTip" xml:space="preserve">
+    <value>تحميل جدول الأدوات من موقع آخر</value>
+  </data>
+  <data name="BtnOpenLogFile.Text" xml:space="preserve">
+    <value>افتح ملف السجل</value>
+  </data>
+  <data name="label89.Text" xml:space="preserve">
+    <value>قم بإزالة جميع الكائنات التي تحتوي على هذه الخصائص (منفصلة بـ "؛")</value>
+  </data>
+  <data name="label90.Text" xml:space="preserve">
+    <value>احتفظ بجميع الكائنات بهذه الخصائص (منفصلة بـ "؛")</value>
+  </data>
+  <data name="CbImportGraphicClipAngleEnable.Text" xml:space="preserve">
+    <value>دور</value>
+  </data>
+  <data name="cBColorModeWidth.Text" xml:space="preserve">
+    <value>+ العرض</value>
+  </data>
+  <data name="cBColorModeWidth.ToolTip" xml:space="preserve">
+    <value>يطبق أيضًا عرض القلم المستورد على العرض ثنائي الأبعاد</value>
+  </data>
+  <data name="BtnGetFilterValueRemove.Text" xml:space="preserve">
+    <value>استلام</value>
+  </data>
+  <data name="BtnGetFilterValueKeep.Text" xml:space="preserve">
+    <value>استيراد اللون</value>
+  </data>
+  <data name="pathImport1.Text" xml:space="preserve">
+    <value>التنسيق ذات الصلة</value>
+  </data>
+  <data name="pathImport2.Text" xml:space="preserve">
+    <value>خيارات عامة</value>
+  </data>
+  <data name="pathImport3.Text" xml:space="preserve">
+    <value>الوظائف الإضافية للمسار</value>
+  </data>
+  <data name="pathImport4.Text" xml:space="preserve">
+    <value>تعديلات المسار</value>
+  </data>
+  <data name="pathImport5.Text" xml:space="preserve">
+    <value>لقطة</value>
+  </data>
+  <data name="pathImport6.Text" xml:space="preserve">
+    <value>التجميع والأدوات</value>
+  </data>
+  <data name="BtnGetFilterSave.ToolTip" xml:space="preserve">
+    <value>احفظ إعدادات التصفية في ../data/filters كملف ini</value>
+  </data>
+  <data name="BtnGetFilterLoad.ToolTip" xml:space="preserve">
+    <value>تحميل إعدادات التصفية من ../data/filters</value>
+  </data>
+  <data name="BtnGetFilterValueClear.ToolTip" xml:space="preserve">
+    <value>احذف الحقول النصية</value>
+  </data>
+  <data name="BtnGetFilterValueKeep.ToolTip" xml:space="preserve">
+    <value>يضيف لون الحرف أو المجموعة المحددة</value>
+  </data>
+  <data name="BtnGetFilterValueRemove.ToolTip" xml:space="preserve">
+    <value>يضيف لون الحرف أو المجموعة المحددة</value>
+  </data>
+  <data name="pathImport7.Text" xml:space="preserve">
+    <value>منقي</value>
+  </data>
+  <data name="pathImport8.Text" xml:space="preserve">
+    <value>تحويل خاص</value>
+  </data>
+  <data name="pathImport9.Text" xml:space="preserve">
+    <value>تمديد القيادة</value>
+  </data>
+  <data name="graphicImport1.Text" xml:space="preserve">
+    <value>استيراد المسار</value>
+  </data>
+  <data name="graphicImport2.Text" xml:space="preserve">
+    <value>جيل رمز جيل</value>
+  </data>
+  <data name="graphicImport3.Text" xml:space="preserve">
+    <value>تعديل G-Code</value>
+  </data>
+  <data name="graphicImport4.Text" xml:space="preserve">
+    <value>استخدم حالات</value>
+  </data>
+  <data name="BtnGetFilterValueKeepWidth.ToolTip" xml:space="preserve">
+    <value>يضيف لون الحرف أو المجموعة المحددة</value>
+  </data>
+  <data name="BtnGetFilterValueKeepColor.ToolTip" xml:space="preserve">
+    <value>يضيف لون الحرف أو المجموعة المحددة</value>
+  </data>
+  <data name="BtnGetFilterValueRemoveWidth.ToolTip" xml:space="preserve">
+    <value>يضيف لون الحرف أو المجموعة المحددة</value>
+  </data>
+  <data name="BtnGetFilterValueRemoveColor.ToolTip" xml:space="preserve">
+    <value>يضيف لون الحرف أو المجموعة المحددة</value>
   </data>
 </root>

@@ -479,7 +479,8 @@ namespace GrblPlotter
             if (num.Length < 1)
                 return notfound;
 
-            if (double.TryParse(num, out double parsed))
+            if (double.TryParse(num, System.Globalization.NumberStyles.Float, System.Globalization.NumberFormatInfo.InvariantInfo, out double parsed))
+        //    if (double.TryParse(num, out double parsed))
                 return parsed;
 
             Logger.Warn("FindDouble {0}  {1}", start, txt);

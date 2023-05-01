@@ -3312,4 +3312,147 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   <data name="label88.Text" xml:space="preserve">
     <value>твердо:</value>
   </data>
+  <data name="cBimportGraphicLeadTopZUp.Text" xml:space="preserve">
+    <value>Стартовая рампа в Pen-Up</value>
+  </data>
+  <data name="BtnImportGraphicClipGetOff.Text" xml:space="preserve">
+    <value>Применить смещение от GCode</value>
+  </data>
+  <data name="BtnImportGraphicClipGetOff.ToolTip" xml:space="preserve">
+    <value>Применяется рассчитанное смещение, если применяется «Смещение начала координат графики до 0;0».
+Указано в разделе заголовка GCode: «Graphic offset».</value>
+  </data>
+  <data name="BtnImportGraphicClipGetDim.Text" xml:space="preserve">
+    <value>Применить размер из SVG</value>
+  </data>
+  <data name="BtnImportGraphicClipGetDim.ToolTip" xml:space="preserve">
+    <value>Размер графики SVG — «ширина» и «высота».
+Указано в разделе заголовка GCode: «SVG dimension».</value>
+  </data>
+  <data name="nUDImportGraphicClipWidth.ToolTip" xml:space="preserve">
+    <value>X размер плитки</value>
+  </data>
+  <data name="CbImportGraphicClipGetDimAuto.Text" xml:space="preserve">
+    <value>Автоматически применять при импорте</value>
+  </data>
+  <data name="CbImportGraphicClipGetDimAuto.ToolTip" xml:space="preserve">
+    <value>Автоматически применять значения во время импорта</value>
+  </data>
+  <data name="BtnGetFilterSave.Text" xml:space="preserve">
+    <value>Сохранить на компьютер</value>
+  </data>
+  <data name="BtnGetFilterLoad.Text" xml:space="preserve">
+    <value>загрузить фильтры</value>
+  </data>
+  <data name="BtnGetFilterValueClear.Text" xml:space="preserve">
+    <value>удалить текст</value>
+  </data>
+  <data name="RbimportGraphicFilterChoiceRemove2.Text" xml:space="preserve">
+    <value>держать объекты</value>
+  </data>
+  <data name="RbimportGraphicFilterChoiceRemove1.Text" xml:space="preserve">
+    <value>удалить объекты</value>
+  </data>
+  <data name="CbimportGraphicFilterEnable.Text" xml:space="preserve">
+    <value>Активация фильтра по цвету пера или ширине пера</value>
+  </data>
+  <data name="GbFilter.Text" xml:space="preserve">
+    <value>Сохранить или удалить объекты по свойствам</value>
+  </data>
+  <data name="tabPage34.Text" xml:space="preserve">
+    <value>фильтр</value>
+  </data>
+  <data name="BtnLoadToolTableDialog.ToolTip" xml:space="preserve">
+    <value>Загрузить таблицу инструментов из другого места</value>
+  </data>
+  <data name="BtnOpenLogFile.Text" xml:space="preserve">
+    <value>Открыть файл журнала</value>
+  </data>
+  <data name="label89.Text" xml:space="preserve">
+    <value>Удалить все объекты с этими свойствами (разделить с помощью ';')</value>
+  </data>
+  <data name="label90.Text" xml:space="preserve">
+    <value>Сохранить все объекты с этими свойствами (разделить с помощью ';')</value>
+  </data>
+  <data name="CbImportGraphicClipAngleEnable.Text" xml:space="preserve">
+    <value>Повернуть</value>
+  </data>
+  <data name="cBColorModeWidth.Text" xml:space="preserve">
+    <value>+ ширина</value>
+  </data>
+  <data name="cBColorModeWidth.ToolTip" xml:space="preserve">
+    <value>Также применяет импортированную ширину пера к 2D-виду.</value>
+  </data>
+  <data name="BtnGetFilterValueRemove.Text" xml:space="preserve">
+    <value>Получать</value>
+  </data>
+  <data name="BtnGetFilterValueKeep.Text" xml:space="preserve">
+    <value>импорт цвета</value>
+  </data>
+  <data name="pathImport1.Text" xml:space="preserve">
+    <value>Связанный с форматом</value>
+  </data>
+  <data name="pathImport2.Text" xml:space="preserve">
+    <value>Общие настройки</value>
+  </data>
+  <data name="pathImport3.Text" xml:space="preserve">
+    <value>Надстройки пути</value>
+  </data>
+  <data name="pathImport4.Text" xml:space="preserve">
+    <value>Модификации пути</value>
+  </data>
+  <data name="pathImport5.Text" xml:space="preserve">
+    <value>вырезка</value>
+  </data>
+  <data name="pathImport6.Text" xml:space="preserve">
+    <value>Группировка и инструменты</value>
+  </data>
+  <data name="BtnGetFilterSave.ToolTip" xml:space="preserve">
+    <value>Сохраните настройки фильтра в ../data/filters в виде ini-файла.</value>
+  </data>
+  <data name="BtnGetFilterLoad.ToolTip" xml:space="preserve">
+    <value>Загрузить настройки фильтра из ../data/filters</value>
+  </data>
+  <data name="BtnGetFilterValueClear.ToolTip" xml:space="preserve">
+    <value>Удалить текстовые поля</value>
+  </data>
+  <data name="BtnGetFilterValueKeep.ToolTip" xml:space="preserve">
+    <value>Добавляет цвет выбранного персонажа или группы</value>
+  </data>
+  <data name="BtnGetFilterValueRemove.ToolTip" xml:space="preserve">
+    <value>Добавляет цвет выбранного персонажа или группы</value>
+  </data>
+  <data name="pathImport7.Text" xml:space="preserve">
+    <value>фильтр</value>
+  </data>
+  <data name="pathImport8.Text" xml:space="preserve">
+    <value>Специальная конверсия</value>
+  </data>
+  <data name="pathImport9.Text" xml:space="preserve">
+    <value>расширение команды</value>
+  </data>
+  <data name="graphicImport1.Text" xml:space="preserve">
+    <value>Импорт пути</value>
+  </data>
+  <data name="graphicImport2.Text" xml:space="preserve">
+    <value>Генерация G кода</value>
+  </data>
+  <data name="graphicImport3.Text" xml:space="preserve">
+    <value>Модификация G-кода</value>
+  </data>
+  <data name="graphicImport4.Text" xml:space="preserve">
+    <value>Случаи использования</value>
+  </data>
+  <data name="BtnGetFilterValueKeepWidth.ToolTip" xml:space="preserve">
+    <value>Добавляет цвет выбранного персонажа или группы</value>
+  </data>
+  <data name="BtnGetFilterValueKeepColor.ToolTip" xml:space="preserve">
+    <value>Добавляет цвет выбранного персонажа или группы</value>
+  </data>
+  <data name="BtnGetFilterValueRemoveWidth.ToolTip" xml:space="preserve">
+    <value>Добавляет цвет выбранного персонажа или группы</value>
+  </data>
+  <data name="BtnGetFilterValueRemoveColor.ToolTip" xml:space="preserve">
+    <value>Добавляет цвет выбранного персонажа или группы</value>
+  </data>
 </root>

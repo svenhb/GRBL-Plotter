@@ -37,6 +37,7 @@
  * 2021-11-02 add new properties fiducials
  * 2022-02-23 add Command extension settings
  * 2023-03-05 add importGCZIncNoZUp
+ * 2023-04-26 add importGraphicFilterEnable
 */
 
 using System;
@@ -281,6 +282,15 @@ namespace GrblPlotter
                 Write("Grouping item", setup.importGroupItem.ToString(), section);
                 Write("Grouping sort option", setup.importGroupSort.ToString(), section);
                 Write("Grouping sort invert", setup.importGroupSortInvert.ToString(), section);
+            }
+
+            /* Filter */
+            if (setup.importGraphicFilterEnable || all)
+            {
+                Write("Filter enable", setup.importGraphicFilterEnable.ToString(), section);
+                Write("Filter remove", setup.importGraphicFilterChoiceRemove.ToString(), section);
+                Write("Filter list remove", setup.importGraphicFilterListRemove.ToString(), section);
+                Write("Filter list keep", setup.importGraphicFilterListKeep.ToString(), section);
             }
 
             /* Tool table use */
@@ -612,6 +622,7 @@ namespace GrblPlotter
             Write("Width Simulation", setup.gui2DWidthSimulation.ToString(), section);
 
             Write("PenDown Color Mode", setup.gui2DColorPenDownModeEnable.ToString(), section);
+            Write("PenDown Width Mode", setup.gui2DColorPenDownModeWidth.ToString(), section);
 
             Write("Color Background", ColorTranslator.ToHtml(setup.gui2DColorBackground), section);
             Write("Color Background Path", ColorTranslator.ToHtml(setup.gui2DColorBackgroundPath), section);
@@ -712,7 +723,8 @@ namespace GrblPlotter
 
             setup.importGroupObjects = false;
             setup.importGroupSortInvert = false;
-
+			setup.importGraphicFilterEnable = false;
+			
             setup.importGCToolTableUse = false;
             setup.importGCToolDefNrUse = false;
 
@@ -867,6 +879,12 @@ namespace GrblPlotter
             if (SetVariable(ref tmpint, section, "Grouping item")) { setup.importGroupItem = tmpint; }
             if (SetVariable(ref tmpint, section, "Grouping sort option")) { setup.importGroupSort = tmpint; }
             if (SetVariable(ref tmpbool, section, "Grouping sort invert")) { setup.importGroupSortInvert = tmpbool; }
+
+			/* Filter */
+            if (SetVariable(ref tmpbool, section, "Filter enable")) { setup.importGraphicFilterEnable = tmpbool; }
+            if (SetVariable(ref tmpbool, section, "Filter remove")) { setup.importGraphicFilterChoiceRemove = tmpbool; }
+            if (SetVariable(ref tmpstr, section, "Filter list remove")) { setup.importGraphicFilterListRemove = tmpstr; }
+            if (SetVariable(ref tmpstr, section, "Filter list keep")) { setup.importGraphicFilterListKeep = tmpstr; }
 
             /* Tool table use */
             if (SetVariable(ref tmpbool, section, "Tool table enable")) { setup.importGCToolTableUse = tmpbool; }

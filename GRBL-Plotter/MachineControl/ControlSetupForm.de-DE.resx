@@ -1904,11 +1904,11 @@ Objekte mit derselben Start- und Endkoordinate werden zusammengeführt.</value>
     <comment>ok</comment>
   </data>
   <data name="nUDImportGraphicClipOffsetY.ToolTip" xml:space="preserve">
-    <value>X-Dimension der Fliese</value>
+    <value>Y-Offset des Clipping-Bereichs</value>
     <comment>ok</comment>
   </data>
   <data name="nUDImportGraphicClipOffsetX.ToolTip" xml:space="preserve">
-    <value>X-Dimension der Fliese</value>
+    <value>X-Offset des Clipping-Bereichs</value>
     <comment>ok</comment>
   </data>
   <data name="rBImportGraphicClip1.Text" xml:space="preserve">
@@ -1924,7 +1924,7 @@ Objekte mit derselben Start- und Endkoordinate werden zusammengeführt.</value>
     <comment>ok</comment>
   </data>
   <data name="nUDImportGraphicClipHeight.ToolTip" xml:space="preserve">
-    <value>Y-Dimension der Fliese</value>
+    <value>Y-Abmessung der Kachel</value>
     <comment>ok</comment>
   </data>
   <data name="nUDImportGraphicTileClipWidth.ToolTip" xml:space="preserve">
@@ -3038,5 +3038,152 @@ Zusätzlich kann die Position der Z Achse verwendet werden um z.B. die Farbmenge
   </data>
   <data name="label88.Text" xml:space="preserve">
     <value>fest:</value>
+  </data>
+  <data name="cBimportGraphicLeadTopZUp.Text" xml:space="preserve">
+    <value>Startrampe bei Pen-Up</value>
+  </data>
+  <data name="BtnImportGraphicClipGetOff.Text" xml:space="preserve">
+    <value>Offset aus GCode anwenden</value>
+  </data>
+  <data name="BtnImportGraphicClipGetOff.ToolTip" xml:space="preserve">
+    <value>Berechneter Offset angewendet, wenn 'Graphikursprung auf 0;0 versetzen' angewendet wird.
+Gegeben im GCode-Header-Abschnitt: 'Graphic offset'.</value>
+  </data>
+  <data name="BtnImportGraphicClipGetDim.Text" xml:space="preserve">
+    <value>Bemaßung aus SVG anwenden</value>
+  </data>
+  <data name="BtnImportGraphicClipGetDim.ToolTip" xml:space="preserve">
+    <value>Dimension von SVG-Grafiken - 'Breite' und 'Höhe'.
+Gegeben im GCode-Header-Abschnitt: 'SVG dimension'.</value>
+  </data>
+  <data name="nUDImportGraphicClipWidth.ToolTip" xml:space="preserve">
+    <value>X-Dimension der Fliese</value>
+  </data>
+  <data name="CbImportGraphicClipGetDimAuto.Text" xml:space="preserve">
+    <value>Beim Import automatisch anwenden</value>
+  </data>
+  <data name="CbImportGraphicClipGetDimAuto.ToolTip" xml:space="preserve">
+    <value>Werte beim Import automatisch übernehmen</value>
+  </data>
+  <data name="BtnGetFilterSave.Text" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="BtnGetFilterLoad.Text" xml:space="preserve">
+    <value>Filter laden</value>
+  </data>
+  <data name="BtnGetFilterValueClear.Text" xml:space="preserve">
+    <value>Lösche text</value>
+  </data>
+  <data name="RbimportGraphicFilterChoiceRemove2.Text" xml:space="preserve">
+    <value>Objekte behalten</value>
+  </data>
+  <data name="RbimportGraphicFilterChoiceRemove1.Text" xml:space="preserve">
+    <value>Objekte entfernen</value>
+  </data>
+  <data name="CbimportGraphicFilterEnable.Text" xml:space="preserve">
+    <value>Aktivierung des Filters nach Stiftfarbe oder Stiftbreite</value>
+  </data>
+  <data name="GbFilter.Text" xml:space="preserve">
+    <value>Objekte nach Eigenschaften behalten oder entfernen</value>
+  </data>
+  <data name="tabPage34.Text" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="BtnLoadToolTableDialog.ToolTip" xml:space="preserve">
+    <value>Werkzeugtabelle von anderer Stelle laden</value>
+  </data>
+  <data name="BtnOpenLogFile.Text" xml:space="preserve">
+    <value>Protokolldatei öffnen</value>
+  </data>
+  <data name="label89.Text" xml:space="preserve">
+    <value>Alle Objekte mit diesen Eigenschaften entfernen (mit ';' trennen)</value>
+  </data>
+  <data name="label90.Text" xml:space="preserve">
+    <value>Alle  Objekte mit diesen Eigenschaften behalten (mit ';' trennen)</value>
+  </data>
+  <data name="CbImportGraphicClipAngleEnable.Text" xml:space="preserve">
+    <value>Drehen</value>
+  </data>
+  <data name="cBColorModeWidth.Text" xml:space="preserve">
+    <value>+ Breite</value>
+  </data>
+  <data name="cBColorModeWidth.ToolTip" xml:space="preserve">
+    <value>Wendet auch importierte Stiftebreite auf die 2D-Ansicht an</value>
+  </data>
+  <data name="BtnGetFilterValueRemove.Text" xml:space="preserve">
+    <value>Erhalten</value>
+  </data>
+  <data name="BtnGetFilterValueKeep.Text" xml:space="preserve">
+    <value>Farbimport</value>
+  </data>
+  <data name="pathImport1.Text" xml:space="preserve">
+    <value>Formatbezogen</value>
+  </data>
+  <data name="pathImport2.Text" xml:space="preserve">
+    <value>Allgemeine Optionen</value>
+  </data>
+  <data name="pathImport3.Text" xml:space="preserve">
+    <value>Pfad-Add-Ons</value>
+  </data>
+  <data name="pathImport4.Text" xml:space="preserve">
+    <value>Pfadänderungen</value>
+  </data>
+  <data name="pathImport5.Text" xml:space="preserve">
+    <value>Ausschnitt</value>
+  </data>
+  <data name="pathImport6.Text" xml:space="preserve">
+    <value>Gruppierung und Tools</value>
+  </data>
+  <data name="BtnGetFilterSave.ToolTip" xml:space="preserve">
+    <value>Filtereinstellungen in ../data/filters als ini-Datei speichern</value>
+  </data>
+  <data name="BtnGetFilterLoad.ToolTip" xml:space="preserve">
+    <value>Filtereinstellungen aus ../data/filters laden</value>
+  </data>
+  <data name="BtnGetFilterValueClear.ToolTip" xml:space="preserve">
+    <value>Lösche Textfelder</value>
+  </data>
+  <data name="BtnGetFilterValueKeep.ToolTip" xml:space="preserve">
+    <value>Fügt die Farbe der ausgewählten Figur oder Gruppe hinzu</value>
+  </data>
+  <data name="BtnGetFilterValueRemove.ToolTip" xml:space="preserve">
+    <value>Fügt die Farbe der ausgewählten Figur oder Gruppe hinzu</value>
+  </data>
+  <data name="pathImport7.Text" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="pathImport8.Text" xml:space="preserve">
+    <value>Spezielle Konvertierung</value>
+  </data>
+  <data name="pathImport9.Text" xml:space="preserve">
+    <value>Befehlserweiterung</value>
+  </data>
+  <data name="graphicImport1.Text" xml:space="preserve">
+    <value>Pfadimport</value>
+  </data>
+  <data name="cBImportLasermode.Text" xml:space="preserve">
+    <value>Lasermode (mit S0 statt M5 Laser ausschalten)</value>
+    <comment>ok</comment>
+  </data>
+  <data name="graphicImport2.Text" xml:space="preserve">
+    <value>G-Code Erzeugung</value>
+  </data>
+  <data name="graphicImport3.Text" xml:space="preserve">
+    <value>G-Code Modifikation</value>
+  </data>
+  <data name="graphicImport4.Text" xml:space="preserve">
+    <value>Anwendungsfälle</value>
+  </data>
+  <data name="BtnGetFilterValueKeepWidth.ToolTip" xml:space="preserve">
+    <value>Fügt die Farbe der ausgewählten Figur oder Gruppe hinzu</value>
+  </data>
+  <data name="BtnGetFilterValueKeepColor.ToolTip" xml:space="preserve">
+    <value>Fügt die Farbe der ausgewählten Figur oder Gruppe hinzu</value>
+  </data>
+  <data name="BtnGetFilterValueRemoveWidth.ToolTip" xml:space="preserve">
+    <value>Fügt die Farbe der ausgewählten Figur oder Gruppe hinzu</value>
+  </data>
+  <data name="BtnGetFilterValueRemoveColor.ToolTip" xml:space="preserve">
+    <value>Fügt die Farbe der ausgewählten Figur oder Gruppe hinzu</value>
   </data>
 </root>
