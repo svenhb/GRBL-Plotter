@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -46,6 +46,7 @@
  * 2022-03-24 add drop-down for tool-files and tool-table entries
  * 2022-03-28 move some functions to new file GCodeFromImageMisc
  * 2022-09-14 add if (adjustedImage == null) 
+ * 2023-04-10 l:279 f:LoadUrl add try catch
 */
 
 using AForge.Imaging.ColorReduction;
@@ -277,9 +278,16 @@ namespace GrblPlotter
 
         public void LoadUrl(string url)								// called from MainFormLoadFile 654
         {
-            pictureBox1.Load(url);
-            originalImage = new Bitmap(pictureBox1.Image);
-            ProcessLoading();   // reset color corrections
+            try
+            {
+                pictureBox1.Load(url);
+                originalImage = new Bitmap(pictureBox1.Image);
+                ProcessLoading();   // reset color corrections
+            }
+            catch (Exception err)
+            {   Logger.Error(err, "LoadUrl {0} ", url);
+                MessageBox.Show(string.Format("Error on loading from URL '{0}'\r\n{1}",url,err.Message),"Error");
+            }
         }
         private void GCodeFromImage_DragEnter(object sender, DragEventArgs e)
         { e.Effect = DragDropEffects.All; }
@@ -907,7 +915,7 @@ namespace GrblPlotter
             }
             finally
             {
-                if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
+                adjustedImage?.UnlockBits(dataAdjusted);
             }
             if (logEnable) Logger.Info("countResultColors - different colors: {0}", lookUpToolNr.Count);
         }
@@ -953,7 +961,7 @@ namespace GrblPlotter
             }
             finally
             {
-                if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
+                adjustedImage?.UnlockBits(dataAdjusted);
             }
 
             foreach (KeyValuePair<byte, long> gray in lookUpGrayVal)
@@ -1051,16 +1059,16 @@ namespace GrblPlotter
                     pixelsResult[index + 3] = 255;
                 }
                 Marshal.Copy(pixelsResult, 0, ptrResult, pixelsResult.Length);
-                if (resultImage != null) resultImage.UnlockBits(dataResult);
-                if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
+                resultImage?.UnlockBits(dataResult);
+                adjustedImage?.UnlockBits(dataAdjusted);
             }
             catch (Exception err)
             {
                 string errString = string.Format("GenerateResultImage: size:{0} x {1}  bits:{2}", rectWidth, rectHeight, Image.GetPixelFormatSize(adjustedImage.PixelFormat));
                 Logger.Error(err, "{0}  ", errString);
                 EventCollector.StoreException(errString + "  " + err.Message);
-                if (resultImage != null) resultImage.UnlockBits(dataResult);
-                if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
+                resultImage?.UnlockBits(dataResult);
+                adjustedImage?.UnlockBits(dataAdjusted);
             }
             lblStatus.Text = "Done";
             pictureBox1.Image = resultImage;
@@ -1120,8 +1128,8 @@ namespace GrblPlotter
                     pixelsResult[index + 3] = 255;
                 }
                 Marshal.Copy(pixelsResult, 0, ptrResult, pixelsResult.Length);
-                if (resultImage != null) resultImage.UnlockBits(dataResult);
-                if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
+                resultImage?.UnlockBits(dataResult);
+                adjustedImage?.UnlockBits(dataAdjusted);
             }
             catch (Exception err)
             {
@@ -1131,8 +1139,8 @@ namespace GrblPlotter
 
                 //	Logger.Error(err,"generateResultImage pixelFormat:{0} ", adjustedImage.PixelFormat);
                 //    EventCollector.StoreException("generateResultImageGray: size:"+rectWidth+" x "+rectHeight+"  pixelFormat: " + adjustedImage.PixelFormat.ToString() + "  " +err.Message);
-                if (resultImage != null) resultImage.UnlockBits(dataResult);
-                if (adjustedImage != null) adjustedImage.UnlockBits(dataAdjusted);
+                resultImage?.UnlockBits(dataResult);
+                adjustedImage?.UnlockBits(dataAdjusted);
             }
             lblStatus.Text = "Done";
             pictureBox1.Image = resultImage;
