@@ -202,7 +202,7 @@ namespace GrblPlotter
             int indexX = 0;
 
             Logger.Info(" Amount Lines:{0}", size);
-            if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = 10, Content = "Read CSV data of " + size.ToString() + " lines" });
+            backgroundWorker?.ReportProgress(0, new MyUserState { Value = 10, Content = "Read CSV data of " + size.ToString() + " lines" });
 
             for (int i = startAtLine; i < size; i++)
             {

@@ -76,6 +76,7 @@
  * 2022-06-14 line 387 skip entity if layer is invisible or printing is disabled
  * 2022-11-10 line 445 check IsNullOrEmpty(dashType)
  * 2023-02-05 line 324 check if (!lineTypes.ContainsKey(lt.LineTypeName)) before add
+ * 2023-04-10 :187 f:ConvertFromFile check length for substring
 */
 
 using DXFLib;
@@ -111,7 +112,7 @@ namespace GrblPlotter //DXFImporter
         private static int countDXFBlocks = 0;
         private static int countDXFEntity = 0;
 
-        private static readonly string dxfColorFill = "";
+        private static string dxfColorFill = "none";
         private static string dxfColorHex = "";
         private static bool nodesOnly = false;              // if true only do pen-down -up on given coordinates
         private static bool useZ = false;
@@ -183,7 +184,10 @@ namespace GrblPlotter //DXFImporter
                     { MessageBox.Show("Error '" + err.ToString() + "' in DXF file " + filePath); }
                 }
                 else
-                    MessageBox.Show("This is probably not a DXF document.\r\nFirst line: " + content.Substring(0, 50));
+                {
+                    int len = Math.Min(50, content.Length);
+                    MessageBox.Show("This is probably not a DXF document.\r\nFirst line: " + content.Substring(0, len));
+                }
             }
             else
             {
@@ -299,7 +303,14 @@ namespace GrblPlotter //DXFImporter
 
             Logger.Info("●●●● AutoCADVersion:{0}", doc.Header.AutoCADVersion);
             Logger.Info("●●●● Amount Layers:{0}  Entities:{1}  Blocks:{2}", countDXFLayers, countDXFEntities, countDXFBlocks);
-            if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = 10, Content = "Read DXF vector data of " + countDXFEntities.ToString() + " elements" });
+            backgroundWorker?.ReportProgress(0, new MyUserState { Value = 10, Content = "Read DXF vector data of " + countDXFEntities.ToString() + " elements" });
+
+            List<DXFStyleRecord> srecord = new List<DXFStyleRecord>();
+            srecord = doc.Tables.Styles;
+            foreach (DXFStyleRecord str in srecord)
+            {
+                Logger.Trace("Style {0}",str.FontFileName);
+            }
 
             int plotflag = 0;
             foreach (DXFLayerRecord record in lrecord)
@@ -428,6 +439,18 @@ namespace GrblPlotter //DXFImporter
             dxfColorHex = GetColorFromID(dxfColorNr);
             //       dxfColorFill = entity.ColorNumber.ToString();
 
+            /* get fill */
+            //dxfColorFill = "none";
+            #region Hatch
+            if (entity.GetType() == typeof(DXFHatch))
+            {
+                DXFHatch hatch = (DXFHatch)entity;
+                dxfColorFill = dxfColorHex;
+                Logger.Warn("⚠⚠⚠ Hatch-fill is not fully implemented: Layer:'{0}' ColorNr.:{1} LineWeight:{2} Handle:{3} ", hatch.LayerName, hatch.ColorNumber, hatch.LineWeight, hatch.Handle);
+                Graphic.SetHeaderInfo(string.Format(" DXFHatch - fill is not fully implemented - Layer:{0}  ", hatch.LayerName));
+            }
+            #endregion
+
             /* get lineWeight   */
             dxfLineWeigth = entity.LineWeight;
             if (dxfLineWeigth == -1) dxfLineWeigth = dxfBlockLineWeigth;        // -1 = ByBlock
@@ -444,8 +467,8 @@ namespace GrblPlotter //DXFImporter
             {
                 if ((layerLType != null) && (layerName != null) && (layerLType.ContainsKey(layerName)))              // check if layer name is known
                 {
-                    string dashType = layerLType[layerName];        							// get name of pattern
-					if (!String.IsNullOrEmpty(dashType) && lineTypes.ContainsKey(dashType))    // check if pattern name is known
+                    string dashType = layerLType[layerName];                                    // get name of pattern
+                    if (!String.IsNullOrEmpty(dashType) && lineTypes.ContainsKey(dashType))    // check if pattern name is known
                         Graphic.SetDash(lineTypes[dashType]);
                 }
             }
@@ -462,7 +485,7 @@ namespace GrblPlotter //DXFImporter
             if (dxfColorNr != wasSetPenColorId) { Graphic.SetPenColorId(dxfColorNr); wasSetPenColorId = dxfColorNr; }
             if (dxfColorFill != wasSetPenFill) { Graphic.SetPenFill(dxfColorFill); wasSetPenFill = dxfColorFill; }
             if (dxfLineWeigth != wasSetPenWidth) { Graphic.SetPenWidth(string.Format("{0:0.00}", ((double)dxfLineWeigth / 100)).Replace(',', '.')); wasSetPenWidth = dxfLineWeigth; }//convert to mm, then to string
-
+       
             DXFPoint tmp = new DXFPoint();
             DXFPoint position = new DXFPoint
             {
@@ -470,7 +493,6 @@ namespace GrblPlotter //DXFImporter
                 Y = 0
             };
             int index = 0;
-            //     string cmt = "";
 
             #region DXFPoint
             if (entity.GetType() == typeof(DXFPointEntity))
@@ -832,16 +854,6 @@ namespace GrblPlotter //DXFImporter
 
             }
             #endregion
-            #region Hatch
-            else if (entity.GetType() == typeof(DXFHatch))
-            {
-                DXFHatch hatch = (DXFHatch)entity;
-
-                Graphic.SetGeometry("Hatch");
-                if (logEnable) Logger.Trace(" Hatch-fill is not implemented: Layer:'{0}' ColorNr.:{1} LineWeight:{2} Handle:{3}", hatch.LayerName, hatch.ColorNumber, hatch.LineWeight, hatch.Handle);
-                Graphic.SetHeaderInfo(string.Format(" DXFHatch - fill is not implemented - Layer:{0}  ", hatch.LayerName));
-            }
-            #endregion
             #region DXFMText
             else if (entity.GetType() == typeof(DXFMText))
             {   // https://www.autodesk.com/techpubs/autocad/acad2000/dxf/mtext_dxf_06.htm
@@ -930,22 +942,18 @@ namespace GrblPlotter //DXFImporter
                 GCodeFromFont.GetCode(0);   // no page break
             }
             #endregion
+            #region Hatch
+            if (entity.GetType() == typeof(DXFHatch))
+            {
+                // already processed
+            }
+            #endregion
             else
             {
                 Graphic.SetHeaderInfo(" Unknown DXF Entity: " + entity.GetType().ToString());
                 Graphic.SetHeaderMessage(string.Format(" {0}-1201: Unknown DXF Entity: {1}", CodeMessage.Attention, entity.GetType().ToString()));
             }
         }
-        /*    private static void DrawArc(ImportMath.Arc arc)
-            {
-                if (arc.r != 0.0)
-                {
-                    Vector2 startPoint = arc.PointAt(0) - arc.C;
-                    Vector2 endPoint = arc.PointAt(1);
-                    Logger.Trace("  DrawArc x:{0} y:{1}", endPoint.X, endPoint.Y);
-                    Graphic.AddArc(arc.IsClockwise, new Point(endPoint.X, endPoint.Y), new Point(startPoint.X, startPoint.Y));  // G2 = clockwise
-                }
-            }*/
 
         private static double RotateGetX(DXFPoint r, double angleRad)
         { return (double)(r.X * Math.Cos(angleRad) - r.Y * Math.Sin(angleRad)); }
@@ -998,7 +1006,6 @@ namespace GrblPlotter //DXFImporter
             }
             DXFStopPath();
         }
-
 
         private static DXFPoint ApplyOffsetAndAngle(DXFPoint location, DXFPoint offset, double offsetAngleDegree)
         {
@@ -1183,6 +1190,7 @@ namespace GrblPlotter //DXFImporter
         {
             if (logPosition) Logger.Trace("DXFStopPath");
             Graphic.StopPath();
+            dxfColorFill = "none";
         }              // start next path
 
         /// <summary>

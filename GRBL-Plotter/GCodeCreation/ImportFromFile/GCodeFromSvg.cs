@@ -85,6 +85,10 @@
  * 2022-09-30 line 1330 SVGStartPath -> SetGeometry = startPath to continue figure
  * 2022-11-04 line 845 dash pattern - convert px to mm
  * 2022-12-09 line 1290 ParsePathCommand check if string is empty
+ * 2023-04-10 :211 f:ConvertFromFile check length for substring
+ * 2023-04-17 add skip2ndCounter
+ * 2023-04-18 l:410 f:ParseGlobals add GCode-Header output of SVG dimension
+ * 2023-04-25 l:1260 f:ParsePath add filtering
 */
 
 /* SetHeaderMessages...
@@ -126,14 +130,16 @@ namespace GrblPlotter
         private static Matrix lastTransformMatrix = new Matrix();
 
         private static float factor_In2Px = 96;
-        private static float factor_Mm2Px = 96f / 25.4f;
-        private static float factor_Cm2Px = 96f / 2.54f;
-        private static float factor_Pt2Px = 96f / 72f;
+        private static float factor_Mm2Px = 96f / 25.4f;    // 3.779
+        private static float factor_Cm2Px = 96f / 2.54f;    // 37.79
+        private static float factor_Pt2Px = 96f / 72f;      // 1.333
         private static float factor_Pc2Px = 12 * 96f / 72f;
         private static float factor_Em2Px = 16; //150;
 
         public static string ConversionInfo { get; set; }
         private static int shapeCounter = 0;
+        private static int skipCounter = 0;
+        private static int skip2ndCounter = 0;
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -206,7 +212,10 @@ namespace GrblPlotter
                     return ConvertSVG(svgCode, filePath);                   // startConvert(svgCode);
                 }
                 else
-                    MessageBox.Show("This is probably not a SVG document.\r\nFirst line: " + content.Substring(0, 50));
+                {
+                    int len = Math.Min(50, content.Length);
+                    MessageBox.Show("This is probably not a SVG document.\r\nFirst line: " + content.Substring(0, len));
+                }
             }
             else
             {
@@ -242,7 +251,7 @@ namespace GrblPlotter
             svgNodesOnly = Properties.Settings.Default.importSVGNodesOnly;
             svgConvertCircleToDot = Properties.Settings.Default.importSVGCircleToDot;
             ConversionInfo = "";
-            shapeCounter = 0;
+            shapeCounter = 0; skipCounter = 0;
             globalTextProp = new TextProperties();
 
             //    Logger.Trace(" logEnable:{0} svgScaleApply:{1} svgMaxSize:{2} svgComments:{3} svgConvertToMM:{4} svgNodesOnly:{5} svgConvertCircleToDot:{6}", logEnable, svgScaleApply, svgMaxSize, svgComments, svgConvertToMM, svgNodesOnly, svgConvertCircleToDot);
@@ -250,8 +259,8 @@ namespace GrblPlotter
 
             Graphic.Init(Graphic.SourceType.SVG, filePath, backgroundWorker, backgroundEvent);
             GetVectorSVG(svgCode);                  // convert graphics
-            ConversionInfo += string.Format("{0} elements imported", shapeCounter);
-            Logger.Info("▲▲▲▲  ConvertSVG Finish: shapeCounter: {0}", shapeCounter);
+            ConversionInfo += string.Format("{0} elements imported; {1} skipped", shapeCounter, skipCounter);
+            Logger.Info("▲▲▲▲  ConvertSVG Finish: shapeCounter: {0}   skipCounter: {1}", shapeCounter, skipCounter);
             svgCode.RemoveAll();
             //		myPath.Dispose();
             return Graphic.CreateGCode();
@@ -281,11 +290,12 @@ namespace GrblPlotter
             lastX = 0;
             lastY = 0;
             getTextPath = false;
+            skip2ndCounter = 0;
 
             int count = svgCode.Descendants("path").Count();
 
             //    Logger.Info(" Amount Paths:{0}", count);
-            if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = 10, Content = "Read SVG vector data of " + count.ToString() + " elements " });
+            backgroundWorker?.ReportProgress(0, new MyUserState { Value = 10, Content = "Read SVG vector data of " + count.ToString() + " elements " });
 
             matrixElement.SetIdentity();                // preset transform matrix
             oldMatrixElement.SetIdentity();             // preset backup of transform matrix
@@ -301,6 +311,10 @@ namespace GrblPlotter
             {
                 ParseGroup(svgCode, 1);                      // parse groups (recursive)            
             }
+
+            if (skip2ndCounter > 0)
+                Logger.Warn("⚠ Skipped 'm' because of no position change: {0} skipped", skip2ndCounter);
+
             return;
         }
 
@@ -337,7 +351,7 @@ namespace GrblPlotter
                 vbHeight = ConvertToPixel(split[3].TrimEnd(')'));
                 tmp.M11 = 1; tmp.M22 = -1;      // flip Y
                 tmp.OffsetY = vbHeight;
-                if (svgComments) Graphic.SetHeaderInfo(" SVG viewbox :" + viewbox);     //Plotter.AddToHeader(" SVG viewbox :" + viewbox);
+                if (svgComments) Graphic.SetHeaderInfo(" SVG viewbox : " + viewbox);
                 if (logEnable) Logger.Trace(" SVG viewbox: {0:0.00} {1:0.00} {2:0.00} {3:0.00} source: '{4}'", vbOffX, vbOffY, vbWidth, vbHeight, viewbox);
             }
 
@@ -393,6 +407,13 @@ namespace GrblPlotter
             {
                 if (logEnable) Logger.Trace(" SVG height not set");
                 svgHeightPx = vbHeight;            // from viewbox
+            }
+
+            Graphic.SetHeaderInfo(string.Format(" SVG dimension : {0:0.00} {1:0.00} ", svgWidthPx / factor_Mm2Px, svgHeightPx / factor_Mm2Px));
+            if (Properties.Settings.Default.importGraphicClipEnable && Properties.Settings.Default.importGraphicClip && Properties.Settings.Default.importGraphicClipGetDimAuto)
+            {
+                Properties.Settings.Default.importGraphicTileX = (decimal)(svgWidthPx / factor_Mm2Px);
+                Properties.Settings.Default.importGraphicTileY = (decimal)(svgHeightPx / factor_Mm2Px);
             }
 
             tmp.M22 = -scale;   // get desired scale and flip vertical
@@ -453,6 +474,14 @@ namespace GrblPlotter
                     }
                 }
             }
+			
+			if (Properties.Settings.Default.importGraphicFilterEnable)					
+			{
+				string skipTxt = Properties.Settings.Default.importGraphicFilterChoiceRemove? "remove":"keep";
+				string listTxt = Properties.Settings.Default.importGraphicFilterChoiceRemove? Properties.Settings.Default.importGraphicFilterListRemove:Properties.Settings.Default.importGraphicFilterListKeep;
+				Graphic.SetHeaderInfo(string.Format(" Filtering is active: {0} {1}", skipTxt, listTxt));
+                Logger.Info("⚠⚠ FilterProperties {0} figures: {1}", skipTxt, listTxt);
+			}
             return;
         }
 
@@ -587,9 +616,12 @@ namespace GrblPlotter
         private static string attributeStroke = "";
         private static string attributeFill = "";
         private static string attributeStrokeWidth = "";
-        private static void ParseAttributs(XElement element, bool isGroup = false)
+        private static bool ParseAttributs(XElement element, bool isGroup = false)
         {
             if (isGroup) Graphic.SetDash(new double[0]);     // clear dash
+
+			bool filterKeepColor = false;
+			bool filterKeepWidth = false;
 
             attributeStroke = "";
             attributeFill = "";
@@ -599,17 +631,17 @@ namespace GrblPlotter
                 attributeStroke = GetStyleProperty(element, "stroke");
                 logSource = "ParseAttributs: stroke: " + attributeStroke;
                 if (attributeStroke.Length > 1)
-                    Graphic.SetPenColor(attributeStroke.StartsWith("#") ? attributeStroke.Substring(1) : attributeStroke);
+                    filterKeepColor = Graphic.SetPenColor(attributeStroke.StartsWith("#") ? attributeStroke.Substring(1) : attributeStroke);
 
                 attributeFill = GetStyleProperty(element, "fill");
                 logSource = "ParseAttributs: fill: " + attributeFill;
-                if ((attributeFill.Length > 1) && (attributeFill != "none"))
+                if ((attributeFill.Length > 1))// && (attributeFill != "none"))
                     Graphic.SetPenFill(attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
 
                 attributeStrokeWidth = GetStyleProperty(element, "stroke-width");
                 logSource = "ParseAttributs: stroke-width: " + attributeStrokeWidth;
                 if (attributeStrokeWidth.Length > 1)
-                    SetPenWidth(attributeStrokeWidth);
+                    filterKeepWidth = SetPenWidth(attributeStrokeWidth);
 
                 SetDashPattern(GetStyleProperty(element, "stroke-dasharray"));
             }
@@ -618,20 +650,20 @@ namespace GrblPlotter
             {
                 attributeStroke = element.Attribute("stroke").Value;
                 logSource = "ParseAttributs: stroke2: " + attributeStroke;
-                Graphic.SetPenColor(attributeStroke.StartsWith("#") ? attributeStroke.Substring(1) : attributeStroke);
+                filterKeepColor = Graphic.SetPenColor(attributeStroke.StartsWith("#") ? attributeStroke.Substring(1) : attributeStroke);
             }
             if (element.Attribute("fill") != null)
             {
                 attributeFill = element.Attribute("fill").Value;
                 logSource = "ParseAttributs: fill2: " + attributeFill;
-                if ((attributeFill.Length > 1) && (attributeFill != "none"))
+                if ((attributeFill.Length > 1))// && (attributeFill != "none"))
                     Graphic.SetPenFill(attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
             }
             if (element.Attribute("stroke-width") != null)
             {
                 attributeStrokeWidth = element.Attribute("stroke-width").Value;
                 logSource = "ParseAttributs: stroke-width2: " + attributeStrokeWidth;
-                SetPenWidth(attributeStrokeWidth);
+                filterKeepWidth = SetPenWidth(attributeStrokeWidth);
             }
             if (element.Attribute("stroke-dasharray") != null)
             {
@@ -639,15 +671,18 @@ namespace GrblPlotter
             }
 
             globalTextProp.Update(element);
+			if (Properties.Settings.Default.importGraphicFilterEnable)
+				return (filterKeepColor || filterKeepWidth);
+			return true;
         }
 
-        private static void SetPenWidth(string txt)
+        private static bool SetPenWidth(string txt)
         {
             if (!double.TryParse(txt, NumberStyles.Number, NumberFormatInfo.InvariantInfo, out double nr))
             {
                 nr = ConvertToPixel(txt);   // = txt * 96
             }
-            Graphic.SetPenWidth(Math.Round(nr * svgStrokeWidthScale, 3).ToString().Replace(',', '.'));
+            return Graphic.SetPenWidth(Math.Round(nr * svgStrokeWidthScale, 3).ToString().Replace(',', '.'));
         }
 
         /// <summary>
@@ -1231,9 +1266,15 @@ namespace GrblPlotter
                     lastPathInformation = "";
                     string attrId = "";
                     oldMatrixElement = matrixElement;
-                    lastTransformMatrix = ParseTransform(pathElement, false, level);      // transform will be applied in gcodeMove
-                    ParseAttributs(pathElement);                    // process color and stroke-dasharray
+                    lastTransformMatrix = ParseTransform(pathElement, false, level);    // transform will be applied in gcodeMove
+
+                    if (!ParseAttributs(pathElement)) 	// process color and stroke-dasharray
+					{	skipCounter++;
+						continue;
+					}
                     shapeCounter++;
+
+                //    Logger.Trace("ParseAttributs {0}", pathElement);
 
                     if (pathElement.Attribute("id") != null)
                     {
@@ -1324,7 +1365,10 @@ namespace GrblPlotter
                             firstX = currentX; firstY = currentY;
 
                             if (!startPath && Gcode.IsEqual(lastX, currentX) && Gcode.IsEqual(lastY, currentY)) // found a 2nd 'M' or 'm' command within 'd' path		
-                            { Logger.Warn("⚠ Skip 2nd 'm' because of no position change: {0}", lastPathInformation); }
+                            {
+                                if (skip2ndCounter++ < 10)
+                                    Logger.Warn("⚠ Skip 2nd 'm' because of no position change: {0}", lastPathInformation);
+                            }
                             else
                             {
                                 if (svgComments) { Graphic.SetComment(string.Format(" Start new subpath at {0} {1} ", floatArgs[i], floatArgs[i + 1])); }
