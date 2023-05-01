@@ -41,81 +41,56 @@
             // btnClose
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(207, 174);
+            resources.ApplyResources(this.btnClose, "btnClose");
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 1;
-            this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // tBInfo
             // 
-            this.tBInfo.Location = new System.Drawing.Point(3, 3);
-            this.tBInfo.Multiline = true;
+            resources.ApplyResources(this.tBInfo, "tBInfo");
             this.tBInfo.Name = "tBInfo";
             this.tBInfo.ReadOnly = true;
-            this.tBInfo.Size = new System.Drawing.Size(279, 119);
-            this.tBInfo.TabIndex = 2;
-            this.tBInfo.Visible = false;
             // 
             // btnContinue
             // 
             this.btnContinue.DialogResult = System.Windows.Forms.DialogResult.Yes;
-            this.btnContinue.Location = new System.Drawing.Point(3, 174);
+            resources.ApplyResources(this.btnContinue, "btnContinue");
             this.btnContinue.Name = "btnContinue";
-            this.btnContinue.Size = new System.Drawing.Size(160, 23);
-            this.btnContinue.TabIndex = 0;
-            this.btnContinue.Text = "Continue streaming";
             this.btnContinue.UseVisualStyleBackColor = true;
             // 
             // ColorPanel
             // 
             this.ColorPanel.BackColor = System.Drawing.Color.Transparent;
             this.ColorPanel.Controls.Add(this.LblHex);
-            this.ColorPanel.Location = new System.Drawing.Point(12, 128);
+            resources.ApplyResources(this.ColorPanel, "ColorPanel");
             this.ColorPanel.Name = "ColorPanel";
-            this.ColorPanel.Size = new System.Drawing.Size(260, 40);
-            this.ColorPanel.TabIndex = 5;
             // 
             // LblHex
             // 
-            this.LblHex.AutoSize = true;
-            this.LblHex.Location = new System.Drawing.Point(12, 14);
+            resources.ApplyResources(this.LblHex, "LblHex");
             this.LblHex.Name = "LblHex";
-            this.LblHex.Size = new System.Drawing.Size(31, 13);
-            this.LblHex.TabIndex = 0;
-            this.LblHex.Text = "Color";
             // 
             // tBInfo2
             // 
-            this.tBInfo2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tBInfo2.Location = new System.Drawing.Point(3, 3);
-            this.tBInfo2.Multiline = true;
+            resources.ApplyResources(this.tBInfo2, "tBInfo2");
             this.tBInfo2.Name = "tBInfo2";
             this.tBInfo2.ReadOnly = true;
-            this.tBInfo2.Size = new System.Drawing.Size(279, 119);
-            this.tBInfo2.TabIndex = 6;
-            this.tBInfo2.Visible = false;
             // 
             // MessageForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
-            this.ClientSize = new System.Drawing.Size(284, 201);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.ColorPanel);
             this.Controls.Add(this.btnContinue);
             this.Controls.Add(this.tBInfo);
             this.Controls.Add(this.tBInfo2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MessageForm";
             this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MessageForm";
             this.Load += new System.EventHandler(this.MessageForm_Load);
             this.SizeChanged += new System.EventHandler(this.MessageForm_SizeChanged);
             this.ColorPanel.ResumeLayout(false);

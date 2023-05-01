@@ -29,6 +29,7 @@
  * 2022-01-02 add MakeAbsolutePath (from ControlSetup.cs)
  * 2022-11-24 line 99 InsertVariable check length
  * 2023-03-04 l:68 f:Datapath add path for "data"
+ * 2023-03-04 l:68 f:Datapath add path for "filter"
 */
 
 using GrblPlotter.Resources;
@@ -63,6 +64,7 @@ namespace GrblPlotter
         public static string Extension { get => AppDataFolder + "\\data\\extensions"; }
         public static string Buttons { get => AppDataFolder + "\\data\\buttons"; }
         public static string Jogpath { get => AppDataFolder + "\\data\\jogpaths"; }
+        public static string Filter { get => AppDataFolder + "\\data\\filters"; }
         public static string RecentFile { get => AppDataFolder + "\\Recent.txt"; }
         public static string LogFiles { get => AppDataFolder + "\\logfiles"; }
         public static string Data { get => AppDataFolder + "\\data"; }

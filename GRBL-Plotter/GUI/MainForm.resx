@@ -133,7 +133,7 @@
     <value>1</value>
   </data>
   <data name="fCTBCode.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
-    <value>191, 12</value>
+    <value>214, 12</value>
   </data>
   <metadata name="cmsFCTB.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>123, 56</value>
@@ -191,6 +191,9 @@
   </data>
   <data name="toggleBlockExpansionToolStripMenuItem.Text" xml:space="preserve">
     <value>Automatic block folding</value>
+  </data>
+  <data name="toggleBlockExpansionToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="cmsCodeBlocksFold.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -6918,7 +6921,7 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>Import GUI-Settings (Button definitions, Joystick parameters) from an INI-file</value>
   </data>
   <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>128, 22</value>
   </data>
   <data name="englishToolStripMenuItem.Text" xml:space="preserve">
     <value>English</value>
@@ -6934,7 +6937,7 @@ Inglês
 英语</value>
   </data>
   <data name="deutschToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>128, 22</value>
   </data>
   <data name="deutschToolStripMenuItem.Text" xml:space="preserve">
     <value>Deutsch</value>
@@ -6951,7 +6954,7 @@ alemão
 </value>
   </data>
   <data name="pусскийToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>128, 22</value>
   </data>
   <data name="pусскийToolStripMenuItem.Text" xml:space="preserve">
     <value>Pусский</value>
@@ -6968,7 +6971,7 @@ russo
 </value>
   </data>
   <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>128, 22</value>
   </data>
   <data name="toolStripMenuItem4.Text" xml:space="preserve">
     <value>Español</value>
@@ -6985,7 +6988,7 @@ espanhol
 </value>
   </data>
   <data name="portuguêsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>128, 22</value>
   </data>
   <data name="portuguêsToolStripMenuItem.Text" xml:space="preserve">
     <value>Português</value>
@@ -7002,7 +7005,7 @@ Português
 </value>
   </data>
   <data name="franzToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>128, 22</value>
   </data>
   <data name="franzToolStripMenuItem.Text" xml:space="preserve">
     <value>Francés</value>
@@ -7018,7 +7021,7 @@ francês
 法文</value>
   </data>
   <data name="italianoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>128, 22</value>
   </data>
   <data name="italianoToolStripMenuItem.Text" xml:space="preserve">
     <value>Italiano</value>
@@ -7033,7 +7036,7 @@ italština
 イタリアの</value>
   </data>
   <data name="czechToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>128, 22</value>
   </data>
   <data name="czechToolStripMenuItem.Text" xml:space="preserve">
     <value>čeština</value>
@@ -7050,7 +7053,7 @@ Tcheco
 التشيكية</value>
   </data>
   <data name="türkToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>128, 22</value>
   </data>
   <data name="türkToolStripMenuItem.Text" xml:space="preserve">
     <value>Türkçe</value>
@@ -7068,7 +7071,7 @@ Turco
 土耳其</value>
   </data>
   <data name="chinesischToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>128, 22</value>
   </data>
   <data name="chinesischToolStripMenuItem.Text" xml:space="preserve">
     <value>中国</value>
@@ -7084,7 +7087,7 @@ chinês
 中文</value>
   </data>
   <data name="arabischToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>128, 22</value>
   </data>
   <data name="arabischToolStripMenuItem.Text" xml:space="preserve">
     <value>العربية</value>
@@ -7100,7 +7103,7 @@ arabe
 阿拉伯</value>
   </data>
   <data name="japanischToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>128, 22</value>
   </data>
   <data name="japanischToolStripMenuItem.Text" xml:space="preserve">
     <value>日本の</value>

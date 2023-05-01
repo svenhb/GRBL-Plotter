@@ -62,6 +62,7 @@
  * 2023-03-09 l:1213 bugfix start streaming
 */
 
+using FastColoredTextBoxNS;
 using GrblPlotter.GUI;
 using Microsoft.Win32;
 using System;
@@ -1241,7 +1242,7 @@ namespace GrblPlotter
         {
             if (!pictureBox1.Focused && Properties.Settings.Default.guiShowFormInFront)
             {
-                pictureBox1.Focus();
+            //    pictureBox1.Focus();
                 markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (picScaling * zoomFactor));
             }
         }

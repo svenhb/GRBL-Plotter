@@ -1519,6 +1519,12 @@ namespace GrblPlotter
                     if (figureIsMarked)
                         DuplicateSelectedPath();
                 }
+
+                if (e.KeyCode == Keys.Delete)
+                {
+                    if (figureIsMarked)
+                        CmsPicBoxDeletePath_Click(sender, e);
+                }
                 /*        else if ((e.KeyCode == Keys.E) && (e.Modifiers == Keys.Alt))
                         {
                                 ToggleBlockExpansion();                   
@@ -1545,8 +1551,16 @@ namespace GrblPlotter
                 virtualJoystickC.JoystickRasterMark = virtualJoystickA_lastIndex;
                 e.SuppressKeyPress = true;
             }
-            else if (fCTBCode.Focused)
-                return;
+            else if (fCTBCode.Focused && !manualEdit)
+            {
+                if (e.KeyCode == Keys.Delete)
+                {
+                    if (figureIsMarked)
+                        CmsPicBoxDeletePath_Click(sender, e);
+                    e.SuppressKeyPress = true;
+                }
+                return; 
+            }
 
             e.SuppressKeyPress = ProcessHotkeys(e.KeyData.ToString(), true);
             //   e.SuppressKeyPress = true;

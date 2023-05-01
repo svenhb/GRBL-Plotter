@@ -468,8 +468,7 @@ namespace GrblPlotter
             manualEdit = false;
             fCTBCode.BackColor = Color.White;
             resetView = false;
-            if (_projector_form != null)
-                _projector_form.Invalidate();
+            _projector_form?.Invalidate();
             Logger.Info("▲▲▲▲▲▲ TransformEnd");
         }
 

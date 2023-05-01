@@ -21,10 +21,12 @@
  * 2021-07-02 code clean up / code quality
  * 2023-03-07 l:40 f:ShowMessage get color from message and set panel color
  * 2023-03-31 l:65 f:ShowMessage reduce size if there is no color to show / check if hex-num / replace label by textBox
+ * 2023-4-16 add guiLanguage
 */
 using System;
 using System.Drawing;
 using System.Globalization;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace GrblPlotter
@@ -33,6 +35,10 @@ namespace GrblPlotter
     {
         public MessageForm()
         {
+            this.Icon = Properties.Resources.Icon;
+            CultureInfo ci = new CultureInfo(Properties.Settings.Default.guiLanguage);
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
             InitializeComponent();
         }
 

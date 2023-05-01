@@ -112,11 +112,11 @@ namespace GrblPlotter
                 xRange = (double)Properties.Settings.Default.machineLimitsRangeX + 2 * offset;
                 yRange = (double)Properties.Settings.Default.machineLimitsRangeY + 2 * offset;
             }
-			
-			if ((xRange == 0) || (yRange == 0))
-				picScaling = 1;
-			else
-				picScaling = Math.Min(pictureBox1.Width / (xRange), pictureBox1.Height / (yRange));               // calculate scaling px/unit
+
+            if ((xRange == 0) || (yRange == 0))
+                picScaling = 1;
+            else
+                picScaling = Math.Min(pictureBox1.Width / (xRange), pictureBox1.Height / (yRange));               // calculate scaling px/unit
         }
 
         private void PictureBox1_Paint(object sender, PaintEventArgs e)
@@ -136,10 +136,10 @@ namespace GrblPlotter
                 yRange = (double)Properties.Settings.Default.machineLimitsRangeY + 2 * offset;
             }
 
- 			if ((xRange == 0) || (yRange == 0))
-				picScaling = 1;
-			else
-				picScaling = Math.Min(pictureBox1.Width / (xRange), pictureBox1.Height / (yRange));               // calculate scaling px/unit
+            if ((xRange == 0) || (yRange == 0))
+                picScaling = 1;
+            else
+                picScaling = Math.Min(pictureBox1.Width / (xRange), pictureBox1.Height / (yRange));               // calculate scaling px/unit
 
             if ((picScaling > 0.001) && (picScaling < 10000))
             {
@@ -607,18 +607,18 @@ namespace GrblPlotter
 
             /* select Figure if MouseDown and MouseUp position are close together */
             if (mouseDownLeftButton && (PointDistance(mouseDownPos, mouseUpPos) < 10))
-            {   SetFigureSelectionOnClick();         
+            {
+                SetFigureSelectionOnClick();
                 if (!VisuGCode.CodeBlocksAvailable())
                 {
                     fCTBCodeClickedLineNow = VisuGCode.SetPosMarkerNearBy(picAbsPos, false).lineNumber;
                     VisuGCode.SetPosMarkerLine(fCTBCodeClickedLineNow, false);
-                //    FindFigureMarkSelection(XmlMarkerType.Node, fCTBCodeClickedLineNow, new DistanceByLine());
+                    //    FindFigureMarkSelection(XmlMarkerType.Node, fCTBCodeClickedLineNow, new DistanceByLine());
                     FctbSetBookmark();
                 }
             }
 
-            if (_projector_form != null)
-                _projector_form.Invalidate();
+            _projector_form?.Invalidate();
         }
 
         // find closest coordinate in GCode and mark
@@ -664,63 +664,63 @@ namespace GrblPlotter
             {
                 if (manualEdit) { NewCodeEnd(); }
 
-				if (VisuGCode.CodeBlocksAvailable() && !isStreaming)
-				{	
-			
-					/* 1. get selection whish: group, figure, node */
-					bool modKeyAlt = (Panel.ModifierKeys == Keys.Alt);          // Keys.Alt find line with coord nearby, mark / unmark Figure
-					bool modKeyCtrl = (Panel.ModifierKeys == Keys.Control);     // Keys.Control find line with coord nearby, mark / unmark Group
-					bool modKeyShift = (Panel.ModifierKeys == Keys.Shift);      // Keys.Shift find line with coord nearby, mark / unmark Tile
-						
-					if (transformType == SelectionHandle.Handle.None)
-					{
-						if (expandGCode)    //Properties.Settings.Default.FCTBBlockExpandOnSelect)
-						{ foldLevel = foldLevelSelected; }
+                if (VisuGCode.CodeBlocksAvailable() && !isStreaming)
+                {
 
-				//		/* 1. get selection whish: group, figure, node */
-				//		bool modKeyAlt = (Panel.ModifierKeys == Keys.Alt);          // Keys.Alt find line with coord nearby, mark / unmark Figure
-				//		bool modKeyCtrl = (Panel.ModifierKeys == Keys.Control);     // Keys.Control find line with coord nearby, mark / unmark Group
-				//		bool modKeyShift = (Panel.ModifierKeys == Keys.Shift);      // Keys.Shift find line with coord nearby, mark / unmark Tile
+                    /* 1. get selection whish: group, figure, node */
+                    bool modKeyAlt = (Panel.ModifierKeys == Keys.Alt);          // Keys.Alt find line with coord nearby, mark / unmark Figure
+                    bool modKeyCtrl = (Panel.ModifierKeys == Keys.Control);     // Keys.Control find line with coord nearby, mark / unmark Group
+                    bool modKeyShift = (Panel.ModifierKeys == Keys.Shift);      // Keys.Shift find line with coord nearby, mark / unmark Tile
 
-						markerType = XmlMarkerType.Figure;
-						if (modKeyAlt) { markerType = XmlMarkerType.Node; }
-						else if (modKeyCtrl) { markerType = XmlMarkerType.Group; }
-						else if (modKeyShift) { markerType = XmlMarkerType.Tile; }
+                    if (transformType == SelectionHandle.Handle.None)
+                    {
+                        if (expandGCode)    //Properties.Settings.Default.FCTBBlockExpandOnSelect)
+                        { foldLevel = foldLevelSelected; }
 
-						/* 2. find corresponding Gcode-line, by click coordinate picAbsPos */
-						SelectionHandle.SelectedMarkerType = lastMarkerType = markerType;
-						VisuGCode.MarkerSize = markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (picScaling * zoomFactor));
-						DistanceByLine markerProperties = VisuGCode.SetPosMarkerNearBy(picAbsPos, (markerType == XmlMarkerType.Node));  // find line with coord nearby, mark / unmark figure in GCodeVisuAndTransform.cs
+                        //		/* 1. get selection whish: group, figure, node */
+                        //		bool modKeyAlt = (Panel.ModifierKeys == Keys.Alt);          // Keys.Alt find line with coord nearby, mark / unmark Figure
+                        //		bool modKeyCtrl = (Panel.ModifierKeys == Keys.Control);     // Keys.Control find line with coord nearby, mark / unmark Group
+                        //		bool modKeyShift = (Panel.ModifierKeys == Keys.Shift);      // Keys.Shift find line with coord nearby, mark / unmark Tile
 
-						clickedLineNr = markerProperties.lineNumber;
+                        markerType = XmlMarkerType.Figure;
+                        if (modKeyAlt) { markerType = XmlMarkerType.Node; }
+                        else if (modKeyCtrl) { markerType = XmlMarkerType.Group; }
+                        else if (modKeyShift) { markerType = XmlMarkerType.Tile; }
 
-						/* Switch selection if Text is selected */
-						if (LineIsInRange(clickedLineNr) && XmlMarker.GetGroup(clickedLineNr))
-						{
-							if (XmlMarker.lastGroup.Type == "Text")             // reverse marking figure / group if text
-							{
-								if (!modKeyCtrl && SelectionHandle.IsActive)
-								{ markerType = XmlMarkerType.Group; }
-								else
-								{ markerType = XmlMarkerType.Figure; }
-							}
-						}
+                        /* 2. find corresponding Gcode-line, by click coordinate picAbsPos */
+                        SelectionHandle.SelectedMarkerType = lastMarkerType = markerType;
+                        VisuGCode.MarkerSize = markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (picScaling * zoomFactor));
+                        DistanceByLine markerProperties = VisuGCode.SetPosMarkerNearBy(picAbsPos, (markerType == XmlMarkerType.Node));  // find line with coord nearby, mark / unmark figure in GCodeVisuAndTransform.cs
 
-						if (logDetailed)
-							Logger.Trace("🗲🗲🗲 SetFigureSelectionOnClick markerType:{0}  found line:{1}", markerType, clickedLineNr);
+                        clickedLineNr = markerProperties.lineNumber;
 
-						fCTBCodeClickedLineNow = clickedLineNr;
+                        /* Switch selection if Text is selected */
+                        if (LineIsInRange(clickedLineNr) && XmlMarker.GetGroup(clickedLineNr))
+                        {
+                            if (XmlMarker.lastGroup.Type == "Text")             // reverse marking figure / group if text
+                            {
+                                if (!modKeyCtrl && SelectionHandle.IsActive)
+                                { markerType = XmlMarkerType.Group; }
+                                else
+                                { markerType = XmlMarkerType.Figure; }
+                            }
+                        }
 
-						/* check if line-nr is within tile, group or figure and highlight GCode */
-						/* highlight selected figure or group */
-						FindFigureMarkSelection(markerType, clickedLineNr, markerProperties);//
-						selectionPathOrig = (GraphicsPath)VisuGCode.pathMarkSelection.Clone();
+                        if (logDetailed)
+                            Logger.Trace("🗲🗲🗲 SetFigureSelectionOnClick markerType:{0}  found line:{1}", markerType, clickedLineNr);
 
-						FoldBlocksByLevel(markerType, clickedLineNr);
-					}
-					else if (false)
-					{}
-				}
+                        fCTBCodeClickedLineNow = clickedLineNr;
+
+                        /* check if line-nr is within tile, group or figure and highlight GCode */
+                        /* highlight selected figure or group */
+                        FindFigureMarkSelection(markerType, clickedLineNr, markerProperties);//
+                        selectionPathOrig = (GraphicsPath)VisuGCode.pathMarkSelection.Clone();
+
+                        FoldBlocksByLevel(markerType, clickedLineNr);
+                    }
+                    else if (false)
+                    { }
+                }
                 cmsPicBoxMoveToMarkedPosition.ToolTipText = "Work X: " + Grbl.PosMarker.X.ToString() + "   Y: " + Grbl.PosMarker.Y.ToString();
                 if (VisuGCode.CodeBlocksAvailable())
                     StatusStripSet(1, Localization.GetString("statusStripeClickKeys2"), Color.LightGreen);
@@ -994,13 +994,20 @@ namespace GrblPlotter
         private void CmsPicBoxDeletePath_Click(object sender, EventArgs e)
         {
             UnDo.SetCode(fCTBCode.Text, cmsPicBoxDeletePath.Text, this);
-            Logger.Trace("▌ cmsPicBoxDeletePath figureIsMarked:{0}", figureIsMarked);
+            Logger.Trace("▌ cmsPicBoxDeletePath figureIsMarked:{0}  markedBlockType:{1}", figureIsMarked, markedBlockType);
             if (figureIsMarked)
             {
+                int id = XmlMarker.lastGroup.Id;
+                if (markedBlockType == XmlMarkerType.Figure)
+                    id = XmlMarker.lastFigure.Id;
+                if (markedBlockType == XmlMarkerType.Tile)
+                    id = XmlMarker.lastTile.Id;
                 resetView = true;
-                fCTBCode.InsertText("( Figure removed )\r\n");
+                fCTBCode.InsertText(string.Format("( Selection removed: {0} Id:{1})", markedBlockType, id));
                 SelectionHandle.IsActive = false;
-                TransformEnd();
+                NewCodeEnd();   // reload GCode to update XML-start / end information
+                FoldBlocksByLevel(foldLevelSelected);
+                //    TransformEnd();
             }
             return;
         }
@@ -1017,38 +1024,83 @@ namespace GrblPlotter
             if (manualEdit)
                 return;
             TransformStart(cmsPicBoxCropSelectedPath.Text);//, false);
+            XmlMarker.BlockData tmp = new XmlMarker.BlockData();
 
-            Logger.Trace("▌ cmsPicBoxCropSelectedPath groupCnt:{0} figureCnt:{1}", XmlMarker.GetGroupCount(), XmlMarker.GetFigureCount());
+            Logger.Trace("▌ cmsPicBoxCropSelectedPath groupCnt:{0} figureCnt:{1}  markedBlockType:{2}", XmlMarker.GetGroupCount(), XmlMarker.GetFigureCount(), markedBlockType);
 
             if ((XmlMarker.GetGroupCount() > 0) && (markedBlockType == XmlMarkerType.Group))
             {
-                if (XmlMarker.GetGroup(fCTBCodeClickedLineNow, 10))    // get range group+1-start to group+n-end
+                if (XmlMarker.GetGroupNext(ref tmp))    // get range group+1-start to group+n-end
                 {
-                    SetTextSelection(XmlMarker.lastGroup.LineStart, XmlMarker.lastGroup.LineEnd);
-                    fCTBCode.SelectedText = "( Figure removed )\r\n";
+                    int startNextGroup = tmp.LineStart;
+                    if (XmlMarker.GetGroupLast(ref tmp))
+                    {
+                        int endLastGroup = tmp.LineEnd;
+                        SetTextSelection(startNextGroup, endLastGroup);
+                        fCTBCode.SelectedText = string.Format("( Group removed line {0} to {1} )", startNextGroup, endLastGroup);
+                        Logger.Trace("▌ cmsPicBoxCropSelectedPath after from: {0} to {1}", startNextGroup, endLastGroup);
+                    }
                 }
-                if (XmlMarker.GetGroup(fCTBCodeClickedLineNow, -10))    // get range group0-start to group-1-end
+                if (XmlMarker.GetGroupPrev(ref tmp))    // get range group0-start to group-1-end
                 {
-                    SetTextSelection(XmlMarker.lastGroup.LineStart, XmlMarker.lastGroup.LineEnd);
-                    fCTBCode.SelectedText = "( Figure removed )\r\n";
+                    int endPrevGroup = tmp.LineEnd;
+                    if (XmlMarker.GetGroupFirst(ref tmp) && (tmp.LineStart != XmlMarker.lastGroup.LineStart))
+                    {
+                        int startFirstGroup = tmp.LineStart;
+                        SetTextSelection(startFirstGroup, endPrevGroup);
+                        fCTBCode.SelectedText = string.Format("( Group removed line {0} to {1} )", startFirstGroup, endPrevGroup);
+                        Logger.Trace("▌ cmsPicBoxCropSelectedPath before from: {0} to {1}", startFirstGroup, endPrevGroup);
+                    }
                 }
             }
             else if ((XmlMarker.GetFigureCount() > 0) && (markedBlockType == XmlMarkerType.Figure))
             {
-                if (XmlMarker.GetFigure(fCTBCodeClickedLineNow, 10))    // get range group+1-start to group+n-end
+                bool isGroup = XmlMarker.GetGroup(XmlMarker.lastFigure.LineStart);
+
+                if (XmlMarker.GetFigureNext(ref tmp) && (!isGroup || (tmp.LineEnd < XmlMarker.lastGroup.LineEnd)))    // next figure must be inside same group
                 {
-                    SetTextSelection(XmlMarker.lastFigure.LineStart, XmlMarker.lastFigure.LineEnd);
-                    fCTBCode.SelectedText = "( Figure removed )\r\n";
+                    int startNextFigure = tmp.LineStart;
+                    if (XmlMarker.GetFigureLast(ref tmp) && (tmp.LineStart != XmlMarker.lastFigure.LineStart))
+                    {
+                        int endLastFigure = tmp.LineEnd;
+                        if (isGroup) { endLastFigure = XmlMarker.lastGroup.LineEnd - 1; }
+                        SetTextSelection(startNextFigure, endLastFigure);
+                        fCTBCode.SelectedText = string.Format("( Figure removed line {0} to {1} )", startNextFigure, endLastFigure);
+                        Logger.Trace("▌ cmsPicBoxCropSelectedPath after from: {0} to {1}", startNextFigure, endLastFigure);
+                    }
                 }
-                if (XmlMarker.GetFigure(fCTBCodeClickedLineNow, -10))    // get range group0-start to group-1-end
+                if (XmlMarker.GetFigurePrev(ref tmp) && (!isGroup || (tmp.LineEnd > XmlMarker.lastGroup.LineStart)))    // prev figure must be inside same group
                 {
-                    SetTextSelection(XmlMarker.lastFigure.LineStart, XmlMarker.lastFigure.LineEnd);
-                    fCTBCode.SelectedText = "( Figure removed )\r\n";
+                    int endPrevFigure = tmp.LineEnd;
+                    if (XmlMarker.GetFigureFirst(ref tmp) && (tmp.LineStart != XmlMarker.lastFigure.LineStart))
+                    {
+                        int startFirstFigure = tmp.LineStart;
+                        if (isGroup) { startFirstFigure = XmlMarker.lastGroup.LineStart + 1; }
+                        SetTextSelection(startFirstFigure, endPrevFigure);
+                        fCTBCode.SelectedText = string.Format("( Figure removed line {0} to {1} )", startFirstFigure, endPrevFigure);
+                        Logger.Trace("▌ cmsPicBoxCropSelectedPath before from: {0} to {1}", startFirstFigure, endPrevFigure);
+                    }
                 }
+
+
+
+                /*        if (XmlMarker.GetFigure(fCTBCodeClickedLineNow, 10))    // get range group+1-start to group+n-end
+                        {
+                            SetTextSelection(XmlMarker.lastFigure.LineStart, XmlMarker.lastFigure.LineEnd);
+                            fCTBCode.SelectedText = "( Figure removed )\r\n";
+                        }
+                        if (XmlMarker.GetFigure(fCTBCodeClickedLineNow, -10))    // get range group0-start to group-1-end
+                        {
+                            SetTextSelection(XmlMarker.lastFigure.LineStart, XmlMarker.lastFigure.LineEnd);
+                            fCTBCode.SelectedText = "( Figure removed )\r\n";
+                        }*/
             }
             else
                 fCTBCode.Text = VisuGCode.CutOutFigure();
-            TransformEnd();
+
+            NewCodeEnd();
+            //    TransformEnd();
+            FoldBlocksByLevel(foldLevelSelected);
             VisuGCode.pathBackground.Reset();
         }
 
