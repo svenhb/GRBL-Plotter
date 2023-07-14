@@ -180,7 +180,7 @@ dieser Index wird als Werkzeugnummer verwendet.</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGNodesOnly.Text" xml:space="preserve">
-    <value>Nur Pfadknoten verarbeiten</value>
+    <value>Nur Pfadknoten verarbeiten (z. B. Nagelpositionen für String Art)</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGNodesOnly.ToolTip" xml:space="preserve">
@@ -2072,12 +2072,11 @@ Nützlich für Laserschneider.</value>
     <comment>ok</comment>
   </data>
   <data name="label17.Text" xml:space="preserve">
-    <value>Übersetzt Z in den Bereich von:
-('Gravur in Z-Höhe' wird nicht überschritten)</value>
+    <value>Übersetzt die min/max Stiftbreite oder Kreisradius in Z im Bereich von:</value>
     <comment>ok</comment>
   </data>
   <data name="gBCreateZValue.Text" xml:space="preserve">
-    <value>Erzeuge Z-Wert</value>
+    <value>Z-Wert erstellen (Z-Achse muss aktiviert sein)</value>
     <comment>ok</comment>
   </data>
   <data name="cBDashedLine2.Text" xml:space="preserve">
@@ -3185,5 +3184,150 @@ Gegeben im GCode-Header-Abschnitt: 'SVG dimension'.</value>
   </data>
   <data name="BtnGetFilterValueRemoveColor.ToolTip" xml:space="preserve">
     <value>Fügt die Farbe der ausgewählten Figur oder Gruppe hinzu</value>
+  </data>
+  <data name="Import_Parameter.Text" xml:space="preserve">
+    <value>Importparameter</value>
+  </data>
+  <data name="Import_Output.Text" xml:space="preserve">
+    <value>Ausgabeeigenschaften</value>
+  </data>
+  <data name="GbMetaData.Text" xml:space="preserve">
+    <value>Beispiel für Metadaten-Schlüsselwörter</value>
+  </data>
+  <data name="CbImportSVGMetaData.Text" xml:space="preserve">
+    <value>Metadaten verarbeiten</value>
+  </data>
+  <data name="CbImportSVGMetaData.ToolTip" xml:space="preserve">
+    <value>Wenden Sie beim Import den angegebenen XY-Vorschub, Z-Vorschub, Spindelgeschwindigkeit, Zup, Zdown an.</value>
+  </data>
+  <data name="groupBox34.Text" xml:space="preserve">
+    <value>S-Wert erstellen (PWM oder Spindel/Laser müssen aktiviert sein)</value>
+  </data>
+  <data name="cBImportPenWidthToS.Text" xml:space="preserve">
+    <value>Übersetzt die Stiftbreite in den S-Wert</value>
+  </data>
+  <data name="cBImportPenWidthToS.ToolTip" xml:space="preserve">
+    <value>Die Stiftbreite wird als S-Wert für die PWM-Laserleistung verarbeitet.
+Die maximale Tiefe wird durch die Z-Höhengravur begrenzt.</value>
+  </data>
+  <data name="label92.Text" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="label91.Text" xml:space="preserve">
+    <value>Übersetzt die min/max Stiftbreite oder Kreisradius in S im Bereich von:</value>
+  </data>
+  <data name="nUDSBottom.ToolTip" xml:space="preserve">
+    <value>Geringerer Wert</value>
+  </data>
+  <data name="label94.Text" xml:space="preserve">
+    <value>Verzögerung vor dem automatischen Schließen der angezeigten Informationen</value>
+  </data>
+  <data name="groupBox35.Text" xml:space="preserve">
+    <value>HPGL-Import (*.plt, *.hpgl)</value>
+  </data>
+  <data name="CbImportSVGApplyFill.Text" xml:space="preserve">
+    <value>Schraffurfüllung anwenden, wenn das Objekt gefüllt ist</value>
+  </data>
+  <data name="groupBox37.Text" xml:space="preserve">
+    <value>Nachrichtenformular</value>
+  </data>
+  <data name="groupBox37.ToolTip" xml:space="preserve">
+    <value>Nachrichtenformular für Importinformationen, Verzögerung vor dem automatischen Schließen</value>
+  </data>
+  <data name="cBImportSVGCircleToDotS.Text" xml:space="preserve">
+    <value>Konvertiert den Kreisradius in den S-Wert</value>
+  </data>
+  <data name="BtnHelp_ImportParameter.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="BtnHelp_SvgDxfCsv.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="label97.Text" xml:space="preserve">
+    <value>Nicht unterstützt: FS, VS, WU, PW</value>
+  </data>
+  <data name="label96.Text" xml:space="preserve">
+    <value>Unterstützte Befehle: IN, SP, PU, ​​PD, PA, PR</value>
+  </data>
+  <data name="label98.Text" xml:space="preserve">
+    <value>Keine Optionen</value>
+  </data>
+  <data name="groupBox36.Text" xml:space="preserve">
+    <value>Drill-Import (*.drd, *.drl, *.dri)</value>
+  </data>
+  <data name="tabFormat_Drill.Text" xml:space="preserve">
+    <value>Bohren</value>
+  </data>
+  <data name="label99.Text" xml:space="preserve">
+    <value>Es öffnet sich ein neues Formular für Einstellungen.</value>
+  </data>
+  <data name="groupBox38.Text" xml:space="preserve">
+    <value>Bildimport (*.bmp, *.gif, *.png, *.jpg)</value>
+  </data>
+  <data name="BtnHelp_Pathinterpretation.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="BtnHelp_Pathaddons.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="BtnHelp_Pathmodification2.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="button5.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="BtnHelp_Conversion.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="BtnHelp_Tooltable.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="BtnHelp_Grouping.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="BtnHelp_Filter.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="BtnHelp_Wirebender.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="BtnHelp_Outline.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="BtnHelp_Extension.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="BtnHelp_General.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="BtnHelp_Penupdown.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="BtnHelp_misc.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="BtnHelp_Usecase.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="BtnHelp_TooltableSet.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="BtnHelp_Toolchange.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="BtnHelp_Programstart.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="BtnHelp_Programcontrol.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="BtnHelp_Flowcontrol.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="BtnHelp_Camera.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="BtnHelp_Notifier.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
   </data>
 </root>

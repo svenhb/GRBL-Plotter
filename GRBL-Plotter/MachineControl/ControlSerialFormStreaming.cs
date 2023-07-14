@@ -39,7 +39,8 @@
  * 2023-03-29 l:112, 583, 689, 851 add option lowLevelPerformance
  * 2023-03-30 l:309 add "M0" to tool change command (to allow manual tool change on TxM06 command)
  * 2023-04-01 l:200 f:StartStreaming bug fix, subroutine number should be usable with 4 digits
- * 2023-04-07 l:198 f: f:StartStreaming skip line if starts with "("; l:482 f:FindDouble -> change to TryParse
+ * 2023-04-07 l:198 f:StartStreaming skip line if starts with "("; l:482 f:FindDouble -> change to TryParse
+ * 2023-06-14 l:344 f:StartStreaming add try/catch for writing log files
  */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -342,16 +343,32 @@ namespace GrblPlotter
             if (logStreamData || useSubroutine)
             {
                 string startText = string.Format("( {0} )\r\n( Start at line:{1} stop:{2} )\r\n( Set ParserState:{3} )\r\n", GetTimeStampString(), startAtLine, stopAtLine, parserStateGC);
-                File.WriteAllText(Datapath.LogFiles + "\\" + logFileGCode, "( Data to stream from editor )\r\n" + startText); // clear file
-                File.AppendAllLines(Datapath.LogFiles + "\\" + logFileGCode, streamingBuffer.Buffer);
+				try 
+                { 	File.WriteAllText(Datapath.LogFiles + "\\" + logFileGCode, "( Data to stream from editor )\r\n" + startText); // clear file
+					File.AppendAllLines(Datapath.LogFiles + "\\" + logFileGCode, streamingBuffer.Buffer);
+				}
+				catch (Exception err)
+				{
+					Logger.Error(err," StartStreaming write to file '{0}'  {1}  ", (Datapath.LogFiles + "\\" + logFileGCode), startText);
+				}
             }
 
             if (logStreamData)
             {
                 string startText = string.Format("( {0} )\r\n( Start at line:{1} stop:{2} )\r\n( Set ParserState:{3} )\r\n", GetTimeStampString(), startAtLine, stopAtLine, parserStateGC);
-                File.WriteAllText(Datapath.LogFiles + "\\" + logFileSentData, "( Data sent to grbl )\r\n" + startText); // clear file
-                File.WriteAllText(Datapath.LogFiles + "\\" + logFileEcho, "( Data echoed by grbl if #define REPORT_ECHO_LINE_RECEIVED )\r\n" + startText); // clear file
-            }
+				try
+                {	File.WriteAllText(Datapath.LogFiles + "\\" + logFileSentData, "( Data sent to grbl )\r\n" + startText);} // clear file
+				catch (Exception err)
+				{
+					Logger.Error(err," StartStreaming write to file '{0}'  {1}  ", (Datapath.LogFiles + "\\" + logFileSentData), startText);
+				}
+				try
+                {	File.WriteAllText(Datapath.LogFiles + "\\" + logFileEcho, "( Data echoed by grbl if #define REPORT_ECHO_LINE_RECEIVED )\r\n" + startText);} // clear file
+ 				catch (Exception err)
+				{
+					Logger.Error(err," StartStreaming write to file '{0}'  {1}  ", (Datapath.LogFiles + "\\" + logFileEcho), startText);
+				}
+           }
             isStreaming = true;
             UpdateControls();
             if (startAtLine > 0)

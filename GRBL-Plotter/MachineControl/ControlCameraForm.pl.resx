@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="setupToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ustawienia</value>
+  </data>
+  <data name="camSourceToolStripMenuItem.Text" xml:space="preserve">
+    <value>Źródło wideo</value>
+  </data>
+  <data name="distortionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Korekcja zakłóceń</value>
+  </data>
+  <data name="resetAndTeachToolStripMenuItem.Text" xml:space="preserve">
+    <value>Resetuj i ucz się</value>
+  </data>
+  <data name="setRotationAngleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Obrót obrazu</value>
+  </data>
+  <data name="colorsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kolory</value>
+  </data>
+  <data name="textToolStripMenuItem.Text" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>Widok</value>
+  </data>
+  <data name="penupPathToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ścieżka 'Pen-Up'</value>
+  </data>
+  <data name="machineLimitsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Limity maszyny</value>
+  </data>
+  <data name="dimensionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Wymiar G-Code</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Kamera</value>
+  </data>
+  <data name="setWork00ToHereToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ustaw tutaj współrzędną roboczą 0;0</value>
+  </data>
+  <data name="setWork00ToHereToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Ustaw początek współrzędnych roboczych na pozycji klikniętej w widoku 2D</value>
+  </data>
+  <data name="compensateAngleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Wyrównanie kąta i skali</value>
+  </data>
+  <data name="compensateAngleToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Stosuje zaznaczony na żółto kąt do kodu G</value>
+  </data>
+  <data name="FiducialAddCoordinateIn2DViewToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dodaj współrzędną z widoku 2D do listy współrzędnych</value>
+  </data>
+  <data name="FiducialAddCoordinateIn2DViewToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Dodaj do listy współrzędne pomocnicze pozycji klikniętej wewnątrz widoku 2D</value>
+  </data>
+  <data name="FiducialRemoveLastToolStripMenuItem.Text" xml:space="preserve">
+    <value>Usuń ostatni znak pomocniczy</value>
+  </data>
+  <data name="FiducialRemoveLastToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Usunięcie ostatnio dodanego znaku pomocniczego z listy znaków pomocniczych</value>
+  </data>
+  <data name="FiducialListClearToolStripMenuItem.Text" xml:space="preserve">
+    <value>Wyczyśc listę znaków pomocniczych</value>
+  </data>
+  <data name="FiducialListClearToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Wyczyśc listę znaków pomocniczych</value>
+  </data>
+  <data name="ReferenceAddPointInImageToolStripMenuItem.Text" xml:space="preserve">
+    <value>Dodaj punkt odniesienia z obrazu do przypisanej listy</value>
+  </data>
+  <data name="ReferenceAddPointInImageToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Dodaj punkt odniesienia z obrazu do przypisanej listy</value>
+  </data>
+  <data name="ReferenceRemoveLastPointToolStripMenuItem.Text" xml:space="preserve">
+    <value>Usuń ostatni punkt odniesienia</value>
+  </data>
+  <data name="ReferenceRemoveLastPointToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Usuń ostatnio dodany punkt odniesienia z przypisanej listy</value>
+  </data>
+  <data name="ReferenceClearListToolStripMenuItem.Text" xml:space="preserve">
+    <value>Wyczyść listę punktów odniesienia (przypisanych)</value>
+  </data>
+  <data name="ReferenceClearListToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Wyczyść listę punktów odniesienia (przypisanych)</value>
+  </data>
+  <data name="showOverlayGraphicsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Pokaż grafikę nakładki</value>
+  </data>
+  <data name="showOverlayGraphicsToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Pokaż grafikę nakładki (linijka, pen-down, ścieżka itd.)</value>
+  </data>
+  <data name="simulateCameraToolStripMenuItem.Text" xml:space="preserve">
+    <value>Symulacja kamery</value>
+  </data>
+  <data name="cameraMountToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mocowanie kamery</value>
+  </data>
+  <data name="setRotationAngleToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Obróć obraz wideo - wprowadź kąt</value>
+  </data>
+  <data name="toolStripTextBox1.ToolTipText" xml:space="preserve">
+    <value>Obróć obraz wideo - wprowadź kąt</value>
+  </data>
+  <data name="teachScalingToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skalowanie obrazu</value>
+  </data>
+  <data name="teachScalingToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Ustawić skalowanie obrazu (kamera jest przymocowana do osi Z) w górnym i dolnym położeniu Z
+aby obliczyć prawidłowe skalowanie grafiki w zależności od pozycji Z
+
+1) Ploter główny - wykorzystywane są współrzędne maszyny Z
+2) Przesunąć kamerę na górną pozycję
+3) Kliknięcie lewym przyciskiem myszy na obrazie ustawia górne skalowanie na górny promień skalowania
+4) Przesunąć kamerę w dolne położenie
+5) Kliknięcie lewym przyciskiem myszy na obrazie ustawia dolne skalowanie na dolny promień skalowania</value>
+  </data>
+  <data name="upperPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ustawianie górnej pozycji skalowania</value>
+  </data>
+  <data name="upperPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Ustawienie widoku kamery</value>
+  </data>
+  <data name="teachRadiusTopToolStripMenuItem.Text" xml:space="preserve">
+    <value>Promień skalowania górny</value>
+  </data>
+  <data name="toolStripTextBox2.ToolTipText" xml:space="preserve">
+    <value>w jednostakch GRBL (mm lub cale)</value>
+  </data>
+  <data name="lowerPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ustawienie dolnej pozycji skalowania</value>
+  </data>
+  <data name="lowerPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Ustawienie widoku kamery</value>
+  </data>
+  <data name="teachRadiusBottomToolStripMenuItem.Text" xml:space="preserve">
+    <value>Promień skalowania dolny</value>
+  </data>
+  <data name="toolStripTextBox3.ToolTipText" xml:space="preserve">
+    <value>w jednostkach GRBL (mm lub cale)</value>
+  </data>
+  <data name="teachScaling2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Skalowanie obrazu</value>
+  </data>
+  <data name="teachRadiusToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ustawienie promienia</value>
+  </data>
+  <data name="setTeachRadiusToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ustawianie promienia uczenia</value>
+  </data>
+  <data name="toolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ustaw początek współrzędnych</value>
+  </data>
+  <data name="setToolPositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kliknij, aby ustawić</value>
+  </data>
+  <data name="setMachinePositionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kliknij tutaj, aby uzyskać przesunięcie maszyny GRBL w miejsce początkowe</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ustawienie offsetu</value>
+  </data>
+  <data name="teachOffsetToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Ustawienie przesunięcia między środkiem obrazu z kamery a pozycją narzędzia
+1) ustawić "Współrzędne narzędzia. (G54)
+2) Wyzerować pozycję X,Y
+3) zaznaczyć pozycję narzędzia (na współrzędnych X=0,Y=0) przy pomocy narzędzia na obrabianym przedmiocie
+4) Przesuwać XY tak długo, aż oznaczenie pojawi się w środku obrazu
+5) Ustawić przesunięcie kamery
+6) Ustawić Współrzędna kamery (G59) - jest teraz pomocnicza X=0, Y=0</value>
+  </data>
+  <data name="teachToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ustawienie przesunięcia kamery</value>
+  </data>
+  <data name="teachToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>Ustawienie przesunięcia między środkiem obrazu z kamery a pozycją narzędzia
+1) Wyzerować pozycję X,Y
+2) zaznaczyć pozycję narzędzia (na współrzędnych X=0,Y=0)
+3) Przesuwać XY tak długo, aż znak pojawi się w środku obrazu
+4) Ustawić przesunięcie kamery</value>
+  </data>
+  <data name="crossHairsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Siatka celownika</value>
+  </data>
+  <data name="btnApplyAngle.Text" xml:space="preserve">
+    <value>Wyrównanie kąta i skali</value>
+  </data>
+  <data name="btnApplyAngle.ToolTip" xml:space="preserve">
+    <value>Użyj prawego przycisku myszy, aby zmierzyć kąt.
+Naciśnij przycisk, aby przekształcić G-Code o zmierzony kąt.</value>
+  </data>
+  <data name="btnCamCoordTool.Text" xml:space="preserve">
+    <value>G54 Współrzędne narzędzia</value>
+  </data>
+  <data name="btnCamCoordTool.ToolTip" xml:space="preserve">
+    <value>Przesuń bieżącą pozycję narzędzia poniżej kamery</value>
+  </data>
+  <data name="cBCamCoordMove.Text" xml:space="preserve">
+    <value>Przesuń scenę</value>
+  </data>
+  <data name="cBCamCoordMove.ToolTip" xml:space="preserve">
+    <value>Zastosuj przesunięcie kamery do grafiki</value>
+  </data>
+  <data name="lblAngle.ToolTip" xml:space="preserve">
+    <value>Zmierzony kąt</value>
+  </data>
+  <data name="btnCamCoordCam.ToolTip" xml:space="preserve">
+    <value>Przesuń bieżącą pozycji kamery poniżej narzędzia</value>
+  </data>
+  <data name="TbSetPoints.Text" xml:space="preserve">
+    <value>Współrzędne pomocnicze:</value>
+  </data>
+  <data name="TbSetPoints.ToolTip" xml:space="preserve">
+    <value>Współrzędne znaku pomocniczego: Używane są tylko 1. i 2.
+Współrzędne referencyjne są importowane z grafiki lub zbieramy je ręcznie:
+Ctrl-klik, aby zaznaczyć,
+"a", aby dołączyć do listy,
+"c", aby usunąć listę.</value>
+  </data>
+  <data name="TbRealPoints.Text" xml:space="preserve">
+    <value>Wyznaczone koordynaty:</value>
+  </data>
+  <data name="TbRealPoints.ToolTip" xml:space="preserve">
+    <value>Wyznaczone koordynaty:
+Zbierz punkty ręcznie:
+Shift-klik, aby dodać punkt,
+Shift-"c", aby wyczyścić listę</value>
+  </data>
+  <data name="btnAutoCenter.Text" xml:space="preserve">
+    <value>Wycentruj na czerwonym okręgu</value>
+  </data>
+  <data name="btnAutoCenter.ToolTip" xml:space="preserve">
+    <value>Dodaj pozycję do "Wyznaczonych koordynatów" i przesuń narzędzie</value>
+  </data>
+  <data name="GbZoom.Text" xml:space="preserve">
+    <value>Kamera</value>
+  </data>
+  <data name="GbOffset.Text" xml:space="preserve">
+    <value>Przesunięcie kamery / Ruch</value>
+  </data>
+  <data name="BtnSetOffsetZero.Text" xml:space="preserve">
+    <value>Ustaw XY = 0;0</value>
+  </data>
+  <data name="BtnSetOffsetMarker.Text" xml:space="preserve">
+    <value>Ustaw XY = znacznik</value>
+  </data>
+  <data name="lblCenterPos.Text" xml:space="preserve">
+    <value>Nie znaleziono kształtu</value>
+  </data>
+  <data name="GbMeasure.Text" xml:space="preserve">
+    <value>Pomiar kąta</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Kliknij na punkt obrotu, trzymaj wciśnięty, puść pod żądanym kątem</value>
+  </data>
+  <data name="CbScale.Text" xml:space="preserve">
+    <value>Także skalowanie</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Kąt:</value>
+  </data>
+  <data name="cBRotateArround0.Text" xml:space="preserve">
+    <value>Obróć wokół 0;0</value>
+  </data>
+  <data name="cBShapeDetection.Text" xml:space="preserve">
+    <value>Włącz rozpoznawanie kształtu</value>
+  </data>
+  <data name="cBShapeDetection.ToolTip" xml:space="preserve">
+    <value>Aktywuj rozpoznawanie kształtu w tym widoku.
+Nie musi być aktywowane dla automatycznej korekty układu odniesienia.</value>
+  </data>
+  <data name="BtnStartAutomatic.Text" xml:space="preserve">
+    <value>Uruchomienie automatycznej korekty znaku pomocniczego</value>
+  </data>
+  <data name="cBShapeShowFilter.Text" xml:space="preserve">
+    <value>Pokaż zastosowane filtry</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Wybierz zestaw filtrów do rozpoznawania znaków pomocniczych</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Tryb automatyczny</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Kształt w pobliżu znacznika jest czerwony</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Filtry ustaw w [Ustawienia - Zachowanie programu - Kamera]</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Rozpoznawanie</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Tryb ręczny</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Ustaw przsunięcia</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>Skalowanie również przy obrocie</value>
+  </data>
+  <data name="CbUseShapeRecognition.Text" xml:space="preserve">
+    <value>Użyj rozpoznawania kształtów</value>
+  </data>
+  <data name="CbUseShapeRecognition.ToolTip" xml:space="preserve">
+    <value>Użyj funkcji rozpoznawania kształtu, aby automatycznie znaleźć punkty pomocnicze.
+Jeśli funkcja ta jest wyłączona, punkty pomocnicze muszą być przypisane ręcznie poprzez zaznaczenie na obrazie wideo.</value>
+  </data>
+</root>

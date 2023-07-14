@@ -26,6 +26,7 @@
 			  extend timeout to 20 and make adjustable
  * 2023-01-04 send process events
  * 2023-01-06 line 734 check list.count
+ * 2023-06-11 f:ProcessShapeDetection l:683, 716 check for empty lists
 */
 
 using AForge;
@@ -39,6 +40,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace GrblPlotter
@@ -678,6 +680,8 @@ namespace GrblPlotter
             blobCounter.ProcessImage(bitmapData);
 
             Blob[] blobs = blobCounter.GetObjectsInformation();
+            if (blobs.Length == 0)
+            { Logger.Warn("ProcessShapeDetection no blobs found"); return; }
 
             bitmap.UnlockBits(bitmapData);
 
@@ -709,6 +713,8 @@ namespace GrblPlotter
             for (int i = 0, n = blobs.Length; i < n; i++)
             {
                 List<IntPoint> edgePoints = blobCounter.GetBlobsEdgePoints(blobs[i]);
+                if (edgePoints.Count == 0)
+                    continue;
 
                 //    System.Single myRadius;
                 if (Properties.Settings.Default.camShapeCircle && shapeChecker.IsCircle(edgePoints, out AForge.Point center, out System.Single myRadius))

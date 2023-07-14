@@ -211,7 +211,7 @@
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGNodesOnly.Text" xml:space="preserve">
-    <value>Nœuds de chemin de processus uniquement...</value>
+    <value>Обрабатывать только узлы пути (например, положения гвоздей для стринг-арта)</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGNodesOnly.ToolTip" xml:space="preserve">
@@ -2125,10 +2125,6 @@ min X, min Y и max Z.
     <value>моделирование</value>
     <comment>ok</comment>
   </data>
-  <data name="label16.Text" xml:space="preserve">
-    <value>Максимум</value>
-    <comment>ok</comment>
-  </data>
   <data name="nUDImportPenWidthToZMax.ToolTip" xml:space="preserve">
     <value>Наибольшая ширина пера будет переведена в эту глубину - но ограничена гравировкой Z-высоты в «Генерировании G-кода»</value>
     <comment>ok</comment>
@@ -2205,12 +2201,11 @@ min X, min Y и max Z.
     <comment>ok</comment>
   </data>
   <data name="label17.Text" xml:space="preserve">
-    <value>Перевести Z в диапазон:
-(«Гравировка Z-высоты» не будет превышена)</value>
+    <value>Переводит минимальную/максимальную ширину пера или радиус окружности в Z в диапазоне:</value>
     <comment>ok</comment>
   </data>
   <data name="gBCreateZValue.Text" xml:space="preserve">
-    <value>Создать значение Z</value>
+    <value>Создать значение Z (ось Z должна быть включена)</value>
     <comment>ok</comment>
   </data>
   <data name="label15.Text" xml:space="preserve">
@@ -3454,5 +3449,159 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   </data>
   <data name="BtnGetFilterValueRemoveColor.ToolTip" xml:space="preserve">
     <value>Добавляет цвет выбранного персонажа или группы</value>
+  </data>
+  <data name="Import_Parameter.Text" xml:space="preserve">
+    <value>Импорт параметра</value>
+  </data>
+  <data name="Import_Output.Text" xml:space="preserve">
+    <value>Выходные свойства</value>
+  </data>
+  <data name="GbMetaData.Text" xml:space="preserve">
+    <value>Пример ключевых слов метаданных</value>
+  </data>
+  <data name="CbImportSVGMetaData.Text" xml:space="preserve">
+    <value>Обработать метаданные</value>
+  </data>
+  <data name="CbImportSVGMetaData.ToolTip" xml:space="preserve">
+    <value>Применить данные XY-Feed, Z-Feed, SpindleSpeed, Zup, Zdown во время импорта.</value>
+  </data>
+  <data name="groupBox34.Text" xml:space="preserve">
+    <value>Создает значение S (должны быть включены ШИМ или шпиндель/лазер)</value>
+  </data>
+  <data name="cBImportPenWidthToS.Text" xml:space="preserve">
+    <value>Преобразование ширины пера в значение S</value>
+  </data>
+  <data name="cBImportPenWidthToS.ToolTip" xml:space="preserve">
+    <value>Ширина пера будет обрабатываться как значение S для мощности ШИМ-лазера.
+Максимальная глубина будет ограничена гравировкой Z-Height.</value>
+  </data>
+  <data name="label92.Text" xml:space="preserve">
+    <value>Макс</value>
+  </data>
+  <data name="label93.Text" xml:space="preserve">
+    <value>Мин.</value>
+  </data>
+  <data name="label91.Text" xml:space="preserve">
+    <value>Переводит минимальную/максимальную ширину пера или радиус круга в S в диапазоне:</value>
+  </data>
+  <data name="nUDSBottom.ToolTip" xml:space="preserve">
+    <value>меньшее значение</value>
+  </data>
+  <data name="label94.Text" xml:space="preserve">
+    <value>Задержка перед автоматическим закрытием отображаемой информации</value>
+  </data>
+  <data name="groupBox35.Text" xml:space="preserve">
+    <value>Импорт HPGL (*.plt, *.hpgl)</value>
+  </data>
+  <data name="CbImportSVGApplyFill.Text" xml:space="preserve">
+    <value>Применить заливку штриховкой, если объект заполнен</value>
+  </data>
+  <data name="BtnGetFilterValueRemoveWidth.Text" xml:space="preserve">
+    <value>Получить цвет</value>
+  </data>
+  <data name="BtnGetFilterValueRemoveColor.Text" xml:space="preserve">
+    <value>Получить цвет</value>
+  </data>
+  <data name="groupBox37.Text" xml:space="preserve">
+    <value>Сообщение от</value>
+  </data>
+  <data name="groupBox37.ToolTip" xml:space="preserve">
+    <value>Форма сообщения для информации об импорте, задержка перед автоматическим закрытием</value>
+  </data>
+  <data name="cBImportSVGCircleToDotS.Text" xml:space="preserve">
+    <value>Преобразует радиус окружности в значение S</value>
+  </data>
+  <data name="BtnHelp_ImportParameter.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="BtnHelp_SvgDxfCsv.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="label97.Text" xml:space="preserve">
+    <value>Не поддерживается: FS, VS, WU, PW</value>
+  </data>
+  <data name="label96.Text" xml:space="preserve">
+    <value>Поддерживаемые команды: IN, SP, PU, ​​PD, PA, PR</value>
+  </data>
+  <data name="label98.Text" xml:space="preserve">
+    <value>Нет вариантов</value>
+  </data>
+  <data name="groupBox36.Text" xml:space="preserve">
+    <value>Импорт сверл (*.drd, *.drl, *.dri)</value>
+  </data>
+  <data name="tabFormat_Drill.Text" xml:space="preserve">
+    <value>Сверлить</value>
+  </data>
+  <data name="label99.Text" xml:space="preserve">
+    <value>Откроется новая форма для настроек.</value>
+  </data>
+  <data name="groupBox38.Text" xml:space="preserve">
+    <value>Импорт изображений (*.bmp, *.gif, *.png, *.jpg)</value>
+  </data>
+  <data name="BtnHelp_Pathinterpretation.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="BtnHelp_Pathaddons.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="BtnHelp_Pathmodification2.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="button5.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="BtnHelp_Conversion.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="BtnHelp_Tooltable.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="BtnHelp_Grouping.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="BtnHelp_Filter.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="BtnHelp_Wirebender.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="BtnHelp_Outline.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="BtnHelp_Extension.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="BtnHelp_General.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="BtnHelp_Penupdown.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="BtnHelp_misc.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="BtnHelp_Usecase.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="BtnHelp_TooltableSet.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="BtnHelp_Toolchange.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="BtnHelp_Programstart.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="BtnHelp_Programcontrol.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="BtnHelp_Flowcontrol.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="BtnHelp_Camera.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="BtnHelp_Notifier.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
   </data>
 </root>

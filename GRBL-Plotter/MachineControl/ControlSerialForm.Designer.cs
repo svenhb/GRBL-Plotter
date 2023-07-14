@@ -56,7 +56,7 @@ namespace GrblPlotter
             this.BtnOpenPortSerial = new System.Windows.Forms.Button();
             this.btnScanPort = new System.Windows.Forms.Button();
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
-            this.rtbLog = new System.Windows.Forms.RichTextBox();
+            this.rtbLog2 = new System.Windows.Forms.RichTextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pasteCodeFromClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copySelectionToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,6 +99,7 @@ namespace GrblPlotter
             this.LblEthernetIP = new System.Windows.Forms.Label();
             this.LblEthernetPort = new System.Windows.Forms.Label();
             this.BtnOpenPortEthernet = new System.Windows.Forms.Button();
+            this.rtbLog = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -148,11 +149,10 @@ namespace GrblPlotter
             this.serialPort.WriteTimeout = 3000;
             this.serialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.SerialPort1_DataReceived);
             // 
-            // rtbLog
+            // rtbLog2
             // 
-            this.rtbLog.ContextMenuStrip = this.contextMenuStrip1;
-            resources.ApplyResources(this.rtbLog, "rtbLog");
-            this.rtbLog.Name = "rtbLog";
+            resources.ApplyResources(this.rtbLog2, "rtbLog2");
+            this.rtbLog2.Name = "rtbLog2";
             // 
             // contextMenuStrip1
             // 
@@ -454,6 +454,12 @@ namespace GrblPlotter
             this.BtnOpenPortEthernet.UseVisualStyleBackColor = true;
             this.BtnOpenPortEthernet.Click += new System.EventHandler(this.BtnOpenPortEthernet_Click);
             // 
+            // rtbLog
+            // 
+            this.rtbLog.ContextMenuStrip = this.contextMenuStrip1;
+            resources.ApplyResources(this.rtbLog, "rtbLog");
+            this.rtbLog.Name = "rtbLog";
+            // 
             // ControlSerialForm
             // 
             resources.ApplyResources(this, "$this");
@@ -504,7 +510,7 @@ namespace GrblPlotter
         private System.Windows.Forms.Button BtnOpenPortSerial;
         private System.Windows.Forms.Button btnScanPort;
         private System.IO.Ports.SerialPort serialPort;
-        private System.Windows.Forms.RichTextBox rtbLog;
+        private System.Windows.Forms.RichTextBox rtbLog2;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.Button btnGRBLCommand0;
@@ -548,5 +554,6 @@ namespace GrblPlotter
         private System.Windows.Forms.Label LblEthernetIP;
         private System.Windows.Forms.Label LblEthernetPort;
         private System.Windows.Forms.Button BtnOpenPortEthernet;
+        private System.Windows.Forms.TextBox rtbLog;
     }
 }

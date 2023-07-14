@@ -134,12 +134,12 @@ namespace GrblPlotter
                             if (gcline.z != null)
                             {
                                 if ((gcline.x != null) || (gcline.y != null))
-                                { Gcode.SplitLineZ(newCode, gcline.nNumber, gcline.motionMode, (float)lastActualX, (float)lastActualY, (float)lastActualZ, (float)gcline.actualPos.X, (float)gcline.actualPos.Y, (float)gcline.actualPos.Z, heightMapGridWidth, true, gcline.codeLine); }
+                                { Gcode.SplitLineZ(newCode, gcline.motionMode, (float)lastActualX, (float)lastActualY, (float)lastActualZ, (float)gcline.actualPos.X, (float)gcline.actualPos.Y, (float)gcline.actualPos.Z, heightMapGridWidth, true, gcline.codeLine); }
                                 else
                                 { newCode.AppendLine(gcline.codeLine.Trim('\r', '\n')); }
                             }
                             else
-                                Gcode.SplitLine(newCode, gcline.nNumber, gcline.motionMode, (float)lastActualX, (float)lastActualY, (float)gcline.actualPos.X, (float)gcline.actualPos.Y, heightMapGridWidth, true, gcline.codeLine);
+                                Gcode.SplitLine(newCode, gcline.motionMode, (float)lastActualX, (float)lastActualY, (float)gcline.actualPos.X, (float)gcline.actualPos.Y, heightMapGridWidth, true, gcline.codeLine);
                         }
                         else
                         { newCode.AppendLine(gcline.codeLine.Trim('\r', '\n')); }

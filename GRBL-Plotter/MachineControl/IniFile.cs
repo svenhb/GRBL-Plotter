@@ -38,6 +38,7 @@
  * 2022-02-23 add Command extension settings
  * 2023-03-05 add importGCZIncNoZUp
  * 2023-04-26 add importGraphicFilterEnable
+ * 2023-06-05 add further simple shape variables
 */
 
 using System;
@@ -463,6 +464,14 @@ namespace GrblPlotter
             Write("Z Feedrate", setup.createShapeToolFeedZ.ToString(), section);
             Write("Overlap", setup.createShapeToolOverlap.ToString(), section);
             Write("Spindle Speed", setup.createShapeToolSpindleSpeed.ToString(), section);
+
+            Write("Z Final", setup.importGCZDown.ToString(), section);
+            Write("Origin", setup.createShapeOrigin.ToString(), section);
+            Write("Path", setup.createShapeToolPath.ToString(), section);
+            Write("Shape", setup.createShapeType.ToString(), section);
+            Write("X Value", setup.createShapeX.ToString(), section);
+            Write("Y Value", setup.createShapeY.ToString(), section);
+            Write("R Value", setup.createShapeR.ToString(), section);
 
             section = "Flow Control";
             Write("PauseCode Enable", setup.flowControlEnable.ToString(), section);
@@ -1066,6 +1075,14 @@ namespace GrblPlotter
             if (SetVariable(ref tmpdeci, section, "Z Feedrate")) { setup.createShapeToolFeedZ = tmpdeci; }
             if (SetVariable(ref tmpdeci, section, "Overlap")) { setup.createShapeToolOverlap = tmpdeci; }
             if (SetVariable(ref tmpdeci, section, "Spindle Speed")) { setup.createShapeToolSpindleSpeed = tmpdeci; }
+
+            if (SetVariable(ref tmpdeci, section, "Z Final")) { setup.importGCZDown = tmpdeci; }
+            if (SetVariable(ref tmpdeci, section, "Origin")) { setup.createShapeOrigin = tmpint; }
+            if (SetVariable(ref tmpdeci, section, "Path")) { setup.createShapeToolPath = tmpint; }
+            if (SetVariable(ref tmpdeci, section, "Shape")) { setup.createShapeType = tmpint; }
+            if (SetVariable(ref tmpdeci, section, "X Value")) { setup.createShapeX = tmpdeci; }
+            if (SetVariable(ref tmpdeci, section, "Y Value")) { setup.createShapeY = tmpdeci; }
+            if (SetVariable(ref tmpdeci, section, "R Value")) { setup.createShapeR = tmpdeci; }
 
             section = "Flow Control";
             if (SetVariable(ref tmpbool, section, "PauseCode Enable")) { setup.flowControlEnable = tmpbool; }

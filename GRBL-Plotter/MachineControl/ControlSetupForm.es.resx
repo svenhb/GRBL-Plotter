@@ -470,7 +470,7 @@ Primer intento en github.com/svenhb/GRBL-Plotter
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGNodesOnly.Text" xml:space="preserve">
-    <value>Procesar solo nodos de ruta</value>
+    <value>Solo nodos de ruta de proceso (por ejemplo, posiciones de clavos para arte de cuerdas)</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGNodesOnly.ToolTip" xml:space="preserve">
@@ -2121,12 +2121,11 @@ menos estrés para la mecánica</value>
     <comment>ok</comment>
   </data>
   <data name="label17.Text" xml:space="preserve">
-    <value>Traduzca Z en el rango de:
-(No se excederá el 'grabado de altura Z')</value>
+    <value>Traduce el ancho mínimo/máximo de la pluma o el radio del círculo en Z en el rango de:</value>
     <comment>ok</comment>
   </data>
   <data name="gBCreateZValue.Text" xml:space="preserve">
-    <value>Crear valor Z</value>
+    <value>Crear valor Z (el eje Z debe estar habilitado)</value>
     <comment>ok</comment>
   </data>
   <data name="label15.Text" xml:space="preserve">
@@ -3235,5 +3234,160 @@ Dado en la sección de encabezado de GCode: 'SVG dimension'.</value>
   </data>
   <data name="BtnGetFilterValueRemoveColor.ToolTip" xml:space="preserve">
     <value>Agrega el color del personaje o grupo seleccionado</value>
+  </data>
+  <data name="Import_Parameter.Text" xml:space="preserve">
+    <value>Parámetro de importación</value>
+  </data>
+  <data name="Import_Output.Text" xml:space="preserve">
+    <value>Propiedades de salida</value>
+  </data>
+  <data name="GbMetaData.Text" xml:space="preserve">
+    <value>Ejemplo de palabras clave de metadatos</value>
+  </data>
+  <data name="CbImportSVGMetaData.Text" xml:space="preserve">
+    <value>Procesar metadatos</value>
+  </data>
+  <data name="CbImportSVGMetaData.ToolTip" xml:space="preserve">
+    <value>Aplicar dado XY-Feed, Z-Feed, SpindleSpeed, Zup, Zdown durante la importación.</value>
+  </data>
+  <data name="groupBox34.Text" xml:space="preserve">
+    <value>Crea valor S (PWM o Husillo/Láser debe estar habilitado)</value>
+  </data>
+  <data name="cBImportPenWidthToS.Text" xml:space="preserve">
+    <value>Traducir el ancho de la pluma al valor S</value>
+  </data>
+  <data name="cBImportPenWidthToS.ToolTip" xml:space="preserve">
+    <value>El ancho de la pluma se procesará como valor S para la potencia del láser PWM.
+La profundidad máxima estará limitada por el grabado Z-Height.</value>
+  </data>
+  <data name="label92.Text" xml:space="preserve">
+    <value>máx.</value>
+  </data>
+  <data name="label91.Text" xml:space="preserve">
+    <value>Traduce el ancho mínimo/máximo de la pluma o el radio del círculo en S en el rango de:</value>
+  </data>
+  <data name="nUDSBottom.ToolTip" xml:space="preserve">
+    <value>bajo valor</value>
+  </data>
+  <data name="label94.Text" xml:space="preserve">
+    <value>Retraso antes de cerrar automáticamente la información mostrada</value>
+  </data>
+  <data name="groupBox35.Text" xml:space="preserve">
+    <value>Importación HPGL (*.plt, *.hpgl)</value>
+  </data>
+  <data name="CbImportSVGApplyFill.Text" xml:space="preserve">
+    <value>Aplicar relleno de sombreado si el objeto está relleno</value>
+  </data>
+  <data name="BtnGetFilterValueRemoveWidth.Text" xml:space="preserve">
+    <value>Obtener color</value>
+  </data>
+  <data name="BtnGetFilterValueRemoveColor.Text" xml:space="preserve">
+    <value>Obtener color</value>
+  </data>
+  <data name="btnColorSimulation.Text" xml:space="preserve">
+    <value>Simulación</value>
+    <comment>ok</comment>
+  </data>
+  <data name="groupBox37.Text" xml:space="preserve">
+    <value>Formulario de mensaje</value>
+  </data>
+  <data name="groupBox37.ToolTip" xml:space="preserve">
+    <value>Formulario de mensaje para información de importación, demora antes del cierre automático</value>
+  </data>
+  <data name="cBImportSVGCircleToDotS.Text" xml:space="preserve">
+    <value>Convierte el radio del 'círculo' en valor S</value>
+  </data>
+  <data name="BtnHelp_ImportParameter.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_SvgDxfCsv.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="label97.Text" xml:space="preserve">
+    <value>No compatible: FS, VS, WU, PW</value>
+  </data>
+  <data name="label96.Text" xml:space="preserve">
+    <value>Comandos admitidos: IN, SP, PU, ​​PD, PA, PR</value>
+  </data>
+  <data name="label98.Text" xml:space="preserve">
+    <value>Sin opciones</value>
+  </data>
+  <data name="groupBox36.Text" xml:space="preserve">
+    <value>Importación de exploración (*.drd, *.drl, *.dri)</value>
+  </data>
+  <data name="tabFormat_Drill.Text" xml:space="preserve">
+    <value>Perforar</value>
+  </data>
+  <data name="label99.Text" xml:space="preserve">
+    <value>Se abrirá un nuevo formulario para la configuración.</value>
+  </data>
+  <data name="groupBox38.Text" xml:space="preserve">
+    <value>Importación de imágenes (*.bmp, *.gif, *.png, *.jpg)</value>
+  </data>
+  <data name="BtnHelp_Pathinterpretation.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_Pathaddons.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_Pathmodification2.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="button5.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_Conversion.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_Tooltable.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_Grouping.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_Filter.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_Wirebender.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_Outline.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_Extension.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_General.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_Penupdown.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_misc.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_Usecase.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_TooltableSet.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_Toolchange.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_Programstart.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_Programcontrol.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_Flowcontrol.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_Camera.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_Notifier.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
   </data>
 </root>

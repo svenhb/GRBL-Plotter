@@ -66,6 +66,7 @@
  * 2022-04-08 line 463 remove if
  * 2023-03-29 l:930 f:SerialPort1_DataReceived add option to use Invoke -> lowLevelPerformance
  * 2023-03-31 l:266 f:SerialForm_FormClosing improove shut-down behavior
+ * 2023-06-28 l:665 f:AddToLog limit amount of lines to 10000   replaced RichTextBox by TextBox
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -75,6 +76,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -656,8 +658,15 @@ namespace GrblPlotter
             {
                 try
                 {
-                    rtbLog.AppendText(text + "\r");
+                    rtbLog.AppendText(text + "\r\n");
                     rtbLog.ScrollToCaret();
+
+                    var lines = rtbLog.Lines;
+                    if (lines.Length > 11000)
+                    {   var newlines = lines.Skip(1000);
+                        rtbLog.Lines = newlines.ToArray();
+                     //   rtbLog.AppendText("--------------------------------------------------------------\r\n");
+                    }
                 }
                 catch
                 {

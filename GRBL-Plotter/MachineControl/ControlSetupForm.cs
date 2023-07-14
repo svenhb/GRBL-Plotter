@@ -304,6 +304,8 @@ namespace GrblPlotter
             {
                 RbimportGraphicFilterChoiceRemove2.Checked = true; //GbFilterRemove.BackColor = Color.WhiteSmoke; GbFilterKeep.BackColor = Color.Yellow;
             }
+
+            LblZEngrave.Text = Properties.Settings.Default.importGCZDown.ToString("0.0");
         }
 
         private void SaveSettings()
@@ -1017,6 +1019,7 @@ namespace GrblPlotter
         {
             HighlightPenOptions_Click(sender, e);
             CheckVisibility();
+            tabControl1.Invalidate();
         }
 
         private void HighlightPenOptions_Click(object sender, EventArgs e)
@@ -1063,31 +1066,31 @@ namespace GrblPlotter
                 cBImportSVGNodesOnly.BackColor = Color.Transparent;
 
             if (cBImportSVGCircleToDot.Checked)
-                cBImportSVGCircleToDot.BackColor = Color.Yellow;
+            { cBImportSVGCircleToDot.BackColor = Color.Yellow; }
             else
-                cBImportSVGCircleToDot.BackColor = Color.Transparent;
+            { cBImportSVGCircleToDot.BackColor = Color.Transparent; }
 
             if (cBImportLasermode.Checked)
                 cBImportLasermode.BackColor = Color.Yellow;
             else
                 cBImportLasermode.BackColor = Color.Transparent;
 
-            if (cBImportGCUseZ.Checked)
+            if (cBImportGCUseZ.Checked || cBImportGCUseZ2.Checked)
             { GbSeveralPasses.BackColor = tab1_2gB3.BackColor = cBImportGCUseZ2.BackColor = Color.Yellow; }
             else
             { GbSeveralPasses.BackColor = tab1_2gB3.BackColor = cBImportGCUseZ2.BackColor = inactive; }
 
-            if (cBImportGCUsePWM.Checked)
+            if (cBImportGCUsePWM.Checked || cBImportGCUsePWM2.Checked)
             { tab1_2gB4.BackColor = cBImportGCUsePWM2.BackColor = Color.Yellow; }
             else
             { tab1_2gB4.BackColor = cBImportGCUsePWM2.BackColor = inactive; }
 
-            if (cBImportGCUseSpindle.Checked)
+            if (cBImportGCUseSpindle.Checked || cBImportGCUseSpindle2.Checked)
             { tab1_2gB5.BackColor = cBImportGCUseSpindle2.BackColor = Color.Yellow; }
             else
             { tab1_2gB5.BackColor = cBImportGCUseSpindle2.BackColor = inactive; }
 
-            if (cBImportGCUseIndividual.Checked)
+            if (cBImportGCUseIndividual.Checked || cBImportGCUseIndividual2.Checked)
             { tab1_2gB6.BackColor = cBImportGCUseIndividual2.BackColor = Color.Yellow; }
             else
             { tab1_2gB6.BackColor = cBImportGCUseIndividual2.BackColor = inactive; }
@@ -1473,6 +1476,7 @@ namespace GrblPlotter
             lblDrag1.Enabled = enable;
             lblDrag2.Enabled = enable;
             HighlightPenOptions_Click(sender, e);
+			BtnHelp_Pathmodification.Invalidate();
         }
 
         private void CbImportGCLineSegments_CheckedChanged(object sender, EventArgs e)
@@ -1631,6 +1635,7 @@ namespace GrblPlotter
             if (cBImportGCTangentialRange.Checked && enable)
             { cBImportGCNoArcs.Checked = true; }
             HighlightPenOptions_Click(sender, e);
+			BtnHelp_Pathmodification.Invalidate();
         }
 
         private void CbImportGCTangentialRange_CheckStateChanged(object sender, EventArgs e)
@@ -1655,6 +1660,7 @@ namespace GrblPlotter
             if (enable)
             { cBImportGCNoArcs.Checked = true; }
             HighlightPenOptions_Click(sender, e);
+			BtnHelp_Pathmodification.Invalidate();
         }
 
         private void BtnOpenLogFile_Click(object sender, EventArgs e)
@@ -1724,11 +1730,12 @@ namespace GrblPlotter
         { groupBox3.Visible = true; }
 
         private void CheckZEngraveExceed()
-        { lblImportPenWidthToZWarning.Visible = (nUDImportGCZDown.Value > Math.Min(nUDImportPenWidthToZMax.Value, nUDImportPenWidthToZMin.Value)); }
-
+        { }// lblImportPenWidthToZWarning.Visible = (nUDImportGCZDown.Value > Math.Min(nUDImportPenWidthToZMax.Value, nUDImportPenWidthToZMin.Value)); }
+    //
         private void NudImportPenWidthToZMin_ValueChanged(object sender, EventArgs e)
         {
-            CheckZEngraveExceed();
+         //   CheckZEngraveExceed();
+            LblZEngrave.Text = nUDImportGCZDown.Value.ToString("0.0");
         }
 
         private void BtnNotifierMail_Test_Click(object sender, EventArgs e)
@@ -2102,14 +2109,13 @@ namespace GrblPlotter
                     break;
                 default:
                     break;
-
             }
             return false;
         }
 
         private void TabControl3_DrawItem(object sender, DrawItemEventArgs e)
         {
-            TabPage page = tabControl3.TabPages[e.Index];
+            TabPage page = BtnHelp_Pathmodification.TabPages[e.Index];
             if (IsOptionEnabledTabControl3(e.Index))
                 e.Graphics.FillRectangle(new SolidBrush(Color.Yellow), e.Bounds);
             else
@@ -2127,6 +2133,7 @@ namespace GrblPlotter
             switch (tabIndex)
             {
                 case 0:
+                    return false;
                     break;
                 case 1:
                     return (prop.importSVGNodesOnly || prop.importDepthFromWidth || prop.importSVGCircleToDot);
@@ -2154,9 +2161,61 @@ namespace GrblPlotter
                     break;
                 default:
                     break;
-
             }
             return false;
+        }
+
+        private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            TabPage page = tabControl1.TabPages[e.Index];
+            if (IsOptionEnabledTabControl1(e.Index))
+                e.Graphics.FillRectangle(new SolidBrush(Color.Yellow), e.Bounds);
+            else
+                e.Graphics.FillRectangle(new SolidBrush((e.State == DrawItemState.Selected) ? Color.White : page.BackColor), e.Bounds);
+
+            Rectangle paddedBounds = e.Bounds;
+            int yOffset = (e.State == DrawItemState.Selected) ? -2 : 1;
+            paddedBounds.Offset(1, yOffset);
+            TextRenderer.DrawText(e.Graphics, page.Text, e.Font, paddedBounds, page.ForeColor);
+        }
+
+        private bool IsOptionEnabledTabControl1(int tabIndex)
+        {
+            var prop = Properties.Settings.Default;
+            switch (tabIndex)
+            {
+                case 0:
+                    return (prop.importGCZEnable);
+                    break;
+                case 1:
+                    return (prop.importGCPWMEnable);
+                    break;
+                case 2:
+                    return (prop.importGCSpindleToggle);
+                    break;
+                case 3:
+                    return (prop.importGCIndEnable);
+                    break;
+                default:
+                    break;
+            }
+            return false;
+        }
+
+        private void BtnHelp_Click(object sender, EventArgs e)
+        {
+            string url = "https://grbl-plotter.de/index.php?";
+            try
+            {
+                Button clickedLink = sender as Button;
+                Process.Start(url + clickedLink.Tag.ToString());
+            }
+            catch (Exception err)
+            {
+                Logger.Error(err, "BtnHelp_Click ");
+                MessageBox.Show("Could not open the link: " + err.Message, "Error");
+            }
+
         }
     }
 }

@@ -38,6 +38,7 @@
  * 2022-12-05 seperate class into new file "ControlHeightMapClass"
  * 2023-01-28 line 363 check if in range nUDCutOffZ.Minimum / Max
  * 2023-02-20 optional y-x scan
+ * 2023-05-08 l:996 f:AddScanCode add axis-string for X/Y seperation
 */
 
 using System;
@@ -46,6 +47,7 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using System.Windows.Media.Media3D;
 
 namespace GrblPlotter
 {
@@ -767,7 +769,7 @@ namespace GrblPlotter
                                 tmp = Map.GetCoordinates(ix, iy);
                                 MapIndex.Add(new Point(ix, iy));
 
-                                AddScanCode(tmp, useZ);
+                                AddScanCode(tmp, useZ,true);   // isX
                                 /*
                                 if (useZ) scanCode.AppendFormat("G0Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeUp.Value));  // save Z pos
 
@@ -801,7 +803,7 @@ namespace GrblPlotter
                                     tmp = Map.GetCoordinates(ix, iy);
                                     MapIndex.Add(new Point(ix, iy));
 
-                                    AddScanCode(tmp, useZ);
+                                    AddScanCode(tmp, useZ, true);   // isX
                                     /*
                                     if (useZ) scanCode.AppendFormat("G0Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeUp.Value));
 
@@ -838,7 +840,7 @@ namespace GrblPlotter
                                 heightMapBMP.SetPixel(pixX, pixY, Color.FromArgb(255, 00, 00));
                                 tmp = Map.GetCoordinates(ix, iy);
                                 MapIndex.Add(new Point(ix, iy));
-                                AddScanCode(tmp, useZ);
+                                AddScanCode(tmp, useZ,false);    // isX=false
                                 cntSent++;
                             }
                             if (ix < Map.SizeX - 1)
@@ -858,7 +860,7 @@ namespace GrblPlotter
                                     heightMapBMP.SetPixel(pixX, pixY, Color.FromArgb(255, 00, 00));
                                     tmp = Map.GetCoordinates(ix, iy);
                                     MapIndex.Add(new Point(ix, iy));
-                                    AddScanCode(tmp, useZ);
+                                    AddScanCode(tmp, useZ,false);    // isX=false
                                     cntSent++;
                                 }
                             }
@@ -884,7 +886,7 @@ namespace GrblPlotter
                         tmp = Map.GetCoordinates(ix, iy);
                         MapIndex.Add(new Point(ix, iy));
 
-                        AddScanCode(tmp, useZ);
+                        AddScanCode(tmp, useZ, false);    // isX=false
                         /*
                         if (useZ) scanCode.AppendFormat("G0Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeUp.Value));  // save Z pos
 
@@ -921,7 +923,7 @@ namespace GrblPlotter
                         tmp = Map.GetCoordinates(ix, iy);
                         MapIndex.Add(new Point(ix, iy));
 
-                        AddScanCode(tmp, useZ);
+                        AddScanCode(tmp, useZ, true);   // isX
                         /*
                         if (useZ) scanCode.AppendFormat("G0Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeUp.Value));  // save Z pos
 
@@ -992,14 +994,21 @@ namespace GrblPlotter
             }
         }
 
-        private void AddScanCode(Vector2 tmp, bool useZ)
+        private void AddScanCode(Vector2 tmp, bool useZ, bool isX)
         {
+            string axisName = "X";
+            float axisValue = (float)tmp.X;
+            if (!isX)
+            {
+                axisName = "Y";
+                axisValue = (float)tmp.Y;
+            }
             if (useZ) scanCode.AppendFormat("G0Z{0}\r\n", Gcode.FrmtNum((float)nUDProbeUp.Value));  // save Z pos
 
             if (CbUseG1.Checked)
-            { scanCode.AppendFormat("G1X{0}F{1}\r\n", Gcode.FrmtNum((float)tmp.X), NudXYFeedrate.Value); }
+            { scanCode.AppendFormat("G1{0}{1}F{2}\r\n", axisName, Gcode.FrmtNum(axisValue), NudXYFeedrate.Value); }
             else
-            { scanCode.AppendFormat("G0X{0}\r\n", Gcode.FrmtNum((float)tmp.X)); }
+            { scanCode.AppendFormat("G0{0}{1}\r\n", axisName, Gcode.FrmtNum(axisValue)); }
 
             if (!useZ)
             { scanCode.AppendFormat("($PROBE)\r\n"); }

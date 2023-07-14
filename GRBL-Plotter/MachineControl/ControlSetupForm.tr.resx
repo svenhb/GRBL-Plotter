@@ -372,7 +372,7 @@ gcode'u küçültürken sorunları önlemek için.</value>
     <comment>ok</comment>
   </data>
   <data name="gBCreateZValue.Text" xml:space="preserve">
-    <value>Z değeri oluştur</value>
+    <value>Z değeri oluştur (Z ekseni etkinleştirilmelidir)</value>
     <comment>ok</comment>
   </data>
   <data name="lblImportPenWidthToZWarning.Text" xml:space="preserve">
@@ -393,8 +393,7 @@ Fikir: daire boyutunu kontrol etmek için bir havşa kullanın</value>
     <comment>ok</comment>
   </data>
   <data name="label17.Text" xml:space="preserve">
-    <value>Z'yi şu aralığa çevirin:
-('Z-Yükseklik gravürü' aşılmayacaktır)</value>
+    <value>Z cinsinden min/maks kalem genişliğini veya daire yarıçapını şu aralıkta çevirir:</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportSVGCircleToDot.Text" xml:space="preserve">
@@ -440,7 +439,7 @@ mekanik için daha az stres</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportSVGNodesOnly.Text" xml:space="preserve">
-    <value>Yalnızca işlem yolu düğümleri</value>
+    <value>Yalnızca işlem yolu düğümleri (ör. dize sanatı için tırnak konumları)</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGNodesOnly.ToolTip" xml:space="preserve">
@@ -3548,5 +3547,159 @@ GCode başlık bölümünde verilmiştir: 'SVG dimension'.</value>
   </data>
   <data name="BtnGetFilterValueRemoveColor.ToolTip" xml:space="preserve">
     <value>Seçilen karakterin veya grubun rengini ekler</value>
+  </data>
+  <data name="Import_Parameter.Text" xml:space="preserve">
+    <value>Parametreyi İçe Aktar</value>
+  </data>
+  <data name="Import_Output.Text" xml:space="preserve">
+    <value>Çıktı Özellikleri</value>
+  </data>
+  <data name="GbMetaData.Text" xml:space="preserve">
+    <value>Meta veri anahtar kelimeleri örneği</value>
+  </data>
+  <data name="CbImportSVGMetaData.Text" xml:space="preserve">
+    <value>Meta verileri işle</value>
+  </data>
+  <data name="CbImportSVGMetaData.ToolTip" xml:space="preserve">
+    <value>İçe aktarma sırasında verilen XY-Feed, Z-Feed, SpindleSpeed, Zup, Zdown uygulayın.</value>
+  </data>
+  <data name="groupBox34.Text" xml:space="preserve">
+    <value>S değeri oluşturur (PWM veya İş Mili/Lazer etkinleştirilmelidir)</value>
+  </data>
+  <data name="cBImportPenWidthToS.Text" xml:space="preserve">
+    <value>Kalem genişliğini S değerine çevir</value>
+  </data>
+  <data name="cBImportPenWidthToS.ToolTip" xml:space="preserve">
+    <value>Kalem genişliği, PWM lazer gücü için S değeri olarak işlenecektir.
+Maksimum derinlik, Z-Yüksekliği gravürü ile sınırlanacaktır.</value>
+  </data>
+  <data name="label92.Text" xml:space="preserve">
+    <value>maks.</value>
+  </data>
+  <data name="label93.Text" xml:space="preserve">
+    <value>dak.</value>
+  </data>
+  <data name="label91.Text" xml:space="preserve">
+    <value>S cinsinden min/maks kalem genişliğini veya daire yarıçapını şu aralıkta çevirir:</value>
+  </data>
+  <data name="nUDSBottom.ToolTip" xml:space="preserve">
+    <value>düşük değer</value>
+  </data>
+  <data name="label94.Text" xml:space="preserve">
+    <value>Görüntülenen bilgileri otomatik olarak kapatmadan önceki gecikme</value>
+  </data>
+  <data name="groupBox35.Text" xml:space="preserve">
+    <value>HPGL İçe Aktarma (*.plt, *.hpgl)</value>
+  </data>
+  <data name="CbImportSVGApplyFill.Text" xml:space="preserve">
+    <value>Nesne doluysa tarama dolgusu uygula</value>
+  </data>
+  <data name="BtnGetFilterValueRemoveWidth.Text" xml:space="preserve">
+    <value>Renk al</value>
+  </data>
+  <data name="BtnGetFilterValueRemoveColor.Text" xml:space="preserve">
+    <value>Renk al</value>
+  </data>
+  <data name="groupBox37.Text" xml:space="preserve">
+    <value>Kimden Mesaj</value>
+  </data>
+  <data name="groupBox37.ToolTip" xml:space="preserve">
+    <value>İçe aktarma bilgileri için mesaj formu, otomatik kapanmadan önceki gecikme</value>
+  </data>
+  <data name="cBImportSVGCircleToDotS.Text" xml:space="preserve">
+    <value>'daire' yarıçapını S değerine dönüştürür</value>
+  </data>
+  <data name="BtnHelp_ImportParameter.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_SvgDxfCsv.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="label97.Text" xml:space="preserve">
+    <value>Desteklenmiyor: FS, VS, WU, PW</value>
+  </data>
+  <data name="label96.Text" xml:space="preserve">
+    <value>Desteklenen komutlar: IN, SP, PU, ​​PD, PA, PR</value>
+  </data>
+  <data name="label98.Text" xml:space="preserve">
+    <value>Seçenek yok</value>
+  </data>
+  <data name="groupBox36.Text" xml:space="preserve">
+    <value>Matkap İçe Aktarma (*.drd, *.drl, *.dri)</value>
+  </data>
+  <data name="tabFormat_Drill.Text" xml:space="preserve">
+    <value>Delmek</value>
+  </data>
+  <data name="label99.Text" xml:space="preserve">
+    <value>Ayarlar için yeni bir form açılacaktır.</value>
+  </data>
+  <data name="groupBox38.Text" xml:space="preserve">
+    <value>Görüntü İçe Aktarma (*.bmp, *.gif, *.png, *.jpg)</value>
+  </data>
+  <data name="BtnHelp_Pathinterpretation.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_Pathaddons.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_Pathmodification2.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="button5.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_Conversion.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_Tooltable.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_Grouping.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_Filter.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_Wirebender.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_Outline.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_Extension.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_General.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_Penupdown.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_misc.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_Usecase.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_TooltableSet.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_Toolchange.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_Programstart.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_Programcontrol.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_Flowcontrol.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_Camera.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_Notifier.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
   </data>
 </root>

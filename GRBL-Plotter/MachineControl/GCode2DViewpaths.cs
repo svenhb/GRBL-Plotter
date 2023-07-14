@@ -256,14 +256,29 @@ namespace GrblPlotter
                     if ((onlyZ > 1) && (passLimit) && (path == pathPenUp) || (oldL.codeLine.Contains("DOT")))  // pen moved from -z to +z
                     {
                         float markerSize = 1;
+                        int markerType = 1;
                         if (!Properties.Settings.Default.importUnitmm || (modal.unitsMode == 20))
                         { markerSize /= 25.4F; }
-                        CreateMarker(pathPenDown, (XyPoint)newL.actualPos, markerSize, 1, false);       // draw cross
-                                                                                                        //    if ((path == pathPenDown) && (pathActualDown != null))
+                        if (Properties.Settings.Default.importSVGCircleToDot)
+                        {
+                            if (Properties.Settings.Default.importSVGCircleToDotZ && Properties.Settings.Default.importGCZEnable)
+                            {
+                                markerSize = (float)oldL.actualPos.Z;
+                                if (markerSize < 0)
+                                    markerSize = Math.Abs(markerSize);
+                                else
+
+                                    markerSize = 0;
+                            }
+                            //        markerType = 4;
+                        }
+                        CreateMarker(pathPenDown, (XyPoint)newL.actualPos, markerSize, markerType, false);       // draw cross
+                                                                                                                 //    if ((path == pathPenDown) && (pathActualDown != null))
                         if (pathActualDown != null)
                         {
                             XyPoint tmpPoint = new XyPoint(newL.actualPos.X + viewOffset.X, newL.actualPos.Y + viewOffset.Y);
-                            CreateMarker(pathActualDown, tmpPoint, markerSize, 1, false);               // draw cross
+                            CreateMarker(pathActualDown, tmpPoint, markerSize, markerType, false);               // draw cross
+                                                                                                                 //        Logger.Trace("draw x:{0}  z:{1}", tmpPoint.X, markerSize);
                         }
                         CreateMarker(pathPenUp, (XyPoint)newL.actualPos, markerSize, 4, false);       	// draw circle
                         path = pathPenUp;

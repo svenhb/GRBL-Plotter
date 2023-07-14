@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="RbScanYX.ToolTip" xml:space="preserve">
+    <value>Kolumna po kolumnie zygzakiem</value>
+  </data>
+  <data name="RbScanXY.ToolTip" xml:space="preserve">
+    <value>Linia po linii zygzakiem</value>
+  </data>
+  <data name="RbScanY.Text" xml:space="preserve">
+    <value>Skanowanie Y, wytłaczanie X</value>
+  </data>
+  <data name="CbExtrudeEnable.Text" xml:space="preserve">
+    <value>Sonda w jednej osi, wytłaczanie w drugiej</value>
+  </data>
+  <data name="RbScanX.Text" xml:space="preserve">
+    <value>Skanowanie X, wytłaczanie Y</value>
+  </data>
+  <data name="CbRoundUp.Text" xml:space="preserve">
+    <value>Zaokrąglij</value>
+  </data>
+  <data name="BtnPosFromCodeDimension.Text" xml:space="preserve">
+    <value>Wymiary z wczytanego G-Code</value>
+  </data>
+  <data name="BtnMoveUR.Text" xml:space="preserve">
+    <value>Idź do 🡵</value>
+  </data>
+  <data name="BtnMoveLL.Text" xml:space="preserve">
+    <value>Idź do 🡷</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Wielkość siatki X i Y</value>
+  </data>
+  <data name="btnPosUR.Text" xml:space="preserve">
+    <value>Weź pozycję 🡵</value>
+    <comment>Button</comment>
+  </data>
+  <data name="btnPosUR.ToolTip" xml:space="preserve">
+    <value>Uzyskanie aktualnej pozycji maszyny i ustawienie prawych górnych współrzędnych</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="btnPosLL.Text" xml:space="preserve">
+    <value>Weź pozycję 🡷</value>
+    <comment>Button</comment>
+  </data>
+  <data name="btnPosLL.ToolTip" xml:space="preserve">
+    <value>Uzyskać aktualną pozycję maszyny i ustawić dolne lewe współrzędne</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>🡷 Lewy dolny</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>🡘🡙 Długość krawędzi</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>🡵 Prawy górny</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Obszar profilu wysokości</value>
+    <comment>GroupBox</comment>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Max głęb.</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Bezp. wys.</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Posuw Z</value>
+  </data>
+  <data name="btnOffset.Text" xml:space="preserve">
+    <value>Ustaw maks. wartość = 0.0</value>
+    <comment>Button</comment>
+  </data>
+  <data name="btnOffset.ToolTip" xml:space="preserve">
+    <value>Usuń offset z wszystkich wartości Z</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="btnStartHeightScan.Text" xml:space="preserve">
+    <value>Gneruj mapę wysokości</value>
+    <comment>Button</comment>
+  </data>
+  <data name="btnStartHeightScan.ToolTip" xml:space="preserve">
+    <value>Wysyłanie poleceń skanowania mapy wysokości</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="lblProgress.Text" xml:space="preserve">
+    <value>Zakończone</value>
+  </data>
+  <data name="btnApply.Text" xml:space="preserve">
+    <value>Zastosuj mapę wysokości</value>
+    <comment>Button</comment>
+  </data>
+  <data name="btnApply.ToolTip" xml:space="preserve">
+    <value>Zastosuj mapę wysokości do G-Code w oknie głównym</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="loadHeightMapToolStripMenuItem.Text" xml:space="preserve">
+    <value>Wczytaj mapę wysokości</value>
+    <comment>Menu</comment>
+  </data>
+  <data name="saveHeightMapToolStripMenuItem.Text" xml:space="preserve">
+    <value>Zapisz mapę wysokości</value>
+    <comment>Menu</comment>
+  </data>
+  <data name="sTLToolStripMenuItem.Text" xml:space="preserve">
+    <value>Importuj profil wysokości z STL</value>
+  </data>
+  <data name="importToolStripMenuItem.Text" xml:space="preserve">
+    <value>Importuj</value>
+  </data>
+  <data name="savePictureAsBMPToolStripMenuItem.Text" xml:space="preserve">
+    <value>Zapisz obraz jako BMP</value>
+    <comment>Menu</comment>
+  </data>
+  <data name="saveMapAsSTLToolStripMenuItem.Text" xml:space="preserve">
+    <value>Zapisz mapę jako STL</value>
+    <comment>Menu</comment>
+  </data>
+  <data name="saveMapAsOBJToolStripMenuItem.Text" xml:space="preserve">
+    <value>Zapisz mapę jako OBJ</value>
+  </data>
+  <data name="saveMapAsX3DToolStripMenuItem.Text" xml:space="preserve">
+    <value>Zapisz mapę jako X3D</value>
+    <comment>Menu</comment>
+  </data>
+  <data name="savePictureAsBWBMPToolStripMenuItem.Text" xml:space="preserve">
+    <value>Eksportuj</value>
+    <comment>Menu</comment>
+  </data>
+  <data name="CbInterpolate.Text" xml:space="preserve">
+    <value>Interpolacja</value>
+  </data>
+  <data name="cBGray.Text" xml:space="preserve">
+    <value>Odcienie szarości</value>
+    <comment>CheckBox</comment>
+  </data>
+  <data name="cBGray.ToolTip" xml:space="preserve">
+    <value>Pokaż obraz wynikowy w skali szarości do dalszego wykorzystania jako obraz mapy wysokości</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Wynik</value>
+    <comment>GroupBox</comment>
+  </data>
+  <data name="btnOffsetZ.Text" xml:space="preserve">
+    <value>Przesunięcie Z</value>
+    <comment>Button</comment>
+  </data>
+  <data name="btnOffsetZ.ToolTip" xml:space="preserve">
+    <value>Dodaj podane przesunięcie do wszystkich wartości Z</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="btnZoomZ.Text" xml:space="preserve">
+    <value>Powiększenie Z</value>
+  </data>
+  <data name="btnZoomZ.ToolTip" xml:space="preserve">
+    <value>Pomnóż wszystkie wartości Z z podaną wartoscią</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="btnInvertZ.Text" xml:space="preserve">
+    <value>Inwersja Z</value>
+    <comment>Button</comment>
+  </data>
+  <data name="btnInvertZ.ToolTip" xml:space="preserve">
+    <value>Zmień znak wartości Z</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="btnCutOffZ.Text" xml:space="preserve">
+    <value>Odcięcie Z</value>
+    <comment>Button</comment>
+  </data>
+  <data name="btnCutOffZ.ToolTip" xml:space="preserve">
+    <value>Odcięcie wartosci Z poniże podanej wartosci. Lepiej zapisać dane przed użyciem odcięcia.</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="btnGCode.Text" xml:space="preserve">
+    <value>Generuj G-Code</value>
+    <comment>Button</comment>
+  </data>
+  <data name="btnGCode.ToolTip" xml:space="preserve">
+    <value>Wygeneruj G-Code, aby odtworzyć mapę wysokości</value>
+    <comment>ToolTip</comment>
+  </data>
+  <data name="nUDCutOffZ.ToolTip" xml:space="preserve">
+    <value>Po zaimportowaniu STL wyświetlona zostanie druga najmniejsza wartość</value>
+  </data>
+  <data name="CbNewStepWidth.Text" xml:space="preserve">
+    <value>Indywidualna szerokość kroku</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Uwaga: w przypadku frezowania mapy wysokości maksymalna wartość powinna być równa lub mniejsza od zera.</value>
+  </data>
+  <data name="gB_Manipulation.Text" xml:space="preserve">
+    <value>Manipulacje</value>
+    <comment>GroupBox</comment>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Obszar skanowania</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Prędkość posuwu XY</value>
+  </data>
+  <data name="CbUseG1.Text" xml:space="preserve">
+    <value>Użyj G1 dla XY (inaczej G0)</value>
+  </data>
+  <data name="RbProbingDiy.Text" xml:space="preserve">
+    <value>Z kontrolera DIY</value>
+  </data>
+  <data name="LblConnected.Text" xml:space="preserve">
+    <value>Kontroler DIY niepodłączony</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Wykorzystuje ostatnio otrzymaną "(PRB:Zxxx)" wartość Z z kontrolera DIY jako informację o głębokości.
+(xxx = wartość Z)</value>
+  </data>
+  <data name="RbProbingZ.Text" xml:space="preserve">
+    <value>Oś Z (G38.3Z)</value>
+  </data>
+  <data name="GbProbing.Text" xml:space="preserve">
+    <value>Sondowanie, wybierz źródło wartości Z</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Sondowanie</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Wyjście</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Skanowanie powierzchni</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Manipulacje wynikiem</value>
+  </data>
+</root>

@@ -195,7 +195,7 @@
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGNodesOnly.Text" xml:space="preserve">
-    <value>プロセスパスノードのみ</value>
+    <value>パス ノードのみを処理します (例: ストリング アートの釘の位置)</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGNodesOnly.ToolTip" xml:space="preserve">
@@ -2357,12 +2357,11 @@ G2 / 3では機能しません-「G2 / 3コマンドを回避する」を有効�
     <comment>ok</comment>
   </data>
   <data name="label17.Text" xml:space="preserve">
-    <value>Zを次の範囲に変換します。
-（「Z-Height engrave」を超えることはありません）</value>
+    <value>最小/最大のペン幅または円の半径を次の範囲で Z 方向に変換します。</value>
     <comment>ok</comment>
   </data>
   <data name="gBCreateZValue.Text" xml:space="preserve">
-    <value>Z値を作成</value>
+    <value>Z 値の作成 (Z 軸を有効にする必要があります)</value>
     <comment>ok</comment>
   </data>
   <data name="groupBox11.Text" xml:space="preserve">
@@ -3530,5 +3529,159 @@ GCode ヘッダー セクションで指定: 'SVG dimension'。</value>
   </data>
   <data name="BtnGetFilterValueRemoveColor.ToolTip" xml:space="preserve">
     <value>選択した文字またはグループの色を追加します</value>
+  </data>
+  <data name="Import_Parameter.Text" xml:space="preserve">
+    <value>パラメータのインポート</value>
+  </data>
+  <data name="Import_Output.Text" xml:space="preserve">
+    <value>出力プロパティ</value>
+  </data>
+  <data name="GbMetaData.Text" xml:space="preserve">
+    <value>メタデータのキーワードの例</value>
+  </data>
+  <data name="CbImportSVGMetaData.Text" xml:space="preserve">
+    <value>プロセスメタデータ</value>
+  </data>
+  <data name="CbImportSVGMetaData.ToolTip" xml:space="preserve">
+    <value>インポート中に指定された XY-Feed、Z-Feed、SpindleSpeed、Zup、Zdown を適用します。</value>
+  </data>
+  <data name="groupBox34.Text" xml:space="preserve">
+    <value>S 値を作成します (PWM またはスピンドル/レーザーを有効にする必要があります)</value>
+  </data>
+  <data name="cBImportPenWidthToS.Text" xml:space="preserve">
+    <value>ペンの幅を S 値に変換します</value>
+  </data>
+  <data name="cBImportPenWidthToS.ToolTip" xml:space="preserve">
+    <value>ペン幅は PWM レーザー出力の S 値として処理されます。
+最大深さは Z 高さの彫刻によって制限されます。</value>
+  </data>
+  <data name="label92.Text" xml:space="preserve">
+    <value>マックス</value>
+  </data>
+  <data name="label93.Text" xml:space="preserve">
+    <value>分</value>
+  </data>
+  <data name="label91.Text" xml:space="preserve">
+    <value>S の最小/最大ペン幅または円半径を次の範囲で変換します。</value>
+  </data>
+  <data name="nUDSBottom.ToolTip" xml:space="preserve">
+    <value>低い値</value>
+  </data>
+  <data name="label94.Text" xml:space="preserve">
+    <value>表示された情報が自動的に閉じるまでの遅延</value>
+  </data>
+  <data name="groupBox35.Text" xml:space="preserve">
+    <value>HPGL インポート (*.plt、*.hpgl)</value>
+  </data>
+  <data name="CbImportSVGApplyFill.Text" xml:space="preserve">
+    <value>オブジェクトが塗りつぶされている場合はハッチング塗りつぶしを適用します</value>
+  </data>
+  <data name="BtnGetFilterValueRemoveWidth.Text" xml:space="preserve">
+    <value>色の取得</value>
+  </data>
+  <data name="BtnGetFilterValueRemoveColor.Text" xml:space="preserve">
+    <value>色の取得</value>
+  </data>
+  <data name="groupBox37.Text" xml:space="preserve">
+    <value>メッセージフォーム</value>
+  </data>
+  <data name="groupBox37.ToolTip" xml:space="preserve">
+    <value>輸入情報のメッセージフォーム、自動クローズまでの遅延</value>
+  </data>
+  <data name="cBImportSVGCircleToDotS.Text" xml:space="preserve">
+    <value>「円」の半径を S 値に変換します</value>
+  </data>
+  <data name="BtnHelp_ImportParameter.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_SvgDxfCsv.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="label97.Text" xml:space="preserve">
+    <value>サポートされていない: FS、VS、WU、PW</value>
+  </data>
+  <data name="label96.Text" xml:space="preserve">
+    <value>サポートされているコマンド: IN、SP、PU、PD、PA、PR</value>
+  </data>
+  <data name="label98.Text" xml:space="preserve">
+    <value>オプションなし</value>
+  </data>
+  <data name="groupBox36.Text" xml:space="preserve">
+    <value>ドリルインポート (*.drd、*.drl、*.dri)</value>
+  </data>
+  <data name="tabFormat_Drill.Text" xml:space="preserve">
+    <value>ドリル</value>
+  </data>
+  <data name="label99.Text" xml:space="preserve">
+    <value>設定用の新しいフォームが開きます。</value>
+  </data>
+  <data name="groupBox38.Text" xml:space="preserve">
+    <value>画像インポート (*.bmp、*.gif、*.png、*.jpg)</value>
+  </data>
+  <data name="BtnHelp_Pathinterpretation.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_Pathaddons.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_Pathmodification2.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="button5.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_Conversion.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_Tooltable.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_Grouping.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_Filter.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_Wirebender.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_Outline.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_Extension.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_General.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_Penupdown.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_misc.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_Usecase.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_TooltableSet.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_Toolchange.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_Programstart.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_Programcontrol.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_Flowcontrol.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_Camera.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_Notifier.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
   </data>
 </root>

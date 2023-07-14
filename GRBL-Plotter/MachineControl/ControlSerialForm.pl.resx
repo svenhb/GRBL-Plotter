@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cbPort.ToolTip" xml:space="preserve">
+    <value>Wybierz dostępny port szeregowy</value>
+  </data>
+  <data name="cbBaud.ToolTip" xml:space="preserve">
+    <value>Prędkość transmisji</value>
+  </data>
+  <data name="BtnOpenPortSerial.Text" xml:space="preserve">
+    <value>Otwórz</value>
+  </data>
+  <data name="BtnOpenPortSerial.ToolTip" xml:space="preserve">
+    <value>Otwóz wybrany port COM z wybraną prędkością </value>
+  </data>
+  <data name="btnScanPort.Text" xml:space="preserve">
+    <value>Skanuj porty</value>
+  </data>
+  <data name="btnScanPort.ToolTip" xml:space="preserve">
+    <value>Skanuj w poszukiwaniu dostępnych portów</value>
+  </data>
+  <data name="pasteCodeFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Wklej kod ze schowka</value>
+  </data>
+  <data name="copySelectionToClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kopiuj zaznaczenie do schowka</value>
+  </data>
+  <data name="selectAllToolStripMenuItem.Text" xml:space="preserve">
+    <value>Wybierz wszystko</value>
+  </data>
+  <data name="btnClear.Text" xml:space="preserve">
+    <value>Wyczyśc log</value>
+  </data>
+  <data name="btnClear.ToolTip" xml:space="preserve">
+    <value>Wyczyść historię</value>
+  </data>
+  <data name="btnSend.Text" xml:space="preserve">
+    <value>Wyślij</value>
+  </data>
+  <data name="btnSend.ToolTip" xml:space="preserve">
+    <value>Wciśnij, aby wysłać komendę</value>
+  </data>
+  <data name="btnGRBLCommand0.ToolTip" xml:space="preserve">
+    <value>Pomoc: Pobranie listy wszystkich komend GRBL</value>
+  </data>
+  <data name="btnGRBLCommand1.ToolTip" xml:space="preserve">
+    <value>Pokaż ustawienia GRBL</value>
+  </data>
+  <data name="btnGRBLCommand2.ToolTip" xml:space="preserve">
+    <value>Pokaż parametry G-Code</value>
+  </data>
+  <data name="btnGRBLCommand3.ToolTip" xml:space="preserve">
+    <value>Wyświetlanie bloków startowych</value>
+  </data>
+  <data name="btnGRBLCommand4.ToolTip" xml:space="preserve">
+    <value>Blokada alarmu wyłączenia</value>
+  </data>
+  <data name="lblSrPos.ToolTip" xml:space="preserve">
+    <value>Pozycja robocza</value>
+  </data>
+  <data name="label2.ToolTip" xml:space="preserve">
+    <value>Stan bufora (musi być właczone przez $10=2)</value>
+  </data>
+  <data name="lblSrBf.ToolTip" xml:space="preserve">
+    <value>Stan bufora (musi być właczone przez $10=2)</value>
+  </data>
+  <data name="label4.ToolTip" xml:space="preserve">
+    <value>Aktualna prędkość posuwu (mm/min) oraz prędkość obrotowa (obr. / min)</value>
+  </data>
+  <data name="lblSrFS.ToolTip" xml:space="preserve">
+    <value>Aktualna prędkość posuwu (mm/min) oraz prędkość obrotowa (obr. / min)</value>
+  </data>
+  <data name="lblSrPn.ToolTip" xml:space="preserve">
+    <value>Stan pinów wejściowych dla XYZ, sondy, drzwi, wstrzymania, miękkiego resetu, cyklu-startu</value>
+  </data>
+  <data name="label7.ToolTip" xml:space="preserve">
+    <value>Stan pinów wejściowych dla XYZ, sondy, drzwi, wstrzymania, miękkiego resetu, cyklu-startu</value>
+  </data>
+  <data name="lblSrOv.ToolTip" xml:space="preserve">
+    <value>Nadpisanie wartości posuwu, prędkości i prędkości w %</value>
+  </data>
+  <data name="label9.ToolTip" xml:space="preserve">
+    <value>Nadpisanie wartości posuwu, prędkości i prędkości w %</value>
+  </data>
+  <data name="lblSrA.ToolTip" xml:space="preserve">
+    <value>Stan akcesoriów 
+S=wrzeciono CW, 
+C=wrzeciono CCW, 
+F=płyn chłodzący, 
+M=chłodziwo mgiełkowe</value>
+  </data>
+  <data name="LblAccessoryState.ToolTip" xml:space="preserve">
+    <value>Stan akcesoriów 
+S=wrzeciono CW, 
+C=wrzeciono CCW, 
+F=płyn chłodzący, 
+M=chłodziwo mgiełkowe</value>
+  </data>
+  <data name="lblSrLn.ToolTip" xml:space="preserve">
+    <value>Numer linii (musi być włączony w config.h)</value>
+  </data>
+  <data name="label13.ToolTip" xml:space="preserve">
+    <value>Numer linii (musi być włączony w config.h)</value>
+  </data>
+  <data name="btnCheckGRBL.Text" xml:space="preserve">
+    <value>Spr. GRBL</value>
+  </data>
+  <data name="btnCheckGRBL.ToolTip" xml:space="preserve">
+    <value>Sprawdź ustawienia GRBL dla maksymalnych i minimalnych limitów
+Nie dla GRBL Vers. &lt; 1.0</value>
+  </data>
+  <data name="btnGRBLReset.ToolTip" xml:space="preserve">
+    <value>Miękki reset przez Ctrl+X</value>
+  </data>
+  <data name="btnGRBLHardReset.ToolTip" xml:space="preserve">
+    <value>Spróbuj twardego resetu przez DTR / RTS
+Sukces zależy od używanego sprzętu (DTR, RTS przewodowo?)</value>
+  </data>
+  <data name="btnGRBLCmndParser.ToolTip" xml:space="preserve">
+    <value>Pokaż stan parsera G-Code</value>
+  </data>
+  <data name="cBStatus.Text" xml:space="preserve">
+    <value>Status w czasie rzeczywistym</value>
+  </data>
+  <data name="cBStatus.ToolTip" xml:space="preserve">
+    <value>Wyświetlanie oryginalnych odebranych raportów stanu GRBL</value>
+  </data>
+  <data name="cBStatus1.ToolTip" xml:space="preserve">
+    <value>Wyświetlanie wysłanych i przetworzonych poleceń podczas przesyłania strumieniowego</value>
+  </data>
+  <data name="cBCommand.Items1" xml:space="preserve">
+    <value>G90 G1 X1 F500 (absolutne)</value>
+  </data>
+  <data name="cBCommand.Items2" xml:space="preserve">
+    <value>G91 G1 X1 F500 (relatywne)</value>
+  </data>
+  <data name="cBCommand.Items3" xml:space="preserve">
+    <value>$32=1 (Tryb lasera włączony)</value>
+  </data>
+  <data name="cBCommand.Items4" xml:space="preserve">
+    <value>$32=0 (Tryb lasera wyłączony)</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Status w czasie rzeczywistym</value>
+  </data>
+  <data name="BtnOpenPortEthernet.Text" xml:space="preserve">
+    <value>Połącz</value>
+  </data>
+</root>
