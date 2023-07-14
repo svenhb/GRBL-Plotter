@@ -29,6 +29,7 @@
  * 2022-09-29 line 676, 765 add (fill != "none"))
  * 2023-01-12 line 368 set default for fill and stroke; line 282
  * 2023-01-13 add textLetterSpacing
+ * 2023-07-02 f:ReadAttributs replaced ConvertToPixel by ConvertFontSize
 */
 
 using System;
@@ -282,13 +283,13 @@ namespace GrblPlotter
             {
                 //         lastTransformMatrix = System.Windows.Media.Matrix.Multiply(lastTransformMatrix, matrixElement);
                 //    lastTransformMatrix = System.Windows.Media.Matrix.Multiply(matrixGroup[1],lastTransformMatrix);	// '1' = 1st g-level
-                Matrix tmpM = new Matrix((float)lastTransformMatrix.M11, (float)lastTransformMatrix.M12, (float)lastTransformMatrix.M21, (float)lastTransformMatrix.M22,
+                System.Drawing.Drawing2D.Matrix tmpM = new System.Drawing.Drawing2D.Matrix((float)lastTransformMatrix.M11, (float)lastTransformMatrix.M12, (float)lastTransformMatrix.M21, (float)lastTransformMatrix.M22,
                                         (float)lastTransformMatrix.OffsetX, (float)lastTransformMatrix.OffsetY);
                 textOnPath.Transform(tmpM);
 
                 //    Logger.Info("PathTransform M11:{0}  M12:{1}  M21:{2}  M22:{3}   ox:{4}  oy:{5}", lastTransformMatrix.M11, lastTransformMatrix.M12, lastTransformMatrix.M21, lastTransformMatrix.M22, lastTransformMatrix.OffsetX, lastTransformMatrix.OffsetY);
 
-                textOnPath.Flatten(new Matrix(), 0.1f);
+                textOnPath.Flatten(new System.Drawing.Drawing2D.Matrix(), 0.1f);
                 textProp.ExportTextOnPath(textOnPath, txt);
             }
             return origin;
@@ -311,7 +312,7 @@ namespace GrblPlotter
             if (!(extractPath.PointCount > 2))
                 return;
 
-            extractPath.Flatten(new Matrix(), 0.02f);
+            extractPath.Flatten(new System.Drawing.Drawing2D.Matrix(), 0.02f);
             if (logEnable) Logger.Info("ExtractGlyphPath  '{0}'  count:{1}", geometry, extractPath.PointCount);
             System.Drawing.PointF gpc;
             System.Drawing.PointF gpcStart = new System.Drawing.PointF();
@@ -446,14 +447,14 @@ namespace GrblPlotter
                     if (textFontFamily != "")
                     {
                         string[] parameters = textFontFamily.Split(',');
-                        fontFamily = new FontFamily(parameters[0]);
+                        fontFamily = new System.Drawing.FontFamily(parameters[0]);
                     }
                 }
                 catch (Exception err)
                 {
                     Logger.Error(err, "SetTextProperties Font not found: {0}  ", textFontFamily);
                     textFontFamily = "Arial";
-                    fontFamily = new FontFamily(textFontFamily);
+                    fontFamily = new System.Drawing.FontFamily(textFontFamily);
                 }
             }
 
@@ -521,7 +522,7 @@ namespace GrblPlotter
                     logSource = "ParseAttributs: font-size";
                     string fontValue = GetStyleProperty(element, "font-size");
                     if (!string.IsNullOrEmpty(fontValue))
-                        fontSize = ConvertToPixel(fontValue);
+                        fontSize = ConvertFontSize(fontSize, fontValue);
 
                     fontValue = GetStyleProperty(element, "font-family").Replace("'", "");
                     if (!string.IsNullOrEmpty(fontValue))
@@ -541,7 +542,7 @@ namespace GrblPlotter
 
                     fontValue = GetStyleProperty(element, "letter-spacing");
                     if (!string.IsNullOrEmpty(fontValue))
-                    { textLetterSpacing = ConvertToPixel(fontValue); }
+                    { textLetterSpacing = ConvertFontSize(textLetterSpacing, fontValue); }
 
                     /* not implemented
                         fontValue = GetStyleProperty(element, "font-style");
@@ -569,10 +570,10 @@ namespace GrblPlotter
                 { textFontFamily = element.Attribute("font-family").Value.Replace("'", ""); }
 
                 if (element.Attribute("font-size") != null)
-                { fontSize = ConvertToPixel(element.Attribute("font-size").Value); }
+                { fontSize = ConvertFontSize(fontSize, element.Attribute("font-size").Value); }
 
                 if (element.Attribute("letter-spacing") != null)
-                { textLetterSpacing = ConvertToPixel(element.Attribute("letter-spacing").Value); }
+                { textLetterSpacing = ConvertFontSize(textLetterSpacing, element.Attribute("letter-spacing").Value); }
 
                 if (element.Attribute("stroke-width") != null)
                 { }
@@ -613,6 +614,25 @@ namespace GrblPlotter
                 return rotation;
             }
 
+            private float ConvertFontSize(float oldFontSize, string fontValue)
+            {
+                if (fontValue.Contains("normal"))
+                    return oldFontSize;
+
+                string[] words = { "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large" };
+                int[] px = { 9, 10, 13, 16, 18, 24, 32,48 };
+
+                if (words.Contains(fontValue))
+                {   var index = Array.FindIndex(words, row => row.Contains(fontValue));
+                    return (float)px[index];
+                }
+
+                if (fontValue.Contains("smaller"))
+                    return (float)(oldFontSize * 0.8);
+                if (fontValue.Contains("larger"))
+                    return (float)(oldFontSize * 1.2);
+                return ConvertToPixel(fontValue, oldFontSize);  // oldFontSize is needed if fontValue is %-value
+            }
             private float[] ConvertToPixelArray(string text)
             {
                 char seperator = ' ';
@@ -866,7 +886,7 @@ namespace GrblPlotter
 
                 if (angle != 0)
                 {
-                    Matrix rotation_matrix = new Matrix();
+                    System.Drawing.Drawing2D.Matrix rotation_matrix = new System.Drawing.Drawing2D.Matrix();
                     rotation_matrix.RotateAt(angle, originR);    //new PointF(x, y));
                     myPath.Transform(rotation_matrix);
                 }

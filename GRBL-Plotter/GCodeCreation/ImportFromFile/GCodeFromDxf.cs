@@ -76,7 +76,8 @@
  * 2022-06-14 line 387 skip entity if layer is invisible or printing is disabled
  * 2022-11-10 line 445 check IsNullOrEmpty(dashType)
  * 2023-02-05 line 324 check if (!lineTypes.ContainsKey(lt.LineTypeName)) before add
- * 2023-04-10 :187 f:ConvertFromFile check length for substring
+ * 2023-04-10 l:187 f:ConvertFromFile check length for substring
+ * 2023-06-02 l:809 f:ProcessEntities bug fix importSVGCircleToDot
 */
 
 using DXFLib;
@@ -96,7 +97,6 @@ namespace GrblPlotter //DXFImporter
         private static DXFDocument doc;
 
         private static int dxfColorNr = -1;
-        //      private static int dxfColorIDold = -1;
         private static int dxfLineWeigth = 0;
         private static int dxfBlockColorNr = -1;
         private static int dxfBlockLineWeigth = 0;
@@ -432,15 +432,12 @@ namespace GrblPlotter //DXFImporter
 
             if (Properties.Settings.Default.importDXFSwitchWhite && (dxfColorNr == 7))	// == 7		7=FFFFFF=white; 0=000000=black
             {
-                //               Logger.Info("switch dxfColorNr {0}  to 0 (from '{1}' to '{2}')", dxfColorNr, GetColorFromID(dxfColorNr), GetColorFromID(0));
                 dxfColorNr = 0; // = 0
             }
 
             dxfColorHex = GetColorFromID(dxfColorNr);
-            //       dxfColorFill = entity.ColorNumber.ToString();
 
             /* get fill */
-            //dxfColorFill = "none";
             #region Hatch
             if (entity.GetType() == typeof(DXFHatch))
             {
@@ -805,8 +802,24 @@ namespace GrblPlotter //DXFImporter
                 if (!nodesOnly)
                 {
                     DXFStartPath((double)position.X + circle.Radius, (double)position.Y, position.Z);//, "Start Circle");
-                    Graphic.SetGeometry("Circle");
-                    Graphic.AddCircle((double)position.X, (double)position.Y, circle.Radius);
+                    if (Properties.Settings.Default.importSVGCircleToDot)
+                    {
+                        if (Properties.Settings.Default.importSVGCircleToDotZ)
+                        {
+                            Graphic.SetGeometry("CircleToDot");
+                            GCodeDotOnlyWithZ((double)position.X, (double)position.Y, (double)circle.Radius, "Dot r=Z");
+                        }
+                        else
+                        {
+                            Graphic.SetGeometry("CircleToDotZ");
+                            GCodeDotOnly((double)position.X, (double)position.Y);//, "Circle");
+                        }
+                    }
+                    else
+                    {
+                        Graphic.SetGeometry("Circle");
+                        Graphic.AddCircle((double)position.X, (double)position.Y, circle.Radius);
+                    }
                 }
                 else
                 {   //DXFStartPath((double)position.X, (double)position.Y, "Start Circle");
@@ -943,7 +956,7 @@ namespace GrblPlotter //DXFImporter
             }
             #endregion
             #region Hatch
-            if (entity.GetType() == typeof(DXFHatch))
+            else if (entity.GetType() == typeof(DXFHatch))
             {
                 // already processed
             }
@@ -964,7 +977,6 @@ namespace GrblPlotter //DXFImporter
         {   // from Inkscape DXF import - modified
             // https://gitlab.com/inkscape/extensions/blob/master/dxf_input.py#L341
             Graphic.SetGeometry("Ellipse");
-            //DXFEllipse ellipse = (DXFEllipse)entity;
             double angleRad = offsetAngle * Math.PI / 180;
             float xc = (float)(RotateGetX(ellipse.Center, angleRad) + offset.X); // (ellipse.Center.X * Math.Cos(angleRad) - ellipse.Center.Y * Math.Sin(angleRad) + offset.X);
             float yc = (float)(RotateGetY(ellipse.Center, angleRad) + offset.Y); //(ellipse.Center.X * Math.Sin(angleRad) + ellipse.Center.Y * Math.Cos(angleRad) + offset.Y);
@@ -1030,11 +1042,6 @@ namespace GrblPlotter //DXFImporter
         private static void AddRoundCorner(DXFPoint var1, DXFPoint var2, double bulge, DXFPoint offset, double angleDegree)
         {
             double angleRad = angleDegree * Math.PI / 180;
-            //   double bulge = var1.Bulge;
-            //    double p1x = (double)(var1.Vertex.X * Math.Cos(angleRad) - var1.Vertex.Y * Math.Sin(angleRad));       //var1.Vertex.X;
-            //    double p1y = (double)(var1.Vertex.X * Math.Sin(angleRad) + var1.Vertex.Y * Math.Cos(angleRad));       //var1.Vertex.Y;
-            //    double p2x = (double)(var2.Vertex.X * Math.Cos(angleRad) - var2.Vertex.Y * Math.Sin(angleRad));       //var2.Vertex.X;
-            //    double p2y = (double)(var2.Vertex.X * Math.Sin(angleRad) + var2.Vertex.Y * Math.Cos(angleRad));       //var2.Vertex.Y;
             double p1x = (double)(var1.X * Math.Cos(angleRad) - var1.Y * Math.Sin(angleRad));       //var1.Vertex.X;
             double p1y = (double)(var1.X * Math.Sin(angleRad) + var1.Y * Math.Cos(angleRad));       //var1.Vertex.Y;
             double p2x = (double)(var2.X * Math.Cos(angleRad) - var2.Y * Math.Sin(angleRad));       //var2.Vertex.X;
@@ -1110,20 +1117,6 @@ namespace GrblPlotter //DXFImporter
         {
             return pointStart;
         }
-        /// <summary>
-        /// Transform I,J coordinate using matrix and scale  
-        /// </summary>
-        /// <param name="pointStart">coordinate to transform</param>
-        /// <returns>transformed coordinate</returns>
-        /*   private static System.Windows.Point TranslateIJ(float i, float j)
-           {   System.Windows.Point coord = new System.Windows.Point(i, j);
-               return TranslateIJ(coord);
-           }*/
-        /*    private static System.Windows.Point TranslateIJ(System.Windows.Point pointStart)
-            {   System.Windows.Point pointResult = pointStart;
-              //  double tmp_j = pointStart.Y;    //tmp_i = pointStart.X,
-                return pointResult;
-            }*/
 
         private static void GCodeDotOnlyWithZ(double x, double y, double z, string cmt)
         {

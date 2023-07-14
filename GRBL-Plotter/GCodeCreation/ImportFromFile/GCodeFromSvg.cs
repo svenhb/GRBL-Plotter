@@ -89,6 +89,10 @@
  * 2023-04-17 add skip2ndCounter
  * 2023-04-18 l:410 f:ParseGlobals add GCode-Header output of SVG dimension
  * 2023-04-25 l:1260 f:ParsePath add filtering
+ * 2023-05-27 l:644 f:ParseAttributs (attributeStrokeWidth.Length > 1) -> change to > 0 to allow single digit
+ * 2023-05-30 l:464 f:ParseGlobals separate extraction of metadata for vers 1.7.0.0
+ * 2023-06-13 l:2011 f:SVGStartPath limit SetGeometry length to 20
+ * 2023-06-27 l:1520 f:ParsePathCommand add svgConvertCircleToDot functionality
 */
 
 /* SetHeaderMessages...
@@ -137,6 +141,8 @@ namespace GrblPlotter
         private static float factor_Em2Px = 16; //150;
 
         public static string ConversionInfo { get; set; }
+		public static string MetaData { get; set; }
+		
         private static int shapeCounter = 0;
         private static int skipCounter = 0;
         private static int skip2ndCounter = 0;
@@ -161,7 +167,7 @@ namespace GrblPlotter
         private static XElement svgCode;
         private static bool fromClipboard = false;
         private static bool unitIsPixel = false;
-        public static bool ConvertFromText(string svgText, bool replaceUnitByPixel)
+        public static bool ConvertFromText(string svgText, bool GetMetaData, bool replaceUnitByPixel)
         {
             backgroundWorker = null;
             backgroundEvent = null;
@@ -172,9 +178,14 @@ namespace GrblPlotter
                 svgCode = XElement.Load(stream, LoadOptions.PreserveWhitespace);
                 stream.Dispose();
                 fromClipboard = true;
-                if (String.IsNullOrEmpty(svgText) && svgText.IndexOf("Adobe") >= 0)
+                if (!String.IsNullOrEmpty(svgText) && svgText.IndexOf("Adobe") >= 0)
                     replaceUnitByPixel = false;
                 unitIsPixel = replaceUnitByPixel;
+                if (GetMetaData)
+                {
+                    MetaData = GetMetadata(svgCode, "description");
+                    return !string.IsNullOrEmpty(MetaData);
+                }
                 return ConvertSVG(svgCode, "from Clipboard");                   // startConvert(svgCode);
             }
             catch (Exception e)
@@ -185,10 +196,13 @@ namespace GrblPlotter
             }
         }
         public static bool ConvertFromFile(string filePath, BackgroundWorker worker, DoWorkEventArgs e)
+		{    return ConvertFromFile(filePath, false, worker, e);}		
+        public static bool ConvertFromFile(string filePath, bool GetMetaData, BackgroundWorker worker, DoWorkEventArgs e)
         {
             unitIsPixel = false;
             fromClipboard = false;
-
+			MetaData = "";
+			
             backgroundWorker = worker;
             backgroundEvent = e;
 
@@ -209,6 +223,10 @@ namespace GrblPlotter
                     svgCode = XElement.Load(stream, LoadOptions.PreserveWhitespace);
                     System.Windows.Clipboard.SetData("image/svg+xml", stream);
                     stream.Dispose();
+					if (GetMetaData)
+					{	MetaData = GetMetadata(svgCode, "description");
+						return !string.IsNullOrEmpty(MetaData);
+					}
                     return ConvertSVG(svgCode, filePath);                   // startConvert(svgCode);
                 }
                 else
@@ -224,6 +242,10 @@ namespace GrblPlotter
                     try
                     {
                         svgCode = XElement.Load(filePath, LoadOptions.PreserveWhitespace);    // PreserveWhitespace);
+						if (GetMetaData)
+						{	MetaData = GetMetadata(svgCode, "description");
+							return !string.IsNullOrEmpty(MetaData);
+						}
                         return ConvertSVG(svgCode, filePath);                   // startConvert(svgCode);
                     }
                     catch (Exception err)
@@ -459,22 +481,10 @@ namespace GrblPlotter
             if (element != null)
             { Graphic.SetHeaderInfo(" Title: " + element.Value.Replace("\n", "").Replace("\r", "")); }
 
-            var xtmp = svgCode.Element(nspace + "metadata");
-            if ((xtmp) != null)
-            {
-                XNamespace ccspace = "http://creativecommons.org/ns#";
-                XNamespace rdfspace = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
-                XNamespace dcspace = "http://purl.org/dc/elements/1.1/";
-                if ((xtmp = xtmp.Element(rdfspace + "RDF")) != null)
-                {
-                    if ((xtmp = xtmp.Element(ccspace + "Work")) != null)
-                    {
-                        if ((xtmp = xtmp.Element(dcspace + "description")) != null)
-                            Graphic.SetHeaderInfo(" Description: " + xtmp.Value.Replace("\n", "_").Replace("\r", "_"));
-                    }
-                }
-            }
-			
+			string metadata = GetMetadata(svgCode, "description");
+			if (!string.IsNullOrEmpty(metadata))
+				Graphic.SetHeaderInfo(" Description: " + metadata.Replace("\n", "_").Replace("\r", "_"));
+
 			if (Properties.Settings.Default.importGraphicFilterEnable)					
 			{
 				string skipTxt = Properties.Settings.Default.importGraphicFilterChoiceRemove? "remove":"keep";
@@ -484,6 +494,29 @@ namespace GrblPlotter
 			}
             return;
         }
+
+		private static string GetMetadata(XElement svgCode, string keyWord)
+		{
+            var xtmp = svgCode.Element(nspace + "metadata");
+            if ((xtmp) != null)
+            {
+                XNamespace ccspace = "http://creativecommons.org/ns#";
+                XNamespace rdfspace = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
+                XNamespace dcspace = "http://purl.org/dc/elements/1.1/";
+             //   if ((xtmp = xtmp.Element(dcspace + keyWord)) != null)
+               //     return xtmp.Value;
+
+                if ((xtmp = xtmp.Element(rdfspace + "RDF")) != null)
+                {
+                    if ((xtmp = xtmp.Element(ccspace + "Work")) != null)
+                    {
+                        if ((xtmp = xtmp.Element(dcspace + keyWord)) != null)
+							return xtmp.Value;
+                    }
+                }
+            }	
+			return "";
+		}
 
         /// <summary>
         /// Parse Group-Element and included elements
@@ -640,7 +673,7 @@ namespace GrblPlotter
 
                 attributeStrokeWidth = GetStyleProperty(element, "stroke-width");
                 logSource = "ParseAttributs: stroke-width: " + attributeStrokeWidth;
-                if (attributeStrokeWidth.Length > 1)
+                if (attributeStrokeWidth.Length > 0)
                     filterKeepWidth = SetPenWidth(attributeStrokeWidth);
 
                 SetDashPattern(GetStyleProperty(element, "stroke-dasharray"));
@@ -911,7 +944,7 @@ namespace GrblPlotter
             string elementText = pathElement.ToString();
             elementText = elementText.Substring(0, Math.Min(80, elementText.Length));
 
-            Logger.Info("►►► ParseBasicElement {0}", elementText);
+        //    Logger.Info("►►► ParseBasicElement {0}", elementText);
 
             string pathElementString = pathElement.ToString();
             pathElementString = pathElementString.Substring(0, Math.Min(100, pathElementString.Length));
@@ -1491,7 +1524,17 @@ namespace GrblPlotter
                         if (svgNodesOnly)
                             GCodeDotOnly(currentX, currentY, command.ToString());
                         else
-                            ImportMath.CalcArc(lastX, lastY, rx, ry, rot, large, sweep, nx, ny, SVGMoveTo);
+						{
+							if (svgConvertCircleToDot && (rx == ry))
+							{
+								if (Properties.Settings.Default.importSVGCircleToDotZ)
+									GCodeDotOnlyWithZ(currentX, currentY, rx, "Dot r=Z");
+								else
+									GCodeDotOnly(currentX, currentY, "Dot");
+							}
+							else
+							{	ImportMath.CalcArc(lastX, lastY, rx, ry, rot, large, sweep, nx, ny, SVGMoveTo);}
+						}
                         lastX = nx; lastY = ny;
                     }
                     break;
@@ -1973,7 +2016,7 @@ namespace GrblPlotter
         {
             Point tmp = TranslateXY(x, y);  // convert from SVG-Units to GCode-Units
             if (logEnable) Logger.Trace("▼▼▼ SVGStart at:x:{0:0.000} y:{1:0.000}  svg:{2}  set:{3}", tmp.X, tmp.Y, cmt, setGeometry);
-            if (setGeometry) Graphic.SetGeometry(cmt);
+            if (setGeometry) Graphic.SetGeometry((cmt.Length > 20)? cmt.Substring(0,20):cmt);
             Graphic.StartPath(tmp);
         }
 

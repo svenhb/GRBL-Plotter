@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -43,6 +43,7 @@
  * 2021-07-01 try to guess missing settings: aperture (line 175), number format (line 700)
  * 2021-07-31 code clean up / code quality
  * 2022-01-19 line 145 err.Message instead of e.String()
+ * 2023-06-29 l:512 f:SetType remove "handleM19" it has no function
 */
 
 using System;
@@ -510,11 +511,9 @@ namespace GrblPlotter
 
         private static void SetType(string geometry)
         {
-            if (handleM19)
-                //				Graphic.SetPenColor(geometry);
-                if (logDetailed) Logger.Trace("    setType {0}", geometry);
+        //    if (handleM19)
+            if (logDetailed) Logger.Trace("    setType {0}", geometry);
             Graphic.SetType(geometry);
-            //                Graphic.SetGeometry(geometry);
         }
 
         private static void PenUp()

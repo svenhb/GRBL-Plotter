@@ -85,7 +85,7 @@ namespace GrblPlotter
         private static string symbolChar = "";
 
         private static double factor = 1 / 40.00;                // factor between HPGL units and mm
-                                                                //    private static bool groupObjects = false;
+                                                                 //    private static bool groupObjects = false;
         private static readonly List<string> messageList = new List<string>();  // flag to remember if warning was sent
         private static readonly string[] defaultColor = new string[] { "white", "black", "red", "green", "blue", "cyan", "magenta", "yellow" };
 
@@ -147,8 +147,7 @@ namespace GrblPlotter
             uint logFlags = (uint)Properties.Settings.Default.importLoggerSettings;
             logEnable = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnables.Level1) > 0);
 
-            Logger.Info(" convertHPGL {0}", filePath);
-
+            Logger.Info("▼▼▼▼  ConvertHPGL Start {0}", filePath);
             ResetVariables();
 
             ConversionInfo = "";
@@ -159,12 +158,14 @@ namespace GrblPlotter
             Graphic.Init(Graphic.SourceType.HPGL, filePath, backgroundWorker, backgroundEvent);
             GetVectorHPGL(hpglCode);                        // convert graphics
             ConversionInfo += string.Format("{0} elements imported", shapeCounter);
+			
+            Logger.Info("▲▲▲▲  ConvertHPGL Finish: shapeCounter: {0} ", shapeCounter);
             return Graphic.CreateGCode();
         }
 
         private static void ResetVariables()
         {
-            factor = 1 / 40.00; 
+            factor = 1 / 40.00;
             lastPosition = new Point();
             absoluteCoordinates = true;
             penDown = false;
@@ -187,21 +188,24 @@ namespace GrblPlotter
             if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = 10, Content = "Read HPGL vector data of " + fileLines.Length.ToString() + " lines" });
 
             parameter = cmd = "";
-            int indexCmd = 0;
+            int indexCmd = 0, bwl = 0, bw;
+            char c;
             for (int i = 0; i < hpglCode.Length; i++)
             {
                 /* parse command and parameter by collecting char by char */
+                c = hpglCode[i];
+
                 // collect command
-                if (Char.IsLetter(hpglCode[i]) && (cmd.Length < 2))     // collect command
+                if (Char.IsLetter(c) && (cmd.Length < 2))     // collect command
                 {
-                    cmd += hpglCode[i];
+                    cmd += c;
                     indexCmd = i;
                     continue;
                 }
                 // check if command is finished
-                else if ((hpglCode[i] == ';') ||
-                        (hpglCode[i] == '\r') ||
-                        (hpglCode[i] == '\n'))
+                else if ((c == ';') ||
+                        (c == '\r') ||
+                        (c == '\n'))
                 {
                     if (cmd.Length == 0)            // no command collected, no processing (e.g. if prev line ended with ;\r\n)
                         continue;
@@ -209,14 +213,19 @@ namespace GrblPlotter
                 // collect parameter
                 else
                 {
-                    parameter += hpglCode[i];
+                    parameter += c;
                     if (i < hpglCode.Length - 1)  // if last char, process last command
                         continue;
                 }
 
                 if (backgroundWorker != null)
                 {
-                    backgroundWorker.ReportProgress((int)i++ * 100 / hpglCode.Length);
+                    bw = (i * 100 / hpglCode.Length);           // calc %
+                    if ((bwl != bw))// && ((bw % 10) == 0))     // % changed?
+                    {
+                        backgroundWorker.ReportProgress(bw);
+                    }
+                    bwl = bw;
                     if (backgroundWorker.CancellationPending)
                     {
                         backgroundEvent.Cancel = true;
@@ -280,7 +289,7 @@ namespace GrblPlotter
                     double[] floatArgs = ConvertArgs(parameter);    // cx,cy, angle, optional-resolution
                     if (floatArgs.Length > 3)
                         factor *= floatArgs[3];
-                    if (logEnable) Logger.Trace("IP {0} factor:{1}",parameter,factor);
+                    if (logEnable) Logger.Trace("IP {0} factor:{1}", parameter, factor);
                 }
                 else if (cmd == "SC")
                 {
