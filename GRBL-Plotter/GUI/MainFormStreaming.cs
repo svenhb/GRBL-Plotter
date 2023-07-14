@@ -45,6 +45,7 @@
 using GrblPlotter.GUI;
 using System;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 
@@ -64,6 +65,7 @@ namespace GrblPlotter
         private uint delayedStatusStripClear0 = 0;
         private uint delayedStatusStripClear1 = 0;
         private uint delayedStatusStripClear2 = 0;
+        private uint delayedMessageFormClose = 0;
 
         private bool isStreaming = false;
         private bool isStreamingPause = false;
@@ -362,12 +364,14 @@ namespace GrblPlotter
                     }
 
 					/***** Show tool exchange message box *****/
-                    for (int tmpLine = (fCTBCodeClickedLineNow - 2); tmpLine <= (fCTBCodeClickedLineNow + 2); tmpLine++)
+                    for (int tmpLine = (fCTBCodeClickedLineNow - 4); tmpLine <= (fCTBCodeClickedLineNow + 2); tmpLine++)
                     {   // find correct line - GRBL-Plotter generated = "M0 (Tool:46  Color:Black (46) = 000000)"
                         // other tool generated: "( Tool #6 "Bohrer 0.8mm" / Diameter 0.8 mm )"
 
                         if (LineIsInRange(tmpLine))
                         {
+                            if (fCTBCode.Lines[tmpLine].Contains("++++"))
+                                continue;
                             string toTest = fCTBCode.Lines[tmpLine].ToLower();
                             bool containsTool = toTest.Contains("tool") || toTest.Contains("werkzeug") || toTest.Contains("outil") || toTest.Contains("utensil") || toTest.Contains("erram") || toTest.Contains("具");
                             if ((!fCTBCode.Lines[tmpLine].Contains("(<")) && containsTool)    
@@ -423,7 +427,70 @@ namespace GrblPlotter
             Console.Beep();
             using (MessageForm f = new MessageForm())
             {
-                string tool = "unknown";
+				string tool = "No tool information";
+				string toolHtml = "<table width='100%' border>";
+				string HtmlMessage = MessageText.HtmlHeader;
+				HtmlMessage += "<body class='highlightInfo'>\r\n";
+				HtmlMessage += string.Format("<h2 class='highlightInfo'>{0}</h2>\r\n",Localization.GetString("mainToolChange1"));
+
+                if (LineIsInRange(signalShowToolExchangeLine))
+                {   
+					tool = fCTBCode.Lines[signalShowToolExchangeLine];  // "M0 (Tool:46  Color:Black (46)=[000000])"
+					int c1 = tool.IndexOf('(');
+					if ((c1 > 0) && (c1 < (tool.Length - 1)))
+					{
+						tool = tool.Substring(c1 + 1);
+						tool = tool.Substring(0, tool.Length - 1);
+						if (tool.Contains("Color"))
+						{
+					//		var parts = tool.Split("Color");
+							
+						}
+                        //	tool = tool.Replace("Color", "\r  Color");
+                        toolHtml += "<tr><td>" + tool + "</td></tr>";
+                    }
+					else
+					{	toolHtml += "<tr><td>" + tool + "</td></tr>";}
+
+					int r1 = tool.IndexOf('[');
+					int r2 = tool.IndexOf(']');
+					if ((r1 > 0) && (r2 > r1))
+					{
+						string hex = tool.Substring(r1 + 1, r2 - r1 - 1);
+                        tool = tool.Substring(0, r1) + tool.Substring(r2 + 1);
+
+						if (Int32.TryParse(hex, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out int numericValue))
+						{ hex = "#" + hex; }        // then # is missing
+
+					//	LblHex.Text = hex;
+						try
+						{
+							Color BackColor = System.Drawing.ColorTranslator.FromHtml(hex);
+							Color ForeColor = ContrastColor(System.Drawing.ColorTranslator.FromHtml(hex));
+							toolHtml += "<tr style='background-color:"+ColorTranslator.ToHtml(BackColor)+";'><td>" +
+								"<span style='background-color:"+ColorTranslator.ToHtml(BackColor) + ";color:"+ColorTranslator.ToHtml(ForeColor)+";'>" + hex+"</span></td></tr>";
+						}
+						catch { }
+					}
+				
+				
+				}
+				else
+				{	toolHtml += "<tr><td>Line out of range</td></tr>";}
+
+                HtmlMessage += toolHtml;
+                HtmlMessage += "</body></html>\r\n";
+
+                Logger.Info("ShowToolChangeMessage: {0}", tool);
+                string msg = Localization.GetString("mainToolChange1") + "  " + tool + "\r" + Localization.GetString("mainToolChange2");
+                Notifier.SendMessage(msg, "Tool change");
+                f.ShowMessage(300, 240, Localization.GetString("mainToolChange"), HtmlMessage, 2);	// Tool change message ShowDialog
+                var result = f.ShowDialog(this);
+                if (result == DialogResult.Yes)
+                { StartStreaming(0, fCTBCode.LinesCount - 1); }
+
+
+/*                string tool = "unknown";
                 if (LineIsInRange(signalShowToolExchangeLine))
                     tool = fCTBCode.Lines[signalShowToolExchangeLine];  // "M0 (Tool:46  Color:Black (46) = 000000)"
                 int c1 = tool.IndexOf('(');
@@ -436,10 +503,10 @@ namespace GrblPlotter
                 string msg = Localization.GetString("mainToolChange1") + "  " + tool + "\r" + Localization.GetString("mainToolChange2");
                 Logger.Info("ShowToolChangeMessage: {0}", msg.Replace("\r", ";").Replace("\n", ""));
                 Notifier.SendMessage(msg, "Tool change");
-                f.ShowMessage(Localization.GetString("mainToolChange"), msg, 1);
+                f.ShowMessage(Localization.GetString("mainToolChange"), msg, 2);
                 var result = f.ShowDialog(this);
                 if (result == DialogResult.Yes)
-                { StartStreaming(0, fCTBCode.LinesCount - 1); }
+                { StartStreaming(0, fCTBCode.LinesCount - 1); }*/
             }
         }
 
@@ -642,11 +709,11 @@ namespace GrblPlotter
                         Logger.Info("⏸⏸  Pause streaming - continue stream");
                         EventCollector.SetStreaming("Spac");
                         btnStreamStart.Image = Properties.Resources.btn_pause;
-                        _serial_form.PauseStreaming();
                         isStreamingPause = false;
                         StatusStripSet(1, Localization.GetString("statusStripeStreamingContinue"), Color.Lime);         // Continue streaming
                         StatusStripColor(0, Color.White);
                         delayedStatusStripClear1 = 8;
+                        _serial_form.PauseStreaming();
                     }
                 }
             }

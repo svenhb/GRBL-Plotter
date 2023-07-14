@@ -117,16 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnClose.Text" xml:space="preserve">
-    <value>Fechar</value>
+  <data name="BtnStart.Text" xml:space="preserve">
+    <value>Rozpocznij przesyłanie</value>
   </data>
-  <data name="btnContinue.Text" xml:space="preserve">
-    <value>continuar transmitindo</value>
+  <data name="BtnCancel.Text" xml:space="preserve">
+    <value>Anuluj</value>
   </data>
-  <data name="LblHex.Text" xml:space="preserve">
-    <value>Cor</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Rozpocznij przesyłanie od linii</value>
   </data>
-  <data name="toolStripStatusLabel1.Text" xml:space="preserve">
-    <value>Fechamento automático</value>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Zatrzymaj przesyłanie na linii</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Po naciśnięciu startu dane zostaną załadowane i przesyłanie pozostanie w trybie pauzy. Aby kontynuować naciśnij ponownie start (lewy przycisk myszy).</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Stan parsera</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Pozycja</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Przesyłana sekcja G-Code</value>
   </data>
 </root>

@@ -133,7 +133,7 @@
     <value>1</value>
   </data>
   <data name="fCTBCode.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
-    <value>214, 12</value>
+    <value>191, 12</value>
   </data>
   <metadata name="cmsFCTB.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>123, 56</value>
@@ -7035,6 +7035,23 @@ italština
 意大利语
 イタリアの</value>
   </data>
+  <data name="PolishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 22</value>
+  </data>
+  <data name="PolishToolStripMenuItem.Text" xml:space="preserve">
+    <value>Polski</value>
+  </data>
+  <data name="PolishToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>اللغة البولندية
+Polish
+Polaco
+Polonais
+ポーランド語
+Polonês
+польский
+波兰语
+Polski</value>
+  </data>
   <data name="czechToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>128, 22</value>
   </data>
@@ -8372,6 +8389,12 @@ Dil
     <value>italianoToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;italianoToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PolishToolStripMenuItem.Name" xml:space="preserve">
+    <value>PolishToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;PolishToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;czechToolStripMenuItem.Name" xml:space="preserve">

@@ -126,4 +126,7 @@
   <data name="LblHex.Text" xml:space="preserve">
     <value>Цвет</value>
   </data>
+  <data name="toolStripStatusLabel1.Text" xml:space="preserve">
+    <value>Автоматическое закрытие</value>
+  </data>
 </root>

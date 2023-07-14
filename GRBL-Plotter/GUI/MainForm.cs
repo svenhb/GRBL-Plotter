@@ -60,6 +60,7 @@
  * 2023-01-02 CbLaser_CheckedChanged, CbSpindle_CheckedChanged check if Grbl.isConnected
  * 2023-03-07 l:714/786/811 f:VirtualJoystickXY/Z/A_move if index =0 stop Jog -> if (!Grbl.isVersion_0) SendRealtimeCommand(133);
  * 2023-03-09 l:1213 bugfix start streaming
+ * 2023-05-30 l:532 f:MainTimer_Tick add _message_form close
 */
 
 using FastColoredTextBoxNS;
@@ -198,7 +199,7 @@ namespace GrblPlotter
 
             Grbl.Init();                    // load and set grbl messages in grblRelated.cs
             CodeMessage.Init();
-            //    ToolTable.Init();               // fill structure in ToolTable.cs
+
             GuiVariables.ResetVariables();	// set variables in MainFormObjects.cs			
 
             if (Properties.Settings.Default.guiExtendedLoggingEnabled || Properties.Settings.Default.guiExtendedLoggingCOMEnabled)
@@ -282,6 +283,8 @@ namespace GrblPlotter
 
                 if (Properties.Settings.Default.processOpenOnProgStart)
                 { ProcessAutomationFormOpen(sender, e); }
+			
+				CheckProgramFiles();
             }
             else
             {
@@ -412,14 +415,10 @@ namespace GrblPlotter
         {
             if (!Grbl.isVersion_0 && _serial_form.IsLasermode)
             {
-                //        lbInfo.Text = Localization.GetString("mainInfoLaserModeOn"); // "Laser Mode active $32=1";
-                //        lbInfo.BackColor = Color.Fuchsia;
                 SetTextThreadSave(lbInfo, Localization.GetString("mainInfoLaserModeOn"), Color.Fuchsia);
             }
             else
             {
-                ///       lbInfo.Text = Localization.GetString("mainInfoLaserModeOff");  //"Laser Mode not active $32=0";
-                //       lbInfo.BackColor = Color.Lime;
                 SetTextThreadSave(lbInfo, Localization.GetString("mainInfoLaserModeOff"), Color.Lime);
             }
         }
@@ -528,7 +527,29 @@ namespace GrblPlotter
                 if (delayedStatusStripClear2-- == 1)
                 { StatusStripClear(2); }
             }
+            if (delayedMessageFormClose > 0)
+            {
+                if (delayedMessageFormClose-- == 1)
+                {
+                    if (!CloseMessageForm(true))
+                        delayedMessageFormClose++;
+
+                    Logger.Trace("delayedMessageFormClose {0}", delayedMessageFormClose);
+                }
+            }
             mainTimerCount++;
+        }
+
+		private bool CloseMessageForm(bool keepOpen=false)
+		{ 
+			if (_message_form != null)
+			{
+				if (keepOpen && _message_form.DontClose)
+					return false;
+				_message_form.Close();
+				_message_form = null;
+			}
+            return true;
         }
 
         private void ShowGrblLastMessage()
@@ -1577,19 +1598,18 @@ namespace GrblPlotter
         private void ShowFormsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _serial_form?.BringToFront();
-            _text_form?.BringToFront();
-            _image_form?.BringToFront();
-            _shape_form?.BringToFront();
-            _barcode_form?.BringToFront();
+            if(_text_form != null){ _text_form.WindowState = FormWindowState.Normal; _text_form.BringToFront(); }
+            if (_image_form != null){ _image_form.WindowState = FormWindowState.Normal; _image_form.BringToFront(); }
+            if (_shape_form != null){ _shape_form.WindowState = FormWindowState.Normal; _shape_form.BringToFront(); }
+            if (_barcode_form != null){ _barcode_form.WindowState = FormWindowState.Normal; _barcode_form.BringToFront(); }
 
-            _setup_form?.BringToFront();
-            _camera_form?.BringToFront();
-            _coordSystem_form?.BringToFront();
-            _laser_form?.BringToFront();
-            _probing_form?.BringToFront();
-            _heightmap_form?.BringToFront();
-            _grbl_setup_form?.BringToFront();
-
+            if (_setup_form != null){ _setup_form.WindowState = FormWindowState.Normal; _setup_form.BringToFront(); }
+            if (_camera_form != null){ _camera_form.WindowState = FormWindowState.Normal; _camera_form.BringToFront(); }
+            if (_coordSystem_form != null){ _coordSystem_form.WindowState = FormWindowState.Normal; _coordSystem_form.BringToFront(); }
+            if (_laser_form != null){ _laser_form.WindowState = FormWindowState.Normal; _laser_form.BringToFront(); }
+            if (_probing_form != null){ _probing_form.WindowState = FormWindowState.Normal; _probing_form.BringToFront(); }
+            if (_heightmap_form != null){ _heightmap_form.WindowState = FormWindowState.Normal; _heightmap_form.BringToFront(); }
+            if (_grbl_setup_form != null){ _grbl_setup_form.WindowState = FormWindowState.Normal; _grbl_setup_form.BringToFront(); }
             //   _streaming_form.SendToBack();
         }
 

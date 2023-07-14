@@ -91,7 +91,7 @@ namespace GrblPlotter
                 CheckMachineLimit();
                 Grbl.wcoChanged = false;
             }
-            //         if (((isStreaming || isStreamingRequestStop)) && Properties.Settings.Default.guiProgressShow && !VisuGCode.largeDataAmount)
+
             if (isStreaming && Properties.Settings.Default.guiProgressShow && !VisuGCode.largeDataAmount)
                 VisuGCode.ProcessedPath.ProcessedPathDraw(Grbl.posWork);
 
@@ -118,22 +118,16 @@ namespace GrblPlotter
             if (StatMsg.A.Contains("S"))
             {
                 btnOverrideSpindle.Image = Properties.Resources.led_on;   // Spindle on CW
-                                                                          //        btnOverrideSpindle.Text = "Spindle CW";
                 RbSpindleCW.Checked = true;
-                //    CbSpindle.BackColor = Color.Lime;
             }
             if (StatMsg.A.Contains("C"))
             {
                 btnOverrideSpindle.Image = Properties.Resources.led_on;   // Spindle on CCW
-                                                                          //       btnOverrideSpindle.Text = "Spindle CCW";
                 RbSpindleCCW.Checked = true;
-                //    CbSpindle.BackColor = Color.Lime;
             }
             if (!StatMsg.A.Contains("S") && !StatMsg.A.Contains("C"))
             {
                 btnOverrideSpindle.Image = Properties.Resources.led_off;
-                //   CbSpindle.BackColor = Color.Fuchsia;
-                //CbSpindle.Checked = false; 
             }  // Spindle off
 
             if (StatMsg.A.Contains("F"))
@@ -293,14 +287,13 @@ namespace GrblPlotter
                         { btnKillAlarm.BackColor = SystemColors.Control; signalLock = 0; }
                         if (!isStreaming)                       // update drawing if G91 is used
                             updateDrawingPath = true;
-                        //       StatusStripClear(1, 2);//, "grblState.idle2");
+
                         Grbl.lastMessage = "";
                         break;
 
                     case GrblState.run:
                         if (lastMachineStatus == GrblState.hold)
                         {
-                            //           statusStripClear();
                             SetTextThreadSave(lbInfo, lastInfoText, SystemColors.Control);
                         }
                         signalResume = 0;
@@ -318,7 +311,7 @@ namespace GrblPlotter
                             lblInfoColor = Color.Yellow;
 
                         SetTextThreadSave(lbInfo, lblInfoText, lblInfoColor);
-                        //       statusStripClear();
+
                         StatusStripSet(1, Grbl.StatusToText(machineStatus), Grbl.GrblStateColor(machineStatus));
                         StatusStripSet(2, lblInfoText, lblInfoColor);
                         if (signalResume == 0) { signalResume = 1; }
@@ -359,7 +352,6 @@ namespace GrblPlotter
                         {
                             if (alternateZ != null)
                                 posProbe.Z = (double)alternateZ;
-                            //_diyControlPad.sendFeedback("Probe: "+posProbe.Z.ToString());
                         }
                         if (_heightmap_form != null)
                             _heightmap_form.SetPosProbe = posProbe;
@@ -375,12 +367,10 @@ namespace GrblPlotter
                         break;
 
                     case GrblState.unknown:
-                        //      timerUpdateControlSource = "grblState.unknown";
                         UpdateControlEnables();
                         break;
 
                     case GrblState.notConnected:
-                        //SetInfoLabel("No connection", Color.Fuchsia);
                         SetTextThreadSave(lbInfo, "No connection - press 'RESET'", Color.Fuchsia);
                         StatusStripSet(1, "No connection - press 'RESET'", Color.Fuchsia);
                         StatusStripSet(2, msg, Color.Fuchsia);
@@ -415,12 +405,6 @@ namespace GrblPlotter
 
                 if (Grbl.isVersion_0)
                 {
-                    /*    CbSpindle.CheckedChanged -= CbSpindle_CheckedChanged;
-                        CbSpindle.Checked = (cmd.spindle <= 4);// ? true : false;  // M3, M4 start, M5 stop
-                        CbSpindle.CheckedChanged += CbSpindle_CheckedChanged;
-                        CbCoolant.CheckedChanged -= CbCoolant_CheckedChanged;
-                        CbCoolant.Checked = (cmd.coolant <= 8);// ? true : false;  // M7, M8 on   M9 coolant off
-                        CbCoolant.CheckedChanged += CbCoolant_CheckedChanged;*/
                     if (cmd.spindle <= 4) CbSpindle.BackColor = Color.Lime;
                     else CbSpindle.BackColor = Color.Transparent;
                     if (cmd.spindle <= 8) CbCoolant.BackColor = Color.Lime;
@@ -440,7 +424,7 @@ namespace GrblPlotter
                     _coordSystem_form.UpdateTLO(cmd.TLOactive, cmd.tool_length);
                 }
             }
-        }
+        }	// Except: Could not load file or assembly 'AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb' or one of its dependencies. The system cannot find the file specified. Source: GRBL-Plotter Target: Void ProcessParserState(GrblPlotter.ParsState), File: D:\Projekte\GRBL-Plotter\GRBL-Plotter\GUI\MainFormInterface.cs, Method:ProcessParserState, LineNumber: 443
 
         private void ProcessReset()
         {

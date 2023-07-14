@@ -21,7 +21,8 @@
  * 2021-07-02 code clean up / code quality
  * 2023-03-07 l:40 f:ShowMessage get color from message and set panel color
  * 2023-03-31 l:65 f:ShowMessage reduce size if there is no color to show / check if hex-num / replace label by textBox
- * 2023-4-16 add guiLanguage
+ * 2023-04-16 add guiLanguage
+ * 2023-06-20 f:ShowMessage remove mode, select type via form size
 */
 using System;
 using System.Drawing;
@@ -31,8 +32,14 @@ using System.Windows.Forms;
 
 namespace GrblPlotter
 {
+
     public partial class MessageForm : Form
     {
+
+        public bool DontClose { get; set; } = false;
+        private bool colorChange = false;
+        private int progressStep = 10;
+
         public MessageForm()
         {
             this.Icon = Properties.Resources.Icon;
@@ -42,58 +49,44 @@ namespace GrblPlotter
             InitializeComponent();
         }
 
-        public void ShowMessage(string headline, string text, int mode)
+        public void ShowMessage(int newWidth, int newHeight, string headline, string text, int delay)
         {
-            if (mode == 1)
+
+            this.Width = newWidth;
+            this.Height = newHeight;
+            if (newWidth >= 500)         // Form or MessageBox
             {
-                int r1 = text.IndexOf('[');
-                int r2 = text.IndexOf(']');
-                if ((r1 > 0) && (r2 > r1))
+                colorChange = true;
+                btnContinue.Visible = false;
+                btnClose.Left = this.Width / 2 - 37;
+                btnClose.Top = this.Height - 80;
+                if (delay > 0)
                 {
-                    string hex = text.Substring(r1 + 1, r2 - r1 - 1);
-                    text = text.Substring(0, r1) + text.Substring(r2 + 1);
-
-                    if (Int32.TryParse(hex, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out int numericValue))
-                    { hex = "#" + hex; }        // then # is missing
-
-                    LblHex.Text = hex;
-                    try
-                    {
-                        ColorPanel.BackColor = System.Drawing.ColorTranslator.FromHtml(hex);
-                        LblHex.ForeColor = ContrastColor(System.Drawing.ColorTranslator.FromHtml(hex));
-                    }
-                    catch { }
+                    toolStripProgressBar1.Maximum = delay * 1000;
+                    toolStripProgressBar1.Value = delay * 1000;
+                    progressStep = 100;
+                    timer1.Enabled = true;
                 }
                 else
-                {
-                    this.SizeChanged -= MessageForm_SizeChanged;
-                    ColorPanel.Visible = LblHex.Visible = false;
-                    btnContinue.Top = btnClose.Top = 126;
-                    Height = 186;
-                }
+                    statusStrip1.Visible = false;
 
-                this.Text = headline;
-                tBInfo2.Text = text;
-                tBInfo2.Visible = true;
-                this.BackColor = tBInfo2.BackColor = Color.Yellow;
             }
             else
             {
-                this.Text = headline;
-                tBInfo.Text = text;
-                tBInfo.Visible = true;
-                btnContinue.Visible = false;
-                this.Width = Math.Min(tBInfo.Width + 5, 200);
-                this.Height = tBInfo.Height + 45;
-                btnClose.Top = tBInfo.Height + 10;
-                btnClose.Left = this.Width / 2 - 37;
-                this.Width = 600;
-                this.Height = 600;
-                this.Top = 0;
-                this.Left = 400;
-
-                ColorPanel.Visible = LblHex.Visible = false;
+                btnContinue.Top = btnClose.Top = this.Height - 65;
+                btnContinue.Left = 10;
+                btnContinue.Width = 2 * Width / 3 - 20;
+                btnClose.Left = 2 * Width / 3;
+                btnClose.Width = Width / 3 - 20;
+            //    webBrowser1.ScrollBarsEnabled = false;
+                statusStrip1.Visible = false;
             }
+
+            this.Text = headline;
+            if (!text.Contains("html"))
+                text = MessageText.HtmlHeader + "<body>\r\n" + text + "</body></html>\r\n";
+
+            webBrowser1.DocumentText = text;
         }
 
         private void BtnClose_Click(object sender, EventArgs e)
@@ -101,21 +94,6 @@ namespace GrblPlotter
             this.Close();
         }
 
-        private void MessageForm_SizeChanged(object sender, EventArgs e)
-        {
-            tBInfo.Width = this.Width - 26;
-            tBInfo.Height = this.Height - 75;
-            btnClose.Left = this.Width / 2 - 45;
-            btnClose.Top = this.Height - 65;
-        }
-
-        private void MessageForm_Load(object sender, EventArgs e)
-        {
-            /*  this.Width  = 600;
-              this.Height = 600;
-              this.Top = 0;
-              this.Left = 400;*/
-        }
 
         private static Color ContrastColor(Color myColor)
         {
@@ -127,6 +105,59 @@ namespace GrblPlotter
             else
                 d = 255; // dark colors - white font
             return Color.FromArgb(d, d, d);
+        }
+
+        void WebBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            webBrowser1.Document.MouseOver += new HtmlElementEventHandler(Body_MouseOver);
+            webBrowser1.Document.MouseLeave += new HtmlElementEventHandler(Body_MouseLeave);
+            webBrowser1.Document.Body.Style = "zoom:80%";
+        }
+
+        void Body_MouseOver(object sender, HtmlElementEventArgs e)
+        {
+            DontClose = true;
+            if (colorChange)
+            {
+                webBrowser1.Document.Body.Document.BackColor = Color.LightSkyBlue;
+                this.Text = "STOP auto close";
+            }
+        }
+        void Body_MouseLeave(object sender, HtmlElementEventArgs e)
+        {
+            DontClose = false;
+            if (colorChange)
+            {
+                webBrowser1.Document.Body.Document.BackColor = Color.White;
+                this.Text = "Auto close";
+            }
+        }
+        private void MessageForm_MouseEnter(object sender, EventArgs e)
+        {
+            DontClose = true;
+            //       tBInfo2.BackColor = Color.WhiteSmoke;
+        }
+
+        private void MessageForm_MouseLeave(object sender, EventArgs e)
+        {
+            DontClose = false;
+            //       tBInfo2.BackColor = SystemColors.Control;
+        }
+
+        public void WebBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
+        {   // https://stackoverflow.com/questions/18035579/how-to-open-a-link-in-webbrowser-control-in-external-browser
+            if (!(e.Url.ToString().Equals("about:blank", StringComparison.InvariantCultureIgnoreCase)))
+            {
+                System.Diagnostics.Process.Start(e.Url.ToString());
+                e.Cancel = true;
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            int val = toolStripProgressBar1.Value - progressStep;
+            if (val >= 0)
+                toolStripProgressBar1.Value = val;
         }
     }
 }

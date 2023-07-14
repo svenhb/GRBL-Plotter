@@ -394,6 +394,7 @@ namespace GrblPlotter
             this.portuguêsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.franzToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.italianoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PolishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.czechToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.türkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chinesischToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -2699,6 +2700,7 @@ namespace GrblPlotter
             this.portuguêsToolStripMenuItem,
             this.franzToolStripMenuItem,
             this.italianoToolStripMenuItem,
+            this.PolishToolStripMenuItem,
             this.czechToolStripMenuItem,
             this.türkToolStripMenuItem,
             this.chinesischToolStripMenuItem,
@@ -2748,6 +2750,12 @@ namespace GrblPlotter
             this.italianoToolStripMenuItem.Name = "italianoToolStripMenuItem";
             resources.ApplyResources(this.italianoToolStripMenuItem, "italianoToolStripMenuItem");
             this.italianoToolStripMenuItem.Click += new System.EventHandler(this.ItalianToolStripMenuItem_Click);
+            // 
+            // PolishToolStripMenuItem
+            // 
+            this.PolishToolStripMenuItem.Name = "PolishToolStripMenuItem";
+            resources.ApplyResources(this.PolishToolStripMenuItem, "PolishToolStripMenuItem");
+            this.PolishToolStripMenuItem.Click += new System.EventHandler(this.PolishToolStripMenuItem_Click);
             // 
             // czechToolStripMenuItem
             // 
@@ -3398,6 +3406,7 @@ namespace GrblPlotter
             // 
             // loadTimer
             // 
+            this.loadTimer.Interval = 200;
             this.loadTimer.Tick += new System.EventHandler(this.LoadTimer_Tick);
             // 
             // MainForm
@@ -3864,6 +3873,7 @@ namespace GrblPlotter
         private System.Windows.Forms.ToolStripMenuItem italianoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem processAutomationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem türkToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem PolishToolStripMenuItem;
     }
 }
 

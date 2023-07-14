@@ -126,4 +126,7 @@
   <data name="LblHex.Text" xml:space="preserve">
     <value>لون</value>
   </data>
+  <data name="toolStripStatusLabel1.Text" xml:space="preserve">
+    <value>على مقربة السيارات</value>
+  </data>
 </root>

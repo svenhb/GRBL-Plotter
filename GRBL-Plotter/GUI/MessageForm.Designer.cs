@@ -28,14 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MessageForm));
             this.btnClose = new System.Windows.Forms.Button();
-            this.tBInfo = new System.Windows.Forms.TextBox();
             this.btnContinue = new System.Windows.Forms.Button();
-            this.ColorPanel = new System.Windows.Forms.Panel();
-            this.LblHex = new System.Windows.Forms.Label();
-            this.tBInfo2 = new System.Windows.Forms.TextBox();
-            this.ColorPanel.SuspendLayout();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnClose
@@ -46,12 +48,6 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
-            // tBInfo
-            // 
-            resources.ApplyResources(this.tBInfo, "tBInfo");
-            this.tBInfo.Name = "tBInfo";
-            this.tBInfo.ReadOnly = true;
-            // 
             // btnContinue
             // 
             this.btnContinue.DialogResult = System.Windows.Forms.DialogResult.Yes;
@@ -59,42 +55,56 @@
             this.btnContinue.Name = "btnContinue";
             this.btnContinue.UseVisualStyleBackColor = true;
             // 
-            // ColorPanel
+            // webBrowser1
             // 
-            this.ColorPanel.BackColor = System.Drawing.Color.Transparent;
-            this.ColorPanel.Controls.Add(this.LblHex);
-            resources.ApplyResources(this.ColorPanel, "ColorPanel");
-            this.ColorPanel.Name = "ColorPanel";
+            this.webBrowser1.AllowNavigation = false;
+            this.webBrowser1.AllowWebBrowserDrop = false;
+            resources.ApplyResources(this.webBrowser1, "webBrowser1");
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.WebBrowserShortcutsEnabled = false;
+            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.WebBrowser1_DocumentCompleted);
+            this.webBrowser1.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.WebBrowser1_Navigating);
             // 
-            // LblHex
+            // statusStrip1
             // 
-            resources.ApplyResources(this.LblHex, "LblHex");
-            this.LblHex.Name = "LblHex";
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.toolStripProgressBar1});
+            resources.ApplyResources(this.statusStrip1, "statusStrip1");
+            this.statusStrip1.Name = "statusStrip1";
             // 
-            // tBInfo2
+            // toolStripStatusLabel1
             // 
-            resources.ApplyResources(this.tBInfo2, "tBInfo2");
-            this.tBInfo2.Name = "tBInfo2";
-            this.tBInfo2.ReadOnly = true;
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            resources.ApplyResources(this.toolStripStatusLabel1, "toolStripStatusLabel1");
+            // 
+            // toolStripProgressBar1
+            // 
+            resources.ApplyResources(this.toolStripProgressBar1, "toolStripProgressBar1");
+            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // MessageForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.ColorPanel);
             this.Controls.Add(this.btnContinue);
-            this.Controls.Add(this.tBInfo);
-            this.Controls.Add(this.tBInfo2);
+            this.Controls.Add(this.webBrowser1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MessageForm";
-            this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-            this.Load += new System.EventHandler(this.MessageForm_Load);
-            this.SizeChanged += new System.EventHandler(this.MessageForm_SizeChanged);
-            this.ColorPanel.ResumeLayout(false);
-            this.ColorPanel.PerformLayout();
+            this.LocationChanged += new System.EventHandler(this.MessageForm_MouseEnter);
+            this.MouseEnter += new System.EventHandler(this.MessageForm_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.MessageForm_MouseLeave);
+            this.MouseHover += new System.EventHandler(this.MessageForm_MouseEnter);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -103,10 +113,11 @@
         #endregion
 
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.TextBox tBInfo;
         private System.Windows.Forms.Button btnContinue;
-        private System.Windows.Forms.Panel ColorPanel;
-        private System.Windows.Forms.Label LblHex;
-        private System.Windows.Forms.TextBox tBInfo2;
+        private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }

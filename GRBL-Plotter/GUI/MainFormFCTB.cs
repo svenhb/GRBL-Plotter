@@ -52,6 +52,7 @@
  * 2023-03-15 l:740 f:CmsFctb_ItemClicked - if (e.ClickedItem.Name == "cmsCodeCopy") -> if no selection copy all to clipboard
  * 2023-04-12 f:FctbCode_Click / FctbCode_KeyDown replace FctbSetBookmark to avoid collapse blocks
  * 2023-04-13 l:592; 675 f:FctbCode_KeyDown add Tile
+ * 2023-06-20 l:380 f:InsertCodeToFctb check if xmlLine is in range
 */
 
 using FastColoredTextBoxNS;
@@ -374,9 +375,12 @@ namespace GrblPlotter
                 if (createGroup)
                 {    // add startGroup for existing figures
                     Place selStartGrp;
-                    selStartGrp.iLine = XmlMarker.FindInsertPositionFigureMostBottom(insertLineNr);
-                    if (selStartGrp.iLine < 0)
-                        selStartGrp.iLine = insertLineNr;
+					int xmlLine = XmlMarker.FindInsertPositionFigureMostBottom(insertLineNr);
+					if (LineIsInRange(xmlLine))
+						selStartGrp.iLine = xmlLine;
+					else 
+						selStartGrp.iLine = insertLineNr;
+
                     selStartGrp.iChar = 0;
                     Range mySelectionGrp = new Range(fCTBCode);
                     mySelectionGrp.Start = mySelectionGrp.End = selStartGrp;
@@ -802,7 +806,20 @@ namespace GrblPlotter
             else if (e.ClickedItem.Name == "cmsFindDialog")
                 fCTBCode.ShowFindDialog();
             else if (e.ClickedItem.Name == "cmsEditorHotkeys")
-            { ShowMessageForm(Properties.Resources.fctb_hotkeys); }
+            {
+                string[] lines = Properties.Resources.fctb_hotkeys.Split('\n');
+                string result = "";
+                if (lines.Length > 1)
+                {
+                    result += "<h2>" + lines[0] + "</h2><ul>";
+                    for (int i = 1; i < lines.Length; i++)
+                    {
+                        result += "<li>"+ lines[i] + "</li>";
+                    }
+                    result += "</ul>";
+                    ShowMessageForm(result);
+                }
+            }
         }
 
         public void ShowMessageForm(string text)
@@ -816,7 +833,7 @@ namespace GrblPlotter
             {
                 _message_form.Visible = false;
             }
-            _message_form.ShowMessage("Information", text, 0);
+            _message_form.ShowMessage(600, 650, "Information", text, 0);  // show FCTB Info
             _message_form.Show(this);
             _message_form.WindowState = FormWindowState.Normal;
         }

@@ -126,4 +126,7 @@
   <data name="btnContinue.Text" xml:space="preserve">
     <value>Streaming fortsetzen</value>
   </data>
+  <data name="toolStripStatusLabel1.Text" xml:space="preserve">
+    <value>Automatisch schließen</value>
+  </data>
 </root>

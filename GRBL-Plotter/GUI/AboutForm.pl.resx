@@ -117,16 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnClose.Text" xml:space="preserve">
-    <value>Fechar</value>
+  <data name="linkLabel1.Text" xml:space="preserve">
+    <value>Odwiedź GRBL-Plotter na GitHub</value>
   </data>
-  <data name="btnContinue.Text" xml:space="preserve">
-    <value>continuar transmitindo</value>
+  <data name="linkLabel1.ToolTip" xml:space="preserve">
+    <value>Odwiedź 'https://github.com/svenhb/GRBL-Plotter' w przeglądarce</value>
   </data>
-  <data name="LblHex.Text" xml:space="preserve">
-    <value>Cor</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Wersja</value>
   </data>
-  <data name="toolStripStatusLabel1.Text" xml:space="preserve">
-    <value>Fechamento automático</value>
+  <data name="button2.Text" xml:space="preserve">
+    <value>Sprawdź aktualizacje</value>
+  </data>
+  <data name="linkLabel2.Text" xml:space="preserve">
+    <value>Ścieżka</value>
+  </data>
+  <data name="linkLabel2.ToolTip" xml:space="preserve">
+    <value>Otwórz folder</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Ścieżka:</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>O programie</value>
   </data>
 </root>
