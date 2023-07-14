@@ -19,7 +19,7 @@ namespace GrblPlotter.Resources {
     // -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
     // Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
     // mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ResStrings {
@@ -205,6 +205,59 @@ namespace GrblPlotter.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Layer, path or object is not visible because of visibility attribute. ähnelt.
+        /// </summary>
+        public static string codeMessage_1102_dontplot {
+            get {
+                return ResourceManager.GetString("codeMessage_1102_dontplot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die An unsupported SVG-XML element was found.
+        ///The resulting image may look different than expected.
+        ///Possible workaround: try to convert object to path. ähnelt.
+        /// </summary>
+        public static string codeMessage_1103_elementsupport {
+            get {
+                return ResourceManager.GetString("codeMessage_1103_elementsupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die An unknown SVG-XML element was found.
+        ///The resulting image may look different than expected.
+        ///Possible workaround: try to convert object to path. ähnelt.
+        /// </summary>
+        public static string codeMessage_1104_elementuk {
+            get {
+                return ResourceManager.GetString("codeMessage_1104_elementuk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die An &apos;tspan&apos; element within a &apos;textPath&apos; element was found. This combination is not supported.
+        ///The resulting image may look different than expected.
+        ///Possible workaround: try to convert object to path. ähnelt.
+        /// </summary>
+        public static string codeMessage_1105_textpath {
+            get {
+                return ResourceManager.GetString("codeMessage_1105_textpath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die An unsupported SVG-XML attribute was found.
+        ///The resulting image may look different than expected.
+        ///Possible workaround: try to convert object to path. ähnelt.
+        /// </summary>
+        public static string codeMessage_1106_attributesupport {
+            get {
+                return ResourceManager.GetString("codeMessage_1106_attributesupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Layer is not visible or printing of layer is disabled. Check:
         ///https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlist ähnelt.
         /// </summary>
@@ -233,7 +286,7 @@ namespace GrblPlotter.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die The amount of single, selectable, figures exceeds the given maximum an would decrease the performance. \r\nAll figures are summarized to one figure.\r\nThe limit can be adjusted in\r\n[Setup - Graphics import - Path import - Grouping and tools - Concersion concerning] ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die The amount of single, selectable, figures exceeds the given maximum an would decrease the performance. \r\nAll figures are summarized to one figure.\r\nThe limit can be adjusted in\r\n[Setup - Graphics import - Path import - Grouping and tools - Conversion concerning] ähnelt.
         /// </summary>
         public static string codeMessage_2_highdataamount {
             get {
@@ -409,6 +462,591 @@ namespace GrblPlotter.Resources {
         public static string heightScan {
             get {
                 return ResourceManager.GetString("heightScan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add imported graphic ähnelt.
+        /// </summary>
+        public static string importMessageAddGraphic {
+            get {
+                return ResourceManager.GetString("importMessageAddGraphic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die File name: ähnelt.
+        /// </summary>
+        public static string importMessageFileName {
+            get {
+                return ResourceManager.GetString("importMessageFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die File path: ähnelt.
+        /// </summary>
+        public static string importMessageFilePath {
+            get {
+                return ResourceManager.GetString("importMessageFilePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die GCode Footer ähnelt.
+        /// </summary>
+        public static string importMessageGcodeFooter {
+            get {
+                return ResourceManager.GetString("importMessageGcodeFooter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die GCode Header ähnelt.
+        /// </summary>
+        public static string importMessageGcodeHeader {
+            get {
+                return ResourceManager.GetString("importMessageGcodeHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die General settings: ähnelt.
+        /// </summary>
+        public static string importMessageGeneralSettings {
+            get {
+                return ResourceManager.GetString("importMessageGeneralSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Lasermode: use M3S0 instead of M5 to switch off laser (or spindle) ähnelt.
+        /// </summary>
+        public static string importMessageLaserMode {
+            get {
+                return ResourceManager.GetString("importMessageLaserMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die grbl Laser mode $32 is not enabled ähnelt.
+        /// </summary>
+        public static string importMessageLaserModeNok {
+            get {
+                return ResourceManager.GetString("importMessageLaserModeNok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Laser power ähnelt.
+        /// </summary>
+        public static string importMessageLaserPower {
+            get {
+                return ResourceManager.GetString("importMessageLaserPower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die grbl X/Y Max. rate: ähnelt.
+        /// </summary>
+        public static string importMessageMaxXYFeed {
+            get {
+                return ResourceManager.GetString("importMessageMaxXYFeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Path interpretation: ähnelt.
+        /// </summary>
+        public static string importMessageOption1 {
+            get {
+                return ResourceManager.GetString("importMessageOption1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Possible path interpretations ähnelt.
+        /// </summary>
+        public static string importMessageOption1Link {
+            get {
+                return ResourceManager.GetString("importMessageOption1Link", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Path modification: ähnelt.
+        /// </summary>
+        public static string importMessageOption2 {
+            get {
+                return ResourceManager.GetString("importMessageOption2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Possible path modifications ähnelt.
+        /// </summary>
+        public static string importMessageOption2Link {
+            get {
+                return ResourceManager.GetString("importMessageOption2Link", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Convert circle-radius to Z value ähnelt.
+        /// </summary>
+        public static string importMessageOptionCircleRadiusToZ {
+            get {
+                return ResourceManager.GetString("importMessageOptionCircleRadiusToZ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Convert circle to point ähnelt.
+        /// </summary>
+        public static string importMessageOptionCircleToDot {
+            get {
+                return ResourceManager.GetString("importMessageOptionCircleToDot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Crop or tile graphic ähnelt.
+        /// </summary>
+        public static string importMessageOptionClip {
+            get {
+                return ResourceManager.GetString("importMessageOptionClip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Adapt path for Drag tool ähnelt.
+        /// </summary>
+        public static string importMessageOptionDragTool {
+            get {
+                return ResourceManager.GetString("importMessageOptionDragTool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Extend path (e.g. for laser cutting) ähnelt.
+        /// </summary>
+        public static string importMessageOptionExtend {
+            get {
+                return ResourceManager.GetString("importMessageOptionExtend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Filter graphic elements (remove objects) ähnelt.
+        /// </summary>
+        public static string importMessageOptionFilter {
+            get {
+                return ResourceManager.GetString("importMessageOptionFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add Hatch fill ähnelt.
+        /// </summary>
+        public static string importMessageOptionHatchFill {
+            get {
+                return ResourceManager.GetString("importMessageOptionHatchFill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Nodes only - make dots at given coordinates ähnelt.
+        /// </summary>
+        public static string importMessageOptionNodesOnly {
+            get {
+                return ResourceManager.GetString("importMessageOptionNodesOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Outline development ähnelt.
+        /// </summary>
+        public static string importMessageOptionOutlineDevelop {
+            get {
+                return ResourceManager.GetString("importMessageOptionOutlineDevelop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Get S value from line width (laser power / spindle speed) ähnelt.
+        /// </summary>
+        public static string importMessageOptionSFromWidth {
+            get {
+                return ResourceManager.GetString("importMessageOptionSFromWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Tangential axis ähnelt.
+        /// </summary>
+        public static string importMessageOptionTangential {
+            get {
+                return ResourceManager.GetString("importMessageOptionTangential", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wire bender ähnelt.
+        /// </summary>
+        public static string importMessageOptionWireBender {
+            get {
+                return ResourceManager.GetString("importMessageOptionWireBender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Get Z value from line width (depth) ähnelt.
+        /// </summary>
+        public static string importMessageOptionZFromWidth {
+            get {
+                return ResourceManager.GetString("importMessageOptionZFromWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Pen up/down translation: ähnelt.
+        /// </summary>
+        public static string importMessagePUD {
+            get {
+                return ResourceManager.GetString("importMessagePUD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Individual commands ähnelt.
+        /// </summary>
+        public static string importMessagePUDIndividual {
+            get {
+                return ResourceManager.GetString("importMessagePUDIndividual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Pen Down ähnelt.
+        /// </summary>
+        public static string importMessagePUDPenDown {
+            get {
+                return ResourceManager.GetString("importMessagePUDPenDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Pen Up ähnelt.
+        /// </summary>
+        public static string importMessagePUDPenUp {
+            get {
+                return ResourceManager.GetString("importMessagePUDPenUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die PWM enabled (Servo control) ähnelt.
+        /// </summary>
+        public static string importMessagePUDPWM {
+            get {
+                return ResourceManager.GetString("importMessagePUDPWM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die PWM Down ähnelt.
+        /// </summary>
+        public static string importMessagePUDPWMDown {
+            get {
+                return ResourceManager.GetString("importMessagePUDPWMDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die PWM Up ähnelt.
+        /// </summary>
+        public static string importMessagePUDPWMUp {
+            get {
+                return ResourceManager.GetString("importMessagePUDPWMUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die PWM Zero ähnelt.
+        /// </summary>
+        public static string importMessagePUDPWMZero {
+            get {
+                return ResourceManager.GetString("importMessagePUDPWMZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Spindle on/off with Pen down/up ähnelt.
+        /// </summary>
+        public static string importMessagePUDSpindle {
+            get {
+                return ResourceManager.GetString("importMessagePUDSpindle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Z axis enabled ähnelt.
+        /// </summary>
+        public static string importMessagePUDZ {
+            get {
+                return ResourceManager.GetString("importMessagePUDZ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Depth per pass ähnelt.
+        /// </summary>
+        public static string importMessagePUDZDepthPass {
+            get {
+                return ResourceManager.GetString("importMessagePUDZDepthPass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No Z up between passes ähnelt.
+        /// </summary>
+        public static string importMessagePUDZDepthPassNoZUp {
+            get {
+                return ResourceManager.GetString("importMessagePUDZDepthPassNoZUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Z Down (engrave) ähnelt.
+        /// </summary>
+        public static string importMessagePUDZDown {
+            get {
+                return ResourceManager.GetString("importMessagePUDZDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Z Feed ähnelt.
+        /// </summary>
+        public static string importMessagePUDZFeed {
+            get {
+                return ResourceManager.GetString("importMessagePUDZFeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die grbl Z Max. Feed rate: ähnelt.
+        /// </summary>
+        public static string importMessagePUDZFeedMax {
+            get {
+                return ResourceManager.GetString("importMessagePUDZFeedMax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Spindle will not be switched on ähnelt.
+        /// </summary>
+        public static string importMessagePUDZNoSpindle {
+            get {
+                return ResourceManager.GetString("importMessagePUDZNoSpindle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Z Up (save) ähnelt.
+        /// </summary>
+        public static string importMessagePUDZUp {
+            get {
+                return ResourceManager.GetString("importMessagePUDZUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Relative movements are enabled ähnelt.
+        /// </summary>
+        public static string importMessageRelMovement {
+            get {
+                return ResourceManager.GetString("importMessageRelMovement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die From Metadata ähnelt.
+        /// </summary>
+        public static string importMessageSourceMetadata {
+            get {
+                return ResourceManager.GetString("importMessageSourceMetadata", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die From tool table ähnelt.
+        /// </summary>
+        public static string importMessageSourceTooltable {
+            get {
+                return ResourceManager.GetString("importMessageSourceTooltable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Laser mode / Spindle direction ähnelt.
+        /// </summary>
+        public static string importMessageSpindleDirection {
+            get {
+                return ResourceManager.GetString("importMessageSpindleDirection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die M3 (CW-clockwise) Constant Laser Power Mode ähnelt.
+        /// </summary>
+        public static string importMessageSpindleDirectionM3 {
+            get {
+                return ResourceManager.GetString("importMessageSpindleDirectionM3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die M4 (CCW-counterclockwise) Dynamic Laser Power Mode ähnelt.
+        /// </summary>
+        public static string importMessageSpindleDirectionM4 {
+            get {
+                return ResourceManager.GetString("importMessageSpindleDirectionM4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Spindle Speed ähnelt.
+        /// </summary>
+        public static string importMessageSpindleSpeed {
+            get {
+                return ResourceManager.GetString("importMessageSpindleSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die grbl Spindle speed Max. ähnelt.
+        /// </summary>
+        public static string importMessageSpindleSpeedMax {
+            get {
+                return ResourceManager.GetString("importMessageSpindleSpeedMax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die SVG Metadata available, but not enabled! ähnelt.
+        /// </summary>
+        public static string importMessageSVGMetaDataNok1 {
+            get {
+                return ResourceManager.GetString("importMessageSVGMetaDataNok1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die SVG Metadata processed ähnelt.
+        /// </summary>
+        public static string importMessageSVGMetaDataOk {
+            get {
+                return ResourceManager.GetString("importMessageSVGMetaDataOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Import information ähnelt.
+        /// </summary>
+        public static string importMessageTitle {
+            get {
+                return ResourceManager.GetString("importMessageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Tool table needed, last loaded: ähnelt.
+        /// </summary>
+        public static string importMessageToolTableNeeded {
+            get {
+                return ResourceManager.GetString("importMessageToolTableNeeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die XY Feed ähnelt.
+        /// </summary>
+        public static string importMessageXYFeed {
+            get {
+                return ResourceManager.GetString("importMessageXYFeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Continue last job? ähnelt.
+        /// </summary>
+        public static string loadMessageContinue {
+            get {
+                return ResourceManager.GetString("loadMessageContinue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Loading the last processed G-Code ähnelt.
+        /// </summary>
+        public static string loadMessageLastProcessed {
+            get {
+                return ResourceManager.GetString("loadMessageLastProcessed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Loading G-Code ähnelt.
+        /// </summary>
+        public static string loadMessageLoad1 {
+            get {
+                return ResourceManager.GetString("loadMessageLoad1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No import options applied! ähnelt.
+        /// </summary>
+        public static string loadMessageNoImport {
+            get {
+                return ResourceManager.GetString("loadMessageNoImport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Load G-Code option: Replaces laser mode command M3 by M4 ähnelt.
+        /// </summary>
+        public static string loadMessageReplaceM34 {
+            get {
+                return ResourceManager.GetString("loadMessageReplaceM34", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Load G-Code option: Replaces laser mode command M4 by M3 ähnelt.
+        /// </summary>
+        public static string loadMessageReplaceM43 {
+            get {
+                return ResourceManager.GetString("loadMessageReplaceM43", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Streaming is active, can&apos;t load new file. ähnelt.
+        /// </summary>
+        public static string loadMessageStreaming {
+            get {
+                return ResourceManager.GetString("loadMessageStreaming", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Automatic tool change is enabled ähnelt.
+        /// </summary>
+        public static string loadMessageToolChange {
+            get {
+                return ResourceManager.GetString("loadMessageToolChange", resourceCulture);
             }
         }
         
@@ -701,7 +1339,7 @@ namespace GrblPlotter.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die ,\r\ndo you want to continue the job? ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Do you want to continue the job? ähnelt.
         /// </summary>
         public static string mainPauseStream2 {
             get {
@@ -764,6 +1402,15 @@ namespace GrblPlotter.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Missing program files,&lt;br&gt;please check the GRBL-Plotter installation ähnelt.
+        /// </summary>
+        public static string mainStartMissingFiles {
+            get {
+                return ResourceManager.GetString("mainStartMissingFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Streaming is still active - press Stop and try again ähnelt.
         /// </summary>
         public static string mainStreamingActive {
@@ -805,6 +1452,15 @@ namespace GrblPlotter.Resources {
         public static string mainUnknownCode {
             get {
                 return ResourceManager.GetString("mainUnknownCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        /// </summary>
+        public static string NewKey {
+            get {
+                return ResourceManager.GetString("NewKey", resourceCulture);
             }
         }
         

@@ -247,7 +247,7 @@
     <value>Poslední úloha byla pozastavena na řádku</value>
   </data>
   <data name="mainPauseStream2" xml:space="preserve">
-    <value>,\r\nchcete pokračovat v práci?</value>
+    <value>Chcete v práci pokračovat?</value>
   </data>
   <data name="mainProblem" xml:space="preserve">
     <value>Problém</value>
@@ -494,5 +494,203 @@ Možné řešení: zkuste převést objekt na cestu.</value>
     <value>Byl nalezen nepodporovaný atribut SVG-XML.
 Výsledný obrázek může vypadat jinak, než se očekávalo.
 Možné řešení: zkuste převést objekt na cestu.</value>
+  </data>
+  <data name="importMessageTitle" xml:space="preserve">
+    <value>importovat informace</value>
+  </data>
+  <data name="importMessageFileName" xml:space="preserve">
+    <value>Název souboru:</value>
+  </data>
+  <data name="importMessageFilePath" xml:space="preserve">
+    <value>Cesta k souboru:</value>
+  </data>
+  <data name="importMessageSVGMetaDataOk" xml:space="preserve">
+    <value>Zpracována metadata SVG</value>
+  </data>
+  <data name="importMessageSVGMetaDataNok1" xml:space="preserve">
+    <value>Metadata SVG jsou k dispozici, ale nejsou povolena!</value>
+  </data>
+  <data name="importMessageRelMovement" xml:space="preserve">
+    <value>Aktivované relativní pohyby (může vést k problémům)</value>
+  </data>
+  <data name="importMessageAddGraphic" xml:space="preserve">
+    <value>Přidat importovanou grafiku</value>
+  </data>
+  <data name="importMessageToolTableNeeded" xml:space="preserve">
+    <value>Vyžadovat tabulku nástrojů, naposledy načtená:</value>
+  </data>
+  <data name="importMessageGeneralSettings" xml:space="preserve">
+    <value>Obecné nastavení:</value>
+  </data>
+  <data name="importMessageXYFeed" xml:space="preserve">
+    <value>Krmivo XY</value>
+  </data>
+  <data name="importMessageMaxXYFeed" xml:space="preserve">
+    <value>max. posuv grbl X/Y:</value>
+  </data>
+  <data name="importMessageGcodeHeader" xml:space="preserve">
+    <value>Záhlaví GCode</value>
+  </data>
+  <data name="importMessageGcodeFooter" xml:space="preserve">
+    <value>Zápatí GCode</value>
+  </data>
+  <data name="importMessageLaserMode" xml:space="preserve">
+    <value>Laserový režim: pro vypnutí laseru (nebo vřetena) použijte M3S0 místo M5</value>
+  </data>
+  <data name="importMessageLaserModeNok" xml:space="preserve">
+    <value>laserový režim grbl $32 není aktivován</value>
+  </data>
+  <data name="importMessageLaserPower" xml:space="preserve">
+    <value>výkon laseru</value>
+  </data>
+  <data name="importMessageSpindleSpeed" xml:space="preserve">
+    <value>otáčky vřetena</value>
+  </data>
+  <data name="importMessageSpindleSpeedMax" xml:space="preserve">
+    <value>otáčky vřetena grbl max.</value>
+  </data>
+  <data name="importMessagePUD" xml:space="preserve">
+    <value>Překlad perem nahoru/dolů:</value>
+  </data>
+  <data name="importMessagePUDZ" xml:space="preserve">
+    <value>Osa Z aktivována</value>
+  </data>
+  <data name="importMessagePUDZNoSpindle" xml:space="preserve">
+    <value>Vřeteno není zapnuté</value>
+  </data>
+  <data name="importMessagePUDZFeed" xml:space="preserve">
+    <value>Z feed</value>
+  </data>
+  <data name="importMessagePUDZUp" xml:space="preserve">
+    <value>Z nahoru (bezpečná výška)</value>
+  </data>
+  <data name="importMessagePUDZDown" xml:space="preserve">
+    <value>Z Down (rytina)</value>
+  </data>
+  <data name="importMessagePUDZDepthPass" xml:space="preserve">
+    <value>hloubka na průchod</value>
+  </data>
+  <data name="importMessagePUDZDepthPassNoZUp" xml:space="preserve">
+    <value>Žádné Z nahoru mezi průchody</value>
+  </data>
+  <data name="importMessagePUDZFeedMax" xml:space="preserve">
+    <value>grbl Z max. posuv:</value>
+  </data>
+  <data name="importMessagePUDPWM" xml:space="preserve">
+    <value>PWM povoleno (servořízení)</value>
+  </data>
+  <data name="importMessagePUDPWMUp" xml:space="preserve">
+    <value>PWM vysoká</value>
+  </data>
+  <data name="importMessagePUDPWMZero" xml:space="preserve">
+    <value>PWM nula</value>
+  </data>
+  <data name="importMessagePUDPWMDown" xml:space="preserve">
+    <value>PWM níže</value>
+  </data>
+  <data name="importMessagePUDSpindle" xml:space="preserve">
+    <value>Zapněte/vypněte vřeteno perem dolů/nahoru</value>
+  </data>
+  <data name="importMessagePUDIndividual" xml:space="preserve">
+    <value>Jednotlivé příkazy</value>
+  </data>
+  <data name="importMessagePUDPenUp" xml:space="preserve">
+    <value>pero nahoru</value>
+  </data>
+  <data name="importMessageOption1" xml:space="preserve">
+    <value>Výklad cesty:</value>
+  </data>
+  <data name="importMessageOptionNodesOnly" xml:space="preserve">
+    <value>Pouze uzly – vytvářejte body na konkrétních souřadnicích</value>
+  </data>
+  <data name="importMessageOptionZFromWidth" xml:space="preserve">
+    <value>Zjistí hodnotu Z z šířky čáry (hloubky).</value>
+  </data>
+  <data name="importMessageOptionSFromWidth" xml:space="preserve">
+    <value>Určuje hodnotu S ze šířky čáry (výkon laseru / rychlost vřetena).</value>
+  </data>
+  <data name="importMessageOptionCircleToDot" xml:space="preserve">
+    <value>Převést kruh na bod</value>
+  </data>
+  <data name="importMessageOptionCircleRadiusToZ" xml:space="preserve">
+    <value>Převede poloměr kruhu na hodnotu z</value>
+  </data>
+  <data name="importMessageOption2" xml:space="preserve">
+    <value>změna cesty:</value>
+  </data>
+  <data name="importMessageOptionFilter" xml:space="preserve">
+    <value>Filtrovat grafické prvky (odebrat objekty)</value>
+  </data>
+  <data name="importMessageOptionHatchFill" xml:space="preserve">
+    <value>Přidejte výplň poklopu</value>
+  </data>
+  <data name="importMessageOptionClip" xml:space="preserve">
+    <value>Oříznutí nebo dlaždice grafiky</value>
+  </data>
+  <data name="importMessageOptionTangential" xml:space="preserve">
+    <value>tečnou osu</value>
+  </data>
+  <data name="importMessageOptionDragTool" xml:space="preserve">
+    <value>Přizpůsobte cestu pro nástroj tažení</value>
+  </data>
+  <data name="importMessageOptionExtend" xml:space="preserve">
+    <value>Prodloužit dráhu (např. pro řezání laserem)</value>
+  </data>
+  <data name="importMessageOptionOutlineDevelop" xml:space="preserve">
+    <value>dokončení</value>
+  </data>
+  <data name="importMessageOptionWireBender" xml:space="preserve">
+    <value>ohýbačka drátu</value>
+  </data>
+  <data name="importMessagePUDPenDown" xml:space="preserve">
+    <value>perem dolů</value>
+  </data>
+  <data name="importMessageOption1Link" xml:space="preserve">
+    <value>Možné interpretace cest</value>
+  </data>
+  <data name="importMessageOption2Link" xml:space="preserve">
+    <value>Možné úpravy cesty</value>
+  </data>
+  <data name="importMessageSourceMetadata" xml:space="preserve">
+    <value>Z metadat</value>
+  </data>
+  <data name="importMessageSourceTooltable" xml:space="preserve">
+    <value>Ze stolu nástrojů</value>
+  </data>
+  <data name="importMessageSpindleDirection" xml:space="preserve">
+    <value>Laserový režim / Směr vřetena</value>
+  </data>
+  <data name="importMessageSpindleDirectionM3" xml:space="preserve">
+    <value>M3 (CW-ve směru hodinových ručiček) Režim konstantního výkonu laseru</value>
+  </data>
+  <data name="importMessageSpindleDirectionM4" xml:space="preserve">
+    <value>M4 (CCW-proti směru hodinových ručiček) Dynamický režim výkonu laseru</value>
+  </data>
+  <data name="loadMessageContinue" xml:space="preserve">
+    <value>Pokračovat v poslední práci?</value>
+  </data>
+  <data name="loadMessageLastProcessed" xml:space="preserve">
+    <value>Načítání posledního zpracovaného G-kódu</value>
+  </data>
+  <data name="loadMessageLoad1" xml:space="preserve">
+    <value>Načítání G-kódu</value>
+  </data>
+  <data name="loadMessageNoImport" xml:space="preserve">
+    <value>Nejsou použity žádné možnosti importu!</value>
+  </data>
+  <data name="loadMessageReplaceM34" xml:space="preserve">
+    <value>Volba Načíst G-kód: Nahradí příkaz režimu laseru M3 příkazem M4</value>
+  </data>
+  <data name="loadMessageReplaceM43" xml:space="preserve">
+    <value>Možnost Načíst G-kód: Nahradí příkaz režimu laseru M4 příkazem M3</value>
+  </data>
+  <data name="loadMessageStreaming" xml:space="preserve">
+    <value>Streamování je aktivní, nelze načíst nový soubor.</value>
+  </data>
+  <data name="loadMessageToolChange" xml:space="preserve">
+    <value>Je povolena automatická výměna nástroje</value>
+  </data>
+  <data name="mainStartMissingFiles" xml:space="preserve">
+    <value>Chybí soubory programu,&lt;br&gt;zkontrolujte prosím instalaci plotru GRBL</value>
   </data>
 </root>

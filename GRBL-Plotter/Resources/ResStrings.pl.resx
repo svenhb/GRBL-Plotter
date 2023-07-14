@@ -117,595 +117,560 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="grblAlarm" xml:space="preserve">
-    <value>Alarm</value>
-  </data>
-  <data name="grblCheck" xml:space="preserve">
-    <value>Check</value>
-  </data>
-  <data name="grblDoor" xml:space="preserve">
-    <value>Door</value>
-  </data>
-  <data name="grblHold" xml:space="preserve">
-    <value>Hold</value>
-  </data>
-  <data name="grblHome" xml:space="preserve">
-    <value>Home</value>
-  </data>
-  <data name="grblIdle" xml:space="preserve">
-    <value>Idle</value>
-  </data>
-  <data name="grblJog" xml:space="preserve">
-    <value>Jog</value>
-  </data>
-  <data name="grblProbe" xml:space="preserve">
-    <value>Probe</value>
-  </data>
-  <data name="grblRun" xml:space="preserve">
-    <value>Run</value>
-  </data>
-  <data name="grblSleep" xml:space="preserve">
-    <value>Sleep</value>
-  </data>
   <data name="grblNotConnected" xml:space="preserve">
-    <value>grbl controller is not connected!\r\nCannot perform the desired action!</value>
+    <value>Kontroler GRBL nie jest podłączony! Nie można wykonać żądanej akcji!</value>
   </data>
   <data name="mainAttention" xml:space="preserve">
-    <value>Attention</value>
+    <value>Uwaga</value>
   </data>
   <data name="mainHelpLanguage" xml:space="preserve">
-    <value>Feel free to improove translation</value>
+    <value>Zapraszam do poprawy tłumaczenia</value>
   </data>
   <data name="mainHotkeyError" xml:space="preserve">
-    <value>File 'hotkeys.xml' not found, no hotkeys set!</value>
+    <value>Nie znaleziono pliku 'hotkeys.xml', nie ustawiono klawiszy skrótu!</value>
   </data>
   <data name="mainHotkeyError1" xml:space="preserve">
-    <value>Unknown action:</value>
+    <value>Nieznana akcja:</value>
   </data>
   <data name="mainHotkeyError2" xml:space="preserve">
-    <value>Error with Hotkey.xml</value>
+    <value>Błąd hotkeys.xml</value>
   </data>
   <data name="mainInfoCheckCode" xml:space="preserve">
-    <value>Check G-Code</value>
+    <value>Sprawdź G-Code</value>
   </data>
   <data name="mainInfoErrorLine" xml:space="preserve">
-    <value>Error before line</value>
+    <value>Błąd przed linią</value>
   </data>
   <data name="mainInfoFinishCheck" xml:space="preserve">
-    <value>Finish checking G-Code</value>
+    <value>Zakończ sprawdzanie G-Code</value>
   </data>
   <data name="mainInfoFinishSend" xml:space="preserve">
-    <value>Finish sending G-Code</value>
+    <value>Zakończ przesyłanie G-Code</value>
   </data>
   <data name="mainInfoKill" xml:space="preserve">
-    <value>Press 'Kill Alarm' to proceed ('$X')</value>
+    <value>Wciśnij "Kill Alarm", aby kontynuować ("$X")</value>
   </data>
   <data name="mainInfoLaserModeOff" xml:space="preserve">
-    <value>Laser Mode not active $32=0</value>
+    <value>Tryb lasera nieaktywny $32=0</value>
   </data>
   <data name="mainInfoLaserModeOn" xml:space="preserve">
-    <value>Laser Mode active $32=1</value>
+    <value>Tryb lasera aktywny $32=1</value>
   </data>
   <data name="mainInfoPause" xml:space="preserve">
-    <value>Pause streaming - press play (</value>
+    <value>Wstrzymaj przesyłąnie - naciśnij przycisk odtwarzania (</value>
   </data>
   <data name="mainInfoProbing" xml:space="preserve">
-    <value>Probing</value>
+    <value>Sondowanie</value>
   </data>
   <data name="mainInfoResume" xml:space="preserve">
-    <value>Press 'Resume' to proceed</value>
+    <value>Naciśnij "Wznów", aby kontynuować</value>
   </data>
   <data name="mainInfoSendCode" xml:space="preserve">
-    <value>Send G-Code</value>
+    <value>Wyśli G-Code</value>
   </data>
   <data name="mainInfoStopStream" xml:space="preserve">
     <value>STOP streaming (</value>
   </data>
   <data name="mainInfoStopStream2" xml:space="preserve">
-    <value>STOP streaming ( Line</value>
+    <value>STOP streaming ( Linia</value>
   </data>
   <data name="mainInfoToolChange" xml:space="preserve">
-    <value>Tool change...</value>
+    <value>Zmiana narzędzia...</value>
   </data>
   <data name="mainInfoUndo" xml:space="preserve">
-    <value>Undo last action</value>
-  </data>
-  <data name="mainInfoWaitIdle" xml:space="preserve">
-    <value>Wait for IDLE, then pause (</value>
-  </data>
-  <data name="mainLimits1" xml:space="preserve">
-    <value>Next move will exceed machine limits!\r</value>
-  </data>
-  <data name="mainLimits2" xml:space="preserve">
-    <value>\r\n Press 'Ok' to move anyway</value>
-  </data>
-  <data name="mainLimits3" xml:space="preserve">
-    <value>Graphics dimension exceeds machine dimension!\r\nTransformation is recommended to avoid damaging the machine!</value>
-  </data>
-  <data name="mainLoadError" xml:space="preserve">
-    <value>Streaming must be stopped before loading new file</value>
-  </data>
-  <data name="mainLoadError1" xml:space="preserve">
-    <value>File not found: '</value>
-  </data>
-  <data name="mainLoadError2" xml:space="preserve">
-    <value>URL extension is not 'svg' or 'dxf'\r\nTry SVG import anyway, but without setting 'Recent File' list.</value>
-  </data>
-  <data name="mainLoadError3" xml:space="preserve">
-    <value>File extension not supported '</value>
-  </data>
-  <data name="mainParseError" xml:space="preserve">
-    <value>Not a valid number</value>
-  </data>
-  <data name="mainParseError1" xml:space="preserve">
-    <value>Not a valid number, set line to 0</value>
-  </data>
-  <data name="mainPauseStream" xml:space="preserve">
-    <value>Pause streaming - press play</value>
-  </data>
-  <data name="mainPauseStream1" xml:space="preserve">
-    <value>The last job was paused at line</value>
-  </data>
-  <data name="mainPauseStream2" xml:space="preserve">
-    <value>Do you want to continue the job?</value>
+    <value>Cofnij ostatnią akcję</value>
   </data>
   <data name="mainProblem" xml:space="preserve">
     <value>Problem</value>
   </data>
   <data name="mainProgress" xml:space="preserve">
-    <value>Progress</value>
+    <value>Postęp</value>
   </data>
   <data name="mainQuit" xml:space="preserve">
-    <value>Quit GRBL-Plotter?</value>
+    <value>Wyjśc z GRBL-Plotter?</value>
   </data>
   <data name="mainSimuSpeed" xml:space="preserve">
-    <value>Speed</value>
+    <value>Prędkość</value>
   </data>
   <data name="mainSimuStart" xml:space="preserve">
-    <value>Start path simulation</value>
+    <value>Rozpocznij symulację ścieżki</value>
   </data>
   <data name="mainSimuStop" xml:space="preserve">
-    <value>Stop simulation</value>
-  </data>
-  <data name="mainStreamingActive" xml:space="preserve">
-    <value>Streaming is still active - press Stop and try again</value>
+    <value>Zatrzymaj symulację ścieżki</value>
   </data>
   <data name="mainToolChange" xml:space="preserve">
-    <value>Tool / Pen change!</value>
+    <value>Zmiana pióra / narzędzia!</value>
   </data>
   <data name="mainToolChange1" xml:space="preserve">
-    <value>Tool change needed:\r</value>
+    <value>Wymagana zmiana narzędzia:\r</value>
   </data>
   <data name="mainToolChange2" xml:space="preserve">
-    <value>\rpress start to continue.</value>
+    <value>\rWciśnij start, aby kontynuować</value>
   </data>
   <data name="mainUnknownCode" xml:space="preserve">
-    <value>Fixed some unknown G-Code:\r\n</value>
+    <value>Naprawiono nieznany G-Code:\r\n</value>
   </data>
   <data name="probingCancel1" xml:space="preserve">
-    <value>Probing canceled</value>
+    <value>Sondowanie anulowane</value>
   </data>
   <data name="probingCancel2" xml:space="preserve">
-    <value>Process last command</value>
+    <value>Przetwarzanie ostatniego polecenia</value>
   </data>
   <data name="probingCenter" xml:space="preserve">
-    <value>Move to center</value>
+    <value>Idź na środek</value>
   </data>
   <data name="probingFail1" xml:space="preserve">
-    <value>Fail: no contact</value>
+    <value>Niepowodzenie: brak kontaktu</value>
   </data>
   <data name="probingFail2" xml:space="preserve">
-    <value>Cancel probing</value>
+    <value>Anuluj sondowanie</value>
   </data>
   <data name="probingFinish" xml:space="preserve">
-    <value>Finish</value>
+    <value>Koniec</value>
   </data>
   <data name="probingProbingOn" xml:space="preserve">
-    <value>Probing on</value>
+    <value>Sondowanie włączone</value>
   </data>
   <data name="probingSetCenter" xml:space="preserve">
-    <value>Set center </value>
+    <value>Ustaw środek</value>
   </data>
   <data name="probingTimeOut" xml:space="preserve">
-    <value>Time out</value>
+    <value>Timeout</value>
   </data>
   <data name="serialClose" xml:space="preserve">
-    <value>Close</value>
+    <value>Zamknij</value>
   </data>
   <data name="serialCloseError" xml:space="preserve">
-    <value>Serial Connection is needed.\r\nClose main window instead</value>
+    <value>Wymagane jest połączenie szeregowe.\r\nZamiast tego zamknij okno główne</value>
   </data>
   <data name="serialOpen" xml:space="preserve">
-    <value>Open</value>
+    <value>Otwórz</value>
+  </data>
+  <data name="mainLimits1" xml:space="preserve">
+    <value>Następny ruch przekroczy limity urządzenia!\r</value>
+  </data>
+  <data name="mainLimits2" xml:space="preserve">
+    <value>\r\n Naciśnij przycisk "Ok", aby kontynuować ruch.</value>
+  </data>
+  <data name="mainLimits3" xml:space="preserve">
+    <value>Wymiar grafiki przekracza wymiar urządzenia!\r\nTransformacja jest zalecana, aby uniknąć uszkodzenia urządzenia!</value>
+  </data>
+  <data name="mainLoadError" xml:space="preserve">
+    <value>Przesyłanie strumieniowe musi zostać zatrzymane przed załadowaniem nowego pliku</value>
+  </data>
+  <data name="mainLoadError1" xml:space="preserve">
+    <value>Nie znaleziono pliku: '</value>
+  </data>
+  <data name="mainLoadError2" xml:space="preserve">
+    <value>Rozszerzeniem adresu URL nie jest 'svg' lub 'dxf'\r\nSpróbuj mimo to zaimportować SVG, ale bez ustawiania listy 'Ostatnie pliki'.</value>
+  </data>
+  <data name="mainLoadError3" xml:space="preserve">
+    <value>Rozszerzenie pliku nie jest obsługiwane '</value>
+  </data>
+  <data name="mainParseError" xml:space="preserve">
+    <value>Nieprawidłowy numer</value>
+  </data>
+  <data name="mainParseError1" xml:space="preserve">
+    <value>Nieprawidłowy numer, ustaw linię na 0</value>
+  </data>
+  <data name="mainPauseStream" xml:space="preserve">
+    <value>Wstrzymano przesyłanie strumieniowe - naciśnij 'Rozpocznij'</value>
+  </data>
+  <data name="mainPauseStream1" xml:space="preserve">
+    <value>Ostatnie zadanie zostało wstrzymane w wierszu</value>
+  </data>
+  <data name="mainPauseStream2" xml:space="preserve">
+    <value>Czy chcesz kontynuować pracę?</value>
+  </data>
+  <data name="mainStreamingActive" xml:space="preserve">
+    <value>Streaming jest nadal aktywny - naciśnij Stop i spróbuj ponownie.</value>
   </data>
   <data name="statusStripeCheckCOM" xml:space="preserve">
-    <value>Check COM-window for further information</value>
+    <value>Sprawdź okno COM, aby uzyskać więcej informacji</value>
   </data>
   <data name="statusStripeClickKeys" xml:space="preserve">
-    <value>Alt-Click to select Figure; Control-Click to select Group; Shift-Click to select Tile;Or click on XML-Tag</value>
+    <value>Alt-Click, aby zaznaczyć rysunek; Control-Click, aby zaznaczyć grupę; Shift-Click, aby zaznaczyć kafelek; lub kliknij na tag XML</value>
   </data>
   <data name="statusStripeClickKeys2" xml:space="preserve">
-    <value>Click: mark Figure; Control-Click: mark Group; Shift-Click: mark Tile;Alt-Click: show GCode line</value>
+    <value>Kliknięcie: zaznaczenie rysunku; Control-Click: zaznaczenie grupy; Shift-Click: zaznaczenie kafelka; Alt-Click: pokazanie linii kodu G-Code</value>
   </data>
   <data name="statusStripeDownKeys" xml:space="preserve">
-    <value>Control-Down to move selected Block one down; Control-Shift-Down to move to end</value>
+    <value>Control-Dół, aby przesunąć wybrany blok o jeden w dół; Control-Shift-Dół, aby przesunąć do końca</value>
   </data>
   <data name="statusStripeEditModeOn" xml:space="preserve">
-    <value>Edit mode on - click into 2D view to finish</value>
+    <value>Tryb edycji włączony - kliknij w widoku 2D, aby zakończyć</value>
   </data>
   <data name="statusStripeFileLoad" xml:space="preserve">
-    <value>File loading</value>
+    <value>Ładowanie pliku</value>
   </data>
   <data name="statusStripeFileNotFound" xml:space="preserve">
-    <value>File not found - remove from list</value>
+    <value>Nie znaleziono pliku - usuń z listy</value>
   </data>
   <data name="statusStripeGrblResetNeeded" xml:space="preserve">
-    <value>Perhaps serial port is locked and a restart of GRBL-Plotter is needed</value>
+    <value>Być może port szeregowy jest zablokowany i konieczne jest ponowne uruchomienie GRBL-Plotter</value>
   </data>
   <data name="statusStripeResetNeeded" xml:space="preserve">
-    <value>Probably a reset of the controller is needed</value>
+    <value>Prawdopodobnie potrzebny jest reset kontrolera</value>
   </data>
   <data name="statusStripeSelectionMoved" xml:space="preserve">
-    <value>Selection moved by</value>
+    <value>Wybór przesunięty o</value>
   </data>
   <data name="statusStripeStreamingStatusSaved" xml:space="preserve">
-    <value>Streaming status and G-Code are saved in '_lastProcessed.nc'. Continuation after program restart is possible.</value>
+    <value>Status przesyłania strumieniowego i G-Code są zapisywane w pliku "_lastProcessed.nc".
+Kontynuacja po ponownym uruchomieniu programu jest możliwa.</value>
   </data>
   <data name="statusStripeUpKeys" xml:space="preserve">
-    <value>Control-Up to move selected Block one up; Control-Shift-Up to move to top</value>
+    <value>Control-Góra, aby przesunąć wybrany blok o jeden w górę; Control-Shift-Góra, aby przesunąć na górę.</value>
   </data>
   <data name="statusStripeCheckUpdate" xml:space="preserve">
-    <value>'Check for new GRBL-Plotter release on GitHub' - can be disabled in [Setup - Program control] </value>
+    <value>"Sprawdź nowe wydanie GRBL-Plotter na GitHub" można wyłączyć w [Ustawienia-Sterowanie programem]</value>
   </data>
   <data name="cameraMountFix" xml:space="preserve">
-    <value>Fix mounted camera</value>
+    <value>Kamera zamontowana na stałe</value>
   </data>
   <data name="cameraMountXy" xml:space="preserve">
-    <value>Camera mounted on XY platform</value>
+    <value>Kamera zamontowana na platformie XY</value>
   </data>
   <data name="cameraMountXyz" xml:space="preserve">
-    <value>Camera mounted on Z axis</value>
+    <value>Kamera zamontowana na osi Z</value>
   </data>
   <data name="cameraSetRadius" xml:space="preserve">
-    <value>Set radius</value>
+    <value>Ustaw promień</value>
   </data>
   <data name="cameraScaling" xml:space="preserve">
-    <value>scaling</value>
+    <value>skalowanie</value>
   </data>
   <data name="cameraTeachRadius" xml:space="preserve">
-    <value>Teach circle radius of</value>
+    <value>Ustaw promień okręgu</value>
   </data>
   <data name="cameraForUpperPos" xml:space="preserve">
-    <value>for upper camera position</value>
+    <value>dla górnej pozycji kamery</value>
   </data>
   <data name="cameraForLowerPos" xml:space="preserve">
-    <value>for lower camera position</value>
+    <value>dla dolnej pozycji kamery</value>
   </data>
   <data name="cameraQuit" xml:space="preserve">
-    <value>Press 'ESC' to quit teaching.</value>
+    <value>Naciśnij "ESC", aby zakończyć uczenie.</value>
   </data>
   <data name="cameraSetMount" xml:space="preserve">
-    <value>Set camera mounting to</value>
+    <value>Ustaw mocowanie kamery na</value>
   </data>
   <data name="cameraSetCrossHairs" xml:space="preserve">
-    <value>Click to set cross hairs position</value>
+    <value>Kliknij, aby ustawić celownik</value>
   </data>
   <data name="cameraSetDistortion" xml:space="preserve">
-    <value>Teach four edges of the distorted rectangle (ratio 4:3). Press ESC to abort.</value>
+    <value>Ustaw cztery krawędzie zniekształconego prostokąta (proporcje 4:3). Naciśnij ESC, aby przerwać.</value>
   </data>
   <data name="cameraNoCamera" xml:space="preserve">
-    <value>No camera source found. Close and open this window after connecting a camera.</value>
+    <value>Nie znaleziono źródła kamery. Zamknij i otwórz to okno po podłączeniu kamery.</value>
   </data>
   <data name="cameraNextClick" xml:space="preserve">
-    <value>Next click will teach scaling\r\n of camera view to</value>
+    <value>Kolejne kliknięcie spowoduje ustawienie skalowania widoku kamery do</value>
   </data>
   <data name="cameraDistortionMarker" xml:space="preserve">
-    <value>Distortion marker</value>
+    <value>Znacznik zniekształcenia</value>
   </data>
   <data name="probing" xml:space="preserve">
-    <value>probing</value>
+    <value>sondowanie</value>
   </data>
   <data name="scan" xml:space="preserve">
-    <value>scan</value>
+    <value>skanowanie</value>
   </data>
   <data name="heightScan" xml:space="preserve">
-    <value>height scan</value>
+    <value>skanowanie wys.</value>
   </data>
   <data name="useCaseInfo" xml:space="preserve">
-    <value>A use-case is a presetted setup to adjust settings for a specific machine and/or application.\r\nThe settings of a selected and applied use-case also remain after the import of the graphics.\r\nA use-case needs to be stored in \data\usecases to be accessible.\r\nAlso exported machine-settings and sub-sets of it can be used.</value>
+    <value>Przypadek użycia to wstępnie skonfigurowana konfiguracja umożliwiająca dostosowanie ustawień dla określonej maszyny i/lub aplikacji. Ustawienia wybranego i zastosowanego przypadku użycia pozostaje również po zaimportowaniu grafiki. Przypadek użycia musi być przechowywany w folderze \data\usecases, aby był dostępny.</value>
   </data>
   <data name="useCaseInfo2" xml:space="preserve">
-    <value>Information</value>
+    <value>Informacja</value>
   </data>
   <data name="useCaseHeader1" xml:space="preserve">
-    <value>Use current settings (last loaded: '{0}')</value>
+    <value>Użyj bieżących ustawień (ostatnio załadowane: '{0}')</value>
   </data>
   <data name="useCaseHeader2" xml:space="preserve">
-    <value>Settings from '{0}'</value>
+    <value>Ustawienia z '{0}'</value>
   </data>
   <data name="useCaseItem0" xml:space="preserve">
-    <value>### Current settings ###</value>
+    <value>### Aktualne ustawienia ###</value>
   </data>
   <data name="codeMessage_1_unknowncommand" xml:space="preserve">
-    <value>Given command is unknown or not supported, start an issue on github to clarify.</value>
+    <value>Podane polecenie jest nieznane lub nieobsługiwane, rozpocznij zgłoszenie na github, aby wyjaśnić.</value>
   </data>
   <data name="codeMessage_2_highdataamount" xml:space="preserve">
-    <value>The amount of single, selectable, figures exceeds the given maximum an would decrease the performance. \r\nAll figures are summarized to one figure.\r\nThe limit can be adjusted in\r\n[Setup - Graphics import - Path import - Grouping and tools - Conversion concerning]</value>
+    <value>Ilość pojedynczych, wybieranych figur przekracza podane maksimum i zmniejsza wydajność.\r\nWszystkie figury są łączone do jednej figury. Limit można dostosować w [Konfiguracja - Import grafiki - Import ścieżki - Grupowanie i narzędzia].</value>
   </data>
   <data name="codeMessage_2_zdoubletang" xml:space="preserve">
-    <value>The z-axis is assigned twice: as tangential axis AND as Pen-up/down axis. \r\nThis will cause strange and unpredictable behavior.</value>
+    <value>Oś Z jest przypisana dwukrotnie: jako oś styczna ORAZ jako oś 'Pen-Up/Down'. \r\nSpowoduje to dziwne i nieprzewidywalne zachowanie.</value>
   </data>
   <data name="codeMessage_3_spindlestaysoff" xml:space="preserve">
-    <value>M3|M4 / M5 command will not be sent! -&gt; Spindle stays off. \r\nCheck option in \r\n[Setup - Graphics import - G-Code generation - Z axis Pen up/down translation] \r\n☐ Do not switch on spindle</value>
+    <value>Polecenie M3|M4/M5 nie zostanie wysłane! -&gt; Wrzeciono pozostaje wyłączone. \r\nSprawdź opcję w \r\n[Ustawienia - Import grafiki - Generowanie G-Code - Translacja 'Pen-Up/Down' na osi Z]. \r\n☐ Nie włączaj wrzeciona</value>
   </data>
   <data name="codeMessage_3_zdoubleaux" xml:space="preserve">
-    <value>The z-axis is assigned twice: as auxillary axis AND as Pen-up/down axis. \r\nThis will cause strange and unpredictable behavior.</value>
+    <value>Oś Z jest przypisana dwukrotnie: jako oś pomocnicza ORAZ jako oś 'Pen-Up/Down'. \r\nSpowoduje to dziwne i nieprzewidywalne zachowanie.</value>
   </data>
   <data name="codeMessage_3_zdoubletang" xml:space="preserve">
-    <value>The z-axis is assigned twice: as tangential axis AND as Pen-up/down axis. \r\nThis will cause strange and unpredictable behavior.</value>
+    <value>Oś Z jest przypisana dwukrotnie: jako oś styczna ORAZ jako oś 'Pen-Up/Down'. \r\nSpowoduje to dziwne i nieprzewidywalne zachowanie.</value>
   </data>
   <data name="codeMessage_attention" xml:space="preserve">
-    <value>Attention</value>
+    <value>Uwaga</value>
   </data>
   <data name="codeMessage_error" xml:space="preserve">
-    <value>Error</value>
+    <value>Błąd</value>
   </data>
   <data name="codeMessage_warning" xml:space="preserve">
-    <value>Warning</value>
+    <value>Ostrzeżenie</value>
   </data>
   <data name="codeMessage_1202_dontplot" xml:space="preserve">
-    <value>Layer is not visible or printing of layer is disabled. Check:
+    <value>Warstwa nie jest widoczna lub drukowanie warstwy jest wyłączone. Sprawdź:
 https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlist</value>
   </data>
   <data name="codeMessage_1302_dontplot" xml:space="preserve">
-    <value>Layer, path or object is not visible because of visibility attribute.</value>
-  </data>
-  <data name="codeMessage_1x02_dontplot" xml:space="preserve">
-    <value />
+    <value>Warstwa, ścieżka lub obiekt nie jest widoczny z powodu atrybutu widoczności.</value>
   </data>
   <data name="statusStripeButtonBlocked" xml:space="preserve">
-    <value>Custom button is blocked while streaming</value>
+    <value>Włąsny przycisk jest zablokowany podczas przesyłania</value>
   </data>
   <data name="statusStripeStreamingPause" xml:space="preserve">
-    <value>Streaming PAUSE</value>
+    <value>PAUZA przesyłania</value>
   </data>
   <data name="statusStripeStreamingContinue" xml:space="preserve">
-    <value>Continue streaming</value>
+    <value>Kontynuuj przesyłanie</value>
   </data>
   <data name="statusStripeStreamingCheck" xml:space="preserve">
-    <value>Check G-Code on grbl controller</value>
+    <value>Sprawdź G-Code na kontrolerze GRBL</value>
   </data>
   <data name="statusStripeStreamingStop" xml:space="preserve">
-    <value>Streaming STOP at line</value>
+    <value>STOP przesyłania na linii</value>
   </data>
   <data name="statusStripeStreamingStart" xml:space="preserve">
-    <value>Streaming START from line</value>
+    <value>START przesyłania od linii</value>
   </data>
   <data name="statusStripeStreamingFinish" xml:space="preserve">
-    <value>Streaming FINISHED after</value>
-  </data>
-  <data name="NewKey" xml:space="preserve">
-    <value />
+    <value>Przesyłanie ZAKOŃCZONE po</value>
   </data>
   <data name="codeMessage_1102_dontplot" xml:space="preserve">
-    <value>Layer, path or object is not visible because of visibility attribute.</value>
+    <value>Warstwa, ścieżka lub obiekt nie są widoczne z powodu atrybutu widoczności.</value>
   </data>
   <data name="codeMessage_1103_elementsupport" xml:space="preserve">
-    <value>An unsupported SVG-XML element was found.
-The resulting image may look different than expected.
-Possible workaround: try to convert object to path.</value>
+    <value>Znaleziono nieobsługiwany element SVG-XML.
+Obraz wynikowy może wyglądać inaczej niż oczekiwano.
+Możliwe obejście: spróbuj przekonwertować obiekt na ścieżkę.</value>
   </data>
   <data name="codeMessage_1104_elementuk" xml:space="preserve">
-    <value>An unknown SVG-XML element was found.
-The resulting image may look different than expected.
-Possible workaround: try to convert object to path.</value>
+    <value>Znaleziono nieobsługiwany element SVG-XML.
+Obraz wynikowy może wyglądać inaczej niż oczekiwano.
+Możliwe obejście: spróbuj przekonwertować obiekt na ścieżkę.</value>
   </data>
   <data name="codeMessage_1105_textpath" xml:space="preserve">
-    <value>An 'tspan' element within a 'textPath' element was found. This combination is not supported.
-The resulting image may look different than expected.
-Possible workaround: try to convert object to path.</value>
+    <value>Znaleziono element 'tspan' wewnątrz elementu 'textPath'. Ta kombinacja nie jest obsługiwana.
+Obraz wynikowy może wyglądać inaczej niż oczekiwano.
+Możliwe obejście: spróbuj przekonwertować obiekt na ścieżkę.</value>
   </data>
   <data name="codeMessage_1106_attributesupport" xml:space="preserve">
-    <value>An unsupported SVG-XML attribute was found.
-The resulting image may look different than expected.
-Possible workaround: try to convert object to path.</value>
+    <value>Znaleziono nieobsługiwany atrybut SVG-XML.
+Obraz wynikowy może wyglądać inaczej niż oczekiwano.
+Możliwe obejście: spróbuj przekonwertować obiekt na ścieżkę.</value>
+  </data>
+  <data name="mainInfoWaitIdle" xml:space="preserve">
+    <value>Poczekaj na IDLE, a następnie wstrzymaj (</value>
   </data>
   <data name="importMessageTitle" xml:space="preserve">
-    <value>Import information</value>
+    <value>importować informacje</value>
   </data>
   <data name="importMessageFileName" xml:space="preserve">
-    <value>File name:</value>
+    <value>Nazwa pliku:</value>
   </data>
   <data name="importMessageFilePath" xml:space="preserve">
-    <value>File path:</value>
+    <value>Ścieżka pliku:</value>
   </data>
   <data name="importMessageSVGMetaDataOk" xml:space="preserve">
-    <value>SVG Metadata processed</value>
+    <value>Przetworzono metadane SVG</value>
   </data>
   <data name="importMessageSVGMetaDataNok1" xml:space="preserve">
-    <value>SVG Metadata available, but not enabled!</value>
+    <value>Metadane SVG są dostępne, ale nie włączone!</value>
   </data>
   <data name="importMessageRelMovement" xml:space="preserve">
-    <value>Relative movements are enabled</value>
+    <value>Aktywowane ruchy względne (mogą prowadzić do problemów)</value>
   </data>
   <data name="importMessageAddGraphic" xml:space="preserve">
-    <value>Add imported graphic</value>
+    <value>Dodaj zaimportowaną grafikę</value>
   </data>
   <data name="importMessageToolTableNeeded" xml:space="preserve">
-    <value>Tool table needed, last loaded:</value>
+    <value>Wymagaj tabeli narzędzi, ostatnio załadowana:</value>
   </data>
   <data name="importMessageGeneralSettings" xml:space="preserve">
-    <value>General settings:</value>
+    <value>Ustawienia główne:</value>
   </data>
   <data name="importMessageXYFeed" xml:space="preserve">
-    <value>XY Feed</value>
+    <value>Posuw XY</value>
   </data>
   <data name="importMessageMaxXYFeed" xml:space="preserve">
-    <value>grbl X/Y Max. rate:</value>
+    <value>grbl X/Y maks. posuw:</value>
   </data>
   <data name="importMessageGcodeHeader" xml:space="preserve">
-    <value>GCode Header</value>
+    <value>Nagłówek GCode</value>
   </data>
   <data name="importMessageGcodeFooter" xml:space="preserve">
-    <value>GCode Footer</value>
+    <value>Stopka GCode</value>
   </data>
   <data name="importMessageLaserMode" xml:space="preserve">
-    <value>Lasermode: use M3S0 instead of M5 to switch off laser (or spindle)</value>
+    <value>Tryb lasera: użyj M3S0 zamiast M5, aby wyłączyć laser (lub wrzeciono)</value>
   </data>
   <data name="importMessageLaserModeNok" xml:space="preserve">
-    <value>grbl Laser mode $32 is not enabled</value>
+    <value>tryb laserowy grbl 32 USD nie jest aktywowany</value>
   </data>
   <data name="importMessageLaserPower" xml:space="preserve">
-    <value>Laser power</value>
+    <value>moc lasera</value>
   </data>
   <data name="importMessageSpindleSpeed" xml:space="preserve">
-    <value>Spindle Speed</value>
+    <value>Prędkość wrzeciona</value>
   </data>
   <data name="importMessageSpindleSpeedMax" xml:space="preserve">
-    <value>grbl Spindle speed Max.</value>
+    <value>prędkość obrotowa wrzeciona grbl max.</value>
   </data>
   <data name="importMessagePUD" xml:space="preserve">
-    <value>Pen up/down translation:</value>
+    <value>Tłumaczenie w górę/w dół pióra:</value>
   </data>
   <data name="importMessagePUDZ" xml:space="preserve">
-    <value>Z axis enabled</value>
+    <value>Oś Z włączona</value>
   </data>
   <data name="importMessagePUDZNoSpindle" xml:space="preserve">
-    <value>Spindle will not be switched on</value>
+    <value>Wrzeciono nie jest włączone</value>
   </data>
   <data name="importMessagePUDZFeed" xml:space="preserve">
-    <value>Z Feed</value>
+    <value>kanał Z</value>
   </data>
   <data name="importMessagePUDZUp" xml:space="preserve">
-    <value>Z Up (save)</value>
+    <value>Z Up (bezpieczna wysokość)</value>
   </data>
   <data name="importMessagePUDZDown" xml:space="preserve">
-    <value>Z Down (engrave)</value>
+    <value>Z W dół (grawerowanie)</value>
   </data>
   <data name="importMessagePUDZDepthPass" xml:space="preserve">
-    <value>Depth per pass</value>
+    <value>głębokość na przejście</value>
   </data>
   <data name="importMessagePUDZDepthPassNoZUp" xml:space="preserve">
-    <value>No Z up between passes</value>
+    <value>Brak Z Up między przejściami</value>
   </data>
   <data name="importMessagePUDZFeedMax" xml:space="preserve">
-    <value>grbl Z Max. Feed rate:</value>
+    <value>grbl Z maks. posuw:</value>
   </data>
   <data name="importMessagePUDPWM" xml:space="preserve">
-    <value>PWM enabled (Servo control)</value>
+    <value>PWM włączone (sterowanie serwomechanizmem)</value>
   </data>
   <data name="importMessagePUDPWMUp" xml:space="preserve">
-    <value>PWM Up</value>
+    <value>PWM wysoki</value>
   </data>
   <data name="importMessagePUDPWMZero" xml:space="preserve">
-    <value>PWM Zero</value>
+    <value>PWM zero</value>
   </data>
   <data name="importMessagePUDPWMDown" xml:space="preserve">
-    <value>PWM Down</value>
+    <value>PWM poniżej</value>
   </data>
   <data name="importMessagePUDSpindle" xml:space="preserve">
-    <value>Spindle on/off with Pen down/up</value>
+    <value>Włączanie/wyłączanie wrzeciona za pomocą pióra w dół/w górę</value>
   </data>
   <data name="importMessagePUDIndividual" xml:space="preserve">
-    <value>Individual commands</value>
+    <value>Indywidualne polecenia</value>
   </data>
   <data name="importMessagePUDPenUp" xml:space="preserve">
-    <value>Pen Up</value>
+    <value>pióro</value>
   </data>
   <data name="importMessagePUDPenDown" xml:space="preserve">
-    <value>Pen Down</value>
+    <value>ołówek w dół</value>
   </data>
   <data name="importMessageOption1" xml:space="preserve">
-    <value>Path interpretation:</value>
+    <value>Interpretacja ścieżki:</value>
   </data>
   <data name="importMessageOptionNodesOnly" xml:space="preserve">
-    <value>Nodes only - make dots at given coordinates</value>
+    <value>Tylko węzły — twórz punkty o określonych współrzędnych</value>
   </data>
   <data name="importMessageOptionZFromWidth" xml:space="preserve">
-    <value>Get Z value from line width (depth)</value>
+    <value>Znajduje wartość Z na podstawie szerokości (głębokości) linii.</value>
   </data>
   <data name="importMessageOptionSFromWidth" xml:space="preserve">
-    <value>Get S value from line width (laser power / spindle speed)</value>
+    <value>Określa wartość S na podstawie szerokości linii (moc lasera / prędkość wrzeciona).</value>
   </data>
   <data name="importMessageOptionCircleToDot" xml:space="preserve">
-    <value>Convert circle to point</value>
+    <value>Zamień okrąg na punkt</value>
   </data>
   <data name="importMessageOptionCircleRadiusToZ" xml:space="preserve">
-    <value>Convert circle-radius to Z value</value>
+    <value>Konwertuje promień okręgu na wartość z</value>
   </data>
   <data name="importMessageOption2" xml:space="preserve">
-    <value>Path modification:</value>
+    <value>zmiana ścieżki:</value>
   </data>
   <data name="importMessageOptionFilter" xml:space="preserve">
-    <value>Filter graphic elements (remove objects)</value>
+    <value>Filtruj elementy graficzne (usuwaj obiekty)</value>
   </data>
   <data name="importMessageOptionHatchFill" xml:space="preserve">
-    <value>Add Hatch fill</value>
+    <value>Dodaj wypełnienie kreskowania</value>
   </data>
   <data name="importMessageOptionClip" xml:space="preserve">
-    <value>Crop or tile graphic</value>
+    <value>Przytnij lub ułóż grafikę</value>
   </data>
   <data name="importMessageOptionTangential" xml:space="preserve">
-    <value>Tangential axis</value>
+    <value>oś styczna</value>
   </data>
   <data name="importMessageOptionDragTool" xml:space="preserve">
-    <value>Adapt path for Drag tool</value>
+    <value>Dostosuj ścieżkę dla narzędzia przeciągania</value>
   </data>
   <data name="importMessageOptionExtend" xml:space="preserve">
-    <value>Extend path (e.g. for laser cutting)</value>
+    <value>Wydłuż ścieżkę (np. do cięcia laserowego)</value>
   </data>
   <data name="importMessageOptionOutlineDevelop" xml:space="preserve">
-    <value>Outline development</value>
+    <value>ukończenie</value>
   </data>
   <data name="importMessageOptionWireBender" xml:space="preserve">
-    <value>Wire bender</value>
+    <value>giętarka do drutu</value>
   </data>
   <data name="importMessageOption1Link" xml:space="preserve">
-    <value>Possible path interpretations</value>
+    <value>Możliwe interpretacje ścieżki</value>
   </data>
   <data name="importMessageOption2Link" xml:space="preserve">
-    <value>Possible path modifications</value>
+    <value>Możliwe modyfikacje ścieżki</value>
   </data>
   <data name="importMessageSourceMetadata" xml:space="preserve">
-    <value>From Metadata</value>
+    <value>Z metadanych</value>
   </data>
   <data name="importMessageSourceTooltable" xml:space="preserve">
-    <value>From tool table</value>
+    <value>Z tabeli narzędzi</value>
   </data>
   <data name="importMessageSpindleDirection" xml:space="preserve">
-    <value>Laser mode / Spindle direction</value>
+    <value>Tryb lasera / Kierunek wrzeciona</value>
   </data>
   <data name="importMessageSpindleDirectionM3" xml:space="preserve">
-    <value>M3 (CW-clockwise) Constant Laser Power Mode</value>
+    <value>M3 (CW-zgodnie z ruchem wskazówek zegara) Tryb stałej mocy lasera</value>
   </data>
   <data name="importMessageSpindleDirectionM4" xml:space="preserve">
-    <value>M4 (CCW-counterclockwise) Dynamic Laser Power Mode</value>
+    <value>M4 (CCW-przeciwnie do ruchu wskazówek zegara) Tryb dynamicznej mocy lasera</value>
   </data>
   <data name="loadMessageContinue" xml:space="preserve">
-    <value>Continue last job?</value>
+    <value>Kontynuować ostatnią pracę?</value>
   </data>
   <data name="loadMessageLastProcessed" xml:space="preserve">
-    <value>Loading the last processed G-Code</value>
+    <value>Ładowanie ostatnio przetworzonego kodu G</value>
   </data>
   <data name="loadMessageLoad1" xml:space="preserve">
-    <value>Loading G-Code</value>
+    <value>Ładowanie kodu G</value>
   </data>
   <data name="loadMessageNoImport" xml:space="preserve">
-    <value>No import options applied!</value>
+    <value>Nie zastosowano żadnych opcji importu!</value>
   </data>
   <data name="loadMessageReplaceM34" xml:space="preserve">
-    <value>Load G-Code option: Replaces laser mode command M3 by M4</value>
+    <value>Opcja Load G-Code: Zastępuje polecenie trybu lasera M3 przez M4</value>
   </data>
   <data name="loadMessageReplaceM43" xml:space="preserve">
-    <value>Load G-Code option: Replaces laser mode command M4 by M3</value>
+    <value>Opcja Load G-Code: Zastępuje polecenie trybu lasera M4 przez M3</value>
   </data>
   <data name="loadMessageStreaming" xml:space="preserve">
-    <value>Streaming is active, can't load new file.</value>
+    <value>Przesyłanie strumieniowe jest aktywne, nie można załadować nowego pliku.</value>
   </data>
   <data name="loadMessageToolChange" xml:space="preserve">
-    <value>Automatic tool change is enabled</value>
+    <value>Automatyczna zmiana narzędzia jest włączona</value>
   </data>
   <data name="mainStartMissingFiles" xml:space="preserve">
-    <value>Missing program files,&lt;br&gt;please check the GRBL-Plotter installation</value>
+    <value>Brakujące pliki programu,&lt;br&gt;sprawdź instalację GRBL-Plotter</value>
   </data>
 </root>

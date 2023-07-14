@@ -247,7 +247,7 @@
     <value>Son iş satırda duraklatıldı</value>
   </data>
   <data name="mainPauseStream2" xml:space="preserve">
-    <value>,\r\nişe devam etmek istiyor musunuz?</value>
+    <value>İşe devam etmek istiyor musun?</value>
   </data>
   <data name="mainProblem" xml:space="preserve">
     <value>Sorun</value>
@@ -506,5 +506,203 @@ Olası geçici çözüm: nesneyi yola dönüştürmeyi deneyin.</value>
     <value>Desteklenmeyen bir SVG-XML özelliği bulundu.
 Ortaya çıkan görüntü beklenenden farklı görünebilir.
 Olası geçici çözüm: nesneyi yola dönüştürmeyi deneyin.</value>
+  </data>
+  <data name="importMessageTitle" xml:space="preserve">
+    <value>ithalat bilgileri</value>
+  </data>
+  <data name="importMessageFileName" xml:space="preserve">
+    <value>Dosya adı:</value>
+  </data>
+  <data name="importMessageFilePath" xml:space="preserve">
+    <value>Dosya yolu:</value>
+  </data>
+  <data name="importMessageSVGMetaDataOk" xml:space="preserve">
+    <value>İşlenen SVG meta verileri</value>
+  </data>
+  <data name="importMessageSVGMetaDataNok1" xml:space="preserve">
+    <value>SVG meta verileri mevcut ancak etkin değil!</value>
+  </data>
+  <data name="importMessageRelMovement" xml:space="preserve">
+    <value>Bağıl hareketler etkinleştirildi (sorunlara yol açabilir)</value>
+  </data>
+  <data name="importMessageAddGraphic" xml:space="preserve">
+    <value>İçe aktarılan grafiği ekle</value>
+  </data>
+  <data name="importMessageToolTableNeeded" xml:space="preserve">
+    <value>Alet tablosu gerektir, son yüklenen:</value>
+  </data>
+  <data name="importMessageGeneralSettings" xml:space="preserve">
+    <value>Genel Ayarlar:</value>
+  </data>
+  <data name="importMessageXYFeed" xml:space="preserve">
+    <value>XY beslemesi</value>
+  </data>
+  <data name="importMessageMaxXYFeed" xml:space="preserve">
+    <value>grbl X/Y maks. ilerleme:</value>
+  </data>
+  <data name="importMessageGcodeHeader" xml:space="preserve">
+    <value>GCode başlığı</value>
+  </data>
+  <data name="importMessageGcodeFooter" xml:space="preserve">
+    <value>GCode altbilgisi</value>
+  </data>
+  <data name="importMessageLaserMode" xml:space="preserve">
+    <value>Lazer modu: lazeri (veya iş milini) kapatmak için M5 yerine M3S0 kullanın</value>
+  </data>
+  <data name="importMessageLaserModeNok" xml:space="preserve">
+    <value>grbl lazer modu $32 aktif değil</value>
+  </data>
+  <data name="importMessageLaserPower" xml:space="preserve">
+    <value>lazer gücü</value>
+  </data>
+  <data name="importMessageSpindleSpeed" xml:space="preserve">
+    <value>iş mili hızı</value>
+  </data>
+  <data name="importMessageSpindleSpeedMax" xml:space="preserve">
+    <value>grbl iş mili hızı maks.</value>
+  </data>
+  <data name="importMessagePUD" xml:space="preserve">
+    <value>Kalem Yukarı/Aşağı Çeviri:</value>
+  </data>
+  <data name="importMessagePUDZ" xml:space="preserve">
+    <value>Z ekseni etkin</value>
+  </data>
+  <data name="importMessagePUDZNoSpindle" xml:space="preserve">
+    <value>Mil açık değil</value>
+  </data>
+  <data name="importMessagePUDZFeed" xml:space="preserve">
+    <value>Z beslemesi</value>
+  </data>
+  <data name="importMessagePUDZUp" xml:space="preserve">
+    <value>Z Yukarı (güvenli yükseklik)</value>
+  </data>
+  <data name="importMessagePUDZDown" xml:space="preserve">
+    <value>Z Aşağı (gravür)</value>
+  </data>
+  <data name="importMessagePUDZDepthPass" xml:space="preserve">
+    <value>geçiş başına derinlik</value>
+  </data>
+  <data name="importMessagePUDZDepthPassNoZUp" xml:space="preserve">
+    <value>Geçişler arasında Z Yukarı yok</value>
+  </data>
+  <data name="importMessagePUDZFeedMax" xml:space="preserve">
+    <value>grbl Z maks. ilerleme:</value>
+  </data>
+  <data name="importMessagePUDPWM" xml:space="preserve">
+    <value>PWM etkin (servo kontrol)</value>
+  </data>
+  <data name="importMessagePUDPWMUp" xml:space="preserve">
+    <value>PWM yüksek</value>
+  </data>
+  <data name="importMessagePUDPWMZero" xml:space="preserve">
+    <value>PWM sıfır</value>
+  </data>
+  <data name="importMessagePUDPWMDown" xml:space="preserve">
+    <value>aşağıda PWM</value>
+  </data>
+  <data name="importMessagePUDSpindle" xml:space="preserve">
+    <value>Kalem aşağı/yukarı ile iş milini açın/kapatın</value>
+  </data>
+  <data name="importMessagePUDIndividual" xml:space="preserve">
+    <value>Bireysel komutlar</value>
+  </data>
+  <data name="importMessagePUDPenUp" xml:space="preserve">
+    <value>kaleme almak</value>
+  </data>
+  <data name="importMessagePUDPenDown" xml:space="preserve">
+    <value>aşağı kalem</value>
+  </data>
+  <data name="importMessageOption1" xml:space="preserve">
+    <value>Yol yorumu:</value>
+  </data>
+  <data name="importMessageOptionNodesOnly" xml:space="preserve">
+    <value>Yalnızca düğümler - belirli koordinatlarda noktalar oluşturun</value>
+  </data>
+  <data name="importMessageOptionZFromWidth" xml:space="preserve">
+    <value>Çizgi genişliğinden (derinliğinden) Z değerini bulur.</value>
+  </data>
+  <data name="importMessageOptionSFromWidth" xml:space="preserve">
+    <value>Çizgi genişliğinden (lazer gücü / mil hızı) S değerini belirler.</value>
+  </data>
+  <data name="importMessageOptionCircleToDot" xml:space="preserve">
+    <value>Daireyi noktaya dönüştür</value>
+  </data>
+  <data name="importMessageOptionCircleRadiusToZ" xml:space="preserve">
+    <value>Daire yarıçapını z değerine dönüştürür</value>
+  </data>
+  <data name="importMessageOption2" xml:space="preserve">
+    <value>yol değişikliği:</value>
+  </data>
+  <data name="importMessageOptionFilter" xml:space="preserve">
+    <value>Grafik öğelerini filtrele (nesneleri kaldır)</value>
+  </data>
+  <data name="importMessageOptionHatchFill" xml:space="preserve">
+    <value>Kapak dolgusu ekle</value>
+  </data>
+  <data name="importMessageOptionClip" xml:space="preserve">
+    <value>Grafiği kırpın veya döşeyin</value>
+  </data>
+  <data name="importMessageOptionTangential" xml:space="preserve">
+    <value>teğet eksen</value>
+  </data>
+  <data name="importMessageOptionDragTool" xml:space="preserve">
+    <value>Sürükleme aracı için yolu özelleştirin</value>
+  </data>
+  <data name="importMessageOptionExtend" xml:space="preserve">
+    <value>Yolu uzat (örn. lazer kesim için)</value>
+  </data>
+  <data name="importMessageOptionOutlineDevelop" xml:space="preserve">
+    <value>tamamlama</value>
+  </data>
+  <data name="importMessageOptionWireBender" xml:space="preserve">
+    <value>tel bükücü</value>
+  </data>
+  <data name="importMessageOption1Link" xml:space="preserve">
+    <value>Olası yol yorumları</value>
+  </data>
+  <data name="importMessageOption2Link" xml:space="preserve">
+    <value>Olası yol değişiklikleri</value>
+  </data>
+  <data name="importMessageSourceMetadata" xml:space="preserve">
+    <value>Meta verilerden</value>
+  </data>
+  <data name="importMessageSourceTooltable" xml:space="preserve">
+    <value>Alet tablosundan</value>
+  </data>
+  <data name="importMessageSpindleDirection" xml:space="preserve">
+    <value>Lazer modu / Mil yönü</value>
+  </data>
+  <data name="importMessageSpindleDirectionM3" xml:space="preserve">
+    <value>M3 (saat yönünde) Sabit Lazer Gücü Modu</value>
+  </data>
+  <data name="importMessageSpindleDirectionM4" xml:space="preserve">
+    <value>M4 (CCW-saat yönünün tersine) Dinamik Lazer Gücü Modu</value>
+  </data>
+  <data name="loadMessageContinue" xml:space="preserve">
+    <value>Son işe devam edilsin mi?</value>
+  </data>
+  <data name="loadMessageLastProcessed" xml:space="preserve">
+    <value>Son işlenen G-Kodu yükleniyor</value>
+  </data>
+  <data name="loadMessageLoad1" xml:space="preserve">
+    <value>G Kodu Yükleniyor</value>
+  </data>
+  <data name="loadMessageNoImport" xml:space="preserve">
+    <value>İçe aktarma seçeneği uygulanmadı!</value>
+  </data>
+  <data name="loadMessageReplaceM34" xml:space="preserve">
+    <value>G Kodu Yükle seçeneği: Lazer modu komutu M3'ü M4 ile değiştirir</value>
+  </data>
+  <data name="loadMessageReplaceM43" xml:space="preserve">
+    <value>G Kodu Yükle seçeneği: Lazer modu komutu M4'ü M3 ile değiştirir</value>
+  </data>
+  <data name="loadMessageStreaming" xml:space="preserve">
+    <value>Akış etkin, yeni dosya yüklenemiyor.</value>
+  </data>
+  <data name="loadMessageToolChange" xml:space="preserve">
+    <value>Otomatik takım değiştirme etkinleştirildi</value>
+  </data>
+  <data name="mainStartMissingFiles" xml:space="preserve">
+    <value>Eksik program dosyaları,&lt;br&gt;lütfen GRBL-Plotter kurulumunu kontrol edin</value>
   </data>
 </root>

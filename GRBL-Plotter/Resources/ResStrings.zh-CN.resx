@@ -196,7 +196,7 @@
     <value>上一条作业在行暂停</value>
   </data>
   <data name="mainPauseStream2" xml:space="preserve">
-    <value>，\r\n您要继续工作吗？</value>
+    <value>你想继续这份工作吗？</value>
   </data>
   <data name="mainStreamingActive" xml:space="preserve">
     <value>流媒体仍处于活动状态-按“停止”，然后重试</value>
@@ -494,5 +494,203 @@
     <value>找到了不受支持的 SVG-XML 属性。
 生成的图像可能看起来与预期不同。
 可能的解决方法：尝试将对象转换为路径。</value>
+  </data>
+  <data name="importMessageTitle" xml:space="preserve">
+    <value>进口信息</value>
+  </data>
+  <data name="importMessageFileName" xml:space="preserve">
+    <value>文件名：</value>
+  </data>
+  <data name="importMessageFilePath" xml:space="preserve">
+    <value>文件路径：</value>
+  </data>
+  <data name="importMessageSVGMetaDataOk" xml:space="preserve">
+    <value>已处理 SVG 元数据</value>
+  </data>
+  <data name="importMessageSVGMetaDataNok1" xml:space="preserve">
+    <value>SVG 元数据可用但未启用！</value>
+  </data>
+  <data name="importMessageRelMovement" xml:space="preserve">
+    <value>相对运动被激活（可能导致问题）</value>
+  </data>
+  <data name="importMessageAddGraphic" xml:space="preserve">
+    <value>添加导入的图形</value>
+  </data>
+  <data name="importMessageToolTableNeeded" xml:space="preserve">
+    <value>需要工具表，最后加载：</value>
+  </data>
+  <data name="importMessageGeneralSettings" xml:space="preserve">
+    <value>常规设置：</value>
+  </data>
+  <data name="importMessageXYFeed" xml:space="preserve">
+    <value>XY进给</value>
+  </data>
+  <data name="importMessageMaxXYFeed" xml:space="preserve">
+    <value>grbl X/Y 最大进给：</value>
+  </data>
+  <data name="importMessageGcodeHeader" xml:space="preserve">
+    <value>G代码头</value>
+  </data>
+  <data name="importMessageGcodeFooter" xml:space="preserve">
+    <value>G代码页脚</value>
+  </data>
+  <data name="importMessageLaserMode" xml:space="preserve">
+    <value>激光模式：使用 M3S0 代替 M5 关闭激光（或主轴）</value>
+  </data>
+  <data name="importMessageLaserModeNok" xml:space="preserve">
+    <value>grbl 激光模式 $32 未激活</value>
+  </data>
+  <data name="importMessageLaserPower" xml:space="preserve">
+    <value>激光功率</value>
+  </data>
+  <data name="importMessageSpindleSpeed" xml:space="preserve">
+    <value>主轴转速</value>
+  </data>
+  <data name="importMessageSpindleSpeedMax" xml:space="preserve">
+    <value>grbl 主轴最高转速</value>
+  </data>
+  <data name="importMessagePUD" xml:space="preserve">
+    <value>笔向上/向下翻译：</value>
+  </data>
+  <data name="importMessagePUDZ" xml:space="preserve">
+    <value>启用 Z 轴</value>
+  </data>
+  <data name="importMessagePUDZNoSpindle" xml:space="preserve">
+    <value>主轴未开启</value>
+  </data>
+  <data name="importMessagePUDZFeed" xml:space="preserve">
+    <value>Z进给</value>
+  </data>
+  <data name="importMessagePUDZUp" xml:space="preserve">
+    <value>Z 向上（安全高度）</value>
+  </data>
+  <data name="importMessagePUDZDown" xml:space="preserve">
+    <value>Z 向下（雕刻）</value>
+  </data>
+  <data name="importMessagePUDZDepthPass" xml:space="preserve">
+    <value>单程深度</value>
+  </data>
+  <data name="importMessagePUDZDepthPassNoZUp" xml:space="preserve">
+    <value>两次通过之间没有 Z Up</value>
+  </data>
+  <data name="importMessagePUDZFeedMax" xml:space="preserve">
+    <value>grbl Z 最大进给：</value>
+  </data>
+  <data name="importMessagePUDPWM" xml:space="preserve">
+    <value>启用 PWM（伺服控制）</value>
+  </data>
+  <data name="importMessagePUDPWMUp" xml:space="preserve">
+    <value>脉宽调制高</value>
+  </data>
+  <data name="importMessagePUDPWMZero" xml:space="preserve">
+    <value>脉宽调零</value>
+  </data>
+  <data name="importMessagePUDPWMDown" xml:space="preserve">
+    <value>下面的脉宽调制</value>
+  </data>
+  <data name="importMessagePUDSpindle" xml:space="preserve">
+    <value>用笔向下/向上打开/关闭主轴</value>
+  </data>
+  <data name="importMessagePUDIndividual" xml:space="preserve">
+    <value>个别命令</value>
+  </data>
+  <data name="importMessagePUDPenUp" xml:space="preserve">
+    <value>起笔</value>
+  </data>
+  <data name="importMessagePUDPenDown" xml:space="preserve">
+    <value>落笔</value>
+  </data>
+  <data name="importMessageOption1" xml:space="preserve">
+    <value>路径解读：</value>
+  </data>
+  <data name="importMessageOptionNodesOnly" xml:space="preserve">
+    <value>仅节点 - 在特定坐标处创建点</value>
+  </data>
+  <data name="importMessageOptionZFromWidth" xml:space="preserve">
+    <value>从线宽（深度）中找到 Z 值。</value>
+  </data>
+  <data name="importMessageOptionSFromWidth" xml:space="preserve">
+    <value>根据线宽（激光功率/主轴速度）确定 S 值。</value>
+  </data>
+  <data name="importMessageOptionCircleToDot" xml:space="preserve">
+    <value>将圆转换为点</value>
+  </data>
+  <data name="importMessageOptionCircleRadiusToZ" xml:space="preserve">
+    <value>将圆半径转换为 ​​z 值</value>
+  </data>
+  <data name="importMessageOption2" xml:space="preserve">
+    <value>路径变化：</value>
+  </data>
+  <data name="importMessageOptionFilter" xml:space="preserve">
+    <value>过滤图形元素（移除对象）</value>
+  </data>
+  <data name="importMessageOptionHatchFill" xml:space="preserve">
+    <value>添加影线填充</value>
+  </data>
+  <data name="importMessageOptionClip" xml:space="preserve">
+    <value>裁剪或平铺图形</value>
+  </data>
+  <data name="importMessageOptionTangential" xml:space="preserve">
+    <value>切线轴</value>
+  </data>
+  <data name="importMessageOptionDragTool" xml:space="preserve">
+    <value>自定义拖动工具的路径</value>
+  </data>
+  <data name="importMessageOptionExtend" xml:space="preserve">
+    <value>延长路径（例如用于激光切割）</value>
+  </data>
+  <data name="importMessageOptionOutlineDevelop" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="importMessageOptionWireBender" xml:space="preserve">
+    <value>弯线机</value>
+  </data>
+  <data name="importMessageOption1Link" xml:space="preserve">
+    <value>可能的路径解释</value>
+  </data>
+  <data name="importMessageOption2Link" xml:space="preserve">
+    <value>可能的路径修改</value>
+  </data>
+  <data name="importMessageSourceMetadata" xml:space="preserve">
+    <value>来自元数据</value>
+  </data>
+  <data name="importMessageSourceTooltable" xml:space="preserve">
+    <value>从工具表</value>
+  </data>
+  <data name="importMessageSpindleDirection" xml:space="preserve">
+    <value>激光模式/主轴方向</value>
+  </data>
+  <data name="importMessageSpindleDirectionM3" xml:space="preserve">
+    <value>M3（顺时针）恒定激光功率模式</value>
+  </data>
+  <data name="importMessageSpindleDirectionM4" xml:space="preserve">
+    <value>M4（CCW-逆时针）动态激光功率模式</value>
+  </data>
+  <data name="loadMessageContinue" xml:space="preserve">
+    <value>继续上一份工作？</value>
+  </data>
+  <data name="loadMessageLastProcessed" xml:space="preserve">
+    <value>加载最后处理的 G 代码</value>
+  </data>
+  <data name="loadMessageLoad1" xml:space="preserve">
+    <value>加载 G 代码</value>
+  </data>
+  <data name="loadMessageNoImport" xml:space="preserve">
+    <value>没有应用导入选项！</value>
+  </data>
+  <data name="loadMessageReplaceM34" xml:space="preserve">
+    <value>加载 G 代码选项：用 M4 替换激光模式命令 M3</value>
+  </data>
+  <data name="loadMessageReplaceM43" xml:space="preserve">
+    <value>加载 G 代码选项：用 M3 替换激光模式命令 M4</value>
+  </data>
+  <data name="loadMessageStreaming" xml:space="preserve">
+    <value>流式传输处于活动状态，无法加载新文件。</value>
+  </data>
+  <data name="loadMessageToolChange" xml:space="preserve">
+    <value>启用自动换刀</value>
+  </data>
+  <data name="mainStartMissingFiles" xml:space="preserve">
+    <value>缺少程序文件，&lt;br&gt;请检查 GRBL-Plotter 安装</value>
   </data>
 </root>

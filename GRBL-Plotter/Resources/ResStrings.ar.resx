@@ -214,7 +214,7 @@
     <value>تم إيقاف الوظيفة الأخيرة في الطابور</value>
   </data>
   <data name="mainPauseStream2" xml:space="preserve">
-    <value>، \ r \ n هل تريد مواصلة المهمة؟</value>
+    <value>هل تريد مواصلة العمل؟</value>
   </data>
   <data name="mainProblem" xml:space="preserve">
     <value>مشكلة</value>
@@ -494,5 +494,203 @@
     <value>تم العثور على سمة SVG-XML غير مدعومة.
 قد تبدو الصورة الناتجة مختلفة عما هو متوقع.
 الحل المحتمل: حاول تحويل الكائن إلى مسار.</value>
+  </data>
+  <data name="importMessageTitle" xml:space="preserve">
+    <value>معلومات الاستيراد</value>
+  </data>
+  <data name="importMessageFileName" xml:space="preserve">
+    <value>اسم الملف:</value>
+  </data>
+  <data name="importMessageFilePath" xml:space="preserve">
+    <value>مسار الملف:</value>
+  </data>
+  <data name="importMessageSVGMetaDataOk" xml:space="preserve">
+    <value>معالجة بيانات SVG الوصفية</value>
+  </data>
+  <data name="importMessageSVGMetaDataNok1" xml:space="preserve">
+    <value>تتوفر بيانات SVG الوصفية ولكنها غير ممكّنة!</value>
+  </data>
+  <data name="importMessageRelMovement" xml:space="preserve">
+    <value>تنشيط الحركات النسبية (يمكن أن يؤدي إلى مشاكل)</value>
+  </data>
+  <data name="importMessageAddGraphic" xml:space="preserve">
+    <value>أضف الرسم الذي تم استيراده</value>
+  </data>
+  <data name="importMessageToolTableNeeded" xml:space="preserve">
+    <value>مطلوب جدول الأدوات ، آخر تحميل:</value>
+  </data>
+  <data name="importMessageGeneralSettings" xml:space="preserve">
+    <value>الاعدادات العامة:</value>
+  </data>
+  <data name="importMessageXYFeed" xml:space="preserve">
+    <value>تغذية XY</value>
+  </data>
+  <data name="importMessageMaxXYFeed" xml:space="preserve">
+    <value>تغذية grbl X / Y كحد أقصى:</value>
+  </data>
+  <data name="importMessageGcodeHeader" xml:space="preserve">
+    <value>رأس GCode</value>
+  </data>
+  <data name="importMessageGcodeFooter" xml:space="preserve">
+    <value>تذييل GCode</value>
+  </data>
+  <data name="importMessageLaserMode" xml:space="preserve">
+    <value>وضع الليزر: استخدم M3S0 بدلاً من M5 لإيقاف تشغيل الليزر (أو المغزل)</value>
+  </data>
+  <data name="importMessageLaserModeNok" xml:space="preserve">
+    <value>لم يتم تنشيط وضع الليزر grbl 32 دولارًا</value>
+  </data>
+  <data name="importMessageLaserPower" xml:space="preserve">
+    <value>طاقة الليزر</value>
+  </data>
+  <data name="importMessageSpindleSpeed" xml:space="preserve">
+    <value>سرعة المغزل</value>
+  </data>
+  <data name="importMessageSpindleSpeedMax" xml:space="preserve">
+    <value>أقصى سرعة مغزل grbl.</value>
+  </data>
+  <data name="importMessagePUD" xml:space="preserve">
+    <value>ترجمة القلم لأعلى / لأسفل:</value>
+  </data>
+  <data name="importMessagePUDZ" xml:space="preserve">
+    <value>تنشيط المحور Z</value>
+  </data>
+  <data name="importMessagePUDZNoSpindle" xml:space="preserve">
+    <value>المغزل ليس قيد التشغيل</value>
+  </data>
+  <data name="importMessagePUDZFeed" xml:space="preserve">
+    <value>تغذية Z</value>
+  </data>
+  <data name="importMessagePUDZUp" xml:space="preserve">
+    <value>Z Up (ارتفاع آمن)</value>
+  </data>
+  <data name="importMessagePUDZDown" xml:space="preserve">
+    <value>Z Down (نقش)</value>
+  </data>
+  <data name="importMessagePUDZDepthPass" xml:space="preserve">
+    <value>العمق لكل تمريرة</value>
+  </data>
+  <data name="importMessagePUDZDepthPassNoZUp" xml:space="preserve">
+    <value>لا Z يصل بين التمريرات</value>
+  </data>
+  <data name="importMessagePUDZFeedMax" xml:space="preserve">
+    <value>grbl Z max تغذية:</value>
+  </data>
+  <data name="importMessagePUDPWM" xml:space="preserve">
+    <value>تمكين PWM (تحكم مؤازر)</value>
+  </data>
+  <data name="importMessagePUDPWMUp" xml:space="preserve">
+    <value>ارتفاع PWM</value>
+  </data>
+  <data name="importMessagePUDPWMZero" xml:space="preserve">
+    <value>PWM صفر</value>
+  </data>
+  <data name="importMessagePUDPWMDown" xml:space="preserve">
+    <value>PWM أدناه</value>
+  </data>
+  <data name="importMessagePUDSpindle" xml:space="preserve">
+    <value>قم بتشغيل / إيقاف المغزل باستخدام القلم لأسفل / لأعلى</value>
+  </data>
+  <data name="importMessagePUDIndividual" xml:space="preserve">
+    <value>أوامر فردية</value>
+  </data>
+  <data name="importMessagePUDPenUp" xml:space="preserve">
+    <value>قلم يصل</value>
+  </data>
+  <data name="importMessageOption1" xml:space="preserve">
+    <value>تفسير المسار:</value>
+  </data>
+  <data name="importMessageOptionNodesOnly" xml:space="preserve">
+    <value>العقد فقط - أنشئ نقاطًا عند إحداثيات محددة</value>
+  </data>
+  <data name="importMessageOptionZFromWidth" xml:space="preserve">
+    <value>يكتشف قيمة Z من عرض الخط (العمق).</value>
+  </data>
+  <data name="importMessageOptionSFromWidth" xml:space="preserve">
+    <value>يحدد قيمة S من عرض الخط (قوة الليزر / سرعة المغزل).</value>
+  </data>
+  <data name="importMessageOptionCircleToDot" xml:space="preserve">
+    <value>تحويل الدائرة إلى نقطة</value>
+  </data>
+  <data name="importMessageOptionCircleRadiusToZ" xml:space="preserve">
+    <value>تحويل نصف قطر الدائرة إلى قيمة z</value>
+  </data>
+  <data name="importMessageOption2" xml:space="preserve">
+    <value>تغيير المسار:</value>
+  </data>
+  <data name="importMessageOptionFilter" xml:space="preserve">
+    <value>تصفية العناصر الرسومية (إزالة الكائنات)</value>
+  </data>
+  <data name="importMessageOptionHatchFill" xml:space="preserve">
+    <value>إضافة فتحة التعبئة</value>
+  </data>
+  <data name="importMessageOptionClip" xml:space="preserve">
+    <value>رسم المحاصيل أو البلاط</value>
+  </data>
+  <data name="importMessageOptionTangential" xml:space="preserve">
+    <value>المحور العرضي</value>
+  </data>
+  <data name="importMessageOptionDragTool" xml:space="preserve">
+    <value>تخصيص مسار لأداة السحب</value>
+  </data>
+  <data name="importMessageOptionExtend" xml:space="preserve">
+    <value>تمديد المسار (على سبيل المثال للقطع بالليزر)</value>
+  </data>
+  <data name="importMessageOptionOutlineDevelop" xml:space="preserve">
+    <value>انتهاء</value>
+  </data>
+  <data name="importMessageOptionWireBender" xml:space="preserve">
+    <value>بندر الأسلاك</value>
+  </data>
+  <data name="importMessagePUDPenDown" xml:space="preserve">
+    <value>القلم لأسفل</value>
+  </data>
+  <data name="importMessageOption1Link" xml:space="preserve">
+    <value>تفسيرات المسار الممكنة</value>
+  </data>
+  <data name="importMessageOption2Link" xml:space="preserve">
+    <value>تعديلات المسار الممكنة</value>
+  </data>
+  <data name="importMessageSourceMetadata" xml:space="preserve">
+    <value>من البيانات الوصفية</value>
+  </data>
+  <data name="importMessageSourceTooltable" xml:space="preserve">
+    <value>من جدول الأدوات</value>
+  </data>
+  <data name="importMessageSpindleDirection" xml:space="preserve">
+    <value>وضع الليزر / اتجاه المغزل</value>
+  </data>
+  <data name="importMessageSpindleDirectionM3" xml:space="preserve">
+    <value>M3 (CW باتجاه عقارب الساعة) وضع طاقة الليزر الثابت</value>
+  </data>
+  <data name="importMessageSpindleDirectionM4" xml:space="preserve">
+    <value>M4 (CCW - عكس اتجاه عقارب الساعة) وضع طاقة الليزر الديناميكي</value>
+  </data>
+  <data name="loadMessageContinue" xml:space="preserve">
+    <value>هل تريد متابعة آخر وظيفة؟</value>
+  </data>
+  <data name="loadMessageLastProcessed" xml:space="preserve">
+    <value>تحميل آخر معالج G-Code</value>
+  </data>
+  <data name="loadMessageLoad1" xml:space="preserve">
+    <value>تحميل G-Code</value>
+  </data>
+  <data name="loadMessageNoImport" xml:space="preserve">
+    <value>لا توجد خيارات استيراد مطبقة!</value>
+  </data>
+  <data name="loadMessageReplaceM34" xml:space="preserve">
+    <value>خيار تحميل G-Code: يستبدل أمر وضع الليزر M3 بـ M4</value>
+  </data>
+  <data name="loadMessageReplaceM43" xml:space="preserve">
+    <value>خيار تحميل G-Code: يستبدل أمر وضع الليزر M4 بـ M3</value>
+  </data>
+  <data name="loadMessageStreaming" xml:space="preserve">
+    <value>البث نشط ، لا يمكن تحميل ملف جديد.</value>
+  </data>
+  <data name="loadMessageToolChange" xml:space="preserve">
+    <value>تم تمكين تغيير الأداة التلقائي</value>
+  </data>
+  <data name="mainStartMissingFiles" xml:space="preserve">
+    <value>ملفات البرنامج المفقودة ، &lt;br&gt; يرجى التحقق من تثبيت GRBL-Plotter</value>
   </data>
 </root>

@@ -214,7 +214,7 @@
     <value>最後のジョブはラインで一時停止されました</value>
   </data>
   <data name="mainPauseStream2" xml:space="preserve">
-    <value>、\ r \ nジョブを続行しますか？</value>
+    <value>仕事を続けますか?</value>
   </data>
   <data name="mainProblem" xml:space="preserve">
     <value>問題</value>
@@ -494,5 +494,203 @@ https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlistを�
     <value>サポートされていない SVG-XML 属性が見つかりました。
 結果のイメージは、予想とは異なる場合があります。
 考えられる回避策: オブジェクトをパスに変換してみてください。</value>
+  </data>
+  <data name="importMessageTitle" xml:space="preserve">
+    <value>輸入情報</value>
+  </data>
+  <data name="importMessageFileName" xml:space="preserve">
+    <value>ファイル名：</value>
+  </data>
+  <data name="importMessageFilePath" xml:space="preserve">
+    <value>ファイルパス：</value>
+  </data>
+  <data name="importMessageSVGMetaDataOk" xml:space="preserve">
+    <value>SVGメタデータが処理されました</value>
+  </data>
+  <data name="importMessageSVGMetaDataNok1" xml:space="preserve">
+    <value>SVG メタデータは利用可能ですが、アクティブ化されていません。</value>
+  </data>
+  <data name="importMessageRelMovement" xml:space="preserve">
+    <value>相対的な動きがアクティブになる (問題が発生する可能性があります)</value>
+  </data>
+  <data name="importMessageAddGraphic" xml:space="preserve">
+    <value>インポートしたグラフィックを追加する</value>
+  </data>
+  <data name="importMessageToolTableNeeded" xml:space="preserve">
+    <value>ツール テーブルが必要です。最後にロードされました:</value>
+  </data>
+  <data name="importMessageGeneralSettings" xml:space="preserve">
+    <value>一般設定：</value>
+  </data>
+  <data name="importMessageXYFeed" xml:space="preserve">
+    <value>XY送り</value>
+  </data>
+  <data name="importMessageMaxXYFeed" xml:space="preserve">
+    <value>grbl X/Y 最大送り:</value>
+  </data>
+  <data name="importMessageGcodeHeader" xml:space="preserve">
+    <value>GCodeヘッダー</value>
+  </data>
+  <data name="importMessageGcodeFooter" xml:space="preserve">
+    <value>Gコードフッター</value>
+  </data>
+  <data name="importMessageLaserMode" xml:space="preserve">
+    <value>レーザー モード: M5 の代わりに M3S0 を使用してレーザー (またはスピンドル) をオフにします。</value>
+  </data>
+  <data name="importMessageLaserModeNok" xml:space="preserve">
+    <value>grbl レーザー モード $32 がアクティブ化されていません</value>
+  </data>
+  <data name="importMessageLaserPower" xml:space="preserve">
+    <value>レーザー出力</value>
+  </data>
+  <data name="importMessageSpindleSpeed" xml:space="preserve">
+    <value>主軸速度</value>
+  </data>
+  <data name="importMessageSpindleSpeedMax" xml:space="preserve">
+    <value>GRBL スピンドル最大速度</value>
+  </data>
+  <data name="importMessagePUD" xml:space="preserve">
+    <value>ペンの上下の変換:</value>
+  </data>
+  <data name="importMessagePUDZ" xml:space="preserve">
+    <value>Z軸有効化</value>
+  </data>
+  <data name="importMessagePUDZNoSpindle" xml:space="preserve">
+    <value>スピンドルのスイッチが入っていない</value>
+  </data>
+  <data name="importMessagePUDZFeed" xml:space="preserve">
+    <value>Z送り</value>
+  </data>
+  <data name="importMessagePUDZUp" xml:space="preserve">
+    <value>Zアップ（安全な高さ）</value>
+  </data>
+  <data name="importMessagePUDZDown" xml:space="preserve">
+    <value>Zダウン（刻印）</value>
+  </data>
+  <data name="importMessagePUDZDepthPass" xml:space="preserve">
+    <value>パスごとの深さ</value>
+  </data>
+  <data name="importMessagePUDZDepthPassNoZUp" xml:space="preserve">
+    <value>パス間の Z アップなし</value>
+  </data>
+  <data name="importMessagePUDZFeedMax" xml:space="preserve">
+    <value>grbl Z 最大送り:</value>
+  </data>
+  <data name="importMessagePUDPWM" xml:space="preserve">
+    <value>PWM有効（サーボ制御）</value>
+  </data>
+  <data name="importMessagePUDPWMUp" xml:space="preserve">
+    <value>PWM高</value>
+  </data>
+  <data name="importMessagePUDPWMZero" xml:space="preserve">
+    <value>PWMゼロ</value>
+  </data>
+  <data name="importMessagePUDPWMDown" xml:space="preserve">
+    <value>以下のPWM</value>
+  </data>
+  <data name="importMessagePUDSpindle" xml:space="preserve">
+    <value>ペンのダウン/アップでスピンドルのオン/オフを切り替えます</value>
+  </data>
+  <data name="importMessagePUDIndividual" xml:space="preserve">
+    <value>個別のコマンド</value>
+  </data>
+  <data name="importMessagePUDPenUp" xml:space="preserve">
+    <value>ペンアップ</value>
+  </data>
+  <data name="importMessagePUDPenDown" xml:space="preserve">
+    <value>ペンダウン</value>
+  </data>
+  <data name="importMessageOption1" xml:space="preserve">
+    <value>パスの解釈:</value>
+  </data>
+  <data name="importMessageOptionNodesOnly" xml:space="preserve">
+    <value>ノードのみ - 特定の座標にポイントを作成します</value>
+  </data>
+  <data name="importMessageOptionZFromWidth" xml:space="preserve">
+    <value>線幅（深さ）からZ値を求めます。</value>
+  </data>
+  <data name="importMessageOptionSFromWidth" xml:space="preserve">
+    <value>線幅（レーザーパワー/スピンドル速度）からS値を決定します。</value>
+  </data>
+  <data name="importMessageOptionCircleToDot" xml:space="preserve">
+    <value>円を点に変換</value>
+  </data>
+  <data name="importMessageOptionCircleRadiusToZ" xml:space="preserve">
+    <value>円の半径を Z 値に変換します</value>
+  </data>
+  <data name="importMessageOption2" xml:space="preserve">
+    <value>パス変更:</value>
+  </data>
+  <data name="importMessageOptionFilter" xml:space="preserve">
+    <value>グラフィック要素のフィルタリング (オブジェクトの削除)</value>
+  </data>
+  <data name="importMessageOptionHatchFill" xml:space="preserve">
+    <value>ハッチングの塗りつぶしを追加する</value>
+  </data>
+  <data name="importMessageOptionClip" xml:space="preserve">
+    <value>グラフィックのトリミングまたはタイル化</value>
+  </data>
+  <data name="importMessageOptionTangential" xml:space="preserve">
+    <value>接線軸</value>
+  </data>
+  <data name="importMessageOptionDragTool" xml:space="preserve">
+    <value>ドラッグツールのパスをカスタマイズする</value>
+  </data>
+  <data name="importMessageOptionExtend" xml:space="preserve">
+    <value>パスの延長 (例: レーザー切断用)</value>
+  </data>
+  <data name="importMessageOptionOutlineDevelop" xml:space="preserve">
+    <value>完了</value>
+  </data>
+  <data name="importMessageOptionWireBender" xml:space="preserve">
+    <value>ワイヤーベンダー</value>
+  </data>
+  <data name="importMessageOption1Link" xml:space="preserve">
+    <value>考えられるパスの解釈</value>
+  </data>
+  <data name="importMessageOption2Link" xml:space="preserve">
+    <value>可能なパス変更</value>
+  </data>
+  <data name="importMessageSourceMetadata" xml:space="preserve">
+    <value>メタデータから</value>
+  </data>
+  <data name="importMessageSourceTooltable" xml:space="preserve">
+    <value>ツールテーブルから</value>
+  </data>
+  <data name="importMessageSpindleDirection" xml:space="preserve">
+    <value>レーザーモード / スピンドル方向</value>
+  </data>
+  <data name="importMessageSpindleDirectionM3" xml:space="preserve">
+    <value>M3 (時計回り) 一定レーザー出力モード</value>
+  </data>
+  <data name="importMessageSpindleDirectionM4" xml:space="preserve">
+    <value>M4 (CCW-反時計回り) ダイナミックレーザーパワーモード</value>
+  </data>
+  <data name="loadMessageContinue" xml:space="preserve">
+    <value>前回の仕事を続けますか?</value>
+  </data>
+  <data name="loadMessageLastProcessed" xml:space="preserve">
+    <value>最後に処理された G コードをロードしています</value>
+  </data>
+  <data name="loadMessageLoad1" xml:space="preserve">
+    <value>Gコードをロード中</value>
+  </data>
+  <data name="loadMessageNoImport" xml:space="preserve">
+    <value>インポート オプションが適用されていません。</value>
+  </data>
+  <data name="loadMessageReplaceM34" xml:space="preserve">
+    <value>G コードの読み込みオプション: レーザー モード コマンド M3 を M4 に置き換えます。</value>
+  </data>
+  <data name="loadMessageReplaceM43" xml:space="preserve">
+    <value>G コードの読み込みオプション: レーザー モード コマンド M4 を M3 に置き換えます。</value>
+  </data>
+  <data name="loadMessageStreaming" xml:space="preserve">
+    <value>ストリーミングがアクティブなので、新しいファイルをロードできません。</value>
+  </data>
+  <data name="loadMessageToolChange" xml:space="preserve">
+    <value>自動工具交換が有効になっています</value>
+  </data>
+  <data name="mainStartMissingFiles" xml:space="preserve">
+    <value>プログラム ファイルが見つかりません。&lt;br&gt;GRBL-Plotter のインストールを確認してください。</value>
   </data>
 </root>

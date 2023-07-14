@@ -196,7 +196,7 @@
     <value>El último trabajo se detuvo en la línea.</value>
   </data>
   <data name="mainPauseStream2" xml:space="preserve">
-    <value>\r\n¿Quieres continuar con el trabajo?</value>
+    <value>¿Quieres continuar con el trabajo?</value>
   </data>
   <data name="mainStreamingActive" xml:space="preserve">
     <value>La transmisión aún está activa: presione Detener e intente nuevamente</value>
@@ -494,5 +494,203 @@ Posible solución alternativa: intente convertir el objeto en ruta.</value>
     <value>Se encontró un atributo SVG-XML no compatible.
 La imagen resultante puede tener un aspecto diferente al esperado.
 Posible solución alternativa: intente convertir el objeto en ruta.</value>
+  </data>
+  <data name="importMessageTitle" xml:space="preserve">
+    <value>información de importación</value>
+  </data>
+  <data name="importMessageFileName" xml:space="preserve">
+    <value>Nombre del archivo:</value>
+  </data>
+  <data name="importMessageFilePath" xml:space="preserve">
+    <value>Ruta de archivo:</value>
+  </data>
+  <data name="importMessageSVGMetaDataOk" xml:space="preserve">
+    <value>Metadatos SVG procesados</value>
+  </data>
+  <data name="importMessageSVGMetaDataNok1" xml:space="preserve">
+    <value>¡Metadatos SVG disponibles pero no habilitados!</value>
+  </data>
+  <data name="importMessageRelMovement" xml:space="preserve">
+    <value>Movimientos relativos activados (puede dar problemas)</value>
+  </data>
+  <data name="importMessageAddGraphic" xml:space="preserve">
+    <value>Añadir gráfico importado</value>
+  </data>
+  <data name="importMessageToolTableNeeded" xml:space="preserve">
+    <value>Requerir tabla de herramientas, cargada por última vez:</value>
+  </data>
+  <data name="importMessageGeneralSettings" xml:space="preserve">
+    <value>Configuración general:</value>
+  </data>
+  <data name="importMessageXYFeed" xml:space="preserve">
+    <value>alimentación XY</value>
+  </data>
+  <data name="importMessageMaxXYFeed" xml:space="preserve">
+    <value>grbl X/Y avance máximo:</value>
+  </data>
+  <data name="importMessageGcodeHeader" xml:space="preserve">
+    <value>Encabezado de código G</value>
+  </data>
+  <data name="importMessageGcodeFooter" xml:space="preserve">
+    <value>Pie de página de código G</value>
+  </data>
+  <data name="importMessageLaserMode" xml:space="preserve">
+    <value>Modo láser: use M3S0 en lugar de M5 para apagar el láser (o el eje)</value>
+  </data>
+  <data name="importMessageLaserModeNok" xml:space="preserve">
+    <value>modo láser grbl $32 no está activado</value>
+  </data>
+  <data name="importMessageLaserPower" xml:space="preserve">
+    <value>potencia láser</value>
+  </data>
+  <data name="importMessageSpindleSpeed" xml:space="preserve">
+    <value>eje de velocidad</value>
+  </data>
+  <data name="importMessageSpindleSpeedMax" xml:space="preserve">
+    <value>grbl velocidad del husillo máx.</value>
+  </data>
+  <data name="importMessagePUD" xml:space="preserve">
+    <value>Traducción de pluma arriba/abajo:</value>
+  </data>
+  <data name="importMessagePUDZ" xml:space="preserve">
+    <value>Eje Z activado</value>
+  </data>
+  <data name="importMessagePUDZNoSpindle" xml:space="preserve">
+    <value>El husillo no está encendido</value>
+  </data>
+  <data name="importMessagePUDZFeed" xml:space="preserve">
+    <value>Alimentación Z</value>
+  </data>
+  <data name="importMessagePUDZUp" xml:space="preserve">
+    <value>Z Up (altura segura)</value>
+  </data>
+  <data name="importMessagePUDZDown" xml:space="preserve">
+    <value>Z Abajo (grabado)</value>
+  </data>
+  <data name="importMessagePUDZDepthPass" xml:space="preserve">
+    <value>profundidad por pasada</value>
+  </data>
+  <data name="importMessagePUDZDepthPassNoZUp" xml:space="preserve">
+    <value>Sin Z Up entre pases</value>
+  </data>
+  <data name="importMessagePUDZFeedMax" xml:space="preserve">
+    <value>grbl Z avance máx.:</value>
+  </data>
+  <data name="importMessagePUDPWM" xml:space="preserve">
+    <value>PWM habilitado (servocontrol)</value>
+  </data>
+  <data name="importMessagePUDPWMUp" xml:space="preserve">
+    <value>PWM alto</value>
+  </data>
+  <data name="importMessagePUDPWMZero" xml:space="preserve">
+    <value>PWM cero</value>
+  </data>
+  <data name="importMessagePUDPWMDown" xml:space="preserve">
+    <value>PWM abajo</value>
+  </data>
+  <data name="importMessagePUDSpindle" xml:space="preserve">
+    <value>Encender/apagar el eje con el lápiz hacia abajo/arriba</value>
+  </data>
+  <data name="importMessagePUDIndividual" xml:space="preserve">
+    <value>Comandos individuales</value>
+  </data>
+  <data name="importMessagePUDPenUp" xml:space="preserve">
+    <value>encerrar</value>
+  </data>
+  <data name="importMessagePUDPenDown" xml:space="preserve">
+    <value>pluma abajo</value>
+  </data>
+  <data name="importMessageOption1" xml:space="preserve">
+    <value>Interpretación de la ruta:</value>
+  </data>
+  <data name="importMessageOptionNodesOnly" xml:space="preserve">
+    <value>Solo nodos: cree puntos en coordenadas específicas</value>
+  </data>
+  <data name="importMessageOptionZFromWidth" xml:space="preserve">
+    <value>Encuentra el valor Z del ancho de línea (profundidad).</value>
+  </data>
+  <data name="importMessageOptionSFromWidth" xml:space="preserve">
+    <value>Determina el valor S a partir del ancho de línea (potencia del láser/velocidad del husillo).</value>
+  </data>
+  <data name="importMessageOptionCircleToDot" xml:space="preserve">
+    <value>Convertir círculo en punto</value>
+  </data>
+  <data name="importMessageOptionCircleRadiusToZ" xml:space="preserve">
+    <value>Convierte el radio del círculo a valor z</value>
+  </data>
+  <data name="importMessageOption2" xml:space="preserve">
+    <value>cambio de ruta:</value>
+  </data>
+  <data name="importMessageOptionFilter" xml:space="preserve">
+    <value>Filtrar elementos gráficos (eliminar objetos)</value>
+  </data>
+  <data name="importMessageOptionHatchFill" xml:space="preserve">
+    <value>Agregar relleno de sombreado</value>
+  </data>
+  <data name="importMessageOptionClip" xml:space="preserve">
+    <value>Gráfico de cultivo o mosaico</value>
+  </data>
+  <data name="importMessageOptionTangential" xml:space="preserve">
+    <value>eje tangencial</value>
+  </data>
+  <data name="importMessageOptionDragTool" xml:space="preserve">
+    <value>Personalizar la ruta para la herramienta de arrastre</value>
+  </data>
+  <data name="importMessageOptionExtend" xml:space="preserve">
+    <value>Extender ruta (por ejemplo, para corte por láser)</value>
+  </data>
+  <data name="importMessageOptionOutlineDevelop" xml:space="preserve">
+    <value>terminación</value>
+  </data>
+  <data name="importMessageOptionWireBender" xml:space="preserve">
+    <value>dobladora de alambre</value>
+  </data>
+  <data name="importMessageOption1Link" xml:space="preserve">
+    <value>Posibles interpretaciones de rutas</value>
+  </data>
+  <data name="importMessageOption2Link" xml:space="preserve">
+    <value>Posibles modificaciones de ruta</value>
+  </data>
+  <data name="importMessageSourceMetadata" xml:space="preserve">
+    <value>De metadatos</value>
+  </data>
+  <data name="importMessageSourceTooltable" xml:space="preserve">
+    <value>De la tabla de herramientas</value>
+  </data>
+  <data name="importMessageSpindleDirection" xml:space="preserve">
+    <value>Modo láser / Dirección del husillo</value>
+  </data>
+  <data name="importMessageSpindleDirectionM3" xml:space="preserve">
+    <value>M3 (CW en el sentido de las agujas del reloj) Modo de potencia láser constante</value>
+  </data>
+  <data name="importMessageSpindleDirectionM4" xml:space="preserve">
+    <value>M4 (CCW-sentido antihorario) Modo de potencia de láser dinámico</value>
+  </data>
+  <data name="loadMessageContinue" xml:space="preserve">
+    <value>¿Continuar con el último trabajo?</value>
+  </data>
+  <data name="loadMessageLastProcessed" xml:space="preserve">
+    <value>Cargando el último código G procesado</value>
+  </data>
+  <data name="loadMessageLoad1" xml:space="preserve">
+    <value>Cargando código G</value>
+  </data>
+  <data name="loadMessageNoImport" xml:space="preserve">
+    <value>¡No se aplicaron opciones de importación!</value>
+  </data>
+  <data name="loadMessageReplaceM34" xml:space="preserve">
+    <value>Opción Cargar código G: Reemplaza el comando de modo láser M3 por M4</value>
+  </data>
+  <data name="loadMessageReplaceM43" xml:space="preserve">
+    <value>Opción Cargar código G: Reemplaza el comando de modo láser M4 por M3</value>
+  </data>
+  <data name="loadMessageStreaming" xml:space="preserve">
+    <value>La transmisión está activa, no se puede cargar un archivo nuevo.</value>
+  </data>
+  <data name="loadMessageToolChange" xml:space="preserve">
+    <value>El cambio automático de herramienta está habilitado</value>
+  </data>
+  <data name="mainStartMissingFiles" xml:space="preserve">
+    <value>Faltan archivos de programa,&lt;br&gt;verifique la instalación de GRBL-Plotter</value>
   </data>
 </root>
