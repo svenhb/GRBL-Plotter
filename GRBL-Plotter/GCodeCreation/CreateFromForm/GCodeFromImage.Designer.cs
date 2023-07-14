@@ -14,17 +14,13 @@
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
-            {
-                components.Dispose();
+                components.Dispose(); 
+            if (disposing && (adjustedImage != null))
                 adjustedImage.Dispose();
+            if (disposing && (originalImage != null))
                 originalImage.Dispose();
+            if (disposing && (resultImage != null))
                 resultImage.Dispose();
-        /*        if (loadedImage != null)
-                {
-                    try { loadedImage.Dispose(); }
-                    catch { }
-                }*/
-            }
             base.Dispose(disposing);
         }
 

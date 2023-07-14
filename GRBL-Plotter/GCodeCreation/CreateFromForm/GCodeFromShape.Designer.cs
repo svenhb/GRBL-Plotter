@@ -192,8 +192,8 @@
             // cBToolSet
             // 
             resources.ApplyResources(this.cBToolSet, "cBToolSet");
-            this.cBToolSet.Checked = global::GrblPlotter.Properties.Settings.Default.importGCToolUseRouter;
-            this.cBToolSet.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGCToolUseRouter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBToolSet.Checked = global::GrblPlotter.Properties.Settings.Default.importGCToolTableUse;
+            this.cBToolSet.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGCToolTableUse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cBToolSet.Name = "cBToolSet";
             this.cBToolSet.UseVisualStyleBackColor = true;
             this.cBToolSet.CheckedChanged += new System.EventHandler(this.CBToolSet_CheckedChanged);
@@ -366,6 +366,7 @@
             0,
             0,
             0});
+            this.nUDToolDiameter.ValueChanged += new System.EventHandler(this.NudToolDiameter_ValueChanged);
             // 
             // label3
             // 
@@ -397,11 +398,6 @@
             0,
             0,
             0});
-            this.nUDShapeY.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
             this.nUDShapeY.Name = "nUDShapeY";
             this.nUDShapeY.Value = new decimal(new int[] {
             10,
@@ -430,11 +426,6 @@
             0,
             0,
             0});
-            this.nUDShapeX.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
             this.nUDShapeX.Name = "nUDShapeX";
             this.nUDShapeX.Value = new decimal(new int[] {
             10,
@@ -980,6 +971,7 @@
             this.CbInsertCode.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "fromFormInsertEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.CbInsertCode.Name = "CbInsertCode";
             this.CbInsertCode.UseVisualStyleBackColor = true;
+            this.CbInsertCode.CheckedChanged += new System.EventHandler(this.CbInsertCode_CheckedChanged);
             // 
             // GCodeFromShape
             // 

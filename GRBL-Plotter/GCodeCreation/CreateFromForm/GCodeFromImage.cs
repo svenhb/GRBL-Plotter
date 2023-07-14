@@ -47,6 +47,7 @@
  * 2022-03-28 move some functions to new file GCodeFromImageMisc
  * 2022-09-14 add if (adjustedImage == null) 
  * 2023-04-10 l:279 f:LoadUrl add try catch
+ * 2023-06-08 l:110 f:GCodeFromImage_FormClosing    set immages=null to avoid ThreadException: Except: Parameter is not valid. Source: System.Drawing Target: Int32 get_Width()
 */
 
 using AForge.Imaging.ColorReduction;
@@ -110,6 +111,10 @@ namespace GrblPlotter
         {
             Logger.Info("++++++ GCodeFromImage STOP ++++++");
             Properties.Settings.Default.locationImageForm = Location;
+            pictureBox1.Image = null;
+            adjustedImage =null;
+            originalImage = null;
+            resultImage = null;
         }
         private void GCodeFromImage_KeyDown(object sender, KeyEventArgs e)
         {

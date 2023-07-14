@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cBNoZUp.Text" xml:space="preserve">
+    <value>Nie unoś Z</value>
+  </data>
+  <data name="cBNoZUp.ToolTip" xml:space="preserve">
+    <value>Nie unoś Z na bezpieczną wysokość po każdym przejściu.</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Narz.:</value>
+  </data>
+  <data name="cBToolSet.Text" xml:space="preserve">
+    <value>Pobierz wartości z tabeli narzędzi</value>
+  </data>
+  <data name="nUDToolOverlap.ToolTip" xml:space="preserve">
+    <value>Odległość pomiędzy dwoma ścieżkami (przy wykonywaniu kieszeni) jako średnica narzędzia. 100% = szerokość kroku średnicy narzędzia.</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Pokrycie %</value>
+  </data>
+  <data name="label16.ToolTip" xml:space="preserve">
+    <value>Odległość między dwoma ścieżkami (przy wykonywaniu kieszeni) jako średnica narzędzia. 100% = szerokość kroku średnicy narzędzia.</value>
+  </data>
+  <data name="nUDToolSpindleSpeed.ToolTip" xml:space="preserve">
+    <value>Prędkość obrotowa wrzeciona</value>
+  </data>
+  <data name="nUDToolFeedZ.ToolTip" xml:space="preserve">
+    <value>Prędkość posuwu w kierunku Z</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Posuw Z</value>
+  </data>
+  <data name="nUDToolFeedXY.ToolTip" xml:space="preserve">
+    <value>Prędkość posuwu w kierunku XY</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Posuw XY</value>
+  </data>
+  <data name="nUDToolZStep.ToolTip" xml:space="preserve">
+    <value>Głębokość na jeden przejazd (nie głębokość końcowa)</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Z+</value>
+  </data>
+  <data name="nUDToolDiameter.ToolTip" xml:space="preserve">
+    <value>Średnica narzędzia do obliczenia przesunięcia ścieżki</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Średnica</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Narzędzie</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Rozmiar Y</value>
+  </data>
+  <data name="cBToolpathPocket.Text" xml:space="preserve">
+    <value>Utwórz kieszeń</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Rozmiar X</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Promień</value>
+  </data>
+  <data name="rBShape2.Text" xml:space="preserve">
+    <value>Zaokrąglenie krawędzi prostokąta</value>
+  </data>
+  <data name="rBShape1.Text" xml:space="preserve">
+    <value>Prostokąt</value>
+  </data>
+  <data name="rBShape3.Text" xml:space="preserve">
+    <value>Okrąg</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Kształt</value>
+  </data>
+  <data name="nUDImportGCZDown.ToolTip" xml:space="preserve">
+    <value>Finalna głębokość kształtu</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Głębokość (Z)</value>
+  </data>
+  <data name="rBToolpath2.Text" xml:space="preserve">
+    <value>Na zewnątrz ksztatu</value>
+  </data>
+  <data name="rBToolpath3.Text" xml:space="preserve">
+    <value>Wewnątrz kształtu</value>
+  </data>
+  <data name="rBToolpath1.Text" xml:space="preserve">
+    <value>Wenątrz kształtu (grawerowanie)</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Ścieżka narzędzia</value>
+  </data>
+  <data name="btnApply.Text" xml:space="preserve">
+    <value>Utwórz G-Code</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Punkt zero</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Zamknięty</value>
+  </data>
+  <data name="nUDRZRadius.ToolTip" xml:space="preserve">
+    <value>Promień w kierunku Z</value>
+  </data>
+  <data name="nUDRZWidth.ToolTip" xml:space="preserve">
+    <value>Szerokość zaokrąglenia</value>
+  </data>
+  <data name="nUDRZStep.ToolTip" xml:space="preserve">
+    <value>Maks. dopuszczalne odchylenie do 1/4 koła w jednostkach</value>
+  </data>
+  <data name="BtnAddShape.Text" xml:space="preserve">
+    <value>Zapisz jako</value>
+  </data>
+  <data name="BtnAddShape.ToolTip" xml:space="preserve">
+    <value>Zapisz ustawienia z poniżaszą nazwą</value>
+  </data>
+  <data name="TbShapeName.ToolTip" xml:space="preserve">
+    <value>Tekst dla</value>
+  </data>
+  <data name="BtnApplyShape.Text" xml:space="preserve">
+    <value>Zastosuj</value>
+  </data>
+  <data name="BtnApplyShape.ToolTip" xml:space="preserve">
+    <value>Zastosuj ustawienia zaznaczonego kształtu</value>
+  </data>
+  <data name="BtnDeleteShape.Text" xml:space="preserve">
+    <value>Usuń</value>
+  </data>
+  <data name="BtnDeleteShape.ToolTip" xml:space="preserve">
+    <value>Usuń wybrany kształt</value>
+  </data>
+  <data name="CbShapeSelection.Text" xml:space="preserve">
+    <value>Ostatnio użyte</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Wczytaj ustawienia</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Zapisz ustawienia</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Prostokąt / Koło</value>
+  </data>
+  <data name="rBBevel1.Text" xml:space="preserve">
+    <value>Zaokrąglenie</value>
+  </data>
+  <data name="rBBevel2.Text" xml:space="preserve">
+    <value>Faza</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Promień / Odległość</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Kształt krawędzi</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Faza / Zaokrąglenie</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Obliczanie drogi dla frezu cylindrycznego</value>
+  </data>
+  <data name="rBRoundZYT.Text" xml:space="preserve">
+    <value>Promień na Z-Y-góra, szerokość na X</value>
+  </data>
+  <data name="rBRoundZYB.Text" xml:space="preserve">
+    <value>Promień na Z-Y-dół, szerokość na X</value>
+  </data>
+  <data name="rBRoundZXL.Text" xml:space="preserve">
+    <value>Promień na Z-X-lewo, szerokość na Y</value>
+  </data>
+  <data name="rBRoundZXR.Text" xml:space="preserve">
+    <value>Promień na Z-X-prawo, szerokość na Y</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Pozycja zaokrąglenia</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Promień</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Odchylenie</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Szerokość</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Wymiary</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Zaokrąglenie Z</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Głębokość</value>
+  </data>
+  <data name="cBMoveTo00.Text" xml:space="preserve">
+    <value>Na koniec idź do 0;0</value>
+  </data>
+  <data name="CbInsertCode.Text" xml:space="preserve">
+    <value>Wstaw kształt do widoku 2D (w pozycji 0;0)</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Utwórz G-Code z kształtów</value>
+  </data>
+</root>

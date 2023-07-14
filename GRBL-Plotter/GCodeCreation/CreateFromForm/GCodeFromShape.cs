@@ -30,6 +30,7 @@
  * 2023-01-17 add try catch in ShapeToGCode_Load
  * 2023-03-04 add save/load/select shapes
  * 2023-03-14 l:1226 f:BtnApplyShape_Click check min/max before setting the value; save also avoidZUp, finalMove0, insertShape
+ * 2023-06-05 allow X = 0.0, highlight CbInsertCode
 */
 
 using System;
@@ -796,6 +797,8 @@ namespace GrblPlotter
 
             LoadXML(Datapath.Data + "\\simpleshapes.xml");
             Update_ShapeSelection(-1);
+			
+			Highlight(CbInsertCode,CbInsertCode.Checked, Color.Yellow);
         }
 
         private void ShapeToGCode_FormClosing(object sender, FormClosingEventArgs e)
@@ -894,8 +897,14 @@ namespace GrblPlotter
                     CheckSetValue(nUDShapeR, min / 2);
             }
             CreateSaveName();
+            CheckInsideShape();
         }
-
+        private void CheckInsideShape()
+        {
+            decimal min = Math.Min(nUDShapeX.Value, nUDShapeY.Value);
+            bool nok = min < nUDToolDiameter.Value;
+            Highlight(rBToolpath3, nok, Color.Fuchsia);
+        }
         private void CBToolSet_CheckedChanged(object sender, EventArgs e)
         {
             bool valueFromToolTable = cBToolSet.Checked;
@@ -1237,6 +1246,8 @@ namespace GrblPlotter
 				CbInsertCode.Checked = Shapes[index].app.insertShape;
 				
                 TbShapeName.Text = Shapes[index].name;
+				
+				Highlight(CbInsertCode,CbInsertCode.Checked, Color.Yellow);
             }
         }
 
@@ -1264,11 +1275,29 @@ namespace GrblPlotter
             tmp.SpindleSpeed = (float)nUDToolSpindleSpeed.Value;
         }
 
+        private void CbInsertCode_CheckedChanged(object sender, EventArgs e)
+        {
+            Highlight(CbInsertCode, CbInsertCode.Checked, Color.Yellow);
+        }
+
+        private void NudToolDiameter_ValueChanged(object sender, EventArgs e)
+        {
+            CheckInsideShape();
+        }
+
         private void CreateSaveName()
         {
             string[] shapes = { "", "Rect", "RndRect", "Circle", "" };
             string name = string.Format("{0}_{1:0.0}_{2:0.0}_{3:0.0}", shapes[GetShapeID()], nUDShapeX.Value, nUDShapeY.Value, nUDShapeR.Value);
             TbShapeName.Text = name;
         }
+		
+		private void Highlight(Control ctrl, bool highlight, Color color)
+		{
+			if (highlight)
+				ctrl.BackColor = color;
+            else
+                ctrl.BackColor = Color.Transparent;
+		}
     }
 }
