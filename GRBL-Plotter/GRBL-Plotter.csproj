@@ -29,8 +29,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>4</ApplicationRevision>
-    <ApplicationVersion>1.6.9.4</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.7.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -179,6 +179,7 @@
     <Compile Include="GCodeCreation\GraphicCollectData.cs" />
     <Compile Include="GCodeCreation\ImportFromFile\GCodeFromGerber.cs" />
     <Compile Include="GCodeCreation\ImportFromFile\GCodeFromSVGText.cs" />
+    <Compile Include="GCodeCreation\Graphic2GCodeMove.cs" />
     <Compile Include="GCodeCreation\XmlMarker.cs" />
     <Compile Include="GUI\AboutForm.cs">
       <SubType>Form</SubType>
@@ -244,6 +245,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GUI\MessageText.cs" />
     <Compile Include="GUI\Notifier.cs" />
     <Compile Include="GUI\Splashscreen.cs">
       <SubType>Form</SubType>
@@ -829,6 +831,7 @@
     <Content Include="Resources\efOn7.png" />
     <Content Include="Resources\efOn8.png" />
     <Content Include="Resources\efOn9.png" />
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForBarcode.pl.resx" />
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.ar.resx">
       <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
     </EmbeddedResource>
@@ -848,6 +851,9 @@
       <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.ja.resx">
+      <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.pl.resx">
       <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.pt.resx">
@@ -872,6 +878,9 @@
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromImage.it.resx">
       <DependentUpon>GCodeFromImage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromImage.pl.resx">
+      <DependentUpon>GCodeFromImage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromImage.tr.resx">
       <DependentUpon>GCodeFromImage.cs</DependentUpon>
     </EmbeddedResource>
@@ -881,6 +890,9 @@
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromShape.it.resx">
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromShape.pl.resx">
+      <DependentUpon>GCodeFromShape.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromShape.tr.resx">
       <DependentUpon>GCodeFromShape.cs</DependentUpon>
     </EmbeddedResource>
@@ -888,6 +900,9 @@
       <DependentUpon>GCodeFromText.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromText.it.resx">
+      <DependentUpon>GCodeFromText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromText.pl.resx">
       <DependentUpon>GCodeFromText.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromText.tr.resx">
@@ -912,6 +927,9 @@
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\AboutForm.ja.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AboutForm.pl.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\AboutForm.pt.resx">
@@ -1014,6 +1032,9 @@
     <EmbeddedResource Include="GUI\ButtonEdit.ja.resx">
       <DependentUpon>ButtonEdit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ButtonEdit.pl.resx">
+      <DependentUpon>ButtonEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\ButtonEdit.pt.resx">
       <DependentUpon>ButtonEdit.cs</DependentUpon>
     </EmbeddedResource>
@@ -1033,6 +1054,9 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\MainForm.it.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MainForm.pl.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\MainForm.tr.resx">
@@ -1057,6 +1081,9 @@
       <DependentUpon>MainFormStreamSection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\MainFormStreamSection.ja.resx">
+      <DependentUpon>MainFormStreamSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MainFormStreamSection.pl.resx">
       <DependentUpon>MainFormStreamSection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\MainFormStreamSection.pt.resx">
@@ -1095,6 +1122,9 @@
     <EmbeddedResource Include="GUI\MessageForm.ja.resx">
       <DependentUpon>MessageForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MessageForm.pl.resx">
+      <DependentUpon>MessageForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\MessageForm.pt.resx">
       <DependentUpon>MessageForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1116,6 +1146,9 @@
     <EmbeddedResource Include="MachineControl\Control2ndGRBL.it.resx">
       <DependentUpon>Control2ndGRBL.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\Control2ndGRBL.pl.resx">
+      <DependentUpon>Control2ndGRBL.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlCameraForm.ar.resx">
       <DependentUpon>ControlCameraForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1135,6 +1168,9 @@
       <DependentUpon>ControlCameraForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlCameraForm.ja.resx">
+      <DependentUpon>ControlCameraForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlCameraForm.pl.resx">
       <DependentUpon>ControlCameraForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlCameraForm.pt.resx">
@@ -1182,6 +1218,9 @@
     <EmbeddedResource Include="MachineControl\ControlHeightMap.ja.resx">
       <DependentUpon>ControlHeightMap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlHeightMap.pl.resx">
+      <DependentUpon>ControlHeightMap.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlHeightMap.pt.resx">
       <DependentUpon>ControlHeightMap.cs</DependentUpon>
     </EmbeddedResource>
@@ -1213,6 +1252,9 @@
       <DependentUpon>ControlJogPathCreator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlJogPathCreator.ja.resx">
+      <DependentUpon>ControlJogPathCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlJogPathCreator.pl.resx">
       <DependentUpon>ControlJogPathCreator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlJogPathCreator.pt.resx">
@@ -1249,6 +1291,9 @@
       <DependentUpon>ControlLaser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlLaser.ja.resx">
+      <DependentUpon>ControlLaser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlLaser.pl.resx">
       <DependentUpon>ControlLaser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlLaser.pt.resx">
@@ -1288,6 +1333,9 @@
     <EmbeddedResource Include="MachineControl\ControlProbing.ja.resx">
       <DependentUpon>ControlProbing.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlProbing.pl.resx">
+      <DependentUpon>ControlProbing.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlProbing.pt.resx">
       <DependentUpon>ControlProbing.cs</DependentUpon>
     </EmbeddedResource>
@@ -1324,6 +1372,9 @@
     <EmbeddedResource Include="MachineControl\ControlProcessAutomation.ja.resx">
       <DependentUpon>ControlProcessAutomation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlProcessAutomation.pl.resx">
+      <DependentUpon>ControlProcessAutomation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlProcessAutomation.pt.resx">
       <DependentUpon>ControlProcessAutomation.cs</DependentUpon>
     </EmbeddedResource>
@@ -1355,6 +1406,9 @@
       <DependentUpon>ControlProjector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlProjector.ja.resx">
+      <DependentUpon>ControlProjector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlProjector.pl.resx">
       <DependentUpon>ControlProjector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlProjector.pt.resx">
@@ -1397,6 +1451,9 @@
     <EmbeddedResource Include="MachineControl\ControlSerialForm.ja.resx">
       <DependentUpon>ControlSerialForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSerialForm.pl.resx">
+      <DependentUpon>ControlSerialForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSerialForm.pt.resx">
       <DependentUpon>ControlSerialForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1433,6 +1490,9 @@
       <DependentUpon>ControlSetupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupForm.ja.resx">
+      <DependentUpon>ControlSetupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSetupForm.pl.resx">
       <DependentUpon>ControlSetupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupForm.pt.resx">
@@ -1473,6 +1533,9 @@
     <EmbeddedResource Include="MachineControl\ControlSetupUseCase.ja.resx">
       <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlSetupUseCase.pl.resx">
+      <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlSetupUseCase.pt.resx">
       <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
@@ -1556,6 +1619,9 @@
       <DependentUpon>GCodeSelectionProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\GCodeSelectionProperties.ja.resx">
+      <DependentUpon>GCodeSelectionProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\GCodeSelectionProperties.pl.resx">
       <DependentUpon>GCodeSelectionProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\GCodeSelectionProperties.pt.resx">
@@ -1765,6 +1831,7 @@
     <EmbeddedResource Include="Resources\ResStrings.es.resx" />
     <EmbeddedResource Include="Resources\ResStrings.fr.resx" />
     <EmbeddedResource Include="Resources\ResStrings.ja.resx" />
+    <EmbeddedResource Include="Resources\ResStrings.pl.resx" />
     <EmbeddedResource Include="Resources\ResStrings.pt.resx" />
     <EmbeddedResource Include="Resources\ResStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
