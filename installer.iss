@@ -3,8 +3,9 @@
 ; 1.0.3.0 change permission from users-modify to everyone-modify
 ; 1.0.4.0 add IT subfolder
 ; 1.0.5.0 add TR subfolder
+; 1.0.6.0 add PL subfolder
 
-#define MySetupVersion "1.0.5.0"
+#define MySetupVersion "1.0.6.0"
 #define MyAppName "GRBL-Plotter"
 #define MyAppExeName "GRBL-Plotter.exe"
 #define MyAppPublisher "GRBL-Plotter"
@@ -51,6 +52,7 @@ Name: "sp"; MessagesFile: "compiler:Languages\Spanish.isl"
 Name: "fr"; MessagesFile: "compiler:Languages\French.isl"
 Name: "it"; MessagesFile: "compiler:Languages\Italian.isl"
 Name: "tr"; MessagesFile: "compiler:Languages\Turkish.isl"
+Name: "pl"; MessagesFile: "compiler:Languages\Polish.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
@@ -66,10 +68,11 @@ Source: "{#MyReleasePath}de-DE\*"; DestDir: "{app}\de-DE"; Flags: ignoreversion
 Source: "{#MyReleasePath}es\*"; DestDir: "{app}\es"; Flags: ignoreversion
 Source: "{#MyReleasePath}fr\*"; DestDir: "{app}\fr"; Flags: ignoreversion
 Source: "{#MyReleasePath}it\*"; DestDir: "{app}\it"; Flags: ignoreversion
-Source: "{#MyReleasePath}tr\*"; DestDir: "{app}\tr"; Flags: ignoreversion
 Source: "{#MyReleasePath}ja\*"; DestDir: "{app}\ja"; Flags: ignoreversion
+Source: "{#MyReleasePath}pl\*"; DestDir: "{app}\pl"; Flags: ignoreversion
 Source: "{#MyReleasePath}pt\*"; DestDir: "{app}\pt"; Flags: ignoreversion
 Source: "{#MyReleasePath}ru\*"; DestDir: "{app}\ru"; Flags: ignoreversion
+Source: "{#MyReleasePath}tr\*"; DestDir: "{app}\tr"; Flags: ignoreversion
 Source: "{#MyReleasePath}zh-CN\*"; DestDir: "{app}\zh-CN"; Flags: ignoreversion
 
 ; autodocs - The path to the My Documents folder. (commondocs or userdocs)
