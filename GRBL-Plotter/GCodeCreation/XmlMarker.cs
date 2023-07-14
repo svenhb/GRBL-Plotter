@@ -25,6 +25,7 @@
  * 2021-09-02 read XML attribute OffsetX, -Y
  * 2022-04-04 change PathId from int to string
  * 2023-04-15 improove GetFigure, GetGroup, GetTile
+ * 2023-07-03 l:338 f:GetAttributeValue check if remaining length is enough
 */
 
 using System;
@@ -334,6 +335,8 @@ namespace GrblPlotter
             if (attribute == null) return "";
             int posAttribute = element.IndexOf(attribute, offset);
             if (posAttribute <= 0) return "";
+        //   	if ((attribute.Length + posAttribute) <= element.Length) return "";
+
             int strt = element.IndexOf('"', posAttribute + attribute.Length);
             int end = element.IndexOf('"', strt + 1);
             string val = element.Substring(strt + 1, (end - strt - 1));

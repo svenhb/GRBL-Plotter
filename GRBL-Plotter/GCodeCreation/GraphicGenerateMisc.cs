@@ -24,6 +24,9 @@
  * 2023-04-12 l:364 f:ClipCode only remove offset, if option is enabled
  * 2023-04-22 l:1280 f: HasSameProperties loop until 6
  * 2023-04-25 l:845 f:FilterProperties new function; only show tile-id if needed
+ * 2023-07-03 l:1307 f:HasSameProperties also check pen-width if graphicInformation.OptionZFromWidth || graphicInformation.OptionSFromWidth
+ * 2023-07-05 l:776 f:RemoveIntermediateSteps also compare depth informnation
+ * 2023-07-13 l:800 f:RemoveShortMoves also compare depth informnation
 */
 
 using System;
@@ -747,16 +750,20 @@ namespace GrblPlotter
                     Point lastPoint = PathData.End;
                     double angleNow = 0;                       // when adjacent line segments have the same angle - end point of first can be removed 
                     double angleLast = 0;
+                    double zNow = 0;
+                    double zLast = 0;
                     bool isLineNow = false;
                     bool isLineLast = false;
                     //	bool removeMinDistance;
                     if (PathData.Path.Count > 2)
                     {
+                        zLast = PathData.Path[PathData.Path.Count - 1].Depth;
                         for (int i = (PathData.Path.Count - 2); i >= 0; i--)
                         {
                             if (PathData.Path[i] is GCodeLine)
                             {
                                 angleNow = GcodeMath.GetAlpha(PathData.Path[i].MoveTo, lastPoint);
+                                zNow = PathData.Path[i].Depth;
                                 PathData.Path[i].Angle = angleNow;
                                 isLineNow = true;
                             }
@@ -764,12 +771,13 @@ namespace GrblPlotter
                             {
                                 PathData.Path[i].Angle = angleNow;
                                 angleNow = angleLast + 1;
+                                zNow = zLast + 1;
                                 isLineNow = false;
                             }
 
-                            if (isLineNow && isLineLast && IsEqual(angleNow, angleLast))
+                            if (isLineNow && isLineLast && IsEqual(angleNow, angleLast) && IsEqual(zNow, zLast))
                             {
-                                if (((i + 2) < PathData.Path.Count) && (PathData.Path[i + 2] is GCodeLine))	// don't delete if start-point for arc
+                                if (((i + 2) < PathData.Path.Count) && (PathData.Path[i + 2] is GCodeLine) && (IsEqual(zNow, PathData.Path[i+2].Depth)))	// don't delete if start-point for arc
                                 {
                                     PathData.Path.RemoveAt(i + 1);
                                     removed++;
@@ -778,6 +786,7 @@ namespace GrblPlotter
                             else
                             {
                                 angleLast = angleNow;
+                                zLast = zNow;
                             }
                             lastPoint = PathData.Path[i].MoveTo;
                             isLineLast = isLineNow;
@@ -790,32 +799,78 @@ namespace GrblPlotter
 
         private static void RemoveShortMoves(List<PathObject> graphicToImprove, double minDistance)
         {
-            if (logEnable) Logger.Trace("...RemoveShortMoves before min X:{0:0.00} Y:{1:0.00} --------------------------------------", actualDimension.minx, actualDimension.miny);
+			bool backward = !Properties.Settings.Default.importDepthFromWidth;
+			List<int> indexToRemove = new List<int>();
+			
+
+            int countAll = 0;
             foreach (PathObject item in graphicToImprove)    // dot or path
             {
                 if (item is ItemPath PathData)
                 {
                     Point lastPoint = PathData.Path[PathData.Path.Count - 1].MoveTo;  // PathData.End;
                     double lastAngle = PathData.Path[PathData.Path.Count - 1].Angle;
+                    double lastZ = PathData.Path[PathData.Path.Count - 1].Depth;
                     double distance;
                     if (PathData.Path.Count > 3)
                     {
-                        for (int i = (PathData.Path.Count - 2); i > 0; i--)
-                        {
-                            if (PathData.Path[i] is GCodeLine)
-                                distance = Math.Sqrt(PointDistanceSquared(PathData.Path[i].MoveTo, lastPoint));
-                            else
-                                distance = minDistance;
+						if (backward)
+                        {	
+							int count=0;
+							for (int i = (PathData.Path.Count - 2); i > 0; i--)
+							{
+								if (PathData.Path[i] is GCodeLine)
+									distance = Math.Sqrt(PointDistanceSquared(PathData.Path[i].MoveTo, lastPoint));
+								else
+									distance = minDistance;
 
-                            if ((distance < minDistance) && (Math.Abs(lastAngle - PathData.Path[i].Angle) < 0.5))   // < 30°
+								if ((distance < minDistance) && (Math.Abs(lastAngle - PathData.Path[i].Angle) < 0.5))	// && IsEqual(lastZ, PathData.Path[1].Depth))   // < 30°
+								{ PathData.Path.RemoveAt(i); count++;}
+
+								lastPoint = PathData.Path[i].MoveTo;	// if i was removed, i+1 takes place
+								lastAngle = PathData.Path[i].Angle;
+								lastZ = PathData.Path[1].Depth;
+							}
+                            countAll = count;
+						}
+						else
+						{
+							indexToRemove.Clear();
+							lastPoint = PathData.Path[0].MoveTo;
+							for (int i=1; i < (PathData.Path.Count -2); i++)
+							{
+								if (PathData.Path[i] is GCodeLine)
+									distance = Math.Sqrt(PointDistanceSquared(PathData.Path[i].MoveTo, lastPoint));
+								else
+									distance = minDistance;
+
+								if (distance < minDistance) 
+								{	
+									if ((Math.Abs(lastAngle - PathData.Path[i].Angle) < 0.5) && IsEqual(lastZ, PathData.Path[i].Depth) && IsEqual(lastZ, PathData.Path[i+1].Depth))   // < 30°
+									{ indexToRemove.Add(i); }
+									else
+									{
+										lastPoint = PathData.Path[i].MoveTo;	// if i will be removed, keep old last-value
+										lastAngle = PathData.Path[i].Angle;
+										lastZ = PathData.Path[i].Depth;			
+									}
+								}
+								else
+								{
+									lastPoint = PathData.Path[i].MoveTo;
+									lastAngle = PathData.Path[i].Angle;
+									lastZ = PathData.Path[i].Depth;
+								}
+							}		
+							indexToRemove.Reverse();
+                            foreach (int i in indexToRemove)
                             { PathData.Path.RemoveAt(i); }
-
-                            lastPoint = PathData.Path[i].MoveTo;
-                            lastAngle = PathData.Path[i].Angle;
+                            countAll = indexToRemove.Count;
                         }
                     }
                 }
             }
+            if (logEnable) Logger.Trace("...RemoveShortMoves backward:{0}  Removed:{1} ------------------------------------", backward, countAll); ;
         }
         #endregion
 
@@ -1303,6 +1358,13 @@ namespace GrblPlotter
                         return false;
                 }
             }
+            /*    else if (graphicInformation.OptionZFromWidth || graphicInformation.OptionSFromWidth)
+                {
+                    sameProperties = a.Info.GroupAttributes[2] == b.Info.GroupAttributes[2];
+                    if (!sameProperties)
+                        return false;
+                }*/
+
             bool sameDash = true;
             if (Properties.Settings.Default.importLineDashPattern)
             {
@@ -1538,6 +1600,7 @@ namespace GrblPlotter
                 tmpMove = new GCodeLine(item.Start, item.Path[item.Path.Count - 1].Depth);      // first reversed point is End of original (but original is already switched in SortCode() -> use start)
             else
                 tmpMove = new GCodeLine(item.End, item.Path[item.Path.Count - 1].Depth);        // first reversed point is End of original 
+
 
             reversedPath.Add(tmpMove);
 

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@
  * 2021-09-21 add new GroupOption 'Label'
  * 2022-04-23 add OptionSpecialWireBend
  * 2022-11-03 add OptionDashPattern to control ConvertArcToLine
+ * 2023-05-31 add OptionSFromWidth
 */
 
 using System;
@@ -79,6 +80,7 @@ namespace GrblPlotter
             public bool OptionNodesOnly { get; set; }		// General options, Path interpretation
             public bool OptionDashPattern { get; set; }     // generate dashed lines
             public bool OptionZFromWidth { get; set; }
+            public bool OptionSFromWidth { get; set; }
             public bool OptionDotFromCircle { get; set; }	// will be processed in GCodeFromSVG 702
             public bool OptionZFromRadius { get; set; }		// will select GCodeDotOnlyWithZ or GCodeDotOnly
             public bool OptionRepeatCode { get; set; }
@@ -125,6 +127,7 @@ namespace GrblPlotter
                     ApplyHatchFill = Properties.Settings.Default.importSVGApplyFill;
                     OptionDashPattern = Properties.Settings.Default.importLineDashPattern;
                     OptionZFromWidth = Properties.Settings.Default.importDepthFromWidth;
+                    OptionSFromWidth = Properties.Settings.Default.importPWMFromWidth;
                     OptionDotFromCircle = Properties.Settings.Default.importSVGCircleToDot;
                     OptionZFromRadius = Properties.Settings.Default.importSVGCircleToDotZ;
                     OptionRepeatCode = Properties.Settings.Default.importRepeatEnable;
@@ -150,6 +153,7 @@ namespace GrblPlotter
                 FigureEnable = enableFigures;
                 OptionDashPattern = false;
                 OptionZFromWidth = false;
+                OptionSFromWidth = false;
                 OptionDotFromCircle = false;
                 OptionZFromRadius = false;
                 OptionRepeatCode = false;
@@ -193,6 +197,7 @@ namespace GrblPlotter
                 if (OptionSpecialDevelop || OptionSpecialWireBend) importOptions += "<Special conversion!> ";
                 if (ConvertArcToLine) importOptions += "<Arc to Line> ";
                 if (OptionZFromWidth) importOptions += "<Depth from width> ";
+                if (OptionSFromWidth) importOptions += "<S from width> ";
                 if (OptionDotFromCircle) importOptions += "<Dot from circle> ";
                 if (OptionZFromRadius) importOptions += "<Dot depth from circle radius> ";
                 if (Properties.Settings.Default.importGraphicAddFrameEnable) importOptions += "<Add frame> ";

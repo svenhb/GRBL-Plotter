@@ -22,6 +22,7 @@
  * 2021-07-02 code clean up / code quality
  * 2022-04-07 add DragToolModificationTangential, to preset path for tangential knife with offset in knife-tip
  * 2022-04-13 add drag-tool, option knife (expect knife-angle = 0 on path-start, leave path with 0 deg.)
+ * 2023-05-19 l:440 f:DragToolModification bug fix #340: rotate knife if path does not start with 0° degree
 */
 
 using System;
@@ -32,6 +33,7 @@ namespace GrblPlotter
 {
     public static partial class Graphic
     {
+        /* Calculate angle of each path segemnt, to be applied at tangential axis */
         public static void CalculateStartAngle()
         {
             foreach (PathObject graphicItem in completeGraphic)
@@ -367,7 +369,6 @@ namespace GrblPlotter
                         }
                         else
                         /* Find path-segment with direction ca. 0 deg. and set it as 1st point, to avoid adjustment of knife */
-                        //RotatePath(ItemPath item)  set item.TmpIndex to start index.		CalculateStartAngle			
                         {
                             int lastIndex = 0;
                             double lastAlpha = Math.PI;
@@ -388,8 +389,6 @@ namespace GrblPlotter
                                 RotatePath(opath);
                             }
                             origMoveTo = opath.Path[0].MoveTo;
-                            ///      opath.Path[0].MoveTo = ExtendPath(opath.Path[0].MoveTo, opath.Path[1].MoveTo, gcodeDragRadius, ExtendDragPath.startLater);
-                            //       opath.Start = opath.Path[0].MoveTo;
                             gcodeDragRadius = GetDragRadius(opath.Path[0]);     //  2020-08-03
                         }
 
@@ -406,19 +405,21 @@ namespace GrblPlotter
 
                             origMoveTo = opath.Path[i].MoveTo;
                             gcodeDragRadius = GetDragRadius(opath.Path[i]);     //  2020-08-03
+
                             /* Each move ends later */
                             opath.Path[i].MoveTo = ExtendPath(opath.Path[i - 1].MoveTo, opath.Path[i].MoveTo, gcodeDragRadius, ExtendDragPath.endLater);
                             if (i == opath.Path.Count - 1)
-                            {
+                            {   /* last move */
                                 if (useKnife)   // leave path at 0 deg.
                                 {
+                                    /* add arc to leave path with knife angle = 0° degree */
                                     Point leavePath = new Point(origMoveTo.X + gcodeDragRadius, origMoveTo.Y);
                                     if ((logFlags & loggerSelect) > 0) Logger.Trace("CheckArcMove useKnife last-element correct leave angle");
                                     CheckArcMove(opath, i, opath.Path[i - 1].MoveTo, origMoveTo, leavePath, gcodeDragRadius, 1);    // on path end, move knife to the right
                                 }
                             }
                             else
-                            {
+                            {   /* add arc if needed befoe next segment starts */
                                 CheckArcMove(opath, i, opath.Path[i - 1].MoveTo, origMoveTo, lastOrigMoveTo, gcodeDragRadius, gcodeDragAngle);
                             }
 
@@ -427,11 +428,18 @@ namespace GrblPlotter
 
                         opath.End = opath.Path[opath.Path.Count - 1].MoveTo;
                         if (useKnife)
-                        {
-                            //	Point startPath = new Point(opath.Path[0].MoveTo.X-gcodeDragRadius, origMoveTo.Y);
+                        {   /* knife has angle of 0° - and 1st path? #340 */
+                            Point startPathOriginal = new Point(opath.Path[0].MoveTo.X, opath.Path[0].MoveTo.Y);
+                            Point startPath0Degree = new Point(opath.Path[0].MoveTo.X - gcodeDragRadius, opath.Path[0].MoveTo.Y);
+
                             if ((logFlags & loggerSelect) > 0) Logger.Trace("CheckArcMove useKnife first-element extend path");
-                            //     if (!CheckArcMove(opath, 0, startPath, opath.Path[0].MoveTo, opath.Path[1].MoveTo, gcodeDragRadius, 2)) // on path start, expect knife to the right
-                            { opath.Path[0].MoveTo = ExtendPath(opath.Path[0].MoveTo, opath.Path[1].MoveTo, gcodeDragRadius, ExtendDragPath.startLater); }
+
+                            /* Calculate extended path endpoint of virtual horizontal movement */
+                            opath.Path[0].MoveTo = ExtendPath(startPath0Degree, startPathOriginal, gcodeDragRadius, ExtendDragPath.endLater);
+                            /* add rotation if needed for 1st real move */
+                            CheckArcMove(opath, 0, startPath0Degree, startPathOriginal, opath.Path[1].MoveTo, gcodeDragRadius, 1); // on path start, expect knife to the right
+
+                            //original 1.6.9.4 { opath.Path[0].MoveTo = ExtendPath(opath.Path[0].MoveTo, opath.Path[1].MoveTo, gcodeDragRadius, ExtendDragPath.startLater); }
                             opath.Start = opath.Path[0].MoveTo;
                         }
                     }
