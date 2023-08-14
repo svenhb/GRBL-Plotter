@@ -29,6 +29,8 @@
  * 2023-07-13 l:800 f:RemoveShortMoves also compare depth informnation
  * 2023-07-30 l:898 f:RemoveOffset calc new dimesnion for all types
  * 2023-08-06 l:1283 f:SortByDistance get also start-pos
+ * 2023-08-14 update SortByDistance to remove the slow sort
+ * 2023-08-14 update HasSameProperties for speed
 */
 
 using System;
@@ -1478,17 +1480,15 @@ namespace GrblPlotter
         private static Point ToPointF(XyPoint tmp)
         { return new Point((float)tmp.X, (float)tmp.Y); }
 
-        private static bool HasSameProperties(ItemPath a, ItemPath b)
+        private static bool HasSameProperties(ItemPath a, ItemPath b, bool importLineDashPattern)
         {
-            bool sameProperties = true;
             //            bool checkAll = false;// true;
             if (graphicInformation.GroupEnable)
             {
-                for (int i = 1; i <= 6; i++)    // GroupOptions { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByType = 4, ByTile = 5, ByFill = 6, Label = 7};
+                for (int i = 1; i < a.Info.GroupAttributes.Count; i++)    // GroupOptions { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByType = 4, ByTile = 5};
                 {
                     if (logDetailed) Logger.Trace("  hasSameProperties - GroupEnable-Option:{0} a:'{1}'  b:'{2}'", i, a.Info.GroupAttributes[i], b.Info.GroupAttributes[i]);
-                    sameProperties = a.Info.GroupAttributes[i] == b.Info.GroupAttributes[i];
-                    if (!sameProperties)
+                    if (a.Info.GroupAttributes[i] != b.Info.GroupAttributes[i])
                         return false;
                 }
             }
@@ -1499,17 +1499,24 @@ namespace GrblPlotter
                         return false;
                 }*/
 
-            bool sameDash = true;
-            if (Properties.Settings.Default.importLineDashPattern)
+            if (importLineDashPattern)
             {
-                //                Logger.Trace("  hasSameProperties a-count:{0} dash-a:{1}  b-count:{2} dash-b:{3}", a.dashArray.Count(), showArray(a.dashArray), b.dashArray.Count(), showArray(b.dashArray));
-                sameDash = false;
                 if ((a.DashArray.Length == 0) && (b.DashArray.Length == 0))
-                    sameDash = true;
-                else if (a.DashArray == b.DashArray)
-                    sameDash = true;
+                {
+                    return true;
+                }
+                else
+                {
+                    if (a.DashArray.Length != b.DashArray.Length)
+                        return false;
+                    for (int i = 1; i <= a.DashArray.Length; i++)
+                    {
+                        if (a.DashArray[i] != b.DashArray[i])
+                            return false;
+                    }
+                }
             }
-            return (sameProperties && sameDash);
+            return true;
         }
         /*     private static string ShowArray(double[] tmp)
              {   string tmps = "";
@@ -1525,6 +1532,7 @@ namespace GrblPlotter
 
             int i, k;
             int maxElements = graphicToMerge.Count;
+            bool importLineDashPattern = Properties.Settings.Default.importLineDashPattern; // Keep a local copy for speed
 
             for (i = graphicToMerge.Count - 1; i > 0; i--)
             {
@@ -1565,7 +1573,7 @@ namespace GrblPlotter
                                 continue;
 
                             // paths with different propertys should not be merged
-                            if (!HasSameProperties(ipath, kpath))
+                            if (!HasSameProperties(ipath, kpath, importLineDashPattern))
                             {   //                             Logger.Trace("  not same Properties");
                                 continue;
                             }

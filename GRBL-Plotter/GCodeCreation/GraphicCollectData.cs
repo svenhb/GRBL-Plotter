@@ -52,6 +52,7 @@
  * 2023-05-31 l:454 f:GetActualZ add OptionSFromWidth
  * 2023-07-02 l:296 f:StartPath ->  actualPath = new ItemPath(xy, GetActualZ());  
  * 2023-08-06 l:830 f:CreateGCode set SortByDistance start-pos to maxy
+ * 2023-08-14 upadte StartPath to be compatible with speed up of HasSameProperties
 */
 
 using System;
@@ -268,7 +269,7 @@ namespace GrblPlotter
             actualPath.Info.CopyData(actualPathInfo);                       // preset global info for GROUP
 
             // only continue last path if same layer, color, dash-pattern - if enabled
-            if ((lastPath is ItemPath apath) && (objectCount > 0) && HasSameProperties(apath, (ItemPath)actualPath) && (IsEqual(xy, lastPoint)))
+            if ((lastPath is ItemPath apath) && (objectCount > 0) && HasSameProperties(apath, (ItemPath)actualPath, Properties.Settings.Default.importLineDashPattern) && (IsEqual(xy, lastPoint)))
             {
                 actualPath = apath;             // only continoue last path if it was finished
                 actualPath.Options = lastOption;
