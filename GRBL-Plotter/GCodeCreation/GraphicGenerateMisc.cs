@@ -31,6 +31,7 @@
  * 2023-08-06 l:1283 f:SortByDistance get also start-pos
  * 2023-08-14 update SortByDistance to remove the slow sort
  * 2023-08-14 update HasSameProperties for speed
+ * 2023-08-14 reduce the updating of progress bar in SortByDistance
 */
 
 using System;
@@ -1306,23 +1307,23 @@ namespace GrblPlotter
 
             while ((graphicToSort.Count > 0) && (!cancelByWorker))                      // items will be removed step by step from completeGraphic
             {
+                if (backgroundWorker != null)
+                {
+                    if (UpdateGUI()) backgroundWorker.ReportProgress(((maxElements - graphicToSort.Count) * 100) / maxElements);
+                    if (backgroundWorker.CancellationPending)
+                    {
+                        cancelByWorker = true;
+                        backgroundWorker.ReportProgress(100, new MyUserState { Value = 100, Content = "Stop processing, clean up data. Please wait!" });
+                        break;
+                    }
+                }
+
                 double minDist = double.MaxValue;
                 int minDistIndex = -1;
                 for (int i = 0; i < graphicToSort.Count; i++)     // calculate distance to all remaining items check start and end position
                 {
                     tmp = graphicToSort[i];
                     tmp.Distance = PointDistanceSquared(actualPos, tmp.Start);
-
-                    if (backgroundWorker != null)
-                    {
-                        if (UpdateGUI()) backgroundWorker.ReportProgress(((maxElements - graphicToSort.Count) * 100) / maxElements);
-                        if (backgroundWorker.CancellationPending)
-                        {
-                            cancelByWorker = true;
-                            backgroundWorker.ReportProgress(100, new MyUserState { Value = 100, Content = "Stop processing, clean up data. Please wait!" });
-                            break;
-                        }
-                    }
 
                     if (tmp is ItemPath tmpItemPath)
                     {

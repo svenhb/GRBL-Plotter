@@ -53,6 +53,7 @@
  * 2023-07-02 l:296 f:StartPath ->  actualPath = new ItemPath(xy, GetActualZ());  
  * 2023-08-06 l:830 f:CreateGCode set SortByDistance start-pos to maxy
  * 2023-08-14 upadte StartPath to be compatible with speed up of HasSameProperties
+ * 2023-08-14 improve the UpdateGUI method as it was updating many times in 250 ms
 */
 
 using System;
@@ -152,20 +153,15 @@ namespace GrblPlotter
         { return countGeometry; }
 
 
-        private static bool updateMarker = false;
+        private static int lastUpdateMilliseconds = 0; 
         private static bool UpdateGUI()
         {
-            bool time = ((stopwatch.Elapsed.Milliseconds % 500) > 250);
-            if (time)
+            int elapsed = stopwatch.Elapsed.Milliseconds - lastUpdateMilliseconds;
+            if ((elapsed < 0) || (elapsed > 500))
             {
-                if (updateMarker)
-                {
-                    updateMarker = false;
-                    return true;
-                }
+                lastUpdateMilliseconds = stopwatch.Elapsed.Milliseconds;
+                return true;
             }
-            else
-            { updateMarker = true; }
             return false;
         }
         #endregion
