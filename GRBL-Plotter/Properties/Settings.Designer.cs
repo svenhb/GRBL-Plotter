@@ -4350,6 +4350,30 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("data\\scripts\\script_stamp_refresh.nc")]
+        public string importCircleToDotScript {
+            get {
+                return ((string)(this["importCircleToDotScript"]));
+            }
+            set {
+                this["importCircleToDotScript"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal importCircleToDotScriptCount {
+            get {
+                return ((decimal)(this["importCircleToDotScriptCount"]));
+            }
+            set {
+                this["importCircleToDotScriptCount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool importCodeFold {
             get {
@@ -5226,7 +5250,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public decimal importGCSegment {
             get {
                 return ((decimal)(this["importGCSegment"]));
@@ -6186,6 +6210,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGraphicHatchFillDeletePath {
+            get {
+                return ((bool)(this["importGraphicHatchFillDeletePath"]));
+            }
+            set {
+                this["importGraphicHatchFillDeletePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public decimal importGraphicHatchFillDistance {
             get {
@@ -6229,6 +6265,18 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["importGraphicHatchFillInsetEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGraphicHatchFillInsetEnable2 {
+            get {
+                return ((bool)(this["importGraphicHatchFillInsetEnable2"]));
+            }
+            set {
+                this["importGraphicHatchFillInsetEnable2"] = value;
             }
         }
         
@@ -6810,6 +6858,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("6")]
+        public decimal importMessageDelay {
+            get {
+                return ((decimal)(this["importMessageDelay"]));
+            }
+            set {
+                this["importMessageDelay"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool importPauseElement {
             get {
@@ -6829,6 +6889,18 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["importPausePenDown"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importPWMFromWidth {
+            get {
+                return ((bool)(this["importPWMFromWidth"]));
+            }
+            set {
+                this["importPWMFromWidth"] = value;
             }
         }
         
@@ -6955,6 +7027,18 @@ namespace GrblPlotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importSVGCircleToDotS {
+            get {
+                return ((bool)(this["importSVGCircleToDotS"]));
+            }
+            set {
+                this["importSVGCircleToDotS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool importSVGCircleToDotZ {
             get {
                 return ((bool)(this["importSVGCircleToDotZ"]));
@@ -6997,6 +7081,18 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["importSVGMaxSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importSVGMetaData {
+            get {
+                return ((bool)(this["importSVGMetaData"]));
+            }
+            set {
+                this["importSVGMetaData"] = value;
             }
         }
         
@@ -8863,48 +8959,48 @@ namespace GrblPlotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool importPWMFromWidth {
+        public bool importGraphicSortDimension {
             get {
-                return ((bool)(this["importPWMFromWidth"]));
+                return ((bool)(this["importGraphicSortDimension"]));
             }
             set {
-                this["importPWMFromWidth"] = value;
+                this["importGraphicSortDimension"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool importSVGMetaData {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importGraphicLargestLast {
             get {
-                return ((bool)(this["importSVGMetaData"]));
+                return ((bool)(this["importGraphicLargestLast"]));
             }
             set {
-                this["importSVGMetaData"] = value;
+                this["importGraphicLargestLast"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("6")]
-        public decimal importMessageDelay {
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal importGraphicOffsetOriginX {
             get {
-                return ((decimal)(this["importMessageDelay"]));
+                return ((decimal)(this["importGraphicOffsetOriginX"]));
             }
             set {
-                this["importMessageDelay"] = value;
+                this["importGraphicOffsetOriginX"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool importSVGCircleToDotS {
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal importGraphicOffsetOriginY {
             get {
-                return ((bool)(this["importSVGCircleToDotS"]));
+                return ((decimal)(this["importGraphicOffsetOriginY"]));
             }
             set {
-                this["importSVGCircleToDotS"] = value;
+                this["importGraphicOffsetOriginY"] = value;
             }
         }
     }

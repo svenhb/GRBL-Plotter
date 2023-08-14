@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GrblPlotter.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
@@ -1082,6 +1082,12 @@
     <Setting Name="importBezierLineSegmentsCnt" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">12</Value>
     </Setting>
+    <Setting Name="importCircleToDotScript" Type="System.String" Scope="User">
+      <Value Profile="(Default)">data\scripts\script_stamp_refresh.nc</Value>
+    </Setting>
+    <Setting Name="importCircleToDotScriptCount" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
     <Setting Name="importCodeFold" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -1302,7 +1308,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="importGCSegment" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="importGCSpindleCmd" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -1541,6 +1547,9 @@
     <Setting Name="importGraphicHatchFillDash" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importGraphicHatchFillDeletePath" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="importGraphicHatchFillDistance" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
@@ -1551,6 +1560,12 @@
       <Value Profile="(Default)">0.5</Value>
     </Setting>
     <Setting Name="importGraphicHatchFillInsetEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGraphicHatchFillInsetEnable2" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGraphicLargestLast" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="importGraphicLeadInDistance" Type="System.Decimal" Scope="User">
@@ -1582,6 +1597,15 @@
     </Setting>
     <Setting Name="importGraphicOffsetOrigin" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGraphicOffsetOriginX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="importGraphicOffsetOriginY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="importGraphicSortDimension" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGraphicSortDistance" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -1697,10 +1721,16 @@
     <Setting Name="importLoggerSettings" Type="System.UInt32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="importMessageDelay" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">6</Value>
+    </Setting>
     <Setting Name="importPauseElement" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importPausePenDown" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importPWMFromWidth" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importRemoveShortMovesEnable" Type="System.Boolean" Scope="User">
@@ -1733,6 +1763,9 @@
     <Setting Name="importSVGCircleToDot" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importSVGCircleToDotS" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="importSVGCircleToDotZ" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -1744,6 +1777,9 @@
     </Setting>
     <Setting Name="importSVGMaxSize" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="importSVGMetaData" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importSVGNodesOnly" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -2209,18 +2245,6 @@
     </Setting>
     <Setting Name="useCaseLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">?</Value>
-    </Setting>
-    <Setting Name="importPWMFromWidth" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="importSVGMetaData" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="importMessageDelay" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">6</Value>
-    </Setting>
-    <Setting Name="importSVGCircleToDotS" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>
