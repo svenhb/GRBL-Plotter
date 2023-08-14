@@ -1304,6 +1304,8 @@ namespace GrblPlotter
 
             while ((graphicToSort.Count > 0) && (!cancelByWorker))                      // items will be removed step by step from completeGraphic
             {
+                double minDist = double.MaxValue;
+                int minDistIndex = -1;
                 for (int i = 0; i < graphicToSort.Count; i++)     // calculate distance to all remaining items check start and end position
                 {
                     tmp = graphicToSort[i];
@@ -1362,13 +1364,21 @@ namespace GrblPlotter
                         }
                         graphicToSort[i] = tmp;
                     }
-                }
-                graphicToSort.Sort((x, y) => x.Distance.CompareTo(y.Distance));   // sort by distance
 
-                sortedGraphic.Add(graphicToSort[0]);       	// get closest item = first in list
-                actualPos = graphicToSort[0].End;         	// set new start pos
-                if (logSortMerge) Logger.Trace("   remove id:{0} ", graphicToSort[0].Info.Id);
-                graphicToSort.RemoveAt(0);                  // remove item from remaining list
+                    if (tmp.Distance < minDist)
+                    {
+                        minDist = tmp.Distance;
+                        minDistIndex = i;
+                    }
+                }
+
+                if (minDistIndex != -1)
+                {
+                    sortedGraphic.Add(graphicToSort[minDistIndex]);       	// get closest item = first in list
+                    actualPos = graphicToSort[minDistIndex].End;         	// set new start pos
+                	if (logSortMerge) Logger.Trace("   remove id:{0} ", graphicToSort[0].Info.Id);
+                    graphicToSort.RemoveAt(minDistIndex);                  // remove item from remaining list
+                }
             }
 
             if (cancelByWorker)//stopwatch.Elapsed.Minutes >= maxTimeMinute)  // time expired, just copy missing figures
