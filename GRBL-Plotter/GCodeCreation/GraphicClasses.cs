@@ -73,8 +73,9 @@ namespace GrblPlotter
 
             public bool ApplyHatchFill { get; set; }		// Format related SVG
 
-            public bool OptionOffsetCode { get; set; }		// General options, Graphics import general
-            public bool OptionSortCode { get; set; }
+            public bool OptionCodeOffset { get; set; }		// General options, Graphics import general
+            public bool OptionCodeSortDistance { get; set; }
+            public bool OptionCodeSortDimension { get; set; }
             public bool ConvertArcToLine { get; set; }
 
             public bool OptionNodesOnly { get; set; }		// General options, Path interpretation
@@ -140,8 +141,9 @@ namespace GrblPlotter
                     OptionRampOnPenDown = Properties.Settings.Default.importGraphicLeadInEnable;
                 }
                 PauseBeforePath = Properties.Settings.Default.importPauseElement;
-                OptionOffsetCode = Properties.Settings.Default.importGraphicOffsetOrigin;
-                OptionSortCode = Properties.Settings.Default.importGraphicSortDistance;
+                OptionCodeOffset = Properties.Settings.Default.importGraphicOffsetOrigin;
+                OptionCodeSortDistance = Properties.Settings.Default.importGraphicSortDistance;
+                OptionCodeSortDimension = Properties.Settings.Default.importGraphicSortDimension;
                 OptionFeedFromToolTable = Properties.Settings.Default.importGCToolTableUse;
 
                 ConvertArcToLine = Properties.Settings.Default.importGCNoArcs || OptionClipCode || OptionDragTool || OptionHatchFill;// only for SVG: || ApplyHatchFill;
@@ -157,8 +159,9 @@ namespace GrblPlotter
                 OptionDotFromCircle = false;
                 OptionZFromRadius = false;
                 OptionRepeatCode = false;
-                OptionSortCode = false;
-                OptionOffsetCode = false;
+                OptionCodeSortDistance = false;
+                OptionCodeSortDimension = false;
+                OptionCodeOffset = false;
                 ApplyHatchFill = false;
                 OptionHatchFill = false;
                 OptionClipCode = false;
@@ -201,9 +204,9 @@ namespace GrblPlotter
                 if (OptionDotFromCircle) importOptions += "<Dot from circle> ";
                 if (OptionZFromRadius) importOptions += "<Dot depth from circle radius> ";
                 if (Properties.Settings.Default.importGraphicAddFrameEnable) importOptions += "<Add frame> ";
-                if (OptionOffsetCode) importOptions += "<Remove offset> ";
+                if (OptionCodeOffset) importOptions += "<Remove offset> ";
                 if (Properties.Settings.Default.importGraphicMultiplyGraphicsEnable) importOptions += "<Multiply> ";
-                if (OptionSortCode) importOptions += "<Sort objects> ";
+                if (OptionCodeSortDistance) importOptions += "<Sort objects> ";
                 if (ApplyHatchFill) importOptions += "<SVG fill> ";
                 if (OptionHatchFill) importOptions += "<Hatch fill> ";
                 if (OptionRepeatCode && !Properties.Settings.Default.importRepeatComplete) importOptions += "<Repeat paths> ";

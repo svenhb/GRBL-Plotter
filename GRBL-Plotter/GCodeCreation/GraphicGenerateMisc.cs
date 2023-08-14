@@ -27,6 +27,8 @@
  * 2023-07-03 l:1307 f:HasSameProperties also check pen-width if graphicInformation.OptionZFromWidth || graphicInformation.OptionSFromWidth
  * 2023-07-05 l:776 f:RemoveIntermediateSteps also compare depth informnation
  * 2023-07-13 l:800 f:RemoveShortMoves also compare depth informnation
+ * 2023-07-30 l:898 f:RemoveOffset calc new dimesnion for all types
+ * 2023-08-06 l:1283 f:SortByDistance get also start-pos
 */
 
 using System;
@@ -286,7 +288,7 @@ namespace GrblPlotter
                     foreach (GroupObject groupObject in groupedGraphicLocal)
                     {
                         if (groupObject.GroupPath.Count > 1)
-                            SortByDistance(groupObject.GroupPath, preventReversal);
+                            SortByDistance(groupObject.GroupPath, new Point(0, 0), preventReversal);     // GroupAllGraphics
                     }
                 }
             }
@@ -369,7 +371,7 @@ namespace GrblPlotter
             if (Properties.Settings.Default.importGraphicClipAngleEnable)
                 Rotate(completeGraphic, (double)Properties.Settings.Default.importGraphicClipAngle, tileSizeX / 2, tileSizeY / 2);
 
-            if (graphicInformation.OptionOffsetCode)
+            if (graphicInformation.OptionCodeOffset)
             {
                 Logger.Info("...ClipCode Remove offset1, X: {0:0.000} , Y: {1:0.000}", actualDimension.minx, actualDimension.miny);
                 SetHeaderInfo(string.Format(" Graphic offset: {0:0.00} {1:0.00} ", -actualDimension.minx, -actualDimension.miny));
@@ -597,7 +599,7 @@ namespace GrblPlotter
                         RemoveOffset(finalPathList, clipMin.X, clipMin.Y);
                     }
 
-                    SortByDistance(finalPathList);                 // sort objects of current tile
+                    SortByDistance(finalPathList, new Point(0, 0), false);      // ClipCode - sort objects of current tile
 
                     tiledGraphic.Add(new TileObject(tileID, tileCommand, tileOffset));          // new 2020-12-14
                     foreach (PathObject tile in finalPathList)      // add tile to full graphic
@@ -777,7 +779,7 @@ namespace GrblPlotter
 
                             if (isLineNow && isLineLast && IsEqual(angleNow, angleLast) && IsEqual(zNow, zLast))
                             {
-                                if (((i + 2) < PathData.Path.Count) && (PathData.Path[i + 2] is GCodeLine) && (IsEqual(zNow, PathData.Path[i+2].Depth)))	// don't delete if start-point for arc
+                                if (((i + 2) < PathData.Path.Count) && (PathData.Path[i + 2] is GCodeLine) && (IsEqual(zNow, PathData.Path[i + 2].Depth)))	// don't delete if start-point for arc
                                 {
                                     PathData.Path.RemoveAt(i + 1);
                                     removed++;
@@ -799,9 +801,9 @@ namespace GrblPlotter
 
         private static void RemoveShortMoves(List<PathObject> graphicToImprove, double minDistance)
         {
-			bool backward = !Properties.Settings.Default.importDepthFromWidth;
-			List<int> indexToRemove = new List<int>();
-			
+            bool backward = !Properties.Settings.Default.importDepthFromWidth;
+            List<int> indexToRemove = new List<int>();
+
 
             int countAll = 0;
             foreach (PathObject item in graphicToImprove)    // dot or path
@@ -814,55 +816,55 @@ namespace GrblPlotter
                     double distance;
                     if (PathData.Path.Count > 3)
                     {
-						if (backward)
-                        {	
-							int count=0;
-							for (int i = (PathData.Path.Count - 2); i > 0; i--)
-							{
-								if (PathData.Path[i] is GCodeLine)
-									distance = Math.Sqrt(PointDistanceSquared(PathData.Path[i].MoveTo, lastPoint));
-								else
-									distance = minDistance;
+                        if (backward)
+                        {
+                            int count = 0;
+                            for (int i = (PathData.Path.Count - 2); i > 0; i--)
+                            {
+                                if (PathData.Path[i] is GCodeLine)
+                                    distance = Math.Sqrt(PointDistanceSquared(PathData.Path[i].MoveTo, lastPoint));
+                                else
+                                    distance = minDistance;
 
-								if ((distance < minDistance) && (Math.Abs(lastAngle - PathData.Path[i].Angle) < 0.5))	// && IsEqual(lastZ, PathData.Path[1].Depth))   // < 30°
-								{ PathData.Path.RemoveAt(i); count++;}
+                                if ((distance < minDistance) && (Math.Abs(lastAngle - PathData.Path[i].Angle) < 0.5))   // && IsEqual(lastZ, PathData.Path[1].Depth))   // < 30°
+                                { PathData.Path.RemoveAt(i); count++; }
 
-								lastPoint = PathData.Path[i].MoveTo;	// if i was removed, i+1 takes place
-								lastAngle = PathData.Path[i].Angle;
-								lastZ = PathData.Path[1].Depth;
-							}
+                                lastPoint = PathData.Path[i].MoveTo;    // if i was removed, i+1 takes place
+                                lastAngle = PathData.Path[i].Angle;
+                                lastZ = PathData.Path[1].Depth;
+                            }
                             countAll = count;
-						}
-						else
-						{
-							indexToRemove.Clear();
-							lastPoint = PathData.Path[0].MoveTo;
-							for (int i=1; i < (PathData.Path.Count -2); i++)
-							{
-								if (PathData.Path[i] is GCodeLine)
-									distance = Math.Sqrt(PointDistanceSquared(PathData.Path[i].MoveTo, lastPoint));
-								else
-									distance = minDistance;
+                        }
+                        else
+                        {
+                            indexToRemove.Clear();
+                            lastPoint = PathData.Path[0].MoveTo;
+                            for (int i = 1; i < (PathData.Path.Count - 2); i++)
+                            {
+                                if (PathData.Path[i] is GCodeLine)
+                                    distance = Math.Sqrt(PointDistanceSquared(PathData.Path[i].MoveTo, lastPoint));
+                                else
+                                    distance = minDistance;
 
-								if (distance < minDistance) 
-								{	
-									if ((Math.Abs(lastAngle - PathData.Path[i].Angle) < 0.5) && IsEqual(lastZ, PathData.Path[i].Depth) && IsEqual(lastZ, PathData.Path[i+1].Depth))   // < 30°
-									{ indexToRemove.Add(i); }
-									else
-									{
-										lastPoint = PathData.Path[i].MoveTo;	// if i will be removed, keep old last-value
-										lastAngle = PathData.Path[i].Angle;
-										lastZ = PathData.Path[i].Depth;			
-									}
-								}
-								else
-								{
-									lastPoint = PathData.Path[i].MoveTo;
-									lastAngle = PathData.Path[i].Angle;
-									lastZ = PathData.Path[i].Depth;
-								}
-							}		
-							indexToRemove.Reverse();
+                                if (distance < minDistance)
+                                {
+                                    if ((Math.Abs(lastAngle - PathData.Path[i].Angle) < 0.5) && IsEqual(lastZ, PathData.Path[i].Depth) && IsEqual(lastZ, PathData.Path[i + 1].Depth))   // < 30°
+                                    { indexToRemove.Add(i); }
+                                    else
+                                    {
+                                        lastPoint = PathData.Path[i].MoveTo;    // if i will be removed, keep old last-value
+                                        lastAngle = PathData.Path[i].Angle;
+                                        lastZ = PathData.Path[i].Depth;
+                                    }
+                                }
+                                else
+                                {
+                                    lastPoint = PathData.Path[i].MoveTo;
+                                    lastAngle = PathData.Path[i].Angle;
+                                    lastZ = PathData.Path[i].Depth;
+                                }
+                            }
+                            indexToRemove.Reverse();
                             foreach (int i in indexToRemove)
                             { PathData.Path.RemoveAt(i); }
                             countAll = indexToRemove.Count;
@@ -878,22 +880,43 @@ namespace GrblPlotter
         private static void RemoveOffset(List<PathObject> graphicToOffset, double offsetX, double offsetY)
         {
             System.Diagnostics.StackTrace s = new System.Diagnostics.StackTrace(System.Threading.Thread.CurrentThread, true);
+            int iLargest = 0;
+            double tlarge, largest = 0;
 
-            //           MessageBox.Show("Methode B wurde von Methode " + s.GetFrame(1).GetMethod().Name + " aufgerufen");
             if (logEnable) Logger.Trace("...RemoveOffset before min X:{0:0.00} Y:{1:0.00} caller:{2} --------------------------------------", actualDimension.minx, actualDimension.miny, s.GetFrame(1).GetMethod().Name);
-            foreach (PathObject item in graphicToOffset)    // dot or path
+            PathObject item;
+            for (int i = 0; i < graphicToOffset.Count; i++)
             {
+                item = graphicToOffset[i];
                 item.Start = new Point(item.Start.X - offsetX, item.Start.Y - offsetY);
                 item.End = new Point(item.End.X - offsetX, item.End.Y - offsetY);
+                item.Dimension.OffsetXY(-offsetX, -offsetY);
+
                 if (item is ItemPath PathData)
                 {
-                    //ItemPath PathData = (ItemPath)item;
                     foreach (GCodeMotion entity in PathData.Path)
                     { entity.MoveTo = new Point(entity.MoveTo.X - offsetX, entity.MoveTo.Y - offsetY); }
-                    PathData.Dimension.OffsetXY(-offsetX, -offsetY);
+                    //    PathData.Dimension.OffsetXY(-offsetX, -offsetY);
+                    tlarge = PathData.Dimension.dimx + PathData.Dimension.dimy;
+                    if (tlarge > largest)
+                    {
+                        largest = tlarge;
+                        iLargest = i;
+                    //    if (logEnable) Logger.Trace("    Larger: id:{0}", i);
+                    }
                 }
             }
             actualDimension.OffsetXY(-offsetX, -offsetY);
+
+            if (Properties.Settings.Default.importGraphicLargestLast)   // move largest object to the end
+            {
+                if (logEnable) Logger.Trace("...RemoveOffset move largest object to the end id:{0}", iLargest);
+                graphicToOffset.Add(graphicToOffset[iLargest]);
+                graphicToOffset.RemoveAt(iLargest);
+            //    PathObject tmp = graphicToOffset[graphicToOffset.Count - 1];
+            //    graphicToOffset[graphicToOffset.Count - 1] = graphicToOffset[iLargest];
+            //    graphicToOffset[iLargest] = tmp;
+            }
         }
         #endregion
 
@@ -1183,14 +1206,91 @@ namespace GrblPlotter
             }
         }
 
-        private static void SortByDistance(List<PathObject> graphicToSort, bool preventReversal = false)
+        private static void SortByDimension(List<PathObject> graphicToSort)
         {
-            if (logEnable) Logger.Trace("...SortByDistance() count:{0}", graphicToSort.Count);
+            // 1. sort by dimension - largest first
+            // 2. sort by location
+            // 3. reverse order - smallest = innerst first
+            if (logEnable) Logger.Trace("...SortByDimension() count:{0}", graphicToSort.Count);
+            stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            PathObject tmp;
+
+            for (int i = 0; i < graphicToSort.Count; i++)
+            {
+                tmp = graphicToSort[i];
+                tmp.Distance = tmp.Dimension.dimx * tmp.Dimension.dimy;
+                graphicToSort[i] = tmp;
+            }
+            graphicToSort.Sort((x, y) => y.Distance.CompareTo(x.Distance));   // sort by size, large first
+
+
+            List<PathObject> sortedGraphic = new List<PathObject>();
+            List<Dimensions> lastDim = new List<Dimensions>();
+            double minX, minY, maxX, maxY;
+            Dimensions dim;
+            tmp = graphicToSort[0];
+            dim = new Dimensions(tmp.Dimension);
+            lastDim.Add(dim);
+            sortedGraphic.Add(tmp);
+            graphicToSort.RemoveAt(0);
+
+            while (graphicToSort.Count > 0)                      // items will be removed step by step from graphicToSort
+            {
+                for (int k = lastDim.Count - 1; k >= 0; k--)
+                {
+                    dim = lastDim[k];
+                    //    if (logEnable) Logger.Trace("   set k:{0}  dx:{1:0.0}  dy:{2:0.0}  minx:{3:0.0}  miny:{4:0.0}", k, dim.dimx, dim.dimy, dim.minx, dim.miny);
+                    for (int i = 0; i < graphicToSort.Count; i++)
+                    {
+                        tmp = graphicToSort[i];
+                        if (tmp.Dimension.IsWithin(dim))
+                        {
+                            dim = new Dimensions(tmp.Dimension);
+                            //    if (logEnable) Logger.Trace("   added i:{0}  dx:{1:0.0}  dy:{2:0.0}  minx:{3:0.0}  miny:{4:0.0}", i , tmp.Dimension.dimx, tmp.Dimension.dimy, tmp.Dimension.minx, tmp.Dimension.miny);
+                            if (tmp.Dimension.dimx > 0)
+                                lastDim.Add(dim);
+                            sortedGraphic.Add(graphicToSort[i]);
+                            graphicToSort.RemoveAt(i);
+                            i--;
+                            k = lastDim.Count - 1;
+                        }
+                    }
+                }
+
+                if (graphicToSort.Count > 0)
+                {
+                    tmp = graphicToSort[0];
+                    dim = new Dimensions(tmp.Dimension);
+                    //    if (logEnable) Logger.Trace("   next top  dx:{0:0.0}  dy:{1:0.0}  minx:{2:0.0}  miny:{3:0.0}", tmp.Dimension.dimx, tmp.Dimension.dimy, tmp.Dimension.minx, tmp.Dimension.miny);
+                    if (tmp.Dimension.dimx > 0)
+                        lastDim.Add(dim);
+                    sortedGraphic.Add(graphicToSort[0]);
+                    graphicToSort.RemoveAt(0);
+                }
+            }
+
+            graphicToSort.Clear();
+            foreach (PathObject item in sortedGraphic)      // replace original list
+                graphicToSort.Add(item);
+
+            sortedGraphic.Clear();
+            graphicToSort.Reverse();
+            if (logEnable) Logger.Trace("...SortByDimension()  finish");
+        }
+
+        private static void SortByDistance(List<PathObject> graphicToSort, Point actualPos, bool preventReversal)
+        {
+            if (logEnable) Logger.Trace("...SortByDistance() count:{0}  start X:{1:0.00} y:{2:0.00}", graphicToSort.Count, actualPos.X, actualPos.Y);
             stopwatch = new Stopwatch();
             stopwatch.Start();
 
             List<PathObject> sortedGraphic = new List<PathObject>();
-            Point actualPos = new Point(0, 0);
+
+        //    Point actualPos = new Point(0, 0);
+        //    Point actualPos = new Point(actualDimension.maxx, 0);   // start at upper left point
+
             double distanceReverse;
             bool allowReverse = false;
             PathObject tmp;
@@ -1277,6 +1377,8 @@ namespace GrblPlotter
                     sortedGraphic.Add(tmpgrp);
             }
 
+            int iLargest = 0;
+            double tlarge, largest = 0;
             PathObject sortedItem;
             for (int i = 0; i < sortedGraphic.Count; i++)     // loop through all items
             {
@@ -1289,6 +1391,17 @@ namespace GrblPlotter
                 /* now reverse path */
                 if (!cancelByWorker && (sortedItem is ItemPath bpath) && bpath.Reversed)
                 { ReversePath(bpath); }            // finally reverse path if needed
+
+                if (sortedItem is ItemPath tmpItemPath)
+                {
+                    tlarge = tmpItemPath.Dimension.dimx + tmpItemPath.Dimension.dimy;
+                    if (tlarge > largest)
+                    {
+                        largest = tlarge;
+                        iLargest = i;
+                        if (logEnable) Logger.Trace("    Larger: id:{0}", i);
+                    }
+                }
             }
 
             graphicToSort.Clear();
@@ -1296,6 +1409,17 @@ namespace GrblPlotter
                 graphicToSort.Add(item);
 
             sortedGraphic.Clear();
+
+            if (Properties.Settings.Default.importGraphicLargestLast)   // move largest object to the end
+            {
+                if (logEnable) Logger.Trace("...SortByDistance move largest object to the end id:{0}", iLargest);
+                graphicToSort.Add(graphicToSort[iLargest]);
+                graphicToSort.RemoveAt(iLargest);
+            //    PathObject tmpp = graphicToSort[graphicToSort.Count - 1];
+            //    graphicToSort[graphicToSort.Count - 1] = graphicToSort[iLargest];
+            //    graphicToSort[iLargest] = tmpp;
+            }
+
             if (logEnable) Logger.Trace("...SortByDistance()  finish");
         }
         private static double PointDistanceSquared(Point a, Point b)	// avoid square-root, to save time

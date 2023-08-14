@@ -41,6 +41,10 @@ namespace GrblPlotter
             double angle2 = (double)Properties.Settings.Default.importGraphicHatchFillAngle2;
             bool cross = Properties.Settings.Default.importGraphicHatchFillCross;
             bool incrementAngle = Properties.Settings.Default.importGraphicHatchFillAngleInc;
+            bool deletePath = Properties.Settings.Default.importGraphicHatchFillDeletePath;
+
+            bool inset2 = Properties.Settings.Default.importGraphicHatchFillInsetEnable && Properties.Settings.Default.importGraphicHatchFillInsetEnable2;
+            double insetVal = (double)Properties.Settings.Default.importGraphicHatchFillInset;
 
             bool nextIsSameHatch;
             bool fillColor = graphicInformation.ApplyHatchFill;	// only hatch if fillColor is set
@@ -48,12 +52,14 @@ namespace GrblPlotter
             bool applyDash = Properties.Settings.Default.importGraphicHatchFillDash;
             int maxObject = graphicToFill.Count;
 
-            Logger.Trace("...HatchFill objects:{0}  distance:{1} angle:{2} cross:{3}  dash:{4}", maxObject, distance, angle, cross, applyDash);
+            Logger.Trace("...HatchFill objects:{0}  distance:{1} angle:{2} cross:{3}  dash:{4}  inset2:{5}", maxObject, distance, angle, cross, applyDash, inset2);
 
+            List<int> indexToDelete = new List<int>();
             List<Point[]> hatchPattern = new List<Point[]>();
             List<Point[]> finalPattern = new List<Point[]>();
 
             List<PathObject> tmpPath = new List<PathObject>();
+            List<PathObject> tmpPath2 = new List<PathObject>();
             Dimensions pathDimension = new Dimensions();
 
             if (!applyDash)
@@ -62,7 +68,7 @@ namespace GrblPlotter
             for (int index = 0; index < maxObject; index++)
             {
                 PathObject itemNow = graphicToFill[index];
-            //    ItemPath itemNext;
+
                 if (itemNow is ItemPath PathData)
                 {
                     nextIsSameHatch = false;
@@ -72,7 +78,7 @@ namespace GrblPlotter
                     if (IsEqual(PathData.Start, PathData.End) && (PathData.Path.Count > 2))      //(PathData.Start.X == PathData.End.X) && (PathData.Start.Y == PathData.End.Y))
                     {
                         string fill = PathData.Info.GroupAttributes[(int)GroupOption.ByFill];
-                        Logger.Trace("### HatchFill '{0}'",fill);
+                        if (logModification) Logger.Trace("### HatchFill '{0}'", fill);
 
                         if (fillColor && ((string.IsNullOrEmpty(fill)) || (fill == "none")))	// SVG: only hatch if fillColor is set
                         {   //Logger.Trace("no fill");
@@ -81,7 +87,8 @@ namespace GrblPlotter
                         else
                             CountProperty((int)GroupOption.ByColor, fill);      // now fill-color is also penColor -> for grouping
 
-                        tmpPath.Add(PathData);                  // collect paths
+                        tmpPath.Add(PathData.Copy());                       // collect paths
+                        tmpPath2.Add(PathData.Copy());                       // collect paths
                         pathDimension.AddDimensionXY(PathData.Dimension);   // adapt overall size
                         if (!pathDimension.IsXYSet())						// no dimension - nothing to do
                         { Logger.Trace("no dim"); continue; }
@@ -89,7 +96,19 @@ namespace GrblPlotter
                         // collect paths of same id, process if id changes
                         if (logModification && (index < (maxObject - 1))) Logger.Trace("  Add to PathData ID:{0}  nextIsSameHatch:{1}  max:{2}  index:{3}  id_now:{4}  id_next:{5}  fill:{6}", PathData.Info.Id, nextIsSameHatch, maxObject, index, graphicToFill[index].Info.Id, graphicToFill[index + 1].Info.Id, fill);
                         if (nextIsSameHatch)
-                        { continue; }
+                        {
+                            indexToDelete.Add(index);
+                            continue;
+                        }
+
+                        if (inset2)
+                        {
+                            if (!ShrinkPaths(tmpPath, insetVal))
+                            {
+                                ShrinkPaths(tmpPath2, -insetVal);
+                                tmpPath = tmpPath2;                       // collect paths
+                            }
+                        }
 
                         // create hatch pattern
                         hatchPattern.Clear();
@@ -110,7 +129,19 @@ namespace GrblPlotter
 
                         // tidy up for next object with new id
                         tmpPath.Clear();
+                        tmpPath2.Clear();
                         pathDimension = new Dimensions();
+
+                        if (deletePath)
+                        {
+                            indexToDelete.Add(index);
+                            foreach (int id in indexToDelete)
+                            {
+                                if (graphicToFill[id] is ItemPath pathDelete)
+                                { pathDelete.Path.Clear(); }
+                            }
+                        }
+                        indexToDelete.Clear();
                     }
                 }
                 else
@@ -232,7 +263,7 @@ namespace GrblPlotter
             List<IntersectionInfo> d_and_a = new List<IntersectionInfo>();
 
             double holdBack = (double)Properties.Settings.Default.importGraphicHatchFillInset;
-            bool holdBackEnable = Properties.Settings.Default.importGraphicHatchFillInsetEnable;
+            bool holdBackEnable = Properties.Settings.Default.importGraphicHatchFillInsetEnable && !Properties.Settings.Default.importGraphicHatchFillInsetEnable2; ;
             bool b_unconditionally_excise_hatch;
             double prelim_length_to_be_removed = 0;
             double dist_intersection_to_relevant_end, dist_intersection_to_irrelevant_end;
@@ -376,7 +407,6 @@ namespace GrblPlotter
         private static double CalcHypotenuse(double a, double b)
         { return Math.Sqrt(a * a + b * b); }
 
-
         private static Point RelativeControlPointPosition(double distance, double f_delta_x, double f_delta_y, double delta_x, double delta_y)
         {
             //# returns the point, relative to 0, 0 offset by delta_x, delta_y,
@@ -402,5 +432,120 @@ namespace GrblPlotter
 
             return pt_return;
         }
+
+
+        private static bool ShrinkPaths(List<PathObject> paths, double distance)
+        {
+            // Check dimension before and after shrink, to decide if distance must be inverteed
+            Logger.Info(" ShrinkPaths count:{0}  distance:{1}", paths.Count, distance);
+            Dimensions dimBefore = new Dimensions();
+            Dimensions dimAfter = new Dimensions();
+
+            for (int i = 0; i < paths.Count; i++)
+            {
+                dimBefore.AddDimensionXY(paths[i].Dimension);
+                ShrinkPath(paths[i], distance);
+                dimAfter.AddDimensionXY(paths[i].Dimension);
+            }
+            double dx = dimBefore.dimx - dimAfter.dimx;
+            double dy = dimBefore.dimy - dimAfter.dimy;
+            Logger.Info("   ShrinkPaths dx:{0:0.00}  dy:{1:0.00}", dx, dy);
+            return ((dx > 0) || (dy > 0));
+        }
+        private static void ShrinkPath(PathObject path, double distance)
+        {
+            // only for closed path with line segments
+            Point p0, p1, p2, np0, np1, np2, np3, cp1;
+            double a1, a2;
+            int PathCount;
+
+            List<Point> pts = new List<Point>();
+
+            if (path is ItemPath ipath)
+            {
+                PathCount = ipath.Path.Count;
+                for (int k = 0; k < PathCount - 1; k++) // first = last point
+                {
+                    p1 = ipath.Path[k].MoveTo;
+                    if (k == 0)
+                        p0 = ipath.Path[PathCount - 2].MoveTo;
+                    else
+                        p0 = ipath.Path[k - 1].MoveTo;
+                    if (k >= PathCount - 1)
+                        p2 = ipath.Path[0].MoveTo;
+                    else
+                        p2 = ipath.Path[k + 1].MoveTo;
+
+                    a1 = GetAlpha(p0, p1) + Math.PI / 2;
+                    a2 = GetAlpha(p1, p2) + Math.PI / 2;
+                    np0 = OffsetPoint(p0, a1, distance);
+                    np1 = OffsetPoint(p1, a1, distance);
+                    np2 = OffsetPoint(p1, a2, distance);
+                    np3 = OffsetPoint(p2, a2, distance);
+
+                    cp1 = new Point();
+
+                    // https://www.java-forum.org/thema/algorithmus-fuer-pruefung-auf-ueberschneidende-linien.117102/
+                    double d = (np1.X - np0.X) * (np2.Y - np3.Y) - (np2.X - np3.X) * (np1.Y - np0.Y);
+                    if (d == 0)
+                    { cp1 = np1; }
+                    else
+                    {
+                        double m = ((np2.X - np0.X) * (np2.Y - np3.Y) - (np2.X - np3.X) * (np2.Y - np0.Y)) / d;
+                        cp1.X = np0.X + m * (np1.X - np0.X);
+                        cp1.Y = np0.Y + m * (np1.Y - np0.Y);
+                    }
+
+                    pts.Add(cp1);
+                }
+                ipath.Dimension.ResetDimension();
+                for (int k = 0; k < PathCount - 1; k++)
+                {
+                    ipath.Path[k].MoveTo = pts[k];
+                    ipath.Dimension.SetDimensionXY((XyPoint)pts[k]);
+                }
+                ipath.Path[0].MoveTo = ipath.Path[PathCount - 1].MoveTo = ipath.Start = ipath.End = pts[0];
+            }
+        }
+
+
+        private static Point OffsetPoint(Point p, double angle, double radius)
+        {
+            Point newP = new Point();
+            newP.X = p.X + Math.Cos(angle) * radius;
+            newP.Y = p.Y + Math.Sin(angle) * radius;
+            return newP;
+        }
+        private static double GetAlpha(Point P1, Point P2)
+        { return GetAlpha(P1.X, P1.Y, P2.X, P2.Y); }
+        private static double GetAlpha(double P1x, double P1y, double P2x, double P2y)
+        {
+            double s, a;
+            double dx = P2x - P1x;
+            double dy = P2y - P1y;
+            if (dx == 0)
+            {
+                if (dy > 0)
+                    a = Math.PI / 2;
+                else
+                    a = 3 * Math.PI / 2;
+            }
+            else if (dy == 0)
+            {
+                if (dx > 0)
+                    a = 0;
+                else
+                    a = Math.PI;
+            }
+            else
+            {
+                s = dy / dx;
+                a = Math.Atan(s);
+                if (dx < 0)
+                    a += Math.PI;
+            }
+            return a;
+        }
+
     }
 }

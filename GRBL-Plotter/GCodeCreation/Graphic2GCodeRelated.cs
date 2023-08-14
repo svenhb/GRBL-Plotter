@@ -752,7 +752,7 @@ namespace GrblPlotter
             stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            if ((gcodeInsertSubroutineEnable && gcodeLineSegmentationEnable) || gcodeToolChange || Properties.Settings.Default.ctrlToolChange)
+            if ((gcodeInsertSubroutineEnable && gcodeLineSegmentationEnable) || gcodeToolChange || Properties.Settings.Default.ctrlToolChange || (Properties.Settings.Default.importSVGCircleToDot && (Properties.Settings.Default.importCircleToDotScriptCount > 0)))
             {
                 bool insertSubroutine = false;
                 if (gcodeInsertSubroutineEnable && gcodeLineSegmentationEnable && FileContainsSubroutineCall(Properties.Settings.Default.importGCSubroutine))
@@ -1001,6 +1001,9 @@ namespace GrblPlotter
                         }
                     }
                 }
+
+                if (Properties.Settings.Default.importSVGCircleToDot && (Properties.Settings.Default.importCircleToDotScriptCount > 0))
+                    CallSubroutine(gcodeValue, 95, "refresh stamp");
             }
         }
         public static void JobEnd(StringBuilder gcodeValue, string cmt)
@@ -1152,15 +1155,15 @@ namespace GrblPlotter
                     if (gcodeComments) gcodeValue.AppendFormat("({0})\r\n", "Pen up: Laser-Off");
                     //    SpindleOff(gcodeValue, cmto);
                     gcodeValue.AppendFormat("M{0} S0 ({1} Lasermode: S0 instead of M5 to switch laser off)\r\n", GcodeSpindleCmd, cmt);  //2022-03-15
-               /*     if ((!GcodeZApply) && (LastMovewasG0))
-                    {
-                        gcodeValue.AppendFormat("G91 G1 X0.001 F{0} ( %NM use Laser mode)\r\n", GcodeXYFeed);
-                        gcodeValue.AppendFormat("G91 G1 X-0.001     ( %NM G1 move to activate laser)\r\n");
-                        if (!GcodeRelative)
-                        { gcodeValue.AppendFormat("G90 ( %NM )\r\n"); }
-                        //        Move(gcodeValue, 1, lastx + 0.001f, lasty + 0.001f, false, "");
-                        //        Move(gcodeValue, 1, lastx - 0.001f, lasty - 0.001f, false, "");
-                    }*/ // removed  2023-06-26  not needed for pen-up
+                    /*     if ((!GcodeZApply) && (LastMovewasG0))
+                         {
+                             gcodeValue.AppendFormat("G91 G1 X0.001 F{0} ( %NM use Laser mode)\r\n", GcodeXYFeed);
+                             gcodeValue.AppendFormat("G91 G1 X-0.001     ( %NM G1 move to activate laser)\r\n");
+                             if (!GcodeRelative)
+                             { gcodeValue.AppendFormat("G90 ( %NM )\r\n"); }
+                             //        Move(gcodeValue, 1, lastx + 0.001f, lasty + 0.001f, false, "");
+                             //        Move(gcodeValue, 1, lastx - 0.001f, lasty - 0.001f, false, "");
+                         }*/ // removed  2023-06-26  not needed for pen-up
                     penUpApplied = true;
                 }
             }
@@ -1389,16 +1392,41 @@ namespace GrblPlotter
             gcodeSubroutineCount++;
             if (gcodeSubroutineEnable == 0)     // read file once
             {
-                string file = Properties.Settings.Default.importGCSubroutine;
-                gcodeSubroutine += "\r\n(subroutine)\r\nO99\r\n";
-                if (File.Exists(file))
-                    gcodeSubroutine += File.ReadAllText(file);
-                else
-                    gcodeSubroutine += "(file " + file + " not found)\r\n";
-                gcodeSubroutine += "M99\r\n";
+                SetSubroutine(Properties.Settings.Default.importGCSubroutine, 99);
+                /*    string file = Properties.Settings.Default.importGCSubroutine;
+                    gcodeSubroutine += "\r\n(subroutine)\r\nO99\r\n";
+                    if (File.Exists(file))
+                        gcodeSubroutine += File.ReadAllText(file);
+                    else
+                        gcodeSubroutine += "(file " + file + " not found)\r\n";
+                    gcodeSubroutine += "M99\r\n";*/
+
+                SetSubroutine(Properties.Settings.Default.importCircleToDotScript, 95);
+                /*    file = Properties.Settings.Default.importCircleToDotScript;
+                    gcodeSubroutine += "\r\n(subroutine)\r\nO95\r\n";
+                    if (File.Exists(file))
+                        gcodeSubroutine += File.ReadAllText(file);
+                    else
+                        gcodeSubroutine += "(file " + file + " not found)\r\n";
+                    gcodeSubroutine += "M99\r\n";*/
+
                 gcodeSubroutineEnable++;
             }
             return xyfeedneeded;    // applyFeed is needed
+        }
+
+        public static void SetSubroutine(string file, int nr)
+        {
+            gcodeSubroutine += "\r\n(subroutine)\r\nO" + nr.ToString() + "\r\n";
+            if (File.Exists(file))
+                gcodeSubroutine += File.ReadAllText(file);
+            else
+                gcodeSubroutine += "(file " + file + " not found)\r\n";
+            gcodeSubroutine += "M99\r\n";
+        }
+        public static void CallSubroutine(StringBuilder gcodeString, int nr, string cmt)
+        {
+            gcodeString.AppendFormat("M98 P{0} ({1})\r\n", nr, cmt);
         }
 
 

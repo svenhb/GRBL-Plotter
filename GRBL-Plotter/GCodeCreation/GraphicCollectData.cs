@@ -51,6 +51,7 @@
  * 2023-04-25 l:745 f:CreateGCode add filtering
  * 2023-05-31 l:454 f:GetActualZ add OptionSFromWidth
  * 2023-07-02 l:296 f:StartPath ->  actualPath = new ItemPath(xy, GetActualZ());  
+ * 2023-08-06 l:830 f:CreateGCode set SortByDistance start-pos to maxy
 */
 
 using System;
@@ -284,12 +285,12 @@ namespace GrblPlotter
                 if (setNewId)
                     objectCount++;
 
-           //     double z = GetActualZ();                        // apply penWidth if enabled
-            //    if (useZ != null)
-            //        z = (double)useZ;
+                //     double z = GetActualZ();                        // apply penWidth if enabled
+                //    if (useZ != null)
+                //        z = (double)useZ;
 
                 if (useZ != null)
-                    actualPath = new ItemPath(xy, (double)useZ); 
+                    actualPath = new ItemPath(xy, (double)useZ);
                 else
                 {
                     if (graphicInformation.OptionZFromWidth || graphicInformation.OptionSFromWidth)
@@ -509,24 +510,24 @@ namespace GrblPlotter
             if (!actualPathInfo.SetGroupAttribute(tmpIndex, txt))
                 Logger.Error(" Error SetPenWidth '{0}'", txt);
             graphicInformation.SetPenWidth(txt);        // find min / max values
-			
-			if (!Properties.Settings.Default.importGraphicFilterEnable)					
-				return true;																// no filter
-			if (Properties.Settings.Default.importGraphicFilterChoiceRemove)				// check remove list
-			{
-				if (Properties.Settings.Default.importGraphicFilterListRemove.Contains(txt))
-					return false;															// value is in remove list
-				else
-					return true;
-			}
-			else
-			{
-				if (Properties.Settings.Default.importGraphicFilterListKeep.Contains(txt))
-					return true;															// value is in keep list
-				else
-					return false;
-			}
-			return true;			
+
+            if (!Properties.Settings.Default.importGraphicFilterEnable)
+                return true;                                                                // no filter
+            if (Properties.Settings.Default.importGraphicFilterChoiceRemove)                // check remove list
+            {
+                if (Properties.Settings.Default.importGraphicFilterListRemove.Contains(txt))
+                    return false;                                                           // value is in remove list
+                else
+                    return true;
+            }
+            else
+            {
+                if (Properties.Settings.Default.importGraphicFilterListKeep.Contains(txt))
+                    return true;                                                            // value is in keep list
+                else
+                    return false;
+            }
+            return true;
         }
 
         public static bool SetPenColor(string txt)
@@ -543,24 +544,24 @@ namespace GrblPlotter
             CountProperty(tmpIndex, txt);
             if (!actualPathInfo.SetGroupAttribute(tmpIndex, txt))
                 Logger.Error(" Error SetPenColor '{0}'", txt);
-			
-			if (!Properties.Settings.Default.importGraphicFilterEnable)
-				return true;
-			if (Properties.Settings.Default.importGraphicFilterChoiceRemove)
-			{
-				if (Properties.Settings.Default.importGraphicFilterListRemove.Contains(txt))
-					return false;		
-				else
-					return true;
-			}
-			else
-			{
+
+            if (!Properties.Settings.Default.importGraphicFilterEnable)
+                return true;
+            if (Properties.Settings.Default.importGraphicFilterChoiceRemove)
+            {
+                if (Properties.Settings.Default.importGraphicFilterListRemove.Contains(txt))
+                    return false;
+                else
+                    return true;
+            }
+            else
+            {
                 if (Properties.Settings.Default.importGraphicFilterListKeep.Contains(txt))
-                    return true; 
+                    return true;
                 else
                     return false;
-			}
-			return true;
+            }
+            return true;
         }
 
         public static void SetPenFill(string txt)
@@ -753,14 +754,16 @@ namespace GrblPlotter
 
 
             /* remove offset */
-            if (!cancelByWorker && graphicInformation.OptionOffsetCode && !graphicInformation.OptionClipCode)  // || (Properties.Settings.Default.importGraphicTile) 
+            if (!cancelByWorker && graphicInformation.OptionCodeOffset && !graphicInformation.OptionClipCode)  // || (Properties.Settings.Default.importGraphicTile) 
             {
-                Logger.Info("{0} Remove offset, X: {1:0.000} , Y: {2:0.000}", loggerTag, actualDimension.minx, actualDimension.miny);
-                SetHeaderInfo(string.Format(" Graphic offset: {0:0.00} {1:0.00} ", -actualDimension.minx, -actualDimension.miny));
+                double offX =  (double)Properties.Settings.Default.importGraphicOffsetOriginX;
+                double offY =  (double)Properties.Settings.Default.importGraphicOffsetOriginY;
+                Logger.Info("{0} Remove offset: X:{1:0.000} Y:{2:0.000} new origin: X:{3:0.00} Y:{4:0.00}", loggerTag, actualDimension.minx, actualDimension.miny, offX, offY);
+                SetHeaderInfo(string.Format(" Graphic offset: {0:0.00} {1:0.00} new origin: {2:0.00} {3:0.00}", -actualDimension.minx, -actualDimension.miny, offX, offY));
                 SetHeaderInfo(string.Format(" Original graphic dimension min:{0:0.000};{1:0.000}  max:{2:0.000};{3:0.000}", actualDimension.minx, actualDimension.miny, actualDimension.maxx, actualDimension.maxy));
-                if (logEnable) Logger.Trace("call RemoveOffset");
+
                 backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Remove Offset..." });
-                RemoveOffset(completeGraphic, actualDimension.minx, actualDimension.miny);
+                RemoveOffset(completeGraphic, actualDimension.minx - offX, actualDimension.minx - offY);
             }
 
             /* multiply graphics */
@@ -816,17 +819,23 @@ namespace GrblPlotter
             }
 
             /* sort by distance and merge paths with same start / end coordinates*/
-            if (!cancelByWorker && graphicInformation.OptionSortCode)
+            if (!cancelByWorker && graphicInformation.OptionCodeSortDistance)
             {
                 backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Sort elements 1) merge paths (" + countGeometry.ToString() + " elements)" });
-                Logger.Info("{0} Merge paths", loggerTag);
+                Logger.Info("{0} Merge figures", loggerTag);
                 MergeFigures(completeGraphic);
                 if (!cancelByWorker)
                 {
                     backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Sort elements 2) sort by distance (" + countGeometry.ToString() + " elements)" });
                     Logger.Info("{0} Sort by distance", loggerTag);
-                    SortByDistance(completeGraphic);
+                    SortByDistance(completeGraphic, new Point(0, actualDimension.maxy), false);            // CreateGCode
                 }
+            }
+
+            if (!cancelByWorker && graphicInformation.OptionCodeSortDimension)
+            {
+                Logger.Info("{0} Sort by dimension", loggerTag);
+                SortByDimension(completeGraphic); 
             }
 
             /* Drag Tool path modification*/
@@ -976,10 +985,10 @@ namespace GrblPlotter
         {
             int amount = 1; // backgroud
             if (Properties.Settings.Default.importRemoveShortMovesEnable) amount++;/* remove short moves*/
-            if (graphicInformation.OptionOffsetCode) amount++;/* remove offset */
+            if (graphicInformation.OptionCodeOffset) amount++;/* remove offset */
             if (graphicInformation.ApplyHatchFill || graphicInformation.OptionHatchFill) amount++;/* hatch fill */
             if (graphicInformation.OptionRepeatCode && !Properties.Settings.Default.importRepeatComplete) amount++;/* repeate paths */
-            if (graphicInformation.OptionSortCode) amount++;/* sort by distance and merge paths with same start / end coordinates*/
+            if (graphicInformation.OptionCodeSortDistance) amount++;/* sort by distance and merge paths with same start / end coordinates*/
             if (graphicInformation.OptionDragTool) amount++;/* Drag Tool path modification*/
             if (graphicInformation.OptionClipCode) amount++;/* clipping or tiling of whole graphic */
             if (graphicInformation.OptionExtendPath) amount++;/* extend closed path for laser cutting to avoid a "nose" at start/end position */

@@ -26,6 +26,7 @@
  * 2022-04-04 change PathId from int to string
  * 2023-04-15 improove GetFigure, GetGroup, GetTile
  * 2023-07-03 l:338 f:GetAttributeValue check if remaining length is enough
+ * 2023-07-31 new functions FindInsertPositionFigure/Group/Next
 */
 
 using System;
@@ -554,6 +555,22 @@ namespace GrblPlotter
             }
             return -1;
         }
+        public static int FindInsertPositionFigureNext(int current)
+        {
+            int end = listFigures[listFigures.Count - 1].LineEnd;
+            if (GetGroup(current))      // only check within same group
+                end = lastGroup.LineEnd;
+            for (int i = 0; i < listFigures.Count - 1; i++)
+            {
+                if (listFigures[i].LineEnd <= end)
+                {
+                    if ((current >= listFigures[i].LineStart) && (current <= listFigures[i].LineEnd))
+                    { return listFigures[i].LineEnd + 1; }
+                }
+            }
+            return -1;
+        }
+
         public static bool IsFoldingMarkerFigure(int line)
         {
             foreach (BlockData tmp in listFigures)
@@ -679,6 +696,19 @@ namespace GrblPlotter
             }
             return -1;
         }
+        public static int FindInsertPositionGroupNext(int current)
+        {
+            if (listGroups.Count >= 1)
+            {
+                for (int i = 0; i < listGroups.Count - 1; i++)
+                {
+                    if ((current >= listGroups[i].LineStart) && (current <= listGroups[i].LineEnd))
+                    { return listGroups[i + 1].LineStart; }
+                }
+            }
+            return -1;
+        }
+
         public static bool IsFoldingMarkerGroup(int line)
         {
             foreach (BlockData tmp in listGroups)
