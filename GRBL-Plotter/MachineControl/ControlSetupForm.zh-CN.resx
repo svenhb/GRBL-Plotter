@@ -290,7 +290,7 @@
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
-    <value>避免 G2/3 命令</value>
+    <value>避免G2/3（圆弧移动）命令，用线段绘制圆弧/圆</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
@@ -3663,5 +3663,33 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   </data>
   <data name="BtnHelp_Notifier.ToolTip" xml:space="preserve">
     <value>网上帮助</value>
+  </data>
+  <data name="cBImportGraphicHatchFillInset2.Text" xml:space="preserve">
+    <value>收缩包络路径而不是缩短线条</value>
+  </data>
+  <data name="CbImportGraphicHatchFillDeletePath.Text" xml:space="preserve">
+    <value>填充后删除包围路径</value>
+  </data>
+  <data name="label100.Text" xml:space="preserve">
+    <value>在点数后插入脚本</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginY.ToolTip" xml:space="preserve">
+    <value>Y 轴原点</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.Text" xml:space="preserve">
+    <value>按大小对对象进行排序，最大的排在最后</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.ToolTip" xml:space="preserve">
+    <value>对象将按大小排序，从最小到最大，从最里面到最外面。
+例如。用于激光切割</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.Text" xml:space="preserve">
+    <value>最大的物体最后</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.ToolTip" xml:space="preserve">
+    <value>最后处理最大的对象，例如激光雕刻/切割的切口路径</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
+    <value>X 轴原点</value>
   </data>
 </root>

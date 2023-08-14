@@ -34,6 +34,7 @@
  * 2023-01-02 exception line 1202, add try, catch
  * 2023-01-22 line 546 use lock (Object is currently in use elsewhere. Source: System.Drawing Target:)
  * 2023-01-24 check range of index in line 1218
+ * 2023-08-01 check if (!e.Bounds.IsEmpty)
 */
 
 using AForge;
@@ -1427,12 +1428,14 @@ namespace GrblPlotter
             if (e.State == DrawItemState.Selected)
             {
                 _textBrush = new SolidBrush(Color.Black);
-                g.FillRectangle(Brushes.LightYellow, e.Bounds);
+                if (!e.Bounds.IsEmpty)
+                    g.FillRectangle(Brushes.LightYellow, e.Bounds);
             }
             else
             {
                 _textBrush = new System.Drawing.SolidBrush(e.ForeColor);
-                g.FillRectangle(SystemBrushes.Control, e.Bounds);
+                if (!e.Bounds.IsEmpty)
+                    g.FillRectangle(SystemBrushes.Control, e.Bounds);
             }
             Font _tabFont = new Font("Microsoft Sans Serif", 8f, FontStyle.Regular, GraphicsUnit.Point);
             StringFormat _stringFlags = new StringFormat

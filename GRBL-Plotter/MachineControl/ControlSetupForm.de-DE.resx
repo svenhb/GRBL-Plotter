@@ -509,7 +509,7 @@ Unchecked: Das letzte Segment ist kürzer, alle anderen haben die vorgegebene L�
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
-    <value>Ersetze G2/3 durch Linien</value>
+    <value>Vermeidet G2/3-Befehle (Kreisbahn) und zeichnet Bögen/Kreise mit Liniensegmenten</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
@@ -3329,5 +3329,33 @@ Die maximale Tiefe wird durch die Z-Höhengravur begrenzt.</value>
   </data>
   <data name="BtnHelp_Notifier.ToolTip" xml:space="preserve">
     <value>Onlinehilfe</value>
+  </data>
+  <data name="cBImportGraphicHatchFillInset2.Text" xml:space="preserve">
+    <value>Umhüllenden Pfad verkleinern statt Linien kürzen</value>
+  </data>
+  <data name="CbImportGraphicHatchFillDeletePath.Text" xml:space="preserve">
+    <value>Umhüllenden Pfad nach dem Füllen löschen</value>
+  </data>
+  <data name="label100.Text" xml:space="preserve">
+    <value>Skript nach der Anzahl der Punkte einfügen</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginY.ToolTip" xml:space="preserve">
+    <value>Ursprung für die Y-Achse</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.Text" xml:space="preserve">
+    <value>Sortiert die Objekte nach Größe, das größte kommt zuletzt</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.ToolTip" xml:space="preserve">
+    <value>Die Objekte werden nach Größe sortiert, vom kleinsten zum größten und vom innersten zum äußersten.
+Z.B. zum Laserschneiden</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.Text" xml:space="preserve">
+    <value>Größtes Objekt zuletzt</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.ToolTip" xml:space="preserve">
+    <value>Größtes Objekt zuletzt verarbeiten, z.B. Ausschnittpfad zum Lasergravieren/-schneiden</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
+    <value>Ursprung für die X-Achse</value>
   </data>
 </root>

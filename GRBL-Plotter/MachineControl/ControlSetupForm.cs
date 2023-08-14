@@ -33,6 +33,7 @@
  * 2022-01-02 move MakeAbsolutePath to class Datapath
  * 2022-06-25 line 1692 SetZeroMinMax add try catch
  * 2023-04-27 add new tab 'filter'; highlight tabs with enabled options
+ * 2023-08-01 check if (!e.Bounds.IsEmpty)
 */
 
 using System;
@@ -1146,6 +1147,8 @@ namespace GrblPlotter
                 gBDevelop.BackColor = Color.Yellow;
             else
                 gBDevelop.BackColor = Color.WhiteSmoke;
+
+            cBImportGraphicHatchFillInset2.Enabled = cBImportGraphicHatchFillInset.Checked;
         }
 
         private void BtnFileDialogTT1_Click(object sender, EventArgs e)
@@ -1162,6 +1165,8 @@ namespace GrblPlotter
                 SetFilePath(tBToolChangeScriptProbe);
             else if (clickedButton.Name.IndexOf("SubR") > 0)
                 SetFilePath(tBImportGCSubroutine);
+            else if (clickedButton.Name.IndexOf("CircleToDot") > 0)
+                SetFilePath(TbImportCircleToDotScript);
         }
         private void SetFilePath(TextBox tmp)
         {
@@ -1476,7 +1481,7 @@ namespace GrblPlotter
             lblDrag1.Enabled = enable;
             lblDrag2.Enabled = enable;
             HighlightPenOptions_Click(sender, e);
-			BtnHelp_Pathmodification.Invalidate();
+            BtnHelp_Pathmodification.Invalidate();
         }
 
         private void CbImportGCLineSegments_CheckedChanged(object sender, EventArgs e)
@@ -1635,7 +1640,7 @@ namespace GrblPlotter
             if (cBImportGCTangentialRange.Checked && enable)
             { cBImportGCNoArcs.Checked = true; }
             HighlightPenOptions_Click(sender, e);
-			BtnHelp_Pathmodification.Invalidate();
+            BtnHelp_Pathmodification.Invalidate();
         }
 
         private void CbImportGCTangentialRange_CheckStateChanged(object sender, EventArgs e)
@@ -1660,7 +1665,7 @@ namespace GrblPlotter
             if (enable)
             { cBImportGCNoArcs.Checked = true; }
             HighlightPenOptions_Click(sender, e);
-			BtnHelp_Pathmodification.Invalidate();
+            BtnHelp_Pathmodification.Invalidate();
         }
 
         private void BtnOpenLogFile_Click(object sender, EventArgs e)
@@ -1731,10 +1736,10 @@ namespace GrblPlotter
 
         private void CheckZEngraveExceed()
         { }// lblImportPenWidthToZWarning.Visible = (nUDImportGCZDown.Value > Math.Min(nUDImportPenWidthToZMax.Value, nUDImportPenWidthToZMin.Value)); }
-    //
+           //
         private void NudImportPenWidthToZMin_ValueChanged(object sender, EventArgs e)
         {
-         //   CheckZEngraveExceed();
+            //   CheckZEngraveExceed();
             LblZEngrave.Text = nUDImportGCZDown.Value.ToString("0.0");
         }
 
@@ -2083,11 +2088,13 @@ namespace GrblPlotter
         private void TabControl2_DrawItem(object sender, DrawItemEventArgs e)
         {
             TabPage page = tabControl1_Level2.TabPages[e.Index];
-            if (IsOptionEnabledTabControl2(e.Index))
-                e.Graphics.FillRectangle(new SolidBrush(Color.Yellow), e.Bounds);
-            else
-                e.Graphics.FillRectangle(new SolidBrush((e.State == DrawItemState.Selected) ? Color.White : page.BackColor), e.Bounds);
-
+            if (!e.Bounds.IsEmpty)
+            {
+                if (IsOptionEnabledTabControl2(e.Index))
+                    e.Graphics.FillRectangle(new SolidBrush(Color.Yellow), e.Bounds);
+                else
+                    e.Graphics.FillRectangle(new SolidBrush((e.State == DrawItemState.Selected) ? Color.White : page.BackColor), e.Bounds);
+            }
             Rectangle paddedBounds = e.Bounds;
             int yOffset = (e.State == DrawItemState.Selected) ? -2 : 1;
             paddedBounds.Offset(1, yOffset);
@@ -2116,11 +2123,13 @@ namespace GrblPlotter
         private void TabControl3_DrawItem(object sender, DrawItemEventArgs e)
         {
             TabPage page = BtnHelp_Pathmodification.TabPages[e.Index];
-            if (IsOptionEnabledTabControl3(e.Index))
-                e.Graphics.FillRectangle(new SolidBrush(Color.Yellow), e.Bounds);
-            else
-                e.Graphics.FillRectangle(new SolidBrush((e.State == DrawItemState.Selected) ? Color.White : page.BackColor), e.Bounds);
-
+            if (!e.Bounds.IsEmpty)
+            {
+                if (IsOptionEnabledTabControl3(e.Index))
+                    e.Graphics.FillRectangle(new SolidBrush(Color.Yellow), e.Bounds);
+                else
+                    e.Graphics.FillRectangle(new SolidBrush((e.State == DrawItemState.Selected) ? Color.White : page.BackColor), e.Bounds);
+            }
             Rectangle paddedBounds = e.Bounds;
             int yOffset = (e.State == DrawItemState.Selected) ? -2 : 1;
             paddedBounds.Offset(1, yOffset);
@@ -2165,14 +2174,16 @@ namespace GrblPlotter
             return false;
         }
 
-        private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
+        private void TabControl1_DrawItem(object sender, DrawItemEventArgs e)
         {
             TabPage page = tabControl1.TabPages[e.Index];
-            if (IsOptionEnabledTabControl1(e.Index))
-                e.Graphics.FillRectangle(new SolidBrush(Color.Yellow), e.Bounds);
-            else
-                e.Graphics.FillRectangle(new SolidBrush((e.State == DrawItemState.Selected) ? Color.White : page.BackColor), e.Bounds);
-
+            if (!e.Bounds.IsEmpty)
+            {
+                if (IsOptionEnabledTabControl1(e.Index))
+                    e.Graphics.FillRectangle(new SolidBrush(Color.Yellow), e.Bounds);
+                else
+                    e.Graphics.FillRectangle(new SolidBrush((e.State == DrawItemState.Selected) ? Color.White : page.BackColor), e.Bounds);
+            }
             Rectangle paddedBounds = e.Bounds;
             int yOffset = (e.State == DrawItemState.Selected) ? -2 : 1;
             paddedBounds.Offset(1, yOffset);
@@ -2216,6 +2227,11 @@ namespace GrblPlotter
                 MessageBox.Show("Could not open the link: " + err.Message, "Error");
             }
 
+        }
+
+        private void CbImportGraphicHatchFillInset_CheckedChanged(object sender, EventArgs e)
+        {
+            cBImportGraphicHatchFillInset2.Enabled = cBImportGraphicHatchFillInset.Checked;
         }
     }
 }

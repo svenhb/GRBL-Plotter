@@ -550,7 +550,7 @@
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
-    <value>Избегайте команд G2/3</value>
+    <value>Избегайте команд G2/3 (Arc Move), рисуйте дуги/окружности с сегментами линий.</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
@@ -3603,5 +3603,33 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   </data>
   <data name="BtnHelp_Notifier.ToolTip" xml:space="preserve">
     <value>Онлайн помощь</value>
+  </data>
+  <data name="cBImportGraphicHatchFillInset2.Text" xml:space="preserve">
+    <value>Уменьшить огибающий путь вместо сокращения строк</value>
+  </data>
+  <data name="CbImportGraphicHatchFillDeletePath.Text" xml:space="preserve">
+    <value>Удалить огибающий путь после заполнения</value>
+  </data>
+  <data name="label100.Text" xml:space="preserve">
+    <value>Вставить скрипт после количества точек</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginY.ToolTip" xml:space="preserve">
+    <value>Начало оси Y</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.Text" xml:space="preserve">
+    <value>Сортирует объекты по размеру, самые большие идут последними</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.ToolTip" xml:space="preserve">
+    <value>Объекты будут отсортированы по размеру, от самого маленького до самого большого и от самого внутреннего к самому внешнему.
+Например. для лазерной резки</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.Text" xml:space="preserve">
+    <value>Самый большой объект последним</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.ToolTip" xml:space="preserve">
+    <value>Обрабатывать самый большой объект последним, например. траектория выреза для лазерной гравировки/резки</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
+    <value>Начало оси X</value>
   </data>
 </root>

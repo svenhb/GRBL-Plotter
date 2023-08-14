@@ -252,6 +252,8 @@ namespace GrblPlotter
                 Write("Hatch fill angle inc enable", setup.importGraphicHatchFillAngleInc.ToString(), section);
                 Write("Hatch fill angle inc ", setup.importGraphicHatchFillAngle2.ToString(), section);
                 Write("Hatch fill inset enable", setup.importGraphicHatchFillInsetEnable.ToString(), section);
+                Write("Hatch fill inset enable2", setup.importGraphicHatchFillInsetEnable2.ToString(), section);
+                Write("Hatch fill delete path", setup.importGraphicHatchFillDeletePath.ToString(), section);
                 Write("Hatch fill inset distance", setup.importGraphicHatchFillInset.ToString(), section);
             }
             if (setup.importGraphicExtendPathEnable || all)
@@ -864,6 +866,8 @@ namespace GrblPlotter
             if (SetVariable(ref tmpbool, section, "Hatch fill angle inc enable")) { setup.importGraphicHatchFillAngleInc = tmpbool; }
             if (SetVariable(ref tmpdeci, section, "Hatch fill angle inc")) { setup.importGraphicHatchFillAngle2 = tmpdeci; }
             if (SetVariable(ref tmpbool, section, "Hatch fill inset enable")) { setup.importGraphicHatchFillInsetEnable = tmpbool; }
+            if (SetVariable(ref tmpbool, section, "Hatch fill inset enable2")) { setup.importGraphicHatchFillInsetEnable2 = tmpbool; }
+            if (SetVariable(ref tmpbool, section, "Hatch fill delete path")) { setup.importGraphicHatchFillDeletePath = tmpbool; }
             if (SetVariable(ref tmpdeci, section, "Hatch fill inset distance")) { setup.importGraphicHatchFillInset = tmpdeci; }
 
             if (SetVariable(ref tmpbool, section, "Overlap enable")) { setup.importGraphicExtendPathEnable = tmpbool; }

@@ -286,7 +286,7 @@ Sin marcar: el último linesegment es más corto, el resto de la longitud exacta
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
-    <value>Evite los comandos G2/3</value>
+    <value>Evite los comandos G2/3 (Arc Move), dibuje arcos/círculos con segmentos de línea</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
@@ -3389,5 +3389,33 @@ La profundidad máxima estará limitada por el grabado Z-Height.</value>
   </data>
   <data name="BtnHelp_Notifier.ToolTip" xml:space="preserve">
     <value>Ayuda en linea</value>
+  </data>
+  <data name="cBImportGraphicHatchFillInset2.Text" xml:space="preserve">
+    <value>Reducir la ruta envolvente en lugar de acortar las líneas</value>
+  </data>
+  <data name="CbImportGraphicHatchFillDeletePath.Text" xml:space="preserve">
+    <value>Eliminar ruta envolvente después de llenar</value>
+  </data>
+  <data name="label100.Text" xml:space="preserve">
+    <value>Insertar guión después de la cantidad de puntos</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginY.ToolTip" xml:space="preserve">
+    <value>Origen para el eje Y</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.Text" xml:space="preserve">
+    <value>Seřadí objekty podle velikosti, největší je poslední</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.ToolTip" xml:space="preserve">
+    <value>Los objetos se ordenarán por tamaño, de menor a mayor y de más interno a más externo.
+P.ej. para corte por láser</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.Text" xml:space="preserve">
+    <value>El objeto más grande es el último</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.ToolTip" xml:space="preserve">
+    <value>Procese el objeto más grande en último lugar, p. trayectoria recortada para grabado/corte por láser</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
+    <value>Origen para el eje X</value>
   </data>
 </root>

@@ -36,7 +36,6 @@ using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Windows.Forms;
 using System.Xml;
 
 namespace GrblPlotter
@@ -63,8 +62,8 @@ namespace GrblPlotter
         public double GridX { get { return (Max.X - Min.X) / (SizeX - 1); } }
         public double GridY { get { return (Max.Y - Min.Y) / (SizeY - 1); } }
 
-		public string LastError { get; private set; }
-		
+        public string LastError { get; private set; }
+
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
@@ -168,7 +167,7 @@ namespace GrblPlotter
         }
 
         public double? GetPoint(double x, double y)	// find Z for given XY coordinate
-        {            
+        {
             if (x >= SizeX || x < 0 || y >= SizeY || y < 0)	// out of area?
                 return null;
 
@@ -201,10 +200,10 @@ namespace GrblPlotter
 
         internal Vector2 GetCoordinates(int x, int y, bool applyOffset = true)
         {
-			int decimals = 4;
-			double rx = Math.Round(x * (Delta.X / (SizeX - 1)), decimals);
-			double ry = Math.Round(y * (Delta.Y / (SizeY - 1)), decimals);
-			
+            int decimals = 4;
+            double rx = Math.Round(x * (Delta.X / (SizeX - 1)), decimals);
+            double ry = Math.Round(y * (Delta.Y / (SizeY - 1)), decimals);
+
             if (applyOffset)
                 return new Vector2(rx + Min.X, ry + Min.Y);
             else
@@ -218,9 +217,10 @@ namespace GrblPlotter
             if (height > MaxHeight)
                 MaxHeight = height;
             if (height < MinHeight)
-            {   MinHeight2nd = MinHeight;
-				MinHeight = height;
-			}
+            {
+                MinHeight2nd = MinHeight;
+                MinHeight = height;
+            }
         }
         public void SetZOffset(double offset)
         {
@@ -310,9 +310,10 @@ namespace GrblPlotter
                         if (height > map.MaxHeight)
                             map.MaxHeight = height;
                         if (height < map.MinHeight)
-                        {   map.MinHeight2nd = map.MinHeight;
-							map.MinHeight = height;
-						}
+                        {
+                            map.MinHeight2nd = map.MinHeight;
+                            map.MinHeight = height;
+                        }
                         break;
                 }
             }
@@ -358,8 +359,8 @@ namespace GrblPlotter
 
             amountX = new Dictionary<float, sbyte>();
             amountY = new Dictionary<float, sbyte>();
-            vertices.Clear();	// = new List<Vertex>();				// clear old list
-			
+            vertices.Clear();   // = new List<Vertex>();				// clear old list
+
             FileStream fileStream = File.Open(fileName, FileMode.Open, FileAccess.Read);
 
             bool isLoaded = ReadBinary(fileStream, vertices);		// try loading binary
@@ -379,33 +380,34 @@ namespace GrblPlotter
                 map.MinHeight2nd = minZ2nd;
                 map.SizeX = amountX.Count;
                 map.SizeY = amountY.Count;
-                map.Points = new double?[map.SizeX+1, map.SizeY+1];
+                map.Points = new double?[map.SizeX + 1, map.SizeY + 1];
                 map.LastError = "";
 
-				int failCnt=0;
-				
-				// take vertex coordinate and calculate index from it
-				if ((map.SizeX > 0) && (map.SizeY > 0))
-                {	int indexX, indexY;
-					float deltaX = (maxX - minX) / (amountX.Count - 1);
-					float deltaY = (maxY - minY) / (amountY.Count - 1);
-					Logger.Trace("ImportSTL Min X:{0}  Y:{1}  Z:{2}  Max X:{3}  Y:{4}  Z:{5}  Size X:{6}  Y:{7}  Delta X:{8}  Y:{9}  Vertices:{10}",minX, minY, minZ, maxX, maxY, maxZ, map.SizeX, map.SizeY, deltaX, deltaY, vertices.Count);
+                int failCnt = 0;
+
+                // take vertex coordinate and calculate index from it
+                if ((map.SizeX > 0) && (map.SizeY > 0))
+                {
+                    int indexX, indexY;
+                    float deltaX = (maxX - minX) / (amountX.Count - 1);
+                    float deltaY = (maxY - minY) / (amountY.Count - 1);
+                    Logger.Trace("ImportSTL Min X:{0}  Y:{1}  Z:{2}  Max X:{3}  Y:{4}  Z:{5}  Size X:{6}  Y:{7}  Delta X:{8}  Y:{9}  Vertices:{10}", minX, minY, minZ, maxX, maxY, maxZ, map.SizeX, map.SizeY, deltaX, deltaY, vertices.Count);
                     Logger.Trace("ImportSTL MinHeight2nd:{0}  {1}   MinHeight:{2} ", map.MinHeight2nd, minZ2nd, map.MinHeight);
 
-                    double ? oldZ;
-					foreach (Vertex tmp in vertices)
-					{
-                        indexX = (int)Math.Round((tmp.X - minX) / deltaX);		// compare with InterpolateZ
-						indexY = (int)Math.Round((tmp.Y - minY) / deltaY);
-                        if (indexX < 0) 		 { Logger.Error("ImportSTL x<0 indexX:{0}  indexY:{1}  tmp.X:{2}   tmp.Y:{3}", indexX, indexY, tmp.X, tmp.Y); indexX = 0;}
-						if (indexX >= map.SizeX) { Logger.Error("ImportSTL x>  indexX:{0}  indexY:{1}  tmp.X:{2}   tmp.Y:{3}", indexX, indexY, tmp.X, tmp.Y); indexX = map.SizeX-1;}
-                        if (indexY < 0) 		 { Logger.Error("ImportSTL y<0 indexX:{0}  indexY:{1}  tmp.X:{2}   tmp.Y:{3}", indexX, indexY, tmp.X, tmp.Y); indexY = 0;}
- 						if (indexY >= map.SizeY) { Logger.Error("ImportSTL y>  indexX:{0}  indexY:{1}  tmp.X:{2}   tmp.Y:{3}", indexX, indexY, tmp.X, tmp.Y); indexY = map.SizeY-1;}
-						
-						oldZ = map.Points[indexX, indexY];
-						if ((oldZ == null) || (oldZ == 0))
-							map.Points[indexX, indexY] = tmp.Z;
-					}
+                    double? oldZ;
+                    foreach (Vertex tmp in vertices)
+                    {
+                        indexX = (int)Math.Round((tmp.X - minX) / deltaX);      // compare with InterpolateZ
+                        indexY = (int)Math.Round((tmp.Y - minY) / deltaY);
+                        if (indexX < 0) { Logger.Error("ImportSTL x<0 indexX:{0}  indexY:{1}  tmp.X:{2}   tmp.Y:{3}", indexX, indexY, tmp.X, tmp.Y); indexX = 0; }
+                        if (indexX >= map.SizeX) { Logger.Error("ImportSTL x>  indexX:{0}  indexY:{1}  tmp.X:{2}   tmp.Y:{3}", indexX, indexY, tmp.X, tmp.Y); indexX = map.SizeX - 1; }
+                        if (indexY < 0) { Logger.Error("ImportSTL y<0 indexX:{0}  indexY:{1}  tmp.X:{2}   tmp.Y:{3}", indexX, indexY, tmp.X, tmp.Y); indexY = 0; }
+                        if (indexY >= map.SizeY) { Logger.Error("ImportSTL y>  indexX:{0}  indexY:{1}  tmp.X:{2}   tmp.Y:{3}", indexX, indexY, tmp.X, tmp.Y); indexY = map.SizeY - 1; }
+
+                        oldZ = map.Points[indexX, indexY];
+                        if ((oldZ == null) || (oldZ == 0))
+                            map.Points[indexX, indexY] = tmp.Z;
+                    }
 
                     for (int iy = 0; iy < map.SizeY; iy++)
                     {
@@ -413,20 +415,22 @@ namespace GrblPlotter
                         {
                             if (map.Points[ix, iy] == null)
                             {
-								failCnt++;
+                                failCnt++;
                                 map.Points[ix, iy] = InterpolatePos(map, ix, iy);
                             }
                         }
                     }
                     if (failCnt > 0)
-                    {   map.LastError = string.Format("ImportSTL: {0} Missing values in map were interpolated", failCnt);
-						Logger.Error("ImportSTL some points:{0} are not set -> interpolate value", failCnt);
-					}
+                    {
+                        map.LastError = string.Format("ImportSTL: {0} Missing values in map were interpolated", failCnt);
+                        Logger.Error("ImportSTL some points:{0} are not set -> interpolate value", failCnt);
+                    }
                 }
                 else
-				{	Logger.Error("ImportSTL amountX or Y =0");
+                {
+                    Logger.Error("ImportSTL amountX or Y =0");
                     map.LastError = "ImportSTL: to less values";
-				}
+                }
 
                 return map;
             }
@@ -448,7 +452,7 @@ namespace GrblPlotter
                         value = map.Points[ix, iy];
                         if (value != null)
                         { sum += (double)value; count++; }
-                    }                   
+                    }
                 }
             }
             return sum / count;
@@ -527,7 +531,7 @@ namespace GrblPlotter
             if (!amountY.ContainsKey(val)) amountY.Add(val, 0);
 
             val = ReadBinaryFloat(reader); vertex.Z = val;
-            if (val > maxZ) maxZ = val; if (val < minZ){ minZ = val;}
+            if (val > maxZ) maxZ = val; if (val < minZ) { minZ = val; }
             if ((val < minZ2nd) && (val > minZ)) { minZ2nd = val; }
 
             return vertex;
@@ -547,7 +551,7 @@ namespace GrblPlotter
         {
             var sr = new StreamReader(fileStream);
             sr.ReadLine();                          // 1st line "solid 
-			
+
             while (!sr.EndOfStream)
             {
                 Facet facet = new Facet();
@@ -556,7 +560,7 @@ namespace GrblPlotter
                 if (line.StartsWith("endsolid"))
                     break;
 
-                if (line  == "")
+                if (line == "")
                     continue;
 
                 facet.normal = ReadAsciiVertex(line, 2);	// facet normal
@@ -604,7 +608,7 @@ namespace GrblPlotter
             bool isWhiteSpace(char c) => c.Equals(' ') || c.Equals('\t') || c.Equals('\n') || c.Equals('\r');
         }
 
-        private  static Vertex ReadAsciiVertex(string line, int skip = 1)
+        private static Vertex ReadAsciiVertex(string line, int skip = 1)
         {
             var lineReader = new StreamReader(new MemoryStream(Encoding.UTF8.GetBytes(line)));
             bool skipFacetNormal = false;
@@ -640,7 +644,7 @@ namespace GrblPlotter
             txt = ReadAsciiWord(lineReader).Replace(',', '.');
             val = float.Parse(txt, NumberFormatInfo.InvariantInfo);
             z = val;
-            if (val > maxZ) maxZ = val; if (val < minZ){ minZ = val;}
+            if (val > maxZ) maxZ = val; if (val < minZ) { minZ = val; }
             if ((val < minZ2nd) && (val > minZ)) { minZ2nd = val; }
 
             return new Vertex()
@@ -667,7 +671,7 @@ namespace GrblPlotter
         // The StL file does not contain any scale information; the coordinates are in arbitrary units.
         public void SaveSTL(string path)
         {
-			// check via https://www.viewstl.com/
+            // check via https://www.viewstl.com/
             StringBuilder data = new StringBuilder();
             data.AppendLine("solid ASCII_STL_GRBL_Plotter");
             double z0, z1, z2, z3;
@@ -740,11 +744,9 @@ namespace GrblPlotter
             Vector2 p0;
             for (int y = 0; y < SizeY; y++)
             {
-                for (int x = 0; x < SizeX; x++)
+                for (int x = 0; x < SizeX; x++)   // -1 2023-08-01
                 {
                     if (!Points[x, y].HasValue)
-                        continue;
-                    if (!Points[x + 1, y].HasValue)
                         continue;
                     p0 = GetCoordinates(x, y, false);
                     z0 = Points[x, y].Value;
@@ -764,6 +766,7 @@ namespace GrblPlotter
                         }
 
                         z1 = Points[x + 1, y].Value;
+
                         color_index = CheckOBJColorUse(z1);
                         if (data_face_color.ContainsKey(color_index))
                         {
@@ -816,9 +819,9 @@ namespace GrblPlotter
                 //			data_face.AppendFormat("usemtl c_{0}",OBJcolor_used);}
                 // create mtl file
                 OBJdata_color.AppendFormat("newmtl c_{0}\r\n", OBJcolor_used);
-                OBJdata_color.AppendFormat("Kd {0} {1} {2}\r\n", (double)tmpColor.R / 255, (double)tmpColor.G / 255, (double)tmpColor.B / 255);
-                OBJdata_color.AppendFormat("Ks {0} {1} {2}\r\n", (double)tmpColor.R / 255, (double)tmpColor.G / 255, (double)tmpColor.B / 255);
-                OBJdata_color.AppendFormat("Ka {0} {1} {2}\r\n", (double)tmpColor.R / 255, (double)tmpColor.G / 255, (double)tmpColor.B / 255);
+                OBJdata_color.AppendFormat("Kd {0:0.0000} {1:0.0000} {2:0.0000}\r\n", (double)tmpColor.R / 255, (double)tmpColor.G / 255, (double)tmpColor.B / 255);
+                OBJdata_color.AppendFormat("Ks {0:0.0000} {1:0.0000} {2:0.0000}\r\n", (double)tmpColor.R / 255, (double)tmpColor.G / 255, (double)tmpColor.B / 255);
+                OBJdata_color.AppendFormat("Ka {0:0.0000} {1:0.0000} {2:0.0000}\r\n", (double)tmpColor.R / 255, (double)tmpColor.G / 255, (double)tmpColor.B / 255);
                 //         OBJdata_color.AppendFormat("Ks 0.8 0.8 0.8\r\n");
                 //		OBJdata_color.AppendFormat("Ka 0.2 0.2 0.2\r\n");
                 OBJdata_color.AppendFormat("illum 2\r\n");

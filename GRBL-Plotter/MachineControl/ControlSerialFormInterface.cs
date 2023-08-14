@@ -51,6 +51,7 @@
  * 2023-03-30 l:290 resort RESET message
  * 2023-03-31 l:1341 f:InsertVariable check if '#' inside a comment
  * 2023-04-04 l:945 f:RequestSend print only-comments directly, no add to sendBuffer
+ * 2023-08-03 l:1642 f:MissingConfirmationLength lock loop
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -1475,6 +1476,8 @@ namespace GrblPlotter
             private int confirmed = 0;         // already received line
             private int max = 0;
 
+            private readonly object bufferLock = new object();
+
             public CodeBuffer()
             {
                 buffer = new List<string>();
@@ -1636,8 +1639,11 @@ namespace GrblPlotter
                 if ((buffer == null) || (confirmed + 1 >= buffer.Count) || (confirmed < 0))
                     return 0;
                 int blen = 0;
-                for (int i = confirmed + 1; i < buffer.Count; i++)
-                { blen += buffer[i].Length + 1; }    // length + \r
+                lock (bufferLock)
+                {
+                    for (int i = confirmed + 1; i < buffer.Count; i++)
+                    { blen += buffer[i].Length + 1; }    // length + \r
+                }
                 return blen;
             }
 

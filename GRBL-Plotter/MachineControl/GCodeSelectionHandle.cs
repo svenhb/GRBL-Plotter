@@ -350,6 +350,8 @@ namespace GrblPlotter
             {
                 scalingHandle = scal;
                 handleSize = (float)(handleSizeFix / scalingHandle);
+                if (handleSize == 0)
+                    handleSize = 1;
                 SetHandlePositions(selectionBounds);
                 DrawHandles();
             }

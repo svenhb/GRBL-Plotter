@@ -39,6 +39,7 @@
  * 2023-01-28 line 363 check if in range nUDCutOffZ.Minimum / Max
  * 2023-02-20 optional y-x scan
  * 2023-05-08 l:996 f:AddScanCode add axis-string for X/Y seperation
+ * 2023-08-01 check if (!ImageSize.IsEmpty)
 */
 
 using System;
@@ -110,7 +111,8 @@ namespace GrblPlotter
                             int dy = BMPsizeY / (Map.SizeY - 1);
                             Rectangle ImageSize = new Rectangle(0, y - dy / 2, x, dy);
                             SolidBrush myColor = new SolidBrush(GetColor(Map.MinHeight, Map.MaxHeight, worldZ, false));
-                            graph.FillRectangle(myColor, ImageSize);
+                            if (!ImageSize.IsEmpty)
+                                graph.FillRectangle(myColor, ImageSize);
                             myColor.Dispose();
                         }
                     }
@@ -127,7 +129,8 @@ namespace GrblPlotter
                             int y = BMPsizeY;
                             Rectangle ImageSize = new Rectangle(x - dx / 2, 0, dx, y);
                             SolidBrush myColor = new SolidBrush(GetColor(Map.MinHeight, Map.MaxHeight, worldZ, false));
-                            graph.FillRectangle(myColor, ImageSize);
+                            if (!ImageSize.IsEmpty)
+                                graph.FillRectangle(myColor, ImageSize);
                             myColor.Dispose();
                         }
                     }
@@ -142,7 +145,8 @@ namespace GrblPlotter
                             int dy = BMPsizeY / (Map.SizeY - 1);
                             Rectangle ImageSize = new Rectangle(x - dx / 2, y - dy / 2, dx, dy);
                             SolidBrush myColor = new SolidBrush(GetColor(Map.MinHeight, Map.MaxHeight, worldZ, false));
-                            graph.FillRectangle(myColor, ImageSize);
+                            if (!ImageSize.IsEmpty)
+                                graph.FillRectangle(myColor, ImageSize);
                             myColor.Dispose();
                         }
                     }
@@ -346,18 +350,22 @@ namespace GrblPlotter
                 lblProgress.Text = "Finish t=" + elapsed.ToString(@"hh\:mm\:ss");
                 lblProgress.BackColor = Color.Transparent;
             }
-            CreateHightMapBMP();
-
-            pictureBox1.Image = new Bitmap(heightMapBMP);
-            pictureBox1.Refresh();
-            if (Map != null)
+            try
             {
-                lblMin.Text = string.Format("{0:0.000}", Map.MinHeight);
-                lblMid.Text = string.Format("{0:0.000}", (Map.MinHeight + Map.MaxHeight) / 2);
-                lblMax.Text = string.Format("{0:0.000}", Map.MaxHeight);
+                CreateHightMapBMP();
+
+                pictureBox1.Image = new Bitmap(heightMapBMP);
+                pictureBox1.Refresh();
+                if (Map != null)
+                {
+                    lblMin.Text = string.Format("{0:0.000}", Map.MinHeight);
+                    lblMid.Text = string.Format("{0:0.000}", (Map.MinHeight + Map.MaxHeight) / 2);
+                    lblMax.Text = string.Format("{0:0.000}", Map.MaxHeight);
+                }
+                pictureBox2.Image = new Bitmap(heightLegendBMP);
+                pictureBox2.Refresh();
             }
-            pictureBox2.Image = new Bitmap(heightLegendBMP);
-            pictureBox2.Refresh();
+            catch { }
         }
 
         private void ShowHightMapCutH(int sizeZ, double pos)
@@ -735,7 +743,8 @@ namespace GrblPlotter
                 using (Graphics graph = Graphics.FromImage(heightMapBMP))
                 {
                     Rectangle ImageSize = new Rectangle(0, 0, BMPsizeX, BMPsizeY);
-                    graph.FillRectangle(Brushes.White, ImageSize);
+                    if (!ImageSize.IsEmpty)
+                        graph.FillRectangle(Brushes.White, ImageSize);
                 }
                 Vector2 tmp;
 

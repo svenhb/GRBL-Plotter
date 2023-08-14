@@ -451,7 +451,7 @@ Pokud je hodnota &gt; poloměr oblouku, hodnota se automaticky sníží.</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
-    <value>Vyhněte se příkazům G2/3</value>
+    <value>Vyhněte se příkazům G2/3 (Arc Move), kreslete oblouky / kružnice s úsečkami</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
@@ -3674,5 +3674,33 @@ Maximální hloubka bude omezena vyrytím výšky Z.</value>
   </data>
   <data name="BtnHelp_Notifier.ToolTip" xml:space="preserve">
     <value>Online podpora</value>
+  </data>
+  <data name="cBImportGraphicHatchFillInset2.Text" xml:space="preserve">
+    <value>Zkraťte obálkovou cestu namísto zkrácení čar</value>
+  </data>
+  <data name="CbImportGraphicHatchFillDeletePath.Text" xml:space="preserve">
+    <value>Po vyplnění smažte obalující cestu</value>
+  </data>
+  <data name="label100.Text" xml:space="preserve">
+    <value>Vložte skript za počet teček</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginY.ToolTip" xml:space="preserve">
+    <value>Počátek pro osu Y</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.Text" xml:space="preserve">
+    <value>Seřadí objekty podle velikosti, největší je poslední</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.ToolTip" xml:space="preserve">
+    <value>Objekty budou seřazeny podle velikosti, od nejmenšího po největší a od nejvnitřnějšího po nejvzdálenější.
+Např. pro řezání laserem</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.Text" xml:space="preserve">
+    <value>Největší objekt jako poslední</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.ToolTip" xml:space="preserve">
+    <value>Zpracovat největší objekt jako poslední, např. výřezová dráha pro laserové gravírování / řezání</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
+    <value>Počátek pro osu X</value>
   </data>
 </root>

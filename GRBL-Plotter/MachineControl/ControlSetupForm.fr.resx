@@ -286,7 +286,7 @@ Décoché: le dernier segment est plus court, tous les autres exactement la mêm
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
-    <value>Évitez les commandes G2/3</value>
+    <value>Évitez les commandes G2/3 (Arc Move), dessinez des arcs/cercles avec des segments de ligne</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
@@ -3388,5 +3388,33 @@ La profondeur maximale sera limitée par la gravure Z-Height.</value>
   </data>
   <data name="BtnHelp_Notifier.ToolTip" xml:space="preserve">
     <value>Aide en ligne</value>
+  </data>
+  <data name="cBImportGraphicHatchFillInset2.Text" xml:space="preserve">
+    <value>Réduire le chemin enveloppant au lieu de raccourcir les lignes</value>
+  </data>
+  <data name="CbImportGraphicHatchFillDeletePath.Text" xml:space="preserve">
+    <value>Supprimer le chemin enveloppant après le remplissage</value>
+  </data>
+  <data name="label100.Text" xml:space="preserve">
+    <value>Insérer le script après le nombre de points</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginY.ToolTip" xml:space="preserve">
+    <value>Origine de l'axe Y</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.Text" xml:space="preserve">
+    <value>Trie les objets par taille, le plus grand vient en dernier</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.ToolTip" xml:space="preserve">
+    <value>Les objets seront triés par taille, du plus petit au plus grand et du plus interne au plus externe.
+Par exemple. pour la découpe laser</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.Text" xml:space="preserve">
+    <value>Le plus gros objet en dernier</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.ToolTip" xml:space="preserve">
+    <value>Traiter le plus grand objet en dernier, par ex. chemin de découpe pour gravure/découpe laser</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
+    <value>Origine de l'axe X</value>
   </data>
 </root>

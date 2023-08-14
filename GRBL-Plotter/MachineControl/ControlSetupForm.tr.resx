@@ -559,7 +559,7 @@ Değer &gt; yay yarıçapı ise, değer otomatik olarak azaltılacaktır.</value
     <comment>ok</comment>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
-    <value>G2/3 komutlarından kaçının</value>
+    <value>G2/3 (Yay Hareketi) komutlarından kaçının, çizgi parçalarıyla yaylar / daireler çizin</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
@@ -3701,5 +3701,33 @@ Maksimum derinlik, Z-Yüksekliği gravürü ile sınırlanacaktır.</value>
   </data>
   <data name="BtnHelp_Notifier.ToolTip" xml:space="preserve">
     <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="cBImportGraphicHatchFillInset2.Text" xml:space="preserve">
+    <value>Satırları kısaltmak yerine zarflama yolunu küçültün</value>
+  </data>
+  <data name="CbImportGraphicHatchFillDeletePath.Text" xml:space="preserve">
+    <value>Doldurduktan sonra zarflama yolunu silin</value>
+  </data>
+  <data name="label100.Text" xml:space="preserve">
+    <value>Nokta miktarından sonra komut dosyası ekle</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginY.ToolTip" xml:space="preserve">
+    <value>Y ekseni için orijin</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.Text" xml:space="preserve">
+    <value>Nesneleri boyuta göre sıralar, en büyüğü en son gelir</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.ToolTip" xml:space="preserve">
+    <value>Nesneler, en küçüğünden en büyüğüne ve en içten en dışa doğru boyuta göre sıralanacaktır.
+Örneğin. lazer kesim için</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.Text" xml:space="preserve">
+    <value>En büyük nesne son</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.ToolTip" xml:space="preserve">
+    <value>En büyük nesneyi en son işle, örn. lazer kazıma / kesme için kesme yolu</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
+    <value>X ekseni için orijin</value>
   </data>
 </root>

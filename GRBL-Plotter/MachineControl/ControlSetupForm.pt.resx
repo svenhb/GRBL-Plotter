@@ -269,7 +269,7 @@ Desmarcada: o último segmento de linha é mais curto, todo o outro comprimento 
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
-    <value>Evite comandos G2/3</value>
+    <value>Evite comandos G2/3 (Arc Move), desenhe arcos/círculos com segmentos de linha</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
@@ -3397,5 +3397,33 @@ A profundidade máxima será limitada pela gravação Z-Height.</value>
   </data>
   <data name="BtnHelp_Notifier.ToolTip" xml:space="preserve">
     <value>Ajuda online</value>
+  </data>
+  <data name="cBImportGraphicHatchFillInset2.Text" xml:space="preserve">
+    <value>Encolher caminho envolvente em vez de encurtar linhas</value>
+  </data>
+  <data name="CbImportGraphicHatchFillDeletePath.Text" xml:space="preserve">
+    <value>Excluir o caminho envolvente após o preenchimento</value>
+  </data>
+  <data name="label100.Text" xml:space="preserve">
+    <value>Inserir script após a quantidade de pontos</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginY.ToolTip" xml:space="preserve">
+    <value>Origem do eixo Y</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.Text" xml:space="preserve">
+    <value>Classifica os objetos por tamanho, o maior vem por último</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.ToolTip" xml:space="preserve">
+    <value>Os objetos serão classificados por tamanho, do menor para o maior e do mais interno para o mais externo.
+Por exemplo. para corte a laser</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.Text" xml:space="preserve">
+    <value>Maior objeto por último</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.ToolTip" xml:space="preserve">
+    <value>Processe o objeto maior por último, por ex. caminho de recorte para gravação/corte a laser</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
+    <value>Origem do eixo X</value>
   </data>
 </root>

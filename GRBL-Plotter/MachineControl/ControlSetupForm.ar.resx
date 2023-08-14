@@ -740,7 +740,7 @@
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
-    <value>تجنب أوامر G2 / 3</value>
+    <value>تجنب أوامر G2 / 3 (Arc Move) ، ارسم أقواسًا / دوائر بمقاطع خطية</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
@@ -2380,7 +2380,7 @@ M4 وضع الطاقة ليزر ديناميكي</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportGraphicSortDistanceRotatePath.Text" xml:space="preserve">
-    <value>السماح بنقطة بداية جديدة في المسار المغلق</value>
+    <value>السماح بنقطة بداية جديدة في مسار مغلق</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportPenWidthToZRamp.Text" xml:space="preserve">
@@ -3659,5 +3659,33 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   </data>
   <data name="BtnHelp_Notifier.ToolTip" xml:space="preserve">
     <value>مساعدة على الانترنت</value>
+  </data>
+  <data name="cBImportGraphicHatchFillInset2.Text" xml:space="preserve">
+    <value>تقليص مسار التغليف بدلاً من تقصير الخطوط</value>
+  </data>
+  <data name="CbImportGraphicHatchFillDeletePath.Text" xml:space="preserve">
+    <value>احذف مسار التغليف بعد التعبئة</value>
+  </data>
+  <data name="label100.Text" xml:space="preserve">
+    <value>أدخل البرنامج النصي بعد عدد النقاط</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginY.ToolTip" xml:space="preserve">
+    <value>أصل المحور ص</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.Text" xml:space="preserve">
+    <value>يرتب الأشياء حسب الحجم ، يأتي الأكبر في النهاية</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.ToolTip" xml:space="preserve">
+    <value>سيتم فرز الكائنات حسب الحجم ، من الأصغر إلى الأكبر ومن الأعمق إلى الأبعد.
+على سبيل المثال لقطع الليزر</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.Text" xml:space="preserve">
+    <value>أكبر كائن أخيرًا</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.ToolTip" xml:space="preserve">
+    <value>معالجة أكبر كائن أخيرًا ، على سبيل المثال مسار القطع للنقش / القطع بالليزر</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
+    <value>أصل المحور س</value>
   </data>
 </root>

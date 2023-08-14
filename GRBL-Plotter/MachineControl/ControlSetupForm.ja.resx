@@ -748,7 +748,7 @@ gcodeを縮小する際の問題を回避するため。</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
-    <value>G2/3 コマンドを避ける</value>
+    <value>G2/3 (円弧移動) コマンドを避け、線分で円弧/円を描きます。</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
@@ -3683,5 +3683,33 @@ GCode ヘッダー セクションで指定: 'SVG dimension'。</value>
   </data>
   <data name="BtnHelp_Notifier.ToolTip" xml:space="preserve">
     <value>オンラインヘルプ</value>
+  </data>
+  <data name="cBImportGraphicHatchFillInset2.Text" xml:space="preserve">
+    <value>線を短くする代わりにエンベロープパスを縮小する</value>
+  </data>
+  <data name="CbImportGraphicHatchFillDeletePath.Text" xml:space="preserve">
+    <value>塗りつぶし後にエンベロープパスを削除</value>
+  </data>
+  <data name="label100.Text" xml:space="preserve">
+    <value>ドット数の後にスクリプトを挿入</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginY.ToolTip" xml:space="preserve">
+    <value>Y軸の原点</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.Text" xml:space="preserve">
+    <value>オブジェクトをサイズ順に並べ替えます。最大のものは最後になります。</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.ToolTip" xml:space="preserve">
+    <value>オブジェクトは、最小から最大、最も内側から最も外側のサイズに基づいて並べ替えられます。
+例えば。レーザー切断用</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.Text" xml:space="preserve">
+    <value>最大のオブジェクトが最後に</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.ToolTip" xml:space="preserve">
+    <value>最大のオブジェクトを最後に処理します。例:レーザー彫刻/切断用の切り抜きパス</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
+    <value>X軸の原点</value>
   </data>
 </root>

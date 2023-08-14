@@ -450,7 +450,7 @@ Jeśli wartość jest &gt; promienia łuku, wartość zostanie automatycznie zmn
     <comment>ok</comment>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
-    <value>Unikaj poleceń G2/G3</value>
+    <value>Unikaj poleceń G2/3 (Arc Move), rysuj łuki / okręgi za pomocą segmentów linii</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
@@ -3554,5 +3554,33 @@ Maksymalna głębokość będzie ograniczona przez wygrawerowaną wysokość Z.<
   </data>
   <data name="BtnHelp_Notifier.ToolTip" xml:space="preserve">
     <value>Pomoc online</value>
+  </data>
+  <data name="cBImportGraphicHatchFillInset2.Text" xml:space="preserve">
+    <value>Zmniejsz otaczającą ścieżkę zamiast skracać linie</value>
+  </data>
+  <data name="CbImportGraphicHatchFillDeletePath.Text" xml:space="preserve">
+    <value>Usuń otaczającą ścieżkę po wypełnieniu</value>
+  </data>
+  <data name="label100.Text" xml:space="preserve">
+    <value>Wstaw skrypt po ilości kropek</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginY.ToolTip" xml:space="preserve">
+    <value>Początek osi Y</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.Text" xml:space="preserve">
+    <value>Sortuje obiekty według rozmiaru, największy jest ostatni</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.ToolTip" xml:space="preserve">
+    <value>Obiekty zostaną posortowane według rozmiaru, od najmniejszego do największego i od najbardziej wewnętrznego do najbardziej zewnętrznego.
+Np. do cięcia laserowego</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.Text" xml:space="preserve">
+    <value>Największy obiekt ostatni</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.ToolTip" xml:space="preserve">
+    <value>Przetwarzaj największy obiekt jako ostatni, np. ścieżka wycinania do grawerowania/cięcia laserowego</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
+    <value>Początek osi X</value>
   </data>
 </root>

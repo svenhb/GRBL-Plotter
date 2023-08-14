@@ -2103,7 +2103,7 @@ La finestra di installazione deve essere chiusa per utilizzare Gamepad nella GUI
     <comment>ok</comment>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
-    <value>Evita i comandi G2/3</value>
+    <value>Evita i comandi G2/3 (Arc Move), disegna archi/cerchi con segmenti di linea</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
@@ -3727,5 +3727,33 @@ La profondità massima sarà limitata dall'incisione Z-Height.</value>
   </data>
   <data name="BtnHelp_Notifier.ToolTip" xml:space="preserve">
     <value>Aiuto online</value>
+  </data>
+  <data name="cBImportGraphicHatchFillInset2.Text" xml:space="preserve">
+    <value>Riduci il percorso avvolgente invece di accorciare le linee</value>
+  </data>
+  <data name="CbImportGraphicHatchFillDeletePath.Text" xml:space="preserve">
+    <value>Elimina il percorso avvolgente dopo il riempimento</value>
+  </data>
+  <data name="label100.Text" xml:space="preserve">
+    <value>Inserisci lo script dopo la quantità di punti</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginY.ToolTip" xml:space="preserve">
+    <value>Origine per l'asse Y</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.Text" xml:space="preserve">
+    <value>Ordina gli oggetti per dimensione, il più grande viene per ultimo</value>
+  </data>
+  <data name="cBImportGraphicSortDimension.ToolTip" xml:space="preserve">
+    <value>Gli oggetti saranno ordinati per dimensione, dal più piccolo al più grande e dal più interno al più esterno.
+Per esempio. per il taglio laser</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.Text" xml:space="preserve">
+    <value>L'oggetto più grande per ultimo</value>
+  </data>
+  <data name="cBImportGraphicLargestLast.ToolTip" xml:space="preserve">
+    <value>Elabora l'oggetto più grande per ultimo, ad es. percorso di ritaglio per incisione / taglio laser</value>
+  </data>
+  <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
+    <value>Origine per l'asse X</value>
   </data>
 </root>

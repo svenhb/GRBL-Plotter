@@ -67,6 +67,7 @@
  * 2023-03-29 l:930 f:SerialPort1_DataReceived add option to use Invoke -> lowLevelPerformance
  * 2023-03-31 l:266 f:SerialForm_FormClosing improove shut-down behavior
  * 2023-06-28 l:665 f:AddToLog limit amount of lines to 10000   replaced RichTextBox by TextBox
+ * 2023-07-27 l:269 f:SerialForm_FormClosing  set grblCharacterCounting = true;   // may helps to avoid locking the form
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -264,6 +265,8 @@ namespace GrblPlotter
             if ((e.CloseReason.ToString() == "ApplicationExitCall") || (e.CloseReason.ToString() == "FormOwnerClosing"))
             {
             //    isDataProcessing = false;
+                grblCharacterCounting = true;   // may helps to avoid locking the form
+
                 if (countShutdown == 0)
                 {
                     timerSerial.Stop();
