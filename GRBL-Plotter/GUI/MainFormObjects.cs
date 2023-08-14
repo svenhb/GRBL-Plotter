@@ -633,6 +633,11 @@ namespace GrblPlotter
                 return false;
             return true;
         }
+
+        public bool IsWithin(Dimensions tmp)
+        {
+            return ((minx >= tmp.minx) && (miny >= tmp.miny) && (maxx <= tmp.maxx) && (maxy <= tmp.maxy));
+        }
     }
 
 

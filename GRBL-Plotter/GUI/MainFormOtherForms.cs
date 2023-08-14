@@ -551,6 +551,9 @@ namespace GrblPlotter
                 _setup_form.btnGCPWMUp.Click += MoveToPickup;
                 _setup_form.btnGCPWMDown.Click += MoveToPickup;
                 _setup_form.btnGCPWMZero.Click += MoveToPickup;
+                _setup_form.nUDImportGCPWMP93.ValueChanged += MoveToPickup;
+                _setup_form.nUDImportGCPWMP94.ValueChanged += MoveToPickup;
+
                 _setup_form.SetLastLoadedFile(lastLoadSource);
                 gamePadTimer.Enabled = false;
                 EventCollector.SetOpenForm("Fstp");

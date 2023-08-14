@@ -59,6 +59,7 @@ namespace GrblPlotter
         private readonly Pen penDown = new Pen(Color.Red, 0.4F);
         private readonly Pen penRotary = new Pen(Color.White, 0.4F);
         private readonly Pen penHeightMap = new Pen(Color.Yellow, 1F);
+        private readonly Pen penSelection = new Pen(Color.Yellow, 1F);
         private readonly Pen penRuler = new Pen(Color.Blue, 0.1F);
         private readonly Pen penGrid1 = new Pen(Color.LightGray, 0.01F);
         private readonly Pen penGrid10 = new Pen(Color.LightSlateGray, 0.01F);
@@ -278,6 +279,7 @@ namespace GrblPlotter
                 if (!Properties.Settings.Default.importUnitmm) factorWidth = 0.0393701f;
                 if (Properties.Settings.Default.gui2DKeepPenWidth) factorWidth /= zoomFactor;
                 penHeightMap.Width = (float)Properties.Settings.Default.gui2DWidthHeightMap * factorWidth;
+                penSelection.Width = (float)Properties.Settings.Default.gui2DWidthHeightMap * factorWidth;
                 penRuler.Width = (float)Properties.Settings.Default.gui2DWidthRuler * factorWidth;
                 penUp.Width = (float)Properties.Settings.Default.gui2DWidthPenUp * factorWidth;
                 penDown.Width = (float)Properties.Settings.Default.gui2DWidthPenDown * factorWidth;
@@ -350,6 +352,7 @@ namespace GrblPlotter
                             {
                                 //            Logger.Trace("Color {0}",tmpPath.color);
                                 e.DrawPath(tmpPath.pen, tmpPath.path);
+                                penSelection.Width = tmpPath.pen.Width;
                             }
                         }
                         catch (Exception err)
@@ -373,7 +376,7 @@ namespace GrblPlotter
                 if (posIsMoving)
                 { e.DrawPath(penLandMark, VisuGCode.pathMarkSelection); }
                 else
-                    e.DrawPath(penHeightMap, VisuGCode.pathMarkSelection);
+                    e.DrawPath(penSelection, VisuGCode.pathMarkSelection);
 
                 if (SelectionHandle.IsActive) SelectionHandle.DrawPath(e, picScaling * zoomFactor);		// adapt handle size if scaling/zooming changed
 
@@ -956,8 +959,8 @@ namespace GrblPlotter
                 resetView = true;
                 string tmpCode = fCTBCode.SelectedText;         // get selected code
                 int line = fCTBCodeClickedLineNow;              // start line
-                if (lastMarkerType != XmlMarkerType.Figure)     // insert figure into same group, insert any other as new group
-                    line = 0;
+            //    if ((lastMarkerType != XmlMarkerType.Figure)|| (lastMarkerType != XmlMarkerType.Group))     // insert figure into same group, insert any other as new group
+            //        line = 0;
 
                 /* calculate insertion offset */
                 double offsetX = (double)Properties.Settings.Default.gui2DDuplicateOffsetX;
@@ -986,7 +989,8 @@ namespace GrblPlotter
                 cmsPicBoxRotateSelectedPath.Enabled = false;
 
                 fCTBCode.Selection = range; // SetTextSelection
-                FoldBlocksByLevel(markerType, insertLine);
+                if (LineIsInRange(insertLine))
+                    FoldBlocksByLevel(markerType, insertLine);
                 //	fCTBCode.DoSelectionVisible();      // will unfold blocks
             }
             return;

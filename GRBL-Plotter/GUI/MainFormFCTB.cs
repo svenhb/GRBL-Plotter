@@ -53,6 +53,7 @@
  * 2023-04-12 f:FctbCode_Click / FctbCode_KeyDown replace FctbSetBookmark to avoid collapse blocks
  * 2023-04-13 l:592; 675 f:FctbCode_KeyDown add Tile
  * 2023-06-20 l:380 f:InsertCodeToFctb check if xmlLine is in range
+ * 2023-07-31 l:375 f:InsertCodeToFctb insert duplicated figure/group right after selected figure/group
 */
 
 using FastColoredTextBoxNS;
@@ -357,18 +358,32 @@ namespace GrblPlotter
             int insertLineGroup = XmlMarker.FindInsertPositionGroupMostTop();
             int insertLineFigure = XmlMarker.FindInsertPositionFigureMostTop(-1);
             int insertLineNr = insertLineGroup;
-            Logger.Info("InsertCodeToFctb lineGroup:{0} lineFigure:{1}", insertLineGroup, insertLineFigure);
-            if (insertLineNr < 0)
+
+            bool containsGroup = sourceGCode.Contains(XmlMarker.GroupStart);
+            bool containsFigure = sourceGCode.Contains(XmlMarker.FigureStart);
+
+            if (fromFile)
             {
-                insertLineNr = insertLineFigure;  // no group? use figure
-                createGroup = true;
+                if (insertLineNr < 0)
+                {
+                    insertLineNr = insertLineFigure;  // no group? use figure
+                    createGroup = true;
+                }
             }
+            else
+            {
+                insertLineGroup = XmlMarker.FindInsertPositionGroupNext(lineSelected);
+                insertLineFigure = XmlMarker.FindInsertPositionFigureNext(lineSelected); 
+                if (containsGroup)
+                { insertLineNr = insertLineGroup; }  // add as next group
+                else if (containsFigure)
+                { insertLineNr = insertLineFigure; }  // add as next figure
+            }
+
             if (!fromFile && ((offsetX != 0) || (offsetY != 0)))
             { sourceGCode = ModifyCode.ApplyXYOffsetSimple(sourceGCode, offsetX, offsetY); }
 
-            Logger.Info("InsertCodeToFctb fromFile:{0}  lineSelection:{1}  lineInsert:{2}  offX:{3:0.00}  offY:{4:0.00}", fromFile, lineSelected, insertLineNr, offsetX, offsetY);
-            if (!fromFile && (lineSelected > 0))
-            { insertLineNr = lineSelected; }
+            Logger.Info("....InsertCodeToFctb fromFile:{0}  sourceGroupTag:{1}  sourceFigureTag:{2}  lineSelected:{3}   lineGroup:{4}  lineFigure:{5}  lineInsert:{6}  offX:{7:0.00}  offY:{8:0.00}", fromFile, containsGroup, containsFigure, lineSelected, insertLineGroup, insertLineFigure, insertLineNr, offsetX, offsetY);
 
             if (LineIsInRange(insertLineNr))
             {
@@ -387,6 +402,7 @@ namespace GrblPlotter
                     fCTBCode.Selection = mySelectionGrp;
                     fCTBCode.InsertText("(" + XmlMarker.GroupEnd + ">)\r\n", false);    // insert new code
                 }
+
                 // extract group code from generated gcode
                 string tmpCodeString = sourceGCode; // Graphic.GCode.ToString();
                 StringBuilder tmpCodeFinish = new StringBuilder();
@@ -432,6 +448,7 @@ namespace GrblPlotter
                             }
                         }
                     }
+
                     if (useCode)
                     { tmpCodeFinish.AppendLine(line.Trim()); }
                     if (useGroup)
@@ -443,8 +460,6 @@ namespace GrblPlotter
                 if (createGroup)
                 { tmpCodeFinish.AppendLine("(" + XmlMarker.GroupStart + " Id=\"0\" Type=\"Existing code\" >)"); }    // add startGroup for existing figures
 
-                if ((insertLineGroup > 0) && useGroup)
-                { insertLineNr = insertLineGroup; }
                 InsertTextAtLine(insertLineNr, tmpCodeFinish.ToString());
                 if (fromFile)
                 {
