@@ -1368,6 +1368,7 @@ namespace GrblPlotter
                         graphicToSort[i] = tmp;
                     }
 
+                    // Keep index of the item with the shortest distance
                     if (tmp.Distance < minDist)
                     {
                         minDist = tmp.Distance;
@@ -1375,11 +1376,12 @@ namespace GrblPlotter
                     }
                 }
 
+                // Move the item with the shortest distance to the sorted list
                 if (minDistIndex != -1)
                 {
                     sortedGraphic.Add(graphicToSort[minDistIndex]);       	// get closest item = first in list
                     actualPos = graphicToSort[minDistIndex].End;         	// set new start pos
-                	if (logSortMerge) Logger.Trace("   remove id:{0} ", graphicToSort[0].Info.Id);
+                	if (logSortMerge) Logger.Trace("   remove id:{0} ", graphicToSort[minDistIndex].Info.Id);
                     graphicToSort.RemoveAt(minDistIndex);                  // remove item from remaining list
                 }
             }
