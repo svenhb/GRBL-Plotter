@@ -52,8 +52,7 @@
  * 2023-05-31 l:454 f:GetActualZ add OptionSFromWidth
  * 2023-07-02 l:296 f:StartPath ->  actualPath = new ItemPath(xy, GetActualZ());  
  * 2023-08-06 l:830 f:CreateGCode set SortByDistance start-pos to maxy
- * 2023-08-14 upadte StartPath to be compatible with speed up of HasSameProperties
- * 2023-08-14 improve the UpdateGUI method as it was updating many times in 250 ms
+ * 2023-08-16 l:271 f:StartPath f:UpdateGUI pull request Speed up merge and sort #348
 */
 
 using System;
@@ -153,15 +152,25 @@ namespace GrblPlotter
         { return countGeometry; }
 
 
+        //private static bool updateMarker = false;
         private static int lastUpdateMilliseconds = 0; 
         private static bool UpdateGUI()
         {
+            //bool time = ((stopwatch.Elapsed.Milliseconds % 500) > 250);
+            //if (time)
             int elapsed = stopwatch.Elapsed.Milliseconds - lastUpdateMilliseconds;
             if ((elapsed < 0) || (elapsed > 500))
             {
+                /*if (updateMarker)     // 2023-08-16 pull request Speed up merge and sort #348 Reduce CPU used updating progress bars
+                {
+                    updateMarker = false;
+                    return true;
+                }*/
                 lastUpdateMilliseconds = stopwatch.Elapsed.Milliseconds;
                 return true;
             }
+            //else
+            //{ updateMarker = true; }
             return false;
         }
         #endregion
@@ -265,8 +274,9 @@ namespace GrblPlotter
             actualPath.Info.CopyData(actualPathInfo);                       // preset global info for GROUP
 
             // only continue last path if same layer, color, dash-pattern - if enabled
-            if ((lastPath is ItemPath apath) && (objectCount > 0) && HasSameProperties(apath, (ItemPath)actualPath, Properties.Settings.Default.importLineDashPattern) && (IsEqual(xy, lastPoint)))
-            {
+            //if ((lastPath is ItemPath apath) && (objectCount > 0) && HasSameProperties(apath, (ItemPath)actualPath) && (IsEqual(xy, lastPoint)))	// 2023-08-16 pull request Speed up merge and sort #348
+			if ((lastPath is ItemPath apath) && (objectCount > 0) && HasSameProperties(apath, (ItemPath)actualPath, Properties.Settings.Default.importLineDashPattern) && (IsEqual(xy, lastPoint)))
+			{
                 actualPath = apath;             // only continoue last path if it was finished
                 actualPath.Options = lastOption;
                 if (logCoordinates) Logger.Trace("► StartPath-ADD (same properties and pos) Id:{0} at X:{1:0.00} Y:{2:0.00} {3}  start.X:{4:0.00} start.Y:{5:0.00}", objectCount, xy.X, xy.Y, actualPath.Info.List(), actualPath.Start.X, actualPath.Start.Y);

@@ -27,7 +27,7 @@
  * 2022-04-23 add OptionSpecialWireBend
  * 2022-11-03 add OptionDashPattern to control ConvertArcToLine
  * 2023-05-31 add OptionSFromWidth
- * 2023-08-14 modify IsSameAs for speed
+ * 2023-08-16 l:388 f:IsSameAs pull request Speed up merge and sort #348
 */
 
 using System;
@@ -385,18 +385,18 @@ namespace GrblPlotter
                     if (PathId != tmp.PathId) return false;
                     if (AuxInfo != tmp.AuxInfo) return false;
                     if (PathGeometry != tmp.PathGeometry) return false;
-                    //				if (pathComment != tmp.pathComment)	return false;
 
+                    //if (GroupAttributes.SequenceEqual(tmp.GroupAttributes))	// 2023-08-16 pull request Speed up merge and sort #348  Improve comparing GroupAttributes
+                    //{
+                    //    return true;
                     for (int i = 1; i < GroupAttributes.Count; i++)    // GroupOptions { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByType = 4, ByTile = 5};
-                    {
-                        //if (logDetailed) Logger.Trace("  hasSameProperties - GroupEnable-Option:{0} a:'{1}'  b:'{2}'", i, a.Info.GroupAttributes[i], b.Info.GroupAttributes[i]);
-                        if (GroupAttributes[i] != tmp.GroupAttributes[i])
-                            return false;
-                    }
-                    //Logger.Trace("IsSameAs true"); 
-                    return true;
+					{
+						if (GroupAttributes[i] != tmp.GroupAttributes[i])
+							return false;
+					}
+					return true;
+					//}
                 }
-                //Logger.Trace("IsSameAs false");
                 return false;
             }
             public bool SetGroupAttribute(int index, string txt)

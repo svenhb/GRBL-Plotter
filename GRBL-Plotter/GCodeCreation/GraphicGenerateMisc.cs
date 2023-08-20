@@ -29,9 +29,8 @@
  * 2023-07-13 l:800 f:RemoveShortMoves also compare depth informnation
  * 2023-07-30 l:898 f:RemoveOffset calc new dimesnion for all types
  * 2023-08-06 l:1283 f:SortByDistance get also start-pos
- * 2023-08-14 update SortByDistance to remove the slow sort
- * 2023-08-14 update HasSameProperties for speed
- * 2023-08-14 reduce the updating of progress bar in SortByDistance
+ * 2023-08-16 l:1370 f:SortByDistance pull request Speed up merge and sort #348
+ * 2023-08-16 l:1490 f:HasSameProperties pull request Speed up merge and sort #348
 */
 
 using System;
@@ -1291,9 +1290,6 @@ namespace GrblPlotter
 
             List<PathObject> sortedGraphic = new List<PathObject>();
 
-        //    Point actualPos = new Point(0, 0);
-        //    Point actualPos = new Point(actualDimension.maxx, 0);   // start at upper left point
-
             double distanceReverse;
             bool allowReverse = false;
             PathObject tmp;
@@ -1305,9 +1301,12 @@ namespace GrblPlotter
             }
             int maxElements = graphicToSort.Count;
 
+			double minDist;
+			int minDistIndex;
+			
             while ((graphicToSort.Count > 0) && (!cancelByWorker))                      // items will be removed step by step from completeGraphic
             {
-                if (backgroundWorker != null)
+                if (backgroundWorker != null)           // 2023-08-16 pull request Speed up merge and sort #348 Reduce CPU used updating progress bars
                 {
                     if (UpdateGUI()) backgroundWorker.ReportProgress(((maxElements - graphicToSort.Count) * 100) / maxElements);
                     if (backgroundWorker.CancellationPending)
@@ -1317,13 +1316,23 @@ namespace GrblPlotter
                         break;
                     }
                 }
-
-                double minDist = double.MaxValue;
-                int minDistIndex = -1;
+                minDist = double.MaxValue;
+				minDistIndex = -1;
                 for (int i = 0; i < graphicToSort.Count; i++)     // calculate distance to all remaining items check start and end position
                 {
                     tmp = graphicToSort[i];
                     tmp.Distance = PointDistanceSquared(actualPos, tmp.Start);
+
+                    /*if (backgroundWorker != null)     // 2023-08-16 pull request Speed up merge and sort #348 Reduce CPU used updating progress bars
+                    {
+                        if (UpdateGUI()) backgroundWorker.ReportProgress(((maxElements - graphicToSort.Count) * 100) / maxElements);
+                        if (backgroundWorker.CancellationPending)
+                        {
+                            cancelByWorker = true;
+                            backgroundWorker.ReportProgress(100, new MyUserState { Value = 100, Content = "Stop processing, clean up data. Please wait!" });
+                            break;
+                        }
+                    }*/
 
                     if (tmp is ItemPath tmpItemPath)
                     {
@@ -1367,23 +1376,29 @@ namespace GrblPlotter
                         }
                         graphicToSort[i] = tmp;
                     }
-
-                    // Keep index of the item with the shortest distance
-                    if (tmp.Distance < minDist)
+					
+					
+					if (tmp.Distance < minDist) // 2023-08-16 pull request Speed up merge and sort #348    Remove unnecessary sort
                     {
-                        minDist = tmp.Distance;
-                        minDistIndex = i;
-                    }
+						minDist = tmp.Distance;
+						minDistIndex = i;
+					}
                 }
+                /*	2023-08-16 pull request Speed up merge and sort #348    Remove unnecessary sort
+                graphicToSort.Sort((x, y) => x.Distance.CompareTo(y.Distance));   // sort by distance
 
-                // Move the item with the shortest distance to the sorted list
-                if (minDistIndex != -1)
+                sortedGraphic.Add(graphicToSort[0]);       	// get closest item = first in list
+                actualPos = graphicToSort[0].End;         	// set new start pos
+                if (logSortMerge) Logger.Trace("   remove id:{0} ", graphicToSort[0].Info.Id);
+                graphicToSort.RemoveAt(0);                  // remove item from remaining list
+				*/
+                if (minDistIndex != -1)     // 2023-08-16 pull request Speed up merge and sort #348    Remove unnecessary sort
                 {
-                    sortedGraphic.Add(graphicToSort[minDistIndex]);       	// get closest item = first in list
-                    actualPos = graphicToSort[minDistIndex].End;         	// set new start pos
-                	if (logSortMerge) Logger.Trace("   remove id:{0} ", graphicToSort[minDistIndex].Info.Id);
-                    graphicToSort.RemoveAt(minDistIndex);                  // remove item from remaining list
-                }
+					sortedGraphic.Add(graphicToSort[minDistIndex]);       	// get closest item = first in list
+					actualPos = graphicToSort[minDistIndex].End;         	// set new start pos
+					if (logSortMerge) Logger.Trace("   remove id:{0} ", graphicToSort[minDistIndex].Info.Id);
+					graphicToSort.RemoveAt(minDistIndex);                  // remove item from remaining list
+				}
             }
 
             if (cancelByWorker)//stopwatch.Elapsed.Minutes >= maxTimeMinute)  // time expired, just copy missing figures
@@ -1483,43 +1498,45 @@ namespace GrblPlotter
         private static Point ToPointF(XyPoint tmp)
         { return new Point((float)tmp.X, (float)tmp.Y); }
 
-        private static bool HasSameProperties(ItemPath a, ItemPath b, bool importLineDashPattern)
+        //private static bool HasSameProperties(ItemPath a, ItemPath b)
+		private static bool HasSameProperties(ItemPath a, ItemPath b, bool importLineDashPattern)       // 2023-08-16 pull request Speed up merge and sort #348    Improve comparing GroupAttributes
         {
-            //            bool checkAll = false;// true;
             if (graphicInformation.GroupEnable)
             {
-                for (int i = 1; i < a.Info.GroupAttributes.Count; i++)    // GroupOptions { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByType = 4, ByTile = 5};
-                {
+                //for (int i = 1; i <= 6; i++)    // GroupOptions { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByType = 4, ByTile = 5, ByFill = 6, Label = 7};
+				for (int i = 1; i < a.Info.GroupAttributes.Count; i++)    // GroupOptions { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByType = 4, ByTile = 5};
+				{
                     if (logDetailed) Logger.Trace("  hasSameProperties - GroupEnable-Option:{0} a:'{1}'  b:'{2}'", i, a.Info.GroupAttributes[i], b.Info.GroupAttributes[i]);
-                    if (a.Info.GroupAttributes[i] != b.Info.GroupAttributes[i])
-                        return false;
+					if (a.Info.GroupAttributes[i] != b.Info.GroupAttributes[i])
+						return false;
                 }
             }
-            /*    else if (graphicInformation.OptionZFromWidth || graphicInformation.OptionSFromWidth)
-                {
-                    sameProperties = a.Info.GroupAttributes[2] == b.Info.GroupAttributes[2];
-                    if (!sameProperties)
-                        return false;
-                }*/
 
+            //bool sameDash = true;
             if (importLineDashPattern)
             {
-                if ((a.DashArray.Length == 0) && (b.DashArray.Length == 0))
-                {
-                    return true;
-                }
-                else
-                {
-                    if (a.DashArray.Length != b.DashArray.Length)
-                        return false;
-                    for (int i = 1; i <= a.DashArray.Length; i++)
+                //sameDash = false;
+                //if ((a.DashArray.Length == 0) && (b.DashArray.Length == 0))
+                ///    sameDash = true;
+                //else if (a.DashArray == b.DashArray)
+                //    sameDash = true;
+				if ((a.DashArray.Length == 0) && (b.DashArray.Length == 0))
+				{
+					return true;
+				}
+				else
+				{
+					if (a.DashArray.Length != b.DashArray.Length)
+						return false;
+					for (int i = 1; i <= a.DashArray.Length; i++)       // 2023-08-16 pull request Speed up merge and sort #348    Improve comparing GroupAttributes
                     {
-                        if (a.DashArray[i] != b.DashArray[i])
-                            return false;
-                    }
-                }
-            }
-            return true;
+						if (a.DashArray[i] != b.DashArray[i])
+							return false;
+					}
+				}
+			}
+            //return (sameProperties && sameDash);
+			return true;
         }
         /*     private static string ShowArray(double[] tmp)
              {   string tmps = "";
@@ -1535,7 +1552,7 @@ namespace GrblPlotter
 
             int i, k;
             int maxElements = graphicToMerge.Count;
-            bool importLineDashPattern = Properties.Settings.Default.importLineDashPattern; // Keep a local copy for speed
+			bool importLineDashPattern = Properties.Settings.Default.importLineDashPattern; // Keep a local copy for speed
 
             for (i = graphicToMerge.Count - 1; i > 0; i--)
             {
@@ -1576,7 +1593,7 @@ namespace GrblPlotter
                                 continue;
 
                             // paths with different propertys should not be merged
-                            if (!HasSameProperties(ipath, kpath, importLineDashPattern))
+                            if (!HasSameProperties(ipath, kpath, importLineDashPattern))        // 2023-08-16 pull request Speed up merge and sort #348    Improve comparing GroupAttributes
                             {   //                             Logger.Trace("  not same Properties");
                                 continue;
                             }
