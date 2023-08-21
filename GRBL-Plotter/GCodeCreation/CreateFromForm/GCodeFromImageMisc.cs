@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
 /*
  * 2022-03-28  split code into ...Create and ...Outline
  * 2022-06-25 line 294 BtnShowSettings_Click add try catch
+ * 2023-08-01 check if (!e.Bounds.IsEmpty)
 */
 
 using System;
@@ -890,7 +891,8 @@ namespace GrblPlotter
                 {
                     long clr = Convert.ToInt32(text.Substring(4, 6), 16) | 0xff000000;
                     brush = new SolidBrush(ContrastColor(Color.FromArgb((int)clr)));
-                    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb((int)clr)), e.Bounds);
+                    if (!e.Bounds.IsEmpty)
+                        e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb((int)clr)), e.Bounds);
                 }
                 catch { }
                 e.Graphics.DrawString(text, ((Control)sender).Font, brush, e.Bounds.X, e.Bounds.Y);
@@ -920,7 +922,8 @@ namespace GrblPlotter
         {
             TabPage page = tabControl1.TabPages[e.Index];
             Color col = e.Index == tabControl1.SelectedIndex ? Color.Yellow : Color.White;
-            e.Graphics.FillRectangle(new SolidBrush(col), e.Bounds);
+            if (!e.Bounds.IsEmpty)
+                e.Graphics.FillRectangle(new SolidBrush(col), e.Bounds);
 
             Rectangle paddedBounds = e.Bounds;
             int yOffset = (e.State == DrawItemState.Selected) ? -2 : 1;
@@ -932,7 +935,8 @@ namespace GrblPlotter
         {
             TabPage page = tabControl2.TabPages[e.Index];
             Color col = e.Index == tabControl2.SelectedIndex ? Color.Yellow : Color.White;
-            e.Graphics.FillRectangle(new SolidBrush(col), e.Bounds);
+            if (!e.Bounds.IsEmpty)
+                e.Graphics.FillRectangle(new SolidBrush(col), e.Bounds);
 
             Rectangle paddedBounds = e.Bounds;
             int yOffset = (e.State == DrawItemState.Selected) ? -2 : 1;

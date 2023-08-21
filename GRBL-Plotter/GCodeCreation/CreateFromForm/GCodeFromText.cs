@@ -169,7 +169,7 @@ namespace GrblPlotter
             Graphic.Init(Graphic.SourceType.Text, "", null, null);
             Graphic.graphicInformation.ApplyHatchFill = CbHatchFill.Checked;    // false;			// no SVG import with fillColor "none"
             Graphic.graphicInformation.OptionNodesOnly = false;
-            Graphic.graphicInformation.OptionSortCode = false;
+            Graphic.graphicInformation.OptionCodeSortDistance = false;
             Graphic.graphicInformation.OptionZFromWidth = false;
 
             Graphic.graphicInformation.FigureEnable = true;
@@ -420,7 +420,7 @@ namespace GrblPlotter
                     MessageBox.Show(err.Message, "Error");
                     return;
                 }
-                textFont = fontDialog1.Font;
+            //    textFont = fontDialog1.Font;
                 LblInfoFont.Text = textFont.FontFamily.Name.ToString();
                 textColor = tBText.ForeColor = fontDialog1.Color;
                 ShowTextSize();

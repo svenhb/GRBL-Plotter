@@ -31,6 +31,7 @@
  * 2023-03-04 add save/load/select shapes
  * 2023-03-14 l:1226 f:BtnApplyShape_Click check min/max before setting the value; save also avoidZUp, finalMove0, insertShape
  * 2023-06-05 allow X = 0.0, highlight CbInsertCode
+ * 2023-07-31 l:156 f:BtnApply_Click fix group and figure tags
 */
 
 using System;
@@ -153,8 +154,16 @@ namespace GrblPlotter
 
             bool inOneStep = (nUDToolZStep.Value >= -nUDImportGCZDown.Value); // if step >= final Z
 
-            Gcode.Comment(gcodeString, XmlMarker.GroupStart + " Id=\"" + figureCount.ToString(culture) + "\" Type=\"Shape\" >");
-            Gcode.Comment(gcodeString, XmlMarker.FigureStart + " Id=\"" + figureCount.ToString(culture) + "\" >");
+            if (cBToolSet.Checked)
+            {
+                Gcode.Comment(gcodeString, string.Format("{0} Id=\"{1}\" Type=\"Shape\" PenColor=\"{2}\" ToolNr=\"{3}\" ToolName=\"{4}\">", XmlMarker.GroupStart, figureCount, ColorTranslator.ToHtml(tprop.Color).Substring(1), tprop.Toolnr, tprop.Name));     //toolTable.indexName()));
+                Gcode.Comment(gcodeString, string.Format("{0} Id=\"{1}\" Geometry=\"Shape\" PenColor=\"{2}\" PenWidth=\"{3:0.00}\">", XmlMarker.FigureStart, figureCount, ColorTranslator.ToHtml(tprop.Color).Substring(1), tprop.Diameter));
+            }
+            else
+            {
+                Gcode.Comment(gcodeString, XmlMarker.GroupStart + " Id=\"" + figureCount.ToString(culture) + "\" Type=\"Shape\" >");
+                Gcode.Comment(gcodeString, XmlMarker.FigureStart + " Id=\"" + figureCount.ToString(culture) + "\" Geometry=\"Shape\" >");
+            }
 
             if (tabControl1.SelectedTab == tabPage1)    // rectangle, circle
             {
