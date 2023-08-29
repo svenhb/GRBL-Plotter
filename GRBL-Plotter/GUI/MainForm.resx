@@ -2905,7 +2905,7 @@ Right click to choose start line number</value>
     <value>virtualJoystickA</value>
   </data>
   <data name="&gt;&gt;virtualJoystickA.Type" xml:space="preserve">
-    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.3.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.3.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;virtualJoystickA.Parent" xml:space="preserve">
     <value>tLPRechtsUntenRechtsMitte</value>
@@ -2975,7 +2975,7 @@ Right click to choose start line number</value>
     <value>virtualJoystickXY</value>
   </data>
   <data name="&gt;&gt;virtualJoystickXY.Type" xml:space="preserve">
-    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.3.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.3.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;virtualJoystickXY.Parent" xml:space="preserve">
     <value>tLPRechtsUntenRechtsMitte</value>
@@ -3022,7 +3022,7 @@ Right click to choose start line number</value>
     <value>virtualJoystickZ</value>
   </data>
   <data name="&gt;&gt;virtualJoystickZ.Type" xml:space="preserve">
-    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.3.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.3.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;virtualJoystickZ.Parent" xml:space="preserve">
     <value>tLPRechtsUntenRechtsMitte</value>
@@ -3066,7 +3066,7 @@ Right click to choose start line number</value>
     <value>virtualJoystickB</value>
   </data>
   <data name="&gt;&gt;virtualJoystickB.Type" xml:space="preserve">
-    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.3.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.3.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;virtualJoystickB.Parent" xml:space="preserve">
     <value>tLPRechtsUntenRechtsMitte</value>
@@ -3110,7 +3110,7 @@ Right click to choose start line number</value>
     <value>virtualJoystickC</value>
   </data>
   <data name="&gt;&gt;virtualJoystickC.Type" xml:space="preserve">
-    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.3.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.3.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;virtualJoystickC.Parent" xml:space="preserve">
     <value>tLPRechtsUntenRechtsMitte</value>

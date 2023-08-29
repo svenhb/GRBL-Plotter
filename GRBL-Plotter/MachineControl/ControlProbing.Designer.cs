@@ -120,6 +120,8 @@
             this.rBProbeCoord2 = new System.Windows.Forms.RadioButton();
             this.rBProbeCoord1 = new System.Windows.Forms.RadioButton();
             this.label11 = new System.Windows.Forms.Label();
+            this.yNeedFind = new System.Windows.Forms.CheckBox();
+            this.xNeedFind = new System.Windows.Forms.CheckBox();
             this.gBHardware.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDProbeDiameter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDOffsetX)).BeginInit();
@@ -745,6 +747,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.xNeedFind);
+            this.tabPage2.Controls.Add(this.yNeedFind);
             this.tabPage2.Controls.Add(this.cBFindCenterStartFromCenter);
             this.tabPage2.Controls.Add(this.lblCFAngle);
             this.tabPage2.Controls.Add(this.nUDFindCenterAngle);
@@ -932,6 +936,22 @@
             resources.ApplyResources(this.label11, "label11");
             this.label11.Name = "label11";
             // 
+            // yNeedFind
+            // 
+            resources.ApplyResources(this.yNeedFind, "yNeedFind");
+            this.yNeedFind.Checked = true;
+            this.yNeedFind.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.yNeedFind.Name = "yNeedFind";
+            this.yNeedFind.UseVisualStyleBackColor = true;
+            // 
+            // xNeedFind
+            // 
+            resources.ApplyResources(this.xNeedFind, "xNeedFind");
+            this.xNeedFind.Checked = true;
+            this.xNeedFind.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.xNeedFind.Name = "xNeedFind";
+            this.xNeedFind.UseVisualStyleBackColor = true;
+            // 
             // ControlProbing
             // 
             resources.ApplyResources(this, "$this");
@@ -1070,5 +1090,7 @@
         private System.Windows.Forms.NumericUpDown nUDProbeFeedZ;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.CheckBox xNeedFind;
+        private System.Windows.Forms.CheckBox yNeedFind;
     }
 }

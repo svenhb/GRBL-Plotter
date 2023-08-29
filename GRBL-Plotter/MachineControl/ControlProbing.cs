@@ -825,23 +825,27 @@ namespace GrblPlotter
                 stateCommands[k++] = string.Format("Z{0};( 2 move up by 'Max. probing distance' Z);", nUDProbeTravelZ.Value);
                 findPos = RotateXY00(-(nUDProbeSaveX.Value + wpd / 2), 0, angleDeg);
                 stateCommands[k++] = string.Format("X{0:0.000} Y{1:0.000};( 1 move to pos 2 by WpD/2 + PD + 2*SD);", findPos.X, findPos.Y);// 9 will be replaced
-                findPos = RotateXY00(0, -(wpd / 2 + nUDProbeDiameter.Value / 2 + 2 * nUDProbeSaveY.Value), angleDeg);
-                stateCommands[k++] = string.Format("G91 G00 X{0:0.000} Y{1:0.000} F{2};( 2 move to 3 by WpD/2 + PD/2 + 2*SD);", findPos.X, findPos.Y, nUDProbeFeedXY.Value);
-                stateCommands[k++] = string.Format("Z-{0};( 3 move down by 'Max. probing distance' Z);", nUDProbeTravelZ.Value);
 
-                // k=12
-                findPos = RotateXY00(0, nUDProbeTravelY.Value, angleDeg); stateCommands[k++] = string.Format("{0} X{1:0.000} Y{2:0.000} F{3};( 3 probe to the rear by 'Max. probing distance' Y);", ProbeCommand, findPos.X, findPos.Y, nUDProbeFeedXY.Value);
-                findPos = RotateXY00(0, -nUDProbeSaveY.Value, angleDeg); stateCommands[k++] = string.Format("G91 G00 X{0:0.000} Y{1:0.000} F{2};( 3 retract by 'Safe distance' Y);", findPos.X, findPos.Y, nUDProbeFeedXY.Value);
-                stateCommands[k++] = string.Format("Z{0};( 3 move up by 'Max. probing distance' Z);", nUDProbeTravelZ.Value);
-                findPos = RotateXY00(0, (2 * nUDProbeSaveX.Value + wpd + nUDProbeDiameter.Value), angleDeg);
-                stateCommands[k++] = string.Format("X{0:0.000} Y{1:0.000};( 3 move to pos 4 by WpD + PD + 2*SD);", findPos.X, findPos.Y);// 9 will be replaced
-                stateCommands[k++] = string.Format("Z-{0};( 4 move down by 'Max. probing distance' Z);", nUDProbeTravelZ.Value);
+                if (yNeedFind.Checked)
+                {
+                    findPos = RotateXY00(0, -(wpd / 2 + nUDProbeDiameter.Value / 2 + 2 * nUDProbeSaveY.Value), angleDeg);
+                    stateCommands[k++] = string.Format("G91 G00 X{0:0.000} Y{1:0.000} F{2};( 2 move to 3 by WpD/2 + PD/2 + 2*SD);", findPos.X, findPos.Y, nUDProbeFeedXY.Value);
+                    stateCommands[k++] = string.Format("Z-{0};( 3 move down by 'Max. probing distance' Z);", nUDProbeTravelZ.Value);
 
-                // 17
-                findPos = RotateXY00(0, -nUDProbeTravelY.Value, angleDeg); stateCommands[k++] = string.Format("{0} X{1:0.000} Y{2:0.000} F{3};( 4 probe to the front by 'Max. probing distance' Y);", ProbeCommand, findPos.X, findPos.Y, nUDProbeFeedXY.Value);
-                findPos = RotateXY00(0, nUDProbeSaveY.Value, angleDeg); stateCommands[k++] = string.Format("G91 G00 X{0:0.000} Y{1:0.000} F{2};( 4 retract by 'Safe distance' Y);", findPos.X, findPos.Y, nUDProbeFeedXY.Value);
-                stateCommands[k++] = string.Format("Z{0};( 4 move up by 'Max. probing distance' Z);", nUDProbeTravelZ.Value);
-                stateCommands[k++] = string.Format("G53 G00 Y{0};", probeStartMachine.Y); // overwrite in 258: stateCommands[20] = string.Format("G90 G00 X{0} Y{1};", 0, 0);
+                    // k=12
+                    findPos = RotateXY00(0, nUDProbeTravelY.Value, angleDeg); stateCommands[k++] = string.Format("{0} X{1:0.000} Y{2:0.000} F{3};( 3 probe to the rear by 'Max. probing distance' Y);", ProbeCommand, findPos.X, findPos.Y, nUDProbeFeedXY.Value);
+                    findPos = RotateXY00(0, -nUDProbeSaveY.Value, angleDeg); stateCommands[k++] = string.Format("G91 G00 X{0:0.000} Y{1:0.000} F{2};( 3 retract by 'Safe distance' Y);", findPos.X, findPos.Y, nUDProbeFeedXY.Value);
+                    stateCommands[k++] = string.Format("Z{0};( 3 move up by 'Max. probing distance' Z);", nUDProbeTravelZ.Value);
+                    findPos = RotateXY00(0, (2 * nUDProbeSaveX.Value + wpd + nUDProbeDiameter.Value), angleDeg);
+                    stateCommands[k++] = string.Format("X{0:0.000} Y{1:0.000};( 3 move to pos 4 by WpD + PD + 2*SD);", findPos.X, findPos.Y);// 9 will be replaced
+                    stateCommands[k++] = string.Format("Z-{0};( 4 move down by 'Max. probing distance' Z);", nUDProbeTravelZ.Value);
+
+                    // 17
+                    findPos = RotateXY00(0, -nUDProbeTravelY.Value, angleDeg); stateCommands[k++] = string.Format("{0} X{1:0.000} Y{2:0.000} F{3};( 4 probe to the front by 'Max. probing distance' Y);", ProbeCommand, findPos.X, findPos.Y, nUDProbeFeedXY.Value);
+                    findPos = RotateXY00(0, nUDProbeSaveY.Value, angleDeg); stateCommands[k++] = string.Format("G91 G00 X{0:0.000} Y{1:0.000} F{2};( 4 retract by 'Safe distance' Y);", findPos.X, findPos.Y, nUDProbeFeedXY.Value);
+                    stateCommands[k++] = string.Format("Z{0};( 4 move up by 'Max. probing distance' Z);", nUDProbeTravelZ.Value);
+                    stateCommands[k++] = string.Format("G53 G00 Y{0};", probeStartMachine.Y); // overwrite in 258: stateCommands[20] = string.Format("G90 G00 X{0} Y{1};", 0, 0);
+                }
             }
 
             probingCount = 1;
