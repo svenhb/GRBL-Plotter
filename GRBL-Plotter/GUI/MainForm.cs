@@ -1300,7 +1300,7 @@ namespace GrblPlotter
             Properties.Settings.Default.guiDimensionShow = toolStripViewDimension.Checked;
             Properties.Settings.Default.guiBackgroundShow = toolStripViewBackground.Checked;
             Properties.Settings.Default.machineLimitsFix = toolStripViewMachineFix.Checked;
-            zoomFactor = 1;
+            zoomFactorMin = zoomFactor = 1;
             VisuGCode.DrawMachineLimit();// ToolTable.GetToolCordinates());
             pictureBox1.Invalidate();                                   // resfresh view
         }

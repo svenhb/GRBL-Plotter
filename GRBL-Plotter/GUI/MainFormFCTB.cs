@@ -315,17 +315,17 @@ namespace GrblPlotter
             }
         }
 
-        private bool SetFctbCodeText(string code, bool insertCode = false)
+        private int SetFctbCodeText(string code, bool insertCode = false)
         {
             CmsPicBoxEnable();
             ClearErrorLines();
             Logger.Trace("---- SetFctbCodeText insertCode:{0}  enabled:{1}", insertCode, Properties.Settings.Default.fromFormInsertEnable);
             if (insertCode && Properties.Settings.Default.fromFormInsertEnable)
-            { InsertCodeToFctb(code, true, 0, 0, 0); }
+            { return InsertCodeToFctb(code, true, 0, 0, 0); }
             else
             { fCTBCode.Text = code; }
             //           disable e.ChangedRange.SetStyle
-            return true;
+            return -1;
         }
 
         private void InsertTextAtLine(int line, string text)
@@ -894,10 +894,10 @@ namespace GrblPlotter
         private static bool figureIsMarked = false;
         private static XmlMarkerType markedBlockType = XmlMarkerType.None;
 
-        private void FindFigureMarkSelection(XmlMarkerType marker, int clickedLine, DistanceByLine markerProperties)	//bool collapse = true)   // called by click on figure in 2D view
+        private bool FindFigureMarkSelection(XmlMarkerType marker, int clickedLine, DistanceByLine markerProperties)	//bool collapse = true)   // called by click on figure in 2D view
         {
             if ((manualEdit || !VisuGCode.CodeBlocksAvailable() || isStreaming))
-                return;
+                return false;
             if (logDetailed)
                 Logger.Trace("FindFigureMarkSelection marker:{0}  line:{1}  ", marker, clickedLine);//, collapse);
 
@@ -1026,9 +1026,14 @@ namespace GrblPlotter
             }
             //    Logger.Trace("FindFigureMarkSelection marker:{0}  active:{1}", marker, SelectionHandle.IsActive);
             EnableBlockCommands(gcodeIsSeleced, true);                                            // enable CMS menu
+
+            if (!gcodeIsSeleced)
+                StatusStripClear(2);
+
             try { fCTBCode.DoCaretVisible(); }
             catch (Exception err) { Logger.Error(err, "FindFigureMarkSelection "); }
             this.Invalidate();
+            return gcodeIsSeleced;
         }
 
         private bool LineIsInRange(int line)

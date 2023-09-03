@@ -230,6 +230,9 @@ namespace GrblPlotter
                 NewCodeEnd();       // InsertCodeFromForm with insertCode
                                     //   FoldCodeOnLoad();
                 FoldBlocksByLevel(foldLevelSelected);
+
+                /* select fresh code */
+                SetSelection(insertLineNr + 3, XmlMarkerType.Group);
             }
             else
             {
@@ -268,9 +271,9 @@ namespace GrblPlotter
             {
                 string tmpCode = "(no gcode)";
                 if (Graphic.GCode != null)
-                { tmpCode = Graphic.GCode.ToString(); }
+                {   tmpCode = Graphic.GCode.ToString();
+                }
                 InsertCodeFromForm(tmpCode, "from text");
-                //                InsertCodeFromForm(Graphic.GCode.ToString(), "from text");
                 Properties.Settings.Default.counterImportText += 1;
                 string source = "Itxt";
                 if (Properties.Settings.Default.fromFormInsertEnable)
@@ -288,7 +291,9 @@ namespace GrblPlotter
             {
                 string tmpCode = "(no gcode)";
                 if (Graphic.GCode != null)
-                { tmpCode = Graphic.GCode.ToString(); }
+                {
+                    tmpCode = Graphic.GCode.ToString();
+                }
                 InsertCodeFromForm(tmpCode, "from barcode");
                 Properties.Settings.Default.counterImportBarcode += 1;
                 string source = "Ibqr";
@@ -490,7 +495,7 @@ namespace GrblPlotter
             if (fCTBCode.Lines.Count > 1)
             {
                 TransformStart("Apply Offset");
-                zoomFactor = 1;
+                zoomFactorMin = zoomFactor = 1;
                 if (rBOrigin1.Checked) { fCTBCode.Text = VisuGCode.TransformGCodeOffset(-offsetx, -offsety, VisuGCode.Translate.Offset1); }
                 if (rBOrigin2.Checked) { fCTBCode.Text = VisuGCode.TransformGCodeOffset(-offsetx, -offsety, VisuGCode.Translate.Offset2); }
                 if (rBOrigin3.Checked) { fCTBCode.Text = VisuGCode.TransformGCodeOffset(-offsetx, -offsety, VisuGCode.Translate.Offset3); }
