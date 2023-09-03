@@ -28,6 +28,7 @@
  * 2022-11-03 add OptionDashPattern to control ConvertArcToLine
  * 2023-05-31 add OptionSFromWidth
  * 2023-08-16 l:388 f:IsSameAs pull request Speed up merge and sort #348
+ * 2023-08-31 l:686 f:AddArc limit stepwidth - issue #353
 */
 
 using System;
@@ -681,6 +682,9 @@ namespace GrblPlotter
                     double x, y;
                     arcMove = GcodeMath.GetArcMoveProperties(p1, p2, centerIJ, isCW);
                     double stepwidth = (double)Properties.Settings.Default.importGCSegment;
+					
+					if (Properties.Settings.Default.importRemoveShortMovesEnable)		// 2023-08-31 issue #353
+					{	stepwidth = Math.Max(stepwidth, (double)Properties.Settings.Default.importRemoveShortMovesLimit);}
 
                     if (stepwidth > arcMove.radius / 2)
                     { stepwidth = arcMove.radius / 5; }
