@@ -693,4 +693,19 @@ Possível solução alternativa: tente converter o objeto em caminho.</value>
   <data name="mainStartMissingFiles" xml:space="preserve">
     <value>Arquivos de programa ausentes,&lt;br&gt;verifique a instalação do GRBL-Plotter</value>
   </data>
+  <data name="statusStripeSelectionMoveShift" xml:space="preserve">
+    <value>Pressione Shift para encaixar a grade</value>
+  </data>
+  <data name="statusStripeSelectionResize" xml:space="preserve">
+    <value>Redimensionado por</value>
+  </data>
+  <data name="statusStripeSelectionResizeCtrl" xml:space="preserve">
+    <value>Pressione Ctrl para manter a proporção</value>
+  </data>
+  <data name="statusStripeSelectionRotate" xml:space="preserve">
+    <value>Virou-se</value>
+  </data>
+  <data name="statusStripeSelectionRotateShift" xml:space="preserve">
+    <value>Pressione Shift para exibir graus completos</value>
+  </data>
 </root>

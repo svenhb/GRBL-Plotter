@@ -693,4 +693,19 @@ Posible solución alternativa: intente convertir el objeto en ruta.</value>
   <data name="mainStartMissingFiles" xml:space="preserve">
     <value>Faltan archivos de programa,&lt;br&gt;verifique la instalación de GRBL-Plotter</value>
   </data>
+  <data name="statusStripeSelectionMoveShift" xml:space="preserve">
+    <value>Presione Shift para ajustar la cuadrícula</value>
+  </data>
+  <data name="statusStripeSelectionResize" xml:space="preserve">
+    <value>Redimensionado por</value>
+  </data>
+  <data name="statusStripeSelectionResizeCtrl" xml:space="preserve">
+    <value>Presione Ctrl para mantener la proporción.</value>
+  </data>
+  <data name="statusStripeSelectionRotate" xml:space="preserve">
+    <value>Volteado</value>
+  </data>
+  <data name="statusStripeSelectionRotateShift" xml:space="preserve">
+    <value>Presione Shift para mostrar grados completos</value>
+  </data>
 </root>

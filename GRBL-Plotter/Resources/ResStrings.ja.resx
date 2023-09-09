@@ -693,4 +693,19 @@ https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlistを�
   <data name="mainStartMissingFiles" xml:space="preserve">
     <value>プログラム ファイルが見つかりません。&lt;br&gt;GRBL-Plotter のインストールを確認してください。</value>
   </data>
+  <data name="statusStripeSelectionMoveShift" xml:space="preserve">
+    <value>Shift キーを押してグリッドをスナップします</value>
+  </data>
+  <data name="statusStripeSelectionResize" xml:space="preserve">
+    <value>サイズ変更</value>
+  </data>
+  <data name="statusStripeSelectionResizeCtrl" xml:space="preserve">
+    <value>Ctrl キーを押して比率を維持します</value>
+  </data>
+  <data name="statusStripeSelectionRotate" xml:space="preserve">
+    <value>振り返った</value>
+  </data>
+  <data name="statusStripeSelectionRotateShift" xml:space="preserve">
+    <value>Shift キーを押すと完全な度が表示されます</value>
+  </data>
 </root>

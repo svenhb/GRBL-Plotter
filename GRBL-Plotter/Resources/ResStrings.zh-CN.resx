@@ -693,4 +693,19 @@
   <data name="mainStartMissingFiles" xml:space="preserve">
     <value>缺少程序文件，&lt;br&gt;请检查 GRBL-Plotter 安装</value>
   </data>
+  <data name="statusStripeSelectionMoveShift" xml:space="preserve">
+    <value>按 Shift 键捕捉网格</value>
+  </data>
+  <data name="statusStripeSelectionResize" xml:space="preserve">
+    <value>调整大小</value>
+  </data>
+  <data name="statusStripeSelectionResizeCtrl" xml:space="preserve">
+    <value>按 Ctrl 键保持比例</value>
+  </data>
+  <data name="statusStripeSelectionRotate" xml:space="preserve">
+    <value>转身</value>
+  </data>
+  <data name="statusStripeSelectionRotateShift" xml:space="preserve">
+    <value>按 Shift 键显示完整度数</value>
+  </data>
 </root>

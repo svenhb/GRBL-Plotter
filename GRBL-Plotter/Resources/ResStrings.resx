@@ -708,4 +708,19 @@ Possible workaround: try to convert object to path.</value>
   <data name="mainStartMissingFiles" xml:space="preserve">
     <value>Missing program files,&lt;br&gt;please check the GRBL-Plotter installation</value>
   </data>
+  <data name="statusStripeSelectionMoveShift" xml:space="preserve">
+    <value>press 'Shift' to snap on grid</value>
+  </data>
+  <data name="statusStripeSelectionResize" xml:space="preserve">
+    <value>Resized by</value>
+  </data>
+  <data name="statusStripeSelectionResizeCtrl" xml:space="preserve">
+    <value>press 'Ctrl' to keep ratio</value>
+  </data>
+  <data name="statusStripeSelectionRotate" xml:space="preserve">
+    <value>Rotated by</value>
+  </data>
+  <data name="statusStripeSelectionRotateShift" xml:space="preserve">
+    <value>press 'Shift' to snap on full degrees</value>
+  </data>
 </root>

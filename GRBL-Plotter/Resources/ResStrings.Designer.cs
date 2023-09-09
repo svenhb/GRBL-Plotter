@@ -1699,6 +1699,51 @@ namespace GrblPlotter.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die press &apos;Shift&apos; to snap on grid ähnelt.
+        /// </summary>
+        public static string statusStripeSelectionMoveShift {
+            get {
+                return ResourceManager.GetString("statusStripeSelectionMoveShift", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Resized by ähnelt.
+        /// </summary>
+        public static string statusStripeSelectionResize {
+            get {
+                return ResourceManager.GetString("statusStripeSelectionResize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die press &apos;Ctrl&apos; to keep ratio ähnelt.
+        /// </summary>
+        public static string statusStripeSelectionResizeCtrl {
+            get {
+                return ResourceManager.GetString("statusStripeSelectionResizeCtrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Rotated by ähnelt.
+        /// </summary>
+        public static string statusStripeSelectionRotate {
+            get {
+                return ResourceManager.GetString("statusStripeSelectionRotate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die press &apos;Shift&apos; to snap on full degrees ähnelt.
+        /// </summary>
+        public static string statusStripeSelectionRotateShift {
+            get {
+                return ResourceManager.GetString("statusStripeSelectionRotateShift", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Check G-Code on grbl controller ähnelt.
         /// </summary>
         public static string statusStripeStreamingCheck {

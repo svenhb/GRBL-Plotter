@@ -673,4 +673,19 @@ Możliwe obejście: spróbuj przekonwertować obiekt na ścieżkę.</value>
   <data name="mainStartMissingFiles" xml:space="preserve">
     <value>Brakujące pliki programu,&lt;br&gt;sprawdź instalację GRBL-Plotter</value>
   </data>
+  <data name="statusStripeSelectionMoveShift" xml:space="preserve">
+    <value>Naciśnij Shift, aby przyciągnąć siatkę</value>
+  </data>
+  <data name="statusStripeSelectionResize" xml:space="preserve">
+    <value>Rozmiar zmieniony przez</value>
+  </data>
+  <data name="statusStripeSelectionResizeCtrl" xml:space="preserve">
+    <value>Naciśnij klawisz Ctrl, aby zachować proporcje</value>
+  </data>
+  <data name="statusStripeSelectionRotate" xml:space="preserve">
+    <value>Obrócił się</value>
+  </data>
+  <data name="statusStripeSelectionRotateShift" xml:space="preserve">
+    <value>Naciśnij Shift, aby wyświetlić pełne stopnie</value>
+  </data>
 </root>

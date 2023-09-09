@@ -705,4 +705,19 @@ Olası geçici çözüm: nesneyi yola dönüştürmeyi deneyin.</value>
   <data name="mainStartMissingFiles" xml:space="preserve">
     <value>Eksik program dosyaları,&lt;br&gt;lütfen GRBL-Plotter kurulumunu kontrol edin</value>
   </data>
+  <data name="statusStripeSelectionMoveShift" xml:space="preserve">
+    <value>Izgarayı tutturmak için Shift tuşuna basın</value>
+  </data>
+  <data name="statusStripeSelectionResize" xml:space="preserve">
+    <value>Şuna göre yeniden boyutlandırıldı:</value>
+  </data>
+  <data name="statusStripeSelectionResizeCtrl" xml:space="preserve">
+    <value>Oranı korumak için Ctrl tuşuna basın</value>
+  </data>
+  <data name="statusStripeSelectionRotate" xml:space="preserve">
+    <value>Geri Döndü</value>
+  </data>
+  <data name="statusStripeSelectionRotateShift" xml:space="preserve">
+    <value>Tam dereceleri görüntülemek için Shift tuşuna basın</value>
+  </data>
 </root>
