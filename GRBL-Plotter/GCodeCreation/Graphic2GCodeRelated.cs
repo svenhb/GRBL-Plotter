@@ -49,6 +49,8 @@
  * 2023-03-15 l:746 f:PenUp add F-value
  * 2023-04-19 l:1316 f:Tool  add the key-word "tool" into the comment
  * 2023-05-31 new class GcodeDefaults in vers 1.7.0.0
+ * 2023-09-04 l:1626 f:GetValuesFromToolTable get GcodePwmDown also from tool table
+ * 2023-09-05 l:858 f:GetStrGCode allow also 3 digitis
 */
 
 using System;
@@ -854,7 +856,7 @@ namespace GrblPlotter
                 return "";                      // nothing to do
             if (cmt >= 0)
                 tmp = tmp.Substring(0, cmt);     // don't check inside comment
-            var cmdG = Regex.Matches(tmp, code + "\\d{1,2}"); // find code and 1 or 2 digits
+            var cmdG = Regex.Matches(tmp, code + "\\d{1,3}"); // find code and 1 or 2 digits - switch to ",3"
             if (cmdG.Count > 0)
             { return cmdG[0].ToString(); }
             return "";
@@ -1622,7 +1624,7 @@ namespace GrblPlotter
             if (Properties.Settings.Default.importGCToolTableUse)
             {
                 if (Properties.Settings.Default.importGCTTSSpeed)
-                    GcodeSpindleSpeed = toolInfo.SpindleSpeed;
+                    GcodeSpindleSpeed = GcodePwmDown = toolInfo.SpindleSpeed;
                 if (Properties.Settings.Default.importGCTTXYFeed)
                     GcodeXYFeed = toolInfo.FeedXY;
                 if (Properties.Settings.Default.importGCTTZAxis)
@@ -1659,7 +1661,7 @@ namespace GrblPlotter
         public static string GetHeader(string cmt, string source)
         {
             gcodeTime += gcodeDistance / GcodeXYFeed;
-            string header = string.Format("( {0} by GRBL-Plotter {1} )\r\n", cmt, System.Windows.Forms.Application.ProductVersion.ToString());
+            string header = string.Format("( {0} by GRBL-Plotter {1} )\r\n", cmt, MyApplication.GetVersion());
             string header_end = headerData.ToString();
             header_end += string.Format("({0} >)\r\n", XmlMarker.HeaderEnd);
             header_end += headerMessage.ToString();
