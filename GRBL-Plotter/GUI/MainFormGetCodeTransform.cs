@@ -28,6 +28,7 @@
  * 2022-10-19 line 258, 298 check if Graphic.GCode == null
  * 2022-12-21 line 319 GetGCodeFromImage check if _image_form != null
  * 2023-01-28 add AfterImport to bring main GUI to front after getting gcode
+ * 2023-09-06 l:235 f:InsertCodeFromForm add SetSelection (MainFormPictureBox.cs) to select newly inserted object
 */
 using FastColoredTextBoxNS;
 using System;
@@ -228,7 +229,7 @@ namespace GrblPlotter
                 if (backgroundPath != null)
                     VisuGCode.pathBackground = (GraphicsPath)backgroundPath.Clone();
                 NewCodeEnd();       // InsertCodeFromForm with insertCode
-                                    //   FoldCodeOnLoad();
+
                 FoldBlocksByLevel(foldLevelSelected);
 
                 /* select fresh code */
@@ -246,8 +247,15 @@ namespace GrblPlotter
                 if (backgroundPath != null)
                     VisuGCode.pathBackground = (GraphicsPath)backgroundPath.Clone();
                 NewCodeEnd();       // InsertCodeFromForm without insertCode
-                                    //    FoldCodeOnLoad();
+
                 FoldBlocksByLevel(foldLevelSelected);
+				
+				if (insertCode)		// select object - if grouping is disabled, a group should be inserted?
+				{	if (sourceGCode.Contains(XmlMarker.GroupStart))
+						SetSelection(1, XmlMarkerType.Group);	
+					else if (sourceGCode.Contains(XmlMarker.FigureStart))
+						SetSelection(1, XmlMarkerType.Figure);	
+				}			
             }
             importOptions = Graphic.graphicInformation.ListOptions();
             if (importOptions.Length > 1)

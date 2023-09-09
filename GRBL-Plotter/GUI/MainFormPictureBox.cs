@@ -40,9 +40,10 @@
  * 2022-07-29 GraphicPropertiesSetup add try catch
  * 2022-09-13 line 114/137	if ((xRange == 0) || (yRange == 0)) picScaling = 1;
  * 2022-12-02 PictureBox1_MouseUp line 598 SetMarkerPos also if no CodeBlocks available
- 2023-08-31 replace Properties.Settings.Default by local variables?
- 2023-09-01 f:PictureBox1_MouseUp save and restore actual 2D-view pBoxTransform and last grid
- f:ZoomScroll increse grid if needed, remove zoom-reset 
+ * 2023-09-06 l:573 f:PictureBox1_MouseUp save and restore actual 2D-view pBoxTransform and last grid
+			  l:178 f:PictureBox1_Paint VisuGCode.SetRulerDimension(drawingSize)
+			  l:867 f:ZoomScroll don't reset view, on zoom=1
+			  
 */
 
 using FastColoredTextBoxNS;
@@ -72,9 +73,7 @@ namespace GrblPlotter
         private readonly Pen penLandMark = new Pen(Color.DarkGray, 1F);
         private readonly Pen penBackgroundPath = new Pen(Color.DarkGray, 1F);
         private readonly Pen penDimension = new Pen(Color.DarkGray, 1F);
-        //        private Brushes brushLandMark = new Brushes();
         private readonly Pen penSimulation = new Pen(Color.Blue, 0.4F);
-        //       SolidBrush machineLimit = new SolidBrush(Color.Red);
         private HatchBrush brushMachineLimit = new HatchBrush(HatchStyle.Horizontal, Color.Yellow);
         private readonly SolidBrush brushBackground = new SolidBrush(Color.White);
         private readonly SolidBrush brushBackgroundPath = new SolidBrush(Color.DarkGray);
@@ -102,12 +101,7 @@ namespace GrblPlotter
         private bool shiftedDisplay = false;
 
         private XmlMarkerType markerType = XmlMarkerType.Figure;
-		
-	/*	private bool displayMachineLimitsFix = false;	Update nach Änderung View
-		private bool displayMachineLimitsShow
-		private bool displayGui2DInfoShow
-		private bool displayDisplayUnitsMM				Update nach setup-apply oder load graphic
-*/
+
         private double picScaling = 1;
         private void CalculatePicScaling()
         {
@@ -179,10 +173,10 @@ namespace GrblPlotter
                 picAbsPos.Y = maxposY - relposY * yRange + miny;
 
 
-                PointF viewDimMin = GetStandardizedPosition(new Point(0,0));
+                PointF viewDimMin = GetStandardizedPosition(new Point(0, 0));
                 PointF viewDimMax = GetStandardizedPosition(new Point(pictureBox1.Width, pictureBox1.Height));
-                drawingSize.SetX((float)Math.Floor(viewDimMin.X * xRange + minx), (float)Math.Round(viewDimMax .X* xRange + minx));
-                drawingSize.SetY((float)Math.Floor(maxposY - viewDimMin.Y * yRange + miny), (float)Math.Round(maxposY - viewDimMax.Y* yRange + miny));
+                drawingSize.SetX((float)Math.Floor(viewDimMin.X * xRange + minx), (float)Math.Round(viewDimMax.X * xRange + minx));
+                drawingSize.SetY((float)Math.Floor(maxposY - viewDimMin.Y * yRange + miny), (float)Math.Round(maxposY - viewDimMax.Y * yRange + miny));
                 drawingSize = VisuGCode.SetRulerDimension(drawingSize);
 
                 if (posIsMoving)
@@ -224,20 +218,20 @@ namespace GrblPlotter
                         if (Properties.Settings.Default.gui2DInfoShow)
                         {
                             Point stringpos = new Point(pictureBox1.PointToClient(MousePosition).X + offX, pictureBox1.PointToClient(MousePosition).Y + offY);
-                        //    Point stringposRot = new Point(pictureBox1.PointToClient(MousePosition).X - 20, pictureBox1.PointToClient(MousePosition).Y + 20);
-                        //    Point stringposMov = new Point(pictureBox1.PointToClient(MousePosition).X + 20, pictureBox1.PointToClient(MousePosition).Y - 15);
-                            
-                            if (Properties.Settings.Default.machineLimitsShow)	// 2023-08-31 issue #355	-	moved into if gui2DInfoShow
-							{
+                            //    Point stringposRot = new Point(pictureBox1.PointToClient(MousePosition).X - 20, pictureBox1.PointToClient(MousePosition).Y + 20);
+                            //    Point stringposMov = new Point(pictureBox1.PointToClient(MousePosition).X + 20, pictureBox1.PointToClient(MousePosition).Y - 15);
+
+                            if (Properties.Settings.Default.machineLimitsShow)  // 2023-08-31 issue #355	-	moved into if gui2DInfoShow
+                            {
                                 SolidBrush labelBrush = brushBackground;
                                 if (transformType != SelectionHandle.Handle.None)
                                     labelBrush = new SolidBrush(Color.LightYellow);
 
                                 e.Graphics.FillRectangle(labelBrush, new Rectangle(stringpos.X, stringpos.Y - 2, 75, 34));
-								e.Graphics.FillRectangle(brushBackground, new Rectangle(18, 3, 140, 60));
-								if (VisuGCode.selectedFigureInfo.Length > 0)
-									e.Graphics.FillRectangle(brushBackground, new Rectangle(148, 3, 160, 60));
-							}
+                                e.Graphics.FillRectangle(brushBackground, new Rectangle(18, 3, 140, 60));
+                                if (VisuGCode.selectedFigureInfo.Length > 0)
+                                    e.Graphics.FillRectangle(brushBackground, new Rectangle(148, 3, 160, 60));
+                            }
                             string unit = (Properties.Settings.Default.importUnitmm) ? "mm" : "Inch";
 
                             /* label at mouse pos */
@@ -474,7 +468,16 @@ namespace GrblPlotter
                 if ((diff.X != 0) || (diff.Y != 0))
                     previousClick = 0;  // no doubleclick
 
-                StatusStripSet(2, string.Format("{0} X:{1:0.00}  Y:{2:0.00}", Localization.GetString("statusStripeSelectionMoved"), (posMoveEnd.X - posMoveStart.X), (posMoveEnd.Y - posMoveStart.Y)), Color.Yellow);
+                if (transformType == SelectionHandle.Handle.Rotate)
+                    StatusStripSet(2, string.Format("{0} {1:0.00}°  {2}", Localization.GetString("statusStripeSelectionRotate"), SelectionHandle.angleDeg, Localization.GetString("statusStripeSelectionRotateShift")), Color.Yellow);
+                else if (transformType == SelectionHandle.Handle.SizeXY)
+                    StatusStripSet(2, string.Format("{0} X:{1:0.00}%  Y:{2:0.00}%  {3}", Localization.GetString("statusStripeSelectionResize"), (SelectionHandle.scalingX * 100), (SelectionHandle.scalingY * 100), Localization.GetString("statusStripeSelectionResizeCtrl")), Color.Yellow);
+                else if (transformType == SelectionHandle.Handle.SizeX)
+                    StatusStripSet(2, string.Format("{0} X:{1:0.00}%  {2}", Localization.GetString("statusStripeSelectionResize"), (SelectionHandle.scalingX * 100), Localization.GetString("statusStripeSelectionMoveShift")), Color.Yellow);
+                else if (transformType == SelectionHandle.Handle.SizeY)
+                    StatusStripSet(2, string.Format("{0} Y:{1:0.00}%  {2}", Localization.GetString("statusStripeSelectionResize"), (SelectionHandle.scalingY * 100), Localization.GetString("statusStripeSelectionMoveShift")), Color.Yellow);
+                else
+                    StatusStripSet(2, string.Format("{0} X:{1:0.00}  Y:{2:0.00}   {3}", Localization.GetString("statusStripeSelectionMoved"), (posMoveEnd.X - posMoveStart.X), (posMoveEnd.Y - posMoveStart.Y), Localization.GetString("statusStripeSelectionMoveShift")), Color.Yellow);
             }
             else
             {
@@ -576,11 +579,11 @@ namespace GrblPlotter
 		*******************************************************************/
         private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            if (logDetailed) Logger.Trace("pictureBox1_MouseUp   e.x:{0} y:{1}  absPos-x:{2:0.00} y:{3:0.00}", e.X, e.Y, picAbsPos.X, picAbsPos.Y);
+           if (logDetailed) Logger.Trace("pictureBox1_MouseUp   e.x:{0} y:{1}  absPos-x:{2:0.00} y:{3:0.00}", e.X, e.Y, picAbsPos.X, picAbsPos.Y);
 
             Matrix tmp = pBoxTransform.Clone();
             mouseUpPos = e.Location;
-            bool selectionWasChanged=false;
+            bool selectionWasChanged = false;
 
             if (SelectionHandle.IsActive && (posMoveStart.DistanceTo(posMoveEnd) != 0))	// store applied selection move
             {
@@ -711,7 +714,7 @@ namespace GrblPlotter
                     bool modKeyCtrl = (Panel.ModifierKeys == Keys.Control);     // Keys.Control find line with coord nearby, mark / unmark Group
                     bool modKeyShift = (Panel.ModifierKeys == Keys.Shift);      // Keys.Shift find line with coord nearby, mark / unmark Tile
 
-                    if (transformType == SelectionHandle.Handle.None)
+                    if ((transformType == SelectionHandle.Handle.None) || keepMarkerType)
                     {
                         if (expandGCode)    //Properties.Settings.Default.FCTBBlockExpandOnSelect)
                         { foldLevel = foldLevelSelected; }
@@ -727,7 +730,8 @@ namespace GrblPlotter
                         SelectionHandle.SelectedMarkerType = lastMarkerType = markerType;
                         VisuGCode.MarkerSize = markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (picScaling * zoomFactor));
 
-                        markerProperties = VisuGCode.SetPosMarkerNearBy(picAbsPos, (markerType == XmlMarkerType.Node));  // find line with coord nearby, mark / unmark figure in GCodeVisuAndTransform.cs
+                        if (!keepMarkerType)
+                            markerProperties = VisuGCode.SetPosMarkerNearBy(picAbsPos, (markerType == XmlMarkerType.Node));  // find line with coord nearby, mark / unmark figure in GCodeVisuAndTransform.cs
 
                         clickedLineNr = markerProperties.lineNumber;
 
@@ -764,10 +768,10 @@ namespace GrblPlotter
             }
         }
 
-        private void SetSelection(int lineNr, XmlMarkerType mTpe)
+        private void SetSelection(int lineNr, XmlMarkerType mTpe)	// MainFormGetCodeTransform.cs-InsertCodeFromForm; MainFormLoadFile.cs-NewCodeEnd
         {
             clickedLineNr = lineNr;
-        //    Logger.Trace("🗲🗲🗲 SetSelection pos:{0:0.0} ; {1:0.0} markerType:{2}  found line:{3}", picAbsPos.X, picAbsPos.Y, markerType, clickedLineNr);
+            //    Logger.Trace("🗲🗲🗲 SetSelection pos:{0:0.0} ; {1:0.0} markerType:{2}  found line:{3}", picAbsPos.X, picAbsPos.Y, markerType, clickedLineNr);
             SelectionHandle.ClearSelected();
             FindFigureMarkSelection(mTpe, clickedLineNr, new DistanceByLine());   // markerProperties);//
             selectionPathOrig = (GraphicsPath)VisuGCode.pathMarkSelection.Clone();
@@ -867,17 +871,8 @@ namespace GrblPlotter
                     pBoxTransform.Reset();
                     pBoxTransform.Translate((float)locationO.X, (float)locationO.Y);
                     pBoxTransform.Scale(zoomFactor, zoomFactor);
-
-                /*    if (zoomFactor < zoomFactorMin)
-                    {   VisuGCode.CreateRuler(VisuGCode.pathRuler, drawingSize RulerDimension, true);
-                        zoomFactorMin = zoomFactor;
-                    }*/
                 }
             }
-        /*    if (Math.Round(zoomFactor, 2) == 1.00)
-            {
-                pBoxTransform.Reset(); zoomFactor = 1;
-            } */
 
             markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (picScaling * zoomFactor));
             VisuGCode.CreateMarkerPath(markerSize);
@@ -992,6 +987,14 @@ namespace GrblPlotter
             ReStartConvertFile(sender, e);
         }
 
+        private void cmsPicBoxClearWorkspace_Click(object sender, EventArgs e)
+        {
+            UnDo.SetCode(fCTBCode.Text, cmsPicBoxClearWorkspace.Text, this);
+            NewCodeStart();         // ClearWorkspace
+            fCTBCode.Clear();
+            NewCodeEnd();
+        }
+
         private void CmsPicBoxMoveToFirstPos_Click(object sender, EventArgs e)
         {
             FctbSetBookmark();
@@ -1012,8 +1015,8 @@ namespace GrblPlotter
                 resetView = true;
                 string tmpCode = fCTBCode.SelectedText;         // get selected code
                 int line = fCTBCodeClickedLineNow;              // start line
-            //    if ((lastMarkerType != XmlMarkerType.Figure)|| (lastMarkerType != XmlMarkerType.Group))     // insert figure into same group, insert any other as new group
-            //        line = 0;
+                                                                //    if ((lastMarkerType != XmlMarkerType.Figure)|| (lastMarkerType != XmlMarkerType.Group))     // insert figure into same group, insert any other as new group
+                                                                //        line = 0;
 
                 /* calculate insertion offset */
                 double offsetX = (double)Properties.Settings.Default.gui2DDuplicateOffsetX;

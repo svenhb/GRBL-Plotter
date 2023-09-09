@@ -58,6 +58,7 @@
  * 2023-03-04 line 778 check if text is null
  * 2023-05-30 l:1037 f:StartConvert add message form with SVG meta data for vers 1.7.0.0
  * 2023-07-02 l:1205 f:LoadTimer_Tick add stop in catch{}
+ * 2023-09-06 l:339 f:NewCodeEnd add SetSelection (MainFormPictureBox.cs) to select new object
 */
 /*   96 #region MAIN-MENU FILE
  * 1483 MainForm_KeyDown  

@@ -183,7 +183,7 @@ namespace GrblPlotter
             if ((splitDist > splitContainer1.Panel1MinSize) && (splitDist < (splitContainer1.Width - splitContainer1.Panel2MinSize)))
                 splitContainer1.SplitterDistance = splitDist;
 
-            this.Text = string.Format("{0} Ver.:{1}", appName, System.Windows.Forms.Application.ProductVersion.ToString(culture));
+            this.Text = string.Format("{0} Ver.:{1}", appName, MyApplication.GetVersion());
             //            this.Text = string.Format("{0} Ver. {1}  Date {2}", appName, System.Windows.Forms.Application.ProductVersion.ToString(culture), File.GetCreationTime(System.Reflection.Assembly.GetExecutingAssembly().Location).ToString("yyyy-mm-dd hh:mm:ss"));
             toolTip1.SetToolTip(this, this.Text);
 

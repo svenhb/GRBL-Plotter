@@ -54,6 +54,7 @@
  * 2023-04-13 l:592; 675 f:FctbCode_KeyDown add Tile
  * 2023-06-20 l:380 f:InsertCodeToFctb check if xmlLine is in range
  * 2023-07-31 l:375 f:InsertCodeToFctb insert duplicated figure/group right after selected figure/group
+ * 2023-09-05 l:109 f:FctbCode_TextChanged allow 3-digit M-word 
 */
 
 using FastColoredTextBoxNS;
@@ -105,7 +106,7 @@ namespace GrblPlotter
             e.ChangedRange.SetStyle(StyleCommentxml, "(\\<.*\\>)", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleComment, "(\\(.*\\))", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleGWord, "(G\\d{1,2})", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(StyleMWord, "(M\\d{1,2})", System.Text.RegularExpressions.RegexOptions.Compiled);
+            e.ChangedRange.SetStyle(StyleMWord, "(M\\d{1,3})", System.Text.RegularExpressions.RegexOptions.Compiled);			// switch to ",3"
             e.ChangedRange.SetStyle(StyleFWord, "(F\\d+)", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleSWord, "(S\\d+)", System.Text.RegularExpressions.RegexOptions.Compiled);
             e.ChangedRange.SetStyle(StyleLineN, "(N\\d+)", System.Text.RegularExpressions.RegexOptions.Compiled);

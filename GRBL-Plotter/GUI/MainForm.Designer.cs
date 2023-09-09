@@ -489,6 +489,7 @@ namespace GrblPlotter
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.SplashScreenTimer = new System.Windows.Forms.Timer(this.components);
             this.loadTimer = new System.Windows.Forms.Timer(this.components);
+            this.cmsPicBoxClearWorkspace = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -2146,14 +2147,15 @@ namespace GrblPlotter
             this.cmsPictureBox.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.unDo2ToolStripMenuItem,
             this.toolStripSeparator17,
-            this.cmsPicBoxMoveToMarkedPosition,
-            this.cmsPicBoxZeroXYAtMarkedPosition,
-            this.cmsPicBoxMoveGraphicsOrigin,
+            this.cmsPicBoxReloadFile,
+            this.cmsPicBoxPasteFromClipboard,
+            this.cmsPicBoxClearWorkspace,
             this.toolStripSeparator9,
             this.cmsPicBoxResetZooming,
             this.toolStripSeparator8,
-            this.cmsPicBoxPasteFromClipboard,
-            this.cmsPicBoxReloadFile,
+            this.cmsPicBoxMoveToMarkedPosition,
+            this.cmsPicBoxZeroXYAtMarkedPosition,
+            this.cmsPicBoxMoveGraphicsOrigin,
             this.deletenotMarkToolStripMenuItem,
             this.toolStripSeparator1,
             this.cmsPicBoxMarkFirstPos,
@@ -3409,6 +3411,12 @@ namespace GrblPlotter
             this.loadTimer.Interval = 200;
             this.loadTimer.Tick += new System.EventHandler(this.LoadTimer_Tick);
             // 
+            // cmsPicBoxClearWorkspace
+            // 
+            this.cmsPicBoxClearWorkspace.Name = "cmsPicBoxClearWorkspace";
+            resources.ApplyResources(this.cmsPicBoxClearWorkspace, "cmsPicBoxClearWorkspace");
+            this.cmsPicBoxClearWorkspace.Click += new System.EventHandler(this.cmsPicBoxClearWorkspace_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -3874,6 +3882,7 @@ namespace GrblPlotter
         private System.Windows.Forms.ToolStripMenuItem processAutomationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem türkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem PolishToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cmsPicBoxClearWorkspace;
     }
 }
 
