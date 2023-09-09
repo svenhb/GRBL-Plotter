@@ -653,7 +653,7 @@ adicione nós através de 'Extensões - Modificar caminho - Adicionar nós' para
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTSSpeed.ToolTip" xml:space="preserve">
-    <value>Se 'Adicionar alteração de ferramenta' e 'Executar alteração de ferramenta' estiverem ativadas, o valor será obtido da tabela de ferramentas durante a importação</value>
+    <value>Selecione 'Agrupamento e ferramentas - Tabela de ferramentas' para obter os valores selecionados da tabela de ferramentas durante a importação</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCToolM0.Text" xml:space="preserve">
@@ -681,7 +681,7 @@ adicione nós através de 'Extensões - Modificar caminho - Adicionar nós' para
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTXYFeed.ToolTip" xml:space="preserve">
-    <value>Se 'Adicionar alteração de ferramenta' e 'Executar alteração de ferramenta' estiverem ativadas, o valor será obtido da tabela de ferramentas durante a importação</value>
+    <value>Selecione 'Agrupamento e ferramentas - Tabela de ferramentas' para obter os valores selecionados da tabela de ferramentas durante a importação</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="tBImportGCHeader.ToolTip" xml:space="preserve">
@@ -702,7 +702,7 @@ Não há necessidade de definir essas palavras</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTZAxis.ToolTip" xml:space="preserve">
-    <value>Se 'Adicionar mudança de ferramenta' e 'Executar mudança de ferramenta' estiverem ativadas, todo o valor Z será obtido da tabela de ferramentas durante a importação</value>
+    <value>Selecione 'Agrupamento e ferramentas - Tabela de ferramentas' para obter os valores selecionados da tabela de ferramentas durante a importação. Todos os valores Z serão retirados da tabela de ferramentas durante a importação</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCUseZ.ToolTip" xml:space="preserve">
@@ -3425,5 +3425,8 @@ Por exemplo. para corte a laser</value>
   </data>
   <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
     <value>Origem do eixo X</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.ToolTip" xml:space="preserve">
+    <value>Selecione 'Agrupamento e ferramentas - Tabela de ferramentas' para obter os valores selecionados da tabela de ferramentas durante a importação</value>
   </data>
 </root>

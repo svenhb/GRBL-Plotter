@@ -1054,7 +1054,7 @@ Režim konstantního výkonu laseru v režimu laseru</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTSSpeed.ToolTip" xml:space="preserve">
-    <value>Pokud jsou povoleny 'Add Tool Change' a 'Perform Tool Change', hodnota bude převzata z tabulky nástrojů během importu</value>
+    <value>Chcete-li získat vybrané hodnoty z tabulky nástrojů během importu, vyberte 'Seskupení a nástroje - Tabulka nástrojů'</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2gB2.Text" xml:space="preserve">
@@ -1090,7 +1090,7 @@ Režim konstantního výkonu laseru v režimu laseru</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTXYFeed.ToolTip" xml:space="preserve">
-    <value>Pokud jsou povoleny 'Add Tool Change' a 'Perform Tool Change', hodnota bude převzata z tabulky nástrojů během importu</value>
+    <value>Chcete-li získat vybrané hodnoty z tabulky nástrojů během importu, vyberte 'Seskupení a nástroje - Tabulka nástrojů'</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2lbl1.Text" xml:space="preserve">
@@ -1164,7 +1164,7 @@ Tato slova není třeba nastavovat</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTZAxis.ToolTip" xml:space="preserve">
-    <value>Pokud jsou povoleny 'Add Tool Change' a 'Perform Tool Change', všechny hodnoty Z budou převzaty z tabulky nástrojů během importu</value>
+    <value>Chcete-li získat vybrané hodnoty z tabulky nástrojů během importu, vyberte 'Seskupení a nástroje - Tabulka nástrojů'. Všechny hodnoty Z budou během importu převzaty z tabulky nástrojů</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="nUDImportGCFeedZ.ToolTip" xml:space="preserve">
@@ -3702,5 +3702,8 @@ Např. pro řezání laserem</value>
   </data>
   <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
     <value>Počátek pro osu X</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.ToolTip" xml:space="preserve">
+    <value>Chcete-li získat vybrané hodnoty z tabulky nástrojů během importu, vyberte 'Seskupení a nástroje - Tabulka nástrojů'</value>
   </data>
 </root>

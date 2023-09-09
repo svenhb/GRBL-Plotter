@@ -311,7 +311,7 @@ Constant Laser Power Mode in Laser Mode</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTSSpeed.ToolTip" xml:space="preserve">
-    <value>Wenn 'Füge Werkzeugwechselbefehle ein' und 'Führe Werkzeugwechsel aus' aktiv sind, wird dieser Wert aus der Werkzeugliste gelesen</value>
+    <value>Wähle „Gruppierung und Werkzeuge – Werkzeugtabelle“, um beim Import ausgewählte Werte aus der Werkzeugtabelle abzurufen</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCToolM0.Text" xml:space="preserve">
@@ -343,7 +343,7 @@ Constant Laser Power Mode in Laser Mode</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTXYFeed.ToolTip" xml:space="preserve">
-    <value>Wenn 'Füge Werkzeugwechselbefehle ein' und 'Führe Werkzeugwechsel aus' aktiv sind, wird dieser Wert aus der Werkzeugliste gelesen</value>
+    <value>Wähle „Gruppierung und Werkzeuge – Werkzeugtabelle“, um beim Import ausgewählte Werte aus der Werkzeugtabelle abzurufen</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="tBImportGCHeader.ToolTip" xml:space="preserve">
@@ -372,7 +372,7 @@ D.h. diese Werte müssen nicht extra am Anfang gesetzt werden.</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTZAxis.ToolTip" xml:space="preserve">
-    <value>Wenn 'Füge Werkzeugwechselbefehle ein' und 'Führe Werkzeugwechsel aus' aktiv sind, wird dieser Wert aus der Werkzeugliste gelesen</value>
+    <value>Wählen Sie „Gruppierung und Werkzeuge – Werkzeugtabelle“, um beim Import ausgewählte Werte aus der Werkzeugtabelle abzurufen. Alle Z-Werte werden beim Import aus der Werkzeugtabelle übernommen</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCZIncEnable.Text" xml:space="preserve">
@@ -3357,5 +3357,8 @@ Z.B. zum Laserschneiden</value>
   </data>
   <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
     <value>Ursprung für die X-Achse</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.ToolTip" xml:space="preserve">
+    <value>Wähle „Gruppierung und Werkzeuge – Werkzeugtabelle“, um beim Import ausgewählte Werte aus der Werkzeugtabelle abzurufen</value>
   </data>
 </root>

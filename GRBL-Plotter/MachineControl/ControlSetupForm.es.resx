@@ -187,7 +187,7 @@ Otras configuraciones se almacenarán en el cambio, por lo general.</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTSSpeed.ToolTip" xml:space="preserve">
-    <value>Si 'Agregar cambio de herramienta' y 'Realizar cambio de herramienta' están habilitados, el valor se tomará de la tabla de herramientas durante la importación</value>
+    <value>Seleccione 'Agrupación y herramientas - Tabla de herramientas' para obtener los valores seleccionados de la tabla de herramientas durante la importación.</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCToolM0.Text" xml:space="preserve">
@@ -219,7 +219,7 @@ Otras configuraciones se almacenarán en el cambio, por lo general.</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTXYFeed.ToolTip" xml:space="preserve">
-    <value>Si 'Agregar cambio de herramienta' y 'Realizar cambio de herramienta' están habilitados, el valor se tomará de la tabla de herramientas durante la importación</value>
+    <value>Seleccione 'Agrupación y herramientas - Tabla de herramientas' para obtener los valores seleccionados de la tabla de herramientas durante la importación.</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTZAxis.Text" xml:space="preserve">
@@ -227,7 +227,7 @@ Otras configuraciones se almacenarán en el cambio, por lo general.</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTZAxis.ToolTip" xml:space="preserve">
-    <value>Si 'Agregar cambio de herramienta' y 'Realizar cambio de herramienta' están habilitados, el valor se tomará de la tabla de herramientas durante la importación</value>
+    <value>Seleccione 'Agrupación y herramientas - Tabla de herramientas' para obtener los valores seleccionados de la tabla de herramientas durante la importación. Todos los valores Z se tomarán de la tabla de herramientas durante la importación.</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCUseIndividual.Text" xml:space="preserve">
@@ -3417,5 +3417,8 @@ P.ej. para corte por láser</value>
   </data>
   <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
     <value>Origen para el eje X</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.ToolTip" xml:space="preserve">
+    <value>Seleccione 'Agrupación y herramientas - Tabla de herramientas' para obtener los valores seleccionados de la tabla de herramientas durante la importación.</value>
   </data>
 </root>

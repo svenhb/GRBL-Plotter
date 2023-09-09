@@ -389,7 +389,7 @@ gcodeを縮小する際の問題を回避するため。</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTSSpeed.ToolTip" xml:space="preserve">
-    <value>「ツール変更の追加」と「ツール変更の実行」が有効になっている場合、インポート中にツールテーブルから値が取得されます</value>
+    <value>[グループ化とツール - ツール テーブル] を選択して、インポート中にツール テーブルから選択した値を取得します。</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2gB2.Text" xml:space="preserve">
@@ -425,7 +425,7 @@ gcodeを縮小する際の問題を回避するため。</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTXYFeed.ToolTip" xml:space="preserve">
-    <value>「ツール変更の追加」と「ツール変更の実行」が有効になっている場合、インポート中にツールテーブルから値が取得されます</value>
+    <value>[グループ化とツール - ツール テーブル] を選択して、インポート中にツール テーブルから選択した値を取得します。</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2lbl1.Text" xml:space="preserve">
@@ -487,7 +487,7 @@ gcodeを縮小する際の問題を回避するため。</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTZAxis.ToolTip" xml:space="preserve">
-    <value>「ツール変更の追加」および「ツール変更の実行」が有効な場合、インポート中にすべてのZ値がツールテーブルから取得されます。</value>
+    <value>[グループ化とツール - ツール テーブル] を選択して、インポート中にツール テーブルから選択した値を取得します。すべての Z 値はインポート中にツール テーブルから取得されます。</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2lbl35.Text" xml:space="preserve">
@@ -3711,5 +3711,8 @@ GCode ヘッダー セクションで指定: 'SVG dimension'。</value>
   </data>
   <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
     <value>X軸の原点</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.ToolTip" xml:space="preserve">
+    <value>[グループ化とツール - ツール テーブル] を選択して、インポート中にツール テーブルから選択した値を取得します。</value>
   </data>
 </root>

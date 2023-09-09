@@ -389,7 +389,7 @@
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTSSpeed.ToolTip" xml:space="preserve">
-    <value>إذا تم تمكين "إضافة تغيير الأداة" و "إجراء تغيير الأداة" ، فسيتم أخذ القيمة من جدول الأدوات أثناء الاستيراد</value>
+    <value>حدد "التجميع والأدوات - جدول الأدوات" للحصول على القيم المحددة من جدول الأدوات أثناء الاستيراد</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2gB2.Text" xml:space="preserve">
@@ -425,7 +425,7 @@
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTXYFeed.ToolTip" xml:space="preserve">
-    <value>إذا تم تمكين "إضافة تغيير الأداة" و "إجراء تغيير الأداة" ، فسيتم أخذ القيمة من جدول الأدوات أثناء الاستيراد</value>
+    <value>حدد "التجميع والأدوات - جدول الأدوات" للحصول على القيم المحددة من جدول الأدوات أثناء الاستيراد</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2lbl1.Text" xml:space="preserve">
@@ -483,7 +483,7 @@
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTZAxis.ToolTip" xml:space="preserve">
-    <value>إذا تم تمكين "إضافة تغيير الأداة" و "إجراء تغيير الأداة" ، فسيتم أخذ كل قيمة Z من جدول الأدوات أثناء الاستيراد</value>
+    <value>حدد "التجميع والأدوات - جدول الأدوات" للحصول على القيم المحددة من جدول الأدوات أثناء الاستيراد. سيتم أخذ كافة قيم Z من جدول الأدوات أثناء الاستيراد</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2lbl35.Text" xml:space="preserve">
@@ -3687,5 +3687,8 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   </data>
   <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
     <value>أصل المحور س</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.ToolTip" xml:space="preserve">
+    <value>حدد "التجميع والأدوات - جدول الأدوات" للحصول على القيم المحددة من جدول الأدوات أثناء الاستيراد</value>
   </data>
 </root>
