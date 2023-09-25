@@ -94,6 +94,8 @@
             this.rB2 = new System.Windows.Forms.RadioButton();
             this.rB1 = new System.Windows.Forms.RadioButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.xNeedFind = new System.Windows.Forms.CheckBox();
+            this.yNeedFind = new System.Windows.Forms.CheckBox();
             this.cBFindCenterStartFromCenter = new System.Windows.Forms.CheckBox();
             this.lblCFAngle = new System.Windows.Forms.Label();
             this.lblCFStatus = new System.Windows.Forms.Label();
@@ -120,8 +122,6 @@
             this.rBProbeCoord2 = new System.Windows.Forms.RadioButton();
             this.rBProbeCoord1 = new System.Windows.Forms.RadioButton();
             this.label11 = new System.Windows.Forms.Label();
-            this.yNeedFind = new System.Windows.Forms.CheckBox();
-            this.xNeedFind = new System.Windows.Forms.CheckBox();
             this.gBHardware.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDProbeDiameter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDOffsetX)).BeginInit();
@@ -767,6 +767,24 @@
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // xNeedFind
+            // 
+            resources.ApplyResources(this.xNeedFind, "xNeedFind");
+            this.xNeedFind.Checked = true;
+            this.xNeedFind.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.xNeedFind.Name = "xNeedFind";
+            this.xNeedFind.UseVisualStyleBackColor = true;
+            this.xNeedFind.CheckedChanged += new System.EventHandler(this.needFind_CheckedChanged);
+            // 
+            // yNeedFind
+            // 
+            resources.ApplyResources(this.yNeedFind, "yNeedFind");
+            this.yNeedFind.Checked = true;
+            this.yNeedFind.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.yNeedFind.Name = "yNeedFind";
+            this.yNeedFind.UseVisualStyleBackColor = true;
+            this.yNeedFind.CheckedChanged += new System.EventHandler(this.needFind_CheckedChanged);
+            // 
             // cBFindCenterStartFromCenter
             // 
             resources.ApplyResources(this.cBFindCenterStartFromCenter, "cBFindCenterStartFromCenter");
@@ -935,22 +953,6 @@
             // 
             resources.ApplyResources(this.label11, "label11");
             this.label11.Name = "label11";
-            // 
-            // yNeedFind
-            // 
-            resources.ApplyResources(this.yNeedFind, "yNeedFind");
-            this.yNeedFind.Checked = true;
-            this.yNeedFind.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.yNeedFind.Name = "yNeedFind";
-            this.yNeedFind.UseVisualStyleBackColor = true;
-            // 
-            // xNeedFind
-            // 
-            resources.ApplyResources(this.xNeedFind, "xNeedFind");
-            this.xNeedFind.Checked = true;
-            this.xNeedFind.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.xNeedFind.Name = "xNeedFind";
-            this.xNeedFind.UseVisualStyleBackColor = true;
             // 
             // ControlProbing
             // 

@@ -1877,9 +1877,6 @@ Probe edge a 2nd time on another position to get angle.</value>
   <data name="xNeedFind.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="xNeedFind.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="xNeedFind.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
