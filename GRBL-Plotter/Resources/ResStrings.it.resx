@@ -697,4 +697,19 @@ Possibile soluzione: provare a convertire l'oggetto in percorso.</value>
   <data name="mainStartMissingFiles" xml:space="preserve">
     <value>File di programma mancanti,&lt;br&gt;controlla l'installazione di GRBL-Plotter</value>
   </data>
+  <data name="statusStripeSelectionMoveShift" xml:space="preserve">
+    <value>Premi Maiusc per agganciare la griglia</value>
+  </data>
+  <data name="statusStripeSelectionResize" xml:space="preserve">
+    <value>Ridimensionato da</value>
+  </data>
+  <data name="statusStripeSelectionResizeCtrl" xml:space="preserve">
+    <value>Premere Ctrl per mantenere il rapporto</value>
+  </data>
+  <data name="statusStripeSelectionRotate" xml:space="preserve">
+    <value>Si voltò</value>
+  </data>
+  <data name="statusStripeSelectionRotateShift" xml:space="preserve">
+    <value>Premere Maiusc per visualizzare i gradi completi</value>
+  </data>
 </root>

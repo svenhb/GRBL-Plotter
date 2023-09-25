@@ -133,7 +133,7 @@
     <value>1</value>
   </data>
   <data name="fCTBCode.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
-    <value>191, 12</value>
+    <value>214, 12</value>
   </data>
   <metadata name="cmsFCTB.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>123, 56</value>
@@ -4695,6 +4695,42 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
   <data name="toolStripSeparator17.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 6</value>
   </data>
+  <data name="cmsPicBoxReloadFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>236, 22</value>
+  </data>
+  <data name="cmsPicBoxReloadFile.Text" xml:space="preserve">
+    <value>Reload File</value>
+  </data>
+  <data name="cmsPicBoxReloadFile.ToolTipText" xml:space="preserve">
+    <value>Reload last loaded file</value>
+  </data>
+  <data name="cmsPicBoxPasteFromClipboard.Size" type="System.Drawing.Size, System.Drawing">
+    <value>236, 22</value>
+  </data>
+  <data name="cmsPicBoxPasteFromClipboard.Text" xml:space="preserve">
+    <value>Paste from Clipboard</value>
+  </data>
+  <data name="cmsPicBoxPasteFromClipboard.ToolTipText" xml:space="preserve">
+    <value>Process data from clipboard, like SVG, DXF, TXT (SVG or GCode) or image</value>
+  </data>
+  <data name="cmsPicBoxClearWorkspace.Size" type="System.Drawing.Size, System.Drawing">
+    <value>236, 22</value>
+  </data>
+  <data name="cmsPicBoxClearWorkspace.Text" xml:space="preserve">
+    <value>Clear workspace</value>
+  </data>
+  <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 6</value>
+  </data>
+  <data name="cmsPicBoxResetZooming.Size" type="System.Drawing.Size, System.Drawing">
+    <value>236, 22</value>
+  </data>
+  <data name="cmsPicBoxResetZooming.Text" xml:space="preserve">
+    <value>Reset Zooming</value>
+  </data>
+  <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 6</value>
+  </data>
   <data name="cmsPicBoxMoveToMarkedPosition.Size" type="System.Drawing.Size, System.Drawing">
     <value>236, 22</value>
   </data>
@@ -4721,36 +4757,6 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
   </data>
   <data name="cmsPicBoxMoveGraphicsOrigin.Text" xml:space="preserve">
     <value>Offset graphics by Marker Position</value>
-  </data>
-  <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 6</value>
-  </data>
-  <data name="cmsPicBoxResetZooming.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 22</value>
-  </data>
-  <data name="cmsPicBoxResetZooming.Text" xml:space="preserve">
-    <value>Reset Zooming</value>
-  </data>
-  <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 6</value>
-  </data>
-  <data name="cmsPicBoxPasteFromClipboard.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 22</value>
-  </data>
-  <data name="cmsPicBoxPasteFromClipboard.Text" xml:space="preserve">
-    <value>Paste from Clipboard</value>
-  </data>
-  <data name="cmsPicBoxPasteFromClipboard.ToolTipText" xml:space="preserve">
-    <value>Process data from clipboard, like SVG, DXF, TXT (SVG or GCode) or image</value>
-  </data>
-  <data name="cmsPicBoxReloadFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 22</value>
-  </data>
-  <data name="cmsPicBoxReloadFile.Text" xml:space="preserve">
-    <value>Reload File</value>
-  </data>
-  <data name="cmsPicBoxReloadFile.ToolTipText" xml:space="preserve">
-    <value>Reload last loaded file</value>
   </data>
   <data name="deletenotMarkToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -4891,7 +4897,7 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>Copy 2D-View image to clipboard</value>
   </data>
   <data name="cmsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 452</value>
+    <value>237, 496</value>
   </data>
   <data name="&gt;&gt;cmsPictureBox.Name" xml:space="preserve">
     <value>cmsPictureBox</value>
@@ -7845,9 +7851,6 @@ Dil
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>103</value>
-  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -8954,6 +8957,12 @@ Dil
   </data>
   <data name="&gt;&gt;loadTimer.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmsPicBoxClearWorkspace.Name" xml:space="preserve">
+    <value>cmsPicBoxClearWorkspace</value>
+  </data>
+  <data name="&gt;&gt;cmsPicBoxClearWorkspace.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

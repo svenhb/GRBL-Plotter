@@ -693,4 +693,19 @@ Možné řešení: zkuste převést objekt na cestu.</value>
   <data name="mainStartMissingFiles" xml:space="preserve">
     <value>Chybí soubory programu,&lt;br&gt;zkontrolujte prosím instalaci plotru GRBL</value>
   </data>
+  <data name="statusStripeSelectionMoveShift" xml:space="preserve">
+    <value>Stisknutím Shift přichytíte mřížku</value>
+  </data>
+  <data name="statusStripeSelectionResize" xml:space="preserve">
+    <value>Velikost změněna podle</value>
+  </data>
+  <data name="statusStripeSelectionResizeCtrl" xml:space="preserve">
+    <value>Pro zachování poměru stiskněte Ctrl</value>
+  </data>
+  <data name="statusStripeSelectionRotate" xml:space="preserve">
+    <value>Otočil</value>
+  </data>
+  <data name="statusStripeSelectionRotateShift" xml:space="preserve">
+    <value>Stisknutím Shift zobrazíte celé stupně</value>
+  </data>
 </root>

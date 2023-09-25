@@ -693,4 +693,19 @@
   <data name="mainStartMissingFiles" xml:space="preserve">
     <value>Отсутствуют программные файлы,&lt;br&gt;пожалуйста, проверьте установку GRBL-Plotter</value>
   </data>
+  <data name="statusStripeSelectionMoveShift" xml:space="preserve">
+    <value>Нажмите Shift, чтобы привязать сетку</value>
+  </data>
+  <data name="statusStripeSelectionResize" xml:space="preserve">
+    <value>Размер изменен на</value>
+  </data>
+  <data name="statusStripeSelectionResizeCtrl" xml:space="preserve">
+    <value>Нажмите Ctrl, чтобы сохранить соотношение</value>
+  </data>
+  <data name="statusStripeSelectionRotate" xml:space="preserve">
+    <value>Развернулся</value>
+  </data>
+  <data name="statusStripeSelectionRotateShift" xml:space="preserve">
+    <value>Нажмите Shift, чтобы отобразить полные градусы.</value>
+  </data>
 </root>

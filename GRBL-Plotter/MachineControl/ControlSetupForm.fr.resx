@@ -187,7 +187,7 @@ Les autres paramètres seront généralement enregistrés lors des modifications
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTSSpeed.ToolTip" xml:space="preserve">
-    <value>Si 'Add Tool Change' et 'Perform Tool Change' sont activés, la valeur sera extraite de la table d'outils lors de l'importation.</value>
+    <value>Sélectionnez "Regroupement et outils - Table d'outils" pour obtenir les valeurs sélectionnées de la table d'outils lors de l'importation.</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCToolM0.Text" xml:space="preserve">
@@ -219,7 +219,7 @@ Les autres paramètres seront généralement enregistrés lors des modifications
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTXYFeed.ToolTip" xml:space="preserve">
-    <value>Si 'Add Tool Change' et 'Perform Tool Change' sont activés, la valeur sera extraite de la table d'outils lors de l'importation.</value>
+    <value>Sélectionnez "Regroupement et outils - Table d'outils" pour obtenir les valeurs sélectionnées de la table d'outils lors de l'importation.</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTZAxis.Text" xml:space="preserve">
@@ -227,7 +227,7 @@ Les autres paramètres seront généralement enregistrés lors des modifications
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTZAxis.ToolTip" xml:space="preserve">
-    <value>Si 'Add Tool Change' et 'Perform Tool Change' sont activés, la valeur sera extraite de la table d'outils lors de l'importation.</value>
+    <value>Sélectionnez « Regroupement et outils - Table d'outils » pour obtenir les valeurs sélectionnées dans la table d'outils lors de l'importation. Toutes les valeurs Z seront extraites de la table d'outils lors de l'importation</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCUseIndividual.Text" xml:space="preserve">
@@ -3416,5 +3416,8 @@ Par exemple. pour la découpe laser</value>
   </data>
   <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
     <value>Origine de l'axe X</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.ToolTip" xml:space="preserve">
+    <value>Sélectionnez "Regroupement et outils - Table d'outils" pour obtenir les valeurs sélectionnées de la table d'outils lors de l'importation.</value>
   </data>
 </root>

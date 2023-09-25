@@ -31,6 +31,7 @@
  * 2023-08-06 l:1283 f:SortByDistance get also start-pos
  * 2023-08-16 l:1370 f:SortByDistance pull request Speed up merge and sort #348
  * 2023-08-16 l:1490 f:HasSameProperties pull request Speed up merge and sort #348
+ * 2023-09-01 l:915 f:RemoveOffset check index before shifting largest object
 */
 
 using System;
@@ -913,8 +914,12 @@ namespace GrblPlotter
             if (Properties.Settings.Default.importGraphicLargestLast)   // move largest object to the end
             {
                 if (logEnable) Logger.Trace("...RemoveOffset move largest object to the end id:{0}", iLargest);
-                graphicToOffset.Add(graphicToOffset[iLargest]);
-                graphicToOffset.RemoveAt(iLargest);
+				if (graphicToOffset.Count > iLargest)
+                {	graphicToOffset.Add(graphicToOffset[iLargest]);
+					graphicToOffset.RemoveAt(iLargest);
+				}
+				else
+				{	Logger.Warn("...RemoveOffset index nok: iLargest:{0}  Count:{1}", iLargest, graphicToOffset.Count);}
             //    PathObject tmp = graphicToOffset[graphicToOffset.Count - 1];
             //    graphicToOffset[graphicToOffset.Count - 1] = graphicToOffset[iLargest];
             //    graphicToOffset[iLargest] = tmp;

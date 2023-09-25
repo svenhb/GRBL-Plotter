@@ -28,6 +28,7 @@
  * 2022-10-19 line 258, 298 check if Graphic.GCode == null
  * 2022-12-21 line 319 GetGCodeFromImage check if _image_form != null
  * 2023-01-28 add AfterImport to bring main GUI to front after getting gcode
+ * 2023-09-06 l:235 f:InsertCodeFromForm add SetSelection (MainFormPictureBox.cs) to select newly inserted object
 */
 using FastColoredTextBoxNS;
 using System;
@@ -228,8 +229,11 @@ namespace GrblPlotter
                 if (backgroundPath != null)
                     VisuGCode.pathBackground = (GraphicsPath)backgroundPath.Clone();
                 NewCodeEnd();       // InsertCodeFromForm with insertCode
-                                    //   FoldCodeOnLoad();
+
                 FoldBlocksByLevel(foldLevelSelected);
+
+                /* select fresh code */
+                SetSelection(insertLineNr + 3, XmlMarkerType.Group);
             }
             else
             {
@@ -243,8 +247,15 @@ namespace GrblPlotter
                 if (backgroundPath != null)
                     VisuGCode.pathBackground = (GraphicsPath)backgroundPath.Clone();
                 NewCodeEnd();       // InsertCodeFromForm without insertCode
-                                    //    FoldCodeOnLoad();
+
                 FoldBlocksByLevel(foldLevelSelected);
+				
+				if (insertCode)		// select object - if grouping is disabled, a group should be inserted?
+				{	if (sourceGCode.Contains(XmlMarker.GroupStart))
+						SetSelection(1, XmlMarkerType.Group);	
+					else if (sourceGCode.Contains(XmlMarker.FigureStart))
+						SetSelection(1, XmlMarkerType.Figure);	
+				}			
             }
             importOptions = Graphic.graphicInformation.ListOptions();
             if (importOptions.Length > 1)
@@ -268,9 +279,9 @@ namespace GrblPlotter
             {
                 string tmpCode = "(no gcode)";
                 if (Graphic.GCode != null)
-                { tmpCode = Graphic.GCode.ToString(); }
+                {   tmpCode = Graphic.GCode.ToString();
+                }
                 InsertCodeFromForm(tmpCode, "from text");
-                //                InsertCodeFromForm(Graphic.GCode.ToString(), "from text");
                 Properties.Settings.Default.counterImportText += 1;
                 string source = "Itxt";
                 if (Properties.Settings.Default.fromFormInsertEnable)
@@ -288,7 +299,9 @@ namespace GrblPlotter
             {
                 string tmpCode = "(no gcode)";
                 if (Graphic.GCode != null)
-                { tmpCode = Graphic.GCode.ToString(); }
+                {
+                    tmpCode = Graphic.GCode.ToString();
+                }
                 InsertCodeFromForm(tmpCode, "from barcode");
                 Properties.Settings.Default.counterImportBarcode += 1;
                 string source = "Ibqr";
@@ -490,7 +503,7 @@ namespace GrblPlotter
             if (fCTBCode.Lines.Count > 1)
             {
                 TransformStart("Apply Offset");
-                zoomFactor = 1;
+                zoomFactorMin = zoomFactor = 1;
                 if (rBOrigin1.Checked) { fCTBCode.Text = VisuGCode.TransformGCodeOffset(-offsetx, -offsety, VisuGCode.Translate.Offset1); }
                 if (rBOrigin2.Checked) { fCTBCode.Text = VisuGCode.TransformGCodeOffset(-offsetx, -offsety, VisuGCode.Translate.Offset2); }
                 if (rBOrigin3.Checked) { fCTBCode.Text = VisuGCode.TransformGCodeOffset(-offsetx, -offsety, VisuGCode.Translate.Offset3); }

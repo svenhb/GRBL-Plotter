@@ -624,4 +624,19 @@ Mögliche Problemumgehung: Versuchen Sie, das Objekt in einen Pfad umzuwandeln.<
   <data name="mainStartMissingFiles" xml:space="preserve">
     <value>Fehlende Programmdateien.&lt;br&gt;Bitte überprüfen Sie die GRBL-Plotter-Installation</value>
   </data>
+  <data name="statusStripeSelectionMoveShift" xml:space="preserve">
+    <value>Drücke die Umschalttaste, um das Raster einzurasten</value>
+  </data>
+  <data name="statusStripeSelectionResize" xml:space="preserve">
+    <value>Größe geändert um</value>
+  </data>
+  <data name="statusStripeSelectionResizeCtrl" xml:space="preserve">
+    <value>Drücke die Strg-Taste, um das Verhältnis beizubehalten</value>
+  </data>
+  <data name="statusStripeSelectionRotate" xml:space="preserve">
+    <value>Umgedreht</value>
+  </data>
+  <data name="statusStripeSelectionRotateShift" xml:space="preserve">
+    <value>Drücke die Umschalttaste, um volle Grad anzuzeigen</value>
+  </data>
 </root>

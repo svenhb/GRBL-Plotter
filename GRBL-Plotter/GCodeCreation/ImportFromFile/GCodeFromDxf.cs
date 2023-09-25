@@ -78,6 +78,7 @@
  * 2023-02-05 line 324 check if (!lineTypes.ContainsKey(lt.LineTypeName)) before add
  * 2023-04-10 l:187 f:ConvertFromFile check length for substring
  * 2023-06-02 l:809 f:ProcessEntities bug fix importSVGCircleToDot
+ * 2023-09-09 l:987 f:CalcEllipse don't add offsetAngle to start/end angle issue #359
 */
 
 using DXFLib;
@@ -984,8 +985,8 @@ namespace GrblPlotter //DXFImporter
             float xm = (float)(RotateGetX(ellipse.MainAxis, angleRad)); //(ellipse.MainAxis.X * Math.Cos(angleRad) - ellipse.MainAxis.Y * Math.Sin(angleRad));
             float ym = (float)(RotateGetY(ellipse.MainAxis, angleRad)); //(ellipse.MainAxis.X * Math.Sin(angleRad) + ellipse.MainAxis.Y * Math.Cos(angleRad));
             float w = (float)ellipse.AxisRatio;
-            double a2 = -ellipse.StartParam + offsetAngle;
-            double a1 = -ellipse.EndParam + offsetAngle;
+            double a2 = -ellipse.StartParam;// + offsetAngle;   issue #359
+            double a1 = -ellipse.EndParam;// + offsetAngle;
 
             float rm = (float)Math.Sqrt(xm * xm + ym * ym);
             double a = Math.Atan2(-ym, xm);

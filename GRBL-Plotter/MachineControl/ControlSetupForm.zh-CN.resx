@@ -191,7 +191,7 @@
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTSSpeed.ToolTip" xml:space="preserve">
-    <value>如果启用了“添加工具更改”和“执行工具更改”，则导入期间将从工具表中获取值</value>
+    <value>选择“分组和工具 - 工具表”以在导入期间从工具表中获取选定的值</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCToolM0.Text" xml:space="preserve">
@@ -223,7 +223,7 @@
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTXYFeed.ToolTip" xml:space="preserve">
-    <value>如果启用了“添加工具更改”和“执行工具更改”，则导入期间将从工具表中获取值</value>
+    <value>选择“分组和工具 - 工具表”以在导入期间从工具表中获取选定的值</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTZAxis.Text" xml:space="preserve">
@@ -231,7 +231,7 @@
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTZAxis.ToolTip" xml:space="preserve">
-    <value>如果启用了“添加工具更改”和“执行工具更改”，则导入期间将从工具表中获取值</value>
+    <value>选择“分组和工具 - 工具表”以在导入期间从工具表中获取选定的值。导入期间所有 Z 值都将从工具表中获取</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCUseIndividual.Text" xml:space="preserve">
@@ -3691,5 +3691,8 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   </data>
   <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
     <value>X 轴原点</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.ToolTip" xml:space="preserve">
+    <value>选择“分组和工具 - 工具表”以在导入期间从工具表中获取选定的值</value>
   </data>
 </root>

@@ -20,6 +20,7 @@
  * 2019-10-29 localization of strings
  * 2021-07-26 code clean up / code quality
  * 2023-01-02 GetLinkerTimestampUtc add try catch
+ * 2023-09-08 move function GetLinkerTimestampUtc to class MyApplication in MainFormObjects.cs
 */
 
 
@@ -55,7 +56,7 @@ namespace GrblPlotter
         /* show actual verison */
         private void AboutForm_Load(object sender, EventArgs e)
         {
-            lblVersion.Text = string.Format("{0}    {1}", System.Windows.Forms.Application.ProductVersion.ToString(), GetLinkerTimestampUtc(System.Reflection.Assembly.GetExecutingAssembly()).ToString("yyyy-MM-dd"));   //File.GetCreationTime(System.Reflection.Assembly.GetExecutingAssembly().Location)
+            lblVersion.Text = string.Format("{0}    {1}", MyApplication.GetVersion(), MyApplication.GetCompilationDate());   //File.GetCreationTime(System.Reflection.Assembly.GetExecutingAssembly().Location)
         }
 
         /* check prog. version */
@@ -78,38 +79,6 @@ namespace GrblPlotter
             try { Process.Start(@"https://GRBL-Plotter.de/?setlang=en"); }
             catch (Exception err)
             { MessageBox.Show("Could not open URL : " + err.Message, "Error"); }
-        }
-
-        /* date/time of compilation */
-        public static DateTime GetLinkerTimestampUtc(System.Reflection.Assembly assembly)
-        {
-            var location = assembly.Location;
-            if (!string.IsNullOrEmpty(location))
-                return GetLinkerTimestampUtc(location);
-            else
-                return DateTime.MinValue;
-        }
-
-        public static DateTime GetLinkerTimestampUtc(string filePath)
-        {
-            const int peHeaderOffset = 60;
-            const int linkerTimestampOffset = 8;
-            var bytes = new byte[2048];
-
-            try
-            {
-                using (var file = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-                {
-                    file.Read(bytes, 0, bytes.Length);
-                }
-            }
-            catch
-            { return DateTime.MinValue; }
-
-            var headerPos = BitConverter.ToInt32(bytes, peHeaderOffset);
-            var secondsSince1970 = BitConverter.ToInt32(bytes, headerPos + linkerTimestampOffset);
-            var dt = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            return dt.AddSeconds(secondsSince1970);
         }
     }
 }

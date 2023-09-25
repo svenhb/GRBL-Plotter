@@ -41,11 +41,54 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Threading;
+using System.Diagnostics;
 
 namespace GrblPlotter
 {
     [Flags]
     public enum LogEnables { None = 0, Level1 = 1, Level2 = 2, Level3 = 4, Level4 = 8, Detailed = 16, Coordinates = 32, Properties = 64, Sort = 128, GroupAllGraphics = 256, ClipCode = 512, PathModification = 1024 }
+
+    public static class MyApplication
+    {
+        private static string VersionAddOn = ".f";
+
+        public static string GetVersion()
+        { return System.Windows.Forms.Application.ProductVersion.ToString() + VersionAddOn; }
+
+        /* date/time of compilation */
+        public static string GetCompilationDate()
+        { return GetLinkerTimestampUtc(System.Reflection.Assembly.GetExecutingAssembly()).ToString("yyyy-MM-dd"); }
+        public static DateTime GetLinkerTimestampUtc(System.Reflection.Assembly assembly)
+        {
+            var location = assembly.Location;
+            if (!string.IsNullOrEmpty(location))
+                return GetLinkerTimestampUtc(location);
+            else
+                return DateTime.MinValue;
+        }
+        public static DateTime GetLinkerTimestampUtc(string filePath)
+        {
+            const int peHeaderOffset = 60;
+            const int linkerTimestampOffset = 8;
+            var bytes = new byte[2048];
+
+            try
+            {
+                using (var file = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                {
+                    file.Read(bytes, 0, bytes.Length);
+                }
+            }
+            catch
+            { return DateTime.MinValue; }
+
+            var headerPos = BitConverter.ToInt32(bytes, peHeaderOffset);
+            var secondsSince1970 = BitConverter.ToInt32(bytes, headerPos + linkerTimestampOffset);
+            var dt = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            return dt.AddSeconds(secondsSince1970);
+        }
+
+    }
 
     public static class Datapath
     {   // https://stackoverflow.com/questions/66430190/how-do-i-get-access-to-c-program-files-in-c-sharp

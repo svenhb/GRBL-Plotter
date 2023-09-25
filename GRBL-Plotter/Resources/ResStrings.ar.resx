@@ -693,4 +693,19 @@
   <data name="mainStartMissingFiles" xml:space="preserve">
     <value>ملفات البرنامج المفقودة ، &lt;br&gt; يرجى التحقق من تثبيت GRBL-Plotter</value>
   </data>
+  <data name="statusStripeSelectionMoveShift" xml:space="preserve">
+    <value>اضغط على Shift لمحاذاة الشبكة</value>
+  </data>
+  <data name="statusStripeSelectionResize" xml:space="preserve">
+    <value>تم تغيير الحجم بواسطة</value>
+  </data>
+  <data name="statusStripeSelectionResizeCtrl" xml:space="preserve">
+    <value>اضغط على Ctrl للحفاظ على النسبة</value>
+  </data>
+  <data name="statusStripeSelectionRotate" xml:space="preserve">
+    <value>استدار</value>
+  </data>
+  <data name="statusStripeSelectionRotateShift" xml:space="preserve">
+    <value>اضغط على Shift لعرض الدرجات الكاملة</value>
+  </data>
 </root>

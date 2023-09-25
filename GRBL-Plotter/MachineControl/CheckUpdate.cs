@@ -71,9 +71,9 @@ namespace GrblPlotter
             {
                 CultureInfo ci = CultureInfo.InstalledUICulture;
                 ci = CultureInfo.CurrentUICulture;
-                Logger.Trace(culture, " Vers.:{0}  ID:{1}  LangSet:{2}  LangOri:{3}  url:{4}", Application.ProductVersion, GetID(), Properties.Settings.Default.guiLanguage, ci.Name, Properties.Settings.Default.guiCheckUpdateURL);
+                Logger.Trace(culture, " Vers.:{0}  ID:{1}  LangSet:{2}  LangOri:{3}  url:{4}", MyApplication.GetVersion(), GetID(), Properties.Settings.Default.guiLanguage, ci.Name, Properties.Settings.Default.guiCheckUpdateURL);
                 string get = "";
-                get += "?vers=" + Application.ProductVersion;
+                get += "?vers=" + MyApplication.GetVersion();
                 get += "&hwid=" + GetID();
                 get += "&langset=" + Properties.Settings.Default.guiLanguage; // add next get with &
                 get += "&langori=" + ci.Name;

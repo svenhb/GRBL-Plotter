@@ -1323,7 +1323,7 @@ Lazer Modunda Sabit Lazer Gücü Modu</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTSSpeed.ToolTip" xml:space="preserve">
-    <value>'Takım Değişikliği Ekle' ve 'Takım Değişikliği Gerçekleştir' etkinleştirildiyse, içe aktarma sırasında alet tablosundan değer alınacaktır</value>
+    <value>İçe aktarma sırasında seçilen değerleri araç tablosundan almak için 'Gruplama ve araçlar - Araç tablosu'nu seçin</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCToolM0.Text" xml:space="preserve">
@@ -1355,7 +1355,7 @@ Lazer Modunda Sabit Lazer Gücü Modu</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTXYFeed.ToolTip" xml:space="preserve">
-    <value>'Takım Değişikliği Ekle' ve 'Takım Değişikliği Gerçekleştir' etkinleştirildiyse, içe aktarma sırasında alet tablosundan değer alınacaktır</value>
+    <value>İçe aktarma sırasında seçilen değerleri araç tablosundan almak için 'Gruplama ve araçlar - Araç tablosu'nu seçin</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2lbl1.Text" xml:space="preserve">
@@ -1478,7 +1478,7 @@ Diğer kalem yukarı/aşağı seçenekleriyle kullanılamaz!</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTZAxis.ToolTip" xml:space="preserve">
-    <value>"Takım Değişikliği Ekle" ve "Takım Değişikliği Gerçekleştir" etkinleştirilirse, içe aktarma sırasında tüm Z değerleri alet tablosundan alınacaktır.</value>
+    <value>İçe aktarma sırasında seçilen değerleri araç tablosundan almak için 'Gruplama ve araçlar - Araç tablosu'nu seçin. İçe aktarma sırasında tüm Z değerleri takım tablosundan alınacaktır</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="nUDImportGCFeedZ.ToolTip" xml:space="preserve">
@@ -3729,5 +3729,8 @@ Maksimum derinlik, Z-Yüksekliği gravürü ile sınırlanacaktır.</value>
   </data>
   <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
     <value>X ekseni için orijin</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.ToolTip" xml:space="preserve">
+    <value>İçe aktarma sırasında seçilen değerleri araç tablosundan almak için 'Gruplama ve araçlar - Araç tablosu'nu seçin</value>
   </data>
 </root>

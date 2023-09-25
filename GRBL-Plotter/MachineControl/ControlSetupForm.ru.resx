@@ -341,7 +341,7 @@
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTSSpeed.ToolTip" xml:space="preserve">
-    <value>Если «Добавить изменение инструмента» и «Выполнить изменение инструмента» включены, значение будет взято из таблицы инструментов во время импорта</value>
+    <value>Выберите «Группировка и инструменты — Таблица инструментов», чтобы получить выбранные значения из таблицы инструментов во время импорта.</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCToolM0.Text" xml:space="preserve">
@@ -373,7 +373,7 @@
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTXYFeed.ToolTip" xml:space="preserve">
-    <value>Если «Добавить изменение инструмента» и «Выполнить изменение инструмента» включены, значение будет взято из таблицы инструментов во время импорта</value>
+    <value>Выберите «Группировка и инструменты — Таблица инструментов», чтобы получить выбранные значения из таблицы инструментов во время импорта.</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="tBImportGCHeader.ToolTip" xml:space="preserve">
@@ -402,7 +402,7 @@
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTZAxis.ToolTip" xml:space="preserve">
-    <value>Если «Добавить изменение инструмента» и «Выполнить изменение инструмента» включены, значение будет взято из таблицы инструментов во время импорта</value>
+    <value>Выберите «Группировка и инструменты — Таблица инструментов», чтобы получить выбранные значения из таблицы инструментов во время импорта. Все значения Z будут взяты из таблицы инструментов во время импорта.</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCZIncEnable.Text" xml:space="preserve">
@@ -3631,5 +3631,8 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   </data>
   <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
     <value>Начало оси X</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.ToolTip" xml:space="preserve">
+    <value>Выберите «Группировка и инструменты — Таблица инструментов», чтобы получить выбранные значения из таблицы инструментов во время импорта.</value>
   </data>
 </root>

@@ -1392,6 +1392,7 @@ namespace GrblPlotter
         {
             bool enable = cBToolTableUse.Checked;
             cBImportGCTTSSpeed.Enabled = enable;
+            cBImportGCTTSSpeedPWM.Enabled = enable;
             cBImportGCTTXYFeed.Enabled = enable;
             cBImportGCTTZAxis.Enabled = (enable && cBImportGCUseZ.Checked);
             CheckVisibility();
@@ -1438,6 +1439,7 @@ namespace GrblPlotter
 
             nUDImportGCFeedXY.Enabled = !(cBImportGCTTXYFeed.Checked && cBImportGCTTXYFeed.Enabled);
             nUDImportGCSSpeed.Enabled = !(cBImportGCTTSSpeed.Checked && cBImportGCTTSSpeed.Enabled);
+            nUDImportGCPWMDown.Enabled = !(cBImportGCTTSSpeed.Checked && cBImportGCTTSSpeed.Enabled);
         }
 
         private void CbImportGCUsePWM_CheckedChanged(object sender, EventArgs e)

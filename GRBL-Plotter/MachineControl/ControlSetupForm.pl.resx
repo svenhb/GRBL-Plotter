@@ -1803,7 +1803,7 @@ Tryb stałej mocy lasera w trybie lasera</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTSSpeed.ToolTip" xml:space="preserve">
-    <value>Jeśli opcje "Dodaj zmianę narzędzia" i "Wymiana narzędzia" są włączone, wartość zostanie pobrana z tabeli narzędzi podczas importu.</value>
+    <value>Wybierz opcję „Grupowanie i narzędzia – Tabela narzędzi”, aby podczas importu pobrać wybrane wartości z tabeli narzędzi</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2gB2.Text" xml:space="preserve">
@@ -1839,7 +1839,7 @@ Tryb stałej mocy lasera w trybie lasera</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTXYFeed.ToolTip" xml:space="preserve">
-    <value>Jeśli opcje "Dodaj zmianę narzędzia" i "Wymiana narzędzia" są włączone, wartość zostanie pobrana z tabeli narzędzi podczas importu.</value>
+    <value>Wybierz opcję „Grupowanie i narzędzia – Tabela narzędzi”, aby podczas importu pobrać wybrane wartości z tabeli narzędzi</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2lbl1.Text" xml:space="preserve">
@@ -1950,7 +1950,7 @@ Nie można używać z innymi opcjami pióra w górę/w dół!</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTZAxis.ToolTip" xml:space="preserve">
-    <value>Jeśli włączone są opcje "Dodaj zmianę narzędzia" i "Wykonaj zmianę narzędzia", wszystkie wartości Z zostaną pobrane z tabeli narzędzi podczas importu.</value>
+    <value>Wybierz opcję „Grupowanie i narzędzia – Tabela narzędzi”, aby podczas importu pobrać wybrane wartości z tabeli narzędzi. Podczas importu wszystkie wartości Z zostaną pobrane z tabeli narzędzi</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="nUDImportGCFeedZ.ToolTip" xml:space="preserve">
@@ -3582,5 +3582,8 @@ Np. do cięcia laserowego</value>
   </data>
   <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
     <value>Początek osi X</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.ToolTip" xml:space="preserve">
+    <value>Wybierz opcję „Grupowanie i narzędzia – Tabela narzędzi”, aby podczas importu pobrać wybrane wartości z tabeli narzędzi</value>
   </data>
 </root>

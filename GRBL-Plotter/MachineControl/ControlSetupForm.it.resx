@@ -2461,7 +2461,7 @@ La finestra di installazione deve essere chiusa per utilizzare Gamepad nella GUI
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTSSpeed.ToolTip" xml:space="preserve">
-    <value>Se 'Aggiungi cambio utensile' e 'Esegui cambio utensile' sono abilitati, il valore verrà preso dalla tabella utensili durante l'importazione</value>
+    <value>Selezionare 'Raggruppamento e utensili - Tabella utensili' per ottenere i valori selezionati dalla tabella utensili durante l'importazione</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCToolM0.Text" xml:space="preserve">
@@ -2485,7 +2485,7 @@ La finestra di installazione deve essere chiusa per utilizzare Gamepad nella GUI
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTXYFeed.ToolTip" xml:space="preserve">
-    <value>Se 'Aggiungi cambio utensile' e 'Esegui cambio utensile' sono abilitati, il valore verrà preso dalla tabella utensili durante l'importazione</value>
+    <value>Selezionare 'Raggruppamento e utensili - Tabella utensili' per ottenere i valori selezionati dalla tabella utensili durante l'importazione</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2lbl1.Text" xml:space="preserve">
@@ -2536,7 +2536,7 @@ La finestra di installazione deve essere chiusa per utilizzare Gamepad nella GUI
     <comment>TabPage1_2</comment>
   </data>
   <data name="cBImportGCTTZAxis.ToolTip" xml:space="preserve">
-    <value>Se 'Aggiungi cambio utensile' e 'Esegui cambio utensile' sono abilitati, tutto il valore Z sarà preso dalla tabella utensili durante l'importazione</value>
+    <value>Selezionare 'Raggruppamento e utensili - Tabella utensili' per ottenere i valori selezionati dalla tabella utensili durante l'importazione. Tutti i valori Z verranno presi dalla tabella utensili durante l'importazione</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="nUDImportGCZUp.ToolTip" xml:space="preserve">
@@ -3755,5 +3755,8 @@ Per esempio. per il taglio laser</value>
   </data>
   <data name="NudImportGraphicOffsetOriginX.ToolTip" xml:space="preserve">
     <value>Origine per l'asse X</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.ToolTip" xml:space="preserve">
+    <value>Selezionare 'Raggruppamento e utensili - Tabella utensili' per ottenere i valori selezionati dalla tabella utensili durante l'importazione</value>
   </data>
 </root>

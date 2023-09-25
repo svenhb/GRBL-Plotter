@@ -39,7 +39,7 @@ namespace GrblPlotter.GUI
         private void Splashscreen_Load(object sender, EventArgs e)
         {
             //    label1.Text = " Ver. " + System.Windows.Forms.Application.ProductVersion.ToString();
-            label1.Text = string.Format("Ver.:{0}", System.Windows.Forms.Application.ProductVersion.ToString());//, File.GetCreationTime(System.Reflection.Assembly.GetExecutingAssembly().Location).ToString("yyyy-MM-dd hh:mm:ss"));
+            label1.Text = string.Format("Ver.:{0}", MyApplication.GetVersion());//, File.GetCreationTime(System.Reflection.Assembly.GetExecutingAssembly().Location).ToString("yyyy-MM-dd hh:mm:ss"));
         }
     }
 }

@@ -93,6 +93,9 @@
  * 2023-05-30 l:464 f:ParseGlobals separate extraction of metadata for vers 1.7.0.0
  * 2023-06-13 l:2011 f:SVGStartPath limit SetGeometry length to 20
  * 2023-06-27 l:1520 f:ParsePathCommand add svgConvertCircleToDot functionality
+ * 2023-09-07 l:1375 f:ParsePathCommand check and fix arguments before processing   // Example to fix: '68.93206.00002'
+ *            l:1600 f:ParsePathCommand bug fix relative commands for C, S
+ *            
 */
 
 /* SetHeaderMessages...
@@ -141,8 +144,8 @@ namespace GrblPlotter
         private static float factor_Em2Px = 16; //150;
 
         public static string ConversionInfo { get; set; }
-		public static string MetaData { get; set; }
-		
+        public static string MetaData { get; set; }
+
         private static int shapeCounter = 0;
         private static int skipCounter = 0;
         private static int skip2ndCounter = 0;
@@ -196,13 +199,13 @@ namespace GrblPlotter
             }
         }
         public static bool ConvertFromFile(string filePath, BackgroundWorker worker, DoWorkEventArgs e)
-		{    return ConvertFromFile(filePath, false, worker, e);}		
+        { return ConvertFromFile(filePath, false, worker, e); }
         public static bool ConvertFromFile(string filePath, bool GetMetaData, BackgroundWorker worker, DoWorkEventArgs e)
         {
             unitIsPixel = false;
             fromClipboard = false;
-			MetaData = "";
-			
+            MetaData = "";
+
             backgroundWorker = worker;
             backgroundEvent = e;
 
@@ -223,10 +226,11 @@ namespace GrblPlotter
                     svgCode = XElement.Load(stream, LoadOptions.PreserveWhitespace);
                     System.Windows.Clipboard.SetData("image/svg+xml", stream);
                     stream.Dispose();
-					if (GetMetaData)
-					{	MetaData = GetMetadata(svgCode, "description");
-						return !string.IsNullOrEmpty(MetaData);
-					}
+                    if (GetMetaData)
+                    {
+                        MetaData = GetMetadata(svgCode, "description");
+                        return !string.IsNullOrEmpty(MetaData);
+                    }
                     return ConvertSVG(svgCode, filePath);                   // startConvert(svgCode);
                 }
                 else
@@ -242,10 +246,11 @@ namespace GrblPlotter
                     try
                     {
                         svgCode = XElement.Load(filePath, LoadOptions.PreserveWhitespace);    // PreserveWhitespace);
-						if (GetMetaData)
-						{	MetaData = GetMetadata(svgCode, "description");
-							return !string.IsNullOrEmpty(MetaData);
-						}
+                        if (GetMetaData)
+                        {
+                            MetaData = GetMetadata(svgCode, "description");
+                            return !string.IsNullOrEmpty(MetaData);
+                        }
                         return ConvertSVG(svgCode, filePath);                   // startConvert(svgCode);
                     }
                     catch (Exception err)
@@ -481,42 +486,42 @@ namespace GrblPlotter
             if (element != null)
             { Graphic.SetHeaderInfo(" Title: " + element.Value.Replace("\n", "").Replace("\r", "")); }
 
-			string metadata = GetMetadata(svgCode, "description");
-			if (!string.IsNullOrEmpty(metadata))
-				Graphic.SetHeaderInfo(" Description: " + metadata.Replace("\n", "_").Replace("\r", "_"));
+            string metadata = GetMetadata(svgCode, "description");
+            if (!string.IsNullOrEmpty(metadata))
+                Graphic.SetHeaderInfo(" Description: " + metadata.Replace("\n", "_").Replace("\r", "_"));
 
-			if (Properties.Settings.Default.importGraphicFilterEnable)					
-			{
-				string skipTxt = Properties.Settings.Default.importGraphicFilterChoiceRemove? "remove":"keep";
-				string listTxt = Properties.Settings.Default.importGraphicFilterChoiceRemove? Properties.Settings.Default.importGraphicFilterListRemove:Properties.Settings.Default.importGraphicFilterListKeep;
-				Graphic.SetHeaderInfo(string.Format(" Filtering is active: {0} {1}", skipTxt, listTxt));
+            if (Properties.Settings.Default.importGraphicFilterEnable)
+            {
+                string skipTxt = Properties.Settings.Default.importGraphicFilterChoiceRemove ? "remove" : "keep";
+                string listTxt = Properties.Settings.Default.importGraphicFilterChoiceRemove ? Properties.Settings.Default.importGraphicFilterListRemove : Properties.Settings.Default.importGraphicFilterListKeep;
+                Graphic.SetHeaderInfo(string.Format(" Filtering is active: {0} {1}", skipTxt, listTxt));
                 Logger.Info("⚠⚠ FilterProperties {0} figures: {1}", skipTxt, listTxt);
-			}
+            }
             return;
         }
 
-		private static string GetMetadata(XElement svgCode, string keyWord)
-		{
+        private static string GetMetadata(XElement svgCode, string keyWord)
+        {
             var xtmp = svgCode.Element(nspace + "metadata");
             if ((xtmp) != null)
             {
                 XNamespace ccspace = "http://creativecommons.org/ns#";
                 XNamespace rdfspace = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
                 XNamespace dcspace = "http://purl.org/dc/elements/1.1/";
-             //   if ((xtmp = xtmp.Element(dcspace + keyWord)) != null)
-               //     return xtmp.Value;
+                //   if ((xtmp = xtmp.Element(dcspace + keyWord)) != null)
+                //     return xtmp.Value;
 
                 if ((xtmp = xtmp.Element(rdfspace + "RDF")) != null)
                 {
                     if ((xtmp = xtmp.Element(ccspace + "Work")) != null)
                     {
                         if ((xtmp = xtmp.Element(dcspace + keyWord)) != null)
-							return xtmp.Value;
+                            return xtmp.Value;
                     }
                 }
-            }	
-			return "";
-		}
+            }
+            return "";
+        }
 
         /// <summary>
         /// Parse Group-Element and included elements
@@ -653,8 +658,8 @@ namespace GrblPlotter
         {
             if (isGroup) Graphic.SetDash(new double[0]);     // clear dash
 
-			bool filterKeepColor = false;
-			bool filterKeepWidth = false;
+            bool filterKeepColor = false;
+            bool filterKeepWidth = false;
 
             attributeStroke = "";
             attributeFill = "";
@@ -704,9 +709,9 @@ namespace GrblPlotter
             }
 
             globalTextProp.Update(element);
-			if (Properties.Settings.Default.importGraphicFilterEnable)
-				return (filterKeepColor || filterKeepWidth);
-			return true;
+            if (Properties.Settings.Default.importGraphicFilterEnable)
+                return (filterKeepColor || filterKeepWidth);
+            return true;
         }
 
         private static bool SetPenWidth(string txt)
@@ -944,7 +949,7 @@ namespace GrblPlotter
             string elementText = pathElement.ToString();
             elementText = elementText.Substring(0, Math.Min(80, elementText.Length));
 
-        //    Logger.Info("►►► ParseBasicElement {0}", elementText);
+            //    Logger.Info("►►► ParseBasicElement {0}", elementText);
 
             string pathElementString = pathElement.ToString();
             pathElementString = pathElementString.Substring(0, Math.Min(100, pathElementString.Length));
@@ -1301,13 +1306,14 @@ namespace GrblPlotter
                     oldMatrixElement = matrixElement;
                     lastTransformMatrix = ParseTransform(pathElement, false, level);    // transform will be applied in gcodeMove
 
-                    if (!ParseAttributs(pathElement)) 	// process color and stroke-dasharray
-					{	skipCounter++;
-						continue;
-					}
+                    if (!ParseAttributs(pathElement))   // process color and stroke-dasharray
+                    {
+                        skipCounter++;
+                        continue;
+                    }
                     shapeCounter++;
 
-                //    Logger.Trace("ParseAttributs {0}", pathElement);
+                    //    Logger.Trace("ParseAttributs {0}", pathElement);
 
                     if (pathElement.Attribute("id") != null)
                     {
@@ -1365,11 +1371,27 @@ namespace GrblPlotter
             char cmd = char.ToUpper(command);
             bool absolute = (cmd == command);
             string remainingargs = svgPath.Substring(1);
-            // 2020-01-13 "@"-?(?:\d*\.)?\d+|[a-z]";"   nok
-            string argSeparators = @"[\s,]|(?=(?<!e)-)";// @"[\s,]|(?=-)|(-{,2})";        // support also -1.2e-3 orig. @"[\s,]|(?=-)"; 
+
+            string argSeparators = @"[\s,]|(?=(?<!e)-)";
             var splitArgs = Regex
                 .Split(remainingargs, argSeparators)
-                .Where(t => !string.IsNullOrEmpty(t));
+                .Where(t => !string.IsNullOrEmpty(t)).ToList();
+
+            double testNr;
+            for (int iArg = 0; iArg < splitArgs.Count(); iArg++)
+            {
+                if (splitArgs[iArg].Count(f => (f == '.')) > 1)
+                {
+                    Logger.Error("ParsePathCommand found bad argument:{0} at {1}", splitArgs[iArg], iArg);  // Example to fix: '68.93206.00002'
+                    var strSplit = splitArgs[iArg].Split('.');
+                    if (strSplit.Length > 2)
+                    {
+                        splitArgs[iArg] = "0." + strSplit[2];
+                        splitArgs.Insert(iArg, strSplit[0] + "." + strSplit[1]);
+                        Logger.Info("ParsePathCommand fixed bad arguments to:{0} and {1}", splitArgs[iArg], splitArgs[iArg + 1]);
+                    }
+                }
+            }
 
             float[] floatArgs = splitArgs.Select(arg => ConvertToPixel(arg)).ToArray();
 
@@ -1422,6 +1444,7 @@ namespace GrblPlotter
                         }
 
                         lastX = currentX; lastY = currentY;
+                        cMirror = new Vector(lastX, lastY);
                     }
 
                     break;
@@ -1460,7 +1483,7 @@ namespace GrblPlotter
                         else
                             SVGMoveTo(currentX, currentY, command.ToString());
                         lastX = currentX; lastY = currentY;
-                        //        cxMirror = currentX; cyMirror = currentY;
+                        cMirror = new Vector(lastX, lastY);
                     }
                     break;
                 #endregion
@@ -1478,6 +1501,7 @@ namespace GrblPlotter
                         else
                             SVGMoveTo(currentX, currentY, command.ToString());
                         lastX = currentX; lastY = currentY;
+                        cMirror = new Vector(lastX, lastY);
                     }
                     break;
                 #endregion
@@ -1495,6 +1519,7 @@ namespace GrblPlotter
                         else
                             SVGMoveTo(currentX, currentY, command.ToString());
                         lastX = currentX; lastY = currentY;
+                        cMirror = new Vector(lastX, lastY);
                     }
                     break;
                 #endregion
@@ -1524,24 +1549,32 @@ namespace GrblPlotter
                         if (svgNodesOnly)
                             GCodeDotOnly(currentX, currentY, command.ToString());
                         else
-						{
-							if (svgConvertCircleToDot && (rx == ry))
-							{
-								if (Properties.Settings.Default.importSVGCircleToDotZ)
-									GCodeDotOnlyWithZ(currentX, currentY, rx, "Dot r=Z");
-								else
-									GCodeDotOnly(currentX, currentY, "Dot");
-							}
-							else
-							{	ImportMath.CalcArc(lastX, lastY, rx, ry, rot, large, sweep, nx, ny, SVGMoveTo);}
-						}
+                        {
+                            if (svgConvertCircleToDot && (rx == ry))
+                            {
+                                if (Properties.Settings.Default.importSVGCircleToDotZ)
+                                    GCodeDotOnlyWithZ(currentX, currentY, rx, "Dot r=Z");
+                                else
+                                    GCodeDotOnly(currentX, currentY, "Dot");
+                            }
+                            else
+                            { ImportMath.CalcArc(lastX, lastY, rx, ry, rot, large, sweep, nx, ny, SVGMoveTo); }
+                        }
                         lastX = nx; lastY = ny;
+                        cMirror = new Vector(lastX, lastY);
                     }
                     break;
                 #endregion
                 case 'C':       // Draws a cubic Bézier curve from the current point to (x,y)
                     #region Cubic
+                    // relative:      d="m 100,200 c  0,-100 150,-100 150,0  |  0,100  150,100 150,0"
+                    // absolute:      d="M 100,200 C 100,100 250,100 250,200 | 250,300 400,300 400,200"
                     if (svgComments) { Graphic.SetComment(string.Format(" Command {0} {1} ", command.ToString(), ((absolute == true) ? "absolute" : "relative"))); }
+
+                    Point Off = new Point(offsetX, offsetY);
+                    if (!absolute)
+                        Off = new Point(lastX, lastY);
+
                     for (int rep = 0; rep < floatArgs.Length; rep += 6)
                     {
                         if (floatArgs.Length < (rep + 6))
@@ -1553,13 +1586,8 @@ namespace GrblPlotter
                         objCount++;
                         if (svgComments) { Graphic.SetComment(string.Format(" draw curve nr. {0} ", (1 + rep / 6))); }
 
-
                         if ((rep + 5) < floatArgs.Length)
                         {
-
-                            Point Off = new Point(offsetX, offsetY);
-                            if (!absolute)
-                                Off = new Point(lastX, lastY);
                             Vector c1 = new Vector(floatArgs[rep + 0], floatArgs[rep + 1]) + (Vector)Off;
                             Vector c2 = new Vector(floatArgs[rep + 2], floatArgs[rep + 3]) + (Vector)Off;
                             Vector c3 = new Vector(floatArgs[rep + 4], floatArgs[rep + 5]) + (Vector)Off;
@@ -1577,6 +1605,9 @@ namespace GrblPlotter
 
                             lastX = (float)c3.X; lastY = (float)c3.Y;
 
+                            if (!absolute)  // 08.09.2023
+                                Off = new Point(lastX, lastY);
+
                             cMirror = c3 * 2 - c2;
                         }
                         else
@@ -1587,6 +1618,11 @@ namespace GrblPlotter
                 case 'S':       // Draws a cubic Bézier curve from the current point to (x,y)
                     #region Small Cubic
                     if (svgComments) { Graphic.SetComment(string.Format(" Command {0} {1} ", command.ToString(), ((absolute == true) ? "absolute" : "relative"))); }
+
+                    Off = new Point(offsetX, offsetY);
+                    if (!absolute)
+                        Off = new Point(lastX, lastY);
+
                     for (int rep = 0; rep < floatArgs.Length; rep += 4)
                     {
                         if (floatArgs.Length < (rep + 4))
@@ -1598,17 +1634,18 @@ namespace GrblPlotter
                         objCount++;
                         if (svgComments) { Graphic.SetComment(string.Format(" draw curve nr. {0} ", (1 + rep / 4))); }
 
-                        Point Off = new Point(offsetX, offsetY);
-                        if (!absolute)
-                            Off = new Point(lastX, lastY);
                         Vector c2 = new Vector(floatArgs[rep + 0], floatArgs[rep + 1]) + (Vector)Off;
                         Vector c3 = new Vector(floatArgs[rep + 2], floatArgs[rep + 3]) + (Vector)Off;
+
                         if (svgNodesOnly)
                             GCodeDotOnly((float)c3.X, (float)c3.Y, command.ToString());
                         else
                             ImportMath.CalcCubicBezier(new Point(lastX, lastY), (Point)cMirror, (Point)c2, (Point)c3, SVGMoveTo, command.ToString());
 
                         lastX = (float)c3.X; lastY = (float)c3.Y;
+
+                        if (!absolute)  // 08.09.
+                            Off = new Point(lastX, lastY);
 
                         cMirror = c3 * 2 - c2;
                     }
@@ -1617,6 +1654,11 @@ namespace GrblPlotter
                 case 'Q':       // Draws a quadratic Bézier curve from the current point to (x,y)
                     #region Quadratic
                     if (svgComments) { Graphic.SetComment(string.Format(" Command {0} {1} ", command.ToString(), ((absolute == true) ? "absolute" : "relative"))); }
+
+                    Off = new Point(offsetX, offsetY);
+                    if (!absolute)
+                        Off = new Point(lastX, lastY);
+
                     for (int rep = 0; rep < floatArgs.Length; rep += 4)
                     {
                         if (floatArgs.Length < (rep + 4))
@@ -1628,17 +1670,18 @@ namespace GrblPlotter
                         objCount++;
                         if (svgComments) { Graphic.SetComment(string.Format(" draw curve nr. {0} ", (1 + rep / 4))); }
 
-                        Point Off = new Point(offsetX, offsetY);
-                        if (!absolute)
-                            Off = new Point(lastX, lastY);
                         Vector c2 = new Vector(floatArgs[rep + 0], floatArgs[rep + 1]) + (Vector)Off;
                         Vector c3 = new Vector(floatArgs[rep + 2], floatArgs[rep + 3]) + (Vector)Off;
+
                         if (svgNodesOnly)
                             GCodeDotOnly((float)c3.X, (float)c3.Y, command.ToString());
                         else
                             ImportMath.CalcQuadraticBezier(new Point(lastX, lastY), (Point)c2, (Point)c3, SVGMoveTo, command.ToString());
 
                         lastX = (float)c3.X; lastY = (float)c3.Y;
+
+                        if (!absolute)  // 08.09.
+                            Off = new Point(lastX, lastY);
 
                         cMirror = c3 * 2 - c2;
                     }
@@ -1647,6 +1690,11 @@ namespace GrblPlotter
                 case 'T':       // Draws a quadratic Bézier curve from the current point to (x,y)
                     #region TQuadratic
                     if (svgComments) { Graphic.SetComment(string.Format(" Command {0} {1} ", command.ToString(), ((absolute == true) ? "absolute" : "relative"))); }
+
+                    Off = new Point(offsetX, offsetY);
+                    if (!absolute)
+                        Off = new Point(lastX, lastY);
+
                     for (int rep = 0; rep < floatArgs.Length; rep += 2)
                     {
                         if (floatArgs.Length < (rep + 2))
@@ -1658,10 +1706,8 @@ namespace GrblPlotter
                         objCount++;
                         if (svgComments) { Graphic.SetComment(string.Format(" draw curve nr. {0} ", (1 + rep / 2))); }
 
-                        Point Off = new Point(offsetX, offsetY);
-                        if (!absolute)
-                            Off = new Point(lastX, lastY);
                         Vector c3 = new Vector(floatArgs[rep + 0], floatArgs[rep + 1]) + (Vector)Off;
+
                         if (svgNodesOnly)
                             GCodeDotOnly((float)c3.X, (float)c3.Y, command.ToString());
                         else
@@ -2016,7 +2062,7 @@ namespace GrblPlotter
         {
             Point tmp = TranslateXY(x, y);  // convert from SVG-Units to GCode-Units
             if (logEnable) Logger.Trace("▼▼▼ SVGStart at:x:{0:0.000} y:{1:0.000}  svg:{2}  set:{3}", tmp.X, tmp.Y, cmt, setGeometry);
-            if (setGeometry) Graphic.SetGeometry((cmt.Length > 20)? cmt.Substring(0,20):cmt);
+            if (setGeometry) Graphic.SetGeometry((cmt.Length > 20) ? cmt.Substring(0, 20) : cmt);
             Graphic.StartPath(tmp);
         }
 

@@ -687,4 +687,19 @@ Solution de contournement possible : essayez de convertir l'objet en chemin.</v
   <data name="mainStartMissingFiles" xml:space="preserve">
     <value>Fichiers de programme manquants,&lt;br&gt;veuillez vérifier l'installation de GRBL-Plotter</value>
   </data>
+  <data name="statusStripeSelectionMoveShift" xml:space="preserve">
+    <value>Appuyez sur Shift pour accrocher la grille</value>
+  </data>
+  <data name="statusStripeSelectionResize" xml:space="preserve">
+    <value>Redimensionné par</value>
+  </data>
+  <data name="statusStripeSelectionResizeCtrl" xml:space="preserve">
+    <value>Appuyez sur Ctrl pour maintenir le rapport</value>
+  </data>
+  <data name="statusStripeSelectionRotate" xml:space="preserve">
+    <value>Retourné</value>
+  </data>
+  <data name="statusStripeSelectionRotateShift" xml:space="preserve">
+    <value>Appuyez sur Shift pour afficher les degrés complets</value>
+  </data>
 </root>

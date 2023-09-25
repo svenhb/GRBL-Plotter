@@ -129,7 +129,7 @@ namespace GrblPlotter
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
 
-            Logger.Info(culture, "###### START GRBL-Plotter Ver. {0}  Language: {1}   OS: {2} ######", Application.ProductVersion, ci, System.Environment.OSVersion);
+            Logger.Info(culture, "###### START GRBL-Plotter Ver. {0} {1} Language: {2}   OS: {3} ######", MyApplication.GetVersion(), MyApplication.GetCompilationDate(), ci, System.Environment.OSVersion);
             Logger.Info("Info {0}", Properties.Settings.Default.guiLastEndReason);
             EventCollector.Init();
             UpdateLogging();            // set logging flags
@@ -1300,7 +1300,7 @@ namespace GrblPlotter
             Properties.Settings.Default.guiDimensionShow = toolStripViewDimension.Checked;
             Properties.Settings.Default.guiBackgroundShow = toolStripViewBackground.Checked;
             Properties.Settings.Default.machineLimitsFix = toolStripViewMachineFix.Checked;
-            zoomFactor = 1;
+            zoomFactorMin = zoomFactor = 1;
             VisuGCode.DrawMachineLimit();// ToolTable.GetToolCordinates());
             pictureBox1.Invalidate();                                   // resfresh view
         }

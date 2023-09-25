@@ -58,6 +58,7 @@
  * 2023-03-04 line 778 check if text is null
  * 2023-05-30 l:1037 f:StartConvert add message form with SVG meta data for vers 1.7.0.0
  * 2023-07-02 l:1205 f:LoadTimer_Tick add stop in catch{}
+ * 2023-09-06 l:339 f:NewCodeEnd add SetSelection (MainFormPictureBox.cs) to select new object
 */
 /*   96 #region MAIN-MENU FILE
  * 1483 MainForm_KeyDown  
@@ -201,7 +202,7 @@ namespace GrblPlotter
             Logger.Trace("===== newCodeStart - clear 2D-view and editor");
             stopwatch.Start();
             Cursor.Current = Cursors.WaitCursor;
-            pBoxTransform.Reset(); zoomFactor = 1;
+            pBoxTransform.Reset(); zoomFactorMin = zoomFactor = 1;
             showPicBoxBgImage = false;                  // don't show background image anymore
             pictureBox1.BackgroundImage = null;
             pictureBox1.Image = null;
@@ -260,26 +261,17 @@ namespace GrblPlotter
             Logger.Info("▄▄▄▄  Object count:{0}  maxObjects:{1}  Process Gcode lines-showProgress:{2}", objectCount, maxObjects, (objectCount > maxObjects));
 
             loadTimerStep = 0;
+            int codeInsertedAt = -1;
             if (objectCount <= maxObjects)  // set FctbCode.Text directly OR via GCodeVisuWorker.cs
             {
                 if (imported && (Graphic.GCode != null))
                 {
-                    SetFctbCodeText(Graphic.GCode.ToString(), imported);    // newCodeEnd
+                    codeInsertedAt = SetFctbCodeText(Graphic.GCode.ToString(), imported);    // newCodeEnd
                 }
                 VisuGCode.GetGCodeLines(fCTBCode.Lines, null, null);    // get code path
             }
             else
             {
-                /*    if (imported)
-                    {
-                        string info = "PLEASE WAIT !!!\r\nDisplaying a large number of lines,\r\nthis may takes some seconds.\r\n\r\n" +
-                            "Check [Setup - Program behavior - Load G-Code]\r\nto reduce time by skipping display options\r\nwhen exceeding a number of x-thousand lines.";
-
-                        info += string.Format("\r\n{0,8} Lines in file\r\n{1,8} limit to skip display options", lineCount, (Properties.Settings.Default.ctrlImportSkip * 1000));
-                        fCTBCode.Text = info;
-                        loadTimerStep = 1;
-                    }*/
-
                 int lineCount = 0;
                 using (VisuWorker f = new VisuWorker())					// GCodeVisuWorker.cs
                 {
@@ -288,8 +280,8 @@ namespace GrblPlotter
                     else
                     {
                         lineCount = f.SetTmpGCode();
-                        string info = "PLEASE WAIT !!!\r\nDisplaying a large number of lines,\r\nthis may takes some seconds.\r\n\r\n" +
-            "Check [Setup - Program behavior - Load G-Code]\r\nto reduce time by skipping display options\r\nwhen exceeding a number of x-thousand lines.";
+                        string info =   "PLEASE WAIT !!!\r\nDisplaying a large number of lines,\r\nthis may takes some seconds.\r\n\r\n" +
+                                        "Check [Setup - Program behavior - Load G-Code]\r\nto reduce time by skipping display options\r\nwhen exceeding a number of x-thousand lines.";
 
                         info += string.Format("\r\n{0,8} Lines in file\r\n{1,8} limit to skip display options", lineCount, (Properties.Settings.Default.ctrlImportSkip * 1000));
                         fCTBCode.Text = info;
@@ -339,6 +331,13 @@ namespace GrblPlotter
 
             // https://docs.microsoft.com/de-de/dotnet/desktop/winforms/automatic-scaling-in-windows-forms?view=netframeworkdesktop-4.8
             // PerformAutoScale();		// absichtlich
+
+            Logger.Trace("NewCodeEnd imported:{0}  insertAt:{1}", imported, codeInsertedAt);
+            if (imported && Properties.Settings.Default.fromFormInsertEnable)
+            {
+                if (codeInsertedAt > 1)
+                    SetSelection(codeInsertedAt + 3, XmlMarkerType.Figure);
+            }
         }
 
         private static bool timerShowGCodeError = false;
@@ -886,7 +885,7 @@ namespace GrblPlotter
                     }
 
                     GCodeFromHpgl.ConvertFromText(txt);
-                    SetFctbCodeText(Graphic.GCode.ToString());      // loadFromClipboard DXF
+                    SetFctbCodeText(Graphic.GCode.ToString());      // loadFromClipboard HPGL
 
                     Properties.Settings.Default.counterImportHPGL += 1;
                     if (fCTBCode.LinesCount <= 1)

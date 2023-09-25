@@ -28,6 +28,7 @@
  * 2021-11-18 show path-nodes gui2DShowVertexEnable - will be switched off on prog-start	 
  * 2022-04-07 DrawHeightMap add side-view of shape at y=0 and x=0 (below and left of hight-map grid)
  * 2023-04-11 l:683 f:CreateRuler lock object to avoid 'object is currently in use elsewhere'
+ * 2023-09-01 new l:700 f:SetRulerDimension / l:380 f:DrawMachineLimit update grid
 */
 
 using System;
@@ -50,6 +51,7 @@ namespace GrblPlotter
     internal static partial class VisuGCode
     {
         internal static DrawingProperties drawingSize = new DrawingProperties();
+        internal static DrawingProperties RulerDimension = new DrawingProperties();
 
         internal static GraphicsPath pathPenUp = new GraphicsPath();
         internal static GraphicsPath pathPenDown = new GraphicsPath();
@@ -356,8 +358,8 @@ namespace GrblPlotter
         /// </summary>
         internal static void DrawMachineLimit()
         {
-            float offsetX = (float)Grbl.posWCO.X;   // (float)machinePos.X - (float)grbl.posWork.X;// toolPos.X;
-            float offsetY = (float)Grbl.posWCO.Y;   // (float)machinePos.Y- (float)grbl.posWork.Y;//toolPos.Y;
+            float offsetX = (float)Grbl.posWCO.X;
+            float offsetY = (float)Grbl.posWCO.Y;
             float x1 = (float)Properties.Settings.Default.machineLimitsHomeX - offsetX;
             float y1 = (float)Properties.Settings.Default.machineLimitsHomeY - offsetY;
             float rx = (float)Properties.Settings.Default.machineLimitsRangeX;
@@ -369,12 +371,20 @@ namespace GrblPlotter
             matrix.Scale(1, -1);
 
             RectangleF pathRect1 = new RectangleF(x1, y1, rx, ry);
-            RectangleF pathRect2 = new RectangleF(x1 - extend, y1 - extend, rx + 2 * extend, ry + 2 * extend); //(float.MinValue, float.MinValue, float.MaxValue, float.MaxValue);
-                                                                                                               //      RectangleF pathRect3 = new RectangleF(x1, y1 - 30, rx, ry + 20); //(float.MinValue, float.MinValue, float.MaxValue, float.MaxValue);
+            RectangleF pathRect2 = new RectangleF(x1 - extend, y1 - extend, rx + 2 * extend, ry + 2 * extend);
+
             pathMachineLimit.Reset();
             pathMachineLimit.StartFigure();
             pathMachineLimit.AddRectangle(pathRect1);
             pathMachineLimit.AddRectangle(pathRect2);
+
+            if (Properties.Settings.Default.machineLimitsShow)
+            {
+                DrawingProperties drawingSize = new DrawingProperties();
+                drawingSize.SetX(x1, x1 + rx);
+                drawingSize.SetY(y1, y1 + ry);
+                SetRulerDimension(drawingSize);
+            }
 
             pathToolTable.Reset();
             if ((ToolTable.toolTableArray != null) && (ToolTable.toolTableArray.Count > 1))
@@ -688,13 +698,39 @@ namespace GrblPlotter
             }
         }
 
+
+		internal static DrawingProperties SetRulerDimension(DrawingProperties dP, bool allowSmaller=false)
+		{
+			bool update = false;
+			if (allowSmaller)
+			{
+				RulerDimension = dP;	
+				update = true;				
+			}
+			else
+			{
+				if (dP.minX < RulerDimension.minX) {RulerDimension.minX = dP.minX; update = true;}
+				if (dP.maxX > RulerDimension.maxX) {RulerDimension.maxX = dP.maxX; update = true;}
+				if (dP.minY < RulerDimension.minY) {RulerDimension.minY = dP.minY; update = true;}
+				if (dP.maxY > RulerDimension.maxY) {RulerDimension.maxY = dP.maxY; update = true;}
+			}
+			
+			if (update)
+				CreateRuler(pathRuler, RulerDimension);
+
+            return RulerDimension;
+        }
+		
+		
         private static object lockObject = new object();
 
         // Add ruler with division
-        internal static void CreateRuler(GraphicsPath path, DrawingProperties dP)
+        internal static void CreateRuler(GraphicsPath path, DrawingProperties dP, bool finest=false)
         {
             if (path == null)
             { Logger.Error("CreateRuler, path=null"); return; }
+
+        //    Logger.Info("CreateRuler minX:{0}  maxX:{1}",dP.minY, dP.maxX);
 
             path.Reset();
             pathGrid1.Reset();
@@ -726,6 +762,8 @@ namespace GrblPlotter
             }
             double rangeX = dP.maxX - dP.minX;
             double rangeY = dP.maxY - dP.minY;
+            if (finest)
+            { rangeX = rangeY = 1; }
 
             float x, y;
             for (float i = dP.minX; i < dP.maxX; i++)          // horizontal ruler
@@ -902,7 +940,8 @@ namespace GrblPlotter
             drawingSize.maxY = (float)(Math.Ceiling(xyzSize.maxy * extend / roundTo) * roundTo);
 
             //           createRuler(pathRuler, drawingSize.minX, drawingSize.maxX, drawingSize.minY, drawingSize.maxY);
-            CreateRuler(pathRuler, drawingSize);
+            //CreateRuler(pathRuler, drawingSize);
+			SetRulerDimension(drawingSize, true);
 
             if (markerSize <= 0)
                 markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (500 / xyzSize.dimy));
