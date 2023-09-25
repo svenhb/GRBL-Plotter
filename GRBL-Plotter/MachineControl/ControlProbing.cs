@@ -473,8 +473,11 @@ namespace GrblPlotter
         }
         private void RbCF_CheckedCHanged(object sender, EventArgs e)
         {
-            btnStartCF.Enabled = true;
             bool isActive = (((RadioButton)sender).Name == "rBCF1");
+            if(isActive)
+                btnStartCF.Enabled = true;
+            else 
+                btnStartCF.Enabled = xNeedFind.Checked || yNeedFind.Checked; ;
             rBCF1.Image = RotateImageUsi(isActive ? Properties.Resources.cfOn1 : Properties.Resources.cfOff1, -(float)nUDFindCenterAngle.Value);
             rBCF2.Image = RotateImageUsi(!isActive ? Properties.Resources.cfOn2 : Properties.Resources.cfOff2, -(float)nUDFindCenterAngle.Value);
 
@@ -483,6 +486,9 @@ namespace GrblPlotter
             SetNudEnable(0, true);
             SetNudEnable(1, true);
             SetNudEnable(2, !isActive);
+
+            xNeedFind.Enabled = !isActive;
+            yNeedFind.Enabled = !isActive;
         }
         private void NudFindCenterAngle_ValueChanged(object sender, EventArgs e)
         {
@@ -1031,7 +1037,7 @@ namespace GrblPlotter
 
         private void needFind_CheckedChanged(object sender, EventArgs e)
         {
-            btnStartCF.Enabled = !xNeedFind.Checked && !yNeedFind.Checked;
+            btnStartCF.Enabled = xNeedFind.Checked || yNeedFind.Checked;
         }
 
         private void SetNudEnable(int axis, bool en)
