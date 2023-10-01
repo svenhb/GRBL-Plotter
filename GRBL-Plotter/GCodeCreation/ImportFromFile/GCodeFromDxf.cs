@@ -79,6 +79,7 @@
  * 2023-04-10 l:187 f:ConvertFromFile check length for substring
  * 2023-06-02 l:809 f:ProcessEntities bug fix importSVGCircleToDot
  * 2023-09-09 l:987 f:CalcEllipse don't add offsetAngle to start/end angle issue #359
+ * 2023-09-11 l:855 f:ProcessEntities - DXFArc add offsetAngle to start/end angle issue #359
 */
 
 using DXFLib;
@@ -310,7 +311,7 @@ namespace GrblPlotter //DXFImporter
             srecord = doc.Tables.Styles;
             foreach (DXFStyleRecord str in srecord)
             {
-                Logger.Trace("Style {0}",str.FontFileName);
+                Logger.Trace("Style {0}", str.FontFileName);
             }
 
             int plotflag = 0;
@@ -483,7 +484,7 @@ namespace GrblPlotter //DXFImporter
             if (dxfColorNr != wasSetPenColorId) { Graphic.SetPenColorId(dxfColorNr); wasSetPenColorId = dxfColorNr; }
             if (dxfColorFill != wasSetPenFill) { Graphic.SetPenFill(dxfColorFill); wasSetPenFill = dxfColorFill; }
             if (dxfLineWeigth != wasSetPenWidth) { Graphic.SetPenWidth(string.Format("{0:0.00}", ((double)dxfLineWeigth / 100)).Replace(',', '.')); wasSetPenWidth = dxfLineWeigth; }//convert to mm, then to string
-       
+
             DXFPoint tmp = new DXFPoint();
             DXFPoint position = new DXFPoint
             {
@@ -844,8 +845,8 @@ namespace GrblPlotter //DXFImporter
             {
                 Graphic.SetGeometry("Arc");
                 DXFArc arc = (DXFArc)entity;
-                double X = (double)arc.Center.X + (double)offset.X;
-                double Y = (double)arc.Center.Y + (double)offset.Y;
+                double X = (double)arc.Center.X;
+                double Y = (double)arc.Center.Y;
                 double R = arc.Radius;
 
                 // ARC entites are always conter-clockwise.
@@ -858,9 +859,21 @@ namespace GrblPlotter //DXFImporter
                     double endX = (double)(X + R * Math.Cos(endA));
                     double endY = (double)(Y + R * Math.Sin(endA));
 
-                    if (logEnable) Logger.Trace(" Arc center: {0:0.000};{1:0.000}  R: {2:0.000}  start:{3:0.0}   end:{4:0.0}", X, Y, R, arc.StartAngle, arc.EndAngle);
-                    DXFStartPath(startX, startY, arc.Center.Z);//, "Start Arc");
-                    Graphic.AddArc(false, endX, endY, X - startX, Y - startY);//, "Arc");
+                    if (logEnable) 
+                        Logger.Trace(" Arc center: x:{0:0.000}  y:{1:0.000}  R:{2:0.000}  start:{3:0.0}   end:{4:0.0}", X, Y, R, arc.StartAngle, arc.EndAngle);
+
+                    double stx= startX, sty= startY, gx= endX, gy= endY, gi= (X - startX), gj= (Y - startY);
+                    if (offsetAngle != 0)
+                    {
+                        stx = (startX) * Math.Cos(offsetAngle * Math.PI / 180) - (startY) * Math.Sin(offsetAngle * Math.PI / 180);
+                        sty = (startX) * Math.Sin(offsetAngle * Math.PI / 180) + (startY) * Math.Cos(offsetAngle * Math.PI / 180);
+                        gx = (endX) * Math.Cos(offsetAngle * Math.PI / 180) - (endY) * Math.Sin(offsetAngle * Math.PI / 180);
+                        gy = (endX) * Math.Sin(offsetAngle * Math.PI / 180) + (endY) * Math.Cos(offsetAngle * Math.PI / 180);
+                        gi = (X - startX) * Math.Cos(offsetAngle * Math.PI / 180) - (Y - startY) * Math.Sin(offsetAngle * Math.PI / 180);
+                        gj = (X - startX) * Math.Sin(offsetAngle * Math.PI / 180) + (Y - startY) * Math.Cos(offsetAngle * Math.PI / 180);
+                    }
+                    DXFStartPath(stx + (double)offset.X, sty + (double)offset.Y, arc.Center.Z);//, "Start Arc");
+                    Graphic.AddArc(false, gx + (double)offset.X, gy + (double)offset.Y, gi , gj);//, "Arc");
                     DXFStopPath();
                 }
                 else

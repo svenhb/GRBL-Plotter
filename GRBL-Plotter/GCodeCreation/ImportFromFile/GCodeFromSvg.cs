@@ -95,6 +95,7 @@
  * 2023-06-27 l:1520 f:ParsePathCommand add svgConvertCircleToDot functionality
  * 2023-09-07 l:1375 f:ParsePathCommand check and fix arguments before processing   // Example to fix: '68.93206.00002'
  *            l:1600 f:ParsePathCommand bug fix relative commands for C, S
+ * 2023-09-12 l:1390 f:ParsePathCommand also take care of this combination          // 1.042.018.751.751
  *            
 */
 
@@ -1386,9 +1387,14 @@ namespace GrblPlotter
                     var strSplit = splitArgs[iArg].Split('.');
                     if (strSplit.Length > 2)
                     {
-                        splitArgs[iArg] = "0." + strSplit[2];
+                        splitArgs[iArg] = "0." + strSplit[strSplit.Length-1];
+                        for (int k = strSplit.Length - 2; k > 1; k--)
+                        {
+                            splitArgs.Insert(iArg, "0." + strSplit[k]);
+                        //    Logger.Info("ParsePathCommand fixed bad arguments to:{0} and {1}", splitArgs[iArg], splitArgs[iArg + 1]);
+                        }
                         splitArgs.Insert(iArg, strSplit[0] + "." + strSplit[1]);
-                        Logger.Info("ParsePathCommand fixed bad arguments to:{0} and {1}", splitArgs[iArg], splitArgs[iArg + 1]);
+                     //   Logger.Info("ParsePathCommand fixed bad arguments to:{0} and {1}", splitArgs[iArg], splitArgs[iArg + 1]);
                     }
                 }
             }
@@ -1530,7 +1536,7 @@ namespace GrblPlotter
                     {
                         if (floatArgs.Length < (rep + 7))
                         {
-                            Logger.Error("Elliptical arc curve command needs 7 arguments '{0}'", svgPath);
+                            Logger.Error("Elliptical arc curve command needs 7 arguments {0}  {1}  '{2}'", rep, floatArgs.Length, svgPath);
                             Graphic.SetHeaderInfo(" !!! Error: Elliptical arc curve command needs 7 arguments '" + svgPath + "'");
                             break;
                         }
