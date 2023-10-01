@@ -3,7 +3,7 @@ Needs to be read from the bottom up ;-)
 
 ### 2023-07 Version 1.7.0.x
 - Multiple file import via drag & drop: added some options
-- - Hatch fill extension: shrink enveloping path , delete enveloping path
+- Hatch fill extension: shrink enveloping path , delete enveloping path
 - Import parameter options: Largset object last, sort by dimension
 - Get GCode parameter from SVG meta data - idea from here: https://github.com/arkypita/LaserGRBL/issues/2052 
  https://grbl-plotter.de/index.php?id=form-setup-1#format-related
