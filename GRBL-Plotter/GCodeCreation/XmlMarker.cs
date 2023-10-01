@@ -32,13 +32,18 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq.Expressions;
 using System.Text;
+using System.Windows.Forms;
+using static System.Windows.Forms.LinkLabel;
 
 namespace GrblPlotter
 {
-    public enum XmlMarkerType { None, Tile, Group, Figure, Path, Pass, Contour, Fill, Node };
+    public enum XmlMarkerType { None, Collection, Tile, Group, Figure, Path, Pass, Contour, Fill, Node };
     public static class XmlMarker
     {   // order by hierachy / importance
+        public const string CollectionStart = "<Collection";
+        public const string CollectionEnd = "</Collection";
         public const string TileStart = "<Tile";
         public const string TileEnd = "</Tile";
         public const string GroupStart = "<Group";
@@ -96,14 +101,17 @@ namespace GrblPlotter
         internal static readonly List<BlockData> listFigures = new List<BlockData>();
         private static readonly List<BlockData> listGroups = new List<BlockData>();
         private static readonly List<BlockData> listTiles = new List<BlockData>();
+        private static readonly List<BlockData> listCollections = new List<BlockData>();
 
         internal static BlockData tmpFigure = new BlockData();
         internal static BlockData tmpGroup = new BlockData();
         internal static BlockData tmpTile = new BlockData();
+        internal static BlockData tmpCollection = new BlockData();
 
         internal static BlockData lastFigure = new BlockData();
         internal static BlockData lastGroup = new BlockData();
         internal static BlockData lastTile = new BlockData();
+        internal static BlockData lastCollection = new BlockData();
         internal static BlockData header = new BlockData();
         internal static BlockData footer = new BlockData();
 
@@ -118,7 +126,7 @@ namespace GrblPlotter
 
         public static void Reset()
         {
-            listFigures.Clear(); listGroups.Clear(); listTiles.Clear();
+            listFigures.Clear(); listGroups.Clear(); listTiles.Clear(); listCollections.Clear();
             header.LineStart = 0; header.LineEnd = 999999;
             footer.LineStart = footer.LineEnd = 0;
 
@@ -332,16 +340,20 @@ namespace GrblPlotter
         public static string GetAttributeValue(string element, string attribute, int offset)
         {
             //            Logger.Trace("   getAttributeValue  element:{0}  attribute:{1}", Element, Attribute);
-            if (element == null) return "";
-            if (attribute == null) return "";
+            if (string.IsNullOrEmpty(element)) return "";		//if (element == null) return "";
+            if (string.IsNullOrEmpty(attribute)) return "";		//if (attribute == null) return "";
             int posAttribute = element.IndexOf(attribute, offset);
             if (posAttribute <= 0) return "";
         //   	if ((attribute.Length + posAttribute) <= element.Length) return "";
 
             int strt = element.IndexOf('"', posAttribute + attribute.Length);
             int end = element.IndexOf('"', strt + 1);
-            string val = element.Substring(strt + 1, (end - strt - 1));
-            //            if (gcode.loggerTrace)  Logger.Trace(" getAttributeValue({0}, {1})  '{2}'  s:{3}  e:{4}", Element, Attribute, val, strt, end);
+			string val = "";
+			if (end > strt)
+				val = element.Substring(strt + 1, (end - strt - 1));
+			else
+            //            if (gcode.loggerTrace)  
+				Logger.Error(" getAttributeValue({0}, {1})  '{2}'  s:{3}  e:{4}", element, attribute, val, strt, end);
             return val;
         }
         public static int GetAttributeValueNumber(string element, string attribute)
@@ -384,7 +396,7 @@ namespace GrblPlotter
 
         internal static BlockData SetBlockData(int lineStart, string element, int figNr)
         {
-            //            Logger.Trace("   setBlockData");
+            //Logger.Trace("   setBlockData  {0}  {1}", lineStart, element);
             header.LineEnd = Math.Min(header.LineEnd, lineStart);   // lowest block-line = end of header
             BlockData tmp = new BlockData();
             tmp.MyIndex = 0;
@@ -395,26 +407,30 @@ namespace GrblPlotter
             tmp.FigureNr = figNr;
             tmp.Offset = new XyPoint();
 
-            //            if (gcode.loggerTrace) Logger.Trace("setBlockData {0}", element);
-            if (element.Contains("Id")) { tmp.Id = GetAttributeValueNumber(element, "Id"); }							// Id here and PathId below, should work anyway, because 'Id' comes first in XML-Tag
-            if (element.Contains("ToolNr")) { tmp.ToolNr = GetAttributeValueNumber(element, "ToolNr"); }
-            if (element.Contains("ToolName")) { tmp.ToolName = GetAttributeValue(element, "ToolName"); }
-            if (element.Contains("PathLength")) { tmp.PathLength = GetAttributeValueDouble(element, "PathLength"); }
-            if (element.Contains("PathArea")) { tmp.PathArea = GetAttributeValueDouble(element, "PathArea"); }
-            if (element.Contains("PathId")) { tmp.PathId = GetAttributeValue(element, "PathId"); }						// ...Id here
-            if (element.Contains("Layer")) { tmp.Layer = GetAttributeValue(element, "Layer"); }
-            if (element.Contains("Type")) { tmp.Type = GetAttributeValue(element, "Type"); }
-            if (element.Contains("CodeSize")) { tmp.CodeSize = GetAttributeValueNumber(element, "CodeSize"); }
-            if (element.Contains("CodeArea")) { tmp.CodeArea = GetAttributeValueNumber(element, "CodeArea"); }
-            if (element.Contains("Geometry")) { tmp.Geometry = GetAttributeValue(element, "Geometry"); }
-            if (element.Contains("PenColor")) { tmp.PenColor = GetAttributeValue(element, "PenColor"); }
-            if (element.Contains("PenWidth")) { tmp.PenWidth = GetAttributeValueDouble(element, "PenWidth"); }
-            if (element.Contains("OffsetX")) { XyPoint tmpPoint = tmp.Offset; tmpPoint.X = GetAttributeValueDouble(element, "OffsetX"); tmp.Offset = tmpPoint; }
-            if (element.Contains("OffsetY")) { XyPoint tmpPoint = tmp.Offset; tmpPoint.Y = GetAttributeValueDouble(element, "OffsetY"); tmp.Offset = tmpPoint; }
-
+            try
+            { //            if (gcode.loggerTrace) Logger.Trace("setBlockData {0}", element);
+                if (element.Contains("Id")) { tmp.Id = GetAttributeValueNumber(element, "Id"); }                            // Id here and PathId below, should work anyway, because 'Id' comes first in XML-Tag
+                if (element.Contains("ToolNr")) { tmp.ToolNr = GetAttributeValueNumber(element, "ToolNr"); }
+                if (element.Contains("ToolName")) { tmp.ToolName = GetAttributeValue(element, "ToolName"); }
+                if (element.Contains("PathLength")) { tmp.PathLength = GetAttributeValueDouble(element, "PathLength"); }
+                if (element.Contains("PathArea")) { tmp.PathArea = GetAttributeValueDouble(element, "PathArea"); }
+                if (element.Contains("PathId")) { tmp.PathId = GetAttributeValue(element, "PathId"); }                      // ...Id here
+                if (element.Contains("Layer")) { tmp.Layer = GetAttributeValue(element, "Layer"); }
+                if (element.Contains("Type")) { tmp.Type = GetAttributeValue(element, "Type"); }
+                if (element.Contains("CodeSize")) { tmp.CodeSize = GetAttributeValueNumber(element, "CodeSize"); }
+                if (element.Contains("CodeArea")) { tmp.CodeArea = GetAttributeValueNumber(element, "CodeArea"); }
+                if (element.Contains("Geometry")) { tmp.Geometry = GetAttributeValue(element, "Geometry"); }
+                if (element.Contains("PenColor")) { tmp.PenColor = GetAttributeValue(element, "PenColor"); }
+                if (element.Contains("PenWidth")) { tmp.PenWidth = GetAttributeValueDouble(element, "PenWidth"); }
+                if (element.Contains("OffsetX")) { XyPoint tmpPoint = tmp.Offset; tmpPoint.X = GetAttributeValueDouble(element, "OffsetX"); tmp.Offset = tmpPoint; }
+                if (element.Contains("OffsetY")) { XyPoint tmpPoint = tmp.Offset; tmpPoint.Y = GetAttributeValueDouble(element, "OffsetY"); tmp.Offset = tmpPoint; }
+            }
+            catch (Exception err)
+            {
+                Logger.Error(err, " SetBlockData {0} ", element);
+            }
             return tmp;
         }
-
 
         public static void FinishFigure(int lineEnd)
         {
@@ -775,6 +791,82 @@ namespace GrblPlotter
         public static bool IsFoldingMarkerTile(int line)
         {
             foreach (BlockData tmp in listTiles)
+            {
+                if ((line == tmp.LineStart) || (line == tmp.LineEnd))
+                { return true; }
+            }
+            return false;
+        }
+
+       
+        /**********************************************************************************/
+        public static void AddCollection(int lineStart, string element, int figureNR)
+        {
+            if (element != null)
+            {
+                tmpCollection = SetBlockData(lineStart, element, figureNR);
+                if (logEnable) Logger.Trace("AddCollection color:{0}  width{1}", tmpCollection.PenColor, tmpCollection.PenWidth);
+            }
+        }
+
+        public static void FinishCollection(int lineEnd)
+        {
+            tmpCollection.LineEnd = lineEnd;
+            tmpCollection.MyIndex = listCollections.Count;
+            listCollections.Add(tmpCollection);
+            footer.LineStart = footer.LineEnd = Math.Max(footer.LineStart, lineEnd);   // highest block-line = start of footer
+            //Logger.Info("FinishCollection {0}  {1}", tmpCollection.LineStart, tmpCollection.LineEnd);
+        }
+        public static int FindInsertPositionCollectionMostTop()//int current)
+        {
+            if (listCollections.Count > 0)
+                return listCollections[0].LineStart;
+            return -1;
+        }
+        public static int FindInsertPositionCollectionMostBottom()//int current)
+        {
+            if (listCollections.Count > 0)
+                return listCollections[listCollections.Count - 1].LineEnd + 1;
+            return -1;
+        }
+        public static int GetCollectionCount()
+        { return listCollections.Count; }
+
+        public static bool GetCollection(int lineNR)
+        { return GetCollection(lineNR, 0); }
+        public static bool GetCollection(int lineNR, int search)
+        {
+            if (listCollections.Count > 0)
+            {
+                if (search <= -1)     // search start/end before actual block
+                {
+                    if (lastCollection.MyIndex > 0)
+                    { lastCollection = listCollections[lastCollection.MyIndex - 1]; return true; }
+                    return false;
+                }
+                else if (search >= 1)     // search start/end before actual block
+                {
+                    if (lastCollection.MyIndex < listCollections.Count - 1)
+                    { lastCollection = listCollections[lastCollection.MyIndex + 1]; return true; }
+                    return false;
+                }
+                else
+                {
+                    foreach (BlockData tmp in listCollections)
+                    {
+                        if ((lineNR >= tmp.LineStart) && (lineNR <= tmp.LineEnd))
+                        {
+                            lastCollection = tmp;
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+        public static bool IsFoldingMarkerCollection(int line)
+        {
+            foreach (BlockData tmp in listCollections)
             {
                 if ((line == tmp.LineStart) || (line == tmp.LineEnd))
                 { return true; }

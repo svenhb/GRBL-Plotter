@@ -51,6 +51,8 @@
  * 2023-05-31 new class GcodeDefaults in vers 1.7.0.0
  * 2023-09-04 l:1626 f:GetValuesFromToolTable get GcodePwmDown also from tool table
  * 2023-09-05 l:858 f:GetStrGCode allow also 3 digitis
+ * 2023-09-23 l:1020 f:JobEnd  don't send M05 if (PreventSpindle)
+ * 2023-09-24 l:1500 f:Tool also take care of !PreventSpindle
 */
 
 using System;
@@ -996,10 +998,11 @@ namespace GrblPlotter
                         if (!gcodeToolChange)   // spindle on if no tool change
                         {
                             if (gcodeComments) cmt = " (" + cmto + " spindle )";
-                            else cmt = "job start";
+                            else cmt = "StartJob";
                             if (!PreventSpindle)
-                                SpindleOn(gcodeValue, cmt);
-                            else gcodeValue.AppendFormat("( {0}-3003: Spindle stays off )\r\n", CodeMessage.Attention);
+                            { SpindleOn(gcodeValue, cmt); }
+                            else
+                            { gcodeValue.AppendFormat("( {0}-3003: Spindle stays off )\r\n", CodeMessage.Attention); }
                         }
                     }
                 }
@@ -1013,9 +1016,12 @@ namespace GrblPlotter
             if (gcodeValue != null)
             {
                 if (gcodeComments) cmt = " (" + cmt + ")";
-                else cmt = "";
+                else cmt = "(EndJob)";
                 if (GcodeZApply || gcodeSpindleToggle)
-                    gcodeValue.AppendFormat("M{0}{1}\r\n", FrmtCode(5), cmt);
+                {
+                    if (!PreventSpindle)
+                    { gcodeValue.AppendFormat("M{0}{1}\r\n", FrmtCode(5), cmt); }
+                }
             }
         }
 
@@ -1574,7 +1580,9 @@ namespace GrblPlotter
             string toolCmd;
             if (gcodeToolChange)                // otherweise no command needed
             {
-                if (GcodeZApply) Gcode.SpindleOff(gcodeValue, "Stop spindle - Option Z-Axis");
+                if (GcodeZApply && !PreventSpindle)
+                { Gcode.SpindleOff(gcodeValue, "Stop spindle - Option Z-Axis"); }
+
                 toolCmd = string.Format("T{0:D2} M{1} (Tool:{2} {3})", toolnr, FrmtCode(6), toolnr, cmt);
 
                 if (gcodeToolChangeM0)
@@ -1590,7 +1598,8 @@ namespace GrblPlotter
 
                 remainingC = (float)Properties.Settings.Default.importGCLineSegmentLength;	// start with full segment length
 
-                if (GcodeZApply && !gcodeSpindleToggle) { Gcode.SpindleOn(gcodeValue, "Start spindle - Option Z-Axis"); gcodeLines++; }
+                if (GcodeZApply && !gcodeSpindleToggle && !PreventSpindle) 
+                { Gcode.SpindleOn(gcodeValue, "Start spindle - Option Z-Axis"); gcodeLines++; }
             }
 
             // add gcode from tool table

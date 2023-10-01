@@ -887,6 +887,7 @@ namespace GrblPlotter
             double tlarge, largest = 0;
 
             if (logEnable) Logger.Trace("...RemoveOffset before min X:{0:0.00} Y:{1:0.00} caller:{2} --------------------------------------", actualDimension.minx, actualDimension.miny, s.GetFrame(1).GetMethod().Name);
+
             PathObject item;
             for (int i = 0; i < graphicToOffset.Count; i++)
             {
@@ -920,9 +921,6 @@ namespace GrblPlotter
 				}
 				else
 				{	Logger.Warn("...RemoveOffset index nok: iLargest:{0}  Count:{1}", iLargest, graphicToOffset.Count);}
-            //    PathObject tmp = graphicToOffset[graphicToOffset.Count - 1];
-            //    graphicToOffset[graphicToOffset.Count - 1] = graphicToOffset[iLargest];
-            //    graphicToOffset[iLargest] = tmp;
             }
         }
         #endregion
@@ -1026,6 +1024,7 @@ namespace GrblPlotter
                     PathData.Dimension.ScaleXY(scaleX, scaleY);
                 }
             }
+            actualDimension.ScaleXY(scaleX, scaleY);
         }
 
         private static void RepeatPaths(List<PathObject> graphicToRepeat, int repetitions)

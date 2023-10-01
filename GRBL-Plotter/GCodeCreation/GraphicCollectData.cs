@@ -53,8 +53,10 @@
  * 2023-07-02 l:296 f:StartPath ->  actualPath = new ItemPath(xy, GetActualZ());  
  * 2023-08-06 l:830 f:CreateGCode set SortByDistance start-pos to maxy
  * 2023-08-16 l:271 f:StartPath f:UpdateGUI pull request Speed up merge and sort #348
+ * 2023-09-16 l:774 f:CreateGCode wrong call to RemoveOffset(minx,minx) -> miny
 */
 
+using AForge.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -153,7 +155,7 @@ namespace GrblPlotter
 
 
         //private static bool updateMarker = false;
-        private static int lastUpdateMilliseconds = 0; 
+        private static int lastUpdateMilliseconds = 0;
         private static bool UpdateGUI()
         {
             //bool time = ((stopwatch.Elapsed.Milliseconds % 500) > 250);
@@ -275,8 +277,8 @@ namespace GrblPlotter
 
             // only continue last path if same layer, color, dash-pattern - if enabled
             //if ((lastPath is ItemPath apath) && (objectCount > 0) && HasSameProperties(apath, (ItemPath)actualPath) && (IsEqual(xy, lastPoint)))	// 2023-08-16 pull request Speed up merge and sort #348
-			if ((lastPath is ItemPath apath) && (objectCount > 0) && HasSameProperties(apath, (ItemPath)actualPath, Properties.Settings.Default.importLineDashPattern) && (IsEqual(xy, lastPoint)))
-			{
+            if ((lastPath is ItemPath apath) && (objectCount > 0) && HasSameProperties(apath, (ItemPath)actualPath, Properties.Settings.Default.importLineDashPattern) && (IsEqual(xy, lastPoint)))
+            {
                 actualPath = apath;             // only continoue last path if it was finished
                 actualPath.Options = lastOption;
                 if (logCoordinates) Logger.Trace("► StartPath-ADD (same properties and pos) Id:{0} at X:{1:0.00} Y:{2:0.00} {3}  start.X:{4:0.00} start.Y:{5:0.00}", objectCount, xy.X, xy.Y, actualPath.Info.List(), actualPath.Start.X, actualPath.Start.Y);
@@ -726,7 +728,9 @@ namespace GrblPlotter
             if (actualPath.Path.Count > 1)
                 StopPath("in CreateCode");  // save previous path
 
-            Logger.Info("▼▼▼▼  Graphic - CreateGCode count:{0}", completeGraphic.Count);
+            double dimX = (actualDimension.maxx - actualDimension.minx);
+            double dimY = (actualDimension.maxy - actualDimension.miny);
+            Logger.Info("▼▼▼▼  Graphic - CreateGCode count:{0}  dimX:{1:0.0}  dimY:{2:0.0}", completeGraphic.Count, dimX, dimY);
 
             if (Properties.Settings.Default.importGCRelative)
             { SetHeaderMessage(string.Format(" {0}-2010: GCode for relative movement commands G91 will be generated", CodeMessage.Warning)); }
@@ -763,14 +767,52 @@ namespace GrblPlotter
             /* remove offset */
             if (!cancelByWorker && graphicInformation.OptionCodeOffset && !graphicInformation.OptionClipCode)  // || (Properties.Settings.Default.importGraphicTile) 
             {
-                double offX =  (double)Properties.Settings.Default.importGraphicOffsetOriginX;
-                double offY =  (double)Properties.Settings.Default.importGraphicOffsetOriginY;
+                double offX = (double)Properties.Settings.Default.importGraphicOffsetOriginX;
+                double offY = (double)Properties.Settings.Default.importGraphicOffsetOriginY;
+                double gap = (double)Properties.Settings.Default.multipleLoadGap;
+
+                /*********** Adapt offset on mutlifile import ****************************/
+                if (Graphic2GCode.multiImport && !Properties.Settings.Default.multipleLoadLimitNo)
+                {
+                    double limitX = (double)(Properties.Settings.Default.machineLimitsRangeX + Properties.Settings.Default.machineLimitsHomeX);
+                    double limitY = (double)(Properties.Settings.Default.machineLimitsRangeY + Properties.Settings.Default.machineLimitsHomeY);
+                    Logger.Info("{0} Remove offset: X:{1:0.0}  Y:{2:0.0}  dimX:{3:0.0}  dimY:{4:0.0} maxX:{5:0.0} maxY:{6:0.0}", loggerTag, offX, offY, dimX, dimY, limitX, limitY);
+                    if (Properties.Settings.Default.multipleLoadByX)
+                    {
+                        if ((offX + dimX) > limitX)
+                        {
+                            offX = (double)Graphic2GCode.multiImportOffsetX;
+                            Properties.Settings.Default.importGraphicOffsetOriginX = Graphic2GCode.multiImportOffsetX + (decimal)(dimX + gap);
+                            offY = Graphic2GCode.multiImportMaxY + gap;
+                            Properties.Settings.Default.importGraphicOffsetOriginY = (decimal)offY;
+                        }
+                        else
+                        {   //offX += dimX + gap;
+                            Properties.Settings.Default.importGraphicOffsetOriginX = (decimal)(offX + dimX + gap);
+                        }
+                    }
+                    else
+                    {
+                        if ((offY + dimY) > limitY)
+                        {
+                            offY = (double)Graphic2GCode.multiImportOffsetY;
+                            Properties.Settings.Default.importGraphicOffsetOriginY = Graphic2GCode.multiImportOffsetY + (decimal)(dimY + gap);
+                            offX = Graphic2GCode.multiImportMaxX + gap;
+                            Properties.Settings.Default.importGraphicOffsetOriginX = (decimal)offX;
+                        }
+                        else
+                        {   //offY += dimY + gap;
+                            Properties.Settings.Default.importGraphicOffsetOriginY = (decimal)(offY + dimY + gap);
+                        }
+                    }
+                    Properties.Settings.Default.Save();
+                }
                 Logger.Info("{0} Remove offset: X:{1:0.000} Y:{2:0.000} new origin: X:{3:0.00} Y:{4:0.00}", loggerTag, actualDimension.minx, actualDimension.miny, offX, offY);
                 SetHeaderInfo(string.Format(" Graphic offset: {0:0.00} {1:0.00} new origin: {2:0.00} {3:0.00}", -actualDimension.minx, -actualDimension.miny, offX, offY));
                 SetHeaderInfo(string.Format(" Original graphic dimension min:{0:0.000};{1:0.000}  max:{2:0.000};{3:0.000}", actualDimension.minx, actualDimension.miny, actualDimension.maxx, actualDimension.maxy));
 
                 backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Remove Offset..." });
-                RemoveOffset(completeGraphic, actualDimension.minx - offX, actualDimension.minx - offY);
+                RemoveOffset(completeGraphic, actualDimension.minx - offX, actualDimension.miny - offY);
             }
 
             /* multiply graphics */
@@ -842,7 +884,7 @@ namespace GrblPlotter
             if (!cancelByWorker && graphicInformation.OptionCodeSortDimension)
             {
                 Logger.Info("{0} Sort by dimension", loggerTag);
-                SortByDimension(completeGraphic); 
+                SortByDimension(completeGraphic);
             }
 
             /* Drag Tool path modification*/
