@@ -387,3 +387,6 @@ The most disturbing points were:
 * no automatic reconnect, when starting the program
 * no automatic set of the feed rate, when moving the stage the first time
 * poor manual control (joystick) via user interface
+
+
+[![Stargazers over time](https://starchart.cc/svenhb/GRBL-Plotter.svg)](https://starchart.cc/svenhb/GRBL-Plotter)
