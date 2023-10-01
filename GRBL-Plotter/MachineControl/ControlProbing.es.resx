@@ -336,4 +336,13 @@ Por lo general, el borde de la herramienta (sonda / cortador) se utiliza para de
   <data name="label22.Text" xml:space="preserve">
     <value>diámetro de la pieza</value>
   </data>
+  <data name="cBFindCenterUseY.ToolTip" xml:space="preserve">
+    <value>Sonda en el eje Y</value>
+  </data>
+  <data name="cBFindCenterUseX.ToolTip" xml:space="preserve">
+    <value>Sonda en el eje X</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
+    <value>Coloque la sonda casi centrada sobre la pieza de trabajo para utilizar esta opción.</value>
+  </data>
 </root>

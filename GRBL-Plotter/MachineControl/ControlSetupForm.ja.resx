@@ -3715,4 +3715,34 @@ GCode ヘッダー セクションで指定: 'SVG dimension'。</value>
   <data name="cBImportGCTTSSpeedPWM.ToolTip" xml:space="preserve">
     <value>[グループ化とツール - ツール テーブル] を選択して、インポート中にツール テーブルから選択した値を取得します。</value>
   </data>
+  <data name="label104.Text" xml:space="preserve">
+    <value>内容間のギャップ</value>
+  </data>
+  <data name="label104.ToolTip" xml:space="preserve">
+    <value>ファイルコンテンツ間の指定された間隔を維持します</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysClear.Text" xml:space="preserve">
+    <value>常に作業スペースを空けておく</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysClear.ToolTip" xml:space="preserve">
+    <value>新しいコンテンツをロードする前にワークスペースをクリアします</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysLoad.Text" xml:space="preserve">
+    <value>複数のファイルのインポートを常に許可する</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysLoad.ToolTip" xml:space="preserve">
+    <value>複数のインポートを常に許可するか、「2D ビューへの追加が有効」の場合にのみ許可します。</value>
+  </data>
+  <data name="groupBox42.Text" xml:space="preserve">
+    <value>配置方向</value>
+  </data>
+  <data name="groupBox41.Text" xml:space="preserve">
+    <value>限界値</value>
+  </data>
+  <data name="label101.Text" xml:space="preserve">
+    <value>複数のグラフィックインポートからのコンテンツの配置</value>
+  </data>
+  <data name="groupBox40.Text" xml:space="preserve">
+    <value>複数のファイルのロード</value>
+  </data>
 </root>

@@ -337,4 +337,13 @@ Z up = Z start + Z probing
   <data name="nUDFindCenterAngle.ToolTip" xml:space="preserve">
     <value>الزاوية بالدرجة. لتدوير اتجاهات التحقيق</value>
   </data>
+  <data name="cBFindCenterUseY.ToolTip" xml:space="preserve">
+    <value>التحقيق على المحور Y</value>
+  </data>
+  <data name="cBFindCenterUseX.ToolTip" xml:space="preserve">
+    <value>التحقيق على المحور X</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
+    <value>ضع المسبار في المنتصف تقريبًا فوق قطعة الشغل، لاستخدام هذا الخيار.</value>
+  </data>
 </root>

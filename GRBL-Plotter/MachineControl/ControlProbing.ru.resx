@@ -336,4 +336,13 @@ Z вернется в исходное положение</value>
   <data name="nUDFindCenterAngle.ToolTip" xml:space="preserve">
     <value>Угол в град. вращать направления зондирования</value>
   </data>
+  <data name="cBFindCenterUseY.ToolTip" xml:space="preserve">
+    <value>Датчик по оси Y</value>
+  </data>
+  <data name="cBFindCenterUseX.ToolTip" xml:space="preserve">
+    <value>Зонд по оси X</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
+    <value>Чтобы использовать эту опцию, поместите датчик почти по центру над заготовкой.</value>
+  </data>
 </root>

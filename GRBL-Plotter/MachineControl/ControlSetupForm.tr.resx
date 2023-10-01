@@ -3733,4 +3733,34 @@ Maksimum derinlik, Z-Yüksekliği gravürü ile sınırlanacaktır.</value>
   <data name="cBImportGCTTSSpeedPWM.ToolTip" xml:space="preserve">
     <value>İçe aktarma sırasında seçilen değerleri araç tablosundan almak için 'Gruplama ve araçlar - Araç tablosu'nu seçin</value>
   </data>
+  <data name="label104.Text" xml:space="preserve">
+    <value>İçerikler arasındaki boşluk</value>
+  </data>
+  <data name="label104.ToolTip" xml:space="preserve">
+    <value>Dosya içerikleri arasında belirtilen aralığı korur</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysClear.Text" xml:space="preserve">
+    <value>Çalışma alanını her zaman temizle</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysClear.ToolTip" xml:space="preserve">
+    <value>Yeni içerik yüklemeden önce çalışma alanını temizler</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysLoad.Text" xml:space="preserve">
+    <value>Her zaman birden fazla dosyanın içe aktarılmasına izin ver</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysLoad.ToolTip" xml:space="preserve">
+    <value>Her zaman birden fazla içe aktarmaya izin verin veya yalnızca "2B görünüme ekle etkinse" izin verin.</value>
+  </data>
+  <data name="groupBox42.Text" xml:space="preserve">
+    <value>Düzenleme yönü</value>
+  </data>
+  <data name="groupBox41.Text" xml:space="preserve">
+    <value>Sınır değeri</value>
+  </data>
+  <data name="label101.Text" xml:space="preserve">
+    <value>Çoklu grafik içe aktarımından içeriğin düzenlenmesi</value>
+  </data>
+  <data name="groupBox40.Text" xml:space="preserve">
+    <value>Çoklu dosya yükleme</value>
+  </data>
 </root>

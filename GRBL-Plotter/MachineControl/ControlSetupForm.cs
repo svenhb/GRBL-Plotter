@@ -34,6 +34,7 @@
  * 2022-06-25 line 1692 SetZeroMinMax add try catch
  * 2023-04-27 add new tab 'filter'; highlight tabs with enabled options
  * 2023-08-01 check if (!e.Bounds.IsEmpty)
+ * 2023-09-17 new option multi file import
 */
 
 using System;
@@ -307,6 +308,17 @@ namespace GrblPlotter
             }
 
             LblZEngrave.Text = Properties.Settings.Default.importGCZDown.ToString("0.0");
+
+            if (Properties.Settings.Default.multipleLoadByX)
+                RbMultipleLoadByX.Checked = true;
+            else
+                RbMultipleLoadByY.Checked = true;
+
+            if (Properties.Settings.Default.multipleLoadLimitNo)
+                RbMultipleLoadLimitNo.Checked = true;
+            else
+                RbMultipleLoadLimitDim.Checked = true;
+            RbMultipleLoadLimitNo_CheckedChanged(sender, e);
         }
 
         private void SaveSettings()
@@ -1198,11 +1210,19 @@ namespace GrblPlotter
         private void ControlSetupForm_SizeChanged(object sender, EventArgs e)
         {
             int y = Height;
-            tabControl_Level1.Height = y - 64;
             btnApplyChangings.Top = y - 64;
-            gBToolChange.Height = y - 98;
-            tab2gB2.Height = y - 192;
-            dGVToolList.Height = y - 64;
+            btnReloadFile.Top = y - 64;
+            cBshowImportDialog.Top = y - 60;
+
+            tabControl_Level1.Height = y - 64;
+            tab2gB2.Height = y - 200;
+            dGVToolList.Height = y - 275;
+
+            tabControl4.Height = y - 102;
+            dGVCustomBtn.Height = y - 197;
+            tab6lbl1.Top = y - 190;
+            tab6lbl2.Top = y - 190;
+            lblFilePath.Top = y - 146;
         }
 
         private void TbKeyPad_KeyDown(object sender, KeyEventArgs e)
@@ -2147,7 +2167,7 @@ namespace GrblPlotter
                     return false;
                     break;
                 case 1:
-                    return (prop.importSVGNodesOnly || prop.importDepthFromWidth || prop.importSVGCircleToDot);
+                    return (prop.importSVGNodesOnly || prop.importDepthFromWidth || prop.importSVGCircleToDot || prop.importDepthFromWidth || prop.importPWMFromWidth);
                     break;
                 case 2:
                     return (prop.importGraphicAddFrameEnable || prop.importGraphicMultiplyGraphicsEnable || prop.importGraphicLeadInEnable);// || prop.importGraphicLeadOutEnable);
@@ -2234,6 +2254,13 @@ namespace GrblPlotter
         private void CbImportGraphicHatchFillInset_CheckedChanged(object sender, EventArgs e)
         {
             cBImportGraphicHatchFillInset2.Enabled = cBImportGraphicHatchFillInset.Checked;
+        }
+
+        private void RbMultipleLoadLimitNo_CheckedChanged(object sender, EventArgs e)
+        {
+            bool check = RbMultipleLoadLimitNo.Checked;
+            nUDMultipleLoadNoX.Enabled = nUDMultipleLoadNoY.Enabled = check;
+            nUDMultipleLoadDimX.Enabled = nUDMultipleLoadDimY.Enabled = !check;
         }
     }
 }

@@ -3420,4 +3420,34 @@ Par exemple. pour la découpe laser</value>
   <data name="cBImportGCTTSSpeedPWM.ToolTip" xml:space="preserve">
     <value>Sélectionnez "Regroupement et outils - Table d'outils" pour obtenir les valeurs sélectionnées de la table d'outils lors de l'importation.</value>
   </data>
+  <data name="label104.Text" xml:space="preserve">
+    <value>Écart entre les contenus</value>
+  </data>
+  <data name="label104.ToolTip" xml:space="preserve">
+    <value>Conserve l'espacement spécifié entre le contenu du fichier</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysClear.Text" xml:space="preserve">
+    <value>Espace de travail toujours dégagé</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysClear.ToolTip" xml:space="preserve">
+    <value>Efface l'espace de travail avant de charger un nouveau contenu</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysLoad.Text" xml:space="preserve">
+    <value>Toujours autoriser l'importation de plusieurs fichiers</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysLoad.ToolTip" xml:space="preserve">
+    <value>Autorisez toujours l'importation multiple ou autorisez-la uniquement si "Ajouter à la vue 2D est activé".</value>
+  </data>
+  <data name="groupBox42.Text" xml:space="preserve">
+    <value>Sens de disposition</value>
+  </data>
+  <data name="groupBox41.Text" xml:space="preserve">
+    <value>Valeur limite</value>
+  </data>
+  <data name="label101.Text" xml:space="preserve">
+    <value>Disposition du contenu à partir de plusieurs importations graphiques</value>
+  </data>
+  <data name="groupBox40.Text" xml:space="preserve">
+    <value>Chargement de plusieurs fichiers</value>
+  </data>
 </root>

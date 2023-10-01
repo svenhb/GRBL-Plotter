@@ -3695,4 +3695,34 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   <data name="cBImportGCTTSSpeedPWM.ToolTip" xml:space="preserve">
     <value>选择“分组和工具 - 工具表”以在导入期间从工具表中获取选定的值</value>
   </data>
+  <data name="label104.Text" xml:space="preserve">
+    <value>内容之间的间隙</value>
+  </data>
+  <data name="label104.ToolTip" xml:space="preserve">
+    <value>保持文件内容之间的指定间距</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysClear.Text" xml:space="preserve">
+    <value>始终清理工作空间</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysClear.ToolTip" xml:space="preserve">
+    <value>在加载新内容之前清除工作区</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysLoad.Text" xml:space="preserve">
+    <value>始终允许导入多个文件</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysLoad.ToolTip" xml:space="preserve">
+    <value>始终允许多次导入或仅在“添加到 2D 视图已启用”时允许。</value>
+  </data>
+  <data name="groupBox42.Text" xml:space="preserve">
+    <value>排列方向</value>
+  </data>
+  <data name="groupBox41.Text" xml:space="preserve">
+    <value>极限值</value>
+  </data>
+  <data name="label101.Text" xml:space="preserve">
+    <value>多个图形导入内容的排列</value>
+  </data>
+  <data name="groupBox40.Text" xml:space="preserve">
+    <value>多个文件加载</value>
+  </data>
 </root>

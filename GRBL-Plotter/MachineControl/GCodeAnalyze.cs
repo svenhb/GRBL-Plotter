@@ -772,9 +772,16 @@ namespace GrblPlotter
         }
 
         private static void ProcessXmlTagStart(string line, int lineNr)
-        {  // XML-Tag available!
+        {  
+            // XML-Tag available!
+            /* Process Collection marker */
+            if (line.Contains(XmlMarker.CollectionStart))                   // check if marker available
+            {
+                XmlMarker.AddCollection(lineNr, line, figureMarkerCount);
+                figureActive = true;
+            }
             /* Process Tile marker */
-            if (line.Contains(XmlMarker.TileStart))                   // check if marker available
+            else if (line.Contains(XmlMarker.TileStart))                   // check if marker available
             {
                 XmlMarker.AddTile(lineNr, line, figureMarkerCount);
                 if (Properties.Settings.Default.importGraphicClipShowOrigPosition && Properties.Settings.Default.importGraphicClipOffsetApply)
@@ -893,6 +900,10 @@ namespace GrblPlotter
             /* Process Tile end */
             else if (line.Contains(XmlMarker.TileEnd))                    // check if marker available
             { XmlMarker.FinishTile(lineNr); }
+            else if (line.Contains(XmlMarker.CollectionEnd))                   // check if marker available
+            {
+                XmlMarker.FinishCollection(lineNr);
+            }
             else if (line.Contains(XmlMarker.HeaderEnd))
             { isHeaderSection = false; }
         }

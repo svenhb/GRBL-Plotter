@@ -3691,4 +3691,34 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="cBImportGCTTSSpeedPWM.ToolTip" xml:space="preserve">
     <value>حدد "التجميع والأدوات - جدول الأدوات" للحصول على القيم المحددة من جدول الأدوات أثناء الاستيراد</value>
   </data>
+  <data name="label104.Text" xml:space="preserve">
+    <value>الفجوة بين المحتويات</value>
+  </data>
+  <data name="label104.ToolTip" xml:space="preserve">
+    <value>يحافظ على المسافة المحددة بين محتويات الملف</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysClear.Text" xml:space="preserve">
+    <value>قم دائمًا بمسح مساحة العمل</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysClear.ToolTip" xml:space="preserve">
+    <value>يمسح مساحة العمل قبل تحميل محتوى جديد</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysLoad.Text" xml:space="preserve">
+    <value>السماح دائمًا باستيراد ملفات متعددة</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysLoad.ToolTip" xml:space="preserve">
+    <value>السماح دائمًا بالاستيراد المتعدد أو السماح فقط في حالة تمكين "الإضافة إلى العرض ثنائي الأبعاد".</value>
+  </data>
+  <data name="groupBox42.Text" xml:space="preserve">
+    <value>اتجاه الترتيب</value>
+  </data>
+  <data name="groupBox41.Text" xml:space="preserve">
+    <value>الحد من القيمة</value>
+  </data>
+  <data name="label101.Text" xml:space="preserve">
+    <value>ترتيب المحتوى من استيراد رسومي متعدد</value>
+  </data>
+  <data name="groupBox40.Text" xml:space="preserve">
+    <value>تحميل ملفات متعددة</value>
+  </data>
 </root>

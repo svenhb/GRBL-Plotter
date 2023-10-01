@@ -338,4 +338,13 @@ Z, başlangıç ​​konumuna geri döner</value>
   <data name="$this.Text" xml:space="preserve">
     <value>Problama ve Takım Uzunluğu Ofseti</value>
   </data>
+  <data name="cBFindCenterUseY.ToolTip" xml:space="preserve">
+    <value>Y ekseninde prob</value>
+  </data>
+  <data name="cBFindCenterUseX.ToolTip" xml:space="preserve">
+    <value>X ekseninde prob</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
+    <value>Bu seçeneği kullanmak için probu neredeyse iş parçasının üzerine ortalayacak şekilde yerleştirin.</value>
+  </data>
 </root>

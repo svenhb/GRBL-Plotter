@@ -3361,4 +3361,34 @@ Z.B. zum Laserschneiden</value>
   <data name="cBImportGCTTSSpeedPWM.ToolTip" xml:space="preserve">
     <value>Wähle „Gruppierung und Werkzeuge – Werkzeugtabelle“, um beim Import ausgewählte Werte aus der Werkzeugtabelle abzurufen</value>
   </data>
+  <data name="label104.Text" xml:space="preserve">
+    <value>Lücke zwischen Inhalten</value>
+  </data>
+  <data name="label104.ToolTip" xml:space="preserve">
+    <value>Behält den angegebenen Abstand zwischen Dateiinhalten bei</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysClear.Text" xml:space="preserve">
+    <value>Immer den Arbeitsbereich löschen</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysClear.ToolTip" xml:space="preserve">
+    <value>Löscht den Arbeitsbereich, bevor neue Inhalte geladen werden</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysLoad.Text" xml:space="preserve">
+    <value>Erlauben Sie immer den Import mehrerer Dateien</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysLoad.ToolTip" xml:space="preserve">
+    <value>Mehrfachimport immer zulassen oder nur zulassen, wenn „Zur 2D-Ansicht hinzufügen“ aktiviert ist.</value>
+  </data>
+  <data name="groupBox42.Text" xml:space="preserve">
+    <value>Anordnungsrichtung</value>
+  </data>
+  <data name="groupBox41.Text" xml:space="preserve">
+    <value>Grenzwert</value>
+  </data>
+  <data name="label101.Text" xml:space="preserve">
+    <value>Anordnung von Inhalten aus mehreren Grafikimporten</value>
+  </data>
+  <data name="groupBox40.Text" xml:space="preserve">
+    <value>Mehrere Dateien laden</value>
+  </data>
 </root>

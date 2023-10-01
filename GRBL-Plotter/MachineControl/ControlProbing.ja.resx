@@ -337,4 +337,13 @@ Zは開始位置に戻ります</value>
   <data name="nUDFindCenterAngle.ToolTip" xml:space="preserve">
     <value>角度 (度)探査方向を回転させる</value>
   </data>
+  <data name="cBFindCenterUseY.ToolTip" xml:space="preserve">
+    <value>Y軸上のプローブ</value>
+  </data>
+  <data name="cBFindCenterUseX.ToolTip" xml:space="preserve">
+    <value>X軸上のプローブ</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
+    <value>このオプションを使用するには、プローブをワークピース上のほぼ中央に配置します。</value>
+  </data>
 </root>

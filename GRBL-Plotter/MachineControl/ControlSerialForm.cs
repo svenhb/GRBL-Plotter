@@ -68,6 +68,7 @@
  * 2023-03-31 l:266 f:SerialForm_FormClosing improove shut-down behavior
  * 2023-06-28 l:665 f:AddToLog limit amount of lines to 10000   replaced RichTextBox by TextBox
  * 2023-07-27 l:269 f:SerialForm_FormClosing  set grblCharacterCounting = true;   // may helps to avoid locking the form
+ * 2023-09-16 l:342 f:CopySelectionToClipboard add try catch
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -338,7 +339,17 @@ namespace GrblPlotter
         private void CopySelectionToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(rtbLog.SelectedText))
-                Clipboard.SetText(rtbLog.SelectedText);
+            {
+                try
+                {
+                    Clipboard.SetText(rtbLog.SelectedText);
+                }
+                catch (Exception err)
+                {
+                    Logger.Error(err, " CopySelectionToClipboardToolStripMenuItem_Click - failed ");
+                    rtbLog.AppendText("* FAILED CopySelectionToClipboard"); 
+                }
+            }
         }
 
         private void SelectAllToolStripMenuItem_Click(object sender, EventArgs e)

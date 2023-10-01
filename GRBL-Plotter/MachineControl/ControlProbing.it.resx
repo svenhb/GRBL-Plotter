@@ -335,4 +335,13 @@ Oppure abilitare 'Inizia dal centro' e posizionare la sonda centrata sopra il pe
   <data name="nUDFindCenterAngle.ToolTip" xml:space="preserve">
     <value>Angolo in gradi per ruotare le direzioni di tastatura</value>
   </data>
+  <data name="cBFindCenterUseY.ToolTip" xml:space="preserve">
+    <value>Sonda sull'asse Y</value>
+  </data>
+  <data name="cBFindCenterUseX.ToolTip" xml:space="preserve">
+    <value>Sonda sull'asse X</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
+    <value>Per utilizzare questa opzione, posizionare la sonda quasi centrata sopra il pezzo.</value>
+  </data>
 </root>

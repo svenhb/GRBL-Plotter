@@ -3706,4 +3706,34 @@ Např. pro řezání laserem</value>
   <data name="cBImportGCTTSSpeedPWM.ToolTip" xml:space="preserve">
     <value>Chcete-li získat vybrané hodnoty z tabulky nástrojů během importu, vyberte 'Seskupení a nástroje - Tabulka nástrojů'</value>
   </data>
+  <data name="label104.Text" xml:space="preserve">
+    <value>Mezera mezi obsahem</value>
+  </data>
+  <data name="label104.ToolTip" xml:space="preserve">
+    <value>Udržuje zadané mezery mezi obsahem souboru</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysClear.Text" xml:space="preserve">
+    <value>Vždy uvolněte pracovní prostor</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysClear.ToolTip" xml:space="preserve">
+    <value>Před načtením nového obsahu vymaže pracovní plochu</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysLoad.Text" xml:space="preserve">
+    <value>Vždy povolit import více souborů</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysLoad.ToolTip" xml:space="preserve">
+    <value>Vždy povolit vícenásobný import nebo povolit pouze v případě, že je povoleno „Přidat do 2D zobrazení“.</value>
+  </data>
+  <data name="groupBox42.Text" xml:space="preserve">
+    <value>Směr uspořádání</value>
+  </data>
+  <data name="groupBox41.Text" xml:space="preserve">
+    <value>Limitní hodnota</value>
+  </data>
+  <data name="label101.Text" xml:space="preserve">
+    <value>Uspořádání obsahu z vícenásobného importu grafiky</value>
+  </data>
+  <data name="groupBox40.Text" xml:space="preserve">
+    <value>Načtení více souborů</value>
+  </data>
 </root>

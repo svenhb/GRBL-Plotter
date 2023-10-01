@@ -337,4 +337,13 @@ Normalerweise wird der Rand des Werkzeugs (Messtaster / Fräser) zum Definieren 
   <data name="label22.Text" xml:space="preserve">
     <value>Werkstückdurchmesser</value>
   </data>
+  <data name="cBFindCenterUseY.ToolTip" xml:space="preserve">
+    <value>Taster auf der Y-Achse</value>
+  </data>
+  <data name="cBFindCenterUseX.ToolTip" xml:space="preserve">
+    <value>Taster auf der X-Achse</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
+    <value>Platziere den Messtaster fast mittig über dem Werkstück, um diese Option zu nutzen.</value>
+  </data>
 </root>

@@ -336,4 +336,13 @@ Habituellement, la bordure de l'outil (palpeur / couteau) est utilisée pour dé
   <data name="label22.Text" xml:space="preserve">
     <value>Diamètre de la pièce</value>
   </data>
+  <data name="cBFindCenterUseY.ToolTip" xml:space="preserve">
+    <value>Sonde sur l'axe Y</value>
+  </data>
+  <data name="cBFindCenterUseX.ToolTip" xml:space="preserve">
+    <value>Sonde sur l'axe X</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
+    <value>Placez la sonde presque centrée au-dessus de la pièce pour utiliser cette option.</value>
+  </data>
 </root>

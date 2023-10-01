@@ -342,4 +342,13 @@ Z voltará à posição inicial
   <data name="label22.Text" xml:space="preserve">
     <value>Diâmetro da peça de trabalho</value>
   </data>
+  <data name="cBFindCenterUseY.ToolTip" xml:space="preserve">
+    <value>Sonda no eixo Y</value>
+  </data>
+  <data name="cBFindCenterUseX.ToolTip" xml:space="preserve">
+    <value>Sonda no eixo X</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
+    <value>Coloque a sonda quase centralizada acima da peça de trabalho, para usar esta opção.</value>
+  </data>
 </root>

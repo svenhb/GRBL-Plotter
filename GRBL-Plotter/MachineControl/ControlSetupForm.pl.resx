@@ -3586,4 +3586,38 @@ Np. do cięcia laserowego</value>
   <data name="cBImportGCTTSSpeedPWM.ToolTip" xml:space="preserve">
     <value>Wybierz opcję „Grupowanie i narzędzia – Tabela narzędzi”, aby podczas importu pobrać wybrane wartości z tabeli narzędzi</value>
   </data>
+  <data name="label104.Text" xml:space="preserve">
+    <value>Przerwa pomiędzy treścią</value>
+  </data>
+  <data name="label104.ToolTip" xml:space="preserve">
+    <value>Zachowuje określone odstępy pomiędzy zawartością pliku</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysClear.Text" xml:space="preserve">
+    <value>Zawsze czyść przestrzeń roboczą</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysClear.ToolTip" xml:space="preserve">
+    <value>Czyści obszar roboczy przed załadowaniem nowej zawartości</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysLoad.Text" xml:space="preserve">
+    <value>Zawsze zezwalaj na importowanie wielu plików</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysLoad.ToolTip" xml:space="preserve">
+    <value>Zawsze zezwalaj na wielokrotny import lub zezwalaj tylko wtedy, gdy włączona jest opcja „Dodaj do widoku 2D”.</value>
+  </data>
+  <data name="groupBox42.Text" xml:space="preserve">
+    <value>Kierunek aranżacji</value>
+  </data>
+  <data name="groupBox41.Text" xml:space="preserve">
+    <value>Wartość graniczna</value>
+  </data>
+  <data name="label101.Text" xml:space="preserve">
+    <value>Uporządkowanie treści z importu wielu grafik</value>
+  </data>
+  <data name="groupBox40.Text" xml:space="preserve">
+    <value>Ładowanie wielu plików</value>
+  </data>
+  <data name="tabPage7.Text" xml:space="preserve">
+    <value>Ładowanie pliku</value>
+    <comment>ok</comment>
+  </data>
 </root>

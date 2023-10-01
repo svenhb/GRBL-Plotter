@@ -337,4 +337,13 @@ Z se vrátí zpět do výchozí polohy</value>
   <data name="nUDFindCenterAngle.ToolTip" xml:space="preserve">
     <value>Úhel ve stupních pro otáčení směrů snímání</value>
   </data>
+  <data name="cBFindCenterUseY.ToolTip" xml:space="preserve">
+    <value>Sonda na ose Y</value>
+  </data>
+  <data name="cBFindCenterUseX.ToolTip" xml:space="preserve">
+    <value>Sonda na ose X</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
+    <value>Chcete-li použít tuto možnost, umístěte sondu téměř do středu nad obrobek.</value>
+  </data>
 </root>

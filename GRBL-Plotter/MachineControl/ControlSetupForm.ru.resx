@@ -3635,4 +3635,34 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   <data name="cBImportGCTTSSpeedPWM.ToolTip" xml:space="preserve">
     <value>Выберите «Группировка и инструменты — Таблица инструментов», чтобы получить выбранные значения из таблицы инструментов во время импорта.</value>
   </data>
+  <data name="label104.Text" xml:space="preserve">
+    <value>Разрыв между содержанием</value>
+  </data>
+  <data name="label104.ToolTip" xml:space="preserve">
+    <value>Сохраняет указанное расстояние между содержимым файла</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysClear.Text" xml:space="preserve">
+    <value>Всегда свободное рабочее место</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysClear.ToolTip" xml:space="preserve">
+    <value>Очищает рабочее пространство перед загрузкой нового контента</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysLoad.Text" xml:space="preserve">
+    <value>Всегда разрешать импорт нескольких файлов</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysLoad.ToolTip" xml:space="preserve">
+    <value>Всегда разрешайте множественный импорт или разрешайте только в том случае, если «Добавление в 2D-просмотр включено».</value>
+  </data>
+  <data name="groupBox42.Text" xml:space="preserve">
+    <value>Направление расположения</value>
+  </data>
+  <data name="groupBox41.Text" xml:space="preserve">
+    <value>Предельное значение</value>
+  </data>
+  <data name="label101.Text" xml:space="preserve">
+    <value>Организация контента из множественного графического импорта</value>
+  </data>
+  <data name="groupBox40.Text" xml:space="preserve">
+    <value>Загрузка нескольких файлов</value>
+  </data>
 </root>

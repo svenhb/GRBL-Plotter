@@ -112,7 +112,8 @@ namespace GrblPlotter
         /// </summary>
         public static void SetPosMarkerLine(int line, bool markFigure)
         {
-            if (logDetailed) Logger.Trace("  SetPosMarkerLine line:{0}  markFigure:{1}", line, markFigure);
+        //    if (logDetailed) 
+                Logger.Trace("  SetPosMarkerLine line:{0}  markFigure:{1}", line, markFigure);
             if (line < 0) return;
 
             int figureNr;
@@ -418,9 +419,9 @@ namespace GrblPlotter
         /// </summary>
         public static void MarkSelectedFigure(int figureNr)
         {
-            Logger.Trace("MarkSelectedFigure figureNr:{0}", figureNr);
+            Logger.Trace("MarkSelectedFigure figureNr:{0}  caller:{1}", figureNr, (new System.Diagnostics.StackTrace()).GetFrame(1).GetMethod().Name);
             lastFigureNumbers.Clear();
-            if (figureNr <= 0)
+            if (figureNr < 0)   // <=0
             {
                 pathMarkSelection.Reset();
                 lastFigureNumber = -2;
@@ -535,6 +536,54 @@ namespace GrblPlotter
             SelectionHandle.SetBounds(selectionBounds);						// set and activate selection handle
             tmpPath.Dispose();
             myPathIterator.Dispose();
+        }
+
+        public static void MarkSelectedCollection(int start)
+        {
+            if (start <= 0) return;
+            if (start >= (gcodeList.Count - 1)) return;
+            List<int> figures = new List<int>();
+            int figNr;
+
+            pathMarkSelection.Reset();
+            GraphicsPath tmpPath = new GraphicsPath();
+            tmpPath.Reset();
+
+            GraphicsPathIterator myPathIterator = new GraphicsPathIterator(pathPenDown);
+            myPathIterator.Rewind();
+
+            lastFigureNumbers.Clear();
+
+            Logger.Info("MarkSelectedCollection start:{0} {1}", start, gcodeList[start].codeLine);
+
+            int line;
+            for ( line = start + 1; line < gcodeList.Count; line++)		// go through tile code lines
+            {
+                if (gcodeList[line].codeLine.Contains(XmlMarker.CollectionEnd))
+                    break;
+                figNr = gcodeList[line].figureNumber;
+                if (!figures.Contains(figNr) && (figNr > 0))				// find figures
+                {
+                    lastFigureNumber = figNr;
+                    figures.Add(figNr);										// collect figure nr.
+                    myPathIterator.Rewind();
+                    for (int i = 1; i <= figNr; i++)
+                        myPathIterator.NextMarker(tmpPath);					// find figure path
+                    pathMarkSelection.AddPath(tmpPath, false);				// add figure path
+                    lastFigureNumbers.Add(figNr);
+                }
+            }
+
+            Logger.Info("MarkSelectedCollection end:{0} {1}  lastFig:{2}", line, gcodeList[line].codeLine, lastFigureNumber);
+
+            RectangleF selectionBounds = pathMarkSelection.GetBounds();
+            SelectionHandle.SetBounds(selectionBounds);						// set and activate selection handle
+            tmpPath.Dispose();
+            myPathIterator.Dispose();
+
+            float centerX = selectionBounds.X + selectionBounds.Width / 2;
+            float centerY = selectionBounds.Y + selectionBounds.Height / 2;
+            selectedFigureInfo = string.Format("Selected collection: {0}\r\nWidth : {1:0.000}\r\nHeight: {2:0.000}\r\nCenter: X {3:0.000} Y {4:0.000}", XmlMarker.lastGroup.Id, selectionBounds.Width, selectionBounds.Height, centerX, centerY);
         }
 
         internal static bool GetPathCordinates(List<ImgPoint> posList, float maxDistance)

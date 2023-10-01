@@ -3421,4 +3421,34 @@ P.ej. para corte por láser</value>
   <data name="cBImportGCTTSSpeedPWM.ToolTip" xml:space="preserve">
     <value>Seleccione 'Agrupación y herramientas - Tabla de herramientas' para obtener los valores seleccionados de la tabla de herramientas durante la importación.</value>
   </data>
+  <data name="label104.Text" xml:space="preserve">
+    <value>Brecha entre contenidos</value>
+  </data>
+  <data name="label104.ToolTip" xml:space="preserve">
+    <value>Mantiene el espacio especificado entre el contenido del archivo.</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysClear.Text" xml:space="preserve">
+    <value>Siempre despeje el espacio de trabajo</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysClear.ToolTip" xml:space="preserve">
+    <value>Limpia el espacio de trabajo antes de cargar contenido nuevo.</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysLoad.Text" xml:space="preserve">
+    <value>Permitir siempre importar múltiples archivos</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysLoad.ToolTip" xml:space="preserve">
+    <value>Permita siempre la importación múltiple o permita solo si "Agregar a vista 2D está habilitado".</value>
+  </data>
+  <data name="groupBox42.Text" xml:space="preserve">
+    <value>dirección de arreglo</value>
+  </data>
+  <data name="groupBox41.Text" xml:space="preserve">
+    <value>Valor límite</value>
+  </data>
+  <data name="label101.Text" xml:space="preserve">
+    <value>Disposición del contenido de la importación de gráficos múltiples.</value>
+  </data>
+  <data name="groupBox40.Text" xml:space="preserve">
+    <value>Carga de múltiples archivos</value>
+  </data>
 </root>

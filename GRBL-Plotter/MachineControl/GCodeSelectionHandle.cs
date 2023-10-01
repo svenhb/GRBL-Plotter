@@ -66,6 +66,7 @@ namespace GrblPlotter
         internal static RectangleF Bounds { get; set; }      // selected figure bounds
         internal static XmlMarkerType SelectedMarkerType { get; set; } = XmlMarkerType.Figure;
         internal static int SelectedMarkerLine { get; set; } = 0;
+        internal static int SelectedCollection { get; set; } = -1;
         internal static int SelectedTile { get; set; } = -1;
         internal static int SelectedGroup { get; set; } = -1;
         internal static int SelectedFigure { get; set; } = -1;
@@ -91,6 +92,7 @@ namespace GrblPlotter
         }
         public static void ClearSelected()
         {
+            SelectedCollection = -1;
             SelectedTile = -1;
             SelectedGroup = -1;
             SelectedFigure = -1;

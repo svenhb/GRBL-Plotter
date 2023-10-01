@@ -3759,4 +3759,34 @@ Per esempio. per il taglio laser</value>
   <data name="cBImportGCTTSSpeedPWM.ToolTip" xml:space="preserve">
     <value>Selezionare 'Raggruppamento e utensili - Tabella utensili' per ottenere i valori selezionati dalla tabella utensili durante l'importazione</value>
   </data>
+  <data name="label104.Text" xml:space="preserve">
+    <value>Divario tra i contenuti</value>
+  </data>
+  <data name="label104.ToolTip" xml:space="preserve">
+    <value>Mantiene la spaziatura specificata tra i contenuti del file</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysClear.Text" xml:space="preserve">
+    <value>Spazio di lavoro sempre libero</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysClear.ToolTip" xml:space="preserve">
+    <value>Cancella l'area di lavoro prima di caricare nuovi contenuti</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysLoad.Text" xml:space="preserve">
+    <value>Consenti sempre l'importazione di più file</value>
+  </data>
+  <data name="CbMultipleLoadAllwaysLoad.ToolTip" xml:space="preserve">
+    <value>Consenti sempre l'importazione multipla o consenti solo se "Aggiungi a vista 2D è abilitato".</value>
+  </data>
+  <data name="groupBox42.Text" xml:space="preserve">
+    <value>Direzione dell'arrangiamento</value>
+  </data>
+  <data name="groupBox41.Text" xml:space="preserve">
+    <value>Valore limite</value>
+  </data>
+  <data name="label101.Text" xml:space="preserve">
+    <value>Disposizione dei contenuti da più importazioni grafiche</value>
+  </data>
+  <data name="groupBox40.Text" xml:space="preserve">
+    <value>Caricamento di più file</value>
+  </data>
 </root>

@@ -335,4 +335,13 @@ Z powróci do pozycji początkowej</value>
   <data name="$this.Text" xml:space="preserve">
     <value>Skanowanie i kompensacja długości narzędzia</value>
   </data>
+  <data name="cBFindCenterUseY.ToolTip" xml:space="preserve">
+    <value>Sonda na osi Y</value>
+  </data>
+  <data name="cBFindCenterUseX.ToolTip" xml:space="preserve">
+    <value>Sonda na osi X</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
+    <value>Aby skorzystać z tej opcji, umieść sondę prawie centralnie nad obrabianym przedmiotem.</value>
+  </data>
 </root>

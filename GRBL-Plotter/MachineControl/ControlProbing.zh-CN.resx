@@ -336,4 +336,13 @@ Z将移回起始位置</value>
   <data name="nUDFindCenterAngle.ToolTip" xml:space="preserve">
     <value>角度（度）旋转探测方向</value>
   </data>
+  <data name="cBFindCenterUseY.ToolTip" xml:space="preserve">
+    <value>Y 轴上的探头</value>
+  </data>
+  <data name="cBFindCenterUseX.ToolTip" xml:space="preserve">
+    <value>X 轴上的探头</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
+    <value>要使用此选项，请将探头放置在工件上方几乎中心的位置。</value>
+  </data>
 </root>

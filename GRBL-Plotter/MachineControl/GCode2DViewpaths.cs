@@ -29,6 +29,7 @@
  * 2022-04-07 DrawHeightMap add side-view of shape at y=0 and x=0 (below and left of hight-map grid)
  * 2023-04-11 l:683 f:CreateRuler lock object to avoid 'object is currently in use elsewhere'
  * 2023-09-01 new l:700 f:SetRulerDimension / l:380 f:DrawMachineLimit update grid
+ * 2023-09-14 l:400 f:DrawMachineLimit() add toolTableOffsetX to show tool positions; issue #361
 */
 
 using System;
@@ -396,7 +397,8 @@ namespace GrblPlotter
                 {
                     tmpTool = ToolTable.toolTableArray[i];
                     tmppos = tmpTool.Position;
-                    wx = tmppos.X - offsetX; wy = tmppos.Y - offsetY;
+                    wx = tmppos.X - offsetX + (double)Properties.Settings.Default.toolTableOffsetX; 
+                    wy = tmppos.Y - offsetY + (double)Properties.Settings.Default.toolTableOffsetY;
                     try
                     {
                         FontFamily myFont = new FontFamily("Arial");

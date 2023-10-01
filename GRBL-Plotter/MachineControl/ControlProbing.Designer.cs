@@ -120,6 +120,8 @@
             this.rBProbeCoord2 = new System.Windows.Forms.RadioButton();
             this.rBProbeCoord1 = new System.Windows.Forms.RadioButton();
             this.label11 = new System.Windows.Forms.Label();
+            this.cBFindCenterUseX = new System.Windows.Forms.CheckBox();
+            this.cBFindCenterUseY = new System.Windows.Forms.CheckBox();
             this.gBHardware.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDProbeDiameter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDOffsetX)).BeginInit();
@@ -745,6 +747,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.cBFindCenterUseY);
+            this.tabPage2.Controls.Add(this.cBFindCenterUseX);
             this.tabPage2.Controls.Add(this.cBFindCenterStartFromCenter);
             this.tabPage2.Controls.Add(this.lblCFAngle);
             this.tabPage2.Controls.Add(this.nUDFindCenterAngle);
@@ -767,6 +771,7 @@
             // 
             resources.ApplyResources(this.cBFindCenterStartFromCenter, "cBFindCenterStartFromCenter");
             this.cBFindCenterStartFromCenter.Name = "cBFindCenterStartFromCenter";
+            this.toolTip1.SetToolTip(this.cBFindCenterStartFromCenter, resources.GetString("cBFindCenterStartFromCenter.ToolTip"));
             this.cBFindCenterStartFromCenter.UseVisualStyleBackColor = true;
             // 
             // lblCFAngle
@@ -932,6 +937,26 @@
             resources.ApplyResources(this.label11, "label11");
             this.label11.Name = "label11";
             // 
+            // cBFindCenterUseX
+            // 
+            resources.ApplyResources(this.cBFindCenterUseX, "cBFindCenterUseX");
+            this.cBFindCenterUseX.Checked = true;
+            this.cBFindCenterUseX.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBFindCenterUseX.Name = "cBFindCenterUseX";
+            this.toolTip1.SetToolTip(this.cBFindCenterUseX, resources.GetString("cBFindCenterUseX.ToolTip"));
+            this.cBFindCenterUseX.UseVisualStyleBackColor = true;
+            this.cBFindCenterUseX.CheckedChanged += new System.EventHandler(this.cBFindCenterUseX_CheckedChanged);
+            // 
+            // cBFindCenterUseY
+            // 
+            resources.ApplyResources(this.cBFindCenterUseY, "cBFindCenterUseY");
+            this.cBFindCenterUseY.Checked = true;
+            this.cBFindCenterUseY.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBFindCenterUseY.Name = "cBFindCenterUseY";
+            this.toolTip1.SetToolTip(this.cBFindCenterUseY, resources.GetString("cBFindCenterUseY.ToolTip"));
+            this.cBFindCenterUseY.UseVisualStyleBackColor = true;
+            this.cBFindCenterUseY.CheckedChanged += new System.EventHandler(this.cBFindCenterUseY_CheckedChanged);
+            // 
             // ControlProbing
             // 
             resources.ApplyResources(this, "$this");
@@ -1070,5 +1095,7 @@
         private System.Windows.Forms.NumericUpDown nUDProbeFeedZ;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.CheckBox cBFindCenterUseY;
+        private System.Windows.Forms.CheckBox cBFindCenterUseX;
     }
 }
