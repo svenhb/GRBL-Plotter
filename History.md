@@ -401,3 +401,5 @@ The most disturbing points were:
 
 
 [![Stargazers over time](https://starchart.cc/svenhb/GRBL-Plotter.svg)](https://starchart.cc/svenhb/GRBL-Plotter)
+[![Ryo-ma's github trophy](https://github-profile-trophy.vercel.app/?username=svenhb&row=1)](https://github.com/ryo-ma/github-profile-trophy)  
+[![Sparkline](https://stars.medv.io/svenhb/GRBL-Plotter.svg)](https://stars.medv.io/svenhb/GRBL-Plotter)
