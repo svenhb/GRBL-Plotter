@@ -59,6 +59,8 @@
  * 2023-05-30 l:1037 f:StartConvert add message form with SVG meta data for vers 1.7.0.0
  * 2023-07-02 l:1205 f:LoadTimer_Tick add stop in catch{}
  * 2023-09-06 l:339 f:NewCodeEnd add SetSelection (MainFormPictureBox.cs) to select new object
+ * 2023-09-11 l:394 new function LoadFiles(string[] fileList, int minIndex)
+ * 2023-09-15 l:245 f: NewCodeEnd multiFileImportNotLastFile
 */
 /*   96 #region MAIN-MENU FILE
  * 1483 MainForm_KeyDown  
@@ -67,7 +69,6 @@
  * 1928 UseCaseDialog
  * 1946 LoadExtensionList
 */
-using SharpDX.Multimedia;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -240,6 +241,7 @@ namespace GrblPlotter
 
         private void NewCodeEnd(bool imported = false)
         {
+            //bool multiFileImportNotLastFile
             int objectCount = Graphic.GetObjectCount();
             int maxObjects = (int)Properties.Settings.Default.ctrlImportSkip * 1000;
             if (!imported)
@@ -262,12 +264,17 @@ namespace GrblPlotter
 
             loadTimerStep = 0;
             int codeInsertedAt = -1;
-            if (objectCount <= maxObjects)  // set FctbCode.Text directly OR via GCodeVisuWorker.cs
+            if ((objectCount <= maxObjects))// || multiFileImportNotLastFile) // set FctbCode.Text directly OR via GCodeVisuWorker.cs
             {
                 if (imported && (Graphic.GCode != null))
                 {
                     codeInsertedAt = SetFctbCodeText(Graphic.GCode.ToString(), imported);    // newCodeEnd
                 }
+                /*    if (multiFileImportNotLastFile)
+                    {
+                        fCTBCode.Refresh();
+                        return; 
+                    }*/
                 VisuGCode.GetGCodeLines(fCTBCode.Lines, null, null);    // get code path
             }
             else
@@ -280,7 +287,7 @@ namespace GrblPlotter
                     else
                     {
                         lineCount = f.SetTmpGCode();
-                        string info =   "PLEASE WAIT !!!\r\nDisplaying a large number of lines,\r\nthis may takes some seconds.\r\n\r\n" +
+                        string info = "PLEASE WAIT !!!\r\nDisplaying a large number of lines,\r\nthis may takes some seconds.\r\n\r\n" +
                                         "Check [Setup - Program behavior - Load G-Code]\r\nto reduce time by skipping display options\r\nwhen exceeding a number of x-thousand lines.";
 
                         info += string.Format("\r\n{0,8} Lines in file\r\n{1,8} limit to skip display options", lineCount, (Properties.Settings.Default.ctrlImportSkip * 1000));
@@ -336,7 +343,7 @@ namespace GrblPlotter
             if (imported && Properties.Settings.Default.fromFormInsertEnable)
             {
                 if (codeInsertedAt > 1)
-                    SetSelection(codeInsertedAt + 3, XmlMarkerType.Figure);
+                    SetSelection(codeInsertedAt + 3, lastMarkerType = XmlMarkerType.Collection);
             }
         }
 
@@ -389,6 +396,123 @@ namespace GrblPlotter
 
         string importOptions = "";
         //	public enum ConversionType { SVG, DXF, HPGL, CSV, Drill }; 
+
+        //	private bool multiFileImportNotLastFile = false;
+        private void LoadFiles(string[] fileList, int minIndex)
+        {
+            var prop = Properties.Settings.Default;
+            Logger.Info("LoadFiles count:{0}  min:{1} insert enabled:{2}", fileList.Length, minIndex, prop.fromFormInsertEnable);
+
+            if (prop.multipleLoadAllwaysClear)
+            { ClearWorkspace(); }
+
+            if (fileList.Length > minIndex)
+            {
+                if (prop.fromFormInsertEnable || prop.multipleLoadAllwaysLoad)
+                {
+                    Graphic2GCode.multiImport = true;
+                    bool tmpUseCase = prop.importShowUseCaseDialog;
+                    bool tmpOffset = prop.importGraphicOffsetOrigin;
+                    decimal tmpOffsetX = prop.importGraphicOffsetOriginX;
+                    decimal tmpOffsetY = prop.importGraphicOffsetOriginY;
+                    decimal gap = prop.multipleLoadGap;
+                    int maxX = (int)prop.multipleLoadNoX;
+                    int maxY = (int)prop.multipleLoadNoY;
+                    int countNo = 0;
+                    double graphicDimX = 0;
+                    double graphicDimY = 0;
+
+                    Graphic2GCode.multiImportOffsetX = tmpOffsetX;
+                    Graphic2GCode.multiImportOffsetY = tmpOffsetY;
+
+                    if (prop.multipleLoadByX && (VisuGCode.xyzSize.dimx != 0))
+                        prop.importGraphicOffsetOriginX = (decimal)VisuGCode.xyzSize.maxx + gap;
+                    if (!prop.multipleLoadByX && (VisuGCode.xyzSize.dimy != 0))
+                        prop.importGraphicOffsetOriginY = (decimal)VisuGCode.xyzSize.maxy + gap;
+
+                    prop.importGraphicOffsetOrigin = true;
+                    if (fileList.Length == 1)
+                    {
+                        Logger.Info(culture, "LoadFiles via array one file offX:{0:0.00}  offY:{1:0.00}  file:{2}", prop.importGraphicOffsetOriginX, prop.importGraphicOffsetOriginY, fileList[0]);
+                        Graphic2GCode.multiImportNr++;
+                        Graphic2GCode.multiImportName = Path.GetFileName(fileList[0]);
+                        LoadFile(fileList[minIndex]);
+                    }
+                    else
+                    {
+                        bool multiFileImportNotLastFile = true;
+                        for (int i = minIndex; i < fileList.Length; i++)
+                        {
+                            if (i >= fileList.Length - 1) multiFileImportNotLastFile = false;
+                            Logger.Info(culture, "LoadFiles via array[{0}] path:{1}  notLast:{2}", i, fileList[1], multiFileImportNotLastFile);
+                            Graphic2GCode.multiImportNr++;
+                            Graphic2GCode.multiImportName = Path.GetFileName(fileList[i]);
+                            LoadFile(fileList[i]);
+                            countNo++;
+
+                            prop.importShowUseCaseDialog = false;        // show dialog just 1 time
+
+                            Graphic2GCode.multiImportMaxX = VisuGCode.xyzSize.maxx;
+                            Graphic2GCode.multiImportMaxY = VisuGCode.xyzSize.maxy;
+
+                            if (prop.multipleLoadByX)
+                            {
+                                graphicDimX = (Graphic.actualDimension.maxx - Graphic.actualDimension.minx);
+
+                                if (prop.multipleLoadLimitNo)
+                                {
+                                    Logger.Info("LoadFiles dimx:{0:0.0}", graphicDimX);
+                                    if (graphicDimX != 0)
+                                        prop.importGraphicOffsetOriginX += (decimal)graphicDimX + gap;
+                                    else
+                                        prop.importGraphicOffsetOriginX = (decimal)VisuGCode.xyzSize.maxx + gap;
+
+                                    if (countNo >= maxX)
+                                    {
+                                        countNo = 0;
+                                        prop.importGraphicOffsetOriginX = tmpOffsetX;
+                                        prop.importGraphicOffsetOriginY = (decimal)VisuGCode.xyzSize.maxy + gap;
+                                        Logger.Info("LoadFiles new line {0:0.0}  {1:0.0}", prop.importGraphicOffsetOriginX, prop.importGraphicOffsetOriginY);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                graphicDimY = (Graphic.actualDimension.maxy - Graphic.actualDimension.miny);
+
+                                if (prop.multipleLoadLimitNo)
+                                {
+                                    Logger.Info("LoadFiles dimy:{0:0.0}", graphicDimY);
+                                    if (graphicDimY != 0)
+                                        prop.importGraphicOffsetOriginY += (decimal)graphicDimY + gap;
+                                    else
+                                        prop.importGraphicOffsetOriginY = (decimal)VisuGCode.xyzSize.maxy + gap;
+
+                                    if (countNo >= maxY)
+                                    {
+                                        countNo = 0;
+                                        prop.importGraphicOffsetOriginY = tmpOffsetY;
+                                        prop.importGraphicOffsetOriginX = (decimal)VisuGCode.xyzSize.maxx + gap;
+                                        Logger.Info("LoadFiles new line {0:0.0}  {1:0.0}", prop.importGraphicOffsetOriginX, prop.importGraphicOffsetOriginY);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    prop.importShowUseCaseDialog = tmpUseCase;
+                    prop.importGraphicOffsetOrigin = tmpOffset;
+                    prop.importGraphicOffsetOriginX = tmpOffsetX;
+                    prop.importGraphicOffsetOriginY = tmpOffsetY;
+                }
+                else
+                {
+                    Logger.Info(culture, "LoadFiles first file:{0}", fileList[minIndex]);
+                    LoadFile(fileList[minIndex]);
+                }
+            }
+        }
+
 
         private bool LoadFile(string fileName)
         {
@@ -636,7 +760,7 @@ namespace GrblPlotter
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             string s = (string)e.Data.GetData(DataFormats.Text);
             if (files != null)
-            { LoadFile(files[0]); }
+            { LoadFiles(files, 0); }
             else if (s.Length > 0)
             { tBURL.Text = s; }
             this.WindowState = FormWindowState.Normal;
@@ -822,7 +946,7 @@ namespace GrblPlotter
                     else
                         txt += checkContent;
                     if (!(txt.IndexOf("xmlns") >= 0))
-                        txt = txt.Replace("<svg", "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" ");
+                        txt = txt.Replace("<svg", "<svg xmlns=\"http://www.w3.org/2000/svg\" ");    // version=\"1.1\"
 
                     UseCaseDialog();
 
@@ -847,8 +971,8 @@ namespace GrblPlotter
                     }
 
                     GCodeFromSvg.ConvertFromText(txt.Trim((char)0x00), false, false);   // changed 'replaceUnitToPixel' to false (plotterfun mismatch between clipboard and load) 2023-07-11	
-																						// replaceUnitByPixel = true,  import as mm
-                                                                                 // perhaps use backgroundworker?                 using (ImportWorker f = new ImportWorker())   //MainFormImportWorker
+                                                                                        // replaceUnitByPixel = true,  import as mm
+                                                                                        // perhaps use backgroundworker?                 using (ImportWorker f = new ImportWorker())   //MainFormImportWorker
 
                     Properties.Settings.Default.counterImportSVG += 1;
                     NewCodeEnd(true);               // LoadFromClipboard SVG code was imported, no need to check for bad GCode
@@ -1313,7 +1437,7 @@ namespace GrblPlotter
         private void ShowImportOptions()
         {
             importOptions = Graphic.graphicInformation.ListOptions() + importOptions;
-			if (Properties.Settings.Default.gui2DShowVertexEnable) importOptions = "<Show nodes> " + importOptions;
+            if (Properties.Settings.Default.gui2DShowVertexEnable) importOptions = "<Show nodes> " + importOptions;
             if (Properties.Settings.Default.importGCCompress) importOptions += "<Compress> ";
             if (Properties.Settings.Default.importGCRelative) importOptions += "< G91 > ";
             if (Properties.Settings.Default.importGCLineSegmentation) importOptions += "<Line segmentation> ";

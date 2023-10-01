@@ -490,8 +490,8 @@ namespace GrblPlotter
                 SendCommand(btncmd.Trim());
             }
 
-            timerUpdateControlSource = "OnRaiseProbingEvent";
-            UpdateControlEnables();
+        //    timerUpdateControlSource = "OnRaiseProbingEvent";
+        //    UpdateControlEnables();
             Properties.Settings.Default.counterUseProbing += 1;
         }
 

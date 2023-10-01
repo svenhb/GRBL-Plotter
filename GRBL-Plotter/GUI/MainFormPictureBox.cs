@@ -93,6 +93,7 @@ namespace GrblPlotter
         private bool mouseWasMoved = false;
         private Point mouseDownPos = new Point();
         private Point mouseUpPos = new Point();
+        private Point mouseLastUpPos = new Point();
         private Point mouseMovePos = new Point();
         private readonly Font myFont7 = new Font("Lucida Console", 7);
         private readonly Font myFont8 = new Font("Lucida Console", 8);
@@ -101,6 +102,7 @@ namespace GrblPlotter
         private bool shiftedDisplay = false;
 
         private XmlMarkerType markerType = XmlMarkerType.Figure;
+        private XmlMarkerType lastMarkerType = XmlMarkerType.Figure;
 
         private double picScaling = 1;
         private void CalculatePicScaling()
@@ -579,7 +581,7 @@ namespace GrblPlotter
 		*******************************************************************/
         private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-           if (logDetailed) Logger.Trace("pictureBox1_MouseUp   e.x:{0} y:{1}  absPos-x:{2:0.00} y:{3:0.00}", e.X, e.Y, picAbsPos.X, picAbsPos.Y);
+            if (logDetailed) Logger.Trace("pictureBox1_MouseUp   e.x:{0} y:{1}  absPos-x:{2:0.00} y:{3:0.00}", e.X, e.Y, picAbsPos.X, picAbsPos.Y);
 
             Matrix tmp = pBoxTransform.Clone();
             mouseUpPos = e.Location;
@@ -714,17 +716,68 @@ namespace GrblPlotter
                     bool modKeyCtrl = (Panel.ModifierKeys == Keys.Control);     // Keys.Control find line with coord nearby, mark / unmark Group
                     bool modKeyShift = (Panel.ModifierKeys == Keys.Shift);      // Keys.Shift find line with coord nearby, mark / unmark Tile
 
-                    if ((transformType == SelectionHandle.Handle.None) || keepMarkerType)
+                    bool modKeyCtrlShift = (Panel.ModifierKeys.HasFlag(Keys.Control) && Panel.ModifierKeys.HasFlag(Keys.Shift));
+
+                    //    if ((transformType == SelectionHandle.Handle.None) || keepMarkerType)
                     {
                         if (expandGCode)    //Properties.Settings.Default.FCTBBlockExpandOnSelect)
                         { foldLevel = foldLevelSelected; }
 
                         if (!keepMarkerType)
                         {
-                            markerType = XmlMarkerType.Figure;
-                            if (modKeyAlt) { markerType = XmlMarkerType.Node; }
-                            else if (modKeyCtrl) { markerType = XmlMarkerType.Group; }
-                            else if (modKeyShift) { markerType = XmlMarkerType.Tile; }
+                            Logger.Info("set figure old:{0}  grp:{1}  tile:{2}  col:{3}", markerType, XmlMarker.GetGroupCount(), XmlMarker.GetTileCount(), XmlMarker.GetCollectionCount());
+                            if (PointDistance(mouseLastUpPos, mouseUpPos) > 10)   //(clickedLineNr != markerProperties.lineNumber)
+                            { markerType = XmlMarkerType.None; }
+                            mouseLastUpPos = mouseUpPos;
+
+                            if (markerType == XmlMarkerType.None)
+                            {
+                                markerType = lastMarkerType;    // XmlMarkerType.Figure;
+                            //    markerType =  XmlMarkerType.Figure;
+                                if (modKeyAlt) { markerType = XmlMarkerType.Node; }
+                                else if (modKeyCtrlShift) { markerType = XmlMarkerType.Collection; }
+                                else if (modKeyCtrl) { markerType = XmlMarkerType.Group; }
+                                else if (modKeyShift) { markerType = XmlMarkerType.Tile; }
+                            }
+                            else if (markerType == XmlMarkerType.Figure)
+                            {
+                                keepMarkerType = true; SelectionHandle.ClearSelected();
+                                if (XmlMarker.GetGroupCount() > 0) markerType = XmlMarkerType.Group;
+                                else if (XmlMarker.GetTileCount() > 0) markerType = XmlMarkerType.Tile;
+                                else if (XmlMarker.GetCollectionCount() > 0) markerType = XmlMarkerType.Collection;
+                                else 
+                                {   markerType = XmlMarkerType.None;
+                                    lastMarkerType = XmlMarkerType.Figure;
+                                }
+                            }
+                            else if (markerType == XmlMarkerType.Group)
+                            {
+                                keepMarkerType = true; SelectionHandle.ClearSelected();
+                                if (XmlMarker.GetTileCount() > 0) markerType = XmlMarkerType.Tile;
+                                else if (XmlMarker.GetCollectionCount() > 0) markerType = XmlMarkerType.Collection;
+                                else
+                                {
+                                    markerType = XmlMarkerType.None;
+                                    lastMarkerType = XmlMarkerType.Figure;
+                                }
+
+                            }
+                            else if (markerType == XmlMarkerType.Tile)
+                            {
+                                keepMarkerType = true; SelectionHandle.ClearSelected();
+                                if (XmlMarker.GetCollectionCount() > 0) markerType = XmlMarkerType.Collection;
+                                else
+                                {
+                                    markerType = XmlMarkerType.None;
+                                    lastMarkerType = XmlMarkerType.Figure;
+                                }
+
+                            }
+                            else
+                            { markerType = XmlMarkerType.None; 
+                                lastMarkerType = XmlMarkerType.Figure;
+                                VisuGCode.MarkSelectedFigure(-1); StatusStripClear(2); return; }
+
                         }
                         /* 2. find corresponding Gcode-line, by click coordinate picAbsPos */
                         SelectionHandle.SelectedMarkerType = lastMarkerType = markerType;
@@ -759,8 +812,8 @@ namespace GrblPlotter
 
                         FoldBlocksByLevel(markerType, clickedLineNr);
                     }
-                    else if (false)
-                    { }
+                    //    else if (false)
+                    //    { }
                 }
                 cmsPicBoxMoveToMarkedPosition.ToolTipText = "Work X: " + Grbl.PosMarker.X.ToString() + "   Y: " + Grbl.PosMarker.Y.ToString();
                 if (VisuGCode.CodeBlocksAvailable())
@@ -780,7 +833,6 @@ namespace GrblPlotter
             pictureBox1.Invalidate();
         }
 
-        private XmlMarkerType lastMarkerType = XmlMarkerType.Figure;
         private void PictureBox1_DoubleClick(object sender, EventArgs e)
         {
             if (logDetailed) Logger.Trace("pictureBox1_DoubleClick");
@@ -988,8 +1040,15 @@ namespace GrblPlotter
         }
 
         private void cmsPicBoxClearWorkspace_Click(object sender, EventArgs e)
+        {  ClearWorkspace(); }
+        private void ClearWorkspace()
         {
+			Logger.Info("▀▀▀▀▀▀▀▀▀▀ Clear Workspace ▀▀▀▀▀▀▀▀▀▀");
             UnDo.SetCode(fCTBCode.Text, cmsPicBoxClearWorkspace.Text, this);
+            Graphic2GCode.multiImport = false;
+            Graphic2GCode.multiImportNr = 0;
+            Graphic2GCode.multiImportName = "";
+            Graphic.actualDimension = new Dimensions();
             NewCodeStart();         // ClearWorkspace
             fCTBCode.Clear();
             NewCodeEnd();
