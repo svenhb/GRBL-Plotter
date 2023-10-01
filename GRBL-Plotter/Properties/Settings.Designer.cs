@@ -12,7 +12,7 @@ namespace GrblPlotter.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.6.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.7.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -6282,6 +6282,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importGraphicLargestLast {
+            get {
+                return ((bool)(this["importGraphicLargestLast"]));
+            }
+            set {
+                this["importGraphicLargestLast"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("5")]
         public decimal importGraphicLeadInDistance {
             get {
@@ -6397,6 +6409,42 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["importGraphicOffsetOrigin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal importGraphicOffsetOriginX {
+            get {
+                return ((decimal)(this["importGraphicOffsetOriginX"]));
+            }
+            set {
+                this["importGraphicOffsetOriginX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal importGraphicOffsetOriginY {
+            get {
+                return ((decimal)(this["importGraphicOffsetOriginY"]));
+            }
+            set {
+                this["importGraphicOffsetOriginY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGraphicSortDimension {
+            get {
+                return ((bool)(this["importGraphicSortDimension"]));
+            }
+            set {
+                this["importGraphicSortDimension"] = value;
             }
         }
         
@@ -8958,49 +9006,85 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool importGraphicSortDimension {
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public decimal multipleLoadNoX {
             get {
-                return ((bool)(this["importGraphicSortDimension"]));
+                return ((decimal)(this["multipleLoadNoX"]));
             }
             set {
-                this["importGraphicSortDimension"] = value;
+                this["multipleLoadNoX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public decimal multipleLoadNoY {
+            get {
+                return ((decimal)(this["multipleLoadNoY"]));
+            }
+            set {
+                this["multipleLoadNoY"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool importGraphicLargestLast {
+        public bool multipleLoadByX {
             get {
-                return ((bool)(this["importGraphicLargestLast"]));
+                return ((bool)(this["multipleLoadByX"]));
             }
             set {
-                this["importGraphicLargestLast"] = value;
+                this["multipleLoadByX"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal importGraphicOffsetOriginX {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool multipleLoadLimitNo {
             get {
-                return ((decimal)(this["importGraphicOffsetOriginX"]));
+                return ((bool)(this["multipleLoadLimitNo"]));
             }
             set {
-                this["importGraphicOffsetOriginX"] = value;
+                this["multipleLoadLimitNo"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal importGraphicOffsetOriginY {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool multipleLoadAllwaysLoad {
             get {
-                return ((decimal)(this["importGraphicOffsetOriginY"]));
+                return ((bool)(this["multipleLoadAllwaysLoad"]));
             }
             set {
-                this["importGraphicOffsetOriginY"] = value;
+                this["multipleLoadAllwaysLoad"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool multipleLoadAllwaysClear {
+            get {
+                return ((bool)(this["multipleLoadAllwaysClear"]));
+            }
+            set {
+                this["multipleLoadAllwaysClear"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public decimal multipleLoadGap {
+            get {
+                return ((decimal)(this["multipleLoadGap"]));
+            }
+            set {
+                this["multipleLoadGap"] = value;
             }
         }
     }
