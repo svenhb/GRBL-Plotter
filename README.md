@@ -1,9 +1,13 @@
 # GRBL-Plotter
+
+[![GitHub release](https://img.shields.io/github/release/svenhb/GRBL-Plotter.svg)](https://GitHub.com/svenhb/GRBL-Plotter/releases/)
+[![GitHub latest commit](https://badgen.net/github/last-commit/svenhb/GRBL-Plotter)](https://GitHub.com/svenhb/GRBL-Plotter/commit/)
+[![Github all releases](https://img.shields.io/github/downloads/svenhb/GRBL-Plotter/total.svg)](https://GitHub.com/svenhb/GRBL-Plotter/releases/)  
+
 [README deutsch](README_de.md)  
 A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with Windows XP)  
 Written in C# VisualStudio 2022.  
 If you like GRBL-Plotter, show it to me with a small donation :-) [![Donate](https://www.paypalobjects.com/en_US/DE/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PVBK8U866QNQ6)   
-   
   
 ### Check [History](https://github.com/svenhb/GRBL-Plotter/blob/master/History.md)  
       
