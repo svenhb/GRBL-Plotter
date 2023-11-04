@@ -40,6 +40,7 @@
  * 2023-02-20 optional y-x scan
  * 2023-05-08 l:996 f:AddScanCode add axis-string for X/Y seperation
  * 2023-08-01 check if (!ImageSize.IsEmpty)
+ * 2023-11-02 l:1412 f:LoadMap Bug fix "Value was either too large or too small for a Decimal"
 */
 
 using System;
@@ -1408,8 +1409,10 @@ namespace GrblPlotter
                 Map = HeightMap.Load(file);
                 lblXDim.Text = string.Format("X Min:{0:0.00} Max:{1:0.00} Step:{2:0.00}  Size:{3}", Map.Min.X, Map.Max.X, Map.GridX, Map.SizeX);
                 lblYDim.Text = string.Format("Y Min:{0:0.00} Max:{1:0.00} Step:{2:0.00}  Size:{3}", Map.Min.Y, Map.Max.Y, Map.GridY, Map.SizeY);
-                NudNewStepWidth.Value = (decimal)Math.Round(Map.GridX, 2);
-                nUDCutOffZ.Value = (decimal)Math.Round(Map.MinHeight, 2);
+				if ((Map.GridX > (double)Decimal.MinValue) && (Map.GridX < (double)Decimal.MaxValue))
+					NudNewStepWidth.Value = (decimal)Math.Round(Map.GridX, 2);
+				if ((Map.MinHeight > (double)Decimal.MinValue) && (Map.MinHeight < (double)Decimal.MaxValue))
+					nUDCutOffZ.Value = (decimal)Math.Round(Map.MinHeight, 2);
                 isMapOk = true;
                 EnableControls(true);
                 mapIsLoaded = true;

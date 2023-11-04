@@ -778,7 +778,7 @@ namespace GrblPlotter
             if (line.Contains(XmlMarker.CollectionStart))                   // check if marker available
             {
                 XmlMarker.AddCollection(lineNr, line, figureMarkerCount);
-                figureActive = true;
+            //    figureActive = true;
             }
             /* Process Tile marker */
             else if (line.Contains(XmlMarker.TileStart))                   // check if marker available

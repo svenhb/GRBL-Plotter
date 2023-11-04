@@ -1477,6 +1477,9 @@ namespace GrblPlotter
             btnGCPWMUp.Enabled = enable;
             btnGCPWMZero.Enabled = enable;
             btnGCPWMDown.Enabled = enable;
+            TbImportGCPWMSlider.Enabled = enable;
+            LblImportGCPWMSliderMin.Enabled = enable;
+            LblImportGCPWMSliderMax.Enabled = enable;
             cBImportGCPWMSkipM30.Enabled = enable;
             cBImportGCPWMSendCode.Enabled = enable;
             HighlightPenOptions_Click(sender, e);
@@ -1778,6 +1781,23 @@ namespace GrblPlotter
                 MessageBox.Show("Please enter a valid API access token");
         }
 
+
+        private void TbImportGCPWMSlider_VisibleChanged(object sender, EventArgs e)
+        {
+            LblImportGCPWMSliderMin.Text = string.Format("$31={0}", Grbl.GetSetting(31));
+            LblImportGCPWMSliderMax.Text = string.Format("$30={0}", Grbl.GetSetting(30));
+            TbImportGCPWMSlider.Minimum = (int)Grbl.GetSetting(31);
+            TbImportGCPWMSlider.Maximum = (int)Grbl.GetSetting(30);
+        }
+
+        private void TbImportGCPWMSlider_Scroll(object sender, EventArgs e)
+        {
+            if (cBImportGCUsePWM.Enabled && cBImportGCPWMSendCode.Checked)
+            { commandToSend = String.Format("M{0} S{1}\r\n", "3", TbImportGCPWMSlider.Value); }
+            LblImportGCPWMSliderSet.Text = string.Format("{0}", TbImportGCPWMSlider.Value);
+            LblImportGCPWMSliderSet.Top = 60 + (int)(140 * (1 - (float)TbImportGCPWMSlider.Value / (float)TbImportGCPWMSlider.Maximum));
+        }
+
         private void NudImportGCPWMUp_ValueChanged(object sender, EventArgs e)      // send PWM Pen up code
         { btnGCPWMUp.PerformClick(); }
         private void NudImportGCPWMDown_ValueChanged(object sender, EventArgs e)    // send PWM Pen up code
@@ -1801,17 +1821,23 @@ namespace GrblPlotter
             SetZeroMinMax();
             if (cBImportGCUsePWM.Enabled && cBImportGCPWMSendCode.Checked)
             { commandToSend = String.Format("M{0} S{1}\r\n", "3", nUDImportGCPWMUp.Value); }
+            if ((nUDImportGCPWMUp.Value >= TbImportGCPWMSlider.Minimum) && (nUDImportGCPWMUp.Value <= TbImportGCPWMSlider.Maximum))
+                TbImportGCPWMSlider.Value = (int)nUDImportGCPWMUp.Value;
         }
         private void BtnGCPWMDown_Click(object sender, EventArgs e)
         {
             SetZeroMinMax();
             if (cBImportGCUsePWM.Enabled && cBImportGCPWMSendCode.Checked)
             { commandToSend = String.Format("M{0} S{1}\r\n", "3", nUDImportGCPWMDown.Value); }
+            if ((nUDImportGCPWMDown.Value >= TbImportGCPWMSlider.Minimum) && (nUDImportGCPWMDown.Value <= TbImportGCPWMSlider.Maximum))
+                TbImportGCPWMSlider.Value = (int)nUDImportGCPWMDown.Value;
         }
         private void BtnGCPWMZero_Click(object sender, EventArgs e)
         {
             if (cBImportGCUsePWM.Enabled && cBImportGCPWMSendCode.Checked)
             { commandToSend = String.Format("M{0} S{1}\r\n", "3", nUDImportGCPWMZero.Value); }
+            if ((nUDImportGCPWMZero.Value >= TbImportGCPWMSlider.Minimum) && (nUDImportGCPWMZero.Value <= TbImportGCPWMSlider.Maximum))
+                TbImportGCPWMSlider.Value = (int)nUDImportGCPWMZero.Value;
         }
         private void SetZeroMinMax()
         {   //nUDImportGCPWMZero.Value = (nUDImportGCPWMUp.Value + nUDImportGCPWMDown.Value) / 2;
@@ -1844,6 +1870,7 @@ namespace GrblPlotter
             btnGCPWMDown.BackColor = tmpColor;
             btnGCPWMZero.BackColor = tmpColor;
             cBImportGCPWMSendCode.BackColor = tmpColor;
+            TbImportGCPWMSlider.BackColor = tmpColor;
         }
 
         private void LblInfoPWM_Click(object sender, EventArgs e)
@@ -1873,6 +1900,7 @@ namespace GrblPlotter
         private void BtnPWMAdvanced_Click(object sender, EventArgs e)
         {
             pwmAdvanced = !pwmAdvanced;
+            TbImportGCPWMSlider.Visible = LblImportGCPWMSliderMin.Visible = LblImportGCPWMSliderMax.Visible = LblImportGCPWMSliderSet.Visible = pwmAdvanced;
             lblPWMP91.Visible = lblPWMP93.Visible = lblPWMP94.Visible = pwmAdvanced;
             btnGCPWMZero.Visible = tBImportGCPWMTextP93.Visible = tBImportGCPWMTextP94.Visible = pwmAdvanced;
             nUDImportGCPWMZero.Visible = nUDImportGCPWMP93.Visible = nUDImportGCPWMP94.Visible = pwmAdvanced;
@@ -2261,6 +2289,36 @@ namespace GrblPlotter
             bool check = RbMultipleLoadLimitNo.Checked;
             nUDMultipleLoadNoX.Enabled = nUDMultipleLoadNoY.Enabled = check;
             nUDMultipleLoadDimX.Enabled = nUDMultipleLoadDimY.Enabled = !check;
+        }
+
+        private void BtnResize1_Click(object sender, EventArgs e)
+        {
+            string tag = (string)((Button)sender).Tag;
+            if (tag != "")
+            {
+                var size = tag.Split(';');
+                if (size.Length > 1)
+                {
+                    try
+                    {
+                        int x = Int32.Parse(size[0]);
+                        int y = Int32.Parse(size[1]);
+                        Properties.Settings.Default.mainFormSize = new Size(x, y);
+                        Properties.Settings.Default.Save();
+                        settingsReloaded = true;
+                        btnApplyChangings.PerformClick();
+                        Logger.Info("Resize {0} {1} {2}", tag, x, y);
+                    }
+                    catch { }
+                }
+            }
+        }
+
+        private void NudImportGraphicOffsetOriginX_ValueChanged(object sender, EventArgs e)
+        {
+            GuiVariables.offsetOriginX = (double)Properties.Settings.Default.importGraphicOffsetOriginX;
+            GuiVariables.offsetOriginY = (double)Properties.Settings.Default.importGraphicOffsetOriginY;
+
         }
     }
 }
