@@ -129,6 +129,10 @@ namespace GrblPlotter
 
     public static class GuiVariables
     {
+        // origin of imported file onload = Properties.Settings.Default.importGraphicOffsetOriginX
+        internal static double offsetOriginX = 0;
+        internal static double offsetOriginY = 0;
+
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
@@ -170,6 +174,9 @@ namespace GrblPlotter
         }
         public static void ResetVariables()	// used in MainForm-sendCommand-376 and MainFormLoadFile-setGcodeVariables 1617
         {
+            offsetOriginX = (double)Properties.Settings.Default.importGraphicOffsetOriginX;
+            offsetOriginY = (double)Properties.Settings.Default.importGraphicOffsetOriginY;
+
             variable.Clear();
             variable.Add("GMIX", 0.0); // Graphic Minimum X
             variable.Add("GMAX", 0.0); // Graphic Maximum X

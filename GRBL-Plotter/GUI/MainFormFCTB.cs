@@ -322,7 +322,7 @@ namespace GrblPlotter
             CmsPicBoxEnable();
             ClearErrorLines();
             Logger.Trace("---- SetFctbCodeText insertCode:{0}  enabled:{1}", insertCode, Properties.Settings.Default.fromFormInsertEnable);
-            if (insertCode && Properties.Settings.Default.fromFormInsertEnable)
+            if (insertCode && (Properties.Settings.Default.fromFormInsertEnable || Properties.Settings.Default.multipleLoadAllwaysLoad))
             { return InsertCodeToFctb(code, true, 0, 0, 0); }
             else
             { fCTBCode.Text = code; }

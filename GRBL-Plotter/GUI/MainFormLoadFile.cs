@@ -61,6 +61,7 @@
  * 2023-09-06 l:339 f:NewCodeEnd add SetSelection (MainFormPictureBox.cs) to select new object
  * 2023-09-11 l:394 new function LoadFiles(string[] fileList, int minIndex)
  * 2023-09-15 l:245 f: NewCodeEnd multiFileImportNotLastFile
+ * 2023-11-02 l:465 f:LoadFiles bug fix "Value was either too large or too small for a Decimal. Source" use  Graphic.actualDimension.dimx instead of (Graphic.actualDimension.maxx - Graphic.actualDimension.minx);
 */
 /*   96 #region MAIN-MENU FILE
  * 1483 MainForm_KeyDown  
@@ -413,22 +414,24 @@ namespace GrblPlotter
                     Graphic2GCode.multiImport = true;
                     bool tmpUseCase = prop.importShowUseCaseDialog;
                     bool tmpOffset = prop.importGraphicOffsetOrigin;
-                    decimal tmpOffsetX = prop.importGraphicOffsetOriginX;
-                    decimal tmpOffsetY = prop.importGraphicOffsetOriginY;
-                    decimal gap = prop.multipleLoadGap;
+                    double tmpOffsetX = GuiVariables.offsetOriginX = (double)prop.importGraphicOffsetOriginX;
+                    double tmpOffsetY = GuiVariables.offsetOriginY = (double)prop.importGraphicOffsetOriginY;
+                    double gap = (double)prop.multipleLoadGap;
                     int maxX = (int)prop.multipleLoadNoX;
                     int maxY = (int)prop.multipleLoadNoY;
                     int countNo = 0;
                     double graphicDimX = 0;
                     double graphicDimY = 0;
 
-                    Graphic2GCode.multiImportOffsetX = tmpOffsetX;
-                    Graphic2GCode.multiImportOffsetY = tmpOffsetY;
+                    Graphic2GCode.multiImportOffsetX = prop.importGraphicOffsetOriginX; // tmpOffsetX;
+                    Graphic2GCode.multiImportOffsetY = prop.importGraphicOffsetOriginY; // tmpOffsetY;
 
                     if (prop.multipleLoadByX && (VisuGCode.xyzSize.dimx != 0))
-                        prop.importGraphicOffsetOriginX = (decimal)VisuGCode.xyzSize.maxx + gap;
+                        //prop.importGraphicOffsetOriginX = (decimal)VisuGCode.xyzSize.maxx + (decimal)gap;
+                        GuiVariables.offsetOriginX = VisuGCode.xyzSize.maxx + gap;
                     if (!prop.multipleLoadByX && (VisuGCode.xyzSize.dimy != 0))
-                        prop.importGraphicOffsetOriginY = (decimal)VisuGCode.xyzSize.maxy + gap;
+                        //prop.importGraphicOffsetOriginY = (decimal)VisuGCode.xyzSize.maxy + (decimal)gap;
+                        GuiVariables.offsetOriginY = VisuGCode.xyzSize.maxy + gap;
 
                     prop.importGraphicOffsetOrigin = true;
                     if (fileList.Length == 1)
@@ -457,42 +460,52 @@ namespace GrblPlotter
 
                             if (prop.multipleLoadByX)
                             {
-                                graphicDimX = (Graphic.actualDimension.maxx - Graphic.actualDimension.minx);
+                                //graphicDimX = (Graphic.actualDimension.maxx - Graphic.actualDimension.minx);
+                                graphicDimX = Graphic.actualDimension.dimx;
 
                                 if (prop.multipleLoadLimitNo)
                                 {
                                     Logger.Info("LoadFiles dimx:{0:0.0}", graphicDimX);
                                     if (graphicDimX != 0)
-                                        prop.importGraphicOffsetOriginX += (decimal)graphicDimX + gap;
+                                        //prop.importGraphicOffsetOriginX += (decimal)graphicDimX + gap;
+                                        GuiVariables.offsetOriginX += graphicDimX + gap;
                                     else
-                                        prop.importGraphicOffsetOriginX = (decimal)VisuGCode.xyzSize.maxx + gap;
+                                        //prop.importGraphicOffsetOriginX = (decimal)VisuGCode.xyzSize.maxx + gap;
+                                        GuiVariables.offsetOriginX += VisuGCode.xyzSize.maxx + gap;
 
                                     if (countNo >= maxX)
                                     {
                                         countNo = 0;
-                                        prop.importGraphicOffsetOriginX = tmpOffsetX;
-                                        prop.importGraphicOffsetOriginY = (decimal)VisuGCode.xyzSize.maxy + gap;
-                                        Logger.Info("LoadFiles new line {0:0.0}  {1:0.0}", prop.importGraphicOffsetOriginX, prop.importGraphicOffsetOriginY);
+                                        //prop.importGraphicOffsetOriginX = tmpOffsetX;
+                                        GuiVariables.offsetOriginX = tmpOffsetX;
+                                        //prop.importGraphicOffsetOriginY = (decimal)VisuGCode.xyzSize.maxy + gap;
+                                        GuiVariables.offsetOriginY = VisuGCode.xyzSize.maxy + gap;
+                                        Logger.Info("LoadFiles new line {0:0.0}  {1:0.0}", GuiVariables.offsetOriginX, GuiVariables.offsetOriginY);
                                     }
                                 }
                             }
                             else
                             {
-                                graphicDimY = (Graphic.actualDimension.maxy - Graphic.actualDimension.miny);
+                                //graphicDimY = (Graphic.actualDimension.maxy - Graphic.actualDimension.miny);
+                                graphicDimY = Graphic.actualDimension.dimy;
 
                                 if (prop.multipleLoadLimitNo)
                                 {
                                     Logger.Info("LoadFiles dimy:{0:0.0}", graphicDimY);
                                     if (graphicDimY != 0)
-                                        prop.importGraphicOffsetOriginY += (decimal)graphicDimY + gap;
+                                        //prop.importGraphicOffsetOriginY += (decimal)graphicDimY + gap;
+                                        GuiVariables.offsetOriginX += graphicDimY + gap;
                                     else
-                                        prop.importGraphicOffsetOriginY = (decimal)VisuGCode.xyzSize.maxy + gap;
+                                        //prop.importGraphicOffsetOriginY = (decimal)VisuGCode.xyzSize.maxy + gap;
+                                        GuiVariables.offsetOriginY = VisuGCode.xyzSize.maxy + gap;
 
                                     if (countNo >= maxY)
                                     {
                                         countNo = 0;
-                                        prop.importGraphicOffsetOriginY = tmpOffsetY;
-                                        prop.importGraphicOffsetOriginX = (decimal)VisuGCode.xyzSize.maxx + gap;
+                                        //prop.importGraphicOffsetOriginY = tmpOffsetY;
+                                        GuiVariables.offsetOriginY = tmpOffsetY;
+                                        //prop.importGraphicOffsetOriginX = (decimal)VisuGCode.xyzSize.maxx + gap;
+                                        GuiVariables.offsetOriginX = VisuGCode.xyzSize.maxx + gap;
                                         Logger.Info("LoadFiles new line {0:0.0}  {1:0.0}", prop.importGraphicOffsetOriginX, prop.importGraphicOffsetOriginY);
                                     }
                                 }
@@ -502,8 +515,10 @@ namespace GrblPlotter
 
                     prop.importShowUseCaseDialog = tmpUseCase;
                     prop.importGraphicOffsetOrigin = tmpOffset;
-                    prop.importGraphicOffsetOriginX = tmpOffsetX;
-                    prop.importGraphicOffsetOriginY = tmpOffsetY;
+                    //prop.importGraphicOffsetOriginX = tmpOffsetX;
+                    GuiVariables.offsetOriginX = tmpOffsetX;
+                    //prop.importGraphicOffsetOriginY = tmpOffsetY;
+                    GuiVariables.offsetOriginY = tmpOffsetY;
                 }
                 else
                 {

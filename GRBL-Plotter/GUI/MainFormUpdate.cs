@@ -35,7 +35,6 @@ using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
-using virtualJoystick;
 
 namespace GrblPlotter
 {
@@ -475,11 +474,12 @@ namespace GrblPlotter
 
             int raster = 5;
             if (!Properties.Settings.Default.guiJoystickApperance1)
-            {   raster = 1;
+            {
+                raster = 1;
                 cBSendJogStop.Enabled = false;
-			}
-			else
-			{ cBSendJogStop.Enabled = true; }
+            }
+            else
+            { cBSendJogStop.Enabled = true; }
             virtualJoystickXY.JoystickRaster = raster;
             virtualJoystickZ.JoystickRaster = raster;
             virtualJoystickA.JoystickRaster = raster;
@@ -566,7 +566,7 @@ namespace GrblPlotter
             if (!Grbl.isVersion_0)
             {
                 virtualJoystickXY.ShowStop = virtualJoystickZ.ShowStop = btnJogStop.Visible = true;
-				virtualJoystickA.ShowStop = virtualJoystickB.ShowStop = virtualJoystickC.ShowStop = true;
+                virtualJoystickA.ShowStop = virtualJoystickB.ShowStop = virtualJoystickC.ShowStop = true;
                 gBoxOverride.Enabled = isConnected;
                 tableLayoutPanel4.RowStyles[0].Height = 30f;
                 tableLayoutPanel4.RowStyles[1].Height = 30f;
@@ -574,8 +574,8 @@ namespace GrblPlotter
             }
             else
             {
-                virtualJoystickXY.ShowStop = virtualJoystickZ.ShowStop =btnJogStop.Visible = false;
-				virtualJoystickA.ShowStop = virtualJoystickB.ShowStop = virtualJoystickC.ShowStop = false;
+                virtualJoystickXY.ShowStop = virtualJoystickZ.ShowStop = btnJogStop.Visible = false;
+                virtualJoystickA.ShowStop = virtualJoystickB.ShowStop = virtualJoystickC.ShowStop = false;
                 gBoxOverride.Enabled = false;
                 tableLayoutPanel4.RowStyles[0].Height = 40f;
                 tableLayoutPanel4.RowStyles[1].Height = 0f;

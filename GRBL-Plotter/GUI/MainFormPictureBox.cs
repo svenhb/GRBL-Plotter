@@ -46,6 +46,7 @@
 			  
 */
 
+using AForge.Imaging.Filters;
 using FastColoredTextBoxNS;
 using GrblPlotter.MachineControl;
 using System;
@@ -1045,6 +1046,8 @@ namespace GrblPlotter
         {
 			Logger.Info("▀▀▀▀▀▀▀▀▀▀ Clear Workspace ▀▀▀▀▀▀▀▀▀▀");
             UnDo.SetCode(fCTBCode.Text, cmsPicBoxClearWorkspace.Text, this);
+            GuiVariables.offsetOriginX = (double)Properties.Settings.Default.importGraphicOffsetOriginX;
+            GuiVariables.offsetOriginY = (double)Properties.Settings.Default.importGraphicOffsetOriginY;
             Graphic2GCode.multiImport = false;
             Graphic2GCode.multiImportNr = 0;
             Graphic2GCode.multiImportName = "";

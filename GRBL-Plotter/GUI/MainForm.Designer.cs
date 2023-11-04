@@ -311,14 +311,15 @@ namespace GrblPlotter
             this.cmsPictureBox = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.unDo2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
-            this.cmsPicBoxMoveToMarkedPosition = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmsPicBoxZeroXYAtMarkedPosition = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmsPicBoxMoveGraphicsOrigin = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsPicBoxReloadFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsPicBoxPasteFromClipboard = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsPicBoxClearWorkspace = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.cmsPicBoxResetZooming = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.cmsPicBoxPasteFromClipboard = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmsPicBoxReloadFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsPicBoxMoveToMarkedPosition = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsPicBoxZeroXYAtMarkedPosition = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsPicBoxMoveGraphicsOrigin = new System.Windows.Forms.ToolStripMenuItem();
             this.deletenotMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.cmsPicBoxMarkFirstPos = new System.Windows.Forms.ToolStripMenuItem();
@@ -489,7 +490,6 @@ namespace GrblPlotter
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.SplashScreenTimer = new System.Windows.Forms.Timer(this.components);
             this.loadTimer = new System.Windows.Forms.Timer(this.components);
-            this.cmsPicBoxClearWorkspace = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -2186,23 +2186,23 @@ namespace GrblPlotter
             this.toolStripSeparator17.Name = "toolStripSeparator17";
             resources.ApplyResources(this.toolStripSeparator17, "toolStripSeparator17");
             // 
-            // cmsPicBoxMoveToMarkedPosition
+            // cmsPicBoxReloadFile
             // 
-            this.cmsPicBoxMoveToMarkedPosition.Name = "cmsPicBoxMoveToMarkedPosition";
-            resources.ApplyResources(this.cmsPicBoxMoveToMarkedPosition, "cmsPicBoxMoveToMarkedPosition");
-            this.cmsPicBoxMoveToMarkedPosition.Click += new System.EventHandler(this.CmsPicBoxMoveToMarkedPosition_Click);
+            this.cmsPicBoxReloadFile.Name = "cmsPicBoxReloadFile";
+            resources.ApplyResources(this.cmsPicBoxReloadFile, "cmsPicBoxReloadFile");
+            this.cmsPicBoxReloadFile.Click += new System.EventHandler(this.CmsPicBoxReloadFile_Click);
             // 
-            // cmsPicBoxZeroXYAtMarkedPosition
+            // cmsPicBoxPasteFromClipboard
             // 
-            this.cmsPicBoxZeroXYAtMarkedPosition.Name = "cmsPicBoxZeroXYAtMarkedPosition";
-            resources.ApplyResources(this.cmsPicBoxZeroXYAtMarkedPosition, "cmsPicBoxZeroXYAtMarkedPosition");
-            this.cmsPicBoxZeroXYAtMarkedPosition.Click += new System.EventHandler(this.CmsPicBoxZeroXYAtMarkedPosition_Click);
+            this.cmsPicBoxPasteFromClipboard.Name = "cmsPicBoxPasteFromClipboard";
+            resources.ApplyResources(this.cmsPicBoxPasteFromClipboard, "cmsPicBoxPasteFromClipboard");
+            this.cmsPicBoxPasteFromClipboard.Click += new System.EventHandler(this.CmsPicBoxPasteFromClipboard_Click);
             // 
-            // cmsPicBoxMoveGraphicsOrigin
+            // cmsPicBoxClearWorkspace
             // 
-            this.cmsPicBoxMoveGraphicsOrigin.Name = "cmsPicBoxMoveGraphicsOrigin";
-            resources.ApplyResources(this.cmsPicBoxMoveGraphicsOrigin, "cmsPicBoxMoveGraphicsOrigin");
-            this.cmsPicBoxMoveGraphicsOrigin.Click += new System.EventHandler(this.CmsPicBoxMoveGraphicsOrigin_Click);
+            this.cmsPicBoxClearWorkspace.Name = "cmsPicBoxClearWorkspace";
+            resources.ApplyResources(this.cmsPicBoxClearWorkspace, "cmsPicBoxClearWorkspace");
+            this.cmsPicBoxClearWorkspace.Click += new System.EventHandler(this.cmsPicBoxClearWorkspace_Click);
             // 
             // toolStripSeparator9
             // 
@@ -2220,17 +2220,23 @@ namespace GrblPlotter
             this.toolStripSeparator8.Name = "toolStripSeparator8";
             resources.ApplyResources(this.toolStripSeparator8, "toolStripSeparator8");
             // 
-            // cmsPicBoxPasteFromClipboard
+            // cmsPicBoxMoveToMarkedPosition
             // 
-            this.cmsPicBoxPasteFromClipboard.Name = "cmsPicBoxPasteFromClipboard";
-            resources.ApplyResources(this.cmsPicBoxPasteFromClipboard, "cmsPicBoxPasteFromClipboard");
-            this.cmsPicBoxPasteFromClipboard.Click += new System.EventHandler(this.CmsPicBoxPasteFromClipboard_Click);
+            this.cmsPicBoxMoveToMarkedPosition.Name = "cmsPicBoxMoveToMarkedPosition";
+            resources.ApplyResources(this.cmsPicBoxMoveToMarkedPosition, "cmsPicBoxMoveToMarkedPosition");
+            this.cmsPicBoxMoveToMarkedPosition.Click += new System.EventHandler(this.CmsPicBoxMoveToMarkedPosition_Click);
             // 
-            // cmsPicBoxReloadFile
+            // cmsPicBoxZeroXYAtMarkedPosition
             // 
-            this.cmsPicBoxReloadFile.Name = "cmsPicBoxReloadFile";
-            resources.ApplyResources(this.cmsPicBoxReloadFile, "cmsPicBoxReloadFile");
-            this.cmsPicBoxReloadFile.Click += new System.EventHandler(this.CmsPicBoxReloadFile_Click);
+            this.cmsPicBoxZeroXYAtMarkedPosition.Name = "cmsPicBoxZeroXYAtMarkedPosition";
+            resources.ApplyResources(this.cmsPicBoxZeroXYAtMarkedPosition, "cmsPicBoxZeroXYAtMarkedPosition");
+            this.cmsPicBoxZeroXYAtMarkedPosition.Click += new System.EventHandler(this.CmsPicBoxZeroXYAtMarkedPosition_Click);
+            // 
+            // cmsPicBoxMoveGraphicsOrigin
+            // 
+            this.cmsPicBoxMoveGraphicsOrigin.Name = "cmsPicBoxMoveGraphicsOrigin";
+            resources.ApplyResources(this.cmsPicBoxMoveGraphicsOrigin, "cmsPicBoxMoveGraphicsOrigin");
+            this.cmsPicBoxMoveGraphicsOrigin.Click += new System.EventHandler(this.CmsPicBoxMoveGraphicsOrigin_Click);
             // 
             // deletenotMarkToolStripMenuItem
             // 
@@ -3410,12 +3416,6 @@ namespace GrblPlotter
             // 
             this.loadTimer.Interval = 200;
             this.loadTimer.Tick += new System.EventHandler(this.LoadTimer_Tick);
-            // 
-            // cmsPicBoxClearWorkspace
-            // 
-            this.cmsPicBoxClearWorkspace.Name = "cmsPicBoxClearWorkspace";
-            resources.ApplyResources(this.cmsPicBoxClearWorkspace, "cmsPicBoxClearWorkspace");
-            this.cmsPicBoxClearWorkspace.Click += new System.EventHandler(this.cmsPicBoxClearWorkspace_Click);
             // 
             // MainForm
             // 

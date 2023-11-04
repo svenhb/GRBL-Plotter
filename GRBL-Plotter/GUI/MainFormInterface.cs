@@ -156,13 +156,28 @@ namespace GrblPlotter
             {
                 if (StatMsg.A.Contains("D"))
                 {
-                    string digits = StatMsg.A.Substring(StatMsg.A.IndexOf("D") + 1, 4);     // Digital pins in order '3210'
+                    string digits = StatMsg.A.Substring(StatMsg.A.IndexOf("D") + 1);     // Digital pins in order '3210'
                     if (digits.Length == 4)
                     {
                         SetAccessoryButton(BtnOverrideD3, (digits[0] == '1'));
                         SetAccessoryButton(BtnOverrideD2, (digits[1] == '1'));
                         SetAccessoryButton(BtnOverrideD1, (digits[2] == '1'));
                         SetAccessoryButton(BtnOverrideD0, (digits[3] == '1'));
+                        BtnOverrideD3.BackColor = default(Color);
+                        BtnOverrideD2.BackColor = default(Color);
+                        BtnOverrideD1.BackColor = default(Color);
+                        BtnOverrideD0.BackColor = default(Color);
+                    }
+                    else if (digits.Length == 8)
+                    {
+                        BtnOverrideD3.BackColor = (digits[0] == '1') ? Color.Honeydew : Color.LightPink;
+                        BtnOverrideD2.BackColor = (digits[1] == '1') ? Color.Honeydew : Color.LightPink;
+                        BtnOverrideD1.BackColor = (digits[2] == '1') ? Color.Honeydew : Color.LightPink;
+                        BtnOverrideD0.BackColor = (digits[3] == '1') ? Color.Honeydew : Color.LightPink;
+                        SetAccessoryButton(BtnOverrideD3, (digits[4] == '1'));
+                        SetAccessoryButton(BtnOverrideD2, (digits[5] == '1'));
+                        SetAccessoryButton(BtnOverrideD1, (digits[6] == '1'));
+                        SetAccessoryButton(BtnOverrideD0, (digits[7] == '1'));
                     }
                 }
                 else
