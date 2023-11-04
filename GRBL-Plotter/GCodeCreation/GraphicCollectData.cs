@@ -767,8 +767,8 @@ namespace GrblPlotter
             /* remove offset */
             if (!cancelByWorker && graphicInformation.OptionCodeOffset && !graphicInformation.OptionClipCode)  // || (Properties.Settings.Default.importGraphicTile) 
             {
-                double offX = (double)Properties.Settings.Default.importGraphicOffsetOriginX;
-                double offY = (double)Properties.Settings.Default.importGraphicOffsetOriginY;
+                double offX = GuiVariables.offsetOriginX;   // (double)Properties.Settings.Default.importGraphicOffsetOriginX;
+                double offY = GuiVariables.offsetOriginY;   // (double)Properties.Settings.Default.importGraphicOffsetOriginY;
                 double gap = (double)Properties.Settings.Default.multipleLoadGap;
 
                 /*********** Adapt offset on mutlifile import ****************************/
@@ -782,13 +782,16 @@ namespace GrblPlotter
                         if ((offX + dimX) > limitX)
                         {
                             offX = (double)Graphic2GCode.multiImportOffsetX;
-                            Properties.Settings.Default.importGraphicOffsetOriginX = Graphic2GCode.multiImportOffsetX + (decimal)(dimX + gap);
+                            //Properties.Settings.Default.importGraphicOffsetOriginX = Graphic2GCode.multiImportOffsetX + (decimal)(dimX + gap);
+                            GuiVariables.offsetOriginX = (double)Graphic2GCode.multiImportOffsetX + (dimX + gap);
                             offY = Graphic2GCode.multiImportMaxY + gap;
-                            Properties.Settings.Default.importGraphicOffsetOriginY = (decimal)offY;
+                            //Properties.Settings.Default.importGraphicOffsetOriginY = (decimal)offY;
+                            GuiVariables.offsetOriginY = offY;
                         }
                         else
                         {   //offX += dimX + gap;
-                            Properties.Settings.Default.importGraphicOffsetOriginX = (decimal)(offX + dimX + gap);
+                            //Properties.Settings.Default.importGraphicOffsetOriginX = (decimal)(offX + dimX + gap);
+                            GuiVariables.offsetOriginX = offX + dimX + gap;
                         }
                     }
                     else
@@ -796,13 +799,16 @@ namespace GrblPlotter
                         if ((offY + dimY) > limitY)
                         {
                             offY = (double)Graphic2GCode.multiImportOffsetY;
-                            Properties.Settings.Default.importGraphicOffsetOriginY = Graphic2GCode.multiImportOffsetY + (decimal)(dimY + gap);
+                            //Properties.Settings.Default.importGraphicOffsetOriginY = Graphic2GCode.multiImportOffsetY + (decimal)(dimY + gap);
+                            GuiVariables.offsetOriginY = (double)Graphic2GCode.multiImportOffsetY + (dimY + gap);
                             offX = Graphic2GCode.multiImportMaxX + gap;
-                            Properties.Settings.Default.importGraphicOffsetOriginX = (decimal)offX;
+                            //Properties.Settings.Default.importGraphicOffsetOriginX = (decimal)offX;
+                            GuiVariables.offsetOriginX = offX;
                         }
                         else
                         {   //offY += dimY + gap;
-                            Properties.Settings.Default.importGraphicOffsetOriginY = (decimal)(offY + dimY + gap);
+                            //Properties.Settings.Default.importGraphicOffsetOriginY = (decimal)(offY + dimY + gap);
+                            GuiVariables.offsetOriginY = offY + dimY + gap;
                         }
                     }
                     Properties.Settings.Default.Save();
