@@ -34,6 +34,7 @@
  * 2023-01-18 tBText.Invalidate after rezising the form
  * 2023-01-26 BtnSelectFont_Click add try/catch for tBText.Font = fontDialog1.Font;	// probably the cause of "Only TrueType fonts are supported. This is not a TrueType font."
  * 2023-01-29 check font size after width/heigth calc
+ * 2023-11-02 l:139 f:FillFontSelector check if index is in range
 */
 
 using System;
@@ -135,8 +136,12 @@ namespace GrblPlotter
             cBFont.Items.AddRange(GCodeFromFont.FontFileName());
 
             int tmpIndex = Properties.Settings.Default.createTextFontIndex;
-            if (tmpIndex < cBFont.Items.Count)
-            { cBFont.SelectedIndex = Properties.Settings.Default.createTextFontIndex; }
+			if (cBFont.Items.Count > 0)
+			{	if ((tmpIndex < 0) || (tmpIndex >= cBFont.Items.Count))
+				{	cBFont.SelectedIndex = tmpIndex = Properties.Settings.Default.createTextFontIndex = 0;}
+				else
+				{ 	cBFont.SelectedIndex = tmpIndex; }
+			}
         }
 
         private void TextForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -412,6 +417,7 @@ namespace GrblPlotter
                 try
                 {
                     tBText.Font = fontDialog1.Font;                     // probably the cause of "Only TrueType fonts are supported. This is not a TrueType font."
+                    textFont = tBText.Font;
                 }
                 catch (Exception err)
                 {
