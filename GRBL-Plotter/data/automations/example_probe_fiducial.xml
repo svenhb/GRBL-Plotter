@@ -1,0 +1,21 @@
+<Table>
+
+<ProcessItem>
+<Action>Load</Action>
+<Value>data\examples\graphic_fiducial.dxf</Value>
+<Info>Load example graphic file</Info>
+</ProcessItem>
+
+<ProcessItem>
+<Action>Probe</Action>
+<Value>Fiducial</Value>
+<Info>Fiducial correction via probe</Info>
+</ProcessItem>
+
+<ProcessItem>
+<Action>Stream</Action>
+<Value> </Value>
+<Info>Send G-Code from editor</Info>
+</ProcessItem>
+
+</Table>
