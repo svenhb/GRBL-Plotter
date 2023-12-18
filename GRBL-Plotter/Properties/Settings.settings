@@ -1757,6 +1757,18 @@
     <Setting Name="importSVGAddComments" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importSVGAddOnEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importSVGAddOnFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">data\examples\addon_frame_stamp1.svg</Value>
+    </Setting>
+    <Setting Name="importSVGAddOnPosition" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importSVGAddOnScale" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.9</Value>
+    </Setting>
     <Setting Name="importSVGApplyFill" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -2030,6 +2042,24 @@
     <Setting Name="probingFeedZ" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">100</Value>
     </Setting>
+    <Setting Name="probingFiducial2ndChance" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="probingFiducialCodeEnd" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G54</Value>
+    </Setting>
+    <Setting Name="probingFiducialCodeStart" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G59</Value>
+    </Setting>
+    <Setting Name="probingFiducialOffsetX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="probingFiducialOffsetY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="probingFiducialSkip1stMove" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="probingFinalX" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
@@ -2038,6 +2068,9 @@
     </Setting>
     <Setting Name="probingFinalZ" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="probingInvertLogic" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="probingOffsetX" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.1</Value>
@@ -2083,6 +2116,9 @@
     </Setting>
     <Setting Name="processSplitDistance" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">300</Value>
+    </Setting>
+    <Setting Name="processTimerInterval" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1000</Value>
     </Setting>
     <Setting Name="projectorColorBackground" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Black</Value>

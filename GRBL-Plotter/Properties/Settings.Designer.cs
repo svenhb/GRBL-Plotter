@@ -12,7 +12,7 @@ namespace GrblPlotter.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.7.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.8.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -7051,6 +7051,54 @@ namespace GrblPlotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importSVGAddOnEnable {
+            get {
+                return ((bool)(this["importSVGAddOnEnable"]));
+            }
+            set {
+                this["importSVGAddOnEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("data\\examples\\addon_frame_stamp1.svg")]
+        public string importSVGAddOnFile {
+            get {
+                return ((string)(this["importSVGAddOnFile"]));
+            }
+            set {
+                this["importSVGAddOnFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int importSVGAddOnPosition {
+            get {
+                return ((int)(this["importSVGAddOnPosition"]));
+            }
+            set {
+                this["importSVGAddOnPosition"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.9")]
+        public decimal importSVGAddOnScale {
+            get {
+                return ((decimal)(this["importSVGAddOnScale"]));
+            }
+            set {
+                this["importSVGAddOnScale"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool importSVGApplyFill {
             get {
                 return ((bool)(this["importSVGApplyFill"]));
@@ -7729,6 +7777,90 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["mainFormWinState"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool multipleLoadAllwaysClear {
+            get {
+                return ((bool)(this["multipleLoadAllwaysClear"]));
+            }
+            set {
+                this["multipleLoadAllwaysClear"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool multipleLoadAllwaysLoad {
+            get {
+                return ((bool)(this["multipleLoadAllwaysLoad"]));
+            }
+            set {
+                this["multipleLoadAllwaysLoad"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool multipleLoadByX {
+            get {
+                return ((bool)(this["multipleLoadByX"]));
+            }
+            set {
+                this["multipleLoadByX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public decimal multipleLoadGap {
+            get {
+                return ((decimal)(this["multipleLoadGap"]));
+            }
+            set {
+                this["multipleLoadGap"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool multipleLoadLimitNo {
+            get {
+                return ((bool)(this["multipleLoadLimitNo"]));
+            }
+            set {
+                this["multipleLoadLimitNo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public decimal multipleLoadNoX {
+            get {
+                return ((decimal)(this["multipleLoadNoX"]));
+            }
+            set {
+                this["multipleLoadNoX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public decimal multipleLoadNoY {
+            get {
+                return ((decimal)(this["multipleLoadNoY"]));
+            }
+            set {
+                this["multipleLoadNoY"] = value;
             }
         }
         
@@ -9006,85 +9138,97 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("3")]
-        public decimal multipleLoadNoX {
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        public decimal processTimerInterval {
             get {
-                return ((decimal)(this["multipleLoadNoX"]));
+                return ((decimal)(this["processTimerInterval"]));
             }
             set {
-                this["multipleLoadNoX"] = value;
+                this["processTimerInterval"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("3")]
-        public decimal multipleLoadNoY {
+        [global::System.Configuration.DefaultSettingValueAttribute("G59")]
+        public string probingFiducialCodeStart {
             get {
-                return ((decimal)(this["multipleLoadNoY"]));
+                return ((string)(this["probingFiducialCodeStart"]));
             }
             set {
-                this["multipleLoadNoY"] = value;
+                this["probingFiducialCodeStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G54")]
+        public string probingFiducialCodeEnd {
+            get {
+                return ((string)(this["probingFiducialCodeEnd"]));
+            }
+            set {
+                this["probingFiducialCodeEnd"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal probingFiducialOffsetX {
+            get {
+                return ((decimal)(this["probingFiducialOffsetX"]));
+            }
+            set {
+                this["probingFiducialOffsetX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal probingFiducialOffsetY {
+            get {
+                return ((decimal)(this["probingFiducialOffsetY"]));
+            }
+            set {
+                this["probingFiducialOffsetY"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool multipleLoadByX {
+        public bool probingFiducialSkip1stMove {
             get {
-                return ((bool)(this["multipleLoadByX"]));
+                return ((bool)(this["probingFiducialSkip1stMove"]));
             }
             set {
-                this["multipleLoadByX"] = value;
+                this["probingFiducialSkip1stMove"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool multipleLoadLimitNo {
+        public bool probingFiducial2ndChance {
             get {
-                return ((bool)(this["multipleLoadLimitNo"]));
+                return ((bool)(this["probingFiducial2ndChance"]));
             }
             set {
-                this["multipleLoadLimitNo"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool multipleLoadAllwaysLoad {
-            get {
-                return ((bool)(this["multipleLoadAllwaysLoad"]));
-            }
-            set {
-                this["multipleLoadAllwaysLoad"] = value;
+                this["probingFiducial2ndChance"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool multipleLoadAllwaysClear {
+        public bool probingInvertLogic {
             get {
-                return ((bool)(this["multipleLoadAllwaysClear"]));
+                return ((bool)(this["probingInvertLogic"]));
             }
             set {
-                this["multipleLoadAllwaysClear"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public decimal multipleLoadGap {
-            get {
-                return ((decimal)(this["multipleLoadGap"]));
-            }
-            set {
-                this["multipleLoadGap"] = value;
+                this["probingInvertLogic"] = value;
             }
         }
     }
