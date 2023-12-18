@@ -708,4 +708,7 @@ Možné řešení: zkuste převést objekt na cestu.</value>
   <data name="statusStripeSelectionRotateShift" xml:space="preserve">
     <value>Stisknutím Shift zobrazíte celé stupně</value>
   </data>
+  <data name="textNewFontException" xml:space="preserve">
+    <value>Pokud jste se pokusili vybrat písmo, které bylo nainstalováno, když byl GRBL-Plotter spuštěn, restartujte GRBL-Plotter a zkuste to znovu!</value>
+  </data>
 </root>

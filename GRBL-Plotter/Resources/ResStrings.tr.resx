@@ -720,4 +720,7 @@ Olası geçici çözüm: nesneyi yola dönüştürmeyi deneyin.</value>
   <data name="statusStripeSelectionRotateShift" xml:space="preserve">
     <value>Tam dereceleri görüntülemek için Shift tuşuna basın</value>
   </data>
+  <data name="textNewFontException" xml:space="preserve">
+    <value>GRBL-Plotter çalışırken yüklenen bir yazı tipini seçmeye çalıştıysanız lütfen GRBL-Plotter'ı yeniden başlatın ve tekrar deneyin!</value>
+  </data>
 </root>

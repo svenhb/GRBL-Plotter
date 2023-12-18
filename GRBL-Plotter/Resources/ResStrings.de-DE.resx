@@ -639,4 +639,7 @@ Mögliche Problemumgehung: Versuchen Sie, das Objekt in einen Pfad umzuwandeln.<
   <data name="statusStripeSelectionRotateShift" xml:space="preserve">
     <value>Drücke die Umschalttaste, um volle Grad anzuzeigen</value>
   </data>
+  <data name="textNewFontException" xml:space="preserve">
+    <value>Wenn Sie versucht haben, eine Schriftart auszuwählen, die während der Ausführung von GRBL-Plotter installiert wurde, starten Sie bitte GRBL-Plotter neu und versuchen Sie es erneut!</value>
+  </data>
 </root>

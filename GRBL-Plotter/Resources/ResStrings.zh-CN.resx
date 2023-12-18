@@ -708,4 +708,7 @@
   <data name="statusStripeSelectionRotateShift" xml:space="preserve">
     <value>按 Shift 键显示完整度数</value>
   </data>
+  <data name="textNewFontException" xml:space="preserve">
+    <value>如果您尝试选择 GRBL-Plotter 运行时安装的字体，请重新启动 GRBL-Plotter 并重试！</value>
+  </data>
 </root>

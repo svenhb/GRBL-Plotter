@@ -702,4 +702,7 @@ Solution de contournement possible : essayez de convertir l'objet en chemin.</v
   <data name="statusStripeSelectionRotateShift" xml:space="preserve">
     <value>Appuyez sur Shift pour afficher les degrés complets</value>
   </data>
+  <data name="textNewFontException" xml:space="preserve">
+    <value>Si vous avez essayé de sélectionner une police installée pendant l'exécution de GRBL-Plotter, veuillez redémarrer GRBL-Plotter et réessayer !</value>
+  </data>
 </root>

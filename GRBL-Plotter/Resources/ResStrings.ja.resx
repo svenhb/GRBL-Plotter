@@ -708,4 +708,7 @@ https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlistを�
   <data name="statusStripeSelectionRotateShift" xml:space="preserve">
     <value>Shift キーを押すと完全な度が表示されます</value>
   </data>
+  <data name="textNewFontException" xml:space="preserve">
+    <value>GRBL-Plotter の実行中にインストールされたフォントを選択しようとした場合は、GRBL-Plotter を再起動してもう一度お試しください。</value>
+  </data>
 </root>

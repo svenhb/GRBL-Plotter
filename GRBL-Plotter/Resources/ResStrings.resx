@@ -723,4 +723,7 @@ Possible workaround: try to convert object to path.</value>
   <data name="statusStripeSelectionRotateShift" xml:space="preserve">
     <value>press 'Shift' to snap on full degrees</value>
   </data>
+  <data name="textNewFontException" xml:space="preserve">
+    <value>If you tried to select a font that was installed while GRBL-Plotter was running, please restart GRBL-Plotter and try again!</value>
+  </data>
 </root>

@@ -1816,6 +1816,15 @@ namespace GrblPlotter.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die If you tried to select a font that was installed while GRBL-Plotter was running, please restart GRBL-Plotter and try again! ähnelt.
+        /// </summary>
+        public static string textNewFontException {
+            get {
+                return ResourceManager.GetString("textNewFontException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Use current settings (last loaded: &apos;{0}&apos;) ähnelt.
         /// </summary>
         public static string useCaseHeader1 {

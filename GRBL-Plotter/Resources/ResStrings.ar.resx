@@ -708,4 +708,7 @@
   <data name="statusStripeSelectionRotateShift" xml:space="preserve">
     <value>اضغط على Shift لعرض الدرجات الكاملة</value>
   </data>
+  <data name="textNewFontException" xml:space="preserve">
+    <value>إذا حاولت تحديد خط تم تثبيته أثناء تشغيل GRBL-Plotter، فيرجى إعادة تشغيل GRBL-Plotter والمحاولة مرة أخرى!</value>
+  </data>
 </root>

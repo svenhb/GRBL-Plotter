@@ -712,4 +712,7 @@ Possibile soluzione: provare a convertire l'oggetto in percorso.</value>
   <data name="statusStripeSelectionRotateShift" xml:space="preserve">
     <value>Premere Maiusc per visualizzare i gradi completi</value>
   </data>
+  <data name="textNewFontException" xml:space="preserve">
+    <value>Se hai provato a selezionare un carattere installato mentre GRBL-Plotter era in esecuzione, riavvia GRBL-Plotter e riprova!</value>
+  </data>
 </root>

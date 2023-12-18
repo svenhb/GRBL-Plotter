@@ -708,4 +708,7 @@
   <data name="statusStripeSelectionRotateShift" xml:space="preserve">
     <value>Нажмите Shift, чтобы отобразить полные градусы.</value>
   </data>
+  <data name="textNewFontException" xml:space="preserve">
+    <value>Если вы попытались выбрать шрифт, который был установлен во время работы GRBL-Plotter, перезапустите GRBL-Plotter и повторите попытку!</value>
+  </data>
 </root>

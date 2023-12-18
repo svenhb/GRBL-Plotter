@@ -708,4 +708,7 @@ Posible solución alternativa: intente convertir el objeto en ruta.</value>
   <data name="statusStripeSelectionRotateShift" xml:space="preserve">
     <value>Presione Shift para mostrar grados completos</value>
   </data>
+  <data name="textNewFontException" xml:space="preserve">
+    <value>Si intentó seleccionar una fuente que se instaló mientras se ejecutaba GRBL-Plotter, reinicie GRBL-Plotter e inténtelo nuevamente.</value>
+  </data>
 </root>
