@@ -54,6 +54,7 @@ namespace GrblPlotter
             this.btnApply = new System.Windows.Forms.Button();
             this.GbFont1 = new System.Windows.Forms.GroupBox();
             this.nUDLineBreak = new System.Windows.Forms.NumericUpDown();
+            this.cBLineBreak = new System.Windows.Forms.CheckBox();
             this.nUDFontLine = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
             this.nUDFontDistance = new System.Windows.Forms.NumericUpDown();
@@ -64,6 +65,9 @@ namespace GrblPlotter
             this.RbAlign1 = new System.Windows.Forms.RadioButton();
             this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.CbOutline = new System.Windows.Forms.CheckBox();
+            this.cBToolTable = new System.Windows.Forms.CheckBox();
+            this.CbHatchFill = new System.Windows.Forms.CheckBox();
             this.cBConnectLetter = new System.Windows.Forms.CheckBox();
             this.cBTool = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -72,12 +76,28 @@ namespace GrblPlotter
             this.cBPauseChar = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.LblInfoWidth = new System.Windows.Forms.Label();
+            this.LblInfoHeight = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.NUDWidth = new System.Windows.Forms.NumericUpDown();
+            this.NUDHeight = new System.Windows.Forms.NumericUpDown();
+            this.BtnSetWidth = new System.Windows.Forms.Button();
+            this.BtnSetHeight = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.CbWordWrap = new System.Windows.Forms.CheckBox();
             this.RbFont2 = new System.Windows.Forms.RadioButton();
             this.RbFont1 = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.CbInsertCode = new System.Windows.Forms.CheckBox();
+            this.tBText = new System.Windows.Forms.TextBox();
             this.GbFont2 = new System.Windows.Forms.GroupBox();
+            this.LblHeight = new System.Windows.Forms.Label();
+            this.LblWidth = new System.Windows.Forms.Label();
+            this.LblInfoSize = new System.Windows.Forms.Label();
+            this.LblSize = new System.Windows.Forms.Label();
+            this.LblInfoFont = new System.Windows.Forms.Label();
+            this.LblFont = new System.Windows.Forms.Label();
             this.BtnSelectFont = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button7 = new System.Windows.Forms.Button();
@@ -90,32 +110,15 @@ namespace GrblPlotter
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.fontDialog1 = new System.Windows.Forms.FontDialog();
-            this.LblFont = new System.Windows.Forms.Label();
-            this.LblInfoFont = new System.Windows.Forms.Label();
-            this.LblInfoSize = new System.Windows.Forms.Label();
-            this.LblSize = new System.Windows.Forms.Label();
-            this.LblWidth = new System.Windows.Forms.Label();
-            this.LblHeight = new System.Windows.Forms.Label();
-            this.LblInfoWidth = new System.Windows.Forms.Label();
-            this.LblInfoHeight = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.NUDWidth = new System.Windows.Forms.NumericUpDown();
-            this.NUDHeight = new System.Windows.Forms.NumericUpDown();
-            this.BtnSetWidth = new System.Windows.Forms.Button();
-            this.BtnSetHeight = new System.Windows.Forms.Button();
-            this.CbWordWrap = new System.Windows.Forms.CheckBox();
-            this.cBToolTable = new System.Windows.Forms.CheckBox();
-            this.CbHatchFill = new System.Windows.Forms.CheckBox();
-            this.CbInsertCode = new System.Windows.Forms.CheckBox();
-            this.tBText = new System.Windows.Forms.TextBox();
-            this.cBLineBreak = new System.Windows.Forms.CheckBox();
-            this.CbOutline = new System.Windows.Forms.CheckBox();
+            this.button8 = new System.Windows.Forms.Button();
             this.GbFont1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDLineBreak)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDFontLine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDFontDistance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDFontSize)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUDWidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUDHeight)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -123,8 +126,6 @@ namespace GrblPlotter
             this.tabPage2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NUDWidth)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NUDHeight)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -185,6 +186,15 @@ namespace GrblPlotter
             0,
             0,
             0});
+            // 
+            // cBLineBreak
+            // 
+            resources.ApplyResources(this.cBLineBreak, "cBLineBreak");
+            this.cBLineBreak.Checked = global::GrblPlotter.Properties.Settings.Default.createTextLineBreakEnable;
+            this.cBLineBreak.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "createTextLineBreakEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBLineBreak.Name = "cBLineBreak";
+            this.toolTip1.SetToolTip(this.cBLineBreak, resources.GetString("cBLineBreak.ToolTip"));
+            this.cBLineBreak.UseVisualStyleBackColor = true;
             // 
             // nUDFontLine
             // 
@@ -297,6 +307,7 @@ namespace GrblPlotter
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button8);
             this.groupBox1.Controls.Add(this.CbOutline);
             this.groupBox1.Controls.Add(this.cBToolTable);
             this.groupBox1.Controls.Add(this.CbHatchFill);
@@ -310,6 +321,36 @@ namespace GrblPlotter
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
+            // 
+            // CbOutline
+            // 
+            resources.ApplyResources(this.CbOutline, "CbOutline");
+            this.CbOutline.Checked = true;
+            this.CbOutline.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CbOutline.Name = "CbOutline";
+            this.toolTip1.SetToolTip(this.CbOutline, resources.GetString("CbOutline.ToolTip"));
+            this.CbOutline.UseVisualStyleBackColor = true;
+            this.CbOutline.CheckedChanged += new System.EventHandler(this.CbOutline_CheckedChanged);
+            // 
+            // cBToolTable
+            // 
+            resources.ApplyResources(this.cBToolTable, "cBToolTable");
+            this.cBToolTable.Checked = global::GrblPlotter.Properties.Settings.Default.importGCToolTableUse;
+            this.cBToolTable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGCToolTableUse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBToolTable.Name = "cBToolTable";
+            this.toolTip1.SetToolTip(this.cBToolTable, resources.GetString("cBToolTable.ToolTip"));
+            this.cBToolTable.UseVisualStyleBackColor = true;
+            this.cBToolTable.CheckedChanged += new System.EventHandler(this.CBToolTable_CheckedChanged);
+            // 
+            // CbHatchFill
+            // 
+            resources.ApplyResources(this.CbHatchFill, "CbHatchFill");
+            this.CbHatchFill.Checked = global::GrblPlotter.Properties.Settings.Default.importGraphicHatchFillEnable;
+            this.CbHatchFill.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGraphicHatchFillEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbHatchFill.Name = "CbHatchFill";
+            this.toolTip1.SetToolTip(this.CbHatchFill, resources.GetString("CbHatchFill.ToolTip"));
+            this.CbHatchFill.UseVisualStyleBackColor = true;
+            this.CbHatchFill.CheckedChanged += new System.EventHandler(this.CbHatchFill_CheckedChanged);
             // 
             // cBConnectLetter
             // 
@@ -353,6 +394,85 @@ namespace GrblPlotter
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             // 
+            // LblInfoWidth
+            // 
+            resources.ApplyResources(this.LblInfoWidth, "LblInfoWidth");
+            this.LblInfoWidth.Name = "LblInfoWidth";
+            this.toolTip1.SetToolTip(this.LblInfoWidth, resources.GetString("LblInfoWidth.ToolTip"));
+            // 
+            // LblInfoHeight
+            // 
+            resources.ApplyResources(this.LblInfoHeight, "LblInfoHeight");
+            this.LblInfoHeight.Name = "LblInfoHeight";
+            this.toolTip1.SetToolTip(this.LblInfoHeight, resources.GetString("LblInfoHeight.ToolTip"));
+            // 
+            // linkLabel1
+            // 
+            resources.ApplyResources(this.linkLabel1, "linkLabel1");
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Tag = "https://www.dafont.com";
+            this.toolTip1.SetToolTip(this.linkLabel1, resources.GetString("linkLabel1.ToolTip"));
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
+            // 
+            // NUDWidth
+            // 
+            resources.ApplyResources(this.NUDWidth, "NUDWidth");
+            this.NUDWidth.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.NUDWidth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.NUDWidth.Name = "NUDWidth";
+            this.toolTip1.SetToolTip(this.NUDWidth, resources.GetString("NUDWidth.ToolTip"));
+            this.NUDWidth.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // NUDHeight
+            // 
+            resources.ApplyResources(this.NUDHeight, "NUDHeight");
+            this.NUDHeight.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.NUDHeight.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.NUDHeight.Name = "NUDHeight";
+            this.toolTip1.SetToolTip(this.NUDHeight, resources.GetString("NUDHeight.ToolTip"));
+            this.NUDHeight.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // BtnSetWidth
+            // 
+            resources.ApplyResources(this.BtnSetWidth, "BtnSetWidth");
+            this.BtnSetWidth.Name = "BtnSetWidth";
+            this.toolTip1.SetToolTip(this.BtnSetWidth, resources.GetString("BtnSetWidth.ToolTip"));
+            this.BtnSetWidth.UseVisualStyleBackColor = true;
+            this.BtnSetWidth.Click += new System.EventHandler(this.BtnSetWidth_Click);
+            // 
+            // BtnSetHeight
+            // 
+            resources.ApplyResources(this.BtnSetHeight, "BtnSetHeight");
+            this.BtnSetHeight.Name = "BtnSetHeight";
+            this.toolTip1.SetToolTip(this.BtnSetHeight, resources.GetString("BtnSetHeight.ToolTip"));
+            this.BtnSetHeight.UseVisualStyleBackColor = true;
+            this.BtnSetHeight.Click += new System.EventHandler(this.BtnSetHeight_Click);
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -377,6 +497,13 @@ namespace GrblPlotter
             resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // CbWordWrap
+            // 
+            resources.ApplyResources(this.CbWordWrap, "CbWordWrap");
+            this.CbWordWrap.Name = "CbWordWrap";
+            this.CbWordWrap.UseVisualStyleBackColor = true;
+            this.CbWordWrap.CheckedChanged += new System.EventHandler(this.CbWordWrap_CheckedChanged);
             // 
             // RbFont2
             // 
@@ -403,6 +530,23 @@ namespace GrblPlotter
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             // 
+            // CbInsertCode
+            // 
+            resources.ApplyResources(this.CbInsertCode, "CbInsertCode");
+            this.CbInsertCode.Checked = global::GrblPlotter.Properties.Settings.Default.fromFormInsertEnable;
+            this.CbInsertCode.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "fromFormInsertEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbInsertCode.Name = "CbInsertCode";
+            this.CbInsertCode.UseVisualStyleBackColor = true;
+            // 
+            // tBText
+            // 
+            this.tBText.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "createtextFontText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.tBText, "tBText");
+            this.tBText.ForeColor = System.Drawing.Color.Black;
+            this.tBText.Name = "tBText";
+            this.tBText.Text = global::GrblPlotter.Properties.Settings.Default.createTextFontText;
+            this.tBText.TextChanged += new System.EventHandler(this.TbText_TextChanged);
+            // 
             // GbFont2
             // 
             this.GbFont2.Controls.Add(this.BtnSetHeight);
@@ -422,6 +566,36 @@ namespace GrblPlotter
             resources.ApplyResources(this.GbFont2, "GbFont2");
             this.GbFont2.Name = "GbFont2";
             this.GbFont2.TabStop = false;
+            // 
+            // LblHeight
+            // 
+            resources.ApplyResources(this.LblHeight, "LblHeight");
+            this.LblHeight.Name = "LblHeight";
+            // 
+            // LblWidth
+            // 
+            resources.ApplyResources(this.LblWidth, "LblWidth");
+            this.LblWidth.Name = "LblWidth";
+            // 
+            // LblInfoSize
+            // 
+            resources.ApplyResources(this.LblInfoSize, "LblInfoSize");
+            this.LblInfoSize.Name = "LblInfoSize";
+            // 
+            // LblSize
+            // 
+            resources.ApplyResources(this.LblSize, "LblSize");
+            this.LblSize.Name = "LblSize";
+            // 
+            // LblInfoFont
+            // 
+            resources.ApplyResources(this.LblInfoFont, "LblInfoFont");
+            this.LblInfoFont.Name = "LblInfoFont";
+            // 
+            // LblFont
+            // 
+            resources.ApplyResources(this.LblFont, "LblFont");
+            this.LblFont.Name = "LblFont";
             // 
             // BtnSelectFont
             // 
@@ -509,177 +683,15 @@ namespace GrblPlotter
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.BtnLoadGraphic_Click);
             // 
-            // LblFont
+            // button8
             // 
-            resources.ApplyResources(this.LblFont, "LblFont");
-            this.LblFont.Name = "LblFont";
-            // 
-            // LblInfoFont
-            // 
-            resources.ApplyResources(this.LblInfoFont, "LblInfoFont");
-            this.LblInfoFont.Name = "LblInfoFont";
-            // 
-            // LblInfoSize
-            // 
-            resources.ApplyResources(this.LblInfoSize, "LblInfoSize");
-            this.LblInfoSize.Name = "LblInfoSize";
-            // 
-            // LblSize
-            // 
-            resources.ApplyResources(this.LblSize, "LblSize");
-            this.LblSize.Name = "LblSize";
-            // 
-            // LblWidth
-            // 
-            resources.ApplyResources(this.LblWidth, "LblWidth");
-            this.LblWidth.Name = "LblWidth";
-            // 
-            // LblHeight
-            // 
-            resources.ApplyResources(this.LblHeight, "LblHeight");
-            this.LblHeight.Name = "LblHeight";
-            // 
-            // LblInfoWidth
-            // 
-            resources.ApplyResources(this.LblInfoWidth, "LblInfoWidth");
-            this.LblInfoWidth.Name = "LblInfoWidth";
-            this.toolTip1.SetToolTip(this.LblInfoWidth, resources.GetString("LblInfoWidth.ToolTip"));
-            // 
-            // LblInfoHeight
-            // 
-            resources.ApplyResources(this.LblInfoHeight, "LblInfoHeight");
-            this.LblInfoHeight.Name = "LblInfoHeight";
-            this.toolTip1.SetToolTip(this.LblInfoHeight, resources.GetString("LblInfoHeight.ToolTip"));
-            // 
-            // linkLabel1
-            // 
-            resources.ApplyResources(this.linkLabel1, "linkLabel1");
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Tag = "https://www.dafont.com";
-            this.toolTip1.SetToolTip(this.linkLabel1, resources.GetString("linkLabel1.ToolTip"));
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel_LinkClicked);
-            // 
-            // NUDWidth
-            // 
-            resources.ApplyResources(this.NUDWidth, "NUDWidth");
-            this.NUDWidth.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.NUDWidth.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.NUDWidth.Name = "NUDWidth";
-            this.toolTip1.SetToolTip(this.NUDWidth, resources.GetString("NUDWidth.ToolTip"));
-            this.NUDWidth.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            // 
-            // NUDHeight
-            // 
-            resources.ApplyResources(this.NUDHeight, "NUDHeight");
-            this.NUDHeight.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.NUDHeight.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.NUDHeight.Name = "NUDHeight";
-            this.toolTip1.SetToolTip(this.NUDHeight, resources.GetString("NUDHeight.ToolTip"));
-            this.NUDHeight.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            // 
-            // BtnSetWidth
-            // 
-            resources.ApplyResources(this.BtnSetWidth, "BtnSetWidth");
-            this.BtnSetWidth.Name = "BtnSetWidth";
-            this.toolTip1.SetToolTip(this.BtnSetWidth, resources.GetString("BtnSetWidth.ToolTip"));
-            this.BtnSetWidth.UseVisualStyleBackColor = true;
-            this.BtnSetWidth.Click += new System.EventHandler(this.BtnSetWidth_Click);
-            // 
-            // BtnSetHeight
-            // 
-            resources.ApplyResources(this.BtnSetHeight, "BtnSetHeight");
-            this.BtnSetHeight.Name = "BtnSetHeight";
-            this.toolTip1.SetToolTip(this.BtnSetHeight, resources.GetString("BtnSetHeight.ToolTip"));
-            this.BtnSetHeight.UseVisualStyleBackColor = true;
-            this.BtnSetHeight.Click += new System.EventHandler(this.BtnSetHeight_Click);
-            // 
-            // CbWordWrap
-            // 
-            resources.ApplyResources(this.CbWordWrap, "CbWordWrap");
-            this.CbWordWrap.Name = "CbWordWrap";
-            this.CbWordWrap.UseVisualStyleBackColor = true;
-            this.CbWordWrap.CheckedChanged += new System.EventHandler(this.CbWordWrap_CheckedChanged);
-            // 
-            // cBToolTable
-            // 
-            resources.ApplyResources(this.cBToolTable, "cBToolTable");
-            this.cBToolTable.Checked = global::GrblPlotter.Properties.Settings.Default.importGCToolTableUse;
-            this.cBToolTable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGCToolTableUse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBToolTable.Name = "cBToolTable";
-            this.toolTip1.SetToolTip(this.cBToolTable, resources.GetString("cBToolTable.ToolTip"));
-            this.cBToolTable.UseVisualStyleBackColor = true;
-            this.cBToolTable.CheckedChanged += new System.EventHandler(this.CBToolTable_CheckedChanged);
-            // 
-            // CbHatchFill
-            // 
-            resources.ApplyResources(this.CbHatchFill, "CbHatchFill");
-            this.CbHatchFill.Checked = global::GrblPlotter.Properties.Settings.Default.importGraphicHatchFillEnable;
-            this.CbHatchFill.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGraphicHatchFillEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.CbHatchFill.Name = "CbHatchFill";
-            this.toolTip1.SetToolTip(this.CbHatchFill, resources.GetString("CbHatchFill.ToolTip"));
-            this.CbHatchFill.UseVisualStyleBackColor = true;
-            this.CbHatchFill.CheckedChanged += new System.EventHandler(this.CbHatchFill_CheckedChanged);
-            // 
-            // CbInsertCode
-            // 
-            resources.ApplyResources(this.CbInsertCode, "CbInsertCode");
-            this.CbInsertCode.Checked = global::GrblPlotter.Properties.Settings.Default.fromFormInsertEnable;
-            this.CbInsertCode.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "fromFormInsertEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.CbInsertCode.Name = "CbInsertCode";
-            this.CbInsertCode.UseVisualStyleBackColor = true;
-            // 
-            // tBText
-            // 
-            this.tBText.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "createtextFontText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.tBText, "tBText");
-            this.tBText.ForeColor = System.Drawing.Color.Black;
-            this.tBText.Name = "tBText";
-            this.tBText.Text = global::GrblPlotter.Properties.Settings.Default.createTextFontText;
-            this.tBText.TextChanged += new System.EventHandler(this.TbText_TextChanged);
-            // 
-            // cBLineBreak
-            // 
-            resources.ApplyResources(this.cBLineBreak, "cBLineBreak");
-            this.cBLineBreak.Checked = global::GrblPlotter.Properties.Settings.Default.createTextLineBreakEnable;
-            this.cBLineBreak.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "createTextLineBreakEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cBLineBreak.Name = "cBLineBreak";
-            this.toolTip1.SetToolTip(this.cBLineBreak, resources.GetString("cBLineBreak.ToolTip"));
-            this.cBLineBreak.UseVisualStyleBackColor = true;
-            // 
-            // CbOutline
-            // 
-            resources.ApplyResources(this.CbOutline, "CbOutline");
-            this.CbOutline.Checked = true;
-            this.CbOutline.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CbOutline.Name = "CbOutline";
-            this.toolTip1.SetToolTip(this.CbOutline, resources.GetString("CbOutline.ToolTip"));
-            this.CbOutline.UseVisualStyleBackColor = true;
-            this.CbOutline.CheckedChanged += new System.EventHandler(this.CbOutline_CheckedChanged);
+            this.button8.BackColor = System.Drawing.Color.SkyBlue;
+            resources.ApplyResources(this.button8, "button8");
+            this.button8.Name = "button8";
+            this.button8.Tag = "id=form-text";
+            this.toolTip1.SetToolTip(this.button8, resources.GetString("button8.ToolTip"));
+            this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // GCodeFromText
             // 
@@ -699,6 +711,8 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDFontSize)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUDWidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUDHeight)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -709,8 +723,6 @@ namespace GrblPlotter
             this.tabPage2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NUDWidth)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NUDHeight)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -778,5 +790,6 @@ namespace GrblPlotter
         private System.Windows.Forms.NumericUpDown NUDWidth;
         private System.Windows.Forms.CheckBox CbWordWrap;
         private System.Windows.Forms.CheckBox CbOutline;
+        private System.Windows.Forms.Button button8;
     }
 }

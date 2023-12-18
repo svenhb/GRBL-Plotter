@@ -54,6 +54,7 @@ using AForge.Imaging.ColorReduction;
 using AForge.Imaging.Filters;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Globalization;
@@ -1513,6 +1514,20 @@ namespace GrblPlotter
             Highlight();
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string url = "https://grbl-plotter.de/index.php?";
+            try
+            {
+                Button clickedLink = sender as Button;
+                Process.Start(url + clickedLink.Tag.ToString());
+            }
+            catch (Exception err)
+            {
+                Logger.Error(err, "BtnHelp_Click ");
+                MessageBox.Show("Could not open the link: " + err.Message, "Error");
+            }
+        }
 
         private void BtnReloadPattern_Click(object sender, EventArgs e)
         {

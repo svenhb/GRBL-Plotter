@@ -216,6 +216,7 @@
             this.lblSaturation = new System.Windows.Forms.Label();
             this.tBarSaturation = new System.Windows.Forms.TrackBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button3 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDResoX)).BeginInit();
@@ -1927,11 +1928,22 @@
             this.timer1.Interval = 200;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.SkyBlue;
+            resources.ApplyResources(this.button3, "button3");
+            this.button3.Name = "button3";
+            this.button3.Tag = "id=form-image";
+            this.toolTip1.SetToolTip(this.button3, resources.GetString("button3.ToolTip"));
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // GCodeFromImage
             // 
             this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.btnShowOrig);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.btnShowSettings);
@@ -2221,5 +2233,6 @@
         private System.Windows.Forms.TrackBar tBarBWThreshold;
         private System.Windows.Forms.CheckBox CbBlackWhiteEnable;
         private System.Windows.Forms.RadioButton RbGrayscaleVector;
+        private System.Windows.Forms.Button button3;
     }
 }

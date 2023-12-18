@@ -84,6 +84,7 @@
             this.nUDScanGap2D = new System.Windows.Forms.NumericUpDown();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.CbInsertCode = new System.Windows.Forms.CheckBox();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -536,10 +537,20 @@
             this.CbInsertCode.Name = "CbInsertCode";
             this.CbInsertCode.UseVisualStyleBackColor = true;
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.SkyBlue;
+            resources.ApplyResources(this.button3, "button3");
+            this.button3.Name = "button3";
+            this.button3.Tag = "id=form-barcode";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // GCodeForBarcode
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.CbInsertCode);
             this.Controls.Add(this.tabControl1);
             this.Name = "GCodeForBarcode";
@@ -624,5 +635,6 @@
         private System.Windows.Forms.TextBox tBWLAN1;
         private System.Windows.Forms.RadioButton radioButton1;
         public System.Windows.Forms.CheckBox CbInsertCode;
+        private System.Windows.Forms.Button button3;
     }
 }

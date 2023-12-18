@@ -118,6 +118,7 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.cBMoveTo00 = new System.Windows.Forms.CheckBox();
             this.CbInsertCode = new System.Windows.Forms.CheckBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOverlap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolSpindleSpeed)).BeginInit();
@@ -150,6 +151,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.cBTool);
             this.groupBox1.Controls.Add(this.cBNoZUp);
             this.groupBox1.Controls.Add(this.label1);
@@ -973,6 +975,16 @@
             this.CbInsertCode.UseVisualStyleBackColor = true;
             this.CbInsertCode.CheckedChanged += new System.EventHandler(this.CbInsertCode_CheckedChanged);
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.SkyBlue;
+            resources.ApplyResources(this.button3, "button3");
+            this.button3.Name = "button3";
+            this.button3.Tag = "id=form-shape";
+            this.toolTip1.SetToolTip(this.button3, resources.GetString("button3.ToolTip"));
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // GCodeFromShape
             // 
             resources.ApplyResources(this, "$this");
@@ -1118,5 +1130,6 @@
         private System.Windows.Forms.TextBox TbShapeName;
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.Button BtnDeleteShape;
+        private System.Windows.Forms.Button button3;
     }
 }

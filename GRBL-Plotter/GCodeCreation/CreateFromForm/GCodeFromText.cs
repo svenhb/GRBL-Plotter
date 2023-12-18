@@ -35,6 +35,9 @@
  * 2023-01-26 BtnSelectFont_Click add try/catch for tBText.Font = fontDialog1.Font;	// probably the cause of "Only TrueType fonts are supported. This is not a TrueType font."
  * 2023-01-29 check font size after width/heigth calc
  * 2023-11-02 l:139 f:FillFontSelector check if index is in range
+ * 2023-11-24 l:414 f:BtnSelectFont_Click  add try/catch on fontDialog1.ShowDialog - Problem: if a newly installed font was selected, after closing the dialog with 'ok': 
+																			"main Form ThreadException - Only TrueType fonts are supported. This is not a TrueType font."
+ *																			
 */
 
 using System;
@@ -136,12 +139,13 @@ namespace GrblPlotter
             cBFont.Items.AddRange(GCodeFromFont.FontFileName());
 
             int tmpIndex = Properties.Settings.Default.createTextFontIndex;
-			if (cBFont.Items.Count > 0)
-			{	if ((tmpIndex < 0) || (tmpIndex >= cBFont.Items.Count))
-				{	cBFont.SelectedIndex = tmpIndex = Properties.Settings.Default.createTextFontIndex = 0;}
-				else
-				{ 	cBFont.SelectedIndex = tmpIndex; }
-			}
+            if (cBFont.Items.Count > 0)
+            {
+                if ((tmpIndex < 0) || (tmpIndex >= cBFont.Items.Count))
+                { cBFont.SelectedIndex = tmpIndex = Properties.Settings.Default.createTextFontIndex = 0; }
+                else
+                { cBFont.SelectedIndex = tmpIndex; }
+            }
         }
 
         private void TextForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -411,25 +415,24 @@ namespace GrblPlotter
             fontDialog1.Font = tBText.Font = textFont;
             fontDialog1.Color = tBText.ForeColor = textColor;
 
-            if (fontDialog1.ShowDialog() != DialogResult.Cancel)
-            {
-                Logger.Info("BtnSelectFont_Click: Font:'{0}'", fontDialog1.Font.FontFamily.Name);
-                try
+            try
+            {   // if a newly installed font was selected, after closing the dialog with 'ok': "main Form ThreadException - Only TrueType fonts are supported. This is not a TrueType font."
+                if (fontDialog1.ShowDialog() != DialogResult.Cancel)
                 {
-                    tBText.Font = fontDialog1.Font;                     // probably the cause of "Only TrueType fonts are supported. This is not a TrueType font."
+                    Logger.Info("BtnSelectFont_Click: Font:'{0}'", fontDialog1.Font.FontFamily.Name);
+                    tBText.Font = fontDialog1.Font;
                     textFont = tBText.Font;
+                    LblInfoFont.Text = textFont.FontFamily.Name.ToString();
+                    textColor = tBText.ForeColor = fontDialog1.Color;
+                    ShowTextSize();
                 }
-                catch (Exception err)
-                {
-                    Logger.Error(err, "BtnSelectFont_Click: Font:'{0}' ", fontDialog1.Font.FontFamily.Name);
-                    EventCollector.StoreException("SelFont " + err.Message);
-                    MessageBox.Show(err.Message, "Error");
-                    return;
-                }
-            //    textFont = fontDialog1.Font;
-                LblInfoFont.Text = textFont.FontFamily.Name.ToString();
-                textColor = tBText.ForeColor = fontDialog1.Color;
-                ShowTextSize();
+            }
+            catch (Exception err)
+            {
+                Logger.Error(err, "BtnSelectFont_Click: Font:'{0}' ", fontDialog1.Font.FontFamily.Name);
+                EventCollector.StoreException("SelFont " + err.Message);
+                MessageBox.Show(Localization.GetString("textNewFontException") + "\r\n\r\nError from system:\r\n" + err.Message, Localization.GetString("mainAttention"));
+                return;
             }
         }
 
@@ -563,6 +566,21 @@ namespace GrblPlotter
                 CbHatchFill.CheckedChanged -= CbHatchFill_CheckedChanged;
                 CbHatchFill.Checked = true;
                 CbHatchFill.CheckedChanged += CbHatchFill_CheckedChanged;
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            string url = "https://grbl-plotter.de/index.php?";
+            try
+            {
+                Button clickedLink = sender as Button;
+                Process.Start(url + clickedLink.Tag.ToString());
+            }
+            catch (Exception err)
+            {
+                Logger.Error(err, "BtnHelp_Click ");
+                MessageBox.Show("Could not open the link: " + err.Message, "Error");
             }
         }
     }
