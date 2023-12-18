@@ -29,8 +29,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>4</ApplicationRevision>
-    <ApplicationVersion>1.7.0.4</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.7.1.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -60,6 +60,8 @@
     <WarningLevel>1</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>GrblPlotter.Program</StartupObject>
@@ -318,6 +320,12 @@
     <Compile Include="MachineControl\ControlSetupUseCase.Designer.cs">
       <DependentUpon>ControlSetupUseCase.cs</DependentUpon>
     </Compile>
+    <Compile Include="MachineControl\ControlMoveXY.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MachineControl\ControlMoveXY.Designer.cs">
+      <DependentUpon>ControlMoveXY.cs</DependentUpon>
+    </Compile>
     <Compile Include="MachineControl\GCode2DViewpaths.cs" />
     <Compile Include="MachineControl\GCodeAnalyze.cs" />
     <Compile Include="MachineControl\GCodeParser.cs" />
@@ -464,6 +472,21 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\automations\example2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\automations\example_probe_fiducial.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\examples\addon_frame_stamp1.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\examples\addon_frame_stamp2.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\examples\addon_frame_stamp3.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\examples\addon_sign_mysign.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\examples\exampleFrameFix.jpg">
@@ -798,6 +821,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\scripts\script_stamp_refresh.nc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\examples\graphic_fiducial.dxf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Pen_dot_Servo.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\app.manifest" />
@@ -1314,6 +1343,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlLaser.zh-CN.resx">
       <DependentUpon>ControlLaser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MachineControl\ControlMoveXY.resx">
+      <DependentUpon>ControlMoveXY.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MachineControl\ControlProbing.ar.resx">
       <DependentUpon>ControlProbing.cs</DependentUpon>
@@ -1833,6 +1865,7 @@
     <EmbeddedResource Include="Resources\ResStrings.de-DE.resx" />
     <EmbeddedResource Include="Resources\ResStrings.es.resx" />
     <EmbeddedResource Include="Resources\ResStrings.fr.resx" />
+    <EmbeddedResource Include="Resources\ResStrings.it.resx" />
     <EmbeddedResource Include="Resources\ResStrings.ja.resx" />
     <EmbeddedResource Include="Resources\ResStrings.pl.resx" />
     <EmbeddedResource Include="Resources\ResStrings.pt.resx" />
