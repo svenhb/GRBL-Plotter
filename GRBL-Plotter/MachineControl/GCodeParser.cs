@@ -31,6 +31,7 @@
 */
 
 
+using NLog;
 using System;
 
 namespace GrblPlotter
@@ -611,6 +612,12 @@ namespace GrblPlotter
             if (cos1 < -1) cos1 = -1;
             tmp.angleStart = Math.PI - Math.Acos(cos1);
             if (j > 0) { tmp.angleStart = -tmp.angleStart; }
+
+            if ((j == 0) && (Math.Abs(pOld.DistanceTo(pNew)) < precision))   // full circle
+            {
+                tmp.angleDiff = - 2 * Math.PI;
+                return tmp;
+            }
 
             double cos2 = (tmp.center.X - pNew.X) / tmp.radius;
             if (cos2 > 1) cos2 = 1;

@@ -319,6 +319,14 @@ namespace GrblPlotter
             else
                 RbMultipleLoadLimitDim.Checked = true;
             RbMultipleLoadLimitNo_CheckedChanged(sender, e);
+
+            int tmpIndex = Properties.Settings.Default.importSVGAddOnPosition;
+            if ((tmpIndex >= 0) && (tmpIndex < CbImportSVGAddOnPosition.Items.Count))
+            { CbImportSVGAddOnPosition.SelectedIndex = tmpIndex; }
+            else
+            {
+                CbImportSVGAddOnPosition.SelectedIndex = Properties.Settings.Default.importSVGAddOnPosition = 0;
+            }
         }
 
         private void SaveSettings()
@@ -1180,13 +1188,13 @@ namespace GrblPlotter
             else if (clickedButton.Name.IndexOf("CircleToDot") > 0)
                 SetFilePath(TbImportCircleToDotScript);
         }
-        private void SetFilePath(TextBox tmp)
+        private void SetFilePath(TextBox tmp, string filter = "GCode (*.nc)|*.nc|All Files (*.*)|*.*")
         {
             OpenFileDialog opnDlg = new OpenFileDialog();
             string ipath = Datapath.MakeAbsolutePath(tmp.Text);
             Logger.Info("SetFilePath initiial: box:{0}   makeAbsolute:{1}", tmp.Text, ipath);
             opnDlg.InitialDirectory = ipath.Substring(0, ipath.LastIndexOf("\\"));
-            opnDlg.Filter = "GCode (*.nc)|*.nc|All Files (*.*)|*.*";
+            opnDlg.Filter = filter;  //"GCode (*.nc)|*.nc|All Files (*.*)|*.*";
             //            MessageBox.Show(opnDlg.InitialDirectory+"\r\n"+ Application.StartupPath);
             if (opnDlg.ShowDialog(this) == DialogResult.OK)
             {
@@ -2195,7 +2203,7 @@ namespace GrblPlotter
                     return false;
                     break;
                 case 1:
-                    return (prop.importSVGNodesOnly || prop.importDepthFromWidth || prop.importSVGCircleToDot || prop.importDepthFromWidth || prop.importPWMFromWidth);
+                    return (prop.importSVGNodesOnly || prop.importSVGCircleToDot || prop.importDepthFromWidth || prop.importDepthFromWidthRamp || prop.importSVGCircleToDotZ || prop.importPWMFromWidth || prop.importSVGCircleToDotS);
                     break;
                 case 2:
                     return (prop.importGraphicAddFrameEnable || prop.importGraphicMultiplyGraphicsEnable || prop.importGraphicLeadInEnable);// || prop.importGraphicLeadOutEnable);
@@ -2276,7 +2284,6 @@ namespace GrblPlotter
                 Logger.Error(err, "BtnHelp_Click ");
                 MessageBox.Show("Could not open the link: " + err.Message, "Error");
             }
-
         }
 
         private void CbImportGraphicHatchFillInset_CheckedChanged(object sender, EventArgs e)
@@ -2319,6 +2326,22 @@ namespace GrblPlotter
             GuiVariables.offsetOriginX = (double)Properties.Settings.Default.importGraphicOffsetOriginX;
             GuiVariables.offsetOriginY = (double)Properties.Settings.Default.importGraphicOffsetOriginY;
 
+        }
+
+        private void BtnImportSVGSelectFrameFile_Click(object sender, EventArgs e)
+        {
+            SetFilePath(TbImportSVGAddOnFile, "SVG (*.svg)|*.svg");
+        }
+
+        private void CbImportSVGAddOnPosition_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.importSVGAddOnPosition = CbImportSVGAddOnPosition.SelectedIndex;
+        }
+
+        private void BtnSetSValues_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.importImageSMin = Properties.Settings.Default.importGCPWMZero;
+            Properties.Settings.Default.importImageSMax = Properties.Settings.Default.importGCPWMDown;
         }
     }
 }

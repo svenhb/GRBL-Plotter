@@ -346,4 +346,93 @@ Z up = Z start + Z probing
   <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
     <value>ضع المسبار في المنتصف تقريبًا فوق قطعة الشغل، لاستخدام هذا الخيار.</value>
   </data>
+  <data name="cBFindCenterInvert.Text" xml:space="preserve">
+    <value>عكس منطق التحقيق</value>
+  </data>
+  <data name="cBFindCenterInvert.ToolTip" xml:space="preserve">
+    <value>المنطق العكسي: بدلاً من التوقف عند الاتصال، فإنه يتوقف عند فقدان الاتصال</value>
+  </data>
+  <data name="TbSetPoints.Text" xml:space="preserve">
+    <value>الإحداثيات الإيمانية:</value>
+  </data>
+  <data name="TbSetPoints.ToolTip" xml:space="preserve">
+    <value>الإحداثيات الإيمانية: سيتم استخدام الأول والثاني فقط.
+احصل على إحداثيات الاعتمادية من الرسم المستورد.</value>
+  </data>
+  <data name="CbProbeSkipMove.Text" xml:space="preserve">
+    <value>تخطي الخطوة الأولى عند جهة الاتصال</value>
+  </data>
+  <data name="BtnStartEF.Text" xml:space="preserve">
+    <value>بداية</value>
+  </data>
+  <data name="BtnStartCF.Text" xml:space="preserve">
+    <value>بداية</value>
+  </data>
+  <data name="BtnCancelCF.Text" xml:space="preserve">
+    <value>إلغاء</value>
+  </data>
+  <data name="BtnStartTL.Text" xml:space="preserve">
+    <value>بداية</value>
+  </data>
+  <data name="CbProbeSkipMove.ToolTip" xml:space="preserve">
+    <value>ينتقل التخطي إلى الرقم الائتماني الأول إذا تم تشغيل المسبار بالفعل.
+الافتراض: تم نقل المسبار بالفعل فوق الاعتماد الأول.</value>
+  </data>
+  <data name="BtnGetFiducialOffset.Text" xml:space="preserve">
+    <value>احصل على نقاط البيع.</value>
+  </data>
+  <data name="BtnGetFiducialOffset.ToolTip" xml:space="preserve">
+    <value>تولي الموقف الفعلي</value>
+  </data>
+  <data name="BtnMoveLeft.Text" xml:space="preserve">
+    <value>&lt;</value>
+  </data>
+  <data name="BtnMoveLeft.ToolTip" xml:space="preserve">
+    <value>طرح الإزاحة إلى الموضع الفعلي</value>
+  </data>
+  <data name="BtnMoveRight.Text" xml:space="preserve">
+    <value>&gt;</value>
+  </data>
+  <data name="BtnMoveRight.ToolTip" xml:space="preserve">
+    <value>إضافة إزاحة إلى الموضع الفعلي</value>
+  </data>
+  <data name="CbProbe2ndChance.Text" xml:space="preserve">
+    <value>اسأل إذا لم يتم العثور على الاعتماد الثاني</value>
+  </data>
+  <data name="CbProbe2ndChance.ToolTip" xml:space="preserve">
+    <value>إذا لم يتم تشغيل المسبار بعد الانتقال إلى الاعتماد الثاني، فامنح الفرصة للتحرك يدويًا بواسطة المستخدم.</value>
+  </data>
+  <data name="button3.ToolTip" xml:space="preserve">
+    <value>مساعدة على الانترنت</value>
+  </data>
+  <data name="GbFiducialOffset.Text" xml:space="preserve">
+    <value>الإزاحة بين المسبار والأداة</value>
+  </data>
+  <data name="CbProbeScale.Text" xml:space="preserve">
+    <value>مقياس أيضا على التناوب</value>
+  </data>
+  <data name="BtnStartFiducial.Text" xml:space="preserve">
+    <value>يبدأ</value>
+  </data>
+  <data name="BtnCancelFiducial.Text" xml:space="preserve">
+    <value>يلغي</value>
+  </data>
+  <data name="LblFiducial.Text" xml:space="preserve">
+    <value>التصحيح الإيماني:
+استخدم مفتاح القرب الاستقرائي للعثور على علامات التسجيل المعدنية (العملات المعدنية) وتوسيطها.
+
+راجع [الإعداد - سلوك البرنامج - الكاميرا - الإرشادات] لمزيد من الإعدادات.</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>التصحيح الإيماني</value>
+  </data>
+  <data name="BtnHelp_ImportParameter.ToolTip" xml:space="preserve">
+    <value>مساعدة على الانترنت</value>
+  </data>
+  <data name="button1.ToolTip" xml:space="preserve">
+    <value>مساعدة على الانترنت</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>مساعدة على الانترنت</value>
+  </data>
 </root>

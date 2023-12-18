@@ -345,4 +345,93 @@ Habituellement, la bordure de l'outil (palpeur / couteau) est utilisée pour dé
   <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
     <value>Placez la sonde presque centrée au-dessus de la pièce pour utiliser cette option.</value>
   </data>
+  <data name="cBFindCenterInvert.Text" xml:space="preserve">
+    <value>Logique de sonde inversée</value>
+  </data>
+  <data name="cBFindCenterInvert.ToolTip" xml:space="preserve">
+    <value>Logique inverse : au lieu de s'arrêter au contact, il s'arrête en cas de perte de contact</value>
+  </data>
+  <data name="TbSetPoints.Text" xml:space="preserve">
+    <value>Coordonnées fiduciaires :</value>
+  </data>
+  <data name="TbSetPoints.ToolTip" xml:space="preserve">
+    <value>Coordonnées de repère : seuls le 1er et le 2e seront utilisés.
+Obtenez les coordonnées des repères à partir du graphique importé.</value>
+  </data>
+  <data name="BtnStartEF.Text" xml:space="preserve">
+    <value>Début</value>
+  </data>
+  <data name="BtnStartCF.Text" xml:space="preserve">
+    <value>Début</value>
+  </data>
+  <data name="BtnCancelCF.Text" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="BtnStartTL.Text" xml:space="preserve">
+    <value>Début</value>
+  </data>
+  <data name="CbProbeSkipMove.Text" xml:space="preserve">
+    <value>Sauter le 1er mouvement au contact</value>
+  </data>
+  <data name="CbProbeSkipMove.ToolTip" xml:space="preserve">
+    <value>Passe au 1er repère si la sonde est déjà déclenchée.
+Hypothèse : la sonde a déjà été déplacée au-dessus du 1er repère.</value>
+  </data>
+  <data name="BtnGetFiducialOffset.Text" xml:space="preserve">
+    <value>Obtenez pos.</value>
+  </data>
+  <data name="BtnGetFiducialOffset.ToolTip" xml:space="preserve">
+    <value>Reprendre le poste actuel</value>
+  </data>
+  <data name="BtnMoveLeft.Text" xml:space="preserve">
+    <value>&lt;</value>
+  </data>
+  <data name="BtnMoveLeft.ToolTip" xml:space="preserve">
+    <value>Soustraire le décalage à la position réelle</value>
+  </data>
+  <data name="BtnMoveRight.Text" xml:space="preserve">
+    <value>&gt;</value>
+  </data>
+  <data name="BtnMoveRight.ToolTip" xml:space="preserve">
+    <value>Ajouter un décalage à la position réelle</value>
+  </data>
+  <data name="CbProbe2ndChance.Text" xml:space="preserve">
+    <value>Demander si le 2ème repère n'est pas trouvé</value>
+  </data>
+  <data name="CbProbe2ndChance.ToolTip" xml:space="preserve">
+    <value>Si la sonde n'est pas déclenchée après le passage au 2ème repère, donnez la possibilité à l'utilisateur de la déplacer manuellement.</value>
+  </data>
+  <data name="button3.ToolTip" xml:space="preserve">
+    <value>Aide en ligne</value>
+  </data>
+  <data name="GbFiducialOffset.Text" xml:space="preserve">
+    <value>Décalage entre palpeur et outil</value>
+  </data>
+  <data name="CbProbeScale.Text" xml:space="preserve">
+    <value>Échelle également lors de la rotation</value>
+  </data>
+  <data name="BtnStartFiducial.Text" xml:space="preserve">
+    <value>Commencer</value>
+  </data>
+  <data name="BtnCancelFiducial.Text" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="LblFiducial.Text" xml:space="preserve">
+    <value>Correction fiduciaire :
+Utilisez un détecteur de proximité inductif pour trouver et centrer les marques d'enregistrement métalliques (pièces de monnaie).
+
+Voir [Configuration - Comportement du programme - Caméra - Repères] pour d'autres paramètres.</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Correction fiduciaire</value>
+  </data>
+  <data name="BtnHelp_ImportParameter.ToolTip" xml:space="preserve">
+    <value>Aide en ligne</value>
+  </data>
+  <data name="button1.ToolTip" xml:space="preserve">
+    <value>Aide en ligne</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>Aide en ligne</value>
+  </data>
 </root>

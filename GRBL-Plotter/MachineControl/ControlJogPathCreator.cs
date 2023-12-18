@@ -24,6 +24,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Globalization;
@@ -441,6 +442,21 @@ namespace GrblPlotter
             Graphic.CreateGCode();
             joggcode = Graphic.GCode.ToString();
             pathIterator.Dispose();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string url = "https://grbl-plotter.de/index.php?";
+            try
+            {
+                Button clickedLink = sender as Button;
+                Process.Start(url + clickedLink.Tag.ToString());
+            }
+            catch (Exception err)
+            {
+                Logger.Error(err, "BtnHelp_Click ");
+                MessageBox.Show("Could not open the link: " + err.Message, "Error");
+            }
         }
 
         private void BtnSave_Click(object sender, EventArgs e)

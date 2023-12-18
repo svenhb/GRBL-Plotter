@@ -3267,7 +3267,7 @@ La profundidad máxima estará limitada por el grabado Z-Height.</value>
     <value>Traduce el ancho mínimo/máximo de la pluma o el radio del círculo en S en el rango de:</value>
   </data>
   <data name="nUDSBottom.ToolTip" xml:space="preserve">
-    <value>bajo valor</value>
+    <value>El ancho de pluma más amplio se trasladará a esta profundidad.</value>
   </data>
   <data name="label94.Text" xml:space="preserve">
     <value>Retraso antes de cerrar automáticamente la información mostrada</value>
@@ -3450,5 +3450,67 @@ P.ej. para corte por láser</value>
   </data>
   <data name="groupBox40.Text" xml:space="preserve">
     <value>Carga de múltiples archivos</value>
+  </data>
+  <data name="TbImportSVGAddOnFile.ToolTip" xml:space="preserve">
+    <value>Ruta del archivo svg para cargar como add.on</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items" xml:space="preserve">
+    <value>Ninguno</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items1" xml:space="preserve">
+    <value>Centro (marco)</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items2" xml:space="preserve">
+    <value>Abajo a la izquierda</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items3" xml:space="preserve">
+    <value>Abajo a la derecha</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items4" xml:space="preserve">
+    <value>Arriba a la izquierda</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items5" xml:space="preserve">
+    <value>Parte superior derecha</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Text" xml:space="preserve">
+    <value>Seleccionar posición</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.ToolTip" xml:space="preserve">
+    <value>Seleccione la posición deseada del complemento, en relación con el gráfico importado</value>
+  </data>
+  <data name="label105.Text" xml:space="preserve">
+    <value>Escala</value>
+  </data>
+  <data name="label105.ToolTip" xml:space="preserve">
+    <value>Escala el tamaño del gráfico importado según el tamaño original o el cambio de tamaño deseado</value>
+  </data>
+  <data name="NudImportSVGAddOnScale.ToolTip" xml:space="preserve">
+    <value>Para un marco: p.e. "0,9" reduce la escala del objeto original para que quepa en el marco</value>
+  </data>
+  <data name="cBImportSVGAddOnEnable.Text" xml:space="preserve">
+    <value>Permitir</value>
+  </data>
+  <data name="BtnImportSVGAddOnSelectFile.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="BtnImportSVGAddOnSelectFile.ToolTip" xml:space="preserve">
+    <value>Seleccione el archivo SVG para marco, logotipo, letrero o marca de agua</value>
+  </data>
+  <data name="GbImportSVGAddOn.Text" xml:space="preserve">
+    <value>Agregar un marco, logotipo, letrero o marca de agua desde el archivo</value>
+  </data>
+  <data name="GbImportSVGAddOn.ToolTip" xml:space="preserve">
+    <value>Agrega un gráfico SVG adicional al importado, por ejemplo:
+Añade un marco en el que se coloca la práfica original: utiliza escala 0,9 o inferior y "centro"
+Dibuja una firma en el margen inferior derecho: escala 0,1 o menos y usa “abajo a la derecha”</value>
+  </data>
+  <data name="BtnSetSValues.Text" xml:space="preserve">
+    <value>Obtiene valores de PWM</value>
+  </data>
+  <data name="BtnSetSValues.ToolTip" xml:space="preserve">
+    <value>Obtiene los valores de Pen Zero/Down PWM de otra pestaña [Importación de gráficos - Generación de código G - Traducción de lápiz arriba/abajo - PWM]</value>
+  </data>
+  <data name="nUDSTop.ToolTip" xml:space="preserve">
+    <value>El ancho de pluma más pequeño se trasladará a esta profundidad.</value>
   </data>
 </root>

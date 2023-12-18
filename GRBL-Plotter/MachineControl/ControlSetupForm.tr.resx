@@ -3583,7 +3583,7 @@ Maksimum derinlik, Z-Yüksekliği gravürü ile sınırlanacaktır.</value>
     <value>S cinsinden min/maks kalem genişliğini veya daire yarıçapını şu aralıkta çevirir:</value>
   </data>
   <data name="nUDSBottom.ToolTip" xml:space="preserve">
-    <value>düşük değer</value>
+    <value>En geniş kalem genişliği bu derinliğe çevrilecektir</value>
   </data>
   <data name="label94.Text" xml:space="preserve">
     <value>Görüntülenen bilgileri otomatik olarak kapatmadan önceki gecikme</value>
@@ -3762,5 +3762,67 @@ Maksimum derinlik, Z-Yüksekliği gravürü ile sınırlanacaktır.</value>
   </data>
   <data name="groupBox40.Text" xml:space="preserve">
     <value>Çoklu dosya yükleme</value>
+  </data>
+  <data name="TbImportSVGAddOnFile.ToolTip" xml:space="preserve">
+    <value>Add.on olarak yüklenecek svg dosyasının dosya yolu</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items" xml:space="preserve">
+    <value>Hiçbiri</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items1" xml:space="preserve">
+    <value>Merkez (Çerçeve)</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items2" xml:space="preserve">
+    <value>Sol alt</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items3" xml:space="preserve">
+    <value>Sağ alt</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items4" xml:space="preserve">
+    <value>Sol üst</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items5" xml:space="preserve">
+    <value>Sağ üst</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Text" xml:space="preserve">
+    <value>Pozisyon seçin</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.ToolTip" xml:space="preserve">
+    <value>İçe aktarılan grafiğe göre eklentinin istenen konumunu seçin</value>
+  </data>
+  <data name="label105.Text" xml:space="preserve">
+    <value>Ölçek</value>
+  </data>
+  <data name="label105.ToolTip" xml:space="preserve">
+    <value>İçe aktarılan grafiğin boyutunu orijinal boyuta veya istenen yeniden boyuta göre ölçeklendirir</value>
+  </data>
+  <data name="NudImportSVGAddOnScale.ToolTip" xml:space="preserve">
+    <value>Bir çerçeve için: ör. "0,9" orijinal nesneyi çerçeveye sığacak şekilde küçültür</value>
+  </data>
+  <data name="cBImportSVGAddOnEnable.Text" xml:space="preserve">
+    <value>Olanak vermek</value>
+  </data>
+  <data name="BtnImportSVGAddOnSelectFile.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="BtnImportSVGAddOnSelectFile.ToolTip" xml:space="preserve">
+    <value>Çerçeve, logo, işaret veya filigran için SVG dosyasını seçin</value>
+  </data>
+  <data name="GbImportSVGAddOn.Text" xml:space="preserve">
+    <value>Dosyadan çerçeve, logo, işaret, filigran ekleyin</value>
+  </data>
+  <data name="GbImportSVGAddOn.ToolTip" xml:space="preserve">
+    <value>İçe aktarılana ek bir SVG grafiği ekler, örneğin:
+Orijinal grafiğin yerleştirildiği bir çerçeve ekleyin: 0,9 veya daha düşük bir ölçek ve "orta" kullanın
+Sağ alt kenar boşluğuna bir imza çizin: 0,1 veya daha düşük ölçeklendirin ve "sağ alt"ı kullanın</value>
+  </data>
+  <data name="BtnSetSValues.Text" xml:space="preserve">
+    <value>PWM değerlerini alır</value>
+  </data>
+  <data name="BtnSetSValues.ToolTip" xml:space="preserve">
+    <value>Diğer sekmeden Kalem Sıfır/Aşağı PWM değerlerini alır [Grafik içe aktarma - G Kodu oluşturma - Kalem yukarı/aşağı çevirisi - PWM]</value>
+  </data>
+  <data name="nUDSTop.ToolTip" xml:space="preserve">
+    <value>En küçük kalem genişliği bu derinliğe çevrilecektir</value>
   </data>
 </root>

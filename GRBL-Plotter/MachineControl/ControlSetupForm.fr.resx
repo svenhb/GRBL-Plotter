@@ -3270,7 +3270,7 @@ La profondeur maximale sera limitée par la gravure Z-Height.</value>
     <value>Traduit la largeur min/max du stylo ou le rayon du cercle en S dans la plage de :</value>
   </data>
   <data name="nUDSBottom.ToolTip" xml:space="preserve">
-    <value>valeur inférieure</value>
+    <value>La largeur de stylo la plus large sera traduite à cette profondeur</value>
   </data>
   <data name="label94.Text" xml:space="preserve">
     <value>Délai avant fermeture automatique des informations affichées</value>
@@ -3449,5 +3449,67 @@ Par exemple. pour la découpe laser</value>
   </data>
   <data name="groupBox40.Text" xml:space="preserve">
     <value>Chargement de plusieurs fichiers</value>
+  </data>
+  <data name="TbImportSVGAddOnFile.ToolTip" xml:space="preserve">
+    <value>Chemin du fichier svg à charger en tant que add.on</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items" xml:space="preserve">
+    <value>Aucun</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items1" xml:space="preserve">
+    <value>Centre (cadre)</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items2" xml:space="preserve">
+    <value>En bas à gauche</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items3" xml:space="preserve">
+    <value>En bas à droite</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items4" xml:space="preserve">
+    <value>En haut à gauche</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items5" xml:space="preserve">
+    <value>En haut à droite</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Text" xml:space="preserve">
+    <value>Sélectionnez un poste</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.ToolTip" xml:space="preserve">
+    <value>Sélectionnez la position souhaitée du module complémentaire, par rapport au graphique importé</value>
+  </data>
+  <data name="label105.Text" xml:space="preserve">
+    <value>Échelle</value>
+  </data>
+  <data name="label105.ToolTip" xml:space="preserve">
+    <value>Met à l'échelle la taille du graphique importé en fonction de la taille d'origine ou du redimensionnement souhaité</value>
+  </data>
+  <data name="NudImportSVGAddOnScale.ToolTip" xml:space="preserve">
+    <value>Pour un cadre : par ex. "0,9" réduit l'objet d'origine pour l'adapter au cadre</value>
+  </data>
+  <data name="cBImportSVGAddOnEnable.Text" xml:space="preserve">
+    <value>Activer</value>
+  </data>
+  <data name="BtnImportSVGAddOnSelectFile.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="BtnImportSVGAddOnSelectFile.ToolTip" xml:space="preserve">
+    <value>Sélectionnez le fichier SVG pour le cadre, le logo, le signe ou le filigrane</value>
+  </data>
+  <data name="GbImportSVGAddOn.Text" xml:space="preserve">
+    <value>Ajouter un cadre, un logo, un signe, un filigrane à partir d'un fichier</value>
+  </data>
+  <data name="GbImportSVGAddOn.ToolTip" xml:space="preserve">
+    <value>Ajoute un graphique SVG supplémentaire à celui importé, par exemple :
+Ajoutez un cadre dans lequel le praphic original est placé : utilisez une échelle de 0,9 ou inférieure et "centre"
+Dessinez une signature dans la marge inférieure droite : échelle 0,1 ou inférieure et utilisez « en bas à droite »</value>
+  </data>
+  <data name="BtnSetSValues.Text" xml:space="preserve">
+    <value>Obtient les valeurs PWM</value>
+  </data>
+  <data name="BtnSetSValues.ToolTip" xml:space="preserve">
+    <value>Obtient les valeurs PWM zéro/bas du stylo à partir d'un autre onglet [Importation graphique - Génération de code G - Traduction haut/bas du stylo - PWM]</value>
+  </data>
+  <data name="nUDSTop.ToolTip" xml:space="preserve">
+    <value>La plus petite largeur de stylo sera traduite à cette profondeur</value>
   </data>
 </root>

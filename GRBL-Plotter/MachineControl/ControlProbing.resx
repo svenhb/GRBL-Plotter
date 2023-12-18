@@ -151,7 +151,7 @@
     <value>gBHardware</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -247,7 +247,7 @@
     <value>gBHardware</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="cBZProbing.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -280,7 +280,19 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;cBZProbing.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>21</value>
+  </data>
+  <data name="&gt;&gt;LblProbeContact.Name" xml:space="preserve">
+    <value>LblProbeContact</value>
+  </data>
+  <data name="&gt;&gt;LblProbeContact.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblProbeContact.Parent" xml:space="preserve">
+    <value>gBHardware</value>
+  </data>
+  <data name="&gt;&gt;LblProbeContact.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;label7.Name" xml:space="preserve">
     <value>label7</value>
@@ -292,7 +304,7 @@
     <value>gBHardware</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;label6.Name" xml:space="preserve">
     <value>label6</value>
@@ -304,7 +316,7 @@
     <value>gBHardware</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;label5.Name" xml:space="preserve">
     <value>label5</value>
@@ -316,7 +328,7 @@
     <value>gBHardware</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;nUDProbeDiameter.Name" xml:space="preserve">
     <value>nUDProbeDiameter</value>
@@ -328,7 +340,7 @@
     <value>gBHardware</value>
   </data>
   <data name="&gt;&gt;nUDProbeDiameter.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;nUDOffsetX.Name" xml:space="preserve">
     <value>nUDOffsetX</value>
@@ -340,7 +352,7 @@
     <value>gBHardware</value>
   </data>
   <data name="&gt;&gt;nUDOffsetX.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;nUDOffsetY.Name" xml:space="preserve">
     <value>nUDOffsetY</value>
@@ -352,7 +364,7 @@
     <value>gBHardware</value>
   </data>
   <data name="&gt;&gt;nUDOffsetY.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="&gt;&gt;nUDOffsetZ.Name" xml:space="preserve">
     <value>nUDOffsetZ</value>
@@ -364,7 +376,7 @@
     <value>gBHardware</value>
   </data>
   <data name="&gt;&gt;nUDOffsetZ.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="gBHardware.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
@@ -389,6 +401,24 @@
   </data>
   <data name="&gt;&gt;gBHardware.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="LblProbeContact.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblProbeContact.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 9.75pt</value>
+  </data>
+  <data name="LblProbeContact.Location" type="System.Drawing.Point, System.Drawing">
+    <value>212, 0</value>
+  </data>
+  <data name="LblProbeContact.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 18</value>
+  </data>
+  <data name="LblProbeContact.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="LblProbeContact.Text" xml:space="preserve">
+    <value>Probe contact</value>
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -598,7 +628,7 @@
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;nUDWorkpieceDiameter.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="nUDProbeFinalZ.Location" type="System.Drawing.Point, System.Drawing">
     <value>250, 95</value>
@@ -889,7 +919,7 @@ Finally move to center
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;rBCF2.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>14</value>
   </data>
   <data name="rBCF1.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
     <value>Button</value>
@@ -926,7 +956,7 @@ Finally move to center</value>
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;rBCF1.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="btnGetAngleEF.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -938,7 +968,7 @@ Finally move to center</value>
     <value>180, 23</value>
   </data>
   <data name="btnGetAngleEF.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
+    <value>3</value>
   </data>
   <data name="btnGetAngleEF.Text" xml:space="preserve">
     <value>Rotate G-Code by angle</value>
@@ -956,7 +986,7 @@ Finally move to center</value>
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;btnGetAngleEF.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="tBAngle.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 214</value>
@@ -986,7 +1016,7 @@ Finally move to center</value>
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;tBAngle.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="cBSetCoordTL.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 113</value>
@@ -1013,7 +1043,7 @@ Finally move to center</value>
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;cBSetCoordTL.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="btnSaveTL.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 163</value>
@@ -1040,7 +1070,7 @@ Finally move to center</value>
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;btnSaveTL.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="cBSetCenterZero.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1072,7 +1102,7 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;cBSetCenterZero.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="nUDFindCenterAngle.Location" type="System.Drawing.Point, System.Drawing">
     <value>138, 189</value>
@@ -1099,7 +1129,325 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;nUDFindCenterAngle.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>96, 153</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>94, 30</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.TabIndex" type="System.Int32, mscorlib">
+    <value>46</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.Text" xml:space="preserve">
+    <value>Start from center</value>
+  </data>
+  <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
+    <value>Place the probe almost centered above the workpiece, to use this option.</value>
+  </data>
+  <data name="&gt;&gt;cBFindCenterStartFromCenter.Name" xml:space="preserve">
+    <value>cBFindCenterStartFromCenter</value>
+  </data>
+  <data name="&gt;&gt;cBFindCenterStartFromCenter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBFindCenterStartFromCenter.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;cBFindCenterStartFromCenter.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="cBFindCenterUseX.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBFindCenterUseX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>126, 26</value>
+  </data>
+  <data name="cBFindCenterUseX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 17</value>
+  </data>
+  <data name="cBFindCenterUseX.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="cBFindCenterUseX.Text" xml:space="preserve">
+    <value>X (1-2)</value>
+  </data>
+  <data name="cBFindCenterUseX.ToolTip" xml:space="preserve">
+    <value>Probe on X axis</value>
+  </data>
+  <data name="&gt;&gt;cBFindCenterUseX.Name" xml:space="preserve">
+    <value>cBFindCenterUseX</value>
+  </data>
+  <data name="&gt;&gt;cBFindCenterUseX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBFindCenterUseX.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;cBFindCenterUseX.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="cBFindCenterUseY.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBFindCenterUseY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBFindCenterUseY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>126, 42</value>
+  </data>
+  <data name="cBFindCenterUseY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 17</value>
+  </data>
+  <data name="cBFindCenterUseY.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
+  </data>
+  <data name="cBFindCenterUseY.Text" xml:space="preserve">
+    <value>Y (3-4)</value>
+  </data>
+  <data name="cBFindCenterUseY.ToolTip" xml:space="preserve">
+    <value>Probe on Y axis</value>
+  </data>
+  <data name="&gt;&gt;cBFindCenterUseY.Name" xml:space="preserve">
+    <value>cBFindCenterUseY</value>
+  </data>
+  <data name="&gt;&gt;cBFindCenterUseY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBFindCenterUseY.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;cBFindCenterUseY.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="cBFindCenterInvert.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBFindCenterInvert.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBFindCenterInvert.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 245</value>
+  </data>
+  <data name="cBFindCenterInvert.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 17</value>
+  </data>
+  <data name="cBFindCenterInvert.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="cBFindCenterInvert.Text" xml:space="preserve">
+    <value>Reverse probe logic</value>
+  </data>
+  <data name="cBFindCenterInvert.ToolTip" xml:space="preserve">
+    <value>Reverse logic: Instead of stopping on contact, it stops on loss of contact</value>
+  </data>
+  <data name="&gt;&gt;cBFindCenterInvert.Name" xml:space="preserve">
+    <value>cBFindCenterInvert</value>
+  </data>
+  <data name="&gt;&gt;cBFindCenterInvert.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBFindCenterInvert.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;cBFindCenterInvert.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="TbSetPoints.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 7.5pt</value>
+  </data>
+  <data name="TbSetPoints.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 6</value>
+  </data>
+  <data name="TbSetPoints.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="TbSetPoints.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Vertical</value>
+  </data>
+  <data name="TbSetPoints.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 60</value>
+  </data>
+  <data name="TbSetPoints.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="TbSetPoints.Text" xml:space="preserve">
+    <value>Fiducial coordinates:</value>
+  </data>
+  <data name="TbSetPoints.ToolTip" xml:space="preserve">
+    <value>
+Fiducial coordinates: Only the 1st and 2nd will be used.
+Get fiducials coordinates from imported graphic. </value>
+  </data>
+  <data name="&gt;&gt;TbSetPoints.Name" xml:space="preserve">
+    <value>TbSetPoints</value>
+  </data>
+  <data name="&gt;&gt;TbSetPoints.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TbSetPoints.Parent" xml:space="preserve">
+    <value>tabPage4</value>
+  </data>
+  <data name="&gt;&gt;TbSetPoints.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="CbProbeSkipMove.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbProbeSkipMove.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 159</value>
+  </data>
+  <data name="CbProbeSkipMove.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 17</value>
+  </data>
+  <data name="CbProbeSkipMove.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="CbProbeSkipMove.Text" xml:space="preserve">
+    <value>Skip 1st move on contact</value>
+  </data>
+  <data name="CbProbeSkipMove.ToolTip" xml:space="preserve">
+    <value>Skips move to 1st fiducial if probe is already triggered.
+Assumption: probe was already moved above 1st fiducial.</value>
+  </data>
+  <data name="&gt;&gt;CbProbeSkipMove.Name" xml:space="preserve">
+    <value>CbProbeSkipMove</value>
+  </data>
+  <data name="&gt;&gt;CbProbeSkipMove.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbProbeSkipMove.Parent" xml:space="preserve">
+    <value>tabPage4</value>
+  </data>
+  <data name="&gt;&gt;CbProbeSkipMove.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="BtnGetFiducialOffset.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="BtnGetFiducialOffset.Location" type="System.Drawing.Point, System.Drawing">
+    <value>85, 16</value>
+  </data>
+  <data name="BtnGetFiducialOffset.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 22</value>
+  </data>
+  <data name="BtnGetFiducialOffset.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="BtnGetFiducialOffset.Text" xml:space="preserve">
+    <value>Get pos.</value>
+  </data>
+  <data name="BtnGetFiducialOffset.ToolTip" xml:space="preserve">
+    <value>Take over actual position</value>
+  </data>
+  <data name="&gt;&gt;BtnGetFiducialOffset.Name" xml:space="preserve">
+    <value>BtnGetFiducialOffset</value>
+  </data>
+  <data name="&gt;&gt;BtnGetFiducialOffset.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnGetFiducialOffset.Parent" xml:space="preserve">
+    <value>GbFiducialOffset</value>
+  </data>
+  <data name="&gt;&gt;BtnGetFiducialOffset.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="BtnMoveLeft.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnMoveLeft.Location" type="System.Drawing.Point, System.Drawing">
+    <value>100, 37</value>
+  </data>
+  <data name="BtnMoveLeft.Size" type="System.Drawing.Size, System.Drawing">
+    <value>22, 22</value>
+  </data>
+  <data name="BtnMoveLeft.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="BtnMoveLeft.Text" xml:space="preserve">
+    <value>&lt;</value>
+  </data>
+  <data name="BtnMoveLeft.ToolTip" xml:space="preserve">
+    <value>Substract offset to actual position</value>
+  </data>
+  <data name="&gt;&gt;BtnMoveLeft.Name" xml:space="preserve">
+    <value>BtnMoveLeft</value>
+  </data>
+  <data name="&gt;&gt;BtnMoveLeft.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnMoveLeft.Parent" xml:space="preserve">
+    <value>GbFiducialOffset</value>
+  </data>
+  <data name="&gt;&gt;BtnMoveLeft.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="BtnMoveRight.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnMoveRight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>128, 37</value>
+  </data>
+  <data name="BtnMoveRight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>22, 22</value>
+  </data>
+  <data name="BtnMoveRight.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="BtnMoveRight.Text" xml:space="preserve">
+    <value>&gt;</value>
+  </data>
+  <data name="BtnMoveRight.ToolTip" xml:space="preserve">
+    <value>Add offset to actual position</value>
+  </data>
+  <data name="&gt;&gt;BtnMoveRight.Name" xml:space="preserve">
+    <value>BtnMoveRight</value>
+  </data>
+  <data name="&gt;&gt;BtnMoveRight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnMoveRight.Parent" xml:space="preserve">
+    <value>GbFiducialOffset</value>
+  </data>
+  <data name="&gt;&gt;BtnMoveRight.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="CbProbe2ndChance.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbProbe2ndChance.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbProbe2ndChance.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 182</value>
+  </data>
+  <data name="CbProbe2ndChance.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 17</value>
+  </data>
+  <data name="CbProbe2ndChance.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="CbProbe2ndChance.Text" xml:space="preserve">
+    <value>Ask if 2nd fiducial is not found</value>
+  </data>
+  <data name="CbProbe2ndChance.ToolTip" xml:space="preserve">
+    <value>If probe is not triggered after move to 2nd fiducial, give chance to move manually by user.</value>
+  </data>
+  <data name="&gt;&gt;CbProbe2ndChance.Name" xml:space="preserve">
+    <value>CbProbe2ndChance</value>
+  </data>
+  <data name="&gt;&gt;CbProbe2ndChance.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbProbe2ndChance.Parent" xml:space="preserve">
+    <value>tabPage4</value>
+  </data>
+  <data name="&gt;&gt;CbProbe2ndChance.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;nUDProbeFeedZ.Name" xml:space="preserve">
     <value>nUDProbeFeedZ</value>
@@ -1320,6 +1668,18 @@ Usually the border of the tool (probe / cutter) is used to define zero.
   <data name="label15.Text" xml:space="preserve">
     <value>XY</value>
   </data>
+  <data name="&gt;&gt;BtnHelp_ImportParameter.Name" xml:space="preserve">
+    <value>BtnHelp_ImportParameter</value>
+  </data>
+  <data name="&gt;&gt;BtnHelp_ImportParameter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnHelp_ImportParameter.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;BtnHelp_ImportParameter.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="&gt;&gt;label20.Name" xml:space="preserve">
     <value>label20</value>
   </data>
@@ -1330,7 +1690,7 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label20.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;lblEFStatus.Name" xml:space="preserve">
     <value>lblEFStatus</value>
@@ -1342,7 +1702,7 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;lblEFStatus.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;label19.Name" xml:space="preserve">
     <value>label19</value>
@@ -1354,7 +1714,7 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label19.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="&gt;&gt;lblEFProgressInfo.Name" xml:space="preserve">
     <value>lblEFProgressInfo</value>
@@ -1366,19 +1726,19 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;lblEFProgressInfo.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
-  <data name="&gt;&gt;btnStartEF.Name" xml:space="preserve">
-    <value>btnStartEF</value>
+  <data name="&gt;&gt;BtnStartEF.Name" xml:space="preserve">
+    <value>BtnStartEF</value>
   </data>
-  <data name="&gt;&gt;btnStartEF.Type" xml:space="preserve">
+  <data name="&gt;&gt;BtnStartEF.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnStartEF.Parent" xml:space="preserve">
+  <data name="&gt;&gt;BtnStartEF.Parent" xml:space="preserve">
     <value>tabPage1</value>
   </data>
-  <data name="&gt;&gt;btnStartEF.ZOrder" xml:space="preserve">
-    <value>7</value>
+  <data name="&gt;&gt;BtnStartEF.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="&gt;&gt;lblEFProgress.Name" xml:space="preserve">
     <value>lblEFProgress</value>
@@ -1390,7 +1750,7 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;lblEFProgress.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="&gt;&gt;rB9.Name" xml:space="preserve">
     <value>rB9</value>
@@ -1402,7 +1762,7 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;rB9.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="&gt;&gt;progressBarEF.Name" xml:space="preserve">
     <value>progressBarEF</value>
@@ -1414,7 +1774,7 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;progressBarEF.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="&gt;&gt;btnCancelEF.Name" xml:space="preserve">
     <value>btnCancelEF</value>
@@ -1426,7 +1786,7 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;btnCancelEF.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="&gt;&gt;rB8.Name" xml:space="preserve">
     <value>rB8</value>
@@ -1438,7 +1798,7 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;rB8.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="&gt;&gt;rB7.Name" xml:space="preserve">
     <value>rB7</value>
@@ -1450,7 +1810,7 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;rB7.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="&gt;&gt;rB6.Name" xml:space="preserve">
     <value>rB6</value>
@@ -1462,7 +1822,7 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;rB6.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="&gt;&gt;rB5.Name" xml:space="preserve">
     <value>rB5</value>
@@ -1474,7 +1834,7 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;rB5.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="&gt;&gt;rB4.Name" xml:space="preserve">
     <value>rB4</value>
@@ -1486,7 +1846,7 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;rB4.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="&gt;&gt;rB3.Name" xml:space="preserve">
     <value>rB3</value>
@@ -1498,7 +1858,7 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;rB3.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="&gt;&gt;rB2.Name" xml:space="preserve">
     <value>rB2</value>
@@ -1510,7 +1870,7 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;rB2.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>19</value>
   </data>
   <data name="&gt;&gt;rB1.Name" xml:space="preserve">
     <value>rB1</value>
@@ -1522,7 +1882,7 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;rB1.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>20</value>
   </data>
   <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -1551,110 +1911,17 @@ Usually the border of the tool (probe / cutter) is used to define zero.
   <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="cBFindCenterUseY.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;button1.Name" xml:space="preserve">
+    <value>button1</value>
   </data>
-  <data name="cBFindCenterUseY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;button1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="cBFindCenterUseY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>126, 42</value>
-  </data>
-  <data name="cBFindCenterUseY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 17</value>
-  </data>
-  <data name="cBFindCenterUseY.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
-  </data>
-  <data name="cBFindCenterUseY.Text" xml:space="preserve">
-    <value>Y (3-4)</value>
-  </data>
-  <data name="cBFindCenterUseY.ToolTip" xml:space="preserve">
-    <value>Probe on Y axis</value>
-  </data>
-  <data name="&gt;&gt;cBFindCenterUseY.Name" xml:space="preserve">
-    <value>cBFindCenterUseY</value>
-  </data>
-  <data name="&gt;&gt;cBFindCenterUseY.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBFindCenterUseY.Parent" xml:space="preserve">
+  <data name="&gt;&gt;button1.Parent" xml:space="preserve">
     <value>tabPage2</value>
   </data>
-  <data name="&gt;&gt;cBFindCenterUseY.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="cBFindCenterUseX.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBFindCenterUseX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>126, 26</value>
-  </data>
-  <data name="cBFindCenterUseX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 17</value>
-  </data>
-  <data name="cBFindCenterUseX.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
-  </data>
-  <data name="cBFindCenterUseX.Text" xml:space="preserve">
-    <value>X (1-2)</value>
-  </data>
-  <data name="cBFindCenterUseX.ToolTip" xml:space="preserve">
-    <value>Probe on X axis</value>
-  </data>
-  <data name="&gt;&gt;cBFindCenterUseX.Name" xml:space="preserve">
-    <value>cBFindCenterUseX</value>
-  </data>
-  <data name="&gt;&gt;cBFindCenterUseX.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBFindCenterUseX.Parent" xml:space="preserve">
-    <value>tabPage2</value>
-  </data>
-  <data name="&gt;&gt;cBFindCenterUseX.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="cBFindCenterStartFromCenter.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="cBFindCenterStartFromCenter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 153</value>
-  </data>
-  <data name="cBFindCenterStartFromCenter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 30</value>
-  </data>
-  <data name="cBFindCenterStartFromCenter.TabIndex" type="System.Int32, mscorlib">
-    <value>46</value>
-  </data>
-  <data name="cBFindCenterStartFromCenter.Text" xml:space="preserve">
-    <value>Start from center</value>
-  </data>
-  <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
-    <value>Place the probe almost centered above the workpiece, to use this option.</value>
-  </data>
-  <data name="&gt;&gt;cBFindCenterStartFromCenter.Name" xml:space="preserve">
-    <value>cBFindCenterStartFromCenter</value>
-  </data>
-  <data name="&gt;&gt;cBFindCenterStartFromCenter.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBFindCenterStartFromCenter.Parent" xml:space="preserve">
-    <value>tabPage2</value>
-  </data>
-  <data name="&gt;&gt;cBFindCenterStartFromCenter.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="lblCFAngle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 191</value>
-  </data>
-  <data name="lblCFAngle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 46</value>
-  </data>
-  <data name="lblCFAngle.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
-  </data>
-  <data name="lblCFAngle.Text" xml:space="preserve">
-    <value>Rotate probing pattern by</value>
   </data>
   <data name="&gt;&gt;lblCFAngle.Name" xml:space="preserve">
     <value>lblCFAngle</value>
@@ -1666,22 +1933,7 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;lblCFAngle.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="lblCFStatus.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblCFStatus.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblCFStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>196, 214</value>
-  </data>
-  <data name="lblCFStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 13</value>
-  </data>
-  <data name="lblCFStatus.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;lblCFStatus.Name" xml:space="preserve">
     <value>lblCFStatus</value>
@@ -1693,25 +1945,7 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;lblCFStatus.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="lblCFProgressInfo.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblCFProgressInfo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblCFProgressInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>196, 170</value>
-  </data>
-  <data name="lblCFProgressInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 13</value>
-  </data>
-  <data name="lblCFProgressInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="lblCFProgressInfo.Text" xml:space="preserve">
-    <value>Progress</value>
+    <value>8</value>
   </data>
   <data name="&gt;&gt;lblCFProgressInfo.Name" xml:space="preserve">
     <value>lblCFProgressInfo</value>
@@ -1723,52 +1957,19 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;lblCFProgressInfo.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
-  <data name="btnStartCF.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="&gt;&gt;BtnStartCF.Name" xml:space="preserve">
+    <value>BtnStartCF</value>
   </data>
-  <data name="btnStartCF.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnStartCF.Location" type="System.Drawing.Point, System.Drawing">
-    <value>196, 236</value>
-  </data>
-  <data name="btnStartCF.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="btnStartCF.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
-  </data>
-  <data name="btnStartCF.Text" xml:space="preserve">
-    <value>Start</value>
-  </data>
-  <data name="&gt;&gt;btnStartCF.Name" xml:space="preserve">
-    <value>btnStartCF</value>
-  </data>
-  <data name="&gt;&gt;btnStartCF.Type" xml:space="preserve">
+  <data name="&gt;&gt;BtnStartCF.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnStartCF.Parent" xml:space="preserve">
+  <data name="&gt;&gt;BtnStartCF.Parent" xml:space="preserve">
     <value>tabPage2</value>
   </data>
-  <data name="&gt;&gt;btnStartCF.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="lblCFProgress.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblCFProgress.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblCFProgress.Location" type="System.Drawing.Point, System.Drawing">
-    <value>210, 191</value>
-  </data>
-  <data name="lblCFProgress.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 13</value>
-  </data>
-  <data name="lblCFProgress.TabIndex" type="System.Int32, mscorlib">
-    <value>39</value>
+  <data name="&gt;&gt;BtnStartCF.ZOrder" xml:space="preserve">
+    <value>10</value>
   </data>
   <data name="&gt;&gt;lblCFProgress.Name" xml:space="preserve">
     <value>lblCFProgress</value>
@@ -1780,19 +1981,7 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;lblCFProgress.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="progressBarCF.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="progressBarCF.Location" type="System.Drawing.Point, System.Drawing">
-    <value>196, 186</value>
-  </data>
-  <data name="progressBarCF.Size" type="System.Drawing.Size, System.Drawing">
-    <value>166, 23</value>
-  </data>
-  <data name="progressBarCF.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
+    <value>11</value>
   </data>
   <data name="&gt;&gt;progressBarCF.Name" xml:space="preserve">
     <value>progressBarCF</value>
@@ -1804,49 +1993,19 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;progressBarCF.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
-  <data name="btnCancelCF.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;BtnCancelCF.Name" xml:space="preserve">
+    <value>BtnCancelCF</value>
   </data>
-  <data name="btnCancelCF.Location" type="System.Drawing.Point, System.Drawing">
-    <value>287, 236</value>
-  </data>
-  <data name="btnCancelCF.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="btnCancelCF.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
-  </data>
-  <data name="btnCancelCF.Text" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="&gt;&gt;btnCancelCF.Name" xml:space="preserve">
-    <value>btnCancelCF</value>
-  </data>
-  <data name="&gt;&gt;btnCancelCF.Type" xml:space="preserve">
+  <data name="&gt;&gt;BtnCancelCF.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnCancelCF.Parent" xml:space="preserve">
+  <data name="&gt;&gt;BtnCancelCF.Parent" xml:space="preserve">
     <value>tabPage2</value>
   </data>
-  <data name="&gt;&gt;btnCancelCF.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="label22.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label22.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 6</value>
-  </data>
-  <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 28</value>
-  </data>
-  <data name="label22.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
-  </data>
-  <data name="label22.Text" xml:space="preserve">
-    <value>Workpiece diameter (WpD)</value>
+  <data name="&gt;&gt;BtnCancelCF.ZOrder" xml:space="preserve">
+    <value>13</value>
   </data>
   <data name="&gt;&gt;label22.Name" xml:space="preserve">
     <value>label22</value>
@@ -1858,29 +2017,7 @@ Usually the border of the tool (probe / cutter) is used to define zero.
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;label22.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="label21.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
-    <value>196, 7</value>
-  </data>
-  <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 186</value>
-  </data>
-  <data name="label21.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
-  </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>Inner contour:
-Place probe inside hole of work piece, almost centered.
-Z will not moved.
-
-Outside contour:
-Place probe on left side of work piece, as for edge detection.
-Or enable 'Start from center' and place probe centered above workpiece.
-</value>
+    <value>16</value>
   </data>
   <data name="&gt;&gt;label21.Name" xml:space="preserve">
     <value>label21</value>
@@ -1892,7 +2029,7 @@ Or enable 'Start from center' and place probe centered above workpiece.
     <value>tabPage2</value>
   </data>
   <data name="&gt;&gt;label21.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>17</value>
   </data>
   <data name="tabPage2.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -1921,6 +2058,18 @@ Or enable 'Start from center' and place probe centered above workpiece.
   <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="&gt;&gt;button2.Name" xml:space="preserve">
+    <value>button2</value>
+  </data>
+  <data name="&gt;&gt;button2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button2.Parent" xml:space="preserve">
+    <value>tabPage3</value>
+  </data>
+  <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="&gt;&gt;btnClearTL.Name" xml:space="preserve">
     <value>btnClearTL</value>
   </data>
@@ -1931,7 +2080,7 @@ Or enable 'Start from center' and place probe centered above workpiece.
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;btnClearTL.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;pBTL.Name" xml:space="preserve">
     <value>pBTL</value>
@@ -1943,7 +2092,7 @@ Or enable 'Start from center' and place probe centered above workpiece.
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;pBTL.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;lblTLStatus.Name" xml:space="preserve">
     <value>lblTLStatus</value>
@@ -1955,7 +2104,7 @@ Or enable 'Start from center' and place probe centered above workpiece.
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;lblTLStatus.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;label12.Name" xml:space="preserve">
     <value>label12</value>
@@ -1967,7 +2116,7 @@ Or enable 'Start from center' and place probe centered above workpiece.
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;lblTLProgressInfo.Name" xml:space="preserve">
     <value>lblTLProgressInfo</value>
@@ -1979,19 +2128,19 @@ Or enable 'Start from center' and place probe centered above workpiece.
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;lblTLProgressInfo.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
-  <data name="&gt;&gt;btnStartTL.Name" xml:space="preserve">
-    <value>btnStartTL</value>
+  <data name="&gt;&gt;BtnStartTL.Name" xml:space="preserve">
+    <value>BtnStartTL</value>
   </data>
-  <data name="&gt;&gt;btnStartTL.Type" xml:space="preserve">
+  <data name="&gt;&gt;BtnStartTL.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnStartTL.Parent" xml:space="preserve">
+  <data name="&gt;&gt;BtnStartTL.Parent" xml:space="preserve">
     <value>tabPage3</value>
   </data>
-  <data name="&gt;&gt;btnStartTL.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="&gt;&gt;BtnStartTL.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="&gt;&gt;lblTLProgress.Name" xml:space="preserve">
     <value>lblTLProgress</value>
@@ -2003,7 +2152,7 @@ Or enable 'Start from center' and place probe centered above workpiece.
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;lblTLProgress.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="&gt;&gt;progressBarTL.Name" xml:space="preserve">
     <value>progressBarTL</value>
@@ -2015,7 +2164,7 @@ Or enable 'Start from center' and place probe centered above workpiece.
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;progressBarTL.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="&gt;&gt;btnCancelTL.Name" xml:space="preserve">
     <value>btnCancelTL</value>
@@ -2027,7 +2176,7 @@ Or enable 'Start from center' and place probe centered above workpiece.
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;btnCancelTL.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="tabPage3.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -2055,6 +2204,246 @@ Or enable 'Start from center' and place probe centered above workpiece.
   </data>
   <data name="&gt;&gt;tabPage3.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="button3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>343, 1</value>
+  </data>
+  <data name="button3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 23</value>
+  </data>
+  <data name="button3.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="button3.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="button3.ToolTip" xml:space="preserve">
+    <value>Online help</value>
+  </data>
+  <data name="&gt;&gt;button3.Name" xml:space="preserve">
+    <value>button3</value>
+  </data>
+  <data name="&gt;&gt;button3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;button3.Parent" xml:space="preserve">
+    <value>tabPage4</value>
+  </data>
+  <data name="&gt;&gt;button3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;NudProbeFiducialOffsetX.Name" xml:space="preserve">
+    <value>NudProbeFiducialOffsetX</value>
+  </data>
+  <data name="&gt;&gt;NudProbeFiducialOffsetX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudProbeFiducialOffsetX.Parent" xml:space="preserve">
+    <value>GbFiducialOffset</value>
+  </data>
+  <data name="&gt;&gt;NudProbeFiducialOffsetX.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;NudProbeFiducialOffsetY.Name" xml:space="preserve">
+    <value>NudProbeFiducialOffsetY</value>
+  </data>
+  <data name="&gt;&gt;NudProbeFiducialOffsetY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudProbeFiducialOffsetY.Parent" xml:space="preserve">
+    <value>GbFiducialOffset</value>
+  </data>
+  <data name="&gt;&gt;NudProbeFiducialOffsetY.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;label16.Name" xml:space="preserve">
+    <value>label16</value>
+  </data>
+  <data name="&gt;&gt;label16.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
+    <value>GbFiducialOffset</value>
+  </data>
+  <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;label17.Name" xml:space="preserve">
+    <value>label17</value>
+  </data>
+  <data name="&gt;&gt;label17.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label17.Parent" xml:space="preserve">
+    <value>GbFiducialOffset</value>
+  </data>
+  <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="GbFiducialOffset.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 72</value>
+  </data>
+  <data name="GbFiducialOffset.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 62</value>
+  </data>
+  <data name="GbFiducialOffset.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="GbFiducialOffset.Text" xml:space="preserve">
+    <value>Offset between probe and tool</value>
+  </data>
+  <data name="&gt;&gt;GbFiducialOffset.Name" xml:space="preserve">
+    <value>GbFiducialOffset</value>
+  </data>
+  <data name="&gt;&gt;GbFiducialOffset.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GbFiducialOffset.Parent" xml:space="preserve">
+    <value>tabPage4</value>
+  </data>
+  <data name="&gt;&gt;GbFiducialOffset.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="CbProbeScale.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbProbeScale.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbProbeScale.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 205</value>
+  </data>
+  <data name="CbProbeScale.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 17</value>
+  </data>
+  <data name="CbProbeScale.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="CbProbeScale.Text" xml:space="preserve">
+    <value>Also scale on rotation</value>
+  </data>
+  <data name="&gt;&gt;CbProbeScale.Name" xml:space="preserve">
+    <value>CbProbeScale</value>
+  </data>
+  <data name="&gt;&gt;CbProbeScale.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbProbeScale.Parent" xml:space="preserve">
+    <value>tabPage4</value>
+  </data>
+  <data name="&gt;&gt;CbProbeScale.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="BtnStartFiducial.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnStartFiducial.Location" type="System.Drawing.Point, System.Drawing">
+    <value>196, 236</value>
+  </data>
+  <data name="BtnStartFiducial.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="BtnStartFiducial.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="BtnStartFiducial.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="&gt;&gt;BtnStartFiducial.Name" xml:space="preserve">
+    <value>BtnStartFiducial</value>
+  </data>
+  <data name="&gt;&gt;BtnStartFiducial.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnStartFiducial.Parent" xml:space="preserve">
+    <value>tabPage4</value>
+  </data>
+  <data name="&gt;&gt;BtnStartFiducial.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="BtnCancelFiducial.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnCancelFiducial.Location" type="System.Drawing.Point, System.Drawing">
+    <value>287, 236</value>
+  </data>
+  <data name="BtnCancelFiducial.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="BtnCancelFiducial.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="BtnCancelFiducial.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="&gt;&gt;BtnCancelFiducial.Name" xml:space="preserve">
+    <value>BtnCancelFiducial</value>
+  </data>
+  <data name="&gt;&gt;BtnCancelFiducial.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnCancelFiducial.Parent" xml:space="preserve">
+    <value>tabPage4</value>
+  </data>
+  <data name="&gt;&gt;BtnCancelFiducial.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="LblFiducial.Location" type="System.Drawing.Point, System.Drawing">
+    <value>180, 12</value>
+  </data>
+  <data name="LblFiducial.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 150</value>
+  </data>
+  <data name="LblFiducial.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="LblFiducial.Text" xml:space="preserve">
+    <value>Fiducial correction:
+Use an inductive proximity switch to find and center metal registration marks (coins).
+
+See [Setup - Program behavior - Camera - Fiducials] for further settings.</value>
+  </data>
+  <data name="&gt;&gt;LblFiducial.Name" xml:space="preserve">
+    <value>LblFiducial</value>
+  </data>
+  <data name="&gt;&gt;LblFiducial.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblFiducial.Parent" xml:space="preserve">
+    <value>tabPage4</value>
+  </data>
+  <data name="&gt;&gt;LblFiducial.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="tabPage4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPage4.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPage4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>367, 265</value>
+  </data>
+  <data name="tabPage4.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Fiducial correction</value>
+  </data>
+  <data name="&gt;&gt;tabPage4.Name" xml:space="preserve">
+    <value>tabPage4</value>
+  </data>
+  <data name="&gt;&gt;tabPage4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage4.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabPage4.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
     <value>310, 3</value>
@@ -2148,22 +2537,22 @@ Probe edge a 2nd time on another position to get angle.</value>
   <data name="lblEFProgressInfo.Text" xml:space="preserve">
     <value>Progress</value>
   </data>
-  <data name="btnStartEF.Enabled" type="System.Boolean, mscorlib">
+  <data name="BtnStartEF.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="btnStartEF.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="BtnStartEF.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btnStartEF.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="BtnStartEF.Location" type="System.Drawing.Point, System.Drawing">
     <value>196, 236</value>
   </data>
-  <data name="btnStartEF.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="BtnStartEF.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
-  <data name="btnStartEF.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+  <data name="BtnStartEF.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="btnStartEF.Text" xml:space="preserve">
+  <data name="BtnStartEF.Text" xml:space="preserve">
     <value>Start</value>
   </data>
   <data name="lblEFProgress.AutoSize" type="System.Boolean, mscorlib">
@@ -2224,7 +2613,7 @@ Probe edge a 2nd time on another position to get angle.</value>
     <value>75, 23</value>
   </data>
   <data name="btnCancelEF.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>2</value>
   </data>
   <data name="btnCancelEF.Text" xml:space="preserve">
     <value>Cancel</value>
@@ -2397,6 +2786,148 @@ Probe edge a 2nd time on another position to get angle.</value>
   <data name="rB1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomRight</value>
   </data>
+  <data name="lblCFAngle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 191</value>
+  </data>
+  <data name="lblCFAngle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 46</value>
+  </data>
+  <data name="lblCFAngle.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="lblCFAngle.Text" xml:space="preserve">
+    <value>Rotate probing pattern by</value>
+  </data>
+  <data name="lblCFStatus.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCFStatus.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblCFStatus.Location" type="System.Drawing.Point, System.Drawing">
+    <value>196, 214</value>
+  </data>
+  <data name="lblCFStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 13</value>
+  </data>
+  <data name="lblCFStatus.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="lblCFProgressInfo.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCFProgressInfo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblCFProgressInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>196, 170</value>
+  </data>
+  <data name="lblCFProgressInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 13</value>
+  </data>
+  <data name="lblCFProgressInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="lblCFProgressInfo.Text" xml:space="preserve">
+    <value>Progress</value>
+  </data>
+  <data name="BtnStartCF.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="BtnStartCF.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnStartCF.Location" type="System.Drawing.Point, System.Drawing">
+    <value>196, 236</value>
+  </data>
+  <data name="BtnStartCF.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="BtnStartCF.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="BtnStartCF.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="lblCFProgress.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCFProgress.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblCFProgress.Location" type="System.Drawing.Point, System.Drawing">
+    <value>210, 191</value>
+  </data>
+  <data name="lblCFProgress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 13</value>
+  </data>
+  <data name="lblCFProgress.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
+  </data>
+  <data name="progressBarCF.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="progressBarCF.Location" type="System.Drawing.Point, System.Drawing">
+    <value>196, 186</value>
+  </data>
+  <data name="progressBarCF.Size" type="System.Drawing.Size, System.Drawing">
+    <value>166, 23</value>
+  </data>
+  <data name="progressBarCF.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="BtnCancelCF.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnCancelCF.Location" type="System.Drawing.Point, System.Drawing">
+    <value>287, 236</value>
+  </data>
+  <data name="BtnCancelCF.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="BtnCancelCF.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="BtnCancelCF.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="label22.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label22.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 6</value>
+  </data>
+  <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 28</value>
+  </data>
+  <data name="label22.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>Workpiece diameter (WpD)</value>
+  </data>
+  <data name="label21.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
+    <value>196, 12</value>
+  </data>
+  <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 158</value>
+  </data>
+  <data name="label21.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Inner contour:
+Place probe inside hole of work piece, almost centered.
+Z will not moved.
+
+Outside contour:
+Place probe on left side of work piece, as for edge detection.
+Or enable 'Start from center' and place probe centered above workpiece.
+</value>
+  </data>
   <data name="btnClearTL.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 236</value>
   </data>
@@ -2404,7 +2935,7 @@ Probe edge a 2nd time on another position to get angle.</value>
     <value>144, 23</value>
   </data>
   <data name="btnClearTL.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
+    <value>3</value>
   </data>
   <data name="btnClearTL.Text" xml:space="preserve">
     <value>Clear tool length offset</value>
@@ -2437,7 +2968,7 @@ Probe edge a 2nd time on another position to get angle.</value>
     <value>NoControl</value>
   </data>
   <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>196, 7</value>
+    <value>196, 12</value>
   </data>
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
     <value>168, 134</value>
@@ -2471,19 +3002,19 @@ Z will move back to start position</value>
   <data name="lblTLProgressInfo.Text" xml:space="preserve">
     <value>Progress</value>
   </data>
-  <data name="btnStartTL.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="BtnStartTL.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btnStartTL.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="BtnStartTL.Location" type="System.Drawing.Point, System.Drawing">
     <value>196, 236</value>
   </data>
-  <data name="btnStartTL.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="BtnStartTL.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
-  <data name="btnStartTL.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
+  <data name="BtnStartTL.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="btnStartTL.Text" xml:space="preserve">
+  <data name="BtnStartTL.Text" xml:space="preserve">
     <value>Start</value>
   </data>
   <data name="lblTLProgress.AutoSize" type="System.Boolean, mscorlib">
@@ -2523,10 +3054,70 @@ Z will move back to start position</value>
     <value>75, 23</value>
   </data>
   <data name="btnCancelTL.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
+    <value>2</value>
   </data>
   <data name="btnCancelTL.Text" xml:space="preserve">
     <value>Cancel</value>
+  </data>
+  <data name="NudProbeFiducialOffsetX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 16</value>
+  </data>
+  <data name="NudProbeFiducialOffsetX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
+  </data>
+  <data name="NudProbeFiducialOffsetX.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="NudProbeFiducialOffsetX.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="NudProbeFiducialOffsetY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 37</value>
+  </data>
+  <data name="NudProbeFiducialOffsetY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 20</value>
+  </data>
+  <data name="NudProbeFiducialOffsetY.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="NudProbeFiducialOffsetY.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="label16.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label16.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 18</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>14, 13</value>
+  </data>
+  <data name="label16.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="label17.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label17.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 39</value>
+  </data>
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>14, 13</value>
+  </data>
+  <data name="label17.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Y</value>
   </data>
   <data name="&gt;&gt;btnProbeCoordClear.Name" xml:space="preserve">
     <value>btnProbeCoordClear</value>
@@ -2657,6 +3248,60 @@ Z will move back to start position</value>
   <data name="label11.Text" xml:space="preserve">
     <value>____________________________</value>
   </data>
+  <data name="BtnHelp_ImportParameter.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnHelp_ImportParameter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>343, 1</value>
+  </data>
+  <data name="BtnHelp_ImportParameter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 23</value>
+  </data>
+  <data name="BtnHelp_ImportParameter.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="BtnHelp_ImportParameter.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="BtnHelp_ImportParameter.ToolTip" xml:space="preserve">
+    <value>Online help</value>
+  </data>
+  <data name="button1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>343, 1</value>
+  </data>
+  <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 23</value>
+  </data>
+  <data name="button1.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="button1.ToolTip" xml:space="preserve">
+    <value>Online help</value>
+  </data>
+  <data name="button2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>343, 1</value>
+  </data>
+  <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 23</value>
+  </data>
+  <data name="button2.TabIndex" type="System.Int32, mscorlib">
+    <value>46</value>
+  </data>
+  <data name="button2.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>Online help</value>
+  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -2684,6 +3329,12 @@ Z will move back to start position</value>
   <data name="&gt;&gt;timer1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;timerFlowControl.Name" xml:space="preserve">
+    <value>timerFlowControl</value>
+  </data>
+  <data name="&gt;&gt;timerFlowControl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ControlProbing</value>
   </data>
@@ -2695,6 +3346,9 @@ Z will move back to start position</value>
   </metadata>
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>114, 17</value>
+  </metadata>
+  <metadata name="timerFlowControl.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>202, 17</value>
   </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

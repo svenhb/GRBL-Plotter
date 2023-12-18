@@ -30,6 +30,9 @@
  * 2023-03-17 l:398 f:GetGCodeLines avoid same log twice
  * 2023-04-18 add clipDimension, clipOffset, isHeaderSection to be read from GCode-Header, too feed buttons in setup-clipping
  * 2023-04-26 l:822 f:ProcessXmlTagStart pen width option
+ * 2023-11-15 l:579 f:GetGCodeLines add pathObjectPenColorOnlyNone = false; show default color, if all imported colors = none
+ * 2023-11-29 l:510 f:GetGCodeLines add findSubroutineFailCounter; abort searching for subroutine if not found after 10 times
+ * 2023-12-16 l:850 f:ProcessXmlTagStart check for fiducials via .ToUpper().Contains(fiducialLabel.ToUpper()))
 */
 
 using System;
@@ -46,6 +49,8 @@ namespace GrblPlotter
     {
         // PathData: collect path information of one specific color 
         public static List<PathData> pathObject = new List<PathData>();
+        public static bool pathObjectPenColorOnlyNone = false;
+
         public class PathData : IDisposable
         {
             public GraphicsPath path;
@@ -311,6 +316,7 @@ namespace GrblPlotter
             error33cnt = 0;
             VisuGCode.ProcessedPath.offset2DView = new System.Windows.Point();
             offset2DView = new PointF();
+            pathObjectPenColorOnlyNone = false;
 
             lastSubroutine = new int[] { 0, 0, 0 };
         }
@@ -331,6 +337,7 @@ namespace GrblPlotter
             int skipLimit = (int)Properties.Settings.Default.ctrlImportSkip * 1000;
             int countZ = 0;
             int lastMotion = 0;
+            int findSubroutineFailCounter = 0;
             string newPathProp;
             string oldPathProp = "";
 
@@ -501,12 +508,22 @@ namespace GrblPlotter
                 }
 
                 if ((modal.mWord == 30) || (modal.mWord == 2)) { programEnd = true; }
-                if (modal.mWord == 98)
+                if ((modal.mWord == 98) && (findSubroutineFailCounter < 10))
                 {
                     if (lastSubroutine[0] == modal.pWord)
-                        AddSubroutine(GCode, lastSubroutine[1], lastSubroutine[2], modal.lWord, processSubs);
+                    { AddSubroutine(GCode, lastSubroutine[1], lastSubroutine[2], modal.lWord, processSubs); }
                     else
+                    {
                         FindAddSubroutine(modal.pWord, GCode, modal.lWord, processSubs);      // scan complete GCode for matching O-word
+                        if (lastSubroutine[0] < 0)
+                        {
+                            findSubroutineFailCounter++;
+                            Logger.Error("GetGCodeLines FindAddSubroutine P{0} not found:{1}", modal.pWord, findSubroutineFailCounter);
+                            if (findSubroutineFailCounter == 1)
+                                errorString += string.Format(" Needed subroutine P{0} not found \r\n", modal.pWord);
+                        }
+                        //Logger.Trace("GetGCodeLines FindAddSubroutine pWord:{0}  [0]:{1}  subStart:{2}  subEnd:{3}  fail:{4}", modal.pWord, lastSubroutine[0], lastSubroutine[1], lastSubroutine[2], findSubroutineFailCounter);
+                    }
                 }
 
                 if (isHeaderSection)
@@ -540,9 +557,13 @@ namespace GrblPlotter
 
             }   // finish reading lines
             /*********************************************************************/
-            if (showArrow || showId)
+            if (!largeDataAmount && (figureMarkerCount > 1) && (showArrow || showId))
             {
                 ModifyPenUpPath(worker, e, ref progressSubOld, progressMainFactor, showArrow, showId);
+            }
+            else
+            {
+                Logger.Trace("No ModifyPenUpPath largeAmount:{0}  figureCnt:{1}  showArrow:{2}  showId:{3}", largeDataAmount, figureMarkerCount, showArrow, showId);
             }
 
             // delete zero
@@ -557,7 +578,14 @@ namespace GrblPlotter
             }
 
             worker?.ReportProgress(100, new MyUserState { Value = 100, Content = "Wait for update of text editor" });
-            Logger.Info("△△△△ GetGCodeLines finish");
+
+            if ((XmlMarker.figurePenColorNoneCount > 0) && (XmlMarker.figurePenColorAnyCount == XmlMarker.figurePenColorNoneCount))
+            {
+                pathObjectPenColorOnlyNone = true;
+                Logger.Warn("⚠⚠⚠⚠ only PenColor 'none' found - use default color and pen-width (disable color-mode)");
+            }
+
+            Logger.Info("△△△△ GetGCodeLines finish  pathObjectPenColorOnlyNone:{0} any:{1}  none:{2}", pathObjectPenColorOnlyNone, XmlMarker.figurePenColorAnyCount, XmlMarker.figurePenColorNoneCount);
             if (figureMarkerCount == 0)
                 figureMarkerCount = tileCount;
             return true;
@@ -599,6 +627,8 @@ namespace GrblPlotter
                 lastSubroutine[1] = subStart;
                 lastSubroutine[2] = subEnd;
             }
+            else
+            { lastSubroutine[0] = -1; }
             return String.Format("Start:{0} EndX:{1} ", subStart, subEnd);
         }
         private static int[] lastSubroutine = new int[] { 0, 0, 0 };
@@ -772,13 +802,13 @@ namespace GrblPlotter
         }
 
         private static void ProcessXmlTagStart(string line, int lineNr)
-        {  
+        {
             // XML-Tag available!
             /* Process Collection marker */
             if (line.Contains(XmlMarker.CollectionStart))                   // check if marker available
             {
                 XmlMarker.AddCollection(lineNr, line, figureMarkerCount);
-            //    figureActive = true;
+                //    figureActive = true;
             }
             /* Process Tile marker */
             else if (line.Contains(XmlMarker.TileStart))                   // check if marker available
@@ -801,7 +831,7 @@ namespace GrblPlotter
                 XmlMarker.AddGroup(lineNr, clean, figureMarkerCount);
                 figureActive = true;
                 if (logCoordinates) { Logger.Trace(" Set Group  figureMarkerCount:{0}  {1}", figureMarkerCount, line); }
-                if (XmlMarker.tmpGroup.Layer.IndexOf(fiducialLabel) >= 0)
+                if (XmlMarker.tmpGroup.Layer.ToUpper().Contains(fiducialLabel.ToUpper()))
                 {   //fiducialEnable=true; 
                 }
             }
@@ -819,19 +849,19 @@ namespace GrblPlotter
 
                 fiducialDimension = new Dimensions();
 
-                if (XmlMarker.tmpFigure.Layer.IndexOf(fiducialLabel) >= 0)
+                if (XmlMarker.tmpFigure.Layer.ToUpper().Contains(fiducialLabel.ToUpper()))
                 { fiducialEnable = true; Logger.Trace("◯◯◯ Fiducial found Layer:'{0}'", XmlMarker.tmpFigure.Layer); }
-                if (XmlMarker.tmpFigure.PathId.IndexOf(fiducialLabel) >= 0)
+                if (XmlMarker.tmpFigure.PathId.ToUpper().Contains(fiducialLabel.ToUpper()))
                 { fiducialEnable = true; Logger.Trace("◯◯◯ Fiducial found PathId:'{0}'", XmlMarker.tmpFigure.PathId); }
 
                 if (Properties.Settings.Default.gui2DColorPenDownModeEnable)// && !largeDataAmount)    // Graphic.SizeOk())    // enable color mode 
                 {
                     PathData tmp;
                     if (Properties.Settings.Default.gui2DColorPenDownModeWidth)
-						tmp = new PathData(XmlMarker.tmpFigure.PenColor, XmlMarker.tmpFigure.PenWidth, offset2DView);      // set color, width, pendownpath
-					else
-						tmp = new PathData(XmlMarker.tmpFigure.PenColor, (double)Properties.Settings.Default.gui2DWidthPenDown, offset2DView);      // set color, width, pendownpath
-						
+                        tmp = new PathData(XmlMarker.tmpFigure.PenColor, XmlMarker.tmpFigure.PenWidth, offset2DView);      // set color, width, pendownpath
+                    else
+                        tmp = new PathData(XmlMarker.tmpFigure.PenColor, (double)Properties.Settings.Default.gui2DWidthPenDown, offset2DView);      // set color, width, pendownpath
+
                     pathObject.Add(tmp);
                     pathActualDown = pathObject[pathObject.Count - 1].path;
                 }

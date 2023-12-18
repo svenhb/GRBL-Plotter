@@ -344,4 +344,93 @@ Z powróci do pozycji początkowej</value>
   <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
     <value>Aby skorzystać z tej opcji, umieść sondę prawie centralnie nad obrabianym przedmiotem.</value>
   </data>
+  <data name="cBFindCenterInvert.Text" xml:space="preserve">
+    <value>Odwrócona logika sondy</value>
+  </data>
+  <data name="cBFindCenterInvert.ToolTip" xml:space="preserve">
+    <value>Odwrotna logika: zamiast zatrzymywać się w przypadku kontaktu, zatrzymuje się w przypadku utraty kontaktu</value>
+  </data>
+  <data name="TbSetPoints.Text" xml:space="preserve">
+    <value>Współrzędne odniesienia:</value>
+  </data>
+  <data name="TbSetPoints.ToolTip" xml:space="preserve">
+    <value>Współrzędne odniesienia: użyte zostaną tylko 1. i 2. współrzędne.
+Uzyskaj współrzędne odniesienia z importowanej grafiki.</value>
+  </data>
+  <data name="BtnStartEF.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="BtnStartCF.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="BtnCancelCF.Text" xml:space="preserve">
+    <value>Anuluj</value>
+  </data>
+  <data name="BtnStartTL.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="CbProbeSkipMove.Text" xml:space="preserve">
+    <value>Pomiń pierwszy ruch przy kontakcie</value>
+  </data>
+  <data name="CbProbeSkipMove.ToolTip" xml:space="preserve">
+    <value>Pomija przejście do pierwszego punktu odniesienia, jeśli sonda została już wyzwolona.
+Założenie: sonda została już przesunięta powyżej pierwszego punktu odniesienia.</value>
+  </data>
+  <data name="BtnGetFiducialOffset.Text" xml:space="preserve">
+    <value>Zdobądź poz.</value>
+  </data>
+  <data name="BtnGetFiducialOffset.ToolTip" xml:space="preserve">
+    <value>Przejmij aktualną pozycję</value>
+  </data>
+  <data name="BtnMoveLeft.Text" xml:space="preserve">
+    <value>&lt;</value>
+  </data>
+  <data name="BtnMoveLeft.ToolTip" xml:space="preserve">
+    <value>Odejmij przesunięcie od rzeczywistej pozycji</value>
+  </data>
+  <data name="BtnMoveRight.Text" xml:space="preserve">
+    <value>&gt;</value>
+  </data>
+  <data name="BtnMoveRight.ToolTip" xml:space="preserve">
+    <value>Dodaj przesunięcie do rzeczywistej pozycji</value>
+  </data>
+  <data name="CbProbe2ndChance.Text" xml:space="preserve">
+    <value>Zapytaj, czy nie znaleziono drugiego punktu odniesienia</value>
+  </data>
+  <data name="CbProbe2ndChance.ToolTip" xml:space="preserve">
+    <value>Jeśli sonda nie zostanie wyzwolona po przejściu do drugiego punktu odniesienia, należy dać użytkownikowi szansę na ręczne przesunięcie.</value>
+  </data>
+  <data name="button3.ToolTip" xml:space="preserve">
+    <value>Pomoc online</value>
+  </data>
+  <data name="GbFiducialOffset.Text" xml:space="preserve">
+    <value>Przesunięcie pomiędzy sondą a narzędziem</value>
+  </data>
+  <data name="CbProbeScale.Text" xml:space="preserve">
+    <value>Skaluj również przy obrocie</value>
+  </data>
+  <data name="BtnStartFiducial.Text" xml:space="preserve">
+    <value>Początek</value>
+  </data>
+  <data name="BtnCancelFiducial.Text" xml:space="preserve">
+    <value>Anulować</value>
+  </data>
+  <data name="LblFiducial.Text" xml:space="preserve">
+    <value>Korekta Fiducjalna:
+Użyj indukcyjnego czujnika zbliżeniowego, aby znaleźć i wyśrodkować metalowe znaczniki rejestracyjne (monety).
+
+Aby uzyskać dalsze ustawienia, zobacz [Konfiguracja - Zachowanie programu - Kamera - Fiducials].</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Korekta fiducjalna</value>
+  </data>
+  <data name="BtnHelp_ImportParameter.ToolTip" xml:space="preserve">
+    <value>Pomoc online</value>
+  </data>
+  <data name="button1.ToolTip" xml:space="preserve">
+    <value>Pomoc online</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>Pomoc online</value>
+  </data>
 </root>

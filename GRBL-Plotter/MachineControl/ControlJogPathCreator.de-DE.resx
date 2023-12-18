@@ -117,14 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnUndo.Text" xml:space="preserve">
+    <value>Rückgängig</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="gBPathCreator.Location" type="System.Drawing.Point, System.Drawing">
+    <value>458, 3</value>
+  </data>
   <data name="gBPathCreator.Text" xml:space="preserve">
     <value>Pfaderstellung</value>
   </data>
-  <data name="btnDelete.ToolTip" xml:space="preserve">
-    <value>Pfad komplett löschen</value>
+  <data name="cBSnap.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 44</value>
   </data>
-  <data name="btnUndo.Text" xml:space="preserve">
-    <value>Rückgängig</value>
+  <data name="cBSnap.Size" type="System.Drawing.Size, System.Drawing">
+    <value>122, 17</value>
+  </data>
+  <data name="cBSnap.Text" xml:space="preserve">
+    <value>Auf Raster einrasten</value>
   </data>
   <data name="btnLoad.Text" xml:space="preserve">
     <value>Pfad laden</value>
@@ -135,47 +145,29 @@
   <data name="btnRotate.Text" xml:space="preserve">
     <value>Pfad um 90 ° drehen</value>
   </data>
-  <data name="btnDelete.Text" xml:space="preserve">
-    <value>Pfad löschen</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Raster</value>
+  <data name="nUDRaster.Location" type="System.Drawing.Point, System.Drawing">
+    <value>92, 22</value>
   </data>
   <data name="nUDRaster.ToolTip" xml:space="preserve">
     <value>Rasterbreite zum Einrasten der Pfadposition</value>
   </data>
-  <data name="btnExport.Text" xml:space="preserve">
-    <value>Als Grafik importieren</value>
+  <data name="btnDelete.Text" xml:space="preserve">
+    <value>Pfad löschen</value>
   </data>
-  <data name="btnJogStop.Text" xml:space="preserve">
-    <value>HALT</value>
+  <data name="btnDelete.ToolTip" xml:space="preserve">
+    <value>Pfad komplett löschen</value>
   </data>
-  <data name="btnJogStart.Text" xml:space="preserve">
-    <value>Jog-Pfad senden</value>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 24</value>
   </data>
-  <data name="cBSnap.Text" xml:space="preserve">
-    <value>Auf Raster einrasten</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Jog Path Creator</value>
-  </data>
-  <data name="btnExport.ToolTip" xml:space="preserve">
-    <value>Pfad mit den angegebenen Einstellungen importieren</value>
-  </data>
-  <data name="btnJogStop.ToolTip" xml:space="preserve">
-    <value>Stop jogging (nur grbl 1.1)</value>
-  </data>
-  <data name="btnJogStart.ToolTip" xml:space="preserve">
-    <value>Startet sofort die Relativbewegung</value>
-  </data>
-  <data name="nUDFeedrate.ToolTip" xml:space="preserve">
-    <value>Vorschub zum Joggen</value>
-  </data>
-  <data name="gBJogParameter.Text" xml:space="preserve">
-    <value>Jog parameter</value>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 13</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Ende</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 13</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Anfang</value>
@@ -185,5 +177,33 @@
   </data>
   <data name="tBCodeStart.ToolTip" xml:space="preserve">
     <value>Code, der gesendet werden muss, bevor der Pfad gestartet wird</value>
+  </data>
+  <data name="btnExport.Text" xml:space="preserve">
+    <value>Als Grafik importieren</value>
+  </data>
+  <data name="btnExport.ToolTip" xml:space="preserve">
+    <value>Pfad mit den angegebenen Einstellungen importieren</value>
+  </data>
+  <data name="btnJogStop.ToolTip" xml:space="preserve">
+    <value>Stop jogging (nur grbl 1.1)</value>
+  </data>
+  <data name="btnJogStart.Text" xml:space="preserve">
+    <value>Jog-Pfad senden</value>
+  </data>
+  <data name="btnJogStart.ToolTip" xml:space="preserve">
+    <value>Startet sofort die Relativbewegung</value>
+  </data>
+  <data name="nUDFeedrate.ToolTip" xml:space="preserve">
+    <value>Vorschub zum Joggen</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="button3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="button3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 23</value>
+  </data>
+  <data name="button3.Text" xml:space="preserve">
+    <value>?</value>
   </data>
 </root>

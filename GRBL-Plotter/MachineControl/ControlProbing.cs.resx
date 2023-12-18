@@ -346,4 +346,93 @@ Z se vrátí zpět do výchozí polohy</value>
   <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
     <value>Chcete-li použít tuto možnost, umístěte sondu téměř do středu nad obrobek.</value>
   </data>
+  <data name="cBFindCenterInvert.Text" xml:space="preserve">
+    <value>Obrácená logika sondy</value>
+  </data>
+  <data name="cBFindCenterInvert.ToolTip" xml:space="preserve">
+    <value>Reverzní logika: Místo zastavení při kontaktu se zastaví při ztrátě kontaktu</value>
+  </data>
+  <data name="TbSetPoints.Text" xml:space="preserve">
+    <value>Výchozí souřadnice:</value>
+  </data>
+  <data name="TbSetPoints.ToolTip" xml:space="preserve">
+    <value>Výchozí souřadnice: Budou použity pouze 1. a 2. souřadnice.
+Získejte souřadnice referenčních značek z importované grafiky.</value>
+  </data>
+  <data name="BtnStartEF.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="BtnStartCF.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="BtnCancelCF.Text" xml:space="preserve">
+    <value>zrušení</value>
+  </data>
+  <data name="BtnStartTL.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="CbProbeSkipMove.Text" xml:space="preserve">
+    <value>Přeskočte 1. tah při kontaktu</value>
+  </data>
+  <data name="CbProbeSkipMove.ToolTip" xml:space="preserve">
+    <value>Přeskočí přesun na 1. referenční číslo, pokud je sonda již spuštěna.
+Předpoklad: sonda již byla posunuta nad 1. referenční hodnotu.</value>
+  </data>
+  <data name="BtnGetFiducialOffset.Text" xml:space="preserve">
+    <value>Získejte poz.</value>
+  </data>
+  <data name="BtnGetFiducialOffset.ToolTip" xml:space="preserve">
+    <value>Převezměte aktuální pozici</value>
+  </data>
+  <data name="BtnMoveLeft.Text" xml:space="preserve">
+    <value>&lt;</value>
+  </data>
+  <data name="BtnMoveLeft.ToolTip" xml:space="preserve">
+    <value>Odečtěte offset ke skutečné poloze</value>
+  </data>
+  <data name="BtnMoveRight.Text" xml:space="preserve">
+    <value>&gt;</value>
+  </data>
+  <data name="BtnMoveRight.ToolTip" xml:space="preserve">
+    <value>Přidejte offset ke skutečné poloze</value>
+  </data>
+  <data name="CbProbe2ndChance.Text" xml:space="preserve">
+    <value>Zeptejte se, zda není nalezena 2. referenční značka</value>
+  </data>
+  <data name="CbProbe2ndChance.ToolTip" xml:space="preserve">
+    <value>Pokud se sonda nespustí po přesunu na 2. referenční hodnotu, dejte uživateli možnost ručního přesunu.</value>
+  </data>
+  <data name="button3.ToolTip" xml:space="preserve">
+    <value>Online podpora</value>
+  </data>
+  <data name="GbFiducialOffset.Text" xml:space="preserve">
+    <value>Offset mezi sondou a nástrojem</value>
+  </data>
+  <data name="CbProbeScale.Text" xml:space="preserve">
+    <value>Také měřítko při otáčení</value>
+  </data>
+  <data name="BtnStartFiducial.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="BtnCancelFiducial.Text" xml:space="preserve">
+    <value>zrušení</value>
+  </data>
+  <data name="LblFiducial.Text" xml:space="preserve">
+    <value>Základní oprava:
+K vyhledání a vystředění kovových registračních značek (mincí) použijte indukční bezdotykový spínač.
+
+Další nastavení viz [Nastavení - Chování programu - Kamera - Fiducials].</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Základní korekce</value>
+  </data>
+  <data name="BtnHelp_ImportParameter.ToolTip" xml:space="preserve">
+    <value>Online podpora</value>
+  </data>
+  <data name="button1.ToolTip" xml:space="preserve">
+    <value>Online podpora</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>Online podpora</value>
+  </data>
 </root>

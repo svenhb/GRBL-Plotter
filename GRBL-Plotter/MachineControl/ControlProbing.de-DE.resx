@@ -346,4 +346,93 @@ Normalerweise wird der Rand des Werkzeugs (Messtaster / Fräser) zum Definieren 
   <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
     <value>Platziere den Messtaster fast mittig über dem Werkstück, um diese Option zu nutzen.</value>
   </data>
+  <data name="cBFindCenterInvert.Text" xml:space="preserve">
+    <value>Sondenlogik umkehren</value>
+  </data>
+  <data name="cBFindCenterInvert.ToolTip" xml:space="preserve">
+    <value>Logik umkehren: Anstatt bei Kontakt anzuhalten, stoppt es bei Kontaktverlust</value>
+  </data>
+  <data name="TbSetPoints.Text" xml:space="preserve">
+    <value>Referenzkoordinaten:</value>
+  </data>
+  <data name="TbSetPoints.ToolTip" xml:space="preserve">
+    <value>Referenzkoordinaten: Es werden nur die 1. und 2. verwendet.
+Erhalten Sie Bezugskoordinaten aus importierten Grafiken.</value>
+  </data>
+  <data name="CbProbeSkipMove.Text" xml:space="preserve">
+    <value>Überspringe den ersten Zug bei Kontakt</value>
+  </data>
+  <data name="CbProbeSkipMove.ToolTip" xml:space="preserve">
+    <value>Überspringt die Bewegung zum ersten Bezugspunkt, wenn die Sonde bereits ausgelöst wurde.
+Annahme: Sonde wurde bereits über den 1. Referenzpunkt bewegt.</value>
+  </data>
+  <data name="BtnGetFiducialOffset.Text" xml:space="preserve">
+    <value>Holen Sie sich Pos.</value>
+  </data>
+  <data name="BtnGetFiducialOffset.ToolTip" xml:space="preserve">
+    <value>Aktuelle Position übernehmen</value>
+  </data>
+  <data name="BtnMoveLeft.Text" xml:space="preserve">
+    <value>&lt;</value>
+  </data>
+  <data name="BtnMoveLeft.ToolTip" xml:space="preserve">
+    <value>Offset von der tatsächlichen Position subtrahieren</value>
+  </data>
+  <data name="BtnMoveRight.Text" xml:space="preserve">
+    <value>&gt;</value>
+  </data>
+  <data name="BtnMoveRight.ToolTip" xml:space="preserve">
+    <value>Offset zur tatsächlichen Position hinzufügen</value>
+  </data>
+  <data name="CbProbe2ndChance.Text" xml:space="preserve">
+    <value>Fragen Sie, ob der 2. Referenzpunkt nicht gefunden wird</value>
+  </data>
+  <data name="CbProbe2ndChance.ToolTip" xml:space="preserve">
+    <value>Wenn der Taster nach der Bewegung zur zweiten Bezugsmarke nicht ausgelöst wird, geben Sie dem Benutzer die Möglichkeit, ihn manuell zu bewegen.</value>
+  </data>
+  <data name="BtnStartEF.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="BtnStartCF.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="BtnCancelCF.Text" xml:space="preserve">
+    <value>Abbruch</value>
+  </data>
+  <data name="BtnStartTL.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="button3.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="GbFiducialOffset.Text" xml:space="preserve">
+    <value>Versatz zwischen Taster und Werkzeug</value>
+  </data>
+  <data name="CbProbeScale.Text" xml:space="preserve">
+    <value>Skaliert auch bei Drehung</value>
+  </data>
+  <data name="BtnStartFiducial.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="BtnCancelFiducial.Text" xml:space="preserve">
+    <value>Abbruch</value>
+  </data>
+  <data name="LblFiducial.Text" xml:space="preserve">
+    <value>Referenzkorrektur:
+Verwenden Sie einen induktiven Näherungsschalter, um Passmarken aus Metall (Münzen) zu finden und zu zentrieren.
+
+Weitere Einstellungen finden Sie unter [Setup – Programmverhalten – Kamera – Referenzmarken].</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Referenzkorrektur</value>
+  </data>
+  <data name="BtnHelp_ImportParameter.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="button1.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
 </root>

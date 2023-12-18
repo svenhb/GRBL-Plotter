@@ -29,9 +29,14 @@
  * 2023-03-31 l:763 f:BtnStartCF_Click add rotation angle for probing center finder also l:452 rBCF1.Image rotate image
  * 2023-04-04 add log-info to COM CNC window
  * 2023-09-29 pull request #363
+ * 2023-12-01 add ProcessAutomation support
+ * 2023-12-06 add inverted logic for CF
+ * 2023-12-11 add fiducial correction
 */
 
+using GrblPlotter.MachineControl;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -42,7 +47,9 @@ namespace GrblPlotter
     {
         private enum ProbingMode { noProbing, edgeFinder, centerFinder, toolLenght }
 
-        private const string ProbeCommand = "G91 G38.3";
+        private const string ProbeCommandStopOn = "G91 G38.3";  // Stop on contact
+        private const string ProbeCommandStopOff = "G91 G38.5"; // Stop loss of contact
+        private string ProbeCommand = "G91 G38.3";
         private string CoordCommand = "G10 L2 P0";        // G92
         private bool useG92 = false;
         private int probingAxisIndex = 0;
@@ -73,9 +80,11 @@ namespace GrblPlotter
 
         private ProbingMode probingAction = ProbingMode.noProbing;
         private GrblState grblStateNow = GrblState.run;
-        private bool isIdle = false;    // trigger to send commands
+        private ModState grblMachineStateNow;
+        private bool hasContact = false;
+        private bool isIdle = false;            // trigger to send commands
         private int idleTimeOut = 5;
-        private int ticksPerMinute = 300;    // reload = 200ms = 5/sec
+        private readonly int ticksPerMinute = 300;    // reload = 200ms = 5/sec
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -98,7 +107,7 @@ namespace GrblPlotter
             lblEFProgress.Text = "";
             lblCFProgress.Text = "";
             btnCancelEF.Enabled = false;
-            btnCancelCF.Enabled = false;
+            BtnCancelCF.Enabled = false;
             rB1.Image = Properties.Resources.efOff1;
             rB2.Image = Properties.Resources.efOff2;
             rB3.Image = Properties.Resources.efOff3;
@@ -121,7 +130,7 @@ namespace GrblPlotter
         /***************************************************************************/
         // get grbl status from MainFormInterface ProcessStatus line 395
         /***************************************************************************/
-        internal GrblState SetGrblSaState
+        internal GrblState SetGrblState
         {
             set
             {
@@ -140,13 +149,33 @@ namespace GrblPlotter
                     lblEFProgress.Text = "";
                     lblCFProgress.Text = "";
                     btnCancelEF.Enabled = false;
-                    btnCancelCF.Enabled = false;
-                    ProbingFinishCF();
-                    ProbingFinishEF();
-                    ProbingFinishTL();
+                    BtnCancelCF.Enabled = false;
+                    ProbingFinishCF(false);
+                    ProbingFinishEF(false);
+                    ProbingFinishTL(false);
                 }
             }
             get { return grblStateNow; }
+        }
+
+        /***************************************************************************/
+        // get grbl status from MainFormInterface ProcessStatus line 395
+        /***************************************************************************/
+        internal ModState SetGrblMachineState
+        {
+            set
+            {
+                grblMachineStateNow = value;
+                hasContact = grblMachineStateNow.Pn.Contains("P");
+                LblProbeContact.BackColor = hasContact ? Color.Lime : default;
+
+                if (!timer1.Enabled && ((hasContact && !cBFindCenterInvert.Checked) || (!hasContact && cBFindCenterInvert.Checked)))
+                    cBFindCenterInvert.BackColor = Color.Yellow;
+                else
+                    cBFindCenterInvert.BackColor = default;
+
+            }
+            get { return grblMachineStateNow; }
         }
 
         /***************************************************************************/
@@ -171,21 +200,21 @@ namespace GrblPlotter
                     {
                         if (probingAction == ProbingMode.edgeFinder)
                         {
-                            ProbingFinishEF();
+                            ProbingFinishEF(false);
                             lblEFProgress.Text = Localization.GetString("probingFail1");//"Fail: no contact";
                             lblEFStatus.Text = Localization.GetString("probingFail2");//"Cancel probing";
                             lblEFStatus.BackColor = lblEFProgress.BackColor = Color.Yellow;
                         }
                         else if (probingAction == ProbingMode.centerFinder)
                         {
-                            ProbingFinishCF();
+                            ProbingFinishCF(false);
                             lblCFProgress.Text = Localization.GetString("probingFail1");//"Fail: no contact";
                             lblCFStatus.Text = Localization.GetString("probingFail1");//"Cancel probing";
                             lblCFStatus.BackColor = lblCFProgress.BackColor = Color.Yellow;
                         }
                         else if (probingAction == ProbingMode.toolLenght)
                         {
-                            ProbingFinishTL();
+                            ProbingFinishTL(false);
                             lblTLProgress.Text = Localization.GetString("probingFail1");//"Fail: no contact";
                             lblTLProgress.BackColor = Color.Yellow;
                         }
@@ -235,21 +264,27 @@ namespace GrblPlotter
                     {
                         double centerX = (probingValues[0].X + probingValues[1].X) / 2;
                         double centerY = (probingValues[0].Y + probingValues[1].Y) / 2;
+                        probingFinishedCoord = new XyPoint(centerX, centerY);
+
                         Logger.Trace("stateMachineCF index:{0} p1:{1:0.0};{2:0.0} p2:{3:0.0};{4:0.0}  center:{5:0.0};{6:0.0}", probingValuesIndex, probingValues[0].X, probingValues[0].Y, probingValues[1].X, probingValues[1].Y, centerX, centerY);
 
-                        if ((cBFindCenterUseX.Checked && cBFindCenterUseY.Checked) || (nUDFindCenterAngle.Value != 0))
-                            SendCommandEvent(new CmdEventArgs((string.Format("{0} X{1:0.000} Y{2:0.000}", CoordCommand, centerX, centerY).Replace(',', '.'))));
-                        else if (cBFindCenterUseX.Checked)
-                            SendCommandEvent(new CmdEventArgs((string.Format("{0} X{1:0.000}", CoordCommand, centerX).Replace(',', '.'))));
-                        else
-                            SendCommandEvent(new CmdEventArgs((string.Format("{0} Y{1:0.000}", CoordCommand, centerY).Replace(',', '.'))));
-
+                        if (fiducialDetectionProgressCounter == 0)
+                        {
+                            if ((cBFindCenterUseX.Checked && cBFindCenterUseY.Checked) || (nUDFindCenterAngle.Value != 0))
+                                SendCommandEvent(new CmdEventArgs((string.Format("{0} X{1:0.000} Y{2:0.000}", CoordCommand, centerX, centerY).Replace(',', '.'))));
+                            else if (cBFindCenterUseX.Checked)
+                                SendCommandEvent(new CmdEventArgs((string.Format("{0} X{1:0.000}", CoordCommand, centerX).Replace(',', '.'))));
+                            else
+                                SendCommandEvent(new CmdEventArgs((string.Format("{0} Y{1:0.000}", CoordCommand, centerY).Replace(',', '.'))));
+                        }
                         if (rBCF1.Checked && cBFindCenterUseY.Checked)
                         {
                             if ((cBFindCenterUseX.Checked && cBFindCenterUseY.Checked) || (nUDFindCenterAngle.Value != 0))
                             {
-                                stateCommands[4] = string.Format("G90 G00 X{0} Y{1};( 2 move to center x);", 0, 0);
-                                stateCommands[6] = string.Format("G90 G00 X{0} Y{1};( 3 move to center y);", 0, 0);
+                                //stateCommands[4] = string.Format("G90 G00 X{0} Y{1};( 2 move to center x);", 0, 0);
+                                //stateCommands[6] = string.Format("G90 G00 X{0} Y{1};( 3 move to center y);", 0, 0);
+                                stateCommands[4] = string.Format("G53 G90 G00 X{0} Y{1};( 2 move to center x);", centerX, centerY);
+                                stateCommands[6] = string.Format("G53 G90 G00 X{0} Y{1};( 3 move to center y);", centerX, centerY);
                             }
                             else if (cBFindCenterUseX.Checked)
                                 stateCommands[4] = string.Format("G90 G00 X{0};( 2 move to center x);", 0);
@@ -274,18 +309,23 @@ namespace GrblPlotter
                     {
                         double centerX = (probingValues[2].X + probingValues[3].X) / 2;
                         double centerY = (probingValues[2].Y + probingValues[3].Y) / 2;
+                        probingFinishedCoord = new XyPoint(centerX, centerY);
+
                         Logger.Trace("stateMachineCF index:{0} p1:{1:0.0};{2:0.0} p2:{3:0.0};{4:0.0}  center:{5:0.0};{6:0.0}", probingValuesIndex, probingValues[0].X, probingValues[0].Y, probingValues[1].X, probingValues[1].Y, centerX, centerY);
 
-                        if ((cBFindCenterUseX.Checked && cBFindCenterUseY.Checked) || (nUDFindCenterAngle.Value != 0))
-                            SendCommandEvent(new CmdEventArgs((string.Format("{0} X{1:0.000} Y{2:0.000}", CoordCommand, centerX, centerY).Replace(',', '.'))));
-                        else if (cBFindCenterUseX.Checked)
-                            SendCommandEvent(new CmdEventArgs((string.Format("{0} X{1:0.000}", CoordCommand, centerX).Replace(',', '.'))));
-                        else
-                            SendCommandEvent(new CmdEventArgs((string.Format("{0} Y{1:0.000}", CoordCommand, centerY).Replace(',', '.'))));
-
+                        if (fiducialDetectionProgressCounter == 0)
+                        {
+                            if ((cBFindCenterUseX.Checked && cBFindCenterUseY.Checked) || (nUDFindCenterAngle.Value != 0))
+                                SendCommandEvent(new CmdEventArgs((string.Format("{0} X{1:0.000} Y{2:0.000}", CoordCommand, centerX, centerY).Replace(',', '.'))));
+                            else if (cBFindCenterUseX.Checked)
+                                SendCommandEvent(new CmdEventArgs((string.Format("{0} X{1:0.000}", CoordCommand, centerX).Replace(',', '.'))));
+                            else
+                                SendCommandEvent(new CmdEventArgs((string.Format("{0} Y{1:0.000}", CoordCommand, centerY).Replace(',', '.'))));
+                        }
                         if (rBCF1.Checked)
                         {
-                            stateCommands[8] = string.Format("G90 G00 X{0} Y{1};( 4 move to center xy);", 0, 0);
+                            //stateCommands[8] = string.Format("G90 G00 X{0} Y{1};( 4 move to center xy);", 0, 0);
+                            stateCommands[8] = string.Format("G53 G90 G00 X{0} Y{1};( 4 move to center xy);", centerX, centerY);
                         }
                         else
                         {
@@ -294,6 +334,7 @@ namespace GrblPlotter
 
                         lblCFStatus.Text = Localization.GetString("probingSetCenter") + " X/Y";//"Set center Y";
                         lblCFProgress.Text = string.Format("Ok X:{0:0.000} Y:{1:0.000}", centerX, centerY);
+                        //probingFinished = true;
                     }
                 }
                 else if (probingAction == ProbingMode.toolLenght)
@@ -309,6 +350,7 @@ namespace GrblPlotter
             }
             get { return probePos; }
         }
+
 
         /***************************************************************************/
         // timer interval 200ms     feedrate in mm/min = /60/5 = / 300
@@ -415,10 +457,10 @@ namespace GrblPlotter
                     if (cBZProbing.Checked)
                         ProbeAxisZ();
                     else
-                        ProbingFinishEF();
+                        ProbingFinishEF(true);
                     break;
                 case 5:
-                    ProbingFinishEF();
+                    ProbingFinishEF(true);
                     probingCount = -2;
                     break;
             }
@@ -448,13 +490,15 @@ namespace GrblPlotter
                 if (probingCount > 7)
                 {
                     lblCFStatus.Text = Localization.GetString("probingFinish");
-                    ProbingFinishCF();
+                    probingFinished = true;
+                    BtnGetFiducialOffset.Enabled = true;
+                    ProbingFinishCF(true);
                 }
 
                 if ((!cBFindCenterUseX.Checked || !cBFindCenterUseY.Checked) && (probingCount > 3))
                 {
                     lblCFStatus.Text = Localization.GetString("probingFinish");
-                    ProbingFinishCF();
+                    ProbingFinishCF(true);
                 }
             }
             else
@@ -475,18 +519,18 @@ namespace GrblPlotter
                 if (probingCount > 19)
                 {
                     lblCFStatus.Text = Localization.GetString("probingFinish");     // both axis
-                    ProbingFinishCF();
+                    ProbingFinishCF(true);
                 }
 
                 if ((cBFindCenterUseX.Checked && !cBFindCenterUseY.Checked) && (probingCount > 9))      // only x
                 {
                     lblCFStatus.Text = Localization.GetString("probingFinish");
-                    ProbingFinishCF();
+                    ProbingFinishCF(true);
                 }
                 if ((!cBFindCenterUseX.Checked && cBFindCenterUseY.Checked) && (probingCount > 10))     // only y
                 {
                     lblCFStatus.Text = Localization.GetString("probingFinish");
-                    ProbingFinishCF();
+                    ProbingFinishCF(true);
                 }
             }
             probingCount++;
@@ -499,7 +543,7 @@ namespace GrblPlotter
 
             if (probingCount > 1)
             {
-                ProbingFinishTL();
+                ProbingFinishTL(true);
             }
             probingCount++;
             return false;
@@ -508,7 +552,7 @@ namespace GrblPlotter
         RadioButton cBold = null, cBnow = null;
         private void RbEF_CheckedCHanged(object sender, EventArgs e)
         {
-            btnStartEF.Enabled = true;
+            BtnStartEF.Enabled = true;
             cBnow = ((RadioButton)sender);
             SetImage(cBnow, true);
             if (cBold != null)
@@ -526,7 +570,7 @@ namespace GrblPlotter
         }
         private void RbCF_CheckedCHanged(object sender, EventArgs e)
         {
-            btnStartCF.Enabled = true;
+            BtnStartCF.Enabled = true;
             bool isActive = (((RadioButton)sender).Name == "rBCF1");
             rBCF1.Image = RotateImageUsi(isActive ? Properties.Resources.cfOn1 : Properties.Resources.cfOff1, -(float)nUDFindCenterAngle.Value);
             rBCF2.Image = RotateImageUsi(!isActive ? Properties.Resources.cfOn2 : Properties.Resources.cfOff2, -(float)nUDFindCenterAngle.Value);
@@ -576,6 +620,8 @@ namespace GrblPlotter
             lblEFStatus.Text = "";
             ZatX = 0; ZatY = 0;
 
+            ProbeCommand = ProbeCommandStopOn;
+
             FillStrings();      // check which axis to probe, set probeX, probeY, CMD-Strings
             Logger.Info("▀▀▀▀ Start Edge Finder X:{0:0.00}  Y:{1:0.00}", ZatX, ZatY);
 
@@ -594,20 +640,20 @@ namespace GrblPlotter
             timer1.Enabled = true;
             isIdle = false;
             btnCancelEF.Enabled = true;
-            btnStartEF.Enabled = false;
+            BtnStartEF.Enabled = false;
             tBAngle.Text = "0";
             probingAction = ProbingMode.edgeFinder;
             SetRBEnable(cBnow, false);
         }
         private void BtnCancelEF_Click(object sender, EventArgs e)
         {
-            ProbingFinishEF();
+            ProbingFinishEF(false);
             lblEFStatus.Text = Localization.GetString("probingCancel1"); //"Probing canceled";
             if (!isIdle)
                 lblEFProgress.Text = Localization.GetString("probingCancel2"); //"Process last command";
             SendCommandEvent(new CmdEventArgs("G1;"));
         }
-        private void ProbingFinishEF()
+        private void ProbingFinishEF(bool result)
         {
             timer1.Enabled = false;
             probeX = false; probeY = false;
@@ -616,10 +662,11 @@ namespace GrblPlotter
             probingStep3 = "";
             probingMoveSave = "";
             btnCancelEF.Enabled = false;
-            btnStartEF.Enabled = true;
+            BtnStartEF.Enabled = true;
             probingAction = ProbingMode.noProbing;
             progressBarEF.Value = 0;        // 2021-01-05
             SetRBEnable(cBnow, true);
+            SendProcessEvent(new ProcessEventArgs("Probe", result ? "finished" : "fail"));
         }
 
         private void SetProgressEF(decimal maxTravel)
@@ -821,6 +868,12 @@ namespace GrblPlotter
 
 
         #region centerFinder
+
+        private bool probingFinished = false;
+        private bool probingFinishedResult = false;
+        private XyPoint probingFinishedCoord = new XyPoint();
+        private XyPoint probingFinishedCoord1 = new XyPoint();
+
         private void BtnStartCF_Click(object sender, EventArgs e)
         {
             if (!Grbl.isConnected)
@@ -830,11 +883,12 @@ namespace GrblPlotter
             }
             Logger.Info("▀▀▀▀ Start Center Finder X:{0}  Y:{1}", cBFindCenterUseX.Checked, cBFindCenterUseY.Checked);
             lblCFStatus.BackColor = lblCFProgress.BackColor = Color.Transparent;
-            btnCancelCF.Enabled = true;
-            btnStartCF.Enabled = false;
+            BtnCancelCF.Enabled = true;
+            BtnStartCF.Enabled = false;
             lblCFProgress.Text = "";
             lblCFStatus.Text = "";
             probingValuesIndex = 0;
+
             probingAction = ProbingMode.centerFinder;
             SetRBEnable(cBnow, false);
 
@@ -842,12 +896,17 @@ namespace GrblPlotter
                 stateCommands[i] = "";
 
             probeStartMachine = Grbl.posMachine;		// save actual position
-            probingValuesIndex = 0;
             int k = 1;
 
             string moveBack = string.Format("G53 G00 X{0} Y{1};", probeStartMachine.X, probeStartMachine.Y);    // G53 Move in Machine Coordinates back to stored position
             double angleDeg = (double)nUDFindCenterAngle.Value;
             decimal wpd = nUDWorkpieceDiameter.Value;
+
+            if (cBFindCenterInvert.Checked)
+            { ProbeCommand = ProbeCommandStopOff; }
+            else
+            { ProbeCommand = ProbeCommandStopOn; }
+
             XyzPoint findPos;
 
             if (rBCF1.Checked)  // inside
@@ -944,22 +1003,26 @@ namespace GrblPlotter
         }
         private void BtnCancelCF_Click(object sender, EventArgs e)
         {
-            ProbingFinishCF();
+            ProbingFinishCF(false);
             lblCFStatus.Text = Localization.GetString("probingCancel1"); //"Probing canceled";
             if (!isIdle)
                 lblCFProgress.Text = Localization.GetString("probingCancel2"); //"Process last command";
             SendCommandEvent(new CmdEventArgs("G1;"));
         }
-        private void ProbingFinishCF()
+        private void ProbingFinishCF(bool result)
         {
             timer1.Enabled = false;
             probeX = false; probeY = false;
             probingCount = 1;
-            btnCancelCF.Enabled = false;
-            btnStartCF.Enabled = true;
+            BtnCancelCF.Enabled = false;
+            BtnStartCF.Enabled = true;
             probingAction = ProbingMode.noProbing;
             progressBarCF.Value = 0;        // 2021-01-05
             SetRBEnable(cBnow, true);
+            if (fiducialDetectionProgressCounter == 0)
+                SendProcessEvent(new ProcessEventArgs("Probe", result ? "finished" : "fail"));
+            //probingFinished = true;
+            probingFinishedResult = result;
         }
 
         private void SetProgressCF(decimal maxTravel)
@@ -994,6 +1057,8 @@ namespace GrblPlotter
             for (int i = 0; i < stateCommandsMax; i++)
                 stateCommands[i] = "";
 
+            ProbeCommand = ProbeCommandStopOn;
+
             probeStartMachine = Grbl.posMachine;
             probingValuesIndex = 0;
             int k = 1;
@@ -1008,7 +1073,7 @@ namespace GrblPlotter
             isIdle = false;
             timer1.Enabled = true;
         }
-        private void ProbingFinishTL()
+        private void ProbingFinishTL(bool result)
         {
             timer1.Enabled = false;
             probeX = false; probeY = false;
@@ -1016,6 +1081,7 @@ namespace GrblPlotter
             probingAction = ProbingMode.noProbing;
             progressBarTL.Value = 0;        // 2021-01-05
             SetRBEnable(cBnow, true);       // 2020-08-09
+            SendProcessEvent(new ProcessEventArgs("Probe", result ? "finished" : "fail"));
         }
 
         private void SetProgressTL(decimal maxTravel)
@@ -1031,7 +1097,7 @@ namespace GrblPlotter
 
         private void BtnCancelTL_Click(object sender, EventArgs e)
         {
-            ProbingFinishTL();
+            ProbingFinishTL(false);
             lblTLStatus.Text = Localization.GetString("probingCancel1"); //"Probing canceled";
             if (!isIdle)
                 lblTLProgress.Text = Localization.GetString("probingCancel2"); //"Process last command";
@@ -1105,6 +1171,14 @@ namespace GrblPlotter
                 SetNudEnable(1, false);
                 SetNudEnable(2, true);
             }
+            if (tabControl1.SelectedIndex == 3)
+            {
+                SetNudEnable(0, true);
+                SetNudEnable(1, true);
+                SetNudEnable(2, false);
+                if (fiducialDetectionProgressCounter == 0)
+                    UpdateFiducials();
+            }
         }
 
         private void TabControl1_Deselecting(object sender, TabControlCancelEventArgs e)
@@ -1113,13 +1187,13 @@ namespace GrblPlotter
                 e.Cancel = true;
         }
 
-        private void cBFindCenterUseX_CheckedChanged(object sender, EventArgs e)
+        private void CbFindCenterUseX_CheckedChanged(object sender, EventArgs e)
         {
             if (!cBFindCenterUseX.Checked && !cBFindCenterUseY.Checked)
                 cBFindCenterUseY.Checked = true;
         }
 
-        private void cBFindCenterUseY_CheckedChanged(object sender, EventArgs e)
+        private void CbFindCenterUseY_CheckedChanged(object sender, EventArgs e)
         {
             if (!cBFindCenterUseX.Checked && !cBFindCenterUseY.Checked)
                 cBFindCenterUseX.Checked = true;
@@ -1227,5 +1301,457 @@ namespace GrblPlotter
                 label4.BackColor = SystemColors.Control;
             }
         }
+
+        /***************************************************************************************/
+        private bool isProcessAutomation = false;
+
+        public void StartProbing(string info)
+        {
+            if (info.Contains("FIDUCIAL"))
+            {
+                BtnCancelCF.PerformClick();
+                BtnCancelFiducial.PerformClick();
+                tabControl1.SelectTab(3);
+                isProcessAutomation = true;
+                BtnStartFiducial.PerformClick();
+            }
+            else if (info.Contains("EF"))
+            {
+                tabControl1.SelectTab(0);
+                if (info.Contains("1")) { rB1.Checked = true; }
+                else if (info.Contains("2")) { rB2.Checked = true; }
+                else if (info.Contains("3")) { rB3.Checked = true; }
+                else if (info.Contains("4")) { rB4.Checked = true; }
+                else if (info.Contains("5")) { rB5.Checked = true; }
+                else if (info.Contains("6")) { rB6.Checked = true; }
+                else if (info.Contains("7")) { rB7.Checked = true; }
+                else if (info.Contains("8")) { rB8.Checked = true; }
+                else if (info.Contains("9")) { rB9.Checked = true; }
+                cBZProbing.Checked = info.Contains("Z");
+                BtnStartEF.PerformClick();
+            }
+            else if (info.Contains("CF"))
+            {
+                tabControl1.SelectTab(1);
+                if (info.Contains("I")) { rBCF1.Checked = true; }
+                else if (info.Contains("O")) { rBCF2.Checked = true; }
+
+                cBFindCenterInvert.Checked = info.Contains("V");
+
+                if (info.Contains("X") || info.Contains("Y"))
+                {
+                    cBFindCenterUseX.Checked = info.Contains("X");
+                    cBFindCenterUseX.Checked = info.Contains("Y");
+                }
+                BtnStartCF.PerformClick();
+            }
+            else if (info.Contains("TL"))
+            {
+                tabControl1.SelectTab(2);
+                BtnStartTL.PerformClick();
+            }
+        }
+        public event EventHandler<ProcessEventArgs> RaiseProcessEvent;
+        protected virtual void SendProcessEvent(ProcessEventArgs e)     // event processed in MainFormOtherForms
+        {
+            isProcessAutomation = false;
+            RaiseProcessEvent?.Invoke(this, e);
+        }
+
+
+        /***************************************************************************************************************************/
+        private int fiducialDetectionProgressCounter = 0;
+        private int fiducialDetectionGrblNotIdleCounter = 0;
+        private int fiducialDetectionGrblNotIdleCounterMax = 20;
+        private int fiducialDetectionFail = 0;
+        private readonly int fiducialDetectionFailMax = 3;
+        private XyPoint realPos1, realPos2;
+        private XyPoint teachPoint1;
+        private XyPoint teachPoint2;
+        private XyPoint probeOffset;
+
+        private void BtnStartFiducial_Click(object sender, EventArgs e)
+        {
+            TbSetPoints.BackColor = default;
+            StartFiducialDetection();
+            BtnStartFiducial.Enabled = false;
+        }
+
+        private void BtnCancelFiducial_Click(object sender, EventArgs e)
+        {
+            TbSetPoints.BackColor = default;
+            fiducialDetectionProgressCounter = 0;
+            timerFlowControl.Stop();
+            ProbingFinishCF(false);
+            BtnStartFiducial.Enabled = true;
+            TbSetPoints.Width = 168;
+            TbSetPoints.Height = 60;
+        }
+
+        public void StartFiducialDetection()
+        {
+            fiducialDetectionProgressCounter = 1;
+            fiducialDetectionGrblNotIdleCounter = 0;
+            fiducialDetectionGrblNotIdleCounterMax = (int)Properties.Settings.Default.camShapeAutoTimeout;
+            VisuGCode.MarkSelectedFigure(-1);
+            TbSetPoints.Width = 350;
+            TbSetPoints.Height = 200;
+            probeOffset = new XyPoint((double)NudProbeFiducialOffsetX.Value, (double)NudProbeFiducialOffsetY.Value);
+            //    SendCommandEvent(new CmdEventArgs(TbProbeFiducialCodeStart.Text.Replace(',', '.')));  
+            timerFlowControl.Start();
+            Logger.Info("▀▀▀▀▀▀ StartFiducialDetection");
+        }
+
+        /**********************************************************************************
+		// flow control, triggered by timer
+		***********************************************************************************/
+        private void TimerFlowControl_Tick(object sender, EventArgs e)	// timer flow control
+        {
+            AutomaticFiducialDetection();
+        }
+
+        private void AutomaticFiducialDetection()
+        {
+            bool showLog = true;
+            string info = "";
+
+            if (fiducialDetectionProgressCounter == 0)
+                return;
+            switch (fiducialDetectionProgressCounter)
+            {
+                case 1: // set teachpoint, and move to if probe is not triggered
+                    {
+                        if (VisuGCode.fiducialsCenter.Count == 0)
+                        {
+                            BtnCancelFiducial.PerformClick();
+                            info = "1) No list of fiducials from GCode END";
+                            TbSetPoints.Text += info + "\r\n";
+                            if (showLog) Logger.Trace(info);
+                            fiducialDetectionProgressCounter = 0;
+                            TbSetPoints.BackColor = Color.LightPink;
+                            break;
+                        }
+
+                        ListFiducials();
+                        teachPoint1 = (XyPoint)VisuGCode.fiducialsCenter[0];
+                        Grbl.PosMarker = new XyzPoint((XyPoint)VisuGCode.fiducialsCenter[0], 0);
+
+                        if (hasContact && CbProbeSkipMove.Checked)
+                        {
+                            info = "1) Probe has contact, skip move to 1st fiducial";
+                            TbSetPoints.Text += info + "\r\n";
+                            if (showLog) Logger.Trace(info);
+                            fiducialDetectionProgressCounter++;
+                            break;
+                        }
+
+                        VisuGCode.CreateMarkerPath();
+                        fiducialDetectionFail = 0;
+                        fiducialDetectionGrblNotIdleCounter = 0;
+
+                        OnRaiseXYEvent(new XYEventArgs(0, 1, teachPoint1 - probeOffset, "G90 G0"));
+                        fiducialDetectionProgressCounter++;
+
+                        info = string.Format("1) move to X:{0}  Y:{1} with probe offset X:{2}  Y:{3}", teachPoint1.X, teachPoint1.Y, probeOffset.X, probeOffset.Y);
+                        TbSetPoints.Text += info + "\r\n";
+                        if (showLog) Logger.Trace(info);
+                        break;
+                    }
+                case 2: // still moving? If not moving anymore, start center finder
+                    {
+                        if (Grbl.Status != GrblState.idle)
+                        {
+                            if (fiducialDetectionGrblNotIdleCounter++ > fiducialDetectionGrblNotIdleCounterMax)
+                            {
+                                fiducialDetectionProgressCounter = 0;
+                                Logger.Error("2) Fiducial detection: Grbl-Idle not reached after {0} sec.", fiducialDetectionGrblNotIdleCounterMax);
+                                TbSetPoints.BackColor = Color.LightPink;
+                            }
+                            break;
+                        }
+                        fiducialDetectionProgressCounter++;
+                        info = string.Format("2) start center finder");
+                        TbSetPoints.Text += info;
+                        if (showLog) Logger.Trace(info);
+
+                        /* Start Center Finder and wait for ProbingFinishCF */
+                        rBCF1.Checked = true;
+                        cBFindCenterInvert.Checked = true;
+                        cBFindCenterUseX.Checked = true;
+                        cBFindCenterUseX.Checked = true;
+                        probingFinished = false;
+                        probingFinishedResult = false;
+                        tabControl1.SelectTab(1);
+                        BtnStartCF.PerformClick();
+                        break;
+                    }
+                case 3:	// get result in probingFinishedCoord and set as teachPoint1 coordinate
+                    {
+                        if (!probingFinished)
+                        {
+                            TbSetPoints.Text += ".";
+                            break;
+                        }
+                        TbSetPoints.Text += "\r\n";
+
+                        info = string.Format("3) center finder finished:{0}", probingFinished);
+                        TbSetPoints.Text += info + "\r\n";
+                        if (showLog) Logger.Trace(info);
+
+                        probingFinishedCoord1 = probingFinishedCoord;
+                        if (probingFinishedResult)
+                        {
+                            string cmd = string.Format("{0} X{1:0.000} Y{2:0.000}", CoordCommand, probingFinishedCoord.X - teachPoint1.X + probeOffset.X, probingFinishedCoord.Y - teachPoint1.Y + probeOffset.Y).Replace(',', '.');
+                            SendCommandEvent(new CmdEventArgs(cmd));
+                            if (showLog) Logger.Trace("3) Set {0}", cmd);
+                        }
+                        else
+                        {
+                            info = string.Format("3) center finder FAILED");
+                            TbSetPoints.Text += info + "\r\n";
+                            if (showLog) Logger.Trace(info);
+                            TbSetPoints.BackColor = Color.LightPink;
+                        }
+
+                        tabControl1.SelectTab(3);
+                        fiducialDetectionProgressCounter++;
+                        break;
+                    }
+                case 4: // set next teachpoint and move to
+                    {
+                        if (VisuGCode.fiducialsCenter.Count < 2)
+                        {
+                            fiducialDetectionProgressCounter = 7;
+                            info = string.Format("4) no more teach points - STOP");
+                            TbSetPoints.Text += info + "\r\n";
+                            if (showLog) Logger.Trace(info);
+                            TbSetPoints.BackColor = Color.Yellow;
+                            break;
+                        }
+
+                        teachPoint2 = (XyPoint)VisuGCode.fiducialsCenter[1];
+                        Grbl.PosMarker = new XyzPoint((XyPoint)VisuGCode.fiducialsCenter[1], 0);
+
+                        VisuGCode.CreateMarkerPath();
+                        fiducialDetectionFail = 0;
+                        fiducialDetectionGrblNotIdleCounter = 0;
+
+                        OnRaiseXYEvent(new XYEventArgs(0, 1, teachPoint2 - probeOffset, "G90 G0"));   // move to fiducial position
+                        fiducialDetectionProgressCounter++;
+
+                        info = string.Format("4) move to X:{0}  Y:{1}", teachPoint2.X, teachPoint2.Y);
+                        TbSetPoints.Text += info + "\r\n";
+                        if (showLog) Logger.Trace(info);
+                        break;
+                    }
+                case 5: // still moving? If not moving anymore, start center finder
+                    {
+                        if (Grbl.Status != GrblState.idle)
+                        {
+                            if (fiducialDetectionGrblNotIdleCounter++ > fiducialDetectionGrblNotIdleCounterMax)
+                            {
+                                fiducialDetectionProgressCounter = 0;
+                                Logger.Error("5) Fiducial detection: Grbl-Idle not reached after {0} sec.", fiducialDetectionGrblNotIdleCounterMax);
+                                TbSetPoints.BackColor = Color.LightPink;
+                            }
+                            break;
+                        }
+
+                        bool cont = false;
+                        if (!hasContact)
+                        {
+                            if (CbProbe2ndChance.Checked && !isProcessAutomation)
+                            {
+                                info = "5) Fiducial not found, probe not triggered - move manually to fiducial";// - STOP";
+                                TbSetPoints.Text += info + "\r\n";
+                                TbSetPoints.ScrollToCaret();
+                                if (showLog) Logger.Trace(info);
+
+                                timerFlowControl.Stop();
+                                using (ControlMoveXY f = new ControlMoveXY())
+                                {
+                                    f.RaiseCmdEvent += ForwardControlMoveXYEvent;
+                                    var result = f.ShowDialog(this);
+                                }
+
+                                if (hasContact)
+                                {
+                                    cont = true;
+                                    info = "5) Fiducial found after manual move";// - STOP";
+                                    TbSetPoints.Text += info + "\r\n";
+                                    TbSetPoints.ScrollToCaret();
+                                    if (showLog) Logger.Trace(info);
+                                }
+                                else
+                                {
+                                    info = "5) Fiducial still not found - STOP";
+                                    TbSetPoints.Text += info + "\r\n";
+                                    TbSetPoints.ScrollToCaret();
+                                    if (showLog) Logger.Trace(info);
+                                    TbSetPoints.BackColor = Color.LightPink;
+                                }
+                                timerFlowControl.Start();
+                            }
+                            else
+                            {
+                                info = "5) Fiducial not found, probe not triggered - STOP";
+                                TbSetPoints.Text += info + "\r\n";
+                                TbSetPoints.ScrollToCaret();
+                                if (showLog) Logger.Trace(info);
+                                TbSetPoints.BackColor = Color.LightPink;
+                            }
+
+                            if (!cont)
+                            {
+                                fiducialDetectionProgressCounter = 7;
+                                break;
+                            }
+                        }
+
+                        fiducialDetectionProgressCounter++;
+                        info = string.Format("5) start center finder");
+                        TbSetPoints.Text += info;
+                        TbSetPoints.ScrollToCaret();
+                        if (showLog) Logger.Trace(info);
+
+                        /* Start Center Finder and wait for ProbingFinishCF */
+                        rBCF1.Checked = true;
+                        cBFindCenterInvert.Checked = true;
+                        cBFindCenterUseX.Checked = true;
+                        cBFindCenterUseX.Checked = true;
+                        probingFinished = false;
+                        probingFinishedResult = false;
+                        tabControl1.SelectTab(1);
+                        BtnStartCF.PerformClick();
+                        break;
+                    }
+                case 6: // get result in probingFinishedCoord and set as teachPoint1 coordinate and apply rotation, scaling
+                    {
+                        if (!probingFinished)
+                        {
+                            TbSetPoints.Text += ".";
+                            break;
+                        }
+                        TbSetPoints.Text += "\r\n";
+
+                        info = string.Format("6) center finder finished:{0}", probingFinished);
+                        TbSetPoints.Text += info + "\r\n";
+                        TbSetPoints.ScrollToCaret();
+                        if (showLog) Logger.Trace(info);
+
+                        if (probingFinishedResult)
+                        {
+
+                            double angle1 = teachPoint1.AngleTo(teachPoint2);       // coordinates from graphics in 2D-view
+                            double dist1 = teachPoint1.DistanceTo(teachPoint2);
+                            double angle2 = probingFinishedCoord1.AngleTo(probingFinishedCoord);
+                            double dist2 = probingFinishedCoord1.DistanceTo(probingFinishedCoord);
+                            double angleResult = angle1 - angle2;
+                            double scale = dist2 / dist1;
+                            if (CbProbeScale.Checked) { scale = 1; }
+
+                            if (showLog) Logger.Trace("6) Fiducial detection angle1:{0:0.00}  angle2:{1:0.00}", angle1, angle2);
+                            if (showLog) Logger.Trace("6) Fiducial detection: 2) real  X:{0:0.00} Y:{1:0.00} rotate:{2:0.00}  scale:{3:0.00}", realPos2.X, realPos2.Y, angleResult, scale);
+
+                            OnRaiseXYEvent(new XYEventArgs(angleResult, scale, teachPoint1, "a"));       // rotate arround TP1
+
+                            fiducialDetectionProgressCounter++;
+                            TbSetPoints.BackColor = Color.Lime;
+                            break;
+                        }
+                        else
+                        {
+                            info = string.Format("3) center finder FAILED");
+                            TbSetPoints.Text += info + "\r\n";
+                            if (showLog) Logger.Trace(info);
+                            TbSetPoints.BackColor = Color.LightPink;
+                        }
+                        tabControl1.SelectTab(3);
+                        fiducialDetectionProgressCounter++;
+                        break;
+                    }
+                case 7:
+                    {
+                        info = string.Format("7) FINISH");
+                        TbSetPoints.Text += info + "\r\nClick 'Cancel' to reduce box.";
+                        TbSetPoints.ScrollToCaret();
+                        if (showLog) Logger.Trace(info);
+
+                        tabControl1.SelectTab(3);
+                        timerFlowControl.Stop();
+                        ProbingFinishCF(false);
+                        BtnStartFiducial.Enabled = true;
+                        fiducialDetectionProgressCounter = 0;
+                        isProcessAutomation = false;
+
+                        teachPoint2 = (XyPoint)VisuGCode.fiducialsCenter[1];
+                        OnRaiseXYEvent(new XYEventArgs(0, 1, teachPoint2, "G90 G0"));   // move to fiducial position
+                        SendProcessEvent(new ProcessEventArgs("Probe", "finished"));
+                        //SendProcessEvent(new ProcessEventArgs("Fiducial", "finished"));
+                        break;
+                    }
+            }
+        }
+
+        private void BtnGetFiducialOffset_Click(object sender, EventArgs e)
+        {
+            NudProbeFiducialOffsetX.Value = (decimal)Grbl.posWork.X;
+            NudProbeFiducialOffsetY.Value = (decimal)Grbl.posWork.Y;
+        }
+
+
+        private void BtnMoveLeft_Click(object sender, EventArgs e)
+        {
+            probeOffset = new XyPoint(-(double)NudProbeFiducialOffsetX.Value, -(double)NudProbeFiducialOffsetY.Value);
+            OnRaiseXYEvent(new XYEventArgs(0, 1, probeOffset, "G91 G0"));
+            SendCommandEvent(new CmdEventArgs("G90"));
+        }
+
+        private void BtnMoveRight_Click(object sender, EventArgs e)
+        {
+            probeOffset = new XyPoint((double)NudProbeFiducialOffsetX.Value, (double)NudProbeFiducialOffsetY.Value);
+            OnRaiseXYEvent(new XYEventArgs(0, 1, probeOffset, "G91 G0"));
+            SendCommandEvent(new CmdEventArgs("G90"));
+        }
+
+        internal event EventHandler<XYEventArgs> RaiseXYEvent;
+
+        private void BtnHelp_ImportParameter_Click(object sender, EventArgs e)
+        {
+            string url = "https://grbl-plotter.de/index.php?";
+            try
+            {
+                Button clickedLink = sender as Button;
+                Process.Start(url + clickedLink.Tag.ToString());
+            }
+            catch (Exception err)
+            {
+                Logger.Error(err, "BtnHelp_Click ");
+                MessageBox.Show("Could not open the link: " + err.Message, "Error");
+            }
+        }
+
+        protected virtual void OnRaiseXYEvent(XYEventArgs e)
+        {
+            RaiseXYEvent?.Invoke(this, e);
+        }
+
+        private void ForwardControlMoveXYEvent(object sender, CmdEventArgs e)
+        {
+            SendCommandEvent(new CmdEventArgs(e.Command));
+        }
+
+        public void UpdateFiducials()
+        { ListFiducials(); }
+        private void ListFiducials()
+        {
+            TbSetPoints.Text = "Fiducial coordinates (mm):\r\n";
+            int i = 1;
+            foreach (XyPoint tmp in VisuGCode.fiducialsCenter)
+            { TbSetPoints.Text += string.Format("{0}] X:{1:0.0} Y:{2:0.0}\r\n", (i++), tmp.X, tmp.Y); }
+            TbSetPoints.Text += "--------------------------------------\r\n";
+            TbSetPoints.BackColor = default;
+        }
+
     }
 }

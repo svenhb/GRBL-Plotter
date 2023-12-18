@@ -3279,7 +3279,7 @@ A profundidade máxima será limitada pela gravação Z-Height.</value>
     <value>Converte a largura mínima/máxima da caneta ou o raio do círculo em S no intervalo de:</value>
   </data>
   <data name="nUDSBottom.ToolTip" xml:space="preserve">
-    <value>valor mais baixo</value>
+    <value>A maior largura da caneta será traduzida para esta profundidade</value>
   </data>
   <data name="label94.Text" xml:space="preserve">
     <value>Demora antes de fechar automaticamente as informações exibidas</value>
@@ -3458,5 +3458,67 @@ Por exemplo. para corte a laser</value>
   </data>
   <data name="groupBox40.Text" xml:space="preserve">
     <value>Carregamento de vários arquivos</value>
+  </data>
+  <data name="TbImportSVGAddOnFile.ToolTip" xml:space="preserve">
+    <value>Caminho do arquivo svg para carregar como complemento</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items" xml:space="preserve">
+    <value>Nenhum</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items1" xml:space="preserve">
+    <value>Centro (quadro)</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items2" xml:space="preserve">
+    <value>Inferior esquerdo</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items3" xml:space="preserve">
+    <value>Canto inferior direito</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items4" xml:space="preserve">
+    <value>Canto superior esquerdo</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items5" xml:space="preserve">
+    <value>Canto superior direito</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Text" xml:space="preserve">
+    <value>Selecione a posição</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.ToolTip" xml:space="preserve">
+    <value>Selecione a posição desejada do complemento, em relação ao gráfico importado</value>
+  </data>
+  <data name="label105.Text" xml:space="preserve">
+    <value>Escala</value>
+  </data>
+  <data name="label105.ToolTip" xml:space="preserve">
+    <value>Dimensiona o tamanho do gráfico importado com base no tamanho original ou no redimensionamento desejado</value>
+  </data>
+  <data name="NudImportSVGAddOnScale.ToolTip" xml:space="preserve">
+    <value>Para uma moldura: por ex. "0,9" reduz o objeto original para caber no quadro</value>
+  </data>
+  <data name="cBImportSVGAddOnEnable.Text" xml:space="preserve">
+    <value>Habilitar</value>
+  </data>
+  <data name="BtnImportSVGAddOnSelectFile.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="BtnImportSVGAddOnSelectFile.ToolTip" xml:space="preserve">
+    <value>Selecione o arquivo SVG para moldura, logotipo, sinal ou marca d'água</value>
+  </data>
+  <data name="GbImportSVGAddOn.Text" xml:space="preserve">
+    <value>Adicione uma moldura, logotipo, sinal e marca d'água do arquivo</value>
+  </data>
+  <data name="GbImportSVGAddOn.ToolTip" xml:space="preserve">
+    <value>Adiciona um gráfico SVG adicional ao importado, por exemplo:
+Adicione uma moldura na qual o gráfico original seja colocado: use escala 0,9 ou inferior e "centro"
+Desenhe uma assinatura na margem inferior direita: escala 0,1 ou inferior e use “canto inferior direito”</value>
+  </data>
+  <data name="BtnSetSValues.Text" xml:space="preserve">
+    <value>Obtém valores PWM</value>
+  </data>
+  <data name="BtnSetSValues.ToolTip" xml:space="preserve">
+    <value>Obtém valores Pen Zero/Down PWM de outra guia [Importação de gráficos - Geração de código G - Tradução de caneta para cima/para baixo - PWM]</value>
+  </data>
+  <data name="nUDSTop.ToolTip" xml:space="preserve">
+    <value>A menor largura da caneta será traduzida para esta profundidade</value>
   </data>
 </root>

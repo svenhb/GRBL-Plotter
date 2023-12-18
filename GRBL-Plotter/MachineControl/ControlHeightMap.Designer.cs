@@ -35,9 +35,13 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlHeightMapForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.nUDGridX = new System.Windows.Forms.NumericUpDown();
+            this.RbScanYX = new System.Windows.Forms.RadioButton();
+            this.RbScanXY = new System.Windows.Forms.RadioButton();
+            this.GbExtrude = new System.Windows.Forms.GroupBox();
             this.RbScanY = new System.Windows.Forms.RadioButton();
-            this.RbScanX = new System.Windows.Forms.RadioButton();
             this.CbExtrudeEnable = new System.Windows.Forms.CheckBox();
+            this.RbScanX = new System.Windows.Forms.RadioButton();
             this.CbRoundUp = new System.Windows.Forms.CheckBox();
             this.BtnPosFromCodeDimension = new System.Windows.Forms.Button();
             this.BtnMoveUR = new System.Windows.Forms.Button();
@@ -45,7 +49,6 @@
             this.nUDDeltaY = new System.Windows.Forms.NumericUpDown();
             this.nUDDeltaX = new System.Windows.Forms.NumericUpDown();
             this.nUDGridY = new System.Windows.Forms.NumericUpDown();
-            this.nUDGridX = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.btnPosUR = new System.Windows.Forms.Button();
             this.btnPosLL = new System.Windows.Forms.Button();
@@ -123,14 +126,12 @@
             this.RbProbingZ = new System.Windows.Forms.RadioButton();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.GbExtrude = new System.Windows.Forms.GroupBox();
-            this.RbScanXY = new System.Windows.Forms.RadioButton();
-            this.RbScanYX = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDGridX)).BeginInit();
+            this.GbExtrude.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDDeltaY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDDeltaX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGridY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDGridX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDY2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDX2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDX1)).BeginInit();
@@ -159,7 +160,6 @@
             this.GbProbingDiy.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
-            this.GbExtrude.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -191,20 +191,55 @@
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
+            // nUDGridX
+            // 
+            this.nUDGridX.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "heightMapGridX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDGridX.DecimalPlaces = 1;
+            resources.ApplyResources(this.nUDGridX, "nUDGridX");
+            this.nUDGridX.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nUDGridX.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nUDGridX.Name = "nUDGridX";
+            this.nUDGridX.Value = global::GrblPlotter.Properties.Settings.Default.heightMapGridX;
+            // 
+            // RbScanYX
+            // 
+            resources.ApplyResources(this.RbScanYX, "RbScanYX");
+            this.RbScanYX.Name = "RbScanYX";
+            this.toolTip1.SetToolTip(this.RbScanYX, resources.GetString("RbScanYX.ToolTip"));
+            this.RbScanYX.UseVisualStyleBackColor = true;
+            // 
+            // RbScanXY
+            // 
+            resources.ApplyResources(this.RbScanXY, "RbScanXY");
+            this.RbScanXY.Checked = true;
+            this.RbScanXY.Name = "RbScanXY";
+            this.RbScanXY.TabStop = true;
+            this.toolTip1.SetToolTip(this.RbScanXY, resources.GetString("RbScanXY.ToolTip"));
+            this.RbScanXY.UseVisualStyleBackColor = true;
+            // 
+            // GbExtrude
+            // 
+            this.GbExtrude.Controls.Add(this.RbScanY);
+            this.GbExtrude.Controls.Add(this.CbExtrudeEnable);
+            this.GbExtrude.Controls.Add(this.RbScanX);
+            resources.ApplyResources(this.GbExtrude, "GbExtrude");
+            this.GbExtrude.Name = "GbExtrude";
+            this.GbExtrude.TabStop = false;
+            // 
             // RbScanY
             // 
             resources.ApplyResources(this.RbScanY, "RbScanY");
             this.RbScanY.Name = "RbScanY";
             this.RbScanY.TabStop = true;
             this.RbScanY.UseVisualStyleBackColor = true;
-            // 
-            // RbScanX
-            // 
-            resources.ApplyResources(this.RbScanX, "RbScanX");
-            this.RbScanX.Checked = true;
-            this.RbScanX.Name = "RbScanX";
-            this.RbScanX.TabStop = true;
-            this.RbScanX.UseVisualStyleBackColor = true;
             // 
             // CbExtrudeEnable
             // 
@@ -213,6 +248,14 @@
             this.CbExtrudeEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "heightMapExtrudeEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.CbExtrudeEnable.Name = "CbExtrudeEnable";
             this.CbExtrudeEnable.UseVisualStyleBackColor = true;
+            // 
+            // RbScanX
+            // 
+            resources.ApplyResources(this.RbScanX, "RbScanX");
+            this.RbScanX.Checked = true;
+            this.RbScanX.Name = "RbScanX";
+            this.RbScanX.TabStop = true;
+            this.RbScanX.UseVisualStyleBackColor = true;
             // 
             // CbRoundUp
             // 
@@ -261,7 +304,7 @@
             1,
             0,
             0,
-            0});
+            65536});
             this.nUDDeltaY.Name = "nUDDeltaY";
             this.nUDDeltaY.Value = new decimal(new int[] {
             50,
@@ -288,7 +331,7 @@
             1,
             0,
             0,
-            0});
+            65536});
             this.nUDDeltaX.Name = "nUDDeltaX";
             this.nUDDeltaX.Value = new decimal(new int[] {
             50,
@@ -314,24 +357,6 @@
             65536});
             this.nUDGridY.Name = "nUDGridY";
             this.nUDGridY.Value = global::GrblPlotter.Properties.Settings.Default.heightMapGridY;
-            // 
-            // nUDGridX
-            // 
-            this.nUDGridX.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "heightMapGridX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.nUDGridX.DecimalPlaces = 1;
-            resources.ApplyResources(this.nUDGridX, "nUDGridX");
-            this.nUDGridX.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.nUDGridX.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nUDGridX.Name = "nUDGridX";
-            this.nUDGridX.Value = global::GrblPlotter.Properties.Settings.Default.heightMapGridX;
             // 
             // label5
             // 
@@ -1061,30 +1086,6 @@
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // GbExtrude
-            // 
-            this.GbExtrude.Controls.Add(this.RbScanY);
-            this.GbExtrude.Controls.Add(this.CbExtrudeEnable);
-            this.GbExtrude.Controls.Add(this.RbScanX);
-            resources.ApplyResources(this.GbExtrude, "GbExtrude");
-            this.GbExtrude.Name = "GbExtrude";
-            this.GbExtrude.TabStop = false;
-            // 
-            // RbScanXY
-            // 
-            resources.ApplyResources(this.RbScanXY, "RbScanXY");
-            this.RbScanXY.Checked = true;
-            this.RbScanXY.Name = "RbScanXY";
-            this.toolTip1.SetToolTip(this.RbScanXY, resources.GetString("RbScanXY.ToolTip"));
-            this.RbScanXY.UseVisualStyleBackColor = true;
-            // 
-            // RbScanYX
-            // 
-            resources.ApplyResources(this.RbScanYX, "RbScanYX");
-            this.RbScanYX.Name = "RbScanYX";
-            this.toolTip1.SetToolTip(this.RbScanYX, resources.GetString("RbScanYX.ToolTip"));
-            this.RbScanYX.UseVisualStyleBackColor = true;
-            // 
             // ControlHeightMapForm
             // 
             this.AllowDrop = true;
@@ -1106,10 +1107,12 @@
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.ControlHeightMapForm_DragEnter);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDGridX)).EndInit();
+            this.GbExtrude.ResumeLayout(false);
+            this.GbExtrude.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDDeltaY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDDeltaX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDGridY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nUDGridX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDY2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDX2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDX1)).EndInit();
@@ -1144,8 +1147,6 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
-            this.GbExtrude.ResumeLayout(false);
-            this.GbExtrude.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

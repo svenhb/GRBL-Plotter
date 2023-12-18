@@ -41,6 +41,7 @@
  * 2023-04-01 l:200 f:StartStreaming bug fix, subroutine number should be usable with 4 digits
  * 2023-04-07 l:198 f:StartStreaming skip line if starts with "("; l:482 f:FindDouble -> change to TryParse
  * 2023-06-14 l:344 f:StartStreaming add try/catch for writing log files
+ * 2023-11-28 l:290 f:StartStreaming add info about missing subroutine
  */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -284,9 +285,10 @@ namespace GrblPlotter
                                 }
                             }
                             else
+                            {
                                 Logger.Error("Subroutine {0} not found", pWord);
-
-
+                                AddToLog(string.Format("ERROR: Line:{0} Subroutine P{1} not found - skip", i, pWord));
+                            }
                         }
                         #endregion
                         /***** Subroutine end ********************************************************/
@@ -307,12 +309,12 @@ namespace GrblPlotter
                             {
                                 tmp = "(" + tmp + ")";
                                 if (Properties.Settings.Default.ctrlToolChange)
-                                { 	InsertToolChangeCode(i, ref tmpToolInSpindle); }// insert external script-code and insert variables 
+                                { InsertToolChangeCode(i, ref tmpToolInSpindle); }// insert external script-code and insert variables 
                                 else
                                 {
                                     AddToLog(tmp + " !!! Tool change is disabled");
                                     Logger.Warn("⚠ Found '{0}' but tool change is disabled in [Setup - Tool change]", tmp);
-									tmp = "M0 " + tmp;
+                                    tmp = "M0 " + tmp;
                                 }
                             }
                             if (cmdMNr == 30)
@@ -343,32 +345,33 @@ namespace GrblPlotter
             if (logStreamData || useSubroutine)
             {
                 string startText = string.Format("( {0} )\r\n( Start at line:{1} stop:{2} )\r\n( Set ParserState:{3} )\r\n", GetTimeStampString(), startAtLine, stopAtLine, parserStateGC);
-				try 
-                { 	File.WriteAllText(Datapath.LogFiles + "\\" + logFileGCode, "( Data to stream from editor )\r\n" + startText); // clear file
-					File.AppendAllLines(Datapath.LogFiles + "\\" + logFileGCode, streamingBuffer.Buffer);
-				}
-				catch (Exception err)
-				{
-					Logger.Error(err," StartStreaming write to file '{0}'  {1}  ", (Datapath.LogFiles + "\\" + logFileGCode), startText);
-				}
+                try
+                {
+                    File.WriteAllText(Datapath.LogFiles + "\\" + logFileGCode, "( Data to stream from editor )\r\n" + startText); // clear file
+                    File.AppendAllLines(Datapath.LogFiles + "\\" + logFileGCode, streamingBuffer.Buffer);
+                }
+                catch (Exception err)
+                {
+                    Logger.Error(err, " StartStreaming write to file '{0}'  {1}  ", (Datapath.LogFiles + "\\" + logFileGCode), startText);
+                }
             }
 
             if (logStreamData)
             {
                 string startText = string.Format("( {0} )\r\n( Start at line:{1} stop:{2} )\r\n( Set ParserState:{3} )\r\n", GetTimeStampString(), startAtLine, stopAtLine, parserStateGC);
-				try
-                {	File.WriteAllText(Datapath.LogFiles + "\\" + logFileSentData, "( Data sent to grbl )\r\n" + startText);} // clear file
-				catch (Exception err)
-				{
-					Logger.Error(err," StartStreaming write to file '{0}'  {1}  ", (Datapath.LogFiles + "\\" + logFileSentData), startText);
-				}
-				try
-                {	File.WriteAllText(Datapath.LogFiles + "\\" + logFileEcho, "( Data echoed by grbl if #define REPORT_ECHO_LINE_RECEIVED )\r\n" + startText);} // clear file
- 				catch (Exception err)
-				{
-					Logger.Error(err," StartStreaming write to file '{0}'  {1}  ", (Datapath.LogFiles + "\\" + logFileEcho), startText);
-				}
-           }
+                try
+                { File.WriteAllText(Datapath.LogFiles + "\\" + logFileSentData, "( Data sent to grbl )\r\n" + startText); } // clear file
+                catch (Exception err)
+                {
+                    Logger.Error(err, " StartStreaming write to file '{0}'  {1}  ", (Datapath.LogFiles + "\\" + logFileSentData), startText);
+                }
+                try
+                { File.WriteAllText(Datapath.LogFiles + "\\" + logFileEcho, "( Data echoed by grbl if #define REPORT_ECHO_LINE_RECEIVED )\r\n" + startText); } // clear file
+                catch (Exception err)
+                {
+                    Logger.Error(err, " StartStreaming write to file '{0}'  {1}  ", (Datapath.LogFiles + "\\" + logFileEcho), startText);
+                }
+            }
             isStreaming = true;
             UpdateControls();
             if (startAtLine > 0)
@@ -497,7 +500,7 @@ namespace GrblPlotter
                 return notfound;
 
             if (double.TryParse(num, System.Globalization.NumberStyles.Float, System.Globalization.NumberFormatInfo.InvariantInfo, out double parsed))
-        //    if (double.TryParse(num, out double parsed))
+                //    if (double.TryParse(num, out double parsed))
                 return parsed;
 
             Logger.Warn("FindDouble {0}  {1}", start, txt);
@@ -676,7 +679,7 @@ namespace GrblPlotter
         }
 
         /*****  sendStreamEvent update main prog  *****/
-		/* update only on  streamingStateNow change or 'ok' synchronized with timer via trgEvent=true*/
+        /* update only on  streamingStateNow change or 'ok' synchronized with timer via trgEvent=true*/
         private void SendStreamEvent(GrblStreaming status, int linePause = -1)
         {
             int lineNrSent = streamingBuffer.GetSentLineNr();
@@ -801,7 +804,7 @@ namespace GrblPlotter
                             streamingBuffer.Add("()", streamingBuffer.Count);      // streamingBuffer.Count will be checked later
                             getMarlinPositionWasSent = true;
                             streamingStateOld = streamingStateNow;
-                        //    insertMarlinCounter = insertMarlinCounterReload;
+                            //    insertMarlinCounter = insertMarlinCounterReload;
                         }
                         updateMarlinPosition = false;
                     }

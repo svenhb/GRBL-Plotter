@@ -59,14 +59,18 @@ namespace GrblPlotter
             this.label3 = new System.Windows.Forms.Label();
             this.LblLoaded = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label2 = new System.Windows.Forms.Label();
+            this.NudTimerInterval = new System.Windows.Forms.NumericUpDown();
             this.LblInfo = new System.Windows.Forms.Label();
             this.Lblxml = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudTimerInterval)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnStart
@@ -112,7 +116,7 @@ namespace GrblPlotter
             // timer1
             // 
             this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // BtnLoad
             // 
@@ -140,6 +144,9 @@ namespace GrblPlotter
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.button3);
+            this.splitContainer1.Panel1.Controls.Add(this.label2);
+            this.splitContainer1.Panel1.Controls.Add(this.NudTimerInterval);
             this.splitContainer1.Panel1.Controls.Add(this.LblInfo);
             this.splitContainer1.Panel1.Controls.Add(this.Lblxml);
             this.splitContainer1.Panel1.Controls.Add(this.dataGridView1);
@@ -151,12 +158,39 @@ namespace GrblPlotter
             this.splitContainer1.Panel1.Controls.Add(this.BtnStop);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
             this.splitContainer1.Panel1.Controls.Add(this.checkBox1);
-            this.splitContainer1.Panel1.SizeChanged += new System.EventHandler(this.splitContainer1_Panel1_SizeChanged);
+            this.splitContainer1.Panel1.SizeChanged += new System.EventHandler(this.SplitContainer1_Panel1_SizeChanged);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.textBox1);
             this.splitContainer1.SplitterDistance = global::GrblPlotter.Properties.Settings.Default.processSplitDistance;
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // NudTimerInterval
+            // 
+            this.NudTimerInterval.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "processTimerInterval", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.NudTimerInterval.Increment = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.NudTimerInterval, "NudTimerInterval");
+            this.NudTimerInterval.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.NudTimerInterval.Minimum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.NudTimerInterval.Name = "NudTimerInterval";
+            this.NudTimerInterval.Value = global::GrblPlotter.Properties.Settings.Default.processTimerInterval;
             // 
             // LblInfo
             // 
@@ -177,6 +211,15 @@ namespace GrblPlotter
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.SkyBlue;
+            resources.ApplyResources(this.button3, "button3");
+            this.button3.Name = "button3";
+            this.button3.Tag = "id=form-pautomation";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // ControlProcessAutomation
             // 
             resources.ApplyResources(this, "$this");
@@ -195,6 +238,7 @@ namespace GrblPlotter
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.NudTimerInterval)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -215,5 +259,8 @@ namespace GrblPlotter
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label Lblxml;
         private System.Windows.Forms.Label LblInfo;
+        private System.Windows.Forms.NumericUpDown NudTimerInterval;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button3;
     }
 }

@@ -20,10 +20,12 @@
  * 2023-01-05 new feature
  * 2023-01-26 line 186 check for 3 columns
  * 2023-02-23 line 422 Feedback check index 
+ * 2023-12-01 l:415 f:Feedback add "Probing"
 */
 
 using System;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -35,20 +37,25 @@ namespace GrblPlotter
 {
     public partial class ControlProcessAutomation : Form
     {
-
+/*
+	Each process contains an action and a value, which will be sent as an event if processed.
+	In MainFormOtherForms.cs l:671 f:OnRaiseProcessEvent the asked process will be performed.
+	In l:415 f:Feedback the processing result will be analyzed to decide if the next process can be started.
+*/
         private int processCount = 0;
         private int processJumpTo = 0;
         private int processStep = 0;
         private string processAction = "";
-        private string processValue = "";
+        //private string processValue = "";
         private bool isRunning = false;
         private bool stepTriggered = false;
         private bool stepCompleted = false;
         private bool cameraFormOpen = false;
+        private bool probeFormOpen = false;
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
-        private static readonly CultureInfo culture = CultureInfo.InvariantCulture;
+        //private static readonly CultureInfo culture = CultureInfo.InvariantCulture;
 
 
         public ControlProcessAutomation()
@@ -64,6 +71,7 @@ namespace GrblPlotter
         private void ControlProcessAutomation_Load(object sender, EventArgs e)
         {
             SendProcessEvent(new ProcessEventArgs("CheckForm", "Cam"));
+            SendProcessEvent(new ProcessEventArgs("CheckForm", "Probe"));
             textBox1.AppendText(Lblxml.Text);
 
             BtnStart.Enabled = false;
@@ -101,6 +109,7 @@ namespace GrblPlotter
                 isRunning = true;
                 stepTriggered = false;
                 stepCompleted = false;
+				timer1.Interval = (int)NudTimerInterval.Value;
                 timer1.Enabled = true;
                 LblCount.Text = "1";
 
@@ -114,6 +123,7 @@ namespace GrblPlotter
         private void BtnStop_Click(object sender, EventArgs e)
         {
             SendProcessEvent(new ProcessEventArgs("CheckForm", "Cam"));
+            SendProcessEvent(new ProcessEventArgs("CheckForm", "Probe"));
             if (isRunning && !stepCompleted)
             {
                 LblInfo.Text = "Wait for finishing line " + (processStep + 1).ToString();
@@ -161,8 +171,8 @@ namespace GrblPlotter
         {
             textBox1.Text = "CheckData\r\n";
 
-            string action = "";
-            string value = "";
+            string action;// = "";
+            string value;// = "";
             int lineNr;
             bool ok, finalOK = true;
             if (dataGridView1.Rows.Count <= 0)
@@ -231,6 +241,21 @@ namespace GrblPlotter
                     }
                 }
 
+                else if (action.Contains("Probe"))
+                {
+                    if (!probeFormOpen)
+                    {
+                        textBox1.Text += string.Format("{0}) Probe - Probing form is not open\r\n", lineNr); ok = false;
+                        dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Fuchsia;
+                        SetDGVToolTip(i, "Probing form is not open");
+                    }
+                    else
+                    {
+                        textBox1.Text += string.Format("{0}) {1}  {2}  ok\r\n", lineNr, action, value);
+                        dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.LightGreen;
+                    }
+                }
+
                 else if (action.Contains("Fiducial"))
                 {
                     if (!cameraFormOpen)
@@ -249,10 +274,9 @@ namespace GrblPlotter
                 else if (action.Contains("Jump"))
                 {
                     string[] vals = value.Split(',');
-                    int line, rep;
                     processCount = 0;
 
-                    bool okVal = int.TryParse(vals[0], out line);
+                    ok = int.TryParse(vals[0], out int line);
                     if (!ok || (line <= 1) || (line >= i))
                     {
                         textBox1.Text += string.Format("{0}) Jump to line '{1}' doesn't work\r\n", lineNr, line); ok = false;
@@ -264,7 +288,7 @@ namespace GrblPlotter
 
                     if (ok && (vals.Length > 1))
                     {
-                        bool okRep = int.TryParse(vals[1], out rep);
+                        ok = int.TryParse(vals[1], out int rep);
                         if (!ok || (rep < 0))
                         {
                             textBox1.Text += string.Format("{0}) Jump to line '{1}', repitition '{2}' doesn't work\r\n", lineNr, line, rep); ok = false;
@@ -316,7 +340,7 @@ namespace GrblPlotter
                 }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)
         {
             if (Grbl.Status == GrblState.idle)
             {
@@ -336,7 +360,7 @@ namespace GrblPlotter
                         stepTriggered = true;
                         stepCompleted = false;
                         processAction = action;
-                        processValue = value;
+                        //processValue = value;
 
                         Logger.Trace("Timer line:{0})  {1}  {2}  count:{3}", (processStep + 1), action, value, processCount);
                         textBox1.AppendText(string.Format("{0})  {1}  {2}   ", lineNr, action, value));
@@ -351,6 +375,10 @@ namespace GrblPlotter
                             dataGridView1.Rows[processStep].DefaultCellStyle.BackColor = Color.LightGreen;
                             stepCompleted = true;       /* check for IDLE should be enough */
                             textBox1.AppendText("OK\r\n");
+                        }
+                        else if (action.Contains("Probe"))
+                        {
+                            SendProcessEvent(new ProcessEventArgs(action, value));
                         }
                         else if (action.Contains("Fiducial"))
                         {
@@ -403,17 +431,19 @@ namespace GrblPlotter
         }
 
         public event EventHandler<ProcessEventArgs> RaiseProcessEvent;
-        protected virtual void SendProcessEvent(ProcessEventArgs e)
+        protected virtual void SendProcessEvent(ProcessEventArgs e)     // event processed in MainFormOtherForms
         {
             RaiseProcessEvent?.Invoke(this, e);
         }
 
         public void Feedback(string action, string value, bool resultOk)
         {
+            Logger.Trace("Feedback  action:'{0}'  value:'{1}'  ok:{2}",action, value, resultOk);
             if (action == "CheckForm")
             {
                 processAction = resultOk.ToString();
                 if (value == "Cam") { cameraFormOpen = resultOk; }
+                if (value == "Probe") { probeFormOpen = resultOk; }
             }
             else if (action == processAction)
             {
@@ -438,7 +468,7 @@ namespace GrblPlotter
 					{	 Logger.Warn("Feedback failed processStep:{0} ", processStep);}
                 }
             }
-            Logger.Trace("Feedback '{0}'  '{1}'  '{2}'", action, value, processAction);
+
             if (!isRunning)
             {
                 bool ok = BtnStart.Enabled = CheckData();
@@ -462,7 +492,7 @@ namespace GrblPlotter
             }
         }
 
-        private void splitContainer1_Panel1_SizeChanged(object sender, EventArgs e)
+        private void SplitContainer1_Panel1_SizeChanged(object sender, EventArgs e)
         {
             dataGridView1.Height = splitContainer1.SplitterDistance - 110;
         }
@@ -471,9 +501,13 @@ namespace GrblPlotter
         {
             OpenFileDialog sfd = new OpenFileDialog
             {
-                InitialDirectory = Datapath.Automations + "\\",//    Application.StartupPath + Datapath.Examples;
                 Filter = "Script|*.xml"
             };
+            if (File.Exists(Properties.Settings.Default.processLastFile))
+                sfd.InitialDirectory = Properties.Settings.Default.processLastFile;
+            else
+                sfd.InitialDirectory = Datapath.Automations + "\\";//    Application.StartupPath + Datapath.Examples;
+
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 Properties.Settings.Default.processLastFile = LblLoaded.Text = sfd.FileName;
@@ -485,6 +519,21 @@ namespace GrblPlotter
         private void ControlProcessAutomation_FormClosing(object sender, FormClosingEventArgs e)
         {
             Properties.Settings.Default.Save();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string url = "https://grbl-plotter.de/index.php?";
+            try
+            {
+                Button clickedLink = sender as Button;
+                Process.Start(url + clickedLink.Tag.ToString());
+            }
+            catch (Exception err)
+            {
+                Logger.Error(err, "BtnHelp_Click ");
+                MessageBox.Show("Could not open the link: " + err.Message, "Error");
+            }
         }
     }
 

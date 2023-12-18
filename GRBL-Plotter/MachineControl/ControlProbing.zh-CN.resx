@@ -345,4 +345,92 @@ Z将移回起始位置</value>
   <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
     <value>要使用此选项，请将探头放置在工件上方几乎中心的位置。</value>
   </data>
+  <data name="cBFindCenterInvert.Text" xml:space="preserve">
+    <value>反向探测逻辑</value>
+  </data>
+  <data name="cBFindCenterInvert.ToolTip" xml:space="preserve">
+    <value>反向逻辑：不是在接触时停止，而是在失去接触时停止</value>
+  </data>
+  <data name="TbSetPoints.Text" xml:space="preserve">
+    <value>基准坐标：</value>
+  </data>
+  <data name="TbSetPoints.ToolTip" xml:space="preserve">
+    <value>基准坐标：仅使用第一个和第二个基准坐标。
+从导入的图形中获取基准坐标。</value>
+  </data>
+  <data name="BtnStartEF.Text" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="BtnStartCF.Text" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="BtnCancelCF.Text" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="BtnStartTL.Text" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="CbProbeSkipMove.Text" xml:space="preserve">
+    <value>接触时跳过第一步</value>
+  </data>
+  <data name="CbProbeSkipMove.ToolTip" xml:space="preserve">
+    <value>如果探头已被触发，则跳过移动到第一个基准点。</value>
+  </data>
+  <data name="BtnGetFiducialOffset.Text" xml:space="preserve">
+    <value>获取位置。</value>
+  </data>
+  <data name="BtnGetFiducialOffset.ToolTip" xml:space="preserve">
+    <value>接管实际位置</value>
+  </data>
+  <data name="BtnMoveLeft.Text" xml:space="preserve">
+    <value>&lt;</value>
+  </data>
+  <data name="BtnMoveLeft.ToolTip" xml:space="preserve">
+    <value>减去实际位置的偏移量</value>
+  </data>
+  <data name="BtnMoveRight.Text" xml:space="preserve">
+    <value>&gt;</value>
+  </data>
+  <data name="BtnMoveRight.ToolTip" xml:space="preserve">
+    <value>向实际位置添加偏移量</value>
+  </data>
+  <data name="CbProbe2ndChance.Text" xml:space="preserve">
+    <value>询问是否未找到第二个基准点</value>
+  </data>
+  <data name="CbProbe2ndChance.ToolTip" xml:space="preserve">
+    <value>如果移动到第二个基准点后未触发探头，请给用户手动移动的机会。</value>
+  </data>
+  <data name="button3.ToolTip" xml:space="preserve">
+    <value>网上帮助</value>
+  </data>
+  <data name="GbFiducialOffset.Text" xml:space="preserve">
+    <value>探头和工具之间的偏移</value>
+  </data>
+  <data name="CbProbeScale.Text" xml:space="preserve">
+    <value>还可以旋转缩放</value>
+  </data>
+  <data name="BtnStartFiducial.Text" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="BtnCancelFiducial.Text" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="LblFiducial.Text" xml:space="preserve">
+    <value>基准校正：
+使用感应式接近开关查找金属定位标记（硬币）并将其居中。
+
+有关进一步设置，请参阅[设置 - 程序行为 - 相机 - 基准点]。</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>基准校正</value>
+  </data>
+  <data name="BtnHelp_ImportParameter.ToolTip" xml:space="preserve">
+    <value>网上帮助</value>
+  </data>
+  <data name="button1.ToolTip" xml:space="preserve">
+    <value>网上帮助</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>网上帮助</value>
+  </data>
 </root>

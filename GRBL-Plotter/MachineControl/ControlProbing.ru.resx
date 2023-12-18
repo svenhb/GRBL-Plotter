@@ -345,4 +345,93 @@ Z вернется в исходное положение</value>
   <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
     <value>Чтобы использовать эту опцию, поместите датчик почти по центру над заготовкой.</value>
   </data>
+  <data name="cBFindCenterInvert.Text" xml:space="preserve">
+    <value>Логика обратного пробника</value>
+  </data>
+  <data name="cBFindCenterInvert.ToolTip" xml:space="preserve">
+    <value>Обратная логика: вместо остановки при контакте, он останавливается при потере контакта.</value>
+  </data>
+  <data name="TbSetPoints.Text" xml:space="preserve">
+    <value>Реперные координаты:</value>
+  </data>
+  <data name="TbSetPoints.ToolTip" xml:space="preserve">
+    <value>Реперные координаты: будут использоваться только 1-я и 2-я.
+Получите координаты реперных точек из импортированной графики.</value>
+  </data>
+  <data name="BtnStartEF.Text" xml:space="preserve">
+    <value>Начало</value>
+  </data>
+  <data name="BtnStartCF.Text" xml:space="preserve">
+    <value>Начало</value>
+  </data>
+  <data name="BtnCancelCF.Text" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="BtnStartTL.Text" xml:space="preserve">
+    <value>Начало</value>
+  </data>
+  <data name="CbProbeSkipMove.Text" xml:space="preserve">
+    <value>Пропустить первый ход при контакте</value>
+  </data>
+  <data name="CbProbeSkipMove.ToolTip" xml:space="preserve">
+    <value>Пропуски перемещаются к 1-й контрольной точке, если датчик уже сработал.
+Предположение: зонд уже был перемещен выше 1-й реперной отметки.</value>
+  </data>
+  <data name="BtnGetFiducialOffset.Text" xml:space="preserve">
+    <value>Получить пос.</value>
+  </data>
+  <data name="BtnGetFiducialOffset.ToolTip" xml:space="preserve">
+    <value>Занять фактическую позицию</value>
+  </data>
+  <data name="BtnMoveLeft.Text" xml:space="preserve">
+    <value>&lt;</value>
+  </data>
+  <data name="BtnMoveLeft.ToolTip" xml:space="preserve">
+    <value>Вычесть смещение к фактическому положению</value>
+  </data>
+  <data name="BtnMoveRight.Text" xml:space="preserve">
+    <value>&gt;</value>
+  </data>
+  <data name="BtnMoveRight.ToolTip" xml:space="preserve">
+    <value>Добавить смещение к фактическому положению</value>
+  </data>
+  <data name="CbProbe2ndChance.Text" xml:space="preserve">
+    <value>Спросить, не найден ли второй фидуциал</value>
+  </data>
+  <data name="CbProbe2ndChance.ToolTip" xml:space="preserve">
+    <value>Если датчик не срабатывает после перемещения ко второй координатной точке, дайте пользователю возможность переместить его вручную.</value>
+  </data>
+  <data name="button3.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="GbFiducialOffset.Text" xml:space="preserve">
+    <value>Смещение между датчиком и инструментом</value>
+  </data>
+  <data name="CbProbeScale.Text" xml:space="preserve">
+    <value>Также масштабируется при вращении</value>
+  </data>
+  <data name="BtnStartFiducial.Text" xml:space="preserve">
+    <value>Начинать</value>
+  </data>
+  <data name="BtnCancelFiducial.Text" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="LblFiducial.Text" xml:space="preserve">
+    <value>Фидуциальная коррекция:
+Используйте индуктивный бесконтактный переключатель для поиска и центрирования металлических меток (монет).
+
+Дополнительные настройки см. в разделе [Настройка – Поведение программы – Камера – Реперные точки].</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Фидуциальная коррекция</value>
+  </data>
+  <data name="BtnHelp_ImportParameter.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="button1.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
 </root>

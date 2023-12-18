@@ -3556,7 +3556,7 @@ Maximální hloubka bude omezena vyrytím výšky Z.</value>
     <value>Převede minimální/maximální šířku pera nebo poloměr kruhu v S v rozsahu:</value>
   </data>
   <data name="nUDSBottom.ToolTip" xml:space="preserve">
-    <value>nižší hodnotu</value>
+    <value>Do této hloubky se převede nejširší šířka pera</value>
   </data>
   <data name="label94.Text" xml:space="preserve">
     <value>التأخير قبل إغلاق المعلومات المعروضة تلقائيًا</value>
@@ -3735,5 +3735,67 @@ Např. pro řezání laserem</value>
   </data>
   <data name="groupBox40.Text" xml:space="preserve">
     <value>Načtení více souborů</value>
+  </data>
+  <data name="TbImportSVGAddOnFile.ToolTip" xml:space="preserve">
+    <value>Cesta k souboru svg, který se má načíst jako add.on</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items" xml:space="preserve">
+    <value>Žádný</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items1" xml:space="preserve">
+    <value>Střed (rám)</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items2" xml:space="preserve">
+    <value>Vlevo dole</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items3" xml:space="preserve">
+    <value>Vpravo dole</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items4" xml:space="preserve">
+    <value>Vlevo nahoře</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items5" xml:space="preserve">
+    <value>Vpravo nahoře</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Text" xml:space="preserve">
+    <value>Vyberte pozici</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.ToolTip" xml:space="preserve">
+    <value>Vyberte požadovanou pozici doplňku vzhledem k importované grafice</value>
+  </data>
+  <data name="label105.Text" xml:space="preserve">
+    <value>Měřítko</value>
+  </data>
+  <data name="label105.ToolTip" xml:space="preserve">
+    <value>Změní velikost importované grafiky na základě původní velikosti nebo požadované změny velikosti</value>
+  </data>
+  <data name="NudImportSVGAddOnScale.ToolTip" xml:space="preserve">
+    <value>Pro rám: např. "0,9" zmenší původní objekt, aby se vešel do rámečku</value>
+  </data>
+  <data name="cBImportSVGAddOnEnable.Text" xml:space="preserve">
+    <value>Umožnit</value>
+  </data>
+  <data name="BtnImportSVGAddOnSelectFile.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="BtnImportSVGAddOnSelectFile.ToolTip" xml:space="preserve">
+    <value>Vyberte soubor SVG pro rámeček, logo, znak nebo vodoznak</value>
+  </data>
+  <data name="GbImportSVGAddOn.Text" xml:space="preserve">
+    <value>Přidejte rámeček, logo, znak, vodoznak ze souboru</value>
+  </data>
+  <data name="GbImportSVGAddOn.ToolTip" xml:space="preserve">
+    <value>K importovanému obrázku přidá další grafiku SVG, například:
+Přidejte rám, ve kterém je umístěn původní praphic: použijte měřítko 0,9 nebo nižší a "uprostřed"
+Nakreslete podpis na pravý dolní okraj: měřítko 0,1 nebo nižší a použijte „vpravo dole“</value>
+  </data>
+  <data name="BtnSetSValues.Text" xml:space="preserve">
+    <value>Získá hodnoty PWM</value>
+  </data>
+  <data name="BtnSetSValues.ToolTip" xml:space="preserve">
+    <value>Získává hodnoty PWM pera Zero/Down z jiné karty [import grafiky - generování G-kódu - překlad nahoru/dolů perem - PWM]</value>
+  </data>
+  <data name="nUDSTop.ToolTip" xml:space="preserve">
+    <value>Nejmenší šířka pera bude převedena do této hloubky</value>
   </data>
 </root>

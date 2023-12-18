@@ -346,4 +346,92 @@ Zは開始位置に戻ります</value>
   <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
     <value>このオプションを使用するには、プローブをワークピース上のほぼ中央に配置します。</value>
   </data>
+  <data name="cBFindCenterInvert.Text" xml:space="preserve">
+    <value>リバースプローブロジック</value>
+  </data>
+  <data name="cBFindCenterInvert.ToolTip" xml:space="preserve">
+    <value>逆ロジック: 接触時に停止するのではなく、接触が失われると停止します。</value>
+  </data>
+  <data name="TbSetPoints.Text" xml:space="preserve">
+    <value>基準座標:</value>
+  </data>
+  <data name="TbSetPoints.ToolTip" xml:space="preserve">
+    <value>基準座標: 1 番目と 2 番目のみが使用されます。
+インポートされたグラフィックから基準座標を取得します。</value>
+  </data>
+  <data name="BtnStartEF.Text" xml:space="preserve">
+    <value>開始</value>
+  </data>
+  <data name="BtnStartCF.Text" xml:space="preserve">
+    <value>開始</value>
+  </data>
+  <data name="BtnCancelCF.Text" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="BtnStartTL.Text" xml:space="preserve">
+    <value>開始</value>
+  </data>
+  <data name="CbProbeSkipMove.Text" xml:space="preserve">
+    <value>接触時に最初の移動をスキップ</value>
+  </data>
+  <data name="CbProbeSkipMove.ToolTip" xml:space="preserve">
+    <value>プローブがすでにトリガーされている場合は、最初の基準点に移動します。</value>
+  </data>
+  <data name="BtnGetFiducialOffset.Text" xml:space="preserve">
+    <value>posを取得します。</value>
+  </data>
+  <data name="BtnGetFiducialOffset.ToolTip" xml:space="preserve">
+    <value>実際のポジションを引き継ぐ</value>
+  </data>
+  <data name="BtnMoveLeft.Text" xml:space="preserve">
+    <value>&lt;</value>
+  </data>
+  <data name="BtnMoveLeft.ToolTip" xml:space="preserve">
+    <value>実際の位置からオフセットを減算します</value>
+  </data>
+  <data name="BtnMoveRight.Text" xml:space="preserve">
+    <value>&gt;</value>
+  </data>
+  <data name="BtnMoveRight.ToolTip" xml:space="preserve">
+    <value>実際の位置にオフセットを追加する</value>
+  </data>
+  <data name="CbProbe2ndChance.Text" xml:space="preserve">
+    <value>2 番目の基準が見つからないかどうかを尋ねる</value>
+  </data>
+  <data name="CbProbe2ndChance.ToolTip" xml:space="preserve">
+    <value>2 番目の基準に移動した後にプローブがトリガーされない場合は、ユーザーが手動で移動する機会を与えます。</value>
+  </data>
+  <data name="button3.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="GbFiducialOffset.Text" xml:space="preserve">
+    <value>プローブとツール間のオフセット</value>
+  </data>
+  <data name="CbProbeScale.Text" xml:space="preserve">
+    <value>回転時に拡大縮小することもできます</value>
+  </data>
+  <data name="BtnStartFiducial.Text" xml:space="preserve">
+    <value>始める</value>
+  </data>
+  <data name="BtnCancelFiducial.Text" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="LblFiducial.Text" xml:space="preserve">
+    <value>基準補正:
+誘導近接スイッチを使用して、金属製の登録マーク (コイン) を見つけて中央に配置します。
+
+詳細な設定については、[セットアップ - プログラム動作 - カメラ - 基準] を参照してください。</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>フィデューシャル補正</value>
+  </data>
+  <data name="BtnHelp_ImportParameter.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="button1.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
 </root>

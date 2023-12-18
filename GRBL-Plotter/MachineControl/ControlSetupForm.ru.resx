@@ -3485,7 +3485,7 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
     <value>Переводит минимальную/максимальную ширину пера или радиус круга в S в диапазоне:</value>
   </data>
   <data name="nUDSBottom.ToolTip" xml:space="preserve">
-    <value>меньшее значение</value>
+    <value>Самая широкая ширина пера будет переведена на эту глубину.</value>
   </data>
   <data name="label94.Text" xml:space="preserve">
     <value>Задержка перед автоматическим закрытием отображаемой информации</value>
@@ -3664,5 +3664,67 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   </data>
   <data name="groupBox40.Text" xml:space="preserve">
     <value>Загрузка нескольких файлов</value>
+  </data>
+  <data name="TbImportSVGAddOnFile.ToolTip" xml:space="preserve">
+    <value>Путь к файлу svg для загрузки в качестве дополнения.</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items" xml:space="preserve">
+    <value>Никто</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items1" xml:space="preserve">
+    <value>Центр (Рамка)</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items2" xml:space="preserve">
+    <value>Внизу слева</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items3" xml:space="preserve">
+    <value>Внизу справа</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items4" xml:space="preserve">
+    <value>Верхний левый</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items5" xml:space="preserve">
+    <value>В правом верхнем углу</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Text" xml:space="preserve">
+    <value>Выберите позицию</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.ToolTip" xml:space="preserve">
+    <value>Выберите желаемое положение дополнения относительно импортированного изображения.</value>
+  </data>
+  <data name="label105.Text" xml:space="preserve">
+    <value>Шкала</value>
+  </data>
+  <data name="label105.ToolTip" xml:space="preserve">
+    <value>Масштабирует размер импортированной графики на основе исходного размера или желаемого изменения размера.</value>
+  </data>
+  <data name="NudImportSVGAddOnScale.ToolTip" xml:space="preserve">
+    <value>Для кадра: например. «0,9» уменьшает исходный объект, чтобы он поместился в кадр.</value>
+  </data>
+  <data name="cBImportSVGAddOnEnable.Text" xml:space="preserve">
+    <value>Давать возможность</value>
+  </data>
+  <data name="BtnImportSVGAddOnSelectFile.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="BtnImportSVGAddOnSelectFile.ToolTip" xml:space="preserve">
+    <value>Выберите файл SVG для рамки, логотипа, знака или водяного знака.</value>
+  </data>
+  <data name="GbImportSVGAddOn.Text" xml:space="preserve">
+    <value>Добавить рамку, логотип, знак, водяной знак из файла</value>
+  </data>
+  <data name="GbImportSVGAddOn.ToolTip" xml:space="preserve">
+    <value>Добавляет дополнительную графику SVG к импортированной, например:
+Добавьте рамку, в которой находится исходная надпись: используйте масштаб 0,9 или ниже и «по центру».
+Нарисуйте подпись в правом нижнем поле: масштабируйте 0,1 или меньше и используйте «внизу справа».</value>
+  </data>
+  <data name="BtnSetSValues.Text" xml:space="preserve">
+    <value>Получает значения ШИМ</value>
+  </data>
+  <data name="BtnSetSValues.ToolTip" xml:space="preserve">
+    <value>Получает значения PWM «Ноль/Вниз» пера из другой вкладки [Импорт графики – Генерация G-кода – Перевод пера вверх/вниз – ШИМ]</value>
+  </data>
+  <data name="nUDSTop.ToolTip" xml:space="preserve">
+    <value>Наименьшая ширина пера будет перенесена на эту глубину.</value>
   </data>
 </root>

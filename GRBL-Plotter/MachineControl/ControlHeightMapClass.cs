@@ -344,7 +344,7 @@ namespace GrblPlotter
         private static float maxZ = float.MinValue;
         private static Dictionary<float, sbyte> amountX = new Dictionary<float, sbyte>();
         private static Dictionary<float, sbyte> amountY = new Dictionary<float, sbyte>();
-        private static List<Vertex> vertices = new List<Vertex>();
+        private static readonly List<Vertex> vertices = new List<Vertex>();
 
         public static HeightMap ImportSTL(string fileName)
         {
@@ -373,13 +373,16 @@ namespace GrblPlotter
 
             if (isLoaded)
             {
-                HeightMap map = new HeightMap();
-                map.Min = new Vector2(minX, minY);
-                map.Max = new Vector2(maxX, maxY);
-                map.MinHeight = minZ; map.MaxHeight = maxZ;
-                map.MinHeight2nd = minZ2nd;
-                map.SizeX = amountX.Count;
-                map.SizeY = amountY.Count;
+                HeightMap map = new HeightMap
+                {
+                    Min = new Vector2(minX, minY),
+                    Max = new Vector2(maxX, maxY),
+                    MinHeight = minZ,
+                    MaxHeight = maxZ,
+                    MinHeight2nd = minZ2nd,
+                    SizeX = amountX.Count,
+                    SizeY = amountY.Count
+                };
                 map.Points = new double?[map.SizeX + 1, map.SizeY + 1];
                 map.LastError = "";
 
@@ -480,7 +483,7 @@ namespace GrblPlotter
             var reader = new BinaryReader(fileStream);
 
             var fileContentSize = reader.BaseStream.Length - HEADER_SIZE;
-            var fileSize = reader.BaseStream.Length;
+            //var fileSize = reader.BaseStream.Length;
 
             if (fileContentSize % SIZE_OF_FACET != 0)
             {
@@ -565,7 +568,7 @@ namespace GrblPlotter
 
                 facet.normal = ReadAsciiVertex(line, 2);	// facet normal
 
-                line = sr.ReadLine(); 				// outer loop
+                sr.ReadLine(); 				// outer loop
                 line = sr.ReadLine(); 				// vertex
                 vertices.Add(ReadAsciiVertex(line));
 
@@ -575,8 +578,8 @@ namespace GrblPlotter
                 line = sr.ReadLine(); 				// vertex
                 vertices.Add(ReadAsciiVertex(line));
 
-                line = sr.ReadLine(); 				// endloop
-                line = sr.ReadLine(); 				// endfacet
+                sr.ReadLine(); 				// endloop
+                sr.ReadLine(); 				// endfacet
             }
 
             return true;
@@ -622,9 +625,9 @@ namespace GrblPlotter
 
             if (skipFacetNormal)  // don't process "facet normal 0 0 0"
             {
-                txt = ReadAsciiWord(lineReader);//.Replace(',', '.');
-                txt = ReadAsciiWord(lineReader);//.Replace(',', '.');
-                txt = ReadAsciiWord(lineReader);//.Replace(',', '.');
+                ReadAsciiWord(lineReader);
+                ReadAsciiWord(lineReader);
+                ReadAsciiWord(lineReader);
                 return new Vertex();
             }
 

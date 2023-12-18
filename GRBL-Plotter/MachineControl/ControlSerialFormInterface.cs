@@ -464,7 +464,7 @@ namespace GrblPlotter
             {
                 if (dataField.Length >= 2)
                 {
-                    if (dataField[1].IndexOf("MPos") >= 0)      // Current position as MPos or WPos
+                    if (dataField[1].Contains("MPos"))      // Current position as MPos or WPos
                     {
                         axisCount = Grbl.GetPosition(iamSerial, dataField[1], ref posMachine);
                         posWork = posMachine - posWCO;
@@ -477,9 +477,10 @@ namespace GrblPlotter
                 }
                 if (dataField.Length > 2)
                 {
+                    this.machineState.Pn = "";
                     for (int i = 2; i < dataField.Length; i++)
                     {
-                        if (dataField[i].IndexOf("WCO") >= 0)           // Work Coordinate Offset
+                        if (dataField[i].Contains("WCO"))           // Work Coordinate Offset
                         {
                             Grbl.GetPosition(iamSerial, dataField[i], ref posWCO);
                             continue;
@@ -487,19 +488,19 @@ namespace GrblPlotter
                         string[] data = dataField[i].Split(':');
                         if (data.Length > 1)
                         {
-                            if (dataField[i].IndexOf("Bf:") >= 0)            // Buffer state - needs to be enabled in config.h file
+                            if (data[0].Contains("Bf"))            // Buffer state - needs to be enabled in config.h file
                             { this.machineState.Bf = lblSrBf.Text = data[1]; continue; }
-                            if (dataField[i].IndexOf("Ln:") >= 0)            // Line number - needs to be enabled in config.h file
+                            if (data[0].Contains("Ln"))            // Line number - needs to be enabled in config.h file
                             { this.machineState.Ln = lblSrLn.Text = data[1]; continue; }
-                            if (dataField[i].IndexOf("FS:") >= 0)            // Current Feed and Speed - This data field will always appear, unless it was explicitly disabled in the config.h file
+                            if (data[0].Contains("FS"))            // Current Feed and Speed - This data field will always appear, unless it was explicitly disabled in the config.h file
                             { this.machineState.FS = lblSrFS.Text = data[1]; continue; }
-                            if (dataField[i].IndexOf("F:") >= 0)             // Current Feed - see above is speed is disabled in config.h
+                            if (data[0].Contains("F"))             // Current Feed - see above is speed is disabled in config.h
                             { this.machineState.FS = lblSrFS.Text = data[1]; continue; }
-                            if (dataField[i].IndexOf("Pn:") >= 0)            // Input Pin State - will not appear if No input pins are detected as triggered.
-                            { this.machineState.Pn = lblSrPn.Text = data[1]; continue; }
-                            if (dataField[i].IndexOf("Ov:") >= 0)            // Override Values - This data field will not appear if It is disabled in the config.h file
+                            if (data[0].Contains("Pn"))            // Input Pin State - will not appear if No input pins are detected as triggered.
+                            { this.machineState.Pn = data[1]; continue; } //else { this.machineState.Pn = lblSrPn.Text = ""; }
+                            if (data[0].Contains("Ov"))            // Override Values - This data field will not appear if It is disabled in the config.h file
                             {
-                                this.machineState.Ov = lblSrOv.Text = data[1]; lblSrPn.Text = "";
+                                this.machineState.Ov = lblSrOv.Text = data[1];
 
                                 if (dataField[dataField.Length - 1].IndexOf("A:") >= 0)             // Accessory State
                                 {
@@ -532,7 +533,9 @@ namespace GrblPlotter
                                 continue;
                             }
                         }
-                    }
+                    }   // for dataField
+                    lblSrPn.Text = this.machineState.Pn;
+                    lblSrA.Text = this.machineState.A;
                 }
             }   // if (isGrblVers0)
             grblStateNow = Grbl.ParseStatus(_machineState);            // get actual state
@@ -944,11 +947,11 @@ namespace GrblPlotter
                 }
                 else
                 {
-					if (keepComments && data.StartsWith("("))		// just print comment
-					{
-						AddToLog("*** " + data);
-						return true;
-					}
+                    if (keepComments && data.StartsWith("("))       // just print comment
+                    {
+                        AddToLog("*** " + data);
+                        return true;
+                    }
                     var tmp = CleanUpCodeLine(data, keepComments);
                     if ((!string.IsNullOrEmpty(tmp)) && (!tmp.StartsWith(";")))  //(tmp[0] != ';'))    // trim lines and remove all empty lines and comment lines
                     {
@@ -1010,12 +1013,13 @@ namespace GrblPlotter
                 var orig = line;
                 int start = orig.IndexOf('(');
                 if (start > 1)
-                {   line = orig.Substring(0, start).ToUpper();
+                {
+                    line = orig.Substring(0, start).ToUpper();
                     line += orig.Substring(start);
                 }
                 else
                     line = line.ToUpper();                              //all uppercase
-            } 
+            }
 
             line = line.TrimEnd(';', ' ');
             line = line.Trim();

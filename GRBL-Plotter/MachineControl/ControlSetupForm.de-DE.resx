@@ -3217,7 +3217,7 @@ Die maximale Tiefe wird durch die Z-Höhengravur begrenzt.</value>
     <value>Übersetzt die min/max Stiftbreite oder Kreisradius in S im Bereich von:</value>
   </data>
   <data name="nUDSBottom.ToolTip" xml:space="preserve">
-    <value>Geringerer Wert</value>
+    <value>Die größte Stiftbreite wird auf diese Tiefe übersetzt</value>
   </data>
   <data name="label94.Text" xml:space="preserve">
     <value>Verzögerung vor dem automatischen Schließen der angezeigten Informationen</value>
@@ -3390,5 +3390,67 @@ Z.B. zum Laserschneiden</value>
   </data>
   <data name="groupBox40.Text" xml:space="preserve">
     <value>Mehrere Dateien laden</value>
+  </data>
+  <data name="TbImportSVGAddOnFile.ToolTip" xml:space="preserve">
+    <value>Dateipfad der SVG-Datei, die als Add.on geladen werden soll</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items" xml:space="preserve">
+    <value>Keiner</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items1" xml:space="preserve">
+    <value>Mitte (Rahmen)</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items2" xml:space="preserve">
+    <value>Unten links</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items3" xml:space="preserve">
+    <value>Unten rechts</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items4" xml:space="preserve">
+    <value>Oben links</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items5" xml:space="preserve">
+    <value>Oben rechts</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Text" xml:space="preserve">
+    <value>Position auswählen</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.ToolTip" xml:space="preserve">
+    <value>Wähle die gewünschte Position des Add-ons relativ zur importierten Grafik</value>
+  </data>
+  <data name="label105.Text" xml:space="preserve">
+    <value>Skala</value>
+  </data>
+  <data name="label105.ToolTip" xml:space="preserve">
+    <value>Skaliert die Größe der importierten Grafik basierend auf der Originalgröße oder der gewünschten Größenänderung</value>
+  </data>
+  <data name="NudImportSVGAddOnScale.ToolTip" xml:space="preserve">
+    <value>Für einen Rahmen: z.B. „0,9“ verkleinert das Originalobjekt, damit es in den Rahmen passt</value>
+  </data>
+  <data name="cBImportSVGAddOnEnable.Text" xml:space="preserve">
+    <value>Aktivieren</value>
+  </data>
+  <data name="BtnImportSVGAddOnSelectFile.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="BtnImportSVGAddOnSelectFile.ToolTip" xml:space="preserve">
+    <value>Wählen eine SVG-Datei für Rahmen, Logo, Zeichen oder Wasserzeichen</value>
+  </data>
+  <data name="GbImportSVGAddOn.Text" xml:space="preserve">
+    <value>Fügt einen Rahmen, ein Logo, ein Zeichen oder ein Wasserzeichen aus der Datei hinzu</value>
+  </data>
+  <data name="GbImportSVGAddOn.ToolTip" xml:space="preserve">
+    <value>Fügt der importierten Grafik eine zusätzliche SVG-Grafik hinzu, zum Beispiel:
+Füge einen Rahmen hinzu, in dem die ursprüngliche Grafik platziert wird: Verwenden Sie den Maßstab 0,9 oder niedriger und „Mitte“.
+Zeichne eine Signatur in den unteren rechten Rand: Maßstab 0,1 oder kleiner und verwende „unten rechts“</value>
+  </data>
+  <data name="BtnSetSValues.Text" xml:space="preserve">
+    <value>Ruft PWM-Werte ab</value>
+  </data>
+  <data name="BtnSetSValues.ToolTip" xml:space="preserve">
+    <value>Ruft Stift-Nullpunkt-/Abwärts-PWM-Werte von einer anderen Registerkarte ab [Grafikimport – G-Code-Generierung – Stift-Auf-/Ab-Übersetzung – PWM]</value>
+  </data>
+  <data name="nUDSTop.ToolTip" xml:space="preserve">
+    <value>Die kleinste Stiftbreite wird auf diese Tiefe übersetzt</value>
   </data>
 </root>

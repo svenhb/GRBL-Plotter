@@ -38,6 +38,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cBZProbing = new System.Windows.Forms.CheckBox();
             this.gBHardware = new System.Windows.Forms.GroupBox();
+            this.LblProbeContact = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -66,6 +67,16 @@
             this.btnSaveTL = new System.Windows.Forms.Button();
             this.cBSetCenterZero = new System.Windows.Forms.CheckBox();
             this.nUDFindCenterAngle = new System.Windows.Forms.NumericUpDown();
+            this.cBFindCenterStartFromCenter = new System.Windows.Forms.CheckBox();
+            this.cBFindCenterUseX = new System.Windows.Forms.CheckBox();
+            this.cBFindCenterUseY = new System.Windows.Forms.CheckBox();
+            this.cBFindCenterInvert = new System.Windows.Forms.CheckBox();
+            this.TbSetPoints = new System.Windows.Forms.TextBox();
+            this.CbProbeSkipMove = new System.Windows.Forms.CheckBox();
+            this.BtnGetFiducialOffset = new System.Windows.Forms.Button();
+            this.BtnMoveLeft = new System.Windows.Forms.Button();
+            this.BtnMoveRight = new System.Windows.Forms.Button();
+            this.CbProbe2ndChance = new System.Windows.Forms.CheckBox();
             this.gBMovement = new System.Windows.Forms.GroupBox();
             this.nUDProbeFeedZ = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
@@ -80,7 +91,7 @@
             this.lblEFStatus = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.lblEFProgressInfo = new System.Windows.Forms.Label();
-            this.btnStartEF = new System.Windows.Forms.Button();
+            this.BtnStartEF = new System.Windows.Forms.Button();
             this.lblEFProgress = new System.Windows.Forms.Label();
             this.rB9 = new System.Windows.Forms.RadioButton();
             this.progressBarEF = new System.Windows.Forms.ProgressBar();
@@ -94,14 +105,13 @@
             this.rB2 = new System.Windows.Forms.RadioButton();
             this.rB1 = new System.Windows.Forms.RadioButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.cBFindCenterStartFromCenter = new System.Windows.Forms.CheckBox();
             this.lblCFAngle = new System.Windows.Forms.Label();
             this.lblCFStatus = new System.Windows.Forms.Label();
             this.lblCFProgressInfo = new System.Windows.Forms.Label();
-            this.btnStartCF = new System.Windows.Forms.Button();
+            this.BtnStartCF = new System.Windows.Forms.Button();
             this.lblCFProgress = new System.Windows.Forms.Label();
             this.progressBarCF = new System.Windows.Forms.ProgressBar();
-            this.btnCancelCF = new System.Windows.Forms.Button();
+            this.BtnCancelCF = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -110,18 +120,31 @@
             this.lblTLStatus = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.lblTLProgressInfo = new System.Windows.Forms.Label();
-            this.btnStartTL = new System.Windows.Forms.Button();
+            this.BtnStartTL = new System.Windows.Forms.Button();
             this.lblTLProgress = new System.Windows.Forms.Label();
             this.progressBarTL = new System.Windows.Forms.ProgressBar();
             this.btnCancelTL = new System.Windows.Forms.Button();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.GbFiducialOffset = new System.Windows.Forms.GroupBox();
+            this.NudProbeFiducialOffsetX = new System.Windows.Forms.NumericUpDown();
+            this.NudProbeFiducialOffsetY = new System.Windows.Forms.NumericUpDown();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.CbProbeScale = new System.Windows.Forms.CheckBox();
+            this.BtnStartFiducial = new System.Windows.Forms.Button();
+            this.BtnCancelFiducial = new System.Windows.Forms.Button();
+            this.LblFiducial = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.gBCoordinates = new System.Windows.Forms.GroupBox();
             this.btnProbeCoordClear = new System.Windows.Forms.Button();
             this.rBProbeCoord2 = new System.Windows.Forms.RadioButton();
             this.rBProbeCoord1 = new System.Windows.Forms.RadioButton();
             this.label11 = new System.Windows.Forms.Label();
-            this.cBFindCenterUseX = new System.Windows.Forms.CheckBox();
-            this.cBFindCenterUseY = new System.Windows.Forms.CheckBox();
+            this.timerFlowControl = new System.Windows.Forms.Timer(this.components);
+            this.BtnHelp_ImportParameter = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.gBHardware.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDProbeDiameter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDOffsetX)).BeginInit();
@@ -146,6 +169,10 @@
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBTL)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            this.GbFiducialOffset.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudProbeFiducialOffsetX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudProbeFiducialOffsetY)).BeginInit();
             this.gBCoordinates.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -184,6 +211,7 @@
             // 
             // gBHardware
             // 
+            this.gBHardware.Controls.Add(this.LblProbeContact);
             this.gBHardware.Controls.Add(this.label7);
             this.gBHardware.Controls.Add(this.label6);
             this.gBHardware.Controls.Add(this.label5);
@@ -197,6 +225,13 @@
             this.gBHardware.Name = "gBHardware";
             this.gBHardware.TabStop = false;
             this.gBHardware.Enter += new System.EventHandler(this.ControlProbing_Click);
+            // 
+            // LblProbeContact
+            // 
+            resources.ApplyResources(this.LblProbeContact, "LblProbeContact");
+            this.LblProbeContact.BackColor = System.Drawing.SystemColors.Control;
+            this.LblProbeContact.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LblProbeContact.Name = "LblProbeContact";
             // 
             // label7
             // 
@@ -495,6 +530,92 @@
             this.toolTip1.SetToolTip(this.nUDFindCenterAngle, resources.GetString("nUDFindCenterAngle.ToolTip"));
             this.nUDFindCenterAngle.ValueChanged += new System.EventHandler(this.NudFindCenterAngle_ValueChanged);
             // 
+            // cBFindCenterStartFromCenter
+            // 
+            resources.ApplyResources(this.cBFindCenterStartFromCenter, "cBFindCenterStartFromCenter");
+            this.cBFindCenterStartFromCenter.Name = "cBFindCenterStartFromCenter";
+            this.toolTip1.SetToolTip(this.cBFindCenterStartFromCenter, resources.GetString("cBFindCenterStartFromCenter.ToolTip"));
+            this.cBFindCenterStartFromCenter.UseVisualStyleBackColor = true;
+            // 
+            // cBFindCenterUseX
+            // 
+            resources.ApplyResources(this.cBFindCenterUseX, "cBFindCenterUseX");
+            this.cBFindCenterUseX.Checked = true;
+            this.cBFindCenterUseX.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBFindCenterUseX.Name = "cBFindCenterUseX";
+            this.toolTip1.SetToolTip(this.cBFindCenterUseX, resources.GetString("cBFindCenterUseX.ToolTip"));
+            this.cBFindCenterUseX.UseVisualStyleBackColor = true;
+            this.cBFindCenterUseX.CheckedChanged += new System.EventHandler(this.CbFindCenterUseX_CheckedChanged);
+            // 
+            // cBFindCenterUseY
+            // 
+            resources.ApplyResources(this.cBFindCenterUseY, "cBFindCenterUseY");
+            this.cBFindCenterUseY.Checked = true;
+            this.cBFindCenterUseY.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBFindCenterUseY.Name = "cBFindCenterUseY";
+            this.toolTip1.SetToolTip(this.cBFindCenterUseY, resources.GetString("cBFindCenterUseY.ToolTip"));
+            this.cBFindCenterUseY.UseVisualStyleBackColor = true;
+            this.cBFindCenterUseY.CheckedChanged += new System.EventHandler(this.CbFindCenterUseY_CheckedChanged);
+            // 
+            // cBFindCenterInvert
+            // 
+            resources.ApplyResources(this.cBFindCenterInvert, "cBFindCenterInvert");
+            this.cBFindCenterInvert.Checked = global::GrblPlotter.Properties.Settings.Default.probingInvertLogic;
+            this.cBFindCenterInvert.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "probingInvertLogic", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBFindCenterInvert.Name = "cBFindCenterInvert";
+            this.toolTip1.SetToolTip(this.cBFindCenterInvert, resources.GetString("cBFindCenterInvert.ToolTip"));
+            this.cBFindCenterInvert.UseVisualStyleBackColor = true;
+            // 
+            // TbSetPoints
+            // 
+            resources.ApplyResources(this.TbSetPoints, "TbSetPoints");
+            this.TbSetPoints.Name = "TbSetPoints";
+            this.toolTip1.SetToolTip(this.TbSetPoints, resources.GetString("TbSetPoints.ToolTip"));
+            // 
+            // CbProbeSkipMove
+            // 
+            resources.ApplyResources(this.CbProbeSkipMove, "CbProbeSkipMove");
+            this.CbProbeSkipMove.Checked = global::GrblPlotter.Properties.Settings.Default.probingFiducialSkip1stMove;
+            this.CbProbeSkipMove.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CbProbeSkipMove.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "probingFiducialSkip1stMove", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbProbeSkipMove.Name = "CbProbeSkipMove";
+            this.toolTip1.SetToolTip(this.CbProbeSkipMove, resources.GetString("CbProbeSkipMove.ToolTip"));
+            this.CbProbeSkipMove.UseVisualStyleBackColor = true;
+            // 
+            // BtnGetFiducialOffset
+            // 
+            resources.ApplyResources(this.BtnGetFiducialOffset, "BtnGetFiducialOffset");
+            this.BtnGetFiducialOffset.Name = "BtnGetFiducialOffset";
+            this.toolTip1.SetToolTip(this.BtnGetFiducialOffset, resources.GetString("BtnGetFiducialOffset.ToolTip"));
+            this.BtnGetFiducialOffset.UseVisualStyleBackColor = true;
+            this.BtnGetFiducialOffset.Click += new System.EventHandler(this.BtnGetFiducialOffset_Click);
+            // 
+            // BtnMoveLeft
+            // 
+            resources.ApplyResources(this.BtnMoveLeft, "BtnMoveLeft");
+            this.BtnMoveLeft.Name = "BtnMoveLeft";
+            this.toolTip1.SetToolTip(this.BtnMoveLeft, resources.GetString("BtnMoveLeft.ToolTip"));
+            this.BtnMoveLeft.UseVisualStyleBackColor = true;
+            this.BtnMoveLeft.Click += new System.EventHandler(this.BtnMoveLeft_Click);
+            // 
+            // BtnMoveRight
+            // 
+            resources.ApplyResources(this.BtnMoveRight, "BtnMoveRight");
+            this.BtnMoveRight.Name = "BtnMoveRight";
+            this.toolTip1.SetToolTip(this.BtnMoveRight, resources.GetString("BtnMoveRight.ToolTip"));
+            this.BtnMoveRight.UseVisualStyleBackColor = true;
+            this.BtnMoveRight.Click += new System.EventHandler(this.BtnMoveRight_Click);
+            // 
+            // CbProbe2ndChance
+            // 
+            resources.ApplyResources(this.CbProbe2ndChance, "CbProbe2ndChance");
+            this.CbProbe2ndChance.Checked = global::GrblPlotter.Properties.Settings.Default.probingFiducial2ndChance;
+            this.CbProbe2ndChance.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CbProbe2ndChance.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "probingFiducial2ndChance", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbProbe2ndChance.Name = "CbProbe2ndChance";
+            this.toolTip1.SetToolTip(this.CbProbe2ndChance, resources.GetString("CbProbe2ndChance.ToolTip"));
+            this.CbProbe2ndChance.UseVisualStyleBackColor = true;
+            // 
             // gBMovement
             // 
             this.gBMovement.Controls.Add(this.nUDProbeFeedZ);
@@ -596,6 +717,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -604,6 +726,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.BtnHelp_ImportParameter);
             this.tabPage1.Controls.Add(this.cBSetCenterZero);
             this.tabPage1.Controls.Add(this.btnGetAngleEF);
             this.tabPage1.Controls.Add(this.tBAngle);
@@ -611,7 +734,7 @@
             this.tabPage1.Controls.Add(this.lblEFStatus);
             this.tabPage1.Controls.Add(this.label19);
             this.tabPage1.Controls.Add(this.lblEFProgressInfo);
-            this.tabPage1.Controls.Add(this.btnStartEF);
+            this.tabPage1.Controls.Add(this.BtnStartEF);
             this.tabPage1.Controls.Add(this.lblEFProgress);
             this.tabPage1.Controls.Add(this.rB9);
             this.tabPage1.Controls.Add(this.progressBarEF);
@@ -649,12 +772,12 @@
             resources.ApplyResources(this.lblEFProgressInfo, "lblEFProgressInfo");
             this.lblEFProgressInfo.Name = "lblEFProgressInfo";
             // 
-            // btnStartEF
+            // BtnStartEF
             // 
-            resources.ApplyResources(this.btnStartEF, "btnStartEF");
-            this.btnStartEF.Name = "btnStartEF";
-            this.btnStartEF.UseVisualStyleBackColor = true;
-            this.btnStartEF.Click += new System.EventHandler(this.BtnStartEF_Click);
+            resources.ApplyResources(this.BtnStartEF, "BtnStartEF");
+            this.BtnStartEF.Name = "BtnStartEF";
+            this.BtnStartEF.UseVisualStyleBackColor = true;
+            this.BtnStartEF.Click += new System.EventHandler(this.BtnStartEF_Click);
             // 
             // lblEFProgress
             // 
@@ -747,6 +870,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.cBFindCenterInvert);
             this.tabPage2.Controls.Add(this.cBFindCenterUseY);
             this.tabPage2.Controls.Add(this.cBFindCenterUseX);
             this.tabPage2.Controls.Add(this.cBFindCenterStartFromCenter);
@@ -755,10 +880,10 @@
             this.tabPage2.Controls.Add(this.nUDWorkpieceDiameter);
             this.tabPage2.Controls.Add(this.lblCFStatus);
             this.tabPage2.Controls.Add(this.lblCFProgressInfo);
-            this.tabPage2.Controls.Add(this.btnStartCF);
+            this.tabPage2.Controls.Add(this.BtnStartCF);
             this.tabPage2.Controls.Add(this.lblCFProgress);
             this.tabPage2.Controls.Add(this.progressBarCF);
-            this.tabPage2.Controls.Add(this.btnCancelCF);
+            this.tabPage2.Controls.Add(this.BtnCancelCF);
             this.tabPage2.Controls.Add(this.rBCF2);
             this.tabPage2.Controls.Add(this.rBCF1);
             this.tabPage2.Controls.Add(this.label22);
@@ -766,13 +891,6 @@
             resources.ApplyResources(this.tabPage2, "tabPage2");
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // cBFindCenterStartFromCenter
-            // 
-            resources.ApplyResources(this.cBFindCenterStartFromCenter, "cBFindCenterStartFromCenter");
-            this.cBFindCenterStartFromCenter.Name = "cBFindCenterStartFromCenter";
-            this.toolTip1.SetToolTip(this.cBFindCenterStartFromCenter, resources.GetString("cBFindCenterStartFromCenter.ToolTip"));
-            this.cBFindCenterStartFromCenter.UseVisualStyleBackColor = true;
             // 
             // lblCFAngle
             // 
@@ -789,12 +907,12 @@
             resources.ApplyResources(this.lblCFProgressInfo, "lblCFProgressInfo");
             this.lblCFProgressInfo.Name = "lblCFProgressInfo";
             // 
-            // btnStartCF
+            // BtnStartCF
             // 
-            resources.ApplyResources(this.btnStartCF, "btnStartCF");
-            this.btnStartCF.Name = "btnStartCF";
-            this.btnStartCF.UseVisualStyleBackColor = true;
-            this.btnStartCF.Click += new System.EventHandler(this.BtnStartCF_Click);
+            resources.ApplyResources(this.BtnStartCF, "BtnStartCF");
+            this.BtnStartCF.Name = "BtnStartCF";
+            this.BtnStartCF.UseVisualStyleBackColor = true;
+            this.BtnStartCF.Click += new System.EventHandler(this.BtnStartCF_Click);
             // 
             // lblCFProgress
             // 
@@ -806,12 +924,12 @@
             resources.ApplyResources(this.progressBarCF, "progressBarCF");
             this.progressBarCF.Name = "progressBarCF";
             // 
-            // btnCancelCF
+            // BtnCancelCF
             // 
-            resources.ApplyResources(this.btnCancelCF, "btnCancelCF");
-            this.btnCancelCF.Name = "btnCancelCF";
-            this.btnCancelCF.UseVisualStyleBackColor = true;
-            this.btnCancelCF.Click += new System.EventHandler(this.BtnCancelCF_Click);
+            resources.ApplyResources(this.BtnCancelCF, "BtnCancelCF");
+            this.BtnCancelCF.Name = "BtnCancelCF";
+            this.BtnCancelCF.UseVisualStyleBackColor = true;
+            this.BtnCancelCF.Click += new System.EventHandler(this.BtnCancelCF_Click);
             // 
             // label22
             // 
@@ -825,13 +943,14 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button2);
             this.tabPage3.Controls.Add(this.btnSaveTL);
             this.tabPage3.Controls.Add(this.btnClearTL);
             this.tabPage3.Controls.Add(this.pBTL);
             this.tabPage3.Controls.Add(this.lblTLStatus);
             this.tabPage3.Controls.Add(this.label12);
             this.tabPage3.Controls.Add(this.lblTLProgressInfo);
-            this.tabPage3.Controls.Add(this.btnStartTL);
+            this.tabPage3.Controls.Add(this.BtnStartTL);
             this.tabPage3.Controls.Add(this.lblTLProgress);
             this.tabPage3.Controls.Add(this.progressBarTL);
             this.tabPage3.Controls.Add(this.btnCancelTL);
@@ -868,12 +987,12 @@
             resources.ApplyResources(this.lblTLProgressInfo, "lblTLProgressInfo");
             this.lblTLProgressInfo.Name = "lblTLProgressInfo";
             // 
-            // btnStartTL
+            // BtnStartTL
             // 
-            resources.ApplyResources(this.btnStartTL, "btnStartTL");
-            this.btnStartTL.Name = "btnStartTL";
-            this.btnStartTL.UseVisualStyleBackColor = true;
-            this.btnStartTL.Click += new System.EventHandler(this.BtnStartTL_Click);
+            resources.ApplyResources(this.BtnStartTL, "BtnStartTL");
+            this.BtnStartTL.Name = "BtnStartTL";
+            this.BtnStartTL.UseVisualStyleBackColor = true;
+            this.BtnStartTL.Click += new System.EventHandler(this.BtnStartTL_Click);
             // 
             // lblTLProgress
             // 
@@ -891,6 +1010,117 @@
             this.btnCancelTL.Name = "btnCancelTL";
             this.btnCancelTL.UseVisualStyleBackColor = true;
             this.btnCancelTL.Click += new System.EventHandler(this.BtnCancelTL_Click);
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.button3);
+            this.tabPage4.Controls.Add(this.TbSetPoints);
+            this.tabPage4.Controls.Add(this.CbProbe2ndChance);
+            this.tabPage4.Controls.Add(this.GbFiducialOffset);
+            this.tabPage4.Controls.Add(this.CbProbeSkipMove);
+            this.tabPage4.Controls.Add(this.CbProbeScale);
+            this.tabPage4.Controls.Add(this.BtnStartFiducial);
+            this.tabPage4.Controls.Add(this.BtnCancelFiducial);
+            this.tabPage4.Controls.Add(this.LblFiducial);
+            resources.ApplyResources(this.tabPage4, "tabPage4");
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // GbFiducialOffset
+            // 
+            this.GbFiducialOffset.Controls.Add(this.BtnMoveRight);
+            this.GbFiducialOffset.Controls.Add(this.BtnMoveLeft);
+            this.GbFiducialOffset.Controls.Add(this.NudProbeFiducialOffsetX);
+            this.GbFiducialOffset.Controls.Add(this.NudProbeFiducialOffsetY);
+            this.GbFiducialOffset.Controls.Add(this.BtnGetFiducialOffset);
+            this.GbFiducialOffset.Controls.Add(this.label16);
+            this.GbFiducialOffset.Controls.Add(this.label17);
+            resources.ApplyResources(this.GbFiducialOffset, "GbFiducialOffset");
+            this.GbFiducialOffset.Name = "GbFiducialOffset";
+            this.GbFiducialOffset.TabStop = false;
+            // 
+            // NudProbeFiducialOffsetX
+            // 
+            this.NudProbeFiducialOffsetX.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "probingFiducialOffsetX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.NudProbeFiducialOffsetX.DecimalPlaces = 2;
+            this.NudProbeFiducialOffsetX.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.NudProbeFiducialOffsetX, "NudProbeFiducialOffsetX");
+            this.NudProbeFiducialOffsetX.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.NudProbeFiducialOffsetX.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.NudProbeFiducialOffsetX.Name = "NudProbeFiducialOffsetX";
+            this.NudProbeFiducialOffsetX.Value = global::GrblPlotter.Properties.Settings.Default.probingFiducialOffsetX;
+            // 
+            // NudProbeFiducialOffsetY
+            // 
+            this.NudProbeFiducialOffsetY.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "probingFiducialOffsetY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.NudProbeFiducialOffsetY.DecimalPlaces = 2;
+            this.NudProbeFiducialOffsetY.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.NudProbeFiducialOffsetY, "NudProbeFiducialOffsetY");
+            this.NudProbeFiducialOffsetY.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.NudProbeFiducialOffsetY.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.NudProbeFiducialOffsetY.Name = "NudProbeFiducialOffsetY";
+            this.NudProbeFiducialOffsetY.Value = global::GrblPlotter.Properties.Settings.Default.probingFiducialOffsetY;
+            // 
+            // label16
+            // 
+            resources.ApplyResources(this.label16, "label16");
+            this.label16.Name = "label16";
+            // 
+            // label17
+            // 
+            resources.ApplyResources(this.label17, "label17");
+            this.label17.Name = "label17";
+            // 
+            // CbProbeScale
+            // 
+            resources.ApplyResources(this.CbProbeScale, "CbProbeScale");
+            this.CbProbeScale.Checked = global::GrblPlotter.Properties.Settings.Default.cameraScaleOnRotate;
+            this.CbProbeScale.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "cameraScaleOnRotate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbProbeScale.Name = "CbProbeScale";
+            this.CbProbeScale.UseVisualStyleBackColor = true;
+            // 
+            // BtnStartFiducial
+            // 
+            resources.ApplyResources(this.BtnStartFiducial, "BtnStartFiducial");
+            this.BtnStartFiducial.Name = "BtnStartFiducial";
+            this.BtnStartFiducial.UseVisualStyleBackColor = true;
+            this.BtnStartFiducial.Click += new System.EventHandler(this.BtnStartFiducial_Click);
+            // 
+            // BtnCancelFiducial
+            // 
+            resources.ApplyResources(this.BtnCancelFiducial, "BtnCancelFiducial");
+            this.BtnCancelFiducial.Name = "BtnCancelFiducial";
+            this.BtnCancelFiducial.UseVisualStyleBackColor = true;
+            this.BtnCancelFiducial.Click += new System.EventHandler(this.BtnCancelFiducial_Click);
+            // 
+            // LblFiducial
+            // 
+            resources.ApplyResources(this.LblFiducial, "LblFiducial");
+            this.LblFiducial.Name = "LblFiducial";
             // 
             // timer1
             // 
@@ -937,25 +1167,50 @@
             resources.ApplyResources(this.label11, "label11");
             this.label11.Name = "label11";
             // 
-            // cBFindCenterUseX
+            // timerFlowControl
             // 
-            resources.ApplyResources(this.cBFindCenterUseX, "cBFindCenterUseX");
-            this.cBFindCenterUseX.Checked = true;
-            this.cBFindCenterUseX.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBFindCenterUseX.Name = "cBFindCenterUseX";
-            this.toolTip1.SetToolTip(this.cBFindCenterUseX, resources.GetString("cBFindCenterUseX.ToolTip"));
-            this.cBFindCenterUseX.UseVisualStyleBackColor = true;
-            this.cBFindCenterUseX.CheckedChanged += new System.EventHandler(this.cBFindCenterUseX_CheckedChanged);
+            this.timerFlowControl.Interval = 500;
+            this.timerFlowControl.Tick += new System.EventHandler(this.TimerFlowControl_Tick);
             // 
-            // cBFindCenterUseY
+            // BtnHelp_ImportParameter
             // 
-            resources.ApplyResources(this.cBFindCenterUseY, "cBFindCenterUseY");
-            this.cBFindCenterUseY.Checked = true;
-            this.cBFindCenterUseY.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBFindCenterUseY.Name = "cBFindCenterUseY";
-            this.toolTip1.SetToolTip(this.cBFindCenterUseY, resources.GetString("cBFindCenterUseY.ToolTip"));
-            this.cBFindCenterUseY.UseVisualStyleBackColor = true;
-            this.cBFindCenterUseY.CheckedChanged += new System.EventHandler(this.cBFindCenterUseY_CheckedChanged);
+            this.BtnHelp_ImportParameter.BackColor = System.Drawing.Color.SkyBlue;
+            resources.ApplyResources(this.BtnHelp_ImportParameter, "BtnHelp_ImportParameter");
+            this.BtnHelp_ImportParameter.Name = "BtnHelp_ImportParameter";
+            this.BtnHelp_ImportParameter.Tag = "id=form-probe#edgefinder";
+            this.toolTip1.SetToolTip(this.BtnHelp_ImportParameter, resources.GetString("BtnHelp_ImportParameter.ToolTip"));
+            this.BtnHelp_ImportParameter.UseVisualStyleBackColor = false;
+            this.BtnHelp_ImportParameter.Click += new System.EventHandler(this.BtnHelp_ImportParameter_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.SkyBlue;
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.Tag = "id=form-probe#centerfinder";
+            this.toolTip1.SetToolTip(this.button1, resources.GetString("button1.ToolTip"));
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.BtnHelp_ImportParameter_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.SkyBlue;
+            resources.ApplyResources(this.button2, "button2");
+            this.button2.Name = "button2";
+            this.button2.Tag = "id=form-probe#toollength";
+            this.toolTip1.SetToolTip(this.button2, resources.GetString("button2.ToolTip"));
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.BtnHelp_ImportParameter_Click);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.SkyBlue;
+            resources.ApplyResources(this.button3, "button3");
+            this.button3.Name = "button3";
+            this.button3.Tag = "id=form-probe#fiducial";
+            this.toolTip1.SetToolTip(this.button3, resources.GetString("button3.ToolTip"));
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.BtnHelp_ImportParameter_Click);
             // 
             // ControlProbing
             // 
@@ -999,6 +1254,12 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBTL)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            this.GbFiducialOffset.ResumeLayout(false);
+            this.GbFiducialOffset.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudProbeFiducialOffsetX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudProbeFiducialOffsetY)).EndInit();
             this.gBCoordinates.ResumeLayout(false);
             this.gBCoordinates.PerformLayout();
             this.ResumeLayout(false);
@@ -1039,7 +1300,7 @@
         private System.Windows.Forms.NumericUpDown nUDProbeSaveX;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Button btnStartEF;
+        private System.Windows.Forms.Button BtnStartEF;
         private System.Windows.Forms.RadioButton rB9;
         private System.Windows.Forms.RadioButton rB8;
         private System.Windows.Forms.RadioButton rB7;
@@ -1063,10 +1324,10 @@
         private System.Windows.Forms.Label lblCFStatus;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label lblCFProgressInfo;
-        private System.Windows.Forms.Button btnStartCF;
+        private System.Windows.Forms.Button BtnStartCF;
         private System.Windows.Forms.Label lblCFProgress;
         private System.Windows.Forms.ProgressBar progressBarCF;
-        private System.Windows.Forms.Button btnCancelCF;
+        private System.Windows.Forms.Button BtnCancelCF;
         private System.Windows.Forms.TextBox tBAngle;
         private System.Windows.Forms.Label label20;
         internal System.Windows.Forms.Button btnGetAngleEF;
@@ -1075,7 +1336,7 @@
         private System.Windows.Forms.Label lblTLStatus;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblTLProgressInfo;
-        private System.Windows.Forms.Button btnStartTL;
+        private System.Windows.Forms.Button BtnStartTL;
         private System.Windows.Forms.Label lblTLProgress;
         private System.Windows.Forms.ProgressBar progressBarTL;
         private System.Windows.Forms.Button btnCancelTL;
@@ -1097,5 +1358,28 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.CheckBox cBFindCenterUseY;
         private System.Windows.Forms.CheckBox cBFindCenterUseX;
+        private System.Windows.Forms.CheckBox cBFindCenterInvert;
+        private System.Windows.Forms.Label LblProbeContact;
+        private System.Windows.Forms.Timer timerFlowControl;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TextBox TbSetPoints;
+        private System.Windows.Forms.Label LblFiducial;
+        private System.Windows.Forms.Button BtnStartFiducial;
+        private System.Windows.Forms.Button BtnCancelFiducial;
+        private System.Windows.Forms.CheckBox CbProbeScale;
+        private System.Windows.Forms.CheckBox CbProbeSkipMove;
+        private System.Windows.Forms.NumericUpDown NudProbeFiducialOffsetY;
+        private System.Windows.Forms.NumericUpDown NudProbeFiducialOffsetX;
+        private System.Windows.Forms.Button BtnGetFiducialOffset;
+        private System.Windows.Forms.GroupBox GbFiducialOffset;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Button BtnMoveRight;
+        private System.Windows.Forms.Button BtnMoveLeft;
+        private System.Windows.Forms.CheckBox CbProbe2ndChance;
+        private System.Windows.Forms.Button BtnHelp_ImportParameter;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }

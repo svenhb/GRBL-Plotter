@@ -146,12 +146,21 @@ namespace GrblPlotter
                 Write("SVG resize enable", setup.importSVGRezise.ToString(), section);
                 Write("SVG resize units", setup.importSVGMaxSize.ToString(), section);
             }
+            if (setup.importSVGAddOnEnable || all)
+            {
+                Write("SVG addon enable", setup.importSVGAddOnEnable.ToString(), section);
+                Write("SVG addon file", setup.importSVGAddOnFile.ToString(), section);
+                Write("SVG addon scale", setup.importSVGAddOnScale.ToString(), section);
+                Write("SVG addon position", setup.importSVGAddOnPosition.ToString(), section);
+            }
             if (setup.importSVGDontPlot || all) { Write("SVG skip hidden", setup.importSVGDontPlot.ToString(), section); }
             if (setup.importSVGApplyFill || all) { Write("SVG apply fill", setup.importSVGApplyFill.ToString(), section); }
+            if (setup.importSVGMetaData || all) { Write("SVG apply metadata", setup.importSVGMetaData.ToString(), section); }
 
             if (setup.importDXFToolIndex || all) { Write("DXF use color index", setup.importDXFToolIndex.ToString(), section); }
             if (setup.importDXFSwitchWhite || all) { Write("DXF handle white as black", setup.importDXFSwitchWhite.ToString(), section); }
             if (setup.importDXFDontPlot || all) { Write("DXF skip hidden", setup.importDXFDontPlot.ToString(), section); }
+            if (setup.importDXFUseZ || all) { Write("DXF import Z", setup.importDXFUseZ.ToString(), section); }
 
 
             /* Graphics import General */
@@ -689,8 +698,10 @@ namespace GrblPlotter
             /* Format related */
             setup.importSVGDPI96 = true;
             setup.importSVGRezise = false;
+            setup.importSVGAddOnEnable = false;			
             setup.importSVGDontPlot = false;
             setup.importSVGApplyFill = false;
+			setup.importSVGMetaData = false;
             setup.importDXFToolIndex = false;
             setup.importDXFDontPlot = false;
             setup.importDXFSwitchWhite = true;
@@ -788,12 +799,20 @@ namespace GrblPlotter
             if (SetVariable(ref tmpbool, section, "SVG DPI 96 enable")) { setup.importSVGDPI96 = tmpbool; }
             if (SetVariable(ref tmpbool, section, "SVG resize enable")) { setup.importSVGRezise = tmpbool; }
             if (SetVariable(ref tmpdeci, section, "SVG resize units")) { setup.importSVGMaxSize = tmpdeci; }
+			
+            if (SetVariable(ref tmpbool, section, "SVG addon enable")) { setup.importSVGAddOnEnable = tmpbool; }
+            if (SetVariable(ref tmpstr, section, "SVG addon file")) { setup.importSVGAddOnFile = tmpstr; }
+            if (SetVariable(ref tmpdeci, section, "SVG addon scale")) { setup.importSVGAddOnScale = tmpdeci; }
+            if (SetVariable(ref tmpint, section, "SVG addon position")) { setup.importSVGAddOnPosition = tmpint; }
+
             if (SetVariable(ref tmpbool, section, "SVG skip hidden")) { setup.importSVGDontPlot = tmpbool; }
             if (SetVariable(ref tmpbool, section, "SVG apply fill")) { setup.importSVGApplyFill = tmpbool; }
+            if (SetVariable(ref tmpbool, section, "SVG apply metadata")) { setup.importSVGMetaData = tmpbool; }
 
             if (SetVariable(ref tmpbool, section, "DXF use color index")) { setup.importDXFToolIndex = tmpbool; }
             if (SetVariable(ref tmpbool, section, "DXF handle white as black")) { setup.importDXFSwitchWhite = tmpbool; }
             if (SetVariable(ref tmpbool, section, "DXF skip hidden")) { setup.importDXFDontPlot = tmpbool; }
+            if (SetVariable(ref tmpbool, section, "DXF import z")) { setup.importDXFUseZ = tmpbool; }
 
             /* Graphics import General */
             if (SetVariable(ref tmpbool, section, "Graph Units mm")) { setup.importUnitmm = tmpbool; }

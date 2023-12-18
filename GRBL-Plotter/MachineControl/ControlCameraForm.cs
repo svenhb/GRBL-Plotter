@@ -295,8 +295,8 @@ namespace GrblPlotter
 
             Properties.Settings.Default.Save();
 
-            if (exampleFrameFix != null) exampleFrameFix.Dispose();
-            if (exampleFrameXy != null) exampleFrameXy.Dispose();
+            exampleFrameFix?.Dispose();
+            exampleFrameXy?.Dispose();
 
             if (videoSource != null && videoSource.IsRunning)
             {

@@ -49,6 +49,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnUndo = new System.Windows.Forms.Button();
             this.gBPathCreator = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.cBSnap = new System.Windows.Forms.CheckBox();
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -95,6 +96,7 @@
             // 
             // gBPathCreator
             // 
+            this.gBPathCreator.Controls.Add(this.button3);
             this.gBPathCreator.Controls.Add(this.cBSnap);
             this.gBPathCreator.Controls.Add(this.btnLoad);
             this.gBPathCreator.Controls.Add(this.btnSave);
@@ -106,6 +108,16 @@
             resources.ApplyResources(this.gBPathCreator, "gBPathCreator");
             this.gBPathCreator.Name = "gBPathCreator";
             this.gBPathCreator.TabStop = false;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.SkyBlue;
+            resources.ApplyResources(this.button3, "button3");
+            this.button3.Name = "button3";
+            this.button3.Tag = "id=form-jog-path";
+            this.toolTip1.SetToolTip(this.button3, resources.GetString("button3.ToolTip"));
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // cBSnap
             // 
@@ -302,5 +314,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tBCodeEnd;
         private System.Windows.Forms.TextBox tBCodeStart;
+        private System.Windows.Forms.Button button3;
     }
 }

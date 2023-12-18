@@ -41,6 +41,8 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
 namespace GrblPlotter
@@ -739,31 +741,34 @@ namespace GrblPlotter
                         if (showLog) Logger.Trace("Shape r:{0}  min:{1}  max:{2}   refPosPx {3:0.0} {4:0.0}   centerPosPx {5:0.0} {6:0.0}", myRadius, shapeMin, shapeMax, refPointInPx.X, refPointInPx.Y, center.X, center.Y);
                     }
                 }
-
                 //   List<IntPoint> corners;
-                if (Properties.Settings.Default.camShapeRect && shapeChecker.IsQuadrilateral(edgePoints, out List<IntPoint> corners))  //.IsConvexPolygon
-                {
-                    if (corners.Count > 0)
+                try
+                {   // ThreadException: Except: Index was out of range. Must be non-negative and less than the size of the collection.
+                    // Parameter name: index Source: mscorlib Target: Void ThrowArgumentOutOfRangeException
+                    if (Properties.Settings.Default.camShapeRect && shapeChecker.IsQuadrilateral(edgePoints, out List<IntPoint> corners))  //.IsConvexPolygon
                     {
-                        IntPoint centxy;        // minxy, maxxy,
-                        if (!fiducialDetection)
-                        { g.DrawPolygon(yellowPen, ToPointsArray(corners)); }
-
-                        PointsCloud.GetBoundingRectangle(corners, out IntPoint minxy, out IntPoint maxxy);
-                        centxy = (minxy + maxxy) / 2;
-                        if ((centxy.X < 1) || (centxy.Y < 1))
-                            continue;
-                        shapeFound = true;
-                        distance = picCenter.DistanceTo(centxy);// PointsCloud.GetCenterOfGravity(corners));
-                        if (lowestDistance > Math.Abs(distance))
+                        if (corners.Count > 0)
                         {
-                            lowestDistance = Math.Abs(distance);
-                            shapeCenterInPx = centxy;// PointsCloud.GetCenterOfGravity(corners);
-                            shapeRadius = maxxy.DistanceTo(minxy) / 2;// 50;
+                            IntPoint centxy;        // minxy, maxxy,
+                            if (!fiducialDetection)
+                            { g.DrawPolygon(yellowPen, ToPointsArray(corners)); }
+
+                            PointsCloud.GetBoundingRectangle(corners, out IntPoint minxy, out IntPoint maxxy);
+                            centxy = (minxy + maxxy) / 2;
+                            if ((centxy.X < 1) || (centxy.Y < 1))
+                                continue;
+                            shapeFound = true;
+                            distance = picCenter.DistanceTo(centxy);// PointsCloud.GetCenterOfGravity(corners));
+                            if (lowestDistance > Math.Abs(distance))
+                            {
+                                lowestDistance = Math.Abs(distance);
+                                shapeCenterInPx = centxy;// PointsCloud.GetCenterOfGravity(corners);
+                                shapeRadius = maxxy.DistanceTo(minxy) / 2;// 50;
+                            }
                         }
                     }
                 }
-
+                catch (Exception err) { Logger.Error(err, " ProcessShapeDetection get corners "); }
             }
             if (shapeFound)
             {

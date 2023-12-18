@@ -122,8 +122,7 @@ namespace GrblPlotter
                 {
                     path = pathPenDown;
                     path.StartFigure();
-                    if (pathActualDown != null)
-                        pathActualDown.StartFigure();
+                    pathActualDown?.StartFigure();
                 }
                 zUp = oldL.codeLine.Contains("(PU") || ((newL.actualPos.Z > 0) && (oldL.actualPos.Z < 0));
                 if (((newL.motionMode == 0) && (oldL.motionMode > 0)) || zUp)
@@ -724,7 +723,7 @@ namespace GrblPlotter
         }
 		
 		
-        private static object lockObject = new object();
+        private static readonly object lockObject = new object();
 
         // Add ruler with division
         internal static void CreateRuler(GraphicsPath path, DrawingProperties dP, bool finest=false)

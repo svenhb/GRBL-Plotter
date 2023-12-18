@@ -112,7 +112,7 @@ namespace GrblPlotter
         /// </summary>
         public static void SetPosMarkerLine(int line, bool markFigure)
         {
-        //    if (logDetailed) 
+            if (logDetailed) 
                 Logger.Trace("  SetPosMarkerLine line:{0}  markFigure:{1}", line, markFigure);
             if (line < 0) return;
 

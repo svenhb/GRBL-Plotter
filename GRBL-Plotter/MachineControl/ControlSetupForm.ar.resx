@@ -3541,7 +3541,7 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
     <value>يترجم الحد الأدنى / الأقصى لعرض القلم أو نصف قطر الدائرة في S في النطاق:</value>
   </data>
   <data name="nUDSBottom.ToolTip" xml:space="preserve">
-    <value>قيمة أقل</value>
+    <value>سيتم ترجمة عرض القلم الأوسع إلى هذا العمق</value>
   </data>
   <data name="label94.Text" xml:space="preserve">
     <value>التأخير قبل إغلاق المعلومات المعروضة تلقائيًا</value>
@@ -3720,5 +3720,67 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   </data>
   <data name="groupBox40.Text" xml:space="preserve">
     <value>تحميل ملفات متعددة</value>
+  </data>
+  <data name="TbImportSVGAddOnFile.ToolTip" xml:space="preserve">
+    <value>مسار الملف لملف svg المراد تحميله كـ add.on</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items" xml:space="preserve">
+    <value>لا أحد</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items1" xml:space="preserve">
+    <value>المركز (الإطار)</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items2" xml:space="preserve">
+    <value>أسفل اليسار</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items3" xml:space="preserve">
+    <value>أسفل اليمين</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items4" xml:space="preserve">
+    <value>أعلى اليسار</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items5" xml:space="preserve">
+    <value>اعلى اليمين</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Text" xml:space="preserve">
+    <value>حدد الموقف</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.ToolTip" xml:space="preserve">
+    <value>حدد الموضع المطلوب للوظيفة الإضافية، بالنسبة للرسم المستورد</value>
+  </data>
+  <data name="label105.Text" xml:space="preserve">
+    <value>حجم</value>
+  </data>
+  <data name="label105.ToolTip" xml:space="preserve">
+    <value>يقيس حجم الرسم المستورد بناءً على الحجم الأصلي أو تغيير الحجم المطلوب</value>
+  </data>
+  <data name="NudImportSVGAddOnScale.ToolTip" xml:space="preserve">
+    <value>للإطار: على سبيل المثال. "0.9" يقيس حجم الكائن الأصلي ليناسب الإطار</value>
+  </data>
+  <data name="cBImportSVGAddOnEnable.Text" xml:space="preserve">
+    <value>يُمكَِن</value>
+  </data>
+  <data name="BtnImportSVGAddOnSelectFile.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="BtnImportSVGAddOnSelectFile.ToolTip" xml:space="preserve">
+    <value>حدد ملف SVG للإطار أو الشعار أو العلامة أو العلامة المائية</value>
+  </data>
+  <data name="GbImportSVGAddOn.Text" xml:space="preserve">
+    <value>أضف إطارًا وشعارًا وعلامة مائية وعلامة مائية من الملف</value>
+  </data>
+  <data name="GbImportSVGAddOn.ToolTip" xml:space="preserve">
+    <value>يضيف رسم SVG إضافيًا إلى الرسم المستورد، على سبيل المثال:
+أضف إطارًا يتم فيه وضع النص الأصلي: استخدم مقياس 0.9 أو أقل و"الوسط"
+ارسم توقيعًا في الهامش الأيمن السفلي: مقياس 0.1 أو أقل واستخدم "أسفل اليمين"</value>
+  </data>
+  <data name="BtnSetSValues.Text" xml:space="preserve">
+    <value>يحصل على قيم PWM</value>
+  </data>
+  <data name="BtnSetSValues.ToolTip" xml:space="preserve">
+    <value>الحصول على قيم PWM صفر/أسفل للقلم من علامة تبويب أخرى [استيراد الرسومات - إنشاء G-Code - ترجمة القلم لأعلى/لأسفل - PWM]</value>
+  </data>
+  <data name="nUDSTop.ToolTip" xml:space="preserve">
+    <value>سيتم ترجمة أصغر عرض للقلم إلى هذا العمق</value>
   </data>
 </root>

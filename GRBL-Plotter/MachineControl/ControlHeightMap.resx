@@ -162,6 +162,9 @@
   <data name="RbScanYX.Text" xml:space="preserve">
     <value>YX</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>132, 17</value>
+  </metadata>
   <data name="RbScanYX.ToolTip" xml:space="preserve">
     <value>Column by column zig-zag</value>
   </data>
@@ -548,11 +551,9 @@
   </data>
   <data name="btnPosUR.Text" xml:space="preserve">
     <value>Get Pos. 🡵</value>
-    <comment>Button</comment>
   </data>
   <data name="btnPosUR.ToolTip" xml:space="preserve">
     <value>Get actual machine position and set upper right coordinates</value>
-    <comment>ToolTip</comment>
   </data>
   <data name="&gt;&gt;btnPosUR.Name" xml:space="preserve">
     <value>btnPosUR</value>
@@ -580,11 +581,9 @@
   </data>
   <data name="btnPosLL.Text" xml:space="preserve">
     <value>Get Pos. 🡷</value>
-    <comment>Button</comment>
   </data>
   <data name="btnPosLL.ToolTip" xml:space="preserve">
     <value>Get actual machine position and set lower left coordinates</value>
-    <comment>ToolTip</comment>
   </data>
   <data name="&gt;&gt;btnPosLL.Name" xml:space="preserve">
     <value>btnPosLL</value>
@@ -855,7 +854,6 @@
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Define Area to scan height information</value>
-    <comment>GroupBox</comment>
   </data>
   <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
     <value>groupBox1</value>
@@ -981,7 +979,7 @@
     <value>66, 38</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 13</value>
+    <value>61, 13</value>
   </data>
   <data name="label7.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -1066,11 +1064,9 @@
   </data>
   <data name="btnOffset.Text" xml:space="preserve">
     <value>set max. value = 0.0</value>
-    <comment>Button</comment>
   </data>
   <data name="btnOffset.ToolTip" xml:space="preserve">
     <value>Remove offset from all Z values</value>
-    <comment>ToolTip</comment>
   </data>
   <data name="&gt;&gt;btnOffset.Name" xml:space="preserve">
     <value>btnOffset</value>
@@ -1098,11 +1094,9 @@
   </data>
   <data name="btnStartHeightScan.Text" xml:space="preserve">
     <value>Generate Height Map</value>
-    <comment>Button</comment>
   </data>
   <data name="btnStartHeightScan.ToolTip" xml:space="preserve">
     <value>Send height map scanning commands</value>
-    <comment>ToolTip</comment>
   </data>
   <data name="&gt;&gt;btnStartHeightScan.Name" xml:space="preserve">
     <value>btnStartHeightScan</value>
@@ -1364,11 +1358,9 @@
   </data>
   <data name="btnApply.Text" xml:space="preserve">
     <value>Apply Height Map</value>
-    <comment>Button</comment>
   </data>
   <data name="btnApply.ToolTip" xml:space="preserve">
     <value>Apply height map to G-Code in main window</value>
-    <comment>ToolTip</comment>
   </data>
   <data name="&gt;&gt;btnApply.Name" xml:space="preserve">
     <value>btnApply</value>
@@ -1442,19 +1434,20 @@
   <data name="&gt;&gt;lblYDim.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="loadHeightMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 20</value>
   </data>
   <data name="loadHeightMapToolStripMenuItem.Text" xml:space="preserve">
     <value>Load Height Map</value>
-    <comment>Menu</comment>
   </data>
   <data name="saveHeightMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 20</value>
   </data>
   <data name="saveHeightMapToolStripMenuItem.Text" xml:space="preserve">
     <value>Save Height Map</value>
-    <comment>Menu</comment>
   </data>
   <data name="sTLToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>234, 22</value>
@@ -1473,14 +1466,12 @@
   </data>
   <data name="savePictureAsBMPToolStripMenuItem.Text" xml:space="preserve">
     <value>Save Picture as BMP</value>
-    <comment>Menu</comment>
   </data>
   <data name="saveMapAsSTLToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
   <data name="saveMapAsSTLToolStripMenuItem.Text" xml:space="preserve">
     <value>Save Map as STL</value>
-    <comment>Menu</comment>
   </data>
   <data name="saveMapAsOBJToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
@@ -1493,14 +1484,12 @@
   </data>
   <data name="saveMapAsX3DToolStripMenuItem.Text" xml:space="preserve">
     <value>Save Map as X3D</value>
-    <comment>Menu</comment>
   </data>
   <data name="savePictureAsBWBMPToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 20</value>
   </data>
   <data name="savePictureAsBWBMPToolStripMenuItem.Text" xml:space="preserve">
     <value>Export</value>
-    <comment>Menu</comment>
   </data>
   <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -1621,11 +1610,9 @@
   </data>
   <data name="cBGray.Text" xml:space="preserve">
     <value>Grayscale</value>
-    <comment>CheckBox</comment>
   </data>
   <data name="cBGray.ToolTip" xml:space="preserve">
     <value>Show result picture in grayscale for further use as hight map image</value>
-    <comment>ToolTip</comment>
   </data>
   <data name="&gt;&gt;cBGray.Name" xml:space="preserve">
     <value>cBGray</value>
@@ -1650,7 +1637,6 @@
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>Result</value>
-    <comment>GroupBox</comment>
   </data>
   <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
     <value>groupBox3</value>
@@ -1678,11 +1664,9 @@
   </data>
   <data name="btnOffsetZ.Text" xml:space="preserve">
     <value>Z Offset</value>
-    <comment>Button</comment>
   </data>
   <data name="btnOffsetZ.ToolTip" xml:space="preserve">
     <value>Add given offset to all Z values</value>
-    <comment>ToolTip</comment>
   </data>
   <data name="&gt;&gt;btnOffsetZ.Name" xml:space="preserve">
     <value>btnOffsetZ</value>
@@ -1713,7 +1697,6 @@
   </data>
   <data name="btnZoomZ.ToolTip" xml:space="preserve">
     <value>Multiply all Z values with given value</value>
-    <comment>ToolTip</comment>
   </data>
   <data name="&gt;&gt;btnZoomZ.Name" xml:space="preserve">
     <value>btnZoomZ</value>
@@ -1741,11 +1724,9 @@
   </data>
   <data name="btnInvertZ.Text" xml:space="preserve">
     <value>Invert Z</value>
-    <comment>Button</comment>
   </data>
   <data name="btnInvertZ.ToolTip" xml:space="preserve">
     <value>Switch sign of Z values</value>
-    <comment>ToolTip</comment>
   </data>
   <data name="&gt;&gt;btnInvertZ.Name" xml:space="preserve">
     <value>btnInvertZ</value>
@@ -1773,11 +1754,9 @@
   </data>
   <data name="btnCutOffZ.Text" xml:space="preserve">
     <value>Z Cut off !!!</value>
-    <comment>Button</comment>
   </data>
   <data name="btnCutOffZ.ToolTip" xml:space="preserve">
     <value>Cut off Z values below given value. Better save data before using cut off!</value>
-    <comment>ToolTip</comment>
   </data>
   <data name="&gt;&gt;btnCutOffZ.Name" xml:space="preserve">
     <value>btnCutOffZ</value>
@@ -1805,11 +1784,9 @@
   </data>
   <data name="btnGCode.Text" xml:space="preserve">
     <value>Generate G-Code</value>
-    <comment>Button</comment>
   </data>
   <data name="btnGCode.ToolTip" xml:space="preserve">
     <value>Generate G-Code to retrace height map</value>
-    <comment>ToolTip</comment>
   </data>
   <data name="&gt;&gt;btnGCode.Name" xml:space="preserve">
     <value>btnGCode</value>
@@ -2062,7 +2039,6 @@
   </data>
   <data name="gB_Manipulation.Text" xml:space="preserve">
     <value>Manipulation</value>
-    <comment>GroupBox</comment>
   </data>
   <data name="&gt;&gt;gB_Manipulation.Name" xml:space="preserve">
     <value>gB_Manipulation</value>
@@ -2455,6 +2431,9 @@
   <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -2536,31 +2515,4 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="lblInfo.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnLoad.Text" xml:space="preserve">
-    <value />
-    <comment>Button</comment>
-  </data>
-  <data name="btnSave.Text" xml:space="preserve">
-    <value />
-    <comment>Button</comment>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value />
-    <comment>GroupBox</comment>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value />
-  </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>132, 17</value>
-  </metadata>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>

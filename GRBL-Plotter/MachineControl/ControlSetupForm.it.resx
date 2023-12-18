@@ -3609,7 +3609,7 @@ La profondità massima sarà limitata dall'incisione Z-Height.</value>
     <value>Traduce lo spessore minimo/massimo della penna o il raggio del cerchio in S nell'intervallo di:</value>
   </data>
   <data name="nUDSBottom.ToolTip" xml:space="preserve">
-    <value>valore inferiore</value>
+    <value>La larghezza più ampia della penna verrà tradotta a questa profondità</value>
   </data>
   <data name="label94.Text" xml:space="preserve">
     <value>Ritardo prima della chiusura automatica delle informazioni visualizzate</value>
@@ -3788,5 +3788,67 @@ Per esempio. per il taglio laser</value>
   </data>
   <data name="groupBox40.Text" xml:space="preserve">
     <value>Caricamento di più file</value>
+  </data>
+  <data name="TbImportSVGAddOnFile.ToolTip" xml:space="preserve">
+    <value>Percorso del file SVG da caricare come componente aggiuntivo</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items" xml:space="preserve">
+    <value>Nessuno</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items1" xml:space="preserve">
+    <value>Centro (cornice)</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items2" xml:space="preserve">
+    <value>In basso a sinistra</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items3" xml:space="preserve">
+    <value>In basso a destra</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items4" xml:space="preserve">
+    <value>A sinistra in alto</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items5" xml:space="preserve">
+    <value>In alto a destra</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Text" xml:space="preserve">
+    <value>Seleziona la posizione</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.ToolTip" xml:space="preserve">
+    <value>Selezionare la posizione desiderata del componente aggiuntivo, rispetto alla grafica importata</value>
+  </data>
+  <data name="label105.Text" xml:space="preserve">
+    <value>Scala</value>
+  </data>
+  <data name="label105.ToolTip" xml:space="preserve">
+    <value>Ridimensiona la dimensione dell'immagine importata in base alla dimensione originale o al ridimensionamento desiderato</value>
+  </data>
+  <data name="NudImportSVGAddOnScale.ToolTip" xml:space="preserve">
+    <value>Per una cornice: ad es. "0.9" riduce l'oggetto originale per adattarlo alla cornice</value>
+  </data>
+  <data name="cBImportSVGAddOnEnable.Text" xml:space="preserve">
+    <value>Abilitare</value>
+  </data>
+  <data name="BtnImportSVGAddOnSelectFile.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="BtnImportSVGAddOnSelectFile.ToolTip" xml:space="preserve">
+    <value>Seleziona il file SVG per cornice, logo, insegna o filigrana</value>
+  </data>
+  <data name="GbImportSVGAddOn.Text" xml:space="preserve">
+    <value>Aggiungi una cornice, un logo, un segno, una filigrana dal file</value>
+  </data>
+  <data name="GbImportSVGAddOn.ToolTip" xml:space="preserve">
+    <value>Aggiunge un'ulteriore grafica SVG a quella importata, ad esempio:
+Aggiungi una cornice in cui è posizionato il disegno originale: usa la scala 0,9 o inferiore e "centro"
+Disegna una firma nel margine inferiore destro: scala 0,1 o inferiore e utilizza "in basso a destra"</value>
+  </data>
+  <data name="BtnSetSValues.Text" xml:space="preserve">
+    <value>Ottiene i valori PWM</value>
+  </data>
+  <data name="BtnSetSValues.ToolTip" xml:space="preserve">
+    <value>Ottiene i valori PWM Pen Zero/Giù da un'altra scheda [Importazione grafica - Generazione codice G - Traduzione penna su/giù - PWM]</value>
+  </data>
+  <data name="nUDSTop.ToolTip" xml:space="preserve">
+    <value>La larghezza minima della penna verrà tradotta a questa profondità</value>
   </data>
 </root>

@@ -3545,7 +3545,7 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <value>将 S 中的最小/最大笔宽度或圆半径在以下范围内平移：</value>
   </data>
   <data name="nUDSBottom.ToolTip" xml:space="preserve">
-    <value>较低的价值</value>
+    <value>最宽的笔宽度将转换为该深度</value>
   </data>
   <data name="label94.Text" xml:space="preserve">
     <value>自动关闭显示信息之前的延迟</value>
@@ -3724,5 +3724,67 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   </data>
   <data name="groupBox40.Text" xml:space="preserve">
     <value>多个文件加载</value>
+  </data>
+  <data name="TbImportSVGAddOnFile.ToolTip" xml:space="preserve">
+    <value>要加载为 add.on 的 svg 文件的文件路径</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items" xml:space="preserve">
+    <value>没有任何</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items1" xml:space="preserve">
+    <value>中心（框架）</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items2" xml:space="preserve">
+    <value>左下方</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items3" xml:space="preserve">
+    <value>右下角</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items4" xml:space="preserve">
+    <value>左上方</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Items5" xml:space="preserve">
+    <value>右上</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.Text" xml:space="preserve">
+    <value>选择位置</value>
+  </data>
+  <data name="CbImportSVGAddOnPosition.ToolTip" xml:space="preserve">
+    <value>选择附加组件相对于导入图形的所需位置</value>
+  </data>
+  <data name="label105.Text" xml:space="preserve">
+    <value>规模</value>
+  </data>
+  <data name="label105.ToolTip" xml:space="preserve">
+    <value>根据原始尺寸或所需的调整大小缩放导入图形的尺寸</value>
+  </data>
+  <data name="NudImportSVGAddOnScale.ToolTip" xml:space="preserve">
+    <value>对于框架：例如“0.9”缩小原始对象以适合框架</value>
+  </data>
+  <data name="cBImportSVGAddOnEnable.Text" xml:space="preserve">
+    <value>使能够</value>
+  </data>
+  <data name="BtnImportSVGAddOnSelectFile.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="BtnImportSVGAddOnSelectFile.ToolTip" xml:space="preserve">
+    <value>选择 SVG 文件作为框架、徽标、标志或水印</value>
+  </data>
+  <data name="GbImportSVGAddOn.Text" xml:space="preserve">
+    <value>从文件添加框架、徽标、标志、水印</value>
+  </data>
+  <data name="GbImportSVGAddOn.ToolTip" xml:space="preserve">
+    <value>在导入的图形中添加一个附加的 SVG 图形，例如：
+添加一个放置原始 praphic 的框架：使用比例 0.9 或更低以及“center”
+在右下边缘绘制签名：缩放 0.1 或更低并使用“右下角”</value>
+  </data>
+  <data name="BtnSetSValues.Text" xml:space="preserve">
+    <value>获取 PWM 值</value>
+  </data>
+  <data name="BtnSetSValues.ToolTip" xml:space="preserve">
+    <value>从其他选项卡获取笔归零/向下 PWM 值 [图形导入 - G 代码生成 - 笔向上/向下翻译 - PWM]</value>
+  </data>
+  <data name="nUDSTop.ToolTip" xml:space="preserve">
+    <value>最小的笔宽度将转换为该深度</value>
   </data>
 </root>

@@ -345,4 +345,93 @@ Por lo general, el borde de la herramienta (sonda / cortador) se utiliza para de
   <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
     <value>Coloque la sonda casi centrada sobre la pieza de trabajo para utilizar esta opción.</value>
   </data>
+  <data name="cBFindCenterInvert.Text" xml:space="preserve">
+    <value>Lógica de sonda inversa</value>
+  </data>
+  <data name="cBFindCenterInvert.ToolTip" xml:space="preserve">
+    <value>Lógica inversa: en lugar de detenerse al hacer contacto, se detiene al perder el contacto.</value>
+  </data>
+  <data name="TbSetPoints.Text" xml:space="preserve">
+    <value>Coordenadas fiduciales:</value>
+  </data>
+  <data name="TbSetPoints.ToolTip" xml:space="preserve">
+    <value>Coordenadas fiduciales: Sólo se utilizarán la 1ª y 2ª.
+Obtenga coordenadas fiduciales a partir de gráficos importados.</value>
+  </data>
+  <data name="BtnStartEF.Text" xml:space="preserve">
+    <value>comienzo</value>
+  </data>
+  <data name="BtnStartCF.Text" xml:space="preserve">
+    <value>comienzo</value>
+  </data>
+  <data name="BtnCancelCF.Text" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="BtnStartTL.Text" xml:space="preserve">
+    <value>comienzo</value>
+  </data>
+  <data name="CbProbeSkipMove.Text" xml:space="preserve">
+    <value>Saltar el primer movimiento al contacto</value>
+  </data>
+  <data name="CbProbeSkipMove.ToolTip" xml:space="preserve">
+    <value>Salta al primer fiduciario si la sonda ya está activada.
+Supuesto: la investigación ya se movió por encima del primer fiduciario.</value>
+  </data>
+  <data name="BtnGetFiducialOffset.Text" xml:space="preserve">
+    <value>Obtener pos.</value>
+  </data>
+  <data name="BtnGetFiducialOffset.ToolTip" xml:space="preserve">
+    <value>Asumir la posición real</value>
+  </data>
+  <data name="BtnMoveLeft.Text" xml:space="preserve">
+    <value>&lt;</value>
+  </data>
+  <data name="BtnMoveLeft.ToolTip" xml:space="preserve">
+    <value>Restar desplazamiento a la posición real</value>
+  </data>
+  <data name="BtnMoveRight.Text" xml:space="preserve">
+    <value>&gt;</value>
+  </data>
+  <data name="BtnMoveRight.ToolTip" xml:space="preserve">
+    <value>Agregar desplazamiento a la posición real</value>
+  </data>
+  <data name="CbProbe2ndChance.Text" xml:space="preserve">
+    <value>Pregunte si no se encuentra el segundo fiduciario</value>
+  </data>
+  <data name="CbProbe2ndChance.ToolTip" xml:space="preserve">
+    <value>Si la sonda no se activa después de pasar al segundo fiduciario, déle la oportunidad al usuario de moverla manualmente.</value>
+  </data>
+  <data name="button3.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="GbFiducialOffset.Text" xml:space="preserve">
+    <value>Compensación entre palpador y herramienta</value>
+  </data>
+  <data name="CbProbeScale.Text" xml:space="preserve">
+    <value>También escalar en rotación.</value>
+  </data>
+  <data name="BtnStartFiducial.Text" xml:space="preserve">
+    <value>Comenzar</value>
+  </data>
+  <data name="BtnCancelFiducial.Text" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="LblFiducial.Text" xml:space="preserve">
+    <value>Corrección fiduciaria:
+Utilice un interruptor de proximidad inductivo para encontrar y centrar marcas de registro metálicas (monedas).
+
+Consulte [Configuración - Comportamiento del programa - Cámara - Fiduciales] para obtener más configuraciones.</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Corrección fiduciaria</value>
+  </data>
+  <data name="BtnHelp_ImportParameter.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="button1.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
 </root>

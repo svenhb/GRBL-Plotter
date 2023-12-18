@@ -347,4 +347,93 @@ Z, başlangıç ​​konumuna geri döner</value>
   <data name="cBFindCenterStartFromCenter.ToolTip" xml:space="preserve">
     <value>Bu seçeneği kullanmak için probu neredeyse iş parçasının üzerine ortalayacak şekilde yerleştirin.</value>
   </data>
+  <data name="cBFindCenterInvert.Text" xml:space="preserve">
+    <value>Ters prob mantığı</value>
+  </data>
+  <data name="cBFindCenterInvert.ToolTip" xml:space="preserve">
+    <value>Ters mantık: Temas halinde durmak yerine, temas kesildiğinde durur</value>
+  </data>
+  <data name="TbSetPoints.Text" xml:space="preserve">
+    <value>Güven koordinatları:</value>
+  </data>
+  <data name="TbSetPoints.ToolTip" xml:space="preserve">
+    <value>Referans koordinatları: Yalnızca 1. ve 2. kullanılacaktır.
+İçe aktarılan grafikten referans koordinatlarını alın.</value>
+  </data>
+  <data name="BtnStartEF.Text" xml:space="preserve">
+    <value>Başlangıç</value>
+  </data>
+  <data name="BtnStartCF.Text" xml:space="preserve">
+    <value>Başlangıç</value>
+  </data>
+  <data name="BtnCancelCF.Text" xml:space="preserve">
+    <value>İptal etmek</value>
+  </data>
+  <data name="BtnStartTL.Text" xml:space="preserve">
+    <value>Başlangıç</value>
+  </data>
+  <data name="CbProbeSkipMove.Text" xml:space="preserve">
+    <value>Temas halinde 1. hamleyi atla</value>
+  </data>
+  <data name="CbProbeSkipMove.ToolTip" xml:space="preserve">
+    <value>Eğer prob zaten tetiklenmişse, 1. referans noktasına atlanır.
+Varsayım: sonda zaten 1. referansın üzerine taşınmıştı.</value>
+  </data>
+  <data name="BtnGetFiducialOffset.Text" xml:space="preserve">
+    <value>Poz alın.</value>
+  </data>
+  <data name="BtnGetFiducialOffset.ToolTip" xml:space="preserve">
+    <value>Fiili pozisyonu devral</value>
+  </data>
+  <data name="BtnMoveLeft.Text" xml:space="preserve">
+    <value>&lt;</value>
+  </data>
+  <data name="BtnMoveLeft.ToolTip" xml:space="preserve">
+    <value>Ofseti gerçek konuma çıkar</value>
+  </data>
+  <data name="BtnMoveRight.Text" xml:space="preserve">
+    <value>&gt;</value>
+  </data>
+  <data name="BtnMoveRight.ToolTip" xml:space="preserve">
+    <value>Gerçek konuma uzaklık ekle</value>
+  </data>
+  <data name="CbProbe2ndChance.Text" xml:space="preserve">
+    <value>2. referansın bulunup bulunmadığını sor</value>
+  </data>
+  <data name="CbProbe2ndChance.ToolTip" xml:space="preserve">
+    <value>2.referansa geçildikten sonra prob tetiklenmezse kullanıcı tarafından manuel hareket etme şansı verilir.</value>
+  </data>
+  <data name="button3.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="GbFiducialOffset.Text" xml:space="preserve">
+    <value>Prob ve takım arasındaki ofset</value>
+  </data>
+  <data name="CbProbeScale.Text" xml:space="preserve">
+    <value>Ayrıca döndürmeyle ölçeklendirme</value>
+  </data>
+  <data name="BtnStartFiducial.Text" xml:space="preserve">
+    <value>Başlangıç</value>
+  </data>
+  <data name="BtnCancelFiducial.Text" xml:space="preserve">
+    <value>İptal etmek</value>
+  </data>
+  <data name="LblFiducial.Text" xml:space="preserve">
+    <value>Güven düzeltmesi:
+Metal kayıt işaretlerini (madeni paralar) bulmak ve ortalamak için endüktif yakınlık anahtarı kullanın.
+
+Daha ayrıntılı ayarlar için [Kurulum - Program davranışı - Kamera - Referanslar] konusuna bakın.</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Güven düzeltmesi</value>
+  </data>
+  <data name="BtnHelp_ImportParameter.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="button1.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
 </root>
