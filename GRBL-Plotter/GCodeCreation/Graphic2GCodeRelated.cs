@@ -53,6 +53,7 @@
  * 2023-09-05 l:858 f:GetStrGCode allow also 3 digitis
  * 2023-09-23 l:1020 f:JobEnd  don't send M05 if (PreventSpindle)
  * 2023-09-24 l:1500 f:Tool also take care of !PreventSpindle
+ * 2023-11-27 l:792 f:Setup add script from Properties.Settings.Default.importCircleToDotScript
 */
 
 using System;
@@ -506,8 +507,8 @@ namespace GrblPlotter
         private static string gcodeSubroutine = "";     //  subroutine
 
         private static int gcodeDownUp = 0;             // counter for GCode Pen Down / Up
-        private static float gcodeTime = 0;             // counter for GCode work time
-        private static float gcodeFigureTime = 0;       // counter for GCode work time
+        private static double gcodeTime = 0;             // counter for GCode work time
+        private static double gcodeFigureTime = 0;       // counter for GCode work time
         private static int gcodePauseCounter = 0;       // counter for GCode pause M0 commands
         private static int gcodeToolCounter = 0;        // counter for GCode Tools
         private static string gcodeToolText = "";       // counter for GCode Tools
@@ -566,7 +567,7 @@ namespace GrblPlotter
 
         private static bool gcodeTangentialEnable = false;
         private static string gcodeTangentialName = "C";
-        private static float gcodeTangentialAngle = 0;
+        private static double gcodeTangentialAngle = 0;
         private static float gcodeTangentialAngleDevi = 0;
         //    private static float gcodeTangentialAngleLast = 0;
         private static string gcodeTangentialCommand = "";
@@ -756,6 +757,11 @@ namespace GrblPlotter
             stopwatch = new Stopwatch();
             stopwatch.Start();
 
+            gcodeSValueCommand = "";
+            gcodeTangentialCommand = "";
+            gcodeAuxiliaryValue1Command = "";
+            gcodeAuxiliaryValue2Command = "";
+
             if ((gcodeInsertSubroutineEnable && gcodeLineSegmentationEnable) || gcodeToolChange || Properties.Settings.Default.ctrlToolChange || (Properties.Settings.Default.importSVGCircleToDot && (Properties.Settings.Default.importCircleToDotScriptCount > 0)))
             {
                 bool insertSubroutine = false;
@@ -782,6 +788,12 @@ namespace GrblPlotter
                     gcodeSubroutine += "\r\n(subroutine)\r\nO92 (Pen down)\r\n";
                     gcodeSubroutine += tmp.ToString();
                     gcodeSubroutine += "M99\r\n";
+
+                    if (Properties.Settings.Default.importSVGCircleToDot)   // && File.Exists(Properties.Settings.Default.importCircleToDotScript))
+                    {
+                        SetSubroutine(Properties.Settings.Default.importCircleToDotScript, 95);
+                    }
+
                     lastz = tmp_lastz;
 
                     if (GcodePWMEnable)
@@ -1245,13 +1257,13 @@ namespace GrblPlotter
             figureStart.X = coord.X; figureStart.Y = coord.Y;
             figureStartAlpha = gcodeTangentialCommand;
             if (!(GcodeZApply && repeatZ))
-            { Move(gcodeValue, 0, (float)coord.X, (float)coord.Y, false, cmt); LastMovewasG0 = true; }
+            { Move(gcodeValue, 0, coord.X, coord.Y, false, cmt); LastMovewasG0 = true; }
             else
             {
-                lastx = (float)coord.X; lasty = (float)coord.Y; lastg = 0;
+                lastx = coord.X; lasty = coord.Y; lastg = 0;
             }
         }
-        public static void MoveToRapid(StringBuilder gcodeValue, float mx, float my, string cmt)
+        public static void MoveToRapid(StringBuilder gcodeValue, double mx, double my, string cmt)
         {
             figureStart.X = mx; figureStart.Y = my;
             figureStartAlpha = gcodeTangentialCommand;
@@ -1598,7 +1610,7 @@ namespace GrblPlotter
 
                 remainingC = (float)Properties.Settings.Default.importGCLineSegmentLength;	// start with full segment length
 
-                if (GcodeZApply && !gcodeSpindleToggle && !PreventSpindle) 
+                if (GcodeZApply && !gcodeSpindleToggle && !PreventSpindle)
                 { Gcode.SpindleOn(gcodeValue, "Start spindle - Option Z-Axis"); gcodeLines++; }
             }
 

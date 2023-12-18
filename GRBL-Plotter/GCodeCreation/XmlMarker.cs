@@ -27,6 +27,7 @@
  * 2023-04-15 improove GetFigure, GetGroup, GetTile
  * 2023-07-03 l:338 f:GetAttributeValue check if remaining length is enough
  * 2023-07-31 new functions FindInsertPositionFigure/Group/Next
+ * 2023-11-15 add figurePenColorAnyCount
 */
 
 using System;
@@ -115,6 +116,9 @@ namespace GrblPlotter
         internal static BlockData header = new BlockData();
         internal static BlockData footer = new BlockData();
 
+		internal static int figurePenColorNoneCount = 0;
+		internal static int figurePenColorAnyCount = 0;
+		
         public enum SortOption { Id, Color, Width, Layer, Type, Geometry, ToolNR, ToolName, CodeSize, CodeArea, Distance };
 
         // Trace, Debug, Info, Warn, Error, Fatal
@@ -129,7 +133,9 @@ namespace GrblPlotter
             listFigures.Clear(); listGroups.Clear(); listTiles.Clear(); listCollections.Clear();
             header.LineStart = 0; header.LineEnd = 999999;
             footer.LineStart = footer.LineEnd = 0;
-
+			figurePenColorNoneCount = 0;
+			figurePenColorAnyCount = 0;
+			
             logFlags = (uint)Properties.Settings.Default.importLoggerSettings;
             logEnable = Properties.Settings.Default.guiExtendedLoggingEnabled && ((logFlags & (uint)LogEnables.Level4) > 0);
         }
@@ -398,9 +404,12 @@ namespace GrblPlotter
         {
             //Logger.Trace("   setBlockData  {0}  {1}", lineStart, element);
             header.LineEnd = Math.Min(header.LineEnd, lineStart);   // lowest block-line = end of header
-            BlockData tmp = new BlockData();
-            tmp.MyIndex = 0;
-            tmp.LineStart = lineStart; tmp.Reverse = false;
+            BlockData tmp = new BlockData
+            {
+                MyIndex = 0,
+                LineStart = lineStart,
+                Reverse = false
+            };
             tmp.Id = tmp.ToolNr = tmp.CodeSize = tmp.CodeArea = -1;
             tmp.PenWidth = tmp.PathLength = tmp.PathArea = -1;
             tmp.Geometry = tmp.Layer = tmp.Type = tmp.PenColor = tmp.ToolName = tmp.PathId = "";
@@ -436,6 +445,13 @@ namespace GrblPlotter
         {
             tmpFigure.LineEnd = lineEnd;
             tmpFigure.MyIndex = listFigures.Count;
+			
+			if (tmpFigure.PenColor != "")
+				figurePenColorAnyCount++;
+				
+			if (tmpFigure.PenColor.Contains("none"))
+				figurePenColorNoneCount++;
+				
             listFigures.Add(tmpFigure);
             footer.LineStart = footer.LineEnd = Math.Max(footer.LineStart, lineEnd);   // highest block-line = start of footer
         }

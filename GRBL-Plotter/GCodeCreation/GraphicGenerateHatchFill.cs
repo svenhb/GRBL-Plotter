@@ -21,6 +21,8 @@
  * 2021-07-14 code clean up / code quality
  * 2022-11-04 line 57 set dash pattern to 0
  * 2023-01-15 line 90 bug-fix in log-output
+ * 2023-08-14 l:48  f: ShrinkPaths Hatch fill extension: shrink enveloping path , delete enveloping path (Vers 1.7.0.1)
+ * 2023-11-07 l:369 f:ClipLineByPolygone if distance is too small, delete both intersection point
 */
 
 
@@ -352,18 +354,20 @@ namespace GrblPlotter
             d_and_a.Sort((x, y) => x.s.CompareTo(y.s));
 
             // Remove duplicate intersections
-            int n = d_and_a.Count;
             int i_last = 1;
-            int i = 1;
             IntersectionInfo last = d_and_a[0];
-            while (i < n)
+			
+			for (int i=1; i < d_and_a.Count; i++)
             {
-                if ((Math.Abs(d_and_a[i].s - last.s)) > 0.0000000001)   //F_MINGAP_SMALL_VALUE)	// 0.0000000001  
+                if ((Math.Abs(d_and_a[i].s - last.s)) > 0.0000000001)  
                 {
-                    d_and_a[i_last] = last = d_and_a[i];
-                    i_last += 1;
+                    d_and_a[i_last] = last = d_and_a[i];    // different positions - take over
+                    i_last++;
                 }
-                i += 1;
+				else
+				{
+					d_and_a[--i_last] = last = d_and_a[i];	// same positions - skip both 2023-11-07
+				}
             }
 
             d_and_a = d_and_a.GetRange(0, i_last);
@@ -511,9 +515,11 @@ namespace GrblPlotter
 
         private static Point OffsetPoint(Point p, double angle, double radius)
         {
-            Point newP = new Point();
-            newP.X = p.X + Math.Cos(angle) * radius;
-            newP.Y = p.Y + Math.Sin(angle) * radius;
+            Point newP = new Point
+            {
+                X = p.X + Math.Cos(angle) * radius,
+                Y = p.Y + Math.Sin(angle) * radius
+            };
             return newP;
         }
         private static double GetAlpha(Point P1, Point P2)

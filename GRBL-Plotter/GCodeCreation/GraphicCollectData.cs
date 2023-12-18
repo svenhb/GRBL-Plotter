@@ -56,7 +56,6 @@
  * 2023-09-16 l:774 f:CreateGCode wrong call to RemoveOffset(minx,minx) -> miny
 */
 
-using AForge.Imaging.Filters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -112,6 +111,14 @@ namespace GrblPlotter
         private static int countAuxInfo = 0;
 
         private static int countWarnDimNotSet = 0;
+
+        private static int pathAddOnCount = 0;
+        //private static int pathAddOnPosition = 0;
+        //private static double pathAddOnScale = 1;
+        private static double pathAddOnDimx = 0;
+        private static double pathAddOnDimy = 0;
+        private static bool pathAddOnCompletion = false;
+        //private static string addFramelayer = "";
 
         internal static GraphicInformationClass graphicInformation = new GraphicInformationClass();
 
@@ -246,6 +253,13 @@ namespace GrblPlotter
             continuePath = false;
             setNewId = true;
             equalPrecision = (double)Properties.Settings.Default.importAssumeAsEqualDistance;
+
+            pathAddOnCompletion = false;
+            pathAddOnCount = 0;
+            //pathAddOnScale = 1;
+            pathAddOnDimx = 0;
+            pathAddOnDimy = 0;
+            //addFramelayer = "";
 
             stopwatch = new Stopwatch();
             stopwatch.Start();
@@ -512,12 +526,19 @@ namespace GrblPlotter
 
         public static bool SetPenWidth(string txt)	// DXF: 0 - 2.11mm = 0 - 211		SVG: 0.000 - ?  Convert with to mm, then to string in importClass
         {
-            if (logProperties) Logger.Trace("Set PenWidth '{0}'", txt);
+            // if (logProperties)  Logger.Trace("Set PenWidth '{0}'", txt);
             //           setNewId = true;        // active 2020-10-25
+
+            if (txt.Contains("NaN"))
+            {
+                Logger.Error("SetPenWidth contains NaN '{0}'", txt);
+                return true;
+            }
             int tmpIndex = (int)GroupOption.ByWidth;
             CountProperty(tmpIndex, txt);
             if (!actualPathInfo.SetGroupAttribute(tmpIndex, txt))
                 Logger.Error(" Error SetPenWidth '{0}'", txt);
+
             graphicInformation.SetPenWidth(txt);        // find min / max values
 
             if (!Properties.Settings.Default.importGraphicFilterEnable)
@@ -547,6 +568,8 @@ namespace GrblPlotter
                 txt = ConvertFromRGB(txt);
             }
             if (logProperties) Logger.Trace("SetPenColor '{0}'", txt);
+            if (txt.ToLower().Contains("currentcolor"))
+            { return true; }
 
             setNewId = true;
             int tmpIndex = (int)GroupOption.ByColor;
@@ -582,8 +605,16 @@ namespace GrblPlotter
             }
             if (logProperties) Logger.Trace("SetPenFill '{0}'", txt);
 
-            setNewId = true;
             int tmpIndex = (int)GroupOption.ByFill;
+            if (txt.ToLower().Contains("currentcolor"))
+            {
+                string tmp = actualPathInfo.GetGroupAttribute((int)GroupOption.ByColor);
+                if (!actualPathInfo.SetGroupAttribute(tmpIndex, tmp))
+                    Logger.Error(" Error SetPenFill '{0}'", txt);
+                return;
+            }
+
+            setNewId = true;
             CountProperty(tmpIndex, txt);
             if (!actualPathInfo.SetGroupAttribute(tmpIndex, txt))
                 Logger.Error(" Error SetPenFill '{0}'", txt);
@@ -714,6 +745,42 @@ namespace GrblPlotter
         // #######################################################################
         // Do modifications, then create GCode in graphic2GCode
         // #######################################################################
+        public static bool ImportCompletion(string tag, double scale, int position) // do thinks before adding further paths
+        {
+            //addFramelayer = tag;
+
+            if (actualPath.Path.Count > 0)
+                StopPath("in CreateCode");  // save previous path
+
+            /* add frame */
+            if (Properties.Settings.Default.importGraphicAddFrameEnable)
+            {
+                Logger.Info("{0} Add frame, distance: {1} radius: {2}", "►►►", Properties.Settings.Default.importGraphicAddFrameDistance, Properties.Settings.Default.importGraphicAddFrameApplyRadius);
+                AddFrame(actualDimension,
+                (double)Properties.Settings.Default.importGraphicAddFrameDistance,
+                Properties.Settings.Default.importGraphicAddFrameApplyRadius);
+                SetHeaderInfo(string.Format(" Option: Add frame distance:{0:0.00}  with radius:{1}", Properties.Settings.Default.importGraphicAddFrameDistance, Properties.Settings.Default.importGraphicAddFrameApplyRadius));
+            } // distance from graphics dimension, corner radius
+
+            pathAddOnDimx = actualDimension.dimx;
+            pathAddOnDimy = actualDimension.dimy;
+
+            if (position == 1)  // center
+            {
+                Scale(completeGraphic, scale, scale);
+                RemoveOffset(completeGraphic, actualDimension.minx + actualDimension.dimx / 2, actualDimension.miny + actualDimension.dimy / 2);    // center object
+            }
+            else if (position > 0)
+            {
+                RemoveOffset(completeGraphic, actualDimension.minx, actualDimension.miny);    // origin = bottom left
+            }
+            actualDimension.ResetDimension();
+            pathAddOnCount = completeGraphic.Count;
+            //pathAddOnScale = scale;
+            //    pathAddOnPosition = position;
+            pathAddOnCompletion = true;
+            return true;
+        }
 
         public static bool CreateGCode()//Final(BackgroundWorker backgroundWorker, DoWorkEventArgs e)
         {
@@ -728,9 +795,7 @@ namespace GrblPlotter
             if (actualPath.Path.Count > 1)
                 StopPath("in CreateCode");  // save previous path
 
-            double dimX = (actualDimension.maxx - actualDimension.minx);
-            double dimY = (actualDimension.maxy - actualDimension.miny);
-            Logger.Info("▼▼▼▼  Graphic - CreateGCode count:{0}  dimX:{1:0.0}  dimY:{2:0.0}", completeGraphic.Count, dimX, dimY);
+            Logger.Info("▼▼▼▼  Graphic - CreateGCode count:{0}  dimX:{1:0.0}  dimY:{2:0.0}", completeGraphic.Count, actualDimension.dimx, actualDimension.dimy);
 
             if (Properties.Settings.Default.importGCRelative)
             { SetHeaderMessage(string.Format(" {0}-2010: GCode for relative movement commands G91 will be generated", CodeMessage.Warning)); }
@@ -753,8 +818,49 @@ namespace GrblPlotter
                     Logger.Info("{0} NO Remove of short moves", loggerTag, Properties.Settings.Default.importRemoveShortMovesLimit);
             }
 
+            /* process add-on data - frame, sign, watermark */
+            if (pathAddOnCompletion && Properties.Settings.Default.importSVGAddOnEnable)
+            {
+                int position = Properties.Settings.Default.importSVGAddOnPosition;
+                double scale = (double)Properties.Settings.Default.importSVGAddOnScale;
+                if (position > 1)    // scale
+                {
+                    Scale(completeGraphic, scale, scale, pathAddOnCount);
+                }
+
+                if (position == 1)    // center
+                {
+                    RemoveOffset(completeGraphic, actualDimension.minx + actualDimension.dimx / 2, actualDimension.miny + actualDimension.dimy / 2, pathAddOnCount);    // center object
+                }
+                else if (position == 2) // bottom left
+                {
+                    RemoveOffset(completeGraphic, actualDimension.minx, actualDimension.miny, pathAddOnCount);
+                }
+                else if (position == 3) // bottom right
+                {
+                    RemoveOffset(completeGraphic, actualDimension.minx - pathAddOnDimx + actualDimension.dimx, actualDimension.miny, pathAddOnCount);
+                }
+                else if (position == 4) // top left
+                {
+                    RemoveOffset(completeGraphic, actualDimension.minx, actualDimension.miny - pathAddOnDimy + actualDimension.dimy, pathAddOnCount);
+                }
+                else if (position == 5) // top right
+                {
+                    RemoveOffset(completeGraphic, actualDimension.minx - pathAddOnDimx + actualDimension.dimx, actualDimension.miny - pathAddOnDimy + actualDimension.dimy, pathAddOnCount);
+                }
+                Logger.Info("CreateGCode process add-on data   min x:{0}  y:{1}  dimy:{2}  dimy:{3}  addx:{4}    addy:{5}", actualDimension.minx, actualDimension.miny, actualDimension.dimx, actualDimension.dimy, pathAddOnDimx, pathAddOnDimy);
+
+                if (position > 1)    // reset size
+                {
+                    actualDimension.minx = actualDimension.miny = 0;
+                    actualDimension.dimx = pathAddOnDimx;
+                    actualDimension.dimy = pathAddOnDimy;
+                }
+                Logger.Info("CreateGCode process add-on data   min x:{0}  y:{1}  dimy:{2}  dimy:{3}  ", actualDimension.minx, actualDimension.miny, actualDimension.dimx, actualDimension.dimy);
+            }
+
             /* add frame */
-            if (Properties.Settings.Default.importGraphicAddFrameEnable)
+            if (!pathAddOnCompletion && Properties.Settings.Default.importGraphicAddFrameEnable)
             {
                 Logger.Info("{0} Add frame, distance: {1} radius: {2}", loggerTag, Properties.Settings.Default.importGraphicAddFrameDistance, Properties.Settings.Default.importGraphicAddFrameApplyRadius);
                 AddFrame(actualDimension,
@@ -770,6 +876,8 @@ namespace GrblPlotter
                 double offX = GuiVariables.offsetOriginX;   // (double)Properties.Settings.Default.importGraphicOffsetOriginX;
                 double offY = GuiVariables.offsetOriginY;   // (double)Properties.Settings.Default.importGraphicOffsetOriginY;
                 double gap = (double)Properties.Settings.Default.multipleLoadGap;
+                double dimX = actualDimension.dimx;
+                double dimY = actualDimension.dimy;
 
                 /*********** Adapt offset on mutlifile import ****************************/
                 if (Graphic2GCode.multiImport && !Properties.Settings.Default.multipleLoadLimitNo)
@@ -782,15 +890,12 @@ namespace GrblPlotter
                         if ((offX + dimX) > limitX)
                         {
                             offX = (double)Graphic2GCode.multiImportOffsetX;
-                            //Properties.Settings.Default.importGraphicOffsetOriginX = Graphic2GCode.multiImportOffsetX + (decimal)(dimX + gap);
                             GuiVariables.offsetOriginX = (double)Graphic2GCode.multiImportOffsetX + (dimX + gap);
                             offY = Graphic2GCode.multiImportMaxY + gap;
-                            //Properties.Settings.Default.importGraphicOffsetOriginY = (decimal)offY;
                             GuiVariables.offsetOriginY = offY;
                         }
                         else
                         {   //offX += dimX + gap;
-                            //Properties.Settings.Default.importGraphicOffsetOriginX = (decimal)(offX + dimX + gap);
                             GuiVariables.offsetOriginX = offX + dimX + gap;
                         }
                     }
@@ -799,19 +904,15 @@ namespace GrblPlotter
                         if ((offY + dimY) > limitY)
                         {
                             offY = (double)Graphic2GCode.multiImportOffsetY;
-                            //Properties.Settings.Default.importGraphicOffsetOriginY = Graphic2GCode.multiImportOffsetY + (decimal)(dimY + gap);
                             GuiVariables.offsetOriginY = (double)Graphic2GCode.multiImportOffsetY + (dimY + gap);
                             offX = Graphic2GCode.multiImportMaxX + gap;
-                            //Properties.Settings.Default.importGraphicOffsetOriginX = (decimal)offX;
                             GuiVariables.offsetOriginX = offX;
                         }
                         else
                         {   //offY += dimY + gap;
-                            //Properties.Settings.Default.importGraphicOffsetOriginY = (decimal)(offY + dimY + gap);
                             GuiVariables.offsetOriginY = offY + dimY + gap;
                         }
                     }
-                    Properties.Settings.Default.Save();
                 }
                 Logger.Info("{0} Remove offset: X:{1:0.000} Y:{2:0.000} new origin: X:{3:0.00} Y:{4:0.00}", loggerTag, actualDimension.minx, actualDimension.miny, offX, offY);
                 SetHeaderInfo(string.Format(" Graphic offset: {0:0.00} {1:0.00} new origin: {2:0.00} {3:0.00}", -actualDimension.minx, -actualDimension.miny, offX, offY));

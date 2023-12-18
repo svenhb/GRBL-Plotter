@@ -36,8 +36,8 @@ namespace GrblPlotter
         /// <summary>
         /// Calculate Path-Arc-Command - Code from https://github.com/vvvv/SVG/blob/master/Source/Paths/SvgArcSegment.cs
         /// </summary>
-        public static void CalcArc(float astartX, float astartY, float radiusX, float radiusY,
-            float angle, float size, float sweep, float endX, float endY, Action<Point, string> moveTo)
+        public static void CalcArc(double astartX, double astartY, double radiusX, double radiusY,
+            double angle, double size, double sweep, double endX, double endY, Action<Point, string> moveTo)
         {
             //           Logger.Trace(" calcArc Start: {0};{1} rx: {2} ry: {3} a: {4} size: {5} sweep: {6} End: {7};{8}", StartX, StartY, RadiusX, RadiusY,
             //            Angle, Size, Sweep, EndX, EndY);
@@ -52,8 +52,8 @@ namespace GrblPlotter
             double y1dash = -sinPhi * (astartX - endX) / 2.0 + cosPhi * (astartY - endY) / 2.0;
             double root;
             double numerator = radiusX * radiusX * radiusY * radiusY - radiusX * radiusX * y1dash * y1dash - radiusY * radiusY * x1dash * x1dash;
-            float rx = radiusX;
-            float ry = radiusY;
+            double rx = radiusX;
+            double ry = radiusY;
             if (numerator < 0.0)
             {
                 float s = (float)Math.Sqrt(1.0 - numerator / (radiusX * radiusX * radiusY * radiusY));
@@ -368,7 +368,7 @@ namespace GrblPlotter
             }
 
         }
-        public struct CubicBezier
+        public readonly struct CubicBezier
         {
             /// <summary>
             /// Start point
@@ -470,7 +470,7 @@ namespace GrblPlotter
             }
         }
 
-        public struct BiArc
+        public readonly struct BiArc
         {
             public readonly Arc A1;
             public readonly Arc A2;
@@ -559,7 +559,7 @@ namespace GrblPlotter
             }
         }
 
-        public struct Arc
+        public readonly struct Arc
         {
             /// <summary>
             /// Center point
@@ -622,7 +622,7 @@ namespace GrblPlotter
             }
         }
 
-        public struct Line
+        public readonly struct Line
         {
             /// <summary>
             /// Slope

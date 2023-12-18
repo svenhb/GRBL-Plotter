@@ -51,15 +51,13 @@ namespace GrblPlotter
             float yOffset = 0;
             float rotation = 0;
 
-            RectangleF box = GetTextBounds(text, alignment);
+            //RectangleF box = GetTextBounds(text, alignment);
             List<short> pathsPerChar = new List<short>();
 
             SetHeaderInfo(string.Format(" Used font:'{0}', Size:{1}", fontFamily.Name, fontSize));
 
             if (true)    /* do whole conversion in one - disadvantage: each path gernerates a figure = 2 figures for '0', 'A', 'P'... */
             {
-                //    ox = -box.Width;//-GetGlyphProperty(text[0], 0) * fontSize;  // get LSB
-                // oy = -box.Height;
                 using (var path = new GraphicsPath())                   // do whole text in one go
                 {
                     DrawGlyphPath(path, new PointF(ox, oy), new PointF(ox, oy + yOffset), rotation, text, alignment);
@@ -68,63 +66,6 @@ namespace GrblPlotter
                     ExtractGlyphPath(path, pathOffset, text, pathsPerChar);     // StartPath & Graphic.StopPath
                 }
             }
-            /*    else      // alternative function converts char by char - all char related paths in one figure. But kerning is not applied 
-                {
-                    yOffset = box.Height;
-
-                    RectangleF lineBox;
-
-                    float xOffsetBounds, xOffsetAlignment;
-
-                    float width = 0;
-                    float tmpWidth;
-
-                    string[] lines = text.Split('\n');
-                    string textline;
-                    foreach (string tl in lines)
-                    {
-                        textline = tl.Replace('\r', ' ');
-
-                        List<float> posX = new List<float>
-                        {
-                            0f                                      // first glyph starts at zero
-                        };
-
-                        lineBox = GetTextBounds(textline, alignment);
-                        xOffsetAlignment = 0;
-                        if (alignment == StringAlignment.Center)
-                            xOffsetAlignment = (box.Width - lineBox.Width) / 2;
-                        else if (alignment == StringAlignment.Far)
-                            xOffsetAlignment = box.Width - lineBox.Width;
-
-                        xOffsetBounds = 0;  // GetGlyphProperty(textline[0], 0) * fontSize;  // get LSB
-
-                        width = 0;
-                        for (int i = 0; i < textline.Length; i++)   // get individual xOffset for each char of this line
-                        {
-                            tmpWidth = GetGlyphProperty(textline[i], 1) * fontSize; // AdvanceWidths
-                            width += tmpWidth;
-                            posX.Add(width);
-                        }
-                        posX.Add(width);
-
-                        using (var path = new GraphicsPath())       // do char by char to adjust e.g. dx individual
-                        {
-                        //    int ci;
-                            for (int i = 0; i < textline.Length; i++)
-                            {
-                                ox = posX[i] + xOffsetAlignment - xOffsetBounds;
-                                oy = -yOffset;
-
-                                DrawGlyphPath(path, new PointF(ox, oy), new PointF(ox, oy + yOffset), 0, textline[i].ToString(), StringAlignment.Near);
-                                ExtractGlyphPath(path, new PointF(0, 0), textline.Substring(i, 1), pathsPerChar, true);            // StartPath & Graphic.StopPath
-                            }
-                        }
-
-                        yOffset -= box.Height / lines.Count();
-                    }
-                }*/
-
         }
 
         private static void DrawGlyphPath(GraphicsPath myPath, PointF origin, PointF originR, float angle, string text, StringAlignment alignment)
@@ -196,7 +137,7 @@ namespace GrblPlotter
             }
         }
 
-        private static void ExtractGlyphPath(GraphicsPath extractPath, PointF offset, string text, List<short> pathsPerChar, bool onlyOneFigure = false)
+        private static void ExtractGlyphPath(GraphicsPath extractPath, PointF offset, string text, List<short> pathsPerChar)//, bool onlyOneFigure = false)
         {
             if (!(extractPath.PointCount > 2))
                 return;

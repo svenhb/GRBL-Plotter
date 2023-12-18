@@ -43,7 +43,7 @@
  * 2023-03-14 l:610 f:StartPath	importGraphicLeadInEnable optional start at GcodeZUp value
  * 2023-09-14 f:CreateGCode add CollectionStart /-End Tags
  * 2023-11-03 l:357 f:CreateGCode (figure) add proforma figure-tag if not figureEnable
- 
+ * 2023-11-27 l:465 f:ProcessPathObject call subroutine only if needed
 */
 
 using System;
@@ -356,9 +356,8 @@ namespace GrblPlotter
 
             if (!graphicInfo.FigureEnable)  // proforma figure tag
             {
-                string figColor = "", figWidth = "";
-                figColor = string.Format(" PenColor=\"{0}\"", completeGraphic[0].Info.GroupAttributes[(int)GroupOption.ByColor]);
-                figWidth = string.Format(" PenWidth=\"{0}\"", completeGraphic[0].Info.GroupAttributes[(int)GroupOption.ByWidth]);
+                string figColor = string.Format(" PenColor=\"{0}\"", completeGraphic[0].Info.GroupAttributes[(int)GroupOption.ByColor]);
+                string figWidth = string.Format(" PenWidth=\"{0}\"", completeGraphic[0].Info.GroupAttributes[(int)GroupOption.ByWidth]);
                 Gcode.Comment(gcodeString, string.Format("{0} Id=\"{1}\" {2} {3}>", XmlMarker.FigureStart, 0, figColor, figWidth));
             }
 
@@ -443,7 +442,7 @@ namespace GrblPlotter
                 }
                 else if (graphicInfo.OptionZFromWidth)
                 {
-                    dotCounter++;
+                //    dotCounter++;
                     double newZ = CalculateZFromRange(graphicInfo.PenWidthMin, graphicInfo.PenWidthMax, DotData.OptZ);
                     if (logEnable) Logger.Trace("---Dot OptionZFromWidth: RangeMin:{0:0.00}  RangeMax:{1:0.00}  DotData.Z:{2:0.00}  -> setZ:{3:0.00}", graphicInfo.PenWidthMin, graphicInfo.PenWidthMax, DotData.OptZ, newZ);
                     newZ = Math.Max(origZ, newZ);        // don't go deeper than set Z
@@ -452,18 +451,19 @@ namespace GrblPlotter
                 }
                 if (graphicInfo.OptionSFromWidth)
                 {
-                    dotCounter++;
+                //    dotCounter++;
                     double newS = CalculateSFromRange(graphicInfo.PenWidthMin, graphicInfo.PenWidthMax, DotData.OptZ);
                     if (logEnable) Logger.Trace("--ProcessPathObject: penWidth:{0:0.00}  -> setS:{1:0.00}", DotData.OptZ, newS);
                     Gcode.GcodePwmDown = Gcode.GcodeSpindleSpeed = (float)newS;   //???
                     penIsDown = false;
                 }
 
+                dotCounter++;
                 pathObject.FigureId = StartPath(DotData, toolNr, toolCmt, "PD");
                 PenDown("PD");
                 StopPath("PU DOT");
 
-                if (dotCounter >= Properties.Settings.Default.importCircleToDotScriptCount)
+                if (Properties.Settings.Default.importSVGCircleToDot && (Properties.Settings.Default.importCircleToDotScriptCount > 0) && (dotCounter >= Properties.Settings.Default.importCircleToDotScriptCount))
                 {
                     dotCounter = 0;
                     Gcode.CallSubroutine(gcodeString, 95, "refresh stamp");
@@ -518,12 +518,12 @@ namespace GrblPlotter
                         Gcode.GcodeZDown = (float)newZ;
                         if (!Properties.Settings.Default.importDepthFromWidthRamp)
                             penIsDown = false;
-                        if (logEnable) Logger.Trace("--ProcessPathObject: penWidth:{0:0.00}  -> setZ:{1:0.00}", entity.Depth, newZ);
+                        if (logEnable) Logger.Trace("--ProcessPathObject-OptionZFromWidth: penWidth:{0:0.00}  -> setZ:{1:0.00}  min:{2:0.00}  max:{3:0.00}  orig:{4:0.00}", entity.Depth, newZ, graphicInfo.PenWidthMin, graphicInfo.PenWidthMax, origZ);
                     }
                     if (graphicInfo.OptionSFromWidth)
                     {
                         newS = CalculateSFromRange(graphicInfo.PenWidthMin, graphicInfo.PenWidthMax, entity.Depth);
-                        if (logEnable) Logger.Trace("--ProcessPathObject: penWidth:{0:0.00}  -> setS:{1:0.00}", entity.Depth, newS);
+                        if (logEnable) Logger.Trace("--ProcessPathObject-OptionSFromWidth: penWidth:{0:0.00}  -> setS:{1:0.00}", entity.Depth, newS);
                         Gcode.GcodePwmDown = Gcode.GcodeSpindleSpeed = (float)newS;	//???
                     }
 
@@ -643,6 +643,7 @@ namespace GrblPlotter
             }
         }
 
+        /*Input: min, max and actual pen-width value from graphics import*/
         public static double CalculateZFromRange(double min, double max, double penWidth)
         {
             if (logDetailed)
@@ -658,6 +659,7 @@ namespace GrblPlotter
                 return (double)Properties.Settings.Default.importDepthFromWidthMin;
             double nPen = (Math.Abs(penWidth) - penMin) / penDelta;
 
+            /*Get desired range, where to transform the pen-width*/
             double zMin = Math.Abs((double)Properties.Settings.Default.importDepthFromWidthMin);
             double zMax = Math.Abs((double)Properties.Settings.Default.importDepthFromWidthMax);
             double zDelta = (zMax - zMin);
@@ -677,6 +679,7 @@ namespace GrblPlotter
             return -z;
         }
 
+        /*Input: min, max and actual pen-width value from graphics import*/
         public static double CalculateSFromRange(double min, double max, double penWidth)
         {
             if (logDetailed)
@@ -686,12 +689,13 @@ namespace GrblPlotter
 
             double penMin = Math.Abs(min);
             double penMax = Math.Abs(max);
-            double penDelta = (penMax - penMin);
+            double penDelta = Math.Abs(penMax - penMin);
 
             if (penDelta == 0)
                 return (double)Properties.Settings.Default.importImageSMin;
             double nPen = (Math.Abs(penWidth) - penMin) / penDelta;
 
+            /*Get desired range, where to transform the pen-width*/
             double zMin = Math.Abs((double)Properties.Settings.Default.importImageSMin);
             double zMax = Math.Abs((double)Properties.Settings.Default.importImageSMax);
             double zDelta = (zMax - zMin);
@@ -708,7 +712,7 @@ namespace GrblPlotter
             if (logDetailed)
                 Logger.Trace("---calculateSFromPenWidth: penWidth:{0:0.00}  nPen:{1:0.00}  SDelta:{2:0.00}   S:{3:0.00}", penWidth, nPen, zDelta, z);
 
-            return z;
+            return Math.Abs(z);
         }
 
         private static string GetGroupAttributes(GroupObject groupObject, GraphicInformationClass graphicInfo)
@@ -934,10 +938,11 @@ namespace GrblPlotter
             Gcode.SetAux2DistanceCommand(setAux2FinalDistance);
             if (newS != null) Gcode.SetSValue((double)newS);
 
+            //Logger.Trace("MoveTo useAlternitveZ:{0}  newZ:{1}", useAlternitveZ, newZ);
             if (useAlternitveZ) 		//Properties.Settings.Default.importDepthFromWidthRamp|| Properties.Settings.Default.importDXFUseZ)
                 Gcode.Move(gcodeString, 1, coordxy.X, coordxy.Y, (float)newZ, Gcode.ApplyXYFeedRate, cmt);
             else if (applyDashPattern)
-                MoveToDashed(coordxy, cmt);
+                MoveToDashed(coordxy);
             else
                 Gcode.MoveTo(gcodeString, coordxy, cmt);    // note: Gcode.GcodeZDown is may set with newZ
 
@@ -946,7 +951,7 @@ namespace GrblPlotter
 
 
 
-        private static void MoveToDashed(Point coordxy, string cmt)
+        private static void MoveToDashed(Point coordxy)
         {
             if (logCoordinates) Logger.Trace("  MoveToDashed from X:{0:0.000} Y:{1:0.000}  to X:{0:0.000} Y:{1:0.000}", lastGC.X, lastGC.Y, coordxy.X, coordxy.Y);
 
