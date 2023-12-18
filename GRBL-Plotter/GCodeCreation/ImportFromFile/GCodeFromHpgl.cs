@@ -79,7 +79,7 @@ namespace GrblPlotter
         private static double charWidth = 2.85;
         private static double charHeight = 3.75;
         private static double charAngle = 0;
-        private static string charFont = "standard";		// default GCFontName = "lff\\standard.lff";
+        //private static string charFont = "standard";		// default GCFontName = "lff\\standard.lff";
         private static char charTerminator = '\x3';
         private static int charAlign = 7;
         private static string symbolChar = "";
@@ -175,17 +175,17 @@ namespace GrblPlotter
             charHeight = 3.75;
             charAngle = 0;
             charAlign = 7;
-            charFont = "standard";      // default GCFontName = "lff\\standard.lff";
+            //charFont = "standard";      // default GCFontName = "lff\\standard.lff";
             symbolChar = "";
         }
 
         private static void GetVectorHPGL(string hpglCode)
         {
             string[] fileLines = hpglCode.Split('\n');
-            char[] charsToTrim = { ' ', '\r', '\n' };
+            //char[] charsToTrim = { ' ', '\r', '\n' };
             string line, cmd, parameter;
 
-            if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = 10, Content = "Read HPGL vector data of " + fileLines.Length.ToString() + " lines" });
+            backgroundWorker?.ReportProgress(0, new MyUserState { Value = 10, Content = "Read HPGL vector data of " + fileLines.Length.ToString() + " lines" });
 
             parameter = cmd = "";
             int indexCmd = 0, bwl = 0, bw;
@@ -590,7 +590,7 @@ namespace GrblPlotter
         {
             if (coord.Length > 0)
             {
-                Point tmpPoint = new Point();
+                Point tmpPoint;// = new Point();
                 double[] floatArgs = ConvertArgs(coord); // floatArgs = coordinates.Select(arg => double.Parse(arg.Trim(), System.Globalization.NumberStyles.Number, System.Globalization.NumberFormatInfo.InvariantInfo)).ToArray();
                 Graphic.SetGeometry("moveTo");
                 Point position = new Point();

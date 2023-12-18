@@ -91,7 +91,7 @@ namespace GrblPlotter
         private static Point StartCoordinate = new Point();
         private static Point lastMove = new Point();
 
-        private static bool handleM19 = true;
+        //private static bool handleM19 = true;
 
         private static string geometryPen = "pen";
         private static string geometryKnife = "knife";
@@ -179,7 +179,7 @@ namespace GrblPlotter
             string val = "C,0.03200";
             apertures.Add(key, new Aperture(val));
 
-            handleM19 = Properties.Settings.Default.importGerberTypeEnable;
+            //handleM19 = Properties.Settings.Default.importGerberTypeEnable;
             geometryPen = Properties.Settings.Default.importGerberTypePen;
             geometryKnife = Properties.Settings.Default.importGerberTypeKnife;
             geometryM19 = Properties.Settings.Default.importGerberTypeM19;
@@ -205,7 +205,7 @@ namespace GrblPlotter
             bool nextIsInfo = false;
 
             Logger.Info(" Amount Lines:{0}", lines.Length);
-            if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = 10, Content = "Read Gerber vector data of " + lines.Length.ToString() + " length" });
+            backgroundWorker?.ReportProgress(0, new MyUserState { Value = 10, Content = "Read Gerber vector data of " + lines.Length.ToString() + " length" });
 
             int lineNr = 0;
             foreach (string singleLine in lines)

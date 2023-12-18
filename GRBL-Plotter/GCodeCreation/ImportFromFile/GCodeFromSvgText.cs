@@ -30,6 +30,7 @@
  * 2023-01-12 line 368 set default for fill and stroke; line 282
  * 2023-01-13 add textLetterSpacing
  * 2023-07-02 f:ReadAttributs replaced ConvertToPixel by ConvertFontSize
+ * 2023-11-11 replace floats by double
 */
 
 using System;
@@ -302,9 +303,9 @@ namespace GrblPlotter
             textProp.SetX(origin.X);
             textProp.SetY(origin.Y);
 
-            float stringPos = textProp.ExportString(svgText);
+            double stringPos = textProp.ExportString(svgText);
             charIndex = textProp.CharIndex;
-            return new PointF(stringPos, origin.Y);
+            return new PointF((float)stringPos, origin.Y);
         }
 
         private static void ExtractGlyphPath(GraphicsPath extractPath, PointF offset, string geometry)
@@ -366,12 +367,12 @@ namespace GrblPlotter
             private string textFontStyle = "";
             private string textDecoration = "";
             private string textStartOffset = "";
-            private float textLetterSpacing = 0;
+            private double textLetterSpacing = 0;
 
             public int CharIndex = 0;
             public string stroke = "#000000";	//"none";
             public string fill = "#000000";
-            public float fontSize = 16f;
+            public double fontSize = 16f;
             public System.Drawing.FontFamily fontFamily = new System.Drawing.FontFamily("Arial");
             public System.Drawing.FontStyle fontStyle = System.Drawing.FontStyle.Regular;
             public System.Drawing.StringFormat stringFormat = new System.Drawing.StringFormat();
@@ -578,7 +579,7 @@ namespace GrblPlotter
                 if (element.Attribute("stroke-width") != null)
                 { }
 
-                float tmpEM = factor_Em2Px;
+                double tmpEM = factor_Em2Px;
                 factor_Em2Px = fontSize;
                 if (element.Attribute("x") != null) x = ConvertToPixelArray(element.Attribute("x").Value);
                 if (element.Attribute("y") != null) y = ConvertToPixelArray(element.Attribute("y").Value);
@@ -614,7 +615,7 @@ namespace GrblPlotter
                 return rotation;
             }
 
-            private float ConvertFontSize(float oldFontSize, string fontValue)
+            private double ConvertFontSize(double oldFontSize, string fontValue)
             {
                 if (fontValue.Contains("normal"))
                     return oldFontSize;
@@ -624,13 +625,13 @@ namespace GrblPlotter
 
                 if (words.Contains(fontValue))
                 {   var index = Array.FindIndex(words, row => row.Contains(fontValue));
-                    return (float)px[index];
+                    return px[index];
                 }
 
                 if (fontValue.Contains("smaller"))
-                    return (float)(oldFontSize * 0.8);
+                    return (oldFontSize * 0.8);
                 if (fontValue.Contains("larger"))
-                    return (float)(oldFontSize * 1.2);
+                    return (oldFontSize * 1.2);
                 return ConvertToPixel(fontValue, oldFontSize);  // oldFontSize is needed if fontValue is %-value
             }
             private float[] ConvertToPixelArray(string text)
@@ -647,14 +648,14 @@ namespace GrblPlotter
                     float[] result = new float[size];
                     for (int i = 0; i < size; i++)
                     {
-                        result[i] = ConvertToPixel(parts[i]);
+                        result[i] = (float)ConvertToPixel(parts[i]);
                     }
                     return result;
                 }
                 return new float[] { 0 };
             }
 
-            public float ExportString(string text)
+            public double ExportString(string text)
             {
                 if (text.Length == 0)
                     return GetX(0) + GetdX(0);
@@ -665,23 +666,23 @@ namespace GrblPlotter
                     return (text.Length * GetGlyphProperty(text[0], 1) * fontSize) + GetX(0) + GetdX(0);
                 }
 
-                List<float> posX = new List<float>
+                List<double> posX = new List<double>
                 {
                     0f   // first glyph starts at zero
                 };
-                float spaceWidth = GetGlyphProperty(' ', 1) * fontSize;
+                double spaceWidth = GetGlyphProperty(' ', 1) * fontSize;
 
                 /* if leading space " " */
                 string tempText = text.Trim();
-                float spaceWidthStartApply = 0;
+                double spaceWidthStartApply = 0;
                 if (text.StartsWith(" "))
                 {
                     spaceWidthStartApply += spaceWidth;
-                    posX.Add(spaceWidth - (GetGlyphProperty(tempText[0], 0) * fontSize));
+                    posX.Add((spaceWidth - (GetGlyphProperty(tempText[0], 0) * fontSize)));
                 }
 
                 /* get glyph-positions  */
-                float width = 0;
+                double width = 0;
                 for (int i = 1; i <= tempText.Length; i++)
                 {
                     width = GetCharWidth(tempText.Substring(0, i)).Width + spaceWidthStartApply;
@@ -690,17 +691,17 @@ namespace GrblPlotter
                 }
 
                 /* if ending with  space " "    */
-                float spaceWidthEndApply = 0;
+                double spaceWidthEndApply = 0;
                 if (text.EndsWith(" ")) { spaceWidthEndApply += spaceWidth; posX.Add(width + (GetGlyphProperty(tempText[tempText.Length - 1], 2) * fontSize) + spaceWidth); }
 
                 for (int i = tempText.Length; i <= text.Length; i++)    // just for safety...
                 { posX.Add(posX[tempText.Length]); }
 
-                Font font = new Font(fontFamily, fontSize, fontStyle, GraphicsUnit.Millimeter);
+                Font font = new Font(fontFamily, (float)fontSize, fontStyle, GraphicsUnit.Millimeter);
                 float yOffset = fontFamily.GetCellAscent(fontStyle) * font.Size / fontFamily.GetEmHeight(fontStyle);
 
-                float xOffsetBounds = GetCharWidth(tempText).Left;            // Left-pos of bounds
-                float XOffsetLSB = (GetGlyphProperty(text[0], 0) * fontSize);
+                double xOffsetBounds = GetCharWidth(tempText).Left;            // Left-pos of bounds
+                double XOffsetLSB = (GetGlyphProperty(text[0], 0) * fontSize);
                 bool isPureText = ((x.Length <= 1) && (y.Length <= 1) && (dx.Length <= 1) && (dy.Length <= 1) && (r.Length <= 1) && (GetRotation() == 0) && (textLetterSpacing == 0));
 
                 Logger.Trace("● ExportString '{0}'  pureText:{1}  start-X:{2:0.00}  textLen:{3:0.00}   spaceWidth:{4:0.00}   fontSize:{5:0.00}", text, isPureText, GetX(0), posX[text.Length], spaceWidth, fontSize);
@@ -708,16 +709,16 @@ namespace GrblPlotter
                 if (stroke != "") { Graphic.SetPenColor(stroke.StartsWith("#") ? stroke.Substring(1) : stroke); }  //Logger.Info("SetPenColor '{0}'", stroke); 
                 if ((fill != "") && (fill != "none")) { Graphic.SetPenFill(fill.StartsWith("#") ? fill.Substring(1) : fill); }     //Logger.Info("SetPenFill  '{0}'", fill); 
 
-                float oxOrig = GetX(0) + GetdX(0);
-                float ox = oxOrig - xOffsetBounds + spaceWidthStartApply + XOffsetLSB;
-                float oy = GetY(0) + GetdY(0) - yOffset;
+                double oxOrig = GetX(0) + GetdX(0);
+                double ox = oxOrig - xOffsetBounds + spaceWidthStartApply + XOffsetLSB;
+                double oy = GetY(0) + GetdY(0) - yOffset;
 
                 //        Logger.Info("TEST oxOrig:{0:0.00}  ox:{1:0.00}   xOffset:{2:0.00}   spaceWidthStartApply:{3:0.00}  LSB:{4:0.00}", oxOrig, ox, xOffsetBounds, spaceWidthStartApply, XOffsetLSB);
                 if (isPureText)
                 {
                     using (var path = new GraphicsPath())               // do whole text in one go
                     {
-                        DrawGlyphPath(path, new PointF(ox, oy), new PointF(ox, oy + yOffset), GetRotation(), text, StringAlignment.Near);
+                        DrawGlyphPath(path, new PointF((float)ox, (float)oy), new PointF((float)ox, (float)(oy + yOffset)), GetRotation(), text, StringAlignment.Near);
                         ExtractGlyphPath(path, new PointF(0, 0), "tspan '" + text + "'");            // StartPath & Graphic.StopPath
                     }
                     CharIndex += text.Length;
@@ -727,8 +728,8 @@ namespace GrblPlotter
                 {
                     xOffsetBounds = GetGlyphProperty(text[0], 0) * fontSize;  // get LSB
                     width = 0;
-                    float tmpWidth;
-                    posX = new List<float>
+                    double tmpWidth;
+                    posX = new List<double>
                     {
                         0f                                       // first glyph starts at zero
                     };
@@ -753,7 +754,7 @@ namespace GrblPlotter
                                 ox = GetX(ci) + GetdX(ci) + posX[i] - xOffsetBounds + spaceWidthStartApply;
                             oy = GetY(ci) + GetdY(ci) - yOffset;
 
-                            DrawGlyphPath(path, new PointF(ox, oy), new PointF(ox, oy + yOffset), GetRotation(ci), text[i].ToString(), StringAlignment.Near);
+                            DrawGlyphPath(path, new PointF((float)ox, (float)oy), new PointF((float)ox, (float)oy + yOffset), GetRotation(ci), text[i].ToString(), StringAlignment.Near);
                             ExtractGlyphPath(path, new PointF(0, 0), "tspan '" + text[i] + "'");            // StartPath & Graphic.StopPath
                         }
                     }
@@ -767,11 +768,11 @@ namespace GrblPlotter
                 if ((!string.IsNullOrEmpty(text)) && (toPath.PointCount > 0))
                 {
                     string testChar = "#";
-                    float tmpWidth = GetCharWidth(testChar + testChar).Width;
-                    float angle, width;
+                    double tmpWidth = GetCharWidth(testChar + testChar).Width;
+                    double angle, width;
                     PointF origin;
-                    List<float> posX = new List<float>();
-                    List<float> GlyphWidth = new List<float>();
+                    List<double> posX = new List<double>();
+                    List<double> GlyphWidth = new List<double>();
 
                     for (int i = 0; i < text.Length; i++)       // get char positions
                     {
@@ -784,11 +785,11 @@ namespace GrblPlotter
 
                     PointF[] pPath = toPath.PathPoints;
                     int pIndex = 0;
-                    Font font = new Font(fontFamily, fontSize, fontStyle, GraphicsUnit.Millimeter);
-                    float yOffset = fontFamily.GetCellAscent(fontStyle) * font.Size / fontFamily.GetEmHeight(fontStyle);
-                    float xpos;
-                    float pathLength = GetPathLength(toPath);
-                    float startOffset = 0;
+                    Font font = new Font(fontFamily, (float)fontSize, fontStyle, GraphicsUnit.Millimeter);
+                    double yOffset = fontFamily.GetCellAscent(fontStyle) * font.Size / fontFamily.GetEmHeight(fontStyle);
+                    double xpos;
+                    double pathLength = GetPathLength(toPath);
+                    double startOffset = 0;
 
                     if (textStartOffset != "")
                     { startOffset = ConvertToPixel(textStartOffset, pathLength); }
@@ -814,13 +815,13 @@ namespace GrblPlotter
                                 angle = GetAngle(pPath[pIndex], pPath[pIndex + 1]);
 
                             //       Logger.Trace("●  ExportTextOnPath '{0}' x:{1}  y:{2}", text[i],origin.X,origin.Y);
-                            DrawGlyphPath(path, new PointF(origin.X, origin.Y - yOffset), new PointF(origin.X, origin.Y), angle, text[i].ToString(), StringAlignment.Center);
+                            DrawGlyphPath(path, new PointF(origin.X, origin.Y - (float)yOffset), new PointF(origin.X, origin.Y), angle, text[i].ToString(), StringAlignment.Center);
                             ExtractGlyphPath(path, new PointF(0, 0), "textPath '" + text[i] + "'");            // StartPath & Graphic.StopPath
                         }
                     }
                     CharIndex += text.Length;
 
-                    PointF getPathPos(float s, ref int index)
+                    PointF getPathPos(double s, ref int index)
                     {
                         double dc, distanceOld = 0, distance = 0;
                         float x, y, lx = pPath[0].X, ly = pPath[0].Y;
@@ -872,13 +873,13 @@ namespace GrblPlotter
                 }
             }
 
-            private void DrawGlyphPath(GraphicsPath myPath, PointF origin, PointF originR, float angle, string c, StringAlignment alignment)
+            private void DrawGlyphPath(GraphicsPath myPath, PointF origin, PointF originR, double angle, string c, StringAlignment alignment)
             {
                 var format = new StringFormat(StringFormatFlags.NoClip | StringFormatFlags.NoWrap | StringFormatFlags.MeasureTrailingSpaces);
                 format.Alignment |= alignment;
 
                 myPath.Reset();
-                myPath.AddString(c, fontFamily, (int)fontStyle, fontSize,
+                myPath.AddString(c, fontFamily, (int)fontStyle, (float)fontSize,
                                  origin, format);// stringFormat);
 
                 //    myPath.AddLine(origin.X, originR.Y + 2, origin.X, originR.Y);     // draw ceoss at origin
@@ -887,7 +888,7 @@ namespace GrblPlotter
                 if (angle != 0)
                 {
                     System.Drawing.Drawing2D.Matrix rotation_matrix = new System.Drawing.Drawing2D.Matrix();
-                    rotation_matrix.RotateAt(angle, originR);    //new PointF(x, y));
+                    rotation_matrix.RotateAt((float)angle, originR);    //new PointF(x, y));
                     myPath.Transform(rotation_matrix);
                 }
             }
@@ -902,7 +903,7 @@ namespace GrblPlotter
                 {
                     format.Alignment |= StringAlignment.Near;
 
-                    path.AddString(c, fontFamily, (int)fontStyle, fontSize,
+                    path.AddString(c, fontFamily, (int)fontStyle, (float)fontSize,
                                    new PointF(), format);
 
                     //    path.Flatten();

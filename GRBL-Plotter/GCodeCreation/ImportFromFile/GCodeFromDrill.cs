@@ -139,7 +139,7 @@ namespace GrblPlotter
             Dictionary<string, string> tNrToDiameter = new Dictionary<string, string>();
 
             Logger.Info(" Amount Lines:{0}", drillCode.Length);
-            if (backgroundWorker != null) backgroundWorker.ReportProgress(0, new MyUserState { Value = 10, Content = "Read DXF vector data of " + drillCode.Length.ToString() + " lines" });
+            backgroundWorker?.ReportProgress(0, new MyUserState { Value = 10, Content = "Read DXF vector data of " + drillCode.Length.ToString() + " lines" });
 
             int lineNr = 0;
             foreach (string line in drillCode)
