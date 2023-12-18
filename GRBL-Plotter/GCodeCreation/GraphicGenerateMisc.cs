@@ -21,17 +21,19 @@
  * 2021-10-29 bugfix in RemoveIntermediateSteps
  * 2021-11-16 bugfix RemoveIntermediateSteps, RemoveShortMoves
  * 2022-01-24 add CalculateDistances
- * 2023-04-12 l:364 f:ClipCode only remove offset, if option is enabled
- * 2023-04-22 l:1280 f: HasSameProperties loop until 6
- * 2023-04-25 l:845 f:FilterProperties new function; only show tile-id if needed
+ * 2023-04-12 l:364  f:ClipCode only remove offset, if option is enabled
+ * 2023-04-22 l:1280 f:HasSameProperties loop until 6
+ * 2023-04-25 l:845  f:FilterProperties new function; only show tile-id if needed
  * 2023-07-03 l:1307 f:HasSameProperties also check pen-width if graphicInformation.OptionZFromWidth || graphicInformation.OptionSFromWidth
- * 2023-07-05 l:776 f:RemoveIntermediateSteps also compare depth informnation
- * 2023-07-13 l:800 f:RemoveShortMoves also compare depth informnation
- * 2023-07-30 l:898 f:RemoveOffset calc new dimesnion for all types
+ * 2023-07-05 l:776  f:RemoveIntermediateSteps also compare depth informnation
+ * 2023-07-13 l:800  f:RemoveShortMoves also compare depth informnation
+ * 2023-07-30 l:898  f:RemoveOffset calc new dimesnion for all types
  * 2023-08-06 l:1283 f:SortByDistance get also start-pos
  * 2023-08-16 l:1370 f:SortByDistance pull request Speed up merge and sort #348
  * 2023-08-16 l:1490 f:HasSameProperties pull request Speed up merge and sort #348
- * 2023-09-01 l:915 f:RemoveOffset check index before shifting largest object
+ * 2023-09-01 l:915  f:RemoveOffset check index before shifting largest object
+ * 2023-11-09 l:1067 f:AddFrame -> SetPenFill("none") to avoid hatch-fill
+ * 2023-11-11 l_1030 f:Scale scale also ((GCodeArc)entity).CenterIJ
 */
 
 using System;
@@ -880,7 +882,7 @@ namespace GrblPlotter
         #endregion
 
         #region remove offset
-        private static void RemoveOffset(List<PathObject> graphicToOffset, double offsetX, double offsetY)
+        private static void RemoveOffset(List<PathObject> graphicToOffset, double offsetX, double offsetY, int start = 0)
         {
             System.Diagnostics.StackTrace s = new System.Diagnostics.StackTrace(System.Threading.Thread.CurrentThread, true);
             int iLargest = 0;
@@ -889,7 +891,7 @@ namespace GrblPlotter
             if (logEnable) Logger.Trace("...RemoveOffset before min X:{0:0.00} Y:{1:0.00} caller:{2} --------------------------------------", actualDimension.minx, actualDimension.miny, s.GetFrame(1).GetMethod().Name);
 
             PathObject item;
-            for (int i = 0; i < graphicToOffset.Count; i++)
+            for (int i = start; i < graphicToOffset.Count; i++)
             {
                 item = graphicToOffset[i];
                 item.Start = new Point(item.Start.X - offsetX, item.Start.Y - offsetY);
@@ -906,7 +908,7 @@ namespace GrblPlotter
                     {
                         largest = tlarge;
                         iLargest = i;
-                    //    if (logEnable) Logger.Trace("    Larger: id:{0}", i);
+                        //    if (logEnable) Logger.Trace("    Larger: id:{0}", i);
                     }
                 }
             }
@@ -915,12 +917,13 @@ namespace GrblPlotter
             if (Properties.Settings.Default.importGraphicLargestLast)   // move largest object to the end
             {
                 if (logEnable) Logger.Trace("...RemoveOffset move largest object to the end id:{0}", iLargest);
-				if (graphicToOffset.Count > iLargest)
-                {	graphicToOffset.Add(graphicToOffset[iLargest]);
-					graphicToOffset.RemoveAt(iLargest);
-				}
-				else
-				{	Logger.Warn("...RemoveOffset index nok: iLargest:{0}  Count:{1}", iLargest, graphicToOffset.Count);}
+                if (graphicToOffset.Count > iLargest)
+                {
+                    graphicToOffset.Add(graphicToOffset[iLargest]);
+                    graphicToOffset.RemoveAt(iLargest);
+                }
+                else
+                { Logger.Warn("...RemoveOffset index nok: iLargest:{0}  Count:{1}", iLargest, graphicToOffset.Count); }
             }
         }
         #endregion
@@ -1008,19 +1011,24 @@ namespace GrblPlotter
         public static void ScaleXY(double scaleX, double scaleY)	// scaleX != scaleY will not work for arc!
         { Scale(completeGraphic, scaleX, scaleY); }
 
-        private static void Scale(List<PathObject> graphicToOffset, double scaleX, double scaleY)
+        private static void Scale(List<PathObject> graphicToOffset, double scaleX, double scaleY, int start = 0)
         {
             if (logEnable) Logger.Trace("...Scale scaleX:{0:0.00} scaleY:{1:0.00} ", scaleX, scaleY);
-            foreach (PathObject item in graphicToOffset)    // dot or path
+            for (int i = start; i < graphicToOffset.Count; i++)
+            //foreach (PathObject item in graphicToOffset)    // dot or path
             {
+                var item = graphicToOffset[i];
                 item.Start = new Point(item.Start.X * scaleX, item.Start.Y * scaleY);
                 item.End = new Point(item.End.X * scaleX, item.End.Y * scaleY);
                 if (item is ItemPath PathData)
                 {
-                    //ItemPath PathData = (ItemPath)item;
                     if (logEnable) Logger.Trace("  ID:{0} Geo:{1} Size:{2}", item.Info.Id, item.Info.PathGeometry, PathData.Path.Count);
                     foreach (GCodeMotion entity in PathData.Path)
-                    { entity.MoveTo = new Point(entity.MoveTo.X * scaleX, entity.MoveTo.Y * scaleY); }
+                    {
+                        entity.MoveTo = new Point(entity.MoveTo.X * scaleX, entity.MoveTo.Y * scaleY);
+                        if (entity is GCodeArc)
+                        { ((GCodeArc)entity).CenterIJ = new Point(((GCodeArc)entity).CenterIJ.X * scaleX, ((GCodeArc)entity).CenterIJ.Y * scaleY); }
+                    }
                     PathData.Dimension.ScaleXY(scaleX, scaleY);
                 }
             }
@@ -1061,6 +1069,7 @@ namespace GrblPlotter
                 radius = distance;
 
             SetGeometry("Frame");
+            SetPenFill("none");
             SetPenColor(Properties.Settings.Default.importGraphicAddFramePenColor);
             SetPenWidth(Properties.Settings.Default.importGraphicAddFramePenWidth.ToString());
             SetLayer(Properties.Settings.Default.importGraphicAddFramePenLayer);
@@ -1305,9 +1314,9 @@ namespace GrblPlotter
             }
             int maxElements = graphicToSort.Count;
 
-			double minDist;
-			int minDistIndex;
-			
+            double minDist;
+            int minDistIndex;
+
             while ((graphicToSort.Count > 0) && (!cancelByWorker))                      // items will be removed step by step from completeGraphic
             {
                 if (backgroundWorker != null)           // 2023-08-16 pull request Speed up merge and sort #348 Reduce CPU used updating progress bars
@@ -1321,7 +1330,7 @@ namespace GrblPlotter
                     }
                 }
                 minDist = double.MaxValue;
-				minDistIndex = -1;
+                minDistIndex = -1;
                 for (int i = 0; i < graphicToSort.Count; i++)     // calculate distance to all remaining items check start and end position
                 {
                     tmp = graphicToSort[i];
@@ -1380,13 +1389,13 @@ namespace GrblPlotter
                         }
                         graphicToSort[i] = tmp;
                     }
-					
-					
-					if (tmp.Distance < minDist) // 2023-08-16 pull request Speed up merge and sort #348    Remove unnecessary sort
+
+
+                    if (tmp.Distance < minDist) // 2023-08-16 pull request Speed up merge and sort #348    Remove unnecessary sort
                     {
-						minDist = tmp.Distance;
-						minDistIndex = i;
-					}
+                        minDist = tmp.Distance;
+                        minDistIndex = i;
+                    }
                 }
                 /*	2023-08-16 pull request Speed up merge and sort #348    Remove unnecessary sort
                 graphicToSort.Sort((x, y) => x.Distance.CompareTo(y.Distance));   // sort by distance
@@ -1398,11 +1407,11 @@ namespace GrblPlotter
 				*/
                 if (minDistIndex != -1)     // 2023-08-16 pull request Speed up merge and sort #348    Remove unnecessary sort
                 {
-					sortedGraphic.Add(graphicToSort[minDistIndex]);       	// get closest item = first in list
-					actualPos = graphicToSort[minDistIndex].End;         	// set new start pos
-					if (logSortMerge) Logger.Trace("   remove id:{0} ", graphicToSort[minDistIndex].Info.Id);
-					graphicToSort.RemoveAt(minDistIndex);                  // remove item from remaining list
-				}
+                    sortedGraphic.Add(graphicToSort[minDistIndex]);         // get closest item = first in list
+                    actualPos = graphicToSort[minDistIndex].End;            // set new start pos
+                    if (logSortMerge) Logger.Trace("   remove id:{0} ", graphicToSort[minDistIndex].Info.Id);
+                    graphicToSort.RemoveAt(minDistIndex);                  // remove item from remaining list
+                }
             }
 
             if (cancelByWorker)//stopwatch.Elapsed.Minutes >= maxTimeMinute)  // time expired, just copy missing figures
@@ -1449,9 +1458,9 @@ namespace GrblPlotter
                 if (logEnable) Logger.Trace("...SortByDistance move largest object to the end id:{0}", iLargest);
                 graphicToSort.Add(graphicToSort[iLargest]);
                 graphicToSort.RemoveAt(iLargest);
-            //    PathObject tmpp = graphicToSort[graphicToSort.Count - 1];
-            //    graphicToSort[graphicToSort.Count - 1] = graphicToSort[iLargest];
-            //    graphicToSort[iLargest] = tmpp;
+                //    PathObject tmpp = graphicToSort[graphicToSort.Count - 1];
+                //    graphicToSort[graphicToSort.Count - 1] = graphicToSort[iLargest];
+                //    graphicToSort[iLargest] = tmpp;
             }
 
             if (logEnable) Logger.Trace("...SortByDistance()  finish");
@@ -1503,16 +1512,16 @@ namespace GrblPlotter
         { return new Point((float)tmp.X, (float)tmp.Y); }
 
         //private static bool HasSameProperties(ItemPath a, ItemPath b)
-		private static bool HasSameProperties(ItemPath a, ItemPath b, bool importLineDashPattern)       // 2023-08-16 pull request Speed up merge and sort #348    Improve comparing GroupAttributes
+        private static bool HasSameProperties(ItemPath a, ItemPath b, bool importLineDashPattern)       // 2023-08-16 pull request Speed up merge and sort #348    Improve comparing GroupAttributes
         {
             if (graphicInformation.GroupEnable)
             {
                 //for (int i = 1; i <= 6; i++)    // GroupOptions { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByType = 4, ByTile = 5, ByFill = 6, Label = 7};
-				for (int i = 1; i < a.Info.GroupAttributes.Count; i++)    // GroupOptions { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByType = 4, ByTile = 5};
-				{
+                for (int i = 1; i < a.Info.GroupAttributes.Count; i++)    // GroupOptions { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByType = 4, ByTile = 5};
+                {
                     if (logDetailed) Logger.Trace("  hasSameProperties - GroupEnable-Option:{0} a:'{1}'  b:'{2}'", i, a.Info.GroupAttributes[i], b.Info.GroupAttributes[i]);
-					if (a.Info.GroupAttributes[i] != b.Info.GroupAttributes[i])
-						return false;
+                    if (a.Info.GroupAttributes[i] != b.Info.GroupAttributes[i])
+                        return false;
                 }
             }
 
@@ -1524,23 +1533,23 @@ namespace GrblPlotter
                 ///    sameDash = true;
                 //else if (a.DashArray == b.DashArray)
                 //    sameDash = true;
-				if ((a.DashArray.Length == 0) && (b.DashArray.Length == 0))
-				{
-					return true;
-				}
-				else
-				{
-					if (a.DashArray.Length != b.DashArray.Length)
-						return false;
-					for (int i = 1; i <= a.DashArray.Length; i++)       // 2023-08-16 pull request Speed up merge and sort #348    Improve comparing GroupAttributes
+                if ((a.DashArray.Length == 0) && (b.DashArray.Length == 0))
+                {
+                    return true;
+                }
+                else
+                {
+                    if (a.DashArray.Length != b.DashArray.Length)
+                        return false;
+                    for (int i = 1; i <= a.DashArray.Length; i++)       // 2023-08-16 pull request Speed up merge and sort #348    Improve comparing GroupAttributes
                     {
-						if (a.DashArray[i] != b.DashArray[i])
-							return false;
-					}
-				}
-			}
+                        if (a.DashArray[i] != b.DashArray[i])
+                            return false;
+                    }
+                }
+            }
             //return (sameProperties && sameDash);
-			return true;
+            return true;
         }
         /*     private static string ShowArray(double[] tmp)
              {   string tmps = "";
@@ -1556,7 +1565,7 @@ namespace GrblPlotter
 
             int i, k;
             int maxElements = graphicToMerge.Count;
-			bool importLineDashPattern = Properties.Settings.Default.importLineDashPattern; // Keep a local copy for speed
+            bool importLineDashPattern = Properties.Settings.Default.importLineDashPattern; // Keep a local copy for speed
 
             for (i = graphicToMerge.Count - 1; i > 0; i--)
             {

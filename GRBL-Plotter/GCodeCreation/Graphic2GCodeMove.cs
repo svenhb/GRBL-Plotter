@@ -18,6 +18,7 @@
 */
 /*
  * 2023-06-01 New file, split from Graphic2GCodeRelated.cs
+ * 2023-11-11 replace float by double
 */
 
 using System;
@@ -29,7 +30,7 @@ namespace GrblPlotter
     {
         public static void SetTangential(StringBuilder gcodeValue, double angle, bool writeCode)
         {
-            gcodeTangentialAngle = (float)((double)Properties.Settings.Default.importGCTangentialTurn * angle / 360);
+            gcodeTangentialAngle = ((double)Properties.Settings.Default.importGCTangentialTurn * angle / 360);
             if (gcodeTangentialEnable)
             {
                 gcodeTangentialCommand = string.Format(" {0}{1}", gcodeTangentialName, FrmtNum(gcodeTangentialAngle));
@@ -104,7 +105,7 @@ namespace GrblPlotter
                 { zCmd = (double)mz - lastz; tz = (double)mz; }
             }
 
-            float delta = Fdistance(lastx, lasty, mx, my);
+            double delta = Fdistance(lastx, lasty, mx, my);
 
             double x;
 
@@ -235,7 +236,7 @@ namespace GrblPlotter
                 gcodeTime += Fdistance(lastx, lasty, x, y) / GcodeXYFeed;
                 gcodeLines++;
             }
-            lastx = (float)x; lasty = (float)y; lastf = GcodeXYFeed;
+            lastx = x; lasty = y; lastf = GcodeXYFeed;
             LastMovewasG0 = false;
         }
 

@@ -36,6 +36,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
+using static System.Net.Mime.MediaTypeNames;
 
 //#pragma warning disable CA1305
 
@@ -182,10 +183,14 @@ namespace GrblPlotter
 
             public void SetPenWidth(string width)
             {
-                if (double.TryParse(width, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out double nr))
+                //if (double.TryParse(width, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out double nr))
+                if (double.TryParse(width, System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out double nr))
                 {
-                    PenWidthMin = Math.Min(PenWidthMin, nr);
-                    PenWidthMax = Math.Max(PenWidthMax, nr);
+                    if (!Double.IsNaN(nr))
+                    {
+                        PenWidthMin = Math.Min(PenWidthMin, nr);
+                        PenWidthMax = Math.Max(PenWidthMax, nr);
+                    }
                 }
             }
             public void SetDotZ(double dz)
@@ -408,6 +413,14 @@ namespace GrblPlotter
                     return true;
                 }
                 return false;
+            }
+            public string GetGroupAttribute(int index)
+            {
+                if (index < GroupAttributes.Count)
+                {
+                    return GroupAttributes[index];
+                }
+                return "";
             }
 
             public string List()
