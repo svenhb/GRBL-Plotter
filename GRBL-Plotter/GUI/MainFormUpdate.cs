@@ -718,6 +718,7 @@ namespace GrblPlotter
             GuiVariables.variable["GMAS"] = (double)Properties.Settings.Default.importGCPWMUp;
             GuiVariables.variable["GZES"] = (double)Properties.Settings.Default.importGCPWMZero;
             GuiVariables.variable["GCTS"] = (double)(Properties.Settings.Default.importGCPWMDown + Properties.Settings.Default.importGCPWMUp) / 2;
+            GuiVariables.WriteDimensionToRegistry();        
         }
     }
 }

@@ -208,6 +208,9 @@ namespace GrblPlotter
         {
             if (Gcode.LoggerTrace && logMain)
                 Logger.Trace("Event  fCTBCode_TextChanged  manualEdit:{0}  resetView:{1}", manualEdit, resetView);
+            fCTBCode.Cursor = Cursors.IBeam;
+            pictureBox1.Cursor = Cursors.Cross;
+
             if (resetView && !manualEdit)
             {
                 try
@@ -319,6 +322,10 @@ namespace GrblPlotter
 
         private int SetFctbCodeText(string code, bool insertCode = false)
         {
+            fCTBCode.Cursor = Cursors.WaitCursor;
+            pictureBox1.Cursor = Cursors.WaitCursor;
+            Application.DoEvents();
+
             CmsPicBoxEnable();
             ClearErrorLines();
             Logger.Trace("---- SetFctbCodeText insertCode:{0}  enabled:{1}", insertCode, Properties.Settings.Default.fromFormInsertEnable);
@@ -578,7 +585,7 @@ namespace GrblPlotter
             fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
             fCTBCode.BookmarkLine(fCTBCodeClickedLineNow);
 
-        //    VisuGCode.SetPosMarkerLine(fCTBCodeClickedLineNow, !isStreaming);
+            VisuGCode.SetPosMarkerLine(fCTBCodeClickedLineNow, false);  // !isStreaming);
             pictureBox1.Invalidate(); // avoid too much events												  //             toolStrip_tb_StreamLine.Text = fCTBCodeClickedLineNow.ToString();
 
         }
@@ -711,13 +718,15 @@ namespace GrblPlotter
 
             fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
             fCTBCode.BookmarkLine(fCTBCodeClickedLineNow);
-            fCTBCode.DoCaretVisible();
+        //    fCTBCode.DoCaretVisible();
             if ((markerType != XmlMarkerType.None) && VisuGCode.CodeBlocksAvailable() && !isStreaming)
             {
                 SelectionHandle.SelectedMarkerType = markerType;
                 SelectionHandle.SelectedMarkerLine = fCTBCodeClickedLineNow;
             }
-            VisuGCode.SetPosMarkerLine(fCTBCodeClickedLineNow, !isStreaming);
+            VisuGCode.SetPosMarkerLine(fCTBCodeClickedLineNow, false);  // !isStreaming);
+            if (fCTBCodeClickedLineNow > 0)
+                fCTBCode.GotoNextBookmark(fCTBCodeClickedLineNow - 1);// .DoCaretVisible();
             pictureBox1.Invalidate(); // avoid too much events												  //             toolStrip_tb_StreamLine.Text = fCTBCodeClickedLineNow.ToString();
         }
 
@@ -1027,7 +1036,7 @@ namespace GrblPlotter
                 }
                 else        // group not present, try figure / switch to figure
                 {
-                    markedBlockType = marker = XmlMarkerType.Figure;
+                    markedBlockType = XmlMarkerType.Figure;
                 }
             }
             else if (marker == XmlMarkerType.Figure)

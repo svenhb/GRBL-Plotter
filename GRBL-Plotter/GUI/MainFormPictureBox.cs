@@ -43,7 +43,8 @@
  * 2023-09-06 l:573 f:PictureBox1_MouseUp save and restore actual 2D-view pBoxTransform and last grid
 			  l:178 f:PictureBox1_Paint VisuGCode.SetRulerDimension(drawingSize)
 			  l:867 f:ZoomScroll don't reset view, on zoom=1
-			  
+ * 2023-11-15 l:364 f:OnPaint_drawToolPath check for pathObjectPenColorOnlyNone	- show default color if all PenColors are "none"		  	
+ * 2023-12-17 l:1038 f:CmsPicBoxReloadFile_Click add 2nd recent file load, if 1st is "lastProcessed.nc"
 */
 
 using AForge.Imaging.Filters;
@@ -360,7 +361,7 @@ namespace GrblPlotter
                     }
                 }
                 //       Logger.Trace("Paint color pen down {0} largeAmount:{1}  count:{2}  availale:{3}", Properties.Settings.Default.gui2DColorPenDownModeEnable ,VisuGCode.largeDataAmount,VisuGCode.pathObject.Count , coloredPenPathAvailable);
-                if (Properties.Settings.Default.gui2DColorPenDownModeEnable && (VisuGCode.pathObject.Count > 0) && coloredPenPathAvailable)// && (VisuGCode.pathObject[0].path.PointCount > 0))    // Show PenDown path in colors from imported graphics
+                if (Properties.Settings.Default.gui2DColorPenDownModeEnable && (VisuGCode.pathObject.Count > 0) && coloredPenPathAvailable && !VisuGCode.pathObjectPenColorOnlyNone)// && (VisuGCode.pathObject[0].path.PointCount > 0))    // Show PenDown path in colors from imported graphics
                 {
                     //if (VisuGCode.pathObject.Count > 0)
                     {
@@ -850,7 +851,7 @@ namespace GrblPlotter
         private Matrix pBoxOrig = new Matrix();			// to restore e.Graphics.Transform
         private const float scrollZoomFactor = 1.2f; // zoom factor   
         private float zoomFactor = 1f;
-        private float zoomFactorMin = 1f;
+        //private float zoomFactorMin = 1f;
         private float markerSize = 20;
         private bool allowZoom = true;
 
@@ -1037,10 +1038,11 @@ namespace GrblPlotter
         private void CmsPicBoxReloadFile_Click(object sender, EventArgs e)
         {
             Logger.Trace("CmsPicBoxReloadFile_Click  tooltip:{0}   file:{1}", cmsPicBoxReloadFile.ToolTipText, lastLoadFile);
-            ReStartConvertFile(sender, e);
+            ToolStripMenuItem tmp = (ToolStripMenuItem)sender;
+            ReStartConvertFile(sender, e, tmp.Name.Contains("2")? 1:0);
         }
 
-        private void cmsPicBoxClearWorkspace_Click(object sender, EventArgs e)
+        private void CmsPicBoxClearWorkspace_Click(object sender, EventArgs e)
         {  ClearWorkspace(); }
         private void ClearWorkspace()
         {

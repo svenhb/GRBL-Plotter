@@ -312,6 +312,7 @@ namespace GrblPlotter
             this.unDo2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
             this.cmsPicBoxReloadFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsPicBoxReloadFile2 = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsPicBoxPasteFromClipboard = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsPicBoxClearWorkspace = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
@@ -2148,6 +2149,7 @@ namespace GrblPlotter
             this.unDo2ToolStripMenuItem,
             this.toolStripSeparator17,
             this.cmsPicBoxReloadFile,
+            this.cmsPicBoxReloadFile2,
             this.cmsPicBoxPasteFromClipboard,
             this.cmsPicBoxClearWorkspace,
             this.toolStripSeparator9,
@@ -2190,7 +2192,15 @@ namespace GrblPlotter
             // 
             this.cmsPicBoxReloadFile.Name = "cmsPicBoxReloadFile";
             resources.ApplyResources(this.cmsPicBoxReloadFile, "cmsPicBoxReloadFile");
+            this.cmsPicBoxReloadFile.Tag = "0";
             this.cmsPicBoxReloadFile.Click += new System.EventHandler(this.CmsPicBoxReloadFile_Click);
+            // 
+            // cmsPicBoxReloadFile2
+            // 
+            this.cmsPicBoxReloadFile2.Name = "cmsPicBoxReloadFile2";
+            resources.ApplyResources(this.cmsPicBoxReloadFile2, "cmsPicBoxReloadFile2");
+            this.cmsPicBoxReloadFile2.Tag = "1";
+            this.cmsPicBoxReloadFile2.Click += new System.EventHandler(this.CmsPicBoxReloadFile_Click);
             // 
             // cmsPicBoxPasteFromClipboard
             // 
@@ -2202,7 +2212,7 @@ namespace GrblPlotter
             // 
             this.cmsPicBoxClearWorkspace.Name = "cmsPicBoxClearWorkspace";
             resources.ApplyResources(this.cmsPicBoxClearWorkspace, "cmsPicBoxClearWorkspace");
-            this.cmsPicBoxClearWorkspace.Click += new System.EventHandler(this.cmsPicBoxClearWorkspace_Click);
+            this.cmsPicBoxClearWorkspace.Click += new System.EventHandler(this.CmsPicBoxClearWorkspace_Click);
             // 
             // toolStripSeparator9
             // 
@@ -3883,6 +3893,7 @@ namespace GrblPlotter
         private System.Windows.Forms.ToolStripMenuItem türkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem PolishToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cmsPicBoxClearWorkspace;
+        private System.Windows.Forms.ToolStripMenuItem cmsPicBoxReloadFile2;
     }
 }
 

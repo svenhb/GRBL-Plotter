@@ -62,6 +62,7 @@
  * 2023-09-11 l:394 new function LoadFiles(string[] fileList, int minIndex)
  * 2023-09-15 l:245 f: NewCodeEnd multiFileImportNotLastFile
  * 2023-11-02 l:465 f:LoadFiles bug fix "Value was either too large or too small for a Decimal. Source" use  Graphic.actualDimension.dimx instead of (Graphic.actualDimension.maxx - Graphic.actualDimension.minx);
+ * 2023-12-17 l:158/1222 f:SaveRecentFile/ReStartConvertFile add 2nd recent file load, if 1st is "lastProcessed.nc"
 */
 /*   96 #region MAIN-MENU FILE
  * 1483 MainForm_KeyDown  
@@ -126,6 +127,7 @@ namespace GrblPlotter
         {
             Logger.Info("SaveRecentFile: {0}", path);
             saveName = Path.GetFileNameWithoutExtension(path);
+            string dname = Path.GetFileName(path);
             toolStripMenuItem2.DropDownItems.Clear();
             LoadRecentList(); //load list from file
 
@@ -139,6 +141,25 @@ namespace GrblPlotter
             {
                 MRUlist.Insert(0, path);    //insert given path into list on top
                 cmsPicBoxReloadFile.ToolTipText = string.Format("Load '{0}'", path);
+
+                string txt = cmsPicBoxReloadFile.Text;
+                if (cmsPicBoxReloadFile.Text.Contains("|"))
+                {
+                    txt = cmsPicBoxReloadFile.Text.Substring(0, cmsPicBoxReloadFile.Text.IndexOf("|"));
+                    string tmp = txt + "| " + dname;
+                    cmsPicBoxReloadFile.Text = tmp;
+                }
+                else
+                {
+                    cmsPicBoxReloadFile.Text += " | " + dname;
+                }
+                try
+                {
+                    cmsPicBoxReloadFile2.Text = txt + "| " + Path.GetFileName(Datapath.MakeAbsolutePath(MRUlist[1]));
+                    cmsPicBoxReloadFile2.Visible = (dname == fileLastProcessed + ".nc");
+                }
+                catch
+                { }
             }
 
             //keep list number not exceeded the given value
@@ -204,7 +225,9 @@ namespace GrblPlotter
             Logger.Trace("===== newCodeStart - clear 2D-view and editor");
             stopwatch.Start();
             Cursor.Current = Cursors.WaitCursor;
-            pBoxTransform.Reset(); zoomFactorMin = zoomFactor = 1;
+            pictureBox1.Cursor = Cursors.WaitCursor;
+
+            pBoxTransform.Reset(); zoomFactor = 1;
             showPicBoxBgImage = false;                  // don't show background image anymore
             pictureBox1.BackgroundImage = null;
             pictureBox1.Image = null;
@@ -280,7 +303,7 @@ namespace GrblPlotter
             }
             else
             {
-                int lineCount = 0;
+                int lineCount;// = 0;
                 using (VisuWorker f = new VisuWorker())					// GCodeVisuWorker.cs
                 {
                     if (!imported)
@@ -319,6 +342,7 @@ namespace GrblPlotter
             UpdateControlEnables();                                   	// update control enable 
             lbInfo.BackColor = SystemColors.Control;
             this.Cursor = Cursors.Default;
+            pictureBox1.Cursor = Cursors.Cross;
 
             EnableBlockCommands(false);
             VisuGCode.MarkSelectedFigure(-1);
@@ -407,6 +431,12 @@ namespace GrblPlotter
             if (prop.multipleLoadAllwaysClear)
             { ClearWorkspace(); }
 
+
+            Cursor.Current = Cursors.WaitCursor;
+            pictureBox1.Cursor = Cursors.WaitCursor;
+
+            Application.DoEvents();
+
             if (fileList.Length > minIndex)
             {
                 if (prop.fromFormInsertEnable || prop.multipleLoadAllwaysLoad)
@@ -420,8 +450,8 @@ namespace GrblPlotter
                     int maxX = (int)prop.multipleLoadNoX;
                     int maxY = (int)prop.multipleLoadNoY;
                     int countNo = 0;
-                    double graphicDimX = 0;
-                    double graphicDimY = 0;
+                    double graphicDimX;// = 0;
+                    double graphicDimY;// = 0;
 
                     Graphic2GCode.multiImportOffsetX = prop.importGraphicOffsetOriginX; // tmpOffsetX;
                     Graphic2GCode.multiImportOffsetY = prop.importGraphicOffsetOriginY; // tmpOffsetY;
@@ -526,6 +556,8 @@ namespace GrblPlotter
                     LoadFile(fileList[minIndex]);
                 }
             }
+            //    Cursor.Current = Cursors.Default;
+            pictureBox1.Cursor = Cursors.Cross;
         }
 
 
@@ -728,7 +760,7 @@ namespace GrblPlotter
             {
                 SaveRecentFile(fileName);
                 SetLastLoadedFile("Data from file", fileName);
-                Cursor.Current = Cursors.Default;
+                //    Cursor.Current = Cursors.Default;
                 // pBoxTransform.Reset();	// already done in function NewCodeStart
                 EnableCmsCodeBlocks(VisuGCode.CodeBlocksAvailable());
                 pictureBox1.Invalidate();
@@ -1183,10 +1215,10 @@ namespace GrblPlotter
 
         //schalter if source from setup oder picbox-cms 
         public void ReStartConvertFileFromSetup(object sender, EventArgs e)   	// event from setup form
-        { ReStartConvertFile(sender, e, true); }
-        public void ReStartConvertFile(object sender, EventArgs e)   			// event from picbox cms
-        { ReStartConvertFile(sender, e, false); }
-        public void ReStartConvertFile(object sender, EventArgs e, bool wantGraphic)
+        { ReStartConvertFile(sender, e, true, 0); }
+        public void ReStartConvertFile(object sender, EventArgs e, int i)   			// event from picbox cms
+        { ReStartConvertFile(sender, e, false, i); }
+        public void ReStartConvertFile(object sender, EventArgs e, bool wantGraphic, int i)
         {
             Logger.Info("●●●●● ReStartConvertFile SourceType:{0}", Graphic.graphicInformation.SourceType);
             if (!isStreaming)
@@ -1221,7 +1253,10 @@ namespace GrblPlotter
                                 LoadFile(lastGraphic);
                             }
                             else
-                            { LoadFile(lastLoadFile); }
+                            {
+                                // LoadFile(lastLoadFile);
+                                LoadFile(Datapath.MakeAbsolutePath(MRUlist[i]));
+                            }
                         }
                     }
                     this.Cursor = Cursors.Default;
@@ -1411,6 +1446,7 @@ namespace GrblPlotter
 
             if (showProgress)   //  start timer delayed process
             {
+                this.Cursor = Cursors.WaitCursor;
                 loadTimerStep++;
                 loadTimer.Start();
                 return;
@@ -1419,6 +1455,7 @@ namespace GrblPlotter
             FoldCodeOnLoad();
             //    UpdateControlEnables(); 
             _camera_form?.NewDrawing();
+            _probing_form?.UpdateFiducials();
         }
 
         int loadTimerStep = -1;
@@ -1439,6 +1476,7 @@ namespace GrblPlotter
                         break;
                     default:
                         loadTimer?.Stop();
+                        this.Cursor = Cursors.Default;
                         break;
                 }
             }
@@ -2129,8 +2167,8 @@ namespace GrblPlotter
 
                     if (action.StartsWith("Stream"))
                     {
-                        if (action.Contains("Start")) { btnStreamStart.PerformClick(); }
-                        if (action.Contains("Stop")) { btnStreamStop.PerformClick(); }
+                        if (action.Contains("Start")) { StartStreaming(0, fCTBCode.LinesCount - 1); }// btnStreamStart.PerformClick(); }
+                        if (action.Contains("Stop")) { StopStreaming(true); }// btnStreamStop.PerformClick(); }
                         if (action.Contains("Check")) { btnStreamCheck.PerformClick(); }
                         return true;
                     }

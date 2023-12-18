@@ -249,13 +249,14 @@ namespace GrblPlotter
                 NewCodeEnd();       // InsertCodeFromForm without insertCode
 
                 FoldBlocksByLevel(foldLevelSelected);
-				
-				if (insertCode)		// select object - if grouping is disabled, a group should be inserted?
-				{	if (sourceGCode.Contains(XmlMarker.GroupStart))
-						SetSelection(1, XmlMarkerType.Group);	
-					else if (sourceGCode.Contains(XmlMarker.FigureStart))
-						SetSelection(1, XmlMarkerType.Figure);	
-				}			
+
+                if (insertCode)     // select object - if grouping is disabled, a group should be inserted?
+                {
+                    if (sourceGCode.Contains(XmlMarker.GroupStart))
+                        SetSelection(1, XmlMarkerType.Group);
+                    else if (sourceGCode.Contains(XmlMarker.FigureStart))
+                        SetSelection(1, XmlMarkerType.Figure);
+                }
             }
             importOptions = Graphic.graphicInformation.ListOptions();
             if (importOptions.Length > 1)
@@ -279,7 +280,8 @@ namespace GrblPlotter
             {
                 string tmpCode = "(no gcode)";
                 if (Graphic.GCode != null)
-                {   tmpCode = Graphic.GCode.ToString();
+                {
+                    tmpCode = Graphic.GCode.ToString();
                 }
                 InsertCodeFromForm(tmpCode, "from text");
                 Properties.Settings.Default.counterImportText += 1;
@@ -482,6 +484,7 @@ namespace GrblPlotter
             fCTBCode.BackColor = Color.White;
             resetView = false;
             _projector_form?.Invalidate();
+            GuiVariables.WriteDimensionToRegistry();
             Logger.Info("▲▲▲▲▲▲ TransformEnd");
         }
 
@@ -503,7 +506,7 @@ namespace GrblPlotter
             if (fCTBCode.Lines.Count > 1)
             {
                 TransformStart("Apply Offset");
-                zoomFactorMin = zoomFactor = 1;
+                zoomFactor = 1;
                 if (rBOrigin1.Checked) { fCTBCode.Text = VisuGCode.TransformGCodeOffset(-offsetx, -offsety, VisuGCode.Translate.Offset1); }
                 if (rBOrigin2.Checked) { fCTBCode.Text = VisuGCode.TransformGCodeOffset(-offsetx, -offsety, VisuGCode.Translate.Offset2); }
                 if (rBOrigin3.Checked) { fCTBCode.Text = VisuGCode.TransformGCodeOffset(-offsetx, -offsety, VisuGCode.Translate.Offset3); }

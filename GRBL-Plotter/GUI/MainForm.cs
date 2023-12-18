@@ -163,13 +163,26 @@ namespace GrblPlotter
             {
                 const string reg_key = "HKEY_CURRENT_USER\\SOFTWARE\\GRBL-Plotter";
                 try
-                { Registry.SetValue(reg_key, "update", 0); }
+                {
+                    Registry.SetValue(reg_key, "update", 0);
+                    Registry.SetValue(reg_key, "start", 0);
+                    Registry.SetValue(reg_key, "stop", 0);
+                    Registry.SetValue(reg_key, "offsetX", "0.0");
+                    Registry.SetValue(reg_key, "offsetY", "0.0");
+                    Registry.SetValue(reg_key, "rotate", "0.0");
+                }
                 catch (Exception er) { Logger.Error(er, "MainForm Reading reg-key update "); }
             }
 
             CustomButtonsSetEvents();       // for buttons 17 to 32
             SetMenuShortCuts();				// Add shortcuts to menu items
             LoadRecentList();               // open Recent.txt and fill menu
+            try
+            { cmsPicBoxReloadFile.Text += " | " + Path.GetFileName(Datapath.MakeAbsolutePath(MRUlist[0])); }
+            catch
+            {
+                Logger.Error("MainForm: could not set cmsPicBoxReloadFile.Text");
+            }
 
             UpdateMenuChecker();
 
@@ -267,58 +280,10 @@ namespace GrblPlotter
                 Logger.Info(culture, "++++++ MainForm SplashScreen closed          -> mainTimer:{0}", mainTimerCount);
 
                 string[] args = Environment.GetCommandLineArgs();
-                LoadFiles(args, 1);
-                /*
+
                 if (args.Length > 1)
-                {
-                    if (Properties.Settings.Default.fromFormInsertEnable)
-                    {
-                        Graphic2GCode.multiImport = true;
-                        bool tmpUseCase = Properties.Settings.Default.importShowUseCaseDialog;
-                        bool tmpOffset = Properties.Settings.Default.importGraphicOffsetOrigin;
-                        decimal tmpOffsetX = Properties.Settings.Default.importGraphicOffsetOriginX;
-                        decimal tmpOffsetY = Properties.Settings.Default.importGraphicOffsetOriginY;
-                        decimal gap = Properties.Settings.Default.importGraphicMultiplyGraphicsDistance;
-                        int maxX = (int)Properties.Settings.Default.importGraphicMultiplyGraphicsDimX;
-                        int countX = 0;
-                        double graphicDimX = 0;
+                    LoadFiles(args, 1);
 
-                        Properties.Settings.Default.importGraphicOffsetOrigin = true;
-                        for (int i = 1; i < args.Length; i++)
-                        {
-                            Logger.Info(culture, "Load files via CommandLineArgs[{0}] {1}", i, args[1]);
-                            Graphic2GCode.multiImportNr = i;
-                            LoadFile(args[i]);
-                            countX++;
-
-                            Properties.Settings.Default.importShowUseCaseDialog = false;        // show dialog just 1 time
-
-                            graphicDimX = Graphic.actualDimension.maxx;
-                            if (graphicDimX !=0)
-                                Properties.Settings.Default.importGraphicOffsetOriginX += (decimal)graphicDimX + gap;
-                            else
-                                Properties.Settings.Default.importGraphicOffsetOriginX = (decimal)VisuGCode.xyzSize.maxx + gap;
-
-                            if (countX >= maxX)
-                            {
-                                countX = 0;
-                                Properties.Settings.Default.importGraphicOffsetOriginX = tmpOffsetX;
-                                Properties.Settings.Default.importGraphicOffsetOriginY = (decimal)VisuGCode.xyzSize.maxy + gap;
-                            }
-                        }
-
-                        Properties.Settings.Default.importShowUseCaseDialog = tmpUseCase;
-                        Properties.Settings.Default.importGraphicOffsetOrigin = tmpOffset;
-                        Properties.Settings.Default.importGraphicOffsetOriginX = tmpOffsetX;
-                        Properties.Settings.Default.importGraphicOffsetOriginY = tmpOffsetY;
-                    }
-                    else
-                    {
-                        Logger.Info(culture, "Load file via CommandLineArgs[1] {0}", args[1]);
-                        LoadFile(args[1]);
-                    }
-                }
-*/
                 SplashScreenTimer.Stop();
                 SplashScreenTimer.Interval = 2000;
                 SplashScreenTimer.Start();
@@ -491,6 +456,31 @@ namespace GrblPlotter
                     signalShowToolExchangeMessage = false;
                     ShowToolChangeMessage();
                 }
+                if (Properties.Settings.Default.flowCheckRegistryChange)
+                {
+                    int start = 0, stop = 0;
+                    const string reg_key = "HKEY_CURRENT_USER\\SOFTWARE\\GRBL-Plotter";
+
+                    try
+                    {
+                        start = (int)Registry.GetValue(reg_key, "start", 0);
+                        Registry.SetValue(reg_key, "start", 0);
+                        stop = (int)Registry.GetValue(reg_key, "stop", 0);
+                        Registry.SetValue(reg_key, "stop", 0);
+                    }
+                    catch (Exception er) { Logger.Error(er, "MainTimer_Tick stream Reading reg-key update "); }
+
+                    if (start != 0)
+                    {
+                        Logger.Trace("MainTimer_Tick Pause streaming");
+                        StartStreaming(0, fCTBCode.LinesCount - 1);   // btnStreamStart.PerformClick(); 
+                    }
+                    if (stop != 0)
+                    {
+                        Logger.Trace("MainTimer_Tick Stop streaming");
+                        StopStreaming(true);    // btnStreamStop.PerformClick(); 
+                    }
+                }
             }
             else
             {
@@ -502,21 +492,56 @@ namespace GrblPlotter
 
                 if (Properties.Settings.Default.flowCheckRegistryChange)
                 {
-                    int update = 0;
+                    int update = 0, start = 0;
+                    double offX = 0;
+                    double offY = 0;
+                    double rotate = 0;
                     const string reg_key = "HKEY_CURRENT_USER\\SOFTWARE\\GRBL-Plotter";
                     try
                     {
                         update = (int)Registry.GetValue(reg_key, "update", 0);
                         Registry.SetValue(reg_key, "update", 0);
+
+                        if (double.TryParse((string)Registry.GetValue(reg_key, "offsetX", "0.0"), out double ox)) { offX = ox; }
+                        if (double.TryParse((string)Registry.GetValue(reg_key, "offsetY", "0.0"), out double oy)) { offY = oy; }
+                        if (double.TryParse((string)Registry.GetValue(reg_key, "rotate", "0.0"), out double r)) { rotate = r; }
+                        Registry.SetValue(reg_key, "offsetX", "0.0");
+                        Registry.SetValue(reg_key, "offsetY", "0.0");
+                        Registry.SetValue(reg_key, "rotate", "0.0");
+
+                        start = (int)Registry.GetValue(reg_key, "start", 0);
+                        Registry.SetValue(reg_key, "start", 0);
                     }
                     catch (Exception er) { Logger.Error(er, "Reading reg-key update"); }
 
                     if (update > 0)
                     {
-                        Logger.Trace("Automatic update from clipboard");
+                        Logger.Trace("MainTimer_Tick Automatic update from clipboard");
                         LoadFromClipboard();
                         EnableCmsCodeBlocks(VisuGCode.CodeBlocksAvailable());
                         Properties.Settings.Default.counterImportExtension += 1;
+                    }
+
+                    if ((offX != 0) || (offY != 0))
+                    {
+                        Logger.Trace("MainTimer_Tick OffX:{0}  OffY:{1}", offX, offY);
+                        TransformStart("Offset Reg");
+                        fCTBCode.Text = VisuGCode.TransformGCodeOffset(-offX, -offY, 0);// VisuGCode.Translate.Offset1);                    
+                        TransformEnd();
+                    }
+
+                    if (rotate != 0)
+                    {
+                        Logger.Trace("MainTimer_Tick Rotate:{0}", rotate);
+                        TransformStart("Rotate Reg");
+                        fCTBCode.Text = VisuGCode.TransformGCodeRotate(rotate, 1, new XyPoint(0, 0));
+                        TransformEnd();
+                    }
+
+                    if (start != 0)
+                    {
+                        Logger.Trace("MainTimer_Tick Start streaming", rotate);
+                        StartStreaming(0, fCTBCode.LinesCount - 1);   // (); btnStreamStart.PerformClick();
                     }
                 }
 
@@ -1346,7 +1371,7 @@ namespace GrblPlotter
             Properties.Settings.Default.guiDimensionShow = toolStripViewDimension.Checked;
             Properties.Settings.Default.guiBackgroundShow = toolStripViewBackground.Checked;
             Properties.Settings.Default.machineLimitsFix = toolStripViewMachineFix.Checked;
-            zoomFactorMin = zoomFactor = 1;
+            zoomFactor = 1;
             VisuGCode.DrawMachineLimit();// ToolTable.GetToolCordinates());
             pictureBox1.Invalidate();                                   // resfresh view
         }
@@ -1655,6 +1680,8 @@ namespace GrblPlotter
             if (_laser_form != null) { _laser_form.WindowState = FormWindowState.Normal; _laser_form.BringToFront(); }
             if (_probing_form != null) { _probing_form.WindowState = FormWindowState.Normal; _probing_form.BringToFront(); }
             if (_heightmap_form != null) { _heightmap_form.WindowState = FormWindowState.Normal; _heightmap_form.BringToFront(); }
+            if (_grbl_setup_form != null) { _grbl_setup_form.WindowState = FormWindowState.Normal; _grbl_setup_form.BringToFront(); }
+            if (_process_form != null) { _process_form.WindowState = FormWindowState.Normal; _process_form.BringToFront(); }
             if (_grbl_setup_form != null) { _grbl_setup_form.WindowState = FormWindowState.Normal; _grbl_setup_form.BringToFront(); }
             //   _streaming_form.SendToBack();
         }

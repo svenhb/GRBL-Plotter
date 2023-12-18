@@ -25,6 +25,7 @@
  * 2023-01-04 add _process_form
  * 2023-01-24 line 369 check if _diyControlPad != null
  * 2023-01-27 processAutomation removed fullScreen on start (like in ProjectorToolStrip)
+ * 2023-12-01 l:682 f:OnRaiseProcessEvent add new action "Probing"
 */
 
 using GrblPlotter.MachineControl;
@@ -454,6 +455,8 @@ namespace GrblPlotter
                 _probing_form.FormClosed += FormClosed_ProbingForm;
                 _probing_form.RaiseCmdEvent += OnRaiseProbingEvent;
                 _probing_form.btnGetAngleEF.Click += BtnGetAngleEF_Click;
+                _probing_form.RaiseProcessEvent += OnRaiseProbingProcessEvent;
+                _probing_form.RaiseXYEvent += OnRaiseCameraClickEvent;
                 EventCollector.SetOpenForm("Fprb");
             }
             else
@@ -489,12 +492,16 @@ namespace GrblPlotter
             {
                 SendCommand(btncmd.Trim());
             }
-
-        //    timerUpdateControlSource = "OnRaiseProbingEvent";
-        //    UpdateControlEnables();
             Properties.Settings.Default.counterUseProbing += 1;
         }
 
+        private void OnRaiseProbingProcessEvent(object sender, ProcessEventArgs e)
+        {
+            if (e.Command == "Probe")
+            {
+                _process_form?.Feedback(e.Command, e.Value, (e.Value=="finished"));
+            }
+        }
 
         /********************************************************************
          * Height map
@@ -673,21 +680,34 @@ namespace GrblPlotter
             if (e.Command == "Load")
             {
                 string mypath = Datapath.MakeAbsolutePath(e.Value);
-                _process_form.Feedback(e.Command, e.Value, LoadFile(mypath));
+                _process_form?.Feedback(e.Command, e.Value, LoadFile(mypath));
             }
             else if (e.Command == "G-Code")
             {
                 SendCommand(e.Value);
+            }
+            else if (e.Command == "Probe")
+            {
+                if (_probing_form != null)
+                {
+                    _probing_form.StartProbing(e.Value.ToUpper());
+					// when finished, probing form sends event back _probing_form.RaiseProcessEvent += OnRaiseProbingProcessEvent;
+                }
+                else
+                {
+                    _process_form?.Feedback(e.Command, "Probing form is not open", false);
+                }
             }
             else if (e.Command == "Fiducial")
             {
                 if (_camera_form != null)
                 {
                     _camera_form.StartFiducialDetection();
+					// when finished, camera form sends event back _camera_form.RaiseProcessEvent += OnRaiseCameraProcessEvent;
                 }
                 else
                 {
-                    _process_form.Feedback(e.Command, "Camera form is not open", false);
+                    _process_form?.Feedback(e.Command, "Camera form is not open", false);
                 }
             }
             else if (e.Command == "Stream")
@@ -696,7 +716,8 @@ namespace GrblPlotter
             }
             else if (e.Command == "CheckForm")
             {
-                if (e.Value == "Cam") { _process_form.Feedback(e.Command, e.Value, (_camera_form != null)); }
+                if (e.Value == "Probe") { _process_form?.Feedback(e.Command, e.Value, (_probing_form != null)); }
+                if (e.Value == "Cam") { _process_form?.Feedback(e.Command, e.Value, (_camera_form != null)); }
             }
         }
 

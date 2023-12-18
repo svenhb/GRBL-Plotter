@@ -50,7 +50,7 @@ namespace GrblPlotter
 
     public static class MyApplication
     {
-        private static string VersionAddOn = "";
+        private static readonly string VersionAddOn = "";
 
         public static string GetVersion()
         { return System.Windows.Forms.Application.ProductVersion.ToString() + VersionAddOn; }
@@ -191,8 +191,27 @@ namespace GrblPlotter
             variable.Add("GMAS", (double)Properties.Settings.Default.importGCPWMUp);
             variable.Add("GZES", (double)Properties.Settings.Default.importGCPWMZero);
             variable.Add("GCTS", (double)(Properties.Settings.Default.importGCPWMDown + Properties.Settings.Default.importGCPWMUp) / 2);
+            WriteDimensionToRegistry();
         }
 
+        public static void WriteDimensionToRegistry()
+        {
+            const string reg_key0 = "HKEY_CURRENT_USER\\SOFTWARE\\GRBL-Plotter";
+            const string reg_key = "HKEY_CURRENT_USER\\SOFTWARE\\GRBL-Plotter\\Dimension";
+            try
+            {
+                Registry.SetValue(reg_key, "GMIX", variable["GMIX"]);
+                Registry.SetValue(reg_key, "GMAX", variable["GMAX"]);
+                Registry.SetValue(reg_key, "GCTX", variable["GCTX"]);
+                Registry.SetValue(reg_key, "GMIY", variable["GMIY"]);
+                Registry.SetValue(reg_key, "GMAY", variable["GMAY"]);
+                Registry.SetValue(reg_key, "GCTY", variable["GCTY"]);
+                Registry.SetValue(reg_key0, "offsetX", "0.0");
+                Registry.SetValue(reg_key0, "offsetY", "0.0");
+                Registry.SetValue(reg_key0, "rotate", "0.0");
+            }
+            catch (Exception Ex) { Logger.Error(Ex, "WriteDimensionToRegistry "); };
+        }
         public static void WriteSettingsToRegistry()
         {
             const string reg_key0 = "HKEY_CURRENT_USER\\SOFTWARE\\GRBL-Plotter";
@@ -233,7 +252,7 @@ namespace GrblPlotter
                 Registry.SetValue(reg_key, "Machine_C", Grbl.posMachine.C);
                 //                Registry.SetValue(reg_key0, "Update", 0, RegistryValueKind.DWord);
             }
-            catch (Exception Ex) { Logger.Error(Ex, "WriteSettingsToRegistry "); };
+            catch (Exception Ex) { Logger.Error(Ex, "WritePositionToRegistry "); };
         }
     }
 

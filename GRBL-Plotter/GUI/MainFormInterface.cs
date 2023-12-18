@@ -163,10 +163,10 @@ namespace GrblPlotter
                         SetAccessoryButton(BtnOverrideD2, (digits[1] == '1'));
                         SetAccessoryButton(BtnOverrideD1, (digits[2] == '1'));
                         SetAccessoryButton(BtnOverrideD0, (digits[3] == '1'));
-                        BtnOverrideD3.BackColor = default(Color);
-                        BtnOverrideD2.BackColor = default(Color);
-                        BtnOverrideD1.BackColor = default(Color);
-                        BtnOverrideD0.BackColor = default(Color);
+                        BtnOverrideD3.BackColor = default;
+                        BtnOverrideD2.BackColor = default;
+                        BtnOverrideD1.BackColor = default;
+                        BtnOverrideD0.BackColor = default;
                     }
                     else if (digits.Length == 8)
                     {
@@ -188,6 +188,12 @@ namespace GrblPlotter
                     SetAccessoryButton(BtnOverrideD0, false);
                 }
             }
+
+            if (_probing_form != null)
+            {
+                _probing_form.SetGrblMachineState = StatMsg;
+            }
+
         }
         private void SetAccessoryButton(Button Btn, bool setOn)
         {
@@ -397,7 +403,7 @@ namespace GrblPlotter
                         break;
                 }
                 if (_probing_form != null)
-                { _probing_form.SetGrblSaState = machineStatus; }
+                {   _probing_form.SetGrblState = machineStatus; }
 
             }
             lastMachineStatus = machineStatus;

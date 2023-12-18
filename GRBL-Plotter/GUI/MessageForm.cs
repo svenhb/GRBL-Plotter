@@ -95,7 +95,7 @@ namespace GrblPlotter
         }
 
 
-        private static Color ContrastColor(Color myColor)
+    /*    private static Color ContrastColor(Color myColor)
         {
             int d;
             // Counting the perceptive luminance - human eye favors green color... 
@@ -105,7 +105,7 @@ namespace GrblPlotter
             else
                 d = 255; // dark colors - white font
             return Color.FromArgb(d, d, d);
-        }
+        }*/
 
         void WebBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
@@ -153,7 +153,7 @@ namespace GrblPlotter
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)
         {
             int val = toolStripProgressBar1.Value - progressStep;
             if (val >= 0)
