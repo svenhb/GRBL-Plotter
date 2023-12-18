@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="50.000092mm"
+   height="17.437098mm"
+   viewBox="0 0 50.000092 17.437098"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="addon_sign_mysign.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="2.096401"
+     inkscape:cx="96.83262"
+     inkscape:cy="54.617414"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-64.498948,-127.61731)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.5641px;line-height:1.25;font-family:'Blackadder ITC';-inkscape-font-specification:'Blackadder ITC';word-spacing:0px;stroke-width:0.385341"
+       x="64.143379"
+       y="139.83466"
+       id="text2234"><tspan
+         sodipodi:role="line"
+         id="tspan2232"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Blackadder ITC';-inkscape-font-specification:'Blackadder ITC';stroke-width:0.385341"
+         x="64.143379"
+         y="139.83466">My Sign</tspan></text>
+  </g>
+</svg>
