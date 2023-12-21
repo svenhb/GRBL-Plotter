@@ -1,20 +1,20 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
-    This file is part of the GRBL-Plotter application.
-   
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+   This file is part of the GRBL-Plotter application.
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+   Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /* Level 1: import graphics SVG, DXF, HPGL, Drill, CSV
@@ -82,6 +82,7 @@
  * 2023-09-11 l:855 f:ProcessEntities - DXFArc add offsetAngle to start/end angle issue #359
  * 2023-11-24 l:645 f:ProcessEntities Spline: new algorythmus from  //https://github.com/ixmilia/converters/blob/main/src/IxMilia.Converters/DxfToSvgConverter.cs
  * 2023-12-13 l:374 f:GetVectorDXF add block scaling, issue #365
+ * 2023-12-21 l: f:ProcessEntities bugfix block scaling, issue #366																   
 */
 
 using DXFLib;
@@ -238,9 +239,9 @@ namespace GrblPlotter //DXFImporter
                 Logger.Info("●●●● DxfImportZ = false (no Z information)");
                 Graphic.graphicInformation.DxfImportZ = false;    // no Z value, no need for export
             }
-			else
+            else
                 Logger.Info("●●●● DxfImportZ = {0}", Graphic.graphicInformation.DxfImportZ);
-			
+
             ConversionInfo += string.Format("{0} elements imported", shapeCounter);
             Logger.Info("▲▲▲▲ ConvertDXF Finish: shapeCounter: {0}", shapeCounter);
             doc = null;
@@ -387,7 +388,7 @@ namespace GrblPlotter //DXFImporter
                         if (insert.Scaling.Y != null) insertionScaling.Y = insert.Scaling.Y;
                         if (insert.Scaling.Z != null) insertionScaling.Z = insert.Scaling.Z;
                     }
-                    if (logEnable) 
+                    if (logEnable)
                         Logger.Trace(" Block: at X:{0:0.00}  Y:{1:0.00}  a:{2:0.00}  scaleX:{3}  scaleY:{4}   layer:{5}", insertionPoint.X, insertionPoint.Y, insert.RotationAngle, insertionScaling.X, insertionScaling.Y, dxfEntity.LayerName);
 
                     foreach (DXFBlock block in doc.Blocks)
@@ -560,10 +561,10 @@ namespace GrblPlotter //DXFImporter
                         if (logPosition) Logger.Trace("PolyLine bulge  index:{0} val1X:{1:0.000} val1Y:{2:0.000} val2X:{3:0.000} val2Y:{4:0.000}", i, lp.Elements[i].Vertex.X, lp.Elements[i].Vertex.Y, lp.Elements[i + 1].Vertex.X, lp.Elements[i + 1].Vertex.Y);
 
                         if (i < (lp.VertexCount - 1))
-                            AddRoundCorner((DXFPoint)lp.Elements[i].Vertex, (DXFPoint)lp.Elements[i + 1].Vertex, bulge, offset, offsetAngle);
+                            AddRoundCorner((DXFPoint)lp.Elements[i].Vertex, (DXFPoint)lp.Elements[i + 1].Vertex, bulge, offset, offsetAngle, offsetScaling);
                         else
                             if (lp.Flags.HasFlag(DXFLWPolyLine.FlagsEnum.closed))        // == DXFLWPolyLine.FlagsEnum.closed)
-                            AddRoundCorner((DXFPoint)lp.Elements[i].Vertex, (DXFPoint)lp.Elements[0].Vertex, bulge, offset, offsetAngle);
+                            AddRoundCorner((DXFPoint)lp.Elements[i].Vertex, (DXFPoint)lp.Elements[0].Vertex, bulge, offset, offsetAngle, offsetScaling);
                         roundcorner = true;
                     }
                     else
@@ -620,10 +621,10 @@ namespace GrblPlotter //DXFImporter
                             if (logPosition) Logger.Trace("PolyLine bulge  index:{0} val1X:{1:0.000} val1Y:{2:0.000} val2X:{3:0.000} val2Y:{4:0.000}", i, ((DXFVertex)lp.Children[i]).Location.X, ((DXFVertex)lp.Children[i]).Location.Y, ((DXFVertex)lp.Children[i + 1]).Location.X, ((DXFVertex)lp.Children[i + 1]).Location.Y);
 
                             if (i < (lp.Children.Count - 1))
-                                AddRoundCorner((DXFPoint)((DXFVertex)lp.Children[i]).Location, (DXFPoint)((DXFVertex)lp.Children[i + 1]).Location, bulge, offset, offsetAngle);
+                                AddRoundCorner((DXFPoint)((DXFVertex)lp.Children[i]).Location, (DXFPoint)((DXFVertex)lp.Children[i + 1]).Location, bulge, offset, offsetAngle, offsetScaling);
                             else
                                 if (lp.Flags.HasFlag(DXFPolyLine.FlagsEnum.closed))        // == DXFPolyLine.FlagsEnum.closed)
-                                AddRoundCorner((DXFPoint)((DXFVertex)lp.Children[i]).Location, (DXFPoint)((DXFVertex)lp.Children[0]).Location, bulge, offset, offsetAngle);
+                                AddRoundCorner((DXFPoint)((DXFVertex)lp.Children[i]).Location, (DXFPoint)((DXFVertex)lp.Children[0]).Location, bulge, offset, offsetAngle, offsetScaling);
                             //        roundcorner = true;
                         }
                         //    else
@@ -843,19 +844,19 @@ namespace GrblPlotter //DXFImporter
             {
                 Graphic.SetGeometry("Arc");
                 DXFArc arc = (DXFArc)entity;
-                double X = (double)arc.Center.X;
-                double Y = (double)arc.Center.Y;
+                double X = (double)arc.Center.X * (double)offsetScaling.X;
+                double Y = (double)arc.Center.Y * (double)offsetScaling.Y;
                 double R = arc.Radius;
 
-                // ARC entites are always conter-clockwise.
+                // ARC entites are always counter-clockwise.
                 if (!nodesOnly)
                 {
                     double startA = arc.StartAngle * Math.PI / 180;
                     double endA = arc.EndAngle * Math.PI / 180;
                     double startX = (double)(X + R * Math.Cos(startA) * (double)offsetScaling.X);
                     double startY = (double)(Y + R * Math.Sin(startA) * (double)offsetScaling.Y);
-                    double endX = (double)(X + R * Math.Cos(endA) * (double)offsetScaling.X);
-                    double endY = (double)(Y + R * Math.Sin(endA) * (double)offsetScaling.Y);
+                    double endX   = (double)(X + R * Math.Cos(endA)   * (double)offsetScaling.X);
+                    double endY   = (double)(Y + R * Math.Sin(endA)   * (double)offsetScaling.Y);
 
                     if (logEnable)
                         Logger.Trace(" Arc center: x:{0:0.000}  y:{1:0.000}  R:{2:0.000}  start:{3:0.0}   end:{4:0.0}", X, Y, R, arc.StartAngle, arc.EndAngle);
@@ -981,28 +982,34 @@ namespace GrblPlotter //DXFImporter
             }
         }
 
-        private static double RotateGetX(DXFPoint r, double angleRad)
-        { return (double)(r.X * Math.Cos(angleRad) - r.Y * Math.Sin(angleRad)); }
-        private static double RotateGetY(DXFPoint r, double angleRad)
-        { return (double)(r.X * Math.Sin(angleRad) + r.Y * Math.Cos(angleRad)); }
+        private static double RotateGetX(DXFPoint r, DXFPoint scaling, double angleRad)
+        { return (double)(r.X * Math.Cos(angleRad) * (double)scaling.X -  r.Y * Math.Sin(angleRad) * (double)scaling.Y); }
+        private static double RotateGetY(DXFPoint r, DXFPoint scaling, double angleRad)
+        { return (double)(r.X * Math.Sin(angleRad) * (double)scaling.X +  r.Y * Math.Cos(angleRad) * (double)scaling.Y); }
 
         private static void CalcEllipse(DXFEllipse ellipse, DXFPoint offset, double offsetAngle, DXFPoint scaling)
         {   // from Inkscape DXF import - modified
             // https://gitlab.com/inkscape/extensions/blob/master/dxf_input.py#L341
             Graphic.SetGeometry("Ellipse");
             double angleRad = offsetAngle * Math.PI / 180;
-            float xc = (float)(RotateGetX(ellipse.Center, angleRad) + offset.X); // (ellipse.Center.X * Math.Cos(angleRad) - ellipse.Center.Y * Math.Sin(angleRad) + offset.X);
-            float yc = (float)(RotateGetY(ellipse.Center, angleRad) + offset.Y); //(ellipse.Center.X * Math.Sin(angleRad) + ellipse.Center.Y * Math.Cos(angleRad) + offset.Y);
+            double xc = RotateGetX(ellipse.Center, scaling, angleRad)  + (double)offset.X;
+            double yc = RotateGetY(ellipse.Center, scaling, angleRad)  + (double)offset.Y;
 
-            float xm = (float)(RotateGetX(ellipse.MainAxis, angleRad) * (double)scaling.X); //(ellipse.MainAxis.X * Math.Cos(angleRad) - ellipse.MainAxis.Y * Math.Sin(angleRad));
-            float ym = (float)(RotateGetY(ellipse.MainAxis, angleRad) * (double)scaling.Y); //(ellipse.MainAxis.X * Math.Sin(angleRad) + ellipse.MainAxis.Y * Math.Cos(angleRad));
-            float w = (float)ellipse.AxisRatio;
-            double a2 = -ellipse.StartParam;// + offsetAngle;   issue #359
-            double a1 = -ellipse.EndParam;// + offsetAngle;
+            double xm = RotateGetX(ellipse.MainAxis, scaling, angleRad);
+            double ym = RotateGetY(ellipse.MainAxis, scaling, angleRad);
 
-            float rm = (float)Math.Sqrt(xm * xm + ym * ym);
+            /*  float xc = (float)(RotateGetX(ellipse.Center,  angleRad) * (double)scaling.X + offset.X);
+              float yc = (float)(RotateGetY(ellipse.Center,  angleRad) * (double)scaling.Y + offset.Y);
+
+              float xm = (float)(RotateGetX(ellipse.MainAxis, angleRad) * (double)scaling.X);
+              float ym = (float)(RotateGetY(ellipse.MainAxis, angleRad) * (double)scaling.Y);*/
+            double w = ellipse.AxisRatio * (double)scaling.Y / (double)scaling.X;
+            double a2 = -ellipse.StartParam;// issue #359
+            double a1 = -ellipse.EndParam;  //
+
+            double rm = Math.Sqrt(xm * xm + ym * ym);
             double a = Math.Atan2(-ym, xm);
-            float diff = (float)((a2 - a1 + 2 * Math.PI) % (2 * Math.PI));
+            double diff = (a2 - a1 + 2 * Math.PI) % (2 * Math.PI);
 
             if (logPosition) Logger.Trace(" Ellipse center: {0:0.000};{1:0.000}  R1: {2:0.000} R2: {3:000} Start: {4:0.000} End: {5:000} Handle:{6}", xc, yc, rm, w * rm, ellipse.StartParam, ellipse.EndParam, ellipse.Handle);
             if ((Math.Abs(diff) > 0.0001) && (Math.Abs(diff - 2 * Math.PI) > 0.0001))
@@ -1010,23 +1017,23 @@ namespace GrblPlotter //DXFImporter
                 int large = 0;
                 if (diff > Math.PI)
                     large = 1;
-                float xt = rm * (float)Math.Cos(a1);
-                float yt = w * rm * (float)Math.Sin(a1);
-                float x1 = (float)(xt * Math.Cos(a) - yt * Math.Sin(a));
-                float y1 = (float)(xt * Math.Sin(a) + yt * Math.Cos(a));
-                xt = rm * (float)Math.Cos(a2);
-                yt = w * rm * (float)Math.Sin(a2);
-                float x2 = (float)(xt * Math.Cos(a) - yt * Math.Sin(a));
-                float y2 = (float)(xt * Math.Sin(a) + yt * Math.Cos(a));
+                double xt = rm * Math.Cos(a1);
+                double yt = w * rm * Math.Sin(a1);
+                double x1 = (xt * Math.Cos(a) - yt * Math.Sin(a));
+                double y1 = (xt * Math.Sin(a) + yt * Math.Cos(a));
+                xt = rm * Math.Cos(a2);
+                yt = w * rm * Math.Sin(a2);
+                double x2 = (xt * Math.Cos(a) - yt * Math.Sin(a));
+                double y2 = (xt * Math.Sin(a) + yt * Math.Cos(a));
                 DXFStartPath(xc + x1, yc - y1, ellipse.Center.Z);//, "Start Ellipse 1");
-                ImportMath.CalcArc(xc + x1, yc - y1, rm, w * rm, (float)(-180.0 * a / Math.PI), large, 0, (xc + x2), (yc - y2), DXFMoveTo);
+                ImportMath.CalcArc(xc + x1, yc - y1, rm, w * rm, (-180.0 * a / Math.PI), large, 0, (xc + x2), (yc - y2), DXFMoveTo);
                 //  path = 'M %f,%f A %f,%f %f %d 0 %f,%f' % (xc + x1, yc - y1, rm, w* rm, -180.0 * a / math.pi, large, xc + x2, yc - y2)
             }
             else
             {
                 DXFStartPath(xc + xm, yc + ym, ellipse.Center.Z);//, "Start Ellipse 2");
-                ImportMath.CalcArc(xc + xm, yc + ym, rm, w * rm, (float)(-180.0 * a / Math.PI), 1, 0, xc - xm, yc - ym, DXFMoveTo);
-                ImportMath.CalcArc(xc - xm, yc - ym, rm, w * rm, (float)(-180.0 * a / Math.PI), 1, 0, xc + xm, yc + ym, DXFMoveTo);
+                ImportMath.CalcArc(xc + xm, yc + ym, rm, w * rm, (-180.0 * a / Math.PI), 1, 0, xc - xm, yc - ym, DXFMoveTo);
+                ImportMath.CalcArc(xc - xm, yc - ym, rm, w * rm, (-180.0 * a / Math.PI), 1, 0, xc + xm, yc + ym, DXFMoveTo);
                 //    path = 'M %f,%f A %f,%f %f 1 0 %f,%f %f,%f %f 1 0 %f,%f z' % (xc + xm, yc - ym, rm, w* rm, -180.0 * a / math.pi, xc - xm, yc + ym, rm, w* rm, -180.0 * a / math.pi, xc + xm, yc - ym)
             }
             DXFStopPath();
@@ -1038,7 +1045,7 @@ namespace GrblPlotter //DXFImporter
             double offsetAngle = Math.PI * offsetAngleDegree / 180;
             tmp.X = (double)scaling.X * (location.X * Math.Cos(offsetAngle) - location.Y * Math.Sin(offsetAngle)) + offset.X;
             tmp.Y = (double)scaling.Y * (location.X * Math.Sin(offsetAngle) + location.Y * Math.Cos(offsetAngle)) + offset.Y;
-            tmp.Z = (double)scaling.Z * location.Z + offset.Z;;
+            tmp.Z = (double)scaling.Z * location.Z + offset.Z;
             return tmp;
         }
 
@@ -1052,13 +1059,13 @@ namespace GrblPlotter //DXFImporter
         /// <param name="var2">Second vertex</param>
         /// <returns></returns>
         //    private static void AddRoundCorner(DXFLWPolyLine.Element var1, DXFLWPolyLine.Element var2, DXFPoint offset, double angleDegree)
-        private static void AddRoundCorner(DXFPoint var1, DXFPoint var2, double bulge, DXFPoint offset, double angleDegree)
+        private static void AddRoundCorner(DXFPoint var1, DXFPoint var2, double bulge, DXFPoint offset, double angleDegree, DXFPoint scaling)
         {
             double angleRad = angleDegree * Math.PI / 180;
-            double p1x = (double)(var1.X * Math.Cos(angleRad) - var1.Y * Math.Sin(angleRad));       //var1.Vertex.X;
-            double p1y = (double)(var1.X * Math.Sin(angleRad) + var1.Y * Math.Cos(angleRad));       //var1.Vertex.Y;
-            double p2x = (double)(var2.X * Math.Cos(angleRad) - var2.Y * Math.Sin(angleRad));       //var2.Vertex.X;
-            double p2y = (double)(var2.X * Math.Sin(angleRad) + var2.Y * Math.Cos(angleRad));       //var2.Vertex.Y;
+            double p1x = (double)scaling.X *(double)(var1.X * Math.Cos(angleRad) - var1.Y * Math.Sin(angleRad));       //var1.Vertex.X;
+            double p1y = (double)scaling.Y *(double)(var1.X * Math.Sin(angleRad) + var1.Y * Math.Cos(angleRad));       //var1.Vertex.Y;
+            double p2x = (double)scaling.X *(double)(var2.X * Math.Cos(angleRad) - var2.Y * Math.Sin(angleRad));       //var2.Vertex.X;
+            double p2y = (double)scaling.Y *(double)(var2.X * Math.Sin(angleRad) + var2.Y * Math.Cos(angleRad));       //var2.Vertex.Y;
 
             //Definition of bulge, from Autodesk DXF fileformat specs
             double angle = Math.Abs(Math.Atan(bulge) * 4);
@@ -1332,8 +1339,8 @@ namespace GrblPlotter //DXFImporter
         public DXFPoint ToDXFPoint()
         {
             DXFPoint tmp = new DXFPoint();
-            tmp.X = X; tmp.Y = Y;   
-            return tmp; 
+            tmp.X = X; tmp.Y = Y;
+            return tmp;
         }
     }
 
