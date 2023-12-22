@@ -311,9 +311,9 @@ namespace GrblPlotter
                     double y1 = (arcMove.center.Y - arcMove.radius);
                     double r2 = 2 * arcMove.radius;
                     double aStart = (arcMove.angleStart * 180 / Math.PI);
-                    double aDiff = (arcMove.angleDiff * 180 / Math.PI);
+                    double aDiff = Math.Abs(arcMove.angleDiff * 180 / Math.PI);
 
-                    if ((aDiff < 0.1) && (arcMove.radius > 1000))
+                    if ((aDiff != 0) && (aDiff < 1) && (arcMove.radius > 1000))
                     {   // just draw a line
                         path.AddLine((float)oldL.actualPos.X + viewOffset.X, (float)oldL.actualPos.Y + viewOffset.Y, (float)newL.actualPos.X + viewOffset.X, (float)newL.actualPos.Y + viewOffset.Y);
                         if ((path == pathPenDown) && (pathActualDown != null))
