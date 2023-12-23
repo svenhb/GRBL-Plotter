@@ -646,10 +646,6 @@ namespace GrblPlotter
             int now = System.Environment.TickCount;
             int diff = now - previousClick;
 
-            if ((diff <= SystemInformation.DoubleClickTime) && (diff > 100))
-            { PictureBox1_DoubleClick(sender, e); }
-            previousClick = now;
-
             /* select Figure if MouseDown and MouseUp position are close together */
             if (mouseDownLeftButton && ((PointDistance(mouseDownPos, mouseUpPos) < 10) || selectionWasChanged))
             {
@@ -662,7 +658,12 @@ namespace GrblPlotter
                 }
             }
 
+            previousClick = now;
             pBoxTransform = tmp.Clone();    // restore previous view
+
+            if ((diff <= SystemInformation.DoubleClickTime) && (diff > 100))
+            { PictureBox1_DoubleClick(sender, e); }
+
             _projector_form?.Invalidate();
         }
 
@@ -835,10 +836,11 @@ namespace GrblPlotter
             pictureBox1.Invalidate();
         }
 
-        private void PictureBox1_DoubleClick(object sender, EventArgs e)
+        private void PictureBox1_DoubleClick(object sender, MouseEventArgs e)
         {
-            if (logDetailed) Logger.Trace("pictureBox1_DoubleClick");
-            if (_lastButtonUp == MouseButtons.Middle)
+            //if (logDetailed) 
+                Logger.Trace("pictureBox1_DoubleClick {☺}", e.Button);
+            if (e.Button == MouseButtons.Middle)
             {
                 pBoxTransform.Reset(); zoomFactor = 1;
                 pictureBox1.Invalidate();
