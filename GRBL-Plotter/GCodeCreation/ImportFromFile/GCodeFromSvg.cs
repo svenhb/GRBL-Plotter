@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -100,6 +100,7 @@
  * 2023-11-09 l:224  f:ConvertFromFile add "<svg "
  * 2023-11-10 l:298	 f:ConvertSVG import 2nd fix file, if importSVGAddOnEnable
  * 2023-11-11 replace floats by double
+ * 2024-01-24 l:1349 f:ParsePath check if d-attribute exists before processing #2139 LaserGRBL
 */
 
 /* SetHeaderMessages...
@@ -110,12 +111,14 @@
  * 1105 'tspan' within 'textPath'
  * 1106 Attribute not implemented
 */
+using FastColoredTextBoxNS;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -603,9 +606,9 @@ namespace GrblPlotter
                 ParseAttributs(groupElement, true);             // process color and stroke-dasharray
                 ParseUse(groupElement, level);
                 ParseBasicElements(groupElement, level);
-                ParsePath(groupElement, level);
+                ParsePath(groupElement, level); 
                 ParseGroup(groupElement, level + 1);
-            }
+                }
             return;
         }
 
@@ -878,7 +881,7 @@ namespace GrblPlotter
             for (int i = start; i < source.Length; i++)
             {
                 c = source[i];
-                if (!(Char.IsNumber(c) || c == '.' || c == ',' || c == ' ' || c == '-' || c == 'e'))    // also exponent
+                if (!(char.IsNumber(c) || c == '.' || c == ',' || c == ' ' || c == '-' || c == 'e'))    // also exponent
                     return source.Substring(start, i - start);
             }
             return source.Substring(start, source.Length - start - 1);
@@ -1334,6 +1337,22 @@ namespace GrblPlotter
                     firstX = null; firstY = null;
                     startPath = true;
                     lastX = offsetX; lastY = offsetY;
+
+                    string attrId = "";
+                    if (pathElement.Attribute("id") != null)
+                    {
+                        attrId = pathElement.Attribute("id").Value;
+                        Graphic.SetPathId(attrId);
+                        lastPathInformation = "id=" + attrId;
+                    }
+
+                    if (pathElement.Attribute("d") == null)
+                    {
+                        Logger.Error("ParsePath {0} of {1} found d=null: '{2}'", shapeCounter+1, svgCode.Elements(nspace + "path").Count(), attrId);
+                        Graphic.SetHeaderMessage(string.Format(" {0}: Bad path element, missing d-data: id='{1}'", CodeMessage.Attention, attrId));
+                        continue;
+                    }
+
                     string d = pathElement.Attribute("d").Value;
 
                     string id = d.Replace("\n", "");
@@ -1341,7 +1360,6 @@ namespace GrblPlotter
                         id = id.Substring(0, 20);
 
                     lastPathInformation = "";
-                    string attrId = "";
                     oldMatrixElement = matrixElement;
                     lastTransformMatrix = ParseTransform(pathElement, false, level);    // transform will be applied in gcodeMove
 
@@ -1351,15 +1369,6 @@ namespace GrblPlotter
                         continue;
                     }
                     shapeCounter++;
-
-                    //    Logger.Trace("ParseAttributs {0}", pathElement);
-
-                    if (pathElement.Attribute("id") != null)
-                    {
-                        attrId = pathElement.Attribute("id").Value;
-                        Graphic.SetPathId(attrId);
-                        lastPathInformation = "id=" + attrId;
-                    }
 
                     /* skip element if not visible */
                     string visibility = "";

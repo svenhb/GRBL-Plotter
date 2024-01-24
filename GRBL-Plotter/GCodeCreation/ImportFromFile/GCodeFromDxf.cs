@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
    This file is part of the GRBL-Plotter application.
 
-   Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+   Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -82,7 +82,8 @@
  * 2023-09-11 l:855 f:ProcessEntities - DXFArc add offsetAngle to start/end angle issue #359
  * 2023-11-24 l:645 f:ProcessEntities Spline: new algorythmus from  //https://github.com/ixmilia/converters/blob/main/src/IxMilia.Converters/DxfToSvgConverter.cs
  * 2023-12-13 l:374 f:GetVectorDXF add block scaling, issue #365
- * 2023-12-21 l: f:ProcessEntities bugfix block scaling, issue #366																   
+ * 2023-12-21 l:    f:ProcessEntities bugfix block scaling, issue #366		
+ * 2024-01-13 l:700 f:ProcessEntities-DXFSpline avoid exception on degree < 2 
 */
 
 using DXFLib;
@@ -680,17 +681,27 @@ namespace GrblPlotter //DXFImporter
                 {
                     //https://github.com/ixmilia/converters/blob/fc469324e90cb09daa437089cc04f2e1baa5a352/src/IxMilia.Converters/Spline2.cs
                     //https://github.com/ixmilia/converters/blob/main/src/IxMilia.Converters/DxfToSvgConverter.cs l:555
-                    var spline2 = new Spline2(spline.Degree,
-                        spline.ControlPoints.Select(p => new SplinePoint2(ApplyOffsetAndAngle(p, offset, offsetAngle, offsetScaling))),
-                        spline.KnotValues);
-                    var beziers = spline2.ToBeziers();
+                    
+					if (spline.Degree > 1)
+					{
+						var spline2 = new Spline2(spline.Degree,
+							spline.ControlPoints.Select(p => new SplinePoint2(ApplyOffsetAndAngle(p, offset, offsetAngle, offsetScaling))),
+							spline.KnotValues);
+						var beziers = spline2.ToBeziers();
 
-                    DXFStartPath(beziers[0].Start.ToDXFPoint());       // last);
-                    foreach (Bezier2 b in beziers)
-                    {
-                        ImportMath.CalcCubicBezier(b.Start.ToPoint(), b.Control1.ToPoint(), b.Control2.ToPoint(), b.End.ToPoint(), DXFMoveTo, "spline3");
-                    }
-                    DXFStopPath();
+						DXFStartPath(beziers[0].Start.ToDXFPoint());       // last);
+						foreach (Bezier2 b in beziers)
+						{
+							ImportMath.CalcCubicBezier(b.Start.ToPoint(), b.Control1.ToPoint(), b.Control2.ToPoint(), b.End.ToPoint(), DXFMoveTo, "spline3");
+						}
+						DXFStopPath();
+					}
+					else
+					{
+						Logger.Error("DXFSpline degree:{0} Layer:{1}",spline.Degree, layerName);
+						Graphic.SetHeaderInfo(" DXFSpline Error: degree < 2 ");
+						Graphic.SetHeaderMessage(string.Format(" {0}: Can't process DXFSpline with degree < 2 in layer {1}", CodeMessage.Error, layerName));						
+					}
                 }
                 else
                 {
