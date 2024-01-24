@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,11 +23,13 @@
  * 2023-01-15 line 90 bug-fix in log-output
  * 2023-08-14 l:48  f: ShrinkPaths Hatch fill extension: shrink enveloping path , delete enveloping path (Vers 1.7.0.1)
  * 2023-11-07 l:369 f:ClipLineByPolygone if distance is too small, delete both intersection point
+ * 2023-12-29 l:113 f:HatchFill do correct copy from tmpPath2 to tmpPath
 */
 
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 
 namespace GrblPlotter
@@ -96,19 +98,23 @@ namespace GrblPlotter
                         { Logger.Trace("no dim"); continue; }
 
                         // collect paths of same id, process if id changes
-                        if (logModification && (index < (maxObject - 1))) Logger.Trace("  Add to PathData ID:{0}  nextIsSameHatch:{1}  max:{2}  index:{3}  id_now:{4}  id_next:{5}  fill:{6}", PathData.Info.Id, nextIsSameHatch, maxObject, index, graphicToFill[index].Info.Id, graphicToFill[index + 1].Info.Id, fill);
+                        if (logModification && (index < (maxObject - 1))) Logger.Trace("  Add to PathData1 ID:{0}  nextIsSameHatch:{1}  max:{2}  index:{3}  id_now:{4}  id_next:{5}  fill:{6}  inset2:{7}  tmpPath.count:{8}", PathData.Info.Id, nextIsSameHatch, maxObject, index, graphicToFill[index].Info.Id, graphicToFill[index + 1].Info.Id, fill, inset2, tmpPath.Count);
                         if (nextIsSameHatch)
                         {
                             indexToDelete.Add(index);
                             continue;
                         }
 
+                        //if (logModification && (index < (maxObject - 1))) Logger.Trace("  Add to PathData2 ID:{0}  nextIsSameHatch:{1}  max:{2}  index:{3}  id_now:{4}  id_next:{5}  fill:{6}  inset2:{7}  tmpPath.count:{8}", PathData.Info.Id, nextIsSameHatch, maxObject, index, graphicToFill[index].Info.Id, graphicToFill[index + 1].Info.Id, fill, inset2, tmpPath.Count);
+
                         if (inset2)
                         {
-                            if (!ShrinkPaths(tmpPath, insetVal))
+                            if (!ShrinkPaths(tmpPath, insetVal)) 
                             {
                                 ShrinkPaths(tmpPath2, -insetVal);
-                                tmpPath = tmpPath2;                       // collect paths
+                                tmpPath.Clear();
+                                foreach (PathObject tmp in tmpPath2)
+                                    tmpPath.Add(tmp.Copy());
                             }
                         }
 
@@ -122,9 +128,15 @@ namespace GrblPlotter
 
                         // process single hatch lines - shorten to match inside polygone
                         finalPattern.Clear();
+                        //if (logModification && (index < (maxObject - 1))) Logger.Trace("  Add to PathData3 hatchPattern count:{0}  tmpPath count:{1}", hatchPattern.Count, tmpPath.Count);
 
                         foreach (Point[] hatchLine in hatchPattern)
-                        { ClipLineByPolygone(hatchLine[0], hatchLine[1], tmpPath, finalPattern); }
+                        {
+                            //Logger.Trace("  0:{0}  1:{1} ", hatchLine[0], hatchLine[1]);
+                            ClipLineByPolygone(hatchLine[0], hatchLine[1], tmpPath, finalPattern);
+                        }
+
+                        //if (logModification && (index < (maxObject - 1))) Logger.Trace("  Add to PathData4 finalPattern count:{0}  tmpPath count:{1}", finalPattern.Count, tmpPath.Count);
 
                         // add processed hatch lines to final graphic
                         AddLinesToGraphic(finalPattern, PathData);
@@ -279,7 +291,7 @@ namespace GrblPlotter
                     for (int k = 1; k < ipath.Path.Count; k++)
                     {
                         p4 = ipath.Path[k].MoveTo;
-                        intersect = CalculateIntersection(p1, p2, p3, p4);
+                        intersect = CalculateIntersection(p1, p2, p3, p4);  // p1/p2 = hatch line, p3/p4 = part of object path return intersection 0-1 or -1 if no intersection
                         if ((0.0 <= intersect) && (intersect <= 1.0))
                         {
 
@@ -338,7 +350,7 @@ namespace GrblPlotter
                                 }
                                 else
                                     d_and_a.Add(new IntersectionInfo(intersect, 123456.0, 123456.0));//  # Mark for complete hatch excision, hatch is parallel to segment
-                            }
+                            }// shrink
                             else
                                 d_and_a.Add(new IntersectionInfo(intersect, 0, 0));//  # zero length to be removed from hatch										
                         }
@@ -348,8 +360,9 @@ namespace GrblPlotter
             }
             //# Return now if there were no intersections
             if (d_and_a.Count == 0)
+            {
                 return;
-
+            }
             // d_and_a.sort() - by s
             d_and_a.Sort((x, y) => x.s.CompareTo(y.s));
 
@@ -359,6 +372,7 @@ namespace GrblPlotter
 			
 			for (int i=1; i < d_and_a.Count; i++)
             {
+                //Logger.Trace(" s1:{0:0.000}  slast:{1:0.000}  diff:{2:0.000}", d_and_a[i].s , last.s, Math.Abs(d_and_a[i].s - last.s));
                 if ((Math.Abs(d_and_a[i].s - last.s)) > 0.0000000001)  
                 {
                     d_and_a[i_last] = last = d_and_a[i];    // different positions - take over
@@ -366,13 +380,15 @@ namespace GrblPlotter
                 }
 				else
 				{
-					d_and_a[--i_last] = last = d_and_a[i];	// same positions - skip both 2023-11-07
-				}
+					d_and_a[--i_last] = last = d_and_a[i];    // same positions - skip both 2023-11-07
+                }
             }
 
-            d_and_a = d_and_a.GetRange(0, i_last);
+            d_and_a = d_and_a.GetRange(0, i_last);          // correct size
             if (d_and_a.Count < 2)
+            {
                 return;
+            }
 
 
             int j = 0;
@@ -396,7 +412,7 @@ namespace GrblPlotter
                     f_length_to_be_removed_from_pt1 = d_and_a[j].s2;
                     f_length_to_be_removed_from_pt2 = d_and_a[j + 1].s1;
                     if ((f_initial_hatch_length - (f_length_to_be_removed_from_pt1 + f_length_to_be_removed_from_pt2)) <= f_min_allowed_hatch_length)
-                    { }     //  # Just don't insert it into the hatch list
+                    { Logger.Trace("Just don't insert"); }     //  # Just don't insert it into the hatch list
                     else
                     {
                         Point pt1 = RelativeControlPointPosition(f_length_to_be_removed_from_pt1, x2 - x1, y2 - y1, x1, y1);
@@ -441,7 +457,7 @@ namespace GrblPlotter
         private static bool ShrinkPaths(List<PathObject> paths, double distance)
         {
             // Check dimension before and after shrink, to decide if distance must be inverteed
-            Logger.Info(" ShrinkPaths count:{0}  distance:{1}", paths.Count, distance);
+            if (logModification) Logger.Info(" ShrinkPaths count:{0}  distance:{1}", paths.Count, distance);
             Dimensions dimBefore = new Dimensions();
             Dimensions dimAfter = new Dimensions();
 
@@ -453,7 +469,7 @@ namespace GrblPlotter
             }
             double dx = dimBefore.dimx - dimAfter.dimx;
             double dy = dimBefore.dimy - dimAfter.dimy;
-            Logger.Info("   ShrinkPaths dx:{0:0.00}  dy:{1:0.00}", dx, dy);
+            if (logModification) Logger.Info("   ShrinkPaths dx:{0:0.00}  dy:{1:0.00}", dx, dy);
             return ((dx > 0) || (dy > 0));
         }
         private static void ShrinkPath(PathObject path, double distance)

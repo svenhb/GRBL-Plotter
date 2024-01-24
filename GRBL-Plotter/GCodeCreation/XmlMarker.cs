@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@
  * 2023-07-03 l:338 f:GetAttributeValue check if remaining length is enough
  * 2023-07-31 new functions FindInsertPositionFigure/Group/Next
  * 2023-11-15 add figurePenColorAnyCount
+ * 2024-01-14 l:452 f:FinishFigure change check if (tmpFigure.PenColor.Contains("none"))
 */
 
 using System;
@@ -445,13 +446,14 @@ namespace GrblPlotter
         {
             tmpFigure.LineEnd = lineEnd;
             tmpFigure.MyIndex = listFigures.Count;
-			
-			if (tmpFigure.PenColor != "")
-				figurePenColorAnyCount++;
-				
-			if (tmpFigure.PenColor.Contains("none"))
-				figurePenColorNoneCount++;
-				
+
+            if (!string.IsNullOrEmpty(tmpFigure.PenColor))
+            {
+                figurePenColorAnyCount++;
+
+                if (tmpFigure.PenColor.Contains("none"))
+                    figurePenColorNoneCount++;
+            }
             listFigures.Add(tmpFigure);
             footer.LineStart = footer.LineEnd = Math.Max(footer.LineStart, lineEnd);   // highest block-line = start of footer
         }

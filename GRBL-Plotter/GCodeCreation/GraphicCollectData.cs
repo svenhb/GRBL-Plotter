@@ -140,17 +140,29 @@ namespace GrblPlotter
         {
             Logger.Trace("----  CleanUp()  before WorkingSet: {0} kb   Total Memory: {1:N0} kb", System.Environment.WorkingSet / 1024, GC.GetTotalMemory(false) / 1024);
             Graphic2GCode.CleanUp();
-            completeGraphic = null;
-            finalPathList = null;
-            tileGraphicAll = null;
-            groupedGraphic = null;
-            headerInfo = null;
-            headerMessage = null;
-            backgroundWorker = null; // will be set by GCodeFromxxx
-            backgroundEvent = null;
-            GCode = null;
+            ClearList(completeGraphic); // = null;
+            ClearList(finalPathList);   // = null;
+            ClearList(tileGraphicAll);  // = null;
+            ClearList(groupedGraphic);  // = null;
+            headerInfo.Clear();         // = null;
+            headerMessage.Clear();      // = null;
+            //backgroundWorker = null; // will be set by GCodeFromxxx
+            //backgroundEvent = null;
+            GCode.Clear();  // = null;
             GC.Collect();
             Logger.Trace("----  CleanUp()  after  WorkingSet: {0} kb   Total Memory: {1:N0} kb", System.Environment.WorkingSet / 1024, GC.GetTotalMemory(true) / 1024);
+        }
+        private static void ClearList(List<PathObject> lista)
+        {
+            lista.Clear();
+            int identificador = GC.GetGeneration(lista);
+            GC.Collect(identificador, GCCollectionMode.Forced);
+        }
+        private static void ClearList(List<GroupObject> lista)
+        {
+            lista.Clear();
+            int identificador = GC.GetGeneration(lista);
+            GC.Collect(identificador, GCCollectionMode.Forced);
         }
 
         #region notifications
@@ -700,6 +712,8 @@ namespace GrblPlotter
             // 1st-digit: 1-Import, 2-CollectData, 3-Gernerate GCode
             // 2nd-digit: 1-SVG, 2-DXF, 3-HPGL, 
             if (logProperties) Logger.Trace("Set HeaderMessage '{0}'", txt);
+            if (headerMessage == null)
+                return;
             if (headerMessage.Count > 0)
             {
                 for (int i = 0; i < headerMessage.Count; i++)   // don't add if already existing

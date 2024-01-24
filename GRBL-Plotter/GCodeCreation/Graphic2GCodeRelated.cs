@@ -1236,7 +1236,8 @@ namespace GrblPlotter
                 gcodeValue.AppendFormat(" {0}\r\n", comment); //(" (PU)"); // mark pen up
         }
 
-        private static double lastx, lasty, lastz;
+        private static double lastx, lasty;
+        public static double lastz;
         private static float lastg, lastf;
         public static void SetLastxyz(double lx, double ly, double lz)
         { lastx = lx; lasty = ly; lastz = lz; }

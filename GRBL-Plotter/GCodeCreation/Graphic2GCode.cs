@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -44,6 +44,8 @@
  * 2023-09-14 f:CreateGCode add CollectionStart /-End Tags
  * 2023-11-03 l:357 f:CreateGCode (figure) add proforma figure-tag if not figureEnable
  * 2023-11-27 l:465 f:ProcessPathObject call subroutine only if needed
+ * 2024-01-03 l:360 f:CreateGCode check if (completeGraphic.Count > 0) 
+ * 2024-01-07 l:393 f:CreateGCode if (useToolTable) also adapt width/diameter issue #370
 */
 
 using System;
@@ -286,7 +288,9 @@ namespace GrblPlotter
                         if (Properties.Settings.Default.importGCToolDefNrUse)
                             toolToUse = (int)Properties.Settings.Default.importGCToolDefNr;
                         string toolColor = ToolTable.GetToolColor(toolToUse);
+                        double toolWidth = ToolTable.GetToolDiameter(toolToUse);        // 2024-01-07 #370
                         pathObject.Info.GroupAttributes[(int)GroupOption.ByColor] = toolColor;
+                        pathObject.Info.GroupAttributes[(int)GroupOption.ByWidth] = string.Format("{0:0.000}",toolWidth);   // 2024-01-07 #370
                     }
                     ProcessPathObject(pathObject, graphicInfo, -1, "");	// create Dot or Path GCode, but no tool change
                 }
@@ -352,12 +356,18 @@ namespace GrblPlotter
             int toolNr;
             string toolName;
             string toolColor;
+            double toolWidth;
             if (completeGraphic == null) return false;
 
             if (!graphicInfo.FigureEnable)  // proforma figure tag
             {
-                string figColor = string.Format(" PenColor=\"{0}\"", completeGraphic[0].Info.GroupAttributes[(int)GroupOption.ByColor]);
-                string figWidth = string.Format(" PenWidth=\"{0}\"", completeGraphic[0].Info.GroupAttributes[(int)GroupOption.ByWidth]);
+                string figColor = " PenColor=\"blue\"";
+                string figWidth = " PenWidth=\"0.999\"";
+                if (completeGraphic.Count > 0)
+                {
+                    figColor = string.Format(" PenColor=\"{0}\"", completeGraphic[0].Info.GroupAttributes[(int)GroupOption.ByColor]);
+                    figWidth = string.Format(" PenWidth=\"{0}\"", completeGraphic[0].Info.GroupAttributes[(int)GroupOption.ByWidth]);
+                }
                 Gcode.Comment(gcodeString, string.Format("{0} Id=\"{1}\" {2} {3}>", XmlMarker.FigureStart, 0, figColor, figWidth));
             }
 
@@ -379,9 +389,13 @@ namespace GrblPlotter
 
                 toolName = ToolTable.GetToolName(toolToUse);
                 toolColor = ToolTable.GetToolColor(toolToUse);          // 2021-08-26 before toolNr
+                toolWidth = ToolTable.GetToolDiameter(toolToUse);       // 2024-01-07 #370
 
                 if (useToolTable)                                       // 2021-08-26 #217
+                {
                     pathObject.Info.GroupAttributes[(int)GroupOption.ByColor] = toolColor;
+                    pathObject.Info.GroupAttributes[(int)GroupOption.ByWidth] = string.Format("{0:0.000}", toolWidth);  // 2024-01-07 #370
+                }
 
                 if (logEnable) Logger.Trace("CreateGCode2  toolNr:{0}  name:{1}", toolToUse, toolName);
                 // add tool change after <Figure tag	   
@@ -442,7 +456,7 @@ namespace GrblPlotter
                 }
                 else if (graphicInfo.OptionZFromWidth)
                 {
-                //    dotCounter++;
+                    //    dotCounter++;
                     double newZ = CalculateZFromRange(graphicInfo.PenWidthMin, graphicInfo.PenWidthMax, DotData.OptZ);
                     if (logEnable) Logger.Trace("---Dot OptionZFromWidth: RangeMin:{0:0.00}  RangeMax:{1:0.00}  DotData.Z:{2:0.00}  -> setZ:{3:0.00}", graphicInfo.PenWidthMin, graphicInfo.PenWidthMax, DotData.OptZ, newZ);
                     newZ = Math.Max(origZ, newZ);        // don't go deeper than set Z
@@ -451,7 +465,7 @@ namespace GrblPlotter
                 }
                 if (graphicInfo.OptionSFromWidth)
                 {
-                //    dotCounter++;
+                    //    dotCounter++;
                     double newS = CalculateSFromRange(graphicInfo.PenWidthMin, graphicInfo.PenWidthMax, DotData.OptZ);
                     if (logEnable) Logger.Trace("--ProcessPathObject: penWidth:{0:0.00}  -> setS:{1:0.00}", DotData.OptZ, newS);
                     Gcode.GcodePwmDown = Gcode.GcodeSpindleSpeed = (float)newS;   //???

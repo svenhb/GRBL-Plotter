@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@
  * 2022-07-29 Init add try catch
  * 2023-03-03 add xmlAtrribute
  * 2023-03-08 l:87 f:ToolProp add WriteAttributes ReadAttributes for XML data
+ * 2024-01-07 l:181 f:GetToolDiameter needed to fix issue #370
 */
 
 using System;
@@ -175,6 +176,18 @@ namespace GrblPlotter
                 }
             }
             return "000000"; // return black
+        }
+
+        public static double GetToolDiameter(int index)
+        {
+            foreach (ToolProp tool in toolTableArray)
+            {
+                if (index == tool.Toolnr)
+                {
+                    return tool.Diameter;
+                }
+            }
+            return 1.23; 
         }
 
         public static int GetIndexByToolNR(int toolNr)
