@@ -77,6 +77,10 @@
             this.BtnMoveLeft = new System.Windows.Forms.Button();
             this.BtnMoveRight = new System.Windows.Forms.Button();
             this.CbProbe2ndChance = new System.Windows.Forms.CheckBox();
+            this.BtnHelp_ImportParameter = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.gBMovement = new System.Windows.Forms.GroupBox();
             this.nUDProbeFeedZ = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
@@ -141,10 +145,6 @@
             this.rBProbeCoord1 = new System.Windows.Forms.RadioButton();
             this.label11 = new System.Windows.Forms.Label();
             this.timerFlowControl = new System.Windows.Forms.Timer(this.components);
-            this.BtnHelp_ImportParameter = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.gBHardware.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDProbeDiameter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDOffsetX)).BeginInit();
@@ -615,6 +615,46 @@
             this.CbProbe2ndChance.Name = "CbProbe2ndChance";
             this.toolTip1.SetToolTip(this.CbProbe2ndChance, resources.GetString("CbProbe2ndChance.ToolTip"));
             this.CbProbe2ndChance.UseVisualStyleBackColor = true;
+            // 
+            // BtnHelp_ImportParameter
+            // 
+            this.BtnHelp_ImportParameter.BackColor = System.Drawing.Color.SkyBlue;
+            resources.ApplyResources(this.BtnHelp_ImportParameter, "BtnHelp_ImportParameter");
+            this.BtnHelp_ImportParameter.Name = "BtnHelp_ImportParameter";
+            this.BtnHelp_ImportParameter.Tag = "id=form-probe#edgefinder";
+            this.toolTip1.SetToolTip(this.BtnHelp_ImportParameter, resources.GetString("BtnHelp_ImportParameter.ToolTip"));
+            this.BtnHelp_ImportParameter.UseVisualStyleBackColor = false;
+            this.BtnHelp_ImportParameter.Click += new System.EventHandler(this.BtnHelp_ImportParameter_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.SkyBlue;
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.Tag = "id=form-probe#centerfinder";
+            this.toolTip1.SetToolTip(this.button1, resources.GetString("button1.ToolTip"));
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.BtnHelp_ImportParameter_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.SkyBlue;
+            resources.ApplyResources(this.button2, "button2");
+            this.button2.Name = "button2";
+            this.button2.Tag = "id=form-probe#toollength";
+            this.toolTip1.SetToolTip(this.button2, resources.GetString("button2.ToolTip"));
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.BtnHelp_ImportParameter_Click);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.SkyBlue;
+            resources.ApplyResources(this.button3, "button3");
+            this.button3.Name = "button3";
+            this.button3.Tag = "id=form-probe#fiducial";
+            this.toolTip1.SetToolTip(this.button3, resources.GetString("button3.ToolTip"));
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.BtnHelp_ImportParameter_Click);
             // 
             // gBMovement
             // 
@@ -1171,46 +1211,6 @@
             // 
             this.timerFlowControl.Interval = 500;
             this.timerFlowControl.Tick += new System.EventHandler(this.TimerFlowControl_Tick);
-            // 
-            // BtnHelp_ImportParameter
-            // 
-            this.BtnHelp_ImportParameter.BackColor = System.Drawing.Color.SkyBlue;
-            resources.ApplyResources(this.BtnHelp_ImportParameter, "BtnHelp_ImportParameter");
-            this.BtnHelp_ImportParameter.Name = "BtnHelp_ImportParameter";
-            this.BtnHelp_ImportParameter.Tag = "id=form-probe#edgefinder";
-            this.toolTip1.SetToolTip(this.BtnHelp_ImportParameter, resources.GetString("BtnHelp_ImportParameter.ToolTip"));
-            this.BtnHelp_ImportParameter.UseVisualStyleBackColor = false;
-            this.BtnHelp_ImportParameter.Click += new System.EventHandler(this.BtnHelp_ImportParameter_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.SkyBlue;
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.Name = "button1";
-            this.button1.Tag = "id=form-probe#centerfinder";
-            this.toolTip1.SetToolTip(this.button1, resources.GetString("button1.ToolTip"));
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.BtnHelp_ImportParameter_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.SkyBlue;
-            resources.ApplyResources(this.button2, "button2");
-            this.button2.Name = "button2";
-            this.button2.Tag = "id=form-probe#toollength";
-            this.toolTip1.SetToolTip(this.button2, resources.GetString("button2.ToolTip"));
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.BtnHelp_ImportParameter_Click);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.SkyBlue;
-            resources.ApplyResources(this.button3, "button3");
-            this.button3.Name = "button3";
-            this.button3.Tag = "id=form-probe#fiducial";
-            this.toolTip1.SetToolTip(this.button3, resources.GetString("button3.ToolTip"));
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.BtnHelp_ImportParameter_Click);
             // 
             // ControlProbing
             // 

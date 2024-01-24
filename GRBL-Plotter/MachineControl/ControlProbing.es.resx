@@ -358,18 +358,6 @@ Por lo general, el borde de la herramienta (sonda / cortador) se utiliza para de
     <value>Coordenadas fiduciales: Sólo se utilizarán la 1ª y 2ª.
 Obtenga coordenadas fiduciales a partir de gráficos importados.</value>
   </data>
-  <data name="BtnStartEF.Text" xml:space="preserve">
-    <value>comienzo</value>
-  </data>
-  <data name="BtnStartCF.Text" xml:space="preserve">
-    <value>comienzo</value>
-  </data>
-  <data name="BtnCancelCF.Text" xml:space="preserve">
-    <value>Cancelar</value>
-  </data>
-  <data name="BtnStartTL.Text" xml:space="preserve">
-    <value>comienzo</value>
-  </data>
   <data name="CbProbeSkipMove.Text" xml:space="preserve">
     <value>Saltar el primer movimiento al contacto</value>
   </data>

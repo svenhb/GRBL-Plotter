@@ -358,18 +358,6 @@ Z вернется в исходное положение</value>
     <value>Реперные координаты: будут использоваться только 1-я и 2-я.
 Получите координаты реперных точек из импортированной графики.</value>
   </data>
-  <data name="BtnStartEF.Text" xml:space="preserve">
-    <value>Начало</value>
-  </data>
-  <data name="BtnStartCF.Text" xml:space="preserve">
-    <value>Начало</value>
-  </data>
-  <data name="BtnCancelCF.Text" xml:space="preserve">
-    <value>Отмена</value>
-  </data>
-  <data name="BtnStartTL.Text" xml:space="preserve">
-    <value>Начало</value>
-  </data>
   <data name="CbProbeSkipMove.Text" xml:space="preserve">
     <value>Пропустить первый ход при контакте</value>
   </data>

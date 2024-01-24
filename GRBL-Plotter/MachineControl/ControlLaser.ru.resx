@@ -204,4 +204,127 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Лазерное выравнивание</value>
   </data>
+  <data name="TbPatternHeadline.Text" xml:space="preserve">
+    <value>Заголовок</value>
+  </data>
+  <data name="TbPatternHeadline.ToolTip" xml:space="preserve">
+    <value>Заголовок над тестовым шаблоном</value>
+  </data>
+  <data name="CbPatternLabelFirst.Text" xml:space="preserve">
+    <value>Сначала напишите ярлыки</value>
+  </data>
+  <data name="CbPatternLabelFirst.ToolTip" xml:space="preserve">
+    <value>Если эта опция включена, метки будут выгравированы перед тестовыми областями.</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Скорость</value>
+  </data>
+  <data name="NudPatternLabelSpeed.ToolTip" xml:space="preserve">
+    <value>Скорость подачи для гравировки этикеток</value>
+  </data>
+  <data name="NudPatternLabelPower.ToolTip" xml:space="preserve">
+    <value>Мощность лазера для гравировки этикеток</value>
+  </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>Мощность лазера</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Гравировка этикетки</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Тестовая область/прямоугольник</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Скорость/подача по оси Y</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Мощность лазера по оси X</value>
+  </data>
+  <data name="BtnMaterialTest.Text" xml:space="preserve">
+    <value>Создать тестовый шаблон</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Тестовый образец материала</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Лазерное выравнивание</value>
+  </data>
+  <data name="BtnMaterialSingleTest.Text" xml:space="preserve">
+    <value>Создать одиночный тест</value>
+  </data>
+  <data name="BtnMaterialSingleTest.ToolTip" xml:space="preserve">
+    <value>Создайте единую испытательную зону, используя минимальную мощность лазера и максимальную скорость подачи.</value>
+  </data>
+  <data name="NudPatternGap.ToolTip" xml:space="preserve">
+    <value>Расстояние между испытательными площадками</value>
+  </data>
+  <data name="NudPatternYSize.ToolTip" xml:space="preserve">
+    <value>Высота испытательной площадки</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Зазор</value>
+  </data>
+  <data name="NudPatternInterval.ToolTip" xml:space="preserve">
+    <value>Расстояние между линиями для заполнения тестовой области</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Расстояние между строками/интервал</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Размер Y</value>
+  </data>
+  <data name="NudPatternXSize.ToolTip" xml:space="preserve">
+    <value>Ширина испытательной зоны</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>Размер Х</value>
+  </data>
+  <data name="CbPatternYLabel.Text" xml:space="preserve">
+    <value>Показать ярлык</value>
+  </data>
+  <data name="CbPatternYLabel.ToolTip" xml:space="preserve">
+    <value>Показывает применяемую скорость подачи слева от тестовых участков.</value>
+  </data>
+  <data name="NudPatternYMax.ToolTip" xml:space="preserve">
+    <value>Сначала будет применена максимальная скорость подачи (внизу).</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Макс.</value>
+  </data>
+  <data name="NudPatternYMin.ToolTip" xml:space="preserve">
+    <value>Минимальная скорость подачи будет применяться последней (вверху)</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Мин.</value>
+  </data>
+  <data name="NudPatternYNumber.ToolTip" xml:space="preserve">
+    <value>Количество тестовых полей для скорости подачи по вертикали (ось Y)</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>Число</value>
+  </data>
+  <data name="CbPatternXLabel.Text" xml:space="preserve">
+    <value>Показать ярлык</value>
+  </data>
+  <data name="CbPatternXLabel.ToolTip" xml:space="preserve">
+    <value>Показывает приложенную мощность лазера под тестовыми зонами.</value>
+  </data>
+  <data name="NudPatternXMax.ToolTip" xml:space="preserve">
+    <value>Сила лазера, чтобы остановиться (крайний справа)</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Макс. %</value>
+  </data>
+  <data name="NudPatternXMin.ToolTip" xml:space="preserve">
+    <value>Мощность лазера для начала (крайний слева)</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Мин. %</value>
+  </data>
+  <data name="NudPatternXNumber.ToolTip" xml:space="preserve">
+    <value>Количество тестовых полей для энергии лазера по горизонтали (ось x)</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Число</value>
+  </data>
 </root>

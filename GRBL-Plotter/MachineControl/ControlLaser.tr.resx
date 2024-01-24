@@ -210,4 +210,127 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Allineamento laser</value>
   </data>
+  <data name="TbPatternHeadline.Text" xml:space="preserve">
+    <value>Başlık</value>
+  </data>
+  <data name="TbPatternHeadline.ToolTip" xml:space="preserve">
+    <value>Test modelinin üzerindeki başlık</value>
+  </data>
+  <data name="CbPatternLabelFirst.Text" xml:space="preserve">
+    <value>Önce etiketleri yazın</value>
+  </data>
+  <data name="CbPatternLabelFirst.ToolTip" xml:space="preserve">
+    <value>Etkinleştirilirse etiketler test alanlarından önce kazınacaktır</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Hız</value>
+  </data>
+  <data name="NudPatternLabelSpeed.ToolTip" xml:space="preserve">
+    <value>Etiketleri kazımak için ilerleme hızı</value>
+  </data>
+  <data name="NudPatternLabelPower.ToolTip" xml:space="preserve">
+    <value>Etiketleri kazımak için lazer gücü</value>
+  </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>Lazer gücü</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Etiket gravürü</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Test alanı / dikdörtgen</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Y ekseninde Hız / İlerleme Hızı</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>X ekseninde lazer gücü</value>
+  </data>
+  <data name="BtnMaterialTest.Text" xml:space="preserve">
+    <value>Test deseni oluştur</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Malzeme test modeli</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Lazer hizalama</value>
+  </data>
+  <data name="BtnMaterialSingleTest.Text" xml:space="preserve">
+    <value>Tek test oluştur</value>
+  </data>
+  <data name="BtnMaterialSingleTest.ToolTip" xml:space="preserve">
+    <value>Minimum lazer gücü ve maksimum ilerleme hızını kullanarak tek test alanı oluşturun</value>
+  </data>
+  <data name="NudPatternGap.ToolTip" xml:space="preserve">
+    <value>Test alanları arasındaki mesafe</value>
+  </data>
+  <data name="NudPatternYSize.ToolTip" xml:space="preserve">
+    <value>Test alanının yüksekliği</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Açıklık</value>
+  </data>
+  <data name="NudPatternInterval.ToolTip" xml:space="preserve">
+    <value>Test alanını doldurmak için çizgiler arasındaki mesafe</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Hat mesafesi / Aralık</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Boyut Y</value>
+  </data>
+  <data name="NudPatternXSize.ToolTip" xml:space="preserve">
+    <value>Test alanının genişliği</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>Boyut X</value>
+  </data>
+  <data name="CbPatternYLabel.Text" xml:space="preserve">
+    <value>Etiketi göster</value>
+  </data>
+  <data name="CbPatternYLabel.ToolTip" xml:space="preserve">
+    <value>Test alanlarının solunda uygulanan ilerleme hızlarını gösterir</value>
+  </data>
+  <data name="NudPatternYMax.ToolTip" xml:space="preserve">
+    <value>İlk önce maksimum ilerleme hızı uygulanacaktır (altta)</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Maks.</value>
+  </data>
+  <data name="NudPatternYMin.ToolTip" xml:space="preserve">
+    <value>Minimum ilerleme hızı en son (üst) uygulanacaktır</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Min.</value>
+  </data>
+  <data name="NudPatternYNumber.ToolTip" xml:space="preserve">
+    <value>Dikey (y ekseni) ilerleme hızı için test alanı sayısı</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>Sayı</value>
+  </data>
+  <data name="CbPatternXLabel.Text" xml:space="preserve">
+    <value>Etiketi göster</value>
+  </data>
+  <data name="CbPatternXLabel.ToolTip" xml:space="preserve">
+    <value>Test alanlarının altında uygulanan lazer güçlerini gösterir</value>
+  </data>
+  <data name="NudPatternXMax.ToolTip" xml:space="preserve">
+    <value>Durdurulacak lazer gücü (en sağda)</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Maks. %</value>
+  </data>
+  <data name="NudPatternXMin.ToolTip" xml:space="preserve">
+    <value>Başlangıç ​​olarak lazer gücü (en solda)</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Min. %</value>
+  </data>
+  <data name="NudPatternXNumber.ToolTip" xml:space="preserve">
+    <value>Yatayda (x ekseni) lazer enerjisi için test alanı sayısı</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Sayı</value>
+  </data>
 </root>

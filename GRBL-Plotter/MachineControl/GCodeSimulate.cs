@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@
  * 2021-09-07 take care of tile-offset in ProcessedPathDraw
  * 2021-10-09 improove processedPath (remove glitches)
  * 2021-10-29 add option to shift processed tile path to work area - importGraphicClipShowOrigPositionShiftTileProcessed
+ * 2024-01-22 l:535 f:ProcessedPathDraw check index before use
  */
 
 using System;
@@ -532,7 +533,9 @@ namespace GrblPlotter
                 }
                 // no match found, try new start-pos
                 if (!onTrack)
-                { lastGCodePos = new XyzPoint(simuList[indexLastSucess].actualPos.X, simuList[indexLastSucess].actualPos.Y, simuList[indexLastSucess].actualPos.Z); }
+                { 	if ((indexLastSucess > 0) && (indexLastSucess < simuList.Count))
+					{	lastGCodePos = new XyzPoint(simuList[indexLastSucess].actualPos.X, simuList[indexLastSucess].actualPos.Y, simuList[indexLastSucess].actualPos.Z); }
+				}
             }
             private static PointF ToPointF(XyzPoint tmp)
             { return new PointF((float)tmp.X, (float)tmp.Y); }

@@ -357,18 +357,6 @@ Z powróci do pozycji początkowej</value>
     <value>Współrzędne odniesienia: użyte zostaną tylko 1. i 2. współrzędne.
 Uzyskaj współrzędne odniesienia z importowanej grafiki.</value>
   </data>
-  <data name="BtnStartEF.Text" xml:space="preserve">
-    <value>Start</value>
-  </data>
-  <data name="BtnStartCF.Text" xml:space="preserve">
-    <value>Start</value>
-  </data>
-  <data name="BtnCancelCF.Text" xml:space="preserve">
-    <value>Anuluj</value>
-  </data>
-  <data name="BtnStartTL.Text" xml:space="preserve">
-    <value>Start</value>
-  </data>
   <data name="CbProbeSkipMove.Text" xml:space="preserve">
     <value>Pomiń pierwszy ruch przy kontakcie</value>
   </data>

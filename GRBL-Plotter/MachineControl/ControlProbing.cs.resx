@@ -359,18 +359,6 @@ Z se vrátí zpět do výchozí polohy</value>
     <value>Výchozí souřadnice: Budou použity pouze 1. a 2. souřadnice.
 Získejte souřadnice referenčních značek z importované grafiky.</value>
   </data>
-  <data name="BtnStartEF.Text" xml:space="preserve">
-    <value>Start</value>
-  </data>
-  <data name="BtnStartCF.Text" xml:space="preserve">
-    <value>Start</value>
-  </data>
-  <data name="BtnCancelCF.Text" xml:space="preserve">
-    <value>zrušení</value>
-  </data>
-  <data name="BtnStartTL.Text" xml:space="preserve">
-    <value>Start</value>
-  </data>
   <data name="CbProbeSkipMove.Text" xml:space="preserve">
     <value>Přeskočte 1. tah při kontaktu</value>
   </data>

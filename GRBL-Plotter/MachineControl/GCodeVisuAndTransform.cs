@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -50,6 +50,7 @@
  * 2021-07-27 code clean up / code quality
  *			  split code to GCodeAnalyze.cs, GCode2DViewPaths.cs
  * 2022-03-01 MarkSelectedGroup line 368 add try/catch for AddPath
+ * 2024-01-03 l:575 f:MarkSelectedCollection	check if path has points before copying
 */
 
 using System;
@@ -112,7 +113,7 @@ namespace GrblPlotter
         /// </summary>
         public static void SetPosMarkerLine(int line, bool markFigure)
         {
-            if (logDetailed) 
+            if (logDetailed)
                 Logger.Trace("  SetPosMarkerLine line:{0}  markFigure:{1}", line, markFigure);
             if (line < 0) return;
 
@@ -557,7 +558,8 @@ namespace GrblPlotter
             Logger.Info("MarkSelectedCollection start:{0} {1}", start, gcodeList[start].codeLine);
 
             int line;
-            for ( line = start + 1; line < gcodeList.Count; line++)		// go through tile code lines
+            int numPoints = 0;
+            for (line = start + 1; line < gcodeList.Count; line++)		// go through tile code lines
             {
                 if (gcodeList[line].codeLine.Contains(XmlMarker.CollectionEnd))
                     break;
@@ -568,9 +570,13 @@ namespace GrblPlotter
                     figures.Add(figNr);										// collect figure nr.
                     myPathIterator.Rewind();
                     for (int i = 1; i <= figNr; i++)
-                        myPathIterator.NextMarker(tmpPath);					// find figure path
-                    pathMarkSelection.AddPath(tmpPath, false);				// add figure path
-                    lastFigureNumbers.Add(figNr);
+                        numPoints = myPathIterator.NextMarker(tmpPath);     // find figure path
+
+                    if (numPoints > 0)
+                    {
+                        pathMarkSelection.AddPath(tmpPath, false);          // add figure path
+                        lastFigureNumbers.Add(figNr);
+                    }
                 }
             }
 
@@ -595,7 +601,7 @@ namespace GrblPlotter
             { }
             ImgPoint actualPos, lastPos;
             double dist;
-            float dX, dY;
+            double dX, dY;
             int steps, i;
             bool lastWasG0 = true;
             lastPos = new ImgPoint();
@@ -605,7 +611,7 @@ namespace GrblPlotter
             {
                 foreach (GcodeByLine gcline in gcodeList)
                 {
-                    actualPos = new ImgPoint((float)(gcline.actualPos.X - offX), (float)(gcline.actualPos.Y - offY), gcline.motionMode);
+                    actualPos = new ImgPoint((gcline.actualPos.X - offX), (gcline.actualPos.Y - offY), gcline.motionMode);
                     if (gcline.motionMode > 0)
                     {
                         if (lastWasG0)

@@ -207,4 +207,127 @@
   <data name="cBLaserMode.Text" xml:space="preserve">
     <value>وضع الليزر 32 دولار</value>
   </data>
+  <data name="TbPatternHeadline.Text" xml:space="preserve">
+    <value>العنوان</value>
+  </data>
+  <data name="TbPatternHeadline.ToolTip" xml:space="preserve">
+    <value>العنوان فوق نمط الاختبار</value>
+  </data>
+  <data name="CbPatternLabelFirst.Text" xml:space="preserve">
+    <value>اكتب التسميات أولاً</value>
+  </data>
+  <data name="CbPatternLabelFirst.ToolTip" xml:space="preserve">
+    <value>في حالة تمكينه، سيتم نقش الملصقات قبل مناطق الاختبار</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>سرعة</value>
+  </data>
+  <data name="NudPatternLabelSpeed.ToolTip" xml:space="preserve">
+    <value>معدل التغذية لنقش الملصقات</value>
+  </data>
+  <data name="NudPatternLabelPower.ToolTip" xml:space="preserve">
+    <value>قوة الليزر لنقش الملصقات</value>
+  </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>قوة الليزر</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>نقش التسمية</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>منطقة الاختبار / المستطيل</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>السرعة / معدل التغذية على المحور Y</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>قوة الليزر على المحور X</value>
+  </data>
+  <data name="BtnMaterialTest.Text" xml:space="preserve">
+    <value>إنشاء نمط الاختبار</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>نمط اختبار المواد</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>محاذاة الليزر</value>
+  </data>
+  <data name="BtnMaterialSingleTest.Text" xml:space="preserve">
+    <value>إنشاء اختبار واحد</value>
+  </data>
+  <data name="BtnMaterialSingleTest.ToolTip" xml:space="preserve">
+    <value>قم بإنشاء منطقة اختبار واحدة باستخدام الحد الأدنى من طاقة الليزر والحد الأقصى لمعدل التغذية</value>
+  </data>
+  <data name="NudPatternGap.ToolTip" xml:space="preserve">
+    <value>المسافة بين مناطق الاختبار</value>
+  </data>
+  <data name="NudPatternYSize.ToolTip" xml:space="preserve">
+    <value>ارتفاع منطقة الاختبار</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>فجوة</value>
+  </data>
+  <data name="NudPatternInterval.ToolTip" xml:space="preserve">
+    <value>المسافة بين الخطوط لملء منطقة الاختبار</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>مسافة الخط / الفاصل الزمني</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>الحجم Y</value>
+  </data>
+  <data name="NudPatternXSize.ToolTip" xml:space="preserve">
+    <value>عرض منطقة الاختبار</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>الحجم X</value>
+  </data>
+  <data name="CbPatternYLabel.Text" xml:space="preserve">
+    <value>إظهار التسمية</value>
+  </data>
+  <data name="CbPatternYLabel.ToolTip" xml:space="preserve">
+    <value>يُظهر معدلات التغذية المطبقة على يسار مناطق الاختبار</value>
+  </data>
+  <data name="NudPatternYMax.ToolTip" xml:space="preserve">
+    <value>سيتم تطبيق الحد الأقصى لمعدل التغذية أولاً (أسفل)</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>الأعلى.</value>
+  </data>
+  <data name="NudPatternYMin.ToolTip" xml:space="preserve">
+    <value>سيتم تطبيق الحد الأدنى لمعدل التغذية أخيرًا (أعلى)</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>دقيقة.</value>
+  </data>
+  <data name="NudPatternYNumber.ToolTip" xml:space="preserve">
+    <value>عدد حقول الاختبار لمعدل التغذية في العمودي (المحور الصادي)</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>رقم</value>
+  </data>
+  <data name="CbPatternXLabel.Text" xml:space="preserve">
+    <value>إظهار التسمية</value>
+  </data>
+  <data name="CbPatternXLabel.ToolTip" xml:space="preserve">
+    <value>يُظهر قوى الليزر المطبقة أسفل مناطق الاختبار</value>
+  </data>
+  <data name="NudPatternXMax.ToolTip" xml:space="preserve">
+    <value>قوة الليزر للتوقف مع (أقصى اليمين)</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>الأعلى. %</value>
+  </data>
+  <data name="NudPatternXMin.ToolTip" xml:space="preserve">
+    <value>قوة الليزر لتبدأ (أقصى اليسار)</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>دقيقة. %</value>
+  </data>
+  <data name="NudPatternXNumber.ToolTip" xml:space="preserve">
+    <value>عدد مجالات الاختبار لطاقة الليزر في المحور الأفقي (س)</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>رقم</value>
+  </data>
 </root>

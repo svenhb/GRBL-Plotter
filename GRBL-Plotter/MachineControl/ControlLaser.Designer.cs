@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlLaser));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.nUDMotionDelayPower = new System.Windows.Forms.NumericUpDown();
@@ -77,6 +78,46 @@
             this.lblToolProp = new System.Windows.Forms.Label();
             this.btnScanTool = new System.Windows.Forms.Button();
             this.cBTool = new System.Windows.Forms.ComboBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.CbPatternSendM5 = new System.Windows.Forms.CheckBox();
+            this.LblPatternInfo = new System.Windows.Forms.Label();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.TbPatternHeadline = new System.Windows.Forms.TextBox();
+            this.CbPatternLabelFirst = new System.Windows.Forms.CheckBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.NudPatternLabelSpeed = new System.Windows.Forms.NumericUpDown();
+            this.NudPatternLabelPower = new System.Windows.Forms.NumericUpDown();
+            this.label27 = new System.Windows.Forms.Label();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.BtnMaterialSingleTest = new System.Windows.Forms.Button();
+            this.NudPatternGap = new System.Windows.Forms.NumericUpDown();
+            this.NudPatternYSize = new System.Windows.Forms.NumericUpDown();
+            this.label26 = new System.Windows.Forms.Label();
+            this.NudPatternInterval = new System.Windows.Forms.NumericUpDown();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.NudPatternXSize = new System.Windows.Forms.NumericUpDown();
+            this.label23 = new System.Windows.Forms.Label();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.CbPatternYLabel = new System.Windows.Forms.CheckBox();
+            this.NudPatternYMax = new System.Windows.Forms.NumericUpDown();
+            this.label20 = new System.Windows.Forms.Label();
+            this.NudPatternYMin = new System.Windows.Forms.NumericUpDown();
+            this.label21 = new System.Windows.Forms.Label();
+            this.NudPatternYNumber = new System.Windows.Forms.NumericUpDown();
+            this.label22 = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.CbPatternXLabel = new System.Windows.Forms.CheckBox();
+            this.NudPatternXMax = new System.Windows.Forms.NumericUpDown();
+            this.label19 = new System.Windows.Forms.Label();
+            this.NudPatternXMin = new System.Windows.Forms.NumericUpDown();
+            this.label18 = new System.Windows.Forms.Label();
+            this.NudPatternXNumber = new System.Windows.Forms.NumericUpDown();
+            this.label17 = new System.Windows.Forms.Label();
+            this.BtnMaterialTest = new System.Windows.Forms.Button();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDMotionDelayPower)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDMotionDelay)).BeginInit();
@@ -98,10 +139,30 @@
             ((System.ComponentModel.ISupportInitialize)(this.nUDPowerMin)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternLabelSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternLabelPower)).BeginInit();
+            this.groupBox9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternGap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternYSize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternInterval)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternXSize)).BeginInit();
+            this.groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternYMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternYMin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternYNumber)).BeginInit();
+            this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternXMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternXMin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternXNumber)).BeginInit();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.groupBox1.Controls.Add(this.nUDMotionDelayPower);
             this.groupBox1.Controls.Add(this.nUDMotionDelay);
             this.groupBox1.Controls.Add(this.nUDMotionY);
@@ -199,6 +260,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.groupBox2.Controls.Add(this.nUDMotionSpeed);
             this.groupBox2.Controls.Add(this.btnScanZ);
             this.groupBox2.Controls.Add(this.nUDMotionZ);
@@ -296,6 +358,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.BackColor = System.Drawing.Color.WhiteSmoke;
             this.groupBox3.Controls.Add(this.nUDSpeedStep);
             this.groupBox3.Controls.Add(this.btnScanSpeed);
             this.groupBox3.Controls.Add(this.nUDSpeedPower);
@@ -421,6 +484,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.BackColor = System.Drawing.Color.WhiteSmoke;
             this.groupBox4.Controls.Add(this.nUDPowerStep);
             this.groupBox4.Controls.Add(this.btnScanPower);
             this.groupBox4.Controls.Add(this.nUDPowerSpeed);
@@ -537,6 +601,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.BackColor = System.Drawing.Color.WhiteSmoke;
             this.groupBox5.Controls.Add(this.rBM3);
             this.groupBox5.Controls.Add(this.nUDLaserPower);
             this.groupBox5.Controls.Add(this.cBLaserMode);
@@ -546,6 +611,7 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.BackColor = System.Drawing.Color.WhiteSmoke;
             this.groupBox6.Controls.Add(this.btnToolUpdate);
             this.groupBox6.Controls.Add(this.lblToolProp);
             this.groupBox6.Controls.Add(this.btnScanTool);
@@ -580,18 +646,491 @@
             this.cBTool.Name = "cBTool";
             this.cBTool.SelectedIndexChanged += new System.EventHandler(this.CbTool_SelectedIndexChanged);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage1);
+            resources.ApplyResources(this.tabControl1, "tabControl1");
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.CbPatternSendM5);
+            this.tabPage2.Controls.Add(this.LblPatternInfo);
+            this.tabPage2.Controls.Add(this.groupBox10);
+            this.tabPage2.Controls.Add(this.groupBox9);
+            this.tabPage2.Controls.Add(this.groupBox8);
+            this.tabPage2.Controls.Add(this.groupBox7);
+            this.tabPage2.Controls.Add(this.BtnMaterialTest);
+            resources.ApplyResources(this.tabPage2, "tabPage2");
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // CbPatternSendM5
+            // 
+            resources.ApplyResources(this.CbPatternSendM5, "CbPatternSendM5");
+            this.CbPatternSendM5.Name = "CbPatternSendM5";
+            this.CbPatternSendM5.UseVisualStyleBackColor = true;
+            // 
+            // LblPatternInfo
+            // 
+            resources.ApplyResources(this.LblPatternInfo, "LblPatternInfo");
+            this.LblPatternInfo.Name = "LblPatternInfo";
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox10.Controls.Add(this.TbPatternHeadline);
+            this.groupBox10.Controls.Add(this.CbPatternLabelFirst);
+            this.groupBox10.Controls.Add(this.label28);
+            this.groupBox10.Controls.Add(this.NudPatternLabelSpeed);
+            this.groupBox10.Controls.Add(this.NudPatternLabelPower);
+            this.groupBox10.Controls.Add(this.label27);
+            resources.ApplyResources(this.groupBox10, "groupBox10");
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.TabStop = false;
+            // 
+            // TbPatternHeadline
+            // 
+            resources.ApplyResources(this.TbPatternHeadline, "TbPatternHeadline");
+            this.TbPatternHeadline.Name = "TbPatternHeadline";
+            this.toolTip1.SetToolTip(this.TbPatternHeadline, resources.GetString("TbPatternHeadline.ToolTip"));
+            // 
+            // CbPatternLabelFirst
+            // 
+            resources.ApplyResources(this.CbPatternLabelFirst, "CbPatternLabelFirst");
+            this.CbPatternLabelFirst.Name = "CbPatternLabelFirst";
+            this.toolTip1.SetToolTip(this.CbPatternLabelFirst, resources.GetString("CbPatternLabelFirst.ToolTip"));
+            this.CbPatternLabelFirst.UseVisualStyleBackColor = true;
+            // 
+            // label28
+            // 
+            resources.ApplyResources(this.label28, "label28");
+            this.label28.Name = "label28";
+            // 
+            // NudPatternLabelSpeed
+            // 
+            this.NudPatternLabelSpeed.Increment = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.NudPatternLabelSpeed, "NudPatternLabelSpeed");
+            this.NudPatternLabelSpeed.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.NudPatternLabelSpeed.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.NudPatternLabelSpeed.Name = "NudPatternLabelSpeed";
+            this.toolTip1.SetToolTip(this.NudPatternLabelSpeed, resources.GetString("NudPatternLabelSpeed.ToolTip"));
+            this.NudPatternLabelSpeed.Value = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            // 
+            // NudPatternLabelPower
+            // 
+            this.NudPatternLabelPower.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.NudPatternLabelPower, "NudPatternLabelPower");
+            this.NudPatternLabelPower.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.NudPatternLabelPower.Name = "NudPatternLabelPower";
+            this.toolTip1.SetToolTip(this.NudPatternLabelPower, resources.GetString("NudPatternLabelPower.ToolTip"));
+            this.NudPatternLabelPower.Value = new decimal(new int[] {
+            80,
+            0,
+            0,
+            0});
+            // 
+            // label27
+            // 
+            resources.ApplyResources(this.label27, "label27");
+            this.label27.Name = "label27";
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox9.Controls.Add(this.BtnMaterialSingleTest);
+            this.groupBox9.Controls.Add(this.NudPatternGap);
+            this.groupBox9.Controls.Add(this.NudPatternYSize);
+            this.groupBox9.Controls.Add(this.label26);
+            this.groupBox9.Controls.Add(this.NudPatternInterval);
+            this.groupBox9.Controls.Add(this.label25);
+            this.groupBox9.Controls.Add(this.label24);
+            this.groupBox9.Controls.Add(this.NudPatternXSize);
+            this.groupBox9.Controls.Add(this.label23);
+            resources.ApplyResources(this.groupBox9, "groupBox9");
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.TabStop = false;
+            // 
+            // BtnMaterialSingleTest
+            // 
+            resources.ApplyResources(this.BtnMaterialSingleTest, "BtnMaterialSingleTest");
+            this.BtnMaterialSingleTest.Name = "BtnMaterialSingleTest";
+            this.toolTip1.SetToolTip(this.BtnMaterialSingleTest, resources.GetString("BtnMaterialSingleTest.ToolTip"));
+            this.BtnMaterialSingleTest.UseVisualStyleBackColor = true;
+            this.BtnMaterialSingleTest.Click += new System.EventHandler(this.BtnMaterialSingleTest_Click);
+            // 
+            // NudPatternGap
+            // 
+            this.NudPatternGap.DecimalPlaces = 1;
+            resources.ApplyResources(this.NudPatternGap, "NudPatternGap");
+            this.NudPatternGap.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.NudPatternGap.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NudPatternGap.Name = "NudPatternGap";
+            this.toolTip1.SetToolTip(this.NudPatternGap, resources.GetString("NudPatternGap.ToolTip"));
+            this.NudPatternGap.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // NudPatternYSize
+            // 
+            this.NudPatternYSize.DecimalPlaces = 1;
+            resources.ApplyResources(this.NudPatternYSize, "NudPatternYSize");
+            this.NudPatternYSize.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.NudPatternYSize.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NudPatternYSize.Name = "NudPatternYSize";
+            this.toolTip1.SetToolTip(this.NudPatternYSize, resources.GetString("NudPatternYSize.ToolTip"));
+            this.NudPatternYSize.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // label26
+            // 
+            resources.ApplyResources(this.label26, "label26");
+            this.label26.Name = "label26";
+            // 
+            // NudPatternInterval
+            // 
+            this.NudPatternInterval.DecimalPlaces = 2;
+            this.NudPatternInterval.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            131072});
+            resources.ApplyResources(this.NudPatternInterval, "NudPatternInterval");
+            this.NudPatternInterval.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.NudPatternInterval.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            131072});
+            this.NudPatternInterval.Name = "NudPatternInterval";
+            this.toolTip1.SetToolTip(this.NudPatternInterval, resources.GetString("NudPatternInterval.ToolTip"));
+            this.NudPatternInterval.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            // 
+            // label25
+            // 
+            resources.ApplyResources(this.label25, "label25");
+            this.label25.Name = "label25";
+            // 
+            // label24
+            // 
+            resources.ApplyResources(this.label24, "label24");
+            this.label24.Name = "label24";
+            // 
+            // NudPatternXSize
+            // 
+            this.NudPatternXSize.DecimalPlaces = 1;
+            resources.ApplyResources(this.NudPatternXSize, "NudPatternXSize");
+            this.NudPatternXSize.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.NudPatternXSize.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NudPatternXSize.Name = "NudPatternXSize";
+            this.toolTip1.SetToolTip(this.NudPatternXSize, resources.GetString("NudPatternXSize.ToolTip"));
+            this.NudPatternXSize.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // label23
+            // 
+            resources.ApplyResources(this.label23, "label23");
+            this.label23.Name = "label23";
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox8.Controls.Add(this.CbPatternYLabel);
+            this.groupBox8.Controls.Add(this.NudPatternYMax);
+            this.groupBox8.Controls.Add(this.label20);
+            this.groupBox8.Controls.Add(this.NudPatternYMin);
+            this.groupBox8.Controls.Add(this.label21);
+            this.groupBox8.Controls.Add(this.NudPatternYNumber);
+            this.groupBox8.Controls.Add(this.label22);
+            resources.ApplyResources(this.groupBox8, "groupBox8");
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.TabStop = false;
+            // 
+            // CbPatternYLabel
+            // 
+            resources.ApplyResources(this.CbPatternYLabel, "CbPatternYLabel");
+            this.CbPatternYLabel.Checked = true;
+            this.CbPatternYLabel.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CbPatternYLabel.Name = "CbPatternYLabel";
+            this.toolTip1.SetToolTip(this.CbPatternYLabel, resources.GetString("CbPatternYLabel.ToolTip"));
+            this.CbPatternYLabel.UseVisualStyleBackColor = true;
+            // 
+            // NudPatternYMax
+            // 
+            this.NudPatternYMax.Increment = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.NudPatternYMax, "NudPatternYMax");
+            this.NudPatternYMax.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.NudPatternYMax.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.NudPatternYMax.Name = "NudPatternYMax";
+            this.toolTip1.SetToolTip(this.NudPatternYMax, resources.GetString("NudPatternYMax.ToolTip"));
+            this.NudPatternYMax.Value = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            // 
+            // label20
+            // 
+            resources.ApplyResources(this.label20, "label20");
+            this.label20.Name = "label20";
+            // 
+            // NudPatternYMin
+            // 
+            this.NudPatternYMin.Increment = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.NudPatternYMin, "NudPatternYMin");
+            this.NudPatternYMin.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.NudPatternYMin.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.NudPatternYMin.Name = "NudPatternYMin";
+            this.toolTip1.SetToolTip(this.NudPatternYMin, resources.GetString("NudPatternYMin.ToolTip"));
+            this.NudPatternYMin.Value = new decimal(new int[] {
+            600,
+            0,
+            0,
+            0});
+            // 
+            // label21
+            // 
+            resources.ApplyResources(this.label21, "label21");
+            this.label21.Name = "label21";
+            // 
+            // NudPatternYNumber
+            // 
+            resources.ApplyResources(this.NudPatternYNumber, "NudPatternYNumber");
+            this.NudPatternYNumber.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.NudPatternYNumber.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.NudPatternYNumber.Name = "NudPatternYNumber";
+            this.toolTip1.SetToolTip(this.NudPatternYNumber, resources.GetString("NudPatternYNumber.ToolTip"));
+            this.NudPatternYNumber.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // label22
+            // 
+            resources.ApplyResources(this.label22, "label22");
+            this.label22.Name = "label22";
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox7.Controls.Add(this.CbPatternXLabel);
+            this.groupBox7.Controls.Add(this.NudPatternXMax);
+            this.groupBox7.Controls.Add(this.label19);
+            this.groupBox7.Controls.Add(this.NudPatternXMin);
+            this.groupBox7.Controls.Add(this.label18);
+            this.groupBox7.Controls.Add(this.NudPatternXNumber);
+            this.groupBox7.Controls.Add(this.label17);
+            resources.ApplyResources(this.groupBox7, "groupBox7");
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.TabStop = false;
+            // 
+            // CbPatternXLabel
+            // 
+            resources.ApplyResources(this.CbPatternXLabel, "CbPatternXLabel");
+            this.CbPatternXLabel.Checked = true;
+            this.CbPatternXLabel.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CbPatternXLabel.Name = "CbPatternXLabel";
+            this.toolTip1.SetToolTip(this.CbPatternXLabel, resources.GetString("CbPatternXLabel.ToolTip"));
+            this.CbPatternXLabel.UseVisualStyleBackColor = true;
+            // 
+            // NudPatternXMax
+            // 
+            this.NudPatternXMax.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.NudPatternXMax, "NudPatternXMax");
+            this.NudPatternXMax.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.NudPatternXMax.Name = "NudPatternXMax";
+            this.toolTip1.SetToolTip(this.NudPatternXMax, resources.GetString("NudPatternXMax.ToolTip"));
+            this.NudPatternXMax.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // label19
+            // 
+            resources.ApplyResources(this.label19, "label19");
+            this.label19.Name = "label19";
+            // 
+            // NudPatternXMin
+            // 
+            this.NudPatternXMin.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            resources.ApplyResources(this.NudPatternXMin, "NudPatternXMin");
+            this.NudPatternXMin.Name = "NudPatternXMin";
+            this.toolTip1.SetToolTip(this.NudPatternXMin, resources.GetString("NudPatternXMin.ToolTip"));
+            this.NudPatternXMin.Value = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            // 
+            // label18
+            // 
+            resources.ApplyResources(this.label18, "label18");
+            this.label18.Name = "label18";
+            // 
+            // NudPatternXNumber
+            // 
+            resources.ApplyResources(this.NudPatternXNumber, "NudPatternXNumber");
+            this.NudPatternXNumber.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.NudPatternXNumber.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.NudPatternXNumber.Name = "NudPatternXNumber";
+            this.toolTip1.SetToolTip(this.NudPatternXNumber, resources.GetString("NudPatternXNumber.ToolTip"));
+            this.NudPatternXNumber.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // label17
+            // 
+            resources.ApplyResources(this.label17, "label17");
+            this.label17.Name = "label17";
+            // 
+            // BtnMaterialTest
+            // 
+            resources.ApplyResources(this.BtnMaterialTest, "BtnMaterialTest");
+            this.BtnMaterialTest.Name = "BtnMaterialTest";
+            this.BtnMaterialTest.UseVisualStyleBackColor = true;
+            this.BtnMaterialTest.Click += new System.EventHandler(this.BtnMaterialTest_Click);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.groupBox5);
+            this.tabPage1.Controls.Add(this.groupBox6);
+            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Controls.Add(this.lblText);
+            this.tabPage1.Controls.Add(this.lblInfo);
+            this.tabPage1.Controls.Add(this.groupBox2);
+            this.tabPage1.Controls.Add(this.groupBox4);
+            this.tabPage1.Controls.Add(this.groupBox3);
+            resources.ApplyResources(this.tabPage1, "tabPage1");
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
             // ControlLaser
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBox6);
-            this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.lblInfo);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.lblText);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.tabControl1);
             this.Name = "ControlLaser";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ControlLaser_FormClosing);
             this.Load += new System.EventHandler(this.ControlLaser_Load);
@@ -621,8 +1160,32 @@
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternLabelSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternLabelPower)).EndInit();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternGap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternYSize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternInterval)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternXSize)).EndInit();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternYMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternYMin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternYNumber)).EndInit();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternXMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternXMin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPatternXNumber)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -676,5 +1239,45 @@
         private System.Windows.Forms.Label lblToolProp;
         private System.Windows.Forms.Button btnScanTool;
         private System.Windows.Forms.Button btnToolUpdate;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        public System.Windows.Forms.Button BtnMaterialTest;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.NumericUpDown NudPatternXNumber;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.NumericUpDown NudPatternYMax;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.NumericUpDown NudPatternYMin;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.NumericUpDown NudPatternYNumber;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.NumericUpDown NudPatternXMax;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.NumericUpDown NudPatternXMin;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.NumericUpDown NudPatternGap;
+        private System.Windows.Forms.NumericUpDown NudPatternYSize;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.NumericUpDown NudPatternInterval;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.NumericUpDown NudPatternXSize;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.CheckBox CbPatternYLabel;
+        private System.Windows.Forms.CheckBox CbPatternXLabel;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.NumericUpDown NudPatternLabelPower;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.NumericUpDown NudPatternLabelSpeed;
+        private System.Windows.Forms.CheckBox CbPatternLabelFirst;
+        private System.Windows.Forms.Label LblPatternInfo;
+        private System.Windows.Forms.ToolTip toolTip1;
+        public System.Windows.Forms.Button BtnMaterialSingleTest;
+        private System.Windows.Forms.TextBox TbPatternHeadline;
+        private System.Windows.Forms.CheckBox CbPatternSendM5;
     }
 }

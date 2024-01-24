@@ -358,18 +358,6 @@ Habituellement, la bordure de l'outil (palpeur / couteau) est utilisée pour dé
     <value>Coordonnées de repère : seuls le 1er et le 2e seront utilisés.
 Obtenez les coordonnées des repères à partir du graphique importé.</value>
   </data>
-  <data name="BtnStartEF.Text" xml:space="preserve">
-    <value>Début</value>
-  </data>
-  <data name="BtnStartCF.Text" xml:space="preserve">
-    <value>Début</value>
-  </data>
-  <data name="BtnCancelCF.Text" xml:space="preserve">
-    <value>Annuler</value>
-  </data>
-  <data name="BtnStartTL.Text" xml:space="preserve">
-    <value>Début</value>
-  </data>
   <data name="CbProbeSkipMove.Text" xml:space="preserve">
     <value>Sauter le 1er mouvement au contact</value>
   </data>

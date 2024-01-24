@@ -364,18 +364,6 @@ Z voltará à posição inicial
     <value>Coordenadas fiduciais: Somente a 1ª e a 2ª serão utilizadas.
 Obtenha coordenadas fiduciais do gráfico importado.</value>
   </data>
-  <data name="BtnStartEF.Text" xml:space="preserve">
-    <value>Começar</value>
-  </data>
-  <data name="BtnStartCF.Text" xml:space="preserve">
-    <value>Começar</value>
-  </data>
-  <data name="BtnCancelCF.Text" xml:space="preserve">
-    <value>Cancelar</value>
-  </data>
-  <data name="BtnStartTL.Text" xml:space="preserve">
-    <value>Começar</value>
-  </data>
   <data name="CbProbeSkipMove.Text" xml:space="preserve">
     <value>Pular o primeiro movimento no contato</value>
   </data>

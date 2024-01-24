@@ -204,4 +204,127 @@
   <data name="$this.Text" xml:space="preserve">
     <value>激光对准</value>
   </data>
+  <data name="TbPatternHeadline.Text" xml:space="preserve">
+    <value>标题</value>
+  </data>
+  <data name="TbPatternHeadline.ToolTip" xml:space="preserve">
+    <value>测试模式上方的标题</value>
+  </data>
+  <data name="CbPatternLabelFirst.Text" xml:space="preserve">
+    <value>先写标签</value>
+  </data>
+  <data name="CbPatternLabelFirst.ToolTip" xml:space="preserve">
+    <value>如果启用，标签将刻在测试区域之前</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>速度</value>
+  </data>
+  <data name="NudPatternLabelSpeed.ToolTip" xml:space="preserve">
+    <value>雕刻标签的进给速率</value>
+  </data>
+  <data name="NudPatternLabelPower.ToolTip" xml:space="preserve">
+    <value>雕刻标签的激光功率</value>
+  </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>激光功率</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>标签雕刻</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>测试区域/矩形</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Y 轴速度/进给率</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>X轴激光功率</value>
+  </data>
+  <data name="BtnMaterialTest.Text" xml:space="preserve">
+    <value>创建测试模式</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>材料测试图</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>激光对准</value>
+  </data>
+  <data name="BtnMaterialSingleTest.Text" xml:space="preserve">
+    <value>创建单个测试</value>
+  </data>
+  <data name="BtnMaterialSingleTest.ToolTip" xml:space="preserve">
+    <value>使用最小激光功率和最大进给速率创建单个测试区域</value>
+  </data>
+  <data name="NudPatternGap.ToolTip" xml:space="preserve">
+    <value>测试区域之间的距离</value>
+  </data>
+  <data name="NudPatternYSize.ToolTip" xml:space="preserve">
+    <value>测试区域高度</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>差距</value>
+  </data>
+  <data name="NudPatternInterval.ToolTip" xml:space="preserve">
+    <value>填充测试区域的线之间的距离</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>线路距离/间隔</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>尺寸 Y</value>
+  </data>
+  <data name="NudPatternXSize.ToolTip" xml:space="preserve">
+    <value>测试区域宽度</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>尺码 X</value>
+  </data>
+  <data name="CbPatternYLabel.Text" xml:space="preserve">
+    <value>显示标签</value>
+  </data>
+  <data name="CbPatternYLabel.ToolTip" xml:space="preserve">
+    <value>显示测试区域左侧应用的进给速率</value>
+  </data>
+  <data name="NudPatternYMax.ToolTip" xml:space="preserve">
+    <value>首先应用最大进给率（底部）</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>最大限度。</value>
+  </data>
+  <data name="NudPatternYMin.ToolTip" xml:space="preserve">
+    <value>最小进给率将最后应用（顶部）</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>分钟。</value>
+  </data>
+  <data name="NudPatternYNumber.ToolTip" xml:space="preserve">
+    <value>垂直（y 轴）进给率测试字段数</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>数字</value>
+  </data>
+  <data name="CbPatternXLabel.Text" xml:space="preserve">
+    <value>显示标签</value>
+  </data>
+  <data name="CbPatternXLabel.ToolTip" xml:space="preserve">
+    <value>显示测试区域下方应用的激光功率</value>
+  </data>
+  <data name="NudPatternXMax.ToolTip" xml:space="preserve">
+    <value>停止时的激光功率（最右边）</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>最大限度。 %</value>
+  </data>
+  <data name="NudPatternXMin.ToolTip" xml:space="preserve">
+    <value>起始激光功率（最左边）</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>分钟。 %</value>
+  </data>
+  <data name="NudPatternXNumber.ToolTip" xml:space="preserve">
+    <value>水平（x 轴）激光能量测试场数</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>数字</value>
+  </data>
 </root>

@@ -360,18 +360,6 @@ Z, başlangıç ​​konumuna geri döner</value>
     <value>Referans koordinatları: Yalnızca 1. ve 2. kullanılacaktır.
 İçe aktarılan grafikten referans koordinatlarını alın.</value>
   </data>
-  <data name="BtnStartEF.Text" xml:space="preserve">
-    <value>Başlangıç</value>
-  </data>
-  <data name="BtnStartCF.Text" xml:space="preserve">
-    <value>Başlangıç</value>
-  </data>
-  <data name="BtnCancelCF.Text" xml:space="preserve">
-    <value>İptal etmek</value>
-  </data>
-  <data name="BtnStartTL.Text" xml:space="preserve">
-    <value>Başlangıç</value>
-  </data>
   <data name="CbProbeSkipMove.Text" xml:space="preserve">
     <value>Temas halinde 1. hamleyi atla</value>
   </data>

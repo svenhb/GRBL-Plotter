@@ -204,4 +204,127 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Alineación láser</value>
   </data>
+  <data name="TbPatternHeadline.Text" xml:space="preserve">
+    <value>Titular</value>
+  </data>
+  <data name="TbPatternHeadline.ToolTip" xml:space="preserve">
+    <value>Título encima del patrón de prueba</value>
+  </data>
+  <data name="CbPatternLabelFirst.Text" xml:space="preserve">
+    <value>Escribe las etiquetas primero</value>
+  </data>
+  <data name="CbPatternLabelFirst.ToolTip" xml:space="preserve">
+    <value>Si está habilitado, las etiquetas se grabarán antes de las áreas de prueba.</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Velocidad</value>
+  </data>
+  <data name="NudPatternLabelSpeed.ToolTip" xml:space="preserve">
+    <value>Velocidad de avance para grabar las etiquetas.</value>
+  </data>
+  <data name="NudPatternLabelPower.ToolTip" xml:space="preserve">
+    <value>Potencia del láser para grabar las etiquetas.</value>
+  </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>potencia del láser</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Grabado de etiquetas</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Área de prueba/rectángulo</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Velocidad / Avance en el eje Y</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Potencia del láser en el eje X.</value>
+  </data>
+  <data name="BtnMaterialTest.Text" xml:space="preserve">
+    <value>Crear patrón de prueba</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Patrón de prueba de materiales</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Alineación láser</value>
+  </data>
+  <data name="BtnMaterialSingleTest.Text" xml:space="preserve">
+    <value>Crear prueba única</value>
+  </data>
+  <data name="BtnMaterialSingleTest.ToolTip" xml:space="preserve">
+    <value>Cree un área de prueba única utilizando una potencia láser mínima y una velocidad de alimentación máxima</value>
+  </data>
+  <data name="NudPatternGap.ToolTip" xml:space="preserve">
+    <value>Distancia entre áreas de prueba</value>
+  </data>
+  <data name="NudPatternYSize.ToolTip" xml:space="preserve">
+    <value>Altura del área de prueba.</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Brecha</value>
+  </data>
+  <data name="NudPatternInterval.ToolTip" xml:space="preserve">
+    <value>Distancia entre líneas para llenar el área de prueba.</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Distancia de línea / Intervalo</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Talla Y</value>
+  </data>
+  <data name="NudPatternXSize.ToolTip" xml:space="preserve">
+    <value>Ancho del área de prueba</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>Talla X</value>
+  </data>
+  <data name="CbPatternYLabel.Text" xml:space="preserve">
+    <value>Mostrar etiqueta</value>
+  </data>
+  <data name="CbPatternYLabel.ToolTip" xml:space="preserve">
+    <value>Muestra las velocidades de avance aplicadas a la izquierda de las áreas de prueba.</value>
+  </data>
+  <data name="NudPatternYMax.ToolTip" xml:space="preserve">
+    <value>La velocidad de alimentación máxima se aplicará primero (abajo)</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Máx.</value>
+  </data>
+  <data name="NudPatternYMin.ToolTip" xml:space="preserve">
+    <value>La tasa de alimentación mínima se aplicará al final (arriba)</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Mín.</value>
+  </data>
+  <data name="NudPatternYNumber.ToolTip" xml:space="preserve">
+    <value>Número de campos de prueba para el avance en vertical (eje y)</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>Número</value>
+  </data>
+  <data name="CbPatternXLabel.Text" xml:space="preserve">
+    <value>Mostrar etiqueta</value>
+  </data>
+  <data name="CbPatternXLabel.ToolTip" xml:space="preserve">
+    <value>Muestra las potencias del láser aplicadas debajo de las áreas de prueba.</value>
+  </data>
+  <data name="NudPatternXMax.ToolTip" xml:space="preserve">
+    <value>Potencia del láser para detenerse (extremo derecho)</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Máx. %</value>
+  </data>
+  <data name="NudPatternXMin.ToolTip" xml:space="preserve">
+    <value>Potencia del láser para empezar (extremo izquierdo)</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Mín. %</value>
+  </data>
+  <data name="NudPatternXNumber.ToolTip" xml:space="preserve">
+    <value>Número de campos de prueba para la energía láser en horizontal (eje x)</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Número</value>
+  </data>
 </root>

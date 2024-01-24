@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@
  * 2023-04-11 l:683 f:CreateRuler lock object to avoid 'object is currently in use elsewhere'
  * 2023-09-01 new l:700 f:SetRulerDimension / l:380 f:DrawMachineLimit update grid
  * 2023-09-14 l:400 f:DrawMachineLimit() add toolTableOffsetX to show tool positions; issue #361
+ * 2024-01-13 l:675 f:CreateMarkerArrow add try/catch
 */
 
 using System;
@@ -576,7 +577,8 @@ namespace GrblPlotter
                 myFont.Dispose();
                 sFormat.Dispose();
             }
-            catch (Exception err) { Logger.Error(err, "AddBackgroundText "); }
+			catch (Exception err)
+			{ 	Logger.Error(err, "AddBackgroundText failed {0} ", txt); }
         }
 
 
@@ -670,33 +672,39 @@ namespace GrblPlotter
             float pointToY3 = (float)(pos.Y + msize * Math.Sin(angle + 3 * aoff));
             float pointToX4 = (float)(pos.X + msize * Math.Cos(angle + 4 * aoff));
             float pointToY4 = (float)(pos.Y + msize * Math.Sin(angle + 4 * aoff));
-            path.Reset();
-            // draw outline
-            path.StartFigure();
-            path.AddLine(pointToX, pointToY, pointToX1, pointToY1);
-            path.AddLine(pointToX1, pointToY1, pointToX2, pointToY2);
-            path.AddLine(pointToX2, pointToY2, pointToX3, pointToY3);
-            if (type > 0)
-            {
-                path.AddLine(pointToX3, pointToY3, pointToX4, pointToY4);
-                path.AddLine(pointToX4, pointToY4, pointToX, pointToY);     // square
-            }
-            else
-                path.AddLine(pointToX3, pointToY3, pointToX, pointToY);		// rhombus
-            path.CloseFigure();
-            // draw diagonal cross in center
-            float ssize = msize / 2;
-            if (type > 0)
-            {
-                path.StartFigure(); path.AddLine((float)pos.X - ssize, (float)pos.Y, (float)pos.X + ssize, (float)pos.Y);
-                path.StartFigure(); path.AddLine((float)pos.X, (float)pos.Y + ssize, (float)pos.X, (float)pos.Y - ssize);
-            }
-            else
-            {
-                ssize = msize / 3;
-                path.StartFigure(); path.AddLine((float)pos.X - ssize, (float)pos.Y - ssize, (float)pos.X + ssize, (float)pos.Y + ssize);
-                path.StartFigure(); path.AddLine((float)pos.X - ssize, (float)pos.Y + ssize, (float)pos.X + ssize, (float)pos.Y - ssize);
-            }
+			
+			try
+			{
+				path.Reset();
+				// draw outline
+				path.StartFigure();
+				path.AddLine(pointToX, pointToY, pointToX1, pointToY1);
+				path.AddLine(pointToX1, pointToY1, pointToX2, pointToY2);
+				path.AddLine(pointToX2, pointToY2, pointToX3, pointToY3);
+				if (type > 0)
+				{
+					path.AddLine(pointToX3, pointToY3, pointToX4, pointToY4);
+					path.AddLine(pointToX4, pointToY4, pointToX, pointToY);     // square
+				}
+				else
+					path.AddLine(pointToX3, pointToY3, pointToX, pointToY);		// rhombus
+				path.CloseFigure();
+				// draw diagonal cross in center
+				float ssize = msize / 2;
+				if (type > 0)
+				{
+					path.StartFigure(); path.AddLine((float)pos.X - ssize, (float)pos.Y, (float)pos.X + ssize, (float)pos.Y);
+					path.StartFigure(); path.AddLine((float)pos.X, (float)pos.Y + ssize, (float)pos.X, (float)pos.Y - ssize);
+				}
+				else
+				{
+					ssize = msize / 3;
+					path.StartFigure(); path.AddLine((float)pos.X - ssize, (float)pos.Y - ssize, (float)pos.X + ssize, (float)pos.Y + ssize);
+					path.StartFigure(); path.AddLine((float)pos.X - ssize, (float)pos.Y + ssize, (float)pos.X + ssize, (float)pos.Y - ssize);
+				}
+			}
+			catch (Exception err)
+			{ 	Logger.Error(err, "CreateMarkerArrow failed "); }
         }
 
 

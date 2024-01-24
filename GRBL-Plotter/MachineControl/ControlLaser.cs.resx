@@ -204,4 +204,127 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Laserové vyrovnání</value>
   </data>
+  <data name="TbPatternHeadline.Text" xml:space="preserve">
+    <value>Titulek</value>
+  </data>
+  <data name="TbPatternHeadline.ToolTip" xml:space="preserve">
+    <value>Nadpis nad testovacím vzorem</value>
+  </data>
+  <data name="CbPatternLabelFirst.Text" xml:space="preserve">
+    <value>Nejprve napište štítky</value>
+  </data>
+  <data name="CbPatternLabelFirst.ToolTip" xml:space="preserve">
+    <value>Pokud je povoleno, štítky budou vyryty před testovacími oblastmi</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Rychlost</value>
+  </data>
+  <data name="NudPatternLabelSpeed.ToolTip" xml:space="preserve">
+    <value>Rychlost posuvu pro gravírování štítků</value>
+  </data>
+  <data name="NudPatternLabelPower.ToolTip" xml:space="preserve">
+    <value>Výkon laseru pro gravírování štítků</value>
+  </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>Výkon laseru</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Gravírování štítků</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Testovací oblast / obdélník</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Rychlost / rychlost posuvu na ose Y</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Výkon laseru na ose X</value>
+  </data>
+  <data name="BtnMaterialTest.Text" xml:space="preserve">
+    <value>Vytvořte testovací vzor</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Materiál zkušební vzor</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Laserové vyrovnání</value>
+  </data>
+  <data name="BtnMaterialSingleTest.Text" xml:space="preserve">
+    <value>Vytvořte jeden test</value>
+  </data>
+  <data name="BtnMaterialSingleTest.ToolTip" xml:space="preserve">
+    <value>Vytvořte jednu testovací oblast s minimálním výkonem laseru a maximální rychlostí posuvu</value>
+  </data>
+  <data name="NudPatternGap.ToolTip" xml:space="preserve">
+    <value>Vzdálenost mezi testovacími oblastmi</value>
+  </data>
+  <data name="NudPatternYSize.ToolTip" xml:space="preserve">
+    <value>Výška testovací oblasti</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Mezera</value>
+  </data>
+  <data name="NudPatternInterval.ToolTip" xml:space="preserve">
+    <value>Vzdálenost mezi čarami k vyplnění testovací oblasti</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Vzdálenost čáry / Interval</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Velikost Y</value>
+  </data>
+  <data name="NudPatternXSize.ToolTip" xml:space="preserve">
+    <value>Šířka testovací oblasti</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>Velikost X</value>
+  </data>
+  <data name="CbPatternYLabel.Text" xml:space="preserve">
+    <value>Zobrazit štítek</value>
+  </data>
+  <data name="CbPatternYLabel.ToolTip" xml:space="preserve">
+    <value>Zobrazuje použité rychlosti posuvu vlevo od testovacích oblastí</value>
+  </data>
+  <data name="NudPatternYMax.ToolTip" xml:space="preserve">
+    <value>Maximální rychlost posuvu bude použita jako první (dole)</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Max.</value>
+  </data>
+  <data name="NudPatternYMin.ToolTip" xml:space="preserve">
+    <value>Minimální rychlost posuvu bude použita jako poslední (nahoře)</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Min.</value>
+  </data>
+  <data name="NudPatternYNumber.ToolTip" xml:space="preserve">
+    <value>Počet testovacích polí pro rychlost posuvu ve svislém směru (osa y)</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>Číslo</value>
+  </data>
+  <data name="CbPatternXLabel.Text" xml:space="preserve">
+    <value>Zobrazit štítek</value>
+  </data>
+  <data name="CbPatternXLabel.ToolTip" xml:space="preserve">
+    <value>Zobrazuje aplikované výkony laseru pod testovacími oblastmi</value>
+  </data>
+  <data name="NudPatternXMax.ToolTip" xml:space="preserve">
+    <value>Výkon laseru k zastavení (zcela vpravo)</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Max. %</value>
+  </data>
+  <data name="NudPatternXMin.ToolTip" xml:space="preserve">
+    <value>Výkon laseru pro začátek (zcela vlevo)</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Min. %</value>
+  </data>
+  <data name="NudPatternXNumber.ToolTip" xml:space="preserve">
+    <value>Počet testovacích polí pro energii laseru v horizontále (osa x)</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Číslo</value>
+  </data>
 </root>

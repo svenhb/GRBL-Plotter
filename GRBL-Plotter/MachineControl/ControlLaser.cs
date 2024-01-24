@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,9 +25,14 @@
  * 2021-11-23 set default for tprop
  * 2021-12-09 line 222 check if (cBTool.Count == 0)
  * 2021-12-22 check if is connected to grbl before sending code
+ * 2024-01-14 add material test pattern
 */
 
 using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Text;
+using System.Windows;
 using System.Windows.Forms;
 
 namespace GrblPlotter
@@ -187,7 +192,12 @@ namespace GrblPlotter
 
         private void RefreshValues()
         {
-            lblInfo.Text = string.Format("Max spindle speed: $30={0}; Min spindle speed: $31={1}; Laser Mode: $32={2}", Grbl.GetSetting(30), Grbl.GetSetting(31), Grbl.GetSetting(32));
+            lblInfo.Text = LblPatternInfo.Text = string.Format("Max spindle speed: $30={0}; Min spindle speed: $31={1}; Laser Mode: $32={2}", Grbl.GetSetting(30), Grbl.GetSetting(31), Grbl.GetSetting(32));
+            if (Grbl.GetSetting(30) != 100)
+            { lblInfo.BackColor = LblPatternInfo.BackColor = Color.Yellow; }
+            else
+            { lblInfo.BackColor = LblPatternInfo.BackColor = Color.Transparent; }
+
             cBLaserMode.CheckedChanged -= CbLaserMode_CheckedChanged;
             cBLaserMode.Checked = (Grbl.GetSetting(32) > 0);    // ? true : false;
             cBLaserMode.CheckedChanged += CbLaserMode_CheckedChanged;
@@ -246,6 +256,190 @@ namespace GrblPlotter
                 tprop = ToolTable.GetToolProperties(1);
             }
             CbTool_SelectedIndexChanged(sender, e);
+        }
+
+
+
+        private string lasergcode = "";
+        public string LaserGCode
+        { get { return lasergcode; } }
+        public GraphicsPath PathBackground = new GraphicsPath();
+    //    private GraphicsPath path;
+
+        private static readonly StringBuilder gcodeString = new StringBuilder();
+
+
+        private void BtnMaterialTest_Click(object sender, EventArgs e)
+        {
+            gcodeString.Clear();
+            RefreshValues();
+
+            int fieldXMax = (int)NudPatternXNumber.Value;
+            int fieldYMax = (int)NudPatternYNumber.Value;
+
+            double speed, speedInc;
+            double speedMin = (double)NudPatternYMin.Value;
+            double speedMax = (double)NudPatternYMax.Value;
+
+            double power, powerInc;
+            double powerMin = (double)NudPatternXMin.Value;
+            double powerMax = (double)NudPatternXMax.Value;
+
+            double sizeX = (double)NudPatternXSize.Value;
+            double sizeY = (double)NudPatternYSize.Value;
+            double gap = (double)NudPatternGap.Value;
+
+            double interval = (double)NudPatternInterval.Value;
+			
+			bool sendM5 = CbPatternSendM5.Checked;
+
+            Rect block = new Rect(0, 0, sizeX, sizeY);
+
+            speedInc = (speedMax - speedMin) / (fieldYMax - 1);
+            powerInc = (powerMax - powerMin) / (fieldXMax - 1);
+
+            gcodeString.AppendFormat("G90\r\n");
+
+            if (CbPatternLabelFirst.Checked && (CbPatternXLabel.Checked || CbPatternYLabel.Checked))
+            {
+                WriteLabels(powerInc, speedInc);
+            }
+
+            int id = 0;
+            string colorVal;
+            double colorInc = 255 / (fieldXMax * fieldYMax);
+            int grey;
+            for (int fieldY = 0; fieldY < fieldYMax; fieldY++)
+            {
+                speed = speedMin + (fieldYMax - fieldY - 1) * speedInc;
+                for (int fieldX = 0; fieldX < fieldXMax; fieldX++)
+                {
+                    power = powerMin + fieldX * powerInc;
+                    block.X = fieldX * (sizeX + gap);
+                    block.Y = fieldY * (sizeY + gap);
+                    id++;
+                    grey = 255 - (int)colorInc * (fieldY + 1) * (fieldX + 1);
+                    colorVal = ColorTranslator.ToHtml(Color.FromArgb(255, grey, grey, grey)).Substring(1);
+                    Gcode.Comment(gcodeString, string.Format("{0} Id=\"{1}\" PenColor=\"{2}\" Power=\"{3:0.0}\"  Feedrate=\"{4:0}\" PenWidth=\"{5:0.000}\">", XmlMarker.FigureStart, id, colorVal, power, speed, interval));
+                    GenerateBlock(block, interval, power, speed, sendM5);
+                    Gcode.Comment(gcodeString, string.Format("{0}>", XmlMarker.FigureEnd)); // Graphic2GCode.SetFigureEnd(figureCount));
+                }
+            }
+
+            if (!CbPatternLabelFirst.Checked && (CbPatternXLabel.Checked || CbPatternYLabel.Checked))
+            {
+                WriteLabels(powerInc, speedInc);
+            }
+            gcodeString.AppendFormat("M30\r\n");
+
+            gcodeString.Replace(',', '.');
+            lasergcode = gcodeString.ToString();
+        }
+
+        private void GenerateBlock(Rect block, double interval, double power, double speed, bool sendM5)
+        {
+            double startX = block.X, startY = block.Y;
+
+            gcodeString.AppendFormat("G0 X{0:0.00} Y{1:0.00}\r\n", startX, startY);
+            gcodeString.AppendFormat("G1 X{0:0.00} Y{1:0.00} M3 S{2:0} F{3:0}\r\n", startX + block.Width, startY, power, speed);
+			if (sendM5) gcodeString.AppendFormat("M5\r\n");
+			
+            while (startY < (block.Y + block.Height - 2 * interval))
+            {
+                startY += interval;
+                gcodeString.AppendFormat("G0 X{0:0.00} Y{1:0.00}\r\n", startX + block.Width, startY);
+				if (sendM5) gcodeString.AppendFormat("M3\r\n");
+                gcodeString.AppendFormat("G1 X{0:0.00} Y{1:0.00}\r\n", startX, startY);
+				if (sendM5) gcodeString.AppendFormat("M5\r\n");
+               startY += interval;
+                gcodeString.AppendFormat("G0 X{0:0.00} Y{1:0.00}\r\n", startX, startY);
+				if (sendM5) gcodeString.AppendFormat("M3\r\n");
+                gcodeString.AppendFormat("G1 X{0:0.00} Y{1:0.00}\r\n", startX + block.Width, startY);
+				if (sendM5) gcodeString.AppendFormat("M5\r\n");
+            }
+            if (!sendM5) gcodeString.AppendFormat("M5\r\n");
+        }
+
+        private void WriteLabels(double powerInc, double speedInc)
+        {
+            int fieldXMax = (int)NudPatternXNumber.Value;
+            int fieldYMax = (int)NudPatternYNumber.Value;
+            double speedMin = (double)NudPatternYMin.Value;
+            double powerMin = (double)NudPatternXMin.Value;
+            double sizeX = (double)NudPatternXSize.Value;
+            double sizeY = (double)NudPatternYSize.Value;
+            double gap = (double)NudPatternGap.Value;
+            double letterHeight = sizeX / 3;
+
+            Gcode.Comment(gcodeString, string.Format("{0} Id=\"{1}\" PenColor=\"{2}\" Power=\"{3:0.0}\"  Feedrate=\"{4:0}\" PenWidth=\"{5:0.000}\">", XmlMarker.FigureStart, 999, "black", NudPatternLabelPower.Value, NudPatternLabelSpeed.Value, 0.05));
+            GCodeFromFont.Reset();
+            GCodeFromFont.GenerateGCodeOnly = true;
+            GCodeFromFont.GCHeight = letterHeight;
+            gcodeString.AppendFormat("M3 S{0:0} F{1:0}\r\n", NudPatternLabelPower.Value, NudPatternLabelSpeed.Value);
+
+            if (TbPatternHeadline.Text.Length > 0)
+            {
+                GCodeFromFont.GCText = TbPatternHeadline.Text;
+                GCodeFromFont.GCOffX = sizeX/2;
+                GCodeFromFont.GCOffY = fieldYMax * (sizeY + gap);
+                GCodeFromFont.GetCode(0);   // no page break
+                gcodeString.Append(GCodeFromFont.GCode);
+                GCodeFromFont.GCode.Clear();
+            }
+
+            if (CbPatternYLabel.Checked)
+            {
+                for (int fieldY = 0; fieldY < fieldYMax; fieldY++)
+                {
+                    GCodeFromFont.GCText = string.Format("{0:0}", (speedMin + ((fieldYMax - fieldY - 1) * speedInc)));
+                    GCodeFromFont.GCOffX = -sizeX;
+                    GCodeFromFont.GCOffY = fieldY * (sizeY + gap) + (sizeY / 2) - (letterHeight / 2);
+                    GCodeFromFont.GetCode(0);   // no page break
+                    gcodeString.Append(GCodeFromFont.GCode);
+                    GCodeFromFont.GCode.Clear();
+                }
+            }
+            if (CbPatternXLabel.Checked)
+            {
+                for (int fieldX = 0; fieldX < fieldXMax; fieldX++)
+                {
+                    GCodeFromFont.GCText = string.Format("{0:0}%", (powerMin + (fieldX * powerInc)));
+                    GCodeFromFont.GCOffX = fieldX * (sizeX + gap) + gap;
+                    GCodeFromFont.GCOffY = -(sizeY / 2) - gap;
+                    GCodeFromFont.GetCode(0);   // no page break
+                    gcodeString.Append(GCodeFromFont.GCode);
+                    GCodeFromFont.GCode.Clear();
+                }
+            }
+            gcodeString.AppendFormat("M5\r\n");
+            Gcode.Comment(gcodeString, string.Format("{0}>", XmlMarker.FigureEnd)); // Graphic2GCode.SetFigureEnd(figureCount));
+        }
+
+        private void BtnMaterialSingleTest_Click(object sender, EventArgs e)
+        {
+            gcodeString.Clear();
+            RefreshValues();
+
+            double speedMax = (double)NudPatternYMax.Value;
+            double powerMin = (double)NudPatternXMin.Value;
+            double sizeX = (double)NudPatternXSize.Value;
+            double sizeY = (double)NudPatternYSize.Value;
+            double interval = (double)NudPatternInterval.Value;
+            Rect block = new Rect(0, 0, sizeX, sizeY);
+
+            gcodeString.AppendFormat("G90\r\n");
+
+            string colorVal;
+            int grey = 100;
+            colorVal = ColorTranslator.ToHtml(Color.FromArgb(255, grey, grey, grey)).Substring(1);
+            Gcode.Comment(gcodeString, string.Format("{0} Id=\"{1}\" PenColor=\"{2}\" Power=\"{3:0.0}\"  Feedrate=\"{4:0}\" PenWidth=\"{5:0.000}\">", XmlMarker.FigureStart, 1, colorVal, powerMin, speedMax, interval));
+            GenerateBlock(block, interval, powerMin, speedMax, CbPatternSendM5.Checked);
+            Gcode.Comment(gcodeString, string.Format("{0}>", XmlMarker.FigureEnd)); // Graphic2GCode.SetFigureEnd(figureCount));
+
+            gcodeString.AppendFormat("M30\r\n");
+
+            gcodeString.Replace(',', '.');
+            lasergcode = gcodeString.ToString();
         }
     }
 }

@@ -204,4 +204,127 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Alignement laser</value>
   </data>
+  <data name="TbPatternHeadline.Text" xml:space="preserve">
+    <value>Gros titre</value>
+  </data>
+  <data name="TbPatternHeadline.ToolTip" xml:space="preserve">
+    <value>Titre au-dessus de la mire de test</value>
+  </data>
+  <data name="CbPatternLabelFirst.Text" xml:space="preserve">
+    <value>Écrivez d'abord les étiquettes</value>
+  </data>
+  <data name="CbPatternLabelFirst.ToolTip" xml:space="preserve">
+    <value>Si activé, les étiquettes seront gravées avant les zones de test</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Vitesse</value>
+  </data>
+  <data name="NudPatternLabelSpeed.ToolTip" xml:space="preserve">
+    <value>Avance pour graver les étiquettes</value>
+  </data>
+  <data name="NudPatternLabelPower.ToolTip" xml:space="preserve">
+    <value>Puissance laser pour graver les étiquettes</value>
+  </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>Puissance laser</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Gravure d'étiquettes</value>
+  </data>
+  <data name="groupBox9.Text" xml:space="preserve">
+    <value>Zone de test / rectangle</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Vitesse / Avance sur l'axe Y</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Puissance laser sur l'axe X</value>
+  </data>
+  <data name="BtnMaterialTest.Text" xml:space="preserve">
+    <value>Créer un modèle de test</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Modèle de test de matériau</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Alignement laser</value>
+  </data>
+  <data name="BtnMaterialSingleTest.Text" xml:space="preserve">
+    <value>Créer un seul test</value>
+  </data>
+  <data name="BtnMaterialSingleTest.ToolTip" xml:space="preserve">
+    <value>Créez une zone de test unique en utilisant une puissance laser minimale et une vitesse d'avance maximale</value>
+  </data>
+  <data name="NudPatternGap.ToolTip" xml:space="preserve">
+    <value>Distance entre les zones de test</value>
+  </data>
+  <data name="NudPatternYSize.ToolTip" xml:space="preserve">
+    <value>Hauteur de la zone de test</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Écart</value>
+  </data>
+  <data name="NudPatternInterval.ToolTip" xml:space="preserve">
+    <value>Distance entre les lignes pour remplir la zone de test</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Distance de ligne / Intervalle</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Taille Y</value>
+  </data>
+  <data name="NudPatternXSize.ToolTip" xml:space="preserve">
+    <value>Largeur de la zone de test</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>Taille X</value>
+  </data>
+  <data name="CbPatternYLabel.Text" xml:space="preserve">
+    <value>Afficher l'étiquette</value>
+  </data>
+  <data name="CbPatternYLabel.ToolTip" xml:space="preserve">
+    <value>Affiche les vitesses d'avance appliquées à gauche des zones de test</value>
+  </data>
+  <data name="NudPatternYMax.ToolTip" xml:space="preserve">
+    <value>La vitesse d'avance maximale sera appliquée en premier (en bas)</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Max.</value>
+  </data>
+  <data name="NudPatternYMin.ToolTip" xml:space="preserve">
+    <value>L'avance minimale sera appliquée en dernier (en haut)</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Min.</value>
+  </data>
+  <data name="NudPatternYNumber.ToolTip" xml:space="preserve">
+    <value>Nombre de champs de test pour l'avance dans la verticale (axe y)</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="CbPatternXLabel.Text" xml:space="preserve">
+    <value>Afficher l'étiquette</value>
+  </data>
+  <data name="CbPatternXLabel.ToolTip" xml:space="preserve">
+    <value>Affiche les puissances laser appliquées sous les zones de test</value>
+  </data>
+  <data name="NudPatternXMax.ToolTip" xml:space="preserve">
+    <value>Puissance laser pour s'arrêter (à l'extrême droite)</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Max. %</value>
+  </data>
+  <data name="NudPatternXMin.ToolTip" xml:space="preserve">
+    <value>La puissance du laser pour commencer (à l'extrême gauche)</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Min. %</value>
+  </data>
+  <data name="NudPatternXNumber.ToolTip" xml:space="preserve">
+    <value>Nombre de champs de test pour l'énergie laser dans l'horizontale (axe x)</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
 </root>
