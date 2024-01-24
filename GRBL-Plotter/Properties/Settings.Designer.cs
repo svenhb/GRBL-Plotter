@@ -7326,7 +7326,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("250")]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
         public decimal laserScanPowerFrom {
             get {
                 return ((decimal)(this["laserScanPowerFrom"]));
@@ -7350,7 +7350,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("300")]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
         public decimal laserScanPowerTo {
             get {
                 return ((decimal)(this["laserScanPowerTo"]));
@@ -8190,6 +8190,78 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool probingFiducial2ndChance {
+            get {
+                return ((bool)(this["probingFiducial2ndChance"]));
+            }
+            set {
+                this["probingFiducial2ndChance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G54")]
+        public string probingFiducialCodeEnd {
+            get {
+                return ((string)(this["probingFiducialCodeEnd"]));
+            }
+            set {
+                this["probingFiducialCodeEnd"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G59")]
+        public string probingFiducialCodeStart {
+            get {
+                return ((string)(this["probingFiducialCodeStart"]));
+            }
+            set {
+                this["probingFiducialCodeStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal probingFiducialOffsetX {
+            get {
+                return ((decimal)(this["probingFiducialOffsetX"]));
+            }
+            set {
+                this["probingFiducialOffsetX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal probingFiducialOffsetY {
+            get {
+                return ((decimal)(this["probingFiducialOffsetY"]));
+            }
+            set {
+                this["probingFiducialOffsetY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool probingFiducialSkip1stMove {
+            get {
+                return ((bool)(this["probingFiducialSkip1stMove"]));
+            }
+            set {
+                this["probingFiducialSkip1stMove"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public decimal probingFinalX {
             get {
@@ -8221,6 +8293,18 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["probingFinalZ"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool probingInvertLogic {
+            get {
+                return ((bool)(this["probingInvertLogic"]));
+            }
+            set {
+                this["probingInvertLogic"] = value;
             }
         }
         
@@ -8401,6 +8485,18 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["processSplitDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        public decimal processTimerInterval {
+            get {
+                return ((decimal)(this["processTimerInterval"]));
+            }
+            set {
+                this["processTimerInterval"] = value;
             }
         }
         
@@ -9138,97 +9234,61 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
-        public decimal processTimerInterval {
-            get {
-                return ((decimal)(this["processTimerInterval"]));
-            }
-            set {
-                this["processTimerInterval"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G59")]
-        public string probingFiducialCodeStart {
-            get {
-                return ((string)(this["probingFiducialCodeStart"]));
-            }
-            set {
-                this["probingFiducialCodeStart"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("G54")]
-        public string probingFiducialCodeEnd {
-            get {
-                return ((string)(this["probingFiducialCodeEnd"]));
-            }
-            set {
-                this["probingFiducialCodeEnd"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal probingFiducialOffsetX {
+        public decimal importImageEngravingAngle {
             get {
-                return ((decimal)(this["probingFiducialOffsetX"]));
+                return ((decimal)(this["importImageEngravingAngle"]));
             }
             set {
-                this["probingFiducialOffsetX"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal probingFiducialOffsetY {
-            get {
-                return ((decimal)(this["probingFiducialOffsetY"]));
-            }
-            set {
-                this["probingFiducialOffsetY"] = value;
+                this["importImageEngravingAngle"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool probingFiducialSkip1stMove {
+        public bool importImageEngravingOneDirection {
             get {
-                return ((bool)(this["probingFiducialSkip1stMove"]));
+                return ((bool)(this["importImageEngravingOneDirection"]));
             }
             set {
-                this["probingFiducialSkip1stMove"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool probingFiducial2ndChance {
-            get {
-                return ((bool)(this["probingFiducial2ndChance"]));
-            }
-            set {
-                this["probingFiducial2ndChance"] = value;
+                this["importImageEngravingOneDirection"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool probingInvertLogic {
+        public bool importImageSLaserOnly {
             get {
-                return ((bool)(this["probingInvertLogic"]));
+                return ((bool)(this["importImageSLaserOnly"]));
             }
             set {
-                this["probingInvertLogic"] = value;
+                this["importImageSLaserOnly"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importImageEngravingCross {
+            get {
+                return ((bool)(this["importImageEngravingCross"]));
+            }
+            set {
+                this["importImageEngravingCross"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importImageEngravingTopDown {
+            get {
+                return ((bool)(this["importImageEngravingTopDown"]));
+            }
+            set {
+                this["importImageEngravingTopDown"] = value;
             }
         }
     }
