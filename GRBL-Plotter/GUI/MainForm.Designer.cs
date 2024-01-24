@@ -1538,7 +1538,9 @@ namespace GrblPlotter
             // rBOrigin7
             // 
             resources.ApplyResources(this.rBOrigin7, "rBOrigin7");
+            this.rBOrigin7.Checked = true;
             this.rBOrigin7.Name = "rBOrigin7";
+            this.rBOrigin7.TabStop = true;
             this.rBOrigin7.UseVisualStyleBackColor = true;
             // 
             // rBOrigin6
@@ -1550,9 +1552,7 @@ namespace GrblPlotter
             // rBOrigin5
             // 
             resources.ApplyResources(this.rBOrigin5, "rBOrigin5");
-            this.rBOrigin5.Checked = true;
             this.rBOrigin5.Name = "rBOrigin5";
-            this.rBOrigin5.TabStop = true;
             this.rBOrigin5.UseVisualStyleBackColor = true;
             // 
             // rBOrigin4

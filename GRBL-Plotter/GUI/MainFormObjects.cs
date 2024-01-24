@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@
  * 2022-11-24 line 99 InsertVariable check length
  * 2023-03-04 l:68 f:Datapath add path for "data"
  * 2023-03-04 l:68 f:Datapath add path for "filter"
+ * 2024-01-20 l:484 f: struct ImgPoint change from float to double
 */
 
 using GrblPlotter.Resources;
@@ -50,7 +51,7 @@ namespace GrblPlotter
 
     public static class MyApplication
     {
-        private static readonly string VersionAddOn = ".c";
+        private static readonly string VersionAddOn = "";
 
         public static string GetVersion()
         { return System.Windows.Forms.Application.ProductVersion.ToString() + VersionAddOn; }
@@ -483,10 +484,10 @@ namespace GrblPlotter
 
     internal struct ImgPoint
     {
-        public float X;
-        public float Y;
+        public double X;
+        public double Y;
         public int brightnes;
-        public ImgPoint(float x, float y, int z)
+        public ImgPoint(double x, double y, int z)
         { X = x; Y = y; brightnes = z; }
         //    public ImgPoint(float x, float y)
         //    { X = x; Y = y; brightnes = -1; }

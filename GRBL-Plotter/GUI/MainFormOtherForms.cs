@@ -419,6 +419,8 @@ namespace GrblPlotter
                 _laser_form = new ControlLaser();
                 _laser_form.FormClosed += FormClosed_LaserForm;
                 _laser_form.RaiseCmdEvent += OnRaiseLaserEvent;
+                _laser_form.BtnMaterialTest.Click += GetGCodeFromLaser;      // assign btn-click event
+                _laser_form.BtnMaterialSingleTest.Click += GetGCodeFromLaser;      // assign btn-click event
                 EventCollector.SetOpenForm("Flas");
             }
             else
@@ -442,6 +444,20 @@ namespace GrblPlotter
             Properties.Settings.Default.counterUseLaserSetup += 1;
         }
 
+        private void GetGCodeFromLaser(object sender, EventArgs e)
+        {
+            if (!isStreaming)
+            {
+                ClearWorkspace();
+                NewCodeStart(false);           
+                SetFctbCodeText(_laser_form.LaserGCode);   
+                NewCodeEnd();
+                FoldBlocks1(); 
+                foldLevelSelected = 1;
+            }
+            else
+                MessageBox.Show(Localization.GetString("mainStreamingActive"));
+        }
 
         /********************************************************************
          * Edge finder
