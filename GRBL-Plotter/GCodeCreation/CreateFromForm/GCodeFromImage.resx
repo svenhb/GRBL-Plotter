@@ -121,6 +121,18 @@
     <value>262, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="LblMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 17</value>
+  </data>
+  <data name="LblMode.Text" xml:space="preserve">
+    <value>toolStripStatusLabel1</value>
+  </data>
+  <data name="lblStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 17</value>
+  </data>
+  <data name="lblStatus.Text" xml:space="preserve">
+    <value>toolStripStatusLabel1</value>
+  </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 399</value>
   </data>
@@ -146,190 +158,40 @@
   <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="LblMode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 17</value>
+  <data name="rbEngravingPattern2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="LblMode.Text" xml:space="preserve">
-    <value>toolStripStatusLabel1</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="rbEngravingPattern2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="lblStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 17</value>
+  <data name="rbEngravingPattern2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>122, 117</value>
   </data>
-  <data name="lblStatus.Text" xml:space="preserve">
-    <value>toolStripStatusLabel1</value>
+  <data name="rbEngravingPattern2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 17</value>
   </data>
-  <data name="&gt;&gt;lblInfo1.Name" xml:space="preserve">
-    <value>lblInfo1</value>
-  </data>
-  <data name="&gt;&gt;lblInfo1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblInfo1.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;lblInfo1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnKeepSizeReso.Name" xml:space="preserve">
-    <value>btnKeepSizeReso</value>
-  </data>
-  <data name="&gt;&gt;btnKeepSizeReso.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnKeepSizeReso.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;btnKeepSizeReso.ZOrder" xml:space="preserve">
+  <data name="rbEngravingPattern2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;btnKeepSizeWidth.Name" xml:space="preserve">
-    <value>btnKeepSizeWidth</value>
+  <data name="rbEngravingPattern2.Text" xml:space="preserve">
+    <value>diagonal</value>
   </data>
-  <data name="&gt;&gt;btnKeepSizeWidth.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;rbEngravingPattern2.Name" xml:space="preserve">
+    <value>rbEngravingPattern2</value>
   </data>
-  <data name="&gt;&gt;btnKeepSizeWidth.Parent" xml:space="preserve">
+  <data name="&gt;&gt;rbEngravingPattern2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rbEngravingPattern2.Parent" xml:space="preserve">
     <value>groupBox3</value>
   </data>
-  <data name="&gt;&gt;btnKeepSizeWidth.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lblSizeOrig.Name" xml:space="preserve">
-    <value>lblSizeOrig</value>
-  </data>
-  <data name="&gt;&gt;lblSizeOrig.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblSizeOrig.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;lblSizeOrig.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;nUDResoX.Name" xml:space="preserve">
-    <value>nUDResoX</value>
-  </data>
-  <data name="&gt;&gt;nUDResoX.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDResoX.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;nUDResoX.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;lblSizeResult.Name" xml:space="preserve">
-    <value>lblSizeResult</value>
-  </data>
-  <data name="&gt;&gt;lblSizeResult.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblSizeResult.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;lblSizeResult.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;nUDHeight.Name" xml:space="preserve">
-    <value>nUDHeight</value>
-  </data>
-  <data name="&gt;&gt;nUDHeight.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDHeight.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;nUDHeight.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;nUDWidth.Name" xml:space="preserve">
-    <value>nUDWidth</value>
-  </data>
-  <data name="&gt;&gt;nUDWidth.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDWidth.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;nUDWidth.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
-  </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;label6.Name" xml:space="preserve">
-    <value>label6</value>
-  </data>
-  <data name="&gt;&gt;label6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
-  </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;cbLockRatio.Name" xml:space="preserve">
-    <value>cbLockRatio</value>
-  </data>
-  <data name="&gt;&gt;cbLockRatio.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cbLockRatio.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;cbLockRatio.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 226</value>
-  </data>
-  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Output size in units</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
-    <value>tabPageSize</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;rbEngravingPattern2.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="lblInfo1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lblInfo1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -355,7 +217,40 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;lblInfo1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="rbEngravingPattern1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rbEngravingPattern1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rbEngravingPattern1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>122, 95</value>
+  </data>
+  <data name="rbEngravingPattern1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 17</value>
+  </data>
+  <data name="rbEngravingPattern1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
+  </data>
+  <data name="rbEngravingPattern1.Text" xml:space="preserve">
+    <value>horizontal </value>
+  </data>
+  <data name="rbEngravingPattern1.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;rbEngravingPattern1.Name" xml:space="preserve">
+    <value>rbEngravingPattern1</value>
+  </data>
+  <data name="&gt;&gt;rbEngravingPattern1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rbEngravingPattern1.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;rbEngravingPattern1.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="btnKeepSizeReso.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -385,7 +280,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;btnKeepSizeReso.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="btnKeepSizeWidth.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -415,7 +310,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;btnKeepSizeWidth.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="lblSizeOrig.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -445,11 +340,8 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;lblSizeOrig.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>378, 17</value>
-  </metadata>
   <data name="nUDResoX.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 62</value>
   </data>
@@ -462,6 +354,9 @@
   <data name="nUDResoX.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>378, 17</value>
+  </metadata>
   <data name="nUDResoX.ToolTip" xml:space="preserve">
     <value>Distance between lines, should match pen width</value>
   </data>
@@ -475,7 +370,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;nUDResoX.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="lblSizeResult.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -505,7 +400,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;lblSizeResult.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="nUDHeight.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 36</value>
@@ -529,7 +424,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;nUDHeight.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="nUDWidth.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 16</value>
@@ -553,7 +448,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;nUDWidth.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -583,7 +478,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -613,7 +508,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -643,7 +538,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="cbLockRatio.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -673,7 +568,31 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;cbLockRatio.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
+  </data>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 226</value>
+  </data>
+  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Output size in units</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
+    <value>tabPageSize</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="label18.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -883,198 +802,6 @@
     <value>GbCOlorCorrection</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;groupBox10.Name" xml:space="preserve">
-    <value>groupBox10</value>
-  </data>
-  <data name="&gt;&gt;groupBox10.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox10.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox10.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;cbGrayscaleChannel.Name" xml:space="preserve">
-    <value>cbGrayscaleChannel</value>
-  </data>
-  <data name="&gt;&gt;cbGrayscaleChannel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cbGrayscaleChannel.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;cbGrayscaleChannel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;cbGrayscale.Name" xml:space="preserve">
-    <value>cbGrayscale</value>
-  </data>
-  <data name="&gt;&gt;cbGrayscale.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cbGrayscale.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;cbGrayscale.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;rbModeDither.Name" xml:space="preserve">
-    <value>rbModeDither</value>
-  </data>
-  <data name="&gt;&gt;rbModeDither.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbModeDither.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;rbModeDither.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;rbModeGray.Name" xml:space="preserve">
-    <value>rbModeGray</value>
-  </data>
-  <data name="&gt;&gt;rbModeGray.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbModeGray.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;rbModeGray.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>232, 6</value>
-  </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>293, 130</value>
-  </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Grayscale / black and white conversion</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;RbChannelK.Name" xml:space="preserve">
-    <value>RbChannelK</value>
-  </data>
-  <data name="&gt;&gt;RbChannelK.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;RbChannelK.Parent" xml:space="preserve">
-    <value>groupBox10</value>
-  </data>
-  <data name="&gt;&gt;RbChannelK.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;RbChannelY.Name" xml:space="preserve">
-    <value>RbChannelY</value>
-  </data>
-  <data name="&gt;&gt;RbChannelY.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;RbChannelY.Parent" xml:space="preserve">
-    <value>groupBox10</value>
-  </data>
-  <data name="&gt;&gt;RbChannelY.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;RbChannelM.Name" xml:space="preserve">
-    <value>RbChannelM</value>
-  </data>
-  <data name="&gt;&gt;RbChannelM.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;RbChannelM.Parent" xml:space="preserve">
-    <value>groupBox10</value>
-  </data>
-  <data name="&gt;&gt;RbChannelM.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;RbChannelC.Name" xml:space="preserve">
-    <value>RbChannelC</value>
-  </data>
-  <data name="&gt;&gt;RbChannelC.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;RbChannelC.Parent" xml:space="preserve">
-    <value>groupBox10</value>
-  </data>
-  <data name="&gt;&gt;RbChannelC.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;RbChannelB.Name" xml:space="preserve">
-    <value>RbChannelB</value>
-  </data>
-  <data name="&gt;&gt;RbChannelB.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;RbChannelB.Parent" xml:space="preserve">
-    <value>groupBox10</value>
-  </data>
-  <data name="&gt;&gt;RbChannelB.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;RbChannelG.Name" xml:space="preserve">
-    <value>RbChannelG</value>
-  </data>
-  <data name="&gt;&gt;RbChannelG.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;RbChannelG.Parent" xml:space="preserve">
-    <value>groupBox10</value>
-  </data>
-  <data name="&gt;&gt;RbChannelG.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;RbChannelR.Name" xml:space="preserve">
-    <value>RbChannelR</value>
-  </data>
-  <data name="&gt;&gt;RbChannelR.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;RbChannelR.Parent" xml:space="preserve">
-    <value>groupBox10</value>
-  </data>
-  <data name="&gt;&gt;RbChannelR.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="groupBox10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 78</value>
-  </data>
-  <data name="groupBox10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>281, 45</value>
-  </data>
-  <data name="groupBox10.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="groupBox10.Text" xml:space="preserve">
-    <value>Extract CMYK / RGB</value>
-  </data>
-  <data name="&gt;&gt;groupBox10.Name" xml:space="preserve">
-    <value>groupBox10</value>
-  </data>
-  <data name="&gt;&gt;groupBox10.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox10.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox10.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="RbChannelK.AutoSize" type="System.Boolean, mscorlib">
@@ -1287,6 +1014,30 @@
   <data name="&gt;&gt;RbChannelR.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
+  <data name="groupBox10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 78</value>
+  </data>
+  <data name="groupBox10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>281, 45</value>
+  </data>
+  <data name="groupBox10.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="groupBox10.Text" xml:space="preserve">
+    <value>Extract CMYK / RGB</value>
+  </data>
+  <data name="&gt;&gt;groupBox10.Name" xml:space="preserve">
+    <value>groupBox10</value>
+  </data>
+  <data name="&gt;&gt;groupBox10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox10.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox10.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="cbGrayscaleChannel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1407,80 +1158,35 @@
   <data name="&gt;&gt;rbModeGray.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;LblThreshold.Name" xml:space="preserve">
-    <value>LblThreshold</value>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>232, 6</value>
   </data>
-  <data name="&gt;&gt;LblThreshold.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>293, 130</value>
   </data>
-  <data name="&gt;&gt;LblThreshold.Parent" xml:space="preserve">
-    <value>groupBox8</value>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
   </data>
-  <data name="&gt;&gt;LblThreshold.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Grayscale / black and white conversion</value>
   </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;label7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;tBarBWThreshold.Name" xml:space="preserve">
-    <value>tBarBWThreshold</value>
-  </data>
-  <data name="&gt;&gt;tBarBWThreshold.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tBarBWThreshold.Parent" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;tBarBWThreshold.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;CbBlackWhiteEnable.Name" xml:space="preserve">
-    <value>CbBlackWhiteEnable</value>
-  </data>
-  <data name="&gt;&gt;CbBlackWhiteEnable.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CbBlackWhiteEnable.Parent" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;CbBlackWhiteEnable.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="groupBox8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>232, 140</value>
-  </data>
-  <data name="groupBox8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>293, 62</value>
-  </data>
-  <data name="groupBox8.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
-  </data>
-  <data name="groupBox8.Text" xml:space="preserve">
-    <value>Black and white via threshold</value>
-  </data>
-  <data name="&gt;&gt;groupBox8.Name" xml:space="preserve">
-    <value>groupBox8</value>
-  </data>
-  <data name="&gt;&gt;groupBox8.Type" xml:space="preserve">
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;groupBox8.Parent" xml:space="preserve">
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
     <value>tabPage1</value>
   </data>
-  <data name="&gt;&gt;groupBox8.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="LblThreshold.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="LblThreshold.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="LblThreshold.Location" type="System.Drawing.Point, System.Drawing">
     <value>120, 40</value>
@@ -1508,6 +1214,9 @@
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="label7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 40</value>
@@ -1563,6 +1272,9 @@
   <data name="CbBlackWhiteEnable.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="CbBlackWhiteEnable.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="CbBlackWhiteEnable.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 16</value>
   </data>
@@ -1586,6 +1298,30 @@
   </data>
   <data name="&gt;&gt;CbBlackWhiteEnable.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="groupBox8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>232, 140</value>
+  </data>
+  <data name="groupBox8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>293, 62</value>
+  </data>
+  <data name="groupBox8.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="groupBox8.Text" xml:space="preserve">
+    <value>Black and white via threshold</value>
+  </data>
+  <data name="&gt;&gt;groupBox8.Name" xml:space="preserve">
+    <value>groupBox8</value>
+  </data>
+  <data name="&gt;&gt;groupBox8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox8.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;groupBox8.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="btnInvert.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
@@ -1821,186 +1557,6 @@
   <data name="&gt;&gt;tBarBrightness.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="&gt;&gt;label27.Name" xml:space="preserve">
-    <value>label27</value>
-  </data>
-  <data name="&gt;&gt;label27.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label27.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
-  </data>
-  <data name="&gt;&gt;label27.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;CBoxPatternFiles.Name" xml:space="preserve">
-    <value>CBoxPatternFiles</value>
-  </data>
-  <data name="&gt;&gt;CBoxPatternFiles.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CBoxPatternFiles.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
-  </data>
-  <data name="&gt;&gt;CBoxPatternFiles.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;BtnReloadPattern.Name" xml:space="preserve">
-    <value>BtnReloadPattern</value>
-  </data>
-  <data name="&gt;&gt;BtnReloadPattern.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;BtnReloadPattern.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
-  </data>
-  <data name="&gt;&gt;BtnReloadPattern.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;label26.Name" xml:space="preserve">
-    <value>label26</value>
-  </data>
-  <data name="&gt;&gt;label26.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label26.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
-  </data>
-  <data name="&gt;&gt;label26.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;groupBox7.Name" xml:space="preserve">
-    <value>groupBox7</value>
-  </data>
-  <data name="&gt;&gt;groupBox7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox7.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
-  </data>
-  <data name="&gt;&gt;groupBox7.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern4.Name" xml:space="preserve">
-    <value>rbEngravingPattern4</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern4.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern4.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern3.Name" xml:space="preserve">
-    <value>rbEngravingPattern3</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern3.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern3.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;label25.Name" xml:space="preserve">
-    <value>label25</value>
-  </data>
-  <data name="&gt;&gt;label25.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label25.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
-  </data>
-  <data name="&gt;&gt;label25.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;cBOnlyLeftToRight.Name" xml:space="preserve">
-    <value>cBOnlyLeftToRight</value>
-  </data>
-  <data name="&gt;&gt;cBOnlyLeftToRight.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBOnlyLeftToRight.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
-  </data>
-  <data name="&gt;&gt;cBOnlyLeftToRight.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;NuDSpiralCenterY.Name" xml:space="preserve">
-    <value>NuDSpiralCenterY</value>
-  </data>
-  <data name="&gt;&gt;NuDSpiralCenterY.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NuDSpiralCenterY.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
-  </data>
-  <data name="&gt;&gt;NuDSpiralCenterY.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern2.Name" xml:space="preserve">
-    <value>rbEngravingPattern2</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern2.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern2.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern1.Name" xml:space="preserve">
-    <value>rbEngravingPattern1</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern1.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern1.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;NuDSpiralCenterX.Name" xml:space="preserve">
-    <value>NuDSpiralCenterX</value>
-  </data>
-  <data name="&gt;&gt;NuDSpiralCenterX.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NuDSpiralCenterX.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
-  </data>
-  <data name="&gt;&gt;NuDSpiralCenterX.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="GbGcodeDirection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>209, 120</value>
-  </data>
-  <data name="GbGcodeDirection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>319, 186</value>
-  </data>
-  <data name="GbGcodeDirection.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="GbGcodeDirection.Text" xml:space="preserve">
-    <value>Plot direction / pattern</value>
-  </data>
-  <data name="&gt;&gt;GbGcodeDirection.Name" xml:space="preserve">
-    <value>GbGcodeDirection</value>
-  </data>
-  <data name="&gt;&gt;GbGcodeDirection.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GbGcodeDirection.Parent" xml:space="preserve">
-    <value>tabPageSize</value>
-  </data>
-  <data name="&gt;&gt;GbGcodeDirection.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="label27.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2008,7 +1564,7 @@
     <value>NoControl</value>
   </data>
   <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
-    <value>227, 148</value>
+    <value>233, 35</value>
   </data>
   <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 13</value>
@@ -2026,13 +1582,13 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label27.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
+    <value>GbEngravingPattern</value>
   </data>
   <data name="&gt;&gt;label27.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="CBoxPatternFiles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 126</value>
+    <value>5, 59</value>
   </data>
   <data name="CBoxPatternFiles.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 21</value>
@@ -2050,16 +1606,16 @@
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;CBoxPatternFiles.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
+    <value>GbEngravingPattern</value>
   </data>
   <data name="&gt;&gt;CBoxPatternFiles.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="BtnReloadPattern.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="BtnReloadPattern.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 148</value>
+    <value>5, 81</value>
   </data>
   <data name="BtnReloadPattern.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 23</value>
@@ -2077,10 +1633,10 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;BtnReloadPattern.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
+    <value>GbEngravingPattern</value>
   </data>
   <data name="&gt;&gt;BtnReloadPattern.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>8</value>
   </data>
   <data name="label26.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2089,7 +1645,7 @@
     <value>NoControl</value>
   </data>
   <data name="label26.Location" type="System.Drawing.Point, System.Drawing">
-    <value>153, 148</value>
+    <value>159, 35</value>
   </data>
   <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 13</value>
@@ -2107,82 +1663,10 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label26.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
+    <value>GbEngravingPattern</value>
   </data>
   <data name="&gt;&gt;label26.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;CbPenUpOn0.Name" xml:space="preserve">
-    <value>CbPenUpOn0</value>
-  </data>
-  <data name="&gt;&gt;CbPenUpOn0.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CbPenUpOn0.Parent" xml:space="preserve">
-    <value>groupBox7</value>
-  </data>
-  <data name="&gt;&gt;CbPenUpOn0.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;nUDResoY.Name" xml:space="preserve">
-    <value>nUDResoY</value>
-  </data>
-  <data name="&gt;&gt;nUDResoY.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDResoY.Parent" xml:space="preserve">
-    <value>groupBox7</value>
-  </data>
-  <data name="&gt;&gt;nUDResoY.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;cBCompress.Name" xml:space="preserve">
-    <value>cBCompress</value>
-  </data>
-  <data name="&gt;&gt;cBCompress.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBCompress.Parent" xml:space="preserve">
-    <value>groupBox7</value>
-  </data>
-  <data name="&gt;&gt;cBCompress.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="&gt;&gt;Cb2DViewHide0.Name" xml:space="preserve">
-    <value>Cb2DViewHide0</value>
-  </data>
-  <data name="&gt;&gt;Cb2DViewHide0.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Cb2DViewHide0.Parent" xml:space="preserve">
-    <value>groupBox7</value>
-  </data>
-  <data name="&gt;&gt;Cb2DViewHide0.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="groupBox7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 6</value>
-  </data>
-  <data name="groupBox7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 114</value>
-  </data>
-  <data name="groupBox7.TabIndex" type="System.Int32, mscorlib">
-    <value>55</value>
-  </data>
-  <data name="groupBox7.Text" xml:space="preserve">
-    <value>Properties</value>
-  </data>
-  <data name="&gt;&gt;groupBox7.Name" xml:space="preserve">
-    <value>groupBox7</value>
-  </data>
-  <data name="&gt;&gt;groupBox7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox7.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
-  </data>
-  <data name="&gt;&gt;groupBox7.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <data name="CbPenUpOn0.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2191,7 +1675,7 @@
     <value>NoControl</value>
   </data>
   <data name="CbPenUpOn0.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 68</value>
+    <value>171, 21</value>
   </data>
   <data name="CbPenUpOn0.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 17</value>
@@ -2281,7 +1765,7 @@
     <value>NoControl</value>
   </data>
   <data name="Cb2DViewHide0.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 86</value>
+    <value>171, 39</value>
   </data>
   <data name="Cb2DViewHide0.Size" type="System.Drawing.Size, System.Drawing">
     <value>97, 17</value>
@@ -2307,6 +1791,30 @@
   <data name="&gt;&gt;Cb2DViewHide0.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="groupBox7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 206</value>
+  </data>
+  <data name="groupBox7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>302, 68</value>
+  </data>
+  <data name="groupBox7.TabIndex" type="System.Int32, mscorlib">
+    <value>55</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Properties</value>
+  </data>
+  <data name="&gt;&gt;groupBox7.Name" xml:space="preserve">
+    <value>groupBox7</value>
+  </data>
+  <data name="&gt;&gt;groupBox7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox7.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;groupBox7.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="rbEngravingPattern4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2314,7 +1822,7 @@
     <value>NoControl</value>
   </data>
   <data name="rbEngravingPattern4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 103</value>
+    <value>6, 36</value>
   </data>
   <data name="rbEngravingPattern4.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 17</value>
@@ -2335,10 +1843,10 @@
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;rbEngravingPattern4.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
+    <value>GbEngravingPattern</value>
   </data>
   <data name="&gt;&gt;rbEngravingPattern4.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="rbEngravingPattern3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2347,7 +1855,7 @@
     <value>NoControl</value>
   </data>
   <data name="rbEngravingPattern3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 80</value>
+    <value>6, 13</value>
   </data>
   <data name="rbEngravingPattern3.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 17</value>
@@ -2368,10 +1876,10 @@
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;rbEngravingPattern3.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
+    <value>GbEngravingPattern</value>
   </data>
   <data name="&gt;&gt;rbEngravingPattern3.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>1</value>
   </data>
   <data name="label25.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2380,7 +1888,7 @@
     <value>NoControl</value>
   </data>
   <data name="label25.Location" type="System.Drawing.Point, System.Drawing">
-    <value>155, 130</value>
+    <value>161, 17</value>
   </data>
   <data name="label25.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 13</value>
@@ -2398,46 +1906,13 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label25.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
+    <value>GbEngravingPattern</value>
   </data>
   <data name="&gt;&gt;label25.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="cBOnlyLeftToRight.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBOnlyLeftToRight.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBOnlyLeftToRight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 34</value>
-  </data>
-  <data name="cBOnlyLeftToRight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 17</value>
-  </data>
-  <data name="cBOnlyLeftToRight.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="cBOnlyLeftToRight.Text" xml:space="preserve">
-    <value>Only left to right</value>
-  </data>
-  <data name="cBOnlyLeftToRight.ToolTip" xml:space="preserve">
-    <value>Only draw from one direction to avoid offsets</value>
-  </data>
-  <data name="&gt;&gt;cBOnlyLeftToRight.Name" xml:space="preserve">
-    <value>cBOnlyLeftToRight</value>
-  </data>
-  <data name="&gt;&gt;cBOnlyLeftToRight.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBOnlyLeftToRight.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
-  </data>
-  <data name="&gt;&gt;cBOnlyLeftToRight.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>4</value>
   </data>
   <data name="NuDSpiralCenterY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>245, 146</value>
+    <value>251, 33</value>
   </data>
   <data name="NuDSpiralCenterY.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 20</value>
@@ -2455,73 +1930,13 @@
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;NuDSpiralCenterY.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
+    <value>GbEngravingPattern</value>
   </data>
   <data name="&gt;&gt;NuDSpiralCenterY.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="rbEngravingPattern2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rbEngravingPattern2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="rbEngravingPattern2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 57</value>
-  </data>
-  <data name="rbEngravingPattern2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 17</value>
-  </data>
-  <data name="rbEngravingPattern2.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="rbEngravingPattern2.Text" xml:space="preserve">
-    <value>diagonal</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern2.Name" xml:space="preserve">
-    <value>rbEngravingPattern2</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern2.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern2.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="rbEngravingPattern1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rbEngravingPattern1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="rbEngravingPattern1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 16</value>
-  </data>
-  <data name="rbEngravingPattern1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 17</value>
-  </data>
-  <data name="rbEngravingPattern1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="rbEngravingPattern1.Text" xml:space="preserve">
-    <value>horizontal </value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern1.Name" xml:space="preserve">
-    <value>rbEngravingPattern1</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern1.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
-  </data>
-  <data name="&gt;&gt;rbEngravingPattern1.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>5</value>
   </data>
   <data name="NuDSpiralCenterX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 146</value>
+    <value>178, 33</value>
   </data>
   <data name="NuDSpiralCenterX.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 20</value>
@@ -2539,10 +1954,10 @@
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;NuDSpiralCenterX.Parent" xml:space="preserve">
-    <value>GbGcodeDirection</value>
+    <value>GbEngravingPattern</value>
   </data>
   <data name="&gt;&gt;NuDSpiralCenterX.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>7</value>
   </data>
   <data name="btnGenerate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2574,6 +1989,18 @@
   <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>677, 17</value>
   </metadata>
+  <data name="copyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 22</value>
+  </data>
+  <data name="copyToolStripMenuItem.Text" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="setAsOriginalToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 22</value>
+  </data>
+  <data name="setAsOriginalToolStripMenuItem.Text" xml:space="preserve">
+    <value>Set as original</value>
+  </data>
   <data name="contextMenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 48</value>
   </data>
@@ -2613,17 +2040,26 @@
   <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="copyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 22</value>
+  <data name="lblImageSource.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="copyToolStripMenuItem.Text" xml:space="preserve">
-    <value>Copy</value>
+  <data name="lblImageSource.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
   </data>
-  <data name="setAsOriginalToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 22</value>
+  <data name="lblImageSource.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="setAsOriginalToolStripMenuItem.Text" xml:space="preserve">
-    <value>Set as original</value>
+  <data name="lblImageSource.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 1</value>
+  </data>
+  <data name="lblImageSource.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 17</value>
+  </data>
+  <data name="lblImageSource.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="lblImageSource.Text" xml:space="preserve">
+    <value>original</value>
   </data>
   <data name="&gt;&gt;lblImageSource.Name" xml:space="preserve">
     <value>lblImageSource</value>
@@ -2657,39 +2093,6 @@
   </data>
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
     <value>8</value>
-  </data>
-  <data name="lblImageSource.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblImageSource.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 10pt</value>
-  </data>
-  <data name="lblImageSource.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblImageSource.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 1</value>
-  </data>
-  <data name="lblImageSource.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 17</value>
-  </data>
-  <data name="lblImageSource.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="lblImageSource.Text" xml:space="preserve">
-    <value>original</value>
-  </data>
-  <data name="&gt;&gt;lblImageSource.Name" xml:space="preserve">
-    <value>lblImageSource</value>
-  </data>
-  <data name="&gt;&gt;lblImageSource.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblImageSource.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;lblImageSource.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="lblHueShift.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2803,7 +2206,7 @@
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;nUDMaxColors.Parent" xml:space="preserve">
-    <value>groupBox5</value>
+    <value>GbColorReduction</value>
   </data>
   <data name="&gt;&gt;nUDMaxColors.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -2833,14 +2236,11 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblColors.Parent" xml:space="preserve">
-    <value>groupBox5</value>
+    <value>GbColorReduction</value>
   </data>
   <data name="&gt;&gt;lblColors.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>378, 17</value>
-  </metadata>
   <data name="cbExceptColor.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2869,7 +2269,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cbExceptColor.Parent" xml:space="preserve">
-    <value>groupBox5</value>
+    <value>GbColorReduction</value>
   </data>
   <data name="&gt;&gt;cbExceptColor.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -3215,7 +2615,7 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;rBMode0.Parent" xml:space="preserve">
-    <value>groupBox6</value>
+    <value>GbColorReplacingMode</value>
   </data>
   <data name="&gt;&gt;rBMode0.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -3248,7 +2648,7 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;rBMode1.Parent" xml:space="preserve">
-    <value>groupBox6</value>
+    <value>GbColorReplacingMode</value>
   </data>
   <data name="&gt;&gt;rBMode1.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -3281,7 +2681,7 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;rBMode2.Parent" xml:space="preserve">
-    <value>groupBox6</value>
+    <value>GbColorReplacingMode</value>
   </data>
   <data name="&gt;&gt;rBMode2.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -3338,7 +2738,7 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;nUDColorPercent.Parent" xml:space="preserve">
-    <value>groupBox9</value>
+    <value>GbConversionWizzard</value>
   </data>
   <data name="&gt;&gt;nUDColorPercent.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -3371,7 +2771,7 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnPresetCorrection3.Parent" xml:space="preserve">
-    <value>groupBox9</value>
+    <value>GbConversionWizzard</value>
   </data>
   <data name="&gt;&gt;btnPresetCorrection3.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -3524,188 +2924,77 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>GbStartGrayS</value>
   </data>
   <data name="&gt;&gt;btnGetPWMValues.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
-  <data name="cBToolChange.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBToolChange.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="button3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="cBToolChange.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 50</value>
+  <data name="button3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>519, 0</value>
   </data>
-  <data name="cBToolChange.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 17</value>
+  <data name="button3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 23</value>
   </data>
-  <data name="cBToolChange.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+  <data name="button3.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
   </data>
-  <data name="cBToolChange.Text" xml:space="preserve">
-    <value>Perform tool change on Tx M06</value>
+  <data name="button3.Text" xml:space="preserve">
+    <value>?</value>
   </data>
-  <data name="cBToolChange.ToolTip" xml:space="preserve">
-    <value>Execute following scripts on Tx M06 commands</value>
+  <data name="button3.ToolTip" xml:space="preserve">
+    <value>Online help</value>
   </data>
-  <data name="&gt;&gt;cBToolChange.Name" xml:space="preserve">
-    <value>cBToolChange</value>
+  <data name="&gt;&gt;button3.Name" xml:space="preserve">
+    <value>button3</value>
   </data>
-  <data name="&gt;&gt;cBToolChange.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;button3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cBToolChange.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="&gt;&gt;button3.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;cBToolChange.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="cBImportGCToolM0.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBImportGCToolM0.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBImportGCToolM0.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 32</value>
-  </data>
-  <data name="cBImportGCToolM0.Size" type="System.Drawing.Size, System.Drawing">
-    <value>139, 17</value>
-  </data>
-  <data name="cBImportGCToolM0.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="cBImportGCToolM0.Text" xml:space="preserve">
-    <value>Add Pause (M0) instead</value>
-  </data>
-  <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
-    <value>Replace any M06 (tool change) command by M0 (pause) for manual tool change.</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCToolM0.Name" xml:space="preserve">
-    <value>cBImportGCToolM0</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCToolM0.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCToolM0.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCToolM0.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;button3.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="cBImportGCTool.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBImportGCTool.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBImportGCTool.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 16</value>
-  </data>
-  <data name="cBImportGCTool.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 17</value>
-  </data>
-  <data name="cBImportGCTool.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="cBImportGCTool.Text" xml:space="preserve">
-    <value>Add Tool Change command Tx M06</value>
-  </data>
-  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
-    <value>Perform tool change action on Tx M06 commands if information is available - check tab 'Tool change'.</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCTool.Name" xml:space="preserve">
-    <value>cBImportGCTool</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCTool.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCTool.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;cBImportGCTool.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="nUDSBottom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 14</value>
-  </data>
-  <data name="nUDSBottom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 20</value>
-  </data>
-  <data name="nUDSBottom.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="nUDSBottom.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="nUDSBottom.ToolTip" xml:space="preserve">
-    <value>Lower value</value>
-  </data>
-  <data name="&gt;&gt;nUDSBottom.Name" xml:space="preserve">
-    <value>nUDSBottom</value>
-  </data>
-  <data name="&gt;&gt;nUDSBottom.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDSBottom.Parent" xml:space="preserve">
-    <value>GbStartGrayS</value>
-  </data>
-  <data name="&gt;&gt;nUDSBottom.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="nUDZBottom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>170, 12</value>
-  </data>
-  <data name="nUDZBottom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 20</value>
-  </data>
-  <data name="nUDZBottom.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="nUDZBottom.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="nUDZBottom.ToolTip" xml:space="preserve">
-    <value>Lower value</value>
-  </data>
-  <data name="&gt;&gt;nUDZBottom.Name" xml:space="preserve">
-    <value>nUDZBottom</value>
-  </data>
-  <data name="&gt;&gt;nUDZBottom.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDZBottom.Parent" xml:space="preserve">
-    <value>GbStartGrayZ</value>
-  </data>
-  <data name="&gt;&gt;nUDZBottom.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="groupBox6.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="GbColorReplacingMode.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 234</value>
   </data>
-  <data name="groupBox6.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="GbColorReplacingMode.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 72</value>
   </data>
-  <data name="groupBox6.TabIndex" type="System.Int32, mscorlib">
+  <data name="GbColorReplacingMode.TabIndex" type="System.Int32, mscorlib">
     <value>29</value>
   </data>
-  <data name="groupBox6.Text" xml:space="preserve">
+  <data name="GbColorReplacingMode.Text" xml:space="preserve">
     <value>Color replacing mode</value>
   </data>
-  <data name="&gt;&gt;groupBox6.Name" xml:space="preserve">
-    <value>groupBox6</value>
+  <data name="&gt;&gt;GbColorReplacingMode.Name" xml:space="preserve">
+    <value>GbColorReplacingMode</value>
   </data>
-  <data name="&gt;&gt;groupBox6.Type" xml:space="preserve">
+  <data name="&gt;&gt;GbColorReplacingMode.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;groupBox6.Parent" xml:space="preserve">
+  <data name="&gt;&gt;GbColorReplacingMode.Parent" xml:space="preserve">
     <value>tabPage4</value>
   </data>
-  <data name="&gt;&gt;groupBox6.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;GbColorReplacingMode.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>475, 17</value>
   </metadata>
+  <data name="loadPictureToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 20</value>
+  </data>
+  <data name="loadPictureToolStripMenuItem.Text" xml:space="preserve">
+    <value>Load Picture</value>
+  </data>
+  <data name="pasteFromClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 20</value>
+  </data>
+  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
+    <value>Paste from clipboard</value>
+  </data>
   <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -3729,75 +3018,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
     <value>10</value>
-  </data>
-  <data name="loadPictureToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 20</value>
-  </data>
-  <data name="loadPictureToolStripMenuItem.Text" xml:space="preserve">
-    <value>Load Picture</value>
-  </data>
-  <data name="pasteFromClipboardToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 20</value>
-  </data>
-  <data name="pasteFromClipboardToolStripMenuItem.Text" xml:space="preserve">
-    <value>Paste from clipboard</value>
-  </data>
-  <data name="&gt;&gt;label8.Name" xml:space="preserve">
-    <value>label8</value>
-  </data>
-  <data name="&gt;&gt;label8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
-    <value>GbStartGrayZ</value>
-  </data>
-  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;nUDZTop.Name" xml:space="preserve">
-    <value>nUDZTop</value>
-  </data>
-  <data name="&gt;&gt;nUDZTop.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDZTop.Parent" xml:space="preserve">
-    <value>GbStartGrayZ</value>
-  </data>
-  <data name="&gt;&gt;nUDZTop.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label9.Name" xml:space="preserve">
-    <value>label9</value>
-  </data>
-  <data name="&gt;&gt;label9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
-    <value>GbStartGrayZ</value>
-  </data>
-  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="GbStartGrayZ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 119</value>
-  </data>
-  <data name="GbStartGrayZ.Size" type="System.Drawing.Size, System.Drawing">
-    <value>321, 37</value>
-  </data>
-  <data name="GbStartGrayZ.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
-  </data>
-  <data name="&gt;&gt;GbStartGrayZ.Name" xml:space="preserve">
-    <value>GbStartGrayZ</value>
-  </data>
-  <data name="&gt;&gt;GbStartGrayZ.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GbStartGrayZ.Parent" xml:space="preserve">
-    <value>tabPage2Gray</value>
-  </data>
-  <data name="&gt;&gt;GbStartGrayZ.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3883,11 +3103,59 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="nUDZBottom.Location" type="System.Drawing.Point, System.Drawing">
+    <value>170, 12</value>
+  </data>
+  <data name="nUDZBottom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 20</value>
+  </data>
+  <data name="nUDZBottom.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="nUDZBottom.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="nUDZBottom.ToolTip" xml:space="preserve">
+    <value>Lower value</value>
+  </data>
+  <data name="&gt;&gt;nUDZBottom.Name" xml:space="preserve">
+    <value>nUDZBottom</value>
+  </data>
+  <data name="&gt;&gt;nUDZBottom.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDZBottom.Parent" xml:space="preserve">
+    <value>GbStartGrayZ</value>
+  </data>
+  <data name="&gt;&gt;nUDZBottom.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="GbStartGrayZ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 99</value>
+  </data>
+  <data name="GbStartGrayZ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>321, 37</value>
+  </data>
+  <data name="GbStartGrayZ.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="&gt;&gt;GbStartGrayZ.Name" xml:space="preserve">
+    <value>GbStartGrayZ</value>
+  </data>
+  <data name="&gt;&gt;GbStartGrayZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GbStartGrayZ.Parent" xml:space="preserve">
+    <value>tabPage2Gray</value>
+  </data>
+  <data name="&gt;&gt;GbStartGrayZ.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="RbStartGrayS.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="RbStartGrayS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 170</value>
+    <value>3, 142</value>
   </data>
   <data name="RbStartGrayS.Size" type="System.Drawing.Size, System.Drawing">
     <value>320, 17</value>
@@ -3938,7 +3206,7 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>GbStartGrayS</value>
   </data>
   <data name="&gt;&gt;label22.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="label23.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3968,7 +3236,7 @@ The filter allows to fill certain ranges of RGB color channels with specified va
     <value>GbStartGrayS</value>
   </data>
   <data name="&gt;&gt;label23.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="cBPreview.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3999,183 +3267,6 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   </data>
   <data name="&gt;&gt;cBPreview.ZOrder" xml:space="preserve">
     <value>7</value>
-  </data>
-  <data name="&gt;&gt;tabPageSetup.Name" xml:space="preserve">
-    <value>tabPageSetup</value>
-  </data>
-  <data name="&gt;&gt;tabPageSetup.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPageSetup.Parent" xml:space="preserve">
-    <value>tabControl1</value>
-  </data>
-  <data name="&gt;&gt;tabPageSetup.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tabPageSize.Name" xml:space="preserve">
-    <value>tabPageSize</value>
-  </data>
-  <data name="&gt;&gt;tabPageSize.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPageSize.Parent" xml:space="preserve">
-    <value>tabControl1</value>
-  </data>
-  <data name="&gt;&gt;tabPageSize.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;tabPage4.Name" xml:space="preserve">
-    <value>tabPage4</value>
-  </data>
-  <data name="&gt;&gt;tabPage4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPage4.Parent" xml:space="preserve">
-    <value>tabControl1</value>
-  </data>
-  <data name="&gt;&gt;tabPage4.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;tabPage1.Name" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;tabPage1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPage1.Parent" xml:space="preserve">
-    <value>tabControl1</value>
-  </data>
-  <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 27</value>
-  </data>
-  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>539, 335</value>
-  </data>
-  <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
-  </data>
-  <data name="&gt;&gt;tabControl1.Name" xml:space="preserve">
-    <value>tabControl1</value>
-  </data>
-  <data name="&gt;&gt;tabControl1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabControl1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Parent" xml:space="preserve">
-    <value>tabPageSetup</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;GbUseCaseLoad.Name" xml:space="preserve">
-    <value>GbUseCaseLoad</value>
-  </data>
-  <data name="&gt;&gt;GbUseCaseLoad.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GbUseCaseLoad.Parent" xml:space="preserve">
-    <value>tabPageSetup</value>
-  </data>
-  <data name="&gt;&gt;GbUseCaseLoad.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;tabControl2.Name" xml:space="preserve">
-    <value>tabControl2</value>
-  </data>
-  <data name="&gt;&gt;tabControl2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabControl2.Parent" xml:space="preserve">
-    <value>tabPageSetup</value>
-  </data>
-  <data name="&gt;&gt;tabControl2.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="tabPageSetup.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tabPageSetup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>531, 309</value>
-  </data>
-  <data name="tabPageSetup.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="tabPageSetup.Text" xml:space="preserve">
-    <value>Start</value>
-  </data>
-  <data name="&gt;&gt;tabPageSetup.Name" xml:space="preserve">
-    <value>tabPageSetup</value>
-  </data>
-  <data name="&gt;&gt;tabPageSetup.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPageSetup.Parent" xml:space="preserve">
-    <value>tabControl1</value>
-  </data>
-  <data name="&gt;&gt;tabPageSetup.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;cBResolutionPenWidth.Name" xml:space="preserve">
-    <value>cBResolutionPenWidth</value>
-  </data>
-  <data name="&gt;&gt;cBResolutionPenWidth.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBResolutionPenWidth.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;cBResolutionPenWidth.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;checkBox1.Name" xml:space="preserve">
-    <value>checkBox1</value>
-  </data>
-  <data name="&gt;&gt;checkBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;checkBox1.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;checkBox1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>341, 182</value>
-  </data>
-  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 124</value>
-  </data>
-  <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
-    <value>54</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Display in 2D-View</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Parent" xml:space="preserve">
-    <value>tabPageSetup</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="cBResolutionPenWidth.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -4234,77 +3325,29 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;checkBox1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;lBUseCase.Name" xml:space="preserve">
-    <value>lBUseCase</value>
+  <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>341, 182</value>
   </data>
-  <data name="&gt;&gt;lBUseCase.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 124</value>
   </data>
-  <data name="&gt;&gt;lBUseCase.Parent" xml:space="preserve">
-    <value>GbUseCaseLoad</value>
+  <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
   </data>
-  <data name="&gt;&gt;lBUseCase.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Display in 2D-View</value>
   </data>
-  <data name="&gt;&gt;btnLoad.Name" xml:space="preserve">
-    <value>btnLoad</value>
+  <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
+    <value>groupBox4</value>
   </data>
-  <data name="&gt;&gt;btnLoad.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnLoad.Parent" xml:space="preserve">
-    <value>GbUseCaseLoad</value>
-  </data>
-  <data name="&gt;&gt;btnLoad.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label16.Name" xml:space="preserve">
-    <value>label16</value>
-  </data>
-  <data name="&gt;&gt;label16.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
-    <value>GbUseCaseLoad</value>
-  </data>
-  <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lblLastUseCase.Name" xml:space="preserve">
-    <value>lblLastUseCase</value>
-  </data>
-  <data name="&gt;&gt;lblLastUseCase.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblLastUseCase.Parent" xml:space="preserve">
-    <value>GbUseCaseLoad</value>
-  </data>
-  <data name="&gt;&gt;lblLastUseCase.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="GbUseCaseLoad.Location" type="System.Drawing.Point, System.Drawing">
-    <value>340, 3</value>
-  </data>
-  <data name="GbUseCaseLoad.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 173</value>
-  </data>
-  <data name="GbUseCaseLoad.TabIndex" type="System.Int32, mscorlib">
-    <value>53</value>
-  </data>
-  <data name="GbUseCaseLoad.Text" xml:space="preserve">
-    <value>Load use case</value>
-  </data>
-  <data name="&gt;&gt;GbUseCaseLoad.Name" xml:space="preserve">
-    <value>GbUseCaseLoad</value>
-  </data>
-  <data name="&gt;&gt;GbUseCaseLoad.Type" xml:space="preserve">
+  <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;GbUseCaseLoad.Parent" xml:space="preserve">
+  <data name="&gt;&gt;groupBox4.Parent" xml:space="preserve">
     <value>tabPageSetup</value>
   </data>
-  <data name="&gt;&gt;GbUseCaseLoad.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="lBUseCase.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 19</value>
@@ -4411,137 +3454,128 @@ The filter allows to fill certain ranges of RGB color channels with specified va
   <data name="&gt;&gt;lblLastUseCase.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;tabPage2Color.Name" xml:space="preserve">
-    <value>tabPage2Color</value>
+  <data name="GbUseCaseLoad.Location" type="System.Drawing.Point, System.Drawing">
+    <value>340, 3</value>
   </data>
-  <data name="&gt;&gt;tabPage2Color.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="GbUseCaseLoad.Size" type="System.Drawing.Size, System.Drawing">
+    <value>188, 173</value>
   </data>
-  <data name="&gt;&gt;tabPage2Color.Parent" xml:space="preserve">
-    <value>tabControl2</value>
+  <data name="GbUseCaseLoad.TabIndex" type="System.Int32, mscorlib">
+    <value>53</value>
   </data>
-  <data name="&gt;&gt;tabPage2Color.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="GbUseCaseLoad.Text" xml:space="preserve">
+    <value>Load use case</value>
   </data>
-  <data name="&gt;&gt;tabPage2Gray.Name" xml:space="preserve">
-    <value>tabPage2Gray</value>
+  <data name="&gt;&gt;GbUseCaseLoad.Name" xml:space="preserve">
+    <value>GbUseCaseLoad</value>
   </data>
-  <data name="&gt;&gt;tabPage2Gray.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPage2Gray.Parent" xml:space="preserve">
-    <value>tabControl2</value>
-  </data>
-  <data name="&gt;&gt;tabPage2Gray.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tabControl2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="tabControl2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>335, 306</value>
-  </data>
-  <data name="tabControl2.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;tabControl2.Name" xml:space="preserve">
-    <value>tabControl2</value>
-  </data>
-  <data name="&gt;&gt;tabControl2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabControl2.Parent" xml:space="preserve">
-    <value>tabPageSetup</value>
-  </data>
-  <data name="&gt;&gt;tabControl2.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+  <data name="&gt;&gt;GbUseCaseLoad.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
-    <value>tabPage2Color</value>
+  <data name="&gt;&gt;GbUseCaseLoad.Parent" xml:space="preserve">
+    <value>tabPageSetup</value>
   </data>
-  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;label19.Name" xml:space="preserve">
-    <value>label19</value>
-  </data>
-  <data name="&gt;&gt;label19.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label19.Parent" xml:space="preserve">
-    <value>tabPage2Color</value>
-  </data>
-  <data name="&gt;&gt;label19.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;GbUseCaseLoad.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;CboxToolTable.Name" xml:space="preserve">
-    <value>CboxToolTable</value>
+  <data name="cBToolChange.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;CboxToolTable.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="cBToolChange.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;CboxToolTable.Parent" xml:space="preserve">
-    <value>tabPage2Color</value>
+  <data name="cBToolChange.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 50</value>
   </data>
-  <data name="&gt;&gt;CboxToolTable.ZOrder" xml:space="preserve">
+  <data name="cBToolChange.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 17</value>
+  </data>
+  <data name="cBToolChange.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="cBToolChange.Text" xml:space="preserve">
+    <value>Perform tool change on Tx M06</value>
+  </data>
+  <data name="cBToolChange.ToolTip" xml:space="preserve">
+    <value>Execute following scripts on Tx M06 commands</value>
+  </data>
+  <data name="&gt;&gt;cBToolChange.Name" xml:space="preserve">
+    <value>cBToolChange</value>
+  </data>
+  <data name="&gt;&gt;cBToolChange.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBToolChange.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;cBToolChange.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="cBImportGCToolM0.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBImportGCToolM0.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBImportGCToolM0.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 32</value>
+  </data>
+  <data name="cBImportGCToolM0.Size" type="System.Drawing.Size, System.Drawing">
+    <value>139, 17</value>
+  </data>
+  <data name="cBImportGCToolM0.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="cBImportGCToolM0.Text" xml:space="preserve">
+    <value>Add Pause (M0) instead</value>
+  </data>
+  <data name="cBImportGCToolM0.ToolTip" xml:space="preserve">
+    <value>Replace any M06 (tool change) command by M0 (pause) for manual tool change.</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCToolM0.Name" xml:space="preserve">
+    <value>cBImportGCToolM0</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCToolM0.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCToolM0.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCToolM0.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="cBImportGCTool.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBImportGCTool.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBImportGCTool.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
+  <data name="cBImportGCTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>197, 17</value>
+  </data>
+  <data name="cBImportGCTool.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="cBImportGCTool.Text" xml:space="preserve">
+    <value>Add Tool Change command Tx M06</value>
+  </data>
+  <data name="cBImportGCTool.ToolTip" xml:space="preserve">
+    <value>Perform tool change action on Tx M06 commands if information is available - check tab 'Tool change'.</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCTool.Name" xml:space="preserve">
+    <value>cBImportGCTool</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCTool.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCTool.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;cBImportGCTool.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="&gt;&gt;CboxToolFiles.Name" xml:space="preserve">
-    <value>CboxToolFiles</value>
-  </data>
-  <data name="&gt;&gt;CboxToolFiles.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CboxToolFiles.Parent" xml:space="preserve">
-    <value>tabPage2Color</value>
-  </data>
-  <data name="&gt;&gt;CboxToolFiles.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;label28.Name" xml:space="preserve">
-    <value>label28</value>
-  </data>
-  <data name="&gt;&gt;label28.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label28.Parent" xml:space="preserve">
-    <value>tabPage2Color</value>
-  </data>
-  <data name="&gt;&gt;label28.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="tabPage2Color.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tabPage2Color.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tabPage2Color.Size" type="System.Drawing.Size, System.Drawing">
-    <value>327, 280</value>
-  </data>
-  <data name="tabPage2Color.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="tabPage2Color.Text" xml:space="preserve">
-    <value>Color mode</value>
-  </data>
-  <data name="&gt;&gt;tabPage2Color.Name" xml:space="preserve">
-    <value>tabPage2Color</value>
-  </data>
-  <data name="&gt;&gt;tabPage2Color.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPage2Color.Parent" xml:space="preserve">
-    <value>tabControl2</value>
-  </data>
-  <data name="&gt;&gt;tabPage2Color.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 194</value>
@@ -4680,74 +3714,38 @@ Manual or automatic tool change can be applied.</value>
   <data name="&gt;&gt;label28.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;RbStartGrayZ.Name" xml:space="preserve">
-    <value>RbStartGrayZ</value>
-  </data>
-  <data name="&gt;&gt;RbStartGrayZ.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;RbStartGrayZ.Parent" xml:space="preserve">
-    <value>tabPage2Gray</value>
-  </data>
-  <data name="&gt;&gt;RbStartGrayZ.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;LblStartGrayMode.Name" xml:space="preserve">
-    <value>LblStartGrayMode</value>
-  </data>
-  <data name="&gt;&gt;LblStartGrayMode.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LblStartGrayMode.Parent" xml:space="preserve">
-    <value>tabPage2Gray</value>
-  </data>
-  <data name="&gt;&gt;LblStartGrayMode.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;GbStartGrayS.Name" xml:space="preserve">
-    <value>GbStartGrayS</value>
-  </data>
-  <data name="&gt;&gt;GbStartGrayS.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GbStartGrayS.Parent" xml:space="preserve">
-    <value>tabPage2Gray</value>
-  </data>
-  <data name="&gt;&gt;GbStartGrayS.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="tabPage2Gray.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tabPage2Color.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
   </data>
-  <data name="tabPage2Gray.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="tabPage2Color.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
   </data>
-  <data name="tabPage2Gray.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tabPage2Color.Size" type="System.Drawing.Size, System.Drawing">
     <value>327, 280</value>
   </data>
-  <data name="tabPage2Gray.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="tabPage2Color.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="tabPage2Gray.Text" xml:space="preserve">
-    <value>B/W Grayscale mode</value>
+  <data name="tabPage2Color.Text" xml:space="preserve">
+    <value>Color mode</value>
   </data>
-  <data name="&gt;&gt;tabPage2Gray.Name" xml:space="preserve">
-    <value>tabPage2Gray</value>
+  <data name="&gt;&gt;tabPage2Color.Name" xml:space="preserve">
+    <value>tabPage2Color</value>
   </data>
-  <data name="&gt;&gt;tabPage2Gray.Type" xml:space="preserve">
+  <data name="&gt;&gt;tabPage2Color.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabPage2Gray.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tabPage2Color.Parent" xml:space="preserve">
     <value>tabControl2</value>
   </data>
-  <data name="&gt;&gt;tabPage2Gray.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;tabPage2Color.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="RbStartGrayZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="RbStartGrayZ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 109</value>
+    <value>3, 89</value>
   </data>
   <data name="RbStartGrayZ.Size" type="System.Drawing.Size, System.Drawing">
     <value>320, 17</value>
@@ -4799,62 +3797,38 @@ Color filters and effects will be considered, when generatiing grayscale.</value
   <data name="&gt;&gt;LblStartGrayMode.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;cBLaserModeOffEnd.Name" xml:space="preserve">
-    <value>cBLaserModeOffEnd</value>
+  <data name="CbLaserOnly.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;cBLaserModeOffEnd.Type" xml:space="preserve">
+  <data name="CbLaserOnly.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbLaserOnly.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 99</value>
+  </data>
+  <data name="CbLaserOnly.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 17</value>
+  </data>
+  <data name="CbLaserOnly.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="CbLaserOnly.Text" xml:space="preserve">
+    <value>Use Laser</value>
+  </data>
+  <data name="CbLaserOnly.ToolTip" xml:space="preserve">
+    <value>For a laser, no Pen-up and -down code is needed, compared to pen, lifted by a servo.</value>
+  </data>
+  <data name="&gt;&gt;CbLaserOnly.Name" xml:space="preserve">
+    <value>CbLaserOnly</value>
+  </data>
+  <data name="&gt;&gt;CbLaserOnly.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cBLaserModeOffEnd.Parent" xml:space="preserve">
+  <data name="&gt;&gt;CbLaserOnly.Parent" xml:space="preserve">
     <value>GbStartGrayS</value>
   </data>
-  <data name="&gt;&gt;cBLaserModeOffEnd.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;CbLaserOnly.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="&gt;&gt;cBLaserModeOnStart.Name" xml:space="preserve">
-    <value>cBLaserModeOnStart</value>
-  </data>
-  <data name="&gt;&gt;cBLaserModeOnStart.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBLaserModeOnStart.Parent" xml:space="preserve">
-    <value>GbStartGrayS</value>
-  </data>
-  <data name="&gt;&gt;cBLaserModeOnStart.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;nUDSTop.Name" xml:space="preserve">
-    <value>nUDSTop</value>
-  </data>
-  <data name="&gt;&gt;nUDSTop.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nUDSTop.Parent" xml:space="preserve">
-    <value>GbStartGrayS</value>
-  </data>
-  <data name="&gt;&gt;nUDSTop.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="GbStartGrayS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 180</value>
-  </data>
-  <data name="GbStartGrayS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>321, 85</value>
-  </data>
-  <data name="GbStartGrayS.TabIndex" type="System.Int32, mscorlib">
-    <value>53</value>
-  </data>
-  <data name="&gt;&gt;GbStartGrayS.Name" xml:space="preserve">
-    <value>GbStartGrayS</value>
-  </data>
-  <data name="&gt;&gt;GbStartGrayS.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GbStartGrayS.Parent" xml:space="preserve">
-    <value>tabPage2Gray</value>
-  </data>
-  <data name="&gt;&gt;GbStartGrayS.ZOrder" xml:space="preserve">
-    <value>3</value>
   </data>
   <data name="cBLaserModeOffEnd.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4866,13 +3840,16 @@ Color filters and effects will be considered, when generatiing grayscale.</value
     <value>3, 59</value>
   </data>
   <data name="cBLaserModeOffEnd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 17</value>
+    <value>173, 17</value>
   </data>
   <data name="cBLaserModeOffEnd.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
   <data name="cBLaserModeOffEnd.Text" xml:space="preserve">
-    <value>Lasermode OFF at G code end</value>
+    <value>Lasermode OFF at G-Code end</value>
+  </data>
+  <data name="cBLaserModeOffEnd.ToolTip" xml:space="preserve">
+    <value>Sets $32=0 at G-Code end</value>
   </data>
   <data name="&gt;&gt;cBLaserModeOffEnd.Name" xml:space="preserve">
     <value>cBLaserModeOffEnd</value>
@@ -4884,7 +3861,7 @@ Color filters and effects will be considered, when generatiing grayscale.</value
     <value>GbStartGrayS</value>
   </data>
   <data name="&gt;&gt;cBLaserModeOffEnd.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="cBLaserModeOnStart.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4896,13 +3873,16 @@ Color filters and effects will be considered, when generatiing grayscale.</value
     <value>3, 40</value>
   </data>
   <data name="cBLaserModeOnStart.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 17</value>
+    <value>171, 17</value>
   </data>
   <data name="cBLaserModeOnStart.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
   <data name="cBLaserModeOnStart.Text" xml:space="preserve">
-    <value>Lasermode ON at G code start</value>
+    <value>Lasermode ON at G-Code start</value>
+  </data>
+  <data name="cBLaserModeOnStart.ToolTip" xml:space="preserve">
+    <value>Sets $32=1 at G-Code start</value>
   </data>
   <data name="&gt;&gt;cBLaserModeOnStart.Name" xml:space="preserve">
     <value>cBLaserModeOnStart</value>
@@ -4914,7 +3894,34 @@ Color filters and effects will be considered, when generatiing grayscale.</value
     <value>GbStartGrayS</value>
   </data>
   <data name="&gt;&gt;cBLaserModeOnStart.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
+  </data>
+  <data name="nUDSBottom.Location" type="System.Drawing.Point, System.Drawing">
+    <value>170, 14</value>
+  </data>
+  <data name="nUDSBottom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 20</value>
+  </data>
+  <data name="nUDSBottom.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="nUDSBottom.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="nUDSBottom.ToolTip" xml:space="preserve">
+    <value>Lower value</value>
+  </data>
+  <data name="&gt;&gt;nUDSBottom.Name" xml:space="preserve">
+    <value>nUDSBottom</value>
+  </data>
+  <data name="&gt;&gt;nUDSBottom.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nUDSBottom.Parent" xml:space="preserve">
+    <value>GbStartGrayS</value>
+  </data>
+  <data name="&gt;&gt;nUDSBottom.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="nUDSTop.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 14</value>
@@ -4938,232 +3945,380 @@ Color filters and effects will be considered, when generatiing grayscale.</value
     <value>GbStartGrayS</value>
   </data>
   <data name="&gt;&gt;nUDSTop.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;GbGrayscaleProcess.Name" xml:space="preserve">
-    <value>GbGrayscaleProcess</value>
-  </data>
-  <data name="&gt;&gt;GbGrayscaleProcess.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GbGrayscaleProcess.Parent" xml:space="preserve">
-    <value>tabPageSize</value>
-  </data>
-  <data name="&gt;&gt;GbGrayscaleProcess.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;gBgcodeSelection.Name" xml:space="preserve">
-    <value>gBgcodeSelection</value>
-  </data>
-  <data name="&gt;&gt;gBgcodeSelection.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gBgcodeSelection.Parent" xml:space="preserve">
-    <value>tabPageSize</value>
-  </data>
-  <data name="&gt;&gt;gBgcodeSelection.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tabPageSize.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="tabPageSize.Size" type="System.Drawing.Size, System.Drawing">
-    <value>531, 309</value>
-  </data>
-  <data name="tabPageSize.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="tabPageSize.Text" xml:space="preserve">
-    <value>Size / Pattern</value>
+  <data name="GbStartGrayS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 152</value>
   </data>
-  <data name="&gt;&gt;tabPageSize.Name" xml:space="preserve">
-    <value>tabPageSize</value>
+  <data name="GbStartGrayS.Size" type="System.Drawing.Size, System.Drawing">
+    <value>321, 122</value>
   </data>
-  <data name="&gt;&gt;tabPageSize.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="GbStartGrayS.TabIndex" type="System.Int32, mscorlib">
+    <value>53</value>
   </data>
-  <data name="&gt;&gt;tabPageSize.Parent" xml:space="preserve">
-    <value>tabControl1</value>
+  <data name="&gt;&gt;GbStartGrayS.Name" xml:space="preserve">
+    <value>GbStartGrayS</value>
   </data>
-  <data name="&gt;&gt;tabPageSize.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;RbGrayscaleVector.Name" xml:space="preserve">
-    <value>RbGrayscaleVector</value>
-  </data>
-  <data name="&gt;&gt;RbGrayscaleVector.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;RbGrayscaleVector.Parent" xml:space="preserve">
-    <value>GbGrayscaleProcess</value>
-  </data>
-  <data name="&gt;&gt;RbGrayscaleVector.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;RbGrayscalePattern.Name" xml:space="preserve">
-    <value>RbGrayscalePattern</value>
-  </data>
-  <data name="&gt;&gt;RbGrayscalePattern.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;RbGrayscalePattern.Parent" xml:space="preserve">
-    <value>GbGrayscaleProcess</value>
-  </data>
-  <data name="&gt;&gt;RbGrayscalePattern.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="GbGrayscaleProcess.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 235</value>
-  </data>
-  <data name="GbGrayscaleProcess.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 71</value>
-  </data>
-  <data name="GbGrayscaleProcess.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
-  </data>
-  <data name="GbGrayscaleProcess.Text" xml:space="preserve">
-    <value>Grayscale processing</value>
-  </data>
-  <data name="&gt;&gt;GbGrayscaleProcess.Name" xml:space="preserve">
-    <value>GbGrayscaleProcess</value>
-  </data>
-  <data name="&gt;&gt;GbGrayscaleProcess.Type" xml:space="preserve">
+  <data name="&gt;&gt;GbStartGrayS.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;GbGrayscaleProcess.Parent" xml:space="preserve">
-    <value>tabPageSize</value>
+  <data name="&gt;&gt;GbStartGrayS.Parent" xml:space="preserve">
+    <value>tabPage2Gray</value>
   </data>
-  <data name="&gt;&gt;GbGrayscaleProcess.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="RbGrayscaleVector.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="RbGrayscaleVector.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 19</value>
-  </data>
-  <data name="RbGrayscaleVector.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 17</value>
-  </data>
-  <data name="RbGrayscaleVector.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="RbGrayscaleVector.Text" xml:space="preserve">
-    <value>Vectorize</value>
-  </data>
-  <data name="&gt;&gt;RbGrayscaleVector.Name" xml:space="preserve">
-    <value>RbGrayscaleVector</value>
-  </data>
-  <data name="&gt;&gt;RbGrayscaleVector.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;RbGrayscaleVector.Parent" xml:space="preserve">
-    <value>GbGrayscaleProcess</value>
-  </data>
-  <data name="&gt;&gt;RbGrayscaleVector.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="RbGrayscalePattern.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="RbGrayscalePattern.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="RbGrayscalePattern.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 39</value>
-  </data>
-  <data name="RbGrayscalePattern.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 17</value>
-  </data>
-  <data name="RbGrayscalePattern.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="RbGrayscalePattern.Text" xml:space="preserve">
-    <value>Pattern</value>
-  </data>
-  <data name="&gt;&gt;RbGrayscalePattern.Name" xml:space="preserve">
-    <value>RbGrayscalePattern</value>
-  </data>
-  <data name="&gt;&gt;RbGrayscalePattern.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;RbGrayscalePattern.Parent" xml:space="preserve">
-    <value>GbGrayscaleProcess</value>
-  </data>
-  <data name="&gt;&gt;RbGrayscalePattern.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label17.Name" xml:space="preserve">
-    <value>label17</value>
-  </data>
-  <data name="&gt;&gt;label17.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label17.Parent" xml:space="preserve">
-    <value>gBgcodeSelection</value>
-  </data>
-  <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;cBGCodeFill.Name" xml:space="preserve">
-    <value>cBGCodeFill</value>
-  </data>
-  <data name="&gt;&gt;cBGCodeFill.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBGCodeFill.Parent" xml:space="preserve">
-    <value>gBgcodeSelection</value>
-  </data>
-  <data name="&gt;&gt;cBGCodeFill.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;cBGCodeOutline.Name" xml:space="preserve">
-    <value>cBGCodeOutline</value>
-  </data>
-  <data name="&gt;&gt;cBGCodeOutline.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBGCodeOutline.Parent" xml:space="preserve">
-    <value>gBgcodeSelection</value>
-  </data>
-  <data name="&gt;&gt;cBGCodeOutline.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;GbStartGrayS.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;cBGCodeOutlineSmooth.Name" xml:space="preserve">
-    <value>cBGCodeOutlineSmooth</value>
+  <data name="tabPage2Gray.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
   </data>
-  <data name="&gt;&gt;cBGCodeOutlineSmooth.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="tabPage2Gray.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
   </data>
-  <data name="&gt;&gt;cBGCodeOutlineSmooth.Parent" xml:space="preserve">
-    <value>gBgcodeSelection</value>
+  <data name="tabPage2Gray.Size" type="System.Drawing.Size, System.Drawing">
+    <value>327, 280</value>
   </data>
-  <data name="&gt;&gt;cBGCodeOutlineSmooth.ZOrder" xml:space="preserve">
+  <data name="tabPage2Gray.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tabPage2Gray.Text" xml:space="preserve">
+    <value>B/W Grayscale mode</value>
+  </data>
+  <data name="&gt;&gt;tabPage2Gray.Name" xml:space="preserve">
+    <value>tabPage2Gray</value>
+  </data>
+  <data name="&gt;&gt;tabPage2Gray.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage2Gray.Parent" xml:space="preserve">
+    <value>tabControl2</value>
+  </data>
+  <data name="&gt;&gt;tabPage2Gray.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tabControl2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="tabControl2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>335, 306</value>
+  </data>
+  <data name="tabControl2.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="gBgcodeSelection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>209, 3</value>
+  <data name="&gt;&gt;tabControl2.Name" xml:space="preserve">
+    <value>tabControl2</value>
   </data>
-  <data name="gBgcodeSelection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>319, 111</value>
+  <data name="&gt;&gt;tabControl2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="gBgcodeSelection.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
+  <data name="&gt;&gt;tabControl2.Parent" xml:space="preserve">
+    <value>tabPageSetup</value>
   </data>
-  <data name="gBgcodeSelection.Text" xml:space="preserve">
-    <value>Vectorization</value>
+  <data name="&gt;&gt;tabControl2.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
-  <data name="&gt;&gt;gBgcodeSelection.Name" xml:space="preserve">
-    <value>gBgcodeSelection</value>
+  <data name="tabPageSetup.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
   </data>
-  <data name="&gt;&gt;gBgcodeSelection.Type" xml:space="preserve">
+  <data name="tabPageSetup.Size" type="System.Drawing.Size, System.Drawing">
+    <value>531, 309</value>
+  </data>
+  <data name="tabPageSetup.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="tabPageSetup.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="&gt;&gt;tabPageSetup.Name" xml:space="preserve">
+    <value>tabPageSetup</value>
+  </data>
+  <data name="&gt;&gt;tabPageSetup.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageSetup.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabPageSetup.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="RbEngravingPattern.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="RbEngravingPattern.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 84</value>
+  </data>
+  <data name="RbEngravingPattern.Size" type="System.Drawing.Size, System.Drawing">
+    <value>302, 17</value>
+  </data>
+  <data name="RbEngravingPattern.TabIndex" type="System.Int32, mscorlib">
+    <value>61</value>
+  </data>
+  <data name="RbEngravingPattern.Text" xml:space="preserve">
+    <value>Pattern</value>
+  </data>
+  <data name="&gt;&gt;RbEngravingPattern.Name" xml:space="preserve">
+    <value>RbEngravingPattern</value>
+  </data>
+  <data name="&gt;&gt;RbEngravingPattern.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RbEngravingPattern.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;RbEngravingPattern.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="GbEngravingPattern.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 94</value>
+  </data>
+  <data name="GbEngravingPattern.Size" type="System.Drawing.Size, System.Drawing">
+    <value>302, 106</value>
+  </data>
+  <data name="GbEngravingPattern.TabIndex" type="System.Int32, mscorlib">
+    <value>62</value>
+  </data>
+  <data name="&gt;&gt;GbEngravingPattern.Name" xml:space="preserve">
+    <value>GbEngravingPattern</value>
+  </data>
+  <data name="&gt;&gt;GbEngravingPattern.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;gBgcodeSelection.Parent" xml:space="preserve">
-    <value>tabPageSize</value>
+  <data name="&gt;&gt;GbEngravingPattern.Parent" xml:space="preserve">
+    <value>tabPage2</value>
   </data>
-  <data name="&gt;&gt;gBgcodeSelection.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;GbEngravingPattern.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="RbEngravingLine.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="RbEngravingLine.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="RbEngravingLine.Size" type="System.Drawing.Size, System.Drawing">
+    <value>302, 17</value>
+  </data>
+  <data name="RbEngravingLine.TabIndex" type="System.Int32, mscorlib">
+    <value>60</value>
+  </data>
+  <data name="RbEngravingLine.Text" xml:space="preserve">
+    <value>Line by line</value>
+  </data>
+  <data name="&gt;&gt;RbEngravingLine.Name" xml:space="preserve">
+    <value>RbEngravingLine</value>
+  </data>
+  <data name="&gt;&gt;RbEngravingLine.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RbEngravingLine.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;RbEngravingLine.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="CbEngravingTopDown.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbEngravingTopDown.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbEngravingTopDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 38</value>
+  </data>
+  <data name="CbEngravingTopDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 17</value>
+  </data>
+  <data name="CbEngravingTopDown.TabIndex" type="System.Int32, mscorlib">
+    <value>62</value>
+  </data>
+  <data name="CbEngravingTopDown.Text" xml:space="preserve">
+    <value>Top down</value>
+  </data>
+  <data name="CbEngravingTopDown.ToolTip" xml:space="preserve">
+    <value>If checked an angle=0 it starts on the upper left edge.
+Otherwise it starts on the lower left edge.</value>
+  </data>
+  <data name="&gt;&gt;CbEngravingTopDown.Name" xml:space="preserve">
+    <value>CbEngravingTopDown</value>
+  </data>
+  <data name="&gt;&gt;CbEngravingTopDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbEngravingTopDown.Parent" xml:space="preserve">
+    <value>GbEngravingLine</value>
+  </data>
+  <data name="&gt;&gt;CbEngravingTopDown.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label21.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label21.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
+    <value>56, 16</value>
+  </data>
+  <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 13</value>
+  </data>
+  <data name="label21.TabIndex" type="System.Int32, mscorlib">
+    <value>61</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Angle</value>
+  </data>
+  <data name="&gt;&gt;label21.Name" xml:space="preserve">
+    <value>label21</value>
+  </data>
+  <data name="&gt;&gt;label21.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label21.Parent" xml:space="preserve">
+    <value>GbEngravingLine</value>
+  </data>
+  <data name="&gt;&gt;label21.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="CbEngravingCross.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbEngravingCross.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbEngravingCross.Location" type="System.Drawing.Point, System.Drawing">
+    <value>158, 15</value>
+  </data>
+  <data name="CbEngravingCross.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 17</value>
+  </data>
+  <data name="CbEngravingCross.TabIndex" type="System.Int32, mscorlib">
+    <value>59</value>
+  </data>
+  <data name="CbEngravingCross.Text" xml:space="preserve">
+    <value>Cross (add lines +90°)</value>
+  </data>
+  <data name="CbEngravingCross.ToolTip" xml:space="preserve">
+    <value>If checked a 2nd line pattern, turned by 90 degrees will be added</value>
+  </data>
+  <data name="&gt;&gt;CbEngravingCross.Name" xml:space="preserve">
+    <value>CbEngravingCross</value>
+  </data>
+  <data name="&gt;&gt;CbEngravingCross.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbEngravingCross.Parent" xml:space="preserve">
+    <value>GbEngravingLine</value>
+  </data>
+  <data name="&gt;&gt;CbEngravingCross.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="cBOnlyLeftToRight.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBOnlyLeftToRight.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBOnlyLeftToRight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>158, 38</value>
+  </data>
+  <data name="cBOnlyLeftToRight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 17</value>
+  </data>
+  <data name="cBOnlyLeftToRight.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="cBOnlyLeftToRight.Text" xml:space="preserve">
+    <value>Only left to right</value>
+  </data>
+  <data name="cBOnlyLeftToRight.ToolTip" xml:space="preserve">
+    <value>Only draw from one direction to avoid offsets</value>
+  </data>
+  <data name="&gt;&gt;cBOnlyLeftToRight.Name" xml:space="preserve">
+    <value>cBOnlyLeftToRight</value>
+  </data>
+  <data name="&gt;&gt;cBOnlyLeftToRight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBOnlyLeftToRight.Parent" xml:space="preserve">
+    <value>GbEngravingLine</value>
+  </data>
+  <data name="&gt;&gt;cBOnlyLeftToRight.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="NudEngravingAngle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="NudEngravingAngle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 20</value>
+  </data>
+  <data name="NudEngravingAngle.TabIndex" type="System.Int32, mscorlib">
+    <value>58</value>
+  </data>
+  <data name="NudEngravingAngle.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="NudEngravingAngle.ToolTip" xml:space="preserve">
+    <value>Angle of the line pattern</value>
+  </data>
+  <data name="&gt;&gt;NudEngravingAngle.Name" xml:space="preserve">
+    <value>NudEngravingAngle</value>
+  </data>
+  <data name="&gt;&gt;NudEngravingAngle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudEngravingAngle.Parent" xml:space="preserve">
+    <value>GbEngravingLine</value>
+  </data>
+  <data name="&gt;&gt;NudEngravingAngle.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="GbEngravingLine.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 13</value>
+  </data>
+  <data name="GbEngravingLine.Size" type="System.Drawing.Size, System.Drawing">
+    <value>302, 65</value>
+  </data>
+  <data name="GbEngravingLine.TabIndex" type="System.Int32, mscorlib">
+    <value>56</value>
+  </data>
+  <data name="&gt;&gt;GbEngravingLine.Name" xml:space="preserve">
+    <value>GbEngravingLine</value>
+  </data>
+  <data name="&gt;&gt;GbEngravingLine.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GbEngravingLine.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;GbEngravingLine.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="tabPage2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPage2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPage2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>311, 280</value>
+  </data>
+  <data name="tabPage2.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Line tracing</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.Name" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.Parent" xml:space="preserve">
+    <value>tabControl3</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="label17.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -5282,125 +4437,185 @@ Color filters and effects will be considered, when generatiing grayscale.</value
   <data name="&gt;&gt;cBGCodeOutlineSmooth.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;GbToolEnable.Name" xml:space="preserve">
-    <value>GbToolEnable</value>
+  <data name="gBgcodeSelection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
   </data>
-  <data name="&gt;&gt;GbToolEnable.Type" xml:space="preserve">
+  <data name="gBgcodeSelection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>305, 274</value>
+  </data>
+  <data name="gBgcodeSelection.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="gBgcodeSelection.Text" xml:space="preserve">
+    <value>Vectorization</value>
+  </data>
+  <data name="&gt;&gt;gBgcodeSelection.Name" xml:space="preserve">
+    <value>gBgcodeSelection</value>
+  </data>
+  <data name="&gt;&gt;gBgcodeSelection.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;GbToolEnable.Parent" xml:space="preserve">
-    <value>tabPage4</value>
+  <data name="&gt;&gt;gBgcodeSelection.Parent" xml:space="preserve">
+    <value>tabPage3</value>
   </data>
-  <data name="&gt;&gt;GbToolEnable.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;gBgcodeSelection.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;groupBox5.Name" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.Parent" xml:space="preserve">
-    <value>tabPage4</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;groupBox9.Name" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;groupBox9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox9.Parent" xml:space="preserve">
-    <value>tabPage4</value>
-  </data>
-  <data name="&gt;&gt;groupBox9.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="tabPage4.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tabPage3.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
   </data>
-  <data name="tabPage4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>531, 309</value>
+  <data name="tabPage3.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
   </data>
-  <data name="tabPage4.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="tabPage3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>311, 280</value>
   </data>
-  <data name="tabPage4.Text" xml:space="preserve">
-    <value>Preset</value>
+  <data name="tabPage3.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;tabPage4.Name" xml:space="preserve">
-    <value>tabPage4</value>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Vectorization</value>
   </data>
-  <data name="&gt;&gt;tabPage4.Type" xml:space="preserve">
+  <data name="&gt;&gt;tabPage3.Name" xml:space="preserve">
+    <value>tabPage3</value>
+  </data>
+  <data name="&gt;&gt;tabPage3.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabPage4.Parent" xml:space="preserve">
-    <value>tabControl1</value>
+  <data name="&gt;&gt;tabPage3.Parent" xml:space="preserve">
+    <value>tabControl3</value>
   </data>
-  <data name="&gt;&gt;tabPage4.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;tabPage3.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;tBToolList.Name" xml:space="preserve">
-    <value>tBToolList</value>
+  <data name="tabControl3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>209, 3</value>
   </data>
-  <data name="&gt;&gt;tBToolList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="tabControl3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 306</value>
   </data>
-  <data name="&gt;&gt;tBToolList.Parent" xml:space="preserve">
-    <value>GbToolEnable</value>
+  <data name="tabControl3.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
   </data>
-  <data name="&gt;&gt;tBToolList.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tabControl3.Name" xml:space="preserve">
+    <value>tabControl3</value>
+  </data>
+  <data name="&gt;&gt;tabControl3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabControl3.Parent" xml:space="preserve">
+    <value>tabPageSize</value>
+  </data>
+  <data name="&gt;&gt;tabControl3.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;label10.Name" xml:space="preserve">
-    <value>label10</value>
+  <data name="RbGrayscaleVector.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;label10.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="RbGrayscaleVector.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
-    <value>GbToolEnable</value>
+  <data name="RbGrayscaleVector.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 40</value>
   </data>
-  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
+  <data name="RbGrayscaleVector.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 17</value>
+  </data>
+  <data name="RbGrayscaleVector.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;CheckedListBoxTools.Name" xml:space="preserve">
-    <value>CheckedListBoxTools</value>
+  <data name="RbGrayscaleVector.Text" xml:space="preserve">
+    <value>Vectorize</value>
   </data>
-  <data name="&gt;&gt;CheckedListBoxTools.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckedListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;RbGrayscaleVector.Name" xml:space="preserve">
+    <value>RbGrayscaleVector</value>
   </data>
-  <data name="&gt;&gt;CheckedListBoxTools.Parent" xml:space="preserve">
-    <value>GbToolEnable</value>
+  <data name="&gt;&gt;RbGrayscaleVector.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;CheckedListBoxTools.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;RbGrayscaleVector.Parent" xml:space="preserve">
+    <value>GbGrayscaleProcess</value>
   </data>
-  <data name="GbToolEnable.Location" type="System.Drawing.Point, System.Drawing">
-    <value>202, 3</value>
+  <data name="&gt;&gt;RbGrayscaleVector.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="GbToolEnable.Size" type="System.Drawing.Size, System.Drawing">
-    <value>326, 303</value>
+  <data name="RbGrayscalePattern.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="GbToolEnable.TabIndex" type="System.Int32, mscorlib">
-    <value>49</value>
+  <data name="RbGrayscalePattern.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="GbToolEnable.Text" xml:space="preserve">
-    <value>Deselect colors if not needed</value>
+  <data name="RbGrayscalePattern.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 19</value>
   </data>
-  <data name="&gt;&gt;GbToolEnable.Name" xml:space="preserve">
-    <value>GbToolEnable</value>
+  <data name="RbGrayscalePattern.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 17</value>
   </data>
-  <data name="&gt;&gt;GbToolEnable.Type" xml:space="preserve">
+  <data name="RbGrayscalePattern.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="RbGrayscalePattern.Text" xml:space="preserve">
+    <value>Line tracing</value>
+  </data>
+  <data name="&gt;&gt;RbGrayscalePattern.Name" xml:space="preserve">
+    <value>RbGrayscalePattern</value>
+  </data>
+  <data name="&gt;&gt;RbGrayscalePattern.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RbGrayscalePattern.Parent" xml:space="preserve">
+    <value>GbGrayscaleProcess</value>
+  </data>
+  <data name="&gt;&gt;RbGrayscalePattern.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="GbGrayscaleProcess.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 235</value>
+  </data>
+  <data name="GbGrayscaleProcess.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 71</value>
+  </data>
+  <data name="GbGrayscaleProcess.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="GbGrayscaleProcess.Text" xml:space="preserve">
+    <value>Grayscale processing</value>
+  </data>
+  <data name="&gt;&gt;GbGrayscaleProcess.Name" xml:space="preserve">
+    <value>GbGrayscaleProcess</value>
+  </data>
+  <data name="&gt;&gt;GbGrayscaleProcess.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;GbToolEnable.Parent" xml:space="preserve">
-    <value>tabPage4</value>
+  <data name="&gt;&gt;GbGrayscaleProcess.Parent" xml:space="preserve">
+    <value>tabPageSize</value>
   </data>
-  <data name="&gt;&gt;GbToolEnable.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;GbGrayscaleProcess.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tabPageSize.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPageSize.Size" type="System.Drawing.Size, System.Drawing">
+    <value>531, 309</value>
+  </data>
+  <data name="tabPageSize.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="tabPageSize.Text" xml:space="preserve">
+    <value>Size / Pattern</value>
+  </data>
+  <data name="&gt;&gt;tabPageSize.Name" xml:space="preserve">
+    <value>tabPageSize</value>
+  </data>
+  <data name="&gt;&gt;tabPageSize.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPageSize.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabPageSize.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="tBToolList.Font" type="System.Drawing.Font, System.Drawing">
     <value>Lucida Console, 7pt</value>
@@ -5495,65 +4710,29 @@ Color filters and effects will be considered, when generatiing grayscale.</value
   <data name="&gt;&gt;CheckedListBoxTools.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;LblExceptionValue.Name" xml:space="preserve">
-    <value>LblExceptionValue</value>
+  <data name="GbToolEnable.Location" type="System.Drawing.Point, System.Drawing">
+    <value>202, 3</value>
   </data>
-  <data name="&gt;&gt;LblExceptionValue.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="GbToolEnable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>326, 303</value>
   </data>
-  <data name="&gt;&gt;LblExceptionValue.Parent" xml:space="preserve">
-    <value>groupBox5</value>
+  <data name="GbToolEnable.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
   </data>
-  <data name="&gt;&gt;LblExceptionValue.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="GbToolEnable.Text" xml:space="preserve">
+    <value>Deselect colors if not needed</value>
   </data>
-  <data name="&gt;&gt;cBReduceColorsToolTable.Name" xml:space="preserve">
-    <value>cBReduceColorsToolTable</value>
+  <data name="&gt;&gt;GbToolEnable.Name" xml:space="preserve">
+    <value>GbToolEnable</value>
   </data>
-  <data name="&gt;&gt;cBReduceColorsToolTable.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBReduceColorsToolTable.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;cBReduceColorsToolTable.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;cBReduceColorsDithering.Name" xml:space="preserve">
-    <value>cBReduceColorsDithering</value>
-  </data>
-  <data name="&gt;&gt;cBReduceColorsDithering.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBReduceColorsDithering.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;cBReduceColorsDithering.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 140</value>
-  </data>
-  <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 88</value>
-  </data>
-  <data name="groupBox5.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Color reduction</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.Name" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.Type" xml:space="preserve">
+  <data name="&gt;&gt;GbToolEnable.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;groupBox5.Parent" xml:space="preserve">
+  <data name="&gt;&gt;GbToolEnable.Parent" xml:space="preserve">
     <value>tabPage4</value>
   </data>
-  <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;GbToolEnable.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="LblExceptionValue.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5580,7 +4759,7 @@ Color filters and effects will be considered, when generatiing grayscale.</value
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;LblExceptionValue.Parent" xml:space="preserve">
-    <value>groupBox5</value>
+    <value>GbColorReduction</value>
   </data>
   <data name="&gt;&gt;LblExceptionValue.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -5610,7 +4789,7 @@ Color filters and effects will be considered, when generatiing grayscale.</value
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cBReduceColorsToolTable.Parent" xml:space="preserve">
-    <value>groupBox5</value>
+    <value>GbColorReduction</value>
   </data>
   <data name="&gt;&gt;cBReduceColorsToolTable.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -5640,94 +4819,34 @@ Color filters and effects will be considered, when generatiing grayscale.</value
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cBReduceColorsDithering.Parent" xml:space="preserve">
-    <value>groupBox5</value>
+    <value>GbColorReduction</value>
   </data>
   <data name="&gt;&gt;cBReduceColorsDithering.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;btnPresetCorrection4.Name" xml:space="preserve">
-    <value>btnPresetCorrection4</value>
+  <data name="GbColorReduction.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 140</value>
   </data>
-  <data name="&gt;&gt;btnPresetCorrection4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="GbColorReduction.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 88</value>
   </data>
-  <data name="&gt;&gt;btnPresetCorrection4.Parent" xml:space="preserve">
-    <value>groupBox9</value>
+  <data name="GbColorReduction.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
   </data>
-  <data name="&gt;&gt;btnPresetCorrection4.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="GbColorReduction.Text" xml:space="preserve">
+    <value>Color reduction</value>
   </data>
-  <data name="&gt;&gt;label20.Name" xml:space="preserve">
-    <value>label20</value>
+  <data name="&gt;&gt;GbColorReduction.Name" xml:space="preserve">
+    <value>GbColorReduction</value>
   </data>
-  <data name="&gt;&gt;label20.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label20.Parent" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;label20.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection2.Name" xml:space="preserve">
-    <value>btnPresetCorrection2</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection2.Parent" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection2.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;btnResetCorrection.Name" xml:space="preserve">
-    <value>btnResetCorrection</value>
-  </data>
-  <data name="&gt;&gt;btnResetCorrection.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnResetCorrection.Parent" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;btnResetCorrection.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection1.Name" xml:space="preserve">
-    <value>btnPresetCorrection1</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection1.Parent" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;btnPresetCorrection1.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="groupBox9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="groupBox9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 136</value>
-  </data>
-  <data name="groupBox9.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
-  </data>
-  <data name="groupBox9.Text" xml:space="preserve">
-    <value>Conversion Wizard</value>
-  </data>
-  <data name="&gt;&gt;groupBox9.Name" xml:space="preserve">
-    <value>groupBox9</value>
-  </data>
-  <data name="&gt;&gt;groupBox9.Type" xml:space="preserve">
+  <data name="&gt;&gt;GbColorReduction.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;groupBox9.Parent" xml:space="preserve">
+  <data name="&gt;&gt;GbColorReduction.Parent" xml:space="preserve">
     <value>tabPage4</value>
   </data>
-  <data name="&gt;&gt;groupBox9.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;GbColorReduction.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="btnPresetCorrection4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -5754,7 +4873,7 @@ Color filters and effects will be considered, when generatiing grayscale.</value
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnPresetCorrection4.Parent" xml:space="preserve">
-    <value>groupBox9</value>
+    <value>GbConversionWizzard</value>
   </data>
   <data name="&gt;&gt;btnPresetCorrection4.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -5784,7 +4903,7 @@ Color filters and effects will be considered, when generatiing grayscale.</value
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label20.Parent" xml:space="preserve">
-    <value>groupBox9</value>
+    <value>GbConversionWizzard</value>
   </data>
   <data name="&gt;&gt;label20.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -5814,7 +4933,7 @@ Color filters and effects will be considered, when generatiing grayscale.</value
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnPresetCorrection2.Parent" xml:space="preserve">
-    <value>groupBox9</value>
+    <value>GbConversionWizzard</value>
   </data>
   <data name="&gt;&gt;btnPresetCorrection2.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -5841,7 +4960,7 @@ Color filters and effects will be considered, when generatiing grayscale.</value
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnResetCorrection.Parent" xml:space="preserve">
-    <value>groupBox9</value>
+    <value>GbConversionWizzard</value>
   </data>
   <data name="&gt;&gt;btnResetCorrection.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -5871,144 +4990,57 @@ Color filters and effects will be considered, when generatiing grayscale.</value
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnPresetCorrection1.Parent" xml:space="preserve">
-    <value>groupBox9</value>
+    <value>GbConversionWizzard</value>
   </data>
   <data name="&gt;&gt;btnPresetCorrection1.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;GbSpecialEffects.Name" xml:space="preserve">
-    <value>GbSpecialEffects</value>
+  <data name="GbConversionWizzard.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
   </data>
-  <data name="&gt;&gt;GbSpecialEffects.Type" xml:space="preserve">
+  <data name="GbConversionWizzard.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 136</value>
+  </data>
+  <data name="GbConversionWizzard.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="GbConversionWizzard.Text" xml:space="preserve">
+    <value>Conversion Wizard</value>
+  </data>
+  <data name="&gt;&gt;GbConversionWizzard.Name" xml:space="preserve">
+    <value>GbConversionWizzard</value>
+  </data>
+  <data name="&gt;&gt;GbConversionWizzard.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;GbSpecialEffects.Parent" xml:space="preserve">
-    <value>tabPage1</value>
+  <data name="&gt;&gt;GbConversionWizzard.Parent" xml:space="preserve">
+    <value>tabPage4</value>
   </data>
-  <data name="&gt;&gt;GbSpecialEffects.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;GbColorEffects.Name" xml:space="preserve">
-    <value>GbColorEffects</value>
-  </data>
-  <data name="&gt;&gt;GbColorEffects.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GbColorEffects.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;GbColorEffects.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;GbConversionWizzard.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;GbCOlorCorrection.Name" xml:space="preserve">
-    <value>GbCOlorCorrection</value>
-  </data>
-  <data name="&gt;&gt;GbCOlorCorrection.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GbCOlorCorrection.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;GbCOlorCorrection.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tabPage4.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
   </data>
-  <data name="tabPage1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tabPage4.Size" type="System.Drawing.Size, System.Drawing">
     <value>531, 309</value>
   </data>
-  <data name="tabPage1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="tabPage4.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="tabPage1.Text" xml:space="preserve">
-    <value>Color correction</value>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Preset</value>
   </data>
-  <data name="&gt;&gt;tabPage1.Name" xml:space="preserve">
-    <value>tabPage1</value>
+  <data name="&gt;&gt;tabPage4.Name" xml:space="preserve">
+    <value>tabPage4</value>
   </data>
-  <data name="&gt;&gt;tabPage1.Type" xml:space="preserve">
+  <data name="&gt;&gt;tabPage4.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabPage1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tabPage4.Parent" xml:space="preserve">
     <value>tabControl1</value>
   </data>
-  <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;cBFilterEdge.Name" xml:space="preserve">
-    <value>cBFilterEdge</value>
-  </data>
-  <data name="&gt;&gt;cBFilterEdge.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBFilterEdge.Parent" xml:space="preserve">
-    <value>GbSpecialEffects</value>
-  </data>
-  <data name="&gt;&gt;cBFilterEdge.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;cBFilterRemoveArtefact.Name" xml:space="preserve">
-    <value>cBFilterRemoveArtefact</value>
-  </data>
-  <data name="&gt;&gt;cBFilterRemoveArtefact.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBFilterRemoveArtefact.Parent" xml:space="preserve">
-    <value>GbSpecialEffects</value>
-  </data>
-  <data name="&gt;&gt;cBFilterRemoveArtefact.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;cBPosterize.Name" xml:space="preserve">
-    <value>cBPosterize</value>
-  </data>
-  <data name="&gt;&gt;cBPosterize.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBPosterize.Parent" xml:space="preserve">
-    <value>GbSpecialEffects</value>
-  </data>
-  <data name="&gt;&gt;cBPosterize.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;cBFilterHistogram.Name" xml:space="preserve">
-    <value>cBFilterHistogram</value>
-  </data>
-  <data name="&gt;&gt;cBFilterHistogram.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBFilterHistogram.Parent" xml:space="preserve">
-    <value>GbSpecialEffects</value>
-  </data>
-  <data name="&gt;&gt;cBFilterHistogram.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="GbSpecialEffects.Location" type="System.Drawing.Point, System.Drawing">
-    <value>232, 208</value>
-  </data>
-  <data name="GbSpecialEffects.Size" type="System.Drawing.Size, System.Drawing">
-    <value>293, 88</value>
-  </data>
-  <data name="GbSpecialEffects.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
-  </data>
-  <data name="GbSpecialEffects.Text" xml:space="preserve">
-    <value>Special effects</value>
-  </data>
-  <data name="&gt;&gt;GbSpecialEffects.Name" xml:space="preserve">
-    <value>GbSpecialEffects</value>
-  </data>
-  <data name="&gt;&gt;GbSpecialEffects.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GbSpecialEffects.Parent" xml:space="preserve">
-    <value>tabPage1</value>
-  </data>
-  <data name="&gt;&gt;GbSpecialEffects.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tabPage4.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="cBFilterEdge.AutoSize" type="System.Boolean, mscorlib">
@@ -6131,65 +5163,29 @@ Color filters and effects will be considered, when generatiing grayscale.</value
   <data name="&gt;&gt;cBFilterHistogram.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;lblCFB.Name" xml:space="preserve">
-    <value>lblCFB</value>
+  <data name="GbSpecialEffects.Location" type="System.Drawing.Point, System.Drawing">
+    <value>232, 208</value>
   </data>
-  <data name="&gt;&gt;lblCFB.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="GbSpecialEffects.Size" type="System.Drawing.Size, System.Drawing">
+    <value>293, 88</value>
   </data>
-  <data name="&gt;&gt;lblCFB.Parent" xml:space="preserve">
-    <value>GbColorEffects</value>
-  </data>
-  <data name="&gt;&gt;lblCFB.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;lblCFG.Name" xml:space="preserve">
-    <value>lblCFG</value>
-  </data>
-  <data name="&gt;&gt;lblCFG.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCFG.Parent" xml:space="preserve">
-    <value>GbColorEffects</value>
-  </data>
-  <data name="&gt;&gt;lblCFG.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;lblCFR.Name" xml:space="preserve">
-    <value>lblCFR</value>
-  </data>
-  <data name="&gt;&gt;lblCFR.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCFR.Parent" xml:space="preserve">
-    <value>GbColorEffects</value>
-  </data>
-  <data name="&gt;&gt;lblCFR.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="GbColorEffects.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 183</value>
-  </data>
-  <data name="GbColorEffects.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 113</value>
-  </data>
-  <data name="GbColorEffects.TabIndex" type="System.Int32, mscorlib">
+  <data name="GbSpecialEffects.TabIndex" type="System.Int32, mscorlib">
     <value>44</value>
   </data>
-  <data name="GbColorEffects.Text" xml:space="preserve">
-    <value>Color effects</value>
+  <data name="GbSpecialEffects.Text" xml:space="preserve">
+    <value>Special effects</value>
   </data>
-  <data name="&gt;&gt;GbColorEffects.Name" xml:space="preserve">
-    <value>GbColorEffects</value>
+  <data name="&gt;&gt;GbSpecialEffects.Name" xml:space="preserve">
+    <value>GbSpecialEffects</value>
   </data>
-  <data name="&gt;&gt;GbColorEffects.Type" xml:space="preserve">
+  <data name="&gt;&gt;GbSpecialEffects.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;GbColorEffects.Parent" xml:space="preserve">
+  <data name="&gt;&gt;GbSpecialEffects.Parent" xml:space="preserve">
     <value>tabPage1</value>
   </data>
-  <data name="&gt;&gt;GbColorEffects.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;GbSpecialEffects.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="lblCFB.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -6281,65 +5277,29 @@ Color filters and effects will be considered, when generatiing grayscale.</value
   <data name="&gt;&gt;lblCFR.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="&gt;&gt;label11.Name" xml:space="preserve">
-    <value>label11</value>
+  <data name="GbColorEffects.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 183</value>
   </data>
-  <data name="&gt;&gt;label11.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="GbColorEffects.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 113</value>
   </data>
-  <data name="&gt;&gt;label11.Parent" xml:space="preserve">
-    <value>GbCOlorCorrection</value>
+  <data name="GbColorEffects.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
   </data>
-  <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="GbColorEffects.Text" xml:space="preserve">
+    <value>Color effects</value>
   </data>
-  <data name="&gt;&gt;lblSaturation.Name" xml:space="preserve">
-    <value>lblSaturation</value>
+  <data name="&gt;&gt;GbColorEffects.Name" xml:space="preserve">
+    <value>GbColorEffects</value>
   </data>
-  <data name="&gt;&gt;lblSaturation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblSaturation.Parent" xml:space="preserve">
-    <value>GbCOlorCorrection</value>
-  </data>
-  <data name="&gt;&gt;lblSaturation.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;tBarSaturation.Name" xml:space="preserve">
-    <value>tBarSaturation</value>
-  </data>
-  <data name="&gt;&gt;tBarSaturation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TrackBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tBarSaturation.Parent" xml:space="preserve">
-    <value>GbCOlorCorrection</value>
-  </data>
-  <data name="&gt;&gt;tBarSaturation.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="GbCOlorCorrection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 6</value>
-  </data>
-  <data name="GbCOlorCorrection.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 171</value>
-  </data>
-  <data name="GbCOlorCorrection.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
-  </data>
-  <data name="GbCOlorCorrection.Text" xml:space="preserve">
-    <value>Color correction</value>
-  </data>
-  <data name="&gt;&gt;GbCOlorCorrection.Name" xml:space="preserve">
-    <value>GbCOlorCorrection</value>
-  </data>
-  <data name="&gt;&gt;GbCOlorCorrection.Type" xml:space="preserve">
+  <data name="&gt;&gt;GbColorEffects.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;GbCOlorCorrection.Parent" xml:space="preserve">
+  <data name="&gt;&gt;GbColorEffects.Parent" xml:space="preserve">
     <value>tabPage1</value>
   </data>
-  <data name="&gt;&gt;GbCOlorCorrection.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="&gt;&gt;GbColorEffects.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="label11.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -6428,39 +5388,81 @@ Color filters and effects will be considered, when generatiing grayscale.</value
   <data name="&gt;&gt;tBarSaturation.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="GbCOlorCorrection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 6</value>
+  </data>
+  <data name="GbCOlorCorrection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 171</value>
+  </data>
+  <data name="GbCOlorCorrection.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="GbCOlorCorrection.Text" xml:space="preserve">
+    <value>Color correction</value>
+  </data>
+  <data name="&gt;&gt;GbCOlorCorrection.Name" xml:space="preserve">
+    <value>GbCOlorCorrection</value>
+  </data>
+  <data name="&gt;&gt;GbCOlorCorrection.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GbCOlorCorrection.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;GbCOlorCorrection.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPage1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>531, 309</value>
+  </data>
+  <data name="tabPage1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Color correction</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.Name" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 27</value>
+  </data>
+  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>539, 335</value>
+  </data>
+  <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Name" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>590, 17</value>
   </metadata>
-  <data name="button3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="button3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>519, 0</value>
-  </data>
-  <data name="button3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 23</value>
-  </data>
-  <data name="button3.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
-  </data>
-  <data name="button3.Text" xml:space="preserve">
-    <value>?</value>
-  </data>
-  <data name="button3.ToolTip" xml:space="preserve">
-    <value>Online help</value>
-  </data>
-  <data name="&gt;&gt;button3.Name" xml:space="preserve">
-    <value>button3</value>
-  </data>
-  <data name="&gt;&gt;button3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;button3.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;button3.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

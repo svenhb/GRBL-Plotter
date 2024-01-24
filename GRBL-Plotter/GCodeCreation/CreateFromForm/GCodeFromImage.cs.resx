@@ -443,7 +443,7 @@ Filtr umožňuje vyplnit určité rozsahy barevných kanálů RGB zadanou hodnot
     <value>Nasycení</value>
   </data>
   <data name="gBgcodeSelection.Text" xml:space="preserve">
-    <value>Kreslit výběr</value>
+    <value>Vektorizovat</value>
   </data>
   <data name="cBGCodeFill.Text" xml:space="preserve">
     <value>Vyplňte oblasti</value>
@@ -574,5 +574,57 @@ Při generování stupňů šedi budou brány v úvahu barevné filtry a efekty.
   </data>
   <data name="GbToolEnable.Text" xml:space="preserve">
     <value>Zrušte výběr barev, pokud to není potřeba</value>
+  </data>
+  <data name="NudEngravingAngle.ToolTip" xml:space="preserve">
+    <value>Úhel vzoru čáry</value>
+  </data>
+  <data name="button3.ToolTip" xml:space="preserve">
+    <value>Online podpora</value>
+  </data>
+  <data name="CbLaserOnly.Text" xml:space="preserve">
+    <value>Použijte laser</value>
+  </data>
+  <data name="CbLaserOnly.ToolTip" xml:space="preserve">
+    <value>U laseru není potřeba žádný kód Pen-up a-down, ve srovnání s perem zvednutým servem.</value>
+  </data>
+  <data name="cBLaserModeOffEnd.ToolTip" xml:space="preserve">
+    <value>Nastaví $32=0 na konci G-Code</value>
+  </data>
+  <data name="cBLaserModeOnStart.ToolTip" xml:space="preserve">
+    <value>Nastaví $32=1 na začátku G-Code</value>
+  </data>
+  <data name="CbEngravingCross.Text" xml:space="preserve">
+    <value>Kříž (přidat čáry +90°)</value>
+  </data>
+  <data name="CbEngravingCross.ToolTip" xml:space="preserve">
+    <value>Pokud je zaškrtnuto, bude přidán vzor 2. čáry, otočený o 90 stupňů</value>
+  </data>
+  <data name="CbEngravingTopDown.Text" xml:space="preserve">
+    <value>Vzhůru nohama</value>
+  </data>
+  <data name="CbEngravingTopDown.ToolTip" xml:space="preserve">
+    <value>Pokud je zaškrtnuto úhel=0, začíná na levém horním okraji.
+Jinak začíná na levém dolním okraji.</value>
+  </data>
+  <data name="tabPageSetup.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="RbEngravingPattern.Text" xml:space="preserve">
+    <value>Vzor</value>
+  </data>
+  <data name="RbEngravingLine.Text" xml:space="preserve">
+    <value>Řádek po řádku</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Úhel</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Trasování čar</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Vektorizovat</value>
+  </data>
+  <data name="RbGrayscalePattern.Text" xml:space="preserve">
+    <value>Trasování čar</value>
   </data>
 </root>

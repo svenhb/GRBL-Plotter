@@ -165,7 +165,7 @@ namespace GrblPlotter
             AutoZoomToolStripMenuItem_Click(this, null);//Set preview zoom mode
                                                         //    FillUseCaseFileList(Datapath.Usecases);
                                                         //    FillPatternFilesList(Datapath.Examples);
-            RbStartGrayZ.Checked = Properties.Settings.Default.importImageGrayAsZ;
+            RbStartGrayS.Checked = !Properties.Settings.Default.importImageGrayAsZ;
             //    UpdateToolTableList();
         }
 
@@ -175,6 +175,8 @@ namespace GrblPlotter
             Location = Properties.Settings.Default.locationImageForm;
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { CenterToScreen(); }
+
+            RbStartGrayS.Checked = !Properties.Settings.Default.importImageGrayAsZ;
 
             DisableControlEvents();
             {
@@ -1396,6 +1398,7 @@ namespace GrblPlotter
         private void TabControl2_SelectedIndexChanged(object sender, EventArgs e)
         {
             useColorMode = (tabControl2.SelectedIndex == 0);
+            GbConversionWizzard.Enabled = GbColorReduction.Enabled = GbColorReplacingMode.Enabled = GbToolEnable.Enabled = useColorMode;
 
             if (logEnable) Logger.Trace("TabControl2_SelectedIndexChanged  ColorMode:{0}", useColorMode);
 
@@ -1405,19 +1408,19 @@ namespace GrblPlotter
                 {
                     cbGrayscale.Checked = true; cbGrayscale.Enabled = false;        // set and tight
                     cbGrayscale.BackColor = Color.Yellow;
-                    GbGcodeDirection.Enabled = true;                                // GroupBox direction / patttern
+                //    GbGcodeDirection.Enabled = true;                                // GroupBox direction / patttern
                     Properties.Settings.Default.importImageColorMode = false;
                     GbGrayscaleProcess.Enabled = true;
                     GbGrayscaleProcess.BackColor = Color.Yellow;
                     if (RbGrayscaleVector.Checked)
                     {
                         gBgcodeSelection.BackColor = Color.Yellow;
-                        GbGcodeDirection.BackColor = Color.WhiteSmoke;
+                //        GbGcodeDirection.BackColor = Color.WhiteSmoke;
                     }
                     else
                     {
                         gBgcodeSelection.BackColor = Color.WhiteSmoke;
-                        GbGcodeDirection.BackColor = Color.Yellow;
+                //        GbGcodeDirection.BackColor = Color.Yellow;
                     }
                     LblMode.Text = "Grayscale mode";
                     LblMode.BackColor = Color.Yellow;
@@ -1426,12 +1429,12 @@ namespace GrblPlotter
                 {
                     cbGrayscale.Checked = false; cbGrayscale.Enabled = true;
                     cbGrayscale.BackColor = Color.Transparent;
-                    GbGcodeDirection.Enabled = false;                               // GroupBox direction / patttern
+                //    GbGcodeDirection.Enabled = false;                               // GroupBox direction / patttern
                     Properties.Settings.Default.importImageColorMode = true;
                     GbGrayscaleProcess.Enabled = false;
                     GbGrayscaleProcess.BackColor = Color.WhiteSmoke;
                     gBgcodeSelection.BackColor = Color.Yellow;
-                    GbGcodeDirection.BackColor = Color.WhiteSmoke;
+                //    GbGcodeDirection.BackColor = Color.WhiteSmoke;
                     LblMode.Text = "Color mode";
                     LblMode.BackColor = Color.Yellow;
 
@@ -1448,6 +1451,18 @@ namespace GrblPlotter
             {
                 ResetColorCorrectionControls(); ApplyColorCorrections("TabControl2"); lblImageSource.Text = "original";
             }
+        }
+
+        private void TabControl3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RbGrayscalePattern.CheckedChanged -= RbGrayscaleVector_CheckedChanged;
+            RbGrayscaleVector.CheckedChanged -= RbGrayscaleVector_CheckedChanged;
+            if (tabControl3.SelectedIndex == 0)
+                RbGrayscalePattern.Checked = true;
+            else
+                RbGrayscaleVector.Checked = true;
+            RbGrayscaleVector.CheckedChanged += RbGrayscaleVector_CheckedChanged;
+            RbGrayscalePattern.CheckedChanged += RbGrayscaleVector_CheckedChanged;
         }
 
 
@@ -1507,6 +1522,16 @@ namespace GrblPlotter
             { RbStartGrayS.BackColor = GbStartGrayS.BackColor = Color.Yellow; }
             else
             { RbStartGrayS.BackColor = GbStartGrayS.BackColor = Color.WhiteSmoke; }
+
+            if (RbEngravingLine.Checked)
+            { RbEngravingLine.BackColor = GbEngravingLine.BackColor = Color.Yellow; }
+            else 
+            { RbEngravingLine.BackColor = GbEngravingLine.BackColor = Color.WhiteSmoke; }
+
+            if (RbEngravingPattern.Checked)
+            { RbEngravingPattern.BackColor = GbEngravingPattern.BackColor = Color.Yellow; }
+            else
+            { RbEngravingPattern.BackColor = GbEngravingPattern.BackColor = Color.WhiteSmoke; }
         }
 
         private void RbGrayZ_CheckedChanged(object sender, EventArgs e)
@@ -1514,7 +1539,7 @@ namespace GrblPlotter
             Highlight();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void BtnHelp_Click(object sender, EventArgs e)
         {
             string url = "https://grbl-plotter.de/index.php?";
             try
@@ -1527,6 +1552,11 @@ namespace GrblPlotter
                 Logger.Error(err, "BtnHelp_Click ");
                 MessageBox.Show("Could not open the link: " + err.Message, "Error");
             }
+        }
+
+        private void RbEngravingLine_CheckedChanged(object sender, EventArgs e)
+        {
+            Highlight();
         }
 
         private void BtnReloadPattern_Click(object sender, EventArgs e)

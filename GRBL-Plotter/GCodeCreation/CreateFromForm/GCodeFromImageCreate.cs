@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2018-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2018-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@
  * 2021-07-02 code clean up / code quality
  * 2022-03-22 bug fix use cBResolutionPenWidth
  * 2022-03-30 ConvertColorMap add ToolTable.IndexUse()
+ * 2023-01-17 l:63 f:GenerateGCodePreset if (GcodeDefaults.ZEnable) Gcode.JobStart
 */
 
 using System;
@@ -42,14 +43,14 @@ namespace GrblPlotter
         private static int colorStart = -2, colorEnd = -2, lastTool = -2, lastLine = -2;
         int myToolNumber = 0;
 
-        private static float cncCoordX;   //X
-        private static float cncCoordY;   //Y
-        private static float cncCoordLastX;    //Last x/y  coords for compare
-        private static float cncCoordLastY;
-        private static float cncPixelResoX;    // resolution = distance between pixels / lines / columns
-        private static float cncPixelResoY;
+        private static double cncCoordX;   //X
+        private static double cncCoordY;   //Y
+        private static double cncCoordLastX;    //Last x/y  coords for compare
+        private static double cncCoordLastY;
+        private static double cncPixelResoX;    // resolution = distance between pixels / lines / columns
+        private static double cncPixelResoY;
 
-        private void GenerateGCodePreset(float startX, float startY)
+        private void GenerateGCodePreset(double startX, double startY, bool move=true)
         {
             lblStatus.Text = "Generating GCode... ";    //Generate picture Gcode
             gcodeByToolNr.Clear();
@@ -57,10 +58,15 @@ namespace GrblPlotter
             colorMap.Clear();
             colorStart = -2; colorEnd = -2; lastTool = -2; lastLine = -2;   // setColorMap startup
             Gcode.Setup(true);  // convertGraphics=true (repeat, inser sub)
+
             if (RbStartGrayS.Checked && cBLaserModeOnStart.Checked)
             { finalString.AppendLine("$32=1 (Lasermode on)"); }
-            Gcode.JobStart(finalString, "StartJob");
-            Gcode.MoveToRapid(finalString, startX, startY, "");
+
+			if (GcodeDefaults.ZEnable)
+				Gcode.JobStart(finalString, "StartJob");
+
+            if (move)
+                Gcode.MoveToRapid(finalString, startX, startY, "");
             cncCoordLastZ = cncCoordZ = Gcode.GcodeZUp;
         }
 

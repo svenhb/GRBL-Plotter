@@ -486,7 +486,7 @@ Filtry i efekty kolorystyczne zostaną uwzględnione podczas generowania skali s
     <value>Wektoryzuj</value>
   </data>
   <data name="RbGrayscalePattern.Text" xml:space="preserve">
-    <value>Wzór</value>
+    <value>Śledzenie linii</value>
   </data>
   <data name="GbGrayscaleProcess.Text" xml:space="preserve">
     <value>Przetwarzanie skali szarości</value>
@@ -504,7 +504,7 @@ Filtry i efekty kolorystyczne zostaną uwzględnione podczas generowania skali s
     <value>gładki</value>
   </data>
   <data name="gBgcodeSelection.Text" xml:space="preserve">
-    <value>Wektoryzacja</value>
+    <value>Wektoryzuj</value>
   </data>
   <data name="tabPageSize.Text" xml:space="preserve">
     <value>Rozmiar / Wzór</value>
@@ -574,5 +574,54 @@ Filtry i efekty kolorystyczne zostaną uwzględnione podczas generowania skali s
   </data>
   <data name="checkBox1.Text" xml:space="preserve">
     <value>'Pen-Down' tryb koloru</value>
+  </data>
+  <data name="NudEngravingAngle.ToolTip" xml:space="preserve">
+    <value>Kąt wzoru linii</value>
+  </data>
+  <data name="button3.ToolTip" xml:space="preserve">
+    <value>Pomoc online</value>
+  </data>
+  <data name="CbLaserOnly.Text" xml:space="preserve">
+    <value>Użyj Lasera</value>
+  </data>
+  <data name="CbLaserOnly.ToolTip" xml:space="preserve">
+    <value>W przypadku lasera nie jest potrzebny kod Pen-up i -down w porównaniu do pióra podnoszonego przez serwo.</value>
+  </data>
+  <data name="cBLaserModeOffEnd.ToolTip" xml:space="preserve">
+    <value>Ustawia 32 $ = 0 na końcu kodu G</value>
+  </data>
+  <data name="cBLaserModeOnStart.ToolTip" xml:space="preserve">
+    <value>Ustawia 32 $ = 1 na początku kodu G</value>
+  </data>
+  <data name="CbEngravingCross.Text" xml:space="preserve">
+    <value>Krzyż (dodaj linie +90°)</value>
+  </data>
+  <data name="CbEngravingCross.ToolTip" xml:space="preserve">
+    <value>Jeżeli zaznaczone zostanie dodany wzór drugiej linii, obrócony o 90 stopni</value>
+  </data>
+  <data name="CbEngravingTopDown.Text" xml:space="preserve">
+    <value>Z góry na dół</value>
+  </data>
+  <data name="CbEngravingTopDown.ToolTip" xml:space="preserve">
+    <value>Jeśli zaznaczono kąt=0, zaczyna się on od lewej górnej krawędzi.
+W przeciwnym razie zaczyna się od lewej dolnej krawędzi.</value>
+  </data>
+  <data name="tabPageSetup.Text" xml:space="preserve">
+    <value>Początek</value>
+  </data>
+  <data name="RbEngravingPattern.Text" xml:space="preserve">
+    <value>Wzór</value>
+  </data>
+  <data name="RbEngravingLine.Text" xml:space="preserve">
+    <value>Linia po linii</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Kąt</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Śledzenie linii</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Wektoryzuj</value>
   </data>
 </root>

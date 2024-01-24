@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2018-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2018-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,6 +31,7 @@
  * 2021-08-06 default GCFontName = "lff\\standard.lff"; becausee of DXF Text import
  * 2021-09-10 add Graphic.SetAuxInfo(lineIndex) in line 290
  * 2022-04-18 DrawTokenLFF / DrawLetter check if index ok
+ * 2024-01-14 add option to create GCode directly (GenerateGCodeOnly), without using graphic-class
 */
 
 using System;
@@ -38,6 +39,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Forms;
@@ -64,6 +66,9 @@ namespace GrblPlotter
         public static bool GCPauseWord { get; set; }
         public static bool GCPauseChar { get; set; }
         public static bool GCConnectLetter { get; set; }
+        public static bool GenerateGCodeOnly { get; set; }
+        public static StringBuilder GCode { get; set; }
+
 
         //    public static int GCTextAlign { get; set; }   
 
@@ -123,11 +128,11 @@ namespace GrblPlotter
         }
         public static void Reset()
         {
-            GCFontName = "lff\\standard.lff"; GCText = ""; GCFont = 0; GCAttachPoint = 7;
-            GCHeight = 0; GCWidth = 0; GCAngleRad = 0; GCSpacing = 1; GCOffX = 0; GCOffY = 0;
+            GCFontName = "\\lff\\standard.lff"; GCText = ""; GCFont = 0; GCAttachPoint = 7;
+            GCHeight = 4; GCWidth = 0; GCAngleRad = 0; GCSpacing = 1; GCOffX = 0; GCOffY = 0;
             GCPauseLine = false; GCPauseWord = false; GCPauseChar = false;
             useLFF = false; GCLineDistance = 1.5; GCFontDistance = 0;
-            useSVGFile = true;
+            useSVGFile = true; GenerateGCodeOnly = false; GCode = new StringBuilder();
         }
 
         public static void GetCode(double pageWidth)
@@ -152,7 +157,7 @@ namespace GrblPlotter
             {
                 if (File.Exists(fileName))
                 {
-                    Graphic.SetHeaderInfo(" Font from file: " + fileName);
+                    if (!GenerateGCodeOnly) Graphic.SetHeaderInfo(" Font from file: " + fileName);
                     if (fileName.ToLower().EndsWith(".svg"))
                     {
                         LoadSVGFont(fileName);
@@ -184,15 +189,16 @@ namespace GrblPlotter
                 }
                 else
                 {
+                    Logger.Error("Font not found: '{0}'", fileName);
                     if (!HersheyFonts.ContainsKey(GCFontName))
                     {
                         string info = string.Format(" Font '{0}' or file '{1}' not found", GCFontName, fileName);
                         Logger.Error(info);
-                        Graphic.SetHeaderInfo(info);
+                        if (!GenerateGCodeOnly) Graphic.SetHeaderInfo(info);
                         return;
                     }
                     else
-                    { Graphic.SetHeaderInfo(" Font from array: " + GCFontName); }
+                    { if (!GenerateGCodeOnly) Graphic.SetHeaderInfo(" Font from array: " + GCFontName); }
                 }
             }
             bool centerLine = false;
@@ -288,9 +294,11 @@ namespace GrblPlotter
                     char actualChar = actualLine[txtIndex];
                     int chrIndex = (int)actualChar - 32;
                     int chrIndexLFF = (int)actualChar;
-                    Graphic.SetPathId(lineIndex + "-" + txtIndex);
-                    Graphic.SetAuxInfo(lineIndex);                                  // to center lines later - if needed
-
+                    if (!GenerateGCodeOnly)
+                    {
+                        Graphic.SetPathId(lineIndex + "-" + txtIndex);
+                        Graphic.SetAuxInfo(lineIndex);                                  // to center lines later - if needed
+                    }
                     if (txtIndex == 0)    //actualChar == '\n')                       // next line
                     {
                         offsetX = 0;
@@ -303,7 +311,7 @@ namespace GrblPlotter
                     if (useLFF)                                                     // LFF Font (LibreCAD font file format)
                     {
                         if (chrIndexLFF > 32)
-                        { Graphic.SetGeometry(string.Format("Char '{0}'", actualChar)); }
+                        { if (!GenerateGCodeOnly) Graphic.SetGeometry(string.Format("Char '{0}'", actualChar)); }
 
                         DrawLetterLFF(ref fileContent, chrIndexLFF, scale);         // regular char
                         GcodePenUp("getCode     ");
@@ -323,7 +331,7 @@ namespace GrblPlotter
                                 GcodePause();//"Pause before char");
                             if (GCPauseChar && (actualChar == ' '))
                                 GcodePause();//"Pause before word");
-                            Graphic.SetGeometry(string.Format("Char {0}", actualChar));
+                            if (!GenerateGCodeOnly) Graphic.SetGeometry(string.Format("Char {0}", actualChar));
                             if (HersheyFonts.ContainsKey(GCFontName))
                             {
                                 if (chrIndex < HersheyFonts[GCFontName].Length)
@@ -331,9 +339,9 @@ namespace GrblPlotter
                                     DrawLetter(HersheyFonts[GCFontName][chrIndex], scale);//, actualChar.ToString()); // regular char
                                 }
                                 else
-                                { Graphic.SetHeaderInfo(string.Format("Char index is too large:{0}, max:{1}", chrIndex, HersheyFonts[GCFontName].Length)); }
+                                { if (!GenerateGCodeOnly) Graphic.SetHeaderInfo(string.Format("Char index is too large:{0}, max:{1}", chrIndex, HersheyFonts[GCFontName].Length)); }
                             }
-                            else { Graphic.SetHeaderInfo(string.Format("Font not found:{0}", GCFontName)); }
+                            else { if (!GenerateGCodeOnly) Graphic.SetHeaderInfo(string.Format("Font not found:{0}", GCFontName)); }
                         }
                     }
                     else // useSVGFile
@@ -348,7 +356,7 @@ namespace GrblPlotter
                             GcodePause();//"Pause before char");
                         if (GCPauseChar && (actualChar == ' '))
                             GcodePause();//"Pause before word");
-                        Graphic.SetGeometry(string.Format("Char {0}", actualChar));
+                        if (!GenerateGCodeOnly) Graphic.SetGeometry(string.Format("Char {0}", actualChar));
                         DrawLetterSVGFont(scale, actualChar.ToString());
                     }
                 }
@@ -650,16 +658,26 @@ namespace GrblPlotter
 
         private static void GcodeMove(int gnr, float x, float y)//, string cmd = "")
         {
-            if (gnr == 0)
-                Graphic.StartPath(new Point(x, y));
+            if (GenerateGCodeOnly)
+            {
+                if (gnr == 0)
+                    GCode.AppendFormat("G0 X{0:0.000} Y{1:0.000}\r\n", x, y);
+                else
+                    GCode.AppendFormat("G1 X{0:0.000} Y{1:0.000}\r\n", x, y);
+            }
             else
-                Graphic.AddLine(new Point(x, y));
+            {
+                if (gnr == 0)
+                    Graphic.StartPath(new Point(x, y));
+                else
+                    Graphic.AddLine(new Point(x, y));
+            }
         }
 
         private static void GcodePenUp(string cmt)
-        { Graphic.StopPath(cmt); }
+        { if (!GenerateGCodeOnly) Graphic.StopPath(cmt); }
         private static void GcodePause()//string cmt)
-        { Graphic.OptionInsertPause(); }
+        { if (!GenerateGCodeOnly) Graphic.OptionInsertPause(); }
 
         private static void AddRoundCorner(double bulge, double p1x, double p1y, double p2x, double p2y)
         {
@@ -704,7 +722,10 @@ namespace GrblPlotter
                 yc = ((p1y + p2y) / 2) - direction * ((p1x - p2x) / 2) * part;
             }
 
-            Graphic.AddArc(isg2, p2x, p2y, (xc - p1x), (yc - p1y));
+            if (GenerateGCodeOnly)
+            { GCode.AppendFormat("G{0} X{1:0.000} Y{2:0.000} I{3:0.000} J{4:0.000}\r\n", (isg2 ? "2" : "3"), p2x, p2y, (xc - p1x), (yc - p1y)); }
+            else
+            { Graphic.AddArc(isg2, p2x, p2y, (xc - p1x), (yc - p1y)); }
         }
     }
 }

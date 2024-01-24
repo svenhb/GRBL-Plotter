@@ -902,16 +902,20 @@ namespace GrblPlotter
 
         private void RbGrayscaleVector_CheckedChanged(object sender, EventArgs e)
         {
+
+           tabControl3.SelectedIndexChanged -= TabControl3_SelectedIndexChanged;
             if (RbGrayscaleVector.Checked)
             {
                 gBgcodeSelection.BackColor = Color.Yellow;
-                GbGcodeDirection.BackColor = Color.WhiteSmoke;
+                tabControl3.SelectedIndex = 1;
             }
             else
             {
                 gBgcodeSelection.BackColor = Color.WhiteSmoke;
-                GbGcodeDirection.BackColor = Color.Yellow;
+                tabControl3.SelectedIndex = 0;
             }
+            tabControl3.SelectedIndexChanged += TabControl3_SelectedIndexChanged;
+
             ResetColorCorrectionControls();
             ApplyColorCorrections("RbGrayscaleVector_CheckedChanged");
             lblImageSource.Text = "original";
@@ -935,6 +939,18 @@ namespace GrblPlotter
         {
             TabPage page = tabControl2.TabPages[e.Index];
             Color col = e.Index == tabControl2.SelectedIndex ? Color.Yellow : Color.White;
+            if (!e.Bounds.IsEmpty)
+                e.Graphics.FillRectangle(new SolidBrush(col), e.Bounds);
+
+            Rectangle paddedBounds = e.Bounds;
+            int yOffset = (e.State == DrawItemState.Selected) ? -2 : 1;
+            paddedBounds.Offset(1, yOffset);
+            TextRenderer.DrawText(e.Graphics, page.Text, Font, paddedBounds, page.ForeColor);
+        }
+        private void TabControl3_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            TabPage page = tabControl3.TabPages[e.Index];
+            Color col = e.Index == tabControl3.SelectedIndex ? Color.Yellow : Color.White;
             if (!e.Bounds.IsEmpty)
                 e.Graphics.FillRectangle(new SolidBrush(col), e.Bounds);
 

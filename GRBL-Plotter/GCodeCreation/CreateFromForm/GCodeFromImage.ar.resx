@@ -154,7 +154,7 @@
     <value>بحجم</value>
   </data>
   <data name="gBgcodeSelection.Text" xml:space="preserve">
-    <value>رسم اختيار</value>
+    <value>فيكتور</value>
   </data>
   <data name="cBGCodeFill.Text" xml:space="preserve">
     <value>ملء المناطق</value>
@@ -576,12 +576,58 @@
     <value>يبدأ</value>
   </data>
   <data name="RbGrayscalePattern.Text" xml:space="preserve">
-    <value>نمط</value>
+    <value>تتبع الخط</value>
   </data>
   <data name="tabPageSize.Text" xml:space="preserve">
     <value>الحجم / النمط</value>
   </data>
   <data name="GbToolEnable.Text" xml:space="preserve">
     <value>قم بإلغاء تحديد الألوان إذا لم تكن هناك حاجة إليها</value>
+  </data>
+  <data name="NudEngravingAngle.ToolTip" xml:space="preserve">
+    <value>زاوية نمط الخط</value>
+  </data>
+  <data name="button3.ToolTip" xml:space="preserve">
+    <value>مساعدة على الانترنت</value>
+  </data>
+  <data name="CbLaserOnly.Text" xml:space="preserve">
+    <value>استخدم الليزر</value>
+  </data>
+  <data name="CbLaserOnly.ToolTip" xml:space="preserve">
+    <value>بالنسبة لليزر، لا توجد حاجة إلى رمز رفع وخفض القلم، مقارنة بالقلم الذي يتم رفعه بواسطة مؤازرة.</value>
+  </data>
+  <data name="cBLaserModeOffEnd.ToolTip" xml:space="preserve">
+    <value>يحدد 32 دولارًا = 0 عند نهاية G-Code</value>
+  </data>
+  <data name="cBLaserModeOnStart.ToolTip" xml:space="preserve">
+    <value>يحدد 32 دولارًا = 1 عند بدء G-Code</value>
+  </data>
+  <data name="CbEngravingCross.Text" xml:space="preserve">
+    <value>تقاطع (إضافة خطوط +90°)</value>
+  </data>
+  <data name="CbEngravingCross.ToolTip" xml:space="preserve">
+    <value>إذا تم تحديد نمط الخط الثاني، فسيتم إضافة 90 درجة</value>
+  </data>
+  <data name="CbEngravingTopDown.Text" xml:space="preserve">
+    <value>من أعلى إلى أسفل</value>
+  </data>
+  <data name="CbEngravingTopDown.ToolTip" xml:space="preserve">
+    <value>إذا تم تحديد زاوية = 0 فإنها تبدأ من الحافة اليسرى العليا.
+وإلا فإنه يبدأ على الحافة اليسرى السفلى.</value>
+  </data>
+  <data name="RbEngravingPattern.Text" xml:space="preserve">
+    <value>نمط</value>
+  </data>
+  <data name="RbEngravingLine.Text" xml:space="preserve">
+    <value>سطرًا تلو الآخر</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>زاوية</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>تتبع الخط</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>فيكتور</value>
   </data>
 </root>
