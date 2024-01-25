@@ -51,7 +51,7 @@ namespace GrblPlotter
 
     public static class MyApplication
     {
-        private static readonly string VersionAddOn = "";
+        private static readonly string VersionAddOn = ".a";
 
         public static string GetVersion()
         { return System.Windows.Forms.Application.ProductVersion.ToString() + VersionAddOn; }
