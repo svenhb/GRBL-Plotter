@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -54,6 +54,7 @@
  * 2023-08-06 l:830 f:CreateGCode set SortByDistance start-pos to maxy
  * 2023-08-16 l:271 f:StartPath f:UpdateGUI pull request Speed up merge and sort #348
  * 2023-09-16 l:774 f:CreateGCode wrong call to RemoveOffset(minx,minx) -> miny
+ * 2024-01-25 l:1100 f:CreateGCode export graphics dimension, to be able to calculate point-marker-size in 2Dview
 */
 
 using System;
@@ -1096,6 +1097,7 @@ namespace GrblPlotter
 
 
             VisuGCode.xyzSize.AddDimensionXY(Graphic.actualDimension);
+            SetHeaderInfo(string.Format(" Dimension XY: {0:0.0} {1:0.0} ", Graphic.actualDimension.dimx, Graphic.actualDimension.dimy));
 
             if ((maxObjectCountBeforeReducingXML > 0) && (completeGraphic.Count > maxObjectCountBeforeReducingXML))
             {
