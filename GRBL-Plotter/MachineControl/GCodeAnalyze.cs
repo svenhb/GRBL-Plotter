@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -33,6 +33,7 @@
  * 2023-11-15 l:579 f:GetGCodeLines add pathObjectPenColorOnlyNone = false; show default color, if all imported colors = none
  * 2023-11-29 l:510 f:GetGCodeLines add findSubroutineFailCounter; abort searching for subroutine if not found after 10 times
  * 2023-12-16 l:850 f:ProcessXmlTagStart check for fiducials via .ToUpper().Contains(fiducialLabel.ToUpper()))
+ * 2024-01-25 add graphicDimension, markerSizeGraphic to adapt size of point markers
 */
 
 using System;
@@ -186,6 +187,9 @@ namespace GrblPlotter
         internal static XyPoint clipOffset = new XyPoint(-1, -1);
         private static bool isHeaderSection = false;
 
+        internal static XyPoint graphicDimension = new XyPoint(-1, -1);
+		internal static float markerSizeGraphic = 1;
+		
         internal static bool largeDataAmount = false;
         internal static int numberDataLines = 0;
 
@@ -286,6 +290,8 @@ namespace GrblPlotter
             clipDimension = new XyPoint();
             clipOffset = new XyPoint();
             isHeaderSection = false;
+            graphicDimension = new XyPoint();
+			markerSizeGraphic = 1;
 
             modal = new ModalGroup();               // clear
             XmlMarker.Reset();                      // reset lists, holding marker line numbers
@@ -528,6 +534,17 @@ namespace GrblPlotter
 
                 if (isHeaderSection)
                 {
+                    if (singleLine.Contains("DIMENSION XY") && singleLine.Contains(":"))	// GraphicCollectData.cs line 1100
+                    {
+                        var tmpLine = singleLine.Split(':');
+                        var tmpVals = tmpLine[1].Trim().Split(' ');
+                        if (double.TryParse(tmpVals[0], System.Globalization.NumberStyles.Float, System.Globalization.NumberFormatInfo.InvariantInfo, out double parsed1))
+                        { graphicDimension.X = parsed1; }
+                        if (double.TryParse(tmpVals[1], System.Globalization.NumberStyles.Float, System.Globalization.NumberFormatInfo.InvariantInfo, out double parsed2))
+                        { graphicDimension.Y = parsed2; }
+					    markerSizeGraphic = (float)Math.Max(Math.Sqrt(graphicDimension.X * graphicDimension.X + graphicDimension.Y * graphicDimension.Y) / 200f, 0.5);
+                        Logger.Trace("----- graphicDimension '{0}' -> {1:0.00} {2:0.00}  marker size:{3:0.0}", singleLine, graphicDimension.X, graphicDimension.Y, markerSizeGraphic);
+                    }
                     if (singleLine.Contains("SVG DIMENSION") && singleLine.Contains(":"))
                     {
                         var tmpLine = singleLine.Split(':');
@@ -536,7 +553,7 @@ namespace GrblPlotter
                         { clipDimension.X = parsed1; }
                         if (double.TryParse(tmpVals[1], System.Globalization.NumberStyles.Float, System.Globalization.NumberFormatInfo.InvariantInfo, out double parsed2))
                         { clipDimension.Y = parsed2; }
-                        Logger.Trace("----- clipDimension {0} -> {1:0.00} {2:0.00}", singleLine, clipDimension.X, clipDimension.Y);
+                        Logger.Trace("----- clipDimension '{0}' -> {1:0.00} {2:0.00}", singleLine, clipDimension.X, clipDimension.Y);
                     }
                     else if (singleLine.Contains("GRAPHIC OFFSET") && singleLine.Contains(":"))
                     {
@@ -557,7 +574,7 @@ namespace GrblPlotter
 
             }   // finish reading lines
             /*********************************************************************/
-            if (!largeDataAmount && (figureMarkerCount > 1) && (showArrow || showId))
+            if (!largeDataAmount && (figureMarkerCount > 0) && (showArrow || showId))
             {
                 ModifyPenUpPath(worker, e, ref progressSubOld, progressMainFactor, showArrow, showId);
             }

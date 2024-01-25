@@ -31,6 +31,7 @@
  * 2023-09-01 new l:700 f:SetRulerDimension / l:380 f:DrawMachineLimit update grid
  * 2023-09-14 l:400 f:DrawMachineLimit() add toolTableOffsetX to show tool positions; issue #361
  * 2024-01-13 l:675 f:CreateMarkerArrow add try/catch
+ * 2024-01-25 l:262 f:CreateDrawingPathFromGCode get markerSize from graphics dimension
 */
 
 using System;
@@ -258,7 +259,7 @@ namespace GrblPlotter
                     // mark Z-only movements - could be drills
                     if ((onlyZ > 1) && (passLimit) && (path == pathPenUp) || (oldL.codeLine.Contains("DOT")))  // pen moved from -z to +z
                     {
-                        float markerSize = 1;
+                        float markerSize = (float)markerSizeGraphic;
                         int markerType = 1;
                         if (!Properties.Settings.Default.importUnitmm || (modal.unitsMode == 20))
                         { markerSize /= 25.4F; }
