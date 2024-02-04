@@ -84,6 +84,7 @@
  * 2023-12-13 l:374 f:GetVectorDXF add block scaling, issue #365
  * 2023-12-21 l:    f:ProcessEntities bugfix block scaling, issue #366		
  * 2024-01-13 l:700 f:ProcessEntities-DXFSpline avoid exception on degree < 2 
+ * 2024-02-02 l:1049 f:ApplyOffsetAndAngle   #375
 */
 
 using DXFLib;
@@ -376,10 +377,7 @@ namespace GrblPlotter //DXFImporter
 
                     DXFPoint insertionPoint = insert.InsertionPoint;
                     double insertionAngle = 0;
-                    DXFPoint insertionScaling = new DXFPoint();
-                    insertionScaling.X = 1;
-                    insertionScaling.Y = 1;
-                    insertionScaling.Z = 1;
+                    DXFPoint insertionScaling = new DXFPoint() { X = 1, Y = 1, Z = 1 };
 
                     if (insert.RotationAngle != null)                                  // insertion angle in degrees
                         insertionAngle = (double)insert.RotationAngle;
@@ -400,7 +398,7 @@ namespace GrblPlotter //DXFImporter
                             dxfBlockColorNr = block.ColorNumber;
                             dxfBlockLineWeigth = block.LineWeight;
                             Graphic.SetComment("Block:" + block.BlockName);
-                            Graphic.SetHeaderInfo(string.Format(" Block: {0} at X{1:0.000}  Y{2:0.000}  a{3:0.00}", block.BlockName, insertionPoint.X, insertionPoint.Y, insert.RotationAngle));
+                            Graphic.SetHeaderInfo(string.Format(" Block: {0,-5} at X:{1,12:0.000}  Y:{2,12:0.000}  a:{3,6:0.00}  sx:{4,6:0.00}  sy:{5,6:0.00}", block.BlockName, insertionPoint.X, insertionPoint.Y, insertionAngle, insertionScaling.X, insertionScaling.Y));
                             foreach (DXFEntity blockEntity in block.Children)
                             { ProcessEntities(blockEntity, insertionPoint, insertionAngle, insertionScaling, dxfEntity.LayerName); }
                         }
@@ -1009,11 +1007,6 @@ namespace GrblPlotter //DXFImporter
             double xm = RotateGetX(ellipse.MainAxis, scaling, angleRad);
             double ym = RotateGetY(ellipse.MainAxis, scaling, angleRad);
 
-            /*  float xc = (float)(RotateGetX(ellipse.Center,  angleRad) * (double)scaling.X + offset.X);
-              float yc = (float)(RotateGetY(ellipse.Center,  angleRad) * (double)scaling.Y + offset.Y);
-
-              float xm = (float)(RotateGetX(ellipse.MainAxis, angleRad) * (double)scaling.X);
-              float ym = (float)(RotateGetY(ellipse.MainAxis, angleRad) * (double)scaling.Y);*/
             double w = ellipse.AxisRatio * (double)scaling.Y / (double)scaling.X;
             double a2 = -ellipse.StartParam;// issue #359
             double a1 = -ellipse.EndParam;  //
@@ -1053,9 +1046,10 @@ namespace GrblPlotter //DXFImporter
         private static DXFPoint ApplyOffsetAndAngle(DXFPoint location, DXFPoint offset, double offsetAngleDegree, DXFPoint scaling)
         {
             DXFPoint tmp = new DXFPoint();
-            double offsetAngle = Math.PI * offsetAngleDegree / 180;
-            tmp.X = (double)scaling.X * (location.X * Math.Cos(offsetAngle) - location.Y * Math.Sin(offsetAngle)) + offset.X;
-            tmp.Y = (double)scaling.Y * (location.X * Math.Sin(offsetAngle) + location.Y * Math.Cos(offsetAngle)) + offset.Y;
+            //double offsetAngle = Math.PI * offsetAngleDegree / 180;
+            double angleRad = offsetAngleDegree * Math.PI / 180;
+            tmp.X = RotateGetX(location, scaling, angleRad)  + (double)offset.X;
+            tmp.Y = RotateGetY(location, scaling, angleRad)  + (double)offset.Y;
             tmp.Z = (double)scaling.Z * location.Z + offset.Z;
             return tmp;
         }
