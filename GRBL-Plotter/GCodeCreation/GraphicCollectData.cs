@@ -469,7 +469,7 @@ namespace GrblPlotter
             float scale, n, nx = 0, ny = 0;
             scale = 1;// (float)stepWidth / 2000;
 
-            Logger.Trace("AddNoiseToPath  step:{0}",step);
+            //Logger.Trace("AddNoiseToPath  step:{0}",step);
 
             if (step <= 1)
             {
