@@ -3807,4 +3807,31 @@ GCode ヘッダー セクションで指定: 'SVG dimension'。</value>
   <data name="nUDSTop.ToolTip" xml:space="preserve">
     <value>最小のペン幅がこの深さに変換されます</value>
   </data>
+  <data name="LblNoise2.Text" xml:space="preserve">
+    <value>距離</value>
+  </data>
+  <data name="LblNoise1.Text" xml:space="preserve">
+    <value>振幅</value>
+  </data>
+  <data name="NudNoiseDensity.ToolTip" xml:space="preserve">
+    <value>最大振幅</value>
+  </data>
+  <data name="NudNoiseAmplitude.ToolTip" xml:space="preserve">
+    <value>最大振幅</value>
+  </data>
+  <data name="cBImportGraphicNoise.Text" xml:space="preserve">
+    <value>ノイズを追加</value>
+  </data>
+  <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
+    <value>ぐらついた線を生成する</value>
+  </data>
+  <data name="gBNoise.Text" xml:space="preserve">
+    <value>ノイズ</value>
+  </data>
+  <data name="CbImportGraphicHatchFillNoise.Text" xml:space="preserve">
+    <value>ノイズを追加</value>
+  </data>
+  <data name="CbImportGraphicHatchFillNoise.ToolTip" xml:space="preserve">
+    <value>ハッチング塗りつぶしのみにぐらつく線を生成する</value>
+  </data>
 </root>

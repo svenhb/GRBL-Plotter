@@ -3453,4 +3453,31 @@ Zeichne eine Signatur in den unteren rechten Rand: Maßstab 0,1 oder kleiner und
   <data name="nUDSTop.ToolTip" xml:space="preserve">
     <value>Die kleinste Stiftbreite wird auf diese Tiefe übersetzt</value>
   </data>
+  <data name="LblNoise2.Text" xml:space="preserve">
+    <value>Distanz</value>
+  </data>
+  <data name="LblNoise1.Text" xml:space="preserve">
+    <value>Amplitude</value>
+  </data>
+  <data name="NudNoiseDensity.ToolTip" xml:space="preserve">
+    <value>Maximale Amplitude</value>
+  </data>
+  <data name="NudNoiseAmplitude.ToolTip" xml:space="preserve">
+    <value>Maximale Amplitude</value>
+  </data>
+  <data name="cBImportGraphicNoise.Text" xml:space="preserve">
+    <value>Rauschen hinzufügen</value>
+  </data>
+  <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
+    <value>Erzeugen Sie wackelige Linien</value>
+  </data>
+  <data name="gBNoise.Text" xml:space="preserve">
+    <value>Lärm</value>
+  </data>
+  <data name="CbImportGraphicHatchFillNoise.Text" xml:space="preserve">
+    <value>Rauschen hinzufügen</value>
+  </data>
+  <data name="CbImportGraphicHatchFillNoise.ToolTip" xml:space="preserve">
+    <value>Erzeugtwackelige Linien nur für die Schraffurfüllung</value>
+  </data>
 </root>

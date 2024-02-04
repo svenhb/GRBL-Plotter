@@ -3825,4 +3825,31 @@ Sağ alt kenar boşluğuna bir imza çizin: 0,1 veya daha düşük ölçeklendir
   <data name="nUDSTop.ToolTip" xml:space="preserve">
     <value>En küçük kalem genişliği bu derinliğe çevrilecektir</value>
   </data>
+  <data name="LblNoise2.Text" xml:space="preserve">
+    <value>Mesafe</value>
+  </data>
+  <data name="LblNoise1.Text" xml:space="preserve">
+    <value>Genlik</value>
+  </data>
+  <data name="NudNoiseDensity.ToolTip" xml:space="preserve">
+    <value>Maksimum genlik</value>
+  </data>
+  <data name="NudNoiseAmplitude.ToolTip" xml:space="preserve">
+    <value>Maksimum genlik</value>
+  </data>
+  <data name="cBImportGraphicNoise.Text" xml:space="preserve">
+    <value>Gürültü ekle</value>
+  </data>
+  <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
+    <value>Titrek çizgiler oluşturun</value>
+  </data>
+  <data name="gBNoise.Text" xml:space="preserve">
+    <value>Gürültü</value>
+  </data>
+  <data name="CbImportGraphicHatchFillNoise.Text" xml:space="preserve">
+    <value>Gürültü ekle</value>
+  </data>
+  <data name="CbImportGraphicHatchFillNoise.ToolTip" xml:space="preserve">
+    <value>Yalnızca tarama dolgusu için titrek çizgiler oluşturun</value>
+  </data>
 </root>

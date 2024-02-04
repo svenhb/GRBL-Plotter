@@ -3682,4 +3682,31 @@ Narysuj podpis na prawym dolnym marginesie: skala 0,1 lub niższa i użyj „pra
   <data name="nUDSTop.ToolTip" xml:space="preserve">
     <value>Na tę głębokość przełoży się najmniejsza szerokość pióra</value>
   </data>
+  <data name="LblNoise2.Text" xml:space="preserve">
+    <value>Dystans</value>
+  </data>
+  <data name="LblNoise1.Text" xml:space="preserve">
+    <value>Amplituda</value>
+  </data>
+  <data name="NudNoiseDensity.ToolTip" xml:space="preserve">
+    <value>Maksymalna amplituda</value>
+  </data>
+  <data name="NudNoiseAmplitude.ToolTip" xml:space="preserve">
+    <value>Maksymalna amplituda</value>
+  </data>
+  <data name="cBImportGraphicNoise.Text" xml:space="preserve">
+    <value>Dodać hałas</value>
+  </data>
+  <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
+    <value>Generuj chwiejne linie</value>
+  </data>
+  <data name="gBNoise.Text" xml:space="preserve">
+    <value>Hałas</value>
+  </data>
+  <data name="CbImportGraphicHatchFillNoise.Text" xml:space="preserve">
+    <value>Dodać hałas</value>
+  </data>
+  <data name="CbImportGraphicHatchFillNoise.ToolTip" xml:space="preserve">
+    <value>Generuj chwiejne linie tylko dla wypełnienia kreskowaniem</value>
+  </data>
 </root>

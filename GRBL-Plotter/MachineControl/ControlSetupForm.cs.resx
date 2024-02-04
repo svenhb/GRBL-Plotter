@@ -3798,4 +3798,31 @@ Nakreslete podpis na pravý dolní okraj: měřítko 0,1 nebo nižší a použij
   <data name="nUDSTop.ToolTip" xml:space="preserve">
     <value>Nejmenší šířka pera bude převedena do této hloubky</value>
   </data>
+  <data name="LblNoise2.Text" xml:space="preserve">
+    <value>Vzdálenost</value>
+  </data>
+  <data name="LblNoise1.Text" xml:space="preserve">
+    <value>Amplituda</value>
+  </data>
+  <data name="NudNoiseDensity.ToolTip" xml:space="preserve">
+    <value>Maximální amplituda</value>
+  </data>
+  <data name="NudNoiseAmplitude.ToolTip" xml:space="preserve">
+    <value>Maximální amplituda</value>
+  </data>
+  <data name="cBImportGraphicNoise.Text" xml:space="preserve">
+    <value>Přidat šum</value>
+  </data>
+  <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
+    <value>Vytvářejte vratké čáry</value>
+  </data>
+  <data name="gBNoise.Text" xml:space="preserve">
+    <value>Hluk</value>
+  </data>
+  <data name="CbImportGraphicHatchFillNoise.Text" xml:space="preserve">
+    <value>Přidat šum</value>
+  </data>
+  <data name="CbImportGraphicHatchFillNoise.ToolTip" xml:space="preserve">
+    <value>Generujte vratké čáry pouze pro výplň šrafování</value>
+  </data>
 </root>

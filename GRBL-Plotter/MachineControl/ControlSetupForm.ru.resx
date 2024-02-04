@@ -3727,4 +3727,31 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   <data name="nUDSTop.ToolTip" xml:space="preserve">
     <value>Наименьшая ширина пера будет перенесена на эту глубину.</value>
   </data>
+  <data name="LblNoise2.Text" xml:space="preserve">
+    <value>Расстояние</value>
+  </data>
+  <data name="LblNoise1.Text" xml:space="preserve">
+    <value>Амплитуда</value>
+  </data>
+  <data name="NudNoiseDensity.ToolTip" xml:space="preserve">
+    <value>Максимальная амплитуда</value>
+  </data>
+  <data name="NudNoiseAmplitude.ToolTip" xml:space="preserve">
+    <value>Максимальная амплитуда</value>
+  </data>
+  <data name="cBImportGraphicNoise.Text" xml:space="preserve">
+    <value>Добавлять шум</value>
+  </data>
+  <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
+    <value>Создание шатких линий</value>
+  </data>
+  <data name="gBNoise.Text" xml:space="preserve">
+    <value>Шум</value>
+  </data>
+  <data name="CbImportGraphicHatchFillNoise.Text" xml:space="preserve">
+    <value>Добавлять шум</value>
+  </data>
+  <data name="CbImportGraphicHatchFillNoise.ToolTip" xml:space="preserve">
+    <value>Создание неустойчивых линий только для заливки штриховки</value>
+  </data>
 </root>

@@ -246,6 +246,12 @@ namespace GrblPlotter
             this.nUDimportGraphicAddFrameDistance = new System.Windows.Forms.NumericUpDown();
             this.cBimportGraphicAddFrameEnable = new System.Windows.Forms.CheckBox();
             this.pathImport4 = new System.Windows.Forms.TabPage();
+            this.gBNoise = new System.Windows.Forms.GroupBox();
+            this.LblNoise2 = new System.Windows.Forms.Label();
+            this.LblNoise1 = new System.Windows.Forms.Label();
+            this.NudNoiseDensity = new System.Windows.Forms.NumericUpDown();
+            this.NudNoiseAmplitude = new System.Windows.Forms.NumericUpDown();
+            this.cBImportGraphicNoise = new System.Windows.Forms.CheckBox();
             this.BtnHelp_Pathmodification2 = new System.Windows.Forms.Button();
             this.tab1_3gB8 = new System.Windows.Forms.GroupBox();
             this.nUDPathOverlapValue = new System.Windows.Forms.NumericUpDown();
@@ -1188,6 +1194,7 @@ namespace GrblPlotter
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.cBshowImportDialog = new System.Windows.Forms.CheckBox();
+            this.CbImportGraphicHatchFillNoise = new System.Windows.Forms.CheckBox();
             this.tabControl_Level1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabControl1_Level2.SuspendLayout();
@@ -1259,6 +1266,9 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDimportGraphicAddFramePenWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDimportGraphicAddFrameDistance)).BeginInit();
             this.pathImport4.SuspendLayout();
+            this.gBNoise.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudNoiseDensity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudNoiseAmplitude)).BeginInit();
             this.tab1_3gB8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDPathOverlapValue)).BeginInit();
             this.gBHatchFill.SuspendLayout();
@@ -3289,6 +3299,7 @@ namespace GrblPlotter
             // 
             // pathImport4
             // 
+            this.pathImport4.Controls.Add(this.gBNoise);
             this.pathImport4.Controls.Add(this.BtnHelp_Pathmodification2);
             this.pathImport4.Controls.Add(this.tab1_3gB8);
             this.pathImport4.Controls.Add(this.lblPathModification);
@@ -3298,6 +3309,76 @@ namespace GrblPlotter
             resources.ApplyResources(this.pathImport4, "pathImport4");
             this.pathImport4.Name = "pathImport4";
             this.pathImport4.UseVisualStyleBackColor = true;
+            // 
+            // gBNoise
+            // 
+            this.gBNoise.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.gBNoise.Controls.Add(this.LblNoise2);
+            this.gBNoise.Controls.Add(this.LblNoise1);
+            this.gBNoise.Controls.Add(this.NudNoiseDensity);
+            this.gBNoise.Controls.Add(this.NudNoiseAmplitude);
+            this.gBNoise.Controls.Add(this.cBImportGraphicNoise);
+            resources.ApplyResources(this.gBNoise, "gBNoise");
+            this.gBNoise.Name = "gBNoise";
+            this.gBNoise.TabStop = false;
+            // 
+            // LblNoise2
+            // 
+            resources.ApplyResources(this.LblNoise2, "LblNoise2");
+            this.LblNoise2.Name = "LblNoise2";
+            // 
+            // LblNoise1
+            // 
+            resources.ApplyResources(this.LblNoise1, "LblNoise1");
+            this.LblNoise1.Name = "LblNoise1";
+            // 
+            // NudNoiseDensity
+            // 
+            this.NudNoiseDensity.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGraphicNoiseDensity", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.NudNoiseDensity.DecimalPlaces = 1;
+            this.NudNoiseDensity.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.NudNoiseDensity, "NudNoiseDensity");
+            this.NudNoiseDensity.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.NudNoiseDensity.Name = "NudNoiseDensity";
+            this.toolTip1.SetToolTip(this.NudNoiseDensity, resources.GetString("NudNoiseDensity.ToolTip"));
+            this.NudNoiseDensity.Value = global::GrblPlotter.Properties.Settings.Default.importGraphicNoiseDensity;
+            // 
+            // NudNoiseAmplitude
+            // 
+            this.NudNoiseAmplitude.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGraphicNoiseAmplitude", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.NudNoiseAmplitude.DecimalPlaces = 1;
+            this.NudNoiseAmplitude.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            resources.ApplyResources(this.NudNoiseAmplitude, "NudNoiseAmplitude");
+            this.NudNoiseAmplitude.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.NudNoiseAmplitude.Name = "NudNoiseAmplitude";
+            this.toolTip1.SetToolTip(this.NudNoiseAmplitude, resources.GetString("NudNoiseAmplitude.ToolTip"));
+            this.NudNoiseAmplitude.Value = global::GrblPlotter.Properties.Settings.Default.importGraphicNoiseAmplitude;
+            // 
+            // cBImportGraphicNoise
+            // 
+            resources.ApplyResources(this.cBImportGraphicNoise, "cBImportGraphicNoise");
+            this.cBImportGraphicNoise.Checked = global::GrblPlotter.Properties.Settings.Default.importGraphicNoiseEnable;
+            this.cBImportGraphicNoise.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGraphicNoiseEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGraphicNoise.Name = "cBImportGraphicNoise";
+            this.toolTip1.SetToolTip(this.cBImportGraphicNoise, resources.GetString("cBImportGraphicNoise.ToolTip"));
+            this.cBImportGraphicNoise.UseVisualStyleBackColor = true;
+            this.cBImportGraphicNoise.CheckStateChanged += new System.EventHandler(this.CbImportGraphicNoise_CheckStateChanged);
             // 
             // BtnHelp_Pathmodification2
             // 
@@ -3359,6 +3440,7 @@ namespace GrblPlotter
             // gBHatchFill
             // 
             this.gBHatchFill.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.gBHatchFill.Controls.Add(this.CbImportGraphicHatchFillNoise);
             this.gBHatchFill.Controls.Add(this.cBImportGraphicHatchFillInset2);
             this.gBHatchFill.Controls.Add(this.CbImportGraphicHatchFillDeletePath);
             this.gBHatchFill.Controls.Add(this.cBImportGraphicHatchFillDash);
@@ -12476,6 +12558,15 @@ namespace GrblPlotter
             this.cBshowImportDialog.Name = "cBshowImportDialog";
             this.cBshowImportDialog.UseVisualStyleBackColor = true;
             // 
+            // CbImportGraphicHatchFillNoise
+            // 
+            resources.ApplyResources(this.CbImportGraphicHatchFillNoise, "CbImportGraphicHatchFillNoise");
+            this.CbImportGraphicHatchFillNoise.Checked = global::GrblPlotter.Properties.Settings.Default.importGraphicHatchFillNoise;
+            this.CbImportGraphicHatchFillNoise.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGraphicHatchFillNoise", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbImportGraphicHatchFillNoise.Name = "CbImportGraphicHatchFillNoise";
+            this.toolTip1.SetToolTip(this.CbImportGraphicHatchFillNoise, resources.GetString("CbImportGraphicHatchFillNoise.ToolTip"));
+            this.CbImportGraphicHatchFillNoise.UseVisualStyleBackColor = true;
+            // 
             // ControlSetupForm
             // 
             resources.ApplyResources(this, "$this");
@@ -12581,6 +12672,10 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDimportGraphicAddFrameDistance)).EndInit();
             this.pathImport4.ResumeLayout(false);
             this.pathImport4.PerformLayout();
+            this.gBNoise.ResumeLayout(false);
+            this.gBNoise.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudNoiseDensity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudNoiseAmplitude)).EndInit();
             this.tab1_3gB8.ResumeLayout(false);
             this.tab1_3gB8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDPathOverlapValue)).EndInit();
@@ -14082,5 +14177,12 @@ namespace GrblPlotter
         private System.Windows.Forms.Label label105;
         private System.Windows.Forms.ComboBox CbImportSVGAddOnPosition;
         private System.Windows.Forms.Button BtnSetSValues;
+        private System.Windows.Forms.GroupBox gBNoise;
+        private System.Windows.Forms.CheckBox cBImportGraphicNoise;
+        private System.Windows.Forms.NumericUpDown NudNoiseAmplitude;
+        private System.Windows.Forms.NumericUpDown NudNoiseDensity;
+        private System.Windows.Forms.Label LblNoise2;
+        private System.Windows.Forms.Label LblNoise1;
+        private System.Windows.Forms.CheckBox CbImportGraphicHatchFillNoise;
     }
 }

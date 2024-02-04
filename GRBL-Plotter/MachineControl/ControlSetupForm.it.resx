@@ -3851,4 +3851,31 @@ Disegna una firma nel margine inferiore destro: scala 0,1 o inferiore e utilizza
   <data name="nUDSTop.ToolTip" xml:space="preserve">
     <value>La larghezza minima della penna verrà tradotta a questa profondità</value>
   </data>
+  <data name="LblNoise2.Text" xml:space="preserve">
+    <value>Distanza</value>
+  </data>
+  <data name="LblNoise1.Text" xml:space="preserve">
+    <value>Ampiezza</value>
+  </data>
+  <data name="NudNoiseDensity.ToolTip" xml:space="preserve">
+    <value>Ampiezza massima</value>
+  </data>
+  <data name="NudNoiseAmplitude.ToolTip" xml:space="preserve">
+    <value>Ampiezza massima</value>
+  </data>
+  <data name="cBImportGraphicNoise.Text" xml:space="preserve">
+    <value>Aggiungi del rumore</value>
+  </data>
+  <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
+    <value>Genera linee traballanti</value>
+  </data>
+  <data name="gBNoise.Text" xml:space="preserve">
+    <value>Rumore</value>
+  </data>
+  <data name="CbImportGraphicHatchFillNoise.Text" xml:space="preserve">
+    <value>Aggiungi del rumore</value>
+  </data>
+  <data name="CbImportGraphicHatchFillNoise.ToolTip" xml:space="preserve">
+    <value>Genera linee traballanti solo per il riempimento del tratteggio</value>
+  </data>
 </root>

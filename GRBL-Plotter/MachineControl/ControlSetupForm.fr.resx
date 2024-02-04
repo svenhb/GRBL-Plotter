@@ -3512,4 +3512,31 @@ Dessinez une signature dans la marge inférieure droite : échelle 0,1 ou infér
   <data name="nUDSTop.ToolTip" xml:space="preserve">
     <value>La plus petite largeur de stylo sera traduite à cette profondeur</value>
   </data>
+  <data name="LblNoise2.Text" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="LblNoise1.Text" xml:space="preserve">
+    <value>Amplitude</value>
+  </data>
+  <data name="NudNoiseDensity.ToolTip" xml:space="preserve">
+    <value>Amplitude maximale</value>
+  </data>
+  <data name="NudNoiseAmplitude.ToolTip" xml:space="preserve">
+    <value>Amplitude maximale</value>
+  </data>
+  <data name="cBImportGraphicNoise.Text" xml:space="preserve">
+    <value>Ajoute du bruit</value>
+  </data>
+  <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
+    <value>Générer des lignes bancales</value>
+  </data>
+  <data name="gBNoise.Text" xml:space="preserve">
+    <value>Bruit</value>
+  </data>
+  <data name="CbImportGraphicHatchFillNoise.Text" xml:space="preserve">
+    <value>Ajoute du bruit</value>
+  </data>
+  <data name="CbImportGraphicHatchFillNoise.ToolTip" xml:space="preserve">
+    <value>Générer des lignes bancales pour le remplissage des hachures uniquement</value>
+  </data>
 </root>

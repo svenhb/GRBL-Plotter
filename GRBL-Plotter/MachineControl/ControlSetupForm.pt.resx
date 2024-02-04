@@ -3521,4 +3521,31 @@ Desenhe uma assinatura na margem inferior direita: escala 0,1 ou inferior e use 
   <data name="nUDSTop.ToolTip" xml:space="preserve">
     <value>A menor largura da caneta será traduzida para esta profundidade</value>
   </data>
+  <data name="LblNoise2.Text" xml:space="preserve">
+    <value>Distância</value>
+  </data>
+  <data name="LblNoise1.Text" xml:space="preserve">
+    <value>Amplitude</value>
+  </data>
+  <data name="NudNoiseDensity.ToolTip" xml:space="preserve">
+    <value>Amplitude máxima</value>
+  </data>
+  <data name="NudNoiseAmplitude.ToolTip" xml:space="preserve">
+    <value>Amplitude máxima</value>
+  </data>
+  <data name="cBImportGraphicNoise.Text" xml:space="preserve">
+    <value>Adicionar ruído</value>
+  </data>
+  <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
+    <value>Gerar linhas instáveis</value>
+  </data>
+  <data name="gBNoise.Text" xml:space="preserve">
+    <value>Barulho</value>
+  </data>
+  <data name="CbImportGraphicHatchFillNoise.Text" xml:space="preserve">
+    <value>Adicionar ruído</value>
+  </data>
+  <data name="CbImportGraphicHatchFillNoise.ToolTip" xml:space="preserve">
+    <value>Gerar linhas instáveis ​​apenas para preenchimento de hachura</value>
+  </data>
 </root>

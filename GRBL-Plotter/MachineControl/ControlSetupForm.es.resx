@@ -3513,4 +3513,31 @@ Dibuja una firma en el margen inferior derecho: escala 0,1 o menos y usa “abaj
   <data name="nUDSTop.ToolTip" xml:space="preserve">
     <value>El ancho de pluma más pequeño se trasladará a esta profundidad.</value>
   </data>
+  <data name="LblNoise2.Text" xml:space="preserve">
+    <value>Distancia</value>
+  </data>
+  <data name="LblNoise1.Text" xml:space="preserve">
+    <value>Amplitud</value>
+  </data>
+  <data name="NudNoiseDensity.ToolTip" xml:space="preserve">
+    <value>amplitud máxima</value>
+  </data>
+  <data name="NudNoiseAmplitude.ToolTip" xml:space="preserve">
+    <value>amplitud máxima</value>
+  </data>
+  <data name="cBImportGraphicNoise.Text" xml:space="preserve">
+    <value>Añadir ruido</value>
+  </data>
+  <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
+    <value>Genera líneas tambaleantes</value>
+  </data>
+  <data name="gBNoise.Text" xml:space="preserve">
+    <value>Ruido</value>
+  </data>
+  <data name="CbImportGraphicHatchFillNoise.Text" xml:space="preserve">
+    <value>Añadir ruido</value>
+  </data>
+  <data name="CbImportGraphicHatchFillNoise.ToolTip" xml:space="preserve">
+    <value>Genera líneas tambaleantes solo para relleno de sombreado</value>
+  </data>
 </root>

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -35,6 +35,7 @@
  * 2023-04-27 add new tab 'filter'; highlight tabs with enabled options
  * 2023-08-01 check if (!e.Bounds.IsEmpty)
  * 2023-09-17 new option multi file import
+ * 2024-02-04 add noise option
 */
 
 using System;
@@ -264,6 +265,7 @@ namespace GrblPlotter
             CbImportGCTangential_CheckStateChanged(sender, e);
             CbImportGraphicHatchFill_CheckStateChanged(sender, e);
             CbPathOverlapEnable_CheckStateChanged(sender, e);
+            CbImportGraphicNoise_CheckStateChanged(sender, e);
 
             uint val = Properties.Settings.Default.importLoggerSettings;
             cBLogLevel1.Checked = (val & (uint)LogEnables.Level1) > 0;
@@ -2209,7 +2211,7 @@ namespace GrblPlotter
                     return (prop.importGraphicAddFrameEnable || prop.importGraphicMultiplyGraphicsEnable || prop.importGraphicLeadInEnable);// || prop.importGraphicLeadOutEnable);
                     break;
                 case 3:
-                    return (prop.importGCDragKnifeEnable || prop.importGCTangentialEnable || prop.importGraphicHatchFillEnable || prop.importGraphicExtendPathEnable);
+                    return (prop.importGCDragKnifeEnable || prop.importGCTangentialEnable || prop.importGraphicHatchFillEnable || prop.importGraphicExtendPathEnable || prop.importGraphicNoiseEnable);
                     break;
                 case 4:
                     return (prop.importGraphicClipEnable);
@@ -2342,6 +2344,17 @@ namespace GrblPlotter
         {
             Properties.Settings.Default.importImageSMin = Properties.Settings.Default.importGCPWMZero;
             Properties.Settings.Default.importImageSMax = Properties.Settings.Default.importGCPWMDown;
+        }
+
+        private void CbImportGraphicNoise_CheckStateChanged(object sender, EventArgs e)
+        {
+            bool enable = cBImportGraphicNoise.Checked;
+            NudNoiseAmplitude.Enabled = NudNoiseDensity.Enabled = enable;
+            if (enable)
+                gBNoise.BackColor = Color.Yellow;
+            else
+                gBNoise.BackColor = Color.WhiteSmoke;
+
         }
     }
 }

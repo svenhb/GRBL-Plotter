@@ -3787,4 +3787,31 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   <data name="nUDSTop.ToolTip" xml:space="preserve">
     <value>最小的笔宽度将转换为该深度</value>
   </data>
+  <data name="LblNoise2.Text" xml:space="preserve">
+    <value>距离</value>
+  </data>
+  <data name="LblNoise1.Text" xml:space="preserve">
+    <value>振幅</value>
+  </data>
+  <data name="NudNoiseDensity.ToolTip" xml:space="preserve">
+    <value>最大幅度</value>
+  </data>
+  <data name="NudNoiseAmplitude.ToolTip" xml:space="preserve">
+    <value>最大幅度</value>
+  </data>
+  <data name="cBImportGraphicNoise.Text" xml:space="preserve">
+    <value>添加噪音</value>
+  </data>
+  <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
+    <value>生成摆动线</value>
+  </data>
+  <data name="gBNoise.Text" xml:space="preserve">
+    <value>噪音</value>
+  </data>
+  <data name="CbImportGraphicHatchFillNoise.Text" xml:space="preserve">
+    <value>添加噪音</value>
+  </data>
+  <data name="CbImportGraphicHatchFillNoise.ToolTip" xml:space="preserve">
+    <value>仅为填充填充生成摆动线</value>
+  </data>
 </root>
