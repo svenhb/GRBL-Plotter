@@ -55,6 +55,7 @@
  * 2023-08-16 l:271 f:StartPath f:UpdateGUI pull request Speed up merge and sort #348
  * 2023-09-16 l:774 f:CreateGCode wrong call to RemoveOffset(minx,minx) -> miny
  * 2024-01-25 l:1100 f:CreateGCode export graphics dimension, to be able to calculate point-marker-size in 2Dview
+ * 2024-02-04 l:426 f:AddLine add noise to line
 */
 
 using System;
@@ -92,6 +93,7 @@ namespace GrblPlotter
 
         internal static Dimensions actualDimension = new Dimensions();
         private static Point lastPoint = new Point();       // System.Windows
+        private static bool lastPointIsStart = true;
         private static PathObject lastPath = new ItemPath();
         private static CreationOption lastOption = CreationOption.none;
 
@@ -112,6 +114,10 @@ namespace GrblPlotter
         private static int countAuxInfo = 0;
 
         private static int countWarnDimNotSet = 0;
+
+        //    private static bool noiseAdd = false;
+        private static double noiseAmplitude = 1;
+        private static double noiseDensity = 1;
 
         private static int pathAddOnCount = 0;
         //private static int pathAddOnPosition = 0;
@@ -242,6 +248,10 @@ namespace GrblPlotter
 
             pathBackground = new GraphicsPath();
 
+            //noiseAdd = Properties.Settings.Default.importGraphicNoiseEnable;
+            noiseAmplitude = (double)Properties.Settings.Default.importGraphicNoiseAmplitude;
+            noiseDensity = (double)Properties.Settings.Default.importGraphicNoiseDensity;
+
             completeGraphic = new List<PathObject>();
             finalPathList = new List<PathObject>();
             tileGraphicAll = new List<PathObject>();
@@ -256,6 +266,7 @@ namespace GrblPlotter
             lastPoint = new Point();
             lastPath = new ItemPath();
             lastOption = CreationOption.none;
+            lastPointIsStart = true;
 
             for (int i = 0; i < groupPropertiesCount.Length; i++)
                 groupPropertiesCount[i] = new Dictionary<string, int>();
@@ -321,10 +332,6 @@ namespace GrblPlotter
                 if (setNewId)
                     objectCount++;
 
-                //     double z = GetActualZ();                        // apply penWidth if enabled
-                //    if (useZ != null)
-                //        z = (double)useZ;
-
                 if (useZ != null)
                     actualPath = new ItemPath(xy, (double)useZ);
                 else
@@ -350,8 +357,7 @@ namespace GrblPlotter
             lastPoint = xy;
             setNewId = false;
             lastOption = CreationOption.none;
-
-            //    actualPathInfo.SetGroupAttribute((int)GroupOption.ByFill, "");  // reset fill
+            lastPointIsStart = true;
 
             return success;
         }
@@ -372,6 +378,9 @@ namespace GrblPlotter
             {
                 if (actualPath.Dimension.IsXYSet())
                 {
+                    if (graphicInformation.OptionNoise) 
+                        actualPath.Add(lastPoint, GetActualZ(), 0);
+
                     completeGraphic.Add(actualPath);
                     if (logCoordinates) { Logger.Trace("▲ StopPath completeGraphic.Add {0}", completeGraphic.Count); }
                 }
@@ -392,7 +401,7 @@ namespace GrblPlotter
             actualPath.Dimension.ResetDimension();          // 2020-10-31
         }
 
-        public static bool AddLine(float x, float y)
+        public static bool AddLine(double x, double y)
         { return AddLine(new Point(x, y)); }
         public static bool AddLine(Point xy, double? useZ = null)//, string cmt = "")
         {
@@ -412,12 +421,78 @@ namespace GrblPlotter
             { if (logCoordinates) Logger.Trace("⚠ AddLine SKIP, same coordinates! X:{0:0.00} Y:{1:0.00}", xy.X, xy.Y); }
             else
             {
-                actualPath.Add(xy, z, 0);
+                if (graphicInformation.OptionNoise)
+                {
+                    AddNoiseToPath(xy, z, actualPath.Path.Count, noiseAmplitude, noiseDensity);
+                }
+                else
+                {
+                    actualPath.Add(xy, z, 0);
+                }
                 if (logCoordinates) Logger.Trace("● AddLine to X:{0:0.00} Y:{1:0.00}  Z:{2:0.00} new dist {3:0.00}   start.X:{4:0.00}  start.Y:{5:0.00}", xy.X, xy.Y, z, actualPath.PathLength, actualPath.Start.X, actualPath.Start.Y);
                 actualDimension.SetDimensionXY(xy.X, xy.Y);
                 lastPoint = xy;
             }
+            lastPointIsStart = false;
             return success;
+        }
+        private static Point AddNoiseToPath(Point end, double z, int index, double amplitude, double density)
+        {
+            double x = lastPoint.X;
+            double y = lastPoint.Y;
+            double dx = end.X - lastPoint.X;
+            double dy = end.Y - lastPoint.Y;
+            double lineLength = Math.Sqrt(dx * dx + dy * dy);
+            double stepWidth = density;
+            int step = (int)Math.Ceiling(lineLength / stepWidth);
+
+            if (step == 0)
+            {
+                actualPath.Add(end, z, 0);
+                return end;
+            }
+            double dix = dx / step;
+            double diy = dy / step;
+
+            double fx, fy;
+            if (dx == 0)
+            { fx = 1; fy = 0; }
+            else if (dy == 0)
+            { fx = 0; fy = 1; }
+            else
+            {
+                fx = dy / lineLength; fy = dx / lineLength;
+            }
+            fx *= (amplitude / 2); ;
+            fy *= (-amplitude / 2); ;
+
+            float scale, n, nx = 0, ny = 0;
+            scale = 1;// (float)stepWidth / 2000;
+
+            Logger.Trace("AddNoiseToPath  step:{0}",step);
+
+            if (step <= 1)
+            {
+                n = Noise.CalcPixel2D(index, 1, scale);
+                nx = (float)fx * n;
+                ny = (float)fy * n;
+                actualPath.Add(new Point(x + nx, y + ny), z, 0);
+                //actualPath.Add(end, z, 0);
+            }
+            else
+            {
+                for (int i = 1; i < step; i++)
+                {
+                    n = Noise.CalcPixel2D(index, i, scale);
+                    nx = (float)fx * n;
+                    ny = (float)fy * n;
+                    x += dix;
+                    y += diy;
+                    actualPath.Add(new Point(x + nx, y + ny), z, 0);
+                }
+                actualPath.Add(end, z, 0);
+            }
+            return new Point(x + nx, y + ny);
         }
 
         public static bool AddDot(Point xy)//, string cmt = "")
@@ -469,7 +544,7 @@ namespace GrblPlotter
             { Logger.Error("AddCircle NaN skip the circle X:{0:0.00} Y:{1:0.00} r:{2:0.00} ", centerX, centerY, radius); success = false; }
             else
             {
-                actualPath.AddArc(new Point(centerX + radius, centerY), new Point(-radius, 0), GetActualZ(), true, graphicInformation.ConvertArcToLine);// convertArcToLine);
+                actualPath.AddArc(new Point(centerX + radius, centerY), new Point(-radius, 0), GetActualZ(), true, graphicInformation.ConvertArcToLine, graphicInformation.OptionNoise);// convertArcToLine);
                 actualPath.Info.CopyData(actualPathInfo);    // preset global info for GROUP
                 if (logCoordinates) Logger.Trace("  AddCircle to X:{0:0.00} Y:{1:0.00} r:{2:0.00}  angleStep:{3}", centerX, centerY, radius, Properties.Settings.Default.importGCSegment);
             }
@@ -488,7 +563,7 @@ namespace GrblPlotter
             else
             {
                 lastPoint = new Point(ax, ay);
-                actualPath.AddArc(new Point(ax, ay), new Point(ai, aj), GetActualZ(), isg2, graphicInformation.ConvertArcToLine);
+                actualPath.AddArc(new Point(ax, ay), new Point(ai, aj), GetActualZ(), isg2, graphicInformation.ConvertArcToLine, graphicInformation.OptionNoise);
                 actualPath.Info.CopyData(actualPathInfo);    // preset global info for GROUP
                 if (logCoordinates) Logger.Trace("  AddArc to X:{0:0.00} Y:{1:0.00} i:{2:0.00} j:{3:0.00}  angleStep:{4}  isG2:{5}", ax, ay, ai, aj, Properties.Settings.Default.importGCSegment, isg2);
             }
@@ -975,7 +1050,7 @@ namespace GrblPlotter
             if (!cancelByWorker && (graphicInformation.ApplyHatchFill || graphicInformation.OptionHatchFill))
             {
                 backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Generate hatch fill..." });
-                Logger.Info("{0} Hatch fill", loggerTag);
+                Logger.Info("{0} Hatch fill  distance:{1:0.00} angle:{2:0.00}", loggerTag, Properties.Settings.Default.importGraphicHatchFillDistance, Properties.Settings.Default.importGraphicHatchFillAngle);
                 HatchFill(completeGraphic);
                 SetHeaderInfo(string.Format(" Option: Hatch fill distance:{0:0.00} angle:{1:0.00}", Properties.Settings.Default.importGraphicHatchFillDistance, Properties.Settings.Default.importGraphicHatchFillAngle));
             }

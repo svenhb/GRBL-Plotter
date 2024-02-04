@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -29,12 +29,14 @@
  * 2023-05-31 add OptionSFromWidth
  * 2023-08-16 l:388 f:IsSameAs pull request Speed up merge and sort #348
  * 2023-08-31 l:686 f:AddArc limit stepwidth - issue #353
+ * 2024-02-04 l:720 f:AddArc add noise to line
 */
 
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -94,6 +96,7 @@ namespace GrblPlotter
             public bool OptionDragTool { get; set; }		// Path modifications
             public bool OptionTangentialAxis { get; set; }
             public bool OptionHatchFill { get; set; }
+            public bool OptionNoise { get; set; }
             public bool OptionExtendPath { get; set; }
 
             public bool OptionClipCode { get; set; }		// Clipping
@@ -136,6 +139,7 @@ namespace GrblPlotter
                     OptionZFromRadius = Properties.Settings.Default.importSVGCircleToDotZ;
                     OptionRepeatCode = Properties.Settings.Default.importRepeatEnable;
                     OptionHatchFill = Properties.Settings.Default.importGraphicHatchFillEnable;
+                    OptionNoise = Properties.Settings.Default.importGraphicNoiseEnable;
                     OptionClipCode = Properties.Settings.Default.importGraphicClipEnable;
                     OptionNodesOnly = Properties.Settings.Default.importSVGNodesOnly;
                     OptionTangentialAxis = Properties.Settings.Default.importGCTangentialEnable;
@@ -149,7 +153,7 @@ namespace GrblPlotter
                 OptionCodeSortDimension = Properties.Settings.Default.importGraphicSortDimension;
                 OptionFeedFromToolTable = Properties.Settings.Default.importGCToolTableUse;
 
-                ConvertArcToLine = Properties.Settings.Default.importGCNoArcs || OptionClipCode || OptionDragTool || OptionHatchFill;// only for SVG: || ApplyHatchFill;
+                ConvertArcToLine = Properties.Settings.Default.importGCNoArcs || OptionClipCode || OptionDragTool || OptionHatchFill || OptionNoise;// only for SVG: || ApplyHatchFill;
                 ConvertArcToLine = ConvertArcToLine || OptionSpecialWireBend || OptionSpecialDevelop || OptionRampOnPenDown || OptionDashPattern;
             }
             public void ResetOptions(bool enableFigures)
@@ -167,6 +171,7 @@ namespace GrblPlotter
                 OptionCodeOffset = false;
                 ApplyHatchFill = false;
                 OptionHatchFill = false;
+                OptionNoise = false;
                 OptionClipCode = false;
                 OptionNodesOnly = false;
                 OptionTangentialAxis = false;
@@ -215,6 +220,7 @@ namespace GrblPlotter
                 if (Properties.Settings.Default.importGraphicMultiplyGraphicsEnable) importOptions += "<Multiply> ";
                 if (OptionCodeSortDistance) importOptions += "<Sort objects> ";
                 if (ApplyHatchFill) importOptions += "<SVG fill> ";
+                if (OptionNoise) importOptions += "<Noise> ";
                 if (OptionHatchFill) importOptions += "<Hatch fill> ";
                 if (OptionRepeatCode && !Properties.Settings.Default.importRepeatComplete) importOptions += "<Repeat paths> ";
                 if (OptionRepeatCode && Properties.Settings.Default.importRepeatComplete) importOptions += "<Repeat code> ";
@@ -671,29 +677,28 @@ namespace GrblPlotter
                 End = tmp;
             }
 
-            public void AddArc(Point tmp, Point centerIJ, double dz, bool isCW, bool convertToLine)
+            public void AddArc(Point tmp, Point centerIJ, double dz, bool isCW, bool convertToLine, bool addNoise)
             {
                 GCodeMotion motion;
+
+                ArcProperties arcMove;
+                Point p1 = Round(End);
+                Point p2 = Round(tmp);
+                arcMove = GcodeMath.GetArcMoveProperties(p1, p2, centerIJ, isCW);
+                PathLength += Math.Abs(arcMove.radius * arcMove.angleDiff);           // distance from last to current point
+                Dimension.SetDimensionArc(new XyPoint(End), new XyPoint(tmp), centerIJ.X, centerIJ.Y, isCW);
+
                 if (!convertToLine)
                 {
                     motion = new GCodeArc(tmp, centerIJ, isCW, dz);
-                    Dimension.SetDimensionArc(new XyPoint(End), new XyPoint(tmp), centerIJ.X, centerIJ.Y, isCW);
                     Path.Add(motion);
-
-                    ArcProperties arcMove;
-                    Point p1 = Round(End);
-                    Point p2 = Round(tmp);
-                    arcMove = GcodeMath.GetArcMoveProperties(p1, p2, centerIJ, isCW);
-                    PathLength += Math.Abs(arcMove.radius * arcMove.angleDiff);           // distance from last to current point
-                    End = tmp;
                 }
                 else
                 {
-                    ArcProperties arcMove;
-                    Point p1 = Round(End);
-                    Point p2 = Round(tmp);
+                    double radius;
+                    double noiseAmplitude = (double)Properties.Settings.Default.importGraphicNoiseAmplitude/2;
+
                     double x, y;
-                    arcMove = GcodeMath.GetArcMoveProperties(p1, p2, centerIJ, isCW);
                     double stepwidth = (double)Properties.Settings.Default.importGCSegment;
 					
 					if (Properties.Settings.Default.importRemoveShortMovesEnable)		// 2023-08-31 issue #353
@@ -702,42 +707,41 @@ namespace GrblPlotter
                     if (stepwidth > arcMove.radius / 2)
                     { stepwidth = arcMove.radius / 5; }
                     double step = Math.Asin(stepwidth / arcMove.radius);     // in RAD
-                                                                             //                    double step = Math.Asin((double)Properties.Settings.Default.importGCSegment / arcMove.radius);     // in RAD
                     if (step > Math.Abs(arcMove.angleDiff))
                         step = Math.Abs(arcMove.angleDiff / 2);
 
-                    if (arcMove.angleDiff > 0)   //(da > 0)                                             // if delta >0 go counter clock wise
+                    if (arcMove.angleDiff > 0) // counter clock wise
                     {
                         for (double angle = (arcMove.angleStart + step); angle < (arcMove.angleStart + arcMove.angleDiff); angle += step)
                         {
-                            x = arcMove.center.X + arcMove.radius * Math.Cos(angle);
-                            y = arcMove.center.Y + arcMove.radius * Math.Sin(angle);
+                            if (addNoise)
+                                radius = arcMove.radius + (Noise.CalcPixel2D(Path.Count, (int)angle, 1)* noiseAmplitude);
+                            else
+                                radius = arcMove.radius;
+                            x = arcMove.center.X + radius * Math.Cos(angle);
+                            y = arcMove.center.Y + radius * Math.Sin(angle);
                             motion = new GCodeLine(new Point(x, y), dz);
-                            Dimension.SetDimensionXY(x, y);
                             Path.Add(motion);
-                            PathLength += PointDistance(End, tmp);    // distance from last to current point
-                            End = tmp;
                         }
                     }
-                    else                                                       // else go clock wise
+                    else    // else go clock wise
                     {
                         for (double angle = (arcMove.angleStart - step); angle > (arcMove.angleStart + arcMove.angleDiff); angle -= step)
                         {
-                            x = arcMove.center.X + arcMove.radius * Math.Cos(angle);
-                            y = arcMove.center.Y + arcMove.radius * Math.Sin(angle);
+                            if (addNoise)
+                                radius = arcMove.radius + (Noise.CalcPixel2D(Path.Count, (int)angle, 1) * noiseAmplitude);
+                            else
+                                radius = arcMove.radius;
+                            x = arcMove.center.X + radius * Math.Cos(angle);
+                            y = arcMove.center.Y + radius * Math.Sin(angle);
                             motion = new GCodeLine(new Point(x, y), dz);
-                            Dimension.SetDimensionXY(x, y);
                             Path.Add(motion);
-                            PathLength += PointDistance(End, tmp);    // distance from last to current point
-                            End = tmp;
                         }
                     }
                     motion = new GCodeLine(new Point(tmp.X, tmp.Y), dz);
-                    Dimension.SetDimensionXY(tmp.X, tmp.Y);
                     Path.Add(motion);
-                    PathLength += PointDistance(End, tmp);    // distance from last to current point
-                    End = tmp;
                 }
+                End = tmp;
                 if (Start == End)
                     IsClosed = true;
             }

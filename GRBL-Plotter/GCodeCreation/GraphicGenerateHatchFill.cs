@@ -29,7 +29,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Web.Hosting;
 using System.Windows;
 
 namespace GrblPlotter
@@ -109,7 +109,7 @@ namespace GrblPlotter
 
                         if (inset2)
                         {
-                            if (!ShrinkPaths(tmpPath, insetVal)) 
+                            if (!ShrinkPaths(tmpPath, insetVal))
                             {
                                 ShrinkPaths(tmpPath2, -insetVal);
                                 tmpPath.Clear();
@@ -209,6 +209,11 @@ namespace GrblPlotter
             if (logModification) Logger.Trace("  AddLinesToGraphic");
             Point start, end;
             bool switchColor = graphicInformation.ApplyHatchFill;
+
+            bool noiseAdd = !Properties.Settings.Default.importGraphicNoiseEnable && Properties.Settings.Default.importGraphicHatchFillNoise;
+            double noiseAmplitude = (double)Properties.Settings.Default.importGraphicNoiseAmplitude;
+            double noiseDensity = (double)Properties.Settings.Default.importGraphicNoiseDensity;
+
             for (int i = 0; i < HatchLines.Count; i++)
             {
                 if ((i % 2) > 0)
@@ -225,8 +230,67 @@ namespace GrblPlotter
                 //        actualPath.Info.PathGeometry += "_hatch";
                 actualPath.Info.PathGeometry = "hatch_fill_" + actualPath.Info.PathGeometry;
 
+                if (noiseAdd)
+                    AddNoiseToLine(start, end, i, noiseAmplitude, noiseDensity);
+
                 AddLine(end);
                 StopPath();
+            }
+        }
+
+        private static void AddNoiseToLine(Point start, Point end, int index, double amplitude, double density)
+        {
+            double x = start.X;
+            double y = start.Y;
+            double dx = end.X - start.X;
+            double dy = end.Y - start.Y;
+            double lineLength = Math.Sqrt(dx * dx + dy * dy);
+            double stepWidth = density;
+            int step = (int)Math.Ceiling(lineLength / stepWidth);
+
+            if (step == 0)
+            {
+                return;
+            }
+            double dix = dx / step;
+            double diy = dy / step;
+
+            double fx, fy;
+            if (dx == 0)
+            { fx = 1; fy = 0; }
+            else if (dy == 0)
+            { fx = 0; fy = 1; }
+            else
+            {
+                fx = dy / lineLength; fy = dx / lineLength;
+            }
+            fx *= (amplitude / 2); ;
+            fy *= (-amplitude / 2); ;
+
+            float scale, n, nx = 0, ny = 0;
+            scale = 1;// (float)stepWidth / 2000;
+
+            Logger.Trace("AddNoiseToPath  step:{0}", step);
+
+            if (step <= 1)
+            {
+                n = Noise.CalcPixel2D(index, 1, scale);
+                nx = (float)fx * n;
+                ny = (float)fy * n;
+                AddLine(x + nx, y + ny);
+            }
+            else
+            {
+                for (int i = 1; i < step; i++)
+                {
+                    n = Noise.CalcPixel2D(index, i, scale);
+                    nx = (float)fx * n;
+                    ny = (float)fy * n;
+                    x += dix;
+                    y += diy;
+                    AddLine(x + nx, y + ny);
+                }
+                AddLine(x + nx, y + ny);
             }
         }
 
@@ -369,18 +433,18 @@ namespace GrblPlotter
             // Remove duplicate intersections
             int i_last = 1;
             IntersectionInfo last = d_and_a[0];
-			
-			for (int i=1; i < d_and_a.Count; i++)
+
+            for (int i = 1; i < d_and_a.Count; i++)
             {
                 //Logger.Trace(" s1:{0:0.000}  slast:{1:0.000}  diff:{2:0.000}", d_and_a[i].s , last.s, Math.Abs(d_and_a[i].s - last.s));
-                if ((Math.Abs(d_and_a[i].s - last.s)) > 0.0000000001)  
+                if ((Math.Abs(d_and_a[i].s - last.s)) > 0.0000000001)
                 {
                     d_and_a[i_last] = last = d_and_a[i];    // different positions - take over
                     i_last++;
                 }
-				else
-				{
-					d_and_a[--i_last] = last = d_and_a[i];    // same positions - skip both 2023-11-07
+                else
+                {
+                    d_and_a[--i_last] = last = d_and_a[i];    // same positions - skip both 2023-11-07
                 }
             }
 
