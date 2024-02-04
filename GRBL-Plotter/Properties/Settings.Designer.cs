@@ -6702,6 +6702,54 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal importImageEngravingAngle {
+            get {
+                return ((decimal)(this["importImageEngravingAngle"]));
+            }
+            set {
+                this["importImageEngravingAngle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importImageEngravingCross {
+            get {
+                return ((bool)(this["importImageEngravingCross"]));
+            }
+            set {
+                this["importImageEngravingCross"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importImageEngravingOneDirection {
+            get {
+                return ((bool)(this["importImageEngravingOneDirection"]));
+            }
+            set {
+                this["importImageEngravingOneDirection"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importImageEngravingTopDown {
+            get {
+                return ((bool)(this["importImageEngravingTopDown"]));
+            }
+            set {
+                this["importImageEngravingTopDown"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool importImageGrayAsZ {
             get {
@@ -6805,6 +6853,18 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["importImageSLasermodeStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importImageSLaserOnly {
+            get {
+                return ((bool)(this["importImageSLaserOnly"]));
+            }
+            set {
+                this["importImageSLaserOnly"] = value;
             }
         }
         
@@ -9234,61 +9294,49 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal importImageEngravingAngle {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGraphicNoiseEnable {
             get {
-                return ((decimal)(this["importImageEngravingAngle"]));
+                return ((bool)(this["importGraphicNoiseEnable"]));
             }
             set {
-                this["importImageEngravingAngle"] = value;
+                this["importGraphicNoiseEnable"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool importImageEngravingOneDirection {
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal importGraphicNoiseAmplitude {
             get {
-                return ((bool)(this["importImageEngravingOneDirection"]));
+                return ((decimal)(this["importGraphicNoiseAmplitude"]));
             }
             set {
-                this["importImageEngravingOneDirection"] = value;
+                this["importGraphicNoiseAmplitude"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal importGraphicNoiseDensity {
+            get {
+                return ((decimal)(this["importGraphicNoiseDensity"]));
+            }
+            set {
+                this["importGraphicNoiseDensity"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool importImageSLaserOnly {
+        public bool importGraphicHatchFillNoise {
             get {
-                return ((bool)(this["importImageSLaserOnly"]));
+                return ((bool)(this["importGraphicHatchFillNoise"]));
             }
             set {
-                this["importImageSLaserOnly"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool importImageEngravingCross {
-            get {
-                return ((bool)(this["importImageEngravingCross"]));
-            }
-            set {
-                this["importImageEngravingCross"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool importImageEngravingTopDown {
-            get {
-                return ((bool)(this["importImageEngravingTopDown"]));
-            }
-            set {
-                this["importImageEngravingTopDown"] = value;
+                this["importGraphicHatchFillNoise"] = value;
             }
         }
     }

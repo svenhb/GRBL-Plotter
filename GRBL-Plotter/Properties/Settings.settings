@@ -1565,6 +1565,9 @@
     <Setting Name="importGraphicHatchFillInsetEnable2" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importGraphicHatchFillNoise" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="importGraphicLargestLast" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -1593,6 +1596,15 @@
       <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="importGraphicMultiplyGraphicsEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGraphicNoiseAmplitude" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importGraphicNoiseDensity" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importGraphicNoiseEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGraphicOffsetOrigin" Type="System.Boolean" Scope="User">
