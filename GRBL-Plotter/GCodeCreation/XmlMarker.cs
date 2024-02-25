@@ -663,6 +663,13 @@ namespace GrblPlotter
         public static bool GetGroup(int lineNR)
         { return GetGroup(lineNR, 0); }
 
+        public static int GetStartLineOfGroup(int index)
+        {
+            if ((index >=0) && (index < listGroups.Count))
+                return listGroups[index].LineStart;
+            return -1;
+        }
+
         public static bool GetGroup(int lineNR, int search)
         {
             if (listGroups.Count > 0)

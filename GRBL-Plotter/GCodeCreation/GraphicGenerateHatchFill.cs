@@ -476,7 +476,7 @@ namespace GrblPlotter
                     f_length_to_be_removed_from_pt1 = d_and_a[j].s2;
                     f_length_to_be_removed_from_pt2 = d_and_a[j + 1].s1;
                     if ((f_initial_hatch_length - (f_length_to_be_removed_from_pt1 + f_length_to_be_removed_from_pt2)) <= f_min_allowed_hatch_length)
-                    { Logger.Trace("Just don't insert"); }     //  # Just don't insert it into the hatch list
+                    { }//                    Logger.Trace("Just don't insert"); }     //  # Just don't insert it into the hatch list
                     else
                     {
                         Point pt1 = RelativeControlPointPosition(f_length_to_be_removed_from_pt1, x2 - x1, y2 - y1, x1, y1);
