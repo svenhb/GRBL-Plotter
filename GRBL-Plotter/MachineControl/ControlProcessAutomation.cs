@@ -226,6 +226,7 @@ namespace GrblPlotter
                     dataGridView1.Rows[i].Cells[2].Style.BackColor = Color.White;
                     SetDGVToolTip(i, "");
                 }
+                BtnDataIndexClear.BackColor = GbData.BackColor = default;
                 TbProcessInfo.Text = "Start process automation:\r\n";
                 processStep = 0;
                 isRunning = true;
@@ -390,6 +391,7 @@ namespace GrblPlotter
         {
             Logger.Trace("🛠🛠🛠 CheckData  called by:{0}", (new System.Diagnostics.StackTrace()).GetFrame(1).GetMethod().Name);
             TbProcessInfo.Text = "CHECK DATA\r\n";
+            BtnDataIndexClear.BackColor = GbData.BackColor = default;
             combo = null;
             string tmp;
             string action;
