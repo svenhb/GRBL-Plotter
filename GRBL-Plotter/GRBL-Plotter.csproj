@@ -30,7 +30,7 @@
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.7.2.0</ApplicationVersion>
+    <ApplicationVersion>1.7.3.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -229,6 +229,9 @@
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GUI\MainFormProcessAutomation.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GUI\MainFormSimulatePath.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Form</SubType>
@@ -314,6 +317,7 @@
       <DependentUpon>ControlSerialForm.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MachineControl\ControlSetupFormIni.cs" />
     <Compile Include="MachineControl\ControlSetupUseCase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -468,13 +472,28 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResStrings.resx</DependentUpon>
     </Compile>
-    <Content Include="data\automations\example.xml">
+    <Content Include="data\automations\example_beep_melody.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\automations\example2.xml">
+    <Content Include="data\automations\example_camera_fiducial_correction.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\automations\example_probe_fiducial.xml">
+    <Content Include="data\automations\example_probe_fiducial_correction.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\automations\example_sounds.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\automations\File_load\file_load.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\automations\File_load\file_load_list.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\automations\Name_tag\Name_tag.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\automations\Name_tag\Name_Tag_Data.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\examples\addon_frame_stamp1.svg">
@@ -829,6 +848,27 @@
     <Content Include="data\buttons\Pen_dot_Servo.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\automations\Name_tag\Name_Tag_CreateText.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\automations\automation__Name_tag.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\automations\disable_options.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\automations\Name_tag\Name_tag_CreateText_Segoe.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\automations\Name_tag\Name_tag_setup_use_laser.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="data\automations\automation_File_load.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="data\automations\File_load\file_load_setup_use_z.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\app.manifest" />
     <None Include="Resources\LeadInOut.png" />
     <None Include="Resources\rndOff.png" />
