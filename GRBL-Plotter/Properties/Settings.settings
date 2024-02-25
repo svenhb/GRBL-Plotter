@@ -308,29 +308,50 @@
     <Setting Name="createShapeY" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">20</Value>
     </Setting>
-    <Setting Name="createTextFontDistance" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0</Value>
+    <Setting Name="createTextAlignment" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="createTextFontColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">WindowText</Value>
     </Setting>
     <Setting Name="createTextFontIndex" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="createTextFontSize" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">10</Value>
-    </Setting>
     <Setting Name="createTextFontText" Type="System.String" Scope="User">
       <Value Profile="(Default)">Test</Value>
     </Setting>
-    <Setting Name="createTextLineBreak" Type="System.Decimal" Scope="User">
+    <Setting Name="createTextHersheyFontName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">cBFont</Value>
+    </Setting>
+    <Setting Name="createTextHersheyFontSize" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="createTextHersheyLetterDistance" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="createTextHersheyLineBreak" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">100</Value>
     </Setting>
-    <Setting Name="createTextLineBreakEnable" Type="System.Boolean" Scope="User">
+    <Setting Name="createTextHersheyLineBreakEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="createTextLineDistance" Type="System.Decimal" Scope="User">
+    <Setting Name="createTextHersheyLineDistance" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="createTextHersheySelect" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="createTextSystemFont" Type="System.Drawing.Font" Scope="User">
       <Value Profile="(Default)">Microsoft Sans Serif, 12pt</Value>
+    </Setting>
+    <Setting Name="createTextSystemFontSize" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">16</Value>
+    </Setting>
+    <Setting Name="createTextSystemSizeX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="createTextSystemSizeY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="ctrl4thInvert" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -1037,14 +1058,17 @@
     <Setting Name="importBarcode1DLines" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">4</Value>
     </Setting>
+    <Setting Name="importBarcode1DName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
     <Setting Name="importBarcode1DScanGap" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.2</Value>
     </Setting>
+    <Setting Name="importBarcode1DSelect" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="importBarcode1DText" Type="System.String" Scope="User">
       <Value Profile="(Default)">123</Value>
-    </Setting>
-    <Setting Name="importBarcode1DType" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">31</Value>
     </Setting>
     <Setting Name="importBarcode2DBorder" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -2132,6 +2156,30 @@
     <Setting Name="probingWorkpieceDiameter" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">20</Value>
     </Setting>
+    <Setting Name="processCounter" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="processCounterDigits" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">6</Value>
+    </Setting>
+    <Setting Name="processCounterFill" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="processCounterFront" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Fixed front - </Value>
+    </Setting>
+    <Setting Name="processCounterRear" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> - Fixed rear</Value>
+    </Setting>
+    <Setting Name="processDataDelimeter" Type="System.String" Scope="User">
+      <Value Profile="(Default)">; Semicolon</Value>
+    </Setting>
+    <Setting Name="processDataIndex" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="processDataLastFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
     <Setting Name="processLastFile" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
@@ -2141,11 +2189,14 @@
     <Setting Name="processOpenOnProgStart" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="processSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
     <Setting Name="processSplitDistance" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">300</Value>
+      <Value Profile="(Default)">400</Value>
     </Setting>
     <Setting Name="processTimerInterval" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">1000</Value>
+      <Value Profile="(Default)">500</Value>
     </Setting>
     <Setting Name="projectorColorBackground" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Black</Value>

@@ -12,7 +12,7 @@ namespace GrblPlotter.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.8.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.9.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -1249,13 +1249,25 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal createTextFontDistance {
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int createTextAlignment {
             get {
-                return ((decimal)(this["createTextFontDistance"]));
+                return ((int)(this["createTextAlignment"]));
             }
             set {
-                this["createTextFontDistance"] = value;
+                this["createTextAlignment"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("WindowText")]
+        public string createTextFontColor {
+            get {
+                return ((string)(this["createTextFontColor"]));
+            }
+            set {
+                this["createTextFontColor"] = value;
             }
         }
         
@@ -1273,18 +1285,6 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public decimal createTextFontSize {
-            get {
-                return ((decimal)(this["createTextFontSize"]));
-            }
-            set {
-                this["createTextFontSize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Test")]
         public string createTextFontText {
             get {
@@ -1297,37 +1297,85 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("100")]
-        public decimal createTextLineBreak {
+        [global::System.Configuration.DefaultSettingValueAttribute("cBFont")]
+        public string createTextHersheyFontName {
             get {
-                return ((decimal)(this["createTextLineBreak"]));
+                return ((string)(this["createTextHersheyFontName"]));
             }
             set {
-                this["createTextLineBreak"] = value;
+                this["createTextHersheyFontName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public decimal createTextHersheyFontSize {
+            get {
+                return ((decimal)(this["createTextHersheyFontSize"]));
+            }
+            set {
+                this["createTextHersheyFontSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal createTextHersheyLetterDistance {
+            get {
+                return ((decimal)(this["createTextHersheyLetterDistance"]));
+            }
+            set {
+                this["createTextHersheyLetterDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public decimal createTextHersheyLineBreak {
+            get {
+                return ((decimal)(this["createTextHersheyLineBreak"]));
+            }
+            set {
+                this["createTextHersheyLineBreak"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool createTextLineBreakEnable {
+        public bool createTextHersheyLineBreakEnable {
             get {
-                return ((bool)(this["createTextLineBreakEnable"]));
+                return ((bool)(this["createTextHersheyLineBreakEnable"]));
             }
             set {
-                this["createTextLineBreakEnable"] = value;
+                this["createTextHersheyLineBreakEnable"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("15")]
-        public decimal createTextLineDistance {
+        public decimal createTextHersheyLineDistance {
             get {
-                return ((decimal)(this["createTextLineDistance"]));
+                return ((decimal)(this["createTextHersheyLineDistance"]));
             }
             set {
-                this["createTextLineDistance"] = value;
+                this["createTextHersheyLineDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool createTextHersheySelect {
+            get {
+                return ((bool)(this["createTextHersheySelect"]));
+            }
+            set {
+                this["createTextHersheySelect"] = value;
             }
         }
         
@@ -4170,6 +4218,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string importBarcode1DName {
+            get {
+                return ((string)(this["importBarcode1DName"]));
+            }
+            set {
+                this["importBarcode1DName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0.2")]
         public decimal importBarcode1DScanGap {
             get {
@@ -4182,6 +4242,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importBarcode1DSelect {
+            get {
+                return ((bool)(this["importBarcode1DSelect"]));
+            }
+            set {
+                this["importBarcode1DSelect"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("123")]
         public string importBarcode1DText {
             get {
@@ -4189,18 +4261,6 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["importBarcode1DText"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("31")]
-        public int importBarcode1DType {
-            get {
-                return ((int)(this["importBarcode1DType"]));
-            }
-            set {
-                this["importBarcode1DType"] = value;
             }
         }
         
@@ -6282,6 +6342,18 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGraphicHatchFillNoise {
+            get {
+                return ((bool)(this["importGraphicHatchFillNoise"]));
+            }
+            set {
+                this["importGraphicHatchFillNoise"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool importGraphicLargestLast {
             get {
@@ -6397,6 +6469,42 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["importGraphicMultiplyGraphicsEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal importGraphicNoiseAmplitude {
+            get {
+                return ((decimal)(this["importGraphicNoiseAmplitude"]));
+            }
+            set {
+                this["importGraphicNoiseAmplitude"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal importGraphicNoiseDensity {
+            get {
+                return ((decimal)(this["importGraphicNoiseDensity"]));
+            }
+            set {
+                this["importGraphicNoiseDensity"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGraphicNoiseEnable {
+            get {
+                return ((bool)(this["importGraphicNoiseEnable"]));
+            }
+            set {
+                this["importGraphicNoiseEnable"] = value;
             }
         }
         
@@ -8502,6 +8610,102 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal processCounter {
+            get {
+                return ((decimal)(this["processCounter"]));
+            }
+            set {
+                this["processCounter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("6")]
+        public decimal processCounterDigits {
+            get {
+                return ((decimal)(this["processCounterDigits"]));
+            }
+            set {
+                this["processCounterDigits"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string processCounterFill {
+            get {
+                return ((string)(this["processCounterFill"]));
+            }
+            set {
+                this["processCounterFill"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Fixed front - ")]
+        public string processCounterFront {
+            get {
+                return ((string)(this["processCounterFront"]));
+            }
+            set {
+                this["processCounterFront"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(" - Fixed rear")]
+        public string processCounterRear {
+            get {
+                return ((string)(this["processCounterRear"]));
+            }
+            set {
+                this["processCounterRear"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("; Semicolon")]
+        public string processDataDelimeter {
+            get {
+                return ((string)(this["processDataDelimeter"]));
+            }
+            set {
+                this["processDataDelimeter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal processDataIndex {
+            get {
+                return ((decimal)(this["processDataIndex"]));
+            }
+            set {
+                this["processDataIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string processDataLastFile {
+            get {
+                return ((string)(this["processDataLastFile"]));
+            }
+            set {
+                this["processDataLastFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string processLastFile {
             get {
@@ -8538,7 +8742,19 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("300")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Size processSize {
+            get {
+                return ((global::System.Drawing.Size)(this["processSize"]));
+            }
+            set {
+                this["processSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("400")]
         public int processSplitDistance {
             get {
                 return ((int)(this["processSplitDistance"]));
@@ -8550,7 +8766,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        [global::System.Configuration.DefaultSettingValueAttribute("500")]
         public decimal processTimerInterval {
             get {
                 return ((decimal)(this["processTimerInterval"]));
@@ -9294,49 +9510,37 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool importGraphicNoiseEnable {
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public decimal createTextSystemSizeX {
             get {
-                return ((bool)(this["importGraphicNoiseEnable"]));
+                return ((decimal)(this["createTextSystemSizeX"]));
             }
             set {
-                this["importGraphicNoiseEnable"] = value;
+                this["createTextSystemSizeX"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public decimal importGraphicNoiseAmplitude {
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public decimal createTextSystemSizeY {
             get {
-                return ((decimal)(this["importGraphicNoiseAmplitude"]));
+                return ((decimal)(this["createTextSystemSizeY"]));
             }
             set {
-                this["importGraphicNoiseAmplitude"] = value;
+                this["createTextSystemSizeY"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public decimal importGraphicNoiseDensity {
+        [global::System.Configuration.DefaultSettingValueAttribute("16")]
+        public float createTextSystemFontSize {
             get {
-                return ((decimal)(this["importGraphicNoiseDensity"]));
+                return ((float)(this["createTextSystemFontSize"]));
             }
             set {
-                this["importGraphicNoiseDensity"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool importGraphicHatchFillNoise {
-            get {
-                return ((bool)(this["importGraphicHatchFillNoise"]));
-            }
-            set {
-                this["importGraphicHatchFillNoise"] = value;
+                this["createTextSystemFontSize"] = value;
             }
         }
     }
