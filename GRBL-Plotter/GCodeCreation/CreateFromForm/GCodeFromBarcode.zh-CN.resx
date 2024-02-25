@@ -216,4 +216,25 @@
   <data name="CbInsertCode.Text" xml:space="preserve">
     <value>将代码插入二维视图（位置 0;0）</value>
   </data>
+  <data name="btnGenerateBarcode1D.ToolTip" xml:space="preserve">
+    <value>计算条形码并生成G代码</value>
+  </data>
+  <data name="btnGenerateBarcode2D.ToolTip" xml:space="preserve">
+    <value>计算QR.Code并生成G-Code</value>
+  </data>
+  <data name="btnCheckBarcode1D.ToolTip" xml:space="preserve">
+    <value>计算条形码并显示图像</value>
+  </data>
+  <data name="CbBarcodeSelect.ToolTip" xml:space="preserve">
+    <value>注意：某些条形码只能与数字/数字一起使用。</value>
+  </data>
+  <data name="btnCheckBarcode2D.ToolTip" xml:space="preserve">
+    <value>计算二维码并显示图像</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>网上帮助</value>
+  </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>将此窗口的设置保存为 INI 文件</value>
+  </data>
 </root>

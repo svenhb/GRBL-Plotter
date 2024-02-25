@@ -1295,7 +1295,7 @@ namespace GrblPlotter
             CheckInsideShape();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void BtnHelp_Click(object sender, EventArgs e)
         {
             string url = "https://grbl-plotter.de/index.php?";
             try

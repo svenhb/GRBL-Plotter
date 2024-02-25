@@ -216,4 +216,25 @@
   <data name="CbInsertCode.Text" xml:space="preserve">
     <value>Vložte kód do 2D zobrazení (na pozici 0;0)</value>
   </data>
+  <data name="btnGenerateBarcode1D.ToolTip" xml:space="preserve">
+    <value>Vypočítejte čárový kód a vygenerujte G-kód</value>
+  </data>
+  <data name="btnGenerateBarcode2D.ToolTip" xml:space="preserve">
+    <value>Vypočítejte QR.Code a vygenerujte G-Code</value>
+  </data>
+  <data name="btnCheckBarcode1D.ToolTip" xml:space="preserve">
+    <value>Vypočítejte čárový kód a ukažte obrázek</value>
+  </data>
+  <data name="CbBarcodeSelect.ToolTip" xml:space="preserve">
+    <value>Poznámka: Některé čárové kódy lze použít pouze s čísly/číslicemi.</value>
+  </data>
+  <data name="btnCheckBarcode2D.ToolTip" xml:space="preserve">
+    <value>Vypočítejte QR kód a ukažte obrázek</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Online podpora</value>
+  </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>Uložte nastavení tohoto okna jako INI soubor</value>
+  </data>
 </root>

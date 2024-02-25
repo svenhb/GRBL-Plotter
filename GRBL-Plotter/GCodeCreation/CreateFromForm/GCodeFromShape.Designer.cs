@@ -983,7 +983,7 @@
             this.button3.Tag = "id=form-shape";
             this.toolTip1.SetToolTip(this.button3, resources.GetString("button3.ToolTip"));
             this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.BtnHelp_Click);
             // 
             // GCodeFromShape
             // 

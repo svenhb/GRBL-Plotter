@@ -279,4 +279,16 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Metinden G Kodu Oluşturun</value>
   </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>Bu pencerenin ayarlarını INI dosyası olarak kaydeder</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="cBImportGraphicNoise.Text" xml:space="preserve">
+    <value>Gürültü ekle</value>
+  </data>
+  <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
+    <value>[Ayar - Grafikleri içe aktarma - Yolu içe aktarma - Yol değişiklikleri] bölümünde titrek çizgiler ve ayarlar oluşturur</value>
+  </data>
 </root>

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -37,7 +37,8 @@
  * 2023-11-02 l:139 f:FillFontSelector check if index is in range
  * 2023-11-24 l:414 f:BtnSelectFont_Click  add try/catch on fontDialog1.ShowDialog - Problem: if a newly installed font was selected, after closing the dialog with 'ok': 
 																			"main Form ThreadException - Only TrueType fonts are supported. This is not a TrueType font."
- *																			
+ * 2024-02-06 add process automation
+ * 2024-02-22 update proprties after loading ini-file
 */
 
 using System;
@@ -54,6 +55,7 @@ using System.Windows.Forms;
 // Hershey code from: http://www.evilmadscientist.com/2011/hershey-text-an-inkscape-extension-for-engraving-fonts/
 namespace GrblPlotter
 {
+
     public partial class GCodeFromText : Form
     {
         private static Font textFont;
@@ -61,11 +63,11 @@ namespace GrblPlotter
         private static Font initFont;
         private static Color initColor;
 
-
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private static readonly CultureInfo culture = CultureInfo.InvariantCulture;
 
+#region load_close
         public GCodeFromText()
         {
             this.Icon = Properties.Resources.Icon;
@@ -78,6 +80,9 @@ namespace GrblPlotter
 
         private void TextForm_Load(object sender, EventArgs e)
         {
+            initFont = textFont = tBText.Font;
+            initColor = textColor = tBText.ForeColor;
+
             FillFontSelector();
 
             Location = Properties.Settings.Default.locationTextForm;
@@ -107,29 +112,73 @@ namespace GrblPlotter
             }
             CBToolTable_CheckedChanged(sender, e);
 
-            nUDFontSize.Value = Properties.Settings.Default.createTextFontSize;
-            nUDFontLine.Value = Properties.Settings.Default.createTextLineDistance;
-            nUDFontDistance.Value = Properties.Settings.Default.createTextFontDistance;
-            nUDLineBreak.Value = Properties.Settings.Default.createTextLineBreak;
-
-            initFont = tBText.Font;
-            textFont = Properties.Settings.Default.createTextSystemFont;
-            LblInfoFont.Text = textFont.FontFamily.Name.ToString();
-            initColor = textColor = tBText.ForeColor;
-
-            Logger.Info("TextForm_Load initFont:'{0}'", initFont);
-            Logger.Info("TextForm_Load textFont:'{0}'", textFont);
-
-            if ((textFont == null) || (textFont.Size == null))
-            {
-                Logger.Error("TextForm_Load font unknown '{0}'", textFont);
-                textFont = initFont;
-            }
-
-            ShowTextSize();
-            RbFont1_CheckedChanged(sender, e);
+            UpdateIniVariables();
 
             LoadPicture("svg");
+        }
+
+        private bool iniWasSet = false;
+        public void UpdateIniVariables()
+        {
+            textFont = Properties.Settings.Default.createTextSystemFont;
+
+            float newSize = Properties.Settings.Default.createTextSystemFontSize;
+
+            if ((newSize > 0) && (newSize < Single.MaxValue))
+            {
+                textFont = new Font(textFont.Name, newSize, textFont.Style);//, GraphicsUnit.Millimeter);
+                tBText.Font = textFont;
+                ShowTextSize();
+            }
+
+            iniWasSet = true;
+
+            LblInfoFont.Text = textFont.FontFamily.Name.ToString();
+            textColor = ColorTranslator.FromHtml(Properties.Settings.Default.createTextFontColor);     //tBText.ForeColor;
+
+            int tmp = Properties.Settings.Default.createTextAlignment;
+            if (tmp == 1) { tBText.TextAlign = HorizontalAlignment.Left; }
+            else if (tmp == 2) { tBText.TextAlign = HorizontalAlignment.Center; }
+            else if (tmp == 3) { tBText.TextAlign = HorizontalAlignment.Right; }
+
+            string tmpText = Properties.Settings.Default.createTextHersheyFontName;
+            if ((tmpText == "") || (tmpText == "cBFont"))
+                cBFont.SelectedIndex = 0;
+            else
+            {
+                for (int i = 0; i < cBFont.Items.Count; i++)
+                {
+                    if (cBFont.Items[i].ToString() == tmpText)
+                    {
+                        cBFont.SelectedIndex = i;
+                        break;
+                    }
+                }
+            }
+
+            if (!Properties.Settings.Default.createTextHersheySelect)
+            {   RbFont2.PerformClick();  }
+            else
+            {   RbFont1_CheckedChanged(null, null); }
+
+            tBText.Text = Properties.Settings.Default.createTextFontText;
+            tBText.Invalidate();
+            ShowTextSize();
+        }
+
+        internal void SetText(string tmp, string opt, double size)
+        {
+            tBText.Text = tmp;
+            /*	if (opt.ToLower().Contains("w"))
+                {	if (size > 0) {	NUDWidth.Value = (decimal)size;}
+                    BtnSetWidth.PerformClick();
+                }
+                if (opt.ToLower().Contains("h"))
+                {	if (size > 0) {	NUDHeight.Value = (decimal)size;}
+                    BtnSetHeight.PerformClick();
+                }
+            */
+            btnApply.PerformClick();
         }
 
         private void FillFontSelector()
@@ -138,35 +187,37 @@ namespace GrblPlotter
             cBFont.Items.AddRange(GCodeFromFont.GetHersheyFontNames());
             cBFont.Items.AddRange(GCodeFromFont.FontFileName());
 
-            int tmpIndex = Properties.Settings.Default.createTextFontIndex;
-            if (cBFont.Items.Count > 0)
+            string tmpText = Properties.Settings.Default.createTextHersheyFontName;
+            if (tmpText == "")
+                cBFont.SelectedIndex = 0;
+            else
             {
-                if ((tmpIndex < 0) || (tmpIndex >= cBFont.Items.Count))
-                { cBFont.SelectedIndex = tmpIndex = Properties.Settings.Default.createTextFontIndex = 0; }
-                else
-                { cBFont.SelectedIndex = tmpIndex; }
+                for (int i = 0; i < cBFont.Items.Count; i++)
+                {
+                    if (cBFont.Items[i].ToString() == tmpText)
+                    {
+                        cBFont.SelectedIndex = i;
+                        break;
+                    }
+                }
             }
         }
 
         private void TextForm_FormClosing(object sender, FormClosingEventArgs e)
-        { SaveSettings(); }
-
+        {   SaveSettings();
+            Logger.Trace("++++++ GCodeFromText STOP ++++++");
+        }
+#endregion
         private void SaveSettings()
         {
-            Properties.Settings.Default.createTextFontSize = nUDFontSize.Value;
-            Properties.Settings.Default.createTextLineDistance = nUDFontLine.Value;
-            Properties.Settings.Default.createTextFontDistance = nUDFontDistance.Value;
-            Properties.Settings.Default.createTextLineBreak = nUDLineBreak.Value;
-
-            Logger.Trace("++++++ GCodeFromText STOP ++++++");
-            Properties.Settings.Default.createTextFontIndex = cBFont.SelectedIndex;
             Properties.Settings.Default.locationTextForm = Location;
-
             Properties.Settings.Default.createTextSystemFont = textFont;
-
+			Properties.Settings.Default.createTextSystemFontSize = textFont.Size;
+            Properties.Settings.Default.createTextFontColor = ColorTranslator.ToHtml(textColor);
             Properties.Settings.Default.Save();
         }
 
+#region form_controls
         // get text, break it into chars, get path, etc... This event needs to be assigned in MainForm to poll text
         private void BtnApply_Click(object sender, EventArgs e)     // in MainForm:  _text_form.btnApply.Click += getGCodeFromText;
         { CreateText(); }
@@ -176,7 +227,7 @@ namespace GrblPlotter
             VisuGCode.pathBackground.Reset();
             Graphic.CleanUp();
             Graphic.Init(Graphic.SourceType.Text, "", null, null);
-            Graphic.graphicInformation.ApplyHatchFill = CbHatchFill.Checked;    // false;			// no SVG import with fillColor "none"
+            Graphic.graphicInformation.ApplyHatchFill = CbHatchFill.Checked;
             Graphic.graphicInformation.OptionNodesOnly = false;
             Graphic.graphicInformation.OptionCodeSortDistance = false;
             Graphic.graphicInformation.OptionZFromWidth = false;
@@ -206,7 +257,10 @@ namespace GrblPlotter
                 SaveSettings();
                 GCodeFromFont.Reset();
                 GCodeFromFont.GCText = tBText.Text;
-                GCodeFromFont.GCFontName = cBFont.Items[cBFont.SelectedIndex].ToString();
+                GCodeFromFont.GCFontName = cBFont.Text;// cBFont.Items[cBFont.SelectedIndex].ToString();
+                Logger.Trace("cbfont via index: '{0}'  name: '{1}'", GCodeFromFont.GCFontName, cBFont.Text);
+
+
                 GCodeFromFont.GCHeight = (double)nUDFontSize.Value;
                 GCodeFromFont.GCFontDistance = (double)nUDFontDistance.Value;
                 GCodeFromFont.GCLineDistance = (double)(nUDFontLine.Value / nUDFontSize.Value);
@@ -216,7 +270,7 @@ namespace GrblPlotter
                 GCodeFromFont.GCPauseLine = cBPauseLine.Checked;
                 GCodeFromFont.GCConnectLetter = cBConnectLetter.Checked;
 
-                if (Properties.Settings.Default.createTextLineBreakEnable)
+                if (Properties.Settings.Default.createTextHersheyLineBreakEnable)
                     GCodeFromFont.GetCode((double)nUDLineBreak.Value);      // do automatic page break
                 else
                     GCodeFromFont.GetCode(0);   // no page break
@@ -229,6 +283,7 @@ namespace GrblPlotter
             else
             {
                 Graphic.SetFont(tBText.Font, cBPauseChar.Checked);      // CreateText
+                Logger.Trace("CreateText  fontsize:{0}  size:{1}", textFont.Size, tBText.Font.Size);
 
                 StringAlignment alignment = StringAlignment.Near;
                 if (RbAlign2.Checked) { alignment = StringAlignment.Center; }
@@ -236,7 +291,7 @@ namespace GrblPlotter
 
                 Graphic.AddText(GetWrappedText(), alignment);
             }
-
+            Logger.Trace("●●●● Create Text");
             Graphic.CreateGCode();      	// result is saved as stringbuilder in Graphic.GCode;
         }
 
@@ -318,7 +373,6 @@ namespace GrblPlotter
             cBTool.Enabled = enabled;
         }
 
-        #region pan_zoom
         private void BtnLoadGraphic_Click(object sender, EventArgs e)
         {
             string s = (sender as Button).Text.ToLower(culture);
@@ -425,6 +479,7 @@ namespace GrblPlotter
                     LblInfoFont.Text = textFont.FontFamily.Name.ToString();
                     textColor = tBText.ForeColor = fontDialog1.Color;
                     ShowTextSize();
+                    SaveSettings();
                 }
             }
             catch (Exception err)
@@ -438,9 +493,11 @@ namespace GrblPlotter
 
         private void RbAlign1_CheckedChanged(object sender, EventArgs e)
         {
-            if (RbAlign1.Checked) { tBText.TextAlign = HorizontalAlignment.Left; }
-            else if (RbAlign2.Checked) { tBText.TextAlign = HorizontalAlignment.Center; }
-            else if (RbAlign3.Checked) { tBText.TextAlign = HorizontalAlignment.Right; }
+            int tmp = 0;
+            if (RbAlign1.Checked) { tBText.TextAlign = HorizontalAlignment.Left; tmp = 1; }
+            else if (RbAlign2.Checked) { tBText.TextAlign = HorizontalAlignment.Center; tmp = 2; }
+            else if (RbAlign3.Checked) { tBText.TextAlign = HorizontalAlignment.Right; tmp = 3; }
+            Properties.Settings.Default.createTextAlignment = tmp;
         }
 
         private void RbFont1_CheckedChanged(object sender, EventArgs e)
@@ -479,12 +536,17 @@ namespace GrblPlotter
             try
             {
                 if ((textFont.Size != null) && (textFont.FontFamily != null))
-                    Graphic.SetFont(textFont);      // ShowTextSize
+                    Graphic.SetFont(textFont);
                 else
-                { textFont = initFont; Graphic.SetFont(textFont); }// ShowTextSize
+                {
+                    textFont = initFont;
+                    Graphic.SetFont(textFont);
+                }
 
                 RectangleF b = Graphic.GetTextBounds(GetWrappedText(), StringAlignment.Near);
                 LblInfoSize.Text = string.Format("{0} pt", textFont.Size);
+			//	Properties.Settings.Default.createTextSystemFontSize = textFont.Size;
+
                 LblInfoWidth.Text = string.Format("{0,9:0.00}", b.Width);
                 LblInfoHeight.Text = string.Format("{0,9:0.00}", b.Height);
             }
@@ -513,7 +575,7 @@ namespace GrblPlotter
             float newSize = (float)NUDWidth.Value * textFont.Size / b.Width;
             if ((newSize > 0) && (newSize < Single.MaxValue))
             {
-                textFont = new Font(textFont.Name, newSize, textFont.Style);
+                textFont = new Font(textFont.Name, newSize, textFont.Style);//,GraphicsUnit.Millimeter);
                 tBText.Font = textFont;
                 ShowTextSize();
             }
@@ -527,8 +589,7 @@ namespace GrblPlotter
             float newSize = (float)NUDHeight.Value * textFont.Size / b.Height;
             if ((newSize > 0) && (newSize < Single.MaxValue))
             {
-                textFont = new Font(textFont.Name, newSize, textFont.Style);
-                tBText.Font = textFont;
+                textFont = new Font(textFont.Name, newSize, textFont.Style);//, GraphicsUnit.Millimeter);
                 ShowTextSize();
             }
             else
@@ -569,7 +630,7 @@ namespace GrblPlotter
             }
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void BtnHelp_Click(object sender, EventArgs e)
         {
             string url = "https://grbl-plotter.de/index.php?";
             try
@@ -583,5 +644,85 @@ namespace GrblPlotter
                 MessageBox.Show("Could not open the link: " + err.Message, "Error");
             }
         }
+
+        private void BtnSaveIni_Click(object sender, EventArgs e)
+        {
+            SaveSettings();
+            try
+            {
+                SaveFileDialog sfd = new SaveFileDialog
+                {
+                    Filter = "Machine Ini files (*.ini)|*.ini",
+                    FileName = "CreateText_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".ini"
+                };
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    var MyIni = new IniFile(sfd.FileName);
+                    MyIni.WriteSection(IniFile.sectionText);	//"Create Text");    
+                    Logger.Info("Save machine parameters as {0}", sfd.FileName);
+                }
+                sfd.Dispose();
+            }
+            catch (Exception err)
+            {
+                EventCollector.StoreException("BtnSaveIni_Click " + err.Message);
+                Logger.Error(err, "BtnSaveIni_Click ");
+                MessageBox.Show("SaveMachineParameters: \r\n" + err.Message, "Error");
+            }
+        }
+GraphicsUnit units = GraphicsUnit.Point;
+        private void TbText_FontChanged(object sender, EventArgs e)
+        {
+            Logger.Trace("tBText_FontChanged  iniWasSet:{0}", iniWasSet);
+            if (iniWasSet)
+            {
+                float newSize = Properties.Settings.Default.createTextSystemFontSize;
+                if ((newSize > 0) && (newSize < Single.MaxValue))
+                {
+                    textFont = new Font(textFont.Name, newSize, textFont.Style, GraphicsUnit.Millimeter);
+                    tBText.Font = textFont;
+                    ShowTextSize();
+                }
+            }
+
+            iniWasSet = false;
+        }
+    }
+
+    public partial class IniFile
+    {
+        internal static string[,] keyValueText = {
+            {"Hershey Font",                "createTextHersheyFontName" },
+            {"Hershey Letter Height",       "createTextHersheyFontSize" },
+            {"Hershey Letter Distance",     "createTextHersheyLetterDistance"   },
+            {"Hershey Line Distance",       "createTextHersheyLineDistance" },
+            {"Hershey Line Break",          "createTextHersheyLineBreak"    },
+            {"Hershey Line Break Enable",   "createTextHersheyLineBreakEnable"  },
+            {"System Font",                 "createTextSystemFont"  },
+            {"System Font Size",            "createTextSystemFontSize"  },
+            {"System Font Set Size X",      "createTextSystemSizeX"  },
+            {"System Font Set Size Y",      "createTextSystemSizeY"  },
+            {"System Font Color",           "createTextFontColor"   },
+            {"Font Use Hershey",            "createTextHersheySelect"   },
+            {"Alignment",                   "createTextAlignment"   },
+            {"Text",                        "createTextFontText"    },
+
+            {"Hatch Fill Enable",           "importGraphicHatchFillEnable"},
+            {"Hatch Fill Cross",            "importGraphicHatchFillCross"},
+            {"Hatch Fill Distance",         "importGraphicHatchFillDistance"},
+            {"Hatch Fill Angle",            "importGraphicHatchFillAngle"},
+            {"Hatch Fill Angle Inc Enable", "importGraphicHatchFillAngleInc"},
+            {"Hatch Fill Angle Inc",        "importGraphicHatchFillAngle2" },
+            {"Hatch Fill Inset Enable",     "importGraphicHatchFillInsetEnable"},
+            {"Hatch Fill Inset Enable2",    "importGraphicHatchFillInsetEnable2"},
+            {"Hatch Fill Delete Path",      "importGraphicHatchFillDeletePath"},
+            {"Hatch Fill Inset Distance",   "importGraphicHatchFillInset"},
+            {"Hatch Fill Noise",            "importGraphicHatchFillNoise" },
+
+            {"Noise Enable","importGraphicNoiseEnable"},
+            {"Noise Amplitude","importGraphicNoiseAmplitude"},
+            {"Noise Densitiy","importGraphicNoiseDensity"}
+        };
+        internal static string sectionText = "Create Text";
     }
 }

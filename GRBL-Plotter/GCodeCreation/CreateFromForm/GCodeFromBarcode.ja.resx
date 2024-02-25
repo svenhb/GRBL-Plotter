@@ -216,4 +216,25 @@
   <data name="CbInsertCode.Text" xml:space="preserve">
     <value>2Dビューにコードを挿入します（位置0; 0）</value>
   </data>
+  <data name="btnGenerateBarcode1D.ToolTip" xml:space="preserve">
+    <value>バーコードを計算してGコードを生成する</value>
+  </data>
+  <data name="btnGenerateBarcode2D.ToolTip" xml:space="preserve">
+    <value>QR.Codeを計算してGコードを生成</value>
+  </data>
+  <data name="btnCheckBarcode1D.ToolTip" xml:space="preserve">
+    <value>バーコードを計算して画像を表示</value>
+  </data>
+  <data name="CbBarcodeSelect.ToolTip" xml:space="preserve">
+    <value>注: 一部のバーコードは数字/数字でのみ使用できます。</value>
+  </data>
+  <data name="btnCheckBarcode2D.ToolTip" xml:space="preserve">
+    <value>QRコードを計算して画像を表示</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>このウィンドウの設定をINIファイルとして保存します</value>
+  </data>
 </root>

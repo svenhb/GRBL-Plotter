@@ -216,4 +216,25 @@
   <data name="CbInsertCode.Text" xml:space="preserve">
     <value>Вставить код в 2D-вид (в позиции 0;0)</value>
   </data>
+  <data name="btnGenerateBarcode1D.ToolTip" xml:space="preserve">
+    <value>Рассчитать штрих-код и сгенерировать G-код</value>
+  </data>
+  <data name="btnGenerateBarcode2D.ToolTip" xml:space="preserve">
+    <value>Рассчитайте QR.Code и сгенерируйте G-код</value>
+  </data>
+  <data name="btnCheckBarcode1D.ToolTip" xml:space="preserve">
+    <value>Рассчитать штрих-код и показать изображение</value>
+  </data>
+  <data name="CbBarcodeSelect.ToolTip" xml:space="preserve">
+    <value>Примечание. Некоторые штрих-коды можно использовать только с цифрами.</value>
+  </data>
+  <data name="btnCheckBarcode2D.ToolTip" xml:space="preserve">
+    <value>Рассчитайте QR-код и покажите изображение</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>Сохраните настройки этого окна как INI-файл.</value>
+  </data>
 </root>

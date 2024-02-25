@@ -279,4 +279,16 @@
   <data name="BtnSetHeight.ToolTip" xml:space="preserve">
     <value>حساب وتعيين حجم الخط للوصول إلى ارتفاع النص المحدد</value>
   </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>يحفظ إعدادات هذه النافذة كملف INI</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>مساعدة على الانترنت</value>
+  </data>
+  <data name="cBImportGraphicNoise.Text" xml:space="preserve">
+    <value>زد الضوضاء</value>
+  </data>
+  <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
+    <value>يُنشئ خطوطًا متذبذبة، وإعدادات في [الإعداد - استيراد الرسومات - استيراد المسار - تعديلات المسار]</value>
+  </data>
 </root>

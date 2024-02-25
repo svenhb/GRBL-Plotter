@@ -1477,6 +1477,7 @@ namespace GrblPlotter
             var MyIni = new IniFile(path);
             Logger.Trace("Load use case: '{0}'", path);
             MyIni.ReadAll();    // ReadImport();
+         //   UpdateIniVariables();
             Properties.Settings.Default.useCaseLastLoaded = lBUseCase.Text; ;
             lblLastUseCase.Text = lBUseCase.Text;
 

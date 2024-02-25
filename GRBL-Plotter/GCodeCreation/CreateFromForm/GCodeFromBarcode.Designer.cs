@@ -16,8 +16,8 @@
             if (disposing && (components != null))
             {
                 components.Dispose();
-				qrCodeImage.Dispose();
-				barcodeImage.Dispose();
+				if (qrCodeImage!=null) qrCodeImage.Dispose();
+				if (barcodeImage!=null) barcodeImage.Dispose();
 	//			qrCode.Dispose();
             }
             base.Dispose(disposing);
@@ -31,6 +31,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GCodeForBarcode));
             this.btnGenerateBarcode1D = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -49,7 +50,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.nUDScanGap1D = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.CbBarcodeSelect = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.gBLogo = new System.Windows.Forms.GroupBox();
             this.btnLogoInvert = new System.Windows.Forms.Button();
@@ -84,7 +85,9 @@
             this.nUDScanGap2D = new System.Windows.Forms.NumericUpDown();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.CbInsertCode = new System.Windows.Forms.CheckBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.BtnHelp = new System.Windows.Forms.Button();
+            this.BtnSaveIni = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -107,6 +110,7 @@
             // 
             resources.ApplyResources(this.btnGenerateBarcode1D, "btnGenerateBarcode1D");
             this.btnGenerateBarcode1D.Name = "btnGenerateBarcode1D";
+            this.toolTip1.SetToolTip(this.btnGenerateBarcode1D, resources.GetString("btnGenerateBarcode1D.ToolTip"));
             this.btnGenerateBarcode1D.UseVisualStyleBackColor = true;
             this.btnGenerateBarcode1D.Click += new System.EventHandler(this.BtnGenerateBarcodeClick);
             // 
@@ -122,6 +126,7 @@
             // 
             resources.ApplyResources(this.btnGenerateBarcode2D, "btnGenerateBarcode2D");
             this.btnGenerateBarcode2D.Name = "btnGenerateBarcode2D";
+            this.toolTip1.SetToolTip(this.btnGenerateBarcode2D, resources.GetString("btnGenerateBarcode2D.ToolTip"));
             this.btnGenerateBarcode2D.UseVisualStyleBackColor = true;
             this.btnGenerateBarcode2D.Click += new System.EventHandler(this.BtnGenerateQRCode_Click);
             // 
@@ -132,6 +137,7 @@
             resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -148,7 +154,7 @@
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.nUDScanGap1D);
             this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.comboBox1);
+            this.tabPage1.Controls.Add(this.CbBarcodeSelect);
             this.tabPage1.Controls.Add(this.btnGenerateBarcode1D);
             resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Name = "tabPage1";
@@ -165,6 +171,7 @@
             // 
             resources.ApplyResources(this.btnCheckBarcode1D, "btnCheckBarcode1D");
             this.btnCheckBarcode1D.Name = "btnCheckBarcode1D";
+            this.toolTip1.SetToolTip(this.btnCheckBarcode1D, resources.GetString("btnCheckBarcode1D.ToolTip"));
             this.btnCheckBarcode1D.UseVisualStyleBackColor = true;
             this.btnCheckBarcode1D.Click += new System.EventHandler(this.BtnCheckBarcode1D_Click);
             // 
@@ -258,12 +265,14 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
-            // comboBox1
+            // CbBarcodeSelect
             // 
-            this.comboBox1.FormattingEnabled = true;
-            resources.ApplyResources(this.comboBox1, "comboBox1");
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
+            this.CbBarcodeSelect.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "importBarcode1DName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbBarcodeSelect.FormattingEnabled = true;
+            resources.ApplyResources(this.CbBarcodeSelect, "CbBarcodeSelect");
+            this.CbBarcodeSelect.Name = "CbBarcodeSelect";
+            this.CbBarcodeSelect.Text = global::GrblPlotter.Properties.Settings.Default.importBarcode1DName;
+            this.toolTip1.SetToolTip(this.CbBarcodeSelect, resources.GetString("CbBarcodeSelect.ToolTip"));
             // 
             // tabPage2
             // 
@@ -449,6 +458,7 @@
             // 
             resources.ApplyResources(this.btnCheckBarcode2D, "btnCheckBarcode2D");
             this.btnCheckBarcode2D.Name = "btnCheckBarcode2D";
+            this.toolTip1.SetToolTip(this.btnCheckBarcode2D, resources.GetString("btnCheckBarcode2D.ToolTip"));
             this.btnCheckBarcode2D.UseVisualStyleBackColor = true;
             this.btnCheckBarcode2D.Click += new System.EventHandler(this.BtnCheckBarcode2D_Click);
             // 
@@ -537,20 +547,32 @@
             this.CbInsertCode.Name = "CbInsertCode";
             this.CbInsertCode.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // BtnHelp
             // 
-            this.button3.BackColor = System.Drawing.Color.SkyBlue;
-            resources.ApplyResources(this.button3, "button3");
-            this.button3.Name = "button3";
-            this.button3.Tag = "id=form-barcode";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.BtnHelp.BackColor = System.Drawing.Color.SkyBlue;
+            resources.ApplyResources(this.BtnHelp, "BtnHelp");
+            this.BtnHelp.Name = "BtnHelp";
+            this.BtnHelp.Tag = "id=form-barcode";
+            this.toolTip1.SetToolTip(this.BtnHelp, resources.GetString("BtnHelp.ToolTip"));
+            this.BtnHelp.UseVisualStyleBackColor = false;
+            this.BtnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
+            // 
+            // BtnSaveIni
+            // 
+            this.BtnSaveIni.BackColor = System.Drawing.Color.SkyBlue;
+            resources.ApplyResources(this.BtnSaveIni, "BtnSaveIni");
+            this.BtnSaveIni.Name = "BtnSaveIni";
+            this.BtnSaveIni.Tag = "id=form-text";
+            this.toolTip1.SetToolTip(this.BtnSaveIni, resources.GetString("BtnSaveIni.ToolTip"));
+            this.BtnSaveIni.UseVisualStyleBackColor = false;
+            this.BtnSaveIni.Click += new System.EventHandler(this.BtnSaveIni_Click);
             // 
             // GCodeForBarcode
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.BtnSaveIni);
+            this.Controls.Add(this.BtnHelp);
             this.Controls.Add(this.CbInsertCode);
             this.Controls.Add(this.tabControl1);
             this.Name = "GCodeForBarcode";
@@ -589,7 +611,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox CbBarcodeSelect;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnCheckBarcode1D;
         private System.Windows.Forms.Label lblWidth1D;
@@ -635,6 +657,8 @@
         private System.Windows.Forms.TextBox tBWLAN1;
         private System.Windows.Forms.RadioButton radioButton1;
         public System.Windows.Forms.CheckBox CbInsertCode;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button BtnHelp;
+        private System.Windows.Forms.Button BtnSaveIni;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

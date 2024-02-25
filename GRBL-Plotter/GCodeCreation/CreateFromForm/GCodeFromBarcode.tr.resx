@@ -216,4 +216,25 @@
   <data name="CbInsertCode.Text" xml:space="preserve">
     <value>Kodu 2B görünüme ekleyin (0;0 konumunda)</value>
   </data>
+  <data name="btnGenerateBarcode1D.ToolTip" xml:space="preserve">
+    <value>Barkodu hesaplayın ve G Kodu oluşturun</value>
+  </data>
+  <data name="btnGenerateBarcode2D.ToolTip" xml:space="preserve">
+    <value>QR.Code'u hesaplayın ve G-Code'u oluşturun</value>
+  </data>
+  <data name="btnCheckBarcode1D.ToolTip" xml:space="preserve">
+    <value>Barkodu hesapla ve resmi göster</value>
+  </data>
+  <data name="CbBarcodeSelect.ToolTip" xml:space="preserve">
+    <value>Not: Bazı barkodlar yalnızca sayı/rakamlarla kullanılabilir.</value>
+  </data>
+  <data name="btnCheckBarcode2D.ToolTip" xml:space="preserve">
+    <value>QR Kodunu hesaplayın ve resmi gösterin</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>Bu pencerenin ayarlarını INI dosyası olarak kaydedin</value>
+  </data>
 </root>

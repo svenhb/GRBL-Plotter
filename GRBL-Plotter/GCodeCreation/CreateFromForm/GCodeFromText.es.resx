@@ -273,4 +273,16 @@
   <data name="BtnSetHeight.ToolTip" xml:space="preserve">
     <value>Calcule y configure el tamaño de fuente para alcanzar la altura del texto dada</value>
   </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>Guarda la configuración de esta ventana como archivo INI</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="cBImportGraphicNoise.Text" xml:space="preserve">
+    <value>Añadir ruido</value>
+  </data>
+  <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
+    <value>Genera líneas tambaleantes, configuraciones en [Configuración - Importación de gráficos - Importación de ruta - Modificaciones de ruta]</value>
+  </data>
 </root>

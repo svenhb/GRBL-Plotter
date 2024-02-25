@@ -216,4 +216,25 @@
   <data name="CbInsertCode.Text" xml:space="preserve">
     <value>أدخل الرمز في العرض ثنائي الأبعاد (في الموضع 0 ؛ 0)</value>
   </data>
+  <data name="btnGenerateBarcode1D.ToolTip" xml:space="preserve">
+    <value>حساب الباركود وإنشاء G-Code</value>
+  </data>
+  <data name="btnGenerateBarcode2D.ToolTip" xml:space="preserve">
+    <value>حساب QR.Code وإنشاء G-Code</value>
+  </data>
+  <data name="btnCheckBarcode1D.ToolTip" xml:space="preserve">
+    <value>حساب الباركود وإظهار الصورة</value>
+  </data>
+  <data name="CbBarcodeSelect.ToolTip" xml:space="preserve">
+    <value>ملاحظة: يمكن استخدام بعض الرموز الشريطية مع الأرقام/الأرقام فقط.</value>
+  </data>
+  <data name="btnCheckBarcode2D.ToolTip" xml:space="preserve">
+    <value>حساب رمز الاستجابة السريعة وإظهار الصورة</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>مساعدة على الانترنت</value>
+  </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>احفظ إعدادات هذه النافذة كملف INI</value>
+  </data>
 </root>

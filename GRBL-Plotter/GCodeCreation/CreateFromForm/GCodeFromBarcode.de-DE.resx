@@ -189,4 +189,25 @@
   <data name="CbInsertCode.Text" xml:space="preserve">
     <value>Code in 2D-Ansicht einfügen (an Position 0;0)</value>
   </data>
+  <data name="btnGenerateBarcode1D.ToolTip" xml:space="preserve">
+    <value>Barcode berechnen und G-Code generieren</value>
+  </data>
+  <data name="btnGenerateBarcode2D.ToolTip" xml:space="preserve">
+    <value>QR.Code berechnen und G-Code generieren</value>
+  </data>
+  <data name="btnCheckBarcode1D.ToolTip" xml:space="preserve">
+    <value>Barcode berechnen und Bild anzeigen</value>
+  </data>
+  <data name="CbBarcodeSelect.ToolTip" xml:space="preserve">
+    <value>Hinweis: Einige Barcodes können nur mit Zahlen/Ziffern verwendet werden.</value>
+  </data>
+  <data name="btnCheckBarcode2D.ToolTip" xml:space="preserve">
+    <value>QR-Code berechnen und Bild anzeigen</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>Speichern Sie die Einstellungen dieses Fensters als INI-Datei</value>
+  </data>
 </root>

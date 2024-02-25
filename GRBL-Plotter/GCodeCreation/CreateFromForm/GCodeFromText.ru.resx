@@ -279,4 +279,16 @@
   <data name="BtnSetHeight.ToolTip" xml:space="preserve">
     <value>Рассчитать и установить размер шрифта для достижения заданной высоты текста</value>
   </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>Сохраняет настройки этого окна в виде INI-файла.</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="cBImportGraphicNoise.Text" xml:space="preserve">
+    <value>Добавлять шум</value>
+  </data>
+  <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
+    <value>Генерирует шаткие линии, настройки в [Настройка - Импорт графики - Импорт пути - Изменение пути]</value>
+  </data>
 </root>

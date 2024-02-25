@@ -279,4 +279,16 @@
   <data name="BtnSetHeight.ToolTip" xml:space="preserve">
     <value>Vypočítejte a nastavte velikost písma tak, aby dosáhla dané výšky textu</value>
   </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>Uloží nastavení tohoto okna jako INI soubor</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Online podpora</value>
+  </data>
+  <data name="cBImportGraphicNoise.Text" xml:space="preserve">
+    <value>Přidat šum</value>
+  </data>
+  <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
+    <value>Generuje vratké čáry, nastavení v [Nastavení - Import grafiky - Import cesty - Úpravy cesty]</value>
+  </data>
 </root>

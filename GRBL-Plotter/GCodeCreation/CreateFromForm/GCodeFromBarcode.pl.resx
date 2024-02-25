@@ -219,4 +219,25 @@
   <data name="$this.Text" xml:space="preserve">
     <value>G-Code kodu kreskowego</value>
   </data>
+  <data name="btnGenerateBarcode1D.ToolTip" xml:space="preserve">
+    <value>Oblicz kod kreskowy i wygeneruj G-Code</value>
+  </data>
+  <data name="btnGenerateBarcode2D.ToolTip" xml:space="preserve">
+    <value>Oblicz kod QR i wygeneruj kod G</value>
+  </data>
+  <data name="btnCheckBarcode1D.ToolTip" xml:space="preserve">
+    <value>Oblicz kod kreskowy i pokaż obraz</value>
+  </data>
+  <data name="CbBarcodeSelect.ToolTip" xml:space="preserve">
+    <value>Uwaga: niektórych kodów kreskowych można używać wyłącznie z liczbami/cyframi.</value>
+  </data>
+  <data name="btnCheckBarcode2D.ToolTip" xml:space="preserve">
+    <value>Oblicz kod QR i pokaż obraz</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Pomoc online</value>
+  </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>Zapisz ustawienia tego okna jako plik INI</value>
+  </data>
 </root>

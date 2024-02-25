@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2020-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2020-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
 				and using https://github.com/codebude/QRCoder
  * 2020-12-09 line 166, 264 no return of Gcode, must be picked up at Graphic.GCode
  * 2021-07-14 code clean up / code quality
+ * 2024-02-10 add process automation
 */
 
 using QRCoder;
@@ -32,8 +33,6 @@ using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 using static QRCoder.PayloadGenerator;
-
-//#pragma warning disable CA1303    // Do not pass literals as localized parameters
 
 namespace GrblPlotter
 {
@@ -56,21 +55,60 @@ namespace GrblPlotter
         private void GCodeForBarcode_Load(object sender, EventArgs e)
         {
             for (int i = 0; i < Enum.GetNames(typeof(BarcodeCreation.TYPE)).Length; i++)
-                comboBox1.Items.Add(((BarcodeCreation.TYPE)i).ToString());
-            comboBox1.SelectedIndex = Properties.Settings.Default.importBarcode1DType;
+                CbBarcodeSelect.Items.Add(((BarcodeCreation.TYPE)i).ToString());
+
+            UpdateIniVariables();
         }
 
-        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        public void UpdateIniVariables()
         {
-            Properties.Settings.Default.importBarcode1DType = comboBox1.SelectedIndex;
+            string tmpText = Properties.Settings.Default.importBarcode1DName;
+            if (tmpText == "")
+            { CbBarcodeSelect.SelectedIndex = 0; }
+            else
+            {
+                for (int i = 0; i < CbBarcodeSelect.Items.Count; i++)
+                {
+                    if (CbBarcodeSelect.Items[i].ToString() == tmpText)
+                    {
+                        CbBarcodeSelect.SelectedIndex = i;
+                        break;
+                    }
+                }
+            }
+
+            if (Properties.Settings.Default.importBarcode1DSelect)
+                tabControl1.SelectedTab = tabPage1;
+            else
+                tabControl1.SelectedTab = tabPage2;
+        }
+
+        internal void SetText1D(string tmp)
+        {
+            tabControl1.SelectedIndex = 0;
+            textBox1.Text = tmp;
+            btnGenerateBarcode1D.PerformClick();
+        }
+        internal void SetText2D(string tmp)
+        {
+            tabControl1.SelectedIndex = 1;
+            tCQRPayload.SelectedIndex = 0;
+            tBQRText.Text = tmp;
+            btnGenerateBarcode2D.PerformClick();
+        }
+        internal void SetUrl2D(string tmp)
+        {
+            tabControl1.SelectedIndex = 1;
+            tCQRPayload.SelectedIndex = 1;
+            tBQRURL.Text = tmp;
+            btnGenerateBarcode2D.PerformClick();
         }
 
         private void BtnCheckBarcode1D_Click(object sender, EventArgs e)
         {
-            Logger.Trace("Check Barcode Type:{0} Text:{1}", ((BarcodeCreation.TYPE)comboBox1.SelectedIndex).ToString(), textBox1.Text);
-            //           barcodegcode = "";
+            Logger.Trace("Check Barcode Type:{0} Text:{1}", ((BarcodeCreation.TYPE)CbBarcodeSelect.SelectedIndex).ToString(), textBox1.Text);
             BarcodeCreation.Barcode b = new BarcodeCreation.Barcode();
-            barcodeImage = b.Encode((BarcodeCreation.TYPE)comboBox1.SelectedIndex, textBox1.Text);//, Color.Black, Color.White, 200, 100);
+            barcodeImage = b.Encode((BarcodeCreation.TYPE)CbBarcodeSelect.SelectedIndex, textBox1.Text);//, Color.Black, Color.White, 200, 100);
 
             if (b.GetError)
             { pictureBox1.Image = null; }
@@ -79,15 +117,13 @@ namespace GrblPlotter
                 pictureBox1.Image = barcodeImage;
                 btnClipboardBarcode1D.Visible = true;
             }
-            //       b.Dispose();
-            //     barcodeImage.Dispose();
         }
         public void BtnGenerateBarcodeClick(object sender, EventArgs e)
         {
-            Logger.Trace(culture, "Generate Barcode Type:{0} Text:{1}", ((BarcodeCreation.TYPE)comboBox1.SelectedIndex).ToString(), textBox1.Text);
-            //            barcodegcode = "";
+            Logger.Trace(culture, "Generate Barcode Type:{0} Text:{1}", ((BarcodeCreation.TYPE)CbBarcodeSelect.SelectedIndex).ToString(), textBox1.Text);
+
             BarcodeCreation.Barcode b = new BarcodeCreation.Barcode();
-            barcodeImage = b.Encode((BarcodeCreation.TYPE)comboBox1.SelectedIndex, textBox1.Text);//, Color.Black, Color.White, 200, 100);
+            barcodeImage = b.Encode((BarcodeCreation.TYPE)CbBarcodeSelect.SelectedIndex, textBox1.Text);//, Color.Black, Color.White, 200, 100);
 
             if (b.GetError)
             { pictureBox1.Image = null; }
@@ -97,8 +133,6 @@ namespace GrblPlotter
                 GenerateGCode1D(b.EncodedValue, b.EncodedType.ToString(), (double)nUDHeight1D.Value);
                 btnClipboardBarcode1D.Visible = true;
             }
-            //        b.Dispose();
-            //        barcodeImage.Dispose();
         }
 
         private void GenerateGCode1D(string code, string type, double height)
@@ -231,7 +265,6 @@ namespace GrblPlotter
                                                                                                         //       qrGenerator.Dispose();
             pictureBox2.Image = qrCodeImage;
             btnClipboardBarcode2D.Visible = true;
-            //        qrCodeImage.Dispose();
         }
 
         public void GenerateGCode2D()
@@ -317,14 +350,16 @@ namespace GrblPlotter
         }
 
         private void BtnClipboardBarcode1D_Click(object sender, EventArgs e)
-        { 	if (pictureBox1.Image != null)
-				System.Windows.Forms.Clipboard.SetImage(pictureBox1.Image); 
-		}
+        {
+            if (pictureBox1.Image != null)
+                System.Windows.Forms.Clipboard.SetImage(pictureBox1.Image);
+        }
 
         private void BtnClipboardBarcode2D_Click(object sender, EventArgs e)
-        { 	if (pictureBox2.Image != null)
-				System.Windows.Forms.Clipboard.SetImage(pictureBox2.Image); 
-		}
+        {
+            if (pictureBox2.Image != null)
+                System.Windows.Forms.Clipboard.SetImage(pictureBox2.Image);
+        }
 
         private void CbInsertLogo_CheckedChanged(object sender, EventArgs e)
         { gBLogo.Visible = cBInsertLogo.Checked; }
@@ -384,12 +419,12 @@ namespace GrblPlotter
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void BtnHelp_Click(object sender, EventArgs e)
         {
             string url = "https://grbl-plotter.de/index.php?";
             try
             {
-                Button clickedLink = sender as Button;
+                System.Windows.Forms.Button clickedLink = sender as System.Windows.Forms.Button;
                 Process.Start(url + clickedLink.Tag.ToString());
             }
             catch (Exception err)
@@ -398,6 +433,53 @@ namespace GrblPlotter
                 MessageBox.Show("Could not open the link: " + err.Message, "Error");
             }
         }
+        private void BtnSaveIni_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveFileDialog sfd = new SaveFileDialog
+                {
+                    Filter = "Machine Ini files (*.ini)|*.ini",
+                    FileName = "CreateBarcode_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".ini"
+                };
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    var MyIni = new IniFile(sfd.FileName);
+                    MyIni.WriteSection(IniFile.sectionBarcode);	//"Create Text");    
+                    Logger.Info("Save machine parameters as {0}", sfd.FileName);
+                }
+                sfd.Dispose();
+            }
+            catch (Exception err)
+            {
+                EventCollector.StoreException("BtnSaveIni_Click " + err.Message);
+                Logger.Error(err, "BtnSaveIni_Click ");
+                MessageBox.Show("SaveMachineParameters: \r\n" + err.Message, "Error");
+            }
+        }
+
+        private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.importBarcode1DSelect = (tabControl1.SelectedIndex == 0);
+        }
+    }
+
+    public partial class IniFile
+    {
+        internal static string[,] keyValueBarcode = {
+            {"1D Name",     "importBarcode1DName"   },
+            {"1D Height",   "importBarcode1DHeight" },
+            {"1D Lines",    "importBarcode1DLines"  },
+            {"1D Width",    "importBarcode1DScanGap"    },
+            {"1D Text",     "importBarcode1DText"   },
+            {"1D Selected", "importBarcode1DSelect" },
+            {"2D Lines",    "importBarcode2DLines"  },
+            {"2D Width",    "importBarcode2DScanGap"},
+            {"2D Border",   "importBarcode2DBorder" },
+            {"2D Text",     "importBarcode2DText"   },
+            {"2D URL",      "importBarcode2DText"   }
+        };
+        internal static string sectionBarcode = "Create Barcode";
     }
 }
 

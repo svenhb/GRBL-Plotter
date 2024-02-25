@@ -279,4 +279,16 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Utwórz G-Code dla tekstu</value>
   </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>Zapisuje ustawienia tego okna jako plik INI</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Pomoc online</value>
+  </data>
+  <data name="cBImportGraphicNoise.Text" xml:space="preserve">
+    <value>Dodać hałas</value>
+  </data>
+  <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
+    <value>Generuje chwiejne linie, ustawienia w [Konfiguracja - Import grafiki - Import ścieżki - Modyfikacje ścieżki]</value>
+  </data>
 </root>

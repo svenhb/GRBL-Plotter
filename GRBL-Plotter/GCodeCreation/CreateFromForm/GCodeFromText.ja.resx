@@ -279,4 +279,16 @@
   <data name="BtnSetHeight.ToolTip" xml:space="preserve">
     <value>指定されたテキストの高さに達するように font-size を計算して設定します</value>
   </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>このウィンドウの設定をINIファイルとして保存します</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="cBImportGraphicNoise.Text" xml:space="preserve">
+    <value>ノイズを追加</value>
+  </data>
+  <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
+    <value>線のぐらつきの発生 [セットアップ - グラフィックスインポート - パスインポート - パス修正] の設定</value>
+  </data>
 </root>

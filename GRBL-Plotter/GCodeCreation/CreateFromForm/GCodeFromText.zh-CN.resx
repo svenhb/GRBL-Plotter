@@ -279,4 +279,16 @@
   <data name="BtnSetHeight.ToolTip" xml:space="preserve">
     <value>计算并设置字体大小以达到给定的文本高度</value>
   </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>将此窗口的设置保存为 INI 文件</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>网上帮助</value>
+  </data>
+  <data name="cBImportGraphicNoise.Text" xml:space="preserve">
+    <value>添加噪音</value>
+  </data>
+  <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
+    <value>生成摆动线，在【设置-图形导入-路径导入-路径修改】中设置</value>
+  </data>
 </root>

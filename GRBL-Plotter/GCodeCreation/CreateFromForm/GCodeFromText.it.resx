@@ -279,4 +279,16 @@
   <data name="BtnSetHeight.ToolTip" xml:space="preserve">
     <value>Calcola e imposta la dimensione del carattere per raggiungere l'altezza del testo specificata</value>
   </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>Salva le impostazioni di questa finestra come file INI</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Aiuto online</value>
+  </data>
+  <data name="cBImportGraphicNoise.Text" xml:space="preserve">
+    <value>Aggiungi del rumore</value>
+  </data>
+  <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
+    <value>Genera linee traballanti, impostazioni in [Setup - Importazione grafica - Importazione percorso - Modifiche percorso]</value>
+  </data>
 </root>

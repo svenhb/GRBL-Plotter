@@ -273,4 +273,16 @@
   <data name="BtnSetHeight.ToolTip" xml:space="preserve">
     <value>Calculer et définir la taille de la police pour atteindre la hauteur de texte donnée</value>
   </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>Enregistre les paramètres de cette fenêtre sous forme de fichier INI</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Aide en ligne</value>
+  </data>
+  <data name="cBImportGraphicNoise.Text" xml:space="preserve">
+    <value>Ajoute du bruit</value>
+  </data>
+  <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
+    <value>Génère des lignes bancales, paramètres dans [Configuration - Importation de graphiques - Importation de chemin - Modifications de chemin]</value>
+  </data>
 </root>

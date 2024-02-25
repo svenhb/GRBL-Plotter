@@ -274,4 +274,16 @@ in Setup SVG-Import </value>
   <data name="BtnSetHeight.ToolTip" xml:space="preserve">
     <value>Berechnen und setzen Sie die Schriftgröße, um die angegebene Texthöhe zu erreichen</value>
   </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>Speichert die Einstellungen dieses Fensters als INI-Datei</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Onlinehilfe</value>
+  </data>
+  <data name="cBImportGraphicNoise.Text" xml:space="preserve">
+    <value>Rauschen hinzufügen</value>
+  </data>
+  <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
+    <value>Erzeugt wackelige Linien, Einstellungen in [Setup – Grafikimport – Pfadimport – Pfadänderungen]</value>
+  </data>
 </root>
