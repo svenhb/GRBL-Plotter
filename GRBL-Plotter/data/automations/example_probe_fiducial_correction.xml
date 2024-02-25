@@ -1,0 +1,28 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <ProcessItem>
+    <Command>2D-View Clear</Command>
+    <Value />
+    <Info>Clear workspace, delete G-Code from editor</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Load</Command>
+    <Value>data\automations\disable_options.ini</Value>
+    <Info>by drag &amp; drop</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Load</Command>
+    <Value>data\examples\graphic_fiducial.dxf</Value>
+    <Info>Load example graphic file</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Probe Automatic</Command>
+    <Value>Fiducial</Value>
+    <Info>Fiducial correction via probe</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>G-Code Stream</Command>
+    <Value />
+    <Info>Send G-Code from editor</Info>
+  </ProcessItem>
+</NewDataSet>

@@ -1,0 +1,48 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <ProcessItem>
+    <Command>Beep</Command>
+    <Value>659;120</Value>
+    <Info />
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Beep</Command>
+    <Value>622;120</Value>
+    <Info />
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Beep</Command>
+    <Value>659;120</Value>
+    <Info />
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Beep</Command>
+    <Value>622;120</Value>
+    <Info />
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Beep</Command>
+    <Value>659;120</Value>
+    <Info />
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Beep</Command>
+    <Value>494;120</Value>
+    <Info />
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Beep</Command>
+    <Value>587;120</Value>
+    <Info />
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Beep</Command>
+    <Value>523;120</Value>
+    <Info />
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Beep</Command>
+    <Value>440;120</Value>
+    <Info />
+  </ProcessItem>
+</NewDataSet>

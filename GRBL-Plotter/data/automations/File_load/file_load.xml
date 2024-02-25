@@ -1,0 +1,68 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <ProcessItem>
+    <Command>Load</Command>
+    <Value>data\automations\disable_options.ini</Value>
+    <Info>Disable unwanted options</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Load</Command>
+    <Value>data\automations\File_load\file_load_setup_use_z.ini</Value>
+    <Info>Use plotter with z axis</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>2D-View Clear</Command>
+    <Value />
+    <Info>Clear workspace, delete G-Code from editor</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Load Data</Command>
+    <Value />
+    <Info>Load graphic file, [Value=line from data]</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>2D-View Scale XYX</Command>
+    <Value>25</Value>
+    <Info>Scale XY [Value=desired X dimension]</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>2D-View Offset</Command>
+    <Value>7;0;0</Value>
+    <Info>Set graphic origin [Value=&lt;Origin[1-9]&gt;;&lt;Offset X&gt;;&lt;Offset Y&gt;]</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>G-Code Stream</Command>
+    <Value />
+    <Info>Send G-Code from editor to machine</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>G-Code Send</Command>
+    <Value>G90 Y35</Value>
+    <Info>Move tray to front</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Data index</Command>
+    <Value>1</Value>
+    <Info>Add Value to Data index</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Beep</Command>
+    <Value>440;1000</Value>
+    <Info>Play beep tone [Value=freqency(Hz);length(ms)]</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Wait Probe</Command>
+    <Value />
+    <Info>Wait for probe input before continue</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Sound</Command>
+    <Value>2</Value>
+    <Info>Play system sound</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Jump to</Command>
+    <Value>3</Value>
+    <Info>Jump to line number, [Value=&lt;linenumber&gt;;&lt;repetitions&gt;]</Info>
+  </ProcessItem>
+</NewDataSet>

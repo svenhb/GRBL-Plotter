@@ -1,0 +1,5 @@
+data\examples\graphic_bunny.dxf
+data\examples\graphic_grbl.svg
+data\examples\addon_frame_stamp1.svg
+data\examples\addon_frame_stamp2.svg
+data\examples\addon_frame_stamp3.svg

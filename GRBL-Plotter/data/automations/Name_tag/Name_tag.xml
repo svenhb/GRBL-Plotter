@@ -1,0 +1,83 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <ProcessItem>
+    <Command>Load</Command>
+    <Value>data\automations\Name_tag\Name_tag_setup_use_laser.ini</Value>
+    <Info>Load setup for use of laser</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>2D-View Clear</Command>
+    <Value />
+    <Info>Clear workspace, delete G-Code from editor</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Load</Command>
+    <Value>data\automations\Name_tag\Name_tag_CreateText_Segoe.ini</Value>
+    <Info>Font for symbols</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>CreateText Data</Command>
+    <Value>1</Value>
+    <Info>Create text from Data list, [Value='':whole line] or [Value=column-nr]</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>2D-View Rotate</Command>
+    <Value>90</Value>
+    <Info>Rotate [Value=angle in degree]</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>2D-View Scale XYY</Command>
+    <Value>8</Value>
+    <Info>Scale XY [Value=desired Y dimension]</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>2D-View Offset</Command>
+    <Value>4;0;0</Value>
+    <Info>Set graphic origin [Value=&lt;Origin[1-9]&gt;;&lt;Offset X&gt;;&lt;Offset Y&gt;]</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Load</Command>
+    <Value>data\automations\Name_tag\Name_Tag_CreateText.ini</Value>
+    <Info>Font for text</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>CreateText Data</Command>
+    <Value>2</Value>
+    <Info>Create text from Data list, [Value='':whole line] or [Value=column-nr]</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>2D-View Offset</Command>
+    <Value>4;10;0</Value>
+    <Info>Set graphic origin [Value=&lt;Origin[1-9]&gt;;&lt;Offset X&gt;;&lt;Offset Y&gt;]</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Data index</Command>
+    <Value>1</Value>
+    <Info>Add Value to Data index</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>G-Code Stream</Command>
+    <Value />
+    <Info>Send G-Code from editor to machine</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Beep</Command>
+    <Value>440;800</Value>
+    <Info>Play beep tone [Value=freqency(Hz);length(ms)]</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Wait Probe</Command>
+    <Value />
+    <Info>Wait for probe input before continue</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Sound</Command>
+    <Value>0</Value>
+    <Info>Play system sound [Value=0=Asterisk, 1=Exclamation, 2=Question, 3=Hand, any other=Beep]</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Jump to</Command>
+    <Value>2</Value>
+    <Info>Jump to line number, [Value=&lt;linenumber&gt;;&lt;repetitions&gt;]</Info>
+  </ProcessItem>
+</NewDataSet>

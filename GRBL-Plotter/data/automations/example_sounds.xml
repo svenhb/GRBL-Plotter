@@ -1,0 +1,28 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <ProcessItem>
+    <Command>Sound</Command>
+    <Value>0</Value>
+    <Info>Play system sound Asterisk</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Sound</Command>
+    <Value>1</Value>
+    <Info>Play system sound Exclamation</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Sound</Command>
+    <Value>2</Value>
+    <Info>Play system sound Question</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Sound</Command>
+    <Value>3</Value>
+    <Info>Play system sound Hand</Info>
+  </ProcessItem>
+  <ProcessItem>
+    <Command>Sound</Command>
+    <Value>any other</Value>
+    <Info>Play system sound Beep</Info>
+  </ProcessItem>
+</NewDataSet>
