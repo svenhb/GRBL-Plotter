@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -75,6 +75,8 @@ namespace GrblPlotter
         private bool manualEdit = false;
         private readonly bool logMain = false;
 
+		private int globalCollectionCounter = 1;
+		
         #region fCTB FastColoredTextBox related
         // highlight code in editor
         // 0   : Black, 105 : DimGray , 128 : Gray, 169 : DarkGray!, 192 : Silver, 211 : LightGray , 220 : Gainsboro, 245 : Ghostwhite, 255 : White
@@ -143,10 +145,6 @@ namespace GrblPlotter
         {
             if (LineIsInRange(line))
             {
-                //    SetTextSelection(line, line);
-                //    fCTBCode.Selection.ClearStyle(StyleGWord, StyleXAxis, StyleYAxis);
-                //    fCTBCode.Selection.SetStyle(ErrorStyle);
-
                 if (this.fCTBCode.InvokeRequired)
                 {
                     this.fCTBCode.BeginInvoke((MethodInvoker)delegate ()
@@ -174,12 +172,6 @@ namespace GrblPlotter
                 {
                     if (LineIsInRange(myline))
                     {
-                        //    SetTextSelection(myline, myline);
-                        //    fCTBCode.Selection.ClearStyle(ErrorStyle);
-                        //    fCTBCode.Selection.SetStyle(StyleGWord);
-                        //    fCTBCode.Selection.SetStyle(StyleXAxis);
-                        //    fCTBCode.Selection.SetStyle(StyleYAxis);
-
                         if (this.fCTBCode.InvokeRequired)
                         {
                             this.fCTBCode.BeginInvoke((MethodInvoker)delegate ()
@@ -354,7 +346,7 @@ namespace GrblPlotter
             else
             { Logger.Error("InsertTextAtLine LineIsNOTInRange: {0}", line); }
         }
-
+        System.Drawing.Point codeInsert = new System.Drawing.Point();
         private int InsertCodeToFctb(string sourceGCode, bool fromFile, int lineSelected, double offsetX, double offsetY)
         {
             /* if graphic import, add new group, 
@@ -372,6 +364,8 @@ namespace GrblPlotter
             bool containsCollection = sourceGCode.Contains(XmlMarker.CollectionStart);
             bool containsGroup = sourceGCode.Contains(XmlMarker.GroupStart);
             bool containsFigure = sourceGCode.Contains(XmlMarker.FigureStart);
+
+            int newID = 0;
 
             if (fromFile)
             {
@@ -428,7 +422,7 @@ namespace GrblPlotter
                 string line;
                 int figureCount = 1;
 
-                if(!containsCollection) { tmpCodeFinish.AppendLine(string.Format("{0} \">", XmlMarker.CollectionStart)); }
+                if(!containsCollection) { tmpCodeFinish.AppendLine(string.Format("({0} Id=\"{1}\">)", XmlMarker.CollectionStart, globalCollectionCounter++)); }
 
                 for (int k = 0; k < tmpCodeLines.Length; k++)       // go through code-lines to insert
                 {
@@ -451,6 +445,7 @@ namespace GrblPlotter
                             //        Logger.Info("getGCodeFromText figure  idStart:{0}  digits:{1}  final:{2}  string:'{3}'-'{4}'", idStart, idCount.ToString().Length, strtIndex, line.Substring(0, idStart), line.Substring(strtIndex));
                             line = tmp;
                         }
+                        newID = idCount;
                     }
                     if (line.Contains(XmlMarker.FigureStart))       // find figure-tag and increment id
                     {
@@ -469,6 +464,7 @@ namespace GrblPlotter
                                 //            Logger.Info("getGCodeFromText figure  idStart:{0}  digits:{1}  final:{2}  string:'{3}'-'{4}'", idStart, idCount.ToString().Length, strtIndex, line.Substring(0, idStart), line.Substring(strtIndex));
                                 line = tmp;
                             }
+                            newID = idCount;
                         }
                     }
 
@@ -483,7 +479,7 @@ namespace GrblPlotter
                     }
                     if (line.Contains(XmlMarker.CollectionEnd)) useCode = false;
                 }
-                if (!containsCollection) { tmpCodeFinish.AppendLine(string.Format("{0} \">", XmlMarker.CollectionEnd)); }
+                if (!containsCollection) { tmpCodeFinish.AppendLine(string.Format("({0} >)", XmlMarker.CollectionEnd)); }
 
                 if (createGroup)
                 { tmpCodeFinish.AppendLine("(" + XmlMarker.CollectionStart + " Id=\"0\" Type=\"Existing code\" >)"); }    // add startGroup for existing figures
@@ -500,12 +496,14 @@ namespace GrblPlotter
 
                 }
                 Logger.Info("◆◆◆◆ Insert code to existing code at line {0}", insertLineNr);
+                codeInsert = new System.Drawing.Point(insertLineNr, newID);
                 return insertLineNr;
             }
             else
             {
                 fCTBCode.Text = sourceGCode;
                 Logger.Warn("⚠⚠⚠ Insert code was not possible at line: {0}", insertLineNr);
+                codeInsert=new System.Drawing.Point(-1, -1);
                 return -1;
             }
         }
@@ -939,7 +937,7 @@ namespace GrblPlotter
 
             fCTBCode.Selection.ColumnSelectionMode = false;
 
-            bool gcodeIsSeleced = false; ;
+            bool gcodeIsSeleced = false;
             EnableBlockCommands(gcodeIsSeleced);
 
             markedBlockType = marker;

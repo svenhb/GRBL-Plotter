@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -151,6 +151,7 @@ namespace GrblPlotter
                 insertLineNr = XmlMarker.FindInsertPositionFigureMostTop(-1);  // no group? find figure
                 createGroup = true;
             }
+            codeInsert=new System.Drawing.Point(insertLineNr, 0);
 
             Logger.Info("▀▀▀▀▀▀ InsertCodeFromForm:{0} insertCode:{1}  insertAt:{2}", sourceForm, insertCode, insertLineNr);
 

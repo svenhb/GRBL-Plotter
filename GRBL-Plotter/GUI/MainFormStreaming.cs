@@ -225,7 +225,7 @@ namespace GrblPlotter
                     VisuGCode.ProcessedPath.ProcessedPathClear();
                     //        SetGRBLBuffer();
 
-                    _process_form?.Feedback("Stream", "reset", false);
+                    _process_form?.Feedback("G-Code Stream", "reset", false);
 
                     break;
 
@@ -284,7 +284,7 @@ namespace GrblPlotter
                     if (Grbl.lastErrorNr == 9)  // G-code locked out during alarm or jog state -> stop streaming
                     { StopStreaming(false); }
 
-                    _process_form?.Feedback("Stream", "error", false);
+                    _process_form?.Feedback("G-Code Stream", "error", false);
 
                     break;
 
@@ -332,7 +332,7 @@ namespace GrblPlotter
                         else
                             Notifier.SendMessage(msg);
                     }
-                    _process_form?.Feedback("Stream", elapsed.ToString(@"hh\:mm\:ss"), true);
+                    _process_form?.Feedback("G-Code Stream", elapsed.ToString(@"hh\:mm\:ss"), true);
                     break;
 
                 case GrblStreaming.waitidle:
@@ -402,7 +402,7 @@ namespace GrblPlotter
                     if (Properties.Settings.Default.flowControlEnable) // send extra Pause-Code in MainTimer_Tick from Properties.Settings.Default.flowControlText
                         delayedSend = 2;
 
-                    _process_form?.Feedback("Stream", "", false);
+                    _process_form?.Feedback("G-Code Stream", "", false);
 
                     break;
 
@@ -629,7 +629,23 @@ namespace GrblPlotter
                             File.Delete(fileName);
 
                         fileName = file1stName + ".nc";
-                        File.WriteAllText(fileName, txt);               // save current GCode						
+                       // File.WriteAllText(fileName, txt);               // save current GCode		
+                                                                        //
+                        int encodeIndex = Properties.Settings.Default.FCTBSaveEncodingIndex;
+                        if ((encodeIndex < 0) || (encodeIndex >= GuiVariables.SaveEncoding.Length))
+                            encodeIndex = 0;
+
+                        string encoding = GuiVariables.SaveEncoding[encodeIndex].BodyName;
+                        try
+                        {
+                            System.IO.File.WriteAllLines(fileName, fCTBCode.Lines, GuiVariables.SaveEncoding[encodeIndex]);
+                        }
+                        catch (Exception err)
+                        {
+                            Logger.Error(err, "StartStreaming save code ");
+                            MessageBox.Show("Could not save the file: \r\n" + err.Message, "Error");
+                        }
+
                         SaveRecentFile(fileLastProcessed + ".nc");      // update last processed file
                         SetLastLoadedFile("Start streaming", fileName);
                     }

@@ -1253,6 +1253,7 @@ namespace GrblPlotter
                         var MyIni = new IniFile(command);
                         Logger.Info(culture, "Load INI: '{0}'", command);
                         MyIni.ReadAll();    // ReadImport();
+                        UpdateIniVariables();
                         timerUpdateControlSource = "loadFile";
                         UpdateWholeApplication();
                         StatusStripSet(2, "INI File '" + command + "' loaded", Color.Lime);

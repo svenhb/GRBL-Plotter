@@ -585,6 +585,7 @@ namespace GrblPlotter
                 var MyIni = new IniFile(fileName);
                 Logger.Info("Load INI: '{0}'", fileName);
                 MyIni.ReadAll();    // ReadImport();
+                UpdateIniVariables();
                 timerUpdateControlSource = "loadFile";
                 UpdateControlEnables();
                 UpdateWholeApplication();
@@ -853,6 +854,7 @@ namespace GrblPlotter
                 Logger.Info("Load INI (URL): '{0}'", tBURL.Text);
                 var MyIni = new IniFile(tBURL.Text, true);
                 MyIni.ReadAll();    // ReadImport();
+                UpdateIniVariables();
                 timerUpdateControlSource = "tBURL_TextChanged";
                 UpdateControlEnables();
                 UpdateWholeApplication();
@@ -1759,6 +1761,7 @@ namespace GrblPlotter
             {
                 var MyIni = new IniFile(openFileDialog1.FileName);
                 MyIni.ReadAll();
+                UpdateIniVariables();
                 LoadSettings(sender, e);
                 Logger.Info("Load machine parameters as {0}", openFileDialog1.FileName);
             }

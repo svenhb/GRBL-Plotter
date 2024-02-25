@@ -1059,6 +1059,7 @@ namespace GrblPlotter
             NewCodeStart();         // ClearWorkspace
             fCTBCode.Clear();
             NewCodeEnd();
+			globalCollectionCounter = 1;
         }
 
         private void CmsPicBoxMoveToFirstPos_Click(object sender, EventArgs e)

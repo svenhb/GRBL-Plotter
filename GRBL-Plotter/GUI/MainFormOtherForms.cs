@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,6 +26,8 @@
  * 2023-01-24 line 369 check if _diyControlPad != null
  * 2023-01-27 processAutomation removed fullScreen on start (like in ProjectorToolStrip)
  * 2023-12-01 l:682 f:OnRaiseProcessEvent add new action "Probing"
+ * 2024-02-07 l:698 f:OnRaiseProcessEvent add Barcode, CreatText, 2D-View
+ * 2024-02-12 split file, new  MainFormProcessAutomation.cs
 */
 
 using GrblPlotter.MachineControl;
@@ -60,8 +62,15 @@ namespace GrblPlotter
         ControlSetupForm _setup_form = null;
         ControlJogPathCreator _jogPathCreator_form = null;
         ControlProjector _projector_form = null;
-        ControlProcessAutomation _process_form = null;
+        ProcessAutomation _process_form = null;
         GrblSetupForm _grbl_setup_form = null;
+
+        private void UpdateIniVariables()
+        {
+            _text_form?.UpdateIniVariables();
+            _barcode_form?.UpdateIniVariables();
+            _process_form?.UpdateIniVariables();
+        }
 
         #region MAIN-MENU GCode creation
         /********************************************************************
@@ -318,7 +327,7 @@ namespace GrblPlotter
         {
             if (e.Command == "Fiducial")
             {
-                _process_form?.Feedback(e.Command, e.Value, (e.Value=="finished"));
+                _process_form?.Feedback("Camera Automatic", e.Value, (e.Value == "finished"));
             }
         }
 
@@ -368,8 +377,9 @@ namespace GrblPlotter
                     if (double.TryParse(num, out double myZ))
                     { alternateZ = myZ; }
                     else
-                    { 	_diyControlPad?.SendFeedback("Error in parsing " + num, true);
-					}
+                    {
+                        _diyControlPad?.SendFeedback("Error in parsing " + num, true);
+                    }
                 }
             }
         }
@@ -449,10 +459,10 @@ namespace GrblPlotter
             if (!isStreaming)
             {
                 ClearWorkspace();
-                NewCodeStart(false);           
-                SetFctbCodeText(_laser_form.LaserGCode);   
+                NewCodeStart(false);
+                SetFctbCodeText(_laser_form.LaserGCode);
                 NewCodeEnd();
-                FoldBlocks1(); 
+                FoldBlocks1();
                 foldLevelSelected = 1;
             }
             else
@@ -515,7 +525,7 @@ namespace GrblPlotter
         {
             if (e.Command == "Probe")
             {
-                _process_form?.Feedback(e.Command, e.Value, (e.Value=="finished"));
+                _process_form?.Feedback("Probe Automatic", e.Value, (e.Value == "finished"));
             }
         }
 
@@ -666,79 +676,10 @@ namespace GrblPlotter
         { _projector_form = null; EventCollector.SetOpenForm("FCprj"); }
 
 
-
         /********************************************************************
-         * ProcessAutomation - a form to automate process steps
-         * _process_form
+         * GRBL Setup
+         * _grbl_setup_form
          ********************************************************************/
-        private void ProcessAutomationFormOpen(object sender, EventArgs e)
-        {
-            if (_process_form == null)
-            {
-                _process_form = new ControlProcessAutomation();
-                _process_form.FormClosed += FormClosed_Process;
-                _process_form.RaiseProcessEvent += OnRaiseProcessEvent;
-                EventCollector.SetOpenForm("Fprc");
-            }
-            else
-            {
-                _process_form.Visible = false;
-            }
-
-			_process_form.Show(this);
-			_process_form.WindowState = FormWindowState.Normal;
-        }
-        private void FormClosed_Process(object sender, FormClosedEventArgs e)
-        { _process_form = null; EventCollector.SetOpenForm("FCprc"); }
-
-        private void OnRaiseProcessEvent(object sender, ProcessEventArgs e)
-        {
-            if (e.Command == "Load")
-            {
-                string mypath = Datapath.MakeAbsolutePath(e.Value);
-                _process_form?.Feedback(e.Command, e.Value, LoadFile(mypath));
-            }
-            else if (e.Command == "G-Code")
-            {
-                SendCommand(e.Value);
-            }
-            else if (e.Command == "Probe")
-            {
-                if (_probing_form != null)
-                {
-                    _probing_form.StartProbing(e.Value.ToUpper());
-					// when finished, probing form sends event back _probing_form.RaiseProcessEvent += OnRaiseProbingProcessEvent;
-                }
-                else
-                {
-                    _process_form?.Feedback(e.Command, "Probing form is not open", false);
-                }
-            }
-            else if (e.Command == "Fiducial")
-            {
-                if (_camera_form != null)
-                {
-                    _camera_form.StartFiducialDetection();
-					// when finished, camera form sends event back _camera_form.RaiseProcessEvent += OnRaiseCameraProcessEvent;
-                }
-                else
-                {
-                    _process_form?.Feedback(e.Command, "Camera form is not open", false);
-                }
-            }
-            else if (e.Command == "Stream")
-            {
-                StartStreaming(0, fCTBCode.LinesCount - 1);
-            }
-            else if (e.Command == "CheckForm")
-            {
-                if (e.Value == "Probe") { _process_form?.Feedback(e.Command, e.Value, (_probing_form != null)); }
-                if (e.Value == "Cam") { _process_form?.Feedback(e.Command, e.Value, (_camera_form != null)); }
-            }
-        }
-
-
-
         private void GrblSetupToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (_grbl_setup_form == null)
