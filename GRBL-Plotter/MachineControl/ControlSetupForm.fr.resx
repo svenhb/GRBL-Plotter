@@ -3539,4 +3539,13 @@ Dessinez une signature dans la marge inférieure droite : échelle 0,1 ou infér
   <data name="CbImportGraphicHatchFillNoise.ToolTip" xml:space="preserve">
     <value>Générer des lignes bancales pour le remplissage des hachures uniquement</value>
   </data>
+  <data name="BtnSaveIni_SvgDxfCsv.ToolTip" xml:space="preserve">
+    <value>Enregistre les paramètres de ces onglets sous forme de fichier INI</value>
+  </data>
+  <data name="BtnSaveIni_ImportParameter.ToolTip" xml:space="preserve">
+    <value>Enregistre les paramètres de ces onglets sous forme de fichier INI</value>
+  </data>
+  <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
+    <value>Enregistre les paramètres de ces onglets sous forme de fichier INI</value>
+  </data>
 </root>

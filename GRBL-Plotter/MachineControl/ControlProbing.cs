@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -32,6 +32,7 @@
  * 2023-12-01 add ProcessAutomation support
  * 2023-12-06 add inverted logic for CF
  * 2023-12-11 add fiducial correction
+ * 2024-02-23 limit digits in output
 */
 
 using GrblPlotter.MachineControl;
@@ -1452,7 +1453,7 @@ namespace GrblPlotter
                         OnRaiseXYEvent(new XYEventArgs(0, 1, teachPoint1 - probeOffset, "G90 G0"));
                         fiducialDetectionProgressCounter++;
 
-                        info = string.Format("1) move to X:{0}  Y:{1} with probe offset X:{2}  Y:{3}", teachPoint1.X, teachPoint1.Y, probeOffset.X, probeOffset.Y);
+                        info = string.Format("1) move to X:{0:0.000}  Y:{1:0.000} with probe offset X:{2:0.000}  Y:{3:0.000}", teachPoint1.X, teachPoint1.Y, probeOffset.X, probeOffset.Y);
                         TbSetPoints.Text += info + "\r\n";
                         if (showLog) Logger.Trace(info);
                         break;
@@ -1539,7 +1540,7 @@ namespace GrblPlotter
                         OnRaiseXYEvent(new XYEventArgs(0, 1, teachPoint2 - probeOffset, "G90 G0"));   // move to fiducial position
                         fiducialDetectionProgressCounter++;
 
-                        info = string.Format("4) move to X:{0}  Y:{1}", teachPoint2.X, teachPoint2.Y);
+                        info = string.Format("4) move to X:{0:0.000}  Y:{1:0.000}", teachPoint2.X, teachPoint2.Y);
                         TbSetPoints.Text += info + "\r\n";
                         if (showLog) Logger.Trace(info);
                         break;
@@ -1651,7 +1652,7 @@ namespace GrblPlotter
                             if (CbProbeScale.Checked) { scale = 1; }
 
                             if (showLog) Logger.Trace("6) Fiducial detection angle1:{0:0.00}  angle2:{1:0.00}", angle1, angle2);
-                            if (showLog) Logger.Trace("6) Fiducial detection: 2) real  X:{0:0.00} Y:{1:0.00} rotate:{2:0.00}  scale:{3:0.00}", realPos2.X, realPos2.Y, angleResult, scale);
+                            if (showLog) Logger.Trace("6) Fiducial detection: 2) real  X:{0:0.000} Y:{1:0.000} rotate:{2:0.00}  scale:{3:0.00}", realPos2.X, realPos2.Y, angleResult, scale);
 
                             OnRaiseXYEvent(new XYEventArgs(angleResult, scale, teachPoint1, "a"));       // rotate arround TP1
 
@@ -1748,7 +1749,7 @@ namespace GrblPlotter
             TbSetPoints.Text = "Fiducial coordinates (mm):\r\n";
             int i = 1;
             foreach (XyPoint tmp in VisuGCode.fiducialsCenter)
-            { TbSetPoints.Text += string.Format("{0}] X:{1:0.0} Y:{2:0.0}\r\n", (i++), tmp.X, tmp.Y); }
+            { TbSetPoints.Text += string.Format("{0}] X:{1:0.000} Y:{2:0.000}\r\n", (i++), tmp.X, tmp.Y); }
             TbSetPoints.Text += "--------------------------------------\r\n";
             TbSetPoints.BackColor = default;
         }

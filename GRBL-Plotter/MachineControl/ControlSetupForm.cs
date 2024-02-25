@@ -1563,6 +1563,7 @@ namespace GrblPlotter
                 Logger.Trace("Load Use Case   {0}", path);
 
                 MyIni.ReadAll();   // ReadImport();
+                                   //    UpdateIniVariables();
                 FillUseCaseFileList(Datapath.Usecases);
                 Properties.Settings.Default.useCaseLastLoaded = lBUseCase.Text;
                 lblLastUseCase.Text = lBUseCase.Text;
@@ -2356,5 +2357,40 @@ namespace GrblPlotter
                 gBNoise.BackColor = Color.WhiteSmoke;
 
         }
+
+        private void BtnSaveIni_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Button clickedIni = sender as Button;
+                string section = clickedIni.Tag.ToString();
+
+                SaveFileDialog sfd = new SaveFileDialog
+                {
+                    Filter = "Machine Ini files (*.ini)|*.ini",
+                    FileName = "SetupImport_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".ini"
+                };
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    var MyIni = new IniFile(sfd.FileName);
+                    if (section == "Gcode generation")
+                        MyIni.WriteSection(IniFile.sectionSetupGcodeGeneration);
+                    else if (section == "Graphics Import")
+                        MyIni.WriteSection(IniFile.sectionSetupImportParameter);
+                    else if (section == "SvgDxfCsv")
+                        MyIni.WriteSection(IniFile.sectionSetupSvgDxfCsv);
+                    Logger.Info("Save machine parameters as '{0}' {1}", section, sfd.FileName);
+                }
+                sfd.Dispose();
+            }
+            catch (Exception err)
+            {
+                EventCollector.StoreException("BtnSaveIni_ImportParameter_Click " + err.Message);
+                Logger.Error(err, "BtnSaveIni_ImportParameter_Click ");
+                MessageBox.Show("SaveMachineParameters: \r\n" + err.Message, "Error");
+            }
+        }
+
     }
 }
+

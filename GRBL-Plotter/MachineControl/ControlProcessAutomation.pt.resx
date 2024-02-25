@@ -144,4 +144,79 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Automação do processo</value>
   </data>
+  <data name="deleteRowToolStripMenuItem.Text" xml:space="preserve">
+    <value>Excluir linha</value>
+  </data>
+  <data name="moveRowUpToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mover linha para cima</value>
+  </data>
+  <data name="moveRowDownToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mover linha para baixo</value>
+  </data>
+  <data name="TbProcessInfo.Text" xml:space="preserve">
+    <value>Crie um arquivo XML neste formato e carregue:</value>
+  </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>Salva as configurações desta janela como arquivo INI</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Ajuda online</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>preencher caractere</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>número de dígitos</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Resultado:</value>
+  </data>
+  <data name="GbCounter.Text" xml:space="preserve">
+    <value>Contador</value>
+  </data>
+  <data name="ComboDelimiter.Items" xml:space="preserve">
+    <value>; ponto e vírgula</value>
+  </data>
+  <data name="ComboDelimiter.Items1" xml:space="preserve">
+    <value>: dois pontos</value>
+  </data>
+  <data name="ComboDelimiter.Items2" xml:space="preserve">
+    <value>, dois pontos</value>
+  </data>
+  <data name="ComboDelimiter.Items3" xml:space="preserve">
+    <value>|</value>
+  </data>
+  <data name="ComboDelimiter.Items4" xml:space="preserve">
+    <value>guia \t</value>
+  </data>
+  <data name="ComboDelimiter.ToolTip" xml:space="preserve">
+    <value>Definir delimitador para colunas de dados separadas</value>
+  </data>
+  <data name="LblDataLoaded.Text" xml:space="preserve">
+    <value>nada</value>
+  </data>
+  <data name="BtnLoadData.Text" xml:space="preserve">
+    <value>Carregar dados</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Índice de dados</value>
+  </data>
+  <data name="BtnDataIndexClear.Text" xml:space="preserve">
+    <value>Claro</value>
+  </data>
+  <data name="GbData.Text" xml:space="preserve">
+    <value>Dados</value>
+  </data>
+  <data name="BtnNew.Text" xml:space="preserve">
+    <value>Novo</value>
+  </data>
+  <data name="BtnSave.Text" xml:space="preserve">
+    <value>Salvar roteiro</value>
+  </data>
+  <data name="LblInfo.Text" xml:space="preserve">
+    <value>Nenhum script carregado</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Intervalo do temporizador em ms para pesquisa</value>
+  </data>
 </root>

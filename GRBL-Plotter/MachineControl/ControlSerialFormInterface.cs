@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -52,6 +52,7 @@
  * 2023-03-31 l:1341 f:InsertVariable check if '#' inside a comment
  * 2023-04-04 l:945 f:RequestSend print only-comments directly, no add to sendBuffer
  * 2023-08-03 l:1642 f:MissingConfirmationLength lock loop
+ * 2024-02-25 add some locks to secure buffer
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -1527,29 +1528,40 @@ namespace GrblPlotter
                 sent = 0;
                 confirmed = 0;
                 max = 0;
-                buffer.Clear();
-                lineNr.Clear();
+                lock (bufferLock)
+                {
+                    buffer.Clear();
+                    lineNr.Clear();
+                }
             }
             public void Add(string txt)
             {
-                buffer.Add(txt);
-                lineNr.Add(0);
+                lock (bufferLock)
+                {
+                    buffer.Add(txt);
+                    lineNr.Add(0);
+                }
                 max++;
             }
             public void Add(string txt, int nr)
             {
-                buffer.Add(txt);
-                lineNr.Add(nr);
+                lock (bufferLock)
+                {
+                    buffer.Add(txt);
+                    lineNr.Add(nr);
+                }
                 max = Math.Max(max, nr);
             }
             public bool DeleteLine()	// ReleaseMemory
             {
                 if ((buffer.Count > 2) && (sent > 1) && (confirmed == sent))
                 {
-                    buffer.RemoveAt(0);
-                    lineNr.RemoveAt(0);
-                    confirmed--;
-                    sent--;
+                    {
+                        buffer.RemoveAt(0);
+                        lineNr.RemoveAt(0);
+                        confirmed--;
+                        sent--;
+                    }
                     return true;
                 }
                 return false;
@@ -1655,8 +1667,11 @@ namespace GrblPlotter
             {
                 if ((index >= 0) && (index < buffer.Count))
                 {
-                    buffer.Insert(index, cmt);
-                    lineNr.Insert(index, 0);
+                    lock (bufferLock)
+                    {
+                        buffer.Insert(index, cmt);
+                        lineNr.Insert(index, 0);
+                    }
                     return true;
                 }
                 return false;
@@ -1665,8 +1680,11 @@ namespace GrblPlotter
             {
                 if ((index >= 0) && (index < buffer.Count))
                 {
-                    buffer.Insert(index, cmt);
-                    lineNr.Insert(index, nr);
+                    lock (bufferLock)
+                    {
+                        buffer.Insert(index, cmt);
+                        lineNr.Insert(index, nr);
+                    }
                     return true;
                 }
                 return false;

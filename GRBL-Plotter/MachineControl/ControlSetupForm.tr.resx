@@ -3350,10 +3350,6 @@ Adım genişliği Hız</value>
     <value>Github'da Draradech/jigsaw.html tarafından hazırlanan yapboz oluşturucu</value>
     <comment>ok</comment>
   </data>
-  <data name="linkLabel11.Text" xml:space="preserve">
-    <value>www.templatemaker.nl</value>
-    <comment>ok</comment>
-  </data>
   <data name="linkLabel10.Text" xml:space="preserve">
     <value>yapıcı.js</value>
     <comment>ok</comment>
@@ -3361,10 +3357,6 @@ Adım genişliği Hız</value>
   <data name="tab11gB4.Text" xml:space="preserve">
     <value>Ücretsiz yazı tipleri, örn. şablon veya açılır pencere için</value>
     <comment>TabPage11</comment>
-  </data>
-  <data name="linkLabel9.Text" xml:space="preserve">
-    <value>www.dafont.com</value>
-    <comment>ok</comment>
   </data>
   <data name="tab11gB5.Text" xml:space="preserve">
     <value>GRBL ve GCode ile ilgili</value>
@@ -3851,5 +3843,14 @@ Sağ alt kenar boşluğuna bir imza çizin: 0,1 veya daha düşük ölçeklendir
   </data>
   <data name="CbImportGraphicHatchFillNoise.ToolTip" xml:space="preserve">
     <value>Yalnızca tarama dolgusu için titrek çizgiler oluşturun</value>
+  </data>
+  <data name="BtnSaveIni_SvgDxfCsv.ToolTip" xml:space="preserve">
+    <value>Bu sekmelerin ayarlarını INI dosyası olarak kaydeder</value>
+  </data>
+  <data name="BtnSaveIni_ImportParameter.ToolTip" xml:space="preserve">
+    <value>Bu sekmelerin ayarlarını INI dosyası olarak kaydeder</value>
+  </data>
+  <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
+    <value>Bu sekmelerin ayarlarını INI dosyası olarak kaydeder</value>
   </data>
 </root>

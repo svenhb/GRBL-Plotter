@@ -1705,10 +1705,6 @@ M4 وضع الطاقة ليزر ديناميكي</value>
     <value>مولد بانوراما من قبل Draradech / jigsaw.html في جيثب</value>
     <comment>ok</comment>
   </data>
-  <data name="linkLabel11.Text" xml:space="preserve">
-    <value>www.templatemaker.nl</value>
-    <comment>ok</comment>
-  </data>
   <data name="linkLabel10.Text" xml:space="preserve">
     <value>maker.js</value>
     <comment>ok</comment>
@@ -1716,10 +1712,6 @@ M4 وضع الطاقة ليزر ديناميكي</value>
   <data name="tab11gB3.Text" xml:space="preserve">
     <value>قم بإنشاء رسومات SVG عبر الإنترنت</value>
     <comment>TabPage11</comment>
-  </data>
-  <data name="linkLabel9.Text" xml:space="preserve">
-    <value>www.dafont.com</value>
-    <comment>ok</comment>
   </data>
   <data name="tab11gB4.Text" xml:space="preserve">
     <value>الخطوط المجانية ، على سبيل المثال لالاستنسل أو يطفو على السطح</value>
@@ -3809,5 +3801,14 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   </data>
   <data name="CbImportGraphicHatchFillNoise.ToolTip" xml:space="preserve">
     <value>قم بإنشاء خطوط متذبذبة لملء الفتحة فقط</value>
+  </data>
+  <data name="BtnSaveIni_SvgDxfCsv.ToolTip" xml:space="preserve">
+    <value>يحفظ إعدادات علامات التبويب هذه كملف INI</value>
+  </data>
+  <data name="BtnSaveIni_ImportParameter.ToolTip" xml:space="preserve">
+    <value>يحفظ إعدادات علامات التبويب هذه كملف INI</value>
+  </data>
+  <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
+    <value>يحفظ إعدادات علامات التبويب هذه كملف INI</value>
   </data>
 </root>

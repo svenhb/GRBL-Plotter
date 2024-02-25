@@ -3825,4 +3825,13 @@ Nakreslete podpis na pravý dolní okraj: měřítko 0,1 nebo nižší a použij
   <data name="CbImportGraphicHatchFillNoise.ToolTip" xml:space="preserve">
     <value>Generujte vratké čáry pouze pro výplň šrafování</value>
   </data>
+  <data name="BtnSaveIni_SvgDxfCsv.ToolTip" xml:space="preserve">
+    <value>Uloží nastavení těchto karet jako soubor INI</value>
+  </data>
+  <data name="BtnSaveIni_ImportParameter.ToolTip" xml:space="preserve">
+    <value>Uloží nastavení těchto karet jako soubor INI</value>
+  </data>
+  <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
+    <value>Uloží nastavení těchto karet jako soubor INI</value>
+  </data>
 </root>

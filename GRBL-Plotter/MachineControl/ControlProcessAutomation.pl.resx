@@ -139,12 +139,84 @@
     <value>nic</value>
   </data>
   <data name="LblInfo.Text" xml:space="preserve">
-    <value>Nie wczytano skryptu</value>
+    <value>Nie załadowano żadnego skryptu</value>
   </data>
   <data name="checkBox1.Text" xml:space="preserve">
     <value>Pokaż to okno podczas startu programu</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Automatyzacja procesów</value>
+  </data>
+  <data name="deleteRowToolStripMenuItem.Text" xml:space="preserve">
+    <value>Usuń wiersz</value>
+  </data>
+  <data name="moveRowUpToolStripMenuItem.Text" xml:space="preserve">
+    <value>Przesuń wiersz w górę</value>
+  </data>
+  <data name="moveRowDownToolStripMenuItem.Text" xml:space="preserve">
+    <value>Przesuń wiersz w dół</value>
+  </data>
+  <data name="TbProcessInfo.Text" xml:space="preserve">
+    <value>Utwórz plik XML w tym formacie i załaduj:</value>
+  </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>Zapisuje ustawienia tego okna jako plik INI</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Pomoc online</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>wypełnić znak</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>ilość cyfr</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Wynik:</value>
+  </data>
+  <data name="GbCounter.Text" xml:space="preserve">
+    <value>Lada</value>
+  </data>
+  <data name="ComboDelimiter.Items" xml:space="preserve">
+    <value>; średnik</value>
+  </data>
+  <data name="ComboDelimiter.Items1" xml:space="preserve">
+    <value>: okrężnica</value>
+  </data>
+  <data name="ComboDelimiter.Items2" xml:space="preserve">
+    <value>, okrężnica</value>
+  </data>
+  <data name="ComboDelimiter.Items3" xml:space="preserve">
+    <value>|</value>
+  </data>
+  <data name="ComboDelimiter.Items4" xml:space="preserve">
+    <value>\t zakładka</value>
+  </data>
+  <data name="ComboDelimiter.ToolTip" xml:space="preserve">
+    <value>Ustaw ogranicznik, aby oddzielić kolumny danych</value>
+  </data>
+  <data name="LblDataLoaded.Text" xml:space="preserve">
+    <value>Nic</value>
+  </data>
+  <data name="BtnLoadData.Text" xml:space="preserve">
+    <value>Załaduj dane</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Indeks danych</value>
+  </data>
+  <data name="BtnDataIndexClear.Text" xml:space="preserve">
+    <value>Jasne</value>
+  </data>
+  <data name="GbData.Text" xml:space="preserve">
+    <value>Dane</value>
+  </data>
+  <data name="BtnNew.Text" xml:space="preserve">
+    <value>Nowy</value>
+  </data>
+  <data name="BtnSave.Text" xml:space="preserve">
+    <value>Zapisz skrypt</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Interwał czasowy w ms dla odpytywania</value>
   </data>
 </root>

@@ -3548,4 +3548,13 @@ Desenhe uma assinatura na margem inferior direita: escala 0,1 ou inferior e use 
   <data name="CbImportGraphicHatchFillNoise.ToolTip" xml:space="preserve">
     <value>Gerar linhas instáveis ​​apenas para preenchimento de hachura</value>
   </data>
+  <data name="BtnSaveIni_SvgDxfCsv.ToolTip" xml:space="preserve">
+    <value>Salva as configurações dessas guias como arquivo INI</value>
+  </data>
+  <data name="BtnSaveIni_ImportParameter.ToolTip" xml:space="preserve">
+    <value>Salva as configurações dessas guias como arquivo INI</value>
+  </data>
+  <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
+    <value>Salva as configurações dessas guias como arquivo INI</value>
+  </data>
 </root>

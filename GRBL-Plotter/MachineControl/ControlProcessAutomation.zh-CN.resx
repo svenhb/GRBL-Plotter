@@ -144,4 +144,79 @@
   <data name="$this.Text" xml:space="preserve">
     <value>过程自动化</value>
   </data>
+  <data name="deleteRowToolStripMenuItem.Text" xml:space="preserve">
+    <value>删除行</value>
+  </data>
+  <data name="moveRowUpToolStripMenuItem.Text" xml:space="preserve">
+    <value>上移行</value>
+  </data>
+  <data name="moveRowDownToolStripMenuItem.Text" xml:space="preserve">
+    <value>向下移动行</value>
+  </data>
+  <data name="TbProcessInfo.Text" xml:space="preserve">
+    <value>创建以下格式的 XML 文件并加载：</value>
+  </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>将此窗口的设置保存为 INI 文件</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>网上帮助</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>填充字符</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>位数</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>结果：</value>
+  </data>
+  <data name="GbCounter.Text" xml:space="preserve">
+    <value>柜台</value>
+  </data>
+  <data name="ComboDelimiter.Items" xml:space="preserve">
+    <value>;分号</value>
+  </data>
+  <data name="ComboDelimiter.Items1" xml:space="preserve">
+    <value>： 冒号</value>
+  </data>
+  <data name="ComboDelimiter.Items2" xml:space="preserve">
+    <value>， 冒号</value>
+  </data>
+  <data name="ComboDelimiter.Items3" xml:space="preserve">
+    <value>|</value>
+  </data>
+  <data name="ComboDelimiter.Items4" xml:space="preserve">
+    <value>\t 选项卡</value>
+  </data>
+  <data name="ComboDelimiter.ToolTip" xml:space="preserve">
+    <value>设置分隔符来分隔数据列</value>
+  </data>
+  <data name="LblDataLoaded.Text" xml:space="preserve">
+    <value>没有什么</value>
+  </data>
+  <data name="BtnLoadData.Text" xml:space="preserve">
+    <value>加载数据</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>数据索引</value>
+  </data>
+  <data name="BtnDataIndexClear.Text" xml:space="preserve">
+    <value>清除</value>
+  </data>
+  <data name="GbData.Text" xml:space="preserve">
+    <value>数据</value>
+  </data>
+  <data name="BtnNew.Text" xml:space="preserve">
+    <value>新的</value>
+  </data>
+  <data name="BtnSave.Text" xml:space="preserve">
+    <value>保存脚本</value>
+  </data>
+  <data name="LblInfo.Text" xml:space="preserve">
+    <value>没有加载脚本</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>轮询的计时器间隔（以毫秒为单位）</value>
+  </data>
 </root>

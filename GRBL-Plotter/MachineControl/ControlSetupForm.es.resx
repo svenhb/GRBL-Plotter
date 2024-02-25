@@ -3540,4 +3540,13 @@ Dibuja una firma en el margen inferior derecho: escala 0,1 o menos y usa “abaj
   <data name="CbImportGraphicHatchFillNoise.ToolTip" xml:space="preserve">
     <value>Genera líneas tambaleantes solo para relleno de sombreado</value>
   </data>
+  <data name="BtnSaveIni_SvgDxfCsv.ToolTip" xml:space="preserve">
+    <value>Guarda la configuración de estas pestañas como archivo INI</value>
+  </data>
+  <data name="BtnSaveIni_ImportParameter.ToolTip" xml:space="preserve">
+    <value>Guarda la configuración de estas pestañas como archivo INI</value>
+  </data>
+  <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
+    <value>Guarda la configuración de estas pestañas como archivo INI</value>
+  </data>
 </root>

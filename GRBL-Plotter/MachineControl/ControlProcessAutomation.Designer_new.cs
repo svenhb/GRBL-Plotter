@@ -63,9 +63,7 @@ namespace GrblPlotter
             this.label3 = new System.Windows.Forms.Label();
             this.LblLoaded = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.BtnSaveIni = new System.Windows.Forms.Button();
-            this.TbData = new System.Windows.Forms.TextBox();
-            this.BtnHelp = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.GbCounter = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.TbFill = new System.Windows.Forms.TextBox();
@@ -77,7 +75,9 @@ namespace GrblPlotter
             this.NudCounter = new System.Windows.Forms.NumericUpDown();
             this.TbCounterFront = new System.Windows.Forms.TextBox();
             this.GbData = new System.Windows.Forms.GroupBox();
-            this.ComboDelimiter = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.TbDataDelimiter = new System.Windows.Forms.TextBox();
             this.LblDataLoaded = new System.Windows.Forms.Label();
             this.BtnLoadData = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -90,7 +90,9 @@ namespace GrblPlotter
             this.label2 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.NudTimerInterval = new System.Windows.Forms.NumericUpDown();
+            this.FctbData = new FastColoredTextBoxNS.FastColoredTextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.CmsDataGridEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -104,6 +106,7 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.NudDataIndex)).BeginInit();
             this.GbControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudTimerInterval)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FctbData)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnStart
@@ -140,9 +143,8 @@ namespace GrblPlotter
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellValueChanged);
             this.dataGridView1.CurrentCellDirtyStateChanged += new System.EventHandler(this.DataGridView1_CurrentCellDirtyStateChanged);
-            this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             this.dataGridView1.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DataGridView1_EditingControlShowing);
-            this.dataGridView1.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_RowLeave);
+            this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
             // 
             // CmsDataGridEdit
             // 
@@ -200,55 +202,41 @@ namespace GrblPlotter
             // 
             // splitContainer1
             // 
+            this.splitContainer1.DataBindings.Add(new System.Windows.Forms.Binding("SplitterDistance", global::GrblPlotter.Properties.Settings.Default, "processSplitDistance", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.splitContainer1, "splitContainer1");
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.BtnSaveIni);
-            this.splitContainer1.Panel1.Controls.Add(this.TbData);
-            this.splitContainer1.Panel1.Controls.Add(this.BtnHelp);
+            this.splitContainer1.Panel1.Controls.Add(this.button3);
             this.splitContainer1.Panel1.Controls.Add(this.GbCounter);
             this.splitContainer1.Panel1.Controls.Add(this.GbData);
             this.splitContainer1.Panel1.Controls.Add(this.GbControl);
+            this.splitContainer1.Panel1.Controls.Add(this.FctbData);
             this.splitContainer1.Panel1.Controls.Add(this.dataGridView1);
             this.splitContainer1.Panel1.SizeChanged += new System.EventHandler(this.SplitContainer1_Panel1_SizeChanged);
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.textBox1);
             this.splitContainer1.Panel2.Controls.Add(this.TbProcessInfo);
+            this.splitContainer1.SplitterDistance = global::GrblPlotter.Properties.Settings.Default.processSplitDistance;
             // 
-            // BtnSaveIni
+            // button3
             // 
-            this.BtnSaveIni.BackColor = System.Drawing.Color.SkyBlue;
-            resources.ApplyResources(this.BtnSaveIni, "BtnSaveIni");
-            this.BtnSaveIni.Name = "BtnSaveIni";
-            this.BtnSaveIni.Tag = "id=form-pautomation";
-            this.toolTip1.SetToolTip(this.BtnSaveIni, resources.GetString("BtnSaveIni.ToolTip"));
-            this.BtnSaveIni.UseVisualStyleBackColor = false;
-            this.BtnSaveIni.Click += new System.EventHandler(this.BtnSaveIni_Click);
-            // 
-            // TbData
-            // 
-            this.TbData.HideSelection = false;
-            resources.ApplyResources(this.TbData, "TbData");
-            this.TbData.Name = "TbData";
-            this.TbData.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TbData_MouseUp);
-            // 
-            // BtnHelp
-            // 
-            this.BtnHelp.BackColor = System.Drawing.Color.SkyBlue;
-            resources.ApplyResources(this.BtnHelp, "BtnHelp");
-            this.BtnHelp.Name = "BtnHelp";
-            this.BtnHelp.Tag = "id=form-pautomation";
-            this.toolTip1.SetToolTip(this.BtnHelp, resources.GetString("BtnHelp.ToolTip"));
-            this.BtnHelp.UseVisualStyleBackColor = false;
-            this.BtnHelp.Click += new System.EventHandler(this.BtnHelp_Click);
+            this.button3.BackColor = System.Drawing.Color.SkyBlue;
+            resources.ApplyResources(this.button3, "button3");
+            this.button3.Name = "button3";
+            this.button3.Tag = "id=form-pautomation";
+            this.toolTip1.SetToolTip(this.button3, resources.GetString("button3.ToolTip"));
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.BtnHelp_Click);
             // 
             // GbCounter
             // 
             this.GbCounter.Controls.Add(this.label7);
             this.GbCounter.Controls.Add(this.TbFill);
+            this.GbCounter.Controls.Add(this.TbDataDelimiter);
             this.GbCounter.Controls.Add(this.label6);
             this.GbCounter.Controls.Add(this.NudDigitis);
             this.GbCounter.Controls.Add(this.LblCounterResult);
@@ -333,7 +321,8 @@ namespace GrblPlotter
             // 
             // GbData
             // 
-            this.GbData.Controls.Add(this.ComboDelimiter);
+            this.GbData.Controls.Add(this.comboBox1);
+            this.GbData.Controls.Add(this.label8);
             this.GbData.Controls.Add(this.LblDataLoaded);
             this.GbData.Controls.Add(this.BtnLoadData);
             this.GbData.Controls.Add(this.label4);
@@ -343,21 +332,30 @@ namespace GrblPlotter
             this.GbData.Name = "GbData";
             this.GbData.TabStop = false;
             // 
-            // ComboDelimiter
+            // comboBox1
             // 
-            this.ComboDelimiter.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "processDataDelimeter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.ComboDelimiter.DropDownHeight = 200;
-            this.ComboDelimiter.FormattingEnabled = true;
-            resources.ApplyResources(this.ComboDelimiter, "ComboDelimiter");
-            this.ComboDelimiter.Items.AddRange(new object[] {
-            resources.GetString("ComboDelimiter.Items"),
-            resources.GetString("ComboDelimiter.Items1"),
-            resources.GetString("ComboDelimiter.Items2"),
-            resources.GetString("ComboDelimiter.Items3"),
-            resources.GetString("ComboDelimiter.Items4")});
-            this.ComboDelimiter.Name = "ComboDelimiter";
-            this.ComboDelimiter.Text = global::GrblPlotter.Properties.Settings.Default.processDataDelimeter;
-            this.toolTip1.SetToolTip(this.ComboDelimiter, resources.GetString("ComboDelimiter.ToolTip"));
+            this.comboBox1.DropDownHeight = 200;
+            this.comboBox1.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox1, "comboBox1");
+            this.comboBox1.Items.AddRange(new object[] {
+            resources.GetString("comboBox1.Items"),
+            resources.GetString("comboBox1.Items1"),
+            resources.GetString("comboBox1.Items2"),
+            resources.GetString("comboBox1.Items3"),
+            resources.GetString("comboBox1.Items4")});
+            this.comboBox1.Name = "comboBox1";
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // TbDataDelimiter
+            // 
+            this.TbDataDelimiter.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::GrblPlotter.Properties.Settings.Default, "processDataDelimeter", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.TbDataDelimiter, "TbDataDelimiter");
+            this.TbDataDelimiter.Name = "TbDataDelimiter";
+            this.TbDataDelimiter.Text = global::GrblPlotter.Properties.Settings.Default.processDataDelimeter;
             // 
             // LblDataLoaded
             // 
@@ -475,6 +473,45 @@ namespace GrblPlotter
             this.NudTimerInterval.Name = "NudTimerInterval";
             this.NudTimerInterval.Value = global::GrblPlotter.Properties.Settings.Default.processTimerInterval;
             // 
+            // FctbData
+            // 
+            this.FctbData.AllowMacroRecording = false;
+            this.FctbData.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.FctbData.AutoIndent = false;
+            this.FctbData.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+\\s*(?<range>=)\\s*(?<range>[^;]+);";
+            resources.ApplyResources(this.FctbData, "FctbData");
+            this.FctbData.BackBrush = null;
+            this.FctbData.CharCnWidth = 13;
+            this.FctbData.CharHeight = 12;
+            this.FctbData.CharWidth = 7;
+            this.FctbData.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.FctbData.DelayedTextChangedInterval = 200;
+            this.FctbData.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.FctbData.Hotkeys = resources.GetString("FctbData.Hotkeys");
+            this.FctbData.IsReplaceMode = false;
+            this.FctbData.Name = "FctbData";
+            this.FctbData.Paddings = new System.Windows.Forms.Padding(0);
+            this.FctbData.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.FctbData.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("FctbData.ServiceColors")));
+            this.FctbData.ShowFoldingLines = true;
+            this.FctbData.Zoom = 100;
+            this.FctbData.Click += new System.EventHandler(this.FctbData_Click);
+            // 
+            // textBox1
+            // 
+            resources.ApplyResources(this.textBox1, "textBox1");
+            this.textBox1.Name = "textBox1";
+            // 
             // ProcessAutomation
             // 
             this.AllowDrop = true;
@@ -492,7 +529,6 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.CmsDataGridEdit.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -507,6 +543,7 @@ namespace GrblPlotter
             this.GbControl.ResumeLayout(false);
             this.GbControl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudTimerInterval)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FctbData)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -528,10 +565,11 @@ namespace GrblPlotter
         private System.Windows.Forms.Label LblInfo;
         private System.Windows.Forms.NumericUpDown NudTimerInterval;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button BtnHelp;
+        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button BtnDataIndexClear;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown NudDataIndex;
+        private FastColoredTextBoxNS.FastColoredTextBox FctbData;
         private System.Windows.Forms.GroupBox GbControl;
         private System.Windows.Forms.GroupBox GbData;
         private System.Windows.Forms.Button BtnLoadData;
@@ -548,13 +586,14 @@ namespace GrblPlotter
         private System.Windows.Forms.Label LblDataLoaded;
         private System.Windows.Forms.Button BtnNew;
         private System.Windows.Forms.Button BtnSave;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox TbDataDelimiter;
         private System.Windows.Forms.ContextMenuStrip CmsDataGridEdit;
         private System.Windows.Forms.ToolStripMenuItem deleteRowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem moveRowUpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem moveRowDownToolStripMenuItem;
-        private System.Windows.Forms.ComboBox ComboDelimiter;
+        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.TextBox TbData;
-        private System.Windows.Forms.Button BtnSaveIni;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

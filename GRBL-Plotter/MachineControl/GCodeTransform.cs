@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,6 +31,7 @@
  * 2021-07-12 code clean up / code quality
  * 2022-01-17 process more than one figures (e.g. selected group) for scaling, rotation, move
  * 2022-03-31 line 257 take care of Properties.Settings.Default.importGCTangentialTurn when rotating issue #272
+ * 2024-02-12 add GetTranslate(int offset)
  */
 
 using System;
@@ -42,6 +43,44 @@ namespace GrblPlotter
     internal static partial class VisuGCode
     {
         public enum Translate { None, ScaleX, ScaleY, Offset1, Offset2, Offset3, Offset4, Offset5, Offset6, Offset7, Offset8, Offset9, MirrorX, MirrorY, MirrorRotary };
+		
+		public static Translate GetTranslate(int offset)
+		{
+			switch(offset)	// arrangement like telephone keypad
+			{
+				case 1:
+					return Translate.Offset1;
+					break;
+				case 2:
+					return Translate.Offset2;
+					break;
+				case 3:
+					return Translate.Offset3;
+					break;
+				case 4:
+					return Translate.Offset4;
+					break;
+				case 5:
+					return Translate.Offset5;
+					break;
+				case 6:
+					return Translate.Offset6;
+					break;
+				case 7:
+					return Translate.Offset7;
+					break;
+				case 8:
+					return Translate.Offset8;
+					break;
+				case 9:
+					return Translate.Offset9;
+					break;
+				default:
+					return Translate.None;
+					break;
+			}
+			return Translate.None;
+        }
 
         private static bool XyMove(GcodeByLine tmp)
         { return ((tmp.x != null) || (tmp.y != null)); }
@@ -372,7 +411,7 @@ namespace GrblPlotter
 
         public static string TransformGCodeOffset(double tx, double ty, Translate shiftToZero)
         {
-            Logger.Info("●●● TransformGCode-Offset X: {0:0.000}, Y: {1:0.000}, Offset: {2},   lastFigureNumber:{3}", tx, ty, shiftToZero, lastFigureNumber);
+            Logger.Info("●●● TransformGCode-Offset X: {0:0.000}, Y: {1:0.000}, Offset: {2},   lastFigureNumber:{3}  dimx:{4:0.00}  dimy:{5:0.00}", tx, ty, shiftToZero, lastFigureNumber, xyzSize.dimx, xyzSize.dimy);
             EventCollector.SetTransform("Toff");
             if (gcodeList == null) return "";
             if ((lastFigureNumber <= 0) || (!(shiftToZero == Translate.None)))
@@ -384,7 +423,7 @@ namespace GrblPlotter
 
             oldLine.ResetAll(Grbl.posWork);         // reset coordinates and parser modes
 
-            GetTransaltionOffset(ref offsetX, ref offsetY, tx, ty, shiftToZero);
+            GetTransaltionOffset(ref offsetX, ref offsetY, tx, ty, xyzSize.minx, xyzSize.miny, xyzSize.dimx, xyzSize.dimy, shiftToZero);
 
             if (modal.containsG91)    // relative move: insert rapid movement before pen down, to be able applying offset
             {
@@ -461,17 +500,19 @@ namespace GrblPlotter
             pathBackground.Reset();
             return CreateGCodeProg();
         }
-        private static void GetTransaltionOffset(ref double offsetX, ref double offsetY, double tx, double ty, Translate shiftToZero)
+		
+		/* siehe auch */
+        internal static void GetTransaltionOffset(ref double offsetX, ref double offsetY, double tx, double ty, double minx, double miny, double dimx, double dimy, Translate shiftToZero)
         {
-            if (shiftToZero == Translate.Offset1) { offsetX = tx + xyzSize.minx; offsetY = ty + xyzSize.miny + xyzSize.dimy; }
-            if (shiftToZero == Translate.Offset2) { offsetX = tx + xyzSize.minx + xyzSize.dimx / 2; offsetY = ty + xyzSize.miny + xyzSize.dimy; }
-            if (shiftToZero == Translate.Offset3) { offsetX = tx + xyzSize.minx + xyzSize.dimx; offsetY = ty + xyzSize.miny + xyzSize.dimy; }
-            if (shiftToZero == Translate.Offset4) { offsetX = tx + xyzSize.minx; offsetY = ty + xyzSize.miny + xyzSize.dimy / 2; }
-            if (shiftToZero == Translate.Offset5) { offsetX = tx + xyzSize.minx + xyzSize.dimx / 2; offsetY = ty + xyzSize.miny + xyzSize.dimy / 2; }
-            if (shiftToZero == Translate.Offset6) { offsetX = tx + xyzSize.minx + xyzSize.dimx; offsetY = ty + xyzSize.miny + xyzSize.dimy / 2; }
-            if (shiftToZero == Translate.Offset7) { offsetX = tx + xyzSize.minx; offsetY = ty + xyzSize.miny; }
-            if (shiftToZero == Translate.Offset8) { offsetX = tx + xyzSize.minx + xyzSize.dimx / 2; offsetY = ty + xyzSize.miny; }
-            if (shiftToZero == Translate.Offset9) { offsetX = tx + xyzSize.minx + xyzSize.dimx; offsetY = ty + xyzSize.miny; }
+            if (shiftToZero == Translate.Offset1) { offsetX = tx + minx; offsetY = ty + miny + dimy; }
+            if (shiftToZero == Translate.Offset2) { offsetX = tx + minx + dimx / 2; offsetY = ty + miny + dimy; }
+            if (shiftToZero == Translate.Offset3) { offsetX = tx + minx + dimx; offsetY = ty + miny + dimy; }
+            if (shiftToZero == Translate.Offset4) { offsetX = tx + minx; offsetY = ty + miny + dimy / 2; }
+            if (shiftToZero == Translate.Offset5) { offsetX = tx + minx + dimx / 2; offsetY = ty + miny + dimy / 2; }
+            if (shiftToZero == Translate.Offset6) { offsetX = tx + minx + dimx; offsetY = ty + miny + dimy / 2; }
+            if (shiftToZero == Translate.Offset7) { offsetX = tx + minx; offsetY = ty + miny; }
+            if (shiftToZero == Translate.Offset8) { offsetX = tx + minx + dimx / 2; offsetY = ty + miny; }
+            if (shiftToZero == Translate.Offset9) { offsetX = tx + minx + dimx; offsetY = ty + miny; }
             if (shiftToZero == Translate.None) { offsetX = tx; offsetY = ty; }
         }
 

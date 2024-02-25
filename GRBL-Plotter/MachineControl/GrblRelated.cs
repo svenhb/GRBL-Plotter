@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,6 +31,8 @@
  * 2021-07-26 code clean up / code quality
  * 2021-09-29 add Status
  * 2021-11-03 support VoidMicro controller: https://github.com/arkypita/LaserGRBL/issues/1640
+ * 2024-02-14 add grblDigialIn -Out to process grbl-Mega-5X I/O status
+ * 2024-02-24 add Grbl.StatMsg
 */
 
 using System;
@@ -46,7 +48,10 @@ namespace GrblPlotter
         internal static XyzPoint posWork = new XyzPoint(0, 0, 0);
         internal static XyzPoint posMachine = new XyzPoint(0, 0, 0);
         internal static GrblState Status = GrblState.unknown;
-
+        internal static ModState StatMsg = new ModState();
+        internal static Byte grblDigitalIn = 0;
+		internal static Byte grblDigitalOut = 0;
+		
         public static bool posChanged = true;
         public static bool wcoChanged = true;
 

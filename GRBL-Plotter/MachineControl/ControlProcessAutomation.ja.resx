@@ -144,4 +144,79 @@
   <data name="$this.Text" xml:space="preserve">
     <value>プロセスの自動化</value>
   </data>
+  <data name="deleteRowToolStripMenuItem.Text" xml:space="preserve">
+    <value>行の削除</value>
+  </data>
+  <data name="moveRowUpToolStripMenuItem.Text" xml:space="preserve">
+    <value>行を上に移動</value>
+  </data>
+  <data name="moveRowDownToolStripMenuItem.Text" xml:space="preserve">
+    <value>行を下に移動</value>
+  </data>
+  <data name="TbProcessInfo.Text" xml:space="preserve">
+    <value>この形式で XML ファイルを作成し、ロードします。</value>
+  </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>このウィンドウの設定をINIファイルとして保存します</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>塗りつぶし文字</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>桁数</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>結果：</value>
+  </data>
+  <data name="GbCounter.Text" xml:space="preserve">
+    <value>カウンター</value>
+  </data>
+  <data name="ComboDelimiter.Items" xml:space="preserve">
+    <value>;セミコロン</value>
+  </data>
+  <data name="ComboDelimiter.Items1" xml:space="preserve">
+    <value>: コロン</value>
+  </data>
+  <data name="ComboDelimiter.Items2" xml:space="preserve">
+    <value>、コロン</value>
+  </data>
+  <data name="ComboDelimiter.Items3" xml:space="preserve">
+    <value>|</value>
+  </data>
+  <data name="ComboDelimiter.Items4" xml:space="preserve">
+    <value>\t タブ</value>
+  </data>
+  <data name="ComboDelimiter.ToolTip" xml:space="preserve">
+    <value>データ列を区切るための区切り文字を設定します</value>
+  </data>
+  <data name="LblDataLoaded.Text" xml:space="preserve">
+    <value>何もない</value>
+  </data>
+  <data name="BtnLoadData.Text" xml:space="preserve">
+    <value>データを読み込む</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>データインデックス</value>
+  </data>
+  <data name="BtnDataIndexClear.Text" xml:space="preserve">
+    <value>クリア</value>
+  </data>
+  <data name="GbData.Text" xml:space="preserve">
+    <value>データ</value>
+  </data>
+  <data name="BtnNew.Text" xml:space="preserve">
+    <value>新しい</value>
+  </data>
+  <data name="BtnSave.Text" xml:space="preserve">
+    <value>スクリプトの保存</value>
+  </data>
+  <data name="LblInfo.Text" xml:space="preserve">
+    <value>スクリプトがロードされていません</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>ポーリングのタイマー間隔 (ミリ秒)</value>
+  </data>
 </root>

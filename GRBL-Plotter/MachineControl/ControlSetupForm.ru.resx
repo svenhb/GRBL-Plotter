@@ -3754,4 +3754,13 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   <data name="CbImportGraphicHatchFillNoise.ToolTip" xml:space="preserve">
     <value>Создание неустойчивых линий только для заливки штриховки</value>
   </data>
+  <data name="BtnSaveIni_SvgDxfCsv.ToolTip" xml:space="preserve">
+    <value>Сохраняет настройки этих вкладок в виде INI-файла.</value>
+  </data>
+  <data name="BtnSaveIni_ImportParameter.ToolTip" xml:space="preserve">
+    <value>Сохраняет настройки этих вкладок в виде INI-файла.</value>
+  </data>
+  <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
+    <value>Сохраняет настройки этих вкладок в виде INI-файла.</value>
+  </data>
 </root>

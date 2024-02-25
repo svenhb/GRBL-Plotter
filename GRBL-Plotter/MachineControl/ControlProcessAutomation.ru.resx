@@ -144,4 +144,79 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Автоматизация процессов</value>
   </data>
+  <data name="deleteRowToolStripMenuItem.Text" xml:space="preserve">
+    <value>Удалить строку</value>
+  </data>
+  <data name="moveRowUpToolStripMenuItem.Text" xml:space="preserve">
+    <value>Переместить строку вверх</value>
+  </data>
+  <data name="moveRowDownToolStripMenuItem.Text" xml:space="preserve">
+    <value>Переместить строку вниз</value>
+  </data>
+  <data name="TbProcessInfo.Text" xml:space="preserve">
+    <value>Создайте XML-файл в этом формате и загрузите:</value>
+  </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>Сохраняет настройки этого окна в виде INI-файла.</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Онлайн помощь</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>заполнить символ</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>количество цифр</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Результат:</value>
+  </data>
+  <data name="GbCounter.Text" xml:space="preserve">
+    <value>Прилавок</value>
+  </data>
+  <data name="ComboDelimiter.Items" xml:space="preserve">
+    <value>; точка с запятой</value>
+  </data>
+  <data name="ComboDelimiter.Items1" xml:space="preserve">
+    <value>: двоеточие</value>
+  </data>
+  <data name="ComboDelimiter.Items2" xml:space="preserve">
+    <value>, двоеточие</value>
+  </data>
+  <data name="ComboDelimiter.Items3" xml:space="preserve">
+    <value>|</value>
+  </data>
+  <data name="ComboDelimiter.Items4" xml:space="preserve">
+    <value>\t вкладка</value>
+  </data>
+  <data name="ComboDelimiter.ToolTip" xml:space="preserve">
+    <value>Установите разделитель для разделения столбцов данных</value>
+  </data>
+  <data name="LblDataLoaded.Text" xml:space="preserve">
+    <value>ничего</value>
+  </data>
+  <data name="BtnLoadData.Text" xml:space="preserve">
+    <value>Загрузить данные</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Индекс данных</value>
+  </data>
+  <data name="BtnDataIndexClear.Text" xml:space="preserve">
+    <value>Прозрачный</value>
+  </data>
+  <data name="GbData.Text" xml:space="preserve">
+    <value>Данные</value>
+  </data>
+  <data name="BtnNew.Text" xml:space="preserve">
+    <value>Новый</value>
+  </data>
+  <data name="BtnSave.Text" xml:space="preserve">
+    <value>Сохранить скрипт</value>
+  </data>
+  <data name="LblInfo.Text" xml:space="preserve">
+    <value>Скрипт не загружен</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Интервал таймера в мс для опроса</value>
+  </data>
 </root>

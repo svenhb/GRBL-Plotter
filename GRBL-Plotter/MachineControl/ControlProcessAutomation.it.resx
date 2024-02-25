@@ -144,4 +144,79 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Automazione del processo</value>
   </data>
+  <data name="deleteRowToolStripMenuItem.Text" xml:space="preserve">
+    <value>Elimina riga</value>
+  </data>
+  <data name="moveRowUpToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sposta la riga in alto</value>
+  </data>
+  <data name="moveRowDownToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sposta la riga in basso</value>
+  </data>
+  <data name="TbProcessInfo.Text" xml:space="preserve">
+    <value>Crea un file XML in questo formato e carica:</value>
+  </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>Salva le impostazioni di questa finestra come file INI</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Aiuto online</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>carattere di riempimento</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>numero di cifre</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Risultato:</value>
+  </data>
+  <data name="GbCounter.Text" xml:space="preserve">
+    <value>Contatore</value>
+  </data>
+  <data name="ComboDelimiter.Items" xml:space="preserve">
+    <value>; punto e virgola</value>
+  </data>
+  <data name="ComboDelimiter.Items1" xml:space="preserve">
+    <value>: due punti</value>
+  </data>
+  <data name="ComboDelimiter.Items2" xml:space="preserve">
+    <value>, due punti</value>
+  </data>
+  <data name="ComboDelimiter.Items3" xml:space="preserve">
+    <value>|</value>
+  </data>
+  <data name="ComboDelimiter.Items4" xml:space="preserve">
+    <value>\t scheda</value>
+  </data>
+  <data name="ComboDelimiter.ToolTip" xml:space="preserve">
+    <value>Imposta il delimitatore per separare le colonne di dati</value>
+  </data>
+  <data name="LblDataLoaded.Text" xml:space="preserve">
+    <value>Niente</value>
+  </data>
+  <data name="BtnLoadData.Text" xml:space="preserve">
+    <value>Caricamento dati</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Indice dei dati</value>
+  </data>
+  <data name="BtnDataIndexClear.Text" xml:space="preserve">
+    <value>Chiaro</value>
+  </data>
+  <data name="GbData.Text" xml:space="preserve">
+    <value>Dati</value>
+  </data>
+  <data name="BtnNew.Text" xml:space="preserve">
+    <value>Nuovo</value>
+  </data>
+  <data name="BtnSave.Text" xml:space="preserve">
+    <value>Salva copione</value>
+  </data>
+  <data name="LblInfo.Text" xml:space="preserve">
+    <value>Nessuno script caricato</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Intervallo del timer in ms per il polling</value>
+  </data>
 </root>

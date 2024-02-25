@@ -1902,16 +1902,8 @@ La finestra di installazione deve essere chiusa per utilizzare Gamepad nella GUI
     <value>Generatore di puzzle di Draradech/jigsaw.html su Github</value>
     <comment>ok</comment>
   </data>
-  <data name="linkLabel11.Text" xml:space="preserve">
-    <value>www.templatemaker.nl</value>
-    <comment>ok</comment>
-  </data>
   <data name="linkLabel10.Text" xml:space="preserve">
     <value>maker.js</value>
-    <comment>ok</comment>
-  </data>
-  <data name="linkLabel9.Text" xml:space="preserve">
-    <value>www.dafont.com</value>
     <comment>ok</comment>
   </data>
   <data name="tab11gB2lbl1.Text" xml:space="preserve">
@@ -3877,5 +3869,14 @@ Disegna una firma nel margine inferiore destro: scala 0,1 o inferiore e utilizza
   </data>
   <data name="CbImportGraphicHatchFillNoise.ToolTip" xml:space="preserve">
     <value>Genera linee traballanti solo per il riempimento del tratteggio</value>
+  </data>
+  <data name="BtnSaveIni_SvgDxfCsv.ToolTip" xml:space="preserve">
+    <value>Salva le impostazioni di queste schede come file INI</value>
+  </data>
+  <data name="BtnSaveIni_ImportParameter.ToolTip" xml:space="preserve">
+    <value>Salva le impostazioni di queste schede come file INI</value>
+  </data>
+  <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
+    <value>Salva le impostazioni di queste schede come file INI</value>
   </data>
 </root>

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -39,6 +39,7 @@
  * 2023-03-05 add importGCZIncNoZUp
  * 2023-04-26 add importGraphicFilterEnable
  * 2023-06-05 add further simple shape variables
+ * 2024-02-10 add create text and barcode
 */
 
 using System;
@@ -52,10 +53,11 @@ using System.Windows.Forms;
 
 namespace GrblPlotter
 {
-    class IniFile
+    public partial class IniFile
     {
         readonly string iniPath;
         readonly string ExeName = Assembly.GetExecutingAssembly().GetName().Name;
+        IDictionary<string, string[,]> iniSection = new Dictionary<string, string[,]>();
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -80,6 +82,13 @@ namespace GrblPlotter
                 Logger.Trace("finish download to {0}", tmpfile);
             }
             iniPath = new FileInfo(IniPath ?? ExeName + ".ini").FullName.ToString();
+
+            if (!iniSection.ContainsKey(sectionText)) { iniSection.Add(sectionText, keyValueText); }
+            if (!iniSection.ContainsKey(sectionBarcode)) { iniSection.Add(sectionBarcode, keyValueBarcode); }
+            if (!iniSection.ContainsKey(sectionSetupGcodeGeneration)) { iniSection.Add(sectionSetupGcodeGeneration, keyValueSetupGcodeGeneration); }
+            if (!iniSection.ContainsKey(sectionSetupImportParameter)) { iniSection.Add(sectionSetupImportParameter, keyValueSetupImportParameter); }
+            if (!iniSection.ContainsKey(sectionSetupSvgDxfCsv)) { iniSection.Add(sectionSetupSvgDxfCsv, keyValueSetupSvgDxfCsv); }
+            if (!iniSection.ContainsKey(sectionProcAuto)) { iniSection.Add(sectionProcAuto, keyValueProcAuto); }
         }
 
         public string Read(string Key, string Section = null)
@@ -102,20 +111,70 @@ namespace GrblPlotter
             catch (Exception err) { MessageBox.Show("Error in IniFile-Read: " + err.ToString()); }
         }
 
-        /*     public void DeleteKey(string Key, string Section = null)
-             {
-                 Write(Key, null, Section ?? ExeName);
-             }
+        public void WriteSection(string section)
+        {
+            if (iniSection.ContainsKey(section))
+            {
+                string[,] keyValue = iniSection[section];
+                var setup = Properties.Settings.Default;
+                for (int i = 0; i < keyValue.GetLength(0); i++)
+                {
+                    try
+                    {
+                        var vtyp = setup[keyValue[i, 1]];   // convertString(keyValue[i, 2]);
+                        if (vtyp is Font)
+                        {
+                            var cvt = new FontConverter();
+                            string s = cvt.ConvertToString(setup[keyValue[i, 1]]);
+                            Write(keyValue[i, 0], s, section);
+                            //    Logger.Trace("Write font {0}",s);
+                        }
+                        else
+                            Write(keyValue[i, 0], setup[keyValue[i, 1]].ToString(), section);
+                //        Logger.Trace("WriteSection  {0,-25}  {1,10}  {2}", keyValue[i, 0], setup[keyValue[i, 1]].ToString(), section);
+                    }
+                    catch (Exception err) { Logger.Error(err, " WriteSection {0} {1} {2} ", section, keyValue[i, 0], keyValue[i, 1]); }
+                }
+            }
+            else
+            { Logger.Warn("WriteSection section not found:'{0}'", section); }
+        }
 
-             public void DeleteSection(string Section = null)
-             {
-                 Write(null, null, Section ?? ExeName);
-             }
+        public void ReadSection(string section)
+        {
+            string tmpstring = "";
+			bool tmpbool = false;
+            int tmpint = 0;
+            decimal tmpdeci = 0;
+            double tmpdouble = 0;
+            float tmpfloat = 0;
+            Color tmpcolor = Color.Black;
+            Font tmpfont = null;
 
-             public bool KeyExists(string Key, string Section = null)
-             {
-                 return Read(Key, Section).Length > 0;
-             }*/
+            //if (SetVariable(ref tmpdeci, section, "1D Height")) { setup.importBarcode1DHeight = tmpdeci; }
+            if (iniSection.ContainsKey(section))
+            {
+                string[,] keyValue = iniSection[section];
+                var setup = Properties.Settings.Default;
+                for (int i = 0; i < keyValue.GetLength(0); i++)
+                {
+                    try
+                    {
+                        var vtyp = setup[keyValue[i, 1]];   // convertString(keyValue[i, 2]);
+                        if (vtyp is string) { if (SetVariable(ref tmpstring, section, keyValue[i, 0])) { setup[keyValue[i, 1]] = tmpstring; } }
+                        else if (vtyp is bool) { if (SetVariable(ref tmpbool, section, keyValue[i, 0])) { setup[keyValue[i, 1]] = tmpbool; } }
+                        else if (vtyp is int) { if (SetVariable(ref tmpint, section, keyValue[i, 0])) { setup[keyValue[i, 1]] = tmpint; } }
+                        else if (vtyp is decimal) { if (SetVariable(ref tmpdeci, section, keyValue[i, 0])) { setup[keyValue[i, 1]] = tmpdeci; } }
+                        else if (vtyp is double) { if (SetVariable(ref tmpdouble, section, keyValue[i, 0])) { setup[keyValue[i, 1]] = tmpdouble; } }
+                        else if (vtyp is float) { if (SetVariable(ref tmpfloat, section, keyValue[i, 0])) { setup[keyValue[i, 1]] = tmpfloat; } }
+                        else if (vtyp is Color) { if (SetVariable(ref tmpcolor, section, keyValue[i, 0])) { setup[keyValue[i, 1]] = tmpcolor; } }
+                        else if (vtyp is Font) { if (SetVariable(ref tmpfont, section, keyValue[i, 0])) { setup[keyValue[i, 1]] = tmpfont; } }
+                        else Logger.Error("Type not defined: type:{0}  key:{1}", vtyp.GetType().ToString(), keyValue[i, 1]);
+                    }
+                    catch (Exception err) { Logger.Error(err, " ReadSection {0} {1} {2} ", section, keyValue[i, 0], keyValue[i, 1]); }
+                }
+            }
+        }
 
         public void WriteImport(bool all = false)
         {
@@ -140,7 +199,7 @@ namespace GrblPlotter
             section = "Graphics Import";
 
             /* Format related */
-            Write("SVG DPI 96 enable", setup.importSVGDPI96.ToString(), section);
+       /*     Write("SVG DPI 96 enable", setup.importSVGDPI96.ToString(), section);
             if (setup.importSVGRezise || all)
             {
                 Write("SVG resize enable", setup.importSVGRezise.ToString(), section);
@@ -156,7 +215,7 @@ namespace GrblPlotter
             if (setup.importSVGDontPlot || all) { Write("SVG skip hidden", setup.importSVGDontPlot.ToString(), section); }
             if (setup.importSVGApplyFill || all) { Write("SVG apply fill", setup.importSVGApplyFill.ToString(), section); }
             if (setup.importSVGMetaData || all) { Write("SVG apply metadata", setup.importSVGMetaData.ToString(), section); }
-
+       */
             if (setup.importDXFToolIndex || all) { Write("DXF use color index", setup.importDXFToolIndex.ToString(), section); }
             if (setup.importDXFSwitchWhite || all) { Write("DXF handle white as black", setup.importDXFSwitchWhite.ToString(), section); }
             if (setup.importDXFDontPlot || all) { Write("DXF skip hidden", setup.importDXFDontPlot.ToString(), section); }
@@ -164,7 +223,7 @@ namespace GrblPlotter
 
 
             /* Graphics import General */
-            Write("Graph Units mm", setup.importUnitmm.ToString(), section);
+      /*      Write("Graph Units mm", setup.importUnitmm.ToString(), section);
             if (setup.importUnitGCode || all) { Write("Graph Units GCode", setup.importUnitGCode.ToString(), section); }
             Write("Bezier Segment count", setup.importBezierLineSegmentsCnt.ToString(), section);
             Write("Arc circumfence step", setup.importGCSegment.ToString(), section);
@@ -176,13 +235,13 @@ namespace GrblPlotter
             }
 
             Write("Distance assumed as equal", setup.importAssumeAsEqualDistance.ToString(), section);
-
+      
             if (setup.importGraphicOffsetOrigin || all) { Write("Objects offset origin", setup.importGraphicOffsetOrigin.ToString(), section); }
             if (setup.importGraphicSortDistance || all) { Write("Objects sort by distance", setup.importGraphicSortDistance.ToString(), section); }
             if (setup.importGraphicSortDistanceAllowRotate || all) { Write("Objects sort rotate", setup.importGraphicSortDistanceAllowRotate.ToString(), section); }
 
             if (setup.importGCNoArcs || all) { Write("Replace arc by lines", setup.importGCNoArcs.ToString(), section); }
-
+*/
             /* Path interpretation */
             if (setup.importLineDashPattern || all) { Write("Process Dashed Lines", setup.importLineDashPattern.ToString(), section); }
             if (setup.importLineDashPatternG0 || all) { Write("Process Dashed Lines G0", setup.importLineDashPatternG0.ToString(), section); }
@@ -349,7 +408,7 @@ namespace GrblPlotter
                 Write("Aux2 Z process", setup.importGCAux2ZMode.ToString(), section);
             }
 
-            section = "GCode generation";
+    /*        section = "GCode generation";
             Write("Dec Places", setup.importGCDecPlaces.ToString(), section);
             Write("Header Code", setup.importGCHeader.ToString(), section);
             Write("Footer Code", setup.importGCFooter.ToString(), section);
@@ -375,7 +434,7 @@ namespace GrblPlotter
                 Write("Z Inc Enable", setup.importGCZIncEnable.ToString(), section);
                 Write("Z Increment at zero", setup.importGCZIncStartZero.ToString(), section);
                 Write("Z Increment", setup.importGCZIncrement.ToString(), section);
-        //        Write("Z Increment no up", setup.importGCZIncNoZUp.ToString(), section);
+                //        Write("Z Increment no up", setup.importGCZIncNoZUp.ToString(), section);
             }
 
             Write("Spindle Toggle", setup.importGCSpindleToggle.ToString(), section);
@@ -402,7 +461,7 @@ namespace GrblPlotter
                 Write("Individual PenDown", setup.importGCIndPenDown.ToString(), section);
             }
 
-
+*/
             section = "GCode modification";
             if (setup.importGCLineSegmentation || all)
             {
@@ -668,6 +727,13 @@ namespace GrblPlotter
             Write("DIY COM Port", setup.serialPortDIY.ToString(), section);
             Write("DIY COM Baud", setup.serialBaudDIY.ToString(), section);
 
+            WriteSection(sectionText);
+            WriteSection(sectionBarcode);
+            WriteSection(sectionSetupGcodeGeneration);
+            WriteSection(sectionSetupImportParameter);
+            WriteSection(sectionSetupSvgDxfCsv);
+            WriteSection(sectionProcAuto);
+
             if (setup.guiExtendedLoggingEnabled)
             {
                 section = "Logging";
@@ -698,10 +764,10 @@ namespace GrblPlotter
             /* Format related */
             setup.importSVGDPI96 = true;
             setup.importSVGRezise = false;
-            setup.importSVGAddOnEnable = false;			
+            setup.importSVGAddOnEnable = false;
             setup.importSVGDontPlot = false;
             setup.importSVGApplyFill = false;
-			setup.importSVGMetaData = false;
+            setup.importSVGMetaData = false;
             setup.importDXFToolIndex = false;
             setup.importDXFDontPlot = false;
             setup.importDXFSwitchWhite = true;
@@ -745,8 +811,8 @@ namespace GrblPlotter
 
             setup.importGroupObjects = false;
             setup.importGroupSortInvert = false;
-			setup.importGraphicFilterEnable = false;
-			
+            setup.importGraphicFilterEnable = false;
+
             setup.importGCToolTableUse = false;
             setup.importGCToolDefNrUse = false;
 
@@ -796,10 +862,10 @@ namespace GrblPlotter
             section = "Graphics Import";
 
             /* Format related */
-            if (SetVariable(ref tmpbool, section, "SVG DPI 96 enable")) { setup.importSVGDPI96 = tmpbool; }
+     /*       if (SetVariable(ref tmpbool, section, "SVG DPI 96 enable")) { setup.importSVGDPI96 = tmpbool; }
             if (SetVariable(ref tmpbool, section, "SVG resize enable")) { setup.importSVGRezise = tmpbool; }
             if (SetVariable(ref tmpdeci, section, "SVG resize units")) { setup.importSVGMaxSize = tmpdeci; }
-			
+
             if (SetVariable(ref tmpbool, section, "SVG addon enable")) { setup.importSVGAddOnEnable = tmpbool; }
             if (SetVariable(ref tmpstr, section, "SVG addon file")) { setup.importSVGAddOnFile = tmpstr; }
             if (SetVariable(ref tmpdeci, section, "SVG addon scale")) { setup.importSVGAddOnScale = tmpdeci; }
@@ -813,7 +879,7 @@ namespace GrblPlotter
             if (SetVariable(ref tmpbool, section, "DXF handle white as black")) { setup.importDXFSwitchWhite = tmpbool; }
             if (SetVariable(ref tmpbool, section, "DXF skip hidden")) { setup.importDXFDontPlot = tmpbool; }
             if (SetVariable(ref tmpbool, section, "DXF import z")) { setup.importDXFUseZ = tmpbool; }
-
+     */
             /* Graphics import General */
             if (SetVariable(ref tmpbool, section, "Graph Units mm")) { setup.importUnitmm = tmpbool; }
             if (SetVariable(ref tmpbool, section, "Graph Units GCode")) { setup.importUnitGCode = tmpbool; }
@@ -912,7 +978,7 @@ namespace GrblPlotter
             if (SetVariable(ref tmpint, section, "Grouping sort option")) { setup.importGroupSort = tmpint; }
             if (SetVariable(ref tmpbool, section, "Grouping sort invert")) { setup.importGroupSortInvert = tmpbool; }
 
-			/* Filter */
+            /* Filter */
             if (SetVariable(ref tmpbool, section, "Filter enable")) { setup.importGraphicFilterEnable = tmpbool; }
             if (SetVariable(ref tmpbool, section, "Filter remove")) { setup.importGraphicFilterChoiceRemove = tmpbool; }
             if (SetVariable(ref tmpstr, section, "Filter list remove")) { setup.importGraphicFilterListRemove = tmpstr; }
@@ -950,7 +1016,7 @@ namespace GrblPlotter
             if (SetVariable(ref tmpint, section, "Aux2 Z process")) { setup.importGCAux2ZMode = tmpint; }
 
 
-            section = "GCode generation";
+   /*         section = "GCode generation";
             if (SetVariable(ref tmpdeci, section, "Dec Places")) { setup.importGCDecPlaces = tmpdeci; }
             if (SetVariable(ref tmpstr, section, "Header Code")) { setup.importGCHeader = tmpstr; }
             if (SetVariable(ref tmpstr, section, "Footer Code")) { setup.importGCFooter = tmpstr; }
@@ -1001,7 +1067,7 @@ namespace GrblPlotter
             if (SetVariable(ref tmpbool, section, "Individual enable")) { setup.importGCIndEnable = tmpbool; }
             if (SetVariable(ref tmpstr, section, "Individual PenUp")) { setup.importGCIndPenUp = tmpstr; }
             if (SetVariable(ref tmpstr, section, "Individual PenDown")) { setup.importGCIndPenDown = tmpstr; }
-
+*/
             section = "GCode modification";
 
             if (SetVariable(ref tmpbool, section, "Line segmentation enable")) { setup.importGCLineSegmentation = tmpbool; }
@@ -1315,6 +1381,13 @@ namespace GrblPlotter
             if (SetVariable(ref tmpstr, section, "DIY COM Port")) { setup.serialPortDIY = tmpstr; }
             if (SetVariable(ref tmpstr, section, "DIY COM Baud")) { setup.serialBaudDIY = tmpstr; }
 
+            ReadSection(sectionText);
+            ReadSection(sectionBarcode);
+            ReadSection(sectionSetupGcodeGeneration);
+            ReadSection(sectionSetupImportParameter);
+            ReadSection(sectionSetupSvgDxfCsv);
+            ReadSection(sectionProcAuto);
+
             section = "Logging";
             if (SetVariable(ref tmpbool, section, "Log Enable")) { setup.guiExtendedLoggingEnabled = tmpbool; }
             if (SetVariable(ref tmpint, section, "Log Flags")) { setup.importLoggerSettings = Convert.ToByte(tmpint); }
@@ -1402,11 +1475,6 @@ namespace GrblPlotter
                 tmp.AppendFormat(key, value);
         }
 
-        /*     private double MyConvertToDouble(string tmp)
-             {   return double.Parse(tmp.Replace(',','.'), CultureInfo.InvariantCulture.NumberFormat); }
-             private decimal MyConvertToDecimal(string tmp)
-             { return decimal.Parse(tmp.Replace(',', '.'), CultureInfo.InvariantCulture.NumberFormat); }
-        */
         private bool SetVariable(ref string variable, string section, string key)
         {
             string valString = Read(key, section);
@@ -1447,6 +1515,16 @@ namespace GrblPlotter
             { variable = tmp; return true; }
             return false;
         }
+        private bool SetVariable(ref float variable, string section, string key)
+        {
+            string valString = Read(key, section);
+            if (string.IsNullOrEmpty(valString)) return false;
+            if (float.TryParse(valString, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out float tmp))
+            {
+                Logger.Trace("Float: {0}", tmp);
+                variable = tmp; return true; }
+            return false;
+        }
         private bool SetVariable(ref Color variable, string section, string key)
         {
             string valString = Read(key, section);
@@ -1459,6 +1537,15 @@ namespace GrblPlotter
             catch (Exception er)
             { Logger.Error(er, "setVariable key:{0} section:{1} variable:{2} ", key, section, valString); }
             return false;
+        }
+        private bool SetVariable(ref Font variable, string section, string key)
+        {
+            string valString = Read(key, section);
+            if (string.IsNullOrEmpty(valString)) return false;
+			var cvt = new FontConverter();
+            variable = cvt.ConvertFromString(valString) as Font;
+            Logger.Trace("Read font {0}", variable);
+            return true;
         }
     }
 }

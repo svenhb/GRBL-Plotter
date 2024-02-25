@@ -147,4 +147,76 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Proses Otomasyonu</value>
   </data>
+  <data name="deleteRowToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sırayı sil</value>
+  </data>
+  <data name="moveRowUpToolStripMenuItem.Text" xml:space="preserve">
+    <value>Satırı yukarı taşı</value>
+  </data>
+  <data name="moveRowDownToolStripMenuItem.Text" xml:space="preserve">
+    <value>Satırı aşağı taşı</value>
+  </data>
+  <data name="TbProcessInfo.Text" xml:space="preserve">
+    <value>Bu formatta bir XML dosyası oluşturun ve yükleyin:</value>
+  </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>Bu pencerenin ayarlarını INI dosyası olarak kaydeder</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>dolgu karakteri</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Basamak sayısı</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Sonuç:</value>
+  </data>
+  <data name="GbCounter.Text" xml:space="preserve">
+    <value>Tezgah</value>
+  </data>
+  <data name="ComboDelimiter.Items" xml:space="preserve">
+    <value>; noktalı virgül</value>
+  </data>
+  <data name="ComboDelimiter.Items1" xml:space="preserve">
+    <value>: kolon</value>
+  </data>
+  <data name="ComboDelimiter.Items2" xml:space="preserve">
+    <value>, kolon</value>
+  </data>
+  <data name="ComboDelimiter.Items3" xml:space="preserve">
+    <value>|</value>
+  </data>
+  <data name="ComboDelimiter.Items4" xml:space="preserve">
+    <value>\t sekmesi</value>
+  </data>
+  <data name="ComboDelimiter.ToolTip" xml:space="preserve">
+    <value>Sınırlayıcıyı veri sütunlarını ayıracak şekilde ayarlayın</value>
+  </data>
+  <data name="LblDataLoaded.Text" xml:space="preserve">
+    <value>Hiçbir şey</value>
+  </data>
+  <data name="BtnLoadData.Text" xml:space="preserve">
+    <value>Veri yükle</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Veri dizini</value>
+  </data>
+  <data name="BtnDataIndexClear.Text" xml:space="preserve">
+    <value>Temizlemek</value>
+  </data>
+  <data name="GbData.Text" xml:space="preserve">
+    <value>Veri</value>
+  </data>
+  <data name="BtnNew.Text" xml:space="preserve">
+    <value>Yeni</value>
+  </data>
+  <data name="BtnSave.Text" xml:space="preserve">
+    <value>Komut dosyasını kaydet</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Yoklama için ms cinsinden zamanlayıcı aralığı</value>
+  </data>
 </root>

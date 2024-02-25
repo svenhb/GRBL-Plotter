@@ -3709,4 +3709,13 @@ Narysuj podpis na prawym dolnym marginesie: skala 0,1 lub niższa i użyj „pra
   <data name="CbImportGraphicHatchFillNoise.ToolTip" xml:space="preserve">
     <value>Generuj chwiejne linie tylko dla wypełnienia kreskowaniem</value>
   </data>
+  <data name="BtnSaveIni_SvgDxfCsv.ToolTip" xml:space="preserve">
+    <value>Zapisuje ustawienia tych zakładek jako plik INI</value>
+  </data>
+  <data name="BtnSaveIni_ImportParameter.ToolTip" xml:space="preserve">
+    <value>Zapisuje ustawienia tych zakładek jako plik INI</value>
+  </data>
+  <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
+    <value>Zapisuje ustawienia tych zakładek jako plik INI</value>
+  </data>
 </root>

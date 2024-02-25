@@ -144,4 +144,79 @@
   <data name="$this.Text" xml:space="preserve">
     <value>أتمتة العمليات</value>
   </data>
+  <data name="deleteRowToolStripMenuItem.Text" xml:space="preserve">
+    <value>احذف صف</value>
+  </data>
+  <data name="moveRowUpToolStripMenuItem.Text" xml:space="preserve">
+    <value>نقل الصف لأعلى</value>
+  </data>
+  <data name="moveRowDownToolStripMenuItem.Text" xml:space="preserve">
+    <value>نقل الصف إلى الأسفل</value>
+  </data>
+  <data name="TbProcessInfo.Text" xml:space="preserve">
+    <value>أنشئ ملف XML بهذا التنسيق وقم بتحميله:</value>
+  </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>يحفظ إعدادات هذه النافذة كملف INI</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>مساعدة على الانترنت</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>ملء الطابع</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>عدد الأرقام</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>نتيجة:</value>
+  </data>
+  <data name="GbCounter.Text" xml:space="preserve">
+    <value>عداد</value>
+  </data>
+  <data name="ComboDelimiter.Items" xml:space="preserve">
+    <value>; فاصلة منقوطة</value>
+  </data>
+  <data name="ComboDelimiter.Items1" xml:space="preserve">
+    <value>: القولون</value>
+  </data>
+  <data name="ComboDelimiter.Items2" xml:space="preserve">
+    <value>القولون</value>
+  </data>
+  <data name="ComboDelimiter.Items3" xml:space="preserve">
+    <value>|</value>
+  </data>
+  <data name="ComboDelimiter.Items4" xml:space="preserve">
+    <value>\t علامة التبويب</value>
+  </data>
+  <data name="ComboDelimiter.ToolTip" xml:space="preserve">
+    <value>قم بتعيين محدد لفصل أعمدة البيانات</value>
+  </data>
+  <data name="LblDataLoaded.Text" xml:space="preserve">
+    <value>لا شئ</value>
+  </data>
+  <data name="BtnLoadData.Text" xml:space="preserve">
+    <value>تحميل البيانات</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>مؤشر البيانات</value>
+  </data>
+  <data name="BtnDataIndexClear.Text" xml:space="preserve">
+    <value>واضح</value>
+  </data>
+  <data name="GbData.Text" xml:space="preserve">
+    <value>بيانات</value>
+  </data>
+  <data name="BtnNew.Text" xml:space="preserve">
+    <value>جديد</value>
+  </data>
+  <data name="BtnSave.Text" xml:space="preserve">
+    <value>حفظ البرنامج النصي</value>
+  </data>
+  <data name="LblInfo.Text" xml:space="preserve">
+    <value>لم يتم تحميل أي برنامج نصي</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>الفاصل الزمني للمؤقت بالمللي ثانية للاستقصاء</value>
+  </data>
 </root>

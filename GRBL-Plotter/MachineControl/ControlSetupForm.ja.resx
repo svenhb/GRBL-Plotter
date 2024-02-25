@@ -1713,10 +1713,6 @@ GUIでGamePadを使用するには、セットアップウィンドウを閉じ�
     <value>GithubのDraradech / jigsaw.htmlによるジグソージェネレーター</value>
     <comment>ok</comment>
   </data>
-  <data name="linkLabel11.Text" xml:space="preserve">
-    <value>www.templatemaker.nl</value>
-    <comment>ok</comment>
-  </data>
   <data name="linkLabel10.Text" xml:space="preserve">
     <value>maker.js</value>
     <comment>ok</comment>
@@ -1724,10 +1720,6 @@ GUIでGamePadを使用するには、セットアップウィンドウを閉じ�
   <data name="tab11gB3.Text" xml:space="preserve">
     <value>SVG図面をオンラインで作成する</value>
     <comment>TabPage11</comment>
-  </data>
-  <data name="linkLabel9.Text" xml:space="preserve">
-    <value>www.dafont.com</value>
-    <comment>ok</comment>
   </data>
   <data name="tab11gB4.Text" xml:space="preserve">
     <value>フリーフォント、例： ステンシルまたはポップアップ用</value>
@@ -3833,5 +3825,14 @@ GCode ヘッダー セクションで指定: 'SVG dimension'。</value>
   </data>
   <data name="CbImportGraphicHatchFillNoise.ToolTip" xml:space="preserve">
     <value>ハッチング塗りつぶしのみにぐらつく線を生成する</value>
+  </data>
+  <data name="BtnSaveIni_SvgDxfCsv.ToolTip" xml:space="preserve">
+    <value>このタブの設定を INI ファイルとして保存します</value>
+  </data>
+  <data name="BtnSaveIni_ImportParameter.ToolTip" xml:space="preserve">
+    <value>このタブの設定を INI ファイルとして保存します</value>
+  </data>
+  <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
+    <value>このタブの設定を INI ファイルとして保存します</value>
   </data>
 </root>

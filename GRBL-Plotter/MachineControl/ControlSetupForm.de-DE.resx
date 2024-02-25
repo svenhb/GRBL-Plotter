@@ -3480,4 +3480,13 @@ Zeichne eine Signatur in den unteren rechten Rand: Maßstab 0,1 oder kleiner und
   <data name="CbImportGraphicHatchFillNoise.ToolTip" xml:space="preserve">
     <value>Erzeugtwackelige Linien nur für die Schraffurfüllung</value>
   </data>
+  <data name="BtnSaveIni_SvgDxfCsv.ToolTip" xml:space="preserve">
+    <value>Speichert die Einstellungen dieser Registerkarten als INI-Datei</value>
+  </data>
+  <data name="BtnSaveIni_ImportParameter.ToolTip" xml:space="preserve">
+    <value>Speichert die Einstellungen dieser Registerkarten als INI-Datei</value>
+  </data>
+  <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
+    <value>Speichert die Einstellungen dieser Registerkarten als INI-Datei</value>
+  </data>
 </root>

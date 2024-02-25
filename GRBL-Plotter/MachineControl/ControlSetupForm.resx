@@ -118,17 +118,77 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="BtnHelp_ImportParameter.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="BtnSaveIni_SvgDxfCsv.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="BtnSaveIni_SvgDxfCsv.Location" type="System.Drawing.Point, System.Drawing">
+    <value>792, 6</value>
+  </data>
+  <data name="BtnSaveIni_SvgDxfCsv.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 23</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="BtnSaveIni_SvgDxfCsv.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="BtnSaveIni_SvgDxfCsv.Text" xml:space="preserve">
+    <value>💾</value>
+  </data>
+  <data name="BtnSaveIni_SvgDxfCsv.ToolTip" xml:space="preserve">
+    <value>Save settings of this tabs as INI file</value>
+  </data>
+  <data name="&gt;&gt;BtnSaveIni_SvgDxfCsv.Name" xml:space="preserve">
+    <value>BtnSaveIni_SvgDxfCsv</value>
+  </data>
+  <data name="&gt;&gt;BtnSaveIni_SvgDxfCsv.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnSaveIni_SvgDxfCsv.Parent" xml:space="preserve">
+    <value>pathImport1</value>
+  </data>
+  <data name="&gt;&gt;BtnSaveIni_SvgDxfCsv.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="BtnSaveIni_ImportParameter.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnSaveIni_ImportParameter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>369, 6</value>
+  </data>
+  <data name="BtnSaveIni_ImportParameter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 23</value>
+  </data>
+  <data name="BtnSaveIni_ImportParameter.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
+  </data>
+  <data name="BtnSaveIni_ImportParameter.Text" xml:space="preserve">
+    <value>💾</value>
+  </data>
+  <data name="BtnSaveIni_ImportParameter.ToolTip" xml:space="preserve">
+    <value>Save settings of this tabs as INI file</value>
+  </data>
+  <data name="&gt;&gt;BtnSaveIni_ImportParameter.Name" xml:space="preserve">
+    <value>BtnSaveIni_ImportParameter</value>
+  </data>
+  <data name="&gt;&gt;BtnSaveIni_ImportParameter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnSaveIni_ImportParameter.Parent" xml:space="preserve">
+    <value>pathImport1</value>
+  </data>
+  <data name="&gt;&gt;BtnSaveIni_ImportParameter.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="BtnHelp_ImportParameter.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="BtnHelp_ImportParameter.Location" type="System.Drawing.Point, System.Drawing">
     <value>397, 6</value>
   </data>
   <data name="BtnHelp_ImportParameter.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 23</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="BtnHelp_ImportParameter.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
   </data>
@@ -148,7 +208,7 @@
     <value>pathImport1</value>
   </data>
   <data name="&gt;&gt;BtnHelp_ImportParameter.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="BtnHelp_SvgDxfCsv.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -178,7 +238,7 @@
     <value>pathImport1</value>
   </data>
   <data name="&gt;&gt;BtnHelp_SvgDxfCsv.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="NudImportGraphicOffsetOriginY.Location" type="System.Drawing.Point, System.Drawing">
     <value>71, 161</value>
@@ -1133,7 +1193,7 @@ As more segments as more prezice the curve is.</value>
     <value>pathImport1</value>
   </data>
   <data name="&gt;&gt;tabControlImport.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="TbImportSVGAddOnFile.Location" type="System.Drawing.Point, System.Drawing">
     <value>26, 42</value>
@@ -3056,7 +3116,7 @@ to avoid problems when scaling down gcode.</value>
     <value>pathImport1</value>
   </data>
   <data name="&gt;&gt;tabControlFormat.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="pathImport1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -5214,11 +5274,14 @@ then add nodes via 'Extensions - Modify Path - Add nodes' to distribute addition
   <data name="LblNoise2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="LblNoise2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="LblNoise2.Location" type="System.Drawing.Point, System.Drawing">
     <value>174, 41</value>
   </data>
   <data name="LblNoise2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 13</value>
+    <value>49, 13</value>
   </data>
   <data name="LblNoise2.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -5240,6 +5303,9 @@ then add nodes via 'Extensions - Modify Path - Add nodes' to distribute addition
   </data>
   <data name="LblNoise1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="LblNoise1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="LblNoise1.Location" type="System.Drawing.Point, System.Drawing">
     <value>174, 17</value>
@@ -5524,6 +5590,9 @@ Usefull for laser cutter.</value>
   </data>
   <data name="CbImportGraphicHatchFillNoise.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="CbImportGraphicHatchFillNoise.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="CbImportGraphicHatchFillNoise.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 219</value>
@@ -10838,6 +10907,36 @@ In addition, the position of the Z axis can be used to e.g. increase the amount 
   <data name="&gt;&gt;graphicImport1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="BtnSaveIni_Gcode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnSaveIni_Gcode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>338, 4</value>
+  </data>
+  <data name="BtnSaveIni_Gcode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 23</value>
+  </data>
+  <data name="BtnSaveIni_Gcode.TabIndex" type="System.Int32, mscorlib">
+    <value>51</value>
+  </data>
+  <data name="BtnSaveIni_Gcode.Text" xml:space="preserve">
+    <value>💾</value>
+  </data>
+  <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
+    <value>Save settings of this tabs as INI file</value>
+  </data>
+  <data name="&gt;&gt;BtnSaveIni_Gcode.Name" xml:space="preserve">
+    <value>BtnSaveIni_Gcode</value>
+  </data>
+  <data name="&gt;&gt;BtnSaveIni_Gcode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnSaveIni_Gcode.Parent" xml:space="preserve">
+    <value>tab1_2gB1</value>
+  </data>
+  <data name="&gt;&gt;BtnSaveIni_Gcode.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="BtnHelp_General.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -10866,7 +10965,7 @@ In addition, the position of the Z axis can be used to e.g. increase the amount 
     <value>tab1_2gB1</value>
   </data>
   <data name="&gt;&gt;BtnHelp_General.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="label32.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -10900,7 +10999,7 @@ In addition, the position of the Z axis can be used to e.g. increase the amount 
     <value>tab1_2gB1</value>
   </data>
   <data name="&gt;&gt;label32.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="tBImportGCToolChange.Location" type="System.Drawing.Point, System.Drawing">
     <value>226, 231</value>
@@ -10927,7 +11026,7 @@ In addition, the position of the Z axis can be used to e.g. increase the amount 
     <value>tab1_2gB1</value>
   </data>
   <data name="&gt;&gt;tBImportGCToolChange.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="nUDImportGCFeedXY.Location" type="System.Drawing.Point, System.Drawing">
     <value>170, 84</value>
@@ -10955,7 +11054,7 @@ In addition, the position of the Z axis can be used to e.g. increase the amount 
     <value>tab1_2gB1</value>
   </data>
   <data name="&gt;&gt;nUDImportGCFeedXY.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="btnCheckSpindle.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -11298,7 +11397,7 @@ Constant Laser Power Mode in Laser Mode</value>
     <value>tab1_2gB1</value>
   </data>
   <data name="&gt;&gt;tab1_2gB2.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="cBImportGCToolM0.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -11333,7 +11432,7 @@ Constant Laser Power Mode in Laser Mode</value>
     <value>tab1_2gB1</value>
   </data>
   <data name="&gt;&gt;cBImportGCToolM0.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="cBImportGCTool.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -11368,7 +11467,7 @@ Constant Laser Power Mode in Laser Mode</value>
     <value>tab1_2gB1</value>
   </data>
   <data name="&gt;&gt;cBImportGCTool.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="cBImportGCComments.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -11403,7 +11502,7 @@ Constant Laser Power Mode in Laser Mode</value>
     <value>tab1_2gB1</value>
   </data>
   <data name="&gt;&gt;cBImportGCComments.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="cBImportGCTTXYFeed.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -11438,7 +11537,7 @@ Constant Laser Power Mode in Laser Mode</value>
     <value>tab1_2gB1</value>
   </data>
   <data name="&gt;&gt;cBImportGCTTXYFeed.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="tab1_2lbl1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -11473,7 +11572,7 @@ Constant Laser Power Mode in Laser Mode</value>
     <value>tab1_2gB1</value>
   </data>
   <data name="&gt;&gt;tab1_2lbl1.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="tBImportGCHeader.Location" type="System.Drawing.Point, System.Drawing">
     <value>170, 37</value>
@@ -11499,7 +11598,7 @@ No need to set this words</value>
     <value>tab1_2gB1</value>
   </data>
   <data name="&gt;&gt;tBImportGCHeader.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="tab1_2lbl4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -11534,7 +11633,7 @@ No need to set this words</value>
     <value>tab1_2gB1</value>
   </data>
   <data name="&gt;&gt;tab1_2lbl4.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="tab1_2lbl2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -11570,7 +11669,7 @@ No need to set this words</value>
     <value>tab1_2gB1</value>
   </data>
   <data name="&gt;&gt;tab1_2lbl2.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="tBImportGCFooter.Location" type="System.Drawing.Point, System.Drawing">
     <value>170, 59</value>
@@ -11591,7 +11690,7 @@ No need to set this words</value>
     <value>tab1_2gB1</value>
   </data>
   <data name="&gt;&gt;tBImportGCFooter.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="tab1_2lbl3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -11622,7 +11721,7 @@ No need to set this words</value>
     <value>tab1_2gB1</value>
   </data>
   <data name="&gt;&gt;tab1_2lbl3.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="nUDImportDecPlaces.Location" type="System.Drawing.Point, System.Drawing">
     <value>170, 12</value>
@@ -11650,7 +11749,7 @@ No need to set this words</value>
     <value>tab1_2gB1</value>
   </data>
   <data name="&gt;&gt;nUDImportDecPlaces.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="tab1_2gB1.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>

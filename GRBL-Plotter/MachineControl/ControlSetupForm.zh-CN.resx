@@ -3814,4 +3814,13 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   <data name="CbImportGraphicHatchFillNoise.ToolTip" xml:space="preserve">
     <value>仅为填充填充生成摆动线</value>
   </data>
+  <data name="BtnSaveIni_SvgDxfCsv.ToolTip" xml:space="preserve">
+    <value>将此选项卡的设置保存为 INI 文件</value>
+  </data>
+  <data name="BtnSaveIni_ImportParameter.ToolTip" xml:space="preserve">
+    <value>将此选项卡的设置保存为 INI 文件</value>
+  </data>
+  <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
+    <value>将此选项卡的设置保存为 INI 文件</value>
+  </data>
 </root>

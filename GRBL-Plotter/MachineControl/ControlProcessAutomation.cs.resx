@@ -144,4 +144,79 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Procesní automatizace</value>
   </data>
+  <data name="deleteRowToolStripMenuItem.Text" xml:space="preserve">
+    <value>Smazat řádek</value>
+  </data>
+  <data name="moveRowUpToolStripMenuItem.Text" xml:space="preserve">
+    <value>Posunout řádek nahoru</value>
+  </data>
+  <data name="moveRowDownToolStripMenuItem.Text" xml:space="preserve">
+    <value>Posuňte řádek dolů</value>
+  </data>
+  <data name="TbProcessInfo.Text" xml:space="preserve">
+    <value>Vytvořte soubor XML v tomto formátu a načtěte:</value>
+  </data>
+  <data name="BtnSaveIni.ToolTip" xml:space="preserve">
+    <value>Uloží nastavení tohoto okna jako INI soubor</value>
+  </data>
+  <data name="BtnHelp.ToolTip" xml:space="preserve">
+    <value>Online podpora</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>vyplnit znak</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>počet číslic</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Výsledek:</value>
+  </data>
+  <data name="GbCounter.Text" xml:space="preserve">
+    <value>Čelit</value>
+  </data>
+  <data name="ComboDelimiter.Items" xml:space="preserve">
+    <value>; středník</value>
+  </data>
+  <data name="ComboDelimiter.Items1" xml:space="preserve">
+    <value>: dvojtečka</value>
+  </data>
+  <data name="ComboDelimiter.Items2" xml:space="preserve">
+    <value>, dvojtečka</value>
+  </data>
+  <data name="ComboDelimiter.Items3" xml:space="preserve">
+    <value>|</value>
+  </data>
+  <data name="ComboDelimiter.Items4" xml:space="preserve">
+    <value>\t tab</value>
+  </data>
+  <data name="ComboDelimiter.ToolTip" xml:space="preserve">
+    <value>Nastavte oddělovač pro oddělení datových sloupců</value>
+  </data>
+  <data name="LblDataLoaded.Text" xml:space="preserve">
+    <value>nic</value>
+  </data>
+  <data name="BtnLoadData.Text" xml:space="preserve">
+    <value>Načíst data</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Datový index</value>
+  </data>
+  <data name="BtnDataIndexClear.Text" xml:space="preserve">
+    <value>Průhledná</value>
+  </data>
+  <data name="GbData.Text" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="BtnNew.Text" xml:space="preserve">
+    <value>Nový</value>
+  </data>
+  <data name="BtnSave.Text" xml:space="preserve">
+    <value>Uložit skript</value>
+  </data>
+  <data name="LblInfo.Text" xml:space="preserve">
+    <value>Nebyl načten žádný skript</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Interval časovače v ms pro dotazování</value>
+  </data>
 </root>
