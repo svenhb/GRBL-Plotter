@@ -3835,4 +3835,25 @@ GCode ヘッダー セクションで指定: 'SVG dimension'。</value>
   <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
     <value>このタブの設定を INI ファイルとして保存します</value>
   </data>
+  <data name="TbImportGCPWMSlider.ToolTip" xml:space="preserve">
+    <value>「詳細設定」を切り替えて、grbl-setup から最小値と最大値の制限を更新します</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.Text" xml:space="preserve">
+    <value>ツールテーブルから</value>
+  </data>
+  <data name="LblPolar.Text" xml:space="preserve">
+    <value>グラフィックスをインポートするときに、すべての XY 値 (デカルト座標系) を半径 / 角度 (極座標) に変換します。
+X は半径値を取得し、Y は角度値を取得します。
+注: グラフィックス編集 (回転、拡大縮小、シフト) をさらに行うと、XY 座標用にプログラムされているため、不快な結果が生じます。
+変換は、メニュー - GCode Transform - 「極座標に変換」からも可能です。</value>
+  </data>
+  <data name="label106.Text" xml:space="preserve">
+    <value>精度（mm）</value>
+  </data>
+  <data name="CbConvertToPolar.Text" xml:space="preserve">
+    <value>XY を極座標に変換する</value>
+  </data>
+  <data name="GbConvertToPolar.Text" xml:space="preserve">
+    <value>XY を極座標に変換する</value>
+  </data>
 </root>

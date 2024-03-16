@@ -3834,4 +3834,25 @@ Nakreslete podpis na pravý dolní okraj: měřítko 0,1 nebo nižší a použij
   <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
     <value>Uloží nastavení těchto karet jako soubor INI</value>
   </data>
+  <data name="TbImportGCPWMSlider.ToolTip" xml:space="preserve">
+    <value>Přepne "Pokročilá nastavení" pro aktualizaci minimálních a maximálních limitů z nastavení grbl</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.Text" xml:space="preserve">
+    <value>ze stolu nástrojů</value>
+  </data>
+  <data name="LblPolar.Text" xml:space="preserve">
+    <value>Při importu grafiky převede všechny hodnoty XY (kartézský souřadnicový systém) na poloměr / úhel (polární souřadnice).
+X získá hodnoty poloměru, Y získá hodnoty úhlu.
+Poznámka: další úpravy grafiky (rotace, změna měřítka, posun) vedou k nepříjemným výsledkům, protože jsou naprogramovány pro souřadnice XY.
+Převod je také možný přes Menu - GCode Transform - 'Převést na polární souřadnice'.</value>
+  </data>
+  <data name="label106.Text" xml:space="preserve">
+    <value>Přesnost v mm</value>
+  </data>
+  <data name="CbConvertToPolar.Text" xml:space="preserve">
+    <value>Převeďte XY na polární souřadnice</value>
+  </data>
+  <data name="GbConvertToPolar.Text" xml:space="preserve">
+    <value>Převeďte XY na polární souřadnice</value>
+  </data>
 </root>

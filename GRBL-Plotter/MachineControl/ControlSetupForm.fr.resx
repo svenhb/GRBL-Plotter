@@ -3548,4 +3548,25 @@ Dessinez une signature dans la marge inférieure droite : échelle 0,1 ou infér
   <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
     <value>Enregistre les paramètres de ces onglets sous forme de fichier INI</value>
   </data>
+  <data name="TbImportGCPWMSlider.ToolTip" xml:space="preserve">
+    <value>Active/désactive les "Paramètres avancés" pour mettre à jour les limites min et max à partir de grbl-setup</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.Text" xml:space="preserve">
+    <value>depuis la table d'outils</value>
+  </data>
+  <data name="LblPolar.Text" xml:space="preserve">
+    <value>Convertit toutes les valeurs XY (système de coordonnées cartésiennes) en rayon/angle (coordonnées polaires) lors de l'importation de graphiques.
+X obtient les valeurs de rayon, Y obtient les valeurs d'angle.
+Remarque : d'autres modifications graphiques (rotation, mise à l'échelle, décalage) conduisent à des résultats désagréables, car ils sont programmés pour les coordonnées XY.
+La conversion est également possible via Menu - GCode Transform - 'Convertir en coordonnées polaires'.</value>
+  </data>
+  <data name="label106.Text" xml:space="preserve">
+    <value>Précision en mm</value>
+  </data>
+  <data name="CbConvertToPolar.Text" xml:space="preserve">
+    <value>Convertir XY en coordonnées polaires</value>
+  </data>
+  <data name="GbConvertToPolar.Text" xml:space="preserve">
+    <value>Convertir XY en coordonnées polaires</value>
+  </data>
 </root>

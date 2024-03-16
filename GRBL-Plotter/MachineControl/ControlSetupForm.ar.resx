@@ -3811,4 +3811,25 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
     <value>يحفظ إعدادات علامات التبويب هذه كملف INI</value>
   </data>
+  <data name="TbImportGCPWMSlider.ToolTip" xml:space="preserve">
+    <value>تبديل "الإعدادات المتقدمة" لتحديث الحدود الدنيا والقصوى من إعداد grbl</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.Text" xml:space="preserve">
+    <value>من جدول الأدوات</value>
+  </data>
+  <data name="LblPolar.Text" xml:space="preserve">
+    <value>يحول جميع قيم XY (نظام الإحداثيات الديكارتية) إلى نصف القطر / الزاوية (الإحداثيات القطبية) عند استيراد الرسومات.
+تحصل X على قيم نصف القطر، بينما تحصل Y على قيم الزاوية.
+ملحوظة: المزيد من تحرير الرسومات (التدوير، القياس، التحول) يؤدي إلى نتائج غير سارة، لأنها مبرمجة لإحداثيات XY.
+التحويل ممكن أيضًا عبر القائمة - تحويل GCode - "التحويل إلى الإحداثيات القطبية".</value>
+  </data>
+  <data name="label106.Text" xml:space="preserve">
+    <value>الدقة بالملليمتر</value>
+  </data>
+  <data name="CbConvertToPolar.Text" xml:space="preserve">
+    <value>تحويل XY إلى الإحداثيات القطبية</value>
+  </data>
+  <data name="GbConvertToPolar.Text" xml:space="preserve">
+    <value>تحويل XY إلى الإحداثيات القطبية</value>
+  </data>
 </root>

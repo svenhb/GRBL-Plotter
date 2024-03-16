@@ -32,11 +32,13 @@
  * 2022-01-17 process more than one figures (e.g. selected group) for scaling, rotation, move
  * 2022-03-31 line 257 take care of Properties.Settings.Default.importGCTangentialTurn when rotating issue #272
  * 2024-02-12 add GetTranslate(int offset)
+ * 2024-03-11 add ConvertToPolar()
  */
 
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Windows.Media;
 
 namespace GrblPlotter
 {
@@ -501,7 +503,6 @@ namespace GrblPlotter
             return CreateGCodeProg();
         }
 		
-		/* siehe auch */
         internal static void GetTransaltionOffset(ref double offsetX, ref double offsetY, double tx, double ty, double minx, double miny, double dimx, double dimy, Translate shiftToZero)
         {
             if (shiftToZero == Translate.Offset1) { offsetX = tx + minx; offsetY = ty + miny + dimy; }
@@ -735,6 +736,52 @@ namespace GrblPlotter
             if ((tmpPoint.mode = gcodeList[tmpLine].motionMode) > 1)
             { tmpPoint.CX = gcodeList[prevLine].actualPos.X + (double)gcodeList[tmpLine].i; tmpPoint.CY = gcodeList[prevLine].actualPos.Y + (double)gcodeList[tmpLine].j; }
             return tmpPoint;
+        }
+
+        /// <summary>
+        /// Convert to polar coordinates, called by MainFormGetCodeTransform.cs - convertToPolarCoordinatesToolStripMenuItem_Click l:851
+        /// </summary>
+        internal static string ConvertToPolar()
+        {
+            Logger.Info("●●● TransformGCode-convert to polar {0} lines", gcodeList.Count);
+            EventCollector.SetTransform("Tpol");
+            if (gcodeList == null) return "";
+
+            double newvalr, newvala;
+            oldLine.ResetAll(Grbl.posWork);         // reset coordinates and parser modes
+            ClearDrawingPath();                    // reset path, dimensions
+
+            double aOffset = 0;
+            int dir=0, lastDir=0;
+
+            if (lastFigureNumbers.Count == 0)
+                lastFigureNumbers.Add(lastFigureNumber);
+
+            foreach (GcodeByLine gcline in gcodeList)
+            {
+                {
+                    if ((gcline.x != null) || (gcline.y != null))
+                    {
+
+                        newvalr = Math.Sqrt(gcline.actualPos.X* gcline.actualPos.X + gcline.actualPos.Y* gcline.actualPos.Y);
+                        newvala = Math.Atan2(gcline.actualPos.Y, gcline.actualPos.X) + aOffset;
+                        dir = Math.Sign(newvala);
+                        if ((dir < 0) && (lastDir > 0))         { aOffset += 2 * Math.PI; newvala += 2 * Math.PI; dir = lastDir; }
+                        else if ((dir > 0) && (lastDir < 0))    { aOffset -= 2 * Math.PI; newvala -= 2 * Math.PI; dir = lastDir; }
+                        else { lastDir = dir; }
+
+                        if (gcline.isdistanceModeG90)	// absolute
+                        {
+                            gcline.x = newvalr;
+                            gcline.y = newvala * 180 / Math.PI;
+                        }
+                        else
+                        {
+                        }
+                    }
+                }
+            }
+            return CreateGCodeProg("<Polar X=radius, Y=angle />");	// GCodeSynthesize.cs
         }
 
 
