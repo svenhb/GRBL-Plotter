@@ -20,6 +20,7 @@
  * 2024-02-12 split file MainFormOtherForms.cs
 */
 
+using AForge;
 using System;
 using System.Reflection;
 using System.Windows.Forms;
@@ -64,7 +65,7 @@ namespace GrblPlotter
         private void OnRaiseProcessEvent(object sender, ProcessEventArgs e)
         {
             string act = e.Command.ToLower();
-            string val = e.Value.ToLower();
+        //    string val = e.Value.ToLower();
 
             Logger.Trace("➤➤➤➤ OnRaiseProcessEvent  {0}  {1} ", e.Command, e.Value);
 
@@ -181,13 +182,13 @@ namespace GrblPlotter
                     string[] tmp = e.Value.Split(';');
                     if (tmp.Length > 2)
                     {
-                        int o;
-                        double x, y;
-                        if (int.TryParse(tmp[0], out o))
+                       // int o;
+                     //   double x, y;
+                        if (int.TryParse(tmp[0], out int o))
                         {
-                            if (double.TryParse(tmp[1], out x))
+                            if (double.TryParse(tmp[1], out double x))
                             {
-                                if (double.TryParse(tmp[2], out y))
+                                if (double.TryParse(tmp[2], out double y))
                                 {
                                     int lineStart = XmlMarker.GetStartLineOfGroup(codeInsert.Y);
                                     if (LineIsInRange(lineStart))
@@ -215,8 +216,8 @@ namespace GrblPlotter
                 }
                 else if (act.Contains("rotate"))
                 {
-                    double angle;
-                    if (double.TryParse(e.Value, out angle))
+                  //  double angle;
+                    if (double.TryParse(e.Value, out double angle))
                     {
                         int lineStart = XmlMarker.GetStartLineOfGroup(codeInsert.Y);
                         if (LineIsInRange(lineStart))
@@ -232,8 +233,8 @@ namespace GrblPlotter
                 }
                 else if (act.Contains("scale"))
                 {
-                    double sizenew;
-                    if (double.TryParse(e.Value, out sizenew))
+                //    double sizenew;
+                    if (double.TryParse(e.Value, out double sizenew))
                     {
                         double size = 100;
                         if (act.Contains("xyx"))

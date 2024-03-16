@@ -7505,6 +7505,12 @@ Dil
   <data name="ersetzteG23DurchLinienToolStripMenuItem.Text" xml:space="preserve">
     <value>Replace G2/3 by lines</value>
   </data>
+  <data name="convertToPolarCoordinatesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 22</value>
+  </data>
+  <data name="convertToPolarCoordinatesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Convert to polar coordinates</value>
+  </data>
   <data name="convertZToSspindleSpeedToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>232, 22</value>
   </data>
@@ -8725,6 +8731,12 @@ Dil
     <value>ersetzteG23DurchLinienToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;ersetzteG23DurchLinienToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;convertToPolarCoordinatesToolStripMenuItem.Name" xml:space="preserve">
+    <value>convertToPolarCoordinatesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;convertToPolarCoordinatesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;convertZToSspindleSpeedToolStripMenuItem.Name" xml:space="preserve">

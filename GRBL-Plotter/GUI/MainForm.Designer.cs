@@ -448,6 +448,7 @@ namespace GrblPlotter
             this.toolStrip_RadiusComp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip_tBRadiusCompValue = new System.Windows.Forms.ToolStripTextBox();
             this.ersetzteG23DurchLinienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.convertToPolarCoordinatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.convertZToSspindleSpeedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeAnyZMoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.workpieceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -2886,6 +2887,7 @@ namespace GrblPlotter
             this.toolStripSeparator15,
             this.toolStrip_RadiusComp,
             this.ersetzteG23DurchLinienToolStripMenuItem,
+            this.convertToPolarCoordinatesToolStripMenuItem,
             this.convertZToSspindleSpeedToolStripMenuItem,
             this.removeAnyZMoveToolStripMenuItem});
             this.gCodeToolStripMenuItem.Name = "gCodeToolStripMenuItem";
@@ -3126,6 +3128,12 @@ namespace GrblPlotter
             this.ersetzteG23DurchLinienToolStripMenuItem.Name = "ersetzteG23DurchLinienToolStripMenuItem";
             resources.ApplyResources(this.ersetzteG23DurchLinienToolStripMenuItem, "ersetzteG23DurchLinienToolStripMenuItem");
             this.ersetzteG23DurchLinienToolStripMenuItem.Click += new System.EventHandler(this.ErsetzteG23DurchLinienToolStripMenuItem_Click);
+            // 
+            // convertToPolarCoordinatesToolStripMenuItem
+            // 
+            this.convertToPolarCoordinatesToolStripMenuItem.Name = "convertToPolarCoordinatesToolStripMenuItem";
+            resources.ApplyResources(this.convertToPolarCoordinatesToolStripMenuItem, "convertToPolarCoordinatesToolStripMenuItem");
+            this.convertToPolarCoordinatesToolStripMenuItem.Click += new System.EventHandler(this.convertToPolarCoordinatesToolStripMenuItem_Click);
             // 
             // convertZToSspindleSpeedToolStripMenuItem
             // 
@@ -3894,6 +3902,7 @@ namespace GrblPlotter
         private System.Windows.Forms.ToolStripMenuItem PolishToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cmsPicBoxClearWorkspace;
         private System.Windows.Forms.ToolStripMenuItem cmsPicBoxReloadFile2;
+        private System.Windows.Forms.ToolStripMenuItem convertToPolarCoordinatesToolStripMenuItem;
     }
 }
 
