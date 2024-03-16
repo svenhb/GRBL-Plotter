@@ -1393,6 +1393,42 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("16")]
+        public float createTextSystemFontSize {
+            get {
+                return ((float)(this["createTextSystemFontSize"]));
+            }
+            set {
+                this["createTextSystemFontSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public decimal createTextSystemSizeX {
+            get {
+                return ((decimal)(this["createTextSystemSizeX"]));
+            }
+            set {
+                this["createTextSystemSizeX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public decimal createTextSystemSizeY {
+            get {
+                return ((decimal)(this["createTextSystemSizeY"]));
+            }
+            set {
+                this["createTextSystemSizeY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool ctrl4thInvert {
             get {
@@ -9510,37 +9546,25 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("100")]
-        public decimal createTextSystemSizeX {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCConvertToPolar {
             get {
-                return ((decimal)(this["createTextSystemSizeX"]));
+                return ((bool)(this["importGCConvertToPolar"]));
             }
             set {
-                this["createTextSystemSizeX"] = value;
+                this["importGCConvertToPolar"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("100")]
-        public decimal createTextSystemSizeY {
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public decimal importGCConvertToPolarAccuracy {
             get {
-                return ((decimal)(this["createTextSystemSizeY"]));
+                return ((decimal)(this["importGCConvertToPolarAccuracy"]));
             }
             set {
-                this["createTextSystemSizeY"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("16")]
-        public float createTextSystemFontSize {
-            get {
-                return ((float)(this["createTextSystemFontSize"]));
-            }
-            set {
-                this["createTextSystemFontSize"] = value;
+                this["importGCConvertToPolarAccuracy"] = value;
             }
         }
     }

@@ -1238,6 +1238,12 @@
     <Setting Name="importGCCompress" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importGCConvertToPolar" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCConvertToPolarAccuracy" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.1</Value>
+    </Setting>
     <Setting Name="importGCDecPlaces" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">3</Value>
     </Setting>
