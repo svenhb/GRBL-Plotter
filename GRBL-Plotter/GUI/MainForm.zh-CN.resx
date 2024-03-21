@@ -130,15 +130,15 @@
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodePasteSpecial1.Text" xml:space="preserve">
-    <value>插入“ PenUp”</value>
+    <value>插入“ 抬笔”</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodePasteSpecial2.Text" xml:space="preserve">
-    <value>插入“ PenDown”</value>
+    <value>插入“ 落笔”</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsFindDialog.Text" xml:space="preserve">
-    <value>查找对话框</value>
+    <value>查找</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsReplaceDialog.Text" xml:space="preserve">
@@ -162,7 +162,7 @@
     <comment>groupBox_Streaming</comment>
   </data>
   <data name="btnStreamStart.ToolTip" xml:space="preserve">
-    <value>从文本编辑器向GRBL发送代码</value>
+    <value>向GRBL发送代码</value>
     <comment>groupBox_Streaming</comment>
   </data>
   <data name="btnOverrideSpindle.ToolTip" xml:space="preserve">
@@ -170,32 +170,32 @@
     <comment>groupBox_Override2</comment>
   </data>
   <data name="btnOverrideMist.ToolTip" xml:space="preserve">
-    <value>在grbl中可能未启用M7</value>
+    <value>在grbl中可能未启用M7（雾状冷却液）</value>
     <comment>groupBox_Override2</comment>
   </data>
   <data name="btnJogStop.ToolTip" xml:space="preserve">
-    <value>停止当前的慢跑运动</value>
+    <value>停止当前的手动控制</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="cBSendJogStop.Text" xml:space="preserve">
-    <value>松开鼠标停止Jog运动</value>
+    <value>松开鼠标时停止运动</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnOverrideDoor.ToolTip" xml:space="preserve">
-    <value>尽管通常连接到输入引脚以检测安全门的打开，但是此命令允许GUI使用此命令来制定安全门的行为。
-立即暂停进入DOOR状态并禁用主轴和冷却液。 如果运动，则机器将减速至停止，然后停止。
-如果在归位期间执行，Grbl将停止运动并引发归位警报。
-如果已经处于挂起状态或保持状态，则DOOR状态将取代它。
+    <value>尽管通常连接到输入引脚以检测安全门的打开，但是此命令允许GUI使用此命令来指定安全门的行为。
+立即暂停并进入DOOR状态并禁用主轴和冷却液。 如果机器正在运动，则机器将减速至停止。
+如果在归位时执行，Grbl将停止运动并引发归位警报。
+如果机器处于挂起状态或保持状态，则DOOR状态将取代它。
 如果启用了停车编译时间选项，Grbl将把主轴停车到指定位置。
 当Grbl处于IDLE，HOLD，RUN，HOMING或JOG状态时，将执行命令。 否则将被忽略。
-如果进行慢跑，安全门将取消慢跑和计划器缓冲区中所有排队的动作。 当安全门关闭并恢复时，Grbl将返回到空闲状态。
+如果进行手动控制，这个按钮将取消手动控制和计划器缓冲区中所有排队的动作。 当安全门关闭并恢复时，Grbl将返回到空闲状态。
 如果启用了编译时选项，则可以使用输入引脚来连接按钮或开关。</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnResume.ToolTip" xml:space="preserve">
     <value>循环启动或恢复命令“〜”可以随时发出，因为它是实时命令。
-当Grbl的动作在其缓冲区中排队并且准备就绪时，〜cycle start命令将
-开始执行缓冲区，Grbl将开始移动轴。</value>
+当Grbl的动作在缓冲区队列中并且准备就绪时，〜cycle start命令将
+开始执行缓冲区，Grbl将开始移动主轴。</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnFeedHold.ToolTip" xml:space="preserve">
@@ -209,23 +209,21 @@
   </data>
   <data name="btnKillAlarm.ToolTip" xml:space="preserve">
     <value>Grbl的警报模式是发生严重错误的状态，
-例如硬限制或在循环中中止，或者如果Grbl不知道其位置。
+例如硬限制或程序在循环中中止，或者Grbl不知道其当前位置。
 默认情况下，如果您启用了归位并打开Arduino的电源，Grbl将进入
-警报状态，因为它不知道其位置。 闹钟模式将锁定所有
+警报状态，因为它不知道其位置。 警报模式将锁定所有
 G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
 覆盖警报锁以将其轴移出限位开关，例如，“ $ X”取消警报锁
 将覆盖锁定并允许G代码功能再次运行。</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnReset.ToolTip" xml:space="preserve">
-    <value>这是Grbl的软重置命令“ Ctrl-x”。 它是实时的，可以随时发送。
+    <value>这是Grbl的软件重置命令“ Ctrl-x”。 它是实时的，可以随时发送。
 顾名思义，它会重置Grbl，但会以受控方式保留您的机器位置，
-并且无需关闭Arduino就可以完成所有操作。 只有软复位才能
-失去位置是指问题出现并且步进机在移动时被杀死。
-如果是这样，它将报告Grbl对机器位置的跟踪是否丢失。
-这是因为不受控制的减速可能导致失步，而Grbl没有反馈
-损失多少（通常这是步进器的问题）。 否则，Grbl只会重新初始化，
-  运行启动行，并继续其愉快的方式。</value>
+并且无需关闭Arduino就可以完成所有操作。 在步进电机移动时进行软复位可能会导致丢步
+如果发生这种情况，它将报告Grbl对机器位置的跟踪是否丢失。
+丢步的出现是因为在停止电机时加速度不受控制，而Grbl没有反馈
+损失多少（通常这是步进电机的问题）。 如果没有发生丢步，Grbl只会重新初始化，并继续正常运行。</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnZeroC.ToolTip" xml:space="preserve">
@@ -265,15 +263,15 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>groupBox_Tool_Coord</comment>
   </data>
   <data name="controlStreamingToolStripMenuItem.Text" xml:space="preserve">
-    <value>控制流</value>
+    <value>速度控制</value>
     <comment>Menu142</comment>
   </data>
   <data name="controlStreamingToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>超越进给速度和主轴转速</value>
+    <value>进给/主轴调速</value>
     <comment>Menu142</comment>
   </data>
   <data name="control2ndGRBLToolStripMenuItem.Text" xml:space="preserve">
-    <value>控制第二GRBL</value>
+    <value>控制第二个GRBL</value>
     <comment>Menu142</comment>
   </data>
   <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
@@ -285,7 +283,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>Menu142</comment>
   </data>
   <data name="cmsEditorHotkeys.Text" xml:space="preserve">
-    <value>显示编辑器热键</value>
+    <value>显示快捷键</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="fCTBCode.Text" xml:space="preserve">
@@ -305,15 +303,15 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>groupBox_Streaming</comment>
   </data>
   <data name="gBoxStream.Text" xml:space="preserve">
-    <value>G代码流</value>
+    <value>G代码</value>
     <comment>groupBox_Streaming</comment>
   </data>
   <data name="lbDimension.Text" xml:space="preserve">
-    <value>外型尺寸</value>
+    <value>位置信息</value>
     <comment>groupBox_Dimension</comment>
   </data>
   <data name="gBoxDimension.Text" xml:space="preserve">
-    <value>G代码尺寸</value>
+    <value>G代码位置</value>
     <comment>groupBox_Dimension</comment>
   </data>
   <data name="lblStatusFeed.ToolTip" xml:space="preserve">
@@ -325,7 +323,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>groupBox_Override3</comment>
   </data>
   <data name="gB_Jogging.Text" xml:space="preserve">
-    <value>控制/慢跑</value>
+    <value>手动控制</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="deletenotMarkToolStripMenuItem.Text" xml:space="preserve">
@@ -337,7 +335,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>2DView_Menu</comment>
   </data>
   <data name="groupBox5.Text" xml:space="preserve">
-    <value>自定义按钮</value>
+    <value>自定义按键</value>
     <comment>groupBox_Custom</comment>
   </data>
   <data name="lblCurrentG.ToolTip" xml:space="preserve">
@@ -355,7 +353,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>groupBox_Tool_Coord</comment>
   </data>
   <data name="groupBoxCoordinates.Text" xml:space="preserve">
-    <value>工具坐标（工作/机器）</value>
+    <value>坐标（工作/机器）</value>
     <comment>groupBox_Tool_Coord</comment>
   </data>
   <data name="loadToolStripMenuItem.Text" xml:space="preserve">
@@ -379,7 +377,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>Menu11</comment>
   </data>
   <data name="imageToolStripMenuItem.Text" xml:space="preserve">
-    <value>转换影像</value>
+    <value>图片转Gcode</value>
     <comment>Menu122</comment>
   </data>
   <data name="createSimpleShapesToolStripMenuItem.Text" xml:space="preserve">
@@ -387,7 +385,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>Menu123</comment>
   </data>
   <data name="createGCodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>G代码创建</value>
+    <value>生成Gcode</value>
     <comment>Menu12</comment>
   </data>
   <data name="mirrorXToolStripMenuItem.Text" xml:space="preserve">
@@ -420,7 +418,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>Menu141</comment>
   </data>
   <data name="coordinateSystemsToolStripMenuItem.Text" xml:space="preserve">
-    <value>坐标系</value>
+    <value>坐标系控制</value>
     <comment>Menu141</comment>
   </data>
   <data name="createSimpleShapesToolStripMenuItem.ToolTipText" xml:space="preserve">
@@ -436,7 +434,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>Menu113</comment>
   </data>
   <data name="setupToolStripMenuItem1.Text" xml:space="preserve">
-    <value>设定</value>
+    <value>设置</value>
     <comment>Menu114</comment>
   </data>
   <data name="saveMachineParametersToolStripMenuItem.Text" xml:space="preserve">
@@ -464,7 +462,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>Menu132</comment>
   </data>
   <data name="rotaryDimaeterToolStripMenuItem.Text" xml:space="preserve">
-    <value>回转直径</value>
+    <value>旋转直径</value>
     <comment>Menu132</comment>
   </data>
   <data name="rotaryDimaeterToolStripMenuItem.ToolTipText" xml:space="preserve">
@@ -520,7 +518,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>Menu112</comment>
   </data>
   <data name="textWizzardToolStripMenuItem.Text" xml:space="preserve">
-    <value>建立文字</value>
+    <value>创建文字</value>
     <comment>Menu121</comment>
   </data>
   <data name="unDoToolStripMenuItem.Text" xml:space="preserve">
@@ -619,7 +617,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>Menu151</comment>
   </data>
   <data name="toolStripViewMachine.Text" xml:space="preserve">
-    <value>机器限制</value>
+    <value>机器行程</value>
     <comment>Menu151</comment>
   </data>
   <data name="toolStripViewMachine.ToolTipText" xml:space="preserve">
@@ -627,7 +625,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>Menu151</comment>
   </data>
   <data name="toolStripViewTool.Text" xml:space="preserve">
-    <value>工具表</value>
+    <value>工具位置</value>
     <comment>Menu151</comment>
   </data>
   <data name="toolStripViewTool.ToolTipText" xml:space="preserve">
@@ -647,7 +645,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>Menu121</comment>
   </data>
   <data name="btnStreamCheck.Text" xml:space="preserve">
-    <value>验证码</value>
+    <value>检验Gcode</value>
     <comment>groupBox_Streaming</comment>
   </data>
   <data name="btnOffsetApply.Text" xml:space="preserve">
@@ -655,31 +653,31 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>groupBox_Dimension</comment>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>偏移Y</value>
+    <value>偏移量Y</value>
     <comment>groupBox_Dimension</comment>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>偏移X</value>
+    <value>偏移量X</value>
     <comment>groupBox_Dimension</comment>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
-    <value>零点XY</value>
+    <value>XY零点位置</value>
     <comment>groupBox_Dimension</comment>
   </data>
   <data name="gBOverrideRGB.Text" xml:space="preserve">
-    <value>快速</value>
+    <value>加速度</value>
     <comment>groupBox_Override1</comment>
   </data>
   <data name="gBoxOverride.Text" xml:space="preserve">
-    <value>替代（仅适用于grbl 1.1）-单击以展开/收缩</value>
+    <value>调速（仅适用于grbl 1.1）-单击以展开/收缩</value>
     <comment>groupBox_Override3</comment>
   </data>
   <data name="btnJogStop.Text" xml:space="preserve">
-    <value>停止慢跑</value>
+    <value>停止手动控制</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnOverrideDoor.Text" xml:space="preserve">
-    <value>门</value>
+    <value>安全门/紧急停止</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnZeroC.Text" xml:space="preserve">
@@ -719,11 +717,11 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>Menu117</comment>
   </data>
   <data name="gCodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>代码转换</value>
+    <value>G代码调整</value>
     <comment>Menu13</comment>
   </data>
   <data name="laserToolsToolStripMenuItem.Text" xml:space="preserve">
-    <value>激光工具</value>
+    <value>激光配置</value>
     <comment>Menu141</comment>
   </data>
   <data name="probingToolLengthToolStripMenuItem.Text" xml:space="preserve">
@@ -751,7 +749,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>Editor_Menu</comment>
   </data>
   <data name="toolStripViewRuler.Text" xml:space="preserve">
-    <value>标尺</value>
+    <value>网格标尺</value>
     <comment>Menu151</comment>
   </data>
   <data name="toolStripViewInfo.Text" xml:space="preserve">
@@ -759,7 +757,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>Menu151</comment>
   </data>
   <data name="toolStripViewPenUp.Text" xml:space="preserve">
-    <value>笔上升路径(快速定位)</value>
+    <value>无切削、落笔的路径（快速移动）</value>
     <comment>Menu151</comment>
   </data>
   <data name="foldCodeBlocks2ndLevelToolStripMenuItem.Text" xml:space="preserve">
@@ -771,11 +769,11 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>Editor_Menu</comment>
   </data>
   <data name="label6.ToolTip" xml:space="preserve">
-    <value>偏移Y</value>
+    <value>偏移量Y</value>
     <comment>groupBox_Dimension</comment>
   </data>
   <data name="label1.ToolTip" xml:space="preserve">
-    <value>偏移X</value>
+    <value>偏移量X</value>
     <comment>groupBox_Dimension</comment>
   </data>
   <data name="gBOverrideASGB.Text" xml:space="preserve">
@@ -787,7 +785,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>groupBox_Override3</comment>
   </data>
   <data name="gBOverrideFRGB.Text" xml:space="preserve">
-    <value>饲料</value>
+    <value>进给</value>
     <comment>groupBox_Override3</comment>
   </data>
   <data name="lblStatusSpeed.Text" xml:space="preserve">
@@ -795,7 +793,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>groupBox_Override3</comment>
   </data>
   <data name="btnStreamCheck.ToolTip" xml:space="preserve">
-    <value>这将切换Grbl的gcode解析器以获取所有传入的块并完全对其进行处理，就像在正常操作中一样，但是它不会移动任何轴，忽略停顿并关闭主轴和冷却液。 这旨在为用户提供一种使用Grbl的解析器检查其新G代码程序的运行状况并监视任何错误的方法（并检查是否违反了软限制，如果已启用）。</value>
+    <value>切换到Grbl的gcode解释器以获取所有传入的代码并完全对其进行处理，就像在正常操作中一样，但是它不会移动任何轴，停止并关闭主轴和冷却液。 这是为了给用户提供使用Grbl的解析器检查其新G代码程序的运行状况并检测错误的方法（并检查运动是否超出了软限位，如果已启用）。</value>
   </data>
   <data name="btnSimulateSlower.ToolTip" xml:space="preserve">
     <value>半仿真速度</value>
@@ -826,29 +824,29 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>发送G90 G0 Z0</value>
   </data>
   <data name="btnHome.Text" xml:space="preserve">
-    <value>Home</value>
+    <value>回零</value>
     <comment>groupBox_Tool_Coord</comment>
   </data>
   <data name="label13.Text" xml:space="preserve">
-    <value>组：</value>
+    <value>当前：</value>
   </data>
   <data name="btnOverrideSpindle.Text" xml:space="preserve">
-    <value>主轴CW</value>
+    <value>顺时针切削</value>
   </data>
   <data name="btnOverrideMist.Text" xml:space="preserve">
-    <value>薄雾</value>
+    <value>雾状冷却液</value>
   </data>
   <data name="btnOverrideFlood.Text" xml:space="preserve">
-    <value>泛滥</value>
+    <value>冷却液</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>组：</value>
+    <value>当前：</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>组：</value>
+    <value>当前：</value>
   </data>
   <data name="toolStripViewDimension.Text" xml:space="preserve">
-    <value>G代码尺寸</value>
+    <value>G代码位置</value>
   </data>
   <data name="startExtensionToolStripMenuItem.Text" xml:space="preserve">
     <value>扩展名</value>
@@ -860,13 +858,13 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>显示笔向上/向下</value>
   </data>
   <data name="cmsPicBoxMoveToMarkedPosition.Text" xml:space="preserve">
-    <value>移至标记的位置G0</value>
+    <value>使用G0移至标记的位置</value>
   </data>
   <data name="cmsPicBoxZeroXYAtMarkedPosition.Text" xml:space="preserve">
     <value>在标记位置G10 L20处的零XY</value>
   </data>
   <data name="cmsPicBoxMoveGraphicsOrigin.Text" xml:space="preserve">
-    <value>通过标记位置偏移图形</value>
+    <value>通过标记位置偏移图像</value>
   </data>
   <data name="cmsPicBoxResetZooming.Text" xml:space="preserve">
     <value>重置缩放</value>
@@ -875,7 +873,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>从剪贴板粘贴</value>
   </data>
   <data name="cmsPicBoxReloadFile.Text" xml:space="preserve">
-    <value>重新载入档案</value>
+    <value>重新载入文件</value>
   </data>
   <data name="cmsPicBoxMarkFirstPos.Text" xml:space="preserve">
     <value>标记所选路径的第一点</value>
@@ -887,7 +885,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>删除所选路径</value>
   </data>
   <data name="cmsPicBoxCropSelectedPath.Text" xml:space="preserve">
-    <value>剪出所选路径</value>
+    <value>删除除选中路径以外的路径</value>
   </data>
   <data name="cmsPicBoxMoveSelectedPathInCode.Text" xml:space="preserve">
     <value>将偏移量应用于GCode</value>
@@ -896,7 +894,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>将G代码设置为背景</value>
   </data>
   <data name="cmsPicBoxClearBackground.Text" xml:space="preserve">
-    <value>清晰的背景</value>
+    <value>清除背景</value>
   </data>
   <data name="unDo3ToolStripMenuItem.Text" xml:space="preserve">
     <value>撤消上一个动作</value>
@@ -909,7 +907,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodeBlocksFold.Text" xml:space="preserve">
-    <value>折叠码块</value>
+    <value>折叠代码块</value>
     <comment>Editor_Menu</comment>
   </data>
   <data name="cmsCodeBlocksMove.AccessibleDescription" xml:space="preserve">
@@ -935,13 +933,13 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>反向排序</value>
   </data>
   <data name="cmsCodeBlocksSortById.Text" xml:space="preserve">
-    <value>按“ Id”排序</value>
+    <value>按“ 编号”排序</value>
   </data>
   <data name="cmsCodeBlocksSortByGeometry.Text" xml:space="preserve">
-    <value>按“几何”排序</value>
+    <value>按“几何形状”排序</value>
   </data>
   <data name="cmsCodeBlocksSortByToolNr.Text" xml:space="preserve">
-    <value>按“ ToolNr”排序</value>
+    <value>按“ 工具编号”排序</value>
   </data>
   <data name="cmsCodeBlocksSortByToolName.Text" xml:space="preserve">
     <value>按“工具名称”排序</value>
@@ -950,10 +948,10 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>按“颜色”排序</value>
   </data>
   <data name="cmsCodeBlocksSortByCodeSize.Text" xml:space="preserve">
-    <value>按“ CodeSize”排序</value>
+    <value>按“ 代码大小”排序</value>
   </data>
   <data name="cmsCodeBlocksSortByCodeArea.Text" xml:space="preserve">
-    <value>按“ CodeArea”排序</value>
+    <value>按“ 面积”排序</value>
   </data>
   <data name="cmsCodeBlocksSort.Text" xml:space="preserve">
     <value>排序代码块</value>
@@ -998,7 +996,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>将内容复制到剪贴板</value>
   </data>
   <data name="createBarcodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>创建条形码</value>
+    <value>创建条形码/二维码</value>
   </data>
   <data name="cmsCodeBlocksSortByDistance.Text" xml:space="preserve">
     <value>按距离排序</value>
@@ -1016,7 +1014,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>按“类型”排序</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
-    <value>走</value>
+    <value>退出</value>
   </data>
   <data name="BtnOverrideD3.ToolTip" xml:space="preserve">
     <value>显示 D3 引脚 (grbl-Mega-5X) 的状态，根据状态点击发送“M64 P3（开）”或“M65 P3（关）”</value>
@@ -1037,13 +1035,13 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>点动路径创建器</value>
   </data>
   <data name="LanguageToolStripMenuItem3.Text" xml:space="preserve">
-    <value>语</value>
+    <value>语言</value>
   </data>
   <data name="cBMoveG0.ToolTip" xml:space="preserve">
-    <value>使用 G0 快速移动命令 - STOP jogging 将不起作用</value>
+    <value>使用 G0 快速移动命令执行按钮内的命令 - STOP jogging 将不起作用</value>
   </data>
   <data name="CbSpindle.Text" xml:space="preserve">
-    <value>主轴CW</value>
+    <value>主轴启动</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="CbCoolant.Text" xml:space="preserve">
@@ -1055,28 +1053,28 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="BtnPenUp.Text" xml:space="preserve">
-    <value>笔向上</value>
+    <value>抬笔</value>
   </data>
   <data name="BtnPenUp.ToolTip" xml:space="preserve">
     <value>使用Setup-Servo-PWM中的设置</value>
   </data>
   <data name="BtnPenDown.Text" xml:space="preserve">
-    <value>下笔</value>
+    <value>落笔</value>
   </data>
   <data name="BtnPenDown.ToolTip" xml:space="preserve">
     <value>使用Setup-Servo-PWM中的设置</value>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
-    <value>路由器</value>
+    <value>雕刻</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
     <value>为 Z 和 PWM 应用启用的笔向上/向下转换的值</value>
   </data>
   <data name="BtnPenZero.Text" xml:space="preserve">
-    <value>零笔</value>
+    <value>回零</value>
   </data>
   <data name="tabPage2.Text" xml:space="preserve">
-    <value>绘图仪</value>
+    <value>绘图</value>
   </data>
   <data name="CbLasermode.Text" xml:space="preserve">
     <value>激光模式</value>
@@ -1094,10 +1092,10 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>激光</value>
   </data>
   <data name="control3rdGRBLToolStripMenuItem.Text" xml:space="preserve">
-    <value>控制第 3 个串行 COM</value>
+    <value>控制第 3 个COM口</value>
   </data>
   <data name="gB_Jog0.Text" xml:space="preserve">
-    <value>搬去</value>
+    <value>移动到</value>
   </data>
   <data name="btnResume.Text" xml:space="preserve">
     <value>恢复</value>
@@ -1108,7 +1106,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnKillAlarm.Text" xml:space="preserve">
-    <value>杀死警报</value>
+    <value>清除警报</value>
     <comment>groupBox_Jogging</comment>
   </data>
   <data name="btnReset.Text" xml:space="preserve">
@@ -1119,7 +1117,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>将导入的图形添加到 2D 视图</value>
   </data>
   <data name="createJogPathToolStripMenuItem.Text" xml:space="preserve">
-    <value>创建 Jog 路径</value>
+    <value>创建移动路径</value>
   </data>
   <data name="laserToolsToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>寻找最佳激光设置的工具</value>
@@ -1128,7 +1126,7 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>检查和控制所有 grbl 坐标</value>
   </data>
   <data name="control3rdGRBLToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>打开一个简单的窗口以通过第三个串行 com 控制一个单元</value>
+    <value>打开一个简单的窗口以通过第三个COM 控制一个设备</value>
   </data>
   <data name="projectorToolStripMenuItem.Text" xml:space="preserve">
     <value>投影仪</value>
@@ -1137,10 +1135,10 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>打开一个新窗口，通过工作台上方的投影仪显示工件上的机器路径</value>
   </data>
   <data name="showFormsToolStripMenuItem.Text" xml:space="preserve">
-    <value>表格到前面</value>
+    <value>显示其他窗口</value>
   </data>
   <data name="showFormsToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>将所有打开的 GRBL-Plotter 表单（例如文本创建）带到 z 顺序的前面</value>
+    <value>将所有打开的 GRBL-Plotter 窗口（例如文本创建）带到 z 顺序的前面</value>
   </data>
   <data name="CbAddGraphic.ToolTip" xml:space="preserve">
     <value>如果启用，新导入的 G 代码将插入到现有代码中。
@@ -1150,10 +1148,10 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>复制所选路径</value>
   </data>
   <data name="cmsPicBoxShowProperties.Text" xml:space="preserve">
-    <value>选定路径的属性</value>
+    <value>路径属性</value>
   </data>
   <data name="cmsPicBoxMoveToMarkedPosition.ToolTipText" xml:space="preserve">
-    <value>将工具移动到标记位置</value>
+    <value>机器移动到标记位置</value>
     <comment>20220428</comment>
   </data>
   <data name="cmsPicBoxZeroXYAtMarkedPosition.ToolTipText" xml:space="preserve">
@@ -1169,15 +1167,15 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <comment>20220428</comment>
   </data>
   <data name="cmsPicBoxShowProperties.ToolTipText" xml:space="preserve">
-    <value>显示或编辑选定图形或组的属性</value>
+    <value>显示或编辑选定路径的属性</value>
     <comment>20220428</comment>
   </data>
   <data name="cmsPicBoxDuplicatePath.ToolTipText" xml:space="preserve">
-    <value>具有可选偏移的重复图形或组（检查 [设置 - 程序外观 - 2D-视图/编辑器]</value>
+    <value>具有可选偏移的重复图形或组（检查 [设置 - 程序外观 - 2D-视图/编辑器]）</value>
     <comment>20220428</comment>
   </data>
   <data name="cmsPicBoxCropSelectedPath.ToolTipText" xml:space="preserve">
-    <value>裁剪（释放）选定的图形或组</value>
+    <value>删除除选中路径以外的路径</value>
     <comment>20220428</comment>
   </data>
   <data name="cmsPicBoxReverseSelectedPath.ToolTipText" xml:space="preserve">
@@ -1204,6 +1202,6 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
     <value>Grbl设置</value>
   </data>
   <data name="processAutomationToolStripMenuItem.Text" xml:space="preserve">
-    <value>流程自动化</value>
+    <value>脚本</value>
   </data>
 </root>

@@ -130,7 +130,7 @@
     <value>按钮颜色</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>可能的变量是图形位置MIn。，MAx。 和X，Y和Z的中心值：
+    <value>可供使用的变量有图像位置最大值、最小值和X，Y和Z的中心值：
 ＃GMIX，＃GMAX，＃GCTX; ＃GMIY，＃GMAY，＃GCTY; ＃GMIZ，＃GMAZ，＃GCTZ
 检查GamePad设置是否有其他变量。</value>
   </data>
@@ -141,7 +141,7 @@
     <value>点击更改</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>GCode或文件名</value>
+    <value>在此输入Gcode或在下方选项卡中加载文件</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
     <value>取消</value>
