@@ -5,6 +5,7 @@
 [![Github all releases](https://img.shields.io/github/downloads/svenhb/GRBL-Plotter/total.svg)](https://GitHub.com/svenhb/GRBL-Plotter/releases/)  
 
 [README deutsch](README_de.md)  
+ [README 简体中文](README_cn.md)  
 A GCode sender for GRBL under windows, using DotNET 4.0 (should also work with Windows XP)  
 Written in C# VisualStudio 2022.  
 For use under Linux check this description by metzger100: [GRBL-Plotter-Linux](https://github.com/svenhb/GRBL-Plotter/blob/master/doc/GRBL-Plotter-Linux.md)  
