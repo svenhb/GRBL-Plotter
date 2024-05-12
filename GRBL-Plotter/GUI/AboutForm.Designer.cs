@@ -130,7 +130,7 @@ namespace GrblPlotter
             // AboutForm
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this.button1;
             this.Controls.Add(this.linkLabel3);
             this.Controls.Add(this.label4);
