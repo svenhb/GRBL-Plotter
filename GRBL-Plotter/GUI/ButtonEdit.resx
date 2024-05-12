@@ -119,10 +119,14 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>337, 286</value>
+    <value>562, 440</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>124, 35</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
@@ -144,10 +148,13 @@
     <value>12</value>
   </data>
   <data name="btnApply.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 286</value>
+    <value>20, 440</value>
+  </data>
+  <data name="btnApply.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="btnApply.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 23</value>
+    <value>256, 35</value>
   </data>
   <data name="btnApply.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -168,10 +175,13 @@
     <value>11</value>
   </data>
   <data name="tBTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 25</value>
+    <value>16, 38</value>
+  </data>
+  <data name="tBTitle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="tBTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 20</value>
+    <value>282, 26</value>
   </data>
   <data name="tBTitle.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -189,13 +199,16 @@
     <value>10</value>
   </data>
   <data name="tBCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 74</value>
+    <value>16, 114</value>
+  </data>
+  <data name="tBCode.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="tBCode.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="tBCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>413, 124</value>
+    <value>686, 189</value>
   </data>
   <data name="tBCode.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -216,10 +229,13 @@
     <value>True</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 9</value>
+    <value>10, 14</value>
+  </data>
+  <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 13</value>
+    <value>90, 20</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -243,10 +259,13 @@
     <value>True</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 58</value>
+    <value>10, 89</value>
+  </data>
+  <data name="label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>97, 13</value>
+    <value>154, 20</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -267,10 +286,13 @@
     <value>7</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 201</value>
+    <value>16, 309</value>
+  </data>
+  <data name="label3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>413, 82</value>
+    <value>689, 126</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -297,10 +319,13 @@ Check GamePad setup for further varaibles.
     <value>True</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>202, 9</value>
+    <value>337, 14</value>
+  </data>
+  <data name="label4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 13</value>
+    <value>100, 20</value>
   </data>
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -321,10 +346,13 @@ Check GamePad setup for further varaibles.
     <value>5</value>
   </data>
   <data name="btnSetColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>202, 25</value>
+    <value>337, 38</value>
+  </data>
+  <data name="btnSetColor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="btnSetColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 23</value>
+    <value>283, 35</value>
   </data>
   <data name="btnSetColor.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -345,10 +373,13 @@ Check GamePad setup for further varaibles.
     <value>4</value>
   </data>
   <data name="btnDelete.Location" type="System.Drawing.Point, System.Drawing">
-    <value>241, 286</value>
+    <value>402, 440</value>
+  </data>
+  <data name="btnDelete.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="btnDelete.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>124, 35</value>
   </data>
   <data name="btnDelete.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -368,14 +399,20 @@ Check GamePad setup for further varaibles.
   <data name="&gt;&gt;btnDelete.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <metadata name="colorDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="lblColor.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="lblColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>319, 9</value>
+    <value>531, 14</value>
+  </data>
+  <data name="lblColor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="lblColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 13</value>
+    <value>78, 20</value>
   </data>
   <data name="lblColor.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -396,10 +433,13 @@ Check GamePad setup for further varaibles.
     <value>2</value>
   </data>
   <data name="btnResetColor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>372, 25</value>
+    <value>620, 38</value>
+  </data>
+  <data name="btnResetColor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="btnResetColor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 23</value>
+    <value>83, 35</value>
   </data>
   <data name="btnResetColor.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -420,10 +460,13 @@ Check GamePad setup for further varaibles.
     <value>1</value>
   </data>
   <data name="cBPresets.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 259</value>
+    <value>20, 398</value>
+  </data>
+  <data name="cBPresets.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="cBPresets.Size" type="System.Drawing.Size, System.Drawing">
-    <value>304, 21</value>
+    <value>504, 28</value>
   </data>
   <data name="cBPresets.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -443,13 +486,21 @@ Check GamePad setup for further varaibles.
   <data name="&gt;&gt;cBPresets.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>144, 144</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>424, 321</value>
+    <value>707, 494</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>
   </data>
@@ -468,10 +519,4 @@ Check GamePad setup for further varaibles.
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="colorDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>
