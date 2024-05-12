@@ -30,6 +30,7 @@
  * 2023-08-16 l:388 f:IsSameAs pull request Speed up merge and sort #348
  * 2023-08-31 l:686 f:AddArc limit stepwidth - issue #353
  * 2024-02-04 l:720 f:AddArc add noise to line
+ * 2024-03-02 l:157 f:GraphicInformationClass seperate processing of OptionDashPattern
 */
 
 using System;
@@ -107,6 +108,7 @@ namespace GrblPlotter
 
             public bool OptionSpecialDevelop { get; set; }	// Special conversion
             public bool OptionSpecialWireBend { get; set; }	// Special conversion
+            public bool OptionSpecialPolar { get; set; }	// Special conversion
 
             public GraphicInformationClass()
             {
@@ -126,6 +128,7 @@ namespace GrblPlotter
 
                 OptionSpecialDevelop = Properties.Settings.Default.importGraphicDevelopmentEnable;
                 OptionSpecialWireBend = Properties.Settings.Default.importGraphicWireBenderEnable;
+                OptionSpecialPolar = Properties.Settings.Default.importGCConvertToPolar;
 
                 if (OptionSpecialWireBend || OptionSpecialDevelop)
                 { ResetOptions(true); }
@@ -154,7 +157,7 @@ namespace GrblPlotter
                 OptionFeedFromToolTable = Properties.Settings.Default.importGCToolTableUse;
 
                 ConvertArcToLine = Properties.Settings.Default.importGCNoArcs || OptionClipCode || OptionDragTool || OptionHatchFill || OptionNoise;// only for SVG: || ApplyHatchFill;
-                ConvertArcToLine = ConvertArcToLine || OptionSpecialWireBend || OptionSpecialDevelop || OptionRampOnPenDown || OptionDashPattern;
+                ConvertArcToLine = ConvertArcToLine || OptionSpecialWireBend || OptionSpecialDevelop || OptionRampOnPenDown || OptionSpecialPolar;// || OptionDashPattern;
             }
             public void ResetOptions(bool enableFigures)
             {
@@ -207,6 +210,7 @@ namespace GrblPlotter
             public string ListOptions()
             {
                 string importOptions = "";
+                if (OptionSpecialPolar) importOptions += "<POLAR> ";
                 if (Properties.Settings.Default.importGraphicFilterEnable) importOptions += "<FILTER> ";
                 if (DxfImportZ) importOptions += "<DXF Z> ";
                 if (OptionSpecialDevelop || OptionSpecialWireBend) importOptions += "<Special conversion!> ";

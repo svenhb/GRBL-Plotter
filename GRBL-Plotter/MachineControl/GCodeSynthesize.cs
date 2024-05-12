@@ -36,7 +36,7 @@ namespace GrblPlotter
     {
         public enum ConvertMode { Nothing, RemoveZ, ConvertZToS };
 
-        private static float heightMapGridWidth = 100;
+        internal static float heightMapGridWidth = 100;
 
         public static string ReplaceG23()
         { return CreateGCodeProg(true, false, false, ConvertMode.Nothing); }   // createGCodeProg(bool replaceG23, bool splitMoves, bool applyNewZ, bool removeZ, HeightMap Map=null)
@@ -71,11 +71,11 @@ namespace GrblPlotter
         /// Generate GCode from given coordinates in GCodeList
         /// only replace lines with coordinate information
         /// </summary>
-        private static string CreateGCodeProg()
-        { return CreateGCodeProg(false, false, false, ConvertMode.Nothing); }
-        private static string CreateGCodeProg(bool replaceG23, bool splitMoves, bool applyNewZ, ConvertMode specialCmd, HeightMap Map = null)
+        private static string CreateGCodeProg(string info = "")
+        { return CreateGCodeProg(false, false, false, ConvertMode.Nothing, null, info); }
+        internal static string CreateGCodeProg(bool replaceG23, bool splitMoves, bool applyNewZ, ConvertMode specialCmd, HeightMap Map = null, string info = "")
         {
-            Logger.Debug("+++ CreateGCodeProg replaceG23: {0}, splitMoves: {1}, applyNewZ: {2}, specialCmd: {3}", replaceG23, splitMoves, applyNewZ, specialCmd);
+            Logger.Debug("+++ CreateGCodeProg replaceG23: {0}, splitMoves: {1}, applyNewZ: {2}, specialCmd: {3}, info: '{4}'", replaceG23, splitMoves, applyNewZ, specialCmd, info);
             if (gcodeList == null) return "";
             pathMarkSelection.Reset();
             lastFigureNumber = -1; lastFigureNumbers.Clear();
@@ -96,6 +96,9 @@ namespace GrblPlotter
             bool hide_code = false;
             bool isArc;
 
+            bool addInfo = info.Length > 0;
+
+            Gcode.Setup(false);                             // don't apply intermediate Z steps in certain sub functions
             for (int iCode = 0; iCode < gcodeList.Count; iCode++)     // go through all code lines
             {
                 GcodeByLine gcline = gcodeList[iCode];
@@ -106,6 +109,14 @@ namespace GrblPlotter
                 if (gcline.codeLine.Length == 0)
                     continue;
 
+                if (addInfo && gcline.codeLine.Contains("/Header"))
+                {
+                    newCode.AppendLine(gcline.codeLine.Trim('\r', '\n'));
+                    newCode.AppendLine("(" + info + ")");
+                    addInfo = false;
+                    continue;
+                }
+
                 if (gcline.codeLine.IndexOf("%START_HIDECODE") >= 0) { hide_code = true; }
                 if (gcline.codeLine.IndexOf("%STOP_HIDECODE") >= 0) { hide_code = false; }
                 if (gcline.codeLine.IndexOf("%NM ") >= 0) { gcline.isNoMove = true; }
@@ -114,7 +125,7 @@ namespace GrblPlotter
                 // replace code-line G1,G2,G3 by new codelines and add to newCode
                 if ((!hide_code) && (replaceG23))                   // replace circles
                 {
-                    Gcode.Setup(false);                             // don't apply intermediate Z steps in certain sub functions
+                    //Gcode.Setup(false);   moved 2024-03-11                          // don't apply intermediate Z steps in certain sub functions
                     Gcode.SetLastxyz(lastActualX, lastActualY, lastActualZ);
                     Gcode.GcodeXYFeed = gcline.feedRate;
                     if (gcline.isdistanceModeG90)

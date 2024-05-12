@@ -84,6 +84,7 @@ namespace GrblPlotter
             this.NudDataIndex = new System.Windows.Forms.NumericUpDown();
             this.BtnDataIndexClear = new System.Windows.Forms.Button();
             this.GbControl = new System.Windows.Forms.GroupBox();
+            this.BtnStep = new System.Windows.Forms.Button();
             this.BtnNew = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
             this.LblInfo = new System.Windows.Forms.Label();
@@ -140,7 +141,7 @@ namespace GrblPlotter
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellValueChanged);
             this.dataGridView1.CurrentCellDirtyStateChanged += new System.EventHandler(this.DataGridView1_CurrentCellDirtyStateChanged);
-            this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
+            this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.DataGridView1_DataError);
             this.dataGridView1.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DataGridView1_EditingControlShowing);
             this.dataGridView1.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_RowLeave);
             // 
@@ -403,6 +404,7 @@ namespace GrblPlotter
             // 
             // GbControl
             // 
+            this.GbControl.Controls.Add(this.BtnStep);
             this.GbControl.Controls.Add(this.BtnNew);
             this.GbControl.Controls.Add(this.BtnSave);
             this.GbControl.Controls.Add(this.BtnStart);
@@ -419,6 +421,14 @@ namespace GrblPlotter
             resources.ApplyResources(this.GbControl, "GbControl");
             this.GbControl.Name = "GbControl";
             this.GbControl.TabStop = false;
+            // 
+            // BtnStep
+            // 
+            resources.ApplyResources(this.BtnStep, "BtnStep");
+            this.BtnStep.Name = "BtnStep";
+            this.toolTip1.SetToolTip(this.BtnStep, resources.GetString("BtnStep.ToolTip"));
+            this.BtnStep.UseVisualStyleBackColor = true;
+            this.BtnStep.Click += new System.EventHandler(this.BtnStep_Click);
             // 
             // BtnNew
             // 
@@ -556,5 +566,6 @@ namespace GrblPlotter
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.TextBox TbData;
         private System.Windows.Forms.Button BtnSaveIni;
+        private System.Windows.Forms.Button BtnStep;
     }
 }

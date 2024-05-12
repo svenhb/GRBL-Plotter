@@ -56,6 +56,8 @@
  * 2023-09-16 l:774 f:CreateGCode wrong call to RemoveOffset(minx,minx) -> miny
  * 2024-01-25 l:1100 f:CreateGCode export graphics dimension, to be able to calculate point-marker-size in 2Dview
  * 2024-02-04 l:426 f:AddLine add noise to line
+ * 2024-03-02 l:547 f:AddCircle / AddArc seperate processing of OptionDashPattern
+ * 2024-03-15 l:1325 f:ReDoReversePath add calculate tangential
 */
 
 using System;
@@ -544,7 +546,8 @@ namespace GrblPlotter
             { Logger.Error("AddCircle NaN skip the circle X:{0:0.00} Y:{1:0.00} r:{2:0.00} ", centerX, centerY, radius); success = false; }
             else
             {
-                actualPath.AddArc(new Point(centerX + radius, centerY), new Point(-radius, 0), GetActualZ(), true, graphicInformation.ConvertArcToLine, graphicInformation.OptionNoise);// convertArcToLine);
+                bool arcToLine = graphicInformation.ConvertArcToLine || (graphicInformation.OptionDashPattern && (actualDashArray.Length > 1));
+                actualPath.AddArc(new Point(centerX + radius, centerY), new Point(-radius, 0), GetActualZ(), true, arcToLine, graphicInformation.OptionNoise);// convertArcToLine);
                 actualPath.Info.CopyData(actualPathInfo);    // preset global info for GROUP
                 if (logCoordinates) Logger.Trace("  AddCircle to X:{0:0.00} Y:{1:0.00} r:{2:0.00}  angleStep:{3}", centerX, centerY, radius, Properties.Settings.Default.importGCSegment);
             }
@@ -563,7 +566,8 @@ namespace GrblPlotter
             else
             {
                 lastPoint = new Point(ax, ay);
-                actualPath.AddArc(new Point(ax, ay), new Point(ai, aj), GetActualZ(), isg2, graphicInformation.ConvertArcToLine, graphicInformation.OptionNoise);
+                bool arcToLine = graphicInformation.ConvertArcToLine || (graphicInformation.OptionDashPattern && (actualDashArray.Length > 1));
+                actualPath.AddArc(new Point(ax, ay), new Point(ai, aj), GetActualZ(), isg2, arcToLine, graphicInformation.OptionNoise);
                 actualPath.Info.CopyData(actualPathInfo);    // preset global info for GROUP
                 if (logCoordinates) Logger.Trace("  AddArc to X:{0:0.00} Y:{1:0.00} i:{2:0.00} j:{3:0.00}  angleStep:{4}  isG2:{5}", ax, ay, ai, aj, Properties.Settings.Default.importGCSegment, isg2);
             }
@@ -1156,6 +1160,13 @@ namespace GrblPlotter
             }
 
 
+            if (Properties.Settings.Default.importGCConvertToPolar)
+            {
+                Logger.Info("◆◆◆ Convert to polar coordinates");
+                PolarCoordinates();
+                SetHeaderInfo(" Option: Polar coordinates: X=radius, Y=angle");
+            }
+
             if (Properties.Settings.Default.importGraphicWireBenderEnable)
             {
                 Logger.Info("◆◆◆ Wire bender");
@@ -1310,6 +1321,19 @@ namespace GrblPlotter
                 }
                 SetOrderOfFigures(completeGraphic, sortOrderFigure);        // restore order from GCode
             }
+
+            /* calculate tangential axis - paths may be splitted, do not merge afterwards!*/
+            if (graphicInformation.OptionTangentialAxis)
+            {
+                Logger.Info("●●● Calculate tangential axis ");
+                CalculateTangentialAxis();
+            }
+            else
+            {
+                Logger.Info("●●● Calculate start angle");
+                CalculateStartAngle();
+            }
+
             graphicInformation.ReProcess = true;
 
             if (graphicInformation.GroupEnable) // group objects by color/width/layer/tile-nr 
@@ -1347,7 +1371,6 @@ namespace GrblPlotter
             }
             else
                 ReversePath(tmpItemPath);
-
         }
     }
 }

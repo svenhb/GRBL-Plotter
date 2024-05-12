@@ -3853,4 +3853,25 @@ Sağ alt kenar boşluğuna bir imza çizin: 0,1 veya daha düşük ölçeklendir
   <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
     <value>Bu sekmelerin ayarlarını INI dosyası olarak kaydeder</value>
   </data>
+  <data name="TbImportGCPWMSlider.ToolTip" xml:space="preserve">
+    <value>grbl-setup'tan minimum ve maksimum limitleri güncellemek için "Gelişmiş ayarlar" arasında geçiş yapar</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.Text" xml:space="preserve">
+    <value>alet tablosundan</value>
+  </data>
+  <data name="LblPolar.Text" xml:space="preserve">
+    <value>Grafikleri içe aktarırken tüm XY değerlerini (Kartezyen koordinat sistemi) yarıçapa / açıya (kutupsal koordinatlar) dönüştürür.
+X yarıçap değerlerini, Y ise açı değerlerini alır.
+Not: Daha fazla grafik düzenleme (döndürme, ölçeklendirme, kaydırma) hoş olmayan sonuçlara yol açar çünkü bunlar XY koordinatlarına göre programlanmıştır.
+Dönüşüm aynı zamanda Menü - GCode Dönüşümü - 'Kutupsal koordinatlara dönüştür' yoluyla da mümkündür.</value>
+  </data>
+  <data name="label106.Text" xml:space="preserve">
+    <value>Mm cinsinden doğruluk</value>
+  </data>
+  <data name="CbConvertToPolar.Text" xml:space="preserve">
+    <value>XY'yi kutupsal koordinatlara dönüştür</value>
+  </data>
+  <data name="GbConvertToPolar.Text" xml:space="preserve">
+    <value>XY'yi kutupsal koordinatlara dönüştürün</value>
+  </data>
 </root>

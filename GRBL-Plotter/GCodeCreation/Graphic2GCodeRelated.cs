@@ -1688,6 +1688,9 @@ namespace GrblPlotter
             header_end += string.Format("({0} >)\r\n", XmlMarker.HeaderEnd);
             header_end += headerMessage.ToString();
 
+            if (Properties.Settings.Default.importGCConvertToPolar)
+                header_end += string.Format("({0} X=radius, Y=angle/>)\r\n", "Polar");
+
             if (gcodeTangentialEnable)
                 header_end += string.Format("({0} Axis=\"{1}\"/>)\r\n", XmlMarker.TangentialAxis, gcodeTangentialName);
 

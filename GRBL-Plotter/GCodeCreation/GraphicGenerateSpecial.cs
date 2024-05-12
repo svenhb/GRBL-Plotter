@@ -35,6 +35,41 @@ namespace GrblPlotter
 {
     public static partial class Graphic
     {
+        // polar coordinates
+        internal static void PolarCoordinates()
+        {
+            double x, y, r, a;
+            double aOffset = 0;
+            int dir = 0, lastDir = 0;
+            foreach (PathObject graphicItem in completeGraphic)
+            {
+                if (graphicItem is ItemDot dotPos)
+                {
+                    r = Math.Sqrt(dotPos.Start.X * dotPos.Start.X + dotPos.Start.Y * dotPos.Start.Y);
+                    a = Math.Atan2(dotPos.Start.Y, dotPos.Start.X);
+                    dotPos.Start = new Point(r, a * 180 / Math.PI);
+                }
+                else
+                {
+                    ItemPath item = (ItemPath)graphicItem;
+                    for (int i = 0; i < item.Path.Count; i++)      				// go through path objects
+                    {
+                        x = item.Path[i].MoveTo.X;
+                        y = item.Path[i].MoveTo.Y;
+                        r = Math.Sqrt(x * x + y * y);
+                        a = Math.Atan2(y, x) + aOffset;
+                        dir = Math.Sign(a);
+                        if ((dir < 0) && (lastDir > 0)) { aOffset += 2 * Math.PI; a += 2 * Math.PI; dir = lastDir; }
+                        else if ((dir > 0) && (lastDir < 0)) { aOffset -= 2 * Math.PI; a -= 2 * Math.PI; dir = lastDir; }
+                        else { lastDir = dir; }
+
+                        item.Path[i].MoveTo = new Point(r, a * 180 / Math.PI);
+                    }
+                    item.Start = item.Path[0].MoveTo;
+                    item.End = item.Path[item.Path.Count - 1].MoveTo;
+                }
+            }
+        }
         // wire bender
         internal static void WireBender()
         {

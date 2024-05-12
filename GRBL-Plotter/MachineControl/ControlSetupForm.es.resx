@@ -3549,4 +3549,25 @@ Dibuja una firma en el margen inferior derecho: escala 0,1 o menos y usa “abaj
   <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
     <value>Guarda la configuración de estas pestañas como archivo INI</value>
   </data>
+  <data name="TbImportGCPWMSlider.ToolTip" xml:space="preserve">
+    <value>Alterna "Configuración avanzada" para actualizar los límites mínimo y máximo desde grbl-setup</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.Text" xml:space="preserve">
+    <value>de la mesa de herramientas</value>
+  </data>
+  <data name="LblPolar.Text" xml:space="preserve">
+    <value>Convierte todos los valores XY (sistema de coordenadas cartesianas) a radio/ángulo (coordenadas polares) al importar gráficos.
+X obtiene los valores del radio, Y obtiene los valores del ángulo.
+Nota: la edición adicional de gráficos (rotación, escala, desplazamiento) conduce a resultados desagradables, porque están programados para coordenadas XY.
+La conversión también es posible a través del Menú - Transformación GCode - 'Convertir a coordenadas polares'.</value>
+  </data>
+  <data name="label106.Text" xml:space="preserve">
+    <value>Precisión en mm</value>
+  </data>
+  <data name="CbConvertToPolar.Text" xml:space="preserve">
+    <value>Convertir XY a coordenadas polares</value>
+  </data>
+  <data name="GbConvertToPolar.Text" xml:space="preserve">
+    <value>Convertir XY a coordenadas polares</value>
+  </data>
 </root>

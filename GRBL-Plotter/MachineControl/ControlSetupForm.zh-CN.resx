@@ -3823,4 +3823,25 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
     <value>将此选项卡的设置保存为 INI 文件</value>
   </data>
+  <data name="TbImportGCPWMSlider.ToolTip" xml:space="preserve">
+    <value>切换“高级设置”以更新 grbl-setup 的最小和最大限制</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.Text" xml:space="preserve">
+    <value>从工具表</value>
+  </data>
+  <data name="LblPolar.Text" xml:space="preserve">
+    <value>导入图形时将所有 XY 值（笛卡尔坐标系）转换为半径/角度（极坐标）。
+X 获取半径值，Y 获取角度值。
+注意：进一步的图形编辑（旋转、缩放、移位）会导致令人不快的结果，因为它们是针对 XY 坐标进行编程的。
+也可以通过菜单 - GCode Transform - “转换为极坐标”进行转换。</value>
+  </data>
+  <data name="label106.Text" xml:space="preserve">
+    <value>精度（毫米）</value>
+  </data>
+  <data name="CbConvertToPolar.Text" xml:space="preserve">
+    <value>将 XY 转换为极坐标</value>
+  </data>
+  <data name="GbConvertToPolar.Text" xml:space="preserve">
+    <value>将 XY 转换为极坐标</value>
+  </data>
 </root>

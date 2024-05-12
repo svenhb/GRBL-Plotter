@@ -3718,4 +3718,25 @@ Narysuj podpis na prawym dolnym marginesie: skala 0,1 lub niższa i użyj „pra
   <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
     <value>Zapisuje ustawienia tych zakładek jako plik INI</value>
   </data>
+  <data name="TbImportGCPWMSlider.ToolTip" xml:space="preserve">
+    <value>Przełącza „Ustawienia zaawansowane”, aby zaktualizować minimalne i maksymalne limity z grbl-setup</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.Text" xml:space="preserve">
+    <value>z tabeli narzędzi</value>
+  </data>
+  <data name="LblPolar.Text" xml:space="preserve">
+    <value>Konwertuje wszystkie wartości XY (kartezjański układ współrzędnych) na promień/kąt (współrzędne biegunowe) podczas importowania grafiki.
+X pobiera wartości promienia, Y pobiera wartości kąta.
+Uwaga: dalsza edycja grafiki (obrót, skalowanie, przesunięcie) prowadzi do nieprzyjemnych efektów, gdyż są one zaprogramowane na współrzędne XY.
+Konwersja jest również możliwa poprzez Menu - Transformacja GCode - 'Konwertuj na współrzędne biegunowe'.</value>
+  </data>
+  <data name="label106.Text" xml:space="preserve">
+    <value>Dokładność w mm</value>
+  </data>
+  <data name="CbConvertToPolar.Text" xml:space="preserve">
+    <value>Konwertuj XY na współrzędne biegunowe</value>
+  </data>
+  <data name="GbConvertToPolar.Text" xml:space="preserve">
+    <value>Konwertuj XY na współrzędne biegunowe</value>
+  </data>
 </root>

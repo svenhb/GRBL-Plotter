@@ -3557,4 +3557,25 @@ Desenhe uma assinatura na margem inferior direita: escala 0,1 ou inferior e use 
   <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
     <value>Salva as configurações dessas guias como arquivo INI</value>
   </data>
+  <data name="TbImportGCPWMSlider.ToolTip" xml:space="preserve">
+    <value>Alterna "Configurações avançadas" para atualizar os limites mínimo e máximo do grbl-setup</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.Text" xml:space="preserve">
+    <value>da tabela de ferramentas</value>
+  </data>
+  <data name="LblPolar.Text" xml:space="preserve">
+    <value>Converte todos os valores XY (sistema de coordenadas cartesianas) em raio/ângulo (coordenadas polares) ao importar gráficos.
+X obtém os valores do raio, Y obtém os valores do ângulo.
+Nota: outras edições de gráficos (rotação, escala, deslocamento) levam a resultados desagradáveis, porque eles são programados para coordenadas XY.
+A conversão também é possível através do Menu - GCode Transform - 'Converter para coordenadas polares'.</value>
+  </data>
+  <data name="label106.Text" xml:space="preserve">
+    <value>Precisão em mm</value>
+  </data>
+  <data name="CbConvertToPolar.Text" xml:space="preserve">
+    <value>Converter XY em coordenadas polares</value>
+  </data>
+  <data name="GbConvertToPolar.Text" xml:space="preserve">
+    <value>Converter XY em coordenadas polares</value>
+  </data>
 </root>

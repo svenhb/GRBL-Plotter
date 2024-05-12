@@ -29,6 +29,7 @@
  * 2022-12-21 line 319 GetGCodeFromImage check if _image_form != null
  * 2023-01-28 add AfterImport to bring main GUI to front after getting gcode
  * 2023-09-06 l:235 f:InsertCodeFromForm add SetSelection (MainFormPictureBox.cs) to select newly inserted object
+ * 2024-03-11 l:851 new f: convertToPolarCoordinatesToolStripMenuItem_Click
 */
 using FastColoredTextBoxNS;
 using System;
@@ -36,6 +37,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Text;
 using System.Windows.Forms;
+using static GrblPlotter.VisuGCode;
 
 namespace GrblPlotter
 {
@@ -460,11 +462,12 @@ namespace GrblPlotter
 
         #region MAIN-MENU GCode Transform
 
-        private void TransformStart(string action)//, bool resetMark = true)
+        private void TransformStart(string action, bool setUndo = true)//, bool resetMark = true)
         {
             Logger.Info("▼▼▼▼▼▼ TransformStart {0}", action);
             Cursor.Current = Cursors.WaitCursor;
-            UnDo.SetCode(fCTBCode.Text, action, this);
+			if (setUndo)
+				UnDo.SetCode(fCTBCode.Text, action, this);
             showPicBoxBgImage = false;                      // don't show background image anymore
             pictureBox1.BackgroundImage = null;
             pBoxTransform.Reset();
@@ -844,6 +847,19 @@ namespace GrblPlotter
                 e.SuppressKeyPress = true;
                 gCodeToolStripMenuItem.HideDropDown();
             }
+        }
+
+        private void convertToPolarCoordinatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TransformStart("Polar");
+            EventCollector.SetTransform("Tg23");
+            heightMapGridWidth = (float)Properties.Settings.Default.importGCConvertToPolarAccuracy;
+            fCTBCode.Text = VisuGCode.CreateGCodeProg(true, true, false, ConvertMode.Nothing); //VisuGCode.ReplaceG23();
+            TransformEnd();
+            TransformStart("Polar 2", false); // Undo already set
+            EventCollector.SetTransform("Tpol");
+            fCTBCode.Text = VisuGCode.ConvertToPolar();
+            TransformEnd();
         }
 
         private void ErsetzteG23DurchLinienToolStripMenuItem_Click(object sender, EventArgs e)

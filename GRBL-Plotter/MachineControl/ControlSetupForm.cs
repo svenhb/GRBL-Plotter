@@ -1053,6 +1053,11 @@ namespace GrblPlotter
             else
                 cBImportGCRelative.BackColor = Color.Transparent;
 
+            if (CbConvertToPolar.Checked)
+                GbConvertToPolar.BackColor = Color.Yellow;
+            else
+                GbConvertToPolar.BackColor = Color.Transparent;
+
             if (cBImportSVGRepeat.Checked)
                 cBImportSVGRepeat.BackColor = Color.Yellow;
             else
@@ -1516,7 +1521,7 @@ namespace GrblPlotter
             lblDrag1.Enabled = enable;
             lblDrag2.Enabled = enable;
             HighlightPenOptions_Click(sender, e);
-            BtnHelp_Pathmodification.Invalidate();
+            TabControl3.Invalidate();
         }
 
         private void CbImportGCLineSegments_CheckedChanged(object sender, EventArgs e)
@@ -1676,7 +1681,7 @@ namespace GrblPlotter
             if (cBImportGCTangentialRange.Checked && enable)
             { cBImportGCNoArcs.Checked = true; }
             HighlightPenOptions_Click(sender, e);
-            BtnHelp_Pathmodification.Invalidate();
+            TabControl3.Invalidate();
         }
 
         private void CbImportGCTangentialRange_CheckStateChanged(object sender, EventArgs e)
@@ -1701,7 +1706,7 @@ namespace GrblPlotter
             if (enable)
             { cBImportGCNoArcs.Checked = true; }
             HighlightPenOptions_Click(sender, e);
-            BtnHelp_Pathmodification.Invalidate();
+            TabControl3.Invalidate();
         }
 
         private void BtnOpenLogFile_Click(object sender, EventArgs e)
@@ -2173,7 +2178,7 @@ namespace GrblPlotter
                     return (prop.importGCZEnable && prop.importGCZIncEnable && prop.importGCZIncNoZUp);
                     break;
                 case 2:
-                    return (prop.importGCLineSegmentation || prop.importGCRelative);// || prop.importGraphicLeadOutEnable);
+                    return (prop.importGCLineSegmentation || prop.importGCRelative || prop.importGCConvertToPolar);// || prop.importGraphicLeadOutEnable);
                     break;
                 default:
                     break;
@@ -2183,7 +2188,7 @@ namespace GrblPlotter
 
         private void TabControl3_DrawItem(object sender, DrawItemEventArgs e)
         {
-            TabPage page = BtnHelp_Pathmodification.TabPages[e.Index];
+            TabPage page = TabControl3.TabPages[e.Index];
             if (!e.Bounds.IsEmpty)
             {
                 if (IsOptionEnabledTabControl3(e.Index))
@@ -2200,39 +2205,42 @@ namespace GrblPlotter
         private bool IsOptionEnabledTabControl3(int tabIndex)
         {
             var prop = Properties.Settings.Default;
+            bool result=false;
             switch (tabIndex)
             {
                 case 0:
-                    return false;
+                    result = false;
                     break;
                 case 1:
-                    return (prop.importSVGNodesOnly || prop.importSVGCircleToDot || prop.importDepthFromWidth || prop.importDepthFromWidthRamp || prop.importSVGCircleToDotZ || prop.importPWMFromWidth || prop.importSVGCircleToDotS);
+                    result = (prop.importSVGNodesOnly || prop.importSVGCircleToDot || prop.importDepthFromWidth || prop.importDepthFromWidthRamp || prop.importSVGCircleToDotZ || prop.importPWMFromWidth || prop.importSVGCircleToDotS);
                     break;
                 case 2:
-                    return (prop.importGraphicAddFrameEnable || prop.importGraphicMultiplyGraphicsEnable || prop.importGraphicLeadInEnable);// || prop.importGraphicLeadOutEnable);
+                    result = (prop.importGraphicAddFrameEnable || prop.importGraphicMultiplyGraphicsEnable || prop.importGraphicLeadInEnable);// || prop.importGraphicLeadOutEnable);
                     break;
                 case 3:
-                    return (prop.importGCDragKnifeEnable || prop.importGCTangentialEnable || prop.importGraphicHatchFillEnable || prop.importGraphicExtendPathEnable || prop.importGraphicNoiseEnable);
+                    result = (prop.importGCDragKnifeEnable || prop.importGCTangentialEnable || prop.importGraphicHatchFillEnable || prop.importGraphicExtendPathEnable || prop.importGraphicNoiseEnable);
                     break;
                 case 4:
-                    return (prop.importGraphicClipEnable);
+                    result = (prop.importGraphicClipEnable);
                     break;
                 case 5:
-                    return (prop.importGCToolTableUse);
+                    result = (prop.importGCToolTableUse);
                     break;
                 case 6:
-                    return (prop.importGraphicFilterEnable);
+                    result = (prop.importGraphicFilterEnable);
                     break;
                 case 7:
-                    return (prop.importGraphicDevelopmentFeedInvert || prop.importGraphicWireBenderEnable);
+                    result = (prop.importGraphicDevelopmentFeedInvert || prop.importGraphicWireBenderEnable);
                     break;
                 case 8:
-                    return (prop.importGCAux1Enable || prop.importGCAux2Enable);
+                    result = (prop.importGCAux1Enable || prop.importGCAux2Enable);
                     break;
                 default:
                     break;
             }
-            return false;
+        //    Logger.Trace("IsOptionEnabledTabControl3  index:{0} result:{1}", tabIndex, result);
+
+            return result;
         }
 
         private void TabControl1_DrawItem(object sender, DrawItemEventArgs e)

@@ -3489,4 +3489,25 @@ Zeichne eine Signatur in den unteren rechten Rand: Maßstab 0,1 oder kleiner und
   <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
     <value>Speichert die Einstellungen dieser Registerkarten als INI-Datei</value>
   </data>
+  <data name="TbImportGCPWMSlider.ToolTip" xml:space="preserve">
+    <value>Schaltet „Erweiterte Einstellungen“ um, um die Mindest- und Höchstgrenzen aus dem Grbl-Setup zu aktualisieren</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.Text" xml:space="preserve">
+    <value>aus der Werkzeugtabelle</value>
+  </data>
+  <data name="LblPolar.Text" xml:space="preserve">
+    <value>Konvertiert beim Importieren von Grafiken alle XY-Werte (kartesisches Koordinatensystem) in Radius/Winkel (Polarkoordinaten).
+X erhält die Radiuswerte, Y erhält die Winkelwerte.
+Hinweis: Eine weitere Bearbeitung der Grafiken (Rotation, Skalierung, Verschiebung) führt zu unangenehmen Ergebnissen, da diese für XY-Koordinaten programmiert sind.
+Die Konvertierung ist auch über Menü – GCode-Transformation – „In Polarkoordinaten konvertieren“ möglich.</value>
+  </data>
+  <data name="label106.Text" xml:space="preserve">
+    <value>Genauigkeit in mm</value>
+  </data>
+  <data name="CbConvertToPolar.Text" xml:space="preserve">
+    <value>Konvertiert XY in Polarkoordinaten</value>
+  </data>
+  <data name="GbConvertToPolar.Text" xml:space="preserve">
+    <value>Konvertiert XY in Polarkoordinaten</value>
+  </data>
 </root>

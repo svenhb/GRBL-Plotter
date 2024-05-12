@@ -55,19 +55,19 @@ namespace GrblPlotter
         private bool isGrblConnected = false;
         private bool stepTriggered = false;
         private bool stepCompleted = false;
-        private bool cameraFormOpen = false;
-        private bool probeFormOpen = false;
+     //   private bool cameraFormOpen = false;
+     //   private bool probeFormOpen = false;
 
         private int checkDigitalInDigit = 0;
 
         private int dataLine = 0;
 
         private static List<ProcessAutomationItem> actionItems = new List<ProcessAutomationItem>();
-        private ContextMenu ctm = new ContextMenu();
+        private readonly ContextMenu ctm = new ContextMenu();
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
-        private static bool showLog = false;
+        private static readonly bool showLog = false;
 
         #region command_definition
         public class ProcessAutomationItem
@@ -81,7 +81,7 @@ namespace GrblPlotter
             return new List<ProcessAutomationItem>
             {
                 new ProcessAutomationItem {Command="Load",              Value="",       Comment="Load ini or graphic file, [Value=file name]"},
-                new ProcessAutomationItem {Command="Load Data",         Value="",       Comment="Load ini or graphic file, [Value=line from data]"},
+                new ProcessAutomationItem {Command="Load Data",         Value="",       Comment="Load ini or graphic file, filename from data list [Value='':whole line] or [Value=column-nr]"},
                 new ProcessAutomationItem {Command="2D-View Clear",     Value="",       Comment="Clear workspace, delete G-Code from editor"},
                 new ProcessAutomationItem {Command="2D-View Offset",    Value="7;0;0",  Comment="Set graphic origin [Value=<Origin[1-9]>;<Offset X>;<Offset Y>]"},
                 new ProcessAutomationItem {Command="2D-View Rotate",    Value="45",     Comment="Rotate [Value=angle in degree]"},
@@ -156,19 +156,19 @@ namespace GrblPlotter
             if (isRunning)
                 return;
 
-            string file = extendFilePath(Properties.Settings.Default.processDataLastFile);
+            string file = ExtendFilePath(Properties.Settings.Default.processDataLastFile);
             Logger.Trace("UpdateIniVariables Data:{0}", file);
             if (File.Exists(file))
             {
-                LblDataLoaded.Text = "..." + cutString(file, 38);
+                LblDataLoaded.Text = "..." + CutString(file, 38);
                 TbData.Text = File.ReadAllText(file);
             }
 
-            file = extendFilePath(Properties.Settings.Default.processLastFile);
+            file = ExtendFilePath(Properties.Settings.Default.processLastFile);
             Logger.Trace("UpdateIniVariables XML:{0}", file);
             if (File.Exists(file))
             {
-                LblLoaded.Text = "..." + cutString(file, 60);
+                LblLoaded.Text = "..." + CutString(file, 60);
                 Properties.Settings.Default.processLastFile = file;
                 LoadXML(file);
                 SizeChange();
@@ -184,7 +184,7 @@ namespace GrblPlotter
             int line = (int)NudDataIndex.Value - 1;
             SetTextSelection(line, -1, ';');
         }
-        private string extendFilePath(string file)
+        private string ExtendFilePath(string file)
         {
             if (string.IsNullOrEmpty(file))
                 return file;
@@ -204,7 +204,7 @@ namespace GrblPlotter
             return file;
         }
 
-        private string cutString(string text, int length)
+        private string CutString(string text, int length)
         {
             if (text.Length > length)
                 return text.Substring(text.Length - length);
@@ -238,6 +238,7 @@ namespace GrblPlotter
                 LblCount.Text = "1";
 
                 LblInfo.Text = "Script is running";
+                BtnStep.Visible = false;
                 LblInfo.BackColor = Color.Yellow;
                 BtnStart.BackColor = Color.Yellow;
                 Logger.Info("+++ Start automation +++++ OnRaiseProcessEvent + Feedback +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
@@ -261,6 +262,7 @@ namespace GrblPlotter
             processStep = 0;
             isRunning = false;
             timer1.Enabled = false;
+            BtnStep.Visible = true;
             Logger.Trace("+++ Stop automation +++");
         }
 
@@ -293,7 +295,7 @@ namespace GrblPlotter
                 else
                 {
                     Properties.Settings.Default.processLastFile = file;
-                    LblLoaded.Text = "..." + cutString(file, 60);
+                    LblLoaded.Text = "..." + CutString(file, 60);
                     LoadXML(sfd.FileName);
                 }
             }
@@ -313,7 +315,7 @@ namespace GrblPlotter
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 Properties.Settings.Default.processLastFile = sfd.FileName;
-                LblLoaded.Text = "..." + cutString(sfd.FileName, 60);
+                LblLoaded.Text = "..." + CutString(sfd.FileName, 60);
                 SaveXML(sfd.FileName);
             }
             sfd.Dispose();
@@ -442,7 +444,7 @@ namespace GrblPlotter
 
                 else if (action.Contains("Load"))
                 {
-                    string mypath = extendFilePath(value);
+                    string mypath = ExtendFilePath(value);
                     if (action.Contains("Data"))
                     {
                         if ((int)NudDataIndex.Value > TbData.Lines.Length)// FctbData.Lines.Count)
@@ -459,11 +461,29 @@ namespace GrblPlotter
                         }
                         else
                         {
+                            /* set dataLine with file-path from data */
                             dataLine = (int)NudDataIndex.Value - 1;
+                            char delimiter = (char)ComboDelimiter.Text[0]; //TbDataDelimeter.Text[0];
+                            if (ComboDelimiter.Text.Contains("tab"))
+                                delimiter = '\t';
+                            Logger.Trace("Delimeter '{0}' '{1}'", ComboDelimiter.Text, delimiter);
+
+                            string dataText = "";
+                            if (dataLine < TbData.Lines.Length)//FctbData.Lines.Count)
+                            {
+                                dataText = GetDataText(dataLine, value, delimiter);   //delimiter);
+                            }
+                            //BtnDataIndexClear.BackColor = GbData.BackColor = default;
+                            //TbProcessInfo.Text += string.Format("{0,2}) {1,-20}  {2,-15}  ok  '{3}'\r\n", lineNr, action, value, dataText);
+                            //SetCellColor(i, true);
+
+                            mypath = dataText;
+
+                        /*    dataLine = (int)NudDataIndex.Value - 1;
                             if (dataLine < TbData.Lines.Length)
                             {
                                 mypath = extendFilePath(GetDataText(dataLine, "", ' '));
-                            }
+                            }*/
                         }
                     }
                     if (!File.Exists(mypath))
@@ -478,7 +498,7 @@ namespace GrblPlotter
                     }
                     else
                     {
-                        TbProcessInfo.Text += string.Format("{0,2}) {1,-20}  {2,-15}  ok\r\n", lineNr, action, "file exists");
+                        TbProcessInfo.Text += string.Format("{0,2}) {1,-20}  {2,-15}  ok  '{3}'\r\n", lineNr, action, "file exists", mypath);
                         SetCellColor(i, true);
                     }
                 }
@@ -711,13 +731,15 @@ namespace GrblPlotter
                         stepTriggered = true;
                         stepCompleted = false;      // set to true if feedback appears
                         processAction = action;     // compare sent command with feedback command
-                        bool sendProcessEvent = true;
 
                         LblInfo.Text = string.Format("Run {0}) {1}", (processStep + 1), action);
                         LblInfo.BackColor = Color.Yellow;
 
                         if (showLog) Logger.Trace("Timer line:{0})  {1}  {2}  count:{3}", (processStep + 1), action, value, processCount);
 
+                        ProcessCommand(action, value, lineNr);
+                        /*
+                        bool sendProcessEvent = true;
                         if (action.Contains("Load"))
                         {
                             if (action.Contains(" Data"))
@@ -745,11 +767,9 @@ namespace GrblPlotter
                             {
                                 SendProcessEvent(new ProcessEventArgs(action, value));
                                 SetCellColor(processStep, Color.Yellow);
-                                //   stepCompleted = true;       /* check for IDLE should be enough */
                                 if (action.Contains("Send"))
                                 {
-                                    stepCompleted = true;       /* check for IDLE should be enough */
-                                    //   stepCompleted = true;       /* check for IDLE should be enough */
+                                    stepCompleted = true;       // check for IDLE should be enough 
                                     SetCellColor(processStep, true);
                                     TbProcessInfo.AppendText("OK\r\n");
                                 }
@@ -872,7 +892,7 @@ namespace GrblPlotter
                             if (showLog) Logger.Trace("Timer1_Tick SendProcessEvent  {0}  {1}", action, value);
                             SendProcessEvent(new ProcessEventArgs(action, value));
                         }
-
+                        */
                     }
                     else  /* flow finished - STOP*/
                     {
@@ -884,7 +904,7 @@ namespace GrblPlotter
                         BtnStart.BackColor = LblInfo.BackColor = Color.Lime;
                         LblInfo.Text = "Script finished";
                         TbProcessInfo.Text += "Finished";
-
+                        BtnStep.Visible = true;
                     }
                 }
                 else if (stepCompleted)
@@ -947,6 +967,174 @@ namespace GrblPlotter
             }
         }
 
+        private bool ProcessCommand(string action, string value, int lineNr)
+        {
+            bool sendProcessEvent = true;
+            if (action.Contains("Load"))
+            {
+                if (action.Contains(" Data"))
+                {
+                    dataLine = (int)NudDataIndex.Value - 1;
+					char delimiter = (char)ComboDelimiter.Text[0]; //TbDataDelimeter.Text[0];
+					if (ComboDelimiter.Text.Contains("tab"))
+						delimiter = '\t';
+					Logger.Trace("Delimeter '{0}' '{1}'", ComboDelimiter.Text, delimiter);
+
+					string dataText = "";
+					if (dataLine < TbData.Lines.Length)
+					{
+						dataText = GetDataText(dataLine, value, delimiter);
+						value = dataText;
+					}
+                    else
+                    {
+                        Logger.Warn("Load - Data index nok: {0} {1}  count:{2}", dataLine, value, TbData.Lines.Length);//);
+                        Feedback(action, "End of data reached", false);
+                        sendProcessEvent = false;
+                    }
+                }
+                TbProcessInfo.AppendText(string.Format("{0,2}) {1,-10}  {2,-48}  ", lineNr, action, "..." + CutString(value, 39)));
+            }
+            else
+                TbProcessInfo.AppendText(string.Format("{0,2}) {1,-20}  {2,-15}   ", lineNr, action, value));
+
+            if (action.Contains("G-Code"))
+            {
+                if (isGrblConnected)
+                {
+                    SendProcessEvent(new ProcessEventArgs(action, value));
+                    SetCellColor(processStep, Color.Yellow);
+                    //   stepCompleted = true;       /* check for IDLE should be enough */
+                    if (action.Contains("Send"))
+                    {
+                        stepCompleted = true;       /* check for IDLE should be enough */
+                        //   stepCompleted = true;       /* check for IDLE should be enough */
+                        SetCellColor(processStep, true);
+                        TbProcessInfo.AppendText("OK\r\n");
+                    }
+                }
+                else
+                {
+                    SetCellColor(processStep, false);
+                    stepCompleted = true;
+                    TbProcessInfo.AppendText("NOK\r\n");
+                }
+            }
+
+            else if (action.Contains("Create") && (action.Contains(" Data") || action.Contains(" DURL")))       // Text or barcode
+            {
+                dataLine = (int)NudDataIndex.Value - 1;
+                if (dataLine < TbData.Lines.Length)
+                {
+                    char delimiter = (char)ComboDelimiter.Text[0];
+                    if (ComboDelimiter.Text.Contains("tab"))
+                        delimiter = '\t';
+                    string dataText = GetDataText(dataLine, value, delimiter);
+
+                    SendProcessEvent(new ProcessEventArgs(action, dataText));
+                }
+                else
+                {
+                    Logger.Warn("Data index nok: {0} {1}  count:{2}", dataLine, value, TbData.Lines.Length);//);
+                    LblInfo.Text = "End of data reached";
+                    Feedback(action, "End of data reached", false);
+                }
+            }
+            else if (action.Contains("Create") && action.Contains(" Counter"))      // Text or barcode
+            {
+                SendProcessEvent(new ProcessEventArgs(action, GetCounterString()));
+            }
+            else if (action == "Data index")        // change index counter
+            {
+              //  int col;
+                if (int.TryParse(value, out int col))
+                {
+                    dataLine = (int)NudDataIndex.Value;
+                    dataLine += col;
+                    if (dataLine < 0)
+                        dataLine = 0;
+                    NudDataIndex.Value = dataLine;
+                    Feedback(action, "New index: " + dataLine, true);
+                }
+                else
+                {
+                    Feedback(action, "New index failed", false);
+                }
+            }
+            else if (action == "Counter index")     // change counter
+            {
+             //   int col;
+                if (int.TryParse(value, out int col))
+                {
+                    NudCounter.Value += col;
+                    Feedback(action, "New counter: " + NudCounter.Value, true);
+                }
+                else
+                {
+                    Feedback(action, "New counter failed", false);
+                }
+            }
+            else if (action.Contains("Jump"))
+            {
+                processCount--;
+                if ((processCount > 0) || (processCount < 0))
+                {
+                    for (int k = processJumpTo; k <= processStep; k++)
+                        dataGridView1.Rows[k].DefaultCellStyle.BackColor = Color.White;
+
+                    processStep = processJumpTo;
+                    dataGridView1.Rows[processStep].Cells[0].Selected = true;
+                }
+                else
+                {
+                    SetCellColor(processStep, true);
+                    processStep++;
+                }
+
+                TbProcessInfo.AppendText(string.Format("  count:{0}  jump to:{1}  OK\r\n", processCount, processStep + 1));
+                LblCount.Text = Math.Abs(processCount).ToString();
+
+                stepTriggered = false;
+                stepCompleted = true;
+                return true;
+            }
+            else if (action.Contains("Wait Probe"))
+            {
+                SetCellColor(processStep, Color.Yellow);
+                LblInfo.Text = "Wait for trigger at probe input";
+            }
+            else if (action.Contains("Wait DI"))
+            {
+                SetCellColor(processStep, Color.Yellow);
+                LblInfo.Text = "Wait for trigger at digital input";
+                if (int.TryParse(value, out int nr))
+                    checkDigitalInDigit = nr;
+                else
+                    Logger.Error("Timer1_Tick int.TryParse failed action:{0} value:{1}", action, value);
+            }
+            else if (action.Contains("Beep"))
+            {
+                CreateBeep(value);
+                Feedback(action, "beep", true);
+            }
+            else if (action.Contains("Sound"))
+            {
+                if (value == "0") System.Media.SystemSounds.Asterisk.Play();
+                else if (value == "1") System.Media.SystemSounds.Exclamation.Play();
+                else if (value == "2") System.Media.SystemSounds.Question.Play();
+                else if (value == "3") System.Media.SystemSounds.Hand.Play();
+                else System.Media.SystemSounds.Beep.Play();
+                Feedback(action, "sound", true);
+            }
+            else if (sendProcessEvent)
+            {
+                if (showLog) Logger.Trace("Timer1_Tick SendProcessEvent  {0}  {1}", action, value);
+                SendProcessEvent(new ProcessEventArgs(action, value));
+            }
+
+            return true;
+        }
+
         private string GetDataText(int dataLine, string strCol, char delimiter)
         {
             string all = TbData.Lines[dataLine];
@@ -957,8 +1145,8 @@ namespace GrblPlotter
                 return all;
             }
 
-            int dataCol = -1;
-            if (int.TryParse(strCol, out dataCol))
+        //    int dataCol = -1;
+            if (int.TryParse(strCol, out int dataCol))
             {
                 string[] txtcol = all.Split(delimiter);
                 Logger.Trace("GetDataText split '{0}'  ", txtcol.Length);
@@ -1018,8 +1206,8 @@ namespace GrblPlotter
             if (action == "CheckForm")
             {
                 processAction = resultOk.ToString();
-                if (value == "Cam") { cameraFormOpen = resultOk; }
-                if (value == "Probe") { probeFormOpen = resultOk; }
+            //    if (value == "Cam") { cameraFormOpen = resultOk; }
+            //    if (value == "Probe") { probeFormOpen = resultOk; }
             }
             else if (action == processAction)
             {
@@ -1125,7 +1313,7 @@ namespace GrblPlotter
                 string file = sfd.FileName;
                 Properties.Settings.Default.processDataLastFile = LblDataLoaded.Text = file;
 
-                LblDataLoaded.Text = "..." + cutString(file, 38);
+                LblDataLoaded.Text = "..." + CutString(file, 38);
                 //   if (file.Length > 38)
                 //       LblDataLoaded.Text = "..." + file.Substring(file.Length - 38);
                 //    else
@@ -1319,7 +1507,7 @@ namespace GrblPlotter
         }
         private void AddLoadLine(string fileo)
         {
-            string file = extendFilePath(fileo);
+            string file = ExtendFilePath(fileo);
             if (!File.Exists(file))
             {
                 Logger.Error("File does not exist: '{0}'", file);
@@ -1343,7 +1531,7 @@ namespace GrblPlotter
             }
             else if (extension.ToLower().Contains("txt"))
             {
-                LblDataLoaded.Text = "..." + cutString(file, 38);
+                LblDataLoaded.Text = "..." + CutString(file, 38);
                 Properties.Settings.Default.processDataLastFile = file;
                 TbData.Text = File.ReadAllText(file);
             }
@@ -1485,10 +1673,28 @@ namespace GrblPlotter
             SetTextSelection(line, -1, ' ');
         }
 
-        private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        private void DataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             Logger.Error("dataGridView1_DataError row:{0}  col:{1}  excep:{2}", e.RowIndex, e.ColumnIndex, e.Exception);
             Logger.Trace("Value: '{0}'", (string)dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
+        }
+
+        private void BtnStep_Click(object sender, EventArgs e)
+        {
+            int lineNr = dataGridView1.SelectedCells[0].OwningRow.Index; 
+            string action = (string)dataGridView1.Rows[lineNr].Cells[0].Value;
+            if (string.IsNullOrEmpty(action))
+            {
+                return;
+            }
+            string value = (string)dataGridView1.Rows[lineNr].Cells[1].Value;
+
+            ProcessCommand(action, value, lineNr);
+        //    dataGridView1.SelectedCells[0].OwningRow.
+            dataGridView1.Rows[lineNr+1].Cells[0].Selected = true;
+
+            dataGridView1.Rows[lineNr].Cells[0].Style.BackColor = default;
+            dataGridView1.Rows[lineNr + 1].Cells[0].Style.BackColor = Color.Yellow;
         }
     }
     public partial class IniFile

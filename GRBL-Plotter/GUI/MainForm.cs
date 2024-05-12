@@ -1694,6 +1694,7 @@ namespace GrblPlotter
             else
                 CbAddGraphic.BackColor = Color.Transparent;
         }
+
     }
 }
 

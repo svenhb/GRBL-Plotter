@@ -206,7 +206,7 @@
 
 5. Restart Linux to apply all changes and start GRBL-Plotter with steam. Select COM10 and the correct Baud rate in the COM-CNC Window and open it.
 
-![2024-02-28-12-43-04-image.png](/run/media/leobareth/DATA/Leo/Leo%20Privat/Freizeit/Sonstiges/Arch/Ressources/2024-02-28-12-43-04-image.png)
+ 
 
 ## Updating GRBL-Plotter
 

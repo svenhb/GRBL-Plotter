@@ -3879,4 +3879,25 @@ Disegna una firma nel margine inferiore destro: scala 0,1 o inferiore e utilizza
   <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
     <value>Salva le impostazioni di queste schede come file INI</value>
   </data>
+  <data name="TbImportGCPWMSlider.ToolTip" xml:space="preserve">
+    <value>Attiva o disattiva "Impostazioni avanzate" per aggiornare i limiti minimo e massimo da grbl-setup</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.Text" xml:space="preserve">
+    <value>dalla tabella utensili</value>
+  </data>
+  <data name="LblPolar.Text" xml:space="preserve">
+    <value>Converte tutti i valori XY (sistema di coordinate cartesiane) in raggio/angolo (coordinate polari) durante l'importazione di grafica.
+X ottiene i valori del raggio, Y ottiene i valori dell'angolo.
+Nota: ulteriori modifiche grafiche (rotazione, ridimensionamento, spostamento) portano a risultati spiacevoli, perché sono programmate per le coordinate XY.
+La conversione è possibile anche tramite Menu - Trasformazione GCode - 'Converti in coordinate polari'.</value>
+  </data>
+  <data name="label106.Text" xml:space="preserve">
+    <value>Precisione mm</value>
+  </data>
+  <data name="CbConvertToPolar.Text" xml:space="preserve">
+    <value>Converti XY in coordinate polari</value>
+  </data>
+  <data name="GbConvertToPolar.Text" xml:space="preserve">
+    <value>Converti XY in coordinate polari</value>
+  </data>
 </root>

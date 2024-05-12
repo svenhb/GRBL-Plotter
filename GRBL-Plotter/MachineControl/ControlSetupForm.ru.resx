@@ -3763,4 +3763,25 @@ Grbl-версия 'grbl_v1.1f_Servo.hex' из https://github.com/cprezzi/grbl-se
   <data name="BtnSaveIni_Gcode.ToolTip" xml:space="preserve">
     <value>Сохраняет настройки этих вкладок в виде INI-файла.</value>
   </data>
+  <data name="TbImportGCPWMSlider.ToolTip" xml:space="preserve">
+    <value>Переключает «Дополнительные настройки» для обновления минимальных и максимальных пределов из grbl-setup.</value>
+  </data>
+  <data name="cBImportGCTTSSpeedPWM.Text" xml:space="preserve">
+    <value>из таблицы инструментов</value>
+  </data>
+  <data name="LblPolar.Text" xml:space="preserve">
+    <value>Преобразует все значения XY (декартова система координат) в радиус/угол (полярные координаты) при импорте графики.
+X получает значения радиуса, Y получает значения угла.
+Примечание: дальнейшее редактирование графиков (поворот, масштабирование, сдвиг) приводит к неприятным результатам, поскольку они запрограммированы на координаты XY.
+Преобразование также возможно через Меню — Преобразование GCode — «Преобразовать в полярные координаты».</value>
+  </data>
+  <data name="label106.Text" xml:space="preserve">
+    <value>Точность в мм</value>
+  </data>
+  <data name="CbConvertToPolar.Text" xml:space="preserve">
+    <value>Преобразование XY в полярные координаты</value>
+  </data>
+  <data name="GbConvertToPolar.Text" xml:space="preserve">
+    <value>Преобразование XY в полярные координаты</value>
+  </data>
 </root>

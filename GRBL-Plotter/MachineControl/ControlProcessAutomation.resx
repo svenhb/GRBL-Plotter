@@ -151,7 +151,7 @@
     <value>GbControl</value>
   </data>
   <data name="&gt;&gt;BtnStart.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="BtnStop.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -181,7 +181,7 @@
     <value>GbControl</value>
   </data>
   <data name="&gt;&gt;BtnStop.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="LblCount.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -211,7 +211,7 @@
     <value>GbControl</value>
   </data>
   <data name="&gt;&gt;LblCount.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -241,7 +241,7 @@
     <value>GbControl</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <metadata name="CmsDataGridEdit.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>202, 17</value>
@@ -365,7 +365,7 @@
     <value>GbControl</value>
   </data>
   <data name="&gt;&gt;BtnLoad.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -395,7 +395,7 @@
     <value>GbControl</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="LblLoaded.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -431,7 +431,7 @@
     <value>GbControl</value>
   </data>
   <data name="&gt;&gt;LblLoaded.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="splitContainer1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -999,6 +999,36 @@ example3;test3;data3</value>
   <data name="&gt;&gt;GbData.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="BtnStep.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnStep.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 46</value>
+  </data>
+  <data name="BtnStep.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 23</value>
+  </data>
+  <data name="BtnStep.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="BtnStep.Text" xml:space="preserve">
+    <value>Step</value>
+  </data>
+  <data name="BtnStep.ToolTip" xml:space="preserve">
+    <value>Process current line and select next</value>
+  </data>
+  <data name="&gt;&gt;BtnStep.Name" xml:space="preserve">
+    <value>BtnStep</value>
+  </data>
+  <data name="&gt;&gt;BtnStep.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnStep.Parent" xml:space="preserve">
+    <value>GbControl</value>
+  </data>
+  <data name="&gt;&gt;BtnStep.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="BtnNew.Location" type="System.Drawing.Point, System.Drawing">
     <value>87, 148</value>
   </data>
@@ -1021,7 +1051,7 @@ example3;test3;data3</value>
     <value>GbControl</value>
   </data>
   <data name="&gt;&gt;BtnNew.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="BtnSave.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 148</value>
@@ -1045,7 +1075,7 @@ example3;test3;data3</value>
     <value>GbControl</value>
   </data>
   <data name="&gt;&gt;BtnSave.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="LblInfo.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -1075,7 +1105,7 @@ example3;test3;data3</value>
     <value>GbControl</value>
   </data>
   <data name="&gt;&gt;LblInfo.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1105,7 +1135,7 @@ example3;test3;data3</value>
     <value>GbControl</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="checkBox1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1135,7 +1165,7 @@ example3;test3;data3</value>
     <value>GbControl</value>
   </data>
   <data name="&gt;&gt;checkBox1.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="NudTimerInterval.Location" type="System.Drawing.Point, System.Drawing">
     <value>268, 38</value>
@@ -1159,7 +1189,7 @@ example3;test3;data3</value>
     <value>GbControl</value>
   </data>
   <data name="&gt;&gt;NudTimerInterval.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="GbControl.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
