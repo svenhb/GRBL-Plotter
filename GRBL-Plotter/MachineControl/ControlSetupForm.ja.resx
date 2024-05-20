@@ -2536,7 +2536,7 @@ G2 / 3では機能しません-「G2 / 3コマンドを回避する」を有効�
     <comment>ok</comment>
   </data>
   <data name="tabControl5_Level2.Text" xml:space="preserve">
-    <value>通知機能</value>
+    <value>通知</value>
     <comment>ok</comment>
   </data>
   <data name="label33.Text" xml:space="preserve">
@@ -2618,7 +2618,7 @@ Pushbullet：安全上の理由から、「ゴミ箱」アカウントを使用�
     <comment>ok</comment>
   </data>
   <data name="tabPage7.Text" xml:space="preserve">
-    <value>パスアドオン</value>
+    <value>ファイルの読み込み</value>
     <comment>ok</comment>
   </data>
   <data name="checkBox6.Text" xml:space="preserve">
@@ -3855,5 +3855,14 @@ X は半径値を取得し、Y は角度値を取得します。
   </data>
   <data name="GbConvertToPolar.Text" xml:space="preserve">
     <value>XY を極座標に変換する</value>
+  </data>
+  <data name="nUDImportGCTangentialShorting.ToolTip" xml:space="preserve">
+    <value>図形パスを後で開始し、より早く終了します (ロータリー カッターの場合)。</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.Text" xml:space="preserve">
+    <value>パス短縮を有効にする...</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.ToolTip" xml:space="preserve">
+    <value>図形パスを後で開始し、より早く終了します (ロータリー カッターの場合)。</value>
   </data>
 </root>

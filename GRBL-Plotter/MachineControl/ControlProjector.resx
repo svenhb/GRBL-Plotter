@@ -474,6 +474,153 @@
   <data name="&gt;&gt;CbProjectorScaleEnable.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="label71.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label71.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label71.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 45</value>
+  </data>
+  <data name="label71.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 13</value>
+  </data>
+  <data name="label71.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
+  </data>
+  <data name="label71.Text" xml:space="preserve">
+    <value>Real measured width</value>
+  </data>
+  <data name="&gt;&gt;label71.Name" xml:space="preserve">
+    <value>label71</value>
+  </data>
+  <data name="&gt;&gt;label71.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label71.Parent" xml:space="preserve">
+    <value>GbProjectorCalc</value>
+  </data>
+  <data name="&gt;&gt;label71.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label70.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label70.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label70.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 21</value>
+  </data>
+  <data name="label70.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 13</value>
+  </data>
+  <data name="label70.TabIndex" type="System.Int32, mscorlib">
+    <value>53</value>
+  </data>
+  <data name="label70.Text" xml:space="preserve">
+    <value>Graphic width</value>
+  </data>
+  <data name="&gt;&gt;label70.Name" xml:space="preserve">
+    <value>label70</value>
+  </data>
+  <data name="&gt;&gt;label70.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label70.Parent" xml:space="preserve">
+    <value>GbProjectorCalc</value>
+  </data>
+  <data name="&gt;&gt;label70.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="BtnProjectorCalc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnProjectorCalc.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 69</value>
+  </data>
+  <data name="BtnProjectorCalc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>206, 23</value>
+  </data>
+  <data name="BtnProjectorCalc.TabIndex" type="System.Int32, mscorlib">
+    <value>52</value>
+  </data>
+  <data name="BtnProjectorCalc.Text" xml:space="preserve">
+    <value>Calculate scaling</value>
+  </data>
+  <data name="&gt;&gt;BtnProjectorCalc.Name" xml:space="preserve">
+    <value>BtnProjectorCalc</value>
+  </data>
+  <data name="&gt;&gt;BtnProjectorCalc.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnProjectorCalc.Parent" xml:space="preserve">
+    <value>GbProjectorCalc</value>
+  </data>
+  <data name="&gt;&gt;BtnProjectorCalc.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="NudProjectorSet.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 19</value>
+  </data>
+  <data name="NudProjectorSet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 20</value>
+  </data>
+  <data name="NudProjectorSet.TabIndex" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="NudProjectorSet.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudProjectorSet.Name" xml:space="preserve">
+    <value>NudProjectorSet</value>
+  </data>
+  <data name="&gt;&gt;NudProjectorSet.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudProjectorSet.Parent" xml:space="preserve">
+    <value>GbProjectorCalc</value>
+  </data>
+  <data name="&gt;&gt;NudProjectorSet.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="NudProjectorReal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 43</value>
+  </data>
+  <data name="NudProjectorReal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 20</value>
+  </data>
+  <data name="NudProjectorReal.TabIndex" type="System.Int32, mscorlib">
+    <value>51</value>
+  </data>
+  <data name="NudProjectorReal.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudProjectorReal.Name" xml:space="preserve">
+    <value>NudProjectorReal</value>
+  </data>
+  <data name="&gt;&gt;NudProjectorReal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudProjectorReal.Parent" xml:space="preserve">
+    <value>GbProjectorCalc</value>
+  </data>
+  <data name="&gt;&gt;NudProjectorReal.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="GbProjectorCalc.Location" type="System.Drawing.Point, System.Drawing">
+    <value>247, 12</value>
+  </data>
+  <data name="GbProjectorCalc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 99</value>
+  </data>
+  <data name="GbProjectorCalc.TabIndex" type="System.Int32, mscorlib">
+    <value>53</value>
+  </data>
+  <data name="GbProjectorCalc.Text" xml:space="preserve">
+    <value>Calculate scaling</value>
+  </data>
   <data name="&gt;&gt;GbProjectorCalc.Name" xml:space="preserve">
     <value>GbProjectorCalc</value>
   </data>
@@ -485,6 +632,18 @@
   </data>
   <data name="&gt;&gt;GbProjectorCalc.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="NudScaling.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 33</value>
+  </data>
+  <data name="NudScaling.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 20</value>
+  </data>
+  <data name="NudScaling.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="NudScaling.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;NudScaling.Name" xml:space="preserve">
     <value>NudScaling</value>
@@ -498,6 +657,18 @@
   <data name="&gt;&gt;NudScaling.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="NudOffsetX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 55</value>
+  </data>
+  <data name="NudOffsetX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 20</value>
+  </data>
+  <data name="NudOffsetX.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="NudOffsetX.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;NudOffsetX.Name" xml:space="preserve">
     <value>NudOffsetX</value>
   </data>
@@ -509,6 +680,18 @@
   </data>
   <data name="&gt;&gt;NudOffsetX.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="NudOffsetY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 77</value>
+  </data>
+  <data name="NudOffsetY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 20</value>
+  </data>
+  <data name="NudOffsetY.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="NudOffsetY.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;NudOffsetY.Name" xml:space="preserve">
     <value>NudOffsetY</value>
@@ -1002,189 +1185,9 @@
   <data name="&gt;&gt;SetupPanel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="NudOffsetY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 77</value>
-  </data>
-  <data name="NudOffsetY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 20</value>
-  </data>
-  <data name="NudOffsetY.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="NudOffsetY.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="NudOffsetX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 55</value>
-  </data>
-  <data name="NudOffsetX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 20</value>
-  </data>
-  <data name="NudOffsetX.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="NudOffsetX.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="NudScaling.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 33</value>
-  </data>
-  <data name="NudScaling.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 20</value>
-  </data>
-  <data name="NudScaling.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="NudScaling.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;label71.Name" xml:space="preserve">
-    <value>label71</value>
-  </data>
-  <data name="&gt;&gt;label71.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label71.Parent" xml:space="preserve">
-    <value>GbProjectorCalc</value>
-  </data>
-  <data name="&gt;&gt;label71.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;label70.Name" xml:space="preserve">
-    <value>label70</value>
-  </data>
-  <data name="&gt;&gt;label70.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label70.Parent" xml:space="preserve">
-    <value>GbProjectorCalc</value>
-  </data>
-  <data name="&gt;&gt;label70.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;BtnProjectorCalc.Name" xml:space="preserve">
-    <value>BtnProjectorCalc</value>
-  </data>
-  <data name="&gt;&gt;BtnProjectorCalc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;BtnProjectorCalc.Parent" xml:space="preserve">
-    <value>GbProjectorCalc</value>
-  </data>
-  <data name="&gt;&gt;BtnProjectorCalc.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;NudProjectorSet.Name" xml:space="preserve">
-    <value>NudProjectorSet</value>
-  </data>
-  <data name="&gt;&gt;NudProjectorSet.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NudProjectorSet.Parent" xml:space="preserve">
-    <value>GbProjectorCalc</value>
-  </data>
-  <data name="&gt;&gt;NudProjectorSet.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;NudProjectorReal.Name" xml:space="preserve">
-    <value>NudProjectorReal</value>
-  </data>
-  <data name="&gt;&gt;NudProjectorReal.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NudProjectorReal.Parent" xml:space="preserve">
-    <value>GbProjectorCalc</value>
-  </data>
-  <data name="&gt;&gt;NudProjectorReal.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="GbProjectorCalc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>247, 12</value>
-  </data>
-  <data name="GbProjectorCalc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 99</value>
-  </data>
-  <data name="GbProjectorCalc.TabIndex" type="System.Int32, mscorlib">
-    <value>53</value>
-  </data>
-  <data name="GbProjectorCalc.Text" xml:space="preserve">
-    <value>Calculate scaling</value>
-  </data>
-  <data name="label71.AutoSize" type="System.Boolean, mscorlib">
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </data>
-  <data name="label71.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label71.Location" type="System.Drawing.Point, System.Drawing">
-    <value>87, 45</value>
-  </data>
-  <data name="label71.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 13</value>
-  </data>
-  <data name="label71.TabIndex" type="System.Int32, mscorlib">
-    <value>54</value>
-  </data>
-  <data name="label71.Text" xml:space="preserve">
-    <value>Real measured width</value>
-  </data>
-  <data name="label70.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label70.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label70.Location" type="System.Drawing.Point, System.Drawing">
-    <value>87, 21</value>
-  </data>
-  <data name="label70.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 13</value>
-  </data>
-  <data name="label70.TabIndex" type="System.Int32, mscorlib">
-    <value>53</value>
-  </data>
-  <data name="label70.Text" xml:space="preserve">
-    <value>Graphic width</value>
-  </data>
-  <data name="BtnProjectorCalc.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="BtnProjectorCalc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 69</value>
-  </data>
-  <data name="BtnProjectorCalc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>206, 23</value>
-  </data>
-  <data name="BtnProjectorCalc.TabIndex" type="System.Int32, mscorlib">
-    <value>52</value>
-  </data>
-  <data name="BtnProjectorCalc.Text" xml:space="preserve">
-    <value>Calculate scaling</value>
-  </data>
-  <data name="NudProjectorSet.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 19</value>
-  </data>
-  <data name="NudProjectorSet.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 20</value>
-  </data>
-  <data name="NudProjectorSet.TabIndex" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="NudProjectorSet.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="NudProjectorReal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 43</value>
-  </data>
-  <data name="NudProjectorReal.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 20</value>
-  </data>
-  <data name="NudProjectorReal.TabIndex" type="System.Int32, mscorlib">
-    <value>51</value>
-  </data>
-  <data name="NudProjectorReal.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
@@ -1200,7 +1203,4 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>

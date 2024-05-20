@@ -2259,7 +2259,7 @@ Hinweis: "Aus E-Mail" muss häufig mit SMTP-Postfach-E-Mail identisch sein.</val
     <comment>ok</comment>
   </data>
   <data name="tabControl5_Level2.Text" xml:space="preserve">
-    <value>Notifier</value>
+    <value>Benachrichtigung</value>
     <comment>ok</comment>
   </data>
   <data name="label33.Text" xml:space="preserve">
@@ -2341,7 +2341,7 @@ Pushbullet: Aus Sicherheitsgründen sollten Sie ein "Papierkorb" -Konto verwende
     <comment>ok</comment>
   </data>
   <data name="tabPage7.Text" xml:space="preserve">
-    <value>Pfad-Add-Ons</value>
+    <value>Datei laden</value>
     <comment>ok</comment>
   </data>
   <data name="checkBox6.Text" xml:space="preserve">
@@ -3509,5 +3509,14 @@ Die Konvertierung ist auch über Menü – GCode-Transformation – „In Polark
   </data>
   <data name="GbConvertToPolar.Text" xml:space="preserve">
     <value>Konvertiert XY in Polarkoordinaten</value>
+  </data>
+  <data name="nUDImportGCTangentialShorting.ToolTip" xml:space="preserve">
+    <value>Beginnt einen Figurenpfad später und beendet ihn früher (für Rollschneider).</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.Text" xml:space="preserve">
+    <value>Pfadverkürzung aktivieren durch...</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.ToolTip" xml:space="preserve">
+    <value>Beginnt einen Figurenpfad später und beendet ihn früher (für Rollschneider).</value>
   </data>
 </root>

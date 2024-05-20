@@ -2606,7 +2606,7 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <comment>ok</comment>
   </data>
   <data name="tabPage7.Text" xml:space="preserve">
-    <value>路径附件</value>
+    <value>文件加载</value>
     <comment>ok</comment>
   </data>
   <data name="checkBox6.Text" xml:space="preserve">
@@ -3843,5 +3843,14 @@ X 获取半径值，Y 获取角度值。
   </data>
   <data name="GbConvertToPolar.Text" xml:space="preserve">
     <value>将 XY 转换为极坐标</value>
+  </data>
+  <data name="nUDImportGCTangentialShorting.ToolTip" xml:space="preserve">
+    <value>稍后开始图形路径并较早结束（对于旋转刀具）。</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.Text" xml:space="preserve">
+    <value>通过...启用路径缩短</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.ToolTip" xml:space="preserve">
+    <value>稍后开始图形路径并较早结束（对于旋转刀具）。</value>
   </data>
 </root>

@@ -1678,6 +1678,8 @@ namespace GrblPlotter
             nUDImportGCTangentialSwivel2.Enabled = enable;
             nUDImportGCTangentialUnits.Enabled = enable;
             cBImportGCTangentialRange.Enabled = enable;
+            cBImportGCTangentialShortingEnable.Enabled = enable;
+            nUDImportGCTangentialShorting.Enabled = enable;
             if (cBImportGCTangentialRange.Checked && enable)
             { cBImportGCNoArcs.Checked = true; }
             HighlightPenOptions_Click(sender, e);

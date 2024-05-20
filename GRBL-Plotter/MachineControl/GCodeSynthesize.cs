@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,12 +23,14 @@
 * 2021-07-09 split code from GCodeVisuAndTransform
 * 2022-01-04 fix convertZtoS problem #245
 * 2023-01-28 add %NM tag, to keep code-line when synthezising code
+* 2024-03-23 l:92 f:CreateGCodeProg use XyzabcuvwPoint for lastActual
 */
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace GrblPlotter
 {
@@ -87,7 +89,9 @@ namespace GrblPlotter
             double spindleSpeed = -1; // force change
             byte spindleState = 5;
             byte coolantState = 9;
-            double lastActualX = 0, lastActualY = 0, lastActualZ = 0, i, j;
+
+            double i, j;
+            XyzabcuvwPoint lastActual = new XyzabcuvwPoint();
             double newZ;
 
             double convertMinZ = xyzSize.minz;          // 1st get last minimum
@@ -99,6 +103,7 @@ namespace GrblPlotter
             bool addInfo = info.Length > 0;
 
             Gcode.Setup(false);                             // don't apply intermediate Z steps in certain sub functions
+        //    MyApplication.ESCwasPressed = false;
             for (int iCode = 0; iCode < gcodeList.Count; iCode++)     // go through all code lines
             {
                 GcodeByLine gcline = gcodeList[iCode];
@@ -126,37 +131,47 @@ namespace GrblPlotter
                 if ((!hide_code) && (replaceG23))                   // replace circles
                 {
                     //Gcode.Setup(false);   moved 2024-03-11                          // don't apply intermediate Z steps in certain sub functions
-                    Gcode.SetLastxyz(lastActualX, lastActualY, lastActualZ);
+                    Gcode.SetLastxyz(lastActual.X, lastActual.Y, lastActual.Z);
                     Gcode.GcodeXYFeed = gcline.feedRate;
                     if (gcline.isdistanceModeG90)
                         Gcode.GcodeRelative = false;
                     else
                         Gcode.GcodeRelative = true;
+
                     if ((gcline.motionMode > 1) && (gcline.motionMode <= 3))    // handle arc
                     {
                         i = (double)((gcline.i != null) ? gcline.i : 0.0);
                         j = (double)((gcline.j != null) ? gcline.j : 0.0);
-                        Gcode.SplitArc(newCode, gcline.motionMode, (float)lastActualX, (float)lastActualY, (float)gcline.actualPos.X, (float)gcline.actualPos.Y, (float)i, (float)j, gcline.codeLine);
+                        Gcode.SplitArc(newCode, gcline.motionMode, lastActual, gcline.actualPos, i, j, gcline.codeLine);
                     }
                     else if (gcline.motionMode == 1)                            // handle straight move
-                    {
-                        if (((gcline.x != null) || (gcline.y != null) || (gcline.z != null)) && splitMoves)
+                    {                        
+                        if (((gcline.x != null) || (gcline.y != null) || (gcline.z != null)) && splitMoves)     // any movement command?
                         {
-                            if (gcline.z != null)
+                            XyzabcuvwPoint d = gcline.actualPos - lastActual;
+                            double c = Math.Sqrt(d.X * d.X + d.Y * d.Y);
+                            if (c > heightMapGridWidth)                                                         // movement long enough to split?
                             {
-                                if ((gcline.x != null) || (gcline.y != null))
-                                { Gcode.SplitLineZ(newCode, gcline.motionMode, (float)lastActualX, (float)lastActualY, (float)lastActualZ, (float)gcline.actualPos.X, (float)gcline.actualPos.Y, (float)gcline.actualPos.Z, heightMapGridWidth, true, gcline.codeLine); }
+                                if (gcline.z != null)
+                                {
+                                    if ((gcline.x != null) || (gcline.y != null))
+                                    { Gcode.SplitLineZ(newCode, gcline.motionMode, lastActual, gcline.actualPos, heightMapGridWidth, true, gcline.codeLine); }
+                                    else
+                                    { newCode.AppendLine(gcline.codeLine.Trim('\r', '\n')); }
+                                }
                                 else
-                                { newCode.AppendLine(gcline.codeLine.Trim('\r', '\n')); }
+                                {
+                                    Gcode.SplitLine(newCode, gcline.motionMode, lastActual, gcline.actualPos, heightMapGridWidth, true, gcline.codeLine);
+                                }
                             }
                             else
-                                Gcode.SplitLine(newCode, gcline.motionMode, (float)lastActualX, (float)lastActualY, (float)gcline.actualPos.X, (float)gcline.actualPos.Y, heightMapGridWidth, true, gcline.codeLine);
+                            { newCode.AppendLine(gcline.codeLine.Trim('\r', '\n')); }   // not long enough
                         }
                         else
-                        { newCode.AppendLine(gcline.codeLine.Trim('\r', '\n')); }
+                        { newCode.AppendLine(gcline.codeLine.Trim('\r', '\n')); }       // no movement
                     }
                     else
-                    { newCode.AppendLine(gcline.codeLine.Trim('\r', '\n')); }
+                    { newCode.AppendLine(gcline.codeLine.Trim('\r', '\n')); }           // no G1,2,3 command
 
                 }
                 #endregion
@@ -273,7 +288,7 @@ namespace GrblPlotter
                 spindleSpeed = gcline.spindleSpeed;
                 spindleState = gcline.spindleState;
                 coolantState = gcline.coolantState;
-                lastActualX = gcline.actualPos.X; lastActualY = gcline.actualPos.Y; lastActualZ = gcline.actualPos.Z;
+                lastActual = gcline.actualPos;
 
                 if ((!hide_code) && (!gcline.ismachineCoordG53) && (gcline.codeLine.IndexOf("(Setup - GCode") < 1)) // ignore coordinates from setup footer
                 {
@@ -283,6 +298,13 @@ namespace GrblPlotter
 
                 isArc = ((gcline.motionMode == 2) || (gcline.motionMode == 3));
                 coordList.Add(new CoordByLine(iCode, gcline.figureNumber, (XyzPoint)gcline.actualPos, (XyzPoint)gcline.actualPos, gcline.motionMode, gcline.alpha, isArc));
+
+            //    Application.DoEvents();
+                if (MyApplication.ESCwasPressed)
+                {
+                    Logger.Warn("CreateGCodeProg abort by ESC");
+                    break;
+                }
             }
             return newCode.ToString().Replace(',', '.');
         }

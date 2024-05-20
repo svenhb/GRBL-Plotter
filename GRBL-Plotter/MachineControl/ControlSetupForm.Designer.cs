@@ -48,25 +48,25 @@ namespace GrblPlotter
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlSetupForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl_Level1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabControl1_Level2 = new System.Windows.Forms.TabControl();
@@ -275,6 +275,8 @@ namespace GrblPlotter
             this.lblHatchFill1 = new System.Windows.Forms.Label();
             this.cBImportGraphicHatchFill = new System.Windows.Forms.CheckBox();
             this.tab1_3gB5 = new System.Windows.Forms.GroupBox();
+            this.nUDImportGCTangentialShorting = new System.Windows.Forms.NumericUpDown();
+            this.cBImportGCTangentialShortingEnable = new System.Windows.Forms.CheckBox();
             this.nUDImportGCTangentialUnits = new System.Windows.Forms.NumericUpDown();
             this.nUDImportGCTangentialSwivel2 = new System.Windows.Forms.NumericUpDown();
             this.nUDImportGCTangentialSwivel = new System.Windows.Forms.NumericUpDown();
@@ -1285,6 +1287,7 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDHatchFillAngle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDHatchFillDist)).BeginInit();
             this.tab1_3gB5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialShorting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialUnits)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialSwivel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialSwivel)).BeginInit();
@@ -3631,6 +3634,8 @@ namespace GrblPlotter
             // tab1_3gB5
             // 
             this.tab1_3gB5.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tab1_3gB5.Controls.Add(this.nUDImportGCTangentialShorting);
+            this.tab1_3gB5.Controls.Add(this.cBImportGCTangentialShortingEnable);
             this.tab1_3gB5.Controls.Add(this.nUDImportGCTangentialUnits);
             this.tab1_3gB5.Controls.Add(this.nUDImportGCTangentialSwivel2);
             this.tab1_3gB5.Controls.Add(this.nUDImportGCTangentialSwivel);
@@ -3644,6 +3649,24 @@ namespace GrblPlotter
             resources.ApplyResources(this.tab1_3gB5, "tab1_3gB5");
             this.tab1_3gB5.Name = "tab1_3gB5";
             this.tab1_3gB5.TabStop = false;
+            // 
+            // nUDImportGCTangentialShorting
+            // 
+            this.nUDImportGCTangentialShorting.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "importGCTangentialShortening", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.nUDImportGCTangentialShorting.DecimalPlaces = 1;
+            resources.ApplyResources(this.nUDImportGCTangentialShorting, "nUDImportGCTangentialShorting");
+            this.nUDImportGCTangentialShorting.Name = "nUDImportGCTangentialShorting";
+            this.toolTip1.SetToolTip(this.nUDImportGCTangentialShorting, resources.GetString("nUDImportGCTangentialShorting.ToolTip"));
+            this.nUDImportGCTangentialShorting.Value = global::GrblPlotter.Properties.Settings.Default.importGCTangentialShortening;
+            // 
+            // cBImportGCTangentialShortingEnable
+            // 
+            resources.ApplyResources(this.cBImportGCTangentialShortingEnable, "cBImportGCTangentialShortingEnable");
+            this.cBImportGCTangentialShortingEnable.Checked = global::GrblPlotter.Properties.Settings.Default.importGCTangentialShorteningEnable;
+            this.cBImportGCTangentialShortingEnable.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importGCTangentialShorteningEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBImportGCTangentialShortingEnable.Name = "cBImportGCTangentialShortingEnable";
+            this.toolTip1.SetToolTip(this.cBImportGCTangentialShortingEnable, resources.GetString("cBImportGCTangentialShortingEnable.ToolTip"));
+            this.cBImportGCTangentialShortingEnable.UseVisualStyleBackColor = true;
             // 
             // nUDImportGCTangentialUnits
             // 
@@ -6939,155 +6962,155 @@ namespace GrblPlotter
             // 
             // Column1
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.Format = "N0";
-            dataGridViewCellStyle1.NullValue = "2";
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.Format = "N0";
+            dataGridViewCellStyle20.NullValue = "2";
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle20;
             resources.ApplyResources(this.Column1, "Column1");
             this.Column1.MaxInputLength = 3;
             this.Column1.Name = "Column1";
             // 
             // Column2
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = "FFFFFF";
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle21.NullValue = "FFFFFF";
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle21;
             resources.ApplyResources(this.Column2, "Column2");
             this.Column2.MaxInputLength = 6;
             this.Column2.Name = "Column2";
             // 
             // Column3
             // 
-            dataGridViewCellStyle3.NullValue = "edit to add new entry";
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle22.NullValue = "edit to add new entry";
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle22;
             resources.ApplyResources(this.Column3, "Column3");
             this.Column3.MaxInputLength = 20;
             this.Column3.Name = "Column3";
             // 
             // Column4
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = "0";
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle23.Format = "N2";
+            dataGridViewCellStyle23.NullValue = "0";
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle23;
             resources.ApplyResources(this.Column4, "Column4");
             this.Column4.MaxInputLength = 8;
             this.Column4.Name = "Column4";
             // 
             // Column5
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = "0";
-            this.Column5.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle24.Format = "N2";
+            dataGridViewCellStyle24.NullValue = "0";
+            this.Column5.DefaultCellStyle = dataGridViewCellStyle24;
             resources.ApplyResources(this.Column5, "Column5");
             this.Column5.MaxInputLength = 8;
             this.Column5.Name = "Column5";
             // 
             // Column6
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "N2";
-            dataGridViewCellStyle6.NullValue = "0";
-            this.Column6.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle25.Format = "N2";
+            dataGridViewCellStyle25.NullValue = "0";
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle25;
             resources.ApplyResources(this.Column6, "Column6");
             this.Column6.MaxInputLength = 8;
             this.Column6.Name = "Column6";
             // 
             // Column16
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.Format = "N2";
-            dataGridViewCellStyle7.NullValue = "0";
-            this.Column16.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle26.Format = "N2";
+            dataGridViewCellStyle26.NullValue = "0";
+            this.Column16.DefaultCellStyle = dataGridViewCellStyle26;
             resources.ApplyResources(this.Column16, "Column16");
             this.Column16.MaxInputLength = 8;
             this.Column16.Name = "Column16";
             // 
             // Column7
             // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle8.Format = "N2";
-            dataGridViewCellStyle8.NullValue = "3,0";
-            this.Column7.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle27.Format = "N2";
+            dataGridViewCellStyle27.NullValue = "3,0";
+            this.Column7.DefaultCellStyle = dataGridViewCellStyle27;
             resources.ApplyResources(this.Column7, "Column7");
             this.Column7.MaxInputLength = 8;
             this.Column7.Name = "Column7";
             // 
             // Column8
             // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle9.Format = "N0";
-            dataGridViewCellStyle9.NullValue = "800";
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle28.Format = "N0";
+            dataGridViewCellStyle28.NullValue = "800";
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle28;
             resources.ApplyResources(this.Column8, "Column8");
             this.Column8.MaxInputLength = 6;
             this.Column8.Name = "Column8";
             // 
             // Column10
             // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle10.Format = "N0";
-            dataGridViewCellStyle10.NullValue = "500";
-            this.Column10.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle29.Format = "N0";
+            dataGridViewCellStyle29.NullValue = "500";
+            this.Column10.DefaultCellStyle = dataGridViewCellStyle29;
             resources.ApplyResources(this.Column10, "Column10");
             this.Column10.MaxInputLength = 6;
             this.Column10.Name = "Column10";
             // 
             // Column15
             // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle11.Format = "N2";
-            dataGridViewCellStyle11.NullValue = "2";
-            this.Column15.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle30.Format = "N2";
+            dataGridViewCellStyle30.NullValue = "2";
+            this.Column15.DefaultCellStyle = dataGridViewCellStyle30;
             resources.ApplyResources(this.Column15, "Column15");
             this.Column15.MaxInputLength = 8;
             this.Column15.Name = "Column15";
             // 
             // Column9
             // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle12.Format = "N2";
-            dataGridViewCellStyle12.NullValue = "-3";
-            this.Column9.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle31.Format = "N2";
+            dataGridViewCellStyle31.NullValue = "-3";
+            this.Column9.DefaultCellStyle = dataGridViewCellStyle31;
             resources.ApplyResources(this.Column9, "Column9");
             this.Column9.MaxInputLength = 8;
             this.Column9.Name = "Column9";
             // 
             // Column13
             // 
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle13.Format = "N2";
-            dataGridViewCellStyle13.NullValue = "1";
-            this.Column13.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle32.Format = "N2";
+            dataGridViewCellStyle32.NullValue = "1";
+            this.Column13.DefaultCellStyle = dataGridViewCellStyle32;
             resources.ApplyResources(this.Column13, "Column13");
             this.Column13.MaxInputLength = 8;
             this.Column13.Name = "Column13";
             // 
             // Column11
             // 
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle14.Format = "N0";
-            dataGridViewCellStyle14.NullValue = "10000";
-            this.Column11.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle33.Format = "N0";
+            dataGridViewCellStyle33.NullValue = "10000";
+            this.Column11.DefaultCellStyle = dataGridViewCellStyle33;
             resources.ApplyResources(this.Column11, "Column11");
             this.Column11.MaxInputLength = 8;
             this.Column11.Name = "Column11";
             // 
             // Column12
             // 
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle15.Format = "N0";
-            dataGridViewCellStyle15.NullValue = "100";
-            this.Column12.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle34.Format = "N0";
+            dataGridViewCellStyle34.NullValue = "100";
+            this.Column12.DefaultCellStyle = dataGridViewCellStyle34;
             resources.ApplyResources(this.Column12, "Column12");
             this.Column12.MaxInputLength = 6;
             this.Column12.Name = "Column12";
             // 
             // Column14
             // 
-            dataGridViewCellStyle16.NullValue = " ";
-            this.Column14.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle35.NullValue = " ";
+            this.Column14.DefaultCellStyle = dataGridViewCellStyle35;
             resources.ApplyResources(this.Column14, "Column14");
             this.Column14.MaxInputLength = 32;
             this.Column14.Name = "Column14";
@@ -9655,8 +9678,8 @@ namespace GrblPlotter
             // 
             // Column20
             // 
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Column20.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Column20.DefaultCellStyle = dataGridViewCellStyle36;
             resources.ApplyResources(this.Column20, "Column20");
             this.Column20.MaxInputLength = 2;
             this.Column20.Name = "Column20";
@@ -9666,8 +9689,8 @@ namespace GrblPlotter
             // 
             // Column21
             // 
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column21.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column21.DefaultCellStyle = dataGridViewCellStyle37;
             resources.ApplyResources(this.Column21, "Column21");
             this.Column21.MaxInputLength = 100;
             this.Column21.Name = "Column21";
@@ -9676,8 +9699,8 @@ namespace GrblPlotter
             // 
             // Column22
             // 
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.Column22.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.Column22.DefaultCellStyle = dataGridViewCellStyle38;
             resources.ApplyResources(this.Column22, "Column22");
             this.Column22.MaxInputLength = 300;
             this.Column22.Name = "Column22";
@@ -12763,7 +12786,6 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDimportGraphicAddFramePenWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDimportGraphicAddFrameDistance)).EndInit();
             this.pathImport4.ResumeLayout(false);
-            this.pathImport4.PerformLayout();
             this.gBNoise.ResumeLayout(false);
             this.gBNoise.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudNoiseDensity)).EndInit();
@@ -12779,6 +12801,7 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDHatchFillDist)).EndInit();
             this.tab1_3gB5.ResumeLayout(false);
             this.tab1_3gB5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialShorting)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialUnits)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialSwivel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nUDImportGCTangentialSwivel)).EndInit();
@@ -14287,5 +14310,7 @@ namespace GrblPlotter
         private System.Windows.Forms.Label label106;
         private System.Windows.Forms.NumericUpDown NudConvertToPolar;
         private System.Windows.Forms.Label LblPolar;
+        private System.Windows.Forms.NumericUpDown nUDImportGCTangentialShorting;
+        private System.Windows.Forms.CheckBox cBImportGCTangentialShortingEnable;
     }
 }

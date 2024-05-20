@@ -463,6 +463,7 @@ namespace GrblPlotter
             // ControlSerialForm
             // 
             resources.ApplyResources(this, "$this");
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.TbEthernetPort);

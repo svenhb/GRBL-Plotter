@@ -2403,7 +2403,7 @@ Pushbullet: por razões de segurança, você deve usar uma conta 'lixo', o token
     <comment>ok</comment>
   </data>
   <data name="tabPage7.Text" xml:space="preserve">
-    <value>Complementos de caminho</value>
+    <value>Carregando arquivo</value>
     <comment>ok</comment>
   </data>
   <data name="checkBox6.Text" xml:space="preserve">
@@ -3577,5 +3577,14 @@ A conversão também é possível através do Menu - GCode Transform - 'Converte
   </data>
   <data name="GbConvertToPolar.Text" xml:space="preserve">
     <value>Converter XY em coordenadas polares</value>
+  </data>
+  <data name="nUDImportGCTangentialShorting.ToolTip" xml:space="preserve">
+    <value>Inicia um caminho de figuras mais tarde e termina-o mais cedo (para cortador rotativo).</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.Text" xml:space="preserve">
+    <value>Habilite o encurtamento de caminho...</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.ToolTip" xml:space="preserve">
+    <value>Inicia um caminho de figuras mais tarde e termina-o mais cedo (para cortador rotativo).</value>
   </data>
 </root>

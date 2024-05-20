@@ -2535,7 +2535,7 @@ M4 وضع الطاقة ليزر ديناميكي</value>
     <comment>ok</comment>
   </data>
   <data name="tabControl5_Level2.Text" xml:space="preserve">
-    <value>المخطر</value>
+    <value>إشعار</value>
     <comment>ok</comment>
   </data>
   <data name="label33.Text" xml:space="preserve">
@@ -2617,7 +2617,7 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
     <comment>ok</comment>
   </data>
   <data name="tabPage7.Text" xml:space="preserve">
-    <value>الوظائف الإضافية للمسار</value>
+    <value>تحميل الملف</value>
     <comment>ok</comment>
   </data>
   <data name="checkBox6.Text" xml:space="preserve">
@@ -3831,5 +3831,14 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   </data>
   <data name="GbConvertToPolar.Text" xml:space="preserve">
     <value>تحويل XY إلى الإحداثيات القطبية</value>
+  </data>
+  <data name="nUDImportGCTangentialShorting.ToolTip" xml:space="preserve">
+    <value>يبدأ مسار الأشكال لاحقًا وينهيه مبكرًا (للقاطع الدوار).</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.Text" xml:space="preserve">
+    <value>تمكين تقصير المسار عن طريق...</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.ToolTip" xml:space="preserve">
+    <value>يبدأ مسار الأشكال لاحقًا وينهيه مبكرًا (للقاطع الدوار).</value>
   </data>
 </root>

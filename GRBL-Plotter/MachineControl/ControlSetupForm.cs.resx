@@ -606,7 +606,7 @@ Objekty se stejnou počáteční a koncovou souřadnicí budou sloučeny dohroma
     <comment>ok</comment>
   </data>
   <data name="tabPage7.Text" xml:space="preserve">
-    <value>Doplňky cesty</value>
+    <value>Načítání souboru</value>
     <comment>ok</comment>
   </data>
   <data name="cBPathOverlapEnable.Text" xml:space="preserve">
@@ -3854,5 +3854,14 @@ Převod je také možný přes Menu - GCode Transform - 'Převést na polární 
   </data>
   <data name="GbConvertToPolar.Text" xml:space="preserve">
     <value>Převeďte XY na polární souřadnice</value>
+  </data>
+  <data name="nUDImportGCTangentialShorting.ToolTip" xml:space="preserve">
+    <value>Zahájí dráhu figurek později a ukončí ji dříve (pro rotační řezačku).</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.Text" xml:space="preserve">
+    <value>Povolit zkrácení cesty o...</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.ToolTip" xml:space="preserve">
+    <value>Zahájí dráhu figurek později a ukončí ji dříve (pro rotační řezačku).</value>
   </data>
 </root>

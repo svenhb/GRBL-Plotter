@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
  * 2022-01-17 new class to process frame with handles at selected figure
  * 2022-01-21 snap on grid
  * 2022-02-21 strange zooming behavior: GetScaleFactor switch to selectionBoundsOrig
+ * 2024-05-20 move transform data to struct ActualTransform and copy to LastTransform
 */
 
 using System;
@@ -52,15 +53,12 @@ namespace GrblPlotter
         private static PointF upperEdgeRight;           // scale xy
         private static PointF rightEdgeCenter;          // scale x
         private static PointF rightEdgeBottom;          // rotate
-                                                        //    private static PointF lowerEdgeLeft;          	// move
-                                                        //    private static PointF lowerEdgeRight;          	// move
 
         private static PointF nodePathBefore;
         private static PointF nodePathAfter;
         private static PointF nodePathActual;
         private static bool nodePathBeforeOk = false;
         private static bool nodePathAfterOk = false;
-
 
         internal enum Handle { None, Move, SizeX, SizeY, SizeXY, Rotate }
         internal static RectangleF Bounds { get; set; }      // selected figure bounds
@@ -70,23 +68,47 @@ namespace GrblPlotter
         internal static int SelectedTile { get; set; } = -1;
         internal static int SelectedGroup { get; set; } = -1;
         internal static int SelectedFigure { get; set; } = -1;
-        internal static PointF center = new PointF();
 
-        public static float scalingX = 1, scalingY = 1;
-        //      public static float offsetX, offsetY;
-        public static PointF transformPoint;
-        public static float angleDeg = 0;
         public static XyPoint correctedDifference = new XyPoint();
+
+        public static TransformData ActualTransform = new TransformData();
+        public static TransformData LastTransform = new TransformData();
+        public struct TransformData
+        {
+            public Handle action;
+            public XmlMarkerType markerType;
+            public double dX;
+            public double dY;
+            public double scalingX;  
+            public double scalingY; 
+            public double angleDeg;
+            public PointF center;
+            public PointF transformPoint;
+        };
 
         private static double scalingHandle = 1;
 
         private static bool isactive;
+        public static void SaveTransformData(Handle h, double x, double y)
+        {
+            if (h == Handle.None)
+                return;
+            LastTransform.action = ActualTransform.action = h;
+            LastTransform.dX = ActualTransform.dX = x;
+            LastTransform.dY = ActualTransform.dY = y;
+            LastTransform.scalingX = ActualTransform.scalingX;
+            LastTransform.scalingY = ActualTransform.scalingY;
+            LastTransform.angleDeg = ActualTransform.angleDeg;
+            LastTransform.center = ActualTransform.center;
+            LastTransform.transformPoint = ActualTransform.transformPoint;
+        }
+
         public static bool IsActive  // property
         {
             get { return isactive; }
             set
             {
-                isactive = value; scalingX = 1; scalingY = 1; angleDeg = 0;
+                isactive = value; ActualTransform.scalingX = 1; ActualTransform.scalingY = 1; ActualTransform.angleDeg = 0;
                 if (!isactive) { nodePathBeforeOk = nodePathAfterOk = false; }
             }
         }
@@ -98,6 +120,7 @@ namespace GrblPlotter
             SelectedFigure = -1;
             SelectedMarkerLine = 0;
             IsActive = false;
+            ActualTransform.markerType = XmlMarkerType.None;
         }
         //    private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
@@ -111,7 +134,7 @@ namespace GrblPlotter
             SetHandlePositions(bounds);
             DrawHandles();
             IsActive = setActive;
-            scalingX = 1; scalingY = 1; angleDeg = 0;
+            ActualTransform.scalingX = 1; ActualTransform.scalingY = 1; ActualTransform.angleDeg = 0;
         }
 
         public static void SetSelectionPath(PointF pBefore, bool bBefore, PointF pActual, PointF pAfter, bool bAfter)
@@ -133,9 +156,9 @@ namespace GrblPlotter
             upperEdgeRight = new PointF(bounds.X + bounds.Width + 2 * handleSize, bounds.Y + bounds.Height + 2 * handleSize);
             rightEdgeCenter = new PointF(bounds.X + bounds.Width + 2 * handleSize, bounds.Y + bounds.Height / 2);
             rightEdgeBottom = new PointF(bounds.X + bounds.Width + 2 * handleSize, bounds.Y - 2 * handleSize);
-            center = new PointF(bounds.X + bounds.Width / 2, bounds.Y + bounds.Height / 2);
+            ActualTransform.center = new PointF(bounds.X + bounds.Width / 2, bounds.Y + bounds.Height / 2);
             //        offsetX = bounds.Left; offsetY = bounds.Top;
-            transformPoint = new PointF(bounds.Left, bounds.Top);// - bounds.Height);
+            ActualTransform.transformPoint = new PointF(bounds.Left, bounds.Top);// - bounds.Height);
 
             //	upperEdgeLeft = new PointF(bounds.X, bounds.Y + bounds.Height);
             //	lowerEdgeLeft = new PointF(bounds.X, bounds.Y);
@@ -151,7 +174,7 @@ namespace GrblPlotter
                 if (InHandle(tmp, rightEdgeCenter, handleSize)) { return Handle.SizeX; }
                 if (InHandle(tmp, rightEdgeBottom, handleSize)) { return Handle.Rotate; }
             }
-            if (InHandle(tmp, center, handleSize)) { moveHandlePos = 5; return Handle.Move; }
+            if (InHandle(tmp, ActualTransform.center, handleSize)) { moveHandlePos = 5; return Handle.Move; }
             if (OnFrame(tmp, handleSize)) { return Handle.Move; }
             return Handle.None;
         }
@@ -203,13 +226,13 @@ namespace GrblPlotter
                 AddPath(pathArrows, arrow0, GetRectHandle(upperEdgeRight, handleSize), -45);    // arrow diagonal
                 AddPath(pathArrows, arrow0, GetRectHandle(rightEdgeCenter, handleSize), 90);    // arrow horizontal
                 AddPath(pathArrows, arrow1, GetRectHandle(rightEdgeBottom, handleSize), 0, 1);  // turn
-                AddPath(pathArrows, arrow2, GetRectHandle(center, handleSize), 0, 2);           // center cross
+                AddPath(pathArrows, arrow2, GetRectHandle(ActualTransform.center, handleSize), 0, 2);           // center cross
             }
             else
             {
                 if (nodePathBeforeOk) pathBounds.AddLine(nodePathBefore, nodePathActual);
                 if (nodePathAfterOk) pathBounds.AddLine(nodePathActual, nodePathAfter);
-                AddPath(pathArrows, arrow3, GetRectHandle(center, handleSize), 0, 3);           // center box
+                AddPath(pathArrows, arrow3, GetRectHandle(ActualTransform.center, handleSize), 0, 3);           // center box
             }
         }
         private static void AddPath(GraphicsPath finalPath, GraphicsPath tmpPath, RectangleF rect, float angle, int type = 0)
@@ -314,14 +337,14 @@ namespace GrblPlotter
         }
         public static float GetAngleDeg(XyPoint pa, XyPoint pb, bool snap)
         {
-            XyPoint centPos = new XyPoint(center);
+            XyPoint centPos = new XyPoint(ActualTransform.center);
             float angle = (float)(centPos.AngleTo(pa) - centPos.AngleTo(pb));
             if (snap)
                 angle = (float)Math.Round(angle);
 
-            angleDeg = angle;
+            ActualTransform.angleDeg = angle;
             Matrix tmp = new Matrix();
-            tmp.RotateAt(angle, center);
+            tmp.RotateAt(angle, ActualTransform.center);
             SetHandlePositions(selectionBounds);		// move coordinates
             DrawHandles();                              // then create paths
             pathBounds.Transform(tmp);					// rotate path
@@ -339,8 +362,8 @@ namespace GrblPlotter
                 selectionBounds.Height = selectionBoundsOrig.Height * factor.Y;
             SetHandlePositions(selectionBounds);		// scale coordinates
             DrawHandles();								// then create paths
-            scalingX = factor.X;
-            scalingY = factor.Y;
+            ActualTransform.scalingX = factor.X;
+            ActualTransform.scalingY = factor.Y;
         }
 
         public static void DrawPath(Graphics e, double scal)

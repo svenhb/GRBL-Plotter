@@ -34,6 +34,7 @@
  * 2023-11-29 l:510 f:GetGCodeLines add findSubroutineFailCounter; abort searching for subroutine if not found after 10 times
  * 2023-12-16 l:850 f:ProcessXmlTagStart check for fiducials via .ToUpper().Contains(fiducialLabel.ToUpper()))
  * 2024-01-25 add graphicDimension, markerSizeGraphic to adapt size of point markers
+ * 2024-04-13 l:818 f:CalculateProcessTime bug fix path length calculation
 */
 
 using System;
@@ -152,8 +153,10 @@ namespace GrblPlotter
         private static int tileCount = 0;
         internal static bool ShiftTilePaths { get; set; }
 
-        private static bool tangentialAxisEnable = false;
+        internal static bool tangentialAxisEnable = false;
         private static string tangentialAxisName = "C";
+        internal static double tangentialAxisFullTurn = 360;
+        internal static int tangentialAxisError = -1;
 
         internal static double gcodeMinutes = 0;
         internal static double gcodeDistance = 0;
@@ -317,6 +320,7 @@ namespace GrblPlotter
             gcodeMinutes = 0;
             gcodeDistance = 0;
             tangentialAxisEnable = false;
+            tangentialAxisError = -1;
             halfToneEnable = false;
             errorString = "";
             error33cnt = 0;
@@ -803,7 +807,7 @@ namespace GrblPlotter
 
             double distanceX = Math.Abs(newL.actualPos.X - oldL.actualPos.X);
             double distanceY = Math.Abs(newL.actualPos.Y - oldL.actualPos.Y);
-            double distanceXY = Math.Max(distanceX, distanceY);
+            double distanceXY = Math.Sqrt(distanceX* distanceX+ distanceY* distanceY);
             double distanceZ = Math.Abs(newL.actualPos.Z - oldL.actualPos.Z);
 
             if (newL.motionMode > 1)
@@ -814,7 +818,9 @@ namespace GrblPlotter
             if (newL.motionMode > 0)
                 feed = Math.Min(feed, newL.feedRate);           // if G1,2,3 use set feed
 
-            gcodeDistance += distanceAll;
+            if (newL.motionMode>0)
+                gcodeDistance += distanceXY;
+
             gcodeMinutes += distanceAll / feed;
         }
 
@@ -888,7 +894,12 @@ namespace GrblPlotter
             {
                 tangentialAxisEnable = true;
                 tangentialAxisName = XmlMarker.GetAttributeValue(line, "Axis");
-                if (logEnable) Logger.Trace("Show tangetial axis '{0}'", tangentialAxisName);
+                string tmpFullTurn = XmlMarker.GetAttributeValue(line, "FullTurn");
+                if (double.TryParse(tmpFullTurn, out tangentialAxisFullTurn))
+                { }
+                Logger.Info("Show tangetial Axis:'{0}'  FullTurn:{1}  Setup:{2}", tangentialAxisName, tangentialAxisFullTurn, Properties.Settings.Default.importGCTangentialTurn);
+                if (tangentialAxisFullTurn != (double)Properties.Settings.Default.importGCTangentialTurn)
+                    tangentialAxisError = lineNr;
             }
 
             else if (line.Contains(XmlMarker.HalftoneS) || line.Contains(XmlMarker.HalftoneZ))

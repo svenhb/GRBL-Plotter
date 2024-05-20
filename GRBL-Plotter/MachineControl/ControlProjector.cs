@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 /*
  * 2022-03-25 New form to be displayed with a projector on the work-piece
  * 2022-04-06 Add buttons to minimize / maximize windows, monitor selection
+ * 2024-05-02 l:230 f:BtnProjectorCalc_Click check min/max before setting new NudScaling.Value
 */
 
 
@@ -226,8 +227,12 @@ namespace GrblPlotter
         private void BtnProjectorCalc_Click(object sender, EventArgs e)
         {
             decimal scaling = NudProjectorSet.Value / NudProjectorReal.Value;
-            NudScaling.Value *= scaling;
-            NudProjectorReal.Value = NudProjectorSet.Value;
+			decimal newScaling = NudScaling.Value * scaling;
+			if ((newScaling >= NudScaling.Minimum) && (newScaling <= NudScaling.Maximum))
+            {	
+				NudScaling.Value = newScaling;
+				NudProjectorReal.Value = NudProjectorSet.Value;
+			}
         }
 
         private void CbProjectorScaleEnable_CheckedChanged(object sender, EventArgs e)

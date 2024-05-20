@@ -2312,7 +2312,7 @@ Remarque: souvent «à partir de l'e-mail» doit être identique à l'e-mail de 
     <comment>ok</comment>
   </data>
   <data name="tabControl5_Level2.Text" xml:space="preserve">
-    <value>Notifier</value>
+    <value>Notification</value>
     <comment>ok</comment>
   </data>
   <data name="label33.Text" xml:space="preserve">
@@ -2394,7 +2394,7 @@ Pushbullet: pour des raisons de sécurité, vous devez utiliser un compte 'corbe
     <comment>ok</comment>
   </data>
   <data name="tabPage7.Text" xml:space="preserve">
-    <value>Modules complémentaires de chemin</value>
+    <value>Chargement de fichiers</value>
     <comment>ok</comment>
   </data>
   <data name="checkBox6.Text" xml:space="preserve">
@@ -3568,5 +3568,14 @@ La conversion est également possible via Menu - GCode Transform - 'Convertir en
   </data>
   <data name="GbConvertToPolar.Text" xml:space="preserve">
     <value>Convertir XY en coordonnées polaires</value>
+  </data>
+  <data name="nUDImportGCTangentialShorting.ToolTip" xml:space="preserve">
+    <value>Commence un chemin de figures plus tard et le termine plus tôt (pour le cutter rotatif).</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.Text" xml:space="preserve">
+    <value>Activer le raccourcissement du chemin en...</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.ToolTip" xml:space="preserve">
+    <value>Commence un chemin de figures plus tard et le termine plus tôt (pour le cutter rotatif).</value>
   </data>
 </root>

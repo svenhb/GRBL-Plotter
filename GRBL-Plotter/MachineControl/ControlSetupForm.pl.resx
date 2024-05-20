@@ -3739,4 +3739,13 @@ Konwersja jest również możliwa poprzez Menu - Transformacja GCode - 'Konwertu
   <data name="GbConvertToPolar.Text" xml:space="preserve">
     <value>Konwertuj XY na współrzędne biegunowe</value>
   </data>
+  <data name="nUDImportGCTangentialShorting.ToolTip" xml:space="preserve">
+    <value>Rozpoczyna później ścieżkę figur i kończy ją wcześniej (w przypadku noża rotacyjnego).</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.Text" xml:space="preserve">
+    <value>Włącz skracanie ścieżki przez...</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.ToolTip" xml:space="preserve">
+    <value>Rozpoczyna później ścieżkę figur i kończy ją wcześniej (w przypadku noża rotacyjnego).</value>
+  </data>
 </root>

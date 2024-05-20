@@ -2474,7 +2474,7 @@ Pushbullet: из соображений безопасности следует 
     <comment>ok</comment>
   </data>
   <data name="tabPage7.Text" xml:space="preserve">
-    <value>Надстройки пути</value>
+    <value>Загрузка файла</value>
     <comment>ok</comment>
   </data>
   <data name="checkBox6.Text" xml:space="preserve">
@@ -3783,5 +3783,14 @@ X получает значения радиуса, Y получает знач�
   </data>
   <data name="GbConvertToPolar.Text" xml:space="preserve">
     <value>Преобразование XY в полярные координаты</value>
+  </data>
+  <data name="nUDImportGCTangentialShorting.ToolTip" xml:space="preserve">
+    <value>Начинает путь фигур позже и заканчивает его раньше (для ротационного резака).</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.Text" xml:space="preserve">
+    <value>Включить сокращение пути на...</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.ToolTip" xml:space="preserve">
+    <value>Начинает путь фигур позже и заканчивает его раньше (для ротационного резака).</value>
   </data>
 </root>

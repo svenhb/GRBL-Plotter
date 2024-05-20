@@ -630,7 +630,7 @@ Ne kadar çok segment, o kadar çok prezice eğridir.</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="tabPage7.Text" xml:space="preserve">
-    <value>Yol eklentileri</value>
+    <value>Dosya yükleme</value>
     <comment>ok</comment>
   </data>
   <data name="gBPathAddOn3.Text" xml:space="preserve">
@@ -3873,5 +3873,14 @@ Dönüşüm aynı zamanda Menü - GCode Dönüşümü - 'Kutupsal koordinatlara 
   </data>
   <data name="GbConvertToPolar.Text" xml:space="preserve">
     <value>XY'yi kutupsal koordinatlara dönüştürün</value>
+  </data>
+  <data name="nUDImportGCTangentialShorting.ToolTip" xml:space="preserve">
+    <value>Şekil yolunu daha sonra başlatır ve daha erken bitirir (döner kesici için).</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.Text" xml:space="preserve">
+    <value>Yol kısaltmayı etkinleştirin...</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.ToolTip" xml:space="preserve">
+    <value>Şekil yolunu daha sonra başlatır ve daha erken bitirir (döner kesici için).</value>
   </data>
 </root>

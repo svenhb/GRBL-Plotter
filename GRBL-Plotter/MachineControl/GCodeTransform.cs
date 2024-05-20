@@ -38,50 +38,50 @@
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Windows.Media;
+using System.Windows.Forms;
 
 namespace GrblPlotter
 {
     internal static partial class VisuGCode
     {
         public enum Translate { None, ScaleX, ScaleY, Offset1, Offset2, Offset3, Offset4, Offset5, Offset6, Offset7, Offset8, Offset9, MirrorX, MirrorY, MirrorRotary };
-		
-		public static Translate GetTranslate(int offset)
-		{
-			switch(offset)	// arrangement like telephone keypad
-			{
-				case 1:
-					return Translate.Offset1;
-					break;
-				case 2:
-					return Translate.Offset2;
-					break;
-				case 3:
-					return Translate.Offset3;
-					break;
-				case 4:
-					return Translate.Offset4;
-					break;
-				case 5:
-					return Translate.Offset5;
-					break;
-				case 6:
-					return Translate.Offset6;
-					break;
-				case 7:
-					return Translate.Offset7;
-					break;
-				case 8:
-					return Translate.Offset8;
-					break;
-				case 9:
-					return Translate.Offset9;
-					break;
-				default:
-					return Translate.None;
-					break;
-			}
-			return Translate.None;
+
+        public static Translate GetTranslate(int offset)
+        {
+            switch (offset) // arrangement like telephone keypad
+            {
+                case 1:
+                    return Translate.Offset1;
+                    break;
+                case 2:
+                    return Translate.Offset2;
+                    break;
+                case 3:
+                    return Translate.Offset3;
+                    break;
+                case 4:
+                    return Translate.Offset4;
+                    break;
+                case 5:
+                    return Translate.Offset5;
+                    break;
+                case 6:
+                    return Translate.Offset6;
+                    break;
+                case 7:
+                    return Translate.Offset7;
+                    break;
+                case 8:
+                    return Translate.Offset8;
+                    break;
+                case 9:
+                    return Translate.Offset9;
+                    break;
+                default:
+                    return Translate.None;
+                    break;
+            }
+            return Translate.None;
         }
 
         private static bool XyMove(GcodeByLine tmp)
@@ -502,7 +502,7 @@ namespace GrblPlotter
             pathBackground.Reset();
             return CreateGCodeProg();
         }
-		
+
         internal static void GetTransaltionOffset(ref double offsetX, ref double offsetY, double tx, double ty, double minx, double miny, double dimx, double dimy, Translate shiftToZero)
         {
             if (shiftToZero == Translate.Offset1) { offsetX = tx + minx; offsetY = ty + miny + dimy; }
@@ -752,33 +752,37 @@ namespace GrblPlotter
             ClearDrawingPath();                    // reset path, dimensions
 
             double aOffset = 0;
-            int dir=0, lastDir=0;
+            int dir = 0, lastDir = 0;
 
             if (lastFigureNumbers.Count == 0)
                 lastFigureNumbers.Add(lastFigureNumber);
 
+            int check = 0;
             foreach (GcodeByLine gcline in gcodeList)
             {
+                if ((gcline.x != null) || (gcline.y != null))
                 {
-                    if ((gcline.x != null) || (gcline.y != null))
+
+                    newvalr = Math.Sqrt(gcline.actualPos.X * gcline.actualPos.X + gcline.actualPos.Y * gcline.actualPos.Y);
+                    newvala = Math.Atan2(gcline.actualPos.Y, gcline.actualPos.X) + aOffset;
+                    dir = Math.Sign(newvala);
+                    if ((dir < 0) && (lastDir > 0)) { aOffset += 2 * Math.PI; newvala += 2 * Math.PI; dir = lastDir; }
+                    else if ((dir > 0) && (lastDir < 0)) { aOffset -= 2 * Math.PI; newvala -= 2 * Math.PI; dir = lastDir; }
+                    else { lastDir = dir; }
+
+                    if (gcline.isdistanceModeG90)   // absolute
                     {
-
-                        newvalr = Math.Sqrt(gcline.actualPos.X* gcline.actualPos.X + gcline.actualPos.Y* gcline.actualPos.Y);
-                        newvala = Math.Atan2(gcline.actualPos.Y, gcline.actualPos.X) + aOffset;
-                        dir = Math.Sign(newvala);
-                        if ((dir < 0) && (lastDir > 0))         { aOffset += 2 * Math.PI; newvala += 2 * Math.PI; dir = lastDir; }
-                        else if ((dir > 0) && (lastDir < 0))    { aOffset -= 2 * Math.PI; newvala -= 2 * Math.PI; dir = lastDir; }
-                        else { lastDir = dir; }
-
-                        if (gcline.isdistanceModeG90)	// absolute
-                        {
-                            gcline.x = newvalr;
-                            gcline.y = newvala * 180 / Math.PI;
-                        }
-                        else
-                        {
-                        }
+                        gcline.x = newvalr;
+                        gcline.y = newvala * 180 / Math.PI;
                     }
+                    //    else
+                    //    {
+                    //    }
+                }
+                if (MyApplication.ESCwasPressed)
+                {
+                    Logger.Warn("ConvertToPolar abort by ESC");
+                    break;
                 }
             }
             return CreateGCodeProg("<Polar X=radius, Y=angle />");	// GCodeSynthesize.cs

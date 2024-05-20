@@ -384,7 +384,7 @@
     <comment>ok</comment>
   </data>
   <data name="tabPage7.Text" xml:space="preserve">
-    <value>Add-on di percorso</value>
+    <value>Caricamento file</value>
     <comment>ok</comment>
   </data>
   <data name="cBPathOverlapEnable.Text" xml:space="preserve">
@@ -1568,7 +1568,7 @@
     <comment>ok</comment>
   </data>
   <data name="tabControl5_Level2.Text" xml:space="preserve">
-    <value>nr.</value>
+    <value>Notifica</value>
     <comment>ok</comment>
   </data>
   <data name="tabPage21.Text" xml:space="preserve">
@@ -3899,5 +3899,14 @@ La conversione è possibile anche tramite Menu - Trasformazione GCode - 'Convert
   </data>
   <data name="GbConvertToPolar.Text" xml:space="preserve">
     <value>Converti XY in coordinate polari</value>
+  </data>
+  <data name="nUDImportGCTangentialShorting.ToolTip" xml:space="preserve">
+    <value>Inizia un percorso di figure più tardi e lo termina prima (per taglierina rotativa).</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.Text" xml:space="preserve">
+    <value>Abilita l'accorciamento del percorso tramite...</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.ToolTip" xml:space="preserve">
+    <value>Inizia un percorso di figure più tardi e lo termina prima (per taglierina rotativa).</value>
   </data>
 </root>

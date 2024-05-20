@@ -2394,7 +2394,7 @@ Pushbullet: por razones de seguridad, debe utilizar una cuenta "basura", el toke
     <comment>ok</comment>
   </data>
   <data name="tabPage7.Text" xml:space="preserve">
-    <value>Complementos de ruta</value>
+    <value>Carga de archivos</value>
     <comment>ok</comment>
   </data>
   <data name="checkBox6.Text" xml:space="preserve">
@@ -3569,5 +3569,14 @@ La conversión también es posible a través del Menú - Transformación GCode -
   </data>
   <data name="GbConvertToPolar.Text" xml:space="preserve">
     <value>Convertir XY a coordenadas polares</value>
+  </data>
+  <data name="nUDImportGCTangentialShorting.ToolTip" xml:space="preserve">
+    <value>Comienza un recorrido de figuras más tarde y lo finaliza antes (para cortador giratorio).</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.Text" xml:space="preserve">
+    <value>Habilite el acortamiento de ruta mediante...</value>
+  </data>
+  <data name="cBImportGCTangentialShortingEnable.ToolTip" xml:space="preserve">
+    <value>Comienza un recorrido de figuras más tarde y lo finaliza antes (para cortador rotativo).</value>
   </data>
 </root>
