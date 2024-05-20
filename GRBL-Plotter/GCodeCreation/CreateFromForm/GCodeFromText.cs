@@ -137,9 +137,9 @@ namespace GrblPlotter
             textColor = ColorTranslator.FromHtml(Properties.Settings.Default.createTextFontColor);     //tBText.ForeColor;
 
             int tmp = Properties.Settings.Default.createTextAlignment;
-            if (tmp == 1) { tBText.TextAlign = HorizontalAlignment.Left; }
-            else if (tmp == 2) { tBText.TextAlign = HorizontalAlignment.Center; }
-            else if (tmp == 3) { tBText.TextAlign = HorizontalAlignment.Right; }
+            if (tmp == 1) { tBText.TextAlign = HorizontalAlignment.Left; RbAlign1.Checked = true; }
+            else if (tmp == 2) { tBText.TextAlign = HorizontalAlignment.Center; RbAlign2.Checked = true; }
+            else if (tmp == 3) { tBText.TextAlign = HorizontalAlignment.Right; RbAlign3.Checked = true; }
 
             string tmpText = Properties.Settings.Default.createTextHersheyFontName;
             if ((tmpText == "") || (tmpText == "cBFont"))
@@ -166,7 +166,7 @@ namespace GrblPlotter
             ShowTextSize();
         }
 
-        internal void SetText(string tmp, string opt, double size)
+        internal void SetText(string tmp)//, string opt, double size)
         {
             tBText.Text = tmp;
             /*	if (opt.ToLower().Contains("w"))
@@ -577,6 +577,7 @@ namespace GrblPlotter
             {
                 textFont = new Font(textFont.Name, newSize, textFont.Style);//,GraphicsUnit.Millimeter);
                 tBText.Font = textFont;
+                tBText.Invalidate();
                 ShowTextSize();
             }
             else
@@ -590,6 +591,8 @@ namespace GrblPlotter
             if ((newSize > 0) && (newSize < Single.MaxValue))
             {
                 textFont = new Font(textFont.Name, newSize, textFont.Style);//, GraphicsUnit.Millimeter);
+                tBText.Font = textFont;
+                tBText.Invalidate();
                 ShowTextSize();
             }
             else
@@ -670,7 +673,7 @@ namespace GrblPlotter
                 MessageBox.Show("SaveMachineParameters: \r\n" + err.Message, "Error");
             }
         }
-GraphicsUnit units = GraphicsUnit.Point;
+
         private void TbText_FontChanged(object sender, EventArgs e)
         {
             Logger.Trace("tBText_FontChanged  iniWasSet:{0}", iniWasSet);

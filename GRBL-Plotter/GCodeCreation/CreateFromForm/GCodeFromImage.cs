@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -48,6 +48,7 @@
  * 2022-09-14 add if (adjustedImage == null) 
  * 2023-04-10 l:279 f:LoadUrl add try catch
  * 2023-06-08 l:110 f:GCodeFromImage_FormClosing    set immages=null to avoid ThreadException: Except: Parameter is not valid. Source: System.Drawing Target: Int32 get_Width()
+ * 2024-05-04 l:585 f:ApplyColorCorrections check if originalImage!=null
 */
 
 using AForge.Imaging.ColorReduction;
@@ -582,6 +583,11 @@ namespace GrblPlotter
             resoDesiredX = nUDResoX.Value;
             resoDesiredY = nUDResoX.Value;
             //          if (nUDResoY.Enabled) { resoDesiredY = nUDResoY.Value; }
+            if (originalImage == null)
+            {
+                Logger.Info("●●●● ApplyColorCorrections originalImage = null");
+                return;
+            }
             Logger.Info("●●●● ApplyColorCorrections  source:{0}  Out-Size-mm:{1:0.00} x {2:0.00}   Original:{3} x {4}   useFullReso:{5}   redoColorAdjust:{6}", source, nUDWidth.Value, nUDHeight.Value, originalImage.Width, originalImage.Height, useFullReso, redoColorAdjust);
             resoFactorX = 1;
             resoFactorY = 1;
