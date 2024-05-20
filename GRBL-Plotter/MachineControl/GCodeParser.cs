@@ -153,6 +153,9 @@ namespace GrblPlotter
         public XyzabcuvwPoint(XyzPoint tmp)
         { X = tmp.X; Y = tmp.Y; Z = tmp.Z; A = tmp.A; B = 0; C = 0; U = 0; V = 0; W = 0; }
 
+        public static XyzabcuvwPoint operator -(XyzabcuvwPoint a, XyzabcuvwPoint b)
+        { return new XyzabcuvwPoint() { X = a.X - b.X, Y = a.Y - b.Y, Z = a.Z - b.Z, A = a.A - b.A, B = a.B - b.B, C = a.C - b.C }; }
+
         public static explicit operator XyPoint(XyzabcuvwPoint tmp)
         { return new XyPoint(tmp.X, tmp.Y); }
         public static explicit operator XyzPoint(XyzabcuvwPoint tmp)
@@ -615,7 +618,7 @@ namespace GrblPlotter
 
             if ((j == 0) && (Math.Abs(pOld.DistanceTo(pNew)) < precision))   // full circle
             {
-                tmp.angleDiff = - 2 * Math.PI;
+                tmp.angleDiff = -2 * Math.PI;
                 return tmp;
             }
 

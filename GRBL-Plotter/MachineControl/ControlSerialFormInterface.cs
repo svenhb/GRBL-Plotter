@@ -53,6 +53,7 @@
  * 2023-04-04 l:945 f:RequestSend print only-comments directly, no add to sendBuffer
  * 2023-08-03 l:1642 f:MissingConfirmationLength lock loop
  * 2024-02-25 add some locks to secure buffer
+ * 2024-03-20 l:952 f:RequestSend take care of (^2
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -948,11 +949,15 @@ namespace GrblPlotter
                 }
                 else
                 {
-                    if (keepComments && data.StartsWith("("))       // just print comment
+					if (data.StartsWith("(^")) 
+						keepComments = false;
+					
+                    if (keepComments && data.StartsWith("("))       	// just print comment
                     {
                         AddToLog("*** " + data);
                         return true;
                     }
+					
                     var tmp = CleanUpCodeLine(data, keepComments);
                     if ((!string.IsNullOrEmpty(tmp)) && (!tmp.StartsWith(";")))  //(tmp[0] != ';'))    // trim lines and remove all empty lines and comment lines
                     {

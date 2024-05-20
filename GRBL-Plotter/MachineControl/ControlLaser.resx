@@ -2002,7 +2002,7 @@
     <value>NoControl</value>
   </data>
   <data name="CbPatternYLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 97</value>
+    <value>6, 113</value>
   </data>
   <data name="CbPatternYLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 17</value>
@@ -2029,7 +2029,7 @@
     <value>0</value>
   </data>
   <data name="NudPatternYMax.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 71</value>
+    <value>6, 87</value>
   </data>
   <data name="NudPatternYMax.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 20</value>
@@ -2062,7 +2062,7 @@
     <value>NoControl</value>
   </data>
   <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
-    <value>67, 73</value>
+    <value>67, 89</value>
   </data>
   <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 13</value>
@@ -2086,7 +2086,7 @@
     <value>2</value>
   </data>
   <data name="NudPatternYMin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 45</value>
+    <value>6, 61</value>
   </data>
   <data name="NudPatternYMin.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 20</value>
@@ -2119,7 +2119,7 @@
     <value>NoControl</value>
   </data>
   <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
-    <value>67, 47</value>
+    <value>67, 63</value>
   </data>
   <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
     <value>27, 13</value>
@@ -2143,7 +2143,7 @@
     <value>4</value>
   </data>
   <data name="NudPatternYNumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 19</value>
+    <value>6, 35</value>
   </data>
   <data name="NudPatternYNumber.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 20</value>
@@ -2176,7 +2176,7 @@
     <value>NoControl</value>
   </data>
   <data name="label22.Location" type="System.Drawing.Point, System.Drawing">
-    <value>67, 21</value>
+    <value>67, 37</value>
   </data>
   <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 13</value>
@@ -2227,7 +2227,7 @@
     <value>True</value>
   </data>
   <data name="CbPatternXLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 97</value>
+    <value>6, 113</value>
   </data>
   <data name="CbPatternXLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 17</value>
@@ -2254,7 +2254,7 @@
     <value>0</value>
   </data>
   <data name="NudPatternXMax.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 71</value>
+    <value>6, 87</value>
   </data>
   <data name="NudPatternXMax.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 20</value>
@@ -2287,7 +2287,7 @@
     <value>NoControl</value>
   </data>
   <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
-    <value>67, 73</value>
+    <value>67, 89</value>
   </data>
   <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 13</value>
@@ -2311,7 +2311,7 @@
     <value>2</value>
   </data>
   <data name="NudPatternXMin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 45</value>
+    <value>6, 61</value>
   </data>
   <data name="NudPatternXMin.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 20</value>
@@ -2344,7 +2344,7 @@
     <value>NoControl</value>
   </data>
   <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
-    <value>67, 47</value>
+    <value>67, 63</value>
   </data>
   <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
     <value>38, 13</value>
@@ -2368,7 +2368,7 @@
     <value>4</value>
   </data>
   <data name="NudPatternXNumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 19</value>
+    <value>6, 35</value>
   </data>
   <data name="NudPatternXNumber.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 20</value>
@@ -2398,7 +2398,7 @@
     <value>True</value>
   </data>
   <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
-    <value>67, 21</value>
+    <value>67, 37</value>
   </data>
   <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 13</value>

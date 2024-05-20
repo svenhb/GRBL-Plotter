@@ -212,34 +212,34 @@
     <value>Überschrift über dem Testmuster</value>
   </data>
   <data name="CbPatternLabelFirst.Text" xml:space="preserve">
-    <value>Schreiben Sie zuerst Etiketten</value>
+    <value>Beschriftung zuerst</value>
   </data>
   <data name="CbPatternLabelFirst.ToolTip" xml:space="preserve">
-    <value>Wenn aktiviert, werden die Etiketten vor den Testbereichen graviert</value>
+    <value>Wenn aktiviert, wird die Beschriftung vor den Testbereichen graviert</value>
   </data>
   <data name="label28.Text" xml:space="preserve">
     <value>Geschwindigkeit</value>
   </data>
   <data name="NudPatternLabelSpeed.ToolTip" xml:space="preserve">
-    <value>Vorschubgeschwindigkeit zum Gravieren der Etiketten</value>
+    <value>Vorschubgeschwindigkeit zum Gravieren der Beschriftung</value>
   </data>
   <data name="NudPatternLabelPower.ToolTip" xml:space="preserve">
-    <value>Laserleistung zum Gravieren der Etiketten</value>
+    <value>Laserleistung zum Gravieren der Beschriftung</value>
   </data>
   <data name="label27.Text" xml:space="preserve">
     <value>Laserleistung</value>
   </data>
   <data name="groupBox10.Text" xml:space="preserve">
-    <value>Etikettengravur</value>
+    <value>Beschriftung gravieren</value>
   </data>
   <data name="groupBox9.Text" xml:space="preserve">
     <value>Testfläche/Rechteck</value>
   </data>
   <data name="groupBox8.Text" xml:space="preserve">
-    <value>Geschwindigkeit/Vorschub auf der Y-Achse</value>
+    <value>Geschwindigkeit Y-Achse</value>
   </data>
   <data name="groupBox7.Text" xml:space="preserve">
-    <value>Laserleistung auf der X-Achse</value>
+    <value>Laserleistung X-Achse</value>
   </data>
   <data name="BtnMaterialTest.Text" xml:space="preserve">
     <value>Testmuster erstellen</value>
@@ -254,7 +254,7 @@
     <value>Einzeltest erstellen</value>
   </data>
   <data name="BtnMaterialSingleTest.ToolTip" xml:space="preserve">
-    <value>Erstellen Sie einen einzelnen Testbereich mit minimaler Laserleistung und maximaler Vorschubgeschwindigkeit</value>
+    <value>Erstellt einen einzelnen Testbereich mit minimaler Laserleistung und maximaler Vorschubgeschwindigkeit</value>
   </data>
   <data name="NudPatternGap.ToolTip" xml:space="preserve">
     <value>Abstand zwischen Testbereichen</value>
@@ -281,7 +281,7 @@
     <value>Größe X</value>
   </data>
   <data name="CbPatternYLabel.Text" xml:space="preserve">
-    <value>Etikett anzeigen</value>
+    <value>Beschriftung gravieren</value>
   </data>
   <data name="CbPatternYLabel.ToolTip" xml:space="preserve">
     <value>Zeigt die angewendeten Vorschubraten links von den Testbereichen an</value>
@@ -305,7 +305,7 @@
     <value>Nummer</value>
   </data>
   <data name="CbPatternXLabel.Text" xml:space="preserve">
-    <value>Etikett anzeigen</value>
+    <value>Beschriftung gravieren</value>
   </data>
   <data name="CbPatternXLabel.ToolTip" xml:space="preserve">
     <value>Zeigt die angewandten Laserleistungen unterhalb der Testbereiche an</value>
