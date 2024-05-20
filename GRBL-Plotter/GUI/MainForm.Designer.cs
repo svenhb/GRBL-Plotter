@@ -202,7 +202,6 @@ namespace GrblPlotter
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.tBURL = new System.Windows.Forms.TextBox();
-            this.CbAddGraphic = new System.Windows.Forms.CheckBox();
             this.btnZeroC = new System.Windows.Forms.Button();
             this.btnZeroB = new System.Windows.Forms.Button();
             this.lblCurrentG = new System.Windows.Forms.Label();
@@ -213,6 +212,7 @@ namespace GrblPlotter
             this.btnZeroZ = new System.Windows.Forms.Button();
             this.btnZeroY = new System.Windows.Forms.Button();
             this.btnZeroX = new System.Windows.Forms.Button();
+            this.CbAddGraphic = new System.Windows.Forms.CheckBox();
             this.gBoxStream = new System.Windows.Forms.GroupBox();
             this.btnSimulatePause = new System.Windows.Forms.Button();
             this.btnSimulate = new System.Windows.Forms.Button();
@@ -310,6 +310,7 @@ namespace GrblPlotter
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cmsPictureBox = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.unDo2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.applyLastTransformToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
             this.cmsPicBoxReloadFile = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsPicBoxReloadFile2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -1312,16 +1313,6 @@ namespace GrblPlotter
             this.toolTip1.SetToolTip(this.tBURL, resources.GetString("tBURL.ToolTip"));
             this.tBURL.TextChanged += new System.EventHandler(this.TbURL_TextChanged);
             // 
-            // CbAddGraphic
-            // 
-            resources.ApplyResources(this.CbAddGraphic, "CbAddGraphic");
-            this.CbAddGraphic.Checked = global::GrblPlotter.Properties.Settings.Default.fromFormInsertEnable;
-            this.CbAddGraphic.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "fromFormInsertEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.CbAddGraphic.Name = "CbAddGraphic";
-            this.toolTip1.SetToolTip(this.CbAddGraphic, resources.GetString("CbAddGraphic.ToolTip"));
-            this.CbAddGraphic.UseVisualStyleBackColor = true;
-            this.CbAddGraphic.CheckedChanged += new System.EventHandler(this.CbAddGraphic_CheckedChanged);
-            // 
             // btnZeroC
             // 
             resources.ApplyResources(this.btnZeroC, "btnZeroC");
@@ -1399,6 +1390,16 @@ namespace GrblPlotter
             this.toolTip1.SetToolTip(this.btnZeroX, resources.GetString("btnZeroX.ToolTip"));
             this.btnZeroX.UseVisualStyleBackColor = true;
             this.btnZeroX.Click += new System.EventHandler(this.BtnZeroX_Click);
+            // 
+            // CbAddGraphic
+            // 
+            resources.ApplyResources(this.CbAddGraphic, "CbAddGraphic");
+            this.CbAddGraphic.Checked = global::GrblPlotter.Properties.Settings.Default.fromFormInsertEnable;
+            this.CbAddGraphic.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "fromFormInsertEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbAddGraphic.Name = "CbAddGraphic";
+            this.toolTip1.SetToolTip(this.CbAddGraphic, resources.GetString("CbAddGraphic.ToolTip"));
+            this.CbAddGraphic.UseVisualStyleBackColor = true;
+            this.CbAddGraphic.CheckedChanged += new System.EventHandler(this.CbAddGraphic_CheckedChanged);
             // 
             // gBoxStream
             // 
@@ -2116,6 +2117,7 @@ namespace GrblPlotter
             this.TbLaser.TickFrequency = 5;
             this.TbLaser.TickStyle = System.Windows.Forms.TickStyle.None;
             this.TbLaser.Scroll += new System.EventHandler(this.CbLaser_CheckedChanged);
+            this.TbLaser.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TbLaser_MouseDown);
             // 
             // tLPMitteUnten
             // 
@@ -2148,6 +2150,7 @@ namespace GrblPlotter
             // 
             this.cmsPictureBox.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.unDo2ToolStripMenuItem,
+            this.applyLastTransformToolStripMenuItem,
             this.toolStripSeparator17,
             this.cmsPicBoxReloadFile,
             this.cmsPicBoxReloadFile2,
@@ -2183,6 +2186,12 @@ namespace GrblPlotter
             resources.ApplyResources(this.unDo2ToolStripMenuItem, "unDo2ToolStripMenuItem");
             this.unDo2ToolStripMenuItem.Name = "unDo2ToolStripMenuItem";
             this.unDo2ToolStripMenuItem.Click += new System.EventHandler(this.UnDoToolStripMenuItem_Click);
+            // 
+            // applyLastTransformToolStripMenuItem
+            // 
+            this.applyLastTransformToolStripMenuItem.Name = "applyLastTransformToolStripMenuItem";
+            resources.ApplyResources(this.applyLastTransformToolStripMenuItem, "applyLastTransformToolStripMenuItem");
+            this.applyLastTransformToolStripMenuItem.Click += new System.EventHandler(this.applyLastTransformToolStripMenuItem_Click);
             // 
             // toolStripSeparator17
             // 
@@ -3133,7 +3142,7 @@ namespace GrblPlotter
             // 
             this.convertToPolarCoordinatesToolStripMenuItem.Name = "convertToPolarCoordinatesToolStripMenuItem";
             resources.ApplyResources(this.convertToPolarCoordinatesToolStripMenuItem, "convertToPolarCoordinatesToolStripMenuItem");
-            this.convertToPolarCoordinatesToolStripMenuItem.Click += new System.EventHandler(this.convertToPolarCoordinatesToolStripMenuItem_Click);
+            this.convertToPolarCoordinatesToolStripMenuItem.Click += new System.EventHandler(this.ConvertToPolarCoordinatesToolStripMenuItem_Click);
             // 
             // convertZToSspindleSpeedToolStripMenuItem
             // 
@@ -3903,6 +3912,7 @@ namespace GrblPlotter
         private System.Windows.Forms.ToolStripMenuItem cmsPicBoxClearWorkspace;
         private System.Windows.Forms.ToolStripMenuItem cmsPicBoxReloadFile2;
         private System.Windows.Forms.ToolStripMenuItem convertToPolarCoordinatesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem applyLastTransformToolStripMenuItem;
     }
 }
 

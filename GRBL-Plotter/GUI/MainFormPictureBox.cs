@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -45,14 +45,15 @@
 			  l:867 f:ZoomScroll don't reset view, on zoom=1
  * 2023-11-15 l:364 f:OnPaint_drawToolPath check for pathObjectPenColorOnlyNone	- show default color if all PenColors are "none"		  	
  * 2023-12-17 l:1038 f:CmsPicBoxReloadFile_Click add 2nd recent file load, if 1st is "lastProcessed.nc"
+ * 2024-05-20 add "Apply last transform"
 */
 
-using AForge.Imaging.Filters;
 using FastColoredTextBoxNS;
 using GrblPlotter.MachineControl;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Net;
 using System.Windows.Forms;
 
 namespace GrblPlotter
@@ -102,6 +103,8 @@ namespace GrblPlotter
 
         private readonly object lockObject = new object();
         private bool shiftedDisplay = false;
+
+        private bool logSelection = false;  //true;
 
         private XmlMarkerType markerType = XmlMarkerType.Figure;
         private XmlMarkerType lastMarkerType = XmlMarkerType.Figure;
@@ -242,11 +245,11 @@ namespace GrblPlotter
                             if (transformType == SelectionHandle.Handle.None)
                                 e.Graphics.DrawString(String.Format("Work-Pos:\r\nX:{0,7:0.000}\r\nY:{1,7:0.000}", picAbsPos.X, picAbsPos.Y), myFont8, Brushes.Black, stringpos);
                             else if (transformType == SelectionHandle.Handle.Rotate)
-                                e.Graphics.DrawString(String.Format("Rotate by:\r\n{0:0.0}°", SelectionHandle.angleDeg), myFont8, Brushes.Black, stringpos);
+                                e.Graphics.DrawString(String.Format("Rotate by:\r\n{0:0.0}°", SelectionHandle.ActualTransform.angleDeg), myFont8, Brushes.Black, stringpos);
                             else if (transformType == SelectionHandle.Handle.Move)
                                 e.Graphics.DrawString(String.Format("Move by:\r\nX:{0:0.0}\r\nY:{1:0.0}", (posMoveEnd.X - posMoveStart.X), (posMoveEnd.Y - posMoveStart.Y)), myFont8, Brushes.Black, stringpos);
                             else
-                                e.Graphics.DrawString(String.Format("Zoom by:\r\nX:{0:0.0}%\r\nY:{1:0.0}%", (SelectionHandle.scalingX * 100), (SelectionHandle.scalingY * 100)), myFont8, Brushes.Black, stringpos);
+                                e.Graphics.DrawString(String.Format("Zoom by:\r\nX:{0:0.0}%\r\nY:{1:0.0}%", (SelectionHandle.ActualTransform.scalingX * 100), (SelectionHandle.ActualTransform.scalingY * 100)), myFont8, Brushes.Black, stringpos);
 
 
                             /* label at upper left edge */
@@ -459,27 +462,30 @@ namespace GrblPlotter
                 posIsMoving = true;     // mouse-move
 
                 if (SelectionHandle.IsActive)
-                    MoveSelectedFigure(posMoveStart, posMoveEnd);	// Move selection-handles and frame during mouse down 
-
+                {
+                    MoveSelectedFigure(posMoveStart, posMoveEnd);  // Move selection-handles and frame during mouse down 
+                    if (logSelection) Logger.Trace("►►► PictureBox1_MouseMove MoveSelectedFigure start:{0:0.00};{1:0.00} end:{2:0.00};{3:0.00} Handle:{4}  Marker:{5}", posMoveStart.X, posMoveStart.Y, posMoveEnd.X, posMoveEnd.Y, transformType, markerType);
+                }
                 if (transformType == SelectionHandle.Handle.None)
                 {   // else move view of whole graphic
                     if (PointDistance(mouseMovePos, mouseDownPos) > 20) mouseWasMoved = true;
                     moveTranslation = new XyPoint(e.X, e.Y) - moveTranslationOld;  // calc delta move
                     pBoxTransform.Translate((float)moveTranslation.X / zoomFactor, (float)moveTranslation.Y / zoomFactor);	// change view
                     moveTranslationOld = new XyPoint(e.X, e.Y);
+                    if (logSelection) Logger.Trace("►►► PictureBox1_MouseMove move view start:{0:0.00};{1:0.00} end:{2:0.00};{3:0.00} ", posMoveStart.X, posMoveStart.Y, posMoveEnd.X, posMoveEnd.Y);
                 }
                 XyPoint diff = posMoveEnd - posMoveStart;
                 if ((diff.X != 0) || (diff.Y != 0))
                     previousClick = 0;  // no doubleclick
 
                 if (transformType == SelectionHandle.Handle.Rotate)
-                    StatusStripSet(2, string.Format("{0} {1:0.00}°  {2}", Localization.GetString("statusStripeSelectionRotate"), SelectionHandle.angleDeg, Localization.GetString("statusStripeSelectionRotateShift")), Color.Yellow);
+                    StatusStripSet(2, string.Format("{0} {1:0.00}°  {2}", Localization.GetString("statusStripeSelectionRotate"), SelectionHandle.ActualTransform.angleDeg, Localization.GetString("statusStripeSelectionRotateShift")), Color.Yellow);
                 else if (transformType == SelectionHandle.Handle.SizeXY)
-                    StatusStripSet(2, string.Format("{0} X:{1:0.00}%  Y:{2:0.00}%  {3}", Localization.GetString("statusStripeSelectionResize"), (SelectionHandle.scalingX * 100), (SelectionHandle.scalingY * 100), Localization.GetString("statusStripeSelectionResizeCtrl")), Color.Yellow);
+                    StatusStripSet(2, string.Format("{0} X:{1:0.00}%  Y:{2:0.00}%  {3}", Localization.GetString("statusStripeSelectionResize"), (SelectionHandle.ActualTransform.scalingX * 100), (SelectionHandle.ActualTransform.scalingY * 100), Localization.GetString("statusStripeSelectionResizeCtrl")), Color.Yellow);
                 else if (transformType == SelectionHandle.Handle.SizeX)
-                    StatusStripSet(2, string.Format("{0} X:{1:0.00}%  {2}", Localization.GetString("statusStripeSelectionResize"), (SelectionHandle.scalingX * 100), Localization.GetString("statusStripeSelectionMoveShift")), Color.Yellow);
+                    StatusStripSet(2, string.Format("{0} X:{1:0.00}%  {2}", Localization.GetString("statusStripeSelectionResize"), (SelectionHandle.ActualTransform.scalingX * 100), Localization.GetString("statusStripeSelectionMoveShift")), Color.Yellow);
                 else if (transformType == SelectionHandle.Handle.SizeY)
-                    StatusStripSet(2, string.Format("{0} Y:{1:0.00}%  {2}", Localization.GetString("statusStripeSelectionResize"), (SelectionHandle.scalingY * 100), Localization.GetString("statusStripeSelectionMoveShift")), Color.Yellow);
+                    StatusStripSet(2, string.Format("{0} Y:{1:0.00}%  {2}", Localization.GetString("statusStripeSelectionResize"), (SelectionHandle.ActualTransform.scalingY * 100), Localization.GetString("statusStripeSelectionMoveShift")), Color.Yellow);
                 else
                     StatusStripSet(2, string.Format("{0} X:{1:0.00}  Y:{2:0.00}   {3}", Localization.GetString("statusStripeSelectionMoved"), (posMoveEnd.X - posMoveStart.X), (posMoveEnd.Y - posMoveStart.Y), Localization.GetString("statusStripeSelectionMoveShift")), Color.Yellow);
             }
@@ -519,7 +525,7 @@ namespace GrblPlotter
                     {
                         diff = SelectionHandle.Translate(diff, snapOnGrid);
 
-                        if (markerType == XmlMarkerType.Node)
+                        if ((markerType == XmlMarkerType.Node) || (SelectionHandle.ActualTransform.markerType == XmlMarkerType.Node))
                         {
                             //	VisuGCode.pathMarkSelection.Reset();
                             SelectionHandle.UpdateSelectionPath(new PointF((float)posEnd.X, (float)posEnd.Y));
@@ -532,7 +538,7 @@ namespace GrblPlotter
                     }
                     else
                     {
-                        selectionMatrix.Translate((float)SelectionHandle.transformPoint.X, (float)SelectionHandle.transformPoint.Y);	// left-top point of selection-bounds
+                        selectionMatrix.Translate((float)SelectionHandle.ActualTransform.transformPoint.X, (float)SelectionHandle.ActualTransform.transformPoint.Y);	// left-top point of selection-bounds
                     }
                     if (transformType == SelectionHandle.Handle.SizeX)
                         selectionMatrix.Scale(scaleFactor.X, 1);
@@ -544,15 +550,15 @@ namespace GrblPlotter
                     else if (transformType == SelectionHandle.Handle.Rotate)
                     {
                         selectionMatrix.Reset();
-                        selectionMatrix.Translate((float)SelectionHandle.center.X, (float)SelectionHandle.center.Y);
+                        selectionMatrix.Translate((float)SelectionHandle.ActualTransform.center.X, (float)SelectionHandle.ActualTransform.center.Y);
                         selectionMatrix.Rotate(SelectionHandle.GetAngleDeg(posStart, posEnd, snapOnGrid));       // angle in degre
-                        selectionMatrix.Translate(-(float)SelectionHandle.center.X, -(float)SelectionHandle.center.Y);
+                        selectionMatrix.Translate(-(float)SelectionHandle.ActualTransform.center.X, -(float)SelectionHandle.ActualTransform.center.Y);
                         VisuGCode.pathMarkSelection.Transform(selectionMatrix);
                     }
                     if ((transformType != SelectionHandle.Handle.Move) && (transformType != SelectionHandle.Handle.Rotate))
                     {
                         SelectionHandle.Scale(diff, transformType, keepZoomRatio, snapOnGrid);
-                        selectionMatrix.Translate(-(float)SelectionHandle.transformPoint.X, -(float)SelectionHandle.transformPoint.Y);	// left-top point of selection-bounds
+                        selectionMatrix.Translate(-(float)SelectionHandle.ActualTransform.transformPoint.X, -(float)SelectionHandle.ActualTransform.transformPoint.Y);	// left-top point of selection-bounds
                         VisuGCode.pathMarkSelection.Transform(selectionMatrix);
                     }
                     selectionMatrix.Dispose();
@@ -575,7 +581,7 @@ namespace GrblPlotter
             pBoxTransform.Translate((float)moveTranslation.X / zoomFactor, (float)moveTranslation.Y / zoomFactor);
             moveTranslationOld = new XyPoint(x, y);
         }
-        private static MouseButtons _lastButtonUp = MouseButtons.None;
+        //    private static MouseButtons _lastButtonUp = MouseButtons.None;
         private static int previousClick = SystemInformation.DoubleClickTime;
 
         /******************************************************************
@@ -583,7 +589,7 @@ namespace GrblPlotter
 		*******************************************************************/
         private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            if (logDetailed) Logger.Trace("pictureBox1_MouseUp   e.x:{0} y:{1}  absPos-x:{2:0.00} y:{3:0.00}", e.X, e.Y, picAbsPos.X, picAbsPos.Y);
+            if (logDetailed || logSelection) Logger.Trace("▲▲▲ pictureBox1_MouseUp   e.x:{0} y:{1}  absPos-x:{2:0.00} y:{3:0.00}   handleActive:{4}  handle:{5}    marker:{6}    lastmarker:{7}", e.X, e.Y, picAbsPos.X, picAbsPos.Y, SelectionHandle.IsActive, transformType, markerType, lastMarkerType);
 
             Matrix tmp = pBoxTransform.Clone();
             mouseUpPos = e.Location;
@@ -591,57 +597,18 @@ namespace GrblPlotter
 
             if (SelectionHandle.IsActive && (posMoveStart.DistanceTo(posMoveEnd) != 0))	// store applied selection move
             {
-                TransformStart(transformType.ToString());
+                double dx = (posMoveEnd.X - posMoveStart.X);
+                double dy = (posMoveEnd.Y - posMoveStart.Y);
+                if (Panel.ModifierKeys == Keys.Shift)       // snap on grid
+                { dx = SelectionHandle.correctedDifference.X; dy = SelectionHandle.correctedDifference.Y; }
 
-                /* apply changes */
-                if (transformType == SelectionHandle.Handle.Move)
-                {
-                    double dx = (posMoveEnd.X - posMoveStart.X);
-                    double dy = (posMoveEnd.Y - posMoveStart.Y);
-                    if (Panel.ModifierKeys == Keys.Shift)       // snap on grid
-                    { dx = SelectionHandle.correctedDifference.X; dy = SelectionHandle.correctedDifference.Y; }
-
-                    if (markerType == XmlMarkerType.Node)
-                    {
-                        Logger.Info("PictureBox1_MouseUp  line:{0}  code:{1}", fCTBCode.Selection.ToLine, fCTBCode.SelectedText);
-                        string newLine = ModifyCode.ApplyXYOffsetSimple(fCTBCode.SelectedText, dx, dy);     // replace coordinate in text
-                        Logger.Info("Insert  line:{0}  code:{1}", fCTBCode.Selection.ToLine, newLine);
-                        fCTBCode.SelectedText = newLine;		// doesn't work, if folded
-                        Logger.Info("fCTBCode.SelectedText  '{0}'  ", fCTBCode.SelectedText);
-                    }
-                    else
-                        SetFctbCodeText(VisuGCode.TransformGCodeOffset(-dx, -dy, VisuGCode.Translate.None));
-
-                }
-                else if (transformType == SelectionHandle.Handle.Rotate)
-                    SetFctbCodeText(VisuGCode.TransformGCodeRotate(SelectionHandle.angleDeg, 1, (XyPoint)SelectionHandle.center, false));
-                else
-                {
-                    SetFctbCodeText(VisuGCode.TransformGCodeScale(SelectionHandle.scalingX * 100, SelectionHandle.scalingY * 100, (XyPoint)SelectionHandle.transformPoint));
-                    if (VisuGCode.ContainsG2G3Command() && (SelectionHandle.scalingX != SelectionHandle.scalingY))
-                    {
-                        StatusStripSet(2, "Code contains G2/G3 commands which can only be scaled with same x and y factor", Color.Yellow);
-                    }
-                }
+                SelectionHandle.SaveTransformData(transformType, dx, dy);
+                ApplyTransform(SelectionHandle.ActualTransform);
                 selectionWasChanged = true;
-
-                fCTBCodeClickedLineNow = fCTBCodeClickedLineLast;
-                TransformEnd();
-
-                VisuGCode.SetPosMarkerLine(clickedLineNr, false);       // restore merker pos.
-                fCTBCodeClickedLineLast = 0;
-                SelectionHandle.ClearSelected();
-
-                FoldBlocksByLevel(markerType, clickedLineNr);
-                VisuGCode.MarkSelectedFigure(-1);
-                Cursor = Cursors.Default;
-                fCTBCode.Focus();
-                VisuGCode.CreateRuler(VisuGCode.pathRuler, drawingSize, true);  // restore previous grid
             }
             transformType = SelectionHandle.Handle.None;
             posIsMoving = false;    // mouse-up
             allowZoom = true;
-            _lastButtonUp = e.Button;
 
             int now = System.Environment.TickCount;
             int diff = now - previousClick;
@@ -657,6 +624,7 @@ namespace GrblPlotter
                     FctbSetBookmark();
                 }
             }
+            applyLastTransformToolStripMenuItem.Visible = SelectionHandle.IsActive;
 
             previousClick = now;
             pBoxTransform = tmp.Clone();    // restore previous view
@@ -667,13 +635,72 @@ namespace GrblPlotter
             _projector_form?.Invalidate();
         }
 
+        private void ApplyTransform(SelectionHandle.TransformData tmpTransform)
+        {
+            transformType = tmpTransform.action;
+            if (transformType == SelectionHandle.Handle.None)
+                return;
+            TransformStart(transformType.ToString());
+            Logger.Trace("●●● ApplyTransform  Handle:{0}   Marker:{1}", transformType, markerType);
+
+            /* apply changes */
+            if (transformType == SelectionHandle.Handle.Move)
+            {
+                if ((markerType == XmlMarkerType.Node) || (SelectionHandle.ActualTransform.markerType == XmlMarkerType.Node))
+                {
+                    Logger.Info("PictureBox1_MouseUp  line:{0}  code:{1}", fCTBCode.Selection.ToLine, fCTBCode.SelectedText);
+                    string newLine = ModifyCode.ApplyXYOffsetSimple(fCTBCode.SelectedText, tmpTransform.dX, tmpTransform.dY);     // replace coordinate in text
+                    Logger.Info("Insert  line:{0}  code:{1}", fCTBCode.Selection.ToLine, newLine);
+                    fCTBCode.SelectedText = newLine;        // doesn't work, if folded
+                    Logger.Info("fCTBCode.SelectedText  '{0}'  ", fCTBCode.SelectedText);
+                }
+                else
+                    SetFctbCodeText(VisuGCode.TransformGCodeOffset(-tmpTransform.dX, -tmpTransform.dY, VisuGCode.Translate.None));
+
+            }
+            else if (transformType == SelectionHandle.Handle.Rotate)
+                /* use center of actual selection */
+                SetFctbCodeText(VisuGCode.TransformGCodeRotate(tmpTransform.angleDeg, 1, (XyPoint)SelectionHandle.ActualTransform.center, false));
+            else
+            {
+                /* use point of actual selection */
+                SetFctbCodeText(VisuGCode.TransformGCodeScale(tmpTransform.scalingX * 100, tmpTransform.scalingY * 100, (XyPoint)SelectionHandle.ActualTransform.transformPoint));
+                if (VisuGCode.ContainsG2G3Command() && (tmpTransform.scalingX != tmpTransform.scalingY))
+                {
+                    StatusStripSet(2, "Code contains G2/G3 commands which can only be scaled with same x and y factor", Color.Yellow);
+                }
+            }
+
+            fCTBCodeClickedLineNow = fCTBCodeClickedLineLast;
+            TransformEnd();
+
+            VisuGCode.SetPosMarkerLine(clickedLineNr, false);       // restore merker pos.
+            fCTBCodeClickedLineLast = 0;
+            SelectionHandle.ClearSelected();
+
+            FoldBlocksByLevel(markerType, clickedLineNr);
+            VisuGCode.MarkSelectedFigure(-1);
+            Cursor = Cursors.Default;
+            fCTBCode.Focus();
+            VisuGCode.CreateRuler(VisuGCode.pathRuler, drawingSize, true);  // restore previous grid
+        }
+
+        private void applyLastTransformToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Logger.Trace("applyLastTransformToolStripMenuItem_Click");
+            if (SelectionHandle.IsActive)
+                ApplyTransform(SelectionHandle.LastTransform);
+
+            _projector_form?.Invalidate();
+        }
+
         // find closest coordinate in GCode and mark
         private readonly bool expandGCode = true;
         private bool mouseDownLeftButton = false;
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDownPos = e.Location;
-            if (logDetailed) Logger.Trace("pictureBox1_MouseDown e.x:{0} y:{1}  absPos-x:{2:0.00} y:{3:0.00}", e.X, e.Y, picAbsPos.X, picAbsPos.Y);
+            if (logDetailed || logSelection) Logger.Trace("▼▼▼ pictureBox1_MouseDown e.x:{0} y:{1}  absPos-x:{2:0.00} y:{3:0.00}   handleActive:{4}   marker:{5}   lasmarker:{6}", e.X, e.Y, picAbsPos.X, picAbsPos.Y, SelectionHandle.IsActive, markerType, lastMarkerType);
             moveTranslationOld = new XyPoint(e.X, e.Y);
             allowZoom = false;
             mouseWasMoved = false;
@@ -707,6 +734,7 @@ namespace GrblPlotter
         private DistanceByLine markerProperties;
         private void SetFigureSelectionOnClick(bool keepMarkerType)
         {
+            if (logSelection) Logger.Trace("SetFigureSelectionOnClick   keepMarkerType:{0}  marker:{1}  lastmarker:{2}", keepMarkerType, markerType, lastMarkerType);
             if (fCTBCode.LinesCount > 2)
             {
                 if (manualEdit) { NewCodeEnd(); }
@@ -721,14 +749,26 @@ namespace GrblPlotter
 
                     bool modKeyCtrlShift = (Panel.ModifierKeys.HasFlag(Keys.Control) && Panel.ModifierKeys.HasFlag(Keys.Shift));
 
+
                     //    if ((transformType == SelectionHandle.Handle.None) || keepMarkerType)
+                    if (modKeyShift && (markerType == XmlMarkerType.Figure) && (PointDistance(mouseLastUpPos, mouseUpPos) > 10))
                     {
+                        if (logSelection) Logger.Trace("SetFigureSelectionOnClick  add selection");
+                        /*
+                         * Not possible because whole selection must be in one block start-line to end-line
+                         * */
+                    }
+                    else
+                    {
+                        /* Click on same object / same position: toggle selected objects (if possible):
+                         * 1st select Figure, 2nd select Group, 3rd select Tile, finally select nothing
+                         */
                         if (expandGCode)    //Properties.Settings.Default.FCTBBlockExpandOnSelect)
                         { foldLevel = foldLevelSelected; }
 
                         if (!keepMarkerType)
                         {
-                            Logger.Info("set figure old:{0}  grp:{1}  tile:{2}  col:{3}", markerType, XmlMarker.GetGroupCount(), XmlMarker.GetTileCount(), XmlMarker.GetCollectionCount());
+                            if (logSelection) Logger.Trace("set figure old:{0}  grp:{1}  tiles:{2}  collections:{3}", markerType, XmlMarker.GetGroupCount(), XmlMarker.GetTileCount(), XmlMarker.GetCollectionCount());
                             if (PointDistance(mouseLastUpPos, mouseUpPos) > 10)   //(clickedLineNr != markerProperties.lineNumber)
                             { markerType = XmlMarkerType.None; }
                             mouseLastUpPos = mouseUpPos;
@@ -736,11 +776,12 @@ namespace GrblPlotter
                             if (markerType == XmlMarkerType.None)
                             {
                                 markerType = lastMarkerType;    // XmlMarkerType.Figure;
-                            //    markerType =  XmlMarkerType.Figure;
-                                if (modKeyAlt) { markerType = XmlMarkerType.Node; }
+                                                                //    markerType =  XmlMarkerType.Figure;
+                                if (modKeyAlt) { SelectionHandle.ActualTransform.markerType = markerType = XmlMarkerType.Node; }
                                 else if (modKeyCtrlShift) { markerType = XmlMarkerType.Collection; }
                                 else if (modKeyCtrl) { markerType = XmlMarkerType.Group; }
                                 else if (modKeyShift) { markerType = XmlMarkerType.Tile; }
+                                if (logSelection) Logger.Trace("SetFigureSelectionOnClick   change markerType none to {0}   last:{1}", markerType, lastMarkerType);
                             }
                             else if (markerType == XmlMarkerType.Figure)
                             {
@@ -748,10 +789,12 @@ namespace GrblPlotter
                                 if (XmlMarker.GetGroupCount() > 0) markerType = XmlMarkerType.Group;
                                 else if (XmlMarker.GetTileCount() > 0) markerType = XmlMarkerType.Tile;
                                 else if (XmlMarker.GetCollectionCount() > 0) markerType = XmlMarkerType.Collection;
-                                else 
-                                {   markerType = XmlMarkerType.None;
+                                else
+                                {
+                                    markerType = XmlMarkerType.None;            // deselect
                                     lastMarkerType = XmlMarkerType.Figure;
                                 }
+                                if (logSelection) Logger.Trace("SetFigureSelectionOnClick   change markerType Figure to {0}   last:{1}", markerType, lastMarkerType);
                             }
                             else if (markerType == XmlMarkerType.Group)
                             {
@@ -760,10 +803,11 @@ namespace GrblPlotter
                                 else if (XmlMarker.GetCollectionCount() > 0) markerType = XmlMarkerType.Collection;
                                 else
                                 {
-                                    markerType = XmlMarkerType.None;
+                                    markerType = XmlMarkerType.None;            // deselect
                                     lastMarkerType = XmlMarkerType.Figure;
                                 }
 
+                                if (logSelection) Logger.Trace("SetFigureSelectionOnClick   change markerType Group to {0}   last:{1}", markerType, lastMarkerType);
                             }
                             else if (markerType == XmlMarkerType.Tile)
                             {
@@ -771,23 +815,30 @@ namespace GrblPlotter
                                 if (XmlMarker.GetCollectionCount() > 0) markerType = XmlMarkerType.Collection;
                                 else
                                 {
-                                    markerType = XmlMarkerType.None;
+                                    markerType = XmlMarkerType.None;            // deselect
                                     lastMarkerType = XmlMarkerType.Figure;
                                 }
-
+                                if (logSelection) Logger.Trace("SetFigureSelectionOnClick   change markerType Tile to {0}   last:{1}", markerType, lastMarkerType);
                             }
                             else
-                            { markerType = XmlMarkerType.None; 
+                            {
+                                SelectionHandle.ActualTransform.markerType = markerType = XmlMarkerType.None;
                                 lastMarkerType = XmlMarkerType.Figure;
-                                VisuGCode.MarkSelectedFigure(-1); StatusStripClear(2); return; }
+                                VisuGCode.MarkSelectedFigure(-1);
+                                StatusStripClear(2);
+                                if (logSelection) Logger.Trace("SetFigureSelectionOnClick   ELSE markerType Tile to {0}   last:{1}", markerType, lastMarkerType);
+                                return;
+                            }
 
                         }
                         /* 2. find corresponding Gcode-line, by click coordinate picAbsPos */
-                        SelectionHandle.SelectedMarkerType = lastMarkerType = markerType;
+                        if (markerType != XmlMarkerType.None)
+                        { SelectionHandle.SelectedMarkerType = lastMarkerType = markerType; }
+
                         VisuGCode.MarkerSize = markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (picScaling * zoomFactor));
 
                         if (!keepMarkerType)
-                            markerProperties = VisuGCode.SetPosMarkerNearBy(picAbsPos, (markerType == XmlMarkerType.Node));  // find line with coord nearby, mark / unmark figure in GCodeVisuAndTransform.cs
+                            markerProperties = VisuGCode.SetPosMarkerNearBy(picAbsPos, ((markerType == XmlMarkerType.Node) || (SelectionHandle.ActualTransform.markerType == XmlMarkerType.Node)));  // find line with coord nearby, mark / unmark figure in GCodeVisuAndTransform.cs
 
                         clickedLineNr = markerProperties.lineNumber;
 
@@ -803,14 +854,19 @@ namespace GrblPlotter
                             }
                         }
 
-                        if (logDetailed)
+                        if (logDetailed || logSelection)
                             Logger.Trace("🗲🗲🗲 SetFigureSelectionOnClick pos:{0:0.0} ; {1:0.0} markerType:{2}  found line:{3}", picAbsPos.X, picAbsPos.Y, markerType, clickedLineNr);
 
                         fCTBCodeClickedLineNow = clickedLineNr;
 
                         /* check if line-nr is within tile, group or figure and highlight GCode */
                         /* highlight selected figure or group */
-                        FindFigureMarkSelection(markerType, clickedLineNr, markerProperties);//
+                        if (!FindFigureMarkSelection(markerType, clickedLineNr, markerProperties))
+                        {
+                            markerType = XmlMarkerType.None;
+                            lastMarkerType = XmlMarkerType.Figure;
+                        }
+
                         selectionPathOrig = (GraphicsPath)VisuGCode.pathMarkSelection.Clone();
 
                         FoldBlocksByLevel(markerType, clickedLineNr);
@@ -839,7 +895,7 @@ namespace GrblPlotter
         private void PictureBox1_DoubleClick(object sender, MouseEventArgs e)
         {
             //if (logDetailed) 
-                Logger.Trace("pictureBox1_DoubleClick {☺}", e.Button);
+            Logger.Trace("pictureBox1_DoubleClick {☺}", e.Button);
             if (e.Button == MouseButtons.Middle)
             {
                 pBoxTransform.Reset(); zoomFactor = 1;
@@ -1041,14 +1097,14 @@ namespace GrblPlotter
         {
             Logger.Trace("CmsPicBoxReloadFile_Click  tooltip:{0}   file:{1}", cmsPicBoxReloadFile.ToolTipText, lastLoadFile);
             ToolStripMenuItem tmp = (ToolStripMenuItem)sender;
-            ReStartConvertFile(sender, e, tmp.Name.Contains("2")? 1:0);
+            ReStartConvertFile(sender, e, tmp.Name.Contains("2") ? 1 : 0);
         }
 
         private void CmsPicBoxClearWorkspace_Click(object sender, EventArgs e)
-        {  ClearWorkspace(); }
+        { ClearWorkspace(); }
         private void ClearWorkspace()
         {
-			Logger.Info("▀▀▀▀▀▀▀▀▀▀ Clear Workspace ▀▀▀▀▀▀▀▀▀▀");
+            Logger.Info("▀▀▀▀▀▀▀▀▀▀ Clear Workspace ▀▀▀▀▀▀▀▀▀▀");
             UnDo.SetCode(fCTBCode.Text, cmsPicBoxClearWorkspace.Text, this);
             GuiVariables.offsetOriginX = (double)Properties.Settings.Default.importGraphicOffsetOriginX;
             GuiVariables.offsetOriginY = (double)Properties.Settings.Default.importGraphicOffsetOriginY;
@@ -1059,7 +1115,7 @@ namespace GrblPlotter
             NewCodeStart();         // ClearWorkspace
             fCTBCode.Clear();
             NewCodeEnd();
-			globalCollectionCounter = 1;
+            globalCollectionCounter = 1;
         }
 
         private void CmsPicBoxMoveToFirstPos_Click(object sender, EventArgs e)
@@ -1325,8 +1381,8 @@ namespace GrblPlotter
             int line = 0;
             using (GCodeSelectionProperties f = new GCodeSelectionProperties())
             {
-                f.CenterX = (double)SelectionHandle.center.X;
-                f.CenterY = (double)SelectionHandle.center.Y;
+                f.CenterX = (double)SelectionHandle.ActualTransform.center.X;
+                f.CenterY = (double)SelectionHandle.ActualTransform.center.Y;
                 if (lastMarkerType == XmlMarkerType.Figure)
                 {
                     f.AttributePenWidth = penWidth = XmlMarker.lastFigure.PenWidth;
@@ -1362,8 +1418,8 @@ namespace GrblPlotter
                     }
                     if (f.CenterWasChanged)
                     {
-                        double dx = (double)SelectionHandle.center.X - f.CenterX;
-                        double dy = (double)SelectionHandle.center.Y - f.CenterY;
+                        double dx = (double)SelectionHandle.ActualTransform.center.X - f.CenterX;
+                        double dy = (double)SelectionHandle.ActualTransform.center.Y - f.CenterY;
                         SetFctbCodeText(VisuGCode.TransformGCodeOffset(dx, dy, VisuGCode.Translate.None));
                         fCTBCodeClickedLineNow = fCTBCodeClickedLineLast;
                         fCTBCodeClickedLineLast = 0;
@@ -1388,6 +1444,14 @@ namespace GrblPlotter
             string newAtt = string.Format("{0}=\"{1}\"", xmlAtt, newVal);
             //    MessageBox.Show("-"+origAtt+"-\r\n-"+newAtt+"-");
             code = code.Replace(origAtt, newAtt);
+        }
+
+        private void ResetPicBoxSelections()
+        {
+            SelectionHandle.ClearSelected();
+            VisuGCode.MarkSelectedFigure(-1);
+            lastMarkerType = XmlMarkerType.Figure;
+            pictureBox1.Invalidate();
         }
     }
 }

@@ -30,6 +30,7 @@
  * 2023-01-28 add AfterImport to bring main GUI to front after getting gcode
  * 2023-09-06 l:235 f:InsertCodeFromForm add SetSelection (MainFormPictureBox.cs) to select newly inserted object
  * 2024-03-11 l:851 new f: convertToPolarCoordinatesToolStripMenuItem_Click
+ * 2024-05-06 l:385 f:GetGCodeJogCreator2 check if form != null
 */
 using FastColoredTextBoxNS;
 using System;
@@ -153,7 +154,7 @@ namespace GrblPlotter
                 insertLineNr = XmlMarker.FindInsertPositionFigureMostTop(-1);  // no group? find figure
                 createGroup = true;
             }
-            codeInsert=new System.Drawing.Point(insertLineNr, 0);
+            codeInsert = new System.Drawing.Point(insertLineNr, 0);
 
             Logger.Info("▀▀▀▀▀▀ InsertCodeFromForm:{0} insertCode:{1}  insertAt:{2}", sourceForm, insertCode, insertLineNr);
 
@@ -354,12 +355,15 @@ namespace GrblPlotter
             Logger.Info("▀▀▀▀▀▀ GetGCodeFromShape");
             if (!isStreaming)
             {
-                InsertCodeFromForm(_shape_form.ShapeGCode, "from shape", _shape_form.PathBackground);
-                Properties.Settings.Default.counterImportShape += 1;
-                string source = "Ishp";
-                if (Properties.Settings.Default.fromFormInsertEnable)
-                    source = "I" + source;
-                AfterImport(source);
+                if (_shape_form != null)
+                {
+                    InsertCodeFromForm(_shape_form.ShapeGCode, "from shape", _shape_form.PathBackground);
+                    Properties.Settings.Default.counterImportShape += 1;
+                    string source = "Ishp";
+                    if (Properties.Settings.Default.fromFormInsertEnable)
+                        source = "I" + source;
+                    AfterImport(source);
+                }
             }
             else
                 MessageBox.Show(Localization.GetString("mainStreamingActive"));
@@ -369,7 +373,12 @@ namespace GrblPlotter
         {
             Logger.Info("▀▀▀▀▀▀ GetGCodeJogCreator");
             if (!isStreaming)
-            { SendCommands(_jogPathCreator_form.JogGCode, true); }
+            {
+                if (_jogPathCreator_form != null)
+                {
+                    SendCommands(_jogPathCreator_form.JogGCode, true);
+                }
+            }
             else
                 MessageBox.Show(Localization.GetString("mainStreamingActive"));
         }
@@ -379,13 +388,16 @@ namespace GrblPlotter
             Logger.Info("▀▀▀▀▀▀ GetGCodeJogCreator2");
             if (!isStreaming)
             {
-                SimuStop();
-                importOptions = "";
-                NewCodeStart();             // GetGCodeJogCreator2
-                SetFctbCodeText(_jogPathCreator_form.JogGCode);
-                SetLastLoadedFile("from jog path creator", "");
-                NewCodeEnd();       // GetGCodeJogCreator2
-                ShowImportOptions();
+                if (_jogPathCreator_form != null)
+                {
+                    SimuStop();
+                    importOptions = "";
+                    NewCodeStart();             // GetGCodeJogCreator2
+                    SetFctbCodeText(_jogPathCreator_form.JogGCode);
+                    SetLastLoadedFile("from jog path creator", "");
+                    NewCodeEnd();       // GetGCodeJogCreator2
+                    ShowImportOptions();
+                }
             }
             else
                 MessageBox.Show(Localization.GetString("mainStreamingActive"));
@@ -465,9 +477,14 @@ namespace GrblPlotter
         private void TransformStart(string action, bool setUndo = true)//, bool resetMark = true)
         {
             Logger.Info("▼▼▼▼▼▼ TransformStart {0}", action);
+            //MyApplication.ESCwasPressed = false;
+            StatusStripClear();
+            StatusStripSet(0, string.Format("Transform Start {0}", action), Color.White);
+            Application.DoEvents();
+
             Cursor.Current = Cursors.WaitCursor;
-			if (setUndo)
-				UnDo.SetCode(fCTBCode.Text, action, this);
+            if (setUndo)
+                UnDo.SetCode(fCTBCode.Text, action, this);
             showPicBoxBgImage = false;                      // don't show background image anymore
             pictureBox1.BackgroundImage = null;
             pBoxTransform.Reset();
@@ -490,6 +507,11 @@ namespace GrblPlotter
             _projector_form?.Invalidate();
             GuiVariables.WriteDimensionToRegistry();
             Logger.Info("▲▲▲▲▲▲ TransformEnd");
+            if (MyApplication.ESCwasPressed)
+                StatusStripSet(2, string.Format("ESC abort transform"), Color.Yellow);
+            else
+                StatusStripClear();
+            Application.DoEvents();
         }
 
         private void BtnOffsetApply_Click(object sender, EventArgs e)
@@ -826,6 +848,10 @@ namespace GrblPlotter
                     Properties.Settings.Default.guiBackgroundShow = toolStripViewBackground.Checked = true;
                     {
                         //transformStart();
+                        MyApplication.ESCwasPressed = false;
+                        StatusStripClear();
+                        StatusStripSet(0, string.Format("Transform Start Radius compenasation"), Color.White);
+                        Application.DoEvents();
                         Cursor.Current = Cursors.WaitCursor;
                         UnDo.SetCode(fCTBCode.Text, string.Format("Radius compensation {0:0.00}", radius), this);
                         showPicBoxBgImage = false;                  // don't show background image anymore
@@ -849,17 +875,26 @@ namespace GrblPlotter
             }
         }
 
-        private void convertToPolarCoordinatesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ConvertToPolarCoordinatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TransformStart("Polar");
+            MyApplication.ESCwasPressed = false;
+            TransformStart("Polar 1");
             EventCollector.SetTransform("Tg23");
             heightMapGridWidth = (float)Properties.Settings.Default.importGCConvertToPolarAccuracy;
+            Logger.Trace("... Convert to polar - line count before:{0}, break into:{1}", fCTBCode.Lines.Count, heightMapGridWidth);
+            StatusStripSet(1, string.Format("break lines in to segments of {0}", heightMapGridWidth), Color.White);
+            Application.DoEvents();
             fCTBCode.Text = VisuGCode.CreateGCodeProg(true, true, false, ConvertMode.Nothing); //VisuGCode.ReplaceG23();
             TransformEnd();
+
+            Logger.Trace("... Convert to polar - line count after:{0}", fCTBCode.Lines.Count);
             TransformStart("Polar 2", false); // Undo already set
             EventCollector.SetTransform("Tpol");
+            StatusStripSet(1, string.Format("convert to polar coordinates"), Color.White);
+            Application.DoEvents();
             fCTBCode.Text = VisuGCode.ConvertToPolar();
             TransformEnd();
+            Logger.Trace("... Convert to polar - line count after:{0}", fCTBCode.Lines.Count);
         }
 
         private void ErsetzteG23DurchLinienToolStripMenuItem_Click(object sender, EventArgs e)
@@ -964,8 +999,12 @@ namespace GrblPlotter
 
         private void UnDoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            MyApplication.ESCwasPressed = false;
+            string tmp = unDoToolStripMenuItem.Text;
+            Logger.Info("▼▼▼▼▼▼ {0}", tmp);
             fCTBCode.Text = UnDo.GetCode();
             TransformEnd();
+            StatusStripSet(1, string.Format("{0}", tmp), Color.White);
             SelectionHandle.ClearSelected();
         }
     }

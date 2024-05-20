@@ -53,6 +53,8 @@ namespace GrblPlotter
     {
         private static readonly string VersionAddOn = "";
 
+        internal static bool ESCwasPressed = false;
+
         public static string GetVersion()
         { return System.Windows.Forms.Application.ProductVersion.ToString() + VersionAddOn; }
 

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -62,6 +62,7 @@
  * 2023-03-09 l:1213 bugfix start streaming
  * 2023-05-30 l:532 f:MainTimer_Tick add _message_form close
  * 2023-09-11 l:270 f:SplashScreenTimer_Tick multiple file import and issue #360 -> new function MainFormLoadFile.cs - LoadFiles(string[] fileList, int minIndex)
+ * 2024-05-19 l:1159 f:BtnReset_Click removed StopStreaming to avoid applying code after "stop" from flowControlText
 */
 
 using GrblPlotter.GUI;
@@ -128,11 +129,12 @@ namespace GrblPlotter
             Localization.UpdateLanguage(Properties.Settings.Default.guiLanguage);
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
+            UpdateLogging();            // set logging flags
 
+            Logger.Trace("###### START GRBL-Plotter Ver. {0} {1}  ######", MyApplication.GetVersion(), MyApplication.GetLinkerTimestampUtc(System.Reflection.Assembly.GetExecutingAssembly()).ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss"));
             Logger.Info(culture, "###### START GRBL-Plotter Ver. {0} {1} Language: {2}   OS: {3} ######", MyApplication.GetVersion(), MyApplication.GetCompilationDate(), ci, System.Environment.OSVersion);
             Logger.Info("Info {0}", Properties.Settings.Default.guiLastEndReason);
             EventCollector.Init();
-            UpdateLogging();            // set logging flags
 
             InitializeComponent();      // controls
             RemoveCursorNavigation(this.Controls);
@@ -194,6 +196,12 @@ namespace GrblPlotter
                     toolStripMenuItem2.DropDownItems.Add(fileRecent); //add the menu to "recent" menu
                 }
             }
+
+            int toolSelect = Properties.Settings.Default.guiToolSelection;
+            if ((toolSelect < 0) || (toolSelect >= tabControl1.TabCount))
+                toolSelect = 0;
+            tabControl1.SelectedIndex = toolSelect;
+
             LoadExtensionList();			// fill menu with available extension-scripts
             CmsPicBoxEnable(false);			// no graphic - no tasks
             cmsPicBoxReloadFile.ToolTipText = string.Format(culture, "Load '{0}'", MRUlist[0]); // set last loaded in cms menu
@@ -224,7 +232,7 @@ namespace GrblPlotter
         {
             // Use the Constructor in a Windows Form for ensuring that initialization is done properly.
             // Use load event: code that requires the window size and location to be known.
-
+            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             SetGUISize();               // resize GUI arcodring last size and check if within display in MainFormUpdate.cs
 
             if (Properties.Settings.Default.guiCheckUpdate)
@@ -324,6 +332,7 @@ namespace GrblPlotter
             Properties.Settings.Default.locationMForm = Location;
             ControlPowerSaving.EnableStandby();
             Properties.Settings.Default.mainFormSplitDistance = splitContainer1.SplitterDistance;
+            Properties.Settings.Default.guiToolSelection = tabControl1.SelectedIndex;
 
             Properties.Settings.Default.guiLastEnd = DateTime.Now.Ticks;
 
@@ -939,12 +948,19 @@ namespace GrblPlotter
                 if (Grbl.isConnected)
                     SendCommand(m + " S" + speed.ToString());
                 SetTextThreadSave(LblSpeedSetVal, speed.ToString(), Color.Yellow);
+
                 CbLaser.CheckedChanged -= CbLaser_CheckedChanged;
+                RbLaserM3.CheckedChanged -= CbLaser_CheckedChanged;
+                RbLaserM4.CheckedChanged -= CbLaser_CheckedChanged;
+
                 CbLaser.Checked = true;
                 TbLaser.Value = (int)NudSpeed.Value;
                 RbLaserM3.Checked = RbSpindleCW.Checked;
                 RbLaserM4.Checked = !RbSpindleCW.Checked;
                 PbLaser.Visible = true;
+
+                RbLaserM4.CheckedChanged += CbLaser_CheckedChanged;
+                RbLaserM3.CheckedChanged += CbLaser_CheckedChanged;
                 CbLaser.CheckedChanged += CbLaser_CheckedChanged;
             }
             else
@@ -957,7 +973,16 @@ namespace GrblPlotter
                 CbLaser.CheckedChanged += CbLaser_CheckedChanged;
             }
         }
+        private void TbLaser_MouseDown(object sender, MouseEventArgs e)
+        {
+            SendLaserCommand();
+        }
+
         private void CbLaser_CheckedChanged(object sender, EventArgs e)
+        {
+            SendLaserCommand();
+        }
+        private void SendLaserCommand()
         {
             string m = "M3";
             if (RbLaserM4.Checked) m = "M4";
@@ -968,21 +993,31 @@ namespace GrblPlotter
             else
                 speed = (int)Math.Round((float)TbLaser.Value * 10);
 
+            bool sendG1ToActivateLaser = _serial_form.IsLasermode;// && (LblLaserSetVal.Text == "0");
+
             if (CbLaser.Checked)
             {
                 if (Grbl.isConnected)
                 {
-                    if (_serial_form.IsLasermode) SendCommand(string.Format(culture, "$J=G91X0.0001F1000"));    // move G1 tiny step to force laser on
+                    if (sendG1ToActivateLaser) SendCommand(string.Format(culture, "$J=G91X0.0001F1000"));    // move G1 tiny step to force laser on
                     SendCommand(m + " S" + speed.ToString());
                     SetTextThreadSave(LblLaserSetVal, speed.ToString(), Color.Yellow);
                     PbLaser.Visible = true;
-                    if (_serial_form.IsLasermode) SendCommand(string.Format(culture, "$J=G91X-0.0001F1000"));   // move G1 tiny step back
+                    if (sendG1ToActivateLaser) SendCommand(string.Format(culture, "$J=G91X-0.0001F1000"));   // move G1 tiny step back
                 }
                 CbSpindle.CheckedChanged -= CbSpindle_CheckedChanged;
+                RbSpindleCW.CheckedChanged -= CbSpindle_CheckedChanged;
+                RbSpindleCCW.CheckedChanged -= CbSpindle_CheckedChanged;
+                NudSpeed.ValueChanged -= CbSpindle_CheckedChanged;
+
                 CbSpindle.Checked = true;
                 NudSpeed.Value = TbLaser.Value;
                 RbSpindleCW.Checked = RbLaserM3.Checked;
                 RbSpindleCCW.Checked = !RbLaserM3.Checked;
+
+                NudSpeed.ValueChanged += CbSpindle_CheckedChanged;
+                RbSpindleCCW.CheckedChanged += CbSpindle_CheckedChanged;
+                RbSpindleCW.CheckedChanged += CbSpindle_CheckedChanged;
                 CbSpindle.CheckedChanged += CbSpindle_CheckedChanged;
             }
             else
@@ -1121,7 +1156,7 @@ namespace GrblPlotter
             if (_serial_form.IsConnectedToGrbl())
             {
                 Logger.Trace("BtnReset_Click  IsConnectedToGrbl");
-                StopStreaming(true);
+            //    StopStreaming(true);          // removed 2024-05-19
                 _serial_form.GrblReset(true);   // savePos
             }
             isStreaming = false;
@@ -1694,7 +1729,6 @@ namespace GrblPlotter
             else
                 CbAddGraphic.BackColor = Color.Transparent;
         }
-
     }
 }
 

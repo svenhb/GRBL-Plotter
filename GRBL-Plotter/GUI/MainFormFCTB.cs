@@ -932,7 +932,7 @@ namespace GrblPlotter
         {
             if ((manualEdit || !VisuGCode.CodeBlocksAvailable() || isStreaming))
                 return false;
-            if (logDetailed)
+            if (logDetailed || logSelection)
                 Logger.Trace("FindFigureMarkSelection marker:{0}  line:{1}  ", marker, clickedLine);//, collapse);
 
             fCTBCode.Selection.ColumnSelectionMode = false;

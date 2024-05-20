@@ -71,6 +71,8 @@
  * 1928 UseCaseDialog
  * 1946 LoadExtensionList
 */
+using AForge.Imaging.Filters;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -79,6 +81,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.ServiceModel.Description;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
@@ -115,7 +118,6 @@ namespace GrblPlotter
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 LoadFile(openFileDialog1.FileName);
-                isHeightMapApplied = false;
             }
         }
         // handle MRU List
@@ -223,6 +225,7 @@ namespace GrblPlotter
         private void NewCodeStart(bool cleanupGraphic = true)
         {
             Logger.Trace("===== newCodeStart - clear 2D-view and editor");
+            GcodeSummary.MetadataUse = false;
             stopwatch.Start();
             Cursor.Current = Cursors.WaitCursor;
             pictureBox1.Cursor = Cursors.WaitCursor;
@@ -575,10 +578,14 @@ namespace GrblPlotter
                 return true;
             }
 
+            _heightmap_form?.SetBtnApply(isHeightMapApplied);
+            isHeightMapApplied = false;
+
             String ext = Path.GetExtension(fileName).ToLower();
             EventCollector.SetImport("I" + ext.Replace(".", ""));		// file without extension?
             MainTimer.Stop();
             MainTimer.Start();
+            importOptions = "";
 
             if (ext == ".ini")
             {
@@ -593,13 +600,16 @@ namespace GrblPlotter
                 return true;
             }
             else
-                Logger.Info("▀▀▀▀▀▀▀▀▀▀ Load file START {0}", fileName);
-
+            {
+                var prop = Properties.Settings.Default;
+                bool addFiles = prop.fromFormInsertEnable || prop.multipleLoadAllwaysLoad;
+                Logger.Info("▀▀▀▀▀▀▀▀▀▀ Load file START {0}   insert:{1}   multiple:{2}", fileName, prop.fromFormInsertEnable, prop.multipleLoadAllwaysLoad);
+                if (addFiles) { importOptions = "<ADD files> "; }
+            }
 
             StatusStripSet(1, string.Format("[{0}: {1}]", Localization.GetString("statusStripeFileLoad"), fileName), Color.Lime);
             StatusStripSet(2, "Press 'Space bar' to toggle PenUp path", Color.Lime);
 
-            importOptions = "";
             this.Invalidate();      // force gui update
 
             showPathPenUp = true;
@@ -765,6 +775,10 @@ namespace GrblPlotter
                 // pBoxTransform.Reset();	// already done in function NewCodeStart
                 EnableCmsCodeBlocks(VisuGCode.CodeBlocksAvailable());
                 pictureBox1.Invalidate();
+                if (VisuGCode.tangentialAxisEnable && (VisuGCode.tangentialAxisFullTurn != (double)Properties.Settings.Default.importGCTangentialTurn))
+                {   StatusStripSet(2,string.Format("Tangential Axis Full Turn: {0} != {1}", VisuGCode.tangentialAxisFullTurn, Properties.Settings.Default.importGCTangentialTurn),Color.Fuchsia);
+                    MarkErrorLine(VisuGCode.tangentialAxisError);
+                }
                 return true;
             }
             else
@@ -1010,6 +1024,7 @@ namespace GrblPlotter
                             int metaDataCount = GcodeDefaults.Set(metaData);
                             Logger.Info("►►► StartConvert Process Metadata from SVG file: count:{0} source:{1}", metaDataCount, metaData.Replace("\n", "_").Replace("\r", "_"));
                             GcodeSummary.Metadata = Localization.GetString("importMessageSVGMetaDataOk");
+                            GcodeSummary.MetadataUse = true;
                         }
                     }
                     GcodeSummary.Filename = "SVG from clipboard";
@@ -1152,6 +1167,7 @@ namespace GrblPlotter
                         int metaDataCount = GcodeDefaults.Set(metaData);
                         Logger.Info("►►► StartConvert Process Metadata from SVG file: count:{0} source:{1}", metaDataCount, metaData.Replace("\n", "_").Replace("\r", "_"));
                         GcodeSummary.Metadata = Localization.GetString("importMessageSVGMetaDataOk");
+                        GcodeSummary.MetadataUse = true;
                     }
                 }
                 GcodeSummary.Filename = "SVG from clipboard";
@@ -1290,6 +1306,7 @@ namespace GrblPlotter
         private void StartConvert(Graphic.SourceType type, string source)
         {
             UseCaseDialog();
+            GcodeSummary.MetadataUse = false;
 
             if (Properties.Settings.Default.importGroupObjects)
             {
@@ -1330,6 +1347,7 @@ namespace GrblPlotter
                         Logger.Info("►►► StartConvert Process Metadata from SVG file: count:{0} source:{1}", metaDataCount, metaData.Replace("\n", "_").Replace("\r", "_"));
                         conversionInfo += "[SVG Metadata]";
                         GcodeSummary.Metadata = Localization.GetString("importMessageSVGMetaDataOk");
+                        GcodeSummary.MetadataUse = true;
                     }
                 }
                 else
@@ -1337,6 +1355,7 @@ namespace GrblPlotter
                     if (metaDataAvailable)
                     {
                         GcodeSummary.Metadata = Localization.GetString("importMessageSVGMetaDataNok1");
+                        GcodeSummary.MetadataUse = false;
                     }
                 }
             }
@@ -1888,6 +1907,7 @@ namespace GrblPlotter
         // Ctrl-V to paste graphics
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
+            MyApplication.ESCwasPressed = false;
             if (pictureBox1.Focused)
             {
                 if (e.KeyCode == Keys.Space)    // space = hide pen-up path
@@ -1899,10 +1919,10 @@ namespace GrblPlotter
                 }
                 else if (e.KeyCode == Keys.Escape)    // escape = deselct
                 {
-                    SelectionHandle.ClearSelected();
-                    VisuGCode.MarkSelectedFigure(-1);
-                    pictureBox1.Invalidate();
+                    ResetPicBoxSelections();
+                    MyApplication.ESCwasPressed = true; // try to abort transform process
                     e.SuppressKeyPress = true;
+                    Logger.Trace("MainForm_KeyDown  ESC 1");
                 }
                 else if ((e.KeyCode == Keys.Right) || (e.KeyCode == Keys.NumPad6))
                 { MoveView(-1, 0); }
@@ -1930,6 +1950,14 @@ namespace GrblPlotter
                         }*/
                 e.SuppressKeyPress = true;
             }
+            else if (e.KeyCode == Keys.Escape)    // escape = deselct
+            {
+                ResetPicBoxSelections();
+                MyApplication.ESCwasPressed = true; // try to abort transform process
+                Logger.Trace("MainForm_KeyDown  ESC 2");
+                e.SuppressKeyPress = true;
+                return;
+            }
             if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)         // ctrl V = paste
             {
                 LoadFromClipboard();
@@ -1938,8 +1966,6 @@ namespace GrblPlotter
                 e.Handled = true;
                 return;
             }
-
-
             else if (e.KeyCode == Keys.NumLock)
             {
                 virtualJoystickXY.Focus();
@@ -1960,7 +1986,6 @@ namespace GrblPlotter
                 }
                 return;
             }
-
             e.SuppressKeyPress = ProcessHotkeys(e.KeyData.ToString(), true);
             //   e.SuppressKeyPress = true;
         }

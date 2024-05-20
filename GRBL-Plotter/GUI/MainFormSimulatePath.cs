@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@
  * 2022-03-29 line 115 check if (_serial_form != null)
  * 2022-04-07 reset codeInfo on start
  * 2023-01-07 use SetTextThreadSave(lbInfo...
+ * 2024-05-03 l:206 f:SimulationTimer_Tick avoid division by 0
 */
 
 using System;
@@ -203,7 +204,9 @@ namespace GrblPlotter
                 pbFile.Maximum = simuLine;
             }
             pbFile.Value = simuLine;
-            lblFileProgress.Text = string.Format("{0} {1:0.0}%", Localization.GetString("mainProgress"), (100 * simuLine / (fCTBCode.LinesCount - 2)));
+			
+			if ((fCTBCode.LinesCount - 2) > 0)
+				lblFileProgress.Text = string.Format("{0} {1:0.0}%", Localization.GetString("mainProgress"), (100 * simuLine / (fCTBCode.LinesCount - 2)));
             pictureBox1.Invalidate();
         }
 

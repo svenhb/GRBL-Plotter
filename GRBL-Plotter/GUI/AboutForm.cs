@@ -56,6 +56,7 @@ namespace GrblPlotter
         /* show actual verison */
         private void AboutForm_Load(object sender, EventArgs e)
         {
+            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             lblVersion.Text = string.Format("{0}    {1}", MyApplication.GetVersion(), MyApplication.GetCompilationDate());   //File.GetCreationTime(System.Reflection.Assembly.GetExecutingAssembly().Location)
         }
 

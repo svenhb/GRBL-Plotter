@@ -131,7 +131,7 @@ namespace GrblPlotter
                             { size = nr; }
                         }
                     }
-                    _text_form.SetText(e.Value, opt, size);
+                    _text_form.SetText(e.Value);//, opt, size);
                     _process_form?.Feedback(e.Command, e.Value, true);
                 }
                 else

@@ -118,20 +118,27 @@ namespace GrblPlotter
             { ProcessOverrideCurrentFeedSpeed(StatMsg.FS); }
 
             /***** if no Accessory State character is given, no accessory is set and D is 0000 *****/
+            CbLaser.CheckedChanged -= CbLaser_CheckedChanged;
+            CbSpindle.CheckedChanged -= CbSpindle_CheckedChanged;
             if (StatMsg.A.Contains("S"))
             {
                 btnOverrideSpindle.Image = Properties.Resources.led_on;   // Spindle on CW
                 RbSpindleCW.Checked = true;
+    //            CbSpindle.Checked = CbLaser.Checked = true;
             }
             if (StatMsg.A.Contains("C"))
             {
                 btnOverrideSpindle.Image = Properties.Resources.led_on;   // Spindle on CCW
                 RbSpindleCCW.Checked = true;
+      //          CbSpindle.Checked = CbLaser.Checked = true;
             }
             if (!StatMsg.A.Contains("S") && !StatMsg.A.Contains("C"))
             {
                 btnOverrideSpindle.Image = Properties.Resources.led_off;
+     //           CbSpindle.Checked = CbLaser.Checked = false;
             }  // Spindle off
+            CbSpindle.CheckedChanged += CbSpindle_CheckedChanged;
+            CbLaser.CheckedChanged += CbLaser_CheckedChanged;
 
             if (StatMsg.A.Contains("F"))
             {
@@ -160,17 +167,17 @@ namespace GrblPlotter
                 if (StatMsg.A.Contains("D"))
                 {
                     string digits = StatMsg.A.Substring(StatMsg.A.IndexOf("D") + 1);     // Digital pins in order '3210'
-					int din = 0;
-					int dout = 0;
+                    int din = 0;
+                    int dout = 0;
                     if (digits.Length == 4)
                     {
-						for (int i=0; i<4; i++)
-						{	dout |= ((digits[i] == '1')? 1:0) << (3-i); }					
-                    /*    SetAccessoryButton(BtnOverrideD3, (dout & 8));
-                        SetAccessoryButton(BtnOverrideD2, (dout & 4));
-                        SetAccessoryButton(BtnOverrideD1, (dout & 2));
-                        SetAccessoryButton(BtnOverrideD0, (dout & 1));
-*/
+                        for (int i = 0; i < 4; i++)
+                        { dout |= ((digits[i] == '1') ? 1 : 0) << (3 - i); }
+                        /*    SetAccessoryButton(BtnOverrideD3, (dout & 8));
+                            SetAccessoryButton(BtnOverrideD2, (dout & 4));
+                            SetAccessoryButton(BtnOverrideD1, (dout & 2));
+                            SetAccessoryButton(BtnOverrideD0, (dout & 1));
+    */
                         SetAccessoryButton(BtnOverrideD3, (digits[0] == '1'));
                         SetAccessoryButton(BtnOverrideD2, (digits[1] == '1'));
                         SetAccessoryButton(BtnOverrideD1, (digits[2] == '1'));
@@ -182,21 +189,21 @@ namespace GrblPlotter
                     }
                     else if (digits.Length == 8)
                     {
-						for (int i=0; i<4; i++)
-						{	din |= ((digits[i] == '1')? 1:0) << i; }
+                        for (int i = 0; i < 4; i++)
+                        { din |= ((digits[i] == '1') ? 1 : 0) << i; }
                         BtnOverrideD3.BackColor = (digits[0] == '1') ? Color.Honeydew : Color.LightPink;
                         BtnOverrideD2.BackColor = (digits[1] == '1') ? Color.Honeydew : Color.LightPink;
                         BtnOverrideD1.BackColor = (digits[2] == '1') ? Color.Honeydew : Color.LightPink;
                         BtnOverrideD0.BackColor = (digits[3] == '1') ? Color.Honeydew : Color.LightPink;
-						for (int i=4; i<8; i++)
-						{	dout |= ((digits[i] == '1')? 1:0) << (7-i-4); }
+                        for (int i = 4; i < 8; i++)
+                        { dout |= ((digits[i] == '1') ? 1 : 0) << (7 - i - 4); }
                         SetAccessoryButton(BtnOverrideD3, (digits[4] == '1'));
                         SetAccessoryButton(BtnOverrideD2, (digits[5] == '1'));
                         SetAccessoryButton(BtnOverrideD1, (digits[6] == '1'));
                         SetAccessoryButton(BtnOverrideD0, (digits[7] == '1'));
                     }
-					Grbl.grblDigitalIn = (byte)din;
-					Grbl.grblDigitalOut = (byte)dout;
+                    Grbl.grblDigitalIn = (byte)din;
+                    Grbl.grblDigitalOut = (byte)dout;
                 }
                 else
                 {
@@ -421,7 +428,7 @@ namespace GrblPlotter
                         break;
                 }
                 if (_probing_form != null)
-                {   _probing_form.SetGrblState = machineStatus; }
+                { _probing_form.SetGrblState = machineStatus; }
 
             }
             lastMachineStatus = machineStatus;
@@ -594,10 +601,18 @@ namespace GrblPlotter
                     SetTextThreadSave(LblLaserMinVal, Grbl.GetSetting(id).ToString(), Color.Lime);
                     break;
                 case 32:
+                    CbLasermode.CheckedChanged -= CbLasermode_CheckedChanged;
                     if (Grbl.GetSetting(id) == 1)
+                    {
                         SetTextThreadSave(CbLasermodeVal, "ON", Color.Lime);
+                        CbLasermode.Checked = true;
+                    }
                     else
+                    {
                         SetTextThreadSave(CbLasermodeVal, "OFF", Color.Lime);
+                        CbLasermode.Checked = false;
+                    }
+                    CbLasermode.CheckedChanged += CbLasermode_CheckedChanged;
                     break;
 
                 default:
