@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version='1.0' encoding='utf-8'?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GrblPlotter.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
@@ -768,16 +768,16 @@
       <Value Profile="(Default)">https://GRBL-Plotter.de</Value>
     </Setting>
     <Setting Name="guiCustomBtn1" Type="System.String" Scope="User">
-      <Value Profile="(Default)">🡴 Graphic Upper-Left|(Move to upper left corner - fast);G90 G0 X#GMIX Y#GMAY|#80FFFF</Value>
+      <Value Profile="(Default)">🡴 Graphic Top-Left|(Move to upper left corner - jog fast);$J=G90 F5000 X#GMIX Y#GMAY|#80FFFF</Value>
     </Setting>
     <Setting Name="guiCustomBtn10" Type="System.String" Scope="User">
-      <Value Profile="(Default)">⇩ Pen down Zmin|(Move Pen to lower position);G90 G0 Z#GMIZ|#FF8080</Value>
+      <Value Profile="(Default)">▼  Pen down Zmin|(Move Pen to lower position);G90 G0 Z#GMIZ|#FF8080</Value>
     </Setting>
     <Setting Name="guiCustomBtn11" Type="System.String" Scope="User">
-      <Value Profile="(Default)">🡶 Graphic Bottom-Right|(Move to bottom right corner - fast);G90 G0 X#GMAX Y#GMIY|#80FFFF</Value>
+      <Value Profile="(Default)">🡶 Graphic Bottom-Right|(Move to lower right corner - jog fast);$J=G90 F5000 X#GMAX Y#GMIY|#80FFFF</Value>
     </Setting>
     <Setting Name="guiCustomBtn12" Type="System.String" Scope="User">
-      <Value Profile="(Default)">⚠ Hard RESET|#HRST|fuchsia</Value>
+      <Value Profile="(Default)">▼ Pen down Servo|(Move Pen to lower position);M3 S#GMIS|#FF8080</Value>
     </Setting>
     <Setting Name="guiCustomBtn13" Type="System.String" Scope="User">
       <Value Profile="(Default)"> |</Value>
@@ -801,7 +801,7 @@
       <Value Profile="(Default)"> | </Value>
     </Setting>
     <Setting Name="guiCustomBtn2" Type="System.String" Scope="User">
-      <Value Profile="(Default)">⇧ Pen up Zmax|(Move Pen to upper position);G90 G0 Z#GMAZ|#80FF80</Value>
+      <Value Profile="(Default)">▲ Pen up Zmax|(Move Pen to upper position);$J=G90 F5000 Z#GMAZ|#80FF80</Value>
     </Setting>
     <Setting Name="guiCustomBtn20" Type="System.String" Scope="User">
       <Value Profile="(Default)"> | </Value>
@@ -834,7 +834,7 @@
       <Value Profile="(Default)"> | </Value>
     </Setting>
     <Setting Name="guiCustomBtn3" Type="System.String" Scope="User">
-      <Value Profile="(Default)">🡷 Graphic Bottom-Left|(Move to bottom left corner - fast);G90 G0 X#GMIX Y#GMIY|#80FFFF</Value>
+      <Value Profile="(Default)">🡷 Graphic Bottom-Left|(Move to lower left corner - jog fast);$J=G90 F5000 X#GMIX Y#GMIY|#80FFFF</Value>
     </Setting>
     <Setting Name="guiCustomBtn30" Type="System.String" Scope="User">
       <Value Profile="(Default)"> | </Value>
@@ -846,22 +846,22 @@
       <Value Profile="(Default)"> | </Value>
     </Setting>
     <Setting Name="guiCustomBtn4" Type="System.String" Scope="User">
-      <Value Profile="(Default)">🡷 Homing 0;0;35|(Move to hard stops);$J= G91 F5000 X-40 Y-40 Z40|#FFAAAA</Value>
+      <Value Profile="(Default)">▲ Pen up Servo|(Move Pen to upper position);M3 S#GMAS|#80FF80</Value>
     </Setting>
     <Setting Name="guiCustomBtn5" Type="System.String" Scope="User">
-      <Value Profile="(Default)">↻ Move around graphic|(Move around graphic dimension - fast);G90G0X#GMIXY#GMIY;Y#GMAY;X#GMAX;Y#GMIY;X#GMIX|#FFFF80</Value>
+      <Value Profile="(Default)">↻ Move around graphic|(Move around graphic dimension - jog fast);G90G1F5000X#GMIXY#GMIY;Y#GMAY;X#GMAX;Y#GMIY;X#GMIX|#FFFF80</Value>
     </Setting>
     <Setting Name="guiCustomBtn6" Type="System.String" Scope="User">
-      <Value Profile="(Default)">◎ Graphic Center|(Move to graphic center - fast);G90 G0 X#GCTX Y#GCTY|#00FFFF</Value>
+      <Value Profile="(Default)">◎ Graphic Center|(Move to graphic center - fast);$J=G90 F5000 X#GCTX Y#GCTY|#00FFFF</Value>
     </Setting>
     <Setting Name="guiCustomBtn7" Type="System.String" Scope="User">
       <Value Profile="(Default)">Add Logo|data\scripts\script_my_logo.nc|#FFFFC0</Value>
     </Setting>
     <Setting Name="guiCustomBtn8" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Set Coordinate System| G10 L20 P0 X-1 Y-1 Z23;|#FFAAAA</Value>
+      <Value Profile="(Default)">► Pen zero Servo|(Move Pen to zero position);M3 S#GZES|#e6f7ff</Value>
     </Setting>
     <Setting Name="guiCustomBtn9" Type="System.String" Scope="User">
-      <Value Profile="(Default)">🡵 Graphic Upper-Right|(Move to upper right corner - fast);G90 G0 X#GMAX Y#GMAY|#80FFFF</Value>
+      <Value Profile="(Default)">🡵 Graphic Top-Right|(Move to upper right corner - jog fast);$J=G90 F5000 X#GMAX Y#GMAY|#80FFFF</Value>
     </Setting>
     <Setting Name="guiDimensionShow" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -2386,6 +2386,15 @@
     </Setting>
     <Setting Name="useCaseLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">?</Value>
+    </Setting>
+    <Setting Name="importGCTangentialShorteningEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCTangentialShortening" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="guiToolSelection" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>

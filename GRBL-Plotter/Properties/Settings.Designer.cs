@@ -3085,8 +3085,8 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("🡴 Graphic Upper-Left|(Move to upper left corner - fast);G90 G0 X#GMIX Y#GMAY|#80" +
-            "FFFF")]
+        [global::System.Configuration.DefaultSettingValueAttribute("🡴 Graphic Top-Left|(Move to upper left corner - jog fast);$J=G90 F5000 X#GMIX Y#" +
+            "GMAY|#80FFFF")]
         public string guiCustomBtn1 {
             get {
                 return ((string)(this["guiCustomBtn1"]));
@@ -3098,7 +3098,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("⇩ Pen down Zmin|(Move Pen to lower position);G90 G0 Z#GMIZ|#FF8080")]
+        [global::System.Configuration.DefaultSettingValueAttribute("▼  Pen down Zmin|(Move Pen to lower position);G90 G0 Z#GMIZ|#FF8080")]
         public string guiCustomBtn10 {
             get {
                 return ((string)(this["guiCustomBtn10"]));
@@ -3110,8 +3110,8 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("🡶 Graphic Bottom-Right|(Move to bottom right corner - fast);G90 G0 X#GMAX Y#GMIY" +
-            "|#80FFFF")]
+        [global::System.Configuration.DefaultSettingValueAttribute("🡶 Graphic Bottom-Right|(Move to lower right corner - jog fast);$J=G90 F5000 X#GM" +
+            "AX Y#GMIY|#80FFFF")]
         public string guiCustomBtn11 {
             get {
                 return ((string)(this["guiCustomBtn11"]));
@@ -3123,7 +3123,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("⚠ Hard RESET|#HRST|fuchsia")]
+        [global::System.Configuration.DefaultSettingValueAttribute("▼ Pen down Servo|(Move Pen to lower position);M3 S#GMIS|#FF8080")]
         public string guiCustomBtn12 {
             get {
                 return ((string)(this["guiCustomBtn12"]));
@@ -3219,7 +3219,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("⇧ Pen up Zmax|(Move Pen to upper position);G90 G0 Z#GMAZ|#80FF80")]
+        [global::System.Configuration.DefaultSettingValueAttribute("▲ Pen up Zmax|(Move Pen to upper position);$J=G90 F5000 Z#GMAZ|#80FF80")]
         public string guiCustomBtn2 {
             get {
                 return ((string)(this["guiCustomBtn2"]));
@@ -3351,8 +3351,8 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("🡷 Graphic Bottom-Left|(Move to bottom left corner - fast);G90 G0 X#GMIX Y#GMIY|#" +
-            "80FFFF")]
+        [global::System.Configuration.DefaultSettingValueAttribute("🡷 Graphic Bottom-Left|(Move to lower left corner - jog fast);$J=G90 F5000 X#GMIX" +
+            " Y#GMIY|#80FFFF")]
         public string guiCustomBtn3 {
             get {
                 return ((string)(this["guiCustomBtn3"]));
@@ -3400,7 +3400,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("🡷 Homing 0;0;35|(Move to hard stops);$J= G91 F5000 X-40 Y-40 Z40|#FFAAAA")]
+        [global::System.Configuration.DefaultSettingValueAttribute("▲ Pen up Servo|(Move Pen to upper position);M3 S#GMAS|#80FF80")]
         public string guiCustomBtn4 {
             get {
                 return ((string)(this["guiCustomBtn4"]));
@@ -3412,8 +3412,8 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("↻ Move around graphic|(Move around graphic dimension - fast);G90G0X#GMIXY#GMIY;Y#" +
-            "GMAY;X#GMAX;Y#GMIY;X#GMIX|#FFFF80")]
+        [global::System.Configuration.DefaultSettingValueAttribute("↻ Move around graphic|(Move around graphic dimension - jog fast);G90G1F5000X#GMIX" +
+            "Y#GMIY;Y#GMAY;X#GMAX;Y#GMIY;X#GMIX|#FFFF80")]
         public string guiCustomBtn5 {
             get {
                 return ((string)(this["guiCustomBtn5"]));
@@ -3425,7 +3425,8 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("◎ Graphic Center|(Move to graphic center - fast);G90 G0 X#GCTX Y#GCTY|#00FFFF")]
+        [global::System.Configuration.DefaultSettingValueAttribute("◎ Graphic Center|(Move to graphic center - fast);$J=G90 F5000 X#GCTX Y#GCTY|#00FF" +
+            "FF")]
         public string guiCustomBtn6 {
             get {
                 return ((string)(this["guiCustomBtn6"]));
@@ -3449,7 +3450,7 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Set Coordinate System| G10 L20 P0 X-1 Y-1 Z23;|#FFAAAA")]
+        [global::System.Configuration.DefaultSettingValueAttribute("► Pen zero Servo|(Move Pen to zero position);M3 S#GZES|#e6f7ff")]
         public string guiCustomBtn8 {
             get {
                 return ((string)(this["guiCustomBtn8"]));
@@ -3461,8 +3462,8 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("🡵 Graphic Upper-Right|(Move to upper right corner - fast);G90 G0 X#GMAX Y#GMAY|#" +
-            "80FFFF")]
+        [global::System.Configuration.DefaultSettingValueAttribute("🡵 Graphic Top-Right|(Move to upper right corner - jog fast);$J=G90 F5000 X#GMAX " +
+            "Y#GMAY|#80FFFF")]
         public string guiCustomBtn9 {
             get {
                 return ((string)(this["guiCustomBtn9"]));
@@ -4969,6 +4970,30 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["importGCCompress"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importGCConvertToPolar {
+            get {
+                return ((bool)(this["importGCConvertToPolar"]));
+            }
+            set {
+                this["importGCConvertToPolar"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public decimal importGCConvertToPolarAccuracy {
+            get {
+                return ((decimal)(this["importGCConvertToPolarAccuracy"]));
+            }
+            set {
+                this["importGCConvertToPolarAccuracy"] = value;
             }
         }
         
@@ -9547,24 +9572,36 @@ namespace GrblPlotter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool importGCConvertToPolar {
+        public bool importGCTangentialShorteningEnable {
             get {
-                return ((bool)(this["importGCConvertToPolar"]));
+                return ((bool)(this["importGCTangentialShorteningEnable"]));
             }
             set {
-                this["importGCConvertToPolar"] = value;
+                this["importGCTangentialShorteningEnable"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
-        public decimal importGCConvertToPolarAccuracy {
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal importGCTangentialShortening {
             get {
-                return ((decimal)(this["importGCConvertToPolarAccuracy"]));
+                return ((decimal)(this["importGCTangentialShortening"]));
             }
             set {
-                this["importGCConvertToPolarAccuracy"] = value;
+                this["importGCTangentialShortening"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int guiToolSelection {
+            get {
+                return ((int)(this["guiToolSelection"]));
+            }
+            set {
+                this["guiToolSelection"] = value;
             }
         }
     }
