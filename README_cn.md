@@ -18,7 +18,7 @@ Linux用户请查看这个链接 由metzger100编写: [GRBL-Plotter-Linux](https
 
 ### 本软件的免费的，使用过程中需要您自信承担可能带来的风险,<br>这里不对软件提供任何形式保证.
 由VisualStudio生成的应用程序压缩包在以下目录: GRBL-Plotter/bin/release.
-#### 官方网站：[GRBL-Plotter Vers. 1.7.3.1](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2024-03-16     
+#### 官方网站：[GRBL-Plotter Vers. 1.7.3.2](https://github.com/svenhb/GRBL-Plotter/releases/latest)  2024-05-20     
 
 ### 编译依赖：
 * VisualStudio 2022 
