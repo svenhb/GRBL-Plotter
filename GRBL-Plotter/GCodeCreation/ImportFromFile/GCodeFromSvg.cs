@@ -432,7 +432,7 @@ namespace GrblPlotter
 
                 if (vbWidth > 0)
                     svgStrokeWidthScale = ConvertToPixel(tmpString, vbWidth) / factor_Mm2Px / vbWidth;
-                //                Logger.Trace( "svgStrokeWidthScale {0} {1} {2} {3}", tmpString, vbWidth, factor_Mm2Px, vbWidth);
+                                Logger.Trace( "svgStrokeWidthScale {0} {1} {2} {3}", tmpString, vbWidth, factor_Mm2Px, vbWidth);
 
                 if (svgComments) Graphic.SetHeaderInfo(" SVG width :" + svgCode.Attribute("width").Value);
                 if (logEnable) Logger.Trace(" SVG width : {0:0.00} source: '{1}'", svgWidthPx, svgCode.Attribute("width").Value);
@@ -711,18 +711,18 @@ namespace GrblPlotter
                 attributeStroke = GetStyleProperty(element, "stroke");
                 logSource = "ParseAttributs: stroke: " + attributeStroke;
                 if (attributeStroke.Length > 1)
-                    filterKeepColor = Graphic.SetPenColor(attributeStroke.StartsWith("#") ? attributeStroke.Substring(1) : attributeStroke);
+                    filterKeepColor = Graphic.SetPenColor(globalTextProp.stroke = attributeStroke.StartsWith("#") ? attributeStroke.Substring(1) : attributeStroke);
 
                 attributeFill = GetStyleProperty(element, "fill");
                 logSource = "ParseAttributs: fill: " + attributeFill;
                 if ((attributeFill.Length > 1))// && (attributeFill != "none"))
-                    Graphic.SetPenFill(attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
+                    Graphic.SetPenFill(globalTextProp.fill = attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
 
-                attributeStrokeWidth = GetStyleProperty(element, "stroke-width");
-                logSource = "ParseAttributs: stroke-width: " + attributeStrokeWidth;
-                if (attributeStrokeWidth.Length > 0)
-                    filterKeepWidth = SetPenWidth(attributeStrokeWidth);
-
+                /*    attributeStrokeWidth = GetStyleProperty(element, "stroke-width"); -> globalTextProp.Update(element);
+                    logSource = "ParseAttributs: stroke-width: " + attributeStrokeWidth;
+                    if (attributeStrokeWidth.Length > 0)
+                        filterKeepWidth = SetPenWidth(attributeStrokeWidth);
+                */
                 SetDashPattern(GetStyleProperty(element, "stroke-dasharray"));
             }
 
@@ -739,12 +739,12 @@ namespace GrblPlotter
                 if ((attributeFill.Length > 1))// && (attributeFill != "none"))
                     Graphic.SetPenFill(attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
             }
-            if (element.Attribute("stroke-width") != null)
-            {
-                attributeStrokeWidth = element.Attribute("stroke-width").Value;
-                logSource = "ParseAttributs: stroke-width2: " + attributeStrokeWidth;
-                filterKeepWidth = SetPenWidth(attributeStrokeWidth);
-            }
+            /*    if (element.Attribute("stroke-width") != null)    -> globalTextProp.Update(element);
+                {
+                    attributeStrokeWidth = element.Attribute("stroke-width").Value;
+                    logSource = "ParseAttributs: stroke-width2: " + attributeStrokeWidth;
+                    filterKeepWidth = SetPenWidth(attributeStrokeWidth);
+                }*/
             if (element.Attribute("stroke-dasharray") != null)
             {
                 SetDashPattern(element.Attribute("stroke-dasharray").Value);
@@ -758,11 +758,16 @@ namespace GrblPlotter
 
         private static bool SetPenWidth(string txt)
         {
+            return Graphic.SetPenWidth(globalTextProp.strokeWidth = CalcPenWidth(txt));
+        }
+        private static string CalcPenWidth(string txt)
+        {
             if (!double.TryParse(txt, NumberStyles.Number, NumberFormatInfo.InvariantInfo, out double nr))
             {
                 nr = ConvertToPixel(txt);   // = txt * 96
             }
-            return Graphic.SetPenWidth(Math.Round(nr * svgStrokeWidthScale, 3).ToString().Replace(',', '.'));
+            if (logEnable)  Logger.Trace("CalcPenWidth txt:{0}   converted:{1}  scale:{2}  result:{3}", txt, nr, svgStrokeWidthScale, nr * svgStrokeWidthScale);
+            return Math.Round(nr * svgStrokeWidthScale, 3).ToString().Replace(',', '.');
         }
 
         /// <summary>
@@ -974,7 +979,15 @@ namespace GrblPlotter
         /// </summary>
         private static void ParseBasicElements(XElement svgCode, int level)
         {
-            string[] forms = { "rect", "circle", "ellipse", "line", "polyline", "polygon", "text", "image" };
+            string[] forms = { "text", "rect", "circle", "ellipse", "line", "polyline", "polygon", "image" };
+
+            if (logEnable)
+            {
+                foreach (var pathElement in svgCode.Elements())
+                {
+                    Logger.Trace("ParseBasicElements  {0}", pathElement.Name.ToString());
+                }
+            }
 
             foreach (var form in forms)
             {
@@ -1035,6 +1048,7 @@ namespace GrblPlotter
                 if (form == "text")
                 {
                     ParseText(pathElement, level);
+					matrixElement = oldMatrixElement;
                     return; // continue;
                 }
                 if (pathElement.Attribute("x") != null) x = ConvertToPixel(pathElement.Attribute("x").Value);
@@ -1425,6 +1439,9 @@ namespace GrblPlotter
                 .Split(remainingargs, argSeparators)
                 .Where(t => !string.IsNullOrEmpty(t)).ToList();
 
+		//	string argMatcher = @"((\-|)\d+(\.\d+|)((((E|e)(\-|\+|))|\.)\d+|)|((\-|)\.\d+))";
+		//	var splitArgs = Regex.Matches(remainingargs, argMatcher);
+
             double testNr;
             for (int iArg = 0; iArg < splitArgs.Count(); iArg++)
             {
@@ -1447,7 +1464,7 @@ namespace GrblPlotter
             }
 
             double[] doubleArgs = splitArgs.Select(arg => ConvertToPixel(arg)).ToArray();
-
+		//	float[] floatArgs = splitArgs.Cast<Capture>().Select(c => ConvertToPixel(c.Value)).ToArray();
             int objCount = 0;
 
             switch (cmd)
@@ -1644,13 +1661,13 @@ namespace GrblPlotter
                             Vector c1 = new Vector(doubleArgs[rep + 0], doubleArgs[rep + 1]) + (Vector)Off;
                             Vector c2 = new Vector(doubleArgs[rep + 2], doubleArgs[rep + 3]) + (Vector)Off;
                             Vector c3 = new Vector(doubleArgs[rep + 4], doubleArgs[rep + 5]) + (Vector)Off;
-                            if (logEnable)
+                        /*    if (logEnable)
                             {
                                 Logger.Trace("CalcCubicBezier  0: X:{0:0.000}   Y:{1:0.000}", lastX, lastY);
                                 Logger.Trace("CalcCubicBezier c1: X:{0:0.000}   Y:{1:0.000}", c1.X, c1.Y);
                                 Logger.Trace("CalcCubicBezier c2: X:{0:0.000}   Y:{1:0.000}", c2.X, c2.Y);
                                 Logger.Trace("CalcCubicBezier c3: X:{0:0.000}   Y:{1:0.000}", c3.X, c3.Y);
-                            }
+                            }*/
                             if (svgNodesOnly)
                                 GCodeDotOnly(c3.X, c3.Y, command.ToString());
                             else

@@ -86,6 +86,8 @@
  * 2024-01-13 l:700 f:ProcessEntities-DXFSpline avoid exception on degree < 2 
  * 2024-02-02 l:1049 f:ApplyOffsetAndAngle   #375
  * 2024-02-10 l:1012 f:CalcEllipse apply different scaling for x and y (also circle, arc, addRoundCorner)
+ * 2024-03-19 l:440 f:ProcessEntities reset dash pattern
+ * 2024-05-03 l:1060 f:CalcEllipse bug fix blockScaling #375
 */
 
 using DXFLib;
@@ -127,6 +129,8 @@ namespace GrblPlotter //DXFImporter
         private static bool useZ = false;
         private static double? lastSetZ = null;
         private static Point lastUsedCoord = new Point();
+
+        private static List<Point> tempPointList = new List<Point>();
 
         private static readonly Dictionary<string, int> layerColor = new Dictionary<string, int>();
         private static readonly Dictionary<string, string> layerLType = new Dictionary<string, string>();
@@ -322,7 +326,7 @@ namespace GrblPlotter //DXFImporter
             srecord = doc.Tables.Styles;
             foreach (DXFStyleRecord str in srecord)
             {
-                Logger.Trace("Style {0}", str.FontFileName);
+                if (logEnable) Logger.Trace("StyleRecord  FontFileName:'{0}'", str.FontFileName);
             }
 
             int plotflag = 0;
@@ -432,9 +436,13 @@ namespace GrblPlotter //DXFImporter
         /// <param name="entity">Entity to convert</param>
         /// <param name="offsetX">Offset to apply if called by block insertion</param>
         /// <returns></returns>                       
-        private static void ProcessEntities(DXFEntity entity, DXFPoint offset, double offsetAngle, DXFPoint offsetScaling, string layerName)		// double offsetX=0, double offsetY=0
+        private static void ProcessEntities(DXFEntity entity, DXFPoint blockOffset, double blockAngle, DXFPoint blockScaling, string layerName)		// double offsetX=0, double offsetY=0
         {
             shapeCounter++;
+
+            Graphic.SetDash(new double[0]); // reset dash pattern;
+
+            Logger.Trace("ProcessEntities {0} block-scaling: {1:0.00} {2:0.00}   -offset {3:0.00}  {4:0.00}    -angle {5:0.00}", shapeCounter, blockScaling.X, blockScaling.Y, blockOffset.X, blockOffset.Y, blockAngle);
 
             if ((backgroundWorker != null) && (countDXFEntities > 0)) backgroundWorker.ReportProgress(countDXFEntity++ * 100 / countDXFEntities);
 
@@ -493,13 +501,19 @@ namespace GrblPlotter //DXFImporter
                 {
                     string dashType = layerLType[layerName];                                    // get name of pattern
                     if (!String.IsNullOrEmpty(dashType) && lineTypes.ContainsKey(dashType))    // check if pattern name is known
+                    {
                         Graphic.SetDash(lineTypes[dashType]);
+                        //    Logger.Trace("SetDash 1: '{0}'", lineTypes[dashType]);
+                    }
                 }
             }
             else
             {
                 if (lineTypes.ContainsKey(entity.LineType))         // check if pattern name is known
+                {
                     Graphic.SetDash(lineTypes[entity.LineType]);
+                    //    Logger.Trace("SetDash 2: '{0}'", lineTypes[entity.LineType]);
+                }
             }
 
             if (logEnable) Logger.Trace("ProcessEntity Layer: {0,-10}  Entity: {1,-22}  EntityColorNumber:{2} -use:{3}   EntityLineWeight:{4,3} -use:{5,3}  -invisible:{6}", layerName, entity.GetType(), entity.ColorNumber, dxfColorNr, entity.LineWeight, dxfLineWeigth, entity.IsInvisible);
@@ -518,13 +532,13 @@ namespace GrblPlotter //DXFImporter
             };
             int index = 0;
 
-        //    Logger.Trace("Offset {0:0.000}; {1:0.000}   scaling: {2:0.000}; {3:0.000}   angle: {4:0.000}", offset.X, offset.Y, offsetScaling.X, offsetScaling.Y, offsetAngle);
+            //    Logger.Trace("Offset {0:0.000}; {1:0.000}   scaling: {2:0.000}; {3:0.000}   angle: {4:0.000}", offset.X, offset.Y, offsetScaling.X, offsetScaling.Y, offsetAngle);
 
             #region DXFPoint
             if (entity.GetType() == typeof(DXFPointEntity))
             {
                 DXFPointEntity point = (DXFPointEntity)entity;
-                position = ApplyOffsetAndAngle(point.Location, offset, offsetAngle, offsetScaling);
+                position = BlockTransform(point.Location, blockOffset, blockAngle, blockScaling);
                 if (logPosition) Logger.Trace(" Point: {0:0.00};{1:0.00} ", position.X, position.Y);
                 GCodeDotOnly(position);//, "Start Point");
             }
@@ -542,7 +556,7 @@ namespace GrblPlotter //DXFImporter
                 {
                     coordinate = lp.Elements[i];
                     bulge = coordinate.Bulge;
-                    position = ApplyOffsetAndAngle(coordinate.Vertex, offset, offsetAngle, offsetScaling);
+                    position = BlockTransform(coordinate.Vertex, blockOffset, blockAngle, blockScaling);
 
                     if (i == 0)
                     {
@@ -564,10 +578,10 @@ namespace GrblPlotter //DXFImporter
                         if (logPosition) Logger.Trace("PolyLine bulge  index:{0} val1X:{1:0.000} val1Y:{2:0.000} val2X:{3:0.000} val2Y:{4:0.000}", i, lp.Elements[i].Vertex.X, lp.Elements[i].Vertex.Y, lp.Elements[i + 1].Vertex.X, lp.Elements[i + 1].Vertex.Y);
 
                         if (i < (lp.VertexCount - 1))
-                            AddRoundCorner((DXFPoint)lp.Elements[i].Vertex, (DXFPoint)lp.Elements[i + 1].Vertex, bulge, offset, offsetAngle, offsetScaling);
+                            AddRoundCorner((DXFPoint)lp.Elements[i].Vertex, (DXFPoint)lp.Elements[i + 1].Vertex, bulge, blockOffset, blockAngle, blockScaling);
                         else
                             if (lp.Flags.HasFlag(DXFLWPolyLine.FlagsEnum.closed))        // == DXFLWPolyLine.FlagsEnum.closed)
-                            AddRoundCorner((DXFPoint)lp.Elements[i].Vertex, (DXFPoint)lp.Elements[0].Vertex, bulge, offset, offsetAngle, offsetScaling);
+                            AddRoundCorner((DXFPoint)lp.Elements[i].Vertex, (DXFPoint)lp.Elements[0].Vertex, bulge, blockOffset, blockAngle, blockScaling);
                         roundcorner = true;
                     }
                     else
@@ -576,7 +590,7 @@ namespace GrblPlotter //DXFImporter
                 if (logPosition) Logger.Trace(" LWPolyLine lp.Flags {0}", lp.Flags);
                 if (lp.Flags.HasFlag(DXFLWPolyLine.FlagsEnum.closed))        // == DXFLWPolyLine.FlagsEnum.closed)
                 {
-                    position = ApplyOffsetAndAngle(lp.Elements[0].Vertex, offset, offsetAngle, offsetScaling); // move to start position
+                    position = BlockTransform(lp.Elements[0].Vertex, blockOffset, blockAngle, blockScaling); // move to start position
                     if (logPosition) Logger.Trace(" LWPolyLine close X:{0:0.000}  Y:{1:0.000}", position.X, position.Y);
                     DXFMoveTo(position);    //, "End LWPolyLine " + lp.Flags.ToString());
                 }
@@ -604,7 +618,7 @@ namespace GrblPlotter //DXFImporter
                         bulge = coordinate.Buldge;
                         if (coordinate.Location.X != null && coordinate.Location.Y != null)
                         {
-                            position = ApplyOffsetAndAngle(coordinate.Location, offset, offsetAngle, offsetScaling);
+                            position = BlockTransform(coordinate.Location, blockOffset, blockAngle, blockScaling);
                             if (!nodesOnly)
                             {
                                 if (index == 0)
@@ -624,10 +638,10 @@ namespace GrblPlotter //DXFImporter
                             if (logPosition) Logger.Trace("PolyLine bulge  index:{0} val1X:{1:0.000} val1Y:{2:0.000} val2X:{3:0.000} val2Y:{4:0.000}", i, ((DXFVertex)lp.Children[i]).Location.X, ((DXFVertex)lp.Children[i]).Location.Y, ((DXFVertex)lp.Children[i + 1]).Location.X, ((DXFVertex)lp.Children[i + 1]).Location.Y);
 
                             if (i < (lp.Children.Count - 1))
-                                AddRoundCorner((DXFPoint)((DXFVertex)lp.Children[i]).Location, (DXFPoint)((DXFVertex)lp.Children[i + 1]).Location, bulge, offset, offsetAngle, offsetScaling);
+                                AddRoundCorner((DXFPoint)((DXFVertex)lp.Children[i]).Location, (DXFPoint)((DXFVertex)lp.Children[i + 1]).Location, bulge, blockOffset, blockAngle, blockScaling);
                             else
                                 if (lp.Flags.HasFlag(DXFPolyLine.FlagsEnum.closed))        // == DXFPolyLine.FlagsEnum.closed)
-                                AddRoundCorner((DXFPoint)((DXFVertex)lp.Children[i]).Location, (DXFPoint)((DXFVertex)lp.Children[0]).Location, bulge, offset, offsetAngle, offsetScaling);
+                                AddRoundCorner((DXFPoint)((DXFVertex)lp.Children[i]).Location, (DXFPoint)((DXFVertex)lp.Children[0]).Location, bulge, blockOffset, blockAngle, blockScaling);
                             //        roundcorner = true;
                         }
                         //    else
@@ -647,8 +661,8 @@ namespace GrblPlotter //DXFImporter
             {
                 Graphic.SetGeometry("Line");
                 DXFLine line = (DXFLine)entity;
-                position = ApplyOffsetAndAngle(line.Start, offset, offsetAngle, offsetScaling);
-                tmp = ApplyOffsetAndAngle(line.End, offset, offsetAngle, offsetScaling);
+                position = BlockTransform(line.Start, blockOffset, blockAngle, blockScaling);
+                tmp = BlockTransform(line.End, blockOffset, blockAngle, blockScaling);
                 if (logPosition) Logger.Trace(" Line from: {0:0.000};{1:0.000}  To: {2:0.000};{3:0.000}", position.X, position.Y, tmp.X, tmp.Y);
                 if (!nodesOnly)
                 {
@@ -672,7 +686,7 @@ namespace GrblPlotter //DXFImporter
                 Graphic.SetGeometry("Spline");
                 DXFSpline spline = (DXFSpline)entity;
                 index = 0;
-                DXFPoint last = ApplyOffsetAndAngle(spline.ControlPoints[0], offset, offsetAngle, offsetScaling);
+                DXFPoint last = BlockTransform(spline.ControlPoints[0], blockOffset, blockAngle, blockScaling);
 
                 int knots = spline.KnotCount;
                 int ctrls = spline.ControlPoints.Count;//spline.ControlPointCount;
@@ -687,7 +701,7 @@ namespace GrblPlotter //DXFImporter
                     if (spline.Degree > 1)
                     {
                         var spline2 = new Spline2(spline.Degree,
-                            spline.ControlPoints.Select(p => new SplinePoint2(ApplyOffsetAndAngle(p, offset, offsetAngle, offsetScaling))),
+                            spline.ControlPoints.Select(p => new SplinePoint2(BlockTransform(p, blockOffset, blockAngle, blockScaling))),
                             spline.KnotValues);
                         var beziers = spline2.ToBeziers();
 
@@ -752,16 +766,16 @@ namespace GrblPlotter //DXFImporter
                         {
                             if (!nodesOnly)
                                 ImportMath.CalcCubicBezier(ToWindowsSystemPoint(last),
-                                                            ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[3 * i + 1], offset, offsetAngle, offsetScaling)),
-                                                            ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[3 * i + 2], offset, offsetAngle, offsetScaling)),
-                                                            ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[3 * i + 3], offset, offsetAngle, offsetScaling)),
+                                                            ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[3 * i + 1], blockOffset, blockAngle, blockScaling)),
+                                                            ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[3 * i + 2], blockOffset, blockAngle, blockScaling)),
+                                                            ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[3 * i + 3], blockOffset, blockAngle, blockScaling)),
                                                             DXFMoveTo, "C");
                             else
                             {
                                 GCodeDotOnly(last);//, "");
-                                GCodeDotOnly(ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[3 * i + 3], offset, offsetAngle, offsetScaling)));//, "");
+                                GCodeDotOnly(ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[3 * i + 3], blockOffset, blockAngle, blockScaling)));//, "");
                             }
-                            last = ApplyOffsetAndAngle(spline.ControlPoints[3 * i + 3], offset, offsetAngle, offsetScaling);
+                            last = BlockTransform(spline.ControlPoints[3 * i + 3], blockOffset, blockAngle, blockScaling);
                         }
                         DXFStopPath();// true);
                                       //Logger.Trace(" stop path");
@@ -772,15 +786,15 @@ namespace GrblPlotter //DXFImporter
                         if (!nodesOnly)
                         {
                             DXFStartPath(last);//, cmt);
-                            ImportMath.CalcQuadraticBezier(ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[0], offset, offsetAngle, offsetScaling)),
-                                                            ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[1], offset, offsetAngle, offsetScaling)),
-                                                            ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[2], offset, offsetAngle, offsetScaling)),
+                            ImportMath.CalcQuadraticBezier(ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[0], blockOffset, blockAngle, blockScaling)),
+                                                            ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[1], blockOffset, blockAngle, blockScaling)),
+                                                            ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[2], blockOffset, blockAngle, blockScaling)),
                                                             DXFMoveTo, "Q");
                         }
                         else
                         {
                             GCodeDotOnly(last);//, "");
-                            GCodeDotOnly(ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[2], offset, offsetAngle, offsetScaling)));//, "");
+                            GCodeDotOnly(ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[2], blockOffset, blockAngle, blockScaling)));//, "");
                         }
                         DXFStopPath();// true);
                     }
@@ -789,18 +803,18 @@ namespace GrblPlotter //DXFImporter
                         if (!nodesOnly)
                         {
                             DXFStartPath(last);//, cmt);
-                            ImportMath.CalcQuadraticBezier(ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[0], offset, offsetAngle, offsetScaling)),
-                                                            ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[1], offset, offsetAngle, offsetScaling)),
-                                                            ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[2], offset, offsetAngle, offsetScaling)), DXFMoveTo, "SQ");
-                            ImportMath.CalcQuadraticBezier(ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[2], offset, offsetAngle, offsetScaling)),                     // 2022-03-19 start at 2 not 3
-                                                            ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[3], offset, offsetAngle, offsetScaling)),
-                                                            ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[4], offset, offsetAngle, offsetScaling)), DXFMoveTo, "SQ");
+                            ImportMath.CalcQuadraticBezier(ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[0], blockOffset, blockAngle, blockScaling)),
+                                                            ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[1], blockOffset, blockAngle, blockScaling)),
+                                                            ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[2], blockOffset, blockAngle, blockScaling)), DXFMoveTo, "SQ");
+                            ImportMath.CalcQuadraticBezier(ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[2], blockOffset, blockAngle, blockScaling)),                     // 2022-03-19 start at 2 not 3
+                                                            ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[3], blockOffset, blockAngle, blockScaling)),
+                                                            ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[4], blockOffset, blockAngle, blockScaling)), DXFMoveTo, "SQ");
                         }
                         else
                         {
                             GCodeDotOnly(last);//, "");
-                            GCodeDotOnly(ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[2], offset, offsetAngle, offsetScaling)));//, "");
-                            GCodeDotOnly(ToWindowsSystemPoint(ApplyOffsetAndAngle(spline.ControlPoints[5], offset, offsetAngle, offsetScaling)));//, "");
+                            GCodeDotOnly(ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[2], blockOffset, blockAngle, blockScaling)));//, "");
+                            GCodeDotOnly(ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[5], blockOffset, blockAngle, blockScaling)));//, "");
                         }
                         DXFStopPath();// true);
                     }
@@ -811,7 +825,7 @@ namespace GrblPlotter //DXFImporter
             else if (entity.GetType() == typeof(DXFCircle))
             {
                 DXFCircle circle = (DXFCircle)entity;
-                if (offsetScaling.X != offsetScaling.Y)
+                if (blockScaling.X != blockScaling.Y)
                 {
                     Logger.Warn("Convert Circle to ellipse");
 
@@ -824,21 +838,21 @@ namespace GrblPlotter //DXFImporter
                     tmpEllipse.StartParam = 0;
                     tmpEllipse.EndParam = 2 * Math.PI;
                     Graphic.SetGeometry("Ellipse");
-                    CalcEllipse(tmpEllipse, offset, offsetAngle, offsetScaling, true, false);
+                    CalcEllipse(tmpEllipse, blockOffset, blockAngle, blockScaling, true, false);
                 }
                 else
                 {
-                    position = ApplyOffsetAndAngle(circle.Center, offset, offsetAngle, offsetScaling);
-                    if (logPosition) Logger.Trace(" Circle center: {0:0.000};{1:0.000}  R: {2:0.000} Scaling:{3}", position.X, position.Y, circle.Radius, (double)offsetScaling.X);
+                    position = BlockTransform(circle.Center, blockOffset, blockAngle, blockScaling);
+                    if (logPosition) Logger.Trace(" Circle center: {0:0.000};{1:0.000}  R: {2:0.000} Scaling:{3}", position.X, position.Y, circle.Radius, (double)blockScaling.X);
                     if (!nodesOnly)
                     {
-                        DXFStartPath((double)position.X + circle.Radius * (double)offsetScaling.X, (double)position.Y, position.Z);//, "Start Circle");
+                        DXFStartPath((double)position.X + circle.Radius * (double)blockScaling.X, (double)position.Y, position.Z);//, "Start Circle");
                         if (Properties.Settings.Default.importSVGCircleToDot)
                         {
                             if (Properties.Settings.Default.importSVGCircleToDotZ)
                             {
                                 Graphic.SetGeometry("CircleToDot");
-                                GCodeDotOnlyWithZ((double)position.X, (double)position.Y, (double)circle.Radius * (double)offsetScaling.X, "Dot r=Z");
+                                GCodeDotOnlyWithZ((double)position.X, (double)position.Y, (double)circle.Radius * (double)blockScaling.X, "Dot r=Z");
                             }
                             else
                             {
@@ -849,14 +863,14 @@ namespace GrblPlotter //DXFImporter
                         else
                         {
                             Graphic.SetGeometry("Circle");
-                            Graphic.AddCircle((double)position.X, (double)position.Y, circle.Radius * (double)offsetScaling.X);
+                            Graphic.AddCircle((double)position.X, (double)position.Y, circle.Radius * (double)blockScaling.X);
                         }
                     }
                     else
                     {   //DXFStartPath((double)position.X, (double)position.Y, "Start Circle");
                         Graphic.SetGeometry("Circle");
                         if (Properties.Settings.Default.importSVGCircleToDotZ)
-                            GCodeDotOnlyWithZ((double)position.X, (double)position.Y, (double)circle.Radius * (double)offsetScaling.X, "Dot r=Z");
+                            GCodeDotOnlyWithZ((double)position.X, (double)position.Y, (double)circle.Radius * (double)blockScaling.X, "Dot r=Z");
                         else
                             GCodeDotOnly((double)position.X, (double)position.Y);//, "Circle");
                     }
@@ -868,14 +882,14 @@ namespace GrblPlotter //DXFImporter
             else if (entity.GetType() == typeof(DXFEllipse))
             {
                 Graphic.SetGeometry("Ellipse");
-                CalcEllipse((DXFEllipse)entity, offset, offsetAngle, offsetScaling, true, false);
+                CalcEllipse((DXFEllipse)entity, blockOffset, blockAngle, blockScaling, true, false);
             }
             #endregion
             #region DXFArc
             else if (entity.GetType() == typeof(DXFArc))
             {
                 DXFArc arc = (DXFArc)entity;
-                if (offsetScaling.X != offsetScaling.Y)
+                if (blockScaling.X != blockScaling.Y)
                 {
                     Logger.Warn("Convert Arc to ellipse");
 
@@ -886,15 +900,15 @@ namespace GrblPlotter //DXFImporter
                     tmpEllipse.MainAxis.X = arc.Radius;
                     tmpEllipse.MainAxis.Y = 0;
                     tmpEllipse.AxisRatio = 1;
-                    tmpEllipse.StartParam = arc.StartAngle * Math.PI / 180;
-                    tmpEllipse.EndParam = arc.EndAngle * Math.PI / 180;
+                    tmpEllipse.StartParam = (arc.StartAngle * Math.PI) / 180;
+                    tmpEllipse.EndParam = (arc.EndAngle * Math.PI) / 180;
                     Graphic.SetGeometry("Ellipse");
-                    CalcEllipse(tmpEllipse, offset, offsetAngle, offsetScaling, true, false);
+                    CalcEllipse(tmpEllipse, blockOffset, blockAngle, blockScaling, true, false);
                 }
                 else
                 {
-                    double X = (double)arc.Center.X * (double)offsetScaling.X;
-                    double Y = (double)arc.Center.Y * (double)offsetScaling.Y;
+                    double X = (double)arc.Center.X * (double)blockScaling.X;
+                    double Y = (double)arc.Center.Y * (double)blockScaling.Y;
                     double R = arc.Radius;
                     Graphic.SetGeometry("Arc");
 
@@ -903,27 +917,27 @@ namespace GrblPlotter //DXFImporter
                     {
                         double startA = arc.StartAngle * Math.PI / 180;
                         double endA = arc.EndAngle * Math.PI / 180;
-                        double startX = (double)(X + R * Math.Cos(startA) * (double)offsetScaling.X);
-                        double startY = (double)(Y + R * Math.Sin(startA) * (double)offsetScaling.Y);
-                        double endX = (double)(X + R * Math.Cos(endA) * (double)offsetScaling.X);
-                        double endY = (double)(Y + R * Math.Sin(endA) * (double)offsetScaling.Y);
+                        double startX = (double)(X + R * Math.Cos(startA) * (double)blockScaling.X);
+                        double startY = (double)(Y + R * Math.Sin(startA) * (double)blockScaling.Y);
+                        double endX = (double)(X + R * Math.Cos(endA) * (double)blockScaling.X);
+                        double endY = (double)(Y + R * Math.Sin(endA) * (double)blockScaling.Y);
 
                         if (logEnable)
                             Logger.Trace(" Arc center: x:{0:0.000}  y:{1:0.000}  R:{2:0.000}  start:{3:0.0}   end:{4:0.0}", X, Y, R, arc.StartAngle, arc.EndAngle);
 
                         double stx = startX, sty = startY, gx = endX, gy = endY, gi = (X - startX), gj = (Y - startY);
-                        if (offsetAngle != 0)
+                        if (blockAngle != 0)
                         {
-                            stx = (startX) * Math.Cos(offsetAngle * Math.PI / 180) - (startY) * Math.Sin(offsetAngle * Math.PI / 180);
-                            sty = (startX) * Math.Sin(offsetAngle * Math.PI / 180) + (startY) * Math.Cos(offsetAngle * Math.PI / 180);
-                            gx = (endX) * Math.Cos(offsetAngle * Math.PI / 180) - (endY) * Math.Sin(offsetAngle * Math.PI / 180);
-                            gy = (endX) * Math.Sin(offsetAngle * Math.PI / 180) + (endY) * Math.Cos(offsetAngle * Math.PI / 180);
-                            gi = (X - startX) * Math.Cos(offsetAngle * Math.PI / 180) - (Y - startY) * Math.Sin(offsetAngle * Math.PI / 180);
-                            gj = (X - startX) * Math.Sin(offsetAngle * Math.PI / 180) + (Y - startY) * Math.Cos(offsetAngle * Math.PI / 180);
+                            stx = (startX) * Math.Cos(blockAngle * Math.PI / 180) - (startY) * Math.Sin(blockAngle * Math.PI / 180);
+                            sty = (startX) * Math.Sin(blockAngle * Math.PI / 180) + (startY) * Math.Cos(blockAngle * Math.PI / 180);
+                            gx = (endX) * Math.Cos(blockAngle * Math.PI / 180) - (endY) * Math.Sin(blockAngle * Math.PI / 180);
+                            gy = (endX) * Math.Sin(blockAngle * Math.PI / 180) + (endY) * Math.Cos(blockAngle * Math.PI / 180);
+                            gi = (X - startX) * Math.Cos(blockAngle * Math.PI / 180) - (Y - startY) * Math.Sin(blockAngle * Math.PI / 180);
+                            gj = (X - startX) * Math.Sin(blockAngle * Math.PI / 180) + (Y - startY) * Math.Cos(blockAngle * Math.PI / 180);
                         }
 
-                        DXFStartPath(stx + (double)offset.X, sty + (double)offset.Y, arc.Center.Z);//, "Start Arc");
-                        Graphic.AddArc(false, gx + (double)offset.X, gy + (double)offset.Y, gi, gj);//, "Arc");
+                        DXFStartPath(stx + (double)blockOffset.X, sty + (double)blockOffset.Y, arc.Center.Z);//, "Start Arc");
+                        Graphic.AddArc(false, gx + (double)blockOffset.X, gy + (double)blockOffset.Y, gi, gj);//, "Arc");
                         DXFStopPath();
                     }
                     else
@@ -944,8 +958,8 @@ namespace GrblPlotter //DXFImporter
                     try
                     {
                         if (entry.GroupCode == 1) { GCodeFromFont.GCText = entry.Value.ToString(); }
-                        else if (entry.GroupCode == 40) { GCodeFromFont.GCHeight = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat) * (double)offsetScaling.X; }
-                        else if (entry.GroupCode == 41) { GCodeFromFont.GCWidth = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat) * (double)offsetScaling.Y; }
+                        else if (entry.GroupCode == 40) { GCodeFromFont.GCHeight = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat) * (double)blockScaling.X; }
+                        else if (entry.GroupCode == 41) { GCodeFromFont.GCWidth = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat) * (double)blockScaling.Y; }
                         else if (entry.GroupCode == 71) { GCodeFromFont.GCAttachPoint = Convert.ToInt16(entry.Value); }
                         else if (entry.GroupCode == 10) { GCodeFromFont.GCOffX = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
                         else if (entry.GroupCode == 20) { GCodeFromFont.GCOffY = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
@@ -966,12 +980,12 @@ namespace GrblPlotter //DXFImporter
                     X = GCodeFromFont.GCOffX,
                     Y = GCodeFromFont.GCOffY
                 };
-                tmp = ApplyOffsetAndAngle(tmp, offset, offsetAngle, offsetScaling);
+                tmp = BlockTransform(tmp, blockOffset, blockAngle, blockScaling);
                 GCodeFromFont.GCOffX = (double)tmp.X;
                 GCodeFromFont.GCOffY = (double)tmp.Y;
 
-                GCodeFromFont.GCAngleRad = (angle + offsetAngle) * Math.PI / 180;
-                if (logEnable) Logger.Trace(" Font:{0} Text: {1} X{2:0.00} Y{3:0.00} a{4:0.00} oa{5:0.00}", GCodeFromFont.GCFontName, GCodeFromFont.GCText, GCodeFromFont.GCOffX, GCodeFromFont.GCOffY, angle, offsetAngle);
+                GCodeFromFont.GCAngleRad = (angle + blockAngle) * Math.PI / 180;
+                if (logEnable) Logger.Trace(" Font:{0} Text: {1} X{2:0.00} Y{3:0.00} a{4:0.00} oa{5:0.00}", GCodeFromFont.GCFontName, GCodeFromFont.GCText, GCodeFromFont.GCOffX, GCodeFromFont.GCOffY, angle, blockAngle);
                 GCodeFromFont.GetCode(0);   // no page break
             }
             #endregion
@@ -988,8 +1002,8 @@ namespace GrblPlotter //DXFImporter
                     try
                     {
                         if (entry.GroupCode == 1) { GCodeFromFont.GCText = entry.Value.ToString(); }
-                        else if (entry.GroupCode == 40) { GCodeFromFont.GCHeight = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat) * (double)offsetScaling.X; }
-                        else if (entry.GroupCode == 41) { GCodeFromFont.GCWidth = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat) * (double)offsetScaling.Y; }
+                        else if (entry.GroupCode == 40) { GCodeFromFont.GCHeight = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat) * (double)blockScaling.X; }
+                        else if (entry.GroupCode == 41) { GCodeFromFont.GCWidth = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat) * (double)blockScaling.Y; }
                         else if (entry.GroupCode == 71) { GCodeFromFont.GCAttachPoint = Convert.ToInt16(entry.Value); }
                         else if (entry.GroupCode == 10) { GCodeFromFont.GCOffX = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
                         else if (entry.GroupCode == 20) { GCodeFromFont.GCOffY = double.Parse(entry.Value, CultureInfo.InvariantCulture.NumberFormat); }
@@ -1010,12 +1024,12 @@ namespace GrblPlotter //DXFImporter
                     X = GCodeFromFont.GCOffX,
                     Y = GCodeFromFont.GCOffY
                 };
-                tmp = ApplyOffsetAndAngle(tmp, offset, offsetAngle, offsetScaling);
+                tmp = BlockTransform(tmp, blockOffset, blockAngle, blockScaling);
                 GCodeFromFont.GCOffX = (double)tmp.X;
                 GCodeFromFont.GCOffY = (double)tmp.Y;
 
-                GCodeFromFont.GCAngleRad = (angle + offsetAngle) * Math.PI / 180;
-                if (logEnable) Logger.Trace(" Font:{0} Text: {1} X{2:0.00} Y{3:0.00} a{4:0.00} oa{5:0.00}", GCodeFromFont.GCFontName, GCodeFromFont.GCText, GCodeFromFont.GCOffX, GCodeFromFont.GCOffY, angle, offsetAngle);
+                GCodeFromFont.GCAngleRad = (angle + blockAngle) * Math.PI / 180;
+                if (logEnable) Logger.Trace(" Font:{0} Text: {1} X{2:0.00} Y{3:0.00} a{4:0.00} oa{5:0.00}", GCodeFromFont.GCFontName, GCodeFromFont.GCText, GCodeFromFont.GCOffX, GCodeFromFont.GCOffY, angle, blockAngle);
                 GCodeFromFont.GetCode(0);   // no page break
             }
             #endregion
@@ -1032,89 +1046,117 @@ namespace GrblPlotter //DXFImporter
             }
         }
 
-        private static double RotateGetX(DXFPoint r, DXFPoint scaling, double angleRad)
-        { return (double)(r.X * Math.Cos(angleRad) * (double)scaling.X - r.Y * Math.Sin(angleRad) * (double)scaling.Y); }
-        private static double RotateGetY(DXFPoint r, DXFPoint scaling, double angleRad)
-        { return (double)(r.X * Math.Sin(angleRad) * (double)scaling.X + r.Y * Math.Cos(angleRad) * (double)scaling.Y); }
-
-        private static void CalcEllipse(DXFEllipse ellipse, DXFPoint offset, double offsetAngle, DXFPoint scaling, bool startStop, bool invert = false)
+        private static void CalcEllipse(DXFEllipse ellipse, DXFPoint lBlockOffset, double lBlockAngle, DXFPoint lBlockScaling, bool startStop, bool invert = false)
         {   // from Inkscape DXF import - modified
             // https://gitlab.com/inkscape/extensions/blob/master/dxf_input.py#L341
+            Graphic.SetGeometry("Ellipse");
+            double w = ellipse.AxisRatio;
+            double aStart = -ellipse.StartParam;
+            double aEnd = -ellipse.EndParam;
 
-            double angleRad = offsetAngle * Math.PI / 180;
-            double xc = RotateGetX(ellipse.Center, scaling, angleRad) + (double)offset.X;
-            double yc = RotateGetY(ellipse.Center, scaling, angleRad) + (double)offset.Y;
-
-            double xm = RotateGetX(ellipse.MainAxis, scaling, angleRad);
-            double ym = RotateGetY(ellipse.MainAxis, scaling, angleRad);
-
-            double w = ellipse.AxisRatio * (double)scaling.Y / (double)scaling.X;
-            double a2 = -ellipse.StartParam;// issue #359
-            double a1 = -ellipse.EndParam;  //
-
+            double xm = (double)ellipse.MainAxis.X;
+            double ym = (double)ellipse.MainAxis.Y;
             double rm = Math.Sqrt(xm * xm + ym * ym);
             double a = Math.Atan2(-ym, xm);
-            double diff = (a2 - a1 + 2 * Math.PI) % (2 * Math.PI);
+            double diff = ((aStart - aEnd + 2 * Math.PI) % (2 * Math.PI));
 
-            if (logPosition)
-            {
-                Logger.Trace(" Ellipse center: {0:0.000}; {1:0.000}  Mainaxis  {2:0.000}; {3:0.000} ration: {4}   Start: {5:0.000} End: {6:0.000}", ellipse.Center.X, ellipse.Center.Y, ellipse.MainAxis.X, ellipse.MainAxis.Y, ellipse.AxisRatio, ellipse.StartParam, ellipse.EndParam);
-                Logger.Trace(" Ellipse center: {0:0.000}; {1:0.000}  R1: {2:0.000} R2: {3:0.000} Start: {4:0.000} End: {5:0.000} Handle:{6}", xc, yc, rm, w * rm, ellipse.StartParam, ellipse.EndParam, ellipse.Handle);
-            }
+            tempPointList = new List<Point>();
+
+            double xc = (double)ellipse.Center.X;
+            double yc = (double)ellipse.Center.Y;
 
             if ((Math.Abs(diff) > 0.0001) && (Math.Abs(diff - 2 * Math.PI) > 0.0001))
             {
                 int large = 0;
                 if (diff > Math.PI)
                     large = 1;
-                double xt = rm * Math.Cos(a1);
-                double yt = w * rm * Math.Sin(a1);
-                double x1 = (xt * Math.Cos(a) - yt * Math.Sin(a));
-                double y1 = (xt * Math.Sin(a) + yt * Math.Cos(a));
-                xt = rm * Math.Cos(a2);
-                yt = w * rm * Math.Sin(a2);
-                double x2 = (xt * Math.Cos(a) - yt * Math.Sin(a));
-                double y2 = (xt * Math.Sin(a) + yt * Math.Cos(a));
 
-                double startX = xc + x1;
-                double startY = yc - y1;
-                double endX = xc + x2;
-                double endY = yc - y2;
+                double xTmp = rm * Math.Cos(aStart);
+                double yTmp = w * rm * Math.Sin(aStart);
+                double xStart = (xTmp * Math.Cos(a) - yTmp * Math.Sin(a));
+                double yStart = (xTmp * Math.Sin(a) + yTmp * Math.Cos(a));
+
+                xTmp = rm * Math.Cos(aEnd);
+                yTmp = w * rm * Math.Sin(aEnd);
+                double xEnd = (xTmp * Math.Cos(a) - yTmp * Math.Sin(a));
+                double yEnd = (xTmp * Math.Sin(a) + yTmp * Math.Cos(a));
+
+                double endX = xc + xStart;
+                double endY = yc - yStart;
+                double startX = xc + xEnd;
+                double startY = yc - yEnd;
+
                 if (!invert)
                 {
-                    if (startStop) DXFStartPath(startX, startY, ellipse.Center.Z);
-                    ImportMath.CalcArc(startX, startY, rm, w * rm, (-180.0 * a / Math.PI), large, 0, endX, endY, DXFMoveTo);
+                    DXFPoint DXFstart = new DXFPoint() { X = startX, Y = startY, Z = ellipse.Center.Z };
+                    if (startStop) DXFStartPath(BlockTransform(DXFstart, lBlockOffset, lBlockAngle, lBlockScaling));//, "Start Ellipse 1");
+                    ImportMath.CalcArc(startX, startY, rm, w * rm, (-180.0 * a / Math.PI), large, 0, endX, endY, CollectPoints);
                 }
                 else
                 {
-                    if (startStop) DXFStartPath(endX, endY, ellipse.Center.Z);
+                    DXFPoint DXFend = new DXFPoint() { X = endX, Y = endY, Z = ellipse.Center.Z };
+                    if (startStop) DXFStartPath(BlockTransform(DXFend, lBlockOffset, lBlockAngle, lBlockScaling));//, "Start Ellipse 1");
                     large = (large == 1) ? 1 : 0;
-                    ImportMath.CalcArc(endX, endY, rm, w * rm, (-180.0 * a / Math.PI), large, 1, startX, startY, DXFMoveTo);
+                    ImportMath.CalcArc(endX, endY, rm, w * rm, (-180.0 * a / Math.PI), large, 1, startX, startY, CollectPoints);
                 }
-
-                //    ImportMath.CalcArc(xc + x1, yc - y1, rm, w * rm, (-180.0 * a / Math.PI), large, 0, (xc + x2), (yc - y2), DXFMoveTo);
-                //  path = 'M %f,%f A %f,%f %f %d 0 %f,%f' % (xc + x1, yc - y1, rm, w* rm, -180.0 * a / math.pi, large, xc + x2, yc - y2)
             }
             else
             {
-                if (startStop) DXFStartPath(xc + xm, yc + ym, ellipse.Center.Z);//, "Start Ellipse 2");
-                ImportMath.CalcArc(xc + xm, yc + ym, rm, w * rm, (-180.0 * a / Math.PI), 1, 0, xc - xm, yc - ym, DXFMoveTo);
-                ImportMath.CalcArc(xc - xm, yc - ym, rm, w * rm, (-180.0 * a / Math.PI), 1, 0, xc + xm, yc + ym, DXFMoveTo);
-                //    path = 'M %f,%f A %f,%f %f 1 0 %f,%f %f,%f %f 1 0 %f,%f z' % (xc + xm, yc - ym, rm, w* rm, -180.0 * a / math.pi, xc - xm, yc + ym, rm, w* rm, -180.0 * a / math.pi, xc + xm, yc - ym)
+                double startX = xc + xm;
+                double startY = yc + ym;
+                double endX = xc - xm;
+                double endY = yc - ym;
+                DXFPoint DXFstart = new DXFPoint() { X = startX, Y = startY, Z = ellipse.Center.Z };
+                if (startStop) DXFStartPath(BlockTransform(DXFstart, lBlockOffset, lBlockAngle, lBlockScaling));//, "Start Ellipse 1");
+                ImportMath.CalcArc(startX, startY, rm, w * rm, (-180.0 * a / Math.PI), 1, 0, endX, endY, CollectPoints);
+                ImportMath.CalcArc(endX, endY, rm, w * rm, (-180.0 * a / Math.PI), 1, 0, startX, startY, CollectPoints);
             }
+            ProcessPoints(lBlockOffset, lBlockAngle, lBlockScaling);
             if (startStop) DXFStopPath();
         }
 
-        private static DXFPoint ApplyOffsetAndAngle(DXFPoint location, DXFPoint offset, double offsetAngleDegree, DXFPoint scaling)
+        private static void CollectPoints(System.Windows.Point orig, string cmt)
         {
+            tempPointList.Add(orig);
+        }
+
+        private static void ProcessPoints(DXFPoint offset, double angleDeg, DXFPoint scaling)
+        {
+            foreach (Point tmp in tempPointList)
+            {
+                DXFPoint DXFstart = new DXFPoint() { X = tmp.X, Y = tmp.Y, Z = 0 };
+                DXFMoveTo(BlockTransform(DXFstart, offset, angleDeg, scaling));
+            }
+        }
+
+        private static DXFPoint BlockTransform(DXFPoint point, DXFPoint offset, double angleDeg, DXFPoint scaling)
+        {
+            DXFPoint t1 = new DXFPoint();
             DXFPoint tmp = new DXFPoint();
-            //double offsetAngle = Math.PI * offsetAngleDegree / 180;
-            double angleRad = offsetAngleDegree * Math.PI / 180;
-            tmp.X = RotateGetX(location, scaling, angleRad) + (double)offset.X;
-            tmp.Y = RotateGetY(location, scaling, angleRad) + (double)offset.Y;
-            tmp.Z = (double)scaling.Z * location.Z + offset.Z;
+            t1.X = point.X * scaling.X;
+            t1.Y = point.Y * scaling.Y;
+            t1.Z = point.Z * scaling.Z;
+            tmp.Z = t1.Z;
+            tmp = BlockRotate(t1, angleDeg * Math.PI / 180);// + offset;
+            tmp.X += offset.X;
+            tmp.Y += offset.Y;
+            //tmp.X = RotateGetX(t1, angleDeg * Math.PI / 180) + offset.X;
+            //tmp.Y = RotateGetY(t1, angleDeg * Math.PI / 180) + offset.Y;
+            tmp.Z += offset.Z;
             return tmp;
         }
+        private static DXFPoint BlockRotate(DXFPoint r, double angleRad)
+        { return new DXFPoint() { X = (r.X * Math.Cos(angleRad) - r.Y * Math.Sin(angleRad)), Y = (r.X * Math.Sin(angleRad) + r.Y * Math.Cos(angleRad)) }; }
+/*
+        private static double RotateGetX(DXFPoint r, double angleRad)
+        { return (double)(r.X * Math.Cos(angleRad) - r.Y * Math.Sin(angleRad)); }
+        private static double RotateGetY(DXFPoint r, double angleRad)
+        { return (double)(r.X * Math.Sin(angleRad) + r.Y * Math.Cos(angleRad)); }
+        private static double RotateGetX(Point r, double angleRad)
+        { return (double)(r.X * Math.Cos(angleRad) - r.Y * Math.Sin(angleRad)); }
+        private static double RotateGetY(Point r, double angleRad)
+        { return (double)(r.X * Math.Sin(angleRad) + r.Y * Math.Cos(angleRad)); }
+*/
 
         private static Point ToWindowsSystemPoint(DXFPoint tmp)
         { return new Point((double)tmp.X, (double)tmp.Y); }
@@ -1201,7 +1243,7 @@ namespace GrblPlotter //DXFImporter
         {   // https://www.afralisp.net/autolisp/tutorials/polyline-bulges-part-1.php
             // https://darrenirvine.blogspot.com/2015/08/polylines-radius-bulge-turnaround.html
             Logger.Warn("Convert round corner Arc to ellipse");
-            double phi = Math.Atan(bulge) * 4;                  // Included angle
+            //    double phi = Math.Atan(bulge) * 4;                  // Included angle
             double dx = (double)(var2.X - var1.X);
             double dy = (double)(var2.Y - var1.Y);
             double c = Math.Sqrt(dx * dx + dy * dy);            // chord length
@@ -1276,6 +1318,7 @@ namespace GrblPlotter //DXFImporter
             Point coord = TranslateXY((double)tmp.X, (double)tmp.Y);
             DXFStartTrsanslatedPath(coord, tmp.Z);//, cmt);
         }
+
         private static void DXFStartPath(double x, double y, double? z)//, string cmt = "")
         {
             Point coord = TranslateXY((double)x, (double)y);
@@ -1468,8 +1511,11 @@ namespace GrblPlotter //DXFImporter
         { return new Point(X, Y); }
         public DXFPoint ToDXFPoint()
         {
-            DXFPoint tmp = new DXFPoint();
-            tmp.X = X; tmp.Y = Y;
+            DXFPoint tmp = new DXFPoint
+            {
+                X = X,
+                Y = Y
+            };
             return tmp;
         }
     }

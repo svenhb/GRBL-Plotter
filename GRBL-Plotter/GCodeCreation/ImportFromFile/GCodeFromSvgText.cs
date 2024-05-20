@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,6 +31,7 @@
  * 2023-01-13 add textLetterSpacing
  * 2023-07-02 f:ReadAttributs replaced ConvertToPixel by ConvertFontSize
  * 2023-11-11 replace floats by double
+ * 2024-04-22 l:555 f:ReadAttributs	set attributes for stroke, stroke-widthh, fill (Graphic.SetPenColor, SetPenWidth, SetPenFill)
 */
 
 using System;
@@ -39,6 +40,8 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Net;
+using System.Windows.Media;
+
 //using System.Windows.Media;
 using System.Xml.Linq;
 
@@ -58,7 +61,7 @@ namespace GrblPlotter
             ParseTextElement(pathElement, globalTextProp, ref overAllCharCount);
         }
 
-        private static PointF ParseTextElement(XElement pathElement, TextProperties newTextProp, ref int newTextPathCharIndex)
+        private static PointF ParseTextElement(XElement pathElement, TextProperties newTextProp, ref int newTextPathCharIndex, bool tspan = false)
         {
             PointF origin = new PointF(newTextProp.GetX(), newTextProp.GetY());
             TextProperties localTextProp = new TextProperties(newTextProp);	    // reset properties after each node, preset with prev node
@@ -73,19 +76,7 @@ namespace GrblPlotter
                 nodeCount++;
                 localTextProp.CharIndex = textPathCharIndex;
                 origTextProp.CharIndex = textPathCharIndex;
-                if (node.NodeType == System.Xml.XmlNodeType.Text)               // Add text to myPath
-                {
-                    txt = StripWhiteSpace(node.ToString(), textPathCount, nodeCount, nodeMax);
-                    Logger.Trace("►► ParseTextElement  id:{0}  ci:{1}   stroke:'{2}'  fill:'{3}'  text:'{4}'  style:'{5}'", pathElement.Attribute("id"), newTextProp.CharIndex, newTextProp.stroke, newTextProp.fill, txt, newTextProp.fontStyle);
-                    //Logger.Info("►► ParseTextElement  id:{0}  ci:{1}   ref-ci:{2}", pathElement.Attribute("id"), newTextProp.CharIndex, newTextPathCharIndex);
-                    Graphic.SetGeometry("text");
-                    origin = AddText(txt, newTextProp, origin, ref textPathCharIndex);
-                    newTextProp.SetX(origin.X);                             // set start posisiton
-                    newTextProp.SetY(origin.Y);
-                    txt = "";
-                    textPathCount++;
-                }
-                else if (node.NodeType == System.Xml.XmlNodeType.Element)
+                if (node.NodeType == System.Xml.XmlNodeType.Element)
                 {
                     var nElement = (XElement)node;
                     if (nElement.Name == (nspace + "tspan"))
@@ -94,7 +85,7 @@ namespace GrblPlotter
                         localTextProp.SetY(origin.Y);
                         if (localTextProp.Update(nElement))                 // get actual properties, perhaps overwrite x,y
                             localTextProp.CharIndex = 0;
-                        origin = ParseTextElement(nElement, localTextProp, ref textPathCharIndex);
+                        origin = ParseTextElement(nElement, localTextProp, ref textPathCharIndex, true);
                         localTextProp = new TextProperties(origTextProp);   // restore
                         newTextProp.CharIndex += textPathCharIndex;
                     }
@@ -113,75 +104,107 @@ namespace GrblPlotter
                         Graphic.SetHeaderMessage(string.Format(" {0}-1103: Not supported SVG element: '{1}'", CodeMessage.Warning, nElement.Name));
                     }
                 }
+                else if (node.NodeType == System.Xml.XmlNodeType.Text)               // Add text to myPath
+                {
+                    txt = StripWhiteSpace(node.ToString(), textPathCount, tspan);
+                    if (txt.Length > 0)
+                    {
+                        // Logger.Trace("►► ParseTextElement  id:{0}  ci:{1}   stroke:'{2}'  fill:'{3}'  text:'{4}'  style:'{5}'", pathElement.Attribute("id"), newTextProp.CharIndex, newTextProp.stroke, newTextProp.fill, txt, newTextProp.fontStyle);
+                        // Logger.Info("►► ParseTextElement  id:{0}  ci:{1}   ref-ci:{2}", pathElement.Attribute("id"), newTextProp.CharIndex, newTextPathCharIndex);
+                        Graphic.SetGeometry("text");
+                        origin = AddText(txt, newTextProp, origin, ref textPathCharIndex);
+                        newTextProp.SetX(origin.X);                             // set start posisiton
+                        newTextProp.SetY(origin.Y);
+                        txt = "";
+                        textPathCount++;
+                    }
+                }
             }
             return origin;
         }
 
-        private static string StripWhiteSpace(string tmp, int txtCount, int nCount, int nMax)
-        {   // https://www.w3.org/TR/SVG2/text.html#WhiteSpace
+        private static string StripWhiteSpace(string tmp, int txtCount, bool tspan = false)
+        {   // https://www.w3.org/TR/SVG11/text.html#WhiteSpace
+            // https://www.w3.org/TR/SVG2/text.html#WhiteSpace
             string ret = WebUtility.HtmlDecode(tmp).Replace("\r", "");         // remove 'CR', keep 'LF'
             ret = ret.Replace("\t", " ");               // replace tab by space
+
             bool textWasFound = (txtCount > 0);
+
             string tmpLine;
             string retVal = "";
 
             string[] lines = ret.Split('\n');
 
-            if (lines.Length == 1)
-            { retVal = lines[0]; }
-            else
+            for (int i = 0; i < lines.Length; i++)
             {
-                for (int i = 0; i < lines.Length; i++)
-                {
-                    //        Logger.Trace("stripWhiteSpace i:{0}  txtCount:{1}  nodeCount:{2}   nodeMax:{3}  txt:'{4}'", i, txtCount, nCount, nMax, lines[i]);
-                    tmpLine = lines[i].Trim();
+                tmpLine = lines[i];
+                Logger.Trace("tmpLine: {0}  '{1}'  textWasFound:{2}", i, tmpLine, textWasFound);
 
+                if (false)
+                {
+                    //if ((i > 0) && (lines[i] == ""))
+                    //    tmpLine += " ";
+                    if (tmpLine.Length > 0)
+                    {
+
+                        if (tmpLine.StartsWith(" "))
+                        {
+                            if (textWasFound)
+                            { retVal += " " + tmpLine.Trim(); }
+                            else
+                            { retVal += tmpLine.Trim(); }
+                        }
+                        else
+                        {
+                            retVal += tmpLine.Trim();
+                            textWasFound = true;
+                        }
+
+                        if (tmpLine.EndsWith(" "))
+                            retVal += " ";
+                    }
+                }
+                else
+
+                {
                     if (!textWasFound)
                     {
-                        retVal += lines[i].TrimStart();         // remove leading spaces
+                        retVal += lines[i].Trim();         // remove leading spaces
+                        if (tmpLine.EndsWith(" "))
+                            retVal += " ";
                         if (tmpLine.Length > 0)
                             textWasFound = true;
                         continue;
                     }
-
-                    if (i == lines.Length - 1)
-                    {
-                        if ((txtCount == 0) && (nCount < nMax))
-                        { retVal += " "; continue; }
-
-                        if ((nCount == nMax) && (tmp.Trim() == ""))
-                            return "";
-
-                        if (tmpLine.Length == 0)                // nothing to do
-                            continue;
-                    }
-                    if (tmpLine.Length == 0)                    // empty but not last line, add space
-                        retVal += " ";
-
-                    if (lines[i].StartsWith(" "))               // reduce amount of leading space to one 
-                    {
-                        retVal += " " + lines[i].TrimStart();
-                    }
                     else
-                        retVal += lines[i];
+                    {
+                        if ((tmpLine.Length > 0) && (tmpLine.Trim().Length == 0))
+                        {
+                            if ((i < (lines.Length - 1) || !tspan))  //(txtCount > 0)))
+                            { retVal += " "; }
+                        }
+                        else
+                        {
+                            if (tmpLine.StartsWith(" "))
+                                retVal += " " + lines[i].Trim();
+                            else
+                                retVal += lines[i].Trim();
 
-                    if (lines[i].EndsWith(" "))
-                    { retVal = retVal.TrimEnd() + " "; }
+                            if (tmpLine.EndsWith(" "))
+                                retVal += " ";
+                        }
+                    }
                 }
-
-                if (retVal.StartsWith(" "))                     // reduce amount of leading space to one 
-                {
-                    retVal = " " + retVal.TrimStart();
-                }
-                if (retVal.EndsWith(" "))                       // reduce amount of leading space to one 
-                {
-                    retVal = retVal.TrimEnd() + " ";
-                }
+                Logger.Trace("retVal:'{0}'", retVal);
             }
-            //    Logger.Trace("stripWhiteSpace out:'{0}'", retVal);
+            if (retVal.EndsWith(" "))
+            { retVal = retVal.TrimEnd() + " "; }
+            //    if (tspan)
+            //        return retVal.Trim();
+
             return retVal;
         }
-
 
         private static PointF ProcessTextPath(XElement pathElement, TextProperties textProp, PointF origin, int level)
         {
@@ -205,7 +228,6 @@ namespace GrblPlotter
                         if (id.Name == (nspace + "path"))
                         {
                             lastTransformMatrix.SetIdentity();
-                            //        lastTransformMatrix = ParseTransform(id, false, level);
                             ParseAttributs(id);
 
                             if (id.Attribute("d") != null)
@@ -217,7 +239,6 @@ namespace GrblPlotter
                             }
                             if (pathData != "")
                             {
-                                //    Logger.Trace("d:{0}", pathData);
                                 string separators = @"(?=[A-Za-z-[e]])";
                                 var tokens = System.Text.RegularExpressions.Regex.Split(pathData, separators).Where(t => !string.IsNullOrEmpty(t));
                                 int objCount = 0;
@@ -258,8 +279,7 @@ namespace GrblPlotter
                     Logger.Error("ProcessTextPath <textPath no path found");
             }
 
-            //    string txt = pathElement.Value.TrimStart().TrimEnd(' ').TrimEnd('\n').Replace("\r", " ").Replace("\n", " ");
-            string txt = "";// pathElement.Value.Trim().Replace("\r", "").Replace("\n", "");
+            string txt = "";
             int nodeMax = pathElement.Nodes().Count();
             int nodeCount = 0;
             int textPathCount = 0;
@@ -268,13 +288,13 @@ namespace GrblPlotter
                 nodeCount++;
                 if (node.NodeType == System.Xml.XmlNodeType.Text)               // Add text to myPath
                 {
-                    txt += StripWhiteSpace(node.ToString(), textPathCount, nodeCount, nodeMax);
+                    txt += StripWhiteSpace(node.ToString(), textPathCount);
                 }
                 else if (node.NodeType == System.Xml.XmlNodeType.Element)
                 {
                     var nElement = (XElement)node;
                     if (nElement.Name == (nspace + "tspan"))
-                    { txt += StripWhiteSpace(nElement.Value.ToString(), textPathCount, nodeCount, nodeMax); }
+                    { txt += StripWhiteSpace(nElement.Value.ToString(), textPathCount); }
                     Graphic.SetHeaderInfo(" Unsupported SVG element order: 'tspan' within 'textPath'");
                     Graphic.SetHeaderMessage(string.Format(" {0}-1105: 'tspan' within 'textPath' is not supported", CodeMessage.Warning));
                 }
@@ -282,14 +302,9 @@ namespace GrblPlotter
 
             if ((!string.IsNullOrEmpty(txt)) && (textOnPath.PointCount > 0))
             {
-                //         lastTransformMatrix = System.Windows.Media.Matrix.Multiply(lastTransformMatrix, matrixElement);
-                //    lastTransformMatrix = System.Windows.Media.Matrix.Multiply(matrixGroup[1],lastTransformMatrix);	// '1' = 1st g-level
                 System.Drawing.Drawing2D.Matrix tmpM = new System.Drawing.Drawing2D.Matrix((float)lastTransformMatrix.M11, (float)lastTransformMatrix.M12, (float)lastTransformMatrix.M21, (float)lastTransformMatrix.M22,
                                         (float)lastTransformMatrix.OffsetX, (float)lastTransformMatrix.OffsetY);
                 textOnPath.Transform(tmpM);
-
-                //    Logger.Info("PathTransform M11:{0}  M12:{1}  M21:{2}  M22:{3}   ox:{4}  oy:{5}", lastTransformMatrix.M11, lastTransformMatrix.M12, lastTransformMatrix.M21, lastTransformMatrix.M22, lastTransformMatrix.OffsetX, lastTransformMatrix.OffsetY);
-
                 textOnPath.Flatten(new System.Drawing.Drawing2D.Matrix(), 0.1f);
                 textProp.ExportTextOnPath(textOnPath, txt);
             }
@@ -298,7 +313,7 @@ namespace GrblPlotter
 
         private static PointF AddText(string svgText, TextProperties textProp, PointF origin, ref int charIndex)
         {
-            Logger.Info("► AddText txt:'{0}'  size:{1}   family:{2}   offsetX:{3}  offsetY:{4}   globalX:{5}  globalY:{6}", svgText, textProp.fontSize, textProp.fontFamily, origin.X, origin.Y, offsetX, offsetY);
+            Logger.Info("► AddText text:'{0}'  size:{1}   family:{2}   offsetX:{3}  offsetY:{4}   globalX:{5}  globalY:{6}", svgText, textProp.fontSize, textProp.fontFamily, origin.X, origin.Y, offsetX, offsetY);
 
             textProp.SetX(origin.X);
             textProp.SetY(origin.Y);
@@ -314,7 +329,7 @@ namespace GrblPlotter
                 return;
 
             extractPath.Flatten(new System.Drawing.Drawing2D.Matrix(), 0.02f);
-            if (logEnable) Logger.Info("ExtractGlyphPath  '{0}'  count:{1}", geometry, extractPath.PointCount);
+            if (logEnable) Logger.Trace("    ● ExtractGlyphPath  '{0}'  count:{1}", geometry, extractPath.PointCount);
             System.Drawing.PointF gpc;
             System.Drawing.PointF gpcStart = new System.Drawing.PointF();
 
@@ -371,11 +386,13 @@ namespace GrblPlotter
 
             public int CharIndex = 0;
             public string stroke = "#000000";	//"none";
+            public string strokeWidth = "0.01";
             public string fill = "#000000";
             public double fontSize = 16f;
             public System.Drawing.FontFamily fontFamily = new System.Drawing.FontFamily("Arial");
             public System.Drawing.FontStyle fontStyle = System.Drawing.FontStyle.Regular;
-            public System.Drawing.StringFormat stringFormat = new System.Drawing.StringFormat();
+            public System.Drawing.StringFormat stringFormat = System.Drawing.StringFormat.GenericTypographic;   //new System.Drawing.StringFormat();  System.Drawing.StringFormat.GenericTypographic
+            private Typeface typeface = new System.Windows.Media.Typeface(new System.Windows.Media.FontFamily("Times New Roman"), System.Windows.FontStyles.Normal, System.Windows.FontWeights.Normal, System.Windows.FontStretches.Medium);
             public string href = "";
 
             public void List()
@@ -414,6 +431,7 @@ namespace GrblPlotter
                 textLetterSpacing = temp.textLetterSpacing;
                 CharIndex = temp.CharIndex;
 
+                strokeWidth = temp.strokeWidth;
                 stroke = temp.stroke;
                 fill = temp.fill;
                 fontSize = temp.fontSize;
@@ -436,12 +454,19 @@ namespace GrblPlotter
                 stringFormat.LineAlignment |= System.Drawing.StringAlignment.Near;  // Center;// Far;
                 stringFormat.Alignment |= System.Drawing.StringAlignment.Near;
 
+                System.Windows.FontStyle typeFaceFontStyle = System.Windows.FontStyles.Normal;
+                System.Windows.FontWeight typeFaceFontWeight = System.Windows.FontWeights.Normal;
+
                 fontStyle = System.Drawing.FontStyle.Regular;
                 //    if (textFontWeight == "normal") fontStyle = System.Drawing.FontStyle.Regular;
-                if (textFontWeight == "bold") fontStyle |= System.Drawing.FontStyle.Bold;
-                if (textFontStyle == "italic") fontStyle |= System.Drawing.FontStyle.Italic;
+                if (textFontWeight == "bold") { fontStyle |= System.Drawing.FontStyle.Bold; typeFaceFontWeight = System.Windows.FontWeights.Bold; }
+                if (textFontStyle == "italic") { fontStyle |= System.Drawing.FontStyle.Italic; typeFaceFontStyle = System.Windows.FontStyles.Italic; }
                 if (textDecoration == "line-through") fontStyle |= System.Drawing.FontStyle.Strikeout;
                 if (textDecoration == "underline") fontStyle |= System.Drawing.FontStyle.Underline;
+
+                if (strokeWidth != "") { Graphic.SetPenWidth(strokeWidth); }
+                if (stroke != "") { Graphic.SetPenColor(stroke.StartsWith("#") ? stroke.Substring(1) : stroke); }  //Logger.Info("SetPenColor '{0}'", stroke); 
+                if ((fill != "") && (fill != "none")) { Graphic.SetPenFill(fill.StartsWith("#") ? fill.Substring(1) : fill); }     //Logger.Info("SetPenFill  '{0}'", fill); 
 
                 try
                 {
@@ -449,6 +474,7 @@ namespace GrblPlotter
                     {
                         string[] parameters = textFontFamily.Split(',');
                         fontFamily = new System.Drawing.FontFamily(parameters[0]);
+                        typeface = new System.Windows.Media.Typeface(new System.Windows.Media.FontFamily(textFontFamily), typeFaceFontStyle, typeFaceFontWeight, System.Windows.FontStretches.Medium);
                     }
                 }
                 catch (Exception err)
@@ -518,6 +544,7 @@ namespace GrblPlotter
             public bool ReadAttributs(XElement element)
             {
                 bool rotation = false;
+                strokeWidth = "0.1";
                 if (element.Attribute("style") != null)
                 {
                     logSource = "ParseAttributs: font-size";
@@ -545,11 +572,32 @@ namespace GrblPlotter
                     if (!string.IsNullOrEmpty(fontValue))
                     { textLetterSpacing = ConvertFontSize(textLetterSpacing, fontValue); }
 
+                    fontValue = GetStyleProperty(element, "stroke-width");
+                    if (!string.IsNullOrEmpty(fontValue))
+                    { strokeWidth = CalcPenWidth(fontValue); }
+;
+                    fontValue = GetStyleProperty(element, "fill");
+                    if (!string.IsNullOrEmpty(fontValue))
+                    {
+                        fill = fontValue;
+                        if (stroke == "")
+                        {
+                            if (fill != "none") { stroke = fill; }
+                            else { stroke = "black"; }
+                        }
+                        if ((attributeFill.Length > 1))// && (attributeFill != "none"))
+                            Graphic.SetPenFill(attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
+                    }
+
+                    fontValue = GetStyleProperty(element, "stroke");
+                    if (!string.IsNullOrEmpty(fontValue))
+                    {
+                        stroke = fontValue;
+                    }
+
                     /* not implemented
-                        fontValue = GetStyleProperty(element, "font-style");
                         fontValue = GetStyleProperty(element, "font-variant");
-                        fontValue = GetStyleProperty(element, "font-stretch");
-                        fontValue = GetStyleProperty(element, "stroke-width");*/
+                        fontValue = GetStyleProperty(element, "font-stretch");*/
                 }
 
                 if (element.Attribute("font-style") != null)
@@ -577,11 +625,12 @@ namespace GrblPlotter
                 { textLetterSpacing = ConvertFontSize(textLetterSpacing, element.Attribute("letter-spacing").Value); }
 
                 if (element.Attribute("stroke-width") != null)
-                { }
+                { strokeWidth = CalcPenWidth(element.Attribute("stroke-width").Value); }
 
                 double tmpEM = factor_Em2Px;
                 factor_Em2Px = fontSize;
                 if (element.Attribute("x") != null) x = ConvertToPixelArray(element.Attribute("x").Value);
+
                 if (element.Attribute("y") != null) y = ConvertToPixelArray(element.Attribute("y").Value);
                 if (element.Attribute("dx") != null) dx = ConvertToPixelArray(element.Attribute("dx").Value);
                 if (element.Attribute("dy") != null) dy = ConvertToPixelArray(element.Attribute("dy").Value);
@@ -596,8 +645,14 @@ namespace GrblPlotter
                         if (fill != "none") { stroke = fill; }
                         else { stroke = "black"; }
                     }
+                    if ((attributeFill.Length > 1))// && (attributeFill != "none"))
+                        Graphic.SetPenFill(attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
                 }
-                if (element.Attribute("stroke") != null) stroke = element.Attribute("stroke").Value;
+
+                if (element.Attribute("stroke") != null)
+                {
+                    stroke = element.Attribute("stroke").Value;
+                }
 
                 if (element.Attribute(xlink + "href") != null) href = element.Attribute(xlink + "href").Value;
                 if (element.Attribute("href") != null) href = element.Attribute("href").Value;
@@ -621,10 +676,11 @@ namespace GrblPlotter
                     return oldFontSize;
 
                 string[] words = { "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large" };
-                int[] px = { 9, 10, 13, 16, 18, 24, 32,48 };
+                int[] px = { 9, 10, 13, 16, 18, 24, 32, 48 };
 
                 if (words.Contains(fontValue))
-                {   var index = Array.FindIndex(words, row => row.Contains(fontValue));
+                {
+                    var index = Array.FindIndex(words, row => row.Contains(fontValue));
                     return px[index];
                 }
 
@@ -657,8 +713,7 @@ namespace GrblPlotter
 
             public double ExportString(string text)
             {
-                if (text.Length == 0)
-                    return GetX(0) + GetdX(0);
+                if (text.Length == 0) return GetX(0) + GetdX(0);
 
                 if (text.StartsWith(" ") && (text.Trim() == ""))    // no content to draw
                 {
@@ -666,70 +721,44 @@ namespace GrblPlotter
                     return (text.Length * GetGlyphProperty(text[0], 1) * fontSize) + GetX(0) + GetdX(0);
                 }
 
-                List<double> posX = new List<double>
-                {
-                    0f   // first glyph starts at zero
-                };
-                double spaceWidth = GetGlyphProperty(' ', 1) * fontSize;
-
-                /* if leading space " " */
-                string tempText = text.Trim();
-                double spaceWidthStartApply = 0;
-                if (text.StartsWith(" "))
-                {
-                    spaceWidthStartApply += spaceWidth;
-                    posX.Add((spaceWidth - (GetGlyphProperty(tempText[0], 0) * fontSize)));
-                }
-
-                /* get glyph-positions  */
-                double width = 0;
-                for (int i = 1; i <= tempText.Length; i++)
-                {
-                    width = GetCharWidth(tempText.Substring(0, i)).Width + spaceWidthStartApply;
-                    if ((i < tempText.Length) && (tempText[i - 1] == ' ')) { width += spaceWidth; }
-                    posX.Add(width);
-                }
-
-                /* if ending with  space " "    */
-                double spaceWidthEndApply = 0;
-                if (text.EndsWith(" ")) { spaceWidthEndApply += spaceWidth; posX.Add(width + (GetGlyphProperty(tempText[tempText.Length - 1], 2) * fontSize) + spaceWidth); }
-
-                for (int i = tempText.Length; i <= text.Length; i++)    // just for safety...
-                { posX.Add(posX[tempText.Length]); }
-
                 Font font = new Font(fontFamily, (float)fontSize, fontStyle, GraphicsUnit.Millimeter);
                 float yOffset = fontFamily.GetCellAscent(fontStyle) * font.Size / fontFamily.GetEmHeight(fontStyle);
-
-                double xOffsetBounds = GetCharWidth(tempText).Left;            // Left-pos of bounds
-                double XOffsetLSB = (GetGlyphProperty(text[0], 0) * fontSize);
                 bool isPureText = ((x.Length <= 1) && (y.Length <= 1) && (dx.Length <= 1) && (dy.Length <= 1) && (r.Length <= 1) && (GetRotation() == 0) && (textLetterSpacing == 0));
 
-                Logger.Trace("● ExportString '{0}'  pureText:{1}  start-X:{2:0.00}  textLen:{3:0.00}   spaceWidth:{4:0.00}   fontSize:{5:0.00}", text, isPureText, GetX(0), posX[text.Length], spaceWidth, fontSize);
+                Logger.Trace("● ExportString '{0}'  pureText:{1}  start-X:{2:0.00}  fontSize:{3:0.00}", text, isPureText, GetX(0), fontSize);
+                Logger.Trace(" ● Set width:{0}  stroke:{1}  fill:{2}", strokeWidth, stroke, fill);
 
-                if (stroke != "") { Graphic.SetPenColor(stroke.StartsWith("#") ? stroke.Substring(1) : stroke); }  //Logger.Info("SetPenColor '{0}'", stroke); 
-                if ((fill != "") && (fill != "none")) { Graphic.SetPenFill(fill.StartsWith("#") ? fill.Substring(1) : fill); }     //Logger.Info("SetPenFill  '{0}'", fill); 
+                if (strokeWidth != "") { Graphic.SetPenWidth(strokeWidth); }
+                if (stroke != "") { Graphic.SetPenColor(stroke.StartsWith("#") ? stroke.Substring(1) : stroke); }
+                if ((fill != "") && (fill != "none")) { Graphic.SetPenFill(fill.StartsWith("#") ? fill.Substring(1) : fill); }
 
-                double oxOrig = GetX(0) + GetdX(0);
-                double ox = oxOrig - xOffsetBounds + spaceWidthStartApply + XOffsetLSB;
+                double ox = GetX(0) + GetdX(0);
                 double oy = GetY(0) + GetdY(0) - yOffset;
 
-                //        Logger.Info("TEST oxOrig:{0:0.00}  ox:{1:0.00}   xOffset:{2:0.00}   spaceWidthStartApply:{3:0.00}  LSB:{4:0.00}", oxOrig, ox, xOffsetBounds, spaceWidthStartApply, XOffsetLSB);
+                StringAlignment alignment = StringAlignment.Near;// | StringAlignment.DirectionVertical;
+
                 if (isPureText)
                 {
-                    using (var path = new GraphicsPath())               // do whole text in one go
+                    double width = 0;
+                    if (CharIndex > 0)
+                        ox -= GetGlyphProperty(text[0], 0) * fontSize;  // remove left side bearing on first char
+                    for (int i = 0; i < text.Length; i++)
                     {
-                        DrawGlyphPath(path, new PointF((float)ox, (float)oy), new PointF((float)ox, (float)(oy + yOffset)), GetRotation(), text, StringAlignment.Near);
-                        ExtractGlyphPath(path, new PointF(0, 0), "tspan '" + text + "'");            // StartPath & Graphic.StopPath
+                        width += GetGlyphProperty(text[i], 1) * fontSize;
+                    }
+                    using (var path = new GraphicsPath())           // do whole text in one go
+                    {
+                        DrawGlyphPath(path, new PointF((float)ox, (float)oy), new PointF((float)ox, (float)(oy + yOffset)), GetRotation(), text, alignment);
+                        ExtractGlyphPath(path, new PointF(0, 0), "tspan '" + text + "'");
                     }
                     CharIndex += text.Length;
-                    return posX[text.Length] + ox + spaceWidthEndApply;
+                    return width + ox;
                 }
                 else
                 {
-                    xOffsetBounds = GetGlyphProperty(text[0], 0) * fontSize;  // get LSB
-                    width = 0;
+                    double width = 0;
                     double tmpWidth;
-                    posX = new List<double>
+                    List<double> posX = new List<double>
                     {
                         0f                                       // first glyph starts at zero
                     };
@@ -741,26 +770,37 @@ namespace GrblPlotter
                     }
                     posX.Add(width);
 
+                    double spaceWidth = GetGlyphProperty(' ', 1) * fontSize;
+                    double spaceWidthStartApply = 0;
+                    if (text.StartsWith(" "))
+                        spaceWidthStartApply += GetGlyphProperty(' ', 1) * fontSize;
+                    double spaceWidthEndApply = 0;
+                    if (text.EndsWith(" "))
+                        spaceWidthEndApply += spaceWidth;
+
                     using (var path = new GraphicsPath())               // do char by char to adjust e.g. dx individual
                     {
                         int ci;
                         for (int i = 0; i < text.Length; i++)
                         {
                             ci = i + CharIndex;
-                            oxOrig = GetX(ci) + GetdX(ci);
                             if (x.Length > i)                           // if individual position is given
-                                ox = GetX(ci) + GetdX(ci) - xOffsetBounds + spaceWidthStartApply;
+                                ox = GetX(ci) + GetdX(ci) + spaceWidthStartApply;
                             else
-                                ox = GetX(ci) + GetdX(ci) + posX[i] - xOffsetBounds + spaceWidthStartApply;
+                                ox = GetX(ci) + GetdX(ci) + posX[i] + spaceWidthStartApply;
                             oy = GetY(ci) + GetdY(ci) - yOffset;
 
+                            if (logEnable) Logger.Trace("  ● i:{0}  ci:{1}  GetX(ci):{2}  ox:{3}", i, ci, GetX(ci), ox);
+
                             DrawGlyphPath(path, new PointF((float)ox, (float)oy), new PointF((float)ox, (float)oy + yOffset), GetRotation(ci), text[i].ToString(), StringAlignment.Near);
-                            ExtractGlyphPath(path, new PointF(0, 0), "tspan '" + text[i] + "'");            // StartPath & Graphic.StopPath
+                            ExtractGlyphPath(path, new PointF(0, 0), "tspan '" + text[i] + "'");
                         }
                     }
+                    CharIndex += text.Length;
+                    return GetGlyphProperty(text[text.Length - 1], 1) * fontSize + ox + spaceWidthEndApply;
                 }
                 CharIndex += text.Length;
-                return GetGlyphProperty(text[text.Length - 1], 1) * fontSize + ox + spaceWidthEndApply;
+                return GetGlyphProperty(text[text.Length - 1], 1) * fontSize + ox;
             }
 
             public void ExportTextOnPath(GraphicsPath toPath, string text)
@@ -769,18 +809,20 @@ namespace GrblPlotter
                 {
                     string testChar = "#";
                     double tmpWidth = GetCharWidth(testChar + testChar).Width;
-                    double angle, width;
+                    double angle, width1, width2;
                     PointF origin;
                     List<double> posX = new List<double>();
                     List<double> GlyphWidth = new List<double>();
 
                     for (int i = 0; i < text.Length; i++)       // get char positions
                     {
-                        width = GetCharWidth(testChar + text.Substring(0, i) + testChar).Width - tmpWidth + textLetterSpacing * i;
-                        posX.Add(width);
-                        //    width = GetCharWidth(testChar + text.Substring(i, 1) + testChar).Width - tmpWidth;
-                        width = GetGlyphProperty(text[i], 1) * fontSize;
-                        GlyphWidth.Add(width);
+                        width1 = GetCharWidth(testChar + text.Substring(0, i) + testChar).Width - tmpWidth + textLetterSpacing * i;
+                        posX.Add(width1);
+
+                        width2 = GetGlyphProperty(text[i], 1) * fontSize;
+                        GlyphWidth.Add(width2);
+                        if (logEnable)
+                            Logger.Trace("Char pos i:{0}  width1:{1}  width2:{2}   GlyphProp1:{3}   -4:{4}", i, width1, width2, GetGlyphProperty(text[i], 1) * fontSize, GetGlyphProperty(text[i], 4) * fontSize);
                     }
 
                     PointF[] pPath = toPath.PathPoints;
@@ -795,6 +837,9 @@ namespace GrblPlotter
                     { startOffset = ConvertToPixel(textStartOffset, pathLength); }
 
                     Logger.Trace("● ExportTextOnPath '{0}'  count:{1}   length:{2:0.00}   startOffset:{3:0.00}   height:{4}   size:{5}  size:{6}  emheight:{7}", text.Replace("\r", "").Replace("\n", ""), pPath.Length, pathLength, startOffset, yOffset, fontSize, font.Size, fontFamily.GetEmHeight(fontStyle));
+                    Logger.Trace(" ● Set width:{0}  stroke:{1}  fill:{2}", strokeWidth, stroke, fill);
+
+                    if (strokeWidth != "") { Graphic.SetPenWidth(strokeWidth); }
                     if (stroke != "") { Graphic.SetPenColor(stroke.StartsWith("#") ? stroke.Substring(1) : stroke); }
                     if ((fill != "") && (fill != "none")) { Graphic.SetPenFill(fill.StartsWith("#") ? fill.Substring(1) : fill); }
 
@@ -803,18 +848,19 @@ namespace GrblPlotter
                         for (int i = 0; i < text.Length; i++)
                         {
                             xpos = posX[i] + startOffset;           // left pos of glyph...
-                            if (xpos > (pathLength * 1.2))          // still on path?
+                            if (xpos > (pathLength))// * 1.2))          // still on path?
                                 break;
                             xpos += GlyphWidth[i] / 2;              // glyph origin is center
 
                             origin = getPathPos(xpos, ref pIndex);
 
-                            if (pIndex > 0)
-                                angle = GetAngle(pPath[pIndex - 1], pPath[pIndex + 1]);
+                            if (pIndex > 1)
+                                angle = GetAngle(pPath[pIndex - 2], pPath[pIndex]);
                             else
                                 angle = GetAngle(pPath[pIndex], pPath[pIndex + 1]);
 
-                            //       Logger.Trace("●  ExportTextOnPath '{0}' x:{1}  y:{2}", text[i],origin.X,origin.Y);
+                            if (logEnable)
+                                Logger.Trace(" ●  ExportTextOnPath '{0}' x:{1}  y:{2}", text[i], origin.X, origin.Y);
                             DrawGlyphPath(path, new PointF(origin.X, origin.Y - (float)yOffset), new PointF(origin.X, origin.Y), angle, text[i].ToString(), StringAlignment.Center);
                             ExtractGlyphPath(path, new PointF(0, 0), "textPath '" + text[i] + "'");            // StartPath & Graphic.StopPath
                         }
@@ -844,9 +890,6 @@ namespace GrblPlotter
                                 double ratio = needed / dc;
                                 x = (float)ratio * x;
                                 y = (float)ratio * y;
-                                //   double tc = Math.Sqrt(x * x + y * y);
-                                //   float nx = pPath[i].X + x, ny = pPath[i].Y + y;
-                                //   Logger.Info("getPathIndex > s:{0:0.00}   distance:{1:0.00}  distanceOld:{2:0.00}  delta:{3:0.00}  needed:{4:0.00}  corrected:{5:0.00}  x:{6:0.00}  y:{7:0.00}  index:{8}", s, distance, distanceOld, dc, needed, (distanceOld + tc), nx, ny, i);
                                 i--;
                                 if (i < 0) i = 0;
                                 return new PointF(pPath[i].X + x, pPath[i].Y + y);
@@ -875,15 +918,18 @@ namespace GrblPlotter
 
             private void DrawGlyphPath(GraphicsPath myPath, PointF origin, PointF originR, double angle, string c, StringAlignment alignment)
             {
-                var format = new StringFormat(StringFormatFlags.NoClip | StringFormatFlags.NoWrap | StringFormatFlags.MeasureTrailingSpaces);
+                // https://stackoverflow.com/questions/54024997/how-to-properly-left-align-text-with-drawstring
+                System.Drawing.StringFormat format = System.Drawing.StringFormat.GenericTypographic;
                 format.Alignment |= alignment;
 
                 myPath.Reset();
                 myPath.AddString(c, fontFamily, (int)fontStyle, (float)fontSize,
-                                 origin, format);// stringFormat);
+                                 origin, format);
 
-                //    myPath.AddLine(origin.X, originR.Y + 2, origin.X, originR.Y);     // draw ceoss at origin
+                //   myPath.AddLine(origin.X, originR.Y + 2, origin.X, originR.Y);     // draw cross at origin
                 //    myPath.AddLine(origin.X, originR.Y, origin.X + 1, originR.Y);
+
+                if (logEnable) Logger.Trace("   ● DrawGlyphPath angle:{0:0.00}, string:'{1}'", angle, c);
 
                 if (angle != 0)
                 {
@@ -899,7 +945,7 @@ namespace GrblPlotter
                     return new RectangleF();
 
                 using (var path = new GraphicsPath())
-                using (var format = new StringFormat(StringFormatFlags.NoClip | StringFormatFlags.NoWrap | StringFormatFlags.MeasureTrailingSpaces))
+                using (var format = System.Drawing.StringFormat.GenericTypographic)     // new StringFormat(StringFormatFlags.NoClip | StringFormatFlags.NoWrap | StringFormatFlags.MeasureTrailingSpaces))
                 {
                     format.Alignment |= StringAlignment.Near;
 
@@ -915,9 +961,6 @@ namespace GrblPlotter
             private float GetGlyphProperty(ushort c, int property)
             {
                 // https://docs.microsoft.com/en-us/dotnet/api/system.windows.media.glyphtypeface?redirectedfrom=MSDN&view=netframework-4.0#remarks
-                System.Windows.Media.FontFamily fontFamily1 = new System.Windows.Media.FontFamily(textFontFamily);
-
-                var typeface = new System.Windows.Media.Typeface(fontFamily1, System.Windows.FontStyles.Normal, System.Windows.FontWeights.Normal, System.Windows.FontStretches.Medium);
                 System.Windows.Media.GlyphTypeface gtf;
 
                 if (!typeface.TryGetGlyphTypeface(out gtf))
