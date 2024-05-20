@@ -739,40 +739,40 @@
     <Content Include="data\buttons\Find_Z_set_zero.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\buttons\Graphic_move_around_fast.ini">
+    <Content Include="data\buttons\Graphic_move_around_rapid.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\buttons\Graphic_move_around_slow.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\buttons\Graphic_move_to_bottom_left_fast.ini">
+    <Content Include="data\buttons\Graphic_move_to_bottom_left_rapid.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\buttons\Graphic_move_to_bottom_left_slow.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\buttons\Graphic_move_to_bottom_right_fast.ini">
+    <Content Include="data\buttons\Graphic_move_to_bottom_right_rapid.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\buttons\Graphic_move_to_bottom_right_slow.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\buttons\Graphic_move_to_center_fast.ini">
+    <Content Include="data\buttons\Graphic_move_to_center_rapid.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\buttons\Graphic_move_to_center_slow.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\buttons\Graphic_move_to_upper_left_fast.ini">
+    <Content Include="data\buttons\Graphic_move_to_top_left_rapid.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\buttons\Graphic_move_to_upper_left_slow.ini">
+    <Content Include="data\buttons\Graphic_move_to_top_left_slow.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\buttons\Graphic_move_to_upper_right_fast.ini">
+    <Content Include="data\buttons\Graphic_move_to_top_right_rapid.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\buttons\Graphic_move_to_upper_right_slow.ini">
+    <Content Include="data\buttons\Graphic_move_to_top_right_slow.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="data\buttons\Laser_off.ini">
@@ -869,6 +869,30 @@
     <None Include="data\automations\File_load\file_load_setup_use_z.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="data\buttons\Graphic_move_around_fast.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Graphic_move_to_bottom_left_fast.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Graphic_move_to_bottom_right_fast.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Graphic_move_to_center_fast.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Graphic_move_to_top_left_fast.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Graphic_move_to_top_right_fast.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Pen_center_Servo.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="data\buttons\Pen_zero_Servo.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\app.manifest" />
     <None Include="Resources\LeadInOut.png" />
     <None Include="Resources\rndOff.png" />
