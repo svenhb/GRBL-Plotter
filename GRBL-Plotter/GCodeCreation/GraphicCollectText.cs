@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 /*
  * 2022-12-29 new function to add text from windows font
  * 2023-01-26 SetGeometry, remove \r
+ * 2024-03-19 l:73 f:DrawGlyphPath remove StringFormatFlags.MeasureTrailingSpaces to get lines centered
 */
 
 using NLog;
@@ -70,8 +71,9 @@ namespace GrblPlotter
 
         private static void DrawGlyphPath(GraphicsPath myPath, PointF origin, PointF originR, float angle, string text, StringAlignment alignment)
         {
-            var format = new StringFormat(StringFormatFlags.NoClip | StringFormatFlags.NoWrap | StringFormatFlags.MeasureTrailingSpaces);
-            format.Alignment |= alignment;
+            var format = new StringFormat(StringFormatFlags.NoClip | StringFormatFlags.NoWrap);// | StringFormatFlags.MeasureTrailingSpaces);
+            format.Alignment = alignment;
+        //    format.LineAlignment = alignment;
 
             myPath.Reset();
             myPath.AddString(text, fontFamily, (int)fontStyle, fontSize,
@@ -83,6 +85,7 @@ namespace GrblPlotter
                 rotation_matrix.RotateAt(angle, originR);
                 myPath.Transform(rotation_matrix);
             }
+        //    VisuGCode.pathBackground = (GraphicsPath)myPath.Clone();
 
             Matrix flip_matrix = new Matrix();
             flip_matrix.Scale(1, -1);

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,6 +23,8 @@
  * 2022-04-07 add DragToolModificationTangential, to preset path for tangential knife with offset in knife-tip
  * 2022-04-13 add drag-tool, option knife (expect knife-angle = 0 on path-start, leave path with 0 deg.)
  * 2023-05-19 l:440 f:DragToolModification bug fix #340: rotate knife if path does not start with 0° degree
+ * 2024-04-07 l:484 f:InsertArcMove set fix value for stepwidth to avoid out of memory
+ * 2024-04-17 rotary cutter - avoid overcut
 */
 
 using System;
@@ -33,7 +35,7 @@ namespace GrblPlotter
 {
     public static partial class Graphic
     {
-        /* Calculate angle of each path segemnt, to be applied at tangential axis */
+        /* Calculate angle of each path segment, to be applied at tangential axis */
         public static void CalculateStartAngle()
         {
             foreach (PathObject graphicItem in completeGraphic)
@@ -63,7 +65,8 @@ namespace GrblPlotter
         {
             const uint loggerSelect = (uint)LogEnables.PathModification;
             double maxAngleChangeDeg = (double)Properties.Settings.Default.importGCTangentialAngle;
-            //  bool limitRange = Properties.Settings.Default.importGCTangentialRange;
+            bool pathShorteningEnable = Properties.Settings.Default.importGCTangentialShorteningEnable;
+            double pathShortening = (double)Properties.Settings.Default.importGCTangentialShortening;
 
             double maxAngleRad = maxAngleChangeDeg * Math.PI / 180;     // in RAD
             double angleNow, angleLast, angleOffset, angleApply, angleLastApply;
@@ -220,8 +223,12 @@ namespace GrblPlotter
                 }
             }
             completeGraphic.Clear();
+			if (pathShorteningEnable)
+            {	
+				ExtendClosedPaths(finalPathList, pathShortening, true);
+			}
             foreach (PathObject item in finalPathList)     // add tile to full graphic
-                completeGraphic.Add(item);
+				completeGraphic.Add(item);
         }
 
         private static bool FixAngleExceed(ref double angleApply, ref double angleOffset)
@@ -480,12 +487,12 @@ namespace GrblPlotter
             Point p2 = Round(endPoint);
             double x, y;
             arcMove = GcodeMath.GetArcMoveProperties(p1, p2, center, isCW);
-            double stepwidth = (double)Properties.Settings.Default.importGCSegment;
+            double stepwidth = arcMove.radius / 6; //(double)Properties.Settings.Default.importGCSegment;
 
             int insertCounter = 1;
 
-            if (stepwidth > arcMove.radius / 2)
-            { stepwidth = arcMove.radius / 5; }
+        //    if (stepwidth > arcMove.radius / 2)
+        //    { stepwidth = arcMove.radius / 5; }
             double step = Math.Asin(stepwidth / arcMove.radius);     // in RAD
                                                                      //                    double step = Math.Asin((double)Properties.Settings.Default.importGCSegment / arcMove.radius);     // in RAD
             if (step > Math.Abs(arcMove.angleDiff))
@@ -549,7 +556,7 @@ namespace GrblPlotter
             }
         }
 
-        private enum ExtendDragPath { startEarlier, startLater, endLater };
+        private enum ExtendDragPath { startEarlier, startLater, endEarlier, endLater };
         private static Point ExtendPath(Point start, Point end, double gcodeDragRadius, ExtendDragPath extend)
         {
             double dx = end.X - start.X;
@@ -561,6 +568,12 @@ namespace GrblPlotter
             {
                 double newx = end.X + gcodeDragRadius * dx / moveLength;
                 double newy = end.Y + gcodeDragRadius * dy / moveLength;
+                return new Point(newx, newy);
+            }
+            if (extend == ExtendDragPath.endEarlier)
+            {
+                double newx = end.X - gcodeDragRadius * dx / moveLength;
+                double newy = end.Y - gcodeDragRadius * dy / moveLength;
                 return new Point(newx, newy);
             }
             else if (extend == ExtendDragPath.startLater)

@@ -618,9 +618,8 @@ namespace GrblPlotter
 
         public static bool SetPenWidth(string txt)	// DXF: 0 - 2.11mm = 0 - 211		SVG: 0.000 - ?  Convert with to mm, then to string in importClass
         {
-            // if (logProperties)  Logger.Trace("Set PenWidth '{0}'", txt);
-            //           setNewId = true;        // active 2020-10-25
-
+            if (logProperties)  
+                Logger.Trace("SetPenWidth '{0}'  called by:{1}", txt, (new System.Diagnostics.StackTrace()).GetFrame(1).GetMethod().Name);
             if (txt.Contains("NaN"))
             {
                 Logger.Error("SetPenWidth contains NaN '{0}'", txt);

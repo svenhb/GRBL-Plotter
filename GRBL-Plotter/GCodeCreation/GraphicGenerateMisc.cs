@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -34,6 +34,7 @@
  * 2023-09-01 l:915  f:RemoveOffset check index before shifting largest object
  * 2023-11-09 l:1067 f:AddFrame -> SetPenFill("none") to avoid hatch-fill
  * 2023-11-11 l_1030 f:Scale scale also ((GCodeArc)entity).CenterIJ
+ * 2024-04-17 l:1144 f:ExtendClosedPaths also allow path-shortening (negative value)
 */
 
 using System;
@@ -1026,8 +1027,8 @@ namespace GrblPlotter
                     foreach (GCodeMotion entity in PathData.Path)
                     {
                         entity.MoveTo = new Point(entity.MoveTo.X * scaleX, entity.MoveTo.Y * scaleY);
-                        if (entity is GCodeArc)
-                        { ((GCodeArc)entity).CenterIJ = new Point(((GCodeArc)entity).CenterIJ.X * scaleX, ((GCodeArc)entity).CenterIJ.Y * scaleY); }
+                        if (entity is GCodeArc arcEntity)
+                        { arcEntity.CenterIJ = new Point(arcEntity.CenterIJ.X * scaleX, arcEntity.CenterIJ.Y * scaleY); }
                     }
                     PathData.Dimension.ScaleXY(scaleX, scaleY);
                 }
@@ -1140,83 +1141,176 @@ namespace GrblPlotter
         }
 
 
-        private static void ExtendClosedPaths(List<PathObject> graphicToExtend, double extensionOrig)
+        private static void ExtendClosedPaths(List<PathObject> graphicToExtend, double extensionOrig, bool shorten = false)
         {
             //const uint loggerSelect = (uint)LogEnable.PathModification;
             bool log = logEnable && ((logFlags & (uint)LogEnables.ClipCode) > 0);
 
             double dx, dy, newX, newY, length, maxElements;
             double extension;
+            Point newStart = new Point();
+            Point newEnd = new Point();
             if (logEnable) Logger.Trace("...ExtendClosedPaths extend:{0}", extensionOrig);
 
             foreach (PathObject item in graphicToExtend)
             {
                 if (item is ItemPath PathData)
                 {
-                    //ItemPath PathData = (ItemPath)item; // is closed polygon?
-
-                    if (IsEqual(PathData.Start, PathData.End))      //(PathData.Start.X == PathData.End.X) && (PathData.Start.Y == PathData.End.Y))
+                    if (shorten && (PathData.Path.Count > 1))
                     {
-                        if (PathData.Path.Count > 1)
-                        {   // first line could be shorter than needed extension
-                            // Loop
-                            int index = 1;
-                            maxElements = PathData.Path.Count;
-
-                            extension = Math.Abs(extensionOrig);
-                            while (extension > 0)
+                        /* shorten the start of a path */
+                        extension = Math.Abs(extensionOrig);
+                        for (int index = 1; index < PathData.Path.Count; index++)
+                        {
+                            if (PathData.Path[index] is GCodeLine)
                             {
-                                if (PathData.Path[index] is GCodeLine)
+                                dx = PathData.Path[index - 1].MoveTo.X - PathData.Path[index].MoveTo.X;
+                                dy = PathData.Path[index - 1].MoveTo.Y - PathData.Path[index].MoveTo.Y;
+                                length = Math.Sqrt(dx * dx + dy * dy);
+                                if (length > extension)
                                 {
-                                    dx = PathData.Path[index].MoveTo.X - PathData.Path[index - 1].MoveTo.X;
-                                    dy = PathData.Path[index].MoveTo.Y - PathData.Path[index - 1].MoveTo.Y;
-                                    length = Math.Sqrt(dx * dx + dy * dy);
-                                    if (log) Logger.Trace("    {0} Line length:{1:0.00}  extend:{2:0.00}", PathData.Info.Id, length, extension);
-                                    if ((extension - length) >= 0)
-                                    {
-                                        extension -= length;
-                                        PathData.Add(PathData.Path[index].MoveTo, PathData.Path[index].Depth, 0);
-                                        goto NextElement;
-                                    }
-                                    // interpolate new pos.
-                                    newX = PathData.Path[index - 1].MoveTo.X + dx * extension / length;
-                                    newY = PathData.Path[index - 1].MoveTo.Y + dy * extension / length;
-                                    PathData.Add(new Point(newX, newY), PathData.Path[index].Depth, 0);
+                                    PathData.Path[index - 1].MoveTo = newStart = ExtendPath(PathData.Path[index - 1].MoveTo, PathData.Path[index].MoveTo, extension, ExtendDragPath.startLater);
+                                    PathData.Start = newStart;
                                     break;
                                 }
-
-                                else    // is Arc
+                                else if (length == extension)
                                 {
-                                    GCodeArc ArcData = (GCodeArc)PathData.Path[index];
-                                    ArcProperties arcProp = GcodeMath.GetArcMoveProperties(PathData.Path[index - 1].MoveTo, ArcData.MoveTo, ArcData.CenterIJ, ArcData.IsCW); // in radians
-                                    double circum = Math.Abs(arcProp.angleDiff * arcProp.radius);
-                                    if (log) Logger.Trace("      diff:{0:0.00}  radius:{1:0.00}    circ:{2:0.00}", arcProp.angleDiff, arcProp.radius, circum);
-
-                                    if (log) Logger.Trace("    {0} Arc  circum:{1:0.00}  extend:{2:0.00}", PathData.Info.Id, circum, extension);
-                                    if ((extension - circum) >= 0)
-                                    {
-                                        extension -= circum;
-                                        PathData.AddArc(ArcData.MoveTo, ArcData.CenterIJ, ArcData.IsCW, ArcData.Depth, ArcData.AngleStart, ArcData.Angle);
-                                        goto NextElement;
-                                    }
-                                    // interpolate new pos.
-                                    double angleNewDiff = arcProp.angleDiff * extension / circum;
-                                    double angleEnd = arcProp.angleStart + angleNewDiff;
-                                    newX = arcProp.center.X + arcProp.radius * Math.Cos(angleEnd);
-                                    newY = arcProp.center.Y + arcProp.radius * Math.Sin(angleEnd);
-                                    if (log) Logger.Trace("      diff:{0:0.00}  new diff:{1:0.00}    end:{2:0.00}  ext.{3}", arcProp.angleDiff, angleNewDiff, angleEnd, extension);
-
-                                    PathData.AddArc(new Point(newX, newY), ArcData.CenterIJ, ArcData.IsCW, ArcData.Depth, ArcData.AngleStart, ArcData.Angle);
+                                    PathData.Path.RemoveAt(index - 1);
+                                    PathData.End = newStart;
                                     break;
                                 }
-
-                            NextElement:
-                                index++;
-                                if (index >= maxElements)
-                                    break;
+                                else
+                                {
+                                    extension -= length;
+                                    PathData.Path.RemoveAt(--index);
+                                    PathData.End = newStart;
+                                }
+                            }
+                            else    // is Arc
+                            {
                             }
                         }
+                        /* shorten the end of a path */
+                        extension = Math.Abs(extensionOrig);
+                        for (int index = PathData.Path.Count - 1; index >= 1; index--)
+                        {
+                            if (PathData.Path[index] is GCodeLine)
+                            {
+                                dx = PathData.Path[index].MoveTo.X - PathData.Path[index - 1].MoveTo.X;
+                                dy = PathData.Path[index].MoveTo.Y - PathData.Path[index - 1].MoveTo.Y;
+                                length = Math.Sqrt(dx * dx + dy * dy);
+                                if (length > extension)
+                                {
+                                    PathData.Path[index].MoveTo = newEnd = ExtendPath(PathData.Path[index - 1].MoveTo, PathData.Path[index].MoveTo, extension, ExtendDragPath.endEarlier);
+                                    PathData.End = newEnd;
+                                    break;
+                                }
+                                else if (length == extension)
+                                {
+                                    PathData.Path.RemoveAt(index);
+                                    PathData.End = newEnd;
+                                    break;
+                                }
+                                else
+                                {
+                                    extension -= length;
+                                    PathData.Path.RemoveAt(index);
+                                    PathData.End = newEnd;
+                                }
+                            }
+                            else    // is Arc
+                            {
+                                /*		GCodeArc ArcData = (GCodeArc)PathData.Path[index];
+                                        ArcProperties arcProp = GcodeMath.GetArcMoveProperties(PathData.Path[index - 1].MoveTo, ArcData.MoveTo, ArcData.CenterIJ, ArcData.IsCW); // in radians
+                                        double circum = Math.Abs(arcProp.angleDiff * arcProp.radius);
+                                        if (log) Logger.Trace("      diff:{0:0.00}  radius:{1:0.00}    circ:{2:0.00}", arcProp.angleDiff, arcProp.radius, circum);
+
+                                        if (log) Logger.Trace("    {0} Arc  circum:{1:0.00}  extend:{2:0.00}", PathData.Info.Id, circum, extension);
+                                        if (circum > extension)
+                                        {
+                                            extension -= circum;
+                                            PathData.AddArc(ArcData.MoveTo, ArcData.CenterIJ, ArcData.IsCW, ArcData.Depth, ArcData.AngleStart, ArcData.Angle);
+                                            goto NextElement;
+                                        }
+                                        // interpolate new pos.
+                                        double angleNewDiff = arcProp.angleDiff * extension / circum;
+                                        double angleEnd = arcProp.angleStart + angleNewDiff;
+                                        newX = arcProp.center.X + arcProp.radius * Math.Cos(angleEnd);
+                                        newY = arcProp.center.Y + arcProp.radius * Math.Sin(angleEnd);
+                                        if (log) Logger.Trace("      diff:{0:0.00}  new diff:{1:0.00}    end:{2:0.00}  ext.{3}", arcProp.angleDiff, angleNewDiff, angleEnd, extension);
+
+                                        PathData.AddArc(new Point(newX, newY), ArcData.CenterIJ, ArcData.IsCW, ArcData.Depth, ArcData.AngleStart, ArcData.Angle);
+                                        break;
+                                    */
+                            }
+
+                        }
                     }
+                    else
+                    {
+                        if (IsEqual(PathData.Start, PathData.End))      //(PathData.Start.X == PathData.End.X) && (PathData.Start.Y == PathData.End.Y))
+                        {
+                            if (PathData.Path.Count > 1)
+                            {   // first line could be shorter than needed extension
+                                // Loop
+                                int index = 1;
+                                maxElements = PathData.Path.Count;
+
+                                extension = Math.Abs(extensionOrig);
+                                while (extension > 0)
+                                {
+                                    if (PathData.Path[index] is GCodeLine)
+                                    {
+                                        dx = PathData.Path[index].MoveTo.X - PathData.Path[index - 1].MoveTo.X;
+                                        dy = PathData.Path[index].MoveTo.Y - PathData.Path[index - 1].MoveTo.Y;
+                                        length = Math.Sqrt(dx * dx + dy * dy);
+                                        if (log) Logger.Trace("    {0} Line length:{1:0.00}  extend:{2:0.00}", PathData.Info.Id, length, extension);
+                                        if ((extension - length) >= 0)
+                                        {
+                                            extension -= length;
+                                            PathData.Add(PathData.Path[index].MoveTo, PathData.Path[index].Depth, 0);
+                                            goto NextElement;
+                                        }
+                                        // interpolate new pos.
+                                        newX = PathData.Path[index - 1].MoveTo.X + dx * extension / length;
+                                        newY = PathData.Path[index - 1].MoveTo.Y + dy * extension / length;
+                                        PathData.Add(new Point(newX, newY), PathData.Path[index].Depth, 0);
+                                        break;
+                                    }
+
+                                    else    // is Arc
+                                    {
+                                        GCodeArc ArcData = (GCodeArc)PathData.Path[index];
+                                        ArcProperties arcProp = GcodeMath.GetArcMoveProperties(PathData.Path[index - 1].MoveTo, ArcData.MoveTo, ArcData.CenterIJ, ArcData.IsCW); // in radians
+                                        double circum = Math.Abs(arcProp.angleDiff * arcProp.radius);
+                                        if (log) Logger.Trace("      diff:{0:0.00}  radius:{1:0.00}    circ:{2:0.00}", arcProp.angleDiff, arcProp.radius, circum);
+
+                                        if (log) Logger.Trace("    {0} Arc  circum:{1:0.00}  extend:{2:0.00}", PathData.Info.Id, circum, extension);
+                                        if ((extension - circum) >= 0)
+                                        {
+                                            extension -= circum;
+                                            PathData.AddArc(ArcData.MoveTo, ArcData.CenterIJ, ArcData.IsCW, ArcData.Depth, ArcData.AngleStart, ArcData.Angle);
+                                            goto NextElement;
+                                        }
+                                        // interpolate new pos.
+                                        double angleNewDiff = arcProp.angleDiff * extension / circum;
+                                        double angleEnd = arcProp.angleStart + angleNewDiff;
+                                        newX = arcProp.center.X + arcProp.radius * Math.Cos(angleEnd);
+                                        newY = arcProp.center.Y + arcProp.radius * Math.Sin(angleEnd);
+                                        if (log) Logger.Trace("      diff:{0:0.00}  new diff:{1:0.00}    end:{2:0.00}  ext.{3}", arcProp.angleDiff, angleNewDiff, angleEnd, extension);
+
+                                        PathData.AddArc(new Point(newX, newY), ArcData.CenterIJ, ArcData.IsCW, ArcData.Depth, ArcData.AngleStart, ArcData.Angle);
+                                        break;
+                                    }
+
+                                NextElement:
+                                    index++;
+                                    if (index >= maxElements)
+                                        break;
+                                }
+                            }
+                        }
+                    }	// shorten
                 }
             }
         }

@@ -46,6 +46,8 @@
  * 2023-11-27 l:465 f:ProcessPathObject call subroutine only if needed
  * 2024-01-03 l:360 f:CreateGCode check if (completeGraphic.Count > 0) 
  * 2024-01-07 l:393 f:CreateGCode if (useToolTable) also adapt width/diameter issue #370
+ * 2024-03-19 l:970 f:MoveToDashed avoid intermediate G0 coordinates
+ * 2024-04-13 l:438 f:ProcessPathLength new function
 */
 
 using System;
@@ -92,6 +94,8 @@ namespace GrblPlotter
         private static double PathDashArrayDistance = 0;
         private static bool PathDashArrayPenIsUp = false;
 
+        private static double GlobalPathLength = 0;
+
         private static double setAux1FinalDistance = 0;     // sum-up path distances 396
         private static double setAux2FinalDistance = 0;
 
@@ -134,6 +138,8 @@ namespace GrblPlotter
             finalGcodeString.Clear();
 
             PathCount = 0;
+            GlobalPathLength = 0;
+
             FigureEndTagWasSet = true;
             Gcode.Setup(true);  // convertGraphics=true (repeat, inser sub)                              // initialize GCode creation (get stored settings for export)
             pathInfo = new PathInformation();
@@ -205,6 +211,7 @@ namespace GrblPlotter
             if (multiImport) { Gcode.Comment(finalGcodeString, string.Format("{0}>", XmlMarker.CollectionEnd)); }
 
             Gcode.JobEnd(finalGcodeString, "EndJob");       // Spindle / laser off
+            ProcessPathLength(GlobalPathLength);
 
             return FinalGCode(graphicInfo.Title, graphicInfo.FilePath);
         }
@@ -313,6 +320,7 @@ namespace GrblPlotter
             if (!useTiles)
             {
                 Gcode.JobEnd(finalGcodeString, "EndJob");       // Spindle / laser off
+                ProcessPathLength(GlobalPathLength);
                 return FinalGCode(graphicInfo.Title, graphicInfo.FilePath);
             }
             else
@@ -416,6 +424,7 @@ namespace GrblPlotter
                 finalGcodeString.Append(gcodeString);
                 if (multiImport) { Gcode.Comment(finalGcodeString, string.Format("{0}>", XmlMarker.CollectionEnd)); }
                 Gcode.JobEnd(finalGcodeString, "EndJob");      // Spindle / laser off
+                ProcessPathLength(GlobalPathLength);
                 return FinalGCode(graphicInfo.Title, graphicInfo.FilePath);
             }
             else
@@ -424,6 +433,13 @@ namespace GrblPlotter
                 gcodeString.Clear();                            // don't add gcode a 2nd time
                 return true;                                    // go on with next tile
             }
+        }
+
+        private static void ProcessPathLength(double val)
+        {
+            //SetComment(string.Format("Path length: {0:0.00}", val));
+            Gcode.gcodeDistance=val;
+            Logger.Info("Path length: {0:0.00}",val);
         }
 
         //convert graphic to gcode ##################################################################
@@ -436,6 +452,9 @@ namespace GrblPlotter
             float origSpindle = Gcode.GcodeSpindleSpeed;
 
             useAlternitveZ = Properties.Settings.Default.importDepthFromWidthRamp || graphicInfo.DxfImportZ;
+
+            GlobalPathLength += pathObject.PathLength;
+
 
             /* Create Dot */
             if (pathObject is ItemDot DotData)
@@ -980,6 +999,7 @@ namespace GrblPlotter
             double ddx, ddy;                    // dash distance
             string dashInfo = "";
             Point pNext;
+			Point pPenUp = coordxy;
 
             while (dToGo > 0)
             {
@@ -1006,6 +1026,10 @@ namespace GrblPlotter
                     else
                     {
                         if (logCoordinates) Logger.Trace("   1 PenDown");
+						
+						if (penUpG1) Gcode.MoveToNoFeed(gcodeString, pPenUp, dashInfo);
+						else Gcode.MoveToRapid(gcodeString, pPenUp, dashInfo);
+
                         PenDown("MoveToDashed"); PathDashArrayPenIsUp = false;
                     }
                     PathDashArrayIndexChanged = false;
@@ -1037,8 +1061,9 @@ namespace GrblPlotter
                 {
                     if (gcodeComments) dashInfo = "pen-up dash:" + dashInfo;
                     if (logCoordinates) Logger.Trace("   3 MoveTo PenUp x:{0:0.00}  y:{1:0.00}  dToGo:{2:0.000}  PathDashArrayDistance:{3:0.000}", pNext.X, pNext.Y, dToGo, PathDashArrayDistance);
-                    if (penUpG1) Gcode.MoveToNoFeed(gcodeString, pNext, dashInfo);
-                    else Gcode.MoveToRapid(gcodeString, pNext, dashInfo);
+					pPenUp = new Point(pNext.X, pNext.Y);
+                //    if (penUpG1) Gcode.MoveToNoFeed(gcodeString, pNext, dashInfo);
+                //    else Gcode.MoveToRapid(gcodeString, pNext, dashInfo);
                 }
                 else
                 {

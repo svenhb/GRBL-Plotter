@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2020 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 */
 
 /* 2019-11-24 new
- * 
+ * 2024-03-19 l:60 f:CalcArc replace float by double
 */
 
 using AForge.Math;
@@ -56,7 +56,7 @@ namespace GrblPlotter
             double ry = radiusY;
             if (numerator < 0.0)
             {
-                float s = (float)Math.Sqrt(1.0 - numerator / (radiusX * radiusX * radiusY * radiusY));
+                double s = Math.Sqrt(1.0 - numerator / (radiusX * radiusX * radiusY * radiusY));
 
                 rx *= s;
                 ry *= s;
@@ -115,8 +115,8 @@ namespace GrblPlotter
                         moveTo(b.Points[k], "arc"); //svgMoveTo(b.Points[k], "arc");
 
                 theta1 = theta2;
-                startX = (float)endpointX;
-                startY = (float)endpointY;
+                startX = endpointX;
+                startY = endpointY;
             }
         }
         private static double CalculateVectorAngle(double ux, double uy, double vx, double vy)
@@ -192,7 +192,7 @@ namespace GrblPlotter
 
         //   var bezier = Current;
         //   private static var biarcs = Algorithm.ApproxCubicBezier(bezier, 5, (float)ErrorLevel.Value);
-
+        /*
         public class Algorithm
         {
 
@@ -727,5 +727,6 @@ namespace GrblPlotter
             }
 
         }
+   */
     }
 }

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 /*
  * 2023-06-01 New file, split from Graphic2GCodeRelated.cs
  * 2023-11-11 replace float by double
+ * 2024-04-13 l:178, 241 bug fix process time calculation
 */
 
 using System;
@@ -174,7 +175,7 @@ namespace GrblPlotter
             }
             else
             {
-                gcodeTime += delta / GcodeXYFeed;
+                gcodeTime += 0;// delta / GcodeXYFeed;
                 gcodeLines++;
             }
             lastx = mx; lasty = my; lastg = gnr; // lastz = tz;
@@ -215,7 +216,11 @@ namespace GrblPlotter
             if (cmt.Length > 0) cmt = string.Format("({0})", cmt);
             if (gcodeNoArcs || avoidG23)
             {
-                SplitArc(gcodeString, gnr, lastx, lasty, x, y, i, j, cmt);
+                XyzabcuvwPoint last = new XyzabcuvwPoint();
+                last.X = lastx;last.Y = lasty;
+                XyzabcuvwPoint now = new XyzabcuvwPoint();
+                now.X = x;now.Y = y;    
+                SplitArc(gcodeString, gnr, last, now, i, j, cmt);
             }
             else
             {
@@ -233,7 +238,7 @@ namespace GrblPlotter
             }
             else
             {
-                gcodeTime += Fdistance(lastx, lasty, x, y) / GcodeXYFeed;
+                gcodeTime += 0;// Fdistance(lastx, lasty, x, y) / GcodeXYFeed;
                 gcodeLines++;
             }
             lastx = x; lasty = y; lastf = GcodeXYFeed;
