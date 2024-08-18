@@ -229,7 +229,7 @@ namespace GrblPlotter
             Graphic.Init(Graphic.SourceType.Text, "", null, null);
             Graphic.graphicInformation.ApplyHatchFill = CbHatchFill.Checked;
             Graphic.graphicInformation.OptionNodesOnly = false;
-            Graphic.graphicInformation.OptionCodeSortDistance = false;
+            Graphic.graphicInformation.OptionCodeSortDistance = Properties.Settings.Default.importGraphicSortDistance; //false;
             Graphic.graphicInformation.OptionZFromWidth = false;
 
             Graphic.graphicInformation.FigureEnable = true;

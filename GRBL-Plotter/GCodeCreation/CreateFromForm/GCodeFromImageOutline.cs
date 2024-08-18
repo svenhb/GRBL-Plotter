@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2018-2021 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2018-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 /* 2018-11  new
  * 2019-04-22 improove function simplifyContour
  * 2021-07-02 code clean up / code quality
+ * 2024-08-10 remove log, SmoothDistance
  */
 
 // https://www.iis.sinica.edu.tw/papers/fchang/1362-F.pdf
@@ -40,9 +41,10 @@ namespace GrblPlotter
         private static short toolNr;
         private static short[,] bitmap;
         private const short markObject = short.MaxValue;
-        private static readonly short markBackground = short.MinValue;
+        private const short markBackground = short.MinValue;
         private static readonly List<List<PointF>> outlinePaths = new List<List<PointF>>();
         private static int Smooth = 0;
+        private static float SmoothDistance = 20;   // don't smooth pixels with distance >... to keep corners
         public static StringBuilder logList = new StringBuilder();
         public static bool log = false;
         public static bool shrinkPath = false;
@@ -93,7 +95,7 @@ namespace GrblPlotter
                         bitmap[x, y] = markObject;                                    // mark as found
                         if (!isObjectLast)
                         {
-                            logList.AppendFormat("startTracing-CW  ({0}) at {1} ; {2}\r\n", cnt++, x, y);
+                            //    logList.AppendFormat("startTracing-CW  ({0}) at {1} ; {2}\r\n", cnt++, x, y);
                             TraceContour(x, y, true);                           // find contour CW
                         }
                         isObjectCur = true;
@@ -104,7 +106,7 @@ namespace GrblPlotter
                         isObjectCur = false;                                    // mark as background
                         if (isObjectLast)                                       // found 1/0 transient
                         {                                                       // edge is upper left
-                            logList.AppendFormat("startTracing-CCW ({0}) at {1} ; {2}\r\n", cnt++, (x - 1), (y - 0));
+                                                                                //    logList.AppendFormat("startTracing-CCW ({0}) at {1} ; {2}\r\n", cnt++, (x - 1), (y - 0));
                             TraceContour(x - 1, y - 0, false);                      // find contour with last object x, CCW
                         }
                     }
@@ -137,12 +139,13 @@ namespace GrblPlotter
                 startFound = ((last == start1) && (next == start2));            // stop when 1st and 2nd point repeats
                 if (cnt == 0) { start2 = next; searchDirLast = searchDirCur; }  // store 2nd point for stopping condition
 
-                if ((Smooth > 0) || (searchDirLast != searchDirCur))
+                // if ((Smooth > 0) || (searchDirLast != searchDirCur))
+                if (searchDirLast != searchDirCur)
                     onePath.Add(new Point(last.X, last.Y));             // only store point when direction changed      
 
                 if (searchDirCur == -1)                                 // failure ?
                 {
-                    logList.AppendFormat("traceContour break at {0} ; {1}\r\n", next.X, next.Y);
+                    //    logList.AppendFormat("traceContour break at {0} ; {1}\r\n", next.X, next.Y);
                     break;
                 }
                 searchDirLast = searchDirCur;
@@ -150,13 +153,14 @@ namespace GrblPlotter
                 last = next;
                 if (cnt++ > abortCount) { logList.Append("Abort\r\n"); return; }    // safety stop
             } while (!startFound);
+            onePath.Add(start1);                        // store 1st point
 
             if (onePath.Count <= 3)     // 
                 return;
 
             if (Smooth > 0)
                 for (int k = 0; k < Smooth; k++)
-                    SmoothContour(onePath);
+                    SmoothContour(onePath, SmoothDistance);
 
             if (shrinkPath)
                 ShrinkContour(onePath, penRadius);   // half width in pixels
@@ -171,31 +175,55 @@ namespace GrblPlotter
         /// <summary>
         /// Smooth points by calc. average of last, current and next point
         /// </summary>
-        private static void SmoothContour(List<PointF> list)
+        private static void SmoothContour(List<PointF> list, float limit)
         {
             if (list.Count < 10) return;    // too less points to smooth
             PointF a, b, c;
             a = list[0]; b = list[1]; c = list[2];
             float newX, newY;
             tmpList = new List<PointF>();
+            tmpList.Clear();
+
             for (int i = 1; i < list.Count - 1; i++)
             {
                 a = list[i - 1]; b = list[i]; c = list[i + 1];
-                newX = (a.X + b.X + c.X) / 3;
-                newY = (a.Y + b.Y + c.Y) / 3;
-                tmpList.Add(new PointF(newX, newY));
+                if (Math.Max(Distance(a, b), Distance(b, c)) > limit)   // don't smooth pixels with distance >... to keep corners
+                {
+                    tmpList.Add(b); // large distance: keep original pos.
+                }
+                else
+                {
+                    newX = (a.X + b.X + c.X) / 3;   // smooth pos.
+                    newY = (a.Y + b.Y + c.Y) / 3;
+                    tmpList.Add(new PointF(newX, newY));
+                }
             }
-            newX = (b.X + c.X + list[0].X) / 3;             // last point
-            newY = (b.Y + c.Y + list[0].Y) / 3;
-            tmpList.Add(new PointF(newX, newY));
-            newX = (c.X + list[0].X + list[1].X) / 3;       // first point
-            newY = (c.Y + list[0].Y + list[1].Y) / 3;
-            tmpList.Add(new PointF(newX, newY));
+            a = list[0];
+            newX = (b.X + c.X + a.X) / 3;             // last point
+            newY = (b.Y + c.Y + a.Y) / 3;
+            if (Math.Max(Distance(b, c), Distance(c, a)) > limit)
+                tmpList.Add(a);
+            else
+                tmpList.Add(new PointF(newX, newY));
+            b = list[1];
+            newX = (c.X + b.X + a.X) / 3;       // first point
+            newY = (c.Y + b.Y + a.Y) / 3;
+            if (Math.Max(Distance(c, a), Distance(a, b)) > limit)
+                tmpList.Add(b);
+            else
+                tmpList.Add(new PointF(newX, newY));
 
-            for (int i = 0; i < list.Count; i++)            // copy points to referenced list
-            { list[i] = tmpList[i]; }
+            tmpList.Add(tmpList[0]);    // be sure path is closed
+
+            list.Clear();
+            foreach(PointF p in tmpList)
+                list.Add(p);
+
+        //    for (int i = 0; i < list.Count; i++)            // copy points to referenced list
+        //    { list[i] = tmpList[i]; }
         }
-
+        private static float Distance(PointF a, PointF b)
+        { return (float)Math.Sqrt((a.X - b.X) * (a.X - b.X) + (a.Y - b.Y) * (a.Y - b.Y)); }
         private static void ShrinkContour(List<PointF> list, float width)   // width in pixels
         {   // average of last end next vector [i-1]-[i] and [i]-[i+1]
             // move i 90 degree of vector
@@ -375,7 +403,7 @@ namespace GrblPlotter
             int newDir = (oldDir + searchOffset) % 8;
             int checkX, checkY;
             bool isObjectLast, isObjectCur;                 // store last and current 'color'
-            if (log) logList.AppendFormat("traceCheck old dir {0}   {1} ; {2}    ", oldDir, p.X, p.Y);
+                                                            //    if (log) logList.AppendFormat("traceCheck old dir {0}   {1} ; {2}    ", oldDir, p.X, p.Y);
             checkX = p.X + searchDirection[newDir][0];     // coord of pixel to test
             checkY = p.Y + searchDirection[newDir][1];
             isObjectLast = CheckPoint(checkX, checkY);      // check 'color' - background = false, object = true
@@ -388,7 +416,7 @@ namespace GrblPlotter
                 {   // check for 90 deg angle when oldDir is 0,2,4 or 6 and newDir 7,1,3,5
                     if ((oldDir % 2 == 0) && (((oldDir - newDir) == 1) || ((oldDir - newDir) == -7)))
                     {
-                        if (log) logList.Append("correct ?\r\n");
+                        //   if (log) logList.Append("correct ?\r\n");
 
                         int tnewDir = (newDir + 1) % 8;
                         int tcheckX = p.X + searchDirection[tnewDir][0];
@@ -396,12 +424,12 @@ namespace GrblPlotter
                         if (CheckPoint(tcheckX, tcheckY))       // also 0/1 transient?
                         {
                             p.X = tcheckX; p.Y = tcheckY;       // set next point
-                            if (log) logList.AppendFormat("corrected new dir {0}   {1} ; {2}\r\n", newDir, tcheckX, tcheckY);
+                                                                //    if (log) logList.AppendFormat("corrected new dir {0}   {1} ; {2}\r\n", newDir, tcheckX, tcheckY);
                             return tnewDir;                     // return direction
                         }
                     }
                     p.X = checkX; p.Y = checkY;             // set next point
-                    if (log) logList.AppendFormat("new dir {0}   {1} ; {2}\r\n", newDir, checkX, checkY);
+                                                            //    if (log) logList.AppendFormat("new dir {0}   {1} ; {2}\r\n", newDir, checkX, checkY);
                     return newDir;                             // return direction
                 }
                 isObjectLast = isObjectCur;                 // store last value
