@@ -32,6 +32,7 @@
  * 2023-07-02 f:ReadAttributs replaced ConvertToPixel by ConvertFontSize
  * 2023-11-11 replace floats by double
  * 2024-04-22 l:555 f:ReadAttributs	set attributes for stroke, stroke-widthh, fill (Graphic.SetPenColor, SetPenWidth, SetPenFill)
+ * 2024-07-22 l:725 f:ExportString don't inc. text length, if empty
 */
 
 using System;
@@ -544,6 +545,7 @@ namespace GrblPlotter
             public bool ReadAttributs(XElement element)
             {
                 bool rotation = false;
+                bool strokeset = false;
                 strokeWidth = "0.1";
                 if (element.Attribute("style") != null)
                 {
@@ -575,10 +577,19 @@ namespace GrblPlotter
                     fontValue = GetStyleProperty(element, "stroke-width");
                     if (!string.IsNullOrEmpty(fontValue))
                     { strokeWidth = CalcPenWidth(fontValue); }
-;
+
+                    fontValue = GetStyleProperty(element, "stroke");
+                    if (!string.IsNullOrEmpty(fontValue))
+                    {
+                        stroke = fontValue;
+                        strokeset = true;
+                    }
+
                     fontValue = GetStyleProperty(element, "fill");
                     if (!string.IsNullOrEmpty(fontValue))
                     {
+                        if (!strokeset)
+                            stroke = fontValue;
                         fill = fontValue;
                         if (stroke == "")
                         {
@@ -589,11 +600,6 @@ namespace GrblPlotter
                             Graphic.SetPenFill(attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
                     }
 
-                    fontValue = GetStyleProperty(element, "stroke");
-                    if (!string.IsNullOrEmpty(fontValue))
-                    {
-                        stroke = fontValue;
-                    }
 
                     /* not implemented
                         fontValue = GetStyleProperty(element, "font-variant");
@@ -637,21 +643,21 @@ namespace GrblPlotter
                 factor_Em2Px = tmpEM;
 
                 if (element.Attribute("rotate") != null) { r = ConvertToPixelArray(element.Attribute("rotate").Value); rotation = true; }
+
+                if (element.Attribute("stroke") != null)
+                {
+                    stroke = element.Attribute("stroke").Value;
+                }
                 if (element.Attribute("fill") != null)
                 {
                     fill = element.Attribute("fill").Value;
-                    if (stroke == "")
+                    if (string.IsNullOrEmpty(stroke))
                     {
                         if (fill != "none") { stroke = fill; }
                         else { stroke = "black"; }
                     }
                     if ((attributeFill.Length > 1))// && (attributeFill != "none"))
                         Graphic.SetPenFill(attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
-                }
-
-                if (element.Attribute("stroke") != null)
-                {
-                    stroke = element.Attribute("stroke").Value;
                 }
 
                 if (element.Attribute(xlink + "href") != null) href = element.Attribute(xlink + "href").Value;
@@ -717,7 +723,8 @@ namespace GrblPlotter
 
                 if (text.StartsWith(" ") && (text.Trim() == ""))    // no content to draw
                 {
-                    CharIndex += text.Length;
+                    //CharIndex += text.Length; 2024-07-22 removed
+                    Logger.Trace("● ExportString no content to draw CharIndex:{0}", CharIndex);
                     return (text.Length * GetGlyphProperty(text[0], 1) * fontSize) + GetX(0) + GetdX(0);
                 }
 
@@ -725,7 +732,7 @@ namespace GrblPlotter
                 float yOffset = fontFamily.GetCellAscent(fontStyle) * font.Size / fontFamily.GetEmHeight(fontStyle);
                 bool isPureText = ((x.Length <= 1) && (y.Length <= 1) && (dx.Length <= 1) && (dy.Length <= 1) && (r.Length <= 1) && (GetRotation() == 0) && (textLetterSpacing == 0));
 
-                Logger.Trace("● ExportString '{0}'  pureText:{1}  start-X:{2:0.00}  fontSize:{3:0.00}", text, isPureText, GetX(0), fontSize);
+                Logger.Trace("● ExportString '{0}'  pureText:{1}  start-X:{2:0.00}  fontSize:{3:0.00}   CharIndex:{4}", text, isPureText, GetX(0), fontSize, CharIndex);
                 Logger.Trace(" ● Set width:{0}  stroke:{1}  fill:{2}", strokeWidth, stroke, fill);
 
                 if (strokeWidth != "") { Graphic.SetPenWidth(strokeWidth); }
@@ -784,7 +791,7 @@ namespace GrblPlotter
                         for (int i = 0; i < text.Length; i++)
                         {
                             ci = i + CharIndex;
-                            if (x.Length > i)                           // if individual position is given
+                            if (GetXLength() > i)                           // if individual position is given
                                 ox = GetX(ci) + GetdX(ci) + spaceWidthStartApply;
                             else
                                 ox = GetX(ci) + GetdX(ci) + posX[i] + spaceWidthStartApply;

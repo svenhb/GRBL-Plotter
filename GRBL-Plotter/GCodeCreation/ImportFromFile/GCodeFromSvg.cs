@@ -101,6 +101,7 @@
  * 2023-11-10 l:298	 f:ConvertSVG import 2nd fix file, if importSVGAddOnEnable
  * 2023-11-11 replace floats by double
  * 2024-01-24 l:1349 f:ParsePath check if d-attribute exists before processing #2139 LaserGRBL
+ * 2024-07-22 l:710  f:ParseAttributs if is stroke not set, use fill color
 */
 
 /* SetHeaderMessages...
@@ -111,14 +112,13 @@
  * 1105 'tspan' within 'textPath'
  * 1106 Attribute not implemented
 */
-using FastColoredTextBoxNS;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -130,11 +130,12 @@ namespace GrblPlotter
 {
     public static partial class GCodeFromSvg
     {
-        private static bool svgScaleApply = true;       // try to scale final GCode if true
-        private static double svgMaxSize = 100;          // final GCode size (greater dimension) if scale is applied
-        private static bool svgNodesOnly = true;        // if true only do pen-down -up on given coordinates
-        private static bool svgComments = true;         // if true insert additional comments into GCode
-        private static bool svgConvertCircleToDot = false;
+        private static bool svgScaleApply = true;           // try to scale final GCode if true
+        private static double svgMaxSize = 100;             // final GCode size (greater dimension) if scale is applied
+        private static bool svgNodesOnly = true;            // if true only do pen-down -up on given coordinates
+        private static bool svgComments = true;             // if true insert additional comments into GCode
+        private static bool svgConvertCircleToDot = false;  // if true, a dot with deptj of circle radius will be created
+        private static bool svgPathStartNewFigure = false;  // if true, each 'm' in the path, creates a new figure
 
         private static bool svgConvertToMM = true;
         private static double gcodeScale = 1;                    // finally scale with this factor if svgScaleApply and svgMaxSize
@@ -153,7 +154,7 @@ namespace GrblPlotter
         public static string ConversionInfo { get; set; }
         public static string MetaData { get; set; }
 
-		private static string forceLayer = "";
+        private static string forceLayer = "";
 
         private static int shapeCounter = 0;
         private static int skipCounter = 0;
@@ -286,11 +287,13 @@ namespace GrblPlotter
             svgConvertToMM = Properties.Settings.Default.importUnitmm;                  // Target units and display in setup
             svgNodesOnly = Properties.Settings.Default.importSVGNodesOnly;
             svgConvertCircleToDot = Properties.Settings.Default.importSVGCircleToDot;
+            //svgPathStartNewFigure = Properties.Settings.Default.importSVGPathNewFigure;
+
             ConversionInfo = "";
             shapeCounter = 0; skipCounter = 0;
             globalTextProp = new TextProperties();
-			forceLayer = "";
-			
+            forceLayer = "";
+
             //    Logger.Trace(" logEnable:{0} svgScaleApply:{1} svgMaxSize:{2} svgComments:{3} svgConvertToMM:{4} svgNodesOnly:{5} svgConvertCircleToDot:{6}", logEnable, svgScaleApply, svgMaxSize, svgComments, svgConvertToMM, svgNodesOnly, svgConvertCircleToDot);
             Logger.Info("▼▼▼▼  ConvertSVG Start : svgScaleApply: {0} svgMaxSize: {1} svgComments: {2} svgConvertToMM: {3} svgNodesOnly: {4} svgConvertCircleToDot: {5}", svgScaleApply, svgMaxSize, svgComments, svgConvertToMM, svgNodesOnly, svgConvertCircleToDot);
 
@@ -306,19 +309,19 @@ namespace GrblPlotter
                 {
                     Logger.Info("▼▲▼▲ ConvertSVG add from file {0}", file);
                     //GCodeFromSvg.ConvertFromFile(file, false, null, null);
-					svgCode.RemoveAll();
+                    svgCode.RemoveAll();
                     svgCode = XElement.Load(file, LoadOptions.PreserveWhitespace);    // PreserveWhitespace);
 
-					forceLayer = "svgAddon";
-					Graphic.ImportCompletion(forceLayer, (double)Properties.Settings.Default.importSVGAddOnScale, Properties.Settings.Default.importSVGAddOnPosition);
-					GetVectorSVG(svgCode);                  // convert graphics
+                    forceLayer = "svgAddon";
+                    Graphic.ImportCompletion(forceLayer, (double)Properties.Settings.Default.importSVGAddOnScale, Properties.Settings.Default.importSVGAddOnPosition);
+                    GetVectorSVG(svgCode);                  // convert graphics
                 }
                 else
                 {
                     Logger.Info("    file not found {0}", file);
                 }
             }
-						
+
             Logger.Info("▲▲▲▲  ConvertSVG Finish: shapeCounter: {0}   skipCounter: {1}", shapeCounter, skipCounter);
             svgCode.RemoveAll();
             //		myPath.Dispose();
@@ -432,7 +435,7 @@ namespace GrblPlotter
 
                 if (vbWidth > 0)
                     svgStrokeWidthScale = ConvertToPixel(tmpString, vbWidth) / factor_Mm2Px / vbWidth;
-                                Logger.Trace( "svgStrokeWidthScale {0} {1} {2} {3}", tmpString, vbWidth, factor_Mm2Px, vbWidth);
+                Logger.Trace("svgStrokeWidthScale {0} {1} {2} {3}", tmpString, vbWidth, factor_Mm2Px, vbWidth);
 
                 if (svgComments) Graphic.SetHeaderInfo(" SVG width :" + svgCode.Attribute("width").Value);
                 if (logEnable) Logger.Trace(" SVG width : {0:0.00} source: '{1}'", svgWidthPx, svgCode.Attribute("width").Value);
@@ -510,11 +513,11 @@ namespace GrblPlotter
             else
                 if (svgComments) Graphic.SetHeaderInfo(" SVG Dimension not given ");
 
-/***************************************************************************************/
-			//if (Properties.Settings.Default.importSVGApplyFill)
-			Graphic.SetPenColor("black");
-			//Graphic.SetPenFill("black");
-			SetPenWidth("1");
+            /***************************************************************************************/
+            //if (Properties.Settings.Default.importSVGApplyFill)
+            Graphic.SetPenColor("black");
+            //Graphic.SetPenFill("black");
+            SetPenWidth("1");
             ParseAttributs(svgCode);             // process color and stroke-dasharray
 
             for (int i = 0; i < matrixGroup.Length; i++)
@@ -590,10 +593,10 @@ namespace GrblPlotter
                     if (groupElement.Attribute(inkscape + "label") != null)
                         Graphic.SetLabel(groupElement.Attribute(inkscape + "label").Value);
 
-					if (forceLayer == "")
-						Graphic.SetLayer(idtext);
-					else
-						Graphic.SetLayer(forceLayer);						
+                    if (forceLayer == "")
+                        Graphic.SetLayer(idtext);
+                    else
+                        Graphic.SetLayer(forceLayer);
                 }
                 if (logEnable)
                 {
@@ -606,9 +609,9 @@ namespace GrblPlotter
                 ParseAttributs(groupElement, true);             // process color and stroke-dasharray
                 ParseUse(groupElement, level);
                 ParseBasicElements(groupElement, level);
-                ParsePath(groupElement, level); 
+                ParsePath(groupElement, level);
                 ParseGroup(groupElement, level + 1);
-                }
+            }
             return;
         }
 
@@ -695,7 +698,6 @@ namespace GrblPlotter
         /// </summary>
         private static string attributeStroke = "";
         private static string attributeFill = "";
-        private static string attributeStrokeWidth = "";
         private static bool ParseAttributs(XElement element, bool isGroup = false)
         {
             if (isGroup) Graphic.SetDash(new double[0]);     // clear dash
@@ -705,19 +707,23 @@ namespace GrblPlotter
 
             attributeStroke = "";
             attributeFill = "";
-            attributeStrokeWidth = "";
             if (element.Attribute("style") != null)
             {
-                attributeStroke = GetStyleProperty(element, "stroke");
+                attributeStroke = GetStyleProperty(element, "stroke");  // if is stroke not set, use fill color
+                if (logEnable) Logger.Trace("  ParseAttributs style stroke:'{0}'", attributeStroke);
                 logSource = "ParseAttributs: stroke: " + attributeStroke;
                 if (attributeStroke.Length > 1)
                     filterKeepColor = Graphic.SetPenColor(globalTextProp.stroke = attributeStroke.StartsWith("#") ? attributeStroke.Substring(1) : attributeStroke);
 
                 attributeFill = GetStyleProperty(element, "fill");
+                if (logEnable) Logger.Trace("  ParseAttributs style fill:'{0}'", attributeFill);
                 logSource = "ParseAttributs: fill: " + attributeFill;
                 if ((attributeFill.Length > 1))// && (attributeFill != "none"))
+                {
+                    if (string.IsNullOrEmpty(attributeStroke))
+                        Graphic.SetPenColor(globalTextProp.fill = attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
                     Graphic.SetPenFill(globalTextProp.fill = attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
-
+                }
                 /*    attributeStrokeWidth = GetStyleProperty(element, "stroke-width"); -> globalTextProp.Update(element);
                     logSource = "ParseAttributs: stroke-width: " + attributeStrokeWidth;
                     if (attributeStrokeWidth.Length > 0)
@@ -726,18 +732,24 @@ namespace GrblPlotter
                 SetDashPattern(GetStyleProperty(element, "stroke-dasharray"));
             }
 
-            if (element.Attribute("stroke") != null)
+            if (element.Attribute("stroke") != null)    // if is stroke not set, use fill color
             {
                 attributeStroke = element.Attribute("stroke").Value;
+                if (logEnable) Logger.Trace("  ParseAttributs stroke:'{0}'", attributeStroke);
                 logSource = "ParseAttributs: stroke2: " + attributeStroke;
                 filterKeepColor = Graphic.SetPenColor(attributeStroke.StartsWith("#") ? attributeStroke.Substring(1) : attributeStroke);
             }
             if (element.Attribute("fill") != null)
             {
                 attributeFill = element.Attribute("fill").Value;
+                if (logEnable) Logger.Trace("  ParseAttributs fill:'{0}'", attributeFill);
                 logSource = "ParseAttributs: fill2: " + attributeFill;
-                if ((attributeFill.Length > 1))// && (attributeFill != "none"))
+                if ((attributeFill.Length > 1))
+                {
+                    if (string.IsNullOrEmpty(attributeStroke))
+                        Graphic.SetPenColor(attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
                     Graphic.SetPenFill(attributeFill.StartsWith("#") ? attributeFill.Substring(1) : attributeFill);
+                }
             }
             /*    if (element.Attribute("stroke-width") != null)    -> globalTextProp.Update(element);
                 {
@@ -750,7 +762,7 @@ namespace GrblPlotter
                 SetDashPattern(element.Attribute("stroke-dasharray").Value);
             }
 
-            globalTextProp.Update(element);
+            globalTextProp.Update(element); // will read all attributes again! in GCodeFromSVGText.cs
             if (Properties.Settings.Default.importGraphicFilterEnable)
                 return (filterKeepColor || filterKeepWidth);
             return true;
@@ -766,7 +778,7 @@ namespace GrblPlotter
             {
                 nr = ConvertToPixel(txt);   // = txt * 96
             }
-            if (logEnable)  Logger.Trace("CalcPenWidth txt:{0}   converted:{1}  scale:{2}  result:{3}", txt, nr, svgStrokeWidthScale, nr * svgStrokeWidthScale);
+            if (logEnable) Logger.Trace("CalcPenWidth txt:{0}   converted:{1}  scale:{2}  result:{3}", txt, nr, svgStrokeWidthScale, nr * svgStrokeWidthScale);
             return Math.Round(nr * svgStrokeWidthScale, 3).ToString().Replace(',', '.');
         }
 
@@ -1048,7 +1060,7 @@ namespace GrblPlotter
                 if (form == "text")
                 {
                     ParseText(pathElement, level);
-					matrixElement = oldMatrixElement;
+                    matrixElement = oldMatrixElement;
                     return; // continue;
                 }
                 if (pathElement.Attribute("x") != null) x = ConvertToPixel(pathElement.Attribute("x").Value);
@@ -1362,7 +1374,7 @@ namespace GrblPlotter
 
                     if (pathElement.Attribute("d") == null)
                     {
-                        Logger.Error("ParsePath {0} of {1} found d=null: '{2}'", shapeCounter+1, svgCode.Elements(nspace + "path").Count(), attrId);
+                        Logger.Error("ParsePath {0} of {1} found d=null: '{2}'", shapeCounter + 1, svgCode.Elements(nspace + "path").Count(), attrId);
                         Graphic.SetHeaderMessage(string.Format(" {0}: Bad path element, missing d-data: id='{1}'", CodeMessage.Attention, attrId));
                         continue;
                     }
@@ -1439,8 +1451,8 @@ namespace GrblPlotter
                 .Split(remainingargs, argSeparators)
                 .Where(t => !string.IsNullOrEmpty(t)).ToList();
 
-		//	string argMatcher = @"((\-|)\d+(\.\d+|)((((E|e)(\-|\+|))|\.)\d+|)|((\-|)\.\d+))";
-		//	var splitArgs = Regex.Matches(remainingargs, argMatcher);
+            //	string argMatcher = @"((\-|)\d+(\.\d+|)((((E|e)(\-|\+|))|\.)\d+|)|((\-|)\.\d+))";
+            //	var splitArgs = Regex.Matches(remainingargs, argMatcher);
 
             double testNr;
             for (int iArg = 0; iArg < splitArgs.Count(); iArg++)
@@ -1451,20 +1463,20 @@ namespace GrblPlotter
                     var strSplit = splitArgs[iArg].Split('.');
                     if (strSplit.Length > 2)
                     {
-                        splitArgs[iArg] = "0." + strSplit[strSplit.Length-1];
+                        splitArgs[iArg] = "0." + strSplit[strSplit.Length - 1];
                         for (int k = strSplit.Length - 2; k > 1; k--)
                         {
                             splitArgs.Insert(iArg, "0." + strSplit[k]);
-                        //    Logger.Info("ParsePathCommand fixed bad arguments to:{0} and {1}", splitArgs[iArg], splitArgs[iArg + 1]);
+                            //    Logger.Info("ParsePathCommand fixed bad arguments to:{0} and {1}", splitArgs[iArg], splitArgs[iArg + 1]);
                         }
                         splitArgs.Insert(iArg, strSplit[0] + "." + strSplit[1]);
-                     //   Logger.Info("ParsePathCommand fixed bad arguments to:{0} and {1}", splitArgs[iArg], splitArgs[iArg + 1]);
+                        //   Logger.Info("ParsePathCommand fixed bad arguments to:{0} and {1}", splitArgs[iArg], splitArgs[iArg + 1]);
                     }
                 }
             }
 
             double[] doubleArgs = splitArgs.Select(arg => ConvertToPixel(arg)).ToArray();
-		//	float[] floatArgs = splitArgs.Cast<Capture>().Select(c => ConvertToPixel(c.Value)).ToArray();
+            //	float[] floatArgs = splitArgs.Cast<Capture>().Select(c => ConvertToPixel(c.Value)).ToArray();
             int objCount = 0;
 
             switch (cmd)
@@ -1500,8 +1512,12 @@ namespace GrblPlotter
                                 if (svgNodesOnly)
                                     GCodeDotOnly(currentX, currentY, (command.ToString()));
                                 else
-                                    SVGStartPath(currentX, currentY, "path", startPath);
-
+                                {
+                                    if (svgPathStartNewFigure)
+                                        SVGStartPath(currentX, currentY, "pathNew", true);
+                                    else
+                                        SVGStartPath(currentX, currentY, "path", startPath);
+                                }
                                 startPath = false;
                             }
                         }
@@ -1510,7 +1526,12 @@ namespace GrblPlotter
                             if (svgNodesOnly)
                                 GCodeDotOnly(currentX, currentY, command.ToString());
                             else
-                                SVGMoveTo(currentX, currentY, string.Format("{0} {1,3})  X:{2:0.00} Y:{3:0.00}", command, (i / 2), currentX, currentY));  	// G1
+                            {
+                                if (svgPathStartNewFigure)
+                                    SVGStartPath(currentX, currentY, "pathNew", true);
+                                else
+                                    SVGMoveTo(currentX, currentY, string.Format("{0} {1,3})  X:{2:0.00} Y:{3:0.00}", command, (i / 2), currentX, currentY));    // G1
+                            }
                         }
 
                         lastX = currentX; lastY = currentY;
@@ -1609,7 +1630,7 @@ namespace GrblPlotter
                         if (svgComments) { Graphic.SetComment(string.Format(" draw arc nr. {0} ", (1 + rep / 6))); }
                         double rx, ry, rot, large, sweep, nx, ny;
                         rx = doubleArgs[rep]; ry = doubleArgs[rep + 1];
-                        rot = doubleArgs[rep + 2];
+                        rot = doubleArgs[rep + 2] * Math.PI / 180;
                         large = doubleArgs[rep + 3];
                         sweep = doubleArgs[rep + 4];
                         if (absolute)
@@ -1661,13 +1682,13 @@ namespace GrblPlotter
                             Vector c1 = new Vector(doubleArgs[rep + 0], doubleArgs[rep + 1]) + (Vector)Off;
                             Vector c2 = new Vector(doubleArgs[rep + 2], doubleArgs[rep + 3]) + (Vector)Off;
                             Vector c3 = new Vector(doubleArgs[rep + 4], doubleArgs[rep + 5]) + (Vector)Off;
-                        /*    if (logEnable)
-                            {
-                                Logger.Trace("CalcCubicBezier  0: X:{0:0.000}   Y:{1:0.000}", lastX, lastY);
-                                Logger.Trace("CalcCubicBezier c1: X:{0:0.000}   Y:{1:0.000}", c1.X, c1.Y);
-                                Logger.Trace("CalcCubicBezier c2: X:{0:0.000}   Y:{1:0.000}", c2.X, c2.Y);
-                                Logger.Trace("CalcCubicBezier c3: X:{0:0.000}   Y:{1:0.000}", c3.X, c3.Y);
-                            }*/
+                            /*    if (logEnable)
+                                {
+                                    Logger.Trace("CalcCubicBezier  0: X:{0:0.000}   Y:{1:0.000}", lastX, lastY);
+                                    Logger.Trace("CalcCubicBezier c1: X:{0:0.000}   Y:{1:0.000}", c1.X, c1.Y);
+                                    Logger.Trace("CalcCubicBezier c2: X:{0:0.000}   Y:{1:0.000}", c2.X, c2.Y);
+                                    Logger.Trace("CalcCubicBezier c3: X:{0:0.000}   Y:{1:0.000}", c3.X, c3.Y);
+                                }*/
                             if (svgNodesOnly)
                                 GCodeDotOnly(c3.X, c3.Y, command.ToString());
                             else
@@ -1939,7 +1960,7 @@ namespace GrblPlotter
 
                         double rx, ry, rot, large, sweep, nx, ny;
                         rx = doubleArgs[rep]; ry = doubleArgs[rep + 1];
-                        rot = doubleArgs[rep + 2];
+                        rot = doubleArgs[rep + 2] * Math.PI / 180; ;
                         large = doubleArgs[rep + 3];
                         sweep = doubleArgs[rep + 4];
                         if (absolute)
