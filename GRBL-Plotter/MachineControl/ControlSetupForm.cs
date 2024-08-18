@@ -36,6 +36,8 @@
  * 2023-08-01 check if (!e.Bounds.IsEmpty)
  * 2023-09-17 new option multi file import
  * 2024-02-04 add noise option
+ * 2024-05-23 new control CbImportGraphicSortDistanceStart
+ * 2024-07-21 l:345 f:SaveSettings only save custom buttons if edited
 */
 
 using System;
@@ -53,6 +55,7 @@ namespace GrblPlotter
     {
         private readonly Color inactive = Color.WhiteSmoke;
         internal bool settingsReloaded = false;
+        private bool dGVCustomBtnChanged = false;
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -128,28 +131,31 @@ namespace GrblPlotter
             lblToolListLoaded.Text = Properties.Settings.Default.toolTableLastLoaded;
             tab2gB1.Text += " ( " + Datapath.Tools + " )";
 
-            string text;
-            string[] parts;// = new string[] { "-", "(-)" };
-            dGVCustomBtn.Rows.Clear();
-            int row = 0;
-            for (int i = 1; i <= 32; i++)
-            {
-                parts = new string[] { " ", " ", " ", " " };
-                text = Properties.Settings.Default["guiCustomBtn" + i.ToString()].ToString();
-                if (text.IndexOf('|') > 0)
-                {
-                    string[] tmp = text.Split('|');
-                    for (int k = 0; k < tmp.Length; k++)
-                        parts[k] = tmp[k];
-                }
+            SetCustomBtnTable();
+            /*   string text;
+               string[] parts;// = new string[] { "-", "(-)" };
+               dGVCustomBtn.Rows.Clear();
+               int row = 0;
+               for (int i = 1; i <= 32; i++)
+               {
+                   parts = new string[] { " ", " ", " ", " " };
+                   text = Properties.Settings.Default["guiCustomBtn" + i.ToString()].ToString();
+                   if (text.IndexOf('|') > 0)
+                   {
+                       string[] tmp = text.Split('|');
+                       for (int k = 0; k < tmp.Length; k++)
+                           parts[k] = tmp[k];
+                   }
 
-                dGVCustomBtn.Rows.Add();
-                dGVCustomBtn.Rows[row].Cells[0].Value = i.ToString();
-                dGVCustomBtn.Rows[row].Cells[1].Value = parts[0];
-                dGVCustomBtn.Rows[row].Cells[2].Value = parts[1];
-                dGVCustomBtn.Rows[row].Cells[3].Value = parts[2];
-                row++;
-            }
+                   dGVCustomBtn.Rows.Add();
+                   dGVCustomBtn.Rows[row].Cells[0].Value = i.ToString();
+                   dGVCustomBtn.Rows[row].Cells[1].Value = parts[0];
+                   dGVCustomBtn.Rows[row].Cells[2].Value = parts[1];
+                   dGVCustomBtn.Rows[row].Cells[3].Value = parts[2];
+                   row++;
+               }
+               dGVCustomBtnChanged = false;
+            */
 
             //   lvCustomButtons.Items[0].Selected = true;
             SetButtonColors(btnColorBackground, Properties.Settings.Default.gui2DColorBackground);
@@ -219,6 +225,11 @@ namespace GrblPlotter
                 cBImportSVG_DPI_96.Checked = true;
             else
                 cBImportSVG_DPI_72.Checked = true;
+
+            if (Properties.Settings.Default.importPDNLayerVisible)
+                rBImportPDNLayerVisible.Checked = true;
+            else
+                rBImportPDNLayerAll.Checked = true;
 
             if (Properties.Settings.Default.importGraphicDevelopmentFeedX)
                 rBImportGraphicDevelopFeedX.Checked = true;
@@ -329,14 +340,20 @@ namespace GrblPlotter
             {
                 CbImportSVGAddOnPosition.SelectedIndex = Properties.Settings.Default.importSVGAddOnPosition = 0;
             }
+
+            CbImportGraphicSortDistanceStart.SelectedIndex = Properties.Settings.Default.importGraphicSortDistanceStart;
         }
 
         private void SaveSettings()
         {
-            for (int i = 1; i <= 32; i++)
+            if (dGVCustomBtnChanged)
             {
-                try { Properties.Settings.Default["guiCustomBtn" + i.ToString()] = dGVCustomBtn.Rows[i - 1].Cells[1].Value + "|" + dGVCustomBtn.Rows[i - 1].Cells[2].Value + "|" + dGVCustomBtn.Rows[i - 1].Cells[3].Value; }
-                catch { Properties.Settings.Default["guiCustomBtn" + i.ToString()] = " | | "; }
+                Logger.Trace("SaveSettings CustomBtnTable");
+                for (int i = 1; i <= 32; i++)
+                {
+                    try { Properties.Settings.Default["guiCustomBtn" + i.ToString()] = dGVCustomBtn.Rows[i - 1].Cells[1].Value + "|" + dGVCustomBtn.Rows[i - 1].Cells[2].Value + "|" + dGVCustomBtn.Rows[i - 1].Cells[3].Value; }
+                    catch { Properties.Settings.Default["guiCustomBtn" + i.ToString()] = " | | "; }
+                }
             }
             Properties.Settings.Default.importGCDecPlaces = nUDImportDecPlaces.Value;
             Properties.Settings.Default.importGCSpindleCmd = rBImportGCSpindleCmd1.Checked;
@@ -347,6 +364,39 @@ namespace GrblPlotter
 
             ExportDgvToCSV(defaultToolList);
             ToolTable.Init(" (SaveSettings)");
+            SetCustomBtnTable();
+        }
+
+        private void SetCustomBtnTable()
+        {
+            Logger.Trace("setCustomBtnTable");
+            string text;
+            string[] parts;// = new string[] { "-", "(-)" };
+            dGVCustomBtn.Rows.Clear();
+            int row = 0;
+            for (int i = 1; i <= 32; i++)
+            {
+                parts = new string[] { " ", " ", " ", " " };
+                text = Properties.Settings.Default["guiCustomBtn" + i.ToString()].ToString();
+                if (text.IndexOf('|') > 0)
+                {
+                    string[] tmp = text.Split('|');
+                    for (int k = 0; k < tmp.Length; k++)
+                        parts[k] = tmp[k];
+                }
+
+                dGVCustomBtn.Rows.Add();
+                dGVCustomBtn.Rows[row].Cells[0].Value = i.ToString();
+                dGVCustomBtn.Rows[row].Cells[1].Value = parts[0];
+                dGVCustomBtn.Rows[row].Cells[2].Value = parts[1];
+                dGVCustomBtn.Rows[row].Cells[3].Value = parts[2];
+                row++;
+            }
+            dGVCustomBtnChanged = false;
+        }
+        private void DGVCustomBtn_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            dGVCustomBtnChanged = true;
         }
 
         private void BtnApplyChangings_Click(object sender, EventArgs e)
@@ -1145,6 +1195,21 @@ namespace GrblPlotter
             else
                 tab1_3gB5.BackColor = inactive;
 
+            if (cBImportGraphicOffsetLargestRemove.Checked)
+                cBImportGraphicOffsetLargestRemove.BackColor = Color.Yellow;
+            else
+                cBImportGraphicOffsetLargestRemove.BackColor = inactive;
+
+            if (CbImportSVGPathStartNewFigure.Checked)
+                CbImportSVGPathStartNewFigure.BackColor = Color.Yellow;
+            else
+                CbImportSVGPathStartNewFigure.BackColor = inactive;
+
+            if (CbImportSVGApplyFill.Checked)
+                CbImportSVGApplyFill.BackColor = Color.Yellow;
+            else
+                CbImportSVGApplyFill.BackColor = inactive;
+
             if (cBImportGraphicHatchFill.Checked)
                 gBHatchFill.BackColor = Color.Yellow;
             else
@@ -1175,7 +1240,7 @@ namespace GrblPlotter
             else
                 gBDevelop.BackColor = Color.WhiteSmoke;
 
-            cBImportGraphicHatchFillInset2.Enabled = cBImportGraphicHatchFillInset.Checked;
+            cBImportGraphicHatchFillInset2.Enabled = cBImportGraphicHatchFillInset.Enabled && cBImportGraphicHatchFillInset.Checked;
         }
 
         private void BtnFileDialogTT1_Click(object sender, EventArgs e)
@@ -1694,21 +1759,31 @@ namespace GrblPlotter
         }
         private void CbImportGraphicHatchFill_CheckStateChanged(object sender, EventArgs e)
         {
-            bool enable = cBImportGraphicHatchFill.Checked;
+            bool enable = cBImportGraphicHatchFill.Checked || CbImportSVGApplyFill.Checked;
             lblHatchFill1.Enabled = enable;
             lblHatchFill2.Enabled = enable;
             cBImportGraphicHatchFillCross.Enabled = enable;
+            cBImportGraphicHatchFillDash.Enabled = enable;
+
+            cBImportGraphicHatchFillChangeOffset.Enabled = enable;
+            nUDHatchFillDist.Enabled = enable;
+            nUDHatchFillOff.Enabled = enable;
+
             cBImportGraphicHatchFillChangeAngle.Enabled = enable;
             nUDHatchFillAngle.Enabled = enable;
             nUDHatchFillAngle2.Enabled = enable;
-            nUDHatchFillDist.Enabled = enable;
             cBImportGraphicHatchFillInset.Enabled = enable;
             nUDHatchFillInset.Enabled = enable;
+            cBImportGraphicHatchFillInset2.Enabled = enable;
+            CbImportGraphicHatchFillNoise.Enabled = enable;
+            CbImportGraphicHatchFillDeletePath.Enabled = enable;
 
             if (enable)
             { cBImportGCNoArcs.Checked = true; }
             HighlightPenOptions_Click(sender, e);
             TabControl3.Invalidate();
+
+            CbImportGraphicNoise_CheckStateChanged(sender, e);
         }
 
         private void BtnOpenLogFile_Click(object sender, EventArgs e)
@@ -2174,7 +2249,7 @@ namespace GrblPlotter
             switch (tabIndex)
             {
                 case 0:
-                    return (prop.importSVGApplyFill);
+                    return (prop.importSVGApplyFill || prop.importSVGPathNewFigure || prop.importGraphicOffsetLargestRemove);
                     break;
                 case 1:
                     return (prop.importGCZEnable && prop.importGCZIncEnable && prop.importGCZIncNoZUp);
@@ -2207,7 +2282,7 @@ namespace GrblPlotter
         private bool IsOptionEnabledTabControl3(int tabIndex)
         {
             var prop = Properties.Settings.Default;
-            bool result=false;
+            bool result = false;
             switch (tabIndex)
             {
                 case 0:
@@ -2240,7 +2315,7 @@ namespace GrblPlotter
                 default:
                     break;
             }
-        //    Logger.Trace("IsOptionEnabledTabControl3  index:{0} result:{1}", tabIndex, result);
+            //    Logger.Trace("IsOptionEnabledTabControl3  index:{0} result:{1}", tabIndex, result);
 
             return result;
         }
@@ -2301,7 +2376,7 @@ namespace GrblPlotter
 
         private void CbImportGraphicHatchFillInset_CheckedChanged(object sender, EventArgs e)
         {
-            cBImportGraphicHatchFillInset2.Enabled = cBImportGraphicHatchFillInset.Checked;
+            cBImportGraphicHatchFillInset2.Enabled = cBImportGraphicHatchFillInset.Enabled && cBImportGraphicHatchFillInset.Checked;
         }
 
         private void RbMultipleLoadLimitNo_CheckedChanged(object sender, EventArgs e)
@@ -2359,13 +2434,12 @@ namespace GrblPlotter
 
         private void CbImportGraphicNoise_CheckStateChanged(object sender, EventArgs e)
         {
-            bool enable = cBImportGraphicNoise.Checked;
+            bool enable = cBImportGraphicNoise.Checked || (CbImportGraphicHatchFillNoise.Enabled && CbImportGraphicHatchFillNoise.Checked);
             NudNoiseAmplitude.Enabled = NudNoiseDensity.Enabled = enable;
-            if (enable)
+            if (cBImportGraphicNoise.Checked)
                 gBNoise.BackColor = Color.Yellow;
             else
                 gBNoise.BackColor = Color.WhiteSmoke;
-
         }
 
         private void BtnSaveIni_Click(object sender, EventArgs e)
@@ -2401,6 +2475,29 @@ namespace GrblPlotter
             }
         }
 
+        private void CbImportGraphicSortDistanceStart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.importGraphicSortDistanceStart = CbImportGraphicSortDistanceStart.SelectedIndex;
+            Properties.Settings.Default.Save();
+        }
+
+        private void CbImportGraphicSortDistance_CheckStateChanged(object sender, EventArgs e)
+        {
+            bool enable = cBImportGraphicSortDistance.Checked;
+            CbImportGraphicSortDistanceStart.Enabled = enable;
+            lblSorting.Enabled = enable;
+            cBImportGraphicSortDistanceRotatePath.Enabled = enable;
+            cBImportGraphicLargestLast.Enabled = enable;
+        }
+
+        private void CbImportGraphicOffsetOrigin_CheckStateChanged(object sender, EventArgs e)
+        {
+            bool enable = cBImportGraphicOffsetOrigin.Checked;
+            NudImportGraphicOffsetOriginX.Enabled = enable;
+            NudImportGraphicOffsetOriginY.Enabled = enable;
+            cBImportGraphicOffsetLargestLast.Enabled = enable;
+            cBImportGraphicOffsetLargestRemove.Enabled = enable;
+        }
     }
 }
 

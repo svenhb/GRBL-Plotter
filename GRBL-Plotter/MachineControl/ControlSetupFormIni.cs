@@ -35,6 +35,8 @@ namespace GrblPlotter
             {"Objects offset origin enable","importGraphicOffsetOrigin"  },
             {"Objects offset origin X",     "importGraphicOffsetOriginX" },
             {"Objects offset origin Y",     "importGraphicOffsetOriginY" },
+            {"Objects offset large last",   "importGraphicOffsetLargestLast"   },
+            {"Objects offset large remove", "importGraphicOffsetLargestRemove"   },
             {"Objects sort by distance",    "importGraphicSortDistance"  },
             {"Objects sort rotate",         "importGraphicSortDistanceAllowRotate"},
             {"Objects sort large last",     "importGraphicLargestLast"   },
@@ -46,8 +48,8 @@ namespace GrblPlotter
             {"Gcode add comments",      "importSVGAddComments"}
         };
         internal static string sectionSetupImportParameter = "Graphic Import";
-		
-/*************************************************************************************/
+
+        /*************************************************************************************/
         internal static string[,] keyValueSetupSvgDxfCsv = {
             {"SVG resize enable",   "importSVGRezise" },
             {"SVG resize units",    "importSVGMaxSize" },
@@ -56,6 +58,7 @@ namespace GrblPlotter
             {"SVG addon position",  "importSVGAddOnPosition" },
             {"SVG addon file",      "importSVGAddOnFile"  },
             {"SVG skip hidden",     "importSVGDontPlot"   },
+            {"SVG path new figure", "importSVGPathNewFigure" },
             {"SVG apply fill",      "importSVGApplyFill"  },
             {"SVG apply metadata",  "importSVGMetaData"   },
 
@@ -77,56 +80,56 @@ namespace GrblPlotter
             {"CSV connect",     "importCSVProzessAsLine"}
         };
         internal static string sectionSetupSvgDxfCsv = "Graphic Format";
-		
-/*************************************************************************************/
+
+        /*************************************************************************************/
         internal static string[,] keyValueSetupGcodeGeneration = {
-            {"Dec Places",   	"importGCDecPlaces" },
-            {"Header Code",   	"importGCHeader" },
-            {"Footer Code",   	"importGCFooter" },
+            {"Dec Places",      "importGCDecPlaces" },
+            {"Header Code",     "importGCHeader" },
+            {"Footer Code",     "importGCFooter" },
             {"Tool Change Code","importGCToolChangeCode" },
 
-            {"XY Feedrate",   		"importGCXYFeed" },
-            {"XY Feedrate from TT",	"importGCTTXYFeed" },
+            {"XY Feedrate",         "importGCXYFeed" },
+            {"XY Feedrate from TT", "importGCTTXYFeed" },
 
-            {"Spindle Speed",   		"importGCSSpeed" },
+            {"Spindle Speed",           "importGCSSpeed" },
             {"Spindle Speed from TT",   "importGCTTSSpeed" },
-            {"Spindle Use Laser",   	"importGCSpindleToggleLaser" },
+            {"Spindle Use Laser",       "importGCSpindleToggleLaser" },
 
             {"Spindle Direction M3","importGCSDirM3" },
-            {"Spindle Delay",   	"importGCSpindleDelay" },
+            {"Spindle Delay",       "importGCSpindleDelay" },
 
-            {"Add Tool Cmd",   	"importGCTool" },
-            {"Add Tool M0",   	"importGCToolM0" },
-            {"Add Comments",   	"importGCAddComments" },
+            {"Add Tool Cmd",    "importGCTool" },
+            {"Add Tool M0",     "importGCToolM0" },
+            {"Add Comments",    "importGCAddComments" },
 /******/
-            {"Z Enable",   		"importGCZEnable" },
+            {"Z Enable",        "importGCZEnable" },
             {"Z Values from TT","importGCTTZAxis" },
-            {"Z Feedrate",   	"importGCZFeed" },
-            {"Z Up Pos",   		"importGCZUp" },
-            {"Z Down Pos",   	"importGCZDown" },
-            {"Z Inc Enable",   		"importGCZIncEnable" },
-            {"Z Increment at zero",	"importGCZIncStartZero" },
-            {"Z Increment",   		"importGCZIncrement" },
+            {"Z Feedrate",      "importGCZFeed" },
+            {"Z Up Pos",        "importGCZUp" },
+            {"Z Down Pos",      "importGCZDown" },
+            {"Z Inc Enable",        "importGCZIncEnable" },
+            {"Z Increment at zero", "importGCZIncStartZero" },
+            {"Z Increment",         "importGCZIncrement" },
             {"Z Increment no up",   "importGCZIncNoZUp" },
             {"Z Prevent Spindle","importGCZPreventSpindle" },
 
-            {"PWM Enable",   	"importGCPWMEnable" },
-            {"PWM Up Val",   	"importGCPWMUp" },
-            {"PWM Up Dly",   	"importGCPWMDlyUp" },
-            {"PWM Down Val",   	"importGCPWMDown" },
-            {"PWM Down Dly",   	"importGCPWMDlyDown" },
-            {"PWM Zero Val",   	"importGCPWMZero" },
-            {"PWM P93 Val",   	"importGCPWMP93" },
-            {"PWM P93 Dly",   	"importGCPWMDlyP93" },
-            {"PWM P94 Val",   	"importGCPWMP94" },
-            {"PWM P94 Dly",   	"importGCPWMDlyP94" },
-            {"PWM Skip M30",   	"importGCPWMSkipM30" },
+            {"PWM Enable",      "importGCPWMEnable" },
+            {"PWM Up Val",      "importGCPWMUp" },
+            {"PWM Up Dly",      "importGCPWMDlyUp" },
+            {"PWM Down Val",    "importGCPWMDown" },
+            {"PWM Down Dly",    "importGCPWMDlyDown" },
+            {"PWM Zero Val",    "importGCPWMZero" },
+            {"PWM P93 Val",     "importGCPWMP93" },
+            {"PWM P93 Dly",     "importGCPWMDlyP93" },
+            {"PWM P94 Val",     "importGCPWMP94" },
+            {"PWM P94 Dly",     "importGCPWMDlyP94" },
+            {"PWM Skip M30",    "importGCPWMSkipM30" },
 
             {"Spindle Toggle",   "importGCSpindleToggle" },
 
-            {"Individual enable",	"importGCIndEnable" },
-            {"Individual PenUp",   	"importGCIndPenUp" },
-            {"Individual PenDown",	"importGCIndPenDown" }
+            {"Individual enable",   "importGCIndEnable" },
+            {"Individual PenUp",    "importGCIndPenUp" },
+            {"Individual PenDown",  "importGCIndPenDown" }
         };
         internal static string sectionSetupGcodeGeneration = "GCode generation";
 

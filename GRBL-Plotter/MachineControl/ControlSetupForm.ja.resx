@@ -3865,4 +3865,128 @@ X は半径値を取得し、Y は角度値を取得します。
   <data name="cBImportGCTangentialShortingEnable.ToolTip" xml:space="preserve">
     <value>図形パスを後で開始し、より早く終了します (ロータリー カッターの場合)。</value>
   </data>
+  <data name="cBImportGraphicOffsetLargestRemove.Text" xml:space="preserve">
+    <value>最大のオブジェクトを削除する</value>
+  </data>
+  <data name="cBImportGraphicOffsetLargestRemove.ToolTip" xml:space="preserve">
+    <value>最大のオブジェクトを見つけて削除します。レーザー彫刻/切断のためのカットアウトパスを避ける</value>
+  </data>
+  <data name="cBImportGraphicOffsetLargestLast.Text" xml:space="preserve">
+    <value>最大のオブジェクトを最後に移動する</value>
+  </data>
+  <data name="cBImportGraphicOffsetLargestLast.ToolTip" xml:space="preserve">
+    <value>最大のオブジェクトを最後に処理します。例:レーザー彫刻/切断用の切り抜きパス</value>
+  </data>
+  <data name="lblSorting.Text" xml:space="preserve">
+    <value>並べ替えの最初の開始点</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.Items6" xml:space="preserve">
+    <value>実際の位置。</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.Text" xml:space="preserve">
+    <value>開始位置</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.ToolTip" xml:space="preserve">
+    <value>並べ替えの開始位置を定義する</value>
+  </data>
+  <data name="gBSorting.Text" xml:space="preserve">
+    <value>並べ替えオプション</value>
+  </data>
+  <data name="tabControlSort.Text" xml:space="preserve">
+    <value>仕分け</value>
+  </data>
+  <data name="CbImportSVGPathStartNewFigure.Text" xml:space="preserve">
+    <value>サブパス上で新しい Figure を開始</value>
+  </data>
+  <data name="CbImportSVGPathStartNewFigure.ToolTip" xml:space="preserve">
+    <value>デフォルト (チェックなし): SVG パス要素内の「m」コマンド (moveto) は、同じ図内にペンアップ/ペンダウンシーケンスを作成します。
+チェックすると、「m」コマンドごとに新しい Figure が作成されます。</value>
+  </data>
+  <data name="label107.Text" xml:space="preserve">
+    <value>DPI での画像解像度</value>
+  </data>
+  <data name="NudImportPDNDpi.ToolTip" xml:space="preserve">
+    <value>DPI = ピクセル/インチ - 通常は 96</value>
+  </data>
+  <data name="label108.Text" xml:space="preserve">
+    <value>ベクトル化後の平滑化サイクル</value>
+  </data>
+  <data name="rBImportPDNLayerAll.Text" xml:space="preserve">
+    <value>すべてのレイヤーをインポートする</value>
+  </data>
+  <data name="rBImportPDNLayerVisible.Text" xml:space="preserve">
+    <value>表示されているレイヤーのみをインポートします</value>
+  </data>
+  <data name="groupBox44.Text" xml:space="preserve">
+    <value>レイヤー化された画像のインポート (PaintDotNet Json)</value>
+  </data>
+  <data name="cBImportGraphicHatchFillChangeOffset.Text" xml:space="preserve">
+    <value>各パスの後のオフセットを次のように変更します</value>
+  </data>
+  <data name="BtnGetFilterValueKeepWidth.Text" xml:space="preserve">
+    <value>色の取得</value>
+  </data>
+  <data name="BtnGetFilterValueKeepColor.Text" xml:space="preserve">
+    <value>色の取得</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="label103.Text" xml:space="preserve">
+    <value>寸法</value>
+  </data>
+  <data name="label102.Text" xml:space="preserve">
+    <value>いいえ。</value>
+  </data>
+  <data name="nUDMultipleLoadDimY.ToolTip" xml:space="preserve">
+    <value>最大 Y 範囲。 「プログラム制御」 - 「マシンエリア」タブも参照してください。</value>
+  </data>
+  <data name="nUDMultipleLoadDimX.ToolTip" xml:space="preserve">
+    <value>最大 X 範囲。 「プログラム制御」 - 「マシンエリア」タブも参照してください。</value>
+  </data>
+  <data name="nUDMultipleLoadNoY.ToolTip" xml:space="preserve">
+    <value>列内のファイルコンテンツの最大数</value>
+  </data>
+  <data name="RbMultipleLoadByX.Text" xml:space="preserve">
+    <value>X - 行ごと</value>
+  </data>
+  <data name="nUDMultipleLoadNoX.ToolTip" xml:space="preserve">
+    <value>行内のファイルコンテンツの最大数</value>
+  </data>
+  <data name="RbMultipleLoadByY.Text" xml:space="preserve">
+    <value>Y - 列ごと</value>
+  </data>
+  <data name="RbMultipleLoadLimitDim.Text" xml:space="preserve">
+    <value>機械寸法による制限</value>
+  </data>
+  <data name="RbMultipleLoadLimitDim.ToolTip" xml:space="preserve">
+    <value>マシンの制限を超えない限り、1 つのファイル コンテンツを他のファイル コンテンツの隣に配置します。その後、新しい行または列が始まります。</value>
+  </data>
+  <data name="RbMultipleLoadLimitNo.Text" xml:space="preserve">
+    <value>数による制限</value>
+  </data>
+  <data name="RbMultipleLoadLimitNo.ToolTip" xml:space="preserve">
+    <value>指定された数に達するまで、1 つのファイル コンテンツを他のファイル コンテンツの隣に配置します。その後、新しい行または列が始まります。</value>
+  </data>
+  <data name="BtnHelp_Buttons.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_Hotkeys.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_Gamepad.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_Joystick.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_2dview.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_Projector.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
+  <data name="BtnHelp_Misc2.ToolTip" xml:space="preserve">
+    <value>オンラインヘルプ</value>
+  </data>
 </root>

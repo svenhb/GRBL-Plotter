@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -41,6 +41,7 @@
  * 2023-05-08 l:996 f:AddScanCode add axis-string for X/Y seperation
  * 2023-08-01 check if (!ImageSize.IsEmpty)
  * 2023-11-02 l:1412 f:LoadMap Bug fix "Value was either too large or too small for a Decimal"
+ * 2024-05-28 l:266 f:SetBtnApply reset mapIsLoaded after changing applied status
 */
 
 using System;
@@ -262,6 +263,7 @@ namespace GrblPlotter
             { btnApply.Text = "Apply Height Map"; }
             else
             { btnApply.Text = "Remove Height Map"; }
+            mapIsLoaded = isMapOk;
         }
 
         private void BtnOffset_Click(object sender, EventArgs e)
@@ -1406,7 +1408,8 @@ namespace GrblPlotter
             cntReceived = 0; cntSent = 0;
             if (File.Exists(file))
             {
-                Map = HeightMap.Load(file);
+                SetBtnApply(true);
+				Map = HeightMap.Load(file);
                 lblXDim.Text = string.Format("X Min:{0:0.00} Max:{1:0.00} Step:{2:0.00}  Size:{3}", Map.Min.X, Map.Max.X, Map.GridX, Map.SizeX);
                 lblYDim.Text = string.Format("Y Min:{0:0.00} Max:{1:0.00} Step:{2:0.00}  Size:{3}", Map.Min.Y, Map.Max.Y, Map.GridY, Map.SizeY);
 				if ((Map.GridX > (double)Decimal.MinValue) && (Map.GridX < (double)Decimal.MaxValue))

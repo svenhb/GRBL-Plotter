@@ -3909,4 +3909,122 @@ La conversione è possibile anche tramite Menu - Trasformazione GCode - 'Convert
   <data name="cBImportGCTangentialShortingEnable.ToolTip" xml:space="preserve">
     <value>Inizia un percorso di figure più tardi e lo termina prima (per taglierina rotativa).</value>
   </data>
+  <data name="cBImportGraphicOffsetLargestRemove.Text" xml:space="preserve">
+    <value>Rimuovi l'oggetto più grande</value>
+  </data>
+  <data name="cBImportGraphicOffsetLargestRemove.ToolTip" xml:space="preserve">
+    <value>Trova l'oggetto più grande e rimuovi ad es. evitare il percorso di ritaglio per l'incisione/taglio laser</value>
+  </data>
+  <data name="cBImportGraphicOffsetLargestLast.Text" xml:space="preserve">
+    <value>Sposta l'oggetto più grande fino alla fine</value>
+  </data>
+  <data name="cBImportGraphicOffsetLargestLast.ToolTip" xml:space="preserve">
+    <value>Elabora l'oggetto più grande per ultimo, ad es. percorso di ritaglio per incisione/taglio laser</value>
+  </data>
+  <data name="lblSorting.Text" xml:space="preserve">
+    <value>Punto di partenza iniziale per l'ordinamento</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.Items6" xml:space="preserve">
+    <value>posizione effettiva</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.Text" xml:space="preserve">
+    <value>Posizione iniziale</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.ToolTip" xml:space="preserve">
+    <value>Definire la posizione iniziale per l'ordinamento</value>
+  </data>
+  <data name="gBSorting.Text" xml:space="preserve">
+    <value>Opzioni di ordinamento</value>
+  </data>
+  <data name="tabControlSort.Text" xml:space="preserve">
+    <value>Ordinamento</value>
+  </data>
+  <data name="CbImportSVGPathStartNewFigure.Text" xml:space="preserve">
+    <value>Inizia una nuova figura sul sottopercorso</value>
+  </data>
+  <data name="CbImportSVGPathStartNewFigure.ToolTip" xml:space="preserve">
+    <value>Predefinito (non selezionato): un comando 'm' (moveto) all'interno dell'elemento del percorso SVG crea una sequenza penna su/giù all'interno della stessa figura.
+Se selezionato, ogni comando 'm' crea una nuova figura.</value>
+  </data>
+  <data name="label107.Text" xml:space="preserve">
+    <value>Risoluzione dell'immagine in DPI</value>
+  </data>
+  <data name="NudImportPDNDpi.ToolTip" xml:space="preserve">
+    <value>DPI = pixel/pollice - solitamente 96</value>
+  </data>
+  <data name="label108.Text" xml:space="preserve">
+    <value>Cicli di smoothing dopo la vettorizzazione</value>
+  </data>
+  <data name="rBImportPDNLayerAll.Text" xml:space="preserve">
+    <value>Importa tutti i livelli</value>
+  </data>
+  <data name="rBImportPDNLayerVisible.Text" xml:space="preserve">
+    <value>Importa solo i livelli visibili</value>
+  </data>
+  <data name="groupBox44.Text" xml:space="preserve">
+    <value>Importazione di immagini a livelli (PaintDotNet Json)</value>
+  </data>
+  <data name="cBImportGraphicHatchFillChangeOffset.Text" xml:space="preserve">
+    <value>Cambia l'offset dopo ogni percorso di</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>Aiuto online</value>
+  </data>
+  <data name="label103.Text" xml:space="preserve">
+    <value>dimensione</value>
+  </data>
+  <data name="label102.Text" xml:space="preserve">
+    <value>NO.</value>
+  </data>
+  <data name="nUDMultipleLoadDimY.ToolTip" xml:space="preserve">
+    <value>Intervallo Y massimo. Vedi anche la scheda 'Influenza sul programma' - 'Area macchina'.</value>
+  </data>
+  <data name="nUDMultipleLoadDimX.ToolTip" xml:space="preserve">
+    <value>Portata X massima. Vedi anche la scheda 'Influenza sul programma' - 'Area macchina'.</value>
+  </data>
+  <data name="nUDMultipleLoadNoY.ToolTip" xml:space="preserve">
+    <value>Numero massimo di contenuti di file in una colonna</value>
+  </data>
+  <data name="RbMultipleLoadByX.Text" xml:space="preserve">
+    <value>X: riga per riga</value>
+  </data>
+  <data name="nUDMultipleLoadNoX.ToolTip" xml:space="preserve">
+    <value>Numero massimo di contenuti di file di seguito</value>
+  </data>
+  <data name="RbMultipleLoadByY.Text" xml:space="preserve">
+    <value>Y: colonna per colonna</value>
+  </data>
+  <data name="RbMultipleLoadLimitDim.Text" xml:space="preserve">
+    <value>Limite in base alle dimensioni della macchina</value>
+  </data>
+  <data name="RbMultipleLoadLimitDim.ToolTip" xml:space="preserve">
+    <value>Posiziona il contenuto di un file accanto all'altro purché non venga superato il limite della macchina. Quindi inizia una nuova riga o colonna.</value>
+  </data>
+  <data name="RbMultipleLoadLimitNo.Text" xml:space="preserve">
+    <value>Limitare per numero</value>
+  </data>
+  <data name="RbMultipleLoadLimitNo.ToolTip" xml:space="preserve">
+    <value>Posiziona il contenuto di un file accanto all'altro finché non viene raggiunto il numero specificato. Quindi inizia una nuova riga o colonna.</value>
+  </data>
+  <data name="BtnHelp_Buttons.ToolTip" xml:space="preserve">
+    <value>Aiuto online</value>
+  </data>
+  <data name="BtnHelp_Hotkeys.ToolTip" xml:space="preserve">
+    <value>Aiuto online</value>
+  </data>
+  <data name="BtnHelp_Gamepad.ToolTip" xml:space="preserve">
+    <value>Aiuto online</value>
+  </data>
+  <data name="BtnHelp_Joystick.ToolTip" xml:space="preserve">
+    <value>Aiuto online</value>
+  </data>
+  <data name="BtnHelp_2dview.ToolTip" xml:space="preserve">
+    <value>Aiuto online</value>
+  </data>
+  <data name="BtnHelp_Projector.ToolTip" xml:space="preserve">
+    <value>Aiuto online</value>
+  </data>
+  <data name="BtnHelp_Misc2.ToolTip" xml:space="preserve">
+    <value>Aiuto online</value>
+  </data>
 </root>

@@ -1364,9 +1364,7 @@ namespace GrblPlotter
         private int fiducialDetectionProgressCounter = 0;
         private int fiducialDetectionGrblNotIdleCounter = 0;
         private int fiducialDetectionGrblNotIdleCounterMax = 20;
-        private int fiducialDetectionFail = 0;
-        private readonly int fiducialDetectionFailMax = 3;
-        private XyPoint realPos1, realPos2;
+        private XyPoint realPos2;
         private XyPoint teachPoint1;
         private XyPoint teachPoint2;
         private XyPoint probeOffset;
@@ -1447,7 +1445,6 @@ namespace GrblPlotter
                         }
 
                         VisuGCode.CreateMarkerPath();
-                        fiducialDetectionFail = 0;
                         fiducialDetectionGrblNotIdleCounter = 0;
 
                         OnRaiseXYEvent(new XYEventArgs(0, 1, teachPoint1 - probeOffset, "G90 G0"));
@@ -1534,7 +1531,6 @@ namespace GrblPlotter
                         Grbl.PosMarker = new XyzPoint((XyPoint)VisuGCode.fiducialsCenter[1], 0);
 
                         VisuGCode.CreateMarkerPath();
-                        fiducialDetectionFail = 0;
                         fiducialDetectionGrblNotIdleCounter = 0;
 
                         OnRaiseXYEvent(new XYEventArgs(0, 1, teachPoint2 - probeOffset, "G90 G0"));   // move to fiducial position

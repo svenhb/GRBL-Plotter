@@ -40,6 +40,7 @@
  * 2023-04-26 add importGraphicFilterEnable
  * 2023-06-05 add further simple shape variables
  * 2024-02-10 add create text and barcode
+ * 2024-07-22 l:281/841 f: add Hatch fill distance offset
 */
 
 using System;
@@ -198,50 +199,11 @@ namespace GrblPlotter
 
             section = "Graphics Import";
 
-            /* Format related */
-       /*     Write("SVG DPI 96 enable", setup.importSVGDPI96.ToString(), section);
-            if (setup.importSVGRezise || all)
-            {
-                Write("SVG resize enable", setup.importSVGRezise.ToString(), section);
-                Write("SVG resize units", setup.importSVGMaxSize.ToString(), section);
-            }
-            if (setup.importSVGAddOnEnable || all)
-            {
-                Write("SVG addon enable", setup.importSVGAddOnEnable.ToString(), section);
-                Write("SVG addon file", setup.importSVGAddOnFile.ToString(), section);
-                Write("SVG addon scale", setup.importSVGAddOnScale.ToString(), section);
-                Write("SVG addon position", setup.importSVGAddOnPosition.ToString(), section);
-            }
-            if (setup.importSVGDontPlot || all) { Write("SVG skip hidden", setup.importSVGDontPlot.ToString(), section); }
-            if (setup.importSVGApplyFill || all) { Write("SVG apply fill", setup.importSVGApplyFill.ToString(), section); }
-            if (setup.importSVGMetaData || all) { Write("SVG apply metadata", setup.importSVGMetaData.ToString(), section); }
-       */
             if (setup.importDXFToolIndex || all) { Write("DXF use color index", setup.importDXFToolIndex.ToString(), section); }
             if (setup.importDXFSwitchWhite || all) { Write("DXF handle white as black", setup.importDXFSwitchWhite.ToString(), section); }
             if (setup.importDXFDontPlot || all) { Write("DXF skip hidden", setup.importDXFDontPlot.ToString(), section); }
             if (setup.importDXFUseZ || all) { Write("DXF import Z", setup.importDXFUseZ.ToString(), section); }
 
-
-            /* Graphics import General */
-      /*      Write("Graph Units mm", setup.importUnitmm.ToString(), section);
-            if (setup.importUnitGCode || all) { Write("Graph Units GCode", setup.importUnitGCode.ToString(), section); }
-            Write("Bezier Segment count", setup.importBezierLineSegmentsCnt.ToString(), section);
-            Write("Arc circumfence step", setup.importGCSegment.ToString(), section);
-
-            if (setup.importRemoveShortMovesEnable || all)
-            {
-                Write("Remove Moves enable", setup.importRemoveShortMovesEnable.ToString(), section);
-                Write("Remove Moves units", setup.importRemoveShortMovesLimit.ToString(), section);
-            }
-
-            Write("Distance assumed as equal", setup.importAssumeAsEqualDistance.ToString(), section);
-      
-            if (setup.importGraphicOffsetOrigin || all) { Write("Objects offset origin", setup.importGraphicOffsetOrigin.ToString(), section); }
-            if (setup.importGraphicSortDistance || all) { Write("Objects sort by distance", setup.importGraphicSortDistance.ToString(), section); }
-            if (setup.importGraphicSortDistanceAllowRotate || all) { Write("Objects sort rotate", setup.importGraphicSortDistanceAllowRotate.ToString(), section); }
-
-            if (setup.importGCNoArcs || all) { Write("Replace arc by lines", setup.importGCNoArcs.ToString(), section); }
-*/
             /* Path interpretation */
             if (setup.importLineDashPattern || all) { Write("Process Dashed Lines", setup.importLineDashPattern.ToString(), section); }
             if (setup.importLineDashPatternG0 || all) { Write("Process Dashed Lines G0", setup.importLineDashPatternG0.ToString(), section); }
@@ -316,6 +278,8 @@ namespace GrblPlotter
                 Write("Hatch fill enable", setup.importGraphicHatchFillEnable.ToString(), section);
                 Write("Hatch fill cross", setup.importGraphicHatchFillCross.ToString(), section);
                 Write("Hatch fill distance", setup.importGraphicHatchFillDistance.ToString(), section);
+                Write("Hatch fill distance offset enable", setup.importGraphicHatchFillOffsetInc.ToString(), section);
+                Write("Hatch fill distance offset ", setup.importGraphicHatchFillOffset.ToString(), section);
                 Write("Hatch fill angle", setup.importGraphicHatchFillAngle.ToString(), section);
                 Write("Hatch fill angle inc enable", setup.importGraphicHatchFillAngleInc.ToString(), section);
                 Write("Hatch fill angle inc ", setup.importGraphicHatchFillAngle2.ToString(), section);
@@ -408,60 +372,6 @@ namespace GrblPlotter
                 Write("Aux2 Z process", setup.importGCAux2ZMode.ToString(), section);
             }
 
-    /*        section = "GCode generation";
-            Write("Dec Places", setup.importGCDecPlaces.ToString(), section);
-            Write("Header Code", setup.importGCHeader.ToString(), section);
-            Write("Footer Code", setup.importGCFooter.ToString(), section);
-            Write("Tool Change Code", setup.importGCToolChangeCode.ToString(), section);
-
-            Write("XY Feedrate", setup.importGCXYFeed.ToString(), section);
-
-            Write("Spindle Speed", setup.importGCSSpeed.ToString(), section);
-            Write("Spindle Use Laser", setup.importGCSpindleToggleLaser.ToString(), section);
-            Write("Spindle Direction M3", setup.importGCSDirM3.ToString(), section);
-            Write("Spindle Delay", setup.importGCSpindleDelay.ToString(), section);
-
-            Write("Add Tool Cmd", setup.importGCTool.ToString(), section);
-            Write("Add Tool M0", setup.importGCToolM0.ToString(), section);
-            Write("Add Comments", setup.importGCAddComments.ToString(), section);
-
-            Write("Z Enable", setup.importGCZEnable.ToString(), section);
-            if (setup.importGCZEnable || all)
-            {
-                Write("Z Feedrate", setup.importGCZFeed.ToString(), section);
-                Write("Z Up Pos", setup.importGCZUp.ToString(), section);
-                Write("Z Down Pos", setup.importGCZDown.ToString(), section);
-                Write("Z Inc Enable", setup.importGCZIncEnable.ToString(), section);
-                Write("Z Increment at zero", setup.importGCZIncStartZero.ToString(), section);
-                Write("Z Increment", setup.importGCZIncrement.ToString(), section);
-                //        Write("Z Increment no up", setup.importGCZIncNoZUp.ToString(), section);
-            }
-
-            Write("Spindle Toggle", setup.importGCSpindleToggle.ToString(), section);
-
-            if (setup.importGCPWMEnable || all)
-            {
-                Write("PWM Enable", setup.importGCPWMEnable.ToString(), section);
-                Write("PWM Up Val", setup.importGCPWMUp.ToString(), section);
-                Write("PWM Up Dly", setup.importGCPWMDlyUp.ToString(), section);
-                Write("PWM Down Val", setup.importGCPWMDown.ToString(), section);
-                Write("PWM Down Dly", setup.importGCPWMDlyDown.ToString(), section);
-                Write("PWM Zero Val", setup.importGCPWMZero.ToString(), section);
-                Write("PWM P93 Val", setup.importGCPWMP93.ToString(), section);
-                Write("PWM P93 Dly", setup.importGCPWMDlyP93.ToString(), section);
-                Write("PWM P94 Val", setup.importGCPWMP94.ToString(), section);
-                Write("PWM P94 Dly", setup.importGCPWMDlyP94.ToString(), section);
-                Write("PWM Skip M30", setup.importGCPWMSkipM30.ToString(), section);
-            }
-
-            if (setup.importGCIndEnable || all)
-            {
-                Write("Individual enable", setup.importGCIndEnable.ToString(), section);
-                Write("Individual PenUp", setup.importGCIndPenUp.ToString(), section);
-                Write("Individual PenDown", setup.importGCIndPenDown.ToString(), section);
-            }
-
-*/
             section = "GCode modification";
             if (setup.importGCLineSegmentation || all)
             {
@@ -778,6 +688,7 @@ namespace GrblPlotter
             setup.importRemoveShortMovesEnable = true;
             setup.importRemoveShortMovesLimit = (decimal)0.1;
             setup.importGraphicOffsetOrigin = false;
+            setup.importGraphicOffsetLargestRemove = false;
             setup.importGraphicSortDistance = false;
             setup.importGraphicSortDistanceAllowRotate = false;
             setup.importGCNoArcs = false;
@@ -861,25 +772,6 @@ namespace GrblPlotter
 
             section = "Graphics Import";
 
-            /* Format related */
-     /*       if (SetVariable(ref tmpbool, section, "SVG DPI 96 enable")) { setup.importSVGDPI96 = tmpbool; }
-            if (SetVariable(ref tmpbool, section, "SVG resize enable")) { setup.importSVGRezise = tmpbool; }
-            if (SetVariable(ref tmpdeci, section, "SVG resize units")) { setup.importSVGMaxSize = tmpdeci; }
-
-            if (SetVariable(ref tmpbool, section, "SVG addon enable")) { setup.importSVGAddOnEnable = tmpbool; }
-            if (SetVariable(ref tmpstr, section, "SVG addon file")) { setup.importSVGAddOnFile = tmpstr; }
-            if (SetVariable(ref tmpdeci, section, "SVG addon scale")) { setup.importSVGAddOnScale = tmpdeci; }
-            if (SetVariable(ref tmpint, section, "SVG addon position")) { setup.importSVGAddOnPosition = tmpint; }
-
-            if (SetVariable(ref tmpbool, section, "SVG skip hidden")) { setup.importSVGDontPlot = tmpbool; }
-            if (SetVariable(ref tmpbool, section, "SVG apply fill")) { setup.importSVGApplyFill = tmpbool; }
-            if (SetVariable(ref tmpbool, section, "SVG apply metadata")) { setup.importSVGMetaData = tmpbool; }
-
-            if (SetVariable(ref tmpbool, section, "DXF use color index")) { setup.importDXFToolIndex = tmpbool; }
-            if (SetVariable(ref tmpbool, section, "DXF handle white as black")) { setup.importDXFSwitchWhite = tmpbool; }
-            if (SetVariable(ref tmpbool, section, "DXF skip hidden")) { setup.importDXFDontPlot = tmpbool; }
-            if (SetVariable(ref tmpbool, section, "DXF import z")) { setup.importDXFUseZ = tmpbool; }
-     */
             /* Graphics import General */
             if (SetVariable(ref tmpbool, section, "Graph Units mm")) { setup.importUnitmm = tmpbool; }
             if (SetVariable(ref tmpbool, section, "Graph Units GCode")) { setup.importUnitGCode = tmpbool; }
@@ -890,6 +782,7 @@ namespace GrblPlotter
             if (SetVariable(ref tmpdeci, section, "Distance assumed as equal")) { setup.importAssumeAsEqualDistance = tmpdeci; }
 
             if (SetVariable(ref tmpbool, section, "Objects offset origin")) { setup.importGraphicOffsetOrigin = tmpbool; }
+            if (SetVariable(ref tmpbool, section, "Objects offset remove largest")) { setup.importGraphicOffsetLargestRemove = tmpbool; }
             if (SetVariable(ref tmpbool, section, "Objects sort by distance")) { setup.importGraphicSortDistance = tmpbool; }
             if (SetVariable(ref tmpbool, section, "Objects sort rotate")) { setup.importGraphicSortDistanceAllowRotate = tmpbool; }
             if (SetVariable(ref tmpbool, section, "Replace arc by lines")) { setup.importGCNoArcs = tmpbool; }
@@ -947,9 +840,13 @@ namespace GrblPlotter
             if (SetVariable(ref tmpbool, section, "Hatch fill enable")) { setup.importGraphicHatchFillEnable = tmpbool; }
             if (SetVariable(ref tmpbool, section, "Hatch fill cross")) { setup.importGraphicHatchFillCross = tmpbool; }
             if (SetVariable(ref tmpdeci, section, "Hatch fill distance")) { setup.importGraphicHatchFillDistance = tmpdeci; }
+            if (SetVariable(ref tmpbool, section, "Hatch fill distance offset enable")) { setup.importGraphicHatchFillOffsetInc = tmpbool; }
+            if (SetVariable(ref tmpdeci, section, "Hatch fill distance offset")) { setup.importGraphicHatchFillOffset = tmpdeci; }
+
             if (SetVariable(ref tmpdeci, section, "Hatch fill angle")) { setup.importGraphicHatchFillAngle = tmpdeci; }
             if (SetVariable(ref tmpbool, section, "Hatch fill angle inc enable")) { setup.importGraphicHatchFillAngleInc = tmpbool; }
             if (SetVariable(ref tmpdeci, section, "Hatch fill angle inc")) { setup.importGraphicHatchFillAngle2 = tmpdeci; }
+
             if (SetVariable(ref tmpbool, section, "Hatch fill inset enable")) { setup.importGraphicHatchFillInsetEnable = tmpbool; }
             if (SetVariable(ref tmpbool, section, "Hatch fill inset enable2")) { setup.importGraphicHatchFillInsetEnable2 = tmpbool; }
             if (SetVariable(ref tmpbool, section, "Hatch fill delete path")) { setup.importGraphicHatchFillDeletePath = tmpbool; }
@@ -1016,58 +913,6 @@ namespace GrblPlotter
             if (SetVariable(ref tmpint, section, "Aux2 Z process")) { setup.importGCAux2ZMode = tmpint; }
 
 
-   /*         section = "GCode generation";
-            if (SetVariable(ref tmpdeci, section, "Dec Places")) { setup.importGCDecPlaces = tmpdeci; }
-            if (SetVariable(ref tmpstr, section, "Header Code")) { setup.importGCHeader = tmpstr; }
-            if (SetVariable(ref tmpstr, section, "Footer Code")) { setup.importGCFooter = tmpstr; }
-            if (SetVariable(ref tmpstr, section, "Tool Change Code")) { setup.importGCToolChangeCode = tmpstr; }
-
-            if (SetVariable(ref tmpdeci, section, "XY Feedrate")) { setup.importGCXYFeed = tmpdeci; }
-            if (SetVariable(ref tmpbool, section, "XY Feedrate from TT")) { setup.importGCTTXYFeed = tmpbool; }
-
-            if (SetVariable(ref tmpdeci, section, "Spindle Speed")) { setup.importGCSSpeed = tmpdeci; }
-            if (SetVariable(ref tmpbool, section, "Spindle Speed from TT")) { setup.importGCTTSSpeed = tmpbool; }
-            if (SetVariable(ref tmpbool, section, "Spindle Use Laser")) { setup.importGCSpindleToggleLaser = tmpbool; }
-
-            if (SetVariable(ref tmpbool, section, "Spindle Direction M3")) { setup.importGCSDirM3 = tmpbool; }
-            if (SetVariable(ref tmpdeci, section, "Spindle Delay")) { setup.importGCSpindleDelay = tmpdeci; }
-
-            if (SetVariable(ref tmpbool, section, "Add Tool Cmd")) { setup.importGCTool = tmpbool; }
-
-            if (SetVariable(ref tmpbool, section, "Add Tool M0")) { setup.importGCToolM0 = tmpbool; }
-            if (SetVariable(ref tmpbool, section, "Add Comments")) { setup.importGCAddComments = tmpbool; }
-
-            if (SetVariable(ref tmpbool, section, "Z Enable")) { setup.importGCZEnable = tmpbool; }
-            if (SetVariable(ref tmpbool, section, "Z Values from TT")) { setup.importGCTTZAxis = tmpbool; }
-            if (SetVariable(ref tmpdeci, section, "Z Feedrate")) { setup.importGCZFeed = tmpdeci; }
-            if (SetVariable(ref tmpdeci, section, "Z Up Pos")) { setup.importGCZUp = tmpdeci; }
-            if (SetVariable(ref tmpdeci, section, "Z Down Pos")) { setup.importGCZDown = tmpdeci; }
-            //         if (setVariable(ref tmpbool, section, "Z Down Pos from TT")){ setup.importGCTTZDeepth = tmpbool; }
-            if (SetVariable(ref tmpbool, section, "Z Inc Enable")) { setup.importGCZIncEnable = tmpbool; }
-            if (SetVariable(ref tmpbool, section, "Z Increment at zero")) { setup.importGCZIncStartZero = tmpbool; }
-            if (SetVariable(ref tmpdeci, section, "Z Increment")) { setup.importGCZIncrement = tmpdeci; }
-            if (SetVariable(ref tmpdeci, section, "Z Increment no up")) { setup.importGCZIncNoZUp = tmpbool; }
-            //         if (setVariable(ref tmpbool, section, "Z Increment from TT")){ setup.importGCTTZIncrement = tmpbool; }
-
-            if (SetVariable(ref tmpbool, section, "Spindle Toggle")) { setup.importGCSpindleToggle = tmpbool; }
-            //          setup.importGCSpindleCmd = Convert.ToBoolean(Read("Spindle use M3", section));
-
-            if (SetVariable(ref tmpbool, section, "PWM Enable")) { setup.importGCPWMEnable = tmpbool; }
-            if (SetVariable(ref tmpdeci, section, "PWM Up Val")) { setup.importGCPWMUp = tmpdeci; }
-            if (SetVariable(ref tmpdeci, section, "PWM Up Dly")) { setup.importGCPWMDlyUp = tmpdeci; }
-            if (SetVariable(ref tmpdeci, section, "PWM Down Val")) { setup.importGCPWMDown = tmpdeci; }
-            if (SetVariable(ref tmpdeci, section, "PWM Down Dly")) { setup.importGCPWMDlyDown = tmpdeci; }
-            if (SetVariable(ref tmpdeci, section, "PWM Zero Val")) { setup.importGCPWMZero = tmpdeci; }
-            if (SetVariable(ref tmpdeci, section, "PWM P93 Val")) { setup.importGCPWMP93 = tmpdeci; }
-            if (SetVariable(ref tmpdeci, section, "PWM P93 Dly")) { setup.importGCPWMDlyP93 = tmpdeci; }
-            if (SetVariable(ref tmpdeci, section, "PWM P94 Val")) { setup.importGCPWMP94 = tmpdeci; }
-            if (SetVariable(ref tmpdeci, section, "PWM P94 Dly")) { setup.importGCPWMDlyP94 = tmpdeci; }
-            if (SetVariable(ref tmpbool, section, "PWM Skip M30")) { setup.importGCPWMSkipM30 = tmpbool; }
-
-            if (SetVariable(ref tmpbool, section, "Individual enable")) { setup.importGCIndEnable = tmpbool; }
-            if (SetVariable(ref tmpstr, section, "Individual PenUp")) { setup.importGCIndPenUp = tmpstr; }
-            if (SetVariable(ref tmpstr, section, "Individual PenDown")) { setup.importGCIndPenDown = tmpstr; }
-*/
             section = "GCode modification";
 
             if (SetVariable(ref tmpbool, section, "Line segmentation enable")) { setup.importGCLineSegmentation = tmpbool; }
@@ -1422,6 +1267,7 @@ namespace GrblPlotter
             AddInfo(tmp, "SVG resize    : {0}\r\n", fromSettings ? Properties.Settings.Default.importSVGRezise.ToString() : Read("SVG resize enable", "Graphics Import"));
             AddInfo(tmp, "SVG hatch fill: {0}\r\n", fromSettings ? Properties.Settings.Default.importSVGApplyFill.ToString() : Read("SVG apply fill", "Graphics Import"));
             AddInfo(tmp, "Set origin 0;0: {0}\r\n", fromSettings ? Properties.Settings.Default.importGraphicOffsetOrigin.ToString() : Read("Objects offset origin", "Graphics Import"));
+            AddInfo(tmp, "Remove largest: {0}\r\n", fromSettings ? Properties.Settings.Default.importGraphicOffsetLargestRemove.ToString() : Read("Objects offset  remove largest", "Graphics Import"));
             AddInfo(tmp, "Sort paths    : {0}\r\n", fromSettings ? Properties.Settings.Default.importGraphicSortDistance.ToString() : Read("Objects sort by distance", "Graphics Import"));
             AddInfo(tmp, "Process dashed: {0}\r\n", fromSettings ? Properties.Settings.Default.importLineDashPattern.ToString() : Read("Process Dashed Lines", "Graphics Import"));
             AddInfo(tmp, "Path nodes only: {0}\r\n", fromSettings ? Properties.Settings.Default.importSVGNodesOnly.ToString() : Read("SVG Process nodes only", "Graphics Import"));

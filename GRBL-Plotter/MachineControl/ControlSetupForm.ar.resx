@@ -3841,4 +3841,143 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="cBImportGCTangentialShortingEnable.ToolTip" xml:space="preserve">
     <value>يبدأ مسار الأشكال لاحقًا وينهيه مبكرًا (للقاطع الدوار).</value>
   </data>
+  <data name="cBImportGraphicOffsetLargestRemove.Text" xml:space="preserve">
+    <value>إزالة أكبر كائن</value>
+  </data>
+  <data name="cBImportGraphicOffsetLargestRemove.ToolTip" xml:space="preserve">
+    <value>ابحث عن أكبر كائن وقم بإزالته على سبيل المثال. تجنب مسار القطع للنقش/القطع بالليزر</value>
+  </data>
+  <data name="cBImportGraphicOffsetLargestLast.Text" xml:space="preserve">
+    <value>نقل أكبر كائن إلى النهاية</value>
+  </data>
+  <data name="cBImportGraphicOffsetLargestLast.ToolTip" xml:space="preserve">
+    <value>معالجة أكبر كائن أخيرًا، على سبيل المثال مسار انقطاع للنقش / القطع بالليزر</value>
+  </data>
+  <data name="lblSorting.Text" xml:space="preserve">
+    <value>نقطة البداية الأولية للفرز</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.Items" xml:space="preserve">
+    <value>اكسمين، يماكس</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.Items1" xml:space="preserve">
+    <value>اكس ماكس، واي ماكس</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.Items2" xml:space="preserve">
+    <value>اكس ماكس، يمين</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.Items3" xml:space="preserve">
+    <value>اكسمين، يمين</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.Items4" xml:space="preserve">
+    <value>إكسنتر، يسيمتر</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.Items6" xml:space="preserve">
+    <value>نقاط البيع الفعلية.</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.Text" xml:space="preserve">
+    <value>وضع البداية</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.ToolTip" xml:space="preserve">
+    <value>تحديد موضع البداية للفرز</value>
+  </data>
+  <data name="gBSorting.Text" xml:space="preserve">
+    <value>خيارات الفرز</value>
+  </data>
+  <data name="tabControlSort.Text" xml:space="preserve">
+    <value>فرز</value>
+  </data>
+  <data name="CbImportSVGPathStartNewFigure.Text" xml:space="preserve">
+    <value>ابدأ شخصية جديدة على المسار الفرعي</value>
+  </data>
+  <data name="CbImportSVGPathStartNewFigure.ToolTip" xml:space="preserve">
+    <value>الافتراضي (غير محدد): يقوم الأمر 'm' (moveto) داخل عنصر مسار SVG بإنشاء تسلسل قلم لأعلى/لأسفل مع نفس الشكل.
+إذا تم تحديده، فإن كل أمر 'm' ينشئ رقمًا جديدًا.</value>
+  </data>
+  <data name="label107.Text" xml:space="preserve">
+    <value>دقة الصورة في DPI</value>
+  </data>
+  <data name="NudImportPDNDpi.ToolTip" xml:space="preserve">
+    <value>DPI = بكسل/بوصة - عادة 96</value>
+  </data>
+  <data name="label108.Text" xml:space="preserve">
+    <value>دورات التجانس بعد التوجيه</value>
+  </data>
+  <data name="rBImportPDNLayerAll.Text" xml:space="preserve">
+    <value>استيراد كافة الطبقات</value>
+  </data>
+  <data name="rBImportPDNLayerVisible.Text" xml:space="preserve">
+    <value>قم باستيراد الطبقات المرئية فقط</value>
+  </data>
+  <data name="groupBox44.Text" xml:space="preserve">
+    <value>استيراد الصور ذات الطبقات (PaintDotNet Json)</value>
+  </data>
+  <data name="cBImportGraphicHatchFillChangeOffset.Text" xml:space="preserve">
+    <value>تغيير الإزاحة بعد كل مسار</value>
+  </data>
+  <data name="BtnGetFilterValueKeepWidth.Text" xml:space="preserve">
+    <value>احصل على اللون</value>
+  </data>
+  <data name="BtnGetFilterValueKeepColor.Text" xml:space="preserve">
+    <value>احصل على اللون</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>مساعدة على الانترنت</value>
+  </data>
+  <data name="label103.Text" xml:space="preserve">
+    <value>البعد</value>
+  </data>
+  <data name="label102.Text" xml:space="preserve">
+    <value>لا.</value>
+  </data>
+  <data name="nUDMultipleLoadDimY.ToolTip" xml:space="preserve">
+    <value>الحد الأقصى لنطاق Y. انظر أيضًا علامة التبويب "التحكم في البرنامج" - "منطقة الآلة".</value>
+  </data>
+  <data name="nUDMultipleLoadDimX.ToolTip" xml:space="preserve">
+    <value>الحد الأقصى لنطاق X. انظر أيضًا علامة التبويب "التحكم في البرنامج" - "منطقة الآلة".</value>
+  </data>
+  <data name="nUDMultipleLoadNoY.ToolTip" xml:space="preserve">
+    <value>الحد الأقصى لعدد محتويات الملف في العمود</value>
+  </data>
+  <data name="RbMultipleLoadByX.Text" xml:space="preserve">
+    <value>X - صفًا تلو الآخر</value>
+  </data>
+  <data name="nUDMultipleLoadNoX.ToolTip" xml:space="preserve">
+    <value>الحد الأقصى لعدد محتويات الملف في صف واحد</value>
+  </data>
+  <data name="RbMultipleLoadByY.Text" xml:space="preserve">
+    <value>ص - عمود بعمود</value>
+  </data>
+  <data name="RbMultipleLoadLimitDim.Text" xml:space="preserve">
+    <value>الحد من أبعاد الجهاز</value>
+  </data>
+  <data name="RbMultipleLoadLimitDim.ToolTip" xml:space="preserve">
+    <value>يضع محتوى ملف واحدًا بجوار الآخر طالما لم يتم تجاوز الحد الأقصى للجهاز. ثم يبدأ صف أو عمود جديد.</value>
+  </data>
+  <data name="RbMultipleLoadLimitNo.Text" xml:space="preserve">
+    <value>الحد حسب العدد</value>
+  </data>
+  <data name="RbMultipleLoadLimitNo.ToolTip" xml:space="preserve">
+    <value>يضع محتوى ملف واحد بجانب الآخر حتى يتم الوصول إلى الرقم المحدد. ثم يبدأ صف أو عمود جديد.</value>
+  </data>
+  <data name="BtnHelp_Buttons.ToolTip" xml:space="preserve">
+    <value>مساعدة على الانترنت</value>
+  </data>
+  <data name="BtnHelp_Hotkeys.ToolTip" xml:space="preserve">
+    <value>مساعدة على الانترنت</value>
+  </data>
+  <data name="BtnHelp_Gamepad.ToolTip" xml:space="preserve">
+    <value>مساعدة على الانترنت</value>
+  </data>
+  <data name="BtnHelp_Joystick.ToolTip" xml:space="preserve">
+    <value>مساعدة على الانترنت</value>
+  </data>
+  <data name="BtnHelp_2dview.ToolTip" xml:space="preserve">
+    <value>مساعدة على الانترنت</value>
+  </data>
+  <data name="BtnHelp_Projector.ToolTip" xml:space="preserve">
+    <value>مساعدة على الانترنت</value>
+  </data>
+  <data name="BtnHelp_Misc2.ToolTip" xml:space="preserve">
+    <value>مساعدة على الانترنت</value>
+  </data>
 </root>

@@ -632,53 +632,28 @@ namespace GrblPlotter
             return tmp;
         }
 
-        //      internal static double GetAlpha(System.Windows.Point pOld, double P2x, double P2y)
-        //      { return GetAlpha(pOld.X, pOld.Y, P2x, P2y); }
         internal static double GetAlpha(System.Windows.Point pOld, System.Windows.Point pNew)
         { return GetAlpha(pOld.X, pOld.Y, pNew.X, pNew.Y); }
         internal static double GetAlpha(XyPoint pOld, XyPoint pNew)
         { return GetAlpha(pOld.X, pOld.Y, pNew.X, pNew.Y); }
         internal static double GetAlpha(double P1x, double P1y, double P2x, double P2y)
         {
-            //    double s, a;
             double dx = P2x - P1x;
             double dy = P2y - P1y;
             return Math.Atan2(dy, dx);
-            /*
-            if (dx == 0)                    // vertical line
-            {
-                if (dy > 0)                 // upwards
-                    a = Math.PI / 2;
-                else
-                    a = 3 * Math.PI / 2;    // downwards
-                if (dy == 0)
-                    return 0;               // no line
-            }
-            else if (dy == 0)               // horizontal line
-            {
-                if (dx > 0)                 // to the right
-                    a = 0;
-                else
-                    a = Math.PI;            // to the left
-                if (dx == 0)
-                    return 0;               // no line
-            }
-            else
-            {
-                s = dy / dx;
-                a = Math.Atan(s);
-                if (dx < 0)
-                    a += Math.PI;
-            }
-            return a;*/
         }
 
         internal static double cutAngle = 0, cutAngleLast = 0, angleOffset = 0;
-        internal static void ResetAngles()
+    /*    internal static void ResetAngles()
         { angleOffset = cutAngle = cutAngleLast = 0.0; }
-        internal static double GetAngle(System.Windows.Point a, System.Windows.Point b, double offset, int dir)
-        { return MonitorAngle(GetAlpha(a, b) + offset, dir); }
-        internal static double MonitorAngle(double angle, int direction)		// take care of G2 cw G3 ccw direction
+        internal static double /(System.Windows.Point a, System.Windows.Point b, double offset, int dir)
+        {
+         //   if (dir <= 2)
+                return MonitorAngle(GetAlpha(a, b) + offset, dir);  // CW add 
+        //    else
+       //         return MonitorAngle(GetAlpha(a, b) - offset, dir);
+        }*/
+    /*    internal static double MonitorAngle(double angle, int direction)		// take care of G2 cw G3 ccw direction
         {
             double diff = angle - cutAngleLast + angleOffset;
             if (direction == 2)
@@ -692,8 +667,8 @@ namespace GrblPlotter
                 if (diff < -Math.PI)
                     angleOffset += 2 * Math.PI;
             }
-            angle += angleOffset;
+        //    angle += angleOffset;
             return angle;
-        }
+        }*/
     }
 }

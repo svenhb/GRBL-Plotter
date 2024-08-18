@@ -3883,4 +3883,122 @@ Dönüşüm aynı zamanda Menü - GCode Dönüşümü - 'Kutupsal koordinatlara 
   <data name="cBImportGCTangentialShortingEnable.ToolTip" xml:space="preserve">
     <value>Şekil yolunu daha sonra başlatır ve daha erken bitirir (döner kesici için).</value>
   </data>
+  <data name="cBImportGraphicOffsetLargestRemove.Text" xml:space="preserve">
+    <value>En büyük nesneyi kaldır</value>
+  </data>
+  <data name="cBImportGraphicOffsetLargestRemove.ToolTip" xml:space="preserve">
+    <value>En büyük nesneyi bulun ve kaldırın; Lazer gravür/kesim için kesme yolundan kaçının</value>
+  </data>
+  <data name="cBImportGraphicOffsetLargestLast.Text" xml:space="preserve">
+    <value>En büyük nesneyi sonuna taşı</value>
+  </data>
+  <data name="cBImportGraphicOffsetLargestLast.ToolTip" xml:space="preserve">
+    <value>En büyük nesneyi en son işleyin, ör. Lazer kazıma / kesme için kesme yolu</value>
+  </data>
+  <data name="lblSorting.Text" xml:space="preserve">
+    <value>Sıralama için ilk başlangıç ​​noktası</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.Items6" xml:space="preserve">
+    <value>gerçek konum</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.Text" xml:space="preserve">
+    <value>Başlangıç ​​konumu</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.ToolTip" xml:space="preserve">
+    <value>Sıralama için başlangıç ​​konumunu tanımlayın</value>
+  </data>
+  <data name="gBSorting.Text" xml:space="preserve">
+    <value>Sıralama seçenekleri</value>
+  </data>
+  <data name="tabControlSort.Text" xml:space="preserve">
+    <value>Sıralama</value>
+  </data>
+  <data name="CbImportSVGPathStartNewFigure.Text" xml:space="preserve">
+    <value>Commencer une nouvelle figure sur le sous-chemin</value>
+  </data>
+  <data name="CbImportSVGPathStartNewFigure.ToolTip" xml:space="preserve">
+    <value>Varsayılan (işaretli değil): SVG yol öğesi içindeki bir 'm' komutu (moveto), aynı şekilde bir yukarı/aşağı dizisi oluşturur.
+İşaretlenirse her 'm' komutu yeni bir şekil oluşturur.</value>
+  </data>
+  <data name="label107.Text" xml:space="preserve">
+    <value>DPI cinsinden görüntü çözünürlüğü</value>
+  </data>
+  <data name="NudImportPDNDpi.ToolTip" xml:space="preserve">
+    <value>DPI = piksel/inç - genellikle 96</value>
+  </data>
+  <data name="label108.Text" xml:space="preserve">
+    <value>Vektörleştirmeden sonra döngüleri yumuşatma</value>
+  </data>
+  <data name="rBImportPDNLayerAll.Text" xml:space="preserve">
+    <value>Tüm katmanları içe aktar</value>
+  </data>
+  <data name="rBImportPDNLayerVisible.Text" xml:space="preserve">
+    <value>Yalnızca görünür katmanları içe aktar</value>
+  </data>
+  <data name="groupBox44.Text" xml:space="preserve">
+    <value>Katmanlı Görüntüyü İçe Aktarma (PaintDotNet Json)</value>
+  </data>
+  <data name="cBImportGraphicHatchFillChangeOffset.Text" xml:space="preserve">
+    <value>Her yoldan sonra ofseti şu şekilde değiştirin:</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="label103.Text" xml:space="preserve">
+    <value>boyut</value>
+  </data>
+  <data name="label102.Text" xml:space="preserve">
+    <value>HAYIR.</value>
+  </data>
+  <data name="nUDMultipleLoadDimY.ToolTip" xml:space="preserve">
+    <value>Maksimum Y aralığı. Ayrıca 'Program kontrolü' - 'Makine alanı' sekmesine bakın.</value>
+  </data>
+  <data name="nUDMultipleLoadDimX.ToolTip" xml:space="preserve">
+    <value>Maksimum X aralığı. Ayrıca 'Program kontrolü' - 'Makine alanı' sekmesine bakın.</value>
+  </data>
+  <data name="nUDMultipleLoadNoY.ToolTip" xml:space="preserve">
+    <value>Bir sütundaki maksimum dosya içeriği sayısı</value>
+  </data>
+  <data name="RbMultipleLoadByX.Text" xml:space="preserve">
+    <value>X - satır satır</value>
+  </data>
+  <data name="nUDMultipleLoadNoX.ToolTip" xml:space="preserve">
+    <value>Bir satırdaki maksimum dosya içeriği sayısı</value>
+  </data>
+  <data name="RbMultipleLoadByY.Text" xml:space="preserve">
+    <value>Y - sütun sütun</value>
+  </data>
+  <data name="RbMultipleLoadLimitDim.Text" xml:space="preserve">
+    <value>Makine boyutlarına göre sınırlama</value>
+  </data>
+  <data name="RbMultipleLoadLimitDim.ToolTip" xml:space="preserve">
+    <value>Makine sınırı aşılmadığı sürece bir dosya içeriğini diğerinin yanına yerleştirir. Daha sonra yeni bir satır veya sütun başlar.</value>
+  </data>
+  <data name="RbMultipleLoadLimitNo.Text" xml:space="preserve">
+    <value>Sayıya göre sınırla</value>
+  </data>
+  <data name="RbMultipleLoadLimitNo.ToolTip" xml:space="preserve">
+    <value>Belirtilen sayıya ulaşılana kadar bir dosya içeriğini diğerinin yanına yerleştirir. Daha sonra yeni bir satır veya sütun başlar.</value>
+  </data>
+  <data name="BtnHelp_Buttons.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_Hotkeys.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_Gamepad.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_Joystick.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_2dview.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_Projector.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="BtnHelp_Misc2.ToolTip" xml:space="preserve">
+    <value>Çevrimiçi yardım</value>
+  </data>
 </root>

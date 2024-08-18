@@ -109,14 +109,16 @@ namespace GrblPlotter
                     uint csv = Properties.Settings.Default.counterImportCSV;
                     uint drill = Properties.Settings.Default.counterImportDrill;
                     uint gerber = Properties.Settings.Default.counterImportGerber;
+                    uint pdnjson = Properties.Settings.Default.counterImportPDNJson;
                     uint image = Properties.Settings.Default.counterImportImage;
+
                     uint barcode = Properties.Settings.Default.counterImportBarcode;
                     uint text = Properties.Settings.Default.counterImportText;
                     uint shape = Properties.Settings.Default.counterImportShape;
                     uint extension = Properties.Settings.Default.counterImportExtension;
-                    string tmp = string.Format(culture, "{0}-{1}-{2}-{3}-{4}-{5}-{6}_", gcode, svg, dxf, hpgl, csv, drill, gerber);
+                    string tmp = string.Format(culture, "{0}-{1}-{2}-{3}-{4}-{5}-{6}-{7}_", gcode, svg, dxf, hpgl, csv, drill, gerber, pdnjson);
                     tmp += string.Format(culture, "{0}-{1}-{2}-{3}-{4}", image, barcode, text, shape, extension);
-                    Logger.Trace(culture, " getCounters import {0}  gc,svg,dxf,hpgl,csv,drill,gerber _ img,barc,txt,shape,ext", tmp);
+                    Logger.Trace(culture, " getCounters import {0}  gc,svg,dxf,hpgl,csv,drill,gerber,pdnjson _ img,barc,txt,shape,ext", tmp);
                     return tmp;
                 }
                 else if (type == CounterType.usage)

@@ -3579,4 +3579,122 @@ La conversión también es posible a través del Menú - Transformación GCode -
   <data name="cBImportGCTangentialShortingEnable.ToolTip" xml:space="preserve">
     <value>Comienza un recorrido de figuras más tarde y lo finaliza antes (para cortador rotativo).</value>
   </data>
+  <data name="cBImportGraphicOffsetLargestRemove.Text" xml:space="preserve">
+    <value>Eliminar el objeto más grande</value>
+  </data>
+  <data name="cBImportGraphicOffsetLargestRemove.ToolTip" xml:space="preserve">
+    <value>Encuentre el objeto más grande y elimínelo, p. Evite la ruta de corte para grabado/corte láser</value>
+  </data>
+  <data name="cBImportGraphicOffsetLargestLast.Text" xml:space="preserve">
+    <value>Mover el objeto más grande al final.</value>
+  </data>
+  <data name="cBImportGraphicOffsetLargestLast.ToolTip" xml:space="preserve">
+    <value>Procesar el objeto más grande al final, p. ruta de recorte para grabado/corte láser</value>
+  </data>
+  <data name="lblSorting.Text" xml:space="preserve">
+    <value>Punto de partida inicial para la clasificación</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.Items6" xml:space="preserve">
+    <value>pos.real</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.Text" xml:space="preserve">
+    <value>Posición inicial</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.ToolTip" xml:space="preserve">
+    <value>Definir la posición inicial para ordenar</value>
+  </data>
+  <data name="gBSorting.Text" xml:space="preserve">
+    <value>Opciones de clasificación</value>
+  </data>
+  <data name="tabControlSort.Text" xml:space="preserve">
+    <value>Clasificación</value>
+  </data>
+  <data name="CbImportSVGPathStartNewFigure.Text" xml:space="preserve">
+    <value>Iniciar nueva figura en la ruta secundaria</value>
+  </data>
+  <data name="CbImportSVGPathStartNewFigure.ToolTip" xml:space="preserve">
+    <value>Valor predeterminado (no marcado): un comando 'm' (mover) dentro del elemento de ruta SVG crea una secuencia de lápiz arriba/abajo dentro de la misma figura.
+Si está marcado, cada comando 'm' crea una nueva figura.</value>
+  </data>
+  <data name="label107.Text" xml:space="preserve">
+    <value>Resolución de imagen en DPI</value>
+  </data>
+  <data name="NudImportPDNDpi.ToolTip" xml:space="preserve">
+    <value>DPI = píxeles/pulgada - normalmente 96</value>
+  </data>
+  <data name="label108.Text" xml:space="preserve">
+    <value>Ciclos de suavizado después de la vectorización.</value>
+  </data>
+  <data name="rBImportPDNLayerAll.Text" xml:space="preserve">
+    <value>Importar todas las capas</value>
+  </data>
+  <data name="rBImportPDNLayerVisible.Text" xml:space="preserve">
+    <value>Importar solo capas visibles</value>
+  </data>
+  <data name="groupBox44.Text" xml:space="preserve">
+    <value>Importación de imágenes en capas (PaintDotNet Json)</value>
+  </data>
+  <data name="cBImportGraphicHatchFillChangeOffset.Text" xml:space="preserve">
+    <value>Cambie el desplazamiento después de cada ruta mediante</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="label103.Text" xml:space="preserve">
+    <value>dimensión</value>
+  </data>
+  <data name="label102.Text" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="nUDMultipleLoadDimY.ToolTip" xml:space="preserve">
+    <value>Maximální rozsah Y. Viz také záložka 'Ovládání programu' - 'Oblast stroje'.</value>
+  </data>
+  <data name="nUDMultipleLoadDimX.ToolTip" xml:space="preserve">
+    <value>Maximální dosah X. Viz také záložka 'Ovládání programu' - 'Oblast stroje'.</value>
+  </data>
+  <data name="nUDMultipleLoadNoY.ToolTip" xml:space="preserve">
+    <value>Maximální počet obsahu souboru ve sloupci</value>
+  </data>
+  <data name="RbMultipleLoadByX.Text" xml:space="preserve">
+    <value>X - řádek po řádku</value>
+  </data>
+  <data name="nUDMultipleLoadNoX.ToolTip" xml:space="preserve">
+    <value>Maximální počet obsahů souborů v řadě</value>
+  </data>
+  <data name="RbMultipleLoadByY.Text" xml:space="preserve">
+    <value>Y - sloupec po sloupci</value>
+  </data>
+  <data name="RbMultipleLoadLimitDim.Text" xml:space="preserve">
+    <value>Límite por dimensiones de la máquina</value>
+  </data>
+  <data name="RbMultipleLoadLimitDim.ToolTip" xml:space="preserve">
+    <value>Coloca el contenido de un archivo junto al otro siempre que no se exceda el límite de la máquina. Luego comienza una nueva fila o columna.</value>
+  </data>
+  <data name="RbMultipleLoadLimitNo.Text" xml:space="preserve">
+    <value>Limitar por número</value>
+  </data>
+  <data name="RbMultipleLoadLimitNo.ToolTip" xml:space="preserve">
+    <value>Coloca el contenido de un archivo junto al otro hasta alcanzar el número especificado. Luego comienza una nueva fila o columna.</value>
+  </data>
+  <data name="BtnHelp_Buttons.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_Hotkeys.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_Gamepad.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_Joystick.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_2dview.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_Projector.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
+  <data name="BtnHelp_Misc2.ToolTip" xml:space="preserve">
+    <value>Ayuda en linea</value>
+  </data>
 </root>

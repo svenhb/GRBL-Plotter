@@ -55,8 +55,8 @@ namespace GrblPlotter
         private bool isGrblConnected = false;
         private bool stepTriggered = false;
         private bool stepCompleted = false;
-     //   private bool cameraFormOpen = false;
-     //   private bool probeFormOpen = false;
+        //   private bool cameraFormOpen = false;
+        //   private bool probeFormOpen = false;
 
         private int checkDigitalInDigit = 0;
 
@@ -82,6 +82,8 @@ namespace GrblPlotter
             {
                 new ProcessAutomationItem {Command="Load",              Value="",       Comment="Load ini or graphic file, [Value=file name]"},
                 new ProcessAutomationItem {Command="Load Data",         Value="",       Comment="Load ini or graphic file, filename from data list [Value='':whole line] or [Value=column-nr]"},
+                new ProcessAutomationItem {Command="Load URL",          Value="",       Comment="Open web site [Value=URL]"},
+                new ProcessAutomationItem {Command="Paste clipboard",   Value="",       Comment="Paste content from clipboard"},
                 new ProcessAutomationItem {Command="2D-View Clear",     Value="",       Comment="Clear workspace, delete G-Code from editor"},
                 new ProcessAutomationItem {Command="2D-View Offset",    Value="7;0;0",  Comment="Set graphic origin [Value=<Origin[1-9]>;<Offset X>;<Offset Y>]"},
                 new ProcessAutomationItem {Command="2D-View Rotate",    Value="45",     Comment="Rotate [Value=angle in degree]"},
@@ -479,26 +481,32 @@ namespace GrblPlotter
 
                             mypath = dataText;
 
-                        /*    dataLine = (int)NudDataIndex.Value - 1;
-                            if (dataLine < TbData.Lines.Length)
-                            {
-                                mypath = extendFilePath(GetDataText(dataLine, "", ' '));
-                            }*/
+                            /*    dataLine = (int)NudDataIndex.Value - 1;
+                                if (dataLine < TbData.Lines.Length)
+                                {
+                                    mypath = extendFilePath(GetDataText(dataLine, "", ' '));
+                                }*/
+                        }
+                        //}
+                        if (!File.Exists(mypath))
+                        {
+                            tmp = string.Format("{0,2}) Load - File not found:'{1}'", lineNr, mypath);
+                            TbProcessInfo.Text += tmp + "\r\n";
+                            ok = false;
+                            SetCellColor(i, false);
+                            Logger.Trace("CheckData NOK {0}", tmp);
+                            SetDGVToolTip(i, "File not found");
+                            LblInfo.Text = "File not found";
+                        }
+                        else
+                        {
+                            TbProcessInfo.Text += string.Format("{0,2}) {1,-20}  {2,-15}  ok  '{3}'\r\n", lineNr, action, "file exists", mypath);
+                            SetCellColor(i, true);
                         }
                     }
-                    if (!File.Exists(mypath))
+                    if (action.Contains("URL"))
                     {
-                        tmp = string.Format("{0,2}) Load - File not found:'{1}'", lineNr, mypath);
-                        TbProcessInfo.Text += tmp + "\r\n";
-                        ok = false;
-                        SetCellColor(i, false);
-                        Logger.Trace("CheckData NOK {0}", tmp);
-                        SetDGVToolTip(i, "File not found");
-                        LblInfo.Text = "File not found";
-                    }
-                    else
-                    {
-                        TbProcessInfo.Text += string.Format("{0,2}) {1,-20}  {2,-15}  ok  '{3}'\r\n", lineNr, action, "file exists", mypath);
+                        TbProcessInfo.Text += string.Format("{0,2}) {1,-20}  {2,-15}  ok  '{3}'\r\n", lineNr, action, "url not checked", mypath);
                         SetCellColor(i, true);
                     }
                 }
@@ -820,17 +828,17 @@ namespace GrblPlotter
                 if (action.Contains(" Data"))
                 {
                     dataLine = (int)NudDataIndex.Value - 1;
-					char delimiter = (char)ComboDelimiter.Text[0]; //TbDataDelimeter.Text[0];
-					if (ComboDelimiter.Text.Contains("tab"))
-						delimiter = '\t';
-					Logger.Trace("Delimeter '{0}' '{1}'", ComboDelimiter.Text, delimiter);
+                    char delimiter = (char)ComboDelimiter.Text[0]; //TbDataDelimeter.Text[0];
+                    if (ComboDelimiter.Text.Contains("tab"))
+                        delimiter = '\t';
+                    Logger.Trace("Delimeter '{0}' '{1}'", ComboDelimiter.Text, delimiter);
 
-					string dataText = "";
-					if (dataLine < TbData.Lines.Length)
-					{
-						dataText = GetDataText(dataLine, value, delimiter);
-						value = dataText;
-					}
+                    string dataText = "";
+                    if (dataLine < TbData.Lines.Length)
+                    {
+                        dataText = GetDataText(dataLine, value, delimiter);
+                        value = dataText;
+                    }
                     else
                     {
                         Logger.Warn("Load - Data index nok: {0} {1}  count:{2}", dataLine, value, TbData.Lines.Length);//);
@@ -838,10 +846,15 @@ namespace GrblPlotter
                         sendProcessEvent = false;
                     }
                 }
+                if (action.Contains(" URL"))
+                { }
                 TbProcessInfo.AppendText(string.Format("{0,2}) {1,-10}  {2,-48}  ", lineNr, action, "..." + CutString(value, 39)));
             }
             else
                 TbProcessInfo.AppendText(string.Format("{0,2}) {1,-20}  {2,-15}   ", lineNr, action, value));
+
+        //    if (action.Contains("Paste clipboard"))
+        //    { }
 
             if (action.Contains("G-Code"))
             {
@@ -891,7 +904,7 @@ namespace GrblPlotter
             }
             else if (action == "Data index")        // change index counter
             {
-              //  int col;
+                //  int col;
                 if (int.TryParse(value, out int col))
                 {
                     dataLine = (int)NudDataIndex.Value;
@@ -908,7 +921,7 @@ namespace GrblPlotter
             }
             else if (action == "Counter index")     // change counter
             {
-             //   int col;
+                //   int col;
                 if (int.TryParse(value, out int col))
                 {
                     NudCounter.Value += col;
@@ -990,7 +1003,7 @@ namespace GrblPlotter
                 return all;
             }
 
-        //    int dataCol = -1;
+            //    int dataCol = -1;
             if (int.TryParse(strCol, out int dataCol))
             {
                 string[] txtcol = all.Split(delimiter);
@@ -1051,8 +1064,8 @@ namespace GrblPlotter
             if (action == "CheckForm")
             {
                 processAction = resultOk.ToString();
-            //    if (value == "Cam") { cameraFormOpen = resultOk; }
-            //    if (value == "Probe") { probeFormOpen = resultOk; }
+                //    if (value == "Cam") { cameraFormOpen = resultOk; }
+                //    if (value == "Probe") { probeFormOpen = resultOk; }
             }
             else if (action == processAction)
             {
@@ -1526,7 +1539,7 @@ namespace GrblPlotter
 
         private void BtnStep_Click(object sender, EventArgs e)
         {
-            int lineNr = dataGridView1.SelectedCells[0].OwningRow.Index; 
+            int lineNr = dataGridView1.SelectedCells[0].OwningRow.Index;
             string action = (string)dataGridView1.Rows[lineNr].Cells[0].Value;
             if (string.IsNullOrEmpty(action))
             {
@@ -1535,8 +1548,8 @@ namespace GrblPlotter
             string value = (string)dataGridView1.Rows[lineNr].Cells[1].Value;
 
             ProcessCommand(action, value, lineNr);
-        //    dataGridView1.SelectedCells[0].OwningRow.
-            dataGridView1.Rows[lineNr+1].Cells[0].Selected = true;
+            //    dataGridView1.SelectedCells[0].OwningRow.
+            dataGridView1.Rows[lineNr + 1].Cells[0].Selected = true;
 
             dataGridView1.Rows[lineNr].Cells[0].Style.BackColor = default;
             dataGridView1.Rows[lineNr + 1].Cells[0].Style.BackColor = Color.Yellow;

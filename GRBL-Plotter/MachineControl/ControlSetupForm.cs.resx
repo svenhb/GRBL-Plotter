@@ -3864,4 +3864,122 @@ Převod je také možný přes Menu - GCode Transform - 'Převést na polární 
   <data name="cBImportGCTangentialShortingEnable.ToolTip" xml:space="preserve">
     <value>Zahájí dráhu figurek později a ukončí ji dříve (pro rotační řezačku).</value>
   </data>
+  <data name="cBImportGraphicOffsetLargestRemove.Text" xml:space="preserve">
+    <value>Odstraňte největší předmět</value>
+  </data>
+  <data name="cBImportGraphicOffsetLargestRemove.ToolTip" xml:space="preserve">
+    <value>Najděte největší předmět a odstraňte např. vyhněte se cestě výřezu pro laserové gravírování / řezání</value>
+  </data>
+  <data name="cBImportGraphicOffsetLargestLast.Text" xml:space="preserve">
+    <value>Přesuňte největší objekt na konec</value>
+  </data>
+  <data name="cBImportGraphicOffsetLargestLast.ToolTip" xml:space="preserve">
+    <value>Největší objekt zpracujte jako poslední, např. výřezová dráha pro laserové gravírování / řezání</value>
+  </data>
+  <data name="lblSorting.Text" xml:space="preserve">
+    <value>Počáteční počáteční bod pro řazení</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.Items6" xml:space="preserve">
+    <value>aktuální poz.</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.Text" xml:space="preserve">
+    <value>Startovní pozice</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.ToolTip" xml:space="preserve">
+    <value>Definujte počáteční pozici pro třídění</value>
+  </data>
+  <data name="gBSorting.Text" xml:space="preserve">
+    <value>Možnosti řazení</value>
+  </data>
+  <data name="tabControlSort.Text" xml:space="preserve">
+    <value>Řazení</value>
+  </data>
+  <data name="CbImportSVGPathStartNewFigure.Text" xml:space="preserve">
+    <value>Začněte novou figuru na podcestě</value>
+  </data>
+  <data name="CbImportSVGPathStartNewFigure.ToolTip" xml:space="preserve">
+    <value>Výchozí (nezaškrtnuto): příkaz 'm' (moveto) v prvku cesty SVG vytvoří sekvenci pera nahoru / dolů ve stejném obrázku.
+Pokud je zaškrtnuto, každý příkaz 'm' vytvoří nový obrázek.</value>
+  </data>
+  <data name="label107.Text" xml:space="preserve">
+    <value>Rozlišení obrazu v DPI</value>
+  </data>
+  <data name="NudImportPDNDpi.ToolTip" xml:space="preserve">
+    <value>DPI = pixely/palec – obvykle 96</value>
+  </data>
+  <data name="label108.Text" xml:space="preserve">
+    <value>Vyhlazovací cykly po vektorizaci</value>
+  </data>
+  <data name="rBImportPDNLayerAll.Text" xml:space="preserve">
+    <value>Importujte všechny vrstvy</value>
+  </data>
+  <data name="rBImportPDNLayerVisible.Text" xml:space="preserve">
+    <value>Importujte pouze viditelné vrstvy</value>
+  </data>
+  <data name="groupBox44.Text" xml:space="preserve">
+    <value>Import vrstveného obrázku (PaintDotNet Json)</value>
+  </data>
+  <data name="cBImportGraphicHatchFillChangeOffset.Text" xml:space="preserve">
+    <value>Změňte offset po každé cestě o</value>
+  </data>
+  <data name="button2.ToolTip" xml:space="preserve">
+    <value>Online podpora</value>
+  </data>
+  <data name="label103.Text" xml:space="preserve">
+    <value>dimenze</value>
+  </data>
+  <data name="label102.Text" xml:space="preserve">
+    <value>Žádný.</value>
+  </data>
+  <data name="nUDMultipleLoadDimY.ToolTip" xml:space="preserve">
+    <value>Maximální rozsah Y. Viz také záložka 'Ovládání programu' - 'Oblast stroje'.</value>
+  </data>
+  <data name="nUDMultipleLoadDimX.ToolTip" xml:space="preserve">
+    <value>Maximální dosah X. Viz také záložka 'Ovládání programu' - 'Oblast stroje'.</value>
+  </data>
+  <data name="nUDMultipleLoadNoY.ToolTip" xml:space="preserve">
+    <value>Maximální počet obsahu souboru ve sloupci</value>
+  </data>
+  <data name="RbMultipleLoadByX.Text" xml:space="preserve">
+    <value>X - řádek po řádku</value>
+  </data>
+  <data name="nUDMultipleLoadNoX.ToolTip" xml:space="preserve">
+    <value>Maximální počet obsahů souborů v řadě</value>
+  </data>
+  <data name="RbMultipleLoadByY.Text" xml:space="preserve">
+    <value>Y - sloupec po sloupci</value>
+  </data>
+  <data name="RbMultipleLoadLimitDim.Text" xml:space="preserve">
+    <value>Omezení rozměry stroje</value>
+  </data>
+  <data name="RbMultipleLoadLimitDim.ToolTip" xml:space="preserve">
+    <value>Umístí obsah jednoho souboru vedle druhého, pokud není překročen limit počítače. Poté začíná nový řádek nebo sloupec.</value>
+  </data>
+  <data name="RbMultipleLoadLimitNo.Text" xml:space="preserve">
+    <value>Limit podle čísla</value>
+  </data>
+  <data name="RbMultipleLoadLimitNo.ToolTip" xml:space="preserve">
+    <value>Umístí obsah jednoho souboru vedle druhého, dokud není dosaženo zadaného počtu. Poté začíná nový řádek nebo sloupec.</value>
+  </data>
+  <data name="BtnHelp_Buttons.ToolTip" xml:space="preserve">
+    <value>Online podpora</value>
+  </data>
+  <data name="BtnHelp_Hotkeys.ToolTip" xml:space="preserve">
+    <value>Online podpora</value>
+  </data>
+  <data name="BtnHelp_Gamepad.ToolTip" xml:space="preserve">
+    <value>Online podpora</value>
+  </data>
+  <data name="BtnHelp_Joystick.ToolTip" xml:space="preserve">
+    <value>Online podpora</value>
+  </data>
+  <data name="BtnHelp_2dview.ToolTip" xml:space="preserve">
+    <value>Online podpora</value>
+  </data>
+  <data name="BtnHelp_Projector.ToolTip" xml:space="preserve">
+    <value>Online podpora</value>
+  </data>
+  <data name="BtnHelp_Misc2.ToolTip" xml:space="preserve">
+    <value>Online podpora</value>
+  </data>
 </root>

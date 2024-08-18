@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
  * 2019-12-07 show current settings on start up MyIni.showIniSettings(true)
  * 2021-07-25 code clean up
  * 2022-01-13 rework
+ * 2024-05-21 l:171 f:ControlSetupUseCase_FormClosing add try catch
 */
 
 using System;
@@ -166,8 +167,15 @@ namespace GrblPlotter
 
         private void ControlSetupUseCase_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Properties.Settings.Default.sizeUseCase = this.Size;
-            Properties.Settings.Default.Save();
+			try
+			{
+				Properties.Settings.Default.sizeUseCase = this.Size;
+				Properties.Settings.Default.Save();
+            }
+            catch (Exception Err)
+            {
+                Logger.Error(Err, " ControlSetupUseCase_FormClosing ");
+            }
         }
     }
 }

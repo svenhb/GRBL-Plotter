@@ -24,13 +24,13 @@
 * 2022-01-04 fix convertZtoS problem #245
 * 2023-01-28 add %NM tag, to keep code-line when synthezising code
 * 2024-03-23 l:92 f:CreateGCodeProg use XyzabcuvwPoint for lastActual
+* 2024-05-28 l:85 f:CreateGCodeProg add logs
 */
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
 
 namespace GrblPlotter
 {
@@ -55,9 +55,12 @@ namespace GrblPlotter
         {
             heightMapGridWidth = (float)Map.GridX;
             //getGCodeLines(oldCode, null, null, true);                // read gcode and process subroutines
-            IList<string> tmp = CreateGCodeProg(true, true, false, ConvertMode.Nothing).Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList();      // split lines and arcs createGCodeProg(bool replaceG23, bool applyNewZ, bool removeZ, HeightMap Map=null)
+			Logger.Debug("ApplyHeightMap  splitMoves by:{0}", heightMapGridWidth);
+            IList<string> tmp = CreateGCodeProg(true, true, false, ConvertMode.Nothing,null,"Split moves").Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList();      // split lines and arcs createGCodeProg(bool replaceG23, bool applyNewZ, bool removeZ, HeightMap Map=null)
+			Logger.Debug("ApplyHeightMap  reload code");
             GetGCodeLines(tmp, null, null, false);                  // reload code
-            return CreateGCodeProg(false, false, true, ConvertMode.Nothing, Map);        // apply new Z-value;
+			Logger.Debug("ApplyHeightMap  apply map");
+            return CreateGCodeProg(false, false, true, ConvertMode.Nothing, Map, "Apply Map");        // apply new Z-value;
         }
 
         /// <summary>
@@ -78,6 +81,11 @@ namespace GrblPlotter
         internal static string CreateGCodeProg(bool replaceG23, bool splitMoves, bool applyNewZ, ConvertMode specialCmd, HeightMap Map = null, string info = "")
         {
             Logger.Debug("+++ CreateGCodeProg replaceG23: {0}, splitMoves: {1}, applyNewZ: {2}, specialCmd: {3}, info: '{4}'", replaceG23, splitMoves, applyNewZ, specialCmd, info);
+			if (replaceG23)
+				Logger.Debug("--- CreateGCodeProg replaceG23 Arc circumfence step:{0}, segmentLength:{1}, equidistance:{2}", Properties.Settings.Default.importGCSegment, Properties.Settings.Default.importGCLineSegmentLength, Properties.Settings.Default.importGCLineSegmentEquidistant);
+			if (splitMoves)
+				Logger.Debug("--- CreateGCodeProg splitMoves heightMapGridWidth:{0}", heightMapGridWidth);
+				
             if (gcodeList == null) return "";
             pathMarkSelection.Reset();
             lastFigureNumber = -1; lastFigureNumbers.Clear();
