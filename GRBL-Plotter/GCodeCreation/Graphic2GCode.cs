@@ -48,6 +48,7 @@
  * 2024-01-07 l:393 f:CreateGCode if (useToolTable) also adapt width/diameter issue #370
  * 2024-03-19 l:970 f:MoveToDashed avoid intermediate G0 coordinates
  * 2024-04-13 l:438 f:ProcessPathLength new function
+ * 2024-06-22 l:1116 f:arc tangential
 */
 
 using System;
@@ -94,7 +95,9 @@ namespace GrblPlotter
         private static double PathDashArrayDistance = 0;
         private static bool PathDashArrayPenIsUp = false;
 
-        private static double GlobalPathLength = 0;
+        private static double GlobalPathLengthPD = 0;
+        private static double GlobalPathLengthPU = 0;
+        private static Point GlobalPathStart = new Point();
 
         private static double setAux1FinalDistance = 0;     // sum-up path distances 396
         private static double setAux2FinalDistance = 0;
@@ -112,10 +115,8 @@ namespace GrblPlotter
 
         public static void CleanUp()
         {
-            //   Logger.Trace("CleanUp()");
-            gcodeString.Clear();
-            gcodeString.Length = 0;
-            finalGcodeString.Clear();
+            gcodeString?.Clear();
+            finalGcodeString?.Clear();
         }
 
         public static void Init()
@@ -138,7 +139,10 @@ namespace GrblPlotter
             finalGcodeString.Clear();
 
             PathCount = 0;
-            GlobalPathLength = 0;
+            GlobalPathLengthPD = 0;
+            GlobalPathLengthPU = 0;
+            GlobalPathStart = Graphic.GetStartPos();
+
 
             FigureEndTagWasSet = true;
             Gcode.Setup(true);  // convertGraphics=true (repeat, inser sub)                              // initialize GCode creation (get stored settings for export)
@@ -211,7 +215,7 @@ namespace GrblPlotter
             if (multiImport) { Gcode.Comment(finalGcodeString, string.Format("{0}>", XmlMarker.CollectionEnd)); }
 
             Gcode.JobEnd(finalGcodeString, "EndJob");       // Spindle / laser off
-            ProcessPathLength(GlobalPathLength);
+            ProcessPathLength(GlobalPathLengthPD, GlobalPathLengthPU);
 
             return FinalGCode(graphicInfo.Title, graphicInfo.FilePath);
         }
@@ -320,7 +324,7 @@ namespace GrblPlotter
             if (!useTiles)
             {
                 Gcode.JobEnd(finalGcodeString, "EndJob");       // Spindle / laser off
-                ProcessPathLength(GlobalPathLength);
+                ProcessPathLength(GlobalPathLengthPD, GlobalPathLengthPU);
                 return FinalGCode(graphicInfo.Title, graphicInfo.FilePath);
             }
             else
@@ -424,7 +428,7 @@ namespace GrblPlotter
                 finalGcodeString.Append(gcodeString);
                 if (multiImport) { Gcode.Comment(finalGcodeString, string.Format("{0}>", XmlMarker.CollectionEnd)); }
                 Gcode.JobEnd(finalGcodeString, "EndJob");      // Spindle / laser off
-                ProcessPathLength(GlobalPathLength);
+                ProcessPathLength(GlobalPathLengthPD, GlobalPathLengthPU);
                 return FinalGCode(graphicInfo.Title, graphicInfo.FilePath);
             }
             else
@@ -435,11 +439,12 @@ namespace GrblPlotter
             }
         }
 
-        private static void ProcessPathLength(double val)
+        private static void ProcessPathLength(double valPD, double valPU)
         {
             //SetComment(string.Format("Path length: {0:0.00}", val));
-            Gcode.gcodeDistance=val;
-            Logger.Info("Path length: {0:0.00}",val);
+            Gcode.gcodeDistancePD=valPD;
+            Gcode.gcodeDistancePU = valPU;
+            Logger.Info("Path length  PD:{0:0.00}   PU:{0:0.00}", valPD, valPU);
         }
 
         //convert graphic to gcode ##################################################################
@@ -453,7 +458,7 @@ namespace GrblPlotter
 
             useAlternitveZ = Properties.Settings.Default.importDepthFromWidthRamp || graphicInfo.DxfImportZ;
 
-            GlobalPathLength += pathObject.PathLength;
+            GlobalPathLengthPD += pathObject.PathLength;
 
 
             /* Create Dot */
@@ -495,6 +500,7 @@ namespace GrblPlotter
                 pathObject.FigureId = StartPath(DotData, toolNr, toolCmt, "PD");
                 PenDown("PD");
                 StopPath("PU DOT");
+                GlobalPathStart = DotData.Start;
 
                 if (Properties.Settings.Default.importSVGCircleToDot && (Properties.Settings.Default.importCircleToDotScriptCount > 0) && (dotCounter >= Properties.Settings.Default.importCircleToDotScriptCount))
                 {
@@ -583,15 +589,18 @@ namespace GrblPlotter
                     /* Create Line */
                     if (entity is GCodeLine)
                     {
+                    //    Logger.Trace("# MoveTo {0:0.0}  Angle:{1:0.0}", entity.MoveTo, (entity.Angle * 180 / Math.PI));
                         MoveTo(entity.MoveTo, newZ, newS, entity.Angle, "");
                     }
                     else if (entity is GCodeArc ArcData)
                     {
                         /* Create Arc */
+                    //    Logger.Trace("# ArcTo  {0:0.0}  AngleStart:{1:0.0}  Angle:{2:0.0}", ArcData.MoveTo, ArcData.AngleStart * 180 / Math.PI, ArcData.Angle * 180 / Math.PI);
                         Arc(ArcData.IsCW, ArcData.MoveTo, ArcData.CenterIJ, ArcData.AngleStart, ArcData.Angle);//, "");// entity.comment);
                     }
                 }
                 StopPath("PU");
+                GlobalPathStart = PathData.End;
                 if (graphicInfo.OptionSpecialWireBend)
                 {
                     InsertCode(Properties.Settings.Default.importGraphicWireBenderCodeCut);
@@ -787,6 +796,10 @@ namespace GrblPlotter
         private static bool overWriteId = false;
         private static int StartPath(PathObject pathObject, int toolNr, string toolCmt, string penCmt = "")//string cmt)
         {
+            double lengthPU = GcodeMath.DistancePointToPoint(GlobalPathStart, pathObject.Start);
+        //    Logger.Trace("StartPath  Length:{0:0.0}  from:{1:0.0}  to:{2:0.0}", lengthPU, GlobalPathStart, pathObject.Start);
+            GlobalPathLengthPU += lengthPU;
+
             Point startRamp = pathObject.Start;
             Point startPenDown = new Point(startRamp.X, startRamp.Y);
             double angle = pathObject.StartAngle;
@@ -906,7 +919,7 @@ namespace GrblPlotter
                 Gcode.MoveToRapid(gcodeString, startRamp, "");
                 PenDown(penCmt);
             }
-            if (logCoordinates) Logger.Trace("  StartPath at x{0:0.000} y{1:0.000} a={2:0.00}", startRamp.X, startRamp.Y, setangle);
+            if (logCoordinates) Logger.Trace("  StartPath G0 at x{0:0.000} y{1:0.000} a={2:0.00}", startRamp.X, startRamp.Y, setangle);
 
             if (Properties.Settings.Default.importGraphicLeadInEnable)		// importGraphicLeadOutEnable)
             {
@@ -965,7 +978,7 @@ namespace GrblPlotter
                 PenDown(cmt);   //  + " moveto"                      // also process tangetial axis
             double setangle = 180 * tangAngle / Math.PI;
 
-            if (logCoordinates) Logger.Trace(" MoveTo X{0:0.000} Y{1:0.000} A{2:0.00}  useAlternitveZ:{3}  applyDashPattern:{4}", coordxy.X, coordxy.Y, setangle, useAlternitveZ, applyDashPattern);
+            if (logCoordinates) Logger.Trace("  MoveTo G1 X{0:0.000} Y{1:0.000} A{2:0.00}  useAlternitveZ:{3}  applyDashPattern:{4}", coordxy.X, coordxy.Y, setangle, useAlternitveZ, applyDashPattern);
             Gcode.SetTangential(gcodeString, setangle, true);
             Gcode.SetAux1DistanceCommand(setAux1FinalDistance);		// Create command-snipped, to be added in G1 command (Graphic2GCodeMove.cs - Move)
             Gcode.SetAux2DistanceCommand(setAux2FinalDistance);
@@ -1085,24 +1098,25 @@ namespace GrblPlotter
             Point coordxy = new Point(x, y);
             Point center = new Point(lastGC.X + i, lastGC.Y + j);
             double offset = +Math.PI / 2;
-            if (logCoordinates) Logger.Trace("  Start Arc G{0} X{1:0.000} Y{2:0.000} angle:{3:0.000}    cx{4:0.000} cy{5:0.000} angle:{6:0.000}", gnr, x, y, (180 * tangStartRad / Math.PI), center.X, center.Y, (180 * tangEndRad / Math.PI));
+            if (logCoordinates) Logger.Trace("  ArcTo  G{0} X{1:0.000} Y{2:0.000} aStart:{3:0.000}    cx{4:0.000} cy{5:0.000} aEnd:{6:0.000}", gnr, x, y, (180 * tangStartRad / Math.PI), center.X, center.Y, (180 * tangEndRad / Math.PI));
             if (gnr > 2) { offset = -offset; }
 
             Gcode.SetTangential(gcodeString, 180 * tangStartRad / Math.PI, true);
             Gcode.SetAux1DistanceCommand(setAux1FinalDistance);
             Gcode.SetAux2DistanceCommand(setAux2FinalDistance);
 
-            if (logCoordinates) Logger.Trace("   Start Arc alpha{0:0.000} offset{1:0.000}  ", 180 * tangStartRad / Math.PI, 180 * offset / Math.PI);
+            if (logCoordinates)  Logger.Trace("   Start Arc alpha{0:0.000} offset{1:0.000}  ", 180 * tangStartRad / Math.PI, 180 * offset / Math.PI);
 
             PenDown(cmt + " from Arc");
 
             if (GcodeMath.IsEqual(coordxy, lastGC))				// end = start position? Full circle!
             {
                 if (gnr > 2)
-                    tangEndRad += 2 * Math.PI + tangStartRad;        			// CW 360°
+                    tangEndRad += 2 * Math.PI;// + tangStartRad;        			// CW 360°
                 else
-                    tangEndRad -= 2 * Math.PI + tangStartRad;        			// CCW 360°
+                    tangEndRad -= 2 * Math.PI;// + tangStartRad;        			// CCW 360°
             }
+            if (logCoordinates) Logger.Trace("   End Arc alpha{0:0.000} offset{1:0.000}  ", 180 * tangEndRad / Math.PI, 180 * offset / Math.PI);
             Gcode.SetTangential(gcodeString, 180 * tangEndRad / Math.PI, false);
             Gcode.Arc(gcodeString, gnr, x, y, i, j, cmt);
 

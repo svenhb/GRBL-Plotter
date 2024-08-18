@@ -650,9 +650,9 @@ namespace GrblPlotter
         /// <param name="width">The number of points to generate</param>
         /// <param name="scale">The scale of the noise. The greater the scale, the denser the noise gets</param>
         /// <returns>An array containing 1D Simplex noise</returns>
-        public static float[] Calc1D(int width, float scale)
+        public static double[] Calc1D(int width, double scale)
         {
-            var values = new float[width];
+            var values = new double[width];
             for (var i = 0; i < width; i++)
                 values[i] = Generate(i * scale) * 128 + 128;
             return values;
@@ -665,9 +665,9 @@ namespace GrblPlotter
         /// <param name="height">The number of points to generate in the 2nd dimension</param>
         /// <param name="scale">The scale of the noise. The greater the scale, the denser the noise gets</param>
         /// <returns>An array containing 2D Simplex noise</returns>
-        public static float[,] Calc2D(int width, int height, float scale)
+        public static double[,] Calc2D(int width, int height, double scale)
         {
-            var values = new float[width, height];
+            var values = new double[width, height];
             for (var i = 0; i < width; i++)
                 for (var j = 0; j < height; j++)
                     values[i, j] = Generate(i * scale, j * scale) * 128 + 128;
@@ -682,9 +682,9 @@ namespace GrblPlotter
         /// <param name="length">The number of points to generate in the 3nd dimension</param>
         /// <param name="scale">The scale of the noise. The greater the scale, the denser the noise gets</param>
         /// <returns>An array containing 3D Simplex noise</returns>
-        public static float[,,] Calc3D(int width, int height, int length, float scale)
+        public static double[,,] Calc3D(int width, int height, int length, double scale)
         {
-            var values = new float[width, height, length];
+            var values = new double[width, height, length];
             for (var i = 0; i < width; i++)
                 for (var j = 0; j < height; j++)
                     for (var k = 0; k < length; k++)
@@ -698,7 +698,7 @@ namespace GrblPlotter
         /// <param name="x">Index</param>
         /// <param name="scale">The scale of the noise. The greater the scale, the denser the noise gets</param>
         /// <returns>The value of an index of 1D simplex noise</returns>
-        public static float CalcPixel1D(int x, float scale)
+        public static double CalcPixel1D(int x, float scale)
         {
             return Generate(x * scale);// * 128 + 128;
         }
@@ -710,7 +710,7 @@ namespace GrblPlotter
         /// <param name="y">2st dimension index</param>
         /// <param name="scale">The scale of the noise. The greater the scale, the denser the noise gets</param>
         /// <returns>The value of an index of 2D simplex noise</returns>
-        public static float CalcPixel2D(int x, int y, float scale)
+        public static double CalcPixel2D(int x, int y, double scale)
         {
             return Generate(x * scale, y * scale);// * 128 + 128;
         }
@@ -724,7 +724,7 @@ namespace GrblPlotter
         /// <param name="z">3rd dimension index</param>
         /// <param name="scale">The scale of the noise. The greater the scale, the denser the noise gets</param>
         /// <returns>The value of an index of 3D simplex noise</returns>
-        public static float CalcPixel3D(int x, int y, int z, float scale)
+        public static double CalcPixel3D(int x, int y, int z, double scale)
         {
             return Generate(x * scale, y * scale, z * scale) * 128 + 128;
         }
@@ -766,7 +766,7 @@ namespace GrblPlotter
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
-        private static float Generate(float x)
+        private static double Generate(double x)
         {
             var i0 = FastFloor(x);
             var i1 = i0 + 1;
@@ -791,12 +791,12 @@ namespace GrblPlotter
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        private static float Generate(float x, float y)
+        private static double Generate(double x, double y)
         {
-            const float F2 = 0.366025403f; // F2 = 0.5*(sqrt(3.0)-1.0)
-            const float G2 = 0.211324865f; // G2 = (3.0-Math.sqrt(3.0))/6.0
+            const double F2 = 0.366025403f; // F2 = 0.5*(sqrt(3.0)-1.0)
+            const double G2 = 0.211324865f; // G2 = (3.0-Math.sqrt(3.0))/6.0
 
-            float n0, n1, n2; // Noise contributions from the three corners
+            double n0, n1, n2; // Noise contributions from the three corners
 
             // Skew the input space to determine which simplex cell we're in
             var s = (x + y) * F2; // Hairy factor for 2D
@@ -861,13 +861,13 @@ namespace GrblPlotter
         }
 
 
-        private static float Generate(float x, float y, float z)
+        private static double Generate(double x, double y, double z)
         {
             // Simple skewing factors for the 3D case
             const float F3 = 0.333333333f;
             const float G3 = 0.166666667f;
 
-            float n0, n1, n2, n3; // Noise contributions from the four corners
+            double n0, n1, n2, n3; // Noise contributions from the four corners
 
             // Skew the input space to determine which simplex cell we're in
             var s = (x + y + z) * F3; // Very nice and simple skew factor for 3D
@@ -995,7 +995,7 @@ namespace GrblPlotter
             138,236,205,93,222,114,67,29,24,72,243,141,128,195,78,66,215,61,156,180
         };
 
-        private static int FastFloor(float x)
+        private static int FastFloor(double x)
         {
             return (x > 0) ? ((int)x) : (((int)x) - 1);
         }
@@ -1006,7 +1006,7 @@ namespace GrblPlotter
             return a < 0 ? a + m : a;
         }
 
-        private static float Grad(int hash, float x)
+        private static double Grad(int hash, double x)
         {
             var h = hash & 15;
             var grad = 1.0f + (h & 7);   // Gradient value 1.0, 2.0, ..., 8.0
@@ -1014,7 +1014,7 @@ namespace GrblPlotter
             return (grad * x);           // Multiply the gradient with the distance
         }
 
-        private static float Grad(int hash, float x, float y)
+        private static double Grad(int hash, double x, double y)
         {
             var h = hash & 7;      // Convert low 3 bits of hash code
             var u = h < 4 ? x : y;  // into 8 simple gradient directions,
@@ -1022,7 +1022,7 @@ namespace GrblPlotter
             return ((h & 1) != 0 ? -u : u) + ((h & 2) != 0 ? -2.0f * v : 2.0f * v);
         }
 
-        private static float Grad(int hash, float x, float y, float z)
+        private static double Grad(int hash, double x, double y, double z)
         {
             var h = hash & 15;     // Convert low 4 bits of hash code into 12 simple
             var u = h < 8 ? x : y; // gradient directions, and compute dot product.
@@ -1030,7 +1030,7 @@ namespace GrblPlotter
             return ((h & 1) != 0 ? -u : u) + ((h & 2) != 0 ? -v : v);
         }
 
-        private static float Grad(int hash, float x, float y, float z, float t)
+        private static double Grad(int hash, double x, double y, double z, double t)
         {
             var h = hash & 31;      // Convert low 5 bits of hash code into 32 simple
             var u = h < 24 ? x : y; // gradient directions, and compute dot product.

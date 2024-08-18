@@ -41,10 +41,13 @@ namespace GrblPlotter
             if (graphicToFill == null) return;
 
             double distance = (double)Properties.Settings.Default.importGraphicHatchFillDistance;
+            double distOffset = 0;
+            double offset = (double)Properties.Settings.Default.importGraphicHatchFillOffset;
             double angle = (double)Properties.Settings.Default.importGraphicHatchFillAngle;
             double angle2 = (double)Properties.Settings.Default.importGraphicHatchFillAngle2;
             bool cross = Properties.Settings.Default.importGraphicHatchFillCross;
             bool incrementAngle = Properties.Settings.Default.importGraphicHatchFillAngleInc;
+            bool incrementOffset = Properties.Settings.Default.importGraphicHatchFillOffsetInc;
             bool deletePath = Properties.Settings.Default.importGraphicHatchFillDeletePath;
 
             bool inset2 = Properties.Settings.Default.importGraphicHatchFillInsetEnable && Properties.Settings.Default.importGraphicHatchFillInsetEnable2;
@@ -120,10 +123,11 @@ namespace GrblPlotter
 
                         // create hatch pattern
                         hatchPattern.Clear();
-                        hatchPattern.AddRange(CreateLinePattern(pathDimension, angle, distance));
+                        hatchPattern.AddRange(CreateLinePattern(pathDimension, angle, distance, distOffset));
                         if (cross)
-                            hatchPattern.AddRange(CreateLinePattern(pathDimension, angle + 90, distance));
+                            hatchPattern.AddRange(CreateLinePattern(pathDimension, angle + 90, distance, distOffset));
 
+                        if (incrementOffset) distOffset += offset;
                         if (incrementAngle) angle += angle2;
 
                         // process single hatch lines - shorten to match inside polygone
@@ -167,9 +171,9 @@ namespace GrblPlotter
         }
 
 
-        private static List<Point[]> CreateLinePattern(Dimensions dim, double angle, double distance)
-        { return CreateLinePattern(dim.minx, dim.miny, dim.maxx, dim.maxy, angle, distance); }
-        private static List<Point[]> CreateLinePattern(double minx, double miny, double maxx, double maxy, double angle, double distance)
+        private static List<Point[]> CreateLinePattern(Dimensions dim, double angle, double distance, double offset)
+        { return CreateLinePattern(dim.minx, dim.miny, dim.maxx, dim.maxy, angle, distance, offset); }
+        private static List<Point[]> CreateLinePattern(double minx, double miny, double maxx, double maxy, double angle, double distance, double offset)
         {
             double width = maxx - minx;
             double height = maxy - miny;
@@ -187,7 +191,7 @@ namespace GrblPlotter
             List<Point[]> lines = new List<Point[]>();
 
             //     int count = 0;
-            for (double i = -r; i < r; i += distance)
+            for (double i = - (r+offset); i < r; i += distance)
             {
                 x1 = cx + (i * ca) + (r * sa);//  # i * ca - (-r) * sa
                 y1 = cy + (i * sa) - (r * ca);  //# i * sa + (-r) * ca
@@ -267,7 +271,7 @@ namespace GrblPlotter
             fx *= (amplitude / 2); ;
             fy *= (-amplitude / 2); ;
 
-            float scale, n, nx = 0, ny = 0;
+            double scale, n, nx = 0, ny = 0;
             scale = 1;// (float)stepWidth / 2000;
 
             //Logger.Trace("AddNoiseToPath  step:{0}", step);

@@ -63,6 +63,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Diagnostics;
 using System.Drawing.Drawing2D;
 using System.Globalization;
@@ -153,11 +154,9 @@ namespace GrblPlotter
             ClearList(finalPathList);   // = null;
             ClearList(tileGraphicAll);  // = null;
             ClearList(groupedGraphic);  // = null;
-            headerInfo.Clear();         // = null;
-            headerMessage.Clear();      // = null;
-            //backgroundWorker = null; // will be set by GCodeFromxxx
-            //backgroundEvent = null;
-            GCode.Clear();  // = null;
+            headerInfo?.Clear();         // = null;
+            headerMessage?.Clear();      // = null;
+            GCode?.Clear();  // = null;
             GC.Collect();
             Logger.Trace("----  CleanUp()  after  WorkingSet: {0} kb   Total Memory: {1:N0} kb", System.Environment.WorkingSet / 1024, GC.GetTotalMemory(true) / 1024);
         }
@@ -295,7 +294,7 @@ namespace GrblPlotter
             countWarnDimNotSet = 0;
         }
 
-        public static bool StartPath(float x, float y)
+        public static bool StartPath(double x, double y)
         { return StartPath(new Point(x, y)); }
 
         public static bool StartPath(Point xy, double? useZ = null)//, CreationOptions addFunction = CreationOptions.none)
@@ -380,7 +379,7 @@ namespace GrblPlotter
             {
                 if (actualPath.Dimension.IsXYSet())
                 {
-                    if (graphicInformation.OptionNoise) 
+                    if (graphicInformation.OptionNoise)
                         actualPath.Add(lastPoint, GetActualZ(), 0);
 
                     completeGraphic.Add(actualPath);
@@ -468,7 +467,7 @@ namespace GrblPlotter
             fx *= (amplitude / 2); ;
             fy *= (-amplitude / 2); ;
 
-            float scale, n, nx = 0, ny = 0;
+            double scale, n, nx = 0, ny = 0;
             scale = 1;// (float)stepWidth / 2000;
 
             //Logger.Trace("AddNoiseToPath  step:{0}",step);
@@ -476,8 +475,8 @@ namespace GrblPlotter
             if (step <= 1)
             {
                 n = Noise.CalcPixel2D(index, 1, scale);
-                nx = (float)fx * n;
-                ny = (float)fy * n;
+                nx = fx * n;
+                ny = fy * n;
                 actualPath.Add(new Point(x + nx, y + ny), z, 0);
                 //actualPath.Add(end, z, 0);
             }
@@ -486,8 +485,8 @@ namespace GrblPlotter
                 for (int i = 1; i < step; i++)
                 {
                     n = Noise.CalcPixel2D(index, i, scale);
-                    nx = (float)fx * n;
-                    ny = (float)fy * n;
+                    nx = fx * n;
+                    ny = fy * n;
                     x += dix;
                     y += diy;
                     actualPath.Add(new Point(x + nx, y + ny), z, 0);
@@ -583,6 +582,40 @@ namespace GrblPlotter
             return z;
         }
 
+        internal static PathObject GetLastGraphicsItemPath()
+        {
+            if ((completeGraphic.Count > 0) && (completeGraphic[completeGraphic.Count - 1] is ItemPath PathData))
+            {
+                return (ItemPath)PathData.Copy();
+            }
+            else return null;
+        }
+
+        internal static Point AddGraphicsItemPath(PathObject pathToAdd, Point start, int indexStart, int indexEnd)
+        {
+            double ox = start.X - pathToAdd.Start.X;
+            double oy = start.Y - pathToAdd.Start.Y;
+
+            if (pathToAdd is ItemPath PathData && (indexStart < PathData.Path.Count))
+            {
+                //    foreach (GCodeMotion entity in PathData.Path)
+                for (int i = indexStart; i < PathData.Path.Count - indexEnd; i++)
+                {
+                    actualPath.AddMotion(PathData.Path[i], ox, oy);
+                }
+
+                Point tmp = PathData.Path[PathData.Path.Count - 1].MoveTo;
+                return new Point(tmp.X + ox, tmp.Y + oy);
+            }
+            return new Point(ox, oy);
+        }
+
+        internal static void RemoveLastPath()
+        {
+            if (completeGraphic.Count > 0)
+                completeGraphic.RemoveAt(completeGraphic.Count - 1);
+        }
+
         // set marker, to take-over the flag on next "StartPath"
         public static void OptionInsertPause()
         { lastOption |= CreationOption.AddPause; }
@@ -618,7 +651,7 @@ namespace GrblPlotter
 
         public static bool SetPenWidth(string txt)	// DXF: 0 - 2.11mm = 0 - 211		SVG: 0.000 - ?  Convert with to mm, then to string in importClass
         {
-            if (logProperties)  
+            if (logProperties)
                 Logger.Trace("SetPenWidth '{0}'  called by:{1}", txt, (new System.Diagnostics.StackTrace()).GetFrame(1).GetMethod().Name);
             if (txt.Contains("NaN"))
             {
@@ -1077,13 +1110,13 @@ namespace GrblPlotter
                 {
                     backgroundWorker?.ReportProgress(0, new MyUserState { Value = (actOpt++ * 100 / maxOpt), Content = "Sort elements 2) sort by distance (" + countGeometry.ToString() + " elements)" });
                     Logger.Info("{0} Sort by distance", loggerTag);
-                    SortByDistance(completeGraphic, new Point(0, actualDimension.maxy), false);            // CreateGCode
+                    SortByDistance(completeGraphic, GetStartPos(), false);            // CreateGCode
                 }
             }
 
             if (!cancelByWorker && graphicInformation.OptionCodeSortDimension)
             {
-                Logger.Info("{0} Sort by dimension", loggerTag);
+                Logger.Info("{0} Sort by dimension - Count:{1}", loggerTag, completeGraphic.Count);
                 SortByDimension(completeGraphic);
             }
 
@@ -1238,6 +1271,19 @@ namespace GrblPlotter
         }
         // #######################################################################
 
+        internal static Point GetStartPos()
+        {
+            int sort = Properties.Settings.Default.importGraphicSortDistanceStart;
+            Point start;
+            if (sort == 1) { start = new Point(actualDimension.maxx, actualDimension.maxy); }
+            else if (sort == 2) { start = new Point(actualDimension.maxx, actualDimension.miny); }
+            else if (sort == 3) { start = new Point(actualDimension.minx, actualDimension.miny); }
+            else if (sort == 4) { start = new Point((actualDimension.minx + actualDimension.maxx) / 2, (actualDimension.miny + actualDimension.maxy) / 2); }
+            else if (sort == 5) { start = new Point(0, 0); }
+            else if (sort == 6) { start = new Point(Grbl.posWork.X, Grbl.posWork.Y); }
+            else { start = new Point(actualDimension.minx, actualDimension.maxy); }
+            return start;
+        }
         private static int GetOptionsAmount()
         {
             int amount = 1; // backgroud

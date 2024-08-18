@@ -31,13 +31,14 @@ namespace GrblPlotter
 {
     public static class ImportMath
     {
-        //        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        // Trace, Debug, Info, Warn, Error, Fatal
+    //    private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Calculate Path-Arc-Command - Code from https://github.com/vvvv/SVG/blob/master/Source/Paths/SvgArcSegment.cs
         /// </summary>
         public static void CalcArc(double astartX, double astartY, double radiusX, double radiusY,
-            double angle, double size, double sweep, double endX, double endY, Action<Point, string> moveTo)
+            double angleRad, double size, double sweep, double endX, double endY, Action<Point, string> moveTo)
         {
             //           Logger.Trace(" calcArc Start: {0};{1} rx: {2} ry: {3} a: {4} size: {5} sweep: {6} End: {7};{8}", StartX, StartY, RadiusX, RadiusY,
             //            Angle, Size, Sweep, EndX, EndY);
@@ -46,17 +47,19 @@ namespace GrblPlotter
                 //              graphicsPath.AddLine(this.Start, this.End);
                 return;
             }
-            double sinPhi = Math.Sin(angle * Math.PI / 180.0);
-            double cosPhi = Math.Cos(angle * Math.PI / 180.0);
+            double sinPhi = Math.Sin(angleRad);
+            double cosPhi = Math.Cos(angleRad);
             double x1dash = cosPhi * (astartX - endX) / 2.0 + sinPhi * (astartY - endY) / 2.0;
             double y1dash = -sinPhi * (astartX - endX) / 2.0 + cosPhi * (astartY - endY) / 2.0;
             double root;
             double numerator = radiusX * radiusX * radiusY * radiusY - radiusX * radiusX * y1dash * y1dash - radiusY * radiusY * x1dash * x1dash;
             double rx = radiusX;
             double ry = radiusY;
+
+            double s = Math.Sqrt(1.0 - numerator / (radiusX * radiusX * radiusY * radiusY));
             if (numerator < 0.0)
             {
-                double s = Math.Sqrt(1.0 - numerator / (radiusX * radiusX * radiusY * radiusY));
+              //  double s = Math.Sqrt(1.0 - numerator / (radiusX * radiusX * radiusY * radiusY));
 
                 rx *= s;
                 ry *= s;
@@ -66,6 +69,8 @@ namespace GrblPlotter
             {
                 root = ((size == 1 && sweep == 1) || (size == 0 && sweep == 0) ? -1.0 : 1.0) * Math.Sqrt(numerator / (radiusX * radiusX * y1dash * y1dash + radiusY * radiusY * x1dash * x1dash));
             }
+        //    Logger.Trace("CalcArc  numerator:{0}  s:{1}   root:{2}", numerator,s,root);
+
             double cxdash = root * rx * y1dash / ry;
             double cydash = -root * ry * x1dash / rx;
             double cx = cosPhi * cxdash - sinPhi * cydash + (astartX + endX) / 2.0;

@@ -35,6 +35,8 @@
  * 2023-11-09 l:1067 f:AddFrame -> SetPenFill("none") to avoid hatch-fill
  * 2023-11-11 l_1030 f:Scale scale also ((GCodeArc)entity).CenterIJ
  * 2024-04-17 l:1144 f:ExtendClosedPaths also allow path-shortening (negative value)
+ * 2024-07-25 l:896/1568 f:RemoveOffset/SortByDistance move all largset (same size) objects to the end -> List<int> iLargest = new List<int>();
+ * 2024-08-11 l:1684 f:HasSameProperties at least compare color
 */
 
 using System;
@@ -76,14 +78,6 @@ namespace GrblPlotter
                             ArcProperties tmp = GcodeMath.GetArcMoveProperties((XyPoint)pStart, (XyPoint)pEnd, aPathArc.CenterIJ.X, aPathArc.CenterIJ.Y, aPathArc.IsCW);
                             aPathArc.Depth = Math.Abs(tmp.angleDiff * r);
                         }
-                        /*        else if (apath.Path[i] is GCodeArc)
-                                {   // is arc
-                                    Point center = new Point(pStart.X + ((GCodeArc)apath.Path[i]).CenterIJ.X, pStart.Y + ((GCodeArc)apath.Path[i]).CenterIJ.Y);
-                                    double r = PointDistance(center, pEnd);
-                                    ArcProperties tmp = GcodeMath.GetArcMoveProperties((XyPoint)pStart, (XyPoint)pEnd, ((GCodeArc)apath.Path[i]).CenterIJ.X, ((GCodeArc)apath.Path[i]).CenterIJ.Y, ((GCodeArc)apath.Path[i]).IsCW);
-                                    apath.Path[i].Depth = Math.Abs(tmp.angleDiff * r);
-                            //        Logger.Info("CalculateDistances arc a0:{0:0.00} a1:{1:0.00} diff:{2:0.00}  r:{3:0.00}", tmp.angleStart,tmp.angleEnd,tmp.angleDiff,r);
-                                }*/
                     }
                 }
             }
@@ -173,11 +167,8 @@ namespace GrblPlotter
             }
         }
 
-
         private static bool GroupAllGraphics(List<PathObject> completeGraphic, List<GroupObject> groupedGraphicLocal, GraphicInformationClass graphicInformation, bool preventReversal = false)
         {
-            //  groupedGraphicLocal = new List<GroupObject>();   // local 2020-12-14
-            //  groupedGraphicLocal = groupedGraphic;
             bool log = logEnable && ((logFlags & (uint)LogEnables.GroupAllGraphics) > 0);
             keyToIndex = new Dictionary<string, int>();
             string tmpKey = "";
@@ -309,13 +300,15 @@ namespace GrblPlotter
                     ListGraphicObjects(groupObject.GroupPath);
                 }
             }
-
             return true;
         }
 
         private static void ListGraphicObjects(List<PathObject> graphicToShow, bool showCoord = false)
         {
-            if (logEnable) Logger.Trace("  ListGraphicObjects Count:{0}  ##########################################", graphicToShow.Count);
+            if (!logEnable)
+                return;
+
+            Logger.Trace("  ListGraphicObjects Count:{0}  ##########################################", graphicToShow.Count);
             int cnt;
             string coordByLine;
             string info;
@@ -344,7 +337,13 @@ namespace GrblPlotter
                     if (showCoord && (graphicItem is ItemPath bpath))
                     {
                         foreach (GCodeMotion ent in bpath.Path)
-                        { Logger.Trace("       X:{0:0.00} Y:{1:0.00} Z:{2:0.00}  Line:{3} ", ent.MoveTo.X, ent.MoveTo.Y, ent.Depth, (ent is GCodeLine).ToString()); }
+                        {
+                            if (ent is GCodeArc)
+                                Logger.Trace("       X:{0:0.00} Y:{1:0.00} Z:{2:0.00}  Arc   aStart:{4:0.00}  aEnd:{5:0.00}", ent.MoveTo.X, ent.MoveTo.Y, ent.Depth, ent.ToString(), ((GCodeArc)ent).AngleStart * 180 / Math.PI, ent.Angle * 180 / Math.PI);
+                            else
+                                Logger.Trace("       X:{0:0.00} Y:{1:0.00} Z:{2:0.00}  Line  angle:{4:0.00}", ent.MoveTo.X, ent.MoveTo.Y, ent.Depth, ent.ToString(), ent.Angle * 180 / Math.PI);
+
+                        }
                     }
                 }
             }
@@ -375,7 +374,7 @@ namespace GrblPlotter
 
             /* rotate before clipping */
             if (Properties.Settings.Default.importGraphicClipAngleEnable)
-                Rotate(completeGraphic, (double)Properties.Settings.Default.importGraphicClipAngle, tileSizeX / 2, tileSizeY / 2);
+                Rotate(completeGraphic, (double)Properties.Settings.Default.importGraphicClipAngle * Math.PI / 180, tileSizeX / 2, tileSizeY / 2);
 
             if (graphicInformation.OptionCodeOffset)
             {
@@ -754,7 +753,6 @@ namespace GrblPlotter
             {
                 if (item is ItemPath PathData)
                 {
-                    //ItemPath PathData = (ItemPath)item;
                     Point lastPoint = PathData.End;
                     double angleNow = 0;                       // when adjacent line segments have the same angle - end point of first can be removed 
                     double angleLast = 0;
@@ -762,7 +760,7 @@ namespace GrblPlotter
                     double zLast = 0;
                     bool isLineNow = false;
                     bool isLineLast = false;
-                    //	bool removeMinDistance;
+
                     if (PathData.Path.Count > 2)
                     {
                         zLast = PathData.Path[PathData.Path.Count - 1].Depth;
@@ -883,12 +881,23 @@ namespace GrblPlotter
         #endregion
 
         #region remove offset
+        internal static void RemoveOffset()
+        {
+            RemoveOffset(completeGraphic, actualDimension.minx, actualDimension.miny);
+        }
+        internal static void RemoveOffset(ItemPath tmp, double ox, double oy)
+        {
+            foreach (GCodeMotion entity in tmp.Path)
+            { entity.MoveTo = new Point(entity.MoveTo.X - ox, entity.MoveTo.Y - oy); }
+        }
+
         private static void RemoveOffset(List<PathObject> graphicToOffset, double offsetX, double offsetY, int start = 0)
         {
             System.Diagnostics.StackTrace s = new System.Diagnostics.StackTrace(System.Threading.Thread.CurrentThread, true);
-            int iLargest = 0;
+            List<int> iLargest = new List<int>();
             double tlarge, largest = 0;
 
+        //    logEnable = true;
             if (logEnable) Logger.Trace("...RemoveOffset before min X:{0:0.00} Y:{1:0.00} caller:{2} --------------------------------------", actualDimension.minx, actualDimension.miny, s.GetFrame(1).GetMethod().Name);
 
             PathObject item;
@@ -898,34 +907,52 @@ namespace GrblPlotter
                 item.Start = new Point(item.Start.X - offsetX, item.Start.Y - offsetY);
                 item.End = new Point(item.End.X - offsetX, item.End.Y - offsetY);
                 item.Dimension.OffsetXY(-offsetX, -offsetY);
-
+             //   Logger.Trace("RemoveOffset {0}  {1}", item.FigureId, item.Info.PenColorId);
                 if (item is ItemPath PathData)
                 {
                     foreach (GCodeMotion entity in PathData.Path)
                     { entity.MoveTo = new Point(entity.MoveTo.X - offsetX, entity.MoveTo.Y - offsetY); }
-                    //    PathData.Dimension.OffsetXY(-offsetX, -offsetY);
-                    tlarge = PathData.Dimension.dimx + PathData.Dimension.dimy;
+                    tlarge = Math.Round(PathData.Dimension.dimx + PathData.Dimension.dimy);
                     if (tlarge > largest)
                     {
+                        iLargest.Clear();
                         largest = tlarge;
-                        iLargest = i;
-                        //    if (logEnable) Logger.Trace("    Larger: id:{0}", i);
+                        iLargest.Add(i);
+                //        Logger.Trace("RemoveOffset clear/add {0} ", i);
+                    }
+                    else if (tlarge == largest)
+                    {
+                        iLargest.Add(i);
+                //        Logger.Trace("RemoveOffset add {0} ", i);
                     }
                 }
             }
             actualDimension.OffsetXY(-offsetX, -offsetY);
+            //ListGraphicObjects(graphicToOffset);
 
-            if (Properties.Settings.Default.importGraphicLargestLast)   // move largest object to the end
+            if (Properties.Settings.Default.importGraphicOffsetLargestLast || Properties.Settings.Default.importGraphicOffsetLargestRemove)   // move largest object to the end
             {
-                if (logEnable) Logger.Trace("...RemoveOffset move largest object to the end id:{0}", iLargest);
-                if (graphicToOffset.Count > iLargest)
+                if (!Properties.Settings.Default.importGraphicOffsetLargestRemove)
                 {
-                    graphicToOffset.Add(graphicToOffset[iLargest]);
-                    graphicToOffset.RemoveAt(iLargest);
+                    if (logEnable) Logger.Trace("...RemoveOffset move largest objects to the end ({0}), ids:{1}", iLargest.Count, String.Join("; ", iLargest));
+                    for (int li = 0; li < iLargest.Count; li++)
+                    {
+                        if (graphicToOffset.Count > iLargest[li])
+                            graphicToOffset.Add(graphicToOffset[iLargest[li]]); //  1st add largest at the end
+                    }
                 }
                 else
-                { Logger.Warn("...RemoveOffset index nok: iLargest:{0}  Count:{1}", iLargest, graphicToOffset.Count); }
+                   if (logEnable) Logger.Trace("...RemoveOffset remove largest objects ({0}), ids:{1}", iLargest.Count, String.Join("; ", iLargest));
+
+                for (int li = iLargest.Count - 1; li >= 0; li--)
+                {
+                    if (graphicToOffset.Count > iLargest[li])
+                    {
+                        graphicToOffset.RemoveAt(iLargest[li]);                 // 2nd remove largest from origin index
+                    }
+                }
             }
+            //ListGraphicObjects(graphicToOffset);
         }
         #endregion
 
@@ -980,43 +1007,95 @@ namespace GrblPlotter
             }
         }
 
-        private static void Rotate(List<PathObject> graphicToRotate, double angle, double offsetX, double offsetY)
+        public static void Rotate(double angleRad, double offsetX, double offsetY)  // scaleX != scaleY will not work for arc!
+        { Rotate(completeGraphic, angleRad, offsetX, offsetY); }
+        private static void Rotate(List<PathObject> graphicToRotate, double angleRad, double offsetX, double offsetY)
         {
             System.Diagnostics.StackTrace s = new System.Diagnostics.StackTrace(System.Threading.Thread.CurrentThread, true);
-
-            //           MessageBox.Show("Methode B wurde von Methode " + s.GetFrame(1).GetMethod().Name + " aufgerufen");
-            if (logEnable) Logger.Trace("...Rotate a:{0:0.00} X:{1:0.00} Y:{2:0.00} caller:{3} --------------------------------------", angle, offsetX, offsetY, s.GetFrame(1).GetMethod().Name);
+            if (logEnable) Logger.Trace("...Rotate a:{0:0.00} X:{1:0.00} Y:{2:0.00} caller:{3} --------------------------------------", angleRad * 180 / Math.PI, offsetX, offsetY, s.GetFrame(1).GetMethod().Name);
             foreach (PathObject item in graphicToRotate)    // dot or path
             {
-                item.Start = RotatePoint(item.Start, angle, offsetX, offsetY);
-                item.End = RotatePoint(item.End, angle, offsetX, offsetY);
+                item.Start = RotatePoint(item.Start, angleRad, offsetX, offsetY);
+                item.End = RotatePoint(item.End, angleRad, offsetX, offsetY);
                 if (item is ItemPath PathData)
                 {
-                    //ItemPath PathData = (ItemPath)item;
                     foreach (GCodeMotion entity in PathData.Path)
-                    { entity.MoveTo = RotatePoint(entity.MoveTo, angle, offsetX, offsetY); ; }
-                    //PathData.Dimension.OffsetXY(-offsetX, -offsetY);
+                    {
+                        entity.MoveTo = RotatePoint(entity.MoveTo, angleRad, offsetX, offsetY);
+                        if (entity is GCodeArc arcEntity)
+                        {
+                            Point tmp = RotatePoint(arcEntity.CenterIJ, angleRad, 0, 0);
+                            arcEntity.CenterIJ = new Point(tmp.X, tmp.Y);
+                        }
+                    }
                 }
             }
-            actualDimension.OffsetXY(-offsetX, -offsetY);
+            ReCalcDimension(graphicToRotate);
+        }
+        public static void MirrorX()    // scaleX != scaleY will not work for arc!
+        {
+            List<PathObject> graphicToMirror = completeGraphic;
+            if (logEnable) Logger.Trace("...MirrorX  --------------------------------------");
+            foreach (PathObject item in graphicToMirror)    // dot or path
+            {
+                item.Start = new Point(-item.Start.X, item.Start.Y);
+                item.End = new Point(-item.End.X, item.End.Y);
+                if (item is ItemPath PathData)
+                {
+                    foreach (GCodeMotion entity in PathData.Path)
+                    {
+                        entity.MoveTo = new Point(-entity.MoveTo.X, entity.MoveTo.Y);
+                        if (entity is GCodeArc arcEntity)
+                        {
+                            arcEntity.CenterIJ = new Point(-arcEntity.CenterIJ.X, arcEntity.CenterIJ.Y);
+                            arcEntity.IsCW = !arcEntity.IsCW;
+                        }
+                    }
+                }
+            }
+            ReCalcDimension(graphicToMirror);
         }
 
-        private static Point RotatePoint(Point p, double angle, double offX, double offY)
+        private static void ReCalcDimension(List<PathObject> graphicToReCalc)
         {
-            double newvalx = (p.X - offX) * Math.Cos(angle * Math.PI / 180) - (p.Y - offY) * Math.Sin(angle * Math.PI / 180);
-            double newvaly = (p.X - offX) * Math.Sin(angle * Math.PI / 180) + (p.Y - offY) * Math.Cos(angle * Math.PI / 180);
+            if (logEnable) Logger.Trace("ReCalcDimension  before  dimx:{0:0.00}  dimy:{1:0.00}", actualDimension.dimx, actualDimension.dimy);
+            actualDimension.ResetDimension();
+            Point start;
+            foreach (PathObject item in graphicToReCalc)    // dot or path
+            {
+                if (item is ItemPath PathData)
+                {
+                    item.Dimension.ResetDimension();
+                    start = PathData.Start;
+                    foreach (GCodeMotion entity in PathData.Path)
+                    {
+                        item.Dimension.SetDimensionXY(entity.MoveTo.X, entity.MoveTo.Y);
+                        if (entity is GCodeArc arcEntity)
+                        {
+                            item.Dimension.SetDimensionArc(new XyPoint(start), new XyPoint(entity.MoveTo), arcEntity.CenterIJ.X, arcEntity.CenterIJ.Y, arcEntity.IsCW);
+                        }
+                        start = entity.MoveTo;
+                    }
+                }
+                actualDimension.AddDimensionXY(item.Dimension);
+            }
+            if (logEnable) Logger.Trace("ReCalcDimension  after   dimx:{0:0.00}  dimy:{1:0.00}", actualDimension.dimx, actualDimension.dimy);
+        }
+        private static Point RotatePoint(Point p, double angleRad, double offX, double offY)
+        {
+            double newvalx = (p.X - offX) * Math.Cos(angleRad) - (p.Y - offY) * Math.Sin(angleRad);
+            double newvaly = (p.X - offX) * Math.Sin(angleRad) + (p.Y - offY) * Math.Cos(angleRad);
             Point pn = new Point(newvalx + offX, newvaly + offY);
             return pn;
         }
 
-        public static void ScaleXY(double scaleX, double scaleY)	// scaleX != scaleY will not work for arc!
+        public static void ScaleXY(double scaleX, double scaleY)    // scaleX != scaleY will not work for arc!
         { Scale(completeGraphic, scaleX, scaleY); }
 
         private static void Scale(List<PathObject> graphicToOffset, double scaleX, double scaleY, int start = 0)
         {
             if (logEnable) Logger.Trace("...Scale scaleX:{0:0.00} scaleY:{1:0.00} ", scaleX, scaleY);
             for (int i = start; i < graphicToOffset.Count; i++)
-            //foreach (PathObject item in graphicToOffset)    // dot or path
             {
                 var item = graphicToOffset[i];
                 item.Start = new Point(item.Start.X * scaleX, item.Start.Y * scaleY);
@@ -1096,8 +1175,6 @@ namespace GrblPlotter
 
             List<PathObject> repeatedGraphic = new List<PathObject>();
 
-            //  double startx = dim.minx;
-            //  double starty = dim.miny;
             double dx = dim.dimx + distance;
             double dy = dim.dimy + distance;
             double offsetX, offsetY;
@@ -1243,10 +1320,9 @@ namespace GrblPlotter
                                         break;
                                     */
                             }
-
                         }
                     }
-                    else
+                    else //if (shorten && (PathData.Path.Count > 1))
                     {
                         if (IsEqual(PathData.Start, PathData.End))      //(PathData.Start.X == PathData.End.X) && (PathData.Start.Y == PathData.End.Y))
                         {
@@ -1310,7 +1386,7 @@ namespace GrblPlotter
                                 }
                             }
                         }
-                    }	// shorten
+                    }   // shorten
                 }
             }
         }
@@ -1321,6 +1397,12 @@ namespace GrblPlotter
             // 2. sort by location
             // 3. reverse order - smallest = innerst first
             if (logEnable) Logger.Trace("...SortByDimension() count:{0}", graphicToSort.Count);
+            if (graphicToSort.Count <= 1)
+            {
+                Logger.Info("...SortByDimension() nothing to sort - count:{0}", graphicToSort.Count);
+                return;
+            }
+
             stopwatch = new Stopwatch();
             stopwatch.Start();
 
@@ -1333,7 +1415,6 @@ namespace GrblPlotter
                 graphicToSort[i] = tmp;
             }
             graphicToSort.Sort((x, y) => y.Distance.CompareTo(x.Distance));   // sort by size, large first
-
 
             List<PathObject> sortedGraphic = new List<PathObject>();
             List<Dimensions> lastDim = new List<Dimensions>();
@@ -1430,17 +1511,6 @@ namespace GrblPlotter
                     tmp = graphicToSort[i];
                     tmp.Distance = PointDistanceSquared(actualPos, tmp.Start);
 
-                    /*if (backgroundWorker != null)     // 2023-08-16 pull request Speed up merge and sort #348 Reduce CPU used updating progress bars
-                    {
-                        if (UpdateGUI()) backgroundWorker.ReportProgress(((maxElements - graphicToSort.Count) * 100) / maxElements);
-                        if (backgroundWorker.CancellationPending)
-                        {
-                            cancelByWorker = true;
-                            backgroundWorker.ReportProgress(100, new MyUserState { Value = 100, Content = "Stop processing, clean up data. Please wait!" });
-                            break;
-                        }
-                    }*/
-
                     if (tmp is ItemPath tmpItemPath)
                     {
                         /* if closed path, find closest point */
@@ -1448,7 +1518,6 @@ namespace GrblPlotter
                         {
                             if (closedPathRotate && !preventReversal)
                             {
-                                //ItemPath tmpItemPath = (ItemPath)tmp;
                                 if (tmpItemPath.Path.Count > 2)
                                 {
                                     PathDistanceSquared(actualPos, tmpItemPath);
@@ -1491,14 +1560,7 @@ namespace GrblPlotter
                         minDistIndex = i;
                     }
                 }
-                /*	2023-08-16 pull request Speed up merge and sort #348    Remove unnecessary sort
-                graphicToSort.Sort((x, y) => x.Distance.CompareTo(y.Distance));   // sort by distance
 
-                sortedGraphic.Add(graphicToSort[0]);       	// get closest item = first in list
-                actualPos = graphicToSort[0].End;         	// set new start pos
-                if (logSortMerge) Logger.Trace("   remove id:{0} ", graphicToSort[0].Info.Id);
-                graphicToSort.RemoveAt(0);                  // remove item from remaining list
-				*/
                 if (minDistIndex != -1)     // 2023-08-16 pull request Speed up merge and sort #348    Remove unnecessary sort
                 {
                     sortedGraphic.Add(graphicToSort[minDistIndex]);         // get closest item = first in list
@@ -1514,7 +1576,7 @@ namespace GrblPlotter
                     sortedGraphic.Add(tmpgrp);
             }
 
-            int iLargest = 0;
+            List<int> iLargest = new List<int>();
             double tlarge, largest = 0;
             PathObject sortedItem;
             for (int i = 0; i < sortedGraphic.Count; i++)     // loop through all items
@@ -1531,12 +1593,22 @@ namespace GrblPlotter
 
                 if (sortedItem is ItemPath tmpItemPath)
                 {
-                    tlarge = tmpItemPath.Dimension.dimx + tmpItemPath.Dimension.dimy;
+                    tlarge = Math.Round(tmpItemPath.Dimension.dimx + tmpItemPath.Dimension.dimy);
                     if (tlarge > largest)
                     {
+                        iLargest.Clear();
                         largest = tlarge;
-                        iLargest = i;
-                        if (logEnable) Logger.Trace("    Larger: id:{0}", i);
+                        iLargest.Add(i);
+                        if (logEnable) Logger.Trace("    Larger new: id:{0}  size:{1:0.00}", i, largest);
+                    }
+                    else if (tlarge == largest)
+                    {
+                        if (logEnable) Logger.Trace("    Larger same:id:{0}  size:{1:0.00}", i, largest);
+                        iLargest.Add(i);
+                    }
+                    else
+                    {
+                        if (logEnable) Logger.Trace("    Larger not :id:{0}  size:{1:0.00}", i, largest);
                     }
                 }
             }
@@ -1549,21 +1621,21 @@ namespace GrblPlotter
 
             if (Properties.Settings.Default.importGraphicLargestLast)   // move largest object to the end
             {
-                if (logEnable) Logger.Trace("...SortByDistance move largest object to the end id:{0}", iLargest);
-                graphicToSort.Add(graphicToSort[iLargest]);
-                graphicToSort.RemoveAt(iLargest);
-                //    PathObject tmpp = graphicToSort[graphicToSort.Count - 1];
-                //    graphicToSort[graphicToSort.Count - 1] = graphicToSort[iLargest];
-                //    graphicToSort[iLargest] = tmpp;
+                if (logEnable) Logger.Trace("...SortByDistance move largest objects to the end id:{0}", String.Join("; ", iLargest));
+                for (int i = 0; i < iLargest.Count; i++)
+                    graphicToSort.Add(graphicToSort[iLargest[i]]);
+
+                for (int i = iLargest.Count - 1; i >= 0; i--)
+                    graphicToSort.RemoveAt(iLargest[i]);
             }
 
             if (logEnable) Logger.Trace("...SortByDistance()  finish");
         }
-        private static double PointDistanceSquared(Point a, Point b)	// avoid square-root, to save time
+        private static double PointDistanceSquared(Point a, Point b)    // avoid square-root, to save time
         {
             double dx = a.X - b.X;
             double dy = a.Y - b.Y;
-            return (dx * dx + dy * dy);	// speed up
+            return (dx * dx + dy * dy); // speed up
         }
         private static void CircleDistanceSquared(Point a, ItemPath tmp)
         {
@@ -1576,12 +1648,11 @@ namespace GrblPlotter
             };
 
             double distance = PointDistanceSquared(a, ptmp);
-            //            Logger.Trace("       circle angle:{0:0.00}  radius:{1:0.00}  x:{2:0.00} y:{3:0.00}  distance:{4:0.00}  ", (aLine*180/Math.PI), arcMove.radius, ptmp.X, ptmp.Y, distance);
 
             tmp.Distance = distance;
             tmp.StartAngle = aLine;
         }
-        private static void PathDistanceSquared(Point a, ItemPath tmp)	// go through coordinates of path
+        private static void PathDistanceSquared(Point a, ItemPath tmp)  // go through coordinates of path
         {
             if (tmp.Path.Count < 2)
                 return;
@@ -1596,21 +1667,18 @@ namespace GrblPlotter
                     distance = distTemp;
                     index = i;
                 }
-                //                Logger.Trace("       path a.x:{0:0.00}  a.y:{1:0.00}  distance:{2:0.00}   i:{3}  index:{4}", a.X, a.Y, distTemp, i, index);
             }
             tmp.Distance = distance;
-            tmp.TmpIndex = index;     //tmp.StartAngle = index;
+            tmp.TmpIndex = index;
             if (logSortMerge) Logger.Trace("       path a.x:{0:0.00}  a.y:{1:0.00}  distance:{2:0.00}   i:{3}", a.X, a.Y, distance, index);
         }
         private static Point ToPointF(XyPoint tmp)
         { return new Point((float)tmp.X, (float)tmp.Y); }
 
-        //private static bool HasSameProperties(ItemPath a, ItemPath b)
         private static bool HasSameProperties(ItemPath a, ItemPath b, bool importLineDashPattern)       // 2023-08-16 pull request Speed up merge and sort #348    Improve comparing GroupAttributes
         {
             if (graphicInformation.GroupEnable)
             {
-                //for (int i = 1; i <= 6; i++)    // GroupOptions { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByType = 4, ByTile = 5, ByFill = 6, Label = 7};
                 for (int i = 1; i < a.Info.GroupAttributes.Count; i++)    // GroupOptions { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByType = 4, ByTile = 5};
                 {
                     if (logDetailed) Logger.Trace("  hasSameProperties - GroupEnable-Option:{0} a:'{1}'  b:'{2}'", i, a.Info.GroupAttributes[i], b.Info.GroupAttributes[i]);
@@ -1618,15 +1686,14 @@ namespace GrblPlotter
                         return false;
                 }
             }
+            else
+            {
+                if (a.Info.GroupAttributes[1] != b.Info.GroupAttributes[1])     // 2024-08-11 at least check color
+                    return false;
+            }
 
-            //bool sameDash = true;
             if (importLineDashPattern)
             {
-                //sameDash = false;
-                //if ((a.DashArray.Length == 0) && (b.DashArray.Length == 0))
-                ///    sameDash = true;
-                //else if (a.DashArray == b.DashArray)
-                //    sameDash = true;
                 if ((a.DashArray.Length == 0) && (b.DashArray.Length == 0))
                 {
                     return true;
@@ -1642,15 +1709,9 @@ namespace GrblPlotter
                     }
                 }
             }
-            //return (sameProperties && sameDash);
             return true;
         }
-        /*     private static string ShowArray(double[] tmp)
-             {   string tmps = "";
-                 foreach (double nr in tmp)
-                     tmps += string.Format( "{0:0.00} ", nr);
-                 return tmps;
-             }*/
+
         private static void MergeFigures(List<PathObject> graphicToMerge)
         {
             if (logEnable) Logger.Trace("...MergeFigures before:{0}    ------------------------------------", graphicToMerge.Count);
@@ -1764,15 +1825,6 @@ namespace GrblPlotter
             //            addAtEnd.Info.pathGeometry += ".";// " Merged " + toMerge.Info.id.ToString();
         }
 
-        /*
-                private static void SetDotOnly()
-                {   foreach (PathObject item in completeGraphic)        // replace original list
-                    {   foreach (grblMotion path in item.path)
-                        {   path.lineType = MotionType.dot; }
-                    }           
-                }*/
-
-
         private static void RotatePath(ItemPath item)
         {
             List<GCodeMotion> rotatedPath = new List<GCodeMotion>();
@@ -1822,11 +1874,10 @@ namespace GrblPlotter
             }
             else
             {
-                //                if ((item.StartAngle == 0) || (iStart >= item.path.Count))           // nothing to rotate
                 if ((item.TmpIndex == 0) || (iStart >= item.Path.Count))           // nothing to rotate
                     return;
 
-                tmpMove = new GCodeLine(item.Start);     	// 
+                tmpMove = new GCodeLine(item.Start);        // 
                 rotatedPath.Add(tmpMove);
 
                 for (i = iStart + 1; i < item.Path.Count; i++)
@@ -1835,7 +1886,6 @@ namespace GrblPlotter
                 { rotatedPath.Add(item.Path[i]); }
             }
 
-            //item.StartAngle = 0;
             item.TmpIndex = 0;
 
             /* replace original path */
@@ -1884,7 +1934,6 @@ namespace GrblPlotter
                 {
                     double cx = item.Path[i].MoveTo.X + ((GCodeArc)item.Path[i + 1]).CenterIJ.X;       // arc is a bit more work
                     double cy = item.Path[i].MoveTo.Y + ((GCodeArc)item.Path[i + 1]).CenterIJ.Y;
-                    //       Point center = new Point(cx, cy);
                     double newi = cx - item.Path[i + 1].MoveTo.X;
                     double newj = cy - item.Path[i + 1].MoveTo.Y;
                     tmpMove = new GCodeArc(item.Path[i].MoveTo, new Point(newi, newj), !((GCodeArc)item.Path[i + 1]).IsCW, item.Path[i + 1].Depth);
@@ -1895,18 +1944,17 @@ namespace GrblPlotter
             foreach (GCodeMotion ent in reversedPath)
                 item.Path.Add(ent);
 
-            if (!item.IsReversed)				// indicatior if Start/End was already switched (in SortCode()
+            if (!item.IsReversed)               // indicatior if Start/End was already switched (in SortCode()
             {
                 Point tmp = item.End;       // if not, do now
                 item.End = item.Start;
                 item.Start = tmp;
             }
-            item.IsReversed = false;			// reset indicator
+            item.IsReversed = false;            // reset indicator
         }
 
-        public static void AlignLines(int align)	// apply offset to figures with same AuxInfo
+        public static void AlignLines(int align)    // apply offset to figures with same AuxInfo
         {
-            //        Logger.Info("AlignLines  gcnt:{0}", completeGraphic.Count);
             if (completeGraphic.Count > 0)
             {
                 Dictionary<int, Dimensions> lineDim = new Dictionary<int, Dimensions>();
@@ -1919,12 +1967,10 @@ namespace GrblPlotter
                     if (lineDim.ContainsKey(item.Info.AuxInfo))
                     {
                         lineDim[item.Info.AuxInfo].AddDimensionXY(item.Dimension);
-                        //                    Logger.Info("AlignLines      line:{0} x:{1}", item.Info.AuxInfo, lineDim[item.Info.AuxInfo].dimx);
                     }
                     else
                     {
                         lineDim.Add(item.Info.AuxInfo, new Dimensions(item.Dimension));
-                        //                    Logger.Info("AlignLines  new line:{0} cnt:{1}  x:{2}", item.Info.AuxInfo, cnt, item.Dimension.dimx);
                     }
                     cnt++;
                 }
@@ -1935,7 +1981,6 @@ namespace GrblPlotter
                     else
                         offsetX = (actualDimension.dimx - pair.Value.dimx);     // right
                     lineOffset.Add(pair.Key, offsetX);
-                    //                Logger.Info("AlignLines  line:{0}  offset:{1:0.000}", pair.Key, offsetX);
                 }
 
                 foreach (PathObject item in completeGraphic)            // apply offsets
@@ -1945,7 +1990,6 @@ namespace GrblPlotter
                     item.End = new Point(item.End.X + offsetX, item.End.Y + offsetY);
                     if (item is ItemPath PathData)
                     {
-                        //ItemPath PathData = (ItemPath)item;
                         foreach (GCodeMotion entity in PathData.Path)
                         { entity.MoveTo = new Point(entity.MoveTo.X + offsetX, entity.MoveTo.Y + offsetY); }
                         PathData.Dimension.OffsetXY(offsetX, offsetY);

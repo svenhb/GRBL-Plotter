@@ -59,6 +59,8 @@
  * 2024-04-13 l:1815 f:SetHeaderInfo add output of path length and new format for process time
  * 2024-05-06 l:1817 f:GetHeader avoid timespan overflow
  * 2024-05-07 l:643 f:Setup check GcodeSummary.MetadataUse  instead of Properties.Settings.Default.importSVGMetaData)
+ * 2024-05-28 l:699 f:Setup gcodeAngleStep set min to 0.01
+ * 2024-07-08 l:2004 f:IntermediateZ - Z-Up at least on final pass
 */
 
 using System;
@@ -506,7 +508,8 @@ namespace GrblPlotter
 
         private static int gcodeLines = 0;              // counter for GCode lines
         private static int gcodeFigureLines = 0;        // counter for GCode lines
-        internal static double gcodeDistance = 0;         // counter for GCode move distance
+        internal static double gcodeDistancePD = 0;         // counter for GCode move distance
+        internal static double gcodeDistancePU = 0;         // counter for GCode move distance
         private static float gcodeFigureDistance = 0;   // counter for GCode move distance
 
         private static int gcodeSubroutineEnable = 0;   // state subroutine
@@ -561,7 +564,7 @@ namespace GrblPlotter
         private static bool gcodeCompress = false;      // reduce code by avoiding sending again same G-Nr and unchanged coordinates
         public static bool GcodeRelative { get; set; } //= false;       // calculate relative coordinates for G91
         private static bool gcodeNoArcs = false;        // replace arcs by line segments
-        private static float gcodeAngleStep = 0.1f;
+        private static double gcodeAngleStep = 0.1;
         private static bool gcodeInsertSubroutineEnable = false;
         private static bool gcodeInsertSubroutinePenUpDown = false;
         private static int gcodeSubroutineCount = 0;
@@ -695,7 +698,7 @@ namespace GrblPlotter
             GcodeRelative = (convertGraphics && Properties.Settings.Default.importGCRelative || auxIsRelative);
 
             gcodeNoArcs = convertGraphics && Properties.Settings.Default.importGCNoArcs;
-            gcodeAngleStep = (float)Properties.Settings.Default.importGCSegment;
+            gcodeAngleStep = Math.Max((double)Properties.Settings.Default.importGCSegment, 0.01);
 
             gcodeInsertSubroutineEnable = convertGraphics && Properties.Settings.Default.importGCSubEnable;
             gcodeInsertSubroutinePenUpDown = convertGraphics && Properties.Settings.Default.importGCSubPenUpDown;
@@ -704,7 +707,8 @@ namespace GrblPlotter
             LastMovewasG0 = true;
 
             gcodeLines = 1;             // counter for GCode lines
-            gcodeDistance = 0;          // counter for GCode move distance
+            gcodeDistancePD = 0;          // counter for GCode move distance
+            gcodeDistancePU = 0;          // counter for GCode move distance
             remainingC = (float)Properties.Settings.Default.importGCLineSegmentLength;
 
             gcodeLineSegmentationEnable = false;
@@ -973,6 +977,7 @@ namespace GrblPlotter
 
         public static void JobStart(StringBuilder gcodeValue, string cmto)
         {
+            bool penup = false;
             if (gcodeValue != null)
             {
                 string cmt = cmto;
@@ -1001,6 +1006,7 @@ namespace GrblPlotter
                 else
                 {
                     PenUp(gcodeValue, "PU");
+                    penup = true;
                 }
 
                 if (GcodeZApply || gcodeSpindleToggle)
@@ -1008,8 +1014,9 @@ namespace GrblPlotter
                     if (gcodeUseLasermode)  // in jobStart
                     {
                         if (gcodeComments) cmt = " (" + cmto + " lasermode )";
-                        else cmt = "";
-                        gcodeValue.AppendFormat("M{0} S{1}{2}\r\n", GcodeSpindleCmd, 0, cmt); // switch on laser with power=0
+                        else cmt = "(JobStart)";
+                        if (!penup)
+                            gcodeValue.AppendFormat("M{0} S{1}{2}\r\n", GcodeSpindleCmd, 0, cmt); // switch on laser with power=0
                     }
                     else
                     {
@@ -1555,7 +1562,9 @@ namespace GrblPlotter
             XyPoint p2 = new XyPoint(pos2.X, pos2.Y);
             p1.Round(); p2.Round();
             arcMove = GcodeMath.GetArcMoveProperties(p1, p2, i1, j2, (gnr == 2)); // 2020-04-14 add round()
-            double step = Math.Asin(gcodeAngleStep / arcMove.radius);     // in RAD
+            double step = Math.Abs(Math.Asin(gcodeAngleStep / arcMove.radius));     // in RAD
+			if (step <= 0) 
+				step = 0.1;
             if (step > Math.Abs(arcMove.angleDiff))
                 step = Math.Abs(arcMove.angleDiff / 2);
 
@@ -1735,7 +1744,7 @@ namespace GrblPlotter
         {
             Logger.Trace("SetHeaderInfo title:{0} distance:{1} feed:{2} lines:{3} downUp:{4}", title, distance, feed, lines, downUp);
             docTitle = title;
-            gcodeDistance = distance;
+            gcodeDistancePD = distance;
             GcodeXYFeed = feed;
             gcodeLines = lines;
             gcodeDownUp = downUp;
@@ -1743,7 +1752,7 @@ namespace GrblPlotter
         }
         public static string GetHeader(string cmt, string source)
         {
-            gcodeTime += gcodeDistance / GcodeXYFeed;
+            gcodeTime += gcodeDistancePD / GcodeXYFeed;
             string header = string.Format("( {0} by GRBL-Plotter {1} )\r\n", cmt, MyApplication.GetVersion());
             string header_end = headerData.ToString();
             header_end += string.Format("({0} >)\r\n", XmlMarker.HeaderEnd);
@@ -1812,30 +1821,31 @@ namespace GrblPlotter
                 Logger.Info("◆◆  Header: G-Code repetitions:{0}", Properties.Settings.Default.importRepeatCnt);
             }
 
-            header += string.Format("( G-Code lines: {0} )\r\n", gcodeLines);
+            header += string.Format("( G-Code lines      : {0} )\r\n", gcodeLines);
             Logger.Info("◆◆  Header: G-Code lines:{0}", gcodeLines);
 
-            header += string.Format("( Pen Down/Up : {0} times )\r\n", gcodeDownUp);
-            header += string.Format("( Path length : {0:0.0} mm )\r\n", gcodeDistance);
+            header += string.Format("( Pen Down/Up PD/PU : {0} times )\r\n", gcodeDownUp);
+            header += string.Format("( Path length (PD)  : {0:0.0} mm )\r\n", gcodeDistancePD);
+            header += string.Format("( Path length (PU)  : {0:0.0} mm )\r\n", gcodeDistancePU);
 
             try
             {
                 TimeSpan t = TimeSpan.FromSeconds(gcodeTime * 60);
-                header += string.Format("( Duration ca.: {0:D2}:{1:D2}:{2:D2} h:m:s )\r\n", t.Hours, t.Minutes, t.Seconds);
+                header += string.Format("( Duration ca.      : {0:D2}:{1:D2}:{2:D2} h:m:s )\r\n", t.Hours, t.Minutes, t.Seconds);
             }
             catch (Exception err)
             {
-                header += string.Format("( Duration ca.: {0:0.0} min. )\r\n", gcodeTime);
+                header += string.Format("( Duration ca.      : {0:0.0} min. )\r\n", gcodeTime);
             }
 
             if (gcodeSubroutineCount > 0)
             {
-                header += string.Format("( Call to subs.: {0} )\r\n", gcodeSubroutineCount);
+                header += string.Format("( Call to subs.     : {0} )\r\n", gcodeSubroutineCount);
                 Logger.Info("◆◆  Header: Subroutine calls:{0}", gcodeSubroutineCount);
             }
 
             stopwatch.Stop();
-            header += string.Format("( Conv. time  : {0} )\r\n", stopwatch.Elapsed);
+            header += string.Format("( Conv. time        : {0} )\r\n", stopwatch.Elapsed);
 
             if (Properties.Settings.Default.importGCToolTableUse)
             {
@@ -1923,7 +1933,7 @@ namespace GrblPlotter
 
                 gcodeTime += gcodeFigureTime;
                 gcodeLines += gcodeFigureLines + 3;
-                gcodeDistance += gcodeFigureDistance;
+                gcodeDistancePD += gcodeFigureDistance;
             }
             figureString.Clear();
         }
@@ -1994,7 +2004,7 @@ namespace GrblPlotter
                     gcodeLines++;
                 }
 
-                if (!gcodeZNoUp)
+                if (!gcodeZNoUp || (zStep <= finalZ))	// Z-Up at least on final pass
                 {
                     if (gcodeUseLasermode) SpindleOff(gcodeString, "lasermode");                        // send S0
                     gcodeString.AppendFormat("G{0} Z{1} {2}\r\n", FrmtCode(0), FrmtNum(GcodeZUp), "");  // Router up
@@ -2006,7 +2016,7 @@ namespace GrblPlotter
 
                 gcodeTime += gcodeFigureTime;
                 gcodeLines += gcodeFigureLines + 3;
-                gcodeDistance += gcodeFigureDistance;
+                gcodeDistancePD += gcodeFigureDistance;
             }
             figureString.Clear();
         }

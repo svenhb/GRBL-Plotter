@@ -56,7 +56,7 @@ namespace GrblPlotter
         /// <summary>
         /// General information about imported graphic
         /// </summary>		
-        public enum SourceType { none, DXF, SVG, HPGL, CSV, Drill, Gerber, Text, Barcode };
+        public enum SourceType { none, DXF, SVG, HPGL, CSV, Drill, Gerber, Text, Barcode, Wire, PDNJson };
         public enum GroupOption { none = 0, ByColor = 1, ByWidth = 2, ByLayer = 3, ByType = 4, ByTile = 5, ByFill = 6, Label = 7 };
         public enum SortOption { none = 0, ByProperty = 1, ByToolNr = 2, ByCodeSize = 3, ByGraphicDimension = 4 };
         public enum CreationOption { none = 0, AddPause = 1, AddPauseBeforePath = 2 };
@@ -80,6 +80,7 @@ namespace GrblPlotter
             public bool ApplyHatchFill { get; set; }		// Format related SVG
 
             public bool OptionCodeOffset { get; set; }		// General options, Graphics import general
+            public bool OptionCodeOffsetRemoveLargest { get; set; }		// General options, Graphics import general
             public bool OptionCodeSortDistance { get; set; }
             public bool OptionCodeSortDimension { get; set; }
             public bool ConvertArcToLine { get; set; }
@@ -152,6 +153,7 @@ namespace GrblPlotter
                 }
                 PauseBeforePath = Properties.Settings.Default.importPauseElement;
                 OptionCodeOffset = Properties.Settings.Default.importGraphicOffsetOrigin;
+                OptionCodeOffsetRemoveLargest = Properties.Settings.Default.importGraphicOffsetLargestRemove;
                 OptionCodeSortDistance = Properties.Settings.Default.importGraphicSortDistance;
                 OptionCodeSortDimension = Properties.Settings.Default.importGraphicSortDimension;
                 OptionFeedFromToolTable = Properties.Settings.Default.importGCToolTableUse;
@@ -172,6 +174,7 @@ namespace GrblPlotter
                 OptionCodeSortDistance = false;
                 OptionCodeSortDimension = false;
                 OptionCodeOffset = false;
+                OptionCodeOffsetRemoveLargest = false;
                 ApplyHatchFill = false;
                 OptionHatchFill = false;
                 OptionNoise = false;
@@ -221,6 +224,7 @@ namespace GrblPlotter
                 if (OptionZFromRadius) importOptions += "<Dot depth from circle radius> ";
                 if (Properties.Settings.Default.importGraphicAddFrameEnable) importOptions += "<Add frame> ";
                 if (OptionCodeOffset) importOptions += "<Remove offset> ";
+                if (OptionCodeOffset && OptionCodeOffsetRemoveLargest) importOptions += "<REMOVE LARGEST> ";
                 if (Properties.Settings.Default.importGraphicMultiplyGraphicsEnable) importOptions += "<Multiply> ";
                 if (OptionCodeSortDistance) importOptions += "<Sort objects> ";
                 if (ApplyHatchFill) importOptions += "<SVG fill> ";
@@ -650,6 +654,22 @@ namespace GrblPlotter
                         Add(old.MoveTo, old.Depth, old.Angle);
                     else
                         AddArc(((GCodeArc)old).MoveTo, ((GCodeArc)old).CenterIJ, ((GCodeArc)old).IsCW, 0, ((GCodeArc)old).AngleStart, ((GCodeArc)old).Angle);
+                }
+            }
+            public void AddMotion(GCodeMotion old, double offsetX, double offsetY)
+            {
+                if (old != null)
+                {
+                    if (old is GCodeLine)
+                    {
+                        Point newStart = new Point(old.MoveTo.X + offsetX, old.MoveTo.Y + offsetY);
+                        Add(newStart, old.Depth, old.Angle);
+                    }
+                    else
+                    {
+                        Point newStart = new Point(((GCodeArc)old).MoveTo.X + offsetX, ((GCodeArc)old).MoveTo.Y + offsetY);
+                        AddArc(newStart, ((GCodeArc)old).CenterIJ, ((GCodeArc)old).IsCW, old.Depth, ((GCodeArc)old).AngleStart, ((GCodeArc)old).Angle);
+                    }
                 }
             }
 
