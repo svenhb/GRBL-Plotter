@@ -1,4 +1,4 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GrblPlotter.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
@@ -222,6 +222,9 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="counterImportImage" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="counterImportPDNJson" Type="System.UInt32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="counterImportShape" Type="System.UInt32" Scope="User">
@@ -1001,6 +1004,9 @@
     <Setting Name="guiSpindleSpeed" Type="System.String" Scope="User">
       <Value Profile="(Default)">1000</Value>
     </Setting>
+    <Setting Name="guiToolSelection" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
     <Setting Name="heightMapDeltaX" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">50</Value>
     </Setting>
@@ -1338,7 +1344,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="importGCSegment" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">0.5</Value>
     </Setting>
     <Setting Name="importGCSpindleCmd" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -1380,6 +1386,12 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGCTangentialRange" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importGCTangentialShortening" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importGCTangentialShorteningEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importGCTangentialTurn" Type="System.Decimal" Scope="User">
@@ -1598,6 +1610,12 @@
     <Setting Name="importGraphicHatchFillNoise" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importGraphicHatchFillOffset" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.3</Value>
+    </Setting>
+    <Setting Name="importGraphicHatchFillOffsetInc" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="importGraphicLargestLast" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -1637,6 +1655,12 @@
     <Setting Name="importGraphicNoiseEnable" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importGraphicOffsetLargestLast" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGraphicOffsetLargestRemove" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="importGraphicOffsetOrigin" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -1654,6 +1678,9 @@
     </Setting>
     <Setting Name="importGraphicSortDistanceAllowRotate" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importGraphicSortDistanceStart" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="importGraphicTileAddOnX" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -1787,6 +1814,15 @@
     <Setting Name="importPausePenDown" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="importPDNDpi" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">96</Value>
+    </Setting>
+    <Setting Name="importPDNLayerVisible" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importPDNSmoothCycles" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
     <Setting Name="importPWMFromWidth" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -1854,6 +1890,9 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importSVGPathExtend" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importSVGPathNewFigure" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="importSVGRezise" Type="System.Boolean" Scope="User">
@@ -1961,6 +2000,9 @@
     <Setting Name="locationTextForm" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">-30, 0</Value>
     </Setting>
+    <Setting Name="locationWireCutterForm" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
     <Setting Name="machineLimitsAlarm" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -1987,6 +2029,27 @@
     </Setting>
     <Setting Name="machineLimitsShow" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="mainFormMovoToX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="mainFormMovoToY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="mainFormMovoToZ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="mainFormSetCoordA" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="mainFormSetCoordX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="mainFormSetCoordY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="mainFormSetCoordZ" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="mainFormSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">900, 680</Value>
@@ -2387,14 +2450,29 @@
     <Setting Name="useCaseLastLoaded" Type="System.String" Scope="User">
       <Value Profile="(Default)">?</Value>
     </Setting>
-    <Setting Name="importGCTangentialShorteningEnable" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+    <Setting Name="wirecutterArrayX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">3</Value>
     </Setting>
-    <Setting Name="importGCTangentialShortening" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">1</Value>
+    <Setting Name="wirecutterArrayY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">3</Value>
     </Setting>
-    <Setting Name="guiToolSelection" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+    <Setting Name="wirecutterGapX" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="wirecutterGapY" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="wirecutterRingDiameterIn" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="wirecutterRingDiameterOut" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="wirecutterRingSections" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="wirecutterToolDiameter" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2</Value>
     </Setting>
   </Settings>
 </SettingsFile>
