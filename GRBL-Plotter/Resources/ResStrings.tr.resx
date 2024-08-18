@@ -723,4 +723,7 @@ Olası geçici çözüm: nesneyi yola dönüştürmeyi deneyin.</value>
   <data name="textNewFontException" xml:space="preserve">
     <value>GRBL-Plotter çalışırken yüklenen bir yazı tipini seçmeye çalıştıysanız lütfen GRBL-Plotter'ı yeniden başlatın ve tekrar deneyin!</value>
   </data>
+  <data name="loadMessageReload" xml:space="preserve">
+    <value>Tekrar yükle</value>
+  </data>
 </root>

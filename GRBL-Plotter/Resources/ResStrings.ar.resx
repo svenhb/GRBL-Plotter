@@ -711,4 +711,7 @@
   <data name="textNewFontException" xml:space="preserve">
     <value>إذا حاولت تحديد خط تم تثبيته أثناء تشغيل GRBL-Plotter، فيرجى إعادة تشغيل GRBL-Plotter والمحاولة مرة أخرى!</value>
   </data>
+  <data name="loadMessageReload" xml:space="preserve">
+    <value>إعادة تحميل</value>
+  </data>
 </root>

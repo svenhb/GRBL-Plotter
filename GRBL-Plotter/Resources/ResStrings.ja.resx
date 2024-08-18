@@ -711,4 +711,7 @@ https://librecad.readthedocs.io/en/latest/ref/widgets.html#widget-layerlistを�
   <data name="textNewFontException" xml:space="preserve">
     <value>GRBL-Plotter の実行中にインストールされたフォントを選択しようとした場合は、GRBL-Plotter を再起動してもう一度お試しください。</value>
   </data>
+  <data name="loadMessageReload" xml:space="preserve">
+    <value>リロード</value>
+  </data>
 </root>

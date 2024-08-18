@@ -726,4 +726,7 @@ Possible workaround: try to convert object to path.</value>
   <data name="textNewFontException" xml:space="preserve">
     <value>If you tried to select a font that was installed while GRBL-Plotter was running, please restart GRBL-Plotter and try again!</value>
   </data>
+  <data name="loadMessageReload" xml:space="preserve">
+    <value>Reload File</value>
+  </data>
 </root>

@@ -1015,6 +1015,15 @@ namespace GrblPlotter.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Reload File ähnelt.
+        /// </summary>
+        public static string loadMessageReload {
+            get {
+                return ResourceManager.GetString("loadMessageReload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Load G-Code option: Replaces laser mode command M3 by M4 ähnelt.
         /// </summary>
         public static string loadMessageReplaceM34 {

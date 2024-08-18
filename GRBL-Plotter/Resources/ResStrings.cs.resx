@@ -711,4 +711,7 @@ Možné řešení: zkuste převést objekt na cestu.</value>
   <data name="textNewFontException" xml:space="preserve">
     <value>Pokud jste se pokusili vybrat písmo, které bylo nainstalováno, když byl GRBL-Plotter spuštěn, restartujte GRBL-Plotter a zkuste to znovu!</value>
   </data>
+  <data name="loadMessageReload" xml:space="preserve">
+    <value>Znovu načíst</value>
+  </data>
 </root>

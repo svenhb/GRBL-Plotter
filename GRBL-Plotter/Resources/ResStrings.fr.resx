@@ -705,4 +705,7 @@ Solution de contournement possible : essayez de convertir l'objet en chemin.</v
   <data name="textNewFontException" xml:space="preserve">
     <value>Si vous avez essayé de sélectionner une police installée pendant l'exécution de GRBL-Plotter, veuillez redémarrer GRBL-Plotter et réessayer !</value>
   </data>
+  <data name="loadMessageReload" xml:space="preserve">
+    <value>Recharger</value>
+  </data>
 </root>

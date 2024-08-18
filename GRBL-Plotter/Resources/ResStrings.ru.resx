@@ -711,4 +711,7 @@
   <data name="textNewFontException" xml:space="preserve">
     <value>Если вы попытались выбрать шрифт, который был установлен во время работы GRBL-Plotter, перезапустите GRBL-Plotter и повторите попытку!</value>
   </data>
+  <data name="loadMessageReload" xml:space="preserve">
+    <value>Перезагрузить</value>
+  </data>
 </root>

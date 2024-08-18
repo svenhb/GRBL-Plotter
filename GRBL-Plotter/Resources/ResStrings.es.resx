@@ -711,4 +711,7 @@ Posible solución alternativa: intente convertir el objeto en ruta.</value>
   <data name="textNewFontException" xml:space="preserve">
     <value>Si intentó seleccionar una fuente que se instaló mientras se ejecutaba GRBL-Plotter, reinicie GRBL-Plotter e inténtelo nuevamente.</value>
   </data>
+  <data name="loadMessageReload" xml:space="preserve">
+    <value>Recargar</value>
+  </data>
 </root>

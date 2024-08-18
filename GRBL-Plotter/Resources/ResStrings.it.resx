@@ -715,4 +715,7 @@ Possibile soluzione: provare a convertire l'oggetto in percorso.</value>
   <data name="textNewFontException" xml:space="preserve">
     <value>Se hai provato a selezionare un carattere installato mentre GRBL-Plotter era in esecuzione, riavvia GRBL-Plotter e riprova!</value>
   </data>
+  <data name="loadMessageReload" xml:space="preserve">
+    <value>Ricaricare</value>
+  </data>
 </root>
