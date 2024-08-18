@@ -1169,4 +1169,47 @@ Cambiar la configuración de importación después de la primera importación pu
   <data name="processAutomationToolStripMenuItem.Text" xml:space="preserve">
     <value>Automatización de procesos</value>
   </data>
+  <data name="wireCutterToolStripMenuItem.Text" xml:space="preserve">
+    <value>cortador de alambre caliente</value>
+  </data>
+  <data name="BtnJogAbsZ.Text" xml:space="preserve">
+    <value>Convidar a</value>
+  </data>
+  <data name="BtnJogAbsY.Text" xml:space="preserve">
+    <value>Convidar a</value>
+  </data>
+  <data name="BtnJogAbsX.Text" xml:space="preserve">
+    <value>Convidar a</value>
+  </data>
+  <data name="Gb_Jogging.Text" xml:space="preserve">
+    <value>Control/Jogging: haga clic para expandir</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="applyLastTransformToolStripMenuItem.Text" xml:space="preserve">
+    <value>Aplicar la última transformación</value>
+  </data>
+  <data name="cmsPicBoxReloadFile2.Text" xml:space="preserve">
+    <value>Recargar archivo 2</value>
+  </data>
+  <data name="cmsPicBoxClearWorkspace.Text" xml:space="preserve">
+    <value>Limpiar el espacio de trabajo</value>
+  </data>
+  <data name="convertToPolarCoordinatesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Convertir a coordenadas polares</value>
+  </data>
+  <data name="CbMist.ToolTip" xml:space="preserve">
+    <value>Configure 'M7', borre 'M9'</value>
+  </data>
+  <data name="CbSpindle.ToolTip" xml:space="preserve">
+    <value>Configure 'M3' o 'M4', borre 'M5'</value>
+  </data>
+  <data name="CbCoolant.ToolTip" xml:space="preserve">
+    <value>Configure 'M8', borre 'M9'</value>
+  </data>
+  <data name="gBoxDROSetCoord.Text" xml:space="preserve">
+    <value>Establecer sistema de coordenadas</value>
+  </data>
+  <data name="gBoxDRO.Text" xml:space="preserve">
+    <value>Coordenadas (Trabajo/Máquina)</value>
+  </data>
 </root>

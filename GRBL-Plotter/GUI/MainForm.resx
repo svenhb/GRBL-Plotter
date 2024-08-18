@@ -133,7 +133,7 @@
     <value>1</value>
   </data>
   <data name="fCTBCode.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
-    <value>191, 12</value>
+    <value>214, 12</value>
   </data>
   <metadata name="cmsFCTB.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>123, 56</value>
@@ -2590,948 +2590,6 @@ Right click to choose start line number</value>
   <data name="tLPRechtsUntenRechts.ColumnCount" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="gB_Jogging.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
-    <value>GrowAndShrink</value>
-  </data>
-  <data name="btnJogStop.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnJogStop.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 30</value>
-  </data>
-  <data name="btnJogStop.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 41</value>
-  </data>
-  <data name="btnJogStop.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
-  </data>
-  <data name="btnJogStop.Text" xml:space="preserve">
-    <value>STOP Jogging</value>
-  </data>
-  <data name="btnJogStop.ToolTip" xml:space="preserve">
-    <value>Stop current jogging motion</value>
-  </data>
-  <data name="&gt;&gt;btnJogStop.Name" xml:space="preserve">
-    <value>btnJogStop</value>
-  </data>
-  <data name="&gt;&gt;btnJogStop.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnJogStop.Parent" xml:space="preserve">
-    <value>gB_Jogging</value>
-  </data>
-  <data name="&gt;&gt;btnJogStop.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="btnJogZeroA.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnJogZeroA.Location" type="System.Drawing.Point, System.Drawing">
-    <value>86, 35</value>
-  </data>
-  <data name="btnJogZeroA.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 20</value>
-  </data>
-  <data name="btnJogZeroA.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="btnJogZeroA.Text" xml:space="preserve">
-    <value>A=0</value>
-  </data>
-  <data name="btnJogZeroA.ToolTip" xml:space="preserve">
-    <value>Send G90 G0 A(or B,C)0</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroA.Name" xml:space="preserve">
-    <value>btnJogZeroA</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroA.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroA.Parent" xml:space="preserve">
-    <value>gB_Jog0</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroA.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="btnJogZeroX.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnJogZeroX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 14</value>
-  </data>
-  <data name="btnJogZeroX.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 20</value>
-  </data>
-  <data name="btnJogZeroX.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="btnJogZeroX.Text" xml:space="preserve">
-    <value>X=0</value>
-  </data>
-  <data name="btnJogZeroX.ToolTip" xml:space="preserve">
-    <value>Send G90 G0 X0</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroX.Name" xml:space="preserve">
-    <value>btnJogZeroX</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroX.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroX.Parent" xml:space="preserve">
-    <value>gB_Jog0</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroX.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="btnJogZeroXY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnJogZeroXY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 35</value>
-  </data>
-  <data name="btnJogZeroXY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 20</value>
-  </data>
-  <data name="btnJogZeroXY.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="btnJogZeroXY.Text" xml:space="preserve">
-    <value>Move XY=0</value>
-  </data>
-  <data name="btnJogZeroXY.ToolTip" xml:space="preserve">
-    <value>Send G90 G0 X0 Y0</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroXY.Name" xml:space="preserve">
-    <value>btnJogZeroXY</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroXY.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroXY.Parent" xml:space="preserve">
-    <value>gB_Jog0</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroXY.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="btnJogZeroY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnJogZeroY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>45, 14</value>
-  </data>
-  <data name="btnJogZeroY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 20</value>
-  </data>
-  <data name="btnJogZeroY.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="btnJogZeroY.Text" xml:space="preserve">
-    <value>Y=0</value>
-  </data>
-  <data name="btnJogZeroY.ToolTip" xml:space="preserve">
-    <value>Send G90 G0 Y0</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroY.Name" xml:space="preserve">
-    <value>btnJogZeroY</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroY.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroY.Parent" xml:space="preserve">
-    <value>gB_Jog0</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroY.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="btnJogZeroZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnJogZeroZ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>86, 14</value>
-  </data>
-  <data name="btnJogZeroZ.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 20</value>
-  </data>
-  <data name="btnJogZeroZ.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="btnJogZeroZ.Text" xml:space="preserve">
-    <value>Z=0</value>
-  </data>
-  <data name="btnJogZeroZ.ToolTip" xml:space="preserve">
-    <value>Send G90 G0 Z0</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroZ.Name" xml:space="preserve">
-    <value>btnJogZeroZ</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroZ.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroZ.Parent" xml:space="preserve">
-    <value>gB_Jog0</value>
-  </data>
-  <data name="&gt;&gt;btnJogZeroZ.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="cBMoveG0.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cBMoveG0.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBMoveG0.Location" type="System.Drawing.Point, System.Drawing">
-    <value>58, 0</value>
-  </data>
-  <data name="cBMoveG0.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 17</value>
-  </data>
-  <data name="cBMoveG0.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="cBMoveG0.Text" xml:space="preserve">
-    <value>use G0</value>
-  </data>
-  <data name="cBMoveG0.ToolTip" xml:space="preserve">
-    <value>Use G0 rappid move command - STOP jogging will not work</value>
-  </data>
-  <data name="&gt;&gt;cBMoveG0.Name" xml:space="preserve">
-    <value>cBMoveG0</value>
-  </data>
-  <data name="&gt;&gt;cBMoveG0.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBMoveG0.Parent" xml:space="preserve">
-    <value>gB_Jog0</value>
-  </data>
-  <data name="&gt;&gt;cBMoveG0.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="gB_Jog0.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 16</value>
-  </data>
-  <data name="gB_Jog0.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 54</value>
-  </data>
-  <data name="gB_Jog0.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
-  </data>
-  <data name="gB_Jog0.Text" xml:space="preserve">
-    <value>Move to</value>
-  </data>
-  <data name="&gt;&gt;gB_Jog0.Name" xml:space="preserve">
-    <value>gB_Jog0</value>
-  </data>
-  <data name="&gt;&gt;gB_Jog0.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gB_Jog0.Parent" xml:space="preserve">
-    <value>gB_Jogging</value>
-  </data>
-  <data name="&gt;&gt;gB_Jog0.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="gB_Jogging.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="gB_Jogging.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 120</value>
-  </data>
-  <data name="gB_Jogging.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 0, 3, 0</value>
-  </data>
-  <data name="gB_Jogging.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 0, 3, 0</value>
-  </data>
-  <data name="gB_Jogging.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 75</value>
-  </data>
-  <data name="gB_Jogging.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="gB_Jogging.Text" xml:space="preserve">
-    <value>Control / Jogging</value>
-  </data>
-  <data name="&gt;&gt;gB_Jogging.Name" xml:space="preserve">
-    <value>gB_Jogging</value>
-  </data>
-  <data name="&gt;&gt;gB_Jogging.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;gB_Jogging.Parent" xml:space="preserve">
-    <value>tLPRechtsUntenRechts</value>
-  </data>
-  <data name="&gt;&gt;gB_Jogging.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tLPRechtsUntenRechtsMitte.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="tLPRechtsUntenRechtsMitte.ColumnCount" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="virtualJoystickA.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAB4AAABoCAYAAADmS0B+AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHUSURBVGhD7Zm9bcMwEEa1QcpUAVy5CeAmVSq3miFAUmaA
-        gK0HCcAx0nOBDMFNmO+o6ExBrGzqY6Ez8CDx+PN4NERQ9oBP6sSQUuKi4uingguoiEMacR8qHW4hOIw9
-        wlHEVFxWBkxCrh7XcoBbcRhXEslJ/cdUnAPI1EE2C1uI55XMILk5rmKPWclVZrVY9mKQW3CzEGOVY8o9
-        WDZmYGIaKu6EzOKFykIc/AEbByriAQ/8I3audYdWqDj6hzS6YxZPEzhiAzlVO7VAxVKIQcQnCI8o08W4
-        InuJuVDv1IKFmImJaai4E5LxJxUVR/+UCy7UG7ZGxdOZ64znuN6wNSrOgXjGmett1WgLVHw9c9UbtkbF
-        tcotMTENFXdCMv6mshAH/4ENpN6wNSqO/hlnri++WAox7E3MxMQ0VNwJyfiXylUcL3hDfMcb4lQR/Wuu
-        dGHdqQUqDv6Sn2Hvf3LFdAaTWL3jvajY++lLn8UZrIIryw1Rcbm00b+nUc9g9Y73ouIyGAO2z6K8BVUx
-        AxPTMDENE9MwMQ0T01BxJyTj9aF7S0xMw8Q0dizuhGRc/7FzK0xMw8Q0dizuhGRc/4N5K0xMw8Q0dizu
-        hGTMxcQ0TExjx2I+Q/oDou2EzHbXC9AAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="virtualJoystickA.Location" type="System.Drawing.Point, System.Drawing">
-    <value>163, 3</value>
-  </data>
-  <data name="virtualJoystickA.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>400, 400</value>
-  </data>
-  <data name="virtualJoystickA.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>25, 100</value>
-  </data>
-  <data name="virtualJoystickA.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 104</value>
-  </data>
-  <data name="virtualJoystickA.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
-  </data>
-  <data name="virtualJoystickA.ToolTip" xml:space="preserve">
-    <value>Jog 4th axis</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickA.Name" xml:space="preserve">
-    <value>virtualJoystickA</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickA.Type" xml:space="preserve">
-    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.3.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickA.Parent" xml:space="preserve">
-    <value>tLPRechtsUntenRechtsMitte</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickA.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="virtualJoystickXY.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAGgAAABoCAYAAAAdHLWhAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAdDSURBVHhe7doxjlxVEIXh2QEhERKREyQSIiLSWQMShF4A
-        6pSFWOplkPcGWETvpKnq89qcKX64Lp4Hrp8v0idPzz2eenUuPfJI8xT/3ZapPd1ut2VGLy7oetYnTpd4
-        fX26PcfHl/IXln/n/KxeHx2fo9/8/GnrO/+8fy4+fn8HcZ4fB724nOJFfKFrfhxfKP88x5+PIcsO2//w
-        2fXzo9PtMu5vgvw4ur9n4h4ef+/FBT2+0Cm+wONi1gV9PPkuya4f7477u2l7Q+Tr+xskzv271osLyrfh
-        4wu8+HZnf2H5d+6XExfwuITHt7X376ZQLyxlNvz5iWUu64Imty5ocuuCJte6oC28fCTUcbVl+bBS7rvl
-        I3j1C7qcv45/DsbH16/jh6sv49/uLx9g+WevekHX8xe359Ob+wXpot7ED7Tf3s+WD/OqF5Sul7ygb+Ni
-        3sTrdUFd/9EF6d2Unz9d/voQy9/rdB74sFKOBy4964Imty5ocuuCJve/XtD2RT9b1Eml3Nj2Nfmw6g1/
-        +1nqdTSWucCHVW/42/gn+Ff3j08XXuaIeh2NZS7wYdUb/nb7HYcf4uclXuaIeh2NZS7wYdUbvj309Yfb
-        6fzjn68PrtfRWOYCH1a94T/a7zjwMkfU62gsc4EPq95wXuDoeh2NZS7wYdUbzgscXa+jscwFPqx6w3mB
-        o+t1NJa5wIdVbzgvcHS9jsYyF/iw6g3nBdw2/JNBO1TKcS9OubFtNh9WveG8gFPu3SehtxP34pQby1zg
-        w6o3nBdwyqmAy/nn+IH2r8XMorcT9+KUG8tc4MOqN5wXcMq9u13P39yeT7+sCwKZC3xY9YbzAk45FXC9
-        rAsimQt8WPWG8wJOORWwLohlLvBh1RvOCzjluJDZ9HbiXpxyY5kLfFj1hvMCTjkuZDa9nbgXp9xY5gIf
-        Vr3hvIBTjguZTW8n7sUpN5a5wIdVbzgv4JTjQmbT24l7ccqNZS7wYdUbzgs45bgQl7nXRDMr5XgPpxz3
-        4pQb256RD6vecF7AKceFOOV+fxW9Z+A9nHLci1NuLHOBD6vecF7AKceFOOWi0Ouvt+enn26Xrdzr+fv7
-        2enysvSO3jPwHk457sUpN5a5wIdVbzgv4JTjQpxyv98u51/vPyudz7/p9f13HvJzXP6H6D0D7+GU416c
-        cmOZC3xY9YbzAk45LsQp91tcjF4/Lugu3lUnf93UewbewynHvTjlxjIX+LDqDecFnHJciFPu5be06/mn
-        2/P733ng8j9E7xl4D6cc9+KUG8tc4MOqN5wXcMpxIU65l8VeL+92fWt76D0D7+GU416ccmOZC3xY9Ybz
-        Ak45LsQpxwXv1XsG3sMpx7045cYyF/iw6g3nBZxyXIhTjgveq/cMvIdTjntxyo1lLvBh1RvOCzjluBCn
-        HBe8V+8ZeA+nHPfilBvLXODDqjecF3DKcSFOOS54r94z8B5OOe7FKTeWucCHVW84L+CU40KcclzwXr1n
-        4D2cctyLU24sc4EPq95wXsApx4U45bjgvXrPwHs45bgXp9xY5gIfVr3hvIBTjgtxynHBe/WegfdwynEv
-        TrmxzAU+rHrDeQGnHBfilOOC9+o9A+/hlONenHJjmQt8WPWG8wJOOS7EKccF79V7Bt7DKce9OOXGMhf4
-        sOoN5wWcclyIU44L3qv3DLyHU457ccqNZS7wYdUbzgs45bgQpxwXvFfvGXgPpxz34pQby1zgw6o3nBdw
-        ynEhTjkueK/eM/AeTjnuxSk3lrnAh1VvOC/glONCnHJc8F69Z+A9nHLci1NuLHOBD6vecF7AKceFOOW4
-        4L16z8B7OOW4F6fcWOYCH1a94byAU44LccpxwXv1noH3cMpxL065scwFPqx6w3kBpxwX4pTjgvfqPQPv
-        4ZTjXpxyY5kLfFj1hvMCTjkuxGXuNdHMSjnewynHvTjlxrZn5MOqN5wXcMpxIbPp7cS9OOXGMhf4sOoN
-        5wWcclzIbHo7cS9OubHMBT6sesN5AaccFzKb3k7ci1NuLHOBD6vecF7AKceFzKa3E/filBvLXODDqjec
-        F3DKcSGz6e3EvTjlxjIX+LDqDecFnHJcyGx6O3EvTrmxzAU+rHrDeQGnHBcym95O3ItTbixzgQ+r3nBe
-        wCnHhcymtxP34pQby1zgw6o3nBdwynEhs+ntxL045cYyF/iw6g3nBdw2/JNBO1TKcS9OubFtNh9WveG8
-        wNH1OhrLXODDqjecFzi6XkdjmQt8WPWG8wJH1+toLHOBD6vecF7g6HodjWUu8GHVG84LHF2vo7HMBT6s
-        esN5gaPrdTSWucCHVW84L3B0vY7GMhf4sOoN5wWOrtfRWOYCH1a94bzA0fU6Gstc4MOqM/xzRp1Uyo1t
-        X5MPqw8dvoytC5rcuqDJrQua3Lqgya0Lmty6oMmtC5rcuqDJvdoFLR8PdVxtWT5c/n/rgia3Lmhy64Im
-        ty5ocuuCJrcuaHLrgia3Lmhy7y9omdXT7Q/JY0gfDQosQAAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="virtualJoystickXY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>Off</value>
-  </data>
-  <data name="virtualJoystickXY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="virtualJoystickXY.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>400, 400</value>
-  </data>
-  <data name="virtualJoystickXY.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>25, 100</value>
-  </data>
-  <data name="virtualJoystickXY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 104</value>
-  </data>
-  <data name="virtualJoystickXY.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="virtualJoystickXY.ToolTip" xml:space="preserve">
-    <value>Jog X and Y axis</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickXY.Name" xml:space="preserve">
-    <value>virtualJoystickXY</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickXY.Type" xml:space="preserve">
-    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.3.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickXY.Parent" xml:space="preserve">
-    <value>tLPRechtsUntenRechtsMitte</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickXY.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="virtualJoystickZ.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAB4AAABoCAYAAADmS0B+AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHXSURBVGhD7ZmxbcMwEEW1QcpUAVypCeAmVSq3miGAU2aA
-        gK0HCXBjpOcCGYKbMHeUdJYiNrHJz0Jn4IHmkdTj0RZB2R2/YiO6GCMWFQcaK85zQ+jiwO99ZsB/8U4l
-        sRvYM8Wn2NRhavA8CSmJy78XuglORhwpqSmm4hTgTB3LZmER8bR6HSe2jKuYOFspZVarZV90voX5ujPz
-        xzfVtwNqY2IYKm6EzOIFykrs6cAbBzeEA997j/zV3w4ohYoDPcTB9Uk8TqDnDeSYHVQCFUsleBEfWdhz
-        HS7mkrOXmPP5QSVYiZGYGIaKGyEZf0BRcaCnVHE+37E0Kh7PXCe+j/MdS6PiFAgnPnO9bTrVQMXXM1e+
-        Y2lUnGusiYlhqLgRkvEXlJXY0ztvIPmOpVFxoGc+c33ixVIJfm9iJCaGoeJGSMY/UK7icOEnxDM/IY4N
-        gV5To/PbQSVQsadLuoeJvlPDeAaTWH7gvaiYaPzQZ3GCV8Et6wVR8XJpA53joGew/MB7UfEyGDxvn4t6
-        DbJiBCaGYWIYJoZhYhgmhqHiRkjG20N3TUwMw8QwdixuhGSc/7GzFiaGYWIYOxY3QjLO/8FcCxPDMDGM
-        HYsbIRljMTEME8PYsRhPF38BzNWC/MI0yyIAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="virtualJoystickZ.Location" type="System.Drawing.Point, System.Drawing">
-    <value>123, 3</value>
-  </data>
-  <data name="virtualJoystickZ.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>400, 400</value>
-  </data>
-  <data name="virtualJoystickZ.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>25, 100</value>
-  </data>
-  <data name="virtualJoystickZ.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>Yes</value>
-  </data>
-  <data name="virtualJoystickZ.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 104</value>
-  </data>
-  <data name="virtualJoystickZ.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="virtualJoystickZ.ToolTip" xml:space="preserve">
-    <value>Jog Z axis</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickZ.Name" xml:space="preserve">
-    <value>virtualJoystickZ</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickZ.Type" xml:space="preserve">
-    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.3.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickZ.Parent" xml:space="preserve">
-    <value>tLPRechtsUntenRechtsMitte</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickZ.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="virtualJoystickB.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABkAAABoCAYAAAAEl1sHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHPSURBVGhD7ZkxbsMwDEV9g46dCmTKUiBLp05ZfYYC7dgD
-        FFpzkAI8RnddoIfQTdRPKWbsWmjK2NJgsMCDI4nkA50qMpIOf7EBXYyxHiIJlAfOYyF0scdrX0j4C++k
-        YOxRb5g/z50Desg4GAF8pVHgfxhqcP5Qi+dFkgLRgUPAUPwmSS6YGO7EeYyCMPOVb9fk1o2KXOOq5HfC
-        mphEhUgawManakwknnbYQFgIO+z4e/wLzhNuQSSB7mLv9kmSZXtsxkMxSYtIeBA8Sw4ovse4qgRXdMVz
-        zpeTtEwktTCJCpE0gDt5r4ZIAj2kgfPlwCWIJJ/PR+yTcuASRJImwhFn/MssaCkiuZzx5cAliKS0uBYm
-        USGSBnAnn9WYSDy9YTOWA5cgkkCPOOM/6kp4EPxWJLUwiQqRNIA7+a7GRRJOeJJ/xZN8Xgj0nBadnydp
-        EYmnU9ojRF9pIZ/5PFdO1CASovwmDZIEunPj8Y2IZHx7Ar3GXs78cqIGkYwng8dHzGi8lKJkbUyiwiQq
-        TKLCJCpMokIkDeBO5g9la2ESFSZRsUFJA7iT8pcva2ASFSZRsUFJA7iT8g8sa2ASFSZRsUFJA7iTephE
-        hUlUbFBSly7+ACtqDI7IBEOsAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="virtualJoystickB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>203, 3</value>
-  </data>
-  <data name="virtualJoystickB.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>400, 400</value>
-  </data>
-  <data name="virtualJoystickB.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>25, 100</value>
-  </data>
-  <data name="virtualJoystickB.Size" type="System.Drawing.Size, System.Drawing">
-    <value>25, 104</value>
-  </data>
-  <data name="virtualJoystickB.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
-  </data>
-  <data name="virtualJoystickB.ToolTip" xml:space="preserve">
-    <value>Jog 4th axis</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickB.Name" xml:space="preserve">
-    <value>virtualJoystickB</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickB.Type" xml:space="preserve">
-    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.3.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickB.Parent" xml:space="preserve">
-    <value>tLPRechtsUntenRechtsMitte</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickB.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="virtualJoystickC.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABkAAABoCAYAAAAEl1sHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHOSURBVGhD7ZkxbsMwDEV9g46dCmTKUiBLp05Zc4YC6dgD
-        FFpzkAI8RnddoIfQTdRP2WFsmC3A2NJgMMCDI5HUCxMoMpIOj9yALudcD5Ek6gchIpC6fMLzqBT8yVBT
-        FjxhvVFMJDHcghFCvhKuk4X+QeoHWXmxQ0wkZQIJAQtfF7dICIIOIi0mkpI0vILJW6cUqSB3WGxWO8yN
-        kivgEhMiaQAbX6oxkUTaYRMikHbYUI/Y8fOCexBJood8Cvsi6WV7bMaDWmRFJDxIkSUHLL7HuKoEV3TF
-        cyHqRVYmklq4xIRIGsCdfFRDJImeyiBEPXEJIunP6CP2iZ64BJGUiXTEGf82S1qKSG5nvJ64BJFowbVw
-        iQmRNIA7+arGRBLpHZtRT1yCSBI944z/rCvhQYpbkdTCJSZE0gDu5KcaN0m64E7+jDv5PpDotQRDnBdZ
-        EUmkS9kjRN8l0J/5PKcXWhAJUf8hXSUFdBfG4zsRyfjtSXTOJznz9UILIhlPpoivmNF4KapkbVxiwiUm
-        XGLCJSZcYkIkDeBO5jdla+ESEy4xsUFJA7gT/ceXNXCJCZeY2KCkAdyJ/gfLGrjEhEtMbFDSAO6kHi4x
-        4RITG5TUpcu/O5AQ4UCxriQAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="virtualJoystickC.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 3</value>
-  </data>
-  <data name="virtualJoystickC.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>400, 400</value>
-  </data>
-  <data name="virtualJoystickC.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>25, 100</value>
-  </data>
-  <data name="virtualJoystickC.Size" type="System.Drawing.Size, System.Drawing">
-    <value>25, 104</value>
-  </data>
-  <data name="virtualJoystickC.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
-  </data>
-  <data name="virtualJoystickC.ToolTip" xml:space="preserve">
-    <value>Jog 4th axis</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickC.Name" xml:space="preserve">
-    <value>virtualJoystickC</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickC.Type" xml:space="preserve">
-    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.3.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickC.Parent" xml:space="preserve">
-    <value>tLPRechtsUntenRechtsMitte</value>
-  </data>
-  <data name="&gt;&gt;virtualJoystickC.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="tLPRechtsUntenRechtsMitte.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="tLPRechtsUntenRechtsMitte.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 198</value>
-  </data>
-  <data name="tLPRechtsUntenRechtsMitte.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="tLPRechtsUntenRechtsMitte.RowCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tLPRechtsUntenRechtsMitte.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 110</value>
-  </data>
-  <data name="tLPRechtsUntenRechtsMitte.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="&gt;&gt;tLPRechtsUntenRechtsMitte.Name" xml:space="preserve">
-    <value>tLPRechtsUntenRechtsMitte</value>
-  </data>
-  <data name="&gt;&gt;tLPRechtsUntenRechtsMitte.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tLPRechtsUntenRechtsMitte.Parent" xml:space="preserve">
-    <value>tLPRechtsUntenRechts</value>
-  </data>
-  <data name="&gt;&gt;tLPRechtsUntenRechtsMitte.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tLPRechtsUntenRechtsMitte.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="virtualJoystickA" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="virtualJoystickXY" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="virtualJoystickZ" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="virtualJoystickB" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="virtualJoystickC" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,120,Absolute,40,Absolute,40,Absolute,20,Absolute,20" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="tableLayoutPanel2.ColumnCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="cBSendJogStop.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cBSendJogStop.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="cBSendJogStop.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 0, 0, 0</value>
-  </data>
-  <data name="cBSendJogStop.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 18</value>
-  </data>
-  <data name="cBSendJogStop.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
-  </data>
-  <data name="cBSendJogStop.Text" xml:space="preserve">
-    <value>STOP Jogging on mouse up</value>
-  </data>
-  <data name="&gt;&gt;cBSendJogStop.Name" xml:space="preserve">
-    <value>cBSendJogStop</value>
-  </data>
-  <data name="&gt;&gt;cBSendJogStop.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cBSendJogStop.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;cBSendJogStop.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tableLayoutPanel3.ColumnCount" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="tableLayoutPanel4.ColumnCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="btnOverrideDoor.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="btnOverrideDoor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnOverrideDoor.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 22</value>
-  </data>
-  <data name="btnOverrideDoor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>1, 1, 1, 1</value>
-  </data>
-  <data name="btnOverrideDoor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 19</value>
-  </data>
-  <data name="btnOverrideDoor.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
-  </data>
-  <data name="btnOverrideDoor.Text" xml:space="preserve">
-    <value>Door</value>
-  </data>
-  <data name="btnOverrideDoor.ToolTip" xml:space="preserve">
-    <value>Although typically connected to an input pin to detect the opening of a safety door, this command allows a GUI to enact the safety door behavior with this command.
-Immediately suspends into a DOOR state and disables the spindle and coolant. If in motion, the machine will decelerate to a stop and then be suspended.
-If executed during homing, Grbl will instead halt motion and throw a homing alarm.
-If already in a suspend state or HOLD, the DOOR state supersedes it.
-If the parking compile-time option is enabled, Grbl will park the spindle to a specified location.
-Command executes when Grbl is in an IDLE, HOLD, RUN, HOMING, or JOG state. It is otherwise ignored.
-If jogging, a safety door will cancel the jog and all queued motions in the planner buffer. When the safety door is closed and resumed, Grbl will return to an IDLE state.
-An input pin is available to connect a button or switch, if enabled with a compile-time option.</value>
-  </data>
-  <data name="&gt;&gt;btnOverrideDoor.Name" xml:space="preserve">
-    <value>btnOverrideDoor</value>
-  </data>
-  <data name="&gt;&gt;btnOverrideDoor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnOverrideDoor.Parent" xml:space="preserve">
-    <value>tableLayoutPanel4</value>
-  </data>
-  <data name="&gt;&gt;btnOverrideDoor.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="btnResume.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="btnResume.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnResume.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 43</value>
-  </data>
-  <data name="btnResume.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>1, 1, 1, 1</value>
-  </data>
-  <data name="btnResume.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 26</value>
-  </data>
-  <data name="btnResume.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="btnResume.Text" xml:space="preserve">
-    <value>Resume</value>
-  </data>
-  <data name="btnResume.ToolTip" xml:space="preserve">
-    <value>The cycle start or resume command '~' can be issued at any time, as it is a real-time command. 
-When Grbl has motions queued in its buffer and is ready to go, the  ~  cycle start command will 
-start executing the buffer and Grbl will begin moving the axes.</value>
-  </data>
-  <data name="&gt;&gt;btnResume.Name" xml:space="preserve">
-    <value>btnResume</value>
-  </data>
-  <data name="&gt;&gt;btnResume.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnResume.Parent" xml:space="preserve">
-    <value>tableLayoutPanel4</value>
-  </data>
-  <data name="&gt;&gt;btnResume.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="btnFeedHold.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="btnFeedHold.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnFeedHold.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 1</value>
-  </data>
-  <data name="btnFeedHold.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>1, 1, 1, 1</value>
-  </data>
-  <data name="btnFeedHold.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 19</value>
-  </data>
-  <data name="btnFeedHold.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="btnFeedHold.Text" xml:space="preserve">
-    <value>Feed Hold</value>
-  </data>
-  <data name="btnFeedHold.ToolTip" xml:space="preserve">
-    <value>The feed hold command '!' will bring the active cycle to a stop via a controlled deceleration, so as not to lose position. 
-It is also real-time and may be activated at any time. Once finished or paused, Grbl will wait until a cycle start command 
-is issued to resume the program. Feed hold can only pause a cycle and will not affect homing or any other process.
-If you need to stop a cycle mid-program and can't afford losing position, perform a feed hold to have Grbl bring 
-everything to a controlled stop. Once finished, you can then issue a reset. Always try to execute a feed hold whenever 
-the machine is running before hitting reset, except of course if there is some emergency situation.
-</value>
-  </data>
-  <data name="&gt;&gt;btnFeedHold.Name" xml:space="preserve">
-    <value>btnFeedHold</value>
-  </data>
-  <data name="&gt;&gt;btnFeedHold.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnFeedHold.Parent" xml:space="preserve">
-    <value>tableLayoutPanel4</value>
-  </data>
-  <data name="&gt;&gt;btnFeedHold.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="tableLayoutPanel4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="tableLayoutPanel4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="tableLayoutPanel4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="tableLayoutPanel4.RowCount" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="tableLayoutPanel4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 70</value>
-  </data>
-  <data name="tableLayoutPanel4.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel4.Name" xml:space="preserve">
-    <value>tableLayoutPanel4</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel4.Parent" xml:space="preserve">
-    <value>tableLayoutPanel3</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel4.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tableLayoutPanel4.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnOverrideDoor" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnResume" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnFeedHold" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Percent,30,Percent,30,Percent,40" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="tableLayoutPanel5.ColumnCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="btnKillAlarm.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="btnKillAlarm.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnKillAlarm.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 43</value>
-  </data>
-  <data name="btnKillAlarm.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>1, 1, 1, 1</value>
-  </data>
-  <data name="btnKillAlarm.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 26</value>
-  </data>
-  <data name="btnKillAlarm.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="btnKillAlarm.Text" xml:space="preserve">
-    <value>Kill Alarm</value>
-  </data>
-  <data name="btnKillAlarm.ToolTip" xml:space="preserve">
-    <value>Grbl's alarm mode is a state when something has gone critically wrong, 
-such as a hard limit or an abort during a cycle, or if Grbl doesn't know its position. 
-By default, if you have homing enabled and power-up the Arduino, Grbl enters
-the alarm state, because it does not know its position. The alarm mode will lock all 
-G-code commands until the '$H' homing cycle has been performed. Or if a user needs 
-to override the alarm lock to move their axes off their limit switches, for example, '$X' kill alarm lock 
-will override the locks and allow G-code functions to work again. 
-</value>
-  </data>
-  <data name="&gt;&gt;btnKillAlarm.Name" xml:space="preserve">
-    <value>btnKillAlarm</value>
-  </data>
-  <data name="&gt;&gt;btnKillAlarm.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnKillAlarm.Parent" xml:space="preserve">
-    <value>tableLayoutPanel5</value>
-  </data>
-  <data name="&gt;&gt;btnKillAlarm.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="btnReset.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="btnReset.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnReset.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 1</value>
-  </data>
-  <data name="btnReset.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>1, 1, 1, 1</value>
-  </data>
-  <data name="btnReset.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 40</value>
-  </data>
-  <data name="btnReset.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="btnReset.Text" xml:space="preserve">
-    <value>RESET</value>
-  </data>
-  <data name="btnReset.ToolTip" xml:space="preserve">
-    <value>This is Grbl's soft reset command 'Ctrl-x'. It's real-time and can be sent at any time. 
-As the name implies, it resets Grbl, but in a controlled way, retains your machine position, 
-and all is done without powering down your Arduino. The only times a soft-reset could 
-lose position is when problems arise and the steppers were killed while they were moving. 
-If so, it will report if Grbl's tracking of the machine position has been lost. 
-This is because an uncontrolled deceleration can lead to lost steps, and Grbl has no feedback 
-to how much it lost (this is the problem with steppers in general). Otherwise, Grbl will just re-initialize,
- run the startup lines, and continue on its merry way. 
-</value>
-  </data>
-  <data name="&gt;&gt;btnReset.Name" xml:space="preserve">
-    <value>btnReset</value>
-  </data>
-  <data name="&gt;&gt;btnReset.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnReset.Parent" xml:space="preserve">
-    <value>tableLayoutPanel5</value>
-  </data>
-  <data name="&gt;&gt;btnReset.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tableLayoutPanel5.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="tableLayoutPanel5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>115, 0</value>
-  </data>
-  <data name="tableLayoutPanel5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="tableLayoutPanel5.RowCount" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="tableLayoutPanel5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 70</value>
-  </data>
-  <data name="tableLayoutPanel5.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel5.Name" xml:space="preserve">
-    <value>tableLayoutPanel5</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel5.Parent" xml:space="preserve">
-    <value>tableLayoutPanel3</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel5.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tableLayoutPanel5.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnKillAlarm" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnReset" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,Absolute,20" /&gt;&lt;Rows Styles="Percent,60,Percent,40" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="tableLayoutPanel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="tableLayoutPanel3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 27</value>
-  </data>
-  <data name="tableLayoutPanel3.RowCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tableLayoutPanel3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 70</value>
-  </data>
-  <data name="tableLayoutPanel3.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel3.Name" xml:space="preserve">
-    <value>tableLayoutPanel3</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel3.Parent" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel3.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tableLayoutPanel3.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tableLayoutPanel4" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel5" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Percent,100,Absolute,70" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="tableLayoutPanel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="tableLayoutPanel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 311</value>
-  </data>
-  <data name="tableLayoutPanel2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="tableLayoutPanel2.RowCount" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="tableLayoutPanel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 100</value>
-  </data>
-  <data name="tableLayoutPanel2.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel2.Name" xml:space="preserve">
-    <value>tableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel2.Parent" xml:space="preserve">
-    <value>tLPRechtsUntenRechts</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel2.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="tableLayoutPanel2.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="cBSendJogStop" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel3" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Absolute,24,Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
   <data name="LblSpeedSetVal.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -3733,6 +2791,9 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
   <data name="CbMist.Text" xml:space="preserve">
     <value>Mist</value>
   </data>
+  <data name="CbMist.ToolTip" xml:space="preserve">
+    <value>Set 'M7', clear 'M9'</value>
+  </data>
   <data name="&gt;&gt;CbMist.Name" xml:space="preserve">
     <value>CbMist</value>
   </data>
@@ -3853,6 +2914,9 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
   <data name="CbSpindle.Text" xml:space="preserve">
     <value>Spindle On</value>
   </data>
+  <data name="CbSpindle.ToolTip" xml:space="preserve">
+    <value>Set 'M3' or 'M4', clear 'M5'</value>
+  </data>
   <data name="&gt;&gt;CbSpindle.Name" xml:space="preserve">
     <value>CbSpindle</value>
   </data>
@@ -3882,6 +2946,9 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
   </data>
   <data name="CbCoolant.Text" xml:space="preserve">
     <value>Coolant</value>
+  </data>
+  <data name="CbCoolant.ToolTip" xml:space="preserve">
+    <value>Set 'M8', clear 'M9'</value>
   </data>
   <data name="&gt;&gt;CbCoolant.Name" xml:space="preserve">
     <value>CbCoolant</value>
@@ -4004,7 +3071,7 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabPage1.Parent" xml:space="preserve">
-    <value>tabControl1</value>
+    <value>tC_RouterPlotterLaser</value>
   </data>
   <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -4145,7 +3212,7 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabPage2.Parent" xml:space="preserve">
-    <value>tabControl1</value>
+    <value>tC_RouterPlotterLaser</value>
   </data>
   <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -4621,34 +3688,1217 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tabPage3.Parent" xml:space="preserve">
-    <value>tabControl1</value>
+    <value>tC_RouterPlotterLaser</value>
   </data>
   <data name="&gt;&gt;tabPage3.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="tabControl1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="tC_RouterPlotterLaser.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tC_RouterPlotterLaser.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
-  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tC_RouterPlotterLaser.Size" type="System.Drawing.Size, System.Drawing">
     <value>230, 114</value>
   </data>
-  <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
+  <data name="tC_RouterPlotterLaser.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
   </data>
-  <data name="&gt;&gt;tabControl1.Name" xml:space="preserve">
-    <value>tabControl1</value>
+  <data name="&gt;&gt;tC_RouterPlotterLaser.Name" xml:space="preserve">
+    <value>tC_RouterPlotterLaser</value>
   </data>
-  <data name="&gt;&gt;tabControl1.Type" xml:space="preserve">
+  <data name="&gt;&gt;tC_RouterPlotterLaser.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tabControl1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tC_RouterPlotterLaser.Parent" xml:space="preserve">
     <value>tLPRechtsUntenRechts</value>
   </data>
-  <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tC_RouterPlotterLaser.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="Gb_Jogging.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="BtnJogAbsZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnJogAbsZ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>100, 122</value>
+  </data>
+  <data name="BtnJogAbsZ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 20</value>
+  </data>
+  <data name="BtnJogAbsZ.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="BtnJogAbsZ.Text" xml:space="preserve">
+    <value>Move to</value>
+  </data>
+  <data name="&gt;&gt;BtnJogAbsZ.Name" xml:space="preserve">
+    <value>BtnJogAbsZ</value>
+  </data>
+  <data name="&gt;&gt;BtnJogAbsZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnJogAbsZ.Parent" xml:space="preserve">
+    <value>Gb_Jogging</value>
+  </data>
+  <data name="&gt;&gt;BtnJogAbsZ.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="BtnJogAbsY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnJogAbsY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>100, 100</value>
+  </data>
+  <data name="BtnJogAbsY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 20</value>
+  </data>
+  <data name="BtnJogAbsY.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="BtnJogAbsY.Text" xml:space="preserve">
+    <value>Move to</value>
+  </data>
+  <data name="&gt;&gt;BtnJogAbsY.Name" xml:space="preserve">
+    <value>BtnJogAbsY</value>
+  </data>
+  <data name="&gt;&gt;BtnJogAbsY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnJogAbsY.Parent" xml:space="preserve">
+    <value>Gb_Jogging</value>
+  </data>
+  <data name="&gt;&gt;BtnJogAbsY.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="BtnJogAbsX.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnJogAbsX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>100, 78</value>
+  </data>
+  <data name="BtnJogAbsX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 20</value>
+  </data>
+  <data name="BtnJogAbsX.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="BtnJogAbsX.Text" xml:space="preserve">
+    <value>Move to</value>
+  </data>
+  <data name="&gt;&gt;BtnJogAbsX.Name" xml:space="preserve">
+    <value>BtnJogAbsX</value>
+  </data>
+  <data name="&gt;&gt;BtnJogAbsX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnJogAbsX.Parent" xml:space="preserve">
+    <value>Gb_Jogging</value>
+  </data>
+  <data name="&gt;&gt;BtnJogAbsX.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="NudJogAbsZ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 122</value>
+  </data>
+  <data name="NudJogAbsZ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 20</value>
+  </data>
+  <data name="NudJogAbsZ.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="NudJogAbsZ.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudJogAbsZ.Name" xml:space="preserve">
+    <value>NudJogAbsZ</value>
+  </data>
+  <data name="&gt;&gt;NudJogAbsZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudJogAbsZ.Parent" xml:space="preserve">
+    <value>Gb_Jogging</value>
+  </data>
+  <data name="&gt;&gt;NudJogAbsZ.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="NudJogAbsY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 100</value>
+  </data>
+  <data name="NudJogAbsY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 20</value>
+  </data>
+  <data name="NudJogAbsY.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="NudJogAbsY.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudJogAbsY.Name" xml:space="preserve">
+    <value>NudJogAbsY</value>
+  </data>
+  <data name="&gt;&gt;NudJogAbsY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudJogAbsY.Parent" xml:space="preserve">
+    <value>Gb_Jogging</value>
+  </data>
+  <data name="&gt;&gt;NudJogAbsY.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="NudJogAbsX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 78</value>
+  </data>
+  <data name="NudJogAbsX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 20</value>
+  </data>
+  <data name="NudJogAbsX.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="NudJogAbsX.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudJogAbsX.Name" xml:space="preserve">
+    <value>NudJogAbsX</value>
+  </data>
+  <data name="&gt;&gt;NudJogAbsX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudJogAbsX.Parent" xml:space="preserve">
+    <value>Gb_Jogging</value>
+  </data>
+  <data name="&gt;&gt;NudJogAbsX.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="label19.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label19.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 124</value>
+  </data>
+  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>14, 13</value>
+  </data>
+  <data name="label19.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="&gt;&gt;label19.Name" xml:space="preserve">
+    <value>label19</value>
+  </data>
+  <data name="&gt;&gt;label19.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label19.Parent" xml:space="preserve">
+    <value>Gb_Jogging</value>
+  </data>
+  <data name="&gt;&gt;label19.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="label16.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label16.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 102</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>14, 13</value>
+  </data>
+  <data name="label16.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="&gt;&gt;label16.Name" xml:space="preserve">
+    <value>label16</value>
+  </data>
+  <data name="&gt;&gt;label16.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
+    <value>Gb_Jogging</value>
+  </data>
+  <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="label15.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label15.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 80</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>14, 13</value>
+  </data>
+  <data name="label15.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="&gt;&gt;label15.Name" xml:space="preserve">
+    <value>label15</value>
+  </data>
+  <data name="&gt;&gt;label15.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label15.Parent" xml:space="preserve">
+    <value>Gb_Jogging</value>
+  </data>
+  <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="btnJogStop.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnJogStop.Location" type="System.Drawing.Point, System.Drawing">
+    <value>136, 30</value>
+  </data>
+  <data name="btnJogStop.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 41</value>
+  </data>
+  <data name="btnJogStop.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="btnJogStop.Text" xml:space="preserve">
+    <value>STOP Jogging</value>
+  </data>
+  <data name="btnJogStop.ToolTip" xml:space="preserve">
+    <value>Stop current jogging motion</value>
+  </data>
+  <data name="&gt;&gt;btnJogStop.Name" xml:space="preserve">
+    <value>btnJogStop</value>
+  </data>
+  <data name="&gt;&gt;btnJogStop.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnJogStop.Parent" xml:space="preserve">
+    <value>Gb_Jogging</value>
+  </data>
+  <data name="&gt;&gt;btnJogStop.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="btnJogZeroA.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnJogZeroA.Location" type="System.Drawing.Point, System.Drawing">
+    <value>86, 35</value>
+  </data>
+  <data name="btnJogZeroA.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 20</value>
+  </data>
+  <data name="btnJogZeroA.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="btnJogZeroA.Text" xml:space="preserve">
+    <value>A=0</value>
+  </data>
+  <data name="btnJogZeroA.ToolTip" xml:space="preserve">
+    <value>Send G90 G0 A(or B,C)0</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroA.Name" xml:space="preserve">
+    <value>btnJogZeroA</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroA.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroA.Parent" xml:space="preserve">
+    <value>gB_Jog0</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroA.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnJogZeroX.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnJogZeroX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 14</value>
+  </data>
+  <data name="btnJogZeroX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 20</value>
+  </data>
+  <data name="btnJogZeroX.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="btnJogZeroX.Text" xml:space="preserve">
+    <value>X=0</value>
+  </data>
+  <data name="btnJogZeroX.ToolTip" xml:space="preserve">
+    <value>Send G90 G0 X0</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroX.Name" xml:space="preserve">
+    <value>btnJogZeroX</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroX.Parent" xml:space="preserve">
+    <value>gB_Jog0</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroX.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnJogZeroXY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnJogZeroXY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 35</value>
+  </data>
+  <data name="btnJogZeroXY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 20</value>
+  </data>
+  <data name="btnJogZeroXY.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="btnJogZeroXY.Text" xml:space="preserve">
+    <value>Move XY=0</value>
+  </data>
+  <data name="btnJogZeroXY.ToolTip" xml:space="preserve">
+    <value>Send G90 G0 X0 Y0</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroXY.Name" xml:space="preserve">
+    <value>btnJogZeroXY</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroXY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroXY.Parent" xml:space="preserve">
+    <value>gB_Jog0</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroXY.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btnJogZeroY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnJogZeroY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>45, 14</value>
+  </data>
+  <data name="btnJogZeroY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 20</value>
+  </data>
+  <data name="btnJogZeroY.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="btnJogZeroY.Text" xml:space="preserve">
+    <value>Y=0</value>
+  </data>
+  <data name="btnJogZeroY.ToolTip" xml:space="preserve">
+    <value>Send G90 G0 Y0</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroY.Name" xml:space="preserve">
+    <value>btnJogZeroY</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroY.Parent" xml:space="preserve">
+    <value>gB_Jog0</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroY.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btnJogZeroZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnJogZeroZ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>86, 14</value>
+  </data>
+  <data name="btnJogZeroZ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 20</value>
+  </data>
+  <data name="btnJogZeroZ.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="btnJogZeroZ.Text" xml:space="preserve">
+    <value>Z=0</value>
+  </data>
+  <data name="btnJogZeroZ.ToolTip" xml:space="preserve">
+    <value>Send G90 G0 Z0</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroZ.Name" xml:space="preserve">
+    <value>btnJogZeroZ</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroZ.Parent" xml:space="preserve">
+    <value>gB_Jog0</value>
+  </data>
+  <data name="&gt;&gt;btnJogZeroZ.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="cBMoveG0.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBMoveG0.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBMoveG0.Location" type="System.Drawing.Point, System.Drawing">
+    <value>58, 0</value>
+  </data>
+  <data name="cBMoveG0.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 17</value>
+  </data>
+  <data name="cBMoveG0.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="cBMoveG0.Text" xml:space="preserve">
+    <value>use G0</value>
+  </data>
+  <data name="cBMoveG0.ToolTip" xml:space="preserve">
+    <value>Use G0 rappid move command - STOP jogging will not work</value>
+  </data>
+  <data name="&gt;&gt;cBMoveG0.Name" xml:space="preserve">
+    <value>cBMoveG0</value>
+  </data>
+  <data name="&gt;&gt;cBMoveG0.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBMoveG0.Parent" xml:space="preserve">
+    <value>gB_Jog0</value>
+  </data>
+  <data name="&gt;&gt;cBMoveG0.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="gB_Jog0.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 16</value>
+  </data>
+  <data name="gB_Jog0.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 54</value>
+  </data>
+  <data name="gB_Jog0.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="gB_Jog0.Text" xml:space="preserve">
+    <value>Move to</value>
+  </data>
+  <data name="&gt;&gt;gB_Jog0.Name" xml:space="preserve">
+    <value>gB_Jog0</value>
+  </data>
+  <data name="&gt;&gt;gB_Jog0.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gB_Jog0.Parent" xml:space="preserve">
+    <value>Gb_Jogging</value>
+  </data>
+  <data name="&gt;&gt;gB_Jog0.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="Gb_Jogging.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="Gb_Jogging.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 120</value>
+  </data>
+  <data name="Gb_Jogging.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="Gb_Jogging.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 3, 0</value>
+  </data>
+  <data name="Gb_Jogging.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 150</value>
+  </data>
+  <data name="Gb_Jogging.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="Gb_Jogging.Text" xml:space="preserve">
+    <value>Control / Jogging - click to expand</value>
+  </data>
+  <data name="&gt;&gt;Gb_Jogging.Name" xml:space="preserve">
+    <value>Gb_Jogging</value>
+  </data>
+  <data name="&gt;&gt;Gb_Jogging.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Gb_Jogging.Parent" xml:space="preserve">
+    <value>tLPRechtsUntenRechts</value>
+  </data>
+  <data name="&gt;&gt;Gb_Jogging.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tLPRechtsUntenRechtsMitte.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tLPRechtsUntenRechtsMitte.ColumnCount" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="virtualJoystickA.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAB4AAABkCAYAAACRiYAFAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHQSURBVGhD7Zk9bsMwDEZ9g46dCmTKUiBLp05ZfYYC7dgD
+        FFpzkAI8RnddoIfQTdSPcs3IMKdEpgYzwIMt6ueJCizIyYBP7sSQc7ZFxImmQoioSEMecR+VDrcQA8Ye
+        4ahiIq4rIybBV8K1HuBWAsblREpS/zERlwAyDZDNwhbieSULSG6Oi5gwK77yrBbLXg1yC2EWYqx6TL4H
+        y8YWuNgMEXeCZ/FiykIc6YCNAxXpgAf+ETvXukMrRJzoIY/hWMTTBI7YQE5qpxaImAspsvgE4RFlczGu
+        yJ5jIeqdWrAQW+JiM0TcCc740xQRJ3oqhRD1hq0R8XTmOuM51hu2RsQlkM44c72tGm2BiK9nLr1ha0Ss
+        VW6Ji80QcSc4429TFuJIH9hA9IatEXGiZ5y5vuzFXEhxb2JLXGyGiDvBGf+achWnC94Q3/GGOFUkei2V
+        Ia47tUDEkS7lGSb6KRXTGYxjesd7ETHR9KXP4gJWIdTlhoi4XtpE73mUM5je8V5EXAdTxPZZlbdAFVvg
+        YjNcbIaLzdixuBOc8fpAtiUuNsPFZuxY3AnOWP8hbCtcbIaLzdixuBOcsf7n41a42AwXm7FjcSc4Y1tc
+        bIaLzdix2J4h/wEfs9TGCAokwQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="virtualJoystickA.Location" type="System.Drawing.Point, System.Drawing">
+    <value>163, 3</value>
+  </data>
+  <data name="virtualJoystickA.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>400, 400</value>
+  </data>
+  <data name="virtualJoystickA.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>25, 100</value>
+  </data>
+  <data name="virtualJoystickA.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 100</value>
+  </data>
+  <data name="virtualJoystickA.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="virtualJoystickA.ToolTip" xml:space="preserve">
+    <value>Jog 4th axis</value>
+  </data>
+  <data name="&gt;&gt;virtualJoystickA.Name" xml:space="preserve">
+    <value>virtualJoystickA</value>
+  </data>
+  <data name="&gt;&gt;virtualJoystickA.Type" xml:space="preserve">
+    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.3.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;virtualJoystickA.Parent" xml:space="preserve">
+    <value>tLPRechtsUntenRechtsMitte</value>
+  </data>
+  <data name="&gt;&gt;virtualJoystickA.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="virtualJoystickXY.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAGgAAABkCAYAAABq3nXaAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAbXSURBVHhe7dpBblxVEIVh74AhI6SMMkFiwogRU68BCYZZ
+        AOppFhKpl5F5b4BF9E6aqj6vzXHlh+uiY7h5uUif4vY9cb06l7ZiyQ/x32WZ2sPlcllm9OyCzkd94nCK
+        1+eHy2N8fCp/Yfl3jo/q9dbxMfrNzx+2vvPP6+fi46c7iPP8OOjF6RAv4gud8+P4QvnnMf68DVnusP0P
+        n10/3jrdLuP6JsiPo/trJu7h9veeXdDtCx3iC9wuZl3Q55Pvkuz69u64vpu2N0S+vr5B4ty/az27oHwb
+        3r7As2939heWf+d6OXEBt0u4fVt7ejeFemEps+GvTyxzWRc0uXVBk1sXNLnWBW3h5TOhjqsty4eVcj8u
+        n8GrX9Dp+Cb+ORgfn9/ED1ffxr/dnz/A8s9e9YLOx28uj4e31wvSRb2NH2h/uJ4tL/OqF5TOp7ygH+Ji
+        3sbrdUFd/9EF6d2Unz+cPn2I5e91Og98WCnHA5eedUGTWxc0uXVBk/tfL2j7ol8t6qRSbmz7mnxY9Ya/
+        +yr1OhrLXODDqjf8XfwT/Lvrx4cTL7NHvY7GMhf4sOoNf7f9jsPP8fMSL7NHvY7GMhf4sOoN3x76/PPl
+        cPzlr9c71+toLHOBD6ve8F/sdxx4mT3qdTSWucCHVW84L7B3vY7GMhf4sOoN5wX2rtfRWOYCH1a94bzA
+        3vU6Gstc4MOqN5wX2LteR2OZC3xY9YbzAm4b/sWgHSrluBen3Ng2mw+r3nBewCn34YvQ24l7ccqNZS7w
+        YdUbzgs45VTA6fhb/ED7aTGz6O3EvTjlxjIX+LDqDecFnHIfLufj95fHw+/rgkDmAh9WveG8gFNOBZxP
+        64JI5gIfVr3hvIBTTgWsC2KZC3xY9YbzAk45LmQ2vZ24F6fcWOYCH1a94byAU44LmU1vJ+7FKTeWucCH
+        VW84L+CU40Jm09uJe3HKjWUu8GHVG84LOOW4kNn0duJenHJjmQt8WPWG8wJOOS7EZe410cxKOd7DKce9
+        OOXGtmfkw6o3nBdwynEhTrk/XkXvGXgPpxz34pQby1zgw6o3nBdwynEhTrko9Pz+8vjw6+W0lXs+/nQ9
+        O5yel97RewbewynHvTjlxjIX+LDqDecFnHJciFPuj8vp+P76s9Lx+FGvr7/zkJ/j8l+i9wy8h1OOe3HK
+        jWUu8GHVG84LOOW4EKfcx7gYvb5d0FW8qw7+uqn3DLyHU457ccqNZS7wYdUbzgs45bgQp9zzb2nn46+X
+        x6ffeeDyX6L3DLyHU457ccqNZS7wYdUbzgs45bgQp9zzYs+nD3d9a7vpPQPv4ZTjXpxyY5kLfFj1hvMC
+        TjkuxCnHBd+r9wy8h1OOe3HKjWUu8GHVG84LOOW4EKccF3yv3jPwHk457sUpN5a5wIdVbzgv4JTjQpxy
+        XPC9es/AezjluBen3FjmAh9WveG8gFOOC3HKccH36j0D7+GU416ccmOZC3xY9YbzAk45LsQpxwXfq/cM
+        vIdTjntxyo1lLvBh1RvOCzjluBCnHBd8r94z8B5OOe7FKTeWucCHVW84L+CU40KcclzwvXrPwHs45bgX
+        p9xY5gIfVr3hvIBTjgtxynHB9+o9A+/hlONenHJjmQt8WPWG8wJOOS7EKccF36v3DLyHU457ccqNZS7w
+        YdUbzgs45bgQpxwXfK/eM/AeTjnuxSk3lrnAh1VvOC/glONCnHJc8L16z8B7OOW4F6fcWOYCH1a94byA
+        U44LccpxwffqPQPv4ZTjXpxyY5kLfFj1hvMCTjkuxGXuNdHMSjnewynHvTjlxrZn5MOqN5wXcMpxIbPp
+        7cS9OOXGMhf4sOoN5wWcclzIbHo7cS9OubHMBT6sesN5AaccFzKb3k7ci1NuLHOBD6vecF7AKceFzKa3
+        E/filBvLXODDqjecF3DKcSGz6e3EvTjlxjIX+LDqDecFnHJcyGx6O3EvTrmxzAU+rHrDeQGnHBcym95O
+        3ItTbixzgQ+r3nBewCnHhcymtxP34pQby1zgw6o3nBdwynEhs+ntxL045cYyF/iw6g3nBdw2/ItBO1TK
+        cS9OubFtNh9WveG8wN71OhrLXODDqjecF9i7XkdjmQt8WPWG8wJ71+toLHOBD6vecF5g73odjWUu8GHV
+        G84L7F2vo7HMBT6sesN5gb3rdTSWucCHVW84L7B3vY7GMhf4sOoN5wX2rtfRWOYCH1a94bzA3vU6Gstc
+        4MOqM/xrRp1Uyo1tX5MPq5cOX8bWBU1uXdDk1gVNbl3Q5NYFTW5d0OTWBU1uXdDkXu2Cls+HOq62LB8u
+        /791QZNbFzS5dUGTWxc0uXVBk1sXNLl1QZNbFzS5pwtaZvVw+ROFlCA0b+EjkAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="virtualJoystickXY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>Off</value>
+  </data>
+  <data name="virtualJoystickXY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="virtualJoystickXY.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>400, 400</value>
+  </data>
+  <data name="virtualJoystickXY.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>25, 100</value>
+  </data>
+  <data name="virtualJoystickXY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 100</value>
+  </data>
+  <data name="virtualJoystickXY.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="virtualJoystickXY.ToolTip" xml:space="preserve">
+    <value>Jog X and Y axis</value>
+  </data>
+  <data name="&gt;&gt;virtualJoystickXY.Name" xml:space="preserve">
+    <value>virtualJoystickXY</value>
+  </data>
+  <data name="&gt;&gt;virtualJoystickXY.Type" xml:space="preserve">
+    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.3.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;virtualJoystickXY.Parent" xml:space="preserve">
+    <value>tLPRechtsUntenRechtsMitte</value>
+  </data>
+  <data name="&gt;&gt;virtualJoystickXY.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="virtualJoystickZ.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAB4AAABkCAYAAACRiYAFAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHSSURBVGhD7ZmxbcMwEEW1QcpUAVypCeAmVSq3miGAU2aA
+        gK0HCXBjpOcCGYKbMP8o6SxFbGKTx0Jn4IHmkdTj0RZB2R1esRFdjFEXEQcaK86jIXRxwHufGfBfvBNJ
+        7AZ4pvgUmzpMDR6T4JJQ/r3QTSAZdqSkppiIUwCZOshmYRHxtHodElvGRUzIlkue1WrZF51vYb7uzPzx
+        TfXtgNqYWA0RN4Jn8aLKSuzpgI0DDeGAe+8RX/3tgFKIONBDHFyfxOMEemwgx+ygEoiYK8Gz+Ahhj7q6
+        GCWy55jz+UElWIk1MbEaIm4EZ/yhiogDPaWK8/mOpRHxeOY64T7OdyyNiFMgnHDmett0qoGIr2eufMfS
+        iDjXWBMTqyHiRnDGX6qsxJ7esYHkO5ZGxIGeceb61BdzJfi9iTUxsRoibgRn/KPKVRwueEI84wlxbAj0
+        mhqd3w4qgYg9XdI9TPSdGsYzGMfyA+9FxETjhz6LE1gFt6wXRMTLpQ10joOcwfID70XEy2Dw2D4X9Rpk
+        xRqYWA0Tq2FiNXYsbgRnvD2Q1cTEaphYjR2LG8EZ538Iq4WJ1TCxGjsWN4Izzv/5WAsTq2FiNXYsbgRn
+        rIuJ1TCxGjsW69PFX7cI0vZCrbOZAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="virtualJoystickZ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>123, 3</value>
+  </data>
+  <data name="virtualJoystickZ.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>400, 400</value>
+  </data>
+  <data name="virtualJoystickZ.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>25, 100</value>
+  </data>
+  <data name="virtualJoystickZ.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="virtualJoystickZ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 100</value>
+  </data>
+  <data name="virtualJoystickZ.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="virtualJoystickZ.ToolTip" xml:space="preserve">
+    <value>Jog Z axis</value>
+  </data>
+  <data name="&gt;&gt;virtualJoystickZ.Name" xml:space="preserve">
+    <value>virtualJoystickZ</value>
+  </data>
+  <data name="&gt;&gt;virtualJoystickZ.Type" xml:space="preserve">
+    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.3.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;virtualJoystickZ.Parent" xml:space="preserve">
+    <value>tLPRechtsUntenRechtsMitte</value>
+  </data>
+  <data name="&gt;&gt;virtualJoystickZ.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="virtualJoystickB.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABkAAABkCAYAAABzVZt8AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHKSURBVGhD7ZgxbsMwDEV9g46dCmTKUiBLp05ZfYYC7dgD
+        FFpzkAI8RnddoIfQTdRPKWbsWmjK2NJgsMCDI4nkA50qctLhLzagizHWQySB8sB5LIQu9njtCwl/4Z0U
+        jD3qDfPnuXNADxkHI4CvNAr8D0MNzh9q8bxIUiA6cAgYit8kyQUTw504j1EQZr7y7ZrculGRa1yV/E5Y
+        E5OoEEkD2PhUjYnE0w4bCAthhx1/j3/BecItiCTQXezdPkmybI/NeCgmaREJD4JnyQHF9xhXleCKrnjO
+        +XKSlomkFiZRIZIGcCfv1RBJoIc0cL4cuASR5PP5iH1SDlyCSNJEOOKMf5kFLUUklzO+HLgEkZQW18Ik
+        KkTSAO7ksxoTiac3bMZy4BJEEugRZ/xHXQkPgt+KpBYmUSGSBnAn39W4SMIJT/KveJLPC4Ge06Lz8yQt
+        IvF0SnuE6Cst5DOf58qJGkRClN+kQZJAd248vhGRjG9PoNfYy5lfTtQgkvFk8PiIGY2XUpSsjUlUmESF
+        SVRsUNIA7mT+ALAWJlFhEhUblDSAOyl/0V8Dk6gwiYoNShrAnZR/zF8Dk6gwiYoNShrAndTDJCpMomKD
+        krp08QdEJKg8L2TzHAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="virtualJoystickB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>203, 3</value>
+  </data>
+  <data name="virtualJoystickB.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>400, 400</value>
+  </data>
+  <data name="virtualJoystickB.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>25, 100</value>
+  </data>
+  <data name="virtualJoystickB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 100</value>
+  </data>
+  <data name="virtualJoystickB.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="virtualJoystickB.ToolTip" xml:space="preserve">
+    <value>Jog 4th axis</value>
+  </data>
+  <data name="&gt;&gt;virtualJoystickB.Name" xml:space="preserve">
+    <value>virtualJoystickB</value>
+  </data>
+  <data name="&gt;&gt;virtualJoystickB.Type" xml:space="preserve">
+    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.3.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;virtualJoystickB.Parent" xml:space="preserve">
+    <value>tLPRechtsUntenRechtsMitte</value>
+  </data>
+  <data name="&gt;&gt;virtualJoystickB.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="virtualJoystickC.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABkAAABkCAYAAABzVZt8AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHKSURBVGhD7ZgxbsMwDEV9g46dCmTKUiBLp05Zc4YC6dgD
+        FFpzkAI8RnddoIfQTdRP2WFsmC3A2NJgMMCDI5HUCxMoctLhkRvQ5ZzrIZJE/SBEBFKXT3gelYI/GWrK
+        giesN4qJJIZbMELIV8J1stA/SP0gKy92iImkTCAhYOHr4hYJQdBBpMVEUpKGVzB565QiFeQOi81qh7lR
+        cgVcYkIkDWDjSzUmkkg7bEIE0g4b6hE7fl5wDyJJ9JBPYV8kvWyPzXhQi6yIhAcpsuSAxfcYV5Xgiq54
+        LkS9yMpEUguXmBBJA7iTj2qIJNFTGYSoJy5BJP0ZfcQ+0ROXIJIykY44499mSUsRye2M1xOXIBItuBYu
+        MSGSBnAnX9WYSCK9YzPqiUsQSaJnnPGfdSU8SHErklq4xIRIGsCd/FTjJkkX3MmfcSffBxK9lmCI8yIr
+        Iol0KXuE6LsE+jOf5/RCCyIh6j+kq6SA7sJ4fCciGb89ic75JGe+XmhBJOPJFPEVMxovRZWsjUtMuMSE
+        S0xsUNIA7mR+A7AWLjHhEhMblDSAO9F/6K+BS0y4xMQGJQ3gTvQ/89fAJSZcYmKDkgZwJ/VwiQmXmNig
+        pC5d/gWA5ayP67ExpgAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="virtualJoystickC.Location" type="System.Drawing.Point, System.Drawing">
+    <value>223, 3</value>
+  </data>
+  <data name="virtualJoystickC.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>400, 400</value>
+  </data>
+  <data name="virtualJoystickC.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>25, 100</value>
+  </data>
+  <data name="virtualJoystickC.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 100</value>
+  </data>
+  <data name="virtualJoystickC.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="virtualJoystickC.ToolTip" xml:space="preserve">
+    <value>Jog 4th axis</value>
+  </data>
+  <data name="&gt;&gt;virtualJoystickC.Name" xml:space="preserve">
+    <value>virtualJoystickC</value>
+  </data>
+  <data name="&gt;&gt;virtualJoystickC.Type" xml:space="preserve">
+    <value>virtualJoystick.virtualJoystick, virtualJoystick, Version=0.3.3.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;virtualJoystickC.Parent" xml:space="preserve">
+    <value>tLPRechtsUntenRechtsMitte</value>
+  </data>
+  <data name="&gt;&gt;virtualJoystickC.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="tLPRechtsUntenRechtsMitte.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tLPRechtsUntenRechtsMitte.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 273</value>
+  </data>
+  <data name="tLPRechtsUntenRechtsMitte.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="tLPRechtsUntenRechtsMitte.RowCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tLPRechtsUntenRechtsMitte.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 106</value>
+  </data>
+  <data name="tLPRechtsUntenRechtsMitte.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="&gt;&gt;tLPRechtsUntenRechtsMitte.Name" xml:space="preserve">
+    <value>tLPRechtsUntenRechtsMitte</value>
+  </data>
+  <data name="&gt;&gt;tLPRechtsUntenRechtsMitte.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tLPRechtsUntenRechtsMitte.Parent" xml:space="preserve">
+    <value>tLPRechtsUntenRechts</value>
+  </data>
+  <data name="&gt;&gt;tLPRechtsUntenRechtsMitte.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tLPRechtsUntenRechtsMitte.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="virtualJoystickA" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="virtualJoystickXY" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="virtualJoystickZ" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="virtualJoystickB" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;Control Name="virtualJoystickC" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,120,Absolute,40,Absolute,40,Absolute,20,Absolute,20" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="tLP_cB_StopJogging.ColumnCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="cBSendJogStop.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBSendJogStop.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="cBSendJogStop.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 0, 0</value>
+  </data>
+  <data name="cBSendJogStop.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 18</value>
+  </data>
+  <data name="cBSendJogStop.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="cBSendJogStop.Text" xml:space="preserve">
+    <value>STOP Jogging on mouse up</value>
+  </data>
+  <data name="&gt;&gt;cBSendJogStop.Name" xml:space="preserve">
+    <value>cBSendJogStop</value>
+  </data>
+  <data name="&gt;&gt;cBSendJogStop.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBSendJogStop.Parent" xml:space="preserve">
+    <value>tLP_cB_StopJogging</value>
+  </data>
+  <data name="&gt;&gt;cBSendJogStop.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tableLayoutPanel3.ColumnCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tableLayoutPanel4.ColumnCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="btnOverrideDoor.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="btnOverrideDoor.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnOverrideDoor.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 22</value>
+  </data>
+  <data name="btnOverrideDoor.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>1, 1, 1, 1</value>
+  </data>
+  <data name="btnOverrideDoor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 19</value>
+  </data>
+  <data name="btnOverrideDoor.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="btnOverrideDoor.Text" xml:space="preserve">
+    <value>Door</value>
+  </data>
+  <data name="btnOverrideDoor.ToolTip" xml:space="preserve">
+    <value>Although typically connected to an input pin to detect the opening of a safety door, this command allows a GUI to enact the safety door behavior with this command.
+Immediately suspends into a DOOR state and disables the spindle and coolant. If in motion, the machine will decelerate to a stop and then be suspended.
+If executed during homing, Grbl will instead halt motion and throw a homing alarm.
+If already in a suspend state or HOLD, the DOOR state supersedes it.
+If the parking compile-time option is enabled, Grbl will park the spindle to a specified location.
+Command executes when Grbl is in an IDLE, HOLD, RUN, HOMING, or JOG state. It is otherwise ignored.
+If jogging, a safety door will cancel the jog and all queued motions in the planner buffer. When the safety door is closed and resumed, Grbl will return to an IDLE state.
+An input pin is available to connect a button or switch, if enabled with a compile-time option.</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideDoor.Name" xml:space="preserve">
+    <value>btnOverrideDoor</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideDoor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideDoor.Parent" xml:space="preserve">
+    <value>tableLayoutPanel4</value>
+  </data>
+  <data name="&gt;&gt;btnOverrideDoor.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnResume.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="btnResume.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnResume.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 43</value>
+  </data>
+  <data name="btnResume.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>1, 1, 1, 1</value>
+  </data>
+  <data name="btnResume.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 26</value>
+  </data>
+  <data name="btnResume.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="btnResume.Text" xml:space="preserve">
+    <value>Resume</value>
+  </data>
+  <data name="btnResume.ToolTip" xml:space="preserve">
+    <value>The cycle start or resume command '~' can be issued at any time, as it is a real-time command. 
+When Grbl has motions queued in its buffer and is ready to go, the  ~  cycle start command will 
+start executing the buffer and Grbl will begin moving the axes.</value>
+  </data>
+  <data name="&gt;&gt;btnResume.Name" xml:space="preserve">
+    <value>btnResume</value>
+  </data>
+  <data name="&gt;&gt;btnResume.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnResume.Parent" xml:space="preserve">
+    <value>tableLayoutPanel4</value>
+  </data>
+  <data name="&gt;&gt;btnResume.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnFeedHold.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="btnFeedHold.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnFeedHold.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 1</value>
+  </data>
+  <data name="btnFeedHold.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>1, 1, 1, 1</value>
+  </data>
+  <data name="btnFeedHold.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 19</value>
+  </data>
+  <data name="btnFeedHold.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="btnFeedHold.Text" xml:space="preserve">
+    <value>Feed Hold</value>
+  </data>
+  <data name="btnFeedHold.ToolTip" xml:space="preserve">
+    <value>The feed hold command '!' will bring the active cycle to a stop via a controlled deceleration, so as not to lose position. 
+It is also real-time and may be activated at any time. Once finished or paused, Grbl will wait until a cycle start command 
+is issued to resume the program. Feed hold can only pause a cycle and will not affect homing or any other process.
+If you need to stop a cycle mid-program and can't afford losing position, perform a feed hold to have Grbl bring 
+everything to a controlled stop. Once finished, you can then issue a reset. Always try to execute a feed hold whenever 
+the machine is running before hitting reset, except of course if there is some emergency situation.
+</value>
+  </data>
+  <data name="&gt;&gt;btnFeedHold.Name" xml:space="preserve">
+    <value>btnFeedHold</value>
+  </data>
+  <data name="&gt;&gt;btnFeedHold.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnFeedHold.Parent" xml:space="preserve">
+    <value>tableLayoutPanel4</value>
+  </data>
+  <data name="&gt;&gt;btnFeedHold.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tableLayoutPanel4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tableLayoutPanel4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="tableLayoutPanel4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="tableLayoutPanel4.RowCount" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="tableLayoutPanel4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 70</value>
+  </data>
+  <data name="tableLayoutPanel4.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel4.Name" xml:space="preserve">
+    <value>tableLayoutPanel4</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel4.Parent" xml:space="preserve">
+    <value>tableLayoutPanel3</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel4.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tableLayoutPanel4.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnOverrideDoor" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnResume" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnFeedHold" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Percent,30,Percent,30,Percent,40" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="tableLayoutPanel5.ColumnCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="btnKillAlarm.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="btnKillAlarm.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnKillAlarm.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 43</value>
+  </data>
+  <data name="btnKillAlarm.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>1, 1, 1, 1</value>
+  </data>
+  <data name="btnKillAlarm.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 26</value>
+  </data>
+  <data name="btnKillAlarm.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="btnKillAlarm.Text" xml:space="preserve">
+    <value>Kill Alarm</value>
+  </data>
+  <data name="btnKillAlarm.ToolTip" xml:space="preserve">
+    <value>Grbl's alarm mode is a state when something has gone critically wrong, 
+such as a hard limit or an abort during a cycle, or if Grbl doesn't know its position. 
+By default, if you have homing enabled and power-up the Arduino, Grbl enters
+the alarm state, because it does not know its position. The alarm mode will lock all 
+G-code commands until the '$H' homing cycle has been performed. Or if a user needs 
+to override the alarm lock to move their axes off their limit switches, for example, '$X' kill alarm lock 
+will override the locks and allow G-code functions to work again. 
+</value>
+  </data>
+  <data name="&gt;&gt;btnKillAlarm.Name" xml:space="preserve">
+    <value>btnKillAlarm</value>
+  </data>
+  <data name="&gt;&gt;btnKillAlarm.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnKillAlarm.Parent" xml:space="preserve">
+    <value>tableLayoutPanel5</value>
+  </data>
+  <data name="&gt;&gt;btnKillAlarm.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnReset.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="btnReset.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnReset.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 1</value>
+  </data>
+  <data name="btnReset.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>1, 1, 1, 1</value>
+  </data>
+  <data name="btnReset.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 40</value>
+  </data>
+  <data name="btnReset.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="btnReset.Text" xml:space="preserve">
+    <value>RESET</value>
+  </data>
+  <data name="btnReset.ToolTip" xml:space="preserve">
+    <value>This is Grbl's soft reset command 'Ctrl-x'. It's real-time and can be sent at any time. 
+As the name implies, it resets Grbl, but in a controlled way, retains your machine position, 
+and all is done without powering down your Arduino. The only times a soft-reset could 
+lose position is when problems arise and the steppers were killed while they were moving. 
+If so, it will report if Grbl's tracking of the machine position has been lost. 
+This is because an uncontrolled deceleration can lead to lost steps, and Grbl has no feedback 
+to how much it lost (this is the problem with steppers in general). Otherwise, Grbl will just re-initialize,
+ run the startup lines, and continue on its merry way. 
+</value>
+  </data>
+  <data name="&gt;&gt;btnReset.Name" xml:space="preserve">
+    <value>btnReset</value>
+  </data>
+  <data name="&gt;&gt;btnReset.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnReset.Parent" xml:space="preserve">
+    <value>tableLayoutPanel5</value>
+  </data>
+  <data name="&gt;&gt;btnReset.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tableLayoutPanel5.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tableLayoutPanel5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>115, 0</value>
+  </data>
+  <data name="tableLayoutPanel5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="tableLayoutPanel5.RowCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tableLayoutPanel5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 70</value>
+  </data>
+  <data name="tableLayoutPanel5.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel5.Name" xml:space="preserve">
+    <value>tableLayoutPanel5</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel5.Parent" xml:space="preserve">
+    <value>tableLayoutPanel3</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel5.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tableLayoutPanel5.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnKillAlarm" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="btnReset" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,Absolute,20" /&gt;&lt;Rows Styles="Percent,60,Percent,40" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="tableLayoutPanel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tableLayoutPanel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 27</value>
+  </data>
+  <data name="tableLayoutPanel3.RowCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tableLayoutPanel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>230, 70</value>
+  </data>
+  <data name="tableLayoutPanel3.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel3.Name" xml:space="preserve">
+    <value>tableLayoutPanel3</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel3.Parent" xml:space="preserve">
+    <value>tLP_cB_StopJogging</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel3.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tableLayoutPanel3.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tableLayoutPanel4" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel5" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,50,Percent,50" /&gt;&lt;Rows Styles="Percent,100,Absolute,70" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="tLP_cB_StopJogging.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tLP_cB_StopJogging.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 382</value>
+  </data>
+  <data name="tLP_cB_StopJogging.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="tLP_cB_StopJogging.RowCount" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tLP_cB_StopJogging.Size" type="System.Drawing.Size, System.Drawing">
+    <value>236, 100</value>
+  </data>
+  <data name="tLP_cB_StopJogging.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="&gt;&gt;tLP_cB_StopJogging.Name" xml:space="preserve">
+    <value>tLP_cB_StopJogging</value>
+  </data>
+  <data name="&gt;&gt;tLP_cB_StopJogging.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tLP_cB_StopJogging.Parent" xml:space="preserve">
+    <value>tLPRechtsUntenRechts</value>
+  </data>
+  <data name="&gt;&gt;tLP_cB_StopJogging.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="tLP_cB_StopJogging.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="cBSendJogStop" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel3" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Absolute,24,Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="tLPRechtsUntenRechts.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4681,7 +4931,7 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>0</value>
   </data>
   <data name="tLPRechtsUntenRechts.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="gB_Jogging" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tLPRechtsUntenRechtsMitte" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tableLayoutPanel2" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tabControl1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Absolute,120,Absolute,75,AutoSize,0,Absolute,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tC_RouterPlotterLaser" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="Gb_Jogging" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tLPRechtsUntenRechtsMitte" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="tLP_cB_StopJogging" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Absolute,120,AutoSize,0,AutoSize,0,AutoSize,0,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="tLPMitteUnten.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4730,9 +4980,6 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
   </data>
   <data name="cmsPicBoxReloadFile2.Text" xml:space="preserve">
     <value>Reload File 2</value>
-  </data>
-  <data name="cmsPicBoxReloadFile2.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="cmsPicBoxPasteFromClipboard.Size" type="System.Drawing.Size, System.Drawing">
     <value>236, 22</value>
@@ -4927,7 +5174,7 @@ to how much it lost (this is the problem with steppers in general). Otherwise, G
     <value>Copy 2D-View image to clipboard</value>
   </data>
   <data name="cmsPictureBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 540</value>
+    <value>237, 518</value>
   </data>
   <data name="&gt;&gt;cmsPictureBox.Name" xml:space="preserve">
     <value>cmsPictureBox</value>
@@ -5757,6 +6004,357 @@ Changing import settings after the first import can lead to undesired effects.</
   <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="BtnSetCoordA.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnSetCoordA.Location" type="System.Drawing.Point, System.Drawing">
+    <value>97, 86</value>
+  </data>
+  <data name="BtnSetCoordA.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 20</value>
+  </data>
+  <data name="BtnSetCoordA.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="BtnSetCoordA.Text" xml:space="preserve">
+    <value>Set A</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordA.Name" xml:space="preserve">
+    <value>BtnSetCoordA</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordA.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordA.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordA.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="NudSetCoordA.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 86</value>
+  </data>
+  <data name="NudSetCoordA.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 20</value>
+  </data>
+  <data name="NudSetCoordA.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
+  </data>
+  <data name="NudSetCoordA.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordA.Name" xml:space="preserve">
+    <value>NudSetCoordA</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordA.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordA.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordA.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="LblSetCoordA.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblSetCoordA.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblSetCoordA.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 88</value>
+  </data>
+  <data name="LblSetCoordA.Size" type="System.Drawing.Size, System.Drawing">
+    <value>14, 13</value>
+  </data>
+  <data name="LblSetCoordA.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="LblSetCoordA.Text" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordA.Name" xml:space="preserve">
+    <value>LblSetCoordA</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordA.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordA.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordA.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="BtnSetCoordZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnSetCoordZ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>97, 64</value>
+  </data>
+  <data name="BtnSetCoordZ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 20</value>
+  </data>
+  <data name="BtnSetCoordZ.TabIndex" type="System.Int32, mscorlib">
+    <value>46</value>
+  </data>
+  <data name="BtnSetCoordZ.Text" xml:space="preserve">
+    <value>Set Z</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordZ.Name" xml:space="preserve">
+    <value>BtnSetCoordZ</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordZ.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordZ.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="BtnSetCoordY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnSetCoordY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>97, 42</value>
+  </data>
+  <data name="BtnSetCoordY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 20</value>
+  </data>
+  <data name="BtnSetCoordY.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="BtnSetCoordY.Text" xml:space="preserve">
+    <value>Set Y</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordY.Name" xml:space="preserve">
+    <value>BtnSetCoordY</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordY.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordY.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="BtnSetCoordX.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnSetCoordX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>97, 20</value>
+  </data>
+  <data name="BtnSetCoordX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 20</value>
+  </data>
+  <data name="BtnSetCoordX.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="BtnSetCoordX.Text" xml:space="preserve">
+    <value>Set X</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordX.Name" xml:space="preserve">
+    <value>BtnSetCoordX</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordX.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;BtnSetCoordX.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="NudSetCoordZ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 64</value>
+  </data>
+  <data name="NudSetCoordZ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 20</value>
+  </data>
+  <data name="NudSetCoordZ.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="NudSetCoordZ.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordZ.Name" xml:space="preserve">
+    <value>NudSetCoordZ</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordZ.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordZ.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="NudSetCoordY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 42</value>
+  </data>
+  <data name="NudSetCoordY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 20</value>
+  </data>
+  <data name="NudSetCoordY.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="NudSetCoordY.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordY.Name" xml:space="preserve">
+    <value>NudSetCoordY</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordY.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordY.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="NudSetCoordX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 20</value>
+  </data>
+  <data name="NudSetCoordX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 20</value>
+  </data>
+  <data name="NudSetCoordX.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="NudSetCoordX.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordX.Name" xml:space="preserve">
+    <value>NudSetCoordX</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordX.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;NudSetCoordX.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="LblSetCoordZ.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblSetCoordZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblSetCoordZ.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 66</value>
+  </data>
+  <data name="LblSetCoordZ.Size" type="System.Drawing.Size, System.Drawing">
+    <value>14, 13</value>
+  </data>
+  <data name="LblSetCoordZ.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="LblSetCoordZ.Text" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordZ.Name" xml:space="preserve">
+    <value>LblSetCoordZ</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordZ.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordZ.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordZ.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="LblSetCoordY.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblSetCoordY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblSetCoordY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 44</value>
+  </data>
+  <data name="LblSetCoordY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>14, 13</value>
+  </data>
+  <data name="LblSetCoordY.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
+  </data>
+  <data name="LblSetCoordY.Text" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordY.Name" xml:space="preserve">
+    <value>LblSetCoordY</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordY.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordY.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordY.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="LblSetCoordX.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblSetCoordX.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblSetCoordX.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 22</value>
+  </data>
+  <data name="LblSetCoordX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>14, 13</value>
+  </data>
+  <data name="LblSetCoordX.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="LblSetCoordX.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordX.Name" xml:space="preserve">
+    <value>LblSetCoordX</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordX.Parent" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;LblSetCoordX.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="gBoxDROSetCoord.Location" type="System.Drawing.Point, System.Drawing">
+    <value>106, 14</value>
+  </data>
+  <data name="gBoxDROSetCoord.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 116</value>
+  </data>
+  <data name="gBoxDROSetCoord.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="gBoxDROSetCoord.Text" xml:space="preserve">
+    <value>Set Coordinate System</value>
+  </data>
+  <data name="gBoxDROSetCoord.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;gBoxDROSetCoord.Name" xml:space="preserve">
+    <value>gBoxDROSetCoord</value>
+  </data>
+  <data name="&gt;&gt;gBoxDROSetCoord.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gBoxDROSetCoord.Parent" xml:space="preserve">
+    <value>gBoxDRO</value>
+  </data>
+  <data name="&gt;&gt;gBoxDROSetCoord.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="label_c.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
@@ -5788,10 +6386,10 @@ Changing import settings after the first import can lead to undesired effects.</
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label_c.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;label_c.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="btnZeroC.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -5818,10 +6416,10 @@ Changing import settings after the first import can lead to undesired effects.</
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnZeroC.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;btnZeroC.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="label_mc.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 7pt</value>
@@ -5854,10 +6452,10 @@ Changing import settings after the first import can lead to undesired effects.</
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label_mc.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;label_mc.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="label_wc.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -5890,10 +6488,10 @@ Changing import settings after the first import can lead to undesired effects.</
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label_wc.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;label_wc.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="label11.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -5926,10 +6524,10 @@ Changing import settings after the first import can lead to undesired effects.</
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label11.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="btnZeroB.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -5956,10 +6554,10 @@ Changing import settings after the first import can lead to undesired effects.</
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnZeroB.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;btnZeroB.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="label_mb.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 7pt</value>
@@ -5992,10 +6590,10 @@ Changing import settings after the first import can lead to undesired effects.</
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label_mb.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;label_mb.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="label_wb.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -6028,10 +6626,10 @@ Changing import settings after the first import can lead to undesired effects.</
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label_wb.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;label_wb.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="lblCurrentG.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -6063,10 +6661,10 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblCurrentG.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;lblCurrentG.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="label_status0.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -6099,10 +6697,10 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label_status0.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;label_status0.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="label_a.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -6135,10 +6733,10 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label_a.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;label_a.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="btnZeroA.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -6165,10 +6763,10 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnZeroA.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;btnZeroA.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="label_ma.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 7pt</value>
@@ -6201,10 +6799,10 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label_ma.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;label_ma.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="label_wa.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -6237,10 +6835,10 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label_wa.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;label_wa.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="btnHome.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -6267,10 +6865,10 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnHome.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;btnHome.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="btnZeroXYZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -6297,10 +6895,10 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnZeroXYZ.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;btnZeroXYZ.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="btnZeroXY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -6327,10 +6925,10 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnZeroXY.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;btnZeroXY.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -6363,10 +6961,10 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="btnZeroZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -6393,10 +6991,10 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnZeroZ.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;btnZeroZ.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>19</value>
   </data>
   <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -6429,10 +7027,10 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>20</value>
   </data>
   <data name="btnZeroY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -6459,10 +7057,10 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnZeroY.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;btnZeroY.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>21</value>
   </data>
   <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -6495,10 +7093,10 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>22</value>
   </data>
   <data name="btnZeroX.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -6525,10 +7123,10 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnZeroX.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;btnZeroX.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>23</value>
   </data>
   <data name="label_status.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -6558,10 +7156,10 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label_status.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;label_status.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>24</value>
   </data>
   <data name="label_mx.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 7pt</value>
@@ -6594,10 +7192,10 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label_mx.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;label_mx.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>25</value>
   </data>
   <data name="label_my.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 7pt</value>
@@ -6630,10 +7228,10 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label_my.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;label_my.ZOrder" xml:space="preserve">
-    <value>25</value>
+    <value>26</value>
   </data>
   <data name="label_mz.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 7pt</value>
@@ -6666,10 +7264,10 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label_mz.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;label_mz.ZOrder" xml:space="preserve">
-    <value>26</value>
+    <value>27</value>
   </data>
   <data name="label_wz.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -6702,10 +7300,10 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label_wz.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;label_wz.ZOrder" xml:space="preserve">
-    <value>27</value>
+    <value>28</value>
   </data>
   <data name="label_wx.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -6738,10 +7336,10 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label_wx.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;label_wx.ZOrder" xml:space="preserve">
-    <value>28</value>
+    <value>29</value>
   </data>
   <data name="label_wy.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
@@ -6774,33 +7372,33 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label_wy.Parent" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+    <value>gBoxDRO</value>
   </data>
   <data name="&gt;&gt;label_wy.ZOrder" xml:space="preserve">
-    <value>29</value>
+    <value>30</value>
   </data>
-  <data name="groupBoxCoordinates.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="gBoxDRO.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
-  <data name="groupBoxCoordinates.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="gBoxDRO.Size" type="System.Drawing.Size, System.Drawing">
     <value>394, 170</value>
   </data>
-  <data name="groupBoxCoordinates.TabIndex" type="System.Int32, mscorlib">
+  <data name="gBoxDRO.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
-  <data name="groupBoxCoordinates.Text" xml:space="preserve">
+  <data name="gBoxDRO.Text" xml:space="preserve">
     <value>Tool Coordinates (Work / Machine)</value>
   </data>
-  <data name="&gt;&gt;groupBoxCoordinates.Name" xml:space="preserve">
-    <value>groupBoxCoordinates</value>
+  <data name="&gt;&gt;gBoxDRO.Name" xml:space="preserve">
+    <value>gBoxDRO</value>
   </data>
-  <data name="&gt;&gt;groupBoxCoordinates.Type" xml:space="preserve">
+  <data name="&gt;&gt;gBoxDRO.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;groupBoxCoordinates.Parent" xml:space="preserve">
+  <data name="&gt;&gt;gBoxDRO.Parent" xml:space="preserve">
     <value>tLPRechtsOben</value>
   </data>
-  <data name="&gt;&gt;groupBoxCoordinates.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;gBoxDRO.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="tLPRechtsOben.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -6831,7 +7429,7 @@ Add 'G54;' to G-Code header to switch back automatically to G54 before streaming
     <value>1</value>
   </data>
   <data name="tLPRechtsOben.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="groupBox5" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="groupBoxCoordinates" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,400,Percent,100" /&gt;&lt;Rows Styles="Absolute,176" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="groupBox5" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="gBoxDRO" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="AutoSize,0,Percent,100" /&gt;&lt;Rows Styles="Absolute,176" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="tLPRechts.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -7234,6 +7832,12 @@ Dil
   </data>
   <data name="createSimpleShapesToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>Circle or rectangle, optionally with rounded corners, optionally as a bag</value>
+  </data>
+  <data name="wireCutterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 22</value>
+  </data>
+  <data name="wireCutterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Wire cutter</value>
   </data>
   <data name="createJogPathToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 22</value>
@@ -8521,6 +9125,12 @@ Dil
     <value>createSimpleShapesToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;createSimpleShapesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;wireCutterToolStripMenuItem.Name" xml:space="preserve">
+    <value>wireCutterToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;wireCutterToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;createJogPathToolStripMenuItem.Name" xml:space="preserve">

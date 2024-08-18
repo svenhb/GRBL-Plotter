@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -63,6 +63,10 @@
  * 2023-09-15 l:245 f: NewCodeEnd multiFileImportNotLastFile
  * 2023-11-02 l:465 f:LoadFiles bug fix "Value was either too large or too small for a Decimal. Source" use  Graphic.actualDimension.dimx instead of (Graphic.actualDimension.maxx - Graphic.actualDimension.minx);
  * 2023-12-17 l:158/1222 f:SaveRecentFile/ReStartConvertFile add 2nd recent file load, if 1st is "lastProcessed.nc"
+ * 2024-05-28 l:146 f:SaveRecentFile show 1st and 2nd file in cmsPicBoxReloadFile
+ * 2024-05-28 l:765 f:LoadFile add delayedHeightMapShow timer
+ * 2024-08-07 add file type 'pdn-json' to read exported Layers from PaintDotnet with https://github.com/sbtrn-devil/pdn-json
+ * 2024-08-18 add txt file type, which opens text-form
 */
 /*   96 #region MAIN-MENU FILE
  * 1483 MainForm_KeyDown  
@@ -71,7 +75,7 @@
  * 1928 UseCaseDialog
  * 1946 LoadExtensionList
 */
-using AForge.Imaging.Filters;
+
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -81,7 +85,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.ServiceModel.Description;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
@@ -97,6 +100,7 @@ namespace GrblPlotter
         private const string extensionHeightMap = ".map,.stl";
         private const string extensionHPGL = ".plt,.hpgl";
         private const string extensionCSV = ".csv,.dat";
+        private const string extensionJson = ".pdn-json";
 
         private const string loadFilter = "G-Code (*.nc, *.cnc, *.ngc, *.gcode, *.tap)|*.nc;*.cnc;*.ngc;*.gcode;*.tap|" +
                                             "SVG - Scalable Vector Graphics|*.svg|" +
@@ -106,8 +110,10 @@ namespace GrblPlotter
                                             "Drill files (*.drd, *.drl, *.dri)|*.drd;*.drl;*.dri|" +
                                             "Gerber files (*.gbr, *.ger, kicad)|*.gbr;*.ger;*.gtl;*.gbl;*.gts;*.gbs;*.gto;*.gbo;*.gko;*.g2l;*.g3l|" +
                                             "Images (*.bmp,*.gif,*.png,*.jpg)|*.bmp;*.gif;*.png;*.jpg|" +
+                                            "PaintDotNet Layers(*.pdn-json)|*.pdn-json|" +
                                             "All files (*.*)|*.*";
 
+        private int delayedHeightMapShow = 0;
 
         #region MAIN-MENU FILE
         // open a file via dialog
@@ -129,7 +135,7 @@ namespace GrblPlotter
         {
             Logger.Info("SaveRecentFile: {0}", path);
             saveName = Path.GetFileNameWithoutExtension(path);
-            string dname = Path.GetFileName(path);
+            string dname1 = Path.GetFileName(path);
             toolStripMenuItem2.DropDownItems.Clear();
             LoadRecentList(); //load list from file
 
@@ -142,26 +148,17 @@ namespace GrblPlotter
             if (addPath)
             {
                 MRUlist.Insert(0, path);    //insert given path into list on top
-                cmsPicBoxReloadFile.ToolTipText = string.Format("Load '{0}'", path);
+                SetRecentText();
+                /*     cmsPicBoxReloadFile.ToolTipText = string.Format("Load '{0}'", path);
 
-                string txt = cmsPicBoxReloadFile.Text;
-                if (cmsPicBoxReloadFile.Text.Contains("|"))
-                {
-                    txt = cmsPicBoxReloadFile.Text.Substring(0, cmsPicBoxReloadFile.Text.IndexOf("|"));
-                    string tmp = txt + "| " + dname;
-                    cmsPicBoxReloadFile.Text = tmp;
-                }
-                else
-                {
-                    cmsPicBoxReloadFile.Text += " | " + dname;
-                }
-                try
-                {
-                    cmsPicBoxReloadFile2.Text = txt + "| " + Path.GetFileName(Datapath.MakeAbsolutePath(MRUlist[1]));
-                    cmsPicBoxReloadFile2.Visible = (dname == fileLastProcessed + ".nc");
-                }
-                catch
-                { }
+                     cmsPicBoxReloadFile.Text = Localization.GetString("loadMessageReload") + " | " + dname1;
+                     try
+                     {
+                         cmsPicBoxReloadFile2.Text = Localization.GetString("loadMessageReload") + " | " + Path.GetFileName(Datapath.MakeAbsolutePath(MRUlist[1]));
+                         cmsPicBoxReloadFile2.Visible = true;// (dname1 == fileLastProcessed + ".nc");
+                     }
+                     catch
+                     { }*/
             }
 
             //keep list number not exceeded the given value
@@ -210,6 +207,20 @@ namespace GrblPlotter
                     MRUlist.Add("data\\examples\\graphic_grbl.svg");
             }
             catch (Exception er) { Logger.Error(er, "LoadRecentList "); }
+        }
+        private void SetRecentText()
+        {
+            try
+            {
+                cmsPicBoxReloadFile.Text = Localization.GetString("loadMessageReload") + " | " + Path.GetFileName(Datapath.MakeAbsolutePath(MRUlist[0]));
+                cmsPicBoxReloadFile.ToolTipText = string.Format(culture, "Load '{0}'", MRUlist[0]); // set last loaded in cms menu
+                cmsPicBoxReloadFile2.Text = Localization.GetString("loadMessageReload") + " | " + Path.GetFileName(Datapath.MakeAbsolutePath(MRUlist[1]));
+                cmsPicBoxReloadFile2.ToolTipText = string.Format(culture, "Load '{0}'", MRUlist[1]); // set last loaded in cms menu
+            }
+            catch
+            {
+                Logger.Error("MainForm: could not set cmsPicBoxReloadFile.Text");
+            }
         }
         private void RecentFile_click(object sender, EventArgs e)
         {
@@ -578,7 +589,7 @@ namespace GrblPlotter
                 return true;
             }
 
-            _heightmap_form?.SetBtnApply(isHeightMapApplied);
+            _heightmap_form?.SetBtnApply(true);
             isHeightMapApplied = false;
 
             String ext = Path.GetExtension(fileName).ToLower();
@@ -664,6 +675,11 @@ namespace GrblPlotter
                 if (Properties.Settings.Default.importCSVAutomatic) importOptions = "<CSV Automatic> " + importOptions;
                 StartConvert(Graphic.SourceType.CSV, fileName); fileLoaded = true;
             }
+            else if (extensionJson.Contains(ext))
+            {
+                LastLoadedImagePattern = fileName;
+                StartConvert(Graphic.SourceType.PDNJson, fileName); fileLoaded = true;
+            }
 
             else if (extensionGCode.Contains(ext))              // extensionGCode = ".nc,.cnc,.ngc,.gcode,.tap";
             {
@@ -721,6 +737,7 @@ namespace GrblPlotter
                 showFormsToolStripMenuItem.Visible = true;
                 _heightmap_form.WindowState = FormWindowState.Normal;
                 _heightmap_form.LoadExtern(fileName);
+
                 if (_diyControlPad != null)
                 { _heightmap_form.DiyControlConnected = _diyControlPad.IsConnected; }
                 fileLoaded = true;
@@ -739,7 +756,17 @@ namespace GrblPlotter
                             using (var sr = new StreamReader(fs, GetEncoding(fileName)))
                             {
                                 string tmp = sr.ReadToEnd();
-                                LoadFromClipboard(tmp);     //File.ReadAllText(fileName));
+
+                                if (_text_form == null)
+                                { textWizzardToolStripMenuItem.PerformClick(); }
+
+                                if (_text_form != null)
+                                {
+                                    _text_form.SetText(tmp);//, opt, size);
+                                    SetLastLoadedFile("Data from URL", tBURL.Text);
+                                }
+
+                                //   LoadFromClipboard(tmp);     //File.ReadAllText(fileName));
                                 fileLoaded = true;
                                 this.Text = appName + " | Source: " + fileName;
                             }
@@ -769,6 +796,7 @@ namespace GrblPlotter
             Logger.Info("▄▄▄▄▄▄▄▄▄▄ Load file END fileLoaded:{0}", fileLoaded);
             if (fileLoaded)
             {
+                delayedHeightMapShow = 2;
                 SaveRecentFile(fileName);
                 SetLastLoadedFile("Data from file", fileName);
                 //    Cursor.Current = Cursors.Default;
@@ -776,7 +804,8 @@ namespace GrblPlotter
                 EnableCmsCodeBlocks(VisuGCode.CodeBlocksAvailable());
                 pictureBox1.Invalidate();
                 if (VisuGCode.tangentialAxisEnable && (VisuGCode.tangentialAxisFullTurn != (double)Properties.Settings.Default.importGCTangentialTurn))
-                {   StatusStripSet(2,string.Format("Tangential Axis Full Turn: {0} != {1}", VisuGCode.tangentialAxisFullTurn, Properties.Settings.Default.importGCTangentialTurn),Color.Fuchsia);
+                {
+                    StatusStripSet(2, string.Format("Tangential Axis Full Turn: {0} != {1}", VisuGCode.tangentialAxisFullTurn, Properties.Settings.Default.importGCTangentialTurn), Color.Fuchsia);
                     MarkErrorLine(VisuGCode.tangentialAxisError);
                 }
                 return true;
@@ -906,6 +935,11 @@ namespace GrblPlotter
                 StartConvert(Graphic.SourceType.CSV, tBURL.Text);
                 SetLastLoadedFile("Data from URL", tBURL.Text);
             }
+            else if (extensionJson.Contains(ext))
+            {
+                StartConvert(Graphic.SourceType.PDNJson, tBURL.Text);
+                SetLastLoadedFile("Data from URL", tBURL.Text);
+            }
 
             else if (extensionPicture.Contains(ext)) //((ext.ToLower().IndexOf("bmp") >= 0) || (ext.ToLower().IndexOf("gif") >= 0) || (ext.ToLower().IndexOf("png") >= 0) || (ext.ToLower().IndexOf("jpg") >= 0))
             {
@@ -941,7 +975,7 @@ namespace GrblPlotter
 
 
         // paste from clipboard SVG or image
-        private void LoadFromClipboard(string text = "")
+        private bool LoadFromClipboard(string text = "")
         {
             Logger.Info("▀▀▀▀▀▀▀▀▀▀ LoadFromClipboard");
             NewCodeStart();         // LoadFromClipboard
@@ -961,7 +995,7 @@ namespace GrblPlotter
             {
                 Logger.Error(err, "▀▀▀▀▀▀▀▀▀▀ LoadFromClipboard GetDataObject ");
                 MessageBox.Show("Could not get clipboard data:\r\n" + err, "Error");
-                return;
+                return false;
             }
             MemoryStream stream = new MemoryStream();
 
@@ -981,13 +1015,13 @@ namespace GrblPlotter
                 else
                 {
                     Logger.Info(" Nothing to do? ");
-                    return;
+                    return false;
                 }
 
                 if (checkContent.StartsWith("http"))
                 {
                     tBURL.Text = checkContent;
-                    return;
+                    return true;
                 }
 
                 string[] checkLines = checkContent.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
@@ -1077,7 +1111,7 @@ namespace GrblPlotter
 
                     Properties.Settings.Default.counterImportHPGL += 1;
                     if (fCTBCode.LinesCount <= 1)
-                    { fCTBCode.Text = "( Code conversion failed )"; return; }
+                    { fCTBCode.Text = "( Code conversion failed )"; return false; }
                     NewCodeEnd(true);               // LoadFromClipboard DXF code was imported, no need to check for bad GCode
 
                     this.Text = appName + " | Source: from " + source;
@@ -1118,7 +1152,7 @@ namespace GrblPlotter
 
                     Properties.Settings.Default.counterImportDXF += 1;
                     if (fCTBCode.LinesCount <= 1)
-                    { fCTBCode.Text = "( Code conversion failed )"; return; }
+                    { fCTBCode.Text = "( Code conversion failed )"; return false; }
                     NewCodeEnd(true);               // LoadFromClipboard DXF code was imported, no need to check for bad GCode
 
                     this.Text = appName + " | Source: from " + source;
@@ -1127,20 +1161,55 @@ namespace GrblPlotter
                     ShowImportOptions();
                 }
 
-                /* Assume plain Gcode */
-                else
+                else if (fromClipboard)
                 {
-                    if (fromClipboard)
+                    /* Assume plain Gcode */
+                    if (checkContent.Contains("G0") || checkContent.Contains("G1"))
+                    {
                         fCTBCode.Text = (String)iData.GetData(DataFormats.Text);
+                        Properties.Settings.Default.counterImportGCode += 1;
+                        NewCodeEnd();                      // LoadFromClipboard GCode
+                        SetLastLoadedFile("Data from " + source + ": Text", "");
+                        lbInfo.Text = "GCode from " + source;
+                    }
+                    /* Load text in text form */
                     else
+                    {
+                        if (_text_form == null)
+                        { textWizzardToolStripMenuItem.PerformClick(); }
+
+                        if (_text_form != null)
+                        {
+                            _text_form.SetText((String)iData.GetData(DataFormats.Text));//, opt, size);
+                            Logger.Trace("Text {0}", (String)iData.GetData(DataFormats.Text));
+                        }
+                    }
+                }
+                /*  */
+                else
+                {   /* Assume plain Gcode */
+                    if (text.Contains("G0") || text.Contains("G1"))
+                    {
                         fCTBCode.Text = text;
-                    Properties.Settings.Default.counterImportGCode += 1;
-                    NewCodeEnd();                      // LoadFromClipboard GCode
-                    SetLastLoadedFile("Data from " + source + ": Text", "");
-                    lbInfo.Text = "GCode from " + source;
+                        Properties.Settings.Default.counterImportGCode += 1;
+                        NewCodeEnd();                      // LoadFromClipboard GCode
+                        SetLastLoadedFile("Data from " + source + ": Text", "");
+                        lbInfo.Text = "GCode from " + source;
+                    }
+                    /* Load text in text form */
+                    else
+                    {
+                        if (_text_form == null)
+                        { textWizzardToolStripMenuItem.PerformClick(); }
+
+                        if (_text_form != null)
+                        {
+                            _text_form.SetText(text);//, opt, size);
+                            Logger.Trace("Text {0}", text);
+                        }
+                    }
                 }
             }
-
             /* if clipboard data is SVG format */
             else if (iData.GetDataPresent(svg_format1) || iData.GetDataPresent(svg_format2))
             {
@@ -1178,13 +1247,13 @@ namespace GrblPlotter
                 }
 
                 GCodeFromSvg.ConvertFromText(txt, false, false);       // replaceUnitByPixel = false
-                // perhaps use backgroundworker?                 using (ImportWorker f = new ImportWorker())   //MainFormImportWorker
+                                                                       // perhaps use backgroundworker?                 using (ImportWorker f = new ImportWorker())   //MainFormImportWorker
 
                 SetFctbCodeText(Graphic.GCode.ToString());      // loadFromClipboard SVG2
 
                 Properties.Settings.Default.counterImportSVG += 1;
                 if (fCTBCode.LinesCount <= 1)
-                { fCTBCode.Text = "( Code conversion failed )"; return; }
+                { fCTBCode.Text = "( Code conversion failed )"; return false; }
                 NewCodeEnd(true);               // LoadFromClipboard SVG code was imported, no need to check for bad GCode
 
                 this.Text = appName + " | Source: from Clipboard";
@@ -1227,58 +1296,34 @@ namespace GrblPlotter
                 MessageBox.Show(tmp);
             }
             stream?.Dispose();
+            return true;
         }
 
 
 
         //schalter if source from setup oder picbox-cms 
-        public void ReStartConvertFileFromSetup(object sender, EventArgs e)   	// event from setup form
+        public void ReStartConvertFileFromSetup(object sender, EventArgs e)     // event from setup form
         { ReStartConvertFile(sender, e, true, 0); }
-        public void ReStartConvertFile(object sender, EventArgs e, int i)   			// event from picbox cms
+        public void ReStartConvertFile(object sender, EventArgs e, int i)               // event from picbox cms
         { ReStartConvertFile(sender, e, false, i); }
-        public void ReStartConvertFile(object sender, EventArgs e, bool wantGraphic, int i)
+        public void ReStartConvertFile(object sender, EventArgs e, bool wantGraphic, int index)
         {
-            Logger.Info("●●●●● ReStartConvertFile SourceType:{0}", Graphic.graphicInformation.SourceType);
+            Logger.Info("●●●●● ReStartConvertFile SourceType:{0}  index:{1}  wantGraphic:{2}   lastLoadFile:{3}", Graphic.graphicInformation.SourceType, index, wantGraphic, lastLoadFile);
             if (!isStreaming)
             {
-                if (Graphic.graphicInformation.SourceType == Graphic.SourceType.Text)
+                this.Cursor = Cursors.WaitCursor;
+                if (wantGraphic && lastLoadFile.EndsWith(fileLastProcessed + ".nc") && (MRUlist.Count > 1))     // safety copy during streaming
                 {
-                    if (_text_form != null)
-                    {
-                        _text_form.CreateText();        // restart text creation
-                                                        //    ShowSimpleMessageForm(Localization.GetString("codeMessage_information"), "Create text", 3);
-                        GetGCodeFromText(sender, e);
-                    }
+                    string lastGraphic = Datapath.MakeAbsolutePath(MRUlist[1]);     // try to get 2nd last file
+                    Logger.Info("⚠⚠⚠ ReStartConvertFile - from Setup-form - load 2nd last file: {0}", lastGraphic);
+                    LoadFile(lastGraphic);
                 }
                 else
                 {
-                    this.Cursor = Cursors.WaitCursor;
-                    if (lastLoadSource.IndexOf("Clipboard") >= 0)
-                    { LoadFromClipboard(); }
-                    else
-                    {
-                        if (lastLoadFile.Contains("Nothing"))
-                        {
-                            string mypath = Datapath.MakeAbsolutePath(MRUlist[0]);
-                            LoadFile(mypath);
-                        }
-                        else
-                        {
-                            if (wantGraphic && lastLoadFile.EndsWith(fileLastProcessed + ".nc") && (MRUlist.Count > 1))     // safety copy during streaming
-                            {
-                                string lastGraphic = Datapath.MakeAbsolutePath(MRUlist[1]);     // try to get 2nd last file
-                                Logger.Info("⚠⚠⚠ ReStartConvertFile - from Setup-form - load 2nd last file: {0}", lastGraphic);
-                                LoadFile(lastGraphic);
-                            }
-                            else
-                            {
-                                // LoadFile(lastLoadFile);
-                                LoadFile(Datapath.MakeAbsolutePath(MRUlist[i]));
-                            }
-                        }
-                    }
-                    this.Cursor = Cursors.Default;
+                    // LoadFile(lastLoadFile);
+                    LoadFile(Datapath.MakeAbsolutePath(MRUlist[index]));
                 }
+                this.Cursor = Cursors.Default;
             }
             else
             {
@@ -1423,6 +1468,13 @@ namespace GrblPlotter
                             Properties.Settings.Default.counterImportGerber += 1;
                             break;
                         }
+                    case Graphic.SourceType.PDNJson:    // uses Graphic-Class, get result from Graphic.GCode
+                        {
+                            if (!showProgress) GCodeFromPDNJson.ConvertFromFile(source, null, null);
+                            conversionInfo = GCodeFromPDNJson.ConversionInfo;
+                            Properties.Settings.Default.counterImportPDNJson += 1;
+                            break;
+                        }
                     default: break;
                 }
             }
@@ -1477,6 +1529,7 @@ namespace GrblPlotter
             //    UpdateControlEnables(); 
             _camera_form?.NewDrawing();
             _probing_form?.UpdateFiducials();
+            _heightmap_form?.SetBtnApply(true);
         }
 
         int loadTimerStep = -1;

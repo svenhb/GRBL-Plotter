@@ -188,6 +188,11 @@ namespace GrblPlotter
             this.virtualJoystickZ = new virtualJoystick.virtualJoystick();
             this.virtualJoystickB = new virtualJoystick.virtualJoystick();
             this.virtualJoystickC = new virtualJoystick.virtualJoystick();
+            this.btnOverrideDoor = new System.Windows.Forms.Button();
+            this.btnResume = new System.Windows.Forms.Button();
+            this.btnFeedHold = new System.Windows.Forms.Button();
+            this.btnKillAlarm = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
             this.LblSpeedSet = new System.Windows.Forms.Label();
             this.LblSpeedMax = new System.Windows.Forms.Label();
             this.LblSpeedMin = new System.Windows.Forms.Label();
@@ -207,15 +212,10 @@ namespace GrblPlotter
             this.btnZeroZ = new System.Windows.Forms.Button();
             this.btnZeroY = new System.Windows.Forms.Button();
             this.btnZeroX = new System.Windows.Forms.Button();
+            this.CbAddGraphic = new System.Windows.Forms.CheckBox();
             this.CbMist = new System.Windows.Forms.CheckBox();
             this.CbSpindle = new System.Windows.Forms.CheckBox();
             this.CbCoolant = new System.Windows.Forms.CheckBox();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.btnKillAlarm = new System.Windows.Forms.Button();
-            this.btnFeedHold = new System.Windows.Forms.Button();
-            this.btnResume = new System.Windows.Forms.Button();
-            this.btnOverrideDoor = new System.Windows.Forms.Button();
-            this.CbAddGraphic = new System.Windows.Forms.CheckBox();
             this.gBoxStream = new System.Windows.Forms.GroupBox();
             this.btnSimulatePause = new System.Windows.Forms.Button();
             this.btnSimulate = new System.Windows.Forms.Button();
@@ -273,6 +273,14 @@ namespace GrblPlotter
             this.tLPRechts = new System.Windows.Forms.TableLayoutPanel();
             this.tLPRechtsUnten = new System.Windows.Forms.TableLayoutPanel();
             this.tLPRechtsUntenRechts = new System.Windows.Forms.TableLayoutPanel();
+            this.gB_Jogging = new System.Windows.Forms.GroupBox();
+            this.gB_Jog0 = new System.Windows.Forms.GroupBox();
+            this.tLPRechtsUntenRechtsMitte = new System.Windows.Forms.TableLayoutPanel();
+            this.tLP_cB_StopJogging = new System.Windows.Forms.TableLayoutPanel();
+            this.cBSendJogStop = new System.Windows.Forms.CheckBox();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tC_RouterPlotterLaser = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.LblSpeedSetVal = new System.Windows.Forms.Label();
@@ -298,23 +306,9 @@ namespace GrblPlotter
             this.RbLaserM3 = new System.Windows.Forms.RadioButton();
             this.CbLaser = new System.Windows.Forms.CheckBox();
             this.TbLaser = new System.Windows.Forms.TrackBar();
-            this.Gb_Jogging = new System.Windows.Forms.GroupBox();
-            this.BtnJogAbsZ = new System.Windows.Forms.Button();
-            this.BtnJogAbsY = new System.Windows.Forms.Button();
-            this.BtnJogAbsX = new System.Windows.Forms.Button();
-            this.NudJogAbsZ = new System.Windows.Forms.NumericUpDown();
-            this.NudJogAbsY = new System.Windows.Forms.NumericUpDown();
-            this.NudJogAbsX = new System.Windows.Forms.NumericUpDown();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.gB_Jog0 = new System.Windows.Forms.GroupBox();
-            this.tLPRechtsUntenRechtsMitte = new System.Windows.Forms.TableLayoutPanel();
-            this.tLP_cB_StopJogging = new System.Windows.Forms.TableLayoutPanel();
-            this.cBSendJogStop = new System.Windows.Forms.CheckBox();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.GbSetCoordinates = new System.Windows.Forms.GroupBox();
+            this.BtnSetCoordinateX = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tLPMitteUnten = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cmsPictureBox = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -366,20 +360,7 @@ namespace GrblPlotter
             this.btnCustom15 = new System.Windows.Forms.Button();
             this.btnCustom16 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.gBoxDRO = new System.Windows.Forms.GroupBox();
-            this.gBoxDROSetCoord = new System.Windows.Forms.GroupBox();
-            this.BtnSetCoordA = new System.Windows.Forms.Button();
-            this.NudSetCoordA = new System.Windows.Forms.NumericUpDown();
-            this.LblSetCoordA = new System.Windows.Forms.Label();
-            this.BtnSetCoordZ = new System.Windows.Forms.Button();
-            this.BtnSetCoordY = new System.Windows.Forms.Button();
-            this.BtnSetCoordX = new System.Windows.Forms.Button();
-            this.NudSetCoordZ = new System.Windows.Forms.NumericUpDown();
-            this.NudSetCoordY = new System.Windows.Forms.NumericUpDown();
-            this.NudSetCoordX = new System.Windows.Forms.NumericUpDown();
-            this.LblSetCoordZ = new System.Windows.Forms.Label();
-            this.LblSetCoordY = new System.Windows.Forms.Label();
-            this.LblSetCoordX = new System.Windows.Forms.Label();
+            this.groupBoxCoordinates = new System.Windows.Forms.GroupBox();
             this.label_c = new System.Windows.Forms.Label();
             this.label_mc = new System.Windows.Forms.Label();
             this.label_wc = new System.Windows.Forms.Label();
@@ -534,6 +515,13 @@ namespace GrblPlotter
             this.tLPRechts.SuspendLayout();
             this.tLPRechtsUnten.SuspendLayout();
             this.tLPRechtsUntenRechts.SuspendLayout();
+            this.gB_Jogging.SuspendLayout();
+            this.gB_Jog0.SuspendLayout();
+            this.tLPRechtsUntenRechtsMitte.SuspendLayout();
+            this.tLP_cB_StopJogging.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.tC_RouterPlotterLaser.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudSpeed)).BeginInit();
@@ -541,16 +529,7 @@ namespace GrblPlotter
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbLaser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TbLaser)).BeginInit();
-            this.Gb_Jogging.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NudJogAbsZ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudJogAbsY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudJogAbsX)).BeginInit();
-            this.gB_Jog0.SuspendLayout();
-            this.tLPRechtsUntenRechtsMitte.SuspendLayout();
-            this.tLP_cB_StopJogging.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
+            this.GbSetCoordinates.SuspendLayout();
             this.tLPMitteUnten.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.cmsPictureBox.SuspendLayout();
@@ -558,12 +537,7 @@ namespace GrblPlotter
             this.groupBox5.SuspendLayout();
             this.tLPCustomButton1.SuspendLayout();
             this.tLPCustomButton2.SuspendLayout();
-            this.gBoxDRO.SuspendLayout();
-            this.gBoxDROSetCoord.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NudSetCoordA)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudSetCoordZ)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudSetCoordY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudSetCoordX)).BeginInit();
+            this.groupBoxCoordinates.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -1245,6 +1219,46 @@ namespace GrblPlotter
             this.virtualJoystickC.MouseUp += new System.Windows.Forms.MouseEventHandler(this.VirtualJoystickXY_MouseUp);
             this.virtualJoystickC.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.VirtualJoystickXY_PreviewKeyDown);
             // 
+            // btnOverrideDoor
+            // 
+            resources.ApplyResources(this.btnOverrideDoor, "btnOverrideDoor");
+            this.btnOverrideDoor.Name = "btnOverrideDoor";
+            this.toolTip1.SetToolTip(this.btnOverrideDoor, resources.GetString("btnOverrideDoor.ToolTip"));
+            this.btnOverrideDoor.UseVisualStyleBackColor = true;
+            this.btnOverrideDoor.Click += new System.EventHandler(this.BtnOverrideDoor_Click);
+            // 
+            // btnResume
+            // 
+            resources.ApplyResources(this.btnResume, "btnResume");
+            this.btnResume.Name = "btnResume";
+            this.toolTip1.SetToolTip(this.btnResume, resources.GetString("btnResume.ToolTip"));
+            this.btnResume.UseVisualStyleBackColor = true;
+            this.btnResume.Click += new System.EventHandler(this.BtnResume_Click);
+            // 
+            // btnFeedHold
+            // 
+            resources.ApplyResources(this.btnFeedHold, "btnFeedHold");
+            this.btnFeedHold.Name = "btnFeedHold";
+            this.toolTip1.SetToolTip(this.btnFeedHold, resources.GetString("btnFeedHold.ToolTip"));
+            this.btnFeedHold.UseVisualStyleBackColor = true;
+            this.btnFeedHold.Click += new System.EventHandler(this.BtnFeedHold_Click);
+            // 
+            // btnKillAlarm
+            // 
+            resources.ApplyResources(this.btnKillAlarm, "btnKillAlarm");
+            this.btnKillAlarm.Name = "btnKillAlarm";
+            this.toolTip1.SetToolTip(this.btnKillAlarm, resources.GetString("btnKillAlarm.ToolTip"));
+            this.btnKillAlarm.UseVisualStyleBackColor = true;
+            this.btnKillAlarm.Click += new System.EventHandler(this.BtnKillAlarm_Click);
+            // 
+            // btnReset
+            // 
+            resources.ApplyResources(this.btnReset, "btnReset");
+            this.btnReset.Name = "btnReset";
+            this.toolTip1.SetToolTip(this.btnReset, resources.GetString("btnReset.ToolTip"));
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.BtnReset_Click);
+            // 
             // LblSpeedSet
             // 
             resources.ApplyResources(this.LblSpeedSet, "LblSpeedSet");
@@ -1382,6 +1396,16 @@ namespace GrblPlotter
             this.btnZeroX.UseVisualStyleBackColor = true;
             this.btnZeroX.Click += new System.EventHandler(this.BtnZeroX_Click);
             // 
+            // CbAddGraphic
+            // 
+            resources.ApplyResources(this.CbAddGraphic, "CbAddGraphic");
+            this.CbAddGraphic.Checked = global::GrblPlotter.Properties.Settings.Default.fromFormInsertEnable;
+            this.CbAddGraphic.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "fromFormInsertEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbAddGraphic.Name = "CbAddGraphic";
+            this.toolTip1.SetToolTip(this.CbAddGraphic, resources.GetString("CbAddGraphic.ToolTip"));
+            this.CbAddGraphic.UseVisualStyleBackColor = true;
+            this.CbAddGraphic.CheckedChanged += new System.EventHandler(this.CbAddGraphic_CheckedChanged);
+            // 
             // CbMist
             // 
             resources.ApplyResources(this.CbMist, "CbMist");
@@ -1405,56 +1429,6 @@ namespace GrblPlotter
             this.toolTip1.SetToolTip(this.CbCoolant, resources.GetString("CbCoolant.ToolTip"));
             this.CbCoolant.UseVisualStyleBackColor = true;
             this.CbCoolant.CheckedChanged += new System.EventHandler(this.CbCoolant_CheckedChanged);
-            // 
-            // btnReset
-            // 
-            resources.ApplyResources(this.btnReset, "btnReset");
-            this.btnReset.Name = "btnReset";
-            this.toolTip1.SetToolTip(this.btnReset, resources.GetString("btnReset.ToolTip"));
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.BtnReset_Click);
-            // 
-            // btnKillAlarm
-            // 
-            resources.ApplyResources(this.btnKillAlarm, "btnKillAlarm");
-            this.btnKillAlarm.Name = "btnKillAlarm";
-            this.toolTip1.SetToolTip(this.btnKillAlarm, resources.GetString("btnKillAlarm.ToolTip"));
-            this.btnKillAlarm.UseVisualStyleBackColor = true;
-            this.btnKillAlarm.Click += new System.EventHandler(this.BtnKillAlarm_Click);
-            // 
-            // btnFeedHold
-            // 
-            resources.ApplyResources(this.btnFeedHold, "btnFeedHold");
-            this.btnFeedHold.Name = "btnFeedHold";
-            this.toolTip1.SetToolTip(this.btnFeedHold, resources.GetString("btnFeedHold.ToolTip"));
-            this.btnFeedHold.UseVisualStyleBackColor = true;
-            this.btnFeedHold.Click += new System.EventHandler(this.BtnFeedHold_Click);
-            // 
-            // btnResume
-            // 
-            resources.ApplyResources(this.btnResume, "btnResume");
-            this.btnResume.Name = "btnResume";
-            this.toolTip1.SetToolTip(this.btnResume, resources.GetString("btnResume.ToolTip"));
-            this.btnResume.UseVisualStyleBackColor = true;
-            this.btnResume.Click += new System.EventHandler(this.BtnResume_Click);
-            // 
-            // btnOverrideDoor
-            // 
-            resources.ApplyResources(this.btnOverrideDoor, "btnOverrideDoor");
-            this.btnOverrideDoor.Name = "btnOverrideDoor";
-            this.toolTip1.SetToolTip(this.btnOverrideDoor, resources.GetString("btnOverrideDoor.ToolTip"));
-            this.btnOverrideDoor.UseVisualStyleBackColor = true;
-            this.btnOverrideDoor.Click += new System.EventHandler(this.BtnOverrideDoor_Click);
-            // 
-            // CbAddGraphic
-            // 
-            resources.ApplyResources(this.CbAddGraphic, "CbAddGraphic");
-            this.CbAddGraphic.Checked = global::GrblPlotter.Properties.Settings.Default.fromFormInsertEnable;
-            this.CbAddGraphic.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "fromFormInsertEnable", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.CbAddGraphic.Name = "CbAddGraphic";
-            this.toolTip1.SetToolTip(this.CbAddGraphic, resources.GetString("CbAddGraphic.ToolTip"));
-            this.CbAddGraphic.UseVisualStyleBackColor = true;
-            this.CbAddGraphic.CheckedChanged += new System.EventHandler(this.CbAddGraphic_CheckedChanged);
             // 
             // gBoxStream
             // 
@@ -1870,11 +1844,84 @@ namespace GrblPlotter
             // tLPRechtsUntenRechts
             // 
             resources.ApplyResources(this.tLPRechtsUntenRechts, "tLPRechtsUntenRechts");
-            this.tLPRechtsUntenRechts.Controls.Add(this.tC_RouterPlotterLaser, 0, 0);
-            this.tLPRechtsUntenRechts.Controls.Add(this.Gb_Jogging, 0, 1);
+            this.tLPRechtsUntenRechts.Controls.Add(this.gB_Jogging, 0, 1);
             this.tLPRechtsUntenRechts.Controls.Add(this.tLPRechtsUntenRechtsMitte, 0, 2);
             this.tLPRechtsUntenRechts.Controls.Add(this.tLP_cB_StopJogging, 0, 3);
+            this.tLPRechtsUntenRechts.Controls.Add(this.tC_RouterPlotterLaser, 0, 0);
+            this.tLPRechtsUntenRechts.Controls.Add(this.GbSetCoordinates, 0, 4);
             this.tLPRechtsUntenRechts.Name = "tLPRechtsUntenRechts";
+            // 
+            // gB_Jogging
+            // 
+            resources.ApplyResources(this.gB_Jogging, "gB_Jogging");
+            this.gB_Jogging.Controls.Add(this.btnJogStop);
+            this.gB_Jogging.Controls.Add(this.gB_Jog0);
+            this.gB_Jogging.Name = "gB_Jogging";
+            this.gB_Jogging.TabStop = false;
+            this.gB_Jogging.Enter += new System.EventHandler(this.VirtualJoystickXY_Enter);
+            this.gB_Jogging.Leave += new System.EventHandler(this.VirtualJoystickXY_Leave);
+            // 
+            // gB_Jog0
+            // 
+            this.gB_Jog0.Controls.Add(this.btnJogZeroA);
+            this.gB_Jog0.Controls.Add(this.btnJogZeroX);
+            this.gB_Jog0.Controls.Add(this.btnJogZeroXY);
+            this.gB_Jog0.Controls.Add(this.btnJogZeroY);
+            this.gB_Jog0.Controls.Add(this.btnJogZeroZ);
+            this.gB_Jog0.Controls.Add(this.cBMoveG0);
+            resources.ApplyResources(this.gB_Jog0, "gB_Jog0");
+            this.gB_Jog0.Name = "gB_Jog0";
+            this.gB_Jog0.TabStop = false;
+            // 
+            // tLPRechtsUntenRechtsMitte
+            // 
+            resources.ApplyResources(this.tLPRechtsUntenRechtsMitte, "tLPRechtsUntenRechtsMitte");
+            this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickA, 2, 0);
+            this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickXY, 0, 0);
+            this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickZ, 1, 0);
+            this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickB, 3, 0);
+            this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickC, 4, 0);
+            this.tLPRechtsUntenRechtsMitte.Name = "tLPRechtsUntenRechtsMitte";
+            this.tLPRechtsUntenRechtsMitte.Enter += new System.EventHandler(this.VirtualJoystickXY_Enter);
+            this.tLPRechtsUntenRechtsMitte.Leave += new System.EventHandler(this.VirtualJoystickXY_Leave);
+            // 
+            // tLP_cB_StopJogging
+            // 
+            resources.ApplyResources(this.tLP_cB_StopJogging, "tLP_cB_StopJogging");
+            this.tLP_cB_StopJogging.Controls.Add(this.cBSendJogStop, 0, 0);
+            this.tLP_cB_StopJogging.Controls.Add(this.tableLayoutPanel3, 0, 1);
+            this.tLP_cB_StopJogging.Name = "tLP_cB_StopJogging";
+            // 
+            // cBSendJogStop
+            // 
+            this.cBSendJogStop.Checked = global::GrblPlotter.Properties.Settings.Default.ctrlSendStopJog;
+            this.cBSendJogStop.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cBSendJogStop.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "ctrlSendStopJog", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            resources.ApplyResources(this.cBSendJogStop, "cBSendJogStop");
+            this.cBSendJogStop.Name = "cBSendJogStop";
+            this.cBSendJogStop.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel3
+            // 
+            resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 1, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            // 
+            // tableLayoutPanel4
+            // 
+            resources.ApplyResources(this.tableLayoutPanel4, "tableLayoutPanel4");
+            this.tableLayoutPanel4.Controls.Add(this.btnOverrideDoor, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.btnResume, 0, 2);
+            this.tableLayoutPanel4.Controls.Add(this.btnFeedHold, 0, 0);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            // 
+            // tableLayoutPanel5
+            // 
+            resources.ApplyResources(this.tableLayoutPanel5, "tableLayoutPanel5");
+            this.tableLayoutPanel5.Controls.Add(this.btnKillAlarm, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.btnReset, 0, 0);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             // 
             // tC_RouterPlotterLaser
             // 
@@ -2081,176 +2128,24 @@ namespace GrblPlotter
             this.TbLaser.Scroll += new System.EventHandler(this.CbLaser_CheckedChanged);
             this.TbLaser.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TbLaser_MouseDown);
             // 
-            // Gb_Jogging
+            // GbSetCoordinates
             // 
-            resources.ApplyResources(this.Gb_Jogging, "Gb_Jogging");
-            this.Gb_Jogging.Controls.Add(this.BtnJogAbsZ);
-            this.Gb_Jogging.Controls.Add(this.BtnJogAbsY);
-            this.Gb_Jogging.Controls.Add(this.BtnJogAbsX);
-            this.Gb_Jogging.Controls.Add(this.NudJogAbsZ);
-            this.Gb_Jogging.Controls.Add(this.NudJogAbsY);
-            this.Gb_Jogging.Controls.Add(this.NudJogAbsX);
-            this.Gb_Jogging.Controls.Add(this.label19);
-            this.Gb_Jogging.Controls.Add(this.label16);
-            this.Gb_Jogging.Controls.Add(this.label15);
-            this.Gb_Jogging.Controls.Add(this.btnJogStop);
-            this.Gb_Jogging.Controls.Add(this.gB_Jog0);
-            this.Gb_Jogging.Name = "Gb_Jogging";
-            this.Gb_Jogging.TabStop = false;
-            this.Gb_Jogging.Enter += new System.EventHandler(this.VirtualJoystickXY_Enter);
-            this.Gb_Jogging.Leave += new System.EventHandler(this.VirtualJoystickXY_Leave);
+            this.GbSetCoordinates.Controls.Add(this.BtnSetCoordinateX);
+            this.GbSetCoordinates.Controls.Add(this.textBox1);
+            resources.ApplyResources(this.GbSetCoordinates, "GbSetCoordinates");
+            this.GbSetCoordinates.Name = "GbSetCoordinates";
+            this.GbSetCoordinates.TabStop = false;
             // 
-            // BtnJogAbsZ
+            // BtnSetCoordinateX
             // 
-            resources.ApplyResources(this.BtnJogAbsZ, "BtnJogAbsZ");
-            this.BtnJogAbsZ.Name = "BtnJogAbsZ";
-            this.BtnJogAbsZ.UseVisualStyleBackColor = true;
-            this.BtnJogAbsZ.Click += new System.EventHandler(this.BtnJogAbsZ_Click);
+            resources.ApplyResources(this.BtnSetCoordinateX, "BtnSetCoordinateX");
+            this.BtnSetCoordinateX.Name = "BtnSetCoordinateX";
+            this.BtnSetCoordinateX.UseVisualStyleBackColor = true;
             // 
-            // BtnJogAbsY
+            // textBox1
             // 
-            resources.ApplyResources(this.BtnJogAbsY, "BtnJogAbsY");
-            this.BtnJogAbsY.Name = "BtnJogAbsY";
-            this.BtnJogAbsY.UseVisualStyleBackColor = true;
-            this.BtnJogAbsY.Click += new System.EventHandler(this.BtnJogAbsY_Click);
-            // 
-            // BtnJogAbsX
-            // 
-            resources.ApplyResources(this.BtnJogAbsX, "BtnJogAbsX");
-            this.BtnJogAbsX.Name = "BtnJogAbsX";
-            this.BtnJogAbsX.UseVisualStyleBackColor = true;
-            this.BtnJogAbsX.Click += new System.EventHandler(this.BtnJogAbsX_Click);
-            // 
-            // NudJogAbsZ
-            // 
-            this.NudJogAbsZ.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "mainFormMovoToZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudJogAbsZ.DecimalPlaces = 1;
-            resources.ApplyResources(this.NudJogAbsZ, "NudJogAbsZ");
-            this.NudJogAbsZ.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.NudJogAbsZ.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
-            this.NudJogAbsZ.Name = "NudJogAbsZ";
-            this.NudJogAbsZ.Value = global::GrblPlotter.Properties.Settings.Default.mainFormMovoToZ;
-            // 
-            // NudJogAbsY
-            // 
-            this.NudJogAbsY.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "mainFormMovoToY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudJogAbsY.DecimalPlaces = 1;
-            resources.ApplyResources(this.NudJogAbsY, "NudJogAbsY");
-            this.NudJogAbsY.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.NudJogAbsY.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
-            this.NudJogAbsY.Name = "NudJogAbsY";
-            this.NudJogAbsY.Value = global::GrblPlotter.Properties.Settings.Default.mainFormMovoToY;
-            // 
-            // NudJogAbsX
-            // 
-            this.NudJogAbsX.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "mainFormMovoToX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudJogAbsX.DecimalPlaces = 1;
-            resources.ApplyResources(this.NudJogAbsX, "NudJogAbsX");
-            this.NudJogAbsX.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.NudJogAbsX.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
-            this.NudJogAbsX.Name = "NudJogAbsX";
-            this.NudJogAbsX.Value = global::GrblPlotter.Properties.Settings.Default.mainFormMovoToX;
-            // 
-            // label19
-            // 
-            resources.ApplyResources(this.label19, "label19");
-            this.label19.Name = "label19";
-            // 
-            // label16
-            // 
-            resources.ApplyResources(this.label16, "label16");
-            this.label16.Name = "label16";
-            // 
-            // label15
-            // 
-            resources.ApplyResources(this.label15, "label15");
-            this.label15.Name = "label15";
-            // 
-            // gB_Jog0
-            // 
-            this.gB_Jog0.Controls.Add(this.btnJogZeroA);
-            this.gB_Jog0.Controls.Add(this.btnJogZeroX);
-            this.gB_Jog0.Controls.Add(this.btnJogZeroXY);
-            this.gB_Jog0.Controls.Add(this.btnJogZeroY);
-            this.gB_Jog0.Controls.Add(this.btnJogZeroZ);
-            this.gB_Jog0.Controls.Add(this.cBMoveG0);
-            resources.ApplyResources(this.gB_Jog0, "gB_Jog0");
-            this.gB_Jog0.Name = "gB_Jog0";
-            this.gB_Jog0.TabStop = false;
-            // 
-            // tLPRechtsUntenRechtsMitte
-            // 
-            resources.ApplyResources(this.tLPRechtsUntenRechtsMitte, "tLPRechtsUntenRechtsMitte");
-            this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickA, 2, 0);
-            this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickXY, 0, 0);
-            this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickZ, 1, 0);
-            this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickB, 3, 0);
-            this.tLPRechtsUntenRechtsMitte.Controls.Add(this.virtualJoystickC, 4, 0);
-            this.tLPRechtsUntenRechtsMitte.Name = "tLPRechtsUntenRechtsMitte";
-            this.tLPRechtsUntenRechtsMitte.Enter += new System.EventHandler(this.VirtualJoystickXY_Enter);
-            this.tLPRechtsUntenRechtsMitte.Leave += new System.EventHandler(this.VirtualJoystickXY_Leave);
-            // 
-            // tLP_cB_StopJogging
-            // 
-            resources.ApplyResources(this.tLP_cB_StopJogging, "tLP_cB_StopJogging");
-            this.tLP_cB_StopJogging.Controls.Add(this.cBSendJogStop, 0, 0);
-            this.tLP_cB_StopJogging.Controls.Add(this.tableLayoutPanel3, 0, 1);
-            this.tLP_cB_StopJogging.Name = "tLP_cB_StopJogging";
-            // 
-            // cBSendJogStop
-            // 
-            this.cBSendJogStop.Checked = global::GrblPlotter.Properties.Settings.Default.ctrlSendStopJog;
-            this.cBSendJogStop.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cBSendJogStop.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "ctrlSendStopJog", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            resources.ApplyResources(this.cBSendJogStop, "cBSendJogStop");
-            this.cBSendJogStop.Name = "cBSendJogStop";
-            this.cBSendJogStop.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel3
-            // 
-            resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 1, 0);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            // 
-            // tableLayoutPanel4
-            // 
-            resources.ApplyResources(this.tableLayoutPanel4, "tableLayoutPanel4");
-            this.tableLayoutPanel4.Controls.Add(this.btnOverrideDoor, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.btnResume, 0, 2);
-            this.tableLayoutPanel4.Controls.Add(this.btnFeedHold, 0, 0);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            // 
-            // tableLayoutPanel5
-            // 
-            resources.ApplyResources(this.tableLayoutPanel5, "tableLayoutPanel5");
-            this.tableLayoutPanel5.Controls.Add(this.btnKillAlarm, 0, 1);
-            this.tableLayoutPanel5.Controls.Add(this.btnReset, 0, 0);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            resources.ApplyResources(this.textBox1, "textBox1");
+            this.textBox1.Name = "textBox1";
             // 
             // tLPMitteUnten
             // 
@@ -2477,7 +2372,7 @@ namespace GrblPlotter
             // 
             resources.ApplyResources(this.tLPRechtsOben, "tLPRechtsOben");
             this.tLPRechtsOben.Controls.Add(this.groupBox5, 1, 0);
-            this.tLPRechtsOben.Controls.Add(this.gBoxDRO, 0, 0);
+            this.tLPRechtsOben.Controls.Add(this.groupBoxCoordinates, 0, 0);
             this.tLPRechtsOben.Name = "tLPRechtsOben";
             // 
             // groupBox5
@@ -2632,181 +2527,41 @@ namespace GrblPlotter
             resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             // 
-            // gBoxDRO
+            // groupBoxCoordinates
             // 
-            this.gBoxDRO.Controls.Add(this.gBoxDROSetCoord);
-            this.gBoxDRO.Controls.Add(this.label_c);
-            this.gBoxDRO.Controls.Add(this.btnZeroC);
-            this.gBoxDRO.Controls.Add(this.label_mc);
-            this.gBoxDRO.Controls.Add(this.label_wc);
-            this.gBoxDRO.Controls.Add(this.label11);
-            this.gBoxDRO.Controls.Add(this.btnZeroB);
-            this.gBoxDRO.Controls.Add(this.label_mb);
-            this.gBoxDRO.Controls.Add(this.label_wb);
-            this.gBoxDRO.Controls.Add(this.lblCurrentG);
-            this.gBoxDRO.Controls.Add(this.label_status0);
-            this.gBoxDRO.Controls.Add(this.label_a);
-            this.gBoxDRO.Controls.Add(this.btnZeroA);
-            this.gBoxDRO.Controls.Add(this.label_ma);
-            this.gBoxDRO.Controls.Add(this.label_wa);
-            this.gBoxDRO.Controls.Add(this.btnHome);
-            this.gBoxDRO.Controls.Add(this.btnZeroXYZ);
-            this.gBoxDRO.Controls.Add(this.btnZeroXY);
-            this.gBoxDRO.Controls.Add(this.label4);
-            this.gBoxDRO.Controls.Add(this.btnZeroZ);
-            this.gBoxDRO.Controls.Add(this.label3);
-            this.gBoxDRO.Controls.Add(this.btnZeroY);
-            this.gBoxDRO.Controls.Add(this.label2);
-            this.gBoxDRO.Controls.Add(this.btnZeroX);
-            this.gBoxDRO.Controls.Add(this.label_status);
-            this.gBoxDRO.Controls.Add(this.label_mx);
-            this.gBoxDRO.Controls.Add(this.label_my);
-            this.gBoxDRO.Controls.Add(this.label_mz);
-            this.gBoxDRO.Controls.Add(this.label_wz);
-            this.gBoxDRO.Controls.Add(this.label_wx);
-            this.gBoxDRO.Controls.Add(this.label_wy);
-            resources.ApplyResources(this.gBoxDRO, "gBoxDRO");
-            this.gBoxDRO.Name = "gBoxDRO";
-            this.gBoxDRO.TabStop = false;
-            // 
-            // gBoxDROSetCoord
-            // 
-            this.gBoxDROSetCoord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.gBoxDROSetCoord.Controls.Add(this.BtnSetCoordA);
-            this.gBoxDROSetCoord.Controls.Add(this.NudSetCoordA);
-            this.gBoxDROSetCoord.Controls.Add(this.LblSetCoordA);
-            this.gBoxDROSetCoord.Controls.Add(this.BtnSetCoordZ);
-            this.gBoxDROSetCoord.Controls.Add(this.BtnSetCoordY);
-            this.gBoxDROSetCoord.Controls.Add(this.BtnSetCoordX);
-            this.gBoxDROSetCoord.Controls.Add(this.NudSetCoordZ);
-            this.gBoxDROSetCoord.Controls.Add(this.NudSetCoordY);
-            this.gBoxDROSetCoord.Controls.Add(this.NudSetCoordX);
-            this.gBoxDROSetCoord.Controls.Add(this.LblSetCoordZ);
-            this.gBoxDROSetCoord.Controls.Add(this.LblSetCoordY);
-            this.gBoxDROSetCoord.Controls.Add(this.LblSetCoordX);
-            resources.ApplyResources(this.gBoxDROSetCoord, "gBoxDROSetCoord");
-            this.gBoxDROSetCoord.Name = "gBoxDROSetCoord";
-            this.gBoxDROSetCoord.TabStop = false;
-            // 
-            // BtnSetCoordA
-            // 
-            resources.ApplyResources(this.BtnSetCoordA, "BtnSetCoordA");
-            this.BtnSetCoordA.Name = "BtnSetCoordA";
-            this.BtnSetCoordA.UseVisualStyleBackColor = true;
-            this.BtnSetCoordA.Click += new System.EventHandler(this.BtnSetCoordA_Click);
-            // 
-            // NudSetCoordA
-            // 
-            this.NudSetCoordA.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "mainFormSetCoordA", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudSetCoordA.DecimalPlaces = 2;
-            resources.ApplyResources(this.NudSetCoordA, "NudSetCoordA");
-            this.NudSetCoordA.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.NudSetCoordA.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
-            this.NudSetCoordA.Name = "NudSetCoordA";
-            this.NudSetCoordA.Value = global::GrblPlotter.Properties.Settings.Default.mainFormSetCoordA;
-            // 
-            // LblSetCoordA
-            // 
-            resources.ApplyResources(this.LblSetCoordA, "LblSetCoordA");
-            this.LblSetCoordA.Name = "LblSetCoordA";
-            // 
-            // BtnSetCoordZ
-            // 
-            resources.ApplyResources(this.BtnSetCoordZ, "BtnSetCoordZ");
-            this.BtnSetCoordZ.Name = "BtnSetCoordZ";
-            this.BtnSetCoordZ.UseVisualStyleBackColor = true;
-            this.BtnSetCoordZ.Click += new System.EventHandler(this.BtnSetCoordZ_Click);
-            // 
-            // BtnSetCoordY
-            // 
-            resources.ApplyResources(this.BtnSetCoordY, "BtnSetCoordY");
-            this.BtnSetCoordY.Name = "BtnSetCoordY";
-            this.BtnSetCoordY.UseVisualStyleBackColor = true;
-            this.BtnSetCoordY.Click += new System.EventHandler(this.BtnSetCoordY_Click);
-            // 
-            // BtnSetCoordX
-            // 
-            resources.ApplyResources(this.BtnSetCoordX, "BtnSetCoordX");
-            this.BtnSetCoordX.Name = "BtnSetCoordX";
-            this.BtnSetCoordX.UseVisualStyleBackColor = true;
-            this.BtnSetCoordX.Click += new System.EventHandler(this.BtnSetCoordX_Click);
-            // 
-            // NudSetCoordZ
-            // 
-            this.NudSetCoordZ.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "mainFormSetCoordZ", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudSetCoordZ.DecimalPlaces = 2;
-            resources.ApplyResources(this.NudSetCoordZ, "NudSetCoordZ");
-            this.NudSetCoordZ.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.NudSetCoordZ.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
-            this.NudSetCoordZ.Name = "NudSetCoordZ";
-            this.NudSetCoordZ.Value = global::GrblPlotter.Properties.Settings.Default.mainFormSetCoordZ;
-            // 
-            // NudSetCoordY
-            // 
-            this.NudSetCoordY.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "mainFormSetCoordY", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudSetCoordY.DecimalPlaces = 2;
-            resources.ApplyResources(this.NudSetCoordY, "NudSetCoordY");
-            this.NudSetCoordY.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.NudSetCoordY.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
-            this.NudSetCoordY.Name = "NudSetCoordY";
-            this.NudSetCoordY.Value = global::GrblPlotter.Properties.Settings.Default.mainFormSetCoordY;
-            // 
-            // NudSetCoordX
-            // 
-            this.NudSetCoordX.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::GrblPlotter.Properties.Settings.Default, "mainFormSetCoordX", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.NudSetCoordX.DecimalPlaces = 2;
-            resources.ApplyResources(this.NudSetCoordX, "NudSetCoordX");
-            this.NudSetCoordX.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.NudSetCoordX.Minimum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
-            this.NudSetCoordX.Name = "NudSetCoordX";
-            this.NudSetCoordX.Value = global::GrblPlotter.Properties.Settings.Default.mainFormSetCoordX;
-            // 
-            // LblSetCoordZ
-            // 
-            resources.ApplyResources(this.LblSetCoordZ, "LblSetCoordZ");
-            this.LblSetCoordZ.Name = "LblSetCoordZ";
-            // 
-            // LblSetCoordY
-            // 
-            resources.ApplyResources(this.LblSetCoordY, "LblSetCoordY");
-            this.LblSetCoordY.Name = "LblSetCoordY";
-            // 
-            // LblSetCoordX
-            // 
-            resources.ApplyResources(this.LblSetCoordX, "LblSetCoordX");
-            this.LblSetCoordX.Name = "LblSetCoordX";
+            this.groupBoxCoordinates.Controls.Add(this.label_c);
+            this.groupBoxCoordinates.Controls.Add(this.btnZeroC);
+            this.groupBoxCoordinates.Controls.Add(this.label_mc);
+            this.groupBoxCoordinates.Controls.Add(this.label_wc);
+            this.groupBoxCoordinates.Controls.Add(this.label11);
+            this.groupBoxCoordinates.Controls.Add(this.btnZeroB);
+            this.groupBoxCoordinates.Controls.Add(this.label_mb);
+            this.groupBoxCoordinates.Controls.Add(this.label_wb);
+            this.groupBoxCoordinates.Controls.Add(this.lblCurrentG);
+            this.groupBoxCoordinates.Controls.Add(this.label_status0);
+            this.groupBoxCoordinates.Controls.Add(this.label_a);
+            this.groupBoxCoordinates.Controls.Add(this.btnZeroA);
+            this.groupBoxCoordinates.Controls.Add(this.label_ma);
+            this.groupBoxCoordinates.Controls.Add(this.label_wa);
+            this.groupBoxCoordinates.Controls.Add(this.btnHome);
+            this.groupBoxCoordinates.Controls.Add(this.btnZeroXYZ);
+            this.groupBoxCoordinates.Controls.Add(this.btnZeroXY);
+            this.groupBoxCoordinates.Controls.Add(this.label4);
+            this.groupBoxCoordinates.Controls.Add(this.btnZeroZ);
+            this.groupBoxCoordinates.Controls.Add(this.label3);
+            this.groupBoxCoordinates.Controls.Add(this.btnZeroY);
+            this.groupBoxCoordinates.Controls.Add(this.label2);
+            this.groupBoxCoordinates.Controls.Add(this.btnZeroX);
+            this.groupBoxCoordinates.Controls.Add(this.label_status);
+            this.groupBoxCoordinates.Controls.Add(this.label_mx);
+            this.groupBoxCoordinates.Controls.Add(this.label_my);
+            this.groupBoxCoordinates.Controls.Add(this.label_mz);
+            this.groupBoxCoordinates.Controls.Add(this.label_wz);
+            this.groupBoxCoordinates.Controls.Add(this.label_wx);
+            this.groupBoxCoordinates.Controls.Add(this.label_wy);
+            resources.ApplyResources(this.groupBoxCoordinates, "groupBoxCoordinates");
+            this.groupBoxCoordinates.Name = "groupBoxCoordinates";
+            this.groupBoxCoordinates.TabStop = false;
             // 
             // label_c
             // 
@@ -3742,12 +3497,12 @@ namespace GrblPlotter
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.ResizeEnd += new System.EventHandler(this.MainForm_Resize);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainForm_DragEnter);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.MainForm_PreviewKeyDown);
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -3774,6 +3529,14 @@ namespace GrblPlotter
             this.tLPRechtsUnten.PerformLayout();
             this.tLPRechtsUntenRechts.ResumeLayout(false);
             this.tLPRechtsUntenRechts.PerformLayout();
+            this.gB_Jogging.ResumeLayout(false);
+            this.gB_Jog0.ResumeLayout(false);
+            this.gB_Jog0.PerformLayout();
+            this.tLPRechtsUntenRechtsMitte.ResumeLayout(false);
+            this.tLP_cB_StopJogging.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
             this.tC_RouterPlotterLaser.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -3783,18 +3546,8 @@ namespace GrblPlotter
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbLaser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TbLaser)).EndInit();
-            this.Gb_Jogging.ResumeLayout(false);
-            this.Gb_Jogging.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NudJogAbsZ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudJogAbsY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudJogAbsX)).EndInit();
-            this.gB_Jog0.ResumeLayout(false);
-            this.gB_Jog0.PerformLayout();
-            this.tLPRechtsUntenRechtsMitte.ResumeLayout(false);
-            this.tLP_cB_StopJogging.ResumeLayout(false);
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel5.ResumeLayout(false);
+            this.GbSetCoordinates.ResumeLayout(false);
+            this.GbSetCoordinates.PerformLayout();
             this.tLPMitteUnten.ResumeLayout(false);
             this.tLPMitteUnten.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -3803,14 +3556,8 @@ namespace GrblPlotter
             this.groupBox5.ResumeLayout(false);
             this.tLPCustomButton1.ResumeLayout(false);
             this.tLPCustomButton2.ResumeLayout(false);
-            this.gBoxDRO.ResumeLayout(false);
-            this.gBoxDRO.PerformLayout();
-            this.gBoxDROSetCoord.ResumeLayout(false);
-            this.gBoxDROSetCoord.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NudSetCoordA)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudSetCoordZ)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudSetCoordY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NudSetCoordX)).EndInit();
+            this.groupBoxCoordinates.ResumeLayout(false);
+            this.groupBoxCoordinates.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -3839,7 +3586,7 @@ namespace GrblPlotter
         private System.Windows.Forms.Button btnStreamStart;
         private System.Windows.Forms.TextBox tbFile;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.GroupBox gBoxDRO;
+        private System.Windows.Forms.GroupBox groupBoxCoordinates;
         private System.Windows.Forms.Label label_status;
         private System.Windows.Forms.Label lblRemaining;
         private System.Windows.Forms.Label label_status0;
@@ -4018,7 +3765,9 @@ namespace GrblPlotter
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
         private System.Windows.Forms.ToolStripMenuItem cmsFindDialog;
         private System.Windows.Forms.TableLayoutPanel tLPRechtsUntenRechts;
-        private System.Windows.Forms.GroupBox Gb_Jogging;
+        private System.Windows.Forms.GroupBox gB_Jogging;
+        private System.Windows.Forms.CheckBox cBSendJogStop;
+        private System.Windows.Forms.Button btnResume;
         private virtualJoystick.virtualJoystick virtualJoystickA;
         private System.Windows.Forms.Button btnJogStop;
         private System.Windows.Forms.GroupBox gB_Jog0;
@@ -4034,7 +3783,14 @@ namespace GrblPlotter
         private System.Windows.Forms.Label lblSpeed;
         private System.Windows.Forms.CheckBox CbCoolant;
         private System.Windows.Forms.CheckBox CbSpindle;
+        private System.Windows.Forms.Button btnKillAlarm;
+        private System.Windows.Forms.Button btnFeedHold;
+        private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.TableLayoutPanel tLPRechtsUntenRechtsMitte;
+        private System.Windows.Forms.TableLayoutPanel tLP_cB_StopJogging;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.ToolStripMenuItem mirrorRotaryToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label label_c;
@@ -4057,6 +3813,7 @@ namespace GrblPlotter
         private System.Windows.Forms.Button btnOverrideFlood;
         private System.Windows.Forms.GroupBox gBOverrideRGB;
         private System.Windows.Forms.GroupBox gBOverrideASGB;
+        private System.Windows.Forms.Button btnOverrideDoor;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnOverrideRapid0;
         private System.Windows.Forms.Label label13;
@@ -4194,38 +3951,9 @@ namespace GrblPlotter
         private System.Windows.Forms.ToolStripMenuItem convertToPolarCoordinatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem applyLastTransformToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem wireCutterToolStripMenuItem;
-        private System.Windows.Forms.TableLayoutPanel tLP_cB_StopJogging;
-        private System.Windows.Forms.CheckBox cBSendJogStop;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Button btnOverrideDoor;
-        private System.Windows.Forms.Button btnResume;
-        private System.Windows.Forms.Button btnFeedHold;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.Button btnKillAlarm;
-        private System.Windows.Forms.Button btnReset;
-        private System.Windows.Forms.NumericUpDown NudJogAbsZ;
-        private System.Windows.Forms.NumericUpDown NudJogAbsY;
-        private System.Windows.Forms.NumericUpDown NudJogAbsX;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button BtnJogAbsZ;
-        private System.Windows.Forms.Button BtnJogAbsY;
-        private System.Windows.Forms.Button BtnJogAbsX;
-        private System.Windows.Forms.GroupBox gBoxDROSetCoord;
-        private System.Windows.Forms.Button BtnSetCoordZ;
-        private System.Windows.Forms.Button BtnSetCoordY;
-        private System.Windows.Forms.Button BtnSetCoordX;
-        private System.Windows.Forms.NumericUpDown NudSetCoordZ;
-        private System.Windows.Forms.NumericUpDown NudSetCoordY;
-        private System.Windows.Forms.NumericUpDown NudSetCoordX;
-        private System.Windows.Forms.Label LblSetCoordZ;
-        private System.Windows.Forms.Label LblSetCoordY;
-        private System.Windows.Forms.Label LblSetCoordX;
-        private System.Windows.Forms.Button BtnSetCoordA;
-        private System.Windows.Forms.NumericUpDown NudSetCoordA;
-        private System.Windows.Forms.Label LblSetCoordA;
+        private System.Windows.Forms.GroupBox GbSetCoordinates;
+        private System.Windows.Forms.Button BtnSetCoordinateX;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

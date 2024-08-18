@@ -20,9 +20,9 @@
  * 2024-02-12 split file MainFormOtherForms.cs
 */
 
-using AForge;
 using System;
-using System.Reflection;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace GrblPlotter
@@ -62,17 +62,52 @@ namespace GrblPlotter
          * ProcessAutomation - a form to automate process steps
          * Process commands
          ********************************************************************/
+      //  private static List<Process> processURL = new List<Process>();
         private void OnRaiseProcessEvent(object sender, ProcessEventArgs e)
         {
             string act = e.Command.ToLower();
-        //    string val = e.Value.ToLower();
+            //    string val = e.Value.ToLower();
 
             Logger.Trace("➤➤➤➤ OnRaiseProcessEvent  {0}  {1} ", e.Command, e.Value);
 
             if (act.Contains("load"))
             {
-                string mypath = Datapath.MakeAbsolutePath(e.Value);
-                _process_form?.Feedback(e.Command, e.Value, LoadFile(mypath));
+                if (act.Contains("url"))
+                {
+                    bool ok = true;
+                    try
+                    {
+                      //  processURL.Add(
+                            Process.Start(e.Value);
+                      /*  if (processURL.Count > 2)
+                        {
+                            Logger.Trace("kill start");
+                        //    processURL[0].Kill();
+                            Logger.Trace("kill end");
+                        }
+                        if (processURL.Count > 3)
+                        {
+                            Logger.Trace("remove start");
+                            processURL.RemoveAt(0);
+                            Logger.Trace("remove end");
+                        }*/
+                    }
+                    catch (Exception err)
+                    { ok = false; Logger.Error(err," err ");
+                        MessageBox.Show("Could not open URL : " + err.Message, "Error"); }
+                    _process_form?.Feedback(e.Command, e.Value, ok);
+                    _process_form?.BringToFront();
+                }
+                else
+                {
+                    string mypath = Datapath.MakeAbsolutePath(e.Value);
+                    _process_form?.Feedback(e.Command, e.Value, LoadFile(mypath));
+                    _process_form?.BringToFront();
+                }
+            }
+            else if (act.Contains("paste clipboard"))
+            {
+                _process_form?.Feedback(e.Command, e.Value, LoadFromClipboard());
                 _process_form?.BringToFront();
             }
             else if (act.Contains("g-code"))
@@ -151,7 +186,7 @@ namespace GrblPlotter
                     else if (act.Contains("1d data")) { _barcode_form.SetText1D(e.Value); }
                     else if (act.Contains("2d text")) { _barcode_form.SetText2D(e.Value); }
                     else if (act.Contains("2d data")) { _barcode_form.SetText2D(e.Value); }
-                    else if (act.Contains("2d url"))  { _barcode_form.SetUrl2D(e.Value); }
+                    else if (act.Contains("2d url")) { _barcode_form.SetUrl2D(e.Value); }
                     else if (act.Contains("2d durl")) { _barcode_form.SetUrl2D(e.Value); }
                     _process_form?.Feedback(e.Command, "Barcode form: " + e.Value, true);
                 }
@@ -182,8 +217,8 @@ namespace GrblPlotter
                     string[] tmp = e.Value.Split(';');
                     if (tmp.Length > 2)
                     {
-                       // int o;
-                     //   double x, y;
+                        // int o;
+                        //   double x, y;
                         if (int.TryParse(tmp[0], out int o))
                         {
                             if (double.TryParse(tmp[1], out double x))
@@ -216,7 +251,7 @@ namespace GrblPlotter
                 }
                 else if (act.Contains("rotate"))
                 {
-                  //  double angle;
+                    //  double angle;
                     if (double.TryParse(e.Value, out double angle))
                     {
                         int lineStart = XmlMarker.GetStartLineOfGroup(codeInsert.Y);
@@ -225,7 +260,7 @@ namespace GrblPlotter
                         Logger.Trace("Last codeInsert:{0}  {1}", codeInsert.X, lineStart);
 
                         TransformStart("Rotate");
-                        SetFctbCodeText(VisuGCode.TransformGCodeRotate(angle, 1, new XyPoint(0,0)));
+                        SetFctbCodeText(VisuGCode.TransformGCodeRotate(angle, 1, new XyPoint(0, 0)));
                         SelectionHandle.ClearSelected();
                         TransformEnd();
                         _process_form?.Feedback(e.Command, "Rotate applied", true);
@@ -233,7 +268,7 @@ namespace GrblPlotter
                 }
                 else if (act.Contains("scale"))
                 {
-                //    double sizenew;
+                    //    double sizenew;
                     if (double.TryParse(e.Value, out double sizenew))
                     {
                         double size = 100;
@@ -246,7 +281,7 @@ namespace GrblPlotter
                             size = 100 * sizenew / VisuGCode.xyzSize.dimy;
                         }
                         int lineStart = XmlMarker.GetStartLineOfGroup(codeInsert.Y);
-                        if(LineIsInRange(lineStart))
+                        if (LineIsInRange(lineStart))
                             SetSelection(lineStart, XmlMarkerType.Group);
                         Logger.Trace("Last codeInsert:{0}  {1}", codeInsert.X, lineStart);
 

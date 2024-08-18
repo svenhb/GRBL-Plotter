@@ -1204,4 +1204,47 @@ G代码命令，直到执行了'$ H'归位循环。 或者如果用户需要
   <data name="processAutomationToolStripMenuItem.Text" xml:space="preserve">
     <value>脚本</value>
   </data>
+  <data name="wireCutterToolStripMenuItem.Text" xml:space="preserve">
+    <value>热丝剪</value>
+  </data>
+  <data name="BtnJogAbsZ.Text" xml:space="preserve">
+    <value>移至</value>
+  </data>
+  <data name="BtnJogAbsY.Text" xml:space="preserve">
+    <value>移至</value>
+  </data>
+  <data name="BtnJogAbsX.Text" xml:space="preserve">
+    <value>移至</value>
+  </data>
+  <data name="Gb_Jogging.Text" xml:space="preserve">
+    <value>控制/慢跑 - 单击展开</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="applyLastTransformToolStripMenuItem.Text" xml:space="preserve">
+    <value>应用最后一次变换</value>
+  </data>
+  <data name="cmsPicBoxReloadFile2.Text" xml:space="preserve">
+    <value>重新加载文件2</value>
+  </data>
+  <data name="cmsPicBoxClearWorkspace.Text" xml:space="preserve">
+    <value>清晰的工作空间</value>
+  </data>
+  <data name="convertToPolarCoordinatesToolStripMenuItem.Text" xml:space="preserve">
+    <value>转换为极坐标</value>
+  </data>
+  <data name="CbMist.ToolTip" xml:space="preserve">
+    <value>设置“M7”，清除“M9”</value>
+  </data>
+  <data name="CbSpindle.ToolTip" xml:space="preserve">
+    <value>设置“M3”或“M4”，清除“M5”</value>
+  </data>
+  <data name="CbCoolant.ToolTip" xml:space="preserve">
+    <value>设置“M8”，清除“M9”</value>
+  </data>
+  <data name="gBoxDROSetCoord.Text" xml:space="preserve">
+    <value>设置坐标系</value>
+  </data>
+  <data name="gBoxDRO.Text" xml:space="preserve">
+    <value>坐标（工作/机器）</value>
+  </data>
 </root>

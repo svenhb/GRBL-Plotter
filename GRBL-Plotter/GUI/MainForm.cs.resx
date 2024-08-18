@@ -1212,4 +1212,47 @@ Změna nastavení importu po prvním importu může vést k nežádoucím efekt�
   <data name="processAutomationToolStripMenuItem.Text" xml:space="preserve">
     <value>Procesní automatizace</value>
   </data>
+  <data name="wireCutterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Štípačky</value>
+  </data>
+  <data name="BtnJogAbsZ.Text" xml:space="preserve">
+    <value>Convidar a</value>
+  </data>
+  <data name="BtnJogAbsY.Text" xml:space="preserve">
+    <value>Convidar a</value>
+  </data>
+  <data name="BtnJogAbsX.Text" xml:space="preserve">
+    <value>Convidar a</value>
+  </data>
+  <data name="Gb_Jogging.Text" xml:space="preserve">
+    <value>Ovládání / Jogging - kliknutím rozbalte</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="applyLastTransformToolStripMenuItem.Text" xml:space="preserve">
+    <value>Použít poslední transformaci</value>
+  </data>
+  <data name="cmsPicBoxReloadFile2.Text" xml:space="preserve">
+    <value>Znovu načíst soubor 2</value>
+  </data>
+  <data name="cmsPicBoxClearWorkspace.Text" xml:space="preserve">
+    <value>Vyčistit pracovní prostor</value>
+  </data>
+  <data name="convertToPolarCoordinatesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Převést na polární souřadnice</value>
+  </data>
+  <data name="CbMist.ToolTip" xml:space="preserve">
+    <value>Nastavit 'M7', vymazat 'M9'</value>
+  </data>
+  <data name="CbSpindle.ToolTip" xml:space="preserve">
+    <value>Nastavte „M3“ nebo „M4“, vymažte „M5“</value>
+  </data>
+  <data name="CbCoolant.ToolTip" xml:space="preserve">
+    <value>Nastavit 'M8', vymazat 'M9'</value>
+  </data>
+  <data name="gBoxDROSetCoord.Text" xml:space="preserve">
+    <value>Nastavit souřadnicový systém</value>
+  </data>
+  <data name="gBoxDRO.Text" xml:space="preserve">
+    <value>Souřadnice nástroje (práce / stroj)</value>
+  </data>
 </root>

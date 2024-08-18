@@ -55,6 +55,7 @@
  * 2023-06-20 l:380 f:InsertCodeToFctb check if xmlLine is in range
  * 2023-07-31 l:375 f:InsertCodeToFctb insert duplicated figure/group right after selected figure/group
  * 2023-09-05 l:109 f:FctbCode_TextChanged allow 3-digit M-word 
+ * 2024-06-01 l:712 check range
 */
 
 using FastColoredTextBoxNS;
@@ -75,8 +76,8 @@ namespace GrblPlotter
         private bool manualEdit = false;
         private readonly bool logMain = false;
 
-		private int globalCollectionCounter = 1;
-		
+        private int globalCollectionCounter = 1;
+
         #region fCTB FastColoredTextBox related
         // highlight code in editor
         // 0   : Black, 105 : DimGray , 128 : Gray, 169 : DarkGray!, 192 : Silver, 211 : LightGray , 220 : Gainsboro, 245 : Ghostwhite, 255 : White
@@ -100,35 +101,39 @@ namespace GrblPlotter
         private ConcurrentBag<int> ErrorLines = new ConcurrentBag<int>();
         private void FctbCode_TextChanged(object sender, FastColoredTextBoxNS.TextChangedEventArgs e)
         {
-            e.ChangedRange.ClearStyle();
-            //e.ChangedRange.ClearStyle(StyleComment, ErrorStyle);
-            e.ChangedRange.SetStyle(ErrorStyle, "(?i)attention|warning|error", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(StyleTT, "(tool-table)|(PU)|(PD)", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(Style2nd, "\\(\\^[23].*", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(StyleCommentxml, "(\\<.*\\>)", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(StyleComment, "(\\(.*\\))", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(StyleGWord, "(G\\d{1,2})", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(StyleMWord, "(M\\d{1,3})", System.Text.RegularExpressions.RegexOptions.Compiled);			// switch to ",3"
-            e.ChangedRange.SetStyle(StyleFWord, "(F\\d+)", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(StyleSWord, "(S\\d+)", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(StyleLineN, "(N\\d+)", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(StyleTool, "(T\\d{1,2})", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(StyleXAxis, "[XIxi]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(StyleYAxis, "[YJyj]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(StyleZAxis, "[Zz]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
-            e.ChangedRange.SetStyle(StyleAAxis, "[AaBbCcUuVvWw]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
+            try
+            {
+                e.ChangedRange.ClearStyle();
+                //e.ChangedRange.ClearStyle(StyleComment, ErrorStyle);
+                e.ChangedRange.SetStyle(ErrorStyle, "(?i)attention|warning|error", System.Text.RegularExpressions.RegexOptions.Compiled);
+                e.ChangedRange.SetStyle(StyleTT, "(tool-table)|(PU)|(PD)", System.Text.RegularExpressions.RegexOptions.Compiled);
+                e.ChangedRange.SetStyle(Style2nd, "\\(\\^[23].*", System.Text.RegularExpressions.RegexOptions.Compiled);
+                e.ChangedRange.SetStyle(StyleCommentxml, "(\\<.*\\>)", System.Text.RegularExpressions.RegexOptions.Compiled);
+                e.ChangedRange.SetStyle(StyleComment, "(\\(.*\\))", System.Text.RegularExpressions.RegexOptions.Compiled);
+                e.ChangedRange.SetStyle(StyleGWord, "(G\\d{1,2})", System.Text.RegularExpressions.RegexOptions.Compiled);
+                e.ChangedRange.SetStyle(StyleMWord, "(M\\d{1,3})", System.Text.RegularExpressions.RegexOptions.Compiled);           // switch to ",3"
+                e.ChangedRange.SetStyle(StyleFWord, "(F\\d+)", System.Text.RegularExpressions.RegexOptions.Compiled);
+                e.ChangedRange.SetStyle(StyleSWord, "(S\\d+)", System.Text.RegularExpressions.RegexOptions.Compiled);
+                e.ChangedRange.SetStyle(StyleLineN, "(N\\d+)", System.Text.RegularExpressions.RegexOptions.Compiled);
+                e.ChangedRange.SetStyle(StyleTool, "(T\\d{1,2})", System.Text.RegularExpressions.RegexOptions.Compiled);
+                e.ChangedRange.SetStyle(StyleXAxis, "[XIxi]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
+                e.ChangedRange.SetStyle(StyleYAxis, "[YJyj]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
+                e.ChangedRange.SetStyle(StyleZAxis, "[Zz]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
+                e.ChangedRange.SetStyle(StyleAAxis, "[AaBbCcUuVvWw]{1}-?\\d+(.\\d+)?", System.Text.RegularExpressions.RegexOptions.Compiled);
 
-            e.ChangedRange.ClearFoldingMarkers();
-            e.ChangedRange.SetFoldingMarkers(XmlMarker.HeaderStart, XmlMarker.HeaderEnd);
-            e.ChangedRange.SetFoldingMarkers(XmlMarker.FillStart, XmlMarker.FillEnd);
-            e.ChangedRange.SetFoldingMarkers(XmlMarker.ContourStart, XmlMarker.ContourEnd);
-            e.ChangedRange.SetFoldingMarkers(XmlMarker.ClearanceStart, XmlMarker.ClearanceEnd);
-            e.ChangedRange.SetFoldingMarkers(XmlMarker.RevolutionStart, XmlMarker.RevolutionEnd);
-            e.ChangedRange.SetFoldingMarkers(XmlMarker.PassStart, XmlMarker.PassEnd);
-            e.ChangedRange.SetFoldingMarkers(XmlMarker.FigureStart, XmlMarker.FigureEnd);
-            e.ChangedRange.SetFoldingMarkers(XmlMarker.GroupStart, XmlMarker.GroupEnd);
-            e.ChangedRange.SetFoldingMarkers(XmlMarker.TileStart, XmlMarker.TileEnd);
-            e.ChangedRange.SetFoldingMarkers(XmlMarker.CollectionStart, XmlMarker.CollectionEnd);
+                e.ChangedRange.ClearFoldingMarkers();
+                e.ChangedRange.SetFoldingMarkers(XmlMarker.HeaderStart, XmlMarker.HeaderEnd);
+                e.ChangedRange.SetFoldingMarkers(XmlMarker.FillStart, XmlMarker.FillEnd);
+                e.ChangedRange.SetFoldingMarkers(XmlMarker.ContourStart, XmlMarker.ContourEnd);
+                e.ChangedRange.SetFoldingMarkers(XmlMarker.ClearanceStart, XmlMarker.ClearanceEnd);
+                e.ChangedRange.SetFoldingMarkers(XmlMarker.RevolutionStart, XmlMarker.RevolutionEnd);
+                e.ChangedRange.SetFoldingMarkers(XmlMarker.PassStart, XmlMarker.PassEnd);
+                e.ChangedRange.SetFoldingMarkers(XmlMarker.FigureStart, XmlMarker.FigureEnd);
+                e.ChangedRange.SetFoldingMarkers(XmlMarker.GroupStart, XmlMarker.GroupEnd);
+                e.ChangedRange.SetFoldingMarkers(XmlMarker.TileStart, XmlMarker.TileEnd);
+                e.ChangedRange.SetFoldingMarkers(XmlMarker.CollectionStart, XmlMarker.CollectionEnd);
+            }
+            catch { }
 
             if (!manualEdit)
             {
@@ -138,7 +143,9 @@ namespace GrblPlotter
             if (ErrorLines.Count > 0)
             {
                 foreach (int myline in ErrorLines.ToList())
-                { MarkErrorLine(myline); }
+                {
+                    MarkErrorLine(myline);
+                }
             }
         }
         private void MarkErrorLine(int line)
@@ -383,7 +390,7 @@ namespace GrblPlotter
             else
             {
                 insertLineGroup = XmlMarker.FindInsertPositionGroupNext(lineSelected);
-                insertLineFigure = XmlMarker.FindInsertPositionFigureNext(lineSelected); 
+                insertLineFigure = XmlMarker.FindInsertPositionFigureNext(lineSelected);
                 if (containsGroup)
                 { insertLineNr = insertLineGroup; }  // add as next group
                 else if (containsFigure)
@@ -400,17 +407,17 @@ namespace GrblPlotter
                 if (createGroup)
                 {    // add startGroup for existing figures
                     Place selStartGrp;
-					int xmlLine = XmlMarker.FindInsertPositionFigureMostBottom(insertLineNr);
-					if (LineIsInRange(xmlLine))
-						selStartGrp.iLine = xmlLine;
-					else 
-						selStartGrp.iLine = insertLineNr;
+                    int xmlLine = XmlMarker.FindInsertPositionFigureMostBottom(insertLineNr);
+                    if (LineIsInRange(xmlLine))
+                        selStartGrp.iLine = xmlLine;
+                    else
+                        selStartGrp.iLine = insertLineNr;
 
                     selStartGrp.iChar = 0;
                     Range mySelectionGrp = new Range(fCTBCode);
                     mySelectionGrp.Start = mySelectionGrp.End = selStartGrp;
                     fCTBCode.Selection = mySelectionGrp;
-                //    fCTBCode.InsertText("(" + XmlMarker.GroupEnd + ">)\r\n", false);    // insert new code
+                    //    fCTBCode.InsertText("(" + XmlMarker.GroupEnd + ">)\r\n", false);    // insert new code
                     fCTBCode.InsertText("(" + XmlMarker.CollectionEnd + ">)\r\n", false);    // insert new code
                 }
 
@@ -422,7 +429,7 @@ namespace GrblPlotter
                 string line;
                 int figureCount = 1;
 
-                if(!containsCollection) { tmpCodeFinish.AppendLine(string.Format("({0} Id=\"{1}\">)", XmlMarker.CollectionStart, globalCollectionCounter++)); }
+                if (!containsCollection) { tmpCodeFinish.AppendLine(string.Format("({0} Id=\"{1}\">)", XmlMarker.CollectionStart, globalCollectionCounter++)); }
 
                 for (int k = 0; k < tmpCodeLines.Length; k++)       // go through code-lines to insert
                 {
@@ -483,7 +490,7 @@ namespace GrblPlotter
 
                 if (createGroup)
                 { tmpCodeFinish.AppendLine("(" + XmlMarker.CollectionStart + " Id=\"0\" Type=\"Existing code\" >)"); }    // add startGroup for existing figures
-            //    { tmpCodeFinish.AppendLine("(" + XmlMarker.GroupStart + " Id=\"0\" Type=\"Existing code\" >)"); }    // add startGroup for existing figures
+                                                                                                                          //    { tmpCodeFinish.AppendLine("(" + XmlMarker.GroupStart + " Id=\"0\" Type=\"Existing code\" >)"); }    // add startGroup for existing figures
 
                 InsertTextAtLine(insertLineNr, tmpCodeFinish.ToString());
                 if (fromFile)
@@ -503,7 +510,7 @@ namespace GrblPlotter
             {
                 fCTBCode.Text = sourceGCode;
                 Logger.Warn("⚠⚠⚠ Insert code was not possible at line: {0}", insertLineNr);
-                codeInsert=new System.Drawing.Point(-1, -1);
+                codeInsert = new System.Drawing.Point(-1, -1);
                 return -1;
             }
         }
@@ -695,7 +702,7 @@ namespace GrblPlotter
             }
             else if (markedBlockType == XmlMarkerType.Tile)
             {
-                if (XmlMarker.GetTile(XmlMarker.lastTile.LineStart, direction))		// find and set new tile
+                if (XmlMarker.GetTile(XmlMarker.lastTile.LineStart, direction))     // find and set new tile
                 {
                     fCTBCodeClickedLineNow = XmlMarker.lastTile.LineStart;
                     if (Gcode.LoggerTrace && logMain) Logger.Trace("Group up found {0}  {1}", XmlMarker.lastTile.LineStart, XmlMarker.lastTile.LineEnd);
@@ -709,14 +716,14 @@ namespace GrblPlotter
                 if (fCTBCodeClickedLineNow < 1) { fCTBCodeClickedLineNow = 1; }
                 if (fCTBCodeClickedLineNow >= fCTBCode.LinesCount) { fCTBCodeClickedLineNow = fCTBCode.LinesCount - 1; }
 
-                while ((fCTBCode.GetVisibleState(fCTBCodeClickedLineNow) == VisibleState.Hidden) && (fCTBCodeClickedLineNow > 1))
+                while ((fCTBCode.GetVisibleState(fCTBCodeClickedLineNow) == VisibleState.Hidden) && (fCTBCodeClickedLineNow > 1) && (fCTBCodeClickedLineNow < fCTBCode.LinesCount))
                     fCTBCodeClickedLineNow += direction;
                 if (Gcode.LoggerTrace && logMain) Logger.Trace("Else up {0} ", markedBlockType.ToString());
             }
 
             fCTBCode.UnbookmarkLine(fCTBCodeClickedLineLast);
             fCTBCode.BookmarkLine(fCTBCodeClickedLineNow);
-        //    fCTBCode.DoCaretVisible();
+            //    fCTBCode.DoCaretVisible();
             if ((markerType != XmlMarkerType.None) && VisuGCode.CodeBlocksAvailable() && !isStreaming)
             {
                 SelectionHandle.SelectedMarkerType = markerType;
@@ -730,7 +737,7 @@ namespace GrblPlotter
 
         private void FctbSetBookmark(bool markAnyway = false)     // after click on gcode line, mark text and graphics
         {
-            if (LineIsInRange(fCTBCodeClickedLineNow))	//(fCTBCodeClickedLineNow < fCTBCode.LinesCount) && (fCTBCodeClickedLineNow >= 0))
+            if (LineIsInRange(fCTBCodeClickedLineNow))  //(fCTBCodeClickedLineNow < fCTBCode.LinesCount) && (fCTBCodeClickedLineNow >= 0))
             {
                 if ((fCTBCodeClickedLineNow != fCTBCodeClickedLineLast) || markAnyway)
                 {
@@ -754,7 +761,7 @@ namespace GrblPlotter
                             for (int unbook = fCTBCodeClickedLineLast - add; unbook <= fCTBCodeClickedLineLast; unbook++)
                                 if (LineIsInRange(unbook))
                                     this.fCTBCode.UnbookmarkLine(unbook);
-                        }	// fCTBCodeClickedLineLast
+                        }   // fCTBCodeClickedLineLast
 
                         //fCTBCode.BookmarkLine(fCTBCodeClickedLineNow);              // set new marker
                         if (this.fCTBCode.InvokeRequired)
@@ -824,7 +831,7 @@ namespace GrblPlotter
                     Clipboard.SetText(gcodeString.ToString());
                     fCTBCode.Paste();
                     FctbSetBookmark();
-                }	// 2023-03-11
+                }   // 2023-03-11
             }
             else if (e.ClickedItem.Name == "cmsCodePasteSpecial2")  // Pen down
             {
@@ -839,7 +846,7 @@ namespace GrblPlotter
                     Clipboard.SetText(gcodeString.ToString());
                     fCTBCode.Paste();
                     FctbSetBookmark();
-                }	// 2023-03-11
+                }   // 2023-03-11
             }
             else if (e.ClickedItem.Name == "cmsCodeSendLine")
             {
@@ -863,7 +870,7 @@ namespace GrblPlotter
                     result += "<h2>" + lines[0] + "</h2><ul>";
                     for (int i = 1; i < lines.Length; i++)
                     {
-                        result += "<li>"+ lines[i] + "</li>";
+                        result += "<li>" + lines[i] + "</li>";
                     }
                     result += "</ul>";
                     ShowMessageForm(result);
@@ -901,7 +908,7 @@ namespace GrblPlotter
             if (set)
             {
                 fCTBCode.BackColor = Color.FromArgb(255, 255, 255, 100);
-                StatusStripSet(1, Localization.GetString("statusStripeEditModeOn"), Color.FromArgb(255, 255, 255, 100));		// Edit mode on - click into 2D view to finish
+                StatusStripSet(1, Localization.GetString("statusStripeEditModeOn"), Color.FromArgb(255, 255, 255, 100));        // Edit mode on - click into 2D view to finish
             }
             else
             {
@@ -928,7 +935,7 @@ namespace GrblPlotter
         private static bool figureIsMarked = false;
         private static XmlMarkerType markedBlockType = XmlMarkerType.None;
 
-        private bool FindFigureMarkSelection(XmlMarkerType marker, int clickedLine, DistanceByLine markerProperties)	//bool collapse = true)   // called by click on figure in 2D view
+        private bool FindFigureMarkSelection(XmlMarkerType marker, int clickedLine, DistanceByLine markerProperties)    //bool collapse = true)   // called by click on figure in 2D view
         {
             if ((manualEdit || !VisuGCode.CodeBlocksAvailable() || isStreaming))
                 return false;
@@ -945,9 +952,9 @@ namespace GrblPlotter
 
             if (marker == XmlMarkerType.Collection)
             {
-                if (XmlMarker.GetCollectionCount() > 0)														// is Tile-Tag present
+                if (XmlMarker.GetCollectionCount() > 0)                                                     // is Tile-Tag present
                 {
-                    if (XmlMarker.GetCollection(clickedLine) && LineIsInRange(XmlMarker.lastCollection.LineStart))	// is Tile-Tag valid
+                    if (XmlMarker.GetCollection(clickedLine) && LineIsInRange(XmlMarker.lastCollection.LineStart))  // is Tile-Tag valid
                     {
                         SetTextSelection(XmlMarker.lastCollection.LineStart, XmlMarker.lastCollection.LineEnd); // select Gcode
 
@@ -973,9 +980,9 @@ namespace GrblPlotter
             }
             else if (marker == XmlMarkerType.Tile)
             {
-                if (XmlMarker.GetTileCount() > 0)														// is Tile-Tag present
+                if (XmlMarker.GetTileCount() > 0)                                                       // is Tile-Tag present
                 {
-                    if (XmlMarker.GetTile(clickedLine) && LineIsInRange(XmlMarker.lastTile.LineStart))	// is Tile-Tag valid
+                    if (XmlMarker.GetTile(clickedLine) && LineIsInRange(XmlMarker.lastTile.LineStart))  // is Tile-Tag valid
                     {
                         SetTextSelection(XmlMarker.lastTile.LineStart, XmlMarker.lastTile.LineEnd); // select Gcode
 
@@ -1001,7 +1008,7 @@ namespace GrblPlotter
             }
             else if (marker == XmlMarkerType.Group)
             {
-                if (XmlMarker.GetGroupCount() > 0)														// is Group-Tag present
+                if (XmlMarker.GetGroupCount() > 0)                                                      // is Group-Tag present
                 {
                     if (XmlMarker.GetGroup(clickedLine) && LineIsInRange(XmlMarker.lastGroup.LineStart))// is Group-Tag valid
                     {
@@ -1039,13 +1046,13 @@ namespace GrblPlotter
             }
             else if (marker == XmlMarkerType.Figure)
             {
-                if (XmlMarker.GetFigure(clickedLine) && LineIsInRange(XmlMarker.lastFigure.LineStart))	// is Figure-Tag valid
+                if (XmlMarker.GetFigure(clickedLine) && LineIsInRange(XmlMarker.lastFigure.LineStart))  // is Figure-Tag valid
                 {
                     SetTextSelection(XmlMarker.lastFigure.LineStart, XmlMarker.lastFigure.LineEnd); // select Gcode
 
                     if (SelectionHandle.SelectedFigure != XmlMarker.lastFigure.Id)
                     {
-                        VisuGCode.MarkSelectedFigure(XmlMarker.lastFigure.FigureNr);       			// highlight 2D-view
+                        VisuGCode.MarkSelectedFigure(XmlMarker.lastFigure.FigureNr);                // highlight 2D-view
                         SelectionHandle.SelectedMarkerLine = clickedLine;
                         SelectionHandle.SelectedFigure = XmlMarker.lastFigure.Id;
                         if (_setup_form != null)
@@ -1114,7 +1121,7 @@ namespace GrblPlotter
                 fCTBCode.SelectionColor = Color.Green;
             }
         }
-        private void SetTextSelection(int start, int end)	//, bool toggle = true)
+        private void SetTextSelection(int start, int end)   //, bool toggle = true)
         {
             if (start < 0) start = 0; if (start >= fCTBCode.LinesCount) start = 0;
             if (end < 0) end = 0;
@@ -1253,7 +1260,7 @@ namespace GrblPlotter
 
                 if (tmp.Contains(XmlMarker.FigureStart) || tmp.Contains(XmlMarker.ContourStart) || tmp.Contains(XmlMarker.FillStart) || tmp.Contains(XmlMarker.PassStart))
                 {
-                    if (!exceptFigureActive)	//(i != exceptLine)
+                    if (!exceptFigureActive)    //(i != exceptLine)
                     {
                         try { fCTBCode.CollapseFoldingBlock(i); }
                         catch (Exception err) { Logger.Error(err, "FoldBlocks2 "); }    // no need to track
@@ -1585,10 +1592,10 @@ namespace GrblPlotter
             MessageCode.Add("1102", Localization.GetString("codeMessage_1102_dontplot"));
             MessageCode.Add("1202", Localization.GetString("codeMessage_1202_dontplot"));
 
-            MessageCode.Add("1103", Localization.GetString("codeMessage_1103_elementsupport"));		// not supported
-            MessageCode.Add("1104", Localization.GetString("codeMessage_1104_elementuk"));			// unknown
-            MessageCode.Add("1105", Localization.GetString("codeMessage_1105_textpath"));			// 
-            MessageCode.Add("1106", Localization.GetString("codeMessage_1106_attributesupport"));	// not supported
+            MessageCode.Add("1103", Localization.GetString("codeMessage_1103_elementsupport"));     // not supported
+            MessageCode.Add("1104", Localization.GetString("codeMessage_1104_elementuk"));          // unknown
+            MessageCode.Add("1105", Localization.GetString("codeMessage_1105_textpath"));           // 
+            MessageCode.Add("1106", Localization.GetString("codeMessage_1106_attributesupport"));   // not supported
 
 
             MessageCode.Add("2001", Localization.GetString("codeMessage_2_zdoubletang"));       // GraphicCollectData.cs 746

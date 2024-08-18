@@ -1138,4 +1138,47 @@ Dodaj 'G54;' do nagłówka G-Code aby automatycznie przełączyć się z powrote
     <value>Wznów</value>
     <comment>groupBox_Jogging</comment>
   </data>
+  <data name="wireCutterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Przecinarka do gorącego drutu</value>
+  </data>
+  <data name="BtnJogAbsZ.Text" xml:space="preserve">
+    <value>Przejdź do</value>
+  </data>
+  <data name="BtnJogAbsY.Text" xml:space="preserve">
+    <value>Przejdź do</value>
+  </data>
+  <data name="BtnJogAbsX.Text" xml:space="preserve">
+    <value>Przejdź do</value>
+  </data>
+  <data name="Gb_Jogging.Text" xml:space="preserve">
+    <value>Sterowanie / Jogging - kliknij, żeby rozwinąć</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="applyLastTransformToolStripMenuItem.Text" xml:space="preserve">
+    <value>Zastosuj ostatnią transformację</value>
+  </data>
+  <data name="cmsPicBoxReloadFile2.Text" xml:space="preserve">
+    <value>Załaduj ponownie plik 2</value>
+  </data>
+  <data name="cmsPicBoxClearWorkspace.Text" xml:space="preserve">
+    <value>Wyczyść obszar roboczy</value>
+  </data>
+  <data name="convertToPolarCoordinatesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Konwertuj na współrzędne biegunowe</value>
+  </data>
+  <data name="CbMist.ToolTip" xml:space="preserve">
+    <value>Ustaw „M7”, wyczyść „M9”</value>
+  </data>
+  <data name="CbSpindle.ToolTip" xml:space="preserve">
+    <value>Ustaw „M3” lub „M4”, wyczyść „M5”</value>
+  </data>
+  <data name="CbCoolant.ToolTip" xml:space="preserve">
+    <value>Ustaw „M8”, wyczyść „M9”</value>
+  </data>
+  <data name="gBoxDROSetCoord.Text" xml:space="preserve">
+    <value>Ustaw układ współrzędnych</value>
+  </data>
+  <data name="gBoxDRO.Text" xml:space="preserve">
+    <value>Współrzędne narzędzia (praca/maszyna)</value>
+  </data>
 </root>

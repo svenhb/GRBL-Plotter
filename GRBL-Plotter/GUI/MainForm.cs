@@ -60,9 +60,11 @@
  * 2023-01-02 CbLaser_CheckedChanged, CbSpindle_CheckedChanged check if Grbl.isConnected
  * 2023-03-07 l:714/786/811 f:VirtualJoystickXY/Z/A_move if index =0 stop Jog -> if (!Grbl.isVersion_0) SendRealtimeCommand(133);
  * 2023-03-09 l:1213 bugfix start streaming
- * 2023-05-30 l:532 f:MainTimer_Tick add _message_form close
- * 2023-09-11 l:270 f:SplashScreenTimer_Tick multiple file import and issue #360 -> new function MainFormLoadFile.cs - LoadFiles(string[] fileList, int minIndex)
+ * 2023-05-30 l:532  f:MainTimer_Tick add _message_form close
+ * 2023-09-11 l:270  f:SplashScreenTimer_Tick multiple file import and issue #360 -> new function MainFormLoadFile.cs - LoadFiles(string[] fileList, int minIndex)
  * 2024-05-19 l:1159 f:BtnReset_Click removed StopStreaming to avoid applying code after "stop" from flowControlText
+ * 2024-05-28 l:625  f:MainTimer_Tick add delayedHeightMapShow timer
+
 */
 
 using GrblPlotter.GUI;
@@ -178,16 +180,9 @@ namespace GrblPlotter
 
             CustomButtonsSetEvents();       // for buttons 17 to 32
             SetMenuShortCuts();				// Add shortcuts to menu items
-            LoadRecentList();               // open Recent.txt and fill menu
-            try
-            { cmsPicBoxReloadFile.Text += " | " + Path.GetFileName(Datapath.MakeAbsolutePath(MRUlist[0])); }
-            catch
-            {
-                Logger.Error("MainForm: could not set cmsPicBoxReloadFile.Text");
-            }
-
             UpdateMenuChecker();
 
+            LoadRecentList();               // open Recent.txt and fill menu
             if (MRUlist.Count > 0)			// add recent list to gui menu
             {
                 foreach (string item in MRUlist)
@@ -196,19 +191,27 @@ namespace GrblPlotter
                     toolStripMenuItem2.DropDownItems.Add(fileRecent); //add the menu to "recent" menu
                 }
             }
+            SetRecentText();
 
             int toolSelect = Properties.Settings.Default.guiToolSelection;
-            if ((toolSelect < 0) || (toolSelect >= tabControl1.TabCount))
+            if ((toolSelect < 0) || (toolSelect >= tC_RouterPlotterLaser.TabCount))
                 toolSelect = 0;
-            tabControl1.SelectedIndex = toolSelect;
+            tC_RouterPlotterLaser.SelectedIndex = toolSelect;
 
             LoadExtensionList();			// fill menu with available extension-scripts
             CmsPicBoxEnable(false);			// no graphic - no tasks
-            cmsPicBoxReloadFile.ToolTipText = string.Format(culture, "Load '{0}'", MRUlist[0]); // set last loaded in cms menu
 
-            this.gBoxOverride.Click += GrpBoxOverride_Click;	// add event handler to groupBox for opening/closing Feed override controls
+            gBoxDRO.Click += GrpBoxDRO_Click;
+            gBoxDROSetCoord.Click += GrpBoxDRO_Click;
+
+            gBoxOverride.Click += GrpBoxOverride_Click;	// add event handler to groupBox for opening/closing Feed override controls
             gBoxOverride.Height = 15;
-            gBoxOverrideBig = false;
+            gBoxOverrideLarge = false;
+
+            Gb_Jogging.Click += GrpBoxJogging_Click;	// add event handler to groupBox for opening/closing Feed override controls
+            Gb_Jogging.Height = 75;
+            GbJoggingLarge = false;
+
             lbDimension.Select(0, 0);       // unselect text Dimension box
 
             try
@@ -332,7 +335,7 @@ namespace GrblPlotter
             Properties.Settings.Default.locationMForm = Location;
             ControlPowerSaving.EnableStandby();
             Properties.Settings.Default.mainFormSplitDistance = splitContainer1.SplitterDistance;
-            Properties.Settings.Default.guiToolSelection = tabControl1.SelectedIndex;
+            Properties.Settings.Default.guiToolSelection = tC_RouterPlotterLaser.SelectedIndex;
 
             Properties.Settings.Default.guiLastEnd = DateTime.Now.Ticks;
 
@@ -614,8 +617,13 @@ namespace GrblPlotter
                     if (!CloseMessageForm(true))
                         delayedMessageFormClose++;
 
-                    Logger.Trace("delayedMessageFormClose {0}", delayedMessageFormClose);
+                    //    Logger.Trace("delayedMessageFormClose {0}", delayedMessageFormClose);
                 }
+            }
+            if (delayedHeightMapShow > 0)
+            {
+                if (delayedHeightMapShow-- == 1)
+                { LoadHeightMap(); }
             }
             mainTimerCount++;
         }
@@ -863,12 +871,12 @@ namespace GrblPlotter
         private void VirtualJoystickXY_Enter(object sender, EventArgs e)
         {
             if (Grbl.isVersion_0) SendCommands("G91;G1F100");
-            gB_Jogging.BackColor = Color.LightGreen;
+            Gb_Jogging.BackColor = Color.LightGreen;
         }
         private void VirtualJoystickXY_Leave(object sender, EventArgs e)
         {
             if (Grbl.isVersion_0) SendCommand("G90");
-            gB_Jogging.BackColor = SystemColors.Control;
+            Gb_Jogging.BackColor = SystemColors.Control;
             virtualJoystickXY.JoystickRasterMark = 0;
             virtualJoystickZ.JoystickRasterMark = 0;
             virtualJoystickA.JoystickRasterMark = 0;
@@ -1107,7 +1115,7 @@ namespace GrblPlotter
                 SendCommand("$H");
         }
         private void BtnZeroX_Click(object sender, EventArgs e)
-        { SendCommands((Grbl.isMarlin ? "G92" : zeroCmd) + " X0.000"); }
+        { SendCommands((Grbl.isMarlin ? "G92" : zeroCmd) + " X0.000"); }    // zeroCmd = "G10 L20 P0";
         private void BtnZeroY_Click(object sender, EventArgs e)
         { SendCommands((Grbl.isMarlin ? "G92" : zeroCmd) + " Y0.000"); }
         private void BtnZeroZ_Click(object sender, EventArgs e)
@@ -1123,6 +1131,18 @@ namespace GrblPlotter
         private void BtnZeroXYZ_Click(object sender, EventArgs e)
         { SendCommands((Grbl.isMarlin ? "G92" : zeroCmd) + " X0.000 Y0.000 Z0.000"); }
 
+        private void BtnSetCoordX_Click(object sender, EventArgs e)
+        { SendCommands((Grbl.isMarlin ? "G92" : zeroCmd) + string.Format(" X{0:0.000}",NudSetCoordX.Value)); }    // zeroCmd = "G10 L20 P0";
+
+        private void BtnSetCoordY_Click(object sender, EventArgs e)
+        { SendCommands((Grbl.isMarlin ? "G92" : zeroCmd) + string.Format(" Y{0:0.000}", NudSetCoordY.Value)); }    // zeroCmd = "G10 L20 P0";
+
+        private void BtnSetCoordZ_Click(object sender, EventArgs e)
+        { SendCommands((Grbl.isMarlin ? "G92" : zeroCmd) + string.Format(" Z{0:0.000}", NudSetCoordZ.Value)); }    // zeroCmd = "G10 L20 P0";
+
+        private void BtnSetCoordA_Click(object sender, EventArgs e)
+        { SendCommands((Grbl.isMarlin ? "G92" : zeroCmd) + string.Format(" A{0:0.000}", NudSetCoordA.Value)); }    // zeroCmd = "G10 L20 P0";
+
         private void BtnJogX_Click(object sender, EventArgs e)
         { BtnMoveZero("X0", joystickXYSpeed[5].ToString(culture)); }
         private void BtnJogY_Click(object sender, EventArgs e)
@@ -1133,6 +1153,12 @@ namespace GrblPlotter
         { BtnMoveZero(ctrl4thName + "0", joystickZSpeed[5].ToString(culture)); }
         private void BtnJogXY_Click(object sender, EventArgs e)
         { BtnMoveZero("X0Y0", joystickXYSpeed[5].ToString(culture)); }
+        private void BtnJogAbsX_Click(object sender, EventArgs e)
+        { BtnMoveZero(string.Format("X{0:0.000}",NudJogAbsX.Value), joystickXYSpeed[5].ToString(culture));}
+        private void BtnJogAbsY_Click(object sender, EventArgs e)
+        { BtnMoveZero(string.Format("Y{0:0.000}", NudJogAbsY.Value), joystickXYSpeed[5].ToString(culture)); }
+        private void BtnJogAbsZ_Click(object sender, EventArgs e)
+        { BtnMoveZero(string.Format("Z{0:0.000}", NudJogAbsZ.Value), joystickZSpeed[5].ToString(culture)); }
 
         private void BtnMoveZero(string axis, string fed)
         {
@@ -1156,7 +1182,7 @@ namespace GrblPlotter
             if (_serial_form.IsConnectedToGrbl())
             {
                 Logger.Trace("BtnReset_Click  IsConnectedToGrbl");
-            //    StopStreaming(true);          // removed 2024-05-19
+                //    StopStreaming(true);          // removed 2024-05-19
                 _serial_form.GrblReset(true);   // savePos
             }
             isStreaming = false;
@@ -1536,10 +1562,32 @@ namespace GrblPlotter
             groupBox4.Left = 133 + add;
         }
 
-        private bool gBoxOverrideBig = false;
+        private bool gBoxDROShowSetCoord = false;
+        private void GrpBoxDRO_Click(object sender, EventArgs e)
+        {
+            if (!gBoxDROShowSetCoord)
+            {
+                if (Grbl.axisB || Grbl.axisC)
+                    gBoxDRO.Width = 400;
+                else
+                    gBoxDRO.Width = 267;
+                gBoxDROSetCoord.Visible = true;
+            }
+            else
+            {
+                if (Grbl.axisB || Grbl.axisC)
+                    gBoxDRO.Width = 400;
+                else
+                    gBoxDRO.Width = 230;
+                gBoxDROSetCoord.Visible = false;
+            }
+            gBoxDROShowSetCoord = !gBoxDROShowSetCoord;
+        }
+
+        private bool gBoxOverrideLarge = false;
         private void GrpBoxOverride_Click(object sender, EventArgs e)
         {
-            if (gBoxOverrideBig)
+            if (gBoxOverrideLarge)
                 gBoxOverride.Height = 15;
             else
             {
@@ -1554,7 +1602,16 @@ namespace GrblPlotter
                     gBOverrideASGB.Height = 37;
                 }
             }
-            gBoxOverrideBig = !gBoxOverrideBig;
+            gBoxOverrideLarge = !gBoxOverrideLarge;
+        }
+        private bool GbJoggingLarge = false;
+        private void GrpBoxJogging_Click(object sender, EventArgs e)
+        {
+            if (GbJoggingLarge)
+                Gb_Jogging.Height = 75;
+            else
+                Gb_Jogging.Height = 150;
+            GbJoggingLarge = !GbJoggingLarge;
         }
 
         internal void SetUndoText(string txt)
@@ -1708,6 +1765,7 @@ namespace GrblPlotter
             if (_text_form != null) { _text_form.WindowState = FormWindowState.Normal; _text_form.BringToFront(); }
             if (_image_form != null) { _image_form.WindowState = FormWindowState.Normal; _image_form.BringToFront(); }
             if (_shape_form != null) { _shape_form.WindowState = FormWindowState.Normal; _shape_form.BringToFront(); }
+            if (_wireCutter_form != null) { _wireCutter_form.WindowState = FormWindowState.Normal; _wireCutter_form.BringToFront(); }
             if (_barcode_form != null) { _barcode_form.WindowState = FormWindowState.Normal; _barcode_form.BringToFront(); }
 
             if (_setup_form != null) { _setup_form.WindowState = FormWindowState.Normal; _setup_form.BringToFront(); }
@@ -1729,6 +1787,7 @@ namespace GrblPlotter
             else
                 CbAddGraphic.BackColor = Color.Transparent;
         }
+
     }
 }
 

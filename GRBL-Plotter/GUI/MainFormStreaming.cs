@@ -606,7 +606,7 @@ namespace GrblPlotter
                     if (!Grbl.isVersion_0)		// show override buttons below start-button
                     {
                         gBoxOverride.Height = 175;
-                        gBoxOverrideBig = true;
+                        gBoxOverrideLarge = true;
                     }
 
                     timerUpdateControlSource = "startStreaming";
@@ -665,14 +665,16 @@ namespace GrblPlotter
                     }
 
                     bool removeFiducials = (Properties.Settings.Default.importFiducialSkipCode && (VisuGCode.fiducialsCenter.Count > 0));
-                    if (removeFiducials)    // copy code
+                //    bool removeHatchFill = (Properties.Settings.Default.importGraphicHatchFillOnlyShow );
+                    if (removeFiducials)// || removeHatchFill)    // copy code
                     {
-                        UnDo.SetCode(fCTBCode.Text, "remove fiducials", this);
+                        UnDo.SetCode(fCTBCode.Text, removeFiducials? "remove fiducials":"remove hatch fill", this);
                         string fiducialLabel = Properties.Settings.Default.importFiducialLabel;
                         fCTBCode.TextChanged -= FctbCode_TextChanged;       // disable textChanged events
                         foreach (XmlMarker.BlockData tmp in XmlMarker.listFigures)
                         {
-                            if ((tmp.Layer.IndexOf(fiducialLabel) >= 0) || (tmp.PathId.IndexOf(fiducialLabel) >= 0))
+                            if (removeFiducials && ((tmp.Layer.IndexOf(fiducialLabel) >= 0) || (tmp.PathId.IndexOf(fiducialLabel) >= 0))) //||
+                             //   (removeHatchFill && tmp.Geometry.IndexOf("hatch_fill_") >= 0))
                             {
                                 Logger.Info("StartStreaming fiducials: exclude line:{0} to:{1}", tmp.LineStart, tmp.LineEnd);
                                 for (int lnr = tmp.LineStart; lnr <= tmp.LineEnd; lnr++)

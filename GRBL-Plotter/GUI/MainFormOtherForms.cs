@@ -47,6 +47,7 @@ namespace GrblPlotter
         GCodeFromImage _image_form = null;
         GCodeFromShape _shape_form = null;
         GCodeForBarcode _barcode_form = null;
+        GCodeForWireCutter _wireCutter_form = null;
 
         ControlStreamingForm _streaming_form = null;
         ControlStreamingForm2 _streaming_form2 = null;
@@ -73,6 +74,34 @@ namespace GrblPlotter
         }
 
         #region MAIN-MENU GCode creation
+
+        /********************************************************************
+         * Text
+         * _wireCutter_form
+         ********************************************************************/
+        private void WireCutterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_wireCutter_form == null)
+            {
+                _wireCutter_form = new GCodeForWireCutter();
+                _wireCutter_form.FormClosed += FormClosed_WireCutter;
+                _wireCutter_form.btnApply.Click += GetGCodeForWireCutter;      // assign btn-click event
+                EventCollector.SetOpenForm("Fwic");
+            }
+            else
+            {
+                _wireCutter_form.Visible = false;
+            }
+
+            if (showFormInFront) _wireCutter_form.Show(this);
+            else _wireCutter_form.Show();  // this);
+
+            showFormsToolStripMenuItem.Visible = true;
+            _wireCutter_form.WindowState = FormWindowState.Normal;
+        }
+        private void FormClosed_WireCutter(object sender, FormClosedEventArgs e)
+        { _wireCutter_form = null; EventCollector.SetOpenForm("FCwic"); }
+
         /********************************************************************
          * Text
          * _text_form

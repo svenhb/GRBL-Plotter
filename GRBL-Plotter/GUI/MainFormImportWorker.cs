@@ -82,6 +82,8 @@ namespace GrblPlotter
                     { GCodeFromDrill.ConvertFromFile(source, worker, e); break; }
                 case Graphic.SourceType.Gerber:
                     { GCodeFromGerber.ConvertFromFile(source, worker, e); break; }
+                case Graphic.SourceType.PDNJson:
+                    { GCodeFromPDNJson.ConvertFromFile(source, worker, e); break; }
             }
         }
 

@@ -537,6 +537,8 @@ namespace GrblPlotter
             if (z != null) { SetDimensionZ((double)z); }
         }
 
+        public void SetDimensionXY(System.Windows.Point tmp)
+        { SetDimensionXY(tmp.X, tmp.Y); }
         public void SetDimensionXY(XyPoint tmp)
         { SetDimensionXY(tmp.X, tmp.Y); }
         public void SetDimensionXY(double? x, double? y)

@@ -1206,4 +1206,47 @@ Grblのバッファーにモーションがキューイングされていて準�
   <data name="processAutomationToolStripMenuItem.Text" xml:space="preserve">
     <value>プロセスの自動化</value>
   </data>
+  <data name="wireCutterToolStripMenuItem.Text" xml:space="preserve">
+    <value>熱線カッター</value>
+  </data>
+  <data name="BtnJogAbsZ.Text" xml:space="preserve">
+    <value>に移動します</value>
+  </data>
+  <data name="BtnJogAbsY.Text" xml:space="preserve">
+    <value>に移動します</value>
+  </data>
+  <data name="BtnJogAbsX.Text" xml:space="preserve">
+    <value>に移動します</value>
+  </data>
+  <data name="Gb_Jogging.Text" xml:space="preserve">
+    <value>コントロール / ジョギング - クリックして展開します</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="applyLastTransformToolStripMenuItem.Text" xml:space="preserve">
+    <value>最後の変換を適用する</value>
+  </data>
+  <data name="cmsPicBoxReloadFile2.Text" xml:space="preserve">
+    <value>ファイル 2 のリロード</value>
+  </data>
+  <data name="cmsPicBoxClearWorkspace.Text" xml:space="preserve">
+    <value>すっきりとしたワークスペース</value>
+  </data>
+  <data name="convertToPolarCoordinatesToolStripMenuItem.Text" xml:space="preserve">
+    <value>極座標に変換する</value>
+  </data>
+  <data name="CbMist.ToolTip" xml:space="preserve">
+    <value>「M7」を設定、「M9」をクリア</value>
+  </data>
+  <data name="CbSpindle.ToolTip" xml:space="preserve">
+    <value>「M3」または「M4」を設定し、「M5」をクリアします</value>
+  </data>
+  <data name="CbCoolant.ToolTip" xml:space="preserve">
+    <value>「M8」を設定、「M9」をクリア</value>
+  </data>
+  <data name="gBoxDROSetCoord.Text" xml:space="preserve">
+    <value>座標系の設定</value>
+  </data>
+  <data name="gBoxDRO.Text" xml:space="preserve">
+    <value>工具座標（作業/機械）</value>
+  </data>
 </root>

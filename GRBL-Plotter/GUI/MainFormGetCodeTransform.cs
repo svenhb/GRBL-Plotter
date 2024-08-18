@@ -31,6 +31,7 @@
  * 2023-09-06 l:235 f:InsertCodeFromForm add SetSelection (MainFormPictureBox.cs) to select newly inserted object
  * 2024-03-11 l:851 new f: convertToPolarCoordinatesToolStripMenuItem_Click
  * 2024-05-06 l:385 f:GetGCodeJogCreator2 check if form != null
+ * 2024-05-28 l:103 f:ApplyHeightMap add log
 */
 using FastColoredTextBoxNS;
 using System;
@@ -81,8 +82,10 @@ namespace GrblPlotter
             }
         }
         private void LoadHeightMap(object sender, EventArgs e)
-        {
-            if (_heightmap_form.mapIsLoaded)
+        { LoadHeightMap(); }
+        private void LoadHeightMap()
+        { 
+            if ((_heightmap_form!=null) && _heightmap_form.mapIsLoaded)
             {
                 VisuGCode.DrawHeightMap(_heightmap_form.Map);
                 VisuGCode.CreateMarkerPath();
@@ -99,6 +102,7 @@ namespace GrblPlotter
         private void ApplyHeightMap(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
+			Logger.Debug("ApplyHeightMap  isApplied:{0}", isHeightMapApplied);
             if (!isHeightMapApplied)
             {
                 LoadHeightMap(sender, e);
@@ -113,6 +117,7 @@ namespace GrblPlotter
                 Update_GCode_Depending_Controls();
                 _heightmap_form.SetBtnApply(isHeightMapApplied);
                 isHeightMapApplied = true;
+                delayedHeightMapShow = 2;
             }
             else
             {
@@ -278,6 +283,27 @@ namespace GrblPlotter
         }
 
         // Create GCode forms
+
+        private void GetGCodeForWireCutter(object sender, EventArgs e)
+        {
+            if (!isStreaming)
+            {
+                string tmpCode = "(no gcode)";
+                if (Graphic.GCode != null)
+                {
+                    tmpCode = Graphic.GCode.ToString();
+                }
+                InsertCodeFromForm(tmpCode, "for wirecutter", _wireCutter_form.PathBackground);
+         //       Properties.Settings.Default.counterImportText += 1;
+                string source = "Iwi";
+                if (Properties.Settings.Default.fromFormInsertEnable)
+                    source = "I" + source;
+                AfterImport(source);
+            }
+            else
+                MessageBox.Show(Localization.GetString("mainStreamingActive"), Localization.GetString("mainAttention"), MessageBoxButtons.OK, MessageBoxIcon.Stop);
+        }
+
         private void GetGCodeFromText(object sender, EventArgs e)
         {
             if (!isStreaming)

@@ -326,6 +326,11 @@ namespace GrblPlotter
             label_wa.Visible = ctrl4thAxis || Grbl.axisA || simulateA;
             label_ma.Visible = ctrl4thAxis || Grbl.axisA || simulateA;
             btnZeroA.Visible = ctrl4thAxis || Grbl.axisA;
+            LblSetCoordA.Visible = Grbl.axisA;
+            NudSetCoordA.Visible = Grbl.axisA;
+            BtnSetCoordA.Visible = Grbl.axisA;
+            gBoxDROSetCoord.Height = Grbl.axisA ? 116 : 96;
+
             mirrorRotaryToolStripMenuItem.Visible = ctrl4thAxis;
             btnZeroA.Text = "Zero " + ctrl4thName;
             if (Properties.Settings.Default.guiLanguage == "de-DE")
@@ -344,7 +349,7 @@ namespace GrblPlotter
                 label_status.Location = new Point(1, 138);
                 btnHome.Location = new Point(106, 111);
                 btnHome.Size = new Size(122, 57);
-                groupBoxCoordinates.Width = 394;            // extend width
+                gBoxDRO.Width = 394;            // extend width
                 tLPRechtsOben.ColumnStyles[0].Width = 400;
 
                 label_c.Visible = Grbl.axisC;
@@ -358,7 +363,7 @@ namespace GrblPlotter
                 label_wa.Location = new Point(22, 110);
                 label_ma.Location = new Point(34, 128);
                 btnZeroA.Location = new Point(106, 110);
-                groupBoxCoordinates.Width = 230;
+                gBoxDRO.Width = 230;
                 tLPRechtsOben.ColumnStyles[0].Width = 236;
 
                 if (ctrl4thAxis || Grbl.axisA || simulateA)
@@ -529,6 +534,27 @@ namespace GrblPlotter
             btnJogZeroZ.Enabled = isConnected & !isStreaming | allowControl;
             btnJogZeroA.Enabled = isConnected & !isStreaming | allowControl;
             btnJogZeroXY.Enabled = isConnected & !isStreaming | allowControl;
+
+            BtnJogAbsX.Enabled = isConnected & !isStreaming | allowControl;
+            BtnJogAbsY.Enabled = isConnected & !isStreaming | allowControl;
+            BtnJogAbsZ.Enabled = isConnected & !isStreaming | allowControl;
+            NudJogAbsX.Enabled = isConnected & !isStreaming | allowControl;
+            NudJogAbsY.Enabled = isConnected & !isStreaming | allowControl;
+            NudJogAbsZ.Enabled = isConnected & !isStreaming | allowControl;
+
+            NudSetCoordX.Enabled = isConnected & !isStreaming | allowControl;
+            NudSetCoordY.Enabled = isConnected & !isStreaming | allowControl;
+            NudSetCoordZ.Enabled = isConnected & !isStreaming | allowControl;
+            NudSetCoordA.Enabled = isConnected & !isStreaming | allowControl;
+            BtnSetCoordX.Enabled = isConnected & !isStreaming | allowControl;
+            BtnSetCoordY.Enabled = isConnected & !isStreaming | allowControl;
+            BtnSetCoordZ.Enabled = isConnected & !isStreaming | allowControl;
+            BtnSetCoordA.Enabled = isConnected & !isStreaming | allowControl;
+            LblSetCoordX.Enabled = isConnected & !isStreaming | allowControl;
+            LblSetCoordY.Enabled = isConnected & !isStreaming | allowControl;
+            LblSetCoordZ.Enabled = isConnected & !isStreaming | allowControl;
+            LblSetCoordA.Enabled = isConnected & !isStreaming | allowControl;
+
             btnOffsetApply.Enabled = !isStreaming;
             gCodeToolStripMenuItem.Enabled = !isStreaming;
 

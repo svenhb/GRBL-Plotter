@@ -1209,4 +1209,47 @@
   <data name="processAutomationToolStripMenuItem.Text" xml:space="preserve">
     <value>أتمتة العمليات</value>
   </data>
+  <data name="wireCutterToolStripMenuItem.Text" xml:space="preserve">
+    <value>قاطع الاسلاك</value>
+  </data>
+  <data name="BtnJogAbsZ.Text" xml:space="preserve">
+    <value>انتقل الى</value>
+  </data>
+  <data name="BtnJogAbsY.Text" xml:space="preserve">
+    <value>انتقل الى</value>
+  </data>
+  <data name="BtnJogAbsX.Text" xml:space="preserve">
+    <value>انتقل الى</value>
+  </data>
+  <data name="Gb_Jogging.Text" xml:space="preserve">
+    <value>التحكم / الركض - انقر للتوسيع</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="applyLastTransformToolStripMenuItem.Text" xml:space="preserve">
+    <value>تطبيق التحويل الأخير</value>
+  </data>
+  <data name="cmsPicBoxReloadFile2.Text" xml:space="preserve">
+    <value>إعادة تحميل الملف 2</value>
+  </data>
+  <data name="cmsPicBoxClearWorkspace.Text" xml:space="preserve">
+    <value>مسح مساحة العمل</value>
+  </data>
+  <data name="convertToPolarCoordinatesToolStripMenuItem.Text" xml:space="preserve">
+    <value>تحويل إلى الإحداثيات القطبية</value>
+  </data>
+  <data name="CbMist.ToolTip" xml:space="preserve">
+    <value>اضبط "M7" وامسح "M9"</value>
+  </data>
+  <data name="CbSpindle.ToolTip" xml:space="preserve">
+    <value>اضبط "M3" أو "M4"، وامسح "M5"</value>
+  </data>
+  <data name="CbCoolant.ToolTip" xml:space="preserve">
+    <value>اضبط "M8"، امسح "M9"</value>
+  </data>
+  <data name="gBoxDROSetCoord.Text" xml:space="preserve">
+    <value>ضبط نظام الإحداثيات</value>
+  </data>
+  <data name="gBoxDRO.Text" xml:space="preserve">
+    <value>إحداثيات الأداة (العمل / الجهاز)</value>
+  </data>
 </root>

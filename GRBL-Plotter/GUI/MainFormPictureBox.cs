@@ -685,7 +685,7 @@ namespace GrblPlotter
             VisuGCode.CreateRuler(VisuGCode.pathRuler, drawingSize, true);  // restore previous grid
         }
 
-        private void applyLastTransformToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ApplyLastTransformToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Logger.Trace("applyLastTransformToolStripMenuItem_Click");
             if (SelectionHandle.IsActive)
@@ -1116,6 +1116,8 @@ namespace GrblPlotter
             fCTBCode.Clear();
             NewCodeEnd();
             globalCollectionCounter = 1;
+            _heightmap_form?.SetBtnApply(true);
+            isHeightMapApplied = false;
         }
 
         private void CmsPicBoxMoveToFirstPos_Click(object sender, EventArgs e)

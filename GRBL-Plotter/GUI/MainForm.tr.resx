@@ -1196,4 +1196,47 @@ Kamera koordinat sistemi = G59
   <data name="toolStripStatusLabel0.Text" xml:space="preserve">
     <value>[ Dosyayı sürükleyip bırakarak 2B görünüme yükleyin veya son kullanılan dosyayı açmak için 'Dosyayı Yeniden Yükle'yi seçin (2B görünüme sağ tıklayın). ]</value>
   </data>
+  <data name="wireCutterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Sıcak tel kesici</value>
+  </data>
+  <data name="BtnJogAbsZ.Text" xml:space="preserve">
+    <value>Şuraya taşı:</value>
+  </data>
+  <data name="BtnJogAbsY.Text" xml:space="preserve">
+    <value>Şuraya taşı:</value>
+  </data>
+  <data name="BtnJogAbsX.Text" xml:space="preserve">
+    <value>Şuraya taşı:</value>
+  </data>
+  <data name="Gb_Jogging.Text" xml:space="preserve">
+    <value>Kontrol / Jogging - genişletmek için tıklayın</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="applyLastTransformToolStripMenuItem.Text" xml:space="preserve">
+    <value>Son dönüşümü uygula</value>
+  </data>
+  <data name="cmsPicBoxReloadFile2.Text" xml:space="preserve">
+    <value>Dosya 2'yi Yeniden Yükle</value>
+  </data>
+  <data name="cmsPicBoxClearWorkspace.Text" xml:space="preserve">
+    <value>Çalışma alanını temizle</value>
+  </data>
+  <data name="convertToPolarCoordinatesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kutupsal koordinatlara dönüştür</value>
+  </data>
+  <data name="CbMist.ToolTip" xml:space="preserve">
+    <value>'M7'yi ayarlayın, 'M9'u silin</value>
+  </data>
+  <data name="CbSpindle.ToolTip" xml:space="preserve">
+    <value>'M3' veya 'M4'ü ayarlayın, 'M5'i temizleyin</value>
+  </data>
+  <data name="CbCoolant.ToolTip" xml:space="preserve">
+    <value>'M8'i ayarlayın, 'M9'u silin</value>
+  </data>
+  <data name="gBoxDROSetCoord.Text" xml:space="preserve">
+    <value>Koordinat Sistemini Ayarla</value>
+  </data>
+  <data name="gBoxDRO.Text" xml:space="preserve">
+    <value>Takım Koordinatları (İş / Makine)</value>
+  </data>
 </root>

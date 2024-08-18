@@ -411,9 +411,6 @@ Fare clic con il pulsante destro del mouse per scegliere il numero di riga inizi
     <value>Avanzamento effettivo in mm/min o pollici/min (a seconda di $ 13)</value>
     <comment>groupBox_Override3</comment>
   </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Impostare:</value>
-  </data>
   <data name="gBOverrideFRGB.Text" xml:space="preserve">
     <value>Alimentazione</value>
     <comment>groupBox_Override3</comment>
@@ -1177,5 +1174,48 @@ Aggiungi 'G54;' all'intestazione G-Code per tornare automaticamente a G54 prima 
   </data>
   <data name="processAutomationToolStripMenuItem.Text" xml:space="preserve">
     <value>Automazione del processo</value>
+  </data>
+  <data name="wireCutterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Tagliafilo a filo caldo</value>
+  </data>
+  <data name="BtnJogAbsZ.Text" xml:space="preserve">
+    <value>Spostati in</value>
+  </data>
+  <data name="BtnJogAbsY.Text" xml:space="preserve">
+    <value>Spostati in</value>
+  </data>
+  <data name="BtnJogAbsX.Text" xml:space="preserve">
+    <value>Spostati in</value>
+  </data>
+  <data name="Gb_Jogging.Text" xml:space="preserve">
+    <value>Controllo/Jogging: fai clic per espandere</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="applyLastTransformToolStripMenuItem.Text" xml:space="preserve">
+    <value>Applica l'ultima trasformazione</value>
+  </data>
+  <data name="cmsPicBoxReloadFile2.Text" xml:space="preserve">
+    <value>Ricarica il file 2</value>
+  </data>
+  <data name="cmsPicBoxClearWorkspace.Text" xml:space="preserve">
+    <value>Spazio di lavoro chiaro</value>
+  </data>
+  <data name="convertToPolarCoordinatesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Convertire in coordinate polari</value>
+  </data>
+  <data name="CbMist.ToolTip" xml:space="preserve">
+    <value>Imposta 'M7', cancella 'M9'</value>
+  </data>
+  <data name="CbSpindle.ToolTip" xml:space="preserve">
+    <value>Imposta 'M3' o 'M4', cancella 'M5'</value>
+  </data>
+  <data name="CbCoolant.ToolTip" xml:space="preserve">
+    <value>Imposta 'M8', cancella 'M9'</value>
+  </data>
+  <data name="gBoxDROSetCoord.Text" xml:space="preserve">
+    <value>Imposta il sistema di coordinate</value>
+  </data>
+  <data name="gBoxDRO.Text" xml:space="preserve">
+    <value>Coordinate utensile (Lavoro/Macchina)</value>
   </data>
 </root>

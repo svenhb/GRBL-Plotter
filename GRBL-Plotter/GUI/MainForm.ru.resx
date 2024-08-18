@@ -1180,4 +1180,47 @@
   <data name="processAutomationToolStripMenuItem.Text" xml:space="preserve">
     <value>Автоматизация процессов</value>
   </data>
+  <data name="wireCutterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Резак для горячей проволоки</value>
+  </data>
+  <data name="BtnJogAbsZ.Text" xml:space="preserve">
+    <value>Перейти к</value>
+  </data>
+  <data name="BtnJogAbsY.Text" xml:space="preserve">
+    <value>Перейти к</value>
+  </data>
+  <data name="BtnJogAbsX.Text" xml:space="preserve">
+    <value>Перейти к</value>
+  </data>
+  <data name="Gb_Jogging.Text" xml:space="preserve">
+    <value>Контроль / Бег – нажмите, чтобы развернуть</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="applyLastTransformToolStripMenuItem.Text" xml:space="preserve">
+    <value>Применить последнее преобразование</value>
+  </data>
+  <data name="cmsPicBoxReloadFile2.Text" xml:space="preserve">
+    <value>Перезагрузить файл 2</value>
+  </data>
+  <data name="cmsPicBoxClearWorkspace.Text" xml:space="preserve">
+    <value>Очистить рабочее пространство</value>
+  </data>
+  <data name="convertToPolarCoordinatesToolStripMenuItem.Text" xml:space="preserve">
+    <value>Преобразовать в полярные координаты</value>
+  </data>
+  <data name="CbMist.ToolTip" xml:space="preserve">
+    <value>Установите «M7», очистите «M9».</value>
+  </data>
+  <data name="CbSpindle.ToolTip" xml:space="preserve">
+    <value>Установите «M3» или «M4», очистите «M5».</value>
+  </data>
+  <data name="CbCoolant.ToolTip" xml:space="preserve">
+    <value>Установите «M8», очистите «M9».</value>
+  </data>
+  <data name="gBoxDROSetCoord.Text" xml:space="preserve">
+    <value>Установить систему координат</value>
+  </data>
+  <data name="gBoxDRO.Text" xml:space="preserve">
+    <value>Координаты инструмента (работа / станок)</value>
+  </data>
 </root>

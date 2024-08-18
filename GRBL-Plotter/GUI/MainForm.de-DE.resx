@@ -1126,4 +1126,59 @@ Das Ändern der Importeinstellungen nach dem ersten Import kann zu unerwünschte
   <data name="processAutomationToolStripMenuItem.Text" xml:space="preserve">
     <value>Prozessautomatisierung</value>
   </data>
+  <data name="wireCutterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Drahtschneider</value>
+  </data>
+  <data name="BtnJogAbsZ.Text" xml:space="preserve">
+    <value>Fahre </value>
+  </data>
+  <data name="BtnJogAbsY.Text" xml:space="preserve">
+    <value>Fahre </value>
+  </data>
+  <data name="BtnJogAbsX.Text" xml:space="preserve">
+    <value>Fahre </value>
+  </data>
+  <data name="applyLastTransformToolStripMenuItem.Text" xml:space="preserve">
+    <value>Letzte Transformation anwenden</value>
+  </data>
+  <data name="cmsPicBoxReloadFile2.Text" xml:space="preserve">
+    <value>Datei 2 neu laden</value>
+  </data>
+  <data name="cmsPicBoxClearWorkspace.Text" xml:space="preserve">
+    <value>Arbeitsbereich löschen</value>
+  </data>
+  <data name="convertToPolarCoordinatesToolStripMenuItem.Text" xml:space="preserve">
+    <value>In Polarkoordinaten umrechnen</value>
+  </data>
+  <data name="Gb_Jogging.Text" xml:space="preserve">
+    <value>Steuerung/Joggen – zum Vergrößern anklicken</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="CbMist.ToolTip" xml:space="preserve">
+    <value>„M7“ setzen, „M9“ löschen</value>
+  </data>
+  <data name="CbSpindle.ToolTip" xml:space="preserve">
+    <value>„M3“ oder „M4“ setzen, „M5“ löschen</value>
+  </data>
+  <data name="CbCoolant.Text" xml:space="preserve">
+    <value>Kühlmittel</value>
+    <comment>groupBox_Jogging</comment>
+  </data>
+  <data name="CbCoolant.ToolTip" xml:space="preserve">
+    <value>„M8“ setzen, „M9“ löschen</value>
+  </data>
+  <data name="gBoxDROSetCoord.Text" xml:space="preserve">
+    <value>Koordinatensystem festlegen</value>
+  </data>
+  <data name="btnZeroC.ToolTip" xml:space="preserve">
+    <value>Setzt die C-Koordinate des Werkstücks auf Null</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="btnZeroB.ToolTip" xml:space="preserve">
+    <value>Setzt die B-Koordinate des Werkstücks auf Null</value>
+    <comment>groupBox_Tool_Coord</comment>
+  </data>
+  <data name="gBoxDRO.Text" xml:space="preserve">
+    <value>Werkzeugkoordinaten (Arbeit / Maschine)</value>
+  </data>
 </root>
