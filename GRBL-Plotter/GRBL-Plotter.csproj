@@ -29,8 +29,8 @@
     <ProductName>GRBL-Plotter</ProductName>
     <PublisherName>GRBL-Plotter</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.7.3.1</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.7.4.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -159,6 +159,12 @@
   <ItemGroup>
     <Compile Include="GCodeCreation\CreateFromForm\BarcodeLib.cs" />
     <Compile Include="GCodeCreation\CreateFromForm\BarcodeLibSymbologies.cs" />
+    <Compile Include="GCodeCreation\CreateFromForm\GCodeForWireCutter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GCodeCreation\CreateFromForm\GCodeForWireCutter.Designer.cs">
+      <DependentUpon>GCodeForWireCutter.cs</DependentUpon>
+    </Compile>
     <Compile Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +186,7 @@
     <Compile Include="GCodeCreation\ImportFromFile\GCodeFromCsv.cs" />
     <Compile Include="GCodeCreation\GraphicCollectData.cs" />
     <Compile Include="GCodeCreation\ImportFromFile\GCodeFromGerber.cs" />
+    <Compile Include="GCodeCreation\ImportFromFile\GCodeFromPDNJson.cs" />
     <Compile Include="GCodeCreation\ImportFromFile\GCodeFromSVGText.cs" />
     <Compile Include="GCodeCreation\Graphic2GCodeMove.cs" />
     <Compile Include="GCodeCreation\XmlMarker.cs" />
@@ -893,6 +900,9 @@
     <Content Include="data\buttons\Pen_zero_Servo.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="data\examples\bunny_new.pdn-json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\app.manifest" />
     <None Include="Resources\LeadInOut.png" />
     <None Include="Resources\rndOff.png" />
@@ -909,6 +919,7 @@
     <None Include="Resources\barcode.png" />
     <None Include="Resources\bevOff.png" />
     <None Include="Resources\bevOn.png" />
+    <Content Include="Newtonsoft.Json.dll" />
     <Content Include="Resources\efOff1.png" />
     <Content Include="Resources\efOff2.png" />
     <Content Include="Resources\efOff3.png" />
@@ -928,6 +939,45 @@
     <Content Include="Resources\efOn8.png" />
     <Content Include="Resources\efOn9.png" />
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForBarcode.pl.resx" />
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForWireCutter.ar.resx">
+      <DependentUpon>GCodeForWireCutter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForWireCutter.cs.resx">
+      <DependentUpon>GCodeForWireCutter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForWireCutter.de-DE.resx">
+      <DependentUpon>GCodeForWireCutter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForWireCutter.es.resx">
+      <DependentUpon>GCodeForWireCutter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForWireCutter.fr.resx">
+      <DependentUpon>GCodeForWireCutter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForWireCutter.it.resx">
+      <DependentUpon>GCodeForWireCutter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForWireCutter.ja.resx">
+      <DependentUpon>GCodeForWireCutter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForWireCutter.pl.resx">
+      <DependentUpon>GCodeForWireCutter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForWireCutter.pt.resx">
+      <DependentUpon>GCodeForWireCutter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForWireCutter.resx">
+      <DependentUpon>GCodeForWireCutter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForWireCutter.ru.resx">
+      <DependentUpon>GCodeForWireCutter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForWireCutter.tr.resx">
+      <DependentUpon>GCodeForWireCutter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeForWireCutter.zh-CN.resx">
+      <DependentUpon>GCodeForWireCutter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GCodeCreation\CreateFromForm\GCodeFromBarcode.ar.resx">
       <DependentUpon>GCodeFromBarcode.cs</DependentUpon>
     </EmbeddedResource>

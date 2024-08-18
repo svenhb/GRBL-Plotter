@@ -1,3 +1,4 @@
+data\examples\bunny_new.pdn-json
 data\examples\graphic_fiducial_circle.svg
 data\examples\graphic_grbl.svg
 data\examples\graphic_grbl_popup.svg
