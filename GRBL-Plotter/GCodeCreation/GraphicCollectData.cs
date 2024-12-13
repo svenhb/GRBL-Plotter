@@ -58,6 +58,8 @@
  * 2024-02-04 l:426 f:AddLine add noise to line
  * 2024-03-02 l:547 f:AddCircle / AddArc seperate processing of OptionDashPattern
  * 2024-03-15 l:1325 f:ReDoReversePath add calculate tangential
+ * 2024-08-27 l:688 f:SetPenColor remove '#' from string
+ * 2024-12-13 l:699 f:SetPenColor extend 3 digits to 6 digits
 */
 
 using System;
@@ -687,10 +689,19 @@ namespace GrblPlotter
         public static bool SetPenColor(string txt)
         {
             if (string.IsNullOrEmpty(txt)) return true;
+            if (txt.StartsWith("#"))
+            { txt = txt.Substring(1); }
             if (txt.StartsWith("rgb("))
             {
                 txt = ConvertFromRGB(txt);
             }
+
+            if (txt.Length == 3)    // extend to 6 digitis
+            {
+                string a = txt.Substring(0, 1), b = txt.Substring(1, 1), c = txt.Substring(2, 1);
+                txt = a + a + b + b + c + c;
+            }
+
             if (logProperties) Logger.Trace("SetPenColor '{0}'", txt);
             if (txt.ToLower().Contains("currentcolor"))
             { return true; }
@@ -723,10 +734,19 @@ namespace GrblPlotter
         public static void SetPenFill(string txt)
         {
             if (string.IsNullOrEmpty(txt)) return;
+            if (txt.StartsWith("#"))
+            { txt = txt.Substring(1); }
             if (txt.StartsWith("rgb("))
             {
                 txt = ConvertFromRGB(txt);
             }
+
+            if (txt.Length == 3)    // extend to 6 digitis
+            {
+                string a = txt.Substring(0, 1), b = txt.Substring(1, 1), c = txt.Substring(2, 1);
+                txt = a + a + b + b + c + c;
+            }
+
             if (logProperties) Logger.Trace("SetPenFill '{0}'", txt);
 
             int tmpIndex = (int)GroupOption.ByFill;

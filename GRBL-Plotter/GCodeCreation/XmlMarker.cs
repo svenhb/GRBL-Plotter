@@ -70,6 +70,7 @@ namespace GrblPlotter
         public const string TangentialAxis = "<Tangential";
         public const string HalftoneS = "<DisplayPenWidthS";
         public const string HalftoneZ = "<DisplayPenWidthZ";
+        public const string PixelArt = "<DisplayPixelArt";
 
         internal class BlockData
         {

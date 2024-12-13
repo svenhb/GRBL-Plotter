@@ -30,6 +30,7 @@
  * 2023-03-03 add xmlAtrribute
  * 2023-03-08 l:87 f:ToolProp add WriteAttributes ReadAttributes for XML data
  * 2024-01-07 l:181 f:GetToolDiameter needed to fix issue #370
+ * 2024-12-12 clean up
 */
 
 using System;
@@ -107,16 +108,8 @@ namespace GrblPlotter
 			tmp = ReadAttribute(xmlRead, "fz");  if(tmp!=null) {FeedZ = (float)tmp;}
 			tmp = ReadAttribute(xmlRead, "ovl"); if(tmp!=null) {Overlap = (float)tmp;}
 			tmp = ReadAttribute(xmlRead, "spd"); if(tmp!=null) {SpindleSpeed = (float)tmp;}
-			
-			/*
-			if (xmlRead["dia"].Length > 0) { Diameter = float.Parse(xmlRead["dia"].Replace(',', '.'), NumberFormatInfo.InvariantInfo); }
-			if (xmlRead["stz"].Length > 0) { StepZ = float.Parse(xmlRead["stz"].Replace(',', '.'), NumberFormatInfo.InvariantInfo); }
-			if (xmlRead["fnz"].Length > 0) { FinalZ = float.Parse(xmlRead["fnz"].Replace(',', '.'), NumberFormatInfo.InvariantInfo); }
-			if (xmlRead["fxy"].Length > 0) { FeedXY = float.Parse(xmlRead["fxy"].Replace(',', '.'), NumberFormatInfo.InvariantInfo); }
-			if (xmlRead["fz"].Length > 0)  { FeedZ = float.Parse(xmlRead["fz"].Replace(',', '.'), NumberFormatInfo.InvariantInfo); }
-			if (xmlRead["ovl"].Length > 0) { Overlap = float.Parse(xmlRead["ovl"].Replace(',', '.'), NumberFormatInfo.InvariantInfo); }
-			if (xmlRead["spd"].Length > 0) { SpindleSpeed = float.Parse(xmlRead["spd"].Replace(',', '.'), NumberFormatInfo.InvariantInfo); }*/
 		}
+		
 		private float? ReadAttribute(XmlReader xmlRead, string att)
 		{
 			try
@@ -132,12 +125,10 @@ namespace GrblPlotter
     internal static class ToolTable
     {
         private const int toolTableMax = 260;            // max amount of tools
-                                                         //    private static ToolProp[] toolTableArray = new ToolProp[toolTableMax];   // load color palette into this array
         internal static List<ToolProp> toolTableArray = new List<ToolProp>();   // load color palette into this array
         private static int toolTableIndex = 0;            // last index
         private static bool useException = false;
         private static int tmpIndex = 0;
-        //     private static bool init_done = false;
         public const string DefaultFileName = "_current_.csv";
 
         // Trace, Debug, Info, Warn, Error, Fatal
@@ -163,6 +154,7 @@ namespace GrblPlotter
             }
             return "not defined";
         }
+		
         public static string GetToolColor(int index)
         {
             foreach (ToolProp tool in toolTableArray)
@@ -193,7 +185,6 @@ namespace GrblPlotter
         public static int GetIndexByToolNR(int toolNr)
         {
             for (int i = 0; i < toolTableArray.Count; i++)
-            //              for (int i = 0; i < toolTableIndex; i++)
             {
                 if (toolTableArray[i].Toolnr == toolNr)
                     return i;
@@ -246,8 +237,6 @@ namespace GrblPlotter
         public static float IndexWidth()
         { return toolTableArray[tmpIndex].Diameter; }
 
-
-
         public static void SortByToolNR(bool invert)
         {
             if ((toolTableArray == null) || (toolTableArray.Count == 0))
@@ -262,6 +251,7 @@ namespace GrblPlotter
                 SortedList = toolTableArray.OrderByDescending(o => o.Toolnr).ToList();
             toolTableArray = SortedList;
         }
+		
         public static void SortByPixelCount(bool invert)
         {
             if ((toolTableArray == null) || (toolTableArray.Count == 0))
@@ -299,7 +289,6 @@ namespace GrblPlotter
             deflt.Toolnr = -1;
             return deflt;
         }
-
 
         /// <summary>
         /// set tool/color table
@@ -374,6 +363,7 @@ namespace GrblPlotter
             }
             return toolTableArray.Count;
         }
+		
         public static int Clear()
         {   //sortByToolNr();
             for (int i = 0; i < toolTableArray.Count; i++)
@@ -385,6 +375,7 @@ namespace GrblPlotter
             }
             return toolTableIndex;
         }
+		
         public static void SetAllSelected(bool val)
         {
             for (int i = 0; i < toolTableArray.Count; i++)   // add colors to AForge filter
@@ -413,12 +404,12 @@ namespace GrblPlotter
                 if (toolTableArray[i].Color == mycolor)
                 {
                     toolTableArray[0].Name = "No " + toolTableArray[i].Name;
-                    //                 nameFound = true;
                     break;
                 }
             }
             return toolTableArray[0].Color.ToString();
         }
+		
         // Clear exception color
         public static void ClrExceptionColor()
         {
@@ -430,26 +421,23 @@ namespace GrblPlotter
         // return tool nr of nearest color
         public static int GetToolNRByToolColor(String mycolor, int mode)
         {
-            //           Logger.Trace("getToolNr {0}",mycolor);
             if (string.IsNullOrEmpty(mycolor))
                 return (int)Properties.Settings.Default.importGCToolDefNr;  // return default tool
             else if (OnlyHexInString(mycolor))
             {
-                //    int cr, cg;//, cb;
-                //       int num = int.Parse(mycolor, System.Globalization.NumberStyles.AllowHexSpecifier);
-                //  cb = num & 255; cg = num >> 8 & 255; cr = num >> 16 & 255;
                 if (!mycolor.StartsWith("#"))
                     mycolor = "#" + mycolor;
                 return GetToolNRByColor(ColorTranslator.FromHtml(mycolor), mode);
-                //         return getToolNrByColor(Color.FromArgb(255, cr, cg, cb), mode);
             }
             else
                 return GetToolNRByColor(Color.FromName(mycolor), mode);
         }
+		
         public static bool OnlyHexInString(string test)
         {   // For C-style hex notation (0xFF) you can use @"\A\b(0[xX])?[0-9a-fA-F]+\b\Z"
             return System.Text.RegularExpressions.Regex.IsMatch(test, @"\A\b[0-9a-fA-F]+\b\Z");
         }
+		
         public static short GetToolNRByColor(Color mycolor, int mode)
         {
             if ((toolTableArray == null) || (toolTableArray.Count == 0))
@@ -462,7 +450,7 @@ namespace GrblPlotter
             List<ToolProp> SortedList = toolTableArray.OrderBy(o => o.Toolnr).ToList();
             toolTableArray = SortedList;
             if (useException) start = 0;  // first element is exception
-                                          //            for (i = start; i < toolTableIndex; i++)
+
             for (i = start; i < toolTableArray.Count; i++)
             {
                 if (mycolor == toolTableArray[i].Color)         // direct hit
@@ -478,7 +466,6 @@ namespace GrblPlotter
                     toolTableArray[i].Diff = Math.Abs(ColorNum(toolTableArray[i].Color) - ColorNum(mycolor)) +
                                               GetHueDistance(toolTableArray[i].Color.GetHue(), mycolor.GetHue());
             }
-            //       Array.Sort<ToolProp>(toolTableArray, (x, y) => x.Diff.CompareTo(y.Diff));    // sort by color difference
             SortedList = toolTableArray.OrderBy(o => o.Diff).ToList();
             toolTableArray = SortedList;
             tmpIndex = 0;
@@ -496,11 +483,9 @@ namespace GrblPlotter
             if (!double.TryParse(txtWidth, NumberStyles.Float, NumberFormatInfo.InvariantInfo, out double width))
             { Logger.Error(culture, "Error converting getToolNrByWidth '{0}' ", txtWidth); width = 1; }
 
-            //         Array.Sort<ToolProp>(toolTableArray, (x, y) => x.Toolnr.CompareTo(y.Toolnr));    // sort by tool nr
             List<ToolProp> SortedList = toolTableArray.OrderBy(o => o.Toolnr).ToList();
             toolTableArray = SortedList;
 
-            //            for (int i = 1; i < toolTableIndex; i++)
             for (int i = 1; i < toolTableArray.Count; i++)
             {
                 if (width == toolTableArray[i].Diameter)         // direct hit
@@ -510,7 +495,6 @@ namespace GrblPlotter
                 }
                 toolTableArray[i].Diff = Math.Abs(width - toolTableArray[i].CodeDimension);
             }
-            //       Array.Sort<ToolProp>(toolTableArray, (x, y) => x.Diff.CompareTo(y.Diff));    // sort by color difference
             SortedList = toolTableArray.OrderBy(o => o.Diff).ToList();
             toolTableArray = SortedList;
             tmpIndex = 0;
@@ -544,6 +528,7 @@ namespace GrblPlotter
             tmpIndex = 0;
             return toolTableArray[0].Toolnr; ;   // return tool nr of nearest color
         }
+		
         /// <summary>
         /// Compute the distance between two strings.
         /// </summary>
@@ -590,86 +575,6 @@ namespace GrblPlotter
             return d[n, m];
         }
 
-        /// <summary>
-        /// Computes the Damerau-Levenshtein Distance between two strings, represented as arrays of
-        /// integers, where each integer represents the code point of a character in the source string.
-        /// Includes an optional threshhold which can be used to indicate the maximum allowable distance.
-        /// </summary>
-        /// <param name="source">An array of the code points of the first string</param>
-        /// <param name="target">An array of the code points of the second string</param>
-        /// <param name="threshold">Maximum allowable distance</param>
-        /// <returns>Int.MaxValue if threshhold exceeded; otherwise the Damerau-Leveshteim distance between the strings</returns>
-        /*public static int DamerauLevenshteinDistance(string source, string target, int threshold=1000) {
-            int length1 = source.Length;
-            int length2 = target.Length;
-
-            // Return trivial case - difference in string lengths exceeds threshhold
-            if (Math.Abs(length1 - length2) > threshold) { return int.MaxValue; }
-
-            // Ensure arrays [i] / length1 use shorter length 
-            if (length1 > length2) {
-                Swap(ref target, ref source);
-                Swap(ref length1, ref length2);
-            }
-
-            int maxi = length1;
-            int maxj = length2;
-
-            int[] dCurrent = new int[maxi + 1];
-            int[] dMinus1 = new int[maxi + 1];
-            int[] dMinus2 = new int[maxi + 1];
-            int[] dSwap;
-
-            for (int i = 0; i <= maxi; i++) { dCurrent[i] = i; }
-
-            int jm1 = 0, im1 = 0, im2 = -1;
-
-            for (int j = 1; j <= maxj; j++) {
-
-                // Rotate
-                dSwap = dMinus2;
-                dMinus2 = dMinus1;
-                dMinus1 = dCurrent;
-                dCurrent = dSwap;
-
-                // Initialize
-                int minDistance = int.MaxValue;
-                dCurrent[0] = j;
-                im1 = 0;
-                im2 = -1;
-
-                for (int i = 1; i <= maxi; i++) {
-
-                    int cost = source[im1] == target[jm1] ? 0 : 1;
-
-                    int del = dCurrent[im1] + 1;
-                    int ins = dMinus1[i] + 1;
-                    int sub = dMinus1[im1] + cost;
-
-                    //Fastest execution for min value of 3 integers
-                    int min = (del > ins) ? (ins > sub ? sub : ins) : (del > sub ? sub : del);
-
-                    if (i > 1 && j > 1 && source[im2] == target[jm1] && source[im1] == target[j - 2])
-                        min = Math.Min(min, dMinus2[im2] + cost);
-
-                    dCurrent[i] = min;
-                    if (min < minDistance) { minDistance = min; }
-                    im1++;
-                    im2++;
-                }
-                jm1++;
-                if (minDistance > threshold) { return int.MaxValue; }
-            }
-
-            int result = dCurrent[maxi];
-            return (result > threshold) ? int.MaxValue : result;
-        }
-        static void Swap<T>(ref T arg1,ref T arg2) {
-            T temp = arg1;
-            arg1 = arg2;
-            arg2 = temp;
-        }
-        */
 
 
         public static void CountPixel()
@@ -677,6 +582,7 @@ namespace GrblPlotter
 
         public static int PixelCount()
         { return toolTableArray[tmpIndex].PixelCount; }
+		
         public static int PixelCount(int index)
         {
             SetIndex(index);
@@ -685,8 +591,10 @@ namespace GrblPlotter
 
         public static Color GetColor()
         { return toolTableArray[tmpIndex].Color; }
+		
         public static void SetPresent(bool use)
         { toolTableArray[tmpIndex].ColorPresent = use; }
+		
         public static void SetSelected(bool use)
         { toolTableArray[tmpIndex].ToolSelected = use; }
 
@@ -696,6 +604,7 @@ namespace GrblPlotter
                 return toolTableArray[tmpIndex].Name;
             return "no set";
         }
+		
         public static int GetToolNr()
         {
             if (tmpIndex < toolTableArray.Count)
@@ -721,5 +630,4 @@ namespace GrblPlotter
                                    + (c1.B - c2.B) * (c1.B - c2.B));
         }
     }
-
 }

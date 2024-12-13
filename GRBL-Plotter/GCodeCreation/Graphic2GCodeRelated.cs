@@ -61,6 +61,7 @@
  * 2024-05-07 l:643 f:Setup check GcodeSummary.MetadataUse  instead of Properties.Settings.Default.importSVGMetaData)
  * 2024-05-28 l:699 f:Setup gcodeAngleStep set min to 0.01
  * 2024-07-08 l:2004 f:IntermediateZ - Z-Up at least on final pass
+ * 2024-11-28 l:1810 f:GetHeader add pen up/down translation info
 */
 
 using System;
@@ -1807,7 +1808,14 @@ namespace GrblPlotter
             }
 
             if (!(GcodeZApply || GcodePWMEnable || gcodeSpindleToggle || gcodeIndividualTool))
-            { header += string.Format("( !!! No Pen up/down translation !!! )\r\n"); }
+            {   header += string.Format("( !!! No Pen up/down translation !!! )\r\n"); }
+			else
+			{	
+				header += string.Format("( Pen U/D trans: {0} {1} {2} {3})\r\n",	(GcodeZApply? string.Format("Z|{0:0.0}|{1:0.0}",GcodeZUp,GcodeZDown):"noZ"),
+																			(GcodePWMEnable? string.Format("PWM|{0:0}|{1:0}",gcodePwmUp,GcodePwmDown):"noPWM"),
+																			(gcodeSpindleToggle? "SpndTog":"noSpndTog"),			
+																			(gcodeUseLasermode? "LsrMd":"noLsrMd")); 
+			}
             if (Properties.Settings.Default.importRemoveShortMovesEnable && ((float)Properties.Settings.Default.importRemoveShortMovesLimit > 0.2))
             { header += string.Format("( !!! Remove short moves < {0:0.00} !!! )\r\n", Properties.Settings.Default.importRemoveShortMovesLimit); }
             if ((float)Properties.Settings.Default.importAssumeAsEqualDistance > 0.01)

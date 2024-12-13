@@ -897,7 +897,7 @@ namespace GrblPlotter
             List<int> iLargest = new List<int>();
             double tlarge, largest = 0;
 
-        //    logEnable = true;
+            //    logEnable = true;
             if (logEnable) Logger.Trace("...RemoveOffset before min X:{0:0.00} Y:{1:0.00} caller:{2} --------------------------------------", actualDimension.minx, actualDimension.miny, s.GetFrame(1).GetMethod().Name);
 
             PathObject item;
@@ -907,7 +907,7 @@ namespace GrblPlotter
                 item.Start = new Point(item.Start.X - offsetX, item.Start.Y - offsetY);
                 item.End = new Point(item.End.X - offsetX, item.End.Y - offsetY);
                 item.Dimension.OffsetXY(-offsetX, -offsetY);
-             //   Logger.Trace("RemoveOffset {0}  {1}", item.FigureId, item.Info.PenColorId);
+                //   Logger.Trace("RemoveOffset {0}  {1}", item.FigureId, item.Info.PenColorId);
                 if (item is ItemPath PathData)
                 {
                     foreach (GCodeMotion entity in PathData.Path)
@@ -918,19 +918,19 @@ namespace GrblPlotter
                         iLargest.Clear();
                         largest = tlarge;
                         iLargest.Add(i);
-                //        Logger.Trace("RemoveOffset clear/add {0} ", i);
+                        //        Logger.Trace("RemoveOffset clear/add {0} ", i);
                     }
                     else if (tlarge == largest)
                     {
                         iLargest.Add(i);
-                //        Logger.Trace("RemoveOffset add {0} ", i);
+                        //        Logger.Trace("RemoveOffset add {0} ", i);
                     }
                 }
             }
             actualDimension.OffsetXY(-offsetX, -offsetY);
             //ListGraphicObjects(graphicToOffset);
 
-            if (Properties.Settings.Default.importGraphicOffsetLargestLast || Properties.Settings.Default.importGraphicOffsetLargestRemove)   // move largest object to the end
+            if ((graphicToOffset.Count > 1) && (Properties.Settings.Default.importGraphicOffsetLargestLast || Properties.Settings.Default.importGraphicOffsetLargestRemove))   // move largest object to the end
             {
                 if (!Properties.Settings.Default.importGraphicOffsetLargestRemove)
                 {
