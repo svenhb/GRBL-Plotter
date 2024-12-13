@@ -146,4 +146,13 @@
   <data name="btnCancel.Text" xml:space="preserve">
     <value>取消</value>
   </data>
+  <data name="cBPresets.Text" xml:space="preserve">
+    <value>预设</value>
+  </data>
+  <data name="lblColor.Text" xml:space="preserve">
+    <value>#A0A0A0</value>
+  </data>
+  <data name="btnResetColor.Text" xml:space="preserve">
+    <value>RST</value>
+  </data>
 </root>

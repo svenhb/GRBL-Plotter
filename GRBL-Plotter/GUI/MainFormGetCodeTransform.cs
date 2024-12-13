@@ -32,6 +32,7 @@
  * 2024-03-11 l:851 new f: convertToPolarCoordinatesToolStripMenuItem_Click
  * 2024-05-06 l:385 f:GetGCodeJogCreator2 check if form != null
  * 2024-05-28 l:103 f:ApplyHeightMap add log
+ * 2024-11-27 l:517 f:TransformStart	add try catch
 */
 using FastColoredTextBoxNS;
 using System;
@@ -503,17 +504,23 @@ namespace GrblPlotter
         private void TransformStart(string action, bool setUndo = true)//, bool resetMark = true)
         {
             Logger.Info("▼▼▼▼▼▼ TransformStart {0}", action);
-            //MyApplication.ESCwasPressed = false;
-            StatusStripClear();
-            StatusStripSet(0, string.Format("Transform Start {0}", action), Color.White);
-            Application.DoEvents();
+			try
+			{
+				StatusStripClear();
+				StatusStripSet(0, string.Format("Transform Start {0}", action), Color.White);
+				Application.DoEvents();
 
-            Cursor.Current = Cursors.WaitCursor;
-            if (setUndo)
-                UnDo.SetCode(fCTBCode.Text, action, this);
-            showPicBoxBgImage = false;                      // don't show background image anymore
-            pictureBox1.BackgroundImage = null;
-            pBoxTransform.Reset();
+            	Cursor.Current = Cursors.WaitCursor;
+				if (setUndo)
+					UnDo.SetCode(fCTBCode.Text, action, this);
+				showPicBoxBgImage = false;                      // don't show background image anymore
+				pictureBox1.BackgroundImage = null;
+				pBoxTransform.Reset();
+			}
+            catch (Exception err)
+            {
+				Logger.Error(err," TransformStart failed ");
+			}
         }
 
         private void TransformEnd()

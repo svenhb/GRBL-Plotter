@@ -67,6 +67,8 @@
  * 2024-05-28 l:765 f:LoadFile add delayedHeightMapShow timer
  * 2024-08-07 add file type 'pdn-json' to read exported Layers from PaintDotnet with https://github.com/sbtrn-devil/pdn-json
  * 2024-08-18 add txt file type, which opens text-form
+ * 2024-08-20 check image file type for automatic vectorization
+ * 2024-09-20 l:1278 f:LoadFromClipboard add paste from clipboard for GCodeFromPDNJson
 */
 /*   96 #region MAIN-MENU FILE
  * 1483 MainForm_KeyDown  
@@ -614,6 +616,7 @@ namespace GrblPlotter
             {
                 var prop = Properties.Settings.Default;
                 bool addFiles = prop.fromFormInsertEnable || prop.multipleLoadAllwaysLoad;
+                Logger.Info("");
                 Logger.Info("▀▀▀▀▀▀▀▀▀▀ Load file START {0}   insert:{1}   multiple:{2}", fileName, prop.fromFormInsertEnable, prop.multipleLoadAllwaysLoad);
                 if (addFiles) { importOptions = "<ADD files> "; }
             }
@@ -644,7 +647,7 @@ namespace GrblPlotter
                 MessageBox.Show(Localization.GetString("mainLoadError1") + fileName + "'", Localization.GetString("mainAttention"));
                 return false;
             }
-
+            var s = Properties.Settings.Default;
             if (ext == ".svg")
             {
                 if (Properties.Settings.Default.importSVGRezise) importOptions = "<SVG Resize> " + importOptions;
@@ -675,7 +678,11 @@ namespace GrblPlotter
                 if (Properties.Settings.Default.importCSVAutomatic) importOptions = "<CSV Automatic> " + importOptions;
                 StartConvert(Graphic.SourceType.CSV, fileName); fileLoaded = true;
             }
-            else if (extensionJson.Contains(ext))
+            else if (extensionJson.Contains(ext) || 
+                    (s.importVectorizeTypePng && (ext == ".png")) || 
+                    (s.importVectorizeTypeGif && (ext == ".gif")) || 
+                    (s.importVectorizeTypeJpg && (ext == ".jpg")) || 
+                    (s.importVectorizeTypeBmp && (ext == ".bmp")))
             {
                 LastLoadedImagePattern = fileName;
                 StartConvert(Graphic.SourceType.PDNJson, fileName); fileLoaded = true;
@@ -808,11 +815,13 @@ namespace GrblPlotter
                     StatusStripSet(2, string.Format("Tangential Axis Full Turn: {0} != {1}", VisuGCode.tangentialAxisFullTurn, Properties.Settings.Default.importGCTangentialTurn), Color.Fuchsia);
                     MarkErrorLine(VisuGCode.tangentialAxisError);
                 }
+                Logger.Info("");
                 return true;
             }
             else
             {
                 Logger.Error("!!! File could not be converted - unsupported format '{0}'", ext);
+                Logger.Info("");
                 MessageBox.Show(Localization.GetString("mainLoadError3") + ext + "'", Localization.GetString("mainAttention"));
                 return false;
             }
@@ -892,6 +901,7 @@ namespace GrblPlotter
             StatusStripSet(1, string.Format("[{0}: {1}]", Localization.GetString("statusStripeFileLoad"), tBURL.Text), Color.Lime);
             StatusStripSet(2, "Press 'Space bar' to toggle PenUp path", Color.Lime);
 
+            var s = Properties.Settings.Default;
             if (ext.IndexOf("ini") >= 0)
             {
                 Logger.Info("Load INI (URL): '{0}'", tBURL.Text);
@@ -935,7 +945,11 @@ namespace GrblPlotter
                 StartConvert(Graphic.SourceType.CSV, tBURL.Text);
                 SetLastLoadedFile("Data from URL", tBURL.Text);
             }
-            else if (extensionJson.Contains(ext))
+            else if (extensionJson.Contains(ext) ||
+                    (s.importVectorizeTypePng && (ext == ".png")) ||
+                    (s.importVectorizeTypeGif && (ext == ".gif")) ||
+                    (s.importVectorizeTypeJpg && (ext == ".jpg")) ||
+                    (s.importVectorizeTypeBmp && (ext == ".bmp")))
             {
                 StartConvert(Graphic.SourceType.PDNJson, tBURL.Text);
                 SetLastLoadedFile("Data from URL", tBURL.Text);
@@ -1267,22 +1281,39 @@ namespace GrblPlotter
             else if (iData.GetDataPresent(DataFormats.Bitmap))
             {
                 Logger.Info("- LoadFromClipboard Bitmap");
-                if (_image_form == null)
-                {
-                    _image_form = new GCodeFromImage(true);
-                    _image_form.FormClosed += FormClosed_ImageToGCode;
-                    _image_form.btnGenerate.Click += GetGCodeFromImage;      // assign btn-click event
-                    _image_form.BtnReloadPattern.Click += LoadLastGraphic;
-                    _image_form.CBoxPatternFiles.SelectedIndexChanged += LoadSelectedGraphicImage;
-                }
-                else
-                {
-                    _image_form.Visible = false;
-                }
-                _image_form.Show(this);
-                _image_form.WindowState = FormWindowState.Normal;
-                _image_form.LoadClipboard();
-                Properties.Settings.Default.counterImportImage += 1;
+				if (Properties.Settings.Default.importVectorizeFromClipboard)
+				{
+                    GCodeFromPDNJson.LoadFromClipboard();   
+					SetFctbCodeText(Graphic.GCode.ToString());      // loadFromClipboard SVG2
+
+					if (fCTBCode.LinesCount <= 1)
+					{ fCTBCode.Text = "( Code conversion failed )"; return false; }
+					NewCodeEnd(true);        
+
+                    Properties.Settings.Default.counterImportPDNJson += 1;
+					this.Text = appName + " | Source: from Clipboard";
+					SetLastLoadedFile("Data from Clipboard: BMP", "");
+					lbInfo.Text = "BMP from clipboard";
+					ShowImportOptions();
+				}					
+				else
+                {	if (_image_form == null)
+					{
+						_image_form = new GCodeFromImage(true);
+						_image_form.FormClosed += FormClosed_ImageToGCode;
+						_image_form.btnGenerate.Click += GetGCodeFromImage;      // assign btn-click event
+						_image_form.BtnReloadPattern.Click += LoadLastGraphic;
+						_image_form.CBoxPatternFiles.SelectedIndexChanged += LoadSelectedGraphicImage;
+					}
+					else
+					{
+						_image_form.Visible = false;
+					}
+					_image_form.Show(this);
+					_image_form.WindowState = FormWindowState.Normal;
+					_image_form.LoadClipboard();
+					Properties.Settings.Default.counterImportImage += 1;
+				}
                 SetLastLoadedFile("Data from Clipboard: Image", "");
             }
 

@@ -18,6 +18,7 @@
 */
 /* 
  * 2024-02-12 split file MainFormOtherForms.cs
+ * 2024-12-02 l:114 f:OnRaiseProcessEvent add "G-Code Data"
 */
 
 using System;
@@ -112,7 +113,7 @@ namespace GrblPlotter
             }
             else if (act.Contains("g-code"))
             {
-                if (act.Contains("send"))
+                if (act.Contains("send") || act.Contains("data"))
                     ProcessCommands(e.Value);		//SendCommands(e.Value);	includes macro-file
                 if (act.Contains("stream"))
                     StartStreaming(0, fCTBCode.LinesCount - 1);

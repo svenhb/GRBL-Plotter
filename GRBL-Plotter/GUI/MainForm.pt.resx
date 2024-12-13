@@ -285,10 +285,6 @@
     <value>Pare o movimento de corrida atual</value>
     <comment>groupBox_Jogging</comment>
   </data>
-  <data name="gB_Jogging.Text" xml:space="preserve">
-    <value>Controle dos Eixos</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="virtualJoystickA.ToolTip" xml:space="preserve">
     <value>Jog 4th axis</value>
     <comment>groupBox_Jogging</comment>

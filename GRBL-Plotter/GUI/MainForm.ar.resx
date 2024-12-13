@@ -314,10 +314,6 @@
     <value>وقف حركة الركض الحالية</value>
     <comment>groupBox_Jogging</comment>
   </data>
-  <data name="gB_Jogging.Text" xml:space="preserve">
-    <value>التحكم / الركض</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="virtualJoystickA.ToolTip" xml:space="preserve">
     <value>هرول المحور الرابع</value>
     <comment>groupBox_Jogging</comment>

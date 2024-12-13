@@ -457,10 +457,6 @@ Başlangıç ​​satırı numarasını seçmek için sağ tıklayın</value>
   <data name="gB_Jog0.Text" xml:space="preserve">
     <value>Taşınmak</value>
   </data>
-  <data name="gB_Jogging.Text" xml:space="preserve">
-    <value>Kontrol / Koşu</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="virtualJoystickA.ToolTip" xml:space="preserve">
     <value>4. ekseni hareket ettir</value>
     <comment>groupBox_Jogging</comment>

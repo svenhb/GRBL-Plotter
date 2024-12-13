@@ -311,10 +311,6 @@
     <value>現在のジョギングモーションを停止する</value>
     <comment>groupBox_Jogging</comment>
   </data>
-  <data name="gB_Jogging.Text" xml:space="preserve">
-    <value>コントロール/ジョギング</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="virtualJoystickA.ToolTip" xml:space="preserve">
     <value>ジョグ4軸</value>
     <comment>groupBox_Jogging</comment>

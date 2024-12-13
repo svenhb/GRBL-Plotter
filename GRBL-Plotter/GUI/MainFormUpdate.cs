@@ -326,9 +326,9 @@ namespace GrblPlotter
             label_wa.Visible = ctrl4thAxis || Grbl.axisA || simulateA;
             label_ma.Visible = ctrl4thAxis || Grbl.axisA || simulateA;
             btnZeroA.Visible = ctrl4thAxis || Grbl.axisA;
-            LblSetCoordA.Visible = Grbl.axisA;
-            NudSetCoordA.Visible = Grbl.axisA;
-            BtnSetCoordA.Visible = Grbl.axisA;
+            LblSetCoordA.Visible = ctrl4thAxis || Grbl.axisA;
+            NudSetCoordA.Visible = ctrl4thAxis || Grbl.axisA;
+            BtnSetCoordA.Visible = ctrl4thAxis || Grbl.axisA;
             gBoxDROSetCoord.Height = Grbl.axisA ? 116 : 96;
 
             mirrorRotaryToolStripMenuItem.Visible = ctrl4thAxis;

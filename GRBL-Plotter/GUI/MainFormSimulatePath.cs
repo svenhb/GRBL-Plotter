@@ -24,6 +24,8 @@
  * 2022-04-07 reset codeInfo on start
  * 2023-01-07 use SetTextThreadSave(lbInfo...
  * 2024-05-03 l:206 f:SimulationTimer_Tick avoid division by 0
+ * 2024-09-24 l:226 f:BtnSimulateSlower_Click adapt slowest simulation speed - issue #418
+ * 2024-09-29 adapt dwell delay on faster/slower click
 */
 
 using System;
@@ -142,6 +144,9 @@ namespace GrblPlotter
 
         private void SimulationTimer_Tick(object sender, EventArgs e)
         {
+			if (VisuGCode.Simulation.CheckDwell(simulationTimer.Interval))	// do nothing until dwell-counter is <= 0
+				return;
+			
             simuLine = VisuGCode.Simulation.Next(ref codeInfo);
 
             if (LineIsInRange(simuLine))   //(simuLine >= 0)
@@ -212,20 +217,24 @@ namespace GrblPlotter
 
         private void BtnSimulateFaster_Click(object sender, EventArgs e)
         {
+            VisuGCode.Simulation.speedFactor *= 2;
             VisuGCode.Simulation.dt *= 2;
+            VisuGCode.Simulation.dwell_ms /= 2;
+            if (VisuGCode.Simulation.dt == 32) VisuGCode.Simulation.dt = 25;
             if (VisuGCode.Simulation.dt > 102400)
                 VisuGCode.Simulation.dt = 102400;
-            double factor = 100 * VisuGCode.Simulation.dt / 50;
-            lblElapsed.Text = string.Format("{0} {1:0}%", Localization.GetString("mainSimuSpeed"), factor);
+            lblElapsed.Text = string.Format("{0} {1:0}%", Localization.GetString("mainSimuSpeed"), VisuGCode.Simulation.speedFactor);
         }
 
         private void BtnSimulateSlower_Click(object sender, EventArgs e)
         {
+            VisuGCode.Simulation.speedFactor /= 2;
             VisuGCode.Simulation.dt /= 2;
-            if (VisuGCode.Simulation.dt < 25)
-                VisuGCode.Simulation.dt = 25;
-            double factor = 100 * VisuGCode.Simulation.dt / 50;
-            lblElapsed.Text = string.Format("{0} {1:0}%", Localization.GetString("mainSimuSpeed"), factor);
+            VisuGCode.Simulation.dwell_ms *= 2;
+            if (VisuGCode.Simulation.dt == 12) VisuGCode.Simulation.dt = 16;
+            if (VisuGCode.Simulation.dt <= 1)
+                VisuGCode.Simulation.dt = 1;
+            lblElapsed.Text = string.Format("{0} {1:0}%", Localization.GetString("mainSimuSpeed"), VisuGCode.Simulation.speedFactor);
         }
         private void BtnSimulatePause_Click(object sender, EventArgs e)
         {

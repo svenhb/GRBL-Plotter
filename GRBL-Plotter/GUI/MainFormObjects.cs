@@ -31,10 +31,12 @@
  * 2023-03-04 l:68 f:Datapath add path for "data"
  * 2023-03-04 l:68 f:Datapath add path for "filter"
  * 2024-01-20 l:484 f: struct ImgPoint change from float to double
+ * 2024-08-24 l:126 f:MakeAbsolutePath add try catch for Path.IsPathRooted
 */
 
 using GrblPlotter.Resources;
 using Microsoft.Win32;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -42,7 +44,6 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Threading;
-using System.Diagnostics;
 
 namespace GrblPlotter
 {
@@ -94,7 +95,11 @@ namespace GrblPlotter
     }
 
     public static class Datapath
-    {   // https://stackoverflow.com/questions/66430190/how-do-i-get-access-to-c-program-files-in-c-sharp
+    {
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        
+        // https://stackoverflow.com/questions/66430190/how-do-i-get-access-to-c-program-files-in-c-sharp
         internal static string Application = System.Windows.Forms.Application.StartupPath;
         //        public static string AppDataFolder = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.CommonAppDataPath);   // without vers.Nr
         // https://stackoverflow.com/questions/10563148/where-is-the-correct-place-to-store-my-application-specific-data#:~:text=AppData%20(maps%20to%20C%3A%5C,their%20save%20games%20into%20Environment.
@@ -123,9 +128,16 @@ namespace GrblPlotter
             if (fileName.ToLower().StartsWith("ftp"))
             { return fileName; }
 
-            if (Path.IsPathRooted(fileName))
-            { return fileName; }
-
+            try
+            {
+                if (Path.IsPathRooted(fileName))
+                { return fileName; }
+            }
+            catch (Exception Ex)
+            {
+                Logger.Error(Ex, " MakeAbsolutePath '{0}'", fileName);
+                return fileName;
+            }
             return Path.Combine(Datapath.AppDataFolder, fileName);
         }
     }
@@ -230,7 +242,10 @@ namespace GrblPlotter
                 Registry.SetValue(reg_key, "SpindleDelay", Properties.Settings.Default.importGCSpindleDelay);
                 Registry.SetValue(reg_key, "GcodeHeader", Properties.Settings.Default.importGCHeader);
                 Registry.SetValue(reg_key, "GcodeFooter", Properties.Settings.Default.importGCFooter);
-                Registry.SetValue(reg_key0, "Update", 0, RegistryValueKind.DWord);		// will be checked in MainForm-MainTimer_Tick
+                Registry.SetValue(reg_key0, "update", 0, RegistryValueKind.DWord);		// will be checked in MainForm-MainTimer_Tick
+                Registry.SetValue(reg_key0, "trigger", 0, RegistryValueKind.DWord);		// will be checked in MainForm-MainTimer_Tick
+                Registry.SetValue(reg_key0, "start", 0, RegistryValueKind.DWord);		// will be checked in MainForm-MainTimer_Tick
+                Registry.SetValue(reg_key0, "stop", 0, RegistryValueKind.DWord);		// will be checked in MainForm-MainTimer_Tick
             }
             catch (Exception Ex) { Logger.Error(Ex, "WriteSettingsToRegistry "); };
         }

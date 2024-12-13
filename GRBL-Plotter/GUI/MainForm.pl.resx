@@ -454,10 +454,6 @@ Kliknij prawym przyciskiem myszy, aby wybrać numer linii startowej</value>
   <data name="gB_Jog0.Text" xml:space="preserve">
     <value>Idź do</value>
   </data>
-  <data name="gB_Jogging.Text" xml:space="preserve">
-    <value>Kontrola / Przemieszczenie</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="virtualJoystickA.ToolTip" xml:space="preserve">
     <value>Posuw 4 osi</value>
     <comment>groupBox_Jogging</comment>

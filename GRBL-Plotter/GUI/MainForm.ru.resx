@@ -253,10 +253,6 @@
     <value>Фактическая скорость шпинделя в об / мин</value>
     <comment>groupBox_Override3</comment>
   </data>
-  <data name="gB_Jogging.Text" xml:space="preserve">
-    <value>Контроль/Перемещение</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="btnJogStop.Text" xml:space="preserve">
     <value>Остановить перемещение</value>
     <comment>groupBox_Jogging</comment>

@@ -324,10 +324,6 @@ En effet, une décélération incontrôlée peut entraîner la perte d'étapes e
     <value>Vitesse réelle de la broche en tours / minute</value>
     <comment>groupBox_Override3</comment>
   </data>
-  <data name="gB_Jogging.Text" xml:space="preserve">
-    <value>Contrôle / Jogging</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="deletenotMarkToolStripMenuItem.Text" xml:space="preserve">
     <value>Marquer le code (pas supprimer)</value>
     <comment>2DView_Menu</comment>

@@ -56,6 +56,8 @@
  * 2023-07-31 l:375 f:InsertCodeToFctb insert duplicated figure/group right after selected figure/group
  * 2023-09-05 l:109 f:FctbCode_TextChanged allow 3-digit M-word 
  * 2024-06-01 l:712 check range
+ * 2024-09-04 l:893 f:ShowMessageForm try/catch Except: Cannot access a disposed object
+ * 2024-11-27 l:735 f:SelectNextFigureGroupTile  check if LineIsInRange
 */
 
 using FastColoredTextBoxNS;
@@ -659,6 +661,8 @@ namespace GrblPlotter
 
         private void SelectNextFigureGroupTile(int direction)
         {
+			if (LineIsInRange(fCTBCodeClickedLineNow)) 
+			{
             //    SendCommand(string.Format("(Key up/down {0} line:{1}  marked:{2})", direction, fCTBCodeClickedLineNow, markedBlockType));
             fCTBCodeClickedLineLast = fCTBCodeClickedLineNow;
             //    XmlMarker.BlockData tmp = new XmlMarker.BlockData();
@@ -733,6 +737,7 @@ namespace GrblPlotter
             if (fCTBCodeClickedLineNow > 0)
                 fCTBCode.GotoNextBookmark(fCTBCodeClickedLineNow - 1);// .DoCaretVisible();
             pictureBox1.Invalidate(); // avoid too much events												  //             toolStrip_tb_StreamLine.Text = fCTBCodeClickedLineNow.ToString();
+			}
         }
 
         private void FctbSetBookmark(bool markAnyway = false)     // after click on gcode line, mark text and graphics
@@ -889,9 +894,13 @@ namespace GrblPlotter
             {
                 _message_form.Visible = false;
             }
-            _message_form.ShowMessage(600, 650, "Information", text, 0);  // show FCTB Info
-            _message_form.Show(this);
-            _message_form.WindowState = FormWindowState.Normal;
+			try
+            {	
+				_message_form.ShowMessage(600, 650, "Information", text, 0);  // show FCTB Info
+				_message_form.Show(this);
+				_message_form.WindowState = FormWindowState.Normal;
+			}
+            catch (Exception err) { Logger.Error(err, " ShowMessageForm "); }
         }
         private void FormClosed_MessageForm(object sender, FormClosedEventArgs e)
         { _message_form = null; }

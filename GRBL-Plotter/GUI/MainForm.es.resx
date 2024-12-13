@@ -324,10 +324,6 @@ a cuánto perdió (este es el problema con los steppers en general). De lo contr
     <value>Velocidad real del husillo en RPM</value>
     <comment>groupBox_Override3</comment>
   </data>
-  <data name="gB_Jogging.Text" xml:space="preserve">
-    <value>Control / Mover</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="deletenotMarkToolStripMenuItem.Text" xml:space="preserve">
     <value>Marcar código (sin borrar)</value>
     <comment>2DView_Menu</comment>

@@ -463,10 +463,6 @@ Fare clic con il pulsante destro del mouse per scegliere il numero di riga inizi
   <data name="gB_Jog0.Text" xml:space="preserve">
     <value>Sposta a</value>
   </data>
-  <data name="gB_Jogging.Text" xml:space="preserve">
-    <value>Controllo / Jogging</value>
-    <comment>groupBox_Jogging</comment>
-  </data>
   <data name="virtualJoystickA.ToolTip" xml:space="preserve">
     <value>Jog 4° asse</value>
     <comment>groupBox_Jogging</comment>

@@ -121,12 +121,18 @@
     <value>关闭</value>
   </data>
   <data name="btnContinue.Text" xml:space="preserve">
-    <value>继续流媒体</value>
+    <value>继续流传输</value>
   </data>
   <data name="LblHex.Text" xml:space="preserve">
     <value>颜色</value>
   </data>
   <data name="toolStripStatusLabel1.Text" xml:space="preserve">
     <value>自动关闭</value>
+  </data>
+  <data name="toolStripStatusLabel2.Text" xml:space="preserve">
+    <value>在[设置-程序外观-其他]中调整持续时间</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>消息窗体</value>
   </data>
 </root>

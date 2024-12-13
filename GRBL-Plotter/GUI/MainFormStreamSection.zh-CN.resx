@@ -124,10 +124,10 @@
     <value>取消</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>开始在线直播</value>
+    <value>开始在线流传输</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>停止在线播放</value>
+    <value>停止在线流传输</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>按开始后，数据将被加载并且流处于暂停模式，再次按开始（左键单击）继续。</value>
@@ -139,10 +139,10 @@
     <value>位置</value>
   </data>
   <data name="BtnSetMax.Text" xml:space="preserve">
-    <value>最大限度</value>
+    <value>最大</value>
   </data>
   <data name="BtnSetMin.Text" xml:space="preserve">
-    <value>分钟</value>
+    <value>最小</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>GCode 的流部分</value>

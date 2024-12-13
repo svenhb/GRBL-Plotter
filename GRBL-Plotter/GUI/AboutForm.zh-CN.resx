@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label3.Text" xml:space="preserve">
-    <value>版本:</value>
+    <value>版本</value>
   </data>
   <data name="button2.Text" xml:space="preserve">
     <value>检查更新</value>
@@ -140,5 +140,14 @@
   </data>
   <data name="linkLabel2.ToolTip" xml:space="preserve">
     <value>打开文件夹</value>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>© 2015-2024 svenhb@web.de</value>
+  </data>
+  <data name="linkLabel3.Text" xml:space="preserve">
+    <value>GRBL-Plotter</value>
   </data>
 </root>

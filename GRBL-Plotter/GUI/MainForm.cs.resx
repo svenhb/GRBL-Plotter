@@ -354,10 +354,6 @@ Kliknutím pravým tlačítkem vyberte číslo startovní řady</value>
     <value>Původ XY</value>
     <comment>groupBox_Dimension</comment>
   </data>
-  <data name="lbDimension.Text" xml:space="preserve">
-    <value>Rozměry</value>
-    <comment>groupBox_Dimension</comment>
-  </data>
   <data name="gBoxDimension.Text" xml:space="preserve">
     <value>Rozměr G-kódu</value>
     <comment>groupBox_Dimension</comment>
@@ -472,10 +468,6 @@ Kliknutím pravým tlačítkem vyberte číslo startovní řady</value>
   </data>
   <data name="gB_Jog0.Text" xml:space="preserve">
     <value>Přesunout do</value>
-  </data>
-  <data name="gB_Jogging.Text" xml:space="preserve">
-    <value>Ovládání / Jogging</value>
-    <comment>groupBox_Jogging</comment>
   </data>
   <data name="virtualJoystickA.ToolTip" xml:space="preserve">
     <value>Jog 4. osa</value>
