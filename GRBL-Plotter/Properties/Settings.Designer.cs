@@ -12,7 +12,7 @@ namespace GrblPlotter.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.10.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.12.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -7075,6 +7075,54 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importImagePixelArt {
+            get {
+                return ((bool)(this["importImagePixelArt"]));
+            }
+            set {
+                this["importImagePixelArt"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public decimal importImagePixelArtDotSize {
+            get {
+                return ((decimal)(this["importImagePixelArtDotSize"]));
+            }
+            set {
+                this["importImagePixelArtDotSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal importImagePixelArtDotsPerPixel {
+            get {
+                return ((decimal)(this["importImagePixelArtDotsPerPixel"]));
+            }
+            set {
+                this["importImagePixelArtDotsPerPixel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public decimal importImagePixelArtGapSize {
+            get {
+                return ((decimal)(this["importImagePixelArtGapSize"]));
+            }
+            set {
+                this["importImagePixelArtGapSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
         public decimal importImageReso {
             get {
@@ -7303,13 +7351,13 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("3")]
-        public decimal importPDNSmoothCycles {
+        [global::System.Configuration.DefaultSettingValueAttribute("120")]
+        public decimal importPDNWidth {
             get {
-                return ((decimal)(this["importPDNSmoothCycles"]));
+                return ((decimal)(this["importPDNWidth"]));
             }
             set {
-                this["importPDNSmoothCycles"] = value;
+                this["importPDNWidth"] = value;
             }
         }
         
@@ -7646,6 +7694,246 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["importUseCaseInfo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importVectorizeAlgorithmPoTrace {
+            get {
+                return ((bool)(this["importVectorizeAlgorithmPoTrace"]));
+            }
+            set {
+                this["importVectorizeAlgorithmPoTrace"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importVectorizeDetectTransparency {
+            get {
+                return ((bool)(this["importVectorizeDetectTransparency"]));
+            }
+            set {
+                this["importVectorizeDetectTransparency"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importVectorizeDpiFromImage {
+            get {
+                return ((bool)(this["importVectorizeDpiFromImage"]));
+            }
+            set {
+                this["importVectorizeDpiFromImage"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importVectorizeFromClipboard {
+            get {
+                return ((bool)(this["importVectorizeFromClipboard"]));
+            }
+            set {
+                this["importVectorizeFromClipboard"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importVectorizeInvertResult {
+            get {
+                return ((bool)(this["importVectorizeInvertResult"]));
+            }
+            set {
+                this["importVectorizeInvertResult"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importVectorizeOptimize1 {
+            get {
+                return ((bool)(this["importVectorizeOptimize1"]));
+            }
+            set {
+                this["importVectorizeOptimize1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importVectorizeOptimize2 {
+            get {
+                return ((bool)(this["importVectorizeOptimize2"]));
+            }
+            set {
+                this["importVectorizeOptimize2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importVectorizeOptimize3 {
+            get {
+                return ((bool)(this["importVectorizeOptimize3"]));
+            }
+            set {
+                this["importVectorizeOptimize3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importVectorizeOptimize4 {
+            get {
+                return ((bool)(this["importVectorizeOptimize4"]));
+            }
+            set {
+                this["importVectorizeOptimize4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal importVectorizePoTraceAlphamax {
+            get {
+                return ((decimal)(this["importVectorizePoTraceAlphamax"]));
+            }
+            set {
+                this["importVectorizePoTraceAlphamax"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importVectorizePoTraceCurveoptimizing {
+            get {
+                return ((bool)(this["importVectorizePoTraceCurveoptimizing"]));
+            }
+            set {
+                this["importVectorizePoTraceCurveoptimizing"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.2")]
+        public decimal importVectorizePoTraceOpttolerance {
+            get {
+                return ((decimal)(this["importVectorizePoTraceOpttolerance"]));
+            }
+            set {
+                this["importVectorizePoTraceOpttolerance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public decimal importVectorizePoTraceTurdsize {
+            get {
+                return ((decimal)(this["importVectorizePoTraceTurdsize"]));
+            }
+            set {
+                this["importVectorizePoTraceTurdsize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importVectorizeSetWidthOfImage {
+            get {
+                return ((bool)(this["importVectorizeSetWidthOfImage"]));
+            }
+            set {
+                this["importVectorizeSetWidthOfImage"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public decimal importVectorizeSmoothCycles {
+            get {
+                return ((decimal)(this["importVectorizeSmoothCycles"]));
+            }
+            set {
+                this["importVectorizeSmoothCycles"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("128")]
+        public decimal importVectorizeThreshold {
+            get {
+                return ((decimal)(this["importVectorizeThreshold"]));
+            }
+            set {
+                this["importVectorizeThreshold"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importVectorizeTypeBmp {
+            get {
+                return ((bool)(this["importVectorizeTypeBmp"]));
+            }
+            set {
+                this["importVectorizeTypeBmp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importVectorizeTypeGif {
+            get {
+                return ((bool)(this["importVectorizeTypeGif"]));
+            }
+            set {
+                this["importVectorizeTypeGif"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importVectorizeTypeJpg {
+            get {
+                return ((bool)(this["importVectorizeTypeJpg"]));
+            }
+            set {
+                this["importVectorizeTypeJpg"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importVectorizeTypePng {
+            get {
+                return ((bool)(this["importVectorizeTypePng"]));
+            }
+            set {
+                this["importVectorizeTypePng"] = value;
             }
         }
         
@@ -8138,6 +8426,90 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["machineLimitsShow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal mainFormMovoToX {
+            get {
+                return ((decimal)(this["mainFormMovoToX"]));
+            }
+            set {
+                this["mainFormMovoToX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal mainFormMovoToY {
+            get {
+                return ((decimal)(this["mainFormMovoToY"]));
+            }
+            set {
+                this["mainFormMovoToY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal mainFormMovoToZ {
+            get {
+                return ((decimal)(this["mainFormMovoToZ"]));
+            }
+            set {
+                this["mainFormMovoToZ"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal mainFormSetCoordA {
+            get {
+                return ((decimal)(this["mainFormSetCoordA"]));
+            }
+            set {
+                this["mainFormSetCoordA"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal mainFormSetCoordX {
+            get {
+                return ((decimal)(this["mainFormSetCoordX"]));
+            }
+            set {
+                this["mainFormSetCoordX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal mainFormSetCoordY {
+            get {
+                return ((decimal)(this["mainFormSetCoordY"]));
+            }
+            set {
+                this["mainFormSetCoordY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal mainFormSetCoordZ {
+            get {
+                return ((decimal)(this["mainFormSetCoordZ"]));
+            }
+            set {
+                this["mainFormSetCoordZ"] = value;
             }
         }
         
@@ -9835,85 +10207,49 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal mainFormMovoToX {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importImagePixelArtDrawDot {
             get {
-                return ((decimal)(this["mainFormMovoToX"]));
+                return ((bool)(this["importImagePixelArtDrawDot"]));
             }
             set {
-                this["mainFormMovoToX"] = value;
+                this["importImagePixelArtDrawDot"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal mainFormMovoToY {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importImagePixelArtDrawShapeCircle {
             get {
-                return ((decimal)(this["mainFormMovoToY"]));
+                return ((bool)(this["importImagePixelArtDrawShapeCircle"]));
             }
             set {
-                this["mainFormMovoToY"] = value;
+                this["importImagePixelArtDrawShapeCircle"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal mainFormMovoToZ {
+        [global::System.Configuration.DefaultSettingValueAttribute("0.4")]
+        public decimal importImagePixelArtShapePenDiameter {
             get {
-                return ((decimal)(this["mainFormMovoToZ"]));
+                return ((decimal)(this["importImagePixelArtShapePenDiameter"]));
             }
             set {
-                this["mainFormMovoToZ"] = value;
+                this["importImagePixelArtShapePenDiameter"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal mainFormSetCoordX {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importImagePixelArtShapeFill {
             get {
-                return ((decimal)(this["mainFormSetCoordX"]));
+                return ((bool)(this["importImagePixelArtShapeFill"]));
             }
             set {
-                this["mainFormSetCoordX"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal mainFormSetCoordY {
-            get {
-                return ((decimal)(this["mainFormSetCoordY"]));
-            }
-            set {
-                this["mainFormSetCoordY"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal mainFormSetCoordA {
-            get {
-                return ((decimal)(this["mainFormSetCoordA"]));
-            }
-            set {
-                this["mainFormSetCoordA"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal mainFormSetCoordZ {
-            get {
-                return ((decimal)(this["mainFormSetCoordZ"]));
-            }
-            set {
-                this["mainFormSetCoordZ"] = value;
+                this["importImagePixelArtShapeFill"] = value;
             }
         }
     }

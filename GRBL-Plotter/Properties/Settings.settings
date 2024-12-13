@@ -1763,6 +1763,30 @@
     <Setting Name="importImageKeepRatio" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="importImagePixelArt" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importImagePixelArtDotSize" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="importImagePixelArtDotsPerPixel" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importImagePixelArtDrawDot" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importImagePixelArtDrawShapeCircle" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importImagePixelArtGapSize" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
+    <Setting Name="importImagePixelArtShapeFill" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importImagePixelArtShapePenDiameter" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.4</Value>
+    </Setting>
     <Setting Name="importImageReso" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.5</Value>
     </Setting>
@@ -1820,8 +1844,8 @@
     <Setting Name="importPDNLayerVisible" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="importPDNSmoothCycles" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">3</Value>
+    <Setting Name="importPDNWidth" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">120</Value>
     </Setting>
     <Setting Name="importPWMFromWidth" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -1906,6 +1930,66 @@
     </Setting>
     <Setting Name="importUseCaseInfo" Type="System.String" Scope="User">
       <Value Profile="(Default)">Information about current use case</Value>
+    </Setting>
+    <Setting Name="importVectorizeAlgorithmPoTrace" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importVectorizeDetectTransparency" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importVectorizeDpiFromImage" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importVectorizeFromClipboard" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importVectorizeInvertResult" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importVectorizeOptimize1" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importVectorizeOptimize2" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importVectorizeOptimize3" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importVectorizeOptimize4" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importVectorizePoTraceAlphamax" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="importVectorizePoTraceCurveoptimizing" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importVectorizePoTraceOpttolerance" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.2</Value>
+    </Setting>
+    <Setting Name="importVectorizePoTraceTurdsize" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="importVectorizeSetWidthOfImage" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importVectorizeSmoothCycles" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="importVectorizeThreshold" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">128</Value>
+    </Setting>
+    <Setting Name="importVectorizeTypeBmp" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importVectorizeTypeGif" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importVectorizeTypeJpg" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importVectorizeTypePng" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="laserMotionDelay" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
