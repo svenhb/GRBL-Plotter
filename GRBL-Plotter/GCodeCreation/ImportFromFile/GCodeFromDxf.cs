@@ -396,19 +396,31 @@ namespace GrblPlotter //DXFImporter
                         if (insert.Scaling.Z != null) insertionScaling.Z = insert.Scaling.Z;
                     }
                     if (logEnable)
+                    {
                         Logger.Trace(" Block: at X:{0:0.00}  Y:{1:0.00}  a:{2:0.00}  scaleX:{3}  scaleY:{4}   layer:{5}", insertionPoint.X, insertionPoint.Y, insert.RotationAngle, insertionScaling.X, insertionScaling.Y, dxfEntity.LayerName);
-
+                        Logger.Trace(" BlockName:{0}  count:{1}", insert.BlockName, insert.Children.Count);
+                    }
                     foreach (DXFBlock block in doc.Blocks)
                     {
                         if (block.BlockName.ToString() == insert.BlockName)
                         {
-                            if (logEnable) Logger.Trace("Block: {0}  -invisible:{1}", block.BlockName, block.IsInvisible);
+                            if (logEnable) Logger.Trace("Block: {0}  count:{1}  -invisible:{2}", block.BlockName, block.Children.Count, block.IsInvisible);
                             dxfBlockColorNr = block.ColorNumber;
                             dxfBlockLineWeigth = block.LineWeight;
                             Graphic.SetComment("Block:" + block.BlockName);
                             Graphic.SetHeaderInfo(string.Format(" Block: {0,-5} at X:{1,12:0.000}  Y:{2,12:0.000}  a:{3,6:0.00}  sx:{4,6:0.00}  sy:{5,6:0.00}", block.BlockName, insertionPoint.X, insertionPoint.Y, insertionAngle, insertionScaling.X, insertionScaling.Y));
                             foreach (DXFEntity blockEntity in block.Children)
-                            { ProcessEntities(blockEntity, insertionPoint, insertionAngle, insertionScaling, dxfEntity.LayerName); }
+                            {
+                            /*    if (blockEntity.GetType() == typeof(DXFInsert))
+                                {
+                                    DXFInsert ins = (DXFInsert)blockEntity;
+                                    foreach (DXFEntity i in ins.Children)
+                                    { ProcessEntities(i, insertionPoint, insertionAngle, insertionScaling, dxfEntity.LayerName); }
+                                }
+
+                                else*/
+                                    ProcessEntities(blockEntity, insertionPoint, insertionAngle, insertionScaling, dxfEntity.LayerName);
+                            }
                         }
                     }
                 }
@@ -686,7 +698,7 @@ namespace GrblPlotter //DXFImporter
 
                 bool newAlgorythm = false;
 
-            //    Graphic.SetGeometry("Spline");
+                //    Graphic.SetGeometry("Spline");
                 DXFSpline spline = (DXFSpline)entity;
                 index = 0;
                 DXFPoint last = BlockTransform(spline.ControlPoints[0], blockOffset, blockAngle, blockScaling);
@@ -718,7 +730,7 @@ namespace GrblPlotter //DXFImporter
                                 ImportMath.CalcCubicBezier(b.Start.ToPoint(), b.Control1.ToPoint(), b.Control2.ToPoint(), b.End.ToPoint(), DXFMoveTo, "spline3");
                             }
                         }
-                        else 
+                        else
                         {
                             Graphic.SetGeometry("Spline_" + spline.Degree.ToString());
                             DXFStartPath(last);//, cmt);
@@ -736,106 +748,106 @@ namespace GrblPlotter //DXFImporter
                         Graphic.SetHeaderMessage(string.Format(" {0}: Can't process DXFSpline with degree < 2 in layer {1}", CodeMessage.Error, layerName));
                     }
                 }
-            /*    else
-                {
-                    // from Inkscape DXF import - modified
-                    // https://gitlab.com/inkscape/extensions/blob/master/dxf_input.py#L106
-                    // https://help.autodesk.com/view/OARX/2021/ENU/?guid=GUID-235B22E0-A567-4CF6-92D3-38A2306D73F3
-                    if ((ctrls > 3) && (knots == ctrls + 4))    //  # cubic
+                /*    else
                     {
-                        if (ctrls > 4)
+                        // from Inkscape DXF import - modified
+                        // https://gitlab.com/inkscape/extensions/blob/master/dxf_input.py#L106
+                        // https://help.autodesk.com/view/OARX/2021/ENU/?guid=GUID-235B22E0-A567-4CF6-92D3-38A2306D73F3
+                        if ((ctrls > 3) && (knots == ctrls + 4))    //  # cubic
                         {
-                            for (int i = (knots - 5); i > 3; i--)
+                            if (ctrls > 4)
                             {
-                                if ((spline.KnotValues[i] != spline.KnotValues[i - 1]) && (spline.KnotValues[i] != spline.KnotValues[i + 1]))
+                                for (int i = (knots - 5); i > 3; i--)
                                 {
-                                    double a0 = (spline.KnotValues[i] - spline.KnotValues[i - 2]) / (spline.KnotValues[i + 1] - spline.KnotValues[i - 2]);
-                                    double a1 = (spline.KnotValues[i] - spline.KnotValues[i - 1]) / (spline.KnotValues[i + 2] - spline.KnotValues[i - 1]);
-                                    tmp = new DXFPoint
+                                    if ((spline.KnotValues[i] != spline.KnotValues[i - 1]) && (spline.KnotValues[i] != spline.KnotValues[i + 1]))
                                     {
-                                        X = (double)((1.0 - a1) * spline.ControlPoints[i - 2].X + a1 * spline.ControlPoints[i - 1].X),
-                                        Y = (double)((1.0 - a1) * spline.ControlPoints[i - 2].Y + a1 * spline.ControlPoints[i - 1].Y)
-                                    };
-                                    spline.ControlPoints.Insert(i - 1, tmp);
-                                    spline.ControlPoints[i - 2].X = (1.0 - a0) * spline.ControlPoints[i - 3].X + a0 * spline.ControlPoints[i - 2].X;
-                                    spline.ControlPoints[i - 2].Y = (1.0 - a0) * spline.ControlPoints[i - 3].Y + a0 * spline.ControlPoints[i - 2].Y;
-                                    spline.KnotValues.Insert(i, spline.KnotValues[i]);
+                                        double a0 = (spline.KnotValues[i] - spline.KnotValues[i - 2]) / (spline.KnotValues[i + 1] - spline.KnotValues[i - 2]);
+                                        double a1 = (spline.KnotValues[i] - spline.KnotValues[i - 1]) / (spline.KnotValues[i + 2] - spline.KnotValues[i - 1]);
+                                        tmp = new DXFPoint
+                                        {
+                                            X = (double)((1.0 - a1) * spline.ControlPoints[i - 2].X + a1 * spline.ControlPoints[i - 1].X),
+                                            Y = (double)((1.0 - a1) * spline.ControlPoints[i - 2].Y + a1 * spline.ControlPoints[i - 1].Y)
+                                        };
+                                        spline.ControlPoints.Insert(i - 1, tmp);
+                                        spline.ControlPoints[i - 2].X = (1.0 - a0) * spline.ControlPoints[i - 3].X + a0 * spline.ControlPoints[i - 2].X;
+                                        spline.ControlPoints[i - 2].Y = (1.0 - a0) * spline.ControlPoints[i - 3].Y + a0 * spline.ControlPoints[i - 2].Y;
+                                        spline.KnotValues.Insert(i, spline.KnotValues[i]);
+                                    }
+                                }
+                                knots = spline.KnotValues.Count;
+                                for (int i = (knots - 6); i > 3; i -= 2)
+                                {
+                                    if ((spline.KnotValues[i] != spline.KnotValues[i - 2]) && (spline.KnotValues[i - 1] != spline.KnotValues[i + 1]) && (spline.KnotValues[i - 2] != spline.KnotValues[i]))
+                                    {
+                                        double a1 = (spline.KnotValues[i] - spline.KnotValues[i - 1]) / (spline.KnotValues[i + 2] - spline.KnotValues[i - 1]);
+                                        tmp = new DXFPoint
+                                        {
+                                            X = (double)((1.0 - a1) * spline.ControlPoints[i - 2].X + a1 * spline.ControlPoints[i - 1].X),
+                                            Y = (double)((1.0 - a1) * spline.ControlPoints[i - 2].Y + a1 * spline.ControlPoints[i - 1].Y)
+                                        };
+                                        spline.ControlPoints.Insert(i - 1, tmp);
+                                    }
                                 }
                             }
-                            knots = spline.KnotValues.Count;
-                            for (int i = (knots - 6); i > 3; i -= 2)
+                            ctrls = spline.ControlPoints.Count;
+                            DXFStartPath(last);//, cmt);
+                            for (int i = 0; i < Math.Floor((ctrls - 1) / 3d); i++)     // for i in range(0, (ctrls - 1) // 3):
                             {
-                                if ((spline.KnotValues[i] != spline.KnotValues[i - 2]) && (spline.KnotValues[i - 1] != spline.KnotValues[i + 1]) && (spline.KnotValues[i - 2] != spline.KnotValues[i]))
+                                if (!nodesOnly)
+                                    ImportMath.CalcCubicBezier(ToWindowsSystemPoint(last),
+                                                                ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[3 * i + 1], blockOffset, blockAngle, blockScaling)),
+                                                                ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[3 * i + 2], blockOffset, blockAngle, blockScaling)),
+                                                                ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[3 * i + 3], blockOffset, blockAngle, blockScaling)),
+                                                                DXFMoveTo, "C");
+                                else
                                 {
-                                    double a1 = (spline.KnotValues[i] - spline.KnotValues[i - 1]) / (spline.KnotValues[i + 2] - spline.KnotValues[i - 1]);
-                                    tmp = new DXFPoint
-                                    {
-                                        X = (double)((1.0 - a1) * spline.ControlPoints[i - 2].X + a1 * spline.ControlPoints[i - 1].X),
-                                        Y = (double)((1.0 - a1) * spline.ControlPoints[i - 2].Y + a1 * spline.ControlPoints[i - 1].Y)
-                                    };
-                                    spline.ControlPoints.Insert(i - 1, tmp);
+                                    GCodeDotOnly(last);//, "");
+                                    GCodeDotOnly(ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[3 * i + 3], blockOffset, blockAngle, blockScaling)));//, "");
                                 }
+                                last = BlockTransform(spline.ControlPoints[3 * i + 3], blockOffset, blockAngle, blockScaling);
                             }
+                            DXFStopPath();// true);
+                                          //Logger.Trace(" stop path");
+
                         }
-                        ctrls = spline.ControlPoints.Count;
-                        DXFStartPath(last);//, cmt);
-                        for (int i = 0; i < Math.Floor((ctrls - 1) / 3d); i++)     // for i in range(0, (ctrls - 1) // 3):
-                        {
+                        if ((ctrls == 3) && (knots == 6))           //  # quadratic
+                        {   //  path = 'M %f,%f Q %f,%f %f,%f' % (vals[groups['10']][0], vals[groups['20']][0], vals[groups['10']][1], vals[groups['20']][1], vals[groups['10']][2], vals[groups['20']][2])
                             if (!nodesOnly)
-                                ImportMath.CalcCubicBezier(ToWindowsSystemPoint(last),
-                                                            ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[3 * i + 1], blockOffset, blockAngle, blockScaling)),
-                                                            ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[3 * i + 2], blockOffset, blockAngle, blockScaling)),
-                                                            ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[3 * i + 3], blockOffset, blockAngle, blockScaling)),
-                                                            DXFMoveTo, "C");
+                            {
+                                DXFStartPath(last);//, cmt);
+                                ImportMath.CalcQuadraticBezier(ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[0], blockOffset, blockAngle, blockScaling)),
+                                                                ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[1], blockOffset, blockAngle, blockScaling)),
+                                                                ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[2], blockOffset, blockAngle, blockScaling)),
+                                                                DXFMoveTo, "Q");
+                            }
                             else
                             {
                                 GCodeDotOnly(last);//, "");
-                                GCodeDotOnly(ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[3 * i + 3], blockOffset, blockAngle, blockScaling)));//, "");
+                                GCodeDotOnly(ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[2], blockOffset, blockAngle, blockScaling)));//, "");
                             }
-                            last = BlockTransform(spline.ControlPoints[3 * i + 3], blockOffset, blockAngle, blockScaling);
+                            DXFStopPath();// true);
                         }
-                        DXFStopPath();// true);
-                                      //Logger.Trace(" stop path");
-
-                    }
-                    if ((ctrls == 3) && (knots == 6))           //  # quadratic
-                    {   //  path = 'M %f,%f Q %f,%f %f,%f' % (vals[groups['10']][0], vals[groups['20']][0], vals[groups['10']][1], vals[groups['20']][1], vals[groups['10']][2], vals[groups['20']][2])
-                        if (!nodesOnly)
-                        {
-                            DXFStartPath(last);//, cmt);
-                            ImportMath.CalcQuadraticBezier(ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[0], blockOffset, blockAngle, blockScaling)),
-                                                            ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[1], blockOffset, blockAngle, blockScaling)),
-                                                            ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[2], blockOffset, blockAngle, blockScaling)),
-                                                            DXFMoveTo, "Q");
+                        if ((ctrls == 5) && (knots == 8))           //  # spliced quadratic
+                        {   //  path = 'M %f,%f Q %f,%f %f,%f Q %f,%f %f,%f' % (vals[groups['10']][0], vals[groups['20']][0], vals[groups['10']][1], vals[groups['20']][1], vals[groups['10']][2], vals[groups['20']][2], vals[groups['10']][3], vals[groups['20']][3], vals[groups['10']][4], vals[groups['20']][4])
+                            if (!nodesOnly)
+                            {
+                                DXFStartPath(last);//, cmt);
+                                ImportMath.CalcQuadraticBezier(ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[0], blockOffset, blockAngle, blockScaling)),
+                                                                ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[1], blockOffset, blockAngle, blockScaling)),
+                                                                ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[2], blockOffset, blockAngle, blockScaling)), DXFMoveTo, "SQ");
+                                ImportMath.CalcQuadraticBezier(ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[2], blockOffset, blockAngle, blockScaling)),                     // 2022-03-19 start at 2 not 3
+                                                                ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[3], blockOffset, blockAngle, blockScaling)),
+                                                                ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[4], blockOffset, blockAngle, blockScaling)), DXFMoveTo, "SQ");
+                            }
+                            else
+                            {
+                                GCodeDotOnly(last);//, "");
+                                GCodeDotOnly(ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[2], blockOffset, blockAngle, blockScaling)));//, "");
+                                GCodeDotOnly(ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[5], blockOffset, blockAngle, blockScaling)));//, "");
+                            }
+                            DXFStopPath();// true);
                         }
-                        else
-                        {
-                            GCodeDotOnly(last);//, "");
-                            GCodeDotOnly(ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[2], blockOffset, blockAngle, blockScaling)));//, "");
-                        }
-                        DXFStopPath();// true);
-                    }
-                    if ((ctrls == 5) && (knots == 8))           //  # spliced quadratic
-                    {   //  path = 'M %f,%f Q %f,%f %f,%f Q %f,%f %f,%f' % (vals[groups['10']][0], vals[groups['20']][0], vals[groups['10']][1], vals[groups['20']][1], vals[groups['10']][2], vals[groups['20']][2], vals[groups['10']][3], vals[groups['20']][3], vals[groups['10']][4], vals[groups['20']][4])
-                        if (!nodesOnly)
-                        {
-                            DXFStartPath(last);//, cmt);
-                            ImportMath.CalcQuadraticBezier(ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[0], blockOffset, blockAngle, blockScaling)),
-                                                            ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[1], blockOffset, blockAngle, blockScaling)),
-                                                            ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[2], blockOffset, blockAngle, blockScaling)), DXFMoveTo, "SQ");
-                            ImportMath.CalcQuadraticBezier(ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[2], blockOffset, blockAngle, blockScaling)),                     // 2022-03-19 start at 2 not 3
-                                                            ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[3], blockOffset, blockAngle, blockScaling)),
-                                                            ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[4], blockOffset, blockAngle, blockScaling)), DXFMoveTo, "SQ");
-                        }
-                        else
-                        {
-                            GCodeDotOnly(last);//, "");
-                            GCodeDotOnly(ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[2], blockOffset, blockAngle, blockScaling)));//, "");
-                            GCodeDotOnly(ToWindowsSystemPoint(BlockTransform(spline.ControlPoints[5], blockOffset, blockAngle, blockScaling)));//, "");
-                        }
-                        DXFStopPath();// true);
-                    }
-                }*/
+                    }*/
             }
             #endregion
             #region DXFCircle
@@ -1169,16 +1181,16 @@ namespace GrblPlotter //DXFImporter
         }
         private static DXFPoint BlockRotate(DXFPoint r, double angleRad)
         { return new DXFPoint() { X = (r.X * Math.Cos(angleRad) - r.Y * Math.Sin(angleRad)), Y = (r.X * Math.Sin(angleRad) + r.Y * Math.Cos(angleRad)) }; }
-/*
-        private static double RotateGetX(DXFPoint r, double angleRad)
-        { return (double)(r.X * Math.Cos(angleRad) - r.Y * Math.Sin(angleRad)); }
-        private static double RotateGetY(DXFPoint r, double angleRad)
-        { return (double)(r.X * Math.Sin(angleRad) + r.Y * Math.Cos(angleRad)); }
-        private static double RotateGetX(Point r, double angleRad)
-        { return (double)(r.X * Math.Cos(angleRad) - r.Y * Math.Sin(angleRad)); }
-        private static double RotateGetY(Point r, double angleRad)
-        { return (double)(r.X * Math.Sin(angleRad) + r.Y * Math.Cos(angleRad)); }
-*/
+        /*
+                private static double RotateGetX(DXFPoint r, double angleRad)
+                { return (double)(r.X * Math.Cos(angleRad) - r.Y * Math.Sin(angleRad)); }
+                private static double RotateGetY(DXFPoint r, double angleRad)
+                { return (double)(r.X * Math.Sin(angleRad) + r.Y * Math.Cos(angleRad)); }
+                private static double RotateGetX(Point r, double angleRad)
+                { return (double)(r.X * Math.Cos(angleRad) - r.Y * Math.Sin(angleRad)); }
+                private static double RotateGetY(Point r, double angleRad)
+                { return (double)(r.X * Math.Sin(angleRad) + r.Y * Math.Cos(angleRad)); }
+        */
 
         private static Point ToWindowsSystemPoint(DXFPoint tmp)
         { return new Point((double)tmp.X, (double)tmp.Y); }
