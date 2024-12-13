@@ -39,6 +39,7 @@
 																			"main Form ThreadException - Only TrueType fonts are supported. This is not a TrueType font."
  * 2024-02-06 add process automation
  * 2024-02-22 update proprties after loading ini-file
+ * 2024-11-05 l:540 f:ShowTextSize also check if (textFont != null) issue #422
 */
 
 using System;
@@ -67,7 +68,7 @@ namespace GrblPlotter
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private static readonly CultureInfo culture = CultureInfo.InvariantCulture;
 
-#region load_close
+        #region load_close
         public GCodeFromText()
         {
             this.Icon = Properties.Resources.Icon;
@@ -157,9 +158,9 @@ namespace GrblPlotter
             }
 
             if (!Properties.Settings.Default.createTextHersheySelect)
-            {   RbFont2.PerformClick();  }
+            { RbFont2.PerformClick(); }
             else
-            {   RbFont1_CheckedChanged(null, null); }
+            { RbFont1_CheckedChanged(null, null); }
 
             tBText.Text = Properties.Settings.Default.createTextFontText;
             tBText.Invalidate();
@@ -204,20 +205,21 @@ namespace GrblPlotter
         }
 
         private void TextForm_FormClosing(object sender, FormClosingEventArgs e)
-        {   SaveSettings();
+        {
+            SaveSettings();
             Logger.Trace("++++++ GCodeFromText STOP ++++++");
         }
-#endregion
+        #endregion
         private void SaveSettings()
         {
             Properties.Settings.Default.locationTextForm = Location;
             Properties.Settings.Default.createTextSystemFont = textFont;
-			Properties.Settings.Default.createTextSystemFontSize = textFont.Size;
+            Properties.Settings.Default.createTextSystemFontSize = textFont.Size;
             Properties.Settings.Default.createTextFontColor = ColorTranslator.ToHtml(textColor);
             Properties.Settings.Default.Save();
         }
 
-#region form_controls
+        #region form_controls
         // get text, break it into chars, get path, etc... This event needs to be assigned in MainForm to poll text
         private void BtnApply_Click(object sender, EventArgs e)     // in MainForm:  _text_form.btnApply.Click += getGCodeFromText;
         { CreateText(); }
@@ -535,7 +537,7 @@ namespace GrblPlotter
         {
             try
             {
-                if ((textFont.Size != null) && (textFont.FontFamily != null))
+                if ((textFont != null) && (textFont.Size != null) && (textFont.FontFamily != null))
                     Graphic.SetFont(textFont);
                 else
                 {
@@ -545,7 +547,7 @@ namespace GrblPlotter
 
                 RectangleF b = Graphic.GetTextBounds(GetWrappedText(), StringAlignment.Near);
                 LblInfoSize.Text = string.Format("{0} pt", textFont.Size);
-			//	Properties.Settings.Default.createTextSystemFontSize = textFont.Size;
+                //	Properties.Settings.Default.createTextSystemFontSize = textFont.Size;
 
                 LblInfoWidth.Text = string.Format("{0,9:0.00}", b.Width);
                 LblInfoHeight.Text = string.Format("{0,9:0.00}", b.Height);

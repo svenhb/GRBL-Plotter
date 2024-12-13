@@ -133,7 +133,7 @@
     <value>在X轴上镜像</value>
   </data>
   <data name="btnRotateRight.ToolTip" xml:space="preserve">
-    <value>Повернуть изображение на 90 ° по часовой стрелке</value>
+    <value>将图像顺时针旋转图片90°</value>
   </data>
   <data name="btnRotateLeft.ToolTip" xml:space="preserve">
     <value>将图像逆时针旋转90°</value>
@@ -265,7 +265,7 @@
     <value>直方图均衡</value>
   </data>
   <data name="cBPosterize.Text" xml:space="preserve">
-    <value>后发化</value>
+    <value>色调分离</value>
   </data>
   <data name="cBResolutionPenWidth.Text" xml:space="preserve">
     <value>分辨率的笔宽</value>
@@ -625,5 +625,151 @@
   </data>
   <data name="tabPage3.Text" xml:space="preserve">
     <value>矢量化</value>
+  </data>
+  <data name="lblGamma.Text" xml:space="preserve">
+    <value>123</value>
+  </data>
+  <data name="lblContrast.Text" xml:space="preserve">
+    <value>123</value>
+  </data>
+  <data name="lblBrightness.Text" xml:space="preserve">
+    <value>123</value>
+  </data>
+  <data name="RbChannelK.Text" xml:space="preserve">
+    <value>K</value>
+  </data>
+  <data name="RbChannelY.Text" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="RbChannelM.Text" xml:space="preserve">
+    <value>M</value>
+  </data>
+  <data name="RbChannelC.Text" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="RbChannelB.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="RbChannelG.Text" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="RbChannelR.Text" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="button3.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="GbColorReplacingMode.Text" xml:space="preserve">
+    <value>颜色替换模式</value>
+  </data>
+  <data name="LblExceptionValue.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="GbColorReduction.Text" xml:space="preserve">
+    <value>颜色还原</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="GbConversionWizzard.Text" xml:space="preserve">
+    <value>转换向导</value>
+  </data>
+  <data name="lblCFB.Text" xml:space="preserve">
+    <value>123</value>
+  </data>
+  <data name="lblCFG.Text" xml:space="preserve">
+    <value>123</value>
+  </data>
+  <data name="lblCFR.Text" xml:space="preserve">
+    <value>123</value>
+  </data>
+  <data name="lblSaturation.Text" xml:space="preserve">
+    <value>123</value>
+  </data>
+  <data name="RbPixelArtShape.Text" xml:space="preserve">
+    <value>画一个形状</value>
+  </data>
+  <data name="radioButton1.Text" xml:space="preserve">
+    <value>圆圈</value>
+  </data>
+  <data name="label32.Text" xml:space="preserve">
+    <value>点/形状之间的间隙</value>
+  </data>
+  <data name="BtnPixelArtCalcSize.Text" xml:space="preserve">
+    <value>计算宽度和高度</value>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>点工具直径/形状宽度</value>
+  </data>
+  <data name="label30.Text" xml:space="preserve">
+    <value>显示的颜色顺序 = G 代码中的刀具更换顺序</value>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>每像素点/形状</value>
+  </data>
+  <data name="RbPixelArtPbP.Text" xml:space="preserve">
+    <value>画一个点</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>逐像素绘制 </value>
+  </data>
+  <data name="GbPixelArt.Text" xml:space="preserve">
+    <value>像素艺术</value>
+  </data>
+  <data name="tabPage5.Text" xml:space="preserve">
+    <value>像素艺术</value>
+  </data>
+  <data name="RbPixelArt.Text" xml:space="preserve">
+    <value>像素艺术</value>
+  </data>
+  <data name="label29.ToolTip" xml:space="preserve">
+    <value>X 和 Y 方向上每像素的点数。
+“2”结果为 2x2 = 4 点。
+“3”结果为 3x3 = 9 点。</value>
+  </data>
+  <data name="CbSortInvert.Text" xml:space="preserve">
+    <value>颠倒顺序</value>
+  </data>
+  <data name="RbSortToolsByNumber.Text" xml:space="preserve">
+    <value>按工具编号排序</value>
+  </data>
+  <data name="RbSortToolsByPixel.Text" xml:space="preserve">
+    <value>按像素数量排序</value>
+  </data>
+  <data name="CbPixelArtShapeFill.Text" xml:space="preserve">
+    <value>填充形状</value>
+  </data>
+  <data name="label33.Text" xml:space="preserve">
+    <value>笔径</value>
+  </data>
+  <data name="RbPixelArtDrawShapeRect.Text" xml:space="preserve">
+    <value>长方形</value>
+  </data>
+  <data name="RbPixelArtDrawShapeCircle.Text" xml:space="preserve">
+    <value>圆圈</value>
+  </data>
+  <data name="GbOutputSizeSet.Text" xml:space="preserve">
+    <value>输出大小（单位）</value>
+  </data>
+  <data name="label37.Text" xml:space="preserve">
+    <value>高度</value>
+  </data>
+  <data name="label36.Text" xml:space="preserve">
+    <value>宽度</value>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>G代码</value>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>图片</value>
+  </data>
+  <data name="GbOutputSizeShow.Text" xml:space="preserve">
+    <value>像素艺术维度</value>
   </data>
 </root>

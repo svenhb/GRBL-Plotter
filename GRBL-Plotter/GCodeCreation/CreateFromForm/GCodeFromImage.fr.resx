@@ -614,4 +614,93 @@ Sinon, cela commence sur le bord inférieur gauche.</value>
   <data name="RbGrayscalePattern.Text" xml:space="preserve">
     <value>Traçage de ligne</value>
   </data>
+  <data name="GbColorReplacingMode.Text" xml:space="preserve">
+    <value>Mode de remplacement de couleur</value>
+  </data>
+  <data name="RbPixelArtShape.Text" xml:space="preserve">
+    <value>Dessiner une forme</value>
+  </data>
+  <data name="radioButton1.Text" xml:space="preserve">
+    <value>Cercle</value>
+  </data>
+  <data name="label32.Text" xml:space="preserve">
+    <value>Espace entre les points/formes</value>
+  </data>
+  <data name="BtnPixelArtCalcSize.Text" xml:space="preserve">
+    <value>Calculer la largeur et la hauteur</value>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>Diamètre de l'outil de point/largeur de forme</value>
+  </data>
+  <data name="label30.Text" xml:space="preserve">
+    <value>Ordre des couleurs affiché = ordre de changement d'outil dans le G-Code</value>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>Points/formes par pixel</value>
+  </data>
+  <data name="RbPixelArtPbP.Text" xml:space="preserve">
+    <value>Dessine un point</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Dessinez pixel par pixel </value>
+  </data>
+  <data name="GbPixelArt.Text" xml:space="preserve">
+    <value>Pixel art</value>
+  </data>
+  <data name="tabPage5.Text" xml:space="preserve">
+    <value>Pixel art</value>
+  </data>
+  <data name="RbPixelArt.Text" xml:space="preserve">
+    <value>Pixel art</value>
+  </data>
+  <data name="GbColorReduction.Text" xml:space="preserve">
+    <value>Réduction de couleur</value>
+  </data>
+  <data name="GbConversionWizzard.Text" xml:space="preserve">
+    <value>Assistant de conversion</value>
+  </data>
+  <data name="label29.ToolTip" xml:space="preserve">
+    <value>Points par pixel dans les directions X et Y.
+'2' donne 2x2 = 4 points.
+'3' donne 3x3 = 9 points.</value>
+  </data>
+  <data name="CbSortInvert.Text" xml:space="preserve">
+    <value>Inverser l'ordre</value>
+  </data>
+  <data name="RbSortToolsByNumber.Text" xml:space="preserve">
+    <value>Trier par numéro d'outil</value>
+  </data>
+  <data name="RbSortToolsByPixel.Text" xml:space="preserve">
+    <value>Trier par quantité de pixels</value>
+  </data>
+  <data name="CbPixelArtShapeFill.Text" xml:space="preserve">
+    <value>Remplir la forme</value>
+  </data>
+  <data name="label33.Text" xml:space="preserve">
+    <value>Diamètre du stylo</value>
+  </data>
+  <data name="RbPixelArtDrawShapeRect.Text" xml:space="preserve">
+    <value>Rectangle</value>
+  </data>
+  <data name="RbPixelArtDrawShapeCircle.Text" xml:space="preserve">
+    <value>Cercle</value>
+  </data>
+  <data name="GbOutputSizeSet.Text" xml:space="preserve">
+    <value>Taille de sortie en unités</value>
+  </data>
+  <data name="label37.Text" xml:space="preserve">
+    <value>Hauteur</value>
+  </data>
+  <data name="label36.Text" xml:space="preserve">
+    <value>Largeur</value>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>Code G</value>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="GbOutputSizeShow.Text" xml:space="preserve">
+    <value>Dimension Pixel Art</value>
+  </data>
 </root>

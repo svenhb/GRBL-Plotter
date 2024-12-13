@@ -24,6 +24,7 @@
  * 2022-03-22 bug fix use cBResolutionPenWidth
  * 2022-03-30 ConvertColorMap add ToolTable.IndexUse()
  * 2023-01-17 l:63 f:GenerateGCodePreset if (GcodeDefaults.ZEnable) Gcode.JobStart
+ * 2024-12-06 l:128 f:GenerateGCodeHorizontal add option for pixel art
 */
 
 using System;
@@ -70,17 +71,20 @@ namespace GrblPlotter
             cncCoordLastZ = cncCoordZ = Gcode.GcodeZUp;
         }
 
-        private void GenerateGCodeHorizontal(bool withToolTable)
+        private void GenerateGCodeHorizontal(bool withToolTable, bool applyPixelArt)
         {
-            Logger.Info("▼▼▼ GenerateGCodeHorizontal (vectorize)");
-            if (resultImage == null) return;          //if no image, do nothing
-
+            if (resultImage == null)
+            {
+                Logger.Warn("▼▼▼ GenerateGCodeHorizontal   resultImage == null");
+                return;          //if no image, do nothing
+            }
             float resolX = (float)resoDesiredX;// (float)nUDReso.Value;
             float resolY = (float)resoDesiredX;// (float)nUDReso.Value;
             int pixelCount = resultImage.Width * resultImage.Height;
             int pixelProcessed = 0;
             int percentDone;// = 0;
             GenerateGCodePreset(0, resolY * (resultImage.Height - 1)); // 1st position
+            Logger.Info("▼▼▼ GenerateGCodeHorizontal (vectorize)  pixelCount:{0}", pixelCount);
 
             //////////////////////////////////////////////
             // Generate Gcode lines by Horozontal scanning
@@ -88,6 +92,7 @@ namespace GrblPlotter
             #region go through all pixels and setColorMap
             int positionY = resultImage.Height - 1;     //top tile
             int positionX = 0;                          //Left pixel
+            Logger.Trace("    SetColorMap resultImage:{0} {1}", resultImage.Width, resultImage.Height);
             while (positionY >= 0)
             {   //Y coordinate
                 cncCoordY = resolY * (float)positionY;
@@ -112,6 +117,8 @@ namespace GrblPlotter
                 if ((percentDone % 10) == 0)
                     Refresh();
             }
+            Logger.Trace("    SetColorMap colorMap:{0}", colorMap.Count);
+
             if ((myToolNumber >= 0) && (colorMap.ContainsKey(myToolNumber)))
                 colorMap[myToolNumber][0].Add(colorEnd);
 
@@ -122,13 +129,24 @@ namespace GrblPlotter
             Gcode.ReduceGCode = true;
             if (withToolTable)
             {
-                ToolTable.SortByPixelCount(false);      // sort by color area (max. first)
-                ConvertColorMap(resolX);                // generate GCode from coleccted pixel positions
+             //   ToolTable.SortByPixelCount(false);      // sort by color area (max. first)
+                if (RbSortToolsByPixel.Checked)
+                    ToolTable.SortByPixelCount(CbSortInvert.Checked);
+                else
+                    ToolTable.SortByToolNR(CbSortInvert.Checked);
+
+                if (applyPixelArt)
+					ConvertColorMapPixelArt();   	// generate GCode from coleccted pixel positions	- GCodeFromImageCreatePixel.cs
+				else
+					ConvertColorMap(resolX);          	// generate GCode from coleccted pixel positions
             }
             else
             {
                 SortByGrayValue(false);
-                ConvertColorMapBW(resolX);                // generate GCode from coleccted pixel positions
+				if (applyPixelArt)
+					ConvertColorMapBWPixelArt(); 	// generate GCode from coleccted pixel positions	- GCodeFromImageCreatePixel.cs
+				else
+					ConvertColorMapBW(resolX);         	// generate GCode from coleccted pixel positions
             }
 
             Gcode.PenUp(finalString, "");                             // pen up

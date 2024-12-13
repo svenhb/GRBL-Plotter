@@ -157,10 +157,10 @@
     <value>在行前添加暂停</value>
   </data>
   <data name="cBPauseWord.Text" xml:space="preserve">
-    <value>在词前添加暂停</value>
+    <value>在单词前添加暂停</value>
   </data>
   <data name="cBPauseChar.Text" xml:space="preserve">
-    <value>在信件前添加暂停</value>
+    <value>在字母前添加暂停</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>设置SVG导入中的其他G代码设置</value>
@@ -169,7 +169,7 @@
     <value>从文本创建G代码</value>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
-    <value>文字创作</value>
+    <value>创建文本</value>
   </data>
   <data name="tabPage2.Text" xml:space="preserve">
     <value>字体信息</value>
@@ -184,13 +184,13 @@
     <value>工具：</value>
   </data>
   <data name="RbAlign3.Text" xml:space="preserve">
-    <value>向右</value>
+    <value>靠右</value>
   </data>
   <data name="RbAlign2.Text" xml:space="preserve">
-    <value>中央</value>
+    <value>居中</value>
   </data>
   <data name="RbAlign1.Text" xml:space="preserve">
-    <value>剩下</value>
+    <value>靠左</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>G代码</value>
@@ -199,7 +199,7 @@
     <value>将文本插入 2D 视图（在位置 0;0）</value>
   </data>
   <data name="CbOutline.Text" xml:space="preserve">
-    <value>大纲</value>
+    <value>轮廓</value>
   </data>
   <data name="CbOutline.ToolTip" xml:space="preserve">
     <value>用影线填充图案填充字母，在[设置-图形导入-路径导入-路径修改]中定义</value>
@@ -253,7 +253,7 @@
     <value>10000.00</value>
   </data>
   <data name="LblInfoHeight.ToolTip" xml:space="preserve">
-    <value>使用当前字体大小和自动换行设置创建的 G 代码的文本高度</value>
+    <value>使用当前字体大小和自动换行设置创建的G代码的文本高度</value>
   </data>
   <data name="linkLabel1.Text" xml:space="preserve">
     <value>免费字体</value>
@@ -265,16 +265,16 @@
     <value>设置所需的文本宽度并调整字体大小以达到它。</value>
   </data>
   <data name="NUDHeight.ToolTip" xml:space="preserve">
-    <value>设置所需的文本高度并调整字体大小以达到它。</value>
+    <value>设置所需的文本高度并调整字体大小以达到该高度。</value>
   </data>
   <data name="BtnSetWidth.Text" xml:space="preserve">
-    <value>放</value>
+    <value>设置</value>
   </data>
   <data name="BtnSetWidth.ToolTip" xml:space="preserve">
     <value>计算并设置字体大小以达到给定的文本宽度</value>
   </data>
   <data name="BtnSetHeight.Text" xml:space="preserve">
-    <value>放</value>
+    <value>设置</value>
   </data>
   <data name="BtnSetHeight.ToolTip" xml:space="preserve">
     <value>计算并设置字体大小以达到给定的文本高度</value>
@@ -283,12 +283,33 @@
     <value>将此窗口的设置保存为 INI 文件</value>
   </data>
   <data name="BtnHelp.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="cBImportGraphicNoise.Text" xml:space="preserve">
     <value>添加噪音</value>
   </data>
   <data name="cBImportGraphicNoise.ToolTip" xml:space="preserve">
     <value>生成摆动线，在【设置-图形导入-路径导入-路径修改】中设置</value>
+  </data>
+  <data name="button7.Text" xml:space="preserve">
+    <value>LFF</value>
+  </data>
+  <data name="button6.Text" xml:space="preserve">
+    <value>SVG2</value>
+  </data>
+  <data name="button5.Text" xml:space="preserve">
+    <value>LFF4</value>
+  </data>
+  <data name="button4.Text" xml:space="preserve">
+    <value>LFF3</value>
+  </data>
+  <data name="button3.Text" xml:space="preserve">
+    <value>LFF2</value>
+  </data>
+  <data name="button2.Text" xml:space="preserve">
+    <value>LFF1</value>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>SVG1</value>
   </data>
 </root>

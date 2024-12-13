@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="cBToolSet.Text" xml:space="preserve">
-    <value>连接字母（仅限hershey）</value>
+    <value>从工具表中获取值</value>
   </data>
   <data name="nUDToolOverlap.ToolTip" xml:space="preserve">
-    <value>在一个单词内，将字母的最后一个点与下一个字母的第一个点连接</value>
+    <value>两个路径之间的距离（当做一个口袋）作为工具直径。100% =工具直径步宽。</value>
   </data>
   <data name="label16.Text" xml:space="preserve">
-    <value>交叠</value>
+    <value>重叠百分比</value>
   </data>
   <data name="label16.ToolTip" xml:space="preserve">
     <value>两条路径之间的距离（做一个腔时）为刀具直径。 100％=刀具直径步长。</value>
@@ -139,7 +139,7 @@
     <value>每遍深度（不是最终深度）</value>
   </data>
   <data name="nUDToolDiameter.ToolTip" xml:space="preserve">
-    <value>刀具直径（刀具，激光，钢笔）以计算路径偏移</value>
+    <value>用于计算偏移路径偏移的刀具直径</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>直径</value>
@@ -154,10 +154,10 @@
     <value>深度（Z）</value>
   </data>
   <data name="label19.Text" xml:space="preserve">
-    <value>Y维</value>
+    <value>Y-尺寸</value>
   </data>
   <data name="label18.Text" xml:space="preserve">
-    <value>X维</value>
+    <value>X-尺寸</value>
   </data>
   <data name="label17.Text" xml:space="preserve">
     <value>半径</value>
@@ -169,22 +169,22 @@
     <value>长方形</value>
   </data>
   <data name="rBShape3.Text" xml:space="preserve">
-    <value>圈</value>
+    <value>圆</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>形状</value>
   </data>
   <data name="rBToolpath2.Text" xml:space="preserve">
-    <value>外型</value>
+    <value>外形</value>
   </data>
   <data name="cBToolpathPocket.Text" xml:space="preserve">
     <value>创建口袋</value>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
-    <value>外型尺寸</value>
+    <value>尺寸</value>
   </data>
   <data name="rBToolpath3.Text" xml:space="preserve">
-    <value>里面的形状</value>
+    <value>形状内部</value>
   </data>
   <data name="rBToolpath1.Text" xml:space="preserve">
     <value>在形状上（雕刻）</value>
@@ -199,7 +199,7 @@
     <value>起源</value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
-    <value>关</value>
+    <value>关闭</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>从形状创建G代码</value>
@@ -220,7 +220,7 @@
     <value>斜角</value>
   </data>
   <data name="groupBox6.Text" xml:space="preserve">
-    <value>边缘形状</value>
+    <value>形状边缘</value>
   </data>
   <data name="groupBox7.Text" xml:space="preserve">
     <value>深度</value>
@@ -247,7 +247,7 @@
     <value>半径在Z-Y顶部，宽度在X上</value>
   </data>
   <data name="tabPage3.Text" xml:space="preserve">
-    <value>四舍五入</value>
+    <value>四舍五入Z</value>
   </data>
   <data name="cBMoveTo00.Text" xml:space="preserve">
     <value>最终移到0； 0</value>
@@ -256,10 +256,10 @@
     <value>Z方向的半径</value>
   </data>
   <data name="nUDRZWidth.ToolTip" xml:space="preserve">
-    <value>舍入宽度</value>
+    <value>圆角宽度</value>
   </data>
   <data name="nUDRZStep.ToolTip" xml:space="preserve">
-    <value>最高允许偏差到1/4圆单位</value>
+    <value>最大允许偏差到1/4圆单位</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>圆柱铣刀的路径计算</value>
@@ -274,7 +274,7 @@
     <value>工具：</value>
   </data>
   <data name="CbInsertCode.Text" xml:space="preserve">
-    <value>将形状插入 2D 视图（在位置 0;0）</value>
+    <value>将形状插入到 2D 视图（在位置 0;0）</value>
   </data>
   <data name="BtnDeleteShape.Text" xml:space="preserve">
     <value>删除</value>
@@ -283,7 +283,7 @@
     <value>删除选定的形状</value>
   </data>
   <data name="BtnApplyShape.Text" xml:space="preserve">
-    <value>申请</value>
+    <value>应用</value>
   </data>
   <data name="BtnApplyShape.ToolTip" xml:space="preserve">
     <value>应用所选形状的设置</value>
@@ -305,5 +305,29 @@
   </data>
   <data name="cBNoZUp.ToolTip" xml:space="preserve">
     <value>每次通过后不要将 Z 升高到安全高度</value>
+  </data>
+  <data name="nUDToolSpindleSpeed.ToolTip" xml:space="preserve">
+    <value>主轴速度</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>主轴-Spd</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Feed-Z</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Feed-XY</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Z+</value>
+  </data>
+  <data name="button3.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="button3.ToolTip" xml:space="preserve">
+    <value>在线帮助</value>
+  </data>
+  <data name="CbShapeSelection.Text" xml:space="preserve">
+    <value>最后使用的</value>
   </data>
 </root>

@@ -627,4 +627,93 @@ Jinak začíná na levém dolním okraji.</value>
   <data name="RbGrayscalePattern.Text" xml:space="preserve">
     <value>Trasování čar</value>
   </data>
+  <data name="GbColorReplacingMode.Text" xml:space="preserve">
+    <value>Režim výměny barev</value>
+  </data>
+  <data name="RbPixelArtShape.Text" xml:space="preserve">
+    <value>Nakreslete tvar</value>
+  </data>
+  <data name="radioButton1.Text" xml:space="preserve">
+    <value>Kruh</value>
+  </data>
+  <data name="label32.Text" xml:space="preserve">
+    <value>Mezera mezi tečkami / tvary</value>
+  </data>
+  <data name="BtnPixelArtCalcSize.Text" xml:space="preserve">
+    <value>Vypočítejte šířku a výšku</value>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>Průměr / šířka tvaru bodového nástroje</value>
+  </data>
+  <data name="label30.Text" xml:space="preserve">
+    <value>Zobrazené pořadí barev = pořadí výměny nástroje v G-kódu</value>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>Body / tvary na pixel</value>
+  </data>
+  <data name="RbPixelArtPbP.Text" xml:space="preserve">
+    <value>Nakreslete tečku</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Kreslit pixel po pixelu </value>
+  </data>
+  <data name="GbPixelArt.Text" xml:space="preserve">
+    <value>Pixel art</value>
+  </data>
+  <data name="tabPage5.Text" xml:space="preserve">
+    <value>Pixel art</value>
+  </data>
+  <data name="RbPixelArt.Text" xml:space="preserve">
+    <value>Pixel art</value>
+  </data>
+  <data name="GbColorReduction.Text" xml:space="preserve">
+    <value>Redukce barev</value>
+  </data>
+  <data name="GbConversionWizzard.Text" xml:space="preserve">
+    <value>Průvodce převodem</value>
+  </data>
+  <data name="label29.ToolTip" xml:space="preserve">
+    <value>Počet bodů na pixel ve směru X a Y.
+„2“ znamená 2x2 = 4 tečky.
+„3“ znamená 3x3 = 9 bodů.</value>
+  </data>
+  <data name="CbSortInvert.Text" xml:space="preserve">
+    <value>Invertovat pořadí</value>
+  </data>
+  <data name="RbSortToolsByNumber.Text" xml:space="preserve">
+    <value>Seřadit podle čísla nástroje</value>
+  </data>
+  <data name="RbSortToolsByPixel.Text" xml:space="preserve">
+    <value>Seřadit podle počtu pixelů</value>
+  </data>
+  <data name="CbPixelArtShapeFill.Text" xml:space="preserve">
+    <value>Vyplňte tvar</value>
+  </data>
+  <data name="label33.Text" xml:space="preserve">
+    <value>Průměr pera</value>
+  </data>
+  <data name="RbPixelArtDrawShapeRect.Text" xml:space="preserve">
+    <value>Obdélník</value>
+  </data>
+  <data name="RbPixelArtDrawShapeCircle.Text" xml:space="preserve">
+    <value>Kruh</value>
+  </data>
+  <data name="GbOutputSizeSet.Text" xml:space="preserve">
+    <value>Výstupní velikost v jednotkách</value>
+  </data>
+  <data name="label37.Text" xml:space="preserve">
+    <value>Výška</value>
+  </data>
+  <data name="label36.Text" xml:space="preserve">
+    <value>Šířka</value>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>G-kód</value>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>Obrázek</value>
+  </data>
+  <data name="GbOutputSizeShow.Text" xml:space="preserve">
+    <value>Rozměr Pixel Art</value>
+  </data>
 </root>

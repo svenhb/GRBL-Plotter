@@ -219,4 +219,7 @@
   <data name="tabPage2.Text" xml:space="preserve">
     <value>二维码</value>
   </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>生成二维码GCode</value>
+  </data>
 </root>

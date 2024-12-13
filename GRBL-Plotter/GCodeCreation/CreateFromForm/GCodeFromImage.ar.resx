@@ -630,4 +630,93 @@
   <data name="tabPage3.Text" xml:space="preserve">
     <value>فيكتور</value>
   </data>
+  <data name="GbColorReplacingMode.Text" xml:space="preserve">
+    <value>وضع استبدال اللون</value>
+  </data>
+  <data name="RbPixelArtShape.Text" xml:space="preserve">
+    <value>ارسم شكلاً</value>
+  </data>
+  <data name="radioButton1.Text" xml:space="preserve">
+    <value>دائرة</value>
+  </data>
+  <data name="label32.Text" xml:space="preserve">
+    <value>الفجوة بين النقاط / الأشكال</value>
+  </data>
+  <data name="BtnPixelArtCalcSize.Text" xml:space="preserve">
+    <value>حساب العرض والارتفاع</value>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>قطر أداة النقطة / عرض الشكل</value>
+  </data>
+  <data name="label30.Text" xml:space="preserve">
+    <value>ترتيب الألوان الموضح = ترتيب تغيير الأداة في G-Code</value>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>النقاط / الأشكال لكل بكسل</value>
+  </data>
+  <data name="RbPixelArtPbP.Text" xml:space="preserve">
+    <value>ارسم نقطة</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>رسم بكسل بكسل </value>
+  </data>
+  <data name="GbPixelArt.Text" xml:space="preserve">
+    <value>فن البكسل</value>
+  </data>
+  <data name="tabPage5.Text" xml:space="preserve">
+    <value>فن البكسل</value>
+  </data>
+  <data name="RbPixelArt.Text" xml:space="preserve">
+    <value>فن البكسل</value>
+  </data>
+  <data name="GbColorReduction.Text" xml:space="preserve">
+    <value>تقليل اللون</value>
+  </data>
+  <data name="GbConversionWizzard.Text" xml:space="preserve">
+    <value>معالج التحويل</value>
+  </data>
+  <data name="label29.ToolTip" xml:space="preserve">
+    <value>نقاط لكل بكسل في اتجاه X وY.
+النتائج '2' إلى 2x2 = 4 نقاط.
+النتائج '3' إلى 3x3 = 9 نقاط.</value>
+  </data>
+  <data name="CbSortInvert.Text" xml:space="preserve">
+    <value>عكس الترتيب</value>
+  </data>
+  <data name="RbSortToolsByNumber.Text" xml:space="preserve">
+    <value>الترتيب حسب رقم الأداة</value>
+  </data>
+  <data name="RbSortToolsByPixel.Text" xml:space="preserve">
+    <value>فرز حسب كمية البكسل</value>
+  </data>
+  <data name="CbPixelArtShapeFill.Text" xml:space="preserve">
+    <value>ملء الشكل</value>
+  </data>
+  <data name="label33.Text" xml:space="preserve">
+    <value>قطر القلم</value>
+  </data>
+  <data name="RbPixelArtDrawShapeRect.Text" xml:space="preserve">
+    <value>المستطيل</value>
+  </data>
+  <data name="RbPixelArtDrawShapeCircle.Text" xml:space="preserve">
+    <value>دائرة</value>
+  </data>
+  <data name="GbOutputSizeSet.Text" xml:space="preserve">
+    <value>حجم الإخراج بالوحدات</value>
+  </data>
+  <data name="label37.Text" xml:space="preserve">
+    <value>ارتفاع</value>
+  </data>
+  <data name="label36.Text" xml:space="preserve">
+    <value>عرض</value>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>رمز G</value>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>صورة</value>
+  </data>
+  <data name="GbOutputSizeShow.Text" xml:space="preserve">
+    <value>البعد بكسل الفن</value>
+  </data>
 </root>

@@ -237,4 +237,10 @@
   <data name="BtnSaveIni.ToolTip" xml:space="preserve">
     <value>将此窗口的设置保存为 INI 文件</value>
   </data>
+  <data name="BtnHelp.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>生成二维码GCode</value>
+  </data>
 </root>

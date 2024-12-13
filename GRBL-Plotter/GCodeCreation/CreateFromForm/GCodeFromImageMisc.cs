@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
  * 2022-03-28  split code into ...Create and ...Outline
  * 2022-06-25 line 294 BtnShowSettings_Click add try catch
  * 2023-08-01 check if (!e.Bounds.IsEmpty)
+ * 2024-12-12 add controls to Dis/EnableControlEvents
 */
 
 using System;
@@ -134,6 +135,10 @@ namespace GrblPlotter
             tBGMax.Scroll -= ApplyColorCorrectionsEventScrollBar;
             tBBMin.Scroll -= ApplyColorCorrectionsEventScrollBar;
             tBBMax.Scroll -= ApplyColorCorrectionsEventScrollBar;
+        //    RbSortToolsByPixel.CheckedChanged -= ApplyColorCorrectionsEvent;
+        //    RbSortToolsByNumber.CheckedChanged -= ApplyColorCorrectionsEvent;
+        //    CbSortInvert.CheckedChanged -= ApplyColorCorrectionsEvent;
+
             cBGCodeFill.CheckedChanged -= ApplyColorCorrectionsEvent;
             cBGCodeOutline.CheckedChanged -= CbGCodeOutline_CheckedChanged;
             cBGCodeOutlineSmooth.CheckedChanged -= ApplyColorCorrectionsEvent;
@@ -158,13 +163,13 @@ namespace GrblPlotter
             nUDResoY.ValueChanged -= ApplyColorCorrectionsEvent;
             RbGrayscaleVector.CheckedChanged -= RbGrayscaleVector_CheckedChanged;
             RbGrayscalePattern.CheckedChanged -= RbGrayscaleVector_CheckedChanged;
+            RbPixelArt.CheckedChanged -= RbGrayscaleVector_CheckedChanged;
             tabControl2.SelectedIndexChanged -= TabControl2_SelectedIndexChanged;
             RbStartGrayS.CheckedChanged -= RbGrayZ_CheckedChanged;
             RbStartGrayZ.CheckedChanged -= RbGrayZ_CheckedChanged;
         }
         private void EnableControlEvents()
         {
-            preventEvent = false;
             tBarBrightness.Scroll += ApplyColorCorrectionsEventScrollBar;
             tBarContrast.Scroll += ApplyColorCorrectionsEventScrollBar;
             tBarGamma.Scroll += ApplyColorCorrectionsEventScrollBar;
@@ -177,6 +182,10 @@ namespace GrblPlotter
             tBGMax.Scroll += ApplyColorCorrectionsEventScrollBar;
             tBBMin.Scroll += ApplyColorCorrectionsEventScrollBar;
             tBBMax.Scroll += ApplyColorCorrectionsEventScrollBar;
+        //    RbSortToolsByPixel.CheckedChanged += ApplyColorCorrectionsEvent;
+        //    RbSortToolsByNumber.CheckedChanged += ApplyColorCorrectionsEvent;
+        //    CbSortInvert.CheckedChanged += ApplyColorCorrectionsEvent;
+
             cBGCodeFill.CheckedChanged += ApplyColorCorrectionsEvent;
             cBGCodeOutline.CheckedChanged += CbGCodeOutline_CheckedChanged;
             cBGCodeOutlineSmooth.CheckedChanged += ApplyColorCorrectionsEvent;
@@ -201,9 +210,11 @@ namespace GrblPlotter
             nUDResoY.ValueChanged += ApplyColorCorrectionsEvent;
             RbGrayscaleVector.CheckedChanged += RbGrayscaleVector_CheckedChanged;
             RbGrayscalePattern.CheckedChanged += RbGrayscaleVector_CheckedChanged;
+            RbPixelArt.CheckedChanged += RbGrayscaleVector_CheckedChanged;
             tabControl2.SelectedIndexChanged += TabControl2_SelectedIndexChanged;
             RbStartGrayS.CheckedChanged += RbGrayZ_CheckedChanged;
             RbStartGrayZ.CheckedChanged += RbGrayZ_CheckedChanged;
+            preventEvent = false;
         }
 
         private static bool redoColorAdjust = false;
@@ -332,7 +343,7 @@ namespace GrblPlotter
                 nUDWidth.Value = oldWidth;
                 edit = true;
             }
-            if (oldHeight != nUDHeight.Value)
+            else if (oldHeight != nUDHeight.Value)
             {
                 oldHeight = nUDHeight.Value;
                 if (cbLockRatio.Checked)
@@ -345,10 +356,12 @@ namespace GrblPlotter
                 nUDHeight.Value = oldHeight;
                 edit = true;
             }
-            if (edit)
-                ApplyColorCorrections("NudWidthHeight_ValueChanged");
             nUDWidth.ValueChanged += NudWidthHeight_ValueChanged;
             nUDHeight.ValueChanged += NudWidthHeight_ValueChanged;
+
+            if (edit)
+                ApplyColorCorrections("NudWidthHeight_ValueChanged");
+
             Refresh();
         }
 
@@ -907,12 +920,20 @@ namespace GrblPlotter
             if (RbGrayscaleVector.Checked)
             {
                 gBgcodeSelection.BackColor = Color.Yellow;
+                GbPixelArt.BackColor = Color.WhiteSmoke;
                 tabControl3.SelectedIndex = 1;
             }
-            else
+            else if (RbGrayscaleVector.Checked)
             {
                 gBgcodeSelection.BackColor = Color.WhiteSmoke;
+                GbPixelArt.BackColor = Color.WhiteSmoke;
                 tabControl3.SelectedIndex = 0;
+            }
+            else if (RbPixelArt.Checked)
+            {
+                gBgcodeSelection.BackColor = Color.WhiteSmoke;
+                GbPixelArt.BackColor = Color.Yellow;
+                tabControl3.SelectedIndex = 2;
             }
             tabControl3.SelectedIndexChanged += TabControl3_SelectedIndexChanged;
 

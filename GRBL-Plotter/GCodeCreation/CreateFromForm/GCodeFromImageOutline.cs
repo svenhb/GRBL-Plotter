@@ -83,6 +83,7 @@ namespace GrblPlotter
             abortCount = Width * Height;        // maximum pixels to trace
             int cnt = 1;
 
+        //    for (int y = Height-1; y >= 0; y--)
             for (int y = 0; y < Height; y++)
             {
                 isObjectLast = false; isObjectCur = false;
@@ -140,7 +141,7 @@ namespace GrblPlotter
                 if (cnt == 0) { start2 = next; searchDirLast = searchDirCur; }  // store 2nd point for stopping condition
 
                 // if ((Smooth > 0) || (searchDirLast != searchDirCur))
-                if (searchDirLast != searchDirCur)
+             //   if (searchDirLast != searchDirCur)
                     onePath.Add(new Point(last.X, last.Y));             // only store point when direction changed      
 
                 if (searchDirCur == -1)                                 // failure ?
@@ -164,6 +165,7 @@ namespace GrblPlotter
 
             if (shrinkPath)
                 ShrinkContour(onePath, penRadius);   // half width in pixels
+
             SimplifyContour(onePath, 0.2f);
 
             outlinePaths.Add(new List<PointF>(onePath));
