@@ -32,6 +32,8 @@
  * 2023-09-14 l:400 f:DrawMachineLimit() add toolTableOffsetX to show tool positions; issue #361
  * 2024-01-13 l:675 f:CreateMarkerArrow add try/catch
  * 2024-01-25 l:262 f:CreateDrawingPathFromGCode get markerSize from graphics dimension
+ * 2024-09-13 l:329 add p-word for G2/3
+ * 2024-12-09 l:282 f:CreateDrawingPathFromGCode add pixelArtEnable
 */
 
 using System;
@@ -108,7 +110,7 @@ namespace GrblPlotter
         /// <summary>
         /// add segement to drawing path 'PenUp' or 'PenDown' from old-xyz to new-xyz
         /// </summary>
-        private static bool CreateDrawingPathFromGCode(GcodeByLine newL, GcodeByLine oldL, PointF viewOffset)
+        private static bool CreateDrawingPathFromGCode(GcodeByLine newL, GcodeByLine oldL, PointF viewOffset, int pWord)
         {
             bool passLimit = false;
             bool zUp, zDown;
@@ -193,7 +195,7 @@ namespace GrblPlotter
                     }
                 }
 
-                if (newL.motionMode == 0 || newL.motionMode == 1)
+                if (newL.motionMode == 0 || newL.motionMode == 1 || passLimit)
                 {
                     bool otherAxis = (newL.actualPos.A != oldL.actualPos.A) || (newL.actualPos.B != oldL.actualPos.B) || (newL.actualPos.C != oldL.actualPos.C);
                     otherAxis = otherAxis || (newL.actualPos.U != oldL.actualPos.U) || (newL.actualPos.V != oldL.actualPos.V) || (newL.actualPos.W != oldL.actualPos.W);
@@ -276,6 +278,13 @@ namespace GrblPlotter
                             }
                             //        markerType = 4;
                         }
+
+                        if (pixelArtEnable)
+                        {
+                            markerType = 5;
+                            markerSize = (float)pixelArtDotWidth / 4;
+                            CreateMarker(pathPenDown, (XyPoint)newL.actualPos, markerSize * 2, markerType, false); // draw rect
+                        }
                         CreateMarker(pathPenDown, (XyPoint)newL.actualPos, markerSize, markerType, false);       // draw cross
                                                                                                                  //    if ((path == pathPenDown) && (pathActualDown != null))
                         if (pathActualDown != null)
@@ -315,16 +324,22 @@ namespace GrblPlotter
                     double aStart = (arcMove.angleStart * 180 / Math.PI);
                     double aDiff = (arcMove.angleDiff * 180 / Math.PI);
 
-                /*    if ((aDiff != 0) && (aDiff < 1) && (arcMove.radius > 1000))
-                    {   // just draw a line
-                        path.AddLine((float)oldL.actualPos.X + viewOffset.X, (float)oldL.actualPos.Y + viewOffset.Y, (float)newL.actualPos.X + viewOffset.X, (float)newL.actualPos.Y + viewOffset.Y);
-                        if ((path == pathPenDown) && (pathActualDown != null))
-                            pathActualDown.AddLine((float)oldL.actualPos.X + viewOffset.X, (float)oldL.actualPos.Y + viewOffset.Y, (float)newL.actualPos.X + viewOffset.X, (float)newL.actualPos.Y + viewOffset.Y);
-                    }
-                    else*/
+                    /*    if ((aDiff != 0) && (aDiff < 1) && (arcMove.radius > 1000))
+                        {   // just draw a line
+                            path.AddLine((float)oldL.actualPos.X + viewOffset.X, (float)oldL.actualPos.Y + viewOffset.Y, (float)newL.actualPos.X + viewOffset.X, (float)newL.actualPos.Y + viewOffset.Y);
+                            if ((path == pathPenDown) && (pathActualDown != null))
+                                pathActualDown.AddLine((float)oldL.actualPos.X + viewOffset.X, (float)oldL.actualPos.Y + viewOffset.Y, (float)newL.actualPos.X + viewOffset.X, (float)newL.actualPos.Y + viewOffset.Y);
+                        }
+                        else*/
                     {   // Draw real arc
                         if (arcMove.radius > 0)
                         {
+                            if (pWord > 1)
+                            {
+                                if (aDiff > 0) { aDiff = 360; }
+                                else { aDiff = -360; }
+                            }
+
                             path.AddArc((float)x1 + viewOffset.X, (float)y1 + viewOffset.Y, (float)r2, (float)r2, (float)aStart, (float)aDiff);
                             if ((path == pathPenDown) && (pathActualDown != null))
                                 pathActualDown.AddArc((float)x1 + viewOffset.X, (float)y1 + viewOffset.Y, (float)r2, (float)r2, (float)aStart, (float)aDiff);
@@ -398,7 +413,7 @@ namespace GrblPlotter
                 {
                     tmpTool = ToolTable.toolTableArray[i];
                     tmppos = tmpTool.Position;
-                    wx = tmppos.X - offsetX + (double)Properties.Settings.Default.toolTableOffsetX; 
+                    wx = tmppos.X - offsetX + (double)Properties.Settings.Default.toolTableOffsetX;
                     wy = tmppos.Y - offsetY + (double)Properties.Settings.Default.toolTableOffsetY;
                     try
                     {
@@ -578,8 +593,8 @@ namespace GrblPlotter
                 myFont.Dispose();
                 sFormat.Dispose();
             }
-			catch (Exception err)
-			{ 	Logger.Error(err, "AddBackgroundText failed {0} ", txt); }
+            catch (Exception err)
+            { Logger.Error(err, "AddBackgroundText failed {0} ", txt); }
         }
 
 
@@ -673,74 +688,74 @@ namespace GrblPlotter
             float pointToY3 = (float)(pos.Y + msize * Math.Sin(angle + 3 * aoff));
             float pointToX4 = (float)(pos.X + msize * Math.Cos(angle + 4 * aoff));
             float pointToY4 = (float)(pos.Y + msize * Math.Sin(angle + 4 * aoff));
-			
-			try
-			{
-				path.Reset();
-				// draw outline
-				path.StartFigure();
-				path.AddLine(pointToX, pointToY, pointToX1, pointToY1);
-				path.AddLine(pointToX1, pointToY1, pointToX2, pointToY2);
-				path.AddLine(pointToX2, pointToY2, pointToX3, pointToY3);
-				if (type > 0)
-				{
-					path.AddLine(pointToX3, pointToY3, pointToX4, pointToY4);
-					path.AddLine(pointToX4, pointToY4, pointToX, pointToY);     // square
-				}
-				else
-					path.AddLine(pointToX3, pointToY3, pointToX, pointToY);		// rhombus
-				path.CloseFigure();
-				// draw diagonal cross in center
-				float ssize = msize / 2;
-				if (type > 0)
-				{
-					path.StartFigure(); path.AddLine((float)pos.X - ssize, (float)pos.Y, (float)pos.X + ssize, (float)pos.Y);
-					path.StartFigure(); path.AddLine((float)pos.X, (float)pos.Y + ssize, (float)pos.X, (float)pos.Y - ssize);
-				}
-				else
-				{
-					ssize = msize / 3;
-					path.StartFigure(); path.AddLine((float)pos.X - ssize, (float)pos.Y - ssize, (float)pos.X + ssize, (float)pos.Y + ssize);
-					path.StartFigure(); path.AddLine((float)pos.X - ssize, (float)pos.Y + ssize, (float)pos.X + ssize, (float)pos.Y - ssize);
-				}
-			}
-			catch (Exception err)
-			{ 	Logger.Error(err, "CreateMarkerArrow failed "); }
+
+            try
+            {
+                path.Reset();
+                // draw outline
+                path.StartFigure();
+                path.AddLine(pointToX, pointToY, pointToX1, pointToY1);
+                path.AddLine(pointToX1, pointToY1, pointToX2, pointToY2);
+                path.AddLine(pointToX2, pointToY2, pointToX3, pointToY3);
+                if (type > 0)
+                {
+                    path.AddLine(pointToX3, pointToY3, pointToX4, pointToY4);
+                    path.AddLine(pointToX4, pointToY4, pointToX, pointToY);     // square
+                }
+                else
+                    path.AddLine(pointToX3, pointToY3, pointToX, pointToY);     // rhombus
+                path.CloseFigure();
+                // draw diagonal cross in center
+                float ssize = msize / 2;
+                if (type > 0)
+                {
+                    path.StartFigure(); path.AddLine((float)pos.X - ssize, (float)pos.Y, (float)pos.X + ssize, (float)pos.Y);
+                    path.StartFigure(); path.AddLine((float)pos.X, (float)pos.Y + ssize, (float)pos.X, (float)pos.Y - ssize);
+                }
+                else
+                {
+                    ssize = msize / 3;
+                    path.StartFigure(); path.AddLine((float)pos.X - ssize, (float)pos.Y - ssize, (float)pos.X + ssize, (float)pos.Y + ssize);
+                    path.StartFigure(); path.AddLine((float)pos.X - ssize, (float)pos.Y + ssize, (float)pos.X + ssize, (float)pos.Y - ssize);
+                }
+            }
+            catch (Exception err)
+            { Logger.Error(err, "CreateMarkerArrow failed "); }
         }
 
 
-		internal static DrawingProperties SetRulerDimension(DrawingProperties dP, bool allowSmaller=false)
-		{
-			bool update = false;
-			if (allowSmaller)
-			{
-				RulerDimension = dP;	
-				update = true;				
-			}
-			else
-			{
-				if (dP.minX < RulerDimension.minX) {RulerDimension.minX = dP.minX; update = true;}
-				if (dP.maxX > RulerDimension.maxX) {RulerDimension.maxX = dP.maxX; update = true;}
-				if (dP.minY < RulerDimension.minY) {RulerDimension.minY = dP.minY; update = true;}
-				if (dP.maxY > RulerDimension.maxY) {RulerDimension.maxY = dP.maxY; update = true;}
-			}
-			
-			if (update)
-				CreateRuler(pathRuler, RulerDimension);
+        internal static DrawingProperties SetRulerDimension(DrawingProperties dP, bool allowSmaller = false)
+        {
+            bool update = false;
+            if (allowSmaller)
+            {
+                RulerDimension = dP;
+                update = true;
+            }
+            else
+            {
+                if (dP.minX < RulerDimension.minX) { RulerDimension.minX = dP.minX; update = true; }
+                if (dP.maxX > RulerDimension.maxX) { RulerDimension.maxX = dP.maxX; update = true; }
+                if (dP.minY < RulerDimension.minY) { RulerDimension.minY = dP.minY; update = true; }
+                if (dP.maxY > RulerDimension.maxY) { RulerDimension.maxY = dP.maxY; update = true; }
+            }
+
+            if (update)
+                CreateRuler(pathRuler, RulerDimension);
 
             return RulerDimension;
         }
-		
-		
+
+
         private static readonly object lockObject = new object();
 
         // Add ruler with division
-        internal static void CreateRuler(GraphicsPath path, DrawingProperties dP, bool finest=false)
+        internal static void CreateRuler(GraphicsPath path, DrawingProperties dP, bool finest = false)
         {
             if (path == null)
             { Logger.Error("CreateRuler, path=null"); return; }
 
-        //    Logger.Info("CreateRuler minX:{0}  maxX:{1}",dP.minY, dP.maxX);
+            //    Logger.Info("CreateRuler minX:{0}  maxX:{1}",dP.minY, dP.maxX);
 
             path.Reset();
             pathGrid1.Reset();
@@ -909,9 +924,19 @@ namespace GrblPlotter
                     path.AddLine(centerX - dimension, centerY, centerX, centerY - dimension);
                     path.CloseFigure();
                 }
-                else							// circle
+                else if (style == 4)  	    	// circle
                 {
                     path.StartFigure(); path.AddArc(centerX - dimension, centerY - dimension, 2 * dimension, 2 * dimension, 0, 360);
+                }
+                else							// rect
+                {
+                    path.StartFigure();
+                    path.AddLine(centerX - dimension, centerY + dimension, centerX + dimension, centerY + dimension);
+                    path.AddLine(centerX + dimension, centerY + dimension, centerX + dimension, centerY - dimension);
+
+                    path.AddLine(centerX + dimension, centerY - dimension, centerX - dimension, centerY - dimension);
+                    path.AddLine(centerX - dimension, centerY - dimension, centerX - dimension, centerY + dimension);
+                    path.CloseFigure();
                 }
             }
         }
@@ -951,7 +976,7 @@ namespace GrblPlotter
 
             //           createRuler(pathRuler, drawingSize.minX, drawingSize.maxX, drawingSize.minY, drawingSize.maxY);
             //CreateRuler(pathRuler, drawingSize);
-			SetRulerDimension(drawingSize, true);
+            SetRulerDimension(drawingSize, true);
 
             if (markerSize <= 0)
                 markerSize = (float)((double)Properties.Settings.Default.gui2DSizeTool / (500 / xyzSize.dimy));

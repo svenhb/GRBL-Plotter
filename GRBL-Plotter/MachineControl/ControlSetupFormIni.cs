@@ -77,7 +77,23 @@ namespace GrblPlotter
             {"CSV Z column",    "importCSVColumnZ"},
             {"CSV Z scale",     "importCSVScaleZ"},
             {"CSV Z enable",    "importCSVProzessZ"},
-            {"CSV connect",     "importCSVProzessAsLine"}
+            {"CSV connect",     "importCSVProzessAsLine"},
+			
+			{"Image PDNJason only visible layers",	"importPDNLayerVisible"},
+			{"Image PDNJason image resolution",		"importPDNDpi"},
+			{"Image transparency detection",		"importVectorizeDetectTransparency"},
+			{"Image detection threshold",			"importVectorizeThreshold"},
+			{"Image invert result",	"importVectorizeInvertResult"},
+			{"Image optimize 1",	"importVectorizeOptimize1"},
+			{"Image optimize 2",	"importVectorizeOptimize2"},
+			{"Image optimize 3",	"importVectorizeOptimize3"},
+			{"Image optimize 4",	"importVectorizeOptimize4"},
+			{"Image smoothing",		"importVectorizeSmoothCycles"},
+			{"Image format png",	"importVectorizeTypePng"},
+			{"Image format gif",	"importVectorizeTypeGif"},
+			{"Image format jpg",	"importVectorizeTypeJpg"},
+			{"Image format bmp",	"importVectorizeTypeBmp"},
+			{"Image format clipboard","importVectorizeFromClipboard"}
         };
         internal static string sectionSetupSvgDxfCsv = "Graphic Format";
 

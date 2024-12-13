@@ -344,7 +344,7 @@
     <value>插</value>
   </data>
   <data name="CbNewStepWidth.Text" xml:space="preserve">
-    <value>个人步幅</value>
+    <value>单步宽</value>
   </data>
   <data name="label12.Text" xml:space="preserve">
     <value>注意：对于铣削高度图，最大。值应等于或小于零。</value>
@@ -357,5 +357,17 @@
   </data>
   <data name="RbScanXY.ToolTip" xml:space="preserve">
     <value>逐行之字形</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="radioButton2.Text" xml:space="preserve">
+    <value>YX</value>
+  </data>
+  <data name="CbMoveXY.Text" xml:space="preserve">
+    <value>XY</value>
   </data>
 </root>

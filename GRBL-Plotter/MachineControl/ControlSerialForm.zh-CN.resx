@@ -124,10 +124,10 @@
     <value>选择速度</value>
   </data>
   <data name="btnScanPort.Text" xml:space="preserve">
-    <value>扫描端口</value>
+    <value>扫描串口</value>
   </data>
   <data name="btnScanPort.ToolTip" xml:space="preserve">
-    <value>扫描空闲端口</value>
+    <value>扫描空闲串口</value>
   </data>
   <data name="btnClear.Text" xml:space="preserve">
     <value>清除日志</value>
@@ -195,7 +195,7 @@
     <value>查看启动块</value>
   </data>
   <data name="lblSrPos.ToolTip" xml:space="preserve">
-    <value>工作岗位</value>
+    <value>工作位</value>
   </data>
   <data name="lblSrBf.ToolTip" xml:space="preserve">
     <value>缓冲区状态（需要通过$ 10 = 2启用）</value>
@@ -246,5 +246,138 @@ S =主轴CW，
 C =主轴CCW，
 F =防洪线，
 M =冷却液</value>
+  </data>
+  <data name="cbBaud.Items" xml:space="preserve">
+    <value>9600</value>
+  </data>
+  <data name="cbBaud.Items1" xml:space="preserve">
+    <value>19200</value>
+  </data>
+  <data name="cbBaud.Items2" xml:space="preserve">
+    <value>38400</value>
+  </data>
+  <data name="cbBaud.Items3" xml:space="preserve">
+    <value>57600</value>
+  </data>
+  <data name="cbBaud.Items4" xml:space="preserve">
+    <value>115200</value>
+  </data>
+  <data name="cbBaud.Items5" xml:space="preserve">
+    <value>250000</value>
+  </data>
+  <data name="cbBaud.Text" xml:space="preserve">
+    <value>115200</value>
+  </data>
+  <data name="BtnOpenPortSerial.Text" xml:space="preserve">
+    <value>打开</value>
+  </data>
+  <data name="BtnOpenPortSerial.ToolTip" xml:space="preserve">
+    <value>以所选速度打开所选COM端口</value>
+  </data>
+  <data name="btnGRBLCommand0.Text" xml:space="preserve">
+    <value>$</value>
+  </data>
+  <data name="btnGRBLCommand1.Text" xml:space="preserve">
+    <value>$$</value>
+  </data>
+  <data name="btnGRBLCommand2.Text" xml:space="preserve">
+    <value>$#</value>
+  </data>
+  <data name="btnGRBLCommand3.Text" xml:space="preserve">
+    <value>$N</value>
+  </data>
+  <data name="btnGRBLCommand4.Text" xml:space="preserve">
+    <value>$X</value>
+  </data>
+  <data name="lblSrPos.Text" xml:space="preserve">
+    <value>0.000,-10.000,5.000
+0.000</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Bf:</value>
+  </data>
+  <data name="lblSrBf.Text" xml:space="preserve">
+    <value>15,128</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>FS:</value>
+  </data>
+  <data name="lblSrFS.Text" xml:space="preserve">
+    <value>500,8000</value>
+  </data>
+  <data name="lblSrPn.Text" xml:space="preserve">
+    <value>XYZPDHRS</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Pn:</value>
+  </data>
+  <data name="lblSrOv.Text" xml:space="preserve">
+    <value>100,100,100</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Ov:</value>
+  </data>
+  <data name="lblSrA.Text" xml:space="preserve">
+    <value>SFM</value>
+  </data>
+  <data name="LblAccessoryState.Text" xml:space="preserve">
+    <value>A:</value>
+  </data>
+  <data name="lblSrLn.Text" xml:space="preserve">
+    <value>99999</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Ln:</value>
+  </data>
+  <data name="btnGRBLReset.Text" xml:space="preserve">
+    <value>重置</value>
+  </data>
+  <data name="btnGRBLHardReset.Text" xml:space="preserve">
+    <value>RST</value>
+  </data>
+  <data name="btnGRBLCmndParser.Text" xml:space="preserve">
+    <value>$G</value>
+  </data>
+  <data name="btnGRBLCmndBuild.Text" xml:space="preserve">
+    <value>$I</value>
+  </data>
+  <data name="cBCommand.Items1" xml:space="preserve">
+    <value>G90 G1 X1 F500（绝对）</value>
+  </data>
+  <data name="cBCommand.Items2" xml:space="preserve">
+    <value>G91 G1 X1 F500（相对）</value>
+  </data>
+  <data name="cBCommand.Items3" xml:space="preserve">
+    <value>$32=1（激光模式开启）</value>
+  </data>
+  <data name="cBCommand.Items4" xml:space="preserve">
+    <value>$32=0（激光模式关闭）</value>
+  </data>
+  <data name="btnCheckGRBLResult.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="TbEthernetIP.Text" xml:space="preserve">
+    <value>192.168.2.122</value>
+  </data>
+  <data name="CbEthernetUse.Text" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="TbEthernetPort.Text" xml:space="preserve">
+    <value>34001</value>
+  </data>
+  <data name="LblEthernetIP.Text" xml:space="preserve">
+    <value>IP:</value>
+  </data>
+  <data name="LblEthernetPort.Text" xml:space="preserve">
+    <value>Port:</value>
+  </data>
+  <data name="BtnOpenPortEthernet.Text" xml:space="preserve">
+    <value>连接</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>COM C</value>
+  </data>
+  <data name="cBCommand.Items" xml:space="preserve">
+    <value>$H (Homing)</value>
   </data>
 </root>

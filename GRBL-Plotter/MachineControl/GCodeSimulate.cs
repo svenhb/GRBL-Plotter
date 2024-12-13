@@ -26,6 +26,8 @@
  * 2021-10-09 improove processedPath (remove glitches)
  * 2021-10-29 add option to shift processed tile path to work area - importGraphicClipShowOrigPositionShiftTileProcessed
  * 2024-01-22 l:535 f:ProcessedPathDraw check index before use
+ * 2024-09-13 l:336 fGetDistance add p-word for G2/3, issue #416
+ * 2024-09-29 l:94 f:CheckDwell add p-word for G4 Dwell, issue #417
  */
 
 using System;
@@ -40,7 +42,9 @@ namespace GrblPlotter
         public static class Simulation
         {
             private static int lineNr = 0;  // actual code line
+            public static double speedFactor = 100;
             public static int dt = 50;    // step width
+            public static int dwell_ms = 0;
             private static XyzPoint posXY = new XyzPoint();
             private static double posZ = 0;
             private static double posA = 0;
@@ -74,7 +78,7 @@ namespace GrblPlotter
             {
                 lineNr = 0; isIntermediate = false;
                 diff.XY = diff.Z = diff.A = diff.Arc = 0;
-                distance = 0; dt = 50; posZ = 0; posA = 0;
+                distance = 0; dt = 50; posZ = 0; posA = 0; speedFactor = 100;
                 remainingStep = stepWidth = 10;
                 lastPosMarker = posXY = Grbl.PosMarker = new XyzPoint();
                 Grbl.PosMarkerAngle = 0;
@@ -87,6 +91,17 @@ namespace GrblPlotter
             }
             public static double GetZ()
             { return posZ; }
+
+            internal static bool CheckDwell(int intervall)
+            {
+                if (dwell_ms > 0)
+                {
+                    dwell_ms -= intervall;
+                    return true;
+                }
+                return false;
+            }
+
             internal static int Next(ref XyzPoint coord)
             {
                 if (isIntermediate)
@@ -183,6 +198,7 @@ namespace GrblPlotter
                 double deltaA = codeNext.alpha - posA;
                 isPenDownNow = codeNext.motionMode > 0;
                 isG2G3 = codeNext.motionMode > 1;
+
                 if (!isG2G3)
                 {
                     double deltaS = ((XyPoint)(posXY)).DistanceTo((XyPoint)codeNext.actualPos);      // XY remaining max distance
@@ -218,24 +234,30 @@ namespace GrblPlotter
                 }
                 else
                 {
+                    double addFullTurn = 0;
+                    if (codeNext.pWord > 1)
+                    { addFullTurn = codeNext.pWord - 1; }
                     double aStep2 = remainingStep / arcMove.radius;         // get delta angle
                     double turnAngle = arcMove.angleEnd - arcMove.angleStart;
                     if (codeNext.motionMode == 2)
                     {
                         if (turnAngle > 0)
                             turnAngle -= 2 * Math.PI;
+                        turnAngle -= addFullTurn * 2 * Math.PI;
                     }
                     else
                     {
                         if (turnAngle < 0)
                             turnAngle += 2 * Math.PI;
+                        turnAngle += addFullTurn * 2 * Math.PI;
                     }
 
                     if (turnAngle == 0)
-                        turnAngle = 2 * Math.PI;
+                        turnAngle = (addFullTurn + 1) * 2 * Math.PI;
                     double dA = Math.Abs((codeNext.alpha - codeLast.alpha) / (turnAngle / aStep2));	// get step width 
 
                     drawAngleOld = drawAngleNow;
+
                     if (arcMove.angleDiff > 0)
                     {
                         if (angleTmp < (arcMove.angleStart + arcMove.angleDiff))
@@ -276,8 +298,17 @@ namespace GrblPlotter
                     return false;
                 codeLast = new SimuCoordByLine(codeNext);
                 codeNext = new SimuCoordByLine(simuList[lineNr]);
+
                 if (codeNext.codeLine.Contains("M30"))          // program end
                     return false;
+
+                if (codeNext.isDwell)                   // Dwell
+                {
+                    dwell_ms = (int)(codeNext.pWord * 900 * 100 / speedFactor);    // P number is the time in seconds 
+                    Logger.Trace("GetNextPos set dwell:{0}  factor:{1}   {2}", codeNext.pWord, speedFactor, codeNext.codeLine);
+                    return true;
+                }
+
                 UpdateFeedRate();
                 distance = GetDistance();
                 lastPosMarker = (XyzPoint)codeLast.actualPos;
@@ -318,6 +349,10 @@ namespace GrblPlotter
                     return diff.Max;
                 }
                 arcMove = GcodeMath.GetArcMoveProperties((XyPoint)codeLast.actualPos, (XyPoint)codeNext.actualPos, codeNext.i, codeNext.j, (codeNext.motionMode == 2));
+                if (codeNext.pWord > 1)
+                {   if (arcMove.angleDiff > 0) { arcMove.angleDiff += (codeNext.pWord - 1) * 2 * Math.PI; }
+                    else if (arcMove.angleDiff < 0) { arcMove.angleDiff -= (codeNext.pWord - 1) * 2 * Math.PI; }
+                }
                 angleTmp = arcMove.angleStart;
                 drawAngleOld = drawAngleNow = (float)(angleTmp * 180 / Math.PI);
                 diff.Arc = Math.Abs(arcMove.angleDiff * arcMove.radius);
@@ -533,9 +568,10 @@ namespace GrblPlotter
                 }
                 // no match found, try new start-pos
                 if (!onTrack)
-                { 	if ((indexLastSucess > 0) && (indexLastSucess < simuList.Count))
-					{	lastGCodePos = new XyzPoint(simuList[indexLastSucess].actualPos.X, simuList[indexLastSucess].actualPos.Y, simuList[indexLastSucess].actualPos.Z); }
-				}
+                {
+                    if ((indexLastSucess > 0) && (indexLastSucess < simuList.Count))
+                    { lastGCodePos = new XyzPoint(simuList[indexLastSucess].actualPos.X, simuList[indexLastSucess].actualPos.Y, simuList[indexLastSucess].actualPos.Z); }
+                }
             }
             private static PointF ToPointF(XyzPoint tmp)
             { return new PointF((float)tmp.X, (float)tmp.Y); }

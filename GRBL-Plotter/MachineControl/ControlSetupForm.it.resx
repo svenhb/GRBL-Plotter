@@ -446,10 +446,6 @@
     <value>Offset dal centro di rotazione. Per il coltello a trascinamento di solito intorno a 0,3 mm.</value>
     <comment>TabPage1_3</comment>
   </data>
-  <data name="tabPage20.Text" xml:space="preserve">
-    <value>Modifiche del percorso</value>
-    <comment>ok</comment>
-  </data>
   <data name="nUDImportGraphicClipOffsetY.ToolTip" xml:space="preserve">
     <value>Dimensione X della piastrella</value>
     <comment>ok</comment>
@@ -459,10 +455,6 @@
     <comment>ok</comment>
   </data>
   <data name="nUDImportGraphicClipOffsetX.ToolTip" xml:space="preserve">
-    <value>Dimensione X della piastrella</value>
-    <comment>ok</comment>
-  </data>
-  <data name="nUDImportGraphicTileClipWidth.ToolTip" xml:space="preserve">
     <value>Dimensione X della piastrella</value>
     <comment>ok</comment>
   </data>
@@ -610,9 +602,6 @@
   <data name="rBImportGraphicDevelopFeedInvert.Text" xml:space="preserve">
     <value>Invertire la direzione di alimentazione</value>
   </data>
-  <data name="tabPage30.Text" xml:space="preserve">
-    <value>Conversione speciale</value>
-  </data>
   <data name="LbLAuxDescription.Text" xml:space="preserve">
     <value>Utilizzare questa opzione per controllare un asse aggiuntivo che pompa la vernice o alimenta il filamento in una quantità dipendente dalla distanza.Inoltre, la posizione dell'asse Z può essere utilizzata ad es. aumentare la quantità di vernice quando il pennello preme più forte sulla tela.</value>
   </data>
@@ -645,10 +634,6 @@
   </data>
   <data name="groupBox27.Text" xml:space="preserve">
     <value>Moltiplicare per il valore Z corrente</value>
-  </data>
-  <data name="tabPage9.Text" xml:space="preserve">
-    <value>Importazione del percorso</value>
-    <comment>TabPage</comment>
   </data>
   <data name="nUDImportGCSSpeed.ToolTip" xml:space="preserve">
     <value>Velocità del mandrino per l'incisione</value>
@@ -992,10 +977,6 @@
   </data>
   <data name="tab1_4gB1.Text" xml:space="preserve">
     <value>Salva le impostazioni di importazione come "caso d'uso"</value>
-    <comment>TabPage1_4</comment>
-  </data>
-  <data name="tabPage15.Text" xml:space="preserve">
-    <value>Casi d'uso</value>
     <comment>TabPage1_4</comment>
   </data>
   <data name="label5.Text" xml:space="preserve">
@@ -1988,10 +1969,6 @@ La finestra di installazione deve essere chiusa per utilizzare Gamepad nella GUI
   <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
     <value>Se il livello o l'oggetto non è visibile in Inkscape, il livello o l'oggetto non verranno importati.</value>
   </data>
-  <data name="checkBox5.Text" xml:space="preserve">
-    <value>Applica riempimento tratteggio se l'oggetto è riempito</value>
-    <comment>ok</comment>
-  </data>
   <data name="tab1_1lbl3.Text" xml:space="preserve">
     <value>Impostazione DPI</value>
     <comment>TabPage1_1</comment>
@@ -2009,10 +1986,6 @@ La finestra di installazione deve essere chiusa per utilizzare Gamepad nella GUI
   <data name="cBImportSVG_DPI_96.ToolTip" xml:space="preserve">
     <value>96 dpi è il ridimensionamento predefinito</value>
     <comment>TabPage1_1</comment>
-  </data>
-  <data name="tabPage16.Text" xml:space="preserve">
-    <value>Relativo al formato</value>
-    <comment>ok</comment>
   </data>
   <data name="lblImportPenWidthToZWarning.Text" xml:space="preserve">
     <value>Attenzione: Z-Engrave limiterà il max. profondità!</value>
@@ -2133,10 +2106,6 @@ La finestra di installazione deve essere chiusa per utilizzare Gamepad nella GUI
   <data name="tab1_1gB1.Text" xml:space="preserve">
     <value>Importazione grafica generale</value>
     <comment>TabPage1_1</comment>
-  </data>
-  <data name="tabPage17.Text" xml:space="preserve">
-    <value>Opzioni generali</value>
-    <comment>ok</comment>
   </data>
   <data name="label50.Text" xml:space="preserve">
     <value>Distanza dopo</value>
@@ -2282,10 +2251,6 @@ La finestra di installazione deve essere chiusa per utilizzare Gamepad nella GUI
     <value>Ritaglio / Affiancamento</value>
     <comment>ok</comment>
   </data>
-  <data name="tabPage18.Text" xml:space="preserve">
-    <value>Ritaglio</value>
-    <comment>ok</comment>
-  </data>
   <data name="label73.Text" xml:space="preserve">
     <value>Se la quantità di cifre supera questo valore, tutte le cifre di un gruppo verranno riepilogate in una cifra.</value>
   </data>
@@ -2327,10 +2292,6 @@ La finestra di installazione deve essere chiusa per utilizzare Gamepad nella GUI
   <data name="tab1_1gB4.Text" xml:space="preserve">
     <value>Raggruppamento e ordinamento di oggetti</value>
     <comment>TabPage1_1</comment>
-  </data>
-  <data name="tabPage19.Text" xml:space="preserve">
-    <value>Raggruppamento e strumenti</value>
-    <comment>ok</comment>
   </data>
   <data name="label83.Text" xml:space="preserve">
     <value>Taglia il filo</value>
@@ -2424,9 +2385,6 @@ La finestra di installazione deve essere chiusa per utilizzare Gamepad nella GUI
   </data>
   <data name="groupBox26.Text" xml:space="preserve">
     <value>Valore relativo alla distanza per la pompa della vernice o l'alimentatore del filamento</value>
-  </data>
-  <data name="tabPage31.Text" xml:space="preserve">
-    <value>Estensione del comando</value>
   </data>
   <data name="label32.Text" xml:space="preserve">
     <value>Codice G prima del cambio utensile</value>
@@ -2615,10 +2573,6 @@ La finestra di installazione deve essere chiusa per utilizzare Gamepad nella GUI
     <value>Individuale</value>
     <comment>ok</comment>
   </data>
-  <data name="tabPage10.Text" xml:space="preserve">
-    <value>Generazione del codice G</value>
-    <comment>TabPage1_2</comment>
-  </data>
   <data name="tab1_3gB3.Text" xml:space="preserve">
     <value>Converti Asse Z in Velocità mandrino S</value>
     <comment>TabPage1_3</comment>
@@ -2676,7 +2630,7 @@ La finestra di installazione deve essere chiusa per utilizzare Gamepad nella GUI
     <comment>TabPage1_3</comment>
   </data>
   <data name="tabPage11.Text" xml:space="preserve">
-    <value>Modifica del codice G</value>
+    <value>Impostazioni</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="btnDelete.Text" xml:space="preserve">
@@ -3473,9 +3427,6 @@ Dato nella sezione dell'intestazione del GCode: 'SVG dimension'.</value>
   <data name="GbFilter.Text" xml:space="preserve">
     <value>Mantieni o rimuovi oggetti per proprietà</value>
   </data>
-  <data name="tabPage34.Text" xml:space="preserve">
-    <value>filtro</value>
-  </data>
   <data name="BtnLoadToolTableDialog.ToolTip" xml:space="preserve">
     <value>Carica la tabella utensili da un'altra posizione</value>
   </data>
@@ -3493,12 +3444,6 @@ Dato nella sezione dell'intestazione del GCode: 'SVG dimension'.</value>
   </data>
   <data name="cBColorModeWidth.ToolTip" xml:space="preserve">
     <value>Applica anche la larghezza della penna importata alla vista 2D</value>
-  </data>
-  <data name="BtnGetFilterValueRemove.Text" xml:space="preserve">
-    <value>Ricevere</value>
-  </data>
-  <data name="BtnGetFilterValueKeep.Text" xml:space="preserve">
-    <value>importazione del colore</value>
   </data>
   <data name="pathImport1.Text" xml:space="preserve">
     <value>Relativo al formato</value>
@@ -3526,12 +3471,6 @@ Dato nella sezione dell'intestazione del GCode: 'SVG dimension'.</value>
   </data>
   <data name="BtnGetFilterValueClear.ToolTip" xml:space="preserve">
     <value>Elimina i campi di testo</value>
-  </data>
-  <data name="BtnGetFilterValueKeep.ToolTip" xml:space="preserve">
-    <value>Aggiunge il colore del carattere o gruppo selezionato</value>
-  </data>
-  <data name="BtnGetFilterValueRemove.ToolTip" xml:space="preserve">
-    <value>Aggiunge il colore del carattere o gruppo selezionato</value>
   </data>
   <data name="pathImport7.Text" xml:space="preserve">
     <value>filtro</value>
@@ -3947,7 +3886,7 @@ La conversione è possibile anche tramite Menu - Trasformazione GCode - 'Convert
 Se selezionato, ogni comando 'm' crea una nuova figura.</value>
   </data>
   <data name="label107.Text" xml:space="preserve">
-    <value>Risoluzione dell'immagine in DPI</value>
+    <value>La vettorizzazione geometrica funziona bene per forme geometriche e grafica pixel</value>
   </data>
   <data name="NudImportPDNDpi.ToolTip" xml:space="preserve">
     <value>DPI = pixel/pollice - solitamente 96</value>
@@ -4026,5 +3965,85 @@ Se selezionato, ogni comando 'm' crea una nuova figura.</value>
   </data>
   <data name="BtnHelp_Misc2.ToolTip" xml:space="preserve">
     <value>Aiuto online</value>
+  </data>
+  <data name="RrBImportVectorizeDPISet.Text" xml:space="preserve">
+    <value>Imposta DPI</value>
+  </data>
+  <data name="RrBImportVectorizeDPISet.ToolTip" xml:space="preserve">
+    <value>Imposta la risoluzione dell'immagine</value>
+  </data>
+  <data name="RrBImportVectorizeDPIFromImage.Text" xml:space="preserve">
+    <value>DPI dall'immagine</value>
+  </data>
+  <data name="RrBImportVectorizeDPIFromImage.ToolTip" xml:space="preserve">
+    <value>Risoluzione dell'immagine memorizzata nell'immagine</value>
+  </data>
+  <data name="groupBox49.Text" xml:space="preserve">
+    <value>Misurare</value>
+  </data>
+  <data name="rBImportVectorizeAlgoMyTrace.Text" xml:space="preserve">
+    <value>Traccia geometrica (lento, ottimo per le forme geometriche)</value>
+  </data>
+  <data name="rBImportVectorizeAlgoPoTrace.Text" xml:space="preserve">
+    <value>PoTrace (veloce - ottimo per immagini e schizzi)</value>
+  </data>
+  <data name="groupBox48.Text" xml:space="preserve">
+    <value>Algoritmo di vettorizzazione</value>
+  </data>
+  <data name="rBImportVectorizeTransparency.Text" xml:space="preserve">
+    <value>Trasparenza</value>
+  </data>
+  <data name="rBImportVectorizeTransparency.ToolTip" xml:space="preserve">
+    <value>Se non viene trovata alcuna trasparenza, verrà applicato il rilevamento della luminosità.</value>
+  </data>
+  <data name="rBImportVectorizeBrightness.Text" xml:space="preserve">
+    <value>Luminosità</value>
+  </data>
+  <data name="label109.Text" xml:space="preserve">
+    <value>Soglia</value>
+  </data>
+  <data name="groupBox47.Text" xml:space="preserve">
+    <value>Rilevamento dello sfondo</value>
+  </data>
+  <data name="label113.Text" xml:space="preserve">
+    <value>Potrace è un software open source che converte le immagini bitmap in grafica vettoriale. È scritto e gestito da Peter Selinger.</value>
+  </data>
+  <data name="BtnSetPoTraceDefaults.Text" xml:space="preserve">
+    <value>Ripristina</value>
+  </data>
+  <data name="label112.Text" xml:space="preserve">
+    <value>Tolleranza di ottimizzazione della curva</value>
+  </data>
+  <data name="label111.Text" xml:space="preserve">
+    <value>Soglia d'angolo</value>
+  </data>
+  <data name="label110.Text" xml:space="preserve">
+    <value>Area del percorso più grande da ignorare</value>
+  </data>
+  <data name="CBImportPoTraceOptimazion.Text" xml:space="preserve">
+    <value>Utilizzare l'ottimizzazione della curva</value>
+  </data>
+  <data name="groupBox46.Text" xml:space="preserve">
+    <value>Richiedi</value>
+  </data>
+  <data name="groupBox45.Text" xml:space="preserve">
+    <value>Vettorializzazione automatica</value>
+  </data>
+  <data name="RrBImportVectorizeWidthSet.Text" xml:space="preserve">
+    <value>Imposta la larghezza dell'immagine su</value>
+  </data>
+  <data name="RrBImportVectorizeWidthSet.ToolTip" xml:space="preserve">
+    <value>Larghezza dell'immagine in mm</value>
+  </data>
+  <data name="NudImportPDNWidth.ToolTip" xml:space="preserve">
+    <value>La risoluzione dell'immagine verrà calcolata in base alla larghezza specificata</value>
+  </data>
+  <data name="rBImportVectorizeAlgoMyTrace.ToolTip" xml:space="preserve">
+    <value>Per la grafica pixel autodisegnata</value>
+  </data>
+  <data name="NudImportVectorizeThreshold.ToolTip" xml:space="preserve">
+    <value>L'intervallo di soglia è compreso tra 0 e 255.
+La luminosità deve essere &gt;soglia per essere riconosciuta come sfondo, oppure
+La trasparenza deve essere &lt; soglia per essere riconosciuta come sfondo</value>
   </data>
 </root>

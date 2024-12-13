@@ -148,7 +148,7 @@
     <value>删除行</value>
   </data>
   <data name="moveRowUpToolStripMenuItem.Text" xml:space="preserve">
-    <value>上移行</value>
+    <value>向上移动行</value>
   </data>
   <data name="moveRowDownToolStripMenuItem.Text" xml:space="preserve">
     <value>向下移动行</value>
@@ -160,7 +160,7 @@
     <value>将此窗口的设置保存为 INI 文件</value>
   </data>
   <data name="BtnHelp.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>填充字符</value>
@@ -172,7 +172,7 @@
     <value>结果：</value>
   </data>
   <data name="GbCounter.Text" xml:space="preserve">
-    <value>柜台</value>
+    <value>计数器</value>
   </data>
   <data name="ComboDelimiter.Items" xml:space="preserve">
     <value>;分号</value>
@@ -218,5 +218,28 @@
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>轮询的计时器间隔（以毫秒为单位）</value>
+  </data>
+  <data name="LblCount.Text" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="TbData.Text" xml:space="preserve">
+    <value>example1;test1;data1
+example2;test2;data2
+example3;test3;data3</value>
+  </data>
+  <data name="BtnHelp.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="LblCounterResult.Text" xml:space="preserve">
+    <value>- 0 -</value>
+  </data>
+  <data name="BtnStep.Text" xml:space="preserve">
+    <value>步</value>
+  </data>
+  <data name="BtnStep.ToolTip" xml:space="preserve">
+    <value>处理当前行并选择下一步</value>
+  </data>
+  <data name="GbControl.Text" xml:space="preserve">
+    <value>控制</value>
   </data>
 </root>

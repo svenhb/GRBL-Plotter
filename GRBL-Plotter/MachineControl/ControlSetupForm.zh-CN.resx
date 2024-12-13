@@ -290,11 +290,12 @@
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
-    <value>避免G2/3（圆弧移动）命令，用线段绘制圆弧/圆</value>
+    <value>不使用G2/3（圆弧移动）命令，用线段代替来绘制圆弧/圆</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
-    <value>将圆和圆弧转换为线段-如果需要不同的X和Y比例尺则需要</value>
+    <value>将圆和圆弧转换为线段-如果需要不同的X和Y比例，则需要。
+如果步长大于半径的一半，它将自动减小</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="cBImportGCSubEnable.ToolTip" xml:space="preserve">
@@ -422,7 +423,7 @@ M4动态激光功率模式</value>
     <comment>TabPage10</comment>
   </data>
   <data name="btnShapeSetLoad4.Text" xml:space="preserve">
-    <value>开放</value>
+    <value>载入</value>
     <comment>TabPage10</comment>
   </data>
   <data name="btnShapeSetSave3.Text" xml:space="preserve">
@@ -430,7 +431,7 @@ M4动态激光功率模式</value>
     <comment>TabPage10</comment>
   </data>
   <data name="btnShapeSetLoad3.Text" xml:space="preserve">
-    <value>开放</value>
+    <value>载入</value>
     <comment>TabPage10</comment>
   </data>
   <data name="btnShapeSetSave2.Text" xml:space="preserve">
@@ -438,7 +439,7 @@ M4动态激光功率模式</value>
     <comment>TabPage10</comment>
   </data>
   <data name="btnShapeSetLoad2.Text" xml:space="preserve">
-    <value>开放</value>
+    <value>载入</value>
     <comment>TabPage10</comment>
   </data>
   <data name="btnShapeSetSave1.Text" xml:space="preserve">
@@ -446,7 +447,7 @@ M4动态激光功率模式</value>
     <comment>TabPage10</comment>
   </data>
   <data name="btnShapeSetLoad1.Text" xml:space="preserve">
-    <value>开放</value>
+    <value>载入</value>
     <comment>TabPage10</comment>
   </data>
   <data name="cBFilterOuside.Text" xml:space="preserve">
@@ -474,7 +475,7 @@ M4动态激光功率模式</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGNodesOnly.Text" xml:space="preserve">
-    <value>仅处理路径节点（例如弦乐艺术的钉子位置）</value>
+    <value>仅处理路径节点（例如，字符串艺术的钉子位置）</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGNodesOnly.ToolTip" xml:space="preserve">
@@ -505,7 +506,7 @@ M4动态激光功率模式</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGReduce.Text" xml:space="preserve">
-    <value>删除非常短的动作&lt;</value>
+    <value>删除极短的移动&lt;</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGReduce.ToolTip" xml:space="preserve">
@@ -513,7 +514,7 @@ M4动态激光功率模式</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGComments.Text" xml:space="preserve">
-    <value>附加的导入注释</value>
+    <value>其他导入注释</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="cBImportSVGComments.ToolTip" xml:space="preserve">
@@ -660,7 +661,7 @@ M4动态激光功率模式</value>
     <comment>TabPage10</comment>
   </data>
   <data name="cBShapeCircle.Text" xml:space="preserve">
-    <value>圈</value>
+    <value>圆</value>
     <comment>TabPage10</comment>
   </data>
   <data name="cBToolTableUse.Text" xml:space="preserve">
@@ -737,15 +738,15 @@ M4动态激光功率模式</value>
     <comment>TabPage2</comment>
   </data>
   <data name="Column4.ToolTipText" xml:space="preserve">
-    <value>交换头寸X</value>
+    <value>交换位置X</value>
     <comment>TabPage2</comment>
   </data>
   <data name="Column5.ToolTipText" xml:space="preserve">
-    <value>交换头寸Y</value>
+    <value>交换位置Y</value>
     <comment>TabPage2</comment>
   </data>
   <data name="Column6.ToolTipText" xml:space="preserve">
-    <value>交换头寸Z</value>
+    <value>交换位置Z</value>
     <comment>TabPage2</comment>
   </data>
   <data name="Column7.ToolTipText" xml:space="preserve">
@@ -883,16 +884,12 @@ M4动态激光功率模式</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="nUDImportSVGSegemnts.ToolTip" xml:space="preserve">
-    <value>曲线将由线段绘制。 分段越多，曲线越漂亮。</value>
+    <value>曲线将由线段绘制。 分段越多，拟合的曲线越精确。</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="nUDSVGScale.ToolTip" xml:space="preserve">
     <value>在生成g代码之前，尝试将图形缩放到给定的单位，</value>
     <comment>TabPage1_1</comment>
-  </data>
-  <data name="tabPage9.Text" xml:space="preserve">
-    <value>路径导入</value>
-    <comment>TabPage</comment>
   </data>
   <data name="rBImportGCSpindleCmd2.ToolTip" xml:space="preserve">
     <value>发送“ M4”以逆时针方向打开主轴
@@ -953,10 +950,6 @@ M4动态激光功率模式</value>
     <value>``笔加''的PWM值（S）</value>
     <comment>TabPage1_2</comment>
   </data>
-  <data name="tabPage10.Text" xml:space="preserve">
-    <value>G代码生成</value>
-    <comment>TabPage1_2</comment>
-  </data>
   <data name="nUDImportGCDragKnifePercent.ToolTip" xml:space="preserve">
     <value>根据Z深度计算偏移</value>
     <comment>ok</comment>
@@ -979,15 +972,11 @@ M4动态激光功率模式</value>
     <comment>ok</comment>
   </data>
   <data name="tabPage11.Text" xml:space="preserve">
-    <value>G代码修改</value>
+    <value>设置</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="tBUseCaseSetting1.Text" xml:space="preserve">
     <value>选择用例以查看设置</value>
-    <comment>TabPage1_4</comment>
-  </data>
-  <data name="tabPage15.Text" xml:space="preserve">
-    <value>用例</value>
     <comment>TabPage1_4</comment>
   </data>
   <data name="tabPage3.Text" xml:space="preserve">
@@ -1027,7 +1016,7 @@ M4动态激光功率模式</value>
     <comment>TabPage4</comment>
   </data>
   <data name="tabPage13.Text" xml:space="preserve">
-    <value>流量控制</value>
+    <value>程序开始</value>
     <comment>TabPage4</comment>
   </data>
   <data name="radioButton2.Text" xml:space="preserve">
@@ -1115,7 +1104,7 @@ M4动态激光功率模式</value>
     <comment>TabPage1_4</comment>
   </data>
   <data name="btnToolExport.Text" xml:space="preserve">
-    <value>保存</value>
+    <value>保存工具表</value>
     <comment>TabPage2</comment>
   </data>
   <data name="btnUseCaseLoad.Text" xml:space="preserve">
@@ -1123,7 +1112,7 @@ M4动态激光功率模式</value>
     <comment>TabPage1_4</comment>
   </data>
   <data name="btnLoadToolTable.Text" xml:space="preserve">
-    <value>开放</value>
+    <value>加载选定项</value>
     <comment>TabPage2</comment>
   </data>
   <data name="cB4thUse.Text" xml:space="preserve">
@@ -1183,7 +1172,7 @@ M4动态激光功率模式</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="tab1_1gB1.Text" xml:space="preserve">
-    <value>图形导入常规</value>
+    <value>图形导入常规(通用)</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="label58.Text" xml:space="preserve">
@@ -1199,11 +1188,11 @@ M4动态激光功率模式</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="tab1_1lbl2.Text" xml:space="preserve">
-    <value>弧线段数</value>
+    <value>弧线段数量</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="tab1_1lbl2.ToolTip" xml:space="preserve">
-    <value>曲线将由线段绘制。 分段越多，曲线越漂亮。</value>
+    <value>曲线将由线段绘制。 分段越多，拟合的曲线越精确。</value>
     <comment>TabPage1_1</comment>
   </data>
   <data name="tab1_1gB2.Text" xml:space="preserve">
@@ -1618,7 +1607,7 @@ M4动态激光功率模式</value>
     <comment>ok</comment>
   </data>
   <data name="tab7gB2lbl2.Text" xml:space="preserve">
-    <value>盲区</value>
+    <value>盲区--停止慢跑</value>
     <comment>ok</comment>
   </data>
   <data name="tab7gB2lbl1.Text" xml:space="preserve">
@@ -1746,7 +1735,7 @@ Z轴将向下移动</value>
     <comment>ok</comment>
   </data>
   <data name="label15.Text" xml:space="preserve">
-    <value>圆弧圆周上的步长</value>
+    <value>圆弧/整圆上的步长</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportUnitGCode.Text" xml:space="preserve">
@@ -1830,11 +1819,11 @@ Z轴将向下移动</value>
     <comment>ok</comment>
   </data>
   <data name="Column15.HeaderText" xml:space="preserve">
-    <value>Z储存</value>
+    <value>Z安全</value>
     <comment>ok</comment>
   </data>
   <data name="Column9.HeaderText" xml:space="preserve">
-    <value>Z深</value>
+    <value>Z深度</value>
     <comment>ok</comment>
   </data>
   <data name="Column13.HeaderText" xml:space="preserve">
@@ -1951,7 +1940,7 @@ Z轴将向下移动</value>
     <comment>ok</comment>
   </data>
   <data name="linkLabel15.Text" xml:space="preserve">
-    <value>Генератор пазлов от Draradech / jigsaw.html на Github</value>
+    <value>Jigsaw generator by Draradech/jigsaw.html at Github</value>
     <comment>ok</comment>
   </data>
   <data name="linkLabel8.Text" xml:space="preserve">
@@ -1992,20 +1981,16 @@ Z轴将向下移动</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportGraphicOffsetOrigin.ToolTip" xml:space="preserve">
-    <value>将导入图形的左下边缘设置为xy坐标0; 0</value>
+    <value>设置导入图形的左下边缘xy坐标为0; 0</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportGraphicSortDistance.Text" xml:space="preserve">
-    <value>按最短连接对对象排序并合并</value>
+    <value>按最短路径对对象排序并合并</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportGraphicSortDistance.ToolTip" xml:space="preserve">
-    <value>对象将按照开始和结束坐标之间的最近距离排序，对象的有用路径将被反转。
+    <value>对象将按照开始和结束坐标之间的最短距离排序，对象有用的路径将被反向。
 具有相同起点和终点坐标的对象将合并在一起。</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tabPage16.Text" xml:space="preserve">
-    <value>格式相关</value>
     <comment>ok</comment>
   </data>
   <data name="groupBox9.Text" xml:space="preserve">
@@ -2013,7 +1998,7 @@ Z轴将向下移动</value>
     <comment>ok</comment>
   </data>
   <data name="groupBox5.Text" xml:space="preserve">
-    <value>路径重复（用于弱激光）</value>
+    <value>重复加工路径（用于弱激光）</value>
     <comment>ok</comment>
   </data>
   <data name="groupBox8.Text" xml:space="preserve">
@@ -2032,22 +2017,6 @@ Z轴将向下移动</value>
     <value>差距将缩小</value>
     <comment>ok</comment>
   </data>
-  <data name="tabPage17.Text" xml:space="preserve">
-    <value>常规选项</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tabPage20.Text" xml:space="preserve">
-    <value>路径修改</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tabPage18.Text" xml:space="preserve">
-    <value>剪裁</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tabPage19.Text" xml:space="preserve">
-    <value>分组和工具</value>
-    <comment>ok</comment>
-  </data>
   <data name="tabPage21.Text" xml:space="preserve">
     <value>程序行为</value>
     <comment>ok</comment>
@@ -2057,11 +2026,11 @@ Z轴将向下移动</value>
     <comment>ok</comment>
   </data>
   <data name="groupBox6.Text" xml:space="preserve">
-    <value>CSV导入（* .csv，*。dat）</value>
+    <value>CSV导入（* .csv，*.dat）</value>
     <comment>ok</comment>
   </data>
   <data name="label10.Text" xml:space="preserve">
-    <value>测力计</value>
+    <value>定界符</value>
     <comment>ok</comment>
   </data>
   <data name="label9.Text" xml:space="preserve">
@@ -2085,11 +2054,11 @@ Z轴将向下移动</value>
     <comment>ok</comment>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>规模</value>
+    <value>Scale</value>
     <comment>ok</comment>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>柱</value>
+    <value>列</value>
     <comment>ok</comment>
   </data>
   <data name="checkBox8.Text" xml:space="preserve">
@@ -2109,7 +2078,7 @@ Z轴将向下移动</value>
     <comment>ok</comment>
   </data>
   <data name="gBHatchFill.Text" xml:space="preserve">
-    <value>填写封闭路径</value>
+    <value>填充封闭路径</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportGraphicHatchFillInset.Text" xml:space="preserve">
@@ -2121,7 +2090,7 @@ Z轴将向下移动</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportGraphicHatchFillCross.Text" xml:space="preserve">
-    <value>十字线</value>
+    <value>十字线填充</value>
     <comment>ok</comment>
   </data>
   <data name="lblHatchFill2.Text" xml:space="preserve">
@@ -2133,7 +2102,7 @@ Z轴将向下移动</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportGraphicHatchFill.Text" xml:space="preserve">
-    <value>舱口填充</value>
+    <value>图案填充</value>
     <comment>ok</comment>
   </data>
   <data name="lblDImportGCTangential4.Text" xml:space="preserve">
@@ -2178,10 +2147,6 @@ Z轴将向下移动</value>
   </data>
   <data name="nUDImportGraphicClipHeight.ToolTip" xml:space="preserve">
     <value>瓷砖的Y尺寸</value>
-    <comment>ok</comment>
-  </data>
-  <data name="nUDImportGraphicTileClipWidth.ToolTip" xml:space="preserve">
-    <value>瓷砖的X尺寸</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportGraphicTile.Text" xml:space="preserve">
@@ -2266,7 +2231,7 @@ Z轴将向下移动</value>
     <comment>ok</comment>
   </data>
   <data name="Column16.ToolTipText" xml:space="preserve">
-    <value>交换头寸A</value>
+    <value>交换位置A</value>
     <comment>ok</comment>
   </data>
   <data name="groupBox13.Text" xml:space="preserve">
@@ -2274,11 +2239,11 @@ Z轴将向下移动</value>
     <comment>ok</comment>
   </data>
   <data name="tabPage25.Text" xml:space="preserve">
-    <value>流量控制</value>
+    <value>流控制</value>
     <comment>ok</comment>
   </data>
   <data name="label16.Text" xml:space="preserve">
-    <value>最高</value>
+    <value>最大</value>
     <comment>ok</comment>
   </data>
   <data name="nUDImportPenWidthToZMax.ToolTip" xml:space="preserve">
@@ -2303,7 +2268,7 @@ Z轴将向下移动</value>
     <comment>ok</comment>
   </data>
   <data name="lblPathModification.Text" xml:space="preserve">
-    <value>任何此类修改都会启用“避免G2 / G3命令”</value>
+    <value>任何此类修改都会启用“不使用G2 / G3命令”</value>
     <comment>ok</comment>
   </data>
   <data name="cBDashedLine2.Text" xml:space="preserve">
@@ -2312,7 +2277,7 @@ Z轴将向下移动</value>
   </data>
   <data name="cBDashedLine2.ToolTip" xml:space="preserve">
     <value>默认值为G1，以实现平稳移动；
-减轻机械师的压力</value>
+减轻机器的压力</value>
     <comment>ok</comment>
   </data>
   <data name="cBDashedLine1.Text" xml:space="preserve">
@@ -2345,7 +2310,7 @@ Z轴将向下移动</value>
     <comment>ok</comment>
   </data>
   <data name="groupBox11.Text" xml:space="preserve">
-    <value>杂</value>
+    <value>杂项</value>
     <comment>ok</comment>
   </data>
   <data name="groupBox10.Text" xml:space="preserve">
@@ -2369,7 +2334,7 @@ Z轴将向下移动</value>
     <comment>ok</comment>
   </data>
   <data name="lblImportPenWidthToZWarning.Text" xml:space="preserve">
-    <value>注意：Z-Engrave将限制最大。 深度！</value>
+    <value>注意：Z-Engrave将限制最大 深度！</value>
     <comment>ok</comment>
   </data>
   <data name="lblGroupInfo.Text" xml:space="preserve">
@@ -2377,7 +2342,7 @@ Z轴将向下移动</value>
     <comment>ok</comment>
   </data>
   <data name="cBLineEndEnable.Text" xml:space="preserve">
-    <value>套用文字</value>
+    <value>在行尾应用文本</value>
     <comment>ok</comment>
   </data>
   <data name="tab1_3gB6.Text" xml:space="preserve">
@@ -2401,15 +2366,11 @@ Z轴将向下移动</value>
     <comment>ok</comment>
   </data>
   <data name="tab1_3gB7.Text" xml:space="preserve">
-    <value>格柏进口</value>
+    <value>Gerber 导入(gbr, ger, gtl, gbl, gts, gbs, gto, gbo, gko, g2l, g3l)</value>
     <comment>ok</comment>
   </data>
   <data name="rBImportSVGGroupItem4.Text" xml:space="preserve">
     <value>类型</value>
-    <comment>ok</comment>
-  </data>
-  <data name="checkBox5.Text" xml:space="preserve">
-    <value>如果填充了对象，则应用填充填充</value>
     <comment>ok</comment>
   </data>
   <data name="cBDisableProgramPause.Text" xml:space="preserve">
@@ -2499,7 +2460,7 @@ Z轴将向下移动</value>
     <comment>ok</comment>
   </data>
   <data name="lblNotifier3.Text" xml:space="preserve">
-    <value>港口</value>
+    <value>端口</value>
     <comment>ok</comment>
   </data>
   <data name="lblNotifier5.Text" xml:space="preserve">
@@ -2574,7 +2535,7 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <comment>ok</comment>
   </data>
   <data name="cBimportGraphicMultiplyGraphicsEnable.Text" xml:space="preserve">
-    <value>乘法图形</value>
+    <value>多个图形</value>
     <comment>ok</comment>
   </data>
   <data name="label45.Text" xml:space="preserve">
@@ -2606,7 +2567,7 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <comment>ok</comment>
   </data>
   <data name="tabPage7.Text" xml:space="preserve">
-    <value>文件加载</value>
+    <value>加载文件</value>
     <comment>ok</comment>
   </data>
   <data name="checkBox6.Text" xml:space="preserve">
@@ -2684,7 +2645,7 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <comment>ok</comment>
   </data>
   <data name="gBPathAddOn2.Text" xml:space="preserve">
-    <value>乘</value>
+    <value>多个</value>
     <comment>ok</comment>
   </data>
   <data name="gBPathAddOn1.Text" xml:space="preserve">
@@ -2692,7 +2653,7 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <comment>ok</comment>
   </data>
   <data name="btnGCPWMZero.Text" xml:space="preserve">
-    <value>笔零</value>
+    <value>笔清零</value>
     <comment>ok</comment>
   </data>
   <data name="btnGCPWMZero.ToolTip" xml:space="preserve">
@@ -2733,11 +2694,11 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <comment>ok</comment>
   </data>
   <data name="label65.Text" xml:space="preserve">
-    <value>最低排名Y</value>
+    <value>最小位置Y</value>
     <comment>ok</comment>
   </data>
   <data name="label63.Text" xml:space="preserve">
-    <value>最低排名X</value>
+    <value>最小位置X</value>
     <comment>ok</comment>
   </data>
   <data name="cBimportGCSubPenUpDown.Text" xml:space="preserve">
@@ -2924,7 +2885,7 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <value>缺口长度（工件宽度）</value>
   </data>
   <data name="groupBox20.Text" xml:space="preserve">
-    <value>缺口特性</value>
+    <value>切口属性</value>
   </data>
   <data name="rBImportGraphicDevelopFeedInvert.Text" xml:space="preserve">
     <value>反转进给方向</value>
@@ -2943,9 +2904,6 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   </data>
   <data name="gBDevelop.Text" xml:space="preserve">
     <value>将 2D 形状的轮廓转换为开发</value>
-  </data>
-  <data name="tabPage30.Text" xml:space="preserve">
-    <value>特殊转换</value>
   </data>
   <data name="cBImportDXFUseZ.Text" xml:space="preserve">
     <value>导入 Z 信息</value>
@@ -2995,7 +2953,7 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <value>将 G 代码另存为 unicode UTF-16（否则为 ASCII）</value>
   </data>
   <data name="LblImportGraphicDevelopNotchDistance.Text" xml:space="preserve">
-    <value>最小。曲线中凹口到凹口的距离</value>
+    <value>曲线中凹口到凹口的最小距离</value>
   </data>
   <data name="LblCameraFiducial.Text" xml:space="preserve">
     <value>图形图层或基准图形的名称</value>
@@ -3028,13 +2986,13 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <value>日志记录</value>
   </data>
   <data name="LblSaveEncoding.Text" xml:space="preserve">
-    <value>G 代码存储的编码</value>
+    <value>保存G-Code编码</value>
   </data>
   <data name="checkBox11.Text" xml:space="preserve">
-    <value>保存时删除所有评论</value>
+    <value>保存时删除所有注释</value>
   </data>
   <data name="cBExtendedLoggingCOM.Text" xml:space="preserve">
-    <value>串行 COM / 流媒体</value>
+    <value>串行 COM / 流</value>
   </data>
   <data name="groupBox25.Text" xml:space="preserve">
     <value>日志记录</value>
@@ -3148,9 +3106,6 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   <data name="groupBox26.Text" xml:space="preserve">
     <value>油漆泵或长丝进料器的距离相关值</value>
   </data>
-  <data name="tabPage31.Text" xml:space="preserve">
-    <value>命令扩展</value>
-  </data>
   <data name="checkBox12.Text" xml:space="preserve">
     <value>始终在前面显示其他表单（例如设置表单）</value>
   </data>
@@ -3170,10 +3125,10 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <value>背景</value>
   </data>
   <data name="BtnProjectorColorDimension.Text" xml:space="preserve">
-    <value>方面</value>
+    <value>尺寸</value>
   </data>
   <data name="BtnProjectorColorRuler.Text" xml:space="preserve">
-    <value>统治者</value>
+    <value>尺子</value>
   </data>
   <data name="BtnProjectorColorPenUp.Text" xml:space="preserve">
     <value>抬笔</value>
@@ -3182,19 +3137,19 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <value>落笔</value>
   </data>
   <data name="CbProjectorMarker.Text" xml:space="preserve">
-    <value>节目</value>
+    <value>展示</value>
   </data>
   <data name="CbProjectorTool.Text" xml:space="preserve">
-    <value>节目</value>
+    <value>展示</value>
   </data>
   <data name="CbProjectorPenUp.Text" xml:space="preserve">
-    <value>节目</value>
+    <value>展示</value>
   </data>
   <data name="CbProjectorRuler.Text" xml:space="preserve">
-    <value>节目</value>
+    <value>展示</value>
   </data>
   <data name="CbProjectorDimension.Text" xml:space="preserve">
-    <value>节目</value>
+    <value>展示</value>
   </data>
   <data name="LblProjector1.Text" xml:space="preserve">
     <value>颜色</value>
@@ -3403,7 +3358,7 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <value>删除文本</value>
   </data>
   <data name="RbimportGraphicFilterChoiceRemove2.Text" xml:space="preserve">
-    <value>保留对象</value>
+    <value>保留数字</value>
   </data>
   <data name="RbimportGraphicFilterChoiceRemove1.Text" xml:space="preserve">
     <value>删除对象</value>
@@ -3413,9 +3368,6 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   </data>
   <data name="GbFilter.Text" xml:space="preserve">
     <value>按属性保留或删除对象</value>
-  </data>
-  <data name="tabPage34.Text" xml:space="preserve">
-    <value>筛选</value>
   </data>
   <data name="BtnLoadToolTableDialog.ToolTip" xml:space="preserve">
     <value>从其他位置加载工具表</value>
@@ -3438,14 +3390,8 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   <data name="cBColorModeWidth.ToolTip" xml:space="preserve">
     <value>还将导入的笔宽应用于 2D 视图</value>
   </data>
-  <data name="BtnGetFilterValueRemove.Text" xml:space="preserve">
-    <value>收到</value>
-  </data>
-  <data name="BtnGetFilterValueKeep.Text" xml:space="preserve">
-    <value>颜色导入</value>
-  </data>
   <data name="pathImport1.Text" xml:space="preserve">
-    <value>格式相关</value>
+    <value>常规选项</value>
   </data>
   <data name="pathImport2.Text" xml:space="preserve">
     <value>常规选项</value>
@@ -3470,12 +3416,6 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
   </data>
   <data name="BtnGetFilterValueClear.ToolTip" xml:space="preserve">
     <value>删除文本字段</value>
-  </data>
-  <data name="BtnGetFilterValueKeep.ToolTip" xml:space="preserve">
-    <value>添加所选字符或组的颜色</value>
-  </data>
-  <data name="BtnGetFilterValueRemove.ToolTip" xml:space="preserve">
-    <value>添加所选字符或组的颜色</value>
   </data>
   <data name="pathImport7.Text" xml:space="preserve">
     <value>筛选</value>
@@ -3536,7 +3476,7 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
 最大深度将受到 Z 高度雕刻的限制。</value>
   </data>
   <data name="label92.Text" xml:space="preserve">
-    <value>最大限度</value>
+    <value>最大值</value>
   </data>
   <data name="label93.Text" xml:space="preserve">
     <value>最小值</value>
@@ -3563,7 +3503,7 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <value>获取颜色</value>
   </data>
   <data name="groupBox37.Text" xml:space="preserve">
-    <value>留言表</value>
+    <value>信息窗体</value>
   </data>
   <data name="groupBox37.ToolTip" xml:space="preserve">
     <value>导入信息消息表单，自动关闭前延迟</value>
@@ -3572,10 +3512,10 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <value>将“圆”半径转换为 ​​S 值</value>
   </data>
   <data name="BtnHelp_ImportParameter.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_SvgDxfCsv.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="label97.Text" xml:space="preserve">
     <value>不支持：FS、VS、WU、PW</value>
@@ -3593,73 +3533,73 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <value>钻头</value>
   </data>
   <data name="label99.Text" xml:space="preserve">
-    <value>将打开一个新表单进行设置。</value>
+    <value>将打开一个新窗体进行设置。</value>
   </data>
   <data name="groupBox38.Text" xml:space="preserve">
     <value>图像导入（*.bmp、*.gif、*.png、*.jpg）</value>
   </data>
   <data name="BtnHelp_Pathinterpretation.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_Pathaddons.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_Pathmodification2.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="button5.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_Conversion.ToolTip" xml:space="preserve">
     <value>网上帮助</value>
   </data>
   <data name="BtnHelp_Tooltable.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_Grouping.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_Filter.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_Wirebender.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_Outline.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_Extension.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_General.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_Penupdown.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_misc.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_Usecase.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_TooltableSet.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_Toolchange.ToolTip" xml:space="preserve">
     <value>网上帮助</value>
   </data>
   <data name="BtnHelp_Programstart.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_Programcontrol.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_Flowcontrol.ToolTip" xml:space="preserve">
     <value>网上帮助</value>
   </data>
   <data name="BtnHelp_Camera.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_Notifier.ToolTip" xml:space="preserve">
     <value>网上帮助</value>
@@ -3684,7 +3624,7 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
 例如。用于激光切割</value>
   </data>
   <data name="cBImportGraphicLargestLast.Text" xml:space="preserve">
-    <value>最大的物体最后</value>
+    <value>最大的对象排最后</value>
   </data>
   <data name="cBImportGraphicLargestLast.ToolTip" xml:space="preserve">
     <value>最后处理最大的对象，例如激光雕刻/切割的切口路径</value>
@@ -3729,22 +3669,22 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <value>要加载为 add.on 的 svg 文件的文件路径</value>
   </data>
   <data name="CbImportSVGAddOnPosition.Items" xml:space="preserve">
-    <value>没有任何</value>
+    <value>None</value>
   </data>
   <data name="CbImportSVGAddOnPosition.Items1" xml:space="preserve">
     <value>中心（框架）</value>
   </data>
   <data name="CbImportSVGAddOnPosition.Items2" xml:space="preserve">
-    <value>左下方</value>
+    <value>左下角</value>
   </data>
   <data name="CbImportSVGAddOnPosition.Items3" xml:space="preserve">
     <value>右下角</value>
   </data>
   <data name="CbImportSVGAddOnPosition.Items4" xml:space="preserve">
-    <value>左上方</value>
+    <value>左上角</value>
   </data>
   <data name="CbImportSVGAddOnPosition.Items5" xml:space="preserve">
-    <value>右上</value>
+    <value>右上角</value>
   </data>
   <data name="CbImportSVGAddOnPosition.Text" xml:space="preserve">
     <value>选择位置</value>
@@ -3753,7 +3693,7 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <value>选择附加组件相对于导入图形的所需位置</value>
   </data>
   <data name="label105.Text" xml:space="preserve">
-    <value>规模</value>
+    <value>Scale</value>
   </data>
   <data name="label105.ToolTip" xml:space="preserve">
     <value>根据原始尺寸或所需的调整大小缩放导入图形的尺寸</value>
@@ -3762,7 +3702,7 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <value>对于框架：例如“0.9”缩小原始对象以适合框架</value>
   </data>
   <data name="cBImportSVGAddOnEnable.Text" xml:space="preserve">
-    <value>使能够</value>
+    <value>启用(使能)</value>
   </data>
   <data name="BtnImportSVGAddOnSelectFile.Text" xml:space="preserve">
     <value>...</value>
@@ -3854,13 +3794,13 @@ X 获取半径值，Y 获取角度值。
     <value>稍后开始图形路径并较早结束（对于旋转刀具）。</value>
   </data>
   <data name="cBImportGraphicOffsetLargestRemove.Text" xml:space="preserve">
-    <value>移除最大的物体</value>
+    <value>删除最大的对象</value>
   </data>
   <data name="cBImportGraphicOffsetLargestRemove.ToolTip" xml:space="preserve">
-    <value>找到最大的物体并删除，例如避免激光雕刻/切割的切口路径</value>
+    <value>找到最大的对象并删除，例如避免激光雕刻/切割的切口路径</value>
   </data>
   <data name="cBImportGraphicOffsetLargestLast.Text" xml:space="preserve">
-    <value>将最大的物体移到最后</value>
+    <value>将最大的对象移到最后</value>
   </data>
   <data name="cBImportGraphicOffsetLargestLast.ToolTip" xml:space="preserve">
     <value>最后处理最大的对象，例如激光雕刻/切割的切口路径</value>
@@ -3918,7 +3858,7 @@ X 获取半径值，Y 获取角度值。
     <value>获取颜色</value>
   </data>
   <data name="button2.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="label103.Text" xml:space="preserve">
     <value>方面</value>
@@ -3957,24 +3897,775 @@ X 获取半径值，Y 获取角度值。
     <value>将一个文件内容放在另一个文件内容旁边，直到达到指定的数量。然后新的行或列开始。</value>
   </data>
   <data name="BtnHelp_Buttons.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_Hotkeys.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_Gamepad.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_Joystick.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_2dview.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_Projector.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="BtnHelp_Misc2.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
+  </data>
+  <data name="lblEnableLogging.Text" xml:space="preserve">
+    <value> 日志按钮</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.Items" xml:space="preserve">
+    <value>Xmin, Ymax</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.Items1" xml:space="preserve">
+    <value>Xmax, Ymax</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.Items2" xml:space="preserve">
+    <value>Xmax, Ymin</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.Items3" xml:space="preserve">
+    <value>Xmin, Ymin</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.Items4" xml:space="preserve">
+    <value>X中心, Y中心</value>
+  </data>
+  <data name="CbImportGraphicSortDistanceStart.Items5" xml:space="preserve">
+    <value>0,0</value>
+  </data>
+  <data name="tabFormat_SVG.Text" xml:space="preserve">
+    <value>SVG</value>
+  </data>
+  <data name="LblMetaDataExample.Text" xml:space="preserve">
+    <value>FeedXY=1234; SpindleSpeed=789;
+ZEnable; FeedZ=321; ZUp=5; ZDown=-1.2;
+PWMEnable; PWMUp=10; PWMZero=20; PWMDown=30;
+LaserEnable;LaserPower=100;
+SpindleEnable;</value>
+  </data>
+  <data name="cBImportSVG_DPI_72.Text" xml:space="preserve">
+    <value>72 dpi</value>
+  </data>
+  <data name="cBImportSVG_DPI_96.Text" xml:space="preserve">
+    <value>96 dpi</value>
+  </data>
+  <data name="tabFormat_CSV.Text" xml:space="preserve">
+    <value>CSV</value>
+  </data>
+  <data name="tabFormat_HPGL.Text" xml:space="preserve">
+    <value>HPGL</value>
+  </data>
+  <data name="tabFormat_Gerber.Text" xml:space="preserve">
+    <value>Gerber</value>
+  </data>
+  <data name="tabFormat_Image.Text" xml:space="preserve">
+    <value>图像</value>
+  </data>
+  <data name="BtnCircleToDotScript.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="BtnHelp_Pathinterpretation.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="BtnHelp_Pathaddons.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="BtnHelp_Pathmodification2.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="cBoxImportGCTangentialName.Items" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="cBoxImportGCTangentialName.Items1" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="cBoxImportGCTangentialName.Items2" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="cBoxImportGCTangentialName.Items3" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="BtnHelp_Tooltable.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="BtnHelp_Grouping.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="BtnHelp_Filter.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="BtnHelp_Wirebender.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="CbWireBenderFeed.Items" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="CbWireBenderFeed.Items1" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="CbWireBenderFeed.Items2" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="CbWireBenderFeed.Items3" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="CbWireBenderFeed.Items4" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="CbWireBenderFeed.Items5" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="comboBox2.Items" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="comboBox2.Items1" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="comboBox2.Items2" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="comboBox2.Items3" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="comboBox2.Items4" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="comboBox2.Items5" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="BtnHelp_Extension.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="CbAux2Axis.Items" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="CbAux2Axis.Items1" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="CbAux2Axis.Items2" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="CbAux2Axis.Items3" xml:space="preserve">
+    <value>E</value>
+  </data>
+  <data name="CbAux2Axis.Items4" xml:space="preserve">
+    <value>U</value>
+  </data>
+  <data name="CbAux2Axis.Items5" xml:space="preserve">
+    <value>V</value>
+  </data>
+  <data name="CbAux2Axis.Items6" xml:space="preserve">
+    <value>W</value>
+  </data>
+  <data name="CbAux2Axis.Items7" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="CbAux1Axis.Items" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="CbAux1Axis.Items1" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="CbAux1Axis.Items2" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="CbAux1Axis.Items3" xml:space="preserve">
+    <value>E</value>
+  </data>
+  <data name="CbAux1Axis.Items4" xml:space="preserve">
+    <value>U</value>
+  </data>
+  <data name="CbAux1Axis.Items5" xml:space="preserve">
+    <value>V</value>
+  </data>
+  <data name="CbAux1Axis.Items6" xml:space="preserve">
+    <value>W</value>
+  </data>
+  <data name="CbAux1Axis.Items7" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="BtnHelp_General.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="btnCheckSpindle.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="LblImportGCPWMSliderMax.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="LblImportGCPWMSliderMin.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="lblPWMP93.Text" xml:space="preserve">
+    <value>P93</value>
+  </data>
+  <data name="lblPWMP92.Text" xml:space="preserve">
+    <value>P92</value>
+  </data>
+  <data name="lblPWMP91.Text" xml:space="preserve">
+    <value>P91</value>
+  </data>
+  <data name="lblPWMP90.Text" xml:space="preserve">
+    <value>P90</value>
+  </data>
+  <data name="lblInfoPWM.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="btnFileDialogSubR.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="BtnHelp_Usecase.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="lblToolListChanged.Text" xml:space="preserve">
+    <value>-</value>
+    <comment>ok</comment>
+  </data>
+  <data name="BtnHelp_Toolchange.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="btnFileDialogTT4.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="btnFileDialogTT3.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="btnFileDialogTT2.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="btnFileDialogTT1.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="LblPinDescriptionD3.Text" xml:space="preserve">
+    <value>D3</value>
+  </data>
+  <data name="LblPinDescriptionD2.Text" xml:space="preserve">
+    <value>D2</value>
+  </data>
+  <data name="LblPinDescriptionD1.Text" xml:space="preserve">
+    <value>D1</value>
+  </data>
+  <data name="LblPinDescriptionD0.Text" xml:space="preserve">
+    <value>D0</value>
+  </data>
+  <data name="cBLogLevel4.Text" xml:space="preserve">
+    <value>GUI / COM</value>
+  </data>
+  <data name="cBLogLevel4.ToolTip" xml:space="preserve">
+    <value>Gcode</value>
+  </data>
+  <data name="cBLogLevel3.Text" xml:space="preserve">
+    <value>g2GCode</value>
+  </data>
+  <data name="cBLogLevel3.ToolTip" xml:space="preserve">
+    <value>图形转gcode</value>
+  </data>
+  <data name="cBLogLevel2.Text" xml:space="preserve">
+    <value>图形</value>
+  </data>
+  <data name="cBLogLevel2.ToolTip" xml:space="preserve">
+    <value>图形相关</value>
+  </data>
+  <data name="cBLogLevel1.Text" xml:space="preserve">
+    <value>导入</value>
+  </data>
+  <data name="cBLogLevel1.ToolTip" xml:space="preserve">
+    <value>SVG, DXF, etc.</value>
+  </data>
+  <data name="gBLoggingOptions.Text" xml:space="preserve">
+    <value>日志记录选项</value>
+  </data>
+  <data name="BtnThrow.Text" xml:space="preserve">
+    <value>抛出事件</value>
+  </data>
+  <data name="cBLog3.Text" xml:space="preserve">
+    <value>排序和合并|开始停止</value>
+  </data>
+  <data name="cBLog0.Text" xml:space="preserve">
+    <value>详细信息|RX状态</value>
+  </data>
+  <data name="cBLog1.Text" xml:space="preserve">
+    <value>坐标|RX</value>
+  </data>
+  <data name="cBLog6.Text" xml:space="preserve">
+    <value>路径修改|GUI详细</value>
+  </data>
+  <data name="cBLog2.Text" xml:space="preserve">
+    <value>属性| TX</value>
+  </data>
+  <data name="cBLog5.Text" xml:space="preserve">
+    <value>剪辑/平铺| GUI流</value>
+  </data>
+  <data name="cBLog4.Text" xml:space="preserve">
+    <value>分组</value>
+  </data>
+  <data name="BtnHelp_Programcontrol.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="LblAccessoryMistVal.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="LblAccessoryFloodVal.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="LblAccessorySpindleVal.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="comboBox1.Items" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="comboBox1.Items1" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="comboBox1.Items2" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="comboBox1.Items3" xml:space="preserve">
+    <value>E</value>
+  </data>
+  <data name="comboBox1.Items4" xml:space="preserve">
+    <value>U</value>
+  </data>
+  <data name="comboBox1.Items5" xml:space="preserve">
+    <value>V</value>
+  </data>
+  <data name="comboBox1.Items6" xml:space="preserve">
+    <value>W</value>
+  </data>
+  <data name="rBRotaryX.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="cBoxPollInterval.Items" xml:space="preserve">
+    <value>  2 Hz - slow</value>
+  </data>
+  <data name="cBoxPollInterval.Items1" xml:space="preserve">
+    <value>  4 Hz</value>
+  </data>
+  <data name="cBoxPollInterval.Items2" xml:space="preserve">
+    <value>5hz -默认</value>
+  </data>
+  <data name="cBoxPollInterval.Items3" xml:space="preserve">
+    <value>  8 Hz</value>
+  </data>
+  <data name="cBoxPollInterval.Items4" xml:space="preserve">
+    <value>10 Hz - maximum</value>
+  </data>
+  <data name="BtnHelp_Flowcontrol.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="BtnHelp_Camera.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="tab10gB7.Text" xml:space="preserve">
+    <value>参数集4</value>
+  </data>
+  <data name="tBShapeSet4.Text" xml:space="preserve">
+    <value>123</value>
+  </data>
+  <data name="tab10gB6.Text" xml:space="preserve">
+    <value>参数集3</value>
+  </data>
+  <data name="tBShapeSet3.Text" xml:space="preserve">
+    <value>123</value>
+  </data>
+  <data name="tab10gB5.Text" xml:space="preserve">
+    <value>参数集2</value>
+  </data>
+  <data name="tBShapeSet2.Text" xml:space="preserve">
+    <value>123</value>
+  </data>
+  <data name="tab10gB4.Text" xml:space="preserve">
+    <value>参数集1</value>
+  </data>
+  <data name="tBShapeSet1.Text" xml:space="preserve">
+    <value>123</value>
+  </data>
+  <data name="lblFilterBlue2.Text" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblFilterGreen2.Text" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblFilterRed2.Text" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblFilterBlue1.Text" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblFilterGreen1.Text" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblFilterRed1.Text" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tab10gB3lbl6.Text" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="groupBox18.Text" xml:space="preserve">
+    <value>Pushbullet</value>
+  </data>
+  <data name="BtnHelp_Buttons.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="lblPOVC07.Text" xml:space="preserve">
+    <value>↖</value>
+  </data>
+  <data name="lblPOVC06.Text" xml:space="preserve">
+    <value>←</value>
+  </data>
+  <data name="lblPOVC05.Text" xml:space="preserve">
+    <value>↙</value>
+  </data>
+  <data name="lblPOVC04.Text" xml:space="preserve">
+    <value>↓</value>
+  </data>
+  <data name="lblPOVC03.Text" xml:space="preserve">
+    <value>↘</value>
+  </data>
+  <data name="lblPOVC02.Text" xml:space="preserve">
+    <value>→</value>
+  </data>
+  <data name="lblPOVC01.Text" xml:space="preserve">
+    <value>↗</value>
+  </data>
+  <data name="label49.Text" xml:space="preserve">
+    <value>PointOfViewController0</value>
+  </data>
+  <data name="lblPOVC00.Text" xml:space="preserve">
+    <value>↑</value>
+  </data>
+  <data name="lblValR.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValY.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValZ.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblValX.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="lblButtons15.Text" xml:space="preserve">
+    <value>Button 15</value>
+  </data>
+  <data name="lblButtons0.Text" xml:space="preserve">
+    <value>Button 0</value>
+  </data>
+  <data name="lblButtons14.Text" xml:space="preserve">
+    <value>Button 14</value>
+  </data>
+  <data name="lblButtons13.Text" xml:space="preserve">
+    <value>Button 13</value>
+  </data>
+  <data name="lblButtons1.Text" xml:space="preserve">
+    <value>Button 1</value>
+  </data>
+  <data name="lblButtons12.Text" xml:space="preserve">
+    <value>Button 12</value>
+  </data>
+  <data name="lblButtons2.Text" xml:space="preserve">
+    <value>Button 2</value>
+  </data>
+  <data name="lblButtons11.Text" xml:space="preserve">
+    <value>Button 11</value>
+  </data>
+  <data name="lblButtons3.Text" xml:space="preserve">
+    <value>Button 3</value>
+  </data>
+  <data name="lblButtons10.Text" xml:space="preserve">
+    <value>Button 10</value>
+  </data>
+  <data name="lblButtons4.Text" xml:space="preserve">
+    <value>Button 4</value>
+  </data>
+  <data name="lblButtons9.Text" xml:space="preserve">
+    <value>Button 9</value>
+  </data>
+  <data name="lblButtons5.Text" xml:space="preserve">
+    <value>Button 5</value>
+  </data>
+  <data name="lblButtons8.Text" xml:space="preserve">
+    <value>Button 8</value>
+  </data>
+  <data name="lblButtons6.Text" xml:space="preserve">
+    <value>Button 6</value>
+  </data>
+  <data name="lblButtons7.Text" xml:space="preserve">
+    <value>Button 7</value>
+  </data>
+  <data name="BtnHelp_Joystick.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="lblJoystickSize.Text" xml:space="preserve">
+    <value>160</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Pos 5</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>Pos 4</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>Pos 3</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Pos 2</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Pos 1</value>
+  </data>
+  <data name="BtnHelp_2dview.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="label85.Text" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="label84.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="BtnHelp_Projector.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="groupBox43.Text" xml:space="preserve">
+    <value>调整主窗体大小</value>
+  </data>
+  <data name="BtnResize4.Text" xml:space="preserve">
+    <value>1920 x 1080</value>
+  </data>
+  <data name="BtnResize3.Text" xml:space="preserve">
+    <value>1280 x 720</value>
+  </data>
+  <data name="BtnResize2.Text" xml:space="preserve">
+    <value>1024 x 768</value>
+  </data>
+  <data name="BtnResize1.Text" xml:space="preserve">
+    <value>900 x 680</value>
+  </data>
+  <data name="BtnHelp_Misc2.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="label95.Text" xml:space="preserve">
+    <value>sec.</value>
+  </data>
+  <data name="linkLabel19.Text" xml:space="preserve">
+    <value>SquiggleCam</value>
+  </data>
+  <data name="linkLabel19.ToolTip" xml:space="preserve">
+    <value>https://drawingbots.net/knowledge/tools/svg-generator</value>
+  </data>
+  <data name="linkLabel18.Text" xml:space="preserve">
+    <value>StippleGen</value>
+  </data>
+  <data name="linkLabel18.ToolTip" xml:space="preserve">
+    <value>https://wiki.evilmadscientist.com/StippleGen</value>
+  </data>
+  <data name="linkLabel16.ToolTip" xml:space="preserve">
+    <value>https://inkscape.org/gallery/=extension/</value>
+  </data>
+  <data name="linkLabel14.ToolTip" xml:space="preserve">
+    <value>https://wiki.evilmadscientist.com/Creating_filled_regions</value>
+  </data>
+  <data name="linkLabel13.Text" xml:space="preserve">
+    <value>EggBot扩展</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel13.ToolTip" xml:space="preserve">
+    <value>https://github.com/evil-mad/EggBot/releases/</value>
+  </data>
+  <data name="linkLabel12.Text" xml:space="preserve">
+    <value>Inkscape</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel12.ToolTip" xml:space="preserve">
+    <value>https://inkscape.org</value>
+  </data>
+  <data name="linkLabel17.Text" xml:space="preserve">
+    <value>https://drawingbots.net/knowledge/tools</value>
+  </data>
+  <data name="linkLabel17.ToolTip" xml:space="preserve">
+    <value>https://drawingbots.net/knowledge/tools</value>
+  </data>
+  <data name="linkLabel15.ToolTip" xml:space="preserve">
+    <value>https://cdn.rawgit.com/Draradech/35d36347312ca6d0887aa7d55f366e30/raw/b04cf9cd63a59571910cb226226ce2b3ed46af46/jigsaw.html</value>
+  </data>
+  <data name="linkLabel11.Text" xml:space="preserve">
+    <value>www.templatemaker.nl</value>
+  </data>
+  <data name="linkLabel11.ToolTip" xml:space="preserve">
+    <value>https://www.templatemaker.nl</value>
+  </data>
+  <data name="linkLabel10.Text" xml:space="preserve">
+    <value>maker.js</value>
+    <comment>ok</comment>
+  </data>
+  <data name="linkLabel10.ToolTip" xml:space="preserve">
+    <value>https://maker.js.org/demos/#content</value>
+  </data>
+  <data name="linkLabel9.Text" xml:space="preserve">
+    <value>www.dafont.com</value>
+  </data>
+  <data name="linkLabel9.ToolTip" xml:space="preserve">
+    <value>https://www.dafont.com</value>
+  </data>
+  <data name="linkLabel6.Text" xml:space="preserve">
+    <value>clipartof</value>
+  </data>
+  <data name="linkLabel6.ToolTip" xml:space="preserve">
+    <value>https://free.clipartof.com</value>
+  </data>
+  <data name="linkLabel5.Text" xml:space="preserve">
+    <value>cliparts101</value>
+  </data>
+  <data name="linkLabel5.ToolTip" xml:space="preserve">
+    <value>http://www.cliparts101.com</value>
+  </data>
+  <data name="linkLabel4.Text" xml:space="preserve">
+    <value>clker</value>
+  </data>
+  <data name="linkLabel4.ToolTip" xml:space="preserve">
+    <value>http://www.clker.com</value>
+  </data>
+  <data name="linkLabel3.Text" xml:space="preserve">
+    <value>simplemaps</value>
+  </data>
+  <data name="linkLabel3.ToolTip" xml:space="preserve">
+    <value>https://simplemaps.com</value>
+  </data>
+  <data name="linkLabel2.Text" xml:space="preserve">
+    <value>publicdomainvectors</value>
+  </data>
+  <data name="linkLabel2.ToolTip" xml:space="preserve">
+    <value>https://publicdomainvectors.org</value>
+  </data>
+  <data name="linkLabel1.Text" xml:space="preserve">
+    <value>openclipart</value>
+  </data>
+  <data name="linkLabel1.ToolTip" xml:space="preserve">
+    <value>https://openclipart.org/tags/svg</value>
+  </data>
+  <data name="BtnHelp_ImportParameter.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="BtnHelp_SvgDxfCsv.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="button5.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="BtnHelp_Outline.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="label67.Text" xml:space="preserve">
+    <value>P92</value>
+  </data>
+  <data name="label64.Text" xml:space="preserve">
+    <value>P90</value>
+  </data>
+  <data name="lblPWMP94.Text" xml:space="preserve">
+    <value>P94</value>
+  </data>
+  <data name="BtnHelp_TooltableSet.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="BtnLoadToolTableDialog.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="button2.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="BtnHelp_Hotkeys.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="BtnHelp_Gamepad.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="linkLabel8.ToolTip" xml:space="preserve">
+    <value>http://linuxcnc.org/docs/html/gcode.html</value>
+  </data>
+  <data name="RrBImportVectorizeWidthSet.Text" xml:space="preserve">
+    <value>将图像宽度设置为</value>
+  </data>
+  <data name="RrBImportVectorizeWidthSet.ToolTip" xml:space="preserve">
+    <value>图像宽度（毫米）</value>
+  </data>
+  <data name="NudImportPDNWidth.ToolTip" xml:space="preserve">
+    <value>图像分辨率将根据给定的给定宽度计算</value>
+  </data>
+  <data name="RrBImportVectorizeDPISet.Text" xml:space="preserve">
+    <value>将 DPI 设置为</value>
+  </data>
+  <data name="RrBImportVectorizeDPISet.ToolTip" xml:space="preserve">
+    <value>设置图像分辨率</value>
+  </data>
+  <data name="RrBImportVectorizeDPIFromImage.Text" xml:space="preserve">
+    <value>图像 DPI</value>
+  </data>
+  <data name="RrBImportVectorizeDPIFromImage.ToolTip" xml:space="preserve">
+    <value>图像中存储的图像分辨率</value>
+  </data>
+  <data name="groupBox49.Text" xml:space="preserve">
+    <value>尺寸</value>
+  </data>
+  <data name="rBImportVectorizeAlgoMyTrace.Text" xml:space="preserve">
+    <value>几何追踪（慢 - 适合几何形状）</value>
+  </data>
+  <data name="rBImportVectorizeAlgoMyTrace.ToolTip" xml:space="preserve">
+    <value>对于自绘像素图形</value>
+  </data>
+  <data name="rBImportVectorizeAlgoPoTrace.Text" xml:space="preserve">
+    <value>PoTrace（快速 - 适合图片和草图）</value>
+  </data>
+  <data name="groupBox48.Text" xml:space="preserve">
+    <value>矢量化算法</value>
+  </data>
+  <data name="rBImportVectorizeTransparency.Text" xml:space="preserve">
+    <value>透明度</value>
+  </data>
+  <data name="rBImportVectorizeTransparency.ToolTip" xml:space="preserve">
+    <value>如果没有发现透明度，将应用亮度检测</value>
+  </data>
+  <data name="NudImportVectorizeThreshold.ToolTip" xml:space="preserve">
+    <value>阈值范围为 0 - 255。
+亮度必须&gt;阈值才能识别为背景，或者
+透明度必须&lt;阈值才能被识别为背景</value>
+  </data>
+  <data name="rBImportVectorizeBrightness.Text" xml:space="preserve">
+    <value>亮度</value>
+  </data>
+  <data name="label109.Text" xml:space="preserve">
+    <value>临界点</value>
+  </data>
+  <data name="groupBox47.Text" xml:space="preserve">
+    <value>背景检测</value>
+  </data>
+  <data name="label113.Text" xml:space="preserve">
+    <value>Potrace 是一款开源软件，可将位图图像转换为矢量图形。它由 Peter Selinger 编写和维护。</value>
+  </data>
+  <data name="BtnSetPoTraceDefaults.Text" xml:space="preserve">
+    <value>重置</value>
+  </data>
+  <data name="label112.Text" xml:space="preserve">
+    <value>曲线优化公差</value>
+  </data>
+  <data name="label111.Text" xml:space="preserve">
+    <value>拐角门槛</value>
+  </data>
+  <data name="label110.Text" xml:space="preserve">
+    <value>要忽略的最大路径区域</value>
+  </data>
+  <data name="CBImportPoTraceOptimazion.Text" xml:space="preserve">
+    <value>使用曲线优化</value>
+  </data>
+  <data name="groupBox46.Text" xml:space="preserve">
+    <value>申请</value>
+  </data>
+  <data name="groupBox45.Text" xml:space="preserve">
+    <value>自动矢量化</value>
   </data>
 </root>

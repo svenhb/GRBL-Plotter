@@ -124,7 +124,7 @@
     <value>删除完整路径</value>
   </data>
   <data name="btnUndo.Text" xml:space="preserve">
-    <value>最后撤消</value>
+    <value>撤销上次</value>
   </data>
   <data name="btnLoad.Text" xml:space="preserve">
     <value>加载路径</value>
@@ -133,7 +133,7 @@
     <value>保存路径</value>
   </data>
   <data name="btnRotate.Text" xml:space="preserve">
-    <value>旋转路径90°</value>
+    <value>路径旋转90°</value>
   </data>
   <data name="btnDelete.Text" xml:space="preserve">
     <value>删除路径</value>
@@ -148,7 +148,7 @@
     <value>导入为图形</value>
   </data>
   <data name="btnJogStop.Text" xml:space="preserve">
-    <value>停</value>
+    <value>停止</value>
   </data>
   <data name="btnJogStart.Text" xml:space="preserve">
     <value>发送慢跑路径</value>
@@ -157,7 +157,7 @@
     <value>进给速度</value>
   </data>
   <data name="cBSnap.Text" xml:space="preserve">
-    <value>捕捉栅格</value>
+    <value>栅格捕捉</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>慢跑路径创作者</value>
@@ -188,5 +188,11 @@
   </data>
   <data name="tBCodeStart.ToolTip" xml:space="preserve">
     <value>在开始路径之前发送的代码</value>
+  </data>
+  <data name="button3.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="button3.ToolTip" xml:space="preserve">
+    <value>在线帮助</value>
   </data>
 </root>

@@ -237,10 +237,6 @@ Indeks ten jest używany jako numer narzędzia.</value>
   <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
     <value>Jeśli warstwa lub obiekt nie są widoczne w Inkscape, nie zostaną zaimportowane.</value>
   </data>
-  <data name="checkBox5.Text" xml:space="preserve">
-    <value>Wypełnij kreskowaniem wypełnione obiekty</value>
-    <comment>ok</comment>
-  </data>
   <data name="nUDSVGScale.ToolTip" xml:space="preserve">
     <value>Spróbuj skalować grafikę do podanego rozmiaru przed generowaniem G-Code</value>
     <comment>TabPage1_1</comment>
@@ -3786,7 +3782,7 @@ Konwersja jest również możliwa poprzez Menu - Transformacja GCode - 'Konwertu
 Jeśli zaznaczone, każde polecenie „m” tworzy nową cyfrę.</value>
   </data>
   <data name="label107.Text" xml:space="preserve">
-    <value>Rozdzielczość obrazu w DPI</value>
+    <value>Wektoryzacja geometryczna sprawdza się dobrze w przypadku kształtów geometrycznych i grafiki pikselowej</value>
   </data>
   <data name="NudImportPDNDpi.ToolTip" xml:space="preserve">
     <value>DPI = piksele/cal - zwykle 96</value>
@@ -3865,5 +3861,86 @@ Jeśli zaznaczone, każde polecenie „m” tworzy nową cyfrę.</value>
   </data>
   <data name="BtnHelp_Misc2.ToolTip" xml:space="preserve">
     <value>Pomoc online</value>
+  </data>
+  <data name="RrBImportVectorizeDPISet.Text" xml:space="preserve">
+    <value>Ustaw DPI</value>
+  </data>
+  <data name="RrBImportVectorizeDPISet.ToolTip" xml:space="preserve">
+    <value>Ustaw rozdzielczość obrazu</value>
+  </data>
+  <data name="RrBImportVectorizeDPIFromImage.Text" xml:space="preserve">
+    <value>DPI z obrazu</value>
+  </data>
+  <data name="RrBImportVectorizeDPIFromImage.ToolTip" xml:space="preserve">
+    <value>Rozdzielczość obrazu zapisana w obrazie</value>
+  </data>
+  <data name="groupBox49.Text" xml:space="preserve">
+    <value>Rozmiar</value>
+  </data>
+  <data name="rBImportVectorizeAlgoMyTrace.Text" xml:space="preserve">
+    <value>Ślad geometryczny (powolny – dobry dla kształtów geometrycznych)</value>
+  </data>
+  <data name="rBImportVectorizeAlgoPoTrace.Text" xml:space="preserve">
+    <value>PoTrace (szybki - dobry do zdjęć i szkiców)</value>
+  </data>
+  <data name="groupBox48.Text" xml:space="preserve">
+    <value>Algorytm wektoryzacji</value>
+  </data>
+  <data name="rBImportVectorizeTransparency.Text" xml:space="preserve">
+    <value>Przezroczystość</value>
+  </data>
+  <data name="rBImportVectorizeTransparency.ToolTip" xml:space="preserve">
+    <value>Jeśli nie zostanie znaleziona przezroczystość, zostanie zastosowana detekcja jasności.</value>
+  </data>
+  <data name="rBImportVectorizeBrightness.Text" xml:space="preserve">
+    <value>Jasność</value>
+  </data>
+  <data name="label109.Text" xml:space="preserve">
+    <value>Próg</value>
+  </data>
+  <data name="groupBox47.Text" xml:space="preserve">
+    <value>Wykrywanie tła</value>
+  </data>
+  <data name="tabPage11.Text" xml:space="preserve">
+    <value>Ustawienia</value>
+    <comment>TabPage1_3</comment>
+  </data>
+  <data name="label113.Text" xml:space="preserve">
+    <value>Potrace to oprogramowanie typu open source, które konwertuje obrazy bitmapowe na grafikę wektorową. Jest napisany i utrzymywany przez Petera Selingera.</value>
+  </data>
+  <data name="label112.Text" xml:space="preserve">
+    <value>Tolerancja optymalizacji krzywej</value>
+  </data>
+  <data name="label111.Text" xml:space="preserve">
+    <value>Próg narożny</value>
+  </data>
+  <data name="label110.Text" xml:space="preserve">
+    <value>Obszar największej ścieżki, który należy zignorować</value>
+  </data>
+  <data name="CBImportPoTraceOptimazion.Text" xml:space="preserve">
+    <value>Użyj optymalizacji krzywej</value>
+  </data>
+  <data name="groupBox46.Text" xml:space="preserve">
+    <value>Złóż wniosek</value>
+  </data>
+  <data name="groupBox45.Text" xml:space="preserve">
+    <value>Automatyczna wektoryzacja</value>
+  </data>
+  <data name="RrBImportVectorizeWidthSet.Text" xml:space="preserve">
+    <value>Ustaw szerokość obrazu na</value>
+  </data>
+  <data name="RrBImportVectorizeWidthSet.ToolTip" xml:space="preserve">
+    <value>Szerokość obrazu w mm</value>
+  </data>
+  <data name="NudImportPDNWidth.ToolTip" xml:space="preserve">
+    <value>Rozdzielczość obrazu zostanie obliczona na podstawie podanej szerokości</value>
+  </data>
+  <data name="rBImportVectorizeAlgoMyTrace.ToolTip" xml:space="preserve">
+    <value>Do samodzielnie rysowanych grafik pikselowych</value>
+  </data>
+  <data name="NudImportVectorizeThreshold.ToolTip" xml:space="preserve">
+    <value>Zakres progów wynosi 0–255.
+Jasność musi przekraczać próg, aby została rozpoznana jako tło, lub
+Aby można było rozpoznać tło, przezroczystość musi wynosić &lt; próg</value>
   </data>
 </root>

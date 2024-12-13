@@ -117,40 +117,48 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label5.Text" xml:space="preserve">
-    <value>笔宽</value>
+  <data name="groupBox1.ToolTip" xml:space="preserve">
+    <value>立即更改馈送覆盖值。主动进给动作会在几十毫秒内改变。
+不会改变快速速率，包括G0、G28和G30，或慢跑运动。
+进料超控值不能为10%或大于200%。
+如果馈送覆盖值不变，则忽略该命令。
+饲料覆盖范围和增量可以在config.h中更改。</value>
   </data>
-  <data name="BtnAttributeColor.Text" xml:space="preserve">
-    <value>笔颜色</value>
+  <data name="groupBox2.ToolTip" xml:space="preserve">
+    <value>立即更改主轴速度超控值。主动主轴速度在几十毫秒内改变。
+无论主轴是启用还是禁用，超控值都可以随时更改。
+主轴超控值不能为10%或大于200%
+如果主轴超控值没有改变，则忽略该命令。
+主轴超控范围和增量可以在config.h中更改。</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>特性</value>
+  <data name="btnToggleSS.ToolTip" xml:space="preserve">
+    <value>立即切换主轴启用或禁用状态，但仅限于处于保持状态时。
+否则，该命令将被忽略，尤其是在运动时。这可以防止在作业过程中意外禁用，否则可能会损坏零件/机器或造成人身伤害。工业机器处理主轴停止超控的方式类似。
+当通过循环启动重新开始运动时，将恢复最后一个主轴状态，并在恢复刀具路径之前等待4.0秒（可配置）。这可以确保用户不会忘记重新打开它。
+禁用时，主轴速度超控值仍可更改，一旦重新启用主轴，该值将生效。
+如果安全门打开，door状态将取代主轴停止超控，在关闭门并恢复时，它将管理主轴重新通电。清除并重置之前的主轴停止超控状态。</value>
   </data>
-  <data name="button1.Text" xml:space="preserve">
-    <value>取消</value>
+  <data name="btnToggleMC.ToolTip" xml:space="preserve">
+    <value>通过ENABLE_M7编译时选项启用。默认设置已禁用。
+切换雾状冷却液状态和输出引脚，直到下一个切换或g-代码命令改变它。
+在空闲、运行或保持状态下，可以随时发出命令。否则，它将被忽略。
+此覆盖直接更改了g-代码解析器中的冷却剂模式状态。Grbl将继续正常运行，就像它接收并执行M7或M9 g代码命令一样。
+当查询$G G-代码解析器状态时，切换覆盖更改将通过启用或禁用M7来反映，M9或M8存在时不出现。</value>
   </data>
-  <data name="button2.Text" xml:space="preserve">
-    <value>OK</value>
+  <data name="btnToggleFC.ToolTip" xml:space="preserve">
+    <value>切换溢流冷却液状态和输出引脚，直到下一个切换或g-代码命令改变它。
+在空闲、运行或保持状态下，可以随时发出命令。否则，它将被忽略。
+此覆盖直接更改了g-代码解析器中的冷却剂模式状态。Grbl将继续正常运行，就像它收到并执行M8或M9 g代码命令一样。
+当查询$G G-代码解析器状态时，切换覆盖更改将通过启用或禁用M8以及M9或在M7存在时不出现来反映。</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>中心 X</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>中心 Y</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>以上数字的值增量</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>坐标</value>
-  </data>
-  <data name="BtnCancel.Text" xml:space="preserve">
-    <value>取消</value>
-  </data>
-  <data name="BtnOK.Text" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Properties</value>
+  <data name="btnOverrideSD.ToolTip" xml:space="preserve">
+    <value>虽然通常连接到输入引脚以检测安全门的打开，但此命令允许GUI使用此命令执行安全门行为。
+立即暂停到DOOR状态并禁用主轴和冷却液。如果在运动中，机器将减速停止，然后暂停。
+如果在归航过程中执行，Grbl将停止运动并发出归航警报。
+如果已经处于挂起状态或保持状态，则DOOR状态将取代它。
+如果启用了驻车编译时间选项，Grbl将把主轴驻车到指定位置。
+当Grbl处于空闲、保持、运行、归位或点动状态时，命令执行。否则，它将被忽略。
+如果慢跑，安全门将取消慢跑和计划缓冲区中所有排队的动作。当安全门关闭并恢复时，Grbl将返回空闲状态。
+如果启用了编译时选项，则可以使用输入引脚连接按钮或开关。</value>
   </data>
 </root>

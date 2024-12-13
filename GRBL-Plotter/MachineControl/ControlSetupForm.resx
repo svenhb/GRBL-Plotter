@@ -157,7 +157,7 @@
     <value>NoControl</value>
   </data>
   <data name="BtnSaveIni_ImportParameter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>369, 6</value>
+    <value>331, 6</value>
   </data>
   <data name="BtnSaveIni_ImportParameter.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 23</value>
@@ -187,7 +187,7 @@
     <value>NoControl</value>
   </data>
   <data name="BtnHelp_ImportParameter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>397, 6</value>
+    <value>359, 6</value>
   </data>
   <data name="BtnHelp_ImportParameter.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 23</value>
@@ -347,13 +347,13 @@
     <value>6, 70</value>
   </data>
   <data name="cBImportGCNoArcs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>372, 17</value>
+    <value>329, 17</value>
   </data>
   <data name="cBImportGCNoArcs.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
   <data name="cBImportGCNoArcs.Text" xml:space="preserve">
-    <value>Avoid G2/3 (Arc Move) commands, draw arcs / circles with line segments</value>
+    <value>Avoid G2/3 (Arc Move) commands, draw arcs / circles with lines</value>
   </data>
   <data name="cBImportGCNoArcs.ToolTip" xml:space="preserve">
     <value>Convert circles and arcs into line segments - needed if different X and Y scale is needed.
@@ -442,7 +442,8 @@ If step width is &gt; half of radius, it will be decreased automatically</value>
   </data>
   <data name="nUDImportGCSegment.ToolTip" xml:space="preserve">
     <value>Step width on circumference of Arc. 
-If value is &gt; arc-radius, value will be decreased automatically.</value>
+If value is &gt; arc-radius, value will be decreased automatically.
+As smaller the value as more tiny segemnts will created - memory overflow can happen.</value>
   </data>
   <data name="&gt;&gt;nUDImportGCSegment.Name" xml:space="preserve">
     <value>nUDImportGCSegment</value>
@@ -600,23 +601,21 @@ If value is &gt; arc-radius, value will be decreased automatically.</value>
   <data name="&gt;&gt;cBImportGraphicOffsetOrigin.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="cBImportUnitGCode.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="cBImportUnitGCode.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="cBImportUnitGCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>238, 16</value>
+    <value>238, 9</value>
   </data>
   <data name="cBImportUnitGCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 17</value>
+    <value>125, 34</value>
   </data>
   <data name="cBImportUnitGCode.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
   <data name="cBImportUnitGCode.Text" xml:space="preserve">
-    <value>Add G20 (inch)/ G21 (mm)</value>
+    <value>Add G20 (inch)/
+G21 (mm)</value>
   </data>
   <data name="cBImportUnitGCode.ToolTip" xml:space="preserve">
     <value>Add G20 / G21 command in GCode. G21 is default.</value>
@@ -806,7 +805,7 @@ As more segments as more precice the curve is.</value>
     <value>3, 3</value>
   </data>
   <data name="tab1_1gB1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>400, 252</value>
+    <value>366, 252</value>
   </data>
   <data name="tab1_1gB1.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -833,7 +832,7 @@ As more segments as more precice the curve is.</value>
     <value>3, 3, 3, 3</value>
   </data>
   <data name="Import_Parameter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>406, 258</value>
+    <value>372, 258</value>
   </data>
   <data name="Import_Parameter.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1069,7 +1068,7 @@ Objects with same start and end coordinate will be merged together.</value>
     <value>3, 3</value>
   </data>
   <data name="gBSorting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>400, 252</value>
+    <value>366, 252</value>
   </data>
   <data name="gBSorting.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1096,7 +1095,7 @@ Objects with same start and end coordinate will be merged together.</value>
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabControlSort.Size" type="System.Drawing.Size, System.Drawing">
-    <value>406, 258</value>
+    <value>372, 258</value>
   </data>
   <data name="tabControlSort.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -1204,7 +1203,7 @@ Objects with same start and end coordinate will be merged together.</value>
     <value>3, 3</value>
   </data>
   <data name="tab1_3gB6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>394, 67</value>
+    <value>366, 67</value>
   </data>
   <data name="tab1_3gB6.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -1294,7 +1293,7 @@ Objects with same start and end coordinate will be merged together.</value>
     <value>3, 76</value>
   </data>
   <data name="groupBox8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>394, 64</value>
+    <value>366, 64</value>
   </data>
   <data name="groupBox8.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -1321,7 +1320,7 @@ Objects with same start and end coordinate will be merged together.</value>
     <value>3, 3, 3, 3</value>
   </data>
   <data name="Import_Output.Size" type="System.Drawing.Size, System.Drawing">
-    <value>406, 258</value>
+    <value>372, 258</value>
   </data>
   <data name="Import_Output.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1345,7 +1344,7 @@ Objects with same start and end coordinate will be merged together.</value>
     <value>3, 3</value>
   </data>
   <data name="tabControlImport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>414, 284</value>
+    <value>380, 284</value>
   </data>
   <data name="tabControlImport.TabIndex" type="System.Int32, mscorlib">
     <value>28</value>
@@ -1962,7 +1961,7 @@ to avoid problems when scaling down gcode.</value>
     <value>3, 3</value>
   </data>
   <data name="tab1_1gB2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>400, 252</value>
+    <value>440, 252</value>
   </data>
   <data name="tab1_1gB2.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -1989,7 +1988,7 @@ to avoid problems when scaling down gcode.</value>
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabFormat_SVG.Size" type="System.Drawing.Size, System.Drawing">
-    <value>406, 258</value>
+    <value>446, 258</value>
   </data>
   <data name="tabFormat_SVG.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -2145,7 +2144,7 @@ to avoid problems when scaling down gcode.</value>
     <value>3, 3</value>
   </data>
   <data name="tab1_1gB3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>400, 252</value>
+    <value>440, 252</value>
   </data>
   <data name="tab1_1gB3.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -2172,7 +2171,7 @@ to avoid problems when scaling down gcode.</value>
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabFormat_DXF.Size" type="System.Drawing.Size, System.Drawing">
-    <value>406, 258</value>
+    <value>446, 258</value>
   </data>
   <data name="tabFormat_DXF.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -2694,7 +2693,7 @@ to avoid problems when scaling down gcode.</value>
     <value>3, 3</value>
   </data>
   <data name="groupBox6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>400, 252</value>
+    <value>440, 252</value>
   </data>
   <data name="groupBox6.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -2721,7 +2720,7 @@ to avoid problems when scaling down gcode.</value>
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabFormat_CSV.Size" type="System.Drawing.Size, System.Drawing">
-    <value>406, 258</value>
+    <value>446, 258</value>
   </data>
   <data name="tabFormat_CSV.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -2808,7 +2807,7 @@ to avoid problems when scaling down gcode.</value>
     <value>3, 3</value>
   </data>
   <data name="groupBox35.Size" type="System.Drawing.Size, System.Drawing">
-    <value>400, 252</value>
+    <value>440, 252</value>
   </data>
   <data name="groupBox35.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -2835,7 +2834,7 @@ to avoid problems when scaling down gcode.</value>
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabFormat_HPGL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>406, 258</value>
+    <value>446, 258</value>
   </data>
   <data name="tabFormat_HPGL.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -3057,7 +3056,7 @@ to avoid problems when scaling down gcode.</value>
     <value>3, 3</value>
   </data>
   <data name="tab1_3gB7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>400, 252</value>
+    <value>440, 252</value>
   </data>
   <data name="tab1_3gB7.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
@@ -3084,7 +3083,7 @@ to avoid problems when scaling down gcode.</value>
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabFormat_Gerber.Size" type="System.Drawing.Size, System.Drawing">
-    <value>406, 258</value>
+    <value>446, 258</value>
   </data>
   <data name="tabFormat_Gerber.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -3141,7 +3140,7 @@ to avoid problems when scaling down gcode.</value>
     <value>3, 3</value>
   </data>
   <data name="groupBox36.Size" type="System.Drawing.Size, System.Drawing">
-    <value>400, 252</value>
+    <value>440, 252</value>
   </data>
   <data name="groupBox36.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -3168,7 +3167,7 @@ to avoid problems when scaling down gcode.</value>
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabFormat_Drill.Size" type="System.Drawing.Size, System.Drawing">
-    <value>406, 258</value>
+    <value>446, 258</value>
   </data>
   <data name="tabFormat_Drill.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -3188,41 +3187,11 @@ to avoid problems when scaling down gcode.</value>
   <data name="&gt;&gt;tabFormat_Drill.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="label107.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label107.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label107.Location" type="System.Drawing.Point, System.Drawing">
-    <value>56, 45</value>
-  </data>
-  <data name="label107.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 13</value>
-  </data>
-  <data name="label107.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="label107.Text" xml:space="preserve">
-    <value>Image resolution in DPI</value>
-  </data>
-  <data name="&gt;&gt;label107.Name" xml:space="preserve">
-    <value>label107</value>
-  </data>
-  <data name="&gt;&gt;label107.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label107.Parent" xml:space="preserve">
-    <value>groupBox44</value>
-  </data>
-  <data name="&gt;&gt;label107.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="NudImportPDNDpi.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 43</value>
+    <value>138, 31</value>
   </data>
   <data name="NudImportPDNDpi.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 20</value>
+    <value>56, 20</value>
   </data>
   <data name="NudImportPDNDpi.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -3231,7 +3200,8 @@ to avoid problems when scaling down gcode.</value>
     <value>Right</value>
   </data>
   <data name="NudImportPDNDpi.ToolTip" xml:space="preserve">
-    <value>DPI = pixels/inch - usually 96</value>
+    <value>Image resolution in DPI
+DPI = pixels/inch - usually 96</value>
   </data>
   <data name="&gt;&gt;NudImportPDNDpi.Name" xml:space="preserve">
     <value>NudImportPDNDpi</value>
@@ -3240,10 +3210,1213 @@ to avoid problems when scaling down gcode.</value>
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;NudImportPDNDpi.Parent" xml:space="preserve">
-    <value>groupBox44</value>
+    <value>groupBox49</value>
   </data>
   <data name="&gt;&gt;NudImportPDNDpi.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="RrBImportVectorizeWidthSet.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="RrBImportVectorizeWidthSet.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="RrBImportVectorizeWidthSet.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 52</value>
+  </data>
+  <data name="RrBImportVectorizeWidthSet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 17</value>
+  </data>
+  <data name="RrBImportVectorizeWidthSet.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="RrBImportVectorizeWidthSet.Text" xml:space="preserve">
+    <value>Set image width to</value>
+  </data>
+  <data name="RrBImportVectorizeWidthSet.ToolTip" xml:space="preserve">
+    <value>Width of image in mm</value>
+  </data>
+  <data name="&gt;&gt;RrBImportVectorizeWidthSet.Name" xml:space="preserve">
+    <value>RrBImportVectorizeWidthSet</value>
+  </data>
+  <data name="&gt;&gt;RrBImportVectorizeWidthSet.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RrBImportVectorizeWidthSet.Parent" xml:space="preserve">
+    <value>groupBox49</value>
+  </data>
+  <data name="&gt;&gt;RrBImportVectorizeWidthSet.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="NudImportPDNWidth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>138, 52</value>
+  </data>
+  <data name="NudImportPDNWidth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 20</value>
+  </data>
+  <data name="NudImportPDNWidth.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="NudImportPDNWidth.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="NudImportPDNWidth.ToolTip" xml:space="preserve">
+    <value>Image resolution will be calculated by given given width</value>
+  </data>
+  <data name="&gt;&gt;NudImportPDNWidth.Name" xml:space="preserve">
+    <value>NudImportPDNWidth</value>
+  </data>
+  <data name="&gt;&gt;NudImportPDNWidth.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudImportPDNWidth.Parent" xml:space="preserve">
+    <value>groupBox49</value>
+  </data>
+  <data name="&gt;&gt;NudImportPDNWidth.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="RrBImportVectorizeDPISet.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="RrBImportVectorizeDPISet.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="RrBImportVectorizeDPISet.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 34</value>
+  </data>
+  <data name="RrBImportVectorizeDPISet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 17</value>
+  </data>
+  <data name="RrBImportVectorizeDPISet.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="RrBImportVectorizeDPISet.Text" xml:space="preserve">
+    <value>Set DPI to</value>
+  </data>
+  <data name="RrBImportVectorizeDPISet.ToolTip" xml:space="preserve">
+    <value>Set image resolution</value>
+  </data>
+  <data name="&gt;&gt;RrBImportVectorizeDPISet.Name" xml:space="preserve">
+    <value>RrBImportVectorizeDPISet</value>
+  </data>
+  <data name="&gt;&gt;RrBImportVectorizeDPISet.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RrBImportVectorizeDPISet.Parent" xml:space="preserve">
+    <value>groupBox49</value>
+  </data>
+  <data name="&gt;&gt;RrBImportVectorizeDPISet.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="RrBImportVectorizeDPIFromImage.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="RrBImportVectorizeDPIFromImage.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="RrBImportVectorizeDPIFromImage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
+  <data name="RrBImportVectorizeDPIFromImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 17</value>
+  </data>
+  <data name="RrBImportVectorizeDPIFromImage.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="RrBImportVectorizeDPIFromImage.Text" xml:space="preserve">
+    <value>DPI from image</value>
+  </data>
+  <data name="RrBImportVectorizeDPIFromImage.ToolTip" xml:space="preserve">
+    <value>Image resolution stored in image</value>
+  </data>
+  <data name="&gt;&gt;RrBImportVectorizeDPIFromImage.Name" xml:space="preserve">
+    <value>RrBImportVectorizeDPIFromImage</value>
+  </data>
+  <data name="&gt;&gt;RrBImportVectorizeDPIFromImage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RrBImportVectorizeDPIFromImage.Parent" xml:space="preserve">
+    <value>groupBox49</value>
+  </data>
+  <data name="&gt;&gt;RrBImportVectorizeDPIFromImage.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="groupBox49.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 3</value>
+  </data>
+  <data name="groupBox49.Size" type="System.Drawing.Size, System.Drawing">
+    <value>197, 80</value>
+  </data>
+  <data name="groupBox49.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="groupBox49.Text" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="&gt;&gt;groupBox49.Name" xml:space="preserve">
+    <value>groupBox49</value>
+  </data>
+  <data name="&gt;&gt;groupBox49.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox49.Parent" xml:space="preserve">
+    <value>tabPage11</value>
+  </data>
+  <data name="&gt;&gt;groupBox49.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="rBImportVectorizeAlgoMyTrace.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rBImportVectorizeAlgoMyTrace.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rBImportVectorizeAlgoMyTrace.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 34</value>
+  </data>
+  <data name="rBImportVectorizeAlgoMyTrace.Size" type="System.Drawing.Size, System.Drawing">
+    <value>268, 17</value>
+  </data>
+  <data name="rBImportVectorizeAlgoMyTrace.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="rBImportVectorizeAlgoMyTrace.Text" xml:space="preserve">
+    <value>Geometric Trace (slow - good for geometric shapes)</value>
+  </data>
+  <data name="rBImportVectorizeAlgoMyTrace.ToolTip" xml:space="preserve">
+    <value>For self drawn pixel graphics</value>
+  </data>
+  <data name="&gt;&gt;rBImportVectorizeAlgoMyTrace.Name" xml:space="preserve">
+    <value>rBImportVectorizeAlgoMyTrace</value>
+  </data>
+  <data name="&gt;&gt;rBImportVectorizeAlgoMyTrace.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rBImportVectorizeAlgoMyTrace.Parent" xml:space="preserve">
+    <value>groupBox48</value>
+  </data>
+  <data name="&gt;&gt;rBImportVectorizeAlgoMyTrace.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="rBImportVectorizeAlgoPoTrace.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rBImportVectorizeAlgoPoTrace.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rBImportVectorizeAlgoPoTrace.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
+  <data name="rBImportVectorizeAlgoPoTrace.Size" type="System.Drawing.Size, System.Drawing">
+    <value>241, 17</value>
+  </data>
+  <data name="rBImportVectorizeAlgoPoTrace.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="rBImportVectorizeAlgoPoTrace.Text" xml:space="preserve">
+    <value>PoTrace (fast - good for pictures an sketches)</value>
+  </data>
+  <data name="&gt;&gt;rBImportVectorizeAlgoPoTrace.Name" xml:space="preserve">
+    <value>rBImportVectorizeAlgoPoTrace</value>
+  </data>
+  <data name="&gt;&gt;rBImportVectorizeAlgoPoTrace.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rBImportVectorizeAlgoPoTrace.Parent" xml:space="preserve">
+    <value>groupBox48</value>
+  </data>
+  <data name="&gt;&gt;rBImportVectorizeAlgoPoTrace.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="groupBox48.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 84</value>
+  </data>
+  <data name="groupBox48.Size" type="System.Drawing.Size, System.Drawing">
+    <value>333, 55</value>
+  </data>
+  <data name="groupBox48.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="groupBox48.Text" xml:space="preserve">
+    <value>Vectorization algorithm</value>
+  </data>
+  <data name="&gt;&gt;groupBox48.Name" xml:space="preserve">
+    <value>groupBox48</value>
+  </data>
+  <data name="&gt;&gt;groupBox48.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox48.Parent" xml:space="preserve">
+    <value>tabPage11</value>
+  </data>
+  <data name="&gt;&gt;groupBox48.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="rBImportVectorizeTransparency.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rBImportVectorizeTransparency.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rBImportVectorizeTransparency.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 16</value>
+  </data>
+  <data name="rBImportVectorizeTransparency.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 17</value>
+  </data>
+  <data name="rBImportVectorizeTransparency.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="rBImportVectorizeTransparency.Text" xml:space="preserve">
+    <value>Transparency</value>
+  </data>
+  <data name="rBImportVectorizeTransparency.ToolTip" xml:space="preserve">
+    <value>If no transparency was found, brightness detection will be applied
+</value>
+  </data>
+  <data name="&gt;&gt;rBImportVectorizeTransparency.Name" xml:space="preserve">
+    <value>rBImportVectorizeTransparency</value>
+  </data>
+  <data name="&gt;&gt;rBImportVectorizeTransparency.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rBImportVectorizeTransparency.Parent" xml:space="preserve">
+    <value>groupBox47</value>
+  </data>
+  <data name="&gt;&gt;rBImportVectorizeTransparency.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="NudImportVectorizeThreshold.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 51</value>
+  </data>
+  <data name="NudImportVectorizeThreshold.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 20</value>
+  </data>
+  <data name="NudImportVectorizeThreshold.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="NudImportVectorizeThreshold.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="NudImportVectorizeThreshold.ToolTip" xml:space="preserve">
+    <value>Threshold range is 0 - 255.
+Brightness must be &gt;threshold to recognized as background, or
+Transparency must be &lt; threshold to be recognized as background</value>
+  </data>
+  <data name="&gt;&gt;NudImportVectorizeThreshold.Name" xml:space="preserve">
+    <value>NudImportVectorizeThreshold</value>
+  </data>
+  <data name="&gt;&gt;NudImportVectorizeThreshold.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudImportVectorizeThreshold.Parent" xml:space="preserve">
+    <value>groupBox47</value>
+  </data>
+  <data name="&gt;&gt;NudImportVectorizeThreshold.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="rBImportVectorizeBrightness.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rBImportVectorizeBrightness.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rBImportVectorizeBrightness.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 32</value>
+  </data>
+  <data name="rBImportVectorizeBrightness.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 17</value>
+  </data>
+  <data name="rBImportVectorizeBrightness.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="rBImportVectorizeBrightness.Text" xml:space="preserve">
+    <value>Brightness</value>
+  </data>
+  <data name="&gt;&gt;rBImportVectorizeBrightness.Name" xml:space="preserve">
+    <value>rBImportVectorizeBrightness</value>
+  </data>
+  <data name="&gt;&gt;rBImportVectorizeBrightness.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rBImportVectorizeBrightness.Parent" xml:space="preserve">
+    <value>groupBox47</value>
+  </data>
+  <data name="&gt;&gt;rBImportVectorizeBrightness.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label109.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label109.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label109.Location" type="System.Drawing.Point, System.Drawing">
+    <value>53, 54</value>
+  </data>
+  <data name="label109.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 13</value>
+  </data>
+  <data name="label109.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="label109.Text" xml:space="preserve">
+    <value>Threshold</value>
+  </data>
+  <data name="&gt;&gt;label109.Name" xml:space="preserve">
+    <value>label109</value>
+  </data>
+  <data name="&gt;&gt;label109.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label109.Parent" xml:space="preserve">
+    <value>groupBox47</value>
+  </data>
+  <data name="&gt;&gt;label109.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="groupBox47.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 3</value>
+  </data>
+  <data name="groupBox47.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 80</value>
+  </data>
+  <data name="groupBox47.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="groupBox47.Text" xml:space="preserve">
+    <value>Background detection</value>
+  </data>
+  <data name="&gt;&gt;groupBox47.Name" xml:space="preserve">
+    <value>groupBox47</value>
+  </data>
+  <data name="&gt;&gt;groupBox47.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox47.Parent" xml:space="preserve">
+    <value>tabPage11</value>
+  </data>
+  <data name="&gt;&gt;groupBox47.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tabPage11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPage11.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPage11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>342, 142</value>
+  </data>
+  <data name="tabPage11.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tabPage11.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="&gt;&gt;tabPage11.Name" xml:space="preserve">
+    <value>tabPage11</value>
+  </data>
+  <data name="&gt;&gt;tabPage11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage11.Parent" xml:space="preserve">
+    <value>tabControlVectorize</value>
+  </data>
+  <data name="&gt;&gt;tabPage11.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label113.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label113.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 3</value>
+  </data>
+  <data name="label113.Size" type="System.Drawing.Size, System.Drawing">
+    <value>330, 54</value>
+  </data>
+  <data name="label113.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="label113.Text" xml:space="preserve">
+    <value>Potrace is a open-source software which converts bitmapped images into vector graphics. It is written and maintained by Peter Selinger.</value>
+  </data>
+  <data name="&gt;&gt;label113.Name" xml:space="preserve">
+    <value>label113</value>
+  </data>
+  <data name="&gt;&gt;label113.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label113.Parent" xml:space="preserve">
+    <value>tabPage9</value>
+  </data>
+  <data name="&gt;&gt;label113.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="BtnSetPoTraceDefaults.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnSetPoTraceDefaults.Location" type="System.Drawing.Point, System.Drawing">
+    <value>282, 113</value>
+  </data>
+  <data name="BtnSetPoTraceDefaults.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 23</value>
+  </data>
+  <data name="BtnSetPoTraceDefaults.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="BtnSetPoTraceDefaults.Text" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="&gt;&gt;BtnSetPoTraceDefaults.Name" xml:space="preserve">
+    <value>BtnSetPoTraceDefaults</value>
+  </data>
+  <data name="&gt;&gt;BtnSetPoTraceDefaults.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BtnSetPoTraceDefaults.Parent" xml:space="preserve">
+    <value>tabPage9</value>
+  </data>
+  <data name="&gt;&gt;BtnSetPoTraceDefaults.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label112.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label112.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label112.Location" type="System.Drawing.Point, System.Drawing">
+    <value>53, 102</value>
+  </data>
+  <data name="label112.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 13</value>
+  </data>
+  <data name="label112.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="label112.Text" xml:space="preserve">
+    <value>Curve optimization tolerance</value>
+  </data>
+  <data name="&gt;&gt;label112.Name" xml:space="preserve">
+    <value>label112</value>
+  </data>
+  <data name="&gt;&gt;label112.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label112.Parent" xml:space="preserve">
+    <value>tabPage9</value>
+  </data>
+  <data name="&gt;&gt;label112.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label111.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label111.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label111.Location" type="System.Drawing.Point, System.Drawing">
+    <value>53, 82</value>
+  </data>
+  <data name="label111.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 13</value>
+  </data>
+  <data name="label111.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="label111.Text" xml:space="preserve">
+    <value>Corner threshold</value>
+  </data>
+  <data name="&gt;&gt;label111.Name" xml:space="preserve">
+    <value>label111</value>
+  </data>
+  <data name="&gt;&gt;label111.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label111.Parent" xml:space="preserve">
+    <value>tabPage9</value>
+  </data>
+  <data name="&gt;&gt;label111.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label110.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label110.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label110.Location" type="System.Drawing.Point, System.Drawing">
+    <value>53, 62</value>
+  </data>
+  <data name="label110.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 13</value>
+  </data>
+  <data name="label110.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="label110.Text" xml:space="preserve">
+    <value>Area of largest path to be ignored</value>
+  </data>
+  <data name="&gt;&gt;label110.Name" xml:space="preserve">
+    <value>label110</value>
+  </data>
+  <data name="&gt;&gt;label110.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label110.Parent" xml:space="preserve">
+    <value>tabPage9</value>
+  </data>
+  <data name="&gt;&gt;label110.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="NudImportPoTraceTurdsize.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 58</value>
+  </data>
+  <data name="NudImportPoTraceTurdsize.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 20</value>
+  </data>
+  <data name="NudImportPoTraceTurdsize.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="NudImportPoTraceTurdsize.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudImportPoTraceTurdsize.Name" xml:space="preserve">
+    <value>NudImportPoTraceTurdsize</value>
+  </data>
+  <data name="&gt;&gt;NudImportPoTraceTurdsize.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudImportPoTraceTurdsize.Parent" xml:space="preserve">
+    <value>tabPage9</value>
+  </data>
+  <data name="&gt;&gt;NudImportPoTraceTurdsize.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="NudImportPoTraceAlphamax.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 78</value>
+  </data>
+  <data name="NudImportPoTraceAlphamax.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 20</value>
+  </data>
+  <data name="NudImportPoTraceAlphamax.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="NudImportPoTraceAlphamax.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudImportPoTraceAlphamax.Name" xml:space="preserve">
+    <value>NudImportPoTraceAlphamax</value>
+  </data>
+  <data name="&gt;&gt;NudImportPoTraceAlphamax.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudImportPoTraceAlphamax.Parent" xml:space="preserve">
+    <value>tabPage9</value>
+  </data>
+  <data name="&gt;&gt;NudImportPoTraceAlphamax.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="NudImportPoTraceOptotolerance.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 98</value>
+  </data>
+  <data name="NudImportPoTraceOptotolerance.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 20</value>
+  </data>
+  <data name="NudImportPoTraceOptotolerance.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="NudImportPoTraceOptotolerance.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;NudImportPoTraceOptotolerance.Name" xml:space="preserve">
+    <value>NudImportPoTraceOptotolerance</value>
+  </data>
+  <data name="&gt;&gt;NudImportPoTraceOptotolerance.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudImportPoTraceOptotolerance.Parent" xml:space="preserve">
+    <value>tabPage9</value>
+  </data>
+  <data name="&gt;&gt;NudImportPoTraceOptotolerance.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="CBImportPoTraceOptimazion.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CBImportPoTraceOptimazion.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CBImportPoTraceOptimazion.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 120</value>
+  </data>
+  <data name="CBImportPoTraceOptimazion.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 17</value>
+  </data>
+  <data name="CBImportPoTraceOptimazion.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="CBImportPoTraceOptimazion.Text" xml:space="preserve">
+    <value>Use curve optimization</value>
+  </data>
+  <data name="&gt;&gt;CBImportPoTraceOptimazion.Name" xml:space="preserve">
+    <value>CBImportPoTraceOptimazion</value>
+  </data>
+  <data name="&gt;&gt;CBImportPoTraceOptimazion.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CBImportPoTraceOptimazion.Parent" xml:space="preserve">
+    <value>tabPage9</value>
+  </data>
+  <data name="&gt;&gt;CBImportPoTraceOptimazion.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="tabPage9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPage9.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPage9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>342, 142</value>
+  </data>
+  <data name="tabPage9.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="tabPage9.Text" xml:space="preserve">
+    <value>PoTrace</value>
+  </data>
+  <data name="&gt;&gt;tabPage9.Name" xml:space="preserve">
+    <value>tabPage9</value>
+  </data>
+  <data name="&gt;&gt;tabPage9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage9.Parent" xml:space="preserve">
+    <value>tabControlVectorize</value>
+  </data>
+  <data name="&gt;&gt;tabPage9.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="checkBox5.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBox5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBox5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>140, 56</value>
+  </data>
+  <data name="checkBox5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 17</value>
+  </data>
+  <data name="checkBox5.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="checkBox5.Text" xml:space="preserve">
+    <value>Hatch fill</value>
+  </data>
+  <data name="&gt;&gt;checkBox5.Name" xml:space="preserve">
+    <value>checkBox5</value>
+  </data>
+  <data name="&gt;&gt;checkBox5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox5.Parent" xml:space="preserve">
+    <value>tabPage10</value>
+  </data>
+  <data name="&gt;&gt;checkBox5.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label107.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 3</value>
+  </data>
+  <data name="label107.Size" type="System.Drawing.Size, System.Drawing">
+    <value>333, 46</value>
+  </data>
+  <data name="label107.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="label107.Text" xml:space="preserve">
+    <value>Geometric vectorization works well for geometric shapes and pixel graphics</value>
+  </data>
+  <data name="&gt;&gt;label107.Name" xml:space="preserve">
+    <value>label107</value>
+  </data>
+  <data name="&gt;&gt;label107.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label107.Parent" xml:space="preserve">
+    <value>tabPage10</value>
+  </data>
+  <data name="&gt;&gt;label107.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="CbImportVectorizeOptimize3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbImportVectorizeOptimize3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbImportVectorizeOptimize3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>198, 101</value>
+  </data>
+  <data name="CbImportVectorizeOptimize3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 17</value>
+  </data>
+  <data name="CbImportVectorizeOptimize3.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="CbImportVectorizeOptimize3.Text" xml:space="preserve">
+    <value>Log edge finder</value>
+  </data>
+  <data name="CbImportVectorizeOptimize3.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeOptimize3.Name" xml:space="preserve">
+    <value>CbImportVectorizeOptimize3</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeOptimize3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeOptimize3.Parent" xml:space="preserve">
+    <value>tabPage10</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeOptimize3.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="CbImportVectorizeOptimize4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbImportVectorizeOptimize4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbImportVectorizeOptimize4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>198, 119</value>
+  </data>
+  <data name="CbImportVectorizeOptimize4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 17</value>
+  </data>
+  <data name="CbImportVectorizeOptimize4.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="CbImportVectorizeOptimize4.Text" xml:space="preserve">
+    <value>Log segment check</value>
+  </data>
+  <data name="CbImportVectorizeOptimize4.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeOptimize4.Name" xml:space="preserve">
+    <value>CbImportVectorizeOptimize4</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeOptimize4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeOptimize4.Parent" xml:space="preserve">
+    <value>tabPage10</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeOptimize4.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="CbImportVectorizeInvertResult.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbImportVectorizeInvertResult.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbImportVectorizeInvertResult.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 52</value>
+  </data>
+  <data name="CbImportVectorizeInvertResult.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 17</value>
+  </data>
+  <data name="CbImportVectorizeInvertResult.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="CbImportVectorizeInvertResult.Text" xml:space="preserve">
+    <value>Invert Result</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeInvertResult.Name" xml:space="preserve">
+    <value>CbImportVectorizeInvertResult</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeInvertResult.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeInvertResult.Parent" xml:space="preserve">
+    <value>tabPage10</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeInvertResult.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="CbImportVectorizeOptimize1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbImportVectorizeOptimize1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbImportVectorizeOptimize1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 68</value>
+  </data>
+  <data name="CbImportVectorizeOptimize1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>105, 17</value>
+  </data>
+  <data name="CbImportVectorizeOptimize1.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="CbImportVectorizeOptimize1.Text" xml:space="preserve">
+    <value>Skip optimization</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeOptimize1.Name" xml:space="preserve">
+    <value>CbImportVectorizeOptimize1</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeOptimize1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeOptimize1.Parent" xml:space="preserve">
+    <value>tabPage10</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeOptimize1.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="CbImportVectorizeOptimize2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CbImportVectorizeOptimize2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CbImportVectorizeOptimize2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>198, 87</value>
+  </data>
+  <data name="CbImportVectorizeOptimize2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 17</value>
+  </data>
+  <data name="CbImportVectorizeOptimize2.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="CbImportVectorizeOptimize2.Text" xml:space="preserve">
+    <value>Bezier</value>
+  </data>
+  <data name="CbImportVectorizeOptimize2.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeOptimize2.Name" xml:space="preserve">
+    <value>CbImportVectorizeOptimize2</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeOptimize2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeOptimize2.Parent" xml:space="preserve">
+    <value>tabPage10</value>
+  </data>
+  <data name="&gt;&gt;CbImportVectorizeOptimize2.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="NudImportVectorizeSmoothCycles.Location" type="System.Drawing.Point, System.Drawing">
+    <value>295, 111</value>
+  </data>
+  <data name="NudImportVectorizeSmoothCycles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 20</value>
+  </data>
+  <data name="NudImportVectorizeSmoothCycles.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="NudImportVectorizeSmoothCycles.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="NudImportVectorizeSmoothCycles.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;NudImportVectorizeSmoothCycles.Name" xml:space="preserve">
+    <value>NudImportVectorizeSmoothCycles</value>
+  </data>
+  <data name="&gt;&gt;NudImportVectorizeSmoothCycles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NudImportVectorizeSmoothCycles.Parent" xml:space="preserve">
+    <value>tabPage10</value>
+  </data>
+  <data name="&gt;&gt;NudImportVectorizeSmoothCycles.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="tabPage10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPage10.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPage10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>342, 142</value>
+  </data>
+  <data name="tabPage10.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tabPage10.Text" xml:space="preserve">
+    <value>Geometric Trace</value>
+  </data>
+  <data name="&gt;&gt;tabPage10.Name" xml:space="preserve">
+    <value>tabPage10</value>
+  </data>
+  <data name="&gt;&gt;tabPage10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage10.Parent" xml:space="preserve">
+    <value>tabControlVectorize</value>
+  </data>
+  <data name="&gt;&gt;tabPage10.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tabControlVectorize.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 14</value>
+  </data>
+  <data name="tabControlVectorize.Size" type="System.Drawing.Size, System.Drawing">
+    <value>350, 168</value>
+  </data>
+  <data name="tabControlVectorize.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="&gt;&gt;tabControlVectorize.Name" xml:space="preserve">
+    <value>tabControlVectorize</value>
+  </data>
+  <data name="&gt;&gt;tabControlVectorize.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabControlVectorize.Parent" xml:space="preserve">
+    <value>groupBox45</value>
+  </data>
+  <data name="&gt;&gt;tabControlVectorize.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="cBImageTypePdn.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBImageTypePdn.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cBImageTypePdn.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBImageTypePdn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 14</value>
+  </data>
+  <data name="cBImageTypePdn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 17</value>
+  </data>
+  <data name="cBImageTypePdn.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="cBImageTypePdn.Text" xml:space="preserve">
+    <value>pdn-json</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypePdn.Name" xml:space="preserve">
+    <value>cBImageTypePdn</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypePdn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypePdn.Parent" xml:space="preserve">
+    <value>groupBox46</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypePdn.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="cBImageTypeClipboard.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBImageTypeClipboard.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBImageTypeClipboard.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 100</value>
+  </data>
+  <data name="cBImageTypeClipboard.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 17</value>
+  </data>
+  <data name="cBImageTypeClipboard.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="cBImageTypeClipboard.Text" xml:space="preserve">
+    <value>Clipboard</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypeClipboard.Name" xml:space="preserve">
+    <value>cBImageTypeClipboard</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypeClipboard.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypeClipboard.Parent" xml:space="preserve">
+    <value>groupBox46</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypeClipboard.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="cBImageTypePng.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBImageTypePng.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBImageTypePng.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 30</value>
+  </data>
+  <data name="cBImageTypePng.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 17</value>
+  </data>
+  <data name="cBImageTypePng.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="cBImageTypePng.Text" xml:space="preserve">
+    <value>png</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypePng.Name" xml:space="preserve">
+    <value>cBImageTypePng</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypePng.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypePng.Parent" xml:space="preserve">
+    <value>groupBox46</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypePng.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="cBImageTypeGif.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBImageTypeGif.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBImageTypeGif.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 46</value>
+  </data>
+  <data name="cBImageTypeGif.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 17</value>
+  </data>
+  <data name="cBImageTypeGif.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="cBImageTypeGif.Text" xml:space="preserve">
+    <value>gif</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypeGif.Name" xml:space="preserve">
+    <value>cBImageTypeGif</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypeGif.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypeGif.Parent" xml:space="preserve">
+    <value>groupBox46</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypeGif.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="cBImageTypeJpg.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBImageTypeJpg.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBImageTypeJpg.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 62</value>
+  </data>
+  <data name="cBImageTypeJpg.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 17</value>
+  </data>
+  <data name="cBImageTypeJpg.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="cBImageTypeJpg.Text" xml:space="preserve">
+    <value>jpg</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypeJpg.Name" xml:space="preserve">
+    <value>cBImageTypeJpg</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypeJpg.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypeJpg.Parent" xml:space="preserve">
+    <value>groupBox46</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypeJpg.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="cBImageTypeBmp.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cBImageTypeBmp.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cBImageTypeBmp.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 78</value>
+  </data>
+  <data name="cBImageTypeBmp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 17</value>
+  </data>
+  <data name="cBImageTypeBmp.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="cBImageTypeBmp.Text" xml:space="preserve">
+    <value>bmp</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypeBmp.Name" xml:space="preserve">
+    <value>cBImageTypeBmp</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypeBmp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypeBmp.Parent" xml:space="preserve">
+    <value>groupBox46</value>
+  </data>
+  <data name="&gt;&gt;cBImageTypeBmp.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="groupBox46.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 14</value>
+  </data>
+  <data name="groupBox46.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 121</value>
+  </data>
+  <data name="groupBox46.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="groupBox46.Text" xml:space="preserve">
+    <value>Apply for</value>
+  </data>
+  <data name="&gt;&gt;groupBox46.Name" xml:space="preserve">
+    <value>groupBox46</value>
+  </data>
+  <data name="&gt;&gt;groupBox46.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox46.Parent" xml:space="preserve">
+    <value>groupBox45</value>
+  </data>
+  <data name="&gt;&gt;groupBox46.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="groupBox45.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 73</value>
+  </data>
+  <data name="groupBox45.Size" type="System.Drawing.Size, System.Drawing">
+    <value>440, 182</value>
+  </data>
+  <data name="groupBox45.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="groupBox45.Text" xml:space="preserve">
+    <value>Automatic vectorization</value>
+  </data>
+  <data name="&gt;&gt;groupBox45.Name" xml:space="preserve">
+    <value>groupBox45</value>
+  </data>
+  <data name="&gt;&gt;groupBox45.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox45.Parent" xml:space="preserve">
+    <value>tabFormat_Image</value>
+  </data>
+  <data name="&gt;&gt;groupBox45.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="label108.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3252,7 +4425,7 @@ to avoid problems when scaling down gcode.</value>
     <value>NoControl</value>
   </data>
   <data name="label108.Location" type="System.Drawing.Point, System.Drawing">
-    <value>56, 71</value>
+    <value>45, 121</value>
   </data>
   <data name="label108.Size" type="System.Drawing.Size, System.Drawing">
     <value>168, 13</value>
@@ -3273,31 +4446,7 @@ to avoid problems when scaling down gcode.</value>
     <value>groupBox44</value>
   </data>
   <data name="&gt;&gt;label108.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="NudImportPDNSmoothCycles.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 69</value>
-  </data>
-  <data name="NudImportPDNSmoothCycles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 20</value>
-  </data>
-  <data name="NudImportPDNSmoothCycles.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="NudImportPDNSmoothCycles.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;NudImportPDNSmoothCycles.Name" xml:space="preserve">
-    <value>NudImportPDNSmoothCycles</value>
-  </data>
-  <data name="&gt;&gt;NudImportPDNSmoothCycles.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;NudImportPDNSmoothCycles.Parent" xml:space="preserve">
-    <value>groupBox44</value>
-  </data>
-  <data name="&gt;&gt;NudImportPDNSmoothCycles.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>0</value>
   </data>
   <data name="rBImportPDNLayerAll.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3306,7 +4455,7 @@ to avoid problems when scaling down gcode.</value>
     <value>NoControl</value>
   </data>
   <data name="rBImportPDNLayerAll.Location" type="System.Drawing.Point, System.Drawing">
-    <value>228, 19</value>
+    <value>3, 30</value>
   </data>
   <data name="rBImportPDNLayerAll.Size" type="System.Drawing.Size, System.Drawing">
     <value>97, 17</value>
@@ -3327,7 +4476,7 @@ to avoid problems when scaling down gcode.</value>
     <value>groupBox44</value>
   </data>
   <data name="&gt;&gt;rBImportPDNLayerAll.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>1</value>
   </data>
   <data name="rBImportPDNLayerVisible.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3336,7 +4485,7 @@ to avoid problems when scaling down gcode.</value>
     <value>NoControl</value>
   </data>
   <data name="rBImportPDNLayerVisible.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 19</value>
+    <value>3, 14</value>
   </data>
   <data name="rBImportPDNLayerVisible.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 17</value>
@@ -3357,13 +4506,13 @@ to avoid problems when scaling down gcode.</value>
     <value>groupBox44</value>
   </data>
   <data name="&gt;&gt;rBImportPDNLayerVisible.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>2</value>
   </data>
   <data name="groupBox44.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 6</value>
+    <value>222, 3</value>
   </data>
   <data name="groupBox44.Size" type="System.Drawing.Size, System.Drawing">
-    <value>400, 165</value>
+    <value>221, 64</value>
   </data>
   <data name="groupBox44.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -3381,25 +4530,25 @@ to avoid problems when scaling down gcode.</value>
     <value>tabFormat_Image</value>
   </data>
   <data name="&gt;&gt;groupBox44.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
-  <data name="label99.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="label99.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
   <data name="label99.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label99.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 20</value>
+    <value>3, 16</value>
   </data>
   <data name="label99.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 13</value>
+    <value>209, 45</value>
   </data>
   <data name="label99.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="label99.Text" xml:space="preserve">
-    <value>A new form will open for settings.</value>
+    <value>If not selected in 'Automatic vectorization' a new form will open for settings.</value>
   </data>
   <data name="&gt;&gt;label99.Name" xml:space="preserve">
     <value>label99</value>
@@ -3414,16 +4563,16 @@ to avoid problems when scaling down gcode.</value>
     <value>0</value>
   </data>
   <data name="groupBox38.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 177</value>
+    <value>3, 3</value>
   </data>
   <data name="groupBox38.Size" type="System.Drawing.Size, System.Drawing">
-    <value>400, 78</value>
+    <value>215, 64</value>
   </data>
   <data name="groupBox38.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="groupBox38.Text" xml:space="preserve">
-    <value>Image Import (*.bmp, *.gif, *.png, *.jpg)</value>
+    <value>Image Import (*.png, *.gif, *.jpg, *.bmp)</value>
   </data>
   <data name="&gt;&gt;groupBox38.Name" xml:space="preserve">
     <value>groupBox38</value>
@@ -3435,7 +4584,7 @@ to avoid problems when scaling down gcode.</value>
     <value>tabFormat_Image</value>
   </data>
   <data name="&gt;&gt;groupBox38.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="tabFormat_Image.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -3444,7 +4593,7 @@ to avoid problems when scaling down gcode.</value>
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabFormat_Image.Size" type="System.Drawing.Size, System.Drawing">
-    <value>406, 258</value>
+    <value>446, 258</value>
   </data>
   <data name="tabFormat_Image.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -3465,10 +4614,10 @@ to avoid problems when scaling down gcode.</value>
     <value>6</value>
   </data>
   <data name="tabControlFormat.Location" type="System.Drawing.Point, System.Drawing">
-    <value>426, 3</value>
+    <value>392, 3</value>
   </data>
   <data name="tabControlFormat.Size" type="System.Drawing.Size, System.Drawing">
-    <value>414, 284</value>
+    <value>454, 284</value>
   </data>
   <data name="tabControlFormat.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>

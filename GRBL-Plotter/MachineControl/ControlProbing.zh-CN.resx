@@ -187,7 +187,7 @@
     <value>查找边缘的最大移动距离</value>
   </data>
   <data name="gBMovement.Text" xml:space="preserve">
-    <value>测头运动</value>
+    <value>探测头运动</value>
   </data>
   <data name="label19.Text" xml:space="preserve">
     <value>选择要识别的边缘或角。
@@ -196,7 +196,7 @@
 Z最后检查。</value>
   </data>
   <data name="lblEFProgressInfo.Text" xml:space="preserve">
-    <value>进展</value>
+    <value>进度</value>
   </data>
   <data name="btnStartEF.Text" xml:space="preserve">
     <value>开始</value>
@@ -208,10 +208,10 @@ Z最后检查。</value>
     <value>只有Z</value>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
-    <value>坎特·芬顿</value>
+    <value>寻边器</value>
   </data>
   <data name="lblCFProgressInfo.Text" xml:space="preserve">
-    <value>进展</value>
+    <value>进度</value>
   </data>
   <data name="btnStartCF.Text" xml:space="preserve">
     <value>开始</value>
@@ -389,7 +389,7 @@ Z将移回起始位置</value>
     <value>如果移动到第二个基准点后未触发探头，请给用户手动移动的机会。</value>
   </data>
   <data name="button3.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="GbFiducialOffset.Text" xml:space="preserve">
     <value>探头和工具之间的偏移</value>
@@ -413,12 +413,81 @@ Z将移回起始位置</value>
     <value>基准校正</value>
   </data>
   <data name="BtnHelp_ImportParameter.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="button1.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
   </data>
   <data name="button2.ToolTip" xml:space="preserve">
-    <value>网上帮助</value>
+    <value>在线帮助</value>
+  </data>
+  <data name="LblProbeContact.Text" xml:space="preserve">
+    <value>探头接触</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="BtnStartEF.Text" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="BtnStartCF.Text" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="BtnCancelCF.Text" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="BtnStartTL.Text" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="tBAngle.Text" xml:space="preserve">
+    <value>0,00</value>
+  </data>
+  <data name="cBFindCenterUseX.Text" xml:space="preserve">
+    <value>X (1-2)</value>
+  </data>
+  <data name="cBFindCenterUseY.Text" xml:space="preserve">
+    <value>Y (3-4)</value>
+  </data>
+  <data name="BtnHelp_ImportParameter.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="button1.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="button2.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="button3.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>XY</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>____________________________</value>
   </data>
 </root>

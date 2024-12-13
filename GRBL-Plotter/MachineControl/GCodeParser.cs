@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2022 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@
  * 2021-08-02 calc distance to line
  * 2021-09-04 new struct to store simulation data: SimuCoordByLine
  * 2022-04-18 line 630 simplify GetAlpha by use of atan2
+ * 2024-09-24 f:476 l:SimuCoordByLine add pWord and isDwell, issue #416, #417
 */
 
 
@@ -183,6 +184,7 @@ namespace GrblPlotter
         public bool isunitModeG21;      // G20,21
         public bool isdistanceModeG90;  // G90,91
         public bool isfeedrateModeG94;  // Feed Rate Modes: G93, G94
+        public bool isDwell;
         public byte spindleState;       // M3,4,5
         public byte coolantState;       // M7,8,9
         public byte toolNumber;         // T0
@@ -216,7 +218,7 @@ namespace GrblPlotter
             x = tmp.x; y = tmp.y; z = tmp.z; i = tmp.i; j = tmp.j; a = tmp.a; b = tmp.b; c = tmp.c; u = tmp.u; v = tmp.v; w = tmp.w;
             actualPos = tmp.actualPos;
             motionMode = tmp.motionMode; coordSystem = tmp.coordSystem; planeSelect = tmp.planeSelect;
-            isunitModeG21 = tmp.isunitModeG21; isdistanceModeG90 = tmp.isdistanceModeG90; isfeedrateModeG94 = tmp.isfeedrateModeG94;
+            isunitModeG21 = tmp.isunitModeG21; isdistanceModeG90 = tmp.isdistanceModeG90; isfeedrateModeG94 = tmp.isfeedrateModeG94; isDwell = tmp.isDwell;
             spindleState = tmp.spindleState; coolantState = tmp.coolantState; toolNumber = tmp.toolNumber;
             feedRate = tmp.feedRate; spindleSpeed = tmp.spindleSpeed;
 
@@ -241,7 +243,7 @@ namespace GrblPlotter
             x = y = z = a = b = c = u = v = w = i = j = null;
             actualPos.X = 0; actualPos.Y = 0; actualPos.Z = 0; actualPos.A = 0; actualPos.B = 0; actualPos.C = 0;
             actualPos.U = 0; actualPos.V = 0; actualPos.W = 0;
-            motionMode = 0; coordSystem = 54; planeSelect = 17; isunitModeG21 = true;
+            motionMode = 0; coordSystem = 54; planeSelect = 17; isunitModeG21 = true; isDwell = false;
             isdistanceModeG90 = true; isfeedrateModeG94 = true; spindleState = 5; coolantState = 9;
             toolNumber = 0; feedRate = 0; spindleSpeed = 0;
             ismachineCoordG53 = false; isSubroutine = false;
@@ -287,6 +289,7 @@ namespace GrblPlotter
             line = line.ToUpper().Trim();   // 2020-07-26
             isSetCoordinateSystem = false;
             isNoMove = false;
+            isDwell = false;
             wasSetF = wasSetS = wasSetXY = wasSetZ = false;
             #region parse
             if ((!(line.StartsWith("$") || line.StartsWith("("))) && (line.Length > 1))//do not parse grbl comments
@@ -399,6 +402,8 @@ namespace GrblPlotter
                     {
                         otherCode += "G" + ((int)value).ToString() + " ";
                     }
+                    if (value == 4)
+                    { isDwell = true; }
 
                     if (value == 10)
                     { isSetCoordinateSystem = true; isNoMove = true; }
@@ -473,9 +478,11 @@ namespace GrblPlotter
         public double alpha;            // angle between old and this position
         public byte motionMode;
         public int feedRate;            // actual feed rate
+        public int pWord;				// from ModalGroup
+        public bool isDwell;
         public string codeLine;         // copy of original gcode line
 
-        public SimuCoordByLine(GcodeByLine tmp, System.Drawing.PointF offset)
+        public SimuCoordByLine(GcodeByLine tmp, System.Drawing.PointF offset, int pword)
         {
             lineNumber = tmp.lineNumber; actualPos = (XyzPoint)tmp.actualPos;
             actualOffset = new XyzPoint
@@ -484,16 +491,18 @@ namespace GrblPlotter
                 Y = offset.Y
             };
             i = tmp.i; j = tmp.j; z = tmp.z; alpha = tmp.alpha;
-            motionMode = tmp.motionMode; feedRate = tmp.feedRate;
+            motionMode = tmp.motionMode; feedRate = tmp.feedRate; isDwell = tmp.isDwell;
             codeLine = tmp.codeLine;
+            pWord = pword;
         }
         public SimuCoordByLine(SimuCoordByLine tmp)
         {
             lineNumber = tmp.lineNumber; actualPos = (XyzPoint)tmp.actualPos;
             actualOffset = tmp.actualOffset;
             i = tmp.i; j = tmp.j; z = tmp.z; alpha = tmp.alpha;
-            motionMode = tmp.motionMode; feedRate = tmp.feedRate;
+            motionMode = tmp.motionMode; feedRate = tmp.feedRate; isDwell = tmp.isDwell;
             codeLine = tmp.codeLine;
+            pWord = tmp.pWord;
         }
     }
 
@@ -644,31 +653,31 @@ namespace GrblPlotter
         }
 
         internal static double cutAngle = 0, cutAngleLast = 0, angleOffset = 0;
-    /*    internal static void ResetAngles()
-        { angleOffset = cutAngle = cutAngleLast = 0.0; }
-        internal static double /(System.Windows.Point a, System.Windows.Point b, double offset, int dir)
-        {
-         //   if (dir <= 2)
-                return MonitorAngle(GetAlpha(a, b) + offset, dir);  // CW add 
-        //    else
-       //         return MonitorAngle(GetAlpha(a, b) - offset, dir);
-        }*/
-    /*    internal static double MonitorAngle(double angle, int direction)		// take care of G2 cw G3 ccw direction
-        {
-            double diff = angle - cutAngleLast + angleOffset;
-            if (direction == 2)
-            { if (diff > 0) { angleOffset -= 2 * Math.PI; } }    // clock wise, more negative
-            else if (direction == 3)
-            { if (diff < 0) { angleOffset += 2 * Math.PI; } }    // counter clock wise, more positive
-            else
+        /*    internal static void ResetAngles()
+            { angleOffset = cutAngle = cutAngleLast = 0.0; }
+            internal static double /(System.Windows.Point a, System.Windows.Point b, double offset, int dir)
             {
-                if (diff > Math.PI)
-                    angleOffset -= 2 * Math.PI;
-                if (diff < -Math.PI)
-                    angleOffset += 2 * Math.PI;
-            }
-        //    angle += angleOffset;
-            return angle;
-        }*/
+             //   if (dir <= 2)
+                    return MonitorAngle(GetAlpha(a, b) + offset, dir);  // CW add 
+            //    else
+           //         return MonitorAngle(GetAlpha(a, b) - offset, dir);
+            }*/
+        /*    internal static double MonitorAngle(double angle, int direction)		// take care of G2 cw G3 ccw direction
+            {
+                double diff = angle - cutAngleLast + angleOffset;
+                if (direction == 2)
+                { if (diff > 0) { angleOffset -= 2 * Math.PI; } }    // clock wise, more negative
+                else if (direction == 3)
+                { if (diff < 0) { angleOffset += 2 * Math.PI; } }    // counter clock wise, more positive
+                else
+                {
+                    if (diff > Math.PI)
+                        angleOffset -= 2 * Math.PI;
+                    if (diff < -Math.PI)
+                        angleOffset += 2 * Math.PI;
+                }
+            //    angle += angleOffset;
+                return angle;
+            }*/
     }
 }

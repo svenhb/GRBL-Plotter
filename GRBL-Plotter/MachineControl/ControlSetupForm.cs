@@ -37,7 +37,8 @@
  * 2023-09-17 new option multi file import
  * 2024-02-04 add noise option
  * 2024-05-23 new control CbImportGraphicSortDistanceStart
- * 2024-07-21 l:345 f:SaveSettings only save custom buttons if edited
+ * 2024-07-21 l:337 f:SaveSettings only save custom buttons if edited
+ * 2024-11-18 l:250 f:SetupForm_Load change (encodeIndex < GuiVariables.SaveEncoding.Length) to (encodeIndex < CBoxSaveEncoding.Items.Count)   
 */
 
 using System;
@@ -132,32 +133,7 @@ namespace GrblPlotter
             tab2gB1.Text += " ( " + Datapath.Tools + " )";
 
             SetCustomBtnTable();
-            /*   string text;
-               string[] parts;// = new string[] { "-", "(-)" };
-               dGVCustomBtn.Rows.Clear();
-               int row = 0;
-               for (int i = 1; i <= 32; i++)
-               {
-                   parts = new string[] { " ", " ", " ", " " };
-                   text = Properties.Settings.Default["guiCustomBtn" + i.ToString()].ToString();
-                   if (text.IndexOf('|') > 0)
-                   {
-                       string[] tmp = text.Split('|');
-                       for (int k = 0; k < tmp.Length; k++)
-                           parts[k] = tmp[k];
-                   }
 
-                   dGVCustomBtn.Rows.Add();
-                   dGVCustomBtn.Rows[row].Cells[0].Value = i.ToString();
-                   dGVCustomBtn.Rows[row].Cells[1].Value = parts[0];
-                   dGVCustomBtn.Rows[row].Cells[2].Value = parts[1];
-                   dGVCustomBtn.Rows[row].Cells[3].Value = parts[2];
-                   row++;
-               }
-               dGVCustomBtnChanged = false;
-            */
-
-            //   lvCustomButtons.Items[0].Selected = true;
             SetButtonColors(btnColorBackground, Properties.Settings.Default.gui2DColorBackground);
             SetButtonColors(btnColorBackgroundPath, Properties.Settings.Default.gui2DColorBackgroundPath);
             SetButtonColors(btnColorDimension, Properties.Settings.Default.gui2DColorDimension);
@@ -180,9 +156,7 @@ namespace GrblPlotter
             Size desktopSize = System.Windows.Forms.SystemInformation.PrimaryMonitorSize;
             if ((Location.X < -20) || (Location.X > (desktopSize.Width - 100)) || (Location.Y < -20) || (Location.Y > (desktopSize.Height - 100))) { CenterToScreen(); }
 
-            //			rBimportGraphicClip0.Checked = Properties.Settings.Default.importGraphicClip;
             rBImportGraphicClip1.Checked = !Properties.Settings.Default.importGraphicClip;
-
 
             int group = Properties.Settings.Default.importGroupItem;
             rBImportSVGGroupItem1.Checked = (group == 1);
@@ -190,7 +164,6 @@ namespace GrblPlotter
             rBImportSVGGroupItem3.Checked = (group == 3);
             rBImportSVGGroupItem4.Checked = (group == 4);
 
-            //if (cBImportSVGSort0.Checked)
             int sort = Properties.Settings.Default.importGroupSort;
             rBImportSVGSort0.Checked = (sort == 0);
             rBImportSVGSort1.Checked = (sort == 1);
@@ -231,6 +204,21 @@ namespace GrblPlotter
             else
                 rBImportPDNLayerAll.Checked = true;
 
+            if (Properties.Settings.Default.importVectorizeDetectTransparency)
+                rBImportVectorizeTransparency.Checked = true;
+            else
+                rBImportVectorizeBrightness.Checked = true;
+
+            if (Properties.Settings.Default.importVectorizeAlgorithmPoTrace)
+                rBImportVectorizeAlgoPoTrace.Checked = true;
+            else
+                rBImportVectorizeAlgoMyTrace.Checked = true;
+
+            if (Properties.Settings.Default.importVectorizeDpiFromImage)
+                RrBImportVectorizeDPIFromImage.Checked = true;
+            else
+                RrBImportVectorizeDPISet.Checked = true;
+
             if (Properties.Settings.Default.importGraphicDevelopmentFeedX)
                 rBImportGraphicDevelopFeedX.Checked = true;
             else
@@ -259,7 +247,7 @@ namespace GrblPlotter
             foreach (Encoding encode in GuiVariables.SaveEncoding)
             { CBoxSaveEncoding.Items.Add(encode.BodyName); }
             int encodeIndex = Properties.Settings.Default.FCTBSaveEncodingIndex;
-            if ((encodeIndex >= 0) && (encodeIndex < GuiVariables.SaveEncoding.Length))
+            if ((encodeIndex >= 0) && (encodeIndex < CBoxSaveEncoding.Items.Count))     //GuiVariables.SaveEncoding.Length))
                 CBoxSaveEncoding.SelectedIndex = Properties.Settings.Default.FCTBSaveEncodingIndex;
             else
                 CBoxSaveEncoding.SelectedIndex = Properties.Settings.Default.FCTBSaveEncodingIndex = 0;
@@ -2497,6 +2485,19 @@ namespace GrblPlotter
             NudImportGraphicOffsetOriginY.Enabled = enable;
             cBImportGraphicOffsetLargestLast.Enabled = enable;
             cBImportGraphicOffsetLargestRemove.Enabled = enable;
+        }
+
+        private void checkBox15_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnSetPoTraceDefaults_Click(object sender, EventArgs e)
+        {
+            NudImportPoTraceTurdsize.Value = 2;
+            NudImportPoTraceAlphamax.Value = (decimal)1.0;
+            NudImportPoTraceOptotolerance.Value = (decimal)0.2;
+            CBImportPoTraceOptimazion.Checked = true;
         }
     }
 }

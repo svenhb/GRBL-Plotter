@@ -117,40 +117,82 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnJogZeroZ.Text" xml:space="preserve">
+    <value>Z=0</value>
+  </data>
+  <data name="btnJogZeroY.Text" xml:space="preserve">
+    <value>Y=0</value>
+  </data>
+  <data name="btnJogZeroX.Text" xml:space="preserve">
+    <value>X=0</value>
+  </data>
+  <data name="btnJogStop.Text" xml:space="preserve">
+    <value>STOP Jogging</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Control / Jogging</value>
+  </data>
+  <data name="btnKillAlarm.Text" xml:space="preserve">
+    <value>Kill Alarm</value>
+  </data>
+  <data name="btnFeedHold.Text" xml:space="preserve">
+    <value>Feed Hold</value>
+  </data>
+  <data name="btnResume.Text" xml:space="preserve">
+    <value>Resume</value>
+  </data>
+  <data name="btnReset.Text" xml:space="preserve">
+    <value>RESET</value>
+  </data>
+  <data name="btnHome.Text" xml:space="preserve">
+    <value>Home</value>
+  </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>笔宽</value>
-  </data>
-  <data name="BtnAttributeColor.Text" xml:space="preserve">
-    <value>笔颜色</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>特性</value>
-  </data>
-  <data name="button1.Text" xml:space="preserve">
-    <value>取消</value>
-  </data>
-  <data name="button2.Text" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>中心 X</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>中心 Y</value>
+    <value>Status:</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>以上数字的值增量</value>
+    <value>Z</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>坐标</value>
+  <data name="btnZeroZ.Text" xml:space="preserve">
+    <value>Zero Z</value>
   </data>
-  <data name="BtnCancel.Text" xml:space="preserve">
-    <value>取消</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Y</value>
   </data>
-  <data name="BtnOK.Text" xml:space="preserve">
-    <value>OK</value>
+  <data name="btnZeroY.Text" xml:space="preserve">
+    <value>Zero Y</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="btnZeroX.Text" xml:space="preserve">
+    <value>Zero X</value>
+  </data>
+  <data name="label_status.Text" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="label_mx.Text" xml:space="preserve">
+    <value>0000.000</value>
+  </data>
+  <data name="label_my.Text" xml:space="preserve">
+    <value>0000.000</value>
+  </data>
+  <data name="label_mz.Text" xml:space="preserve">
+    <value>0000.000</value>
+  </data>
+  <data name="label_wz.Text" xml:space="preserve">
+    <value>0000.000</value>
+  </data>
+  <data name="label_wx.Text" xml:space="preserve">
+    <value>0000.000</value>
+  </data>
+  <data name="label_wy.Text" xml:space="preserve">
+    <value>0000.000</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>刀具坐标系（世界/机器）</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Properties</value>
+    <value>Control2ndGRBL</value>
   </data>
 </root>

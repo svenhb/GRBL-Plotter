@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="tBUseCaseInfo.Text" xml:space="preserve">
-    <value>Les paramètres sélectionnés sont appliqués immédiatement,
-lors du chargement d'un cas d'utilisation....</value>
+    <value>立即应用所选设置，
+加载用例时。</value>
   </data>
   <data name="btnLoad.Text" xml:space="preserve">
     <value>加载并应用设置，关闭对话框</value>
@@ -141,5 +141,14 @@ lors du chargement d'un cas d'utilisation....</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>选择用例</value>
+  </data>
+  <data name="BtnLoad.Text" xml:space="preserve">
+    <value>加载并应用设置，关闭对话框</value>
+  </data>
+  <data name="BtnOk.Text" xml:space="preserve">
+    <value>关闭对话框，不做任何更改</value>
+  </data>
+  <data name="LblUseCaseHeader.Text" xml:space="preserve">
+    <value>label2</value>
   </data>
 </root>

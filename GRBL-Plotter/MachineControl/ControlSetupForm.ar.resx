@@ -342,10 +342,6 @@
     <value>SVG استيراد</value>
     <comment>TabPage1_1</comment>
   </data>
-  <data name="tabPage9.Text" xml:space="preserve">
-    <value>استيراد المسار</value>
-    <comment>TabPage</comment>
-  </data>
   <data name="checkBox2.Text" xml:space="preserve">
     <value>Lasermode (استخدم S0 بدلاً من M5 لإيقاف تشغيل الليزر)</value>
     <comment>TabPage1_2</comment>
@@ -619,10 +615,6 @@
     <value>القلم لأعلى / لأسفل الترجمة</value>
     <comment>TabPage1_2</comment>
   </data>
-  <data name="tabPage10.Text" xml:space="preserve">
-    <value>جيل رمز جيل</value>
-    <comment>TabPage1_2</comment>
-  </data>
   <data name="tab1_3lbl31.Text" xml:space="preserve">
     <value>إعدادات تحويل قائمة GCode ، تحويل Z إلى S</value>
     <comment>TabPage1_3</comment>
@@ -774,7 +766,7 @@
     <comment>TabPage1_3</comment>
   </data>
   <data name="tabPage11.Text" xml:space="preserve">
-    <value>تعديل G-Code</value>
+    <value>إعدادات</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="tab1_4lbl1.Text" xml:space="preserve">
@@ -815,10 +807,6 @@
   </data>
   <data name="tab1_4gB1.Text" xml:space="preserve">
     <value>حفظ إعدادات الاستيراد باسم "حالة الاستخدام"</value>
-    <comment>TabPage1_4</comment>
-  </data>
-  <data name="tabPage15.Text" xml:space="preserve">
-    <value>استخدم حالات</value>
     <comment>TabPage1_4</comment>
   </data>
   <data name="tabPage3.Text" xml:space="preserve">
@@ -2016,10 +2004,6 @@ M4 وضع الطاقة ليزر ديناميكي</value>
 سيتم دمج الكائنات التي لها نفس إحداثيات البداية والنهاية معًا.</value>
     <comment>ok</comment>
   </data>
-  <data name="tabPage16.Text" xml:space="preserve">
-    <value>التنسيق المرتبط</value>
-    <comment>ok</comment>
-  </data>
   <data name="groupBox9.Text" xml:space="preserve">
     <value>تفسير المسار</value>
     <comment>ok</comment>
@@ -2042,22 +2026,6 @@ M4 وضع الطاقة ليزر ديناميكي</value>
   </data>
   <data name="tab1_1_2lbl2.ToolTip" xml:space="preserve">
     <value>سيتم إغلاق الفجوات الصغيرة</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tabPage17.Text" xml:space="preserve">
-    <value>خيارات عامة</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tabPage20.Text" xml:space="preserve">
-    <value>تعديلات المسار</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tabPage18.Text" xml:space="preserve">
-    <value>لقطة</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tabPage19.Text" xml:space="preserve">
-    <value>التجميع والأدوات</value>
     <comment>ok</comment>
   </data>
   <data name="tabPage21.Text" xml:space="preserve">
@@ -2190,10 +2158,6 @@ M4 وضع الطاقة ليزر ديناميكي</value>
   </data>
   <data name="nUDImportGraphicClipHeight.ToolTip" xml:space="preserve">
     <value>البعد Y للبلاط</value>
-    <comment>ok</comment>
-  </data>
-  <data name="nUDImportGraphicTileClipWidth.ToolTip" xml:space="preserve">
-    <value>البعد X للبلاط</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportGraphicTile.Text" xml:space="preserve">
@@ -2417,10 +2381,6 @@ M4 وضع الطاقة ليزر ديناميكي</value>
   </data>
   <data name="rBImportSVGGroupItem4.Text" xml:space="preserve">
     <value>نوع</value>
-    <comment>ok</comment>
-  </data>
-  <data name="checkBox5.Text" xml:space="preserve">
-    <value>قم بتطبيق تعبئة الفتحة إذا تم تعبئة الكائن</value>
     <comment>ok</comment>
   </data>
   <data name="cBDisableProgramPause.Text" xml:space="preserve">
@@ -2955,9 +2915,6 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="gBDevelop.Text" xml:space="preserve">
     <value>تحويل مخطط الشكل ثنائي الأبعاد إلى تطوير</value>
   </data>
-  <data name="tabPage30.Text" xml:space="preserve">
-    <value>تحويل خاص</value>
-  </data>
   <data name="cBImportDXFUseZ.Text" xml:space="preserve">
     <value>استيراد معلومات Z</value>
   </data>
@@ -3135,9 +3092,6 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   </data>
   <data name="groupBox26.Text" xml:space="preserve">
     <value>القيمة المتعلقة بالمسافة لمضخة الطلاء أو وحدة تغذية الفتيل</value>
-  </data>
-  <data name="tabPage31.Text" xml:space="preserve">
-    <value>تمديد القيادة</value>
   </data>
   <data name="checkBox12.Text" xml:space="preserve">
     <value>إظهار النماذج الأخرى دائمًا في المقدمة (مثل نموذج الإعداد)</value>
@@ -3402,9 +3356,6 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="GbFilter.Text" xml:space="preserve">
     <value>احتفظ أو أزل الأشياء حسب الخصائص</value>
   </data>
-  <data name="tabPage34.Text" xml:space="preserve">
-    <value>منقي</value>
-  </data>
   <data name="BtnLoadToolTableDialog.ToolTip" xml:space="preserve">
     <value>تحميل جدول الأدوات من موقع آخر</value>
   </data>
@@ -3425,12 +3376,6 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   </data>
   <data name="cBColorModeWidth.ToolTip" xml:space="preserve">
     <value>يطبق أيضًا عرض القلم المستورد على العرض ثنائي الأبعاد</value>
-  </data>
-  <data name="BtnGetFilterValueRemove.Text" xml:space="preserve">
-    <value>استلام</value>
-  </data>
-  <data name="BtnGetFilterValueKeep.Text" xml:space="preserve">
-    <value>استيراد اللون</value>
   </data>
   <data name="pathImport1.Text" xml:space="preserve">
     <value>التنسيق ذات الصلة</value>
@@ -3458,12 +3403,6 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   </data>
   <data name="BtnGetFilterValueClear.ToolTip" xml:space="preserve">
     <value>احذف الحقول النصية</value>
-  </data>
-  <data name="BtnGetFilterValueKeep.ToolTip" xml:space="preserve">
-    <value>يضيف لون الحرف أو المجموعة المحددة</value>
-  </data>
-  <data name="BtnGetFilterValueRemove.ToolTip" xml:space="preserve">
-    <value>يضيف لون الحرف أو المجموعة المحددة</value>
   </data>
   <data name="pathImport7.Text" xml:space="preserve">
     <value>منقي</value>
@@ -3894,7 +3833,7 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
 إذا تم تحديده، فإن كل أمر 'm' ينشئ رقمًا جديدًا.</value>
   </data>
   <data name="label107.Text" xml:space="preserve">
-    <value>دقة الصورة في DPI</value>
+    <value>يعمل التوجيه الهندسي بشكل جيد مع الأشكال الهندسية ورسومات البكسل</value>
   </data>
   <data name="NudImportPDNDpi.ToolTip" xml:space="preserve">
     <value>DPI = بكسل/بوصة - عادة 96</value>
@@ -3979,5 +3918,85 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   </data>
   <data name="BtnHelp_Misc2.ToolTip" xml:space="preserve">
     <value>مساعدة على الانترنت</value>
+  </data>
+  <data name="RrBImportVectorizeDPISet.Text" xml:space="preserve">
+    <value>ضبط نقطة لكل بوصة</value>
+  </data>
+  <data name="RrBImportVectorizeDPISet.ToolTip" xml:space="preserve">
+    <value>ضبط دقة الصورة</value>
+  </data>
+  <data name="RrBImportVectorizeDPIFromImage.Text" xml:space="preserve">
+    <value>DPI من الصورة</value>
+  </data>
+  <data name="RrBImportVectorizeDPIFromImage.ToolTip" xml:space="preserve">
+    <value>دقة الصورة المخزنة في الصورة</value>
+  </data>
+  <data name="groupBox49.Text" xml:space="preserve">
+    <value>مقاس</value>
+  </data>
+  <data name="rBImportVectorizeAlgoMyTrace.Text" xml:space="preserve">
+    <value>التتبع الهندسي (بطيء - جيد للأشكال الهندسية)</value>
+  </data>
+  <data name="rBImportVectorizeAlgoPoTrace.Text" xml:space="preserve">
+    <value>PoTrace (سريع - جيد للصور والرسومات)</value>
+  </data>
+  <data name="groupBox48.Text" xml:space="preserve">
+    <value>خوارزمية المتجهات</value>
+  </data>
+  <data name="rBImportVectorizeTransparency.Text" xml:space="preserve">
+    <value>الشفافية</value>
+  </data>
+  <data name="rBImportVectorizeTransparency.ToolTip" xml:space="preserve">
+    <value>إذا لم يتم العثور على الشفافية، فسيتم تطبيق كشف السطوع.</value>
+  </data>
+  <data name="rBImportVectorizeBrightness.Text" xml:space="preserve">
+    <value>سطوع</value>
+  </data>
+  <data name="label109.Text" xml:space="preserve">
+    <value>عتبة</value>
+  </data>
+  <data name="groupBox47.Text" xml:space="preserve">
+    <value>كشف الخلفية</value>
+  </data>
+  <data name="label113.Text" xml:space="preserve">
+    <value>Potrace هو برنامج مفتوح المصدر يقوم بتحويل الصور النقطية إلى رسومات متجهة. تمت كتابته وصيانته بواسطة بيتر سيلينجر.</value>
+  </data>
+  <data name="BtnSetPoTraceDefaults.Text" xml:space="preserve">
+    <value>إعادة ضبط</value>
+  </data>
+  <data name="label112.Text" xml:space="preserve">
+    <value>منحنى التسامح الأمثل</value>
+  </data>
+  <data name="label111.Text" xml:space="preserve">
+    <value>عتبة الزاوية</value>
+  </data>
+  <data name="label110.Text" xml:space="preserve">
+    <value>مساحة المسار الأكبر التي يجب تجاهلها</value>
+  </data>
+  <data name="CBImportPoTraceOptimazion.Text" xml:space="preserve">
+    <value>استخدم تحسين المنحنى</value>
+  </data>
+  <data name="groupBox46.Text" xml:space="preserve">
+    <value>تقدم بطلب للحصول على</value>
+  </data>
+  <data name="groupBox45.Text" xml:space="preserve">
+    <value>المتجهات التلقائية</value>
+  </data>
+  <data name="RrBImportVectorizeWidthSet.Text" xml:space="preserve">
+    <value>اضبط عرض الصورة على</value>
+  </data>
+  <data name="RrBImportVectorizeWidthSet.ToolTip" xml:space="preserve">
+    <value>عرض الصورة مم</value>
+  </data>
+  <data name="NudImportPDNWidth.ToolTip" xml:space="preserve">
+    <value>سيتم حساب دقة الصورة بالعرض المحدد</value>
+  </data>
+  <data name="rBImportVectorizeAlgoMyTrace.ToolTip" xml:space="preserve">
+    <value>لرسومات البكسل المرسومة ذاتيًا</value>
+  </data>
+  <data name="NudImportVectorizeThreshold.ToolTip" xml:space="preserve">
+    <value>نطاق العتبة هو 0 - 255.
+يجب أن يكون السطوع &gt; عتبة ليتم التعرف عليه كخلفية، أو
+يجب أن تكون الشفافية &lt; العتبة حتى يتم التعرف عليها كخلفية</value>
   </data>
 </root>

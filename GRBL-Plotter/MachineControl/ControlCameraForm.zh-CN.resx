@@ -124,10 +124,10 @@
     <value>显示叠加图形</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>放大</value>
+    <value>缩放</value>
   </data>
   <data name="camSourceToolStripMenuItem.Text" xml:space="preserve">
-    <value>视讯来源</value>
+    <value>视频来源</value>
   </data>
   <data name="camSourceToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>选择摄像机源。</value>
@@ -139,7 +139,7 @@
     <value>设置示教半径顶部</value>
   </data>
   <data name="lowerPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>教低位</value>
+    <value>示教低位</value>
   </data>
   <data name="lowerPositionToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>示教相机视图</value>
@@ -153,9 +153,9 @@
   <data name="teachScalingToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>1）家用绘图仪
 2）将相机移到较高位置
-3）点击图片以示最大半径的距离
+3）点击图片以示教最大半径的距离
 4）将相机移至较低位置
-5）点击图片以示下半径的距离</value>
+5）点击图片以示教下半径的距离</value>
   </data>
   <data name="teachOffsetToolStripMenuItem.Text" xml:space="preserve">
     <value>示教偏移</value>
@@ -175,7 +175,7 @@
     <value>色彩</value>
   </data>
   <data name="setupToolStripMenuItem.Text" xml:space="preserve">
-    <value>设定</value>
+    <value>设置</value>
   </data>
   <data name="btnApplyAngle.Text" xml:space="preserve">
     <value>将角度应用于GCode</value>
@@ -263,7 +263,7 @@
     <value>文本</value>
   </data>
   <data name="setToolPositionToolStripMenuItem.Text" xml:space="preserve">
-    <value>点击设置</value>
+    <value>点击设置二维视图原点</value>
   </data>
   <data name="resetAndTeachToolStripMenuItem.Text" xml:space="preserve">
     <value>重置和教导</value>
@@ -372,7 +372,7 @@ Shift -"c" 清除列表</value>
     <value>设置偏移量</value>
   </data>
   <data name="setWork00ToHereToolStripMenuItem.Text" xml:space="preserve">
-    <value>在这里设置工作坐标 0;0</value>
+    <value>在0;0处设置工作坐标 </value>
   </data>
   <data name="FiducialAddCoordinateIn2DViewToolStripMenuItem.Text" xml:space="preserve">
     <value>将 2D 视图中的基准坐标添加到基准列表</value>
@@ -384,7 +384,7 @@ Shift -"c" 清除列表</value>
     <value>清除基准列表</value>
   </data>
   <data name="ReferenceAddPointInImageToolStripMenuItem.Text" xml:space="preserve">
-    <value>将图像中的参考点添加到指定列表</value>
+    <value>将图像中的参考点添加到指定列表中</value>
   </data>
   <data name="ReferenceRemoveLastPointToolStripMenuItem.Text" xml:space="preserve">
     <value>删除最后一个参考点</value>
@@ -408,7 +408,7 @@ Shift -"c" 清除列表</value>
     <value>清除基准列表</value>
   </data>
   <data name="ReferenceAddPointInImageToolStripMenuItem.ToolTipText" xml:space="preserve">
-    <value>将图像内点击位置的参考点添加到指定列表中</value>
+    <value>将图像中的参考点添加到指定列表中</value>
   </data>
   <data name="ReferenceRemoveLastPointToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>从指定列表中删除最后添加的参考点</value>
@@ -429,5 +429,26 @@ Shift -"c" 清除列表</value>
   <data name="CbUseShapeRecognition.ToolTip" xml:space="preserve">
     <value>使用形状识别自动查找基准点。
 如果禁用，则必须通过在视频图片中选择来手动分配基准点。</value>
+  </data>
+  <data name="toolStripTextBox1.Text" xml:space="preserve">
+    <value>000,00</value>
+  </data>
+  <data name="toolStripTextBox4.Text" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="lblAngle.Text" xml:space="preserve">
+    <value>0.00°</value>
+  </data>
+  <data name="comboBox1.Items" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="comboBox1.Items1" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="comboBox1.Items2" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="comboBox1.Items3" xml:space="preserve">
+    <value>4</value>
   </data>
 </root>

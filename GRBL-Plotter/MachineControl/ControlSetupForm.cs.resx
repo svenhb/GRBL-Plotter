@@ -216,10 +216,6 @@
     <value>Import DXF</value>
     <comment>TabPage1_1</comment>
   </data>
-  <data name="checkBox5.Text" xml:space="preserve">
-    <value>Pokud je objekt vyplněn, použijte šrafovací výplň</value>
-    <comment>ok</comment>
-  </data>
   <data name="nUDSVGScale.ToolTip" xml:space="preserve">
     <value>Před vygenerováním gcode zkuste škálovat grafiku na dané jednotky,</value>
     <comment>TabPage1_1</comment>
@@ -258,10 +254,6 @@ abyste se vyhnuli problémům při zmenšování gcode.</value>
   <data name="tab1_1gB2.Text" xml:space="preserve">
     <value>Import SVG</value>
     <comment>TabPage1_1</comment>
-  </data>
-  <data name="tabPage16.Text" xml:space="preserve">
-    <value>Související s formátem</value>
-    <comment>ok</comment>
   </data>
   <data name="lblImportPenWidthToZWarning.Text" xml:space="preserve">
     <value>Atteniton: Z-Engrave omezí max. hloubka!</value>
@@ -525,10 +517,6 @@ Objekty se stejnou počáteční a koncovou souřadnicí budou sloučeny dohroma
     <value>Import grafiky obecně</value>
     <comment>TabPage1_1</comment>
   </data>
-  <data name="tabPage17.Text" xml:space="preserve">
-    <value>Obecné možnosti</value>
-    <comment>ok</comment>
-  </data>
   <data name="label50.Text" xml:space="preserve">
     <value>Vzdálenost po</value>
     <comment>ok</comment>
@@ -754,10 +742,6 @@ Osa Z bude posunuta dolů</value>
     <value>Kompenzace tažení nástroje</value>
     <comment>TabPage1_3</comment>
   </data>
-  <data name="tabPage20.Text" xml:space="preserve">
-    <value>Úpravy cest</value>
-    <comment>ok</comment>
-  </data>
   <data name="nUDImportGraphicClipOffsetY.ToolTip" xml:space="preserve">
     <value>Y offset oblasti oříznutí</value>
     <comment>ok</comment>
@@ -768,10 +752,6 @@ Osa Z bude posunuta dolů</value>
   </data>
   <data name="nUDImportGraphicClipOffsetX.ToolTip" xml:space="preserve">
     <value>X offset oblasti oříznutí</value>
-    <comment>ok</comment>
-  </data>
-  <data name="nUDImportGraphicTileClipWidth.ToolTip" xml:space="preserve">
-    <value>Rozměr X dlaždice</value>
     <comment>ok</comment>
   </data>
   <data name="label3.Text" xml:space="preserve">
@@ -842,10 +822,6 @@ Např. 'M0' pro pozastavení pro ruční přesun papíru nebo '(^2 G91 X100)' pr
   </data>
   <data name="gBClipping.Text" xml:space="preserve">
     <value>Ořezávání / Obkládání</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tabPage18.Text" xml:space="preserve">
-    <value>Výstřižek</value>
     <comment>ok</comment>
   </data>
   <data name="label62.Text" xml:space="preserve">
@@ -940,10 +916,6 @@ vyberte položky na další stránce 'G-Code generation'</value>
     <value>Seskupování a třídění objektů</value>
     <comment>TabPage1_1</comment>
   </data>
-  <data name="tabPage19.Text" xml:space="preserve">
-    <value>Seskupování a nástroje</value>
-    <comment>ok</comment>
-  </data>
   <data name="label60.Text" xml:space="preserve">
     <value>Úhel nástroje</value>
   </data>
@@ -991,13 +963,6 @@ vyberte položky na další stránce 'G-Code generation'</value>
   </data>
   <data name="gBDevelop.Text" xml:space="preserve">
     <value>Převeďte obrys 2D tvaru na rozvinutí</value>
-  </data>
-  <data name="tabPage30.Text" xml:space="preserve">
-    <value>Speciální konverze</value>
-  </data>
-  <data name="tabPage9.Text" xml:space="preserve">
-    <value>Import cesty</value>
-    <comment>TabPage</comment>
   </data>
   <data name="label32.Text" xml:space="preserve">
     <value>G-kód před výměnou nástroje</value>
@@ -1462,10 +1427,6 @@ Zkontrolujte nastavení vřetena pro výběr a zpoždění M3 M4</value>
     <value>Překlad perem nahoru / dolů</value>
     <comment>TabPage1_2</comment>
   </data>
-  <data name="tabPage10.Text" xml:space="preserve">
-    <value>Generování G-kódu</value>
-    <comment>TabPage1_2</comment>
-  </data>
   <data name="tab1_3lbl34.Text" xml:space="preserve">
     <value>S při Z &gt; 0</value>
     <comment>TabPage1_3</comment>
@@ -1567,7 +1528,7 @@ Nepoužívejte s "Relativními pohyby"</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="tabPage11.Text" xml:space="preserve">
-    <value>Úprava G-kódu</value>
+    <value>Nastavení</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="tab1_4lbl1.Text" xml:space="preserve">
@@ -1608,10 +1569,6 @@ Nepoužívejte s "Relativními pohyby"</value>
   </data>
   <data name="tab1_4gB1.Text" xml:space="preserve">
     <value>Uložit nastavení importu jako „případ užití“</value>
-    <comment>TabPage1_4</comment>
-  </data>
-  <data name="tabPage15.Text" xml:space="preserve">
-    <value>Případy užití</value>
     <comment>TabPage1_4</comment>
   </data>
   <data name="tabPage3.Text" xml:space="preserve">
@@ -3162,9 +3119,6 @@ Kromě toho lze polohu osy Z využít např. ke zvýšení množství barvy, kdy
   <data name="groupBox26.Text" xml:space="preserve">
     <value>Hodnota související se vzdáleností pro čerpadlo barvy nebo podavač vlákna</value>
   </data>
-  <data name="tabPage31.Text" xml:space="preserve">
-    <value>rozšíření příkazu</value>
-  </data>
   <data name="checkBox12.Text" xml:space="preserve">
     <value>Zobrazit další formuláře vždy v popředí (např. formulář nastavení)</value>
   </data>
@@ -3425,9 +3379,6 @@ Uvedeno v sekci záhlaví GCode: 'SVG dimension'.</value>
   <data name="GbFilter.Text" xml:space="preserve">
     <value>Ponechat nebo odebrat objekty podle vlastností</value>
   </data>
-  <data name="tabPage34.Text" xml:space="preserve">
-    <value>filtr</value>
-  </data>
   <data name="BtnLoadToolTableDialog.ToolTip" xml:space="preserve">
     <value>Načtěte tabulku nástrojů z jiného místa</value>
   </data>
@@ -3448,12 +3399,6 @@ Uvedeno v sekci záhlaví GCode: 'SVG dimension'.</value>
   </data>
   <data name="cBColorModeWidth.ToolTip" xml:space="preserve">
     <value>Také použije importovanou šířku pera na 2D pohled</value>
-  </data>
-  <data name="BtnGetFilterValueRemove.Text" xml:space="preserve">
-    <value>Dostávat</value>
-  </data>
-  <data name="BtnGetFilterValueKeep.Text" xml:space="preserve">
-    <value>import barev</value>
   </data>
   <data name="pathImport1.Text" xml:space="preserve">
     <value>Související s formátem</value>
@@ -3481,12 +3426,6 @@ Uvedeno v sekci záhlaví GCode: 'SVG dimension'.</value>
   </data>
   <data name="BtnGetFilterValueClear.ToolTip" xml:space="preserve">
     <value>Odstraňte textová pole</value>
-  </data>
-  <data name="BtnGetFilterValueKeep.ToolTip" xml:space="preserve">
-    <value>Přidá barvu vybraného znaku nebo skupiny</value>
-  </data>
-  <data name="BtnGetFilterValueRemove.ToolTip" xml:space="preserve">
-    <value>Přidá barvu vybraného znaku nebo skupiny</value>
   </data>
   <data name="pathImport7.Text" xml:space="preserve">
     <value>filtr</value>
@@ -3902,7 +3841,7 @@ Převod je také možný přes Menu - GCode Transform - 'Převést na polární 
 Pokud je zaškrtnuto, každý příkaz 'm' vytvoří nový obrázek.</value>
   </data>
   <data name="label107.Text" xml:space="preserve">
-    <value>Rozlišení obrazu v DPI</value>
+    <value>Geometrická vektorizace funguje dobře pro geometrické tvary a pixelovou grafiku</value>
   </data>
   <data name="NudImportPDNDpi.ToolTip" xml:space="preserve">
     <value>DPI = pixely/palec – obvykle 96</value>
@@ -3981,5 +3920,85 @@ Pokud je zaškrtnuto, každý příkaz 'm' vytvoří nový obrázek.</value>
   </data>
   <data name="BtnHelp_Misc2.ToolTip" xml:space="preserve">
     <value>Online podpora</value>
+  </data>
+  <data name="RrBImportVectorizeDPISet.Text" xml:space="preserve">
+    <value>Nastavte DPI</value>
+  </data>
+  <data name="RrBImportVectorizeDPISet.ToolTip" xml:space="preserve">
+    <value>Nastavte rozlišení obrázku</value>
+  </data>
+  <data name="RrBImportVectorizeDPIFromImage.Text" xml:space="preserve">
+    <value>DPI z obrázku</value>
+  </data>
+  <data name="RrBImportVectorizeDPIFromImage.ToolTip" xml:space="preserve">
+    <value>Rozlišení obrázku uložené v obrázku</value>
+  </data>
+  <data name="groupBox49.Text" xml:space="preserve">
+    <value>Velikost</value>
+  </data>
+  <data name="rBImportVectorizeAlgoMyTrace.Text" xml:space="preserve">
+    <value>Geometric Trace (pomalé – dobré pro geometrické tvary)</value>
+  </data>
+  <data name="rBImportVectorizeAlgoPoTrace.Text" xml:space="preserve">
+    <value>PoTrace (rychlé - dobré pro obrázky a náčrty)</value>
+  </data>
+  <data name="groupBox48.Text" xml:space="preserve">
+    <value>Vektorizační algoritmus</value>
+  </data>
+  <data name="rBImportVectorizeTransparency.Text" xml:space="preserve">
+    <value>Průhlednost</value>
+  </data>
+  <data name="rBImportVectorizeTransparency.ToolTip" xml:space="preserve">
+    <value>Pokud nebyla nalezena žádná průhlednost, použije se detekce jasu.</value>
+  </data>
+  <data name="rBImportVectorizeBrightness.Text" xml:space="preserve">
+    <value>Jas</value>
+  </data>
+  <data name="label109.Text" xml:space="preserve">
+    <value>Práh</value>
+  </data>
+  <data name="groupBox47.Text" xml:space="preserve">
+    <value>Detekce pozadí</value>
+  </data>
+  <data name="label113.Text" xml:space="preserve">
+    <value>Potrace je open-source software, který převádí bitmapové obrázky na vektorovou grafiku. Je napsán a udržován Peterem Selingerem.</value>
+  </data>
+  <data name="BtnSetPoTraceDefaults.Text" xml:space="preserve">
+    <value>resetovat</value>
+  </data>
+  <data name="label112.Text" xml:space="preserve">
+    <value>Tolerance optimalizace křivky</value>
+  </data>
+  <data name="label111.Text" xml:space="preserve">
+    <value>Rohový práh</value>
+  </data>
+  <data name="label110.Text" xml:space="preserve">
+    <value>Oblast největší cesty, která má být ignorována</value>
+  </data>
+  <data name="CBImportPoTraceOptimazion.Text" xml:space="preserve">
+    <value>Použijte optimalizaci křivky</value>
+  </data>
+  <data name="groupBox46.Text" xml:space="preserve">
+    <value>Požádejte o</value>
+  </data>
+  <data name="groupBox45.Text" xml:space="preserve">
+    <value>Automatická vektorizace</value>
+  </data>
+  <data name="RrBImportVectorizeWidthSet.Text" xml:space="preserve">
+    <value>Nastavte šířku obrázku na</value>
+  </data>
+  <data name="RrBImportVectorizeWidthSet.ToolTip" xml:space="preserve">
+    <value>Šířka obrazu v mm</value>
+  </data>
+  <data name="NudImportPDNWidth.ToolTip" xml:space="preserve">
+    <value>Rozlišení obrázku bude vypočítáno podle dané dané šířky</value>
+  </data>
+  <data name="rBImportVectorizeAlgoMyTrace.ToolTip" xml:space="preserve">
+    <value>Pro vlastní kreslenou pixelovou grafiku</value>
+  </data>
+  <data name="NudImportVectorizeThreshold.ToolTip" xml:space="preserve">
+    <value>Rozsah prahu je 0–255.
+Jas musí být &gt;prahový, aby byl rozpoznán jako pozadí, popř
+Aby bylo možné rozpoznat jako pozadí, musí být průhlednost &lt; prahová hodnota</value>
   </data>
 </root>

@@ -35,6 +35,8 @@
  * 2023-12-16 l:850 f:ProcessXmlTagStart check for fiducials via .ToUpper().Contains(fiducialLabel.ToUpper()))
  * 2024-01-25 add graphicDimension, markerSizeGraphic to adapt size of point markers
  * 2024-04-13 l:818 f:CalculateProcessTime bug fix path length calculation
+ * 2024-08-29 l:733 f:CalcAbsPosition collect Z dimension - remove  (newLine.actualPos.Z != Grbl.posWork.Z)
+ * 2024-09-27 l:497, 502, 687 add pWord to simuList
 */
 
 using System;
@@ -157,6 +159,9 @@ namespace GrblPlotter
         private static string tangentialAxisName = "C";
         internal static double tangentialAxisFullTurn = 360;
         internal static int tangentialAxisError = -1;
+
+        internal static bool pixelArtEnable = false;
+        internal static double pixelArtDotWidth = 1;
 
         internal static double gcodeMinutes = 0;
         internal static double gcodeDistance = 0;
@@ -322,6 +327,7 @@ namespace GrblPlotter
             tangentialAxisEnable = false;
             tangentialAxisError = -1;
             halfToneEnable = false;
+            pixelArtEnable = false;
             errorString = "";
             error33cnt = 0;
             VisuGCode.ProcessedPath.offset2DView = new System.Windows.Point();
@@ -455,7 +461,7 @@ namespace GrblPlotter
 
                 if (!programEnd)
                 {
-                    CreateDrawingPathFromGCode(newLine, oldLine, offset2DView);        // add data to drawing path
+                    CreateDrawingPathFromGCode(newLine, oldLine, offset2DView, modal.pWord);        // add data to drawing path
                     CalculateProcessTime(newLine, oldLine);
                 }
                 if (figureMarkerCount > 0)
@@ -491,12 +497,12 @@ namespace GrblPlotter
                     GcodeByLine stmpLine = new GcodeByLine(newLine);
                     stmpLine.actualPos.X = newLine.actualPos.X + offset2DView.X;
                     stmpLine.actualPos.Y = newLine.actualPos.Y + offset2DView.Y;
-                    simuList.Add(new SimuCoordByLine(stmpLine, offset2DView));         // add parsed line to list
+                    simuList.Add(new SimuCoordByLine(stmpLine, offset2DView, modal.pWord));         // add parsed line to list
                 }
                 else
                 {
                     coordList.Add(new CoordByLine(lineNr, newLine.figureNumber, (XyzPoint)oldLine.actualPos, (XyzPoint)newLine.actualPos, newLine.motionMode, newLine.alpha, isArc));
-                    simuList.Add(new SimuCoordByLine(newLine, new PointF()));         // add parsed line to list
+                    simuList.Add(new SimuCoordByLine(newLine, new PointF(), modal.pWord));         // add parsed line to list
                 }
 
                 oldLine = new GcodeByLine(newLine);       		// get copy of newLine      
@@ -682,7 +688,7 @@ namespace GrblPlotter
 
                     if (processSubs)
                         gcodeList.Add(new GcodeByLine(newLine));      // add parsed line to list
-                    simuList.Add(new SimuCoordByLine(newLine, new PointF()));      // add parsed line to list
+                    simuList.Add(new SimuCoordByLine(newLine, new PointF(), modal.pWord));      // add parsed line to list
                     if (!newLine.ismachineCoordG53)
                     {
                         isArc = ((newLine.motionMode == 2) || (newLine.motionMode == 3));
@@ -691,7 +697,7 @@ namespace GrblPlotter
                             xyzSize.SetDimensionXYZ(newLine.actualPos.X, newLine.actualPos.Y, newLine.actualPos.Z);             // calculate max dimensions
                     }                                                                                                       // add data to drawing path
                     if (showPath)
-                        CreateDrawingPathFromGCode(newLine, oldLine, offset2DView);
+                        CreateDrawingPathFromGCode(newLine, oldLine, offset2DView, modal.pWord);
                     oldLine = new GcodeByLine(newLine);   // get copy of newLine                         
                 }
             }
@@ -729,7 +735,8 @@ namespace GrblPlotter
                 if (setDimension && posWasSet) { xyzSize.SetDimensionY(newLine.actualPos.Y); }
 
                 posWasSet = CalcAxisPosition(ref newLine.actualPos.Z, newLine.z, oldLine.actualPos.Z, calcAbolute);
-                if (posWasSet && (newLine.actualPos.Z != Grbl.posWork.Z)) { xyzSize.SetDimensionZ(newLine.actualPos.Z); }
+             //   if (posWasSet && (newLine.actualPos.Z != Grbl.posWork.Z)) { xyzSize.SetDimensionZ(newLine.actualPos.Z); } 
+                if (posWasSet ) { xyzSize.SetDimensionZ(newLine.actualPos.Z); }
 
                 CalcAxisPosition(ref newLine.actualPos.A, newLine.a, oldLine.actualPos.A, calcAbolute);
                 CalcAxisPosition(ref newLine.actualPos.B, newLine.b, oldLine.actualPos.B, calcAbolute);
@@ -920,6 +927,13 @@ namespace GrblPlotter
                     Logger.Info("showHalftoneZ min:{0}  max:{1}  width:{2}", HalfTone.showHalftoneMin, HalfTone.showHalftoneMax, HalfTone.showHalftoneWidth);
                 }
             }
+
+            else if (line.Contains(XmlMarker.PixelArt))
+            {
+                pixelArtEnable = true;
+                if (line.Contains("Width")) { pixelArtDotWidth = XmlMarker.GetAttributeValueDouble(line, "Width"); }
+            }
+
             else if (line.Contains(XmlMarker.HeaderStart))
             { isHeaderSection = true; }
         }

@@ -117,40 +117,126 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label5.Text" xml:space="preserve">
-    <value>笔宽</value>
+  <data name="BtnStart.Text" xml:space="preserve">
+    <value>开始</value>
   </data>
-  <data name="BtnAttributeColor.Text" xml:space="preserve">
-    <value>笔颜色</value>
+  <data name="BtnStop.Text" xml:space="preserve">
+    <value>停止/检查</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>特性</value>
+  <data name="LblCount.Text" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="button1.Text" xml:space="preserve">
-    <value>取消</value>
+  <data name="deleteRowToolStripMenuItem.Text" xml:space="preserve">
+    <value>删除行</value>
   </data>
-  <data name="button2.Text" xml:space="preserve">
-    <value>OK</value>
+  <data name="moveRowUpToolStripMenuItem.Text" xml:space="preserve">
+    <value>向上移动行</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>中心 X</value>
+  <data name="moveRowDownToolStripMenuItem.Text" xml:space="preserve">
+    <value>向下移动行</value>
+  </data>
+  <data name="TbProcessInfo.Text" xml:space="preserve">
+    <value>创建此格式的XML文件并加载：</value>
+  </data>
+  <data name="BtnLoad.Text" xml:space="preserve">
+    <value>加载脚本</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>中心 Y</value>
+    <value>加载：</value>
+  </data>
+  <data name="LblLoaded.Text" xml:space="preserve">
+    <value>nothing</value>
+  </data>
+  <data name="button3.Text" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="button3.ToolTip" xml:space="preserve">
+    <value>在线帮助</value>
+  </data>
+  <data name="GbCounter.Text" xml:space="preserve">
+    <value>计数器</value>
+  </data>
+  <data name="comboBox1.Items" xml:space="preserve">
+    <value>；分号</value>
+  </data>
+  <data name="comboBox1.Items1" xml:space="preserve">
+    <value>:</value>
+  </data>
+  <data name="comboBox1.Items2" xml:space="preserve">
+    <value>,</value>
+  </data>
+  <data name="comboBox1.Items3" xml:space="preserve">
+    <value>|</value>
+  </data>
+  <data name="comboBox1.Items4" xml:space="preserve">
+    <value>\t</value>
+  </data>
+  <data name="comboBox1.Text" xml:space="preserve">
+    <value>；分号</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>分隔符</value>
+  </data>
+  <data name="LblDataLoaded.Text" xml:space="preserve">
+    <value>nothing</value>
+  </data>
+  <data name="BtnLoadData.Text" xml:space="preserve">
+    <value>加载数据</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>以上数字的值增量</value>
+    <value>数据索引</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>坐标</value>
+  <data name="BtnDataIndexClear.Text" xml:space="preserve">
+    <value>清除</value>
   </data>
-  <data name="BtnCancel.Text" xml:space="preserve">
-    <value>取消</value>
+  <data name="GbData.Text" xml:space="preserve">
+    <value>数据</value>
   </data>
-  <data name="BtnOK.Text" xml:space="preserve">
-    <value>OK</value>
+  <data name="GbControl.Text" xml:space="preserve">
+    <value>控制</value>
+  </data>
+  <data name="FctbData.Hotkeys" xml:space="preserve">
+    <value>Tab=IndentIncrease, Escape=ClearHints, PgUp=GoPageUp, PgDn=GoPageDown, End=GoEnd, Home=GoHome, Left=GoLeft, Up=GoUp, Right=GoRight, Down=GoDown, Ins=ReplaceMode, Del=DeleteCharRight, F3=FindNext, Shift+Tab=IndentDecrease, Shift+PgUp=GoPageUpWithSelection, Shift+PgDn=GoPageDownWithSelection, Shift+End=GoEndWithSelection, Shift+Home=GoHomeWithSelection, Shift+Left=GoLeftWithSelection, Shift+Up=GoUpWithSelection, Shift+Right=GoRightWithSelection, Shift+Down=GoDownWithSelection, Shift+Ins=Paste, Shift+Del=Cut, Ctrl+Back=ClearWordLeft, Ctrl+Space=AutocompleteMenu, Ctrl+End=GoLastLine, Ctrl+Home=GoFirstLine, Ctrl+Ins=Copy, Ctrl+Del=ClearWordRight, Ctrl+0=ZoomNormal, Ctrl+A=SelectAll, Ctrl+B=BookmarkLine, Ctrl+C=Copy, Ctrl+E=MacroExecute, Ctrl+F=FindDialog, Ctrl+G=GoToDialog, Ctrl+H=ReplaceDialog, Ctrl+I=AutoIndentChars, Ctrl+M=MacroRecord, Ctrl+N=GoNextBookmark, Ctrl+R=Redo, Ctrl+U=UpperCase, Ctrl+V=Paste, Ctrl+X=Cut, Ctrl+Z=Undo, Ctrl+Add=ZoomIn, Ctrl+Subtract=ZoomOut, Ctrl+Shift+End=GoLastLineWithSelection, Ctrl+Shift+Home=GoFirstLineWithSelection, Ctrl+Shift+B=UnbookmarkLine, Ctrl+Shift+C=CommentSelected, Ctrl+Shift+N=GoPrevBookmark, Ctrl+Shift+U=LowerCase, Alt+Back=Undo, Alt+Up=MoveSelectedLinesUp, Alt+Down=MoveSelectedLinesDown, Alt+F=FindChar</value>
+  </data>
+  <data name="FctbData.Text" xml:space="preserve">
+    <value>Max Mustermann;12345
+John Doe;098765</value>
+  </data>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>wewe	ererr	ertrtt
+fgfg	dfd	ffg</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>填充字符</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>位数</value>
+  </data>
+  <data name="LblCounterResult.Text" xml:space="preserve">
+    <value>- 0 -</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>结果:</value>
+  </data>
+  <data name="BtnNew.Text" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="BtnSave.Text" xml:space="preserve">
+    <value>保存脚本</value>
+  </data>
+  <data name="LblInfo.Text" xml:space="preserve">
+    <value>没有加载脚本</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>轮询定时器间隔（以毫秒为单位</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>程序启动时显示流程自动化</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Properties</value>
+    <value>过程自动化</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Repititions:</value>
   </data>
 </root>

@@ -136,7 +136,7 @@
     <value>关闭安装程序（右键单击重新打开）</value>
   </data>
   <data name="btnColorMarker.Text" xml:space="preserve">
-    <value>记号笔</value>
+    <value>标记</value>
   </data>
   <data name="btnColorTool.Text" xml:space="preserve">
     <value>工具</value>
@@ -154,19 +154,19 @@
     <value>背景</value>
   </data>
   <data name="CbMarker.Text" xml:space="preserve">
-    <value>节目</value>
+    <value>显示</value>
   </data>
   <data name="CbTool.Text" xml:space="preserve">
-    <value>节目</value>
+    <value>显示</value>
   </data>
   <data name="CbPenUp.Text" xml:space="preserve">
-    <value>节目</value>
+    <value>显示</value>
   </data>
   <data name="CbRuler.Text" xml:space="preserve">
-    <value>节目</value>
+    <value>显示</value>
   </data>
   <data name="CbDimension.Text" xml:space="preserve">
-    <value>节目</value>
+    <value>显示</value>
   </data>
   <data name="btnColorDimension.Text" xml:space="preserve">
     <value>方面</value>

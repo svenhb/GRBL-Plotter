@@ -117,40 +117,77 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label5.Text" xml:space="preserve">
-    <value>笔宽</value>
+  <data name="cBOverrideFREnable.Text" xml:space="preserve">
+    <value>覆盖</value>
   </data>
-  <data name="BtnAttributeColor.Text" xml:space="preserve">
-    <value>笔颜色</value>
+  <data name="cBOverrideFREnable.ToolTip" xml:space="preserve">
+    <value>应用新的进给速率值，并替换gcode中所有正在进行的进给率。
+注意：覆盖在当前GRBL缓冲区处理完毕后生效。</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>特性</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>GRBL版本。0.9:
+“超控”将立即注入进给速率（F）或主轴速度（S）命令。
+稍后即将到来的F或S命令也将被覆盖值替换。</value>
   </data>
-  <data name="button1.Text" xml:space="preserve">
-    <value>取消</value>
+  <data name="lblOverrideFRValue.Text" xml:space="preserve">
+    <value>000</value>
   </data>
-  <data name="button2.Text" xml:space="preserve">
-    <value>OK</value>
+  <data name="lblOverrideFRValue.ToolTip" xml:space="preserve">
+    <value>新的进料速率值</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>中心 X</value>
+  <data name="lblFRValue.Text" xml:space="preserve">
+    <value>00000</value>
   </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>中心 Y</value>
+  <data name="lblFRValue.ToolTip" xml:space="preserve">
+    <value>发送至GRBL的最后进料速率</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>以上数字的值增量</value>
+  <data name="nUDOverrideFRBtm.ToolTip" xml:space="preserve">
+    <value>设置轨道杆的下限</value>
+  </data>
+  <data name="nUDOverrideFRTop.ToolTip" xml:space="preserve">
+    <value>设置横杆的上限</value>
+  </data>
+  <data name="tBOverrideFR.ToolTip" xml:space="preserve">
+    <value>设置进给速度超控值</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>坐标</value>
+    <value>进给率</value>
   </data>
-  <data name="BtnCancel.Text" xml:space="preserve">
-    <value>取消</value>
+  <data name="lblOverrideSSValue.Text" xml:space="preserve">
+    <value>000</value>
   </data>
-  <data name="BtnOK.Text" xml:space="preserve">
-    <value>OK</value>
+  <data name="lblOverrideSSValue.ToolTip" xml:space="preserve">
+    <value>新主轴转速值</value>
+  </data>
+  <data name="lblSSValue.Text" xml:space="preserve">
+    <value>00000</value>
+  </data>
+  <data name="lblSSValue.ToolTip" xml:space="preserve">
+    <value>发送给GRBL的最后一个主轴转速</value>
+  </data>
+  <data name="cBOverrideSSEnable.Text" xml:space="preserve">
+    <value>Override</value>
+  </data>
+  <data name="cBOverrideSSEnable.ToolTip" xml:space="preserve">
+    <value>应用新的主轴转速值，并替换gcode中所有正在调试的主轴转速
+注意：覆盖在当前GRBL缓冲区处理完毕后生效。</value>
+  </data>
+  <data name="nUDOverrideSSBtm.ToolTip" xml:space="preserve">
+    <value>设置轨道杆的下限</value>
+  </data>
+  <data name="nUDOverrideSSTop.ToolTip" xml:space="preserve">
+    <value>设置跟踪条的上限</value>
+  </data>
+  <data name="tBOverrideSS.ToolTip" xml:space="preserve">
+    <value>设置主轴转速覆盖值</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>主轴转速</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Properties</value>
+    <value>覆盖</value>
+  </data>
+  <data name="label1.ToolTip" xml:space="preserve">
+    <value>此外，GCode流中现有的F或S命令将被替换为新的值（不是在编辑器中）。</value>
   </data>
 </root>

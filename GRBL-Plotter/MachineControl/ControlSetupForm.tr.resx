@@ -201,14 +201,6 @@ Varsayılan (Arduino Uno/Nano) - 127 bayt
     <value>WWW Bağlantıları</value>
     <comment>TabPage11</comment>
   </data>
-  <data name="tabPage9.Text" xml:space="preserve">
-    <value>Yol içe aktarma</value>
-    <comment>TabPage</comment>
-  </data>
-  <data name="tabPage16.Text" xml:space="preserve">
-    <value>Biçimle ilgili</value>
-    <comment>ok</comment>
-  </data>
   <data name="tab1_3gB7.Text" xml:space="preserve">
     <value>Gerber İthalatı</value>
     <comment>ok</comment>
@@ -324,10 +316,6 @@ Varsayılan (Arduino Uno/Nano) - 127 bayt
   <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
     <value>Katman veya nesne Inkscape'te görünmüyorsa, katman veya nesne içe aktarılmaz.</value>
   </data>
-  <data name="checkBox5.Text" xml:space="preserve">
-    <value>Nesne doluysa tarama dolgusu uygula</value>
-    <comment>ok</comment>
-  </data>
   <data name="nUDSVGScale.ToolTip" xml:space="preserve">
     <value>gcode oluşturmadan önce grafikleri verilen birimlere göre ölçeklendirmeye çalışın,</value>
     <comment>TabPage1_1</comment>
@@ -361,10 +349,6 @@ gcode'u küçültürken sorunları önlemek için.</value>
   </data>
   <data name="lblSVGScale.Text" xml:space="preserve">
     <value>birimler</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tabPage17.Text" xml:space="preserve">
-    <value>Genel seçenekler</value>
     <comment>ok</comment>
   </data>
   <data name="groupBox9.Text" xml:space="preserve">
@@ -712,10 +696,6 @@ Ne kadar çok segment, o kadar çok prezice eğridir.</value>
     <value>Cer makinesi</value>
     <comment>ok</comment>
   </data>
-  <data name="tabPage20.Text" xml:space="preserve">
-    <value>Yol değişiklikleri</value>
-    <comment>ok</comment>
-  </data>
   <data name="tab1_3gB8.Text" xml:space="preserve">
     <value>Kapalı yol çakışması</value>
     <comment>ok</comment>
@@ -867,10 +847,6 @@ Z ekseni aşağı taşınacak</value>
     <value>Sürükleme bıçağı veya fırça kullanırken ofseti telafi edin</value>
     <comment>TabPage1_3</comment>
   </data>
-  <data name="tabPage18.Text" xml:space="preserve">
-    <value>Kırpma</value>
-    <comment>ok</comment>
-  </data>
   <data name="gBClipping.Text" xml:space="preserve">
     <value>Kırpma / Döşeme</value>
     <comment>ok</comment>
@@ -884,10 +860,6 @@ Z ekseni aşağı taşınacak</value>
     <comment>ok</comment>
   </data>
   <data name="nUDImportGraphicClipOffsetX.ToolTip" xml:space="preserve">
-    <value>Döşemenin X boyutu</value>
-    <comment>ok</comment>
-  </data>
-  <data name="nUDImportGraphicTileClipWidth.ToolTip" xml:space="preserve">
     <value>Döşemenin X boyutu</value>
     <comment>ok</comment>
   </data>
@@ -956,10 +928,6 @@ Z ekseni aşağı taşınacak</value>
   </data>
   <data name="cBImportGraphicClipOffsetApply.ToolTip" xml:space="preserve">
     <value>Kırpılan bölgenin / döşemelerin kaynağını 0;0 olarak ayarla</value>
-  </data>
-  <data name="tabPage19.Text" xml:space="preserve">
-    <value>Gruplama ve araçlar</value>
-    <comment>ok</comment>
   </data>
   <data name="groupBox30.Text" xml:space="preserve">
     <value>İlgili dönüştürme</value>
@@ -1058,9 +1026,6 @@ sonraki sayfadaki öğeleri seçin 'G Kodu oluşturma'</value>
   <data name="cBImportSVGGroup.ToolTip" xml:space="preserve">
     <value>Aynı renkteki grup nesnesi = Alet No.</value>
     <comment>TabPage1_1</comment>
-  </data>
-  <data name="tabPage30.Text" xml:space="preserve">
-    <value>Özel dönüşüm</value>
   </data>
   <data name="GbWireBender.Text" xml:space="preserve">
     <value>Tel bükücü</value>
@@ -1161,9 +1126,6 @@ sonraki sayfadaki öğeleri seçin 'G Kodu oluşturma'</value>
   <data name="cBImportGraphicDevelopEnable.Text" xml:space="preserve">
     <value>Şekil geliştirmeyi uygula</value>
   </data>
-  <data name="tabPage31.Text" xml:space="preserve">
-    <value>Komut uzantısı</value>
-  </data>
   <data name="groupBox26.Text" xml:space="preserve">
     <value>Boya pompası veya filament besleyici için mesafeye bağlı değer</value>
   </data>
@@ -1248,10 +1210,6 @@ Ek olarak, Z ekseninin konumu örn. fırça tuvale daha fazla bastırdığında 
   </data>
   <data name="CbAux1Enable.Text" xml:space="preserve">
     <value>Mesafeyle ilgili komut ekle 1</value>
-  </data>
-  <data name="tabPage10.Text" xml:space="preserve">
-    <value>G Kodu oluşturma</value>
-    <comment>TabPage1_2</comment>
   </data>
   <data name="tab1_2gB1.Text" xml:space="preserve">
     <value>Genel</value>
@@ -1736,7 +1694,7 @@ M3 M4 seçimi ve gecikmesi için Mil ayarlarını kontrol edin</value>
     <comment>TabPage1_2</comment>
   </data>
   <data name="tabPage11.Text" xml:space="preserve">
-    <value>G Kodu değişikliği</value>
+    <value>Ayarlar</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="tab1_3gB3.Text" xml:space="preserve">
@@ -1834,10 +1792,6 @@ Not: 'Nesneleri kalem dizinine göre sırala' seçeneğini kullanmayın</value>
     <value>Uzun düz hareketleri maks. verilen uzunluk
 "Göreceli hareketler" ile kullanmayın</value>
     <comment>TabPage1_3</comment>
-  </data>
-  <data name="tabPage15.Text" xml:space="preserve">
-    <value>Kullanım örnekleri</value>
-    <comment>TabPage1_4</comment>
   </data>
   <data name="tab1_4gB1.Text" xml:space="preserve">
     <value>İçe aktarma ayarlarını "kullanım durumu" olarak kaydedin</value>
@@ -3447,9 +3401,6 @@ GCode başlık bölümünde verilmiştir: 'SVG dimension'.</value>
   <data name="GbFilter.Text" xml:space="preserve">
     <value>Nesneleri özelliklerine göre tut veya kaldır</value>
   </data>
-  <data name="tabPage34.Text" xml:space="preserve">
-    <value>filtre</value>
-  </data>
   <data name="BtnLoadToolTableDialog.ToolTip" xml:space="preserve">
     <value>Alet tablosunu başka bir konumdan yükleyin</value>
   </data>
@@ -3467,12 +3418,6 @@ GCode başlık bölümünde verilmiştir: 'SVG dimension'.</value>
   </data>
   <data name="cBColorModeWidth.ToolTip" xml:space="preserve">
     <value>Ayrıca içe aktarılan kalem genişliğini 2B görünüme uygular</value>
-  </data>
-  <data name="BtnGetFilterValueRemove.Text" xml:space="preserve">
-    <value>Almak</value>
-  </data>
-  <data name="BtnGetFilterValueKeep.Text" xml:space="preserve">
-    <value>renk ithalatı</value>
   </data>
   <data name="pathImport1.Text" xml:space="preserve">
     <value>Biçimle ilgili</value>
@@ -3500,12 +3445,6 @@ GCode başlık bölümünde verilmiştir: 'SVG dimension'.</value>
   </data>
   <data name="BtnGetFilterValueClear.ToolTip" xml:space="preserve">
     <value>Metin alanlarını sil</value>
-  </data>
-  <data name="BtnGetFilterValueKeep.ToolTip" xml:space="preserve">
-    <value>Seçilen karakterin veya grubun rengini ekler</value>
-  </data>
-  <data name="BtnGetFilterValueRemove.ToolTip" xml:space="preserve">
-    <value>Seçilen karakterin veya grubun rengini ekler</value>
   </data>
   <data name="pathImport7.Text" xml:space="preserve">
     <value>filtre</value>
@@ -3921,7 +3860,7 @@ Dönüşüm aynı zamanda Menü - GCode Dönüşümü - 'Kutupsal koordinatlara 
 İşaretlenirse her 'm' komutu yeni bir şekil oluşturur.</value>
   </data>
   <data name="label107.Text" xml:space="preserve">
-    <value>DPI cinsinden görüntü çözünürlüğü</value>
+    <value>Geometrik vektörleştirme, geometrik şekiller ve piksel grafikler için iyi çalışır</value>
   </data>
   <data name="NudImportPDNDpi.ToolTip" xml:space="preserve">
     <value>DPI = piksel/inç - genellikle 96</value>
@@ -4000,5 +3939,85 @@ Dönüşüm aynı zamanda Menü - GCode Dönüşümü - 'Kutupsal koordinatlara 
   </data>
   <data name="BtnHelp_Misc2.ToolTip" xml:space="preserve">
     <value>Çevrimiçi yardım</value>
+  </data>
+  <data name="RrBImportVectorizeDPISet.Text" xml:space="preserve">
+    <value>DPI'yi ayarla</value>
+  </data>
+  <data name="RrBImportVectorizeDPISet.ToolTip" xml:space="preserve">
+    <value>Görüntü çözünürlüğünü ayarlayın</value>
+  </data>
+  <data name="RrBImportVectorizeDPIFromImage.Text" xml:space="preserve">
+    <value>Resimdeki DPI</value>
+  </data>
+  <data name="RrBImportVectorizeDPIFromImage.ToolTip" xml:space="preserve">
+    <value>Görüntüde saklanan görüntü çözünürlüğü</value>
+  </data>
+  <data name="groupBox49.Text" xml:space="preserve">
+    <value>Boyut</value>
+  </data>
+  <data name="rBImportVectorizeAlgoMyTrace.Text" xml:space="preserve">
+    <value>Geometrik İzleme (yavaş - geometrik şekiller için iyi)</value>
+  </data>
+  <data name="rBImportVectorizeAlgoPoTrace.Text" xml:space="preserve">
+    <value>PoTrace (hızlı - resimler ve çizimler için iyidir)</value>
+  </data>
+  <data name="groupBox48.Text" xml:space="preserve">
+    <value>Vektörleştirme algoritması</value>
+  </data>
+  <data name="rBImportVectorizeTransparency.Text" xml:space="preserve">
+    <value>Şeffaflık</value>
+  </data>
+  <data name="rBImportVectorizeTransparency.ToolTip" xml:space="preserve">
+    <value>Şeffaflık bulunamazsa parlaklık tespiti uygulanacaktır.</value>
+  </data>
+  <data name="rBImportVectorizeBrightness.Text" xml:space="preserve">
+    <value>Parlaklık</value>
+  </data>
+  <data name="label109.Text" xml:space="preserve">
+    <value>Eşik</value>
+  </data>
+  <data name="groupBox47.Text" xml:space="preserve">
+    <value>Arka plan tespiti</value>
+  </data>
+  <data name="label113.Text" xml:space="preserve">
+    <value>Potrace, bit eşlemli görüntüleri vektör grafiklere dönüştüren açık kaynaklı bir yazılımdır. Peter Selinger tarafından yazılmış ve sürdürülmüştür.</value>
+  </data>
+  <data name="BtnSetPoTraceDefaults.Text" xml:space="preserve">
+    <value>Sıfırla</value>
+  </data>
+  <data name="label112.Text" xml:space="preserve">
+    <value>Eğri optimizasyonu toleransı</value>
+  </data>
+  <data name="label111.Text" xml:space="preserve">
+    <value>Köşe eşiği</value>
+  </data>
+  <data name="label110.Text" xml:space="preserve">
+    <value>Göz ardı edilecek en büyük yolun alanı</value>
+  </data>
+  <data name="CBImportPoTraceOptimazion.Text" xml:space="preserve">
+    <value>Eğri optimizasyonunu kullanın</value>
+  </data>
+  <data name="groupBox46.Text" xml:space="preserve">
+    <value>Başvur</value>
+  </data>
+  <data name="groupBox45.Text" xml:space="preserve">
+    <value>Otomatik vektörleştirme</value>
+  </data>
+  <data name="RrBImportVectorizeWidthSet.Text" xml:space="preserve">
+    <value>Görüntü genişliğini şuna ayarla:</value>
+  </data>
+  <data name="RrBImportVectorizeWidthSet.ToolTip" xml:space="preserve">
+    <value>Görüntünün mm cinsinden genişliği</value>
+  </data>
+  <data name="NudImportPDNWidth.ToolTip" xml:space="preserve">
+    <value>Görüntü çözünürlüğü verilen genişliğe göre hesaplanacaktır</value>
+  </data>
+  <data name="rBImportVectorizeAlgoMyTrace.ToolTip" xml:space="preserve">
+    <value>Kendi kendine çizilmiş piksel grafikler için</value>
+  </data>
+  <data name="NudImportVectorizeThreshold.ToolTip" xml:space="preserve">
+    <value>Eşik aralığı 0 - 255'tir.
+Parlaklığın arka plan olarak tanınması için &gt;eşik olması gerekir veya
+Şeffaflığın arka plan olarak tanınması için &lt; eşik olması gerekir</value>
   </data>
 </root>

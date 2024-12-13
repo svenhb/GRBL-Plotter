@@ -22,8 +22,12 @@
  * 2023-02-23 line 422 Feedback check index 
  * 2023-12-01 l:415 f:Feedback add "Probing"
  * 2024-02-25 overhaul the process automation
+ * 2024-10-04 add "Wait Registry"
+ * 2024-11-19 l:1572 f:BtnStep_Click add try catch
+ * 2024-12-02 add "G-Code Data"
 */
 
+using Microsoft.Win32;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -64,6 +68,7 @@ namespace GrblPlotter
 
         private static List<ProcessAutomationItem> actionItems = new List<ProcessAutomationItem>();
         private readonly ContextMenu ctm = new ContextMenu();
+        const string reg_key = "HKEY_CURRENT_USER\\SOFTWARE\\GRBL-Plotter";
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -90,6 +95,7 @@ namespace GrblPlotter
                 new ProcessAutomationItem {Command="2D-View Scale XYX", Value="",       Comment="Scale XY [Value=desired X dimension]"},
                 new ProcessAutomationItem {Command="2D-View Scale XYY", Value="",       Comment="Scale XY [Value=desired Y dimension]"},
                 new ProcessAutomationItem {Command="G-Code Send",       Value="",       Comment="Send G-Code to machine, [Value=g-code commands or macro-file] seperate single command lines with ';'"},
+                new ProcessAutomationItem {Command="G-Code Data",       Value="",       Comment="Send G-Code to machine from Data list, [Value='':whole line - g-code commands or macro-file. Seperate single command lines with ';']"},
                 new ProcessAutomationItem {Command="G-Code Stream",     Value="",       Comment="Send G-Code from editor to machine"},
                 new ProcessAutomationItem {Command="Probe Automatic",   Value="start",  Comment="Start fiducial recogniton in probing window"},
                 new ProcessAutomationItem {Command="Camera Automatic",  Value="start",  Comment="Start fiducial recogniton in camera window"},
@@ -108,6 +114,7 @@ namespace GrblPlotter
                 new ProcessAutomationItem {Command="Data index",    Value="1",      Comment="Add Value to Data index"},
                 new ProcessAutomationItem {Command="Counter index", Value="1",      Comment="Add Value to Counter"},
                 new ProcessAutomationItem {Command="Wait Probe",    Value="",       Comment="Wait for probe input before continue"},
+                new ProcessAutomationItem {Command="Wait Registry", Value="",       Comment="Wait for change of reg-key HKEY_CURRENT_USER\\SOFTWARE\\GRBL-Plotter - trigger"},
                 new ProcessAutomationItem {Command="Wait DI=1",     Value="0",      Comment="Wait for digital input [Value=bit-nr] x=1"},
                 new ProcessAutomationItem {Command="Wait DI=0",     Value="0",      Comment="Wait for digital input [Value=bit-nr] x=0"},
                 new ProcessAutomationItem {Command="Beep",          Value="440;800",Comment="Play beep tone [Value=freqency(Hz);length(ms)]"},
@@ -526,9 +533,45 @@ namespace GrblPlotter
                     }
                     else
                     {
-                        TbProcessInfo.Text += string.Format("{0,2}) {1,-20}  {2,-15}  ok\r\n", lineNr, action, value);
-                        SetCellColor(i, true);
-                        isGrblConnected = true;
+						if (action.Contains(" Data"))//##################################################### neu
+						{
+							if ((int)NudDataIndex.Value > TbData.Lines.Length)// FctbData.Lines.Count)
+							{
+								tmp = string.Format("{0}) Data index is too high, reset index!   <----------------", lineNr);
+								TbProcessInfo.Text += tmp + "\r\n";
+								ok = false;
+								SetCellColor(i, false);
+								GbData.BackColor = Color.Fuchsia;
+								BtnDataIndexClear.BackColor = Color.Yellow;
+								Logger.Trace("CheckData NOK {0}", tmp);
+								SetDGVToolTip(i, "Reset data index");
+								LblInfo.Text = "Data index too high";
+							}
+							else
+							{
+								dataLine = (int)NudDataIndex.Value - 1;
+								char delimiter = (char)ComboDelimiter.Text[0]; //TbDataDelimeter.Text[0];
+								if (ComboDelimiter.Text.Contains("tab"))
+									delimiter = '\t';
+								Logger.Trace("Delimeter '{0}' '{1}'", ComboDelimiter.Text, delimiter);
+
+								string dataText = "";
+								if (dataLine < TbData.Lines.Length)//FctbData.Lines.Count)
+								{
+									dataText = GetDataText(dataLine, value, delimiter);   //delimiter);
+								}
+								BtnDataIndexClear.BackColor = GbData.BackColor = default;
+								TbProcessInfo.Text += string.Format("{0,2}) {1,-20}  {2,-15}  ok  '{3}'\r\n", lineNr, action, value, dataText);
+								SetCellColor(i, true);
+							}
+						}
+						
+						else
+						{
+							TbProcessInfo.Text += string.Format("{0,2}) {1,-20}  {2,-15}  ok\r\n", lineNr, action, value);
+							SetCellColor(i, true);
+							isGrblConnected = true;
+						}
                     }
                 }
 
@@ -572,6 +615,13 @@ namespace GrblPlotter
                 else if (action.Contains("Wait Probe"))
                 {
                     TbProcessInfo.Text += string.Format("{0,2}) {1,-20}  {2,-15}  ok\r\n", lineNr, action, (Grbl.StatMsg.Pn.Contains("P") ? "triggerd" : "not triggered"));
+                    SetCellColor(i, true);
+                }
+                else if (action.Contains("Wait Registry"))
+                {
+                    int trigger = (int)Registry.GetValue(reg_key, "trigger", 0);
+                    //Registry.SetValue(reg_key, "trigger", 0);
+                    TbProcessInfo.Text += string.Format("{0,2}) {1,-20}  {2,-15}  ok\r\n", lineNr, action, (trigger != 0 ? "triggerd" : "not triggered"));
                     SetCellColor(i, true);
                 }
 
@@ -789,6 +839,19 @@ namespace GrblPlotter
                                 TbProcessInfo.AppendText("OK\r\n");
                             }
                         }
+                        else if (action.Contains("Wait Registry"))
+                        {
+                            int trigger = (int)Registry.GetValue(reg_key, "trigger", 0);
+                            if (trigger != 0)
+                            {
+                                Registry.SetValue(reg_key, "trigger", 0);
+                                SetCellColor(processStep, true);
+                                stepTriggered = false;
+                                stepCompleted = false;
+                                processStep++;
+                                TbProcessInfo.AppendText("OK\r\n");
+                            }
+                        }
                         else if (action.Contains("Wait DI"))
                         {
                             if (action.Contains("=1"))
@@ -853,23 +916,62 @@ namespace GrblPlotter
             else
                 TbProcessInfo.AppendText(string.Format("{0,2}) {1,-20}  {2,-15}   ", lineNr, action, value));
 
-        //    if (action.Contains("Paste clipboard"))
-        //    { }
+            //    if (action.Contains("Paste clipboard"))
+            //    { }
 
             if (action.Contains("G-Code"))
             {
                 if (isGrblConnected)
                 {
-                    SendProcessEvent(new ProcessEventArgs(action, value));
-                    SetCellColor(processStep, Color.Yellow);
-                    //   stepCompleted = true;       /* check for IDLE should be enough */
-                    if (action.Contains("Send"))
-                    {
-                        stepCompleted = true;       /* check for IDLE should be enough */
-                        //   stepCompleted = true;       /* check for IDLE should be enough */
-                        SetCellColor(processStep, true);
-                        TbProcessInfo.AppendText("OK\r\n");
-                    }
+					if (action.Contains(" Data"))       //#################################################### neu
+					{
+						dataLine = (int)NudDataIndex.Value - 1;
+						if (dataLine < TbData.Lines.Length)
+						{
+							char delimiter = (char)ComboDelimiter.Text[0];
+							if (ComboDelimiter.Text.Contains("tab"))
+								delimiter = '\t';
+							string dataText = GetDataText(dataLine, value, delimiter);
+
+							SendProcessEvent(new ProcessEventArgs(action, dataText));
+							SetCellColor(processStep, Color.Yellow);
+							stepCompleted = true;       /* check for IDLE should be enough */
+							SetCellColor(processStep, true);
+							TbProcessInfo.AppendText("OK\r\n");
+						}
+						else
+						{
+							Logger.Warn("Data index nok: {0} {1}  count:{2}", dataLine, value, TbData.Lines.Length);//);
+							LblInfo.Text = "End of data reached";
+							Feedback(action, "End of data reached", false);
+						}
+					}
+					else if (action.Contains("Send"))
+					{
+						SendProcessEvent(new ProcessEventArgs(action, value));
+						SetCellColor(processStep, Color.Yellow);
+						stepCompleted = true;       /* check for IDLE should be enough */
+						SetCellColor(processStep, true);
+						TbProcessInfo.AppendText("OK\r\n");
+					}
+					else
+					{
+						SendProcessEvent(new ProcessEventArgs(action, value));
+						SetCellColor(processStep, Color.Yellow);
+					}
+			/*
+					{
+						SendProcessEvent(new ProcessEventArgs(action, value));
+						SetCellColor(processStep, Color.Yellow);
+						//   stepCompleted = true;       /* check for IDLE should be enough */
+					/*	if (action.Contains("Send"))
+						{
+							stepCompleted = true;       /* check for IDLE should be enough */
+							//   stepCompleted = true;       /* check for IDLE should be enough */
+					/*		SetCellColor(processStep, true);
+							TbProcessInfo.AppendText("OK\r\n");
+						}
+					}*/
                 }
                 else
                 {
@@ -960,6 +1062,11 @@ namespace GrblPlotter
             {
                 SetCellColor(processStep, Color.Yellow);
                 LblInfo.Text = "Wait for trigger at probe input";
+            }
+            else if (action.Contains("Wait Registry"))
+            {
+                SetCellColor(processStep, Color.Yellow);
+                LblInfo.Text = "Wait for trigger at reg-key HKEY_CURRENT_USER\\SOFTWARE\\GRBL-Plotter - trigger";
             }
             else if (action.Contains("Wait DI"))
             {
@@ -1540,19 +1647,24 @@ namespace GrblPlotter
         private void BtnStep_Click(object sender, EventArgs e)
         {
             int lineNr = dataGridView1.SelectedCells[0].OwningRow.Index;
-            string action = (string)dataGridView1.Rows[lineNr].Cells[0].Value;
-            if (string.IsNullOrEmpty(action))
+            try
             {
-                return;
+                string action = (string)dataGridView1.Rows[lineNr].Cells[0].Value;
+                if (string.IsNullOrEmpty(action))
+                {
+                    return;
+                }
+                string value = (string)dataGridView1.Rows[lineNr].Cells[1].Value;
+
+                ProcessCommand(action, value, lineNr);
+                //    dataGridView1.SelectedCells[0].OwningRow.
+                dataGridView1.Rows[lineNr + 1].Cells[0].Selected = true;
+
+                dataGridView1.Rows[lineNr].Cells[0].Style.BackColor = default;
+                dataGridView1.Rows[lineNr + 1].Cells[0].Style.BackColor = Color.Yellow;
             }
-            string value = (string)dataGridView1.Rows[lineNr].Cells[1].Value;
-
-            ProcessCommand(action, value, lineNr);
-            //    dataGridView1.SelectedCells[0].OwningRow.
-            dataGridView1.Rows[lineNr + 1].Cells[0].Selected = true;
-
-            dataGridView1.Rows[lineNr].Cells[0].Style.BackColor = default;
-            dataGridView1.Rows[lineNr + 1].Cells[0].Style.BackColor = Color.Yellow;
+            catch (Exception err)
+            { Logger.Error(err, "BtnStep_Click index:{0}  rows:{1}  ", lineNr, dataGridView1.Rows.Count); }
         }
     }
     public partial class IniFile

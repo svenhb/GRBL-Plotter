@@ -22,7 +22,10 @@
  * 
 */
 /*  2018-12-26	Commits from RasyidUFA via Github
+ *  2024-10-20  add try catch
  */
+
+using System;
 
 namespace GrblPlotter
 {
@@ -30,17 +33,25 @@ namespace GrblPlotter
     {
         public static void SuppressStandby()
         {
-            if (NativeMethods.PowerAvailabilityRequestsSupported())
-                NativeMethods.SuppressStandbyWin7();
-            else
-                NativeMethods.SuppressStandbyXP();
+            try
+            {
+                if (NativeMethods.PowerAvailabilityRequestsSupported())
+                    NativeMethods.SuppressStandbyWin7();
+                else
+                    NativeMethods.SuppressStandbyXP();
+            }
+            catch (Exception err) { }
         }
         public static void EnableStandby()
         {
-            if (NativeMethods.PowerAvailabilityRequestsSupported())
-                NativeMethods.EnableStandbyWin7();
-            else
-                NativeMethods.EnableStandbyXP();
+            try
+            {
+                if (NativeMethods.PowerAvailabilityRequestsSupported())
+                    NativeMethods.EnableStandbyWin7();
+                else
+                    NativeMethods.EnableStandbyXP();
+            }
+            catch (Exception err) { }
         }
     }
 }

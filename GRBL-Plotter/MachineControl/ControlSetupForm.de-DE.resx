@@ -279,10 +279,6 @@ dann füge Knoten hinzu via 'Erweiterungen - Pfad modifizieren - Knoten hinzufü
     <value>Es wird versucht die Grafik auf die gewünschte Größe zu skalieren</value>
     <comment>TabPage1_1</comment>
   </data>
-  <data name="tabPage9.Text" xml:space="preserve">
-    <value>Pfadimport</value>
-    <comment>TabPage</comment>
-  </data>
   <data name="checkBox2.Text" xml:space="preserve">
     <value>Lasermode (benutzt S0 statt M5 um den Laser auszuschalten)</value>
     <comment>TabPage1_2</comment>
@@ -436,10 +432,6 @@ Nicht mit anderen Stift hoch/runter Optionen nutzbar.</value>
     <value>PWM Wert (S) für 'Stift hoch'</value>
     <comment>TabPage1_2</comment>
   </data>
-  <data name="tabPage10.Text" xml:space="preserve">
-    <value>G-Code Erzeugung</value>
-    <comment>TabPage1_2</comment>
-  </data>
   <data name="cBImportGCRelative.Text" xml:space="preserve">
     <value>Relative Bewegung</value>
     <comment>TabPage1_3</comment>
@@ -540,7 +532,7 @@ Don't use with "Relative movements"</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="tabPage11.Text" xml:space="preserve">
-    <value>G-Code Modifikation</value>
+    <value>Einstellungen</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="tBUseCaseSetting1.Text" xml:space="preserve">
@@ -569,10 +561,6 @@ Don't use with "Relative movements"</value>
   </data>
   <data name="btnUseCaseLoad.ToolTip" xml:space="preserve">
     <value>Lädt die Einstellungen des ausgewählten Anwendungsfalls</value>
-    <comment>TabPage1_4</comment>
-  </data>
-  <data name="tabPage15.Text" xml:space="preserve">
-    <value>Anwendungsfälle</value>
     <comment>TabPage1_4</comment>
   </data>
   <data name="tabPage3.Text" xml:space="preserve">
@@ -1747,10 +1735,6 @@ Idee: Verwendung eines Senkers, um den Kreisadurchmesser festzulegen</value>
 Objekte mit derselben Start- und Endkoordinate werden zusammengeführt.</value>
     <comment>ok</comment>
   </data>
-  <data name="tabPage16.Text" xml:space="preserve">
-    <value>Formatbezogen</value>
-    <comment>ok</comment>
-  </data>
   <data name="groupBox9.Text" xml:space="preserve">
     <value>Pfadinterpretation</value>
     <comment>ok</comment>
@@ -1773,22 +1757,6 @@ Objekte mit derselben Start- und Endkoordinate werden zusammengeführt.</value>
   </data>
   <data name="tab1_1_2lbl2.ToolTip" xml:space="preserve">
     <value>Kleine Lücken werden geschlossen</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tabPage17.Text" xml:space="preserve">
-    <value>Allgemeine Optionen</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tabPage20.Text" xml:space="preserve">
-    <value>Pfadänderungen</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tabPage18.Text" xml:space="preserve">
-    <value>Ausschnitt</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tabPage19.Text" xml:space="preserve">
-    <value>Gruppierung und Tools</value>
     <comment>ok</comment>
   </data>
   <data name="tabPage21.Text" xml:space="preserve">
@@ -1925,10 +1893,6 @@ Objekte mit derselben Start- und Endkoordinate werden zusammengeführt.</value>
   </data>
   <data name="nUDImportGraphicClipHeight.ToolTip" xml:space="preserve">
     <value>Y-Abmessung der Kachel</value>
-    <comment>ok</comment>
-  </data>
-  <data name="nUDImportGraphicTileClipWidth.ToolTip" xml:space="preserve">
-    <value>X-Dimension der Fliese</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportGraphicTile.Text" xml:space="preserve">
@@ -2145,10 +2109,6 @@ Nützlich für Laserschneider.</value>
   </data>
   <data name="tab1_3gB7.Text" xml:space="preserve">
     <value>Gerber Import</value>
-    <comment>ok</comment>
-  </data>
-  <data name="checkBox5.Text" xml:space="preserve">
-    <value>Schraffurfüllung , wenn das Objekt gefüllt ist</value>
     <comment>ok</comment>
   </data>
   <data name="cBDisableProgramPause.Text" xml:space="preserve">
@@ -2671,9 +2631,6 @@ Der tatsächlich nutzbare Bereich wäre $ 30 = 31, $ 31 = 0.</value>
   <data name="gBDevelop.Text" xml:space="preserve">
     <value>Wandel den Umriss einer 2D-Form in eine Abwicklung um</value>
   </data>
-  <data name="tabPage30.Text" xml:space="preserve">
-    <value>Spezielle Konvertierung</value>
-  </data>
   <data name="cBImportDXFUseZ.Text" xml:space="preserve">
     <value>Z-Informationen importieren</value>
   </data>
@@ -2818,9 +2775,6 @@ Zusätzlich kann die Position der Z Achse verwendet werden um z.B. die Farbmenge
   </data>
   <data name="groupBox26.Text" xml:space="preserve">
     <value>Entfernungsbezogener Wert für Farbpumpe oder Filamentzuführung</value>
-  </data>
-  <data name="tabPage31.Text" xml:space="preserve">
-    <value>Befehlserweiterung</value>
   </data>
   <data name="checkBox12.Text" xml:space="preserve">
     <value>Andere Formulare immer im Vordergrund anzeigen (z. B. Setup-Formular)</value>
@@ -3085,9 +3039,6 @@ Gegeben im GCode-Header-Abschnitt: 'SVG dimension'.</value>
   <data name="GbFilter.Text" xml:space="preserve">
     <value>Objekte nach Eigenschaften behalten oder entfernen</value>
   </data>
-  <data name="tabPage34.Text" xml:space="preserve">
-    <value>Filter</value>
-  </data>
   <data name="BtnLoadToolTableDialog.ToolTip" xml:space="preserve">
     <value>Werkzeugtabelle von anderer Stelle laden</value>
   </data>
@@ -3108,12 +3059,6 @@ Gegeben im GCode-Header-Abschnitt: 'SVG dimension'.</value>
   </data>
   <data name="cBColorModeWidth.ToolTip" xml:space="preserve">
     <value>Wendet auch importierte Stiftebreite auf die 2D-Ansicht an</value>
-  </data>
-  <data name="BtnGetFilterValueRemove.Text" xml:space="preserve">
-    <value>Erhalten</value>
-  </data>
-  <data name="BtnGetFilterValueKeep.Text" xml:space="preserve">
-    <value>Farbimport</value>
   </data>
   <data name="pathImport1.Text" xml:space="preserve">
     <value>Formatbezogen</value>
@@ -3141,12 +3086,6 @@ Gegeben im GCode-Header-Abschnitt: 'SVG dimension'.</value>
   </data>
   <data name="BtnGetFilterValueClear.ToolTip" xml:space="preserve">
     <value>Lösche Textfelder</value>
-  </data>
-  <data name="BtnGetFilterValueKeep.ToolTip" xml:space="preserve">
-    <value>Fügt die Farbe der ausgewählten Figur oder Gruppe hinzu</value>
-  </data>
-  <data name="BtnGetFilterValueRemove.ToolTip" xml:space="preserve">
-    <value>Fügt die Farbe der ausgewählten Figur oder Gruppe hinzu</value>
   </data>
   <data name="pathImport7.Text" xml:space="preserve">
     <value>Filter</value>
@@ -3557,7 +3496,7 @@ Die Konvertierung ist auch über Menü – GCode-Transformation – „In Polark
 Wenn diese Option aktiviert ist, erstellt jeder „m“-Befehl eine neue Figur.</value>
   </data>
   <data name="label107.Text" xml:space="preserve">
-    <value>Bildauflösung in DPI</value>
+    <value>Geometrische Vectorisierung eignet sich gut für geometrische Formen und Pixelgrafiken</value>
   </data>
   <data name="NudImportPDNDpi.ToolTip" xml:space="preserve">
     <value>DPI = Pixel/Zoll – normalerweise 96</value>
@@ -3636,5 +3575,82 @@ Wenn diese Option aktiviert ist, erstellt jeder „m“-Befehl eine neue Figur.<
   </data>
   <data name="BtnHelp_Misc2.ToolTip" xml:space="preserve">
     <value>Onlinehilfe</value>
+  </data>
+  <data name="RrBImportVectorizeDPISet.Text" xml:space="preserve">
+    <value>DPI einstellen</value>
+  </data>
+  <data name="RrBImportVectorizeDPISet.ToolTip" xml:space="preserve">
+    <value>Bildauflösung einstellen</value>
+  </data>
+  <data name="RrBImportVectorizeDPIFromImage.Text" xml:space="preserve">
+    <value>DPI vom Bild</value>
+  </data>
+  <data name="RrBImportVectorizeDPIFromImage.ToolTip" xml:space="preserve">
+    <value>Im Bild gespeicherte Bildauflösung</value>
+  </data>
+  <data name="groupBox49.Text" xml:space="preserve">
+    <value>Größe</value>
+  </data>
+  <data name="rBImportVectorizeAlgoMyTrace.Text" xml:space="preserve">
+    <value>Geometrische Vektorisierung  (langsam – gut für geometrische Formen)</value>
+  </data>
+  <data name="rBImportVectorizeAlgoPoTrace.Text" xml:space="preserve">
+    <value>PoTrace (schnell – gut für Bilder und Skizzen)</value>
+  </data>
+  <data name="groupBox48.Text" xml:space="preserve">
+    <value>Vektorisierungsalgorithmus</value>
+  </data>
+  <data name="rBImportVectorizeTransparency.Text" xml:space="preserve">
+    <value>Transparenz</value>
+  </data>
+  <data name="rBImportVectorizeTransparency.ToolTip" xml:space="preserve">
+    <value>Wenn keine Transparenz gefunden wurde, wird die Helligkeitserkennung angewendet.</value>
+  </data>
+  <data name="rBImportVectorizeBrightness.Text" xml:space="preserve">
+    <value>Helligkeit</value>
+  </data>
+  <data name="label109.Text" xml:space="preserve">
+    <value>Schwelle</value>
+  </data>
+  <data name="groupBox47.Text" xml:space="preserve">
+    <value>Hintergrunderkennung</value>
+  </data>
+  <data name="label113.Text" xml:space="preserve">
+    <value>Potrace ist eine Open-Source-Software, die Bitmap-Bilder in Vektorgrafiken umwandelt. Es wurde von Peter Selinger geschrieben und gepflegt.</value>
+  </data>
+  <data name="label112.Text" xml:space="preserve">
+    <value>Toleranz der Kurvenoptimierung</value>
+  </data>
+  <data name="label111.Text" xml:space="preserve">
+    <value>Eckschwelle</value>
+  </data>
+  <data name="label110.Text" xml:space="preserve">
+    <value>Bereich des größten Pfads, der ignoriert werden soll</value>
+  </data>
+  <data name="CBImportPoTraceOptimazion.Text" xml:space="preserve">
+    <value>Kurvenoptimierung nutzen</value>
+  </data>
+  <data name="groupBox46.Text" xml:space="preserve">
+    <value>Anwenden für</value>
+  </data>
+  <data name="groupBox45.Text" xml:space="preserve">
+    <value>Automatische Vektorisierung</value>
+  </data>
+  <data name="RrBImportVectorizeWidthSet.Text" xml:space="preserve">
+    <value>Setze Bildbreite auf</value>
+  </data>
+  <data name="RrBImportVectorizeWidthSet.ToolTip" xml:space="preserve">
+    <value>Breite des Bildes in mm</value>
+  </data>
+  <data name="NudImportPDNWidth.ToolTip" xml:space="preserve">
+    <value>Die Bildauflösung wird anhand der angegebenen Breite berechnet</value>
+  </data>
+  <data name="rBImportVectorizeAlgoMyTrace.ToolTip" xml:space="preserve">
+    <value>Für selbst gezeichnete Pixelgrafiken</value>
+  </data>
+  <data name="NudImportVectorizeThreshold.ToolTip" xml:space="preserve">
+    <value>Der Schwellenwertbereich liegt zwischen 0 und 255.
+Die Helligkeit muss über dem Schwellenwert liegen, um als Hintergrund erkannt zu werden, oder
+Die Transparenz muss unter dem Schwellenwert liegen, damit sie als Hintergrund erkannt wird</value>
   </data>
 </root>

@@ -122,10 +122,6 @@
 Se o valor for&gt; raio do arco, o valor será diminuído automaticamente.</value>
     <comment>ok</comment>
   </data>
-  <data name="tabPage15.Text" xml:space="preserve">
-    <value>Casos de uso</value>
-    <comment>TabPage1_4</comment>
-  </data>
   <data name="tabPage14.Text" xml:space="preserve">
     <value>Tabela de ferramentas</value>
     <comment>TabPage2</comment>
@@ -243,14 +239,6 @@ para evitar problemas ao reduzir o gcode.</value>
     <value>Show 'use case' selection on graphics import</value>
     <comment>TabPage1</comment>
   </data>
-  <data name="tabPage9.Text" xml:space="preserve">
-    <value>Importação de caminho</value>
-    <comment>TabPage</comment>
-  </data>
-  <data name="tabPage10.Text" xml:space="preserve">
-    <value>Geração de código G</value>
-    <comment>TabPage1_2</comment>
-  </data>
   <data name="cBImportGCSubFirst.Text" xml:space="preserve">
     <value>Inserir também no início do caminho</value>
     <comment>TabPage1_3</comment>
@@ -295,7 +283,7 @@ Não use com "Movimentos relativos"</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="tabPage11.Text" xml:space="preserve">
-    <value>Modificação do código G</value>
+    <value>Configurações</value>
     <comment>TabPage1_3</comment>
   </data>
   <data name="tabPage3.Text" xml:space="preserve">
@@ -1797,10 +1785,6 @@ Idéia: Use um escareador para definir o diâmetro do círculo</value>
 Objetos com as mesmas coordenadas inicial e final serão mesclados.</value>
     <comment>ok</comment>
   </data>
-  <data name="tabPage16.Text" xml:space="preserve">
-    <value>Formato relacionado</value>
-    <comment>ok</comment>
-  </data>
   <data name="groupBox9.Text" xml:space="preserve">
     <value>Interpretação do caminho</value>
     <comment>ok</comment>
@@ -1823,22 +1807,6 @@ Objetos com as mesmas coordenadas inicial e final serão mesclados.</value>
   </data>
   <data name="tab1_1_2lbl2.ToolTip" xml:space="preserve">
     <value>Pequenas lacunas serão fechadas</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tabPage17.Text" xml:space="preserve">
-    <value>Opções gerais</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tabPage20.Text" xml:space="preserve">
-    <value>Modificações de caminho</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tabPage18.Text" xml:space="preserve">
-    <value>Clipping</value>
-    <comment>ok</comment>
-  </data>
-  <data name="tabPage19.Text" xml:space="preserve">
-    <value>Agrupamento e Ferramentas</value>
     <comment>ok</comment>
   </data>
   <data name="tabPage21.Text" xml:space="preserve">
@@ -1971,10 +1939,6 @@ Objetos com as mesmas coordenadas inicial e final serão mesclados.</value>
   </data>
   <data name="nUDImportGraphicClipHeight.ToolTip" xml:space="preserve">
     <value>Dimensão Y do bloco</value>
-    <comment>ok</comment>
-  </data>
-  <data name="nUDImportGraphicTileClipWidth.ToolTip" xml:space="preserve">
-    <value>Dimensão X do bloco</value>
     <comment>ok</comment>
   </data>
   <data name="cBImportGraphicTile.Text" xml:space="preserve">
@@ -2203,10 +2167,6 @@ menos estresse para a mecânica</value>
   </data>
   <data name="rBImportSVGGroupItem4.Text" xml:space="preserve">
     <value>Tipo</value>
-    <comment>ok</comment>
-  </data>
-  <data name="checkBox5.Text" xml:space="preserve">
-    <value>Aplicar preenchimento de hachura se o objeto estiver preenchido</value>
     <comment>ok</comment>
   </data>
   <data name="cBDisableProgramPause.Text" xml:space="preserve">
@@ -2733,9 +2693,6 @@ O intervalo utilizável real seria $ 30 = 31, $ 31 = 0.</value>
   <data name="gBDevelop.Text" xml:space="preserve">
     <value>Converta o contorno de uma forma 2D em um desenvolvimento</value>
   </data>
-  <data name="tabPage30.Text" xml:space="preserve">
-    <value>Conversão especial</value>
-  </data>
   <data name="cBImportDXFUseZ.Text" xml:space="preserve">
     <value>Importar informações Z</value>
   </data>
@@ -2877,9 +2834,6 @@ Além disso, a posição do eixo Z pode ser usada para, por exemplo, aumentar a 
   </data>
   <data name="groupBox26.Text" xml:space="preserve">
     <value>Valor relacionado à distância para bomba de tinta ou alimentador de filamento</value>
-  </data>
-  <data name="tabPage31.Text" xml:space="preserve">
-    <value>extensão de comando</value>
   </data>
   <data name="checkBox12.Text" xml:space="preserve">
     <value>Mostrar outros formulários sempre na frente (por exemplo, formulário de configuração)</value>
@@ -3144,9 +3098,6 @@ Dado na seção de cabeçalho do GCode: 'SVG dimension'.</value>
   <data name="GbFilter.Text" xml:space="preserve">
     <value>Manter ou remover objetos por propriedades</value>
   </data>
-  <data name="tabPage34.Text" xml:space="preserve">
-    <value>filtro</value>
-  </data>
   <data name="BtnLoadToolTableDialog.ToolTip" xml:space="preserve">
     <value>Carregar tabela de ferramentas de outro local</value>
   </data>
@@ -3167,12 +3118,6 @@ Dado na seção de cabeçalho do GCode: 'SVG dimension'.</value>
   </data>
   <data name="cBColorModeWidth.ToolTip" xml:space="preserve">
     <value>Também aplica a largura da caneta importada à visualização 2D</value>
-  </data>
-  <data name="BtnGetFilterValueRemove.Text" xml:space="preserve">
-    <value>Receber</value>
-  </data>
-  <data name="BtnGetFilterValueKeep.Text" xml:space="preserve">
-    <value>importação de cores</value>
   </data>
   <data name="pathImport1.Text" xml:space="preserve">
     <value>Relacionado ao formato</value>
@@ -3200,12 +3145,6 @@ Dado na seção de cabeçalho do GCode: 'SVG dimension'.</value>
   </data>
   <data name="BtnGetFilterValueClear.ToolTip" xml:space="preserve">
     <value>Excluir campos de texto</value>
-  </data>
-  <data name="BtnGetFilterValueKeep.ToolTip" xml:space="preserve">
-    <value>Adiciona a cor do personagem ou grupo selecionado</value>
-  </data>
-  <data name="BtnGetFilterValueRemove.ToolTip" xml:space="preserve">
-    <value>Adiciona a cor do personagem ou grupo selecionado</value>
   </data>
   <data name="pathImport7.Text" xml:space="preserve">
     <value>filtro</value>
@@ -3625,7 +3564,7 @@ A conversão também é possível através do Menu - GCode Transform - 'Converte
 Se marcada, cada comando 'm' cria uma nova figura.</value>
   </data>
   <data name="label107.Text" xml:space="preserve">
-    <value>Resolução da imagem em DPI</value>
+    <value>A vetorização geométrica funciona bem para formas geométricas e gráficos de pixel</value>
   </data>
   <data name="NudImportPDNDpi.ToolTip" xml:space="preserve">
     <value>DPI = pixels/polegada – geralmente 96</value>
@@ -3704,5 +3643,82 @@ Se marcada, cada comando 'm' cria uma nova figura.</value>
   </data>
   <data name="BtnHelp_Misc2.ToolTip" xml:space="preserve">
     <value>Ajuda online</value>
+  </data>
+  <data name="RrBImportVectorizeDPISet.Text" xml:space="preserve">
+    <value>Definir DPI</value>
+  </data>
+  <data name="RrBImportVectorizeDPISet.ToolTip" xml:space="preserve">
+    <value>Definir resolução da imagem</value>
+  </data>
+  <data name="RrBImportVectorizeDPIFromImage.Text" xml:space="preserve">
+    <value>DPI da imagem</value>
+  </data>
+  <data name="RrBImportVectorizeDPIFromImage.ToolTip" xml:space="preserve">
+    <value>Resolução da imagem armazenada na imagem</value>
+  </data>
+  <data name="groupBox49.Text" xml:space="preserve">
+    <value>Tamanho</value>
+  </data>
+  <data name="rBImportVectorizeAlgoMyTrace.Text" xml:space="preserve">
+    <value>Traçado Geométrico (lento - bom para formas geométricas)</value>
+  </data>
+  <data name="rBImportVectorizeAlgoPoTrace.Text" xml:space="preserve">
+    <value>PoTrace (rápido - bom para fotos e esboços)</value>
+  </data>
+  <data name="groupBox48.Text" xml:space="preserve">
+    <value>Algoritmo de vetorização</value>
+  </data>
+  <data name="rBImportVectorizeTransparency.Text" xml:space="preserve">
+    <value>Transparência</value>
+  </data>
+  <data name="rBImportVectorizeTransparency.ToolTip" xml:space="preserve">
+    <value>Se nenhuma transparência for encontrada, a detecção de brilho será aplicada.</value>
+  </data>
+  <data name="rBImportVectorizeBrightness.Text" xml:space="preserve">
+    <value>Brilho</value>
+  </data>
+  <data name="label109.Text" xml:space="preserve">
+    <value>Limite</value>
+  </data>
+  <data name="groupBox47.Text" xml:space="preserve">
+    <value>Detecção de fundo</value>
+  </data>
+  <data name="label113.Text" xml:space="preserve">
+    <value>Potrace é um software de código aberto que converte imagens bitmap em gráficos vetoriais. É escrito e mantido por Peter Selinger.</value>
+  </data>
+  <data name="label112.Text" xml:space="preserve">
+    <value>Tolerância de otimização de curva</value>
+  </data>
+  <data name="label111.Text" xml:space="preserve">
+    <value>Limiar de canto</value>
+  </data>
+  <data name="label110.Text" xml:space="preserve">
+    <value>Área do maior caminho a ser ignorada</value>
+  </data>
+  <data name="CBImportPoTraceOptimazion.Text" xml:space="preserve">
+    <value>Usar otimização de curva</value>
+  </data>
+  <data name="groupBox46.Text" xml:space="preserve">
+    <value>Inscreva-se para</value>
+  </data>
+  <data name="groupBox45.Text" xml:space="preserve">
+    <value>Vetorização automática</value>
+  </data>
+  <data name="RrBImportVectorizeWidthSet.Text" xml:space="preserve">
+    <value>Defina a largura da imagem como</value>
+  </data>
+  <data name="RrBImportVectorizeWidthSet.ToolTip" xml:space="preserve">
+    <value>Largura da imagem em mm</value>
+  </data>
+  <data name="NudImportPDNWidth.ToolTip" xml:space="preserve">
+    <value>A resolução da imagem será calculada por determinada largura</value>
+  </data>
+  <data name="rBImportVectorizeAlgoMyTrace.ToolTip" xml:space="preserve">
+    <value>Para gráficos de pixel autodesenhados</value>
+  </data>
+  <data name="NudImportVectorizeThreshold.ToolTip" xml:space="preserve">
+    <value>O intervalo de limite é de 0 a 255.
+O brilho deve ser &gt;limiar para ser reconhecido como plano de fundo, ou
+A transparência deve ser &lt; limite para ser reconhecida como pano de fundo</value>
   </data>
 </root>

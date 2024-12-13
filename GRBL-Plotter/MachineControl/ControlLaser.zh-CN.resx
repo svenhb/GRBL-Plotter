@@ -124,7 +124,7 @@
     <value>开始之前，延迟</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>将Y移动</value>
+    <value>将Y移动到</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>将X从0移到</value>
@@ -166,7 +166,7 @@
     <value>从F</value>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
-    <value>以恒定功率扫描X速度（无Z轴）</value>
+    <value>以恒定功率扫描时X速度（无Z轴）</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
     <value>步</value>
@@ -181,7 +181,7 @@
     <value>从S</value>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
-    <value>恒速扫描激光功率（无Z轴）</value>
+    <value>恒速扫描时激光功率（无Z轴）</value>
   </data>
   <data name="btnScanPower.Text" xml:space="preserve">
     <value>开始扫描</value>
@@ -193,7 +193,7 @@
     <value>更新工具表</value>
   </data>
   <data name="lblToolProp.Text" xml:space="preserve">
-    <value>tt的XY馈电（F）和l功率（S）</value>
+    <value>来自tt的XY进给（F）和l功率（S）</value>
   </data>
   <data name="btnScanTool.Text" xml:space="preserve">
     <value>开始扫描</value>
@@ -277,7 +277,7 @@
     <value>测试区域宽度</value>
   </data>
   <data name="label23.Text" xml:space="preserve">
-    <value>尺码 X</value>
+    <value>尺寸X</value>
   </data>
   <data name="CbPatternYLabel.Text" xml:space="preserve">
     <value>显示标签</value>
@@ -289,13 +289,13 @@
     <value>首先应用最大进给率（底部）</value>
   </data>
   <data name="label20.Text" xml:space="preserve">
-    <value>最大限度。</value>
+    <value>最大。</value>
   </data>
   <data name="NudPatternYMin.ToolTip" xml:space="preserve">
     <value>最小进给率将最后应用（顶部）</value>
   </data>
   <data name="label21.Text" xml:space="preserve">
-    <value>分钟。</value>
+    <value>最小。</value>
   </data>
   <data name="NudPatternYNumber.ToolTip" xml:space="preserve">
     <value>垂直（y 轴）进给率测试字段数</value>
@@ -313,18 +313,36 @@
     <value>停止时的激光功率（最右边）</value>
   </data>
   <data name="label19.Text" xml:space="preserve">
-    <value>最大限度。 %</value>
+    <value>最大. %</value>
   </data>
   <data name="NudPatternXMin.ToolTip" xml:space="preserve">
     <value>起始激光功率（最左边）</value>
   </data>
   <data name="label18.Text" xml:space="preserve">
-    <value>分钟。 %</value>
+    <value>最小. %</value>
   </data>
   <data name="NudPatternXNumber.ToolTip" xml:space="preserve">
     <value>水平（x 轴）激光能量测试场数</value>
   </data>
   <data name="label17.Text" xml:space="preserve">
     <value>数字</value>
+  </data>
+  <data name="cBLaserMode.Text" xml:space="preserve">
+    <value>激光模式$32</value>
+  </data>
+  <data name="rBM3.Text" xml:space="preserve">
+    <value>M3</value>
+  </data>
+  <data name="nUDLaserPower.Text" xml:space="preserve">
+    <value>M4</value>
+  </data>
+  <data name="lblInfo.Text" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="CbPatternSendM5.Text" xml:space="preserve">
+    <value>打开/关闭激光器</value>
+  </data>
+  <data name="LblPatternInfo.Text" xml:space="preserve">
+    <value>Info</value>
   </data>
 </root>
