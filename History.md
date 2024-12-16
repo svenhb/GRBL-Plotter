@@ -1,6 +1,41 @@
 ## History
 Needs to be read from the bottom up ;-)  
 
+### [2024-08 Version 1.7.4.x](https://github.com/svenhb/GRBL-Plotter/releases/tag/v.1.7.4.0)
+- Set new origin
+- Set move to position
+- Loading layered images from paint.net via plugin pdn-json:  
+Application example 'Layered papercut': https://youtu.be/3JnVT8EVs3w
+
+### 2024-02 Version 1.7.3.x
+Overhaul of process automation
+- create text or barcode from a data file
+- rotate, scale or offset the generated code
+- stream code to grbl controller
+- wait for input, before processing next data line 
+ Examples:  
+ Loading graphics from a file list to plot: https://youtu.be/8NAn4KABskI  
+ Generating text from a CVS file to laser engrave: https://youtu.be/oqVl5zpMbG0
+
+- New feature "Convert to polar coordinates" Video: https://youtu.be/uAdN8MCVVp0
+- "Apply last transformation" in 2D view (instead of multiple selection of objects)
+- Notification if tangential full turn setting from loaded code is different to setup.
+- Change in loadable button definitions:
+
+
+### 2024-02 Version 1.7.2.x
+- Setup 'Path modifications' Add noise to straight lines:
+  
+### 2023-12 Version 1.7.1.x
+- Probing supports fiducial recognition (correction of G-Code offset and -rotation by scanning registration marks on workpice via proximity sensor). Short video: https://youtube.com/shorts/NDDZnSLasdA?feature=share
+More info: https://grbl-plotter.de/index.php?id=application-examples#probe_fiducial_correction
+- Probing can be started via "Process automation"
+- SVG add frame, logo, sign, watermark on import
+- DXF new algorythm for splines
+- Image import option for laser-engraver (not applying pen-up/-down commands)
+- Image import new line tracing options
+- Tool to generate laserengraving test pattern
+
 ### 2023-07 Version 1.7.0.x
 - Multiple file import via drag & drop: added some options
 - Hatch fill extension: shrink enveloping path , delete enveloping path
