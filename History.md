@@ -3,7 +3,7 @@ Needs to be read from the bottom up ;-)
 
 ### [2024-12 Version 1.7.5.x](https://github.com/svenhb/GRBL-Plotter/releases/tag/v.1.7.5.0)
 - Quick vectorize - just drag & drop to get the outline of a graphic
-- Pixel Art
+- Pixel Art [Video](https://youtu.be/pgTwDJtapdc)
 
 ### [2024-08 Version 1.7.4.x](https://github.com/svenhb/GRBL-Plotter/releases/tag/v.1.7.4.0)
 - Set new origin
