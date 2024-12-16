@@ -1,13 +1,17 @@
 ## History
 Needs to be read from the bottom up ;-)  
 
+### [2024-12 Version 1.7.5.x](https://github.com/svenhb/GRBL-Plotter/releases/tag/v.1.7.5.0)
+- Quick vectorize - just drag & drop to get the outline of a graphic
+- Pixel Art
+
 ### [2024-08 Version 1.7.4.x](https://github.com/svenhb/GRBL-Plotter/releases/tag/v.1.7.4.0)
 - Set new origin
 - Set move to position
 - Loading layered images from paint.net via plugin pdn-json:  
 Application example 'Layered papercut': https://youtu.be/3JnVT8EVs3w
 
-### 2024-02 Version 1.7.3.x
+### [2024-02 Version 1.7.3.x](https://github.com/svenhb/GRBL-Plotter/releases/tag/v1.7.3.2)
 Overhaul of process automation
 - create text or barcode from a data file
 - rotate, scale or offset the generated code
@@ -23,10 +27,10 @@ Overhaul of process automation
 - Change in loadable button definitions:
 
 
-### 2024-02 Version 1.7.2.x
+### [2024-02 Version 1.7.2.x](https://github.com/svenhb/GRBL-Plotter/releases/tag/v1.7.2.0)
 - Setup 'Path modifications' Add noise to straight lines:
   
-### 2023-12 Version 1.7.1.x
+### [2023-12 Version 1.7.1.x](https://github.com/svenhb/GRBL-Plotter/releases/tag/v1.7.1.1)
 - Probing supports fiducial recognition (correction of G-Code offset and -rotation by scanning registration marks on workpice via proximity sensor). Short video: https://youtube.com/shorts/NDDZnSLasdA?feature=share
 More info: https://grbl-plotter.de/index.php?id=application-examples#probe_fiducial_correction
 - Probing can be started via "Process automation"
@@ -36,7 +40,7 @@ More info: https://grbl-plotter.de/index.php?id=application-examples#probe_fiduc
 - Image import new line tracing options
 - Tool to generate laserengraving test pattern
 
-### 2023-07 Version 1.7.0.x
+### [2023-07 Version 1.7.0.x](https://github.com/svenhb/GRBL-Plotter/releases/tag/v1.7.0.4)
 - Multiple file import via drag & drop: added some options
 - Hatch fill extension: shrink enveloping path , delete enveloping path
 - Import parameter options: Largset object last, sort by dimension
