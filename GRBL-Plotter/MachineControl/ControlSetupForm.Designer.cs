@@ -681,6 +681,7 @@ namespace GrblPlotter
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.gBToolChange = new System.Windows.Forms.GroupBox();
+            this.cBEnableM6 = new System.Windows.Forms.CheckBox();
             this.BtnHelp_Toolchange = new System.Windows.Forms.Button();
             this.label47 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
@@ -7750,6 +7751,7 @@ namespace GrblPlotter
             // 
             // gBToolChange
             // 
+            this.gBToolChange.Controls.Add(this.cBEnableM6);
             this.gBToolChange.Controls.Add(this.BtnHelp_Toolchange);
             this.gBToolChange.Controls.Add(this.label47);
             this.gBToolChange.Controls.Add(this.label46);
@@ -7773,6 +7775,15 @@ namespace GrblPlotter
             resources.ApplyResources(this.gBToolChange, "gBToolChange");
             this.gBToolChange.Name = "gBToolChange";
             this.gBToolChange.TabStop = false;
+            // 
+            // cBEnableM6
+            // 
+            resources.ApplyResources(this.cBEnableM6, "cBEnableM6");
+            this.cBEnableM6.Checked = global::GrblPlotter.Properties.Settings.Default.ctlEnableM6;
+            this.cBEnableM6.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "ctlEnableM6", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cBEnableM6.Name = "cBEnableM6";
+            this.toolTip1.SetToolTip(this.cBEnableM6, resources.GetString("cBEnableM6.ToolTip"));
+            this.cBEnableM6.UseVisualStyleBackColor = true;
             // 
             // BtnHelp_Toolchange
             // 
@@ -15022,5 +15033,6 @@ namespace GrblPlotter
         private System.Windows.Forms.NumericUpDown NudImportPDNWidth;												 																	 
         private System.Windows.Forms.Label label107;
         private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.CheckBox cBEnableM6;
     }
 }

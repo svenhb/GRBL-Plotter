@@ -307,14 +307,17 @@ namespace GrblPlotter
                             }
                             if (cmdMNr == 6)                                        // M06 is not allowed - remove
                             {
-                                tmp = "(" + tmp + ")";
-                                if (Properties.Settings.Default.ctrlToolChange)
-                                { InsertToolChangeCode(i, ref tmpToolInSpindle); }// insert external script-code and insert variables 
-                                else
+                                if (!Properties.Settings.Default.ctlEnableM6)
                                 {
-                                    AddToLog(tmp + " !!! Tool change is disabled");
-                                    Logger.Warn("⚠ Found '{0}' but tool change is disabled in [Setup - Tool change]", tmp);
-                                    tmp = "M0 " + tmp;
+                                    tmp = "(" + tmp + ")";
+                                    if (Properties.Settings.Default.ctrlToolChange)
+                                    { InsertToolChangeCode(i, ref tmpToolInSpindle); }// insert external script-code and insert variables 
+                                    else
+                                    {
+                                        AddToLog(tmp + " !!! Tool change is disabled");
+                                        Logger.Warn("⚠ Found '{0}' but tool change is disabled in [Setup - Tool change]", tmp);
+                                        tmp = "M0 " + tmp;
+                                    }
                                 }
                             }
                             if (cmdMNr == 30)
