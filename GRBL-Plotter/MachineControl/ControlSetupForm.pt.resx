@@ -2998,10 +2998,10 @@ Além disso, a posição do eixo Z pode ser usada para, por exemplo, aumentar a 
     <value>Se a camada não estiver visível ou a impressão estiver desativada no LibreCAD, a camada não será importada</value>
   </data>
   <data name="CbImportSVGDontPlot.Text" xml:space="preserve">
-    <value>Pular camadas ocultas</value>
+    <value>Ignora camadas ocultas e atributo fill-opacity = "0"</value>
   </data>
   <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
-    <value>Se a camada ou objeto não estiver visível no Inkscape, a camada ou objeto não será importado.</value>
+    <value>Se a camada ou objeto não estiver visível no Inkscape ou o atributo fill-opacity="0" estiver definido, a camada ou objeto não será importado.</value>
   </data>
   <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
     <value>Usar padrão de traço de caminho fechado</value>
@@ -3720,5 +3720,11 @@ Se marcada, cada comando 'm' cria uma nova figura.</value>
     <value>O intervalo de limite é de 0 a 255.
 O brilho deve ser &gt;limiar para ser reconhecido como plano de fundo, ou
 A transparência deve ser &lt; limite para ser reconhecida como pano de fundo</value>
+  </data>
+  <data name="CbToolChangeM6PassThrough.Text" xml:space="preserve">
+    <value>Passe o comando M6 sem processamento adicional pelo plotter GRBL</value>
+  </data>
+  <data name="CbToolChangeM6PassThrough.ToolTip" xml:space="preserve">
+    <value>Nota: Grbl “clássico” no Arduino Uno não consegue processar o comando M6 e dá um erro.</value>
   </data>
 </root>

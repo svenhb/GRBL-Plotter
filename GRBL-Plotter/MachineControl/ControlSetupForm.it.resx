@@ -177,7 +177,7 @@
     <comment>TabPage1_1</comment>
   </data>
   <data name="CbImportSVGDontPlot.Text" xml:space="preserve">
-    <value>Salta i livelli nascosti</value>
+    <value>Salta i livelli nascosti e l'attributo fill-opacity="0".</value>
   </data>
   <data name="nUDSVGScale.ToolTip" xml:space="preserve">
     <value>Prova a ridimensionare la grafica a determinate unità, prima di generare gcode,</value>
@@ -1967,7 +1967,7 @@ La finestra di installazione deve essere chiusa per utilizzare Gamepad nella GUI
     <comment>TabPage1_1</comment>
   </data>
   <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
-    <value>Se il livello o l'oggetto non è visibile in Inkscape, il livello o l'oggetto non verranno importati.</value>
+    <value>Se il livello o l'oggetto non è visibile in Inkscape o è impostato l'attributo fill-opacity="0", il livello o l'oggetto non verrà importato.</value>
   </data>
   <data name="tab1_1lbl3.Text" xml:space="preserve">
     <value>Impostazione DPI</value>
@@ -4045,5 +4045,11 @@ Se selezionato, ogni comando 'm' crea una nuova figura.</value>
     <value>L'intervallo di soglia è compreso tra 0 e 255.
 La luminosità deve essere &gt;soglia per essere riconosciuta come sfondo, oppure
 La trasparenza deve essere &lt; soglia per essere riconosciuta come sfondo</value>
+  </data>
+  <data name="CbToolChangeM6PassThrough.Text" xml:space="preserve">
+    <value>Passa il comando M6 senza ulteriore elaborazione da parte del plotter GRBL</value>
+  </data>
+  <data name="CbToolChangeM6PassThrough.ToolTip" xml:space="preserve">
+    <value>Nota: il Grbl “classico” su Arduino Uno non riesce a elaborare il comando M6 e restituisce un errore.</value>
   </data>
 </root>

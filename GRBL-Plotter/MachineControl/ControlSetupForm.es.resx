@@ -2989,10 +2989,10 @@ Además, la posición del eje Z se puede utilizar para, por ejemplo, aumentar la
     <value>Si la capa no está visible o la impresión está deshabilitada en LibreCAD, la capa no se importará</value>
   </data>
   <data name="CbImportSVGDontPlot.Text" xml:space="preserve">
-    <value>Saltar capas ocultas</value>
+    <value>Salta capas ocultas y atributo fill-opacity="0"</value>
   </data>
   <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
-    <value>Si la capa o el objeto no están visibles en Inkscape, la capa o el objeto no se importarán.</value>
+    <value>Si la capa u objeto no es visible en Inkscape o el atributo fill-opacity="0" está configurado, la capa u objeto no se importará.</value>
   </data>
   <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
     <value>Usar patrón de guiones de ruta cerrada</value>
@@ -3712,5 +3712,11 @@ Si está marcado, cada comando 'm' crea una nueva figura.</value>
     <value>El rango de umbral es 0 - 255.
 El brillo debe ser &gt;umbral para ser reconocido como fondo, o
 La transparencia debe ser &lt; umbral para ser reconocida como fondo</value>
+  </data>
+  <data name="CbToolChangeM6PassThrough.Text" xml:space="preserve">
+    <value>Pase el comando M6 sin procesamiento adicional por parte del trazador GRBL</value>
+  </data>
+  <data name="CbToolChangeM6PassThrough.ToolTip" xml:space="preserve">
+    <value>Nota: Grbl "clásico" en Arduino Uno no puede procesar el comando M6 y da un error.</value>
   </data>
 </root>

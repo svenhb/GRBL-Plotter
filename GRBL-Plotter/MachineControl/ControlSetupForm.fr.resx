@@ -2989,10 +2989,10 @@ De plus, la position de l'axe Z peut être utilisée, par exemple, pour augmente
     <value>Si le calque n'est pas visible ou si l'impression est désactivée dans LibreCAD, le calque ne sera pas importé</value>
   </data>
   <data name="CbImportSVGDontPlot.Text" xml:space="preserve">
-    <value>Ignorer les couches masquées</value>
+    <value>Ignore les calques masqués et l'attribut fill-opacity="0"</value>
   </data>
   <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
-    <value>Si le calque ou l'objet n'est pas visible dans Inkscape, le calque ou l'objet ne sera pas importé.</value>
+    <value>Si le calque ou l'objet n'est pas visible dans Inkscape ou si l'attribut fill-opacity="0" est défini, le calque ou l'objet ne sera pas importé.</value>
   </data>
   <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
     <value>Utiliser le modèle de tiret du chemin fermé</value>
@@ -3711,5 +3711,11 @@ Si coché, chaque commande 'm' crée une nouvelle figure.</value>
     <value>La plage de seuil est comprise entre 0 et 255.
 La luminosité doit être supérieure au seuil pour être reconnue comme arrière-plan, ou
 La transparence doit être &lt;seuil pour être reconnue comme arrière-plan</value>
+  </data>
+  <data name="CbToolChangeM6PassThrough.Text" xml:space="preserve">
+    <value>Transmettez la commande M6 sans autre traitement par le traceur GRBL</value>
+  </data>
+  <data name="CbToolChangeM6PassThrough.ToolTip" xml:space="preserve">
+    <value>Remarque : Grbl « classique » sur Arduino Uno ne peut pas traiter la commande M6 et donne une erreur.</value>
   </data>
 </root>

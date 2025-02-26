@@ -3269,10 +3269,10 @@ Pushbullet：出于安全原因，您应该使用“垃圾桶”帐户，访问�
     <value>如果在 LibreCAD 中图层不可见或打印被禁用，图层将不会被导入</value>
   </data>
   <data name="CbImportSVGDontPlot.Text" xml:space="preserve">
-    <value>跳过隐藏层</value>
+    <value>跳过隐藏层和 fill-opacity="0" 属性</value>
   </data>
   <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
-    <value>如果图层或对象在 Inkscape 中不可见，则不会导入图层或对象。</value>
+    <value>如果图层或对象在 Inkscape 中不可见或设置了 fill-opacity="0" 属性，则不会导入图层或对象。</value>
   </data>
   <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
     <value>使用封闭路径的破折号模式</value>
@@ -4667,5 +4667,11 @@ SpindleEnable;</value>
   </data>
   <data name="groupBox45.Text" xml:space="preserve">
     <value>自动矢量化</value>
+  </data>
+  <data name="CbToolChangeM6PassThrough.Text" xml:space="preserve">
+    <value>将M6命令传递通过，无需GRBL绘图仪进一步处理</value>
+  </data>
+  <data name="CbToolChangeM6PassThrough.ToolTip" xml:space="preserve">
+    <value>注意：Arduino Uno 上的“经典”Grbl 无法处理 M6 命令并给出错误。</value>
   </data>
 </root>

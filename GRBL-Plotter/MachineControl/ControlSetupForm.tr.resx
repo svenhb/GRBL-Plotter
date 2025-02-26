@@ -311,10 +311,10 @@ Varsayılan (Arduino Uno/Nano) - 127 bayt
     <comment>TabPage1_1</comment>
   </data>
   <data name="CbImportSVGDontPlot.Text" xml:space="preserve">
-    <value>Gizli katmanları atla</value>
+    <value>Gizli katmanları ve fill-opacity="0" özelliğini atlar</value>
   </data>
   <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
-    <value>Katman veya nesne Inkscape'te görünmüyorsa, katman veya nesne içe aktarılmaz.</value>
+    <value>Katman veya nesne Inkscape'te görünmüyorsa veya fill-opacity="0" özelliği ayarlandıysa katman veya nesne içe aktarılmaz.</value>
   </data>
   <data name="nUDSVGScale.ToolTip" xml:space="preserve">
     <value>gcode oluşturmadan önce grafikleri verilen birimlere göre ölçeklendirmeye çalışın,</value>
@@ -4019,5 +4019,11 @@ Dönüşüm aynı zamanda Menü - GCode Dönüşümü - 'Kutupsal koordinatlara 
     <value>Eşik aralığı 0 - 255'tir.
 Parlaklığın arka plan olarak tanınması için &gt;eşik olması gerekir veya
 Şeffaflığın arka plan olarak tanınması için &lt; eşik olması gerekir</value>
+  </data>
+  <data name="CbToolChangeM6PassThrough.Text" xml:space="preserve">
+    <value>GRBL çizici tarafından daha fazla işlenmeden M6 komutunu iletin</value>
+  </data>
+  <data name="CbToolChangeM6PassThrough.ToolTip" xml:space="preserve">
+    <value>Not: Arduino Uno üzerinde “klasik” Grbl, M6 komutunu işleyemiyor ve hata veriyor.</value>
   </data>
 </root>

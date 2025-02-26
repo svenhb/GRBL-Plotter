@@ -3280,10 +3280,10 @@ https://github.com/cprezzi/grbl-servoのGrbl-version'grbl_v1.1f_Servo.hex '、
     <value>レイヤーが表示されていないか、LibreCADで印刷が無効になっている場合、レイヤーはインポートされません</value>
   </data>
   <data name="CbImportSVGDontPlot.Text" xml:space="preserve">
-    <value>隠しレイヤーをスキップする</value>
+    <value>非表示レイヤーと fill-opacity="0" 属性をスキップします</value>
   </data>
   <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
-    <value>レイヤーまたはオブジェクトがInkscapeに表示されていない場合、レイヤーまたはオブジェクトはインポートされません。</value>
+    <value>レイヤーまたはオブジェクトが Inkscape で表示されない場合、または fill-opacity="0" 属性が設定されている場合、レイヤーまたはオブジェクトはインポートされません。</value>
   </data>
   <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
     <value>閉じたパスのダッシュ パターンを使用する</value>
@@ -4007,5 +4007,11 @@ X は半径値を取得し、Y は角度値を取得します。
     <value>しきい値の範囲は 0 ～ 255 です。
 背景として認識するには、明るさがしきい値を超えている必要があります。そうでない場合は、
 背景として認識されるには、透明度がしきい値未満である必要があります</value>
+  </data>
+  <data name="CbToolChangeM6PassThrough.Text" xml:space="preserve">
+    <value>GRBL プロッターによるさらなる処理を行わずに M6 コマンドを通過させます。</value>
+  </data>
+  <data name="CbToolChangeM6PassThrough.ToolTip" xml:space="preserve">
+    <value>注: Arduino Uno 上の「クラシック」Grbl は M6 コマンドを処理できず、エラーが発生します。</value>
   </data>
 </root>

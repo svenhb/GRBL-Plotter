@@ -3279,10 +3279,10 @@ Kromě toho lze polohu osy Z využít např. ke zvýšení množství barvy, kdy
     <value>Pokud vrstva není viditelná nebo je v LibreCADu zakázán tisk, vrstva se neimportuje</value>
   </data>
   <data name="CbImportSVGDontPlot.Text" xml:space="preserve">
-    <value>Přeskočit skryté vrstvy</value>
+    <value>Přeskočí skryté vrstvy a atribut fill-opacity="0".</value>
   </data>
   <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
-    <value>Pokud vrstva nebo objekt není v Inkscape vidět, vrstva nebo objekt se neimportují.</value>
+    <value>Pokud vrstva nebo objekt není v Inkscape viditelný nebo je nastaven atribut fill-opacity="0", vrstva nebo objekt nebudou importovány.</value>
   </data>
   <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
     <value>Použijte čárkovaný vzor uzavřené cesty</value>
@@ -4000,5 +4000,11 @@ Pokud je zaškrtnuto, každý příkaz 'm' vytvoří nový obrázek.</value>
     <value>Rozsah prahu je 0–255.
 Jas musí být &gt;prahový, aby byl rozpoznán jako pozadí, popř
 Aby bylo možné rozpoznat jako pozadí, musí být průhlednost &lt; prahová hodnota</value>
+  </data>
+  <data name="CbToolChangeM6PassThrough.Text" xml:space="preserve">
+    <value>Předejte příkaz M6 bez dalšího zpracování plotrem GRBL</value>
+  </data>
+  <data name="CbToolChangeM6PassThrough.ToolTip" xml:space="preserve">
+    <value>Poznámka: „klasický“ Grbl na Arduino Uno nedokáže zpracovat příkaz M6 ​​a zobrazuje chybu.</value>
   </data>
 </root>

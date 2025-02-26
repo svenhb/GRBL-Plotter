@@ -2939,10 +2939,10 @@ Zusätzlich kann die Position der Z Achse verwendet werden um z.B. die Farbmenge
     <value>Wenn die Ebene nicht sichtbar ist oder das Drucken in LibreCAD deaktiviert ist, wird die Ebene nicht importiert</value>
   </data>
   <data name="CbImportSVGDontPlot.Text" xml:space="preserve">
-    <value>Versteckte Ebenen überspringen</value>
+    <value>Überspringt ausgeblendete Ebenen und das Attribut fill-opacity="0"</value>
   </data>
   <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
-    <value>Wenn Ebene oder Objekt in Inkscape nicht sichtbar sind, werden Ebene oder Objekt nicht importiert.</value>
+    <value>Wenn die Ebene oder das Objekt in Inkscape nicht sichtbar ist oder das Attribut „fill-opacity="0"“ gesetzt ist, wird die Ebene oder das Objekt nicht importiert.</value>
   </data>
   <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
     <value>Verwend Strichmuster des geschl. Pfads</value>
@@ -3652,5 +3652,11 @@ Wenn diese Option aktiviert ist, erstellt jeder „m“-Befehl eine neue Figur.<
     <value>Der Schwellenwertbereich liegt zwischen 0 und 255.
 Die Helligkeit muss über dem Schwellenwert liegen, um als Hintergrund erkannt zu werden, oder
 Die Transparenz muss unter dem Schwellenwert liegen, damit sie als Hintergrund erkannt wird</value>
+  </data>
+  <data name="CbToolChangeM6PassThrough.Text" xml:space="preserve">
+    <value>M6 Befehl durchreichen, ohne weitere Bearbeitung durch GRBL-Plotter</value>
+  </data>
+  <data name="CbToolChangeM6PassThrough.ToolTip" xml:space="preserve">
+    <value>Hinweis: „klassisches“ Grbl auf Arduino Uno kann den M6 Befehl nicht verarbeiten und gibt einen Fehler aus.</value>
   </data>
 </root>

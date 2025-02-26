@@ -3256,10 +3256,10 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
     <value>إذا كانت الطبقة غير مرئية أو تم تعطيل الطباعة في LibreCAD ، فلن يتم استيراد الطبقة</value>
   </data>
   <data name="CbImportSVGDontPlot.Text" xml:space="preserve">
-    <value>تخطي الطبقات المخفية</value>
+    <value>تخطي الطبقات المخفية وسمة عتامة التعبئة = "0".</value>
   </data>
   <data name="CbImportSVGDontPlot.ToolTip" xml:space="preserve">
-    <value>إذا كانت الطبقة أو الكائن غير مرئي في Inkscape ، فلن يتم استيراد الطبقة أو الكائن.</value>
+    <value>إذا كانت الطبقة أو الكائن غير مرئي في Inkscape أو إذا تم تعيين خاصية عتامة التعبئة = "0"، فلن يتم استيراد الطبقة أو الكائن.</value>
   </data>
   <data name="cBImportGraphicHatchFillDash.Text" xml:space="preserve">
     <value>استخدم نمط الشرطة للمسار المغلق</value>
@@ -3998,5 +3998,11 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
     <value>نطاق العتبة هو 0 - 255.
 يجب أن يكون السطوع &gt; عتبة ليتم التعرف عليه كخلفية، أو
 يجب أن تكون الشفافية &lt; العتبة حتى يتم التعرف عليها كخلفية</value>
+  </data>
+  <data name="CbToolChangeM6PassThrough.Text" xml:space="preserve">
+    <value>قم بتمرير الأمر M6 دون مزيد من المعالجة بواسطة جهاز رسم GRBL</value>
+  </data>
+  <data name="CbToolChangeM6PassThrough.ToolTip" xml:space="preserve">
+    <value>ملحوظة: لا يمكن لـ Grbl "الكلاسيكي" على Arduino Uno معالجة أمر M6 ويعطي خطأ.</value>
   </data>
 </root>

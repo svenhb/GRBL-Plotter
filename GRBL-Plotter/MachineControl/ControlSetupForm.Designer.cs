@@ -680,6 +680,7 @@ namespace GrblPlotter
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.CbToolChangeM6PassThrough = new System.Windows.Forms.CheckBox();
             this.gBToolChange = new System.Windows.Forms.GroupBox();
             this.BtnHelp_Toolchange = new System.Windows.Forms.Button();
             this.label47 = new System.Windows.Forms.Label();
@@ -7743,10 +7744,21 @@ namespace GrblPlotter
             // 
             // tabPage8
             // 
+            this.tabPage8.Controls.Add(this.CbToolChangeM6PassThrough);
             this.tabPage8.Controls.Add(this.gBToolChange);
             resources.ApplyResources(this.tabPage8, "tabPage8");
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // CbToolChangeM6PassThrough
+            // 
+            resources.ApplyResources(this.CbToolChangeM6PassThrough, "CbToolChangeM6PassThrough");
+            this.CbToolChangeM6PassThrough.Checked = global::GrblPlotter.Properties.Settings.Default.ctrlToolChangeM6PassThrough;
+            this.CbToolChangeM6PassThrough.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "ctrlToolChangeM6PassThrough", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbToolChangeM6PassThrough.Name = "CbToolChangeM6PassThrough";
+            this.toolTip1.SetToolTip(this.CbToolChangeM6PassThrough, resources.GetString("CbToolChangeM6PassThrough.ToolTip"));
+            this.CbToolChangeM6PassThrough.UseVisualStyleBackColor = true;
+            this.CbToolChangeM6PassThrough.CheckedChanged += new System.EventHandler(this.CbToolChangeM6PassThrough_CheckedChanged);
             // 
             // gBToolChange
             // 
@@ -13593,6 +13605,7 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolOffsetY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dGVToolList)).EndInit();
             this.tabPage8.ResumeLayout(false);
+            this.tabPage8.PerformLayout();
             this.gBToolChange.ResumeLayout(false);
             this.gBToolChange.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDToolChangeScriptDelay)).EndInit();
@@ -15022,5 +15035,6 @@ namespace GrblPlotter
         private System.Windows.Forms.NumericUpDown NudImportPDNWidth;												 																	 
         private System.Windows.Forms.Label label107;
         private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.CheckBox CbToolChangeM6PassThrough;
     }
 }

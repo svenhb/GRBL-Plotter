@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -51,6 +51,7 @@
  *			  split code to GCodeAnalyze.cs, GCode2DViewPaths.cs
  * 2022-03-01 MarkSelectedGroup line 368 add try/catch for AddPath
  * 2024-01-03 l:575 f:MarkSelectedCollection	check if path has points before copying
+ * 2025-02-01 l:98 f:GetProcessingTime move 'Est. time' to next line
 */
 
 using System;
@@ -94,7 +95,7 @@ namespace GrblPlotter
                 if (double.IsNaN(gcodeMinutes))
                     gcodeMinutes = 0.1;
                 TimeSpan t = TimeSpan.FromSeconds(gcodeMinutes * 60);
-                return string.Format("Path length: {0:0.0}     Est. time: {1:D2}:{2:D2}:{3:D2}", gcodeDistance, t.Hours, t.Minutes, t.Seconds);
+                return string.Format("Path length: {0:0.0}\r\nEst. time: {1:D2}:{2:D2}:{3:D2}", gcodeDistance, t.Hours, t.Minutes, t.Seconds);
             }
             catch
             { return "Error"; }

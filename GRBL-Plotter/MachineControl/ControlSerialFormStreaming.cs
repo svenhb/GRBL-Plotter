@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -42,6 +42,7 @@
  * 2023-04-07 l:198 f:StartStreaming skip line if starts with "("; l:482 f:FindDouble -> change to TryParse
  * 2023-06-14 l:344 f:StartStreaming add try/catch for writing log files
  * 2023-11-28 l:290 f:StartStreaming add info about missing subroutine
+ * 2025-02-23 l:311 f:StartStreaming add M6PassThrough #435
  */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -307,14 +308,17 @@ namespace GrblPlotter
                             }
                             if (cmdMNr == 6)                                        // M06 is not allowed - remove
                             {
-                                tmp = "(" + tmp + ")";
-                                if (Properties.Settings.Default.ctrlToolChange)
-                                { InsertToolChangeCode(i, ref tmpToolInSpindle); }// insert external script-code and insert variables 
-                                else
+                                if (!Properties.Settings.Default.ctrlToolChangeM6PassThrough)
                                 {
-                                    AddToLog(tmp + " !!! Tool change is disabled");
-                                    Logger.Warn("⚠ Found '{0}' but tool change is disabled in [Setup - Tool change]", tmp);
-                                    tmp = "M0 " + tmp;
+                                    tmp = "(" + tmp + ")";
+                                    if (Properties.Settings.Default.ctrlToolChange)
+                                    { InsertToolChangeCode(i, ref tmpToolInSpindle); }// insert external script-code and insert variables 
+                                    else
+                                    {
+                                        AddToLog(tmp + " !!! Tool change is disabled");
+                                        Logger.Warn("⚠ Found '{0}' but tool change is disabled in [Setup - Tool change]", tmp);
+                                        tmp = "M0 " + tmp;
+                                    }
                                 }
                             }
                             if (cmdMNr == 30)

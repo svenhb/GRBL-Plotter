@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -39,6 +39,7 @@
  * 2024-05-23 new control CbImportGraphicSortDistanceStart
  * 2024-07-21 l:337 f:SaveSettings only save custom buttons if edited
  * 2024-11-18 l:250 f:SetupForm_Load change (encodeIndex < GuiVariables.SaveEncoding.Length) to (encodeIndex < CBoxSaveEncoding.Items.Count)   
+ * 2025-02-23 add M6PassThrough CbToolChangeM6PassThrough #435
 */
 
 using System;
@@ -265,6 +266,7 @@ namespace GrblPlotter
             CbImportGraphicHatchFill_CheckStateChanged(sender, e);
             CbPathOverlapEnable_CheckStateChanged(sender, e);
             CbImportGraphicNoise_CheckStateChanged(sender, e);
+            CbToolChangeM6PassThrough_CheckedChanged(sender, e);
 
             uint val = Properties.Settings.Default.importLoggerSettings;
             cBLogLevel1.Checked = (val & (uint)LogEnables.Level1) > 0;
@@ -2498,6 +2500,12 @@ namespace GrblPlotter
             NudImportPoTraceAlphamax.Value = (decimal)1.0;
             NudImportPoTraceOptotolerance.Value = (decimal)0.2;
             CBImportPoTraceOptimazion.Checked = true;
+        }
+
+        private void CbToolChangeM6PassThrough_CheckedChanged(object sender, EventArgs e)
+        {
+            gBToolChange.Enabled = !CbToolChangeM6PassThrough.Checked;
+            CbToolChangeM6PassThrough.BackColor = CbToolChangeM6PassThrough.Checked? Color.Yellow: SystemColors.Control;
         }
     }
 }

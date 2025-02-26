@@ -273,10 +273,8 @@ namespace GrblPlotter
                                 if (markerSize < 0)
                                     markerSize = Math.Abs(markerSize);
                                 else
-
                                     markerSize = 0;
                             }
-                            //        markerType = 4;
                         }
 
                         if (pixelArtEnable)

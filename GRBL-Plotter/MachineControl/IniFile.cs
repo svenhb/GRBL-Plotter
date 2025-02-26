@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -41,6 +41,8 @@
  * 2023-06-05 add further simple shape variables
  * 2024-02-10 add create text and barcode
  * 2024-07-22 l:281/841 f: add Hatch fill distance offset
+ * 2024-12-19 l:950 f:ReadImport bug fix #429
+ * 2025-02-23 add M6PassThrough #435
 */
 
 using System;
@@ -389,6 +391,7 @@ namespace GrblPlotter
             //            Write("Spindle use M3", setup.importGCSpindleCmd.ToString(), section);
 
             section = "Tool change";
+            Write("Tool change M6 pass through", setup.ctrlToolChangeM6PassThrough.ToString(), section);
             Write("Tool change enable", setup.ctrlToolChange.ToString(), section);
             if (setup.ctrlToolChange || all)
             {
@@ -927,6 +930,7 @@ namespace GrblPlotter
             if (SetVariable(ref tmpbool, section, "Relative")) { setup.importGCRelative = tmpbool; }
 
             section = "Tool change";
+            if (SetVariable(ref tmpbool, section, "Tool change M6 pass through")) { setup.ctrlToolChangeM6PassThrough = tmpbool; }
             if (SetVariable(ref tmpbool, section, "Tool change enable")) { setup.ctrlToolChange = tmpbool; }
             if (SetVariable(ref tmpstr, section, "Tool remove")) { setup.ctrlToolScriptPut = tmpstr; }
             if (SetVariable(ref tmpstr, section, "Tool select")) { setup.ctrlToolScriptSelect = tmpstr; }
@@ -945,18 +949,25 @@ namespace GrblPlotter
             {
                 setup.toolTableLastLoaded = tmpstr;
                 Logger.Info("Copy Tool table {0} to {1}", tmpstr, ToolTable.DefaultFileName);
-                string fpath = Datapath.Tools + "\\" + tmpstr;
+                string fpath = tmpstr;
+				if (!Path.IsPathRooted(fpath))
+					fpath = Path.Combine(Datapath.Tools, tmpstr);
+					
+                //string fpath = Datapath.Tools + "\\" + tmpstr;
+				//string fpath = Path.Combine(Datapath.Tools, tmpstr);
                 if (File.Exists(fpath))
                 {
                     try
                     {
-                        File.Copy(Datapath.Tools + "\\" + ToolTable.DefaultFileName, Datapath.Tools + "\\_beforeUseCase.csv", true);
-                        File.Copy(Datapath.Tools + "\\" + tmpstr, Datapath.Tools + "\\" + ToolTable.DefaultFileName, true);
+                        File.Copy(Datapath.Tools + "\\" + ToolTable.DefaultFileName, Datapath.Tools + "\\_beforeUseCase.csv", true);	// backup old _current_.csv
+                        File.Copy(fpath, Datapath.Tools + "\\" + ToolTable.DefaultFileName, true);				// apply new _current_.csv
+                    //    File.Copy(Datapath.Tools + "\\" + tmpstr, Datapath.Tools + "\\" + ToolTable.DefaultFileName, true);				// apply new _current_.csv
                         setup.toolTableOriginal = true;
                         ToolTable.Init(" (IniFile)");
                     }
                     catch (Exception err)
                     {
+						Logger.Error(err, "Could not copy data: tmpstr:{0}  fpath:{1} ",tmpstr, fpath );
                         MessageBox.Show("Could not copy data: " + err.Message, "Error");
                     }
                 }
