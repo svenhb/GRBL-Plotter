@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -102,6 +102,8 @@
  * 2023-11-11 replace floats by double
  * 2024-01-24 l:1349 f:ParsePath check if d-attribute exists before processing #2139 LaserGRBL
  * 2024-07-22 l:710  f:ParseAttributs if is stroke not set, use fill color
+ * 2024-12-16 l:1160 take care of Properties.Settings.Default.importSVGCircleToDotS
+ * 2025-02-26 l:1054 f:ParseBasicElement also check for fill-opacity="0" to exclude objects #436
 */
 
 /* SetHeaderMessages...
@@ -1049,7 +1051,8 @@ namespace GrblPlotter
                 /* skip element if not visible */
                 string visibility = "";
                 if (pathElement.Attribute("visibility") != null) { visibility = pathElement.Attribute("visibility").Value; }
-                if (Properties.Settings.Default.importSVGDontPlot && visibility.Contains("hidden"))
+                if (pathElement.Attribute("fill-opacity") != null) { visibility = pathElement.Attribute("fill-opacity").Value; }
+                if (Properties.Settings.Default.importSVGDontPlot && (visibility.Contains("hidden")||visibility.Contains("0")))
                 {
                     Graphic.SetHeaderInfo(string.Format(" Hide SVG Element:{0}   Id:{1}", form, attrId));
                     Graphic.SetHeaderMessage(string.Format(" {0}-1102: SVG Element '{1}' is not visible and will not be imported", CodeMessage.Attention, form));
@@ -1155,6 +1158,7 @@ namespace GrblPlotter
                 }
                 else if (form == "circle")
                 {
+                    bool circleToDotSorZ = Properties.Settings.Default.importSVGCircleToDotZ || Properties.Settings.Default.importSVGCircleToDotS;
                     if (logEnable) Logger.Trace(" circle cx:{0:0.00} cy:{1:0.00} r:{2:0.00} r=z:{3}", cx, cy, r, svgConvertCircleToDot);
 
                     if (getTextPath)
@@ -1168,7 +1172,7 @@ namespace GrblPlotter
                         if (svgComments) Graphic.SetComment(string.Format(" circle cx:{0:0.00} cy:{1:0.00} r:{2:0.00} ", cx, cy, r));
                         if (svgConvertCircleToDot)
                         {
-                            if (Properties.Settings.Default.importSVGCircleToDotZ)
+                            if (circleToDotSorZ)
                                 GCodeDotOnlyWithZ(cx, cy, r, "Dot r=Z");
                             else
                                 GCodeDotOnly(cx, cy, "Dot");
@@ -1641,7 +1645,8 @@ namespace GrblPlotter
                             GCodeDotOnly(currentX, currentY, command.ToString());
                         else
                         {
-                            if (svgConvertCircleToDot && (rx == ry))
+                            bool circleToDotSorZ = Properties.Settings.Default.importSVGCircleToDotZ || Properties.Settings.Default.importSVGCircleToDotS;
+                            if (circleToDotSorZ && (rx == ry))
                             {
                                 if (Properties.Settings.Default.importSVGCircleToDotZ)
                                     GCodeDotOnlyWithZ(currentX, currentY, rx, "Dot r=Z");
