@@ -1,8 +1,9 @@
 <!--    Name:        GCode_Knock_in_Nut_Recess.hta
-        Version:     2021-11-19
+        Version:     2025-02-26
         Function:    Milling a recess for a knock-in nut 
 		
 // 2021-11-19 Initial version from nut recess
+// 2025-02-26 add M3
 		
 Enabled Active X in the broswer security settings.
 In IE9:
@@ -361,6 +362,7 @@ select, input { font-size:12px;  }
 	Or <a href="https://nraynaud.github.io/webgcode/" target="_blank">https://nraynaud.github.io/webgcode/</a></td></tr>
     <tr><td colspan="3" ><b><font color="red">Usage of the script and the generated GCode is on your own risk!</font></b></td></tr>
 	<tr><td width="30%">Preselection</td><td colspan="2"><select name="preselect" onchange="preselect_OnClick();">
+			<option value=" 3.5;13.0; 5;4.0;0.9;2.0;3.5">Knock-in Nut M3</option>
 			<option value=" 4.5;20.0; 8;6.0;1.3;3.5;5.5">Knock-in Nut M4</option>
 			<option value=" 5.5;20.0; 8;6.6;1.3;3.5;6.0">Knock-in Nut M5</option>
 			<option value=" 6.5;19.5;10;7.5;1.5;3.5;7.0">Knock-in Nut M6</option>
@@ -394,7 +396,7 @@ select, input { font-size:12px;  }
     <tr><td><b>Status </b></td><td colspan="2" id='html_status'></td></tr>
   </table></td>
 </tr>
-<tr><td><font size="-2">SH 19.11.2021</font></td></tr>
+<tr><td><font size="-2">SH 26.02.2025</font></td></tr>
 </table>  
 
 </form>
