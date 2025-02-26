@@ -7111,6 +7111,30 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importImagePixelArtDrawDot {
+            get {
+                return ((bool)(this["importImagePixelArtDrawDot"]));
+            }
+            set {
+                this["importImagePixelArtDrawDot"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool importImagePixelArtDrawShapeCircle {
+            get {
+                return ((bool)(this["importImagePixelArtDrawShapeCircle"]));
+            }
+            set {
+                this["importImagePixelArtDrawShapeCircle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
         public decimal importImagePixelArtGapSize {
             get {
@@ -7118,6 +7142,30 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["importImagePixelArtGapSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importImagePixelArtShapeFill {
+            get {
+                return ((bool)(this["importImagePixelArtShapeFill"]));
+            }
+            set {
+                this["importImagePixelArtShapeFill"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.4")]
+        public decimal importImagePixelArtShapePenDiameter {
+            get {
+                return ((decimal)(this["importImagePixelArtShapePenDiameter"]));
+            }
+            set {
+                this["importImagePixelArtShapePenDiameter"] = value;
             }
         }
         
@@ -10207,49 +10255,37 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool importImagePixelArtDrawDot {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importImagePixelArtDrawShapeScript {
             get {
-                return ((bool)(this["importImagePixelArtDrawDot"]));
+                return ((bool)(this["importImagePixelArtDrawShapeScript"]));
             }
             set {
-                this["importImagePixelArtDrawDot"] = value;
+                this["importImagePixelArtDrawShapeScript"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool importImagePixelArtDrawShapeCircle {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string importImagePixelArtDrawShapeScriptText {
             get {
-                return ((bool)(this["importImagePixelArtDrawShapeCircle"]));
+                return ((string)(this["importImagePixelArtDrawShapeScriptText"]));
             }
             set {
-                this["importImagePixelArtDrawShapeCircle"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.4")]
-        public decimal importImagePixelArtShapePenDiameter {
-            get {
-                return ((decimal)(this["importImagePixelArtShapePenDiameter"]));
-            }
-            set {
-                this["importImagePixelArtShapePenDiameter"] = value;
+                this["importImagePixelArtDrawShapeScriptText"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool importImagePixelArtShapeFill {
+        public bool ctrlToolChangeM6PassThrough {
             get {
-                return ((bool)(this["importImagePixelArtShapeFill"]));
+                return ((bool)(this["ctrlToolChangeM6PassThrough"]));
             }
             set {
-                this["importImagePixelArtShapeFill"] = value;
+                this["ctrlToolChangeM6PassThrough"] = value;
             }
         }
     }

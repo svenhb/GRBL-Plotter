@@ -413,6 +413,9 @@
     <Setting Name="ctrlToolChangeEmptyNr" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="ctrlToolChangeM6PassThrough" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="ctrlToolScriptDelay" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
@@ -1777,6 +1780,12 @@
     </Setting>
     <Setting Name="importImagePixelArtDrawShapeCircle" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="importImagePixelArtDrawShapeScript" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="importImagePixelArtDrawShapeScriptText" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="importImagePixelArtGapSize" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.5</Value>
