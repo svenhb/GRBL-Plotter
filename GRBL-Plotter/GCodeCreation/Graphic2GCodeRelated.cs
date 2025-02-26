@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -62,6 +62,7 @@
  * 2024-05-28 l:699 f:Setup gcodeAngleStep set min to 0.01
  * 2024-07-08 l:2004 f:IntermediateZ - Z-Up at least on final pass
  * 2024-11-28 l:1810 f:GetHeader add pen up/down translation info
+ * 2025-01-02 l:880 f:GetCodeNrFromGCodel replace Convert.ToInt16 by int.TryParse
 */
 
 using System;
@@ -449,6 +450,7 @@ namespace GrblPlotter
             { options.AppendFormat("<li>{0} (S {1} - {2})</li>\r\n", Localization.GetString("importMessageOptionSFromWidth"), Properties.Settings.Default.importImageSMin, Properties.Settings.Default.importImageSMax); }
             if (Properties.Settings.Default.importSVGCircleToDot) options.AppendFormat("<li>{0}</li>\r\n", Localization.GetString("importMessageOptionCircleToDot"));
             if (Properties.Settings.Default.importSVGCircleToDotZ) options.AppendFormat("<li>{0}</li>\r\n", Localization.GetString("importMessageOptionCircleRadiusToZ"));
+            if (Properties.Settings.Default.importSVGCircleToDotS) options.AppendFormat("<li>{0}</li>\r\n", Localization.GetString("importMessageOptionCircleRadiusToS"));
             if (options.Length > 3)
             {
                 Summary.AppendFormat("<tr><th>{0}</th></tr>\r\n", Localization.GetString("importMessageOption1"));
@@ -773,18 +775,22 @@ namespace GrblPlotter
             gcodeAuxiliaryValue1Command = "";
             gcodeAuxiliaryValue2Command = "";
 
-            if ((gcodeInsertSubroutineEnable && gcodeLineSegmentationEnable) || gcodeToolChange || Properties.Settings.Default.ctrlToolChange || (Properties.Settings.Default.importSVGCircleToDot && (Properties.Settings.Default.importCircleToDotScriptCount > 0)))
+            if ((gcodeInsertSubroutineEnable && gcodeLineSegmentationEnable) || gcodeToolChange || Properties.Settings.Default.ctrlToolChange ||
+                (Properties.Settings.Default.importSVGCircleToDot && (Properties.Settings.Default.importCircleToDotScriptCount > 0)))
             {
                 bool insertSubroutine = false;
-                if (gcodeInsertSubroutineEnable && gcodeLineSegmentationEnable && FileContainsSubroutineCall(Properties.Settings.Default.importGCSubroutine))
-                { insertSubroutine = true; }
-                else if (gcodeToolChange)
+                if (gcodeToolChange)
                 {
+                    insertSubroutine = false;
                     insertSubroutine = insertSubroutine || FileContainsSubroutineCall(Properties.Settings.Default.ctrlToolScriptPut);
                     insertSubroutine = insertSubroutine || FileContainsSubroutineCall(Properties.Settings.Default.ctrlToolScriptSelect);
                     insertSubroutine = insertSubroutine || FileContainsSubroutineCall(Properties.Settings.Default.ctrlToolScriptGet);
                     insertSubroutine = insertSubroutine || FileContainsSubroutineCall(Properties.Settings.Default.ctrlToolScriptProbe);
                 }
+                if (gcodeInsertSubroutineEnable && gcodeLineSegmentationEnable && FileContainsSubroutineCall(Properties.Settings.Default.importGCSubroutine))
+                { insertSubroutine = true; }
+                if (Properties.Settings.Default.importSVGCircleToDot && (Properties.Settings.Default.importCircleToDotScriptCount > 0))
+                { insertSubroutine = true; }
                 if (insertSubroutine)
                 {
                     double tmp_lastz = lastz;
@@ -870,7 +876,12 @@ namespace GrblPlotter
         {
             string cmdG = GetStrGCode(code, tmp);       // find number string
             if (cmdG.Length > 0)
-            { return Convert.ToInt16(cmdG.Substring(1)); }
+            {
+                int retval = -1;
+                if (!int.TryParse(cmdG.Substring(1), out retval))
+                { Logger.Error("int.TryParse nok: code:'{0}' string:'{1}'  convert:'{2}'", code, tmp, cmdG.Substring(1)); }
+                return retval;
+            }
             return -1;
         }
         public static string GetStrGCode(char code, string tmp)
@@ -887,14 +898,6 @@ namespace GrblPlotter
             return "";
         }
 
-        // get value from X,Y,Z F, S etc.
-        public static int GetParameterValue(char code, string tmp)
-        {
-            string cmdG = GetStringValue(code, tmp);
-            if (cmdG.Length > 0)
-            { return Convert.ToInt16(cmdG.Substring(1)); }
-            return -1;
-        }
         public static string GetStringValue(char code, string tmp)
         {
             var cmdG = Regex.Matches(tmp, code + "-?\\d+(.\\d+)?");
@@ -1564,8 +1567,8 @@ namespace GrblPlotter
             p1.Round(); p2.Round();
             arcMove = GcodeMath.GetArcMoveProperties(p1, p2, i1, j2, (gnr == 2)); // 2020-04-14 add round()
             double step = Math.Abs(Math.Asin(gcodeAngleStep / arcMove.radius));     // in RAD
-			if (step <= 0) 
-				step = 0.1;
+            if (step <= 0)
+                step = 0.1;
             if (step > Math.Abs(arcMove.angleDiff))
                 step = Math.Abs(arcMove.angleDiff / 2);
 
@@ -1808,14 +1811,14 @@ namespace GrblPlotter
             }
 
             if (!(GcodeZApply || GcodePWMEnable || gcodeSpindleToggle || gcodeIndividualTool))
-            {   header += string.Format("( !!! No Pen up/down translation !!! )\r\n"); }
-			else
-			{	
-				header += string.Format("( Pen U/D trans: {0} {1} {2} {3})\r\n",	(GcodeZApply? string.Format("Z|{0:0.0}|{1:0.0}",GcodeZUp,GcodeZDown):"noZ"),
-																			(GcodePWMEnable? string.Format("PWM|{0:0}|{1:0}",gcodePwmUp,GcodePwmDown):"noPWM"),
-																			(gcodeSpindleToggle? "SpndTog":"noSpndTog"),			
-																			(gcodeUseLasermode? "LsrMd":"noLsrMd")); 
-			}
+            { header += string.Format("( !!! No Pen up/down translation !!! )\r\n"); }
+            else
+            {
+                header += string.Format("( Pen U/D trans: {0} {1} {2} {3})\r\n", (GcodeZApply ? string.Format("Z|{0:0.0}|{1:0.0}", GcodeZUp, GcodeZDown) : "noZ"),
+                                                                            (GcodePWMEnable ? string.Format("PWM|{0:0}|{1:0}", gcodePwmUp, GcodePwmDown) : "noPWM"),
+                                                                            (gcodeSpindleToggle ? "SpndTog" : "noSpndTog"),
+                                                                            (gcodeUseLasermode ? "LsrMd" : "noLsrMd"));
+            }
             if (Properties.Settings.Default.importRemoveShortMovesEnable && ((float)Properties.Settings.Default.importRemoveShortMovesLimit > 0.2))
             { header += string.Format("( !!! Remove short moves < {0:0.00} !!! )\r\n", Properties.Settings.Default.importRemoveShortMovesLimit); }
             if ((float)Properties.Settings.Default.importAssumeAsEqualDistance > 0.01)
