@@ -133,7 +133,7 @@
     <value>1</value>
   </data>
   <data name="fCTBCode.AutoScrollMinSize" type="System.Drawing.Size, System.Drawing">
-    <value>191, 12</value>
+    <value>214, 12</value>
   </data>
   <metadata name="cmsFCTB.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>123, 56</value>
@@ -469,7 +469,7 @@
     <value>Tab=IndentIncrease, Escape=ClearHints, PgUp=GoPageUp, PgDn=GoPageDown, End=GoEnd, Home=GoHome, Left=GoLeft, Up=GoUp, Right=GoRight, Down=GoDown, Ins=ReplaceMode, Del=DeleteCharRight, F3=FindNext, Shift+Tab=IndentDecrease, Shift+PgUp=GoPageUpWithSelection, Shift+PgDn=GoPageDownWithSelection, Shift+End=GoEndWithSelection, Shift+Home=GoHomeWithSelection, Shift+Left=GoLeftWithSelection, Shift+Up=GoUpWithSelection, Shift+Right=GoRightWithSelection, Shift+Down=GoDownWithSelection, Shift+Ins=Paste, Shift+Del=Cut, Ctrl+Back=ClearWordLeft, Ctrl+Space=AutocompleteMenu, Ctrl+End=GoLastLine, Ctrl+Home=GoFirstLine, Ctrl+Ins=Copy, Ctrl+Del=ClearWordRight, Ctrl+0=ZoomNormal, Ctrl+A=SelectAll, Ctrl+B=BookmarkLine, Ctrl+C=Copy, Ctrl+E=MacroExecute, Ctrl+F=FindDialog, Ctrl+G=GoToDialog, Ctrl+H=ReplaceDialog, Ctrl+I=AutoIndentChars, Ctrl+M=MacroRecord, Ctrl+N=GoNextBookmark, Ctrl+R=Redo, Ctrl+U=UpperCase, Ctrl+V=Paste, Ctrl+X=Cut, Ctrl+Z=Undo, Ctrl+Add=ZoomIn, Ctrl+Subtract=ZoomOut, Ctrl+Shift+End=GoLastLineWithSelection, Ctrl+Shift+Home=GoFirstLineWithSelection, Ctrl+Shift+B=UnbookmarkLine, Ctrl+Shift+C=CommentSelected, Ctrl+Shift+N=GoPrevBookmark, Ctrl+Shift+U=LowerCase, Alt+Back=Undo, Alt+Up=MoveSelectedLinesUp, Alt+Down=MoveSelectedLinesDown, Alt+F=FindChar</value>
   </data>
   <data name="fCTBCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 416</value>
+    <value>3, 431</value>
   </data>
   <data name="fCTBCode.ServiceColors" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
@@ -490,7 +490,7 @@
 </value>
   </data>
   <data name="fCTBCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>332, 170</value>
+    <value>332, 155</value>
   </data>
   <data name="fCTBCode.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -941,7 +941,7 @@ Right click to choose start line number</value>
     <value>NoControl</value>
   </data>
   <data name="btnLimitExceed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>108, 59</value>
+    <value>108, 72</value>
   </data>
   <data name="btnLimitExceed.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 23</value>
@@ -974,7 +974,7 @@ Right click to choose start line number</value>
     <value>NoControl</value>
   </data>
   <data name="btnOffsetApply.Location" type="System.Drawing.Point, System.Drawing">
-    <value>63, 43</value>
+    <value>63, 49</value>
   </data>
   <data name="btnOffsetApply.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 24</value>
@@ -1007,7 +1007,7 @@ Right click to choose start line number</value>
     <value>NoControl</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>60, 28</value>
+    <value>60, 34</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>45, 13</value>
@@ -1037,7 +1037,7 @@ Right click to choose start line number</value>
     <value>Microsoft Sans Serif, 7pt</value>
   </data>
   <data name="tbOffsetY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>111, 25</value>
+    <value>111, 31</value>
   </data>
   <data name="tbOffsetY.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 18</value>
@@ -1073,7 +1073,7 @@ Right click to choose start line number</value>
     <value>NoControl</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>60, 11</value>
+    <value>60, 17</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>45, 13</value>
@@ -1103,7 +1103,7 @@ Right click to choose start line number</value>
     <value>Microsoft Sans Serif, 7pt</value>
   </data>
   <data name="tbOffsetX.Location" type="System.Drawing.Point, System.Drawing">
-    <value>111, 8</value>
+    <value>111, 14</value>
   </data>
   <data name="tbOffsetX.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 18</value>
@@ -1136,7 +1136,7 @@ Right click to choose start line number</value>
     <value>NoControl</value>
   </data>
   <data name="rBOrigin9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>35, 45</value>
+    <value>38, 56</value>
   </data>
   <data name="rBOrigin9.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 13</value>
@@ -1163,7 +1163,7 @@ Right click to choose start line number</value>
     <value>NoControl</value>
   </data>
   <data name="rBOrigin8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 45</value>
+    <value>23, 56</value>
   </data>
   <data name="rBOrigin8.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 13</value>
@@ -1190,7 +1190,7 @@ Right click to choose start line number</value>
     <value>NoControl</value>
   </data>
   <data name="rBOrigin7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 45</value>
+    <value>8, 56</value>
   </data>
   <data name="rBOrigin7.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 13</value>
@@ -1217,7 +1217,7 @@ Right click to choose start line number</value>
     <value>NoControl</value>
   </data>
   <data name="rBOrigin6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>35, 30</value>
+    <value>38, 41</value>
   </data>
   <data name="rBOrigin6.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 13</value>
@@ -1244,7 +1244,7 @@ Right click to choose start line number</value>
     <value>NoControl</value>
   </data>
   <data name="rBOrigin5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 30</value>
+    <value>23, 41</value>
   </data>
   <data name="rBOrigin5.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 13</value>
@@ -1271,7 +1271,7 @@ Right click to choose start line number</value>
     <value>NoControl</value>
   </data>
   <data name="rBOrigin4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 30</value>
+    <value>8, 41</value>
   </data>
   <data name="rBOrigin4.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 13</value>
@@ -1298,7 +1298,7 @@ Right click to choose start line number</value>
     <value>NoControl</value>
   </data>
   <data name="rBOrigin3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>35, 15</value>
+    <value>38, 26</value>
   </data>
   <data name="rBOrigin3.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 13</value>
@@ -1325,7 +1325,7 @@ Right click to choose start line number</value>
     <value>NoControl</value>
   </data>
   <data name="rBOrigin2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 15</value>
+    <value>23, 26</value>
   </data>
   <data name="rBOrigin2.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 13</value>
@@ -1352,7 +1352,7 @@ Right click to choose start line number</value>
     <value>NoControl</value>
   </data>
   <data name="rBOrigin1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 15</value>
+    <value>8, 26</value>
   </data>
   <data name="rBOrigin1.Size" type="System.Drawing.Size, System.Drawing">
     <value>14, 13</value>
@@ -1373,10 +1373,10 @@ Right click to choose start line number</value>
     <value>13</value>
   </data>
   <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 14</value>
+    <value>131, 9</value>
   </data>
   <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 71</value>
+    <value>154, 86</value>
   </data>
   <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
     <value>31</value>
@@ -1406,7 +1406,7 @@ Right click to choose start line number</value>
     <value>True</value>
   </data>
   <data name="lbDimension.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 66</value>
+    <value>130, 80</value>
   </data>
   <data name="lbDimension.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1433,7 +1433,7 @@ Right click to choose start line number</value>
     <value>3, 325</value>
   </data>
   <data name="gBoxDimension.Size" type="System.Drawing.Size, System.Drawing">
-    <value>332, 85</value>
+    <value>332, 100</value>
   </data>
   <data name="gBoxDimension.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
