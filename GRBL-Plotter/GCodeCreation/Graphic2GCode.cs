@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2019-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2019-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -49,6 +49,7 @@
  * 2024-03-19 l:970 f:MoveToDashed avoid intermediate G0 coordinates
  * 2024-04-13 l:438 f:ProcessPathLength new function
  * 2024-06-22 l:1116 f:arc tangential
+ * 2025-03-30 l:374 f:CreateGCode create code if path is empty
 */
 
 using System;
@@ -128,7 +129,7 @@ namespace GrblPlotter
 
             gcodeComments = Properties.Settings.Default.importGCAddComments;
 
-            Logger.Trace("▽▽▽Graphic2GCode - Init   loggerTrace:{0}", Convert.ToString(logFlags, 2));
+            Logger.Trace("▽▽▽ Graphic2GCode - Init   loggerTrace:{0}", Convert.ToString(logFlags, 2));
 
             pauseBeforePath = Properties.Settings.Default.importPauseElement;
             pauseBeforePenDown = Properties.Settings.Default.importPausePenDown;
@@ -301,7 +302,7 @@ namespace GrblPlotter
                         string toolColor = ToolTable.GetToolColor(toolToUse);
                         double toolWidth = ToolTable.GetToolDiameter(toolToUse);        // 2024-01-07 #370
                         pathObject.Info.GroupAttributes[(int)GroupOption.ByColor] = toolColor;
-                        pathObject.Info.GroupAttributes[(int)GroupOption.ByWidth] = string.Format("{0:0.000}",toolWidth);   // 2024-01-07 #370
+                        pathObject.Info.GroupAttributes[(int)GroupOption.ByWidth] = string.Format("{0:0.000}", toolWidth);   // 2024-01-07 #370
                     }
                     ProcessPathObject(pathObject, graphicInfo, -1, "");	// create Dot or Path GCode, but no tool change
                 }
@@ -369,7 +370,14 @@ namespace GrblPlotter
             string toolName;
             string toolColor;
             double toolWidth;
-            if (completeGraphic == null) return false;
+            if ((completeGraphic == null) || (completeGraphic.Count == 0))
+            {
+                Gcode.JobStart(finalGcodeString, "StartJob");
+                Gcode.AddToHeader(" ⚠⚠⚠⚠⚠ No graphics path to export! ⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠");
+                Gcode.Comment(finalGcodeString, " ⚠⚠⚠⚠⚠ No graphics path to export! ⚠⚠⚠⚠⚠⚠⚠⚠⚠⚠");
+                Gcode.JobEnd(finalGcodeString, "EndJob");      // Spindle / laser off
+                return FinalGCode(graphicInfo.Title, graphicInfo.FilePath);
+            }
 
             if (!graphicInfo.FigureEnable)  // proforma figure tag
             {
@@ -442,7 +450,7 @@ namespace GrblPlotter
         private static void ProcessPathLength(double valPD, double valPU)
         {
             //SetComment(string.Format("Path length: {0:0.00}", val));
-            Gcode.gcodeDistancePD=valPD;
+            Gcode.gcodeDistancePD = valPD;
             Gcode.gcodeDistancePU = valPU;
             Logger.Info("Path length  PD:{0:0.00}   PU:{0:0.00}", valPD, valPU);
         }
@@ -467,15 +475,16 @@ namespace GrblPlotter
                 if (DotData.UseZ)
                 {
                     double setZ = CalculateZFromRange(graphicInfo.DotZMin, graphicInfo.DotZMax, DotData.OptZ);//-Math.Abs(DotData.Z);      // be sure for right sign
-                    if (logEnable)
-                        Logger.Trace("---Dot DotData.UseZ: RangeMin:{0:0.00}  RangeMax:{1:0.00}  DotData.Z:{2:0.00}  -> setZ:{3:0.00}", graphicInfo.DotZMin, graphicInfo.DotZMax, DotData.OptZ, setZ);
                     setZ = Math.Max(origZ, setZ);    // don't go deeper than set Z
                     if (logCoordinates) Logger.Trace("  PenDownWithZ z:{0:0.00}  setZ:{1:0.00}  gcodeZDown:{2:0.00}", DotData.OptZ, setZ, origZ);
                     Gcode.GcodeZDown = (float)setZ;
 
                     double newS = CalculateSFromRange(graphicInfo.DotZMin, graphicInfo.DotZMax, DotData.OptZ);
                     Gcode.GcodePwmDown = Gcode.GcodeSpindleSpeed = (float)newS;   //???
-
+                    if (logEnable)
+                    {
+                        Logger.Trace("---Dot DotData.UseZ: RangeMin:{0:0.00}  RangeMax:{1:0.00}  DotData.Z:{2:0.00}  -> setZ:{3:0.00}   -> setS:{4:0.00}", graphicInfo.DotZMin, graphicInfo.DotZMax, DotData.OptZ, setZ, newS);
+                    }
                     penIsDown = false;
                 }
                 else if (graphicInfo.OptionZFromWidth)
@@ -589,13 +598,13 @@ namespace GrblPlotter
                     /* Create Line */
                     if (entity is GCodeLine)
                     {
-                    //    Logger.Trace("# MoveTo {0:0.0}  Angle:{1:0.0}", entity.MoveTo, (entity.Angle * 180 / Math.PI));
+                        //    Logger.Trace("# MoveTo {0:0.0}  Angle:{1:0.0}", entity.MoveTo, (entity.Angle * 180 / Math.PI));
                         MoveTo(entity.MoveTo, newZ, newS, entity.Angle, "");
                     }
                     else if (entity is GCodeArc ArcData)
                     {
                         /* Create Arc */
-                    //    Logger.Trace("# ArcTo  {0:0.0}  AngleStart:{1:0.0}  Angle:{2:0.0}", ArcData.MoveTo, ArcData.AngleStart * 180 / Math.PI, ArcData.Angle * 180 / Math.PI);
+                        //    Logger.Trace("# ArcTo  {0:0.0}  AngleStart:{1:0.0}  Angle:{2:0.0}", ArcData.MoveTo, ArcData.AngleStart * 180 / Math.PI, ArcData.Angle * 180 / Math.PI);
                         Arc(ArcData.IsCW, ArcData.MoveTo, ArcData.CenterIJ, ArcData.AngleStart, ArcData.Angle);//, "");// entity.comment);
                     }
                 }
@@ -797,7 +806,7 @@ namespace GrblPlotter
         private static int StartPath(PathObject pathObject, int toolNr, string toolCmt, string penCmt = "")//string cmt)
         {
             double lengthPU = GcodeMath.DistancePointToPoint(GlobalPathStart, pathObject.Start);
-        //    Logger.Trace("StartPath  Length:{0:0.0}  from:{1:0.0}  to:{2:0.0}", lengthPU, GlobalPathStart, pathObject.Start);
+            //    Logger.Trace("StartPath  Length:{0:0.0}  from:{1:0.0}  to:{2:0.0}", lengthPU, GlobalPathStart, pathObject.Start);
             GlobalPathLengthPU += lengthPU;
 
             Point startRamp = pathObject.Start;
@@ -1012,7 +1021,7 @@ namespace GrblPlotter
             double ddx, ddy;                    // dash distance
             string dashInfo = "";
             Point pNext;
-			Point pPenUp = coordxy;
+            Point pPenUp = coordxy;
 
             while (dToGo > 0)
             {
@@ -1039,9 +1048,9 @@ namespace GrblPlotter
                     else
                     {
                         if (logCoordinates) Logger.Trace("   1 PenDown");
-						
-						if (penUpG1) Gcode.MoveToNoFeed(gcodeString, pPenUp, dashInfo);
-						else Gcode.MoveToRapid(gcodeString, pPenUp, dashInfo);
+
+                        if (penUpG1) Gcode.MoveToNoFeed(gcodeString, pPenUp, dashInfo);
+                        else Gcode.MoveToRapid(gcodeString, pPenUp, dashInfo);
 
                         PenDown("MoveToDashed"); PathDashArrayPenIsUp = false;
                     }
@@ -1074,9 +1083,9 @@ namespace GrblPlotter
                 {
                     if (gcodeComments) dashInfo = "pen-up dash:" + dashInfo;
                     if (logCoordinates) Logger.Trace("   3 MoveTo PenUp x:{0:0.00}  y:{1:0.00}  dToGo:{2:0.000}  PathDashArrayDistance:{3:0.000}", pNext.X, pNext.Y, dToGo, PathDashArrayDistance);
-					pPenUp = new Point(pNext.X, pNext.Y);
-                //    if (penUpG1) Gcode.MoveToNoFeed(gcodeString, pNext, dashInfo);
-                //    else Gcode.MoveToRapid(gcodeString, pNext, dashInfo);
+                    pPenUp = new Point(pNext.X, pNext.Y);
+                    //    if (penUpG1) Gcode.MoveToNoFeed(gcodeString, pNext, dashInfo);
+                    //    else Gcode.MoveToRapid(gcodeString, pNext, dashInfo);
                 }
                 else
                 {
@@ -1105,7 +1114,7 @@ namespace GrblPlotter
             Gcode.SetAux1DistanceCommand(setAux1FinalDistance);
             Gcode.SetAux2DistanceCommand(setAux2FinalDistance);
 
-            if (logCoordinates)  Logger.Trace("   Start Arc alpha{0:0.000} offset{1:0.000}  ", 180 * tangStartRad / Math.PI, 180 * offset / Math.PI);
+            if (logCoordinates) Logger.Trace("   Start Arc alpha{0:0.000} offset{1:0.000}  ", 180 * tangStartRad / Math.PI, 180 * offset / Math.PI);
 
             PenDown(cmt + " from Arc");
 
@@ -1128,7 +1137,7 @@ namespace GrblPlotter
         /// </summary>
         private static bool FinalGCode(string titel, string file)
         {
-            Logger.Trace("△△△Graphic2GCode - FinalGCode() ");
+            Logger.Trace("△△△ Graphic2GCode - FinalGCode() ");
             StringBuilder header = new StringBuilder();
             StringBuilder footer = new StringBuilder(Gcode.GetFooter());
             StringBuilder output = new StringBuilder();
@@ -1182,6 +1191,7 @@ namespace GrblPlotter
                 header.Append(String.Join("\n", lines));
             }
             Graphic.GCode = header.Replace(',', '.');
+        //    Logger.Trace("end Graphic2GCode - FinalGCode() {0}", Graphic.GCode.ToString());
             return true;
         }
 

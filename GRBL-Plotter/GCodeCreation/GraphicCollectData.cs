@@ -935,6 +935,7 @@ namespace GrblPlotter
             if (completeGraphic.Count == 0) //actualPath.Path.Count == 0)
             {
                 Logger.Warn("◆◆◆◆  Graphic - CreateGCode - path is empty");
+                actualDimension.SetDimensionXY(0, 0);
                 return Graphic2GCode.CreateGCode(completeGraphic, headerInfo, headerMessage, graphicInformation); // Graphic.Gcode will be filled, return true
             }
 

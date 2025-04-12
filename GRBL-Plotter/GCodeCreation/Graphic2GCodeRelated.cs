@@ -62,7 +62,7 @@
  * 2024-05-28 l:699 f:Setup gcodeAngleStep set min to 0.01
  * 2024-07-08 l:2004 f:IntermediateZ - Z-Up at least on final pass
  * 2024-11-28 l:1810 f:GetHeader add pen up/down translation info
- * 2025-01-02 l:880 f:GetCodeNrFromGCodel replace Convert.ToInt16 by int.TryParse
+ * 2025-01-02 l:880 f:GetCodeNrFromGCode replace Convert.ToInt16 by int.TryParse
 */
 
 using System;
@@ -72,6 +72,7 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
+using static GrblPlotter.Graphic;
 
 namespace GrblPlotter
 {
@@ -509,7 +510,7 @@ namespace GrblPlotter
         private const string formatCode = "00";
         private static string formatNumber = "0.###";
 
-        private static int gcodeLines = 0;              // counter for GCode lines
+        private static long gcodeLines = 0;              // counter for GCode lines
         private static int gcodeFigureLines = 0;        // counter for GCode lines
         internal static double gcodeDistancePD = 0;         // counter for GCode move distance
         internal static double gcodeDistancePU = 0;         // counter for GCode move distance
@@ -519,7 +520,7 @@ namespace GrblPlotter
         private static string gcodeSubroutine = "";     //  subroutine
 
         private static int gcodeDownUp = 0;             // counter for GCode Pen Down / Up
-        private static double gcodeTime = 0;             // counter for GCode work time
+        private static double gcodeExecutionSeconds = 0;             // counter for GCode work time
         private static double gcodeFigureTime = 0;       // counter for GCode work time
         private static int gcodePauseCounter = 0;       // counter for GCode pause M0 commands
         private static int gcodeToolCounter = 0;        // counter for GCode Tools
@@ -746,7 +747,7 @@ namespace GrblPlotter
             gcodeSubroutineEnable = 0;
             gcodeSubroutine = "";
             gcodeDownUp = 0;            // counter for GCode Down/Up
-            gcodeTime = 0;              // counter for GCode work time
+            gcodeExecutionSeconds = 0;              // counter for GCode work time
             gcodePauseCounter = 0;      // counter for GCode pause M0 commands
             gcodeToolCounter = 0;
             gcodeToolText = "";
@@ -1004,7 +1005,7 @@ namespace GrblPlotter
                         gcodeValue.AppendFormat("G{0} Z{1}{2}\r\n", FrmtCode(0), FrmtNum(z_relative), cmt); // use G0 without feedrate
                     else
                         gcodeValue.AppendFormat("G{0} Z{1}{2}\r\n", FrmtCode(0), FrmtNum(tmpZUp), cmt); // use G0 without feedrate
-                    gcodeTime += Math.Abs((tmpZUp - GcodeZDown) / Math.Max(GcodeZFeed, 10));
+                    gcodeExecutionSeconds += 60 * Math.Abs((tmpZUp - GcodeZDown) / Math.Max(GcodeZFeed, 10));
                     gcodeLines++;
                 }
                 else
@@ -1102,7 +1103,7 @@ namespace GrblPlotter
                             else
                             { tmpString.AppendFormat("G{0} Z{1} F{2} {3}\r\n", FrmtCode(1), FrmtNum(GcodeZDown), GcodeZFeed, cmt); }
                         }
-                        gcodeTime += Math.Abs((GcodeZUp - GcodeZDown) / Math.Max(GcodeZFeed, 10));
+                        gcodeExecutionSeconds += 60 * Math.Abs((GcodeZUp - GcodeZDown) / Math.Max(GcodeZFeed, 10));
                         gcodeLines++;
                         //						penDownApplied = true;
                     }
@@ -1131,7 +1132,7 @@ namespace GrblPlotter
                     tmpString.AppendFormat("M{0} S{1} {2}\r\n", GcodeSpindleCmd, GcodePwmDown, cmt);
                     if (GcodePwmDlyDown > 0)
                         tmpString.AppendFormat("G{0} P{1}\r\n", FrmtCode(4), FrmtNum(GcodePwmDlyDown));
-                    gcodeTime += GcodePwmDlyDown;
+                    gcodeExecutionSeconds += GcodePwmDlyDown;
                     gcodeLines++;
                     penDownApplied = true;
                 }
@@ -1182,7 +1183,7 @@ namespace GrblPlotter
                     gcodeValue.AppendFormat("M{0} S{1} {2}\r\n", GcodeSpindleCmd, gcodePwmUp, comment);
                     if (GcodePwmDlyUp > 0)
                         gcodeValue.AppendFormat("G{0} P{1}\r\n", FrmtCode(4), FrmtNum(GcodePwmDlyUp));
-                    gcodeTime += GcodePwmDlyUp;
+                    gcodeExecutionSeconds += GcodePwmDlyUp;
                     gcodeLines++;
                     penUpApplied = true;
                 }
@@ -1232,7 +1233,7 @@ namespace GrblPlotter
                             else
                             { gcodeValue.AppendFormat("G{0} Z{1} {2}\r\n", FrmtCode(0), FrmtNum(GcodeZUp), comment); }
                         }// use G0 without feedrate
-                        gcodeTime += Math.Abs((GcodeZUp - GcodeZDown) / Math.Max(GcodeZFeed, 10));
+                        gcodeExecutionSeconds += 60 * Math.Abs((GcodeZUp - GcodeZDown) / Math.Max(GcodeZFeed, 10));
                         gcodeLines++;
                     }
                 }
@@ -1754,9 +1755,11 @@ namespace GrblPlotter
             gcodeDownUp = downUp;
             GcodeZApply = true;
         }
-        public static string GetHeader(string cmt, string source)
+        public static string GetHeader(string cmt, string source, long lineCount=0)
         {
-            gcodeTime += gcodeDistancePD / GcodeXYFeed;
+            gcodeLines += lineCount;
+            gcodeExecutionSeconds += 60 * gcodeDistancePD / GcodeXYFeed;
+            gcodeExecutionSeconds += 60 * gcodeDistancePU / 5000;
             string header = string.Format("( {0} by GRBL-Plotter {1} )\r\n", cmt, MyApplication.GetVersion());
             string header_end = headerData.ToString();
             header_end += string.Format("({0} >)\r\n", XmlMarker.HeaderEnd);
@@ -1841,12 +1844,12 @@ namespace GrblPlotter
 
             try
             {
-                TimeSpan t = TimeSpan.FromSeconds(gcodeTime * 60);
+                TimeSpan t = TimeSpan.FromSeconds(gcodeExecutionSeconds);
                 header += string.Format("( Duration ca.      : {0:D2}:{1:D2}:{2:D2} h:m:s )\r\n", t.Hours, t.Minutes, t.Seconds);
             }
             catch (Exception err)
             {
-                header += string.Format("( Duration ca.      : {0:0.0} min. )\r\n", gcodeTime);
+                header += string.Format("( Duration ca.      : {0:0.0} min. )\r\n", gcodeExecutionSeconds/60);
             }
 
             if (gcodeSubroutineCount > 0)
@@ -1942,7 +1945,7 @@ namespace GrblPlotter
                 Comment(gcodeString, XmlMarker.PassEnd + ">"); //+ passCount.ToString() + ">");
                 passCount++;
 
-                gcodeTime += gcodeFigureTime;
+                gcodeExecutionSeconds += gcodeFigureTime;
                 gcodeLines += gcodeFigureLines + 3;
                 gcodeDistancePD += gcodeFigureDistance;
             }
@@ -2011,7 +2014,7 @@ namespace GrblPlotter
                     gcodeString.AppendFormat("M{0} S{1}\r\n", GcodeSpindleCmd, gcodePwmUp);
                     if (GcodePwmDlyUp > 0)
                         gcodeString.AppendFormat("G{0} P{1}\r\n", FrmtCode(4), FrmtNum(GcodePwmDlyUp));
-                    gcodeTime += GcodePwmDlyUp;
+                    gcodeExecutionSeconds += GcodePwmDlyUp;
                     gcodeLines++;
                 }
 
@@ -2025,7 +2028,7 @@ namespace GrblPlotter
                 Comment(gcodeString, XmlMarker.PassEnd + ">"); //+ passCount.ToString() + ">");
                 passCount++;
 
-                gcodeTime += gcodeFigureTime;
+                gcodeExecutionSeconds += gcodeFigureTime;
                 gcodeLines += gcodeFigureLines + 3;
                 gcodeDistancePD += gcodeFigureDistance;
             }

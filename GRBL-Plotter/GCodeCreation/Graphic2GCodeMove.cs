@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -170,12 +170,12 @@ namespace GrblPlotter
 
             if (GcodeZApply && repeatZ)
             {
-                gcodeFigureTime += delta / GcodeXYFeed; ;
+                gcodeFigureTime += 60 * delta / GcodeXYFeed; ;
                 gcodeFigureLines++;
             }
             else
             {
-                gcodeTime += 0;// delta / GcodeXYFeed;
+                gcodeExecutionSeconds += 0;// delta / GcodeXYFeed;
                 gcodeLines++;
             }
             lastx = mx; lasty = my; lastg = gnr; // lastz = tz;
@@ -217,9 +217,9 @@ namespace GrblPlotter
             if (gcodeNoArcs || avoidG23)
             {
                 XyzabcuvwPoint last = new XyzabcuvwPoint();
-                last.X = lastx;last.Y = lasty;
+                last.X = lastx; last.Y = lasty;
                 XyzabcuvwPoint now = new XyzabcuvwPoint();
-                now.X = x;now.Y = y;    
+                now.X = x; now.Y = y;
                 SplitArc(gcodeString, gnr, last, now, i, j, cmt);
             }
             else
@@ -233,12 +233,12 @@ namespace GrblPlotter
             }
             if (GcodeZApply && repeatZ)
             {
-                gcodeFigureTime += Fdistance(lastx, lasty, x, y) / GcodeXYFeed;
+                gcodeFigureTime += 60 * Fdistance(lastx, lasty, x, y) / GcodeXYFeed;
                 gcodeFigureLines++;
             }
             else
             {
-                gcodeTime += 0;// Fdistance(lastx, lasty, x, y) / GcodeXYFeed;
+                gcodeExecutionSeconds += 0;// Fdistance(lastx, lasty, x, y) / GcodeXYFeed;
                 gcodeLines++;
             }
             lastx = x; lasty = y; lastf = GcodeXYFeed;
