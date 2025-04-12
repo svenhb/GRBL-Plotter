@@ -12,7 +12,7 @@ namespace GrblPlotter.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.12.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.13.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -1664,6 +1664,18 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["ctrlToolChangeEmptyNr"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ctrlToolChangeM6PassThrough {
+            get {
+                return ((bool)(this["ctrlToolChangeM6PassThrough"]));
+            }
+            set {
+                this["ctrlToolChangeM6PassThrough"] = value;
             }
         }
         
@@ -7027,18 +7039,6 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool importImageGrayAsZ {
-            get {
-                return ((bool)(this["importImageGrayAsZ"]));
-            }
-            set {
-                this["importImageGrayAsZ"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool importImageGrayVectorize {
             get {
@@ -7130,6 +7130,30 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["importImagePixelArtDrawShapeCircle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool importImagePixelArtDrawShapeScript {
+            get {
+                return ((bool)(this["importImagePixelArtDrawShapeScript"]));
+            }
+            set {
+                this["importImagePixelArtDrawShapeScript"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string importImagePixelArtDrawShapeScriptText {
+            get {
+                return ((string)(this["importImagePixelArtDrawShapeScriptText"]));
+            }
+            set {
+                this["importImagePixelArtDrawShapeScriptText"] = value;
             }
         }
         
@@ -8474,6 +8498,18 @@ namespace GrblPlotter.Properties {
             }
             set {
                 this["machineLimitsShow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool machineLoadDefaults {
+            get {
+                return ((bool)(this["machineLoadDefaults"]));
+            }
+            set {
+                this["machineLoadDefaults"] = value;
             }
         }
         
@@ -10255,37 +10291,97 @@ namespace GrblPlotter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool importImagePixelArtDrawShapeScript {
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal importImageSpecialMax {
             get {
-                return ((bool)(this["importImagePixelArtDrawShapeScript"]));
+                return ((decimal)(this["importImageSpecialMax"]));
             }
             set {
-                this["importImagePixelArtDrawShapeScript"] = value;
+                this["importImageSpecialMax"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string importImagePixelArtDrawShapeScriptText {
+        [global::System.Configuration.DefaultSettingValueAttribute("-2")]
+        public decimal importImageSpecialMin {
             get {
-                return ((string)(this["importImagePixelArtDrawShapeScriptText"]));
+                return ((decimal)(this["importImageSpecialMin"]));
             }
             set {
-                this["importImagePixelArtDrawShapeScriptText"] = value;
+                this["importImageSpecialMin"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool ctrlToolChangeM6PassThrough {
+        [global::System.Configuration.DefaultSettingValueAttribute("G90 G1 Z1 F1000")]
+        public string importImageSpecialCodeBefore {
             get {
-                return ((bool)(this["ctrlToolChangeM6PassThrough"]));
+                return ((string)(this["importImageSpecialCodeBefore"]));
             }
             set {
-                this["ctrlToolChangeM6PassThrough"] = value;
+                this["importImageSpecialCodeBefore"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G91 A")]
+        public string importImageSpecialCodeValue1 {
+            get {
+                return ((string)(this["importImageSpecialCodeValue1"]));
+            }
+            set {
+                this["importImageSpecialCodeValue1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("F10000")]
+        public string importImageSpecialCodeValue2 {
+            get {
+                return ((string)(this["importImageSpecialCodeValue2"]));
+            }
+            set {
+                this["importImageSpecialCodeValue2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G90 G0 Z5")]
+        public string importImageSpecialCodeAfter {
+            get {
+                return ((string)(this["importImageSpecialCodeAfter"]));
+            }
+            set {
+                this["importImageSpecialCodeAfter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int importImageGrayAsMode {
+            get {
+                return ((int)(this["importImageGrayAsMode"]));
+            }
+            set {
+                this["importImageGrayAsMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int importImageProcessingMode {
+            get {
+                return ((int)(this["importImageProcessingMode"]));
+            }
+            set {
+                this["importImageProcessingMode"] = value;
             }
         }
     }

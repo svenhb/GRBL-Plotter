@@ -1754,8 +1754,8 @@
     <Setting Name="importImageEngravingTopDown" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="importImageGrayAsZ" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+    <Setting Name="importImageGrayAsMode" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="importImageGrayVectorize" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -1796,6 +1796,9 @@
     <Setting Name="importImagePixelArtShapePenDiameter" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.4</Value>
     </Setting>
+    <Setting Name="importImageProcessingMode" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
     <Setting Name="importImageReso" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0.5</Value>
     </Setting>
@@ -1819,6 +1822,24 @@
     </Setting>
     <Setting Name="importImageSMin" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="importImageSpecialCodeAfter" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G90 G0 Z5</Value>
+    </Setting>
+    <Setting Name="importImageSpecialCodeBefore" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G90 G1 Z1 F1000</Value>
+    </Setting>
+    <Setting Name="importImageSpecialCodeValue1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G91 A</Value>
+    </Setting>
+    <Setting Name="importImageSpecialCodeValue2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">F10000</Value>
+    </Setting>
+    <Setting Name="importImageSpecialMax" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="importImageSpecialMin" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">-2</Value>
     </Setting>
     <Setting Name="importImageWidth" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">50</Value>
@@ -2121,6 +2142,9 @@
       <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="machineLimitsShow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="machineLoadDefaults" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="mainFormMovoToX" Type="System.Decimal" Scope="User">
