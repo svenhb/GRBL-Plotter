@@ -3718,4 +3718,24 @@ La transparence doit être &lt;seuil pour être reconnue comme arrière-plan</va
   <data name="CbToolChangeM6PassThrough.ToolTip" xml:space="preserve">
     <value>Remarque : Grbl « classique » sur Arduino Uno ne peut pas traiter la commande M6 et donne une erreur.</value>
   </data>
+  <data name="BtnSetGrblCustomString.ToolTip" xml:space="preserve">
+    <value>Définir/remplacer une chaîne personnalisée. Réinitialisez ensuite le contrôleur pour lire la chaîne personnalisée.
+Pour définir cette chaîne, envoyez Grbl $I=xxx, où xxx est votre chaîne de personnalisation de moins de 80 caractères. Cette chaîne est stockée en majuscules, les espaces sont supprimés et elle ne peut contenir que des caractères alphanumériques.</value>
+  </data>
+  <data name="label115.Text" xml:space="preserve">
+    <value>Chaîne - nom de fichier requis</value>
+  </data>
+  <data name="CbLoadMachineDefaults.Text" xml:space="preserve">
+    <value>Charger les paramètres par défaut</value>
+  </data>
+  <data name="CbLoadMachineDefaults.ToolTip" xml:space="preserve">
+    <value>Charge les valeurs par défaut une seule fois, après la connexion, si le nom du fichier est trouvé.</value>
+  </data>
+  <data name="label114.Text" xml:space="preserve">
+    <value>Utilise la chaîne personnalisée « $I » comme nom de fichier pour charger un cas d'utilisation à partir de data\usecases.
+Utilisez « Exporter les paramètres de la machine » pour enregistrer les « valeurs par défaut ».</value>
+  </data>
+  <data name="GbGrblDefaults.Text" xml:space="preserve">
+    <value>Charger les valeurs par défaut lors de la connexion</value>
+  </data>
 </root>

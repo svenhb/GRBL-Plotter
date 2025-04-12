@@ -259,7 +259,7 @@ namespace GrblPlotter
                     { onlyZ++; }
 
                     // mark Z-only movements - could be drills
-                    if ((onlyZ > 1) && (passLimit) && (path == pathPenUp) || (oldL.codeLine.Contains("DOT")))  // pen moved from -z to +z
+                    if (((onlyZ > 1) && (passLimit) && (path == pathPenUp)) || (oldL.codeLine.Contains("DOT") || newL.codeLine.Contains("DOT")))  // pen moved from -z to +z
                     {
                         float markerSize = (float)markerSizeGraphic;
                         int markerType = 1;
@@ -279,17 +279,14 @@ namespace GrblPlotter
 
                         if (pixelArtEnable)
                         {
-                            markerType = 5;
-                            markerSize = (float)pixelArtDotWidth / 4;
-                            CreateMarker(pathPenDown, (XyPoint)newL.actualPos, markerSize * 2, markerType, false); // draw rect
+                            markerType = 4;
+                            markerSize = (float)pixelArtDotWidth;
+                            CreateMarker(pathPenDown, (XyPoint)newL.actualPos, markerSize, markerType, false); // draw rect
                         }
-                        CreateMarker(pathPenDown, (XyPoint)newL.actualPos, markerSize, markerType, false);       // draw cross
-                                                                                                                 //    if ((path == pathPenDown) && (pathActualDown != null))
                         if (pathActualDown != null)
                         {
                             XyPoint tmpPoint = new XyPoint(newL.actualPos.X + viewOffset.X, newL.actualPos.Y + viewOffset.Y);
                             CreateMarker(pathActualDown, tmpPoint, markerSize, markerType, false);               // draw cross
-                                                                                                                 //        Logger.Trace("draw x:{0}  z:{1}", tmpPoint.X, markerSize);
                         }
                         CreateMarker(pathPenUp, (XyPoint)newL.actualPos, markerSize, 4, false);       	// draw circle
                         path = pathPenUp;
@@ -297,12 +294,10 @@ namespace GrblPlotter
                         if (fiducialEnable)
                         {
                             fiducialsCenter.Add((XyPoint)newL.actualPos);
-                            //                Logger.Trace("Set fiducial add point {0} {1}  ", newL.actualPos.X, newL.actualPos.Y);
                         }
-                        //       passLimit = false;
                     }
                 }
-                //         }
+
                 else if ((newL.motionMode == 2 || newL.motionMode == 3) && (newL.i != null || newL.j != null))
                 {
                     if (newL.i == null) { newL.i = 0; }
@@ -884,7 +879,8 @@ namespace GrblPlotter
         private static readonly object pathDrawLock = new object();
         private static void CreateMarker(GraphicsPath path, float centerX, float centerY, float dimension, int style, bool rst = true)
         {
-            if (dimension == 0) { return; }
+        //    Logger.Trace("CreateMarker  centerX:{0}  centerY:{1}  dimension:{2}  style:{3}", centerX, centerY, dimension, style);
+            if (dimension <= 0) { return; }
             lock (pathDrawLock)
             {
                 if (rst)

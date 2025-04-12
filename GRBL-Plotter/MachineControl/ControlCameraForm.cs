@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -35,6 +35,7 @@
  * 2023-01-22 line 546 use lock (Object is currently in use elsewhere. Source: System.Drawing Target:)
  * 2023-01-24 check range of index in line 1218
  * 2023-08-01 check if (!e.Bounds.IsEmpty)
+ * 2025-03-12 l:1452 add class ini-file at the end
 */
 
 using AForge;
@@ -1445,6 +1446,38 @@ namespace GrblPlotter
             };
             g.DrawString(_tabPage.Text, _tabFont, _textBrush, _tabBounds, new StringFormat(_stringFlags));
         }
-
     }
+	
+    public partial class IniFile
+    {
+        internal static string sectionCamera = "Camera";
+        internal static string[,] keyValueCamera = {
+            {"Fix Index",      		"cameraIndexFix"},
+            {"Fix Rotation",		"cameraRotationFix"},
+            {"Fix Radius",			"cameraTeachRadiusFix"},
+            {"Fix Scaling",			"cameraScalingFix"},
+            {"Fix Offset X",		"cameraZeroFixX"},
+            {"Fix Offset Y",		"cameraZeroFixY"},
+			
+            {"XY Index",      		"cameraIndexXy"},
+            {"XY Rotation",			"cameraRotationXy"},
+            {"XY Radius",			"cameraTeachRadiusXy"},
+            {"XY Scaling",			"cameraScalingXy"},
+            {"XY Offset X",			"cameraToolOffsetX"},
+            {"XY Offset Y",			"cameraToolOffsetY"},
+            {"XY Top Pos",			"cameraPosTop"},
+            {"XY Top Radius",		"cameraTeachRadiusXyzTop"},
+            {"XY Top Scaling",		"cameraScalingXyzTop"},
+            {"XY Bottom Pos",		"cameraPosBot"},
+            {"XY Bottom Radius",	"cameraTeachRadiusXyzBot"},
+            {"XY Bottom Scaling",	"cameraScalingXyzBot"},
+			
+            {"Fiducial Name",		"importFiducialLabel"},
+			{"Fiducial Skip",		"importFiducialSkipCode"},
+            {"Parameter Set 1",		"camShapeSet1"},
+            {"Parameter Set 2",		"camShapeSet2"},
+            {"Parameter Set 3",		"camShapeSet3"},
+            {"Parameter Set 4",		"camShapeSet4"}			
+		};
+	}
 }

@@ -899,6 +899,7 @@ namespace GrblPlotter
                         AddToLog(string.Format("< {0}", rxStringTmp));
 
                     GRBLSettings.Add(rxStringTmp);
+                    Grbl.Settings.Add(rxStringTmp);
                     Grbl.SetSettings(id, val);              // splt[1]
                     OnRaiseStreamEvent(new StreamEventArgs(id, 0, 0, 0, GrblStreaming.setting));
                 }

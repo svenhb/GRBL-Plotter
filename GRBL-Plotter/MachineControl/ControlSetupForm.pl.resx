@@ -3949,4 +3949,24 @@ Aby można było rozpoznać tło, przezroczystość musi wynosić &lt; próg</va
   <data name="CbToolChangeM6PassThrough.ToolTip" xml:space="preserve">
     <value>Uwaga: „klasyczny” Grbl na Arduino Uno nie może przetworzyć polecenia M6 i wyświetla błąd.</value>
   </data>
+  <data name="BtnSetGrblCustomString.ToolTip" xml:space="preserve">
+    <value>Ustaw/zastąp ciąg niestandardowy. Następnie zresetuj kontroler, aby odczytać niestandardowy ciąg.
+Aby ustawić ten ciąg, wyślij Grbl $I=xxx, gdzie xxx to ciąg dostosowywania krótszy niż 80 znaków. Ten ciąg jest zapisywany wielkimi literami, spacje są usuwane i może zawierać tylko znaki alfanumeryczne.</value>
+  </data>
+  <data name="label115.Text" xml:space="preserve">
+    <value>String - potrzebna nazwa pliku</value>
+  </data>
+  <data name="CbLoadMachineDefaults.Text" xml:space="preserve">
+    <value>Załaduj wartości domyślne</value>
+  </data>
+  <data name="CbLoadMachineDefaults.ToolTip" xml:space="preserve">
+    <value>Ładuje wartości domyślne tylko raz, po połączeniu, jeśli zostanie znaleziona nazwa pliku.</value>
+  </data>
+  <data name="label114.Text" xml:space="preserve">
+    <value>Używa niestandardowego ciągu „$I” jako nazwy pliku do załadowania przypadku użycia z danych\przypadków użycia.
+Użyj „Eksportuj ustawienia urządzenia”, aby zapisać „ustawienia domyślne”.</value>
+  </data>
+  <data name="GbGrblDefaults.Text" xml:space="preserve">
+    <value>Załaduj wartości domyślne podczas łączenia</value>
+  </data>
 </root>

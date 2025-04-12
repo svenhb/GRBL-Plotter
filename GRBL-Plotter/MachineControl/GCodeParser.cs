@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,7 +28,8 @@
  * 2021-08-02 calc distance to line
  * 2021-09-04 new struct to store simulation data: SimuCoordByLine
  * 2022-04-18 line 630 simplify GetAlpha by use of atan2
- * 2024-09-24 f:476 l:SimuCoordByLine add pWord and isDwell, issue #416, #417
+ * 2024-09-24 l:476 f:SimuCoordByLine add pWord and isDwell, issue #416, #417
+ * 2025-04-02 l:349 f:ParseGCodeToken store last value of choosen axis
 */
 
 
@@ -170,6 +171,9 @@ namespace GrblPlotter
     /// </summary>
     class GcodeByLine
     {
+        public static double lastAxisVal = 0;
+        public static char lastAxisChoice = ' ';
+
         public int lineNumber;          // line number in fCTBCode
         public int nNumber;             // n number in GCode if given
         public int figureNumber;
@@ -342,6 +346,8 @@ namespace GrblPlotter
         private void ParseGCodeToken(char cmd, double value, ref ModalGroup modalState)
         {
             //            Logger.Trace("parseGCodeToken {0}  {1}",cmd, value);
+            if (lastAxisChoice == Char.ToUpper(cmd))
+                lastAxisVal = value;
             switch (Char.ToUpper(cmd))
             {
                 case 'X':

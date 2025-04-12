@@ -4674,4 +4674,28 @@ SpindleEnable;</value>
   <data name="CbToolChangeM6PassThrough.ToolTip" xml:space="preserve">
     <value>注意：Arduino Uno 上的“经典”Grbl 无法处理 M6 命令并给出错误。</value>
   </data>
+  <data name="BtnSetGrblCustomString.Text" xml:space="preserve">
+    <value>放</value>
+  </data>
+  <data name="BtnSetGrblCustomString.ToolTip" xml:space="preserve">
+    <value>设置/覆盖自定义字符串。然后重置控制器以读取自定义字符串。
+要设置此字符串，请发送 Grbl $I=xxx，其中 xxx 是少于 80 个字符的自定义字符串。该字符串以大写形式存储，空格被删除，并且只能包含字母数字字符。</value>
+  </data>
+  <data name="label115.Text" xml:space="preserve">
+    <value>字符串 - 需要的文件名</value>
+  </data>
+  <data name="CbLoadMachineDefaults.Text" xml:space="preserve">
+    <value>加载默认值</value>
+  </data>
+  <data name="CbLoadMachineDefaults.ToolTip" xml:space="preserve">
+    <value>如果找到文件名，则在连接后仅加载默认值一次。</value>
+  </data>
+  <data name="label114.Text" xml:space="preserve">
+    <value>实际的自定义字符串 - 用作文件名
+加载机器默认值
+如果找到文件名，则在连接后仅加载默认值一次。</value>
+  </data>
+  <data name="GbGrblDefaults.Text" xml:space="preserve">
+    <value>连接时加载默认值</value>
+  </data>
 </root>

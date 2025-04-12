@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -37,6 +37,9 @@
  * 2024-04-13 l:818 f:CalculateProcessTime bug fix path length calculation
  * 2024-08-29 l:733 f:CalcAbsPosition collect Z dimension - remove  (newLine.actualPos.Z != Grbl.posWork.Z)
  * 2024-09-27 l:497, 502, 687 add pWord to simuList
+ * 2025-03-18 l:552 f: GetGCodeLines take G04 isDwell into account 
+			  l:841 f:CalculateProcessTime take acceleration into account 
+ * 2025-04-02 use PixelArt attribute 'Source' to get GcodeByLine.lastAxisVal to calc markerSize in 2D view
 */
 
 using System;
@@ -161,10 +164,12 @@ namespace GrblPlotter
         internal static int tangentialAxisError = -1;
 
         internal static bool pixelArtEnable = false;
+        internal static string pixelArtSource = "";
         internal static double pixelArtDotWidth = 1;
 
-        internal static double gcodeMinutes = 0;
+        internal static double gcodeExecutionSeconds = 0;
         internal static double gcodeDistance = 0;
+        private static bool logTime = true;
 
         public static string errorString = "";
         private static int error33cnt;
@@ -179,6 +184,10 @@ namespace GrblPlotter
         internal static double feedBmax = 5000;
         internal static double feedCmax = 5000;
         internal static double feedDefault = 5000;
+        internal static double accelarationX = 200;		// to calculate processing time CalculateProcessTime
+        internal static double accelarationY = 200;
+        internal static double accelarationZ = 200;
+        internal static double accelarationDefault = 200;
 
         // analyse each GCode line and track actual position and modes for each code line
         private static List<GcodeByLine> gcodeList = new List<GcodeByLine>();        // keep original program                                                                                     //      private static List<GcodeByLine> simuList;         // as gcodeList but resolved subroutines
@@ -196,8 +205,8 @@ namespace GrblPlotter
         private static bool isHeaderSection = false;
 
         internal static XyPoint graphicDimension = new XyPoint(-1, -1);
-		internal static float markerSizeGraphic = 1;
-		
+        internal static float markerSizeGraphic = 1;
+
         internal static bool largeDataAmount = false;
         internal static int numberDataLines = 0;
 
@@ -299,7 +308,7 @@ namespace GrblPlotter
             clipOffset = new XyPoint();
             isHeaderSection = false;
             graphicDimension = new XyPoint();
-			markerSizeGraphic = 1;
+            markerSizeGraphic = 1;
 
             modal = new ModalGroup();               // clear
             XmlMarker.Reset();                      // reset lists, holding marker line numbers
@@ -322,7 +331,7 @@ namespace GrblPlotter
             tileActive = false;
             ShiftTilePaths = false;
 
-            gcodeMinutes = 0;
+            gcodeExecutionSeconds = 0;
             gcodeDistance = 0;
             tangentialAxisEnable = false;
             tangentialAxisError = -1;
@@ -335,6 +344,17 @@ namespace GrblPlotter
             pathObjectPenColorOnlyNone = false;
 
             lastSubroutine = new int[] { 0, 0, 0 };
+
+            feedXmax = Grbl.GetSetting(110) > 0 ? Grbl.GetSetting(110) : feedDefault;
+            feedYmax = Grbl.GetSetting(111) > 0 ? Grbl.GetSetting(111) : feedDefault;
+            feedZmax = Grbl.GetSetting(112) > 0 ? Grbl.GetSetting(112) : feedDefault;
+            feedAmax = Grbl.GetSetting(113) > 0 ? Grbl.GetSetting(113) : feedDefault;
+            feedBmax = Grbl.GetSetting(114) > 0 ? Grbl.GetSetting(114) : feedDefault;
+            feedCmax = Grbl.GetSetting(115) > 0 ? Grbl.GetSetting(115) : feedDefault;
+            accelarationX = Grbl.GetSetting(120) > 0 ? Grbl.GetSetting(120) : accelarationDefault;
+            accelarationY = Grbl.GetSetting(121) > 0 ? Grbl.GetSetting(121) : accelarationDefault;
+            accelarationZ = Grbl.GetSetting(122) > 0 ? Grbl.GetSetting(122) : accelarationDefault;
+            Logger.Trace("ResetGlobalObjects fX:{0}  fY:{1}  fZ:{2}  aX:{3}  fY:{4}  fZ:{5}", feedXmax, feedYmax, feedZmax, accelarationX, accelarationY, accelarationZ);
         }
 
         /// <summary>
@@ -346,7 +366,7 @@ namespace GrblPlotter
             string[] GCode = oldCode.ToArray<string>();
             string singleLine;
             bool programEnd = false;
-            bool isArc;
+            bool isArc, isComment;
             bool showArrow = Properties.Settings.Default.gui2DPenUpArrow;
             bool showId = Properties.Settings.Default.gui2DPenUpId;
             bool showColors = Properties.Settings.Default.ctrlColorizeGCode;        // gui2DColorPenDownModeEnable;
@@ -403,6 +423,8 @@ namespace GrblPlotter
                 if (processSubs && programEnd)						// surround subroutine-code in ( )
                 { singleLine = "( " + singleLine + " )"; }          // don't process subroutine itself when processed
 
+                /*******************************************************************/
+                isComment = singleLine.StartsWith("(") || singleLine.StartsWith(";");
                 newLine.ParseLine(lineNr, singleLine, ref modal);	// extract data from GCode
                 xyPosChanged = CalcAbsPosition(newLine, oldLine);   // Calc. absolute positions and set object dimension: xyzSize.setDimension
 
@@ -446,8 +468,20 @@ namespace GrblPlotter
 
                 // collect halftone data
                 if (halfToneEnable)   // S or Z are calculated from gray-value - range 0-255
-                { ProcessHalftoneData(); }
+                {
+                    if (pixelArtEnable)
+                    {
+                        if (singleLine.Contains("PD"))
+                        {
+							// lastAxisVal selected via lastAxisChoice during newLine.ParseLine
+                            double diff = HalfTone.showHalftoneMax - HalfTone.showHalftoneMin;
+                            pixelArtDotWidth = (HalfTone.showHalftoneWidth * (GcodeByLine.lastAxisVal - HalfTone.showHalftoneMin) / diff / 2);
+                        }
+                    }
+                    else
+                    { ProcessHalftoneData(); }
 
+                }
 
                 if ((modal.mWord == 98) && processSubs)
                 { newLine.codeLine = "(" + GCode[lineNr] + ")"; }
@@ -459,7 +493,7 @@ namespace GrblPlotter
                         newLine.codeLine = GCode[lineNr];                 // store original line
                 }
 
-                if (!programEnd)
+                if (!programEnd && !isComment)
                 {
                     CreateDrawingPathFromGCode(newLine, oldLine, offset2DView, modal.pWord);        // add data to drawing path
                     CalculateProcessTime(newLine, oldLine);
@@ -542,6 +576,12 @@ namespace GrblPlotter
                     }
                 }
 
+                if (newLine.isDwell)
+                {
+                    gcodeExecutionSeconds += modal.pWord;
+                    //   if (logTime) Logger.Trace("gcodeMinutes Add G04 {0}", modal.pWord);
+                }
+
                 if (isHeaderSection)
                 {
                     if (singleLine.Contains("DIMENSION XY") && singleLine.Contains(":"))	// GraphicCollectData.cs line 1100
@@ -552,7 +592,7 @@ namespace GrblPlotter
                         { graphicDimension.X = parsed1; }
                         if (double.TryParse(tmpVals[1], System.Globalization.NumberStyles.Float, System.Globalization.NumberFormatInfo.InvariantInfo, out double parsed2))
                         { graphicDimension.Y = parsed2; }
-					    markerSizeGraphic = (float)Math.Max(Math.Sqrt(graphicDimension.X * graphicDimension.X + graphicDimension.Y * graphicDimension.Y) / 200f, 0.5);
+                        markerSizeGraphic = (float)Math.Max(Math.Sqrt(graphicDimension.X * graphicDimension.X + graphicDimension.Y * graphicDimension.Y) / 200f, 0.5);
                         Logger.Trace("----- graphicDimension '{0}' -> {1:0.00} {2:0.00}  marker size:{3:0.0}", singleLine, graphicDimension.X, graphicDimension.Y, markerSizeGraphic);
                     }
                     if (singleLine.Contains("SVG DIMENSION") && singleLine.Contains(":"))
@@ -735,8 +775,8 @@ namespace GrblPlotter
                 if (setDimension && posWasSet) { xyzSize.SetDimensionY(newLine.actualPos.Y); }
 
                 posWasSet = CalcAxisPosition(ref newLine.actualPos.Z, newLine.z, oldLine.actualPos.Z, calcAbolute);
-             //   if (posWasSet && (newLine.actualPos.Z != Grbl.posWork.Z)) { xyzSize.SetDimensionZ(newLine.actualPos.Z); } 
-                if (posWasSet ) { xyzSize.SetDimensionZ(newLine.actualPos.Z); }
+                //   if (posWasSet && (newLine.actualPos.Z != Grbl.posWork.Z)) { xyzSize.SetDimensionZ(newLine.actualPos.Z); } 
+                if (posWasSet) { xyzSize.SetDimensionZ(newLine.actualPos.Z); }
 
                 CalcAxisPosition(ref newLine.actualPos.A, newLine.a, oldLine.actualPos.A, calcAbolute);
                 CalcAxisPosition(ref newLine.actualPos.B, newLine.b, oldLine.actualPos.B, calcAbolute);
@@ -759,6 +799,7 @@ namespace GrblPlotter
             }
             return posChanged;
         }
+
         private static bool CalcAxisPosition(ref double newActualPos, double? newPos, double oldActualPos, bool modeAbsolute)
         {
             if (newPos != null)
@@ -800,6 +841,7 @@ namespace GrblPlotter
             }
         }
 
+        private static double olda = 0;
         private static void CalculateProcessTime(GcodeByLine newL, GcodeByLine oldL)
         {
             double feed = Math.Min(feedXmax, feedYmax);         // feed in mm/min
@@ -814,7 +856,7 @@ namespace GrblPlotter
 
             double distanceX = Math.Abs(newL.actualPos.X - oldL.actualPos.X);
             double distanceY = Math.Abs(newL.actualPos.Y - oldL.actualPos.Y);
-            double distanceXY = Math.Sqrt(distanceX* distanceX+ distanceY* distanceY);
+            double distanceXY = Math.Sqrt(distanceX * distanceX + distanceY * distanceY);
             double distanceZ = Math.Abs(newL.actualPos.Z - oldL.actualPos.Z);
 
             if (newL.motionMode > 1)
@@ -825,10 +867,38 @@ namespace GrblPlotter
             if (newL.motionMode > 0)
                 feed = Math.Min(feed, newL.feedRate);           // if G1,2,3 use set feed
 
-            if (newL.motionMode>0)
+            if (newL.motionMode > 0)
                 gcodeDistance += distanceXY;
 
-            gcodeMinutes += distanceAll / feed;
+            double a = Math.Atan2(distanceY, distanceX);
+            double adiff = Math.Abs(olda - a) * 180 / Math.PI;
+            if (adiff > 180)
+                adiff -= 180;
+
+            //	if (logTime) Logger.Trace("CalculateProcessTime lnr:{0}  newMoMode:{1} oldMoMode:{2} dXY:{3}  dZ:{4}  feed:{5}  angle:{6}", newL.lineNumber, newL.motionMode, oldL.motionMode, distanceXY, distanceZ, feed, adiff);
+            if ((newL.motionMode == 0) || (oldL.motionMode == 0) || (distanceZ > 0) || (adiff > 7))
+                gcodeExecutionSeconds += CalcTravelTime(distanceAll, feed / 60, accelarationDefault, oldL.motionMode);
+            else
+                gcodeExecutionSeconds += 60 * distanceAll / feed;
+
+            olda = a;
+        }
+
+        // does every move starts with v=0 and slows down to v=0? NO
+        private static double CalcTravelTime(double distance, double speed, double accelaration, int oldMotion)
+        {
+            double t = 0;
+            double sa = (speed * speed) / (2 * accelaration);   // distance during accelaration
+                                                                //    if (oldMotion > 0)
+                                                                //    { return distance / speed; }        // assume same speed as before
+            if ((2 * sa) < distance)
+            {
+                t += 2 * speed / accelaration;      // time during accelaration
+                t += (distance - 2 * sa) / speed;   // time during max. speed
+                return t;
+            }
+            t = 2 * Math.Sqrt(distance / accelaration);     // s=0.5*a*t^2
+            return t;
         }
 
         private static void ProcessXmlTagStart(string line, int lineNr)
@@ -860,7 +930,7 @@ namespace GrblPlotter
                 figureMarkerCount++;
                 XmlMarker.AddGroup(lineNr, clean, figureMarkerCount);
                 figureActive = true;
-                if (logCoordinates) { Logger.Trace(" Set Group  figureMarkerCount:{0}  {1}", figureMarkerCount, line); }
+                if (logCoordinates) { Logger.Trace("⛭ Set Group  figureMarkerCount:{0}  {1}", figureMarkerCount, line); }
                 if (XmlMarker.tmpGroup.Layer.ToUpper().Contains(fiducialLabel.ToUpper()))
                 {   //fiducialEnable=true; 
                 }
@@ -875,7 +945,7 @@ namespace GrblPlotter
                 xyPosChanged = false;
                 string clean = line.Replace("'", "\"");
                 XmlMarker.AddFigure(lineNr, clean, figureMarkerCount);
-                if (logCoordinates) Logger.Trace(" Set Figure figureMarkerCount:{0}  {1}", figureMarkerCount, line);
+                if (logCoordinates) Logger.Trace("⛭ Set Figure figureMarkerCount:{0}  {1}", figureMarkerCount, line);
 
                 fiducialDimension = new Dimensions();
 
@@ -891,6 +961,7 @@ namespace GrblPlotter
                         tmp = new PathData(XmlMarker.tmpFigure.PenColor, XmlMarker.tmpFigure.PenWidth, offset2DView);      // set color, width, pendownpath
                     else
                         tmp = new PathData(XmlMarker.tmpFigure.PenColor, (double)Properties.Settings.Default.gui2DWidthPenDown, offset2DView);      // set color, width, pendownpath
+                    Logger.Trace("⛭ FigureStart color:{0}  width:{1}", XmlMarker.tmpFigure.PenColor, XmlMarker.tmpFigure.PenWidth);
 
                     pathObject.Add(tmp);
                     pathActualDown = pathObject[pathObject.Count - 1].path;
@@ -904,7 +975,7 @@ namespace GrblPlotter
                 string tmpFullTurn = XmlMarker.GetAttributeValue(line, "FullTurn");
                 if (double.TryParse(tmpFullTurn, out tangentialAxisFullTurn))
                 { }
-                Logger.Info("Show tangetial Axis:'{0}'  FullTurn:{1}  Setup:{2}", tangentialAxisName, tangentialAxisFullTurn, Properties.Settings.Default.importGCTangentialTurn);
+                Logger.Info("⛭ Show tangetial Axis:'{0}'  FullTurn:{1}  Setup:{2}", tangentialAxisName, tangentialAxisFullTurn, Properties.Settings.Default.importGCTangentialTurn);
                 if (tangentialAxisFullTurn != (double)Properties.Settings.Default.importGCTangentialTurn)
                     tangentialAxisError = lineNr;
             }
@@ -914,24 +985,27 @@ namespace GrblPlotter
                 if (line.Contains("Min")) { HalfTone.showHalftoneMin = XmlMarker.GetAttributeValueDouble(line, "Min"); }
                 if (line.Contains("Max")) { HalfTone.showHalftoneMax = XmlMarker.GetAttributeValueDouble(line, "Max"); }
                 if (line.Contains("Width")) { HalfTone.showHalftoneWidth = XmlMarker.GetAttributeValueDouble(line, "Width"); }
-                Logger.Info("Display halftone  {0}  {1}  {2}  {3}", line, HalfTone.showHalftoneMin, HalfTone.showHalftoneMax, HalfTone.showHalftoneWidth);
+                Logger.Info("⛭ Display halftone  {0}  {1}  {2}  {3}", line, HalfTone.showHalftoneMin, HalfTone.showHalftoneMax, HalfTone.showHalftoneWidth);
 
                 if (line.Contains(XmlMarker.HalftoneS))
                 {
                     HalfTone.showHalftoneS = true; halfToneEnable = true;
-                    Logger.Info("showHalftoneS min:{0}  max:{1}  width:{2}", HalfTone.showHalftoneMin, HalfTone.showHalftoneMax, HalfTone.showHalftoneWidth);
+                    Logger.Info("⛭ showHalftoneS min:{0}  max:{1}  width:{2}", HalfTone.showHalftoneMin, HalfTone.showHalftoneMax, HalfTone.showHalftoneWidth);
                 }
                 if (line.Contains(XmlMarker.HalftoneZ))
                 {
                     HalfTone.showHalftoneZ = true; halfToneEnable = true;
-                    Logger.Info("showHalftoneZ min:{0}  max:{1}  width:{2}", HalfTone.showHalftoneMin, HalfTone.showHalftoneMax, HalfTone.showHalftoneWidth);
+                    Logger.Info("⛭ showHalftoneZ min:{0}  max:{1}  width:{2}", HalfTone.showHalftoneMin, HalfTone.showHalftoneMax, HalfTone.showHalftoneWidth);
                 }
             }
 
             else if (line.Contains(XmlMarker.PixelArt))
             {
                 pixelArtEnable = true;
-                if (line.Contains("Width")) { pixelArtDotWidth = XmlMarker.GetAttributeValueDouble(line, "Width"); }
+                if (line.Contains("Source")) { pixelArtSource = XmlMarker.GetAttributeValue(line, "Source"); }
+                Logger.Info("⛭ DisplayPixelArt Source:{0}", pixelArtSource);
+                if (pixelArtSource.Length > 0)
+                    GcodeByLine.lastAxisChoice = pixelArtSource[0];
             }
 
             else if (line.Contains(XmlMarker.HeaderStart))

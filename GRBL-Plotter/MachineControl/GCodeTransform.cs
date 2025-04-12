@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -33,6 +33,7 @@
  * 2022-03-31 line 257 take care of Properties.Settings.Default.importGCTangentialTurn when rotating issue #272
  * 2024-02-12 add GetTranslate(int offset)
  * 2024-03-11 add ConvertToPolar()
+ * 2025-04-02 option to use 0;0 as center for mirror, rotation, scale
  */
 
 using System;
@@ -120,7 +121,7 @@ namespace GrblPlotter
         /// <summary>
         /// mirror gcode
         /// </summary>
-        public static string TransformGCodeMirror(Translate shiftToZero = Translate.MirrorX)
+        public static string TransformGCodeMirror(Translate shiftToZero = Translate.MirrorX, bool flipAtOrigin=false)
         {
             Logger.Info("●●● TransformGCode-Mirror {0}", shiftToZero);
             EventCollector.SetTransform("Tmir");
@@ -130,8 +131,11 @@ namespace GrblPlotter
             if (lastFigureNumber > 0)
                 centerOfFigure = GetCenterOfMarkedFigure();		// center of selected figure
 
+            if (flipAtOrigin)
+                centerOfFigure = new XyPoint();		            // center of selected figure
+
             oldLine.ResetAll(Grbl.posWork);         			// reset coordinates and parser modes
-            ClearDrawingPath();                    			// reset path, dimensions
+            ClearDrawingPath();                    			    // reset path, dimensions
 
             bool offsetApplied = false;
             double lastAbsPos = 0;
@@ -313,9 +317,12 @@ namespace GrblPlotter
         /// <summary>
         /// scale x and y seperatly in %
         /// </summary>
-        public static string TransformGCodeScale(double scaleX, double scaleY)
+        public static string TransformGCodeScale(double scaleX, double scaleY, bool useOrigin)
         {
             XyPoint centerOfFigure = xyzSize.GetCenter();
+            if (useOrigin)
+                centerOfFigure=new XyPoint();
+
             if (lastFigureNumber > 0)
                 centerOfFigure = GetCenterOfMarkedFigure();
             return TransformGCodeScale(scaleX, scaleY, centerOfFigure);

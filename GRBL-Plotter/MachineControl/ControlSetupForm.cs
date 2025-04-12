@@ -83,7 +83,13 @@ namespace GrblPlotter
                 BtnGetFilterValueKeepWidth.Text = value;
             }
         }
-
+        internal string NewCustomString
+        {
+            set 
+            {
+                TbGrblCustomString.Text= value;
+            }
+        }
         public ControlSetupForm()
         {
             Logger.Trace("++++++ ControlSetupForm START ++++++");
@@ -332,6 +338,8 @@ namespace GrblPlotter
             }
 
             CbImportGraphicSortDistanceStart.SelectedIndex = Properties.Settings.Default.importGraphicSortDistanceStart;
+
+            TbGrblCustomString.Text = Grbl.GetInfo("VER1");
         }
 
         private void SaveSettings()
@@ -2401,8 +2409,8 @@ namespace GrblPlotter
 
         private void NudImportGraphicOffsetOriginX_ValueChanged(object sender, EventArgs e)
         {
-            GuiVariables.offsetOriginX = (double)Properties.Settings.Default.importGraphicOffsetOriginX;
-            GuiVariables.offsetOriginY = (double)Properties.Settings.Default.importGraphicOffsetOriginY;
+            GuiVariables.offsetOriginX = (double)NudImportGraphicOffsetOriginX.Value;   //Properties.Settings.Default.importGraphicOffsetOriginX;
+            GuiVariables.offsetOriginY = (double)NudImportGraphicOffsetOriginY.Value;   //Properties.Settings.Default.importGraphicOffsetOriginY;
 
         }
 
@@ -2489,7 +2497,7 @@ namespace GrblPlotter
             cBImportGraphicOffsetLargestRemove.Enabled = enable;
         }
 
-        private void checkBox15_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox15_CheckedChanged(object sender, EventArgs e)
         {
 
         }
@@ -2506,6 +2514,94 @@ namespace GrblPlotter
         {
             gBToolChange.Enabled = !CbToolChangeM6PassThrough.Checked;
             CbToolChangeM6PassThrough.BackColor = CbToolChangeM6PassThrough.Checked? Color.Yellow: SystemColors.Control;
+        }
+
+        private void BtnSetGrblCustomString_Click(object sender, EventArgs e)
+        {
+            commandToSend = String.Format("$I={0};RST",TbGrblCustomString.Text);
+        }
+		
+        private void BtnSetGrblCustomStringIniFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+				string fname = TbGrblCustomString.Text;
+				if (fname=="") return;
+
+                string section = "Info";
+                string localDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                string iniPath = Datapath.Usecases + "\\" + fname + ".ini";
+				var MyIni = new IniFile(iniPath);
+
+                if (!File.Exists(iniPath))  // Write entry manually to force UTF-16 encoding
+                {
+                    string myunicode = string.Format("[{0}]\r\nDate={1}\r\nUse case info={2}", section, localDate, fname);
+                    File.WriteAllText(iniPath, myunicode, Encoding.Unicode);
+                }
+
+                MyIni.Write("Date", localDate, section);
+            //    MyIni.Write("Use case info", fname);
+                MyIni.Write("Set Defaults", "True", section);
+                MyIni.WriteSection(IniFile.sectionSetupGcodeGeneration);
+                MyIni.WriteSection(IniFile.sectionSetupMachineLimits);
+                var setup = Properties.Settings.Default;
+                MyIni.Write("PauseCode Enable", setup.flowControlEnable.ToString(), "Flow Control");
+                MyIni.Write("PauseCode Code", setup.flowControlText.ToString(), "Flow Control");
+
+             //   MyIni.WriteButtons();
+          //      MyIni.WriteJoystick();
+                MyIni.WriteGrblSetting();
+                Logger.Info("Save machine parameters as '{0}' {1}", "SetupGcodeGeneration", iniPath);
+            }
+            catch (Exception err)
+            {
+                EventCollector.StoreException("BtnSetGrblCustomStringIniFile_Click " + err.Message);
+                Logger.Error(err, "BtnSetGrblCustomStringIniFile_Click ");
+                MessageBox.Show("SaveMachineParameters: \r\n" + err.Message, "Error");
+            }
+		}
+
+        MessageForm _message_form = null;
+        private void BtnTestGrblCustomStringIniFile_Click(object sender, EventArgs e)
+        {
+			string fname = TbGrblCustomString.Text;
+			if (fname=="") return;
+			
+			string path = Datapath.Usecases + "\\" + fname + ".ini";
+			if (!File.Exists(path))
+			{
+				Logger.Trace("⚠⚠⚠ BtnTestGrblCustomStringIniFile - FAIL ini-file not found: '{0}'", path);
+				MessageBox.Show("Error", "File not found");
+				return;
+			}
+			var MyIni = new IniFile(path);
+            
+            if (_message_form != null)
+            {
+                _message_form.Close();
+                _message_form = null;
+            }
+            if (true)
+			{
+				uint duration = 5;
+                _message_form = new MessageForm();
+				_message_form.Show();
+
+				if (_message_form != null)
+				{
+					string html = MyIni.ShowIniMachineSettingsHTML("Machine defaults");
+					_message_form.DontClose = false;
+					_message_form.ShowMessage(600, 800, "Saved Machine Defaults", html, (int)duration);     // show graphic import options
+				}
+			}
+		}
+
+        private void BtnOpenGrblCustomStringIniFile_Click(object sender, EventArgs e)
+        {
+            string fname = TbGrblCustomString.Text;
+            if (fname == "") return;
+            string iniPath = Datapath.Usecases + "\\" + fname + ".ini";
+            Process.Start("notepad.exe", iniPath);
         }
     }
 }

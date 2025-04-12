@@ -4007,4 +4007,24 @@ Aby bylo možné rozpoznat jako pozadí, musí být průhlednost &lt; prahová h
   <data name="CbToolChangeM6PassThrough.ToolTip" xml:space="preserve">
     <value>Poznámka: „klasický“ Grbl na Arduino Uno nedokáže zpracovat příkaz M6 ​​a zobrazuje chybu.</value>
   </data>
+  <data name="BtnSetGrblCustomString.ToolTip" xml:space="preserve">
+    <value>Nastavit/přepsat vlastní řetězec. Poté resetujte ovladač, aby načetl vlastní řetězec.
+Chcete-li nastavit tento řetězec, odešlete Grbl $I=xxx, kde xxx je váš řetězec přizpůsobení, který je kratší než 80 znaků. Tento řetězec je uložen velkými písmeny, mezery jsou odstraněny a může obsahovat pouze alfanumerické znaky.</value>
+  </data>
+  <data name="label115.Text" xml:space="preserve">
+    <value>string - potřebný název souboru</value>
+  </data>
+  <data name="CbLoadMachineDefaults.Text" xml:space="preserve">
+    <value>Načíst výchozí nastavení</value>
+  </data>
+  <data name="CbLoadMachineDefaults.ToolTip" xml:space="preserve">
+    <value>Načte výchozí hodnoty pouze jednou po připojení, pokud je nalezen název souboru.</value>
+  </data>
+  <data name="label114.Text" xml:space="preserve">
+    <value>Používá vlastní řetězec „$I“ jako název souboru k načtení případu použití z data\případy použití.
+Použijte „Exportovat nastavení stroje“ k uložení „výchozích nastavení“.</value>
+  </data>
+  <data name="GbGrblDefaults.Text" xml:space="preserve">
+    <value>Načíst výchozí nastavení při připojení</value>
+  </data>
 </root>

@@ -434,10 +434,10 @@ namespace GrblPlotter
                 return;
 
             string file = Datapath.MakeAbsolutePath(fileRaw);
-            if (Path.GetFileName(file) == string.Empty)         // path but no filename
-                return;
+            Logger.Info("◯◯◯ AddCodeFromFile line:{0}  fileRaw:{1}  file:{2}", linenr, fileRaw, file);
 
-            Logger.Info("◯◯◯ AddCodeFromFile file:{0}  line:{1}", file, linenr);
+            if (Path.GetFileName(file) == string.Empty)         // path but no filename
+            { return; }
 
             if (File.Exists(file))
             {
@@ -715,6 +715,7 @@ namespace GrblPlotter
                 }
             }
             else { progressUpdateMarker = true; }
+            //Logger.Trace("Progress:{0,3}%                    sent:{1} confirmed:{2}  time:{3}", codeFinish, lineNrSent, lineNrConfirmed, DateTime.Now.ToString("HH:mm:ss"));
             OnRaiseStreamEvent(new StreamEventArgs(lineNrSent, lineNrConfirmed, codeFinish, buffFinish, status));
         }
 

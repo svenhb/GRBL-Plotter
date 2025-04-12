@@ -3719,4 +3719,24 @@ La transparencia debe ser &lt; umbral para ser reconocida como fondo</value>
   <data name="CbToolChangeM6PassThrough.ToolTip" xml:space="preserve">
     <value>Nota: Grbl "clásico" en Arduino Uno no puede procesar el comando M6 y da un error.</value>
   </data>
+  <data name="BtnSetGrblCustomString.ToolTip" xml:space="preserve">
+    <value>Establecer/anular cadena personalizada. Luego reinicie el controlador para leer la cadena personalizada.
+Para configurar esta cadena, envíe Grbl $I=xxx, donde xxx es su cadena de personalización que tiene menos de 80 caracteres. Esta cadena se almacena en mayúsculas, se eliminan los espacios y solo puede contener caracteres alfanuméricos.</value>
+  </data>
+  <data name="label115.Text" xml:space="preserve">
+    <value>Cadena - nombre de archivo necesario</value>
+  </data>
+  <data name="CbLoadMachineDefaults.Text" xml:space="preserve">
+    <value>Cargar configuración predeterminada</value>
+  </data>
+  <data name="CbLoadMachineDefaults.ToolTip" xml:space="preserve">
+    <value>Carga los valores predeterminados solo una vez, después de la conexión, si se encuentra el nombre del archivo.</value>
+  </data>
+  <data name="label114.Text" xml:space="preserve">
+    <value>Utiliza la cadena personalizada “$I” como nombre de archivo para cargar un caso de uso desde datos\casos de uso.
+Utilice "Exportar configuración de la máquina" para guardar los "valores predeterminados".</value>
+  </data>
+  <data name="GbGrblDefaults.Text" xml:space="preserve">
+    <value>Cargar valores predeterminados al conectarse</value>
+  </data>
 </root>

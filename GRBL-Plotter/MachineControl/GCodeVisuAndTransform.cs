@@ -92,9 +92,9 @@ namespace GrblPlotter
         {
             try
             {
-                if (double.IsNaN(gcodeMinutes))
-                    gcodeMinutes = 0.1;
-                TimeSpan t = TimeSpan.FromSeconds(gcodeMinutes * 60);
+                if (double.IsNaN(gcodeExecutionSeconds))
+                    gcodeExecutionSeconds = 0.1;
+                TimeSpan t = TimeSpan.FromSeconds(gcodeExecutionSeconds);
                 return string.Format("Path length: {0:0.0}\r\nEst. time: {1:D2}:{2:D2}:{3:D2}", gcodeDistance, t.Hours, t.Minutes, t.Seconds);
             }
             catch

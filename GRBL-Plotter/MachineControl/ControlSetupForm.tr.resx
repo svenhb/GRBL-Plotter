@@ -4026,4 +4026,24 @@ Parlaklığın arka plan olarak tanınması için &gt;eşik olması gerekir veya
   <data name="CbToolChangeM6PassThrough.ToolTip" xml:space="preserve">
     <value>Not: Arduino Uno üzerinde “klasik” Grbl, M6 komutunu işleyemiyor ve hata veriyor.</value>
   </data>
+  <data name="BtnSetGrblCustomString.ToolTip" xml:space="preserve">
+    <value>Özel dizeyi ayarlayın/geçersiz kılın. Daha sonra özel dizeyi okumak için denetleyiciyi sıfırlayın.
+Bu dizeyi ayarlamak için Grbl $I=xxx gönderin; burada xxx, 80 karakterden kısa olan özelleştirme dizenizdir. Bu dize büyük harflerle saklanır, boşluklar kaldırılır ve yalnızca alfasayısal karakterler içerebilir.</value>
+  </data>
+  <data name="label115.Text" xml:space="preserve">
+    <value>Dize - gerekli dosya adı</value>
+  </data>
+  <data name="CbLoadMachineDefaults.Text" xml:space="preserve">
+    <value>Varsayılanları yükle</value>
+  </data>
+  <data name="CbLoadMachineDefaults.ToolTip" xml:space="preserve">
+    <value>Dosya adı bulunursa, bağlantıdan sonra varsayılanları yalnızca bir kez yükler.</value>
+  </data>
+  <data name="label114.Text" xml:space="preserve">
+    <value>data\usecases'ten bir kullanım senaryosu yüklemek için dosya adı olarak "$I" özel dizesini kullanır.
+‘Varsayılanları’ kaydetmek için “Makine Ayarlarını Dışa Aktar” seçeneğini kullanın.</value>
+  </data>
+  <data name="GbGrblDefaults.Text" xml:space="preserve">
+    <value>Bağlanırken varsayılanları yükle</value>
+  </data>
 </root>

@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -33,8 +33,11 @@
  * 2021-11-03 support VoidMicro controller: https://github.com/arkypita/LaserGRBL/issues/1640
  * 2024-02-14 add grblDigialIn -Out to process grbl-Mega-5X I/O status
  * 2024-02-24 add Grbl.StatMsg
+ * 2025-03-04 add $I customization string
+ * 2025-03-24 l:401 f:GetPosition revision
 */
 
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -50,8 +53,8 @@ namespace GrblPlotter
         internal static GrblState Status = GrblState.unknown;
         internal static ModState StatMsg = new ModState();
         internal static Byte grblDigitalIn = 0;
-		internal static Byte grblDigitalOut = 0;
-		
+        internal static Byte grblDigitalOut = 0;
+
         public static bool posChanged = true;
         public static bool wcoChanged = true;
 
@@ -64,6 +67,7 @@ namespace GrblPlotter
         public static bool axisB = false;       // axis B available?
         public static bool axisC = false;       // axis C available?
         public static bool axisUpdate = false;  // update of GUI needed
+
         public static int RX_BUFFER_SIZE = 127; // grbl buffer size inside Arduino
         public static int pollInterval = 200;
         public static int bufferSize = -1;
@@ -72,6 +76,7 @@ namespace GrblPlotter
         public static int DefaultFeed = 1000;
 
         public static bool grblSimulate = false;
+        internal static List<string> Settings = new List<string>();          // keep $$ settings rough
         private static readonly Dictionary<int, float> settings = new Dictionary<int, float>();    // keep $$-settings
         private static readonly Dictionary<string, XyzPoint> coordinates = new Dictionary<string, XyzPoint>();    // keep []-settings
         private static readonly Dictionary<string, string> messages = new Dictionary<string, string>();
@@ -79,6 +84,10 @@ namespace GrblPlotter
         private static XyzPoint _posMarker = new XyzPoint(0, 0, 0);
         private static double _posMarkerAngle = 0;
         //      private static XyzPoint _posMarkerOld = new XyzPoint(0, 0, 0);
+
+        // Trace, Debug, Info, Warn, Error, Fatal
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         internal static XyzPoint PosMarker
         {
             get
@@ -120,14 +129,17 @@ namespace GrblPlotter
 
             settings.Clear();
             coordinates.Clear();
+            messages.Clear();
         }
 
         public static void Clear()
         {
             axisA = false; axisB = false; axisC = false; axisUpdate = false;
             bufferSize = -1;        // readout buffer size
+            Settings.Clear();       // clear $$ values
             settings.Clear();       // clear $$ values
             coordinates.Clear();    // clear gcode parameters
+            messages.Clear();
             lastErrorNr = 0;
             lastMessage = "";
             Status = GrblState.unknown;
@@ -385,11 +397,43 @@ namespace GrblPlotter
             }
             return false;
         }
+
         internal static int GetPosition(int serNr, string text, ref XyzPoint position)
         {
             string[] dataField = text.Split(':');
             if (dataField.Length <= 1)
                 return 0;
+
+            string[] dataValue = dataField[1].Split(',');
+            double[] axisVal = new double[dataValue.Length];
+            for (int i = 0; i < dataValue.Length; i++)
+            {
+                Double.TryParse(dataValue[i], NumberStyles.Any, CultureInfo.InvariantCulture, out axisVal[i]);
+            }
+			if (dataValue.Length >= 3)
+			{
+				position.X = axisVal[0]; position.Y = axisVal[1]; position.Z = axisVal[2]; 
+				if (dataValue.Length >= 4) { position.A = axisVal[3]; if (serNr == 1) axisA = true; }
+				if (dataValue.Length >= 5) { position.B = axisVal[4]; if (serNr == 1) axisB = true; }
+				if (dataValue.Length >= 6) { position.C = axisVal[5]; if (serNr == 1) axisC = true; }				
+			}
+			else if (dataValue.Length == 2) { position.X = axisVal[0]; position.Y = axisVal[1]; position.Z = 0; }
+			else if (dataValue.Length == 1) { position.Z = axisVal[0]; position.X = position.Y = 0;}
+
+            if (serNr == 1)
+                axisCount = dataValue.Length;
+
+            return dataValue.Length;
+        }
+
+    /*    internal static int GetPosition(int serNr, string text, ref XyzPoint position)
+        {
+            return GetPositionNew(serNr, text, ref position);
+
+            string[] dataField = text.Split(':');
+            if (dataField.Length <= 1)
+                return 0;
+
             string[] dataValue = dataField[1].Split(',');
             //            axisA = false; axisB = false; axisC = false;
             int axisCountLocal = 0;
@@ -436,17 +480,27 @@ namespace GrblPlotter
             return axisCountLocal;
             //axisA = true; axisB = true; axisC = true;     // for test only
         }
-
+*/
         internal static void GetOtherFeedbackMessage(string[] dataField)
-        {
-            string tmp = string.Join(":", dataField);
-            if (messages.ContainsKey(dataField[0]))
-                messages[dataField[0]] = tmp;
-            else
-                messages.Add(dataField[0], tmp);
+        {   // MSG, VER, OPT, AXS	-	key=AXS and AXS0
+            string key;
+            for (int i = 1; i < dataField.Length; i++)
+            {
+                key = dataField[0] + ((i > 1) ? (i - 1).ToString() : "");
+                if (messages.ContainsKey(key))
+                    messages[key] = dataField[i];
+                else
+                    messages.Add(key, dataField[i]);
+                Logger.Trace(" key:'{0}'  data:'{1}'", key, dataField[i]);
+            }
         }
 
-
+        internal static string GetInfo(string key, string notSet = "")
+        {
+            if (messages.ContainsKey(key))
+                return messages[key];
+            return notSet;
+        }
 
         public static string GetSettingDescription(string msgNr)
         {

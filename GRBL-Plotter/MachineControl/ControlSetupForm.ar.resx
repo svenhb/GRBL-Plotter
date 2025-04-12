@@ -4005,4 +4005,27 @@ Pushbullet: لأسباب تتعلق بالسلامة ، يجب عليك استخ
   <data name="CbToolChangeM6PassThrough.ToolTip" xml:space="preserve">
     <value>ملحوظة: لا يمكن لـ Grbl "الكلاسيكي" على Arduino Uno معالجة أمر M6 ويعطي خطأ.</value>
   </data>
+  <data name="BtnSetGrblCustomString.Text" xml:space="preserve">
+    <value>تعيين</value>
+  </data>
+  <data name="BtnSetGrblCustomString.ToolTip" xml:space="preserve">
+    <value>تعيين/تجاوز السلسلة المخصصة. ثم قم بإعادة ضبط وحدة التحكم لقراءة السلسلة المخصصة.
+لتعيين هذه السلسلة، أرسل Grbl $I=xxx، حيث xxx هي سلسلة التخصيص الخاصة بك والتي يقل طولها عن 80 حرفًا. يتم تخزين هذه السلسلة بأحرف كبيرة، ويتم إزالة المسافات، ويمكن أن تحتوي على أحرف أبجدية رقمية فقط.</value>
+  </data>
+  <data name="label115.Text" xml:space="preserve">
+    <value>سلسلة - اسم الملف المطلوب</value>
+  </data>
+  <data name="CbLoadMachineDefaults.Text" xml:space="preserve">
+    <value>تحميل الإعدادات الافتراضية</value>
+  </data>
+  <data name="CbLoadMachineDefaults.ToolTip" xml:space="preserve">
+    <value>يقوم بتحميل الإعدادات الافتراضية مرة واحدة فقط، بعد الاتصال، إذا تم العثور على اسم الملف.</value>
+  </data>
+  <data name="label114.Text" xml:space="preserve">
+    <value>يستخدم السلسلة المخصصة "$I" كاسم ملف لتحميل حالة الاستخدام من data\usecases.
+استخدم "تصدير إعدادات الجهاز" لحفظ "الإعدادات الافتراضية".</value>
+  </data>
+  <data name="GbGrblDefaults.Text" xml:space="preserve">
+    <value>تحميل الإعدادات الافتراضية عند الاتصال</value>
+  </data>
 </root>

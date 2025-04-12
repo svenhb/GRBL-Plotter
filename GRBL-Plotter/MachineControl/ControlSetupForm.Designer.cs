@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -782,6 +782,15 @@ namespace GrblPlotter
             this.RbMultipleLoadLimitNo = new System.Windows.Forms.RadioButton();
             this.label101 = new System.Windows.Forms.Label();
             this.tabPage26 = new System.Windows.Forms.TabPage();
+            this.GbGrblDefaults = new System.Windows.Forms.GroupBox();
+            this.BtnOpenGrblCustomStringIniFile = new System.Windows.Forms.Button();
+            this.BtnSetGrblCustomStringIniFile = new System.Windows.Forms.Button();
+            this.BtnTestGrblCustomStringIniFile = new System.Windows.Forms.Button();
+            this.BtnSetGrblCustomString = new System.Windows.Forms.Button();
+            this.label115 = new System.Windows.Forms.Label();
+            this.CbLoadMachineDefaults = new System.Windows.Forms.CheckBox();
+            this.TbGrblCustomString = new System.Windows.Forms.TextBox();
+            this.label114 = new System.Windows.Forms.Label();
             this.BtnHelp_Programcontrol = new System.Windows.Forms.Button();
             this.GbAccessoryRunTime = new System.Windows.Forms.GroupBox();
             this.BtnAccessoryRefresh = new System.Windows.Forms.Button();
@@ -1496,6 +1505,7 @@ namespace GrblPlotter
             ((System.ComponentModel.ISupportInitialize)(this.nUDMultipleLoadNoX)).BeginInit();
             this.groupBox41.SuspendLayout();
             this.tabPage26.SuspendLayout();
+            this.GbGrblDefaults.SuspendLayout();
             this.GbAccessoryRunTime.SuspendLayout();
             this.tab5gB5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDMachineHomeZ)).BeginInit();
@@ -3152,7 +3162,7 @@ namespace GrblPlotter
             this.cBImageTypeJpg.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "importVectorizeTypeJpg", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cBImageTypeJpg.Name = "cBImageTypeJpg";
             this.cBImageTypeJpg.UseVisualStyleBackColor = true;
-            this.cBImageTypeJpg.CheckedChanged += new System.EventHandler(this.checkBox15_CheckedChanged);
+            this.cBImageTypeJpg.CheckedChanged += new System.EventHandler(this.CheckBox15_CheckedChanged);
             // 
             // cBImageTypeBmp
             // 
@@ -8669,6 +8679,7 @@ namespace GrblPlotter
             // 
             // tabPage26
             // 
+            this.tabPage26.Controls.Add(this.GbGrblDefaults);
             this.tabPage26.Controls.Add(this.BtnHelp_Programcontrol);
             this.tabPage26.Controls.Add(this.GbAccessoryRunTime);
             this.tabPage26.Controls.Add(this.tab5gB5);
@@ -8677,6 +8688,77 @@ namespace GrblPlotter
             resources.ApplyResources(this.tabPage26, "tabPage26");
             this.tabPage26.Name = "tabPage26";
             this.tabPage26.UseVisualStyleBackColor = true;
+            // 
+            // GbGrblDefaults
+            // 
+            this.GbGrblDefaults.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.GbGrblDefaults.Controls.Add(this.BtnOpenGrblCustomStringIniFile);
+            this.GbGrblDefaults.Controls.Add(this.BtnSetGrblCustomStringIniFile);
+            this.GbGrblDefaults.Controls.Add(this.BtnTestGrblCustomStringIniFile);
+            this.GbGrblDefaults.Controls.Add(this.BtnSetGrblCustomString);
+            this.GbGrblDefaults.Controls.Add(this.label115);
+            this.GbGrblDefaults.Controls.Add(this.CbLoadMachineDefaults);
+            this.GbGrblDefaults.Controls.Add(this.TbGrblCustomString);
+            this.GbGrblDefaults.Controls.Add(this.label114);
+            resources.ApplyResources(this.GbGrblDefaults, "GbGrblDefaults");
+            this.GbGrblDefaults.Name = "GbGrblDefaults";
+            this.GbGrblDefaults.TabStop = false;
+            // 
+            // BtnOpenGrblCustomStringIniFile
+            // 
+            resources.ApplyResources(this.BtnOpenGrblCustomStringIniFile, "BtnOpenGrblCustomStringIniFile");
+            this.BtnOpenGrblCustomStringIniFile.Name = "BtnOpenGrblCustomStringIniFile";
+            this.toolTip1.SetToolTip(this.BtnOpenGrblCustomStringIniFile, resources.GetString("BtnOpenGrblCustomStringIniFile.ToolTip"));
+            this.BtnOpenGrblCustomStringIniFile.UseVisualStyleBackColor = true;
+            this.BtnOpenGrblCustomStringIniFile.Click += new System.EventHandler(this.BtnOpenGrblCustomStringIniFile_Click);
+            // 
+            // BtnSetGrblCustomStringIniFile
+            // 
+            resources.ApplyResources(this.BtnSetGrblCustomStringIniFile, "BtnSetGrblCustomStringIniFile");
+            this.BtnSetGrblCustomStringIniFile.Name = "BtnSetGrblCustomStringIniFile";
+            this.toolTip1.SetToolTip(this.BtnSetGrblCustomStringIniFile, resources.GetString("BtnSetGrblCustomStringIniFile.ToolTip"));
+            this.BtnSetGrblCustomStringIniFile.UseVisualStyleBackColor = true;
+            this.BtnSetGrblCustomStringIniFile.Click += new System.EventHandler(this.BtnSetGrblCustomStringIniFile_Click);
+            // 
+            // BtnTestGrblCustomStringIniFile
+            // 
+            resources.ApplyResources(this.BtnTestGrblCustomStringIniFile, "BtnTestGrblCustomStringIniFile");
+            this.BtnTestGrblCustomStringIniFile.Name = "BtnTestGrblCustomStringIniFile";
+            this.toolTip1.SetToolTip(this.BtnTestGrblCustomStringIniFile, resources.GetString("BtnTestGrblCustomStringIniFile.ToolTip"));
+            this.BtnTestGrblCustomStringIniFile.UseVisualStyleBackColor = true;
+            this.BtnTestGrblCustomStringIniFile.Click += new System.EventHandler(this.BtnTestGrblCustomStringIniFile_Click);
+            // 
+            // BtnSetGrblCustomString
+            // 
+            resources.ApplyResources(this.BtnSetGrblCustomString, "BtnSetGrblCustomString");
+            this.BtnSetGrblCustomString.Name = "BtnSetGrblCustomString";
+            this.toolTip1.SetToolTip(this.BtnSetGrblCustomString, resources.GetString("BtnSetGrblCustomString.ToolTip"));
+            this.BtnSetGrblCustomString.UseVisualStyleBackColor = true;
+            this.BtnSetGrblCustomString.Click += new System.EventHandler(this.BtnSetGrblCustomString_Click);
+            // 
+            // label115
+            // 
+            resources.ApplyResources(this.label115, "label115");
+            this.label115.Name = "label115";
+            // 
+            // CbLoadMachineDefaults
+            // 
+            resources.ApplyResources(this.CbLoadMachineDefaults, "CbLoadMachineDefaults");
+            this.CbLoadMachineDefaults.Checked = global::GrblPlotter.Properties.Settings.Default.machineLoadDefaults;
+            this.CbLoadMachineDefaults.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::GrblPlotter.Properties.Settings.Default, "machineLoadDefaults", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CbLoadMachineDefaults.Name = "CbLoadMachineDefaults";
+            this.toolTip1.SetToolTip(this.CbLoadMachineDefaults, resources.GetString("CbLoadMachineDefaults.ToolTip"));
+            this.CbLoadMachineDefaults.UseVisualStyleBackColor = true;
+            // 
+            // TbGrblCustomString
+            // 
+            resources.ApplyResources(this.TbGrblCustomString, "TbGrblCustomString");
+            this.TbGrblCustomString.Name = "TbGrblCustomString";
+            // 
+            // label114
+            // 
+            resources.ApplyResources(this.label114, "label114");
+            this.label114.Name = "label114";
             // 
             // BtnHelp_Programcontrol
             // 
@@ -13647,6 +13729,8 @@ namespace GrblPlotter
             this.groupBox41.ResumeLayout(false);
             this.groupBox41.PerformLayout();
             this.tabPage26.ResumeLayout(false);
+            this.GbGrblDefaults.ResumeLayout(false);
+            this.GbGrblDefaults.PerformLayout();
             this.GbAccessoryRunTime.ResumeLayout(false);
             this.GbAccessoryRunTime.PerformLayout();
             this.tab5gB5.ResumeLayout(false);
@@ -15036,5 +15120,14 @@ namespace GrblPlotter
         private System.Windows.Forms.Label label107;
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.CheckBox CbToolChangeM6PassThrough;
+        private System.Windows.Forms.GroupBox GbGrblDefaults;
+        private System.Windows.Forms.Label label114;
+        private System.Windows.Forms.CheckBox CbLoadMachineDefaults;
+        private System.Windows.Forms.TextBox TbGrblCustomString;
+        private System.Windows.Forms.Label label115;
+        internal System.Windows.Forms.Button BtnSetGrblCustomString;
+        private System.Windows.Forms.Button BtnTestGrblCustomStringIniFile;
+        private System.Windows.Forms.Button BtnSetGrblCustomStringIniFile;
+        private System.Windows.Forms.Button BtnOpenGrblCustomStringIniFile;
     }
 }

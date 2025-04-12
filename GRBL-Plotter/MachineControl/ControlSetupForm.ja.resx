@@ -4014,4 +4014,27 @@ X は半径値を取得し、Y は角度値を取得します。
   <data name="CbToolChangeM6PassThrough.ToolTip" xml:space="preserve">
     <value>注: Arduino Uno 上の「クラシック」Grbl は M6 コマンドを処理できず、エラーが発生します。</value>
   </data>
+  <data name="BtnSetGrblCustomString.Text" xml:space="preserve">
+    <value>セット</value>
+  </data>
+  <data name="BtnSetGrblCustomString.ToolTip" xml:space="preserve">
+    <value>カスタム文字列を設定/上書きします。次に、コントローラーをリセットしてカスタム文字列を読み取ります。
+この文字列を設定するには、Grbl $I=xxx を送信します。xxx は 80 文字未満のカスタマイズ文字列です。この文字列は大文字で保存され、スペースは削除され、英数字のみを含めることができます。</value>
+  </data>
+  <data name="label115.Text" xml:space="preserve">
+    <value>文字列 - 必要なファイル名</value>
+  </data>
+  <data name="CbLoadMachineDefaults.Text" xml:space="preserve">
+    <value>デフォルトをロードする</value>
+  </data>
+  <data name="CbLoadMachineDefaults.ToolTip" xml:space="preserve">
+    <value>ファイル名が見つかった場合、接続後にデフォルトを 1 回だけロードします。</value>
+  </data>
+  <data name="label114.Text" xml:space="preserve">
+    <value>カスタム文字列「$I」をファイル名として使用して、data\usecases からユースケースを読み込みます。
+「デフォルト」を保存するには、「マシン設定のエクスポート」を使用します。</value>
+  </data>
+  <data name="GbGrblDefaults.Text" xml:space="preserve">
+    <value>接続時にデフォルトをロードする</value>
+  </data>
 </root>

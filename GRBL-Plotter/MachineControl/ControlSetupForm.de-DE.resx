@@ -3659,4 +3659,24 @@ Die Transparenz muss unter dem Schwellenwert liegen, damit sie als Hintergrund e
   <data name="CbToolChangeM6PassThrough.ToolTip" xml:space="preserve">
     <value>Hinweis: „klassisches“ Grbl auf Arduino Uno kann den M6 Befehl nicht verarbeiten und gibt einen Fehler aus.</value>
   </data>
+  <data name="BtnSetGrblCustomString.ToolTip" xml:space="preserve">
+    <value>Benutzerdefinierte Zeichenfolge festlegen/überschreiben. Setze anschließend den Controller zurück, um die benutzerdefinierte Zeichenfolge zu lesen.
+Um diese Zeichenfolge festzulegen, senden Sie Grbl $I=xxx, wobei xxx Ihre Anpassungszeichenfolge ist, die weniger als 80 Zeichen umfasst. Diese Zeichenfolge wird in Großschreibung gespeichert, Leerzeichen werden entfernt und sie darf nur alphanumerische Zeichen enthalten.</value>
+  </data>
+  <data name="label115.Text" xml:space="preserve">
+    <value>Zeichenfolge - benötigter Dateiname</value>
+  </data>
+  <data name="CbLoadMachineDefaults.Text" xml:space="preserve">
+    <value>Lade Standardeinstellungen</value>
+  </data>
+  <data name="CbLoadMachineDefaults.ToolTip" xml:space="preserve">
+    <value>Lädt die Standardeinstellungen nur einmal nach der Verbindung, wenn der Dateiname gefunden wird.</value>
+  </data>
+  <data name="label114.Text" xml:space="preserve">
+    <value>Verwendet die benutzerdefinierte Zeichenfolge „$I“ als Dateinamen zum Laden eines Anwendungsfalls aus data\usecases.
+Nutze  „Maschineneinstellungen exportieren“ um 'Defaults' zu speichern.</value>
+  </data>
+  <data name="GbGrblDefaults.Text" xml:space="preserve">
+    <value>Lade Defaults beim Verbinden</value>
+  </data>
 </root>

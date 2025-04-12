@@ -3727,4 +3727,24 @@ A transparência deve ser &lt; limite para ser reconhecida como pano de fundo</v
   <data name="CbToolChangeM6PassThrough.ToolTip" xml:space="preserve">
     <value>Nota: Grbl “clássico” no Arduino Uno não consegue processar o comando M6 e dá um erro.</value>
   </data>
+  <data name="BtnSetGrblCustomString.ToolTip" xml:space="preserve">
+    <value>Definir/substituir string personalizada. Em seguida, reinicie o controlador para ler a string personalizada.
+Para definir essa sequência, envie Grbl $I=xxx, onde xxx é sua sequência de personalização com menos de 80 caracteres. Esta string é armazenada em letras maiúsculas, os espaços são removidos e só pode conter caracteres alfanuméricos.</value>
+  </data>
+  <data name="label115.Text" xml:space="preserve">
+    <value>String - nome do arquivo necessário</value>
+  </data>
+  <data name="CbLoadMachineDefaults.Text" xml:space="preserve">
+    <value>Carregar padrões</value>
+  </data>
+  <data name="CbLoadMachineDefaults.ToolTip" xml:space="preserve">
+    <value>Carrega os padrões apenas uma vez, após a conexão, se o nome do arquivo for encontrado.</value>
+  </data>
+  <data name="label114.Text" xml:space="preserve">
+    <value>Usa a string personalizada “$I” como nome de arquivo para carregar um caso de uso de data\usecases.
+Use “Exportar configurações da máquina” para salvar os ‘padrões’.</value>
+  </data>
+  <data name="GbGrblDefaults.Text" xml:space="preserve">
+    <value>Carregar padrões ao conectar</value>
+  </data>
 </root>

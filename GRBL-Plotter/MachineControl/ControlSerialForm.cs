@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -69,6 +69,7 @@
  * 2023-06-28 l:665 f:AddToLog limit amount of lines to 10000   replaced RichTextBox by TextBox
  * 2023-07-27 l:269 f:SerialForm_FormClosing  set grblCharacterCounting = true;   // may helps to avoid locking the form
  * 2023-09-16 l:342 f:CopySelectionToClipboard add try catch
+ * 2025-03-06 l:830 f:JustgrblReset - cbPort.Text = "COM1" on TimeoutException, to avoid same exception on next program start
 */
 
 // OnRaiseStreamEvent(new StreamEventArgs((int)lineNr, codeFinish, buffFinish, status));
@@ -826,6 +827,7 @@ namespace GrblPlotter
                         serialPortError = true;
                         timerSerial.Enabled = false;
                         DisconnectFromGrbl(null, null);   // ClosePortSerial();
+                        cbPort.Text = "COM1";
                         LogError("! Error sending reset (Ctrl-X)", err);
                     }
                     catch (Exception err)
@@ -1461,7 +1463,7 @@ namespace GrblPlotter
 
         public bool FlagGrblSettingClick { get; set; } = false;
         private void BtnGRBLCommand1_Click(object sender, EventArgs e)      // $$and $x=val - View and write Grbl settings
-        { RequestSend("$$"); GRBLSettings.Clear(); FlagGrblSettingClick = true; }
+        { RequestSend("$$"); GRBLSettings.Clear(); Grbl.Settings.Clear(); FlagGrblSettingClick = true; }
         private void BtnGRBLCommand2_Click(object sender, EventArgs e)      // $# - View gcode parameters
         { RequestSend("$#"); }
         private void BtnGRBLCmndParser_Click(object sender, EventArgs e)    // $G - View gcode parser state

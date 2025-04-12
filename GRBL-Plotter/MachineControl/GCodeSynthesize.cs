@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@
 * 2023-01-28 add %NM tag, to keep code-line when synthezising code
 * 2024-03-23 l:92 f:CreateGCodeProg use XyzabcuvwPoint for lastActual
 * 2024-05-28 l:85 f:CreateGCodeProg add logs
+* 2025-04-07 l:141 f:CreateGCodeProg keep (PD) and (PU) comment information
 */
 
 using System;
@@ -55,11 +56,11 @@ namespace GrblPlotter
         {
             heightMapGridWidth = (float)Map.GridX;
             //getGCodeLines(oldCode, null, null, true);                // read gcode and process subroutines
-			Logger.Debug("ApplyHeightMap  splitMoves by:{0}", heightMapGridWidth);
-            IList<string> tmp = CreateGCodeProg(true, true, false, ConvertMode.Nothing,null,"Split moves").Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList();      // split lines and arcs createGCodeProg(bool replaceG23, bool applyNewZ, bool removeZ, HeightMap Map=null)
-			Logger.Debug("ApplyHeightMap  reload code");
+            Logger.Debug("ApplyHeightMap  splitMoves by:{0}", heightMapGridWidth);
+            IList<string> tmp = CreateGCodeProg(true, true, false, ConvertMode.Nothing, null, "Split moves").Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList();      // split lines and arcs createGCodeProg(bool replaceG23, bool applyNewZ, bool removeZ, HeightMap Map=null)
+            Logger.Debug("ApplyHeightMap  reload code");
             GetGCodeLines(tmp, null, null, false);                  // reload code
-			Logger.Debug("ApplyHeightMap  apply map");
+            Logger.Debug("ApplyHeightMap  apply map");
             return CreateGCodeProg(false, false, true, ConvertMode.Nothing, Map, "Apply Map");        // apply new Z-value;
         }
 
@@ -81,17 +82,18 @@ namespace GrblPlotter
         internal static string CreateGCodeProg(bool replaceG23, bool splitMoves, bool applyNewZ, ConvertMode specialCmd, HeightMap Map = null, string info = "")
         {
             Logger.Debug("+++ CreateGCodeProg replaceG23: {0}, splitMoves: {1}, applyNewZ: {2}, specialCmd: {3}, info: '{4}'", replaceG23, splitMoves, applyNewZ, specialCmd, info);
-			if (replaceG23)
-				Logger.Debug("--- CreateGCodeProg replaceG23 Arc circumfence step:{0}, segmentLength:{1}, equidistance:{2}", Properties.Settings.Default.importGCSegment, Properties.Settings.Default.importGCLineSegmentLength, Properties.Settings.Default.importGCLineSegmentEquidistant);
-			if (splitMoves)
-				Logger.Debug("--- CreateGCodeProg splitMoves heightMapGridWidth:{0}", heightMapGridWidth);
-				
+            if (replaceG23)
+                Logger.Debug("--- CreateGCodeProg replaceG23 Arc circumfence step:{0}, segmentLength:{1}, equidistance:{2}", Properties.Settings.Default.importGCSegment, Properties.Settings.Default.importGCLineSegmentLength, Properties.Settings.Default.importGCLineSegmentEquidistant);
+            if (splitMoves)
+                Logger.Debug("--- CreateGCodeProg splitMoves heightMapGridWidth:{0}", heightMapGridWidth);
+
             if (gcodeList == null) return "";
             pathMarkSelection.Reset();
             lastFigureNumber = -1; lastFigureNumbers.Clear();
             StringBuilder newCode = new StringBuilder();
             StringBuilder tmpCode = new StringBuilder();
-            string infoCode = "";
+        //    string infoCode = "";
+            string comment = "";
             bool getCoordinateXY, getCoordinateZ, forceM;
             double feedRate = 0;
             double spindleSpeed = -1; // force change
@@ -111,7 +113,7 @@ namespace GrblPlotter
             bool addInfo = info.Length > 0;
 
             Gcode.Setup(false);                             // don't apply intermediate Z steps in certain sub functions
-        //    MyApplication.ESCwasPressed = false;
+                                                            //    MyApplication.ESCwasPressed = false;
             for (int iCode = 0; iCode < gcodeList.Count; iCode++)     // go through all code lines
             {
                 GcodeByLine gcline = gcodeList[iCode];
@@ -130,9 +132,16 @@ namespace GrblPlotter
                     continue;
                 }
 
-                if (gcline.codeLine.IndexOf("%START_HIDECODE") >= 0) { hide_code = true; }
-                if (gcline.codeLine.IndexOf("%STOP_HIDECODE") >= 0) { hide_code = false; }
-                if (gcline.codeLine.IndexOf("%NM ") >= 0) { gcline.isNoMove = true; }
+                if (gcline.codeLine.Contains("("))
+                {
+                    if (gcline.codeLine.IndexOf("%START_HIDECODE") >= 0) { hide_code = true; }
+                    if (gcline.codeLine.IndexOf("%STOP_HIDECODE") >= 0) { hide_code = false; }
+                    if (gcline.codeLine.IndexOf("%NM ") >= 0) { gcline.isNoMove = true; }
+                    if (!gcline.codeLine.StartsWith("("))
+                        comment = " " + gcline.codeLine.Substring(gcline.codeLine.IndexOf("("));
+                }
+                else
+                    comment = "";
 
                 #region replace circle by lines
                 // replace code-line G1,G2,G3 by new codelines and add to newCode
@@ -153,7 +162,7 @@ namespace GrblPlotter
                         Gcode.SplitArc(newCode, gcline.motionMode, lastActual, gcline.actualPos, i, j, gcline.codeLine);
                     }
                     else if (gcline.motionMode == 1)                            // handle straight move
-                    {                        
+                    {
                         if (((gcline.x != null) || (gcline.y != null) || (gcline.z != null)) && splitMoves)     // any movement command?
                         {
                             XyzabcuvwPoint d = gcline.actualPos - lastActual;
@@ -173,13 +182,13 @@ namespace GrblPlotter
                                 }
                             }
                             else
-                            { newCode.AppendLine(gcline.codeLine.Trim('\r', '\n')); }   // not long enough
+                            { newCode.AppendLine(gcline.codeLine.Trim('\r', '\n')); comment = ""; }   // not long enough
                         }
                         else
-                        { newCode.AppendLine(gcline.codeLine.Trim('\r', '\n')); }       // no movement
+                        { newCode.AppendLine(gcline.codeLine.Trim('\r', '\n')); comment = ""; }       // no movement
                     }
                     else
-                    { newCode.AppendLine(gcline.codeLine.Trim('\r', '\n')); }           // no G1,2,3 command
+                    { newCode.AppendLine(gcline.codeLine.Trim('\r', '\n')); comment = ""; }           // no G1,2,3 command
 
                 }
                 #endregion
@@ -188,7 +197,8 @@ namespace GrblPlotter
                 {
                     if (gcline.isNoMove)
                     {
-                        newCode.AppendLine(gcline.codeLine.Trim('\r', '\n') + infoCode);    // add orignal code-line
+                        comment = "";
+                        newCode.AppendLine(gcline.codeLine.Trim('\r', '\n'));    // add orignal code-line
                     }
                     else
                     {
@@ -247,7 +257,7 @@ namespace GrblPlotter
 
                         if ((getCoordinateXY || getCoordinateZ) && (!gcline.ismachineCoordG53) && (!hide_code))
                         {
-                            bool keepComment = false;
+                            //    bool keepComment = false;
                             if ((gcline.motionMode > 0) && (feedRate != gcline.feedRate) && (getCoordinateXY || getCoordinateZ)) //((getCoordinateXY && !getCoordinateZ) || (!getCoordinateXY && getCoordinateZ)))
                             { tmpCode.AppendFormat(" F{0,0}", gcline.feedRate); }       // feed
                             if (spindleState != gcline.spindleState)
@@ -255,18 +265,18 @@ namespace GrblPlotter
                             if (spindleSpeed != gcline.spindleSpeed)
                             {
                                 tmpCode.AppendFormat(" S{0,0}", gcline.spindleSpeed);   // speed
-                                keepComment = true; // keep (PU) / (PD)
+                                                                                        //        keepComment = true; // keep (PU) / (PD)
                             }
                             if (coolantState != gcline.coolantState)
                             { tmpCode.AppendFormat(" M{0,0}", gcline.coolantState); }   // state
 
-                            if (keepComment)
-                            {
-                                int strtCmt = gcline.codeLine.IndexOf("(");
-                                if (strtCmt > 0)
-                                    tmpCode.AppendFormat(" {0}", gcline.codeLine.Substring(strtCmt));
-                            }
-
+                            /*    if (keepComment)
+                                {
+                                    int strtCmt = gcline.codeLine.IndexOf("(");
+                                    if (strtCmt > 0)
+                                        tmpCode.AppendFormat(" {0}", gcline.codeLine.Substring(strtCmt));
+                                }
+    */
                             tmpCode.Replace(',', '.');
                             if (gcline.codeLine.IndexOf("(Setup - GCode") > 1)  // ignore coordinates from setup footer
                                 newCode.AppendLine(gcline.codeLine);
@@ -274,9 +284,10 @@ namespace GrblPlotter
                             {
                                 // newCode.AppendLine(gcline.otherCode + "G" + gcode.frmtCode(gcline.motionMode) + tmpCode.ToString() + infoCode);
                                 if (gcline.nNumber >= 0)
-                                    newCode.AppendLine("N" + gcline.nNumber + " " + gcline.otherCode + "G" + Gcode.FrmtCode(gcline.motionMode) + tmpCode.ToString() + infoCode);
+                                    newCode.AppendLine("N" + gcline.nNumber + " " + gcline.otherCode + "G" + Gcode.FrmtCode(gcline.motionMode) + tmpCode.ToString() + comment);
                                 else
-                                    newCode.AppendLine(gcline.otherCode + "G" + Gcode.FrmtCode(gcline.motionMode) + tmpCode.ToString() + infoCode);
+                                    newCode.AppendFormat("{0}G{1}{2}{3}\r\n", gcline.otherCode, Gcode.FrmtCode(gcline.motionMode), tmpCode.ToString(), comment);
+                                //       newCode.AppendLine(gcline.otherCode + "G" + Gcode.FrmtCode(gcline.motionMode) + tmpCode.ToString() + infoCode + comment);
                             }
                         }
                         else
@@ -287,7 +298,9 @@ namespace GrblPlotter
                                 newCode.AppendLine(tmpCode.ToString());
                             }
                             else
-                                newCode.AppendLine(gcline.codeLine.Trim('\r', '\n') + infoCode);    // add orignal code-line
+                        //        newCode.AppendFormat("{0}\r\n", gcline.codeLine.Trim('\r', '\n'));    // add orignal code-line
+                                newCode.AppendLine(gcline.codeLine.Trim('\r', '\n'));    // add orignal code-line
+                    //    newCode.AppendLine(gcline.codeLine.Trim('\r', '\n') + infoCode + comment);    // add orignal code-line
                         }
                         //     lastMotionMode = gcline.motionMode;
                     }
@@ -307,7 +320,7 @@ namespace GrblPlotter
                 isArc = ((gcline.motionMode == 2) || (gcline.motionMode == 3));
                 coordList.Add(new CoordByLine(iCode, gcline.figureNumber, (XyzPoint)gcline.actualPos, (XyzPoint)gcline.actualPos, gcline.motionMode, gcline.alpha, isArc));
 
-            //    Application.DoEvents();
+                //    Application.DoEvents();
                 if (MyApplication.ESCwasPressed)
                 {
                     Logger.Warn("CreateGCodeProg abort by ESC");
