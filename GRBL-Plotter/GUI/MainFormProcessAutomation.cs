@@ -287,7 +287,7 @@ namespace GrblPlotter
                         Logger.Trace("Last codeInsert:{0}  {1}", codeInsert.X, lineStart);
 
                         TransformStart("Scale");
-                        SetFctbCodeText(VisuGCode.TransformGCodeScale(size, size));
+                        SetFctbCodeText(VisuGCode.TransformGCodeScale(size, size, false));
                         SelectionHandle.ClearSelected();
                         TransformEnd();
                         _process_form?.Feedback(e.Command, "Scale applied", true);

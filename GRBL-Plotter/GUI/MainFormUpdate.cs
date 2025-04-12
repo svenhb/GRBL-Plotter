@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,6 +25,9 @@
  * 2021-12-14 change log path
  * 2023-01-10 line 132 get user.config path, change from PerUserRoaming to PerUserRoamingAndLocal
  * 2023-03-07 l:480 f:JoystickSetup() set joystick raster; l:560 f:UpdateControlEnablesInvoked show/hide stop
+ * 2025-03-04 l:185 f:SetGUISize replace this.Text by showFormText();
+ *            l:611 f:UpdateControlEnablesInvoked add showFormText()
+ * 2025-03-14 l:235 f:LoadSettings skip if shutDown
 */
 
 using Microsoft.Win32;
@@ -182,8 +185,7 @@ namespace GrblPlotter
             if ((splitDist > splitContainer1.Panel1MinSize) && (splitDist < (splitContainer1.Width - splitContainer1.Panel2MinSize)))
                 splitContainer1.SplitterDistance = splitDist;
 
-            this.Text = string.Format("{0} Ver.:{1}", appName, MyApplication.GetVersion());
-            //            this.Text = string.Format("{0} Ver. {1}  Date {2}", appName, System.Windows.Forms.Application.ProductVersion.ToString(culture), File.GetCreationTime(System.Reflection.Assembly.GetExecutingAssembly().Location).ToString("yyyy-mm-dd hh:mm:ss"));
+            ShowFormText();
             toolTip1.SetToolTip(this, this.Text);
 
             SplitContainer1_SplitterMoved(null, null);
@@ -229,6 +231,9 @@ namespace GrblPlotter
         // load settings
         public void LoadSettings(object sender, EventArgs e)
         {
+            if (shutDown)
+                return;
+
             Logger.Info("LoadSettings");
 
             if ((_setup_form != null) && (_setup_form.settingsReloaded))
@@ -319,6 +324,13 @@ namespace GrblPlotter
 
         private void GuiEnableAxisABC()
         {
+            Label[] axisLabels = { label_x, label_y, label_z, label_a, label_b, label_c };
+            string axisChars = "XYZABC";
+            for (int i = 0; i < 6; i++)
+            {
+                axisLabels[i].Text = axisChars[i].ToString();
+            }
+
             ctrl4thAxis = Properties.Settings.Default.ctrl4thUse;
             ctrl4thName = Properties.Settings.Default.ctrl4thName;
             label_a.Visible = ctrl4thAxis || Grbl.axisA || simulateA;
@@ -379,6 +391,31 @@ namespace GrblPlotter
                     label_status.Location = new Point(1, 138);
                     btnHome.Location = new Point(106, 111);
                     btnHome.Size = new Size(122, 57);
+                }
+            }
+            Logger.Trace("GuiEnableAxisABC {0}", Grbl.GetInfo("AXS1", "-"));
+            if (Grbl.GetInfo("AXS1", "") != "")
+            {
+                bool skipClonedAxis = true;                             // WPos:10.000,20.000,20.000,30.000,-125.000
+                char[] chars = Grbl.GetInfo("AXS1", "").ToCharArray();  // [AXS:5:XYYZA]
+                for (int i = 0; i < Math.Min(6, chars.Length); i++)
+                {
+                    axisLabels[i].Text = chars[i].ToString();
+                }
+                if (chars.Length < 4)
+                {
+                    label_a.Visible = label_wa.Visible = label_ma.Visible = btnZeroA.Visible = false;
+                    Grbl.axisA = false;
+                }
+                if (chars.Length < 5)
+                {
+                    label_b.Visible = label_wb.Visible = label_mb.Visible = btnZeroB.Visible = false;
+                    Grbl.axisB = false;
+                }
+                if (chars.Length < 6)
+                {
+                    label_c.Visible = label_wc.Visible = label_mc.Visible = btnZeroC.Visible = false;
+                    Grbl.axisC = false;
                 }
             }
         }
@@ -503,6 +540,8 @@ namespace GrblPlotter
         }
         private void UpdateControlEnablesInvoked()//bool allowControl)
         {
+            if (shutDown) { return; }
+
             bool isConnected = false;
             if (_serial_form != null)
             { isConnected = _serial_form.SerialPortOpen || Grbl.grblSimulate; }
@@ -608,6 +647,7 @@ namespace GrblPlotter
                 tableLayoutPanel4.RowStyles[2].Height = 60f;
             }
             EnableCmsCodeBlocks(VisuGCode.CodeBlocksAvailable());
+            ShowFormText();
         }
 
 
@@ -744,7 +784,7 @@ namespace GrblPlotter
             GuiVariables.variable["GMAS"] = (double)Properties.Settings.Default.importGCPWMUp;
             GuiVariables.variable["GZES"] = (double)Properties.Settings.Default.importGCPWMZero;
             GuiVariables.variable["GCTS"] = (double)(Properties.Settings.Default.importGCPWMDown + Properties.Settings.Default.importGCPWMUp) / 2;
-            GuiVariables.WriteDimensionToRegistry();        
+            GuiVariables.WriteDimensionToRegistry();
         }
     }
 }

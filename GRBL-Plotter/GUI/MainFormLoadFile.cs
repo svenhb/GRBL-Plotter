@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -70,6 +70,7 @@
  * 2024-08-20 check image file type for automatic vectorization
  * 2024-09-20 l:1278 f:LoadFromClipboard add paste from clipboard for GCodeFromPDNJson
  * 2024-12-27 l:1244 f:LoadFromClipboard add svg-string.Trim('\0')
+ * 2025-03-04 add $I customization string
 */
 /*   96 #region MAIN-MENU FILE
  * 1483 MainForm_KeyDown  
@@ -117,8 +118,75 @@ namespace GrblPlotter
                                             "All files (*.*)|*.*";
 
         private int delayedHeightMapShow = 0;
+        private string lastLoaded = "";
+        private string lastCustomString = "";
 
         #region MAIN-MENU FILE
+
+        private void ShowFormText()
+        {
+            if (shutDown)
+                return;
+            string versionString = Grbl.GetInfo("VER");
+            string customString = Grbl.GetInfo("VER1");
+            if (lastLoaded == "")
+                this.Text = string.Format("{0} Ver.:{1} | grbl:{2} {3}", appName, MyApplication.GetVersion(), versionString, Grbl.GetInfo("VER1", "not connected"));
+            else
+                this.Text = appName + " | " + Grbl.GetInfo("VER1", "not connected") + " | Source: " + lastLoaded;
+
+            if (_setup_form != null)
+            {
+                _setup_form.NewCustomString = customString;
+            }
+
+            if (Properties.Settings.Default.machineLoadDefaults)
+            {
+                if (string.IsNullOrEmpty(customString))
+                {
+                    if (versionString.Length > 0)
+                        Logger.Trace("⚠⚠⚠ ShowFormText - FAIL loading ini-file - custom string ($I) not set");
+                    return;
+                }
+
+                if (lastCustomString == customString)
+                {
+                    //   _serial_form.AddToLog("* Machine defaults already loaded");
+                    return;
+                }
+                string path = Datapath.Usecases + "\\" + customString + ".ini";
+                if (!File.Exists(path))
+                {
+                    Logger.Trace("⚠⚠⚠ ShowFormText - FAIL ini-file not found: '{0}'", path);
+                    return;
+                }
+
+                lastCustomString = customString;
+                //    DialogResult dialogResult = MessageBox.Show("Load machine '" + customString + "' default settings?", "Attention", MessageBoxButtons.YesNo);
+                //    if (dialogResult == DialogResult.No)
+                //        return;
+
+                _serial_form.AddToLog("* Load machine defaults");
+                var MyIni = new IniFile(path);
+                Logger.Trace("ShowFormText - Load ini-file: '{0}'", path);
+                MyIni.ReadAll();    // ReadImport();
+
+                CloseMessageForm();                     // close open form to avoid problems
+                if (true)
+                {
+                    uint duration = 5;
+                    _message_form = new MessageForm();
+                    _message_form.Show();
+                    delayedMessageFormClose = duration;         // close form after 10x 500 ms			
+
+                    if (_message_form != null)
+                    {
+                        string html = MyIni.ShowIniMachineSettingsHTML("Machine defaults");
+                        _message_form.DontClose = false;
+                        _message_form.ShowMessage(600, 800, "Loaded Machine Defaults", html, (int)duration);     // show graphic import options
+                    }
+                }
+            }
+        }
         // open a file via dialog
         private void BtnOpenFile_Click(object sender, EventArgs e)
         {
@@ -129,6 +197,7 @@ namespace GrblPlotter
                 LoadFile(openFileDialog1.FileName);
             }
         }
+
         // handle MRU List
         private readonly int MRUnumber = 20;
         private string saveName = "";
@@ -252,8 +321,9 @@ namespace GrblPlotter
             Graphic.pathBackground.Reset();// = new GraphicsPath();
 
             pictureBox1.Invalidate();                   // resfresh view
+            fCTBCode.Bookmarks.Clear();
 
-            if (LineIsInRange(fCTBCodeClickedLineLast))
+        /*    if (LineIsInRange(fCTBCodeClickedLineLast))
             {
                 try
                 {
@@ -261,7 +331,7 @@ namespace GrblPlotter
                 }
                 catch (Exception err) { Logger.Error(err, "NewCodeStart - fCTBCode.UnbookmarkLine({0}) ", fCTBCodeClickedLineLast); }
             }
-            fCTBCodeClickedLineNow = 0;
+       */     fCTBCodeClickedLineNow = 0;
             fCTBCodeClickedLineLast = 0;
             //     fCTBCode.Clear();
             ClearErrorLines();
@@ -776,7 +846,8 @@ namespace GrblPlotter
 
                                 //   LoadFromClipboard(tmp);     //File.ReadAllText(fileName));
                                 fileLoaded = true;
-                                this.Text = appName + " | Source: " + fileName;
+                                lastLoaded = fileName;
+                                ShowFormText();
                             }
                         }
                         finally
@@ -1090,7 +1161,9 @@ namespace GrblPlotter
                     Properties.Settings.Default.counterImportSVG += 1;
                     NewCodeEnd(true);               // LoadFromClipboard SVG code was imported, no need to check for bad GCode
 
-                    this.Text = appName + " | Source: from " + source;
+                    lastLoaded = "from " + source;
+                    ShowFormText();
+                    //     this.Text = appName + " | Source: from " + source;
                     SetLastLoadedFile("Data from " + source + ": SVG", "");
                     lbInfo.Text = "SVG from " + source;
                     if (Properties.Settings.Default.importSVGRezise) importOptions = "<SVG Resize> " + importOptions;
@@ -1129,7 +1202,9 @@ namespace GrblPlotter
                     { fCTBCode.Text = "( Code conversion failed )"; return false; }
                     NewCodeEnd(true);               // LoadFromClipboard DXF code was imported, no need to check for bad GCode
 
-                    this.Text = appName + " | Source: from " + source;
+                    lastLoaded = "from " + source;
+                    ShowFormText();
+                    //    this.Text = appName + " | Source: from " + source;
                     SetLastLoadedFile("Data from " + source + ": HPGL", "");
                     lbInfo.Text = "HPGL from " + source;
                     ShowImportOptions();
@@ -1170,7 +1245,9 @@ namespace GrblPlotter
                     { fCTBCode.Text = "( Code conversion failed )"; return false; }
                     NewCodeEnd(true);               // LoadFromClipboard DXF code was imported, no need to check for bad GCode
 
-                    this.Text = appName + " | Source: from " + source;
+                    lastLoaded = "from " + source;
+                    ShowFormText();
+                    //    this.Text = appName + " | Source: from " + source;
                     SetLastLoadedFile("Data from " + source + ": DXF", "");
                     lbInfo.Text = "DXF from " + source;
                     ShowImportOptions();
@@ -1240,7 +1317,7 @@ namespace GrblPlotter
                 }
                 byte[] bytes = stream.ToArray();
                 string txt = System.Text.Encoding.Default.GetString(bytes).Trim('\0');
-                Logger.Info("   Text: '{0}'", txt.Substring(0, 240).Replace("\n"," "));
+                Logger.Info("   Text: '{0}'", txt.Substring(0, 240).Replace("\n", " "));
 
                 UseCaseDialog();
 
@@ -1275,7 +1352,9 @@ namespace GrblPlotter
                 { fCTBCode.Text = "( Code conversion failed )"; return false; }
                 NewCodeEnd(true);               // LoadFromClipboard SVG code was imported, no need to check for bad GCode
 
-                this.Text = appName + " | Source: from Clipboard";
+                lastLoaded = "from Clipboard";
+                ShowFormText();
+                //    this.Text = appName + " | Source: from Clipboard";
                 SetLastLoadedFile("Data from Clipboard: SVG", "");
                 lbInfo.Text = "SVG from clipboard";
                 if (Properties.Settings.Default.importSVGRezise) importOptions = "<SVG Resize> " + importOptions;
@@ -1296,7 +1375,9 @@ namespace GrblPlotter
                     NewCodeEnd(true);
 
                     Properties.Settings.Default.counterImportPDNJson += 1;
-                    this.Text = appName + " | Source: from Clipboard";
+                    lastLoaded = " from Clipboard";
+                    ShowFormText();
+                    //    this.Text = appName + " | Source: from Clipboard";
                     SetLastLoadedFile("Data from Clipboard: BMP", "");
                     lbInfo.Text = "BMP from clipboard";
                     ShowImportOptions();
@@ -1369,13 +1450,19 @@ namespace GrblPlotter
         }
         public void MoveToPickup(object sender, EventArgs e)   // event from setup form
         {
-            SendCommands(_setup_form.commandToSend);
+            string cmd = _setup_form.commandToSend;
+            bool doRst = cmd.Contains("RST");
+            SendCommands(cmd.Replace("RST", ""));
+            if (doRst)
+                btnReset.PerformClick();
             _setup_form.commandToSend = "";
         }
 
         private void DisplayImportOptions()
         {             /* Show import options */
             CloseMessageForm();                     // close open form to avoid problems
+            if (shutDown)
+                return;
             if (Properties.Settings.Default.importMessageDelay > 0)
             {
                 _message_form = new MessageForm();
@@ -1533,7 +1620,9 @@ namespace GrblPlotter
 
             Application.DoEvents();
 
-            this.Text = appName + " | Source: " + source;
+            lastLoaded = source;
+            ShowFormText();
+            //    this.Text = appName + " | Source: " + source;
 
             lbInfo.Text = type.ToString() + "-Code loaded";
             ShowImportOptions();
@@ -1691,7 +1780,9 @@ namespace GrblPlotter
                 NewCodeEnd();                      // LoadGcode -> fCTB_CheckUnknownCode
 
                 SaveRecentFile(tbFile.Text);
-                this.Text = appName + " | File: " + tbFile.Text;
+                lastLoaded = "File: " + tbFile.Text;
+                ShowFormText();
+                //    this.Text = appName + " | File: " + tbFile.Text;
                 lbInfo.Text = "G-Code loaded";
                 UpdateControlEnables();
 
@@ -1849,7 +1940,7 @@ namespace GrblPlotter
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     var MyIni = new IniFile(sfd.FileName);
-                    MyIni.WriteAll(_serial_form.GRBLSettings, true);    // write all properties, even if default
+                    MyIni.WriteAll(true);    // write all properties, even if default
                     Logger.Info("Save machine parameters as {0}", sfd.FileName);
                 }
                 sfd.Dispose();

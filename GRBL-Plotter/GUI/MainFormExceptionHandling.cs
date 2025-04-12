@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2023 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -111,7 +111,9 @@ namespace GrblPlotter
             if (strt < 0) { strt = 0; }
             string txt = string.Format("Could not load file ...{0}!!!", fileName.Substring(strt));
             StatusStripSet(2, txt, Color.Fuchsia);
-            this.Text = appName + " | " + txt;
+            lastLoaded = txt;
+            ShowFormText();
+        //    this.Text = appName + " | " + txt;
             lbInfo.Text = "Error loading file";
             lbInfo.BackColor = Color.Fuchsia;
         }

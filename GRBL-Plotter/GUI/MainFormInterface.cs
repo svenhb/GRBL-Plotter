@@ -1,7 +1,7 @@
 /*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -421,6 +421,8 @@ namespace GrblPlotter
                         StatusStripSet(1, "No connection - press 'RESET'", Color.Fuchsia);
                         StatusStripSet(2, msg, Color.Fuchsia);
                         isStreaming = false;
+                        Grbl.Clear();
+                        GuiEnableAxisABC();
                         UpdateControlEnables();
                         break;
 
@@ -571,6 +573,7 @@ namespace GrblPlotter
                 else StatusStripSet(2, string.Format("Marlin connected: axis: {0}", Grbl.axisCount), Color.Lime);
 
                 delayedStatusStripClear1 = 8;
+                GuiEnableAxisABC();
             }
         }
 

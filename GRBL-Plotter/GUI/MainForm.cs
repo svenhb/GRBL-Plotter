@@ -109,6 +109,7 @@ namespace GrblPlotter
         private ulong mainTimerCount = 0;
 
         private bool showFormInFront = false;
+        private bool shutDown = false;
 
         // Trace, Debug, Info, Warn, Error, Fatal
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
@@ -322,6 +323,7 @@ namespace GrblPlotter
         // close Main form
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {   // Note all other forms will be closed, before reaching following code...
+            shutDown = true;
             Logger.Info("###### FormClosing ");
             if (isStreaming)
                 EventCollector.SetStreaming("CLOST");
@@ -448,6 +450,8 @@ namespace GrblPlotter
         // update 500ms
         private void MainTimer_Tick(object sender, EventArgs e)
         {
+            if (shutDown) { return; }
+
             if (timerUpdateControls)    // streaming reset, finish, pause, toolchange, stop
             {
                 timerUpdateControls = false;
@@ -616,8 +620,6 @@ namespace GrblPlotter
                 {
                     if (!CloseMessageForm(true))
                         delayedMessageFormClose++;
-
-                    //    Logger.Trace("delayedMessageFormClose {0}", delayedMessageFormClose);
                 }
             }
             if (delayedHeightMapShow > 0)
@@ -1329,8 +1331,8 @@ namespace GrblPlotter
                 }
                 else
                 {
-                    _serial_form.AddToLog("Script/file does not exists: " + command);
-                    Logger.Warn("ProcessCommands Script/file does not exists: {0}", command);
+                    _serial_form.AddToLog("Script/file does not exists: " + Path.GetFullPath(command));
+                    Logger.Warn("ProcessCommands Script/file does not exists: {0}  {1}", command, Path.GetFullPath(command));
                 }
             }
             else

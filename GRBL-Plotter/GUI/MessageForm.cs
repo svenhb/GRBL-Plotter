@@ -158,6 +158,8 @@ namespace GrblPlotter
             int val = toolStripProgressBar1.Value - progressStep;
             if (val >= 0)
                 toolStripProgressBar1.Value = val;
+            if ((val < 0) && !DontClose)
+                this.Close();
         }
     }
 }

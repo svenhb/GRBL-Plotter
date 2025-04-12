@@ -504,8 +504,9 @@ namespace GrblPlotter
         private void TransformStart(string action, bool setUndo = true)//, bool resetMark = true)
         {
             Logger.Info("▼▼▼▼▼▼ TransformStart {0}", action);
-			try
-			{
+        //    showPaths = false;
+            try
+            {
 				StatusStripClear();
 				StatusStripSet(0, string.Format("Transform Start {0}", action), Color.White);
 				Application.DoEvents();
@@ -528,6 +529,7 @@ namespace GrblPlotter
             VisuGCode.GetGCodeLines(fCTBCode.Lines, null, null);        // get code path
             VisuGCode.CalcDrawingArea();                                // calc ruler dimension
             VisuGCode.DrawMachineLimit();
+            showPaths = true;
             pictureBox1.Invalidate();                                   // resfresh view
             Update_GCode_Depending_Controls();                          // update GUI controls
             timerUpdateControlSource = "transformEnd";
@@ -544,6 +546,7 @@ namespace GrblPlotter
                 StatusStripSet(2, string.Format("ESC abort transform"), Color.Yellow);
             else
                 StatusStripClear();
+            showPaths = true;
             Application.DoEvents();
         }
 
@@ -586,42 +589,42 @@ namespace GrblPlotter
         private void MirrorXToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TransformStart("Mirror X");
-            fCTBCode.Text = VisuGCode.TransformGCodeMirror(VisuGCode.Translate.MirrorX);
+            fCTBCode.Text = VisuGCode.TransformGCodeMirror(VisuGCode.Translate.MirrorX, useOrigin.Checked);
             TransformEnd();
         }
 
         private void MirrorYToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TransformStart("Mirror Y");
-            fCTBCode.Text = VisuGCode.TransformGCodeMirror(VisuGCode.Translate.MirrorY);
+            fCTBCode.Text = VisuGCode.TransformGCodeMirror(VisuGCode.Translate.MirrorY, useOrigin.Checked);
             TransformEnd();
         }
 
         private void MirrorRotaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TransformStart("Rotate");
-            fCTBCode.Text = VisuGCode.TransformGCodeMirror(VisuGCode.Translate.MirrorRotary);
+            fCTBCode.Text = VisuGCode.TransformGCodeMirror(VisuGCode.Translate.MirrorRotary, useOrigin.Checked);
             TransformEnd();
         }
 
         private void Rotate90ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TransformStart("Rotate 90");
-            fCTBCode.Text = VisuGCode.TransformGCodeRotate(90, 1, new XyPoint(0, 0));
+            fCTBCode.Text = VisuGCode.TransformGCodeRotate(90, 1, new XyPoint(0, 0), !useOrigin.Checked);
             TransformEnd();
         }
 
         private void Rotate90ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             TransformStart("Rotate -90");
-            fCTBCode.Text = VisuGCode.TransformGCodeRotate(-90, 1, new XyPoint(0, 0));
+            fCTBCode.Text = VisuGCode.TransformGCodeRotate(-90, 1, new XyPoint(0, 0), !useOrigin.Checked);
             TransformEnd();
         }
 
         private void Rotate180ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TransformStart("Rotate 180");
-            fCTBCode.Text = VisuGCode.TransformGCodeRotate(180, 1, new XyPoint(0, 0));
+            fCTBCode.Text = VisuGCode.TransformGCodeRotate(180, 1, new XyPoint(0, 0), !useOrigin.Checked);
             TransformEnd();
         }
 
@@ -633,7 +636,7 @@ namespace GrblPlotter
                 if (Double.TryParse(toolStrip_tb_rotate.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double anglenew))
                 {
                     TransformStart(string.Format("Rotate {0:0.00}", anglenew));
-                    fCTBCode.Text = VisuGCode.TransformGCodeRotate(anglenew, 1, new XyPoint(0, 0));
+                    fCTBCode.Text = VisuGCode.TransformGCodeRotate(anglenew, 1, new XyPoint(0, 0), !useOrigin.Checked);
                     TransformEnd();
                 }
                 else
@@ -653,7 +656,7 @@ namespace GrblPlotter
                 if (Double.TryParse(toolStrip_tb_XY_scale.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double size))
                 {
                     TransformStart("Scale");
-                    fCTBCode.Text = VisuGCode.TransformGCodeScale(size, size);
+                    fCTBCode.Text = VisuGCode.TransformGCodeScale(size, size, useOrigin.Checked);
                     TransformEnd();
                 }
                 else
@@ -716,7 +719,7 @@ namespace GrblPlotter
                 if (Double.TryParse(toolStrip_tb_X_scale.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double size))
                 {
                     TransformStart("Scale");
-                    fCTBCode.Text = VisuGCode.TransformGCodeScale(size, 100);
+                    fCTBCode.Text = VisuGCode.TransformGCodeScale(size, 100, useOrigin.Checked);
                     TransformEnd();
                 }
                 else
@@ -785,7 +788,7 @@ namespace GrblPlotter
                 if (Double.TryParse(toolStrip_tb_Y_scale.Text.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double size))
                 {
                     TransformStart("Scale");
-                    fCTBCode.Text = VisuGCode.TransformGCodeScale(100, size);
+                    fCTBCode.Text = VisuGCode.TransformGCodeScale(100, size, useOrigin.Checked);
                     TransformEnd();
                 }
                 else

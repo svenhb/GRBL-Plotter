@@ -383,16 +383,16 @@ namespace GrblPlotter
             this.label_c = new System.Windows.Forms.Label();
             this.label_mc = new System.Windows.Forms.Label();
             this.label_wc = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.label_b = new System.Windows.Forms.Label();
             this.label_mb = new System.Windows.Forms.Label();
             this.label_wb = new System.Windows.Forms.Label();
             this.label_status0 = new System.Windows.Forms.Label();
             this.label_a = new System.Windows.Forms.Label();
             this.label_ma = new System.Windows.Forms.Label();
             this.label_wa = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.label_z = new System.Windows.Forms.Label();
+            this.label_y = new System.Windows.Forms.Label();
+            this.label_x = new System.Windows.Forms.Label();
             this.label_status = new System.Windows.Forms.Label();
             this.label_mx = new System.Windows.Forms.Label();
             this.label_my = new System.Windows.Forms.Label();
@@ -436,6 +436,7 @@ namespace GrblPlotter
             this.startExtensionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unDoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useOrigin = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
             this.mirrorXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mirrorYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -2639,7 +2640,7 @@ namespace GrblPlotter
             this.gBoxDRO.Controls.Add(this.btnZeroC);
             this.gBoxDRO.Controls.Add(this.label_mc);
             this.gBoxDRO.Controls.Add(this.label_wc);
-            this.gBoxDRO.Controls.Add(this.label11);
+            this.gBoxDRO.Controls.Add(this.label_b);
             this.gBoxDRO.Controls.Add(this.btnZeroB);
             this.gBoxDRO.Controls.Add(this.label_mb);
             this.gBoxDRO.Controls.Add(this.label_wb);
@@ -2652,11 +2653,11 @@ namespace GrblPlotter
             this.gBoxDRO.Controls.Add(this.btnHome);
             this.gBoxDRO.Controls.Add(this.btnZeroXYZ);
             this.gBoxDRO.Controls.Add(this.btnZeroXY);
-            this.gBoxDRO.Controls.Add(this.label4);
+            this.gBoxDRO.Controls.Add(this.label_z);
             this.gBoxDRO.Controls.Add(this.btnZeroZ);
-            this.gBoxDRO.Controls.Add(this.label3);
+            this.gBoxDRO.Controls.Add(this.label_y);
             this.gBoxDRO.Controls.Add(this.btnZeroY);
-            this.gBoxDRO.Controls.Add(this.label2);
+            this.gBoxDRO.Controls.Add(this.label_x);
             this.gBoxDRO.Controls.Add(this.btnZeroX);
             this.gBoxDRO.Controls.Add(this.label_status);
             this.gBoxDRO.Controls.Add(this.label_mx);
@@ -2823,10 +2824,10 @@ namespace GrblPlotter
             resources.ApplyResources(this.label_wc, "label_wc");
             this.label_wc.Name = "label_wc";
             // 
-            // label11
+            // label_b
             // 
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.Name = "label11";
+            resources.ApplyResources(this.label_b, "label_b");
+            this.label_b.Name = "label_b";
             // 
             // label_mb
             // 
@@ -2858,20 +2859,20 @@ namespace GrblPlotter
             resources.ApplyResources(this.label_wa, "label_wa");
             this.label_wa.Name = "label_wa";
             // 
-            // label4
+            // label_z
             // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
+            resources.ApplyResources(this.label_z, "label_z");
+            this.label_z.Name = "label_z";
             // 
-            // label3
+            // label_y
             // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
+            resources.ApplyResources(this.label_y, "label_y");
+            this.label_y.Name = "label_y";
             // 
-            // label2
+            // label_x
             // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
+            resources.ApplyResources(this.label_x, "label_x");
+            this.label_x.Name = "label_x";
             // 
             // label_status
             // 
@@ -3152,6 +3153,7 @@ namespace GrblPlotter
             // 
             this.gCodeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.unDoToolStripMenuItem,
+            this.useOrigin,
             this.toolStripSeparator16,
             this.mirrorXToolStripMenuItem,
             this.mirrorYToolStripMenuItem,
@@ -3187,6 +3189,12 @@ namespace GrblPlotter
             resources.ApplyResources(this.unDoToolStripMenuItem, "unDoToolStripMenuItem");
             this.unDoToolStripMenuItem.Name = "unDoToolStripMenuItem";
             this.unDoToolStripMenuItem.Click += new System.EventHandler(this.UnDoToolStripMenuItem_Click);
+            // 
+            // useOrigin
+            // 
+            this.useOrigin.CheckOnClick = true;
+            this.useOrigin.Name = "useOrigin";
+            resources.ApplyResources(this.useOrigin, "useOrigin");
             // 
             // toolStripSeparator16
             // 
@@ -3843,9 +3851,9 @@ namespace GrblPlotter
         private System.Windows.Forms.Label label_status;
         private System.Windows.Forms.Label lblRemaining;
         private System.Windows.Forms.Label label_status0;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label_z;
+        private System.Windows.Forms.Label label_y;
+        private System.Windows.Forms.Label label_x;
         private System.Windows.Forms.Button btnZeroXYZ;
         private System.Windows.Forms.Button btnZeroXY;
         private System.Windows.Forms.Button btnZeroZ;
@@ -4041,7 +4049,7 @@ namespace GrblPlotter
         private System.Windows.Forms.Button btnZeroC;
         private System.Windows.Forms.Label label_mc;
         private System.Windows.Forms.Label label_wc;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label_b;
         private System.Windows.Forms.Button btnZeroB;
         private System.Windows.Forms.Label label_mb;
         private System.Windows.Forms.Label label_wb;
@@ -4226,6 +4234,7 @@ namespace GrblPlotter
         private System.Windows.Forms.Button BtnSetCoordA;
         private System.Windows.Forms.NumericUpDown NudSetCoordA;
         private System.Windows.Forms.Label LblSetCoordA;
+        private System.Windows.Forms.ToolStripMenuItem useOrigin;
     }
 }
 

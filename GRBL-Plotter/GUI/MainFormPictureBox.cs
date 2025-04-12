@@ -1,7 +1,7 @@
 ﻿/*  GRBL-Plotter. Another GCode sender for GRBL.
     This file is part of the GRBL-Plotter application.
    
-    Copyright (C) 2015-2024 Sven Hasemann contact: svenhb@web.de
+    Copyright (C) 2015-2025 Sven Hasemann contact: svenhb@web.de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -46,6 +46,7 @@
  * 2023-11-15 l:364 f:OnPaint_drawToolPath check for pathObjectPenColorOnlyNone	- show default color if all PenColors are "none"		  	
  * 2023-12-17 l:1038 f:CmsPicBoxReloadFile_Click add 2nd recent file load, if 1st is "lastProcessed.nc"
  * 2024-05-20 add "Apply last transform"
+ * 2025-03-04 l:1124 f:ClearWorkspace add showFormText()
 */
 
 using FastColoredTextBoxNS;
@@ -53,7 +54,6 @@ using GrblPlotter.MachineControl;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Net;
 using System.Windows.Forms;
 
 namespace GrblPlotter
@@ -781,7 +781,8 @@ namespace GrblPlotter
                                 else if (modKeyCtrlShift) { markerType = XmlMarkerType.Collection; }
                                 else if (modKeyCtrl) { markerType = XmlMarkerType.Group; }
                                 else if (modKeyShift) { markerType = XmlMarkerType.Tile; }
-                                if (logSelection) Logger.Trace("SetFigureSelectionOnClick   change markerType none to {0}   last:{1}", markerType, lastMarkerType);
+                                if (logSelection)
+                                    Logger.Trace("SetFigureSelectionOnClick   change markerType none to {0}   last:{1}", markerType, lastMarkerType);
                             }
                             else if (markerType == XmlMarkerType.Figure)
                             {
@@ -863,7 +864,8 @@ namespace GrblPlotter
                         /* highlight selected figure or group */
                         if (!FindFigureMarkSelection(markerType, clickedLineNr, markerProperties))
                         {
-                            markerType = XmlMarkerType.None;
+                            if (markerType != XmlMarkerType.Node)
+                                markerType = XmlMarkerType.None;
                             lastMarkerType = XmlMarkerType.Figure;
                         }
 
@@ -1118,6 +1120,9 @@ namespace GrblPlotter
             globalCollectionCounter = 1;
             _heightmap_form?.SetBtnApply(true);
             isHeightMapApplied = false;
+
+            lastLoaded = "";
+            ShowFormText();
         }
 
         private void CmsPicBoxMoveToFirstPos_Click(object sender, EventArgs e)
