@@ -1,7 +1,9 @@
 ## History
 Needs to be read from the bottom up ;-)  
 
-### [2024-12 Version 1.7.5.x](https://github.com/svenhb/GRBL-Plotter/releases/tag/v.1.7.5.0)
+### [2025-04 Version 1.7.5.x](https://github.com/svenhb/GRBL-Plotter/releases/tag/v.1.7.5.0)
+- Uses the $I command on 1st connect to identify the machine and automatically load the connected INI file
+- Pixel art, individual command, e.g. for liquid dispenser
 - Quick vectorize - just drag & drop to get the outline of a graphic
 - Pixel Art [Video](https://youtu.be/pgTwDJtapdc)
 
