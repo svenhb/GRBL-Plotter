@@ -104,6 +104,7 @@
  * 2024-07-22 l:710  f:ParseAttributs if is stroke not set, use fill color
  * 2024-12-16 l:1160 take care of Properties.Settings.Default.importSVGCircleToDotS
  * 2025-02-26 l:1054 f:ParseBasicElement also check for fill-opacity="0" to exclude objects #436
+ * 2025-04-04 l.441  f:ParseGlobals accept ',' in viewbox parameter #440
 */
 
 /* SetHeaderMessages...
@@ -407,7 +408,7 @@ namespace GrblPlotter
             {
                 string viewbox = svgCode.Attribute("viewBox").Value;
                 logSource = "viewBox " + viewbox;
-                viewbox = Regex.Replace(viewbox, @"\s+", " ").Replace(' ', '|');    // remove double space
+                viewbox = Regex.Replace(viewbox, @"\s+", " ").Replace(',', '|').Replace(' ', '|');    // remove double space
                 var split = viewbox.Split('|');
                 vbOffX = -ConvertToPixel(split[0]);
                 vbOffY = -ConvertToPixel(split[1]);
